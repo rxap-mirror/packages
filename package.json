@@ -28,6 +28,7 @@
     "help": "nx help",
     "add:lib": "ng g @nrwl/angular:lib --style scss --publishable",
     "start:form-system-demo": "yarn start form-system-demo --port 4650",
+    "start:form-system-demo:public": "yarn start:form-system-demo --host 0.0.0.0 --disable-host-check",
     "start:browser": "chromium-browser --user-data-dir=\"./chromium-user-data\" http://localhost:4650"
   },
   "private": true,
@@ -35,7 +36,6 @@
     "@angular/animations": "^8.2.0",
     "@angular/cdk": "^8.2.3",
     "@angular/common": "^8.2.11",
-    "@angular/compiler": "^8.2.0",
     "@angular/core": "^8.2.11",
     "@angular/flex-layout": "^8.0.0-beta.27",
     "@angular/forms": "^8.2.0",

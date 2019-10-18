@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../digitaix/core/.idea/angular.iml" filepath="$PROJECT_DIR$/../../digitaix/core/.idea/angular.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../../../angular/components/.idea/components.iml" filepath="$PROJECT_DIR$/../../../../../angular/components/.idea/components.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/rxap.iml" filepath="$PROJECT_DIR$/.idea/rxap.iml" />
     </modules>

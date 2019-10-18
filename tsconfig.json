@@ -21,6 +21,9 @@
       ],
       "@rxap/utilities": [
         "libs/utilities/src/index.ts"
+      ],
+      "@rxap/component-system": [
+        "libs/component-system/src/index.ts"
       ]
     }
   },
