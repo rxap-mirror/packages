@@ -6,6 +6,7 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserRegisterFormModule } from './user-register-form/user-register-form.module';
 import { RxapFormSystemModule } from '@rxap/form-system';
+import { RxapComponentSystemModule } from '@rxap/component-system';
 
 @NgModule({
   declarations: [ AppComponent],
@@ -15,6 +16,7 @@ import { RxapFormSystemModule } from '@rxap/form-system';
     MonacoEditorModule.forRoot(),
 
     RxapFormSystemModule.forRoot(),
+    RxapComponentSystemModule.forRoot(),
 
     UserRegisterFormModule,
   ],
