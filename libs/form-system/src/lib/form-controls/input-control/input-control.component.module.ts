@@ -5,21 +5,23 @@ import {
   MatButtonModule,
   MatIconModule
 } from '@angular/material';
-import { InputControlComponent } from './input-control.component';
+import { RxapInputControlComponent } from './input-control.component';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RxapComponentSystemModule } from '@rxap/component-system';
 
 @NgModule({
-  declarations: [ InputControlComponent],
-  imports: [
+  declarations:    [ RxapInputControlComponent ],
+  imports:         [
     MatInputModule,
     MatButtonModule,
     MatIconModule,
     CommonModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    RxapComponentSystemModule.register([ RxapInputControlComponent ])
   ],
-  exports: [ InputControlComponent],
-  entryComponents: [ InputControlComponent],
+  exports:         [ RxapInputControlComponent ],
+  entryComponents: [ RxapInputControlComponent ]
 })
-export class InputControlComponentModule { }
+export class RxapInputControlComponentModule {}

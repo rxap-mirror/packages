@@ -1,4 +1,4 @@
-<form novalidate #form="ngForm">
+<form (submit)="$event.preventDefault()" novalidate>
   <rxap-layout [layout]="layout"></rxap-layout>
   <button style="display: none" type="submit" #submitButton></button>
   <button style="display: none" type="reset" #resetButton></button>

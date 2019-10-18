@@ -1,6 +1,4 @@
-import {
-  RxapFormDefinition,
-} from './form-definition/form-definition';
+import { RxapFormDefinition } from './form-definition/form-definition';
 import { Subject } from 'rxjs';
 import {
   SubscriptionHandler,
@@ -19,10 +17,10 @@ export enum FormInstanceSubscriptions {
   CONTROL_VALIDATOR = 'control-validator'
 }
 
-export class FormInstance<FormValue extends object> {
+export class FormInstance<FormValue extends object, FormDefinition extends RxapFormDefinition<FormValue> = RxapFormDefinition<FormValue>> {
 
   public static TestInstance<FormValue extends object>(formDefinition?: RxapFormDefinition<FormValue>) {
-    return new FormInstance(formDefinition || RxapFormDefinition.TestInstance<FormValue>());
+    return new FormInstance<FormValue>(formDefinition || RxapFormDefinition.TestInstance<FormValue>());
   }
 
   public clickSubmit$ = new Subject<void>();
@@ -30,7 +28,7 @@ export class FormInstance<FormValue extends object> {
 
   protected _subscriptions = new SubscriptionHandler();
 
-  constructor(public readonly formDefinition: RxapFormDefinition<FormValue>) {}
+  constructor(public readonly formDefinition: FormDefinition) {}
 
   public rxapOnInit() {
     this.formDefinition.init$.next();
@@ -40,7 +38,10 @@ export class FormInstance<FormValue extends object> {
   }
 
   public handelOnValueChange() {
-    const onValueChangeMetaData = getMetadata<OnValueChangeMetaData>(FormDefinitionMetaDataKeys.ON_VALUE_CHANGE, this.formDefinition) || {};
+    const onValueChangeMetaData = getMetadata<OnValueChangeMetaData>(
+      FormDefinitionMetaDataKeys.ON_VALUE_CHANGE,
+      this.formDefinition.constructor.prototype
+    ) || {};
     for (const [ controlId, propertyKeys ] of Object.entries(onValueChangeMetaData)) {
       this._subscriptions.add(
         FormInstanceSubscriptions.ON_VALUE_CHANGE,

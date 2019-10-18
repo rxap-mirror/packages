@@ -9,14 +9,11 @@ import {
   OnDestroy
 } from '@angular/core';
 import { FormTemplateLoader } from '../form-template-loader';
-import {
-  FormInstanceFactory
-} from '../form-instance-factory';
+import { FormInstanceFactory } from '../form-instance-factory';
 import { RXAP_FORM_ID } from '../tokens';
 import { Layout } from './layout';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { NgForm } from '@angular/forms';
 import { FormInstance } from '../form-instance';
 
 @Component({
@@ -29,7 +26,6 @@ export class FormViewComponent<FormValue extends object>
 
   @ViewChild('submitButton', { static: true }) public submitButton: ElementRef;
   @ViewChild('resetButton', { static: true }) public resetButton: ElementRef;
-  @ViewChild('form', { static: true }) public form: NgForm;
 
   @Input() public formId: string | null = null;
 

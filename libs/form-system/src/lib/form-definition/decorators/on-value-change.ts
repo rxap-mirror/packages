@@ -8,7 +8,7 @@ export interface OnValueChangeMetaData {
   [controlId: string]: string[];
 }
 
-export function OnValueChange(controlId: string, ...controlIds: string[]) {
+export function RxapOnValueChange(controlId: string, ...controlIds: string[]) {
   return function(target: any, propertyKey: string) {
     mergeWithMetadata(
       FormDefinitionMetaDataKeys.ON_VALUE_CHANGE,

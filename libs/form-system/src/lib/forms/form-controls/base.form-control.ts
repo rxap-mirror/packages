@@ -29,4 +29,6 @@ export class BaseFormControl<ControlValue> extends BaseForm<ControlValue> {
 
   public dirty = false;
 
+  public componentId: string;
+
 }

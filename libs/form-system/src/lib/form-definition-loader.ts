@@ -1,20 +1,16 @@
 import {
   Injectable,
   Injector,
-  Type
+  Type,
+  InjectFlags
 } from '@angular/core';
 import { FormControlBuilder } from './form-builder/form-control.builder';
-import { FormGroupBuilder } from './form-builder/form-group.builder';
-import { FormArrayBuilder } from './form-builder/form-array.builder';
 import { RxapFormDefinition } from './form-definition/form-definition';
 import { FormDefinitionRegister } from './form-definition-register';
 import { FormControlMetaData } from './form-definition/decorators/control';
 import { FormGroupMetaData } from './form-definition/decorators/group';
 import { FormArrayMetaData } from './form-definition/decorators/array';
-import {
-  getMetadata,
-  getMetadataKeys
-} from '@rxap/utilities';
+import { getMetadata } from '@rxap/utilities';
 import { FormDefinitionMetaDataKeys } from './form-definition/decorators/meta-data-keys';
 import { BaseFormGroup } from './forms/form-groups/base.form-group';
 
@@ -53,7 +49,7 @@ export class FormDefinitionLoader {
     // const groupsMap = this.formGroupBuilder.buildGroups(metaData.groups, injector);
     // const arraysMap = this.formArrayBuilder.getArrays(metaData.arrays, injector);
 
-    const formDefinition = injector.get(formDefinitionType);
+    const formDefinition = injector.get(formDefinitionType, new formDefinitionType(), InjectFlags.Optional);
 
     // assign created form controls to form definition instance
     Object.assign(formDefinition, controlsMap);

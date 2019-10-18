@@ -1,7 +1,18 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["node", "jest"]
+    "types": [
+      "node",
+      "jest"
+    ],
+    "paths": {
+      "@rxap/component-system": [
+        "dist/libs/component-system"
+      ],
+      "@rxap/utilities": [
+        "dist/libs/utilities"
+      ]
+    }
   },
   "include": ["**/*.ts"]
 }

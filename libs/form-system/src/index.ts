@@ -1,9 +1,9 @@
-export * from './lib/rxap-form-system.module';
+export * from './lib/form-system.module';
 export * from './lib/form-definition-loader';
 export * from './lib/form-definition-register';
 export * from './lib/form-instance-factory';
 export * from './lib/form-state-manager';
-export * from './lib/rxap-form-system.module';
+export * from './lib/form-system.module';
 export * from './lib/form-template-loader';
 export * from './lib/tokens';
 
@@ -31,6 +31,20 @@ export * from './lib/form-definition/decorators/on-value-change';
 
 export * from './lib/form-containers/form-card/form-card.component';
 export * from './lib/form-containers/form-card/form-card.component.module';
+
+// endregion
+
+// endregion
+
+// region form-controls
+
+export * from './lib/form-controls/base-control.component';
+export * from './lib/form-controls/form-control-component-ids';
+
+// region input
+
+export * from './lib/form-controls/input-control/input-control.component';
+export * from './lib/form-controls/input-control/input-control.component.module';
 
 // endregion
 

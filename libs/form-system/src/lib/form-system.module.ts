@@ -11,9 +11,6 @@ import {
   REGISTER_FORM_DEFINITION_TOKEN,
   ROOT_FORM_DEFINITION_TOKEN
 } from './tokens';
-import { BaseFormControl } from './forms/form-controls/base.form-control';
-import { BaseFormGroup } from './forms/form-groups/base.form-group';
-import { BaseFormArray } from './forms/form-arrays/base.form-array';
 
 @NgModule()
 export class RootFormSystemModule {

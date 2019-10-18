@@ -3,11 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ControlContainerComponent } from './control-container/control-container.component';
 import { LayoutComponent } from './layout/layout.component';
 import { StepperComponent } from './stepper/stepper.component';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormViewComponent } from './form-view.component';
-import { InputControlComponentModule } from '../form-controls/input-control/input-control.component.module';
-import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -33,10 +31,6 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     MatStepperModule,
     FlexLayoutModule,
-
-    // TODO : remove
-    InputControlComponentModule,
-    FormsModule
   ]
 })
 export class RxapFormViewComponentModule { }

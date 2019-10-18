@@ -1,6 +1,5 @@
 import {
   Component,
-  Input,
   ViewChild,
   ElementRef,
   OnInit,
@@ -19,6 +18,9 @@ import {
   map
 } from 'rxjs/operators';
 import { ErrorStateMatcher } from '@angular/material';
+import { RxapComponent } from '@rxap/component-system';
+import { RxapFormControlComponentIds } from '../form-control-component-ids';
+import { BaseControlComponent } from '../base-control.component';
 
 export class InputControlErrorStateMatcher implements ErrorStateMatcher {
 
@@ -29,18 +31,18 @@ export class InputControlErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
+@RxapComponent(RxapFormControlComponentIds.INPUT)
 @Component({
-  selector:    'rxap-input-control',
-  templateUrl: './input-control.component.html',
-  styleUrls:   [ './input-control.component.scss' ],
+  selector:        'rxap-input-control',
+  templateUrl:     './input-control.component.html',
+  styleUrls:       [ './input-control.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputControlComponent<ControlValue>
+export class RxapInputControlComponent<ControlValue>
+  extends BaseControlComponent<ControlValue, InputFormControl<ControlValue>>
   implements OnInit, OnDestroy {
 
   @ViewChild('inputElement', { static: true }) public inputElement: ElementRef;
-
-  @Input() public control: InputFormControl<ControlValue>;
 
   public subscriptions = new Subscription();
 
@@ -49,7 +51,9 @@ export class InputControlComponent<ControlValue>
   constructor(
     public renderer: Renderer2,
     public cdr: ChangeDetectorRef,
-  ) {}
+  ) {
+    super();
+  }
 
   public ngOnInit(): void {
 
