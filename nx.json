@@ -7,5 +7,18 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "form-system": {
+      "tags": []
+    },
+    "utilities": {
+      "tags": []
+    },
+    "form-system-demo-e2e": {
+      "tags": []
+    },
+    "form-system-demo": {
+      "tags": []
+    }
+  }
 }

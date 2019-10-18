@@ -15,7 +15,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@rxap/form-system": [
+        "libs/form-system/src/index.ts"
+      ],
+      "@rxap/utilities": [
+        "libs/utilities/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
