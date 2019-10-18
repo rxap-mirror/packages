@@ -19,6 +19,9 @@
     },
     "form-system-demo": {
       "tags": []
+    },
+    "component-system": {
+      "tags": []
     }
   }
 }

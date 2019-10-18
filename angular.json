@@ -220,6 +220,47 @@
           }
         }
       }
+    },
+    "component-system": {
+      "projectType": "library",
+      "root": "libs/component-system",
+      "sourceRoot": "libs/component-system/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/component-system/tsconfig.lib.json",
+            "project": "libs/component-system/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/component-system/tsconfig.lib.json",
+              "libs/component-system/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/component-system/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/component-system/jest.config.js",
+            "tsConfig": "libs/component-system/tsconfig.spec.json",
+            "setupFile": "libs/component-system/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "newProjectRoot": "",
