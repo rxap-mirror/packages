@@ -1,0 +1,21 @@
+<mat-form-field class="form-field" [appearance]="control.appearance">
+  <mat-icon *ngIf="control.icon" matPrefix>{{control.icon}}</mat-icon>
+  <mat-label>{{control.label}}</mat-label>
+  <input
+    matInput
+    [placeholder]="control.placeholder"
+    [type]="control.type"
+    [readonly]="control.readonly"
+    [disabled]="control.disabled"
+    [pattern]="control.pattern"
+    [errorStateMatcher]="errorStateMatcher"
+    [ngModel]="control.value"
+    #inputElement
+  >
+  <button [tabIndex]="-1" mat-button *ngIf="control.value" matSuffix mat-icon-button aria-label="Clear" (click)="control.setValue(null)">
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-error *ngFor="let error of control.getErrors()">{{error}}</mat-error>
+  <mat-hint *ngIf="control.max" align="end">{{inputElement.value?.length || 0}} / {{control.max}}</mat-hint>
+  <mat-hint *ngIf="control.min" align="end">{{control.min}} / {{inputElement.value?.length || 0}}</mat-hint>
+</mat-form-field>

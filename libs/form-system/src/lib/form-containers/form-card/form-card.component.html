@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-content>
+    <rxap-form-view [formId]="formId"></rxap-form-view>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px" style="width: 100%">
+      <button fxFlex="nogrow" mat-stroked-button (click)="instance.reset()">Reset</button>
+      <div fxFlex="nogrow" fxLayout="row" fxLayoutGap="32px">
+        <button fxFlex="nogrow" mat-stroked-button color="warn">Cancel</button>
+        <button fxFlex="nogrow" mat-raised-button color="primary" (click)="instance.submit()">Submit</button>
+      </div>
+    </mat-toolbar>
+  </mat-card-footer>
+</mat-card>
