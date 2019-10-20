@@ -2,8 +2,6 @@ import { Layout } from './layout';
 
 export class Step {
 
-  layout: Layout;
-
-  label: string;
+  constructor(public layout: Layout, public label: string) {}
 
 }

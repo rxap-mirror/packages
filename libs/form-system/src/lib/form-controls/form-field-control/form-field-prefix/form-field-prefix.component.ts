@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { FormFieldFormControl } from '../../../forms/form-controls/form-field.form-control';
+import { Required } from '@rxap/utilities';
 
 @Component({
   selector:        'rxap-form-field-prefix',
@@ -21,6 +22,6 @@ export class FormFieldPrefixComponent {
     return !!this.control.prefixButton;
   }
 
-  @Input() public control: FormFieldFormControl<any>;
+  @Input() @Required public control!: FormFieldFormControl<any>;
 
 }

@@ -94,10 +94,11 @@ export class BaseFormArray<ArrayValue> extends BaseForm<ArrayValue[], FormArrayE
     }
   }
 
+  // @ts-ignore
   public setValue(value: Array<ArrayValue> | KeyValue<ArrayValue>): void {
     let newValue: Array<ArrayValue>;
     if (!Array.isArray(value)) {
-      newValue = clone(this.value);
+      newValue = clone(this.value || []);
 
       for (const index of Object.keys(value).map(indexString => {
         const i = Number(indexString);
@@ -119,7 +120,7 @@ export class BaseFormArray<ArrayValue> extends BaseForm<ArrayValue[], FormArrayE
       }
 
     } else {
-      if (this.value.length !== value.length) {
+      if ((this.value || []).length !== value.length) {
         throw new Error('Can not set value. new value length is not equal to the old value length');
       }
       newValue = value;

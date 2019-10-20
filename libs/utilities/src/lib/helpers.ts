@@ -49,7 +49,7 @@ export interface IWithTableRowMeta {
 
 export type FunctionOrConstant<T, A extends any[]> = T | ((...args: A) => T);
 
-export function applyContextToFunctionOrConstant<T, A extends any[]>(functionOrConstant?: FunctionOrConstant<T, A>, ...args: A): T {
+export function applyContextToFunctionOrConstant<T, A extends any[]>(functionOrConstant?: FunctionOrConstant<T, A>, ...args: A): T | null {
   if (typeof functionOrConstant === 'function') {
     return (functionOrConstant as any)(...args) || null;
   }

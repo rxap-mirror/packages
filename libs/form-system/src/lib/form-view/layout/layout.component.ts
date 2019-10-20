@@ -16,6 +16,7 @@ import { ControlContainerComponent } from '../control-container/control-containe
 import { Layout } from '../layout';
 import { Stepper } from '../stepper';
 import { StepperComponent } from '../stepper/stepper.component';
+import { Required } from '@rxap/utilities';
 
 @Component({
   selector: 'rxap-layout',
@@ -26,7 +27,7 @@ import { StepperComponent } from '../stepper/stepper.component';
 })
 export class LayoutComponent implements OnInit, OnChanges {
 
-  @Input() public layout!: Layout;
+  @Input() @Required public layout!: Layout;
 
   @ViewChild('rowContainer', { static: true, read: ViewContainerRef }) public rowContainer!: ViewContainerRef;
 

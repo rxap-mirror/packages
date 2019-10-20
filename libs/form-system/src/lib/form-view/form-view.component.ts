@@ -15,6 +15,7 @@ import { Layout } from './layout';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { FormInstance } from '../form-instance';
+import { Required } from '@rxap/utilities';
 
 @Component({
   selector: 'rxap-form-view',
@@ -24,13 +25,13 @@ import { FormInstance } from '../form-instance';
 export class FormViewComponent<FormValue extends object>
   implements OnInit, OnDestroy {
 
-  @ViewChild('submitButton', { static: true }) public submitButton: ElementRef;
-  @ViewChild('resetButton', { static: true }) public resetButton: ElementRef;
+  @ViewChild('submitButton', { static: true }) public submitButton!: ElementRef;
+  @ViewChild('resetButton', { static: true }) public resetButton!: ElementRef;
 
-  @Input() public formId: string | null = null;
+  @Input() @Required public formId!: string;
 
-  public layout: Layout;
-  public instance: FormInstance<FormValue>;
+  public layout!: Layout;
+  public instance!: FormInstance<FormValue>;
 
   public subscriptions = new Subscription();
 
@@ -39,7 +40,9 @@ export class FormViewComponent<FormValue extends object>
     public readonly formInstanceFactory: FormInstanceFactory,
     @Inject(RXAP_FORM_ID) @Optional() formId: string | null = null,
   ) {
-    this.formId = formId;
+    if (formId) {
+      this.formId = formId;
+    }
   }
 
   public ngOnInit(): void {

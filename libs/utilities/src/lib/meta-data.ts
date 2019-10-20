@@ -6,7 +6,7 @@ export function hasMetadata(
   target: any,
   propertyKey?: string | symbol
 ): boolean {
-  return Reflect.hasMetadata(metadataKey, target, propertyKey);
+  return Reflect.hasMetadata(metadataKey, target, propertyKey as any);
 }
 
 export function setMetadata<V>(
@@ -15,7 +15,7 @@ export function setMetadata<V>(
   target: any,
   propertyKey?: string | symbol
 ): void {
-  Reflect.defineMetadata(metadataKey, metadataValue, target, propertyKey);
+  Reflect.defineMetadata(metadataKey, metadataValue, target, propertyKey as any);
 }
 
 export function clearMetadata<V>(
@@ -23,7 +23,7 @@ export function clearMetadata<V>(
   target: any,
   propertyKey?: string | symbol
 ): void {
-  Reflect.deleteMetadata(metadataKey, target, propertyKey);
+  Reflect.deleteMetadata(metadataKey, target, propertyKey as any);
 }
 
 export function getMetadata<V>(
@@ -31,14 +31,14 @@ export function getMetadata<V>(
   target: any,
   propertyKey?: string | symbol
 ): V | null {
-  return (Reflect.getMetadata(metadataKey, target, propertyKey) as V) || null;
+  return (Reflect.getMetadata(metadataKey, target, propertyKey as any) as V) || null;
 }
 
 export function getMetadataKeys(
   target: any,
   propertyKey?: string | symbol
 ): string[] {
-  return Reflect.getMetadataKeys(target, propertyKey);
+  return Reflect.getMetadataKeys(target, propertyKey as any);
 }
 
 export function addToMetadata<V>(

@@ -6,11 +6,11 @@ import { BaseFormControl } from '../forms/form-controls/base.form-control';
 export class NgModelControlComponent<ControlValue, FormControl extends BaseFormControl<ControlValue>>
   extends BaseControlComponent<ControlValue, FormControl> {
 
-  public get model(): ControlValue {
+  public get model(): ControlValue | null {
     return this.control.value;
   }
 
-  public set model(value: ControlValue) {
+  public set model(value: ControlValue | null) {
     this.control.setValue(value);
   }
 

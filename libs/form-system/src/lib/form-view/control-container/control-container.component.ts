@@ -41,6 +41,10 @@ export class ControlContainerComponent implements OnInit {
 
     const componentId = this.control.componentId || this.formControl.componentId;
 
+    if (!componentId) {
+      throw new Error('Component id is not defined');
+    }
+
     const component = this.componentRegistry.get(componentId);
 
     const componentFactory = this

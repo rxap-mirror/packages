@@ -15,6 +15,7 @@ import {
   InputTypes
 } from '../../forms/form-controls/input.form-control';
 import { MatInput } from '@angular/material';
+import { Required } from '@rxap/utilities';
 
 @Directive({
   selector: 'input[rxapInputControl]'
@@ -24,15 +25,15 @@ export class InputControlDirective
 
   public subscriptions = new Subscription();
 
-  @Input() public control: InputFormControl<any>;
+  @Input() @Required public control!: InputFormControl<any>;
 
-  @HostBinding('placeholder') public placeholder: string;
-  @HostBinding('type') public type: InputTypes;
-  @HostBinding('readonly') public readonly: boolean;
-  @HostBinding('disabled') public disabled: boolean;
-  @HostBinding('pattern') public pattern: RegExp;
-  @HostBinding('required') public required: boolean;
-  @HostBinding('name') public name: string;
+  @HostBinding('placeholder') public placeholder!: string;
+  @HostBinding('type') public type!: InputTypes;
+  @HostBinding('readonly') public readonly!: boolean;
+  @HostBinding('disabled') public disabled!: boolean;
+  @HostBinding('pattern') public pattern!: RegExp | null;
+  @HostBinding('required') public required!: boolean;
+  @HostBinding('name') public name!: string;
 
   constructor(
     public renderer: Renderer2,

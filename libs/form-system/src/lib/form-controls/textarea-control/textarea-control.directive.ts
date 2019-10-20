@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { MatInput } from '@angular/material';
 import { TextareaFormControl } from '../../forms/form-controls/textarea-form.control';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { Required } from '@rxap/utilities';
 
 @Directive({
   selector: 'textarea[rxapTextareaControl]'
@@ -20,7 +21,7 @@ export class TextareaControlDirective
 
   public subscriptions = new Subscription();
 
-  @Input() public control!: TextareaFormControl;
+  @Input() @Required public control!: TextareaFormControl;
 
   @HostBinding('placeholder') public placeholder!: string;
   @HostBinding('readonly') public readonly!: boolean;

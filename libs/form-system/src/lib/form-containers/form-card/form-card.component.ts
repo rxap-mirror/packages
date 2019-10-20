@@ -10,6 +10,7 @@ import {
 import { RXAP_FORM_ID } from '../../tokens';
 import { FormInstanceFactory } from '../../form-instance-factory';
 import { FormInstance } from '../../form-instance';
+import { Required } from '@rxap/utilities';
 
 
 @Component({
@@ -20,9 +21,9 @@ import { FormInstance } from '../../form-instance';
 })
 export class FormCardComponent implements OnInit {
 
-  @Input() public formId: string;
+  @Input() @Required public formId!: string;
 
-  public instance: FormInstance<any>;
+  public instance!: FormInstance<any>;
 
   public isDevMode = isDevMode();
 
@@ -30,7 +31,9 @@ export class FormCardComponent implements OnInit {
     @Inject(RXAP_FORM_ID) @Optional() formId: string | null = null,
     public readonly formInstanceFactory: FormInstanceFactory,
   ) {
-    this.formId = formId;
+    if (formId) {
+      this.formId = formId;
+    }
   }
 
   public ngOnInit(): void {

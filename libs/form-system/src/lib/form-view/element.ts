@@ -16,7 +16,7 @@ export function LayoutFromElement(element: Element) {
 export function StepperFromElement(element: Element) {
   const stepper = new Stepper();
 
-  element.childNodes.forEach((child: Element) => {
+  element.childNodes.forEach((child: any) => {
 
     if (child.nodeName === 'step') {
       stepper.steps.push(StepFromElement(child));
@@ -28,11 +28,16 @@ export function StepperFromElement(element: Element) {
 }
 
 export function StepFromElement(element: Element) {
-  const step = new Step();
 
-  step.label = element.getAttribute('label');
 
-  step.layout             = new Layout();
+  const label = element.getAttribute('label');
+
+  if (!label) {
+    throw new Error('label is required for the step element');
+  }
+
+  const step = new Step(new Layout(), label);
+
   step.layout.orientation = element.getAttribute('layout') as any || 'column';
   step.layout.gap         = element.getAttribute('gap') || '0px';
   step.layout.align       = element.getAttribute('align') || '';
@@ -41,11 +46,11 @@ export function StepFromElement(element: Element) {
   return step;
 }
 
-export function getComponentsFromElement(element): Array<Stepper | Layout | Control> {
+export function getComponentsFromElement(element: Element): Array<Stepper | Layout | Control> {
 
   const components: Array<Stepper | Layout | Control> = [];
 
-  element.childNodes.forEach((child: Element) => {
+  element.childNodes.forEach((child: any) => {
 
     switch (child.nodeName) {
 

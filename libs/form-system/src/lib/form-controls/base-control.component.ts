@@ -5,13 +5,14 @@ import {
 } from '@angular/core';
 import { BaseFormControl } from '../forms/form-controls/base.form-control';
 import { Subscription } from 'rxjs';
+import { Required } from '@rxap/utilities';
 
 @Injectable()
 export class BaseControlComponent<ControlValue,
   FormControl extends BaseFormControl<ControlValue>>
   implements OnDestroy {
 
-  @Input() public control!: FormControl;
+  @Input() @Required public control!: FormControl;
 
   public subscriptions = new Subscription();
 

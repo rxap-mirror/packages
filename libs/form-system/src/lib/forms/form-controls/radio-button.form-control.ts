@@ -17,8 +17,8 @@ export class RadioButtonFormControl<ControlValue>
   extends BaseFormControl<ControlValue> {
 
   public color: ThemePalette;
-  public options: ControlOptions<ControlValue>;
-  public labelPosition: LabelPositions = LabelPositions.AFTER;
-  public componentId                   = RxapFormControlComponentIds.RADIO_BUTTON;
+  public options: ControlOptions<ControlValue> = [];
+  public labelPosition: LabelPositions         = LabelPositions.AFTER;
+  public componentId                           = RxapFormControlComponentIds.RADIO_BUTTON;
 
 }

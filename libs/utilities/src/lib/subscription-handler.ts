@@ -82,7 +82,8 @@ export class SubscriptionHandler {
     if (!this.subscriptions.has(key)) {
       this.subscriptions.set(key, new Subscription());
     }
-    const subscription = this.subscriptions.get(key);
+    // tslint:disable-next-line:no-non-null-assertion
+    const subscription = this.subscriptions.get(key)!;
     if (subscription.closed) {
       throw new SubscriptionHandlerError(SubscriptionHandlerErrorTypes.CLOSED, key);
     }

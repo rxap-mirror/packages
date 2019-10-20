@@ -24,7 +24,7 @@ export function RxapSelectControl() {
 }
 
 export function RxapSelectMultipleControl() {
-  return function(target: any, propertyKey) {
+  return function(target: any, propertyKey: string) {
     RxapSelectControl()(target, propertyKey);
     RxapControlProperty('multiple', true)(target, propertyKey);
     RxapControlProperty('initial', [])(target, propertyKey);
@@ -34,7 +34,7 @@ export function RxapSelectMultipleControl() {
 export class SelectFormControl<ControlValue>
   extends FormFieldFormControl<ControlValue> {
 
-  public options: ControlOptions<ControlValue>;
+  public options: ControlOptions<ControlValue> = [];
 
   public multiple = false;
 

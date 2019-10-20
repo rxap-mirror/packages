@@ -2,8 +2,6 @@ import {
   BaseForm,
   BaseFormErrors
 } from '../base.form';
-import { mergeDeepRight } from 'ramda';
-import { RxapFormDefinition } from '../../form-definition/form-definition';
 import { ParentForm } from '../parent.form';
 
 export interface FormGroupError extends BaseFormErrors {
@@ -17,7 +15,7 @@ export class BaseFormGroup<GroupValue extends object> extends BaseForm<GroupValu
   constructor(
     public readonly formId: string,
     public readonly controlId: string,
-    public readonly formDefinition: RxapFormDefinition<any>,
+    public readonly formDefinition: any,
     // TODO : add parent type
     public readonly parent: ParentForm<any> | null = null
   ) {
@@ -70,8 +68,7 @@ export class BaseFormGroup<GroupValue extends object> extends BaseForm<GroupValu
     }
   }
 
-  public setValue(value: Partial<GroupValue>): void {
-    const newValue: GroupValue = mergeDeepRight<GroupValue, Partial<GroupValue>>(this.value, value) as any;
+  public setValue(value: GroupValue): void {
     for (const [ controlId, controlValue ] of Object.entries(value)) {
       if (this.controls.has(controlId)) {
         // tslint:disable-next-line:no-non-null-assertion
@@ -80,7 +77,7 @@ export class BaseFormGroup<GroupValue extends object> extends BaseForm<GroupValu
       }
       // TODO : add logging
     }
-    super.setValue(newValue);
+    super.setValue(this.value);
   }
 
 }

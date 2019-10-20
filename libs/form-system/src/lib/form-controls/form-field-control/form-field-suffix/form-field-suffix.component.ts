@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { FormFieldFormControl } from '../../../forms/form-controls/form-field.form-control';
+import { Required } from '@rxap/utilities';
 
 @Component({
   selector:        'rxap-form-field-suffix',
@@ -21,7 +22,7 @@ export class FormFieldSuffixComponent {
     return !!this.control.suffixButton;
   }
 
-  @Input() public control: FormFieldFormControl<any>;
+  @Input() @Required public control!: FormFieldFormControl<any>;
   @Input() public clearButton = true;
 
 }

@@ -12,7 +12,7 @@ export function RxapOnValueChange(controlId: string, ...controlIds: string[]) {
   return function(target: any, propertyKey: string) {
     mergeWithMetadata(
       FormDefinitionMetaDataKeys.ON_VALUE_CHANGE,
-      [controlId, ...controlIds].map(c => ({ [c]: [propertyKey] })).reduce(objectReducer),
+      [ controlId, ...controlIds ].map(c => ({ [ c ]: [ propertyKey ] })).reduce(objectReducer, {}),
       target
     );
   }

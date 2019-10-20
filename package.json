@@ -29,7 +29,8 @@
     "add:lib": "ng g @nrwl/angular:lib --style scss --publishable",
     "start:form-system-demo": "yarn start form-system-demo --port 4650",
     "start:form-system-demo:public": "yarn start:form-system-demo --host 0.0.0.0 --disable-host-check",
-    "start:browser": "chromium-browser --user-data-dir=\"./chromium-user-data\" http://localhost:4650"
+    "start:browser": "chromium-browser --user-data-dir=\"./chromium-user-data\" http://localhost:4650",
+    "madge": "madge"
   },
   "private": true,
   "dependencies": {
@@ -74,6 +75,7 @@
     "eslint": "6.1.0",
     "jest": "24.1.0",
     "jest-preset-angular": "7.0.0",
+    "madge": "^3.4.4",
     "ng-packagr": "^5.4.0",
     "prettier": "1.18.2",
     "ts-jest": "24.0.0",
