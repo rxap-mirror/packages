@@ -80,6 +80,9 @@ export class FormDefinitionLoader {
     Object.assign(formDefinition, arraysMap);
 
     // TODO : test if each control is added to formGroup
+    Object.values(controlsMap).forEach(control => this.formStateManager.addForm(control.controlPath, control));
+    Object.values(groupsMap).forEach(group => this.formStateManager.addForm(group.controlPath, group));
+    Object.values(arraysMap).forEach(array => this.formStateManager.addForm(array.controlPath, array));
 
     formDefinition.group = formGroup;
 

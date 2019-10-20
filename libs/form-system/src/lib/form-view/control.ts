@@ -13,9 +13,18 @@ export class Control {
     return control;
   }
 
+  public get controlPath(): string {
+    return [ this.formId, this.controlId ].join('.');
+  }
+
   public flex = 'nogrow';
   public hide = false;
   public controlId!: string;
   public componentId: string | null = null;
+  public formId!: string;
+
+  public setFormId(formId: string): void {
+    this.formId = formId;
+  }
 
 }

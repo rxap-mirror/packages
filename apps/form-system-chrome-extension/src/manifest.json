@@ -1,0 +1,19 @@
+{
+  "name": "RxAP Form System",
+  "version": "1.0",
+  "description": "RxAP Form System Dev Extension",
+  "manifest_version": 2,
+  "devtools_page": "panel.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "runtime-es5.js",
+        "content-script-es5.js"
+      ]
+    }
+  ]
+}

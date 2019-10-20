@@ -1,0 +1,17 @@
+<div fxLayout="column" fxLayoutGap="8px" style="width: 100%">
+  <button (click)="getAll()" fxFlex="nogrow" mat-stroked-button>Get all form templates</button>
+
+  <mat-form-field fxFlex="nogrow">
+    <mat-label>Form Template</mat-label>
+    <mat-select (selectionChange)="selectTemplate($event.value)" [(ngModel)]="currentFormId">
+      <mat-option [value]="null">---</mat-option>
+      <mat-option *ngFor="let formId of templates.keys()" [value]="formId">
+        {{formId}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <ngx-monaco-editor *ngIf="currentTemplate" [(ngModel)]="currentTemplate" [options]="editorOptions" fxFlex="500px" style="width: 100%"></ngx-monaco-editor>
+
+  <button (click)="update()" [disabled]="!currentTemplate" mat-stroked-button>Update current form template</button>
+</div>

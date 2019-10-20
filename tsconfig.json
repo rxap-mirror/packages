@@ -25,6 +25,9 @@
       ],
       "@rxap/component-system": [
         "libs/component-system/src/index.ts"
+      ],
+      "@rxap/window-system": [
+        "libs/window-system/src/index.ts"
       ]
     }
   },

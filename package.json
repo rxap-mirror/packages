@@ -6,7 +6,7 @@
     "ng": "ng",
     "nx": "nx",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --aot",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
@@ -27,8 +27,12 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "add:lib": "ng g @nrwl/angular:lib --style scss --publishable",
+    "add:app": "ng g @nrwl/angular:app --style scss",
     "start:form-system-demo": "yarn start form-system-demo --port 4650",
-    "start:form-system-demo:public": "yarn start:form-system-demo --host 0.0.0.0 --disable-host-check",
+    "start:window-system-demo": "yarn start window-system-demo --port 4660",
+    "build:form-system-chrome-extension": "yarn build form-system-chrome-extension",
+    "build:form-system-chrome-extension:watch": "yarn build form-system-chrome-extension --watch --configuration=dev",
+    "build:form-system-chrome-extension:prod": "yarn build form-system-chrome-extension --prod",
     "start:browser": "chromium-browser --user-data-dir=\"./chromium-user-data\" http://localhost:4650",
     "madge": "madge"
   },
@@ -37,6 +41,7 @@
     "@angular/animations": "^8.2.0",
     "@angular/cdk": "^8.2.3",
     "@angular/common": "^8.2.11",
+    "@angular/compiler": "^8.2.0",
     "@angular/core": "^8.2.11",
     "@angular/flex-layout": "^8.0.0-beta.27",
     "@angular/forms": "^8.2.0",
@@ -45,6 +50,8 @@
     "@angular/platform-browser-dynamic": "^8.2.11",
     "@angular/router": "^8.2.0",
     "@mdi/angular-material": "^4.5.95",
+    "@ngrx/effects": "^8.4.0",
+    "@ngrx/store": "^8.4.0",
     "core-js": "2",
     "ngx-monaco-editor": "^8.1.0",
     "ramda": "^0.26.1",
@@ -54,6 +61,7 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^8.2.0",
     "@angular-builders/jest": "^8.2.0",
     "@angular-devkit/build-angular": "~0.803.3",
     "@angular-devkit/build-ng-packagr": "~0.803.3",
@@ -65,6 +73,7 @@
     "@nrwl/cypress": "8.6.0",
     "@nrwl/jest": "8.6.0",
     "@nrwl/workspace": "8.6.0",
+    "@types/chrome": "^0.0.91",
     "@types/jest": "24.0.9",
     "@types/node": "~8.9.4",
     "@types/ramda": "^0.26.33",
@@ -82,6 +91,7 @@
     "ts-node": "~7.0.0",
     "tsickle": "^0.37.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.4.5"
+    "typescript": "~3.4.5",
+    "webpack-extension-reloader": "^1.1.1"
   }
 }

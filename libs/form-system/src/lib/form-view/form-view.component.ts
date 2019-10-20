@@ -12,7 +12,10 @@ import { FormTemplateLoader } from '../form-template-loader';
 import { FormInstanceFactory } from '../form-instance-factory';
 import { RXAP_FORM_ID } from '../tokens';
 import { Layout } from './layout';
-import { Subscription } from 'rxjs';
+import {
+  Subscription,
+  Observable
+} from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { FormInstance } from '../form-instance';
 import { Required } from '@rxap/utilities';
@@ -30,7 +33,7 @@ export class FormViewComponent<FormValue extends object>
 
   @Input() @Required public formId!: string;
 
-  public layout!: Layout;
+  public layout$!: Observable<Layout>;
   public instance!: FormInstance<FormValue>;
 
   public subscriptions = new Subscription();
@@ -46,7 +49,7 @@ export class FormViewComponent<FormValue extends object>
   }
 
   public ngOnInit(): void {
-    this.layout = this.formTemplateLoader.getLayout(this.formId);
+    this.layout$  = this.formTemplateLoader.getLayout$(this.formId);
     this.instance = this.formInstanceFactory.buildInstance<FormValue>(this.formId);
 
     this.subscriptions.add(

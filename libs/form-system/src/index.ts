@@ -7,6 +7,12 @@ export * from './lib/form-system.module';
 export * from './lib/form-template-loader';
 export * from './lib/tokens';
 
+// region dev-tools
+
+export * from './lib/dev-tool/dev-tool.module';
+
+// endregion
+
 // region form-definition
 
 export * from './lib/form-definition/form-definition';

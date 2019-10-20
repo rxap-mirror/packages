@@ -8,7 +8,10 @@ import { AppComponent } from './app.component';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserRegisterFormModule } from './user-register-form/user-register-form.module';
-import { RxapFormSystemModule } from '@rxap/form-system';
+import {
+  RxapFormSystemModule,
+  RxapFormSystemDevToolModule
+} from '@rxap/form-system';
 import { RxapComponentSystemModule } from '@rxap/component-system';
 import { MatIconRegistry } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
 
     UserRegisterFormModule,
 
+    RxapFormSystemDevToolModule,
+
     HttpClientModule
   ],
   providers: [],
@@ -36,5 +41,4 @@ export class AppModule {
       domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
     );
   }
-
 }

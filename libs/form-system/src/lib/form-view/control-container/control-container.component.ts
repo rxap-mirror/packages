@@ -37,7 +37,7 @@ export class ControlContainerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.formControl = this.formStateManager.getForm(this.control.controlId);
+    this.formControl = this.formStateManager.getForm(this.control.controlPath);
 
     const componentId = this.control.componentId || this.formControl.componentId;
 

@@ -22,6 +22,21 @@
     },
     "component-system": {
       "tags": []
+    },
+    "window-system": {
+      "tags": []
+    },
+    "window-system-demo-e2e": {
+      "tags": []
+    },
+    "window-system-demo": {
+      "tags": []
+    },
+    "form-system-chrome-extension-e2e": {
+      "tags": []
+    },
+    "form-system-chrome-extension": {
+      "tags": []
     }
   }
 }

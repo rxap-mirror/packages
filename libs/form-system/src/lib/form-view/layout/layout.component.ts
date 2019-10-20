@@ -40,13 +40,11 @@ export class LayoutComponent implements OnInit, OnChanges {
     public readonly injector: Injector,
   ) {}
 
-  ngOnInit(): void {
-
+  public ngOnInit(): void {
     this.buildComponents(this.layout);
-
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     const layoutChange = changes.layout;
     if (layoutChange && !layoutChange.firstChange) {
       this.clear();

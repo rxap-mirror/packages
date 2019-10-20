@@ -1,0 +1,24 @@
+<div *ngIf="windowService.active.size" class="container" fxLayout="column">
+  <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="end end">
+    <button (click)="expand = !expand"
+            [matBadgeHidden]="!windowService.active.size"
+            [matBadge]="windowService.active.size.toFixed(0)"
+            class="pin"
+            color="primary"
+            mat-icon-button
+            matBadgePosition="above before"
+            type="button">
+      <mat-icon *ngIf="!expand" svgIcon="chevron-up"></mat-icon>
+      <mat-icon *ngIf="expand" svgIcon="chevron-down"></mat-icon>
+    </button>
+  </div>
+  <mat-toolbar [fxShow]="expand"
+               class="tasks"
+               fxFlex="nogrow"
+               fxLayout="row wrap">
+    <rxap-window-task *ngFor="let window of windowService.active.values()"
+                      [window]="window"
+                      fxFlex="nogrow">
+    </rxap-window-task>
+  </mat-toolbar>
+</div>

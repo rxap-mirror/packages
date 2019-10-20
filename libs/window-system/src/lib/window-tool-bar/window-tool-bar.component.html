@@ -1,0 +1,17 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="15px">
+  <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <mat-icon *ngIf="windowRef.settings.icon" [svgIcon]="windowRef.settings.icon" fxFlex="40px"></mat-icon>
+    <h3 *ngIf="windowRef.settings.title" fxFlex="nogrow">{{windowRef.settings.title}}</h3>
+  </div>
+  <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start center">
+    <button (click)="windowRef.minimize()" fxFlex="40px" mat-icon-button type="button">
+      <mat-icon svgIcon="window-minimize"></mat-icon>
+    </button>
+    <button (click)="windowRef.fullScreen()" fxFlex="40px" mat-icon-button type="button">
+      <mat-icon svgIcon="window-maximize"></mat-icon>
+    </button>
+    <button (click)="windowRef.close()" fxFlex="40px" mat-icon-button type="button">
+      <mat-icon svgIcon="window-close"></mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
