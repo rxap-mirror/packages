@@ -1,6 +1,5 @@
 import {
   Component,
-  AfterViewInit,
   ViewContainerRef,
   ViewChild,
   ComponentFactoryResolver,
@@ -9,7 +8,6 @@ import {
   OnInit,
   OnChanges,
   SimpleChanges,
-  ComponentRef,
   ChangeDetectionStrategy,
   ViewEncapsulation
 } from '@angular/core';
@@ -28,9 +26,9 @@ import { StepperComponent } from '../stepper/stepper.component';
 })
 export class LayoutComponent implements OnInit, OnChanges {
 
-  @Input() public layout: Layout;
+  @Input() public layout!: Layout;
 
-  @ViewChild('rowContainer', { static: true, read: ViewContainerRef }) public rowContainer: ViewContainerRef;
+  @ViewChild('rowContainer', { static: true, read: ViewContainerRef }) public rowContainer!: ViewContainerRef;
 
   public layoutFactory  = this.cfr.resolveComponentFactory(LayoutComponent);
   public controlFactory = this.cfr.resolveComponentFactory(ControlContainerComponent);

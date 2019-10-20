@@ -4,14 +4,11 @@ import {
   ChangeDetectionStrategy,
   Inject,
   Optional,
-  OnInit
+  OnInit,
+  isDevMode
 } from '@angular/core';
-import {
-  RXAP_FORM_ID
-} from '../../tokens';
-import {
-  FormInstanceFactory
-} from '../../form-instance-factory';
+import { RXAP_FORM_ID } from '../../tokens';
+import { FormInstanceFactory } from '../../form-instance-factory';
 import { FormInstance } from '../../form-instance';
 
 
@@ -26,6 +23,8 @@ export class FormCardComponent implements OnInit {
   @Input() public formId: string;
 
   public instance: FormInstance<any>;
+
+  public isDevMode = isDevMode();
 
   constructor(
     @Inject(RXAP_FORM_ID) @Optional() formId: string | null = null,

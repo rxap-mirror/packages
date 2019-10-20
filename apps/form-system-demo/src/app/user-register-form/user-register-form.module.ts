@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { UserRegisterFormComponent } from './user-register-form.component';
 import {
   RxapFormSystemModule,
-  FormCardComponentModule,
-  RxapInputControlComponentModule
+  RxapFormCardComponentModule,
+  RxapInputControlComponentModule,
+  RxapSelectControlModule,
+  RxapTextareaControlModule,
+  RxapRadioButtonControlModule
 } from '@rxap/form-system';
 import { UserRegisterFormDefinition } from './user-register-form.definition';
 
@@ -12,8 +15,11 @@ import { UserRegisterFormDefinition } from './user-register-form.definition';
   declarations: [UserRegisterFormComponent],
   imports: [
     RxapFormSystemModule.register([ UserRegisterFormDefinition ]),
-    FormCardComponentModule,
-    RxapInputControlComponentModule
+    RxapFormCardComponentModule,
+    RxapInputControlComponentModule,
+    RxapSelectControlModule,
+    RxapTextareaControlModule,
+    RxapRadioButtonControlModule
   ],
   exports: [UserRegisterFormComponent]
 })

@@ -1,12 +1,13 @@
-import {
-  Injectable,
-  Injector
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BaseFormControl } from '../forms/form-controls/base.form-control';
 import { FormControlMetaData } from '../form-definition/decorators/control';
-import { objectReducer } from '@rxap/utilities';
+import {
+  objectReducer,
+  KeyValue,
+  Type
+} from '@rxap/utilities';
 import { FormStateManager } from '../form-state-manager';
-import { BaseForm } from '../forms/base.form';
+import { ParentForm } from '../forms/parent.form';
 
 @Injectable({ providedIn: 'root' })
 export class FormControlBuilder {
@@ -15,21 +16,24 @@ export class FormControlBuilder {
     public readonly formStateManager: FormStateManager,
   ) {}
 
-  public buildControl(controlMetaData: FormControlMetaData<any>, parent: BaseForm<any> | null = null): BaseFormControl<any> {
-    const control: BaseFormControl<any> = new controlMetaData.formControl();
+  public buildControl(
+    controlMetaData: FormControlMetaData<any>,
+    parent: ParentForm<any>
+  ): BaseFormControl<any> {
+    const FormControlType: Type<BaseFormControl<any>> = controlMetaData.formControl;
+    const control: BaseFormControl<any>               = new FormControlType(controlMetaData.controlId, parent);
 
-    control.controlId = controlMetaData.controlId;
-    control.parent = parent;
-    Object.assign(control, controlMetaData.options);
-    control.placeholder = `FORMS.${control.controlPath}.PLACEHOLDER`;
-    control.label = `FORMS.${control.controlPath}.LABEL`;
+    Object.assign(control, controlMetaData.properties);
 
     this.formStateManager.addForm(control.controlPath, control);
 
     return control;
   }
 
-  public buildControls(controls: FormControlMetaData<any>[], parent: BaseForm<any> | null = null): { [propertyKey: string]: BaseFormControl<any> } {
+  public buildControls(
+    controls: FormControlMetaData<any>[],
+    parent: ParentForm<any>
+  ): KeyValue<BaseFormControl<any>> {
     return controls.map(control => ({ [control.propertyKey]: this.buildControl(control, parent) })).reduce(objectReducer, {});
   }
 

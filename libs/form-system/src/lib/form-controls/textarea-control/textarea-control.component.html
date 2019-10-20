@@ -1,0 +1,11 @@
+<mat-form-field [appearance]="control.appearance" class="full-width">
+  <rxap-form-field-prefix [control]="control" matPrefix></rxap-form-field-prefix>
+  <mat-label>{{control.label}}</mat-label>
+  <textarea [(ngModel)]="model" [attr.data-cy]="control.controlPath"
+            [cdkTextareaAutosize]="control.autosize"
+            [control]="control"
+            matInput
+            rxapTextareaControl></textarea>
+  <rxap-form-field-suffix [control]="control" matSuffix></rxap-form-field-suffix>
+  <mat-error *ngFor="let error of control.getErrors()">{{error}}</mat-error>
+</mat-form-field>

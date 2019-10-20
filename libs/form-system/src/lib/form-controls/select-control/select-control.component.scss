@@ -1,0 +1,38 @@
+.form-field {
+  width: 100%;
+
+  ::ng-deep .mat-form-field-flex {
+
+    align-items: flex-end;
+    display: flex;
+    place-content: flex-end flex-start;
+
+    .mat-form-field-prefix {
+      padding-bottom: .5em;
+      margin-right: .5em;
+      height: 24px;
+    }
+
+    .mat-form-field-suffix {
+
+      padding-bottom: .5em;
+
+      .mat-icon-button {
+
+        width: 1.125em;
+        height: 1.125em;
+        vertical-align: baseline;
+
+        .mat-icon {
+
+          font-size: 1em;
+          width: 1em;
+
+        }
+      }
+
+    }
+
+  }
+
+}

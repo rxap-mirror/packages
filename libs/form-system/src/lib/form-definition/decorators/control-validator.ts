@@ -1,17 +1,15 @@
 import {
   getMetadata,
   mergeWithMetadata,
-  objectReducer
+  KeyValue
 } from '@rxap/utilities';
 import { FormDefinitionMetaDataKeys } from './meta-data-keys';
-import { FormControlMetaData } from '@rxap/form-system';
+import { FormControlMetaData } from './control';
 import { v1 as uuid } from 'uuid';
 
 export type FormControlValidatorFunction<ControlValue> = (value: ControlValue) => any | null;
 
-export interface ControlValidatorMetaData {
-  [controlId: string]: Array<ControlValidator<any>>;
-}
+export type ControlValidatorMetaData = KeyValue<Array<ControlValidator<any>>>
 
 export interface ControlValidator<ControlValue> {
   message?: string;

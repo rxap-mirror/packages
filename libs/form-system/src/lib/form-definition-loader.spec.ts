@@ -1,11 +1,10 @@
-import {
-  FormDefinitionLoader,
-  RxapFormDefinition,
-  RxapFormControl
-} from '@rxap/form-system';
 import { TestBed } from '@angular/core/testing';
 import { BaseFormGroup } from './forms/form-groups/base.form-group';
 import { Injectable } from '@angular/core';
+import { FormDefinitionLoader } from './form-definition-loader';
+import { RxapFormDefinition } from './form-definition/form-definition';
+import { RxapFormControl } from './form-definition/decorators/control';
+import { BaseFormControl } from './forms/form-controls/base.form-control';
 
 describe('Form System', () => {
 
@@ -32,7 +31,7 @@ describe('Form System', () => {
       class FormDefinition extends RxapFormDefinition<any> {
 
         @RxapFormControl()
-        user;
+        username!: BaseFormControl<string>;
 
       }
 
@@ -40,7 +39,7 @@ describe('Form System', () => {
 
       expect(formDefinition.group.controls.size).toBe(1);
 
-      expect(formDefinition.group.controls.get('user')).toBeDefined();
+      expect(formDefinition.group.controls.get('username')).toBeDefined();
 
     })
 

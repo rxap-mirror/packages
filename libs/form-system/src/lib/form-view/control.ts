@@ -1,8 +1,12 @@
 export class Control {
 
   public static fromElement(element: Element): Control {
-    const control       = new Control();
-    control.controlId   = element.getAttribute('id');
+    const control   = new Control();
+    const controlId = element.getAttribute('id');
+    if (!controlId) {
+      throw new Error('Control element has not a id');
+    }
+    control.controlId   = controlId;
     control.componentId = element.getAttribute('component') || null;
     control.flex        = element.getAttribute('flex') || 'nogrow';
     control.hide        = element.getAttribute('hide') === 'true' || false;
@@ -11,7 +15,7 @@ export class Control {
 
   public flex = 'nogrow';
   public hide = false;
-  public controlId: string;
-  public componentId: string | null;
+  public controlId!: string;
+  public componentId: string | null = null;
 
 }

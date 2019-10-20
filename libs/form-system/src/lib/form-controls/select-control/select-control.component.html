@@ -1,0 +1,21 @@
+<mat-form-field [appearance]="control.appearance" class="form-field">
+  <rxap-form-field-prefix [control]="control" matPrefix></rxap-form-field-prefix>
+  <mat-label>{{control.label}}</mat-label>
+  <mat-select
+    [(ngModel)]="model"
+    [compareWith]="control.compareWith"
+    [disabled]="control.disabled"
+    [errorStateMatcher]="control.errorStateMatcher"
+    [multiple]="control.multiple"
+    [placeholder]="control.placeholder"
+    [required]="control.required">
+    <mat-option [value]="null">--</mat-option>
+    <mat-option
+      *ngFor="let option of control.options" [disabled]="option.disabled"
+      [value]="option.value">
+      {{option.display}}
+    </mat-option>
+  </mat-select>
+  <rxap-form-field-suffix [clearButton]="false" [control]="control" matSuffix></rxap-form-field-suffix>
+  <mat-error *ngFor="let error of control.getErrors()">{{error}}</mat-error>
+</mat-form-field>

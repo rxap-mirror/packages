@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   ViewEncapsulation
 } from '@angular/core';
@@ -15,6 +14,6 @@ import { Stepper } from '../stepper';
 })
 export class StepperComponent {
 
-  public stepper: Stepper;
+  public stepper!: Stepper;
 
 }

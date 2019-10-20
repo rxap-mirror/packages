@@ -26,7 +26,7 @@ export class ComponentRegistryService {
     if (!this.components.has(id)) {
       throw new Error(`[ComponentRegistryService::getDefinition] Component definition with id '${id}' is not registered`);
     }
-    return this.components.get(id);
+    return this.components.get(id)!;
   }
 
 }

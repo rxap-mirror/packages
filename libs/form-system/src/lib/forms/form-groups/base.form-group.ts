@@ -3,6 +3,8 @@ import {
   BaseFormErrors
 } from '../base.form';
 import { mergeDeepRight } from 'ramda';
+import { RxapFormDefinition } from '../../form-definition/form-definition';
+import { ParentForm } from '../parent.form';
 
 export interface FormGroupError extends BaseFormErrors {
   controls: { [controlId: string]: BaseFormErrors | null };
@@ -12,9 +14,21 @@ export class BaseFormGroup<GroupValue extends object> extends BaseForm<GroupValu
 
   public readonly controls = new Map<string, BaseForm<GroupValue[keyof GroupValue]>>();
 
-  public addControl(controlId: string, control: BaseForm<GroupValue[keyof GroupValue]>): void {
+  constructor(
+    public readonly formId: string,
+    public readonly controlId: string,
+    public readonly formDefinition: RxapFormDefinition<any>,
+    // TODO : add parent type
+    public readonly parent: ParentForm<any> | null = null
+  ) {
+    super(formId, controlId, parent);
+  }
+
+  public addControl(control: BaseForm<GroupValue[keyof GroupValue]>, controlId: string): void {
+    if (control.parent !== this) {
+      throw new Error('Can not add control if parent is not equal to this form group');
+    }
     this.controls.set(controlId, control);
-    control.parent = this;
   }
 
   public removeControl(controlId: string): boolean {
@@ -22,23 +36,20 @@ export class BaseFormGroup<GroupValue extends object> extends BaseForm<GroupValu
   }
 
   public getControl<T extends BaseForm<GroupValue> = BaseForm<GroupValue>>(controlId: string): T | null {
-    const control: T | undefined = this.controls.get(controlId) as any;
-    if (control) {
-      return control;
+    if (this.controls.has(controlId)) {
+      return this.controls.get(controlId) as any;
     }
     // TODO : add logging
     return null;
   }
 
-  public setValue(value: Partial<GroupValue>): void {
-    super.setValue(mergeDeepRight<GroupValue, Partial<GroupValue>>(this.value, value) as GroupValue);
-    for (const [controlId, controlValue] of Object.entries(value)) {
-      if (this.controls.has(controlId)) {
-        const control = this.controls.get(controlId);
-        control.setValue(controlValue as any);
-      }
-      // TODO : add logging
-    }
+  public hasControl(controlId: string): boolean {
+    return this.controls.has(controlId);
+  }
+
+  public init(): void {
+    super.init();
+    Array.from(this.controls.values()).forEach(control => control.init());
   }
 
   // public setErrors(errors: FormGroupError): void {
@@ -57,6 +68,19 @@ export class BaseFormGroup<GroupValue extends object> extends BaseForm<GroupValu
     for (const control of this.controls.values()) {
       control.clearErrors();
     }
+  }
+
+  public setValue(value: Partial<GroupValue>): void {
+    const newValue: GroupValue = mergeDeepRight<GroupValue, Partial<GroupValue>>(this.value, value) as any;
+    for (const [ controlId, controlValue ] of Object.entries(value)) {
+      if (this.controls.has(controlId)) {
+        // tslint:disable-next-line:no-non-null-assertion
+        const control = this.controls.get(controlId)!;
+        control.setValue(controlValue as any);
+      }
+      // TODO : add logging
+    }
+    super.setValue(newValue);
   }
 
 }

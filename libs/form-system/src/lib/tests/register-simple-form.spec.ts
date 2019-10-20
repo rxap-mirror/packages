@@ -1,21 +1,14 @@
-import {
-  TestBed,
-  inject
-} from '@angular/core/testing';
-import {
-  RxapFormSystemModule,
-  RxapFormDefinition,
-  RegisterFormSystemModule,
-  RxapFormControl,
-  RxapFormTemplate
-} from '@rxap/form-system';
+import { TestBed } from '@angular/core/testing';
 import { FormDefinitionRegister } from '../form-definition-register';
-import { ROOT_FORM_DEFINITION_TOKEN } from '../tokens';
 import { RxapForm } from '../form-definition/decorators/form-definition';
 import { FormDefinitionLoader } from '../form-definition-loader';
 import { BaseFormControl } from '../forms/form-controls/base.form-control';
 import { FormInstanceFactory } from '../form-instance-factory';
 import { FormTemplateLoader } from '../form-template-loader';
+import { RxapFormTemplate } from '../form-definition/decorators/form-template';
+import { RxapFormDefinition } from '../form-definition/form-definition';
+import { RxapFormControl } from '../form-definition/decorators/control';
+import { RxapFormSystemModule } from '../form-system.module';
 
 describe('E2E', () => {
 

@@ -1,0 +1,21 @@
+<div fxLayout="column" fxLayoutGap="8px">
+  <label [id]="control.controlPath" fxFlex="nogrow">{{control.label}}</label>
+  <mat-radio-group
+    [(ngModel)]="model"
+    [attr.aria-labelledby]="control.controlPath"
+    [color]="control.color"
+    [disabled]="control.disabled"
+    [labelPosition]="control.labelPosition"
+    [name]="control.name"
+    [required]="control.required"
+    fxFlex="nogrow">
+    <mat-radio-button
+      *ngFor="let option of control.options"
+      [color]="option.color"
+      [disabled]="option.disabled"
+      [value]="option.value">
+      {{option.display}}
+    </mat-radio-button>
+  </mat-radio-group>
+  <mat-error *ngFor="let error of control.getErrors()" fxFlex="nogrow">{{error}}</mat-error>
+</div>

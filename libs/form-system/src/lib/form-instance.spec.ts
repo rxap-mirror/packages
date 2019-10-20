@@ -5,7 +5,6 @@ import { inject } from '@angular/core/testing';
 import { RxapFormControl } from './form-definition/decorators/control';
 import { InputFormControl } from './forms/form-controls/input.form-control';
 import { RxapOnValueChange } from './form-definition/decorators/on-value-change';
-import { getMetadataKeys } from '../../../utilities/src';
 
 describe('Form System', () => {
 
@@ -16,9 +15,12 @@ describe('Form System', () => {
       class FormDefinition extends RxapFormDefinition<any> {
 
         @RxapFormControl()
-        username: InputFormControl<string>;
+        username!: InputFormControl<string>;
 
-        @RxapOnValueChange('username')
+        @RxapFormControl()
+        password!: InputFormControl<string>;
+
+        @RxapOnValueChange('username', 'password')
         onChange() {}
 
       }
@@ -29,11 +31,15 @@ describe('Form System', () => {
 
       const onChangeSpy = spyOn(instance.formDefinition, 'onChange');
 
+      instance.handelOnValueChange(instance.formDefinition);
+
       instance.formDefinition.username.setValue(usernameValue);
 
-      console.log('D', getMetadataKeys(instance.formDefinition.constructor.prototype));
-
       expect(onChangeSpy).toBeCalled();
+
+      instance.formDefinition.password.setValue(usernameValue);
+
+      expect(onChangeSpy).toBeCalledTimes(2);
 
 
     }));

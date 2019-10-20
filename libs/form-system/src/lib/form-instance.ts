@@ -2,7 +2,8 @@ import { RxapFormDefinition } from './form-definition/form-definition';
 import { Subject } from 'rxjs';
 import {
   SubscriptionHandler,
-  getMetadata
+  getMetadata,
+  KeyValue
 } from '@rxap/utilities';
 import { FormDefinitionMetaDataKeys } from './form-definition/decorators/meta-data-keys';
 import {
@@ -10,7 +11,14 @@ import {
   filter
 } from 'rxjs/operators';
 import { OnValueChangeMetaData } from './form-definition/decorators/on-value-change';
-import { ControlValidatorMetaData } from './form-definition/decorators/control-validator';
+import {
+  ControlValidatorMetaData,
+  ControlValidator
+} from './form-definition/decorators/control-validator';
+import { BaseForm } from './forms/base.form';
+import { BaseFormControl } from './forms/form-controls/base.form-control';
+import { BaseFormGroup } from './forms/form-groups/base.form-group';
+import { BaseFormArray } from './forms/form-arrays/base.form-array';
 
 export enum FormInstanceSubscriptions {
   ON_VALUE_CHANGE   = 'on-value-change',
@@ -26,69 +34,159 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
   public clickSubmit$ = new Subject<void>();
   public clickReset$  = new Subject<void>();
 
+  public controlValidators = new Map<string, Array<ControlValidator<any>>>();
+
   protected _subscriptions = new SubscriptionHandler();
 
   constructor(public readonly formDefinition: FormDefinition) {}
 
   public rxapOnInit() {
+
+    this.forEachForm(form => form.init());
+    this.forEachForm(form => form.onInit$.next());
+    this.forEachForm(form => form.rxapOnInit());
+
     this.formDefinition.init$.next();
-    this.formDefinition.rxapOnInit();
-    this.handelOnValueChange();
-    this.handelControlValidators();
+
+    this.forEachFormDefinition((formDefinition) => this.handelOnValueChange(formDefinition));
+    this.forEachFormDefinition((formDefinition) => this.handelControlValidators(formDefinition));
+
   }
 
-  public handelOnValueChange() {
+  public forEachForm(fnc: (form: BaseForm<any>) => void): void {
+    function forEach(form: BaseForm<any>) {
+      if (form instanceof BaseFormControl) {
+        fnc(form);
+      }
+      if (form instanceof BaseFormGroup) {
+        fnc(form);
+        Array.from(form.controls.values()).forEach(control => forEach(control));
+      }
+      if (form instanceof BaseFormArray) {
+        fnc(form);
+        form.controls.forEach(control => forEach(control));
+      }
+    }
+
+    forEach(this.formDefinition.group);
+  }
+
+  public forEachFormDefinition(fnc: (formDefinition: RxapFormDefinition<any>) => void): void {
+    function forEach(form: BaseFormArray<any> | BaseFormGroup<any>) {
+      if (form instanceof BaseFormArray) {
+        form.controls
+            .filter(control => control instanceof BaseFormGroup)
+            .forEach(control => forEach(control as any));
+      }
+      if (form instanceof BaseFormGroup) {
+        fnc(form.formDefinition);
+      }
+    }
+
+    forEach(this.formDefinition.group);
+  }
+
+  public handelOnValueChange(formDefinition: RxapFormDefinition<any>) {
     const onValueChangeMetaData = getMetadata<OnValueChangeMetaData>(
       FormDefinitionMetaDataKeys.ON_VALUE_CHANGE,
-      this.formDefinition.constructor.prototype
+      formDefinition.constructor.prototype
     ) || {};
     for (const [ controlId, propertyKeys ] of Object.entries(onValueChangeMetaData)) {
-      this._subscriptions.add(
-        FormInstanceSubscriptions.ON_VALUE_CHANGE,
-        this.formDefinition
-            .group
-            .getControl(controlId)
+      const control = formDefinition
+        .group
+        .getControl(controlId);
+      if (control) {
+        this._subscriptions.add(
+          FormInstanceSubscriptions.ON_VALUE_CHANGE,
+          control
             .valueChange$
-            .pipe(tap(() => propertyKeys.forEach(propertyKey => {
-              if (!(typeof this.formDefinition[ propertyKey ] === 'function')) {
-                throw new Error(`Specifed on value change propertyKey '${propertyKey}' is not a function in definition '${this.formDefinition.group.controlId}'`);
+            .pipe(tap(() => propertyKeys.map(propertyKey => {
+              const handler: () => void = (formDefinition as any as KeyValue<() => void>)[ propertyKey ];
+              if (!(typeof handler === 'function')) {
+                throw new Error(`Specifed on value change propertyKey '${propertyKey}' is not a function in definition '${formDefinition.group.controlId}'`);
               }
-              this.formDefinition[ propertyKey ]();
-            })))
+              return handler;
+            }).forEach(handler => handler())))
             .subscribe()
-      );
+        );
+      } else {
+        throw new Error(`Can not add on value change handler. Control with id '${controlId}' not found`);
+      }
     }
   }
 
-  public handelControlValidators() {
-    const controlValidatorMetaData = getMetadata<ControlValidatorMetaData>(FormDefinitionMetaDataKeys.CONTROL_VALIDATOR, this.formDefinition) || {};
+  public handelControlValidators(formDefinition: RxapFormDefinition<any>) {
+    const controlValidatorMetaData = getMetadata<ControlValidatorMetaData>(FormDefinitionMetaDataKeys.CONTROL_VALIDATOR, formDefinition) || {};
     for (const [ controlId, controlValidators ] of Object.entries(controlValidatorMetaData)) {
-      const control = this.formDefinition
+      const control = formDefinition
                           .group
                           .getControl(controlId);
-      this._subscriptions.add(
-        FormInstanceSubscriptions.CONTROL_VALIDATOR,
-        control
-          .valueChange$
-          .pipe(
-            filter(value => value !== null && value !== undefined),
-            tap(value => controlValidators.forEach(controlValidator => {
-              const result = controlValidator.validator(value);
-              if (result !== null) {
-                control.setError(controlValidator.key, controlValidator.message || result);
-              } else {
-                control.clearError(controlValidator.key);
-              }
-            }))
-          )
-          .subscribe()
-      );
+      if (control) {
+        this.controlValidators.set(control.controlPath, controlValidators);
+        this._subscriptions.add(
+          FormInstanceSubscriptions.CONTROL_VALIDATOR,
+          control
+            .valueChange$
+            .pipe(
+              filter(value => value !== null && value !== undefined),
+              tap(value => controlValidators.forEach(controlValidator => {
+                const result = controlValidator.validator(value);
+                const key    = controlValidator.key;
+                if (key) {
+                  if (result !== null) {
+                    control.setError(key, controlValidator.message || result);
+                  } else {
+                    control.clearError(key);
+                  }
+                } else {
+                  throw new Error('Control validator key is not defined');
+                }
+              }))
+            )
+            .subscribe()
+        );
+      } else {
+        throw new Error(`Can not add control validator handler. Control with id '${controlId}' not found`);
+      }
     }
+  }
+
+  public runValidators(): void {
+    for (const [ controlPath, controlValidators ] of Object.entries(this.controlValidators.entries())) {
+
+    }
+  }
+
+  public getValueByPath<Value>(controlPath: string): Value | null {
+    const fragments = controlPath.split('.');
+    if (fragments.length < 1) {
+      throw new Error('Control path is empty');
+    }
+    // tslint:disable-next-line:no-non-null-assertion
+    let form: BaseForm<any> | null = this.formDefinition.group;
+    for (const fragment of fragments) {
+      if (form instanceof BaseFormArray || form instanceof BaseFormGroup) {
+        if (form.hasControl(fragment)) {
+          form = (form.getControl as any)(fragment);
+        } else {
+          form = null;
+          break;
+        }
+      }
+    }
+
+    if (form) {
+      return form.value;
+    }
+
+    return null;
   }
 
   public rxapOnDestroy() {
-    this.formDefinition.destroy$.next();
-    this.formDefinition.rxapOnDestroy();
+
+    this.forEachForm(form => form.onDestroy$.next());
+    this.forEachForm(form => form.rxapOnDestroy());
+
     this._subscriptions.resetAll();
   }
 

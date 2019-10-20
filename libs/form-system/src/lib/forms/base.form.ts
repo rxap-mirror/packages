@@ -2,8 +2,14 @@ import {
   Subject,
   defer
 } from 'rxjs';
-import { SubscriptionHandler } from '@rxap/utilities';
+import {
+  SubscriptionHandler,
+  KeyValue,
+  objectReducer
+} from '@rxap/utilities';
 import { debounceTime } from 'rxjs/operators';
+import { equals } from 'ramda';
+import { ParentForm } from './parent.form';
 
 export interface BaseFormErrors {
   errors: Map<string, string>;
@@ -11,12 +17,10 @@ export interface BaseFormErrors {
 
 export class BaseForm<Value, TError extends BaseFormErrors = BaseFormErrors> {
 
-  public controlId: string;
-
   /**
    * emit immediate the new form control value
    */
-  public valueChange$ = new Subject<Value>();
+  public valueChange$ = new Subject<Value | null>();
 
   /**
    * emit the new form control value with the specified debounce time
@@ -31,16 +35,13 @@ export class BaseForm<Value, TError extends BaseFormErrors = BaseFormErrors> {
   /**
    * the form control value
    */
-  public value: Value | null = null;
+  public value!: Value | null;
 
   public onInit$ = new Subject<void>();
 
   public onDestroy$ = new Subject<void>();
 
   public errors: TError = { errors: new Map() } as any;
-
-  // TODO : add parent type
-  public parent: BaseForm<any> | null = null;
 
   public isValid: boolean | null = null;
   public isInvalid: boolean | null = null;
@@ -55,7 +56,20 @@ export class BaseForm<Value, TError extends BaseFormErrors = BaseFormErrors> {
 
   protected readonly _subscriptions = new SubscriptionHandler();
 
-  protected rxapOnInit(): void {
+  constructor(
+    public readonly formId: string,
+    public readonly controlId: string,
+    // TODO : add parent type
+    public readonly parent: ParentForm<any> | null = null
+  ) {
+    if (this.parent) {
+      this.parent.addControl(this, this.controlId);
+    }
+  }
+
+  public init(): void {}
+
+  public rxapOnInit(): void {
     this.onInit$.next();
   }
 
@@ -64,9 +78,14 @@ export class BaseForm<Value, TError extends BaseFormErrors = BaseFormErrors> {
     this._subscriptions.resetAll();
   }
 
-  public setValue(value: Value): void {
-    this.value = value;
-    this.valueChange$.next(value);
+  public setValue(value: Value | null): void {
+    if (!equals(this.value, value)) {
+      this.value = value;
+      this.valueChange$.next(value);
+      if (this.parent) {
+        this.parent.setValue({ [ this.controlId ]: this.value });
+      }
+    }
   }
 
   // public setErrors(errors: TError): void {
@@ -74,6 +93,7 @@ export class BaseForm<Value, TError extends BaseFormErrors = BaseFormErrors> {
   // }
 
   public setError(key: string, error: string): void {
+    console.log('error', { key, error });
     this.errors.errors.set(key, error);
     this.setStatus(false);
     if (this.parent) {
@@ -117,6 +137,28 @@ export class BaseForm<Value, TError extends BaseFormErrors = BaseFormErrors> {
 
   public getErrors(): string[] {
     return Array.from(this.errors.errors.values())
+  }
+
+  public getErrorMap(): KeyValue {
+    return Array.from(this.errors.errors.entries()).map(([ key, value ]) => ({ [ key ]: value })).reduce(objectReducer, {});
+  }
+
+  public getErrorTree(): KeyValue {
+    const tree: KeyValue = {};
+    for (const [ path, message ] of this.errors.errors.entries()) {
+      const fragments    = path.split('.');
+      // tslint:disable-next-line:no-non-null-assertion
+      const last: string = fragments.pop()!;
+      let current        = tree;
+      for (const fragment of fragments) {
+        if (!current[ fragment ]) {
+          current[ fragment ] = {};
+        }
+        current = current[ fragment ];
+      }
+      current[ last ] = message;
+    }
+    return tree;
   }
 
   public clearErrors(): void {

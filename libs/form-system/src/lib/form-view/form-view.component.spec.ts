@@ -1,14 +1,7 @@
-import {
-  TestBed,
-  async,
-  ComponentFixture
-} from '@angular/core/testing';
-import { RxapFormViewComponentModule } from './rxap-form-view-component.module';
+import { TestBed } from '@angular/core/testing';
 import { FormViewComponent } from './form-view.component';
 import { FormTemplateLoader } from '../form-template-loader';
-import {
-  FormInstanceFactory
-} from '../form-instance-factory';
+import { FormInstanceFactory } from '../form-instance-factory';
 import { Layout } from './layout';
 import { FormInstance } from '../form-instance';
 
@@ -26,9 +19,12 @@ describe('Form System', () => {
 
         TestBed.configureTestingModule({});
 
+        const formTemplateLoader  = TestBed.get(FormTemplateLoader);
+        const formInstanceFactory = TestBed.get(FormInstanceFactory);
+
         component = new FormViewComponent<any>(
-          TestBed.get(FormTemplateLoader),
-          TestBed.get(FormInstanceFactory)
+          formTemplateLoader,
+          formInstanceFactory
         );
 
         formInstnace = FormInstance.TestInstance();

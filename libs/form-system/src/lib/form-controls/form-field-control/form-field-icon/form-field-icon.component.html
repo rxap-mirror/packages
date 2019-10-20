@@ -1,0 +1,10 @@
+<mat-icon *ngIf="isSimpleIcon; else complexIcon">{{icon}}</mat-icon>
+<ng-template #complexIcon>
+  <mat-icon
+    [color]="icon.color"
+    [fontIcon]="icon.fontIcon"
+    [fontSet]="icon.fontSet"
+    [inline]="icon.inline"
+    [svgIcon]="icon.svgIcon">
+  </mat-icon>
+</ng-template>

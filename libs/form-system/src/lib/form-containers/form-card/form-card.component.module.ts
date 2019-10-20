@@ -10,7 +10,6 @@ import { RxapFormViewComponentModule } from '../../form-view/rxap-form-view-comp
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
-
 @NgModule({
   declarations: [FormCardComponent],
   imports: [
@@ -24,4 +23,4 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   exports: [FormCardComponent],
   entryComponents: [FormCardComponent]
 })
-export class FormCardComponentModule { }
+export class RxapFormCardComponentModule {}

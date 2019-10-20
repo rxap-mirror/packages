@@ -23,11 +23,11 @@ import { BaseControlComponent } from '../../form-controls/base-control.component
 })
 export class ControlContainerComponent implements OnInit {
 
-  @ViewChild('controlContainer', { static: true, read: ViewContainerRef }) public controlContainer: ViewContainerRef;
+  @ViewChild('controlContainer', { static: true, read: ViewContainerRef }) public controlContainer!: ViewContainerRef;
 
-  public control: Control;
+  public control!: Control;
 
-  public formControl: BaseFormControl<any>;
+  public formControl!: BaseFormControl<any>;
 
   constructor(
     public readonly formStateManager: FormStateManager,
@@ -43,7 +43,9 @@ export class ControlContainerComponent implements OnInit {
 
     const component = this.componentRegistry.get(componentId);
 
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory<BaseControlComponent<any>>(component);
+    const componentFactory = this
+      .componentFactoryResolver
+      .resolveComponentFactory<BaseControlComponent<any, any>>(component);
 
     const componentRef = componentFactory.create(this.injector);
 

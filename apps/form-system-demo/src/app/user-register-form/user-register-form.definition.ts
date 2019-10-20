@@ -3,7 +3,14 @@ import {
   RxapForm,
   RxapFormTemplate,
   RxapFormControl,
-  RxapControlValidator
+  RxapControlValidator,
+  RxapPasswordControl,
+  RxapSelectControl,
+  RxapControlOptions,
+  RxapSelectMultipleControl,
+  RxapTextareaControl,
+  RxapRadioButtonControl,
+  BaseFormControl
 } from '@rxap/form-system';
 import { Injectable } from '@angular/core';
 
@@ -19,6 +26,10 @@ export interface UserRegisterForm {
   <control id="username"/>
   <control id="password"/>
   <control id="email"/>
+  <control id="gender"></control>
+  <control id="accounts"></control>
+  <control id="description"></control>
+  <control id="age"></control>
 </column>`)
 @RxapForm(USER_REGISTER_FORM)
 @Injectable()
@@ -30,27 +41,45 @@ export class UserRegisterFormDefinition
     message: 'Should start with uppercase latter'
   })
   @RxapFormControl({
-    options: {
+    properties: {
       max: 10
     }
   })
-  public username;
+  public username!: BaseFormControl<any>;
 
+  @RxapPasswordControl()
   @RxapFormControl({
-    options: {
-      type: 'password',
+    properties: {
       max: 10,
-      appearance: 'legacy'
     }
   })
-  public password;
+  public password!: BaseFormControl<any>;
 
+  @RxapFormControl()
+  public email!: BaseFormControl<any>;
+
+  @RxapControlOptions('Male', 'Female')
+  @RxapSelectControl()
   @RxapFormControl({
-    options: {
-      type: 'email',
+    properties: {
+      prefixIcon: { svgIcon: 'gender-female' }
     }
   })
-  public email;
+  public gender!: BaseFormControl<any>;
+
+  @RxapControlOptions('Facebook', 'Github', 'Google', 'Amazon', 'Gitlab')
+  @RxapSelectMultipleControl()
+  @RxapFormControl()
+  public accounts!: BaseFormControl<any>;
+
+  @RxapTextareaControl()
+  @RxapFormControl()
+  public description!: BaseFormControl<any>;
+
+  @RxapControlOptions('10 Jahre', '15 Jahre', '18 Jahre')
+  @RxapRadioButtonControl()
+  @RxapFormControl()
+  public age!: BaseFormControl<any>;
 
   rxapOnSubmit() {
     console.log('submit');

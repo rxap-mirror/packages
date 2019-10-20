@@ -1,0 +1,12 @@
+<rxap-form-field-icon *ngIf="hasIcon; else button" [icon]="control.suffixIcon"></rxap-form-field-icon>
+<ng-template #button>
+  <rxap-form-field-icon-button (buttonClick)="control.onSuffixButtonClick()"
+                               *ngIf="hasButton; else clearButton"
+                               [icon]="control.suffixButton">
+  </rxap-form-field-icon-button>
+</ng-template>
+<ng-template #clearButton>
+  <rxap-form-field-clear-button (buttonClick)="control.setValue(null)" *ngIf="clearButton"
+                                [hasValue]="!!(control.valueChange$ | async)">
+  </rxap-form-field-clear-button>
+</ng-template>

@@ -2,7 +2,9 @@ import {
   BaseForm,
   BaseFormErrors
 } from '../base.form';
-import { mergeDeepRight } from 'ramda';
+import { clone } from 'ramda';
+import { ParentForm } from '../parent.form';
+import { KeyValue } from '@rxap/utilities';
 
 export interface FormArrayError extends BaseFormErrors {
   controls: Array<null | BaseFormErrors>;
@@ -12,12 +14,28 @@ export class BaseFormArray<ArrayValue> extends BaseForm<ArrayValue[], FormArrayE
 
   public readonly controls: BaseForm<ArrayValue>[] = [];
 
-  public addControl(control: BaseForm<ArrayValue>, index?: number): void {
-    if (index !== undefined) {
+  constructor(
+    public readonly formId: string,
+    public readonly controlId: string,
+    public readonly controlTemplate: BaseForm<ArrayValue>,
+    // TODO : add parent type
+    public readonly parent: ParentForm<any> | null = null
+  ) {
+    super(formId, controlId, parent);
+  }
+
+  public addControl(control: BaseForm<ArrayValue>, indexOrString?: number | string): void {
+    if (control.parent !== this) {
+      throw new Error('Can not add control if parent is not equal to this form array');
+    }
+    if (indexOrString !== undefined) {
+      const index = typeof indexOrString === 'number' ? indexOrString : Number(indexOrString);
+      if (isNaN(index)) {
+        throw new Error('Can not add control with invalid index to this form array');
+      }
       this.controls.splice(index, 0, control);
     }
     this.controls.push(control);
-    control.parent = this;
   }
 
   public removeControl(index: number): boolean {
@@ -31,7 +49,11 @@ export class BaseFormArray<ArrayValue> extends BaseForm<ArrayValue[], FormArrayE
 
   public getControl
   <T extends BaseForm<ArrayValue> = BaseForm<ArrayValue>>
-  (index: number): T | null {
+  (indexOrString: string | number): T | null {
+    const index = typeof indexOrString === 'number' ? indexOrString : Number(indexOrString);
+    if (isNaN(index)) {
+      throw new Error('Can not add control with invalid index to this form array');
+    }
     if (this.controls.length > index) {
       return this.controls[index] as any;
     }
@@ -39,22 +61,19 @@ export class BaseFormArray<ArrayValue> extends BaseForm<ArrayValue[], FormArrayE
     return null;
   }
 
-  public setValue(value: Array<Partial<ArrayValue>>): void {
-    super.setValue(mergeDeepRight<ArrayValue[], Array<Partial<ArrayValue>>>(this.value, value) as ArrayValue[]);
-    for (let controlIndex = 0; controlIndex < value.length; controlIndex++) {
-      if (this.controls.length > controlIndex) {
-        const control = this.controls[ controlIndex ];
-        const controlValue = value[controlIndex];
-        if (typeof controlValue === 'object') {
-          // TODO : handel case where control.value is not an object
-          control.setValue(mergeDeepRight(control.value as any, controlValue) as ArrayValue);
-        } else {
-          control.setValue(controlValue);
-        }
-      }
-      // TODO : add logging
+  public hasControl(indexOrString: number | string): boolean {
+    const index = typeof indexOrString === 'number' ? indexOrString : Number(indexOrString);
+    if (isNaN(index)) {
+      throw new Error('Can not add control with invalid index to this form array');
     }
+    return this.controls.length > index;
+  }
 
+  public addNewControl(initialValue: Partial<ArrayValue>) {}
+
+  public init(): void {
+    super.init();
+    this.controls.forEach(control => control.init());
   }
 
   // public setErrors(errors: FormArrayError): void {
@@ -73,6 +92,49 @@ export class BaseFormArray<ArrayValue> extends BaseForm<ArrayValue[], FormArrayE
     for (const control of this.controls) {
       control.clearErrors();
     }
+  }
+
+  public setValue(value: Array<ArrayValue> | KeyValue<ArrayValue>): void {
+    let newValue: Array<ArrayValue>;
+    if (!Array.isArray(value)) {
+      newValue = clone(this.value);
+
+      for (const index of Object.keys(value).map(indexString => {
+        const i = Number(indexString);
+        if (isNaN(i)) {
+          throw new Error('Can not set value for form array. Index is not valid');
+        }
+        return i;
+      }).sort()) {
+        const controlValue = value[ index.toFixed(0) ];
+        if (index > newValue.length) {
+          throw new Error('Can not set value for form array. Index is out of range');
+        }
+        if (index === newValue.length) {
+          this.addNewControl(controlValue);
+          newValue.push(controlValue);
+        } else {
+          newValue[ index ] = controlValue;
+        }
+      }
+
+    } else {
+      if (this.value.length !== value.length) {
+        throw new Error('Can not set value. new value length is not equal to the old value length');
+      }
+      newValue = value;
+    }
+
+    super.setValue(newValue);
+    for (let controlIndex = 0; controlIndex < newValue.length; controlIndex++) {
+      if (this.controls.length > controlIndex) {
+        const control      = this.controls[ controlIndex ];
+        const controlValue = newValue[ controlIndex ];
+        control.setValue(controlValue);
+      }
+      // TODO : add logging
+    }
+
   }
 
 }

@@ -1,3 +1,5 @@
+import { ThemePalette } from '@angular/material';
+
 export type CssClass = string | string[] | { [ className: string ]: boolean };
 
 export interface KeyValue<T = any> {
@@ -73,3 +75,34 @@ export interface Action {
 }
 
 export type Without<T, K> = Pick<T, Exclude<keyof T, K>>;
+
+export type Identifier = 'id' | 'uuid' | '_id' | '__id' | 'key';
+
+export interface ControlOption<Value, Display = string> {
+  value: Value;
+  display: Display;
+  disabled?: boolean;
+  color?: string;
+}
+
+export type ControlOptions<Value, Display = string> = Array<ControlOption<Value, Display>>;
+
+export function hasIdentifierProperty(obj: any): boolean {
+  return obj.hasOwnProperty('id') ||
+         obj.hasOwnProperty('uuid') ||
+         obj.hasOwnProperty('_id') ||
+         obj.hasOwnProperty('__id') ||
+         obj.hasOwnProperty('key');
+}
+
+export function getIdentifierPropertyValue<T = string>(obj: any): T | null {
+  return obj.id || obj.uuid || obj._id || obj.__id || obj.key || null;
+}
+
+export interface IconConfig {
+  svgIcon: string;
+  inline?: boolean;
+  fontSet?: string;
+  fontIcon?: string;
+  color?: ThemePalette;
+}
