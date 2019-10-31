@@ -1,0 +1,10 @@
+<column>
+  <control id="username"/>
+  <control id="password"/>
+  <control id="email"/>
+  <control id="gender"/>
+  <control id="accounts"/>
+  <control id="description"/>
+  <control id="age"/>
+  <control id="description"/>
+</column>

@@ -16,7 +16,7 @@ export class AppComponent implements AfterContentChecked {
   constructor(
     public readonly formDetails: FormDetailsService,
     public readonly forms: FormsService,
-    public readonly formTemplates: FormTemplatesService
+    public readonly formTemplates: FormTemplatesService,
   ) {}
 
   public ngAfterContentChecked(): void {

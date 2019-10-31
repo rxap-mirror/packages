@@ -30,6 +30,7 @@ export class TemplateEditorComponent implements OnInit, OnDestroy {
   @ViewChild('editorModel', { static: true }) public editorModel: NgModel;
 
   private _subscriptions = new Subscription();
+  public autoSaveToDisk = false;
 
   constructor(public formDetails: FormDetailsService) { }
 
@@ -45,6 +46,12 @@ export class TemplateEditorComponent implements OnInit, OnDestroy {
       skipWhile(() => !this.autoUpdate),
       debounceTime(500),
       tap(template => this.formDetails.updateTemplate(template))
+    ).subscribe());
+
+    this._subscriptions.add(this.editorModel.valueChanges.pipe(
+      skipWhile(() => !this.autoSaveToDisk),
+      debounceTime(500),
+      tap(template => this.formDetails.saveTemplateToDisk(template))
     ).subscribe());
 
   }

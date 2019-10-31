@@ -22,15 +22,15 @@ export interface UserRegisterForm {
   email: string;
 }
 
-@RxapFormTemplate(`<column>
-  <control id="username"/>
-  <control id="password"/>
-  <control id="email"/>
-  <control id="gender"></control>
-  <control id="accounts"></control>
-  <control id="description"></control>
-  <control id="age"></control>
-</column>`)
+// @RxapFormTemplate(`<column>
+//   <control id="username"/>
+//   <control id="password"/>
+//   <control id="email"/>
+//   <control id="gender"></control>
+//   <control id="accounts"></control>
+//   <control id="description"></control>
+//   <control id="age"></control>
+// </column>`)
 @RxapForm(USER_REGISTER_FORM)
 @Injectable()
 export class UserRegisterFormDefinition

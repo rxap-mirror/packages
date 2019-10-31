@@ -20,7 +20,7 @@ export class FormDetailsService {
 
   constructor(
     public templatesService: FormTemplatesService,
-    public instancesService: FormInstancesService
+    public instancesService: FormInstancesService,
   ) {
     console.log('FormDetailsService');
     this.templatesService.update$.pipe(
@@ -57,4 +57,10 @@ export class FormDetailsService {
     }
   }
 
+  public saveTemplateToDisk(template: string): void {
+    if (!this.formId) {
+      throw new Error('Could not save template to disk. Form Id is not defined');
+    }
+    this.templatesService.save(this.formId, template, true);
+  }
 }

@@ -20,6 +20,10 @@ export type WithIndex<T> = { __index: number } & T;
 
 export type Nullable<T> = T extends object ? { [key in keyof T]: Nullable<T[key]> } : T | null;
 
+export type Diff<T, U> = T extends U ? never : T;
+
+export type NonNullable<T> = T extends object ? { [key in keyof T]: NonNullable<T[key]> } : Diff<T, null | undefined>;
+
 export interface IWithIdentifier {
   __id?: string;
   id?: string;

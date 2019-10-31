@@ -1,15 +1,24 @@
 <div fxLayout="column" fxLayoutGap="32px">
 
   <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
-    <mat-form-field fxFlex="nogrow">
-      <mat-label>Form Template</mat-label>
-      <mat-select (selectionChange)="formDetails.setFormId($event.value)">
-        <mat-option [value]="null">---</mat-option>
-        <mat-option *ngFor="let formId of forms.formIds" [value]="formId">
-          {{formId}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutGap="32px"  fxLayoutAlign="start center">
+
+      <div fxFlex="nogrow"><button mat-stroked-button color="primary" (click)="formTemplates.saveAll()">Save all templates</button></div>
+
+      <mat-form-field fxFlex="nogrow" class="form-id-selector">
+        <mat-label>Form Template</mat-label>
+        <mat-select (selectionChange)="formDetails.setFormId($event.value)">
+          <mat-option [value]="null">---</mat-option>
+          <mat-option *ngFor="let formId of forms.formIds" [value]="formId">
+            {{formId}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+
 
     <button (click)="load()" color="primary" fxFlex="40px" mat-icon-button>
       <mat-icon>autorenew</mat-icon>
@@ -21,4 +30,4 @@
 
 </div>
 
-<ng-template #empty><h3>Select a form id</h3></ng-template>
+<ng-template #empty><h3 class="info">Select a form id</h3></ng-template>

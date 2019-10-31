@@ -6,3 +6,9 @@ export function RxapFormTemplate(template: string) {
     setMetadata(FormDefinitionMetaDataKeys.FORM_TEMPLATE, template, target);
   }
 }
+
+export function RxapFormTemplateUrl(url: string) {
+  return function(target: any) {
+    setMetadata(FormDefinitionMetaDataKeys.FORM_TEMPLATE_URL, url, target);
+  }
+}

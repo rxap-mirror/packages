@@ -5,6 +5,7 @@ import {
   tap
 } from 'rxjs/operators';
 import { unique } from '@rxap/utilities';
+import { FormId } from '@rxap/form-system';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,12 @@ export class FormsService {
     console.log('FormsService');
     this.portService.receive$.pipe(
       filter(payload => payload.formId),
-      tap(payload => this.formIds = [ payload.formId, ...this.formIds ].filter(unique()))
+      tap(payload => this.addFormId(payload.formId))
     ).subscribe();
+  }
+
+  public addFormId(formId: FormId) {
+    this.formIds = [ formId, ...this.formIds ].filter(unique())
   }
 
 }

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import {
+  Subject,
+  BehaviorSubject
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +13,16 @@ export class PortService {
 
   public receive$ = new Subject<any>();
 
+  public ready$ = new BehaviorSubject<boolean>(false);
+
   constructor() {
     console.log('PortService');
+
+    if (!chrome.storage) {
+      console.info('In test mode');
+      return;
+    }
+
     chrome.storage.local.get((items) => {
       console.log('items', items);
     });
@@ -19,6 +30,7 @@ export class PortService {
     chrome.runtime.onConnect.addListener(port => {
       console.log('port', port);
       this.port = port;
+      this.ready$.next(true);
       port.onMessage.addListener(msg => {
         console.log('msg', msg);
         if (msg.rxap_form) {
@@ -39,10 +51,14 @@ export class PortService {
   }
 
   public send(data: object): void {
-    this.port.postMessage({
-      ...data,
-      rxap_form: true
-    });
+    if (this.port) {
+      this.port.postMessage({
+        ...data,
+        rxap_form: true
+      });
+    } else {
+      console.warn('could not send', data);
+    }
   }
 
 }

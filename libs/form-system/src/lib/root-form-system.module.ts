@@ -6,8 +6,11 @@ import {
 import { FormDefinitionRegister } from './form-definition-register';
 import { ROOT_FORM_DEFINITION_TOKEN } from './tokens';
 import { RxapFormDefinition } from './form-definition/form-definition';
+import { HttpClientModule } from '@angular/common/http';
 
-@NgModule()
+@NgModule({
+  exports: [HttpClientModule]
+})
 export class RootFormSystemModule {
 
   constructor(

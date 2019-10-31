@@ -1,15 +1,78 @@
 import { Injectable } from '@angular/core';
 import { FormTemplateLoader } from '../form-template-loader';
-import { fromEvent } from 'rxjs';
+import {
+  fromEvent,
+  of
+} from 'rxjs';
 import {
   filter,
   map,
   tap,
-  mergeMap
+  mergeMap,
+  switchMap,
+  delay
 } from 'rxjs/operators';
 import { FormInstanceFactory } from '../form-instance-factory';
 import { isDefined } from '@rxap/utilities';
 import { FormInstance } from '../form-instance';
+
+interface FileSystemHandlePermissionDescriptor {
+  writable: boolean;
+}
+
+enum PermissionState {
+  "granted",
+  "denied",
+  "prompt",
+}
+
+interface FileSystemHandle {
+  readonly isFile: boolean;
+  readonly isDirectory: boolean;
+  readonly name: string;
+
+  queryPermission(descriptor?: FileSystemHandlePermissionDescriptor): Promise<PermissionState>;
+  requestPermission(descriptor?: FileSystemHandlePermissionDescriptor): Promise<PermissionState>;
+}
+
+interface FileSystemCreateWriterOptions {
+  keepExistingData: boolean;
+}
+
+interface FileSystemWriter {
+  write(position: number, data: any): Promise<void>;
+  truncate(size: number): Promise<void>;
+  close(): Promise<void>;
+}
+
+interface FileSystemFileHandle extends FileSystemHandle {
+  getFile(): Promise<File>;
+  createWriter(options?: FileSystemCreateWriterOptions): Promise<FileSystemWriter>;
+}
+
+interface FileSystemGetFileOptions {
+  create: boolean;
+}
+
+interface FileSystemGetDirectoryOptions {
+  create: boolean;
+}
+
+interface FileSystemRemoveOptions {
+  recursive: boolean;
+}
+
+enum ChooseFileSystemEntriesType { "openFile" = 'openFile', "saveFile" = 'saveFile', "openDirectory" = 'openDirectory' };
+
+interface FileSystemDirectoryHandle extends FileSystemHandle {
+  getFile(name: string, options?: FileSystemGetFileOptions): Promise<FileSystemFileHandle>
+  getDirectory(name: string, options?: FileSystemGetDirectoryOptions): Promise<FileSystemDirectoryHandle>;
+
+  // This really returns an async iterable, but that is not yet expressable in WebIDL.
+  getEntries(): any;
+
+  removeEntry(name: string, options: FileSystemRemoveOptions): Promise<void>;
+}
 
 @Injectable()
 export class FormSystemDevToolService {
@@ -42,6 +105,11 @@ export class FormSystemDevToolService {
       })
     ).subscribe();
 
+    message$.pipe(
+      filter(data => data.saveAll),
+      switchMap(() => this.saveAllTemplates()),
+    ).subscribe();
+
     const withInstanceId$ = message$.pipe(
       filter(data => data.instanceId)
     );
@@ -68,8 +136,9 @@ export class FormSystemDevToolService {
       filter(data => data.formId)
     );
 
-    withFormId$.pipe(
-      filter(data => data.template),
+    const withFormTemplate$ = withFormId$.pipe(filter(data => data.template));
+
+    withFormTemplate$.pipe(
       tap(data => this.formTemplateLoader.updateTemplate(data.formId, data.template))
     ).subscribe();
 
@@ -85,6 +154,39 @@ export class FormSystemDevToolService {
 
       })
     ).subscribe();
+
+    withFormTemplate$.pipe(
+      filter(data => data.save),
+      switchMap(data => this.writeToFile(`${data.formId}.xml`, data.template))
+    ).subscribe();
+
+  }
+
+  public async writeToFile(filename: string, content: string): Promise<void> {
+
+    const file = await (window as any)[ 'chooseFileSystemEntries' ]({ accepts: [{ extensions: 'xml' }], type: ChooseFileSystemEntriesType.saveFile });
+
+    const writer = await file.createWriter();
+    await writer.truncate(0);
+    await writer.write(0, content);
+    await writer.close();
+
+  }
+
+  public async saveAllTemplates(): Promise<void> {
+
+    const folder: FileSystemDirectoryHandle = await (window as any)[ 'chooseFileSystemEntries' ]({ type: ChooseFileSystemEntriesType.openDirectory });
+
+    // await folder.requestPermission({ writable: true });
+
+    for (const [formId, template] of this.formTemplateLoader.templates.entries()) {
+      const file = await folder.getFile(`${formId}.xml`);
+      console.log(file);
+      const writer = await file.createWriter();
+      await writer.truncate(0);
+      await writer.write(0, template);
+      await writer.close();
+    }
 
   }
 

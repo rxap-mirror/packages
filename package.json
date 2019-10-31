@@ -29,11 +29,12 @@
     "add:lib": "ng g @nrwl/angular:lib --style scss --publishable",
     "add:app": "ng g @nrwl/angular:app --style scss",
     "start:form-system-demo": "yarn start form-system-demo --port 4650",
+    "start:form-system-chrome-extension": "yarn start form-system-chrome-extension --port 4670",
     "start:window-system-demo": "yarn start window-system-demo --port 4660",
     "build:form-system-chrome-extension": "yarn build --aot form-system-chrome-extension",
     "build:form-system-chrome-extension:watch": "yarn build form-system-chrome-extension --watch --configuration=dev",
     "build:form-system-chrome-extension:prod": "yarn build form-system-chrome-extension --prod",
-    "start:browser": "chromium-browser --user-data-dir=\"./chromium-user-data\" http://localhost:4650",
+    "start:browser": "chromium-browser --allow-file-access-from-files --disable-web-security --user-data-dir=\"./chromium-user-data\" http://localhost:4650",
     "madge": "madge"
   },
   "private": true,

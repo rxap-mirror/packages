@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+  isDevMode
+} from '@angular/core';
 import { FormDefinitionRegister } from './form-definition-register';
 import { getMetadata } from '@rxap/utilities';
 import { FormDefinitionMetaDataKeys } from './form-definition/decorators/meta-data-keys';
@@ -6,18 +9,23 @@ import { Layout } from './form-view/layout';
 import { FromXml } from './form-view/element';
 import {
   Subject,
-  Observable
+  Observable,
+  from
 } from 'rxjs';
 import {
   startWith,
   filter,
-  map
+  map,
+  switchMap
 } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+
+export type FormTemplate = string;
 
 @Injectable({ providedIn: 'root' })
 export class FormTemplateLoader {
 
-  public templates = new Map<string, string>();
+  public templates = new Map<string, FormTemplate>();
 
   public update$ = new Subject<string>();
 
@@ -25,8 +33,14 @@ export class FormTemplateLoader {
 
   constructor(
     public formDefinitionRegister: FormDefinitionRegister,
+    public http: HttpClient,
   ) {}
 
+  /**
+   * @deprecated
+   * @internal
+   * @param formId
+   */
   public getTemplate(formId: string): string {
 
     if (this.templates.has(formId)) {
@@ -49,22 +63,78 @@ export class FormTemplateLoader {
     return template;
   }
 
+  /**
+   * @deprecated
+   * @internal
+   * @param formId
+   */
   public getLayout(formId: string): Layout {
     const layout = FromXml(this.getTemplate(formId));
     layout.setFormId(formId);
     return layout;
   }
 
-  public updateTemplate(formId: string, template: string): void {
+  public updateTemplate(formId: string, template: FormTemplate): void {
     this.templates.set(formId, template);
     this.update$.next(formId);
+  }
+
+  public async getTemplate$(formId: string): Promise<FormTemplate> {
+    let template: string = this.templates.get(formId) || '';
+
+    // if template is not cached, search for the template
+    if (!template) {
+
+      const formDefinitionType = this.formDefinitionRegister.get(formId);
+
+      let templateUrl = getMetadata<string>(FormDefinitionMetaDataKeys.FORM_TEMPLATE_URL, formDefinitionType);
+      template        = getMetadata<string>(FormDefinitionMetaDataKeys.FORM_TEMPLATE, formDefinitionType) || '';
+
+      // if template and templateUrl are not defined
+      if (!template && !templateUrl) {
+        // set the default templateUrl
+        templateUrl = `/assets/form-templates/${formId}.xml`;
+      }
+
+      // if templateUrl is defined
+      if (templateUrl) {
+        // load template from url
+        try {
+          template = await this.http.get(templateUrl, { responseType: 'text' }).toPromise();
+        } catch (e) {
+          if (isDevMode()) {
+            template = '<row></row>';
+          }
+          // template is not availed at the specified url
+          console.warn('Could not load template from url', templateUrl, e);
+        }
+      }
+
+      if (!template) {
+        throw new Error(`Form template not defined for form with id '${formId}'`);
+      }
+
+      this.templates.set(formId, template);
+
+      this.load$.next(formId);
+
+    }
+
+    return template;
+
   }
 
   public getLayout$(formId: string): Observable<Layout> {
     return this.update$.pipe(
       filter(updateFormId => updateFormId === formId),
       startWith(formId),
-      map(() => this.getLayout(formId))
+      switchMap(() => from(this.getTemplate$(formId)).pipe(
+        map(template => {
+          const layout = FromXml(template);
+          layout.setFormId(formId);
+          return layout;
+        })
+      )),
     );
   }
 

@@ -4,7 +4,17 @@
 
     <button (click)="formDetails.updateTemplate(template)" color="primary" fxFlex="128px" mat-raised-button>Update</button>
 
-    <mat-slide-toggle [(ngModel)]="autoUpdate" fxFlex="nogrow">Auto update</mat-slide-toggle>
+    <mat-slide-toggle color="accent" [(ngModel)]="autoUpdate" fxFlex="nogrow">Auto update</mat-slide-toggle>
+
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="32px">
+
+    <button (click)="formDetails.saveTemplateToDisk(template)" color="primary" fxFlex="128px" mat-raised-button>Save to disk</button>
+
+    <mat-slide-toggle color="accent" [(ngModel)]="autoSaveToDisk" fxFlex="nogrow">
+      Auto save to disk
+    </mat-slide-toggle>
 
   </div>
 

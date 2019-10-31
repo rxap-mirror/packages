@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutGap="32px" style="margin: 16px">
-  <button (click)="formDetails.loadInstanceIds()" fxFlex="nogrow" mat-stroked-button>Refresh instances</button>
+  <button (click)="formDetails.loadInstanceIds()" color="primary" fxFlex="nogrow" mat-stroked-button>Refresh instances</button>
   <mat-accordion fxFlex="nogrow">
     <mat-expansion-panel *ngFor="let instanceId of formDetails.formInstanceIds">
       <mat-expansion-panel-header>
