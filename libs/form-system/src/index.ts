@@ -4,6 +4,7 @@ export * from './lib/root-form-system.module';
 export * from './lib/form-definition-loader';
 export * from './lib/form-definition-register';
 export * from './lib/form-instance-factory';
+export * from './lib/form-instance';
 export * from './lib/form-state-manager';
 export * from './lib/form-template-loader';
 export * from './lib/tokens';
@@ -91,6 +92,20 @@ export * from './lib/form-view/form-view.component';
 // endregion
 
 // region forms
+
+// region form-groups
+
+export * from './lib/forms/form-groups/base.form-group';
+
+// endregion
+
+// region form-arrays
+
+export * from './lib/forms/form-arrays/base.form-array';
+export * from './lib/forms/form-arrays/base-control.form-array';
+export * from './lib/forms/form-arrays/base-group.form-array';
+
+// endregion
 
 // region form-controls
 

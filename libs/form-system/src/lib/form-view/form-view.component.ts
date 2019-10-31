@@ -12,7 +12,7 @@ import { FormTemplateLoader } from '../form-template-loader';
 import { FormInstanceFactory } from '../form-instance-factory';
 import {
   RXAP_FORM_ID,
-  RXAP_SHARED_FORM
+  RXAP_FORM_INSTANCE_ID
 } from '../tokens';
 import { Layout } from './layout';
 import {
@@ -20,7 +20,10 @@ import {
   Observable
 } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { FormInstance } from '../form-instance';
+import {
+  FormInstance,
+  FormInstanceId
+} from '../form-instance';
 import { Required } from '@rxap/utilities';
 import { FormInvalidSubmitService } from '../form-invalid-submit.service';
 import { FormValidSubmitService } from '../form-valid-submit.service';
@@ -39,6 +42,8 @@ export class FormViewComponent<FormValue extends object>
 
   @Input() @Required public formId!: string;
 
+  @Input() public instanceId!: FormInstanceId;
+
   public layout$!: Observable<Layout>;
   public instance!: FormInstance<FormValue>;
 
@@ -50,19 +55,25 @@ export class FormViewComponent<FormValue extends object>
     public readonly formInvalidSubmit: FormInvalidSubmitService<FormValue>,
     public readonly formValidSubmit: FormValidSubmitService<FormValue>,
     public readonly formLoad: FormLoadService<FormValue>,
-    @Inject(RXAP_FORM_ID) @Optional() formId: string | null               = null,
-    @Inject(RXAP_SHARED_FORM) @Optional() public readonly shared: boolean = true
+    @Inject(RXAP_FORM_ID) @Optional() formId: string | null                      = null,
+    @Inject(RXAP_FORM_INSTANCE_ID) @Optional() instanceId: FormInstanceId | null = null
   ) {
     if (formId) {
       this.formId = formId;
     }
+    if (instanceId) {
+      this.instanceId = instanceId || this.formId;
+    }
   }
 
   public ngOnInit(): void {
+    if (!this.instanceId) {
+      this.instanceId = this.formId;
+    }
     this.layout$  = this.formTemplateLoader.getLayout$(this.formId);
     this.instance = this.formInstanceFactory.buildInstance<FormValue>(
       this.formId,
-      this.shared,
+      this.instanceId,
       this.formInvalidSubmit,
       this.formValidSubmit,
       this.formLoad

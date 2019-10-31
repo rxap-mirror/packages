@@ -4,12 +4,17 @@ import {
   ChangeDetectionStrategy,
   Inject,
   Optional,
-  OnInit,
-  isDevMode
+  OnInit
 } from '@angular/core';
-import { RXAP_FORM_ID } from '../../tokens';
+import {
+  RXAP_FORM_ID,
+  RXAP_FORM_INSTANCE_ID
+} from '../../tokens';
 import { FormInstanceFactory } from '../../form-instance-factory';
-import { FormInstance } from '../../form-instance';
+import {
+  FormInstance,
+  FormInstanceId
+} from '../../form-instance';
 import { Required } from '@rxap/utilities';
 import { FormInvalidSubmitService } from '../../form-invalid-submit.service';
 import { FormValidSubmitService } from '../../form-valid-submit.service';
@@ -25,13 +30,13 @@ import { FormLoadService } from '../../form-load.service';
 export class FormCardComponent implements OnInit {
 
   @Input() @Required public formId!: string;
+  @Input() public instanceId!: FormInstanceId;
 
   public instance!: FormInstance<any>;
 
-  public isDevMode = isDevMode();
-
   constructor(
-    @Inject(RXAP_FORM_ID) @Optional() formId: string | null = null,
+    @Inject(RXAP_FORM_ID) @Optional() formId: string | null                      = null,
+    @Inject(RXAP_FORM_INSTANCE_ID) @Optional() instanceId: FormInstanceId | null = null,
     public readonly formInstanceFactory: FormInstanceFactory,
     public readonly formInvalidSubmit: FormInvalidSubmitService<any>,
     public readonly formValidSubmit: FormValidSubmitService<any>,
@@ -40,10 +45,22 @@ export class FormCardComponent implements OnInit {
     if (formId) {
       this.formId = formId;
     }
+    if (instanceId) {
+      this.instanceId = instanceId || this.formId;
+    }
   }
 
   public ngOnInit(): void {
-    this.instance = this.formInstanceFactory.buildInstance(this.formId, false, this.formInvalidSubmit, this.formValidSubmit, this.formLoad);
+    if (!this.instanceId) {
+      this.instanceId = this.formId;
+    }
+    this.instance = this.formInstanceFactory.buildInstance(
+      this.formId,
+      this.instanceId,
+      this.formInvalidSubmit,
+      this.formValidSubmit,
+      this.formLoad
+    );
   }
 
 }

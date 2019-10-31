@@ -4,22 +4,34 @@ import { fromEvent } from 'rxjs';
 import {
   filter,
   map,
-  tap
+  tap,
+  mergeMap
 } from 'rxjs/operators';
+import { FormInstanceFactory } from '../form-instance-factory';
+import { isDefined } from '@rxap/utilities';
+import { FormInstance } from '../form-instance';
 
 @Injectable()
 export class FormSystemDevToolService {
 
-  constructor(public formTemplateLoader: FormTemplateLoader) {}
+  constructor(
+    public formTemplateLoader: FormTemplateLoader,
+    public formInstances: FormInstanceFactory
+  ) {}
 
   public start() {
-    this.send({ start_connection: true });
 
     const message$ = fromEvent<MessageEvent>(window, 'message').pipe(
       filter(event => event.source === window),
       map(event => event.data),
-      filter(data => data.rxap_form)
+      filter(data => data.rxap_form),
+      tap(data => console.info('[FormSystemDevToolService] message', data))
     );
+
+    message$.pipe(
+      filter(data => data.content_loaded),
+      tap(() => this.send({ start_connection: true }))
+    ).subscribe();
 
     message$.pipe(
       filter(data => data.getAll),
@@ -30,6 +42,28 @@ export class FormSystemDevToolService {
       })
     ).subscribe();
 
+    const withInstanceId$ = message$.pipe(
+      filter(data => data.instanceId)
+    );
+
+    withInstanceId$.pipe(
+      filter(data => data.getValue),
+      map(data => this.formInstances.getFormInstanceById(data.instanceId)),
+      isDefined(),
+      mergeMap((instance: FormInstance<any>) => instance.formDefinition.group.valueChanged$.pipe(
+        tap(value => this.send({ instanceId: instance.instanceId, value }))
+      ))
+    ).subscribe();
+
+    withInstanceId$.pipe(
+      filter(data => data.getErrors),
+      map(data => this.formInstances.getFormInstanceById(data.instanceId)),
+      isDefined(),
+      mergeMap((instance: FormInstance<any>) => instance.formDefinition.group.errorTreeChange$.pipe(
+        tap(errors => this.send({ instanceId: instance.instanceId, errors }))
+      ))
+    ).subscribe();
+
     const withFormId$ = message$.pipe(
       filter(data => data.formId)
     );
@@ -37,6 +71,19 @@ export class FormSystemDevToolService {
     withFormId$.pipe(
       filter(data => data.template),
       tap(data => this.formTemplateLoader.updateTemplate(data.formId, data.template))
+    ).subscribe();
+
+    withFormId$.pipe(
+      filter(data => data.getInstances),
+      tap(data => {
+
+        const instanceIds = this.formInstances.getFormInstanceIdsByFormId(data.formId);
+
+        console.log(instanceIds);
+
+        this.send({ formId: data.formId, instanceIds });
+
+      })
     ).subscribe();
 
   }

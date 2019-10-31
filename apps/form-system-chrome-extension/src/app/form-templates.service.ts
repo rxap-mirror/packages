@@ -5,13 +5,14 @@ import {
   tap
 } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { FormId } from '@rxap/form-system';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormTemplatesService {
 
-  public update$    = new Subject<void>();
+  public update$    = new Subject<FormId>();
   private templates = new Map<string, string>();
 
   constructor(
@@ -22,7 +23,7 @@ export class FormTemplatesService {
       filter(payload => payload.formId && payload.template),
       tap(payload => console.log('add template', payload)),
       tap(payload => this.templates.set(payload.formId, payload.template)),
-      tap(() => this.update$.next())
+      tap(payload => this.update$.next(payload.formId))
     ).subscribe();
   }
 

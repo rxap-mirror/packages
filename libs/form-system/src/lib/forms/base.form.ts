@@ -8,7 +8,11 @@ import {
   objectReducer,
   deepMerge
 } from '@rxap/utilities';
-import { debounceTime } from 'rxjs/operators';
+import {
+  debounceTime,
+  startWith,
+  map
+} from 'rxjs/operators';
 import { equals } from 'ramda';
 import { ParentForm } from './parent.form';
 
@@ -48,7 +52,10 @@ export class BaseForm<Value,
   /**
    * emit the new form control value with the specified debounce time
    */
-  public valueChanged$ = defer(() => this.valueChange$.pipe(debounceTime(this.debounceTime)));
+  public valueChanged$ = defer(() => this.valueChange$.pipe(
+    debounceTime(this.debounceTime),
+    startWith(this.value)
+  ));
 
   /**
    * the debounce time for value change
@@ -59,6 +66,12 @@ export class BaseForm<Value,
    * emit immediate the new form control value
    */
   public valueChange$ = new Subject<Value>();
+
+  public errorsChange$ = new Subject<TError>();
+
+  public errorTreeChange$ = defer(() => this.errorsChange$.pipe(
+    map(() => this.getErrorTree())
+  ));
 
   public onInit$ = new Subject<void>();
 
@@ -119,9 +132,9 @@ export class BaseForm<Value,
   }
 
   public setError(key: string, error: string): void {
-    console.log('error', { key, error });
     this.errors.errors.set(key, error);
     this.setStatus(false);
+    this.errorsChange$.next(this.errors);
     if (this.parent) {
       this.parent.setError([this.controlId, key].join('.'), error);
     }
@@ -131,6 +144,8 @@ export class BaseForm<Value,
     let result = this.errors.errors.delete(key);
 
     this.setStatus(!this.hasError());
+
+    this.errorsChange$.next(this.errors);
 
     if (this.parent) {
       result = result && this.parent.clearError([this.controlId, key].join('.'));

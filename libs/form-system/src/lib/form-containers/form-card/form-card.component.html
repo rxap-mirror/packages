@@ -1,14 +1,6 @@
 <mat-card>
   <mat-card-content>
-    <rxap-form-view [formId]="formId"></rxap-form-view>
-    <ng-template [ngIf]="isDevMode">
-      <h5>Status:</h5>
-      <pre>Valid: {{instance.formDefinition.group.isValid | json}}</pre>
-      <h5>Value:</h5>
-      <pre>{{instance.formDefinition.group.value | json}}</pre>
-      <h5>Errors:</h5>
-      <pre>{{instance.formDefinition.group.getErrorTree() | json}}</pre>
-    </ng-template>
+    <rxap-form-view [formId]="formId" [instanceId]="instanceId"></rxap-form-view>
   </mat-card-content>
   <mat-card-footer>
     <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px" style="width: 100%">

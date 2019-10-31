@@ -1,0 +1,12 @@
+<mat-tab-group>
+  <mat-tab label="Value">
+    <div class="content">
+      <pre>{{value$ | async | json}}</pre>
+    </div>
+  </mat-tab>
+  <mat-tab label="Errors">
+    <div class="content">
+      <pre>{{errors$ | async | json}}</pre>
+    </div>
+  </mat-tab>
+</mat-tab-group>

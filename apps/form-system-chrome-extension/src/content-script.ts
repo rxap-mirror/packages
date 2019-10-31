@@ -14,6 +14,7 @@ function send(data: any) {
 }
 
 function ping() {
+  console.log('ping');
   chrome.runtime.sendMessage('ping', response => {
     if (chrome.runtime.lastError) {
       setTimeout(ping, 1000);

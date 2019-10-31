@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormDetailsComponent } from './form-details.component';
 import { MatTabsModule } from '@angular/material';
 import { TemplateEditorComponentModule } from '../template-editor/template-editor.component.module';
-import { FormInstanceComponentModule } from '../form-instance/form-instance.component.module';
+import { FormInstancesComponentModule } from '../form-instances/form-instances.component.module';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { FormInstanceComponentModule } from '../form-instance/form-instance.comp
     CommonModule,
     MatTabsModule,
     TemplateEditorComponentModule,
-    FormInstanceComponentModule
+    FormInstancesComponentModule
   ],
   exports:      [ FormDetailsComponent ]
 })

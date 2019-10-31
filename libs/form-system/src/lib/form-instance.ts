@@ -26,17 +26,22 @@ import { BaseFormArray } from './forms/form-arrays/base.form-array';
 import { FormInvalidSubmitService } from './form-invalid-submit.service';
 import { FormValidSubmitService } from './form-valid-submit.service';
 import { FormLoadService } from './form-load.service';
+import { v1 as uuid } from 'uuid';
 
 export enum FormInstanceSubscriptions {
   ON_VALUE_CHANGE   = 'on-value-change',
   CONTROL_VALIDATOR = 'control-validator'
 }
 
+export type FormInstanceId = string;
+
 export class FormInstance<FormValue extends object, FormDefinition extends RxapFormDefinition<FormValue> = RxapFormDefinition<FormValue>> {
 
   public static TestInstance<FormValue extends object>(formDefinition?: RxapFormDefinition<FormValue>) {
     return new FormInstance<FormValue>(formDefinition || RxapFormDefinition.TestInstance<FormValue>(), null, null, null);
   }
+
+  ;
 
   public clickSubmit$ = new Subject<void>();
   public clickReset$  = new Subject<void>();
@@ -49,7 +54,8 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
     public readonly formDefinition: FormDefinition,
     public readonly formInvalidSubmit: FormInvalidSubmitService<FormValue> | null = null,
     public readonly formValidSubmit: FormValidSubmitService<FormValue> | null     = null,
-    public readonly formLoad: FormLoadService<FormValue> | null                   = null
+    public readonly formLoad: FormLoadService<FormValue> | null                   = null,
+    public readonly instanceId: FormInstanceId                                    = uuid()
   ) {}
 
   public rxapOnInit() {
