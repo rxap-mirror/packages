@@ -1,10 +1,13 @@
-<mat-icon *ngIf="isSimpleIcon; else complexIcon">{{icon}}</mat-icon>
-<ng-template #complexIcon>
-  <mat-icon
-    [color]="icon.color"
-    [fontIcon]="icon.fontIcon"
-    [fontSet]="icon.fontSet"
-    [inline]="icon.inline"
-    [svgIcon]="icon.svgIcon">
-  </mat-icon>
+<ng-template [ngIfElse]="noIcon" [ngIf]="icon">
+  <mat-icon *ngIf="isSimpleIcon; else complexIconTmpl">{{simpleIcon}}</mat-icon>
+  <ng-template #complexIconTmpl>
+    <mat-icon
+      [color]="complexIcon.color"
+      [fontIcon]="complexIcon.fontIcon"
+      [fontSet]="complexIcon.fontSet"
+      [inline]="complexIcon.inline"
+      [svgIcon]="complexIcon.svgIcon">
+    </mat-icon>
+  </ng-template>
 </ng-template>
+<ng-template #noIcon>Icon not defined</ng-template>

@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
 import { FormTemplateLoader } from '../form-template-loader';
+import { fromEvent } from 'rxjs';
+import {
+  filter,
+  map,
+  tap
+} from 'rxjs/operators';
 
 @Injectable()
 export class FormSystemDevToolService {
@@ -8,35 +14,31 @@ export class FormSystemDevToolService {
 
   public start() {
     this.send({ start_connection: true });
-    window.addEventListener('message', event => {
-      if (event.source !== window) {
-        console.log('skip');
-        return;
-      }
 
-      const data = event.data;
+    const message$ = fromEvent<MessageEvent>(window, 'message').pipe(
+      filter(event => event.source === window),
+      map(event => event.data),
+      filter(data => data.rxap_form)
+    );
 
-      if (data.rxap_form) {
-
-        console.log('get from popup', event.data);
-
-        if (data.content_loaded) {
-          this.send({ start_connection: true });
+    message$.pipe(
+      filter(data => data.getAll),
+      tap(() => {
+        for (const [ formId, template ] of this.formTemplateLoader.templates.entries()) {
+          this.send({ formId, template });
         }
+      })
+    ).subscribe();
 
-        if (data.getAll) {
-          for (const [ formId, template ] of this.formTemplateLoader.templates.entries()) {
-            this.send({ formId, template });
-          }
-        }
+    const withFormId$ = message$.pipe(
+      filter(data => data.formId)
+    );
 
-        if (data.formId) {
-          this.formTemplateLoader.updateTemplate(data.formId, data.template);
-        }
+    withFormId$.pipe(
+      filter(data => data.template),
+      tap(data => this.formTemplateLoader.updateTemplate(data.formId, data.template))
+    ).subscribe();
 
-      }
-
-    }, false);
   }
 
   public send(data: any): void {

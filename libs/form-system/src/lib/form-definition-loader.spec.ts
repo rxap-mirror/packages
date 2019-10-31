@@ -5,6 +5,7 @@ import { FormDefinitionLoader } from './form-definition-loader';
 import { RxapFormDefinition } from './form-definition/form-definition';
 import { RxapFormControl } from './form-definition/decorators/control';
 import { BaseFormControl } from './forms/form-controls/base.form-control';
+import { RxapForm } from './form-definition/decorators/form-definition';
 
 describe('Form System', () => {
 
@@ -16,9 +17,20 @@ describe('Form System', () => {
       fdl = TestBed.get(FormDefinitionLoader);
     });
 
+    const FORM_ID = 'form';
+
+    @RxapForm(FORM_ID)
+    @Injectable({ providedIn: 'root' })
+    class FormDefinition extends RxapFormDefinition<any> {
+
+      @RxapFormControl()
+      username!: BaseFormControl<string>;
+
+    }
+
     it('should set group property while form definition loading', () => {
 
-      const formDefinition = fdl.load(RxapFormDefinition);
+      const formDefinition = fdl.load(FormDefinition);
 
       expect(formDefinition.group).toBeDefined();
       expect(formDefinition.group).toBeInstanceOf(BaseFormGroup);
@@ -26,14 +38,6 @@ describe('Form System', () => {
     });
 
     it('should add all controls to from definition group', () => {
-
-      @Injectable({ providedIn: 'root' })
-      class FormDefinition extends RxapFormDefinition<any> {
-
-        @RxapFormControl()
-        username!: BaseFormControl<string>;
-
-      }
 
       const formDefinition = fdl.load(FormDefinition);
 

@@ -145,7 +145,7 @@ export class FormDefinitionLoader {
     array: FormArrayMetaData,
     injector                          = this.injector,
     parent: BaseFormGroup<any> | null = null
-  ): BaseFormArray<any> {
+  ): BaseFormArray<any, any> {
     let formId: string;
     if (parent) {
       formId = parent.formId;
@@ -160,7 +160,7 @@ export class FormDefinitionLoader {
     arrays: FormArrayMetaData[],
     injector                          = this.injector,
     parent: BaseFormGroup<any> | null = null
-  ): KeyValue<BaseFormArray<any>> {
+  ): KeyValue<BaseFormArray<any, any>> {
     return arrays.map(array => ({ [ array.propertyKey ]: this.buildArray(array, injector, parent) })).reduce(objectReducer, {});
   }
 

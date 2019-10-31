@@ -1,39 +1,66 @@
 import {
   BaseForm,
-  BaseFormErrors
+  BaseFormErrors,
+  SetValueOptions
 } from '../base.form';
 import { ParentForm } from '../parent.form';
+import { clone } from 'ramda';
+import {
+  Nullable,
+  RecursivePartial
+} from '@rxap/utilities';
 
 export interface FormGroupError extends BaseFormErrors {
   controls: { [controlId: string]: BaseFormErrors | null };
 }
 
-export class BaseFormGroup<GroupValue extends object> extends BaseForm<GroupValue, FormGroupError> {
+export class BaseFormGroup<GroupValue extends object>
+  extends BaseForm<Nullable<GroupValue>, FormGroupError, RecursivePartial<Nullable<GroupValue>>> {
 
-  public readonly controls = new Map<string, BaseForm<GroupValue[keyof GroupValue]>>();
+  public static EMPTY(parent?: BaseForm<any, any, any>): BaseFormGroup<any> {
+    return new BaseFormGroup<any>('empty', 'group', parent);
+  }
+
+  public readonly controls = new Map<string, BaseForm<GroupValue[keyof GroupValue], any, any>>();
 
   constructor(
     public readonly formId: string,
     public readonly controlId: string,
-    public readonly formDefinition: any,
+    public readonly formDefinition: any | null     = null,
     // TODO : add parent type
     public readonly parent: ParentForm<any> | null = null
   ) {
     super(formId, controlId, parent);
   }
 
-  public addControl(control: BaseForm<GroupValue[keyof GroupValue]>, controlId: string): void {
+  public addControl(control: BaseForm<GroupValue[keyof GroupValue], any, any>, controlId: string = control.controlId): void {
     if (control.parent !== this) {
       throw new Error('Can not add control if parent is not equal to this form group');
     }
+    if (typeof controlId !== 'string') {
+      throw new Error('Control Id must be type of string');
+    }
+    control.init();
     this.controls.set(controlId, control);
+    this.updateValue({ [ controlId ]: control.value } as any, { emit: false, force: true, onlySelf: true });
   }
 
   public removeControl(controlId: string): boolean {
-    return this.controls.delete(controlId);
+    const successful = this.controls.delete(controlId);
+
+    if (successful) {
+      const value: any = clone(this.value);
+      if (!value.hasOwnProperty(controlId)) {
+        throw new Error('Unexpected');
+      }
+      delete value[ controlId ];
+      this.setValue(value, { onlySelf: true });
+    }
+
+    return successful;
   }
 
-  public getControl<T extends BaseForm<GroupValue> = BaseForm<GroupValue>>(controlId: string): T | null {
+  public getControl<T extends BaseForm<GroupValue[keyof GroupValue], any, any> = BaseForm<GroupValue[keyof GroupValue], any, any>>(controlId: string): T | null {
     if (this.controls.has(controlId)) {
       return this.controls.get(controlId) as any;
     }
@@ -43,11 +70,6 @@ export class BaseFormGroup<GroupValue extends object> extends BaseForm<GroupValu
 
   public hasControl(controlId: string): boolean {
     return this.controls.has(controlId);
-  }
-
-  public init(): void {
-    super.init();
-    Array.from(this.controls.values()).forEach(control => control.init());
   }
 
   // public setErrors(errors: FormGroupError): void {
@@ -68,16 +90,32 @@ export class BaseFormGroup<GroupValue extends object> extends BaseForm<GroupValu
     }
   }
 
-  public setValue(value: GroupValue): void {
-    for (const [ controlId, controlValue ] of Object.entries(value)) {
-      if (this.controls.has(controlId)) {
-        // tslint:disable-next-line:no-non-null-assertion
-        const control = this.controls.get(controlId)!;
-        control.setValue(controlValue as any);
+  public setValue(value: Nullable<GroupValue>, options: Partial<SetValueOptions> = {}): void {
+    if (!options.onlySelf) {
+      for (const [ controlId, controlValue ] of Object.entries(value)) {
+        if (this.controls.has(controlId)) {
+          // tslint:disable-next-line:no-non-null-assertion
+          const control = this.controls.get(controlId)!;
+          control.setValue(controlValue as any, { ...options, skipParent: true });
+        }
+        // TODO : add logging
       }
-      // TODO : add logging
     }
-    super.setValue(this.value);
+    super.setValue(value, { ...options, onlySelf: true });
+  }
+
+  public updateValue(partialValue: RecursivePartial<Nullable<GroupValue>>, options: Partial<SetValueOptions> = {}): void {
+    if (!options.onlySelf) {
+      for (const [ controlId, controlValue ] of Object.entries(partialValue)) {
+        if (this.controls.has(controlId)) {
+          // tslint:disable-next-line:no-non-null-assertion
+          const control = this.controls.get(controlId)!;
+          control.updateValue(controlValue as any, { ...options, skipParent: true });
+        }
+        // TODO : add logging
+      }
+    }
+    super.updateValue(partialValue, { ...options, onlySelf: true });
   }
 
 }

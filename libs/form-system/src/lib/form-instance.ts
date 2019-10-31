@@ -1,5 +1,9 @@
 import { RxapFormDefinition } from './form-definition/form-definition';
-import { Subject } from 'rxjs';
+import {
+  Subject,
+  from,
+  of
+} from 'rxjs';
 import {
   SubscriptionHandler,
   getMetadata,
@@ -19,6 +23,9 @@ import { BaseForm } from './forms/base.form';
 import { BaseFormControl } from './forms/form-controls/base.form-control';
 import { BaseFormGroup } from './forms/form-groups/base.form-group';
 import { BaseFormArray } from './forms/form-arrays/base.form-array';
+import { FormInvalidSubmitService } from './form-invalid-submit.service';
+import { FormValidSubmitService } from './form-valid-submit.service';
+import { FormLoadService } from './form-load.service';
 
 export enum FormInstanceSubscriptions {
   ON_VALUE_CHANGE   = 'on-value-change',
@@ -28,7 +35,7 @@ export enum FormInstanceSubscriptions {
 export class FormInstance<FormValue extends object, FormDefinition extends RxapFormDefinition<FormValue> = RxapFormDefinition<FormValue>> {
 
   public static TestInstance<FormValue extends object>(formDefinition?: RxapFormDefinition<FormValue>) {
-    return new FormInstance<FormValue>(formDefinition || RxapFormDefinition.TestInstance<FormValue>());
+    return new FormInstance<FormValue>(formDefinition || RxapFormDefinition.TestInstance<FormValue>(), null, null, null);
   }
 
   public clickSubmit$ = new Subject<void>();
@@ -38,7 +45,12 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
 
   protected _subscriptions = new SubscriptionHandler();
 
-  constructor(public readonly formDefinition: FormDefinition) {}
+  constructor(
+    public readonly formDefinition: FormDefinition,
+    public readonly formInvalidSubmit: FormInvalidSubmitService<FormValue> | null = null,
+    public readonly formValidSubmit: FormValidSubmitService<FormValue> | null     = null,
+    public readonly formLoad: FormLoadService<FormValue> | null                   = null
+  ) {}
 
   public rxapOnInit() {
 
@@ -48,13 +60,21 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
 
     this.formDefinition.init$.next();
 
-    this.forEachFormDefinition((formDefinition) => this.handelOnValueChange(formDefinition));
-    this.forEachFormDefinition((formDefinition) => this.handelControlValidators(formDefinition));
+    this._subscriptions.add(
+      from(this.formLoad ? this.formLoad.onLoad(this) : of(true))
+        .pipe(
+          tap(() => {
+            this.forEachFormDefinition((formDefinition) => this.handelOnValueChange(formDefinition));
+            this.forEachFormDefinition((formDefinition) => this.handelControlValidators(formDefinition));
+          })
+        )
+        .subscribe()
+    );
 
   }
 
-  public forEachForm(fnc: (form: BaseForm<any>) => void): void {
-    function forEach(form: BaseForm<any>) {
+  public forEachForm(fnc: (form: BaseForm<any, any, any>) => void): void {
+    function forEach(form: BaseForm<any, any, any>) {
       if (form instanceof BaseFormControl) {
         fnc(form);
       }
@@ -72,7 +92,7 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
   }
 
   public forEachFormDefinition(fnc: (formDefinition: RxapFormDefinition<any>) => void): void {
-    function forEach(form: BaseFormArray<any> | BaseFormGroup<any>) {
+    function forEach(form: BaseFormArray<any, any> | BaseFormGroup<any>) {
       if (form instanceof BaseFormArray) {
         form.controls
             .filter(control => control instanceof BaseFormGroup)
@@ -117,11 +137,12 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
 
   public handelControlValidators(formDefinition: RxapFormDefinition<any>) {
     const controlValidatorMetaData = getMetadata<ControlValidatorMetaData>(FormDefinitionMetaDataKeys.CONTROL_VALIDATOR, formDefinition) || {};
-    for (const [ controlId, controlValidators ] of Object.entries(controlValidatorMetaData)) {
+    for (const [ controlId, cv ] of Object.entries(controlValidatorMetaData)) {
       const control = formDefinition
-                          .group
-                          .getControl(controlId);
+        .group
+        .getControl(controlId);
       if (control) {
+        const controlValidators: Array<ControlValidator<any>> = cv as any;
         this.controlValidators.set(control.controlPath, controlValidators);
         this._subscriptions.add(
           FormInstanceSubscriptions.CONTROL_VALIDATOR,
@@ -129,19 +150,7 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
             .valueChange$
             .pipe(
               filter(value => value !== null && value !== undefined),
-              tap(value => controlValidators.forEach(controlValidator => {
-                const result = controlValidator.validator(value);
-                const key    = controlValidator.key;
-                if (key) {
-                  if (result !== null) {
-                    control.setError(key, controlValidator.message || result);
-                  } else {
-                    control.clearError(key);
-                  }
-                } else {
-                  throw new Error('Control validator key is not defined');
-                }
-              }))
+              tap(value => controlValidators.forEach(controlValidator => this.runValidator(value, control, controlValidator)))
             )
             .subscribe()
         );
@@ -153,17 +162,24 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
 
   public runValidators(): void {
     for (const [ controlPath, controlValidators ] of Object.entries(this.controlValidators.entries())) {
+      const control = this.getControlByPath(controlPath);
 
+      if (!control) {
+        throw new Error(`Cloud not find control '${controlPath}'`);
+      }
+
+      for (const controlValidator of controlValidators) {
+        this.runValidator(control.value, control, controlValidator);
+      }
     }
   }
 
-  public getValueByPath<Value>(controlPath: string): Value | null {
+  public getControlByPath<Value>(controlPath: string): BaseForm<Value, any, any> | null {
     const fragments = controlPath.split('.');
     if (fragments.length < 1) {
       throw new Error('Control path is empty');
     }
-    // tslint:disable-next-line:no-non-null-assertion
-    let form: BaseForm<any> | null = this.formDefinition.group;
+    let form: BaseForm<any, any, any> | null = this.formDefinition.group;
     for (const fragment of fragments) {
       if (form instanceof BaseFormArray || form instanceof BaseFormGroup) {
         if (form.hasControl(fragment)) {
@@ -176,10 +192,23 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
     }
 
     if (form) {
-      return form.value;
+      return form;
     }
 
     return null;
+  }
+
+  public submit() {
+    this.clickSubmit$.next();
+    this.formDefinition.rxapOnSubmit();
+    this.runValidators();
+    if (this.formDefinition.group.isValid === true) {
+      this.formDefinition.rxapOnSubmitValid();
+    } else if (this.formDefinition.group.isInvalid === true) {
+      this.formDefinition.rxapOnSubmitInvalid();
+    } else {
+      this.formDefinition.rxapOnSubmitError();
+    }
   }
 
   public rxapOnDestroy() {
@@ -190,15 +219,17 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
     this._subscriptions.resetAll();
   }
 
-  public submit() {
-    this.clickSubmit$.next();
-    this.formDefinition.rxapOnSubmit();
-    if (this.formDefinition.group.isValid === true) {
-      this.formDefinition.rxapOnSubmitValid();
-    } else if (this.formDefinition.group.isInvalid === true) {
-      this.formDefinition.rxapOnSubmitInvalid();
+  private runValidator<Value>(value: Value, control: BaseForm<Value, any, any>, controlValidator: ControlValidator<Value>): void {
+    const result = controlValidator.validator(value);
+    const key    = controlValidator.key;
+    if (key) {
+      if (result !== null) {
+        control.setError(key, controlValidator.message || result);
+      } else {
+        control.clearError(key);
+      }
     } else {
-      this.formDefinition.rxapOnSubmitError();
+      throw new Error('Control validator key is not defined');
     }
   }
 

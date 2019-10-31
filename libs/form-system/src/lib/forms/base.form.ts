@@ -5,7 +5,8 @@ import {
 import {
   SubscriptionHandler,
   KeyValue,
-  objectReducer
+  objectReducer,
+  deepMerge
 } from '@rxap/utilities';
 import { debounceTime } from 'rxjs/operators';
 import { equals } from 'ramda';
@@ -15,12 +16,34 @@ export interface BaseFormErrors {
   errors: Map<string, string>;
 }
 
-export class BaseForm<Value, TError extends BaseFormErrors = BaseFormErrors> {
+export interface SetValueOptions {
+  emit: boolean;
+  force: boolean;
+  onlySelf: boolean;
+  skipParent: boolean;
+}
 
-  /**
-   * emit immediate the new form control value
-   */
-  public valueChange$ = new Subject<Value | null>();
+export function defaultSetValueOptions(options: Partial<SetValueOptions> = {}): SetValueOptions {
+  return {
+    emit:       true,
+    force:      false,
+    onlySelf:   false,
+    skipParent: false,
+    ...options
+  };
+}
+
+export class BaseForm<Value,
+  TError extends BaseFormErrors,
+  PartialValue> {
+
+  public static EMPTY(parent?: BaseForm<any, any, any>): BaseForm<any, any, any> {
+    return new BaseForm<any, any, any>('empty', 'form', parent);
+  }
+
+  public get root(): BaseForm<any, any, any> | null {
+    return this.parent ? this.parent : this;
+  }
 
   /**
    * emit the new form control value with the specified debounce time
@@ -33,9 +56,9 @@ export class BaseForm<Value, TError extends BaseFormErrors = BaseFormErrors> {
   public debounceTime = 500;
 
   /**
-   * the form control value
+   * emit immediate the new form control value
    */
-  public value!: Value | null;
+  public valueChange$ = new Subject<Value>();
 
   public onInit$ = new Subject<void>();
 
@@ -45,10 +68,10 @@ export class BaseForm<Value, TError extends BaseFormErrors = BaseFormErrors> {
 
   public isValid: boolean | null = null;
   public isInvalid: boolean | null = null;
-
-  public get root(): BaseForm<any> | null {
-    return this.parent ? this.parent : this;
-  }
+  /**
+   * the form control value
+   */
+  public value!: Value;
 
   public get controlPath(): string {
     return this.parent ? `${this.parent.controlPath}.${this.controlId}` : this.controlId;
@@ -78,19 +101,22 @@ export class BaseForm<Value, TError extends BaseFormErrors = BaseFormErrors> {
     this._subscriptions.resetAll();
   }
 
-  public setValue(value: Value | null): void {
-    if (!equals(this.value, value)) {
+  public setValue(value: Value, options: Partial<SetValueOptions> = {}): void {
+    options = defaultSetValueOptions(options);
+    if (options.force || !equals(this.value, value)) {
       this.value = value;
-      this.valueChange$.next(value);
-      if (this.parent) {
-        this.parent.setValue({ [ this.controlId ]: this.value });
+      if (options.emit) {
+        this.valueChange$.next(value);
+      }
+      if (!options.skipParent && this.parent) {
+        this.parent.updateValue({ [ this.controlId ]: this.value }, options);
       }
     }
   }
 
-  // public setErrors(errors: TError): void {
-  //   this.errors = errors;
-  // }
+  public updateValue(partialValue: PartialValue, options: Partial<SetValueOptions> = {}): void {
+    this.setValue(deepMerge(this.value, partialValue), options);
+  }
 
   public setError(key: string, error: string): void {
     console.log('error', { key, error });

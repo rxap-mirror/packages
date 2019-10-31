@@ -4,13 +4,13 @@ import { BaseForm } from './forms/base.form';
 @Injectable({ providedIn: 'root' })
 export class FormStateManager {
 
-  public readonly stats = new Map<string, BaseForm<any, any>>();
+  public readonly stats = new Map<string, BaseForm<any, any, any>>();
 
-  public addForm(controlPath: string, form: BaseForm<any, any>): void {
+  public addForm(controlPath: string, form: BaseForm<any, any, any>): void {
     this.stats.set(controlPath, form);
   }
 
-  public getForm<T extends BaseForm<any, any>>(controlPath: string): T {
+  public getForm<T extends BaseForm<any, any, any>>(controlPath: string): T {
     if (!this.stats.has(controlPath)) {
       throw new Error(`Form state with path '${controlPath}' not found`);
     }

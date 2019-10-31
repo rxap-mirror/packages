@@ -10,7 +10,10 @@ import {
 } from '@angular/core';
 import { FormTemplateLoader } from '../form-template-loader';
 import { FormInstanceFactory } from '../form-instance-factory';
-import { RXAP_FORM_ID } from '../tokens';
+import {
+  RXAP_FORM_ID,
+  RXAP_SHARED_FORM
+} from '../tokens';
 import { Layout } from './layout';
 import {
   Subscription,
@@ -19,6 +22,9 @@ import {
 import { tap } from 'rxjs/operators';
 import { FormInstance } from '../form-instance';
 import { Required } from '@rxap/utilities';
+import { FormInvalidSubmitService } from '../form-invalid-submit.service';
+import { FormValidSubmitService } from '../form-valid-submit.service';
+import { FormLoadService } from '../form-load.service';
 
 @Component({
   selector: 'rxap-form-view',
@@ -41,7 +47,11 @@ export class FormViewComponent<FormValue extends object>
   constructor(
     public readonly formTemplateLoader: FormTemplateLoader,
     public readonly formInstanceFactory: FormInstanceFactory,
-    @Inject(RXAP_FORM_ID) @Optional() formId: string | null = null,
+    public readonly formInvalidSubmit: FormInvalidSubmitService<FormValue>,
+    public readonly formValidSubmit: FormValidSubmitService<FormValue>,
+    public readonly formLoad: FormLoadService<FormValue>,
+    @Inject(RXAP_FORM_ID) @Optional() formId: string | null               = null,
+    @Inject(RXAP_SHARED_FORM) @Optional() public readonly shared: boolean = true
   ) {
     if (formId) {
       this.formId = formId;
@@ -50,7 +60,13 @@ export class FormViewComponent<FormValue extends object>
 
   public ngOnInit(): void {
     this.layout$  = this.formTemplateLoader.getLayout$(this.formId);
-    this.instance = this.formInstanceFactory.buildInstance<FormValue>(this.formId);
+    this.instance = this.formInstanceFactory.buildInstance<FormValue>(
+      this.formId,
+      this.shared,
+      this.formInvalidSubmit,
+      this.formValidSubmit,
+      this.formLoad
+    );
 
     this.subscriptions.add(
       this.instance.clickSubmit$.pipe(

@@ -1,9 +1,10 @@
 export * from './lib/form-system.module';
+export * from './lib/register-form-system.module';
+export * from './lib/root-form-system.module';
 export * from './lib/form-definition-loader';
 export * from './lib/form-definition-register';
 export * from './lib/form-instance-factory';
 export * from './lib/form-state-manager';
-export * from './lib/form-system.module';
 export * from './lib/form-template-loader';
 export * from './lib/tokens';
 

@@ -10,4 +10,6 @@ export const REGISTER_FORM_DEFINITION_TOKEN = new InjectionToken('rxap/form-syst
   factory: () => []
 });
 
-export const RXAP_FORM_ID = new InjectionToken('rxap/form-system/FORM_ID');
+export const RXAP_FORM_ID = new InjectionToken<string>('rxap/form-system/FORM_ID');
+
+export const RXAP_SHARED_FORM = new InjectionToken<boolean>('rxap/form-system/SHARED_FORM');

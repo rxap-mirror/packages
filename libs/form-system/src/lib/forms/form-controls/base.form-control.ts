@@ -1,8 +1,17 @@
-import { BaseForm } from '../base.form';
+import {
+  BaseForm,
+  BaseFormErrors
+} from '../base.form';
 import { Subject } from 'rxjs';
 import { ParentForm } from '../parent.form';
 
-export class BaseFormControl<ControlValue> extends BaseForm<ControlValue> {
+export class BaseFormControl<ControlValue> extends BaseForm<ControlValue | null,
+  BaseFormErrors,
+  ControlValue | null> {
+
+  public static EMPTY(parent?: BaseForm<any, any, any>): BaseFormControl<any> {
+    return new BaseFormControl<any>('control', parent);
+  }
 
   /**
    * the control input placeholder

@@ -1,69 +1,30 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  AfterContentChecked
+} from '@angular/core';
+import { FormDetailsService } from './form-details/form-details.service';
+import { FormsService } from './forms.service';
+import { FormTemplatesService } from './form-templates.service';
 
 @Component({
   selector:    'rxap-root',
   templateUrl: './app.component.html',
   styleUrls:   [ './app.component.scss' ]
 })
-export class AppComponent {
+export class AppComponent implements AfterContentChecked {
 
-  data: any[] = [];
+  constructor(
+    public readonly formDetails: FormDetailsService,
+    public readonly forms: FormsService,
+    public readonly formTemplates: FormTemplatesService
+  ) {}
 
-  templates = new Map<string, string>();
-
-  editorOptions = { theme: 'vs-dark', language: 'xml' };
-
-  currentFormId: string | null   = null;
-  currentTemplate: string | null = null;
-
-  public port: any;
-
-  constructor() {
-
-    chrome.runtime.onConnect.addListener(port => {
-      console.log('port', port);
-      this.port = port;
-      port.onMessage.addListener(msg => {
-        console.log('msg', msg);
-        this.data.push(msg);
-        if (msg.rxap_form) {
-          if (msg.formId) {
-            this.templates.set(msg.formId, msg.template);
-          }
-        }
-      });
-
-      // document.getElementById("theButton").addEventListener("click",
-      //   () => {
-      //     port.postMessage({ rxap_form: true, joke: "Knock knock"});
-      //   }, false);
-
-    });
-
-    // respose on the ping message from the content script
-    chrome
-      .runtime
-      .onMessage
-      .addListener((request, sender, sendResponse) =>
-        sendResponse('pong')
-      );
-
+  public ngAfterContentChecked(): void {
+    // this.load();
   }
 
-  public addTemplate(formId: string, template: string): void {
+  public load(): void {
+    this.formTemplates.load();
   }
 
-
-  getAll() {
-    this.port.postMessage({ rxap_form: true, getAll: true });
-  }
-
-  update() {
-    this.port.postMessage({ rxap_form: true, formId: this.currentFormId, template: this.currentTemplate });
-  }
-
-  selectTemplate(value: string) {
-    this.currentFormId   = value;
-    this.currentTemplate = this.templates.get(this.currentFormId)!;
-  }
 }

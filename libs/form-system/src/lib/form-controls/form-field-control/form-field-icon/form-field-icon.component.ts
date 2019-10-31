@@ -17,6 +17,14 @@ export class FormFieldIconComponent {
     return typeof this.icon === 'string';
   }
 
+  public get complexIcon(): IconConfig {
+    return this.icon as any;
+  }
+
+  public get simpleIcon(): string {
+    return this.icon as any;
+  }
+
   @Input() public icon: string | IconConfig | null = null;
 
 }

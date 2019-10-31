@@ -3,3 +3,16 @@ export * from './lib/array-reducers';
 export * from './lib/meta-data';
 export * from './lib/helpers';
 export * from './lib/decorators';
+export * from './lib/deep-merge';
+export * from './lib/array';
+
+
+// region rxjs
+
+// region operators
+
+export * from './lib/rxjs/operators/is-defined';
+
+// endregion
+
+// endregion

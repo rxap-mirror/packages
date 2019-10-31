@@ -1,0 +1,18 @@
+<div fxLayout="column" fxLayoutGap="32px">
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="32px">
+
+    <button (click)="formDetails.updateTemplate(template)" color="primary" fxFlex="128px" mat-raised-button>Update</button>
+
+    <mat-slide-toggle [(ngModel)]="autoUpdate" fxFlex="nogrow">Auto update</mat-slide-toggle>
+
+  </div>
+
+  <ngx-monaco-editor #editorModel="ngModel"
+                     [(ngModel)]="template"
+                     [options]="editorOptions"
+                     fxFlex="500px"
+                     style="width: 100%">
+  </ngx-monaco-editor>
+
+</div>

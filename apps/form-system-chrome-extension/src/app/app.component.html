@@ -1,17 +1,24 @@
-<div fxLayout="column" fxLayoutGap="8px" style="width: 100%">
-  <button (click)="getAll()" fxFlex="nogrow" mat-stroked-button>Get all form templates</button>
+<div fxLayout="column" fxLayoutGap="32px">
 
-  <mat-form-field fxFlex="nogrow">
-    <mat-label>Form Template</mat-label>
-    <mat-select (selectionChange)="selectTemplate($event.value)" [(ngModel)]="currentFormId">
-      <mat-option [value]="null">---</mat-option>
-      <mat-option *ngFor="let formId of templates.keys()" [value]="formId">
-        {{formId}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-form-field fxFlex="nogrow">
+      <mat-label>Form Template</mat-label>
+      <mat-select (selectionChange)="formDetails.setFormId($event.value)">
+        <mat-option [value]="null">---</mat-option>
+        <mat-option *ngFor="let formId of forms.formIds" [value]="formId">
+          {{formId}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <ngx-monaco-editor *ngIf="currentTemplate" [(ngModel)]="currentTemplate" [options]="editorOptions" fxFlex="500px" style="width: 100%"></ngx-monaco-editor>
+    <button (click)="load()" color="primary" fxFlex="40px" mat-icon-button>
+      <mat-icon>autorenew</mat-icon>
+    </button>
 
-  <button (click)="update()" [disabled]="!currentTemplate" mat-stroked-button>Update current form template</button>
+  </mat-toolbar>
+
+  <rxap-form-details *ngIf="formDetails.formId; else empty" fxFlex="nogrow"></rxap-form-details>
+
 </div>
+
+<ng-template #empty><h3>Select a form id</h3></ng-template>

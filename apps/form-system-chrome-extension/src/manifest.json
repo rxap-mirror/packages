@@ -15,5 +15,8 @@
         "content-script-es5.js"
       ]
     }
+  ],
+  "permissions": [
+    "storage"
   ]
 }

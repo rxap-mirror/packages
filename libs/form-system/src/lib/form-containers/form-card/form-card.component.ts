@@ -11,6 +11,9 @@ import { RXAP_FORM_ID } from '../../tokens';
 import { FormInstanceFactory } from '../../form-instance-factory';
 import { FormInstance } from '../../form-instance';
 import { Required } from '@rxap/utilities';
+import { FormInvalidSubmitService } from '../../form-invalid-submit.service';
+import { FormValidSubmitService } from '../../form-valid-submit.service';
+import { FormLoadService } from '../../form-load.service';
 
 
 @Component({
@@ -30,6 +33,9 @@ export class FormCardComponent implements OnInit {
   constructor(
     @Inject(RXAP_FORM_ID) @Optional() formId: string | null = null,
     public readonly formInstanceFactory: FormInstanceFactory,
+    public readonly formInvalidSubmit: FormInvalidSubmitService<any>,
+    public readonly formValidSubmit: FormValidSubmitService<any>,
+    public readonly formLoad: FormLoadService<any>
   ) {
     if (formId) {
       this.formId = formId;
@@ -37,7 +43,7 @@ export class FormCardComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.instance = this.formInstanceFactory.buildInstance(this.formId);
+    this.instance = this.formInstanceFactory.buildInstance(this.formId, false, this.formInvalidSubmit, this.formValidSubmit, this.formLoad);
   }
 
 }

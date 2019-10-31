@@ -1,48 +1,17 @@
 import {
   NgModule,
   Type,
-  ModuleWithProviders,
-  Inject
+  ModuleWithProviders
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RxapFormDefinition } from './form-definition/form-definition';
-import { FormDefinitionRegister } from './form-definition-register';
 import {
   REGISTER_FORM_DEFINITION_TOKEN,
   ROOT_FORM_DEFINITION_TOKEN
 } from './tokens';
+import { RegisterFormSystemModule } from './register-form-system.module';
+import { RootFormSystemModule } from './root-form-system.module';
 
 @NgModule()
-export class RootFormSystemModule {
-
-  constructor(
-    public formDefinitionRegistry: FormDefinitionRegister,
-    @Inject(ROOT_FORM_DEFINITION_TOKEN) formDefinitionTypes: Array<Type<RxapFormDefinition<any>>>
-  ) {
-    formDefinitionTypes.forEach(fdt => this.register(fdt));
-  }
-
-  public register(formDefinitionType: Type<RxapFormDefinition<any>>): void {
-    this.formDefinitionRegistry.register(formDefinitionType);
-  }
-
-}
-
-@NgModule()
-export class RegisterFormSystemModule {
-
-  constructor(
-    root: RootFormSystemModule,
-    @Inject(REGISTER_FORM_DEFINITION_TOKEN) formDefinitionTypes: Array<Array<Type<RxapFormDefinition<any>>>>
-  ) {
-    formDefinitionTypes.forEach(fdts => fdts.forEach(fdt => root.register(fdt)));
-  }
-
-}
-
-@NgModule({
-  imports: [CommonModule]
-})
 export class RxapFormSystemModule {
 
   public static forRoot(formDefinitionTypes: Array<Type<RxapFormDefinition<any>>> = []): ModuleWithProviders {

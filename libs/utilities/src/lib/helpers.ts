@@ -18,11 +18,34 @@ export type RowId = number | string;
 
 export type WithIndex<T> = { __index: number } & T;
 
+export type Nullable<T> = T extends object ? { [key in keyof T]: Nullable<T[key]> } : T | null;
+
 export interface IWithIdentifier {
   __id?: string;
   id?: string;
   _id?: string;
   __index?: number;
+}
+
+export function isObject(value: any): value is object {
+  switch (typeof value) {
+
+    case 'number':
+    case 'bigint':
+    case 'boolean':
+    case 'function':
+    case 'string':
+    case 'symbol':
+    case 'undefined':
+      return false;
+
+    case 'object':
+      return value !== null && value !== undefined;
+
+    default:
+      return false;
+
+  }
 }
 
 export type WithIdentifier<T> = IWithIdentifier & { __index: number } & T;

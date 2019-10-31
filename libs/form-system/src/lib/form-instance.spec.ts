@@ -5,6 +5,7 @@ import { inject } from '@angular/core/testing';
 import { RxapFormControl } from './form-definition/decorators/control';
 import { InputFormControl } from './forms/form-controls/input.form-control';
 import { RxapOnValueChange } from './form-definition/decorators/on-value-change';
+import { RxapForm } from './form-definition/decorators/form-definition';
 
 describe('Form System', () => {
 
@@ -12,6 +13,9 @@ describe('Form System', () => {
 
     it('should call on value change functions on value change', inject([ FormDefinitionLoader ], (fdl: FormDefinitionLoader) => {
 
+      const FORM_ID = 'form';
+
+      @RxapForm(FORM_ID)
       class FormDefinition extends RxapFormDefinition<any> {
 
         @RxapFormControl()
