@@ -95,6 +95,16 @@ export class SubscriptionHandler {
     return this.subscriptions.has(key);
   }
 
+  public set(key: string, teardown: TeardownLogic): Subscription {
+
+    if (this.has(key)) {
+      this.reset(key);
+    }
+
+    return this.add(teardown);
+
+  }
+
   /**
    * Disposes the resources held by the subscription. May, for instance, cancel
    * an ongoing Observable execution or cancel any other type of work that
