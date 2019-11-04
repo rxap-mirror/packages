@@ -1,0 +1,195 @@
+image: registry.gitlab.com/digitaix/gitlab-ci/helpers/bash-utilities
+
+stages:
+- yarn
+- lint
+- build
+- test
+- publish
+
+cache:
+  key: '$CI_COMMIT_REF_NAME'
+  paths:
+  - node_modules/
+  policy: pull
+
+yarn:
+  stage: yarn
+  cache:
+    key: '$CI_COMMIT_REF_NAME'
+    paths:
+    - node_modules/
+  script:
+  - yarn
+
+lint:master:
+  stage: lint
+  before_script:
+  - yarn
+  script:
+  - ./lint-for-master.sh
+  parallel: 4
+  allow_failure: true
+  only:
+  - master
+
+lint:
+  stage: lint
+  before_script:
+  - yarn
+  script:
+  - yarn affected:lint --base=remotes/origin/${CI_COMMIT_REF_NAME} --head=${CI_COMMIT_SHA} --parallel true --maxParallel 17
+  allow_failure: true
+  except:
+  - master
+
+madge:
+  stage: lint
+  before_script:
+  - rm yarn.lock package.json
+  - yarn add madge
+  script:
+  - ./madge.sh
+  allow_failure: true
+  parallel: 4
+
+compodoc:
+  stage: lint
+  before_script:
+  - rm yarn.lock package.json
+  - yarn add @compodoc/compodoc
+  script:
+  - yarn compodoc
+  artifacts:
+    name: "$CI_JOB_NAME compodoc"
+    paths:
+    - compodoc
+
+build:
+  stage: build
+  before_script:
+  - yarn
+  script:
+  - yarn affected:build --base=remotes/origin/${CI_COMMIT_REF_NAME} --head=${CI_COMMIT_SHA}
+  artifacts:
+    name: "$CI_JOB_NAME"
+    paths:
+    - dist
+  except:
+  - master
+
+build:master:
+  stage: build
+  before_script:
+  - yarn
+  script:
+  - ./build-for-master.sh
+  parallel: 4
+  artifacts:
+    name: "$CI_JOB_NAME build"
+    paths:
+    - dist
+  only:
+  - master
+
+#build:playground:
+#  stage: build
+#  before_script:
+#  - yarn
+#  script:
+#  - yarn build playground
+#  artifacts:
+#    name: "$CI_JOB_NAME build playground"
+#    paths:
+#    - dist/apps/playground
+#  only:
+#  - master
+#
+#test:playground:
+#  stage: test
+#  image: registry.gitlab.com/digitaix/gitlab-ci/helpers/chrome-headless
+#  before_script:
+#  - yarn
+#  script:
+#  - yarn playground:ci
+#  artifacts:
+#    name: "$CI_JOB_NAME test playground"
+#    paths:
+#    - sandbox.report.json
+#  only:
+#  - master
+
+test:
+  stage: test
+  before_script:
+  - yarn
+  variables:
+    COLLECT_COVERAGE: "true"
+  script:
+  - yarn affected:test --base=remotes/origin/${CI_COMMIT_REF_NAME} --head=${CI_COMMIT_SHA} --parallel true --maxParallel 17
+  dependencies:
+  - build
+  artifacts:
+    name: "$CI_JOB_NAME coverage"
+    paths:
+    - coverage
+  except:
+  - master
+
+test:master:
+  stage: test
+  before_script:
+  - yarn
+  script:
+  - ./test-for-master.sh
+  parallel: 4
+  variables:
+    COLLECT_COVERAGE: "true"
+  dependencies:
+  - build:master
+  artifacts:
+    name: "$CI_JOB_NAME coverage"
+    paths:
+    - coverage
+  only:
+  - master
+
+pages:
+  stage: publish
+  script:
+  - mkdir public
+  - cp -r compodoc public/
+  - cp -r coverage public/
+  #  - cp sandbox.report.json public/
+  #  - cp -r dist/apps/playground public/
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+  dependencies:
+  - test:master
+  - compodoc
+#  - test:playground
+#  - build:playground
+
+publish:test:
+  stage: publish
+  coverage: '/Total project code coverage: (\d*\.\d+\s\%)/'
+  script:
+  - ./get-coverage.sh
+  only:
+  - master
+  dependencies:
+  - test:master
+
+publish:
+  stage: publish
+  before_script:
+  - echo -e "\n//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ./.npmrc
+  script:
+  - ./publish.sh
+  dependencies:
+  - build:master
+  only:
+  - master
