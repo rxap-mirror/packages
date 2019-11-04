@@ -1,31 +1,13 @@
 image: registry.gitlab.com/digitaix/gitlab-ci/helpers/bash-utilities
 
 stages:
-- yarn
 - lint
 - build
 - test
 - publish
 
-cache:
-  key: '$CI_COMMIT_REF_NAME'
-  paths:
-  - node_modules/
-  policy: pull
-
-yarn:
-  stage: yarn
-  cache:
-    key: '$CI_COMMIT_REF_NAME'
-    paths:
-    - node_modules/
-  script:
-  - yarn
-
 #lint:master:
 #  stage: lint
-#  needs:
-#  - yarn
 #  before_script:
 #  - yarn
 #  script:
@@ -37,8 +19,6 @@ yarn:
 
 #lint:
 #  stage: lint
-#  needs:
-#  - yarn
 #  before_script:
 #  - yarn
 #  script:
@@ -49,8 +29,6 @@ yarn:
 
 #madge:
 #  stage: lint
-#  needs:
-#  - yarn
 #  before_script:
 #  - rm yarn.lock package.json
 #  - yarn add madge
@@ -61,8 +39,6 @@ yarn:
 
 #compodoc:
 #  stage: lint
-#  needs:
-#  - yarn
 #  before_script:
 #  - rm yarn.lock package.json
 #  - yarn add @compodoc/compodoc
@@ -75,8 +51,6 @@ yarn:
 
 build:
   stage: build
-  needs:
-  - yarn
   before_script:
   - yarn
   script:
@@ -90,8 +64,6 @@ build:
 
 build:master:
   stage: build
-  needs:
-  - yarn
   before_script:
   - yarn
   script:
@@ -133,8 +105,6 @@ build:master:
 
 test:
   stage: test
-  needs:
-  - yarn
   before_script:
   - yarn
   variables:
@@ -152,8 +122,6 @@ test:
 
 test:master:
   stage: test
-  needs:
-  - yarn
   before_script:
   - yarn
   script:
