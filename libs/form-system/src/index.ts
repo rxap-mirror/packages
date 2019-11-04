@@ -89,6 +89,13 @@ export * from './lib/form-controls/select-list-control/select-list-control.compo
 
 // endregion
 
+// region select-multiple-list
+
+export * from './lib/form-controls/select-multiple-list-control/select-multiple-list-control.component';
+export * from './lib/form-controls/select-multiple-list-control/select-multiple-list-control.component.module';
+
+// endregion
+
 // endregion
 
 // region form-view

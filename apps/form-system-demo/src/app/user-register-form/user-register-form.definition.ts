@@ -5,10 +5,10 @@ import {
   RxapControlValidator,
   RxapPasswordControl,
   RxapControlOptions,
-  RxapSelectMultipleControl,
   RxapTextareaControl,
   RxapRadioButtonControl,
-  BaseFormControl
+  BaseFormControl,
+  RxapSelectMultipleListControl
 } from '@rxap/form-system';
 import { Injectable } from '@angular/core';
 import { RxapSelectListControl } from '../../../../../libs/form-system/src/lib/form-controls/select-list-control/select-list-control.component';
@@ -63,7 +63,7 @@ export class UserRegisterFormDefinition
   public gender!: BaseFormControl<any>;
 
   @RxapControlOptions('Facebook', 'Github', 'Google', 'Amazon', 'Gitlab')
-  @RxapSelectMultipleControl()
+  @RxapSelectMultipleListControl()
   @RxapFormControl()
   public accounts!: BaseFormControl<any>;
 

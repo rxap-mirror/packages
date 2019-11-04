@@ -58,6 +58,22 @@ export class SelectFormControl<ControlValue>
     this._options = value.sort(this.sort);
   }
 
+  public selectOption(selectValue: ControlValue) {
+    if (this.multiple) {
+      this.setValue([ selectValue, ...(this.value as any) ] as any);
+    } else {
+      this.setValue(selectValue);
+    }
+  }
+
+  public deselectOption(deselectValue: ControlValue) {
+    if (this.multiple) {
+      this.setValue((this.value as any as any[]).filter(value => !this.compareWith(value, deselectValue)) as any);
+    } else {
+      this.setValue(null);
+    }
+  }
+
   public sort(a: ControlOption<ControlValue>, b: ControlOption<ControlValue>): number {
     return a.display.localeCompare(b.display);
   }

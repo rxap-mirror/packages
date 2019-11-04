@@ -1,0 +1,50 @@
+<div class="container" fxLayout="row" fxLayoutGap="32px">
+  <div fxFlex="50" style="padding: 16px; margin-bottom: 20px">
+    <div class="mat-elevation-z2" fxLayout="column">
+      <div class="filter-input" fxFlex="nogrow">
+        <rxap-text-filter #unselectedTextFilter [data]="control.unselectedOptions"></rxap-text-filter>
+      </div>
+      <mat-action-list fxFlex="nogrow">
+        <mat-list-item *ngIf="unselectedTextFilter.isEmpty$ | async">EMPTY</mat-list-item>
+        <button
+          (click)="control.selectOption(option.value)"
+          *ngFor="let option of (unselectedPaginator.pagedData$ | async); trackBy: control.trackBy"
+          [disabled]="option.disabled"
+          mat-list-item
+          type="button"
+        >
+          <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="width: 100%">
+            <span fxFlex="grow">{{ option.display }}</span>
+            <rxap-icon [icon]="{ svgIcon: 'transfer-right' }" fxFlex="nogrow"></rxap-icon>
+          </span>
+        </button>
+      </mat-action-list>
+      <rxap-paginator #unselectedPaginator [data]="unselectedTextFilter.filteredData$" fxFlex="nogrow"></rxap-paginator>
+    </div>
+  </div>
+
+  <mat-divider [vertical]="true" fxFlex="nogrow"></mat-divider>
+
+  <div fxFlex="50" style="padding: 16px; margin-bottom: 20px">
+    <div class="list mat-elevation-z2" fxLayout="column">
+      <div class="filter-input" fxFlex="nogrow">
+        <rxap-text-filter #selectedTextFilter [data]="control.selectedOptions"></rxap-text-filter>
+      </div>
+      <mat-action-list>
+        <mat-list-item *ngIf="selectedTextFilter.isEmpty$ | async">EMPTY</mat-list-item>
+        <button
+          (click)="control.deselectOption(option.value)"
+          *ngFor="let option of selectedPaginator.pagedData$ | async; trackBy: control.trackBy"
+          mat-list-item
+          type="button"
+        >
+          <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="width: 100%">
+            <rxap-icon [icon]="{ svgIcon: 'transfer-left' }" fxFlex="nogrow"></rxap-icon>
+            <span fxFlex="grow">{{ option.display }}</span>
+          </span>
+        </button>
+      </mat-action-list>
+      <rxap-paginator #selectedPaginator [data]="selectedTextFilter.filteredData$" fxFlex="nogrow"></rxap-paginator>
+    </div>
+  </div>
+</div>

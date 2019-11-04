@@ -7,7 +7,8 @@ import {
   RxapSelectControlModule,
   RxapTextareaControlModule,
   RxapRadioButtonControlModule,
-  RxapSelectListControlComponentModule
+  RxapSelectListControlComponentModule,
+  RxapSelectMultipleListControlComponentModule
 } from '@rxap/form-system';
 import { UserRegisterFormDefinition } from './user-register-form.definition';
 
@@ -21,7 +22,8 @@ import { UserRegisterFormDefinition } from './user-register-form.definition';
     RxapSelectControlModule,
     RxapTextareaControlModule,
     RxapRadioButtonControlModule,
-    RxapSelectListControlComponentModule
+    RxapSelectListControlComponentModule,
+    RxapSelectMultipleListControlComponentModule
   ],
   exports: [UserRegisterFormComponent]
 })
