@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="mat-elevation-z2" fxLayout="column">
+    <div class="filter-input" fxFlex="nogrow">
+      <rxap-text-filter #textFilter [data]="control.unselectedOptions"></rxap-text-filter>
+    </div>
+    <mat-selection-list (selectionChange)="model = $event.option.selected ? $event.option.value : null" fxFlex="nogrow">
+      <mat-list-item *ngIf="textFilter.isEmpty$ | async">EMPTY</mat-list-item>
+      <mat-list-option
+        *ngFor="let option of control.selectedOptions; trackBy: control.trackBy"
+        [disabled]="option.disabled"
+        [selected]="true"
+        [value]="option.value"
+      >
+        <!--        <rxap-icon-button matListIcon icon="edit"></rxap-icon-button>-->
+        {{ option.display }}
+      </mat-list-option>
+      <mat-divider *ngIf="control.selectedOptions.length" inset></mat-divider>
+      <mat-list-option
+        *ngFor="let option of (paginator.pagedData$ | async); trackBy: control.trackBy"
+        [disabled]="option.disabled"
+        [selected]="false"
+        [value]="option.value"
+      >
+        <!--        <rxap-icon-button matListIcon icon="edit"></rxap-icon-button>-->
+        {{ option.display }}
+      </mat-list-option>
+    </mat-selection-list>
+    <rxap-paginator #paginator [data]="textFilter.filteredData$" fxFlex="nogrow"></rxap-paginator>
+  </div>
+</div>

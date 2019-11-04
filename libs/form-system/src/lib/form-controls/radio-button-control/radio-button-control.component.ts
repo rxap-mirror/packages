@@ -2,10 +2,10 @@ import {
   Component,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { NgModelControlComponent } from '../ng-model-control-component.service';
 import { RadioButtonFormControl } from '../../forms/form-controls/radio-button.form-control';
 import { RxapComponent } from '@rxap/component-system';
 import { RxapFormControlComponentIds } from '../form-control-component-ids';
+import { NgModelControlComponent } from '../ng-model-control.component';
 
 @RxapComponent(RxapFormControlComponentIds.RADIO_BUTTON)
 @Component({

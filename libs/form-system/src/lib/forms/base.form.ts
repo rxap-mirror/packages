@@ -92,6 +92,8 @@ export class BaseForm<Value,
 
   protected readonly _subscriptions = new SubscriptionHandler();
 
+  protected _initialized = false;
+
   constructor(
     public readonly formId: string,
     public readonly controlId: string,
@@ -103,7 +105,9 @@ export class BaseForm<Value,
     }
   }
 
-  public init(): void {}
+  public init(): void {
+    this._initialized = true;
+  }
 
   public rxapOnInit(): void {
     this.onInit$.next();
@@ -115,6 +119,9 @@ export class BaseForm<Value,
   }
 
   public setValue(value: Value, options: Partial<SetValueOptions> = {}): void {
+    if (value === undefined) {
+      throw new Error('Control value should not be undefined. Use null instead');
+    }
     options = defaultSetValueOptions(options);
     if (options.force || !equals(this.value, value)) {
       this.value = value;
@@ -122,7 +129,7 @@ export class BaseForm<Value,
         this.valueChange$.next(value);
       }
       if (!options.skipParent && this.parent) {
-        this.parent.updateValue({ [ this.controlId ]: this.value }, options);
+        this.parent.updateValue({ [ this.controlId ]: this.value }, { ...options, onlySelf: true });
       }
     }
   }

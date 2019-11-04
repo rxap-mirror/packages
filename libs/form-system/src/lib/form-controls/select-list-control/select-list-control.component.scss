@@ -1,0 +1,20 @@
+.container {
+  padding: 8px;
+}
+
+.filter-input {
+  padding: 6px 16px;
+}
+
+::ng-deep .rxap-icon-button.mat-icon-button {
+
+  width: 40px;
+  height: 40px;
+
+  .mat-button-ripple.mat-ripple {
+    top: -7px;
+    bottom: 7px;
+  }
+
+}
+

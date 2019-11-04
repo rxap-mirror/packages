@@ -55,30 +55,37 @@ export * from './lib/form-controls/form-control-component-ids';
 export * from './lib/form-controls/input-control/input-control.component';
 export * from './lib/form-controls/input-control/input-control.component.module';
 export * from './lib/form-controls/input-control/input-control.directive';
-export * from './lib/form-controls/input-control/input-control-directive.module';
+export * from './lib/form-controls/input-control/input-control.directive.module';
 
 // endregion
 
 // region select
 
 export * from './lib/form-controls/select-control/select-control.component';
-export * from './lib/form-controls/select-control/select-control.module';
+export * from './lib/form-controls/select-control/select-control.component.module';
 
 // endregion
 
 // region textarea
 
-export * from './lib/form-controls/textarea-control/textarea-control-directive.module';
+export * from './lib/form-controls/textarea-control/textarea-control.directive.module';
 export * from './lib/form-controls/textarea-control/textarea-control.directive';
 export * from './lib/form-controls/textarea-control/textarea-control.component';
-export * from './lib/form-controls/textarea-control/textarea-control.module';
+export * from './lib/form-controls/textarea-control/textarea-control.component.module';
 
 // endregion
 
 // region radio-button
 
 export * from './lib/form-controls/radio-button-control/radio-button-control.component';
-export * from './lib/form-controls/radio-button-control/radio-button-control.module';
+export * from './lib/form-controls/radio-button-control/radio-button-control.component.module';
+
+// endregion
+
+// region select-list
+
+export * from './lib/form-controls/select-list-control/select-list-control.component';
+export * from './lib/form-controls/select-list-control/select-list-control.component.module';
 
 // endregion
 

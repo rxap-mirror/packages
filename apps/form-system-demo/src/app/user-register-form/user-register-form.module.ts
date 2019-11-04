@@ -6,7 +6,8 @@ import {
   RxapInputControlComponentModule,
   RxapSelectControlModule,
   RxapTextareaControlModule,
-  RxapRadioButtonControlModule
+  RxapRadioButtonControlModule,
+  RxapSelectListControlComponentModule
 } from '@rxap/form-system';
 import { UserRegisterFormDefinition } from './user-register-form.definition';
 
@@ -19,7 +20,8 @@ import { UserRegisterFormDefinition } from './user-register-form.definition';
     RxapInputControlComponentModule,
     RxapSelectControlModule,
     RxapTextareaControlModule,
-    RxapRadioButtonControlModule
+    RxapRadioButtonControlModule,
+    RxapSelectListControlComponentModule
   ],
   exports: [UserRegisterFormComponent]
 })

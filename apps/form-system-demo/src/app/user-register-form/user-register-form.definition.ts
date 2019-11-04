@@ -1,11 +1,9 @@
 import {
   RxapFormDefinition,
   RxapForm,
-  RxapFormTemplate,
   RxapFormControl,
   RxapControlValidator,
   RxapPasswordControl,
-  RxapSelectControl,
   RxapControlOptions,
   RxapSelectMultipleControl,
   RxapTextareaControl,
@@ -13,6 +11,7 @@ import {
   BaseFormControl
 } from '@rxap/form-system';
 import { Injectable } from '@angular/core';
+import { RxapSelectListControl } from '../../../../../libs/form-system/src/lib/form-controls/select-list-control/select-list-control.component';
 
 export const USER_REGISTER_FORM = 'user-register';
 
@@ -59,12 +58,8 @@ export class UserRegisterFormDefinition
   public email!: BaseFormControl<any>;
 
   @RxapControlOptions('Male', 'Female')
-  @RxapSelectControl()
-  @RxapFormControl({
-    properties: {
-      prefixIcon: { svgIcon: 'gender-female' }
-    }
-  })
+  @RxapSelectListControl()
+  @RxapFormControl()
   public gender!: BaseFormControl<any>;
 
   @RxapControlOptions('Facebook', 'Github', 'Google', 'Amazon', 'Gitlab')

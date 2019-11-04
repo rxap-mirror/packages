@@ -11,7 +11,7 @@
     [required]="control.required">
     <mat-option [value]="null">--</mat-option>
     <mat-option
-      *ngFor="let option of control.options" [disabled]="option.disabled"
+      *ngFor="let option of control.options; trackBy: control.trackBy" [disabled]="option.disabled"
       [value]="option.value">
       {{option.display}}
     </mat-option>

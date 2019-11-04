@@ -1,4 +1,4 @@
-<rxap-form-field-icon *ngIf="hasIcon; else button" [icon]="control.prefixIcon"></rxap-form-field-icon>
+<rxap-icon *ngIf="hasIcon; else button" [icon]="control.prefixIcon"></rxap-icon>
 <ng-template #button>
-  <rxap-form-field-icon-button (buttonClick)="control.onPrefixButtonClick()" *ngIf="hasButton" [icon]="control.prefixButton"></rxap-form-field-icon-button>
+  <rxap-icon-button (buttonClick)="control.onPrefixButtonClick()" *ngIf="hasButton" [icon]="control.prefixButton"></rxap-icon-button>
 </ng-template>

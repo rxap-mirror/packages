@@ -41,7 +41,9 @@ export class BaseFormArray<ItemValue,
     if (control.parent !== this) {
       throw new Error('Can not add control if parent is not equal to this form array');
     }
-    control.init();
+    if (this._initialized) {
+      control.init();
+    }
     if (indexOrString !== undefined) {
       const index = typeof indexOrString === 'number' ? indexOrString : Number(indexOrString);
       if (isNaN(index)) {

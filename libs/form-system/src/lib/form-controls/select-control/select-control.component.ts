@@ -5,7 +5,7 @@ import {
 import { SelectFormControl } from '../../forms/form-controls/select.form-control';
 import { RxapComponent } from '@rxap/component-system';
 import { RxapFormControlComponentIds } from '../form-control-component-ids';
-import { NgModelControlComponent } from '../ng-model-control-component.service';
+import { NgModelControlComponent } from '../ng-model-control.component';
 
 @RxapComponent(RxapFormControlComponentIds.SELECT)
 @Component({

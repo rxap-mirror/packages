@@ -1,17 +1,19 @@
 import {
   Component,
+  Input,
   ChangeDetectionStrategy,
-  Input
+  ViewEncapsulation
 } from '@angular/core';
 import { IconConfig } from '@rxap/utilities';
 
 @Component({
-  selector:        'rxap-form-field-icon',
-  templateUrl:     './form-field-icon.component.html',
-  styleUrls:       [ './form-field-icon.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector:        'rxap-icon',
+  templateUrl:     './icon.component.html',
+  styleUrls:       [ './icon.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation:   ViewEncapsulation.None
 })
-export class FormFieldIconComponent {
+export class IconComponent {
 
   public get isSimpleIcon(): boolean {
     return typeof this.icon === 'string';

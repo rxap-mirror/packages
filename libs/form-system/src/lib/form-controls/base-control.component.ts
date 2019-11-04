@@ -4,8 +4,10 @@ import {
   OnDestroy
 } from '@angular/core';
 import { BaseFormControl } from '../forms/form-controls/base.form-control';
-import { Subscription } from 'rxjs';
-import { Required } from '@rxap/utilities';
+import {
+  Required,
+  SubscriptionHandler
+} from '@rxap/utilities';
 
 @Injectable()
 export class BaseControlComponent<ControlValue,
@@ -14,10 +16,10 @@ export class BaseControlComponent<ControlValue,
 
   @Input() @Required public control!: FormControl;
 
-  public subscriptions = new Subscription();
+  public subscriptions = new SubscriptionHandler();
 
   public ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.subscriptions.unsubscribeAll();
   }
 
 }

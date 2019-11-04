@@ -13,6 +13,7 @@ import { BaseFormControl } from '../../forms/form-controls/base.form-control';
 import { FormStateManager } from '../../form-state-manager';
 import { ComponentRegistryService } from '@rxap/component-system';
 import { BaseControlComponent } from '../../form-controls/base-control.component';
+import { hasOnSetControlHook } from '../hooks';
 
 @Component({
   selector: 'rxap-control-container',
@@ -54,6 +55,10 @@ export class ControlContainerComponent implements OnInit {
     const componentRef = componentFactory.create(this.injector);
 
     componentRef.instance.control = this.formControl;
+
+    if (hasOnSetControlHook(componentRef.instance)) {
+      componentRef.instance.rxapOnSetControl();
+    }
 
     this.controlContainer.insert(componentRef.hostView);
 

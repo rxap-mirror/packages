@@ -16,7 +16,7 @@ export function RxapControlOptions<ControlValue>(...options: Array<ControlOption
       return { value: option, display: option };
     }
     return option;
-  }));
+  }).sort((a, b) => a.display.localeCompare(b.display)));
 }
 
 export function RxapSelectControl() {
@@ -34,22 +34,46 @@ export function RxapSelectMultipleControl() {
 export class SelectFormControl<ControlValue>
   extends FormFieldFormControl<ControlValue> {
 
-  public options: ControlOptions<ControlValue> = [];
-  public displayOptions: string[]              = [];
-  public valueOptions: ControlValue[]          = [];
+  public get unselectedOptions(): ControlOptions<ControlValue> {
+    return this.options.filter(
+      option => !(this.multiple ? (this.value as any as any[]).some(v => this.compareWith(option.value, v)) : this.compareWith(option.value, this.value)));
+  }
+
+  public get selectedOptions(): ControlOptions<ControlValue> {
+    return this.options.filter(
+      option => this.multiple ? (this.value as any as any[]).some(v => this.compareWith(option.value, v)) : this.compareWith(option.value, this.value));
+  }
+
+  private _options: ControlOptions<ControlValue> = [];
+
+  public get options(): ControlOptions<ControlValue> {
+    return this._options;
+  }
 
   public multiple = false;
 
   public componentId = RxapFormControlComponentIds.SELECT;
 
-
-  public setOptions(options: ControlOptions<ControlValue>): void {
-    this.options        = options;
-    this.displayOptions = options.map(option => option.display);
-    this.valueOptions   = options.map(option => option.value);
+  public set options(value: ControlOptions<ControlValue>) {
+    this._options = value.sort(this.sort);
   }
 
-  public compareWith(optionValue: ControlValue, selectValue: ControlValue) {
+  public sort(a: ControlOption<ControlValue>, b: ControlOption<ControlValue>): number {
+    return a.display.localeCompare(b.display);
+  }
+
+  public trackBy(index: number, item: ControlOption<ControlValue>) {
+    const value: any = item.value;
+    if (value !== null && value.hasOwnProperty('id')) {
+      return value.id;
+    }
+    if (typeof value !== 'object') {
+      return value;
+    }
+    return index;
+  }
+
+  public compareWith(optionValue: ControlValue, selectValue: ControlValue | null): boolean {
     if (selectValue) {
       if (typeof selectValue === 'object') {
         if (hasIdentifierProperty(selectValue)) {

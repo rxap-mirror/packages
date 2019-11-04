@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
 import { FormTemplateLoader } from '../form-template-loader';
-import {
-  fromEvent,
-  of
-} from 'rxjs';
+import { fromEvent } from 'rxjs';
 import {
   filter,
   map,
   tap,
   mergeMap,
-  switchMap,
-  delay
+  switchMap
 } from 'rxjs/operators';
 import { FormInstanceFactory } from '../form-instance-factory';
 import { isDefined } from '@rxap/utilities';
@@ -62,7 +58,8 @@ interface FileSystemRemoveOptions {
   recursive: boolean;
 }
 
-enum ChooseFileSystemEntriesType { "openFile" = 'openFile', "saveFile" = 'saveFile', "openDirectory" = 'openDirectory' };
+
+enum ChooseFileSystemEntriesType { 'openFile' = 'openFile', 'saveFile' = 'saveFile', 'openDirectory' = 'openDirectory' }
 
 interface FileSystemDirectoryHandle extends FileSystemHandle {
   getFile(name: string, options?: FileSystemGetFileOptions): Promise<FileSystemFileHandle>
@@ -88,7 +85,6 @@ export class FormSystemDevToolService {
       filter(event => event.source === window),
       map(event => event.data),
       filter(data => data.rxap_form),
-      tap(data => console.info('[FormSystemDevToolService] message', data))
     );
 
     message$.pipe(
@@ -148,8 +144,6 @@ export class FormSystemDevToolService {
 
         const instanceIds = this.formInstances.getFormInstanceIdsByFormId(data.formId);
 
-        console.log(instanceIds);
-
         this.send({ formId: data.formId, instanceIds });
 
       })
@@ -181,7 +175,6 @@ export class FormSystemDevToolService {
 
     for (const [formId, template] of this.formTemplateLoader.templates.entries()) {
       const file = await folder.getFile(`${formId}.xml`);
-      console.log(file);
       const writer = await file.createWriter();
       await writer.truncate(0);
       await writer.write(0, template);
@@ -191,7 +184,6 @@ export class FormSystemDevToolService {
   }
 
   public send(data: any): void {
-    console.log('send', data);
     window.postMessage({ ...data, rxap_form: true }, '*');
   }
 

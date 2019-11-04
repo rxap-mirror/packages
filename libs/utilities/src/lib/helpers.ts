@@ -114,6 +114,10 @@ export interface ControlOption<Value, Display = string> {
 
 export type ControlOptions<Value, Display = string> = Array<ControlOption<Value, Display>>;
 
+export function ToControlOptions(values: string[]): ControlOptions<string> {
+  return values.map(value => ({ value, display: value }));
+}
+
 export function hasIdentifierProperty(obj: any): boolean {
   return obj.hasOwnProperty('id') ||
          obj.hasOwnProperty('uuid') ||

@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core';
+import {
+  NgModule,
+  ModuleWithProviders
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MatInputModule,
@@ -9,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RxapComponentSystemModule } from '@rxap/component-system';
 import { FormFieldControlModule } from '../form-field-control/form-field-control.module';
-import { RxapInputControlDirectiveModule } from './input-control-directive.module';
+import { RxapInputControlDirectiveModule } from './input-control.directive.module';
+import { InputControlAccessorDirectiveModule } from './input-control-accessor.directive.module';
 
 @NgModule({
   declarations:    [ RxapInputControlComponent ],
@@ -26,4 +30,21 @@ import { RxapInputControlDirectiveModule } from './input-control-directive.modul
   exports:         [ RxapInputControlComponent ],
   entryComponents: [ RxapInputControlComponent ]
 })
-export class RxapInputControlComponentModule {}
+export class RxapInputControlComponentModule {
+
+  public static standalone(): ModuleWithProviders {
+    return {
+      ngModule:  InputControlComponentModuleStandalone,
+      providers: []
+    };
+  }
+
+}
+
+@NgModule({
+  exports: [
+    RxapInputControlComponentModule,
+    InputControlAccessorDirectiveModule
+  ]
+})
+export class InputControlComponentModuleStandalone {}

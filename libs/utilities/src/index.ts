@@ -12,6 +12,8 @@ export * from './lib/array';
 // region operators
 
 export * from './lib/rxjs/operators/is-defined';
+export * from './lib/rxjs/operators/is-equal';
+export * from './lib/rxjs/operators/is-deep-equal';
 
 // endregion
 
