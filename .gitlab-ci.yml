@@ -22,51 +22,61 @@ yarn:
   script:
   - yarn
 
-lint:master:
-  stage: lint
-  before_script:
-  - yarn
-  script:
-  - ./lint-for-master.sh
-  parallel: 4
-  allow_failure: true
-  only:
-  - master
+#lint:master:
+#  stage: lint
+#  needs:
+#  - yarn
+#  before_script:
+#  - yarn
+#  script:
+#  - ./lint-for-master.sh
+#  parallel: 4
+#  allow_failure: true
+#  only:
+#  - master
 
-lint:
-  stage: lint
-  before_script:
-  - yarn
-  script:
-  - yarn affected:lint --base=remotes/origin/${CI_COMMIT_REF_NAME} --head=${CI_COMMIT_SHA} --parallel true --maxParallel 17
-  allow_failure: true
-  except:
-  - master
+#lint:
+#  stage: lint
+#  needs:
+#  - yarn
+#  before_script:
+#  - yarn
+#  script:
+#  - yarn affected:lint --base=remotes/origin/${CI_COMMIT_REF_NAME} --head=${CI_COMMIT_SHA} --parallel true --maxParallel 17
+#  allow_failure: true
+#  except:
+#  - master
 
-madge:
-  stage: lint
-  before_script:
-  - rm yarn.lock package.json
-  - yarn add madge
-  script:
-  - ./madge.sh
-  allow_failure: true
-  parallel: 4
+#madge:
+#  stage: lint
+#  needs:
+#  - yarn
+#  before_script:
+#  - rm yarn.lock package.json
+#  - yarn add madge
+#  script:
+#  - ./madge.sh
+#  allow_failure: true
+#  parallel: 4
 
-compodoc:
-  stage: lint
-  before_script:
-  - rm yarn.lock package.json
-  - yarn add @compodoc/compodoc
-  script:
-  - yarn compodoc
-  artifacts:
-    name: "$CI_JOB_NAME compodoc"
-    paths:
-    - compodoc
+#compodoc:
+#  stage: lint
+#  needs:
+#  - yarn
+#  before_script:
+#  - rm yarn.lock package.json
+#  - yarn add @compodoc/compodoc
+#  script:
+#  - yarn compodoc
+#  artifacts:
+#    name: "$CI_JOB_NAME compodoc"
+#    paths:
+#    - compodoc
 
 build:
   stage: build
+  needs:
+  - yarn
   before_script:
   - yarn
   script:
@@ -80,6 +90,8 @@ build:
 
 build:master:
   stage: build
+  needs:
+  - yarn
   before_script:
   - yarn
   script:
@@ -121,6 +133,8 @@ build:master:
 
 test:
   stage: test
+  needs:
+  - yarn
   before_script:
   - yarn
   variables:
@@ -138,6 +152,8 @@ test:
 
 test:master:
   stage: test
+  needs:
+  - yarn
   before_script:
   - yarn
   script:
@@ -156,9 +172,12 @@ test:master:
 
 pages:
   stage: publish
+  needs:
+  - test:master
+  #  - compodoc
   script:
   - mkdir public
-  - cp -r compodoc public/
+  #  - cp -r compodoc public/
   - cp -r coverage public/
   #  - cp sandbox.report.json public/
   #  - cp -r dist/apps/playground public/
@@ -169,12 +188,14 @@ pages:
   - master
   dependencies:
   - test:master
-  - compodoc
+#  - compodoc
 #  - test:playground
 #  - build:playground
 
 publish:test:
   stage: publish
+  needs:
+  - test:master
   coverage: '/Total project code coverage: (\d*\.\d+\s\%)/'
   script:
   - ./get-coverage.sh
@@ -184,6 +205,8 @@ publish:test:
   - test:master
 
 publish:
+  needs:
+  - build:master
   stage: publish
   before_script:
   - echo -e "\n//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ./.npmrc
