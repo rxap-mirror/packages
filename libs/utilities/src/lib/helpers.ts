@@ -1,4 +1,4 @@
-import { ThemePalette } from '@angular/material';
+export type ThemePalette = 'primary' | 'accent' | 'warn' | undefined;
 
 export type CssClass = string | string[] | { [ className: string ]: boolean };
 

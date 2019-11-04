@@ -2,7 +2,8 @@
   "name": "@rxap/utilities",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^8.2.4",
-    "@angular/core": "^8.2.4"
+    "rxjs": "^6.5.3",
+    "ramda": "^0.26.1",
+    "reflect-metadata": "^0.1.13"
   }
 }
