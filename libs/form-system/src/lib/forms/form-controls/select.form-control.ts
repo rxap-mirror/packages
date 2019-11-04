@@ -35,10 +35,19 @@ export class SelectFormControl<ControlValue>
   extends FormFieldFormControl<ControlValue> {
 
   public options: ControlOptions<ControlValue> = [];
+  public displayOptions: string[]              = [];
+  public valueOptions: ControlValue[]          = [];
 
   public multiple = false;
 
   public componentId = RxapFormControlComponentIds.SELECT;
+
+
+  public setOptions(options: ControlOptions<ControlValue>): void {
+    this.options        = options;
+    this.displayOptions = options.map(option => option.display);
+    this.valueOptions   = options.map(option => option.value);
+  }
 
   public compareWith(optionValue: ControlValue, selectValue: ControlValue) {
     if (selectValue) {
