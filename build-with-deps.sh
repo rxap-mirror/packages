@@ -2,6 +2,8 @@
 
 project=$1
 
+echo Project ${project}
+
 depProjects=$(cat dep-graph.json | jq -r --arg project ${project} '.deps | .[$project] | map(.projectName)')
 
 echo Project dependencies ${depProjects}

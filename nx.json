@@ -14,16 +14,16 @@
     "utilities": {
       "tags": []
     },
-    "form-system-demo-e2e": {
-      "tags": []
-    },
-    "form-system-demo": {
-      "tags": []
-    },
     "component-system": {
       "tags": []
     },
     "window-system": {
+      "tags": []
+    },
+    "form-system-demo-e2e": {
+      "tags": []
+    },
+    "form-system-demo": {
       "tags": []
     },
     "window-system-demo-e2e": {
