@@ -91,6 +91,10 @@ export class SubscriptionHandler {
     return subscription.add(teardown);
   }
 
+  public has(key: string): boolean {
+    return this.subscriptions.has(key);
+  }
+
   /**
    * Disposes the resources held by the subscription. May, for instance, cancel
    * an ongoing Observable execution or cancel any other type of work that
