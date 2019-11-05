@@ -7,7 +7,14 @@ import { FormDefinitionMetaDataKeys } from './meta-data-keys';
 import { FormControlMetaData } from './control';
 import { v1 as uuid } from 'uuid';
 
-export type FormControlValidatorFunction<ControlValue> = (value: ControlValue) => any | null;
+
+/**
+ * true -> value is valid
+ * string -> value is invalid and error message
+ * null -> value is valid
+ * false -> value is invalid
+ */
+export type FormControlValidatorFunction<ControlValue> = (value: ControlValue | null) => true | string | null | false;
 
 export type ControlValidatorMetaData = KeyValue<Array<ControlValidator<any>>>
 

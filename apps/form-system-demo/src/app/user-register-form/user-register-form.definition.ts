@@ -36,8 +36,8 @@ export class UserRegisterFormDefinition
   extends RxapFormDefinition<UserRegisterForm> {
 
   @RxapControlValidator<string>({
-    validator: username => username.match(/[A-Z]/) ? null : false,
-    message: 'Should start with uppercase latter'
+    validator: username => username && username.match(/[A-Z]/) ? null : false,
+    message:   'Should start with uppercase latter'
   })
   @RxapFormControl({
     properties: {
@@ -85,6 +85,7 @@ export class UserRegisterFormDefinition
   }
 
   rxapOnSubmitInvalid() {
+    console.log(this.group.getErrorTree());
     console.log('submit invalid');
   }
 

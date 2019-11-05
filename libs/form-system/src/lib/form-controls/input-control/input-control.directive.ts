@@ -75,6 +75,12 @@ export class InputControlDirective
       ).subscribe()
     );
 
+    this.subscriptions.add(
+      this.control.errorsChange$.pipe(
+        tap(() => this.cdr.markForCheck())
+      ).subscribe()
+    );
+
     if (this.control.max !== null) {
       switch (this.control.type) {
 

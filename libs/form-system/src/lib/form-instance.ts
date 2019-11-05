@@ -203,7 +203,7 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
   }
 
   public getControlByPath<Value>(controlPath: string): BaseForm<Value, any, any> | null {
-    const fragments = controlPath.split('.')/*?*/;
+    const fragments = controlPath.split('.');
     if (fragments.length <= 1) {
       throw new Error('Control path is empty');
     }
@@ -236,8 +236,14 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
     this.runValidators();
     if (this.formDefinition.group.isValid === true) {
       this.formDefinition.rxapOnSubmitValid();
+      if (this.formValidSubmit) {
+        this.formValidSubmit.onValidSubmit(this);
+      }
     } else if (this.formDefinition.group.isInvalid === true) {
       this.formDefinition.rxapOnSubmitInvalid();
+      if (this.formInvalidSubmit) {
+        this.formInvalidSubmit.onInvalidSubmit(this);
+      }
     } else {
       this.formDefinition.rxapOnSubmitError();
     }
@@ -252,13 +258,14 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
   }
 
   private runValidator<Value>(value: Value, control: BaseForm<Value, any, any>, controlValidator: ControlValidator<Value>): void {
-    const result = controlValidator.validator(value);
-    const key    = controlValidator.key;
+    const valid = controlValidator.validator(value);
+    const key   = controlValidator.key;
     if (key) {
-      if (result !== null) {
-        control.setError(key, controlValidator.message || result);
-      } else {
+
+      if (valid === true || valid === null) {
         control.clearError(key);
+      } else {
+        control.setError(key, controlValidator.message || (valid + ''));
       }
     } else {
       throw new Error('Control validator key is not defined');

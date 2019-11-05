@@ -8,6 +8,7 @@ import { RxapOnValueChange } from './form-definition/decorators/on-value-change'
 import { RxapForm } from './form-definition/decorators/form-definition';
 import { RxapControlValidator } from './form-definition/decorators/control-validator';
 import { BaseFormControl } from './forms/form-controls/base.form-control';
+import Spy = jasmine.Spy;
 
 describe('Form System', () => {
 
@@ -194,6 +195,86 @@ describe('Form System', () => {
         instance.rxapOnDestroy();
 
       }));
+
+    });
+
+    describe('submit form instance', () => {
+
+      let instance: FormInstance<any>;
+      let rxapOnSubmitSpy: Spy;
+      let rxapOnSubmitValid: Spy;
+      let rxapOnSubmitInvalid: Spy;
+      let rxapOnSubmitError: Spy;
+      let formInvalidSubmitSpy: Spy;
+      let formValidSubmitSpy: Spy;
+
+      beforeEach(inject([ FormDefinitionLoader ], (fdl: FormDefinitionLoader) => {
+
+
+        @RxapForm('form')
+        class FormDefinition extends RxapFormDefinition<any> {
+
+          @RxapControlValidator({
+            validator: value => value === 'username'
+          })
+          @RxapFormControl()
+          username!: InputFormControl<string>;
+
+          @RxapControlValidator({
+            validator: value => value === 'password'
+          })
+          @RxapFormControl()
+          password!: InputFormControl<string>;
+
+        }
+
+        const formInvalidSubmit = { onInvalidSubmit: () => {} };
+        const formValidSubmit   = { onValidSubmit: () => {} };
+
+        instance = new FormInstance(fdl.load(FormDefinition), formInvalidSubmit, formValidSubmit);
+
+        rxapOnSubmitSpy      = spyOn(instance.formDefinition, 'rxapOnSubmit');
+        rxapOnSubmitValid    = spyOn(instance.formDefinition, 'rxapOnSubmitValid');
+        rxapOnSubmitInvalid  = spyOn(instance.formDefinition, 'rxapOnSubmitInvalid');
+        rxapOnSubmitError    = spyOn(instance.formDefinition, 'rxapOnSubmitError');
+        formInvalidSubmitSpy = spyOn(formInvalidSubmit, 'onInvalidSubmit');
+        formValidSubmitSpy   = spyOn(formValidSubmit, 'onValidSubmit');
+
+        instance.rxapOnInit();
+
+      }));
+
+      afterEach(() => {
+        instance.rxapOnDestroy();
+      });
+
+      it('submit invalid form', () => {
+
+        instance.submit();
+
+        expect(rxapOnSubmitSpy).toBeCalled();
+        expect(rxapOnSubmitValid).not.toBeCalled();
+        expect(rxapOnSubmitInvalid).toBeCalled();
+        expect(rxapOnSubmitError).not.toBeCalled();
+        expect(formValidSubmitSpy).not.toBeCalled();
+        expect(formInvalidSubmitSpy).toBeCalled();
+
+      });
+
+      it('submit valid form', () => {
+
+        instance.formDefinition.group.setValue({ username: 'username', password: 'password' });
+
+        instance.submit();
+
+        expect(rxapOnSubmitSpy).toBeCalled();
+        expect(rxapOnSubmitValid).toBeCalled();
+        expect(rxapOnSubmitInvalid).not.toBeCalled();
+        expect(rxapOnSubmitError).not.toBeCalled();
+        expect(formValidSubmitSpy).toBeCalled();
+        expect(formInvalidSubmitSpy).not.toBeCalled();
+
+      });
 
     });
 
