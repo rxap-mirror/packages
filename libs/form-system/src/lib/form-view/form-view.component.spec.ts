@@ -4,6 +4,10 @@ import { FormTemplateLoader } from '../form-template-loader';
 import { FormInstanceFactory } from '../form-instance-factory';
 import { Layout } from './layout';
 import { FormInstance } from '../form-instance';
+import { FormInvalidSubmitService } from '../form-invalid-submit.service';
+import { FormValidSubmitService } from '../form-valid-submit.service';
+import { FormLoadService } from '../form-load.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('Form System', () => {
 
@@ -17,14 +21,22 @@ describe('Form System', () => {
 
       beforeAll((() => {
 
-        TestBed.configureTestingModule({});
+        TestBed.configureTestingModule({
+          imports: [ HttpClientTestingModule ]
+        });
 
         const formTemplateLoader  = TestBed.get(FormTemplateLoader);
         const formInstanceFactory = TestBed.get(FormInstanceFactory);
+        const formInvalidSubmit   = TestBed.get(FormInvalidSubmitService);
+        const formValidSubmit     = TestBed.get(FormValidSubmitService);
+        const formLoad            = TestBed.get(FormLoadService);
 
         component = new FormViewComponent<any>(
           formTemplateLoader,
-          formInstanceFactory
+          formInstanceFactory,
+          formInvalidSubmit,
+          formValidSubmit,
+          formLoad
         );
 
         formInstnace = FormInstance.TestInstance();

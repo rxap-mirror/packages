@@ -92,7 +92,10 @@ export class BaseForm<Value,
 
   protected readonly _subscriptions = new SubscriptionHandler();
 
-  protected _initialized = false;
+  /**
+   * @internal
+   */
+  public initialized = false;
 
   constructor(
     public readonly formId: string,
@@ -106,7 +109,7 @@ export class BaseForm<Value,
   }
 
   public init(): void {
-    this._initialized = true;
+    this.initialized = true;
   }
 
   public rxapOnInit(): void {

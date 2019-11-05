@@ -45,7 +45,7 @@ export class BaseFormGroup<GroupValue extends object>
     if (typeof controlId !== 'string') {
       throw new Error('Control Id must be type of string');
     }
-    if (this._initialized) {
+    if (this.initialized) {
       control.init();
     }
     this.controls.set(controlId, control);
@@ -92,9 +92,7 @@ export class BaseFormGroup<GroupValue extends object>
 
   public clearErrors(): void {
     super.clearErrors();
-    for (const control of this.controls.values()) {
-      control.clearErrors();
-    }
+    this.controls.forEach(control => control.clearErrors());
   }
 
   public setValue(value: Nullable<GroupValue>, options: Partial<SetValueOptions> = {}): void {

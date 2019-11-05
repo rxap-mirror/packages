@@ -41,7 +41,7 @@ export class BaseFormArray<ItemValue,
     if (control.parent !== this) {
       throw new Error('Can not add control if parent is not equal to this form array');
     }
-    if (this._initialized) {
+    if (this.initialized) {
       control.init();
     }
     if (indexOrString !== undefined) {
@@ -106,9 +106,7 @@ export class BaseFormArray<ItemValue,
 
   public clearErrors(): void {
     super.clearErrors();
-    for (const control of this.controls) {
-      control.clearErrors();
-    }
+    this.controls.forEach(control => control.clearErrors());
   }
 
   public updateItem(index: number, value: ItemValue, options: Partial<SetValueOptions> = {}): void {

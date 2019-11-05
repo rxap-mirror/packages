@@ -105,7 +105,7 @@ describe('Form System', () => {
           baseForm.setValue(value);
 
           expect(updateValueSpy).toBeCalled();
-          expect(updateValueSpy).toBeCalledWith({ [ baseForm.controlId ]: value }, defaultSetValueOptions());
+          expect(updateValueSpy).toBeCalledWith({ [ baseForm.controlId ]: value }, defaultSetValueOptions({ onlySelf: true }));
 
         });
 

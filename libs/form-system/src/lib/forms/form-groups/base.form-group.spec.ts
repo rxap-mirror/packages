@@ -33,15 +33,28 @@ describe('Form System', () => {
 
             });
 
-            it('should call control init method', () => {
+            it('should call control init method only if parent is initialed', () => {
 
               const control = { parent: baseFormGroup, init: () => {} };
 
               const initSpy = spyOn(control, 'init');
 
+              expect(baseFormGroup.initialized).toBeFalsy();
+
+              baseFormGroup.addControl(control as any, 'control');
+
+              expect(initSpy).not.toBeCalled();
+
+              baseFormGroup.removeControl('control');
+
+              expect(baseFormGroup.hasControl('control')).toBeFalsy();
+
+              baseFormGroup.initialized = true;
+
               baseFormGroup.addControl(control as any, 'control');
 
               expect(initSpy).toBeCalled();
+
 
             });
 
