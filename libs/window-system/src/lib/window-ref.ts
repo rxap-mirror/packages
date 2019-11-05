@@ -11,6 +11,10 @@ export class WindowRef<D> {
   public width$  = new BehaviorSubject<string>(this.getWidth());
   public height$ = new BehaviorSubject<string>(this.getHeight());
 
+  public get isMinimized(): boolean {
+    return this.overlayRef.hostElement.style.display === 'none';
+  }
+
   constructor(
     public readonly overlayRef: OverlayRef,
     private readonly overlay: Overlay,

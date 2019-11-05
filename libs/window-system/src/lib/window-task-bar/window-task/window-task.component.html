@@ -1,7 +1,7 @@
-<div (click)="reopen()" [ngClass]="{ minimized: window.minimized }" class="container mat-elevation-z2" fxLayout="row" fxLayoutAlign="start center"
+<div (click)="reopen()" [ngClass]="{ minimized: window.isMinimized }" class="container mat-elevation-z2" fxLayout="row" fxLayoutAlign="start center"
      fxLayoutGap="5px">
-  <mat-icon *ngIf="window.icon" [svgIcon]="window.icon" fxFlex="40px"></mat-icon>
-  <h3 *ngIf="window.title" fxFlex="grow">{{window.title}}</h3>
+  <mat-icon *ngIf="window.settings.icon" [svgIcon]="window.settings.icon" fxFlex="40px"></mat-icon>
+  <h3 *ngIf="window.settings.title" fxFlex="grow">{{window.settings.title}}</h3>
   <button (click)="close(); $event.stopPropagation()" mat-icon-button type="buttin">
     <mat-icon svgIcon="window-close"></mat-icon>
   </button>
