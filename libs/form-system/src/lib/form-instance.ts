@@ -38,7 +38,7 @@ export type FormInstanceId = string;
 export class FormInstance<FormValue extends object, FormDefinition extends RxapFormDefinition<FormValue> = RxapFormDefinition<FormValue>> {
 
   public static TestInstance<FormValue extends object>(formDefinition?: RxapFormDefinition<FormValue>) {
-    return new FormInstance<FormValue>(formDefinition || RxapFormDefinition.TestInstance<FormValue>(), null, null, null);
+    return new FormInstance<FormValue>(formDefinition || RxapFormDefinition.TestInstance<FormValue>());
   }
 
   ;
@@ -46,7 +46,8 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
   public clickSubmit$ = new Subject<void>();
   public clickReset$  = new Subject<void>();
 
-  public controlValidators = new Map<string, Array<ControlValidator<any>>>();
+  public controlValidators   = new Map<string, Array<ControlValidator<any>>>();
+  public onSetValueFunctions = new Map<string, Array<() => void>>();
 
   protected _subscriptions = new SubscriptionHandler();
 
@@ -66,12 +67,15 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
 
     this.formDefinition.init$.next();
 
+    this.forEachFormDefinition((formDefinition) => this.loadOnValueChange(formDefinition));
+    this.forEachFormDefinition((formDefinition) => this.loadControlValidators(formDefinition));
+
     this._subscriptions.add(
       from(this.formLoad ? this.formLoad.onLoad(this) : of(true))
         .pipe(
           tap(() => {
-            this.forEachFormDefinition((formDefinition) => this.handelOnValueChange(formDefinition));
-            this.forEachFormDefinition((formDefinition) => this.handelControlValidators(formDefinition));
+            this.handelOnValueChange();
+            this.handelControlValidators();
           })
         )
         .subscribe()
@@ -86,7 +90,7 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
       }
       if (form instanceof BaseFormGroup) {
         fnc(form);
-        Array.from(form.controls.values()).forEach(control => forEach(control));
+        form.controls.forEach(control => forEach(control));
       }
       if (form instanceof BaseFormArray) {
         fnc(form);
@@ -112,7 +116,21 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
     forEach(this.formDefinition.group);
   }
 
-  public handelOnValueChange(formDefinition: RxapFormDefinition<any>) {
+  public loadControlValidators(formDefinition: RxapFormDefinition<any>) {
+    const controlValidatorMetaData = getMetadata<ControlValidatorMetaData>(FormDefinitionMetaDataKeys.CONTROL_VALIDATOR, formDefinition) || {};
+    for (const [ controlId, cv ] of Object.entries(controlValidatorMetaData)) {
+      const control = formDefinition
+        .group
+        .getControl(controlId);
+      if (control) {
+        this.controlValidators.set(control.controlPath, cv);
+      } else {
+        throw new Error(`Can not load control validator. Control with id '${controlId}' not found`);
+      }
+    }
+  }
+
+  public loadOnValueChange(formDefinition: RxapFormDefinition<any>) {
     const onValueChangeMetaData = getMetadata<OnValueChangeMetaData>(
       FormDefinitionMetaDataKeys.ON_VALUE_CHANGE,
       formDefinition.constructor.prototype
@@ -122,52 +140,56 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
         .group
         .getControl(controlId);
       if (control) {
-        this._subscriptions.add(
-          FormInstanceSubscriptions.ON_VALUE_CHANGE,
-          control
-            .valueChange$
-            .pipe(tap(() => propertyKeys.map(propertyKey => {
-              const handler: () => void = (formDefinition as any as KeyValue<() => void>)[ propertyKey ];
-              if (!(typeof handler === 'function')) {
-                throw new Error(`Specifed on value change propertyKey '${propertyKey}' is not a function in definition '${formDefinition.group.controlId}'`);
-              }
-              return handler;
-            }).forEach(handler => handler())))
-            .subscribe()
-        );
+        this.onSetValueFunctions.set(control.controlPath, propertyKeys.map(propertyKey => {
+          const handler: () => void = (formDefinition as any as KeyValue<() => void>)[ propertyKey ];
+          if (!(typeof handler === 'function')) {
+            throw new Error(`Specifed on value change propertyKey '${propertyKey}' is not a function in definition '${formDefinition.group.controlId}'`);
+          }
+          return handler;
+        }));
       } else {
         throw new Error(`Can not add on value change handler. Control with id '${controlId}' not found`);
       }
     }
   }
 
-  public handelControlValidators(formDefinition: RxapFormDefinition<any>) {
-    const controlValidatorMetaData = getMetadata<ControlValidatorMetaData>(FormDefinitionMetaDataKeys.CONTROL_VALIDATOR, formDefinition) || {};
-    for (const [ controlId, cv ] of Object.entries(controlValidatorMetaData)) {
-      const control = formDefinition
-        .group
-        .getControl(controlId);
-      if (control) {
-        const controlValidators: Array<ControlValidator<any>> = cv as any;
-        this.controlValidators.set(control.controlPath, controlValidators);
-        this._subscriptions.add(
-          FormInstanceSubscriptions.CONTROL_VALIDATOR,
-          control
-            .valueChange$
-            .pipe(
-              filter(value => value !== null && value !== undefined),
-              tap(value => controlValidators.forEach(controlValidator => this.runValidator(value, control, controlValidator)))
-            )
-            .subscribe()
-        );
-      } else {
-        throw new Error(`Can not add control validator handler. Control with id '${controlId}' not found`);
+  public handelOnValueChange() {
+    for (const [ controlPath, handlers ] of this.onSetValueFunctions.entries()) {
+      const control = this.getControlByPath(controlPath);
+      if (!control) {
+        throw new Error(`Control with path '${controlPath}' could not be found in the current form instance`);
       }
+      this._subscriptions.add(
+        FormInstanceSubscriptions.ON_VALUE_CHANGE,
+        control.valueChange$.pipe(
+          tap(() => handlers.forEach(handler => handler()))
+        ).subscribe()
+      );
+    }
+  }
+
+  public handelControlValidators() {
+    for (const [ controlPath, controlValidators ] of this.controlValidators.entries()) {
+      const control = this.getControlByPath(controlPath);
+      if (!control) {
+        throw new Error(`Control with path '${controlPath}' could not be found in the current form instance`);
+      }
+      this._subscriptions.add(
+        FormInstanceSubscriptions.CONTROL_VALIDATOR,
+        control
+          .valueChange$
+          .pipe(
+            filter(value => value !== null && value !== undefined),
+            tap(value => controlValidators.forEach(controlValidator => this.runValidator(value, control, controlValidator)))
+          )
+          .subscribe()
+      );
     }
   }
 
   public runValidators(): void {
-    for (const [ controlPath, controlValidators ] of Object.entries(this.controlValidators.entries())) {
+    this.formDefinition.group.clearErrors();
+    for (const [ controlPath, controlValidators ] of this.controlValidators.entries()) {
       const control = this.getControlByPath(controlPath);
 
       if (!control) {
@@ -181,10 +203,12 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
   }
 
   public getControlByPath<Value>(controlPath: string): BaseForm<Value, any, any> | null {
-    const fragments = controlPath.split('.');
-    if (fragments.length < 1) {
+    const fragments = controlPath.split('.')/*?*/;
+    if (fragments.length <= 1) {
       throw new Error('Control path is empty');
     }
+    // removes the first fragment that represents the formId;
+    fragments.shift();
     let form: BaseForm<any, any, any> | null = this.formDefinition.group;
     for (const fragment of fragments) {
       if (form instanceof BaseFormArray || form instanceof BaseFormGroup) {
@@ -194,6 +218,8 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
           form = null;
           break;
         }
+      } else {
+        console.log('not instance', form);
       }
     }
 
