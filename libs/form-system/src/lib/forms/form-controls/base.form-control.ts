@@ -4,13 +4,33 @@ import {
 } from '../base.form';
 import { Subject } from 'rxjs';
 import { ParentForm } from '../parent.form';
+import { BaseFormGroup } from '../form-groups/base.form-group';
+
+export interface IBaseFormControl<ControlValue> {
+  placeholder: string;
+  label: string;
+  disabled: boolean;
+  readonly: boolean;
+  required: boolean;
+  name: string;
+  initial: ControlValue;
+}
 
 export class BaseFormControl<ControlValue> extends BaseForm<ControlValue | null,
   BaseFormErrors,
   ControlValue | null> {
 
-  public static EMPTY(parent?: BaseForm<any, any, any>): BaseFormControl<any> {
+  public static EMPTY(parent: BaseForm<any, any, any> = BaseFormGroup.EMPTY()): BaseFormControl<any> {
     return new BaseFormControl<any>('control', parent);
+  }
+
+  public static STANDALONE<ControlValue>(options: Partial<IBaseFormControl<ControlValue>> = {}): BaseFormControl<ControlValue> {
+    const control       = BaseFormControl.EMPTY();
+    control.placeholder = '';
+    control.label       = '';
+    control.name        = '';
+    Object.assign(control, options);
+    return control;
   }
 
   /**

@@ -1,5 +1,17 @@
 import { RxapFormControlComponentIds } from '../../form-controls/form-control-component-ids';
-import { FormFieldFormControl } from './form-field.form-control';
+import {
+  FormFieldFormControl,
+  IFormFieldFormControl
+} from './form-field.form-control';
+import { BaseForm } from '../base.form';
+import { BaseFormGroup } from '../form-groups/base.form-group';
+
+export interface IInputFormControl<ControlValue> extends IFormFieldFormControl<ControlValue> {
+  type: InputTypes;
+  max: number | null;
+  min: number | null;
+  pattern: RegExp | null;
+}
 
 export enum InputTypes {
   COLOR          = 'color',
@@ -19,6 +31,19 @@ export enum InputTypes {
 
 export class InputFormControl<ControlValue>
   extends FormFieldFormControl<ControlValue> {
+
+  public static EMPTY(parent: BaseForm<any, any, any> = BaseFormGroup.EMPTY()): InputFormControl<any> {
+    return new InputFormControl<any>('control', parent);
+  }
+
+  public static STANDALONE<ControlValue>(options: Partial<IInputFormControl<ControlValue>> = {}): InputFormControl<ControlValue> {
+    const control       = InputFormControl.EMPTY();
+    control.placeholder = '';
+    control.label       = '';
+    control.name        = '';
+    Object.assign(control, options);
+    return control;
+  }
 
   public type: InputTypes = InputTypes.TEXT;
 

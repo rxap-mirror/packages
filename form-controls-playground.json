@@ -1,0 +1,17 @@
+{
+  "sourceRoots": [
+    "./apps/form-controls-playground/src",
+    "./libs/form-system/src/lib/form-controls"
+  ],
+  "angularCli": {
+    "appName": "form-controls-playground",
+    "port": 9876
+  },
+  "checkErrors": false,
+  "randomScenario": false,
+  "reportPath": "./form-controls-sandbox.report.json",
+  "reportType": "json",
+  "timeout": 90,
+  "noWatch": false,
+  "noServe": false
+}

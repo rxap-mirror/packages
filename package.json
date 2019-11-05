@@ -26,6 +26,8 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
+    "build:form-system-demo": "yarn build form-system-demo --prod",
+    "docker:build:form-system-demo": "yarn build:form-system-demo && docker build --build-arg OUTPUT_PATH=./dist/apps/form-system-demo -t registry.gitlab.com/rxap/packages/demo/form-system .",
     "add:lib": "ng g @nrwl/angular:lib --style scss --publishable",
     "add:app": "ng g @nrwl/angular:app --style scss",
     "start:form-system-demo": "yarn start form-system-demo --port 4650",
@@ -35,7 +37,8 @@
     "build:form-system-chrome-extension:watch": "yarn build form-system-chrome-extension --watch --configuration=dev",
     "build:form-system-chrome-extension:prod": "yarn build form-system-chrome-extension --prod",
     "start:browser": "chromium-browser --allow-file-access-from-files --disable-web-security --user-data-dir=\"./chromium-user-data\" http://localhost:4650",
-    "madge": "madge"
+    "madge": "madge",
+    "playground": "angular-playground"
   },
   "private": true,
   "dependencies": {
@@ -94,6 +97,7 @@
     "tsickle": "^0.37.0",
     "tslint": "~5.11.0",
     "typescript": "~3.4.5",
-    "webpack-extension-reloader": "^1.1.1"
+    "webpack-extension-reloader": "^1.1.1",
+    "angular-playground": "^6.1.0"
   }
 }

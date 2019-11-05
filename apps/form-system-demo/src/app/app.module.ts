@@ -5,7 +5,6 @@ import {
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserRegisterFormModule } from './user-register-form/user-register-form.module';
 import {
@@ -21,7 +20,6 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MonacoEditorModule.forRoot(),
 
     RxapFormSystemModule.forRoot(),
     RxapComponentSystemModule.forRoot(),

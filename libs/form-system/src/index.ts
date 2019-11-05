@@ -49,6 +49,11 @@ export * from './lib/form-containers/form-card/form-card.component.module';
 
 export * from './lib/form-controls/base-control.component';
 export * from './lib/form-controls/form-control-component-ids';
+export * from './lib/form-controls/ng-model-control.component';
+export * from './lib/form-controls/standalone-ng-model-control.directive';
+export * from './lib/form-controls/standalone-ng-model-control.directive.module';
+export * from './lib/form-controls/standalone-control.directive';
+export * from './lib/form-controls/standalone-control.directive.module';
 
 // region input
 
@@ -56,6 +61,8 @@ export * from './lib/form-controls/input-control/input-control.component';
 export * from './lib/form-controls/input-control/input-control.component.module';
 export * from './lib/form-controls/input-control/input-control.directive';
 export * from './lib/form-controls/input-control/input-control.directive.module';
+export * from './lib/form-controls/input-control/standalone-input-control.directive';
+export * from './lib/form-controls/input-control/standalone-input-control.directive.module';
 
 // endregion
 

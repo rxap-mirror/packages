@@ -13,7 +13,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RxapComponentSystemModule } from '@rxap/component-system';
 import { FormFieldControlModule } from '../form-field-control/form-field-control.module';
 import { RxapInputControlDirectiveModule } from './input-control.directive.module';
-import { InputControlAccessorDirectiveModule } from './input-control-accessor.directive.module';
+import { RxapStandaloneInputControlDirectiveModule } from './standalone-input-control.directive.module';
 
 @NgModule({
   declarations:    [ RxapInputControlComponent ],
@@ -44,7 +44,7 @@ export class RxapInputControlComponentModule {
 @NgModule({
   exports: [
     RxapInputControlComponentModule,
-    InputControlAccessorDirectiveModule
+    RxapStandaloneInputControlDirectiveModule
   ]
 })
 export class InputControlComponentModuleStandalone {}

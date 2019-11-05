@@ -37,6 +37,9 @@
     },
     "form-system-chrome-extension": {
       "tags": []
+    },
+    "form-controls-playground": {
+      "tags": []
     }
   }
 }
