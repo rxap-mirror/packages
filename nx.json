@@ -37,6 +37,15 @@
     },
     "form-system-chrome-extension": {
       "tags": []
+    },
+    "loader": {
+      "tags": []
+    },
+    "config": {
+      "tags": []
+    },
+    "documents": {
+      "tags": []
     }
   }
 }

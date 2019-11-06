@@ -28,6 +28,15 @@
       ],
       "@rxap/window-system": [
         "libs/window-system/src/index.ts"
+      ],
+      "@rxap/loader": [
+        "libs/loader/src/index.ts"
+      ],
+      "@rxap/config": [
+        "libs/config/src/index.ts"
+      ],
+      "@rxap/documents": [
+        "libs/documents/src/index.ts"
       ]
     }
   },
