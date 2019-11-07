@@ -20,6 +20,15 @@
     "window-system": {
       "tags": []
     },
+    "loader": {
+      "tags": []
+    },
+    "config": {
+      "tags": []
+    },
+    "documents": {
+      "tags": []
+    },
     "form-system-demo-e2e": {
       "tags": []
     },
@@ -36,15 +45,6 @@
       "tags": []
     },
     "form-system-chrome-extension": {
-      "tags": []
-    },
-    "loader": {
-      "tags": []
-    },
-    "config": {
-      "tags": []
-    },
-    "documents": {
       "tags": []
     },
     "form-controls-playground": {

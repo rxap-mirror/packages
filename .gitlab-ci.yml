@@ -68,7 +68,7 @@ build:master:
   - yarn
   script:
   - ./build-for-master.sh
-  parallel: 4
+  parallel: 7
   artifacts:
     name: "$CI_JOB_NAME build"
     paths:
@@ -126,7 +126,7 @@ test:master:
   - yarn
   script:
   - ./test-for-master.sh
-  parallel: 4
+  parallel: 7
   variables:
     COLLECT_COVERAGE: "true"
   dependencies:

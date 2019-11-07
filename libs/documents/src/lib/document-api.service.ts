@@ -9,7 +9,7 @@ import { DocumentsConfig } from './documents.config';
 import {
   deepMerge,
   joinPath
-} from '../../../utilities/src';
+} from '@rxap/utilities';
 import { Observable } from 'rxjs';
 
 export interface HttpClientOptions {
