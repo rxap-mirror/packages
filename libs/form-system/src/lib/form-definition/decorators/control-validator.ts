@@ -40,3 +40,11 @@ export function RxapControlValidator<ControlValue = any>(options: ControlValidat
 
   }
 }
+
+export function RxapControlRequired() {
+  return RxapControlValidator({
+    message:   'RXAP.FORM_SYSTEM.VALIDATORS.REQUIRED',
+    key:       'required',
+    validator: value => value !== null && value !== ''
+  });
+}
