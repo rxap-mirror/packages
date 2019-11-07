@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { RxapComponentSystemModule } from '@rxap/component-system';
 import { IconComponentModule } from '../../utilities/icon/icon.component.module';
 import { IconButtonComponentModule } from '../../utilities/icon-button/icon-button.component.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { IconButtonComponentModule } from '../../utilities/icon-button/icon-butt
     PaginatorComponentModule,
     FormsModule,
     IconComponentModule,
-    IconButtonComponentModule
+    IconButtonComponentModule,
+    TranslateModule
   ],
   exports:         [ SelectListControlComponent ],
   entryComponents: [ SelectListControlComponent ]

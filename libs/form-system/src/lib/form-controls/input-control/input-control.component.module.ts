@@ -14,6 +14,7 @@ import { RxapComponentSystemModule } from '@rxap/component-system';
 import { FormFieldControlModule } from '../form-field-control/form-field-control.module';
 import { RxapInputControlDirectiveModule } from './input-control.directive.module';
 import { RxapStandaloneInputControlDirectiveModule } from './standalone-input-control.directive.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations:    [ RxapInputControlComponent ],
@@ -25,7 +26,8 @@ import { RxapStandaloneInputControlDirectiveModule } from './standalone-input-co
     RxapComponentSystemModule.register([ RxapInputControlComponent ]),
     FormFieldControlModule,
     MatIconModule,
-    RxapInputControlDirectiveModule
+    RxapInputControlDirectiveModule,
+    TranslateModule.forChild()
   ],
   exports:         [ RxapInputControlComponent ],
   entryComponents: [ RxapInputControlComponent ]

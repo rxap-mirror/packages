@@ -8,6 +8,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RxapComponentSystemModule } from '@rxap/component-system';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { RxapComponentSystemModule } from '@rxap/component-system';
     FormsModule,
     MatFormFieldModule,
     FlexLayoutModule,
-    RxapComponentSystemModule.register([ RadioButtonControlComponent ])
+    RxapComponentSystemModule.register([ RadioButtonControlComponent ]),
+    TranslateModule.forChild()
   ],
   exports:         [ RadioButtonControlComponent ],
   entryComponents: [ RadioButtonControlComponent ]

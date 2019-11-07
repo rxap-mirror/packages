@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutGap="8px">
-  <label [id]="control.controlPath" fxFlex="nogrow">{{control.label}}</label>
+  <label [id]="control.controlPath" fxFlex="nogrow">{{control.label | translate}}</label>
   <mat-radio-group
     [(ngModel)]="model"
     [attr.aria-labelledby]="control.controlPath"
@@ -14,8 +14,8 @@
       [color]="option.color"
       [disabled]="option.disabled"
       [value]="option.value">
-      {{option.display}}
+      {{option.display | translate}}
     </mat-radio-button>
   </mat-radio-group>
-  <mat-error *ngFor="let error of control.getErrors()" fxFlex="nogrow">{{error}}</mat-error>
+  <mat-error *ngFor="let error of control.getErrors()" fxFlex="nogrow">{{error | translate}}</mat-error>
 </div>

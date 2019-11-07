@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { FormFieldControlModule } from '../form-field-control/form-field-control.module';
 import { RxapComponentSystemModule } from '@rxap/component-system';
 import { RxapTextareaControlDirectiveModule } from './textarea-control.directive.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations:    [ TextareaControlComponent ],
@@ -15,7 +16,8 @@ import { RxapTextareaControlDirectiveModule } from './textarea-control.directive
     FormsModule,
     FormFieldControlModule,
     CommonModule,
-    RxapComponentSystemModule.register([ TextareaControlComponent ])
+    RxapComponentSystemModule.register([ TextareaControlComponent ]),
+    TranslateModule.forChild()
   ],
   exports:         [ TextareaControlComponent ],
   entryComponents: [ TextareaControlComponent ]

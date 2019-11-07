@@ -57,8 +57,8 @@ export class FormFieldFormControl<ControlValue>
   public prefixButton: string | IconConfig | null = null;
   public suffixButton: string | IconConfig | null = null;
 
-  public onPrefixButtonClick() {}
+  public onPrefixButtonClick(value: ControlValue) {}
 
-  public onSuffixButtonClick() {}
+  public onSuffixButtonClick(value: ControlValue) {}
 
 }

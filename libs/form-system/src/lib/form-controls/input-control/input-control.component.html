@@ -1,17 +1,17 @@
 <mat-form-field class="form-field" [appearance]="control.appearance">
   <rxap-form-field-prefix [control]="control" matPrefix></rxap-form-field-prefix>
-  <mat-label>{{control.label}}</mat-label>
+  <mat-label>{{control.label | translate}}</mat-label>
   <input
     matInput
     [(ngModel)]="model"
     [attr.data-cy]="control.controlPath"
     [control]="control"
+    [placeholder]="control.placeholder | translate"
     autocomplete="off"
     rxapInputControl
   >
   <rxap-form-field-suffix [control]="control" matSuffix></rxap-form-field-suffix>
-  <mat-error *ngFor="let error of control.getErrors()">{{error}}</mat-error>
+  <mat-error *ngFor="let error of control.getErrors()">{{error | translate}}</mat-error>
   <mat-hint *ngIf="control.max" align="end">{{model?.length || 0}} / {{control.max}}</mat-hint>
   <mat-hint *ngIf="control.min" align="end">{{control.min}} / {{model?.length || 0}}</mat-hint>
 </mat-form-field>
-<pre>valid: {{control.isValid}}</pre>

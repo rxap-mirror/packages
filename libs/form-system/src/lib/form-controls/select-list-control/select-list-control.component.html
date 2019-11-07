@@ -11,8 +11,8 @@
         [selected]="true"
         [value]="option.value"
       >
-        <!--        <rxap-icon-button matListIcon icon="edit"></rxap-icon-button>-->
-        {{ option.display }}
+        <rxap-icon-button [icon]="icon" matListIcon></rxap-icon-button>
+        {{ option.display | translate }}
       </mat-list-option>
       <mat-divider *ngIf="control.selectedOptions.length" inset></mat-divider>
       <mat-list-option
@@ -21,8 +21,8 @@
         [selected]="false"
         [value]="option.value"
       >
-        <!--        <rxap-icon-button matListIcon icon="edit"></rxap-icon-button>-->
-        {{ option.display }}
+        <rxap-icon-button [icon]="icon" matListIcon></rxap-icon-button>
+        {{ option.display | translate }}
       </mat-list-option>
     </mat-selection-list>
     <rxap-paginator #paginator [data]="textFilter.filteredData$" fxFlex="nogrow"></rxap-paginator>

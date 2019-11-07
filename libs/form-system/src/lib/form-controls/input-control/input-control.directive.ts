@@ -27,7 +27,6 @@ export class InputControlDirective
 
   @Input() @Required public control!: InputFormControl<any>;
 
-  @HostBinding('placeholder') public placeholder!: string;
   @HostBinding('type') public type!: InputTypes;
   @HostBinding('readonly') public readonly!: boolean;
   @HostBinding('disabled') public disabled!: boolean;
@@ -49,7 +48,6 @@ export class InputControlDirective
   public setInputAttributes() {
     this.matInput.errorStateMatcher = this.control.errorStateMatcher;
 
-    this.placeholder = this.control.placeholder;
     this.type        = this.control.type;
     this.readonly    = this.control.readonly;
     this.disabled    = this.control.disabled;

@@ -9,6 +9,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { RxapComponentSystemModule } from '@rxap/component-system';
 import { FormFieldControlModule } from '../form-field-control/form-field-control.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormFieldControlModule } from '../form-field-control/form-field-control
     FormsModule,
     RxapComponentSystemModule.register([ SelectControlComponent ]),
     MatButtonModule,
-    FormFieldControlModule
+    FormFieldControlModule,
+    TranslateModule.forChild()
   ],
   exports:         [ SelectControlComponent ],
   entryComponents: [ SelectControlComponent ]
