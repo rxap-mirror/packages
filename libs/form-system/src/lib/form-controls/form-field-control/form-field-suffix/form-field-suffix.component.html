@@ -1,6 +1,6 @@
 <rxap-icon *ngIf="hasIcon; else button" [icon]="control.suffixIcon"></rxap-icon>
 <ng-template #button>
-  <rxap-icon-button (buttonClick)="control.onSuffixButtonClick()"
+  <rxap-icon-button (buttonClick)="control.onSuffixButtonClick(control.value)"
                     *ngIf="hasButton; else clearButton"
                     [icon]="control.suffixButton">
   </rxap-icon-button>

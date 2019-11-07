@@ -28,8 +28,11 @@ export class StandaloneControlDirective<ControlValue,
   @Input() public readonly!: boolean;
   @Input() public required!: boolean;
   public control!: FormControl;
+  public controlComponent: ControlComponent;
 
-  constructor(@Inject(RXAP_CONTROL_COMPONENT) public controlComponent: ControlComponent) { }
+  constructor(@Inject(RXAP_CONTROL_COMPONENT) controlComponent: any) {
+    this.controlComponent = controlComponent;
+  }
 
   public ngOnInit(): void {
     this.controlComponent.control = this.buildControl();

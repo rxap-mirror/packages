@@ -38,7 +38,8 @@
     "build:form-system-chrome-extension:prod": "yarn build form-system-chrome-extension --prod",
     "start:browser": "chromium-browser --allow-file-access-from-files --disable-web-security --user-data-dir=\"./chromium-user-data\" http://localhost:4650",
     "madge": "madge",
-    "playground": "angular-playground"
+    "playground": "angular-playground",
+    "depcheck": "depcheck"
   },
   "private": true,
   "dependencies": {
@@ -86,6 +87,7 @@
     "angular-playground": "^6.1.0",
     "codelyzer": "~5.0.1",
     "cypress": "3.4.1",
+    "depcheck": "^0.9.0",
     "dotenv": "6.2.0",
     "eslint": "6.1.0",
     "jest": "24.1.0",
