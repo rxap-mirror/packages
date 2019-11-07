@@ -485,7 +485,8 @@
             "dev": {
               "customWebpackConfig": {
                 "path": "./apps/form-system-chrome-extension/custom-webpack-dev.config.js"
-              }
+              },
+              "aot": true
             },
             "production": {
               "fileReplacements": [

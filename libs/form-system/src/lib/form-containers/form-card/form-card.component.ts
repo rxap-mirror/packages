@@ -4,7 +4,8 @@ import {
   ChangeDetectionStrategy,
   Inject,
   Optional,
-  OnInit
+  OnInit,
+  Injector
 } from '@angular/core';
 import {
   RXAP_FORM_ID,
@@ -40,7 +41,8 @@ export class FormCardComponent implements OnInit {
     public readonly formInstanceFactory: FormInstanceFactory,
     public readonly formInvalidSubmit: FormInvalidSubmitService<any>,
     public readonly formValidSubmit: FormValidSubmitService<any>,
-    public readonly formLoad: FormLoadService<any>
+    public readonly formLoad: FormLoadService<any>,
+    public readonly injector: Injector
   ) {
     if (formId) {
       this.formId = formId;
@@ -57,6 +59,7 @@ export class FormCardComponent implements OnInit {
     this.instance = this.formInstanceFactory.buildInstance(
       this.formId,
       this.instanceId,
+      this.injector,
       this.formInvalidSubmit,
       this.formValidSubmit,
       this.formLoad

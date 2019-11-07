@@ -6,7 +6,8 @@ import {
   Optional,
   ViewChild,
   ElementRef,
-  OnDestroy
+  OnDestroy,
+  Injector
 } from '@angular/core';
 import { FormTemplateLoader } from '../form-template-loader';
 import { FormInstanceFactory } from '../form-instance-factory';
@@ -55,6 +56,7 @@ export class FormViewComponent<FormValue extends object>
     public readonly formInvalidSubmit: FormInvalidSubmitService<FormValue>,
     public readonly formValidSubmit: FormValidSubmitService<FormValue>,
     public readonly formLoad: FormLoadService<FormValue>,
+    public readonly injector: Injector,
     @Inject(RXAP_FORM_ID) @Optional() formId: string | null                      = null,
     @Inject(RXAP_FORM_INSTANCE_ID) @Optional() instanceId: FormInstanceId | null = null
   ) {
@@ -74,6 +76,7 @@ export class FormViewComponent<FormValue extends object>
     this.instance = this.formInstanceFactory.buildInstance<FormValue>(
       this.formId,
       this.instanceId,
+      this.injector,
       this.formInvalidSubmit,
       this.formValidSubmit,
       this.formLoad

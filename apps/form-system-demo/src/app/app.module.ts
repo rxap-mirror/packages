@@ -14,12 +14,24 @@ import {
 import { RxapComponentSystemModule } from '@rxap/component-system';
 import { MatIconRegistry } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { UserRegisterFormComponent } from './user-register-form/user-register-form.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+
+    RouterModule.forRoot([
+      {
+        path:      '',
+        component: UserRegisterFormComponent
+      }
+    ]),
+
+    TranslateModule.forRoot(),
 
     RxapFormSystemModule.forRoot(),
     RxapComponentSystemModule.forRoot(),

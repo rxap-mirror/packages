@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+  Injector
+} from '@angular/core';
 import {
   tap,
   first
@@ -25,14 +28,15 @@ export class FormInstanceFactory {
   public buildInstance<FormValue extends object, T extends FormInstance<FormValue> = FormInstance<FormValue>>(
     formId: string,
     instanceId: FormInstanceId,
-    formInvalidSubmit: FormInvalidSubmitService<FormValue>,
-    formValidSubmit: FormValidSubmitService<FormValue>,
-    formLoad: FormLoadService<FormValue>
+    injector: Injector | null                                     = null,
+    formInvalidSubmit: FormInvalidSubmitService<FormValue> | null = null,
+    formValidSubmit: FormValidSubmitService<FormValue> | null     = null,
+    formLoad: FormLoadService<FormValue> | null                   = null
   ): T {
     if (this.instances.has(instanceId)) {
       return this.instances.get(instanceId) as any;
     }
-    const formDefinition = this.formDefinitionLoader.load(formId);
+    const formDefinition = this.formDefinitionLoader.load(formId, injector || undefined);
     const formInstance   = new FormInstance<FormValue>(
       formDefinition,
       formInvalidSubmit,

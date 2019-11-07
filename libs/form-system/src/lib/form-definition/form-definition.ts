@@ -43,6 +43,10 @@ export class RxapFormDefinition<GroupValue extends object> {
 
   public rxapOnDestroy() {}
 
+  public rxapOnLoad(): Promise<any> {
+    return Promise.resolve();
+  }
+
   public rxapOnSubmit() {}
 
   public rxapOnSubmitValid() {}

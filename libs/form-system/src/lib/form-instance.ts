@@ -1,8 +1,7 @@
 import { RxapFormDefinition } from './form-definition/form-definition';
 import {
   Subject,
-  from,
-  of
+  from
 } from 'rxjs';
 import {
   SubscriptionHandler,
@@ -10,10 +9,7 @@ import {
   KeyValue
 } from '@rxap/utilities';
 import { FormDefinitionMetaDataKeys } from './form-definition/decorators/meta-data-keys';
-import {
-  tap,
-  filter
-} from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { OnValueChangeMetaData } from './form-definition/decorators/on-value-change';
 import {
   ControlValidatorMetaData,
@@ -40,8 +36,6 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
   public static TestInstance<FormValue extends object>(formDefinition?: RxapFormDefinition<FormValue>) {
     return new FormInstance<FormValue>(formDefinition || RxapFormDefinition.TestInstance<FormValue>());
   }
-
-  ;
 
   public clickSubmit$ = new Subject<void>();
   public clickReset$  = new Subject<void>();
@@ -71,7 +65,7 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
     this.forEachFormDefinition((formDefinition) => this.loadControlValidators(formDefinition));
 
     this._subscriptions.add(
-      from(this.formLoad ? this.formLoad.onLoad(this) : of(true))
+      from(this.load())
         .pipe(
           tap(() => {
             this.handelOnValueChange();
@@ -81,6 +75,17 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
         .subscribe()
     );
 
+  }
+
+  public load(): Promise<any> {
+    const promises: Promise<any>[] = [];
+
+    if (this.formLoad) {
+      promises.push(this.formLoad.onLoad(this));
+    }
+    promises.push(this.formDefinition.rxapOnLoad());
+
+    return Promise.all(promises);
   }
 
   public forEachForm(fnc: (form: BaseForm<any, any, any>) => void): void {
@@ -177,9 +182,8 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
       this._subscriptions.add(
         FormInstanceSubscriptions.CONTROL_VALIDATOR,
         control
-          .valueChange$
+          .valueChanged$
           .pipe(
-            filter(value => value !== null && value !== undefined),
             tap(value => controlValidators.forEach(controlValidator => this.runValidator(value, control, controlValidator)))
           )
           .subscribe()

@@ -12,6 +12,7 @@ import {
 } from '@rxap/form-system';
 import { Injectable } from '@angular/core';
 import { RxapSelectListControl } from '../../../../../libs/form-system/src/lib/form-controls/select-list-control/select-list-control.component';
+import { ActivatedRoute } from '@angular/router';
 
 export const USER_REGISTER_FORM = 'user-register';
 
@@ -75,6 +76,14 @@ export class UserRegisterFormDefinition
   @RxapRadioButtonControl()
   @RxapFormControl()
   public age!: BaseFormControl<any>;
+
+  constructor(public route: ActivatedRoute) {
+    super();
+  }
+
+  rxapOnLoad(): Promise<any> {
+    return this.route.params.toPromise();
+  }
 
   rxapOnSubmit() {
     console.log('submit');
