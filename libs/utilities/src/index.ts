@@ -5,6 +5,7 @@ export * from './lib/helpers';
 export * from './lib/decorators';
 export * from './lib/deep-merge';
 export * from './lib/array';
+export * from './lib/join';
 export * from './lib/flatten-object';
 
 // region rxjs
