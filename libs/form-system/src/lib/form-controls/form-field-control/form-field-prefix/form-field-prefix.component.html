@@ -1,4 +1,4 @@
 <rxap-icon *ngIf="hasIcon; else button" [icon]="control.prefixIcon"></rxap-icon>
 <ng-template #button>
-  <rxap-icon-button (buttonClick)="control.onPrefixButtonClick()" *ngIf="hasButton" [icon]="control.prefixButton"></rxap-icon-button>
+  <rxap-icon-button (buttonClick)="control.onPrefixButtonClick(control.value)" *ngIf="hasButton" [icon]="control.prefixButton"></rxap-icon-button>
 </ng-template>

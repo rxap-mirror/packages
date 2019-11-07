@@ -2,7 +2,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
-  OnInit
+  OnInit,
+  Input
 } from '@angular/core';
 import { NgModelControlComponent } from '../ng-model-control.component';
 import {
@@ -19,6 +20,7 @@ import {
   MatListOption
 } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
+import { IconConfig } from '@rxap/utilities';
 
 export function RxapSelectListControl() {
   return function(target: any, propertyKey: string) {
@@ -43,6 +45,8 @@ export function RxapSelectListControl() {
 export class SelectListControlComponent<ControlValue>
   extends NgModelControlComponent<ControlValue, SelectFormControl<ControlValue>>
   implements OnInit {
+
+  @Input() public icon: string | IconConfig | null = null;
 
   @ViewChild(MatSelectionList, { static: true }) public selectionList!: MatSelectionList;
 

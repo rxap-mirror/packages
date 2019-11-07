@@ -1,6 +1,7 @@
 import {
   Component,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  Input
 } from '@angular/core';
 import {
   SelectFormControl,
@@ -12,6 +13,7 @@ import { BaseControlComponent } from '../base-control.component';
 import { RxapComponent } from '@rxap/component-system';
 import { RxapFormControlComponentIds } from '../form-control-component-ids';
 import { RxapControlProperty } from '../../form-definition/decorators/control-property';
+import { IconConfig } from '@rxap/utilities';
 
 export function RxapSelectMultipleListControl() {
   return function(target: any, propertyKey: string) {
@@ -35,5 +37,7 @@ export function RxapSelectMultipleListControl() {
 })
 export class SelectMultipleListControlComponent<ControlValue>
   extends BaseControlComponent<ControlValue, SelectFormControl<ControlValue>> {
+
+  @Input() public icon: string | IconConfig | null = null;
 
 }

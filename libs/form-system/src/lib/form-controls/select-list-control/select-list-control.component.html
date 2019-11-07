@@ -11,7 +11,12 @@
         [selected]="true"
         [value]="option.value"
       >
-        <rxap-icon-button [icon]="icon" matListIcon></rxap-icon-button>
+        <rxap-icon-button
+          (buttonClick)="control.onPrefixButtonClick(option.value)"
+          *ngIf="icon"
+          [icon]="icon"
+          matListIcon>
+        </rxap-icon-button>
         {{ option.display | translate }}
       </mat-list-option>
       <mat-divider *ngIf="control.selectedOptions.length" inset></mat-divider>
@@ -21,7 +26,12 @@
         [selected]="false"
         [value]="option.value"
       >
-        <rxap-icon-button [icon]="icon" matListIcon></rxap-icon-button>
+        <rxap-icon-button
+          (buttonClick)="control.onPrefixButtonClick(option.value)"
+          *ngIf="icon"
+          [icon]="icon"
+          matListIcon>
+        </rxap-icon-button>
         {{ option.display | translate }}
       </mat-list-option>
     </mat-selection-list>

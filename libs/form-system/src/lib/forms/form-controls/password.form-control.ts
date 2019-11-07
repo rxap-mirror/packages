@@ -21,7 +21,8 @@ export class PasswordFormControl extends InputFormControl<string> {
     svgIcon: 'eye-off'
   };
 
-  public onSuffixButtonClick() {
+  public onSuffixButtonClick(value: string) {
+    this.suffixButtonClick$.next(value);
     if (this.type === InputTypes.PASSWORD) {
       this.suffixButton = this.hidePasswordIcon;
       this.type         = InputTypes.TEXT;

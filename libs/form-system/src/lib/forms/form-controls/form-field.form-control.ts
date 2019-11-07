@@ -6,6 +6,7 @@ import { ErrorStateMatcher } from '@angular/material';
 import { IconConfig } from '@rxap/utilities';
 import { BaseForm } from '../base.form';
 import { BaseFormGroup } from '../form-groups/base.form-group';
+import { Subject } from 'rxjs';
 
 export class FormFieldControlErrorStateMatcher implements ErrorStateMatcher {
 
@@ -57,8 +58,15 @@ export class FormFieldFormControl<ControlValue>
   public prefixButton: string | IconConfig | null = null;
   public suffixButton: string | IconConfig | null = null;
 
-  public onPrefixButtonClick(value: ControlValue) {}
+  public prefixButtonClick$ = new Subject<ControlValue>();
+  public suffixButtonClick$ = new Subject<ControlValue>();
 
-  public onSuffixButtonClick(value: ControlValue) {}
+  public onPrefixButtonClick(value: ControlValue) {
+    this.prefixButtonClick$.next(value);
+  }
+
+  public onSuffixButtonClick(value: ControlValue) {
+    this.suffixButtonClick$.next(value);
+  }
 
 }

@@ -14,7 +14,13 @@
           type="button"
         >
           <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="width: 100%">
-            <span fxFlex="grow">{{ option.display }}</span>
+            <rxap-icon-button
+              (buttonClick)="control.onPrefixButtonClick(option.value)"
+              *ngIf="icon"
+              [icon]="icon"
+              fxFlex="40px">
+            </rxap-icon-button>
+            <span fxFlex="grow">{{ option.display | translate }}</span>
             <rxap-icon [icon]="{ svgIcon: 'transfer-right' }" fxFlex="nogrow"></rxap-icon>
           </span>
         </button>
@@ -39,8 +45,14 @@
           type="button"
         >
           <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="width: 100%">
+            <rxap-icon-button
+              (buttonClick)="control.onPrefixButtonClick(option.value)"
+              *ngIf="icon"
+              [icon]="icon"
+              fxFlex="40px">
+            </rxap-icon-button>
             <rxap-icon [icon]="{ svgIcon: 'transfer-left' }" fxFlex="nogrow"></rxap-icon>
-            <span fxFlex="grow">{{ option.display }}</span>
+            <span fxFlex="grow">{{ option.display | translate }}</span>
           </span>
         </button>
       </mat-action-list>
