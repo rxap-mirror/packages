@@ -151,7 +151,7 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
           if (!(typeof handler === 'function')) {
             throw new Error(`Specifed on value change propertyKey '${propertyKey}' is not a function in definition '${formDefinition.group.controlId}'`);
           }
-          return handler;
+          return handler.bind(formDefinition);
         }));
       } else {
         throw new Error(`Can not add on value change handler. Control with id '${controlId}' not found`);
