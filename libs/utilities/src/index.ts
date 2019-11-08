@@ -7,6 +7,7 @@ export * from './lib/deep-merge';
 export * from './lib/array';
 export * from './lib/join';
 export * from './lib/flatten-object';
+export * from './lib/try-log';
 
 // region rxjs
 
