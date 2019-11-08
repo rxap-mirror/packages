@@ -40,7 +40,8 @@ export function RxapSelectListControl() {
       provide:  TextFilterService,
       useClass: OptionTextFilterService
     }
-  ]
+  ],
+  inputs:          [ 'control' ]
 })
 export class SelectListControlComponent<ControlValue>
   extends NgModelControlComponent<ControlValue, SelectFormControl<ControlValue>>

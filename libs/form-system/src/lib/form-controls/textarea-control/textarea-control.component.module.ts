@@ -22,4 +22,4 @@ import { TranslateModule } from '@ngx-translate/core';
   exports:         [ TextareaControlComponent ],
   entryComponents: [ TextareaControlComponent ]
 })
-export class RxapTextareaControlModule {}
+export class RxapTextareaControlComponentModule {}

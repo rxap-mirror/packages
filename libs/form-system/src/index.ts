@@ -54,6 +54,7 @@ export * from './lib/form-controls/standalone-ng-model-control.directive';
 export * from './lib/form-controls/standalone-ng-model-control.directive.module';
 export * from './lib/form-controls/standalone-control.directive';
 export * from './lib/form-controls/standalone-control.directive.module';
+export * from './lib/form-controls/form-control.components';
 
 // region input
 
@@ -103,6 +104,20 @@ export * from './lib/form-controls/select-multiple-list-control/select-multiple-
 
 // endregion
 
+// region select-or-create
+
+export * from './lib/form-controls/select-or-create/select-or-create.component';
+export * from './lib/form-controls/select-or-create/select-or-create.component.module';
+
+// endregion
+
+// region select-multiple-or-create
+
+export * from './lib/form-controls/select-multiple-or-create/select-multiple-or-create.component';
+export * from './lib/form-controls/select-multiple-or-create/select-multiple-or-create.component.module';
+
+// endregion
+
 // endregion
 
 // region form-view
@@ -137,6 +152,7 @@ export * from './lib/forms/form-controls/password.form-control';
 export * from './lib/forms/form-controls/select.form-control';
 export * from './lib/forms/form-controls/textarea-form.control';
 export * from './lib/forms/form-controls/radio-button.form-control';
+export * from './lib/forms/form-controls/select-or-create.form-control';
 
 // endregion
 

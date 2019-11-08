@@ -4,9 +4,9 @@ import {
   RxapFormSystemModule,
   RxapFormCardComponentModule,
   RxapInputControlComponentModule,
-  RxapSelectControlModule,
-  RxapTextareaControlModule,
-  RxapRadioButtonControlModule,
+  RxapSelectControlComponentModule,
+  RxapTextareaControlComponentModule,
+  RxapRadioButtonControlComponentModule,
   RxapSelectListControlComponentModule,
   RxapSelectMultipleListControlComponentModule
 } from '@rxap/form-system';
@@ -19,9 +19,9 @@ import { UserRegisterFormDefinition } from './user-register-form.definition';
     RxapFormSystemModule.register([ UserRegisterFormDefinition ]),
     RxapFormCardComponentModule,
     RxapInputControlComponentModule,
-    RxapSelectControlModule,
-    RxapTextareaControlModule,
-    RxapRadioButtonControlModule,
+    RxapSelectControlComponentModule,
+    RxapTextareaControlComponentModule,
+    RxapRadioButtonControlComponentModule,
     RxapSelectListControlComponentModule,
     RxapSelectMultipleListControlComponentModule
   ],

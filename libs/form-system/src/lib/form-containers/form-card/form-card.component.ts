@@ -5,7 +5,9 @@ import {
   Inject,
   Optional,
   OnInit,
-  Injector
+  Injector,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import {
   RXAP_FORM_ID,
@@ -32,6 +34,8 @@ export class FormCardComponent implements OnInit {
 
   @Input() @Required public formId!: string;
   @Input() public instanceId!: FormInstanceId;
+
+  @Output() public submitted = new EventEmitter<any>();
 
   public instance!: FormInstance<any>;
 

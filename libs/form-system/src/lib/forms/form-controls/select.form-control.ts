@@ -34,6 +34,9 @@ export function RxapSelectMultipleControl() {
 export class SelectFormControl<ControlValue>
   extends FormFieldFormControl<ControlValue> {
 
+  public multiple    = false;
+  public componentId = RxapFormControlComponentIds.SELECT;
+
   public get unselectedOptions(): ControlOptions<ControlValue> {
     return this.options.filter(
       option => !(this.multiple ? (this.value as any as any[]).some(v => this.compareWith(option.value, v)) : this.compareWith(option.value, this.value)));
@@ -44,19 +47,15 @@ export class SelectFormControl<ControlValue>
       option => this.multiple ? (this.value as any as any[]).some(v => this.compareWith(option.value, v)) : this.compareWith(option.value, this.value));
   }
 
-  private _options: ControlOptions<ControlValue> = [];
-
   public get options(): ControlOptions<ControlValue> {
     return this._options;
   }
 
-  public multiple = false;
-
-  public componentId = RxapFormControlComponentIds.SELECT;
-
   public set options(value: ControlOptions<ControlValue>) {
     this._options = value.sort(this.sort);
   }
+
+  private _options: ControlOptions<ControlValue> = [];
 
   public selectOption(selectValue: ControlValue) {
     if (this.multiple) {

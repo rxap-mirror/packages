@@ -7,7 +7,8 @@ import {
   ViewChild,
   ElementRef,
   OnDestroy,
-  Injector
+  Injector,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { FormTemplateLoader } from '../form-template-loader';
 import { FormInstanceFactory } from '../form-instance-factory';
@@ -31,9 +32,10 @@ import { FormValidSubmitService } from '../form-valid-submit.service';
 import { FormLoadService } from '../form-load.service';
 
 @Component({
-  selector: 'rxap-form-view',
-  templateUrl: './form-view.component.html',
-  styleUrls: ['./form-view.component.scss']
+  selector:        'rxap-form-view',
+  templateUrl:     './form-view.component.html',
+  styleUrls:       [ './form-view.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormViewComponent<FormValue extends object>
   implements OnInit, OnDestroy {

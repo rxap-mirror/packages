@@ -25,4 +25,4 @@ import { TranslateModule } from '@ngx-translate/core';
   exports:         [ RadioButtonControlComponent ],
   entryComponents: [ RadioButtonControlComponent ]
 })
-export class RxapRadioButtonControlModule {}
+export class RxapRadioButtonControlComponentModule {}

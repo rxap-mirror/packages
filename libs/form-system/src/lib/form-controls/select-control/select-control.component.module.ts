@@ -27,4 +27,4 @@ import { TranslateModule } from '@ngx-translate/core';
   exports:         [ SelectControlComponent ],
   entryComponents: [ SelectControlComponent ]
 })
-export class RxapSelectControlModule {}
+export class RxapSelectControlComponentModule {}
