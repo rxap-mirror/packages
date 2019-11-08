@@ -49,8 +49,8 @@ export type OptionsDataSourceToken<ControlValue> = InjectionToken<SelectOptionsD
 export class SelectFormControl<ControlValue>
   extends FormFieldFormControl<ControlValue> {
 
-  public multiple    = false;
-  public componentId = RxapFormControlComponentIds.SELECT;
+  public multiple            = false;
+  public componentId: string = RxapFormControlComponentIds.SELECT;
 
   public set options(value: ControlOptions<ControlValue>) {
     this._options = value.sort((a, b) => this.sort(a, b));
@@ -72,7 +72,7 @@ export class SelectFormControl<ControlValue>
 
   public OptionsDataSourceToken: OptionsDataSourceToken<ControlValue> | null = null;
 
-  private _options: ControlOptions<ControlValue> = [];
+  protected _options: ControlOptions<ControlValue> = [];
 
   public rxapOnInit(): void {
     super.rxapOnInit();
