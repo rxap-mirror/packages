@@ -29,6 +29,7 @@ export * from './lib/form-definition/decorators/form-definition';
 export * from './lib/form-definition/decorators/form-template';
 export * from './lib/form-definition/decorators/group';
 export * from './lib/form-definition/decorators/on-value-change';
+export * from './lib/form-definition/decorators/set-form-control-meta';
 
 // endregion
 

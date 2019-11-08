@@ -7,7 +7,8 @@ import {
   OnInit,
   Injector,
   Output,
-  EventEmitter
+  EventEmitter,
+  OnDestroy
 } from '@angular/core';
 import {
   RXAP_FORM_ID,
@@ -22,6 +23,8 @@ import { Required } from '@rxap/utilities';
 import { FormInvalidSubmitService } from '../../form-invalid-submit.service';
 import { FormValidSubmitService } from '../../form-valid-submit.service';
 import { FormLoadService } from '../../form-load.service';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 
 @Component({
@@ -30,7 +33,7 @@ import { FormLoadService } from '../../form-load.service';
   styleUrls: ['./form-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormCardComponent implements OnInit {
+export class FormCardComponent implements OnInit, OnDestroy {
 
   @Input() @Required public formId!: string;
   @Input() public instanceId!: FormInstanceId;
@@ -38,6 +41,8 @@ export class FormCardComponent implements OnInit {
   @Output() public submitted = new EventEmitter<any>();
 
   public instance!: FormInstance<any>;
+
+  public subscription = new Subscription();
 
   constructor(
     @Inject(RXAP_FORM_ID) @Optional() formId: string | null                      = null,
@@ -68,6 +73,19 @@ export class FormCardComponent implements OnInit {
       this.formValidSubmit,
       this.formLoad
     );
+    this.subscription.add(
+      this.instance
+          .formDefinition
+          .validSubmit$
+          .pipe(
+            tap(value => this.submitted.emit(value))
+          )
+          .subscribe()
+    );
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }
