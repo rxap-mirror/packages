@@ -171,4 +171,9 @@ export class BaseFormArray<ItemValue,
     super.updateValue(partialValue, options);
   }
 
+  public reset() {
+    this.controls.forEach(control => control.reset());
+    super.reset();
+  }
+
 }

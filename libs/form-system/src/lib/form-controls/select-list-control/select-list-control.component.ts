@@ -52,6 +52,7 @@ export class SelectListControlComponent<ControlValue>
   @ViewChild(MatSelectionList, { static: true }) public selectionList!: MatSelectionList;
 
   public ngOnInit(): void {
+    super.ngOnInit();
     this.selectionList.selectedOptions = new SelectionModel<MatListOption>(false);
   }
 

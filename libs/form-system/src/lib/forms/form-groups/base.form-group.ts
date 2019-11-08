@@ -125,4 +125,9 @@ export class BaseFormGroup<GroupValue extends object>
     super.updateValue(partialValue, { ...options, onlySelf: true });
   }
 
+  public reset() {
+    this.controls.forEach(control => control.reset());
+    super.reset();
+  }
+
 }

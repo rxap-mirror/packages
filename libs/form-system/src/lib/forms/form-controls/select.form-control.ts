@@ -101,6 +101,14 @@ export class SelectFormControl<ControlValue>
     this.handelOptionsDataSource();
   }
 
+  public addOption(option: ControlOption<ControlValue>) {
+    this._options.unshift(option);
+  }
+
+  public removeOption(option: ControlOption<ControlValue>) {
+    this._options.splice(this._options.findIndex(o => this.compareWith(o.value, option.value)), 1);
+  }
+
   public handelOptionsDataSource() {
     if (this.OptionsDataSourceToken) {
       const optionsDataSource: SelectOptionsDataSource<ControlValue> = this.injector.get(this.OptionsDataSourceToken);

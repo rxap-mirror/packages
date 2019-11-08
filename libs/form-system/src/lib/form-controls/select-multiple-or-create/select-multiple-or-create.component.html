@@ -1,14 +1,14 @@
 <mat-tab-group>
   <mat-tab [label]="(control.label | translate) + ' auswählen'">
-    <rxap-select-list-control
+    <rxap-select-multiple-list-control
       [control]="control">
-    </rxap-select-list-control>
+    </rxap-select-multiple-list-control>
   </mat-tab>
   <mat-tab [label]="'Neuen ' + (control.label | translate) + ' hinzufügen'">
     <div class="create-form-container">
       <ng-template matTabContent>
         <rxap-form-card
-          (submitted)="control.selectOption($event)"
+          (submitted)="onSubmitted($event)"
           *ngIf="control.createFormId"
           [formId]="control.createFormId"
         ></rxap-form-card>

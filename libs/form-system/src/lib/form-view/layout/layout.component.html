@@ -1,3 +1,3 @@
-<div [fxLayout]="layout.orientation" [fxLayoutGap]="layout.gap" class="row">
+<div [fxLayoutGap]="layout.gap" [fxLayout]="layout.orientation" [ngClass]="{ 'row-border': isDevMode }">
   <ng-template #rowContainer></ng-template>
 </div>

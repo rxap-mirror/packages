@@ -3,27 +3,18 @@ import { UserRegisterFormComponent } from './user-register-form.component';
 import {
   RxapFormSystemModule,
   RxapFormCardComponentModule,
-  RxapInputControlComponentModule,
-  RxapSelectControlComponentModule,
-  RxapTextareaControlComponentModule,
-  RxapRadioButtonControlComponentModule,
-  RxapSelectListControlComponentModule,
-  RxapSelectMultipleListControlComponentModule
+  RxapFormControlComponentModule
 } from '@rxap/form-system';
 import { UserRegisterFormDefinition } from './user-register-form.definition';
+import { ChildrenFormDefinition } from './children-form.definition';
 
 
 @NgModule({
   declarations: [UserRegisterFormComponent],
   imports: [
-    RxapFormSystemModule.register([ UserRegisterFormDefinition ]),
+    RxapFormSystemModule.register([ UserRegisterFormDefinition, ChildrenFormDefinition ]),
     RxapFormCardComponentModule,
-    RxapInputControlComponentModule,
-    RxapSelectControlComponentModule,
-    RxapTextareaControlComponentModule,
-    RxapRadioButtonControlComponentModule,
-    RxapSelectListControlComponentModule,
-    RxapSelectMultipleListControlComponentModule
+    RxapFormControlComponentModule
   ],
   exports: [UserRegisterFormComponent]
 })

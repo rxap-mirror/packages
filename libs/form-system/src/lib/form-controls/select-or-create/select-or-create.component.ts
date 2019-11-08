@@ -1,6 +1,7 @@
 import {
   Component,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ViewChild
 } from '@angular/core';
 import { BaseControlComponent } from '../base-control.component';
 import { SelectOrCreateFormControl } from '../../forms/form-controls/select-or-create.form-control';
@@ -9,6 +10,7 @@ import { RxapFormControlComponentIds } from '../form-control-component-ids';
 import { FormId } from '../../form-instance-factory';
 import { SetFormControlMeta } from '../../form-definition/decorators/set-form-control-meta';
 import { RxapControlProperty } from '../../form-definition/decorators/control-property';
+import { MatTabGroup } from '@angular/material';
 
 export function RxapSelectOrCreateControl(formId: FormId) {
   return function(target: any, propertyKey: string) {
@@ -26,4 +28,13 @@ export function RxapSelectOrCreateControl(formId: FormId) {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectOrCreateComponent<ControlValue>
-  extends BaseControlComponent<ControlValue, SelectOrCreateFormControl<ControlValue>> {}
+  extends BaseControlComponent<ControlValue, SelectOrCreateFormControl<ControlValue>> {
+
+  @ViewChild(MatTabGroup, { static: true }) public tabGroup!: MatTabGroup;
+
+  public onSubmitted(value: ControlValue): void {
+    this.control.created(value);
+    this.tabGroup.selectedIndex = 0;
+  }
+
+}

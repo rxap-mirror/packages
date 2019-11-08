@@ -86,4 +86,9 @@ export class BaseFormControl<ControlValue> extends BaseForm<ControlValue | null,
     this.setValue(this.initial);
   }
 
+  public reset() {
+    this.setValue(this.initial);
+    super.reset();
+  }
+
 }

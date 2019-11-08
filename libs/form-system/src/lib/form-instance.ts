@@ -235,16 +235,23 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
   }
 
   public submit() {
+    console.log(`Submit form '${this.formDefinition.group.formId}'`);
     this.clickSubmit$.next();
     this.formDefinition.rxapOnSubmit();
+    this.formDefinition.submit$.next();
     this.runValidators();
     if (this.formDefinition.group.isValid === true) {
+      console.log(`Form submit '${this.formDefinition.group.formId}' valid`);
       this.formDefinition.rxapOnSubmitValid();
+      this.formDefinition.validSubmit$.next(this.formDefinition.group.value);
       if (this.formValidSubmit) {
         this.formValidSubmit.onValidSubmit(this);
       }
+      this.reset();
     } else if (this.formDefinition.group.isInvalid === true) {
+      console.log(`Form submit '${this.formDefinition.group.formId}' inValid`, this.formDefinition.group.getErrorTree());
       this.formDefinition.rxapOnSubmitInvalid();
+      this.formDefinition.invalidSubmit$.next(this.formDefinition.group.getErrorTree());
       if (this.formInvalidSubmit) {
         this.formInvalidSubmit.onInvalidSubmit(this);
       }

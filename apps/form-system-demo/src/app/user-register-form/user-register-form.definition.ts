@@ -8,11 +8,14 @@ import {
   RxapTextareaControl,
   RxapRadioButtonControl,
   BaseFormControl,
-  RxapSelectMultipleListControl
+  RxapSelectMultipleListControl,
+  SelectFormControl,
+  RxapSelectMultipleOrCreateControl
 } from '@rxap/form-system';
 import { Injectable } from '@angular/core';
 import { RxapSelectListControl } from '../../../../../libs/form-system/src/lib/form-controls/select-list-control/select-list-control.component';
 import { ActivatedRoute } from '@angular/router';
+import { CHILDREN_FORM } from './children-form.definition';
 
 export const USER_REGISTER_FORM = 'user-register';
 
@@ -22,15 +25,6 @@ export interface UserRegisterForm {
   email: string;
 }
 
-// @RxapFormTemplate(`<column>
-//   <control id="username"/>
-//   <control id="password"/>
-//   <control id="email"/>
-//   <control id="gender"></control>
-//   <control id="accounts"></control>
-//   <control id="description"></control>
-//   <control id="age"></control>
-// </column>`)
 @RxapForm(USER_REGISTER_FORM)
 @Injectable()
 export class UserRegisterFormDefinition
@@ -76,6 +70,10 @@ export class UserRegisterFormDefinition
   @RxapRadioButtonControl()
   @RxapFormControl()
   public age!: BaseFormControl<any>;
+
+  @RxapSelectMultipleOrCreateControl(CHILDREN_FORM)
+  @RxapFormControl()
+  public children!: SelectFormControl<any>;
 
   constructor(public route: ActivatedRoute) {
     super();

@@ -8,7 +8,7 @@
     <div class="create-form-container">
       <ng-template matTabContent>
         <rxap-form-card
-          (submitted)="control.selectOption($event)"
+          (submitted)="onSubmitted($event)"
           *ngIf="control.createFormId"
           [formId]="control.createFormId"
         ></rxap-form-card>

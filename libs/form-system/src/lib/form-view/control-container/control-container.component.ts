@@ -6,7 +6,8 @@ import {
   ComponentFactoryResolver,
   Injector,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
+  isDevMode
 } from '@angular/core';
 import { Control } from '../control';
 import { BaseFormControl } from '../../forms/form-controls/base.form-control';
@@ -29,6 +30,8 @@ export class ControlContainerComponent implements OnInit {
   public control!: Control;
 
   public formControl!: BaseFormControl<any>;
+
+  public isDevMode = isDevMode();
 
   constructor(
     public readonly formStateManager: FormStateManager,

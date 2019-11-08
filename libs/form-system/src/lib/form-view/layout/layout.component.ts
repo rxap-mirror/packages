@@ -9,7 +9,8 @@ import {
   OnChanges,
   SimpleChanges,
   ChangeDetectionStrategy,
-  ViewEncapsulation
+  ViewEncapsulation,
+  isDevMode
 } from '@angular/core';
 import { Control } from '../control';
 import { ControlContainerComponent } from '../control-container/control-container.component';
@@ -34,6 +35,8 @@ export class LayoutComponent implements OnInit, OnChanges {
   public layoutFactory  = this.cfr.resolveComponentFactory(LayoutComponent);
   public controlFactory = this.cfr.resolveComponentFactory(ControlContainerComponent);
   public stepperFactory = this.cfr.resolveComponentFactory(StepperComponent);
+
+  public isDevMode = isDevMode();
 
   constructor(
     public readonly cfr: ComponentFactoryResolver,

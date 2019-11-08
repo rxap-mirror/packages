@@ -224,4 +224,8 @@ export class BaseForm<Value,
     this.setStatus(true);
   }
 
+  public reset(): void {
+    this.clearErrors();
+  }
+
 }
