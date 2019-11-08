@@ -1,12 +1,12 @@
 {
   "name": "@rxap/form-system",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "private": false,
   "peerDependencies": {
     "@angular/common": "^8.2.4",
     "@angular/core": "^8.2.4",
     "rxjs": "^6.5.3",
-    "@rxap/utilities": "^0.0.1",
+    "@rxap/utilities": "^0.0.3",
     "uuid": "^3.3.3",
     "ramda": "^0.26.1",
     "@angular/material": "^8.2.3"

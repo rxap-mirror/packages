@@ -9,7 +9,7 @@
     [multiple]="control.multiple"
     [placeholder]="control.placeholder | translate"
     [required]="control.required">
-    <mat-option [value]="null">--</mat-option>
+    <mat-option *ngIf="!control.multiple" [value]="null">--</mat-option>
     <mat-option
       *ngFor="let option of control.options; trackBy: control.trackBy" [disabled]="option.disabled"
       [value]="option.value">

@@ -6,7 +6,8 @@ import {
 import {
   SubscriptionHandler,
   getMetadata,
-  KeyValue
+  KeyValue,
+  TryAndLogOnError
 } from '@rxap/utilities';
 import { FormDefinitionMetaDataKeys } from './form-definition/decorators/meta-data-keys';
 import { tap } from 'rxjs/operators';
@@ -167,7 +168,7 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
       this._subscriptions.add(
         FormInstanceSubscriptions.ON_VALUE_CHANGE,
         control.valueChange$.pipe(
-          tap(() => handlers.forEach(handler => handler()))
+          tap(() => handlers.forEach(TryAndLogOnError((handler: () => any) => handler())))
         ).subscribe()
       );
     }
@@ -184,7 +185,10 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
         control
           .valueChanged$
           .pipe(
-            tap(value => controlValidators.forEach(controlValidator => this.runValidator(value, control, controlValidator)))
+            tap(value => controlValidators.forEach(TryAndLogOnError((controlValidator: ControlValidator<any>) => this.runValidator(value,
+              control,
+              controlValidator
+            ))))
           )
           .subscribe()
       );
