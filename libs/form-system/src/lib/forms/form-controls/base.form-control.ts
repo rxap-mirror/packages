@@ -5,6 +5,7 @@ import {
 import { Subject } from 'rxjs';
 import { ParentForm } from '../parent.form';
 import { BaseFormGroup } from '../form-groups/base.form-group';
+import { Injector } from '@angular/core';
 
 export interface IBaseFormControl<ControlValue> {
   placeholder: string;
@@ -21,7 +22,7 @@ export class BaseFormControl<ControlValue> extends BaseForm<ControlValue | null,
   ControlValue | null> {
 
   public static EMPTY(parent: BaseForm<any, any, any> = BaseFormGroup.EMPTY()): BaseFormControl<any> {
-    return new BaseFormControl<any>('control', parent);
+    return new BaseFormControl<any>('control', parent, null as any);
   }
 
   public static STANDALONE<ControlValue>(options: Partial<IBaseFormControl<ControlValue>> = {}): BaseFormControl<ControlValue> {
@@ -73,8 +74,8 @@ export class BaseFormControl<ControlValue> extends BaseForm<ControlValue | null,
    */
   public updateView$ = new Subject<void>();
 
-  constructor(controlId: string, parent: ParentForm<any>) {
-    super(parent.formId, controlId, parent);
+  constructor(controlId: string, parent: ParentForm<any>, injector: Injector) {
+    super(parent.formId, controlId, injector, parent);
     this.placeholder = `FORMS.${this.controlPath}.PLACEHOLDER`;
     this.label       = `FORMS.${this.controlPath}.LABEL`;
     this.name        = [ this.formId, this.controlPath ].join('.');

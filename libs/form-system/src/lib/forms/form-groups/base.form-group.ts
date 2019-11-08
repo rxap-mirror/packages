@@ -9,6 +9,7 @@ import {
   Nullable,
   RecursivePartial
 } from '@rxap/utilities';
+import { Injector } from '@angular/core';
 
 export interface FormGroupError extends BaseFormErrors {
   controls: { [controlId: string]: BaseFormErrors | null };
@@ -18,7 +19,7 @@ export class BaseFormGroup<GroupValue extends object>
   extends BaseForm<Nullable<GroupValue>, FormGroupError, RecursivePartial<Nullable<GroupValue>>> {
 
   public static EMPTY(parent?: BaseForm<any, any, any>): BaseFormGroup<any> {
-    return new BaseFormGroup<any>('empty', 'group', parent);
+    return new BaseFormGroup<any>('empty', 'group', null, null as any, parent);
   }
 
   public readonly controls = new Map<string, BaseForm<GroupValue[keyof GroupValue], any, any>>();
@@ -27,10 +28,11 @@ export class BaseFormGroup<GroupValue extends object>
     public readonly formId: string,
     public readonly controlId: string,
     public readonly formDefinition: any | null     = null,
+    injector: Injector,
     // TODO : add parent type
     public readonly parent: ParentForm<any> | null = null
   ) {
-    super(formId, controlId, parent);
+    super(formId, controlId, injector, parent);
   }
 
   public init(): void {

@@ -15,6 +15,7 @@ import {
 } from 'rxjs/operators';
 import { equals } from 'ramda';
 import { ParentForm } from './parent.form';
+import { Injector } from '@angular/core';
 
 export interface BaseFormErrors {
   errors: Map<string, string>;
@@ -42,7 +43,7 @@ export class BaseForm<Value,
   PartialValue> {
 
   public static EMPTY(parent?: BaseForm<any, any, any>): BaseForm<any, any, any> {
-    return new BaseForm<any, any, any>('empty', 'form', parent);
+    return new BaseForm<any, any, any>('empty', 'form', null as any, parent);
   }
 
   public get root(): BaseForm<any, any, any> | null {
@@ -100,6 +101,7 @@ export class BaseForm<Value,
   constructor(
     public readonly formId: string,
     public readonly controlId: string,
+    public readonly injector: Injector,
     // TODO : add parent type
     public readonly parent: ParentForm<any> | null = null
   ) {

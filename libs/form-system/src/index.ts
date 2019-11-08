@@ -54,7 +54,7 @@ export * from './lib/form-controls/standalone-ng-model-control.directive';
 export * from './lib/form-controls/standalone-ng-model-control.directive.module';
 export * from './lib/form-controls/standalone-control.directive';
 export * from './lib/form-controls/standalone-control.directive.module';
-export * from './lib/form-controls/form-control.components';
+export * from './lib/form-controls/form-control.component.module';
 
 // region input
 

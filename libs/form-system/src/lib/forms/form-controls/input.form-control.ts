@@ -33,7 +33,7 @@ export class InputFormControl<ControlValue>
   extends FormFieldFormControl<ControlValue> {
 
   public static EMPTY(parent: BaseForm<any, any, any> = BaseFormGroup.EMPTY()): InputFormControl<any> {
-    return new InputFormControl<any>('control', parent);
+    return new InputFormControl<any>('control', parent, null as any);
   }
 
   public static STANDALONE<ControlValue>(options: Partial<IInputFormControl<ControlValue>> = {}): InputFormControl<ControlValue> {

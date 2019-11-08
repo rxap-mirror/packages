@@ -36,7 +36,7 @@ export class FormFieldFormControl<ControlValue>
   extends BaseFormControl<ControlValue> {
 
   public static EMPTY(parent: BaseForm<any, any, any> = BaseFormGroup.EMPTY()): FormFieldFormControl<any> {
-    return new FormFieldFormControl<any>('control', parent);
+    return new FormFieldFormControl<any>('control', parent, null as any);
   }
 
   public static STANDALONE<ControlValue>(options: Partial<IFormFieldFormControl<ControlValue>> = {}): FormFieldFormControl<ControlValue> {

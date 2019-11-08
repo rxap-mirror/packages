@@ -3,12 +3,16 @@ import {
   ControlOptions,
   hasIdentifierProperty,
   getIdentifierPropertyValue,
-  ControlOption
+  ControlOption,
+  Type
 } from '@rxap/utilities';
 import { equals } from 'ramda';
 import { RxapFormControlComponentIds } from '../../form-controls/form-control-component-ids';
 import { RxapControlProperty } from '../../form-definition/decorators/control-property';
 import { SetFormControlMeta } from '../../form-definition/decorators/set-form-control-meta';
+import { Observable } from 'rxjs';
+import { InjectionToken } from '@angular/core';
+import { tap } from 'rxjs/operators';
 
 export function RxapControlOptions<ControlValue>(...options: Array<ControlOption<ControlValue> | string>) {
   return RxapControlProperty('options', options.map(option => {
@@ -19,23 +23,38 @@ export function RxapControlOptions<ControlValue>(...options: Array<ControlOption
   }).sort((a, b) => a.display.localeCompare(b.display)));
 }
 
-export function RxapSelectControl() {
-  return SetFormControlMeta('formControl', SelectFormControl);
+export function RxapSelectControl(optionsDataSource: OptionsDataSourceToken<any> | null = null) {
+  return function(target: any, propertyKey: string) {
+    SetFormControlMeta('formControl', SelectFormControl)(target, propertyKey);
+    RxapControlProperty('OptionsDataSourceToken', optionsDataSource)(target, propertyKey);
+  };
 }
 
-export function RxapSelectMultipleControl() {
+export function RxapSelectMultipleControl(optionsDataSource: OptionsDataSourceToken<any> | null = null) {
   return function(target: any, propertyKey: string) {
-    RxapSelectControl()(target, propertyKey);
+    RxapSelectControl(optionsDataSource)(target, propertyKey);
     RxapControlProperty('multiple', true)(target, propertyKey);
     RxapControlProperty('initial', [])(target, propertyKey);
   };
 }
+
+export interface SelectOptionsDataSource<ControlValue> {
+
+  getOptions(params?: { filterValue?: string, page?: number }): Observable<ControlOptions<ControlValue>>;
+
+}
+
+export type OptionsDataSourceToken<ControlValue> = InjectionToken<SelectOptionsDataSource<ControlValue>> | Type<SelectOptionsDataSource<ControlValue>>
 
 export class SelectFormControl<ControlValue>
   extends FormFieldFormControl<ControlValue> {
 
   public multiple    = false;
   public componentId = RxapFormControlComponentIds.SELECT;
+
+  public set options(value: ControlOptions<ControlValue>) {
+    this._options = value.sort((a, b) => this.sort(a, b));
+  }
 
   public get unselectedOptions(): ControlOptions<ControlValue> {
     return this.options.filter(
@@ -51,11 +70,26 @@ export class SelectFormControl<ControlValue>
     return this._options;
   }
 
-  public set options(value: ControlOptions<ControlValue>) {
-    this._options = value.sort(this.sort);
-  }
+  public OptionsDataSourceToken: OptionsDataSourceToken<ControlValue> | null = null;
 
   private _options: ControlOptions<ControlValue> = [];
+
+  public rxapOnInit(): void {
+    super.rxapOnInit();
+    this.handelOptionsDataSource();
+  }
+
+  public handelOptionsDataSource() {
+    if (this.OptionsDataSourceToken) {
+      const optionsDataSource: SelectOptionsDataSource<ControlValue> = this.injector.get(this.OptionsDataSourceToken);
+      this._subscriptions.add(
+        optionsDataSource.getOptions().pipe(
+          tap(options => this.options = options),
+          tap(() => this.updateView$.next())
+        ).subscribe()
+      );
+    }
+  }
 
   public selectOption(selectValue: ControlValue) {
     if (this.multiple) {

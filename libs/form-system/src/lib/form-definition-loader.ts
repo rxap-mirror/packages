@@ -68,9 +68,9 @@ export class FormDefinitionLoader {
 
     const formDefinition = injector.get(formDefinitionType, new formDefinitionType(), InjectFlags.Optional);
 
-    const formGroup = new BaseFormGroup<any>(formId, controlId || formId, formDefinition, parent);
+    const formGroup = new BaseFormGroup<any>(formId, controlId || formId, formDefinition, injector, parent);
 
-    const controlsMap = this.buildControls(metaData.controls, formGroup);
+    const controlsMap = this.buildControls(metaData.controls, formGroup, injector);
     const groupsMap   = this.buildGroups(metaData.groups, injector, parent);
     const arraysMap   = this.buildArrays(metaData.arrays, injector, parent);
 
@@ -106,10 +106,11 @@ export class FormDefinitionLoader {
 
   public buildControl(
     controlMetaData: FormControlMetaData<any>,
-    parent: ParentForm<any>
+    parent: ParentForm<any>,
+    injector: Injector = this.injector
   ): BaseFormControl<any> {
     const FormControlType: Type<BaseFormControl<any>> = controlMetaData.formControl;
-    const control: BaseFormControl<any>               = new FormControlType(controlMetaData.controlId, parent);
+    const control: BaseFormControl<any>               = new FormControlType(controlMetaData.controlId, parent, injector);
 
     Object.assign(control, controlMetaData.properties);
 
@@ -120,9 +121,10 @@ export class FormDefinitionLoader {
 
   public buildControls(
     controls: FormControlMetaData<any>[],
-    parent: ParentForm<any>
+    parent: ParentForm<any>,
+    injector: Injector = this.injector
   ): KeyValue<BaseFormControl<any>> {
-    return controls.map(control => ({ [ control.propertyKey ]: this.buildControl(control, parent) })).reduce(objectReducer, {});
+    return controls.map(control => ({ [ control.propertyKey ]: this.buildControl(control, parent, injector) })).reduce(objectReducer, {});
   }
 
   public buildGroup(
@@ -153,7 +155,7 @@ export class FormDefinitionLoader {
       formId = getFormDefinitionId(array.formDefinition);
     }
     const formGroup = this.load(array.formDefinition, injector, parent).group;
-    return new BaseFormArray(formId, array.controlId, formGroup, parent);
+    return new BaseFormArray(formId, array.controlId, formGroup, injector, parent);
   }
 
   public buildArrays(

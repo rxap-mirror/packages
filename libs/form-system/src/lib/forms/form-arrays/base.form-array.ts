@@ -10,6 +10,7 @@ import {
   RecursivePartial
 } from '@rxap/utilities';
 import { BaseFormControl } from '../form-controls/base.form-control';
+import { Injector } from '@angular/core';
 
 export interface FormArrayError extends BaseFormErrors {
   controls: Array<null | BaseFormErrors>;
@@ -22,7 +23,7 @@ export class BaseFormArray<ItemValue,
     Array<RecursivePartial<ItemValue>>> {
 
   public static EMPTY(parent?: BaseForm<any, any, any>): BaseFormArray<any, any> {
-    return new BaseFormArray<any, any>('empty', 'array', BaseFormControl, parent);
+    return new BaseFormArray<any, any>('empty', 'array', BaseFormControl, null as any, parent);
   }
 
   public readonly controls: Form[] = [];
@@ -31,10 +32,11 @@ export class BaseFormArray<ItemValue,
     public readonly formId: string,
     public readonly controlId: string,
     public readonly controlTemplate: Form,
+    injector: Injector,
     // TODO : add parent type
     public readonly parent: ParentForm<any> | null = null
   ) {
-    super(formId, controlId, parent);
+    super(formId, controlId, injector, parent);
   }
 
   public addControl(control: Form, indexOrString?: number | string): void {
