@@ -1,4 +1,7 @@
-import { FormFieldFormControl } from './form-field.form-control';
+import {
+  FormFieldFormControl,
+  IFormFieldFormControl
+} from './form-field.form-control';
 import {
   ControlOptions,
   hasIdentifierProperty,
@@ -13,6 +16,8 @@ import { SetFormControlMeta } from '../../form-definition/decorators/set-form-co
 import { Observable } from 'rxjs';
 import { InjectionToken } from '@angular/core';
 import { tap } from 'rxjs/operators';
+import { BaseForm } from '../base.form';
+import { BaseFormGroup } from '../form-groups/base.form-group';
 
 export function RxapControlOptions<ControlValue>(...options: Array<ControlOption<ControlValue> | string>) {
   return RxapControlProperty('options', options.map(option => {
@@ -44,10 +49,27 @@ export interface SelectOptionsDataSource<ControlValue> {
 
 }
 
+export interface ISelectFormControl<ControlValue> extends IFormFieldFormControl<ControlValue> {
+  multiple: boolean;
+}
+
 export type OptionsDataSourceToken<ControlValue> = InjectionToken<SelectOptionsDataSource<ControlValue>> | Type<SelectOptionsDataSource<ControlValue>>
 
 export class SelectFormControl<ControlValue>
   extends FormFieldFormControl<ControlValue> {
+
+  public static EMPTY(parent: BaseForm<any, any, any> = BaseFormGroup.EMPTY()): SelectFormControl<any> {
+    return new SelectFormControl<any>('control', parent, null as any);
+  }
+
+  public static STANDALONE<ControlValue>(options: Partial<ISelectFormControl<ControlValue>> = {}): SelectFormControl<ControlValue> {
+    const control       = SelectFormControl.EMPTY();
+    control.placeholder = '';
+    control.label       = '';
+    control.name        = '';
+    Object.assign(control, options);
+    return control;
+  }
 
   public multiple            = false;
   public componentId: string = RxapFormControlComponentIds.SELECT;
