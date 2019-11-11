@@ -6,5 +6,6 @@ export enum RxapFormControlComponentIds {
   SELECT_LIST               = 'SELECT_LIST',
   SELECT_MULTIPLE_LIST      = 'SELECT_MULTIPLE_LIST',
   SELECT_MULTIPLE_OR_CREATE = 'SELECT_MULTIPLE_OR_CREATE',
-  SELECT_OR_CREATE          = 'SELECT_OR_CREATE'
+  SELECT_OR_CREATE          = 'SELECT_OR_CREATE',
+  CHECKBOX                  = 'CHECKBOX'
 }

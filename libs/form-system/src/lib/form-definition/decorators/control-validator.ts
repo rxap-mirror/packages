@@ -6,6 +6,7 @@ import {
 import { FormDefinitionMetaDataKeys } from './meta-data-keys';
 import { FormControlMetaData } from './control';
 import { v1 as uuid } from 'uuid';
+import { RxapControlProperty } from './control-property';
 
 
 /**
@@ -42,9 +43,12 @@ export function RxapControlValidator<ControlValue = any>(options: ControlValidat
 }
 
 export function RxapControlRequired() {
-  return RxapControlValidator({
-    message:   'RXAP.FORM_SYSTEM.VALIDATORS.REQUIRED',
-    key:       'required',
-    validator: value => value !== null && value !== ''
-  });
+  return function(target: any, propertyKey: string) {
+    RxapControlValidator({
+      message:   'RXAP.FORM_SYSTEM.VALIDATORS.REQUIRED',
+      key:       'required',
+      validator: value => value !== null && value !== ''
+    })(target, propertyKey);
+    RxapControlProperty('required', true)(target, propertyKey);
+  };
 }

@@ -1,0 +1,8 @@
+<mat-checkbox
+  [(ngModel)]="model"
+  [disabled]="control.disabled"
+  [labelPosition]="control.labelPosition"
+  [name]="control.name"
+  [required]="control.required">
+  {{control.label | translate}}
+</mat-checkbox>
