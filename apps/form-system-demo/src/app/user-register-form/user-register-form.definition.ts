@@ -11,7 +11,8 @@ import {
   RxapSelectMultipleListControl,
   SelectFormControl,
   RxapSelectMultipleOrCreateControl,
-  RxapSelectListControl
+  RxapSelectListControl,
+  RxapControlRequired
 } from '@rxap/form-system';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -30,6 +31,7 @@ export interface UserRegisterForm {
 export class UserRegisterFormDefinition
   extends RxapFormDefinition<UserRegisterForm> {
 
+  @RxapControlRequired()
   @RxapControlValidator<string>({
     validator: username => username && username.match(/[A-Z]/) ? null : false,
     message:   'Should start with uppercase latter'
@@ -41,6 +43,7 @@ export class UserRegisterFormDefinition
   })
   public username!: BaseFormControl<any>;
 
+  @RxapControlRequired()
   @RxapPasswordControl()
   @RxapFormControl({
     properties: {
@@ -49,28 +52,34 @@ export class UserRegisterFormDefinition
   })
   public password!: BaseFormControl<any>;
 
+  @RxapControlRequired()
   @RxapFormControl()
   public email!: BaseFormControl<any>;
 
+  @RxapControlRequired()
   @RxapControlOptions('Male', 'Female')
   @RxapSelectListControl()
   @RxapFormControl()
   public gender!: BaseFormControl<any>;
 
+  @RxapControlRequired()
   @RxapControlOptions('Facebook', 'Github', 'Google', 'Amazon', 'Gitlab')
   @RxapSelectMultipleListControl()
   @RxapFormControl()
   public accounts!: BaseFormControl<any>;
 
+  @RxapControlRequired()
   @RxapTextareaControl()
   @RxapFormControl()
   public description!: BaseFormControl<any>;
 
+  @RxapControlRequired()
   @RxapControlOptions('10 Jahre', '15 Jahre', '18 Jahre')
   @RxapRadioButtonControl()
   @RxapFormControl()
   public age!: BaseFormControl<any>;
 
+  @RxapControlRequired()
   @RxapSelectMultipleOrCreateControl(CHILDREN_FORM)
   @RxapFormControl()
   public children!: SelectFormControl<any>;

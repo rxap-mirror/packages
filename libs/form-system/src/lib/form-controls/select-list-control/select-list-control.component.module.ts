@@ -4,7 +4,8 @@ import { SelectListControlComponent } from './select-list-control.component';
 import {
   MatListModule,
   MatPaginatorModule,
-  MatCardModule
+  MatCardModule,
+  MatFormFieldModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TextFilterComponentModule } from '../../utilities/text-filter/text-filter.component.module';
@@ -30,7 +31,8 @@ import { TranslateModule } from '@ngx-translate/core';
     IconComponentModule,
     RxapIconButtonComponentModule,
     TranslateModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule
   ],
   exports:         [ SelectListControlComponent ],
   entryComponents: [ SelectListControlComponent ]

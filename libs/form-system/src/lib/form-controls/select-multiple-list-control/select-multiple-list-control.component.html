@@ -1,20 +1,34 @@
-<div class="container" fxLayout="row" fxLayoutGap="32px">
-  <div fxFlex="50" style="padding: 16px; margin-bottom: 20px">
-    <div class="mat-elevation-z2" fxLayout="column">
-      <div class="filter-input" fxFlex="nogrow">
-        <rxap-text-filter #unselectedTextFilter [data]="control.unselectedOptions"></rxap-text-filter>
-      </div>
-      <mat-action-list fxFlex="nogrow">
-        <mat-list-item *ngIf="(unselectedTextFilter.isEmpty$ | async) && control.selectedOptions.length === 0">
-          {{'RXAP.FORM_SYSTEM.FORM_CONTROLS.SELECT_MULTIPLE_LIST.EMPTY' | translate}}
-        </mat-list-item>
-        <button
-          (click)="control.selectOption(option.value)"
-          *ngFor="let option of (unselectedPaginator.pagedData$ | async); trackBy: control.trackBy"
-          [disabled]="option.disabled"
-          mat-list-item
-          type="button"
-        >
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{control.label}}</mat-card-title>
+      <mat-card-subtitle>
+        <mat-error *ngFor="let error of control.getErrors()">{{error}}</mat-error>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutGap="32px">
+        <div fxFlex="50">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>{{'RXAP.FORM_SYSTEM.FORM_CONTROLS.SELECT_MULTIPLE_LIST.OPTIONS' | translate }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div fxLayout="column">
+                <div class="filter-input" fxFlex="nogrow">
+                  <rxap-text-filter #unselectedTextFilter [data]="control.unselectedOptions"></rxap-text-filter>
+                </div>
+                <mat-action-list fxFlex="nogrow">
+                  <mat-list-item *ngIf="(unselectedTextFilter.isEmpty$ | async) && control.selectedOptions.length === 0">
+                    {{'RXAP.FORM_SYSTEM.FORM_CONTROLS.SELECT_MULTIPLE_LIST.EMPTY' | translate}}
+                  </mat-list-item>
+                  <button
+                    (click)="control.selectOption(option.value)"
+                    *ngFor="let option of (unselectedPaginator.pagedData$ | async); trackBy: control.trackBy"
+                    [disabled]="option.disabled"
+                    mat-list-item
+                    type="button"
+                  >
           <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="width: 100%">
             <rxap-icon-button
               (buttonClick)="control.onPrefixButtonClick(option.value)"
@@ -25,27 +39,34 @@
             <span fxFlex="grow">{{ option.display | translate }}</span>
             <rxap-icon [icon]="{ svgIcon: 'transfer-right' }" fxFlex="nogrow"></rxap-icon>
           </span>
-        </button>
-      </mat-action-list>
-      <rxap-paginator #unselectedPaginator [data]="unselectedTextFilter.filteredData$" fxFlex="nogrow"></rxap-paginator>
-    </div>
-  </div>
+                  </button>
+                </mat-action-list>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
 
-  <mat-divider [vertical]="true" fxFlex="nogrow"></mat-divider>
+        <mat-divider [vertical]="true" fxFlex="nogrow"></mat-divider>
 
-  <div fxFlex="50" style="padding: 16px; margin-bottom: 20px">
-    <div class="list mat-elevation-z2" fxLayout="column">
-      <div class="filter-input" fxFlex="nogrow">
-        <rxap-text-filter #selectedTextFilter [data]="control.selectedOptions"></rxap-text-filter>
-      </div>
-      <mat-action-list>
-        <mat-list-item *ngIf="selectedTextFilter.isEmpty$ | async">{{'RXAP.FORM_SYSTEM.FORM_CONTROLS.SELECT_MULTIPLE_LIST.EMPTY' | translate}}</mat-list-item>
-        <button
-          (click)="control.deselectOption(option.value)"
-          *ngFor="let option of selectedPaginator.pagedData$ | async; trackBy: control.trackBy"
-          mat-list-item
-          type="button"
-        >
+        <div fxFlex="50">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>{{'RXAP.FORM_SYSTEM.FORM_CONTROLS.SELECT_MULTIPLE_LIST.OPTIONS' | translate }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div fxLayout="column">
+                <div class="filter-input" fxFlex="nogrow">
+                  <rxap-text-filter #selectedTextFilter [data]="control.selectedOptions"></rxap-text-filter>
+                </div>
+                <mat-action-list>
+                  <mat-list-item
+                    *ngIf="selectedTextFilter.isEmpty$ | async">{{'RXAP.FORM_SYSTEM.FORM_CONTROLS.SELECT_MULTIPLE_LIST.EMPTY' | translate}}</mat-list-item>
+                  <button
+                    (click)="control.deselectOption(option.value)"
+                    *ngFor="let option of selectedPaginator.pagedData$ | async; trackBy: control.trackBy"
+                    mat-list-item
+                    type="button"
+                  >
           <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="width: 100%">
             <rxap-icon-button
               (buttonClick)="control.onPrefixButtonClick(option.value)"
@@ -56,9 +77,24 @@
             <rxap-icon [icon]="{ svgIcon: 'transfer-left' }" fxFlex="nogrow"></rxap-icon>
             <span fxFlex="grow">{{ option.display | translate }}</span>
           </span>
-        </button>
-      </mat-action-list>
-      <rxap-paginator #selectedPaginator [data]="selectedTextFilter.filteredData$" fxFlex="nogrow"></rxap-paginator>
-    </div>
-  </div>
+                  </button>
+                </mat-action-list>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <div fxLayout="row" fxLayoutGap="32px">
+
+        <rxap-paginator #unselectedPaginator [data]="unselectedTextFilter.filteredData$" fxFlex="50"></rxap-paginator>
+
+        <mat-divider [vertical]="true" fxFlex="nogrow"></mat-divider>
+
+        <rxap-paginator #selectedPaginator [data]="selectedTextFilter.filteredData$" fxFlex="50"></rxap-paginator>
+
+      </div>
+    </mat-card-footer>
+  </mat-card>
 </div>

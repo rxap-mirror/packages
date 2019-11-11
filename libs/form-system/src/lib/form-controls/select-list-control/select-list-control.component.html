@@ -2,9 +2,12 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>{{control.label | translate}}</mat-card-title>
+      <mat-card-subtitle>
+        <mat-error *ngFor="let error of control.getErrors()">{{error}}</mat-error>
+      </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <div fxLayout="column">
+      <div class="mat-elevation-z2" fxLayout="column">
         <div class="filter-input" fxFlex="nogrow">
           <rxap-text-filter #textFilter [data]="control.unselectedOptions"></rxap-text-filter>
         </div>

@@ -86,9 +86,26 @@ export class BaseFormControl<ControlValue> extends BaseForm<ControlValue | null,
     this.setValue(this.initial);
   }
 
+  public clearError(key: string): boolean {
+    const result = super.clearError(key);
+    this.updateView$.next();
+    return result;
+  }
+
+  public clearErrors(): void {
+    super.clearErrors();
+    this.updateView$.next();
+  }
+
   public reset() {
     this.setValue(this.initial);
     super.reset();
+    this.updateView$.next();
+  }
+
+  public setError(key: string, error: string): void {
+    super.setError(key, error);
+    this.updateView$.next();
   }
 
 }

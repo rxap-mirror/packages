@@ -8,6 +8,7 @@ import {
 } from '@angular/material';
 import { RxapFormViewComponentModule } from '../../form-view/rxap-form-view-component.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     RxapFormViewComponentModule,
     FlexLayoutModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    TranslateModule.forChild()
   ],
   exports: [FormCardComponent],
   entryComponents: [FormCardComponent]

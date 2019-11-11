@@ -5,6 +5,7 @@ import {
   MatIconModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
   imports:      [
     MatInputModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ],
   exports:      [ TextFilterComponent ]
 })

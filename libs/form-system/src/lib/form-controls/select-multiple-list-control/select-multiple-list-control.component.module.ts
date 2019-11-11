@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SelectMultipleListControlComponent } from './select-multiple-list-control.component';
-import { MatListModule } from '@angular/material';
+import {
+  MatListModule,
+  MatCardModule,
+  MatFormFieldModule
+} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PaginatorComponentModule } from '../../utilities/paginator/paginator.component.module';
 import { IconComponentModule } from '../../utilities/icon/icon.component.module';
@@ -22,7 +26,9 @@ import { TranslateModule } from '@ngx-translate/core';
     RxapComponentSystemModule.register([ SelectMultipleListControlComponent ]),
     TextFilterComponentModule,
     RxapIconButtonComponentModule,
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    MatCardModule,
+    MatFormFieldModule
   ],
   entryComponents: [ SelectMultipleListControlComponent ],
   exports:         [ SelectMultipleListControlComponent ]

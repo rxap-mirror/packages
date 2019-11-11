@@ -4,10 +4,11 @@
   </mat-card-content>
   <mat-card-footer>
     <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px" style="width: 100%">
-      <button fxFlex="nogrow" mat-stroked-button (click)="instance.reset()">Reset</button>
+      <button (click)="instance.reset()" fxFlex="nogrow" mat-stroked-button>{{'RXAP.FORM_SYSTEM.FORM_CONTAINERS.FORM_CARD.RESET' | translate}}</button>
       <div fxFlex="nogrow" fxLayout="row" fxLayoutGap="32px">
-        <button fxFlex="nogrow" mat-stroked-button color="warn">Cancel</button>
-        <button fxFlex="nogrow" mat-raised-button color="primary" (click)="instance.submit()">Submit</button>
+        <button color="warn" fxFlex="nogrow" mat-stroked-button>{{'RXAP.FORM_SYSTEM.FORM_CONTAINERS.FORM_CARD.CANCEL' | translate}}</button>
+        <button (click)="instance.submit()" color="primary" fxFlex="nogrow"
+                mat-raised-button>{{'RXAP.FORM_SYSTEM.FORM_CONTAINERS.FORM_CARD.SUBMIT' | translate}}</button>
       </div>
     </mat-toolbar>
   </mat-card-footer>

@@ -47,7 +47,7 @@ export function RxapControlRequired() {
     RxapControlValidator({
       message:   'RXAP.FORM_SYSTEM.VALIDATORS.REQUIRED',
       key:       'required',
-      validator: value => value !== null && value !== ''
+      validator: value => value !== null && value !== '' && (!Array.isArray(value) || value.length > 0)
     })(target, propertyKey);
     RxapControlProperty('required', true)(target, propertyKey);
   };
