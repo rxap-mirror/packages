@@ -26,7 +26,7 @@ import { RxapStandaloneSelectControlDirectiveModule } from './standalone-select-
     RxapComponentSystemModule.register([ SelectControlComponent ]),
     MatButtonModule,
     FormFieldControlModule,
-    TranslateModule.forChild()
+    TranslateModule
   ],
   exports:         [ SelectControlComponent ],
   entryComponents: [ SelectControlComponent ]

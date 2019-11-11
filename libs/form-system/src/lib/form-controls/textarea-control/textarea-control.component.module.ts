@@ -17,7 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
     FormFieldControlModule,
     CommonModule,
     RxapComponentSystemModule.register([ TextareaControlComponent ]),
-    TranslateModule.forChild()
+    TranslateModule
   ],
   exports:         [ TextareaControlComponent ],
   entryComponents: [ TextareaControlComponent ]

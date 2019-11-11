@@ -20,7 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatFormFieldModule,
     FlexLayoutModule,
     RxapComponentSystemModule.register([ RadioButtonControlComponent ]),
-    TranslateModule.forChild()
+    TranslateModule
   ],
   exports:         [ RadioButtonControlComponent ],
   entryComponents: [ RadioButtonControlComponent ]

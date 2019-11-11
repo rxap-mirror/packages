@@ -3,7 +3,10 @@ import {
   FormFieldFormControl,
   IFormFieldFormControl
 } from './form-field.form-control';
-import { BaseForm } from '../base.form';
+import {
+  BaseForm,
+  SetValueOptions
+} from '../base.form';
 import { BaseFormGroup } from '../form-groups/base.form-group';
 
 export interface IInputFormControl<ControlValue> extends IFormFieldFormControl<ControlValue> {
@@ -51,5 +54,17 @@ export class InputFormControl<ControlValue>
   public min: number | null     = null;
   public pattern: RegExp | null = null;
   public componentId            = RxapFormControlComponentIds.INPUT;
+
+  public setValue(value: ControlValue | null, options: Partial<SetValueOptions> = {}): void {
+    let typedValue: any = value;
+    switch (this.type) {
+      case InputTypes.NUMBER:
+        typedValue = Number(value);
+        if (isNaN(typedValue)) {
+          typedValue = null;
+        }
+    }
+    super.setValue(typedValue, options);
+  }
 
 }

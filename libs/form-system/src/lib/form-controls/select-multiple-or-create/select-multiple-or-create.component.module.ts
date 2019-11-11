@@ -14,7 +14,7 @@ import { RxapSelectMultipleListControlComponentModule } from '../select-multiple
     CommonModule,
     RxapFormCardComponentModule,
     MatTabsModule,
-    TranslateModule.forChild(),
+    TranslateModule,
     RxapComponentSystemModule.register([ SelectMultipleOrCreateComponent ]),
     RxapSelectMultipleListControlComponentModule
   ],

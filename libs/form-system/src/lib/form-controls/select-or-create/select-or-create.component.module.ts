@@ -12,7 +12,7 @@ import { RxapComponentSystemModule } from '@rxap/component-system';
   declarations:    [ SelectOrCreateComponent ],
   imports:         [
     MatTabsModule,
-    TranslateModule.forChild(),
+    TranslateModule,
     RxapSelectListControlComponentModule,
     RxapFormCardComponentModule,
     CommonModule,

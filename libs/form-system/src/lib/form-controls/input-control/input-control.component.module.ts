@@ -27,7 +27,7 @@ import { TranslateModule } from '@ngx-translate/core';
     FormFieldControlModule,
     MatIconModule,
     RxapInputControlDirectiveModule,
-    TranslateModule.forChild()
+    TranslateModule
   ],
   exports:         [ RxapInputControlComponent ],
   entryComponents: [ RxapInputControlComponent ]

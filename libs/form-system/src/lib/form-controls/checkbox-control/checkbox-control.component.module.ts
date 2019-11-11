@@ -14,7 +14,7 @@ import { RxapComponentSystemModule } from '@rxap/component-system';
   declarations:    [ CheckboxControlComponent ],
   imports:         [
     MatCheckboxModule,
-    TranslateModule.forChild(),
+    TranslateModule,
     RxapComponentSystemModule.register([ CheckboxControlComponent ]),
     FormsModule
   ],

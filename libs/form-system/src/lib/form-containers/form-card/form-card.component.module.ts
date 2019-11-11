@@ -20,7 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
     FlexLayoutModule,
     MatButtonModule,
     MatToolbarModule,
-    TranslateModule.forChild()
+    TranslateModule
   ],
   exports: [FormCardComponent],
   entryComponents: [FormCardComponent]

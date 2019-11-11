@@ -102,7 +102,9 @@ export class SelectFormControl<ControlValue>
   }
 
   public addOption(option: ControlOption<ControlValue>) {
-    this._options.unshift(option);
+    if (this._options.every(o => !this.compareWith(o.value, option.value))) {
+      this._options.unshift(option);
+    }
   }
 
   public removeOption(option: ControlOption<ControlValue>) {
@@ -114,7 +116,11 @@ export class SelectFormControl<ControlValue>
       const optionsDataSource: SelectOptionsDataSource<ControlValue> = this.injector.get(this.OptionsDataSourceToken);
       this._subscriptions.add(
         optionsDataSource.getOptions().pipe(
-          tap(options => this.options = options),
+          // merge with existing options
+          // if option already exists -> skip
+          tap(options => options.forEach(option => this.addOption(option))),
+          // force options filter
+          tap(() => this.options = this.options),
           tap(() => this.updateView$.next())
         ).subscribe()
       );

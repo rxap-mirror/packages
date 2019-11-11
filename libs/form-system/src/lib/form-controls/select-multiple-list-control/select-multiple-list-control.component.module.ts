@@ -26,7 +26,7 @@ import { TranslateModule } from '@ngx-translate/core';
     RxapComponentSystemModule.register([ SelectMultipleListControlComponent ]),
     TextFilterComponentModule,
     RxapIconButtonComponentModule,
-    TranslateModule.forChild(),
+    TranslateModule,
     MatCardModule,
     MatFormFieldModule
   ],
