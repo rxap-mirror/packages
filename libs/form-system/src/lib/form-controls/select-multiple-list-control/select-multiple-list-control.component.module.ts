@@ -7,7 +7,7 @@ import { PaginatorComponentModule } from '../../utilities/paginator/paginator.co
 import { IconComponentModule } from '../../utilities/icon/icon.component.module';
 import { TextFilterComponentModule } from '../../utilities/text-filter/text-filter.component.module';
 import { RxapComponentSystemModule } from '@rxap/component-system';
-import { IconButtonComponentModule } from '../../utilities/icon-button/icon-button.component.module';
+import { RxapIconButtonComponentModule } from '../../utilities/icon-button/icon-button-component.module';
 import { TranslateModule } from '@ngx-translate/core';
 
 
@@ -21,7 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
     IconComponentModule,
     RxapComponentSystemModule.register([ SelectMultipleListControlComponent ]),
     TextFilterComponentModule,
-    IconButtonComponentModule,
+    RxapIconButtonComponentModule,
     TranslateModule.forChild()
   ],
   entryComponents: [ SelectMultipleListControlComponent ],

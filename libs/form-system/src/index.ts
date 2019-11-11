@@ -168,3 +168,12 @@ export * from './lib/forms/form-controls/checkbox.form-control';
 // endregion
 
 // endregion
+
+// region utilities
+
+export * from './lib/utilities/icon/icon.component.module';
+export * from './lib/utilities/icon-button/icon-button-component.module';
+export * from './lib/utilities/paginator/paginator.component.module';
+export * from './lib/utilities/text-filter/text-filter.component.module';
+
+// endregion

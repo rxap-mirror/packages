@@ -11,10 +11,12 @@ import { FormId } from '../../form-instance-factory';
 import { SetFormControlMeta } from '../../form-definition/decorators/set-form-control-meta';
 import { RxapControlProperty } from '../../form-definition/decorators/control-property';
 import { MatTabGroup } from '@angular/material';
+import { OptionsDataSourceToken } from '../../forms/form-controls/select.form-control';
 
-export function RxapSelectOrCreateControl(formId: FormId) {
+export function RxapSelectOrCreateControl(formId: FormId, optionsDataSource: OptionsDataSourceToken<any> | null = null) {
   return function(target: any, propertyKey: string) {
     SetFormControlMeta('formControl', SelectOrCreateFormControl)(target, propertyKey);
+    RxapControlProperty('OptionsDataSourceToken', optionsDataSource)(target, propertyKey);
     RxapControlProperty('createFormId', formId)(target, propertyKey);
     RxapControlProperty('componentId', RxapFormControlComponentIds.SELECT_OR_CREATE)(target, propertyKey);
   };

@@ -11,7 +11,7 @@ import { PaginatorComponentModule } from '../../utilities/paginator/paginator.co
 import { FormsModule } from '@angular/forms';
 import { RxapComponentSystemModule } from '@rxap/component-system';
 import { IconComponentModule } from '../../utilities/icon/icon.component.module';
-import { IconButtonComponentModule } from '../../utilities/icon-button/icon-button.component.module';
+import { RxapIconButtonComponentModule } from '../../utilities/icon-button/icon-button-component.module';
 import { TranslateModule } from '@ngx-translate/core';
 
 
@@ -27,7 +27,7 @@ import { TranslateModule } from '@ngx-translate/core';
     PaginatorComponentModule,
     FormsModule,
     IconComponentModule,
-    IconButtonComponentModule,
+    RxapIconButtonComponentModule,
     TranslateModule
   ],
   exports:         [ SelectListControlComponent ],

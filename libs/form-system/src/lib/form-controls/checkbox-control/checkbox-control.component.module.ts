@@ -7,6 +7,7 @@ import { MatCheckboxModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { RxapStandaloneCheckboxControlDirectiveModule } from './standalone-checkbox-control.directive.module';
+import { RxapComponentSystemModule } from '@rxap/component-system';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { RxapStandaloneCheckboxControlDirectiveModule } from './standalone-check
   imports:         [
     MatCheckboxModule,
     TranslateModule.forChild(),
+    RxapComponentSystemModule.register([ CheckboxControlComponent ]),
     FormsModule
   ],
   exports:         [ CheckboxControlComponent ],

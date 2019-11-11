@@ -3,7 +3,7 @@ import {
   Injectable,
   OnDestroy,
   ChangeDetectorRef,
-  OnInit
+  AfterContentInit
 } from '@angular/core';
 import { BaseFormControl } from '../forms/form-controls/base.form-control';
 import {
@@ -15,7 +15,7 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class BaseControlComponent<ControlValue,
   FormControl extends BaseFormControl<ControlValue>>
-  implements OnDestroy, OnInit {
+  implements OnDestroy, AfterContentInit {
 
   @Input() @Required public control!: FormControl;
 
@@ -25,7 +25,7 @@ export class BaseControlComponent<ControlValue,
 
   }
 
-  public ngOnInit(): void {
+  public ngAfterContentInit(): void {
     this.subscriptions.add(
       this.control.updateView$.pipe(
         tap(() => this.changeDetectorRef.markForCheck())

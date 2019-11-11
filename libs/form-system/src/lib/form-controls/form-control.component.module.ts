@@ -7,6 +7,7 @@ import { RxapSelectMultipleListControlComponentModule } from './select-multiple-
 import { RxapSelectMultipleOrCreateComponentModule } from './select-multiple-or-create/select-multiple-or-create.component.module';
 import { RxapSelectOrCreateComponentModule } from './select-or-create/select-or-create.component.module';
 import { RxapTextareaControlComponentModule } from './textarea-control/textarea-control.component.module';
+import { RxapCheckboxControlComponentModule } from './checkbox-control/checkbox-control.component.module';
 
 @NgModule({
   exports: [
@@ -17,7 +18,8 @@ import { RxapTextareaControlComponentModule } from './textarea-control/textarea-
     RxapSelectMultipleListControlComponentModule,
     RxapSelectMultipleOrCreateComponentModule,
     RxapSelectOrCreateComponentModule,
-    RxapTextareaControlComponentModule
+    RxapTextareaControlComponentModule,
+    RxapCheckboxControlComponentModule
   ]
 })
 export class RxapFormControlComponentModule {}

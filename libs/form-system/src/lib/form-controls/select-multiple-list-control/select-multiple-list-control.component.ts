@@ -5,7 +5,8 @@ import {
 } from '@angular/core';
 import {
   SelectFormControl,
-  RxapSelectMultipleControl
+  RxapSelectMultipleControl,
+  OptionsDataSourceToken
 } from '../../forms/form-controls/select.form-control';
 import { TextFilterService } from '../../utilities/text-filter/text-filter.service';
 import { OptionTextFilterService } from '../../utilities/text-filter/option-text-filter.service';
@@ -15,9 +16,9 @@ import { RxapFormControlComponentIds } from '../form-control-component-ids';
 import { RxapControlProperty } from '../../form-definition/decorators/control-property';
 import { IconConfig } from '@rxap/utilities';
 
-export function RxapSelectMultipleListControl() {
+export function RxapSelectMultipleListControl(optionsDataSource: OptionsDataSourceToken<any> | null = null) {
   return function(target: any, propertyKey: string) {
-    RxapSelectMultipleControl()(target, propertyKey);
+    RxapSelectMultipleControl(optionsDataSource)(target, propertyKey);
     RxapControlProperty('componentId', RxapFormControlComponentIds.SELECT_MULTIPLE_LIST)(target, propertyKey);
   };
 }

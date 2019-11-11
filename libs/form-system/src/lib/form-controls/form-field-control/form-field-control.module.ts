@@ -8,7 +8,7 @@ import { FormFieldClearButtonComponent } from './form-field-clear-button/form-fi
 import { FormFieldPrefixComponent } from './form-field-prefix/form-field-prefix.component';
 import { FormFieldSuffixComponent } from './form-field-suffix/form-field-suffix.component';
 import { IconComponentModule } from '../../utilities/icon/icon.component.module';
-import { IconButtonComponentModule } from '../../utilities/icon-button/icon-button.component.module';
+import { RxapIconButtonComponentModule } from '../../utilities/icon-button/icon-button-component.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { IconButtonComponentModule } from '../../utilities/icon-button/icon-butt
     MatButtonModule,
     MatIconModule,
     IconComponentModule,
-    IconButtonComponentModule
+    RxapIconButtonComponentModule
   ],
   exports:      [
     FormFieldClearButtonComponent,

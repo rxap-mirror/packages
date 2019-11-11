@@ -11,10 +11,11 @@ import { FormId } from '../../form-instance-factory';
 import { RxapControlProperty } from '../../form-definition/decorators/control-property';
 import { RxapSelectOrCreateControl } from '../select-or-create/select-or-create.component';
 import { MatTabGroup } from '@angular/material';
+import { OptionsDataSourceToken } from '../../forms/form-controls/select.form-control';
 
-export function RxapSelectMultipleOrCreateControl(formId: FormId) {
+export function RxapSelectMultipleOrCreateControl(formId: FormId, optionsDataSource: OptionsDataSourceToken<any> | null = null) {
   return function(target: any, propertyKey: string) {
-    RxapSelectOrCreateControl(formId)(target, propertyKey);
+    RxapSelectOrCreateControl(formId, optionsDataSource)(target, propertyKey);
     RxapControlProperty('multiple', true)(target, propertyKey);
     RxapControlProperty('initial', [])(target, propertyKey);
     RxapControlProperty('componentId', RxapFormControlComponentIds.SELECT_MULTIPLE_OR_CREATE)(target, propertyKey);

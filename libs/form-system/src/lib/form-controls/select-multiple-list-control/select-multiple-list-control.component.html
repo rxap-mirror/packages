@@ -5,7 +5,9 @@
         <rxap-text-filter #unselectedTextFilter [data]="control.unselectedOptions"></rxap-text-filter>
       </div>
       <mat-action-list fxFlex="nogrow">
-        <mat-list-item *ngIf="unselectedTextFilter.isEmpty$ | async">EMPTY</mat-list-item>
+        <mat-list-item *ngIf="(unselectedTextFilter.isEmpty$ | async) && control.selectedOptions.length === 0">
+          {{'RXAP.FORM_SYSTEM.FORM_CONTROLS.SELECT_MULTIPLE_LIST.EMPTY' | translate}}
+        </mat-list-item>
         <button
           (click)="control.selectOption(option.value)"
           *ngFor="let option of (unselectedPaginator.pagedData$ | async); trackBy: control.trackBy"
@@ -37,7 +39,7 @@
         <rxap-text-filter #selectedTextFilter [data]="control.selectedOptions"></rxap-text-filter>
       </div>
       <mat-action-list>
-        <mat-list-item *ngIf="selectedTextFilter.isEmpty$ | async">EMPTY</mat-list-item>
+        <mat-list-item *ngIf="selectedTextFilter.isEmpty$ | async">{{'RXAP.FORM_SYSTEM.FORM_CONTROLS.SELECT_MULTIPLE_LIST.EMPTY' | translate}}</mat-list-item>
         <button
           (click)="control.deselectOption(option.value)"
           *ngFor="let option of selectedPaginator.pagedData$ | async; trackBy: control.trackBy"

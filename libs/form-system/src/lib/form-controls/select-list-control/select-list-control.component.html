@@ -4,7 +4,9 @@
       <rxap-text-filter #textFilter [data]="control.unselectedOptions"></rxap-text-filter>
     </div>
     <mat-selection-list (selectionChange)="model = $event.option.selected ? $event.option.value : null" fxFlex="nogrow">
-      <mat-list-item *ngIf="textFilter.isEmpty$ | async">EMPTY</mat-list-item>
+      <mat-list-item *ngIf="(textFilter.isEmpty$ | async) && control.selectedOptions.length === 0">
+        {{'RXAP.FORM_SYSTEM.FORM_CONTROLS.SELECT_LIST.EMPTY' | translate}}
+      </mat-list-item>
       <mat-list-option
         *ngFor="let option of control.selectedOptions; trackBy: control.trackBy"
         [disabled]="option.disabled"

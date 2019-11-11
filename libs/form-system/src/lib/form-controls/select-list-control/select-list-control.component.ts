@@ -8,7 +8,8 @@ import {
 import { NgModelControlComponent } from '../ng-model-control.component';
 import {
   SelectFormControl,
-  RxapSelectControl
+  RxapSelectControl,
+  OptionsDataSourceToken
 } from '../../forms/form-controls/select.form-control';
 import { RxapComponent } from '@rxap/component-system';
 import { RxapFormControlComponentIds } from '../form-control-component-ids';
@@ -22,9 +23,9 @@ import {
 import { SelectionModel } from '@angular/cdk/collections';
 import { IconConfig } from '@rxap/utilities';
 
-export function RxapSelectListControl() {
+export function RxapSelectListControl(optionsDataSource: OptionsDataSourceToken<any> | null = null) {
   return function(target: any, propertyKey: string) {
-    RxapSelectControl()(target, propertyKey);
+    RxapSelectControl(optionsDataSource)(target, propertyKey);
     RxapControlProperty('componentId', RxapFormControlComponentIds.SELECT_LIST)(target, propertyKey);
   };
 }
@@ -52,7 +53,6 @@ export class SelectListControlComponent<ControlValue>
   @ViewChild(MatSelectionList, { static: true }) public selectionList!: MatSelectionList;
 
   public ngOnInit(): void {
-    super.ngOnInit();
     this.selectionList.selectedOptions = new SelectionModel<MatListOption>(false);
   }
 

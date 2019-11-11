@@ -14,4 +14,4 @@ import { IconComponentModule } from '../icon/icon.component.module';
     IconComponentModule
   ]
 })
-export class IconButtonComponentModule {}
+export class RxapIconButtonComponentModule {}
