@@ -238,7 +238,7 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
     return null;
   }
 
-  public submit() {
+  public async submit() {
     console.log(`Submit form '${this.formDefinition.group.formId}'`);
     this.clickSubmit$.next();
     this.formDefinition.rxapOnSubmit();
@@ -246,8 +246,9 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
     this.runValidators();
     if (this.formDefinition.group.isValid === true) {
       console.log(`Form submit '${this.formDefinition.group.formId}' valid`);
-      this.formDefinition.rxapOnSubmitValid();
-      this.formDefinition.validSubmit$.next(this.formDefinition.group.value);
+      this.formDefinition.validSubmit$.next(this.formDefinition.group.value as any);
+      const submitValue = await this.formDefinition.rxapOnSubmitValid();
+      this.formDefinition.submitValue$.next(submitValue);
       if (this.formValidSubmit) {
         this.formValidSubmit.onValidSubmit(this);
       }

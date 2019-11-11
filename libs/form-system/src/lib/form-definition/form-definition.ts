@@ -7,6 +7,7 @@ import {
 } from '@rxap/utilities';
 import { FormDefinitionMetaDataKeys } from './decorators/meta-data-keys';
 import { FormDefinitionMetaData } from './decorators/form-definition';
+import { clone } from 'ramda';
 
 export function getFormDefinitionId(formDefinitionType: Type<RxapFormDefinition<any>>) {
   const formDefinitionMetaData: FormDefinitionMetaData | null = getMetadata<FormDefinitionMetaData>(
@@ -31,25 +32,27 @@ export class RxapFormDefinition<GroupValue extends object> {
 
   public group!: BaseFormGroup<GroupValue>;
 
-  public submit$ = new Subject();
-  public reset$ = new Subject();
+  public submit$        = new Subject<void>();
+  public reset$         = new Subject<void>();
+  public validSubmit$   = new Subject<GroupValue>();
+  public invalidSubmit$ = new Subject<any>();
 
-  public validSubmit$ = new Subject();
-  public invalidSubmit$ = new Subject();
-  public init$ = new Subject();
-  public destroy$ = new Subject();
+  public submitValue$ = new Subject<any>();
+
+  public init$    = new Subject<void>();
+  public destroy$ = new Subject<void>();
 
   public rxapOnInit() {}
 
   public rxapOnDestroy() {}
 
-  public rxapOnLoad(): Promise<any> {
-    return Promise.resolve();
-  }
+  public async rxapOnLoad(): Promise<any> {}
 
   public rxapOnSubmit() {}
 
-  public rxapOnSubmitValid() {}
+  public async rxapOnSubmitValid(): Promise<any> {
+    return clone(this.group.value);
+  }
 
   public rxapOnSubmitInvalid() {}
 

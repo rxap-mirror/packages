@@ -87,7 +87,7 @@ export class UserRegisterFormDefinition
     console.log('submit');
   }
 
-  rxapOnSubmitValid() {
+  async rxapOnSubmitValid() {
     console.log('submit valid');
   }
 

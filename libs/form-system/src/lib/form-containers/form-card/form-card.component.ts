@@ -76,7 +76,7 @@ export class FormCardComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.instance
           .formDefinition
-          .validSubmit$
+          .submitValue$
           .pipe(
             tap(value => this.submitted.emit(value))
           )
