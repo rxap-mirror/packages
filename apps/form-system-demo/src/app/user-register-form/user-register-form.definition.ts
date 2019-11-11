@@ -10,10 +10,10 @@ import {
   BaseFormControl,
   RxapSelectMultipleListControl,
   SelectFormControl,
-  RxapSelectMultipleOrCreateControl
+  RxapSelectMultipleOrCreateControl,
+  RxapSelectListControl
 } from '@rxap/form-system';
 import { Injectable } from '@angular/core';
-import { RxapSelectListControl } from '../../../../../libs/form-system/src/lib/form-controls/select-list-control/select-list-control.component';
 import { ActivatedRoute } from '@angular/router';
 import { CHILDREN_FORM } from './children-form.definition';
 

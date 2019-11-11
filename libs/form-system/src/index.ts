@@ -164,6 +164,7 @@ export * from './lib/forms/form-controls/textarea-form.control';
 export * from './lib/forms/form-controls/radio-button.form-control';
 export * from './lib/forms/form-controls/select-or-create.form-control';
 export * from './lib/forms/form-controls/checkbox.form-control';
+export * from './lib/forms/form-controls/select-list.form-control';
 
 // endregion
 
