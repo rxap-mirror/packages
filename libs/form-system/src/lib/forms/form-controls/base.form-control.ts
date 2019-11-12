@@ -1,6 +1,7 @@
 import {
   BaseForm,
-  BaseFormErrors
+  BaseFormErrors,
+  SetValueOptions
 } from '../base.form';
 import { Subject } from 'rxjs';
 import { ParentForm } from '../parent.form';
@@ -84,6 +85,11 @@ export class BaseFormControl<ControlValue> extends BaseForm<ControlValue | null,
   public init() {
     super.init();
     this.setValue(this.initial);
+  }
+
+  public setValue(value: ControlValue | null, options: Partial<SetValueOptions> = {}): void {
+    super.setValue(value, options);
+    this.updateView$.next();
   }
 
   public clearError(key: string): boolean {
