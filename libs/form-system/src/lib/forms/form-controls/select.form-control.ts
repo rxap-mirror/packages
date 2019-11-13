@@ -76,6 +76,7 @@ export class SelectFormControl<ControlValue>
 
   public set options(value: ControlOptions<ControlValue>) {
     this._options = value.sort((a, b) => this.sort(a, b));
+    this.updateView$.next();
   }
 
   public get unselectedOptions(): ControlOptions<ControlValue> {
@@ -104,6 +105,7 @@ export class SelectFormControl<ControlValue>
   public addOption(option: ControlOption<ControlValue>) {
     if (this._options.every(o => !this.compareWith(o.value, option.value))) {
       this._options.unshift(option);
+      this.updateView$.next();
     }
   }
 

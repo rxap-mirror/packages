@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IconButtonComponent } from './icon-button.component';
-import { MatButtonModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatIconModule
+} from '@angular/material';
 import { IconComponentModule } from '../icon/icon.component.module';
 
 
@@ -11,7 +14,8 @@ import { IconComponentModule } from '../icon/icon.component.module';
   imports:      [
     CommonModule,
     MatButtonModule,
-    IconComponentModule
+    IconComponentModule,
+    MatIconModule
   ]
 })
 export class RxapIconButtonComponentModule {}
