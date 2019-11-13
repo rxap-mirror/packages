@@ -8,6 +8,7 @@ import { RxapSelectMultipleOrCreateComponentModule } from './select-multiple-or-
 import { RxapSelectOrCreateComponentModule } from './select-or-create/select-or-create.component.module';
 import { RxapTextareaControlComponentModule } from './textarea-control/textarea-control.component.module';
 import { RxapCheckboxControlComponentModule } from './checkbox-control/checkbox-control.component.module';
+import { RxapDateControlComponentModule } from './date-control/date-control.component.module';
 
 @NgModule({
   exports: [
@@ -19,7 +20,8 @@ import { RxapCheckboxControlComponentModule } from './checkbox-control/checkbox-
     RxapSelectMultipleOrCreateComponentModule,
     RxapSelectOrCreateComponentModule,
     RxapTextareaControlComponentModule,
-    RxapCheckboxControlComponentModule
+    RxapCheckboxControlComponentModule,
+    RxapDateControlComponentModule
   ]
 })
 export class RxapFormControlComponentModule {}

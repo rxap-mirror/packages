@@ -1,0 +1,30 @@
+<mat-form-field [appearance]="control.appearance" class="form-field">
+  <rxap-form-field-prefix [control]="control" matPrefix></rxap-form-field-prefix>
+  <mat-label>{{control.label | translate}}</mat-label>
+  <input [(ngModel)]="model"
+         [attr.data-cy]="control.controlPath"
+         [control]="control"
+         [matDatepicker]="picker"
+         [placeholder]="control.placeholder | translate"
+         autocomplete="off"
+         matInput
+         rxapInputControl
+  >
+  <mat-error *ngFor="let error of control.getErrors()">{{error | translate}}</mat-error>
+  <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+  <mat-datepicker
+    #picker
+    (closed)="control.closedStream$.next()"
+    (monthSelected)="control.monthSelected$.next($event)"
+    (opened)="control.openedStream$.next()"
+    (yearSelected)="control.yearSelected$.next($event)"
+    [calendarHeaderComponent]="control.calendarHeaderComponent"
+    [color]="control.color"
+    [dateClass]="control.dateClass"
+    [disabled]="control.disabled"
+    [opened]="control.opened"
+    [panelClass]="control.panelClass"
+    [startAt]="control.startAt"
+    [startView]="control.startView"
+    [touchUi]="control.touchUi"></mat-datepicker>
+</mat-form-field>

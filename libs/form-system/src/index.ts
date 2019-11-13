@@ -119,6 +119,13 @@ export * from './lib/form-controls/select-multiple-or-create/select-multiple-or-
 
 // endregion
 
+// date
+
+export * from './lib/form-controls/date-control/date-control.component';
+export * from './lib/form-controls/date-control/date-control.component.module';
+
+// endregion
+
 // region checkbox
 
 export * from './lib/form-controls/checkbox-control/checkbox-control.component';
@@ -165,6 +172,7 @@ export * from './lib/forms/form-controls/radio-button.form-control';
 export * from './lib/forms/form-controls/select-or-create.form-control';
 export * from './lib/forms/form-controls/checkbox.form-control';
 export * from './lib/forms/form-controls/select-list.form-control';
+export * from './lib/forms/form-controls/date.form-control';
 
 // endregion
 
