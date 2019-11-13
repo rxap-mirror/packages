@@ -6,7 +6,10 @@ import {
 import { Subject } from 'rxjs';
 import { ParentForm } from '../parent.form';
 import { BaseFormGroup } from '../form-groups/base.form-group';
-import { Injector } from '@angular/core';
+import {
+  Injector,
+  StaticProvider
+} from '@angular/core';
 
 export interface IBaseFormControl<ControlValue> {
   placeholder: string;
@@ -69,6 +72,13 @@ export class BaseFormControl<ControlValue> extends BaseForm<ControlValue | null,
   public componentId: string | null = null;
 
   public initial: ControlValue | null = null;
+
+  /**
+   * A collection of Angular Provider.
+   * Each provider will be provided for the corresponding
+   * FormControlComponent.
+   */
+  public providers: StaticProvider[] = [];
 
   /**
    * indicates that the component view must be updated

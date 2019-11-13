@@ -55,7 +55,12 @@ export class ControlContainerComponent implements OnInit {
       .componentFactoryResolver
       .resolveComponentFactory<BaseControlComponent<any, any>>(component);
 
-    const componentRef = componentFactory.create(this.injector);
+    const injector = Injector.create({
+      parent:    this.injector,
+      providers: this.formControl.providers
+    });
+
+    const componentRef = componentFactory.create(injector);
 
     componentRef.instance.control = this.formControl;
 
