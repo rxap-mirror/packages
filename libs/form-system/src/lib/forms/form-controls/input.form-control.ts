@@ -8,6 +8,7 @@ import {
   SetValueOptions
 } from '../base.form';
 import { BaseFormGroup } from '../form-groups/base.form-group';
+import { DeleteUndefinedProperties } from '@rxap/utilities';
 
 export interface IInputFormControl<ControlValue> extends IFormFieldFormControl<ControlValue> {
   type: InputTypes;
@@ -44,7 +45,7 @@ export class InputFormControl<ControlValue>
     control.placeholder = '';
     control.label       = '';
     control.name        = '';
-    Object.assign(control, options);
+    Object.assign(control, DeleteUndefinedProperties(options));
     return control;
   }
 

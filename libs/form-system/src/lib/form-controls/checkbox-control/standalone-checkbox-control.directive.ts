@@ -30,6 +30,7 @@ export class StandaloneCheckboxControlDirective<ControlValue>
 
   public buildControl(): CheckboxFormControl<ControlValue> {
     return this.control = CheckboxFormControl.STANDALONE<ControlValue>({
+      injector:      this.injector,
       placeholder:   this.placeholder,
       label:         this.label,
       disabled:      this.disabled,

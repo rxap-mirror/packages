@@ -72,6 +72,8 @@ export * from './lib/form-controls/input-control/standalone-input-control.direct
 
 export * from './lib/form-controls/select-control/select-control.component';
 export * from './lib/form-controls/select-control/select-control.component.module';
+export * from './lib/form-controls/select-control/standalone-select-control.directive.module';
+export * from './lib/form-controls/select-control/standalone-select-control.directive';
 
 // endregion
 

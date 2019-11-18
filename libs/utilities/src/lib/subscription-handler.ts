@@ -143,7 +143,9 @@ export class SubscriptionHandler {
    */
   public reset(key?: string): void {
     key = key || SubscriptionHandler.DEFAULT_KEY;
-    this.unsubscribe(key);
+    if (!key || this.has(key)) {
+      this.unsubscribe(key);
+    }
     this.subscriptions.set(key, new Subscription());
   }
 

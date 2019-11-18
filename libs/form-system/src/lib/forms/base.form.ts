@@ -101,7 +101,7 @@ export class BaseForm<Value,
   constructor(
     public readonly formId: string,
     public readonly controlId: string,
-    public readonly injector: Injector,
+    public injector: Injector,
     // TODO : add parent type
     public readonly parent: ParentForm<any> | null = null
   ) {

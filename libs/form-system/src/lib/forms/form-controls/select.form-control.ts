@@ -7,7 +7,8 @@ import {
   hasIdentifierProperty,
   getIdentifierPropertyValue,
   ControlOption,
-  Type
+  Type,
+  DeleteUndefinedProperties
 } from '@rxap/utilities';
 import { equals } from 'ramda';
 import { RxapFormControlComponentIds } from '../../form-controls/form-control-component-ids';
@@ -31,7 +32,7 @@ export function RxapControlOptions<ControlValue>(...options: Array<ControlOption
 export function RxapSelectControl(optionsDataSource: OptionsDataSourceToken<any> | null = null) {
   return function(target: any, propertyKey: string) {
     SetFormControlMeta('formControl', SelectFormControl)(target, propertyKey);
-    RxapControlProperty('OptionsDataSourceToken', optionsDataSource)(target, propertyKey);
+    RxapControlProperty('optionsDataSource', optionsDataSource)(target, propertyKey);
   };
 }
 
@@ -51,6 +52,8 @@ export interface SelectOptionsDataSource<ControlValue> {
 
 export interface ISelectFormControl<ControlValue> extends IFormFieldFormControl<ControlValue> {
   multiple: boolean;
+  options: ControlOptions<ControlValue>;
+  optionsDataSource: OptionsDataSourceToken<ControlValue> | null;
 }
 
 export type OptionsDataSourceToken<ControlValue> = InjectionToken<SelectOptionsDataSource<ControlValue>> | Type<SelectOptionsDataSource<ControlValue>>
@@ -69,7 +72,7 @@ export class SelectFormControl<ControlValue>
     control.placeholder = '';
     control.label       = '';
     control.name        = '';
-    Object.assign(control, options);
+    Object.assign(control, DeleteUndefinedProperties(options));
     return control;
   }
 
@@ -95,13 +98,13 @@ export class SelectFormControl<ControlValue>
     return this._options;
   }
 
-  public OptionsDataSourceToken: OptionsDataSourceToken<ControlValue> | null = null;
+  public optionsDataSource: OptionsDataSourceToken<ControlValue> | null = null;
 
   protected _options: ControlOptions<ControlValue> = [];
 
   public rxapOnInit(): void {
     super.rxapOnInit();
-    this.handelOptionsDataSource();
+    this.handelOptionsDataSource(this.optionsDataSource);
   }
 
   public addOption(option: ControlOption<ControlValue>) {
@@ -121,27 +124,25 @@ export class SelectFormControl<ControlValue>
     this.updateView$.next();
   }
 
-  public updateOptionsDataSourceToken(optionsDataSourceToken: OptionsDataSourceToken<ControlValue>) {
-    this._subscriptions.reset(OPTIONS_DATA_SOURCE_SUBSCRIPTION);
-    this.OptionsDataSourceToken = optionsDataSourceToken;
-    this.clearOptions();
-    this.handelOptionsDataSource();
-  }
-
-  public handelOptionsDataSource() {
-    if (this.OptionsDataSourceToken) {
-      const optionsDataSource: SelectOptionsDataSource<ControlValue> = this.injector.get(this.OptionsDataSourceToken);
-      this._subscriptions.add(
-        OPTIONS_DATA_SOURCE_SUBSCRIPTION,
-        optionsDataSource.getOptions().pipe(
-          // merge with existing options
-          // if option already exists -> skip
-          tap(options => options.forEach(option => this.addOption(option))),
-          // force options filter
-          tap(() => this.options = this.options),
-          tap(() => this.updateView$.next())
-        ).subscribe()
-      );
+  public handelOptionsDataSource(optionsDataSourceToken: OptionsDataSourceToken<ControlValue> | null) {
+    if (this.optionsDataSource !== optionsDataSourceToken || !this._subscriptions.has(OPTIONS_DATA_SOURCE_SUBSCRIPTION)) {
+      if (optionsDataSourceToken) {
+        this._subscriptions.reset(OPTIONS_DATA_SOURCE_SUBSCRIPTION);
+        this.optionsDataSource = optionsDataSourceToken;
+        this.clearOptions();
+        const optionsDataSource: SelectOptionsDataSource<ControlValue> = this.injector.get(this.optionsDataSource);
+        this._subscriptions.add(
+          OPTIONS_DATA_SOURCE_SUBSCRIPTION,
+          optionsDataSource.getOptions().pipe(
+            // merge with existing options
+            // if option already exists -> skip
+            tap(options => options.forEach(option => this.addOption(option))),
+            // force options filter
+            tap(() => this.options = this.options),
+            tap(() => this.updateView$.next())
+          ).subscribe()
+        );
+      }
     }
   }
 

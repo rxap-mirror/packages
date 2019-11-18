@@ -1,17 +1,12 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  Input,
   forwardRef
 } from '@angular/core';
-import {
-  SelectFormControl,
-  OptionsDataSourceToken
-} from '../../forms/form-controls/select.form-control';
+import { SelectFormControl } from '../../forms/form-controls/select.form-control';
 import { RxapComponent } from '@rxap/component-system';
 import { RxapFormControlComponentIds } from '../form-control-component-ids';
 import { NgModelControlComponent } from '../ng-model-control.component';
-import { ControlOptions } from '@rxap/utilities';
 import { RXAP_CONTROL_COMPONENT } from '../../tokens';
 import { BaseControlComponent } from '../base-control.component';
 
@@ -37,16 +32,4 @@ import { BaseControlComponent } from '../base-control.component';
   ]
 })
 export class RxapSelectControlComponent<ControlValue>
-  extends NgModelControlComponent<ControlValue, SelectFormControl<ControlValue>> {
-
-  @Input()
-  public set options(value: ControlOptions<ControlValue>) {
-    this.control.options = value;
-  }
-
-  @Input()
-  public set optionsDataSource(value: OptionsDataSourceToken<ControlValue>) {
-    this.control.updateOptionsDataSourceToken(value);
-  }
-
-}
+  extends NgModelControlComponent<ControlValue, SelectFormControl<ControlValue>> {}

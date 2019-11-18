@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 
 export interface IBaseFormControl<ControlValue> {
+  injector: Injector,
   placeholder: string;
   label: string;
   disabled: boolean;

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/utilities",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "private": false,
   "peerDependencies": {
     "rxjs": "^6.5.3",

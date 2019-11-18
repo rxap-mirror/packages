@@ -7,6 +7,7 @@ import { RxapControlProperties } from '../../form-definition/decorators/control-
 import { RxapFormControlComponentIds } from '../../form-controls/form-control-component-ids';
 import { BaseForm } from '../base.form';
 import { BaseFormGroup } from '../form-groups/base.form-group';
+import { DeleteUndefinedProperties } from '@rxap/utilities';
 
 export type CheckboxLabelPosition = 'before' | 'after';
 
@@ -38,7 +39,7 @@ export class CheckboxFormControl<ControlValue = boolean> extends BaseFormControl
     control.placeholder = '';
     control.label       = '';
     control.name        = '';
-    Object.assign(control, options);
+    Object.assign(control, DeleteUndefinedProperties(options));
     return control;
   }
 

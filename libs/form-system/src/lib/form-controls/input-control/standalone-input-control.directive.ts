@@ -39,6 +39,7 @@ export class StandaloneInputControlDirective<ControlValue, FormControl extends I
 
   public buildControl(): FormControl {
     return this.control = InputFormControl.STANDALONE<ControlValue>({
+      injector:     this.injector,
       placeholder:  this.placeholder,
       label:        this.label,
       disabled:     this.disabled,

@@ -2,7 +2,8 @@ import {
   Directive,
   Inject,
   OnInit,
-  Input
+  Input,
+  Injector
 } from '@angular/core';
 import { BaseControlComponent } from './base-control.component';
 import { RXAP_CONTROL_COMPONENT } from '../tokens';
@@ -30,7 +31,10 @@ export class StandaloneControlDirective<ControlValue,
   public control!: FormControl;
   public controlComponent: ControlComponent;
 
-  constructor(@Inject(RXAP_CONTROL_COMPONENT) controlComponent: any) {
+  constructor(
+    @Inject(RXAP_CONTROL_COMPONENT) controlComponent: any,
+    public injector: Injector
+  ) {
     this.controlComponent = controlComponent;
   }
 
