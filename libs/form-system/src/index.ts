@@ -70,7 +70,7 @@ export * from './lib/form-controls/input-control/standalone-input-control.direct
 
 // region select
 
-export * from './lib/form-controls/select-control/rxap-select-control.component';
+export * from './lib/form-controls/select-control/select-control.component';
 export * from './lib/form-controls/select-control/select-control.component.module';
 
 // endregion
@@ -93,7 +93,7 @@ export * from './lib/form-controls/radio-button-control/radio-button-control.com
 
 // region select-list
 
-export * from './lib/form-controls/select-list-control/rxap-select-list-control.component';
+export * from './lib/form-controls/select-list-control/select-list-control.component';
 export * from './lib/form-controls/select-list-control/select-list-control.component.module';
 
 // endregion
