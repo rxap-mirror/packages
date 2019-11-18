@@ -39,7 +39,8 @@
     "start:browser": "chromium-browser --allow-file-access-from-files --disable-web-security --user-data-dir=\"./chromium-user-data\" http://localhost:4650",
     "madge": "madge",
     "playground": "angular-playground",
-    "depcheck": "depcheck"
+    "depcheck": "depcheck",
+    "playground:form-control": "yarn playground -C form-controls-playground.json"
   },
   "private": true,
   "dependencies": {
@@ -58,7 +59,10 @@
     "@ngrx/effects": "^8.4.0",
     "@ngrx/store": "^8.4.0",
     "@ngx-translate/core": "^11.0.1",
+    "@types/lightpick": "^1.4.1",
     "core-js": "2",
+    "lightpick": "^1.5.0",
+    "moment": "^2.24.0",
     "ngx-monaco-editor": "^8.1.0",
     "ramda": "^0.26.1",
     "rxjs": "^6.5.3",

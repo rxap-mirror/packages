@@ -1,12 +1,14 @@
 import {
   Component,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  forwardRef
 } from '@angular/core';
 import { RxapComponent } from '@rxap/component-system';
 import { RxapFormControlComponentIds } from '../form-control-component-ids';
 import { RXAP_CONTROL_COMPONENT } from '../../tokens';
 import { CheckboxFormControl } from '../../forms/form-controls/checkbox.form-control';
 import { NgModelControlComponent } from '../ng-model-control.component';
+import { BaseControlComponent } from '../base-control.component';
 
 @RxapComponent(RxapFormControlComponentIds.CHECKBOX)
 @Component({
@@ -17,9 +19,17 @@ import { NgModelControlComponent } from '../ng-model-control.component';
   providers:       [
     {
       provide:     RXAP_CONTROL_COMPONENT,
-      useExisting: CheckboxControlComponent
+      useExisting: forwardRef(() => RxapCheckboxControlComponent)
+    },
+    {
+      provide:     BaseControlComponent,
+      useExisting: forwardRef(() => RxapCheckboxControlComponent)
+    },
+    {
+      provide:     NgModelControlComponent,
+      useExisting: forwardRef(() => RxapCheckboxControlComponent)
     }
   ]
 })
-export class CheckboxControlComponent
+export class RxapCheckboxControlComponent
   extends NgModelControlComponent<boolean, CheckboxFormControl> {}

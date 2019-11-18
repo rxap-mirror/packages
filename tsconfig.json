@@ -37,6 +37,12 @@
       ],
       "@rxap/documents": [
         "libs/documents/src/index.ts"
+      ],
+      "@rxap/form-controls/date-range-control": [
+        "libs/form-controls/date-range-control/src/index.ts"
+      ],
+      "@rxap/directives/sanitizer": [
+        "libs/directives/sanitizer/src/index.ts"
       ]
     }
   },

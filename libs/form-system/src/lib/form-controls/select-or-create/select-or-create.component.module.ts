@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SelectOrCreateComponent } from './select-or-create.component';
+import { RxapSelectOrCreateComponent } from './select-or-create.component';
 import { MatTabsModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { RxapSelectListControlComponentModule } from '../select-list-control/select-list-control.component.module';
@@ -9,16 +9,16 @@ import { RxapComponentSystemModule } from '@rxap/component-system';
 
 
 @NgModule({
-  declarations:    [ SelectOrCreateComponent ],
+  declarations:    [ RxapSelectOrCreateComponent ],
   imports:         [
     MatTabsModule,
     TranslateModule,
     RxapSelectListControlComponentModule,
     RxapFormCardComponentModule,
     CommonModule,
-    RxapComponentSystemModule.register([ SelectOrCreateComponent ])
+    RxapComponentSystemModule.register([ RxapSelectOrCreateComponent ])
   ],
-  exports:         [ SelectOrCreateComponent ],
-  entryComponents: [ SelectOrCreateComponent ]
+  exports:         [ RxapSelectOrCreateComponent ],
+  entryComponents: [ RxapSelectOrCreateComponent ]
 })
 export class RxapSelectOrCreateComponentModule {}

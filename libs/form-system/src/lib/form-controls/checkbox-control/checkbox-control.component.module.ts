@@ -2,7 +2,7 @@ import {
   NgModule,
   ModuleWithProviders
 } from '@angular/core';
-import { CheckboxControlComponent } from './checkbox-control.component';
+import { RxapCheckboxControlComponent } from './checkbox-control.component';
 import { MatCheckboxModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
@@ -11,15 +11,15 @@ import { RxapComponentSystemModule } from '@rxap/component-system';
 
 
 @NgModule({
-  declarations:    [ CheckboxControlComponent ],
+  declarations:    [ RxapCheckboxControlComponent ],
   imports:         [
     MatCheckboxModule,
     TranslateModule,
-    RxapComponentSystemModule.register([ CheckboxControlComponent ]),
+    RxapComponentSystemModule.register([ RxapCheckboxControlComponent ]),
     FormsModule
   ],
-  exports:         [ CheckboxControlComponent ],
-  entryComponents: [ CheckboxControlComponent ]
+  exports:         [ RxapCheckboxControlComponent ],
+  entryComponents: [ RxapCheckboxControlComponent ]
 })
 export class RxapCheckboxControlComponentModule {
 

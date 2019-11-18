@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SelectMultipleListControlComponent } from './select-multiple-list-control.component';
+import { RxapSelectMultipleListControlComponent } from './select-multiple-list-control.component';
 import {
   MatListModule,
   MatCardModule,
@@ -16,21 +16,21 @@ import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
-  declarations:    [ SelectMultipleListControlComponent ],
+  declarations:    [ RxapSelectMultipleListControlComponent ],
   imports:         [
     CommonModule,
     MatListModule,
     FlexLayoutModule,
     PaginatorComponentModule,
     IconComponentModule,
-    RxapComponentSystemModule.register([ SelectMultipleListControlComponent ]),
+    RxapComponentSystemModule.register([ RxapSelectMultipleListControlComponent ]),
     TextFilterComponentModule,
     RxapIconButtonComponentModule,
     TranslateModule,
     MatCardModule,
     MatFormFieldModule
   ],
-  entryComponents: [ SelectMultipleListControlComponent ],
-  exports:         [ SelectMultipleListControlComponent ]
+  entryComponents: [ RxapSelectMultipleListControlComponent ],
+  exports:         [ RxapSelectMultipleListControlComponent ]
 })
 export class RxapSelectMultipleListControlComponentModule {}

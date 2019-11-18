@@ -23,9 +23,8 @@ import { IconConfig } from '@rxap/utilities';
     }
   ]
 })
-export class StandaloneInputControlDirective<ControlValue>
-  extends StandaloneNgModelControlDirective<ControlValue,
-    InputFormControl<ControlValue>> implements IInputFormControl<ControlValue> {
+export class StandaloneInputControlDirective<ControlValue, FormControl extends InputFormControl<ControlValue> = InputFormControl<ControlValue>>
+  extends StandaloneNgModelControlDirective<ControlValue, FormControl> implements IInputFormControl<ControlValue> {
 
   // TODO move to StandaloneFormFieldFormControlDirective
   @Input() public appearance!: AppearanceTypes;
@@ -38,7 +37,7 @@ export class StandaloneInputControlDirective<ControlValue>
   @Input() public pattern!: RegExp | null;
   @Input() public type!: InputTypes;
 
-  public buildControl(): InputFormControl<ControlValue> {
+  public buildControl(): FormControl {
     return this.control = InputFormControl.STANDALONE<ControlValue>({
       placeholder:  this.placeholder,
       label:        this.label,
@@ -56,7 +55,7 @@ export class StandaloneInputControlDirective<ControlValue>
       min:          this.min,
       max:          this.max,
       pattern:      this.pattern
-    });
+    }) as any;
   }
 
 }

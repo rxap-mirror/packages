@@ -1,0 +1,9 @@
+{
+  "name": "@rxap/directives-sanitizer",
+  "version": "0.0.1",
+  "private": false,
+  "peerDependencies": {
+    "@angular/platform-browser": "^8.2.4",
+    "@angular/core": "^8.2.4"
+  }
+}

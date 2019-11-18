@@ -10,7 +10,8 @@
   ],
   "include": [
     "**/*.ts",
-    "../../libs/form-system/src/lib/form-controls"
+    "../../libs/form-system/src/lib/form-controls",
+    "../../libs/form-controls/date-range-control/src/lib"
   ],
   "exclude": [
     "src/test-setup.ts",

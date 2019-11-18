@@ -1,7 +1,8 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  ViewChild
+  ViewChild,
+  forwardRef
 } from '@angular/core';
 import { BaseControlComponent } from '../base-control.component';
 import { SelectOrCreateFormControl } from '../../forms/form-controls/select-or-create.form-control';
@@ -12,6 +13,7 @@ import { RxapControlProperty } from '../../form-definition/decorators/control-pr
 import { RxapSelectOrCreateControl } from '../select-or-create/select-or-create.component';
 import { MatTabGroup } from '@angular/material';
 import { OptionsDataSourceToken } from '../../forms/form-controls/select.form-control';
+import { RXAP_CONTROL_COMPONENT } from '../../tokens';
 
 export function RxapSelectMultipleOrCreateControl(formId: FormId, optionsDataSource: OptionsDataSourceToken<any> | null = null) {
   return function(target: any, propertyKey: string) {
@@ -27,9 +29,19 @@ export function RxapSelectMultipleOrCreateControl(formId: FormId, optionsDataSou
   selector:        'rxap-select-multiple-or-create',
   templateUrl:     './select-multiple-or-create.component.html',
   styleUrls:       [ './select-multiple-or-create.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers:       [
+    {
+      provide:     RXAP_CONTROL_COMPONENT,
+      useExisting: forwardRef(() => RxapSelectMultipleOrCreateComponent)
+    },
+    {
+      provide:     BaseControlComponent,
+      useExisting: forwardRef(() => RxapSelectMultipleOrCreateComponent)
+    }
+  ]
 })
-export class SelectMultipleOrCreateComponent<ControlValue>
+export class RxapSelectMultipleOrCreateComponent<ControlValue>
   extends BaseControlComponent<ControlValue, SelectOrCreateFormControl<ControlValue>> {
 
   @ViewChild(MatTabGroup, { static: true }) public tabGroup!: MatTabGroup;

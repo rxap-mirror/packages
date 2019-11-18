@@ -1,20 +1,20 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  Input
+  Input,
+  forwardRef
 } from '@angular/core';
 import {
   SelectFormControl,
   RxapSelectMultipleControl,
   OptionsDataSourceToken
 } from '../../forms/form-controls/select.form-control';
-import { TextFilterService } from '../../utilities/text-filter/text-filter.service';
-import { OptionTextFilterService } from '../../utilities/text-filter/option-text-filter.service';
 import { BaseControlComponent } from '../base-control.component';
 import { RxapComponent } from '@rxap/component-system';
 import { RxapFormControlComponentIds } from '../form-control-component-ids';
 import { RxapControlProperty } from '../../form-definition/decorators/control-property';
 import { IconConfig } from '@rxap/utilities';
+import { RXAP_CONTROL_COMPONENT } from '../../tokens';
 
 export function RxapSelectMultipleListControl(optionsDataSource: OptionsDataSourceToken<any> | null = null) {
   return function(target: any, propertyKey: string) {
@@ -31,12 +31,16 @@ export function RxapSelectMultipleListControl(optionsDataSource: OptionsDataSour
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers:       [
     {
-      provide:  TextFilterService,
-      useClass: OptionTextFilterService
+      provide:     RXAP_CONTROL_COMPONENT,
+      useExisting: forwardRef(() => RxapSelectMultipleListControlComponent)
+    },
+    {
+      provide:     BaseControlComponent,
+      useExisting: forwardRef(() => RxapSelectMultipleListControlComponent)
     }
-  ]
+  ],
 })
-export class SelectMultipleListControlComponent<ControlValue>
+export class RxapSelectMultipleListControlComponent<ControlValue>
   extends BaseControlComponent<ControlValue, SelectFormControl<ControlValue>> {
 
   @Input() public icon: string | IconConfig | null = null;

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RadioButtonControlComponent } from './radio-button-control.component';
+import { RxapRadioButtonControlComponent } from './radio-button-control.component';
 import {
   MatRadioModule,
   MatFormFieldModule
@@ -12,17 +12,17 @@ import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
-  declarations:    [ RadioButtonControlComponent ],
+  declarations:    [ RxapRadioButtonControlComponent ],
   imports:         [
     CommonModule,
     MatRadioModule,
     FormsModule,
     MatFormFieldModule,
     FlexLayoutModule,
-    RxapComponentSystemModule.register([ RadioButtonControlComponent ]),
+    RxapComponentSystemModule.register([ RxapRadioButtonControlComponent ]),
     TranslateModule
   ],
-  exports:         [ RadioButtonControlComponent ],
-  entryComponents: [ RadioButtonControlComponent ]
+  exports:         [ RxapRadioButtonControlComponent ],
+  entryComponents: [ RxapRadioButtonControlComponent ]
 })
 export class RxapRadioButtonControlComponentModule {}

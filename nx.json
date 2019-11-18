@@ -49,6 +49,12 @@
     },
     "form-controls-playground": {
       "tags": []
+    },
+    "form-controls-date-range-control": {
+      "tags": []
+    },
+    "directives-sanitizer": {
+      "tags": []
     }
   }
 }

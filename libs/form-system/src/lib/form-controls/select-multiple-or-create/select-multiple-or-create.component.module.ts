@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SelectMultipleOrCreateComponent } from './select-multiple-or-create.component';
+import { RxapSelectMultipleOrCreateComponent } from './select-multiple-or-create.component';
 import { MatTabsModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { RxapFormCardComponentModule } from '../../form-containers/form-card/form-card.component.module';
@@ -9,16 +9,16 @@ import { RxapSelectMultipleListControlComponentModule } from '../select-multiple
 
 
 @NgModule({
-  declarations:    [ SelectMultipleOrCreateComponent ],
+  declarations:    [ RxapSelectMultipleOrCreateComponent ],
   imports:         [
     CommonModule,
     RxapFormCardComponentModule,
     MatTabsModule,
     TranslateModule,
-    RxapComponentSystemModule.register([ SelectMultipleOrCreateComponent ]),
+    RxapComponentSystemModule.register([ RxapSelectMultipleOrCreateComponent ]),
     RxapSelectMultipleListControlComponentModule
   ],
-  exports:         [ SelectMultipleOrCreateComponent ],
-  entryComponents: [ SelectMultipleOrCreateComponent ]
+  exports:         [ RxapSelectMultipleOrCreateComponent ],
+  entryComponents: [ RxapSelectMultipleOrCreateComponent ]
 })
 export class RxapSelectMultipleOrCreateComponentModule {}

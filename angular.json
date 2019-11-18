@@ -775,6 +775,88 @@
           }
         }
       }
+    },
+    "form-controls-date-range-control": {
+      "projectType": "library",
+      "root": "libs/form-controls/date-range-control",
+      "sourceRoot": "libs/form-controls/date-range-control/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/form-controls/date-range-control/tsconfig.lib.json",
+            "project": "libs/form-controls/date-range-control/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/form-controls/date-range-control/tsconfig.lib.json",
+              "libs/form-controls/date-range-control/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/form-controls/date-range-control/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/form-controls/date-range-control/jest.config.js",
+            "tsConfig": "libs/form-controls/date-range-control/tsconfig.spec.json",
+            "setupFile": "libs/form-controls/date-range-control/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "directives-sanitizer": {
+      "projectType": "library",
+      "root": "libs/directives/sanitizer",
+      "sourceRoot": "libs/directives/sanitizer/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/directives/sanitizer/tsconfig.lib.json",
+            "project": "libs/directives/sanitizer/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/directives/sanitizer/tsconfig.lib.json",
+              "libs/directives/sanitizer/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/directives/sanitizer/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/directives/sanitizer/jest.config.js",
+            "tsConfig": "libs/directives/sanitizer/tsconfig.spec.json",
+            "setupFile": "libs/directives/sanitizer/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "newProjectRoot": "",

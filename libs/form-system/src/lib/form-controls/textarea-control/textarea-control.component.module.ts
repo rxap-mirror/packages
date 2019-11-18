@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TextareaControlComponent } from './textarea-control.component';
+import { RxapTextareaControlComponent } from './textarea-control.component';
 import { MatInputModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { FormFieldControlModule } from '../form-field-control/form-field-control.module';
@@ -9,17 +9,17 @@ import { RxapTextareaControlDirectiveModule } from './textarea-control.directive
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  declarations:    [ TextareaControlComponent ],
+  declarations:    [ RxapTextareaControlComponent ],
   imports:         [
     MatInputModule,
     RxapTextareaControlDirectiveModule,
     FormsModule,
     FormFieldControlModule,
     CommonModule,
-    RxapComponentSystemModule.register([ TextareaControlComponent ]),
+    RxapComponentSystemModule.register([ RxapTextareaControlComponent ]),
     TranslateModule
   ],
-  exports:         [ TextareaControlComponent ],
-  entryComponents: [ TextareaControlComponent ]
+  exports:         [ RxapTextareaControlComponent ],
+  entryComponents: [ RxapTextareaControlComponent ]
 })
 export class RxapTextareaControlComponentModule {}

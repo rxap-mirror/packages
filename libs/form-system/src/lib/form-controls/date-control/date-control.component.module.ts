@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DateControlComponent } from './date-control.component';
+import { RxapDateControlComponent } from './date-control.component';
 import {
   MatDatepickerModule,
   MatInputModule
 } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
-import { RxapInputControlDirectiveModule } from '../../..';
+import { RxapInputControlDirectiveModule } from '../input-control/input-control.directive.module';
 import { FormsModule } from '@angular/forms';
 import { FormFieldControlModule } from '../form-field-control/form-field-control.module';
 
 
 @NgModule({
-  declarations:    [ DateControlComponent ],
+  declarations:    [ RxapDateControlComponent ],
   imports:         [
     MatDatepickerModule,
     MatInputModule,
@@ -22,7 +22,7 @@ import { FormFieldControlModule } from '../form-field-control/form-field-control
     FormFieldControlModule,
     CommonModule
   ],
-  exports:         [ DateControlComponent ],
-  entryComponents: [ DateControlComponent ]
+  exports:         [ RxapDateControlComponent ],
+  entryComponents: [ RxapDateControlComponent ]
 })
 export class RxapDateControlComponentModule {}

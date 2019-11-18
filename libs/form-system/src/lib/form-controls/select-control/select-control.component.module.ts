@@ -3,7 +3,7 @@ import {
   ModuleWithProviders
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SelectControlComponent } from './select-control.component';
+import { RxapSelectControlComponent } from './select-control.component';
 import {
   MatSelectModule,
   MatIconModule,
@@ -17,19 +17,19 @@ import { RxapStandaloneSelectControlDirectiveModule } from './standalone-select-
 
 
 @NgModule({
-  declarations:    [ SelectControlComponent ],
+  declarations:    [ RxapSelectControlComponent ],
   imports:         [
     CommonModule,
     MatSelectModule,
     MatIconModule,
     FormsModule,
-    RxapComponentSystemModule.register([ SelectControlComponent ]),
+    RxapComponentSystemModule.register([ RxapSelectControlComponent ]),
     MatButtonModule,
     FormFieldControlModule,
     TranslateModule
   ],
-  exports:         [ SelectControlComponent ],
-  entryComponents: [ SelectControlComponent ]
+  exports:         [ RxapSelectControlComponent ],
+  entryComponents: [ RxapSelectControlComponent ]
 })
 export class RxapSelectControlComponentModule {
 

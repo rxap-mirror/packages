@@ -1,7 +1,8 @@
 {
   "sourceRoots": [
     "./apps/form-controls-playground/src",
-    "./libs/form-system/src/lib/form-controls"
+    "./libs/form-system/src/lib/form-controls",
+    "./libs/form-controls/date-range-control/src/lib"
   ],
   "angularCli": {
     "appName": "form-controls-playground",

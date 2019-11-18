@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SelectListControlComponent } from './select-list-control.component';
+import { RxapSelectListControlComponent } from './select-list-control.component';
 import {
   MatListModule,
   MatPaginatorModule,
@@ -18,14 +18,14 @@ import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
-  declarations:    [ SelectListControlComponent ],
+  declarations:    [ RxapSelectListControlComponent ],
   imports:         [
     CommonModule,
     MatListModule,
     FlexLayoutModule,
     MatPaginatorModule,
     TextFilterComponentModule,
-    RxapComponentSystemModule.register([ SelectListControlComponent ]),
+    RxapComponentSystemModule.register([ RxapSelectListControlComponent ]),
     PaginatorComponentModule,
     FormsModule,
     IconComponentModule,
@@ -34,7 +34,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatCardModule,
     MatFormFieldModule
   ],
-  exports:         [ SelectListControlComponent ],
-  entryComponents: [ SelectListControlComponent ]
+  exports:         [ RxapSelectListControlComponent ],
+  entryComponents: [ RxapSelectListControlComponent ]
 })
 export class RxapSelectListControlComponentModule {}

@@ -12,6 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RxapFormSystemModule } from '@rxap/form-system';
 import { RxapComponentSystemModule } from '@rxap/component-system';
+import { TranslateModule } from '@ngx-translate/core';
 
 if (environment.production) {
   enableProdMode();
@@ -36,7 +37,8 @@ PlaygroundModule
       BrowserAnimationsModule,
       IconModule,
       RxapFormSystemModule.forRoot(),
-      RxapComponentSystemModule.forRoot()
+      RxapComponentSystemModule.forRoot(),
+      TranslateModule.forRoot()
     ]
   });
 

@@ -1,12 +1,14 @@
 import {
   Component,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  forwardRef
 } from '@angular/core';
 import { InputFormControl } from '../../forms/form-controls/input.form-control';
 import { RxapComponent } from '@rxap/component-system';
 import { RxapFormControlComponentIds } from '../form-control-component-ids';
 import { NgModelControlComponent } from '../ng-model-control.component';
 import { RXAP_CONTROL_COMPONENT } from '../../tokens';
+import { BaseControlComponent } from '../base-control.component';
 
 @RxapComponent(RxapFormControlComponentIds.INPUT)
 @Component({
@@ -17,7 +19,15 @@ import { RXAP_CONTROL_COMPONENT } from '../../tokens';
   providers:       [
     {
       provide:     RXAP_CONTROL_COMPONENT,
-      useExisting: RxapInputControlComponent
+      useExisting: forwardRef(() => RxapInputControlComponent)
+    },
+    {
+      provide:     BaseControlComponent,
+      useExisting: forwardRef(() => RxapInputControlComponent)
+    },
+    {
+      provide:     NgModelControlComponent,
+      useExisting: forwardRef(() => RxapInputControlComponent)
     }
   ]
 })

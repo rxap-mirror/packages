@@ -1636,6 +1636,13 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
+"@types/lightpick@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@types/lightpick/-/lightpick-1.4.1.tgz#e68a8b3502b619d16722fb525fd7af1bfab136be"
+  integrity sha512-OrRFygm9+U/tXeJR4aASfNll2Oo7RjFpgJJWuTdbdM9irPmMZsnCKruBDOBRXhVm29aL4oSVgDZh24YImW5rKQ==
+  dependencies:
+    moment "^2.22.2"
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -7610,6 +7617,13 @@ license-webpack-plugin@2.1.2:
     "@types/webpack-sources" "^0.1.5"
     webpack-sources "^1.2.0"
 
+lightpick@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/lightpick/-/lightpick-1.5.0.tgz#9833c5bc4573e226387c28cee7d14631a98b9bd4"
+  integrity sha512-+ULA7RABH2USsjA6OVV+2AdJ2BMeUwnYepyxRRxY4cVzNyBw7S0W/GBXzosohXrXDTtWOslWL9gBji3puZl5/A==
+  dependencies:
+    moment "^2.22.2"
+
 lines-and-columns@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
@@ -8204,7 +8218,7 @@ module-lookup-amd@^6.1.0:
     requirejs "^2.3.5"
     requirejs-config-file "^3.1.1"
 
-moment@2.24.0:
+moment@2.24.0, moment@^2.22.2, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==

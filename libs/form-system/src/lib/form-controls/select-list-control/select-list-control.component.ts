@@ -3,13 +3,12 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   OnInit,
-  Input
+  Input,
+  forwardRef
 } from '@angular/core';
 import { NgModelControlComponent } from '../ng-model-control.component';
 import { RxapComponent } from '@rxap/component-system';
 import { RxapFormControlComponentIds } from '../form-control-component-ids';
-import { TextFilterService } from '../../utilities/text-filter/text-filter.service';
-import { OptionTextFilterService } from '../../utilities/text-filter/option-text-filter.service';
 import {
   MatSelectionList,
   MatListOption
@@ -17,6 +16,8 @@ import {
 import { SelectionModel } from '@angular/cdk/collections';
 import { IconConfig } from '@rxap/utilities';
 import { SelectListFormControl } from '../../forms/form-controls/select-list.form-control';
+import { RXAP_CONTROL_COMPONENT } from '../../tokens';
+import { BaseControlComponent } from '../base-control.component';
 
 
 @RxapComponent(RxapFormControlComponentIds.SELECT_LIST)
@@ -27,13 +28,21 @@ import { SelectListFormControl } from '../../forms/form-controls/select-list.for
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers:       [
     {
-      provide:  TextFilterService,
-      useClass: OptionTextFilterService
+      provide:     RXAP_CONTROL_COMPONENT,
+      useExisting: forwardRef(() => RxapSelectListControlComponent)
+    },
+    {
+      provide:     BaseControlComponent,
+      useExisting: forwardRef(() => RxapSelectListControlComponent)
+    },
+    {
+      provide:     NgModelControlComponent,
+      useExisting: forwardRef(() => RxapSelectListControlComponent)
     }
   ],
   inputs:          [ 'control' ]
 })
-export class SelectListControlComponent<ControlValue>
+export class RxapSelectListControlComponent<ControlValue>
   extends NgModelControlComponent<ControlValue, SelectListFormControl<ControlValue>>
   implements OnInit {
 
