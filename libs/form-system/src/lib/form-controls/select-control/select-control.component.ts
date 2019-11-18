@@ -4,7 +4,10 @@ import {
   Input,
   forwardRef
 } from '@angular/core';
-import { SelectFormControl } from '../../forms/form-controls/select.form-control';
+import {
+  SelectFormControl,
+  OptionsDataSourceToken
+} from '../../forms/form-controls/select.form-control';
 import { RxapComponent } from '@rxap/component-system';
 import { RxapFormControlComponentIds } from '../form-control-component-ids';
 import { NgModelControlComponent } from '../ng-model-control.component';
@@ -39,6 +42,11 @@ export class RxapSelectControlComponent<ControlValue>
   @Input()
   public set options(value: ControlOptions<ControlValue>) {
     this.control.options = value;
+  }
+
+  @Input()
+  public set optionsDataSource(value: OptionsDataSourceToken<ControlValue>) {
+    this.control.updateOptionsDataSourceToken(value);
   }
 
 }

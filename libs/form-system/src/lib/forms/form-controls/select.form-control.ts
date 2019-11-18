@@ -55,6 +55,8 @@ export interface ISelectFormControl<ControlValue> extends IFormFieldFormControl<
 
 export type OptionsDataSourceToken<ControlValue> = InjectionToken<SelectOptionsDataSource<ControlValue>> | Type<SelectOptionsDataSource<ControlValue>>
 
+export const OPTIONS_DATA_SOURCE_SUBSCRIPTION = 'options-data-source';
+
 export class SelectFormControl<ControlValue>
   extends FormFieldFormControl<ControlValue> {
 
@@ -111,12 +113,26 @@ export class SelectFormControl<ControlValue>
 
   public removeOption(option: ControlOption<ControlValue>) {
     this._options.splice(this._options.findIndex(o => this.compareWith(o.value, option.value)), 1);
+    this.updateView$.next();
+  }
+
+  public clearOptions(): void {
+    this._options = [];
+    this.updateView$.next();
+  }
+
+  public updateOptionsDataSourceToken(optionsDataSourceToken: OptionsDataSourceToken<ControlValue>) {
+    this._subscriptions.reset(OPTIONS_DATA_SOURCE_SUBSCRIPTION);
+    this.OptionsDataSourceToken = optionsDataSourceToken;
+    this.clearOptions();
+    this.handelOptionsDataSource();
   }
 
   public handelOptionsDataSource() {
     if (this.OptionsDataSourceToken) {
       const optionsDataSource: SelectOptionsDataSource<ControlValue> = this.injector.get(this.OptionsDataSourceToken);
       this._subscriptions.add(
+        OPTIONS_DATA_SOURCE_SUBSCRIPTION,
         optionsDataSource.getOptions().pipe(
           // merge with existing options
           // if option already exists -> skip
