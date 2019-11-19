@@ -43,6 +43,9 @@
       ],
       "@rxap/directives/sanitizer": [
         "libs/directives/sanitizer/src/index.ts"
+      ],
+      "@rxap/form-system-dev": [
+        "libs/form-system-dev/src/index.ts"
       ]
     }
   },

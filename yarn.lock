@@ -8352,6 +8352,11 @@ ng-packagr@^5.4.0:
     terser "^4.1.2"
     update-notifier "^3.0.0"
 
+ngx-json-viewer@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/ngx-json-viewer/-/ngx-json-viewer-2.4.0.tgz#55eab11dda36c3752285efec1579dba3fcb18163"
+  integrity sha512-26QmLp+0ds90aFug3KbSIwqtmQgCcJYFNNNcmcZHgPRj75nhKzbo4ceKxkhWmY5auKZClVO0HTZSs5bBhgb1Bw==
+
 ngx-monaco-editor@^8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/ngx-monaco-editor/-/ngx-monaco-editor-8.1.0.tgz#b092c7974b7f4335d1e4b7f803719bc3c102c28e"

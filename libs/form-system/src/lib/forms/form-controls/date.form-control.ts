@@ -1,8 +1,12 @@
-import { InputFormControl } from './input.form-control';
+import {
+  InputFormControl,
+  IInputFormControl
+} from './input.form-control';
 import {
   ThemePalette,
   Type,
-  CssClass
+  CssClass,
+  DeleteUndefinedProperties
 } from '@rxap/utilities';
 import {
   MatCalendarCellCssClasses,
@@ -12,7 +16,6 @@ import {
 } from '@angular/material';
 import { Subject } from 'rxjs';
 import {
-  format,
   getDate,
   parse
 } from 'date-fns';
@@ -22,6 +25,8 @@ import {
   StaticProvider
 } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
+import { BaseForm } from '../base.form';
+import { BaseFormGroup } from '../form-groups/base.form-group';
 
 export enum DateFormControlStartViews {
   MONTH      = 'month',
@@ -104,7 +109,7 @@ export class RxapDateAdapter extends DateAdapter<number> {
     if (!this.isValid(date)) {
       throw Error('RxapDateAdapter: Cannot format invalid date.');
     }
-    return format(date, displayFormat);
+    return this.nativeDateAdapter.format(new Date(date), displayFormat);
   }
 
   /**
@@ -259,8 +264,21 @@ export const RXAP_DATE_ADAPTER_PROVIDER: StaticProvider = {
   deps:     [ MAT_DATE_LOCALE, Platform ]
 };
 
-export class DateFormControl
-  extends InputFormControl<number> {
+export class DateFormControl<ControlValue = number>
+  extends InputFormControl<ControlValue> {
+
+  public static EMPTY<ControlValue>(parent: BaseForm<any, any, any> = BaseFormGroup.EMPTY()): DateFormControl<ControlValue> {
+    return new DateFormControl<ControlValue>('control', parent, null as any);
+  }
+
+  public static STANDALONE<ControlValue>(options: Partial<IInputFormControl<ControlValue>> = {}): InputFormControl<ControlValue> {
+    const control       = DateFormControl.EMPTY<ControlValue>();
+    control.placeholder = '';
+    control.label       = '';
+    control.name        = '';
+    Object.assign(control, DeleteUndefinedProperties(options));
+    return control;
+  }
 
   /**
    * An input indicating the type of the custom header component for the

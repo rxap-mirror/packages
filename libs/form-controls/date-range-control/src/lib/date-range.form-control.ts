@@ -3,12 +3,22 @@ import {
   BaseFormControl,
   FormStateManager,
   BaseFormGroup,
-  IInputFormControl
+  IInputFormControl,
+  BaseForm
 } from '@rxap/form-system';
 import { Subject } from 'rxjs';
-import { Required } from '@rxap/utilities';
-import { BaseForm } from '../../../../form-system/src/lib/forms/base.form';
-import { DisabledDate } from 'lightpick';
+import {
+  Required,
+  DeleteUndefinedProperties,
+  RxapDetectPropertyChange,
+  RxapOnPropertyChange,
+  PropertyChange
+} from '@rxap/utilities';
+import * as Lightpick from 'lightpick';
+import {
+  DisabledDate,
+  OutputDate
+} from 'lightpick';
 
 export enum DateRangeWeekDays {
   Monday    = 1,
@@ -42,7 +52,7 @@ export interface IDateRangeFormControl<ControlValue = number> extends IInputForm
   autoclose: boolean;
   hideOnBodyClick: boolean;
   repick: boolean;
-  disableDates: ReadonlyArray<DisabledDate>;
+  disableDates: ReadonlyArray<DisabledDate> | null;
   selectForward: boolean;
   selectBackward: boolean;
   minDays: number | null;
@@ -61,7 +71,8 @@ export interface IDateRangeFormControl<ControlValue = number> extends IInputForm
 }
 
 export class DateRangeFormControl<ControlValue = number>
-  extends InputFormControl<ControlValue> {
+  extends InputFormControl<ControlValue>
+  implements RxapOnPropertyChange {
 
   public static EMPTY(parent: BaseForm<any, any, any> = BaseFormGroup.EMPTY()): DateRangeFormControl<any> {
     return new DateRangeFormControl<any>('control', parent, null as any);
@@ -72,7 +83,7 @@ export class DateRangeFormControl<ControlValue = number>
     control.placeholder = '';
     control.label       = '';
     control.name        = '';
-    Object.assign(control, options);
+    Object.assign(control, DeleteUndefinedProperties(options));
     return control;
   }
 
@@ -109,25 +120,25 @@ export class DateRangeFormControl<ControlValue = number>
    * Separator between dates when one field.
    * @default -
    */
-  public separator = '-';
+  public separator = ' - ';
 
   /**
    * Number of visible months.
    * @default 1
    */
-  public numberOfMonths = 1;
+  @RxapDetectPropertyChange public numberOfMonths = 1;
 
   /**
    * Number of columns months.
    * @default 2
    */
-  public numberOfColumns = 2;
+  @RxapDetectPropertyChange public numberOfColumns = 2;
 
   /**
    * Choose a single date instead of a date range.
    * @default true
    */
-  public singleDate = true;
+  public singleDate = false;
 
   /**
    * Close calendar when picked date/range.
@@ -278,6 +289,8 @@ export class DateRangeFormControl<ControlValue = number>
     }
   };
 
+  public picker!: Lightpick;
+
   /**
    * Callback function for when a date is selected.
    */
@@ -316,6 +329,57 @@ export class DateRangeFormControl<ControlValue = number>
     slaveControlPath.push(...this.slaveControlPath.split('.'));
     const formStateManager = this.injector.get(FormStateManager);
     return formStateManager.getForm(slaveControlPath.join('.'));
+  }
+
+  public rxapOnPropertyChange(change: PropertyChange<any>): void {
+    switch (change.propertyKey) {
+
+      case 'min':
+        this.picker.setStartDate(change.currentValue);
+        break;
+
+      case 'max':
+        this.picker.setEndDate(change.currentValue);
+        break;
+
+    }
+  }
+
+  public initLightpick(element: Element & { value: string }): void {
+    this.picker = new Lightpick({
+      field:                element,
+      firstDay:             this.firstDay,
+      lang:                 this.lang,
+      format:               this.format,
+      separator:            this.separator,
+      numberOfMonths:       this.numberOfMonths,
+      numberOfColumns:      this.numberOfColumns,
+      singleDate:           this.singleDate,
+      autoclose:            this.autoclose,
+      hideOnBodyClick:      this.hideOnBodyClick,
+      repick:               this.repick,
+      disableDates:         this.disableDates,
+      selectForward:        this.selectForward,
+      selectBackward:       this.selectBackward,
+      minDate:              this.min,
+      maxDate:              this.max,
+      minDays:              this.minDays as any,
+      maxDays:              this.maxDays as any,
+      hoveringTooltip:      this.hoveringTooltip,
+      footer:               this.footer,
+      disabledDatesInRange: this.disabledDatesInRange,
+      tooltipNights:        this.tooltipNights,
+      orientation:          this.orientation,
+      disableWeekends:      this.disableWeekends,
+      inline:               this.inline,
+      dropdowns:            this.dropdowns,
+      locale:               this.locale,
+      onSelect:             this.onSelect.bind(this)
+    });
+  }
+
+  public onSelect(startDate: OutputDate, endDate: OutputDate) {
+    console.log('on select', arguments);
   }
 
 }

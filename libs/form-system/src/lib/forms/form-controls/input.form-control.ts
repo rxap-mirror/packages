@@ -8,7 +8,10 @@ import {
   SetValueOptions
 } from '../base.form';
 import { BaseFormGroup } from '../form-groups/base.form-group';
-import { DeleteUndefinedProperties } from '@rxap/utilities';
+import {
+  DeleteUndefinedProperties,
+  RxapDetectPropertyChange
+} from '@rxap/utilities';
 
 export interface IInputFormControl<ControlValue> extends IFormFieldFormControl<ControlValue> {
   type: InputTypes;
@@ -51,10 +54,10 @@ export class InputFormControl<ControlValue>
 
   public type: InputTypes = InputTypes.TEXT;
 
-  public max: number | null     = null;
-  public min: number | null     = null;
-  public pattern: RegExp | null = null;
-  public componentId            = RxapFormControlComponentIds.INPUT;
+  @RxapDetectPropertyChange public max: number | null = null;
+  @RxapDetectPropertyChange public min: number | null = null;
+  public pattern: RegExp | null                       = null;
+  public componentId                                  = RxapFormControlComponentIds.INPUT;
 
   public setValue(value: ControlValue | null, options: Partial<SetValueOptions> = {}): void {
     let typedValue: any = value;

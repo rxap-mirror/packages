@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Control View</mat-card-title>
+    <mat-card-subtitle>{{control.formId}}.{{control.controlPath}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <ngx-json-viewer *ngIf="controlView" [expanded]="false" [json]="controlView" fxFlex="nogrow"></ngx-json-viewer>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-toolbar fxFlex="nogrow" fxLayout="row" fxLayoutAlign="end center">
+      <button (click)="update()" mat-icon-button>
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </mat-toolbar>
+  </mat-card-footer>
+</mat-card>

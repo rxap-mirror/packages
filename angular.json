@@ -857,6 +857,47 @@
           "styleext": "scss"
         }
       }
+    },
+    "form-system-dev": {
+      "projectType": "library",
+      "root": "libs/form-system-dev",
+      "sourceRoot": "libs/form-system-dev/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/form-system-dev/tsconfig.lib.json",
+            "project": "libs/form-system-dev/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/form-system-dev/tsconfig.lib.json",
+              "libs/form-system-dev/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/form-system-dev/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/form-system-dev/jest.config.js",
+            "tsConfig": "libs/form-system-dev/tsconfig.spec.json",
+            "setupFile": "libs/form-system-dev/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "newProjectRoot": "",

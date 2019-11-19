@@ -3,5 +3,5 @@ export interface OnSetControl {
 }
 
 export function hasOnSetControlHook<T extends object>(component: T): component is OnSetControl & T {
-  return component.hasOwnProperty('rxapOnSetControl');
+  return (component as any)[ 'rxapOnSetControl' ] && typeof (component as any)[ 'rxapOnSetControl' ] === 'function';
 }

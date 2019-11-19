@@ -55,6 +55,9 @@
     },
     "directives-sanitizer": {
       "tags": []
+    },
+    "form-system-dev": {
+      "tags": []
     }
   }
 }

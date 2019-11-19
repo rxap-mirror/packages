@@ -11,6 +11,7 @@ import {
   BaseFormControl,
   IBaseFormControl
 } from '../forms/form-controls/base.form-control';
+import { hasOnSetControlHook } from '../form-view/hooks';
 
 @Directive({
   selector: '[rxapStandaloneControl]'
@@ -40,6 +41,9 @@ export class StandaloneControlDirective<ControlValue,
 
   public ngOnInit(): void {
     this.controlComponent.control = this.buildControl();
+    if (hasOnSetControlHook(this.controlComponent)) {
+      this.controlComponent.rxapOnSetControl();
+    }
   }
 
   public buildControl(): FormControl {

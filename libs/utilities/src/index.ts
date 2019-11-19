@@ -9,6 +9,7 @@ export * from './lib/join';
 export * from './lib/flatten-object';
 export * from './lib/try-log';
 export * from './lib/object';
+export * from './lib/change';
 
 // region rxjs
 

@@ -131,6 +131,8 @@ export * from './lib/form-controls/form-field-control/form-field-control.module'
 
 export * from './lib/form-controls/date-control/date-control.component';
 export * from './lib/form-controls/date-control/date-control.component.module';
+export * from './lib/form-controls/date-control/standalone-date-control.directive.module';
+export * from './lib/form-controls/date-control/standalone-date-control.directive';
 
 // endregion
 
@@ -154,6 +156,9 @@ export * from './lib/form-view/hooks';
 // endregion
 
 // region forms
+
+export * from './lib/forms/base.form';
+export * from './lib/forms/parent.form';
 
 // region form-groups
 
