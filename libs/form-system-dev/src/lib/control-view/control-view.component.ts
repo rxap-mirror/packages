@@ -57,6 +57,7 @@ export class ControlViewComponent implements OnInit, OnDestroy {
       .entries(this.control)
       .filter(([ key, value ]) => [ ...IGNORED_TYPES, ...this.ignoredTypes ].every(type => !(value instanceof type)))
       .filter(([ key, value ]) => ![ ...IGNORED_PROPERTIES, ...this.ignoredProperties ].includes(key))
+      .sort((a, b) => a[ 0 ].localeCompare(b[ 0 ]))
       .reduce((controlView, [ key, value ]) => ({ ...controlView, [ key ]: value }), {});
   }
 

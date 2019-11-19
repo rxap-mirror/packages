@@ -15,7 +15,8 @@ import {
   getMetadata,
   Type,
   KeyValue,
-  objectReducer
+  objectReducer,
+  ProxyChangeDetection
 } from '@rxap/utilities';
 import { FormDefinitionMetaDataKeys } from './form-definition/decorators/meta-data-keys';
 import { BaseFormGroup } from './forms/form-groups/base.form-group';
@@ -110,7 +111,7 @@ export class FormDefinitionLoader {
     injector: Injector = this.injector
   ): BaseFormControl<any> {
     const FormControlType: Type<BaseFormControl<any>> = controlMetaData.formControl;
-    const control: BaseFormControl<any>               = new FormControlType(controlMetaData.controlId, parent, injector);
+    const control: BaseFormControl<any>               = ProxyChangeDetection(new FormControlType(controlMetaData.controlId, parent, injector));
 
     Object.assign(control, controlMetaData.properties);
 

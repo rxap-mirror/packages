@@ -1,0 +1,15 @@
+<mat-form-field [appearance]="control.appearance" class="form-field">
+  <rxap-form-field-prefix [control]="control" matPrefix></rxap-form-field-prefix>
+  <mat-label>{{control.label | translate}}</mat-label>
+  <input
+    #dateInput
+    [attr.data-cy]="control.controlPath"
+    [control]="control"
+    [placeholder]="control.placeholder | translate"
+    autocomplete="off"
+    matInput
+    rxapInputControl
+  >
+  <rxap-form-field-suffix [control]="control" matSuffix></rxap-form-field-suffix>
+  <mat-error *ngFor="let error of control.getErrors()">{{error | translate}}</mat-error>
+</mat-form-field>

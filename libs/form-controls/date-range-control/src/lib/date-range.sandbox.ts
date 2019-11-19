@@ -4,6 +4,7 @@ import { RxapDateRangeControlComponentModule } from './date-range-control.compon
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RxapDateControlComponentModule } from '@rxap/form-system';
 import { FormsModule } from '@angular/forms';
+import { RxapControlViewComponentModule } from '@rxap/form-system-dev';
 
 export default sandboxOf(
   DateRangeControlComponent,
@@ -12,20 +13,24 @@ export default sandboxOf(
       RxapDateRangeControlComponentModule.standalone(),
       RxapDateControlComponentModule.standalone(),
       FlexLayoutModule,
-      FormsModule
+      FormsModule,
+      RxapControlViewComponentModule
     ],
     declareComponent: false
   }
 ).add('default', {
   template: '<rxap-date-range-control label="default date range control"></rxap-date-range-control>'
-}).add('set min', {
+}).add('set min/max', {
   template: `
   <div fxLayout="column">
-  <rxap-date-range-control [min]="min" fxFlex="nogrow"></rxap-date-range-control>
-  <rxap-date-control [(ngModel)]="min" fxFlex="nogrow" ></rxap-date-control>
+  <rxap-date-range-control #control="rxapDateRangeControl" label="date range control with min/max date" [max]="max" [min]="min" fxFlex="nogrow"></rxap-date-range-control>
+  <rxap-date-control label="set min date" [(ngModel)]="min" fxFlex="nogrow" ></rxap-date-control>
+  <rxap-date-control label="set max date" [(ngModel)]="max" fxFlex="nogrow" ></rxap-date-control>
+  <rxap-control-view [control]="control.control"></rxap-control-view>
 </div>
   `,
   context:  {
-    min: null
+    min: null,
+    max: null
   }
 });

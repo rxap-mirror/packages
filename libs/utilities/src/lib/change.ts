@@ -1,3 +1,9 @@
+import { equals } from 'ramda';
+import {
+  getMetadata,
+  addToMetadata
+} from './meta-data';
+
 export interface RxapOnPropertyChange {
   initialized?: boolean;
 
@@ -9,30 +15,33 @@ export function hasOnChangeMethod<T>(obj: T): obj is RxapOnPropertyChange & T {
 }
 
 export interface PropertyChange<Value = any> {
-  propertyKey: string;
+  propertyKey: string | number | symbol;
   currentValue: Value;
   previousValue: Value;
 }
 
-export function RxapDetectPropertyChange(target: any, propertyKey: string) {
-  let value: any;
-  Object.defineProperty(target, propertyKey, {
-    get() {
-      return value;
-    },
-    set(v: any): void {
-      if (v !== value) {
-        const self          = this;
-        const currentValue  = v;
-        const previousValue = value;
-        value               = v;
-        if (!this.hasOwnProperty('initialized') || this.initialized) {
-          if (hasOnChangeMethod(self)) {
-            self.rxapOnPropertyChange({ propertyKey, currentValue, previousValue });
+export const RXAP_DETECT_CHANGES = 'rxap-detect-changes';
+
+export const handler = {
+  set: function(instance: any, propertyKey: string | number | symbol, value: any, receiver: any) {
+    if (!this.hasOwnProperty('initialized') || instance.initialized === true) {
+      if ((getMetadata<Array<string | number | symbol>>(RXAP_DETECT_CHANGES, instance) || []).includes(propertyKey)) {
+        if (!equals(instance[ propertyKey ], value)) {
+          if (hasOnChangeMethod(instance)) {
+            instance.rxapOnPropertyChange({ propertyKey, currentValue: value, previousValue: instance[ propertyKey ] });
           }
         }
       }
-
     }
-  });
+
+    return Reflect.set(instance, propertyKey, value, receiver);
+  }
+};
+
+export function ProxyChangeDetection<T>(instance: T): T {
+  return new Proxy(instance, handler);
+}
+
+export function RxapDetectChanges(target: any, propertyKey: string) {
+  addToMetadata(RXAP_DETECT_CHANGES, propertyKey, target);
 }

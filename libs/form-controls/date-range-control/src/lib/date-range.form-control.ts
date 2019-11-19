@@ -6,11 +6,13 @@ import {
   IInputFormControl,
   BaseForm
 } from '@rxap/form-system';
-import { Subject } from 'rxjs';
 import {
-  Required,
+  Subject,
+  combineLatest
+} from 'rxjs';
+import {
   DeleteUndefinedProperties,
-  RxapDetectPropertyChange,
+  RxapDetectChanges,
   RxapOnPropertyChange,
   PropertyChange
 } from '@rxap/utilities';
@@ -19,6 +21,11 @@ import {
   DisabledDate,
   OutputDate
 } from 'lightpick';
+import {
+  tap,
+  filter
+} from 'rxjs/operators';
+import { differenceInDays } from 'date-fns';
 
 export enum DateRangeWeekDays {
   Monday    = 1,
@@ -90,12 +97,12 @@ export class DateRangeFormControl<ControlValue = number>
   /**
    * The control path to the control that represents the end date
    */
-  @Required public slaveControlPath!: string;
+  public slaveControlPath!: string;
 
   /**
    * The control instance that represents the end date
    */
-  @Required public slaveControl!: BaseFormControl<ControlValue>;
+  public slaveControl!: BaseFormControl<ControlValue>;
 
   /**
    * ISO day of the week (1: Monday, ..., 7: Sunday).
@@ -126,13 +133,13 @@ export class DateRangeFormControl<ControlValue = number>
    * Number of visible months.
    * @default 1
    */
-  @RxapDetectPropertyChange public numberOfMonths = 1;
+  @RxapDetectChanges public numberOfMonths = 1;
 
   /**
    * Number of columns months.
    * @default 2
    */
-  @RxapDetectPropertyChange public numberOfColumns = 2;
+  @RxapDetectChanges public numberOfColumns = 2;
 
   /**
    * Choose a single date instead of a date range.
@@ -291,6 +298,8 @@ export class DateRangeFormControl<ControlValue = number>
 
   public picker!: Lightpick;
 
+  public element!: Element & { value: string };
+
   /**
    * Callback function for when a date is selected.
    */
@@ -308,9 +317,7 @@ export class DateRangeFormControl<ControlValue = number>
 
   public init() {
     super.init();
-    this.slaveControl         = this.getSlaveControl();
-    this.slaveControl.initial = this.initial;
-    this.slaveControl.init();
+    this.initSalveControl();
   }
 
   public rxapOnDestroy(): void {
@@ -318,36 +325,38 @@ export class DateRangeFormControl<ControlValue = number>
     this.slaveControl.rxapOnDestroy();
   }
 
-  public rxapOnInit(): void {
-    super.rxapOnInit();
-    this.slaveControl.rxapOnInit();
-  }
-
-  private getSlaveControl(): BaseFormControl<ControlValue> {
-    const slaveControlPath = this.controlPath.split('.');
-    slaveControlPath.pop();
-    slaveControlPath.push(...this.slaveControlPath.split('.'));
-    const formStateManager = this.injector.get(FormStateManager);
-    return formStateManager.getForm(slaveControlPath.join('.'));
-  }
-
   public rxapOnPropertyChange(change: PropertyChange<any>): void {
     switch (change.propertyKey) {
 
       case 'min':
-        this.picker.setStartDate(change.currentValue);
+        this.renderLightpick({
+          minDate: change.currentValue && new Date(change.currentValue)
+        });
         break;
 
       case 'max':
-        this.picker.setEndDate(change.currentValue);
+        this.renderLightpick({
+          maxDate: change.currentValue && new Date(change.currentValue)
+        });
+        break;
+
+      case 'numberOfMonths':
+        this.renderLightpick({
+          numberOfMonths: change.currentValue
+        });
+        break;
+
+      case 'numberOfColumns':
+        this.renderLightpick({
+          numberOfColumns: change.currentValue
+        });
         break;
 
     }
   }
 
-  public initLightpick(element: Element & { value: string }): void {
-    this.picker = new Lightpick({
-      field:                element,
+  public getLightpickOptions(): Partial<Lightpick.Options> {
+    return DeleteUndefinedProperties({
       firstDay:             this.firstDay,
       lang:                 this.lang,
       format:               this.format,
@@ -361,8 +370,8 @@ export class DateRangeFormControl<ControlValue = number>
       disableDates:         this.disableDates,
       selectForward:        this.selectForward,
       selectBackward:       this.selectBackward,
-      minDate:              this.min,
-      maxDate:              this.max,
+      minDate:              this.min && new Date(this.min),
+      maxDate:              this.max && new Date(this.max),
       minDays:              this.minDays as any,
       maxDays:              this.maxDays as any,
       hoveringTooltip:      this.hoveringTooltip,
@@ -373,13 +382,76 @@ export class DateRangeFormControl<ControlValue = number>
       disableWeekends:      this.disableWeekends,
       inline:               this.inline,
       dropdowns:            this.dropdowns,
-      locale:               this.locale,
-      onSelect:             this.onSelect.bind(this)
+      locale:               this.locale
     });
   }
 
+  public renderLightpick(options: Partial<Lightpick.Options> = {}) {
+    if (this.picker) {
+      this.picker.destroy();
+    }
+    this.picker = new Lightpick({
+      field:    this.element,
+      onSelect: this.onSelect.bind(this),
+      ...this.getLightpickOptions(),
+      ...options
+    });
+  }
+
+  public reset() {
+    super.reset();
+    this.picker.reset();
+  }
+
+  public rxapOnInit(): void {
+    super.rxapOnInit();
+    this.slaveControl.rxapOnInit();
+    this._subscriptions.add(
+      combineLatest(
+        this.valueChange$,
+        this.slaveControl.valueChange$
+      ).pipe(
+        filter(([ start, end ]) => !!start && !!end),
+        tap(([ start, end ]: [ any, any ]) => {
+          const days           = differenceInDays(end, start);
+          const numberOfMonths = Math.floor(days / 30) + 1;
+          this.numberOfMonths  = numberOfMonths;
+          this.numberOfColumns = Math.floor(numberOfMonths / 3) + 1;
+          console.log({ days, numberOfMonths: this.numberOfMonths, numberOfColumns: this.numberOfColumns });
+        })
+      ).subscribe()
+    );
+  }
+
+  public initLightpick(element: Element & { value: string }): void {
+    this.element = element;
+    this.renderLightpick();
+  }
+
+  private initSalveControl(): void {
+    this.slaveControl         = this.getSlaveControl();
+    this.slaveControl.initial = this.initial;
+    this.slaveControl.init();
+  }
+
+  private getSlaveControl(): BaseFormControl<ControlValue> {
+    if (this.slaveControlPath) {
+      const slaveControlPath = this.controlPath.split('.');
+      slaveControlPath.pop();
+      slaveControlPath.push(...this.slaveControlPath.split('.'));
+      const formStateManager = this.injector.get(FormStateManager);
+      return formStateManager.getForm(slaveControlPath.join('.'));
+    }
+    return BaseFormControl.EMPTY(this.parent);
+  }
+
   public onSelect(startDate: OutputDate, endDate: OutputDate) {
-    console.log('on select', arguments);
+    if (startDate) {
+      this.setValue(startDate.toDate().getTime() as any);
+    }
+    if (endDate) {
+      this.slaveControl.setValue(endDate.toDate().getTime() as any);
+    }
   }
 
 }
