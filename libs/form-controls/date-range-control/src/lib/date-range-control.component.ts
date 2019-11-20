@@ -11,7 +11,11 @@ import {
   OnSetControl
 } from '@rxap/form-system';
 import { DateRangeFormControl } from './date-range.form-control';
+import { RxapComponent } from '@rxap/component-system';
 
+export const RXAP_DATE_RANGE_CONTROL = 'rxap-date-range-control';
+
+@RxapComponent(RXAP_DATE_RANGE_CONTROL)
 @Component({
   selector:        'rxap-date-range-control',
   templateUrl:     './date-range-control.component.html',

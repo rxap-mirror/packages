@@ -4,7 +4,9 @@ import {
   FormStateManager,
   BaseFormGroup,
   IInputFormControl,
-  BaseForm
+  BaseForm,
+  SetFormControlMeta,
+  RxapControlProperty
 } from '@rxap/form-system';
 import {
   Subject,
@@ -26,6 +28,7 @@ import {
   filter
 } from 'rxjs/operators';
 import { differenceInDays } from 'date-fns';
+import { RXAP_DATE_RANGE_CONTROL } from './date-range-control.component';
 
 export enum DateRangeWeekDays {
   Monday    = 1,
@@ -75,6 +78,14 @@ export interface IDateRangeFormControl<ControlValue = number> extends IInputForm
   dropdowns: any | boolean;
   // TODO add typing from https://wakirin.github.io/Lightpick/#configuration
   locale: any;
+}
+
+export function RxapDateRangeControl(slaveControlPath: string) {
+  return function(target: any, propertyKey: string) {
+    SetFormControlMeta('formControl', DateRangeFormControl)(target, propertyKey);
+    RxapControlProperty('slaveControlPath', slaveControlPath)(target, propertyKey);
+    RxapControlProperty('componentId', RXAP_DATE_RANGE_CONTROL)(target, propertyKey);
+  };
 }
 
 export class DateRangeFormControl<ControlValue = number>

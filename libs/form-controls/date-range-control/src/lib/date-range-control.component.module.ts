@@ -12,9 +12,18 @@ import { MatInputModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { StandaloneDateRangeControlDirectiveModule } from './standalone-date-range-control.directive.module';
 import { FormsModule } from '@angular/forms';
+import { RxapComponentSystemModule } from '@rxap/component-system';
 
 @NgModule({
-  imports:         [ CommonModule, FormFieldControlModule, MatInputModule, TranslateModule, RxapInputControlDirectiveModule, FormsModule ],
+  imports:         [
+    CommonModule,
+    FormFieldControlModule,
+    MatInputModule,
+    TranslateModule,
+    RxapInputControlDirectiveModule,
+    FormsModule,
+    RxapComponentSystemModule.register([ DateRangeControlComponent ])
+  ],
   declarations:    [ DateRangeControlComponent ],
   exports:         [ DateRangeControlComponent ],
   entryComponents: [ DateRangeControlComponent ]
