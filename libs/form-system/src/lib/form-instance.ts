@@ -41,6 +41,10 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
   public clickSubmit$ = new Subject<void>();
   public clickReset$  = new Subject<void>();
 
+  public validSubmit$   = new Subject<FormValue>();
+  public invalidSubmit$ = new Subject<any>();
+  public submit$        = new Subject<void>();
+
   public controlValidators   = new Map<string, Array<ControlValidator<any>>>();
   public onSetValueFunctions = new Map<string, Array<() => void>>();
 
@@ -243,12 +247,14 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
     this.clickSubmit$.next();
     this.formDefinition.rxapOnSubmit();
     this.formDefinition.submit$.next();
+    this.submit$.next();
     this.runValidators();
     if (this.formDefinition.group.isValid === true) {
       console.log(`Form submit '${this.formDefinition.group.formId}' valid`);
       this.formDefinition.validSubmit$.next(this.formDefinition.group.value as any);
       const submitValue = await this.formDefinition.rxapOnSubmitValid();
       this.formDefinition.submitValue$.next(submitValue);
+      this.validSubmit$.next(submitValue);
       if (this.formValidSubmit) {
         this.formValidSubmit.onValidSubmit(this);
       }
@@ -256,7 +262,9 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
     } else if (this.formDefinition.group.isInvalid === true) {
       console.log(`Form submit '${this.formDefinition.group.formId}' inValid`, this.formDefinition.group.getErrorTree());
       this.formDefinition.rxapOnSubmitInvalid();
-      this.formDefinition.invalidSubmit$.next(this.formDefinition.group.getErrorTree());
+      const errorTree = this.formDefinition.group.getErrorTree();
+      this.formDefinition.invalidSubmit$.next(errorTree);
+      this.invalidSubmit$.next(errorTree);
       if (this.formInvalidSubmit) {
         this.formInvalidSubmit.onInvalidSubmit(this);
       }
@@ -290,6 +298,7 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
 
   public reset() {
     this.clickReset$.next();
+    this.formDefinition.group.reset();
   }
 
 }
