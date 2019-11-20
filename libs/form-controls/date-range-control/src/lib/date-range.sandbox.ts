@@ -33,4 +33,15 @@ export default sandboxOf(
     min: null,
     max: null
   }
+}).add('ngModel', {
+  template: `
+  <div fxLayout="column">
+  <rxap-date-range-control [(ngModel)]="model" #control="rxapDateRangeControl" label="date range control with min/max date" fxFlex="nogrow"></rxap-date-range-control>
+  <pre>{{model | json}}</pre>
+  <rxap-control-view [control]="control.control"></rxap-control-view>
+</div>
+  `,
+  context:  {
+    model: null
+  }
 });

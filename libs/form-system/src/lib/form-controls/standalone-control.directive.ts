@@ -15,7 +15,10 @@ import {
   IBaseFormControl
 } from '../forms/form-controls/base.form-control';
 import { hasOnSetControlHook } from '../form-view/hooks';
-import { ProxyChangeDetection } from '@rxap/utilities';
+import {
+  ProxyChangeDetection,
+  SubscriptionHandler
+} from '@rxap/utilities';
 
 @Directive({
   selector: '[rxapStandaloneControl]'
@@ -35,6 +38,8 @@ export class StandaloneControlDirective<ControlValue,
   @Input() public required!: boolean;
   public control!: FormControl;
   public controlComponent: ControlComponent;
+
+  public subscriptions = new SubscriptionHandler();
 
   constructor(
     @Inject(RXAP_CONTROL_COMPONENT) controlComponent: any,
@@ -62,6 +67,7 @@ export class StandaloneControlDirective<ControlValue,
 
   public ngOnDestroy(): void {
     this.controlComponent.control.rxapOnDestroy();
+    this.subscriptions.unsubscribeAll();
   }
 
   public buildControl(): FormControl {

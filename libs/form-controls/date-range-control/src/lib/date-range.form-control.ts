@@ -417,8 +417,45 @@ export class DateRangeFormControl<ControlValue = number>
           const numberOfMonths = Math.floor(days / 30) + 1;
           this.numberOfMonths  = numberOfMonths;
           this.numberOfColumns = Math.floor(numberOfMonths / 3) + 1;
-          console.log({ days, numberOfMonths: this.numberOfMonths, numberOfColumns: this.numberOfColumns });
         })
+      ).subscribe()
+    );
+    this._subscriptions.add(
+      this.valueChange$.pipe(
+        filter(start => {
+          const pickerStart = this.picker.getStartDate();
+          if (pickerStart === null) {
+            // if the picker has not a start value
+            // but the control has a value return true
+            return start !== pickerStart;
+          }
+          if (start === null) {
+            // if the control has not a value
+            // but the picker has a value return true
+            return start !== pickerStart;
+          }
+          return pickerStart.toDate().getTime() !== Number(start);
+        }),
+        tap(start => this.picker.setStartDate(start))
+      ).subscribe()
+    );
+    this._subscriptions.add(
+      this.slaveControl.valueChange$.pipe(
+        filter(end => {
+          const pickerEnd = this.picker.getEndDate();
+          if (pickerEnd === null) {
+            // if the picker has not a end value
+            // but the control has a value return true
+            return end !== pickerEnd;
+          }
+          if (end === null) {
+            // if the control has not a value
+            // but the picker has a value return true
+            return end !== pickerEnd;
+          }
+          return pickerEnd.toDate().getTime() !== Number(end);
+        }),
+        tap(start => this.picker.setEndDate(start))
       ).subscribe()
     );
   }

@@ -12,6 +12,8 @@ import {
 } from './date-range.form-control';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DisabledDate } from 'lightpick';
+import { combineLatest } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Directive({
   selector:  'rxap-date-range-control',
@@ -96,6 +98,35 @@ export class StandaloneDateRangeControlDirective
       dropdowns:            this.dropdowns,
       locale:               this.locale
     });
+  }
+
+  public registerOnTouched(fn: any): void {
+    console.warn('register on touched is currently not supported by any NgModelControlComponent');
+  }
+
+  public setDisabledState(isDisabled: boolean): void {
+    throw new Error('Set disabled state of InputControl via NgModel is currently not supported');
+  }
+
+  public registerOnChange(fn: (value: any) => any): void {
+    this.subscriptions.add(
+      combineLatest(
+        this.controlComponent.control.valueChange$,
+        this.controlComponent.control.slaveControl.valueChange$
+      ).pipe(
+        tap(([ start, end ]) => fn({ start, end }))
+      ).subscribe()
+    );
+  }
+
+  public writeValue(obj: any): void {
+    if (obj === null) {
+      this.controlComponent.control.setValue(null);
+      this.controlComponent.control.slaveControl.setValue(null);
+    } else {
+      this.controlComponent.control.setValue(obj.start || null);
+      this.controlComponent.control.slaveControl.setValue(obj.end || null);
+    }
   }
 
 }

@@ -4,7 +4,21 @@
     "types": [
       "node",
       "jest"
-    ]
+    ],
+    "paths": {
+      "@rxap/component-system": [
+        "dist/libs/component-system"
+      ],
+      "@rxap/utilities": [
+        "dist/libs/utilities"
+      ],
+      "@rxap/form-system-dev": [
+        "dist/libs/form-system-dev"
+      ],
+      "@rxap/form-system": [
+        "dist/libs/form-system"
+      ]
+    }
   },
   "include": [
     "**/*.ts"

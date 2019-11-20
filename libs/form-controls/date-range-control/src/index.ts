@@ -1,1 +1,1 @@
-export * from './lib/date-range-control.module';
+export * from './lib/date-range-control.component.module';
