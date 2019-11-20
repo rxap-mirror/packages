@@ -9,7 +9,7 @@ import { SetFormControlMeta } from '../../form-definition/decorators/set-form-co
 export function RxapSelectListControl(optionsDataSource: OptionsDataSourceToken<any> | null = null) {
   return function(target: any, propertyKey: string) {
     SetFormControlMeta('formControl', SelectListFormControl)(target, propertyKey);
-    RxapControlProperty('OptionsDataSourceToken', optionsDataSource)(target, propertyKey);
+    RxapControlProperty('optionsDataSource', optionsDataSource)(target, propertyKey);
     RxapControlProperty('componentId', RxapFormControlComponentIds.SELECT_LIST)(target, propertyKey);
   };
 }
