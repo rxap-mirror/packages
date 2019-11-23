@@ -86,8 +86,8 @@ export class BaseFormControl<ControlValue> extends BaseForm<ControlValue | null,
    */
   public updateView$ = new Subject<void>();
 
-  constructor(controlId: string, parent: ParentForm<any>, injector: Injector) {
-    super(parent.formId, controlId, injector, parent);
+  constructor(controlId: string, parent: ParentForm<any> | null, injector: Injector) {
+    super(parent ? parent.formId : 'standalone', controlId, injector, parent);
     this.placeholder = `FORMS.${this.controlPath}.PLACEHOLDER`;
     this.label       = `FORMS.${this.controlPath}.LABEL`;
     this.name        = [ this.formId, this.controlPath ].join('.');

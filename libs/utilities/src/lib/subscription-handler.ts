@@ -116,6 +116,7 @@ export class SubscriptionHandler {
     key = key || SubscriptionHandler.DEFAULT_KEY;
     const subscription = this.subscriptions.get(key);
     if (subscription) {
+      this.subscriptions.delete(key);
       subscription.unsubscribe();
     } else {
       throw new SubscriptionHandlerError(

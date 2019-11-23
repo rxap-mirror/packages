@@ -1,7 +1,9 @@
 import {
   Directive,
   forwardRef,
-  Input
+  Input,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { StandaloneNgModelControlDirective } from '../standalone-ng-model-control.directive';
@@ -12,6 +14,7 @@ import {
 } from '../../forms/form-controls/input.form-control';
 import { AppearanceTypes } from '../../forms/form-controls/form-field.form-control';
 import { IconConfig } from '@rxap/utilities';
+import { tap } from 'rxjs/operators';
 
 @Directive({
   selector:  'rxap-input-control',
@@ -37,8 +40,11 @@ export class StandaloneInputControlDirective<ControlValue, FormControl extends I
   @Input() public pattern!: RegExp | null;
   @Input() public type!: InputTypes;
 
+  @Output() public clickPrefixButton = new EventEmitter();
+  @Output() public clickSuffixButton = new EventEmitter();
+
   public buildControl(): FormControl {
-    return this.control = InputFormControl.STANDALONE<ControlValue>({
+    const control: InputFormControl<ControlValue> = InputFormControl.STANDALONE<ControlValue>({
       injector:     this.injector,
       placeholder:  this.placeholder,
       label:        this.label,
@@ -57,6 +63,20 @@ export class StandaloneInputControlDirective<ControlValue, FormControl extends I
       max:          this.max,
       pattern:      this.pattern
     }) as any;
+
+    this.subscriptions.add(
+      control.prefixButtonClick$.pipe(
+        tap(() => this.clickPrefixButton.emit())
+      ).subscribe()
+    );
+
+    this.subscriptions.add(
+      control.suffixButtonClick$.pipe(
+        tap(() => this.clickSuffixButton.emit())
+      ).subscribe()
+    );
+
+    return control as any;
   }
 
 }

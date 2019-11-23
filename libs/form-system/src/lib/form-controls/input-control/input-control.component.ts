@@ -31,5 +31,5 @@ import { BaseControlComponent } from '../base-control.component';
     }
   ]
 })
-export class RxapInputControlComponent<ControlValue>
-  extends NgModelControlComponent<ControlValue, InputFormControl<ControlValue>> {}
+export class RxapInputControlComponent<ControlValue, FormControl extends InputFormControl<ControlValue> = InputFormControl<ControlValue>>
+  extends NgModelControlComponent<ControlValue, FormControl> {}

@@ -120,7 +120,8 @@ export class BaseForm<Value,
 
   public rxapOnDestroy(): void {
     this.onDestroy$.next();
-    this._subscriptions.resetAll();
+    this._subscriptions.unsubscribeAll();
+    this.reset();
   }
 
   public setValue(value: Value, options: Partial<SetValueOptions> = {}): void {

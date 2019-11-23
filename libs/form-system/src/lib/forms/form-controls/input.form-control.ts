@@ -57,7 +57,7 @@ export class InputFormControl<ControlValue>
   @RxapDetectChanges public max: number | null = null;
   @RxapDetectChanges public min: number | null = null;
   public pattern: RegExp | null                = null;
-  public componentId                           = RxapFormControlComponentIds.INPUT;
+  public componentId: string                   = RxapFormControlComponentIds.INPUT;
 
   public setValue(value: ControlValue | null, options: Partial<SetValueOptions> = {}): void {
     let typedValue: any = value;

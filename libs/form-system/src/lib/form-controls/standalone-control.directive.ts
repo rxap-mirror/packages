@@ -50,9 +50,7 @@ export class StandaloneControlDirective<ControlValue,
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (this.control) {
-      console.log('d cahnge', changes);
       Object.entries(changes).forEach(([ key, value ]) => Reflect.set(this.control, key, value.currentValue));
-      console.log(this.control);
     }
   }
 
