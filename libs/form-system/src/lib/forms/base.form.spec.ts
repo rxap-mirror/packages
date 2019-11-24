@@ -10,10 +10,10 @@ describe('Form System', () => {
 
     describe('BaseForm', () => {
 
-      let baseForm: BaseForm<any>;
+      let baseForm: BaseForm<any, any, any>;
 
       beforeEach(() => {
-        baseForm = new BaseForm<any>('', 'control');
+        baseForm = new BaseForm<any, any, any>('', 'control', null as any);
       });
 
       describe('setValue', () => {
@@ -94,9 +94,8 @@ describe('Form System', () => {
 
         it('should call parent updateValue function if parent is present', () => {
 
-          const parent: any      = new BaseForm('', 'parent');
-          parent[ 'addControl' ] = () => {};
-          baseForm               = new BaseForm('', 'control', parent);
+          const parent = BaseFormGroup.EMPTY();
+          baseForm     = new BaseForm('', 'control', null as any, parent);
 
           const updateValueSpy = spyOn(parent, 'updateValue');
 
@@ -111,9 +110,8 @@ describe('Form System', () => {
 
         it('should not call parent updateValue function if parent is present and options.skipParent = true', () => {
 
-          const parent: any      = new BaseForm('', 'parent');
-          parent[ 'addControl' ] = () => {};
-          baseForm               = new BaseForm('', 'control', parent);
+          const parent = BaseFormGroup.EMPTY();
+          baseForm     = new BaseForm('', 'control', null as any, parent);
 
           const updateValueSpy = spyOn(parent, 'updateValue');
 
@@ -131,9 +129,9 @@ describe('Form System', () => {
 
         const formControlId = 'form';
 
-        const parent = new BaseFormGroup('', '', null as any);
+        const parent = BaseFormGroup.EMPTY();
 
-        const form = new BaseForm('', formControlId, parent);
+        const form = new BaseForm('', formControlId, null as any, parent);
 
         const parentSetErrorSpy = spyOn(parent, 'setError');
 

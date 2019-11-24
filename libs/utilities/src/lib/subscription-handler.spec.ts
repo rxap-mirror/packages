@@ -2,10 +2,7 @@ import {
   SubscriptionHandler,
   SubscriptionHandlerError
 } from './subscription-handler';
-import {
-  EMPTY,
-  interval
-} from 'rxjs';
+import { EMPTY } from 'rxjs';
 
 describe('SubscriptionHandler', () => {
 
@@ -50,13 +47,14 @@ describe('SubscriptionHandler', () => {
 
     sh.add(EMPTY.subscribe());
 
-    sh.unsubscribe();
+    const subscription = sh.unsubscribe();
 
-    expect(sh.subscriptions.get(SubscriptionHandler.DEFAULT_KEY).closed).toBeTruthy();
+    expect(subscription.closed).toBeTruthy();
+    expect(sh.subscriptions.has(SubscriptionHandler.DEFAULT_KEY)).toBeFalsy();
 
-    expect(sh.subscriptions.get(key1).closed).toBeFalsy();
-    expect(sh.subscriptions.get(key2).closed).toBeFalsy();
-    expect(sh.subscriptions.get(key3).closed).toBeFalsy();
+    expect(sh.subscriptions.get(key1)!.closed).toBeFalsy();
+    expect(sh.subscriptions.get(key2)!.closed).toBeFalsy();
+    expect(sh.subscriptions.get(key3)!.closed).toBeFalsy();
 
   });
 
@@ -66,23 +64,27 @@ describe('SubscriptionHandler', () => {
 
     sh.add(key, EMPTY.subscribe());
 
-    sh.unsubscribe(key);
+    const subscription = sh.unsubscribe(key);
 
-    expect(sh.subscriptions.get(key).closed).toBeTruthy();
+    expect(subscription.closed).toBeTruthy();
+    expect(sh.subscriptions.has(key)).toBeFalsy();
 
-    expect(sh.subscriptions.get(key1).closed).toBeFalsy();
-    expect(sh.subscriptions.get(key2).closed).toBeFalsy();
-    expect(sh.subscriptions.get(key3).closed).toBeFalsy();
+    expect(sh.subscriptions.get(key1)!.closed).toBeFalsy();
+    expect(sh.subscriptions.get(key2)!.closed).toBeFalsy();
+    expect(sh.subscriptions.get(key3)!.closed).toBeFalsy();
 
   });
 
   it('unsubscribe all', () => {
 
-    sh.unsubscribeAll();
+    const subscriptionMap = sh.unsubscribeAll();
 
-    expect(sh.subscriptions.get(key1).closed).toBeTruthy();
-    expect(sh.subscriptions.get(key2).closed).toBeTruthy();
-    expect(sh.subscriptions.get(key3).closed).toBeTruthy();
+    expect(subscriptionMap[ key1 ].closed).toBeTruthy();
+    expect(subscriptionMap[ key2 ].closed).toBeTruthy();
+    expect(subscriptionMap[ key3 ].closed).toBeTruthy();
+    expect(sh.has(key1)).toBeFalsy();
+    expect(sh.has(key2)).toBeFalsy();
+    expect(sh.has(key3)).toBeFalsy();
 
   });
 
@@ -135,9 +137,9 @@ describe('SubscriptionHandler', () => {
     expect(unsubscribeSpy.calls.argsFor(1)[0]).toBe(key2);
     expect(unsubscribeSpy.calls.argsFor(2)[0]).toBe(key3);
 
-    expect(sh.subscriptions.get(key1).closed).toBeFalsy();
-    expect(sh.subscriptions.get(key2).closed).toBeFalsy();
-    expect(sh.subscriptions.get(key3).closed).toBeFalsy();
+    expect(sh.subscriptions.get(key1)!.closed).toBeFalsy();
+    expect(sh.subscriptions.get(key2)!.closed).toBeFalsy();
+    expect(sh.subscriptions.get(key3)!.closed).toBeFalsy();
 
   });
 
@@ -147,11 +149,11 @@ describe('SubscriptionHandler', () => {
 
   });
 
-  it('throw if add a new teardown to closed subscription group', () => {
+  it('not throw if add a new teardown to closed subscription group', () => {
 
     sh.unsubscribe(key1);
 
-    expect(() => sh.add(key1, EMPTY.subscribe())).toThrow(SubscriptionHandlerError);
+    expect(() => sh.add(key1, EMPTY.subscribe())).not.toThrow(SubscriptionHandlerError);
 
   });
 

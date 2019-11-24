@@ -5,7 +5,6 @@ for (const module of Object.keys(paths)) {
   moduleNameMapper[module] = '<rootDir>/' + paths[module][0];
 }
 
-
 module.exports = {
   globals: {
     'ts-jest': {

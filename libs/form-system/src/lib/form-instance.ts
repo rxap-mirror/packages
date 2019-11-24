@@ -252,11 +252,17 @@ export class FormInstance<FormValue extends object, FormDefinition extends RxapF
     if (this.formDefinition.group.isValid === true) {
       console.log(`Form submit '${this.formDefinition.group.formId}' valid`);
       this.formDefinition.validSubmit$.next(this.formDefinition.group.value as any);
-      const submitValue = await this.formDefinition.rxapOnSubmitValid();
+      const submitValuePromise: Promise<any> = this.formDefinition.rxapOnSubmitValid();
+      let submitValue: any;
+      if (submitValuePromise instanceof Promise) {
+        submitValue = await submitValuePromise;
+      } else {
+        submitValue = submitValuePromise;
+      }
       this.formDefinition.submitValue$.next(submitValue);
       this.validSubmit$.next(submitValue);
       if (this.formValidSubmit) {
-        this.formValidSubmit.onValidSubmit(this);
+        this.formValidSubmit!.onValidSubmit(this);
       }
       this.reset();
     } else if (this.formDefinition.group.isInvalid === true) {

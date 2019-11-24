@@ -228,8 +228,8 @@ describe('Form System', () => {
 
         }
 
-        const formInvalidSubmit = { onInvalidSubmit: () => {} };
-        const formValidSubmit   = { onValidSubmit: () => {} };
+        const formInvalidSubmit = { onInvalidSubmit: async () => null };
+        const formValidSubmit   = { onValidSubmit: async () => null };
 
         instance = new FormInstance(fdl.load(FormDefinition), formInvalidSubmit, formValidSubmit);
 
@@ -264,6 +264,8 @@ describe('Form System', () => {
       it('submit valid form', () => {
 
         instance.formDefinition.group.setValue({ username: 'username', password: 'password' });
+
+        expect(instance.formValidSubmit).not.toBeNull();
 
         instance.submit();
 

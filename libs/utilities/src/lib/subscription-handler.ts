@@ -2,6 +2,10 @@ import {
   Subscription,
   TeardownLogic
 } from 'rxjs';
+import {
+  objectReducer,
+  KeyValue
+} from '@rxap/utilities';
 
 export enum SubscriptionHandlerErrorTypes {
   NOT_FOUND = 'Subscription with specified key not found',
@@ -112,18 +116,18 @@ export class SubscriptionHandler {
    *
    * @param key (optional) the target group of subscriptions
    */
-  public unsubscribe(key?: string): void {
+  public unsubscribe(key?: string): Subscription {
     key = key || SubscriptionHandler.DEFAULT_KEY;
     const subscription = this.subscriptions.get(key);
     if (subscription) {
       this.subscriptions.delete(key);
       subscription.unsubscribe();
-    } else {
-      throw new SubscriptionHandlerError(
-        SubscriptionHandlerErrorTypes.NOT_FOUND,
-        key,
-      )
+      return subscription;
     }
+    throw new SubscriptionHandlerError(
+      SubscriptionHandlerErrorTypes.NOT_FOUND,
+      key
+    );
   }
 
   /**
@@ -131,8 +135,8 @@ export class SubscriptionHandler {
    * an ongoing Observable execution or cancel any other type of work that
    * started when the Subscription was created.
    */
-  public unsubscribeAll(): void {
-    Array.from(this.subscriptions.keys()).forEach(key => this.unsubscribe(key));
+  public unsubscribeAll(): KeyValue<Subscription> {
+    return Array.from(this.subscriptions.keys()).map(key => ({ [ key ]: this.unsubscribe(key) })).reduce(objectReducer, {});
   }
 
   /**
