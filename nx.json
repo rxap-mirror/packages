@@ -58,6 +58,9 @@
     },
     "form-system-dev": {
       "tags": []
+    },
+    "table-system": {
+      "tags": []
     }
   }
 }
