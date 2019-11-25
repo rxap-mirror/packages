@@ -41,6 +41,40 @@ describe('Form System', () => {
 
       });
 
+      describe('[BUG] model should always return the current control value. In standalone mode and normal mode', () => {
+
+        it('standalone mode', () => {
+
+          component.registerOnModelChange(() => {});
+
+          expect(component.model).toBe(control.value);
+
+          control.setValue('test');
+
+          expect(component.model).toBe(control.value);
+
+          control.setValue(null);
+
+          expect(component.model).toBe(control.value);
+
+        });
+
+        it('normal mode', () => {
+
+          expect(component.model).toBe(control.value);
+
+          control.setValue('test');
+
+          expect(component.model).toBe(control.value);
+
+          control.setValue(null);
+
+          expect(component.model).toBe(control.value);
+
+        });
+
+      });
+
       it('registerOnModelChange should call passed function if the control value changes', () => {
 
         const valueChangeSpy = createSpy();

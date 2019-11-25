@@ -15,6 +15,7 @@ import { BaseControlComponent } from '../base-control.component';
   selector:        'rxap-input-control',
   templateUrl:     './input-control.component.html',
   styleUrls:       [ './input-control.component.scss' ],
+  exportAs:        'rxapInputControl',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers:       [
     {

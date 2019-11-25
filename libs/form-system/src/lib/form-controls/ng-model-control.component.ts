@@ -1,7 +1,10 @@
 import { BaseControlComponent } from './base-control.component';
 import { Injectable } from '@angular/core';
 import { BaseFormControl } from '../forms/form-controls/base.form-control';
-import { tap } from 'rxjs/operators';
+import {
+  tap,
+  startWith
+} from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { isNotDeepEqual } from '@rxap/utilities';
 
@@ -14,13 +17,17 @@ export enum NgModelControlSubscriptions {
 export class NgModelControlComponent<ControlValue, FormControl extends BaseFormControl<ControlValue>>
   extends BaseControlComponent<ControlValue, FormControl> {
 
-  private _model: ControlValue | null = null;
+  private _model: ControlValue | null | undefined = undefined;
 
   public get model(): ControlValue | null {
-    if (this.control && !this._model) {
+    this.initOnModelChange();
+    if (this.control && this._model === undefined) {
       // if model is not defined, but the control is defined
       // copy the control value to the model
       this._model = this.control.value;
+    }
+    if (this._model === undefined) {
+      throw new Error('Can no access model value before the control is initialized');
     }
     return this._model;
   }
@@ -46,6 +53,7 @@ export class NgModelControlComponent<ControlValue, FormControl extends BaseFormC
     if (this.control) {
       if (!this.subscriptions.has(NgModelControlSubscriptions.MODEL)) {
         this.subscriptions.add(NgModelControlSubscriptions.MODEL, this.control.valueChange$.pipe(
+          startWith(this.control.value),
           isNotDeepEqual(this._model),
           tap(value => this._model = value),
           tap(value => this.onModelChange$.next(value))
