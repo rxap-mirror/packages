@@ -35,7 +35,7 @@ describe('E2E', () => {
       extends RxapFormDefinition<UserProfileForm> {
 
       @RxapFormControl()
-      public username: BaseFormControl<string>;
+      public username!: BaseFormControl<string>;
 
     }
 

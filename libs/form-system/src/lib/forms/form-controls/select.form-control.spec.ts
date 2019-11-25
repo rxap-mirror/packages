@@ -1,5 +1,4 @@
 import { SelectFormControl } from './select.form-control';
-import { BaseFormGroup } from '../form-groups/base.form-group';
 import { ToControlOptions } from '@rxap/utilities';
 
 describe('Form System', () => {
@@ -11,7 +10,7 @@ describe('Form System', () => {
       let control: SelectFormControl<any>;
 
       beforeEach(() => {
-        control = new SelectFormControl('control', BaseFormGroup.EMPTY());
+        control = SelectFormControl.EMPTY();
       });
 
       describe('Multi select mode', () => {

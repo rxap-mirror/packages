@@ -8,6 +8,7 @@ import { FormInvalidSubmitService } from '../form-invalid-submit.service';
 import { FormValidSubmitService } from '../form-valid-submit.service';
 import { FormLoadService } from '../form-load.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { INJECTOR } from '@angular/core';
 
 describe('Form System', () => {
 
@@ -30,13 +31,15 @@ describe('Form System', () => {
         const formInvalidSubmit   = TestBed.get(FormInvalidSubmitService);
         const formValidSubmit     = TestBed.get(FormValidSubmitService);
         const formLoad            = TestBed.get(FormLoadService);
+        const injector            = TestBed.get(INJECTOR);
 
         component = new FormViewComponent<any>(
           formTemplateLoader,
           formInstanceFactory,
           formInvalidSubmit,
           formValidSubmit,
-          formLoad
+          formLoad,
+          injector
         );
 
         formInstnace = FormInstance.TestInstance();
@@ -96,7 +99,7 @@ describe('Form System', () => {
         expect(instanceOnDestroy.calls.count()).toBe(1);
         expect(component.subscriptions.closed).toBe(true);
 
-      })
+      });
 
     });
 

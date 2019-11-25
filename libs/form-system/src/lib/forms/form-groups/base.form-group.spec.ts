@@ -12,7 +12,7 @@ describe('Form System', () => {
         let baseFormGroup: BaseFormGroup<any>;
 
         beforeEach(() => {
-          baseFormGroup = new BaseFormGroup<any>('', '');
+          baseFormGroup = BaseFormGroup.EMPTY();
         });
 
         describe('Control management', () => {
@@ -103,11 +103,11 @@ describe('Form System', () => {
 
             it('should update value', () => {
 
-              const control1 = new BaseFormControl('control1', baseFormGroup);
-              const control2 = new BaseFormControl('control2', baseFormGroup);
-              const control3 = new BaseFormControl('control3', baseFormGroup);
-              const control4 = new BaseFormControl('control4', baseFormGroup);
-              const control5 = new BaseFormControl('control5', baseFormGroup);
+              const control1 = new BaseFormControl('control1', baseFormGroup, null as any);
+              const control2 = new BaseFormControl('control2', baseFormGroup, null as any);
+              const control3 = new BaseFormControl('control3', baseFormGroup, null as any);
+              const control4 = new BaseFormControl('control4', baseFormGroup, null as any);
+              const control5 = new BaseFormControl('control5', baseFormGroup, null as any);
 
               control1.setValue('value1');
               control2.setValue('value2');
@@ -134,9 +134,9 @@ describe('Form System', () => {
           let control3: BaseFormControl<any>;
 
           beforeEach(() => {
-            control1 = new BaseFormControl('control1', baseFormGroup);
-            control2 = new BaseFormControl('control2', baseFormGroup);
-            control3 = new BaseFormControl('control3', baseFormGroup);
+            control1 = new BaseFormControl('control1', baseFormGroup, null as any);
+            control2 = new BaseFormControl('control2', baseFormGroup, null as any);
+            control3 = new BaseFormControl('control3', baseFormGroup, null as any);
 
             control1.setValue('value1');
             control2.setValue('value2');

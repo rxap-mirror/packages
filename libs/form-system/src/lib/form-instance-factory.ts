@@ -27,7 +27,7 @@ export class FormInstanceFactory {
 
   public buildInstance<FormValue extends object, T extends FormInstance<FormValue> = FormInstance<FormValue>>(
     formId: string,
-    instanceId: FormInstanceId,
+    instanceId: FormInstanceId                                    = formId,
     injector: Injector | null                                     = null,
     formInvalidSubmit: FormInvalidSubmitService<FormValue> | null = null,
     formValidSubmit: FormValidSubmitService<FormValue> | null     = null,

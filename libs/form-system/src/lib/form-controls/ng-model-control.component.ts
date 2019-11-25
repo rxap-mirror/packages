@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BaseFormControl } from '../forms/form-controls/base.form-control';
 import { tap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { isNotDeepEqual } from '../../../../utilities/src';
+import { isNotDeepEqual } from '@rxap/utilities';
 
 export enum NgModelControlSubscriptions {
   MODEL     = 'rxap_ng_model_control_subscription_model',
