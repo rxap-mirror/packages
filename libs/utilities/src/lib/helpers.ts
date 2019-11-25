@@ -6,7 +6,7 @@ export interface KeyValue<T = any> {
   [ key: string ]: T;
 }
 
-export type CssStyle = KeyValue<string>;
+export type CssStyle = KeyValue<string> | string;
 
 export type DisplayValue = string | number | boolean | null;
 

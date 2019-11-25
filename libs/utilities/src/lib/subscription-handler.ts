@@ -105,7 +105,7 @@ export class SubscriptionHandler {
       this.reset(key);
     }
 
-    return this.add(teardown);
+    return this.add(key, teardown);
 
   }
 

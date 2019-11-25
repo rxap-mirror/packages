@@ -43,6 +43,18 @@ describe('SubscriptionHandler', () => {
 
   });
 
+  it('set subscription with key', () => {
+
+    const key = 'test-key';
+
+    sh.set(key, EMPTY.subscribe());
+
+    expect(Array.from(sh.subscriptions.keys())).toContain(key);
+
+    expect(sh.subscriptions.size).toBe(4);
+
+  });
+
   it('unsubscribe subscription without key', () => {
 
     sh.add(EMPTY.subscribe());
