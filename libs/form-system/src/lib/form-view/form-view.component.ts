@@ -95,6 +95,9 @@ export class SyncLayoutAndFormDefinition {
 
     this.updateControl(formControl, control);
 
+    formControl.init();
+    formControl.rxapOnInit();
+
   }
 
   public addNewGroup(group: BaseFormGroup<any>, fragment: string): BaseFormGroup<any> {
