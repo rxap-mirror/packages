@@ -1,5 +1,5 @@
 {
-  "name": "@rxap/table-system",
+  "name": "@rxap/data-source",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^8.2.4",

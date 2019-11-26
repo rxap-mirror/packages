@@ -899,38 +899,38 @@
         }
       }
     },
-    "table-system": {
+    "data-source": {
       "projectType": "library",
-      "root": "libs/table-system",
-      "sourceRoot": "libs/table-system/src",
+      "root": "libs/data-source",
+      "sourceRoot": "libs/data-source/src",
       "prefix": "rxap",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/table-system/tsconfig.lib.json",
-            "project": "libs/table-system/ng-package.json"
+            "tsConfig": "libs/data-source/tsconfig.lib.json",
+            "project": "libs/data-source/ng-package.json"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/table-system/tsconfig.lib.json",
-              "libs/table-system/tsconfig.spec.json"
+              "libs/data-source/tsconfig.lib.json",
+              "libs/data-source/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/table-system/**"
+              "!libs/data-source/**"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/table-system/jest.config.js",
-            "tsConfig": "libs/table-system/tsconfig.spec.json",
-            "setupFile": "libs/table-system/src/test-setup.ts"
+            "jestConfig": "libs/data-source/jest.config.js",
+            "tsConfig": "libs/data-source/tsconfig.spec.json",
+            "setupFile": "libs/data-source/src/test-setup.ts"
           }
         }
       },

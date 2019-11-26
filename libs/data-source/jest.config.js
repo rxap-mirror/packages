@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'table-system',
+  name: 'data-source',
   preset: '../../jest.config.js',
-  coverageDirectory: '../../coverage/libs/table-system',
+  coverageDirectory: '../../coverage/libs/data-source',
   snapshotSerializers: [
     'jest-preset-angular/AngularSnapshotSerializer.js',
     'jest-preset-angular/HTMLCommentSerializer.js'
