@@ -6,8 +6,16 @@ export class FormStateManager {
 
   public readonly stats = new Map<string, BaseForm<any, any, any>>();
 
-  public addForm(controlPath: string, form: BaseForm<any, any, any>): void {
-    this.stats.set(controlPath, form);
+
+  // TODO : use formId or instanceId
+
+  /**
+   *
+   * @param fullControlPath {control.formId}.{control.controlPath}
+   * @param form
+   */
+  public addForm(fullControlPath: string, form: BaseForm<any, any, any>): void {
+    this.stats.set(fullControlPath, form);
   }
 
   public getForm<T extends BaseForm<any, any, any>>(controlPath: string): T {

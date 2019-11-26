@@ -99,7 +99,7 @@ export class SyncLayoutAndFormDefinition {
 
     this.updateControl(formControl, control);
 
-    this.formStateManager.addForm(formControl.controlPath, formControl);
+    this.formStateManager.addForm([ group.formId, formControl.controlPath ].join('.'), formControl);
 
     group.addControl(formControl);
 
@@ -108,7 +108,11 @@ export class SyncLayoutAndFormDefinition {
   }
 
   public addNewGroup(group: BaseFormGroup<any>, fragment: string): BaseFormGroup<any> {
-    return new BaseFormGroup(group.formId, fragment, null, group.injector, group);
+    const newGroup = new BaseFormGroup(group.formId, fragment, null, group.injector, null);
+    this.formStateManager.addForm([ group.formId, newGroup.controlPath ].join('.'), newGroup);
+    group.addControl(newGroup);
+    newGroup.rxapOnInit();
+    return newGroup;
   }
 
 }
