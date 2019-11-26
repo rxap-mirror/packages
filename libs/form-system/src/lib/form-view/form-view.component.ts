@@ -8,7 +8,8 @@ import {
   ElementRef,
   OnDestroy,
   Injector,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  Injectable
 } from '@angular/core';
 import { FormTemplateLoader } from '../form-template-loader';
 import { FormInstanceFactory } from '../form-instance-factory';
@@ -35,14 +36,16 @@ import { BaseFormGroup } from '../forms/form-groups/base.form-group';
 import { BaseFormControl } from '../forms/form-controls/base.form-control';
 import { InputFormControl } from '../forms/form-controls/input.form-control';
 import { SelectFormControl } from '../forms/form-controls/select.form-control';
+import { FormStateManager } from '../form-state-manager';
 
+@Injectable({ providedIn: 'root' })
 export class SyncLayoutAndFormDefinition {
 
-  constructor(public layout: Layout, public rootGroup: BaseFormGroup<any>) {}
+  constructor(public formStateManager: FormStateManager) {}
 
-  public sync() {
-    this.layout.controls.forEach((control: Control) => {
-      let group       = this.rootGroup;
+  public sync(layout: Layout, rootGroup: BaseFormGroup<any>) {
+    layout.controls.forEach((control: Control) => {
+      let group       = rootGroup;
       const fragments = control.controlPath.split('.');
       // remove the formId
       fragments.shift();
@@ -96,6 +99,8 @@ export class SyncLayoutAndFormDefinition {
 
     this.updateControl(formControl, control);
 
+    this.formStateManager.addForm(formControl.controlPath, formControl);
+
     group.addControl(formControl);
 
     formControl.rxapOnInit();
@@ -136,6 +141,7 @@ export class FormViewComponent<FormValue extends object>
     public readonly formValidSubmit: FormValidSubmitService<FormValue>,
     public readonly formLoad: FormLoadService<FormValue>,
     public readonly injector: Injector,
+    public readonly syncLayoutAndFormDefinition: SyncLayoutAndFormDefinition,
     @Inject(RXAP_FORM_ID) @Optional() formId: string | null                      = null,
     @Inject(RXAP_FORM_INSTANCE_ID) @Optional() instanceId: FormInstanceId | null = null
   ) {
@@ -163,7 +169,7 @@ export class FormViewComponent<FormValue extends object>
 
     this.subscriptions.add(
       this.layout$.pipe(
-        tap(layout => new SyncLayoutAndFormDefinition(layout, this.instance.formDefinition.group).sync())
+        tap(layout => this.syncLayoutAndFormDefinition.sync(layout, this.instance.formDefinition.group))
       ).subscribe()
     );
 
