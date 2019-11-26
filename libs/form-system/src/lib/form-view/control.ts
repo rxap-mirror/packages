@@ -18,7 +18,7 @@ export class Control extends Component {
 
     element.childNodes.forEach((child: any) => {
 
-      switch (child.nodeNames) {
+      switch (child.nodeName) {
 
         case 'options':
           control.options = Options.formElement(child);

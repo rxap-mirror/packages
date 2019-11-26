@@ -1,6 +1,6 @@
 {
   "name": "@rxap/form-system",
-  "version": "0.0.51",
+  "version": "0.0.52",
   "private": false,
   "peerDependencies": {
     "@angular/common": "^8.2.4",
