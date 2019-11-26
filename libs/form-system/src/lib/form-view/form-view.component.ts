@@ -44,6 +44,8 @@ export class SyncLayoutAndFormDefinition {
     this.layout.controls.forEach((control: Control) => {
       let group       = this.rootGroup;
       const fragments = control.controlPath.split('.');
+      // remove the formId
+      fragments.shift();
       for (let i = 0; i < fragments.length; i++) {
         const fragment = fragments[ i ];
         if (group.hasControl(fragment)) {
