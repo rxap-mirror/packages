@@ -1,10 +1,12 @@
 import { sandboxOf } from 'angular-playground';
 import { RxapInputControlComponent } from './input-control.component';
 import { RxapInputControlComponentModule } from './input-control.component.module';
+import { FormsModule } from '@angular/forms';
 
 export default sandboxOf(RxapInputControlComponent, {
   imports:          [
-    RxapInputControlComponentModule.standalone()
+    RxapInputControlComponentModule.standalone(),
+    FormsModule
   ],
   declareComponent: false
 }).add('text', {
@@ -33,4 +35,9 @@ export default sandboxOf(RxapInputControlComponent, {
   template: '<rxap-input-control type="url" placeholder="type url" label="url input control"></rxap-input-control>'
 }).add('week', {
   template: '<rxap-input-control type="week" placeholder="type week"></rxap-input-control>'
+}).add('setValue', {
+  template: `<div fxLayout="column">
+<rxap-input-control #control="rxapInputControl" placeholder="set input" label="set input"></rxap-input-control>
+<button (click)="control.control.setValue('test')">Set Value to >test<</button>
+</div>`
 });

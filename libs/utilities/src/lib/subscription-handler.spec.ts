@@ -114,7 +114,7 @@ describe('SubscriptionHandler', () => {
 
     const s = sh.subscriptions.get(SubscriptionHandler.DEFAULT_KEY);
 
-    expect(s.closed).toBeFalsy();
+    expect(s!.closed).toBeFalsy();
 
   });
 
@@ -134,7 +134,7 @@ describe('SubscriptionHandler', () => {
 
     const s = sh.subscriptions.get(key);
 
-    expect(s.closed).toBeFalsy();
+    expect(s!.closed).toBeFalsy();
 
   });
 
