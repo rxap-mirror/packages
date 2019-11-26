@@ -1,7 +1,37 @@
 export class Option {
 
   public static formElement(element: Element): Option {
-    return new Option(element.getAttribute('value'), element.textContent as any);
+    let value: any = element.getAttribute('value');
+
+    // test if number
+    if (!isNaN(Number(value))) {
+      value = Number(value);
+    }
+
+    if (value === 'true') {
+      value = true;
+    }
+
+    if (value === 'false') {
+      value = false;
+    }
+
+    if (value === 'null') {
+      value = null;
+    }
+
+    if (typeof value === 'string') {
+
+      // test if string
+      if (value[ 0 ] === '\'' && value[ value.length - 1 ] === '\'') {
+        value = value.substr(1, value.length - 2);
+      } else {
+        try { value = JSON.parse(value); } finally {}
+      }
+
+    }
+
+    return new Option(value, element.textContent as any);
   }
 
   constructor(
