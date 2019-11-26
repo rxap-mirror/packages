@@ -1,6 +1,8 @@
-export class Layout {
+import { Component } from './component';
 
-  public components: any[]             = [];
+export class Layout extends Component {
+
+  public components: Component[]       = [];
   public orientation: 'row' | 'column' = 'row';
   public gap: string                   = '0';
   public align: string                 = '';

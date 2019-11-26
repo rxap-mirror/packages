@@ -1,11 +1,12 @@
 import { Step } from './step';
+import { Component } from './component';
 
-export class Stepper {
+export class Stepper extends Component {
 
-  steps: Step[] = [];
+  public components: Step[] = [];
 
   public setFormId(formId: string): void {
-    this.steps.forEach(step => step.setFormId(formId));
+    this.components.forEach(step => step.setFormId(formId));
   }
 
 }

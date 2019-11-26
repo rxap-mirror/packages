@@ -30,6 +30,76 @@ import { Required } from '@rxap/utilities';
 import { FormInvalidSubmitService } from '../form-invalid-submit.service';
 import { FormValidSubmitService } from '../form-valid-submit.service';
 import { FormLoadService } from '../form-load.service';
+import { Control } from './control';
+import { BaseFormGroup } from '../forms/form-groups/base.form-group';
+import { BaseFormControl } from '../forms/form-controls/base.form-control';
+import { InputFormControl } from '../forms/form-controls/input.form-control';
+import { SelectFormControl } from '../forms/form-controls/select.form-control';
+
+export class SyncLayoutAndFormDefinition {
+
+  constructor(public layout: Layout, public rootGroup: BaseFormGroup<any>) {}
+
+  public sync() {
+    this.layout.controls.forEach((control: Control) => {
+      let group       = this.rootGroup;
+      const fragments = control.controlPath.split('.');
+      for (let i = 0; i < fragments.length; i++) {
+        const fragment = fragments[ i ];
+        if (group.hasControl(fragment)) {
+          group = group.getControl(fragment) as any;
+          if (i === fragments.length - 1) {
+            this.updateControl(group as any, control);
+          }
+        } else {
+          if (i === fragments.length - 1) {
+            this.addNewControl(group, control);
+          } else {
+            group = this.addNewGroup(group, fragment);
+          }
+        }
+      }
+    });
+  }
+
+  public updateControl(formControl: BaseFormControl<any>, control: Control): void {
+
+    switch (control.name) {
+
+      case 'select':
+        if (control.options) {
+          (formControl as SelectFormControl<any>).options = control.options.items;
+        }
+        break;
+
+    }
+
+  }
+
+  public addNewControl(group: BaseFormGroup<any>, control: Control): void {
+    let formControl: BaseFormControl<any>;
+
+    switch (control.name) {
+
+      case 'select':
+        formControl = new SelectFormControl(control.controlId, group, group.injector);
+        break;
+
+      default:
+        formControl = new InputFormControl(control.controlId, group, group.injector);
+        break;
+
+    }
+
+    this.updateControl(formControl, control);
+
+  }
+
+  public addNewGroup(group: BaseFormGroup<any>, fragment: string): BaseFormGroup<any> {
+    return new BaseFormGroup(group.formId, fragment, null, group.injector, group);
+  }
+
+}
 
 @Component({
   selector:        'rxap-form-view',
@@ -85,14 +155,20 @@ export class FormViewComponent<FormValue extends object>
     );
 
     this.subscriptions.add(
+      this.layout$.pipe(
+        tap(layout => new SyncLayoutAndFormDefinition(layout, this.instance.formDefinition.group).sync())
+      ).subscribe()
+    );
+
+    this.subscriptions.add(
       this.instance.clickSubmit$.pipe(
-        tap(() => this.clickSubmitButton()),
+        tap(() => this.clickSubmitButton())
       ).subscribe()
     );
 
     this.subscriptions.add(
       this.instance.clickReset$.pipe(
-        tap(() => this.clickResetButton()),
+        tap(() => this.clickResetButton())
       ).subscribe()
     );
 

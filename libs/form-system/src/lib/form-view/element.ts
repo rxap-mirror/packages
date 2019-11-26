@@ -2,6 +2,7 @@ import { Layout } from './layout';
 import { Control } from './control';
 import { Stepper } from './stepper';
 import { Step } from './step';
+import { Component } from './component';
 
 export function LayoutFromElement(element: Element) {
   const layout = new Layout();
@@ -19,7 +20,7 @@ export function StepperFromElement(element: Element) {
   element.childNodes.forEach((child: any) => {
 
     if (child.nodeName === 'step') {
-      stepper.steps.push(StepFromElement(child));
+      stepper.components.push(StepFromElement(child));
     }
 
   });
@@ -46,7 +47,7 @@ export function StepFromElement(element: Element) {
   return step;
 }
 
-export function getComponentsFromElement(element: Element): Array<Stepper | Layout | Control> {
+export function getComponentsFromElement(element: Element): Array<Component> {
 
   const components: Array<Stepper | Layout | Control> = [];
 
