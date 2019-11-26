@@ -42,13 +42,20 @@ export class BaseFormGroup<GroupValue extends object>
 
   public addControl(control: BaseForm<GroupValue[keyof GroupValue], any, any>, controlId: string = control.controlId): void {
     if (control.parent !== this) {
-      throw new Error('Can not add control if parent is not equal to this form group');
+      if (control.parent !== null) {
+        throw new Error('Can not add control if parent is not equal to this form group');
+      }
+      control.parent = this;
     }
+
     if (typeof controlId !== 'string') {
       throw new Error('Control Id must be type of string');
     }
     if (this.initialized) {
       control.init();
+    }
+    if (this.formId !== control.formId) {
+      control.formId = this.formId;
     }
     this.controls.set(controlId, control);
     this.updateValue({ [ controlId ]: control.value } as any, { emit: false, force: true, onlySelf: true });

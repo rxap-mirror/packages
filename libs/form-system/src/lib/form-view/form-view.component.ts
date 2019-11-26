@@ -81,21 +81,23 @@ export class SyncLayoutAndFormDefinition {
   public addNewControl(group: BaseFormGroup<any>, control: Control): void {
     let formControl: BaseFormControl<any>;
 
+    // create new without parent to prevent that the control is been used before initialized
     switch (control.name) {
 
       case 'select':
-        formControl = new SelectFormControl(control.controlId, group, group.injector);
+        formControl = new SelectFormControl(control.controlId, null, group.injector);
         break;
 
       default:
-        formControl = new InputFormControl(control.controlId, group, group.injector);
+        formControl = new InputFormControl(control.controlId, null, group.injector);
         break;
 
     }
 
     this.updateControl(formControl, control);
 
-    formControl.init();
+    group.addControl(formControl);
+
     formControl.rxapOnInit();
 
   }

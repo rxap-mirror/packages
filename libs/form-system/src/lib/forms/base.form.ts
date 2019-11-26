@@ -99,11 +99,11 @@ export class BaseForm<Value,
   public initialized = false;
 
   constructor(
-    public readonly formId: string,
+    public formId: string,
     public readonly controlId: string,
     public injector: Injector,
     // TODO : add parent type
-    public readonly parent: ParentForm<any> | null = null
+    public parent: ParentForm<any> | null = null
   ) {
     if (this.parent) {
       this.parent.addControl(this, this.controlId);
