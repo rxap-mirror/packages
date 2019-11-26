@@ -161,7 +161,7 @@ export class FormViewComponent<FormValue extends object>
     if (!this.instanceId) {
       this.instanceId = this.formId;
     }
-    this.layout$  = this.formTemplateLoader.getLayout$(this.formId);
+
     this.instance = this.formInstanceFactory.buildInstance<FormValue>(
       this.formId,
       this.instanceId,
@@ -171,10 +171,8 @@ export class FormViewComponent<FormValue extends object>
       this.formLoad
     );
 
-    this.subscriptions.add(
-      this.layout$.pipe(
-        tap(layout => this.syncLayoutAndFormDefinition.sync(layout, this.instance.formDefinition.group))
-      ).subscribe()
+    this.layout$ = this.formTemplateLoader.getLayout$(this.formId).pipe(
+      tap(layout => this.syncLayoutAndFormDefinition.sync(layout, this.instance.formDefinition.group))
     );
 
     this.subscriptions.add(
