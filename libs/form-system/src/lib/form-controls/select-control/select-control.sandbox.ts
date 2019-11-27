@@ -19,7 +19,10 @@ export default sandboxOf(RxapSelectControlComponent, {
   declareComponent: false
 }).add('default', {
   template: `<div fxLayout="column" fxLayoutGap="16px">
-<rxap-select-control [options]="options" label="default select control" #control="rxapSelectControl"></rxap-select-control>
+<rxap-select-control [options]="options" label="default select control" #control="rxapSelectControl">
+  <option value="0" #option>Test</option>
+  <option value="1" #option>New</option>
+</rxap-select-control>
 <rxap-control-view [control]="control.control"></rxap-control-view>
 </div>`,
   context:  { options }

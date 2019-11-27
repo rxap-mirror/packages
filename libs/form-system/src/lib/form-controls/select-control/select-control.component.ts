@@ -1,7 +1,11 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  forwardRef
+  forwardRef,
+  QueryList,
+  ContentChildren,
+  AfterContentInit,
+  ElementRef
 } from '@angular/core';
 import { SelectFormControl } from '../../forms/form-controls/select.form-control';
 import { RxapComponent } from '@rxap/component-system';
@@ -33,4 +37,15 @@ import { BaseControlComponent } from '../base-control.component';
   ]
 })
 export class RxapSelectControlComponent<ControlValue>
-  extends NgModelControlComponent<ControlValue, SelectFormControl<ControlValue>> {}
+  extends NgModelControlComponent<ControlValue, SelectFormControl<ControlValue>> implements AfterContentInit {
+
+  @ContentChildren('option') public options!: QueryList<ElementRef<HTMLOptionElement>>;
+
+  public ngAfterContentInit(): void {
+    this.options.forEach(option => {
+      const nativeElement = option.nativeElement;
+      this.control.addOption({ value: nativeElement.value, display: nativeElement.textContent } as any);
+    });
+  }
+
+}
