@@ -12013,6 +12013,11 @@ webidl-conversions@^4.0.2:
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
   integrity sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
 
+webix@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/webix/-/webix-7.0.0.tgz#272d071716ab7fc68fe7852997309afc34fb5330"
+  integrity sha512-vw+eREkn9Z3Z8dJ5I84AdEaYAQXXWO/GW6ulML8D9gBBtQj1aGkzIFdEujEHY80ipFG0nKQU5/+f1wylGw5XvQ==
+
 webpack-core@^0.6.8:
   version "0.6.9"
   resolved "https://registry.yarnpkg.com/webpack-core/-/webpack-core-0.6.9.tgz#fc571588c8558da77be9efb6debdc5a3b172bdc2"

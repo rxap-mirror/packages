@@ -46,6 +46,9 @@
       ],
       "@rxap/form-system-dev": [
         "libs/form-system-dev/src/index.ts"
+      ],
+      "@rxap/data-source": [
+        "libs/data-source/src/index.ts"
       ]
     }
   },
