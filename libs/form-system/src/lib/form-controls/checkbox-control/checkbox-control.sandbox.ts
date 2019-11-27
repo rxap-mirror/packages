@@ -1,19 +1,19 @@
+import { RxapCheckboxControlComponent } from './checkbox-control.component';
 import { sandboxOf } from 'angular-playground';
-import { RxapDateControlComponent } from './date-control.component';
-import { RxapDateControlComponentModule } from './date-control.component.module';
+import { RxapCheckboxControlComponentModule } from './checkbox-control.component.module';
 import { RxapControlViewComponentModule } from '@rxap/form-system-dev';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-export default sandboxOf(RxapDateControlComponent, {
+export default sandboxOf(RxapCheckboxControlComponent, {
   imports:          [
-    RxapDateControlComponentModule.standalone(),
+    RxapCheckboxControlComponentModule.standalone(),
     RxapControlViewComponentModule,
     FlexLayoutModule
   ],
   declareComponent: false
 }).add('default', {
   template: `<div fxLayout="column" fxLayoutGap="16px">
-<rxap-date-control label="default date control" #control="rxapDateControl"></rxap-date-control>
+<rxap-checkbox-control label="default checkbox control" #control="rxapCheckboxControl"></rxap-checkbox-control>
 <rxap-control-view [control]="control.control"></rxap-control-view>
 </div>`
 });

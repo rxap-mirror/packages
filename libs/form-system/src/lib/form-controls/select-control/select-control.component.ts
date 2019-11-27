@@ -15,6 +15,7 @@ import { BaseControlComponent } from '../base-control.component';
   selector:        'rxap-select-control',
   templateUrl:     './select-control.component.html',
   styleUrls:       [ './select-control.component.scss' ],
+  exportAs:        'rxapSelectControl',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers:       [
     {

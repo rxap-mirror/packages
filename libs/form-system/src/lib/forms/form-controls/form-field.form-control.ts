@@ -3,7 +3,10 @@ import {
   IBaseFormControl
 } from './base.form-control';
 import { ErrorStateMatcher } from '@angular/material';
-import { IconConfig } from '@rxap/utilities';
+import {
+  IconConfig,
+  DeleteUndefinedProperties
+} from '@rxap/utilities';
 import { BaseForm } from '../base.form';
 import { BaseFormGroup } from '../form-groups/base.form-group';
 import { Subject } from 'rxjs';
@@ -44,7 +47,7 @@ export class FormFieldFormControl<ControlValue>
     control.placeholder = '';
     control.label       = '';
     control.name        = '';
-    Object.assign(control, options);
+    Object.assign(control, DeleteUndefinedProperties(options));
     return control;
   }
 

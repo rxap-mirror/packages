@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core';
+import {
+  NgModule,
+  ModuleWithProviders
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RxapSelectMultipleListControlComponent } from './select-multiple-list-control.component';
 import {
@@ -13,6 +16,7 @@ import { TextFilterComponentModule } from '../../utilities/text-filter/text-filt
 import { RxapComponentSystemModule } from '@rxap/component-system';
 import { RxapIconButtonComponentModule } from '../../utilities/icon-button/icon-button-component.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { StandaloneSelectMultipleListControlDirectiveModule } from './standalone-select-multiple-list-control.directive.module';
 
 
 @NgModule({
@@ -33,4 +37,21 @@ import { TranslateModule } from '@ngx-translate/core';
   entryComponents: [ RxapSelectMultipleListControlComponent ],
   exports:         [ RxapSelectMultipleListControlComponent ]
 })
-export class RxapSelectMultipleListControlComponentModule {}
+export class RxapSelectMultipleListControlComponentModule {
+
+  public static standalone(): ModuleWithProviders {
+    return {
+      ngModule:  SelectMultipleListControlComponentModuleStandalone,
+      providers: []
+    };
+  }
+
+}
+
+@NgModule({
+  exports: [
+    RxapSelectMultipleListControlComponentModule,
+    StandaloneSelectMultipleListControlDirectiveModule
+  ]
+})
+export class SelectMultipleListControlComponentModuleStandalone {}

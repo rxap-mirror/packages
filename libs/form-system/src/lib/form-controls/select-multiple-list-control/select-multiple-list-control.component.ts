@@ -29,6 +29,7 @@ export function RxapSelectMultipleListControl(optionsDataSource: OptionsDataSour
   templateUrl:     './select-multiple-list-control.component.html',
   styleUrls:       [ './select-multiple-list-control.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  exportAs:        'rxapSelectMultipleListControl',
   providers:       [
     {
       provide:     RXAP_CONTROL_COMPONENT,

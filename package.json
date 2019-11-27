@@ -41,7 +41,8 @@
     "playground": "angular-playground",
     "depcheck": "depcheck",
     "playground:form-control": "yarn playground -C form-controls-playground.json",
-    "start:browser:playground:form-control": "chromium-browser --allow-file-access-from-files --disable-web-security --user-data-dir=\"./chromium-user-data\" http://localhost:9876"
+    "start:browser:playground:form-control": "chromium-browser --allow-file-access-from-files --disable-web-security --user-data-dir=\"./chromium-user-data\" http://localhost:9876",
+    "deploy:form-controls-playground": "gcloud app deploy --project=reactive-application-platform dist/apps/form-controls-playground/app.yaml"
   },
   "private": true,
   "dependencies": {

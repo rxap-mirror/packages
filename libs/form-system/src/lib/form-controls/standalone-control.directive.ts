@@ -55,9 +55,10 @@ export class StandaloneControlDirective<ControlValue,
   }
 
   public ngOnInit(): void {
-    this.controlComponent.control = this.control = ProxyChangeDetection(this.buildControl());
-    this.controlComponent.control.init();
-    this.controlComponent.control.rxapOnInit();
+    const control = ProxyChangeDetection(this.buildControl());
+    control.init();
+    control.rxapOnInit();
+    this.controlComponent.control = this.control = control;
     if (hasOnSetControlHook(this.controlComponent)) {
       this.controlComponent.rxapOnSetControl();
     }

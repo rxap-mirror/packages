@@ -10,6 +10,7 @@ import {
   Injector,
   StaticProvider
 } from '@angular/core';
+import { DeleteUndefinedProperties } from '@rxap/utilities';
 
 export interface IBaseFormControl<ControlValue> {
   injector: Injector,
@@ -35,7 +36,7 @@ export class BaseFormControl<ControlValue> extends BaseForm<ControlValue | null,
     control.placeholder = '';
     control.label       = '';
     control.name        = '';
-    Object.assign(control, options);
+    Object.assign(control, DeleteUndefinedProperties(options));
     return control;
   }
 

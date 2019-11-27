@@ -178,7 +178,7 @@ export class SelectFormControl<ControlValue>
   }
 
   public compareWith(optionValue: ControlValue, selectValue: ControlValue | null): boolean {
-    if (selectValue) {
+    if (selectValue !== null) {
       if (typeof selectValue === 'object') {
         if (hasIdentifierProperty(selectValue)) {
           return getIdentifierPropertyValue(selectValue) === getIdentifierPropertyValue(optionValue);

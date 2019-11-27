@@ -75,19 +75,19 @@ build:master:
   only:
   - master
 
-#build:playground:
-#  stage: build
-#  before_script:
-#  - yarn
-#  script:
-#  - yarn build playground
-#  artifacts:
-#    name: "$CI_JOB_NAME build playground"
-#    paths:
-#    - dist/apps/playground
-#  only:
-#  - master
-#
+build:playground:form-controls:
+  stage: build
+  before_script:
+  - yarn
+  script:
+  - yarn build form-controls-playground
+  artifacts:
+    name: "$CI_JOB_NAME build form-controls playground"
+    paths:
+    - dist/apps/form-controls-playground
+  only:
+  - master
+
 #test:playground:
 #  stage: test
 #  image: registry.gitlab.com/digitaix/gitlab-ci/helpers/chrome-headless

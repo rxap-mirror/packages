@@ -728,12 +728,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/playground",
+            "outputPath": "dist/apps/form-controls-playground",
             "index": "apps/form-controls-playground/src/index.html",
             "main": "apps/form-controls-playground/src/main.ts",
             "polyfills": "apps/form-controls-playground/src/polyfills.ts",
             "tsConfig": "apps/form-controls-playground/tsconfig.app.json",
             "assets": [
+              "apps/form-controls-playground/src/app.yaml",
               "apps/form-controls-playground/src/favicon.ico",
               "apps/form-controls-playground/src/assets",
               {

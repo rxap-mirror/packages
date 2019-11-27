@@ -16,6 +16,7 @@ import { BaseControlComponent } from '../base-control.component';
   templateUrl:     './textarea-control.component.html',
   styleUrls:       [ './textarea-control.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  exportAs:        'rxapTextareaControl',
   providers:       [
     {
       provide:     RXAP_CONTROL_COMPONENT,

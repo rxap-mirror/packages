@@ -16,6 +16,7 @@ import { BaseControlComponent } from '../base-control.component';
   templateUrl:     './radio-button-control.component.html',
   styleUrls:       [ './radio-button-control.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  exportAs:        'rxapRadioButtonControl',
   providers:       [
     {
       provide:     RXAP_CONTROL_COMPONENT,

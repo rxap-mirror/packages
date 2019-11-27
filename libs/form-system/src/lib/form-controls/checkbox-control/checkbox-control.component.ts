@@ -15,6 +15,7 @@ import { BaseControlComponent } from '../base-control.component';
   selector:        'rxap-checkbox-control',
   templateUrl:     './checkbox-control.component.html',
   styleUrls:       [ './checkbox-control.component.scss' ],
+  exportAs:        'rxapCheckboxControl',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers:       [
     {
