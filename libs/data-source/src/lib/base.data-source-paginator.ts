@@ -5,11 +5,11 @@ import {
 } from './data-source.error';
 
 @Injectable({ providedIn: 'root' })
-export class BaseDataSourcePaginator<Data> {
+export class BaseDataSourcePaginator<Source extends any[]> {
 
-  public apply(collection: Data[] | null, page: number | null, pageSize: number | null): Data[] {
+  public apply(collection: Source | null, page: number | null, pageSize: number | null): Source {
     if (collection === null) {
-      return [];
+      return [] as any;
     }
     if (pageSize === null) {
       return collection;
@@ -23,7 +23,7 @@ export class BaseDataSourcePaginator<Data> {
     if (pageSize * page >= collection.length) {
       throw new DataSourceError(DataSourceErrorTypes.PAGE_IS_OUT_OF_BOUND, { page, pageSize, collectionLength: collection.length });
     }
-    return collection.splice(page * pageSize, pageSize);
+    return collection.splice(page * pageSize, pageSize) as any;
   }
 
 }

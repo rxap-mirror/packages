@@ -6,8 +6,8 @@
     <node-interpreter value="project" />
     <envs />
     <method v="2">
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Build Form System" run_configuration_type="js.build_tools.npm" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Test Form System" run_configuration_type="JavaScriptTestRunnerJest" />
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Build Data Source" run_configuration_type="js.build_tools.npm" />
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Test Data Source" run_configuration_type="JavaScriptTestRunnerJest" />
     </method>
   </configuration>
 </component>

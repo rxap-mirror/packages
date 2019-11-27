@@ -58,12 +58,14 @@ export class BaseDataSource<Data, Source = Data, Viewer extends IBaseDataSourceV
 
   public constructor(
     @Optional() @Inject(RXAP_DATA_SOURCE_ID_TOKEN) public readonly id: DataSourceId,
-    @Optional() @Inject(RXAP_DATA_SOURCE_SOURCE_TOKEN) source: Source | BaseDataSource<Source, any> | null                                                                 = null,
-    @Optional() @Inject(RXAP_DATA_SOURCE_TRANSFORMERS_TOKEN) transformers: DataSourceTransformerFunction<Data, Source> | DataSourceTransformerToken<Data, Source>[] | null = null
+    @Optional() @Inject(RXAP_DATA_SOURCE_SOURCE_TOKEN) source: any | null             = null,
+    @Optional() @Inject(RXAP_DATA_SOURCE_TRANSFORMERS_TOKEN) transformers: any | null = null
   ) {
     if (source) {
       if (source instanceof BaseDataSource) {
         this.source$ = source.connect(this.toViewer());
+      } else if (source instanceof Observable) {
+        this.source$ = source;
       } else {
         this.source$ = of(source);
       }

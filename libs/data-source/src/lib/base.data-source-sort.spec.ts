@@ -1,5 +1,5 @@
 import { BaseDataSourceSort } from './base.data-source-sort';
-import { SortDirectionTypes } from './base-data-source';
+import { SortDirectionTypes } from './collection-data-source';
 
 describe('Base Data Source Sort', () => {
 

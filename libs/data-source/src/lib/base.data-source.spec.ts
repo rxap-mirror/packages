@@ -4,6 +4,8 @@ import {
   BaseDataSource,
   RXAP_DATA_SOURCE_TOKEN
 } from './base.data-source';
+import { interval } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 describe('Data Source', () => {
 
@@ -45,7 +47,7 @@ describe('Data Source', () => {
             useFactory: (source: BaseDataSource<User>) => new BaseDataSource<Game[], User>(
               'games',
               source,
-              user => user.games
+              (user: User) => user.games
             ),
             deps:       [ UserDataSourceToken ]
           }
@@ -116,7 +118,7 @@ describe('Data Source', () => {
 
   it('connect and disconnect from DataSource', () => {
 
-    const dataSource = new BaseDataSource('data-source');
+    const dataSource = new BaseDataSource('data-source', interval(100).pipe(map(() => ({ user: 'age' }))));
     const viewer     = { id: 'viewer' };
 
     const collection$ = dataSource.connect(viewer);

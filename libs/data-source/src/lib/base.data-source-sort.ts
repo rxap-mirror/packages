@@ -5,9 +5,9 @@ import {
 } from './collection-data-source';
 
 @Injectable({ providedIn: 'root' })
-export class BaseDataSourceSort<Data> {
+export class BaseDataSourceSort<Source extends any[]> {
 
-  public apply(collection: Data[], sort: Sort | null): Data[] {
+  public apply(collection: Source, sort: Sort | null): Source {
     return sort === null || sort.key === null || sort.direction === null ? collection : collection.sort((a: any, b: any) => {
       if (a.hasOwnProperty(sort.key) && b.hasOwnProperty(sort.key)) {
         return this.sort(a[ sort.key ], b[ sort.key ], sort.direction as any);

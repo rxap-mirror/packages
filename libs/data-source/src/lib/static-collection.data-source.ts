@@ -24,7 +24,7 @@ import {
 } from './collection-data-source';
 
 @Injectable()
-export class StaticCollectionDataSource<Data, Source = Data, Viewer extends ICollectionDataSourceViewer = ICollectionDataSourceViewer>
+export class StaticCollectionDataSource<Data, Source extends any[] = Data[], Viewer extends ICollectionDataSourceViewer = ICollectionDataSourceViewer>
   extends CollectionDataSource<Data, Source, Viewer> {
 
   public constructor(
@@ -39,12 +39,12 @@ export class StaticCollectionDataSource<Data, Source = Data, Viewer extends ICol
   }
 
   public apply(
-    source: Source[],
+    source: Source,
     page: number | null,
     pageSize: number | null,
     sort: Sort | null,
     filters: Array<Filter> | null
-  ): Observable<Source[]> {
+  ): Observable<Source> {
     return of(this.paginator.apply(this.sort.apply(this.filter.apply(source, filters), sort), page, pageSize));
   }
 
