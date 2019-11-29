@@ -49,6 +49,9 @@
       ],
       "@rxap/data-source": [
         "libs/data-source/src/index.ts"
+      ],
+      "@rxap/table-system": [
+        "libs/table-system/src/index.ts"
       ]
     }
   },

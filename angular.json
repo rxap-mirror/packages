@@ -940,6 +940,131 @@
           "styleext": "scss"
         }
       }
+    },
+    "table-system": {
+      "projectType": "library",
+      "root": "libs/table-system",
+      "sourceRoot": "libs/table-system/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/table-system/tsconfig.lib.json",
+            "project": "libs/table-system/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table-system/tsconfig.lib.json",
+              "libs/table-system/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/table-system/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table-system/jest.config.js",
+            "tsConfig": "libs/table-system/tsconfig.spec.json",
+            "setupFile": "libs/table-system/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "table-system-playground": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/table-system-playground",
+      "sourceRoot": "apps/table-system-playground/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/table-system-playground",
+            "index": "apps/table-system-playground/src/index.html",
+            "main": "apps/table-system-playground/src/main.ts",
+            "polyfills": "apps/table-system-playground/src/polyfills.ts",
+            "tsConfig": "apps/table-system-playground/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/table-system-playground/src/app.yaml",
+              "apps/table-system-playground/src/favicon.ico",
+              "apps/table-system-playground/src/assets",
+              {
+                "glob": "mdi.svg",
+                "input": "./node_modules/@mdi/angular-material",
+                "output": "./assets"
+              }
+            ],
+            "styles": [
+              "apps/table-system-playground/src/styles.scss",
+              "apps/table-system-playground/src/webix/webix.css",
+              "apps/table-system-playground/src/webix/skins/material.css"
+            ],
+            "scripts": [
+              "apps/table-system-playground/src/webix/webix.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/table-system-playground/src/environments/environment.ts",
+                  "with": "apps/table-system-playground/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "table-system-playground:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "table-system-playground:build:production"
+            }
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",

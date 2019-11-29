@@ -1,0 +1,17 @@
+<table>
+  <columns>
+    <column id="userId">
+      <header>UserId</header>
+    </column>
+    <column id="title" width="500">
+      <header>Title</header>
+    </column>
+    <column id="body">
+      <header>Body</header>
+    </column>
+  </columns>
+  <actions>
+    <action icon="delete" url="http://google.com/"></action>
+    <action icon="edit"></action>
+  </actions>
+</table>

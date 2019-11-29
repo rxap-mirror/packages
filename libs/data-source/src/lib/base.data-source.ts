@@ -9,7 +9,8 @@ import {
   Observable,
   Subject,
   of,
-  EMPTY
+  EMPTY,
+  Subscriber
 } from 'rxjs';
 import {
   takeUntil,
@@ -40,6 +41,33 @@ export interface DataSourceTransformerToken<Data, Source = Data> {
   transformer: DataSourceTransformerFunction<Data, Source>;
 }
 
+export interface IBaseDataSourceConnection<Data> extends Observable<Data> {
+  unsubscribeAll(): void
+}
+
+export class BaseDataSourceConnection<Data> extends Observable<Data> implements IBaseDataSourceConnection<Data> {
+
+  protected destroy$ = new Subject<void>();
+
+  constructor(public readonly source$: Observable<Data>) {
+    super((function(this: BaseDataSourceConnection<Data>, subscriber: Subscriber<Data>) {
+      return source$.pipe(
+        takeUntil(this.destroy$)
+      ).subscribe(
+        data => subscriber.next(data),
+        error => subscriber.error(error),
+        () => subscriber.complete()
+      );
+    }) as any);
+  }
+
+  public unsubscribeAll(): void {
+    this.destroy$.next();
+  }
+
+}
+
+
 @Injectable()
 export class BaseDataSource<Data, Source = Data, Viewer extends IBaseDataSourceViewer = IBaseDataSourceViewer> {
 
@@ -54,7 +82,7 @@ export class BaseDataSource<Data, Source = Data, Viewer extends IBaseDataSourceV
    * collection data request
    */
   public readonly source$: Observable<Source>;
-  private readonly viewers = new Map<DataSourceViewerId, Subject<void>>();
+  private readonly viewers = new Map<DataSourceViewerId, IBaseDataSourceConnection<Data>>();
 
   public constructor(
     @Optional() @Inject(RXAP_DATA_SOURCE_ID_TOKEN) public readonly id: DataSourceId,
@@ -99,21 +127,16 @@ export class BaseDataSource<Data, Source = Data, Viewer extends IBaseDataSourceV
     return this.viewers.has(viewerId);
   }
 
-  public connect(viewer: Viewer): Observable<Data> {
+  public connect(viewer: Viewer): IBaseDataSourceConnection<Data> {
 
-    if (this.viewers.has(viewer.id)) {
-      throw new Error(`The DataSourceViewer '${viewer.id}' is already connected to the DataSource '${this.id}'!`);
-    }
-
-    const destroy$ = new Subject<void>();
-    this.viewers.set(viewer.id, destroy$);
-
-    return this._connect(viewer).pipe(
-      takeUntil(destroy$),
+    const connection = new BaseDataSourceConnection(this._connect(viewer).pipe(
       map(source => this.transformer(source)),
       share()
-    );
+    ));
 
+    this.registerConnection(viewer, connection);
+
+    return connection;
   }
 
   public disconnect(viewerOrId: Viewer | DataSourceViewerId): void {
@@ -125,11 +148,19 @@ export class BaseDataSource<Data, Source = Data, Viewer extends IBaseDataSourceV
     }
 
     // tslint:disable-next-line:no-non-null-assertion
-    const destroy$ = this.viewers.get(viewerId)!;
+    const connection = this.viewers.get(viewerId)!;
     this.viewers.delete(viewerId);
 
-    destroy$.next();
+    connection.unsubscribeAll();
 
+  }
+
+  protected registerConnection(viewer: Viewer, connection: IBaseDataSourceConnection<Data>): void {
+    if (this.viewers.has(viewer.id)) {
+      throw new Error(`The DataSourceViewer '${viewer.id}' is already connected to the DataSource '${this.id}'!`);
+    }
+
+    this.viewers.set(viewer.id, connection);
   }
 
   public transformer(source: Source): Data {

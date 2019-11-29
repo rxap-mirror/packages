@@ -18,6 +18,7 @@ export * from './lib/change';
 export * from './lib/rxjs/operators/is-defined';
 export * from './lib/rxjs/operators/is-equal';
 export * from './lib/rxjs/operators/is-deep-equal';
+export * from './lib/rxjs/operators/is-not-empty';
 
 // endregion
 

@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+html {
+  height: 100%;
+}
+
+.playground-container {
+  margin: 32px;
+  padding: 32px;
+  border: 2px dashed gray;
+  height: calc(100% - 132px);
+}

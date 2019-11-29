@@ -1,0 +1,17 @@
+{
+  "sourceRoots": [
+    "./apps/table-system-playground/src",
+    "./libs/table-system/src/lib"
+  ],
+  "angularCli": {
+    "appName": "table-system-playground",
+    "port": 9976
+  },
+  "checkErrors": false,
+  "randomScenario": false,
+  "reportPath": "./table-system-sandbox.report.json",
+  "reportType": "json",
+  "timeout": 90,
+  "noWatch": false,
+  "noServe": false
+}

@@ -4,70 +4,108 @@ import {
   RXAP_DATA_SOURCE_ID_TOKEN,
   RXAP_DATA_SOURCE_TRANSFORMERS_TOKEN,
   DataSourceTransformerFunction,
-  DataSourceTransformerToken
+  DataSourceTransformerToken,
+  IBaseDataSourceConnection
 } from './base.data-source';
 import {
   Injectable,
   Optional,
-  Inject
+  Inject,
+  InjectionToken
 } from '@angular/core';
 import { DataSourceId } from './collection-data-source';
 import {
   HttpClient,
-  HttpRequest,
-  HttpEvent,
-  HttpEventType,
-  HttpResponse
+  HttpParams,
+  HttpHeaders
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import {
-  map,
+  Observable,
+  Subject,
+  Subscriber,
+  BehaviorSubject,
+  combineLatest,
+  throwError,
+  TeardownLogic
+} from 'rxjs';
+import {
   tap,
-  filter
+  switchMap,
+  catchError,
+  retry,
+  takeUntil
 } from 'rxjs/operators';
 
-export interface IHttpDataSourceViewer<Source> extends IBaseDataSourceViewer, HttpRequest<Source> {
+export interface IHttpDataSourceViewer extends IBaseDataSourceViewer {
+  url?: string;
+  params?: HttpParams;
+  headers?: HttpHeaders;
 }
 
+export class HttpDataSourceConnection<Data> extends Observable<Data> implements IBaseDataSourceConnection<Data> {
+
+  public static handelSubscription<Data>(this: HttpDataSourceConnection<Data>, subscriber: Subscriber<Data>): TeardownLogic {
+    return combineLatest([
+      this.params$,
+      this.headers$
+    ]).pipe(
+      takeUntil(this.destroy$),
+      switchMap(([ params, headers ]) => this.http.get<Data>(this.url, { params, headers }).pipe(
+        tap(response => subscriber.next(response)),
+        retry(3),
+        catchError(error => {
+          subscriber.error(error);
+          throw throwError(error);
+        })
+      ))
+    ).subscribe();
+  }
+
+  public readonly params$!: BehaviorSubject<HttpParams | undefined>;
+  public readonly headers$!: BehaviorSubject<HttpHeaders | undefined>;
+
+  protected destroy$ = new Subject<void>();
+
+  constructor(
+    public readonly http: HttpClient,
+    public readonly url: string = '',
+    params?: HttpParams,
+    headers?: HttpHeaders
+  ) {
+    // cast to any to allow type save access to the current
+    // HttpDataSourceConnection instance
+    super(HttpDataSourceConnection.handelSubscription as any);
+    this.params$  = new BehaviorSubject<HttpParams | undefined>(params);
+    this.headers$ = new BehaviorSubject<HttpHeaders | undefined>(headers);
+  }
+
+  public unsubscribeAll(): void {
+    this.destroy$.next();
+  }
+
+}
+
+export const RXAP_DATA_SOURCE_HTTP_BASE_URL = new InjectionToken('rxap/data-source/http/base-url');
+
 @Injectable()
-export class HttpDataSource<Data, Source = Data, Viewer extends IHttpDataSourceViewer<Source> = IHttpDataSourceViewer<Source>>
-  extends BaseDataSource<Data, Source | null, Viewer> {
+export class HttpDataSource<Data, Source = Data, Viewer extends IHttpDataSourceViewer = IHttpDataSourceViewer>
+  extends BaseDataSource<Data, Source, Viewer> {
 
   constructor(
     public http: HttpClient,
+    @Optional() @Inject(RXAP_DATA_SOURCE_HTTP_BASE_URL) public readonly baseUrl: string,
     @Optional() @Inject(RXAP_DATA_SOURCE_ID_TOKEN) id: DataSourceId,
-    @Optional() @Inject(RXAP_DATA_SOURCE_TRANSFORMERS_TOKEN) transformers: DataSourceTransformerFunction<Data, Source | null> | DataSourceTransformerToken<Data, Source | null>[] | null = null
+    @Optional() @Inject(RXAP_DATA_SOURCE_TRANSFORMERS_TOKEN) transformers: DataSourceTransformerFunction<Data, Source> | DataSourceTransformerToken<Data, Source>[] | null = null
   ) {
     super(id, null, transformers);
   }
 
-  protected _connect(viewer: Viewer): Observable<Source | null> {
-    return this.http.request<Source>(viewer).pipe(
-      tap((event: HttpEvent<Source>) => {
+  public connect(viewer: Viewer): HttpDataSourceConnection<Data> {
+    const connection = new HttpDataSourceConnection<Data>(this.http, viewer.url, viewer.params, viewer.headers);
 
-        switch (event.type) {
-          case HttpEventType.Sent:
-            break;
-          case HttpEventType.ResponseHeader:
-            break;
-          case HttpEventType.Response:
-            break;
-          case HttpEventType.DownloadProgress:
-            break;
-          case HttpEventType.UploadProgress:
-            break;
-          case HttpEventType.User:
-            break;
-        }
+    this.registerConnection(viewer, connection);
 
-        return null as any;
-
-      }),
-      filter((event): event is HttpResponse<Source> => event.type === HttpEventType.Response),
-      map((event: HttpResponse<Source>) => {
-        return event.body;
-      })
-    );
+    return connection;
   }
 
 }

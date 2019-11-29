@@ -130,12 +130,12 @@ export interface RxapColumn {
   /**
    * specifies the footer of the column. As an array, the footer can contain both string and object values.
    */
-  footer: string | Array<string | FooterOptions>;
+  footer: string | Array<string | Partial<FooterOptions>>;
 
   /**
    * specifies the header of the column. As an array, the header can contain both string and object values.
    */
-  header: string | Array<string | FooterOptions>;
+  header: string | Array<string | Partial<FooterOptions>>;
 
   /**
    * hides a column initially

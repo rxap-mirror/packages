@@ -7,7 +7,7 @@ import {
 @Injectable({ providedIn: 'root' })
 export class BaseDataSourcePaginator<Source extends any[]> {
 
-  public apply(collection: Source | null, page: number | null, pageSize: number | null): Source {
+  public apply(collection: Source, page: number | null, pageSize: number | null): Source {
     if (collection === null) {
       return [] as any;
     }
