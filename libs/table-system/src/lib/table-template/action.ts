@@ -9,7 +9,7 @@ export class Action {
     const action = new Action();
 
     action.type = element.getString('type');
-    const icon  = element.getString('icon');
+    const icon  = element.getString('icon') || element.textContent;
     if (!icon) {
       throw new Error('Action icon is required');
     }
@@ -21,6 +21,23 @@ export class Action {
     action.propertyKey = element.getString('propertyKey') || action.id;
     action.httpMethod  = element.getString('httpMethod') || action.httpMethod;
     action.refresh     = element.getBoolean('refresh');
+    action.routerLink  = element.getString('routerLink');
+
+    if (element.hasChild('hide')) {
+      const hide  = element.getChild('hide')!;
+      action.hide = {
+        propertyKey: hide.getString('key')!,
+        value:       hide.getParsedContent()
+      };
+    }
+
+    if (element.hasChild('show')) {
+      const show  = element.getChild('show')!;
+      action.show = {
+        propertyKey: show.getString('key')!,
+        value:       show.getParsedContent()
+      };
+    }
 
     return action;
   }
@@ -34,9 +51,12 @@ export class Action {
   public color?: string;
   public url?: string;
   public refresh?: boolean;
+  public routerLink?: string;
+  public hide?: { propertyKey: string, value: any };
+  public show?: { propertyKey: string, value: any };
 
   public toConfig() {
-    return DeleteUndefinedProperties({
+    const config: any = {
       type:        this.type,
       icon:        this.icon,
       tooltip:     this.tooltip,
@@ -45,8 +65,19 @@ export class Action {
       id:          this.id,
       propertyKey: this.propertyKey,
       httpMethod:  this.httpMethod,
-      refresh:     this.refresh
-    });
+      refresh:     this.refresh,
+      routerLink:  this.routerLink
+    };
+
+    if (this.hide) {
+      config.hide = (row: any) => row[ this.hide!.propertyKey ] === this.hide!.value;
+    }
+
+    if (this.show) {
+      config.show = (row: any) => row[ this.show!.propertyKey ] === this.show!.value;
+    }
+
+    return DeleteUndefinedProperties(config);
   }
 
   public apply(tableDefinition: RxapTableDefinition<any>) {

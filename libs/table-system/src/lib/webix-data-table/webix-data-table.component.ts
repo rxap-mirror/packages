@@ -27,6 +27,7 @@ import {
   TableDataSource
 } from '../table.data-source';
 import { TableTemplateLoader } from '../table-template/table-template-loader';
+import { TableActionHandler } from '../table-action.handler';
 
 @Component({
   selector:        'rxap-webix-data-table',
@@ -53,6 +54,7 @@ export class WebixDataTableComponent<Data> implements OnInit, OnDestroy {
 
   constructor(
     public readonly tableTemplateLoader: TableTemplateLoader,
+    public readonly tableActionHandler: TableActionHandler<Data>,
     @Optional() @Inject(RXAP_DATA_SOURCE_TOKEN) dataSource: any | null            = null,
     @Optional() @Inject(RXAP_TABLE_SYSTEM_DEFINITION) tableDefinition: any | null = null
   ) {
@@ -107,9 +109,7 @@ export class WebixDataTableComponent<Data> implements OnInit, OnDestroy {
       config.onClick = this.tableDefinition.actions.reduce((onClick, action) => ({
         ...onClick,
         [ action.id ]: (_: any, { row }: { row: number }) => {
-          if (this.tableDefinition) {
-            this.tableDefinition.rxapOnAction(action, this.ui.data.getItem(row));
-          }
+          this.tableActionHandler.handel(action, this.ui.data.getItem(row));
         }
       }), {} as any);
     } else {

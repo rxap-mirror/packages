@@ -17,6 +17,37 @@ export class RxapElement {
     return undefined;
   }
 
+  public getParsedContent<T = any>(): T {
+    const value = this.textContent;
+    if (value === 'true' || value === 'false') {
+      return (value === 'true') as any;
+    }
+    if (value === '') {
+      return value as any;
+    }
+    if (!isNaN(Number(value))) {
+      return Number(value) as any;
+    }
+    return value as any;
+  }
+
+  public get<T = any>(qualifiedName: string): T | undefined {
+    if (this.element.hasAttribute(qualifiedName)) {
+      const value = this.element.getAttribute(qualifiedName)!;
+      if (value === 'true' || value === 'false') {
+        return (value === 'true') as any;
+      }
+      if (value === '') {
+        return value as any;
+      }
+      if (!isNaN(Number(value))) {
+        return Number(value) as any;
+      }
+      return value as any;
+    }
+    return undefined;
+  }
+
   public getNumber(qualifiedName: string): number | undefined {
     if (this.element.hasAttribute(qualifiedName)) {
       return Number(this.element.getAttribute(qualifiedName));

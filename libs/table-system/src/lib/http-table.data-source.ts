@@ -9,7 +9,8 @@ import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import {
   TableDataSource,
-  TableDataSourceConnection
+  TableDataSourceConnection,
+  RefreshParams
 } from './table.data-source';
 import { first } from 'rxjs/operators';
 
@@ -25,11 +26,14 @@ function mergeHttpParams(...httpParams: HttpParams[]) {
 
 export class HttpTableDataSourceConnection<Data> extends HttpDataSourceConnection<Data> implements TableDataSourceConnection<Data> {
 
-  public refresh(params: { sort: Sort, filters: Filter[], page: number, pageSize: number }): void {
+  protected lastParams: RefreshParams = { sort: null, filters: null, page: 0, pageSize: 10 };
+
+  public refresh(params: RefreshParams = this.lastParams): void {
+    this.lastParams = params;
     this.params$.next(this.buildParams(params));
   }
 
-  private buildParams(params: { sort?: Sort, filters?: Filter[], page: number, pageSize: number }): HttpParams {
+  private buildParams(params: RefreshParams): HttpParams {
     const pageParams = this.getPagingParam(params.page, params.pageSize);
     let sortParams   = new HttpParams();
     if (params.sort) {

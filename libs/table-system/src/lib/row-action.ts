@@ -18,5 +18,8 @@ export interface RxapRowAction<Data, T extends RxapTableDefinition<Data> = RxapT
   handel?: (this: T, row: Data) => Promise<any>;
   httpMethod: HttpMethods;
   refresh?: boolean;
+  routerLink?: string;
+  hide?: (row: Data) => boolean,
+  show?: (row: Data) => boolean,
 
 }

@@ -11,7 +11,9 @@
     </column>
   </columns>
   <actions>
-    <action icon="delete" url="http://google.com/"></action>
-    <action icon="edit"></action>
+    <action type="delete" url="http://google.com/{{row.id}}" refresh="true">delete</action>
+    <action icon="edit" routerLink="/test/{{row.id}}">
+      <hide key="userId">1</hide>
+    </action>
   </actions>
 </table>

@@ -4,24 +4,22 @@ import {
 } from '@angular/core';
 import { RxapColumn } from '@rxap/table-system';
 import { RxapRowAction } from '../row-action';
-import {
-  HttpClient,
-  HttpRequest
-} from '@angular/common/http';
-import { compile } from 'handlebars';
-import {
-  first,
-  tap
-} from 'rxjs/operators';
 
 
 export const RXAP_TABLE_SYSTEM_DEFINITION = new InjectionToken('rxap/table-system/definition');
 
-export function BuildActionColumnTemplate(actions: RxapRowAction<any>[]): string {
-  let template = '<div>';
+export function BuildActionColumnTemplate(actions: RxapRowAction<any>[]): (row: any) => string {
+  return (row: any) => {
+    let template = '<div>';
 
-  for (const action of actions) {
-    template += `<button class="${action.id} mat-icon-button mat-button-base">
+    for (const action of actions) {
+      if (action.hide && action.hide(row)) {
+        continue;
+      }
+      if (action.show && !action.show(row)) {
+        continue;
+      }
+      template += `<button class="${action.id} mat-icon-button mat-button-base" style="cursor: pointer">
   <span class="mat-button-wrapper">
     <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">
     ${action.icon}
@@ -30,9 +28,10 @@ export function BuildActionColumnTemplate(actions: RxapRowAction<any>[]): string
   <div class="mat-button-ripple mat-ripple mat-button-ripple-round"></div>
   <div class="mat-button-focus-overlay"></div>
 </button>`;
-  }
+    }
 
-  return template + '</div>';
+    return template + '</div>';
+  }
 }
 
 @Injectable()
@@ -64,26 +63,6 @@ export class RxapTableDefinition<Data> {
 
   public tableId!: string;
 
-  constructor(public http: HttpClient) {}
-
   public rxapOnInit() {}
-
-  public rxapOnDestroy() {}
-
-  public rxapOnAction(action: RxapRowAction<Data>, row: Data): void {
-    if (action.url) {
-      const urlTemplate = compile(action.url);
-      const url         = urlTemplate({ row });
-      this.http.request(new HttpRequest(action.httpMethod as any, url)).pipe(
-        first(),
-        tap(() => {
-          if (action.refresh) {
-            throw new Error('Not yet implemented');
-          }
-        })
-      ).subscribe();
-    }
-  }
-
 
 }

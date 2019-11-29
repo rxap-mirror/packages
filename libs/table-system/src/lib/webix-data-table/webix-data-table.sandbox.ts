@@ -18,6 +18,7 @@ import {
   HttpClientModule
 } from '@angular/common/http';
 import { HttpTableDataSource } from '../http-table.data-source';
+import { RouterTestingModule } from '@angular/router/testing';
 
 interface User {
   username: string;
@@ -50,7 +51,8 @@ class SandboxTableDefinition extends RxapTableDefinition<User> {
 export default sandboxOf(WebixDataTableComponent, {
   imports:          [
     WebixDataTableModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterTestingModule
   ],
   providers:        [],
   declareComponent: false
@@ -87,14 +89,13 @@ export default sandboxOf(WebixDataTableComponent, {
   template:  '<rxap-webix-data-table></rxap-webix-data-table>',
   providers: [
     {
-      provide: RXAP_TABLE_SYSTEM_DEFINITION,
-
-      useFactory: (http: HttpClient) => {
-        const definition   = new RxapTableDefinition(http);
+      provide:    RXAP_TABLE_SYSTEM_DEFINITION,
+      useFactory: () => {
+        const definition   = new RxapTableDefinition();
         definition.tableId = 'with-remote-template';
         return definition;
       },
-      deps:       [ HttpClient ]
+      deps:       []
     },
     {
       provide:    RXAP_DATA_SOURCE_TOKEN,

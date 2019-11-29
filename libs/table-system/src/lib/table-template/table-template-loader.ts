@@ -5,8 +5,6 @@ import {
   Subject,
   from
 } from 'rxjs';
-import { TableTemplate } from '@rxap/form-system';
-import { getMetadata } from '../../../../../dist/libs/utilities';
 import { TableDefinitionMetaDataKeys } from '../definition/decorators/meta-data-keys';
 import {
   filter,
@@ -16,6 +14,7 @@ import {
 } from 'rxjs/operators';
 import { RxapTableDefinition } from '../definition/table-definition';
 import { Table } from './table';
+import { getMetadata } from '@rxap/utilities';
 
 export type TableTemplate = string;
 
