@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { FormViewComponent } from './form-view.component';
+import {
+  FormViewComponent,
+  SyncLayoutAndFormDefinition
+} from './form-view.component';
 import { FormTemplateLoader } from '../form-template-loader';
 import { FormInstanceFactory } from '../form-instance-factory';
 import { Layout } from './layout';
@@ -26,12 +29,13 @@ describe('Form System', () => {
           imports: [ HttpClientTestingModule ]
         });
 
-        const formTemplateLoader  = TestBed.get(FormTemplateLoader);
-        const formInstanceFactory = TestBed.get(FormInstanceFactory);
-        const formInvalidSubmit   = TestBed.get(FormInvalidSubmitService);
-        const formValidSubmit     = TestBed.get(FormValidSubmitService);
-        const formLoad            = TestBed.get(FormLoadService);
-        const injector            = TestBed.get(INJECTOR);
+        const formTemplateLoader          = TestBed.get(FormTemplateLoader);
+        const formInstanceFactory         = TestBed.get(FormInstanceFactory);
+        const formInvalidSubmit           = TestBed.get(FormInvalidSubmitService);
+        const formValidSubmit             = TestBed.get(FormValidSubmitService);
+        const formLoad                    = TestBed.get(FormLoadService);
+        const injector                    = TestBed.get(INJECTOR);
+        const syncLayoutAndFormDefinition = TestBed.get(SyncLayoutAndFormDefinition);
 
         component = new FormViewComponent<any>(
           formTemplateLoader,
@@ -39,7 +43,8 @@ describe('Form System', () => {
           formInvalidSubmit,
           formValidSubmit,
           formLoad,
-          injector
+          injector,
+          syncLayoutAndFormDefinition
         );
 
         formInstnace = FormInstance.TestInstance();
