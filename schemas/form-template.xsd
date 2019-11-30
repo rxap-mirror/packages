@@ -40,7 +40,185 @@
     <xs:attribute name="color" type="xs:string"/>
   </xs:complexType>
 
-  <xs:element name="option" type="xs:string"/>
+  <xs:complexType name="form-like">
+    <xs:attribute name="id" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="group">
+    <xs:complexContent>
+      <xs:extension base="form-like">
+        <xs:sequence>
+          <xs:element ref="form-like"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="array">
+    <xs:complexContent>
+      <xs:extension base="form-like">
+        <xs:sequence>
+          <xs:element ref="form-like"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="control">
+    <xs:complexContent>
+      <xs:extension base="form-like">
+        <xs:attribute name="controlPath" type="xs:string"/>
+        <xs:attribute name="componentId" type="xs:string"/>
+        <xs:attribute name="placeholder" type="xs:string"/>
+        <xs:attribute name="label" type="xs:string"/>
+        <xs:attribute name="disabled" type="xs:boolean" default="false"/>
+        <xs:attribute name="readonly" type="xs:boolean" default="false"/>
+        <xs:attribute name="required" type="xs:boolean" default="false"/>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="initial" type="xs:string"/>
+        <xs:attribute name="debounceTime" type="xs:positiveInteger"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="form-field-control">
+    <xs:complexContent>
+      <xs:extension base="control">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="prefix-icon"/>
+          <xs:element minOccurs="0" ref="suffix-icon"/>
+          <xs:element minOccurs="0" ref="prefix-button"/>
+          <xs:element minOccurs="0" ref="suffix-button"/>
+        </xs:sequence>
+        <xs:attribute name="appearance">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="legacy"/>
+              <xs:enumeration value="standard"/>
+              <xs:enumeration value="fill"/>
+              <xs:enumeration value="outline"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="checkbox-control">
+    <xs:complexContent>
+      <xs:extension base="control">
+        <xs:attribute name="indeterminate" type="xs:boolean" default="false"/>
+        <xs:attribute name="labelPosition" type="position"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="date-control">
+    <xs:complexContent>
+      <xs:extension base="form-field-control">
+        <xs:attribute name="startAt" type="xs:dateTime"/>
+        <xs:attribute name="startView">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="month"/>
+              <xs:enumeration value="year"/>
+              <xs:enumeration value="multi-year"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="input-control">
+    <xs:complexContent>
+      <xs:extension base="form-field-control">
+        <xs:attribute name="max" type="xs:integer"/>
+        <xs:attribute name="min" type="xs:integer"/>
+        <xs:attribute name="pattern" type="xs:string"/>
+        <xs:attribute name="type" default="text">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="color"/>
+              <xs:enumeration value="date"/>
+              <xs:enumeration value="datetime-local"/>
+              <xs:enumeration value="email"/>
+              <xs:enumeration value="month"/>
+              <xs:enumeration value="number"/>
+              <xs:enumeration value="password"/>
+              <xs:enumeration value="search"/>
+              <xs:enumeration value="tel"/>
+              <xs:enumeration value="text"/>
+              <xs:enumeration value="time"/>
+              <xs:enumeration value="url"/>
+              <xs:enumeration value="week"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="radio-control">
+    <xs:complexContent>
+      <xs:extension base="control">
+        <xs:choice>
+          <xs:element ref="options"/>
+          <xs:element ref="data-source"/>
+        </xs:choice>
+        <xs:attribute name="color" type="theme-palette"/>
+        <xs:attribute name="labelPosition" type="position"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="select-control">
+    <xs:complexContent>
+      <xs:extension base="form-field-control">
+        <xs:choice>
+          <xs:element minOccurs="0" ref="options"/>
+          <xs:element minOccurs="0" ref="data-source"/>
+        </xs:choice>
+        <xs:attribute name="multiple" type="xs:boolean" default="false"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="select-list-control">
+    <xs:complexContent>
+      <xs:extension base="select-control">
+        <xs:attribute name="checkboxPosition" type="position"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="select-or-create-control">
+    <xs:complexContent>
+      <xs:extension base="select-control">
+        <xs:attribute name="createFormId" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="textarea-control">
+    <xs:complexContent>
+      <xs:extension base="form-field-control">
+        <xs:attribute name="maxRows" type="xs:positiveInteger"/>
+        <xs:attribute name="minRows" type="xs:positiveInteger"/>
+        <xs:attribute name="autosize" type="xs:boolean" default="true"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="option">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="value" type="xs:string"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
 
   <xs:element name="options">
     <xs:complexType>
@@ -52,27 +230,11 @@
 
   <xs:element name="data-source"/>
 
-  <xs:element name="form-like" substitutionGroup="component" abstract="true">
-    <xs:complexType>
-      <xs:attribute name="id" type="xs:boolean" use="required"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="form-like" substitutionGroup="component" abstract="true" type="form-like"/>
 
-  <xs:element name="group" substitutionGroup="form-like">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="form-like"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="group" substitutionGroup="form-like" type="group"/>
 
-  <xs:element name="array" substitutionGroup="form-like">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="form-like"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="array" substitutionGroup="form-like" type="array"/>
 
   <xs:element name="validator">
     <xs:complexType>
@@ -96,138 +258,32 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="control" substitutionGroup="form-like">
-    <xs:complexType>
-      <xs:attribute name="controlPath" type="xs:string"/>
-      <xs:attribute name="componentId" type="xs:string"/>
-      <xs:attribute name="placeholder" type="xs:string"/>
-      <xs:attribute name="label" type="xs:string"/>
-      <xs:attribute name="disabled" type="xs:boolean" default="false"/>
-      <xs:attribute name="readonly" type="xs:boolean" default="false"/>
-      <xs:attribute name="required" type="xs:boolean" default="false"/>
-      <xs:attribute name="name" type="xs:string"/>
-      <xs:attribute name="initial" type="xs:anyType"/>
-      <xs:attribute name="debounceTime" type="xs:positiveInteger"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="control" substitutionGroup="form-like" type="control"/>
 
   <xs:element name="prefix-icon" type="icon-config"/>
   <xs:element name="suffix-icon" type="icon-config"/>
   <xs:element name="prefix-button" type="icon-config"/>
   <xs:element name="suffix-button" type="icon-config"/>
 
-  <xs:element name="form-field-control" abstract="true">
-    <xs:complexType>
-      <xs:all>
-        <xs:element minOccurs="0" ref="prefix-icon"/>
-        <xs:element minOccurs="0" ref="suffix-icon"/>
-        <xs:element minOccurs="0" ref="prefix-button"/>
-        <xs:element minOccurs="0" ref="suffix-button"/>
-      </xs:all>
-      <xs:attribute name="appearance">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="legacy"/>
-            <xs:enumeration value="standard"/>
-            <xs:enumeration value="fill"/>
-            <xs:enumeration value="outline"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="form-field-control" abstract="true" substitutionGroup="control" type="form-field-control"/>
 
-  <xs:element name="checkbox-control" substitutionGroup="control">
-    <xs:complexType>
-      <xs:attribute name="indeterminate" type="xs:boolean" default="false"/>
-      <xs:attribute name="labelPosition" type="position"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="checkbox-control" type="checkbox-control" substitutionGroup="control"/>
 
-  <xs:element name="date-control" substitutionGroup="form-field-control">
-    <xs:complexType>
-      <xs:attribute name="startAt" type="xs:dateTime"/>
-      <xs:attribute name="startView">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="month"/>
-            <xs:enumeration value="year"/>
-            <xs:enumeration value="multi-year"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="date-control" type="date-control" substitutionGroup="form-field-control"/>
 
-  <xs:element name="input-control" substitutionGroup="form-field-control">
-    <xs:complexType>
-      <xs:attribute name="max" type="xs:integer"/>
-      <xs:attribute name="min" type="xs:integer"/>
-      <xs:attribute name="pattern" type="xs:string"/>
-      <xs:attribute name="type" default="text">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="color"/>
-            <xs:enumeration value="date"/>
-            <xs:enumeration value="datetime-local"/>
-            <xs:enumeration value="email"/>
-            <xs:enumeration value="month"/>
-            <xs:enumeration value="number"/>
-            <xs:enumeration value="password"/>
-            <xs:enumeration value="search"/>
-            <xs:enumeration value="tel"/>
-            <xs:enumeration value="text"/>
-            <xs:enumeration value="time"/>
-            <xs:enumeration value="url"/>
-            <xs:enumeration value="week"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="input-control" type="input-control" substitutionGroup="form-field-control"/>
 
   <xs:element name="password-control" substitutionGroup="input-control"/>
 
-  <xs:element name="radio-control" substitutionGroup="control">
-    <xs:complexType>
-      <xs:choice>
-        <xs:element ref="options"/>
-        <xs:element ref="data-source"/>
-      </xs:choice>
-      <xs:attribute name="color" type="theme-palette"/>
-      <xs:attribute name="labelPosition" type="position"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="radio-control" type="radio-control" substitutionGroup="control"/>
 
-  <xs:element name="select-control" substitutionGroup="form-field-control">
-    <xs:complexType>
-      <xs:choice>
-        <xs:element ref="options"/>
-        <xs:element ref="data-source"/>
-      </xs:choice>
-      <xs:attribute name="multiple" type="xs:boolean" default="false"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="select-control" type="select-control" substitutionGroup="form-field-control"/>
 
-  <xs:element name="select-list-control" substitutionGroup="select-control">
-    <xs:complexType>
-      <xs:attribute name="checkboxPosition" type="position"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="select-list-control" type="select-list-control" substitutionGroup="select-control"/>
 
-  <xs:element name="select-or-create-control" substitutionGroup="select-control">
-    <xs:complexType>
-      <xs:attribute name="createFormId" type="xs:string"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="select-or-create-control" type="select-or-create-control" substitutionGroup="select-control"/>
 
-  <xs:element name="textarea-control" substitutionGroup="form-field-control">
-    <xs:complexType>
-      <xs:attribute name="maxRows" type="xs:positiveInteger"/>
-      <xs:attribute name="minRows" type="xs:positiveInteger"/>
-      <xs:attribute name="autosize" type="xs:boolean" default="true"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="textarea-control" type="textarea-control" substitutionGroup="form-field-control"/>
 
   <!-- endregion -->
 
@@ -236,7 +292,7 @@
   <xs:element name="layout" substitutionGroup="component" abstract="true">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="component"/>
+        <xs:element maxOccurs="unbounded" ref="component"/>
       </xs:sequence>
       <xs:attribute name="horizontal" default="start">
         <xs:simpleType>
