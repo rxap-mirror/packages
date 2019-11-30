@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="theme-palette">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="primary"/>
+      <xs:enumeration value="accent"/>
+      <xs:enumeration value="warn"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="header">
+    <xs:complexType>
+      <xs:attribute name="text" type="xs:string"/>
+      <xs:attribute name="content">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="textFilter"/>
+            <xs:enumeration value="selectFilter"/>
+            <xs:enumeration value="summColumn"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="rowspan" type="xs:positiveInteger"/>
+      <xs:attribute name="colspan" type="xs:positiveInteger"/>
+      <xs:attribute name="css" type="xs:string"/>
+      <xs:attribute name="rotate" type="xs:boolean" default="false"/>
+      <xs:attribute name="height" type="xs:positiveInteger"/>
+      <xs:attribute name="autoheight" type="xs:boolean" default="false"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="footer" substitutionGroup="header"/>
+
+  <xs:element name="column">
+    <xs:complexType>
+      <xs:all>
+        <xs:element minOccurs="0" ref="header"/>
+        <xs:element minOccurs="0" ref="footer"/>
+      </xs:all>
+      <xs:attribute name="adjust">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="data"/>
+            <xs:enumeration value="header"/>
+            <xs:enumeration value="true"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="css" type="xs:string"/>
+      <xs:attribute name="id" type="xs:string" use="required"/>
+      <xs:attribute name="minWidth" type="xs:positiveInteger"/>
+      <xs:attribute name="maxWidth" type="xs:positiveInteger"/>
+      <xs:attribute name="sort">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="int"/>
+            <xs:enumeration value="date"/>
+            <xs:enumeration value="string"/>
+            <xs:enumeration value="string_strict"/>
+            <xs:enumeration value="text"/>
+            <xs:enumeration value="server"/>
+            <xs:enumeration value="row"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="width" type="xs:positiveInteger"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="columns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="column"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="action">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="hide">
+          <xs:complexType>
+            <xs:attribute name="key" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="show">
+          <xs:complexType>
+            <xs:attribute name="key" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+      <xs:attribute name="refresh" type="xs:boolean" default="false"/>
+      <xs:attribute name="type" type="xs:string"/>
+      <xs:attribute name="icon" type="xs:string" use="required"/>
+      <xs:attribute name="tooltip" type="xs:string"/>
+      <xs:attribute name="color" type="theme-palette"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="http-action" substitutionGroup="action">
+    <xs:complexType>
+      <xs:attribute name="method" default="GET">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="GET"/>
+            <xs:enumeration value="POST"/>
+            <xs:enumeration value="PUT"/>
+            <xs:enumeration value="DELETE"/>
+            <xs:enumeration value="OPTIONS"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="navigate-action" substitutionGroup="action"/>
+
+  <xs:element name="actions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="action"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="table">
+    <xs:complexType>
+      <xs:all>
+        <xs:element minOccurs="0" ref="actions"/>
+        <xs:element ref="columns"/>
+      </xs:all>
+      <xs:attribute name="id" type="xs:string" use="required"/>
+      <xs:attribute name="data-source" type="xs:string"/>
+      <xs:attribute name="title" type="xs:string"/>
+      <xs:attribute name="subTitle" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

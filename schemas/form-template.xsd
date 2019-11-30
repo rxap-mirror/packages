@@ -1,0 +1,290 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="form">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="component"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:string" use="required"/>
+      <xs:attribute name="data-source" type="xs:string"/>
+      <xs:attribute name="title" type="xs:string"/>
+      <xs:attribute name="subTitle" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="component" abstract="true"/>
+
+  <!-- region controls -->
+
+  <xs:simpleType name="theme-palette">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="primary"/>
+      <xs:enumeration value="accent"/>
+      <xs:enumeration value="warn"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="position">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="before"/>
+      <xs:enumeration value="after"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="icon-config">
+    <xs:attribute name="svgIcon" type="xs:string"/>
+    <xs:attribute name="inline" type="xs:string"/>
+    <xs:attribute name="fontSet" type="xs:string"/>
+    <xs:attribute name="fontIcon" type="xs:string"/>
+    <xs:attribute name="color" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:element name="option" type="xs:string"/>
+
+  <xs:element name="options">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="option"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="data-source"/>
+
+  <xs:element name="form-like" substitutionGroup="component" abstract="true">
+    <xs:complexType>
+      <xs:attribute name="id" type="xs:boolean" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="group" substitutionGroup="form-like">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="form-like"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="array" substitutionGroup="form-like">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="form-like"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="validator">
+    <xs:complexType>
+      <xs:attribute name="key" type="xs:string" use="required"/>
+      <xs:attribute name="message" type="xs:string"/>
+      <xs:attribute name="id" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="less-then" substitutionGroup="validator"/>
+  <xs:element name="grater-then" substitutionGroup="validator"/>
+  <xs:element name="less-then-or-equal" substitutionGroup="validator"/>
+  <xs:element name="grater-then-or-equal" substitutionGroup="validator"/>
+  <xs:element name="match" substitutionGroup="validator"/>
+
+  <xs:element name="validators">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="validator"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="control" substitutionGroup="form-like">
+    <xs:complexType>
+      <xs:attribute name="controlPath" type="xs:string"/>
+      <xs:attribute name="componentId" type="xs:string"/>
+      <xs:attribute name="placeholder" type="xs:string"/>
+      <xs:attribute name="label" type="xs:string"/>
+      <xs:attribute name="disabled" type="xs:boolean" default="false"/>
+      <xs:attribute name="readonly" type="xs:boolean" default="false"/>
+      <xs:attribute name="required" type="xs:boolean" default="false"/>
+      <xs:attribute name="name" type="xs:string"/>
+      <xs:attribute name="initial" type="xs:anyType"/>
+      <xs:attribute name="debounceTime" type="xs:positiveInteger"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="prefix-icon" type="icon-config"/>
+  <xs:element name="suffix-icon" type="icon-config"/>
+  <xs:element name="prefix-button" type="icon-config"/>
+  <xs:element name="suffix-button" type="icon-config"/>
+
+  <xs:element name="form-field-control" abstract="true">
+    <xs:complexType>
+      <xs:all>
+        <xs:element minOccurs="0" ref="prefix-icon"/>
+        <xs:element minOccurs="0" ref="suffix-icon"/>
+        <xs:element minOccurs="0" ref="prefix-button"/>
+        <xs:element minOccurs="0" ref="suffix-button"/>
+      </xs:all>
+      <xs:attribute name="appearance">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="legacy"/>
+            <xs:enumeration value="standard"/>
+            <xs:enumeration value="fill"/>
+            <xs:enumeration value="outline"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="checkbox-control" substitutionGroup="control">
+    <xs:complexType>
+      <xs:attribute name="indeterminate" type="xs:boolean" default="false"/>
+      <xs:attribute name="labelPosition" type="position"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="date-control" substitutionGroup="form-field-control">
+    <xs:complexType>
+      <xs:attribute name="startAt" type="xs:dateTime"/>
+      <xs:attribute name="startView">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="month"/>
+            <xs:enumeration value="year"/>
+            <xs:enumeration value="multi-year"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="input-control" substitutionGroup="form-field-control">
+    <xs:complexType>
+      <xs:attribute name="max" type="xs:integer"/>
+      <xs:attribute name="min" type="xs:integer"/>
+      <xs:attribute name="pattern" type="xs:string"/>
+      <xs:attribute name="type" default="text">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="color"/>
+            <xs:enumeration value="date"/>
+            <xs:enumeration value="datetime-local"/>
+            <xs:enumeration value="email"/>
+            <xs:enumeration value="month"/>
+            <xs:enumeration value="number"/>
+            <xs:enumeration value="password"/>
+            <xs:enumeration value="search"/>
+            <xs:enumeration value="tel"/>
+            <xs:enumeration value="text"/>
+            <xs:enumeration value="time"/>
+            <xs:enumeration value="url"/>
+            <xs:enumeration value="week"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="password-control" substitutionGroup="input-control"/>
+
+  <xs:element name="radio-control" substitutionGroup="control">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="options"/>
+        <xs:element ref="data-source"/>
+      </xs:choice>
+      <xs:attribute name="color" type="theme-palette"/>
+      <xs:attribute name="labelPosition" type="position"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="select-control" substitutionGroup="form-field-control">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="options"/>
+        <xs:element ref="data-source"/>
+      </xs:choice>
+      <xs:attribute name="multiple" type="xs:boolean" default="false"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="select-list-control" substitutionGroup="select-control">
+    <xs:complexType>
+      <xs:attribute name="checkboxPosition" type="position"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="select-or-create-control" substitutionGroup="select-control">
+    <xs:complexType>
+      <xs:attribute name="createFormId" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="textarea-control" substitutionGroup="form-field-control">
+    <xs:complexType>
+      <xs:attribute name="maxRows" type="xs:positiveInteger"/>
+      <xs:attribute name="minRows" type="xs:positiveInteger"/>
+      <xs:attribute name="autosize" type="xs:boolean" default="true"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- endregion -->
+
+  <!-- region layout -->
+
+  <xs:element name="layout" substitutionGroup="component" abstract="true">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="component"/>
+      </xs:sequence>
+      <xs:attribute name="horizontal" default="start">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="start"/>
+            <xs:enumeration value="center"/>
+            <xs:enumeration value="end"/>
+            <xs:enumeration value="space-around"/>
+            <xs:enumeration value="space-between"/>
+            <xs:enumeration value="space-evenly"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="vertical" default="stretch">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="start"/>
+            <xs:enumeration value="center"/>
+            <xs:enumeration value="end"/>
+            <xs:enumeration value="stretch"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="gap" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="row" substitutionGroup="layout"/>
+  <xs:element name="column" substitutionGroup="layout"/>
+
+  <!-- endregion -->
+
+  <!-- region stepper -->
+
+  <xs:element name="stepper" substitutionGroup="component">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="step">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="component"/>
+            </xs:sequence>
+            <xs:attribute name="label" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- endregion -->
+
+</xs:schema>
