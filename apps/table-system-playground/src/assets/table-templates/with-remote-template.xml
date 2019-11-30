@@ -1,4 +1,10 @@
 <table>
+  <actions>
+    <http-action type="delete" refresh="true" method="DELETE" url="http://google.com/{{row.id}}" icon="delete">
+      <show key="__archived">true</show>
+    </http-action>
+    <navigate-action icon="edit" routerLink="{{row.id}}"/>
+  </actions>
   <columns>
     <column id="userId">
       <header>UserId</header>
@@ -10,10 +16,4 @@
       <header>Body</header>
     </column>
   </columns>
-  <actions>
-    <action type="delete" url="http://google.com/{{row.id}}" refresh="true">delete</action>
-    <action icon="edit" routerLink="/test/{{row.id}}">
-      <hide key="userId">1</hide>
-    </action>
-  </actions>
 </table>

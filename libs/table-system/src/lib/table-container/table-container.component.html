@@ -1,0 +1,61 @@
+<mat-menu #menu="matMenu" xPosition="before">
+  <span
+    (click)="$event.stopPropagation()"
+    *ngFor="let column of definition?.columns"
+    [disableRipple]="true"
+    mat-menu-item
+  >
+    <mat-checkbox
+      (change)="column.toggleHidden()"
+      [checked]="!column.hidden$.value"
+    >{{ column.header | translate }}</mat-checkbox
+    >
+  </span>
+  <mat-divider></mat-divider>
+  <span (click)="$event.stopPropagation()" [disableRipple]="true" mat-menu-item>
+    <mat-slide-toggle (toggleChange)="dataSource.toggleShowArchived()">{{
+      'DX.TABLES.SHOW_ARCHIVED_DOCUMENTS' | translate
+      }}</mat-slide-toggle>
+  </span>
+</mat-menu>
+
+<mat-card class="mat-elevation-z1">
+  <mat-card-header>
+    <div *ngIf="hasAddAction" mat-card-avatar>
+      <button (click)="onAddClick()" mat-mini-fab type="button">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <mat-card-title>{{ definition.title | translate }}</mat-card-title>
+    <mat-card-subtitle *ngIf="definition.subTitle">{{
+      definition.subTitle | translate
+      }}</mat-card-subtitle>
+    <button
+      [matMenuTriggerFor]="menu"
+      mat-icon-button
+      style="position: absolute; right: 16px"
+      type="button"
+    >
+      <mat-icon svgIcon="tune"></mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <div
+      (scroll)="dataSource.onScroll$.next($event)"
+      [ngStyle]="{
+        height: height,
+        'min-height': minHeight,
+        'max-height': maxHeight,
+        overflow: overflow,
+        width: width,
+        'min-width': minWidth,
+        'max-width': maxWidth
+      }"
+      class="table-container"
+    >
+      <rxap-webix-data-table></rxap-webix-data-table>
+    </div>
+  </mat-card-content>
+  <mat-card-actions></mat-card-actions>
+</mat-card>
+<ng-template #loading>Loading ...</ng-template>

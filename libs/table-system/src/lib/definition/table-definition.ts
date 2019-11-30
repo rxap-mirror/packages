@@ -57,6 +57,10 @@ export class RxapTableDefinition<Data> {
     return this.actionKeys.reduce((array: any[], key: string) => [ ...array, (this as any)[ key ] ], []);
   }
 
+  public title!: string;
+
+  public subTitle!: string;
+
   public columnsKeys: string[] = [];
 
   public actionKeys: string[] = [];
