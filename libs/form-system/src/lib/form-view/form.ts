@@ -22,7 +22,7 @@ export class Form {
   public subTitle?: string;
 
   constructor(
-    public readonly id: string,
+    public id: string,
     public readonly components: Component[]
   ) { }
 }
