@@ -9,8 +9,10 @@ import { Option } from './option';
 export class Control extends FormLike {
 
   public get controlPath(): string {
-    return this.id;
+    return [ this.formId, this.id ].filter(Boolean).join('.');
   }
+
+  public formId?: string;
 
   public componentId?: string;
   /**

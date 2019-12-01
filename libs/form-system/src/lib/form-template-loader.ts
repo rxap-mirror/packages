@@ -118,7 +118,11 @@ export class FormTemplateLoader {
       filter(updateFormId => updateFormId === formId),
       startWith(formId),
       switchMap(() => from(this.getTemplate$(formId)).pipe(
-        map(template => Parser.CreateFormFromXml(template))
+        map(template => {
+          const form = Parser.CreateFormFromXml(template);
+          form.id    = formId;
+          return form;
+        })
       )),
     );
   }
