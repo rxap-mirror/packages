@@ -27,16 +27,37 @@ import {
   FormInstance,
   FormInstanceId
 } from '../form-instance';
-import { Required } from '@rxap/utilities';
+import {
+  Required,
+  Type
+} from '@rxap/utilities';
 import { FormInvalidSubmitService } from '../form-invalid-submit.service';
 import { FormValidSubmitService } from '../form-valid-submit.service';
 import { FormLoadService } from '../form-load.service';
-import { Control } from './control';
+import {
+  Control,
+  CheckboxControl,
+  DateControl,
+  SelectOrCreateControl,
+  SelectControl,
+  FormFieldControl,
+  InputControl,
+  RadioControl,
+  SelectListControl,
+  TextareaControl
+} from './control';
 import { BaseFormGroup } from '../forms/form-groups/base.form-group';
 import { BaseFormControl } from '../forms/form-controls/base.form-control';
 import { InputFormControl } from '../forms/form-controls/input.form-control';
 import { SelectFormControl } from '../forms/form-controls/select.form-control';
 import { FormStateManager } from '../form-state-manager';
+import { SelectListFormControl } from '../forms/form-controls/select-list.form-control';
+import { RadioButtonFormControl } from '../forms/form-controls/radio-button.form-control';
+import { SelectOrCreateFormControl } from '../forms/form-controls/select-or-create.form-control';
+import { CheckboxFormControl } from '../forms/form-controls/checkbox.form-control';
+import { DateFormControl } from '../forms/form-controls/date.form-control';
+import { FormFieldFormControl } from '../forms/form-controls/form-field.form-control';
+import { TextareaFormControl } from '../forms/form-controls/textarea-form.control';
 
 @Injectable({ providedIn: 'root' })
 export class SyncLayoutAndFormDefinition {
@@ -47,8 +68,6 @@ export class SyncLayoutAndFormDefinition {
     layout.controls.forEach((control: Control) => {
       let group       = rootGroup;
       const fragments = control.controlPath.split('.');
-      // remove the formId
-      fragments.shift();
       for (let i = 0; i < fragments.length; i++) {
         const fragment = fragments[ i ];
         if (group.hasControl(fragment)) {
@@ -69,33 +88,96 @@ export class SyncLayoutAndFormDefinition {
 
   public updateControl(formControl: BaseFormControl<any>, control: Control): void {
 
-    switch (control.name) {
+    if (control instanceof CheckboxControl && formControl instanceof CheckboxFormControl) {
+      formControl.indeterminate = control.indeterminate;
+      formControl.labelPosition = control.labelPosition;
+    }
 
-      case 'select':
-        if (control.options) {
-          (formControl as SelectFormControl<any>).options = control.options.items;
-        }
-        break;
+    if (control instanceof FormFieldControl && formControl instanceof FormFieldFormControl) {
+      formControl.appearance = control.appearance;
+    }
 
+    if (control instanceof DateControl && formControl instanceof DateFormControl) {
+      formControl.startAt   = control.startAt || null;
+      formControl.startView = control.startView;
+    }
+
+    if (control instanceof InputControl && formControl instanceof InputFormControl) {
+      formControl.min     = control.min || null;
+      formControl.max     = control.max || null;
+      formControl.pattern = control.pattern as any || null;
+      formControl.type    = control.type;
+    }
+
+    if (control instanceof RadioControl && formControl instanceof RadioButtonFormControl) {
+      formControl.color         = control.color;
+      formControl.labelPosition = control.labelPosition;
+    }
+
+    if (control instanceof SelectControl && formControl instanceof SelectFormControl) {
+      if (control.options) {
+        formControl.options = control.options;
+      }
+      formControl.multiple = control.multiple;
+    }
+
+    if (control instanceof SelectListControl && formControl instanceof SelectListFormControl) {
+      formControl.checkboxPosition = control.checkboxPosition;
+    }
+
+    if (control instanceof SelectOrCreateControl && formControl instanceof SelectOrCreateFormControl) {
+      formControl.createFormId = control.createFormId;
+    }
+
+    if (control instanceof TextareaControl && formControl instanceof TextareaFormControl) {
+      formControl.maxRows  = control.maxRows as any;
+      formControl.minRows  = control.minRows as any;
+      formControl.autosize = control.autosize;
     }
 
   }
 
   public addNewControl(group: BaseFormGroup<any>, control: Control): void {
-    let formControl: BaseFormControl<any>;
+    let formControlTyp: Type<BaseFormControl<any>>;
 
     // create new without parent to prevent that the control is been used before initialized
-    switch (control.name) {
+    switch (control.controlTypId) {
+
+      case 'checkbox':
+        formControlTyp = CheckboxFormControl;
+        break;
+
+      case 'date':
+        formControlTyp = DateFormControl;
+        break;
 
       case 'select':
-        formControl = new SelectFormControl(control.controlId, null, group.injector);
+        formControlTyp = SelectFormControl;
+        break;
+
+      case 'radio':
+        formControlTyp = RadioButtonFormControl;
+        break;
+
+      case 'select-list':
+        formControlTyp = SelectListFormControl;
+        break;
+
+      case 'select-or-create':
+        formControlTyp = SelectOrCreateFormControl;
+        break;
+
+      case 'textarea':
+        formControlTyp = TextareaFormControl;
         break;
 
       default:
-        formControl = new InputFormControl(control.controlId, null, group.injector);
+        formControlTyp = InputFormControl;
         break;
 
     }
+
+    const formControl: BaseFormControl<any> = new formControlTyp(control.id, null, group.injector);
 
     this.updateControl(formControl, control);
 

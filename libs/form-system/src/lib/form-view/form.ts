@@ -1,6 +1,7 @@
+import { Component } from './component';
 import { Control } from './control';
 
-export abstract class Component {
+export class Form {
 
   public get controls(): any[] {
     return this.components.map(component => {
@@ -13,8 +14,12 @@ export abstract class Component {
     }).reduce((array, item) => [ ...array, ...item ], []);
   }
 
-  public flex = 'nogrow';
+  public dataSource?: string;
+  public title?: string;
+  public subTitle?: string;
 
-  public components: Component[] = [];
-
+  constructor(
+    public readonly id: string,
+    public readonly components: Component[]
+  ) { }
 }

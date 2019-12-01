@@ -1,15 +1,12 @@
-import { Layout } from './layout';
 import { Component } from './component';
 
 export class Step extends Component {
 
-  constructor(public layout: Layout, public label: string) {
+  constructor(
+    public readonly label: string,
+    public readonly components: Component[]
+  ) {
     super();
-    this.components = this.layout.components;
-  }
-
-  public setFormId(formId: string): void {
-    this.layout.setFormId(formId);
   }
 
 }

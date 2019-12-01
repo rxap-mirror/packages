@@ -49,6 +49,9 @@
       ],
       "@rxap/data-source": [
         "libs/data-source/src/index.ts"
+      ],
+      "@rxap/xml-parser": [
+        "libs/xml-parser/src/index.ts"
       ]
     }
   },

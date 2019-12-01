@@ -1,21 +1,7 @@
 <?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:element name="form">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="component"/>
-      </xs:sequence>
-      <xs:attribute name="id" type="xs:string" use="required"/>
-      <xs:attribute name="data-source" type="xs:string"/>
-      <xs:attribute name="title" type="xs:string"/>
-      <xs:attribute name="subTitle" type="xs:string"/>
-    </xs:complexType>
-  </xs:element>
-
-  <xs:element name="component" abstract="true"/>
-
-  <!-- region controls -->
+  <!-- region types -->
 
   <xs:simpleType name="theme-palette">
     <xs:restriction base="xs:string">
@@ -41,14 +27,18 @@
   </xs:complexType>
 
   <xs:complexType name="form-like">
-    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:complexContent>
+      <xs:extension base="component">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="group">
     <xs:complexContent>
       <xs:extension base="form-like">
         <xs:sequence>
-          <xs:element ref="form-like"/>
+          <xs:element minOccurs="1" ref="form-like"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -58,7 +48,7 @@
     <xs:complexContent>
       <xs:extension base="form-like">
         <xs:sequence>
-          <xs:element ref="form-like"/>
+          <xs:element minOccurs="1" ref="form-like"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -67,7 +57,7 @@
   <xs:complexType name="control">
     <xs:complexContent>
       <xs:extension base="form-like">
-        <xs:attribute name="controlPath" type="xs:string"/>
+        <xs:attribute name="controlTypId" type="xs:string"/>
         <xs:attribute name="componentId" type="xs:string"/>
         <xs:attribute name="placeholder" type="xs:string"/>
         <xs:attribute name="label" type="xs:string"/>
@@ -90,7 +80,7 @@
           <xs:element minOccurs="0" ref="prefix-button"/>
           <xs:element minOccurs="0" ref="suffix-button"/>
         </xs:sequence>
-        <xs:attribute name="appearance">
+        <xs:attribute name="appearance" default="standard">
           <xs:simpleType>
             <xs:restriction base="xs:string">
               <xs:enumeration value="legacy"/>
@@ -108,7 +98,7 @@
     <xs:complexContent>
       <xs:extension base="control">
         <xs:attribute name="indeterminate" type="xs:boolean" default="false"/>
-        <xs:attribute name="labelPosition" type="position"/>
+        <xs:attribute name="labelPosition" type="position" default="before"/>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -210,6 +200,28 @@
     </xs:complexContent>
   </xs:complexType>
 
+  <!-- endregion -->
+
+  <xs:element name="form">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="component"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:string" use="required"/>
+      <xs:attribute name="dataSource" type="xs:string"/>
+      <xs:attribute name="title" type="xs:string"/>
+      <xs:attribute name="subTitle" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="component">
+    <xs:attribute name="flex"/>
+  </xs:complexType>
+
+  <xs:element name="component" type="component" abstract="true"/>
+
+  <!-- region controls -->
+
   <xs:element name="option">
     <xs:complexType>
       <xs:simpleContent>
@@ -291,32 +303,36 @@
 
   <xs:element name="layout" substitutionGroup="component" abstract="true">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="component"/>
-      </xs:sequence>
-      <xs:attribute name="horizontal" default="start">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="start"/>
-            <xs:enumeration value="center"/>
-            <xs:enumeration value="end"/>
-            <xs:enumeration value="space-around"/>
-            <xs:enumeration value="space-between"/>
-            <xs:enumeration value="space-evenly"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="vertical" default="stretch">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="start"/>
-            <xs:enumeration value="center"/>
-            <xs:enumeration value="end"/>
-            <xs:enumeration value="stretch"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="gap" type="xs:string"/>
+      <xs:complexContent>
+        <xs:extension base="component">
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" ref="component"/>
+          </xs:sequence>
+          <xs:attribute name="horizontal" default="start">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="start"/>
+                <xs:enumeration value="center"/>
+                <xs:enumeration value="end"/>
+                <xs:enumeration value="space-around"/>
+                <xs:enumeration value="space-between"/>
+                <xs:enumeration value="space-evenly"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="vertical" default="stretch">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="start"/>
+                <xs:enumeration value="center"/>
+                <xs:enumeration value="end"/>
+                <xs:enumeration value="stretch"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="gap" type="xs:string"/>
+        </xs:extension>
+      </xs:complexContent>
     </xs:complexType>
   </xs:element>
   <xs:element name="row" substitutionGroup="layout"/>
@@ -328,16 +344,20 @@
 
   <xs:element name="stepper" substitutionGroup="component">
     <xs:complexType>
-      <xs:all>
-        <xs:element name="step">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element ref="component"/>
-            </xs:sequence>
-            <xs:attribute name="label" type="xs:string"/>
-          </xs:complexType>
-        </xs:element>
-      </xs:all>
+      <xs:complexContent>
+        <xs:extension base="component">
+          <xs:sequence>
+            <xs:element minOccurs="1" name="step">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="1" ref="component"/>
+                </xs:sequence>
+                <xs:attribute name="label" type="xs:string"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
     </xs:complexType>
   </xs:element>
 

@@ -1,14 +1,25 @@
 import { Component } from './component';
 
-export class Layout extends Component {
+export abstract class Layout extends Component {
 
-  public components: Component[]       = [];
-  public orientation: 'row' | 'column' = 'row';
-  public gap: string                   = '0';
-  public align: string                 = '';
+  public abstract readonly orientation: 'row' | 'column';
+  public gap?: string;
+  public align?: string;
 
-  public setFormId(formId: string): void {
-    this.components.forEach(component => component.setFormId(formId));
+  constructor(public readonly components: Component[]) {
+    super();
   }
+
+}
+
+export class Column extends Layout {
+
+  public readonly orientation = 'column';
+
+}
+
+export class Row extends Layout {
+
+  public readonly orientation = 'row';
 
 }
