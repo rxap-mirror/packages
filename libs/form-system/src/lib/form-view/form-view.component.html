@@ -1,5 +1,7 @@
 <form (submit)="$event.preventDefault()" novalidate>
-  <rxap-layout *ngIf="layout$ | async as layout" [layout]="layout"></rxap-layout>
+  <div *ngIf="formTemplate$ | async as form">
+    <rxap-layout *ngFor="let component of form.components" [layout]="component"></rxap-layout>
+  </div>
   <button style="display: none" type="submit" #submitButton></button>
   <button style="display: none" type="reset" #resetButton></button>
 </form>

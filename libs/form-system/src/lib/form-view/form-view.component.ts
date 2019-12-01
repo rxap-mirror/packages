@@ -17,7 +17,6 @@ import {
   RXAP_FORM_ID,
   RXAP_FORM_INSTANCE_ID
 } from '../tokens';
-import { Layout } from './layout';
 import {
   Subscription,
   Observable
@@ -58,14 +57,15 @@ import { CheckboxFormControl } from '../forms/form-controls/checkbox.form-contro
 import { DateFormControl } from '../forms/form-controls/date.form-control';
 import { FormFieldFormControl } from '../forms/form-controls/form-field.form-control';
 import { TextareaFormControl } from '../forms/form-controls/textarea-form.control';
+import { Form } from './form';
 
 @Injectable({ providedIn: 'root' })
 export class SyncLayoutAndFormDefinition {
 
   constructor(public formStateManager: FormStateManager) {}
 
-  public sync(layout: Layout, rootGroup: BaseFormGroup<any>) {
-    layout.controls.forEach((control: Control) => {
+  public sync(form: Form, rootGroup: BaseFormGroup<any>) {
+    form.controls.forEach((control: Control) => {
       let group       = rootGroup;
       const fragments = control.controlPath.split('.');
       for (let i = 0; i < fragments.length; i++) {
@@ -215,7 +215,7 @@ export class FormViewComponent<FormValue extends object>
 
   @Input() public instanceId!: FormInstanceId;
 
-  public layout$!: Observable<Layout>;
+  public formTemplate$!: Observable<Form>;
   public instance!: FormInstance<FormValue>;
 
   public subscriptions = new Subscription();
@@ -253,8 +253,8 @@ export class FormViewComponent<FormValue extends object>
       this.formLoad
     );
 
-    this.layout$ = this.formTemplateLoader.getLayout$(this.formId).pipe(
-      tap(layout => this.syncLayoutAndFormDefinition.sync(layout, this.instance.formDefinition.group))
+    this.formTemplate$ = this.formTemplateLoader.getFormTemplate$(this.formId).pipe(
+      tap(form => this.syncLayoutAndFormDefinition.sync(form, this.instance.formDefinition.group))
     );
 
     this.subscriptions.add(

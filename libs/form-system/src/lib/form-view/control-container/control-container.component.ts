@@ -15,7 +15,6 @@ import { FormStateManager } from '../../form-state-manager';
 import { ComponentRegistryService } from '@rxap/component-system';
 import { BaseControlComponent } from '../../form-controls/base-control.component';
 import { hasOnSetControlHook } from '../hooks';
-import { SelectFormControl } from '../../forms/form-controls/select.form-control';
 
 @Component({
   selector: 'rxap-control-container',
@@ -64,13 +63,6 @@ export class ControlContainerComponent implements OnInit {
     const componentRef = componentFactory.create(injector);
 
     componentRef.instance.control = this.formControl;
-
-    // add options from Template
-    if (this.control.options) {
-      if (this.formControl instanceof SelectFormControl) {
-        this.formControl.options = this.control.options.items;
-      }
-    }
 
     if (hasOnSetControlHook(componentRef.instance)) {
       componentRef.instance.rxapOnSetControl();

@@ -1,93 +1,105 @@
-import { Layout } from './layout';
-import { Control } from './control';
-import { Stepper } from './stepper';
-import { Step } from './step';
-import { Component } from './component';
+export class RxapElement {
 
-export function LayoutFromElement(element: Element) {
-  const layout = new Layout();
-  layout.align = element.getAttribute('align') || '';
-  layout.gap = element.getAttribute('gap') || '0px';
-  layout.orientation = element.nodeName as any;
-  layout.components.push(...getComponentsFromElement(element));
-
-  return layout;
-}
-
-export function StepperFromElement(element: Element) {
-  const stepper = new Stepper();
-
-  element.childNodes.forEach((child: any) => {
-
-    if (child.nodeName === 'step') {
-      stepper.components.push(StepFromElement(child));
-    }
-
-  });
-
-  return stepper;
-}
-
-export function StepFromElement(element: Element) {
-
-
-  const label = element.getAttribute('label');
-
-  if (!label) {
-    throw new Error('label is required for the step element');
+  public get name(): string {
+    return this.element.nodeName;
   }
 
-  const step = new Step(new Layout(), label);
-
-  step.layout.orientation = element.getAttribute('layout') as any || 'column';
-  step.layout.gap         = element.getAttribute('gap') || '0px';
-  step.layout.align       = element.getAttribute('align') || '';
-  step.layout.components.push(...getComponentsFromElement(element));
-
-  return step;
-}
-
-export function getComponentsFromElement(element: Element): Array<Component> {
-
-  const components: Array<Stepper | Layout | Control> = [];
-
-  element.childNodes.forEach((child: any) => {
-
-    switch (child.nodeName) {
-
-      case 'row': case 'column':
-        components.push(LayoutFromElement(child));
-        break;
-
-      case 'control':
-        components.push(Control.fromElement(child));
-        break;
-
-      case 'stepper':
-        components.push(StepperFromElement(child));
-        break;
-
-    }
-
-  });
-
-  return components;
-
-}
-
-export function FromXml(xml: string): Layout {
-  const xmlDoc = new DOMParser().parseFromString(xml, 'text/xml');
-
-  const root = xmlDoc.childNodes.item(0) as Element;
-
-  switch (root.nodeName) {
-    case 'stepper':
-      const layout = new Layout();
-      layout.orientation = 'column';
-      layout.components.push(StepperFromElement(root));
-      return layout;
-
-    default:
-      return LayoutFromElement(root);
+  public get textContent(): string | null {
+    return this.element.textContent;
   }
+
+  constructor(public readonly element: Element) {}
+
+  public getString<T = undefined>(qualifiedName: string, defaultValue?: T): T | string {
+    if (this.element.hasAttribute(qualifiedName)) {
+      return this.element.getAttribute(qualifiedName) as string;
+    }
+    return defaultValue as any;
+  }
+
+  public getParsedContent<T = any>(): T {
+    const value = this.textContent;
+    if (value === 'true' || value === 'false') {
+      return (value === 'true') as any;
+    }
+    if (value === '') {
+      return value as any;
+    }
+    if (!isNaN(Number(value))) {
+      return Number(value) as any;
+    }
+    return value as any;
+  }
+
+  public get<D = undefined, T = any>(qualifiedName: string, defaultValue?: D): T | D {
+    if (this.element.hasAttribute(qualifiedName)) {
+      const value = this.element.getAttribute(qualifiedName)!;
+      if (value === 'true' || value === 'false') {
+        return (value === 'true') as any;
+      }
+      if (value === '') {
+        return value as any;
+      }
+      if (!isNaN(Number(value))) {
+        return Number(value) as any;
+      }
+
+      // test if string
+      if (value[ 0 ] === '\'' && value[ value.length - 1 ] === '\'') {
+        return value.substr(1, value.length - 2) as any;
+      } else {
+        try {
+          return JSON.parse(value);
+        } finally {}
+      }
+
+      return value as any;
+    }
+    return defaultValue as any;
+  }
+
+  public getDate(qualifiedName: string): number | undefined {
+    return undefined;
+  }
+
+  public getNumber<T = undefined>(qualifiedName: string, defaultValue?: T): number | T {
+    if (this.element.hasAttribute(qualifiedName)) {
+      return Number(this.element.getAttribute(qualifiedName));
+    }
+    return defaultValue as any;
+  }
+
+  public getBoolean(qualifiedName: string, defaultValue: boolean = false): boolean {
+    if (this.element.hasAttribute(qualifiedName)) {
+      return this.element.getAttribute(qualifiedName) === 'true' || this.element.getAttribute(qualifiedName) === '';
+    }
+    return defaultValue;
+  }
+
+  public has(qualifiedName: string): boolean {
+    return this.element.hasAttribute(qualifiedName);
+  }
+
+  public hasChildren(): boolean {
+    return this.element.hasChildNodes();
+  }
+
+  public hasChild(nodeName: string): boolean {
+    return Array.from(this.element.childNodes).find(n => n.nodeName === nodeName) !== undefined;
+  }
+
+  public getAllChildNodes(): RxapElement[] {
+    return Array.from(this.element.childNodes)
+                .filter(n => !!n.nodeName && n.nodeType === 1)
+                .map((child: ChildNode) => new RxapElement(child as any));
+  }
+
+  public getChildren(nodeName: string): RxapElement[] {
+    return this.getAllChildNodes().filter(e => e.name === nodeName);
+  }
+
+  public getChild(nodeName: string): RxapElement | undefined {
+    return this.getAllChildNodes().find(e => e.name === nodeName);
+  }
+
 }

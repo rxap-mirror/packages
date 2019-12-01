@@ -1,5 +1,4 @@
 import { Option } from './option';
-import { RxapElement } from '../../../../xml-parser/src';
 import {
   Control,
   CheckboxControl,
@@ -23,6 +22,7 @@ import {
 import { Component } from './component';
 import { Stepper } from './stepper';
 import { Step } from './step';
+import { RxapElement } from './element';
 
 export type XmlElementName = string;
 export type ControlCreatorFunction = (element: RxapElement) => Control;
@@ -39,7 +39,7 @@ export class Parser {
 
     Parser.isElement(element, 'options');
 
-    return element.getChildren('option').map(option => new Option(option.get('value'), option.textContent));
+    return element.getChildren('option').map((option: RxapElement) => new Option(option.get('value'), option.textContent as any));
 
   }
 
@@ -103,7 +103,7 @@ export class Parser {
 
     Parser.ParseControl(element, control);
 
-    control.appearance = element.getString('appearance', control.appearance);
+    control.appearance = element.getString('appearance', control.appearance) as any;
 
   }
 
@@ -133,7 +133,7 @@ export class Parser {
     control.min     = element.getNumber('min');
     control.max     = element.getNumber('max');
     control.pattern = element.getString('pattern');
-    control.type    = element.getString('type', control.type);
+    control.type    = element.getString('type', control.type) as any;
 
     return control;
 
@@ -148,7 +148,7 @@ export class Parser {
     Parser.ParseControl(element, control);
 
     control.color         = element.getString('control') as any;
-    control.labelPosition = element.getString('labelPosition', control.labelPosition);
+    control.labelPosition = element.getString('labelPosition', control.labelPosition) as any;
 
     return control;
 
@@ -179,7 +179,7 @@ export class Parser {
 
     Parser.ParseSelectControl(element, control);
 
-    control.checkboxPosition = element.getString('checkboxPosition', control.checkboxPosition);
+    control.checkboxPosition = element.getString('checkboxPosition', control.checkboxPosition) as any;
 
     return control;
 
@@ -261,7 +261,7 @@ export class Parser {
 
     Parser.isElement(element, 'stepper');
 
-    const stepper = new Stepper(element.getChildren('step').map(step => Parser.CreateStep(step)));
+    const stepper = new Stepper(element.getChildren('step').map((step: RxapElement) => Parser.CreateStep(step)));
 
     Parser.ParseComponent(element, stepper);
 
@@ -285,31 +285,41 @@ export class Parser {
   }
 
   public static CreateChildComponents(element: RxapElement): Component[] {
-    return element.getAllChildNodes().map(child => {
+    const components: Component[] = [];
+
+    for (const child of element.getAllChildNodes()) {
 
       switch (child.name) {
 
         case 'row':
-          return Parser.CreateRow(child);
+          components.push(Parser.CreateRow(child));
+          break;
 
         case 'column':
-          return Parser.CreateColumn(child);
+          components.push(Parser.CreateColumn(child));
+          break;
 
         case 'group':
-          return Parser.CreateGroup(child);
+          components.push(Parser.CreateGroup(child));
+          break;
 
         case 'array':
-          return Parser.CreateArray(child);
+          components.push(Parser.CreateArray(child));
+          break;
 
         case 'stepper':
-          return Parser.CreateStepper(child);
+          components.push(Parser.CreateStepper(child));
+          break;
 
         default:
-          return Parser.AutoCreateControl(child);
+          components.push(Parser.AutoCreateControl(child));
+          break;
 
       }
 
-    });
+    }
+
+    return components;
   }
 
   public static CreateSaveChildComponents(element: RxapElement): Component[] {
@@ -366,7 +376,7 @@ export class Parser {
 
   }
 
-  public static isElement(element, elementName: string): void {
+  public static isElement(element: RxapElement, elementName: string): void {
     if (element.name !== elementName) {
       throw new Error();
     }

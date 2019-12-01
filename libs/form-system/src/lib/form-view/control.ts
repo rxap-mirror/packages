@@ -24,7 +24,7 @@ export class CheckboxControl extends Control {
 
   public indeterminate                 = false;
   public labelPosition: LabelPositions = LabelPositions.BEFORE;
-  public readonly controlTypId         = 'checkbox';
+  public readonly controlTypId: string = 'checkbox';
 
 }
 
@@ -38,7 +38,7 @@ export class DateControl extends FormFieldControl {
 
   public startAt?: number;
   public startView: DateFormControlStartViews = DateFormControlStartViews.MONTH;
-  public readonly controlTypId                = 'date';
+  public readonly controlTypId: string        = 'date';
 
 }
 
@@ -47,8 +47,8 @@ export class InputControl extends FormFieldControl {
   public min?: number;
   public max?: number;
   public pattern?: string;
-  public type: InputTypes      = InputTypes.TEXT;
-  public readonly controlTypId = 'input';
+  public type: InputTypes              = InputTypes.TEXT;
+  public readonly controlTypId: string = 'input';
 
 }
 
@@ -56,29 +56,29 @@ export class RadioControl extends Control {
 
   public color?: ThemePalette;
   public labelPosition: LabelPositions = LabelPositions.BEFORE;
-  public readonly controlTypId         = 'radio';
+  public readonly controlTypId: string = 'radio';
 
 }
 
 export class SelectControl extends FormFieldControl {
 
-  public multiple              = false;
+  public multiple                      = false;
   public options?: Option[];
-  public readonly controlTypId = 'select';
+  public readonly controlTypId: string = 'select';
 
 }
 
 export class SelectListControl extends SelectControl {
 
   public checkboxPosition: LabelPositions = LabelPositions.BEFORE;
-  public readonly controlTypId            = 'select-list';
+  public readonly controlTypId: string    = 'select-list';
 
 }
 
 export class SelectOrCreateControl extends SelectControl {
 
   public createFormId!: string;
-  public readonly controlTypId = 'select-or-create';
+  public readonly controlTypId: string = 'select-or-create';
 
 }
 
@@ -86,8 +86,8 @@ export class TextareaControl extends FormFieldControl {
 
   public maxRows?: number;
   public minRows?: number;
-  public autosize              = true;
-  public readonly controlTypId = 'textarea';
+  public autosize                      = true;
+  public readonly controlTypId: string = 'textarea';
 
 }
 
