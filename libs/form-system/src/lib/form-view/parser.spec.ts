@@ -38,7 +38,7 @@ describe('Form System', () => {
           components: [
             {
               orientation: 'column',
-              gap:         undefined,
+              gap:         '0',
               align:       undefined,
               flex:        'nogrow',
               components:  [
@@ -97,7 +97,7 @@ describe('Form System', () => {
           components: [
             {
               orientation: 'column',
-              gap:         undefined,
+              gap:         '0',
               align:       undefined,
               flex:        'nogrow',
               components:  [
@@ -363,7 +363,7 @@ describe('Form System', () => {
             },
             {
               orientation: 'column',
-              gap:         undefined,
+              gap:         '0',
               align:       undefined,
               flex:        'nogrow',
               components:  [
@@ -534,7 +534,7 @@ describe('Form System', () => {
                   components: [
                     {
                       orientation: 'column',
-                      gap:         undefined,
+                      gap:         '0',
                       align:       undefined,
                       flex:        'nogrow',
                       components:  [
@@ -555,7 +555,7 @@ describe('Form System', () => {
                   components: [
                     {
                       orientation: 'row',
-                      gap:         undefined,
+                      gap:         '0',
                       align:       undefined,
                       flex:        'nogrow',
                       components:  [

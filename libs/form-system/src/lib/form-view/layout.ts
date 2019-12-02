@@ -3,7 +3,7 @@ import { Component } from './component';
 export abstract class Layout extends Component {
 
   public abstract readonly orientation: 'row' | 'column';
-  public gap?: string;
+  public gap: string = '0';
   public align?: string;
 
   constructor(public readonly components: Component[]) {

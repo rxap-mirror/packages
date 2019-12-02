@@ -157,6 +157,11 @@ export class Parser {
   public static ParseSelectControl(element: RxapElement, control: SelectControl): void {
     Parser.ParseFormFieldControl(element, control);
     control.multiple = element.getBoolean('multiple');
+
+    if (element.hasChild('options')) {
+      control.options = this.CreateOptions(element.getChild('options')!);
+    }
+
   }
 
   public static CreateSelectControl(element: RxapElement): SelectControl {
@@ -238,7 +243,7 @@ export class Parser {
 
     Parser.ParseComponent(element, layout);
 
-    layout.gap       = element.getString('gap');
+    layout.gap       = element.getString('gap', layout.gap);
     const horizontal = element.getString('horizontal');
     const vertical   = element.getString('vertical');
     if (horizontal && vertical) {
