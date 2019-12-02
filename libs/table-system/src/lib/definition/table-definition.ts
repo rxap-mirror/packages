@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { RxapColumn } from '@rxap/table-system';
 import { RxapRowAction } from '../row-action';
+import { Subject } from 'rxjs';
 
 
 export const RXAP_TABLE_SYSTEM_DEFINITION = new InjectionToken('rxap/table-system/definition');
@@ -31,11 +32,39 @@ export function BuildActionColumnTemplate(actions: RxapRowAction<any>[]): (row: 
     }
 
     return template + '</div>';
-  }
+  };
 }
 
 @Injectable()
 export class RxapTableDefinition<Data> {
+  public get menuColumns(): Array<{ id: string, header: string }> {
+    return this
+      .columns
+      .map(column => {
+        const header = column.header;
+
+        if (!header) {
+          return null;
+        }
+
+        let headerText: string;
+
+        if (typeof header === 'string') {
+          headerText = header;
+        } else {
+          const textheader = header.filter(Boolean).filter(h => typeof h === 'string' || (!!h.text && !h.content))[ 0 ];
+          if (textheader) {
+            headerText = textheader.text;
+          } else {
+            return null;
+          }
+        }
+
+        return { id: column.id!, header: headerText };
+
+      })
+      .filter(Boolean) as any;
+  }
 
   public get columns(): Partial<RxapColumn>[] {
     const columns      = this.columnsKeys.reduce((array: any[], key: string) => [ ...array, (this as any)[ key ] ], []);
@@ -53,13 +82,15 @@ export class RxapTableDefinition<Data> {
     return null;
   }
 
+  public hasAddRow: boolean = false;
+
   public get actions(): RxapRowAction<Data>[] {
     return this.actionKeys.reduce((array: any[], key: string) => [ ...array, (this as any)[ key ] ], []);
   }
 
-  public title!: string;
+  public __title!: string;
 
-  public subTitle!: string;
+  public __subTitle!: string;
 
   public columnsKeys: string[] = [];
 
@@ -67,6 +98,54 @@ export class RxapTableDefinition<Data> {
 
   public tableId!: string;
 
+  public hideColumn$ = new Subject<string>();
+  public showColumn$ = new Subject<string>();
+
   public rxapOnInit() {}
+
+  public hideColumn(key: string): void {
+    if (this.hasColumn(key)) {
+      const column  = this.getColumn(key)!;
+      column.hidden = true;
+    }
+  }
+
+  public showColumn(key: string): void {
+    if (this.hasColumn(key)) {
+      const column  = this.getColumn(key)!;
+      column.hidden = false;
+    }
+  }
+
+  public toggleColumn(key: string): void {
+    if (this.hasColumn(key)) {
+      const column  = this.getColumn(key)!;
+      column.hidden = !column.hidden;
+      if (column.hidden) {
+        this.hideColumn$.next(key);
+      } else {
+        this.showColumn$.next(key);
+      }
+    }
+  }
+
+  public hasColumn(key: string): boolean {
+    return this.columnsKeys.includes(key);
+  }
+
+  public getColumn(key: string): Partial<RxapColumn> | null {
+    return this.columns.find(column => column.id === key) || null;
+  }
+
+  public isColumnHidden(id: string): boolean {
+    if (this.hasColumn(id)) {
+      return this.getColumn(id)!.hidden || false;
+    }
+    return false;
+  }
+
+  public addRow(): void {
+
+  }
 
 }

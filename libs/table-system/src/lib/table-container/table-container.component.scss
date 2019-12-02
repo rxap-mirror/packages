@@ -1,3 +1,7 @@
 .table-container {
   overflow-x: auto;
 }
+
+::ng-deep .mat-card-header {
+  min-height: 48px;
+}

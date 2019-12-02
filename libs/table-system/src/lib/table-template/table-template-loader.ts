@@ -13,8 +13,8 @@ import {
   map
 } from 'rxjs/operators';
 import { RxapTableDefinition } from '../definition/table-definition';
-import { Table } from './table';
 import { getMetadata } from '@rxap/utilities';
+import { Parser } from './parser';
 
 export type TableTemplate = string;
 
@@ -89,7 +89,8 @@ export class TableTemplateLoader {
       switchMap(() => from(this.getTemplate$(tableDefinition)).pipe(
         map(template => {
           if (template) {
-            const table = Table.formXML(template);
+
+            const table = Parser.CreateTableFromXml(template);
 
             table.apply(tableDefinition);
 

@@ -1,18 +1,18 @@
 <table>
   <actions>
     <http-action type="delete" refresh="true" method="DELETE" url="http://google.com/{{row.id}}" icon="delete">
-      <show key="__archived">true</show>
+      <show key="first_name">George</show>
     </http-action>
     <navigate-action icon="edit" routerLink="{{row.id}}"/>
   </actions>
   <columns>
-    <column id="userId">
+    <column id="email">
       <header>UserId</header>
     </column>
-    <column id="title" width="500">
+    <column id="first_name" width="500">
       <header>Title</header>
     </column>
-    <column id="body">
+    <column id="last_name">
       <header>Body</header>
     </column>
   </columns>

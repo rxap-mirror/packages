@@ -8,9 +8,13 @@ export enum ColumnAdjustTypes {
 export type ColumnAdjustType = true | ColumnAdjustTypes;
 
 export enum FooterOptionsContentTypes {
-  TEXT_FILTER   = 'textFilter',
-  SELECT_FILTER = 'selectFilter',
-  SUMM_COLUMN   = 'summColumn',
+  TEXT_FILTER          = 'textFilter',
+  SELECT_FILTER        = 'selectFilter',
+  SUMM_COLUMN          = 'summColumn',
+  SERVER_FILTER        = 'serverFilter',
+  SERVER_SELECT_FILTER = 'serverSelectFilter',
+  NUMBER_FILTER        = 'numberFilter',
+  DATE_FILTER          = 'dateFilter',
 }
 
 export enum ColumnSortTypes {

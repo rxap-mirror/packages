@@ -38,6 +38,7 @@ import { TableActionHandler } from '../table-action.handler';
 export class WebixDataTableComponent<Data> implements OnInit, OnDestroy {
 
   @ViewChild('container', { static: true }) public container!: ElementRef;
+  @ViewChild('pagerContainer', { static: true }) public pagerContainer!: ElementRef;
 
   public ui!: ui.datatable;
 
@@ -71,6 +72,7 @@ export class WebixDataTableComponent<Data> implements OnInit, OnDestroy {
     this.connection = this.dataSource.connect(this.viewer);
 
     if (this.tableDefinition) {
+
       this.subscriptions.add(
         this.tableTemplateLoader
             .applyTemplate$(this.tableDefinition)
@@ -79,6 +81,7 @@ export class WebixDataTableComponent<Data> implements OnInit, OnDestroy {
             )
             .subscribe()
       );
+
     } else {
       this.buildTable();
     }
@@ -90,6 +93,21 @@ export class WebixDataTableComponent<Data> implements OnInit, OnDestroy {
       this.ui.destructor();
     }
     this.ui = <ui.datatable>ui(this.buildTableConfig());
+
+    if (this.tableDefinition) {
+      this.subscriptions.add(
+        this.tableDefinition.showColumn$.pipe(
+          tap(key => this.ui.showColumn(key))
+        ).subscribe()
+      );
+
+      this.subscriptions.add(
+        this.tableDefinition.hideColumn$.pipe(
+          tap(key => this.ui.hideColumn(key))
+        ).subscribe()
+      );
+    }
+
     this.ui.resize();
   }
 
@@ -101,7 +119,14 @@ export class WebixDataTableComponent<Data> implements OnInit, OnDestroy {
         $proxy: true,
         load:   this.load.bind(this)
       },
-      height:    this.height
+      height:    this.height,
+      datafetch: 6,
+      loadahead: 0,
+      pager:     {
+        container: this.pagerContainer.nativeElement,
+        size:      6,
+        template:  ' {common.first()} {common.prev()} {common.pages()} {common.next()} {common.last()}'
+      }
     };
 
     if (this.tableDefinition) {
@@ -126,8 +151,17 @@ export class WebixDataTableComponent<Data> implements OnInit, OnDestroy {
   }
 
   public load(view: any, params: any) {
-    console.log({ view, params });
-    return this.connection.toPromise();
+    if (params && params.count) {
+      this.connection.refresh({
+        pageSize: params.count,
+        page:     Math.floor(params.start / params.count) + 1,
+        filters:  params.filter,
+        sort:     params.sort ? { key: params.sort.id, direction: params.sort.dir } : null
+      });
+    }
+    return this.connection.toPromise().then((response: any) => {
+      return { data: response.data, pos: (response.page - 1) * response.data.length, total_count: response.total };
+    });
   }
 
 }

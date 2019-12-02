@@ -1,9 +1,9 @@
 import {
   HttpDataSourceConnection,
   Sort,
-  Filter,
   HttpDataSource,
-  IHttpDataSourceViewer
+  IHttpDataSourceViewer,
+  HttpDataSourceResponseWrapper
 } from '@rxap/data-source';
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
@@ -13,22 +13,29 @@ import {
   RefreshParams
 } from './table.data-source';
 import { first } from 'rxjs/operators';
+import { KeyValue } from '@rxap/utilities';
 
 function mergeHttpParams(...httpParams: HttpParams[]) {
-  const param = new HttpParams();
+  let param = new HttpParams();
   for (const httpParam of httpParams.filter(p => p.keys().length !== 0)) {
     for (const key of httpParam.keys()) {
-      param.append(key, httpParam.get(key)!);
+      param = param.append(key, httpParam.get(key)!);
     }
   }
   return param;
 }
 
-export class HttpTableDataSourceConnection<Data> extends HttpDataSourceConnection<Data> implements TableDataSourceConnection<Data> {
+export interface HttpDataSourceResponseWrapper<Data> {
+  data: Data;
+}
+
+export class HttpTableDataSourceConnection<Data>
+  extends HttpDataSourceConnection<HttpDataSourceResponseWrapper<Data>>
+  implements TableDataSourceConnection<HttpDataSourceResponseWrapper<Data>> {
 
   protected lastParams: RefreshParams = { sort: null, filters: null, page: 0, pageSize: 10 };
 
-  public refresh(params: RefreshParams = this.lastParams): void {
+  public refresh(params: RefreshParams = this.lastParams, force: boolean = false): void {
     this.lastParams = params;
     this.params$.next(this.buildParams(params));
   }
@@ -52,12 +59,12 @@ export class HttpTableDataSourceConnection<Data> extends HttpDataSourceConnectio
       .append('size', pageSize.toFixed(0));
   }
 
-  private getFilterParam(filters: Filter[]): HttpParams {
+  private getFilterParam(filters: KeyValue): HttpParams {
     const param = new HttpParams();
-    if (filters.length) {
+    if (filters) {
       return param.append(
         'filter',
-        filters.map(filterChange => `${filterChange.key}:${filterChange.value}`).join(';')
+        Object.entries(filters).filter(([ _, value ]) => value !== '').map(([ key, value ]) => `${key}:${value}`).join(';')
       );
     }
     return param.append('filter', '');
@@ -69,17 +76,19 @@ export class HttpTableDataSourceConnection<Data> extends HttpDataSourceConnectio
       .append('order', sort.direction + '');
   }
 
-  public toPromise(): Promise<Data> {
-    return new Promise<Data>(((resolve, reject) => this.pipe(first()).subscribe(resolve, reject)));
+  public toPromise(): Promise<HttpDataSourceResponseWrapper<Data>> {
+    return this.pipe(first()).toPromise();
   }
 
 }
 
 @Injectable()
-export class HttpTableDataSource<Data, Source = Data> extends HttpDataSource<Data[], Source[]> implements TableDataSource<Data[], Source[]> {
+export class HttpTableDataSource<Data, Source = Data>
+  extends HttpDataSource<HttpDataSourceResponseWrapper<Data>, HttpDataSourceResponseWrapper<Data>>
+  implements TableDataSource<HttpDataSourceResponseWrapper<Data>, HttpDataSourceResponseWrapper<Data>> {
 
-  public connect(viewer: IHttpDataSourceViewer): HttpTableDataSourceConnection<Data[]> {
-    const connection = new HttpTableDataSourceConnection<Data[]>(
+  public connect(viewer: IHttpDataSourceViewer): HttpTableDataSourceConnection<Data> {
+    const connection = new HttpTableDataSourceConnection<Data>(
       this.http,
       [ this.baseUrl, viewer.url ].filter(Boolean).join('/'),
       viewer.params,

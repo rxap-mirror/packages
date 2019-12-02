@@ -1,3 +1,8 @@
+import {
+  KeyValue,
+  objectReducer
+} from '@rxap/utilities';
+
 export class RxapElement {
 
   public get name(): string {
@@ -15,6 +20,10 @@ export class RxapElement {
       return this.element.getAttribute(qualifiedName) as string;
     }
     return undefined;
+  }
+
+  public getAttributeMap(): KeyValue<any> {
+    return Array.from(this.element.attributes).map(attr => ({ [ attr.name ]: this.get(attr.name) })).reduce(objectReducer, {});
   }
 
   public getParsedContent<T = any>(): T {
@@ -75,7 +84,7 @@ export class RxapElement {
   }
 
   public getAllChildNodes(): RxapElement[] {
-    return Array.from(this.element.childNodes).filter(n => !!n.nodeName).map((child: ChildNode) => new RxapElement(child as any));
+    return Array.from(this.element.childNodes).filter(n => !!n.nodeName && n.nodeType === 1).map((child: ChildNode) => new RxapElement(child as any));
   }
 
   public getChildren(nodeName: string): RxapElement[] {

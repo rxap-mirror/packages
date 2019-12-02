@@ -1,24 +1,25 @@
 import { sandboxOf } from 'angular-playground';
-import { WebixDataTableComponent } from './webix-data-table.component';
-import { WebixDataTableModule } from './webix-data-table.module';
+import { TableContainerComponent } from './table-container.component';
+import { TableContainerComponentModule } from './table-container.component.module';
 import { RXAP_DATA_SOURCE_TOKEN } from '@rxap/data-source';
-import {
-  RxapTableDefinition,
-  RXAP_TABLE_SYSTEM_DEFINITION
-} from '../definition/table-definition';
-import { RxapTable } from '../definition/decorators/table-definition';
-import { TableDefinitionLoader } from '../table-definition-loader';
-import {
-  FooterOptionsContentTypes,
-  RxapColumn
-} from '../columns';
-import { RxapTableColumn } from '../definition/decorators/column';
 import {
   HttpClient,
   HttpClientModule
 } from '@angular/common/http';
 import { HttpTableDataSource } from '../http-table.data-source';
+import { RxapTable } from '../definition/decorators/table-definition';
+import {
+  RxapTableDefinition,
+  RXAP_TABLE_SYSTEM_DEFINITION
+} from '../definition/table-definition';
+import { RxapTableColumn } from '../definition/decorators/column';
+import {
+  RxapColumn,
+  FooterOptionsContentTypes,
+  ColumnSortTypes
+} from '@rxap/table-system';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TableDefinitionLoader } from '../table-definition-loader';
 
 interface User {
   username: string;
@@ -29,35 +30,37 @@ interface User {
 class SandboxTableDefinition extends RxapTableDefinition<User> {
 
   @RxapTableColumn({
-    header: [ { text: 'My User Id' } ],
+    header: [ { text: 'Email' } ],
+    sort:   ColumnSortTypes.SERVER,
     width:  150
   })
-  public userId!: RxapColumn;
+  public email!: RxapColumn;
 
   @RxapTableColumn({
     width:  500,
-    header: [ { content: FooterOptionsContentTypes.TEXT_FILTER }, 'Title' ]
+    sort:   ColumnSortTypes.SERVER,
+    header: [ { content: FooterOptionsContentTypes.SERVER_FILTER }, 'Firstname' ]
   })
-  public title!: RxapColumn;
+  public first_name!: RxapColumn;
 
   @RxapTableColumn({
     width:  700,
-    header: [ { content: FooterOptionsContentTypes.TEXT_FILTER }, 'Body' ]
+    sort:   ColumnSortTypes.SERVER,
+    header: [ { content: FooterOptionsContentTypes.SERVER_FILTER }, 'Lastname' ]
   })
-  public body!: RxapColumn;
+  public last_name!: RxapColumn;
 
 }
 
-export default sandboxOf(WebixDataTableComponent, {
+export default sandboxOf(TableContainerComponent, {
   imports:          [
-    WebixDataTableModule,
+    TableContainerComponentModule,
     HttpClientModule,
     RouterTestingModule
   ],
-  providers:        [],
   declareComponent: false
 }).add('autoconfig', {
-  template:  '<rxap-webix-data-table></rxap-webix-data-table>',
+  template:  '<rxap-table-container></rxap-table-container>',
   providers: [
     {
       provide:    RXAP_DATA_SOURCE_TOKEN,
@@ -68,7 +71,7 @@ export default sandboxOf(WebixDataTableComponent, {
     }
   ]
 }).add('width definition', {
-  template:  '<rxap-webix-data-table></rxap-webix-data-table>',
+  template:  '<rxap-table-container></rxap-table-container>',
   providers: [
     {
       provide:    RXAP_TABLE_SYSTEM_DEFINITION,
@@ -80,13 +83,13 @@ export default sandboxOf(WebixDataTableComponent, {
     {
       provide:    RXAP_DATA_SOURCE_TOKEN,
       useFactory: (http: HttpClient) => {
-        return new HttpTableDataSource(http, 'https://jsonplaceholder.typicode.com/posts', 'source');
+        return new HttpTableDataSource(http, 'https://reqres.in/api/users', 'source');
       },
       deps:       [ HttpClient ]
     }
   ]
 }).add('from url template', {
-  template:  '<rxap-webix-data-table></rxap-webix-data-table>',
+  template:  '<rxap-table-container></rxap-table-container>',
   providers: [
     {
       provide:    RXAP_TABLE_SYSTEM_DEFINITION,
@@ -100,7 +103,7 @@ export default sandboxOf(WebixDataTableComponent, {
     {
       provide:    RXAP_DATA_SOURCE_TOKEN,
       useFactory: (http: HttpClient) => {
-        return new HttpTableDataSource(http, 'https://jsonplaceholder.typicode.com/posts', 'source');
+        return new HttpTableDataSource(http, 'https://reqres.in/api/users', 'source');
       },
       deps:       [ HttpClient ]
     }

@@ -59,7 +59,9 @@ export function HttpDataSourceConnectionSubscriptionHandler<Data>(this: HttpData
   ).subscribe();
 }
 
-export class HttpDataSourceConnection<Data> extends Observable<Data> implements IBaseDataSourceConnection<Data> {
+export class HttpDataSourceConnection<Data>
+  extends Observable<Data>
+  implements IBaseDataSourceConnection<Data> {
 
   public readonly params$!: BehaviorSubject<HttpParams | undefined>;
   public readonly headers$!: BehaviorSubject<HttpHeaders | undefined>;

@@ -1,15 +1,15 @@
 import {
   Sort,
-  Filter,
   BaseDataSource,
   IBaseDataSourceViewer,
   IBaseDataSourceConnection
 } from '@rxap/data-source';
 import { Observable } from 'rxjs';
+import { KeyValue } from '@rxap/utilities';
 
 export interface RefreshParams {
   sort: Sort | null;
-  filters: Filter[] | null;
+  filters: KeyValue | null;
   page: number;
   pageSize: number;
 }

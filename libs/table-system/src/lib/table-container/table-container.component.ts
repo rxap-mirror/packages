@@ -3,12 +3,24 @@ import {
   ChangeDetectionStrategy,
   OnInit,
   Input,
-  Injector,
-  OnDestroy
+  OnDestroy,
+  ViewChild,
+  Optional,
+  Inject
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { RxapTableDefinition } from '../definition/table-definition';
+import {
+  RxapTableDefinition,
+  RXAP_TABLE_SYSTEM_DEFINITION
+} from '../definition/table-definition';
+import { WebixDataTableComponent } from '../webix-data-table/webix-data-table.component';
+import { TableDataSource } from '../table.data-source';
+import {
+  DataSourceLoader,
+  RXAP_DATA_SOURCE_TOKEN
+} from '@rxap/data-source';
+import { TableDefinitionLoader } from '../table-definition-loader';
 
 @Component({
   selector:        'rxap-table-container',
@@ -20,15 +32,31 @@ export class TableContainerComponent<RowData> implements OnInit, OnDestroy {
 
   public hasAddAction: boolean = false;
 
-  @Input() public definition: RxapTableDefinition<RowData>;
+  @ViewChild(WebixDataTableComponent, { static: true }) dataTable!: WebixDataTableComponent<RowData>;
+
+  @Input() public tableDefinition!: RxapTableDefinition<RowData>;
+  @Input() public dataSource!: TableDataSource<RowData>;
+
+  @Input() public tableId!: string;
+  @Input() public dataSourceId!: string;
+
+  public loaded = false;
 
   protected _subscription = new Subscription();
 
   constructor(
-    public readonly logger: NGXLogger,
-    public injector: Injector,
-    public readonly route: ActivatedRoute
+    public readonly route: ActivatedRoute,
+    public readonly tableDefinitionLoader: TableDefinitionLoader,
+    public readonly dataSourceLoader: DataSourceLoader,
+    @Optional() @Inject(RXAP_DATA_SOURCE_TOKEN) dataSource: any | null            = null,
+    @Optional() @Inject(RXAP_TABLE_SYSTEM_DEFINITION) tableDefinition: any | null = null
   ) {
+    if (dataSource) {
+      this.dataSource = dataSource;
+    }
+    if (tableDefinition) {
+      this.tableDefinition = tableDefinition;
+    }
   }
 
   public ngOnInit(): void {
@@ -37,8 +65,9 @@ export class TableContainerComponent<RowData> implements OnInit, OnDestroy {
       this.route.data.subscribe(data => {
 
         if (data && data.dx && data.dx.table) {
-          const config = data.dx.table || {};
-          this.update(config);
+          const config      = data.dx.table || {};
+          this.tableId      = config.definitionId;
+          this.dataSourceId = config.dataSourceId;
         }
 
         this.loadTable();
@@ -52,60 +81,24 @@ export class TableContainerComponent<RowData> implements OnInit, OnDestroy {
     this._subscription.unsubscribe();
   }
 
-  onAddClick() {
-    this.store$.dispatch(this.definition.addAction);
-  }
-
-  private update(config): void {
-    this.logger.debug(`[TableContainerComponent::update]`, config);
-    this.definitionId = config.definitionId || this.definitionId;
-    this.dataSourceId = config.dataSourceId || this.dataSourceId;
-    this.overflow     = config.overflow;
-    if (config.infiniteScrolling) {
-      this.maxHeight = '80vh';
-      this.overflow  = 'auto';
-    }
-    if (Object.keys(config).length) {
-      const injectorConfig = this.injector.get(DX_TABLE_CONFIG, {} as Partial<DxTableConfig<any>>);
-      this.injector        = Injector.create({
-        parent:    this.injector,
-        providers: [
-          {
-            provide:  DX_TABLE_CONFIG,
-            // TODO : deep merge
-            useValue: {
-              ...injectorConfig,
-              ...config
-            }
-          }
-        ]
-      });
-    }
+  public menuColumnTrack(index: number, item: any) {
+    return item.id;
   }
 
   private loadTable() {
-    this.logger.debug(`[TableContainerComponent::loadTable]`, { definitionId: this.definitionId, dataSource: this.dataSource });
-    if (!this.definition) {
-      const tableId = this.definitionId;
-      if (!this.definitionId) {
-        this.definitionId = DEFAULT_TABLE_DEFINITION;
+    if (!this.tableDefinition) {
+      if (this.tableId) {
+        this.tableDefinition = this.tableDefinitionLoader.load(this.tableId);
       }
-      this.definition = CreateInstance(this.injector, this.definitionRegistry, this.definitionId);
-      this.definition.init();
-      // set id after init. So the row and alle columns are updated with the id
-      this.definition.id = tableId || this.definition.rowDefinitionId;
-      this.logger.debug(`[TableContainerComponent] use table definition with id '${this.definitionId}'`);
     }
     if (!this.dataSource) {
-      if (!this.dataSourceId) {
-        this.dataSourceId = this.definition.dataSourceId || DEFAULT_TABLE_DATA_SOURCE;
+      if (this.dataSourceId) {
+        this.dataSource = this.dataSourceLoader.load(this.dataSourceId);
+      } else {
+        throw new Error('Data Source and data source id are undefined');
       }
-      this.dataSource                = CreateInstance(this.injector, this.dataSourceRegistry, this.dataSourceId);
-      this.dataSource.collectionPath = this.definition.collectionPath || this.dataSource.collectionPath;
-      this.dataSource.sortDefault    = this.definition.sortDefault || this.dataSource.sortDefault;
-      this.logger.debug(`[TableContainerComponent] use data source with id '${this.dataSourceId}'`);
     }
-    this.hasAddAction = !!this.definition.addAction;
+    this.loaded = true;
   }
 
 }

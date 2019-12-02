@@ -7,47 +7,9 @@ import {
   DeleteUndefinedProperties
 } from '@rxap/utilities';
 import { Header } from './header';
-import { RxapElement } from './element';
 import { RxapTableDefinition } from '../definition/table-definition';
 
 export class Column {
-
-  public static fromElement(element: RxapElement): Column {
-    const column = new Column();
-
-    const adjust: string = element.getString('adjust') as any;
-    if (adjust === 'true') {
-      column.adjust = true;
-    } else {
-      column.adjust = adjust as any;
-    }
-
-    column.css = element.getString('css');
-    if (element.hasChild('header')) {
-      column.header = [ Header.fromElement(element.getChild('header')!) ];
-    } else if (element.hasChild('headers')) {
-      const headers = element.getChild('headers')!;
-      column.header = headers.getChildren('header').map(e => Header.fromElement(e));
-    }
-    if (element.hasChild('footer')) {
-      column.footer = [ Header.fromElement(element.getChild('footer')!) ];
-    } else if (element.hasChild('footers')) {
-      const footers = element.getChild('footers')!;
-      column.footer = footers.getChildren('footer').map(e => Header.fromElement(e));
-    }
-    const id = element.getString('id');
-    if (!id) {
-      throw new Error('Column id is required');
-    }
-    column.id          = id;
-    column.minWidth    = element.getNumber('minWidth');
-    column.maxWidth    = element.getNumber('maxWidth');
-    column.sort        = element.getString('sort') as any;
-    column.width       = element.getNumber('width');
-    column.propertyKey = element.getString('propertyKey') || column.id;
-
-    return column;
-  }
 
   /**
    * adjusts the width of the column to fit the related content size.

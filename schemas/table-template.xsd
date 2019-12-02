@@ -153,6 +153,58 @@
       <xs:attribute name="data-source" type="xs:string"/>
       <xs:attribute name="title" type="xs:string"/>
       <xs:attribute name="subTitle" type="xs:string"/>
+      <xs:attribute name="areaselect" type="xs:boolean" default="false"/>
+      <xs:attribute name="autoheight" type="xs:boolean" default="false"/>
+      <xs:attribute name="autowidth" type="xs:boolean" default="false"/>
+      <xs:attribute name="blockselect" type="xs:boolean" default="false"/>
+      <xs:attribute name="borderless" type="xs:boolean" default="false"/>
+      <xs:attribute name="checkboxRefresh" type="xs:boolean" default="false"/>
+      <xs:attribute name="clipboard">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+            <xs:enumeration value="block"/>
+            <xs:enumeration value="selection"/>
+            <xs:enumeration value="repeat"/>
+            <xs:enumeration value="custom"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="columnWidth" type="xs:positiveInteger"/>
+      <xs:attribute name="css" type="xs:string"/>
+      <xs:attribute name="fixedRowHeight" type="xs:boolean" default="true"/>
+      <xs:attribute name="height" type="xs:positiveInteger"/>
+      <xs:attribute name="maxColumnWidth" type="xs:positiveInteger"/>
+      <xs:attribute name="maxHeight" type="xs:positiveInteger"/>
+      <xs:attribute name="maxRowHeight" type="xs:positiveInteger"/>
+      <xs:attribute name="maxWidth" type="xs:positiveInteger"/>
+      <xs:attribute name="minColumnWidth" type="xs:positiveInteger"/>
+      <xs:attribute name="minHeight" type="xs:positiveInteger"/>
+      <xs:attribute name="minRowHeight" type="xs:positiveInteger"/>
+      <xs:attribute name="minWidth" type="xs:positiveInteger"/>
+      <xs:attribute name="multiselect" type="xs:boolean" default="false"/>
+      <xs:attribute name="resizeRow" type="xs:boolean" default="false"/>
+      <xs:attribute name="resizeColumn" type="xs:boolean" default="false"/>
+      <xs:attribute name="rowHeight" type="xs:positiveInteger"/>
+      <xs:attribute name="rowLineHeight" type="xs:positiveInteger"/>
+      <xs:attribute name="scroll" type="xs:boolean" default="true"/>
+      <xs:attribute name="scrollAlignY" type="xs:boolean" default="true"/>
+      <xs:attribute name="scrollX" type="xs:boolean" default="true"/>
+      <xs:attribute name="scrollY" type="xs:boolean" default="true"/>
+      <xs:attribute name="select">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="cell"/>
+            <xs:enumeration value="row"/>
+            <xs:enumeration value="column"/>
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="width" type="xs:positiveInteger"/>
+      <xs:attribute name="yCount" type="xs:positiveInteger"/>
     </xs:complexType>
   </xs:element>
 
