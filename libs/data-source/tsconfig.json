@@ -4,7 +4,12 @@
     "types": [
       "node",
       "jest"
-    ]
+    ],
+    "paths": {
+      "@rxap/utilities": [
+        "dist/libs/utilities"
+      ]
+    }
   },
   "include": [
     "**/*.ts"

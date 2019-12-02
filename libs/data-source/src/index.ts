@@ -7,3 +7,6 @@ export * from './lib/document.data-source';
 export * from './lib/static-collection.data-source';
 export * from './lib/http.data-source';
 export * from './lib/data-source.error';
+export * from './lib/data-source-loader';
+export * from './lib/data-source-registry';
+export * from './lib/data-source-system.module';

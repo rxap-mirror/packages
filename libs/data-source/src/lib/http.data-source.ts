@@ -42,29 +42,29 @@ export interface IHttpDataSourceViewer extends IBaseDataSourceViewer {
   headers?: HttpHeaders;
 }
 
-export class HttpDataSourceConnection<Data> extends Observable<Data> implements IBaseDataSourceConnection<Data> {
+export function HttpDataSourceConnectionSubscriptionHandler<Data>(this: HttpDataSourceConnection<Data>, subscriber: Subscriber<Data>): TeardownLogic {
+  return combineLatest([
+    this.params$,
+    this.headers$
+  ]).pipe(
+    takeUntil(this.destroy$),
+    switchMap(([ params, headers ]) => this.http.get<Data>(this.url, { params, headers }).pipe(
+      tap(response => subscriber.next(response)),
+      retry(3),
+      catchError(error => {
+        subscriber.error(error);
+        throw throwError(error);
+      })
+    ))
+  ).subscribe();
+}
 
-  public static handelSubscription<Data>(this: HttpDataSourceConnection<Data>, subscriber: Subscriber<Data>): TeardownLogic {
-    return combineLatest([
-      this.params$,
-      this.headers$
-    ]).pipe(
-      takeUntil(this.destroy$),
-      switchMap(([ params, headers ]) => this.http.get<Data>(this.url, { params, headers }).pipe(
-        tap(response => subscriber.next(response)),
-        retry(3),
-        catchError(error => {
-          subscriber.error(error);
-          throw throwError(error);
-        })
-      ))
-    ).subscribe();
-  }
+export class HttpDataSourceConnection<Data> extends Observable<Data> implements IBaseDataSourceConnection<Data> {
 
   public readonly params$!: BehaviorSubject<HttpParams | undefined>;
   public readonly headers$!: BehaviorSubject<HttpHeaders | undefined>;
 
-  protected destroy$ = new Subject<void>();
+  public readonly destroy$ = new Subject<void>();
 
   constructor(
     public readonly http: HttpClient,
@@ -74,7 +74,7 @@ export class HttpDataSourceConnection<Data> extends Observable<Data> implements 
   ) {
     // cast to any to allow type save access to the current
     // HttpDataSourceConnection instance
-    super(HttpDataSourceConnection.handelSubscription as any);
+    super(HttpDataSourceConnectionSubscriptionHandler as any);
     this.params$  = new BehaviorSubject<HttpParams | undefined>(params);
     this.headers$ = new BehaviorSubject<HttpHeaders | undefined>(headers);
   }
