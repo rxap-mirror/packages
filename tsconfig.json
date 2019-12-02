@@ -52,6 +52,9 @@
       ],
       "@rxap/table-system": [
         "libs/table-system/src/index.ts"
+      ],
+      "@rxap/xml-parser": [
+        "libs/xml-parser/src/index.ts"
       ]
     }
   },

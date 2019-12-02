@@ -10,11 +10,11 @@ export class RxapElement {
 
   constructor(public readonly element: Element) {}
 
-  public getString<T = undefined>(qualifiedName: string, defaultValue?: T): T | string {
+  public getString<T>(qualifiedName: string, defaultValue: T = undefined): T | string {
     if (this.element.hasAttribute(qualifiedName)) {
       return this.element.getAttribute(qualifiedName) as string;
     }
-    return defaultValue as any;
+    return defaultValue;
   }
 
   public getParsedContent<T = any>(): T {
@@ -31,7 +31,7 @@ export class RxapElement {
     return value as any;
   }
 
-  public get<D = undefined, T = any>(qualifiedName: string, defaultValue?: D): T | D {
+  public get<T = any, D>(qualifiedName: string, defaultValue: D = undefined): T | D {
     if (this.element.hasAttribute(qualifiedName)) {
       const value = this.element.getAttribute(qualifiedName)!;
       if (value === 'true' || value === 'false') {
@@ -55,18 +55,16 @@ export class RxapElement {
 
       return value as any;
     }
-    return defaultValue as any;
+    return defaultValue;
   }
 
-  public getDate(qualifiedName: string): number | undefined {
-    return undefined;
-  }
+  public getDate(qualifiedName: string): number | undefined {}
 
-  public getNumber<T = undefined>(qualifiedName: string, defaultValue?: T): number | T {
+  public getNumber<T>(qualifiedName: string, defaultValue: T = undefined): number | T {
     if (this.element.hasAttribute(qualifiedName)) {
       return Number(this.element.getAttribute(qualifiedName));
     }
-    return defaultValue as any;
+    return defaultValue;
   }
 
   public getBoolean(qualifiedName: string, defaultValue: boolean = false): boolean {

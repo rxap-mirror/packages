@@ -1065,6 +1065,40 @@
           }
         }
       }
+    },
+    "xml-parser": {
+      "projectType": "library",
+      "root": "libs/xml-parser",
+      "sourceRoot": "libs/xml-parser/src",
+      "prefix": "rxap",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/xml-parser/tsconfig.lib.json",
+              "libs/xml-parser/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/xml-parser/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/xml-parser/jest.config.js",
+            "tsConfig": "libs/xml-parser/tsconfig.spec.json",
+            "setupFile": "libs/xml-parser/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "newProjectRoot": "",

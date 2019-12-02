@@ -3,10 +3,8 @@ import { Component } from './component';
 
 export class Stepper extends Component {
 
-  public components: Step[] = [];
-
-  public setFormId(formId: string): void {
-    this.components.forEach(step => step.setFormId(formId));
+  constructor(public readonly components: Step[]) {
+    super();
   }
 
 }

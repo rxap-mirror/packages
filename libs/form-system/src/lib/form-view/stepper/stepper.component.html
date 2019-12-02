@@ -1,5 +1,5 @@
 <mat-vertical-stepper>
   <mat-step *ngFor="let step of stepper.components" [label]="step.label">
-    <rxap-layout [layout]="step.layout"></rxap-layout>
+    <rxap-layout *ngFor="let component of step.components" [layout]="component"></rxap-layout>
   </mat-step>
 </mat-vertical-stepper>

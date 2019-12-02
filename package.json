@@ -43,7 +43,7 @@
     "depcheck": "depcheck",
     "playground:form-control": "yarn playground -C form-controls-playground.json",
     "start:browser:playground:form-control": "yarn start:browser http://localhost:9876",
-    "deploy:form-controls-playground": "gcloud app deploy --project=reactive-application-platform dist/apps/form-controls-playground/app.yaml",
+    "deploy": "gcloud app deploy --project=reactive-application-platform",
     "playground:table-system": "yarn playground -C table-system-playground.json",
     "start:browser:playground:table-system": "yarn start:browser http://localhost:9976",
     "deploy:table-system-playground": "gcloud app deploy --project=reactive-application-platform dist/apps/table-system-playground/app.yaml"

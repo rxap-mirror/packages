@@ -61,9 +61,6 @@ describe('Data Source', () => {
 
     it('should return object of user', async () => {
 
-      console.log(userDataSource.source);
-
-
       expect(await userDataSource.connect({ id: 'id' }).toPromise()).toEqual(userSource);
 
     });

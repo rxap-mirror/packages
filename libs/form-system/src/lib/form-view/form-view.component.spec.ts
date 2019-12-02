@@ -5,7 +5,6 @@ import {
 } from './form-view.component';
 import { FormTemplateLoader } from '../form-template-loader';
 import { FormInstanceFactory } from '../form-instance-factory';
-import { Layout } from './layout';
 import { FormInstance } from '../form-instance';
 import { FormInvalidSubmitService } from '../form-invalid-submit.service';
 import { FormValidSubmitService } from '../form-valid-submit.service';
@@ -52,10 +51,6 @@ describe('Form System', () => {
         spyOn(component.formInstanceFactory, 'buildInstance')
           .and
           .returnValue(formInstnace);
-
-        spyOn(component.formTemplateLoader, 'getLayout')
-          .and
-          .returnValue(new Layout());
 
         component.formId = formId;
 

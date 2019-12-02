@@ -67,6 +67,9 @@
     },
     "table-system-playground": {
       "tags": []
+    },
+    "xml-parser": {
+      "tags": []
     }
   }
 }

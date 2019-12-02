@@ -5,8 +5,6 @@ import {
 import { FormDefinitionRegister } from './form-definition-register';
 import { getMetadata } from '@rxap/utilities';
 import { FormDefinitionMetaDataKeys } from './form-definition/decorators/meta-data-keys';
-import { Layout } from './form-view/layout';
-import { FromXml } from './form-view/element';
 import {
   Subject,
   Observable,
@@ -19,6 +17,8 @@ import {
   switchMap
 } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { Parser } from './form-view/parser';
+import { Form } from './form-view/form';
 
 export type FormTemplate = string;
 
@@ -61,17 +61,6 @@ export class FormTemplateLoader {
     this.load$.next(formId);
 
     return template;
-  }
-
-  /**
-   * @deprecated
-   * @internal
-   * @param formId
-   */
-  public getLayout(formId: string): Layout {
-    const layout = FromXml(this.getTemplate(formId));
-    layout.setFormId(formId);
-    return layout;
   }
 
   public updateTemplate(formId: string, template: FormTemplate): void {
@@ -124,15 +113,15 @@ export class FormTemplateLoader {
 
   }
 
-  public getLayout$(formId: string): Observable<Layout> {
+  public getFormTemplate$(formId: string): Observable<Form> {
     return this.update$.pipe(
       filter(updateFormId => updateFormId === formId),
       startWith(formId),
       switchMap(() => from(this.getTemplate$(formId)).pipe(
         map(template => {
-          const layout = FromXml(template);
-          layout.setFormId(formId);
-          return layout;
+          const form = Parser.CreateFormFromXml(template);
+          form.id    = formId;
+          return form;
         })
       )),
     );

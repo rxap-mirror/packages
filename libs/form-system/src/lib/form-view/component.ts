@@ -1,9 +1,11 @@
+import { Control } from './control';
+
 export abstract class Component {
 
   public get controls(): any[] {
     return this.components.map(component => {
 
-      if (component.hasOwnProperty('controlId')) {
+      if (component instanceof Control) {
         return [ component ];
       }
       return component.controls;
@@ -11,8 +13,8 @@ export abstract class Component {
     }).reduce((array, item) => [ ...array, ...item ], []);
   }
 
-  public components: Component[] = [];
+  public flex = 'nogrow';
 
-  public abstract setFormId(formId: string): void;
+  public components: Component[] = [];
 
 }
