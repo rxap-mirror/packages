@@ -1,6 +1,7 @@
 import { Column } from './column';
 import { Action } from './action';
 import { RxapTableDefinition } from '../definition/table-definition';
+import { clone } from 'ramda';
 
 export class Table {
 
@@ -12,9 +13,12 @@ export class Table {
     this.columns.forEach(column => column.apply(tableDefinition));
     this.actions.forEach(action => action.apply(tableDefinition));
 
-    const config =
+    const config = clone(this);
 
-            Object.assign(tableDefinition);
+    delete config.columns;
+    delete config.actions;
+
+    tableDefinition.__config = config;
 
   }
 

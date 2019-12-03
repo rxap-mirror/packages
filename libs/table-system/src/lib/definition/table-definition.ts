@@ -54,7 +54,11 @@ export class RxapTableDefinition<Data> {
         } else {
           const textheader = header.filter(Boolean).filter(h => typeof h === 'string' || (!!h.text && !h.content))[ 0 ];
           if (textheader) {
-            headerText = textheader.text;
+            if (typeof textheader === 'string') {
+              headerText = textheader;
+            } else {
+              headerText = textheader.text;
+            }
           } else {
             return null;
           }
@@ -67,7 +71,7 @@ export class RxapTableDefinition<Data> {
   }
 
   public get columns(): Partial<RxapColumn>[] {
-    const columns      = this.columnsKeys.reduce((array: any[], key: string) => [ ...array, (this as any)[ key ] ], []);
+    const columns      = this.__columnsKeys.reduce((array: any[], key: string) => [ ...array, (this as any)[ key ] ], []);
     const actionColumn = this.actionColumn;
     if (actionColumn) {
       columns.unshift(actionColumn);
@@ -76,7 +80,7 @@ export class RxapTableDefinition<Data> {
   }
 
   public get actionColumn(): Partial<RxapColumn> | null {
-    if (this.actionKeys.length) {
+    if (this.__actionKeys.length) {
       return { id: '__actions', header: '', template: BuildActionColumnTemplate(this.actions) };
     }
     return null;
@@ -85,18 +89,20 @@ export class RxapTableDefinition<Data> {
   public hasAddRow: boolean = false;
 
   public get actions(): RxapRowAction<Data>[] {
-    return this.actionKeys.reduce((array: any[], key: string) => [ ...array, (this as any)[ key ] ], []);
+    return this.__actionKeys.reduce((array: any[], key: string) => [ ...array, (this as any)[ key ] ], []);
   }
+
+  public __config: any = {};
 
   public __title!: string;
 
   public __subTitle!: string;
 
-  public columnsKeys: string[] = [];
+  public __columnsKeys: string[] = [];
 
-  public actionKeys: string[] = [];
+  public __actionKeys: string[] = [];
 
-  public tableId!: string;
+  public id!: string;
 
   public hideColumn$ = new Subject<string>();
   public showColumn$ = new Subject<string>();
@@ -130,7 +136,7 @@ export class RxapTableDefinition<Data> {
   }
 
   public hasColumn(key: string): boolean {
-    return this.columnsKeys.includes(key);
+    return this.__columnsKeys.includes(key);
   }
 
   public getColumn(key: string): Partial<RxapColumn> | null {

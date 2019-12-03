@@ -91,8 +91,8 @@ export default sandboxOf(WebixDataTableComponent, {
     {
       provide:    RXAP_TABLE_SYSTEM_DEFINITION,
       useFactory: () => {
-        const definition   = new RxapTableDefinition();
-        definition.tableId = 'with-remote-template';
+        const definition = new RxapTableDefinition();
+        definition.id    = 'with-remote-template';
         return definition;
       },
       deps:       []

@@ -47,9 +47,9 @@ export class WebixDataTableComponent<Data> implements OnInit, OnDestroy {
 
   @Input() public viewer: IHttpDataSourceViewer = { id: uuid() };
 
-  @Input() public height = 500;
-
   public connection!: TableDataSourceConnection<Data>;
+
+  public pageSize = 10;
 
   public subscriptions = new Subscription();
 
@@ -68,7 +68,7 @@ export class WebixDataTableComponent<Data> implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
-    this.viewer     = { id: this.tableDefinition ? this.tableDefinition.tableId : uuid() };
+    this.viewer     = { id: this.tableDefinition ? this.tableDefinition.id : uuid() };
     this.connection = this.dataSource.connect(this.viewer);
 
     if (this.tableDefinition) {
@@ -113,16 +113,16 @@ export class WebixDataTableComponent<Data> implements OnInit, OnDestroy {
 
   public buildTableConfig() {
     const config: any = {
-      container: this.container.nativeElement,
-      view:      'datatable',
-      url:       {
+      container:  this.container.nativeElement,
+      view:       'datatable',
+      url:        {
         $proxy: true,
         load:   this.load.bind(this)
       },
-      height:    this.height,
-      datafetch: 6,
-      loadahead: 0,
-      pager:     {
+      autoheight: true,
+      datafetch:  6,
+      loadahead:  0,
+      pager:      {
         container: this.pagerContainer.nativeElement,
         size:      6,
         template:  ' {common.first()} {common.prev()} {common.pages()} {common.next()} {common.last()}'
@@ -137,6 +137,7 @@ export class WebixDataTableComponent<Data> implements OnInit, OnDestroy {
           this.tableActionHandler.handel(action, this.ui.data.getItem(row));
         }
       }), {} as any);
+      // Object.assign(config, this.tableDefinition.__config);
     } else {
       config.autoConfig = true;
     }

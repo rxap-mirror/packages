@@ -3,10 +3,24 @@ import {
   Sort,
   HttpDataSource,
   IHttpDataSourceViewer,
-  HttpDataSourceResponseWrapper
+  RXAP_DATA_SOURCE_ID_TOKEN,
+  DataSourceId,
+  RXAP_DATA_SOURCE_TRANSFORMERS_TOKEN,
+  DataSourceTransformerFunction,
+  DataSourceTransformerToken,
+  RXAP_DATA_SOURCE_HTTP_BASE_URL
 } from '@rxap/data-source';
-import { Injectable } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
+import {
+  Injectable,
+  InjectionToken,
+  Optional,
+  Inject
+} from '@angular/core';
+import {
+  HttpParams,
+  HttpClient,
+  HttpHeaders
+} from '@angular/common/http';
 import {
   TableDataSource,
   TableDataSourceConnection,
@@ -29,11 +43,43 @@ export interface HttpDataSourceResponseWrapper<Data> {
   data: Data;
 }
 
+export const RXAP_HTTP_TABLE_DATA_SOURCE_CONNECTION_MAPPER = new InjectionToken('@rxap/table-system/http-data-source/mapper');
+
+export interface HttpTableDataSourceConnectionMapper {
+  sort: string | ((filters: KeyValue) => HttpParams);
+  order: string | ((filters: KeyValue) => HttpParams);
+  page: string | ((filters: KeyValue) => HttpParams);
+  pageSize: string | ((filters: KeyValue) => HttpParams);
+  filter: string | ((filters: KeyValue) => HttpParams)
+}
+
+export const DEFAULT_HTTP_TABLE_DATA_SOURCE_CONNECTION_MAPPER: HttpTableDataSourceConnectionMapper = {
+  sort:     'sort',
+  order:    'order',
+  page:     'page',
+  pageSize: 'pageSize',
+  filter:   'filter'
+};
+
 export class HttpTableDataSourceConnection<Data>
   extends HttpDataSourceConnection<HttpDataSourceResponseWrapper<Data>>
   implements TableDataSourceConnection<HttpDataSourceResponseWrapper<Data>> {
 
   protected lastParams: RefreshParams = { sort: null, filters: null, page: 0, pageSize: 10 };
+
+  protected readonly mapper: HttpTableDataSourceConnectionMapper = DEFAULT_HTTP_TABLE_DATA_SOURCE_CONNECTION_MAPPER;
+
+  constructor(
+    http: HttpClient,
+    url?: string,
+    headers?: HttpHeaders,
+    mapper?: HttpTableDataSourceConnectionMapper
+  ) {
+    super(http, url, headers);
+    if (mapper) {
+      Object.assign(this.mapper, mapper);
+    }
+  }
 
   public refresh(params: RefreshParams = this.lastParams, force: boolean = false): void {
     this.lastParams = params;
@@ -87,12 +133,22 @@ export class HttpTableDataSource<Data, Source = Data>
   extends HttpDataSource<HttpDataSourceResponseWrapper<Data>, HttpDataSourceResponseWrapper<Data>>
   implements TableDataSource<HttpDataSourceResponseWrapper<Data>, HttpDataSourceResponseWrapper<Data>> {
 
+  constructor(
+    http: HttpClient,
+    @Optional() @Inject(RXAP_DATA_SOURCE_HTTP_BASE_URL) baseUrl: string,
+    @Optional() @Inject(RXAP_DATA_SOURCE_ID_TOKEN) id: DataSourceId,
+    @Optional() @Inject(RXAP_DATA_SOURCE_TRANSFORMERS_TOKEN) transformers: DataSourceTransformerFunction<HttpDataSourceResponseWrapper<Data>, HttpDataSourceResponseWrapper<Data>> | DataSourceTransformerToken<HttpDataSourceResponseWrapper<Data>, HttpDataSourceResponseWrapper<Data>>[] | null = null,
+    @Optional() @Inject(RXAP_HTTP_TABLE_DATA_SOURCE_CONNECTION_MAPPER) public mapper: any                                                                                                                                                                                                          = null
+  ) {
+    super(http, baseUrl, id, transformers);
+  }
+
   public connect(viewer: IHttpDataSourceViewer): HttpTableDataSourceConnection<Data> {
     const connection = new HttpTableDataSourceConnection<Data>(
       this.http,
       [ this.baseUrl, viewer.url ].filter(Boolean).join('/'),
-      viewer.params,
-      viewer.headers
+      viewer.headers,
+      this.mapper
     );
     this.registerConnection(viewer, connection);
     return connection;

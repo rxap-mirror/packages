@@ -1,4 +1,4 @@
-<table>
+<table height="100">
   <actions>
     <http-action type="delete" refresh="true" method="DELETE" url="http://google.com/{{row.id}}" icon="delete">
       <show key="first_name">George</show>

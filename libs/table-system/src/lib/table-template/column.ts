@@ -83,7 +83,7 @@ export class Column {
 
   public apply(tableDefinition: RxapTableDefinition<any>): void {
     (tableDefinition as any)[ this.propertyKey ] = this.toConfig();
-    tableDefinition.columnsKeys.push(this.propertyKey);
+    tableDefinition.__columnsKeys.push(this.propertyKey);
   }
 
 }

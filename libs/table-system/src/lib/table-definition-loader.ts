@@ -40,12 +40,12 @@ export class TableDefinitionLoader {
     Object.assign(formDefinition, columnMap);
 
     if (tableId) {
-      formDefinition.tableId = tableId;
+      formDefinition.id = tableId;
     } else {
       throw new Error('Table Definition has not a table id');
     }
 
-    formDefinition.columnsKeys = metaData.columns.map(column => column.propertyKey);
+    formDefinition.__columnsKeys = metaData.columns.map(column => column.propertyKey);
 
     return formDefinition;
 

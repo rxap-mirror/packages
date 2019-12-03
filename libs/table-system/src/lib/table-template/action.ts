@@ -43,7 +43,7 @@ export class Action {
 
   public apply(tableDefinition: RxapTableDefinition<any>) {
     (tableDefinition as any)[ this.propertyKey ] = this.toConfig();
-    tableDefinition.actionKeys.push(this.propertyKey);
+    tableDefinition.__actionKeys.push(this.propertyKey);
   }
 
 }

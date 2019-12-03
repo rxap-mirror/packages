@@ -32,7 +32,7 @@ export class TableTemplateLoader {
   ) {}
 
   public async getTemplate$(tableDefinition: RxapTableDefinition<any>): Promise<TableTemplate> {
-    const tableId = tableDefinition.tableId;
+    const tableId = tableDefinition.id;
 
     if (!tableId) {
       throw new Error('Table Definition has not a table id');
@@ -77,7 +77,7 @@ export class TableTemplateLoader {
 
   public applyTemplate$<T>(tableDefinition: RxapTableDefinition<T>): Observable<RxapTableDefinition<T>> {
 
-    const tableId = tableDefinition.tableId;
+    const tableId = tableDefinition.id;
 
     if (!tableId) {
       throw new Error('Table Definition has not a table id');

@@ -3,7 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../../../../angular/angular" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../../angular" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../digitaix/core" vcs="Git" />
   </component>
 </project>

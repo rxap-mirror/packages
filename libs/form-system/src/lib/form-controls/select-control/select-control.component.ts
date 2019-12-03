@@ -44,7 +44,14 @@ export class RxapSelectControlComponent<ControlValue>
   public ngAfterContentInit(): void {
     this.options.forEach(option => {
       const nativeElement = option.nativeElement;
-      this.control.addOption({ value: nativeElement.value, display: nativeElement.textContent } as any);
+      let value: any      = nativeElement.value;
+      if (value === 'true' || value === 'false') {
+        value = value === 'true';
+      }
+      if (!isNaN(Number(value))) {
+        value = Number(value);
+      }
+      this.control.addOption({ value: value, display: nativeElement.textContent } as any);
     });
   }
 

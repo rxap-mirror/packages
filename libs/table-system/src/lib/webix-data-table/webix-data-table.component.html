@@ -1,5 +1,14 @@
 <div fxLayout="column" fxLayoutGap="32px">
   <div #container fxFlex="nogrow"></div>
-  <div #pagerContainer fxFlex="nogrow"></div>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="32px">
+    <rxap-select-control [(ngModel)]="pageSize" fxFlex="50px">
+      <option #option [value]="10">10</option>
+      <option #option [value]="25">25</option>
+      <option #option [value]="50">50</option>
+    </rxap-select-control>
+    <div fxFlex="grow">
+      <div #pagerContainer></div>
+    </div>
+  </div>
 </div>
 

@@ -83,7 +83,13 @@ export default sandboxOf(TableContainerComponent, {
     {
       provide:    RXAP_DATA_SOURCE_TOKEN,
       useFactory: (http: HttpClient) => {
-        return new HttpTableDataSource(http, 'https://reqres.in/api/users', 'source');
+        return new HttpTableDataSource(http, 'http://localhost:3000/comments', 'source', null, {
+          page:     '_page',
+          pageSize: '_limit',
+          sort:     '_sort',
+          order:    '_order',
+          filter:   '_filter'
+        });
       },
       deps:       [ HttpClient ]
     }
@@ -94,8 +100,8 @@ export default sandboxOf(TableContainerComponent, {
     {
       provide:    RXAP_TABLE_SYSTEM_DEFINITION,
       useFactory: () => {
-        const definition   = new RxapTableDefinition();
-        definition.tableId = 'with-remote-template';
+        const definition = new RxapTableDefinition();
+        definition.id    = 'with-remote-template';
         return definition;
       },
       deps:       []

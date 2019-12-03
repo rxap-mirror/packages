@@ -10,11 +10,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="components" />
-    <orderEntry type="module" module-name="angular" />
-    <orderEntry type="module" module-name="angular" />
-    <orderEntry type="module" module-name="angular" />
-    <orderEntry type="module" module-name="angular" />
-    <orderEntry type="module" module-name="angular" />
   </component>
 </module>
