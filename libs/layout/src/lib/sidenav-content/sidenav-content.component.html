@@ -1,0 +1,11 @@
+<div [ngClass]="{ 'open': (sidenav.openedChange | async) }" [ngStyle]="{
+  height: sccs.innerHeight$ | async,
+  marginTop: sccs.marginTop$ | async,
+  marginBottom: sccs.marginBottom$ | async
+}" class="container">
+  <!--  <dx-breadcrumb></dx-breadcrumb>-->
+  <div class="inner">
+    <router-outlet></router-outlet>
+    <ng-content></ng-content>
+  </div>
+</div>

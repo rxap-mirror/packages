@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://json-schema.org/draft-07/schema",
+  "title": "Build builder",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "buildTarget": {
+      "type": "string",
+      "description": "The build target that should be execute before this builder"
+    },
+    "outFile": {
+      "type": "string"
+    },
+    "ignoreImports": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of architect targets"
+    }
+  },
+  "required": []
+}

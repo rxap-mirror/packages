@@ -1,0 +1,101 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-json-viewer-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-json-viewer {
+
+    $type-colors: (
+      string: #FF6B6B,
+      number: #009688,
+      boolean: #b938a4,
+      date: #05668D,
+      array: #999,
+      object: #999,
+      function: #999,
+      'null': #fff,
+      undefined: #fff
+    );
+
+    .container {
+
+      .segment {
+
+        .segment-main {
+
+          .toggler {
+            color: #787878;
+
+          }
+
+          .segment-key {
+            color: mat-color($primary);
+          }
+
+          .segment-separator {
+            color: #999;
+          }
+
+          .segment-value {
+            color: map-get($foreground, text);
+          }
+        }
+
+      }
+
+      @each $type, $color in $type-colors {
+        .segment-type-#{$type} > .segment-main > .segment-value {
+          color: $color;
+        }
+      }
+
+      // special cases need highlightted
+      .segment-type-null > .segment-main > .segment-value {
+        background-color: mat-color($warn);
+      }
+
+      .segment-type-undefined > .segment-main {
+        & > .segment-key {
+          color: #999;
+        }
+
+        & > .segment-value {
+          background-color: #999;
+        }
+      }
+
+    }
+
+  }
+
+}
+
+@mixin rxap-json-viewer-typography($config) {
+  .rxap-json-viewer {
+
+    .container {
+
+      font-family: monospace;
+      font-size: 1.6rem;
+
+      .segment {
+
+        .segment-main {
+
+          .toggler {
+            font-size: .8em;
+            line-height: 1.2em;
+          }
+
+        }
+
+      }
+    }
+
+  }
+}

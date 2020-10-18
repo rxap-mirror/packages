@@ -1,0 +1,8 @@
+<div class="container mat-elevation-z2" fxLayout="row" fxLayoutGap="4px">
+  <button (click)="confirmed.emit()" class="accept" mat-icon-button>
+    <mat-icon svgIcon="check"></mat-icon>
+  </button>
+  <button (click)="unconfirmed.emit()" class="decline" mat-icon-button>
+    <mat-icon svgIcon="close"></mat-icon>
+  </button>
+</div>

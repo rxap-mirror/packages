@@ -1,0 +1,15 @@
+# Changelog
+
+## [0.2.3]
+### Added
+- ng-update support
+
+## [0.2.2]
+### Changed
+- update peer dependencies
+
+## [0.2.1]
+### Added
+- The CHANGELOG file
+- Add ChildTabMeta Type
+- Add TabHandshake Type

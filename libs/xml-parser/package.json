@@ -1,0 +1,39 @@
+{
+  "name": "@rxap/xml-parser",
+  "version": "0.3.1",
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "keywords": [
+    "rxap",
+    "utilities",
+    "xml-parser"
+  ],
+  "license": "BSD-4-Clause",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "A utility packages to convert xml files into class instances.",
+  "peerDependencies": {
+    "@rxap/utilities": ">=0.3.7",
+    "rxjs": ">=6.5",
+    "@rxap/mixin": ">=0.1.15",
+    "@angular/core": ">=9",
+    "@rxap/data-source": ">=0.3.13",
+    "@rxap/definition": ">=0.0.4",
+    "@angular/platform-browser": ">=9",
+    "@angular/common": ">=9"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/utilities",
+      "@rxap/mixin",
+      "@rxap/data-source",
+      "@rxap/definition"
+    ]
+  }
+}

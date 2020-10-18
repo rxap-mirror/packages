@@ -1,0 +1,7 @@
+<mat-tab-group class="tab-group">
+
+  <mat-tab *ngFor="let tab of tabs$ | async | keyvalue" [label]="tab.key">
+    <iframe class="iframe" [src]="tab.value | santization:'resourceUrl'"></iframe>
+  </mat-tab>
+
+</mat-tab-group>

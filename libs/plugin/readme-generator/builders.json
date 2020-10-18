@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/architect/src/builders-schema.json",
+  "builders": {
+    "plugin": {
+      "implementation": "./src/builders/plugin/builder",
+      "schema": "./src/builders/plugin/schema.json",
+      "description": "Readme generator for plugin libraries."
+    }
+  }
+}

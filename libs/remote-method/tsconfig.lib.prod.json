@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.lib.json",
+  "compilerOptions": {
+    "paths": {
+      "@rxap/utilities": [
+        "dist/libs/utilities"
+      ],
+      "@rxap/remote-method": [
+        "dist/libs/remote-method"
+      ],
+      "@rxap/definition": [
+        "dist/libs/definition"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/architect/src/builders-schema.json",
+  "builders": {
+    "build": {
+      "implementation": "./src/builders/build/builder",
+      "schema": "./src/builders/build/schema.json",
+      "description": "Builds the library schematics and copy all files into the out path"
+    },
+    "update-package-group": {
+      "implementation": "./src/builders/update-package-group/builder",
+      "schema": "./src/builders/update-package-group/schema.json",
+      "description": "Updates the package group array in the package.json"
+    }
+  }
+}

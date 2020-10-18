@@ -1,0 +1,43 @@
+{
+  "name": "@rxap/authentication",
+  "version": "0.4.1",
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "license": "MIT",
+  "keywords": [
+    "rxap",
+    "authentication",
+    "angular"
+  ],
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "A collection of components and services to simplify the authentication process implementation.",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/authentication",
+      "@rxap/forms",
+      "@rxap/utilities",
+      "@rxap/definition"
+    ]
+  },
+  "peerDependencies": {
+    "@rxap/forms": ">=0.0.5",
+    "@rxap/utilities": ">=0.3.7",
+    "rxjs": ">=6.5",
+    "@rxap/definition": ">=0.0.4",
+    "@angular/core": ">=9",
+    "@angular/forms": ">=9",
+    "@angular/platform-browser": ">=9",
+    "@angular/flex-layout": ">=9",
+    "@angular/router": ">=9",
+    "@angular/material": ">=9",
+    "@angular/animations": ">=9",
+    "@angular/common": ">=9"
+  },
+  "schematics": "./schematics/collection.json"
+}

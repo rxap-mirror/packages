@@ -1,0 +1,65 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-sidenav-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-layout-sidenav {
+
+    background: mat-color($background, card);
+
+    .container {
+
+      .inner {
+
+        .nav-container {
+
+          /* Handle */
+          &::-webkit-scrollbar-thumb {
+            background: mat-color($accent, 100);
+          }
+
+          /* Handle on hover */
+          &::-webkit-scrollbar-thumb:hover {
+            background: mat-color($accent, 300);
+          }
+
+          @if $isDark {
+
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+              background: mat-color($accent, 900);
+            }
+
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+              background: mat-color($accent, 700);
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+    .version {
+      color: lightgray;
+    }
+
+  }
+
+}
+
+@mixin rxap-sidenav-typography($config) {
+  .rxap-layout-sidenav {
+
+    .version {
+      font-size: 10px;
+    }
+
+  }
+}

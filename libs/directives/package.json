@@ -1,0 +1,36 @@
+{
+  "name": "@rxap/directives",
+  "version": "0.0.15",
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "license": "MIT",
+  "keywords": [
+    "rxap",
+    "directives"
+  ],
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "A collection of utility angular directives used in RxAP.",
+  "peerDependencies": {
+    "@rxap/services": ">=0.2.7",
+    "@rxap/utilities": ">=0.3.2",
+    "@angular/core": ">=9",
+    "@angular/common": ">=9",
+    "@angular/router": ">=9",
+    "@angular/material": ">=9",
+    "@angular/platform-browser": ">=9"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/directives",
+      "@rxap/services",
+      "@rxap/utilities"
+    ]
+  }
+}

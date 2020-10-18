@@ -1,0 +1,38 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-login-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-login, rxap-login {
+
+    .inner {
+      background-color: mat-color($background, background);
+
+      @if $isDark {
+
+        .mat-form-field-prefix, .mat-form-field-suffix {
+          color: mat-color($foreground, hint-text);
+        }
+
+      }
+
+
+    }
+
+  }
+
+  .mat-snack-bar-container.error {
+    background-color: mat-color($warn);
+    color: mat-color($foreground, base);
+  }
+
+}
+
+@mixin rxap-login-typography($config) {
+  .rxap-login {
+  }
+}

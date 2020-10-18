@@ -1,0 +1,16 @@
+import { RxapRemoteMethod, HttpRemoteMethod, HttpRemoteMethodParameter } from '@rxap/remote-method';
+import { Injectable } from '@angular/core';
+
+@RxapRemoteMethod({
+  id: '<%= dasherize(name) %>',
+  url: '',
+  method: '',
+})
+@Injectable()
+export class <%= classify(name) %>RemoteMethod extends HttpRemoteMethod {
+
+  public createHttpRequestParameters(parameters?: any): Partial<HttpRemoteMethodParameter> {
+    return parameters ?? {} as any;
+  }
+
+}

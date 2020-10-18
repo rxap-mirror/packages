@@ -1,0 +1,8 @@
+<div (click)="reopen()" [ngClass]="{ minimized: window.isMinimized }" class="container mat-elevation-z2" fxLayout="row" fxLayoutAlign="start center"
+     fxLayoutGap=".5rem">
+  <mat-icon *ngIf="window.settings.icon" [rxapIcon]="window.settings.icon" fxFlex="40px"></mat-icon>
+  <h3 *ngIf="window.settings.title" fxFlex="grow">{{window.settings.title}}</h3>
+  <button (click)="close()" rxapStopPropagation mat-icon-button type="button">
+    <mat-icon svgIcon="window-close"></mat-icon>
+  </button>
+</div>

@@ -1,0 +1,45 @@
+{
+  "name": "@rxap/tree",
+  "version": "0.0.6",
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "keywords": [
+    "rxap",
+    "tree",
+    "angular",
+    "material",
+    "cdk"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
+  "peerDependencies": {
+    "@rxap/utilities": ">=0.3.16",
+    "@angular/core": ">=9",
+    "@rxap/remote-method": ">=0.3.11",
+    "@rxap/definition": ">=0.0.6",
+    "@angular/platform-browser": ">=9",
+    "@angular/common": ">=9",
+    "@rxap/data-source": ">=0.3.24",
+    "@angular/cdk": ">=9",
+    "rxjs": ">=6.5.5"
+  },
+  "dependencies": {
+    "tslib": "2.0.1"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/tree",
+      "@rxap/utilities",
+      "@rxap/remote-method",
+      "@rxap/definition",
+      "@rxap/data-source"
+    ]
+  }
+}

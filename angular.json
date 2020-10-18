@@ -1,0 +1,3879 @@
+{
+  "version": 1,
+  "projects": {
+    "testing": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/testing",
+      "sourceRoot": "apps/testing/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/testing",
+            "index": "apps/testing/src/index.html",
+            "main": "apps/testing/src/main.ts",
+            "polyfills": "apps/testing/src/polyfills.ts",
+            "tsConfig": "apps/testing/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/testing/src/favicon.ico",
+              "apps/testing/src/assets",
+              {
+                "glob": "mdi.svg",
+                "input": "./node_modules/@mdi/angular-material",
+                "output": "./assets"
+              }
+            ],
+            "styles": ["apps/testing/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/testing/src/environments/environment.ts",
+                  "with": "apps/testing/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "testing:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "testing:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "testing:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/testing/tsconfig.app.json",
+              "apps/testing/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/testing/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/testing/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "utilities": {
+      "projectType": "library",
+      "root": "libs/utilities",
+      "sourceRoot": "libs/utilities/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/utilities/tsconfig.lib.json",
+            "project": "libs/utilities/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/utilities/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/utilities/tsconfig.lib.json",
+              "libs/utilities/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/utilities/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/utilities/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/utilities/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/utilities"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "utilities:update-package-group",
+              "utilities:build:production",
+              "utilities:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "utilities:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/utilities/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "utilities:build:production",
+            "preTarget": "utilities:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "data-source": {
+      "projectType": "library",
+      "root": "libs/data-source",
+      "sourceRoot": "libs/data-source/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/data-source/tsconfig.lib.json",
+            "project": "libs/data-source/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/data-source/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/data-source/tsconfig.lib.json",
+              "libs/data-source/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data-source/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-source/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "data-source:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/data-source/tsconfig.schematics.json"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/data-source/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/rxap/data-source",
+            "config": {
+              "configFolder": "libs/data-source/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/data-source/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/data-source"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "data-source:update-package-group",
+              "data-source:build:production",
+              "data-source:schematics"
+            ]
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "data-source:build:production",
+            "preTarget": "data-source:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "window-system": {
+      "projectType": "library",
+      "root": "libs/window-system",
+      "sourceRoot": "libs/window-system/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/window-system/tsconfig.lib.json",
+            "project": "libs/window-system/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/window-system/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/window-system/tsconfig.lib.json",
+              "libs/window-system/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/window-system/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/window-system/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "window-system:update-package-group",
+              "window-system:build:production",
+              "window-system:scss-bundle",
+              "window-system:schematics"
+            ]
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "window-system:build:production",
+            "skipBuild": true,
+            "ignoreImports": ["~@angular/.*"]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "window-system:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/window-system/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "window-system:build:production",
+            "preTarget": "window-system:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "services": {
+      "projectType": "library",
+      "root": "libs/services",
+      "sourceRoot": "libs/services/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/services/tsconfig.lib.json",
+            "project": "libs/services/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/services/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/services/tsconfig.lib.json",
+              "libs/services/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/services/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/services/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/services/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/services"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "services:update-package-group",
+              "services:build:production",
+              "services:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "services:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/services/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "services:build:production",
+            "preTarget": "services:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "xml-parser": {
+      "projectType": "library",
+      "root": "libs/xml-parser",
+      "sourceRoot": "libs/xml-parser/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/xml-parser/tsconfig.lib.json",
+            "project": "libs/xml-parser/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/xml-parser/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/xml-parser/tsconfig.lib.json",
+              "libs/xml-parser/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/xml-parser/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/xml-parser/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "xml-parser:update-package-group",
+              "xml-parser:build:production",
+              "xml-parser:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "xml-parser:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/xml-parser/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "xml-parser:build:production",
+            "preTarget": "xml-parser:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "mixin": {
+      "projectType": "library",
+      "root": "libs/mixin",
+      "sourceRoot": "libs/mixin/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/mixin/tsconfig.lib.json",
+            "project": "libs/mixin/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/mixin/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/mixin/tsconfig.lib.json",
+              "libs/mixin/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/mixin/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/mixin/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "mixin:update-package-group",
+              "mixin:build:production",
+              "mixin:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "mixin:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/mixin/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "mixin:build:production",
+            "preTarget": "mixin:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "components": {
+      "projectType": "library",
+      "root": "libs/components",
+      "sourceRoot": "libs/components/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/components/tsconfig.lib.json",
+            "project": "libs/components/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/components/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/components/tsconfig.lib.json",
+              "libs/components/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/components/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/components/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "components:build:production",
+            "ignoreImports": ["~@angular/.*"]
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "components:update-package-group",
+              "components:build:production",
+              "components:scss-bundle",
+              "components:schematics"
+            ]
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/components/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/rxap/components",
+            "config": {
+              "configFolder": "libs/components/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/components/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/components"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "components:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/components/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "components:build:production",
+            "preTarget": "components:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "remote-method": {
+      "projectType": "library",
+      "root": "libs/remote-method",
+      "sourceRoot": "libs/remote-method/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/remote-method/tsconfig.lib.json",
+            "project": "libs/remote-method/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/remote-method/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/remote-method/tsconfig.lib.json",
+              "libs/remote-method/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/remote-method/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/remote-method/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "remote-method:build:production",
+            "skipBuild": true,
+            "tsConfig": "libs/remote-method/tsconfig.schematics.json"
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "remote-method:update-package-group",
+              "remote-method:build:production",
+              "remote-method:schematics"
+            ]
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/remote-method/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/remote-method"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "remote-method:build:production",
+            "preTarget": "remote-method:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "config": {
+      "projectType": "library",
+      "root": "libs/config",
+      "sourceRoot": "libs/config/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/config/tsconfig.lib.json",
+            "project": "libs/config/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/config/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/config/tsconfig.lib.json",
+              "libs/config/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/config/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/config/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/config/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/config"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "config:update-package-group",
+              "config:build:production",
+              "config:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "config:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/config/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "config:build:production",
+            "preTarget": "config:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "authentication": {
+      "projectType": "library",
+      "root": "libs/authentication",
+      "sourceRoot": "libs/authentication/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/authentication/tsconfig.lib.json",
+            "project": "libs/authentication/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/authentication/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/authentication/tsconfig.lib.json",
+              "libs/authentication/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/authentication/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/authentication/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/authentication/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/rxap/authentication",
+            "config": {
+              "configFolder": "libs/authentication/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/authentication/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/authentication"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "authentication:update-package-group",
+              "authentication:build:production",
+              "authentication:scss-bundle",
+              "authentication:schematics"
+            ]
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "authentication:build:production",
+            "skipBuild": true,
+            "ignoreImports": ["~@angular/.*"]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "authentication:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/authentication/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "authentication:build:production",
+            "preTarget": "authentication:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "layout": {
+      "projectType": "library",
+      "root": "libs/layout",
+      "sourceRoot": "libs/layout/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/layout/tsconfig.lib.json",
+            "project": "libs/layout/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/layout/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/layout/tsconfig.lib.json",
+              "libs/layout/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/layout/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/layout/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/layout/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/rxap/layout",
+            "config": {
+              "configFolder": "libs/layout/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/layout/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/layout"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "layout:update-package-group",
+              "layout:build:production",
+              "layout:scss-bundle",
+              "layout:schematics"
+            ]
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "layout:build:production",
+            "skipBuild": true,
+            "ignoreImports": ["~@angular/.*"]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "layout:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/layout/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "layout:build:production",
+            "preTarget": "layout:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "pipes": {
+      "projectType": "library",
+      "root": "libs/pipes",
+      "sourceRoot": "libs/pipes/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/pipes/tsconfig.lib.json",
+            "project": "libs/pipes/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/pipes/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/pipes/tsconfig.lib.json",
+              "libs/pipes/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/pipes/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/pipes/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/pipes/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/rxap/pipes",
+            "config": {
+              "configFolder": "libs/pipes/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/pipes/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/pipes"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "pipes:update-package-group",
+              "pipes:build:production",
+              "pipes:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "pipes:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/pipes/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "pipes:build:production",
+            "preTarget": "pipes:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "plugin-app-engine": {
+      "root": "libs/plugin/app-engine",
+      "sourceRoot": "libs/plugin/app-engine/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/plugin/app-engine/tsconfig.lib.json",
+              "libs/plugin/app-engine/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/plugin/app-engine/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/plugin/app-engine/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/plugin/app-engine",
+            "tsConfig": "libs/plugin/app-engine/tsconfig.lib.json",
+            "packageJson": "libs/plugin/app-engine/package.json",
+            "main": "libs/plugin/app-engine/src/index.ts",
+            "assets": [
+              "libs/plugin/app-engine/*.md",
+              {
+                "input": "./libs/plugin/app-engine/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/plugin/app-engine",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/plugin/app-engine",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "plugin-library-schematics": {
+      "root": "libs/plugin/library-schematics",
+      "sourceRoot": "libs/plugin/library-schematics/src",
+      "projectType": "library",
+      "schematics": {},
+      "prefix": "rxap-plugin",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/plugin/library-schematics/tsconfig.lib.json",
+              "libs/plugin/library-schematics/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/plugin/library-schematics/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/plugin/library-schematics/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/plugin/library-schematics",
+            "tsConfig": "libs/plugin/library-schematics/tsconfig.lib.json",
+            "packageJson": "libs/plugin/library-schematics/package.json",
+            "main": "libs/plugin/library-schematics/src/index.ts",
+            "assets": [
+              "libs/plugin/library-schematics/*.md",
+              {
+                "input": "./libs/plugin/library-schematics/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/plugin/library-schematics",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/plugin/library-schematics",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "plugin-library-schematics:readme",
+              "plugin-library-schematics:build"
+            ]
+          }
+        },
+        "readme": {
+          "builder": "@rxap-plugin/readme-generator:plugin"
+        }
+      }
+    },
+    "open-api": {
+      "projectType": "library",
+      "root": "libs/open-api",
+      "sourceRoot": "libs/open-api/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/open-api/tsconfig.lib.json",
+            "project": "libs/open-api/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/open-api/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/open-api/tsconfig.lib.json",
+              "libs/open-api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/open-api/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/open-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/open-api/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/open-api"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "open-api:update-package-group",
+              "open-api:build:production",
+              "open-api:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "open-api:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/open-api/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "open-api:build:production",
+            "preTarget": "open-api:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "recorder": {
+      "projectType": "library",
+      "root": "libs/recorder",
+      "sourceRoot": "libs/recorder/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/recorder/tsconfig.lib.json",
+            "project": "libs/recorder/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/recorder/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/recorder/tsconfig.lib.json",
+              "libs/recorder/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/recorder/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/recorder/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "recorder:update-package-group",
+              "recorder:build:production",
+              "recorder:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "recorder:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/recorder/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "recorder:build:production",
+            "preTarget": "recorder:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "across-tabs": {
+      "projectType": "library",
+      "root": "libs/across-tabs",
+      "sourceRoot": "libs/across-tabs/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/across-tabs/tsconfig.lib.json",
+            "project": "libs/across-tabs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/across-tabs/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/across-tabs/tsconfig.lib.json",
+              "libs/across-tabs/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/across-tabs/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/across-tabs/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "across-tabs:update-package-group",
+              "across-tabs:build:production",
+              "across-tabs:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "across-tabs:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/across-tabs/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "across-tabs:build:production",
+            "preTarget": "across-tabs:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "forms": {
+      "projectType": "library",
+      "root": "libs/forms",
+      "sourceRoot": "libs/forms/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/forms/tsconfig.lib.json",
+            "project": "libs/forms/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/forms/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/forms/tsconfig.lib.json",
+              "libs/forms/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/forms/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/forms/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/forms/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/rxap/forms",
+            "config": {
+              "configFolder": "libs/forms/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/forms/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/forms"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "forms:update-package-group",
+              "forms:build:production",
+              "forms:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "forms:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/forms/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "forms:build:production",
+            "preTarget": "forms:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "icon": {
+      "projectType": "library",
+      "root": "libs/icon",
+      "sourceRoot": "libs/icon/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/icon/tsconfig.lib.json",
+            "project": "libs/icon/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/icon/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/icon/tsconfig.lib.json",
+              "libs/icon/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/icon/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/icon/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/icon/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/icon"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "icon:update-package-group",
+              "icon:build:production",
+              "icon:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "icon:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/icon/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "icon:build:production",
+            "preTarget": "icon:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "firebase": {
+      "projectType": "library",
+      "root": "libs/firebase",
+      "sourceRoot": "libs/firebase/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/firebase/tsconfig.lib.json",
+            "project": "libs/firebase/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/firebase/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/firebase/tsconfig.lib.json",
+              "libs/firebase/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/firebase/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/firebase/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/firebase/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/firebase"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "firebase:update-package-group",
+              "firebase:build:production",
+              "firebase:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "firebase:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/firebase/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "firebase:build:production",
+            "preTarget": "firebase:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "directives": {
+      "projectType": "library",
+      "root": "libs/directives",
+      "sourceRoot": "libs/directives/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/directives/tsconfig.lib.json",
+            "project": "libs/directives/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/directives/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/directives/tsconfig.lib.json",
+              "libs/directives/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/directives/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/directives/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/directives/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/rxap/directives",
+            "config": {
+              "configFolder": "libs/directives/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/directives/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/directives"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "directives:update-package-group",
+              "directives:build:production",
+              "directives:scss-bundle",
+              "directives:schematics"
+            ]
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "directives:build:production",
+            "skipBuild": true,
+            "ignoreImports": ["~@angular/.*"]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "directives:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/directives/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "directives:build:production",
+            "preTarget": "directives:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "handlebars": {
+      "projectType": "library",
+      "root": "libs/handlebars",
+      "sourceRoot": "libs/handlebars/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/handlebars/tsconfig.lib.json",
+            "project": "libs/handlebars/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/handlebars/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/handlebars/tsconfig.lib.json",
+              "libs/handlebars/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/handlebars/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/handlebars/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "handlebars:update-package-group",
+              "handlebars:build:production",
+              "handlebars:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "handlebars:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/handlebars/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "handlebars:build:production",
+            "preTarget": "handlebars:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "definition": {
+      "projectType": "library",
+      "root": "libs/definition",
+      "sourceRoot": "libs/definition/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/definition/tsconfig.lib.json",
+            "project": "libs/definition/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/definition/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/definition/tsconfig.lib.json",
+              "libs/definition/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/definition/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/definition/jest.config.js",
+            "tsConfig": "libs/definition/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/definition/src/test-setup.ts"
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/definition/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/definition"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "definition:update-package-group",
+              "definition:build:production",
+              "definition:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "definition:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/definition/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "definition:build:production",
+            "preTarget": "definition:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "plugin-pack": {
+      "root": "libs/plugin/pack",
+      "sourceRoot": "libs/plugin/pack/src",
+      "projectType": "library",
+      "prefix": "rxap-plugin",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/plugin/pack/tsconfig.lib.json",
+              "libs/plugin/pack/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/plugin/pack/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/plugin/pack/jest.config.js",
+            "tsConfig": "libs/plugin/pack/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/plugin/pack",
+            "tsConfig": "libs/plugin/pack/tsconfig.lib.json",
+            "packageJson": "libs/plugin/pack/package.json",
+            "main": "libs/plugin/pack/src/index.ts",
+            "assets": [
+              "libs/plugin/pack/*.md",
+              {
+                "input": "./libs/plugin/pack/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/plugin/pack",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/plugin/pack",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": ["plugin-pack:readme", "plugin-pack:build"]
+          }
+        },
+        "readme": {
+          "builder": "@rxap-plugin/readme-generator:plugin"
+        }
+      }
+    },
+    "plugin-scss-bundle": {
+      "root": "libs/plugin/scss-bundle",
+      "sourceRoot": "libs/plugin/scss-bundle/src",
+      "projectType": "library",
+      "prefix": "rxap-plugin",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/plugin/scss-bundle/tsconfig.lib.json",
+              "libs/plugin/scss-bundle/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/plugin/scss-bundle/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/plugin/scss-bundle/jest.config.js",
+            "tsConfig": "libs/plugin/scss-bundle/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/plugin/scss-bundle",
+            "tsConfig": "libs/plugin/scss-bundle/tsconfig.lib.json",
+            "packageJson": "libs/plugin/scss-bundle/package.json",
+            "main": "libs/plugin/scss-bundle/src/index.ts",
+            "assets": [
+              "libs/plugin/scss-bundle/*.md",
+              {
+                "input": "./libs/plugin/scss-bundle/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/plugin/scss-bundle",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/plugin/scss-bundle",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": ["plugin-scss-bundle:readme", "plugin-scss-bundle:build"]
+          }
+        },
+        "readme": {
+          "builder": "@rxap-plugin/readme-generator:plugin"
+        }
+      }
+    },
+    "pwa": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@nrwl/angular:class": {
+          "skipTests": true
+        },
+        "@nrwl/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        },
+        "@nrwl/angular:directive": {
+          "skipTests": true
+        },
+        "@nrwl/angular:guard": {
+          "skipTests": true
+        },
+        "@nrwl/angular:module": {
+          "skipTests": true
+        },
+        "@nrwl/angular:pipe": {
+          "skipTests": true
+        },
+        "@nrwl/angular:service": {
+          "skipTests": true
+        }
+      },
+      "root": "apps/pwa",
+      "sourceRoot": "apps/pwa/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/pwa",
+            "index": "apps/pwa/src/index.html",
+            "main": "apps/pwa/src/main.ts",
+            "polyfills": "apps/pwa/src/polyfills.ts",
+            "tsConfig": "apps/pwa/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/pwa/src/favicon.ico",
+              "apps/pwa/src/assets",
+              "apps/pwa/src/manifest.webmanifest",
+              "apps/pwa/src/config",
+              "apps/pwa/src/app.yaml"
+            ],
+            "styles": ["apps/pwa/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pwa/src/environments/environment.ts",
+                  "with": "apps/pwa/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/pwa/ngsw-config.json"
+            },
+            "master": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pwa/src/environments/environment.ts",
+                  "with": "apps/pwa/src/environments/environment.master.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/pwa/ngsw-config.json"
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pwa/src/environments/environment.ts",
+                  "with": "apps/pwa/src/environments/environment.development.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": false,
+              "ngswConfigPath": "apps/pwa/ngsw-config.json"
+            },
+            "issue": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pwa/src/environments/environment.ts",
+                  "with": "apps/pwa/src/environments/environment.issue.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": false,
+              "ngswConfigPath": "apps/pwa/ngsw-config.json"
+            },
+            "merge-request": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pwa/src/environments/environment.ts",
+                  "with": "apps/pwa/src/environments/environment.merge-request.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": false,
+              "ngswConfigPath": "apps/pwa/ngsw-config.json"
+            },
+            "stable": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pwa/src/environments/environment.ts",
+                  "with": "apps/pwa/src/environments/environment.stable.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/pwa/ngsw-config.json"
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pwa/src/environments/environment.ts",
+                  "with": "apps/pwa/src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/pwa/ngsw-config.json"
+            },
+            "e2e": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pwa/src/environments/environment.ts",
+                  "with": "apps/pwa/src/environments/environment.e2e.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "pwa:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "pwa:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "pwa:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/pwa/tsconfig.app.json",
+              "apps/pwa/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/pwa/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/pwa/jest.config.js",
+            "tsConfig": "apps/pwa/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/pwa/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "form-system": {
+      "projectType": "library",
+      "root": "libs/form-system",
+      "sourceRoot": "libs/form-system/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/form-system/tsconfig.lib.json",
+            "project": "libs/form-system/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/form-system/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/form-system/tsconfig.lib.json",
+              "libs/form-system/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/form-system/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/form-system/jest.config.js",
+            "tsConfig": "libs/form-system/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/form-system/src/test-setup.ts"
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "form-system:update-package-group",
+              "form-system:build:production",
+              "form-system:scss-bundle",
+              "form-system:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "form-system:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/form-system/tsconfig.schematics.json"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/form-system/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/rxap/form-system",
+            "config": {
+              "configFolder": "libs/form-system/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "form-system:build:production",
+            "skipBuild": true,
+            "ignoreImports": ["~@angular/.*"]
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "form-system:build:production",
+            "preTarget": "form-system:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "plugin-readme-generator": {
+      "root": "libs/plugin/readme-generator",
+      "sourceRoot": "libs/plugin/readme-generator/src",
+      "projectType": "library",
+      "prefix": "rxap-plugin",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/plugin/readme-generator/tsconfig.lib.json",
+              "libs/plugin/readme-generator/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/plugin/readme-generator/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/plugin/readme-generator/jest.config.js",
+            "tsConfig": "libs/plugin/readme-generator/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/plugin/readme-generator",
+            "tsConfig": "libs/plugin/readme-generator/tsconfig.lib.json",
+            "packageJson": "libs/plugin/readme-generator/package.json",
+            "main": "libs/plugin/readme-generator/src/index.ts",
+            "assets": [
+              "libs/plugin/readme-generator/*.md",
+              {
+                "input": "./libs/plugin/readme-generator/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/plugin/readme-generator",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/plugin/readme-generator",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "plugin-readme-generator:readme",
+              "plugin-readme-generator:build"
+            ]
+          }
+        },
+        "readme": {
+          "builder": "@rxap-plugin/readme-generator:plugin"
+        }
+      }
+    },
+    "plugin-kaniko": {
+      "root": "libs/plugin/kaniko",
+      "sourceRoot": "libs/plugin/kaniko/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/plugin/kaniko/tsconfig.lib.json",
+              "libs/plugin/kaniko/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/plugin/kaniko/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/plugin/kaniko/jest.config.js",
+            "tsConfig": "libs/plugin/kaniko/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/plugin/kaniko",
+            "tsConfig": "libs/plugin/kaniko/tsconfig.lib.json",
+            "packageJson": "libs/plugin/kaniko/package.json",
+            "main": "libs/plugin/kaniko/src/index.ts",
+            "assets": [
+              "libs/plugin/kaniko/*.md",
+              {
+                "input": "./libs/plugin/kaniko/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/plugin/kaniko",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/plugin/kaniko",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": ["plugin-kaniko:readme", "plugin-kaniko:build"]
+          }
+        },
+        "readme": {
+          "builder": "@rxap-plugin/readme-generator:plugin"
+        }
+      }
+    },
+    "data-grid": {
+      "projectType": "library",
+      "root": "libs/data-grid",
+      "sourceRoot": "libs/data-grid/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/data-grid/tsconfig.lib.json",
+            "project": "libs/data-grid/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/data-grid/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/data-grid/tsconfig.lib.json",
+              "libs/data-grid/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data-grid/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-grid/jest.config.js",
+            "tsConfig": "libs/data-grid/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/data-grid/src/test-setup.ts"
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "data-grid:update-package-group",
+              "data-grid:build:production",
+              "data-grid:scss-bundle",
+              "data-grid:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "data-grid:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/data-grid/tsconfig.schematics.json"
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "data-grid:build:production",
+            "skipBuild": true,
+            "ignoreImports": ["~@angular/.*"]
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "data-grid:build:production",
+            "preTarget": "data-grid:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "plugin-library-publish": {
+      "root": "libs/plugin/library-publish",
+      "sourceRoot": "libs/plugin/library-publish/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/plugin/library-publish/tsconfig.lib.json",
+              "libs/plugin/library-publish/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/plugin/library-publish/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/plugin/library-publish/jest.config.js",
+            "tsConfig": "libs/plugin/library-publish/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "options": {
+            "outputPath": "dist/libs/plugin/library-publish",
+            "tsConfig": "libs/plugin/library-publish/tsconfig.lib.json",
+            "packageJson": "libs/plugin/library-publish/package.json",
+            "main": "libs/plugin/library-publish/src/index.ts",
+            "assets": [
+              "libs/plugin/library-publish/*.md",
+              {
+                "input": "./libs/plugin/library-publish/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/plugin/library-publish",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/plugin/library-publish",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "plugin-library-publish:readme",
+              "plugin-library-publish:build"
+            ]
+          }
+        },
+        "readme": {
+          "builder": "@rxap-plugin/readme-generator:plugin"
+        }
+      }
+    },
+    "fullstory": {
+      "projectType": "library",
+      "root": "libs/fullstory",
+      "sourceRoot": "libs/fullstory/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/fullstory/tsconfig.lib.json",
+            "project": "libs/fullstory/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/fullstory/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/fullstory/tsconfig.lib.json",
+              "libs/fullstory/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/fullstory/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/fullstory/jest.config.js",
+            "tsConfig": "libs/fullstory/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/fullstory/src/test-setup.ts"
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "fullstory:update-package-group",
+              "fullstory:build:production",
+              "fullstory:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "fullstory:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/fullstory/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "fullstory:build:production",
+            "preTarget": "fullstory:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "sentry": {
+      "projectType": "library",
+      "root": "libs/sentry",
+      "sourceRoot": "libs/sentry/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/sentry/tsconfig.lib.json",
+            "project": "libs/sentry/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/sentry/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/sentry/tsconfig.lib.json",
+              "libs/sentry/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/sentry/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/sentry/jest.config.js",
+            "tsConfig": "libs/sentry/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/sentry/src/test-setup.ts"
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "sentry:update-package-group",
+              "sentry:build:production",
+              "sentry:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "sentry:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/sentry/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "sentry:build:production",
+            "preTarget": "sentry:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "slugify": {
+      "projectType": "library",
+      "root": "libs/slugify",
+      "sourceRoot": "libs/slugify/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/slugify/tsconfig.lib.json",
+            "project": "libs/slugify/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/slugify/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/slugify/tsconfig.lib.json",
+              "libs/slugify/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/slugify/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/slugify/jest.config.js",
+            "tsConfig": "libs/slugify/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/slugify/src/test-setup.ts"
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "slugify:update-package-group",
+              "slugify:build:production",
+              "slugify:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "slugify:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/slugify/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "slugify:build:production",
+            "preTarget": "slugify:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "service-worker": {
+      "projectType": "library",
+      "root": "libs/service-worker",
+      "sourceRoot": "libs/service-worker/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/service-worker/tsconfig.lib.json",
+            "project": "libs/service-worker/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/service-worker/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/service-worker/tsconfig.lib.json",
+              "libs/service-worker/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/service-worker/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/service-worker/jest.config.js",
+            "tsConfig": "libs/service-worker/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/service-worker/src/test-setup.ts"
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "service-worker:update-package-group",
+              "service-worker:build:production",
+              "service-worker:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "service-worker:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/service-worker/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "service-worker:build:production",
+            "preTarget": "service-worker:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "life-cycle": {
+      "projectType": "library",
+      "root": "libs/life-cycle",
+      "sourceRoot": "libs/life-cycle/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/life-cycle/tsconfig.lib.json",
+            "project": "libs/life-cycle/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/life-cycle/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/life-cycle/tsconfig.lib.json",
+              "libs/life-cycle/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/life-cycle/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/life-cycle/jest.config.js",
+            "tsConfig": "libs/life-cycle/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/life-cycle/src/test-setup.ts"
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "life-cycle:update-package-group",
+              "life-cycle:build:production",
+              "life-cycle:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "life-cycle:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/life-cycle/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "life-cycle:build:production",
+            "preTarget": "life-cycle:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "json-schema-to-typescript": {
+      "projectType": "library",
+      "root": "libs/json-schema-to-typescript",
+      "sourceRoot": "libs/json-schema-to-typescript/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/json-schema-to-typescript/tsconfig.lib.json",
+            "project": "libs/json-schema-to-typescript/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/json-schema-to-typescript/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/json-schema-to-typescript/tsconfig.lib.json",
+              "libs/json-schema-to-typescript/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/json-schema-to-typescript/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/json-schema-to-typescript/jest.config.js",
+            "tsConfig": "libs/json-schema-to-typescript/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/json-schema-to-typescript/src/test-setup.ts"
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": ["json-schema-to-typescript:build:production"]
+          }
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "json-schema-to-typescript:build:production",
+            "preTarget": "json-schema-to-typescript:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "tree": {
+      "projectType": "library",
+      "root": "libs/tree",
+      "sourceRoot": "libs/tree/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/tree/tsconfig.lib.json",
+            "project": "libs/tree/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/tree/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tree/tsconfig.lib.json",
+              "libs/tree/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/tree/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/tree/jest.config.js",
+            "tsConfig": "libs/tree/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/tree/src/test-setup.ts"
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "tree:build:production",
+            "skipBuild": true,
+            "ignoreImports": ["~@angular/.*"]
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "tree:update-package-group",
+              "tree:build:production",
+              "tree:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "tree:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/tree/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "tree:build:production",
+            "preTarget": "tree:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "dialog": {
+      "projectType": "library",
+      "root": "libs/dialog",
+      "sourceRoot": "libs/dialog/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/dialog/tsconfig.lib.json",
+            "project": "libs/dialog/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/dialog/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/dialog/tsconfig.lib.json",
+              "libs/dialog/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/dialog/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/dialog/jest.config.js",
+            "tsConfig": "libs/dialog/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/dialog/src/test-setup.ts"
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "dialog:build:production",
+            "skipBuild": true,
+            "ignoreImports": ["~@angular/.*"]
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "dialog:update-package-group",
+              "dialog:build:production",
+              "dialog:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "dialog:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/dialog/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "dialog:build:production",
+            "preTarget": "dialog:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "form-window-system": {
+      "projectType": "library",
+      "root": "libs/form-window-system",
+      "sourceRoot": "libs/form-window-system/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/form-window-system/tsconfig.lib.json",
+            "project": "libs/form-window-system/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/form-window-system/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/form-window-system/tsconfig.lib.json",
+              "libs/form-window-system/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/form-window-system/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/form-window-system/jest.config.js",
+            "tsConfig": "libs/form-window-system/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/form-window-system/src/test-setup.ts"
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "form-window-system:build:production",
+            "skipBuild": true,
+            "ignoreImports": ["~@angular/.*"]
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "form-window-system:update-package-group",
+              "form-window-system:build:production",
+              "form-window-system:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "form-window-system:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/form-window-system/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "form-window-system:build:production",
+            "preTarget": "form-window-system:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "environment": {
+      "projectType": "library",
+      "root": "libs/environment",
+      "sourceRoot": "libs/environment/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/environment/tsconfig.lib.json",
+            "project": "libs/environment/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/environment/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/environment/tsconfig.lib.json",
+              "libs/environment/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/environment/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/environment/jest.config.js",
+            "tsConfig": "libs/environment/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/environment/src/test-setup.ts"
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "environment:build:production",
+            "skipBuild": true,
+            "ignoreImports": ["~@angular/.*"]
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "environment:update-package-group",
+              "environment:build:production",
+              "environment:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "environment:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/environment/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "environment:build:production",
+            "preTarget": "environment:pack"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/environment/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/rxap/environment",
+            "config": {
+              "configFolder": "libs/environment/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "table-system": {
+      "projectType": "library",
+      "root": "libs/table-system",
+      "sourceRoot": "libs/table-system/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/table-system/tsconfig.lib.json",
+            "project": "libs/table-system/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/table-system/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table-system/tsconfig.lib.json",
+              "libs/table-system/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/table-system/**/*"]
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/table-system/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/rxap/table-system",
+            "config": {
+              "configFolder": "libs/table-system/.storybook"
+            },
+            "staticDir": ["./.storybook/public"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/table-system/jest.config.js",
+            "tsConfig": "libs/table-system/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/table-system/src/test-setup.ts"
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "table-system:build:production",
+            "skipBuild": true,
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "table-system:update-package-group",
+              "table-system:build:production",
+              "table-system:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "table-system:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/table-system/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "table-system:build:production",
+            "preTarget": "table-system:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    }
+  },
+  "newProjectRoot": "",
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "packageManager": "yarn",
+    "defaultCollection": "@rxap/schematics"
+  },
+  "defaultProject": "testing",
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  }
+}

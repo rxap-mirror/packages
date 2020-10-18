@@ -1,0 +1,30 @@
+{
+  "name": "@rxap/across-tabs",
+  "version": "0.2.3",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "An angular wrapper package for across-tabs.",
+  "private": false,
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "author": "Merzough Münker",
+  "license": "MIT",
+  "keywords": [
+    "rxap",
+    "across-tabs"
+  ],
+  "peerDependencies": {
+    "rxjs": ">=6"
+  },
+  "dependencies": {
+    "across-tabs": "1.3.1"
+  },
+  "scripts": {},
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": []
+  }
+}

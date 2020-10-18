@@ -1,0 +1,33 @@
+# Changelog
+
+## [0.0.6]
+### Changed
+- add the current package to the update group list
+
+## [0.0.5]
+### Changed
+- remove the build target execution
+### Fixed
+- create directory before file copy
+
+## [0.0.4]
+### Added
+- update-package-group builder
+- add support for ng-update.migration
+
+## [0.0.3]
+### Changed
+- rename  to @rxap-plugin/library-schematics
+- update readme
+
+## [0.0.2]
+### Changed
+- add the added target to pack if defined.
+
+## [0.0.1]
+### Changed
+- rename the schematic `add` to `config`
+
+## [0.0.1]
+
+Package initialisation

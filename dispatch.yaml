@@ -1,0 +1,9 @@
+dispatch:
+- url: schema.rxap.dev/*
+  service: schema
+- url: remote-desktop.rxap.cloud/*
+  service: remote-desktop
+- url: authentication.storybook.rxap.dev/*
+  service: authentication-storybook
+- url: demo.rxap.dev/*
+  service: demo

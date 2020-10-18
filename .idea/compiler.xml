@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="TypeScriptCompiler">
+    <option name="recompileOnChanges" value="true" />
+    <option name="scopeName" value="schematics and builders" />
+    <option name="typeScriptCompilerParams" value="--experimentalDecorators --strictNullChecks" />
+    <option name="useConfig" value="true" />
+  </component>
+</project>

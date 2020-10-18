@@ -1,0 +1,36 @@
+{
+  "name": "@rxap/data-source",
+  "version": "0.3.29",
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "license": "BSD-4-Clause",
+  "keywords": [
+    "rxap",
+    "data-source",
+    "angular"
+  ],
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "Provides the DataSource concept for RxAP.",
+  "peerDependencies": {
+    "@rxap/definition": ">=0.0.7",
+    "@rxap/utilities": ">=0.3.18",
+    "rxjs": ">=6",
+    "@angular/core": ">=9",
+    "@angular/platform-browser": ">=9",
+    "@angular/common": ">=9"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/data-source",
+      "@rxap/definition",
+      "@rxap/utilities"
+    ]
+  }
+}

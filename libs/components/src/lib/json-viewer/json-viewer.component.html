@@ -1,0 +1,21 @@
+<section class="container">
+  <section
+    *ngFor="let segment of segments"
+    [ngClass]="['segment', 'segment-type-' + segment.type]">
+    <section
+      (click)="toggle(segment)"
+      [ngClass]="{
+        'segment-main': true,
+        'expandable': isExpandable(segment),
+        'expanded': segment.expanded
+      }">
+      <div *ngIf="isExpandable(segment)" class="toggler"></div>
+      <span class="segment-key">{{ segment.key }}</span>
+      <span class="segment-separator">: </span>
+      <span *ngIf="!segment.expanded || !isExpandable(segment)" class="segment-value">{{ segment.description }}</span>
+    </section>
+    <section *ngIf="segment.expanded && isExpandable(segment)" class="children">
+      <rxap-json-viewer [expanded]="expanded" [json]="segment.value"></rxap-json-viewer>
+    </section>
+  </section>
+</section>

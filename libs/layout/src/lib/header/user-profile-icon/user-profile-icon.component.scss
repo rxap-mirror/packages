@@ -1,0 +1,19 @@
+.profile-icon {
+  border-radius: 100%;
+  border: none;
+  height: 32px;
+  width: 32px;
+  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+}

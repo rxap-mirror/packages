@@ -1,0 +1,7 @@
+<div class="content">
+  <div class="inner">
+    <ng-template [ngIfElse]="context.template" [ngIf]="context.component">
+      <ng-container *ngComponentOutlet="context.component; injector: injector"></ng-container>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+# Changelog
+
+## [0.8.1]
+### Fixed
+- angular material style imports
+
+## [0.8.0]
+### Changed
+- Add support for footer portals
+
+## [0.7.0]
+### Added
+- Add custom settings menu
+
+## [0.6.0]
+### Added
+- SidenavHeaderDirective and SidenavFooterDirective
+
+## [0.5.0]
+### Changed
+- (Header): modularize
+
+## [0.4.2]
+### Changed
+- Add support for the new avatar directive
+
+## [0.4.1]
+### Fixed
+- (NavigationItem): add stop proportion to expand button
+
+## [0.4.0]
+### Added
+- (Navigation): add support for partial routes
+
+## [0.3.7]
+### Changed
+- (NavigationService): expose navigation service
+
+## [0.3.6]
+### Fixed
+- peer dependencies
+
+## [0.3.5]
+### Fixed
+- export all modules and components
+
+## [0.3.4]
+### Fixed
+- detect navigation config inserts changes
+
+## [0.3.3]
+### Added
+- navigation config inserts
+
+## [0.3.2]
+### Added
+- ng-update support
+
+## [0.3.1]
+### Added
+- add theming support
+
+## [0.3.0]
+
+Package initialisation

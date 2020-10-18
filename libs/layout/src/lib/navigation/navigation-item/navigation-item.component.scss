@@ -1,0 +1,55 @@
+.container {
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+
+  .item {
+    cursor: pointer;
+    height: 48px;
+    margin: 1px 8px;
+    padding: 2px 8px;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    position: relative;
+
+    .link {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      border-radius: 5px;
+
+      .icon {
+        margin: 12px;
+      }
+
+      .label {
+        width: 100%;
+        margin-left: 12px;
+      }
+
+      .controls-placeholder {
+        width: 40px;
+        margin: 12px;
+      }
+
+    }
+
+    .controls {
+      position: absolute;
+      left: auto;
+      right: 18px;
+      top: 6px;
+      bottom: 6px;
+      z-index: 1;
+    }
+
+  }
+
+  .sub-items {
+    margin-left: 16px;
+  }
+
+}

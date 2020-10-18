@@ -1,0 +1,26 @@
+{
+  "name": "@rxap-plugin/readme-generator",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "schematics": "./collection.json",
+  "builders": "./builders.json",
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "keywords": [
+    "rxap",
+    "plugin",
+    "nrwl",
+    "handlebars",
+    "generator",
+    "readme",
+    "builder",
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "A builder to generate readme files for libraries."
+}

@@ -1,0 +1,31 @@
+<table>
+  <tr>
+    <th>Environment</th>
+    <td>{{environment.name}}</td>
+  </tr>
+  <tr>
+    <th>Service Worker</th>
+    <td>{{environment.serviceWorker}}</td>
+  </tr>
+  <tr *ngIf="environment.release">
+    <th>Release</th>
+    <td>{{environment.release}}</td>
+  </tr>
+  <tr *ngIf="environment.commit">
+    <th>Commit</th>
+    <td>{{environment.commit}}</td>
+  </tr>
+  <tr *ngIf="environment.timestamp">
+    <th>Timestamp</th>
+    <td>{{environment.timestamp | date}}</td>
+  </tr>
+  <tr *ngIf="environment.branch">
+    <th>Branch</th>
+    <td>{{environment.branch}}</td>
+  </tr>
+  <tr *ngIf="environment.tag">
+    <th>Tag</th>
+    <td>{{environment.tag}}</td>
+  </tr>
+  <ng-content></ng-content>
+</table>

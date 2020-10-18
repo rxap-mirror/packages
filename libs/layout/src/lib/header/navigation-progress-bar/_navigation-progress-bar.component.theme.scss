@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-navigation-progress-bar-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-navigation-progress-bar { }
+
+}
+
+@mixin rxap-navigation-progress-bar-typography($config) {
+  .rxap-navigation-progress-bar { }
+}

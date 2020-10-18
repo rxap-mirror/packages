@@ -1,0 +1,55 @@
+RxAP
+===
+
+![](logo.png)
+
+---
+
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+> {{package.description}}
+
+# Projects
+
+## Libraries
+
+Name | License | Version | Dependencies | Description
+--- | --- | --- | --- | ---
+{{#each libraries}}
+{{#if this.private}}
+{{this.name}} | {{this.license}} | - | - | {{this.description}}
+{{else}}
+{{this.name}} | ![NPM](https://img.shields.io/npm/l/{{this.name}}?style=flat-square) | [![npm version](https://img.shields.io/npm/v/{{this.name}}?style=flat-square)](https://www.npmjs.com/package/{{this.name}}) | ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/{{this.name}}) | {{this.description}}
+{{/if}}
+{{/each}}
+
+{{#if plugins}}
+## Plugins
+
+Name | License | Version | Dependencies | Description
+--- | --- | --- | --- | ---
+{{#each plugins}}
+{{#if this.private}}
+{{this.name}} | {{this.license}} | - | - | {{this.description}}
+{{else}}
+{{this.name}} | ![NPM](https://img.shields.io/npm/l/{{this.name}}?style=flat-square) | [![npm version](https://img.shields.io/npm/v/{{this.name}}?style=flat-square)](https://www.npmjs.com/package/{{this.name}}) | ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/{{this.name}}) | {{this.description}}
+{{/if}}
+{{/each}}
+
+{{/if}}
+
+{{#if devkits}}
+## Devkits
+
+Name | License | Version | Dependencies | Description
+--- | --- | --- | --- | ---
+{{#each devkits}}
+{{#if this.private}}
+{{this.name}} | {{this.license}} | - | - | {{this.description}}
+{{else}}
+{{this.name}} | ![NPM](https://img.shields.io/npm/l/{{this.name}}?style=flat-square) | [![npm version](https://img.shields.io/npm/v/{{this.name}}?style=flat-square)](https://www.npmjs.com/package/{{this.name}}) | ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/{{this.name}}) | {{this.description}}
+{{/if}}
+{{/each}}
+
+{{/if}}

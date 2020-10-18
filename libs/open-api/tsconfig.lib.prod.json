@@ -1,0 +1,37 @@
+{
+  "extends": "./tsconfig.lib.json",
+  "compilerOptions": {
+    "paths": {
+      "@rxap/utilities": [
+        "dist/libs/utilities"
+      ],
+      "@rxap/data-source": [
+        "dist/libs/data-source"
+      ],
+      "@rxap/data-source/http": [
+        "dist/libs/data-source/http"
+      ],
+      "@rxap/data-source/table": [
+        "dist/libs/data-source/table"
+      ],
+      "@rxap/data-source/pagination": [
+        "dist/libs/data-source/pagination"
+      ],
+      "@rxap/data-source/http/pagination": [
+        "dist/libs/data-source/http/pagination"
+      ],
+      "@rxap/remote-method": [
+        "dist/libs/remote-method"
+      ],
+      "@rxap/remote-method/http": [
+        "dist/libs/remote-method/http"
+      ],
+      "@rxap/json-schema-to-typescript": [
+        "dist/libs/json-schema-to-typescript"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": false
+  }
+}

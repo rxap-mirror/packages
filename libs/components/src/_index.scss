@@ -1,0 +1,25 @@
+@import "./lib/json-viewer/json-viewer.component.theme";
+@import "./lib/confirm/confirm.component.theme";
+@import "./lib/dark-mode-toggle-button/dark-mode-toggle-button.component.theme";
+@import "./lib/navigate-back-button/navigate-back-button.component.theme";
+/* IMPORT */
+
+@mixin rxap-components-theme($theme) {
+
+  @include rxap-json-viewer-theme($theme);
+  @include rxap-confirm-theme($theme);
+  @include rxap-dark-mode-toggle-button-theme($theme);
+  @include srm-navigate-back-button-theme($theme);
+  /* THEME_INCLUDE */
+
+}
+
+@mixin rxap-components-typography($config) {
+
+  @include rxap-json-viewer-typography($config);
+  @include rxap-confirm-typography($config);
+  @include rxap-dark-mode-toggle-button-typography($config);
+  @include srm-navigate-back-button-typography($config);
+  /* TYPOGRAPHY_INCLUDE */
+
+}

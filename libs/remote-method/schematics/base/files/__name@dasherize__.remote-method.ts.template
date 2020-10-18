@@ -1,0 +1,14 @@
+import { RxapRemoteMethod, BaseRemoteMethod } from '@rxap/remote-method';
+import { Injectable } from '@angular/core';
+
+@RxapRemoteMethod({
+  id: '<%= dasherize(name) %>'
+})
+@Injectable()
+export class <%= classify(name) %>RemoteMethod extends BaseRemoteMethod {
+
+  protected async _call(parameters?: any): Promise<any> {
+    return parameters;
+  }
+
+}

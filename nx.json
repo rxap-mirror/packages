@@ -1,0 +1,156 @@
+{
+  "npmScope": "rxap",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
+  },
+  "projects": {
+    "utilities": {
+      "tags": ["rxap"]
+    },
+    "services": {
+      "tags": ["rxap"]
+    },
+    "config": {
+      "tags": ["rxap"]
+    },
+    "data-source": {
+      "tags": ["rxap"]
+    },
+    "components": {
+      "tags": ["rxap"]
+    },
+    "window-system": {
+      "tags": ["rxap"]
+    },
+    "mixin": {
+      "tags": ["rxap"]
+    },
+    "xml-parser": {
+      "tags": ["rxap"]
+    },
+    "pipes": {
+      "tags": ["rxap"]
+    },
+    "remote-method": {
+      "tags": ["rxap"]
+    },
+    "authentication": {
+      "tags": ["rxap"]
+    },
+    "layout": {
+      "tags": ["rxap"]
+    },
+    "plugin-app-engine": {
+      "tags": []
+    },
+    "plugin-library-schematics": {
+      "tags": []
+    },
+    "open-api": {
+      "tags": []
+    },
+    "recorder": {
+      "tags": []
+    },
+    "across-tabs": {
+      "tags": []
+    },
+    "forms": {
+      "tags": []
+    },
+    "icon": {
+      "tags": []
+    },
+    "testing": {
+      "tags": []
+    },
+    "firebase": {
+      "tags": ["rxap"]
+    },
+    "directives": {
+      "tags": ["rxap"]
+    },
+    "handlebars": {
+      "tags": []
+    },
+    "definition": {
+      "tags": []
+    },
+    "plugin-pack": {
+      "tags": []
+    },
+    "plugin-scss-bundle": {
+      "tags": []
+    },
+    "pwa": {
+      "tags": []
+    },
+    "form-system": {
+      "tags": []
+    },
+    "plugin-readme-generator": {
+      "tags": []
+    },
+    "plugin-kaniko": {
+      "tags": []
+    },
+    "data-grid": {
+      "tags": []
+    },
+    "plugin-library-publish": {
+      "tags": []
+    },
+    "fullstory": {
+      "tags": []
+    },
+    "sentry": {
+      "tags": []
+    },
+    "slugify": {
+      "tags": []
+    },
+    "service-worker": {
+      "tags": []
+    },
+    "life-cycle": {
+      "tags": []
+    },
+    "json-schema-to-typescript": {
+      "tags": []
+    },
+    "tree": {
+      "tags": []
+    },
+    "dialog": {
+      "tags": []
+    },
+    "form-window-system": {
+      "tags": []
+    },
+    "environment": {
+      "tags": []
+    },
+    "table-system": {
+      "tags": []
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "accessToken": "OGU5ZGNjY2UtYTQ0OC00M2RjLWFlNTEtZjY0MTJhZjA4ZDc0fHJlYWQtd3JpdGU=",
+        "cacheableOperations": ["pack", "test", "lint", "e2e"],
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true,
+        "strictlyOrderedTargets": ["build", "pack"]
+      }
+    }
+  },
+  "affected": {
+    "defaultBase": "master"
+  }
+}

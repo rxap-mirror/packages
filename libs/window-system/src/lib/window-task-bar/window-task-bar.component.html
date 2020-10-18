@@ -1,0 +1,8 @@
+<div class="tasks"
+     fxFlex="nogrow"
+     fxLayout="row wrap">
+  <rxap-window-task *ngFor="let window of windowService.allActiveWindows"
+                    [window]="window"
+                    fxFlex="nogrow">
+  </rxap-window-task>
+</div>

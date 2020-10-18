@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../dist/tools",
+    "rootDir": ".",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es5",
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "./schematics/**/*.ts"
+  ],
+  "exclude": [
+    "**/files/**"
+  ]
+}

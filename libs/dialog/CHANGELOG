@@ -1,0 +1,9 @@
+# Changelog
+
+## [0.0.2]
+### Fixed
+- (ConfirmDialogService): remove dep import
+
+## [0.0.1]
+
+Project initialisation

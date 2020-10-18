@@ -1,0 +1,37 @@
+{
+  "name": "@rxap/forms",
+  "version": "0.1.1",
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "keywords": [
+    "rxap",
+    "forms",
+    "angular"
+  ],
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "A typed extension for @angular/forms.",
+  "license": "BSD-4-Clause",
+  "peerDependencies": {
+    "@rxap/utilities": ">=0.3.13",
+    "@rxap/definition": ">=0.0.2",
+    "@angular/forms": ">=9",
+    "@angular/core": ">=9",
+    "@angular/platform-browser": ">=9",
+    "@angular/router": ">=9",
+    "rxjs": ">=6.5"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/forms",
+      "@rxap/utilities",
+      "@rxap/definition"
+    ]
+  }
+}
