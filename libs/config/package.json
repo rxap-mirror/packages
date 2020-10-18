@@ -1,0 +1,33 @@
+{
+  "name": "@rxap/config",
+  "version": "0.2.3",
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "license": "MIT",
+  "keywords": [
+    "rxap",
+    "config",
+    "angular"
+  ],
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "Simple config file manager for angular applications.",
+  "peerDependencies": {
+    "@rxap/utilities": ">=0.3",
+    "@angular/core": ">=9",
+    "@angular/common": ">=9",
+    "rxjs": ">=6"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/config",
+      "@rxap/utilities"
+    ]
+  }
+}

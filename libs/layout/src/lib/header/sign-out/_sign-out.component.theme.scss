@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-sign-out-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-sign-out { }
+
+}
+
+@mixin rxap-sign-out-typography($config) {
+  .rxap-sign-out { }
+}

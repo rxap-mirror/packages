@@ -1,0 +1,28 @@
+{
+  "name": "@rxap/fullstory",
+  "version": "0.0.1",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "keywords": [
+    "rxap",
+    "fullstory",
+    "angular"
+  ],
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": ">=9",
+    "@angular/common": ">=9",
+    "@fullstory/browser": "^1.4.5"
+  },
+  "description": "A simple angular wrapper package for @fullstory/browser.",
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": []
+  }
+}

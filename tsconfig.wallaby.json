@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "out-tsc/spec",
+    "module": "commonjs",
+    "types": [
+      "jest",
+      "node"
+    ]
+  },
+  "exclude": [
+    "libs/**/*.sandbox.ts",
+    "libs/**/*.stories.ts",
+    "libs/rxap/**/*.ts"
+  ]
+}

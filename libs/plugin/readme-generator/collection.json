@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "name": "plugin-readme-generator",
+  "version": "0.0.1",
+  "schematics": {
+    "config": {
+      "factory": "./src/schematics/config/schematic",
+      "schema": "./src/schematics/config/schema.json",
+      "description": "Adds the @rxap-plugin/readme-generator builder to the specified project."
+    }
+  }
+}

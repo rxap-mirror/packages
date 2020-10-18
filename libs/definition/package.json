@@ -1,0 +1,31 @@
+{
+  "name": "@rxap/definition",
+  "version": "0.0.7",
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "license": "MIT",
+  "keywords": [
+    "rxap",
+    "definition"
+  ],
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "Provides the Definition concept for RxAP.",
+  "peerDependencies": {
+    "@rxap/utilities": ">=0.3.9",
+    "@angular/core": ">=9",
+    "rxjs": ">=6"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/definition",
+      "@rxap/utilities"
+    ]
+  }
+}

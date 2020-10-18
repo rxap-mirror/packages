@@ -1,0 +1,146 @@
+import {
+  Injectable,
+  Optional,
+  Inject,
+  InjectionToken,
+  OnInit
+} from '@angular/core';
+import {
+  RXAP_DATA_SOURCE_METADATA,
+  BaseDataSourceViewer
+} from '@rxap/data-source';
+import {
+  PaginatorLike,
+  PageEvent
+} from '@rxap/data-source/pagination';
+import {
+  Observable,
+  combineLatest,
+  of,
+  BehaviorSubject
+} from 'rxjs';
+import {
+  startWith,
+  switchMap,
+  tap,
+  map,
+  debounceTime,
+  distinctUntilChanged
+} from 'rxjs/operators';
+import {
+  AbstractTableDataSource,
+  Sort,
+  SortLike,
+  FilterLike
+} from './abstract-table.data-source';
+import { TableDataSourceMetadata } from './table.data-source';
+import {
+  RXAP_TABLE_DATA_SOURCE_PAGINATOR,
+  RXAP_TABLE_DATA_SOURCE_SORT,
+  RXAP_TABLE_DATA_SOURCE_FILTER
+} from './tokens';
+import {
+  Method,
+  equals,
+  clone
+} from '@rxap/utilities';
+
+export const RXAP_TABLE_REMOTE_METHOD = new InjectionToken('rxap/data-source/table/remote-method');
+
+export interface TableEvent<Parameters = any> {
+  start?: number;
+  end?: number;
+  page?: PageEvent | null;
+  sort?: Sort | null;
+  filter?: Record<string, any> | null;
+  /** The custom table parameter */
+  parameters?: Parameters;
+  /** time of the last refresh call */
+  refresh?: number;
+}
+
+export interface DynamicTableDataSourceViewer<Parameters> extends BaseDataSourceViewer<Parameters> {
+  parameters: Parameters;
+}
+
+@Injectable()
+export class DynamicTableDataSource<Data extends Record<any, any> = any, Parameters = any> extends AbstractTableDataSource<Data> implements OnInit {
+
+  public parameters?: Observable<Parameters>;
+
+  private _refresh$ = new BehaviorSubject<number>(Date.now());
+
+  constructor(
+    @Optional()
+    @Inject(RXAP_TABLE_REMOTE_METHOD)
+    private readonly remoteMethod: Method<Data[], TableEvent<Parameters>>,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR)
+      paginator: PaginatorLike | null           = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_SORT)
+      sort: SortLike | null                     = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
+      filter: FilterLike | null                 = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
+      parameters: Observable<Parameters> | null = null,
+    @Optional()
+    @Inject(RXAP_DATA_SOURCE_METADATA)
+      metadata: TableDataSourceMetadata | null  = remoteMethod.metadata
+  ) {
+    super(paginator, sort, filter, metadata);
+    if (parameters) {
+      this.parameters = parameters;
+    }
+  }
+
+  public ngOnInit() {
+    this._data$ = combineLatest([
+      this.paginator?.page?.pipe(
+        startWith({
+          pageIndex: this.paginator?.pageIndex ?? 0,
+          pageSize:  this.paginator?.pageSize ?? Number.MAX_SAFE_INTEGER,
+          length:    this.paginator?.length
+        })
+      ) ?? of(undefined),
+      this.sort?.sortChange?.pipe(
+        startWith({
+          active:    this.sort?.active,
+          direction: this.sort?.direction
+        })
+      ) ?? of(undefined),
+      this.filter?.change ?? of(undefined),
+      this.parameters ?? of(undefined),
+      this._refresh$
+    ]).pipe(
+      debounceTime(100),
+      map(([ page, sort, filter, parameters, refresh ]) => {
+        const tableEvent: TableEvent = {
+          page,
+          start: page ? page.pageSize * page.pageIndex : 0,
+          end:   page ? page.pageSize * page.pageIndex + page.pageSize : Number.MAX_SAFE_INTEGER,
+          sort,
+          filter,
+          parameters,
+          refresh
+        };
+        return clone(tableEvent);
+      }),
+      distinctUntilChanged((a, b) => equals(a, b)),
+      tap(() => this.loading$.enable()),
+      switchMap(tableEvent => this.loadPage(tableEvent)),
+      tap(() => this.loading$.disable())
+    );
+  }
+
+  protected async loadPage(tableEvent: TableEvent): Promise<Data[]> {
+    return this.remoteMethod.call(tableEvent);
+  }
+
+  public refresh(): any {
+    this._refresh$.next(Date.now());
+  }
+
+}

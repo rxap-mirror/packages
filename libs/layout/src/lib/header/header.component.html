@@ -1,0 +1,27 @@
+<mat-toolbar [ngClass]="{ open: sidenav?.opened }" [color]="color" class="mat-elevation-z3">
+  <mat-toolbar-row *ngFor="let headerComponent of components">
+    <ng-container *ngComponentOutlet="headerComponent"></ng-container>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="16px"
+      class="content"
+    >
+      <rxap-sidenav-toggle-button *ngIf="sidenav" fxFlex="nogrow" [sidenav]="sidenav"></rxap-sidenav-toggle-button>
+      <div fxFlex="grow">
+        <ng-content></ng-content>
+      </div>
+      <rxap-reset-button fxFlex="nogrow"></rxap-reset-button>
+      <rxap-user-profile-icon *ngIf="hasUser$ | async" fxFlex="nogrow"></rxap-user-profile-icon>
+      <div fxFlex="nogrow" *ngIf="settingsMenuPanel">
+        <button mat-icon-button [matMenuTriggerFor]="settingsMenuPanel">
+          <mat-icon>settings</mat-icon>
+        </button>
+      </div>
+      <rxap-sign-out fxFlex="nogrow"></rxap-sign-out>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<rxap-navigation-progress-bar></rxap-navigation-progress-bar>

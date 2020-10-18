@@ -1,0 +1,20 @@
+# Changelog
+
+## [0.0.6]
+- (TreeDataSource): optional initial select and expand
+
+## [0.0.5]
+### Fixed
+- add missing peer dep rxjs
+
+## [0.0.4]
+### Fixed
+- (TreeDataSource): add store state option
+
+## [0.0.3]
+### Fixed
+- (TreeDataSource): load children if list is empty or not defined
+
+## [0.0.1]
+
+Project initialisation

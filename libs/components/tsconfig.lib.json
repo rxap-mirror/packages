@@ -1,0 +1,42 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "target": "es2015",
+    "declaration": true,
+    "inlineSources": true,
+    "types": [],
+    "lib": [
+      "dom",
+      "es2018"
+    ],
+    "paths": {
+      "@rxap/utilities": [
+        "dist/libs/utilities"
+      ],
+      "@rxap/services": [
+        "dist/libs/services"
+      ],
+      "@rxap/directives/material/icon": [
+        "dist/libs/directives/material/icon"
+      ],
+      "@rxap/directives": [
+        "dist/libs/directives"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableResourceInlining": true
+  },
+  "exclude": [
+    "src/test-setup.ts",
+    "**/*.spec.ts"
+  ],
+  "include": [
+    "**/*.ts"
+  ]
+}

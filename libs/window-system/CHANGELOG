@@ -1,0 +1,45 @@
+# Changelog
+
+## [0.5.1]
+### Fixed
+- add task bar container settings token
+
+## [0.5.0]
+### Changed
+- use a simple window-ref
+
+## [0.4.3]
+### Fixed
+- rename the theme mixin
+
+## [0.4.2]
+### Fixed
+- (WindowService): add support for a custom viewContainerRef
+
+## [0.4.1]
+### Changed
+- (WindowContainer): use the cdk portal for custom footers
+
+## [0.4.0]
+### Changed
+- simplify window footer definition
+
+## [0.3.4]
+### Added
+- ng-update support
+
+## [0.3.3]
+### Added
+- add theming support
+
+## [0.3.2]
+### Added
+- WindowFooterDirective
+
+## [0.3.1]
+### Added
+- add support for templateRef from footerService
+
+## [0.3.0]
+
+Package initialisation

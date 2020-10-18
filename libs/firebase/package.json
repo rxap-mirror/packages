@@ -1,0 +1,37 @@
+{
+  "name": "@rxap/firebase",
+  "version": "0.1.4",
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "license": "MIT",
+  "keywords": [
+    "rxap",
+    "firebase"
+  ],
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "A collection of utility angular services to interact with firebase.",
+  "peerDependencies": {
+    "@rxap/config": ">=0.2.0",
+    "@rxap/utilities": ">=0.3.0",
+    "@angular/fire": ">=6",
+    "@angular/core": ">=9",
+    "@angular/common": ">=9",
+    "@angular/router": ">=9",
+    "firebase": "^7.13.1",
+    "rxjs": ">=6.5.5"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/firebase",
+      "@rxap/config",
+      "@rxap/utilities"
+    ]
+  }
+}

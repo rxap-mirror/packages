@@ -1,0 +1,29 @@
+<table class="mfd-data-grid">
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Wert</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let row of rows">
+    <th>
+      <ng-container
+        *ngTemplateOutlet="
+          row.headerCell ? row.headerCell.template : defaultHeaderCell;
+          context: { $implicit: row.name }
+        "
+      ></ng-container>
+    </th>
+    <td class="value">
+      <ng-container
+        *ngTemplateOutlet="
+          row.cell ? row.cell.template : defaultCell;
+          context: { $implicit: data | getFromObject: row.name, data: data }
+        "
+      ></ng-container>
+    </td>
+  </tr>
+</table>
+
+<ng-template #defaultCell let-value>{{ value }}</ng-template>
+<ng-template #defaultHeaderCell let-name></ng-template>

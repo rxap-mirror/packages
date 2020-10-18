@@ -1,0 +1,4 @@
+{
+  "$schema": "<%= pathToRoot %>../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {}
+}

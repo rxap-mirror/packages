@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.lib.json",
+  "compilerOptions": {
+    "paths": {
+      "@rxap/utilities": [
+        "dist/libs/utilities"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": false
+  }
+}

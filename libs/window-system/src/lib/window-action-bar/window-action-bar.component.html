@@ -1,0 +1,3 @@
+<mat-toolbar-row *ngIf="definitions" class="container" fxLayout="row" fxLayoutAlign="{{position}} center" fxLayoutGap=".8rem">
+  <button *ngFor="let definition of definitions" [rxap-button]="definition" fxFlex="nogrow"></button>
+</mat-toolbar-row>

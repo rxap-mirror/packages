@@ -1,0 +1,27 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-authentication-container-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-authentication-container, rxap-authentication-container {
+
+    .container {
+
+      .split {
+        background-color: mat-color($accent);
+      }
+
+    }
+
+  }
+
+}
+
+@mixin rxap-authentication-container-typography($config) {
+  .rxap-authentication-container {
+  }
+}

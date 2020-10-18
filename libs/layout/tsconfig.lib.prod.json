@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.lib.json",
+  "compilerOptions": {
+    "paths": {
+      "@rxap/utilities": [
+        "dist/utilities"
+      ],
+      "@rxap/services": [
+        "dist/services"
+      ],
+      "@rxap/config": [
+        "dist/config"
+      ],
+      "@rxap/authentication": [
+        "dist/authentication"
+      ],
+      "@rxap/directives/material/icon": [
+        "dist/directives/material/icon"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": false
+  }
+}

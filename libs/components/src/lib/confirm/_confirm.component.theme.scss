@@ -1,0 +1,37 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-confirm-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-confirm {
+
+    .container {
+      background-color: map-get($background, background);
+
+      .accept {
+        color: darkgreen;
+      }
+
+      .decline {
+        color: darkred;
+      }
+
+    }
+
+  }
+
+}
+
+@mixin rxap-confirm-typography($config) {
+  .rxap-confirm {
+
+    .container {
+
+    }
+
+  }
+}

@@ -1,0 +1,20 @@
+@import "lib/expand-row/expand-row.theme";
+@import "./lib/select-row/checkbox-cell/checkbox-cell.component.theme";
+@import "./lib/select-row/checkbox-header-cell/checkbox-header-cell.component.theme";
+/* IMPORT */
+
+@mixin table-system-theme($theme) {
+  @include rxap-expand-row-theme($theme);
+  @include rxap-checkbox-cell-theme($theme);
+  @include rxap-checkbox-header-cell-theme($theme);
+  /* THEME_INCLUDE */
+
+}
+
+@mixin table-system-typography($config) {
+  @include rxap-expand-row-typography($config);
+  @include rxap-checkbox-cell-typography($config);
+  @include rxap-checkbox-header-cell-typography($config);
+  /* TYPOGRAPHY_INCLUDE */
+
+}

@@ -1,0 +1,45 @@
+{
+  "name": "@rxap/form-system",
+  "version": "0.1.0",
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "keywords": [
+    "rxap",
+    "forms",
+    "angular",
+    "form-system"
+  ],
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "Provides the FormSystem concept for RxAP.",
+  "license": "BSD-4-Clause",
+  "peerDependencies": {
+    "@rxap/data-source": ">=0.3.13",
+    "@rxap/utilities": ">=0.3.8",
+    "rxjs": ">=6.5",
+    "@rxap/definition": ">=0.0.4",
+    "@angular/platform-browser": ">=9",
+    "@rxap/forms": ">=0.0.6",
+    "@angular/forms": ">=9",
+    "@angular/core": ">=9",
+    "@angular/common": ">=9",
+    "@angular/router": ">=9",
+    "@rxap/mixin": ">=0.3.1"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/form-system",
+      "@rxap/data-source",
+      "@rxap/utilities",
+      "@rxap/definition",
+      "@rxap/forms",
+      "@rxap/mixin"
+    ]
+  }
+}

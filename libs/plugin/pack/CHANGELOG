@@ -1,0 +1,26 @@
+# Changelog
+
+## [0.0.6]
+### Fixed
+- (schematic:config) fix hasOwnProperty bug
+
+## [0.0.5]
+### Changed
+- rename package to @rxap-plugin/pack
+
+## [0.0.4]
+### Changed
+- add the @rxap-plugin/readme-generator builder
+
+## [0.0.3]
+### Changed
+- only add the build target as default targets if exists
+- only add the build target with production configuration if exists
+
+## [0.0.2]
+### Changed
+- change the schematics name `add` to `config`
+
+## [0.0.1]
+
+Package initialisation

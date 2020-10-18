@@ -1,0 +1,34 @@
+{
+  "name": "@rxap-plugin/library-schematics",
+  "version": "0.0.6",
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "keywords": [
+    "rxap",
+    "plugin",
+    "nrwl",
+    "schematics",
+    "library",
+    "builder",
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "A builder to compile angular library schematics.",
+  "main": "src/index.js",
+  "schematics": "./collection.json",
+  "builders": "./builders.json",
+  "peerDependencies": {
+    "@nrwl/workspace": ">=9"
+  },
+  "dependencies": {
+    "@angular-devkit/core": "9",
+    "@angular-devkit/schematics": "9",
+    "@angular-devkit/architect": "0.901"
+  }
+}

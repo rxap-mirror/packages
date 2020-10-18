@@ -1,0 +1,30 @@
+<span [matTooltipDisabled]="tooltipDisabled" [matTooltip]="tooltip" class="mat-button-wrapper">
+  <ng-template
+    [ngIfElse]="labelOrIconTemplate"
+    [ngIfThen]="labelWithIconTemplate"
+    [ngIf]="icon && label">
+  </ng-template>
+</span>
+<div [class.mat-button-ripple-round]="isRoundButton || isIconButton" [matRippleCentered]="isIconButton"
+     [matRippleDisabled]="_isRippleDisabled()"
+     [matRippleTrigger]="_getHostElement()"
+     class="mat-button-ripple"
+     matRipple></div>
+<div class="mat-button-focus-overlay"></div>
+
+<ng-template #labelTemplate>{{label}}</ng-template>
+<ng-template #labelWithIconTemplate>
+  <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap=".8rem">
+    <mat-icon [inline]="true" [rxapIcon]="icon" fxFlex="nogrow"></mat-icon>
+    <span fxFlex="nogrow">{{label}}</span>
+  </span>
+</ng-template>
+<ng-template #iconTemplate>
+  <mat-icon [rxapIcon]="icon"></mat-icon>
+</ng-template>
+<ng-template #labelOrIconTemplate>
+  <ng-template [ngIfElse]="labelTemplate"
+               [ngIfThen]="iconTemplate"
+               [ngIf]="icon">
+  </ng-template>
+</ng-template>

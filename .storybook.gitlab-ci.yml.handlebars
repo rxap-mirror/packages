@@ -1,0 +1,69 @@
+include:
+  - project: 'rxap/gitlab-ci'
+    ref: master
+    file: '/templates/setup.yml'
+
+stages:
+- setup
+- build
+- deploy
+
+.cache:pull: &cache_pull
+  cache:
+    key:
+      files:
+      - yarn.lock
+    paths:
+    - node_modules/
+    policy: pull
+
+{{#each projects}}
+build:storybook:{{this.name}}:
+  <<: *cache_pull
+  stage: build
+  image: registry.gitlab.com/rxap/gitlab-ci/angular-build
+  tags:
+  - nvm
+  script:
+  - yarn compodoc -p ./{{this.root}}/tsconfig.lib.json -e json -d .
+  - yarn nx run {{this.name}}:build-storybook
+  rules:
+  - changes:
+    - {{this.root}}/**/src/lib/**/*
+    exists:
+    - {{this.root}}/**/src/lib/**/*.stories.ts
+    when: on_success
+  - exists:
+    - {{this.root}}/**/src/lib/**/*.stories.ts
+    when: manual
+    allow_failure: true
+  artifacts:
+    paths:
+    - {{this.architect.build-storybook.options.outputPath}}
+    expire_in: 1 week
+
+deploy:storybook:{{this.name}}:
+  needs:
+  - build:storybook:{{this.name}}
+  image: google/cloud-sdk:alpine
+  tags:
+  - nano
+  before_script:
+  - gcloud auth activate-service-account ${GCP_APP_ENGINE_SERVICE_ACCOUNT} --key-file=${GCP_APP_ENGINE_SERVICE_ACCOUNT_KEY_FILE} --project ${GCP_PROJECT}
+  - cp .storybook/app.yaml {{this.architect.build-storybook.options.outputPath}}/app.yaml
+  - "/bin/sed '1s/service: storybook/service: {{this.name}}-storybook/' {{this.architect.build-storybook.options.outputPath}}/app.yaml -i"
+  stage: deploy
+  rules:
+  - if: '$GCP_APP_ENGINE_SERVICE_ACCOUNT == null || $GCP_APP_ENGINE_SERVICE_ACCOUNT_KEY_FILE == null || $GCP_PROJECT == null'
+    when: never
+  - changes:
+    - {{this.root}}/**/src/lib/**/*
+    exists:
+    - {{this.root}}/**/src/lib/**/*.stories.ts
+    when: on_success
+  script: gcloud app deploy "{{this.architect.build-storybook.options.outputPath}}/app.yaml" --project ${GCP_PROJECT}
+  environment:
+    name: {{this.name}}/storybook
+    url: https://{{this.name}}-storybook-dot-${GCP_PROJECT}.ew.r.appspot.com
+
+{{/each}}

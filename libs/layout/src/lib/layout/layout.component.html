@@ -1,0 +1,38 @@
+<rxap-header [sidenav]="sidenav" class="header"></rxap-header>
+<mat-sidenav-container autosize class="container">
+  <mat-sidenav
+    [fixedBottomGap]="layoutComponentService.fixedBottomGap$ | async"
+    [fixedInViewport]="true"
+    [fixedTopGap]="layoutComponentService.fixedTopGap$ | async"
+    [mode]="layoutComponentService.mode$ | async"
+    [opened]="layoutComponentService.opened$ | async"
+    class="sidenav"
+  >
+    <rxap-sidenav>
+      <img
+        [routerLink]="['/']"
+        alt="logo"
+        [width]="layoutComponentService.logo.width"
+        [src]="layoutComponentService.logo.src"
+      />
+    </rxap-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content class="content">
+    <rxap-sidenav-content [sidenav]="sidenav">
+      <ng-content></ng-content>
+      <rxap-toggle-window-sidenav-button [(openWindowSidenav)]="openWindowSidenav"></rxap-toggle-window-sidenav-button>
+    </rxap-sidenav-content>
+  </mat-sidenav-content>
+  <mat-sidenav
+    [fixedBottomGap]="layoutComponentService.fixedBottomGap$ | async"
+    [fixedInViewport]="true"
+    [fixedTopGap]="layoutComponentService.fixedTopGap$ | async"
+    [opened]="openWindowSidenav"
+    mode="side"
+    class="window-container-sidenav"
+    position="end"
+  >
+    <rxap-window-container-sidenav></rxap-window-container-sidenav>
+  </mat-sidenav>
+</mat-sidenav-container>
+<rxap-footer class="footer"></rxap-footer>

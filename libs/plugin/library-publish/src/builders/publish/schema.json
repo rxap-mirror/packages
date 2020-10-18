@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://json-schema.org/draft-07/schema",
+  "title": "Build builder",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "buildTarget": {
+      "type": "string",
+      "description": "The target which defines the out path"
+    },
+    "preTarget": {
+      "type": "string",
+      "description": "The target that should be execute before"
+    },
+    "registry": {
+      "type": "string",
+      "description": "The target package registry"
+    }
+  },
+  "required": []
+}

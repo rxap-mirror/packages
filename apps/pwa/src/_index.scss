@@ -1,0 +1,19 @@
+@import "./app/overview/overview.component.theme";
+@import "./app/documentation/documentation.component.theme";
+/* IMPORT */
+
+@mixin pwa-theme($theme) {
+
+  @include rxap-overview-theme($theme);
+  @include rxap-documentation-theme($theme);
+  /* THEME_INCLUDE */
+
+}
+
+@mixin pwa-typography($config) {
+
+  @include rxap-overview-typography($config);
+  @include rxap-documentation-typography($config);
+  /* TYPOGRAPHY_INCLUDE */
+
+}

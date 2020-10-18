@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "base": {
+      "description": "create a base remote method",
+      "factory": "./base/index",
+      "schema": "./base/schema.json"
+    },
+    "http": {
+      "description": "Creates a http remote method",
+      "factory": "./http/index",
+      "schema": "./http/schema.json"
+    },
+    "directive": {
+      "description": "add a directive for the remote method",
+      "factory": "./directive/index",
+      "schema": "./directive/schema.json"
+    }
+  }
+}

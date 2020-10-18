@@ -1,0 +1,52 @@
+{
+  "name": "@rxap/layout",
+  "version": "0.8.1",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "keywords": [
+    "rxap",
+    "layout",
+    "angular"
+  ],
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "license": "MIT",
+  "description": "A collection of components and services that provides standard layouts for angular applications.",
+  "peerDependencies": {
+    "@rxap/utilities": ">=0.3.7",
+    "rxjs": ">=6.5",
+    "@rxap/services": ">=0.3.0",
+    "@angular/core": ">=9",
+    "@angular/router": ">=9",
+    "@rxap/authentication": ">=0.4.0",
+    "@rxap/forms": ">=0.0.5",
+    "@rxap/definition": ">=0.0.4",
+    "@angular/forms": ">=9",
+    "@angular/platform-browser": ">=9",
+    "@angular/flex-layout": ">=9",
+    "@angular/material": ">=9",
+    "@angular/animations": ">=9",
+    "@angular/common": ">=9",
+    "@rxap/directives": ">=0.0.10",
+    "@rxap/components": ">=0.3.3",
+    "@angular/cdk": ">=9"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/layout",
+      "@rxap/utilities",
+      "@rxap/services",
+      "@rxap/authentication",
+      "@rxap/forms",
+      "@rxap/definition",
+      "@rxap/directives",
+      "@rxap/components"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+include:
+  - project: 'rxap/gitlab-ci'
+    ref: master
+    file: '/templates/setup.yml'
+
+stages:
+- setup
+- build
+- test
+
+.cache:pull: &cache_pull
+  cache:
+    key:
+      files:
+      - yarn.lock
+    paths:
+    - node_modules/
+    policy: pull
+
+{{#each projects}}
+
+  build:{{this.name}}:
+  <<: *cache_pull
+  tags:
+  - nvm
+  image: registry.gitlab.com/rxap/gitlab-ci/angular-build
+  stage: build
+  script: nx run {{this.name}}:build --with-deps
+  artifacts:
+    expire_in: 1 day
+    paths:
+    - dist/{{this.data.root}}
+
+  test:{{this.name}}:
+  <<: *cache_pull
+  tags:
+  - nvm
+  image: registry.gitlab.com/rxap/gitlab-ci/angular-test
+  stage: test
+  script: nx run {{this.name}}:test
+  artifacts:
+    expire_in: 1 day
+    paths:
+    - coverage/{{this.data.root}}
+
+{{/each}}

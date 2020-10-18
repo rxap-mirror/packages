@@ -1,0 +1,63 @@
+import { AbstractControlOptions } from '@angular/forms';
+import { Constructor } from '@rxap/utilities';
+import type { RxapFormGroup } from './form-group';
+import { StaticProvider } from '@angular/core';
+import { RxapFormControl } from './form-control';
+import {
+  AbstractControl,
+  ControlOptions
+} from './types';
+import { BaseDefinitionMetadata } from '@rxap/definition';
+import { RxapFormArray } from './form-array';
+
+export interface RxapAbstractControlOptions extends AbstractControlOptions {
+  state?: any;
+}
+
+export interface RxapAbstractControlOptionsWithDefinition extends RxapAbstractControlOptions {
+  definition: Constructor;
+}
+
+export interface FormDefinition<T extends Record<string, any> = any, E extends object = any> {
+  rxapFormGroup: RxapFormGroup<T, E>;
+}
+
+export interface FormDefinitionArray<T> extends Array<T> {
+  rxapFormArray: RxapFormArray;
+}
+
+export type FormType<T extends Record<string, any>> = FormDefinition<T> & {
+  [K in keyof T]: T[K] extends any[] ?
+                  FormDefinitionArray<T[K]> | RxapFormControl<T[K]> :
+                  T[K] extends object | undefined ?
+                  FormDefinition<T[K]> | RxapFormControl<T[K]> :
+                  RxapFormControl<T[K]>;
+}
+
+export interface FormOptions extends RxapAbstractControlOptions {
+  id: string;
+}
+
+export interface FormDefinitionMetadata extends BaseDefinitionMetadata, FormOptions {
+  providers?: StaticProvider[];
+}
+
+export type ChangeFn<T = any> = (value: T, emitViewToModelChange: boolean) => void;
+
+export type SetValueFn<T = any> = (value: T, options?: ControlOptions) => void;
+
+export type FormBuilderFn = (state: any, options: { controlId: string }) => FormDefinition | RxapFormControl;
+
+export type ControlInsertedFn = (index: number, controlOrDefinition: AbstractControl | FormDefinition) => void;
+export type ControlRemovedFn = (index: number) => void;
+
+export interface FormArrayOptions extends RxapAbstractControlOptions {
+  builder: FormBuilderFn;
+  controlId: string;
+  controlInsertedFn: ControlInsertedFn;
+  controlRemovedFn: ControlRemovedFn;
+}
+
+export interface FormGroupOptions extends RxapAbstractControlOptions {
+  controlId: string;
+}

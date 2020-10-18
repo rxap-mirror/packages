@@ -1,0 +1,28 @@
+{
+  "name": "@rxap/icon",
+  "version": "0.1.4",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "keywords": [
+    "rxap",
+    "utilities",
+    "icon",
+    "angular"
+  ],
+  "description": "A utility packages to load svg icons for @angular/material.",
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/material": ">=9"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": []
+  }
+}

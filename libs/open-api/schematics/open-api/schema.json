@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "open-api",
+  "type": "object",
+  "description": "",
+  "oneOf": [
+    {
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "The path to the openapi config",
+          "format": "path"
+        },
+        "target": {
+          "type": "string",
+          "description": "The target project where the data sources and remote methods should be generated.",
+          "default": "open-api"
+        }
+      },
+      "required": ["path"]
+    },
+    {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The url to the openapi config",
+          "format": "url"
+        },
+        "target": {
+          "type": "string",
+          "description": "The target project where the data sources and remote methods should be generated.",
+          "default": "open-api"
+        }
+      },
+      "required": ["url"]
+    }
+  ]
+}

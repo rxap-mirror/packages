@@ -1,0 +1,23 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-navigation-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-navigation {
+
+    .divider-title {
+      color: map-get($foreground, hint-text);
+    }
+
+  }
+
+}
+
+@mixin rxap-navigation-typography($config) {
+  .rxap-navigation {
+
+  }
+}

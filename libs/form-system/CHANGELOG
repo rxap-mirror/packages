@@ -1,0 +1,35 @@
+# Changelog
+
+## [0.1.0]
+### Added
+- support for data source transformers
+
+## [0.0.6]
+### Fixed
+- peer dependencies
+
+## [0.0.5]
+### Fixed
+- use the current injection tree to create options data sources
+
+## [0.0.4]
+### Added
+- ng-update support
+
+## [0.0.3]
+### Added
+- add theming support
+
+## [0.0.2]
+### Added
+- ControlDataSource
+- ControlHideShowDirective
+- InputSelectOptionsDirective
+- @UseFormComponent
+- ExtractDataSourceMixin
+- ExtractControlMixin
+- ExtrectFormDefinitionMixin
+
+## [0.0.1]
+
+Project initialisation

@@ -1,0 +1,24 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-form-field-no-padding-theme($theme) {
+
+  .rxap-form-field-no-padding {
+
+    .mat-form-field-wrapper {
+      padding-bottom: initial;
+
+      .mat-form-field-underline {
+        bottom: 0;
+      }
+
+    }
+
+  }
+
+}
+
+@mixin rxap-form-field-no-padding-typography($config) {
+  .rxap-form-field-no-padding {
+
+  }
+}

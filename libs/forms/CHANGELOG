@@ -1,0 +1,121 @@
+# Changelog
+
+## [0.1.1]
+### Fixed
+- (FormSubmitDirective): add the afterSubmit output
+
+## [0.1.0]
+### Added
+- ParentControlContainerDirective
+
+## [0.0.24]
+### Fixed
+- (FormDirective): cleanup submit and load process
+
+## [0.0.23]
+### Fixed
+- (FormDirective): expose the current form definition
+
+## [0.0.22]
+### Fixed
+- (RxapFormBuilder): use the definition constructor if not provided
+
+## [0.0.21]
+### Fixed
+- (FormDirective): cdr change to public
+
+## [0.0.20]
+### Fixed
+- (RxapFormBuilder): the builder state is overwritten by the option state
+
+## [0.0.19]
+### Fixed
+- form directive typings
+
+## [0.0.18]
+### Added
+- add exportAs to FormControlNameDirective and FormGroupNameDirective
+
+## [0.0.17]
+### Added
+- FormControlNameDirective
+- FormGroupNameDirective
+
+## [0.0.16]
+### Fixed
+- (FormDirective): add missing error logs
+
+## [0.0.15]
+### Added
+- FormType
+
+## [0.0.14]
+### Changed
+- determine if a form submit fail only if an exception is thrown
+
+## [0.0.13]
+### Added
+- add rxapOnInit support for form definitions
+
+## [0.0.12]
+### Changed
+- add missing peer dependencies
+
+## [0.0.11]
+### Added
+- FormSubmitDirective
+
+## [0.0.10]
+### Added
+- ng-update support
+
+## [0.0.9]
+### Added
+- RXAP_FORM_INITIAL_STATE Token
+- ToFormSubmitMethod Method
+### Changed
+- log errors if load or submit fail
+
+## [0.0.8]
+### Fixed
+- fix FormBuilder instance issue
+
+## [0.0.7]
+### Changed
+- add optional controlId property
+### Fixed
+- form definition access from sub form groups
+- change options type AbstractControlOptions to RxapAbstractControlOptions
+
+## [0.0.6]
+### Changed
+- add support for @rxap/form-system
+
+## [0.0.5]
+### Added
+- FormControlErrorDirective
+- FormControlMarkDirtyDirective
+- FormControlMarkPristineDirective
+- FormControlMarkTouchedDirective
+- FormControlMarkUntouchedDirective
+
+## [0.0.4]
+### Added
+- @ControlSetValue
+
+## [0.0.3]
+### Changed
+- update peer dependencies
+- add @rxap/definition support
+
+## [0.0.2]
+### Added
+- FormSubmitFailedDirective
+- FormLoadingDirective
+- FormSubmittingDirective
+- FormLoadingErrorDirective
+- FormLoadedDirective
+
+## [0.0.1]
+
+Project initialization

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://json-schema.org/draft-07/schema",
+  "title": "AppEngine Deploy builder",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "skipBuild": {
+      "type": "boolean",
+      "description": "Weather the app target build should be executed before deployment.",
+      "alias": "skip-build"
+    },
+    "project": {
+      "type": "string",
+      "description": "The Google Cloud Platform project name to use for this invocation. If\nomitted, then the current project is assumed"
+    },
+    "promote": {
+      "type": "boolean",
+      "description": "Promote the deployed version to receive all traffic. Overrides the\ndefault app/promote_by_default property value for this command\ninvocation. Use --no-promote to disable."
+    },
+    "noPromote": {
+      "type": "boolean",
+      "description": "Not promote the deployed version to receive all traffic.",
+      "alias": "no-promote"
+    },
+    "stopPreviousVersion": {
+      "type": "boolean",
+      "description": "Stop the previously running version when deploying a new version that\nreceives all traffic.",
+      "alias": "stop-previous-version"
+    },
+    "version": {
+      "type": "boolean",
+      "description": "The version of the app that will be created or replaced by this\ndeployment. If you do not specify a version, one will be generated for\nyou."
+    }
+  }
+}

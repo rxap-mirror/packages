@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-environment-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-environment { }
+
+}
+
+@mixin rxap-environment-typography($config) {
+  .rxap-environment { }
+}

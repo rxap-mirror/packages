@@ -1,0 +1,29 @@
+{
+  "name": "@rxap/slugify",
+  "version": "0.0.1",
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "keywords": [
+    "rxap",
+    "utilities",
+    "slugify"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "A utility to slugify a string.",
+  "peerDependencies": {},
+  "dependencies": {
+    "tslib": "2.0.1"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/slugify"
+    ]
+  }
+}

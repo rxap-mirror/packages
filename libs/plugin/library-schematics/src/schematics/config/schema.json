@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "id": "AddSchema",
+  "title": "Add schema options",
+  "description": "Adds the schematics builder to the specified project. Optionally the schematics configuration files can be generated",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "For which project should the schematics builder be added?"
+    },
+    "skipBuild": {
+      "type": "boolean",
+      "description": "Sets the default skipBuild option.",
+      "default": false,
+      "alias": "skip-build"
+    },
+    "onlyBuilder": {
+      "type": "boolean",
+      "description": "Whether only the builder configuration should be added.",
+      "default": false,
+      "alias": "only-builder"
+    }
+  },
+  "required": [
+    "project"
+  ]
+}

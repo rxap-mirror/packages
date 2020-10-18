@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-checkbox-header-cell-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-checkbox-header-cell { }
+
+}
+
+@mixin rxap-checkbox-header-cell-typography($config) {
+  .rxap-checkbox-header-cell { }
+}

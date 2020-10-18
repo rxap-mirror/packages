@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "base",
+  "type": "object",
+  "description": "",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "",
+      "visible": false
+    },
+    "template": {
+      "type": "boolean",
+      "description": "",
+      "default": false
+    },
+    "collection": {
+      "type": "boolean",
+      "description": "",
+      "default": false
+    },
+    "parametersType": {
+      "type": "string",
+      "description": "",
+      "default": "any"
+    },
+    "returnType": {
+      "type": "string",
+      "description": "",
+      "default": "any"
+    },
+    "export": {
+      "type": "boolean",
+      "default": true
+    },
+    "project": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "projectName"
+      }
+    }
+  },
+  "required": []
+}

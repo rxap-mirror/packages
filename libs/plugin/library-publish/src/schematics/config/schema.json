@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "id": "AddSchema",
+  "title": "Add schema options",
+  "description": "Adds the schematics builder to the specified project. Optionally the schematics configuration files can be generated",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "For which project should the publish builder be added?"
+    },
+    "buildTarget": {
+      "type": "boolean",
+      "description": "The target which defines the out path",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "alias": "build-target"
+    },
+    "preTarget": {
+      "type": "boolean",
+      "description": "The target that should be executed before",
+      "$default": {
+        "$source": "argv",
+        "index": 2
+      },
+      "alias": "pre-target"
+    }
+  },
+  "required": [
+    "project"
+  ]
+}

@@ -1,0 +1,30 @@
+.container {
+  height: 100%;
+
+  .inner {
+    height: 100%;
+
+    .nav-container {
+      overflow-y: scroll;
+      margin-left: 6px;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        border-radius: 2px;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+      }
+
+    }
+
+
+  }
+
+}
