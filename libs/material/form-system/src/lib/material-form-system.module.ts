@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ControlErrorDirectiveModule } from './control-error.directive';
+import { ControlErrorsDirectiveModule } from './control-errors.directive';
 
 @NgModule({
-  imports: [ CommonModule ]
+  exports: [
+    ControlErrorDirectiveModule,
+    ControlErrorsDirectiveModule
+  ]
 })
 export class MaterialFormSystemModule {}
