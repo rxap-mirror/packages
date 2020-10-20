@@ -136,6 +136,9 @@
     },
     "table-system": {
       "tags": []
+    },
+    "material-form-system": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
