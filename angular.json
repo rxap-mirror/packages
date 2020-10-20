@@ -3855,6 +3855,53 @@
           "style": "scss"
         }
       }
+    },
+    "material-form-system": {
+      "projectType": "library",
+      "root": "libs/material/form-system",
+      "sourceRoot": "libs/material/form-system/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/material/form-system/tsconfig.lib.json",
+            "project": "libs/material/form-system/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/material/form-system/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/material/form-system/tsconfig.lib.json",
+              "libs/material/form-system/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/material/form-system/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/material/form-system/jest.config.js",
+            "tsConfig": "libs/material/form-system/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/material/form-system/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "newProjectRoot": "",
