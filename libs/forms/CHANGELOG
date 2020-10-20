@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.0]
+### Added
+- (RxapFormBuild): add support for injectable validators
+
 ## [0.1.2]
 ### Fixed
 - (FormDirective): clone the current form value before passed to the submit logic
