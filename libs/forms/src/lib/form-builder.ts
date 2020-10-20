@@ -73,8 +73,8 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
 
   constructor(
     private readonly definition: Constructor<Form>,
-    private readonly injector: Injector,
-    providers: StaticProvider[] = []
+    private readonly injector: Injector = Injector.NULL,
+    providers: StaticProvider[]         = []
   ) {
 
     this.formArrayGroups   = this.extractArrayGroups();
