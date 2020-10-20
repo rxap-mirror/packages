@@ -6,10 +6,12 @@ import {
 import { WindowSettings } from './window-config';
 import {
   BehaviorSubject,
-  Subject
+  Subject,
+  ReplaySubject
 } from 'rxjs';
 import { GetWindowStartPos } from './utilities';
 import { Portal } from '@angular/cdk/portal';
+import type { WindowFooterTemplateContext } from './window-footer.directive';
 
 export class WindowRef<D = any, R = any> {
 
@@ -31,7 +33,7 @@ export class WindowRef<D = any, R = any> {
   /**
    * @internal
    */
-  public footerPortal: Portal<any> | null = null;
+  public footerPortal$ = new ReplaySubject<Portal<WindowFooterTemplateContext>>(1);
 
   constructor(
     public readonly overlayRef: OverlayRef,
@@ -133,7 +135,7 @@ export class WindowRef<D = any, R = any> {
    * @param portal
    */
   public setFooterPortal(portal: Portal<any>) {
-    this.footerPortal = portal;
+    this.footerPortal$.next(portal);
   }
 
 }
