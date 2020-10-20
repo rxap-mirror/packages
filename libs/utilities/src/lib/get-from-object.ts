@@ -1,11 +1,11 @@
 import { hasIndexSignature } from './has-index-signature';
 
-export function getFromObject<T, D = undefined>(obj: any, path: string, defaultValue?: D): T | D {
+export function getFromObject<T, D = undefined>(obj: object, path: string, defaultValue?: D): T | D {
 
   const fragments: string[] = path.split('.').filter(Boolean);
 
   if (fragments.length === 0) {
-    return obj;
+    return obj as any;
   }
 
   if (!obj) {
@@ -24,4 +24,8 @@ export function getFromObject<T, D = undefined>(obj: any, path: string, defaultV
 
   return defaultValue as any;
 
+}
+
+export function getFromObjectFactory<T, D = undefined>(path: string, defaultValue?: D): (obj: object) => T | D {
+  return (obj: object) => getFromObject(obj, path, defaultValue);
 }
