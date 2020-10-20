@@ -124,7 +124,7 @@
     "@rxap-plugin/pack": "0.0.6",
     "@rxap-plugin/readme-generator": "0.0.1",
     "@rxap-plugin/scss-bundle": "0",
-    "@rxap/schematics": "^0.0.35",
+    "@rxap/schematics": "^0.0.37",
     "@storybook/addon-a11y": "5.3.19",
     "@storybook/addon-actions": "5.3.19",
     "@storybook/addon-backgrounds": "5.3.19",
