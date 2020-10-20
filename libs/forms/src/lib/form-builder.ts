@@ -165,6 +165,8 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
         }
       );
 
+      // TODO : add support for injectable validators
+
       formArray.setValidators(this.coerceToValidatorArray(form, options.validators, this.validators.get(controlId)), false);
       formArray.setAsyncValidators(this.coerceToValidatorArray(form, options.asyncValidators, this.asyncValidators.get(controlId)), false);
 
@@ -211,6 +213,8 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
         }
       );
 
+      // TODO : add support for injectable validators
+
       formArray.setValidators(this.coerceToValidatorArray(form, options.validators, this.validators.get(controlId)), false);
       formArray.setAsyncValidators(this.coerceToValidatorArray(form, options.asyncValidators, this.asyncValidators.get(controlId)), false);
 
@@ -247,6 +251,8 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
 
       const formGroup = formGroupDefinition.rxapFormGroup;
 
+      // TODO : add support for injectable validators
+
       formGroup.setValidators(this.coerceToValidatorArray(form, options.validators, this.validators.get(controlId)), false);
       formGroup.setAsyncValidators(this.coerceToValidatorArray(form, options.asyncValidators, this.asyncValidators.get(controlId)), false);
 
@@ -276,8 +282,31 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
         }
       );
 
-      control.setValidators(this.coerceToValidatorArray(form, options.validators, this.validators.get(controlId)), false);
-      control.setAsyncValidators(this.coerceToValidatorArray(form, options.asyncValidators, this.asyncValidators.get(controlId)), false);
+      const injectValidators: ValidatorFn[]           = [];
+      const injectAsyncValidators: AsyncValidatorFn[] = [];
+
+      for (const injectValidator of options.injectValidators ?? []) {
+        const injectableValidator = this.injector.get(injectValidator);
+        if (injectableValidator.validate) {
+          injectValidators.push(injectableValidator.validate.bind(injectableValidator));
+        }
+        if (injectableValidator.asyncValidate) {
+          injectAsyncValidators.push(injectableValidator.asyncValidate.bind(injectableValidator));
+        }
+      }
+
+      control.setValidators(this.coerceToValidatorArray(
+        form,
+        options.validators,
+        this.validators.get(controlId),
+        injectValidators
+      ), false);
+      control.setAsyncValidators(this.coerceToValidatorArray(
+        form,
+        options.asyncValidators,
+        this.asyncValidators.get(controlId),
+        injectAsyncValidators
+      ), false);
 
       // register all control on change function with the form control
       this.coerceToFnArray<ChangeFn>(form, this.controlChanges.get(controlId))
@@ -328,11 +357,13 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
    * @param optionsValidators The options validator functions
    * @param validatorMethodKeys A set of propertyKeys that points to form
    * definition instance methods
+   * @param injectValidators Injected validator functions
    */
   private coerceToValidatorArray<VF extends ValidatorFn | AsyncValidatorFn>(
     form: Form & Record<string, Function>,
     optionsValidators?: Array<VF> | VF | null,
-    validatorMethodKeys?: Set<string>
+    validatorMethodKeys?: Set<string>,
+    injectValidators?: Array<VF>
   ): Array<VF> {
 
     const validators: Array<VF> = optionsValidators ? Array.isArray(optionsValidators) ? optionsValidators : [ optionsValidators ] : [];
@@ -347,6 +378,10 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
 
       });
 
+    }
+
+    if (injectValidators) {
+      validators.push(...injectValidators);
     }
 
     return validators;
