@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.2]
+### Fixed
+- (WindowContainerComponent): fix detected footer template change
+
 ## [0.5.1]
 ### Fixed
 - add task bar container settings token

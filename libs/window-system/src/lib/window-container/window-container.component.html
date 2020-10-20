@@ -15,8 +15,8 @@
     <ng-content></ng-content>
   </div>
 
-  <mat-toolbar *ngIf="windowRef.footerPortal" class="footer mat-elevation-z1" fxFlex="nogrow">
-    <ng-template [cdkPortalOutlet]="windowRef.footerPortal"></ng-template>
+  <mat-toolbar *ngIf="windowRef.footerPortal$ | async as footerPortal" class="footer mat-elevation-z1" fxFlex="nogrow">
+    <ng-template [cdkPortalOutlet]="footerPortal"></ng-template>
   </mat-toolbar>
 
   <rxap-window-resizer [containerRef]="containerRef"></rxap-window-resizer>
