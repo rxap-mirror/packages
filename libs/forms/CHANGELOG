@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.2]
+### Fixed
+- (FormDirective): clone the current form value before passed to the submit logic
+- (RxapFormBuilder): change the injector constructor parameter as optional
+
 ## [0.1.1]
 ### Fixed
 - (FormSubmitDirective): add the afterSubmit output
