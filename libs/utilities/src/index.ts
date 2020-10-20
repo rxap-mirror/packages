@@ -69,6 +69,13 @@ export * from './lib/decorators/deprecated';
 
 // endregion
 
+// region options
+
+export * from './lib/options/to-options-from-object';
+export * from './lib/options/to-options-with-object';
+
+// endregion
+
 // region rxjs
 
 // region operators
