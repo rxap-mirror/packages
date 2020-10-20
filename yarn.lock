@@ -2961,10 +2961,10 @@
     "@angular-devkit/core" "10"
     "@angular-devkit/schematics" "10"
 
-"@rxap/schematics@0.0.26":
-  version "0.0.26"
-  resolved "https://npm.rxap.dev/@rxap%2fschematics/-/schematics-0.0.26.tgz#b5a84bf5d8d0aacf72b268a81926205700258b17"
-  integrity sha512-K3UBiyFksAF6diu3r2cZuyGnl65BLXaaxAaeyjQhLyYSFJpYl+fTNJtEeqcJOc5Mv4yUgkVq5hTZcdTsxMdZ9g==
+"@rxap/schematics@^0.0.35":
+  version "0.0.35"
+  resolved "https://npm.rxap.dev/@rxap%2fschematics/-/schematics-0.0.35.tgz#b80746e495f8acf2b8230b64a45355562d5f7b71"
+  integrity sha512-bpgcLk8EBnKWct+9OXPFHAyyKbHycuwujs98KTmvK3O4Mz0K+XZmyWo/TFS/NHZMjP2g7yqn4MPpZivVyzy5PA==
   dependencies:
     "@angular-devkit/core" "9.1.9"
     "@angular-devkit/schematics" "9.1.9"
