@@ -32,7 +32,8 @@ import {
   isPromise,
   isObject,
   ToggleSubject,
-  Required
+  Required,
+  clone
 } from '@rxap/utilities';
 import { FormDefinition } from '../model';
 import {
@@ -236,12 +237,13 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
   }
 
   private submit() {
+    const value = clone(this.form.value);
     if (this.submitMethod) {
       Reflect.set(this, 'submitted', false);
       this.submitting$.enable();
       this.submitError$.next(null);
       try {
-        const resultOrPromise = this.submitMethod.call(this.form.value);
+        const resultOrPromise = this.submitMethod.call(value);
         if (isPromise(resultOrPromise)) {
           resultOrPromise
             .then(result => {
@@ -274,8 +276,8 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
         console.warn('The form submit method is not defined for: ' + this.form.controlId);
       }
 
-      this.rxapSubmit.emit(this.form.value);
-      this.submitSuccessful(this.form.value);
+      this.rxapSubmit.emit(value);
+      this.submitSuccessful(value);
     }
   }
 
