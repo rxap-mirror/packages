@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.3]
+### Added
+- (FormWindowService): define custom component
+
 ## [0.0.2]
 ### Added
 - FormWindowFooterDirective
