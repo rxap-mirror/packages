@@ -42,6 +42,7 @@ export interface FormWindowOptions<Data> {
   resizeable?: boolean;
   draggable?: boolean;
   panelClass?: string;
+  component?: Constructor;
 }
 
 @Injectable({
@@ -104,7 +105,7 @@ export class FormWindowService {
       name:      options?.injectorName ?? 'FormWindowService',
     });
 
-    const component = this.extractFormComponent(formDefinitionConstructor);
+    const component = options?.component ?? this.extractFormComponent(formDefinitionConstructor);
 
     const windowConfig: WindowConfig<any, any> = {
       component,
