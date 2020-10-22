@@ -1,6 +1,7 @@
 import {
   Injector,
-  StaticProvider
+  StaticProvider,
+  isDevMode
 } from '@angular/core';
 import {
   Constructor,
@@ -108,7 +109,21 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
       providers: this.providers
     });
 
-    const form = injector.get(this.definition, new this.definition());
+    let form: Form & Record<string, Function>;
+
+
+    // don't use the notFoundValue feature of the injector.
+    // if used for each call of the get method an "empty" or "fallback"
+    // instance is created
+
+    try {
+      form = injector.get(this.definition);
+    } catch (e) {
+      if (isDevMode()) {
+        console.warn('Could not inject the definition instance. Fallback and call the constructor of the definition class.');
+      }
+      form = (new this.definition()) as Form & Record<string, Function>;
+    }
 
     const controls: Record<string, AbstractControl> = {};
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.1]
+### Fixed
+- (RxapFormBuild): throw if form definition can not be injected.
+
 ## [0.2.0]
 ### Added
 - (RxapFormBuild): add support for injectable validators
