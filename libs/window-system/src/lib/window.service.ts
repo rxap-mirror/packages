@@ -116,7 +116,8 @@ export class WindowService {
           provide:  RXAP_WINDOW_REF,
           useValue: windowRef
         }
-      ]
+      ],
+      name:      windowConfig?.injectorName ?? 'WindowService'
     });
 
     const containerPortal = new ComponentPortal(

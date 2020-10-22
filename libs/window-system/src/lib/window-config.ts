@@ -32,6 +32,7 @@ export interface WindowConfig<D = any, T = any> extends WindowSettings<D> {
   component?: ComponentType<T>;
   template?: TemplateRef<T>;
   injector?: Injector | null;
+  injectorName?: string;
   componentFactoryResolver?: ComponentFactoryResolver | null;
   viewContainerRef?: ViewContainerRef | null;
 }
