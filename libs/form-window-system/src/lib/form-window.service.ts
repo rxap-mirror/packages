@@ -29,20 +29,10 @@ import {
 import { FormWindowRef } from './form-window-ref';
 import { FormSystemMetadataKeys } from '@rxap/form-system';
 
-export interface FormWindowOptions<Data> {
-  initial?: Data;
-  submitMethod?: FormSubmitMethod<Data>;
+export interface FormWindowOptions<FormData, D = any, T = any> extends WindowConfig<D, T> {
+  initial?: FormData;
+  submitMethod?: FormSubmitMethod<FormData>;
   submitSuccessfulMethod?: FormSubmitSuccessfulMethod;
-  injector?: Injector;
-  injectorName?: string;
-  title?: string;
-  icon?: string;
-  width?: string;
-  height?: string;
-  resizeable?: boolean;
-  draggable?: boolean;
-  panelClass?: string;
-  component?: Constructor;
 }
 
 @Injectable({
@@ -61,20 +51,20 @@ export class FormWindowService {
     return formBuilder.build(initial);
   }
 
-  public open<Data>(
+  public open<FormData>(
     formDefinitionConstructor: Constructor<FormDefinition>,
-    options?: FormWindowOptions<Data>
-  ): FormWindowRef<Data> {
+    options?: FormWindowOptions<FormData>
+  ): FormWindowRef<FormData> {
 
     const providers: StaticProvider[] = [
       {
         provide:  RXAP_FORM_DEFINITION_BUILDER,
-        useValue: new RxapFormBuilder(formDefinitionConstructor, options?.injector ?? this.injector),
+        useValue: new RxapFormBuilder(formDefinitionConstructor, options?.injector ?? this.injector)
       },
       {
         provide:    RXAP_FORM_DEFINITION,
         useFactory: this.createFormDefinitionInstance.bind(this),
-        deps:       [ RXAP_FORM_DEFINITION_BUILDER, [ new Optional(), RXAP_FORM_INITIAL_STATE ] ],
+        deps:       [ RXAP_FORM_DEFINITION_BUILDER, [ new Optional(), RXAP_FORM_INITIAL_STATE ] ]
       },
     ];
 
@@ -113,22 +103,14 @@ export class FormWindowService {
     };
 
     if (options) {
-      Object.assign(windowConfig, DeleteUndefinedProperties({
-        title: options.title,
-        icon: options.icon,
-        width: options.width,
-        height: options.height,
-        resizeable: options.resizeable,
-        draggable: options.draggable,
-        panelClass: options.panelClass,
-      }));
+      Object.assign(windowConfig, DeleteUndefinedProperties(options));
     }
 
     const windowRef = this.windowService.open(windowConfig);
 
-    return new FormWindowRef<Data>(
+    return new FormWindowRef<FormData>(
       injector.get(RXAP_FORM_DEFINITION),
-      windowRef,
+      windowRef
     );
 
   }

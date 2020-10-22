@@ -1,6 +1,6 @@
 {
   "name": "@rxap/form-window-system",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -24,7 +24,7 @@
     "@angular/forms": ">=9",
     "@angular/platform-browser": ">=9",
     "@angular/router": ">=9",
-    "@rxap/window-system": ">=0.3.4",
+    "@rxap/window-system": ">=0.5.3",
     "@rxap/services": ">=0.2.6",
     "@rxap/components": ">=0.3.9",
     "@rxap/directives": ">=0.0.8",

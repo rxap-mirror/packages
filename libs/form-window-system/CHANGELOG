@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.4]
+### Fixed
+- (FormWindowService): expose all WindowService options
+
 ## [0.0.3]
 ### Added
 - (FormWindowService): define custom component
