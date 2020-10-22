@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.6]
+### Fixed
+- catch unresolvable openapi schema references
+
 ## [0.3.5]
 ### Fixed
 - update @rxap/json-schema-to-typescript

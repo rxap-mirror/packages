@@ -1,4 +1,7 @@
-import { coerceArray } from '@rxap/utilities';
+import {
+  coerceArray,
+  isPromiseLike
+} from '@rxap/utilities';
 import { isDevMode } from '@angular/core';
 import * as Ajv from 'ajv-oai';
 import {
@@ -65,7 +68,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
             const value = parameters[ parameter.name ];
 
-            if (!new Ajv().validate(parameter.schema, value)) {
+            if (!this.validate(parameter.schema, value)) {
               this.validationError(`The parameter '${parameter.name}' is not valid against the schema!`, strict, parameter.schema, value);
             }
 
@@ -130,7 +133,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
           const schema = responseObject.content['application/json'].schema;
 
-          if (!new Ajv().validate(schema, response.body)) {
+          if (!this.validate(schema, response.body)) {
             this.validationError('The response is not valid ageist the operation schema!', strict, schema, response.body);
           }
 
@@ -167,7 +170,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
         const schema = operation.requestBody.content['application/json'].schema;
 
         if (schema) {
-          if (!new Ajv().validate(schema, body)) {
+          if (!this.validate(schema, body)) {
             this.validationError('The request body is not valid!', strict, schema, body);
           }
         }
@@ -330,6 +333,24 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
     return options;
 
+  }
+
+  private validate(schema: string | boolean | object, value: any): boolean {
+
+    let result: boolean | PromiseLike<any>;
+
+    try {
+      result = new Ajv().validate(schema, value);
+    } catch (e) {
+      console.error(e.message);
+      return false;
+    }
+
+    if (isPromiseLike(result)) {
+      throw new Error('Async schema validation is not yet supported. Ensure the all refs in the openapi schema are internal!');
+    }
+
+    return result;
   }
 
 }
