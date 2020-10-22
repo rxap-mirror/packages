@@ -16,7 +16,9 @@ import {
 import {
   ConfirmClick,
   Constructor,
-  Required
+  Required,
+  MaterialIcon,
+  IconConfig
 } from '@rxap/utilities';
 import {
   FormDefinition,
@@ -62,7 +64,7 @@ export class OpenFormDirective<Data, Result = Data> extends ConfirmClick impleme
   public title?: string;
 
   @Input()
-  public icon?: string;
+  public icon?: IconConfig;
 
   @Input()
   public width?: string;
