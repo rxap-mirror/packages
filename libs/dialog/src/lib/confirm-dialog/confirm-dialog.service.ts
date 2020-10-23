@@ -8,7 +8,8 @@ import { Direction } from '@angular/cdk/bidi';
 import { ScrollStrategy } from '@angular/cdk/overlay';
 import {
   first,
-  map
+  map,
+  take
 } from 'rxjs/operators';
 
 export interface ConfirmDialogConfig {
@@ -72,7 +73,7 @@ export class ConfirmDialogService {
     });
 
     return dialogRef.afterClosed().pipe(
-      first(),
+      take(1),
       map(result => !!result)
     ).toPromise();
   }

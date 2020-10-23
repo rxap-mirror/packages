@@ -10,7 +10,8 @@ import { Subscription } from 'rxjs';
 import {
   tap,
   switchMap,
-  first
+  first,
+  take
 } from 'rxjs/operators';
 
 @Directive({
@@ -29,8 +30,8 @@ export class ScrollToTabOnFocusDirective implements OnInit, OnDestroy {
 
     this.subscription = this.matTabGroup.selectedIndexChange.pipe(
       switchMap(() => this.matTabGroup.animationDone.pipe(
-        first(),
-        tap(() => this.matTabGroup._elementRef.nativeElement.scrollIntoView({ behavior: 'smooth' })),
+        take(1),
+        tap(() => this.matTabGroup._elementRef.nativeElement.scrollIntoView({ behavior: 'smooth' }))
       )),
     ).subscribe();
   }

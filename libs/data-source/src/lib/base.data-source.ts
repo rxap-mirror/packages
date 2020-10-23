@@ -18,7 +18,8 @@ import {
   first,
   takeUntil,
   finalize,
-  tap
+  tap,
+  take
 } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
@@ -159,7 +160,7 @@ export class BaseDataSource<Data = any,
    */
   public toPromise(viewer: Viewer): Promise<Data> {
     return this.connect(viewer).pipe(
-      first()
+      take(1)
     ).toPromise().then(result => {
       this.disconnect(viewer);
       return result;

@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.2]
+### Fixed
+- replace all rxjs operators first() with take(1)
+
 ## [0.2.1]
 ### Fixed
 - (RxapFormBuild): throw if form definition can not be injected.

@@ -30,7 +30,8 @@ import { Required } from '@rxap/utilities';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 import {
   first,
-  tap
+  tap,
+  take
 } from 'rxjs/operators';
 
 export class RemoteMethodTemplateCollectionDirectiveContext<ReturnType = any> {
@@ -234,7 +235,7 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
 
   public call(parameters?: Parameters): void {
     this.zone.onStable.pipe(
-      first(),
+      take(1),
       tap(() => {
         this.zone.run(() => {
           this.remoteMethodLoader

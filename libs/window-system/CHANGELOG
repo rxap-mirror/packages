@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.4]
+### Fixed
+- replace all rxjs operators first() with take(1)
+
 ## [0.5.3]
 ### Fixed
 - (WindowConfig): add the option injectorName

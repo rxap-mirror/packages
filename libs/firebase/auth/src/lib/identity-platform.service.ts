@@ -2,7 +2,8 @@ import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {
   map,
-  first
+  first,
+  take
 } from 'rxjs/operators';
 import {
   Injectable,
@@ -54,7 +55,7 @@ export class IdentityPlatformService {
 
   public isAuthenticated(): Promise<boolean> {
     return this.fireAuth.authState.pipe(
-      first(),
+      take(1),
       map(Boolean)
     ).toPromise();
   }
