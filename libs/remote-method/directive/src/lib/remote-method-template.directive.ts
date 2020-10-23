@@ -36,12 +36,12 @@ export interface RemoteMethodTemplateDirectiveErrorContext {
 export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata>
   implements OnChanges, OnInit {
 
-  /**
-   * Asserts the correct type of the context for the template that `NgForOf` will render.
-   *
-   * The presence of this method is a signal to the Ivy template type-check compiler that the
-   * `NgForOf` structural directive renders its template with a specific context type.
-   */
+  // TODO : remove template context Guard
+  // the template context Guard must be defined with a concrete context type
+  // else the context guard is resolved to any
+  // For each child directive that should have a template context guard
+  // the template context guard must be defined
+  // !! add generation of concrete template context guard to openapi schematics !!
   static ngTemplateContextGuard<T>(dir: RemoteMethodTemplateDirectiveContext<T>, ctx: any):
     ctx is RemoteMethodTemplateDirectiveContext<T> {
     return true;

@@ -3601,6 +3601,7 @@
             "targets": [
               "form-window-system:update-package-group",
               "form-window-system:build:production",
+              "form-window-system:scss-bundle",
               "form-window-system:schematics"
             ]
           }
