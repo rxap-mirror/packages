@@ -97,13 +97,13 @@ export class FormWindowService {
 
     const component = options?.component ?? this.extractFormComponent(formDefinitionConstructor);
 
-    const windowConfig: WindowConfig<any, any> = {
+    let windowConfig: WindowConfig<any, any> = {
       component,
-      injector,
+      injector
     };
 
     if (options) {
-      Object.assign(windowConfig, DeleteUndefinedProperties(options));
+      windowConfig = Object.assign(DeleteUndefinedProperties(options), windowConfig);
     }
 
     const windowRef = this.windowService.open(windowConfig);
