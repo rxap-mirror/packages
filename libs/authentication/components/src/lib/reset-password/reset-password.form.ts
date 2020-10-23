@@ -13,7 +13,8 @@ import {
   map,
   switchMap,
   first,
-  tap
+  tap,
+  take
 } from 'rxjs/operators';
 import {
   UseFormControl,
@@ -46,7 +47,7 @@ export class ResetPasswordFormSubmitMethod implements FormSubmitMethod<any> {
 
   public call(value: { password: string }): boolean | Promise<boolean> {
     return this.route.params.pipe(
-      first(),
+      take(1),
       map(params => params.token),
       switchMap(token => this.authentication.sendPasswordReset(value.password, token)),
       tap(result => {

@@ -32,7 +32,8 @@ import {
 } from 'rxjs';
 import {
   tap,
-  first
+  first,
+  take
 } from 'rxjs/operators';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 
@@ -226,7 +227,7 @@ export class DataSourceCollectionDirective<Data = any>
         .dataSource
         .connect(this.viewer);
       this.zone.onStable.pipe(
-        first(),
+        take(1),
         tap(() => {
           this.zone.run(() => {
             this.subscription.add(this

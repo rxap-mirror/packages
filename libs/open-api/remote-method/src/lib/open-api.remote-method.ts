@@ -33,7 +33,8 @@ import {
   timeout,
   retry,
   catchError,
-  tap
+  tap,
+  take
 } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Mixin } from '@rxap/mixin';
@@ -121,8 +122,8 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
       }),
       map((event: HttpResponse<Response>) => event.body),
       isDefined(),
-      first(),
-      timeout(this.timeout),
+      take(1),
+      timeout(this.timeout)
     ).toPromise();
 
   }

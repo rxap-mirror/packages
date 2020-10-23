@@ -35,7 +35,8 @@ import {
   skip,
   catchError,
   first,
-  timeout
+  timeout,
+  take
 } from 'rxjs/operators';
 import {
   Inject,
@@ -124,8 +125,8 @@ export class HttpDataSource<Data = any, PathParams = any, Body = any> extends Ba
       }),
       map((event: HttpResponse<Data>) => event.body),
       map(data => this.transform(data)),
-      first(),
-      timeout(this.timeout),
+      take(1),
+      timeout(this.timeout)
     );
   }
 

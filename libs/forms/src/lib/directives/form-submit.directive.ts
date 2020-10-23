@@ -15,7 +15,8 @@ import {
 import { FormDirective } from './form.directive';
 import {
   first,
-  tap
+  tap,
+  take
 } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -59,7 +60,7 @@ export class FormSubmitDirective extends ConfirmClick implements OnDestroy {
 
   protected execute() {
     this.subscription = this.formDirective.rxapSubmit.pipe(
-      first(),
+      take(1),
       tap(event => {
         this.afterSubmit.emit(event);
         if (this._resetAfterSubmit) {

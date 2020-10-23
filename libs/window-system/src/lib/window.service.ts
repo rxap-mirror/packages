@@ -25,7 +25,8 @@ import {
 } from './window-context';
 import {
   first,
-  tap
+  tap,
+  take
 } from 'rxjs/operators';
 import { DefaultWindowComponent } from './default-window/default-window.component';
 import { uuid } from '@rxap/utilities';
@@ -130,12 +131,12 @@ export class WindowService {
     overlayRef.attach(containerPortal);
 
     overlayRef.backdropClick().pipe(
-      first(),
+      take(1),
       tap(() => windowRef.close())
     ).subscribe();
 
     windowRef.closed$.pipe(
-      first(),
+      take(1),
       tap(() => this.remove(windowConfig.id))
     ).subscribe();
 

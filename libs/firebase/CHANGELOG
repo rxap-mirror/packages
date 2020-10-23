@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.5]
+### Fixed
+- replace all rxjs operators first() with take(1)
+
 ## [0.1.4]
 ### Fixed
 - add missing peer deps

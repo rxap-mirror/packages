@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.30]
+### Fixed
+- replace all rxjs operators first() with take(1)
+
 ## [0.3.29]
 ### Fixed
 - (DynamicTableDataSource): refresh issue

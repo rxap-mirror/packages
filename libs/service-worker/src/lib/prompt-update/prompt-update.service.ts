@@ -8,7 +8,8 @@ import {
   filter,
   tap,
   map,
-  first
+  first,
+  take
 } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { PromptUpdateComponent } from './prompt-update.component';
@@ -48,7 +49,12 @@ export class PromptUpdateService {
       }
     );
 
-    return dialogRef.afterClosed().pipe(map(Boolean), first());
+    return dialogRef
+      .afterClosed()
+      .pipe(
+        map(Boolean),
+        take(1)
+      );
   }
 
 }

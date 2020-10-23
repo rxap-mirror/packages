@@ -45,7 +45,8 @@ import {
   filter,
   catchError,
   first,
-  timeout
+  timeout,
+  take
 } from 'rxjs/operators';
 import { Mixin } from '@rxap/mixin';
 import { RXAP_OPEN_API_STRICT_VALIDATOR } from '@rxap/open-api';
@@ -186,8 +187,8 @@ export class OpenApiDataSource<Response = any, Parameters extends Record<string,
       }),
       map((event: HttpResponse<Response>) => event.body),
       isDefined(),
-      first(),
-      timeout(this.timeout),
+      take(1),
+      timeout(this.timeout)
     );
   }
 

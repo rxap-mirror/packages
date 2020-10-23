@@ -15,7 +15,8 @@ import { Observable } from 'rxjs';
 import { RxapAuthenticationService } from './authentication.service';
 import {
   map,
-  first
+  first,
+  take
 } from 'rxjs/operators';
 import { RXAP_AUTHENTICATION_DEACTIVATED } from './tokens';
 
@@ -64,7 +65,7 @@ export class RxapAuthenticationGuard implements CanActivate, CanActivateChild {
     }
 
     return this.isAuthenticated().pipe(
-      first(),
+      take(1),
       map(authenticated => {
         if (authenticated === null) {
           if (!this.lastUrl || (state.url !== '/' && !state.url.match(/authentication\/login/))) {

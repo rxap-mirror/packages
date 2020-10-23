@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.2]
+### Fixed
+- replace all rxjs operators first() with take(1)
+
 ## [0.4.1]
 ### Fixed
 - angular material style imports

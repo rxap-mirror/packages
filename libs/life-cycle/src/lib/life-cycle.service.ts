@@ -7,6 +7,7 @@ import {
   filter,
   first,
   switchMap,
+  take
 } from 'rxjs/operators';
 import {
   BehaviorSubject,
@@ -41,7 +42,7 @@ export class LifeCycleService {
     LifeCycleService.AddHook('stable', appRef.isStable.pipe(
       log('is app stable'),
       filter(Boolean),
-      first(),
+      take(1),
       log('app is ready')
     ).toPromise());
 
@@ -53,7 +54,7 @@ export class LifeCycleService {
 
     return this.isReady$.pipe(
       filter(Boolean),
-      first(),
+      take(1),
       switchMap(() => {
 
         if (typeof thenOrFunction === 'function') {

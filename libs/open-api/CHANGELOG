@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.7]
+### Fixed
+- replace all rxjs operators first() with take(1)
+
 ## [0.3.6]
 ### Fixed
 - catch unresolvable openapi schema references

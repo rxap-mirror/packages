@@ -15,7 +15,8 @@ import {
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
   first,
-  tap
+  tap,
+  take
 } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
@@ -78,7 +79,7 @@ export class ConfirmDirective<T = any> implements OnDestroy {
     this.subscription = new Subscription();
 
     this.subscription.add(componentRef.instance.confirmed.pipe(
-      first(),
+      take(1),
       tap(() => this.confirmed.emit(this._eventValue)),
       tap(() => this.overlayRef?.dispose()),
       tap(() => this.subscription = null),
@@ -86,7 +87,7 @@ export class ConfirmDirective<T = any> implements OnDestroy {
     ).subscribe());
 
     this.subscription.add(componentRef.instance.unconfirmed.pipe(
-      first(),
+      take(1),
       tap(() => this.unconfirmed.emit(this._eventValue)),
       tap(() => this.overlayRef?.dispose()),
       tap(() => this.subscription = null),
@@ -94,7 +95,7 @@ export class ConfirmDirective<T = any> implements OnDestroy {
     ).subscribe());
 
     this.subscription.add(this.overlayRef.detachments().pipe(
-      first(),
+      take(1),
       tap(() => this.subscription = null),
       tap(() => this.subscription?.unsubscribe())
     ).subscribe());
