@@ -9,12 +9,15 @@
     class="sidenav"
   >
     <rxap-sidenav>
-      <img
-        [routerLink]="['/']"
-        alt="logo"
-        [width]="layoutComponentService.logo.width"
-        [src]="layoutComponentService.logo.src"
-      />
+      <ng-template rxapSidenavHeader>
+        <img
+          [routerLink]="['/']"
+          alt="logo"
+          class="logo"
+          [width]="layoutComponentService.logo.width"
+          [src]="layoutComponentService.logo.src"
+        />
+      </ng-template>
     </rxap-sidenav>
   </mat-sidenav>
   <mat-sidenav-content class="content">

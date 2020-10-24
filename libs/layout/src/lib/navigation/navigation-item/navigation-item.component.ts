@@ -30,6 +30,7 @@ import {
   tap,
   delay
 } from 'rxjs/operators';
+import { SidenavComponentService } from '../../sidenav/sidenav.component.service';
 
 @Component({
   selector:        'rxap-navigation-item',
@@ -68,12 +69,15 @@ export class NavigationItemComponent implements OnChanges, AfterViewInit, OnDest
 
   private _subscription?: Subscription;
 
-  constructor(private readonly router: Router) {}
+  constructor(
+    private readonly router: Router,
+    public readonly sidenav: SidenavComponentService
+  ) {}
 
   public ngOnChanges(changes: SimpleChanges) {
     if (changes.item) {
       const item: NavigationItem = changes.item.currentValue;
-      this.children = item.children && item.children.length ? item.children : null;
+      this.children              = item.children && item.children.length ? item.children : null;
     }
   }
 

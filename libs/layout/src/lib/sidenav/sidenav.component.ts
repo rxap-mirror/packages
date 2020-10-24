@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { SidenavFooterDirective } from './sidenav-footer.directive';
 import { SidenavHeaderDirective } from './sidenav-header.directive';
+import { SidenavComponentService } from './sidenav.component.service';
 
 @Component({
   selector:        'rxap-sidenav',
@@ -22,5 +23,7 @@ export class SidenavComponent {
 
   @ContentChild(SidenavHeaderDirective)
   public sidenavHeaderDirective?: SidenavHeaderDirective;
+
+  constructor(public readonly sidenav: SidenavComponentService) {}
 
 }
