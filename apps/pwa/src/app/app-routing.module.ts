@@ -69,6 +69,7 @@ function BuildRoutes(packages: Package[]): Routes {
 
 function BuildNavigation(packages: string[]): Navigation {
   return packages.map(packageName => ({
+    icon:       { icon: 'folder' },
     label:      `@rxap/${packageName}`,
     routerLink: [ '/', packageName ]
   }));
@@ -105,6 +106,7 @@ export const APP_ROUTER_CONFIG: ExtraOptions = {};
     LayoutModule.withNavigation([
       {
         label:      '@rxap/*',
+        icon:       { icon: 'home' },
         routerLink: [ '/', 'overview' ]
       },
       ...BuildNavigation(PACKAGES.map(packageDef => packageDef.name))
