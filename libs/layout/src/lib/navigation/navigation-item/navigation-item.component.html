@@ -13,14 +13,16 @@
 
     <a (click)="!expanded && (expanded = true)" class="link mat-body-2 mat-body-strong" matRipple>
       <mat-icon *ngIf="item.icon" [rxapIcon]="item.icon" class="icon"></mat-icon>
-      <span class="label">{{ item.label }}</span>
-      <span class="controls-placeholder"></span>
+      <ng-template [ngIf]="!(sidenav.collapsed$ | async)">
+        <span class="label">{{ item.label }}</span>
+        <span class="controls-placeholder"></span>
+      </ng-template>
     </a>
 
   </div>
 
   <rxap-navigation
-    *ngIf="expanded"
+    *ngIf="expanded && !(sidenav.collapsed$ | async)"
     [@sub-nav]
     [items]="children"
     class="sub-items"

@@ -6,9 +6,9 @@
 
   .item {
     cursor: pointer;
-    height: 48px;
-    margin: 1px 8px;
-    padding: 2px 8px;
+    height: 38px;
+    margin: 1px 6px;
+    padding: 2px 4px;
     display: flex;
     align-items: stretch;
     justify-content: stretch;
@@ -22,7 +22,7 @@
       border-radius: 5px;
 
       .icon {
-        margin: 12px;
+        margin: 0 12px;
       }
 
       .label {
