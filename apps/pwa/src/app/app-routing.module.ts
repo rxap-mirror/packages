@@ -44,7 +44,17 @@ function BuildRoutes(packages: Package[]): Routes {
       component: DocumentationComponent,
       data:      {
         tabs: {}
-      }
+      },
+      children:  [
+        {
+          path:      'test',
+          component: DocumentationComponent
+        },
+        {
+          path:      'test2',
+          component: DocumentationComponent
+        }
+      ]
     });
 
     if (packageDef.compodoc) {
@@ -71,7 +81,31 @@ function BuildNavigation(packages: string[]): Navigation {
   return packages.map(packageName => ({
     icon:       { icon: 'folder' },
     label:      `@rxap/${packageName}`,
-    routerLink: [ '/', packageName ]
+    routerLink: [ '/', packageName ],
+    children:   [
+      {
+        icon:       { icon: 'folder' },
+        label:      'test',
+        routerLink: [ '/', packageName, 'test' ],
+        children:   [
+          {
+            // icon:       { icon: 'folder' },
+            label:      'test',
+            routerLink: [ '/', packageName, 'test', 'test' ]
+          },
+          {
+            icon:       { icon: 'folder' },
+            label:      'test2',
+            routerLink: [ '/', packageName, 'test2', 'test2' ]
+          }
+        ]
+      },
+      {
+        icon:       { icon: 'folder' },
+        label:      'test2',
+        routerLink: [ '/', packageName, 'test2' ]
+      }
+    ]
   }));
 }
 

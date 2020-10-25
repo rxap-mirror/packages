@@ -9,11 +9,19 @@ import {
   AfterViewInit,
   HostBinding,
   ViewEncapsulation,
-  ChangeDetectorRef,
   ElementRef,
-  Renderer2
+  Renderer2,
+  HostListener,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef,
+  EmbeddedViewRef,
+  ChangeDetectorRef
 } from '@angular/core';
-import { Required } from '@rxap/utilities';
+import {
+  Required,
+  DebounceCall
+} from '@rxap/utilities';
 import {
   trigger,
   style,
@@ -34,9 +42,16 @@ import {
   filter,
   tap,
   delay,
-  startWith
+  startWith,
+  distinctUntilChanged,
+  skip
 } from 'rxjs/operators';
 import { SidenavComponentService } from '../../sidenav/sidenav.component.service';
+import {
+  Overlay,
+  OverlayRef
+} from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
 
 @Component({
   selector:        'li[rxap-navigation-item]',
@@ -61,7 +76,8 @@ import { SidenavComponentService } from '../../sidenav/sidenav.component.service
     ])
   ]
 })
-export class NavigationItemComponent implements OnChanges, AfterViewInit, OnDestroy {
+export class NavigationItemComponent
+  implements OnChanges, AfterViewInit, OnDestroy, OnInit {
 
   public children: Navigation | null = null;
 
@@ -78,13 +94,26 @@ export class NavigationItemComponent implements OnChanges, AfterViewInit, OnDest
   @HostBinding('class.active')
   public isActive: boolean = false;
 
-  private _subscription?: Subscription;
+  @ViewChild('navigationOverlay')
+  private _navigationOverlay!: TemplateRef<any>;
+
+  private readonly _subscription = new Subscription();
+
+  private _overlayRef?: OverlayRef;
+  private _embeddedViewRef?: EmbeddedViewRef<any>;
+
+  /**
+   * indicates the mouse is over the
+   */
+  public lockeOverlay: boolean = false;
 
   constructor(
     private readonly router: Router,
     public readonly sidenav: SidenavComponentService,
     private readonly elementRef: ElementRef,
-    private readonly renderer: Renderer2
+    private readonly renderer: Renderer2,
+    private readonly overlay: Overlay,
+    private readonly viewContainerRef: ViewContainerRef
   ) {}
 
   public ngOnChanges(changes: SimpleChanges) {
@@ -95,23 +124,73 @@ export class NavigationItemComponent implements OnChanges, AfterViewInit, OnDest
   }
 
   public ngAfterViewInit() {
-    // this.updateExpanded();
-    this._subscription = this.router.events.pipe(
+    this._subscription.add(this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       startWith(true),
       delay(100),
       tap(() => {
         if (this.routerLinkActive.isActive) {
+          if (!this.sidenav.collapsed$.value) {
+            // only close the overlay if sidenav collapsed
+            this._overlayRef?.detach();
+          }
           this.renderer.addClass(this.elementRef.nativeElement, 'active');
         } else {
           this.renderer.removeClass(this.elementRef.nativeElement, 'active');
         }
       })
-    ).subscribe();
+    ).subscribe());
+  }
+
+  public ngOnInit() {
+    // detach the navigation overlay if the sidenav collapsed
+    // state is changed
+    this._subscription.add(this.sidenav.collapsed$.pipe(
+      skip(1),
+      distinctUntilChanged(),
+      tap(() => this._overlayRef?.detach())
+    ).subscribe());
   }
 
   public ngOnDestroy() {
     this._subscription?.unsubscribe();
+    this._overlayRef?.dispose();
+  }
+
+  @HostListener('mouseenter')
+  public onMouseenter() {
+    if (this.children) {
+      if (!this.routerLinkActive.isActive || this.sidenav.collapsed$.value) {
+        if (!this._overlayRef) {
+          this._overlayRef = this.overlay.create({
+            positionStrategy: this.overlay
+                                  .position()
+                                  .flexibleConnectedTo(this.elementRef)
+                                  .withPositions([
+                                    {
+                                      originY:  'top',
+                                      originX:  'end',
+                                      overlayY: 'top',
+                                      overlayX: 'start'
+                                    }
+                                  ])
+          });
+        }
+        if (!this._overlayRef.hasAttached()) {
+          this._embeddedViewRef = this._overlayRef.attach(
+            new TemplatePortal(this._navigationOverlay, this.viewContainerRef)
+          );
+        }
+      }
+    }
+  }
+
+  @HostListener('mouseleave')
+  @DebounceCall(100)
+  public onMouseleave() {
+    if (!this.lockeOverlay) {
+      this._overlayRef?.detach();
+    }
   }
 
 }

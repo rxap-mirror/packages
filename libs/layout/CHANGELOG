@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.9.0]
+### Changed
+- add sidenav collapse
+- restyle navigation
+
 ## [0.8.1]
 ### Fixed
 - angular material style imports
