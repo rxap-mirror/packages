@@ -5,7 +5,10 @@ import {
   Input,
   Inject,
   OnDestroy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ViewEncapsulation,
+  HostListener,
+  HostBinding
 } from '@angular/core';
 import { Navigation } from './navigation-item';
 import {
@@ -18,14 +21,16 @@ import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Component({
-  selector:        'rxap-navigation',
+  selector:        'ul[rxap-navigation]',
   templateUrl:     './navigation.component.html',
   styleUrls:       [ './navigation.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'rxap-navigation' }
+  encapsulation:   ViewEncapsulation.None,
+  host:            { class: 'rxap-navigation' }
 })
 export class NavigationComponent implements OnInit, OnDestroy {
 
+  @HostBinding('class.navigation-root-level')
   private _root = false;
 
   @Input()
@@ -39,14 +44,17 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   public subscription?: Subscription;
 
+  @Input()
+  public level: number = 0;
+
   constructor(
     private readonly navigationService: NavigationService,
-    private readonly cdr: ChangeDetectorRef,
+    private readonly cdr: ChangeDetectorRef
   ) {}
 
   public ngOnInit(): void {
     if (this._root) {
-      this.items = [];
+      this.items        = [];
       this.subscription = this.navigationService.config$.pipe(
         tap(navigation => this.items = navigation),
         tap(() => this.cdr.detectChanges())

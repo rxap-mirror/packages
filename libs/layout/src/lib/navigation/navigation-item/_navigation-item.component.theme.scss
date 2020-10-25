@@ -8,31 +8,24 @@
 
   .rxap-navigation-item {
 
-    .container {
+    .navigation-link {
 
-      .item {
+      color: map-get($foreground, hint-text);
 
-        &:focus {
-          outline: none ;
-        }
+      &:focus {
+        outline: none;
+      }
 
-        &.active {
-          color: mat-color($accent);
+      &:hover {
+        color: map-get($foreground, text);
+      }
 
-          .link {
-            background-color: rgba(mat-color($accent), 0.1);
-          }
+      &.link-active {
+        color: mat-color($accent);
+      }
 
-        }
-
-        .link {
-
-          &:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-          }
-
-        }
-
+      &:active {
+        color: mat-color($accent);
       }
 
     }

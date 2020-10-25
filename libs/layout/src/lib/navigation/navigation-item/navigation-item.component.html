@@ -1,32 +1,18 @@
-<div class="container">
+<a [routerLink]="item.routerLink"
+   routerLinkActive="link-active"
+   class="navigation-link mat-body-2 mat-body-strong navigation-level-{{level}}" matRipple>
+  <mat-icon *ngIf="item.icon" [rxapIcon]="item.icon" class="icon"></mat-icon>
+  <ng-template [ngIf]="!(sidenav.collapsed$ | async)">
+    <span class="label">{{ item.label }}</span>
+  </ng-template>
+</a>
 
-  <div [routerLink]="item.routerLink"
-       class="item"
-       routerLinkActive="active">
-
-    <div *ngIf="children" class="controls">
-      <button type="button" (click)="expanded = !expanded" mat-icon-button rxapStopPropagation>
-        <mat-icon *ngIf="!expanded">keyboard_arrow_left</mat-icon>
-        <mat-icon *ngIf="expanded">keyboard_arrow_down</mat-icon>
-      </button>
-    </div>
-
-    <a (click)="!expanded && (expanded = true)" class="link mat-body-2 mat-body-strong" matRipple>
-      <mat-icon *ngIf="item.icon" [rxapIcon]="item.icon" class="icon"></mat-icon>
-      <ng-template [ngIf]="!(sidenav.collapsed$ | async)">
-        <span class="label">{{ item.label }}</span>
-        <span class="controls-placeholder"></span>
-      </ng-template>
-    </a>
-
-  </div>
-
-  <rxap-navigation
-    *ngIf="expanded && !(sidenav.collapsed$ | async)"
+<ul rxap-navigation
+    *ngIf="routerLinkActive.isActive && !(sidenav.collapsed$ | async)"
     [@sub-nav]
     [items]="children"
+    [level]="level + 1"
     class="sub-items"
     fxFlex="nogrow"
-  ></rxap-navigation>
-
-</div>
+>
+</ul>
