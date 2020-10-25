@@ -6,7 +6,7 @@
   $accent: map-get($theme, accent);
   $isDark: map-get($theme, is-dark);
 
-  .rxap-navigation-item {
+  .rxap-navigation-item, .navigation-overlay-container {
 
     .navigation-link {
 
@@ -20,16 +20,20 @@
         color: map-get($foreground, text);
       }
 
-      &.link-active {
-        color: mat-color($accent);
-      }
-
-      &:active {
-        color: mat-color($accent);
+      &.link-active, &:active {
+        @if $isDark {
+          color: mat-color($accent, 300);
+        } @else {
+          color: mat-color($accent, 700);
+        }
       }
 
     }
 
+  }
+
+  .navigation-overlay-container {
+    background-color: map-get($background, dialog);
   }
 
 }

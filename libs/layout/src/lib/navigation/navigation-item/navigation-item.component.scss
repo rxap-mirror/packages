@@ -1,4 +1,4 @@
-.rxap-navigation-item {
+.rxap-navigation-item, .navigation-overlay-container {
   display: flex;
   flex-direction: column;
   min-height: 48px;
@@ -23,10 +23,40 @@
 
     &.navigation-level-1 {
       padding-left: 52px;
+
+      .icon {
+        padding-left: 0;
+      }
+
     }
 
     &.navigation-level-2 {
-      padding-left: 52px * 2;
+      padding-left: 52px + 52px - 16px;
+
+      .icon {
+        padding-left: 0;
+      }
+
+    }
+
+  }
+
+}
+
+.navigation-overlay-container {
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    .navigation-link {
+      padding: 0 16px;
+
+      .icon {
+        margin-left: -16px;
+      }
+
     }
 
   }

@@ -30,7 +30,6 @@ import { tap } from 'rxjs/operators';
 })
 export class NavigationComponent implements OnInit, OnDestroy {
 
-  @HostBinding('class.navigation-root-level')
   private _root = false;
 
   @Input()
