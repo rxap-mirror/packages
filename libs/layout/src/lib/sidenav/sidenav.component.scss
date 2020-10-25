@@ -14,7 +14,6 @@
 
     .nav-container {
       overflow-y: scroll;
-      margin-left: 6px;
       padding-top: 12px;
 
       &::-webkit-scrollbar {
@@ -40,7 +39,7 @@
     min-height: 48px;
 
     .content {
-      padding: 0 12px;
+      padding: 0 0px;
     }
 
     .arrow {

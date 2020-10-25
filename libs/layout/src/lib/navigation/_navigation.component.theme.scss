@@ -12,6 +12,16 @@
       color: map-get($foreground, hint-text);
     }
 
+    .item {
+      $border-width: 4px;
+      border-left: $border-width solid transparent;
+
+      &.active {
+        border-left: $border-width solid mat-color($accent);
+      }
+
+    }
+
   }
 
 }

@@ -6,7 +6,12 @@ import {
   SimpleChanges,
   ViewChild,
   OnDestroy,
-  AfterViewInit
+  AfterViewInit,
+  HostBinding,
+  ViewEncapsulation,
+  ChangeDetectorRef,
+  ElementRef,
+  Renderer2
 } from '@angular/core';
 import { Required } from '@rxap/utilities';
 import {
@@ -28,15 +33,17 @@ import { Subscription } from 'rxjs';
 import {
   filter,
   tap,
-  delay
+  delay,
+  startWith
 } from 'rxjs/operators';
 import { SidenavComponentService } from '../../sidenav/sidenav.component.service';
 
 @Component({
-  selector:        'rxap-navigation-item',
+  selector:        'li[rxap-navigation-item]',
   templateUrl:     './navigation-item.component.html',
   styleUrls:       [ './navigation-item.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation:   ViewEncapsulation.None,
   host:            {
     class: 'rxap-navigation-item'
   },
@@ -44,7 +51,7 @@ import { SidenavComponentService } from '../../sidenav/sidenav.component.service
     trigger('sub-nav', [
       transition(':enter', [
         style({ display: 'block', height: '0', overflow: 'hidden' }),
-        animate(300, style({ height: '*' }))
+        animate(150, style({ height: '*' }))
       ]),
       transition(':leave', [
         style({ overflow: 'hidden' }),
@@ -65,13 +72,19 @@ export class NavigationItemComponent implements OnChanges, AfterViewInit, OnDest
   @Required
   public item!: NavigationItem;
 
-  public expanded = false;
+  @Input()
+  public level: number = 0;
+
+  @HostBinding('class.active')
+  public isActive: boolean = false;
 
   private _subscription?: Subscription;
 
   constructor(
     private readonly router: Router,
-    public readonly sidenav: SidenavComponentService
+    public readonly sidenav: SidenavComponentService,
+    private readonly elementRef: ElementRef,
+    private readonly renderer: Renderer2
   ) {}
 
   public ngOnChanges(changes: SimpleChanges) {
@@ -82,20 +95,19 @@ export class NavigationItemComponent implements OnChanges, AfterViewInit, OnDest
   }
 
   public ngAfterViewInit() {
-    this.updateExpanded();
+    // this.updateExpanded();
     this._subscription = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
+      startWith(true),
       delay(100),
-      tap(() => this.updateExpanded())
+      tap(() => {
+        if (this.routerLinkActive.isActive) {
+          this.renderer.addClass(this.elementRef.nativeElement, 'active');
+        } else {
+          this.renderer.removeClass(this.elementRef.nativeElement, 'active');
+        }
+      })
     ).subscribe();
-  }
-
-  public updateExpanded(): void {
-    if (this.routerLinkActive.isActive) {
-      if (!this.expanded) {
-        this.expanded = true;
-      }
-    }
   }
 
   public ngOnDestroy() {
