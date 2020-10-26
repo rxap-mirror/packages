@@ -200,6 +200,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
     if (parameters !== undefined) {
 
       for (const parameter of operationParameters.filter(p => p.in === 'query')) {
+        const parameterName = parameter.name;
 
         if (parameters.hasOwnProperty(parameter.name)) {
 
@@ -211,10 +212,10 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
               const first = value.shift();
 
-              params = params.set(parameters.name, first);
+              params = params.set(parameterName, first);
 
               for (const item of value) {
-                params = params.append(parameters.name, item);
+                params = params.append(parameterName, item);
               }
 
             }
