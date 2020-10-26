@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.5]
+### Fixed
+- add the prefix variable to the template context
+
 ## [0.0.4]
 ### Fixed
 - add the current prefix to the index files

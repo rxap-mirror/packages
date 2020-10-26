@@ -74,7 +74,7 @@ export default function(options: AddSchema): Rule {
       host.exists(indexScssFilePath) ?
       noop() :
       mergeWith(apply(url('./files'), [
-        applyTemplates({ ...options }),
+        applyTemplates({ ...options, prefix }),
         move(indexScssPath)
       ]))
     ]);
