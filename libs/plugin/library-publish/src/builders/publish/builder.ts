@@ -48,23 +48,31 @@ export class Builder {
   private async extractOutputPath(buildTarget: Target, root: string): Promise<string> {
     const buildTargetOptions = await this.context.getTargetOptions(buildTarget);
 
-    const ngPackageFile = buildTargetOptions.project;
+    if (buildTargetOptions.hasOwnProperty('project')) {
 
-    if (!ngPackageFile || typeof ngPackageFile !== 'string') {
-      throw new Error(`Could not extract ng-package.json for build target '${this.options.buildTarget}'`);
+      const ngPackageFile = buildTargetOptions.project;
+
+      if (!ngPackageFile || typeof ngPackageFile !== 'string') {
+        throw new Error(`Could not extract ng-package.json for build target '${this.options.buildTarget}'`);
+      }
+
+      const readFile = new ReadFile();
+
+      const ngPackage = JSON.parse(readFile.sync(join(process.cwd(), ngPackageFile)));
+
+      const outputPath = join(root, ngPackage.dest);
+
+      if (!outputPath || typeof outputPath !== 'string') {
+        throw new Error(`Could not extract output path for build target '${this.options.buildTarget}'`);
+      }
+
+      return outputPath;
+
+    } else if (buildTargetOptions.hasOwnProperty('outputPath')) {
+      return buildTargetOptions.outputPath as string;
     }
 
-    const readFile = new ReadFile();
-
-    const ngPackage = JSON.parse(readFile.sync(join(process.cwd(), ngPackageFile)));
-
-    const outputPath = join(root, ngPackage.dest);
-
-    if (!outputPath || typeof outputPath !== 'string') {
-      throw new Error(`Could not extract output path for build target '${this.options.buildTarget}'`);
-    }
-
-    return outputPath;
+    throw new Error('Could not extract the output path');
   }
 
   private async extractRootPath(project: string): Promise<string> {
