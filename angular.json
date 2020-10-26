@@ -2263,6 +2263,13 @@
         },
         "readme": {
           "builder": "@rxap-plugin/readme-generator:plugin"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "plugin-scss-bundle:build",
+            "preTarget": "plugin-scss-bundle:pack"
+          }
         }
       }
     },
