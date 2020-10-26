@@ -28,7 +28,7 @@ export default function(options: ConfigSchema): Rule {
           if (!options.buildTarget) {
             if (project.targets.has('build')) {
               const buildTarget = project.targets.get('build')!;
-              if (buildTarget.configurations?.hasOwnProperty('production')) {
+              if (buildTarget.configurations && buildTarget.configurations[ 'production' ]) {
                 targetOptions.buildTarget = `${options.project}:build:production`;
               } else {
                 targetOptions.buildTarget = `${options.project}:build`;
@@ -47,7 +47,7 @@ export default function(options: ConfigSchema): Rule {
               targetOptions.preTarget = `${options.project}:pack`;
             } else if (project.targets.has('build')) {
               const buildTarget = project.targets.get('build')!;
-              if (buildTarget.configurations?.hasOwnProperty('production')) {
+              if (buildTarget.configurations && buildTarget.configurations[ 'production' ]) {
                 targetOptions.preTarget = `${options.project}:build:production`;
               } else {
                 targetOptions.preTarget = `${options.project}:build`;
