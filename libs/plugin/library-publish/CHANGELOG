@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.2]
+### Fixed
+- (config): only use production config if available
+
 ## [0.0.1]
 
 Package initialisation
