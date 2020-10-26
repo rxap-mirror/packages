@@ -18,6 +18,9 @@ import {
   startWith
 } from 'rxjs/operators';
 
+/**
+ * @deprecated removed
+ */
 @Directive({
   selector: '[rxapFormControlError]'
 })
