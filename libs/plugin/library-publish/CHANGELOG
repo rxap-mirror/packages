@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.4]
+### Fixed
+- (config): remove the usage of hasOwnProperty
+
 ## [0.0.3]
 ### Fixed
 - (builder): add support for none angular projects
