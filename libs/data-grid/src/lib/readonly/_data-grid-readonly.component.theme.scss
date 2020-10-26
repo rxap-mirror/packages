@@ -1,0 +1,50 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-data-grid-readonly-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-data-grid-readonly {
+
+    table {
+
+      border-collapse: separate;
+      border-spacing: 32px 8px;
+      border: 0;
+
+      thead {
+        padding-bottom: 16px;
+
+        tr {
+          th {
+            border-bottom: 3px solid map-get($foreground, divider);
+            border-spacing: 32px 16px;
+            color: map-get($foreground, disabled);
+          }
+        }
+      }
+
+      th {
+        text-align: left;
+      }
+
+      td.value {
+        padding-right: 48px;
+        min-width: 192px;
+      }
+
+    }
+
+  }
+
+}
+
+@mixin rxap-data-grid-readonly-typography($config) {
+  .rxap-data-grid-readonly {
+  }
+}
+

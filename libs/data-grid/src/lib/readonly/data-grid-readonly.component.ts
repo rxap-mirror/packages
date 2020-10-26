@@ -14,6 +14,7 @@ import { Required } from '@rxap/utilities';
   templateUrl:     './data-grid-readonly.component.html',
   styleUrls:       [ './data-grid-readonly.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'rxap-data-grid-readonly' }
 })
 export class DataGridReadonlyComponent {
 
