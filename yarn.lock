@@ -2922,10 +2922,10 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@rxap-plugin/library-publish@0.0.1":
-  version "0.0.1"
-  resolved "https://npm.rxap.dev/@rxap-plugin%2flibrary-publish/-/library-publish-0.0.1.tgz#3f57386597dea089783022ec7765d38e5c6ff231"
-  integrity sha512-B1GtPY33+ilXfDnYyr8SvBr/z872rVIMD6yTO5Q+kZPN7R92EVZQVo8BcAK5DIZwBD9Hwd4hnNc6vjVh4ohGAg==
+"@rxap-plugin/library-publish@^0.0.4":
+  version "0.0.4"
+  resolved "https://npm.rxap.dev/@rxap-plugin%2flibrary-publish/-/library-publish-0.0.4.tgz#b8d226a46d1bcab1fca40b8c4cfeb2e95dd747eb"
+  integrity sha512-i/JaJrzI42kelGFD+y1e5xuC+qfu1l/XqJG1L3yR+u2waQHqD9gqNuR2FCKIrovsvUGwMCfBtogGlAvHGhvUgw==
 
 "@rxap-plugin/library-schematics@0.0.6":
   version "0.0.6"

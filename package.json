@@ -119,7 +119,7 @@
     "@nrwl/nx-plugin": "10.0.7",
     "@nrwl/storybook": "10.0.7",
     "@nrwl/workspace": "10.0.7",
-    "@rxap-plugin/library-publish": "0.0.1",
+    "@rxap-plugin/library-publish": "^0.0.4",
     "@rxap-plugin/library-schematics": "0.0.6",
     "@rxap-plugin/pack": "0.0.6",
     "@rxap-plugin/readme-generator": "0.0.1",

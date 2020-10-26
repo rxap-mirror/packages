@@ -2258,7 +2258,10 @@
         "pack": {
           "builder": "@rxap-plugin/pack:build",
           "options": {
-            "targets": ["plugin-scss-bundle:readme", "plugin-scss-bundle:build"]
+            "targets": [
+              "plugin-scss-bundle:readme",
+              "plugin-scss-bundle:build"
+            ]
           }
         },
         "readme": {
@@ -2974,6 +2977,13 @@
         },
         "readme": {
           "builder": "@rxap-plugin/readme-generator:plugin"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "plugin-library-publish:build",
+            "preTarget": "plugin-library-publish:pack"
+          }
         }
       }
     },
@@ -3903,6 +3913,45 @@
             "passWithNoTests": true,
             "setupFile": "libs/material/form-system/src/test-setup.ts"
           }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "material-form-system:update-package-group",
+              "material-form-system:build:production",
+              "material-form-system:scss-bundle",
+              "material-form-system:schematics"
+            ]
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "material-form-system:build:production",
+            "skipBuild": true,
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
+          }
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "material-form-system:build:production",
+            "preTarget": "material-form-system:pack"
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "material-form-system:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/material/form-system/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
         }
       },
       "schematics": {
