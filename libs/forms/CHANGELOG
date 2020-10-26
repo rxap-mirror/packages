@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.3]
+### Fixed
+- (RxapFormControl): check for error change also on status change
+
 ## [0.2.2]
 ### Fixed
 - replace all rxjs operators first() with take(1)

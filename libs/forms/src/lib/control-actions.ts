@@ -19,7 +19,8 @@ import {
 } from './types';
 import {
   IsEmpty,
-  coerceArray
+  coerceArray,
+  equals
 } from '@rxap/utilities';
 import { RxapFormArray } from './form-array';
 import { RxapFormGroup } from './form-group';
@@ -30,13 +31,6 @@ function getControlValue<T>(control: AbstractControl<T>): T {
     return (control as any).getRawValue();
   }
   return control.value;
-}
-
-function compareErrors(a: ValidationErrors | null, b: ValidationErrors | null) {
-  if (IsEmpty(a) || IsEmpty(b)) {
-    return a === b;
-  }
-  return JSON.stringify(a) === JSON.stringify(b);
 }
 
 export function controlValueChanges$<T>(control: AbstractControl<T>): Observable<T> {
@@ -80,10 +74,12 @@ export function controlErrorChanges$<E>(control: AbstractControl): Observable<E 
   return merge(
     defer(() => of(control.errors as E)),
     control.valueChanges.pipe(
-      map(() => control.errors as E),
-      distinctUntilChanged((a, b) => compareErrors(a, b))
+      map(() => control.errors as E)
+    ),
+    control.statusChanges.pipe(
+      map(() => control.errors as E)
     )
-  );
+  ).pipe(distinctUntilChanged((a, b) => equals(a, b)));
 }
 
 export function enableControl<T>(control: AbstractControl<T>, enabled: boolean, opts?: ControlOptions): void {
