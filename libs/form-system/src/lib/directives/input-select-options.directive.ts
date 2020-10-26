@@ -7,7 +7,10 @@ import {
   Input,
   OnDestroy,
   Injector,
-  INJECTOR
+  INJECTOR,
+  AfterContentInit,
+  Optional,
+  ChangeDetectorRef
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import {
@@ -22,6 +25,7 @@ import {
   Constructor,
   ControlOptions,
   ControlOption,
+  Required
 } from '@rxap/utilities';
 import { Mixin } from '@rxap/mixin';
 import { Subscription } from 'rxjs';
@@ -62,7 +66,7 @@ export interface InputSelectOptionsDirective extends OnInit,
 
 @Mixin(ExtractFormDefinitionMixin, ExtractDataSourcesMixin)
 @Directive({
-  selector: '[rxapInputSelectOptions]',
+  selector: '[rxapInputSelectOptions]'
 })
 export class InputSelectOptionsDirective implements OnInit, OnDestroy {
 
@@ -72,22 +76,42 @@ export class InputSelectOptionsDirective implements OnInit, OnDestroy {
   @Input('rxapInputSelectOptionsMetadata')
   public metadata?: BaseDataSourceMetadata;
 
-  private subscription?: Subscription;
+  protected readonly subscription = new Subscription();
+
+  @Required
+  protected control!: RxapFormControl;
+
+  @Required
+  protected dataSource!: BaseDataSource<ControlOptions | Record<string, any>>;
+
+  @Required
+  protected options!: ControlOptions | Record<string, any>;
 
   constructor(
-    @Inject(NgControl)
-    private readonly ngControl: NgControl,
     @Inject(TemplateRef)
-    private readonly template: TemplateRef<InputSelectOptionsTemplateContext>,
+    protected readonly template: TemplateRef<InputSelectOptionsTemplateContext>,
     @Inject(DataSourceLoader)
-    private readonly dataSourceLoader: DataSourceLoader,
+    protected readonly dataSourceLoader: DataSourceLoader,
     @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
+    protected readonly viewContainerRef: ViewContainerRef,
     @Inject(INJECTOR)
-    private readonly injector: Injector,
+    protected readonly injector: Injector,
+    @Inject(ChangeDetectorRef)
+    protected readonly cdr: ChangeDetectorRef,
+    // The ngControl could be unknown on construction
+    // bc it is available after the content is init
+    @Optional()
+    @Inject(NgControl)
+    protected ngControl: NgControl | null = null
   ) { }
 
-  public ngOnInit() {
+  protected extractControl(ngControl: NgControl | null = this.ngControl): RxapFormControl {
+
+    if (!ngControl) {
+      throw new Error('The ngControl is not defined!');
+    }
+
+    this.ngControl = ngControl;
 
     const control = this.ngControl.control;
 
@@ -95,6 +119,10 @@ export class InputSelectOptionsDirective implements OnInit, OnDestroy {
       throw new Error('Control is not a RxapFormControl!');
     }
 
+    return this.control = control;
+  }
+
+  protected extractDatasource(control: RxapFormControl = this.control): BaseDataSource<ControlOptions | Record<string, any>> {
     const formDefinition = this.extractFormDefinition(control);
 
     const useDataSourceValueMap = this.extractDataSources(formDefinition, control.controlId);
@@ -117,38 +145,43 @@ export class InputSelectOptionsDirective implements OnInit, OnDestroy {
       dataSource = new PipeDataSource(dataSource, map(settings.transformer));
     }
 
-    this.readerTemplate(dataSource);
+    return this.dataSource = dataSource;
+  }
 
+  public ngOnInit() {
+    this.extractControl();
+    this.extractDatasource();
+    this.loadOptions();
   }
 
   public ngOnDestroy() {
     this.subscription?.unsubscribe();
   }
 
-  private readerTemplate(dataSource: BaseDataSource<ControlOptions | Record<string, any>>) {
+  private loadOptions(dataSource: BaseDataSource<ControlOptions | Record<string, any>> = this.dataSource) {
+    this.subscription.add(dataSource.connect(this.viewer).pipe(
+      tap(options => this.renderTemplate(this.options = options))
+    ).subscribe());
+  }
 
-    this.subscription = dataSource.connect(this.viewer).pipe(
-      tap(options => {
+  protected renderTemplate(options: ControlOptions | Record<string, any> = this.options) {
+    this.viewContainerRef.clear();
 
-        this.viewContainerRef.clear();
+    if (!Array.isArray(options)) {
 
-        if (!Array.isArray(options)) {
+      for (const [ value, display ] of Object.entries(options)) {
+        this.viewContainerRef.createEmbeddedView(this.template, { $implicit: { value, display } });
+      }
 
-          for (const [ value, display ] of Object.entries(options)) {
-            this.viewContainerRef.createEmbeddedView(this.template, { $implicit: { value, display } });
-          }
+    } else {
 
-        } else {
+      for (const option of options) {
+        this.viewContainerRef.createEmbeddedView(this.template, { $implicit: option });
+      }
 
-          for (const option of options) {
-            this.viewContainerRef.createEmbeddedView(this.template, { $implicit: option });
-          }
+    }
 
-        }
-
-      })
-    ).subscribe();
-
+    this.cdr.detectChanges();
   }
 
 }
