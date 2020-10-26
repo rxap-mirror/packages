@@ -1,6 +1,6 @@
 {
   "name": "@rxap/data-grid",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "peerDependencies": {
     "@rxap/utilities": ">=0.3.9",
     "rxjs": ">=6.5.5",
@@ -17,6 +17,7 @@
   "ng-update": {
     "migrations": "./schematics/migration.json",
     "packageGroup": [
+      "@rxap/data-grid",
       "@rxap/utilities",
       "@rxap/pipes"
     ]
