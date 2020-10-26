@@ -3,9 +3,24 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^10.0.5",
-    "@angular/core": "^10.0.5"
+    "@angular/core": "^10.0.5",
+    "@rxap/definition": ">=0.0.7",
+    "@rxap/forms": ">=0.2.2",
+    "@rxap/utilities": ">=0.6.0",
+    "@angular/forms": "^10.0.6",
+    "@angular/platform-browser": "^10.0.6",
+    "@angular/router": "^10.0.6",
+    "@angular/material": "^10.1.1",
+    "rxjs": "^6.5.5"
   },
   "dependencies": {
     "tslib": "^2.0.0"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap-material/form-system"
+    ]
   }
 }
