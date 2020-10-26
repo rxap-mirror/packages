@@ -6,7 +6,8 @@ import {
   OnInit,
   TemplateRef,
   ViewContainerRef,
-  NgModule
+  NgModule,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   MAT_FORM_FIELD,
@@ -46,7 +47,8 @@ export class ControlErrorDirective implements OnInit, OnDestroy {
     @Inject(MAT_FORM_FIELD)
     private readonly formField: MatFormField,
     protected readonly template: TemplateRef<ControlErrorDirectiveContext>,
-    protected readonly viewContainerRef: ViewContainerRef
+    protected readonly viewContainerRef: ViewContainerRef,
+    protected readonly cdr: ChangeDetectorRef
   ) { }
 
   public ngOnInit() {
@@ -66,6 +68,7 @@ export class ControlErrorDirective implements OnInit, OnDestroy {
       const error = errors[ this.key ];
       this.viewContainerRef.createEmbeddedView(this.template, { $implicit: error, control: this._control });
     }
+    this.cdr.detectChanges();
   }
 
   public ngOnDestroy() {
