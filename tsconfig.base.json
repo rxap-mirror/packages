@@ -160,10 +160,18 @@
         "libs/plugin/library-publish/src/index.ts"
       ],
       "@rxap/fullstory": ["libs/fullstory/src/index.ts"],
-      "@rxap/sentry": ["libs/sentry/src/index.ts"],
-      "@rxap/slugify": ["libs/slugify/src/index.ts"],
-      "@rxap/service-worker": ["libs/service-worker/src/index.ts"],
-      "@rxap/life-cycle": ["libs/life-cycle/src/index.ts"],
+      "@rxap/sentry": [
+        "libs/sentry/src/index.ts"
+      ],
+      "@rxap/slugify": [
+        "libs/slugify/src/index.ts"
+      ],
+      "@rxap/service-worker": [
+        "libs/service-worker/src/index.ts"
+      ],
+      "@rxap/life-cycle": [
+        "libs/life-cycle/src/index.ts"
+      ],
       "@rxap/open-api/data-source/table": [
         "libs/open-api/data-source/data-source/table/src/public_api.ts"
       ],
@@ -187,6 +195,9 @@
       ],
       "@rxap-material/form-system": [
         "libs/material/form-system/src/index.ts"
+      ],
+      "@rxap-material/table-system": [
+        "libs/material/table-system/src/index.ts"
       ]
     }
   },

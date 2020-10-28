@@ -21,14 +21,14 @@ interface Package {
   compodoc?: boolean;
   coverage?: boolean;
   schematics?: boolean;
+  notion?: string;
 }
 
-const PACKAGES = [
+const PACKAGES: Package[] = [
   {
     name:      'authentication',
     storybook: true,
-    compodoc:  true,
-    notion:    'https://www.notion.so/Data-Source-ce6004d462c247a296c9cb3435196b22'
+    compodoc:  true
   },
   {
     name:      'components',
@@ -71,6 +71,10 @@ function BuildRoutes(packages: Package[]): Routes {
 
     if (packageDef.schematics) {
       route.data!.tabs.schematics = `https://rxap-${packageDef.name}-schematics-dot-reactive-application-platform.appspot.com`;
+    }
+
+    if (packageDef.notion) {
+      route.data!.tabs.notion = packageDef.notion;
     }
 
     return route;

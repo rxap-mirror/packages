@@ -3845,7 +3845,8 @@
             "targets": [
               "table-system:update-package-group",
               "table-system:build:production",
-              "table-system:schematics"
+              "table-system:schematics",
+              "table-system:scss-bundle"
             ]
           }
         },
@@ -3952,6 +3953,122 @@
         },
         "update-package-group": {
           "builder": "@rxap-plugin/library-schematics:update-package-group"
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "material-table-system": {
+      "projectType": "library",
+      "root": "libs/material/table-system",
+      "sourceRoot": "libs/material/table-system/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/material/table-system/tsconfig.lib.json",
+            "project": "libs/material/table-system/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/material/table-system/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/material/table-system/tsconfig.lib.json",
+              "libs/material/table-system/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/material/table-system/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/material/table-system/jest.config.js",
+            "tsConfig": "libs/material/table-system/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/material/table-system/src/test-setup.ts"
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "material-table-system:update-package-group",
+              "material-table-system:build:production",
+              "material-table-system:scss-bundle",
+              "material-table-system:schematics"
+            ]
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap-plugin/scss-bundle:build",
+          "options": {
+            "buildTarget": "material-table-system:build:production",
+            "skipBuild": true,
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "material-table-system:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/material/table-system/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "material-table-system:build:production",
+            "preTarget": "material-table-system:pack"
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/material/table-system/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/material-table-system",
+            "config": {
+              "configFolder": "libs/material/table-system/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
         }
       },
       "schematics": {
