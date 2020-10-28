@@ -9,40 +9,64 @@
   },
   "projects": {
     "utilities": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "services": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "config": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "data-source": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "components": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "window-system": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "mixin": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "xml-parser": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "pipes": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "remote-method": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "authentication": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "layout": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "plugin-app-engine": {
       "tags": []
@@ -69,10 +93,14 @@
       "tags": []
     },
     "firebase": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "directives": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "handlebars": {
       "tags": []
@@ -139,6 +167,9 @@
     },
     "material-form-system": {
       "tags": []
+    },
+    "material-table-system": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
@@ -146,10 +177,18 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "accessToken": "OGU5ZGNjY2UtYTQ0OC00M2RjLWFlNTEtZjY0MTJhZjA4ZDc0fHJlYWQtd3JpdGU=",
-        "cacheableOperations": ["pack", "test", "lint", "e2e"],
+        "cacheableOperations": [
+          "pack",
+          "test",
+          "lint",
+          "e2e"
+        ],
         "canTrackAnalytics": false,
         "showUsageWarnings": true,
-        "strictlyOrderedTargets": ["build", "pack"]
+        "strictlyOrderedTargets": [
+          "build",
+          "pack"
+        ]
       }
     }
   },
