@@ -3,12 +3,6 @@ import {
   AddParserToMetadata
 } from './utilities';
 import {
-  ParsedElement,
-  XmlParserService,
-  RxapElement,
-  RequiredProperty
-} from '@rxap/xml-parser';
-import {
   deepMerge,
   getMetadata,
   dasherize
@@ -24,6 +18,12 @@ import {
   TextContentElementOptions
 } from './mixins/text-content-element.parser';
 import { ElementParser } from './element.parser';
+import {
+  ParsedElement,
+  XmlParserService,
+  RequiredProperty,
+  RxapElement
+} from '@rxap/xml-parser';
 
 export interface ElementChildTextContentOptions<Value>
   extends TextContentElementOptions<Value>,

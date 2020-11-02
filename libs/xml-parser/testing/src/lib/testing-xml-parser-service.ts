@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import {
   XmlParserService,
   ParsedElement,
@@ -10,9 +9,6 @@ import {
   getMetadata
 } from '@rxap/utilities';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class TestingXmlParserService extends XmlParserService {
 
   public parseFromXmlTesting<D extends ParsedElement>(xml: string, elementParser: Constructor<D>): D {

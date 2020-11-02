@@ -7,17 +7,17 @@ import {
   deepMerge,
   getMetadata
 } from '@rxap/utilities';
-import {
-  ParsedElement,
-  RxapElement,
-  XmlParserService,
-  RequiredProperty
-} from '@rxap/xml-parser';
 import { Mixin } from '@rxap/mixin';
 import {
   ChildElementParserMixin,
   ChildElementOptions
 } from './mixins/child-element-parser.mixin';
+import {
+  ParsedElement,
+  XmlParserService,
+  RequiredProperty,
+  RxapElement
+} from '@rxap/xml-parser';
 
 export interface ElementChildOptions extends ChildElementOptions {}
 

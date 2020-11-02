@@ -1,4 +1,3 @@
-import { TestBed } from '@angular/core/testing';
 import {
   OptionElement,
   OptionsElement
@@ -15,7 +14,7 @@ describe('@rxap/form-system/xml-parser', () => {
       let xmlParser: TestingXmlParserService;
 
       beforeEach(() => {
-        xmlParser = TestBed.get(TestingXmlParserService);
+        xmlParser = new TestingXmlParserService();
       });
 
       it('should parse option without defined value', () => {

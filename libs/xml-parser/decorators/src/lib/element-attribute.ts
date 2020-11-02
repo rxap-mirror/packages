@@ -5,12 +5,6 @@ import {
 import { Mixin } from '@rxap/mixin';
 import { ElementParser } from './element.parser';
 import {
-  ParsedElement,
-  RxapElement,
-  XmlParserService,
-  RequiredProperty
-} from '@rxap/xml-parser';
-import {
   deepMerge,
   getMetadata
 } from '@rxap/utilities';
@@ -18,6 +12,12 @@ import {
   XmlElementMetadata,
   AddParserToMetadata
 } from './utilities';
+import {
+  ParsedElement,
+  XmlParserService,
+  RequiredProperty,
+  RxapElement
+} from '@rxap/xml-parser';
 
 export interface ElementAttributeOptions<Value>
   extends AttributeElementOptions<Value> {}

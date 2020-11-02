@@ -1,10 +1,3 @@
-import { ParsedElement } from '@rxap/xml-parser';
-import {
-  ElementDef,
-  ElementAttribute,
-  ElementRequired,
-  ElementChildTextContent
-} from '@rxap/xml-parser/decorators';
 import {
   ThemePalette,
   IconConfig,
@@ -12,6 +5,13 @@ import {
   MaterialIcon,
   DeleteUndefinedProperties
 } from '@rxap/utilities';
+import {
+  ElementChildTextContent,
+  ElementAttribute,
+  ElementRequired,
+  ElementDef
+} from '@rxap/xml-parser/decorators';
+import { ParsedElement } from '@rxap/xml-parser';
 
 /**
  *

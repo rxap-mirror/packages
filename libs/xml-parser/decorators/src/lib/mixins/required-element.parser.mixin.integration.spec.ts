@@ -1,11 +1,11 @@
 import { ElementRequired } from './required-element.parser.mixin';
 import { FindElementParserInstanceForPropertyKey } from '../utilities';
 import { ElementAttribute } from '../element-attribute';
-import { ParsedElement } from '@rxap/xml-parser';
 import { ElementChild } from '../element-child';
 import { ElementChildTextContent } from '../element-child-text-content';
 import { ElementChildren } from '../element-children';
 import { ElementTextContent } from '../element-text-content';
+import { ParsedElement } from '@rxap/xml-parser';
 
 describe('@rxap/xml-parser/decorators', () => {
 
