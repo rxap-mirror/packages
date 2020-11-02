@@ -1,14 +1,12 @@
 import { XmlParserService } from './xml-parser.service';
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RxapElement } from './element';
 import { ParsedElement } from './elements/parsed-element';
-import { ElementParser } from './decorators/element-parser';
+import { BaseDefinitionElement } from './elements/definition.element';
 import {
-  BaseDefinitionElement,
-  ParseBaseDefinitionElement
-} from './elements/definition.element';
-import { RequiredProperty } from './decorators/required-property';
+  ElementDef,
+  ElementAttribute,
+  ElementRequired,
+  ElementChildren
+} from '@rxap/xml-parser/decorators';
 
 describe('XML Parser', () => {
 
@@ -18,80 +16,46 @@ describe('XML Parser', () => {
 
     beforeEach(() => {
 
-      TestBed.configureTestingModule({
-        imports:   [
-          HttpClientTestingModule
-        ],
-        providers: [
-          XmlParserService
-        ]
-      });
-
-      xmlParser = TestBed.get(XmlParserService);
+      xmlParser = new XmlParserService();
 
     });
 
-    function ParseUserElement(parser: XmlParserService, element: RxapElement, user: UserElement = new UserElement()): UserElement {
-      user.id                = element.getString('id', user.id);
-      user.username          = element.getString('username', user.username);
-      const projects         = element.getChildren('project').map(project => parser.parse<ProjectElement>(project));
-      const softwareProjects = element.getChildren('software-project').map(project => parser.parse<SoftwareProjectElement>(project));
-      user.projects          = [ ...projects, ...softwareProjects ];
-      return user;
+    @ElementDef('project')
+    class ProjectElement implements ParsedElement {
+
+      @ElementAttribute()
+      @ElementRequired()
+      public name!: string;
+
+      public validate(): boolean {
+        return true;
+      }
+
     }
 
-    @ElementParser(
-      'definition',
-      ParseUserElement,
-      ParseBaseDefinitionElement
-    )
+    @ElementDef('software-project')
+    class SoftwareProjectElement extends ProjectElement {
+
+      @ElementAttribute()
+      @ElementRequired()
+      public git!: boolean;
+
+    }
+
+    @ElementDef('definition')
     class UserElement extends BaseDefinitionElement {
 
-      @RequiredProperty() public username!: string;
+      @ElementAttribute()
+      @ElementRequired()
+      public username!: string;
+
+      @ElementChildren(SoftwareProjectElement)
+      @ElementChildren(ProjectElement)
       public projects: ProjectElement[] = [];
 
       public validate(): boolean {
         return true;
       }
-
-    }
-
-    function ParseProjectElement(parser: XmlParserService, element: RxapElement, project: ProjectElement = new ProjectElement()): ProjectElement {
-      project.name = element.getString('name', project.name);
-      return project;
-    }
-
-    @ElementParser(
-      'project',
-      ParseProjectElement
-    )
-    class ProjectElement implements ParsedElement {
-
-      @RequiredProperty() public name!: string;
-
-      public validate(): boolean {
-        return true;
-      }
-
-    }
-
-    function ParseSoftwareProjectElement(
-      parser: XmlParserService,
-      element: RxapElement,
-      project: SoftwareProjectElement = new SoftwareProjectElement()
-    ): SoftwareProjectElement {
-      project.git = element.getBoolean('git', false)!;
-      return project;
-    }
-
-    @ElementParser(
-      'software-project',
-      ParseProjectElement,
-      ParseSoftwareProjectElement
-    )
-    class SoftwareProjectElement extends ProjectElement {
-
-      @RequiredProperty() public git!: boolean;
 
     }
 

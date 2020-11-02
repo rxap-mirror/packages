@@ -3,11 +3,9 @@ import {
   getMetadata,
   setMetadata
 } from '@rxap/utilities';
-import {
-  ParsedElement,
-  XmlElementParserFunction
-} from '@rxap/xml-parser';
 import { ElementParser } from './element.parser';
+import { ParsedElement } from '../elements/parsed-element';
+import { XmlElementParserFunction } from '../xml-element-parser-function';
 
 export enum XmlElementMetadata {
   OPTIONS         = 'rxap/xml-parser/decorators/element-options',
@@ -17,6 +15,7 @@ export enum XmlElementMetadata {
    * @deprecated
    */
   NAME            = 'rxap-xml-parser-element-name',
+  EXTENDS         = 'rxap-xml-parser-extends',
 }
 
 export type ParsedElementType<T extends ParsedElement = ParsedElement> = Constructor<T> & { TAG?: string };

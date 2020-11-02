@@ -2,11 +2,10 @@ import { RxapElement } from '../element';
 import { XmlParserService } from '../xml-parser.service';
 import { ParsedElement } from './parsed-element';
 import { RequiredProperty } from '../decorators/required-property';
-import { BaseDefinitionMetadata } from '@rxap/definition';
 
 export abstract class BaseDefinitionElement implements ParsedElement {
-  @RequiredProperty() public id!: string;
-  public metadata: Partial<BaseDefinitionMetadata> = {};
+  public id!: string;
+  public metadata: Partial<any> = {};
 
   constructor(id?: string) {
     if (id) {
@@ -14,7 +13,7 @@ export abstract class BaseDefinitionElement implements ParsedElement {
     }
   }
 
-  public getMetaData(): BaseDefinitionMetadata {
+  public getMetaData(): any {
     return {
       ...this.metadata,
       id: this.id

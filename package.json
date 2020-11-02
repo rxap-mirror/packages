@@ -99,6 +99,7 @@
     "rxjs": "6.5.5",
     "tslib": "2.0.0",
     "uuid": "7.0.3",
+    "xmldom": "^0.4.0",
     "zone.js": "0.10.3"
   },
   "devDependencies": {
@@ -144,6 +145,7 @@
     "@types/ramda": "0.27.13",
     "@types/random": "2.1.1",
     "@types/uuid": "7.0.4",
+    "@types/xmldom": "^0.1.30",
     "codelyzer": "5.2.2",
     "commitizen": "4.1.2",
     "cypress": "4.3.0",

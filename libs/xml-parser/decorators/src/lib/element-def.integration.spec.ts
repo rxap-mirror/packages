@@ -1,12 +1,4 @@
 import { ElementDef } from './element-def';
-import { TestBed } from '@angular/core/testing';
-import {
-  ParsedElement,
-  XmlParserService,
-  ElementParserMetaData,
-  RxapElement
-} from '@rxap/xml-parser';
-import { Injectable } from '@angular/core';
 import {
   Constructor,
   getMetadata
@@ -15,11 +7,14 @@ import { ElementAttribute } from './element-attribute';
 import { ElementChild } from './element-child';
 import { ElementTextContent } from './element-text-content';
 import { ElementChildTextContent } from './element-child-text-content';
-import { ElementChildren } from './element-children';
+import { ElementChildren } from '@rxap/xml-parser/decorators';
+import {
+  ParsedElement,
+  XmlParserService,
+  RxapElement,
+  ElementParserMetaData
+} from '@rxap/xml-parser';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class TestingXmlParserService extends XmlParserService {
 
   public parseFromXmlTesting<D extends ParsedElement>(xml: string, elementParser: Constructor<D>): D {
@@ -58,7 +53,7 @@ describe('@rxap/xml-parser/decorators', () => {
     let xmlParser: TestingXmlParserService;
 
     beforeEach(() => {
-      xmlParser = TestBed.get(TestingXmlParserService);
+      xmlParser = new TestingXmlParserService();
     });
 
     it('should parse xml element with attributes', () => {

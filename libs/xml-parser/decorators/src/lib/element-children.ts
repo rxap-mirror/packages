@@ -4,30 +4,34 @@ import {
   AddParserToMetadata
 } from './utilities';
 import {
-  ParsedElement,
-  XmlParserService,
-  RxapElement,
-  RequiredProperty
-} from '@rxap/xml-parser';
-import {
   deepMerge,
-  getMetadata
+  getMetadata,
+  getOwnMetadata
 } from '@rxap/utilities';
 import { Mixin } from '@rxap/mixin';
 import {
   ChildElementParserMixin,
   ChildElementOptions
 } from './mixins/child-element-parser.mixin';
+import {
+  ParsedElement,
+  XmlParserService,
+  RequiredProperty,
+  RxapElement
+} from '@rxap/xml-parser';
 
 export interface ElementChildrenOptions extends ChildElementOptions {
   min?: number;
   max?: number;
+  group?: string;
 }
 
 export interface ElementChildrenParser<T extends ParsedElement, Child extends ParsedElement>
   extends ChildElementParserMixin<Child> {
 
 }
+
+export type ElementWithType<Child extends ParsedElement> = { element: RxapElement, type: ParsedElementType<Child> | null };
 
 @Mixin(ChildElementParserMixin)
 export class ElementChildrenParser<T extends ParsedElement, Child extends ParsedElement> {
@@ -55,17 +59,29 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
     parsedElement: T
   ): T {
 
-    let elementChildren: RxapElement[];
+    let elementChildren: ElementWithType<Child>[];
 
-    if (this.hasTag) {
-      elementChildren = element.getChildren(this.tag);
+    if (this.options.group) {
+
+      const groupElement = element.getChild(this.options.group);
+
+      if (!groupElement && this.required) {
+        throw new Error(`The child group element '${this.options.group}' is required!`);
+      }
+
+      if (groupElement) {
+        elementChildren = this.getChildren(groupElement);
+      } else {
+        elementChildren = [];
+      }
+
     } else {
-      elementChildren = element.getAllChildNodes();
+      elementChildren = this.getChildren(element);
     }
 
     // @ts-ignore
     const children = parsedElement[ this.propertyKey ] = elementChildren
-      .map(child => xmlParser.parse(child, this.elementType ?? child.name));
+      .map(child => xmlParser.parse(child.element, child.type ?? child.element.name));
 
     if (this.required && children.length === 0) {
       throw new Error(`Element child <${this.tag}> is required!`);
@@ -80,6 +96,37 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
     }
 
     return parsedElement;
+  }
+
+  private getChildren(element: RxapElement): Array<ElementWithType<Child>> {
+    let elementChildren: Array<ElementWithType<Child>>;
+
+    if (this.hasTag) {
+      elementChildren = element.getChildren(this.tag).map(child => ({ element: child, type: this.elementType }));
+
+      if (this.elementType) {
+        for (const extendedType of this.getExtendedTypes(this.elementType)) {
+          if (extendedType.TAG && element.hasChild(extendedType.TAG)) {
+            elementChildren.push(...element.getChildren(extendedType.TAG).map(child => ({ element: child, type: extendedType })));
+          }
+        }
+      }
+
+    } else {
+      elementChildren = element.getAllChildNodes().map(child => ({ element: child, type: this.elementType }));
+    }
+
+    return elementChildren;
+  }
+
+  private getExtendedTypes(type: ParsedElementType<Child>): Array<ParsedElementType<Child>> {
+    const extendedTypes = getOwnMetadata<Array<ParsedElementType<Child>>>(XmlElementMetadata.EXTENDS, type) ?? [];
+
+    for (const extendedType of [ ...extendedTypes ]) {
+      extendedTypes.push(...this.getExtendedTypes(extendedType));
+    }
+
+    return extendedTypes;
   }
 
 }

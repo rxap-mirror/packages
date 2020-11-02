@@ -1,5 +1,4 @@
 import { RxapElement } from './element';
-import { Injectable } from '@angular/core';
 import {
   Type,
   getMetadata,
@@ -13,13 +12,13 @@ import { ElementName } from './element-name';
 import { XmlElementParserFunction } from './xml-element-parser-function';
 import { AttributeOptions } from './decorators/attribute';
 import { RxapXmlParserError } from './error';
+import { DOMParser } from 'xmldom';
 
 export interface ElementParserWithParsers {
   elementParser: Type<ParsedElement>;
   parsers: XmlElementParserFunction<ParsedElement>[];
 }
 
-@Injectable()
 export class XmlParserService {
 
   public readonly parsers = new Map<ElementName, ElementParserWithParsers>();
@@ -88,6 +87,7 @@ export class XmlParserService {
 
     // create the ParsedElement instance of the current element
     const instance = new parser.elementParser(...args);
+    Reflect.set(instance, '__tag', element.name);
 
     this.parseAttributes(instance, element);
 
@@ -120,7 +120,7 @@ export class XmlParserService {
 
     let xmlDoc: Document;
     try {
-      xmlDoc = new DOMParser().parseFromString(xml, 'text/xml');
+      xmlDoc = new DOMParser().parseFromString(xml);
     } catch (e) {
       throw new Error('Could not parse xml string');
     }

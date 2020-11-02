@@ -7,7 +7,6 @@ import {
 } from './element-children';
 import { ElementDef } from './element-def';
 import { TestingXmlParserService } from '@rxap/xml-parser/testing';
-import { TestBed } from '@angular/core/testing';
 
 describe('@rxap/xml-parser/decorators', () => {
 
@@ -18,7 +17,7 @@ describe('@rxap/xml-parser/decorators', () => {
       let xmlParser: TestingXmlParserService;
 
       beforeEach(() => {
-        xmlParser = TestBed.inject(TestingXmlParserService);
+        xmlParser = new TestingXmlParserService();
       });
 
       it('should add element parser to element metadata', () => {

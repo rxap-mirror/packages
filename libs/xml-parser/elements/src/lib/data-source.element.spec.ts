@@ -1,6 +1,5 @@
 import { DataSourceElement } from './data-source.element';
 import { TestingXmlParserService } from '@rxap/xml-parser/testing';
-import { TestBed } from '@angular/core/testing';
 
 describe('@rxap/xml-parser', () => {
 
@@ -11,7 +10,7 @@ describe('@rxap/xml-parser', () => {
       let xmlParser: TestingXmlParserService;
 
       beforeEach(() => {
-        xmlParser = TestBed.get(TestingXmlParserService);
+        xmlParser = new TestingXmlParserService();
       });
 
       it('data source element without children', () => {

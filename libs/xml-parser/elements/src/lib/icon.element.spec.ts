@@ -1,6 +1,5 @@
-import { TestingXmlParserService } from '@rxap/xml-parser/testing';
-import { TestBed } from '@angular/core/testing';
 import { IconElement } from './icon.element';
+import { TestingXmlParserService } from '@rxap/xml-parser/testing';
 
 describe('@rxap/xml-parser/elements', () => {
 
@@ -9,7 +8,7 @@ describe('@rxap/xml-parser/elements', () => {
     let xmlParser: TestingXmlParserService;
 
     beforeAll(() => {
-      xmlParser = TestBed.get(TestingXmlParserService);
+      xmlParser = new TestingXmlParserService();
     });
 
     it('required properties', () => {
