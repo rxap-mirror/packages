@@ -39,9 +39,9 @@ export function AddParserToMetadata(parser: ElementParser, target: any) {
   // TODO : test overwrite functionality
 
   const addedParser = GetAllElementParser(target.constructor).filter(p => {
-    if (p.hasOwnProperty('propertyKey')) {
-      return p.propertyKey !== parser.propertyKey;
-    }
+    // if (p.hasOwnProperty('propertyKey')) {
+    //   return p.propertyKey !== parser.propertyKey;
+    // }
     return true;
   });
 

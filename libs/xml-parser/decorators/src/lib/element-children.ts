@@ -79,8 +79,7 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
       elementChildren = this.getChildren(element);
     }
 
-    // @ts-ignore
-    const children = parsedElement[ this.propertyKey ] = elementChildren
+    const children = elementChildren
       .map(child => xmlParser.parse(child.element, child.type ?? child.element.name));
 
     if (this.required && children.length === 0) {
@@ -94,6 +93,16 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
     if (this.max !== null && this.max > children.length) {
       throw new Error(`Element child <${this.tag}> should be at most ${this.max}!`);
     }
+
+    // @ts-ignore
+    if (!Array.isArray(parsedElement[ this.propertyKey ])) {
+      // @ts-ignore
+      parsedElement[ this.propertyKey ] = [];
+    }
+
+    // @ts-ignore
+    parsedElement[ this.propertyKey ]
+      .push(...children);
 
     return parsedElement;
   }
