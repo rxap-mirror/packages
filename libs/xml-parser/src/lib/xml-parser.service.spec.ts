@@ -80,7 +80,7 @@ describe('XML Parser', () => {
 
       const userElementParser = xmlParser.parsers.get('definition')!;
       expect(userElementParser).toBeDefined();
-      expect(userElementParser.parsers.length).toBe(2);
+      expect(userElementParser.parsers.length).toBe(3);
 
       const projectElementParser = xmlParser.parsers.get('project')!;
       expect(projectElementParser).toBeDefined();
@@ -117,13 +117,14 @@ describe('XML Parser', () => {
       expect(userElement.projects[ 2 ]).toBeInstanceOf(SoftwareProjectElement);
 
       expect(userElement).toEqual({
-        id:       'id1',
+        __tag:    'definition',
+        // id:       'id1',
         username: 'my-username',
         metadata: {},
         projects: [
-          { name: 'my-project-1' },
-          { name: 'my-project-2' },
-          { name: 'my-project-3', git: true }
+          { __tag: 'project', name: 'my-project-1' },
+          { __tag: 'project', name: 'my-project-2' },
+          { __tag: 'software-project', name: 'my-project-3', git: true }
         ]
       });
 
