@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.3]
+### Fixed
+- (InputClearButtonDirective): clear the value if the ngControl is not defined
+- (InputClearButtonDirective): set the button type to button
+
 ## [0.0.2]
 ### Fixed
 - (ControlErrorDirective): add change detection after template rendering

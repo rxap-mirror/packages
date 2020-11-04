@@ -3,7 +3,8 @@ import {
   Directive,
   Input,
   Inject,
-  HostListener
+  HostListener,
+  HostBinding
 } from '@angular/core';
 import {
   MatFormField,
@@ -15,6 +16,9 @@ import {
 })
 export class InputClearButtonDirective {
 
+  @HostBinding('attr.type')
+  public type = 'button';
+
   constructor(
     @Inject(MAT_FORM_FIELD)
     private formField: MatFormField
@@ -22,7 +26,11 @@ export class InputClearButtonDirective {
 
   @HostListener('click')
   public onClick() {
-    this.formField._control.ngControl?.reset();
+    if (this.formField._control.ngControl) {
+      this.formField._control.ngControl.reset();
+    } else {
+      this.formField._control.value = null;
+    }
   }
 
 
