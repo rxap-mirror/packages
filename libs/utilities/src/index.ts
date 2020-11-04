@@ -73,6 +73,7 @@ export * from './lib/decorators/deprecated';
 
 export * from './lib/options/to-options-from-object';
 export * from './lib/options/to-options-with-object';
+export * from './lib/options/to-options';
 
 // endregion
 
