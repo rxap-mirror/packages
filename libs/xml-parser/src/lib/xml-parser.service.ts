@@ -6,7 +6,6 @@ import {
   Constructor
 } from '@rxap/utilities';
 import { ParsedElement } from './elements/parsed-element';
-import { BaseDefinitionElement } from './elements/definition.element';
 import { ElementParserMetaData } from './decorators/metadata-keys';
 import { ElementName } from './element-name';
 import { XmlElementParserFunction } from './xml-element-parser-function';
@@ -63,10 +62,16 @@ export class XmlParserService {
    *
    *
    * @param element
-   * @param elementName
+   * @param elementNameOrConstructor
    * @param args Constructor parameters for the ParsedElement instance
+   * @param parent The parent Parsed Element
    */
-  public parse<D extends ParsedElement>(element: RxapElement, elementNameOrConstructor: string | Constructor<D> = element.name, args: any[] = []): D {
+  public parse<D extends ParsedElement>(
+    element: RxapElement,
+    elementNameOrConstructor: string | Constructor<D> = element.name,
+    parent: ParsedElement | null,
+    args: any[]                                       = []
+  ): D {
     let elementName: string;
     let parser: ElementParserWithParsers;
 
@@ -88,6 +93,7 @@ export class XmlParserService {
     // create the ParsedElement instance of the current element
     const instance = new parser.elementParser(...args);
     Reflect.set(instance, '__tag', element.name);
+    Reflect.set(instance, '__parent', parent);
 
     this.parseAttributes(instance, element);
 
@@ -116,7 +122,7 @@ export class XmlParserService {
    * @param xml
    * @param filename the filename without the file type
    */
-  public parseFromXml<D extends BaseDefinitionElement>(xml: string, filename?: string): D {
+  public parseFromXml<D extends ParsedElement>(xml: string, filename?: string): D {
 
     let xmlDoc: Document;
     try {
@@ -141,7 +147,7 @@ export class XmlParserService {
       throw new Error(`The root node must be an <definition> element, but the root node is a <${root.name}> element!`);
     }
 
-    return this.parse<D>(root, root.name, [ filename ]);
+    return this.parse<D>(root, root.name, null, [ filename ]);
 
   }
 

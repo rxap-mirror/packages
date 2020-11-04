@@ -80,18 +80,18 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
     }
 
     const children = elementChildren
-      .map(child => xmlParser.parse(child.element, child.type ?? child.element.name));
+      .map(child => xmlParser.parse(child.element, child.type ?? child.element.name, parsedElement));
 
     if (this.required && children.length === 0) {
-      throw new Error(`Element child <${this.tag}> is required!`);
+      throw new Error(`Some element child <${this.tag}> is required in <${parsedElement.__tag}>!`);
     }
 
     if (this.min !== null && this.min > children.length) {
-      throw new Error(`Element child <${this.tag}> should be at least ${this.min}!`);
+      throw new Error(`Element child <${this.tag}> should be at least ${this.min} in <${parsedElement.__tag}>!`);
     }
 
     if (this.max !== null && this.max > children.length) {
-      throw new Error(`Element child <${this.tag}> should be at most ${this.max}!`);
+      throw new Error(`Element child <${this.tag}> should be at most ${this.max} in <${parsedElement.__tag}>!`);
     }
 
     // @ts-ignore

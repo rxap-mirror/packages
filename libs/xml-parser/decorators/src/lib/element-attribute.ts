@@ -48,7 +48,7 @@ export class ElementAttributeParser<T extends ParsedElement = ParsedElement, Val
 
     if (value === undefined) {
       if (this.required) {
-        throw new Error(`The attribute '${this.attribute}' is required`);
+        throw new Error(`The attribute '${this.attribute}' is required for <${parsedElement.__tag}>`);
       }
     } else {
       // @ts-ignore

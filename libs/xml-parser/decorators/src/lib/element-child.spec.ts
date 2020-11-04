@@ -37,21 +37,22 @@ describe('@rxap/xml-parser/decorators', () => {
         const xmlChildElement: RxapElement        = { data: 'xml' } as any;
         const getChild                            = createSpy().and.returnValue(xmlChildElement);
         const hasChild                            = createSpy().and.returnValue(true);
-        const childElementType: ParsedElementType = { data: 'type' } as any;
+        const childElementType: ParsedElementType = class {};
         const childElement: ParsedElement         = { data: 'my-child' } as any;
+        const parsedElement: ParsedElement        = { data: 'self' } as any;
         const parse                               = createSpy().and.returnValue(childElement);
         const xmlParser: XmlParserService         = { parse } as any;
         const element: RxapElement                = { getChild, hasChild } as any;
 
         const parser = new ElementChildParser('property', childElementType, { tag: 'tag' });
 
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', childElement);
+        expect(parser.parse(xmlParser, element, parsedElement)).toHaveProperty('property', childElement);
         expect(getChild).toBeCalledTimes(1);
         expect(getChild).toBeCalledWith('tag');
         expect(hasChild).toBeCalledTimes(1);
         expect(hasChild).toBeCalledWith('tag');
         expect(parse).toBeCalledTimes(1);
-        expect(parse).toBeCalledWith(xmlChildElement, childElementType);
+        expect(parse).toBeCalledWith(xmlChildElement, childElementType, parsedElement);
 
       });
 

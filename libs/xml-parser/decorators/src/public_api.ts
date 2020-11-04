@@ -21,3 +21,5 @@ export {
 } from './lib/element-text-content';
 export { ElementRequired } from './lib/mixins/required-element.parser.mixin';
 export { ElementDef } from './lib/element-def';
+export { ElementExtends } from './lib/element-extends';
+export { ElementClearParser } from './lib/element-clear-parser';

@@ -5,7 +5,8 @@ import {
 } from './utilities';
 import {
   deepMerge,
-  getMetadata
+  getMetadata,
+  getOwnMetadata
 } from '@rxap/utilities';
 import { Mixin } from '@rxap/mixin';
 import {
@@ -44,15 +45,47 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
     parsedElement: T
   ): T {
 
-    if (element.hasChild(this.tag)) {
+    const elementType = this.findChildElementType(element);
+
+    if (!elementType.TAG) {
+      throw new Error('The element type tag is not defined!');
+    }
+
+    if (element.hasChild(elementType.TAG)) {
       // @ts-ignore
       parsedElement[ this.propertyKey ] =
-        xmlParser.parse(element.getChild(this.tag)!, this.elementType);
+        xmlParser.parse(element.getChild(elementType.TAG)!, elementType, parsedElement);
     } else if (this.required) {
-      throw new Error(`Element child <${this.tag}> is required!`);
+      throw new Error(`Element child <${this.tag}> is required in <${parsedElement.__tag}>!`);
     }
 
     return parsedElement;
+  }
+
+  private findChildElementType(element: RxapElement): ParsedElementType<Child> {
+
+    const extendedTypes = this.getExtendedTypes(this.elementType);
+
+    for (const extendedType of extendedTypes) {
+      if (extendedType.TAG) {
+        if (element.hasChild(extendedType.TAG)) {
+          return extendedType;
+        }
+      }
+    }
+
+    return this.elementType;
+
+  }
+
+  private getExtendedTypes(type: ParsedElementType<Child>): Array<ParsedElementType<Child>> {
+    const extendedTypes = getOwnMetadata<Array<ParsedElementType<Child>>>(XmlElementMetadata.EXTENDS, type) ?? [];
+
+    for (const extendedType of [ ...extendedTypes ]) {
+      extendedTypes.push(...this.getExtendedTypes(extendedType));
+    }
+
+    return extendedTypes;
   }
 
 }

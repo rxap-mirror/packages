@@ -66,7 +66,7 @@ export class OptionsElement implements ParsedElement {
   public toDisplay?: OptionToDisplayElement;
 
   @ElementChild(DataSourceElement)
-  public dataSource?: string;
+  public dataSource?: DataSourceElement;
 
   public getControlOptions(): ControlOptions<any> {
     return this.options.map(option => option.getControlOption());
