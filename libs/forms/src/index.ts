@@ -6,6 +6,7 @@ export * from './lib/model';
 export * from './lib/types';
 export * from './lib/control-value-accessor';
 export * from './lib/tokens';
+export * from './lib/control-actions';
 
 // region decorators
 
