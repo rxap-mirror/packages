@@ -7,4 +7,5 @@ export interface GenerateSchema {
   openApiModule: string;
   component: boolean;
   formElement?: FormElement;
+  name?: string;
 }
