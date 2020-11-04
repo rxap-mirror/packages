@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "generate",
+  "type": "object",
+  "description": "",
+  "properties": {
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "",
+      "visible": false
+    },
+    "project": {
+      "type": "string",
+      "description": ""
+    },
+    "template": {
+      "type": "string",
+      "description": "",
+      "format": "path"
+    },
+    "formElement": {},
+    "openApiModule": {
+      "type": "string",
+      "description": ""
+    },
+    "component": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": []
+}
