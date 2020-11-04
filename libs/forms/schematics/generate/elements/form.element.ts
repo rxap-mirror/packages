@@ -28,6 +28,7 @@ const { dasherize, classify, camelize } = strings;
 export class FormElement implements ParsedElement<ClassDeclaration> {
 
   @ElementChildren(ControlElement, { group: 'controls' })
+  @ElementRequired()
   public controls: ControlElement[] = [];
 
   @ElementChildren(FeatureElement, { group: 'features' })
