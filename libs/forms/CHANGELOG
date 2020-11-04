@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.11]
+### Fixed
+- export control actions file
+
 ## [0.3.10]
 ### Fixed
 - (schematics): form providers import path
