@@ -20,6 +20,7 @@ import {
   AddToFormProviders,
   GetFormProvidersFile
 } from '../helpers/get-form-providers-source-file';
+import { FeatureElement } from './features/feature.element';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -27,7 +28,10 @@ const { dasherize, classify, camelize } = strings;
 export class FormElement implements ParsedElement<ClassDeclaration> {
 
   @ElementChildren(ControlElement)
-  public controls!: ControlElement[];
+  public controls: ControlElement[] = [];
+
+  @ElementChildren(FeatureElement)
+  public features: FeatureElement[] = [];
 
   @ElementAttribute()
   @ElementRequired()
@@ -192,6 +196,10 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
 
     for (const control of this.controls) {
       control.toValue({ classDeclaration, sourceFile, project, options });
+    }
+
+    for (const feature of this.features) {
+      feature.toValue({ classDeclaration, sourceFile, project, options });
     }
 
     return classDeclaration;
