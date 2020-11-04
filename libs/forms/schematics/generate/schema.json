@@ -24,6 +24,10 @@
       "type": "string",
       "description": ""
     },
+    "name": {
+      "type": "string",
+      "description": ""
+    },
     "component": {
       "type": "boolean",
       "default": false

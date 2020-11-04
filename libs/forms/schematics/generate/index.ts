@@ -135,7 +135,11 @@ export default function(options: GenerateSchema): Rule {
       manipulationSettings:  { quoteKind: QuoteKind.Single, indentationText: IndentationText.TwoSpaces }
     });
 
+    formElement.id = options.name ? dasherize(options.name) : formElement.id;
+
     const formFilePath = dasherize(formElement.id) + '.form.ts';
+
+    options.path = join(options.path, dasherize(formElement.id) + '-form');
 
     AddDir(host.getDir(options.path), project, undefined, pathFragment => !!pathFragment.match(/\.ts$/));
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.9]
+### Added
+- (schematics): streamline path creation
+
 ## [0.3.8]
 ### Added
 - (schematics): add support for validators
