@@ -1,6 +1,6 @@
 {
   "name": "@rxap/forms",
-  "version": "0.2.3",
+  "version": "0.3.8",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -17,8 +17,9 @@
   "description": "A typed extension for @angular/forms.",
   "license": "BSD-4-Clause",
   "peerDependencies": {
-    "@rxap/utilities": ">=0.3.13",
+    "@rxap/utilities": ">=0.7.0",
     "@rxap/definition": ">=0.0.2",
+    "@rxap/xml-parser": ">=0.5.0",
     "@angular/forms": ">=9",
     "@angular/core": ">=9",
     "@angular/platform-browser": ">=9",
@@ -31,7 +32,8 @@
     "packageGroup": [
       "@rxap/forms",
       "@rxap/utilities",
-      "@rxap/definition"
+      "@rxap/definition",
+      "@rxap/xml-parser"
     ]
   }
 }

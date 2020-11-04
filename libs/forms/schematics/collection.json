@@ -1,4 +1,10 @@
 {
   "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
-  "schematics": {}
+  "schematics": {
+    "generate": {
+      "description": "Generates a form definition from a xml specification",
+      "factory": "./generate/index",
+      "schema": "./generate/schema.json"
+    }
+  }
 }

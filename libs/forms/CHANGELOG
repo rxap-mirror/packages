@@ -1,5 +1,41 @@
 # Changelog
 
+## [0.3.8]
+### Added
+- (schematics): add support for validators
+
+## [0.3.7]
+### Fixed
+- (schematics): add new options converters
+
+## [0.3.6]
+### Fixed
+- (schematics): remove required prop
+
+## [0.3.5]
+### Fixed
+- (schematics): remove id parser
+
+## [0.3.4]
+### Added
+- (schematics): support for custom formElement
+
+## [0.3.3]
+### Fixed
+- (schematics): add component name suffix
+
+## [0.3.2]
+### Fixed
+- (schematics): add component name suffix
+
+## [0.3.1]
+### Fixed
+- (schematics): add component name suffix
+
+## [0.3.0]
+### Added
+- (schematics): add generate feature
+
 ## [0.2.3]
 ### Fixed
 - (RxapFormControl): check for error change also on status change
