@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.10]
+### Fixed
+- (schematics): form providers import path
+
 ## [0.3.9]
 ### Added
 - (schematics): streamline path creation

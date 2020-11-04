@@ -76,7 +76,7 @@ export function CreateFormComponent({ name, path, project }: { name: string, pat
               }
             });
             sourceFile.addImportDeclaration({
-              moduleSpecifier: '../form.providers',
+              moduleSpecifier: './form.providers',
               namedImports:    [ 'FormProviders', 'FormComponentProviders' ]
             });
           } else {
