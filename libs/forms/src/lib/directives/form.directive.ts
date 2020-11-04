@@ -144,7 +144,7 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
 
     const formChange = changes.form;
 
-    if (formChange) {
+    if (formChange && !formChange.firstChange) {
       this.loadInitialState(formChange.currentValue);
     }
 
@@ -155,6 +155,7 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
       // TODO : replace with rxap error
       throw new Error('The form definition instance is not defined');
     }
+    this.loadInitialState(this.form);
   }
 
   private loadInitialState(form: RxapFormGroup): void {
