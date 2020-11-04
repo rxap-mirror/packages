@@ -4,8 +4,10 @@ import {
   setMetadata
 } from '@rxap/utilities';
 import { ElementParser } from './element.parser';
-import { ParsedElement } from '../elements/parsed-element';
-import { XmlElementParserFunction } from '../xml-element-parser-function';
+import {
+  ParsedElement,
+  XmlElementParserFunction
+} from '@rxap/xml-parser';
 
 export enum XmlElementMetadata {
   OPTIONS         = 'rxap/xml-parser/decorators/element-options',
@@ -38,12 +40,13 @@ export function AddParserToMetadata(parser: ElementParser, target: any) {
 
   // TODO : test overwrite functionality
 
-  const addedParser = GetAllElementParser(target.constructor).filter(p => {
-    // if (p.hasOwnProperty('propertyKey')) {
-    //   return p.propertyKey !== parser.propertyKey;
-    // }
-    return true;
-  });
+  const addedParser = GetAllElementParser(target.constructor)
+    .filter(p => {
+      // if (p.hasOwnProperty('propertyKey')) {
+      //   return p.propertyKey !== parser.propertyKey;
+      // }
+      return true;
+    });
 
   setMetadata(
     XmlElementMetadata.PARSER,
@@ -51,7 +54,8 @@ export function AddParserToMetadata(parser: ElementParser, target: any) {
     target.constructor
   );
 
-  const addedElementParser = GetAllElementParserInstances(target.constructor).filter(p => p.propertyKey !== parser.propertyKey);
+  const addedElementParser = GetAllElementParserInstances(target.constructor)
+    .filter(p => p.propertyKey !== parser.propertyKey);
 
   setMetadata(
     XmlElementMetadata.PARSER_INSTANCE,

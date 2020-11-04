@@ -1,6 +1,5 @@
 import { XmlParserService } from './xml-parser.service';
 import { ParsedElement } from './elements/parsed-element';
-import { BaseDefinitionElement } from './elements/definition.element';
 import {
   ElementDef,
   ElementAttribute,
@@ -43,7 +42,7 @@ describe('XML Parser', () => {
     }
 
     @ElementDef('definition')
-    class UserElement extends BaseDefinitionElement {
+    class UserElement {
 
       @ElementAttribute()
       @ElementRequired()
@@ -51,7 +50,7 @@ describe('XML Parser', () => {
 
       @ElementChildren(SoftwareProjectElement)
       @ElementChildren(ProjectElement)
-      public projects: ProjectElement[] = [];
+      public projects!: ProjectElement[];
 
       public validate(): boolean {
         return true;
@@ -118,13 +117,12 @@ describe('XML Parser', () => {
 
       expect(userElement).toEqual({
         __tag:    'definition',
-        // id:       'id1',
+        __parent: null,
         username: 'my-username',
-        metadata: {},
         projects: [
-          { __tag: 'project', name: 'my-project-1' },
-          { __tag: 'project', name: 'my-project-2' },
-          { __tag: 'software-project', name: 'my-project-3', git: true }
+          { __parent: userElement, __tag: 'project', name: 'my-project-1' },
+          { __parent: userElement, __tag: 'project', name: 'my-project-2' },
+          { __parent: userElement, __tag: 'software-project', name: 'my-project-3', git: true }
         ]
       });
 

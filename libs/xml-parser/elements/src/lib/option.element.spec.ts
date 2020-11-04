@@ -94,7 +94,7 @@ describe('@rxap/form-system/xml-parser', () => {
       let xmlParser: TestingXmlParserService;
 
       beforeEach(() => {
-        xmlParser = TestBed.get(TestingXmlParserService);
+        xmlParser = new TestingXmlParserService();
       });
 
       it('should parse options element with static options', () => {
@@ -148,8 +148,7 @@ describe('@rxap/form-system/xml-parser', () => {
 
         expect(optionsElement.toDisplay).toBeDefined();
         expect(optionsElement.toDisplay?.template).toBeDefined();
-        expect(typeof optionsElement.toDisplay?.template).toBe('function');
-        expect(optionsElement.toDisplay?.toValue()({ uuid: 'my-uuid' })).toBe('my-uuid');
+        expect(typeof optionsElement.toDisplay?.template).toBe('string');
         expect(optionsElement.dataSource).toBeDefined();
         expect(optionsElement.dataSource).toBeInstanceOf(DataSourceElement);
         expect(optionsElement.dataSource!.id).toBe('my-data-source-id');
