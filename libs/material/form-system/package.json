@@ -1,11 +1,11 @@
 {
   "name": "@rxap-material/form-system",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "peerDependencies": {
     "@angular/common": "^10.0.5",
     "@angular/core": "^10.0.5",
     "@rxap/definition": ">=0.0.7",
-    "@rxap/forms": ">=0.2.2",
+    "@rxap/forms": ">=0.3.11",
     "@rxap/utilities": ">=0.6.0",
     "@angular/forms": "^10.0.6",
     "@angular/platform-browser": "^10.0.6",

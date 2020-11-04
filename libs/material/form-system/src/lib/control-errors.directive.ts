@@ -12,14 +12,17 @@ import {
   MAT_FORM_FIELD,
   MatFormField
 } from '@angular/material/form-field';
-import { RxapFormControl } from '@rxap/forms';
+import { controlErrorChanges$ } from '@rxap/forms';
 import { Subscription } from 'rxjs';
-import { ValidationErrors } from '@angular/forms';
+import {
+  ValidationErrors,
+  AbstractControl
+} from '@angular/forms';
 import { tap } from 'rxjs/operators';
 
 export interface ControlErrorsDirectiveContext {
   $implicit: ValidationErrors;
-  control: RxapFormControl;
+  control: AbstractControl;
 }
 
 @Directive({
@@ -35,7 +38,7 @@ export class ControlErrorsDirective implements OnInit, OnDestroy {
 
   private _subscription?: Subscription;
 
-  private _control!: RxapFormControl;
+  private _control?: AbstractControl;
 
   constructor(
     @Inject(MAT_FORM_FIELD)
@@ -47,18 +50,20 @@ export class ControlErrorsDirective implements OnInit, OnDestroy {
 
   public ngOnInit() {
     const control = this.formField._control.ngControl?.control;
-    if (!(control instanceof RxapFormControl)) {
-      throw new Error('Could not extract the form control!');
+    if (control) {
+      this._control      = control;
+      this._subscription = controlErrorChanges$<ValidationErrors>(control).pipe(
+        tap((errors: ValidationErrors | null) => this.render(errors))
+      ).subscribe();
     }
-    this._control      = control;
-    this._subscription = control.errors$.pipe(
-      tap((errors: ValidationErrors | null) => this.render(errors))
-    ).subscribe();
   }
 
   protected render(errors: ValidationErrors | null) {
     this.viewContainerRef.clear();
     if (errors) {
+      if (!this._control) {
+        throw new Error('The control is not defined!');
+      }
       this.viewContainerRef.createEmbeddedView(this.template, { $implicit: errors, control: this._control });
     }
     this.cdr.detectChanges();
