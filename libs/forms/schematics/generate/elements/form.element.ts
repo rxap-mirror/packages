@@ -27,10 +27,10 @@ const { dasherize, classify, camelize } = strings;
 @ElementDef('definition')
 export class FormElement implements ParsedElement<ClassDeclaration> {
 
-  @ElementChildren(ControlElement)
+  @ElementChildren(ControlElement, { group: 'controls' })
   public controls: ControlElement[] = [];
 
-  @ElementChildren(FeatureElement)
+  @ElementChildren(FeatureElement, { group: 'features' })
   public features: FeatureElement[] = [];
 
   @ElementAttribute()
