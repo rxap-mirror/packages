@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.4]
+### Fixed
+- (ControlErrorDirective): remove dependency to RxapFormControl
+
 ## [0.0.3]
 ### Fixed
 - (InputClearButtonDirective): clear the value if the ngControl is not defined
