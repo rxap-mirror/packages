@@ -47,14 +47,15 @@ function AddDir(dir: DirEntry, project: Project, parentPath: string = '', filter
 export function CreateFormComponent({ name, path, project }: { name: string, path: string, project: Project }): Rule {
   return host => {
 
-    const componentFilePath = join(path, dasherize(name) + '-form', dasherize(name) + '-form.component.ts');
+    const componentFilePath = join(path, dasherize(name) + '-form.component.ts');
 
     if (!host.exists(componentFilePath)) {
       return chain([
         externalSchematic('@rxap/schematics', 'component-module', {
           path:  path.replace(/^\//, ''),
           name:  dasherize(name) + '-form',
-          theme: false
+          theme: false,
+          flat:  true
         }),
         tree => {
 
