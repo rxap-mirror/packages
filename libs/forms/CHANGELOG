@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.15]
+### Fixed
+- (schematics): add flat option
+
 ## [0.3.14]
 ### Fixed
 - (schematics): export AddDir helper

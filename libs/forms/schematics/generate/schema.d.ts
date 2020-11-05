@@ -8,4 +8,5 @@ export interface GenerateSchema {
   component: boolean;
   formElement?: FormElement;
   name?: string;
+  flat?: boolean;
 }

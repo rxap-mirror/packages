@@ -140,7 +140,9 @@ export default function(options: GenerateSchema): Rule {
 
     const formFilePath = dasherize(formElement.id) + '.form.ts';
 
-    options.path = join(options.path, dasherize(formElement.id) + '-form');
+    if (!options.flat) {
+      options.path = join(options.path, dasherize(formElement.id) + '-form');
+    }
 
     AddDir(host.getDir(options.path), project, undefined, pathFragment => !!pathFragment.match(/\.ts$/));
 
@@ -148,18 +150,9 @@ export default function(options: GenerateSchema): Rule {
 
     formElement.toValue({ sourceFile: formSourceFile, project, options });
 
-    project.getSourceFiles()
-           .forEach(sourceFile => {
-
-             sourceFile.organizeImports();
-
-             // console.log('==========================================')
-             // console.log('==========================================')
-             // console.log(sourceFile.getFilePath());
-             // console.log('==========================================')
-             // console.log(sourceFile.getFullText());
-
-           });
+    project
+      .getSourceFiles()
+      .forEach(sourceFile => sourceFile.organizeImports());
 
     return chain([
       tree => {
