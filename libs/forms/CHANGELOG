@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.13]
+### Fixed
+- (FormDirective): use patch instead of set for form initialisation
+
 ## [0.3.12]
 ### Fixed
 - (FormDirective): fix initial form loading
