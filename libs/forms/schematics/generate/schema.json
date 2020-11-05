@@ -28,6 +28,10 @@
       "type": "string",
       "description": ""
     },
+    "flat": {
+      "type": "boolean",
+      "description": ""
+    },
     "component": {
       "type": "boolean",
       "default": false
