@@ -25,7 +25,8 @@ import { readAngularJsonFile } from '@rxap/schematics/utilities';
 
 const { dasherize, classify, camelize } = strings;
 
-function AddDir(dir: DirEntry, project: Project, parentPath: string = '', filter: ((pathFragment: string) => boolean) = () => true) {
+// TODO : mv to own package to use in other modules
+export function AddDir(dir: DirEntry, project: Project, parentPath: string = '', filter: ((pathFragment: string) => boolean) = () => true) {
   for (const pathFragment of dir.subfiles.filter(filter)) {
     const fileEntry = dir.file(pathFragment);
     if (fileEntry) {
