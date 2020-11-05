@@ -170,7 +170,7 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
         if (isPromise(resultOrPromise)) {
           resultOrPromise
             .then(value => {
-              form.setValue(value);
+              form.patchValue(value);
               this.loaded$.enable();
               this.loadSuccessful(value);
             })
@@ -183,7 +183,7 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
               this.cdr.detectChanges();
             });
         } else if (isObject(resultOrPromise)) {
-          form.setValue(resultOrPromise);
+          form.patchValue(resultOrPromise);
           this.loaded$.enable();
           this.loadSuccessful(resultOrPromise);
           this.loading$.disable();
