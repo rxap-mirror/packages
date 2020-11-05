@@ -78,5 +78,5 @@ export * from './lib/window-container-sidenav/window-container-sidenav.component
 
 // endregion
 
-
+export * from './lib/footer.directive';
 export * from './lib/types';

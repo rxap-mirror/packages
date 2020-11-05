@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.10.0]
+### Added
+- FooterDirective
+
 ## [0.9.0]
 ### Changed
 - add sidenav collapse
