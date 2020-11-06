@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.31]
+### Fixed
+- mv parameters member to abstract table data source
+
 ## [0.3.30]
 ### Fixed
 - replace all rxjs operators first() with take(1)

@@ -12,7 +12,8 @@ import {
 import {
   RXAP_TABLE_DATA_SOURCE_PAGINATOR,
   RXAP_TABLE_DATA_SOURCE_FILTER,
-  RXAP_TABLE_DATA_SOURCE_SORT
+  RXAP_TABLE_DATA_SOURCE_SORT,
+  RXAP_TABLE_DATA_SOURCE_PARAMETERS
 } from './tokens';
 import {
   PaginatorLike,
@@ -51,7 +52,8 @@ export interface FilterLike {
 
 export interface AbstractTableDataSourceMetadata extends AbstractPaginationDataSourceMetadata {}
 
-export abstract class AbstractTableDataSource<Data extends Record<any, any>> extends AbstractPaginationDataSource<Data> {
+export abstract class AbstractTableDataSource<Data extends Record<any, any>, Parameters = any>
+  extends AbstractPaginationDataSource<Data> {
 
   public get sortByColumn(): string | undefined {
     return this.sort?.active;
@@ -73,22 +75,29 @@ export abstract class AbstractTableDataSource<Data extends Record<any, any>> ext
 
   public sort?: SortLike;
   public filter?: FilterLike;
+  public parameters?: Observable<Parameters>;
 
   constructor(
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR)
-      paginator: PaginatorLike | null  = null,
+      paginator: PaginatorLike | null                  = null,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_SORT)
-      sort: SortLike | null                 = null,
+      sort: SortLike | null                            = null,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
-      filter: FilterLike | null           = null,
+      filter: FilterLike | null                        = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_PARAMETERS)
+      parameters: Observable<Parameters> | null        = null,
     @Optional()
     @Inject(RXAP_DATA_SOURCE_METADATA)
       metadata: AbstractTableDataSourceMetadata | null = null
   ) {
     super(paginator, metadata);
+    if (parameters) {
+      this.parameters = parameters;
+    }
     if (sort) {
       this.sort = sort;
     }

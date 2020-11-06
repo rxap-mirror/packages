@@ -37,7 +37,8 @@ import { TableDataSourceMetadata } from './table.data-source';
 import {
   RXAP_TABLE_DATA_SOURCE_PAGINATOR,
   RXAP_TABLE_DATA_SOURCE_SORT,
-  RXAP_TABLE_DATA_SOURCE_FILTER
+  RXAP_TABLE_DATA_SOURCE_FILTER,
+  RXAP_TABLE_DATA_SOURCE_PARAMETERS
 } from './tokens';
 import {
   Method,
@@ -64,9 +65,8 @@ export interface DynamicTableDataSourceViewer<Parameters> extends BaseDataSource
 }
 
 @Injectable()
-export class DynamicTableDataSource<Data extends Record<any, any> = any, Parameters = any> extends AbstractTableDataSource<Data> implements OnInit {
-
-  public parameters?: Observable<Parameters>;
+export class DynamicTableDataSource<Data extends Record<any, any> = any, Parameters = any>
+  extends AbstractTableDataSource<Data, Parameters> implements OnInit {
 
   private _refresh$ = new BehaviorSubject<number>(Date.now());
 
@@ -84,16 +84,13 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
     @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
       filter: FilterLike | null                 = null,
     @Optional()
-    @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
+    @Inject(RXAP_TABLE_DATA_SOURCE_PARAMETERS)
       parameters: Observable<Parameters> | null = null,
     @Optional()
     @Inject(RXAP_DATA_SOURCE_METADATA)
       metadata: TableDataSourceMetadata | null  = remoteMethod.metadata
   ) {
-    super(paginator, sort, filter, metadata);
-    if (parameters) {
-      this.parameters = parameters;
-    }
+    super(paginator, sort, filter, parameters, metadata);
   }
 
   public ngOnInit() {
