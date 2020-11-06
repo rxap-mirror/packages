@@ -14,7 +14,8 @@ import {
   RXAP_TABLE_DATA_SOURCE_PAGINATOR,
   RXAP_TABLE_DATA_SOURCE_SORT,
   RXAP_TABLE_DATA_SOURCE_FILTER,
-  RXAP_TABLE_DATA_SOURCE
+  RXAP_TABLE_DATA_SOURCE,
+  RXAP_TABLE_DATA_SOURCE_PARAMETERS
 } from './tokens';
 import { PaginatorLike } from '@rxap/data-source/pagination';
 import {
@@ -39,16 +40,19 @@ import { Constructor } from '@rxap/utilities';
 export interface TableDataSourceMetadata extends AbstractTableDataSourceMetadata {}
 
 @Injectable()
-export class TableDataSource<Data extends Record<any, any>> extends AbstractTableDataSource<Data> {
+export class TableDataSource<Data extends Record<any, any>, Parameters = any> extends AbstractTableDataSource<Data> {
 
   constructor(
     @Inject(RXAP_TABLE_DATA_SOURCE) private readonly dataSource: BaseDataSource<Data[]>,
     @Optional() @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR) paginator: PaginatorLike | null   = null,
     @Optional() @Inject(RXAP_TABLE_DATA_SOURCE_SORT) sort: SortLike | null                  = null,
     @Optional() @Inject(RXAP_TABLE_DATA_SOURCE_FILTER) filter: FilterLike | null            = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_PARAMETERS)
+      parameters: Observable<Parameters> | null                                             = null,
     @Optional() @Inject(RXAP_DATA_SOURCE_METADATA) metadata: TableDataSourceMetadata | null = dataSource.metadata
   ) {
-    super(paginator, sort, filter, metadata);
+    super(paginator, sort, filter, parameters, metadata);
   }
 
   protected _connect(viewer: BaseDataSourceViewer): [ Observable<Data[]>, TeardownLogic ] {

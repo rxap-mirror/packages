@@ -8,7 +8,8 @@ import {
   FilterLike,
   AbstractTableDataSourceMetadata,
   RxapAbstractTableDataSource,
-  TableEvent
+  TableEvent,
+  RXAP_TABLE_DATA_SOURCE_PARAMETERS
 } from '@rxap/data-source/table';
 import {
   Injectable,
@@ -60,7 +61,7 @@ export interface HttpTableDataSourceMetadata extends AbstractTableDataSourceMeta
 export type TableEventToHttpOptionsFunction = (event: TableEvent) => HttpDataSourceOptions | Observable<HttpDataSourceOptions> | Promise<HttpDataSourceOptions>;
 
 @Injectable()
-export class HttpTableDataSource<Data extends Record<any, any>> extends AbstractTableDataSource<Data> {
+export class HttpTableDataSource<Data extends Record<any, any>, Parameters = any> extends AbstractTableDataSource<Data> {
 
   constructor(
     @Inject(RXAP_TABLE_DATA_SOURCE)
@@ -78,10 +79,13 @@ export class HttpTableDataSource<Data extends Record<any, any>> extends Abstract
     @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
       filter: FilterLike | null                    = null,
     @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_PARAMETERS)
+      parameters: Observable<Parameters> | null    = null,
+    @Optional()
     @Inject(RXAP_DATA_SOURCE_METADATA)
       metadata: HttpTableDataSourceMetadata | null = dataSource.metadata
   ) {
-    super(paginator, sort, filter, metadata);
+    super(paginator, sort, filter, parameters, metadata);
     if (tableEventToHttpOptions) {
       this.tableEventToHttpOptions = tableEventToHttpOptions;
     }
