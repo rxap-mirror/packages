@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.1]
+### Fixed
+- prevent child reorder on extend child types
+
 ## [0.5.0]
 ### Changed
 - update to new xml parser system
