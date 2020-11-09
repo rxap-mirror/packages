@@ -66,7 +66,7 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
       const groupElement = element.getChild(this.options.group);
 
       if (!groupElement && this.required) {
-        throw new Error(`The child group element '${this.options.group}' is required!`);
+        throw new Error(`The child group element '${this.options.group}' is required for ${parsedElement.__tag}!`);
       }
 
       if (groupElement) {
@@ -108,24 +108,35 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
   }
 
   private getChildren(element: RxapElement): Array<ElementWithType<Child>> {
-    let elementChildren: Array<ElementWithType<Child>>;
+    // TODO : add test. Persevere child element order with extend child type
+    if (this.elementType) {
+      const allChildren  = element.getAllChildNodes();
+      const elementTypes = [ this.elementType, ...this.getExtendedTypes(this.elementType) ];
 
-    if (this.hasTag) {
-      elementChildren = element.getChildren(this.tag).map(child => ({ element: child, type: this.elementType }));
+      return allChildren.map(child => {
 
-      if (this.elementType) {
-        for (const extendedType of this.getExtendedTypes(this.elementType)) {
-          if (extendedType.TAG && element.hasChild(extendedType.TAG)) {
-            elementChildren.push(...element.getChildren(extendedType.TAG).map(child => ({ element: child, type: extendedType })));
+        if (this.hasTag) {
+          if (child.name === this.tag) {
+            return { element: child, type: this.elementType };
+          }
+        } else {
+          if (child.name === this.elementType?.TAG) {
+            return { element: child, type: this.elementType };
           }
         }
-      }
 
-    } else {
-      elementChildren = element.getAllChildNodes().map(child => ({ element: child, type: this.elementType }));
+        const extendedElementType = elementTypes.find(et => child.name === et.TAG);
+
+        if (extendedElementType) {
+          return { element: child, type: extendedElementType };
+        }
+
+        return { element: child, type: null };
+
+      }).filter(ewt => ewt.type !== null);
     }
 
-    return elementChildren;
+    throw new Error(`The element type is not defined for <${element.name}>`);
   }
 
   private getExtendedTypes(type: ParsedElementType<Child>): Array<ParsedElementType<Child>> {
