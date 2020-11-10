@@ -78,7 +78,7 @@ export class RxapElement {
 
   public getChildTextContent<T = string>(nodeName: string, defaultValue?: any, raw: boolean = false): T {
     if (this.hasChild(nodeName)) {
-      return this.getChild(nodeName)!.getTextContent(defaultValue, raw);
+      return this.getChild(nodeName)!.getTextContent(defaultValue, raw) ?? defaultValue;
     }
     return defaultValue as any;
   }
