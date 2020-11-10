@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.2]
+### Fixed
+- use default value if child text content is undefined
+
 ## [0.5.1]
 ### Fixed
 - prevent child reorder on extend child types

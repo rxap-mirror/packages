@@ -59,9 +59,11 @@ export class ElementChildTextContentParser<T extends ParsedElement, Value>
   ): T {
 
     if (element.hasChild(this.tag)) {
-      const rawValue                    = element.getChildTextContent(this.tag, this.defaultValue, true);
-      // @ts-ignore
-      parsedElement[ this.propertyKey ] = this.parseValue(rawValue);
+      const rawValue = element.getChildTextContent(this.tag, this.defaultValue, true);
+      if (rawValue !== undefined) {
+        // @ts-ignore
+        parsedElement[ this.propertyKey ] = this.parseValue(rawValue);
+      }
     } else if (this.required) {
       throw new Error(`Element <${element.name}> child <${this.tag}> text content is required!`);
     }
