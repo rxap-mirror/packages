@@ -33,6 +33,7 @@
     }
   },
   "required": [
-    "template"
+    "template",
+    "project"
   ]
 }

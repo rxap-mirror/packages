@@ -2,10 +2,10 @@ import { GenerateSchema } from './schema';
 import {
   chain,
   Rule,
-  Tree
+  Tree,
+  noop
 } from '@angular-devkit/schematics';
 import { formatFiles } from '@nrwl/workspace';
-import { XmlParserService } from '@rxap/xml-parser';
 import { Elements } from './elements/elements';
 import { join } from 'path';
 import { createDefaultPath } from '@schematics/angular/utility/workspace';
@@ -17,7 +17,7 @@ const { dasherize, classify, camelize, capitalize } = strings;
 
 export default function(options: GenerateSchema): Rule {
 
-  return async (host: Tree) => {
+  return async (host: Tree, context) => {
 
     const projectRootPath = await createDefaultPath(host, options.project as string);
 
@@ -29,9 +29,12 @@ export default function(options: GenerateSchema): Rule {
       path = join(projectRootPath, options.path);
     }
 
-    path = join(path, dasherize(options.name) + '-form');
-
     const formElement = ParseTemplate<FormElement>(host, options.template, ...Elements);
+
+    options.name     = options.name ?? formElement.name;
+    formElement.name = options.name;
+
+    path = join(path, dasherize(options.name) + '-form');
 
     const componentFilePath = join(path, dasherize(options.name) + '-form.component.html');
 
@@ -44,9 +47,13 @@ export default function(options: GenerateSchema): Rule {
         }
       },
       formatFiles(),
-      tree => {
+      context.debug ? tree => {
+        console.log('\n==========================================');
+        console.log('path: ' + componentFilePath);
+        console.log('==========================================');
         console.log(tree.read(componentFilePath)!.toString('utf-8'));
-      }
+        console.log('==========================================\n');
+      } : noop()
     ]);
 
   };
