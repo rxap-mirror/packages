@@ -97,7 +97,15 @@ export class XmlParserService {
 
     this.parseAttributes(instance, element);
 
+    if (instance.preParse) {
+      instance.preParse();
+    }
+
     parser.parsers.forEach(p => p(this, element, instance));
+
+    if (instance.postParse) {
+      instance.postParse();
+    }
 
     const requiredProperties = getMetadata<object>(ElementParserMetaData.REQUIRED_ELEMENT_PROPERTIES, instance);
 
@@ -110,8 +118,16 @@ export class XmlParserService {
       }
     }
 
+    if (instance.preValidate) {
+      instance.preValidate();
+    }
+
     if (instance.validate && !instance.validate()) {
       throw new RxapXmlParserError(`Could not parse element '${elementName}'. Parsed element is not valid`, '', instance.constructor.name);
+    }
+
+    if (instance.postValidate) {
+      instance.postValidate();
     }
 
     return instance as any;
