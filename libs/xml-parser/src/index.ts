@@ -9,3 +9,4 @@ export { ElementParser } from './lib/decorators/element-parser';
 export { ElementName } from './lib/element-name';
 export { XmlElementParserFunction } from './lib/xml-element-parser-function';
 export * from './lib/error';
+export * from './lib/element-factory';

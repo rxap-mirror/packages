@@ -4,10 +4,15 @@ export interface ParsedElement<Value = any> {
   __tag?: string;
   __parent?: ParsedElement;
 
+  postValidate?(): void;
+
+  preValidate?(): void;
+
+  postParse?(): void;
+
+  preParse?(): void;
+
   validate?(): boolean;
 
-  /**
-   * @deprecated removed
-   */
   toValue?(context?: KeyValue): Value;
 }
