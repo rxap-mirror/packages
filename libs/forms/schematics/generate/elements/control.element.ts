@@ -15,10 +15,12 @@ import {
   ObjectLiteralExpression
 } from 'ts-morph';
 import { ToValueContext } from './types';
-import { AddControlValidator } from '../helpers/add-control-validator';
 import { strings } from '@angular-devkit/core';
-import { OverwriteProperty } from '../helpers/overwrite-property';
 import { ValidatorElement } from './validators/validator.element';
+import {
+  OverwriteProperty,
+  AddControlValidator
+} from '@rxap-schematics/utilities';
 
 const { dasherize, classify, camelize } = strings;
 

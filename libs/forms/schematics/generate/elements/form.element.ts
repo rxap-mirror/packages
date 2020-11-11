@@ -16,11 +16,11 @@ import {
 } from 'ts-morph';
 import { ToValueContext } from './types';
 import { strings } from '@angular-devkit/core';
+import { FeatureElement } from './features/feature.element';
 import {
   AddToFormProviders,
   GetFormProvidersFile
-} from '../helpers/get-form-providers-source-file';
-import { FeatureElement } from './features/feature.element';
+} from '@rxap-schematics/utilities';
 
 const { dasherize, classify, camelize } = strings;
 
