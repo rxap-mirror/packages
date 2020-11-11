@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.4]
+### Revert
+- (schematics): use form id as default name
+
+## [0.1.3]
+### Fixed
+- (schematics): use form id as default name
+
 ## [0.1.2]
 ### Fixed
 - update peer deps
