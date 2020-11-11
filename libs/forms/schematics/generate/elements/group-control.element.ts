@@ -4,17 +4,12 @@ import {
 } from './control.element';
 import {
   ElementDef,
-  ElementAttribute,
-  ElementRequired,
   ElementExtends
 } from '@rxap/xml-parser/decorators';
-import { ParsedElement } from '@rxap/xml-parser';
 import {
-  ClassDeclaration,
   PropertyDeclaration,
   Scope
 } from 'ts-morph';
-import { ToValueContext } from './types';
 import { FormElement } from './form.element';
 import { strings } from '@angular-devkit/core';
 

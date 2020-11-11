@@ -38,6 +38,9 @@
       ],
       "@rxap/xml-parser/testing": [
         "../../dist/libs/xml-parser/testing"
+      ],
+      "@rxap-schematics/utilities": [
+        "../../dist/libs/schematics/utilities"
       ]
     }
   },
