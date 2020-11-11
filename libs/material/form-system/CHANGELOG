@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1]
+## Fixed
+- (schematics): compiler
+
+## [0.1.0]
+### Added
+- (schematics): generator schematic
+
 ## [0.0.4]
 ### Fixed
 - (ControlErrorDirective): remove dependency to RxapFormControl
