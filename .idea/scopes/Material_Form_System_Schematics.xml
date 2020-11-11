@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Material Form System Schematics" pattern="file[rxap]:libs/material/form-system/schematics//*" />
+</component>
