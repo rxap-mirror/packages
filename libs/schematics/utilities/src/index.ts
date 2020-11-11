@@ -21,3 +21,4 @@ export * from './lib/get-form-providers-source-file';
 export * from './lib/overwrite-decorator';
 export * from './lib/overwrite-property';
 export * from './lib/add-dir';
+export * from './lib/apply-ts-morph-project';

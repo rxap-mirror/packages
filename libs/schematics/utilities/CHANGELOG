@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.0]
+### Added
+- ApplyTsMorphProject
+
 ## [0.0.2]
 ### Fixed
 - update peer deps
