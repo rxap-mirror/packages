@@ -3,7 +3,7 @@
 /chromium-user-data/
 
 /libs/rxap
-
+/test
 /documentation
 .storybook.gitlab-ci.yml
 .compodoc.gitlab-ci.yml

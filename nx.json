@@ -170,6 +170,9 @@
     },
     "material-table-system": {
       "tags": []
+    },
+    "schematics-utilities": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
