@@ -1,7 +1,10 @@
 import { WithTemplate } from './with-template';
 
-export function NodeFactory(tag: string, ...attributes: Array<string | (() => string)>): (innerNode?: Array<WithTemplate | string> | string) => string {
-  return (innerNode?: Array<WithTemplate | string> | string) => {
+export function NodeFactory(
+  tag: string,
+  ...attributes: Array<string | (() => string)>
+): (innerNode?: Array<Partial<WithTemplate> | string> | string) => string {
+  return (innerNode?: Array<Partial<WithTemplate> | string> | string) => {
     let template = `<${tag}`;
     attributes.forEach(attr => {
       if (typeof attr === 'string') {
@@ -15,7 +18,17 @@ export function NodeFactory(tag: string, ...attributes: Array<string | (() => st
     if (typeof innerNode === 'string') {
       innerText += innerNode;
     } else {
-      innerNode?.forEach(inner => innerText += typeof inner === 'string' ? inner : inner.template());
+      innerNode?.forEach(inner => {
+        if (typeof inner === 'string') {
+          innerText += inner;
+        } else if (inner.template) {
+          if (typeof inner.template === 'function') {
+            innerText += inner.template();
+          } else if (typeof inner.template === 'string') {
+            innerText += inner.template;
+          }
+        }
+      });
     }
     if (innerText.includes('\n')) {
       template += '\n';
