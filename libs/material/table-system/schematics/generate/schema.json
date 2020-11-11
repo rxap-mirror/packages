@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "generate",
+  "type": "object",
+  "description": "",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "",
+      "visible": false
+    },
+    "flat": {
+      "type": "boolean",
+      "description": "",
+      "default": false
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "",
+      "default": false
+    },
+    "project": {
+      "type": "string",
+      "description": ""
+    },
+    "template": {
+      "type": "string",
+      "format": "path"
+    },
+    "openApiModule": {
+      "type": "string",
+      "description": ""
+    }
+  },
+  "required": [
+    "template",
+    "project"
+  ]
+}
