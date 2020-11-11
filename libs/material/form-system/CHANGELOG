@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.2]
+### Fixed
+- update peer deps
+
 ## [0.1.1]
 ## Fixed
 - (schematics): compiler
