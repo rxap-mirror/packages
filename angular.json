@@ -4076,6 +4076,68 @@
           "style": "scss"
         }
       }
+    },
+    "schematics-utilities": {
+      "projectType": "library",
+      "root": "libs/schematics/utilities",
+      "sourceRoot": "libs/schematics/utilities/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/schematics/utilities/tsconfig.lib.json",
+            "project": "libs/schematics/utilities/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/schematics/utilities/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/schematics/utilities/tsconfig.lib.json",
+              "libs/schematics/utilities/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/schematics/utilities/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/schematics/utilities/jest.config.js",
+            "tsConfig": "libs/schematics/utilities/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/schematics/utilities/src/test-setup.ts"
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "schematics-utilities:build:production"
+            ]
+          }
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "schematics-utilities:build:production",
+            "preTarget": "schematics-utilities:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "newProjectRoot": "",
