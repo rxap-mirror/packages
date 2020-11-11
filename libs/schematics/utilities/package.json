@@ -1,9 +1,11 @@
 {
   "name": "@rxap-schematics/utilities",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "peerDependencies": {
-    "@angular/common": "^10.0.5",
-    "@angular/core": "^10.0.5"
+    "@rxap/utilities": ">=0.8.0",
+    "rxjs": "^6.5.5",
+    "@rxap/xml-parser": ">=0.6.0",
+    "@rxap/mixin": ">=0.3.1"
   },
   "dependencies": {
     "tslib": "^2.0.0"
