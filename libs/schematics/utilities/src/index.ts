@@ -7,7 +7,6 @@ export * from './lib/find-routing-module';
 export * from './lib/get-coerce-array-literal-form-object-literal';
 export * from './lib/get-component-options-object';
 export * from './lib/get-ng-module-options-object';
-export * from './lib/handel-template';
 export * from './lib/handle-component';
 export * from './lib/handle-component-module';
 export * from './lib/parse-template';
