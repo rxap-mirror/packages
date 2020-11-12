@@ -26,7 +26,7 @@ export function ElementFactory<Element extends ParsedElement>(
   if (requiredProperties && hasIndexSignature(element)) {
     for (const [ propertyKey, message ] of Object.entries(requiredProperties)) {
       if (!element.hasOwnProperty(propertyKey) || element[ propertyKey ] === undefined) {
-        throw new RxapXmlParserError(`[${element}] ${message}`, '', element.constructor.name);
+        throw new RxapXmlParserError(`[${ElementConstructor.TAG}] ${message}`, '', element.constructor.name);
       }
     }
   }
