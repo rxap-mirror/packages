@@ -3,14 +3,25 @@ import {
   ElementAttribute,
   ElementDef,
   ElementExtends,
-  ElementRequired
+  ElementRequired,
+  ElementChildren
 } from '@rxap/xml-parser/decorators';
 import { ParsedElement } from '@rxap/xml-parser';
-import { WithTemplate } from '@rxap-schematics/utilities';
+import {
+  WithTemplate,
+  ToValueContext,
+  AddNgModuleImport
+} from '@rxap-schematics/utilities';
+import {
+  chain,
+  Rule
+} from '@angular-devkit/schematics';
+import { SourceFile } from 'ts-morph';
+import { ControlFeatureElement } from './features/control-feature.element';
 
 @ElementExtends(NodeElement)
 @ElementDef('control')
-export class ControlElement implements WithTemplate, ParsedElement {
+export class ControlElement implements WithTemplate, ParsedElement, NodeElement {
 
   @ElementAttribute()
   @ElementRequired()
@@ -19,7 +30,19 @@ export class ControlElement implements WithTemplate, ParsedElement {
   @ElementAttribute()
   public flex: string = 'nogrow';
 
+  @ElementChildren(ControlFeatureElement, { group: 'features' })
+  public features?: ControlFeatureElement[];
+
   public attributes: Array<string | (() => string)> = [];
+
+  public __tag!: string;
+  public __parent!: NodeElement;
+
+  public nodes: NodeElement[] = [];
+
+  public get controlPath(): string {
+    return [ this.__parent.controlPath, this.name ].join('.');
+  }
 
   constructor() {
     this.flexTemplateAttribute = this.flexTemplateAttribute.bind(this);
@@ -37,6 +60,19 @@ export class ControlElement implements WithTemplate, ParsedElement {
 
   public validate(): boolean {
     return true;
+  }
+
+  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
+    this.features?.forEach(feature => feature.handleComponent({ project, sourceFile, options }));
+  }
+
+  public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
+    AddNgModuleImport(sourceFile, 'ReactiveFormsModule', '@angular/forms');
+    this.features?.forEach(feature => feature.handleComponentModule({ project, sourceFile, options }));
+  }
+
+  public toValue({ project, options }: ToValueContext): Rule {
+    return chain(this.features?.map(feature => feature.toValue({ project, options })) ?? []);
   }
 
 }
