@@ -6,7 +6,12 @@ import {
 } from '@rxap/xml-parser/decorators';
 import { strings } from '@angular-devkit/core';
 import { NodeElement } from '../node.element';
-import { NodeFactory } from '@rxap-schematics/utilities';
+import {
+  NodeFactory,
+  ToValueContext,
+  AddNgModuleImport
+} from '@rxap-schematics/utilities';
+import { SourceFile } from 'ts-morph';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

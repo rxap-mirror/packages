@@ -79,7 +79,7 @@ export default function(options: GenerateSchema): Rule {
       }),
       HandelTemplate(options),
       formatFiles(),
-      !context.debug ? tree => {
+      context.debug ? tree => {
         console.log('\n==========================================');
         console.log('path: ' + componentFilePath);
         console.log('==========================================');
