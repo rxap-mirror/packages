@@ -20,14 +20,22 @@ import {
   AddComponentAnimations,
   FindComponentModuleSourceFile,
   AddNgModuleProvider,
-  AddNgModuleImport
+  AddNgModuleImport,
+  AddDir,
+  ApplyTsMorphProject,
+  AutoImport
 } from '@rxap-schematics/utilities';
 import { FormElement } from '@rxap/forms/schematics/generate/elements/form.element';
+import {
+  chain,
+  Rule
+} from '@angular-devkit/schematics';
+import { join } from 'path';
 
 const { dasherize, classify, camelize } = strings;
 
 @ElementDef('definition')
-export class TableElement implements ParsedElement<ToValueContext> {
+export class TableElement implements ParsedElement<Rule> {
 
   @ElementAttribute()
   @ElementRequired()
@@ -52,10 +60,11 @@ export class TableElement implements ParsedElement<ToValueContext> {
   public method?: MethodElement;
 
   @ElementChildren(ColumnElement, { group: 'columns' })
+  @ElementRequired()
   public columns!: ColumnElement[];
 
   @ElementChildren(FeatureElement, { group: 'features' })
-  public features!: FeatureElement[];
+  public features?: FeatureElement[];
 
   @ElementChild(AdapterElement)
   public adapter?: AdapterElement;
@@ -79,8 +88,10 @@ export class TableElement implements ParsedElement<ToValueContext> {
   public columnsTemplate(): string {
     let template = '<!-- region columns -->';
 
-    for (const feature of this.features) {
-      template += feature.columnTemplate();
+    if (this.features) {
+      for (const feature of this.features) {
+        template += feature.columnTemplate();
+      }
     }
 
     for (const column of this.columns) {
@@ -99,8 +110,10 @@ export class TableElement implements ParsedElement<ToValueContext> {
     }
     let template = '<!-- region filter columns -->';
 
-    for (const feature of this.features) {
-      template += feature.columnTemplateFilter();
+    if (this.features) {
+      for (const feature of this.features) {
+        template += feature.columnTemplateFilter();
+      }
     }
 
     for (const column of this.columns) {
@@ -125,8 +138,10 @@ export class TableElement implements ParsedElement<ToValueContext> {
 
   public footerTemplate(): string {
     let template = '<mat-card-footer>';
-    for (const feature of this.features) {
-      template += feature.footerTemplate();
+    if (this.features) {
+      for (const feature of this.features) {
+        template += feature.footerTemplate();
+      }
     }
     template += '</mat-card-footer>';
     return template;
@@ -135,8 +150,10 @@ export class TableElement implements ParsedElement<ToValueContext> {
   public headerTemplate(): string {
     let template = '<mat-progress-bar rxapCardProgressBar [loading$]="dataSource.loading$"></mat-progress-bar>';
 
-    for (const feature of this.features) {
-      template += feature.headerTemplate();
+    if (this.features) {
+      for (const feature of this.features) {
+        template += feature.headerTemplate();
+      }
     }
 
     if (!this.hasFeature('navigate-back')) {
@@ -149,8 +166,10 @@ export class TableElement implements ParsedElement<ToValueContext> {
   public tableTemplate(): string {
     let template = '<table mat-table #dataSource="rxapTableDataSource" rxapTableDataSource\n';
 
-    for (const feature of this.features) {
-      template += feature.tableTemplate();
+    if (this.features) {
+      for (const feature of this.features) {
+        template += feature.tableTemplate();
+      }
     }
 
     if (this.hasFilter) {
@@ -181,9 +200,16 @@ export class TableElement implements ParsedElement<ToValueContext> {
     return template;
   }
 
-  public toValue({ project, options }: ToValueContext<GenerateSchema>): any {
-    this.handleComponentModule(project, options);
-    this.handleComponent(project, options);
+  public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
+    return chain([
+      tree => AddDir(tree.getDir(options.path!), project, undefined, pathFragment => !!pathFragment.match(/\.ts$/)),
+      chain(this.columns.map(column => column.toValue({ project, options }))),
+      chain(this.features?.map(node => node.toValue({ project, options })) ?? []),
+      () => this.handleComponent(project, options),
+      () => this.handleComponentModule(project, options),
+      ApplyTsMorphProject(project, options.path),
+      AutoImport(join(options.path!, '..'), options.path!)
+    ]);
   }
 
   private handleComponent(project: Project, options: GenerateSchema) {
