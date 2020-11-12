@@ -6,26 +6,27 @@ import {
   Renderer2,
   ElementRef,
   OnDestroy,
+  NgModule
 } from '@angular/core';
 import {
   FormDefinition,
-  AbstractControl,
+  AbstractControl
 } from '@rxap/forms';
 import {
   setMetadataMap,
   Required,
-  getMetadata,
+  getMetadata
 } from '@rxap/utilities';
 import { ControlContainer } from '@angular/forms';
 import { Mixin } from '@rxap/mixin';
 import {
   Subscription,
-  of,
+  of
 } from 'rxjs';
 import {
   tap,
   startWith,
-  catchError,
+  catchError
 } from 'rxjs/operators';
 import { ExtractControlMixin } from '../mixins/extract-control.mixin';
 import { ExtractFormDefinitionMixin } from '../mixins/extract-form-definition.mixin';
@@ -222,3 +223,9 @@ export class ControlHideShowDirective implements OnInit, OnDestroy {
 
 
 }
+
+@NgModule({
+  declarations: [ ControlHideShowDirective ],
+  exports:      [ ControlHideShowDirective ]
+})
+export class ControlHideShowDirectiveModule {}

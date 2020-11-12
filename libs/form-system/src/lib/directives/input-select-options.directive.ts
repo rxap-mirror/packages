@@ -8,9 +8,9 @@ import {
   OnDestroy,
   Injector,
   INJECTOR,
-  AfterContentInit,
   Optional,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  NgModule
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import {
@@ -185,3 +185,9 @@ export class InputSelectOptionsDirective implements OnInit, OnDestroy {
   }
 
 }
+
+@NgModule({
+  declarations: [ InputSelectOptionsDirective ],
+  exports:      [ InputSelectOptionsDirective ]
+})
+export class InputSelectOptionsDirectiveModule {}

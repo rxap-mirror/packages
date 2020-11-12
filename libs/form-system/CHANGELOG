@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.6]
+### Fixed
+- expose form directives with own modules
+
 ## [0.1.5]
 ### Fixed
 - (InputSelectOptions): add change detection after render

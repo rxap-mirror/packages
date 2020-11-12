@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
-import { InputSelectOptionsDirective } from './input-select-options.directive';
-import { ControlHideShowDirective } from './control-hide-show.directive';
+import { InputSelectOptionsDirectiveModule } from './input-select-options.directive';
+import { ControlHideShowDirectiveModule } from './control-hide-show.directive';
 
 @NgModule({
-  declarations: [
-    InputSelectOptionsDirective,
-    ControlHideShowDirective,
-  ],
-  exports:      [
-    InputSelectOptionsDirective,
-    ControlHideShowDirective,
-  ],
+  exports: [
+    InputSelectOptionsDirectiveModule,
+    ControlHideShowDirectiveModule
+  ]
 })
 export class FormSystemDirectivesModule {}
