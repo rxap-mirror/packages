@@ -1,13 +1,26 @@
-import { Project } from 'ts-morph';
+import {
+  Project,
+  IndentationText,
+  QuoteKind
+} from 'ts-morph';
 import { Rule } from '@angular-devkit/schematics';
 import { AddDir } from './add-dir';
 
-export function AutoImport({ options, project }: { options: { path: string }, project: Project }): Rule {
+export function AutoImport(basePath: string, autoImportBasePath: string = basePath): Rule {
   return tree => {
-
-    AddDir(tree.getDir(options.path), project, '', pf => !!pf.match(/\.ts$/));
-
-    project.getSourceFiles().forEach(sourceFile => sourceFile.fixMissingImports());
-
+    const project = new Project({
+      useInMemoryFileSystem: true,
+      manipulationSettings:  {
+        indentationText:   IndentationText.TwoSpaces,
+        quoteKind:         QuoteKind.Single,
+        useTrailingCommas: true
+      }
+    });
+    AddDir(tree.getDir(basePath), project, basePath, pf => !!pf.match(/\.ts$/));
+    console.log('auto import for ts files');
+    project.getSourceFiles().filter(sourceFile => sourceFile.getFilePath().includes(autoImportBasePath)).forEach(sourceFile => {
+      sourceFile.fixMissingImports();
+      tree.overwrite(sourceFile.getFilePath(), sourceFile.getFullText());
+    });
   };
 }
