@@ -4,6 +4,7 @@
 
 /libs/rxap
 /test
+/templates
 /documentation
 .storybook.gitlab-ci.yml
 .compodoc.gitlab-ci.yml
