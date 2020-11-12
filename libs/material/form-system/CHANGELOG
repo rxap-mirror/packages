@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.0]
+### Added
+- (schematics): support for component creation
+
 ## [0.1.4]
 ### Revert
 - (schematics): use form id as default name

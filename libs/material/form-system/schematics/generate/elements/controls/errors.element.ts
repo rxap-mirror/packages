@@ -5,7 +5,16 @@ import {
   XmlParserService
 } from '@rxap/xml-parser';
 import { strings } from '@angular-devkit/core';
-import { NodeFactory } from '@rxap-schematics/utilities';
+import {
+  NodeFactory,
+  HandleComponent,
+  HandleComponentModule,
+  ToValueContext,
+  AddNgModuleImport,
+  WithTemplate
+} from '@rxap-schematics/utilities';
+import { Rule } from '@angular-devkit/schematics';
+import { SourceFile } from 'ts-morph';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
@@ -23,7 +32,7 @@ export function ErrorsElementParser(
 }
 
 @ElementParser('errors', ErrorsElementParser)
-export class ErrorsElement implements ParsedElement {
+export class ErrorsElement implements ParsedElement<Rule>, HandleComponent, HandleComponentModule, WithTemplate {
 
   public errors: Record<string, string> = {};
 
@@ -39,4 +48,16 @@ export class ErrorsElement implements ParsedElement {
     return template;
   }
 
+  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
+  }
+
+  public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
+    AddNgModuleImport(sourceFile, 'ControlErrorDirectiveModule', '@rxap-material/form-system');
+  }
+
+  public toValue({ project, options }: ToValueContext): Rule {
+    return () => {};
+  }
+
 }
+

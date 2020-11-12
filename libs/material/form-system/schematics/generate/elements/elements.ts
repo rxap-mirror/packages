@@ -6,7 +6,10 @@ import { ColumnElement } from './column.element';
 import { Controls } from './controls/controls';
 import { GroupElement } from './group.element';
 import { FormElement } from './form.element';
-import { TabGroup } from './tab.element';
+import { TabGroupElement } from './tab.element';
+import { Features } from './features/features';
+import { DividerElement } from './divider.element';
+import { CardElement } from './card.element';
 
 export const Elements: Array<Constructor<ParsedElement>> = [
   NodeElement,
@@ -14,6 +17,9 @@ export const Elements: Array<Constructor<ParsedElement>> = [
   ColumnElement,
   GroupElement,
   FormElement,
-  TabGroup,
-  ...Controls
+  TabGroupElement,
+  DividerElement,
+  CardElement,
+  ...Controls,
+  ...Features
 ];

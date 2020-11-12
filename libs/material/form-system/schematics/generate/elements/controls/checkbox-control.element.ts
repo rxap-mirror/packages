@@ -21,8 +21,14 @@ export class CheckboxControlElement extends ControlElement {
     return NodeFactory(
       'mat-checkbox',
       this.flexTemplateAttribute,
-      `formControlName="${this.name}"`
+      `formControlName="${this.name}"`,
+      `i18n="forms.${this.controlPath}.label"`
     )('\n' + (this.label ?? capitalize(this.name)) + '\n');
+  }
+
+  public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+    super.handleComponentModule({ project, sourceFile, options });
+    AddNgModuleImport(sourceFile, 'MatCheckboxModule', '@angular/material/checkbox');
   }
 
 }

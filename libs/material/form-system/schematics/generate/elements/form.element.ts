@@ -1,17 +1,74 @@
 import { GroupElement } from './group.element';
 import {
   ElementDef,
-  ElementExtends
+  ElementExtends,
+  ElementChildren
 } from '@rxap/xml-parser/decorators';
 import { NodeElement } from './node.element';
-import { NodeFactory } from '@rxap-schematics/utilities';
+import {
+  NodeFactory,
+  ToValueContext,
+  AddDir,
+  ApplyTsMorphProject,
+  AutoImport,
+  AddNgModuleImport
+} from '@rxap-schematics/utilities';
+import { SourceFile } from 'ts-morph';
+import {
+  chain,
+  Rule
+} from '@angular-devkit/schematics';
+import { join } from 'path';
+import { strings } from '@angular-devkit/core';
+import { GenerateSchema } from '../schema';
+import { FormFeatureElement } from './features/form-feature.element';
+
+const { dasherize, classify, camelize, capitalize } = strings;
 
 @ElementExtends(NodeElement)
 @ElementDef('definition')
 export class FormElement extends GroupElement {
 
+  @ElementChildren(FormFeatureElement, { group: 'features' })
+  public features?: FormFeatureElement[];
+
   public template(): string {
-    return NodeFactory('form', 'rxapForm')(this.nodes);
+    return NodeFactory('form', 'rxapForm')(
+      [
+        ...this.nodes,
+        ...(this.features ?? [])
+      ]);
+  }
+
+  public get controlPath(): string {
+    return this.name;
+  }
+
+  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+    this.nodes.forEach(node => node.handleComponent({ project, sourceFile, options }));
+    this.features?.forEach(feature => feature.handleComponent({ project, sourceFile, options }));
+  }
+
+  public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+    this.nodes.forEach(node => node.handleComponentModule({ project, sourceFile, options }));
+    this.features?.forEach(feature => feature.handleComponentModule({ project, sourceFile, options }));
+    AddNgModuleImport(sourceFile, 'RxapFormsModule', '@rxap/forms');
+  }
+
+  public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
+    const componentFile             = dasherize(options.name!) + '-form.component.ts';
+    const componentModuleFile       = dasherize(options.name!) + '-form.component.module.ts';
+    const componentTemplateFilePath = join(options.path!, dasherize(options.name!) + '-form.component.html');
+    return chain([
+      tree => tree.overwrite(componentTemplateFilePath, this.template()),
+      tree => AddDir(tree.getDir(options.path!), project, undefined, pathFragment => !!pathFragment.match(/\.ts$/)),
+      chain(this.nodes.map(node => node.toValue({ project, options }))),
+      chain(this.features?.map(feature => feature.toValue({ project, options })) ?? []),
+      () => this.handleComponent({ project, options, sourceFile: project.getSourceFileOrThrow(componentFile) }),
+      () => this.handleComponentModule({ project, options, sourceFile: project.getSourceFileOrThrow(componentModuleFile) }),
+      ApplyTsMorphProject(project, options.path),
+      AutoImport(join(options.path!, '..'), options.path!)
+    ]);
   }
 
 }

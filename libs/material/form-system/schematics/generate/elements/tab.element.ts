@@ -10,11 +10,20 @@ import {
 import {
   NodeFactory,
   WithTemplate,
-  StringOrFactory
+  StringOrFactory,
+  ToValueContext,
+  AddNgModuleImport,
+  HandleComponentModule,
+  HandleComponent
 } from '@rxap-schematics/utilities';
+import { SourceFile } from 'ts-morph';
+import { Rule } from '@angular-devkit/schematics';
 
 @ElementDef('tab')
-export class TabElement implements ParsedElement {
+export class TabElement implements NodeElement {
+
+  public __tag!: string;
+  public __parent!: TabGroupElement;
 
   @ElementChildTextContent()
   @ElementRequired()
@@ -22,6 +31,10 @@ export class TabElement implements ParsedElement {
 
   @ElementChildren(NodeElement, { group: 'nodes' })
   public nodes: NodeElement[] = [];
+
+  public get controlPath(): string {
+    return this.__parent.controlPath;
+  }
 
   public template(): string {
     return NodeFactory('mat-tab', `label="${this.label}"`)([ ...this.nodes, '\n' ]);
@@ -31,14 +44,34 @@ export class TabElement implements ParsedElement {
     return this.nodes && this.nodes.length !== 0;
   }
 
+  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
+  }
+
+  public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
+    AddNgModuleImport(sourceFile, 'MatTabsModule', '@angular/material/tabs');
+  }
+
+  public toValue({ project, options }: ToValueContext): Rule {
+    return () => {};
+  }
+
 }
 
 @ElementExtends(NodeElement)
 @ElementDef('tab-group')
-export class TabGroup implements WithTemplate, ParsedElement {
+export class TabGroupElement implements WithTemplate, ParsedElement<Rule>, HandleComponentModule, HandleComponent, NodeElement {
+
+  public __tag!: string;
+  public __parent!: NodeElement;
+
+  public nodes: NodeElement[] = [];
 
   @ElementChildren(TabElement)
   public tabs!: TabElement[];
+
+  public get controlPath(): string {
+    return this.__parent.controlPath;
+  }
 
   public validate(): boolean {
     return this.tabs && this.tabs.length !== 0;
@@ -46,6 +79,17 @@ export class TabGroup implements WithTemplate, ParsedElement {
 
   public template(...attributes: StringOrFactory[]): string {
     return NodeFactory('mat-tab-group')(this.tabs);
+  }
+
+  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
+  }
+
+  public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
+    AddNgModuleImport(sourceFile, 'MatTabsModule', '@angular/material/tabs');
+  }
+
+  public toValue({ project, options }: ToValueContext): Rule {
+    return () => {};
   }
 
 }

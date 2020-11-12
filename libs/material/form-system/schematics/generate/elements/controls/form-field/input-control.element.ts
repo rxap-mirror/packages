@@ -5,9 +5,14 @@ import {
 } from '@rxap/xml-parser/decorators';
 
 import { strings } from '@angular-devkit/core';
-import { NodeElement } from '../node.element';
+import { NodeElement } from '../../node.element';
 import { FormFieldElement } from './form-field.element';
-import { LeafFactory } from '@rxap-schematics/utilities';
+import {
+  LeafFactory,
+  ToValueContext,
+  AddNgModuleImport
+} from '@rxap-schematics/utilities';
+import { SourceFile } from 'ts-morph';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
@@ -18,18 +23,27 @@ export class InputControlElement extends FormFieldElement {
   @ElementAttribute()
   public type: string = 'text';
 
+  public standalone?: boolean;
+
   protected innerTemplate(): string {
     const attributes: Array<string | (() => string)> = [
       'matInput',
       `type="${this.type}"`,
+      `placeholder="Enter ${camelize(this.name)}"`,
+      `i18n-placeholder="forms.${this.controlPath}.placeholder"`,
       ...this.attributes
     ];
 
-    if (this.name) {
+    if (!this.standalone) {
       attributes.push(`formControlName="${this.name}"`);
     }
 
     return LeafFactory('input', ...attributes);
+  }
+
+  public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+    super.handleComponentModule({ project, sourceFile, options });
+    AddNgModuleImport(sourceFile, 'MatInputModule', '@angular/material/input');
   }
 
 }
