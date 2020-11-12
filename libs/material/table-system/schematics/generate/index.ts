@@ -26,7 +26,6 @@ import { XmlParserService } from '@rxap/xml-parser';
 import { TableSystemElements } from './elements/elements';
 import { TableElement } from './elements/table.element';
 import { readAngularJsonFile } from '@rxap/schematics/utilities';
-import { AddDir } from '@rxap-schematics/utilities';
 
 
 const { dasherize, classify, camelize } = strings;
@@ -74,16 +73,17 @@ export default function(options: GenerateSchema): Rule {
       path = join(projectRootPath, options.path);
     }
 
-    path = join(path, dasherize(options.name) + '-table');
+    options.path = path = join(path, dasherize(options.name) + '-table');
 
     const hasComponentModule = host.exists(join(path, dasherize(options.name) + '-table.component.ts'));
 
     return chain([
       hasComponentModule ? noop() : externalSchematic('@rxap/schematics', 'component-module', {
-        path:    options.path,
+        path:    options.path.replace(/^\//, ''),
         project: options.project,
         name:    dasherize(options.name) + '-table',
-        theme:   false
+        theme:   false,
+        flat:    true
       }),
       mergeWith(apply(url('./files'), [
         applyTemplates({
@@ -106,25 +106,6 @@ export default function(options: GenerateSchema): Rule {
           return fileEntry;
         })
       ]), MergeStrategy.Overwrite),
-      tree => {
-        AddDir(tree.getDir(path), project, undefined, pathFragment => !!pathFragment.match(/\.ts$/));
-        tableElement.toValue({ project, options });
-        project
-          .getSourceFiles()
-          .forEach(sourceFile => sourceFile.organizeImports());
-        project.getSourceFiles()
-               .forEach(sourceFile => {
-
-                 const filePath = join(path, sourceFile.getFilePath());
-
-                 if (tree.exists(filePath)) {
-                   tree.overwrite(filePath, sourceFile.getFullText());
-                 } else {
-                   tree.create(filePath, sourceFile.getFullText());
-                 }
-
-               });
-      },
       tableElement.hasFilter ? externalSchematic('@rxap/forms', 'generate', {
         path:        path.replace(/^\//, ''),
         formElement: tableElement.createFormElement(),
@@ -132,7 +113,15 @@ export default function(options: GenerateSchema): Rule {
         project:     options.project,
         flat:        true
       }) : noop(),
-      formatFiles()
+      tableElement.toValue({ project, options }),
+      formatFiles(),
+      (tree, ctx) => {
+        if (ctx.debug) {
+          console.log(tree.read(join(options.path!, dasherize(options.name!) + '-table.component.module.ts'))!.toString('utf-8'));
+          console.log(tree.read(join(options.path!, dasherize(options.name!) + '-table.component.ts'))!.toString('utf-8'));
+          console.log(tree.read(join(options.path!, dasherize(options.name!) + '-table.component.html'))!.toString('utf-8'));
+        }
+      }
     ]);
 
   };

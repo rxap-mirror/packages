@@ -71,16 +71,18 @@ export class ColumnMenuElement extends FeatureElement {
   public headerTemplate(): string {
     let template = '<rxap-table-column-menu matCard #rxapTableColumns="rxapTableColumns">';
 
-    for (const feature of this.__parent.features) {
-      const displayColumns = coerceArray(feature.displayColumn());
-      for (const displayColumn of displayColumns) {
-        template += `
+    if (this.__parent.features) {
+      for (const feature of this.__parent.features) {
+        const displayColumns = coerceArray(feature.displayColumn());
+        for (const displayColumn of displayColumns) {
+          template += `
         <rxap-table-column-option
         ${displayColumn.hidden ? 'hidden' : ''}
         ${displayColumn.active === false ? 'inactive' : ''}
         name="${displayColumn.name}">
         </rxap-table-column-option>
         `;
+        }
       }
     }
 

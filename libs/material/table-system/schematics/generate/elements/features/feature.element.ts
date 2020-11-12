@@ -6,6 +6,7 @@ import {
   HandleComponentModule,
   ToValueContext
 } from '@rxap-schematics/utilities';
+import { Rule } from '@angular-devkit/schematics';
 
 export interface DisplayColumn {
   name: string;
@@ -14,7 +15,7 @@ export interface DisplayColumn {
 }
 
 @ElementDef('feature')
-export class FeatureElement implements ParsedElement, HandleComponentModule, HandleComponent {
+export class FeatureElement implements ParsedElement<Rule>, HandleComponentModule, HandleComponent {
 
   public __tag!: string;
 
@@ -32,7 +33,8 @@ export class FeatureElement implements ParsedElement, HandleComponentModule, Han
   public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
   }
 
-  public toValue(context?: ToValueContext): any {
+  public toValue(context?: ToValueContext): Rule {
+    return () => {};
   }
 
   public displayColumn(): DisplayColumn | DisplayColumn[] | null {

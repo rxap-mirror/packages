@@ -5,7 +5,10 @@ import {
   ElementRequired
 } from '@rxap/xml-parser/decorators';
 import { FilterElement } from './filters/filter.element';
-import { ParsedElement } from '@rxap/xml-parser';
+import {
+  ParsedElement,
+  ElementFactory
+} from '@rxap/xml-parser';
 import { OptionsElement } from '@rxap/xml-parser/elements';
 import { strings } from '@angular-devkit/core';
 import { SourceFile } from 'ts-morph';
@@ -17,11 +20,13 @@ import {
   AddNgModuleImport,
   ToValueContext
 } from '@rxap-schematics/utilities';
+import { Rule } from '@angular-devkit/schematics';
+import { GenerateSchema } from '../../schema';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
 @ElementDef('column')
-export class ColumnElement implements ParsedElement, HandleComponentModule, HandleComponent {
+export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule, HandleComponent {
 
   public __tag!: string;
   public __parent!: TableElement;
@@ -72,6 +77,10 @@ export class ColumnElement implements ParsedElement, HandleComponentModule, Hand
     return true;
   }
 
+  public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
+    return () => {};
+  }
+
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
 
     if (this.filter) {
@@ -90,10 +99,7 @@ export class ColumnElement implements ParsedElement, HandleComponentModule, Hand
     if (!this.filter) {
       throw new Error(`The column ${this.name} has not a filter definition.`);
     }
-    const control = new ControlElement();
-    control.id    = dasherize(this.name);
-    control.__tag = 'control';
-    return control;
+    return ElementFactory(ControlElement, { id: dasherize(this.name), __tag: 'control' });
   }
 
 }
