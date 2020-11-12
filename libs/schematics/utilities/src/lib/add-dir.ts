@@ -6,7 +6,7 @@ export function AddDir(dir: DirEntry, project: Project, parentPath: string = '',
   for (const pathFragment of dir.subfiles.filter(filter)) {
     const fileEntry = dir.file(pathFragment);
     if (fileEntry) {
-      project.createSourceFile(join(parentPath, pathFragment), fileEntry.content.toString('utf-8'));
+      project.createSourceFile(join(parentPath, pathFragment), fileEntry.content.toString('utf-8'), { overwrite: false });
     } else {
       throw new Error('The path fragment does not point to a file entry');
     }
