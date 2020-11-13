@@ -1,11 +1,13 @@
 import {
   ElementDef,
-  ElementExtends
+  ElementExtends,
+  ElementAttribute
 } from '@rxap/xml-parser/decorators';
 import { NodeElement } from './node.element';
 import {
   ToValueContext,
-  AddNgModuleImport
+  AddNgModuleImport,
+  NodeFactory
 } from '@rxap-schematics/utilities';
 import { SourceFile } from 'ts-morph';
 
@@ -13,11 +15,29 @@ import { SourceFile } from 'ts-morph';
 @ElementDef('row')
 export class RowElement extends NodeElement {
 
+  @ElementAttribute()
+  public align?: string;
+
+  @ElementAttribute()
+  public wrap: boolean = false;
+
+  @ElementAttribute()
+  public gap?: string;
+
   public template(): string {
-    let template = '<div fxLayout="row">';
-    this.nodes?.forEach(node => template += node.template());
-    template += '</div>\n';
-    return template;
+    const attributes: Array<string | (() => string)> = [];
+    if (this.wrap) {
+      attributes.push('fxLayout="row wrap"');
+    } else {
+      attributes.push('fxLayout="row"');
+    }
+    if (this.gap) {
+      attributes.push(`fxLayoutGap="${this.gap}"`);
+    }
+    if (this.align) {
+      attributes.push(`fxLayoutAlign="${this.align}"`);
+    }
+    return NodeFactory('div', ...attributes)(this.nodes);
   }
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
