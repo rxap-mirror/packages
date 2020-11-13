@@ -34,3 +34,9 @@ export * from './lib/directives/form-directives.module';
 export * from './lib/directives/input-select-options.directive';
 
 // endregion
+
+// region validators
+
+export * from './lib/validators/is-equal-to';
+
+// endregion
