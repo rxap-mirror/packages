@@ -2,12 +2,14 @@ import { SourceFile } from 'ts-morph';
 import { GetNgModuleOptionsObject } from './get-ng-module-options-object';
 import { GetCoerceArrayLiteralFromObjectLiteral } from './get-coerce-array-literal-form-object-literal';
 
-export function AddNgModuleImport(sourceFile: SourceFile, namedImport: string, moduleSpecifier: string) {
+export function AddNgModuleImport(sourceFile: SourceFile, namedImport: string, moduleSpecifier?: string) {
 
-  sourceFile.addImportDeclaration({
-    moduleSpecifier,
-    namedImports: [ namedImport ]
-  });
+  if (moduleSpecifier) {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier,
+      namedImports: [ namedImport ]
+    });
+  }
 
   const ngModuleOptions = GetNgModuleOptionsObject(sourceFile);
 
