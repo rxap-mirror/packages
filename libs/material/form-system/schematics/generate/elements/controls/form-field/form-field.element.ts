@@ -38,7 +38,7 @@ export abstract class FormFieldElement extends ControlElement {
 
   public template(...attributes: Array<string | (() => string)>): string {
     const nodes: Array<WithTemplate | string> = [
-      NodeFactory('mat-label', `i18n="forms.${this.controlPath}.label"`)('\n' + (this.label ?? capitalize(this.name)) + '\n'),
+      NodeFactory('mat-label', `i18n="@@forms.${this.controlPath}.label"`)('\n' + (this.label ?? capitalize(this.name)) + '\n'),
       this.innerTemplate()
     ];
     if (this.suffix) {

@@ -30,7 +30,7 @@ export class InputControlElement extends FormFieldElement {
       'matInput',
       `type="${this.type}"`,
       `placeholder="Enter ${camelize(this.name)}"`,
-      `i18n-placeholder="forms.${this.controlPath}.placeholder"`,
+      `i18n-placeholder="@@forms.${this.controlPath}.placeholder"`,
       ...this.attributes
     ];
 
