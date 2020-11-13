@@ -122,7 +122,6 @@ export default function(options: GenerateSchema): Rule {
           console.log(tree.read(join(options.path!, dasherize(options.name!) + '-table.component.html'))!.toString('utf-8'));
         }
       },
-      tree => console.log(tree.read('apps/pwa/src/app/company-table/company-table.component.module.ts')!.toString())
     ]);
 
   };
