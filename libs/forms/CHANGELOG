@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.17]
+### Fixed
+- (schematics): set the schematic project
+
 ## [0.3.16]
 ### Fixed
 - (schematics): use schematics utilities package
