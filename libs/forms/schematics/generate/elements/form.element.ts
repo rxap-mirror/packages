@@ -2,7 +2,9 @@ import {
   ElementDef,
   ElementChildren,
   ElementAttribute,
-  ElementRequired
+  ElementRequired,
+  ElementTextContent,
+  ElementChild
 } from '@rxap/xml-parser/decorators';
 import { ControlElement } from './control.element';
 import { ParsedElement } from '@rxap/xml-parser';
@@ -14,15 +16,104 @@ import {
   VariableDeclarationKind,
   Writers
 } from 'ts-morph';
-import { ToValueContext } from './types';
 import { strings } from '@angular-devkit/core';
 import { FeatureElement } from './features/feature.element';
 import {
   AddToFormProviders,
-  GetFormProvidersFile
+  GetFormProvidersFile,
+  MethodElement,
+  ToValueContext,
+  AddVariableProvider
 } from '@rxap-schematics/utilities';
+import { Rule } from '@angular-devkit/schematics';
+import { GenerateSchema } from '../schema';
+import { HandleFormProviders } from './types';
 
 const { dasherize, classify, camelize } = strings;
+
+@ElementDef('adapter')
+export class FormHandlerAdapterElement implements ParsedElement<Rule>, HandleFormProviders {
+
+  @ElementTextContent()
+  public name!: string;
+
+  @ElementAttribute()
+  public from!: string;
+
+  public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
+    return () => {};
+  }
+
+  public handleFormProviders({ options, project, sourceFile }: ToValueContext & { sourceFile: SourceFile }) {
+    if (this.from) {
+      sourceFile.addImportDeclaration({
+        moduleSpecifier: this.from,
+        namedImports:    [ this.name ]
+      });
+    }
+  }
+
+}
+
+export abstract class FormHandleMethodElement implements ParsedElement<Rule>, HandleFormProviders {
+
+  public abstract type: string;
+
+  @ElementChild(MethodElement)
+  @ElementRequired()
+  public method!: MethodElement;
+
+  @ElementChild(FormHandlerAdapterElement)
+  public adapter?: FormHandlerAdapterElement;
+
+  public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
+    return () => {};
+  }
+
+  public handleFormProviders({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+    if (this.adapter) {
+      this.adapter.handleFormProviders({ project, sourceFile, options });
+      AddVariableProvider(
+        sourceFile,
+        'FormComponentProviders',
+        {
+          provide:    this.type,
+          useFactory: this.adapter.name,
+          deps:       [ this.method.toValue({ sourceFile, project, options }) ]
+        },
+        [
+          {
+            namedImports:    [ this.type ],
+            moduleSpecifier: '@rxap/forms'
+          }
+        ]
+      );
+    } else {
+      AddVariableProvider(
+        sourceFile,
+        'FormComponentProviders',
+        {
+          provide:  this.type,
+          useClass: this.method.toValue({ sourceFile, project, options })
+        },
+        [
+          {
+            namedImports:    [ this.type ],
+            moduleSpecifier: '@rxap/forms'
+          }
+        ]
+      );
+    }
+  }
+
+}
+
+@ElementDef('submit')
+export class SubmitHandleMethod extends FormHandleMethodElement {
+
+  public type: string = 'RXAP_FORM_SUBMIT_METHOD';
+
+}
 
 @ElementDef('definition')
 export class FormElement implements ParsedElement<ClassDeclaration> {
@@ -33,6 +124,9 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
 
   @ElementChildren(FeatureElement, { group: 'features' })
   public features: FeatureElement[] = [];
+
+  @ElementChild(SubmitHandleMethod)
+  public submit?: SubmitHandleMethod;
 
   @ElementAttribute()
   @ElementRequired()
@@ -148,7 +242,7 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
 
   }
 
-  public toValue({ sourceFile, project, options }: ToValueContext): any {
+  public toValue({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }): any {
 
     const formName          = classify(this.id) + 'Form';
     const formInterfaceName = 'I' + formName;
@@ -156,6 +250,8 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
     this.addFormInterface(formInterfaceName, sourceFile);
     this.addToFormProviders(formName, project);
     this.addFormComponentProviders(project);
+
+    this.submit?.handleFormProviders({ project, options, sourceFile: GetFormProvidersFile(project) });
 
     let classDeclaration = sourceFile.getClass(formName);
 

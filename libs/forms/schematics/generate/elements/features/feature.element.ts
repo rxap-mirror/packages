@@ -1,10 +1,14 @@
 import { ElementDef } from '@rxap/xml-parser/decorators';
 import { ParsedElement } from '@rxap/xml-parser';
-import { ToValueContext } from '../types';
-import { ClassDeclaration } from 'ts-morph';
+import {
+  ClassDeclaration,
+  SourceFile
+} from 'ts-morph';
+import { ToValueContext } from '@rxap-schematics/utilities';
 
 export interface FeatureElementToValueContext extends ToValueContext {
   classDeclaration: ClassDeclaration
+  sourceFile: SourceFile
 }
 
 @ElementDef('feature')
