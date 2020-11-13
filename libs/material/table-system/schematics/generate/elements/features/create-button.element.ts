@@ -9,14 +9,14 @@ import {
   OptionalKind,
   SourceFile
 } from 'ts-morph';
-import { MethodElement } from '../methods/method.element';
 import { RouterLinkElement } from '../router-link.element';
 import {
   ProviderObject,
   AddNgModuleProvider,
   AddNgModuleImport,
   ToValueContext,
-  ModuleElement
+  ModuleElement,
+  MethodElement
 } from '@rxap-schematics/utilities';
 import {
   Rule,

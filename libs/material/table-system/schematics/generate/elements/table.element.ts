@@ -12,7 +12,6 @@ import { ParsedElement } from '@rxap/xml-parser';
 import { Project } from 'ts-morph';
 import { FeatureElement } from './features/feature.element';
 import { GenerateSchema } from '../schema';
-import { MethodElement } from './methods/method.element';
 import { AdapterElement } from './adapter.element';
 import {
   ToValueContext,
@@ -23,7 +22,8 @@ import {
   AddNgModuleImport,
   AddDir,
   ApplyTsMorphProject,
-  AutoImport
+  AutoImport,
+  MethodElement
 } from '@rxap-schematics/utilities';
 import { FormElement } from '@rxap/forms/schematics/generate/elements/form.element';
 import {
