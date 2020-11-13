@@ -1,20 +1,17 @@
 import {
   SourceFile,
   OptionalKind,
-  ImportDeclarationStructure,
-  ObjectLiteralExpression,
-  PropertyAssignment,
-  Writers
+  ImportDeclarationStructure
 } from 'ts-morph';
 import { ProviderObject } from './provider-object';
 import { GetNgModuleOptionsObject } from './get-ng-module-options-object';
 import { GetCoerceArrayLiteralFromObjectLiteral } from './get-coerce-array-literal-form-object-literal';
-import { DeleteUndefinedProperties } from '@rxap/utilities';
+import { AddProviderToArray } from './add-provider-to-array';
 
 export function AddNgModuleProvider(
   sourceFile: SourceFile,
   providerObject: ProviderObject | string,
-  structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>>
+  structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = []
 ) {
 
   sourceFile.addImportDeclarations(structures);
@@ -23,43 +20,6 @@ export function AddNgModuleProvider(
 
   const providerArray = GetCoerceArrayLiteralFromObjectLiteral(ngModuleOptions, 'providers');
 
-  if (typeof providerObject === 'string') {
-
-    if (!providerArray.getElements().some(element => element.getFullText().trim() === providerObject)) {
-      providerArray.addElement(providerObject);
-    }
-
-  } else {
-
-    const index = providerArray.getElements().findIndex(element => {
-
-      if (element instanceof ObjectLiteralExpression) {
-
-        const provideProperty = element.getProperty('provide');
-
-        if (provideProperty instanceof PropertyAssignment) {
-
-          return provideProperty.getInitializer()?.getFullText().trim() === providerObject.provide;
-
-        }
-
-      }
-
-      return false;
-
-    });
-
-    if (index === -1) {
-      providerArray.addElement(Writers.object(DeleteUndefinedProperties({
-        provide:     providerObject.provide,
-        useClass:    providerObject.useClass,
-        useFactory:  providerObject.useFactory,
-        useExisting: providerObject.useExisting,
-        useValue:    providerObject.useValue,
-        deps:        providerObject.deps ? `[ ${providerObject.deps.join(',')} ]` : undefined
-      })));
-    }
-
-  }
+  AddProviderToArray(providerObject, providerArray);
 
 }

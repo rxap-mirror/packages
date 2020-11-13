@@ -4,7 +4,7 @@ import {
   ArrayLiteralExpression
 } from 'ts-morph';
 
-export function GetCoerceArrayLiteralFromObjectLiteral(objectLiteral: ObjectLiteralExpression, propertyKey: string) {
+export function GetCoerceArrayLiteralFromObjectLiteral(objectLiteral: ObjectLiteralExpression, propertyKey: string): ArrayLiteralExpression {
 
   let arrayLiteralAssignment = objectLiteral.getProperty(propertyKey);
 
