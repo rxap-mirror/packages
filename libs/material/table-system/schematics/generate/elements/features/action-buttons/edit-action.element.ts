@@ -2,8 +2,7 @@ import {
   ElementDef,
   ElementExtends,
   ElementChild,
-  ElementRequired,
-  ElementTextContent
+  ElementRequired
 } from '@rxap/xml-parser/decorators';
 import { ActionButtonElement } from './action-button.element';
 import { MethodActionElement } from './method-action.element';
@@ -20,6 +19,8 @@ import {
 } from '@angular-devkit/schematics';
 import { SourceFile } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
+import { OpenApiRemoteMethodElement } from '../../methods/open-api-remote-method.element';
+import { GenerateSchema } from '../../../schema';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -40,11 +41,11 @@ export class EditActionLoaderElement implements ParsedElement<Rule>, HandleCompo
 @ElementDef('mfd-loader')
 export class MfdLoaderElement extends EditActionLoaderElement {
 
-  @ElementTextContent()
+  @ElementChild(OpenApiRemoteMethodElement)
   @ElementRequired()
-  public operationId!: string;
+  public method!: OpenApiRemoteMethodElement;
 
-  public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponentModule({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
     AddNgModuleProvider(sourceFile, {
       provide:  'ROW_EDIT_LOADER_METHOD',
       useClass: 'RowEditLoaderMethod'
@@ -60,16 +61,12 @@ export class MfdLoaderElement extends EditActionLoaderElement {
     ]);
     AddNgModuleProvider(sourceFile, {
       provide:  'ROW_EDIT_LOADER_OPEN_API_METHOD',
-      useClass: `${classify(this.operationId)}RemoteMethod`
+      useClass: this.method.toValue({ options, sourceFile })
     }, [
       {
         moduleSpecifier: '@mfd/shared/row-edit-loader.method',
         namedImports:    [ 'ROW_EDIT_LOADER_SOURCE_METHOD' ]
       },
-      {
-        moduleSpecifier: `@mfd/open-api/remote-methods/${dasherize(this.operationId)}.remote-method`,
-        namedImports:    [ `${classify(this.operationId)}RemoteMethod` ]
-      }
     ]);
   }
 
