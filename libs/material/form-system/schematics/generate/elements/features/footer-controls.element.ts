@@ -20,7 +20,7 @@ export class FooterControlsElement extends FormFeatureElement {
 
   public template(): string {
     return NodeFactory('ng-template', 'rxapFooter')([
-      NodeFactory('rxap-form-controls', this.navigateAfterSubmit ? `[navigateAfterSubmit]="[ '${this.navigateAfterSubmit}' ]` : '')()
+      NodeFactory('rxap-form-controls', this.navigateAfterSubmit ? `[navigateAfterSubmit]="[ '${this.navigateAfterSubmit}' ]"` : '')()
     ]);
   }
 
