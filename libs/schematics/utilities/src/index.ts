@@ -24,3 +24,7 @@ export * from './lib/add-dir';
 export * from './lib/apply-ts-morph-project';
 export * from './lib/auto-import';
 export * from './lib/fix-missing-imports';
+
+// region elements
+export * from './lib/elements/module.element';
+// endregion

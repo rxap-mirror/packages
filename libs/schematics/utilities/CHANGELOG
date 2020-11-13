@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.0]
+### Added
+- ModuleElement
+
 ## [0.3.0]
 ### Added
 - FixMissingImports
