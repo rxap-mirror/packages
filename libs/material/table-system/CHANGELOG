@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.3]
+### Fixed
+- (schematics): rn custom loader provider
+
 ## [0.2.2]
 ### Fixed
 - (schematics): remove debug code
