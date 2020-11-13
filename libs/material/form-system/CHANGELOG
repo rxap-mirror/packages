@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.3]
+### Fixed
+- (schematics): extend flex layout support
+
 ## [0.3.2]
 ### Fixed
 - (schematics): footer controls generate
