@@ -12,7 +12,8 @@ import {
   HandleComponent,
   ToValueContext,
   AddNgModuleProvider,
-  ModuleElement
+  ModuleElement,
+  OpenApiRemoteMethodElement
 } from '@rxap-schematics/utilities';
 import {
   Rule,
@@ -21,7 +22,6 @@ import {
 } from '@angular-devkit/schematics';
 import { SourceFile } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
-import { OpenApiRemoteMethodElement } from '../../methods/open-api-remote-method.element';
 import { GenerateSchema } from '../../../schema';
 
 const { dasherize, classify, camelize } = strings;

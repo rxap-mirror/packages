@@ -14,13 +14,13 @@ import {
   SourceFile
 } from 'ts-morph';
 import { ParsedElement } from '@rxap/xml-parser';
-import { MethodElement } from '../methods/method.element';
 import { TableElement } from '../table.element';
 import { strings } from '@angular-devkit/core';
 import {
   ToValueContext,
   AddNgModuleProvider,
-  AddNgModuleImport
+  AddNgModuleImport,
+  MethodElement
 } from '@rxap-schematics/utilities';
 
 const { dasherize, classify, camelize } = strings;

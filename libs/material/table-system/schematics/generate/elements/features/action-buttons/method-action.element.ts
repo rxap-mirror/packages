@@ -1,6 +1,5 @@
 import { ElementChild } from '@rxap/xml-parser/decorators';
 import { ActionButtonElement } from './action-button.element';
-import { MethodElement } from '../../methods/method.element';
 import {
   ImportDeclarationStructure,
   OptionalKind,
@@ -10,7 +9,8 @@ import { RouterLinkElement } from '../../router-link.element';
 import {
   ToValueContext,
   ProviderObject,
-  AddNgModuleProvider
+  AddNgModuleProvider,
+  MethodElement
 } from '@rxap-schematics/utilities';
 
 export abstract class MethodActionElement extends ActionButtonElement {
