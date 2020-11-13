@@ -26,5 +26,13 @@ export * from './lib/auto-import';
 export * from './lib/fix-missing-imports';
 
 // region elements
+
 export * from './lib/elements/module.element';
+
+// region methods
+export * from './lib/elements/methods/methods';
+export * from './lib/elements/methods/open-api-remote-method.element';
+export * from './lib/elements/methods/method.element';
+// endregion
+
 // endregion
