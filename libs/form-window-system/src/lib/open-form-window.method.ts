@@ -21,7 +21,7 @@ export const RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS        = new Inje
 export const RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_COMPONENT              = new InjectionToken('rxap/form-window-system/open-form/component');
 
 @Injectable()
-export class OpenFormWindowMethod<FormData> implements Method<FormWindowRef, Partial<FormData>> {
+export class OpenFormWindowMethod<FormData = Record<string, any>> implements Method<FormWindowRef, Partial<FormData>> {
 
   constructor(
     @Inject(FormWindowService)
