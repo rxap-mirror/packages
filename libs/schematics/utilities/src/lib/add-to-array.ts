@@ -1,37 +1,20 @@
 import {
-  VariableDeclarationKind,
   ArrayLiteralExpression,
   SourceFile
 } from 'ts-morph';
+import { CoerceVariableDeclaration } from './coerce-variable-declaration';
 
 export function AddToArray(sourceFile: SourceFile, arrayName: string, value: string, type: string) {
 
-  let providers = sourceFile.getVariableStatement(arrayName);
-  if (!providers) {
-    providers = sourceFile.addVariableStatement({
-      isExported:      true,
-      declarationKind: VariableDeclarationKind.Const,
-      declarations:    [
-        {
-          name:        arrayName,
-          initializer: '[]',
-          type
-        }
-      ]
-    });
-  }
-
-  let providerDeclaration = providers.getDeclarations()[ 0 ];
-
-  if (!providerDeclaration) {
-    providerDeclaration = providers.addDeclaration({
+  const providerArray = CoerceVariableDeclaration(
+    sourceFile,
+    arrayName,
+    {
       name:        arrayName,
       initializer: '[]',
       type
-    });
-  }
-
-  const providerArray = providerDeclaration.getInitializer();
+    }
+  ).getInitializer();
 
   if (providerArray instanceof ArrayLiteralExpression) {
 

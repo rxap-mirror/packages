@@ -24,6 +24,10 @@ export * from './lib/add-dir';
 export * from './lib/apply-ts-morph-project';
 export * from './lib/auto-import';
 export * from './lib/fix-missing-imports';
+export * from './lib/add-provider-to-array';
+export * from './lib/add-variable-provider';
+export * from './lib/coerce-variable-declaration';
+export * from './lib/get-variable-declaration';
 
 // region elements
 

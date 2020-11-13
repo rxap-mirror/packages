@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0]
+### Added
+- AddProviderToArray
+- AddVariableProvider
+- CoerceVariableDeclaration
+- GetVariableDeclaration
+
 ## [0.5.0]
 ### Added
 - Method elements
