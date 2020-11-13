@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.0]
+### Changed
+- (OpenFormWindowMethod): resolve if the form window is closed
+
 ## [0.1.1]
 ### Fixed
 - (OpenFormWindowMethod): fix generic type
