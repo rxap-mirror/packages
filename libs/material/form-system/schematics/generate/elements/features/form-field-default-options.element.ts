@@ -23,10 +23,10 @@ export class FormFieldDefaultOptionsElement extends FormFeatureElement {
   public appearance?: 'legacy' | 'standard' | 'fill' | 'outline';
 
   @ElementAttribute()
-  hideRequiredMarker?: boolean;
+  public hideRequiredMarker?: boolean;
 
   @ElementChildTextContent()
-  floatLabel?: 'always' | 'never' | 'auto';
+  public floatLabel?: 'always' | 'never' | 'auto';
 
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     const defaultOptions: Record<string, WriterFunction | string> = {};
