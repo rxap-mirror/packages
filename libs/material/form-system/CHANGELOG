@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.1]
+### Fixed
+- i18n support
+
 ## [0.3.0]
 ### Changed
 - (FormControlsComponent): pass the form result to the window close event

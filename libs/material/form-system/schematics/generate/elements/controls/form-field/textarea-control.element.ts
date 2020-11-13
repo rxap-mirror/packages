@@ -26,7 +26,7 @@ export class TextareaControlElement extends FormFieldElement {
       'matAutosizeMinRows="3"',
       `formControlName="${this.name}"`,
       `placeholder="Enter ${camelize(this.name)}"`,
-      `i18n-placeholder="forms.${this.controlPath}.placeholder"`
+      `i18n-placeholder="@@forms.${this.controlPath}.placeholder"`
     )('\n');
   }
 
