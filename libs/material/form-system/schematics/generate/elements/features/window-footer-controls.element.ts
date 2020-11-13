@@ -39,6 +39,12 @@ export class WindowFooterControlsElement extends FormFeatureElement {
           isExported: true,
           name:       `Open${classify(this.__parent.name)}FormWindowMethod`,
           extends:    'OpenFormWindowMethod',
+          decorators: [
+            {
+              name:      'Injectable',
+              arguments: []
+            }
+          ],
           ctors:      [
             {
               parameters: [
@@ -84,7 +90,7 @@ export class WindowFooterControlsElement extends FormFeatureElement {
             moduleSpecifier: `./${dasherize(this.__parent.name)}.form`
           },
           {
-            namedImports:    [ 'Inject', 'Optional' ],
+            namedImports:    [ 'Inject', 'Optional', 'Injectable' ],
             moduleSpecifier: '@angular/core'
           }
         ]);

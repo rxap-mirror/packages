@@ -46,6 +46,7 @@ export class PasswordPrefixElement extends PrefixElement {
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
     AddNgModuleImport(sourceFile, 'MatIconModule', '@angular/material/icon');
     AddNgModuleImport(sourceFile, 'MatButtonModule', '@angular/material/button');
+    AddNgModuleImport(sourceFile, 'CommonModule', '@angular/common');
   }
 
 }
