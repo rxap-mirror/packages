@@ -2,7 +2,6 @@ import {
   Rule,
   Tree,
   chain,
-  DirEntry,
   noop,
   externalSchematic
 } from '@angular-devkit/schematics';
@@ -15,8 +14,7 @@ import {
   Project,
   QuoteKind,
   IndentationText,
-  ObjectLiteralExpression,
-  Writers
+  ObjectLiteralExpression
 } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
 import { formatFiles } from '@nrwl/workspace';
@@ -26,7 +24,7 @@ import { AddDir } from '@rxap-schematics/utilities';
 
 const { dasherize, classify, camelize } = strings;
 
-export function CreateFormComponent({ name, path, project }: { name: string, path: string, project: Project }): Rule {
+export function CreateFormComponent({ name, path, project, options }: { name: string, path: string, project: Project, options: GenerateSchema }): Rule {
   return host => {
 
     const componentFilePath = join(path, dasherize(name) + '-form.component.ts');
@@ -34,10 +32,11 @@ export function CreateFormComponent({ name, path, project }: { name: string, pat
     if (!host.exists(componentFilePath)) {
       return chain([
         externalSchematic('@rxap/schematics', 'component-module', {
-          path:  path.replace(/^\//, ''),
-          name:  dasherize(name) + '-form',
-          theme: false,
-          flat:  true
+          path:    path.replace(/^\//, ''),
+          name:    dasherize(name) + '-form',
+          theme:   false,
+          flat:    true,
+          project: options.project
         }),
         tree => {
 
@@ -152,7 +151,7 @@ export default function(options: GenerateSchema): Rule {
                });
 
       },
-      options.component ? CreateFormComponent({ name: formElement.id, project, path: options.path }) : noop(),
+      options.component ? CreateFormComponent({ name: formElement.id, project, path: options.path, options }) : noop(),
       formatFiles()
     ]);
 
