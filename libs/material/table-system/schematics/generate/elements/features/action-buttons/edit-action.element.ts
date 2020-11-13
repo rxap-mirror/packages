@@ -60,7 +60,7 @@ export class MfdLoaderElement extends EditActionLoaderElement {
       }
     ]);
     AddNgModuleProvider(sourceFile, {
-      provide:  'ROW_EDIT_LOADER_OPEN_API_METHOD',
+      provide:  'ROW_EDIT_LOADER_SOURCE_METHOD',
       useClass: this.method.toValue({ options, sourceFile })
     }, [
       {
