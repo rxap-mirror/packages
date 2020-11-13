@@ -6,6 +6,9 @@ import {
 import { Rule } from '@angular-devkit/schematics';
 import { AddDir } from './add-dir';
 
+/**
+ * @deprecated use FixMissingImports instead
+ */
 export function AutoImport(basePath: string, autoImportBasePath: string = basePath): Rule {
   return tree => {
     const project = new Project({
