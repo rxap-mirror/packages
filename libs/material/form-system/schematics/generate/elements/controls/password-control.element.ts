@@ -104,6 +104,7 @@ export class PasswordControlElement extends ControlElement {
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponentModule({ project, sourceFile, options });
     AddNgModuleImport(sourceFile, 'FlexLayoutModule', '@angular/flex-layout');
+    AddNgModuleImport(sourceFile, 'IsEqualToDirectiveModule', '@rxap/form-system');
     this.passwordControl.handleComponentModule({ project, sourceFile, options });
     this.passwordValidateControl.handleComponentModule({ project, sourceFile, options });
   }
