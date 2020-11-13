@@ -115,6 +115,13 @@ export class SubmitHandleMethod extends FormHandleMethodElement {
 
 }
 
+@ElementDef('load')
+export class LoadHandleMethod extends FormHandleMethodElement {
+
+  public type: string = 'RXAP_FORM_LOAD_METHOD';
+
+}
+
 @ElementDef('definition')
 export class FormElement implements ParsedElement<ClassDeclaration> {
 
@@ -127,6 +134,9 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
 
   @ElementChild(SubmitHandleMethod)
   public submit?: SubmitHandleMethod;
+
+  @ElementChild(LoadHandleMethod)
+  public load?: LoadHandleMethod;
 
   @ElementAttribute()
   @ElementRequired()
@@ -252,6 +262,7 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
     this.addFormComponentProviders(project);
 
     this.submit?.handleFormProviders({ project, options, sourceFile: GetFormProvidersFile(project) });
+    this.load?.handleFormProviders({ project, options, sourceFile: GetFormProvidersFile(project) });
 
     let classDeclaration = sourceFile.getClass(formName);
 
