@@ -11,10 +11,12 @@ import {
   HandleComponentModule,
   HandleComponent,
   ToValueContext,
-  AddNgModuleProvider
+  AddNgModuleProvider,
+  ModuleElement
 } from '@rxap-schematics/utilities';
 import {
   Rule,
+  chain,
   noop
 } from '@angular-devkit/schematics';
 import { SourceFile } from 'ts-morph';
@@ -81,6 +83,9 @@ export class EditActionElement extends MethodActionElement {
   @ElementChild(EditActionLoaderElement)
   public loader?: EditActionLoaderElement;
 
+  @ElementChild(ModuleElement)
+  public module?: ModuleElement;
+
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponent({ project, options, sourceFile });
     this.loader?.handleComponent({ project, options, sourceFile });
@@ -89,10 +94,14 @@ export class EditActionElement extends MethodActionElement {
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponentModule({ project, sourceFile, options });
     this.loader?.handleComponentModule({ project, options, sourceFile });
+    this.module?.handleComponentModule({ project, sourceFile, options });
   }
 
   public toValue({ project, options }: ToValueContext): Rule {
-    return this.loader?.toValue({ project, options }) ?? (noop());
+    return chain([
+      this.loader?.toValue({ project, options }) ?? (noop()),
+      this.module?.toValue({ project, options }) ?? (noop())
+    ]);
   }
 
 }
