@@ -3,7 +3,8 @@ import {
   ElementExtends,
   ElementChildTextContent,
   ElementChild,
-  ElementRequired
+  ElementRequired,
+  ElementAttribute
 } from '@rxap/xml-parser/decorators';
 import { NodeElement } from './node.element';
 import {
@@ -41,6 +42,9 @@ export class CardElement implements WithTemplate, ParsedElement<Rule>, HandleCom
     return this.__parent.controlPath;
   }
 
+  @ElementAttribute()
+  public flex: string = 'nogrow';
+
   @ElementChildTextContent()
   public title?: string;
 
@@ -57,7 +61,7 @@ export class CardElement implements WithTemplate, ParsedElement<Rule>, HandleCom
 
     nodes.push(this.content);
 
-    return NodeFactory('mat-card')(nodes);
+    return NodeFactory('mat-card', `fxFlex="${this.flex}"`)(nodes);
   }
 
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {

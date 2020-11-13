@@ -68,6 +68,7 @@ export class ControlElement implements WithTemplate, ParsedElement, NodeElement 
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
     AddNgModuleImport(sourceFile, 'ReactiveFormsModule', '@angular/forms');
+    AddNgModuleImport(sourceFile, 'FlexLayoutModule', '@angular/flex-layout');
     this.features?.forEach(feature => feature.handleComponentModule({ project, sourceFile, options }));
   }
 
