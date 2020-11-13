@@ -14,14 +14,14 @@ import {
   FormWindowService,
   FormWindowOptions
 } from './form-window.service';
-import { FormWindowRef } from './form-window-ref';
+import { take } from 'rxjs/operators';
 
 export const RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFINITION_CONSTRUCTOR = new InjectionToken('rxap/form-window-system/open-form/definition-constructor');
 export const RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS        = new InjectionToken('rxap/form-window-system/open-form/default-options');
 export const RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_COMPONENT              = new InjectionToken('rxap/form-window-system/open-form/component');
 
 @Injectable()
-export class OpenFormWindowMethod<FormData = Record<string, any>> implements Method<FormWindowRef, Partial<FormData>> {
+export class OpenFormWindowMethod<FormData = Record<string, any>> implements Method<FormData, Partial<FormData>> {
 
   constructor(
     @Inject(FormWindowService)
@@ -36,8 +36,8 @@ export class OpenFormWindowMethod<FormData = Record<string, any>> implements Met
     private readonly defaultOptions: FormWindowOptions<FormData> | null = null
   ) {}
 
-  public call(initial?: Record<string, any>): FormWindowRef {
-    return this.formWindowService.open(
+  public call(initial?: Record<string, any>): Promise<FormData> {
+    const formWindowRef = this.formWindowService.open(
       this.formDefinitionConstructor,
       {
         ...(this.defaultOptions ?? {}),
@@ -45,6 +45,7 @@ export class OpenFormWindowMethod<FormData = Record<string, any>> implements Met
         component: this.formComponent ?? this.defaultOptions?.component ?? undefined
       }
     );
+    return formWindowRef.windowRef.closed$.pipe(take(1)).toPromise();
   }
 
 }
