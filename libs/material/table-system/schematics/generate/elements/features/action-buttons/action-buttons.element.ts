@@ -10,6 +10,10 @@ import {
 import { ActionButtonElement } from './action-button.element';
 import { SourceFile } from 'ts-morph';
 import { ToValueContext } from '@rxap-schematics/utilities';
+import {
+  Rule,
+  chain
+} from '@angular-devkit/schematics';
 
 @ElementExtends(FeatureElement)
 @ElementDef('actions')
@@ -48,6 +52,10 @@ export class ActionButtonsElement extends FeatureElement {
       <td mat-cell mfd-row-controls-cell [element]="element" *matCellDef="let element"></td>
     </ng-container>
     `;
+  }
+
+  public toValue({ project, options }: ToValueContext): Rule {
+    return chain(this.actions?.map(action => action.toValue({ project, options })) ?? []);
   }
 
 }
