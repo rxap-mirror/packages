@@ -1,7 +1,11 @@
 # Changelog
 
+## [0.2.1]
+### Fixed
+- (schematics): use open api remote method element
+
 ## [0.2.0]
-### Add
+### Added
 - (schematics): add custom edit loader
 
 ## [0.1.1]
