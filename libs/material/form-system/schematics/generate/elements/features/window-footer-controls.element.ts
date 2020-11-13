@@ -20,7 +20,7 @@ export class WindowFooterControlsElement extends FormFeatureElement {
 
   public template(): string {
     return NodeFactory('ng-template', 'rxapFormWindowFooter', 'let-windowRef')([
-      NodeFactory('rxap-form-controls', '(close)="windowRef.close()"')()
+      NodeFactory('rxap-form-controls', '(close)="windowRef.close($event)"')()
     ]);
   }
 
