@@ -26,7 +26,7 @@ export class WindowFooterControlsElement extends FormFeatureElement {
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, 'FormWindowFooterDirectiveModule', '@rxap/form-window-system');
-    AddNgModuleImport(sourceFile, 'FormControlsComponentModule', '@rxap-material/form-controls');
+    AddNgModuleImport(sourceFile, 'FormControlsComponentModule', '@rxap-material/form-system');
   }
 
   public toValue({ project, options }: ToValueContext): Rule {

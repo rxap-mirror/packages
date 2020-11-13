@@ -26,7 +26,7 @@ export class FooterControlsElement extends FormFeatureElement {
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, 'FooterDirectiveModule', '@rxap/layout');
-    AddNgModuleImport(sourceFile, 'FormControlsComponentModule', '@rxap-material/form-controls');
+    AddNgModuleImport(sourceFile, 'FormControlsComponentModule', '@rxap-material/form-system');
   }
 
 }
