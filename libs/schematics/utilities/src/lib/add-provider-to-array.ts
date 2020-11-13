@@ -42,7 +42,7 @@ export function AddProviderToArray(providerObject: ProviderObject | string, prov
         useFactory:  providerObject.useFactory,
         useExisting: providerObject.useExisting,
         useValue:    providerObject.useValue,
-        deps:        providerObject.deps ? `[ ${providerObject.deps.join(',')} ]` : undefined
+        deps: providerObject.deps ? Array.isArray(providerObject.deps) ? `[ ${providerObject.deps.join(',')} ]` : providerObject.deps : undefined
       })));
     }
 
