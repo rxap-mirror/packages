@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0]
+### Changed
+- (FormControlsComponent): pass the form result to the window close event
+
 ## [0.2.3]
 ### Fixed
 - (schematics): add missing imports

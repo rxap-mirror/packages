@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'mfd-form-controls' }
 })
-export class FormControlsComponent implements OnInit {
+export class FormControlsComponent<FormData> implements OnInit {
 
   public set allowResubmit(value: boolean | '') {
     this._allowResubmit = coerceBoolean(value);
@@ -41,7 +41,7 @@ export class FormControlsComponent implements OnInit {
   public navigateAfterSubmit?: string[];
 
   @Output()
-  public close = new EventEmitter<void>();
+  public close = new EventEmitter<FormData | void>();
 
   constructor(
     @Inject(FormDirective)
@@ -78,7 +78,7 @@ export class FormControlsComponent implements OnInit {
     if (closeAfterSubmit) {
       this.formDirective.rxapSubmit.pipe(
         take(1),
-        tap(() => this.close.emit())
+        tap(value => this.close.emit(value))
       ).subscribe();
     }
     this.formDirective.onSubmit(new Event('submit'));
