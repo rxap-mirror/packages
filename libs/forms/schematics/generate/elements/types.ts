@@ -1,11 +1,8 @@
 import {
-  SourceFile,
-  Project
+  Project,
+  SourceFile
 } from 'ts-morph';
-import { GenerateSchema } from '../schema';
 
-export interface ToValueContext {
-  sourceFile: SourceFile;
-  project: Project,
-  options: GenerateSchema
+export interface HandleFormProviders {
+  handleFormProviders({ options, project, sourceFile }: { options: Record<string, any>, project: Project, sourceFile: SourceFile }): void;
 }

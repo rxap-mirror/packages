@@ -16,6 +16,7 @@ import { ValidatorElements } from './validators/validators';
 import { ParsedElement } from '@rxap/xml-parser';
 import { Constructor } from '@rxap/utilities';
 import { FeatureElements } from './features/features';
+import { Methods } from '@rxap-schematics/utilities';
 
 export const Elements: Array<Constructor<ParsedElement>> = [
   CheckboxControlElement,
@@ -31,5 +32,6 @@ export const Elements: Array<Constructor<ParsedElement>> = [
   ToOptionsElement,
   ToOptionsFromObjectElement,
   ...ValidatorElements,
-  ...FeatureElements
+  ...FeatureElements,
+  ...Methods
 ];

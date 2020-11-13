@@ -19,14 +19,15 @@ import {
   WriterFunction,
   Writers,
   PropertyDeclaration,
-  Project
+  Project,
+  SourceFile
 } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
-import { ToValueContext } from './types';
 import {
   OverwriteDecorator,
   AddToArray,
-  AddToFormProviders
+  AddToFormProviders,
+  ToValueContext
 } from '@rxap-schematics/utilities';
 
 const { dasherize, classify, camelize } = strings;
@@ -46,7 +47,7 @@ export class DataSourceTransformerElement implements ParsedElement<string> {
     return true;
   }
 
-  public toValue({ sourceFile }: ToValueContext): string {
+  public toValue({ sourceFile }: ToValueContext & { sourceFile: SourceFile }): string {
 
     sourceFile.addImportDeclaration({
       moduleSpecifier: this.from,
@@ -103,7 +104,7 @@ export class DataSourceElement implements ParsedElement<Array<string | WriterFun
     return true;
   }
 
-  public toValue({ sourceFile, project }: ToValueContext): Array<string | WriterFunction> {
+  public toValue({ sourceFile, project }: ToValueContext & { sourceFile: SourceFile }): Array<string | WriterFunction> {
 
     const dataSourceName = classify(this.id) + 'OptionsDataSource';
 
@@ -176,7 +177,7 @@ export class ToOptionsWithObjectElement extends DataSourceTransformerElement {
     return true;
   }
 
-  public toValue({ sourceFile, project, options }: ToValueContext): any {
+  public toValue({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }): any {
     super.toValue({ sourceFile, project, options });
 
     if (this.display) {
@@ -214,7 +215,7 @@ export class ToOptionsElement extends DataSourceTransformerElement {
     return true;
   }
 
-  public toValue({ sourceFile, project, options }: ToValueContext): any {
+  public toValue({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }): any {
     super.toValue({ sourceFile, project, options });
 
     if (this.display) {
@@ -251,7 +252,7 @@ export class ToOptionsFromObjectElement extends DataSourceTransformerElement {
     return true;
   }
 
-  public toValue({ sourceFile, project, options }: ToValueContext): any {
+  public toValue({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }): any {
     super.toValue({ sourceFile, project, options });
 
     if (this.display) {
@@ -286,7 +287,7 @@ export class OpenApiDataSourceElement implements DataSourceElement {
     return true;
   }
 
-  public toValue({ sourceFile, project, options }: ToValueContext): Array<string | WriterFunction> {
+  public toValue({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }): Array<string | WriterFunction> {
 
     const dataSourceName = classify(this.id) + 'DataSource';
 
@@ -341,7 +342,7 @@ export class FormDataSourceElement implements DataSourceElement {
     return true;
   }
 
-  public toValue({ sourceFile, project }: ToValueContext): Array<string | WriterFunction> {
+  public toValue({ sourceFile, project }: ToValueContext & { sourceFile: SourceFile }): Array<string | WriterFunction> {
     return [];
   }
 
@@ -355,7 +356,7 @@ export class SelectOptionsElement extends OptionsElement implements ParsedElemen
   @ElementChild(DataSourceElement)
   public dataSource?: DataSourceElement;
 
-  public toValue({ sourceFile, project, options }: ToValueContext): Array<string | WriterFunction> {
+  public toValue({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }): Array<string | WriterFunction> {
 
     if (this.dataSource) {
 

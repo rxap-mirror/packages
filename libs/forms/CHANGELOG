@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1]
+### Fixed
+- (schematics): use form component providers
+
+## [0.4.0]
+### Added
+- (schematics): add submit method support
+
 ## [0.3.17]
 ### Fixed
 - (schematics): set the schematic project

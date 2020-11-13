@@ -4,7 +4,6 @@ import {
   ElementAttribute,
   ElementRequired,
   ElementChildTextContent,
-  ElementExtends,
   ElementChildren
 } from '@rxap/xml-parser/decorators';
 import {
@@ -12,20 +11,22 @@ import {
   ClassDeclaration,
   Scope,
   Writers,
-  ObjectLiteralExpression
+  ObjectLiteralExpression,
+  SourceFile
 } from 'ts-morph';
-import { ToValueContext } from './types';
 import { strings } from '@angular-devkit/core';
 import { ValidatorElement } from './validators/validator.element';
 import {
   OverwriteProperty,
-  AddControlValidator
+  AddControlValidator,
+  ToValueContext
 } from '@rxap-schematics/utilities';
 
 const { dasherize, classify, camelize } = strings;
 
 export interface ControlElementToValueContext extends ToValueContext {
-  classDeclaration: ClassDeclaration
+  classDeclaration: ClassDeclaration;
+  sourceFile: SourceFile;
 }
 
 @ElementDef('control')
