@@ -15,8 +15,14 @@ import {
   ProviderObject,
   AddNgModuleProvider,
   AddNgModuleImport,
-  ToValueContext
+  ToValueContext,
+  ModuleElement
 } from '@rxap-schematics/utilities';
+import {
+  Rule,
+  chain,
+  noop
+} from '@angular-devkit/schematics';
 
 @ElementExtends(FeatureElement)
 @ElementDef('create-button')
@@ -27,6 +33,9 @@ export class CreateButtonElement extends FeatureElement {
 
   @ElementChild(MethodElement)
   public method?: MethodElement;
+
+  @ElementChild(ModuleElement)
+  public module?: ModuleElement;
 
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, 'TableCreateButtonComponentModule', '@mfd/shared/table-create-button/table-create-button.component.module');
@@ -53,10 +62,18 @@ export class CreateButtonElement extends FeatureElement {
       providerObject,
       importStructures
     );
+
+    this.module?.handleComponentModule({ sourceFile, options, project });
   }
 
   public headerTemplate(): string {
     return '<mfd-table-create-button></mfd-table-create-button>';
+  }
+
+  public toValue({ options, project }: ToValueContext): Rule {
+    return chain([
+      this.module?.toValue({ options, project }) ?? noop()
+    ]);
   }
 
 }

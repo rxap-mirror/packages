@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0]
+### Added
+- (schematics): add support for modules
+
 ## [0.2.3]
 ### Fixed
 - (schematics): rn custom loader provider
