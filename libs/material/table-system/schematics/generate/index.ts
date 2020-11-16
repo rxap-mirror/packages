@@ -36,7 +36,7 @@ export default function(options: GenerateSchema): Rule {
 
     const projectRootPath = await createDefaultPath(host, options.project as string);
 
-    const templateFile = host.read(options.template)?.toString('utf-8');
+    const templateFile = options.template.match(/\.xml$/) ? host.read(options.template)?.toString('utf-8') : options.template;
 
     const parser = new XmlParserService();
 
