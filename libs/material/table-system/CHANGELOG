@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.3]
+### Fixed
+- default path definition
+
 ## [0.4.2]
 ### Fixed
 - default table id/name
