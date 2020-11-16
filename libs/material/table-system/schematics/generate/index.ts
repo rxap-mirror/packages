@@ -69,7 +69,7 @@ export default function(options: GenerateSchema): Rule {
       }
     }
 
-    let path: string = '';
+    let path: string = options.path ?? '';
 
     if (!options.path) {
       path = projectRootPath;
