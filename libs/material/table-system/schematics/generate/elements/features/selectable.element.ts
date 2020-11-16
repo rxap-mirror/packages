@@ -25,7 +25,7 @@ export class SelectableElement extends FeatureElement {
   public multiple?: boolean;
 
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
-    AddNgModuleImport(sourceFile, 'SelectRowModule', '@rxap/table-system');
+    AddNgModuleImport(sourceFile, 'SelectRowModule', '@rxap-material/table-system');
   }
 
   public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
