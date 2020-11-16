@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.0]
+### Added
+- (schematics): add WindowTitleElement
+
 ## [0.4.1]
 ### Fixed
 - (schematics): add is equal validator import
