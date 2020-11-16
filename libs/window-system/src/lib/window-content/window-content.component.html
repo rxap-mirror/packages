@@ -1,7 +1,5 @@
 <div class="content">
   <div class="inner">
-    <ng-template [ngIfElse]="context.template" [ngIf]="context.component">
-      <ng-container *ngComponentOutlet="context.component; injector: injector"></ng-container>
-    </ng-template>
+    <ng-template [cdkPortalOutlet]="portal"></ng-template>
   </div>
 </div>

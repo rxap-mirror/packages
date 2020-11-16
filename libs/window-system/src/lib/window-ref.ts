@@ -11,6 +11,10 @@ import {
 } from 'rxjs';
 import { GetWindowStartPos } from './utilities';
 import { Portal } from '@angular/cdk/portal';
+import {
+  ComponentRef,
+  EmbeddedViewRef
+} from '@angular/core';
 
 export class WindowRef<D = any, R = any> {
 
@@ -18,6 +22,8 @@ export class WindowRef<D = any, R = any> {
   public readonly height$ = new BehaviorSubject<string>(this.getHeight());
 
   public readonly closed$ = new Subject<R | undefined>();
+
+  public attachedRef$ = new ReplaySubject<ComponentRef<any> | EmbeddedViewRef<any>>(1);
 
   public get isMinimized(): boolean {
     return this.overlayRef.hostElement.style.display === 'none';
@@ -144,6 +150,10 @@ export class WindowRef<D = any, R = any> {
 
   public setTitlePortal(portal: Portal<any>) {
     this.titlePortal$.next(portal);
+  }
+
+  public setAttachedRef(attachedRef: ComponentRef<any> | EmbeddedViewRef<any>) {
+    this.attachedRef$.next(attachedRef);
   }
 
 }
