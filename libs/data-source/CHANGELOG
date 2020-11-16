@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.33]
+### Fixed
+- (TableDataSource): disable loading if connection resolved
+
 ## [0.3.32]
 ### Fixed
 - (PipeDataSource): call the connect for each pipe.connect
