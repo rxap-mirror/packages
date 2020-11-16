@@ -77,7 +77,7 @@ export class RxapElement {
   }
 
   public getRawContent(): string {
-    return this.element.innerHTML;
+    return Array.from(this.element.childNodes).map(child => child.toString()).join('');
   }
 
   public getChildRawContent(nodeName: string, defaultValue?: string): string {
