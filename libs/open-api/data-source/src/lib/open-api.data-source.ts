@@ -6,7 +6,8 @@ import {
 import {
   OperationObjectWithMetadata,
   OpenApiConfigService,
-  SchemaValidationMixin
+  SchemaValidationMixin,
+  RXAP_OPEN_API_STRICT_VALIDATOR
 } from '@rxap/open-api';
 import {
   HttpClient,
@@ -37,19 +38,16 @@ import {
   Subject,
   EMPTY
 } from 'rxjs';
-import { RxapOpenApiDataSourceError } from './error';
 import {
   map,
   tap,
   retry,
   filter,
   catchError,
-  first,
   timeout,
   take
 } from 'rxjs/operators';
 import { Mixin } from '@rxap/mixin';
-import { RXAP_OPEN_API_STRICT_VALIDATOR } from '@rxap/open-api';
 
 export interface OpenApiDataSourceMetadata<PathParams = KeyValue, Body = any | null> extends Partial<HttpDataSourceMetadata<PathParams, Body>> {
 
@@ -153,8 +151,11 @@ export class OpenApiDataSource<Response = any, Parameters extends Record<string,
     if (viewer.parameters) {
       this.validateParameters(this.operation, viewer.parameters);
     } else {
-      if (viewer.viewChange === EMPTY) {
-        throw new RxapOpenApiDataSourceError('Either the parameters or the viewChange property must be defined!');
+      if (viewer.viewChange === EMPTY || viewer.viewChange === undefined) {
+        // set the viewer parameters to an empty parameter and test if that
+        // is valid.
+        viewer.parameters = {} as any;
+        this.validateParameters(this.operation, viewer.parameters);
       }
     }
 
