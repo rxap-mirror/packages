@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.1]
+### Fixed
+- only parse files
+
 ## [0.4.0]
 ### Added
 - RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS
