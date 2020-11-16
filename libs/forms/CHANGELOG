@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.0]
+### Added
+- (schematics): add support for edit submit handlers
+
 ## [0.5.0]
 ### Added
 - (schematics): add load method support

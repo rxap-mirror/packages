@@ -79,12 +79,16 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
         {
           provide:    this.type,
           useFactory: this.adapter.name,
-          deps:       [ this.method.toValue({ sourceFile, project, options }) ]
+          deps: [ this.method.toValue({ sourceFile, project, options }), '[new Optional(), RXAP_FORM_INITIAL_STATE]', 'INJECTOR' ]
         },
         [
           {
-            namedImports:    [ this.type ],
+            namedImports:    [ this.type, 'RXAP_FORM_INITIAL_STATE' ],
             moduleSpecifier: '@rxap/forms'
+          },
+          {
+            namedImports:    [ 'Optional', 'INJECTOR' ],
+            moduleSpecifier: '@angular/core'
           }
         ]
       );
