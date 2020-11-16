@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.8.0]
+### Added
+- ElementChildRawContent
+
 ## [0.7.2]
 ### Fixed
 - (ElementFactory): use the tag name
