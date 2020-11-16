@@ -14,3 +14,4 @@ export * from './lib/select-row/checkbox-header-cell/checkbox-header-cell.compon
 export * from './lib/select-row/checkbox-header-cell/checkbox-header-cell.component.module';
 export * from './lib/select-row/select-row.service';
 export * from './lib/select-row/selected-rows.directive';
+export * from './lib/select-row/tokens';
