@@ -5,12 +5,12 @@ import { Project } from 'ts-morph';
 export function ApplyTsMorphProject(project: Project, basePath: string = ''): Rule {
   return tree => {
 
-    console.log('organize ts files imports');
+    console.log(`organize '${project.getSourceFiles().length}' ts files imports`);
     project
       .getSourceFiles()
       .forEach(sourceFile => sourceFile.organizeImports());
 
-    console.log('write ts files to tree');
+    console.log(`write '${project.getSourceFiles().length}' ts files to tree`);
     project
       .getSourceFiles()
       .forEach(sourceFile => {

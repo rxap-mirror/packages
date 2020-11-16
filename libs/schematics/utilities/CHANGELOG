@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.7.2]
+### Fixed
+- extend log information
+
 ## [0.7.1]
 ### Changed
 - (AddComponentProvider): add support for writer functions
