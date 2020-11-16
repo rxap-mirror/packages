@@ -25,11 +25,15 @@ export class CheckboxHeaderCellComponent<Data extends Record<string, any>> imple
   public indeterminate$: Observable<boolean> = EMPTY;
   public checked$: Observable<boolean>       = EMPTY;
 
+  public isMultipleSelection = false;
+
   constructor(
     @Inject(CdkTable)
     private readonly cdkTable: CdkTable<Data>,
     private readonly selectRow: SelectRowService<Data>
-  ) {}
+  ) {
+    this.isMultipleSelection = this.selectRow.selectionModel.isMultipleSelection();
+  }
 
   public ngOnInit() {
     this.indeterminate$ = this.selectRow.selectedRows$.pipe(
