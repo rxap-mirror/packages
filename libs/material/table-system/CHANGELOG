@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.4]
+### Fixed
+- (schematics): add missing import
+
 ## [0.5.3]
 ### Fixed
 - (schematics): add support for row service

@@ -38,7 +38,12 @@ export class SelectableElement extends FeatureElement {
             multiple: this.multiple ? 'true' : 'false'
           })
         },
-        []
+        [
+          {
+            namedImports:    [ 'RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS' ],
+            moduleSpecifier: '@rxap-material/table-system'
+          }
+        ]
       );
     }
     AddComponentProvider(
