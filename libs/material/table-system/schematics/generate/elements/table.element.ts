@@ -38,7 +38,6 @@ const { dasherize, classify, camelize } = strings;
 export class TableElement implements ParsedElement<Rule> {
 
   @ElementAttribute()
-  @ElementRequired()
   public id!: string;
 
   /**

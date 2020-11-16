@@ -47,6 +47,10 @@ export default function(options: GenerateSchema): Rule {
     options.name    = options.name ?? tableElement.id;
     tableElement.id = options.name;
 
+    if (!tableElement.id) {
+      throw new Error('The table name/id is not defined!');
+    }
+
     const project = new Project({
       useInMemoryFileSystem: true,
       manipulationSettings:  {
