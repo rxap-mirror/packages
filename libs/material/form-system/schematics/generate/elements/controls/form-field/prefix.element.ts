@@ -60,16 +60,18 @@ export class PrefixElement implements ParsedElement<Rule>, HandleComponent, Hand
   @ElementChild(IconElement, { tag: 'button' })
   public button?: IconElement;
 
+  public attributes: Array<string | (() => string)> = [];
+
   public validate(): boolean {
     return !!this.icon || !!this.button;
   }
 
   public template(): string {
     if (this.icon) {
-      return this.icon.template('matPrefix');
+      return this.icon.template('matPrefix', ...this.attributes);
     }
     if (this.button) {
-      return NodeFactory('button', 'mat-icon-button', 'matPrefix')(this.button.template());
+      return NodeFactory('button', 'mat-icon-button', 'matPrefix', ...this.attributes)(this.button.template());
     }
     return '';
   }
