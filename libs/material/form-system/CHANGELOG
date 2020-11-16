@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.8.0]
+### Added
+- (PrefixElement): add support for custom attributes
+
 ## [0.7.0]
 ### Added
 - RequiredDirective
