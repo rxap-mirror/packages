@@ -8,7 +8,8 @@ import {
   FilterLike,
   Sort,
   AbstractTableDataSourceMetadata,
-  RxapAbstractTableDataSource
+  RxapAbstractTableDataSource,
+  RXAP_TABLE_DATA_SOURCE_PARAMETERS
 } from '@rxap/data-source/table';
 import {
   Injectable,
@@ -72,21 +73,24 @@ export class OpenApiTableDataSource<Data extends object = any, Parameters extend
     private readonly dataSource: OpenApiDataSource<PaginationData<Data>>,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR)
-      paginator: PaginatorLike | null              = null,
+      paginator: PaginatorLike | null                 = null,
     @Optional()
     @Inject(RXAP_OPEN_API_TABLE_DATA_SOURCE_TO_PARAMETERS_FUNCTION)
-      tableEventToOpenApiParameters: any | null          = null,
+      tableEventToOpenApiParameters: any | null       = null,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_SORT)
-      sort: SortLike | null                        = null,
+      sort: SortLike | null                           = null,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
-      filter: FilterLike | null                    = null,
+      filter: FilterLike | null                       = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_PARAMETERS)
+      parameters: Observable<Parameters> | null       = null,
     @Optional()
     @Inject(RXAP_DATA_SOURCE_METADATA)
       metadata: OpenApiTableDataSourceMetadata | null = dataSource.metadata
   ) {
-    super(paginator, sort, filter, metadata);
+    super(paginator, sort, filter, parameters, metadata);
     if (tableEventToOpenApiParameters) {
       this.tableEventToOpenApiParameters = tableEventToOpenApiParameters;
     }
