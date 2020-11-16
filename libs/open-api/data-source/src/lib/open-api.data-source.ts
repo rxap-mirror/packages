@@ -162,10 +162,12 @@ export class OpenApiDataSource<Response = any, Parameters extends Record<string,
     return super.connect({
       ...viewer,
       ...this.buildHttpOptions(this.operation, viewer.parameters),
-      viewChange: viewer.viewChange?.pipe(
+      // if the view change is an empty observable. Then dont apply the pipe logic
+      // else the http request is never triggered
+      viewChange: viewer.viewChange === EMPTY ? viewer.viewChange : viewer.viewChange?.pipe(
         tap(parameters => this.validateParameters(this.operation, parameters, this.strict)),
         map(parameters => this.buildHttpOptions(this.operation, parameters))
-      ),
+      )
     });
 
   }

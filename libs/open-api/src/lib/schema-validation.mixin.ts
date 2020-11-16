@@ -324,7 +324,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
       options.headers = headers;
     }
 
-    if (Object.keys(pathParams)) {
+    if (Object.keys(pathParams).length) {
       options.pathParams = pathParams;
     }
 
