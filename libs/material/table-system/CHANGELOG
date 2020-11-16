@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.3]
+### Fixed
+- (schematics): add support for row service
+
 ## [0.5.2]
 ### Fixed
 - (schematics): use new material table system package

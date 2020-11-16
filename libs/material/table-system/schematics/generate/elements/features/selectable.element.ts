@@ -41,6 +41,16 @@ export class SelectableElement extends FeatureElement {
         []
       );
     }
+    AddComponentProvider(
+      sourceFile,
+      'SelectRowService',
+      [
+        {
+          namedImports:    [ 'SelectRowService' ],
+          moduleSpecifier: '@rxap-material/table-system'
+        }
+      ]
+    );
   }
 
   public displayColumn(): DisplayColumn | null {
