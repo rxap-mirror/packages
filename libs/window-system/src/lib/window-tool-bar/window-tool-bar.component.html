@@ -1,12 +1,12 @@
 <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1.5rem">
   <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1.0rem">
-    <mat-icon *ngIf="windowRef.settings.icon" [svgIcon]="windowRef.settings.icon" fxFlex="40px"></mat-icon>
-    <ng-template [ngIf]="windowRef.titlePortal$ | async" let-titlePortal>
-      <h3 fxFlex="nogrow">
-        <ng-template [cdkPortalOutlet]="titlePortal"></ng-template>
-      </h3>
+    <ng-template [ngIf]="windowRef.titlePortal$ | async" [ngIfElse]="titleFromSettings" let-titlePortal>
+      <ng-template [cdkPortalOutlet]="titlePortal"></ng-template>
     </ng-template>
-    <h3 *ngIf="windowRef.settings.title" fxFlex="nogrow">{{windowRef.settings.title}}</h3>
+    <ng-template #titleFromSettings>
+      <mat-icon *ngIf="windowRef.settings.icon" [svgIcon]="windowRef.settings.icon" fxFlex="40px"></mat-icon>
+      <h3 *ngIf="windowRef.settings.title" fxFlex="nogrow">{{windowRef.settings.title}}</h3>
+    </ng-template>
   </div>
   <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start center">
     <button (click)="windowRef.minimize()" fxFlex="40px" mat-icon-button type="button">
