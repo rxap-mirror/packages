@@ -24,7 +24,7 @@ import type { WindowRef } from '../window-ref';
   selector:        'rxap-window-content',
   templateUrl:     './window-content.component.html',
   styleUrls:       [ './window-content.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WindowContentComponent implements AfterViewInit {
 
