@@ -32,7 +32,7 @@ export interface Point {
   selector:        'rxap-window-container',
   templateUrl:     './window-container.component.html',
   styleUrls:       [ './window-container.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   host:            {
     class: 'rxap-window-container'
   }
