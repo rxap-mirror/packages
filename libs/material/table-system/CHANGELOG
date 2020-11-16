@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.1]
+### Fixed
+- (SelectRow): change to toggle method
+
+## [0.5.0]
+### Added
+- (SelectRow): add support for multiple and single
+
 ## [0.4.3]
 ### Fixed
 - default path definition
