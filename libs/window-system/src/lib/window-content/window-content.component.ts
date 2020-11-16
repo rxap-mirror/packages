@@ -5,7 +5,8 @@ import {
   Injector,
   ViewContainerRef,
   ViewChild,
-  AfterViewInit
+  AfterViewInit,
+  ComponentRef
 } from '@angular/core';
 import {
   RXAP_WINDOW_CONTAINER_CONTEXT,
@@ -55,6 +56,9 @@ export class WindowContentComponent implements AfterViewInit {
     const attachedRef = this.portalOutlet.attachedRef;
     if (!attachedRef) {
       throw new Error('The portal outlet has not an attached ref after the view is init');
+    }
+    if (attachedRef instanceof ComponentRef) {
+      attachedRef.changeDetectorRef.detectChanges();
     }
     this.windowRef.setAttachedRef(attachedRef);
   }
