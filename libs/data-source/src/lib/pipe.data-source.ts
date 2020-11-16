@@ -1,5 +1,12 @@
-import { BaseDataSource } from './base.data-source';
-import { OperatorFunction } from 'rxjs';
+import {
+  BaseDataSource,
+  BaseDataSourceViewer
+} from './base.data-source';
+import {
+  OperatorFunction,
+  Observable,
+  TeardownLogic
+} from 'rxjs';
 import {
   Injectable,
   Inject,
@@ -41,20 +48,15 @@ export class PipeDataSource<Source = any, Target = Source>
     this._operations = [ operation, ...operations ];
   }
 
-  public init() {
-    if (this._initialised) {
-      return;
-    }
-    super.init();
-
-    if (this.operations.length === 0) {
-      throw new RxapDataSourceError('It is required that at least one rxjs operation function is defied', '', 'PipeDataSource');
-    }
-
-    this._data$ = this.dataSource.connect(this.metadata).pipe(
-      // @ts-ignore
-      ...this.operations
-    );
+  protected _connect(viewer: BaseDataSourceViewer): [ Observable<Target>, TeardownLogic ] {
+    this.init();
+    return [
+      this.dataSource.connect(viewer).pipe(
+        // @ts-ignore
+        ...this.operations
+      ),
+      () => this.dataSource.disconnect(viewer)
+    ];
   }
 
   public ngOnDestroy() {

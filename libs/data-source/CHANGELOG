@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.32]
+### Fixed
+- (PipeDataSource): call the connect for each pipe.connect
+
 ## [0.3.31]
 ### Fixed
 - mv parameters member to abstract table data source
