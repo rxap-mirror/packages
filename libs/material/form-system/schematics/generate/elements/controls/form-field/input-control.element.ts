@@ -30,6 +30,7 @@ export class InputControlElement extends FormFieldElement {
       'matInput',
       `type="${this.type}"`,
       `placeholder="Enter ${camelize(this.name)}"`,
+      'rxapRequired',
       `i18n-placeholder="@@forms.${this.controlPath}.placeholder"`,
       ...this.attributes
     ];
@@ -44,6 +45,7 @@ export class InputControlElement extends FormFieldElement {
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponentModule({ project, sourceFile, options });
     AddNgModuleImport(sourceFile, 'MatInputModule', '@angular/material/input');
+    AddNgModuleImport(sourceFile, 'RequiredDirectiveModule', '@rxap-material/form-system');
   }
 
 }

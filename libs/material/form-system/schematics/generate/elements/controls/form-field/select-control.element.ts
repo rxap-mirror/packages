@@ -16,7 +16,7 @@ import { SourceFile } from 'ts-morph';
 export class SelectControlElement extends FormFieldElement {
 
   protected innerTemplate(): string {
-    return NodeFactory('mat-select', `formControlName="${this.name}"`)([
+    return NodeFactory('mat-select', 'rxapRequired', `formControlName="${this.name}"`)([
       NodeFactory('mat-option', '*rxapInputSelectOptions="let option"', '[value]="option.value"')('\n{{option.display}}\n')
     ]);
   }
@@ -25,6 +25,7 @@ export class SelectControlElement extends FormFieldElement {
     super.handleComponentModule({ project, sourceFile, options });
     AddNgModuleImport(sourceFile, 'MatSelectModule', '@angular/material/select');
     AddNgModuleImport(sourceFile, 'InputSelectOptionsDirectiveModule', '@rxap/form-system');
+    AddNgModuleImport(sourceFile, 'RequiredDirectiveModule', '@rxap-material/form-system');
   }
 
 }
