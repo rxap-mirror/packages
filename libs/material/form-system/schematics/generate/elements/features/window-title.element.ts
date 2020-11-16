@@ -21,7 +21,9 @@ export class WindowTitleElement extends FormFeatureElement {
   public title!: string;
 
   public template(): string {
-    return NodeFactory('ng-template', 'rxapWindowTitle')('\n' + this.title + '\n');
+    return NodeFactory('ng-template', 'rxapWindowTitle')(
+      NodeFactory('h3', 'fxFlex="nogrow"', `i18n="@@forms.${this.__parent.controlPath}.window.title"`)('\n' + this.title + '\n')
+    );
   }
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
