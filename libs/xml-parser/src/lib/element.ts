@@ -76,6 +76,17 @@ export class RxapElement {
     return textContent !== undefined ? raw ? textContent.trim() : parseValue(textContent.trim()) : undefined as any;
   }
 
+  public getRawContent(): string {
+    return this.element.innerHTML;
+  }
+
+  public getChildRawContent(nodeName: string, defaultValue?: string): string {
+    if (this.hasChild(nodeName)) {
+      return this.getChild(nodeName)!.getRawContent();
+    }
+    return defaultValue ?? '';
+  }
+
   public getChildTextContent<T = string>(nodeName: string, defaultValue?: any, raw: boolean = false): T {
     if (this.hasChild(nodeName)) {
       return this.getChild(nodeName)!.getTextContent(defaultValue, raw) ?? defaultValue;

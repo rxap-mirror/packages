@@ -27,3 +27,7 @@ export {
   ElementRecord,
   ElementRecordOptions
 } from './lib/element-record';
+export {
+  ElementChildRawContent,
+  ElementChildRawContentOptions
+} from './lib/element-child-raw-content';
