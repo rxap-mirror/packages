@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.7.2]
+### Fixed
+- (WindowContent): force change detection
+
 ## [0.7.1]
 ### Added
 - (WindowContent): set change detection to default
