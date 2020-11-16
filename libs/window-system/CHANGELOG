@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.0]
+### Added
+- WindowTitleDirective
+
 ## [0.5.4]
 ### Fixed
 - replace all rxjs operators first() with take(1)

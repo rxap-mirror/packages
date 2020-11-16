@@ -10,7 +10,7 @@ import { RXAP_WINDOW_CONTEXT } from '../tokens';
   selector:        'rxap-window-tool-bar',
   templateUrl:     './window-tool-bar.component.html',
   styleUrls:       [ './window-tool-bar.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WindowToolBarComponent<D> {
 
