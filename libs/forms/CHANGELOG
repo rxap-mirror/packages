@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.7.0]
+### Added
+- (RxapFormBuilder): save if the current control has an required validator
+
 ## [0.6.0]
 ### Added
 - (schematics): add support for edit submit handlers

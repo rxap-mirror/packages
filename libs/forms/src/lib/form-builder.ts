@@ -15,7 +15,8 @@ import { MetadataKeys } from './decorators/metadata-keys';
 import {
   AbstractControl,
   ValidatorFn,
-  AsyncValidatorFn
+  AsyncValidatorFn,
+  Validators
 } from '@angular/forms';
 import {
   RxapAbstractControlOptions,
@@ -330,6 +331,12 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
       // register all control on set value function with the form control
       this.coerceToFnArray<SetValueFn>(form, this.controlSetValue.get(controlId))
           .forEach(setValueFn => control.registerOnSetValue(setValueFn));
+
+      if (Array.isArray(options.validators)) {
+        if (options.validators.includes(Validators.required) || options.validators.includes(Validators.requiredTrue)) {
+          Reflect.set(control, 'hasRequiredValidator', true);
+        }
+      }
 
       // set the form control instance to the form definition instance
       Reflect.set(form, controlId, control);
