@@ -4,25 +4,48 @@ import {
 } from './feature.element';
 import {
   ElementDef,
-  ElementExtends
+  ElementExtends,
+  ElementAttribute
 } from '@rxap/xml-parser/decorators';
-import { SourceFile } from 'ts-morph';
+import {
+  SourceFile,
+  Writers
+} from 'ts-morph';
 import {
   AddNgModuleImport,
-  ToValueContext
+  ToValueContext,
+  AddComponentProvider
 } from '@rxap-schematics/utilities';
 
 @ElementExtends(FeatureElement)
 @ElementDef('selectable')
 export class SelectableElement extends FeatureElement {
 
+  @ElementAttribute()
+  public multiple?: boolean;
+
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, 'SelectRowModule', '@rxap/table-system');
   }
 
+  public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
+    if (this.multiple !== undefined) {
+      AddComponentProvider(
+        sourceFile,
+        {
+          provide:  'RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS',
+          useValue: Writers.object({
+            multiple: this.multiple ? 'true' : 'false'
+          })
+        },
+        []
+      );
+    }
+  }
+
   public displayColumn(): DisplayColumn | null {
     return {
-      name: 'select',
+      name:   'select',
       hidden: true
     };
   }
