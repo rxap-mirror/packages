@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.9.0]
+### Added
+- add support for CompareWith
+
 ## [0.8.0]
 ### Added
 - (PrefixElement): add support for custom attributes
