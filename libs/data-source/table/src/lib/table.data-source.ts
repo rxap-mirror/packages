@@ -59,6 +59,7 @@ export class TableDataSource<Data extends Record<any, any>, Parameters = any> ex
     return [
       this.dataSource.connect(viewer).pipe(
         tap(data => this.updateTotalLength(data.length)),
+        tap(() => this.loading$.disable()),
         switchMap(data => {
 
           this.assertPaginator();
