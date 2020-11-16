@@ -25,6 +25,7 @@ export class TextareaControlElement extends FormFieldElement {
       'mat-autosize',
       'matAutosizeMinRows="3"',
       `formControlName="${this.name}"`,
+      'rxapRequired',
       `placeholder="Enter ${camelize(this.name)}"`,
       `i18n-placeholder="@@forms.${this.controlPath}.placeholder"`
     )('\n');
@@ -33,6 +34,7 @@ export class TextareaControlElement extends FormFieldElement {
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponentModule({ project, sourceFile, options });
     AddNgModuleImport(sourceFile, 'MatInputModule', '@angular/material/input');
+    AddNgModuleImport(sourceFile, 'RequiredDirectiveModule', '@rxap-material/form-system');
   }
 
 }
