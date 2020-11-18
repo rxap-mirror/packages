@@ -13,8 +13,10 @@ import { GetWindowStartPos } from './utilities';
 import { Portal } from '@angular/cdk/portal';
 import {
   ComponentRef,
-  EmbeddedViewRef
+  EmbeddedViewRef,
+  InjectFlags
 } from '@angular/core';
+import { RXAP_WINDOW_SETTINGS } from './tokens';
 
 export class WindowRef<D = any, R = any> {
 
@@ -48,7 +50,7 @@ export class WindowRef<D = any, R = any> {
   constructor(
     public readonly overlayRef: OverlayRef,
     private readonly overlay: Overlay,
-    public readonly settings: WindowSettings<D>
+    public settings: WindowSettings<D>
   ) {}
 
   public close(result?: R): void {
@@ -153,7 +155,23 @@ export class WindowRef<D = any, R = any> {
   }
 
   public setAttachedRef(attachedRef: ComponentRef<any> | EmbeddedViewRef<any>) {
+    if (attachedRef instanceof ComponentRef) {
+      this.updateWindowSettings(attachedRef);
+    }
     this.attachedRef$.next(attachedRef);
+  }
+
+
+  /**
+   * Injects the window settings from the component ref injector and overwrites
+   * the settings
+   * @private
+   */
+  private updateWindowSettings(componentRef: ComponentRef<any>) {
+    const settings = componentRef.injector.get(RXAP_WINDOW_SETTINGS, undefined, InjectFlags.Optional);
+    if (settings) {
+      this.settings = Object.assign({}, this.settings, settings);
+    }
   }
 
 }
