@@ -52,8 +52,7 @@ export class TableElement implements ParsedElement<Rule> {
   }
 
   @ElementChildTextContent()
-  @ElementRequired()
-  public title!: string;
+  public title?: string;
 
   @ElementChild(MethodElement)
   public method?: MethodElement;
@@ -155,7 +154,7 @@ export class TableElement implements ParsedElement<Rule> {
       }
     }
 
-    if (!this.hasFeature('navigate-back')) {
+    if (!this.hasFeature('navigate-back') && this.title) {
       template += `<mat-card-title i18n="@@table.${dasherize(this.id)}.title">${this.title}</mat-card-title>`;
     }
 
@@ -281,6 +280,7 @@ export class TableElement implements ParsedElement<Rule> {
     AddNgModuleImport(sourceFile, 'MatProgressBarModule', '@angular/material/progress-bar');
     AddNgModuleImport(sourceFile, 'CardProgressBarModule', '@rxap/directives/material/card');
     AddNgModuleImport(sourceFile, 'MatTableModule', '@angular/material/table');
+    AddNgModuleImport(sourceFile, 'FlexLayoutModule', '@angular/flex-layout');
     // TODO : move TableDataSourceModule to rxap
     AddNgModuleImport(sourceFile, 'TableDataSourceModule', '@mfd/shared/table-data-source.directive');
 

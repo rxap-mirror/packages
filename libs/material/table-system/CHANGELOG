@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.4]
+### Fixed
+- (schematics): dynamic table
+
 ## [0.6.3]
 ### Added
 - (schematics): support for template search
