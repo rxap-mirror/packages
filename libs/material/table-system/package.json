@@ -1,6 +1,6 @@
 {
   "name": "@rxap-material/table-system",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "peerDependencies": {
     "@angular/common": "^10.0.5",
     "@angular/core": "^10.0.5",

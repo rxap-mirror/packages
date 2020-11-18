@@ -25,7 +25,7 @@ export class BooleanColumnElement extends ColumnElement {
     ${capitalize(this.name)}
     </th>
     <td mat-cell
-    [rxap-boolean-cell]="element['${this.name}']"
+    [rxap-boolean-cell]="element${this.valueAccessor}"
     *matCellDef="let element"></td>
     `;
   }

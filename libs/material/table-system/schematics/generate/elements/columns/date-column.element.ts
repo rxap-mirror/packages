@@ -25,7 +25,7 @@ export class DateColumnElement extends ColumnElement {
     ${capitalize(this.name)}
     </th>
     <td mat-cell
-    [rxap-date-cell]="element['${this.name}']"
+    [rxap-date-cell]="element${this.valueAccessor}"
     format="dd.MM.yyyy HH:mm:ss"
     *matCellDef="let element"></td>
     `;
