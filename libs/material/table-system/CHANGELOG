@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.10]
+### Fixed
+- (schematics): table auto with
+
 ## [0.6.9]
 ### Fixed
 - (schematics): fix parser access issue
