@@ -11,6 +11,7 @@ import { SourceFile } from 'ts-morph';
 import { Rule } from '@angular-devkit/schematics';
 import { strings } from '@angular-devkit/core';
 import { FormFeatureElement } from './form-feature.element';
+import { GenerateSchema } from '../../schema';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
@@ -29,15 +30,15 @@ export class WindowFooterControlsElement extends FormFeatureElement {
     AddNgModuleImport(sourceFile, 'FormControlsComponentModule', '@rxap-material/form-system');
   }
 
-  public toValue({ project, options }: ToValueContext): Rule {
+  public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
     return tree => {
 
-      const openFormMethodFilePath = `open-${dasherize(this.__parent.name)}-form-window.method.ts`;
+      const openFormMethodFilePath = `open-${dasherize(options.name!)}-form-window.method.ts`;
       if (!project.getSourceFile(openFormMethodFilePath)) {
         const sourceFile = project.createSourceFile(openFormMethodFilePath);
         sourceFile.addClass({
           isExported: true,
-          name:       `Open${classify(this.__parent.name)}FormWindowMethod`,
+          name:       `Open${classify(options.name!)}FormWindowMethod`,
           extends:    'OpenFormWindowMethod',
           decorators: [
             {
@@ -60,7 +61,7 @@ export class WindowFooterControlsElement extends FormFeatureElement {
                 },
                 {
                   name:        'defaultOptions',
-                  type:        `FormWindowOptions<I${classify(this.__parent.name)}Form> | null`,
+                  type:        `FormWindowOptions<I${classify(options.name!)}Form> | null`,
                   initializer: 'null',
                   decorators:  [
                     {
@@ -75,7 +76,7 @@ export class WindowFooterControlsElement extends FormFeatureElement {
                 }
               ],
               statements: [
-                `super(formWindowService, ${classify(this.__parent.name)}Form, ${classify(this.__parent.name)}FormComponent, defaultOptions)`
+                `super(formWindowService, ${classify(options.name!)}Form, ${classify(options.name!)}FormComponent, defaultOptions)`
               ]
             }
           ]
@@ -86,8 +87,8 @@ export class WindowFooterControlsElement extends FormFeatureElement {
             moduleSpecifier: '@rxap/form-window-system'
           },
           {
-            namedImports:    [ `${classify(this.__parent.name)}Form`, `I${classify(this.__parent.name)}Form` ],
-            moduleSpecifier: `./${dasherize(this.__parent.name)}.form`
+            namedImports:    [ `${classify(options.name!)}Form`, `I${classify(options.name!)}Form` ],
+            moduleSpecifier: `./${dasherize(options.name!)}.form`
           },
           {
             namedImports:    [ 'Inject', 'Optional', 'Injectable' ],
