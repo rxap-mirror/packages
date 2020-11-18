@@ -1,77 +1,28 @@
 import {
   Rule,
   Tree,
-  chain,
-  noop,
-  externalSchematic
+  chain
 } from '@angular-devkit/schematics';
 import { createDefaultPath } from '@schematics/angular/utility/workspace';
 import { join } from 'path';
 import { GenerateSchema } from './schema';
-import { XmlParserService } from '@rxap/xml-parser';
 import { FormElement } from './elements/form.element';
 import {
   Project,
   QuoteKind,
-  IndentationText,
-  ObjectLiteralExpression
+  IndentationText
 } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
 import { formatFiles } from '@nrwl/workspace';
 import { Elements } from './elements/elements';
 import { readAngularJsonFile } from '@rxap/schematics/utilities';
-import { AddDir } from '@rxap-schematics/utilities';
+import {
+  AddDir,
+  ApplyTsMorphProject,
+  ParseTemplate
+} from '@rxap-schematics/utilities';
 
 const { dasherize, classify, camelize } = strings;
-
-export function CreateFormComponent({ name, path, project, options }: { name: string, path: string, project: Project, options: GenerateSchema }): Rule {
-  return host => {
-
-    const componentFilePath = join(path, dasherize(name) + '-form.component.ts');
-
-    if (!host.exists(componentFilePath)) {
-      return chain([
-        externalSchematic('@rxap/schematics', 'component-module', {
-          path:    path.replace(/^\//, ''),
-          name:    dasherize(name) + '-form',
-          theme:   false,
-          flat:    true,
-          project: options.project
-        }),
-        tree => {
-
-          const content            = tree.read(componentFilePath)!.toString('utf-8');
-          const sourceFile         = project.createSourceFile(componentFilePath, content);
-          const componentClass     = sourceFile.getClasses()[ 0 ];
-          const componentDecorator = componentClass?.getDecorator('Component');
-          const componentObject    = componentDecorator?.getArguments()[ 0 ];
-
-          if (componentObject instanceof ObjectLiteralExpression) {
-            componentObject.addPropertyAssignment({
-              name:        'providers',
-              initializer: writer => {
-                writer.writeLine('[');
-                writer.writeLine('FormProviders,');
-                writer.writeLine('FormComponentProviders,');
-                writer.write(']');
-              }
-            });
-            sourceFile.addImportDeclaration({
-              moduleSpecifier: './form.providers',
-              namedImports:    [ 'FormProviders', 'FormComponentProviders' ]
-            });
-          } else {
-            throw new Error('Could not extract the component');
-          }
-
-          tree.overwrite(componentFilePath, sourceFile.getFullText());
-
-        }
-      ]);
-    }
-
-  };
-}
 
 export default function(options: GenerateSchema): Rule {
 
@@ -97,18 +48,7 @@ export default function(options: GenerateSchema): Rule {
     let formElement: FormElement | undefined = options.formElement;
 
     if (!formElement) {
-
-      if (!options.template) {
-        throw new Error('The option template is not defined!');
-      }
-
-      const templateFile = host.read(options.template)?.toString('utf-8');
-
-      const parser = new XmlParserService();
-      parser.register(...Elements);
-
-      formElement = parser.parseFromXml<FormElement>(templateFile!);
-
+      formElement = ParseTemplate<FormElement>(host, options.template, ...Elements);
     }
 
     const project = new Project({
@@ -135,23 +75,7 @@ export default function(options: GenerateSchema): Rule {
       .forEach(sourceFile => sourceFile.organizeImports());
 
     return chain([
-      tree => {
-
-        project.getSourceFiles()
-               .forEach(sourceFile => {
-
-                 const filePath = join(options.path, sourceFile.getFilePath());
-
-                 if (tree.exists(filePath)) {
-                   tree.overwrite(filePath, sourceFile.getFullText());
-                 } else {
-                   tree.create(filePath, sourceFile.getFullText());
-                 }
-
-               });
-
-      },
-      options.component ? CreateFormComponent({ name: formElement.id, project, path: options.path, options }) : noop(),
+      ApplyTsMorphProject(project, options.path),
       formatFiles()
     ]);
 
