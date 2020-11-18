@@ -25,7 +25,11 @@ import { formatFiles } from '@nrwl/workspace';
 import { TableSystemElements } from './elements/elements';
 import { TableElement } from './elements/table.element';
 import { readAngularJsonFile } from '@rxap/schematics/utilities';
-import { ParseTemplate } from '@rxap-schematics/utilities';
+import {
+  ParseTemplate,
+  ApplyTsMorphProject,
+  FixMissingImports
+} from '@rxap-schematics/utilities';
 
 
 const { dasherize, classify, camelize } = strings;
@@ -105,21 +109,26 @@ export default function(options: GenerateSchema): Rule {
         })
       ]), MergeStrategy.Overwrite),
       tableElement.hasFilter ? externalSchematic('@rxap/forms', 'generate', {
-        path:        path.replace(/^\//, ''),
-        formElement: tableElement.createFormElement(),
-        component:   false,
-        project:     options.project,
-        flat:        true
+        path:            path.replace(/^\//, ''),
+        formElement:     tableElement.createFormElement(),
+        component:       false,
+        project:         options.project,
+        flat:            true,
+        organizeImports: false,
+        fixImports:      false,
+        format:          false
       }) : noop(),
       tableElement.toValue({ project, options }),
-      formatFiles(),
+      ApplyTsMorphProject(project, options.path, options.organizeImports),
+      options.fixImports ? FixMissingImports() : noop(),
+      options.format ? formatFiles() : noop(),
       (tree, ctx) => {
         if (ctx.debug) {
           console.log(tree.read(join(options.path!, dasherize(options.name!) + '-table.component.module.ts'))!.toString('utf-8'));
           console.log(tree.read(join(options.path!, dasherize(options.name!) + '-table.component.ts'))!.toString('utf-8'));
           console.log(tree.read(join(options.path!, dasherize(options.name!) + '-table.component.html'))!.toString('utf-8'));
         }
-      },
+      }
     ]);
 
   };

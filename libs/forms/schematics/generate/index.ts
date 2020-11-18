@@ -1,7 +1,8 @@
 import {
   Rule,
   Tree,
-  chain
+  chain,
+  noop
 } from '@angular-devkit/schematics';
 import { createDefaultPath } from '@schematics/angular/utility/workspace';
 import { join } from 'path';
@@ -19,7 +20,8 @@ import { readAngularJsonFile } from '@rxap/schematics/utilities';
 import {
   AddDir,
   ApplyTsMorphProject,
-  ParseTemplate
+  ParseTemplate,
+  FixMissingImports
 } from '@rxap-schematics/utilities';
 
 const { dasherize, classify, camelize } = strings;
@@ -75,8 +77,9 @@ export default function(options: GenerateSchema): Rule {
       .forEach(sourceFile => sourceFile.organizeImports());
 
     return chain([
-      ApplyTsMorphProject(project, options.path),
-      formatFiles()
+      ApplyTsMorphProject(project, options.path, options.organizeImports),
+      options.fixImports ? FixMissingImports() : noop(),
+      options.format ? formatFiles() : noop()
     ]);
 
   };

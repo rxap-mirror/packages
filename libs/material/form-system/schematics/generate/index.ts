@@ -12,7 +12,11 @@ import { join } from 'path';
 import { createDefaultPath } from '@schematics/angular/utility/workspace';
 import { strings } from '@angular-devkit/core';
 import { FormElement } from './elements/form.element';
-import { ParseTemplate } from '@rxap-schematics/utilities';
+import {
+  ParseTemplate,
+  ApplyTsMorphProject,
+  FixMissingImports
+} from '@rxap-schematics/utilities';
 import {
   IndentationText,
   QuoteKind,
@@ -70,7 +74,9 @@ export default function(options: GenerateSchema): Rule {
         theme:   false
       }),
       formElement.toValue({ project, options }),
-      formatFiles(),
+      ApplyTsMorphProject(project, options.path, options.organizeImports),
+      options.fixImports ? FixMissingImports() : noop(),
+      options.format ? formatFiles() : noop(),
       context.debug ? tree => {
         console.log('\n==========================================');
         console.log('path: ' + componentFilePath);

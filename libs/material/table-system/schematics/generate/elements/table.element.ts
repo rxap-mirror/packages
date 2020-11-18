@@ -20,8 +20,6 @@ import {
   FindComponentModuleSourceFile,
   AddNgModuleImport,
   AddDir,
-  ApplyTsMorphProject,
-  AutoImport,
   MethodElement,
   AddComponentProvider
 } from '@rxap-schematics/utilities';
@@ -30,7 +28,6 @@ import {
   chain,
   Rule
 } from '@angular-devkit/schematics';
-import { join } from 'path';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -205,8 +202,6 @@ export class TableElement implements ParsedElement<Rule> {
       chain(this.features?.map(node => node.toValue({ project, options })) ?? []),
       () => this.handleComponent(project, options),
       () => this.handleComponentModule(project, options),
-      ApplyTsMorphProject(project, options.path),
-      AutoImport(join(options.path!, '..'), options.path!)
     ]);
   }
 

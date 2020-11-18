@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.5]
+### Added
+- (schematics): opt generate process
+
 ## [0.6.4]
 ### Fixed
 - (schematics): dynamic table

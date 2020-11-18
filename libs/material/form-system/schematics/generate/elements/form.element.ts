@@ -9,8 +9,6 @@ import {
   NodeFactory,
   ToValueContext,
   AddDir,
-  ApplyTsMorphProject,
-  AutoImport,
   AddNgModuleImport,
   AddComponentProvider
 } from '@rxap-schematics/utilities';
@@ -18,6 +16,7 @@ import { SourceFile } from 'ts-morph';
 import {
   chain,
   Rule,
+  noop,
   externalSchematic
 } from '@angular-devkit/schematics';
 import { join } from 'path';
@@ -86,21 +85,22 @@ export class FormElement extends GroupElement {
         '@rxap/forms',
         'generate',
         {
-          project:  options.project,
-          name:     options.name,
-          template: join('forms', dasherize(this.name) + '.xml'),
-          path:     options.path!.replace(/^\//, ''),
-          flat:     true
+          project:         options.project,
+          name:            options.name,
+          template:        join('forms', dasherize(this.name) + '.xml'),
+          path:            options.path!.replace(/^\//, ''),
+          flat:            true,
+          organizeImports: false,
+          fixImports:      false,
+          format:          false
         }
       ),
-      tree => tree.overwrite(componentTemplateFilePath, this.template()),
+      options.overwrite ? tree => tree.overwrite(componentTemplateFilePath, this.template()) : noop(),
       tree => AddDir(tree.getDir(options.path!), project, undefined, pathFragment => !!pathFragment.match(/\.ts$/)),
       chain(this.nodes.map(node => node.toValue({ project, options }))),
       chain(this.features?.map(feature => feature.toValue({ project, options })) ?? []),
       () => this.handleComponent({ project, options, sourceFile: project.getSourceFileOrThrow(componentFile) }),
-      () => this.handleComponentModule({ project, options, sourceFile: project.getSourceFileOrThrow(componentModuleFile) }),
-      ApplyTsMorphProject(project, options.path),
-      AutoImport(join(options.path!, '..'), options.path!)
+      () => this.handleComponentModule({ project, options, sourceFile: project.getSourceFileOrThrow(componentModuleFile) })
     ]);
   }
 

@@ -2,13 +2,15 @@ import { Rule } from '@angular-devkit/schematics';
 import { join } from 'path';
 import { Project } from 'ts-morph';
 
-export function ApplyTsMorphProject(project: Project, basePath: string = ''): Rule {
+export function ApplyTsMorphProject(project: Project, basePath: string = '', organizeImports: boolean = true): Rule {
   return tree => {
 
-    console.log(`organize '${project.getSourceFiles().length}' ts files imports`);
-    project
-      .getSourceFiles()
-      .forEach(sourceFile => sourceFile.organizeImports());
+    if (organizeImports) {
+      console.log(`organize '${project.getSourceFiles().length}' ts files imports`);
+      project
+        .getSourceFiles()
+        .forEach(sourceFile => sourceFile.organizeImports());
+    }
 
     console.log(`write '${project.getSourceFiles().length}' ts files to tree`);
     project

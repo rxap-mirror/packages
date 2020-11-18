@@ -5,8 +5,10 @@ export interface GenerateSchema {
   path: string;
   template: string;
   openApiModule: string;
-  component: boolean;
   formElement?: FormElement;
   name?: string;
   flat?: boolean;
+  organizeImports: boolean;
+  fixImports: boolean;
+  format: boolean;
 }

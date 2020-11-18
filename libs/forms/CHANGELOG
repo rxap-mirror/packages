@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.7.2]
+### Added
+- (schematics): opt generate process
+
 ## [0.7.1]
 ### Fixed
 - (schematics): add missing component handler method
