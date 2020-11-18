@@ -7,12 +7,12 @@ import {
 } from '@rxap/xml-parser/decorators';
 import { SourceFile } from 'ts-morph';
 import {
-  HandleComponentModule,
-  AddNgModuleProvider
+  HandleComponent,
+  AddComponentProvider
 } from '@rxap-schematics/utilities';
 
 @ElementDef('adapter')
-export class AdapterElement implements ParsedElement, HandleComponentModule {
+export class AdapterElement implements ParsedElement, HandleComponent {
 
   @ElementTextContent()
   @ElementRequired()
@@ -25,8 +25,8 @@ export class AdapterElement implements ParsedElement, HandleComponentModule {
   public toValue(): any {
   }
 
-  public handleComponentModule({ sourceFile }: { sourceFile: SourceFile }): void {
-    AddNgModuleProvider(
+  public handleComponent({ sourceFile }: { sourceFile: SourceFile }): void {
+    AddComponentProvider(
       sourceFile,
       {
         provide:  'TABLE_REMOTE_METHOD_ADAPTER_FACTORY',

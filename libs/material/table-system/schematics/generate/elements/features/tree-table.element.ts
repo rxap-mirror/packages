@@ -18,15 +18,16 @@ import { TableElement } from '../table.element';
 import { strings } from '@angular-devkit/core';
 import {
   ToValueContext,
-  AddNgModuleProvider,
   AddNgModuleImport,
-  MethodElement
+  MethodElement,
+  HandleComponent,
+  AddComponentProvider
 } from '@rxap-schematics/utilities';
 
 const { dasherize, classify, camelize } = strings;
 
 @ElementDef('child')
-export class ChildElement implements ParsedElement {
+export class ChildElement implements ParsedElement, HandleComponent {
 
   public __parent!: TreeTableElement;
 
@@ -37,12 +38,53 @@ export class ChildElement implements ParsedElement {
   @ElementAttribute()
   public proxy?: boolean;
 
+  public get proxyMethodFilePath(): string {
+    return `tree-table-children-proxy.method`;
+  }
+
+  public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
+    if (this.proxy) {
+      AddComponentProvider(
+        sourceFile,
+        {
+          provide:  'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD',
+          useClass: 'TreeTableChildrenProxyMethod'
+        },
+        [
+          {
+            // TODO : mv RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD to rxap
+            moduleSpecifier: '@mfd/shared/data-sources/tree-table.data-source',
+            namedImports:    [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD' ]
+          },
+          {
+            moduleSpecifier: `./${this.proxyMethodFilePath}`,
+            namedImports:    [ 'TreeTableChildrenProxyMethod' ]
+          }
+        ]
+      );
+    } else {
+      AddComponentProvider(
+        sourceFile,
+        {
+          provide:  'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD',
+          useClass: this.method.toValue({ sourceFile, project, options })
+        },
+        [
+          {
+            // TODO : mv RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD to rxap
+            moduleSpecifier: '@mfd/shared/data-sources/tree-table.data-source',
+            namedImports:    [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD' ]
+          }
+        ]
+      );
+    }
+  }
+
   public toValue({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }): any {
     if (this.proxy) {
-      const proxyMethodFilePath = `tree-table-children-proxy.method`;
-      if (!project.getSourceFile(proxyMethodFilePath + '.ts')) {
+      if (!project.getSourceFile(this.proxyMethodFilePath + '.ts')) {
         // TODO : replace with generalized proxy method creation from @rxap/remote-method
-        const proxyMethodSourceFile = project.createSourceFile(proxyMethodFilePath + '.ts');
+        const proxyMethodSourceFile = project.createSourceFile(this.proxyMethodFilePath + '.ts');
         const methodName            = this.method.toValue({ sourceFile: proxyMethodSourceFile, project, options });
         proxyMethodSourceFile.addClass({
           name:       'TreeTableChildrenProxyMethod',
@@ -105,46 +147,13 @@ export class ChildElement implements ParsedElement {
           }
         ]);
       }
-      AddNgModuleProvider(
-        sourceFile,
-        {
-          provide:  'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD',
-          useClass: 'TreeTableChildrenProxyMethod'
-        },
-        [
-          {
-            // TODO : mv RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD to rxap
-            moduleSpecifier: '@mfd/shared/data-sources/tree-table.data-source',
-            namedImports:    [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD' ]
-          },
-          {
-            moduleSpecifier: `./${proxyMethodFilePath}`,
-            namedImports:    [ 'TreeTableChildrenProxyMethod' ]
-          }
-        ]
-      );
-    } else {
-      AddNgModuleProvider(
-        sourceFile,
-        {
-          provide:  'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD',
-          useClass: this.method.toValue({ sourceFile, project, options })
-        },
-        [
-          {
-            // TODO : mv RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD to rxap
-            moduleSpecifier: '@mfd/shared/data-sources/tree-table.data-source',
-            namedImports:    [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD' ]
-          }
-        ]
-      );
     }
   }
 
 }
 
 @ElementDef('root')
-export class RootElement implements ParsedElement {
+export class RootElement implements ParsedElement, HandleComponent {
 
   public __parent!: TreeTableElement;
 
@@ -155,12 +164,53 @@ export class RootElement implements ParsedElement {
   @ElementAttribute()
   public proxy?: boolean;
 
+  public get proxyMethodFilePath(): string {
+    return `tree-table-root-proxy.method`;
+  }
+
+  public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
+    if (this.proxy) {
+      AddComponentProvider(
+        sourceFile,
+        {
+          provide:  'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD',
+          useClass: 'TreeTableRootProxyMethod'
+        },
+        [
+          {
+            // TODO : mv RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD to rxap
+            moduleSpecifier: '@mfd/shared/data-sources/tree-table.data-source',
+            namedImports:    [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD' ]
+          },
+          {
+            moduleSpecifier: `./${this.proxyMethodFilePath}`,
+            namedImports:    [ 'TreeTableRootProxyMethod' ]
+          }
+        ]
+      );
+    } else {
+      AddComponentProvider(
+        sourceFile,
+        {
+          provide:  'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD',
+          useClass: this.method.toValue({ sourceFile, project, options })
+        },
+        [
+          {
+            // TODO : mv RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD to rxap
+            moduleSpecifier: '@mfd/shared/data-sources/tree-table.data-source',
+            namedImports:    [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD' ]
+          }
+        ]
+      );
+    }
+  }
+
   public toValue({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }): any {
     if (this.proxy) {
-      const proxyMethodFilePath = `tree-table-root-proxy.method`;
-      if (!project.getSourceFile(proxyMethodFilePath + '.ts')) {
+      if (!project.getSourceFile(this.proxyMethodFilePath + '.ts')) {
         // TODO : replace with generalized proxy method creation from @rxap/remote-method
-        const proxyMethodSourceFile = project.createSourceFile(proxyMethodFilePath + '.ts');
+        const proxyMethodSourceFile = project.createSourceFile(this.proxyMethodFilePath + '.ts');
         const methodName            = this.method.toValue({ sourceFile: proxyMethodSourceFile, project, options });
         proxyMethodSourceFile.addClass({
           name:       'TreeTableRootProxyMethod',
@@ -223,39 +273,6 @@ export class RootElement implements ParsedElement {
           }
         ]);
       }
-      AddNgModuleProvider(
-        sourceFile,
-        {
-          provide:  'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD',
-          useClass: 'TreeTableRootProxyMethod'
-        },
-        [
-          {
-            // TODO : mv RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD to rxap
-            moduleSpecifier: '@mfd/shared/data-sources/tree-table.data-source',
-            namedImports:    [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD' ]
-          },
-          {
-            moduleSpecifier: `./${proxyMethodFilePath}`,
-            namedImports:    [ 'TreeTableRootProxyMethod' ]
-          }
-        ]
-      );
-    } else {
-      AddNgModuleProvider(
-        sourceFile,
-        {
-          provide:  'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD',
-          useClass: this.method.toValue({ sourceFile, project, options })
-        },
-        [
-          {
-            // TODO : mv RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD to rxap
-            moduleSpecifier: '@mfd/shared/data-sources/tree-table.data-source',
-            namedImports:    [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD' ]
-          }
-        ]
-      );
     }
   }
 
@@ -275,9 +292,11 @@ export class TreeTableElement extends FeatureElement {
   @ElementRequired()
   public root!: RootElement;
 
-  public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
-    AddNgModuleImport(sourceFile, 'TreeControlCellComponentModule', '@mfd/shared/tree-control-cell/tree-control-cell.component.module');
-    AddNgModuleProvider(
+  public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
+    super.handleComponent({ sourceFile, project, options });
+    this.child.handleComponent({ sourceFile, project, options });
+    this.root.handleComponent({ sourceFile, project, options });
+    AddComponentProvider(
       sourceFile,
       {
         provide:  'TABLE_DATA_SOURCE',
@@ -296,6 +315,10 @@ export class TreeTableElement extends FeatureElement {
         }
       ]
     );
+  }
+
+  public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
+    AddNgModuleImport(sourceFile, 'TreeControlCellComponentModule', '@mfd/shared/tree-control-cell/tree-control-cell.component.module');
     this.child.toValue({ sourceFile, project, options });
     this.root.toValue({ sourceFile, project, options });
   }

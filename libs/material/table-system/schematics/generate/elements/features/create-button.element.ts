@@ -12,11 +12,11 @@ import {
 import { RouterLinkElement } from '../router-link.element';
 import {
   ProviderObject,
-  AddNgModuleProvider,
   AddNgModuleImport,
   ToValueContext,
   ModuleElement,
-  MethodElement
+  MethodElement,
+  AddComponentProvider
 } from '@rxap-schematics/utilities';
 import {
   Rule,
@@ -44,6 +44,11 @@ export class CreateButtonElement extends FeatureElement {
 
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, 'TableCreateButtonComponentModule', '@mfd/shared/table-create-button/table-create-button.component.module');
+    this.module?.handleComponentModule({ sourceFile, options, project });
+  }
+
+  public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
+    super.handleComponent({ sourceFile, project, options });
     const providerObject: ProviderObject                                    = {
       provide: 'TABLE_CREATE_REMOTE_METHOD'
     };
@@ -62,13 +67,11 @@ export class CreateButtonElement extends FeatureElement {
       providerObject.useValue = 'null';
     }
 
-    AddNgModuleProvider(
+    AddComponentProvider(
       sourceFile,
       providerObject,
       importStructures
     );
-
-    this.module?.handleComponentModule({ sourceFile, options, project });
   }
 
   public headerTemplate(): string {

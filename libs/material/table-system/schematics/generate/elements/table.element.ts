@@ -18,12 +18,12 @@ import {
   FindComponentSourceFile,
   AddComponentAnimations,
   FindComponentModuleSourceFile,
-  AddNgModuleProvider,
   AddNgModuleImport,
   AddDir,
   ApplyTsMorphProject,
   AutoImport,
-  MethodElement
+  MethodElement,
+  AddComponentProvider
 } from '@rxap-schematics/utilities';
 import { FormElement } from '@rxap/forms/schematics/generate/elements/form.element';
 import {
@@ -217,15 +217,8 @@ export class TableElement implements ParsedElement<Rule> {
     // TODO : mv RowAnimation to rxap
     AddComponentAnimations(sourceFile, 'RowAnimation', '@mfd/shared/row-animation');
 
-    this.features?.forEach(feature => feature.handleComponent({ sourceFile, project, options }));
-    this.columns?.forEach(column => column.handleComponent({ sourceFile, project, options }));
-  }
-
-  private handleComponentModule(project: Project, options: GenerateSchema) {
-    const sourceFile = FindComponentModuleSourceFile(this.name, project);
-
     if (this.method) {
-      AddNgModuleProvider(
+      AddComponentProvider(
         sourceFile,
         {
           provide:  'TABLE_REMOTE_METHOD',
@@ -241,25 +234,8 @@ export class TableElement implements ParsedElement<Rule> {
       );
     }
 
-    if (this.adapter) {
-      this.adapter.handleComponentModule({ sourceFile });
-    }
-
-    // core table modules
-    AddNgModuleImport(sourceFile, 'MatCardModule', '@angular/material/card');
-    AddNgModuleImport(sourceFile, 'MatProgressBarModule', '@angular/material/progress-bar');
-    AddNgModuleImport(sourceFile, 'CardProgressBarModule', '@rxap/directives/material/card');
-    AddNgModuleImport(sourceFile, 'MatTableModule', '@angular/material/table');
-    // TODO : move TableDataSourceModule to rxap
-    AddNgModuleImport(sourceFile, 'TableDataSourceModule', '@mfd/shared/table-data-source.directive');
-
-    // filter table modules
     if (this.hasFilter) {
-      // TODO : move TableFilterModule to rxap
-      AddNgModuleImport(sourceFile, 'TableFilterModule', '@mfd/shared/table-filter/table-filter.module');
-      AddNgModuleImport(sourceFile, 'RxapFormsModule', '@rxap/forms');
-      AddNgModuleImport(sourceFile, 'ReactiveFormsModule', '@angular/forms');
-      AddNgModuleProvider(
+      AddComponentProvider(
         sourceFile,
         {
           provide:    'RXAP_TABLE_FILTER_FORM_DEFINITION',
@@ -281,12 +257,39 @@ export class TableElement implements ParsedElement<Rule> {
           }
         ]
       );
-      AddNgModuleProvider(sourceFile, 'FormProviders', [
+      AddComponentProvider(sourceFile, 'FormProviders', [
         {
           namedImports:    [ 'FormFactory' ],
           moduleSpecifier: './form.providers'
         }
       ]);
+    }
+
+    if (this.adapter) {
+      this.adapter.handleComponent({ sourceFile });
+    }
+
+    this.features?.forEach(feature => feature.handleComponent({ sourceFile, project, options }));
+    this.columns?.forEach(column => column.handleComponent({ sourceFile, project, options }));
+  }
+
+  private handleComponentModule(project: Project, options: GenerateSchema) {
+    const sourceFile = FindComponentModuleSourceFile(this.name, project);
+
+    // core table modules
+    AddNgModuleImport(sourceFile, 'MatCardModule', '@angular/material/card');
+    AddNgModuleImport(sourceFile, 'MatProgressBarModule', '@angular/material/progress-bar');
+    AddNgModuleImport(sourceFile, 'CardProgressBarModule', '@rxap/directives/material/card');
+    AddNgModuleImport(sourceFile, 'MatTableModule', '@angular/material/table');
+    // TODO : move TableDataSourceModule to rxap
+    AddNgModuleImport(sourceFile, 'TableDataSourceModule', '@mfd/shared/table-data-source.directive');
+
+    // filter table modules
+    if (this.hasFilter) {
+      // TODO : move TableFilterModule to rxap
+      AddNgModuleImport(sourceFile, 'TableFilterModule', '@mfd/shared/table-filter/table-filter.module');
+      AddNgModuleImport(sourceFile, 'RxapFormsModule', '@rxap/forms');
+      AddNgModuleImport(sourceFile, 'ReactiveFormsModule', '@angular/forms');
     }
 
     this.features?.forEach(feature => feature.handleComponentModule({ sourceFile, project, options }));

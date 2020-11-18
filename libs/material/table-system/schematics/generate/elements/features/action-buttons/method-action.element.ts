@@ -9,8 +9,8 @@ import { RouterLinkElement } from '../../router-link.element';
 import {
   ToValueContext,
   ProviderObject,
-  AddNgModuleProvider,
-  MethodElement
+  MethodElement,
+  AddComponentProvider
 } from '@rxap-schematics/utilities';
 
 export abstract class MethodActionElement extends ActionButtonElement {
@@ -23,8 +23,8 @@ export abstract class MethodActionElement extends ActionButtonElement {
 
   public abstract type: string;
 
-  public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
-    super.handleComponentModule({ sourceFile, project, options });
+  public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
+    super.handleComponent({ sourceFile, project, options });
     const provide                                                           = `ROW_${this.type.toUpperCase()}_METHOD`;
     const providerObject: ProviderObject                                    = {
       provide
@@ -42,7 +42,7 @@ export abstract class MethodActionElement extends ActionButtonElement {
     } else {
       providerObject.useValue = 'null';
     }
-    AddNgModuleProvider(
+    AddComponentProvider(
       sourceFile,
       providerObject,
       importStructures
