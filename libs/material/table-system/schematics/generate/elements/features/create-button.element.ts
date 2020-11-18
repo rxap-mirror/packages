@@ -23,6 +23,8 @@ import {
   chain,
   noop
 } from '@angular-devkit/schematics';
+import { WindowFormElement } from './window-form.element';
+import { GenerateSchema } from '../../schema';
 
 @ElementExtends(FeatureElement)
 @ElementDef('create-button')
@@ -36,6 +38,9 @@ export class CreateButtonElement extends FeatureElement {
 
   @ElementChild(ModuleElement)
   public module?: ModuleElement;
+
+  @ElementChild(WindowFormElement)
+  public windowForm?: WindowFormElement;
 
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, 'TableCreateButtonComponentModule', '@mfd/shared/table-create-button/table-create-button.component.module');
@@ -70,9 +75,10 @@ export class CreateButtonElement extends FeatureElement {
     return '<mfd-table-create-button></mfd-table-create-button>';
   }
 
-  public toValue({ options, project }: ToValueContext): Rule {
+  public toValue({ options, project }: ToValueContext<GenerateSchema>): Rule {
     return chain([
-      this.module?.toValue({ options, project }) ?? noop()
+      this.module?.toValue({ options, project }) ?? noop(),
+      this.windowForm?.toValue({ options, project }) ?? noop()
     ]);
   }
 

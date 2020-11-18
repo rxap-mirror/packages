@@ -7,6 +7,7 @@ import {
   ToValueContext
 } from '@rxap-schematics/utilities';
 import { Rule } from '@angular-devkit/schematics';
+import { TableElement } from '../table.element';
 
 export interface DisplayColumn {
   name: string;
@@ -18,6 +19,11 @@ export interface DisplayColumn {
 export class FeatureElement implements ParsedElement<Rule>, HandleComponentModule, HandleComponent {
 
   public __tag!: string;
+  public __parent!: TableElement;
+
+  public get id(): string {
+    return this.__parent.id;
+  }
 
   public static ColumnNoFilter(name: string, sticky: boolean = false): string {
     return `

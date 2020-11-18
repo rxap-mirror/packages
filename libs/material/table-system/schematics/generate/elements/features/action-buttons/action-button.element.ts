@@ -8,9 +8,13 @@ import {
   ToValueContext
 } from '@rxap-schematics/utilities';
 import { Rule } from '@angular-devkit/schematics';
+import { ActionButtonsElement } from './action-buttons.element';
 
 @ElementDef('action')
 export class ActionButtonElement implements ParsedElement<Rule>, HandleComponentModule, HandleComponent {
+
+  public __parent!: ActionButtonsElement;
+  public __tag!: string;
 
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
     // TODO : mv TableRowControlsModule to rxap
