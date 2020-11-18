@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.11]
+### Fixed
+- (schematics): custom form id for window forms
+
 ## [0.6.10]
 ### Fixed
 - (schematics): table auto with
