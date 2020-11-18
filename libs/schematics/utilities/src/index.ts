@@ -29,6 +29,7 @@ export * from './lib/add-variable-provider';
 export * from './lib/coerce-variable-declaration';
 export * from './lib/get-variable-declaration';
 export * from './lib/add-component-provider';
+export * from './lib/organize-imports';
 
 // region elements
 
