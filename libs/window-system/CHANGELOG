@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.8.0]
+### Added
+- RXAP_WINDOW_SETTINGS
+
 ## [0.7.2]
 ### Fixed
 - (WindowContent): force change detection
