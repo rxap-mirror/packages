@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.12]
+### Fixed
+- (schematics): remove options tag
+
 ## [0.6.11]
 ### Fixed
 - (schematics): custom form id for window forms

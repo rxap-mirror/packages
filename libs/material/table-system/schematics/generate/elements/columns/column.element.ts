@@ -9,7 +9,6 @@ import {
   ParsedElement,
   ElementFactory
 } from '@rxap/xml-parser';
-import { OptionsElement } from '@rxap/xml-parser/elements';
 import { strings } from '@angular-devkit/core';
 import { SourceFile } from 'ts-morph';
 import { TableElement } from '../table.element';
@@ -43,9 +42,6 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
 
   @ElementChild(FilterElement)
   public filter?: FilterElement;
-
-  @ElementChild(OptionsElement)
-  public options?: OptionsElement;
 
   private _name?: string;
 
