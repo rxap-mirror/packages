@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.3]
+### Fixed
+- (CopyToClipboard): update to new cdk api
+
 ## [0.5.2]
 ### Fixed
 - replace all rxjs operators first() with take(1)
