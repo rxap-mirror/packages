@@ -7,7 +7,7 @@
 
   <div class="table-card-container" fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start start">
 <% } else { %>
-  <div class="table-card-container">
+  <div class="table-card-container" fxFlex="nogrow">
 <% } %>
     <mat-card fxFlex="nogrow">
 
