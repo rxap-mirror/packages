@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.10.1]
+### Fixed
+- (RequiredDirective): only match for form control inputs
+
 ## [0.10.0]
 ### Added
 - (schematics): create form component

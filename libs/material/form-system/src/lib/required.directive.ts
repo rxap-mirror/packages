@@ -10,7 +10,7 @@ import {
 } from '@angular/material/form-field';
 
 @Directive({
-  selector: '[rxapRequired]'
+  selector: '[formControlName][rxapRequired]'
 })
 export class RequiredDirective implements OnInit {
 
