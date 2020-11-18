@@ -22,10 +22,10 @@ import {
   QuoteKind
 } from 'ts-morph';
 import { formatFiles } from '@nrwl/workspace';
-import { XmlParserService } from '@rxap/xml-parser';
 import { TableSystemElements } from './elements/elements';
 import { TableElement } from './elements/table.element';
 import { readAngularJsonFile } from '@rxap/schematics/utilities';
+import { ParseTemplate } from '@rxap-schematics/utilities';
 
 
 const { dasherize, classify, camelize } = strings;
@@ -36,13 +36,7 @@ export default function(options: GenerateSchema): Rule {
 
     const projectRootPath = await createDefaultPath(host, options.project as string);
 
-    const templateFile = options.template.match(/\.xml$/) ? host.read(options.template)?.toString('utf-8') : options.template;
-
-    const parser = new XmlParserService();
-
-    parser.register(...TableSystemElements);
-
-    const tableElement = parser.parseFromXml<TableElement>(templateFile!);
+    const tableElement = ParseTemplate<TableElement>(host, options.template, ...TableSystemElements);
 
     options.name    = options.name ?? tableElement.id;
     tableElement.id = options.name;
