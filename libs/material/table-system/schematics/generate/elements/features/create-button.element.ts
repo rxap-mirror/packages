@@ -45,6 +45,7 @@ export class CreateButtonElement extends FeatureElement {
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, 'TableCreateButtonComponentModule', '@mfd/shared/table-create-button/table-create-button.component.module');
     this.module?.handleComponentModule({ sourceFile, options, project });
+    this.routerLink?.handleComponentModule({ sourceFile, options, project });
   }
 
   public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {

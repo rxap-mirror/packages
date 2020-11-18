@@ -11,13 +11,14 @@ import { strings } from '@angular-devkit/core';
 import {
   ProviderObject,
   AddNgModuleImport,
-  ToValueContext
+  ToValueContext,
+  HandleComponentModule
 } from '@rxap-schematics/utilities';
 
 const { dasherize, classify, camelize } = strings;
 
 @ElementDef('router-link')
-export class RouterLinkElement implements ParsedElement<Omit<ProviderObject, 'provide'>> {
+export class RouterLinkElement implements ParsedElement<Omit<ProviderObject, 'provide'>>, HandleComponentModule {
 
   @ElementTextContent()
   public link!: string;
@@ -94,11 +95,14 @@ export class RouterLinkElement implements ParsedElement<Omit<ProviderObject, 'pr
           moduleSpecifier: '@rxap/utilities'
         }
       ]);
-      AddNgModuleImport(sourceFile, 'RouterModule', '@angular/router');
 
     }
 
     return providerObject;
+  }
+
+  public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
+    AddNgModuleImport(sourceFile, 'RouterModule', '@angular/router');
   }
 
 }
