@@ -41,6 +41,9 @@ export class WindowFormElement implements ParsedElement {
   @ElementChildTextContent()
   public name?: string;
 
+  @ElementChildTextContent()
+  public form?: string;
+
   @ElementChild(SubmitHandleMethod)
   @ElementRequired()
   public submit!: SubmitHandleMethod;
@@ -71,7 +74,7 @@ export class WindowFormElement implements ParsedElement {
       from: './' + join(dasherize(this.name) + '-form', 'open-' + dasherize(this.name) + '-form-window.method')
     });
     if (!this.template) {
-      this.template = join('views', 'forms', dasherize(this.__parent.__parent.id) + '.xml');
+      this.template = join('views', 'forms', dasherize(this.form ?? this.__parent.__parent.id) + '.xml');
     }
   }
 
