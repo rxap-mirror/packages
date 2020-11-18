@@ -38,7 +38,7 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
   }
 
   public get name(): string {
-    return this._name.replace(/\./g, '-');
+    return this._name?.replace(/\./g, '-') ?? '';
   }
 
   @ElementChild(FilterElement)
@@ -47,10 +47,10 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
   @ElementChild(OptionsElement)
   public options?: OptionsElement;
 
-  private _name!: string;
+  private _name?: string;
 
   public get valueAccessor(): string {
-    return this._name.split('.').map(key => `['${key}']`).join('');
+    return this._name?.split('.').map(key => `['${key}']`).join('') ?? '';
   }
 
   public get i18n(): string {
