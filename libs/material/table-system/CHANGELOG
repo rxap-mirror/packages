@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.0]
+### Added
+- WindowFormElement
+
 ## [0.5.4]
 ### Fixed
 - (schematics): add missing import

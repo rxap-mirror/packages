@@ -23,6 +23,7 @@ import {
 import { SourceFile } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
 import { GenerateSchema } from '../../../schema';
+import { WindowFormElement } from '../window-form.element';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -86,6 +87,9 @@ export class EditActionElement extends MethodActionElement {
   @ElementChild(ModuleElement)
   public module?: ModuleElement;
 
+  @ElementChild(WindowFormElement)
+  public windowForm?: WindowFormElement;
+
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponent({ project, options, sourceFile });
     this.loader?.handleComponent({ project, options, sourceFile });
@@ -97,10 +101,11 @@ export class EditActionElement extends MethodActionElement {
     this.module?.handleComponentModule({ project, sourceFile, options });
   }
 
-  public toValue({ project, options }: ToValueContext): Rule {
+  public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
     return chain([
       this.loader?.toValue({ project, options }) ?? (noop()),
-      this.module?.toValue({ project, options }) ?? (noop())
+      this.module?.toValue({ project, options }) ?? (noop()),
+      this.windowForm?.toValue({ project, options }) ?? (noop())
     ]);
   }
 
