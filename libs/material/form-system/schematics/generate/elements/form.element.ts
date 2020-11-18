@@ -2,7 +2,8 @@ import { GroupElement } from './group.element';
 import {
   ElementDef,
   ElementExtends,
-  ElementChildren
+  ElementChildren,
+  ElementChildTextContent
 } from '@rxap/xml-parser/decorators';
 import { NodeElement } from './node.element';
 import {
@@ -32,6 +33,9 @@ export class FormElement extends GroupElement {
 
   @ElementChildren(FormFeatureElement, { group: 'features' })
   public features?: FormFeatureElement[];
+
+  @ElementChildTextContent()
+  public form?: string;
 
   public template(): string {
     return NodeFactory('form', 'rxapForm')(
@@ -87,7 +91,7 @@ export class FormElement extends GroupElement {
         {
           project:         options.project,
           name:            options.name,
-          template:        join('forms', dasherize(this.name) + '.xml'),
+          template:        join('forms', dasherize(this.form ?? this.name) + '.xml'),
           path:            options.path!.replace(/^\//, ''),
           flat:            true,
           organizeImports: false,
