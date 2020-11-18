@@ -21,34 +21,13 @@ import {
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
-export function HandelTemplate(options: GenerateSchema): Rule {
-  return async (tree) => {
-
-    if (!tree.exists(options.template)) {
-      console.error(`Could not find xml template in path '${options.template}'`);
-      return () => {};
-    }
-
-    const formElement = ParseTemplate<FormElement>(tree, options.template, ...Elements);
-    const project     = new Project({
-      useInMemoryFileSystem: true,
-      manipulationSettings:  {
-        indentationText:   IndentationText.TwoSpaces,
-        quoteKind:         QuoteKind.Single,
-        useTrailingCommas: true
-      }
-    });
-    return formElement.toValue({ project, options });
-  };
-}
-
 export default function(options: GenerateSchema): Rule {
 
   return async (host: Tree, context) => {
 
     const projectRootPath = await createDefaultPath(host, options.project as string);
 
-    let path: string = '';
+    let path: string = options.path ?? '';
 
     if (!options.path) {
       path = projectRootPath;
@@ -57,11 +36,24 @@ export default function(options: GenerateSchema): Rule {
     }
 
     const formElement = ParseTemplate<FormElement>(host, options.template, ...Elements);
+    options.name      = options.name ?? formElement.name;
 
-    options.name     = options.name ?? formElement.name;
-    formElement.name = options.name;
+    const project = new Project({
+      useInMemoryFileSystem: true,
+      manipulationSettings:  {
+        indentationText:   IndentationText.TwoSpaces,
+        quoteKind:         QuoteKind.Single,
+        useTrailingCommas: true
+      }
+    });
+
+    if (!options.name) {
+      throw new Error('FATAL: the options name is not defined');
+    }
 
     options.path = path = join(path, dasherize(options.name) + '-form');
+
+    console.log('@rxap-material/form-system base path: ', path);
 
     const componentTemplateFilePath = join(path, dasherize(options.name) + '-form.component.html');
     const componentModuleFilePath   = join(path, dasherize(options.name) + '-form.component.module.ts');
@@ -77,7 +69,7 @@ export default function(options: GenerateSchema): Rule {
         flat:    true,
         theme:   false
       }),
-      HandelTemplate(options),
+      formElement.toValue({ project, options }),
       formatFiles(),
       context.debug ? tree => {
         console.log('\n==========================================');

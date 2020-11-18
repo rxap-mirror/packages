@@ -41,6 +41,9 @@
       ],
       "@rxap-schematics/utilities": [
         "../../../dist/libs/schematics/utilities"
+      ],
+      "@rxap-material/table-system/schematics/*": [
+        "../../../dist/libs/material/table-system/schematics/*"
       ]
     }
   },
