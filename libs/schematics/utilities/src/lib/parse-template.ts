@@ -12,15 +12,11 @@ import { join } from 'path';
 export function FindTemplate(template: string, host: Tree, baseDirEntry: DirEntry = host.getDir('templates')): string | null {
 
   if (!host.exists(join(baseDirEntry.path, template))) {
-    if (host.exists(join(baseDirEntry.path, 'features'))) {
-
-      for (const dirPath of host.getDir(join(baseDirEntry.path, 'features')).subdirs) {
-        const templateFilePath = FindTemplate(template, host, host.getDir(join(baseDirEntry.path, 'features', dirPath)));
-        if (templateFilePath) {
-          return templateFilePath;
-        }
+    for (const dirPath of host.getDir(join(baseDirEntry.path, 'features')).subdirs) {
+      const templateFilePath = FindTemplate(template, host, host.getDir(join(baseDirEntry.path, 'features', dirPath)));
+      if (templateFilePath) {
+        return templateFilePath;
       }
-
     }
 
     return null;
