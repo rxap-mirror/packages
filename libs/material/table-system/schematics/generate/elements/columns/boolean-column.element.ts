@@ -21,7 +21,7 @@ export class BooleanColumnElement extends ColumnElement {
     <th mat-header-cell
     *matHeaderCellDef
     ${this.__parent.hasFeature('sort') ? 'mat-sort-header' : ''}
-    i18n="@@table.${dasherize(this.__parent.id)}.column.${dasherize(this.name)}.title">
+    i18n="${this.i18nTitle}">
     ${capitalize(this.name)}
     </th>
     <td mat-cell
@@ -32,7 +32,7 @@ export class BooleanColumnElement extends ColumnElement {
 
   public templateFilter(): string {
     return `<th mat-header-cell *matHeaderCellDef><mat-checkbox indeterminate parentControlContainer
-i18n="@@table.${dasherize(this.__parent.id)}.column.${dasherize(this.name)}.filter.label"
+i18n="${this.i18nLabel}"
 formControlName="${camelize(this.name)}">
 ${capitalize(this.name)}
 </mat-checkbox></th>`;

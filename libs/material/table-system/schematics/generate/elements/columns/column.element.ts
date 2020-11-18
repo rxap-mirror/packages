@@ -41,12 +41,28 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
   @ElementChild(OptionsElement)
   public options?: OptionsElement;
 
+  public get i18n(): string {
+    return `@@table.${dasherize(this.__parent.id)}.column.${dasherize(this.name.replace(/\./g, '-'))}.`;
+  }
+
+  public get i18nTitle(): string {
+    return this.i18n + 'title';
+  }
+
+  public get i18nLabel(): string {
+    return this.i18n + 'label';
+  }
+
+  public get i18nPlaceholder(): string {
+    return this.i18n + 'placeholder';
+  }
+
   public template(): string {
     return `
     <th mat-header-cell
     *matHeaderCellDef
     ${this.__parent.hasFeature('sort') ? 'mat-sort-header' : ''}
-    i18n="@@table.${dasherize(this.__parent.id)}.column.${dasherize(this.name)}.title">
+    i18n="${this.i18nTitle}">
     ${capitalize(this.name)}
     </th>
     <td mat-cell *matCellDef="let element">{{ element['${this.name}'] }}</td>
@@ -57,8 +73,8 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
     return `
     <th mat-header-cell *matHeaderCellDef>
       <mat-form-field>
-        <mat-label i18n="@@table.${dasherize(this.__parent.id)}.column.${dasherize(this.name)}.filter.label">${capitalize(this.name)}</mat-label>
-        <input matInput i18n-placeholder="@@table.${dasherize(this.__parent.id)}.column.${dasherize(this.name)}.filter.placeholder"
+        <mat-label i18n="${this.i18nLabel}">${capitalize(this.name)}</mat-label>
+        <input matInput i18n-placeholder="${this.i18nPlaceholder}"
                placeholder="Enter the ${capitalize(this.name)} filter"
                parentControlContainer formControlName="${camelize(this.name)}">
         <button matSuffix rxapInputClearButton mat-icon-button>

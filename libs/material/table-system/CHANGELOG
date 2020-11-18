@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.7]
+### Fixed
+- (schematics): add support for dot split names
+
 ## [0.6.6]
 ### Added
 - (schematics): opt generate process

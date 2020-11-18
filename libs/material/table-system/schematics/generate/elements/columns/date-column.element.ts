@@ -21,7 +21,7 @@ export class DateColumnElement extends ColumnElement {
     <th mat-header-cell
     *matHeaderCellDef
     ${this.__parent.hasFeature('sort') ? 'mat-sort-header' : ''}
-    i18n="@@table.${dasherize(this.__parent.id)}.column.${dasherize(this.name)}.title">
+    i18n="${this.i18nTitle}">
     ${capitalize(this.name)}
     </th>
     <td mat-cell
@@ -35,7 +35,7 @@ export class DateColumnElement extends ColumnElement {
     return `
     <th mat-header-cell *matHeaderCellDef>
       <mat-form-field>
-        <mat-label i18n="@@table.${dasherize(this.__parent.id)}.column.${dasherize(this.name)}.filter.label">${capitalize(this.name)}</mat-label>
+        <mat-label i18n="${this.i18nLabel}">${capitalize(this.name)}</mat-label>
         <input matInput [matDatepicker]="picker" parentControlContainer formControlName="${camelize(this.name)}">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
