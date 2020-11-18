@@ -39,6 +39,18 @@
     "openApiModule": {
       "type": "string",
       "description": ""
+    },
+    "organizeImports": {
+      "type": "boolean",
+      "default": true
+    },
+    "fixImports": {
+      "type": "boolean",
+      "default": true
+    },
+    "format": {
+      "type": "boolean",
+      "default": true
     }
   },
   "required": [

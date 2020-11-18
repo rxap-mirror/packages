@@ -4,4 +4,7 @@ export interface GenerateSchema {
   overwrite?: boolean;
   project: string;
   template: string;
+  organizeImports: boolean;
+  fixImports: boolean;
+  format: boolean;
 }

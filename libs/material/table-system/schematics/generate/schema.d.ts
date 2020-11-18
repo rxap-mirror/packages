@@ -5,5 +5,8 @@ export interface GenerateSchema {
   flat?: boolean;
   template: string;
   openApiModule?: string;
-  overwrite?: boolean;
+  overwrite: boolean;
+  organizeImports: boolean;
+  fixImports: boolean;
+  format: boolean;
 }
