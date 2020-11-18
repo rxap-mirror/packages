@@ -1,8 +1,12 @@
 # Changelog
 
+## [0.6.1]
+### Fixed
+- (schematics): provide providers in table component
+
 ## [0.6.0]
 ### Added
-- WindowFormElement
+- (schematics): WindowFormElement
 
 ## [0.5.4]
 ### Fixed

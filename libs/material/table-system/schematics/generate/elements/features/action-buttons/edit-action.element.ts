@@ -11,9 +11,9 @@ import {
   HandleComponentModule,
   HandleComponent,
   ToValueContext,
-  AddNgModuleProvider,
   ModuleElement,
-  OpenApiRemoteMethodElement
+  OpenApiRemoteMethodElement,
+  AddComponentProvider
 } from '@rxap-schematics/utilities';
 import {
   Rule,
@@ -48,8 +48,9 @@ export class MfdLoaderElement extends EditActionLoaderElement {
   @ElementRequired()
   public method!: OpenApiRemoteMethodElement;
 
-  public handleComponentModule({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
-    AddNgModuleProvider(sourceFile, {
+  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+    super.handleComponent({ project, sourceFile, options });
+    AddComponentProvider(sourceFile, {
       provide:  'ROW_EDIT_LOADER_METHOD',
       useClass: 'RowEditLoaderMethod'
     }, [
@@ -62,14 +63,14 @@ export class MfdLoaderElement extends EditActionLoaderElement {
         namedImports:    [ 'ROW_EDIT_LOADER_METHOD' ]
       }
     ]);
-    AddNgModuleProvider(sourceFile, {
+    AddComponentProvider(sourceFile, {
       provide:  'ROW_EDIT_LOADER_SOURCE_METHOD',
       useClass: this.method.toValue({ options, sourceFile })
     }, [
       {
         moduleSpecifier: '@mfd/shared/row-edit-loader.method',
         namedImports:    [ 'ROW_EDIT_LOADER_SOURCE_METHOD' ]
-      },
+      }
     ]);
   }
 
