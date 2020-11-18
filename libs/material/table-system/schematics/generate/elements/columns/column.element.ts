@@ -33,7 +33,13 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
 
   @ElementAttribute()
   @ElementRequired()
-  public name!: string;
+  public set name(value: string) {
+    this._name = value;
+  }
+
+  public get name(): string {
+    return this._name.replace(/\./g, '-');
+  }
 
   @ElementChild(FilterElement)
   public filter?: FilterElement;
@@ -41,8 +47,14 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
   @ElementChild(OptionsElement)
   public options?: OptionsElement;
 
+  private _name!: string;
+
+  public get valueAccessor(): string {
+    return this._name.split('.').map(key => `['${key}']`).join('');
+  }
+
   public get i18n(): string {
-    return `@@table.${dasherize(this.__parent.id)}.column.${dasherize(this.name.replace(/\./g, '-'))}.`;
+    return `@@table.${dasherize(this.__parent.id)}.column.${dasherize(this.name)}.`;
   }
 
   public get i18nTitle(): string {
@@ -65,7 +77,7 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
     i18n="${this.i18nTitle}">
     ${capitalize(this.name)}
     </th>
-    <td mat-cell *matCellDef="let element">{{ element['${this.name}'] }}</td>
+    <td mat-cell *matCellDef="let element">{{ element${this.valueAccessor} }}</td>
     `;
   }
 
@@ -113,7 +125,7 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
 
   public createControlElement(): ControlElement {
     if (!this.filter) {
-      throw new Error(`The column ${this.name} has not a filter definition.`);
+      throw new Error(`The column ${this._name} has not a filter definition.`);
     }
     return ElementFactory(ControlElement, { id: dasherize(this.name), __tag: 'control' });
   }
