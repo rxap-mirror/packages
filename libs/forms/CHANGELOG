@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.7.1]
+### Fixed
+- (schematics): add missing component handler method
+
 ## [0.7.0]
 ### Added
 - (RxapFormBuilder): save if the current control has an required validator

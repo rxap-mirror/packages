@@ -23,7 +23,9 @@ import {
   GetFormProvidersFile,
   MethodElement,
   ToValueContext,
-  AddVariableProvider
+  AddVariableProvider,
+  HandleComponent,
+  AddComponentProvider
 } from '@rxap-schematics/utilities';
 import { Rule } from '@angular-devkit/schematics';
 import { GenerateSchema } from '../schema';
@@ -32,7 +34,7 @@ import { HandleFormProviders } from './types';
 const { dasherize, classify, camelize } = strings;
 
 @ElementDef('adapter')
-export class FormHandlerAdapterElement implements ParsedElement<Rule>, HandleFormProviders {
+export class FormHandlerAdapterElement implements ParsedElement<Rule>, HandleFormProviders, HandleComponent {
 
   @ElementTextContent()
   public name!: string;
@@ -53,9 +55,18 @@ export class FormHandlerAdapterElement implements ParsedElement<Rule>, HandleFor
     }
   }
 
+  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+    if (this.from) {
+      sourceFile.addImportDeclaration({
+        moduleSpecifier: this.from,
+        namedImports:    [ this.name ]
+      });
+    }
+  }
+
 }
 
-export abstract class FormHandleMethodElement implements ParsedElement<Rule>, HandleFormProviders {
+export abstract class FormHandleMethodElement implements ParsedElement<Rule>, HandleFormProviders, HandleComponent {
 
   public abstract type: string;
 
@@ -96,6 +107,44 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
       AddVariableProvider(
         sourceFile,
         'FormComponentProviders',
+        {
+          provide:  this.type,
+          useClass: this.method.toValue({ sourceFile, project, options })
+        },
+        [
+          {
+            namedImports:    [ this.type ],
+            moduleSpecifier: '@rxap/forms'
+          }
+        ]
+      );
+    }
+  }
+
+  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+    if (this.adapter) {
+      this.adapter.handleComponent({ project, sourceFile, options });
+      AddComponentProvider(
+        sourceFile,
+        {
+          provide:    this.type,
+          useFactory: this.adapter.name,
+          deps:       [ this.method.toValue({ sourceFile, project, options }), '[new Optional(), RXAP_FORM_INITIAL_STATE]', 'INJECTOR' ]
+        },
+        [
+          {
+            namedImports:    [ this.type, 'RXAP_FORM_INITIAL_STATE' ],
+            moduleSpecifier: '@rxap/forms'
+          },
+          {
+            namedImports:    [ 'Optional', 'INJECTOR' ],
+            moduleSpecifier: '@angular/core'
+          }
+        ]
+      );
+    } else {
+      AddComponentProvider(
+        sourceFile,
         {
           provide:  this.type,
           useClass: this.method.toValue({ sourceFile, project, options })
