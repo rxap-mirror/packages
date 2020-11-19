@@ -19,7 +19,7 @@ import {
 import { hasIndexSignature } from '@rxap/utilities';
 
 export interface HttpRemoteMethodMetadata extends BaseRemoteMethodMetadata {
-  url: string;
+  url: string | (() => string);
   method: 'DELETE' | 'GET' | 'HEAD' | 'JSONP' | 'OPTIONS' | 'POST' | 'PUT' | 'PATCH';
   headers?: HttpHeaders;
   reportProgress?: boolean;
@@ -75,11 +75,18 @@ export abstract class BaseHttpRemoteMethod<ReturnType = any,
     this.metadata = metaData || this.getMetadata();
   }
 
+  protected getRequestUrl(): string {
+    if (typeof this.metadata.url === 'function') {
+      return this.metadata.url();
+    }
+    return this.metadata.url;
+  }
+
   public init() {
     super.init();
     this._httpRequest = new HttpRequest<ReturnType>(
       this.metadata.method,
-      this.metadata.url,
+      this.getRequestUrl(),
       null,
       {
         headers:         this.metadata.headers,
@@ -130,7 +137,7 @@ export abstract class BaseHttpRemoteMethod<ReturnType = any,
 }
 
 export interface HttpRemoteMethodMetadata extends BaseRemoteMethodMetadata {
-  url: string;
+  url: string | (() => string);
   method: 'DELETE' | 'GET' | 'HEAD' | 'JSONP' | 'OPTIONS' | 'POST' | 'PUT' | 'PATCH';
   headers?: HttpHeaders;
   reportProgress?: boolean;

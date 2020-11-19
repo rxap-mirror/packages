@@ -29,7 +29,6 @@ import {
 import {
   filter,
   map,
-  first,
   timeout,
   retry,
   catchError,
@@ -94,7 +93,7 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
     }
     this.applyMetadata({
       id:     operation.operationId,
-      url:    joinPath(openApiConfigService.getBaseUrl(this.metadata.serverIndex), operation.path),
+      url:    () => joinPath(openApiConfigService.getBaseUrl(this.metadata.serverIndex), operation.path),
       method: operation.method as any
     });
     this.strict = strict || this.metadata.strict || false;

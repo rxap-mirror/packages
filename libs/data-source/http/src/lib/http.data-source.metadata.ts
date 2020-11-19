@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 
 export interface HttpDataSourceMetadata<PathParams = KeyValue, Body = any | null> extends BaseDataSourceMetadata {
-  url: string;
+  url: string | (() => string);
   method?: string;
   params?: HttpParams;
   headers?: HttpHeaders;
