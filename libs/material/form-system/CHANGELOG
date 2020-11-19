@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.11.0]
+### Added
+- (schematics): add support for submit and load logic
+
 ## [0.10.3]
 ### Fixed
 - (schematics): add custom form id support
