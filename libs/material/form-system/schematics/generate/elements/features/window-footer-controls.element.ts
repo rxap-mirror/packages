@@ -60,10 +60,9 @@ export class WindowFooterControlsElement extends FormFeatureElement {
                   ]
                 },
                 {
-                  name:        'defaultOptions',
-                  type:        `FormWindowOptions<I${classify(options.name!)}Form> | null`,
-                  initializer: 'null',
-                  decorators:  [
+                  name:       'defaultOptions',
+                  type:       `FormWindowOptions<I${classify(options.name!)}Form> | null`,
+                  decorators: [
                     {
                       name:      'Optional',
                       arguments: []
@@ -73,10 +72,24 @@ export class WindowFooterControlsElement extends FormFeatureElement {
                       arguments: [ 'RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS' ]
                     }
                   ]
+                },
+                {
+                  name:       'injector',
+                  type:       'Injector',
+                  decorators: [
+                    {
+                      name:      'Optional',
+                      arguments: []
+                    },
+                    {
+                      name:      'Inject',
+                      arguments: [ 'INJECTOR' ]
+                    }
+                  ]
                 }
               ],
               statements: [
-                `super(formWindowService, ${classify(options.name!)}Form, ${classify(options.name!)}FormComponent, defaultOptions)`
+                `super(formWindowService, ${classify(options.name!)}Form, injector, ${classify(options.name!)}FormComponent, defaultOptions)`
               ]
             }
           ]
@@ -91,7 +104,7 @@ export class WindowFooterControlsElement extends FormFeatureElement {
             moduleSpecifier: `./${dasherize(options.name!)}.form`
           },
           {
-            namedImports:    [ 'Inject', 'Optional', 'Injectable' ],
+            namedImports:    [ 'Inject', 'Optional', 'Injectable', 'INJECTOR', 'Injector' ],
             moduleSpecifier: '@angular/core'
           }
         ]);
