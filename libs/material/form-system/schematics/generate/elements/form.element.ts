@@ -87,7 +87,7 @@ export class FormElement extends GroupElement {
     this.load?.handleComponent({ project, options, sourceFile });
   }
 
-  public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponentModule({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
     this.nodes.forEach(node => node.handleComponentModule({ project, sourceFile, options }));
     this.features?.forEach(feature => feature.handleComponentModule({ project, sourceFile, options }));
     AddNgModuleImport(sourceFile, 'RxapFormsModule', '@rxap/forms');
@@ -109,7 +109,8 @@ export class FormElement extends GroupElement {
           flat:            true,
           organizeImports: false,
           fixImports:      false,
-          format:          false
+          format:          false,
+          openApiModule:   options.openApiModule
         }
       ),
       options.overwrite ? tree => tree.overwrite(componentTemplateFilePath, this.template()) : noop(),
