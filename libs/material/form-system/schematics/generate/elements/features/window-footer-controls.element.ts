@@ -60,6 +60,16 @@ export class WindowFooterControlsElement extends FormFeatureElement {
                   ]
                 },
                 {
+                  name:       'injector',
+                  type:       'Injector',
+                  decorators: [
+                    {
+                      name:      'Inject',
+                      arguments: [ 'INJECTOR' ]
+                    }
+                  ]
+                },
+                {
                   name:       'defaultOptions',
                   type:       `FormWindowOptions<I${classify(options.name!)}Form> | null`,
                   decorators: [
@@ -73,20 +83,6 @@ export class WindowFooterControlsElement extends FormFeatureElement {
                     }
                   ]
                 },
-                {
-                  name:       'injector',
-                  type:       'Injector',
-                  decorators: [
-                    {
-                      name:      'Optional',
-                      arguments: []
-                    },
-                    {
-                      name:      'Inject',
-                      arguments: [ 'INJECTOR' ]
-                    }
-                  ]
-                }
               ],
               statements: [
                 `super(formWindowService, ${classify(options.name!)}Form, injector, ${classify(options.name!)}FormComponent, defaultOptions)`
