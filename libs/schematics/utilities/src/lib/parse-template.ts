@@ -29,6 +29,7 @@ export function FindTemplate(template: string, host: Tree, baseDirEntry: DirEntr
 export function ParseTemplate<T extends ParsedElement>(host: Tree, template: string, ...elements: Array<Constructor<ParsedElement>>): T {
 
   let templateFile: string;
+  let filename = '__inline__';
 
   if (template.match(/\.xml$/)) {
 
@@ -43,6 +44,12 @@ export function ParseTemplate<T extends ParsedElement>(host: Tree, template: str
       console.log(`Find template file path '${templateFilePath}' for '${template}'`);
     }
 
+    const filenameMatch = templateFilePath.match(/\/([^\/]+)\.xml$/);
+
+    if (filenameMatch && filenameMatch[ 1 ]) {
+      filename = filenameMatch[ 1 ];
+    }
+
     templateFile = host.read(templateFilePath)!.toString('utf-8');
 
   } else {
@@ -53,5 +60,5 @@ export function ParseTemplate<T extends ParsedElement>(host: Tree, template: str
 
   parser.register(...elements);
 
-  return parser.parseFromXml<T>(templateFile!);
+  return parser.parseFromXml<T>(templateFile!, filename);
 }
