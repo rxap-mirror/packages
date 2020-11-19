@@ -3,7 +3,8 @@ import {
   ElementDef,
   ElementExtends,
   ElementChildren,
-  ElementChildTextContent
+  ElementChildTextContent,
+  ElementChild
 } from '@rxap/xml-parser/decorators';
 import { NodeElement } from './node.element';
 import {
@@ -24,6 +25,10 @@ import { join } from 'path';
 import { strings } from '@angular-devkit/core';
 import { GenerateSchema } from '../schema';
 import { FormFeatureElement } from './features/form-feature.element';
+import {
+  SubmitHandleMethod,
+  LoadHandleMethod
+} from '@rxap/forms/schematics/generate/elements/form.element';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
@@ -36,6 +41,12 @@ export class FormElement extends GroupElement {
 
   @ElementChildTextContent()
   public form?: string;
+
+  @ElementChild(SubmitHandleMethod)
+  public submit?: SubmitHandleMethod;
+
+  @ElementChild(LoadHandleMethod)
+  public load?: LoadHandleMethod;
 
   public template(): string {
     return NodeFactory('form', 'rxapForm')(
@@ -72,6 +83,8 @@ export class FormElement extends GroupElement {
         }
       ]
     );
+    this.submit?.handleComponent({ project, options, sourceFile });
+    this.load?.handleComponent({ project, options, sourceFile });
   }
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
@@ -104,7 +117,9 @@ export class FormElement extends GroupElement {
       chain(this.nodes.map(node => node.toValue({ project, options }))),
       chain(this.features?.map(feature => feature.toValue({ project, options })) ?? []),
       () => this.handleComponent({ project, options, sourceFile: project.getSourceFileOrThrow(componentFile) }),
-      () => this.handleComponentModule({ project, options, sourceFile: project.getSourceFileOrThrow(componentModuleFile) })
+      () => this.handleComponentModule({ project, options, sourceFile: project.getSourceFileOrThrow(componentModuleFile) }),
+      () => this.submit?.toValue({ project, options }) ?? noop(),
+      () => this.load?.toValue({ project, options }) ?? noop()
     ]);
   }
 
