@@ -2,7 +2,9 @@ import {
   Injectable,
   Injector,
   ComponentFactoryResolver,
-  Inject
+  Inject,
+  ViewContainerRef,
+  InjectFlags
 } from '@angular/core';
 import {
   WindowConfig,
@@ -24,7 +26,6 @@ import {
   WindowContainerContext
 } from './window-context';
 import {
-  first,
   tap,
   take
 } from 'rxjs/operators';
@@ -123,9 +124,9 @@ export class WindowService {
 
     const containerPortal = new ComponentPortal(
       DefaultWindowComponent,
-      windowConfig.viewContainerRef ?? null,
+      injector.get(ViewContainerRef, null, InjectFlags.Optional) ?? windowConfig.viewContainerRef ?? null,
       injector,
-      windowConfig.componentFactoryResolver ?? this.componentFactoryResolver
+      injector.get(ComponentFactoryResolver, null, InjectFlags.Optional) ?? windowConfig.componentFactoryResolver ?? this.componentFactoryResolver
     );
 
     overlayRef.attach(containerPortal);

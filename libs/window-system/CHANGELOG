@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.8.2]
+### Fixed
+- inject viewContainerRef and componentFactoryResolver
+
 ## [0.8.1]
 ### Fixed
 - use default window settings value
