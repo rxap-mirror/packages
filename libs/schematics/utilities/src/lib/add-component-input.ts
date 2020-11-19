@@ -2,7 +2,8 @@ import {
   SourceFile,
   WriterFunction,
   OptionalKind,
-  ImportDeclarationStructure
+  ImportDeclarationStructure,
+  Scope
 } from 'ts-morph';
 import { GetComponentClass } from './get-component-class';
 
@@ -25,6 +26,7 @@ export function AddComponentInput(
   if (!componentClass.getProperty(componentInputDefinition.name)) {
     componentClass.addProperty({
       name:                componentInputDefinition.name,
+      scope:               Scope.Public,
       type:                componentInputDefinition.type,
       initializer:         componentInputDefinition.initializer,
       hasQuestionToken:    !componentInputDefinition.initializer && !componentInputDefinition.required,
