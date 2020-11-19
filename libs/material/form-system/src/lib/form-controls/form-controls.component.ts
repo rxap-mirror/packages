@@ -25,6 +25,7 @@ import { Router } from '@angular/router';
 })
 export class FormControlsComponent<FormData> implements OnInit {
 
+  @Input()
   public set allowResubmit(value: boolean | '') {
     this._allowResubmit = coerceBoolean(value);
   }

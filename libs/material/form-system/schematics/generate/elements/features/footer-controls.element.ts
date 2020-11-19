@@ -2,7 +2,8 @@ import { FormFeatureElement } from './form-feature.element';
 import {
   ElementExtends,
   ElementDef,
-  ElementChildTextContent
+  ElementChildTextContent,
+  ElementAttribute
 } from '@rxap/xml-parser/decorators';
 import {
   NodeFactory,
@@ -18,9 +19,19 @@ export class FooterControlsElement extends FormFeatureElement {
   @ElementChildTextContent()
   public navigateAfterSubmit?: string;
 
+  @ElementAttribute()
+  public allowResubmit?: boolean;
+
   public template(): string {
+    const attributes: Array<string | (() => string)> = [];
+    if (this.navigateAfterSubmit !== undefined) {
+      attributes.push(`[navigateAfterSubmit]="[ '${this.navigateAfterSubmit}' ]"`);
+    }
+    if (this.allowResubmit) {
+      attributes.push('allowResubmit');
+    }
     return NodeFactory('ng-template', 'rxapFooter')([
-      NodeFactory('rxap-form-controls', this.navigateAfterSubmit ? `[navigateAfterSubmit]="[ '${this.navigateAfterSubmit}' ]"` : '')()
+      NodeFactory('rxap-form-controls', ...attributes)()
     ]);
   }
 
