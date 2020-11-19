@@ -91,7 +91,8 @@ export class WindowFormElement implements ParsedElement {
           organizeImports: false,
           fixImports:      false,
           format:          false,
-          overwrite:       options.overwrite
+          overwrite:       options.overwrite,
+          openApiModule:   options.openApiModule
         }
       ),
       tree => {
