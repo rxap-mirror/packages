@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.13]
+### Fixed
+- (schematics): add missing options pass
+
 ## [0.6.12]
 ### Fixed
 - (schematics): remove options tag
