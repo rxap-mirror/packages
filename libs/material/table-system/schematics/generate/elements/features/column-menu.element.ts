@@ -87,12 +87,18 @@ export class ColumnMenuElement extends FeatureElement {
     }
 
     for (const column of this.__parent.columns) {
-      template += `
-      <rxap-table-column-option name="${column.name}"
-                                i18n="@@table.${dasherize(this.__parent.id)}.column.${dasherize(column.name)}.title">
-        ${capitalize(column.name)}
-      </rxap-table-column-option>
-      `;
+      const displayColumns = coerceArray(column.displayColumn());
+      for (const displayColumn of displayColumns) {
+        template += `
+        <rxap-table-column-option
+        ${displayColumn.hidden ? 'hidden' : ''}
+        ${displayColumn.active === false ? 'inactive' : ''}
+        i18n="@@table.${dasherize(this.__parent.id)}.column.${dasherize(displayColumn.name)}.title"
+        name="${displayColumn.name}">
+        ${capitalize(displayColumn.name)}
+        </rxap-table-column-option>
+        `;
+      }
     }
 
     if (this.showArchived) {

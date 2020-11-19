@@ -4,7 +4,6 @@ import { SourceFile } from 'ts-morph';
 import {
   HandleComponent,
   HandleComponentModule,
-  AddNgModuleImport,
   ToValueContext
 } from '@rxap-schematics/utilities';
 import { Rule } from '@angular-devkit/schematics';
@@ -17,8 +16,6 @@ export class ActionButtonElement implements ParsedElement<Rule>, HandleComponent
   public __tag!: string;
 
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
-    // TODO : mv TableRowControlsModule to rxap
-    AddNgModuleImport(sourceFile, 'TableRowControlsModule', '@mfd/shared/table-row-controls/table-row-controls.module');
   }
 
   public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {

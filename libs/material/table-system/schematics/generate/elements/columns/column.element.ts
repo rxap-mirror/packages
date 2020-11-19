@@ -21,6 +21,7 @@ import {
 } from '@rxap-schematics/utilities';
 import { Rule } from '@angular-devkit/schematics';
 import { GenerateSchema } from '../../schema';
+import { DisplayColumn } from '../features/feature.element';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
@@ -40,10 +41,19 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
     return this._name?.replace(/\./g, '-') ?? '';
   }
 
+  @ElementAttribute()
+  public hidden?: boolean;
+
+  @ElementAttribute()
+  public active?: boolean;
+
+  @ElementAttribute()
+  public sticky?: boolean;
+
   @ElementChild(FilterElement)
   public filter?: FilterElement;
 
-  private _name?: string;
+  protected _name?: string;
 
   public get valueAccessor(): string {
     return this._name ? '?.' + this._name.split('.').join('?.') : '';
@@ -63,6 +73,14 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
 
   public get i18nPlaceholder(): string {
     return this.i18n + 'placeholder';
+  }
+
+  public displayColumn(): DisplayColumn | DisplayColumn[] | null {
+    return {
+      name:   this.name,
+      hidden: this.hidden,
+      active: this.active
+    };
   }
 
   public template(): string {
