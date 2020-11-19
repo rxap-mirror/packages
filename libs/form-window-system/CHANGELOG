@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.1]
+### Fixed
+- inject viewContainerRef and componentFactoryResolver
+
 ## [0.2.0]
 ### Changed
 - (OpenFormWindowMethod): resolve if the form window is closed
