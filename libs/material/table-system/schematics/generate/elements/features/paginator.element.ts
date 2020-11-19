@@ -22,7 +22,7 @@ export class PaginatorElement extends FeatureElement {
   }
 
   public tableTemplate(): string {
-    return '\n[paginator]="paginator"\n';
+    return '[paginator]="paginator"';
   }
 
 }
