@@ -76,7 +76,7 @@ export class CreateButtonElement extends FeatureElement {
   }
 
   public headerTemplate(): string {
-    return '<mfd-table-create-button></mfd-table-create-button>';
+    return '<mfd-table-create-button [dataSource]="dataSource"></mfd-table-create-button>';
   }
 
   public toValue({ options, project }: ToValueContext<GenerateSchema>): Rule {

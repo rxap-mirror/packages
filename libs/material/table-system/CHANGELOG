@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.14]
+### Fixed
+- (schematics): add support for create submit refresh
+
 ## [0.6.13]
 ### Fixed
 - (schematics): add missing options pass
