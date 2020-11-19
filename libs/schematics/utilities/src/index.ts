@@ -30,6 +30,8 @@ export * from './lib/coerce-variable-declaration';
 export * from './lib/get-variable-declaration';
 export * from './lib/add-component-provider';
 export * from './lib/organize-imports';
+export * from './lib/get-component-class';
+export * from './lib/add-component-input';
 
 // region elements
 
