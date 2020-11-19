@@ -244,7 +244,7 @@ export class TableElement implements ParsedElement<Rule> {
         [
           {
             namedImports:    [ 'AbstractTableDataSource' ],
-            moduleSpecifier: '@rxap/data-source'
+            moduleSpecifier: '@rxap/data-source/table'
           }
         ]
       );
