@@ -6,9 +6,9 @@ import {
 import { ValidatorElement } from './validator.element';
 
 @ElementExtends(ValidatorElement)
-@ElementDef('email')
-export class EmailElement extends AngularValidatorElement {
+@ElementDef('required-true')
+export class RequiredTrueElement extends AngularValidatorElement {
 
-  public validator: string = 'Validators.email';
+  public validator: string = 'Validators.requiredTrue';
 
 }
