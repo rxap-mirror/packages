@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.0]
+### Added
+- support for dynamic
+
 ## [0.3.10]
 ### Fixed
 - (OpenApiDataSource): use the empty view change value if empty

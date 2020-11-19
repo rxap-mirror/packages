@@ -181,11 +181,18 @@ export abstract class BaseHttpDataSource<Data = any, PathParams = any, Body = an
     ];
   }
 
+  protected getRequestUrl(): string {
+    if (typeof this.metadata.url === 'function') {
+      return this.metadata.url();
+    }
+    return this.metadata.url;
+  }
+
   protected buildHttpRequest(options: HttpDataSourceOptions<PathParams, Body>): HttpRequest<Body> {
     return new HttpRequest(
       this.metadata.method ?? 'GET',
       this.buildUrlWithParams(
-        joinPath(this.metadata.url, options.url ?? null),
+        joinPath(this.getRequestUrl(), options.url ?? null),
         deepMerge(this.metadata.pathParams ?? {}, options.pathParams ?? {})
       ),
       options.body ?? this.metadata.body ?? null,
