@@ -44,21 +44,19 @@ export class ElementTextContentParser<T extends ParsedElement, Value> {
     parsedElement: T
   ): T {
 
-    let rawValue = element.getTextContent(undefined, true);
+    const rawValue: string | undefined = element.getTextContent(undefined, true);
+    // @ts-ignore
+    let value: any | undefined         = parsedElement[ this.propertyKey ];
 
-    if (rawValue === '' || rawValue === undefined) {
+    if (typeof rawValue === 'string') {
       // @ts-ignore
-      if (this.defaultValue ?? parsedElement[ this.propertyKey ] !== undefined) {
-        // @ts-ignore
-        rawValue = this.defaultValue ?? parsedElement[ this.propertyKey ];
-      }
+      value = parsedElement[ this.propertyKey ] = this.parseValue(rawValue);
     }
 
-    // @ts-ignore
-    const value = parsedElement[ this.propertyKey ] = this.parseValue(rawValue);
-
-    if (value === undefined) {
-      throw new Error(`Element text content is required!`);
+    if (this.required) {
+      if (value === undefined) {
+        throw new Error(`Element <${parsedElement.__tag}> text content is required!`);
+      }
     }
 
     return parsedElement;

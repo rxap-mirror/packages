@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.8.3]
+### Fixed
+- text content parsing issue
+
 ## [0.8.2]
 ### Fixed
 - add support for required get/set

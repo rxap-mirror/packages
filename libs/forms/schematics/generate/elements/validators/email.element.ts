@@ -7,11 +7,11 @@ import {
 import { ValidatorElement } from './validator.element';
 
 @ElementExtends(ValidatorElement)
-@ElementDef('min')
-export class MinElement extends AngularValidatorElement {
+@ElementDef('email')
+export class EmailElement extends AngularValidatorElement {
 
   @ElementTextContent({
-    parseValue: rawValue => `Validators.min(${rawValue})`
+    parseValue: rawValue => `Validators.max(${rawValue})`
   })
   public validator!: string;
 
