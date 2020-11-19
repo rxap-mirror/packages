@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.10.1]
+### Fixed
+- (AddComponentInput): set member scope
+
 ## [0.10.0]
 ### Added
 - AddComponentInput
