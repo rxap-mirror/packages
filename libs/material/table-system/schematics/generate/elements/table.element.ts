@@ -93,9 +93,11 @@ export class TableElement implements ParsedElement<Rule> {
     }
 
     for (const column of this.columns) {
-      template += `<ng-container matColumnDef="${column.name}">\n`;
-      template += column.template();
-      template += '\n</ng-container>';
+      const attributes: Array<string | (() => string)> = [ `matColumnDef="${column.name}"` ];
+      if (column.sticky) {
+        attributes.push('sticky');
+      }
+      template += NodeFactory('ng-container', ...attributes)([ column ]);
     }
 
     template += '<!-- endregion -->';
@@ -115,13 +117,17 @@ export class TableElement implements ParsedElement<Rule> {
     }
 
     for (const column of this.columns) {
-      template += `<ng-container matColumnDef="filter_${column.name}">\n`;
+      let innerTemplate = '';
       if (column.filter) {
-        template += column.templateFilter();
+        innerTemplate += column.templateFilter();
       } else {
-        template += column.templateNoFiler();
+        innerTemplate += column.templateNoFiler();
       }
-      template += '\n</ng-container>';
+      const attributes: Array<string | (() => string)> = [ `matColumnDef="filter_${column.name}"` ];
+      if (column.sticky) {
+        attributes.push('sticky');
+      }
+      template += NodeFactory('ng-container', ...attributes)(innerTemplate);
     }
     template += '<!-- endregion -->';
     return template;

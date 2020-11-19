@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.7.6]
+### Fixed
+- (schematics): table column creation
+
 ## [0.7.5]
 ### Fixed
 - (schematics): table column creation
