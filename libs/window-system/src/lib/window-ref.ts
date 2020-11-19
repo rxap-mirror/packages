@@ -168,7 +168,7 @@ export class WindowRef<D = any, R = any> {
    * @private
    */
   private updateWindowSettings(componentRef: ComponentRef<any>) {
-    const settings = componentRef.injector.get(RXAP_WINDOW_SETTINGS, undefined, InjectFlags.Optional);
+    const settings = componentRef.injector.get(RXAP_WINDOW_SETTINGS, null, InjectFlags.Optional);
     if (settings) {
       this.settings = Object.assign({}, this.settings, settings);
     }

@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.8.1]
+### Fixed
+- use default window settings value
+
 ## [0.8.0]
 ### Added
 - RXAP_WINDOW_SETTINGS
