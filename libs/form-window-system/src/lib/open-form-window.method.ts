@@ -6,7 +6,9 @@ import {
   Injectable,
   InjectionToken,
   Inject,
-  Optional
+  Optional,
+  Injector,
+  INJECTOR
 } from '@angular/core';
 import { FormDefinition } from '@rxap/forms';
 import { ComponentType } from '@angular/cdk/portal';
@@ -28,6 +30,8 @@ export class OpenFormWindowMethod<FormData = Record<string, any>> implements Met
     private readonly formWindowService: FormWindowService,
     @Inject(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFINITION_CONSTRUCTOR)
     private readonly formDefinitionConstructor: Constructor<FormDefinition>,
+    @Inject(INJECTOR)
+    private readonly injector: Injector,
     @Optional()
     @Inject(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_COMPONENT)
     private readonly formComponent: ComponentType<any> | null           = null,
@@ -41,6 +45,7 @@ export class OpenFormWindowMethod<FormData = Record<string, any>> implements Met
       this.formDefinitionConstructor,
       {
         ...(this.defaultOptions ?? {}),
+        injector:  this.injector,
         initial:   initial ?? this.defaultOptions?.initial ?? {},
         component: this.formComponent ?? this.defaultOptions?.component ?? undefined
       }
