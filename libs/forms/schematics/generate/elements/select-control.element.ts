@@ -237,16 +237,16 @@ export class ToOptionsElement extends DataSourceTransformerElement {
 export class ToOptionsFromObjectElement extends DataSourceTransformerElement {
 
   @ElementClearParser()
-  public name = 'ToOptions';
+  public name = 'ToOptionsFromObject';
 
   @ElementClearParser()
   public from = '@rxap/utilities';
 
   @ElementAttribute()
-  public display!: string;
+  public display?: string;
 
   @ElementTextContent()
-  public value!: string;
+  public value: string = 'value => value';
 
   public validate(): boolean {
     return true;
