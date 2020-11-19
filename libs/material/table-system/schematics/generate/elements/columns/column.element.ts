@@ -46,7 +46,7 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
   private _name?: string;
 
   public get valueAccessor(): string {
-    return this._name?.split('.').map(key => `['${key}']`).join('') ?? '';
+    return this._name?.split('.').join('?.') ?? '';
   }
 
   public get i18n(): string {
