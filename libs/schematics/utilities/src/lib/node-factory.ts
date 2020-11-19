@@ -6,7 +6,7 @@ export function NodeFactory(
 ): (innerNode?: Array<Partial<WithTemplate> | string> | string) => string {
   return (innerNode?: Array<Partial<WithTemplate> | string> | string) => {
     let template = `<${tag}`;
-    attributes.forEach(attr => {
+    attributes.filter(Boolean).forEach(attr => {
       if (typeof attr === 'string') {
         template += ' ' + attr;
       } else {
