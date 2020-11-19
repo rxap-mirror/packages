@@ -11,6 +11,7 @@ import {
   AddNgModuleImport
 } from '@rxap-schematics/utilities';
 import { SourceFile } from 'ts-morph';
+import type { ClearElement } from '../features/clear.element';
 
 @ElementExtends(NodeElement)
 @ElementDef('select-control')
@@ -18,6 +19,13 @@ export class SelectControlElement extends FormFieldElement {
 
   @ElementChildTextContent()
   public compareWith?: string;
+
+  public postParse() {
+    const clearFeature: ClearElement | undefined = this.features?.find(feature => feature.__tag === 'clear');
+    if (clearFeature) {
+      clearFeature.stopPropagation = true;
+    }
+  }
 
   protected innerTemplate(): string {
     const attributes: Array<string | (() => string)> = [

@@ -13,6 +13,8 @@ import { SourceFile } from 'ts-morph';
 @ElementDef('control-feature')
 export class ControlFeatureElement implements ParsedElement<Rule>, HandleComponent, HandleComponentModule, WithTemplate {
 
+  public __tag!: string;
+
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
   }
 
