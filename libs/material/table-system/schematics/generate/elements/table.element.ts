@@ -21,7 +21,10 @@ import {
   AddNgModuleImport,
   AddDir,
   MethodElement,
-  AddComponentProvider
+  AddComponentProvider,
+  AddComponentInput,
+  NodeFactory,
+  WithTemplate
 } from '@rxap-schematics/utilities';
 import { FormElement } from '@rxap/forms/schematics/generate/elements/form.element';
 import {
@@ -143,7 +146,7 @@ export class TableElement implements ParsedElement<Rule> {
   }
 
   public headerTemplate(): string {
-    let template = '<mat-progress-bar rxapCardProgressBar [loading$]="dataSource.loading$"></mat-progress-bar>';
+    let template = '<mat-progress-bar rxapCardProgressBar [loading$]="tableDataSourceDirective.loading$"></mat-progress-bar>';
 
     if (this.features) {
       for (const feature of this.features) {
@@ -159,25 +162,29 @@ export class TableElement implements ParsedElement<Rule> {
   }
 
   public tableTemplate(): string {
-    let template = '<table mat-table #dataSource="rxapTableDataSource" rxapTableDataSource\n';
+    const attributes: Array<string | (() => string)> = [
+      'mat-table',
+      '#tableDataSourceDirective="rxapTableDataSource"'
+    ];
+    if (this.method) {
+      attributes.push('rxapTableDataSource');
+    } else {
+      attributes.push('[rxapTableDataSource]="dataSource"');
+    }
+    if (this.hasFilter) {
+      attributes.push('rxap-filter-header-row');
+    }
+    const nodes: Array<Partial<WithTemplate> | string> | string = [
+      this.columnsTemplate(),
+      this.columnsFilterTemplate(),
+      this.rowTemplate()
+    ];
 
     if (this.features) {
-      for (const feature of this.features) {
-        template += feature.tableTemplate();
-      }
+      nodes.unshift(...this.features.map(feature => feature.tableTemplate()));
     }
 
-    if (this.hasFilter) {
-      template += '\nrxap-filter-header-row\n';
-    }
-    template += '>';
-
-    template += this.columnsTemplate();
-    template += this.columnsFilterTemplate();
-    template += this.rowTemplate();
-
-    template += '</table>';
-    return template;
+    return NodeFactory('table', ...attributes)(nodes);
   }
 
   public rowTemplate(): string {
@@ -201,7 +208,7 @@ export class TableElement implements ParsedElement<Rule> {
       chain(this.columns.map(column => column.toValue({ project, options }))),
       chain(this.features?.map(node => node.toValue({ project, options })) ?? []),
       () => this.handleComponent(project, options),
-      () => this.handleComponentModule(project, options),
+      () => this.handleComponentModule(project, options)
     ]);
   }
 
@@ -223,6 +230,21 @@ export class TableElement implements ParsedElement<Rule> {
             namedImports:    [ 'TABLE_REMOTE_METHOD' ],
             // TODO : mv TABLE_REMOTE_METHOD to rxap
             moduleSpecifier: '@mfd/shared/table-data-source.directive'
+          }
+        ]
+      );
+    } else {
+      AddComponentInput(
+        sourceFile,
+        {
+          name:     'dataSource',
+          type:     'AbstractTableDataSource<any>',
+          required: true
+        },
+        [
+          {
+            namedImports:    [ 'AbstractTableDataSource' ],
+            moduleSpecifier: '@rxap/data-source'
           }
         ]
       );
