@@ -52,7 +52,7 @@ export interface FilterLike {
 
 export interface AbstractTableDataSourceMetadata extends AbstractPaginationDataSourceMetadata {}
 
-export abstract class AbstractTableDataSource<Data extends Record<any, any>, Parameters = any>
+export abstract class AbstractTableDataSource<Data extends Record<string, any> = any, Parameters = any>
   extends AbstractPaginationDataSource<Data> {
 
   public get sortByColumn(): string | undefined {
