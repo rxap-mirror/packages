@@ -22,6 +22,7 @@ import {
   QuoteKind,
   Project
 } from 'ts-morph';
+import { readAngularJsonFile } from '@rxap/schematics/utilities';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
@@ -50,6 +51,15 @@ export default function(options: GenerateSchema): Rule {
         useTrailingCommas: true
       }
     });
+
+    if (!options.openApiModule) {
+      const angularJson = readAngularJsonFile(host);
+      if (Object.keys(angularJson.projects).includes('open-api')) {
+        options.openApiModule = `@${angularJson.projects[ 'open-api' ].prefix}/open-api`;
+      } else {
+        options.openApiModule = `@${angularJson.projects[ angularJson.defaultProject ].prefix}/open-api`;
+      }
+    }
 
     if (!options.name) {
       throw new Error('FATAL: the options name is not defined');
