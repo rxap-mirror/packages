@@ -18,7 +18,7 @@ export class SortElement extends FeatureElement {
   }
 
   public tableTemplate(): string {
-    return '\nmatSort\n';
+    return 'matSort';
   }
 
 }

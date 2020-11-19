@@ -181,7 +181,7 @@ export class TableElement implements ParsedElement<Rule> {
     ];
 
     if (this.features) {
-      nodes.unshift(...this.features.map(feature => feature.tableTemplate()));
+      attributes.unshift(...this.features.map(feature => feature.tableTemplate()));
     }
 
     return NodeFactory('table', ...attributes)(nodes);

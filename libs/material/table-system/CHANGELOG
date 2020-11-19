@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.7.1]
+### Added
+- (schematics): feature table template processing
+
 ## [0.7.0]
 ### Added
 - (schematics): add support for input data source
