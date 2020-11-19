@@ -188,18 +188,24 @@ export class TableElement implements ParsedElement<Rule> {
   }
 
   public rowTemplate(): string {
-    let template = '';
+    const templates: string[] = [];
 
     if (this.hasFilter) {
-      template += '<tr mat-header-row *matHeaderRowDef="rxapTableColumns.displayColumns | toFilterColumnNames"></tr>';
+      let filterRowDef = '[' + this.columns.map(column => column.name).map(name => `'filter_${name}'`).join(',') + ']';
+      if (this.hasFeature('column-menu')) {
+        filterRowDef = 'rxapTableColumns.displayColumns | toFilterColumnNames';
+      }
+      templates.push(NodeFactory('tr', 'mat-header-row', `*matHeaderRowDef="${filterRowDef}"`)());
     }
 
-    template += `
-    <tr mat-header-row *matHeaderRowDef="rxapTableColumns.displayColumns"></tr>
-    <tr [@rowsAnimation] mat-row *matRowDef="let element; columns: rxapTableColumns.displayColumns;"></tr>
-    `;
+    let rowDef = '[' + this.columns.map(column => column.name).map(name => `'${name}'`).join(',') + ']';
+    if (this.hasFeature('column-menu')) {
+      rowDef = 'rxapTableColumns.displayColumns';
+    }
+    templates.push(NodeFactory('tr', 'mat-header-row', `*matHeaderRowDef="${rowDef}"`)());
+    templates.push(NodeFactory('tr', '[@rowsAnimation]', 'mat-row', `*matRowDef="let element; columns: ${rowDef};"`)());
 
-    return template;
+    return templates.join('\n');
   }
 
   public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
