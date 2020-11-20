@@ -11,7 +11,8 @@ import { AddProviderToArray } from './add-provider-to-array';
 export function AddNgModuleProvider(
   sourceFile: SourceFile,
   providerObject: ProviderObject | string,
-  structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = []
+  structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = [],
+  overwrite: boolean                                                  = false
 ) {
 
   sourceFile.addImportDeclarations(structures);
@@ -20,6 +21,6 @@ export function AddNgModuleProvider(
 
   const providerArray = GetCoerceArrayLiteralFromObjectLiteral(ngModuleOptions, 'providers');
 
-  AddProviderToArray(providerObject, providerArray);
+  AddProviderToArray(providerObject, providerArray, overwrite);
 
 }

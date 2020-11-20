@@ -7,7 +7,11 @@ import {
 } from 'ts-morph';
 import { DeleteUndefinedProperties } from '@rxap/utilities';
 
-export function AddProviderToArray(providerObject: ProviderObject | string, providerArray: ArrayLiteralExpression) {
+export function AddProviderToArray(
+  providerObject: ProviderObject | string,
+  providerArray: ArrayLiteralExpression,
+  overwrite: boolean = false
+) {
 
   if (typeof providerObject === 'string') {
 
@@ -35,14 +39,18 @@ export function AddProviderToArray(providerObject: ProviderObject | string, prov
 
     });
 
-    if (index === -1) {
+    if (overwrite && index === -1) {
+      providerArray.removeElement(index);
+    }
+
+    if (overwrite || index === -1) {
       providerArray.addElement(Writers.object(DeleteUndefinedProperties({
         provide:     providerObject.provide,
         useClass:    providerObject.useClass,
         useFactory:  providerObject.useFactory,
         useExisting: providerObject.useExisting,
         useValue:    providerObject.useValue,
-        deps: providerObject.deps ? Array.isArray(providerObject.deps) ? `[ ${providerObject.deps.join(',')} ]` : providerObject.deps : undefined
+        deps:        providerObject.deps ? Array.isArray(providerObject.deps) ? `[ ${providerObject.deps.join(',')} ]` : providerObject.deps : undefined
       })));
     }
 

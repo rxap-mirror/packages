@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.11.0]
+### Added
+- overwrite support
+
 ## [0.10.3]
 ### Fixed
 - (ParseTemplate): extract file name
