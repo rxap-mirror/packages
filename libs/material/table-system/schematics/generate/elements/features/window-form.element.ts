@@ -123,7 +123,8 @@ export class WindowFormElement implements ParsedElement {
               namedImports:    [ 'RXAP_WINDOW_SETTINGS' ],
               moduleSpecifier: '@rxap/window-system'
             }
-          ]
+          ],
+          options.overwrite
         );
 
         this.submit.handleComponent({ project, sourceFile, options });

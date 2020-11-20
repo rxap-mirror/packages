@@ -23,6 +23,7 @@ import {
   HandleComponent,
   AddComponentProvider
 } from '@rxap-schematics/utilities';
+import { GenerateSchema } from '../../schema';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -42,7 +43,7 @@ export class ChildElement implements ParsedElement, HandleComponent {
     return `tree-table-children-proxy.method`;
   }
 
-  public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponent({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
     if (this.proxy) {
       AddComponentProvider(
         sourceFile,
@@ -60,7 +61,8 @@ export class ChildElement implements ParsedElement, HandleComponent {
             moduleSpecifier: `./${this.proxyMethodFilePath}`,
             namedImports:    [ 'TreeTableChildrenProxyMethod' ]
           }
-        ]
+        ],
+        options.overwrite
       );
     } else {
       AddComponentProvider(
@@ -75,7 +77,8 @@ export class ChildElement implements ParsedElement, HandleComponent {
             moduleSpecifier: '@mfd/shared/data-sources/tree-table.data-source',
             namedImports:    [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD' ]
           }
-        ]
+        ],
+        options.overwrite
       );
     }
   }
@@ -186,7 +189,8 @@ export class RootElement implements ParsedElement, HandleComponent {
             moduleSpecifier: `./${this.proxyMethodFilePath}`,
             namedImports:    [ 'TreeTableRootProxyMethod' ]
           }
-        ]
+        ],
+        options.overwrite
       );
     } else {
       AddComponentProvider(
@@ -201,7 +205,8 @@ export class RootElement implements ParsedElement, HandleComponent {
             moduleSpecifier: '@mfd/shared/data-sources/tree-table.data-source',
             namedImports:    [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD' ]
           }
-        ]
+        ],
+        options.overwrite
       );
     }
   }
@@ -292,7 +297,7 @@ export class TreeTableElement extends FeatureElement {
   @ElementRequired()
   public root!: RootElement;
 
-  public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponent({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
     super.handleComponent({ sourceFile, project, options });
     this.child.handleComponent({ sourceFile, project, options });
     this.root.handleComponent({ sourceFile, project, options });
@@ -313,7 +318,8 @@ export class TreeTableElement extends FeatureElement {
           // TODO : mv TABLE_DATA_SOURCE to rxap
           moduleSpecifier: '@mfd/shared/table-data-source.directive'
         }
-      ]
+      ],
+      options.overwrite
     );
   }
 
