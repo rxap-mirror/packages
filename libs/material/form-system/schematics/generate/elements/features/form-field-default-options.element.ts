@@ -14,6 +14,7 @@ import {
   ToValueContext,
   AddComponentProvider
 } from '@rxap-schematics/utilities';
+import { GenerateSchema } from '../../schema';
 
 @ElementExtends(FormFeatureElement)
 @ElementDef('form-field-default-options')
@@ -28,7 +29,7 @@ export class FormFieldDefaultOptionsElement extends FormFeatureElement {
   @ElementChildTextContent()
   public floatLabel?: 'always' | 'never' | 'auto';
 
-  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponent({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
     const defaultOptions: Record<string, WriterFunction | string> = {};
 
     if (this.appearance) {
@@ -54,7 +55,8 @@ export class FormFieldDefaultOptionsElement extends FormFeatureElement {
           namedImports:    [ 'MAT_FORM_FIELD_DEFAULT_OPTIONS' ],
           moduleSpecifier: '@angular/material/form-field'
         }
-      ]
+      ],
+      options.overwrite
     );
   }
 
