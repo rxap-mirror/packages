@@ -42,8 +42,8 @@ export interface FormDefinitionArray<T> extends Array<T> {
 }
 
 export type FormType<T extends Record<string, any>> = FormDefinition<T> & {
-  [K in keyof T]: T[K] extends any[] ?
-                  FormDefinitionArray<T[K]> | RxapFormControl<T[K]> :
+  [K in keyof T]: T[K] extends (infer U)[] ?
+                  FormDefinitionArray<FormType<U>> | RxapFormControl<T[K]> :
                   T[K] extends object | undefined ?
                   FormDefinition<T[K]> | RxapFormControl<T[K]> :
                   RxapFormControl<T[K]>;
