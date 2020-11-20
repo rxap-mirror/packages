@@ -116,7 +116,8 @@ export default function(options: GenerateSchema): Rule {
         flat:            true,
         organizeImports: false,
         fixImports:      false,
-        format:          false
+        format:          false,
+        overwrite:       options.overwrite
       }) : noop(),
       tableElement.toValue({ project, options }),
       ApplyTsMorphProject(project, options.path, options.organizeImports),

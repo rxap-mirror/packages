@@ -112,7 +112,8 @@ export class FormElement extends GroupElement {
           organizeImports: false,
           fixImports:      false,
           format:          false,
-          openApiModule:   options.openApiModule
+          openApiModule:   options.openApiModule,
+          overwrite:       options.overwrite
         }
       ),
       options.overwrite ? tree => tree.overwrite(componentTemplateFilePath, this.template()) : noop(),
