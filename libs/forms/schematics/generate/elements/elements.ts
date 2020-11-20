@@ -17,12 +17,14 @@ import { ParsedElement } from '@rxap/xml-parser';
 import { Constructor } from '@rxap/utilities';
 import { FeatureElements } from './features/features';
 import { Methods } from '@rxap-schematics/utilities';
+import { ArrayControlElement } from './array-control.element';
 
 export const Elements: Array<Constructor<ParsedElement>> = [
   CheckboxControlElement,
   ControlElement,
   FormElement,
   GroupControlElement,
+  ArrayControlElement,
   InputControlElement,
   SelectControlElement,
   DataSourceElement,
