@@ -3,11 +3,11 @@ import {
   Inject,
   Input,
   OnDestroy,
-  OnInit,
   TemplateRef,
   ViewContainerRef,
   NgModule,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  AfterContentInit
 } from '@angular/core';
 import {
   MAT_FORM_FIELD,
@@ -31,7 +31,7 @@ export interface ControlErrorDirectiveContext {
   // tslint:disable-next-line:directive-selector
   selector: '[rxapControlError]'
 })
-export class ControlErrorDirective implements OnInit, OnDestroy {
+export class ControlErrorDirective implements AfterContentInit, OnDestroy {
 
   static ngTemplateContextGuard<T>(dir: ControlErrorDirectiveContext, ctx: any):
     ctx is ControlErrorDirectiveContext {
@@ -54,13 +54,15 @@ export class ControlErrorDirective implements OnInit, OnDestroy {
     protected readonly cdr: ChangeDetectorRef
   ) { }
 
-  public ngOnInit() {
+  public ngAfterContentInit() {
     const control = this.formField._control.ngControl?.control;
     if (control) {
       this._control      = control;
       this._subscription = controlErrorChanges$<ValidationErrors>(control).pipe(
         tap((errors: ValidationErrors | null) => this.render(errors))
       ).subscribe();
+    } else {
+      throw new Error('The form field has not a control associated!');
     }
   }
 
