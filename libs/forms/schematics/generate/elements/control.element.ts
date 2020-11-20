@@ -21,10 +21,11 @@ import {
   AddControlValidator,
   ToValueContext
 } from '@rxap-schematics/utilities';
+import { GenerateSchema } from '../schema';
 
 const { dasherize, classify, camelize } = strings;
 
-export interface ControlElementToValueContext extends ToValueContext {
+export interface ControlElementToValueContext extends ToValueContext<GenerateSchema> {
   classDeclaration: ClassDeclaration;
   sourceFile: SourceFile;
 }

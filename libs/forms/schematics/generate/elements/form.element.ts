@@ -81,7 +81,7 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
     return () => {};
   }
 
-  public handleFormProviders({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleFormProviders({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
     if (this.adapter) {
       this.adapter.handleFormProviders({ project, sourceFile, options });
       AddVariableProvider(
@@ -90,7 +90,7 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
         {
           provide:    this.type,
           useFactory: this.adapter.name,
-          deps: [ this.method.toValue({ sourceFile, project, options }), '[new Optional(), RXAP_FORM_INITIAL_STATE]', 'INJECTOR' ]
+          deps:       [ this.method.toValue({ sourceFile, project, options }), '[new Optional(), RXAP_FORM_INITIAL_STATE]', 'INJECTOR' ]
         },
         [
           {
@@ -101,7 +101,8 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
             namedImports:    [ 'Optional', 'INJECTOR' ],
             moduleSpecifier: '@angular/core'
           }
-        ]
+        ],
+        options.overwrite
       );
     } else {
       AddVariableProvider(
@@ -116,12 +117,13 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
             namedImports:    [ this.type ],
             moduleSpecifier: '@rxap/forms'
           }
-        ]
+        ],
+        options.overwrite
       );
     }
   }
 
-  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponent({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
     if (this.adapter) {
       this.adapter.handleComponent({ project, sourceFile, options });
       AddComponentProvider(
@@ -140,7 +142,8 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
             namedImports:    [ 'Optional', 'INJECTOR' ],
             moduleSpecifier: '@angular/core'
           }
-        ]
+        ],
+        options.overwrite
       );
     } else {
       AddComponentProvider(
@@ -154,7 +157,8 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
             namedImports:    [ this.type ],
             moduleSpecifier: '@rxap/forms'
           }
-        ]
+        ],
+        options.overwrite
       );
     }
   }
@@ -228,9 +232,9 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
 
   }
 
-  private addToFormProviders(formName: string, project: Project, namedImports: string[] = [ formName ]): void {
+  private addToFormProviders(formName: string, project: Project, namedImports: string[] = [ formName ], overwrite: boolean): void {
 
-    const formProviderSourceFile = AddToFormProviders(project, formName);
+    const formProviderSourceFile = AddToFormProviders(project, formName, overwrite);
 
     formProviderSourceFile.addImportDeclaration({
       moduleSpecifier: `./${dasherize(this.id)}.form`,
@@ -305,13 +309,13 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
 
   }
 
-  public toValue({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }): any {
+  public toValue({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }): any {
 
     const formName          = classify(this.id) + 'Form';
     const formInterfaceName = 'I' + formName;
 
     this.addFormInterface(formInterfaceName, sourceFile);
-    this.addToFormProviders(formName, project);
+    this.addToFormProviders(formName, project, [ formName ], options.overwrite);
     this.addFormComponentProviders(project);
 
     this.submit?.handleFormProviders({ project, options, sourceFile: GetFormProvidersFile(project) });

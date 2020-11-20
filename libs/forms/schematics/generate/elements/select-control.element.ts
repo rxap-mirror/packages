@@ -29,6 +29,7 @@ import {
   AddToFormProviders,
   ToValueContext
 } from '@rxap-schematics/utilities';
+import { GenerateSchema } from '../schema';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -60,7 +61,7 @@ export class DataSourceTransformerElement implements ParsedElement<string> {
 
 }
 
-export function OptionsProviderExport(project: Project, name: string) {
+export function OptionsProviderExport(project: Project, name: string, overwrite: boolean) {
   const optionsProviderSourceFilePath = 'data-sources/options-data-source.providers';
   const optionsProviderSourceFile     = project.getSourceFile(optionsProviderSourceFilePath + '.ts') ??
                                         project.createSourceFile(optionsProviderSourceFilePath + '.ts');
@@ -79,9 +80,9 @@ export function OptionsProviderExport(project: Project, name: string) {
     }
   ]);
 
-  AddToArray(optionsProviderSourceFile, providersName, optionsDataSourceName, 'Provider[]');
+  AddToArray(optionsProviderSourceFile, providersName, optionsDataSourceName, 'Provider[]', overwrite);
 
-  const formProviderSourceFile = AddToFormProviders(project, providersName);
+  const formProviderSourceFile = AddToFormProviders(project, providersName, overwrite);
 
   formProviderSourceFile.addImportDeclaration({
     moduleSpecifier: `./${optionsProviderSourceFilePath}`,
@@ -104,11 +105,11 @@ export class DataSourceElement implements ParsedElement<Array<string | WriterFun
     return true;
   }
 
-  public toValue({ sourceFile, project }: ToValueContext & { sourceFile: SourceFile }): Array<string | WriterFunction> {
+  public toValue({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }): Array<string | WriterFunction> {
 
     const dataSourceName = classify(this.id) + 'OptionsDataSource';
 
-    OptionsProviderExport(project, this.id);
+    OptionsProviderExport(project, this.id, options.overwrite);
 
     sourceFile.addImportDeclaration({
       moduleSpecifier: `./data-sources/${dasherize(this.id)}.options.data-source`,
@@ -356,7 +357,7 @@ export class SelectOptionsElement extends OptionsElement implements ParsedElemen
   @ElementChild(DataSourceElement)
   public dataSource?: DataSourceElement;
 
-  public toValue({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }): Array<string | WriterFunction> {
+  public toValue({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }): Array<string | WriterFunction> {
 
     if (this.dataSource) {
 
@@ -369,7 +370,7 @@ export class SelectOptionsElement extends OptionsElement implements ParsedElemen
 
     const optionsDataSourceName = classify(this.__parent.id) + 'OptionsDataSource';
 
-    OptionsProviderExport(project, this.__parent.id);
+    OptionsProviderExport(project, this.__parent.id, options.overwrite);
 
     optionsSourceFile.addClass({
       name:       optionsDataSourceName,
