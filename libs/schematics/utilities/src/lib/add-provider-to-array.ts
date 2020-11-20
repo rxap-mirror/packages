@@ -39,7 +39,7 @@ export function AddProviderToArray(
 
     });
 
-    if (overwrite && index === -1) {
+    if (overwrite && index !== -1) {
       providerArray.removeElement(index);
     }
 
