@@ -60,7 +60,7 @@ export class FormElement extends GroupElement {
     return this.name;
   }
 
-  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponent({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
     this.nodes.forEach(node => node.handleComponent({ project, sourceFile, options }));
     this.features?.forEach(feature => feature.handleComponent({ project, sourceFile, options }));
     AddComponentProvider(
@@ -71,7 +71,8 @@ export class FormElement extends GroupElement {
           namedImports:    [ 'FormProviders' ],
           moduleSpecifier: './form.providers'
         }
-      ]
+      ],
+      options.overwrite
     );
     AddComponentProvider(
       sourceFile,
@@ -81,7 +82,8 @@ export class FormElement extends GroupElement {
           namedImports:    [ 'FormComponentProviders' ],
           moduleSpecifier: './form.providers'
         }
-      ]
+      ],
+      options.overwrite
     );
     this.submit?.handleComponent({ project, options, sourceFile });
     this.load?.handleComponent({ project, options, sourceFile });
