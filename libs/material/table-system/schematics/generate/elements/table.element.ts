@@ -243,7 +243,8 @@ export class TableElement implements ParsedElement<Rule> {
             // TODO : mv TABLE_REMOTE_METHOD to rxap
             moduleSpecifier: '@mfd/shared/table-data-source.directive'
           }
-        ]
+        ],
+        options.overwrite
       );
     } else {
       AddComponentInput(
@@ -283,18 +284,24 @@ export class TableElement implements ParsedElement<Rule> {
             namedImports:    [ 'INJECTOR' ],
             moduleSpecifier: '@angular/core'
           }
-        ]
+        ],
+        options.overwrite
       );
-      AddComponentProvider(sourceFile, 'FormProviders', [
-        {
-          namedImports:    [ 'FormFactory' ],
-          moduleSpecifier: './form.providers'
-        }
-      ]);
+      AddComponentProvider(
+        sourceFile,
+        'FormProviders',
+        [
+          {
+            namedImports:    [ 'FormFactory' ],
+            moduleSpecifier: './form.providers'
+          }
+        ],
+        options.overwrite
+      );
     }
 
     if (this.adapter) {
-      this.adapter.handleComponent({ sourceFile });
+      this.adapter.handleComponent({ sourceFile, options, project });
     }
 
     this.features?.forEach(feature => feature.handleComponent({ sourceFile, project, options }));

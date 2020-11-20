@@ -8,8 +8,10 @@ import {
 import { SourceFile } from 'ts-morph';
 import {
   HandleComponent,
-  AddComponentProvider
+  AddComponentProvider,
+  ToValueContext
 } from '@rxap-schematics/utilities';
+import { GenerateSchema } from '../schema';
 
 @ElementDef('adapter')
 export class AdapterElement implements ParsedElement, HandleComponent {
@@ -25,7 +27,7 @@ export class AdapterElement implements ParsedElement, HandleComponent {
   public toValue(): any {
   }
 
-  public handleComponent({ sourceFile }: { sourceFile: SourceFile }): void {
+  public handleComponent({ sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }): void {
     AddComponentProvider(
       sourceFile,
       {
@@ -42,7 +44,8 @@ export class AdapterElement implements ParsedElement, HandleComponent {
           namedImports:    [ this.factoryName ],
           moduleSpecifier: this.importFrom
         }
-      ]
+      ],
+      options.overwrite
     );
   }
 

@@ -48,7 +48,7 @@ export class CreateButtonElement extends FeatureElement {
     this.routerLink?.handleComponentModule({ sourceFile, options, project });
   }
 
-  public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponent({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
     super.handleComponent({ sourceFile, project, options });
     const providerObject: ProviderObject                                    = {
       provide: 'TABLE_CREATE_REMOTE_METHOD'
@@ -71,7 +71,8 @@ export class CreateButtonElement extends FeatureElement {
     AddComponentProvider(
       sourceFile,
       providerObject,
-      importStructures
+      importStructures,
+      options.overwrite
     );
   }
 

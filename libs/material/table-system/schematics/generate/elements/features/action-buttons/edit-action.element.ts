@@ -50,28 +50,38 @@ export class MfdLoaderElement extends EditActionLoaderElement {
 
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponent({ project, sourceFile, options });
-    AddComponentProvider(sourceFile, {
-      provide:  'ROW_EDIT_LOADER_METHOD',
-      useClass: 'RowEditLoaderMethod'
-    }, [
+    AddComponentProvider(
+      sourceFile,
       {
-        moduleSpecifier: '@mfd/shared/row-edit-loader.method',
-        namedImports:    [ 'RowEditLoaderMethod' ]
+        provide:  'ROW_EDIT_LOADER_METHOD',
+        useClass: 'RowEditLoaderMethod'
       },
+      [
+        {
+          moduleSpecifier: '@mfd/shared/row-edit-loader.method',
+          namedImports:    [ 'RowEditLoaderMethod' ]
+        },
+        {
+          moduleSpecifier: '@mfd/shared/table-row-controls/tokens',
+          namedImports:    [ 'ROW_EDIT_LOADER_METHOD' ]
+        }
+      ],
+      options.overwrite
+    );
+    AddComponentProvider(
+      sourceFile,
       {
-        moduleSpecifier: '@mfd/shared/table-row-controls/tokens',
-        namedImports:    [ 'ROW_EDIT_LOADER_METHOD' ]
-      }
-    ]);
-    AddComponentProvider(sourceFile, {
-      provide:  'ROW_EDIT_LOADER_SOURCE_METHOD',
-      useClass: this.method.toValue({ options, sourceFile })
-    }, [
-      {
-        moduleSpecifier: '@mfd/shared/row-edit-loader.method',
-        namedImports:    [ 'ROW_EDIT_LOADER_SOURCE_METHOD' ]
-      }
-    ]);
+        provide:  'ROW_EDIT_LOADER_SOURCE_METHOD',
+        useClass: this.method.toValue({ options, sourceFile })
+      },
+      [
+        {
+          moduleSpecifier: '@mfd/shared/row-edit-loader.method',
+          namedImports:    [ 'ROW_EDIT_LOADER_SOURCE_METHOD' ]
+        }
+      ],
+      options.overwrite
+    );
   }
 
 }

@@ -45,7 +45,8 @@ export abstract class MethodActionElement extends ActionButtonElement {
     AddComponentProvider(
       sourceFile,
       providerObject,
-      importStructures
+      importStructures,
+      options.overwrite
     );
   }
 
