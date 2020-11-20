@@ -43,6 +43,10 @@
     "format": {
       "type": "boolean",
       "default": true
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": true
     }
   },
   "required": []
