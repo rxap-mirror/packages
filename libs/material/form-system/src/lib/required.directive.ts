@@ -2,7 +2,7 @@ import {
   Directive,
   Inject,
   NgModule,
-  OnInit
+  AfterContentInit
 } from '@angular/core';
 import {
   MAT_FORM_FIELD,
@@ -12,14 +12,14 @@ import {
 @Directive({
   selector: '[formControlName][rxapRequired]'
 })
-export class RequiredDirective implements OnInit {
+export class RequiredDirective implements AfterContentInit {
 
   constructor(
     @Inject(MAT_FORM_FIELD)
     private readonly formField: MatFormField
   ) {}
 
-  public ngOnInit() {
+  public ngAfterContentInit() {
     const control = this.formField._control.ngControl?.control;
     if (control) {
       const hasRequiredValidator = Reflect.get(control, 'hasRequiredValidator');
@@ -27,7 +27,7 @@ export class RequiredDirective implements OnInit {
         (this.formField._control as any).required = true;
       }
     } else {
-      throw new Error('Could not extract the control');
+      throw new Error('The form field has not a control associated!');
     }
   }
 

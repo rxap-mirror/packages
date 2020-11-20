@@ -56,7 +56,7 @@ export abstract class FormFieldElement extends ControlElement {
     if (this.features) {
       nodes.push(...this.features);
     }
-    return NodeFactory('mat-form-field', this.flexTemplateAttribute, ...attributes)(nodes);
+    return NodeFactory('mat-form-field', this.flexTemplateAttribute, ...this.attributes, ...attributes)(nodes);
   }
 
   protected abstract innerTemplate(): string;
