@@ -11,7 +11,8 @@ import { AddProviderToArray } from './add-provider-to-array';
 export function AddComponentProvider(
   sourceFile: SourceFile,
   providerObject: ProviderObject | string,
-  structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = []
+  structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = [],
+  overwrite: boolean                                                  = false
 ) {
 
   sourceFile.addImportDeclarations(structures);
@@ -20,6 +21,6 @@ export function AddComponentProvider(
 
   const providersArray = GetCoerceArrayLiteralFromObjectLiteral(componentOptions, 'providers');
 
-  AddProviderToArray(providerObject, providersArray);
+  AddProviderToArray(providerObject, providersArray, overwrite);
 
 }

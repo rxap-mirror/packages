@@ -12,7 +12,8 @@ export function AddVariableProvider(
   sourceFile: SourceFile,
   variableName: string,
   providerObject: ProviderObject | string,
-  structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = []
+  structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = [],
+  overwrite: boolean                                                  = false
 ) {
 
   sourceFile.addImportDeclarations(structures);
@@ -38,6 +39,6 @@ export function AddVariableProvider(
     throw new Error(`The variable '${variableName}' initializer is not an array literal expression`);
   }
 
-  AddProviderToArray(providerObject, providerArray);
+  AddProviderToArray(providerObject, providerArray, overwrite);
 
 }

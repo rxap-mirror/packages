@@ -4,7 +4,13 @@ import {
 } from 'ts-morph';
 import { CoerceVariableDeclaration } from './coerce-variable-declaration';
 
-export function AddToArray(sourceFile: SourceFile, arrayName: string, value: string, type: string) {
+export function AddToArray(
+  sourceFile: SourceFile,
+  arrayName: string,
+  value: string,
+  type: string,
+  overwrite: boolean = false
+) {
 
   const providerArray = CoerceVariableDeclaration(
     sourceFile,
@@ -18,7 +24,13 @@ export function AddToArray(sourceFile: SourceFile, arrayName: string, value: str
 
   if (providerArray instanceof ArrayLiteralExpression) {
 
-    if (providerArray.getElements().findIndex(element => element.getFullText().trim() === value) === -1) {
+    const index = providerArray.getElements().findIndex(element => element.getFullText().trim() === value);
+
+    if (overwrite && index !== -1) {
+      providerArray.removeElement(index);
+    }
+
+    if (overwrite || index === -1) {
       providerArray.addElement(value);
     }
 
