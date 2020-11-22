@@ -1,13 +1,19 @@
 import { setMetadataMapSet } from '@rxap/utilities';
 import { MetadataKeys } from './metadata-keys';
 
-export function ControlSetValue(...controlIds: string[]) {
+export interface ControlSetValueOptions {
+  propertyKey: string;
+  initial?: boolean;
+}
+
+export function ControlSetValue(controlId: string, options: Omit<ControlSetValueOptions, 'propertyKey'> = {}) {
 
   return function(target: any, propertyKey: string) {
 
-    for (const controlId of controlIds) {
-      setMetadataMapSet(controlId, propertyKey, MetadataKeys.CONTROL_SET_VALUE, target);
-    }
+    setMetadataMapSet(controlId, {
+      ...options,
+      propertyKey
+    }, MetadataKeys.CONTROL_SET_VALUE, target);
 
   };
 

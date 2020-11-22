@@ -31,6 +31,7 @@ import { RxapFormArray } from './form-array';
 import { RxapFormGroup } from './form-group';
 import { RxapFormControl } from './form-control';
 import { GetDefinitionMetadata } from '@rxap/definition';
+import { ControlSetValueOptions } from './decorators/control-set-value';
 
 export class FormArrayControlManager<T extends FormDefinition> {
 
@@ -69,7 +70,7 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
   private readonly validators: Map<string, Set<string>>;
   private readonly asyncValidators: Map<string, Set<string>>;
   private readonly controlChanges: Map<string, Set<string>>;
-  private readonly controlSetValue: Map<string, Set<string>>;
+  private readonly controlSetValue: Map<string, Set<ControlSetValueOptions>>;
 
   private readonly providers: StaticProvider[];
 
@@ -146,6 +147,17 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
     if (HasRxapOnInitMethod(form)) {
       form.rxapOnInit();
     }
+
+    for (const control of Object.values(form.rxapFormGroup.controls)) {
+      if (control.controlId) {
+        const controlSetValueOnInit = Array.from(this.controlSetValue.get(control.controlId) ?? [])
+                                           .filter(controlSetValueOptions => controlSetValueOptions.initial);
+        for (const onSetValue of this.coerceToFnArray<SetValueFn>(form, controlSetValueOnInit)) {
+          onSetValue(control.value);
+        }
+      }
+    }
+
 
     return form;
   }
@@ -352,19 +364,17 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
    * @param methodKeys A set of propertyKeys that points to form
    * definition instance methods
    */
-  private coerceToFnArray<T extends Function>(form: Form & Record<string, Function>, methodKeys?: Set<string>): Array<T> {
+  private coerceToFnArray<T extends Function>(form: Form & Record<string, Function>, methodKeys?: Iterable<string | { propertyKey: string }>): Array<T> {
 
     const changes: Array<T> = [];
 
     if (methodKeys) {
 
-      methodKeys.forEach(propertyKey => {
-
+      for (const propertyKeyOrOptions of methodKeys) {
+        const propertyKey = typeof propertyKeyOrOptions === 'string' ? propertyKeyOrOptions : propertyKeyOrOptions.propertyKey;
         assertIsFunction(form[ propertyKey ]);
-
         changes.push((form[ propertyKey ] as T).bind(form));
-
-      });
+      }
 
     }
 
@@ -441,8 +451,8 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
     return getMetadata(MetadataKeys.CONTROL_CHANGES, this.definition.prototype) ?? new Map<string, Set<string>>();
   }
 
-  private extractControlSetValue(): Map<string, Set<string>> {
-    return getMetadata(MetadataKeys.CONTROL_SET_VALUE, this.definition.prototype) ?? new Map<string, Set<string>>();
+  private extractControlSetValue(): Map<string, Set<ControlSetValueOptions>> {
+    return getMetadata(MetadataKeys.CONTROL_SET_VALUE, this.definition.prototype) ?? new Map<string, Set<ControlSetValueOptions>>();
   }
 
   private extractValidators(): Map<string, Set<string>> {
