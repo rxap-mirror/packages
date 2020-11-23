@@ -61,13 +61,11 @@ export class DataSourceTransformerElement implements ParsedElement<string> {
 
 }
 
-export function OptionsProviderExport(project: Project, name: string, overwrite: boolean) {
+export function OptionsProviderExport(project: Project, name: string, from: string, overwrite: boolean) {
   const optionsProviderSourceFilePath = 'data-sources/options-data-source.providers';
   const optionsProviderSourceFile     = project.getSourceFile(optionsProviderSourceFilePath + '.ts') ??
                                         project.createSourceFile(optionsProviderSourceFilePath + '.ts');
   const providersName                 = 'OptionsProviders';
-
-  const optionsDataSourceName = `${classify(name)}OptionsDataSource`;
 
   optionsProviderSourceFile.addImportDeclarations([
     {
@@ -75,12 +73,12 @@ export function OptionsProviderExport(project: Project, name: string, overwrite:
       namedImports:    [ 'Provider' ]
     },
     {
-      moduleSpecifier: `./${dasherize(name)}.options.data-source`,
-      namedImports:    [ optionsDataSourceName ]
+      moduleSpecifier: from,
+      namedImports:    [ name ]
     }
   ]);
 
-  AddToArray(optionsProviderSourceFile, providersName, optionsDataSourceName, 'Provider[]', overwrite);
+  AddToArray(optionsProviderSourceFile, providersName, name, 'Provider[]', overwrite);
 
   const formProviderSourceFile = AddToFormProviders(project, providersName, overwrite);
 
@@ -100,7 +98,7 @@ export class DataSourceElement implements ParsedElement<Array<string | WriterFun
   @ElementChildTextContent()
   public name!: string;
 
-  // TODO : remove the id property
+  @ElementChildTextContent()
   public id!: string;
 
   @ElementChildTextContent()
@@ -109,11 +107,64 @@ export class DataSourceElement implements ParsedElement<Array<string | WriterFun
   @ElementChildren(DataSourceTransformerElement, { group: 'transformers' })
   public transformers!: DataSourceTransformerElement[];
 
+  public postParse() {
+    if (!this.name && !this.from && this.id) {
+      this.name = classify(this.id) + 'DataSource';
+    }
+  }
+
   public validate(): boolean {
     return true;
   }
 
   public toValue({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }): Array<string | WriterFunction> {
+
+    if (!this.from && this.id) {
+
+      const optionsFilePath = `data-sources/${dasherize(this.id)}.data-source`;
+
+      if (!project.getSourceFile(optionsFilePath + '.ts')) {
+
+        const optionsSourceFile = project.createSourceFile(optionsFilePath + '.ts');
+
+        OptionsProviderExport(project, this.name, `./${dasherize(this.id)}.data-source`, options.overwrite);
+
+        optionsSourceFile.addClass({
+          name:       this.name,
+          isExported: true,
+          extends:    'BaseDataSource<ControlOptions>',
+          decorators: [
+            {
+              name:      'Injectable',
+              arguments: []
+            },
+            {
+              name:      'RxapDataSource',
+              arguments: [ writer => writer.quote(this.id) ]
+            }
+          ]
+        });
+
+        optionsSourceFile.addImportDeclarations([
+          {
+            moduleSpecifier: '@angular/core',
+            namedImports:    [ 'Injectable' ]
+          },
+          {
+            moduleSpecifier: '@rxap/data-source',
+            namedImports:    [ 'BaseDataSource', 'RxapDataSource' ]
+          },
+          {
+            moduleSpecifier: '@rxap/utilities',
+            namedImports:    [ 'ControlOptions' ]
+          }
+        ]);
+
+      }
+
+      this.from = `./${optionsFilePath}`;
+
+    }
 
     sourceFile.addImportDeclaration({
       moduleSpecifier: this.from,
@@ -331,7 +382,7 @@ export class SelectOptionsElement extends OptionsElement implements ParsedElemen
 
     const optionsDataSourceName = classify(this.__parent.id) + 'OptionsDataSource';
 
-    OptionsProviderExport(project, this.__parent.id, options.overwrite);
+    OptionsProviderExport(project, optionsDataSourceName, `./${dasherize(this.__parent.id)}.options.data-source`, options.overwrite);
 
     optionsSourceFile.addClass({
       name:       optionsDataSourceName,
