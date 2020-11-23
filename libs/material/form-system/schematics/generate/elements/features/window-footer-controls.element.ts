@@ -104,12 +104,34 @@ export class WindowFooterControlsElement extends FormFeatureElement {
             moduleSpecifier: `./${dasherize(options.name!)}.form`
           },
           {
-            namedImports:    [ 'Inject', 'Optional', 'Injectable', 'INJECTOR', 'Injector', 'NgModule' ],
+            namedImports:    [ 'Inject', 'Optional', 'Injectable', 'INJECTOR', 'Injector' ],
+            moduleSpecifier: '@angular/core'
+          }
+        ]);
+      }
+      const openFormMethodDirectiveFilePath = `open-${dasherize(options.name!)}-form-window.directive.ts`;
+      if (!project.getSourceFile(openFormMethodDirectiveFilePath)) {
+        const sourceFile = project.createSourceFile(openFormMethodDirectiveFilePath);
+        sourceFile.addImportDeclarations([
+          {
+            namedImports:    [ 'NgModule', 'Directive', 'Input' ],
             moduleSpecifier: '@angular/core'
           },
           {
             namedImports:    [ 'MethodDirective' ],
             moduleSpecifier: '@mfd/shared/method.directive'
+          },
+          {
+            namedImports:    [ `${classify(options.name!)}Form`, `I${classify(options.name!)}Form` ],
+            moduleSpecifier: `./${dasherize(options.name!)}.form`
+          },
+          {
+            namedImports:    [ `Open${classify(options.name!)}FormWindowMethod` ],
+            moduleSpecifier: `./${openFormMethodFilePath.replace(/\.ts$/, '')}`
+          },
+          {
+            namedImports:    [ `${classify(options.name!)}FormComponentModule` ],
+            moduleSpecifier: `./${dasherize(options.name!)}-form.component.module`
           }
         ]);
         sourceFile.addClass({
@@ -136,7 +158,7 @@ export class WindowFooterControlsElement extends FormFeatureElement {
                   name:       'method',
                   isReadonly: true,
                   scope:      Scope.Public,
-                  type:       'OpenDataTriggerCreateFormWindowMethod'
+                  type: `Open${classify(options.name!)}FormWindowMethod`
                 }
               ],
               statements: [ 'super();' ]
@@ -161,8 +183,10 @@ export class WindowFooterControlsElement extends FormFeatureElement {
               name:      'NgModule',
               arguments: [
                 Writers.object({
-                  exports:      `[Open${classify(options.name!)}WindowMethodDirective]`,
-                  declarations: `[Open${classify(options.name!)}FormWindowMethodDirective]`
+                  imports:      `[${classify(options.name!)}FormComponentModule]`,
+                  exports:      `[Open${classify(options.name!)}FormWindowMethodDirective]`,
+                  declarations: `[Open${classify(options.name!)}FormWindowMethodDirective]`,
+                  providers:    `[Open${classify(options.name!)}FormWindowMethod]`
                 })
               ]
             }
