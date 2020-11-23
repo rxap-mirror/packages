@@ -49,6 +49,10 @@ export interface InputSelectOptionsSettings<Source> extends UseDataSourceSetting
 
 export const DATA_SOURCE_NAME = 'options';
 
+export function ComposeOptionsTransformers(...fnc: Array<(value: any) => any>): (value: any) => any {
+  return base => fnc.reduce((source, transform) => transform(source), base);
+}
+
 // tslint:disable-next-line:max-line-length
 export function UseOptionsDataSource<Source>(dataSource: Constructor<BaseDataSource<Source>>, settings?: InputSelectOptionsSettings<Source>): (
   target: any,
