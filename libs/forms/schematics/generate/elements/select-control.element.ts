@@ -316,7 +316,6 @@ export class OpenApiDataSourceElement extends DataSourceElement {
   public __parent!: SelectOptionsElement;
 
   @ElementChildTextContent()
-  @ElementRequired()
   public id!: string;
 
   @ElementChildren(DataSourceTransformerElement, { group: 'transformers' })
@@ -327,7 +326,7 @@ export class OpenApiDataSourceElement extends DataSourceElement {
   }
 
   public validate(): boolean {
-    return true;
+    return !!this.id;
   }
 
   public toValue({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }): Array<string | WriterFunction> {
