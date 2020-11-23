@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.13.2]
+### Fixed
+- add open directive
+
 ## [0.13.1]
 ### Fixed
 - form field control extration

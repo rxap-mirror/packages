@@ -7,7 +7,11 @@ import {
   ToValueContext,
   AddNgModuleImport
 } from '@rxap-schematics/utilities';
-import { SourceFile } from 'ts-morph';
+import {
+  SourceFile,
+  Scope,
+  Writers
+} from 'ts-morph';
 import { Rule } from '@angular-devkit/schematics';
 import { strings } from '@angular-devkit/core';
 import { FormFeatureElement } from './form-feature.element';
@@ -39,7 +43,7 @@ export class WindowFooterControlsElement extends FormFeatureElement {
         sourceFile.addClass({
           isExported: true,
           name:       `Open${classify(options.name!)}FormWindowMethod`,
-          extends:    'OpenFormWindowMethod',
+          extends:    `OpenFormWindowMethod<I${classify(options.name!)}Form>`,
           decorators: [
             {
               name:      'Injectable',
@@ -100,10 +104,70 @@ export class WindowFooterControlsElement extends FormFeatureElement {
             moduleSpecifier: `./${dasherize(options.name!)}.form`
           },
           {
-            namedImports:    [ 'Inject', 'Optional', 'Injectable', 'INJECTOR', 'Injector' ],
+            namedImports:    [ 'Inject', 'Optional', 'Injectable', 'INJECTOR', 'Injector', 'NgModule' ],
             moduleSpecifier: '@angular/core'
+          },
+          {
+            namedImports:    [ 'MethodDirective' ],
+            moduleSpecifier: '@mfd/shared/method.directive'
           }
         ]);
+        sourceFile.addClass({
+          name:       `Open${classify(options.name!)}FormWindowMethodDirective`,
+          isExported: true,
+          extends:    `MethodDirective<I${classify(options.name!)}Form, Partial<I${classify(options.name!)}Form>>`,
+          properties: [
+            {
+              name:             'parameters',
+              hasQuestionToken: true,
+              type:             `Partial<I${classify(options.name!)}Form>`,
+              decorators:       [
+                {
+                  name:      'Input',
+                  arguments: [ w => w.quote('initial') ]
+                }
+              ]
+            }
+          ],
+          ctors:      [
+            {
+              parameters: [
+                {
+                  name:       'method',
+                  isReadonly: true,
+                  scope:      Scope.Public,
+                  type:       'OpenDataTriggerCreateFormWindowMethod'
+                }
+              ],
+              statements: [ 'super();' ]
+            }
+          ],
+          decorators: [
+            {
+              name:      'Directive',
+              arguments: [
+                Writers.object({
+                  selector: w => w.quote(`[mfdOpen${classify(options.name!)}FormWindow]`)
+                })
+              ]
+            }
+          ]
+        });
+        sourceFile.addClass({
+          name:       `Open${classify(options.name!)}FormWindowMethodDirectiveModule`,
+          isExported: true,
+          decorators: [
+            {
+              name:      'NgModule',
+              arguments: [
+                Writers.object({
+                  exports:      `[Open${classify(options.name!)}WindowMethodDirective]`,
+                  declarations: `[Open${classify(options.name!)}FormWindowMethodDirective]`
+                })
+              ]
+            }
+          ]
+        });
       }
 
     };
