@@ -183,8 +183,12 @@ export class DataSourceElement implements ParsedElement<Array<string | WriterFun
 
       if (transformerFunction.length > 1) {
         args.push(Writers.object({
-          transformer: '[' + transformerFunction.join(', ') + ']'
+          transformer: 'ComposeOptionsTransformers(' + transformerFunction.join(', ') + ')'
         }));
+        sourceFile.addImportDeclaration({
+          namedImports:    [ 'ComposeOptionsTransformers' ],
+          moduleSpecifier: '@rxap/form-system'
+        });
       } else {
         args.push(Writers.object({
           transformer: transformerFunction[ 0 ]
