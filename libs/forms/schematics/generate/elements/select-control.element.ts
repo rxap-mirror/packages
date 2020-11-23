@@ -312,15 +312,6 @@ export class ToOptionsFromObjectElement extends DataSourceTransformerElement {
 @ElementDef('open-api-data-source')
 export class OpenApiDataSourceElement extends DataSourceElement {
 
-  public __tag!: string;
-  public __parent!: SelectOptionsElement;
-
-  @ElementChildTextContent()
-  public id!: string;
-
-  @ElementChildren(DataSourceTransformerElement, { group: 'transformers' })
-  public transformers!: DataSourceTransformerElement[];
-
   public postParse() {
     this.name = classify(this.id) + 'DataSource';
   }
@@ -339,19 +330,6 @@ export class OpenApiDataSourceElement extends DataSourceElement {
 @ElementExtends(DataSourceElement)
 @ElementDef('form-data-source')
 export class FormDataSourceElement extends DataSourceElement {
-
-  public __tag!: string;
-  public __parent!: SelectOptionsElement;
-
-  @ElementChildTextContent()
-  public id!: string;
-
-  @ElementChildren(DataSourceTransformerElement)
-  public transformers!: DataSourceTransformerElement[];
-
-  public validate(): boolean {
-    return true;
-  }
 
   public toValue({ sourceFile, project }: ToValueContext & { sourceFile: SourceFile }): Array<string | WriterFunction> {
     return [];
