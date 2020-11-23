@@ -344,7 +344,6 @@ export class FormDataSourceElement extends DataSourceElement {
   public __parent!: SelectOptionsElement;
 
   @ElementChildTextContent()
-  @ElementRequired()
   public id!: string;
 
   @ElementChildren(DataSourceTransformerElement)

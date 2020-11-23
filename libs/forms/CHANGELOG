@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.11.5]
+### Fixed
+- support for custom data source
+
 ## [0.11.4]
 ### Fixed
 - support for custom data source
