@@ -97,9 +97,17 @@ export class DataSourceElement implements ParsedElement<Array<string | WriterFun
   public __tag!: string;
   public __parent!: SelectOptionsElement;
 
-  @ElementTextContent()
-  @ElementRequired()
+  @ElementChildTextContent()
+  public name!: string;
+
+  // TODO : remove the id property
   public id!: string;
+
+  @ElementChildTextContent()
+  public from!: string;
+
+  @ElementChildren(DataSourceTransformerElement, { group: 'transformers' })
+  public transformers!: DataSourceTransformerElement[];
 
   public validate(): boolean {
     return true;
@@ -107,55 +115,34 @@ export class DataSourceElement implements ParsedElement<Array<string | WriterFun
 
   public toValue({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }): Array<string | WriterFunction> {
 
-    const dataSourceName = classify(this.id) + 'OptionsDataSource';
-
-    OptionsProviderExport(project, this.id, options.overwrite);
-
     sourceFile.addImportDeclaration({
-      moduleSpecifier: `./data-sources/${dasherize(this.id)}.options.data-source`,
-      namedImports:    [ dataSourceName ]
+      moduleSpecifier: this.from,
+      namedImports:    [ this.name ]
     });
 
-    const dataSourceFilePath = `data-sources/${dasherize(this.id)}.options.data-source`;
+    const args: Array<string | WriterFunction> = [ this.name ];
 
-    if (!project.getSourceFile(`${dataSourceFilePath}.ts`)) {
+    if (this.transformers?.length) {
 
-      const dataSourceSourceFile = project.createSourceFile(`${dataSourceFilePath}.ts`);
+      const transformerFunction: string[] = [];
 
-      dataSourceSourceFile.addClass({
-        name:       dataSourceName,
-        isExported: true,
-        decorators: [
-          {
-            name:      'RxapDataSource',
-            arguments: [ writer => writer.quote(dasherize(this.id)) ]
-          },
-          {
-            name:      'Injectable',
-            arguments: []
-          }
-        ],
-        extends:    'BaseDataSource<ControlOptions>'
-      });
+      for (const transformer of this.transformers) {
+        transformerFunction.push(transformer.toValue({ project, sourceFile, options }));
+      }
 
-      dataSourceSourceFile.addImportDeclarations([
-        {
-          moduleSpecifier: '@angular/core',
-          namedImports:    [ 'Injectable' ]
-        },
-        {
-          moduleSpecifier: '@rxap/data-source',
-          namedImports:    [ 'RxapDataSource', 'BaseDataSource' ]
-        },
-        {
-          moduleSpecifier: '@rxap/utilities',
-          namedImports:    [ 'ControlOptions' ]
-        }
-      ]);
+      if (transformerFunction.length > 1) {
+        args.push(Writers.object({
+          transformer: '[' + transformerFunction.join(', ') + ']'
+        }));
+      } else {
+        args.push(Writers.object({
+          transformer: transformerFunction[ 0 ]
+        }));
+      }
 
     }
 
-    return [ dataSourceName ];
+    return args;
 
   }
 
@@ -272,7 +259,7 @@ export class ToOptionsFromObjectElement extends DataSourceTransformerElement {
 
 @ElementExtends(DataSourceElement)
 @ElementDef('open-api-data-source')
-export class OpenApiDataSourceElement implements DataSourceElement {
+export class OpenApiDataSourceElement extends DataSourceElement {
 
   public __tag!: string;
   public __parent!: SelectOptionsElement;
@@ -284,50 +271,24 @@ export class OpenApiDataSourceElement implements DataSourceElement {
   @ElementChildren(DataSourceTransformerElement, { group: 'transformers' })
   public transformers!: DataSourceTransformerElement[];
 
+  public postParse() {
+    this.name = classify(this.id) + 'DataSource';
+  }
+
   public validate(): boolean {
     return true;
   }
 
-  public toValue({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }): Array<string | WriterFunction> {
-
-    const dataSourceName = classify(this.id) + 'DataSource';
-
-    sourceFile.addImportDeclaration({
-      moduleSpecifier: `${options.openApiModule}/data-sources/${dasherize(this.id)}.data-source`,
-      namedImports:    [ dataSourceName ]
-    });
-
-    const args: Array<string | WriterFunction> = [ dataSourceName ];
-
-    if (this.transformers?.length) {
-
-      const transformerFunction: string[] = [];
-
-      for (const transformer of this.transformers) {
-        transformerFunction.push(transformer.toValue({ project, sourceFile, options }));
-      }
-
-      if (transformerFunction.length > 1) {
-        args.push(Writers.object({
-          transformer: '[' + transformerFunction.join(', ') + ']'
-        }));
-      } else {
-        args.push(Writers.object({
-          transformer: transformerFunction[ 0 ]
-        }));
-      }
-
-    }
-
-    return args;
-
+  public toValue({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }): Array<string | WriterFunction> {
+    this.from = `${options.openApiModule}/data-sources/${dasherize(this.id)}.data-source`;
+    return super.toValue({ sourceFile, project, options });
   }
 
 }
 
 @ElementExtends(DataSourceElement)
 @ElementDef('form-data-source')
-export class FormDataSourceElement implements DataSourceElement {
+export class FormDataSourceElement extends DataSourceElement {
 
   public __tag!: string;
   public __parent!: SelectOptionsElement;

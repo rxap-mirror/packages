@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.2]
+### Fixed
+- support for custom data source
+
+## [0.11.1]
+### Fixed
+- support for custom data source
+
 ## [0.11.0]
 ### Added
 - support for set value initial
