@@ -17,7 +17,10 @@ import {
   HandleComponent
 } from '@rxap-schematics/utilities';
 import { SourceFile } from 'ts-morph';
-import { Rule } from '@angular-devkit/schematics';
+import {
+  Rule,
+  chain
+} from '@angular-devkit/schematics';
 
 @ElementDef('tab')
 export class TabElement implements NodeElement {
@@ -37,7 +40,9 @@ export class TabElement implements NodeElement {
   }
 
   public template(): string {
-    return NodeFactory('mat-tab', `label="${this.label}"`)([ ...this.nodes, '\n' ]);
+    return NodeFactory('mat-tab', `label="${this.label}"`)(NodeFactory(
+      'ng-template', 'matTabContent'
+    )([ ...this.nodes, '\n' ]));
   }
 
   public validate(): boolean {
@@ -45,14 +50,16 @@ export class TabElement implements NodeElement {
   }
 
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
+    this.nodes.forEach(node => node.handleComponent({ project, options, sourceFile }));
   }
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
     AddNgModuleImport(sourceFile, 'MatTabsModule', '@angular/material/tabs');
+    this.nodes.forEach(node => node.handleComponentModule({ project, options, sourceFile }));
   }
 
   public toValue({ project, options }: ToValueContext): Rule {
-    return () => {};
+    return chain(this.nodes.map(node => node.toValue({ project, options })));
   }
 
 }
@@ -82,14 +89,16 @@ export class TabGroupElement implements WithTemplate, ParsedElement<Rule>, Handl
   }
 
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
+    this.tabs.forEach(tab => tab.handleComponent({ project, options, sourceFile }));
   }
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
     AddNgModuleImport(sourceFile, 'MatTabsModule', '@angular/material/tabs');
+    this.tabs.forEach(tab => tab.handleComponentModule({ project, sourceFile, options }));
   }
 
   public toValue({ project, options }: ToValueContext): Rule {
-    return () => {};
+    return chain(this.tabs.map(tab => tab.toValue({ project, options })));
   }
 
 }
