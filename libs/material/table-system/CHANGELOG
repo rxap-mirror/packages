@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.8.2]
+### Added
+- fix FilterService instance leaking
+
 ## [0.8.1]
 ### Added
 - overwrite support
