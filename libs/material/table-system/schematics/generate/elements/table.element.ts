@@ -298,6 +298,18 @@ export class TableElement implements ParsedElement<Rule> {
         ],
         options.overwrite
       );
+      // TODO : move TableFilterService to rxap
+      AddComponentProvider(
+        sourceFile,
+        'TableFilterService',
+        [
+          {
+            namedImports:    [ 'TableFilterService' ],
+            moduleSpecifier: '@mfd/shared/table-filter/table-filter.service'
+          }
+        ],
+        options.overwrite
+      );
     }
 
     if (this.adapter) {
