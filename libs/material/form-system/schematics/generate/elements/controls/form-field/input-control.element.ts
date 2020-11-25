@@ -31,7 +31,7 @@ export class InputControlElement extends FormFieldElement {
       `type="${this.type}"`,
       `placeholder="Enter ${camelize(this.name)}"`,
       'rxapRequired',
-      `i18n-placeholder="@@forms.${this.controlPath}.placeholder"`,
+      `i18n-placeholder="@@form.${this.controlPath}.placeholder"`,
       ...this.attributes
     ];
 

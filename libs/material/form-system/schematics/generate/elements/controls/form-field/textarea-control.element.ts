@@ -27,7 +27,7 @@ export class TextareaControlElement extends FormFieldElement {
       `formControlName="${this.name}"`,
       'rxapRequired',
       `placeholder="Enter ${camelize(this.name)}"`,
-      `i18n-placeholder="@@forms.${this.controlPath}.placeholder"`
+      `i18n-placeholder="@@form.${this.controlPath}.placeholder"`
     )('\n');
   }
 

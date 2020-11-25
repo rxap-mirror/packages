@@ -56,7 +56,7 @@ export class CardElement implements WithTemplate, ParsedElement<Rule>, HandleCom
     const nodes: Array<string | WithTemplate> = [];
 
     if (this.title) {
-      nodes.push(NodeFactory('mat-card-title', `i18n="@@forms.${this.controlPath}.card.title"`)(this.title));
+      nodes.push(NodeFactory('mat-card-title', `i18n="@@form.${this.controlPath}.card.title"`)(this.title));
     }
 
     nodes.push(this.content);
