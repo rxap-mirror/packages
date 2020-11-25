@@ -9,11 +9,13 @@ import {
 } from '@rxap-schematics/utilities';
 import { ElementDef } from '@rxap/xml-parser/decorators';
 import { SourceFile } from 'ts-morph';
+import { ControlElement } from '../control.element';
 
 @ElementDef('control-feature')
 export class ControlFeatureElement implements ParsedElement<Rule>, HandleComponent, HandleComponentModule, WithTemplate {
 
   public __tag!: string;
+  public __parent!: ControlElement;
 
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
   }
