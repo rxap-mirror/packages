@@ -32,7 +32,7 @@ export class InputControlElement extends FormFieldElement {
       `placeholder="Enter ${camelize(this.name)}"`,
       'rxapRequired',
       `i18n-placeholder="@@form.${this.controlPath}.placeholder"`,
-      ...this.attributes
+      ...this.innerAttributes
     ];
 
     if (!this.standalone) {

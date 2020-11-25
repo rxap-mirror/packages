@@ -30,7 +30,8 @@ export class SelectControlElement extends FormFieldElement {
   protected innerTemplate(): string {
     const attributes: Array<string | (() => string)> = [
       'rxapRequired',
-      `formControlName="${this.name}"`
+      `formControlName="${this.name}"`,
+      ...this.innerAttributes
     ];
     if (this.compareWith) {
       attributes.push(`rxapCompareWith="${this.compareWith}"`);

@@ -36,6 +36,8 @@ export abstract class FormFieldElement extends ControlElement {
   @ElementChild(ErrorsElement)
   public errors?: ErrorsElement;
 
+  public innerAttributes: Array<string | (() => string)> = [];
+
   public template(...attributes: Array<string | (() => string)>): string {
     const nodes: Array<WithTemplate | string> = [
       NodeFactory('mat-label', `i18n="@@form.${this.controlPath}.label"`)('\n' + (this.label ?? capitalize(this.name)) + '\n'),

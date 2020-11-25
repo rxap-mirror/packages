@@ -71,7 +71,7 @@ export class PasswordControlElement extends ControlElement {
       type:       'password',
       errors:     this.errors,
       name:       this.name,
-      attributes: [
+      innerAttributes: [
         `#${camelize(this.name)}Input`,
         `[rxapIsEqualTo]="${camelize(this.name)}ValidateInput.value"`
       ],
@@ -85,7 +85,7 @@ export class PasswordControlElement extends ControlElement {
       type:       'password',
       name:       this.name + '-repeat',
       standalone: true,
-      attributes: [
+      innerAttributes: [
         `#${camelize(this.name)}ValidateInput`
       ],
       prefix:     new PasswordPrefixElement(`${camelize(this.name)}ValidateInput`),
