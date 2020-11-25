@@ -27,7 +27,7 @@ export class CheckboxControlElement extends ControlElement {
       'mat-checkbox',
       this.flexTemplateAttribute,
       `formControlName="${this.name}"`,
-      `i18n="@@forms.${this.controlPath}.label"`
+      `i18n="@@form.${this.controlPath}.label"`
     )('\n' + (this.label ?? capitalize(this.name)) + '\n');
   }
 
