@@ -6,9 +6,12 @@ export interface Method<ReturnType = any, Parameter = any> {
   executionsInProgress$?: CounterSubject;
   metadata?: any;
 
-  call(parameters?: Parameter): Promise<ReturnType> | ReturnType;
+  call(parameters?: Parameter, ...args: any[]): Promise<ReturnType> | ReturnType;
 }
 
-export function ToMethod<ReturnType = any, Parameter = any>(call: ((parameters?: Parameter) => Promise<ReturnType> | ReturnType)): Method<ReturnType, Parameter> {
+export function ToMethod<ReturnType = any, Parameter = any>(call: ((
+  parameters?: Parameter,
+  ...args: any[]
+) => Promise<ReturnType> | ReturnType)): Method<ReturnType, Parameter> {
   return { call };
 }
