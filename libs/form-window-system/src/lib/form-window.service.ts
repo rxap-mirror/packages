@@ -19,7 +19,8 @@ import {
   FormSubmitMethod,
   RXAP_FORM_SUBMIT_METHOD,
   RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
-  FormSubmitSuccessfulMethod
+  FormSubmitSuccessfulMethod,
+  RXAP_FORM_LOAD_METHOD
 } from '@rxap/forms';
 import {
   Constructor,
@@ -33,6 +34,9 @@ export interface FormWindowOptions<FormData, D = any, T = any> extends WindowCon
   initial?: FormData;
   submitMethod?: FormSubmitMethod<FormData>;
   submitSuccessfulMethod?: FormSubmitSuccessfulMethod;
+  providers?: StaticProvider[];
+  resetLoad?: boolean;
+  resetSubmit?: boolean;
 }
 
 @Injectable({
@@ -66,6 +70,7 @@ export class FormWindowService {
         useFactory: this.createFormDefinitionInstance.bind(this),
         deps:       [ RXAP_FORM_DEFINITION_BUILDER, [ new Optional(), RXAP_FORM_INITIAL_STATE ] ]
       },
+      ...(options?.providers ?? [])
     ];
 
     if (options) {
@@ -77,14 +82,26 @@ export class FormWindowService {
       }
       if (options.submitMethod) {
         providers.push({
-          provide: RXAP_FORM_SUBMIT_METHOD,
-          useValue: options.submitMethod,
+          provide:  RXAP_FORM_SUBMIT_METHOD,
+          useValue: options.submitMethod
         });
       }
       if (options.submitSuccessfulMethod) {
         providers.push({
           provide:  RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
           useValue: options.submitSuccessfulMethod
+        });
+      }
+      if (options.resetSubmit) {
+        providers.push({
+          provide:  RXAP_FORM_SUBMIT_METHOD,
+          useValue: null
+        });
+      }
+      if (options.resetLoad) {
+        providers.push({
+          provide:  RXAP_FORM_LOAD_METHOD,
+          useValue: null
         });
       }
     }

@@ -40,12 +40,13 @@ export class OpenFormWindowMethod<FormData = Record<string, any>> implements Met
     private readonly defaultOptions: FormWindowOptions<FormData> | null = null
   ) {}
 
-  public call(initial?: Record<string, any>): Promise<FormData> {
+  public call(initial?: Record<string, any>, options?: Partial<FormWindowOptions<FormData>>): Promise<FormData> {
     const formWindowRef = this.formWindowService.open(
       this.formDefinitionConstructor,
       {
         ...(this.defaultOptions ?? {}),
         injector:  this.injector,
+        ...(options ?? {}),
         initial:   initial ?? this.defaultOptions?.initial ?? {},
         component: this.formComponent ?? this.defaultOptions?.component ?? undefined
       }
