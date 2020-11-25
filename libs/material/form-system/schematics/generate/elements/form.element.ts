@@ -48,6 +48,9 @@ export class FormElement extends GroupElement {
   @ElementChild(LoadHandleMethod)
   public load?: LoadHandleMethod;
 
+  @ElementChildTextContent()
+  public title?: string;
+
   public template(): string {
     return NodeFactory('form', 'rxapForm')(
       [
