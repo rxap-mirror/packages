@@ -5,7 +5,8 @@ import {
 import {
   NodeFactory,
   ToValueContext,
-  AddNgModuleImport
+  AddNgModuleImport,
+  AddComponentProvider
 } from '@rxap-schematics/utilities';
 import {
   SourceFile,
@@ -32,6 +33,42 @@ export class WindowFooterControlsElement extends FormFeatureElement {
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, 'FormWindowFooterDirectiveModule', '@rxap/form-window-system');
     AddNgModuleImport(sourceFile, 'FormControlsComponentModule', '@rxap-material/form-system');
+  }
+
+
+  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+    super.handleComponent({ project, sourceFile, options });
+    if (this.__parent.title) {
+      if (!sourceFile.getFunction('WindowOptionsFactory')) {
+        sourceFile.addFunction({
+          name:       'WindowOptionsFactory',
+          isExported: true,
+          statements: [
+            w => {
+              w.write('return ');
+              Writers.object({
+                title: `$localize\`:@@form.${dasherize(this.__parent.name)}.window.title:${this.__parent.title}\``
+              })(w);
+              w.write(';');
+            }
+          ]
+        });
+      }
+      AddComponentProvider(
+        sourceFile,
+        {
+          provide:    'RXAP_WINDOW_SETTINGS',
+          useFactory: 'WindowOptionsFactory',
+          deps:       []
+        },
+        [
+          {
+            namedImports:    [ 'RXAP_WINDOW_SETTINGS' ],
+            moduleSpecifier: '@rxap/window-system'
+          }
+        ]
+      );
+    }
   }
 
   public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
