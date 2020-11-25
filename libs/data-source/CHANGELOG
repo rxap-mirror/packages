@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.1]
+### Fixed
+- create viewer if from viewer object ref
+
 ## [0.4.0]
 ### Added
 - support for dynamic

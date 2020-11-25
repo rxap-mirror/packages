@@ -12,10 +12,10 @@ import {
 import {
   deepMerge,
   Constructor,
-  clone
+  clone,
+  uuid
 } from '@rxap/utilities';
 import {
-  first,
   takeUntil,
   finalize,
   tap,
@@ -51,6 +51,13 @@ export class BaseDataSource<Data = any,
 
   protected _data?: Data;
 
+  /**
+   * a map of viewer to view id.
+   * Allows to create a view id from the viewer object reference
+   * @protected
+   */
+  protected _viewerIds = new Map<Viewer, string>();
+
   public readonly change$ = new Subject<Data>();
 
   /**
@@ -63,7 +70,13 @@ export class BaseDataSource<Data = any,
   }
 
   public getViewerId(viewer: Viewer): string {
-    return 'static';
+    if (viewer.id) {
+      return viewer.id;
+    }
+    if (!this._viewerIds.has(viewer)) {
+      this._viewerIds.set(viewer, uuid());
+    }
+    return this._viewerIds.get(viewer)!;
   }
 
   public connect(viewer: Viewer): Observable<Data> {
@@ -142,6 +155,16 @@ export class BaseDataSource<Data = any,
       }
     } else {
       console.warn(`Connection with viewer id '${viewerId}' is not connected to the data source '${this.id}'`);
+    }
+    // TODO : find better cleanup solution
+    if (typeof viewerOrId === 'string') {
+      for (const [ viewer, id ] of this._viewerIds.entries()) {
+        if (viewerOrId === id) {
+          this._viewerIds.delete(viewer);
+        }
+      }
+    } else {
+      this._viewerIds.delete(viewerOrId);
     }
   }
 
