@@ -115,7 +115,7 @@ export class WindowFormElement implements ParsedElement {
           {
             provide:  'RXAP_WINDOW_SETTINGS',
             useValue: Writers.object({
-              title: `$localize\`:@@forms.${dasherize(this.name!)}.window.title:${this.title}\``
+              title: `$localize\`:@@form.${dasherize(this.name!)}.window.title:${this.title}\``
             })
           },
           [
