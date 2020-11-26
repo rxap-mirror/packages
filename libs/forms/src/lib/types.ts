@@ -29,6 +29,7 @@ export interface ControlOptions {
   emitEvent?: boolean;
   emitModelToViewChange?: boolean;
   emitViewToModelChange?: boolean;
+  initial?: boolean;
 }
 
 export type ControlEventOptions = Pick<ControlOptions, 'emitEvent' | 'onlySelf'>;
