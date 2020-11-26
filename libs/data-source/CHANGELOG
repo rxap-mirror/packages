@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.2]
+### Added
+- fix viewer is issue
+
 ## [0.5.1]
 ### Added
 - add support for static array
