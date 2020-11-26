@@ -153,7 +153,7 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
         const controlSetValueOnInit = Array.from(this.controlSetValue.get(control.controlId) ?? [])
                                            .filter(controlSetValueOptions => controlSetValueOptions.initial);
         for (const onSetValue of this.coerceToFnArray<SetValueFn>(form, controlSetValueOnInit)) {
-          onSetValue(control.value);
+          onSetValue(control.value, { initial: true });
         }
       }
     }
