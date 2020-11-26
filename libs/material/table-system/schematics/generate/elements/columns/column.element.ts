@@ -98,7 +98,7 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
   public templateFilter(): string {
     return `
     <th mat-header-cell *matHeaderCellDef>
-      <mat-form-field>
+      <mat-form-field rxapNoPadding>
         <mat-label i18n="${this.i18nLabel}">${capitalize(this.name)}</mat-label>
         <input matInput i18n-placeholder="${this.i18nPlaceholder}"
                placeholder="Enter the ${capitalize(this.name)} filter"
@@ -130,6 +130,7 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
       AddNgModuleImport(sourceFile, 'MatInputModule', '@angular/material/input');
       AddNgModuleImport(sourceFile, 'MatButtonModule', '@angular/material/button');
       AddNgModuleImport(sourceFile, 'InputClearButtonDirectiveModule', '@rxap-material/form-system');
+      AddNgModuleImport(sourceFile, 'FormFieldNoPaddingModule', '@rxap/directives/form-field-no-padding');
     }
 
   }
