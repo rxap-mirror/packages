@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.12.0]
+### Fixed
+- add is number validator support
+
 ## [0.11.8]
 ### Fixed
 - extend initial tracking
