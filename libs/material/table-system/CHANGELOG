@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.8.4]
+### Added
+- fix column filter height
+
 ## [0.8.3]
 ### Added
 - fix table settings

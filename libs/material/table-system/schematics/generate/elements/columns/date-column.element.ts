@@ -34,7 +34,7 @@ export class DateColumnElement extends ColumnElement {
   public templateFilter(): string {
     return `
     <th mat-header-cell *matHeaderCellDef>
-      <mat-form-field>
+      <mat-form-field rxapNoPadding>
         <mat-label i18n="${this.i18nLabel}">${capitalize(this.name)}</mat-label>
         <input matInput [matDatepicker]="picker" parentControlContainer formControlName="${camelize(this.name)}">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -49,6 +49,7 @@ export class DateColumnElement extends ColumnElement {
 
     if (this.filter) {
       AddNgModuleImport(sourceFile, 'MatDatepickerModule', '@angular/material/datepicker');
+      AddNgModuleImport(sourceFile, 'FormFieldNoPaddingModule', '@rxap/directives/form-field-no-padding');
     }
     // TODO : mv DateCellComponentModule to rxap
     AddNgModuleImport(sourceFile, 'DateCellComponentModule', '@mfd/shared/date-cell/date-cell.component.module');

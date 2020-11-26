@@ -1,7 +1,6 @@
 import {
   NgModule,
   Directive,
-  Input,
   Inject,
   HostListener,
   HostBinding
@@ -18,6 +17,9 @@ export class InputClearButtonDirective {
 
   @HostBinding('attr.type')
   public type = 'button';
+
+  @HostBinding('attr.tabindex')
+  public tabIndex = '-1';
 
   constructor(
     @Inject(MAT_FORM_FIELD)
