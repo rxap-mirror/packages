@@ -10,6 +10,7 @@ import { MinLengthElement } from './min-length.element';
 import { MaxLengthElement } from './max-length.element';
 import { RequiredElement } from './required.element';
 import { RequiredTrueElement } from './required-true.element';
+import { IsNumberElement } from './is-number.element';
 
 export const ValidatorElements: Array<Constructor<ParsedElement>> = [
   MaxElement,
@@ -21,5 +22,6 @@ export const ValidatorElements: Array<Constructor<ParsedElement>> = [
   MaxLengthElement,
   MinLengthElement,
   RequiredElement,
-  RequiredTrueElement
+  RequiredTrueElement,
+  IsNumberElement
 ];

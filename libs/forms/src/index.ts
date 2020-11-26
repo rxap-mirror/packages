@@ -42,3 +42,9 @@ export * from './lib/directives/form-control-name.directive';
 export * from './lib/directives/form-group-name.directive';
 
 // endregion
+
+// region validators
+
+export * from './lib/validators/is-number';
+
+// endregion
