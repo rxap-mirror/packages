@@ -39,7 +39,7 @@ export class DataSourceDirective<Data = any> implements OnDestroy, OnChanges {
   public dataSourceOrIdOrToken!: IdOrInstanceOrToken<BaseDataSource<Data>>;
 
   @Input('rxapDataSourceViewer')
-  public viewer: BaseDataSourceViewer = { id: '[rxapDataSource]' };
+  public viewer!: BaseDataSourceViewer;
 
   public dataSource: BaseDataSource<Data> | null = null;
 
@@ -53,7 +53,9 @@ export class DataSourceDirective<Data = any> implements OnDestroy, OnChanges {
     private readonly viewContainerRef: ViewContainerRef,
     private readonly injector: Injector,
     private readonly cdr: ChangeDetectorRef
-  ) {}
+  ) {
+    this.viewer = this;
+  }
 
   public ngOnChanges(changes: SimpleChanges) {
     const dataSourceOrIdOrTokenChange = changes.dataSourceOrIdOrToken;
@@ -66,7 +68,7 @@ export class DataSourceDirective<Data = any> implements OnDestroy, OnChanges {
   protected loadDataSource(): BaseDataSource<Data> | null {
     let dataSource: BaseDataSource | null = null;
     if (typeof this.dataSourceOrIdOrToken === 'string') {
-      dataSource = this.dataSourceLoader.load<BaseDataSource<Data>>(this.dataSourceOrIdOrToken);
+      dataSource = this.dataSourceLoader.load<BaseDataSource<Data>>(this.dataSourceOrIdOrToken, undefined, this.injector);
     } else if (this.dataSourceOrIdOrToken instanceof BaseDataSource) {
       dataSource = this.dataSourceOrIdOrToken;
     } else if (this.dataSourceOrIdOrToken !== null) {
@@ -92,7 +94,7 @@ export class DataSourceDirective<Data = any> implements OnDestroy, OnChanges {
       $implicit:   response,
       connection$: this.connection$
     });
-    this.cdr.markForCheck();
+    this.cdr.detectChanges();
   }
 
   public ngOnDestroy(): void {
