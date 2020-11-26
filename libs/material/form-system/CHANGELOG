@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.13.18]
+### Fixed
+- disable tabindex
+
 ## [0.13.17]
 ### Fixed
 - fix attribute management
