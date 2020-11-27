@@ -6,7 +6,8 @@ import {
   ViewContainerRef,
   ViewChild,
   AfterViewInit,
-  ComponentRef
+  ComponentRef,
+  isDevMode
 } from '@angular/core';
 import {
   RXAP_WINDOW_CONTAINER_CONTEXT,
@@ -20,6 +21,18 @@ import {
   CdkPortalOutlet
 } from '@angular/cdk/portal';
 import type { WindowRef } from '../window-ref';
+import {
+  startWith,
+  take,
+  tap,
+  timeout,
+  catchError
+} from 'rxjs/operators';
+import { isDefined } from '@rxap/utilities';
+import {
+  TimeoutError,
+  throwError
+} from 'rxjs';
 
 @Component({
   selector:        'rxap-window-content',
@@ -53,14 +66,28 @@ export class WindowContentComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit() {
-    const attachedRef = this.portalOutlet.attachedRef;
-    if (!attachedRef) {
-      throw new Error('The portal outlet has not an attached ref after the view is init');
-    }
-    if (attachedRef instanceof ComponentRef) {
-      attachedRef.changeDetectorRef.detectChanges();
-    }
-    this.windowRef.setAttachedRef(attachedRef);
+    this.portalOutlet.attached.pipe(
+      startWith(this.portalOutlet.attachedRef),
+      isDefined(),
+      take(1),
+      tap(attachedRef => {
+        if (attachedRef instanceof ComponentRef) {
+          attachedRef.changeDetectorRef.detectChanges();
+        }
+        this.windowRef.setAttachedRef(attachedRef);
+      }),
+      timeout(10000),
+      catchError(error => {
+
+        if (error instanceof TimeoutError) {
+          if (isDevMode()) {
+            console.warn('The window content never resolved the attached ref');
+          }
+        }
+
+        return throwError(error);
+      })
+    ).subscribe();
   }
 
 }
