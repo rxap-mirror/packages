@@ -1,6 +1,7 @@
 import {
   ControlElement,
-  ControlElementToValueContext
+  ControlElementToValueContext,
+  ControlTypeElement
 } from './control.element';
 import {
   ElementDef,
@@ -14,7 +15,10 @@ import {
   ElementAttribute
 } from '@rxap/xml-parser/decorators';
 import { OptionsElement } from '@rxap/xml-parser/elements';
-import { ParsedElement } from '@rxap/xml-parser';
+import {
+  ParsedElement,
+  ElementFactory
+} from '@rxap/xml-parser';
 import {
   WriterFunction,
   Writers,
@@ -436,6 +440,22 @@ export class SelectControlElement extends ControlElement {
   @ElementChild(SelectOptionsElement)
   @ElementRequired()
   public options!: SelectOptionsElement;
+
+  @ElementAttribute()
+  public multiple?: boolean;
+
+  public postParse() {
+    if (!this.type) {
+      if (this.multiple) {
+        this.type = ElementFactory(ControlTypeElement, { name: 'any[]' });
+      }
+    }
+    if (!this.initial) {
+      if (this.multiple) {
+        this.initial = '[]';
+      }
+    }
+  }
 
   public toValue({ classDeclaration, sourceFile, project, options }: ControlElementToValueContext): PropertyDeclaration {
     const controlProperty = super.toValue({ classDeclaration, sourceFile, project, options });

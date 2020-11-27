@@ -4,7 +4,8 @@ import {
   ElementAttribute,
   ElementRequired,
   ElementChildTextContent,
-  ElementChildren
+  ElementChildren,
+  ElementChild
 } from '@rxap/xml-parser/decorators';
 import {
   PropertyDeclaration,
@@ -28,6 +29,28 @@ const { dasherize, classify, camelize } = strings;
 export interface ControlElementToValueContext extends ToValueContext<GenerateSchema> {
   classDeclaration: ClassDeclaration;
   sourceFile: SourceFile;
+}
+
+@ElementDef('type')
+export class ControlTypeElement implements ParsedElement {
+
+  @ElementChildTextContent()
+  @ElementRequired()
+  public name!: string;
+
+  @ElementChildTextContent()
+  public from?: string;
+
+  public toValue({ classDeclaration, sourceFile, options, project }: ControlElementToValueContext): string {
+    if (this.from) {
+      sourceFile.addImportDeclaration({
+        namedImports:    [ this.name ],
+        moduleSpecifier: this.from
+      });
+    }
+    return this.name;
+  }
+
 }
 
 @ElementDef('control')
@@ -56,15 +79,14 @@ export class ControlElement implements ParsedElement<PropertyDeclaration> {
   @ElementAttribute()
   public hidden!: boolean;
 
+  @ElementChild(ControlTypeElement)
+  public type?: ControlTypeElement;
+
   @ElementChildren(ValidatorElement, { group: 'validators' })
   public validators!: ValidatorElement[];
 
   public validate(): boolean {
     return true;
-  }
-
-  public getType(): string {
-    return 'any';
   }
 
   public toValue({ classDeclaration, sourceFile, options, project }: ControlElementToValueContext): PropertyDeclaration {
@@ -87,7 +109,7 @@ export class ControlElement implements ParsedElement<PropertyDeclaration> {
       });
     }
 
-    controlProperty.setType(`RxapFormControl<${this.getType()}>`);
+    controlProperty.setType(`RxapFormControl<${this.type?.toValue({ classDeclaration, sourceFile, options, project }) ?? 'any'}>`);
 
     const decorators = controlProperty.getDecorators();
 
