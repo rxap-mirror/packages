@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.14.0]
+### Fixed
+- add support for custom table and form support
+
 ## [0.13.18]
 ### Fixed
 - disable tabindex
