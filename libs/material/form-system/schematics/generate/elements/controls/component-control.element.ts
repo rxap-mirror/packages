@@ -42,11 +42,11 @@ export class ComponentControlElement extends ControlElement {
   @ElementChildTextContent()
   public from!: string;
 
-  private _createComponent = false;
+  public createComponent = false;
 
   public postParse() {
     if (!this.componentName) {
-      this._createComponent    = true;
+      this.createComponent     = true;
       this.componentName       = classify(this.name);
       this.selector            = `rxap-${dasherize(this.name)}-control`;
       this.from                = `./${dasherize(this.name)}-control/${dasherize(this.name)}-control.component.module`;
@@ -81,17 +81,17 @@ export class ComponentControlElement extends ControlElement {
     const rules: Rule[] = [
       super.toValue({ project, options })
     ];
-    if (this._createComponent) {
+    if (this.createComponent) {
       rules.push(tree => {
 
         const componentModulePath = join(options.path ?? '', this.from + '.ts');
         if (!tree.exists(componentModulePath)) {
           return chain([
-              externalSchematic(
-                '@rxap/schematics',
-                'component-module',
-                {
-                  name:     dasherize(this.name) + '-control',
+            externalSchematic(
+              '@rxap/schematics',
+              'component-module',
+              {
+                name:       dasherize(this.name) + '-control',
                   path:     options.path?.replace(/^\//, ''),
                   selector: this.selector,
                   project:  options.project
