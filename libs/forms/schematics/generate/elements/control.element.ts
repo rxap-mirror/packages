@@ -41,7 +41,7 @@ export class ControlTypeElement implements ParsedElement {
   @ElementChildTextContent()
   public from?: string;
 
-  public toValue({ classDeclaration, sourceFile, options, project }: ControlElementToValueContext): string {
+  public toValue({ sourceFile }: { sourceFile: SourceFile }): string {
     if (this.from) {
       sourceFile.addImportDeclaration({
         namedImports:    [ this.name ],
@@ -109,7 +109,7 @@ export class ControlElement implements ParsedElement<PropertyDeclaration> {
       });
     }
 
-    controlProperty.setType(`RxapFormControl<${this.type?.toValue({ classDeclaration, sourceFile, options, project }) ?? 'any'}>`);
+    controlProperty.setType(`RxapFormControl<${this.type?.toValue({ sourceFile }) ?? 'any'}>`);
 
     const decorators = controlProperty.getDecorators();
 
