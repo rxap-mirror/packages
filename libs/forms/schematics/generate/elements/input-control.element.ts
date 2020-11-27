@@ -1,4 +1,7 @@
-import { ControlElement } from './control.element';
+import {
+  ControlElement,
+  ControlTypeElement
+} from './control.element';
 import {
   ElementDef,
   ElementAttribute,
@@ -12,33 +15,32 @@ import { IsNumberElement } from './validators/is-number.element';
 @ElementDef('input-control')
 export class InputControlElement extends ControlElement {
 
-  @ElementAttribute()
-  public type?: string;
-
-  public getType(): string {
-    switch (this.type) {
-
-      case 'string':
-      case 'text':
-        return 'string';
-
-      case 'boolean':
-        return 'boolean';
-
-      case 'integer':
-      case 'number':
-        return 'number';
-
-      default:
-        return super.getType();
-
-    }
-  }
+  @ElementAttribute('type')
+  public inputType?: string;
 
   public postParse() {
-    if (this.type === 'number' || this.type === 'integer') {
+    if (this.inputType === 'number' || this.inputType === 'integer') {
       this.validators = coerceArray(this.validators);
       this.validators.push(ElementFactory(IsNumberElement, {}));
+    }
+    if (!this.type) {
+      switch (this.inputType) {
+
+        case 'string':
+        case 'text':
+          this.type = ElementFactory(ControlTypeElement, { name: 'string' });
+          break;
+
+        case 'boolean':
+          this.type = ElementFactory(ControlTypeElement, { name: 'boolean' });
+          break;
+
+        case 'integer':
+        case 'number':
+          this.type = ElementFactory(ControlTypeElement, { name: 'number' });
+          break;
+
+      }
     }
   }
 
