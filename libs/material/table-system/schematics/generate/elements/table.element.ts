@@ -177,6 +177,7 @@ export class TableElement implements ParsedElement<Rule> {
     } else {
       attributes.push('[rxapTableDataSource]="dataSource"');
     }
+    attributes.push('[parameters]="parameters"');
     if (this.hasFilter) {
       attributes.push('rxap-filter-header-row');
     }
@@ -262,6 +263,20 @@ export class TableElement implements ParsedElement<Rule> {
         ]
       );
     }
+    AddComponentInput(
+      sourceFile,
+      {
+        name:     'parameters',
+        type:     'Observable<Record<string, any>>',
+        required: false
+      },
+      [
+        {
+          namedImports:    [ 'Observable' ],
+          moduleSpecifier: 'rxjs'
+        }
+      ]
+    );
 
     if (this.hasFilter) {
       AddComponentProvider(
