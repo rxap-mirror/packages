@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.8.5]
+### Added
+- table directive parameters input
+
 ## [0.8.4]
 ### Added
 - fix column filter height
