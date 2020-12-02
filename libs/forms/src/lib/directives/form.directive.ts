@@ -63,6 +63,9 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
 
   public form!: RxapFormGroup<T>;
 
+  @Input()
+  public initial?: T;
+
   /**
    * Emits when the submit method is executed without errors. The result of the
    * submit method is passed as event object.
@@ -162,44 +165,51 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
 
     console.debug('Load initial state', form);
 
-    if (this.loadMethod) {
-      this.loading$.enable();
+    if (this.initial) {
+      if (isDevMode()) {
+        console.log('use the value from input initial');
+      }
+      form.patchValue(this.initial);
+    } else {
+      if (this.loadMethod) {
+        this.loading$.enable();
 
-      try {
-        const resultOrPromise = this.loadMethod.call();
-        if (isPromise(resultOrPromise)) {
-          resultOrPromise
-            .then(value => {
-              form.patchValue(value);
-              this.loaded$.enable();
-              this.loadSuccessful(value);
-            })
-            .catch(error => {
-              this.loadingError$.next(error);
-              this.loadFailed(error);
-            })
-            .finally(() => {
-              this.loading$.disable();
-              this.cdr.detectChanges();
-            });
-        } else if (isObject(resultOrPromise)) {
-          form.patchValue(resultOrPromise);
-          this.loaded$.enable();
-          this.loadSuccessful(resultOrPromise);
+        try {
+          const resultOrPromise = this.loadMethod.call();
+          if (isPromise(resultOrPromise)) {
+            resultOrPromise
+              .then(value => {
+                form.patchValue(value);
+                this.loaded$.enable();
+                this.loadSuccessful(value);
+              })
+              .catch(error => {
+                this.loadingError$.next(error);
+                this.loadFailed(error);
+              })
+              .finally(() => {
+                this.loading$.disable();
+                this.cdr.detectChanges();
+              });
+          } else if (isObject(resultOrPromise)) {
+            form.patchValue(resultOrPromise);
+            this.loaded$.enable();
+            this.loadSuccessful(resultOrPromise);
+            this.loading$.disable();
+          }
+        } catch (error) {
+          this.loaded$.disable();
+          this.loadingError$.next(error);
+          this.loadFailed(error);
           this.loading$.disable();
         }
-      } catch (error) {
-        this.loaded$.disable();
-        this.loadingError$.next(error);
-        this.loadFailed(error);
-        this.loading$.disable();
-      }
 
-    } else {
-      if (isDevMode()) {
-        console.warn('The form loading method is not defined for: ' + this.form.controlId);
+      } else {
+        if (isDevMode()) {
+          console.warn('The form loading method is not defined for: ' + this.form.controlId);
+        }
+        this.loaded$.enable();
       }
-      this.loaded$.enable();
     }
   }
 
