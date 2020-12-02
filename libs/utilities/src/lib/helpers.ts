@@ -126,7 +126,7 @@ export interface ControlOption<Value = any, Display = string> {
   disabled?: boolean;
   color?: string;
   default?: boolean;
-  i18n?: boolean;
+  i18n?: string;
 }
 
 export type ControlOptions<Value = any, Display = string> = Array<ControlOption<Value, Display>>;

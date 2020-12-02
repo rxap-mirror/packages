@@ -1,13 +1,11 @@
 import {
   ControlOptions,
-  ControlOption,
+  ControlOption
 } from '@rxap/utilities';
-import { compile } from 'handlebars';
 import {
   ElementTextContent,
   ElementChild,
   ElementChildren,
-  ElementChildTextContent,
   ElementAttribute,
   ElementRequired,
   ElementDef
@@ -26,7 +24,7 @@ export class OptionElement implements ParsedElement<ControlOption> {
   public display!: string;
 
   @ElementAttribute()
-  public i18n?: boolean;
+  public i18n?: string;
 
   public getControlOption(): ControlOption {
     return {
