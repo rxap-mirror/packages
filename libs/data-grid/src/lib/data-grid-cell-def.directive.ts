@@ -1,12 +1,22 @@
 import {
   Directive,
-  TemplateRef,
+  TemplateRef
 } from '@angular/core';
 
+export interface DataGridCellDefDirectiveContext<T extends Record<string, any> = Record<string, any>> {
+  $implicit: T[keyof T];
+  data: T;
+}
+
 @Directive({
-  // tslint:disable-next-line:directive-selector
   selector: '[rxapDataGridCellDef]'
 })
-export class DataGridCellDefDirective {
+export class DataGridCellDefDirective<T extends Record<string, any>> {
+
+  public static ngTemplateContextGuard<T extends Record<string, any>>(dir: DataGridCellDefDirectiveContext<T>, ctx: any):
+    ctx is DataGridCellDefDirectiveContext<T> {
+    return true;
+  }
+
   constructor(public template: TemplateRef<any>) {}
 }

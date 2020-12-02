@@ -1,12 +1,21 @@
 import {
   Directive,
-  TemplateRef,
+  TemplateRef
 } from '@angular/core';
 
+export interface DataGridHeaderCellDefDirectiveContext {
+  $implicit: string;
+}
+
 @Directive({
-  // tslint:disable-next-line:directive-selector
   selector: '[rxapDataGridHeaderCellDef]'
 })
 export class DataGridHeaderCellDefDirective {
-  constructor(public template: TemplateRef<any>) {}
+
+  public static ngTemplateContextGuard(dir: DataGridHeaderCellDefDirectiveContext, ctx: any):
+    ctx is DataGridHeaderCellDefDirectiveContext {
+    return true;
+  }
+
+  constructor(public template: TemplateRef<DataGridHeaderCellDefDirectiveContext>) {}
 }
