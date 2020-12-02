@@ -1,14 +1,21 @@
 {
   "name": "@rxap/data-grid",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "peerDependencies": {
     "@rxap/utilities": ">=0.3.9",
     "rxjs": ">=6.5.5",
     "@rxap/pipes": ">=0.3.4",
+    "@rxap/forms": ">=0.14.0",
     "@angular/platform-browser": ">=9",
     "@angular/cdk": ">=9",
     "@angular/core": ">=9",
-    "@angular/common": ">=9"
+    "@angular/common": ">=9",
+    "@rxap/xml-parser": ">=0.9.0",
+    "@rxap/mixin": ">=0.3.1",
+    "@rxap-schematics/utilities": ">=0.11.1",
+    "@rxap/definition": ">=0.0.7",
+    "@angular/forms": "^10.0.6",
+    "@angular/router": "^10.0.6"
   },
   "dependencies": {
     "tslib": "2.0.1"
@@ -19,7 +26,12 @@
     "packageGroup": [
       "@rxap/data-grid",
       "@rxap/utilities",
-      "@rxap/pipes"
+      "@rxap/pipes",
+      "@rxap/forms",
+      "@rxap/xml-parser",
+      "@rxap/mixin",
+      "@rxap-schematics/utilities",
+      "@rxap/definition"
     ]
   }
 }

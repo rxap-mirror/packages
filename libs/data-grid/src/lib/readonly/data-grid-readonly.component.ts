@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Input,
   ContentChildren,
-  QueryList,
+  QueryList
 } from '@angular/core';
 import { DataGridRowDefDirective } from '../data-grid-row-def.directive';
 import { Required } from '@rxap/utilities';
@@ -14,9 +14,9 @@ import { Required } from '@rxap/utilities';
   templateUrl:     './data-grid-readonly.component.html',
   styleUrls:       [ './data-grid-readonly.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'rxap-data-grid-readonly' }
+  host:            { class: 'rxap-data-grid-readonly' }
 })
-export class DataGridReadonlyComponent {
+export class DataGridReadonlyComponent<T extends Record<string, any>> {
 
   @Input()
   @Required
@@ -24,5 +24,5 @@ export class DataGridReadonlyComponent {
 
   @ContentChildren(DataGridRowDefDirective)
   @Required
-  public rows!: QueryList<DataGridRowDefDirective>;
+  public rows!: QueryList<DataGridRowDefDirective<T>>;
 }

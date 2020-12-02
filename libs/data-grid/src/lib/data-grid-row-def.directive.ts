@@ -6,12 +6,13 @@ import {
 import { DataGridCellDefDirective } from './data-grid-cell-def.directive';
 import { DataGridHeaderCellDefDirective } from './data-grid-header-cell-def.directive';
 import { Required } from '@rxap/utilities';
+import { DataGridEditCellDefDirective } from './data-grid-edit-cell-def.directive';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
-  selector: '[rxapDataGridRowDef]',
+  selector: '[rxapDataGridRowDef]'
 })
-export class DataGridRowDefDirective {
+export class DataGridRowDefDirective<T extends Record<string, any>> {
 
   @Input()
   public data: any | null = null;
@@ -21,10 +22,12 @@ export class DataGridRowDefDirective {
   public name!: string;
 
   @ContentChild(DataGridCellDefDirective)
-  public cell?: DataGridCellDefDirective;
+  public cell?: DataGridCellDefDirective<T>;
 
   @ContentChild(DataGridHeaderCellDefDirective)
-  @Required
-  public headerCell!: DataGridHeaderCellDefDirective;
+  public headerCell?: DataGridHeaderCellDefDirective;
+
+  @ContentChild(DataGridEditCellDefDirective)
+  public editCell?: DataGridEditCellDefDirective<T>;
 
 }
