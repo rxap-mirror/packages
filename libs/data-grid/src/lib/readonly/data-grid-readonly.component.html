@@ -6,22 +6,18 @@
   </tr>
   </thead>
   <tr *ngFor="let row of rows">
-    <th>
-      <ng-container
-        *ngTemplateOutlet="
+    <ng-container
+      *ngTemplateOutlet="
           row.headerCell ? row.headerCell.template : defaultHeaderCell;
           context: { $implicit: row.name }
         "
-      ></ng-container>
-    </th>
-    <td class="value">
-      <ng-container
-        *ngTemplateOutlet="
+    ></ng-container>
+    <ng-container
+      *ngTemplateOutlet="
           row.cell ? row.cell.template : defaultCell;
           context: { $implicit: data | getFromObject: row.name, data: data }
         "
-      ></ng-container>
-    </td>
+    ></ng-container>
   </tr>
 </table>
 
