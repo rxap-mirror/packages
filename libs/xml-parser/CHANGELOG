@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.9.0]
+### Added
+- add support for i18n options
+
 ## [0.8.4]
 ### Fixed
 - (ElementFactory): add support for required get/set
