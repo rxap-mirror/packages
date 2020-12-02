@@ -4,7 +4,8 @@ import {
   Optional,
   StaticProvider,
   Inject,
-  INJECTOR
+  INJECTOR,
+  ComponentRef
 } from '@angular/core';
 import {
   WindowService,
@@ -29,6 +30,10 @@ import {
 } from '@rxap/utilities';
 import { FormWindowRef } from './form-window-ref';
 import { FormSystemMetadataKeys } from '@rxap/form-system';
+import {
+  take,
+  tap
+} from 'rxjs/operators';
 
 export interface FormWindowOptions<FormData, D = any, T = any> extends WindowConfig<D, T> {
   initial?: FormData;
@@ -124,6 +129,15 @@ export class FormWindowService {
     }
 
     const windowRef = this.windowService.open(windowConfig);
+
+    windowRef.attachedRef$.pipe(
+      take(1),
+      tap(ref => {
+        if (ref instanceof ComponentRef) {
+          ref.changeDetectorRef.detectChanges();
+        }
+      })
+    ).subscribe();
 
     return new FormWindowRef<FormData>(
       injector.get(RXAP_FORM_DEFINITION),
