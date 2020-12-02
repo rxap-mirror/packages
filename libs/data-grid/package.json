@@ -1,6 +1,6 @@
 {
   "name": "@rxap/data-grid",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "peerDependencies": {
     "@rxap/utilities": ">=0.3.9",
     "rxjs": ">=6.5.5",
