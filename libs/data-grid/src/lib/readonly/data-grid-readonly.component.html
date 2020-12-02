@@ -21,5 +21,9 @@
   </tr>
 </table>
 
-<ng-template #defaultCell let-value>{{ value }}</ng-template>
-<ng-template #defaultHeaderCell let-name></ng-template>
+<ng-template #defaultCell let-value>
+  <td>{{ value }}</td>
+</ng-template>
+<ng-template #defaultHeaderCell let-name>
+  <th>{{ name }}</th>
+</ng-template>
