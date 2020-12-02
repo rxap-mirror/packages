@@ -199,6 +199,10 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
   @ElementRequired()
   public id!: string;
 
+  public get controlPath(): string {
+    return this.id;
+  }
+
   public validate(): boolean {
     return this.controls.length !== 0;
   }

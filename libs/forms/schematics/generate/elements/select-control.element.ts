@@ -384,6 +384,10 @@ export class SelectOptionsElement extends OptionsElement implements ParsedElemen
               id:   writer => writer.quote(dasherize(this.__parent.id) + '-options'),
               data: writer => {
 
+                if (this.options.some(option => option.i18n)) {
+                  writer.write('() => ');
+                }
+
                 writer.write('[');
                 writer.newLine();
 
@@ -391,7 +395,13 @@ export class SelectOptionsElement extends OptionsElement implements ParsedElemen
 
                   Writers.object({
                     value:   option.value === undefined ? w => w.quote(option.display.toString()) : option.value,
-                    display: w => w.quote(option.display.toString())
+                    display: w => {
+                      if (option.i18n) {
+                        w.write(`$localize\`:@@form.${this.__parent.controlPath}.${option.i18n}:${option.display.toString()}\``);
+                      } else {
+                        w.quote(option.display.toString());
+                      }
+                    }
                   })(writer);
 
                   writer.write(',');

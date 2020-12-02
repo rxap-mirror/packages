@@ -23,6 +23,7 @@ import {
   ToValueContext
 } from '@rxap-schematics/utilities';
 import { GenerateSchema } from '../schema';
+import { FormElement } from './form.element';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -57,6 +58,7 @@ export class ControlTypeElement implements ParsedElement {
 export class ControlElement implements ParsedElement<PropertyDeclaration> {
 
   public __tag!: string;
+  public __parent!: FormElement;
 
   @ElementAttribute()
   @ElementRequired()
@@ -84,6 +86,10 @@ export class ControlElement implements ParsedElement<PropertyDeclaration> {
 
   @ElementChildren(ValidatorElement, { group: 'validators' })
   public validators!: ValidatorElement[];
+
+  public get controlPath(): string {
+    return [ this.__parent.controlPath, this.id ].join('.');
+  }
 
   public validate(): boolean {
     return true;

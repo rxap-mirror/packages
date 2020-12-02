@@ -19,6 +19,12 @@ const { dasherize, classify, camelize } = strings;
 @ElementDef('group')
 export class GroupControlElement extends FormElement {
 
+  public __parent!: FormElement;
+
+  public get controlPath(): string {
+    return [ this.__parent.id, this.id ].join('.');
+  }
+
   public getType(): string {
     return 'I' + classify(this.id) + 'Form';
   }

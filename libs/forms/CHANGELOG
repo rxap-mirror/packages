@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.14.0]
+### Added
+- add support for i18n options
+
 ## [0.13.1]
 ### Fixed
 - type support
