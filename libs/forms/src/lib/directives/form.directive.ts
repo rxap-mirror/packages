@@ -25,7 +25,8 @@ import {
   RXAP_FORM_LOAD_FAILED_METHOD,
   RXAP_FORM_LOAD_SUCCESSFUL_METHOD,
   RXAP_FORM_SUBMIT_FAILED_METHOD,
-  RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD
+  RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
+  RXAP_FORM_DEFINITION_BUILDER
 } from './tokens';
 import { RxapFormGroup } from '../form-group';
 import {
@@ -45,6 +46,7 @@ import {
   FormSubmitSuccessfulMethod
 } from './models';
 import { BehaviorSubject } from 'rxjs';
+import { RxapFormBuilder } from '../form-builder';
 
 @Directive({
   selector:  'form:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',
@@ -133,7 +135,8 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
     @Optional() @Inject(RXAP_FORM_LOAD_FAILED_METHOD) private readonly loadFailedMethod: FormLoadFailedMethod | null                   = null,
     @Optional() @Inject(RXAP_FORM_LOAD_SUCCESSFUL_METHOD) private readonly loadSuccessfulMethod: FormLoadSuccessfulMethod | null       = null,
     @Optional() @Inject(RXAP_FORM_SUBMIT_FAILED_METHOD) private readonly submitFailedMethod: FormSubmitFailedMethod | null             = null,
-    @Optional() @Inject(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD) private readonly submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null
+    @Optional() @Inject(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD) private readonly submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null,
+    @Optional() @Inject(RXAP_FORM_DEFINITION_BUILDER) private readonly formDefinitionBuilder: RxapFormBuilder | null                   = null
   ) {
     super([], []);
     if (formDefinition) {
@@ -154,6 +157,10 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
   }
 
   public ngOnInit() {
+    if (!this.form && this.formDefinitionBuilder) {
+      this._formDefinition = this.formDefinitionBuilder.build(this.initial ?? {});
+      this.form            = this._formDefinition.rxapFormGroup;
+    }
     if (!this.form) {
       // TODO : replace with rxap error
       throw new Error('The form definition instance is not defined');
