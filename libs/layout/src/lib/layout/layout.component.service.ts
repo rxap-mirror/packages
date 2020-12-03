@@ -3,8 +3,14 @@ import {
   Optional,
   Inject
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  Observable
+} from 'rxjs';
+import {
+  tap,
+  map
+} from 'rxjs/operators';
 import {
   FooterService,
   HeaderService
@@ -15,10 +21,10 @@ import { LogoConfig } from '../types';
 @Injectable({ providedIn: 'root' })
 export class LayoutComponentService {
 
-  public opened$         = new BehaviorSubject<boolean>(true);
-  public mode$           = new BehaviorSubject<'over' | 'push' | 'side'>('side');
-  public fixedBottomGap$ = new BehaviorSubject<number>(0);
-  public fixedTopGap$    = new BehaviorSubject<number>(64);
+  public opened$      = new BehaviorSubject<boolean>(true);
+  public mode$        = new BehaviorSubject<'over' | 'push' | 'side'>('side');
+  public fixedBottomGap$: Observable<number>;
+  public fixedTopGap$ = new BehaviorSubject<number>(64);
   public logo: LogoConfig;
 
   public constructor(
@@ -26,10 +32,7 @@ export class LayoutComponentService {
     public readonly headerComponentService: HeaderService,
     @Optional() @Inject(RXAP_LOGO_CONFIG) logoConfig: LogoConfig | null = null
   ) {
-    this.fixedBottomGap$.next(this.footerComponentService.countComponents * 64);
-    this.footerComponentService.update$.pipe(
-      tap(() => this.fixedBottomGap$.next(this.footerComponentService.countComponents * 64))
-    ).subscribe();
+    this.fixedBottomGap$ = this.footerComponentService.portalCount$.pipe(map(count => count * 64));
     this.fixedTopGap$.next(this.headerComponentService.countComponent * 64);
     this.headerComponentService.update$.pipe(
       tap(() => this.fixedTopGap$.next(this.headerComponentService.countComponent * 64))
