@@ -139,9 +139,12 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
     @Optional() @Inject(RXAP_FORM_DEFINITION_BUILDER) private readonly formDefinitionBuilder: RxapFormBuilder | null                   = null
   ) {
     super([], []);
+    if (!formDefinition && formDefinitionBuilder) {
+      formDefinition = formDefinitionBuilder.build();
+    }
     if (formDefinition) {
       this._formDefinition = formDefinition;
-      this.form = formDefinition.rxapFormGroup;
+      this.form            = formDefinition.rxapFormGroup;
     }
   }
 
@@ -157,10 +160,6 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
   }
 
   public ngOnInit() {
-    if (!this.form && this.formDefinitionBuilder) {
-      this._formDefinition = this.formDefinitionBuilder.build(this.initial ?? {});
-      this.form            = this._formDefinition.rxapFormGroup;
-    }
     if (!this.form) {
       // TODO : replace with rxap error
       throw new Error('The form definition instance is not defined');

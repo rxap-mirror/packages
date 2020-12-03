@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.16.1]
+### Fixed
+- (FormDirective): fix form definition builder
+
 ## [0.16.0]
 ### Added
 - (FormDirective): add support for form definition builder
