@@ -252,7 +252,7 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
 
     AddVariableProvider(
       formProviderSourceFile,
-      'FormBuilderProviders',
+      'FormComponentProviders',
       {
         provide:    'RXAP_FORM_DEFINITION',
         useFactory: 'FormFactory',
@@ -338,10 +338,10 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
       options.overwrite
     );
 
-    if (!formProviderSourceFile.getFunction('RxapFormBuilder')) {
+    if (!formProviderSourceFile.getFunction('FormBuilderFactory')) {
       formProviderSourceFile.addFunction({
         isExported: true,
-        name:       'RxapFormBuilder',
+        name:       'FormBuilderFactory',
         parameters: [
           {
             name: 'injector',
