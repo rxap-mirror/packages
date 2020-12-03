@@ -11,13 +11,15 @@ import {
 import { Constructor } from '@rxap/utilities';
 import {
   Subject,
-  BehaviorSubject
+  BehaviorSubject,
+  Observable
 } from 'rxjs';
 import {
   Portal,
   ComponentPortal,
   TemplatePortal
 } from '@angular/cdk/portal';
+import { map } from 'rxjs/operators';
 
 export interface FooterComponentOptions extends Record<string, any> {
   order?: number;
@@ -107,6 +109,8 @@ export class FooterService {
   private templatePortalMap  = new WeakMap<TemplateRef<any>, Portal<any>>();
 
   public portals$ = new BehaviorSubject<Array<Portal<any>>>([]);
+
+  public portalCount$: Observable<number> = this.portals$.pipe(map(portals => portals.length));
 
   constructor(@Optional() @Inject(RXAP_FOOTER_COMPONENT) footerComponents: any | any[] | null = null) {
     if (footerComponents) {
