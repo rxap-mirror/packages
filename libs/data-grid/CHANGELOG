@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.1]
+### Removed
+- unused model and tokens
+
 ## [0.2.0]
 ### Added
 - support for a edit data grid
