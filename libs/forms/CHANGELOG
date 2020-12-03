@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.15.1]
+### Fixed
+- (schematics): form provider variable names
+
 ## [0.15.0]
 ### Added
 - (schematics): generate a form builder provider
