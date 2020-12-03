@@ -127,10 +127,13 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
   @Required
   private _formDefinition!: FormDefinition<T>;
 
+  @Input()
+  private readonly submitMethod: FormSubmitMethod<any> | null = null;
+
   constructor(
     @Inject(ChangeDetectorRef) public readonly cdr: ChangeDetectorRef,
     @Optional() @Inject(RXAP_FORM_DEFINITION) formDefinition: FormDefinition | null                                                    = null,
-    @Optional() @Inject(RXAP_FORM_SUBMIT_METHOD) private readonly submitMethod: FormSubmitMethod<any> | null                           = null,
+    @Optional() @Inject(RXAP_FORM_SUBMIT_METHOD) submitMethod: FormSubmitMethod<any> | null                                            = null,
     @Optional() @Inject(RXAP_FORM_LOAD_METHOD) private readonly loadMethod: FormLoadMethod | null                                      = null,
     @Optional() @Inject(RXAP_FORM_LOAD_FAILED_METHOD) private readonly loadFailedMethod: FormLoadFailedMethod | null                   = null,
     @Optional() @Inject(RXAP_FORM_LOAD_SUCCESSFUL_METHOD) private readonly loadSuccessfulMethod: FormLoadSuccessfulMethod | null       = null,
@@ -139,6 +142,9 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
     @Optional() @Inject(RXAP_FORM_DEFINITION_BUILDER) private readonly formDefinitionBuilder: RxapFormBuilder | null                   = null
   ) {
     super([], []);
+    if (submitMethod) {
+      this.submitMethod = submitMethod;
+    }
     if (!formDefinition && formDefinitionBuilder) {
       formDefinition = formDefinitionBuilder.build();
     }
