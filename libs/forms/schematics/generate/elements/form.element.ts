@@ -12,9 +12,7 @@ import {
   ClassDeclaration,
   Scope,
   SourceFile,
-  Project,
-  VariableDeclarationKind,
-  Writers
+  Project
 } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
 import { FeatureElement } from './features/feature.element';
@@ -248,49 +246,33 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
 
   }
 
-  private addFormComponentProviders(project: Project): void {
+  private addFormComponentProviders(project: Project, options: GenerateSchema): void {
 
     const formProviderSourceFile = GetFormProvidersFile(project);
 
-    if (!formProviderSourceFile.getVariableStatement('FormComponentProviders')) {
-      formProviderSourceFile.addVariableStatement({
-        isExported:      true,
-        declarationKind: VariableDeclarationKind.Const,
-        declarations:    [
-          {
-            name:        'FormComponentProviders',
-            initializer: writer => {
-
-              writer.writeLine('[');
-
-              Writers.object({
-                provide:    'RXAP_FORM_DEFINITION',
-                useFactory: 'FormFactory',
-                deps:       `[ INJECTOR, [new Optional(), RXAP_FORM_INITIAL_STATE] ]`
-              })(writer);
-
-              writer.write(']');
-
-            },
-            type:        'Provider[]'
-          }
-        ]
-      });
-      const formName = classify(this.id) + 'Form';
-      formProviderSourceFile.addImportDeclarations([
+    AddVariableProvider(
+      formProviderSourceFile,
+      'FormBuilderProviders',
+      {
+        provide:    'RXAP_FORM_DEFINITION',
+        useFactory: 'FormFactory',
+        deps:       [ 'INJECTOR', '[new Optional(), RXAP_FORM_INITIAL_STATE]' ]
+      },
+      [
         {
           moduleSpecifier: '@rxap/forms',
-          namedImports:    [ 'RXAP_FORM_DEFINITION', 'RXAP_FORM_INITIAL_STATE', 'RxapFormBuilder' ]
+          namedImports:    [ 'RXAP_FORM_DEFINITION', 'RXAP_FORM_INITIAL_STATE' ]
         },
         {
           moduleSpecifier: '@angular/core',
-          namedImports:    [ 'INJECTOR', 'Injector', 'Optional' ]
-        },
-        {
-          moduleSpecifier: `./${dasherize(this.id)}.form`,
-          namedImports:    [ 'I' + formName ]
+          namedImports:    [ 'INJECTOR', 'Optional' ]
         }
-      ]);
+      ],
+      options.overwrite
+    );
+
+    if (!formProviderSourceFile.getFunction('FormFactory')) {
+      const formName = classify(this.id) + 'Form';
       formProviderSourceFile.addFunction({
         isExported: true,
         name:       'FormFactory',
@@ -310,8 +292,69 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
           `return new RxapFormBuilder(${formName}, injector).build(state ?? {});`
         ]
       });
+      formProviderSourceFile.addImportDeclarations([
+        {
+          moduleSpecifier: '@rxap/forms',
+          namedImports:    [ 'RxapFormBuilder' ]
+        },
+        {
+          moduleSpecifier: '@angular/core',
+          namedImports:    [ 'Injector' ]
+        },
+        {
+          moduleSpecifier: `./${dasherize(this.id)}.form`,
+          namedImports:    [ 'I' + formName, formName ]
+        }
+      ]);
     }
 
+  }
+
+  private addFormBuilderProviders(project: Project, options: GenerateSchema): void {
+    const formProviderSourceFile = GetFormProvidersFile(project);
+    const formName               = classify(this.id) + 'Form';
+    AddVariableProvider(
+      formProviderSourceFile,
+      'FormBuilderProviders',
+      {
+        provide:    'RXAP_FORM_DEFINITION_BUILDER',
+        useFactory: 'FormBuilderFactory',
+        deps:       [ 'INJECTOR' ]
+      },
+      [
+        {
+          namedImports:    [ 'RxapFormBuilder', 'RXAP_FORM_DEFINITION_BUILDER' ],
+          moduleSpecifier: '@rxap/forms'
+        },
+        {
+          namedImports:    [ 'Optional', 'INJECTOR', 'Injector' ],
+          moduleSpecifier: '@angular/core'
+        },
+        {
+          moduleSpecifier: `./${dasherize(this.id)}.form`,
+          namedImports:    [ formName ]
+        }
+      ],
+      options.overwrite
+    );
+
+    if (!formProviderSourceFile.getFunction('RxapFormBuilder')) {
+      formProviderSourceFile.addFunction({
+        isExported: true,
+        name:       'RxapFormBuilder',
+        parameters: [
+          {
+            name: 'injector',
+            type: 'Injector'
+          }
+        ],
+        // TODO : add return type
+        returnType: `RxapFormBuilder<${formName}>`,
+        statements: [
+          `return new RxapFormBuilder(${formName}, injector);`
+        ]
+      });
+    }
   }
 
   public toValue({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }): any {
@@ -321,7 +364,8 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
 
     this.addFormInterface(formInterfaceName, sourceFile);
     this.addToFormProviders(formName, project, [ formName ], options.overwrite);
-    this.addFormComponentProviders(project);
+    this.addFormComponentProviders(project, options);
+    this.addFormBuilderProviders(project, options);
 
     this.submit?.handleFormProviders({ project, options, sourceFile: GetFormProvidersFile(project) });
     this.load?.handleFormProviders({ project, options, sourceFile: GetFormProvidersFile(project) });
