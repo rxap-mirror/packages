@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.18.0]
+### Added
+- (schematics): add support for custom methods
+
 ## [0.17.0]
 ### Added
 - (FormDirective): add submit method input
