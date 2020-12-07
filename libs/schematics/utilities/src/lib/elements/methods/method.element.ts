@@ -28,10 +28,12 @@ export class MethodElement implements ParsedElement<string> {
         namedImports:    [ this.name ],
         moduleSpecifier: this.from
       });
+      return this.name;
     } else {
+      const methodName       = classify(this.name) + 'Method';
       const methodSourceFile = project.createSourceFile(join('/methods', `${dasherize(this.name)}.method.ts`));
       methodSourceFile.addClass({
-        name:       `${classify(this.name)}Method`,
+        name:       methodName,
         isExported: true,
         decorators: [
           {
@@ -58,9 +60,8 @@ export class MethodElement implements ParsedElement<string> {
           moduleSpecifier: '@rxap/utilities'
         }
       ]);
+      return methodName;
     }
-
-    return this.name;
   }
 
 }
