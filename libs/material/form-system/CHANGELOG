@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.14.2]
+### Fixed
+- hide show attribute logic
+
 ## [0.14.1]
 ### Fixed
 - add support for custom component attributes
