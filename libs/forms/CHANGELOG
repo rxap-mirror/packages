@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.19.1]
+### Added
+- (schematics): add form extends support
+
+## [0.19.0]
+### Added
+- (schematics): add form extends support
+
 ## [0.18.0]
 ### Added
 - (schematics): add support for custom methods
