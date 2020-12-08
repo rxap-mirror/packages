@@ -6,18 +6,23 @@ import {
   Renderer2,
   ElementRef,
   OnDestroy,
-  NgModule
+  NgModule,
+  Optional,
+  Self
 } from '@angular/core';
 import {
   FormDefinition,
-  AbstractControl
+  AbstractControl,
+  RxapFormControl
 } from '@rxap/forms';
 import {
   setMetadataMap,
-  Required,
   getMetadata
 } from '@rxap/utilities';
-import { ControlContainer } from '@angular/forms';
+import {
+  ControlContainer,
+  NgControl
+} from '@angular/forms';
 import { Mixin } from '@rxap/mixin';
 import {
   Subscription,
@@ -67,28 +72,48 @@ export interface ControlHideShowDirective extends ExtractControlMixin,
 
 @Mixin(ExtractControlMixin, ExtractFormDefinitionMixin)
 @Directive({
-  selector: '[rxapControlHideShow]',
+  selector: '[rxapControlHideShow]'
 })
 export class ControlHideShowDirective implements OnInit, OnDestroy {
 
   @Input('rxapControlHideShow')
-  @Required
-  public controlId!: string;
+  public controlId?: string;
+
+  public control!: RxapFormControl;
 
   private subscription = new Subscription();
 
   constructor(
-    @Inject(ControlContainer)
-    private readonly parent: ControlContainer,
     @Inject(Renderer2)
     private readonly renderer: Renderer2,
     @Inject(ElementRef)
     private readonly elementRef: ElementRef,
+    @Optional()
+    @Inject(ControlContainer)
+    private readonly parent: ControlContainer | null,
+    @Self()
+    @Optional()
+    @Inject(NgControl)
+    private readonly ngControl: NgControl | null
   ) { }
 
   public ngOnInit() {
 
-    const control = this.extractControl(this.parent, this.controlId);
+    if (!this.ngControl && !this.parent) {
+      throw new Error('Easier the ControlContainer or NgControl must be injectable');
+    }
+
+    if (!this.ngControl && !this.controlId) {
+      throw new Error('If the NgControl is not injectable then the control id must be defined!');
+    }
+
+    const control = this.ngControl?.control ?? this.extractControl(this.parent!, this.controlId!);
+
+    if (!(control instanceof RxapFormControl)) {
+      throw new Error('The control is not an instance of RxapFormControl');
+    }
+
+    this.control = control;
 
     const formDefinition = this.extractFormDefinition(control);
 
@@ -179,33 +204,33 @@ export class ControlHideShowDirective implements OnInit, OnDestroy {
   private extractOptions(formDefinition: FormDefinition): ControlHideShowOptions {
     const map = getMetadata<Map<string, ControlHideShowOptions>>(RXAP_FORM_SYSTEM_HIDE_SHOW_OPTIONS, Object.getPrototypeOf(formDefinition)) ?? null;
 
-    if (!map || !map.has(this.controlId)) {
+    if (!map || !map.has(this.control.controlId)) {
       return {};
     }
 
-    return map.get(this.controlId)!;
+    return map.get(this.control.controlId)!;
 
   }
 
   private extractHideFunction(formDefinition: FormDefinition): ControlHideShowFunction | null {
     const map = getMetadata<Map<string, ControlHideShowFunction>>(RXAP_FORM_SYSTEM_HIDE_METADATA, Object.getPrototypeOf(formDefinition)) ?? null;
 
-    if (!map || !map.has(this.controlId)) {
+    if (!map || !map.has(this.control.controlId)) {
       return null;
     }
 
-    return map.get(this.controlId)!;
+    return map.get(this.control.controlId)!;
 
   }
 
   private extractShowFunction(formDefinition: FormDefinition): ControlHideShowFunction | null {
     const map = getMetadata<Map<string, ControlHideShowFunction>>(RXAP_FORM_SYSTEM_SHOW_METADATA, Object.getPrototypeOf(formDefinition)) ?? null;
 
-    if (!map || !map.has(this.controlId)) {
+    if (!map || !map.has(this.control.controlId)) {
       return null;
     }
 
-    return map.get(this.controlId)!;
+    return map.get(this.control.controlId)!;
 
   }
 
