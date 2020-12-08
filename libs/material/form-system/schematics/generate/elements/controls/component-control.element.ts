@@ -68,7 +68,8 @@ export class ComponentControlElement extends ControlElement {
       this.selector,
       this.flexTemplateAttribute,
       `formControlName="${this.name}"`,
-      `i18n="@@form.${this.controlPath}.label"`
+      `i18n="@@form.${this.controlPath}.label"`,
+      ...this.attributes
     )(`\n${capitalize(this.name)}\n`);
   }
 
