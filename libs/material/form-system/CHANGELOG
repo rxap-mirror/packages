@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.14.1]
+### Fixed
+- add support for custom component attributes
+
 ## [0.14.0]
 ### Fixed
 - add support for custom table and form support
