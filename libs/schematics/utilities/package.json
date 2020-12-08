@@ -1,6 +1,6 @@
 {
   "name": "@rxap-schematics/utilities",
-  "version": "0.12.1",
+  "version": "0.12.2",
   "peerDependencies": {
     "@rxap/utilities": ">=0.8.0",
     "rxjs": "^6.5.5",

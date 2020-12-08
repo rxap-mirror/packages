@@ -30,36 +30,39 @@ export class MethodElement implements ParsedElement<string> {
       });
       return this.name;
     } else {
-      const methodName       = classify(this.name) + 'Method';
-      const methodSourceFile = project.createSourceFile(join('/methods', `${dasherize(this.name)}.method.ts`));
-      methodSourceFile.addClass({
-        name:       methodName,
-        isExported: true,
-        decorators: [
+      const methodName     = classify(this.name) + 'Method';
+      const methodFilePath = join('/methods', `${dasherize(this.name)}.method.ts`);
+      if (!project.getSourceFile(methodFilePath)) {
+        const methodSourceFile = project.createSourceFile(methodFilePath);
+        methodSourceFile.addClass({
+          name:       methodName,
+          isExported: true,
+          decorators: [
+            {
+              name:      'Injectable',
+              arguments: []
+            }
+          ],
+          implements: [ 'Method' ],
+          methods:    [
+            {
+              name:       'call',
+              parameters: [ { name: 'parameters', type: 'any' } ],
+              returnType: 'any'
+            }
+          ]
+        });
+        methodSourceFile.addImportDeclarations([
           {
-            name:      'Injectable',
-            arguments: []
-          }
-        ],
-        implements: [ 'Method' ],
-        methods:    [
+            namedImports:    [ 'Injectable' ],
+            moduleSpecifier: '@angular/core'
+          },
           {
-            name:       'call',
-            parameters: [ { name: 'parameters', type: 'any' } ],
-            returnType: 'any'
+            namedImports:    [ 'Method' ],
+            moduleSpecifier: '@rxap/utilities'
           }
-        ]
-      });
-      methodSourceFile.addImportDeclarations([
-        {
-          namedImports:    [ 'Injectable' ],
-          moduleSpecifier: '@angular/core'
-        },
-        {
-          namedImports:    [ 'Method' ],
-          moduleSpecifier: '@rxap/utilities'
-        }
-      ]);
+        ]);
+      }
       return methodName;
     }
   }
