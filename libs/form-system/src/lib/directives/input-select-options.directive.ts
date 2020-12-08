@@ -10,8 +10,7 @@ import {
   INJECTOR,
   Optional,
   ChangeDetectorRef,
-  NgModule,
-  InjectionToken
+  NgModule
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import {
@@ -23,7 +22,6 @@ import {
 } from '@rxap/data-source';
 import { RxapFormControl } from '@rxap/forms';
 import {
-  Constructor,
   ControlOptions,
   ControlOption,
   Required
@@ -40,6 +38,7 @@ import {
   UseDataSource,
   UseDataSourceSettings
 } from '../decorators/use-data-source';
+import { IdOrInstanceOrToken } from '@rxap/definition';
 
 export interface InputSelectOptionsTemplateContext {
   $implicit: ControlOption;
@@ -56,14 +55,14 @@ export function ComposeOptionsTransformers(...fnc: Array<(value: any) => any>): 
 
 // tslint:disable-next-line:max-line-length
 export function UseOptionsDataSource<Source>(
-  dataSource: Constructor<BaseDataSource<Source>> | InjectionToken<BaseDataSource<Source>>,
+  dataSource: IdOrInstanceOrToken<BaseDataSource<Source>>,
   settings?: InputSelectOptionsSettings<Source>
 ): (
   target: any,
   propertyKey: string
 ) => any;
 export function UseOptionsDataSource(
-  dataSource: Constructor<BaseDataSource<ControlOptions>> | InjectionToken<BaseDataSource>,
+  dataSource: IdOrInstanceOrToken<BaseDataSource>,
   settings?: InputSelectOptionsSettings<ControlOptions>
 ) {
   return function(target: any, propertyKey: string) {
