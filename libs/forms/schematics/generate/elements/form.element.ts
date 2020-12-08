@@ -4,7 +4,8 @@ import {
   ElementAttribute,
   ElementRequired,
   ElementTextContent,
-  ElementChild
+  ElementChild,
+  ElementChildTextContent
 } from '@rxap/xml-parser/decorators';
 import { ControlElement } from './control.element';
 import { ParsedElement } from '@rxap/xml-parser';
@@ -25,7 +26,10 @@ import {
   HandleComponent,
   AddComponentProvider
 } from '@rxap-schematics/utilities';
-import { Rule } from '@angular-devkit/schematics';
+import {
+  Rule,
+  noop
+} from '@angular-devkit/schematics';
 import { GenerateSchema } from '../schema';
 import { HandleFormProviders } from './types';
 
@@ -177,6 +181,31 @@ export class LoadHandleMethod extends FormHandleMethodElement {
 
 }
 
+@ElementDef('extends')
+export class FormExtendsElement implements ParsedElement<Rule> {
+
+  @ElementChildTextContent()
+  @ElementRequired()
+  public name!: string;
+
+  @ElementChildTextContent()
+  @ElementRequired()
+  public from!: string;
+
+  public handleFormDefinition({ sourceFile, classDeclaration }: { sourceFile: SourceFile, classDeclaration: ClassDeclaration }): void {
+    classDeclaration.setExtends(this.name);
+    sourceFile.addImportDeclaration({
+      namedImports:    [ this.name ],
+      moduleSpecifier: this.from
+    });
+  }
+
+  public toValue(context?: ToValueContext): Rule {
+    return noop();
+  }
+
+}
+
 @ElementDef('definition')
 export class FormElement implements ParsedElement<ClassDeclaration> {
 
@@ -192,6 +221,9 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
 
   @ElementChild(LoadHandleMethod)
   public load?: LoadHandleMethod;
+
+  @ElementChild(FormExtendsElement)
+  public extends?: FormExtendsElement;
 
   @ElementAttribute()
   @ElementRequired()
@@ -415,6 +447,8 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
     for (const feature of this.features) {
       feature.toValue({ classDeclaration, sourceFile, project, options });
     }
+
+    this.extends?.handleFormDefinition({ sourceFile, classDeclaration });
 
     return classDeclaration;
 
