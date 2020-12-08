@@ -10,7 +10,8 @@ import {
   INJECTOR,
   Optional,
   ChangeDetectorRef,
-  NgModule
+  NgModule,
+  InjectionToken
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import {
@@ -54,11 +55,17 @@ export function ComposeOptionsTransformers(...fnc: Array<(value: any) => any>): 
 }
 
 // tslint:disable-next-line:max-line-length
-export function UseOptionsDataSource<Source>(dataSource: Constructor<BaseDataSource<Source>>, settings?: InputSelectOptionsSettings<Source>): (
+export function UseOptionsDataSource<Source>(
+  dataSource: Constructor<BaseDataSource<Source>> | InjectionToken<BaseDataSource<Source>>,
+  settings?: InputSelectOptionsSettings<Source>
+): (
   target: any,
   propertyKey: string
 ) => any;
-export function UseOptionsDataSource(dataSource: Constructor<BaseDataSource<ControlOptions>>, settings?: InputSelectOptionsSettings<ControlOptions>) {
+export function UseOptionsDataSource(
+  dataSource: Constructor<BaseDataSource<ControlOptions>> | InjectionToken<BaseDataSource>,
+  settings?: InputSelectOptionsSettings<ControlOptions>
+) {
   return function(target: any, propertyKey: string) {
     UseDataSource(dataSource, DATA_SOURCE_NAME, settings)(target, propertyKey);
   };
