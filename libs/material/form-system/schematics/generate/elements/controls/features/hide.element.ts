@@ -20,12 +20,18 @@ export class HideElement extends ControlFeatureElement {
   public postParse() {
     if (this.__parent instanceof FormFieldElement) {
       this.__parent.attributes.push('rxapHideShow');
+    } else {
+      this.__parent.attributes.push('rxapControlHideShow');
     }
   }
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponentModule({ project, sourceFile, options });
-    AddNgModuleImport(sourceFile, 'FormFieldHideShowDirectiveModule', '@rxap-material/form-system');
+    if (this.__parent instanceof FormFieldElement) {
+      AddNgModuleImport(sourceFile, 'FormFieldHideShowDirectiveModule', '@rxap-material/form-system');
+    } else {
+      AddNgModuleImport(sourceFile, 'ControlHideShowDirectiveModule', '@rxap/form-system');
+    }
   }
 
 }
