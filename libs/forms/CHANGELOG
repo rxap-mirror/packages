@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.20.0]
+### Added
+- (FormControl): add support for reset with the initial state
+
 ## [0.19.1]
 ### Added
 - (schematics): add form extends support
