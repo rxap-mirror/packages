@@ -8,7 +8,9 @@ import {
   OnDestroy,
   ChangeDetectorRef,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  NgZone,
+  EmbeddedViewRef
 } from '@angular/core';
 import {
   DataSourceLoader,
@@ -16,7 +18,10 @@ import {
   BaseDataSourceViewer
 } from '@rxap/data-source';
 import { Required } from '@rxap/utilities';
-import { tap } from 'rxjs/operators';
+import {
+  tap,
+  take
+} from 'rxjs/operators';
 import {
   Observable,
   Subscription
@@ -47,12 +52,15 @@ export class DataSourceDirective<Data = any> implements OnDestroy, OnChanges {
 
   protected readonly subscription = new Subscription();
 
+  protected embeddedViewRef?: EmbeddedViewRef<DataSourceTemplate<Data>>;
+
   constructor(
     private readonly dataSourceLoader: DataSourceLoader,
     private readonly template: TemplateRef<DataSourceTemplate<Data>>,
     private readonly viewContainerRef: ViewContainerRef,
     private readonly injector: Injector,
-    private readonly cdr: ChangeDetectorRef
+    private readonly cdr: ChangeDetectorRef,
+    private readonly zone: NgZone
   ) {
     this.viewer = this;
   }
@@ -79,18 +87,26 @@ export class DataSourceDirective<Data = any> implements OnDestroy, OnChanges {
 
   protected connect() {
     if (this.dataSource) {
-      this.connection$  = this.dataSource
-                              .connect(this.viewer);
-      this.subscription.add(this.connection$.pipe(
-        tap(response => this.embedTemplate(response))
-                              )
-                              .subscribe());
+      this.connection$ = this.dataSource
+                             .connect(this.viewer);
+      this.zone.onStable.pipe(
+        take(1),
+        tap(() => {
+          this.zone.run(() => {
+            this.subscription.add(this
+              .connection$
+              .pipe(tap(response => this.embedTemplate(response)))
+              .subscribe());
+          });
+        })
+      ).subscribe();
+
     }
   }
 
   public embedTemplate(response: any) {
-    this.viewContainerRef.clear();
-    this.viewContainerRef.createEmbeddedView(this.template, {
+    this.embeddedViewRef?.destroy();
+    this.embeddedViewRef = this.viewContainerRef.createEmbeddedView(this.template, {
       $implicit:   response,
       connection$: this.connection$
     });
