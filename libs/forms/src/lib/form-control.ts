@@ -55,6 +55,7 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
   readonly valueChanges!: Observable<T>;
   readonly status!: ControlState;
   readonly statusChanges!: Observable<ControlState>;
+  readonly initialState!: OrBoxedValue<T>;
 
   private touchChanges = new Subject<boolean>();
   private dirtyChanges = new Subject<boolean>();
@@ -98,7 +99,8 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
 
   constructor(formState: OrBoxedValue<T>, options: RxapAbstractControlOptions & { controlId: string }) {
     super(formState, options);
-    this.controlId = options.controlId;
+    this.controlId    = options.controlId;
+    this.initialState = formState;
   }
 
   public setValue(valueOrObservable: Observable<T>, options?: ControlOptions): Subscription;
@@ -167,7 +169,7 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
   }
 
   public reset(formState?: OrBoxedValue<T>, options?: ControlEventOptions): void {
-    super.reset(formState, options);
+    super.reset(formState ?? this.initialState, options);
   }
 
   public setValidators(newValidator: Validator, updateValueAndValidity: boolean = true): void {
