@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.0]
+### Changed
+- (DataSourceDirective): run template creation in zone
+
 ## [0.5.2]
 ### Added
 - fix viewer is issue
