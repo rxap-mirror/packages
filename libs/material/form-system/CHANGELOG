@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.15.3]
+### Fixed
+- (FormControls): clear invalid state
+
+## [0.15.2]
+### Fixed
+- (FormControls): set button border size to 6px
+
+## [0.15.1]
+### Fixed
+- (FormControls): add message duration
+
 ## [0.15.0]
 ### Added
 - (FormControls): add support for invalid form submit

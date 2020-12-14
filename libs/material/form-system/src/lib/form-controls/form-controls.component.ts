@@ -75,6 +75,7 @@ export class FormControlsComponent<FormData> implements OnInit {
   }
 
   public reset() {
+    this.invalid = false;
     this.formDirective.reset();
   }
 
@@ -92,7 +93,7 @@ export class FormControlsComponent<FormData> implements OnInit {
       tap(() => submitSubscription?.unsubscribe()),
       tap(() => this.invalid = true),
       tap(() => this.cdr.detectChanges()),
-      tap(() => this.snackBar.open($localize`:@@rxap-material.form-system.form-controls.form-is-invalid:Form is not valid`))
+      tap(() => this.snackBar.open($localize`:@@rxap-material.form-system.form-controls.form-is-invalid:Form is not valid`, 'ok', { duration: 5000 }))
     ).subscribe();
     let submitHandle                              = this.formDirective.rxapSubmit.pipe(
       take(1)
@@ -103,7 +104,9 @@ export class FormControlsComponent<FormData> implements OnInit {
       );
     }
     submitSubscription = submitHandle.pipe(
-      tap(() => invalidSubmitSubscription.unsubscribe())
+      tap(() => invalidSubmitSubscription.unsubscribe()),
+      tap(() => this.invalid = false),
+      tap(() => this.cdr.detectChanges())
     ).subscribe();
     this.formDirective.onSubmit(new Event('submit'));
   }
