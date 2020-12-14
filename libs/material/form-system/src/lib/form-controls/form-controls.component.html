@@ -21,6 +21,7 @@
             type="button"
             color="primary"
             fxFlex="nogrow"
+            [ngClass]="{ invalid: invalid }"
             mat-raised-button>
       <span fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
         <span fxFlex="nogrow"
@@ -32,6 +33,7 @@
             type="button"
             color="primary"
             fxFlex="nogrow"
+            [ngClass]="{ invalid: invalid }"
             [disabled]="submitting$ | async"
             mat-raised-button>
       <span fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">

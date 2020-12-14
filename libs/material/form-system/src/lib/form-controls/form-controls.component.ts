@@ -5,16 +5,22 @@ import {
   Inject,
   Input,
   OnInit,
-  Output
+  Output,
+  ChangeDetectorRef
 } from '@angular/core';
 import { FormDirective } from '@rxap/forms';
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  Subscription
+} from 'rxjs';
 import { coerceBoolean } from '@rxap/utilities';
 import {
   take,
   tap
 } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import '@angular/localize/init';
 
 @Component({
   selector:        'rxap-form-controls',
@@ -38,6 +44,8 @@ export class FormControlsComponent<FormData> implements OnInit {
 
   public submitting$!: Observable<boolean>;
 
+  public invalid: boolean = false;
+
   @Input()
   public navigateAfterSubmit?: string[];
 
@@ -47,7 +55,9 @@ export class FormControlsComponent<FormData> implements OnInit {
   constructor(
     @Inject(FormDirective)
     private readonly formDirective: FormDirective,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly cdr: ChangeDetectorRef,
+    private readonly snackBar: MatSnackBar
   ) {
   }
 
@@ -76,12 +86,25 @@ export class FormControlsComponent<FormData> implements OnInit {
     this.formDirective.form.markAllAsDirty();
     this.formDirective.form.markAllAsTouched();
     this.formDirective.cdr.markForCheck();
+    let submitSubscription: Subscription;
+    const invalidSubmitSubscription: Subscription = this.formDirective.invalidSubmit.pipe(
+      take(1),
+      tap(() => submitSubscription?.unsubscribe()),
+      tap(() => this.invalid = true),
+      tap(() => this.cdr.detectChanges()),
+      tap(() => this.snackBar.open($localize`:@@rxap-material.form-system.form-controls.form-is-invalid:Form is not valid`))
+    ).subscribe();
+    let submitHandle                              = this.formDirective.rxapSubmit.pipe(
+      take(1)
+    );
     if (closeAfterSubmit) {
-      this.formDirective.rxapSubmit.pipe(
-        take(1),
+      submitHandle = submitHandle.pipe(
         tap(value => this.close.emit(value))
-      ).subscribe();
+      );
     }
+    submitSubscription = submitHandle.pipe(
+      tap(() => invalidSubmitSubscription.unsubscribe())
+    ).subscribe();
     this.formDirective.onSubmit(new Event('submit'));
   }
 
