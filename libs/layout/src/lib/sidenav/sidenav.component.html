@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [ngClass]="{ 'collapsed': sidenav.collapsed$ | async }">
   <div class="inner"
        fxLayout="column"
        fxLayoutAlign="space-between stretch">
