@@ -234,6 +234,40 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
     } else {
       if (isDevMode()) {
         console.log('Form submit is not valid for: ' + this.form.controlId, this.form.errors);
+
+        function printErrorControls(control: any) {
+          if (!control.valid) {
+            console.group(control.controlId);
+            if (control.controls) {
+              if (Array.isArray(control.controls)) {
+                for (let i = 0; i < control.controls.length; i++) {
+                  const child = control.controls[ i ];
+                  if (!child.valid) {
+                    console.group(`index: ${i}`);
+                    printErrorControls(child);
+                    console.groupEnd();
+                  }
+                }
+              } else {
+                for (const child of Object.values(control.controls)) {
+                  printErrorControls(child);
+                }
+              }
+            } else {
+              if (control.errors) {
+                for (const [ key, value ] of Object.entries(control.errors)) {
+                  console.group(key);
+                  console.log(value);
+                  console.groupEnd();
+                }
+              }
+              console.log('value: ', control.value);
+            }
+            console.groupEnd();
+          }
+        }
+
+        printErrorControls(this.form);
       }
       this.invalidSubmit.emit();
     }
