@@ -1,3 +1,8 @@
 button {
   overflow: hidden;
+
+  &.invalid {
+    border: 2px solid darkred;
+  }
+
 }

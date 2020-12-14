@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.15.0]
+### Added
+- (FormControls): add support for invalid form submit
+
 ## [0.14.2]
 ### Fixed
 - hide show attribute logic
