@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.20.2]
+### Added
+- (FormDirectives): add extended validation error logger
+
+## [0.20.1]
+### Added
+- (FormDirectives): add extended validation error logger
+
 ## [0.20.0]
 ### Added
 - (FormControl): add support for reset with the initial state
