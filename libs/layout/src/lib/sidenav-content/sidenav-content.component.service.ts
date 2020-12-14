@@ -20,7 +20,7 @@ import {
 export class SidenavContentComponentService {
 
   public headerRows$ = new BehaviorSubject<number>(1);
-  public footerRows$ = new BehaviorSubject<number>(0);
+  public footerRows$: Observable<number>;
   public innerHeight$: Observable<string>;
   public marginTop$: Observable<string>;
   public marginBottom$: Observable<string>;
@@ -29,12 +29,11 @@ export class SidenavContentComponentService {
     @Inject(FooterService) public readonly footerComponentService: FooterService,
     @Inject(HeaderService) public readonly headerComponentService: HeaderService
   ) {
-    this.footerRows$.next(this.footerComponentService.countComponent);
     this.headerRows$.next(this.headerComponentService.countComponent);
 
-    this.footerComponentService.update$.pipe(
-      tap(() => this.footerRows$.next(this.footerComponentService.countComponent))
-    ).subscribe();
+    this.footerComponentService.portalCount$.pipe().subscribe();
+
+    this.footerRows$ = this.footerComponentService.portalCount$;
 
     this.headerComponentService.update$.pipe(
       tap(() => this.headerRows$.next(this.headerComponentService.countComponent))
