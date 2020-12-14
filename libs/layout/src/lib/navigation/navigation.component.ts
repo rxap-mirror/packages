@@ -3,11 +3,9 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   Input,
-  Inject,
   OnDestroy,
   ChangeDetectorRef,
   ViewEncapsulation,
-  HostListener,
   HostBinding
 } from '@angular/core';
 import { Navigation } from './navigation-item';
@@ -15,7 +13,6 @@ import {
   Required,
   coerceBoolean
 } from '@rxap/utilities';
-import { RXAP_NAVIGATION_CONFIG } from '../tokens';
 import { NavigationService } from './navigation.service';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -30,7 +27,8 @@ import { tap } from 'rxjs/operators';
 })
 export class NavigationComponent implements OnInit, OnDestroy {
 
-  private _root = false;
+  @HostBinding('class.rxap-root-navigation')
+  public _root = false;
 
   @Input()
   public set root(value: boolean | '') {
