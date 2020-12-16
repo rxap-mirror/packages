@@ -228,7 +228,6 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
   @HostListener('submit', [ '$event' ])
   public onSubmit($event: Event): boolean {
     super.onSubmit($event);
-
     if (this.form.valid) {
       this.submit()
     } else {
