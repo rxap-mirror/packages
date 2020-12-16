@@ -149,13 +149,13 @@ export class OpenApiDataSource<Response = any, Parameters extends Record<string,
 
 
     if (viewer.parameters) {
-      this.validateParameters(this.operation, viewer.parameters);
+      this.validateParameters(this.operation, viewer.parameters, this.strict);
     } else {
       if (viewer.viewChange === EMPTY || viewer.viewChange === undefined) {
         // set the viewer parameters to an empty parameter and test if that
         // is valid.
         viewer.parameters = {} as any;
-        this.validateParameters(this.operation, viewer.parameters);
+        this.validateParameters(this.operation, viewer.parameters, this.strict);
       }
     }
 
