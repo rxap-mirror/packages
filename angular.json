@@ -4138,6 +4138,81 @@
           "style": "scss"
         }
       }
+    },
+    "contenteditable": {
+      "projectType": "library",
+      "root": "libs/contenteditable",
+      "sourceRoot": "libs/contenteditable/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/contenteditable/tsconfig.lib.json",
+            "project": "libs/contenteditable/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/contenteditable/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/contenteditable/tsconfig.lib.json",
+              "libs/contenteditable/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/contenteditable/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/contenteditable/jest.config.js",
+            "tsConfig": "libs/contenteditable/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/contenteditable/src/test-setup.ts"
+          }
+        },
+        "pack": {
+          "builder": "@rxap-plugin/pack:build",
+          "options": {
+            "targets": [
+              "contenteditable:update-package-group",
+              "contenteditable:build:production",
+              "contenteditable:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "contenteditable:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/contenteditable/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap-plugin/library-publish:publish",
+          "options": {
+            "buildTarget": "contenteditable:build:production",
+            "preTarget": "contenteditable:pack"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "newProjectRoot": "",
