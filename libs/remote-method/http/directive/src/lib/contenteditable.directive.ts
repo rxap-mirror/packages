@@ -56,6 +56,9 @@ export class ContenteditableDirective {
 
 }
 
+/**
+ * @deprecated removed
+ */
 @NgModule({
   declarations: [ ContenteditableDirective ],
   exports:      [ ContenteditableDirective ]
