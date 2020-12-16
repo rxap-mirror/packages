@@ -140,16 +140,24 @@
         "libs/directives/material/icon/src/public_api.ts"
       ],
       "@rxap/directives": ["libs/directives/src/index.ts"],
-      "@rxap/handlebars": ["libs/handlebars/src/index.ts"],
+      "@rxap/handlebars": [
+        "libs/handlebars/src/index.ts"
+      ],
       "@rxap/data-source/pagination/directives": [
         "libs/data-source/pagination/directives/src/public_api.ts"
       ],
       "@rxap/data-source/http/pagination": [
         "libs/data-source/http/pagination/src/public_api.ts"
       ],
-      "@rxap/definition": ["libs/definition/src/index.ts"],
-      "@rxap-plugin/pack": ["libs/plugin/pack/src/index.ts"],
-      "@rxap-plugin/scss-bundle": ["libs/plugin/scss-bundle/src/index.ts"],
+      "@rxap/definition": [
+        "libs/definition/src/index.ts"
+      ],
+      "@rxap-plugin/pack": [
+        "libs/plugin/pack/src/index.ts"
+      ],
+      "@rxap-plugin/scss-bundle": [
+        "libs/plugin/scss-bundle/src/index.ts"
+      ],
       "@rxap/form-system": [
         "libs/form-system/src/index.ts"
       ],
@@ -209,6 +217,9 @@
       ],
       "@rxap-schematics/utilities": [
         "libs/schematics/utilities/src/index.ts"
+      ],
+      "@rxap/contenteditable": [
+        "libs/contenteditable/src/index.ts"
       ]
     }
   },

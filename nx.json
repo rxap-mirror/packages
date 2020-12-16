@@ -173,6 +173,9 @@
     },
     "schematics-utilities": {
       "tags": []
+    },
+    "contenteditable": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
