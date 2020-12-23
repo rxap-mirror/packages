@@ -16,7 +16,7 @@ import {
 
 @NgModule({
   declarations: [ AppComponent ],
-  imports:      [
+  imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
@@ -26,13 +26,13 @@ import {
         path:        '',
         component:   LayoutComponent
       }
-    ]),
+    ], { relativeLinkResolution: 'legacy' }),
     RxapAuthenticationModule,
     LayoutModule.withNavigation([
       {
-        label: 'overview',
-        routerLink: ['/'],
-        icon: { icon: 'home' }
+        label:      'overview',
+        routerLink: [ '/' ],
+        icon:       { icon: 'home' }
       }
     ])
   ],

@@ -135,7 +135,8 @@ export const APP_ROUTES: Routes = [
   }
 ];
 
-export const APP_ROUTER_CONFIG: ExtraOptions = {};
+export const APP_ROUTER_CONFIG: ExtraOptions = { relativeLinkResolution: 'legacy' };
+{ 'legacy'; }
 
 @NgModule({
   exports: [ RouterModule ],
