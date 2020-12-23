@@ -30,7 +30,9 @@
                 "output": "./assets"
               }
             ],
-            "styles": ["apps/testing/src/styles.scss"],
+            "styles": [
+              "apps/testing/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -44,7 +46,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -62,7 +63,10 @@
                 }
               ]
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -88,7 +92,10 @@
               "apps/testing/tsconfig.app.json",
               "apps/testing/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/testing/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/testing/**/*"
+            ]
           }
         },
         "test": {
@@ -96,7 +103,10 @@
           "options": {
             "jestConfig": "apps/testing/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/apps/testing"
+          ]
         }
       }
     },
@@ -110,7 +120,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/utilities/tsconfig.lib.json",
-            "project": "libs/utilities/ng-package.json"
+            "project": "libs/utilities/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -125,7 +136,10 @@
               "libs/utilities/tsconfig.lib.json",
               "libs/utilities/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/utilities/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/utilities/**/*"
+            ]
           }
         },
         "test": {
@@ -133,7 +147,10 @@
           "options": {
             "jestConfig": "libs/utilities/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/utilities"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -192,7 +209,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/data-source/tsconfig.lib.json",
-            "project": "libs/data-source/ng-package.json"
+            "project": "libs/data-source/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -207,7 +225,10 @@
               "libs/data-source/tsconfig.lib.json",
               "libs/data-source/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/data-source/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-source/**/*"
+            ]
           }
         },
         "test": {
@@ -215,7 +236,10 @@
           "options": {
             "jestConfig": "libs/data-source/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/data-source"
+          ]
         },
         "schematics": {
           "builder": "@rxap-plugin/library-schematics:build",
@@ -233,7 +257,9 @@
             "config": {
               "configFolder": "libs/data-source/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
@@ -249,13 +275,18 @@
             "config": {
               "configFolder": "libs/data-source/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
               "quiet": true
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -306,7 +337,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/window-system/tsconfig.lib.json",
-            "project": "libs/window-system/ng-package.json"
+            "project": "libs/window-system/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -321,7 +353,10 @@
               "libs/window-system/tsconfig.lib.json",
               "libs/window-system/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/window-system/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/window-system/**/*"
+            ]
           }
         },
         "test": {
@@ -329,7 +364,10 @@
           "options": {
             "jestConfig": "libs/window-system/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/window-system"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -347,7 +385,9 @@
           "options": {
             "buildTarget": "window-system:build:production",
             "skipBuild": true,
-            "ignoreImports": ["~@angular/.*"]
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         },
         "schematics": {
@@ -385,7 +425,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/services/tsconfig.lib.json",
-            "project": "libs/services/ng-package.json"
+            "project": "libs/services/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -400,7 +441,10 @@
               "libs/services/tsconfig.lib.json",
               "libs/services/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/services/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/services/**/*"
+            ]
           }
         },
         "test": {
@@ -408,7 +452,10 @@
           "options": {
             "jestConfig": "libs/services/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/services"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -467,7 +514,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/xml-parser/tsconfig.lib.json",
-            "project": "libs/xml-parser/ng-package.json"
+            "project": "libs/xml-parser/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -482,7 +530,10 @@
               "libs/xml-parser/tsconfig.lib.json",
               "libs/xml-parser/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/xml-parser/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/xml-parser/**/*"
+            ]
           }
         },
         "test": {
@@ -490,7 +541,10 @@
           "options": {
             "jestConfig": "libs/xml-parser/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/xml-parser"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -537,7 +591,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/mixin/tsconfig.lib.json",
-            "project": "libs/mixin/ng-package.json"
+            "project": "libs/mixin/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -552,7 +607,10 @@
               "libs/mixin/tsconfig.lib.json",
               "libs/mixin/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/mixin/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/mixin/**/*"
+            ]
           }
         },
         "test": {
@@ -560,7 +618,10 @@
           "options": {
             "jestConfig": "libs/mixin/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/mixin"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -607,7 +668,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/components/tsconfig.lib.json",
-            "project": "libs/components/ng-package.json"
+            "project": "libs/components/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -622,7 +684,10 @@
               "libs/components/tsconfig.lib.json",
               "libs/components/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/components/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/components/**/*"
+            ]
           }
         },
         "test": {
@@ -630,13 +695,18 @@
           "options": {
             "jestConfig": "libs/components/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/components"
+          ]
         },
         "scss-bundle": {
           "builder": "@rxap-plugin/scss-bundle:build",
           "options": {
             "buildTarget": "components:build:production",
-            "ignoreImports": ["~@angular/.*"]
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         },
         "pack": {
@@ -658,7 +728,9 @@
             "config": {
               "configFolder": "libs/components/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
@@ -674,13 +746,18 @@
             "config": {
               "configFolder": "libs/components/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
               "quiet": true
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -729,7 +806,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/remote-method/tsconfig.lib.json",
-            "project": "libs/remote-method/ng-package.json"
+            "project": "libs/remote-method/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -744,7 +822,10 @@
               "libs/remote-method/tsconfig.lib.json",
               "libs/remote-method/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/remote-method/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/remote-method/**/*"
+            ]
           }
         },
         "test": {
@@ -752,7 +833,10 @@
           "options": {
             "jestConfig": "libs/remote-method/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/remote-method"
+          ]
         },
         "schematics": {
           "builder": "@rxap-plugin/library-schematics:build",
@@ -811,7 +895,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/config/tsconfig.lib.json",
-            "project": "libs/config/ng-package.json"
+            "project": "libs/config/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -826,7 +911,10 @@
               "libs/config/tsconfig.lib.json",
               "libs/config/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/config/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/config/**/*"
+            ]
           }
         },
         "test": {
@@ -834,7 +922,10 @@
           "options": {
             "jestConfig": "libs/config/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/config"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -893,7 +984,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/authentication/tsconfig.lib.json",
-            "project": "libs/authentication/ng-package.json"
+            "project": "libs/authentication/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -908,7 +1000,10 @@
               "libs/authentication/tsconfig.lib.json",
               "libs/authentication/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/authentication/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/authentication/**/*"
+            ]
           }
         },
         "test": {
@@ -916,7 +1011,10 @@
           "options": {
             "jestConfig": "libs/authentication/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/authentication"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -926,7 +1024,9 @@
             "config": {
               "configFolder": "libs/authentication/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
@@ -942,13 +1042,18 @@
             "config": {
               "configFolder": "libs/authentication/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
               "quiet": true
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -978,7 +1083,9 @@
           "options": {
             "buildTarget": "authentication:build:production",
             "skipBuild": true,
-            "ignoreImports": ["~@angular/.*"]
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         },
         "schematics": {
@@ -1016,7 +1123,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/layout/tsconfig.lib.json",
-            "project": "libs/layout/ng-package.json"
+            "project": "libs/layout/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -1031,7 +1139,10 @@
               "libs/layout/tsconfig.lib.json",
               "libs/layout/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/layout/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/layout/**/*"
+            ]
           }
         },
         "test": {
@@ -1039,7 +1150,10 @@
           "options": {
             "jestConfig": "libs/layout/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/layout"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1049,7 +1163,9 @@
             "config": {
               "configFolder": "libs/layout/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
@@ -1065,13 +1181,18 @@
             "config": {
               "configFolder": "libs/layout/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
               "quiet": true
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -1101,7 +1222,9 @@
           "options": {
             "buildTarget": "layout:build:production",
             "skipBuild": true,
-            "ignoreImports": ["~@angular/.*"]
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         },
         "schematics": {
@@ -1139,7 +1262,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/pipes/tsconfig.lib.json",
-            "project": "libs/pipes/ng-package.json"
+            "project": "libs/pipes/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -1154,7 +1278,10 @@
               "libs/pipes/tsconfig.lib.json",
               "libs/pipes/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/pipes/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/pipes/**/*"
+            ]
           }
         },
         "test": {
@@ -1162,7 +1289,10 @@
           "options": {
             "jestConfig": "libs/pipes/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/pipes"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1172,7 +1302,9 @@
             "config": {
               "configFolder": "libs/pipes/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
@@ -1188,13 +1320,18 @@
             "config": {
               "configFolder": "libs/pipes/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
               "quiet": true
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -1256,7 +1393,10 @@
               "libs/plugin/app-engine/tsconfig.lib.json",
               "libs/plugin/app-engine/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/plugin/app-engine/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/plugin/app-engine/**/*"
+            ]
           }
         },
         "test": {
@@ -1264,7 +1404,10 @@
           "options": {
             "jestConfig": "libs/plugin/app-engine/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/plugin/app-engine"
+          ]
         },
         "build": {
           "builder": "@nrwl/node:package",
@@ -1290,8 +1433,12 @@
                 "glob": "builders.json",
                 "output": "."
               }
-            ]
-          }
+            ],
+            "srcRootForCompilationRoot": "libs/plugin/app-engine"
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       }
     },
@@ -1320,7 +1467,10 @@
           "options": {
             "jestConfig": "libs/plugin/library-schematics/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/plugin/library-schematics"
+          ]
         },
         "build": {
           "builder": "@nrwl/node:package",
@@ -1346,8 +1496,12 @@
                 "glob": "builders.json",
                 "output": "."
               }
-            ]
-          }
+            ],
+            "srcRootForCompilationRoot": "libs/plugin/library-schematics"
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -1373,7 +1527,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/open-api/tsconfig.lib.json",
-            "project": "libs/open-api/ng-package.json"
+            "project": "libs/open-api/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -1388,7 +1543,10 @@
               "libs/open-api/tsconfig.lib.json",
               "libs/open-api/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/open-api/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/open-api/**/*"
+            ]
           }
         },
         "test": {
@@ -1396,7 +1554,10 @@
           "options": {
             "jestConfig": "libs/open-api/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/open-api"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -1455,7 +1616,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/recorder/tsconfig.lib.json",
-            "project": "libs/recorder/ng-package.json"
+            "project": "libs/recorder/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -1470,7 +1632,10 @@
               "libs/recorder/tsconfig.lib.json",
               "libs/recorder/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/recorder/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/recorder/**/*"
+            ]
           }
         },
         "test": {
@@ -1478,7 +1643,10 @@
           "options": {
             "jestConfig": "libs/recorder/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/recorder"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -1525,7 +1693,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/across-tabs/tsconfig.lib.json",
-            "project": "libs/across-tabs/ng-package.json"
+            "project": "libs/across-tabs/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -1540,7 +1709,10 @@
               "libs/across-tabs/tsconfig.lib.json",
               "libs/across-tabs/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/across-tabs/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/across-tabs/**/*"
+            ]
           }
         },
         "test": {
@@ -1548,7 +1720,10 @@
           "options": {
             "jestConfig": "libs/across-tabs/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/across-tabs"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -1595,7 +1770,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/forms/tsconfig.lib.json",
-            "project": "libs/forms/ng-package.json"
+            "project": "libs/forms/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -1610,7 +1786,10 @@
               "libs/forms/tsconfig.lib.json",
               "libs/forms/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/forms/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/forms/**/*"
+            ]
           }
         },
         "test": {
@@ -1618,7 +1797,10 @@
           "options": {
             "jestConfig": "libs/forms/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/forms"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1628,7 +1810,9 @@
             "config": {
               "configFolder": "libs/forms/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
@@ -1644,13 +1828,18 @@
             "config": {
               "configFolder": "libs/forms/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
               "quiet": true
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -1709,7 +1898,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/icon/tsconfig.lib.json",
-            "project": "libs/icon/ng-package.json"
+            "project": "libs/icon/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -1724,7 +1914,10 @@
               "libs/icon/tsconfig.lib.json",
               "libs/icon/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/icon/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/icon/**/*"
+            ]
           }
         },
         "test": {
@@ -1732,7 +1925,10 @@
           "options": {
             "jestConfig": "libs/icon/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/icon"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -1791,7 +1987,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/firebase/tsconfig.lib.json",
-            "project": "libs/firebase/ng-package.json"
+            "project": "libs/firebase/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -1806,7 +2003,10 @@
               "libs/firebase/tsconfig.lib.json",
               "libs/firebase/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/firebase/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/firebase/**/*"
+            ]
           }
         },
         "test": {
@@ -1814,7 +2014,10 @@
           "options": {
             "jestConfig": "libs/firebase/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/firebase"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -1873,7 +2076,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/directives/tsconfig.lib.json",
-            "project": "libs/directives/ng-package.json"
+            "project": "libs/directives/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -1888,7 +2092,10 @@
               "libs/directives/tsconfig.lib.json",
               "libs/directives/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/directives/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/directives/**/*"
+            ]
           }
         },
         "test": {
@@ -1896,7 +2103,10 @@
           "options": {
             "jestConfig": "libs/directives/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/directives"
+          ]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -1906,7 +2116,9 @@
             "config": {
               "configFolder": "libs/directives/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
@@ -1922,13 +2134,18 @@
             "config": {
               "configFolder": "libs/directives/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
               "quiet": true
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -1958,7 +2175,9 @@
           "options": {
             "buildTarget": "directives:build:production",
             "skipBuild": true,
-            "ignoreImports": ["~@angular/.*"]
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         },
         "schematics": {
@@ -1996,7 +2215,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/handlebars/tsconfig.lib.json",
-            "project": "libs/handlebars/ng-package.json"
+            "project": "libs/handlebars/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -2011,7 +2231,10 @@
               "libs/handlebars/tsconfig.lib.json",
               "libs/handlebars/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/handlebars/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/handlebars/**/*"
+            ]
           }
         },
         "test": {
@@ -2019,7 +2242,10 @@
           "options": {
             "jestConfig": "libs/handlebars/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/handlebars"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -2066,7 +2292,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/definition/tsconfig.lib.json",
-            "project": "libs/definition/ng-package.json"
+            "project": "libs/definition/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -2081,17 +2308,21 @@
               "libs/definition/tsconfig.lib.json",
               "libs/definition/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/definition/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/definition/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/definition/jest.config.js",
-            "tsConfig": "libs/definition/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/definition/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/definition"
+          ]
         },
         "compodoc": {
           "builder": "@twittwer/compodoc:compodoc",
@@ -2154,16 +2385,21 @@
               "libs/plugin/pack/tsconfig.lib.json",
               "libs/plugin/pack/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/plugin/pack/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/plugin/pack/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/plugin/pack/jest.config.js",
-            "tsConfig": "libs/plugin/pack/tsconfig.spec.json",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/plugin/pack"
+          ]
         },
         "build": {
           "builder": "@nrwl/node:package",
@@ -2189,13 +2425,20 @@
                 "glob": "builders.json",
                 "output": "."
               }
-            ]
-          }
+            ],
+            "srcRootForCompilationRoot": "libs/plugin/pack"
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
           "options": {
-            "targets": ["plugin-pack:readme", "plugin-pack:build"]
+            "targets": [
+              "plugin-pack:readme",
+              "plugin-pack:build"
+            ]
           }
         },
         "readme": {
@@ -2217,16 +2460,21 @@
               "libs/plugin/scss-bundle/tsconfig.lib.json",
               "libs/plugin/scss-bundle/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/plugin/scss-bundle/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/plugin/scss-bundle/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/plugin/scss-bundle/jest.config.js",
-            "tsConfig": "libs/plugin/scss-bundle/tsconfig.spec.json",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/plugin/scss-bundle"
+          ]
         },
         "build": {
           "builder": "@nrwl/node:package",
@@ -2252,8 +2500,12 @@
                 "glob": "builders.json",
                 "output": "."
               }
-            ]
-          }
+            ],
+            "srcRootForCompilationRoot": "libs/plugin/scss-bundle"
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -2325,7 +2577,9 @@
               "apps/pwa/src/config",
               "apps/pwa/src/app.yaml"
             ],
-            "styles": ["apps/pwa/src/styles.scss"],
+            "styles": [
+              "apps/pwa/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -2339,7 +2593,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -2369,7 +2622,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -2399,7 +2651,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -2429,7 +2680,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -2459,7 +2709,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -2489,7 +2738,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -2519,7 +2767,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -2547,7 +2794,10 @@
                 }
               ]
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -2573,17 +2823,21 @@
               "apps/pwa/tsconfig.app.json",
               "apps/pwa/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/pwa/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/pwa/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/pwa/jest.config.js",
-            "tsConfig": "apps/pwa/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "apps/pwa/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/apps/pwa"
+          ]
         }
       }
     },
@@ -2597,7 +2851,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/form-system/tsconfig.lib.json",
-            "project": "libs/form-system/ng-package.json"
+            "project": "libs/form-system/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -2612,17 +2867,21 @@
               "libs/form-system/tsconfig.lib.json",
               "libs/form-system/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/form-system/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/form-system/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/form-system/jest.config.js",
-            "tsConfig": "libs/form-system/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/form-system/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/form-system"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -2651,7 +2910,9 @@
             "config": {
               "configFolder": "libs/form-system/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
@@ -2667,20 +2928,27 @@
             "config": {
               "configFolder": "libs/form-system/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
               "quiet": true
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "scss-bundle": {
           "builder": "@rxap-plugin/scss-bundle:build",
           "options": {
             "buildTarget": "form-system:build:production",
             "skipBuild": true,
-            "ignoreImports": ["~@angular/.*"]
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         },
         "update-package-group": {
@@ -2724,9 +2992,11 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/plugin/readme-generator/jest.config.js",
-            "tsConfig": "libs/plugin/readme-generator/tsconfig.spec.json",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/plugin/readme-generator"
+          ]
         },
         "build": {
           "builder": "@nrwl/node:package",
@@ -2752,8 +3022,12 @@
                 "glob": "builders.json",
                 "output": "."
               }
-            ]
-          }
+            ],
+            "srcRootForCompilationRoot": "libs/plugin/readme-generator"
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -2782,16 +3056,21 @@
               "libs/plugin/kaniko/tsconfig.lib.json",
               "libs/plugin/kaniko/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/plugin/kaniko/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/plugin/kaniko/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/plugin/kaniko/jest.config.js",
-            "tsConfig": "libs/plugin/kaniko/tsconfig.spec.json",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/plugin/kaniko"
+          ]
         },
         "build": {
           "builder": "@nrwl/node:package",
@@ -2817,13 +3096,20 @@
                 "glob": "builders.json",
                 "output": "."
               }
-            ]
-          }
+            ],
+            "srcRootForCompilationRoot": "libs/plugin/kaniko"
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
           "options": {
-            "targets": ["plugin-kaniko:readme", "plugin-kaniko:build"]
+            "targets": [
+              "plugin-kaniko:readme",
+              "plugin-kaniko:build"
+            ]
           }
         },
         "readme": {
@@ -2841,7 +3127,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/data-grid/tsconfig.lib.json",
-            "project": "libs/data-grid/ng-package.json"
+            "project": "libs/data-grid/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -2856,17 +3143,21 @@
               "libs/data-grid/tsconfig.lib.json",
               "libs/data-grid/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/data-grid/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data-grid/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/data-grid/jest.config.js",
-            "tsConfig": "libs/data-grid/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/data-grid/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/data-grid"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -2892,7 +3183,9 @@
           "options": {
             "buildTarget": "data-grid:build:production",
             "skipBuild": true,
-            "ignoreImports": ["~@angular/.*"]
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         },
         "update-package-group": {
@@ -2935,9 +3228,11 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/plugin/library-publish/jest.config.js",
-            "tsConfig": "libs/plugin/library-publish/tsconfig.spec.json",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/plugin/library-publish"
+          ]
         },
         "build": {
           "builder": "@nrwl/node:package",
@@ -2963,8 +3258,12 @@
                 "glob": "builders.json",
                 "output": "."
               }
-            ]
-          }
+            ],
+            "srcRootForCompilationRoot": "libs/plugin/library-publish"
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -2997,7 +3296,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/fullstory/tsconfig.lib.json",
-            "project": "libs/fullstory/ng-package.json"
+            "project": "libs/fullstory/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3012,17 +3312,21 @@
               "libs/fullstory/tsconfig.lib.json",
               "libs/fullstory/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/fullstory/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/fullstory/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/fullstory/jest.config.js",
-            "tsConfig": "libs/fullstory/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/fullstory/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/fullstory"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -3069,7 +3373,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/sentry/tsconfig.lib.json",
-            "project": "libs/sentry/ng-package.json"
+            "project": "libs/sentry/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3084,17 +3389,21 @@
               "libs/sentry/tsconfig.lib.json",
               "libs/sentry/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/sentry/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/sentry/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/sentry/jest.config.js",
-            "tsConfig": "libs/sentry/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/sentry/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/sentry"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -3141,7 +3450,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/slugify/tsconfig.lib.json",
-            "project": "libs/slugify/ng-package.json"
+            "project": "libs/slugify/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3156,17 +3466,21 @@
               "libs/slugify/tsconfig.lib.json",
               "libs/slugify/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/slugify/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/slugify/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/slugify/jest.config.js",
-            "tsConfig": "libs/slugify/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/slugify/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/slugify"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -3213,7 +3527,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/service-worker/tsconfig.lib.json",
-            "project": "libs/service-worker/ng-package.json"
+            "project": "libs/service-worker/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3228,17 +3543,21 @@
               "libs/service-worker/tsconfig.lib.json",
               "libs/service-worker/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/service-worker/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/service-worker/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/service-worker/jest.config.js",
-            "tsConfig": "libs/service-worker/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/service-worker/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/service-worker"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -3285,7 +3604,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/life-cycle/tsconfig.lib.json",
-            "project": "libs/life-cycle/ng-package.json"
+            "project": "libs/life-cycle/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3300,17 +3620,21 @@
               "libs/life-cycle/tsconfig.lib.json",
               "libs/life-cycle/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/life-cycle/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/life-cycle/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/life-cycle/jest.config.js",
-            "tsConfig": "libs/life-cycle/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/life-cycle/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/life-cycle"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -3357,7 +3681,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/json-schema-to-typescript/tsconfig.lib.json",
-            "project": "libs/json-schema-to-typescript/ng-package.json"
+            "project": "libs/json-schema-to-typescript/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3382,15 +3707,18 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/json-schema-to-typescript/jest.config.js",
-            "tsConfig": "libs/json-schema-to-typescript/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/json-schema-to-typescript/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/json-schema-to-typescript"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
           "options": {
-            "targets": ["json-schema-to-typescript:build:production"]
+            "targets": [
+              "json-schema-to-typescript:build:production"
+            ]
           }
         },
         "publish": {
@@ -3417,7 +3745,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/tree/tsconfig.lib.json",
-            "project": "libs/tree/ng-package.json"
+            "project": "libs/tree/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3432,24 +3761,30 @@
               "libs/tree/tsconfig.lib.json",
               "libs/tree/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/tree/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/tree/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/tree/jest.config.js",
-            "tsConfig": "libs/tree/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/tree/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/tree"
+          ]
         },
         "scss-bundle": {
           "builder": "@rxap-plugin/scss-bundle:build",
           "options": {
             "buildTarget": "tree:build:production",
             "skipBuild": true,
-            "ignoreImports": ["~@angular/.*"]
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         },
         "pack": {
@@ -3497,7 +3832,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/dialog/tsconfig.lib.json",
-            "project": "libs/dialog/ng-package.json"
+            "project": "libs/dialog/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3512,24 +3848,30 @@
               "libs/dialog/tsconfig.lib.json",
               "libs/dialog/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/dialog/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/dialog/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/dialog/jest.config.js",
-            "tsConfig": "libs/dialog/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/dialog/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/dialog"
+          ]
         },
         "scss-bundle": {
           "builder": "@rxap-plugin/scss-bundle:build",
           "options": {
             "buildTarget": "dialog:build:production",
             "skipBuild": true,
-            "ignoreImports": ["~@angular/.*"]
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         },
         "pack": {
@@ -3577,7 +3919,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/form-window-system/tsconfig.lib.json",
-            "project": "libs/form-window-system/ng-package.json"
+            "project": "libs/form-window-system/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3592,24 +3935,30 @@
               "libs/form-window-system/tsconfig.lib.json",
               "libs/form-window-system/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/form-window-system/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/form-window-system/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/form-window-system/jest.config.js",
-            "tsConfig": "libs/form-window-system/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/form-window-system/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/form-window-system"
+          ]
         },
         "scss-bundle": {
           "builder": "@rxap-plugin/scss-bundle:build",
           "options": {
             "buildTarget": "form-window-system:build:production",
             "skipBuild": true,
-            "ignoreImports": ["~@angular/.*"]
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         },
         "pack": {
@@ -3658,7 +4007,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/environment/tsconfig.lib.json",
-            "project": "libs/environment/ng-package.json"
+            "project": "libs/environment/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3673,24 +4023,30 @@
               "libs/environment/tsconfig.lib.json",
               "libs/environment/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/environment/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/environment/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/environment/jest.config.js",
-            "tsConfig": "libs/environment/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/environment/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/environment"
+          ]
         },
         "scss-bundle": {
           "builder": "@rxap-plugin/scss-bundle:build",
           "options": {
             "buildTarget": "environment:build:production",
             "skipBuild": true,
-            "ignoreImports": ["~@angular/.*"]
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         },
         "pack": {
@@ -3729,7 +4085,9 @@
             "config": {
               "configFolder": "libs/environment/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
@@ -3745,13 +4103,18 @@
             "config": {
               "configFolder": "libs/environment/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
               "quiet": true
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       },
       "schematics": {
@@ -3770,7 +4133,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/table-system/tsconfig.lib.json",
-            "project": "libs/table-system/ng-package.json"
+            "project": "libs/table-system/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3785,7 +4149,10 @@
               "libs/table-system/tsconfig.lib.json",
               "libs/table-system/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/table-system/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/table-system/**/*"
+            ]
           }
         },
         "storybook": {
@@ -3796,7 +4163,9 @@
             "config": {
               "configFolder": "libs/table-system/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
@@ -3812,22 +4181,28 @@
             "config": {
               "configFolder": "libs/table-system/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
               "quiet": true
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/table-system/jest.config.js",
-            "tsConfig": "libs/table-system/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/table-system/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/table-system"
+          ]
         },
         "scss-bundle": {
           "builder": "@rxap-plugin/scss-bundle:build",
@@ -3885,7 +4260,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/material/form-system/tsconfig.lib.json",
-            "project": "libs/material/form-system/ng-package.json"
+            "project": "libs/material/form-system/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3910,10 +4286,11 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/material/form-system/jest.config.js",
-            "tsConfig": "libs/material/form-system/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/material/form-system/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/material/form-system"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -3971,7 +4348,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/material/table-system/tsconfig.lib.json",
-            "project": "libs/material/table-system/ng-package.json"
+            "project": "libs/material/table-system/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -3996,10 +4374,11 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/material/table-system/jest.config.js",
-            "tsConfig": "libs/material/table-system/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/material/table-system/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/material/table-system"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -4068,7 +4447,10 @@
             "ci": {
               "quiet": true
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         }
       },
       "schematics": {
@@ -4087,7 +4469,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/schematics/utilities/tsconfig.lib.json",
-            "project": "libs/schematics/utilities/ng-package.json"
+            "project": "libs/schematics/utilities/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -4112,10 +4495,11 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/schematics/utilities/jest.config.js",
-            "tsConfig": "libs/schematics/utilities/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/schematics/utilities/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/schematics/utilities"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",
@@ -4149,7 +4533,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/contenteditable/tsconfig.lib.json",
-            "project": "libs/contenteditable/ng-package.json"
+            "project": "libs/contenteditable/ng-package.json",
+            "buildableProjectDepsInPackageJsonType": "dependencies"
           },
           "configurations": {
             "production": {
@@ -4174,10 +4559,11 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/contenteditable/jest.config.js",
-            "tsConfig": "libs/contenteditable/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/contenteditable/src/test-setup.ts"
-          }
+            "passWithNoTests": true
+          },
+          "outputs": [
+            "coverage/libs/contenteditable"
+          ]
         },
         "pack": {
           "builder": "@rxap-plugin/pack:build",

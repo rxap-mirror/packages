@@ -1,33 +1,51 @@
 module.exports = {
-  globals: {
-    'ts-jest': {
-      tsConfig: './tsconfig.spec.json',
-      stringifyContentPathRegex: '\\.html$',
-      astTransformers: [
-        'jest-preset-angular/build/InlineFilesTransformer',
-        'jest-preset-angular/build/StripStylesTransformer'
-      ]
-    }
-  },
-  setupFilesAfterEnv: [
-    'jest-preset-angular',
-    'jest-extended'
-  ],
-  testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
-  transform: {
-    '^.+\\.(ts|html)$': 'ts-jest'
-  },
-  testPathIgnorePatterns: [
-    'node_modules/',
-    'dist/',
-    'chromium-user-data/',
-    'apps/(.*)-e2e/',
-    '(.*)\.helper\.spec\.ts',
-    'libs/rxap/'
-  ],
-  resolver: '@nrwl/jest/plugins/resolver',
-  moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageReporters: ['json-summary', 'cobertura'],
-  transformIgnorePatterns: ['node_modules/(?!@ngrx)'],
-  collectCoverage: !!process.env.COLLECT_COVERAGE,
+  projects: [
+    '<rootDir>/apps/testing',
+    '<rootDir>/libs/utilities',
+    '<rootDir>/libs/data-source',
+    '<rootDir>/libs/window-system',
+    '<rootDir>/libs/services',
+    '<rootDir>/libs/xml-parser',
+    '<rootDir>/libs/mixin',
+    '<rootDir>/libs/components',
+    '<rootDir>/libs/remote-method',
+    '<rootDir>/libs/config',
+    '<rootDir>/libs/authentication',
+    '<rootDir>/libs/layout',
+    '<rootDir>/libs/pipes',
+    '<rootDir>/libs/plugin/app-engine',
+    '<rootDir>/libs/plugin/library-schematics',
+    '<rootDir>/libs/open-api',
+    '<rootDir>/libs/recorder',
+    '<rootDir>/libs/across-tabs',
+    '<rootDir>/libs/forms',
+    '<rootDir>/libs/icon',
+    '<rootDir>/libs/firebase',
+    '<rootDir>/libs/directives',
+    '<rootDir>/libs/handlebars',
+    '<rootDir>/libs/definition',
+    '<rootDir>/libs/plugin/pack',
+    '<rootDir>/libs/plugin/scss-bundle',
+    '<rootDir>/apps/pwa',
+    '<rootDir>/libs/form-system',
+    '<rootDir>/libs/plugin/readme-generator',
+    '<rootDir>/libs/plugin/kaniko',
+    '<rootDir>/libs/data-grid',
+    '<rootDir>/libs/plugin/library-publish',
+    '<rootDir>/libs/fullstory',
+    '<rootDir>/libs/sentry',
+    '<rootDir>/libs/slugify',
+    '<rootDir>/libs/service-worker',
+    '<rootDir>/libs/life-cycle',
+    '<rootDir>/libs/json-schema-to-typescript',
+    '<rootDir>/libs/tree',
+    '<rootDir>/libs/dialog',
+    '<rootDir>/libs/form-window-system',
+    '<rootDir>/libs/environment',
+    '<rootDir>/libs/table-system',
+    '<rootDir>/libs/material/form-system',
+    '<rootDir>/libs/material/table-system',
+    '<rootDir>/libs/schematics/utilities',
+    '<rootDir>/libs/contenteditable'
+  ]
 };

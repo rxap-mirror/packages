@@ -2,7 +2,3 @@
 	path = tools/cli
 	url = ../tools/cli.git
 	branch = master
-[submodule "tools/schematics"]
-	path = tools/schematics
-	url = ../tools/schematics.git
-  branch = master
