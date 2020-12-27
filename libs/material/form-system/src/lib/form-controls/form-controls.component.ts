@@ -50,7 +50,16 @@ export class FormControlsComponent<FormData> implements OnInit {
   public navigateAfterSubmit?: string[];
 
   @Output()
-  public close = new EventEmitter<FormData | void>();
+  public close = new EventEmitter<FormData | FormData[] | void>();
+
+  @Output()
+  public submitted = new EventEmitter<FormData>();
+
+  /**
+   * Collection of successful submitted values
+   * @private
+   */
+  private _submitted: FormData[] = [];
 
   constructor(
     @Inject(FormDirective)
@@ -88,6 +97,7 @@ export class FormControlsComponent<FormData> implements OnInit {
     this.formDirective.form.markAllAsTouched();
     this.formDirective.cdr.markForCheck();
     let submitSubscription: Subscription;
+
     const invalidSubmitSubscription: Subscription = this.formDirective.invalidSubmit.pipe(
       take(1),
       tap(() => submitSubscription?.unsubscribe()),
@@ -95,19 +105,25 @@ export class FormControlsComponent<FormData> implements OnInit {
       tap(() => this.cdr.detectChanges()),
       tap(() => this.snackBar.open($localize`:@@rxap-material.form-system.form-controls.form-is-invalid:Form is not valid`, 'ok', { duration: 5000 }))
     ).subscribe();
-    let submitHandle                              = this.formDirective.rxapSubmit.pipe(
-      take(1)
+
+    let submitHandle = this.formDirective.rxapSubmit.pipe(
+      take(1),
+      tap(value => this._submitted.push(value)),
+      tap(value => this.submitted.emit(value))
     );
+
     if (closeAfterSubmit) {
       submitHandle = submitHandle.pipe(
-        tap(value => this.close.emit(value))
+        tap(() => this.close.emit(this._submitted.length > 1 ? this._submitted : this._submitted[ 0 ]))
       );
     }
+
     submitSubscription = submitHandle.pipe(
       tap(() => invalidSubmitSubscription.unsubscribe()),
       tap(() => this.invalid = false),
       tap(() => this.cdr.detectChanges())
     ).subscribe();
+
     this.formDirective.onSubmit(new Event('submit'));
   }
 
