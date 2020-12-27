@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.16.0]
+### Added
+- (FormControlsComponent): add support for multiple submit value
+
 ## [0.15.4]
 ### Fixed
 - (schematics): add support for allowResubmit
