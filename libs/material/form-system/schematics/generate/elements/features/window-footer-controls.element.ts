@@ -1,6 +1,7 @@
 import {
   ElementDef,
-  ElementExtends
+  ElementExtends,
+  ElementAttribute
 } from '@rxap/xml-parser/decorators';
 import {
   NodeFactory,
@@ -24,9 +25,16 @@ const { dasherize, classify, camelize, capitalize } = strings;
 @ElementDef('window-footer-controls')
 export class WindowFooterControlsElement extends FormFeatureElement {
 
+  @ElementAttribute()
+  public allowResubmit?: boolean;
+
   public template(): string {
+    const attributes: Array<string | (() => string)> = [ '(close)="windowRef.close($event)"' ];
+    if (this.allowResubmit) {
+      attributes.push('allowResubmit');
+    }
     return NodeFactory('ng-template', 'rxapFormWindowFooter', 'let-windowRef')([
-      NodeFactory('rxap-form-controls', '(close)="windowRef.close($event)"')()
+      NodeFactory('rxap-form-controls', ...attributes)()
     ]);
   }
 
