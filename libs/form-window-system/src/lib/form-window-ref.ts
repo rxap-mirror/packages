@@ -1,6 +1,9 @@
 import { FormDefinition } from '@rxap/forms';
 import { WindowRef } from '@rxap/window-system';
 
+/**
+ * @deprecated removed
+ */
 export class FormWindowRef<Data = any> {
 
   constructor(
