@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.21.0]
+### Added
+- (FormDirectives): only use direct host for submit, load and definition providers
+
 ## [0.20.2]
 ### Added
 - (FormDirectives): add extended validation error logger
