@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.21.1]
+### Fixed
+- (FormDirectives): add form provider clear
+
 ## [0.21.0]
 ### Added
 - (FormDirectives): only use direct host for submit, load and definition providers
