@@ -65,15 +65,27 @@ import { RxapFormBuilder } from '../form-builder';
     // not cleared then the inner form uses the parent submit method provider on
     // submit
     {
-      provide:  RXAP_FORM_DEFINITION,
-      useValue: null
-    },
-    {
       provide:  RXAP_FORM_SUBMIT_METHOD,
       useValue: null
     },
     {
       provide:  RXAP_FORM_LOAD_METHOD,
+      useValue: null
+    },
+    {
+      provide:  RXAP_FORM_LOAD_FAILED_METHOD,
+      useValue: null
+    },
+    {
+      provide:  RXAP_FORM_LOAD_SUCCESSFUL_METHOD,
+      useValue: null
+    },
+    {
+      provide:  RXAP_FORM_SUBMIT_FAILED_METHOD,
+      useValue: null
+    },
+    {
+      provide:  RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
       useValue: null
     },
     {
@@ -157,18 +169,21 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
 
   constructor(
     @Inject(ChangeDetectorRef) public readonly cdr: ChangeDetectorRef,
+    @Optional() @Inject(RXAP_FORM_DEFINITION) formDefinition: FormDefinition | null                                                                = null,
     // skip self, bc the token is set to null
-    @SkipSelf() @Optional() @Inject(RXAP_FORM_DEFINITION) formDefinition: FormDefinition | null                                        = null,
+    @SkipSelf() @Optional() @Inject(RXAP_FORM_SUBMIT_METHOD) submitMethod: FormSubmitMethod<any> | null                                            = null,
     // skip self, bc the token is set to null
-    @SkipSelf() @Optional() @Inject(RXAP_FORM_SUBMIT_METHOD) submitMethod: FormSubmitMethod<any> | null                                = null,
+    @SkipSelf() @Optional() @Inject(RXAP_FORM_LOAD_METHOD) private readonly loadMethod: FormLoadMethod | null                                      = null,
     // skip self, bc the token is set to null
-    @SkipSelf() @Optional() @Inject(RXAP_FORM_LOAD_METHOD) private readonly loadMethod: FormLoadMethod | null                          = null,
-    @Optional() @Inject(RXAP_FORM_LOAD_FAILED_METHOD) private readonly loadFailedMethod: FormLoadFailedMethod | null                   = null,
-    @Optional() @Inject(RXAP_FORM_LOAD_SUCCESSFUL_METHOD) private readonly loadSuccessfulMethod: FormLoadSuccessfulMethod | null       = null,
-    @Optional() @Inject(RXAP_FORM_SUBMIT_FAILED_METHOD) private readonly submitFailedMethod: FormSubmitFailedMethod | null             = null,
-    @Optional() @Inject(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD) private readonly submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null,
+    @SkipSelf() @Optional() @Inject(RXAP_FORM_LOAD_FAILED_METHOD) private readonly loadFailedMethod: FormLoadFailedMethod | null                   = null,
     // skip self, bc the token is set to null
-    @SkipSelf() @Optional() @Inject(RXAP_FORM_DEFINITION_BUILDER) private readonly formDefinitionBuilder: RxapFormBuilder | null       = null
+    @SkipSelf() @Optional() @Inject(RXAP_FORM_LOAD_SUCCESSFUL_METHOD) private readonly loadSuccessfulMethod: FormLoadSuccessfulMethod | null       = null,
+    // skip self, bc the token is set to null
+    @SkipSelf() @Optional() @Inject(RXAP_FORM_SUBMIT_FAILED_METHOD) private readonly submitFailedMethod: FormSubmitFailedMethod | null             = null,
+    // skip self, bc the token is set to null
+    @SkipSelf() @Optional() @Inject(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD) private readonly submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null,
+    // skip self, bc the token is set to null
+    @SkipSelf() @Optional() @Inject(RXAP_FORM_DEFINITION_BUILDER) private readonly formDefinitionBuilder: RxapFormBuilder | null                   = null
   ) {
     super([], []);
     if (submitMethod) {
