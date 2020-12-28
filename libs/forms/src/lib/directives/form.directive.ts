@@ -13,8 +13,7 @@ import {
   OnChanges,
   SimpleChanges,
   isDevMode,
-  Self,
-  Host
+  SkipSelf
 } from '@angular/core';
 import {
   ControlContainer,
@@ -57,7 +56,31 @@ import { RxapFormBuilder } from '../form-builder';
       provide:     ControlContainer,
       // ignore coverage
       useExisting: forwardRef(() => FormDirective)
+    },
+    // region form provider clear
+    // form provider that are directly associated with the current form
+    // are cleared to prevent that inner forms can access this providers
+    // Example: The parent form has a submit method provider and the inner should
+    // not have a submit method provider. If the parent submit method provider is
+    // not cleared then the inner form uses the parent submit method provider on
+    // submit
+    {
+      provide:  RXAP_FORM_DEFINITION,
+      useValue: null
+    },
+    {
+      provide:  RXAP_FORM_SUBMIT_METHOD,
+      useValue: null
+    },
+    {
+      provide:  RXAP_FORM_LOAD_METHOD,
+      useValue: null
+    },
+    {
+      provide:  RXAP_FORM_DEFINITION_BUILDER,
+      useValue: null
     }
+    // endregion
   ],
   host:      { '(reset)': 'onReset()' },
   outputs:   [ 'ngSubmit' ],
@@ -134,14 +157,18 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
 
   constructor(
     @Inject(ChangeDetectorRef) public readonly cdr: ChangeDetectorRef,
-    @Self() @Host() @Optional() @Inject(RXAP_FORM_DEFINITION) formDefinition: FormDefinition | null                                    = null,
-    @Self() @Host() @Optional() @Inject(RXAP_FORM_SUBMIT_METHOD) submitMethod: FormSubmitMethod<any> | null                            = null,
-    @Self() @Host() @Optional() @Inject(RXAP_FORM_LOAD_METHOD) private readonly loadMethod: FormLoadMethod | null                      = null,
+    // skip self, bc the token is set to null
+    @SkipSelf() @Optional() @Inject(RXAP_FORM_DEFINITION) formDefinition: FormDefinition | null                                        = null,
+    // skip self, bc the token is set to null
+    @SkipSelf() @Optional() @Inject(RXAP_FORM_SUBMIT_METHOD) submitMethod: FormSubmitMethod<any> | null                                = null,
+    // skip self, bc the token is set to null
+    @SkipSelf() @Optional() @Inject(RXAP_FORM_LOAD_METHOD) private readonly loadMethod: FormLoadMethod | null                          = null,
     @Optional() @Inject(RXAP_FORM_LOAD_FAILED_METHOD) private readonly loadFailedMethod: FormLoadFailedMethod | null                   = null,
     @Optional() @Inject(RXAP_FORM_LOAD_SUCCESSFUL_METHOD) private readonly loadSuccessfulMethod: FormLoadSuccessfulMethod | null       = null,
     @Optional() @Inject(RXAP_FORM_SUBMIT_FAILED_METHOD) private readonly submitFailedMethod: FormSubmitFailedMethod | null             = null,
     @Optional() @Inject(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD) private readonly submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null,
-    @Self() @Host() @Optional() @Inject(RXAP_FORM_DEFINITION_BUILDER) private readonly formDefinitionBuilder: RxapFormBuilder | null   = null
+    // skip self, bc the token is set to null
+    @SkipSelf() @Optional() @Inject(RXAP_FORM_DEFINITION_BUILDER) private readonly formDefinitionBuilder: RxapFormBuilder | null       = null
   ) {
     super([], []);
     if (submitMethod) {
@@ -231,7 +258,7 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
   public onSubmit($event: Event): boolean {
     super.onSubmit($event);
     if (this.form.valid) {
-      this.submit()
+      this.submit();
     } else {
       if (isDevMode()) {
         console.log('Form submit is not valid for: ' + this.form.controlId, this.form.errors);
