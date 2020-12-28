@@ -1,4 +1,7 @@
-import { Subject } from 'rxjs';
+import {
+  Subject,
+  Observable
+} from 'rxjs';
 import { CounterSubject } from './counter.subject';
 
 export interface Method<ReturnType = any, Parameter = any> {
@@ -6,7 +9,7 @@ export interface Method<ReturnType = any, Parameter = any> {
   executionsInProgress$?: CounterSubject;
   metadata?: any;
 
-  call(parameters?: Parameter, ...args: any[]): Promise<ReturnType> | ReturnType;
+  call(parameters?: Parameter, ...args: any[]): Promise<ReturnType> | Observable<ReturnType> | ReturnType;
 }
 
 export function ToMethod<ReturnType = any, Parameter = any>(call: ((
