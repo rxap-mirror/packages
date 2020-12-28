@@ -12,7 +12,9 @@ import {
   Input,
   OnChanges,
   SimpleChanges,
-  isDevMode
+  isDevMode,
+  Self,
+  Host
 } from '@angular/core';
 import {
   ControlContainer,
@@ -132,14 +134,14 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
 
   constructor(
     @Inject(ChangeDetectorRef) public readonly cdr: ChangeDetectorRef,
-    @Optional() @Inject(RXAP_FORM_DEFINITION) formDefinition: FormDefinition | null                                                    = null,
-    @Optional() @Inject(RXAP_FORM_SUBMIT_METHOD) submitMethod: FormSubmitMethod<any> | null                                            = null,
-    @Optional() @Inject(RXAP_FORM_LOAD_METHOD) private readonly loadMethod: FormLoadMethod | null                                      = null,
+    @Self() @Host() @Optional() @Inject(RXAP_FORM_DEFINITION) formDefinition: FormDefinition | null                                    = null,
+    @Self() @Host() @Optional() @Inject(RXAP_FORM_SUBMIT_METHOD) submitMethod: FormSubmitMethod<any> | null                            = null,
+    @Self() @Host() @Optional() @Inject(RXAP_FORM_LOAD_METHOD) private readonly loadMethod: FormLoadMethod | null                      = null,
     @Optional() @Inject(RXAP_FORM_LOAD_FAILED_METHOD) private readonly loadFailedMethod: FormLoadFailedMethod | null                   = null,
     @Optional() @Inject(RXAP_FORM_LOAD_SUCCESSFUL_METHOD) private readonly loadSuccessfulMethod: FormLoadSuccessfulMethod | null       = null,
     @Optional() @Inject(RXAP_FORM_SUBMIT_FAILED_METHOD) private readonly submitFailedMethod: FormSubmitFailedMethod | null             = null,
     @Optional() @Inject(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD) private readonly submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null,
-    @Optional() @Inject(RXAP_FORM_DEFINITION_BUILDER) private readonly formDefinitionBuilder: RxapFormBuilder | null                   = null
+    @Self() @Host() @Optional() @Inject(RXAP_FORM_DEFINITION_BUILDER) private readonly formDefinitionBuilder: RxapFormBuilder | null   = null
   ) {
     super([], []);
     if (submitMethod) {
