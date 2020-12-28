@@ -9,7 +9,8 @@ import {
 } from '@angular/core';
 import {
   WindowService,
-  WindowConfig
+  WindowConfig,
+  WindowRef
 } from '@rxap/window-system';
 import {
   RxapFormBuilder,
@@ -28,7 +29,6 @@ import {
   getMetadata,
   DeleteUndefinedProperties
 } from '@rxap/utilities';
-import { FormWindowRef } from './form-window-ref';
 import { FormSystemMetadataKeys } from '@rxap/form-system';
 import {
   take,
@@ -60,10 +60,10 @@ export class FormWindowService {
     return formBuilder.build(initial);
   }
 
-  public open<FormData>(
+  public open<FormData extends Record<string, any>>(
     formDefinitionConstructor: Constructor<FormDefinition>,
     options?: FormWindowOptions<FormData>
-  ): FormWindowRef<FormData> {
+  ): WindowRef<FormDefinition, FormData> {
 
     const providers: StaticProvider[] = [
       {
@@ -121,7 +121,8 @@ export class FormWindowService {
 
     let windowConfig: WindowConfig<any, any> = {
       component,
-      injector
+      injector,
+      data: injector.get(RXAP_FORM_DEFINITION)
     };
 
     if (options) {
@@ -139,10 +140,7 @@ export class FormWindowService {
       })
     ).subscribe();
 
-    return new FormWindowRef<FormData>(
-      injector.get(RXAP_FORM_DEFINITION),
-      windowRef
-    );
+    return windowRef;
 
   }
 
