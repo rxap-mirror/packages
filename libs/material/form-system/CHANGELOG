@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.17.0]
+### Added
+- (schematics): add support for new window ref class
+
+## [0.16.0]
+### Added
+- (FormControlsComponent): add support for multiple submit value
+
+## [0.15.4]
+### Fixed
+- (schematics): add support for allowResubmit
+
 ## [0.15.3]
 ### Fixed
 - (FormControls): clear invalid state

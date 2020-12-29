@@ -27,7 +27,8 @@ import {
 } from './window-context';
 import {
   tap,
-  take
+  take,
+  finalize
 } from 'rxjs/operators';
 import { DefaultWindowComponent } from './default-window/default-window.component';
 import { uuid } from '@rxap/utilities';
@@ -66,10 +67,9 @@ export class WindowService {
     return this.active.get(id)!;
   }
 
-  public close(id: string): boolean {
+  public close(id: string): void {
     const windowRef = this.get(id);
-    windowRef.close();
-    return this.remove(id);
+    windowRef.complete();
   }
 
   public has(id: string): boolean {
@@ -133,13 +133,10 @@ export class WindowService {
 
     overlayRef.backdropClick().pipe(
       take(1),
-      tap(() => windowRef.close())
+      tap(() => windowRef.complete())
     ).subscribe();
 
-    windowRef.closed$.pipe(
-      take(1),
-      tap(() => this.remove(windowConfig.id))
-    ).subscribe();
+    windowRef.pipe(finalize(() => this.remove(windowConfig.id))).subscribe();
 
     this.add(windowRef);
 

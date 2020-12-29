@@ -1,6 +1,7 @@
 import {
   ElementDef,
-  ElementExtends
+  ElementExtends,
+  ElementAttribute
 } from '@rxap/xml-parser/decorators';
 import {
   NodeFactory,
@@ -24,9 +25,19 @@ const { dasherize, classify, camelize, capitalize } = strings;
 @ElementDef('window-footer-controls')
 export class WindowFooterControlsElement extends FormFeatureElement {
 
+  @ElementAttribute()
+  public allowResubmit?: boolean;
+
   public template(): string {
+    const attributes: Array<string | (() => string)> = [
+      '(close)="windowRef.complete()"',
+      '(submitted)="windowRef.next($event)"'
+    ];
+    if (this.allowResubmit) {
+      attributes.push('allowResubmit');
+    }
     return NodeFactory('ng-template', 'rxapFormWindowFooter', 'let-windowRef')([
-      NodeFactory('rxap-form-controls', '(close)="windowRef.close($event)"')()
+      NodeFactory('rxap-form-controls', ...attributes)()
     ]);
   }
 
@@ -175,19 +186,7 @@ export class WindowFooterControlsElement extends FormFeatureElement {
           name:       `Open${classify(options.name!)}FormWindowMethodDirective`,
           isExported: true,
           extends:    `MethodDirective<I${classify(options.name!)}Form, Partial<I${classify(options.name!)}Form>>`,
-          properties: [
-            {
-              name:             'parameters',
-              hasQuestionToken: true,
-              type:             `Partial<I${classify(options.name!)}Form>`,
-              decorators:       [
-                {
-                  name:      'Input',
-                  arguments: [ w => w.quote('initial') ]
-                }
-              ]
-            }
-          ],
+          properties: [],
           ctors:      [
             {
               parameters: [
@@ -195,7 +194,7 @@ export class WindowFooterControlsElement extends FormFeatureElement {
                   name:       'method',
                   isReadonly: true,
                   scope:      Scope.Public,
-                  type: `Open${classify(options.name!)}FormWindowMethod`
+                  type:       `Open${classify(options.name!)}FormWindowMethod`
                 }
               ],
               statements: [ 'super();' ]

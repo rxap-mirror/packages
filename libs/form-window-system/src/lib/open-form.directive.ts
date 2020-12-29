@@ -17,18 +17,23 @@ import {
   ConfirmClick,
   Constructor,
   Required,
-  MaterialIcon,
   IconConfig
 } from '@rxap/utilities';
 import {
   FormDefinition,
   ToFormMethod
 } from '@rxap/forms';
-import { FormWindowRef } from './form-window-ref';
 import { FormWindowService } from './form-window.service';
+import { WindowRef } from '@rxap/window-system';
 
+/**
+ * @deprecated
+ */
 export const RXAP_WINDOW_FORM_SYSTEM_OPEN_FORM_CONSTRUCTOR = new InjectionToken('rxap/window-form-system/open-form-constructor');
 
+/**
+ * @deprecated
+ */
 @Directive({
   selector: '[rxapOpenForm]',
   host:     {
@@ -55,7 +60,7 @@ export class OpenFormDirective<Data, Result = Data> extends ConfirmClick impleme
   @Input()
   public initial?: Data;
 
-  private _formWindowRef?: FormWindowRef;
+  private _formWindowRef?: WindowRef;
 
   @Required
   private _formDefinitionConstructor!: Constructor<FormDefinition>;
@@ -84,7 +89,7 @@ export class OpenFormDirective<Data, Result = Data> extends ConfirmClick impleme
   constructor(
     @Optional()
     @Inject(RXAP_WINDOW_FORM_SYSTEM_OPEN_FORM_CONSTRUCTOR)
-    formDefinitionConstructor: Constructor<FormDefinition> | null,
+      formDefinitionConstructor: Constructor<FormDefinition> | null,
     @Inject(FormWindowService)
     private readonly formWindowService: FormWindowService,
     @Inject(INJECTOR)
@@ -108,23 +113,23 @@ export class OpenFormDirective<Data, Result = Data> extends ConfirmClick impleme
     this._formWindowRef = this.formWindowService.open(
       this._formDefinitionConstructor,
       {
-        injector: this.injector,
+        injector:               this.injector,
         submitSuccessfulMethod: ToFormMethod(this.onSubmitSuccessful.bind(this)),
-        initial: this.initial,
-        injectorName: 'OpenFormDirective',
-        title: this.title,
-        icon: this.icon,
-        width: this.width,
-        resizeable: this.resizeable,
-        draggable: this.draggable,
-        panelClass: this.panelClass,
+        initial:                this.initial,
+        injectorName:           'OpenFormDirective',
+        title:                  this.title,
+        icon:                   this.icon,
+        width:                  this.width,
+        resizeable:             this.resizeable,
+        draggable:              this.draggable,
+        panelClass:             this.panelClass,
       }
     );
   }
 
   public onSubmitSuccessful(result: Result): void {
     this.submitted.emit(result);
-    this._formWindowRef?.windowRef.close();
+    this._formWindowRef?.close();
   }
 
   public ngOnDestroy() {
@@ -133,6 +138,9 @@ export class OpenFormDirective<Data, Result = Data> extends ConfirmClick impleme
 
 }
 
+/**
+ * @deprecated
+ */
 @NgModule({
   exports: [OpenFormDirective],
   declarations: [OpenFormDirective],

@@ -17,7 +17,7 @@ export class WindowTaskComponent {
   @Input() @Required public window!: WindowRef<any>;
 
   public close() {
-    this.window.close();
+    this.window.complete();
   }
 
   public reopen() {
