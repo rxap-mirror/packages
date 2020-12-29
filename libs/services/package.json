@@ -1,6 +1,6 @@
 {
   "name": "@rxap/services",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -17,11 +17,11 @@
   },
   "description": "A collection of utility angular services used in RxAP.",
   "peerDependencies": {
-    "@rxap/utilities": ">=0.3.2",
-    "@angular/core": ">=9",
-    "@angular/common": ">=9",
     "@angular/cdk": ">=9",
+    "@angular/common": ">=9",
+    "@angular/core": ">=9",
     "@angular/router": ">=9",
+    "@rxap/utilities": ">=0.3.2",
     "rxjs": ">=6"
   },
   "schematics": "./schematics/collection.json",

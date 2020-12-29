@@ -1,6 +1,6 @@
 {
   "name": "@rxap-plugin/pack",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -23,9 +23,9 @@
   "schematics": "./collection.json",
   "builders": "./builders.json",
   "dependencies": {
+    "@angular-devkit/architect": "0.1000.4",
     "@angular-devkit/core": "10",
-    "@angular-devkit/schematics": "10",
-    "@angular-devkit/architect": "0.1000.4"
+    "@angular-devkit/schematics": "10"
   },
   "peerDependencies": {
     "@nrwl/workspace": ">=9"

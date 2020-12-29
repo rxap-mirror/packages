@@ -1,6 +1,6 @@
 {
   "name": "@rxap/window-system",
-  "version": "0.10.0",
+  "version": "1.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -17,18 +17,18 @@
   },
   "description": "Provides the WindowSystem concept for RxAP.",
   "peerDependencies": {
-    "@rxap/utilities": ">=0.3.7",
-    "rxjs": ">=6.5",
-    "@rxap/services": ">=0.2.5",
+    "@angular/cdk": ">=9",
+    "@angular/common": ">=9",
     "@angular/core": ">=9",
+    "@angular/flex-layout": ">=9",
+    "@angular/material": ">=9",
+    "@angular/platform-browser": ">=9",
     "@angular/router": ">=9",
     "@rxap/components": ">=0.3.3",
     "@rxap/directives": ">=0.0.2",
-    "@angular/material": ">=9",
-    "@angular/platform-browser": ">=9",
-    "@angular/flex-layout": ">=9",
-    "@angular/common": ">=9",
-    "@angular/cdk": ">=9"
+    "@rxap/services": ">=0.2.5",
+    "@rxap/utilities": ">=0.3.7",
+    "rxjs": ">=6.5"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {

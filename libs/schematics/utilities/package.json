@@ -1,11 +1,11 @@
 {
   "name": "@rxap-schematics/utilities",
-  "version": "0.12.2",
+  "version": "1.0.0",
   "peerDependencies": {
+    "@rxap/mixin": ">=0.3.1",
     "@rxap/utilities": ">=0.8.0",
-    "rxjs": "^6.5.5",
     "@rxap/xml-parser": ">=0.6.0",
-    "@rxap/mixin": ">=0.3.1"
+    "rxjs": "^6.5.5"
   },
   "dependencies": {
     "tslib": "^2.0.0"

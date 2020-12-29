@@ -1,14 +1,14 @@
 {
   "name": "@rxap/table-system",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "peerDependencies": {
+    "@angular/animations": ">=9",
+    "@angular/cdk": ">=9",
     "@angular/common": ">=9",
     "@angular/core": ">=9",
-    "@rxap/utilities": ">=0.3.19",
     "@angular/material": ">=9",
-    "@angular/cdk": ">=9",
-    "@angular/animations": ">=9",
     "@angular/platform-browser": ">=9",
+    "@rxap/utilities": ">=0.3.19",
     "rxjs": ">=6.5.5"
   },
   "dependencies": {

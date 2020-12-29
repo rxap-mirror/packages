@@ -1,6 +1,6 @@
 {
   "name": "@rxap/firebase",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -16,12 +16,12 @@
   },
   "description": "A collection of utility angular services to interact with firebase.",
   "peerDependencies": {
+    "@angular/common": ">=9",
+    "@angular/core": ">=9",
+    "@angular/fire": ">=6",
+    "@angular/router": ">=9",
     "@rxap/config": ">=0.2.0",
     "@rxap/utilities": ">=0.3.0",
-    "@angular/fire": ">=6",
-    "@angular/core": ">=9",
-    "@angular/common": ">=9",
-    "@angular/router": ">=9",
     "firebase": "^7.13.1",
     "rxjs": ">=6.5.5"
   },

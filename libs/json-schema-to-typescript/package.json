@@ -1,6 +1,6 @@
 {
   "name": "@rxap/json-schema-to-typescript",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
@@ -18,7 +18,6 @@
   "repository": "git@gitlab.com:rxap/packages.git",
   "license": "MIT",
   "description": "Generates typescript interfaces from json schema definition.",
-  "peerDependencies": {},
   "dependencies": {
     "tslib": "2.0.1"
   }
