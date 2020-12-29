@@ -18,11 +18,14 @@ import {
 } from '@angular/core';
 import { RXAP_WINDOW_SETTINGS } from './tokens';
 
-export class WindowRef<D = any, R = any> {
+export class WindowRef<D = any, R = any> extends Subject<R> {
 
   public readonly width$  = new BehaviorSubject<string>(this.getWidth());
   public readonly height$ = new BehaviorSubject<string>(this.getHeight());
 
+  /**
+   * @deprecated removed. use the subscribe method and wait for the resolve event
+   */
   public readonly closed$ = new Subject<R | undefined>();
 
   public attachedRef$ = new ReplaySubject<ComponentRef<any> | EmbeddedViewRef<any>>(1);
@@ -51,12 +54,25 @@ export class WindowRef<D = any, R = any> {
     public readonly overlayRef: OverlayRef,
     private readonly overlay: Overlay,
     public settings: WindowSettings<D>
-  ) {}
+  ) {
+    super();
+  }
 
+  /**
+   * @deprecated removed. use the complete method
+   * @param result
+   */
   public close(result?: R): void {
-    this.overlayRef.detach();
-    this.overlayRef.dispose();
     this.closed$.next(result);
+    if (result !== undefined) {
+      this.next(result);
+    }
+    this.complete();
+  }
+
+  public complete() {
+    this.overlayRef.dispose();
+    super.complete();
   }
 
   public minimize(): void {

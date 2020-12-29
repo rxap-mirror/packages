@@ -28,7 +28,7 @@ export class CloseWindowAfterSubmitDirective implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this._subscription = this.formSubmit.afterSubmit.pipe(
-      tap(() => this.windowRef.close())
+      tap(() => this.windowRef.complete())
     ).subscribe();
   }
 

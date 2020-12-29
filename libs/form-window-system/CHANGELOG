@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0]
+### Changed
+- add support for new WindowRef class
+
 ## [0.2.3]
 ### Fixed
 - detect changes after window creation
