@@ -1,0 +1,9 @@
+{
+  "packages": [
+    "libs/*",
+    "libs/schematics/*",
+    "libs/plugin/*",
+    "libs/material/*"
+  ],
+  "version": "independent"
+}

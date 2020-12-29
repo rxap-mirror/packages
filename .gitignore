@@ -11,6 +11,7 @@ migrations.json
 .library.gitlab-ci.yml
 /documentation.json
 openapi.json
+lerna-debug.log
 
 junit.xml
 # compiled output
