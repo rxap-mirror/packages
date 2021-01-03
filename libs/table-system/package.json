@@ -21,5 +21,11 @@
       "@rxap/table-system",
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run table-system:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/table-system"
   }
 }

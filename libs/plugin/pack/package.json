@@ -29,5 +29,11 @@
   },
   "peerDependencies": {
     "@nrwl/workspace": ">=9"
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../../ nx run plugin-pack:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../../dist/libs/plugin/pack"
   }
 }

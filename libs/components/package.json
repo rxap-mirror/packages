@@ -38,5 +38,11 @@
       "@rxap/directives",
       "@rxap/services"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run components:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/components"
   }
 }

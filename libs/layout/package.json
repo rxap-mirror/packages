@@ -48,5 +48,11 @@
       "@rxap/directives",
       "@rxap/components"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run layout:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/layout"
   }
 }

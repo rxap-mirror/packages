@@ -29,5 +29,11 @@
       "@rxap/config",
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run config:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/config"
   }
 }

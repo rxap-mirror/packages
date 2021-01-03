@@ -32,5 +32,11 @@
       "@rxap/definition",
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run data-source:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/data-source"
   }
 }

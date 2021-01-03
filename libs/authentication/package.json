@@ -39,5 +39,11 @@
     "@angular/animations": ">=9",
     "@angular/common": ">=9"
   },
-  "schematics": "./schematics/collection.json"
+  "schematics": "./schematics/collection.json",
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run authentication:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/authentication"
+  }
 }

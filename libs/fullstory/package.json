@@ -24,5 +24,11 @@
   "ng-update": {
     "migrations": "./schematics/migration.json",
     "packageGroup": []
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run fullstory:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/fullstory"
   }
 }

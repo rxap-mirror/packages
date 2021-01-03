@@ -3,5 +3,11 @@
   "version": "0.0.4",
   "main": "src/index.js",
   "schematics": "./collection.json",
-  "builders": "./builders.json"
+  "builders": "./builders.json",
+  "scripts": {
+    "prepublish": "yarn --cwd ../../../ nx run plugin-library-publish:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../../dist/libs/plugin/library-publish"
+  }
 }

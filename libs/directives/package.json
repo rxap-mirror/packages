@@ -32,5 +32,11 @@
       "@rxap/services",
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run directives:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/directives"
   }
 }

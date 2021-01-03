@@ -32,5 +32,11 @@
       "@rxap/utilities",
       "@rxap/definition"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run remote-method:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/remote-method"
   }
 }

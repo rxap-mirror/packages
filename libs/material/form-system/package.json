@@ -25,5 +25,11 @@
     "packageGroup": [
       "@rxap-material/form-system"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../../ nx run material-form-system:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../../dist/libs/material/form-system"
   }
 }

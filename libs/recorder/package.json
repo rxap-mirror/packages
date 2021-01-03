@@ -31,5 +31,11 @@
       "@rxap/across-tabs",
       "@rxap/definition"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run recorder:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/recorder"
   }
 }

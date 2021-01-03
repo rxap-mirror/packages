@@ -28,5 +28,11 @@
       "@rxap/utilities",
       "@rxap/mixin"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run xml-parser:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/xml-parser"
   }
 }

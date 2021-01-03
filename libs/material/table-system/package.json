@@ -27,5 +27,11 @@
     "packageGroup": [
       "@rxap-material/table-system"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../../ nx run material-table-system:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../../dist/libs/material/table-system"
   }
 }
