@@ -180,17 +180,15 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "accessToken": "OGU5ZGNjY2UtYTQ0OC00M2RjLWFlNTEtZjY0MTJhZjA4ZDc0fHJlYWQtd3JpdGU=",
         "cacheableOperations": [
+          "build",
           "pack",
           "test",
           "lint",
           "e2e"
         ],
-        "canTrackAnalytics": false,
-        "showUsageWarnings": true,
         "strictlyOrderedTargets": [
           "build",
           "pack"

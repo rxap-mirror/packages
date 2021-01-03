@@ -35,7 +35,8 @@
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run data-source:pack --with-deps",
-    "version": "node ../../tools/update-dependencies.js $PWD"
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run data-source:build --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/data-source"

@@ -24,7 +24,8 @@
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run json-schema-to-typescript:pack --with-deps",
-    "version": "node ../../tools/update-dependencies.js $PWD"
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run json-schema-to-typescript:build --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/json-schema-to-typescript"

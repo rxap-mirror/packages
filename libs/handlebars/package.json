@@ -28,7 +28,8 @@
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run handlebars:pack --with-deps",
-    "version": "node ../../tools/update-dependencies.js $PWD"
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run handlebars:build --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/handlebars"

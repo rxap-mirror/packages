@@ -30,7 +30,8 @@
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run definition:pack --with-deps",
-    "version": "node ../../tools/update-dependencies.js $PWD"
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run definition:build --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/definition"
