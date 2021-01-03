@@ -55,8 +55,6 @@ export abstract class BaseHttpRemoteMethod<ReturnType = any,
 
   protected _httpRequest!: HttpRequest<ReturnType>;
 
-  public readonly id!: string;
-
   public timeout = 60 * 1000;
 
   constructor(
