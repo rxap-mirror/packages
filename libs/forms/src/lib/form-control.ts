@@ -23,7 +23,6 @@ import {
   OrBoxedValue,
   ControlOptions,
   AsyncValidator,
-  AsyncValidatorFn,
   Validator
 } from './types';
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -51,7 +50,8 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
 
   readonly value!: T;
   readonly errors!: E | null;
-  readonly asyncValidator!: AsyncValidatorFn<T>;
+  // TODO : find solution to only overwrite the type with out impl the getter or setter logic
+  // readonly asyncValidator!: AsyncValidatorFn<T>;
   readonly valueChanges!: Observable<T>;
   readonly status!: ControlState;
   readonly statusChanges!: Observable<ControlState>;
@@ -140,7 +140,11 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
   }
 
   public mergeAsyncValidators(validators: AsyncValidator) {
-    this.setAsyncValidators([ this.asyncValidator, ...coerceArray(validators) ]);
+    this.setAsyncValidators([
+      // TODO : remove 'as any' if solution for the type overwrite issue is found (above)
+      this.asyncValidator as any,
+      ...coerceArray(validators)
+    ]);
     this.updateValueAndValidity();
   }
 
