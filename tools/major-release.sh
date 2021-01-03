@@ -13,7 +13,7 @@ else
     lerna version $1 --create-release gitlab --force-publish
     node tools/update-dependencies.js
     git commit -am "chore: update project local peer dependencies"
-    lerna publish from-git
+    lerna publish from-package
   fi
 fi
 
