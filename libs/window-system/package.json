@@ -43,7 +43,8 @@
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run window-system:pack --with-deps",
-    "version": "node ../../tools/update-dependencies.js $PWD"
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run window-system:build --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/window-system"

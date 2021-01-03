@@ -42,7 +42,8 @@
   "schematics": "./schematics/collection.json",
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run authentication:pack --with-deps",
-    "version": "node ../../tools/update-dependencies.js $PWD"
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run authentication:build --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/authentication"

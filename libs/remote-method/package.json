@@ -35,7 +35,8 @@
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run remote-method:pack --with-deps",
-    "version": "node ../../tools/update-dependencies.js $PWD"
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run remote-method:build --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/remote-method"
