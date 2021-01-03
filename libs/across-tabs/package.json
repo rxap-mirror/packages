@@ -1,6 +1,6 @@
 {
   "name": "@rxap/across-tabs",
-  "version": "0.2.3",
+  "version": "10.0.0",
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
@@ -16,15 +16,22 @@
     "across-tabs"
   ],
   "peerDependencies": {
-    "rxjs": ">=6"
+    "rxjs": "^6.5.5"
   },
   "dependencies": {
     "across-tabs": "1.3.1"
   },
-  "scripts": {},
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run across-tabs:pack --with-deps",
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run across-tabs:build --with-deps"
+  },
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",
     "packageGroup": []
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/across-tabs"
   }
 }

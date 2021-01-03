@@ -1,6 +1,6 @@
 {
   "name": "@rxap/definition",
-  "version": "0.0.7",
+  "version": "10.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -16,9 +16,9 @@
   },
   "description": "Provides the Definition concept for RxAP.",
   "peerDependencies": {
-    "@rxap/utilities": ">=0.3.9",
-    "@angular/core": ">=9",
-    "rxjs": ">=6"
+    "@angular/core": "^10.0.6",
+    "@rxap/utilities": ">=10.0.0",
+    "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {
@@ -27,5 +27,13 @@
       "@rxap/definition",
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run definition:pack --with-deps",
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run definition:build --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/definition"
   }
 }
