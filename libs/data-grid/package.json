@@ -8,13 +8,13 @@
     "@angular/forms": "^10.0.6",
     "@angular/platform-browser": "^10.0.6",
     "@angular/router": "^10.0.6",
-    "@rxap-schematics/utilities": ">=0.12.2",
+    "@rxap-schematics/utilities": ">=10.0.0",
     "@rxap/definition": ">=10.0.0",
     "@rxap/forms": ">=10.0.0",
-    "@rxap/mixin": ">=0.3.1",
-    "@rxap/pipes": ">=0.3.6",
-    "@rxap/utilities": ">=0.11.0",
-    "@rxap/xml-parser": ">=0.9.0",
+    "@rxap/mixin": ">=10.0.0",
+    "@rxap/pipes": ">=10.0.0",
+    "@rxap/utilities": ">=10.0.0",
+    "@rxap/xml-parser": ">=10.0.0",
     "rxjs": "^6.5.5"
   },
   "dependencies": {

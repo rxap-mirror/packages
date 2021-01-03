@@ -26,8 +26,8 @@
     "@rxap/data-source": ">=10.0.0",
     "@rxap/definition": ">=10.0.0",
     "@rxap/forms": ">=10.0.0",
-    "@rxap/mixin": ">=0.3.1",
-    "@rxap/utilities": ">=0.11.0",
+    "@rxap/mixin": ">=10.0.0",
+    "@rxap/utilities": ">=10.0.0",
     "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",

@@ -27,7 +27,7 @@
     "@rxap/mixin": ">=10.0.0",
     "@rxap/remote-method": ">=10.0.0",
     "@rxap/schematics": ">=0",
-    "@rxap/utilities": ">=0.11.0",
+    "@rxap/utilities": ">=10.0.0",
     "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",
