@@ -30,9 +30,9 @@
     "@rxap/definition": ">=11.0.0",
     "@rxap/directives": ">=11.0.0",
     "@rxap/forms": ">=11.0.0",
-    "@rxap/services": ">=10.0.0",
-    "@rxap/utilities": ">=10.0.0",
-    "@rxap/window-system": ">=10.0.0"
+    "@rxap/services": ">=11.0.0",
+    "@rxap/utilities": ">=11.0.0",
+    "@rxap/window-system": ">=11.0.0"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {
