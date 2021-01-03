@@ -1,6 +1,6 @@
 {
   "name": "@rxap/service-worker",
-  "version": "0.0.2",
+  "version": "10.0.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -16,12 +16,12 @@
   },
   "description": "A utility package for the update process of apps with services worker",
   "peerDependencies": {
-    "@rxap/utilities": ">=0.3.14",
-    "@angular/core": ">=9",
-    "@rxap/life-cycle": ">=0.0.1",
-    "@angular/router": ">=9",
-    "@angular/service-worker": ">=9",
-    "@angular/material": ">=9"
+    "@angular/core": "^10.0.6",
+    "@angular/material": "^10.1.1",
+    "@angular/router": "^10.0.6",
+    "@angular/service-worker": "^10.0.6",
+    "@rxap/life-cycle": ">=10.0.0",
+    "@rxap/utilities": ">=0.11.0"
   },
   "dependencies": {
     "tslib": "2.0.1"

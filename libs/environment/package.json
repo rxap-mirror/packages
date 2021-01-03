@@ -1,11 +1,10 @@
 {
   "name": "@rxap/environment",
-  "version": "0.0.2",
+  "version": "10.0.0",
   "peerDependencies": {
-    "@angular/common": "^10.0.5",
-    "@angular/core": "^10.0.5"
+    "@angular/common": "^10.0.6",
+    "@angular/core": "^10.0.6"
   },
-  "dependencies": {},
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/icon",
-  "version": "0.1.4",
+  "version": "10.0.0",
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
@@ -18,7 +18,7 @@
   "repository": "git@gitlab.com:rxap/packages.git",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/material": ">=9"
+    "@angular/material": "^10.1.1"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {

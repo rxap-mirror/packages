@@ -1,6 +1,6 @@
 {
   "name": "@rxap/dialog",
-  "version": "0.0.3",
+  "version": "10.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -19,17 +19,17 @@
   },
   "description": "A collection of angular material dialog components",
   "peerDependencies": {
-    "@rxap/utilities": ">=0.3.16",
-    "@angular/core": ">=9",
-    "@rxap/components": ">=0.3.9",
-    "@rxap/directives": ">=0.0.8",
-    "@rxap/services": ">=0.2.6",
-    "@angular/router": ">=9",
-    "@angular/material": ">=9",
-    "@angular/platform-browser": ">=9",
-    "@angular/flex-layout": ">=9",
-    "@angular/common": ">=9",
-    "@angular/cdk": ">=9"
+    "@angular/cdk": "^10.1.1",
+    "@angular/common": "^10.0.6",
+    "@angular/core": "^10.0.6",
+    "@angular/flex-layout": "^10.0.0-beta.32",
+    "@angular/material": "^10.1.1",
+    "@angular/platform-browser": "^10.0.6",
+    "@angular/router": "^10.0.6",
+    "@rxap/components": ">=10.0.0",
+    "@rxap/directives": ">=10.0.0",
+    "@rxap/services": ">=0.4.0",
+    "@rxap/utilities": ">=0.11.0"
   },
   "dependencies": {
     "tslib": "2.0.1"

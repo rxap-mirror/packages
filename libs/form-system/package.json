@@ -1,6 +1,6 @@
 {
   "name": "@rxap/form-system",
-  "version": "0.3.2",
+  "version": "10.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -18,17 +18,17 @@
   "description": "Provides the FormSystem concept for RxAP.",
   "license": "BSD-4-Clause",
   "peerDependencies": {
-    "@rxap/data-source": ">=0.3.13",
-    "@rxap/utilities": ">=0.3.8",
-    "rxjs": ">=6.5",
-    "@rxap/definition": ">=0.0.4",
-    "@angular/platform-browser": ">=9",
-    "@rxap/forms": ">=0.0.6",
-    "@angular/forms": ">=9",
-    "@angular/core": ">=9",
-    "@angular/common": ">=9",
-    "@angular/router": ">=9",
-    "@rxap/mixin": ">=0.3.1"
+    "@angular/common": "^10.0.6",
+    "@angular/core": "^10.0.6",
+    "@angular/forms": "^10.0.6",
+    "@angular/platform-browser": "^10.0.6",
+    "@angular/router": "^10.0.6",
+    "@rxap/data-source": ">=10.0.0",
+    "@rxap/definition": ">=10.0.0",
+    "@rxap/forms": ">=10.0.0",
+    "@rxap/mixin": ">=0.3.1",
+    "@rxap/utilities": ">=0.11.0",
+    "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {

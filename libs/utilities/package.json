@@ -1,6 +1,6 @@
 {
   "name": "@rxap/utilities",
-  "version": "0.11.0",
+  "version": "10.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -17,11 +17,11 @@
   "description": "A collection of utility functions, types and interfaces.",
   "dependencies": {
     "ramda": "0.27.1",
-    "uuid": "8.3.0",
-    "reflect-metadata": "0.1.13"
+    "reflect-metadata": "0.1.13",
+    "uuid": "8.3.0"
   },
   "peerDependencies": {
-    "rxjs": ">=6"
+    "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {
