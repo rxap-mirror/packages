@@ -68,9 +68,6 @@
         "rxap"
       ]
     },
-    "plugin-app-engine": {
-      "tags": []
-    },
     "plugin-library-schematics": {
       "tags": []
     },
