@@ -1,6 +1,6 @@
 {
   "name": "@rxap/handlebars",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -17,8 +17,8 @@
   "description": "An angular wrapper package for handlebars.",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^10.0.6",
-    "@angular/core": "^10.0.6",
+    "@angular/common": "^11.0.5",
+    "@angular/core": "^11.0.5",
     "tslib": "^2.0.0"
   },
   "schematics": "./schematics/collection.json",

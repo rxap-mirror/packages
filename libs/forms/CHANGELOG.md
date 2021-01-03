@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.0.0...@rxap/forms@11.0.0) (2021-01-03)
+
+
+### Bug Fixes
+
+* **RxapFormControl:** update to new Angular FormControl API ([372e4ae](https://gitlab.com/rxap/packages/commit/372e4aec82082e1ef60c632a05df87bcc5791355))
+
+
+
+
+
 # 10.0.0 (2021-01-03)
 
 

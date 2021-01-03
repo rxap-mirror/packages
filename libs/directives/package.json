@@ -1,6 +1,6 @@
 {
   "name": "@rxap/directives",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -16,11 +16,11 @@
   },
   "description": "A collection of utility angular directives used in RxAP.",
   "peerDependencies": {
-    "@angular/common": "^10.0.6",
-    "@angular/core": "^10.0.6",
-    "@angular/material": "^10.1.1",
-    "@angular/platform-browser": "^10.0.6",
-    "@angular/router": "^10.0.6",
+    "@angular/common": "^11.0.5",
+    "@angular/core": "^11.0.5",
+    "@angular/material": "^11.0.3",
+    "@angular/platform-browser": "^11.0.5",
+    "@angular/router": "^11.0.5",
     "@rxap/services": ">=10.0.0",
     "@rxap/utilities": ">=10.0.0"
   },
