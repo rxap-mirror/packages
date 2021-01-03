@@ -20,7 +20,7 @@
     "@angular/core": "^11.0.5",
     "@rxap/across-tabs": ">=11.0.0",
     "@rxap/definition": ">=11.0.0",
-    "@rxap/utilities": ">=10.0.0",
+    "@rxap/utilities": ">=11.0.0",
     "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",

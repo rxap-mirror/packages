@@ -25,7 +25,7 @@
     "@rxap/data-source": ">=11.0.0",
     "@rxap/definition": ">=11.0.0",
     "@rxap/remote-method": ">=11.0.0",
-    "@rxap/utilities": ">=10.0.0",
+    "@rxap/utilities": ">=11.0.0",
     "rxjs": "^6.5.5"
   },
   "dependencies": {
