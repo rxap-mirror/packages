@@ -65,9 +65,7 @@ export class IconDirective implements OnInit {
         if (icon.fontSet) {
           this.matIcon.fontSet = icon.fontSet;
         }
-        const previousValue  = this.matIcon.svgIcon;
         this.matIcon.svgIcon = icon.svgIcon;
-        this.matIcon.ngOnChanges({ svgIcon: { previousValue } as any });
       }
     }
   }
