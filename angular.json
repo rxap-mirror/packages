@@ -1243,58 +1243,6 @@
         }
       }
     },
-    "plugin-app-engine": {
-      "root": "libs/plugin/app-engine",
-      "sourceRoot": "libs/plugin/app-engine/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/plugin/app-engine/tsconfig.lib.json",
-              "libs/plugin/app-engine/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/plugin/app-engine/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/plugin/app-engine/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "build": {
-          "builder": "@nrwl/node:package",
-          "options": {
-            "outputPath": "dist/libs/plugin/app-engine",
-            "tsConfig": "libs/plugin/app-engine/tsconfig.lib.json",
-            "packageJson": "libs/plugin/app-engine/package.json",
-            "main": "libs/plugin/app-engine/src/index.ts",
-            "assets": [
-              "libs/plugin/app-engine/*.md",
-              {
-                "input": "./libs/plugin/app-engine/src",
-                "glob": "**/*.!(ts)",
-                "output": "./src"
-              },
-              {
-                "input": "./libs/plugin/app-engine",
-                "glob": "collection.json",
-                "output": "."
-              },
-              {
-                "input": "./libs/plugin/app-engine",
-                "glob": "builders.json",
-                "output": "."
-              }
-            ]
-          }
-        }
-      }
-    },
     "plugin-library-schematics": {
       "root": "libs/plugin/library-schematics",
       "sourceRoot": "libs/plugin/library-schematics/src",
