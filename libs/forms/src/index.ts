@@ -40,6 +40,7 @@ export * from './lib/directives/form-control-mark-untouched.directive';
 export * from './lib/directives/form-submit.directive';
 export * from './lib/directives/form-control-name.directive';
 export * from './lib/directives/form-group-name.directive';
+export * from './lib/directives/parent-control-container.directive';
 
 // endregion
 
