@@ -57,7 +57,7 @@ async function update(rootDependencies) {
   const packages = await new Project(join(__dirname, '..')).getPackages();
 
   for (const pkg of packages) {
-    updateForPackage(pkg.manifestLocation);
+    updateForPackage(pkg.manifestLocation, rootDependencies);
   }
 
 }
