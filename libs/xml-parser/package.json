@@ -1,6 +1,6 @@
 {
   "name": "@rxap/xml-parser",
-  "version": "0.9.0",
+  "version": "10.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -17,8 +17,8 @@
   },
   "description": "A utility packages to convert xml files into class instances.",
   "peerDependencies": {
-    "@rxap/utilities": ">=0.9.0",
-    "@rxap/mixin": ">=0.1.15"
+    "@rxap/mixin": ">=10.0.0",
+    "@rxap/utilities": ">=10.0.0"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {

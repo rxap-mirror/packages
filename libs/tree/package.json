@@ -1,6 +1,6 @@
 {
   "name": "@rxap/tree",
-  "version": "0.0.6",
+  "version": "10.0.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -18,15 +18,15 @@
   },
   "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
   "peerDependencies": {
-    "@rxap/utilities": ">=0.3.16",
-    "@angular/core": ">=9",
-    "@rxap/remote-method": ">=0.3.11",
-    "@rxap/definition": ">=0.0.6",
-    "@angular/platform-browser": ">=9",
-    "@angular/common": ">=9",
-    "@rxap/data-source": ">=0.3.24",
-    "@angular/cdk": ">=9",
-    "rxjs": ">=6.5.5"
+    "@angular/cdk": "^10.1.1",
+    "@angular/common": "^10.0.6",
+    "@angular/core": "^10.0.6",
+    "@angular/platform-browser": "^10.0.6",
+    "@rxap/data-source": ">=10.0.0",
+    "@rxap/definition": ">=10.0.0",
+    "@rxap/remote-method": ">=10.0.0",
+    "@rxap/utilities": ">=0.11.0",
+    "rxjs": "^6.5.5"
   },
   "dependencies": {
     "tslib": "2.0.1"

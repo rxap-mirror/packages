@@ -1,6 +1,6 @@
 {
   "name": "@rxap/components",
-  "version": "0.5.4",
+  "version": "10.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/-/tree/master/libs/components",
@@ -17,17 +17,17 @@
   },
   "description": "A collection of utility angular components used in RxAP.",
   "peerDependencies": {
-    "@rxap/utilities": ">=0.3",
-    "@rxap/directives": ">=0.0.2",
-    "@rxap/services": ">=0.2.8",
-    "rxjs": ">=6.5",
-    "@angular/core": ">=9",
-    "@angular/router": ">=9",
-    "@angular/material": ">=9",
-    "@angular/platform-browser": ">=9",
-    "@angular/flex-layout": ">=9",
-    "@angular/common": ">=9",
-    "@angular/cdk": ">=9"
+    "@angular/cdk": "^10.1.1",
+    "@angular/common": "^10.0.6",
+    "@angular/core": "^10.0.6",
+    "@angular/flex-layout": "^10.0.0-beta.32",
+    "@angular/material": "^10.1.1",
+    "@angular/platform-browser": "^10.0.6",
+    "@angular/router": "^10.0.6",
+    "@rxap/directives": ">=10.0.0",
+    "@rxap/services": ">=0.4.0",
+    "@rxap/utilities": ">=0.11.0",
+    "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {
