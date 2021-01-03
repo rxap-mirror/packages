@@ -1,6 +1,6 @@
 {
   "name": "@rxap/pipes",
-  "version": "0.3.6",
+  "version": "10.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -16,11 +16,11 @@
   },
   "description": "A collection of utility angular pipes used in RxAP.",
   "peerDependencies": {
-    "@rxap/utilities": ">=0.3",
-    "rxjs": ">=6.5",
-    "@angular/core": ">=9",
-    "@angular/platform-browser": ">=9",
-    "@angular/common": ">=9"
+    "@angular/common": "^10.0.6",
+    "@angular/core": "^10.0.6",
+    "@angular/platform-browser": "^10.0.6",
+    "@rxap/utilities": ">=10.0.0",
+    "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {
@@ -29,5 +29,13 @@
       "@rxap/pipes",
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run pipes:pack --with-deps",
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run pipes:build --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/pipes"
   }
 }

@@ -1,16 +1,23 @@
 {
   "name": "@rxap/environment",
-  "version": "0.0.2",
+  "version": "10.0.0",
   "peerDependencies": {
-    "@angular/common": "^10.0.5",
-    "@angular/core": "^10.0.5"
+    "@angular/common": "^10.0.6",
+    "@angular/core": "^10.0.6"
   },
-  "dependencies": {},
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/environment"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run environment:pack --with-deps",
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run environment:build --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/environment"
   }
 }

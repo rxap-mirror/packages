@@ -1,0 +1,73 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 10.0.0 (2021-01-03)
+
+
+### Bug Fixes
+
+* add control and feature wrappers ([4dfc6b0](https://gitlab.com/rxap/packages/commit/4dfc6b0fa9636febafcda05b141b6686ee207f77))
+* add is number validator support ([7eb8b6a](https://gitlab.com/rxap/packages/commit/7eb8b6a4228efc014bfba6185111e9aa3acd31cd))
+* add support ComposeOptionsTransformers ([efa01c6](https://gitlab.com/rxap/packages/commit/efa01c66240b318496f4dd860430a96dae617d68))
+* add support for i18n options ([337e91c](https://gitlab.com/rxap/packages/commit/337e91c49c140c1b1123831521742b9c16b4ce69))
+* add support form initial ([16a6f61](https://gitlab.com/rxap/packages/commit/16a6f61bc5e695bcb3e07c77006b908ef9e56cfb))
+* custom property key generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* export control actions file ([fa63c36](https://gitlab.com/rxap/packages/commit/fa63c368a84a765cb8c4bdb99a3290f039b0ba8c))
+* extend initial tracking ([9370e0d](https://gitlab.com/rxap/packages/commit/9370e0d7ce26283b97934300de8422f0dd3edc96))
+* flat component creation ([3afbd05](https://gitlab.com/rxap/packages/commit/3afbd052f71be97b1805959a005ea746f38da184))
+* overwrite support ([1a679de](https://gitlab.com/rxap/packages/commit/1a679dee90e0a348a9846dadebf17f710d24c44c))
+* overwrite support ([629134d](https://gitlab.com/rxap/packages/commit/629134dba9475ce52f66715968cfd363f034bae0))
+* replace all rxjs operators first() with take(1) ([e2ae457](https://gitlab.com/rxap/packages/commit/e2ae45771c8b01f30fc1a00f962e067d610296b7))
+* support for custom data source ([fbecc99](https://gitlab.com/rxap/packages/commit/fbecc99f1380b13677ef23fc97ba103392e3ff54))
+* support for custom data source ([88ce4c4](https://gitlab.com/rxap/packages/commit/88ce4c42ebec6ae7fab62f00bdc3f83431d4268a))
+* support for custom data source ([ee29073](https://gitlab.com/rxap/packages/commit/ee2907329c0e47bb858b663bf16afe6b05c68836))
+* support for custom data source ([80f3067](https://gitlab.com/rxap/packages/commit/80f30676323823208de2e2fac871aca7288bbef9))
+* support for custom data source ([072f564](https://gitlab.com/rxap/packages/commit/072f56489d319c9cc00c112e45bf22818ce534b0))
+* text content parsing issue ([370d953](https://gitlab.com/rxap/packages/commit/370d9537c2f0b37375f65022dbe9f38a1a295e99))
+* **FormDirective:** add support for form definition builder ([0681439](https://gitlab.com/rxap/packages/commit/06814390d21c18b0b2324d8a4bc0b0fb2bf4520c))
+* **FormDirective:** clone the current form value before passed to the submit logic ([608d4da](https://gitlab.com/rxap/packages/commit/608d4da9765f5c74044d089e240d60700a3eac4b))
+* **FormDirective:** fix form definition builder ([717c470](https://gitlab.com/rxap/packages/commit/717c4700e121d83e7d285f3a6e4589c1686e773c))
+* **FormDirective:** fix initial form loading ([567eecc](https://gitlab.com/rxap/packages/commit/567eecc046c8d62233b67bb09fd732fef988169b))
+* **FormDirective:** use patch instead of set for form initialisation ([bd8f5ab](https://gitlab.com/rxap/packages/commit/bd8f5ab5fb659c2cf18b1ec6a3b4e58de086fec0))
+* **FormDirectives:** add extended validation error logger ([a2c2031](https://gitlab.com/rxap/packages/commit/a2c2031caeb35e93833bfc2617ce71acbf24d8a1))
+* **FormDirectives:** add form provider clear ([c975f02](https://gitlab.com/rxap/packages/commit/c975f027959a3d940b34efe682c0cfa29c115b67))
+* **FormDirectives:** add form provider clear ([cc554cb](https://gitlab.com/rxap/packages/commit/cc554cbdfd45b1a5d7935f51bba286048c295403))
+* **RxapFormBuild:** throw if form definition can not be injected. ([af7de04](https://gitlab.com/rxap/packages/commit/af7de04dd58e831a77f7761dcc1e06ed8cb83643))
+* **RxapFormBuilder:** change the injector constructor parameter as optional ([d159c7b](https://gitlab.com/rxap/packages/commit/d159c7bf1c7ab27868493a39c08b19a4d51fc80b))
+* **RxapFormControl:** check for error change also on status change ([d1634ee](https://gitlab.com/rxap/packages/commit/d1634ee864055dd3a6a0c95949e8e2ee40c11e69))
+* **schematics:** add flat option ([72e6f6a](https://gitlab.com/rxap/packages/commit/72e6f6aaec8488867fd29a1b76a62b509a731887))
+* **schematics:** add load method support ([908d206](https://gitlab.com/rxap/packages/commit/908d20631562ad0cc1bb1e64f1dfaf2a9a691c03))
+* **schematics:** add missing component handler method ([ac02299](https://gitlab.com/rxap/packages/commit/ac02299bae1050a41739da9f9dbc301c5c849342))
+* **schematics:** add support for custom methods ([451489c](https://gitlab.com/rxap/packages/commit/451489c02b0cdafbbe2d5426a954df4d532ae043))
+* **schematics:** add support for edit submit handlers ([9827a61](https://gitlab.com/rxap/packages/commit/9827a611b82f06dc92761fa94835f39cd0a13a4d))
+* **schematics:** angular validators ([63f5b98](https://gitlab.com/rxap/packages/commit/63f5b987b47285c1c2d8e6ec9dd3af7798dbd5da))
+* **schematics:** export AddDir helper ([f363b5d](https://gitlab.com/rxap/packages/commit/f363b5d0e37af73629b8e925553f3247fd7e4dc8))
+* **schematics:** fix options function creation ([c962414](https://gitlab.com/rxap/packages/commit/c9624148090263e35bdf96f16f43eb6d5ebb29fb))
+* **schematics:** form provider variable names ([64414af](https://gitlab.com/rxap/packages/commit/64414af582410f3ebc6c875ac70be79ffb521645))
+* **schematics:** form providers import path ([0fd465b](https://gitlab.com/rxap/packages/commit/0fd465b66229df63e085e4293b56dd46b23d513a))
+* **schematics:** opt generate process ([4108769](https://gitlab.com/rxap/packages/commit/4108769c4749ac5e7007983eee396ff3f3be8ca0))
+* **schematics:** set the schematic project ([6bb661d](https://gitlab.com/rxap/packages/commit/6bb661db787e3c398eef09cd68f4923d9904a27c))
+* **schematics:** streamline path creation ([0f5dc94](https://gitlab.com/rxap/packages/commit/0f5dc944cb79f964a7a6ea9f3332db722ff3dcf4))
+* **schematics:** use schematics utilities package ([c39f65a](https://gitlab.com/rxap/packages/commit/c39f65a2783cf85def377f0bc4d4b08022cde0ea))
+
+
+### Features
+
+* **FormControl:** add support for reset with the initial state ([d9815a3](https://gitlab.com/rxap/packages/commit/d9815a3b65e20dffc464ac01673ebbff050cacd7))
+* **FormDirective:** add submit method input ([1ab9b44](https://gitlab.com/rxap/packages/commit/1ab9b4417376b81f3288bde07261b4846a66516c))
+* support for array group ([0bbaaa5](https://gitlab.com/rxap/packages/commit/0bbaaa51ad0de531da47883979a7ee0a56cdc221))
+* **FormDirectives:** only use direct host for submit, load and definition providers ([c24208d](https://gitlab.com/rxap/packages/commit/c24208da5f326ae788c5ea959369c0a18c886dfd))
+* **RxapFormBuild:** add support for injectable validators ([ae7092d](https://gitlab.com/rxap/packages/commit/ae7092d4f39512dbd5d6377c960067ad7a8b29ef))
+* **RxapFormBuilder:** save if the current control has an required validator ([0307ece](https://gitlab.com/rxap/packages/commit/0307ece2ee21daa21fc4e2dd9c5a1a4e95e2e90a))
+* **schematics:** add form extends support ([9d9db51](https://gitlab.com/rxap/packages/commit/9d9db51691ee20af02679daf979040c6d2df3bb3))
+* **schematics:** generate a form builder provider ([35a4754](https://gitlab.com/rxap/packages/commit/35a4754798e1c7de0fa7e1ce2a261491b7fb6aaa))
+* **schematics:** use form component providers ([d415376](https://gitlab.com/rxap/packages/commit/d415376814de8096a33d4e3acd0f4a74767ef4bd))
+* add new form generator ([24b1771](https://gitlab.com/rxap/packages/commit/24b1771b003aca3578f876857aeaf44aef9def6b))
+* add new form generator ([f216e93](https://gitlab.com/rxap/packages/commit/f216e9395df1fc7d1b948b69c27f36ea3933aa93))
+* add support for custom features ([f9cb206](https://gitlab.com/rxap/packages/commit/f9cb2063dd07819a94cb3f7ae5424891f5396098))
+* add the rxap schematics utilities package ([7c8ad8c](https://gitlab.com/rxap/packages/commit/7c8ad8ccc5275fd3235ec62a21174326fe50fb02))
+* support for set value initial ([3ececf9](https://gitlab.com/rxap/packages/commit/3ececf92fced19a319477eb001b1b45d62c2dcc3))
+* type support ([7cbbef6](https://gitlab.com/rxap/packages/commit/7cbbef67e5c7ebea37d474f46616ac50d2e92687))
+* type support ([40be468](https://gitlab.com/rxap/packages/commit/40be468c0ddc9976a86c7a528bd2ab186134763d))

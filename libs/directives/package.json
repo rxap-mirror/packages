@@ -1,6 +1,6 @@
 {
   "name": "@rxap/directives",
-  "version": "0.0.16",
+  "version": "10.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -16,13 +16,13 @@
   },
   "description": "A collection of utility angular directives used in RxAP.",
   "peerDependencies": {
-    "@rxap/services": ">=0.2.7",
-    "@rxap/utilities": ">=0.3.2",
-    "@angular/core": ">=9",
-    "@angular/common": ">=9",
-    "@angular/router": ">=9",
-    "@angular/material": ">=9",
-    "@angular/platform-browser": ">=9"
+    "@angular/common": "^10.0.6",
+    "@angular/core": "^10.0.6",
+    "@angular/material": "^10.1.1",
+    "@angular/platform-browser": "^10.0.6",
+    "@angular/router": "^10.0.6",
+    "@rxap/services": ">=10.0.0",
+    "@rxap/utilities": ">=10.0.0"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {
@@ -32,5 +32,13 @@
       "@rxap/services",
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run directives:pack --with-deps",
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run directives:build --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/directives"
   }
 }

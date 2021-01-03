@@ -1,134 +1,134 @@
-image: node:lts
-
-include:
-- project: 'rxap/gitlab-ci'
-  ref: stable
-  file: '/templates/setup.yml'
-- project: 'rxap/gitlab-ci'
-  ref: stable
-  file: '/pwa.yml'
-
-variables:
-  GIT_DEPTH: "3"
-  GIT_STRATEGY: clone
-  GIT_SUBMODULE_STRATEGY: none
-
-.cache:pull: &cache_pull
-  cache:
-    key:
-      files:
-      - yarn.lock
-    paths:
-    - node_modules/
-    policy: pull
-
-stages:
-- setup
-- build
-- test
-- deploy
-- e2e
-- postdeploy
-- generate
-- trigger
-
-generate:storybook:config:
-  before_script:
-  - rm .npmrc
-  - npm install handlebars
-  script: node tools/gitlab-ci-generator/storybook.js
-  stage: generate
-  needs: []
-  artifacts:
-    paths:
-    - .storybook.gitlab-ci.yml
-    expire_in: 1h
-  rules:
-  - if: '$DISABLE_LIBRARY_STORYBOOK'
-    when: never
-  - if: '$CI_COMMIT_REF_NAME == "master"'
-    when: always
-
-trigger:build:storybook:
-  stage: trigger
-  needs:
-  - generate:storybook:config
-  rules:
-  - if: '$DISABLE_LIBRARY_STORYBOOK'
-    when: never
-  - if: '$CI_COMMIT_REF_NAME == "master"'
-    when: always
-  trigger:
-    include:
-    - artifact: .storybook.gitlab-ci.yml
-      job: generate:storybook:config
-
-generate:compodoc:config:
-  before_script:
-  - rm .npmrc
-  - npm install handlebars
-  script: node tools/gitlab-ci-generator/compodoc.js
-  stage: generate
-  needs: []
-  artifacts:
-    paths:
-    - .compodoc.gitlab-ci.yml
-    expire_in: 1h
-  rules:
-  - if: '$DISABLE_LIBRARY_COMPODOC'
-    when: never
-  - if: '$CI_COMMIT_REF_NAME == "master"'
-    when: always
-
-trigger:build:compodoc:
-  stage: trigger
-  needs:
-  - generate:compodoc:config
-  rules:
-  - if: '$DISABLE_LIBRARY_COMPODOC'
-    when: never
-  - if: '$CI_COMMIT_REF_NAME == "master"'
-    when: always
-  trigger:
-    include:
-    - artifact: .compodoc.gitlab-ci.yml
-      job: generate:compodoc:config
-
-build:
-  <<: *cache_pull
-  tags:
-  - nvm
-  image: registry.gitlab.com/rxap/gitlab-ci/angular-build
-  stage: build
-  script: yarn nx run-many --target=pack --all --parallel --with-deps
-  rules:
-  - changes:
-    - libs/**/src/**
-    when: on_success
-  artifacts:
-    expire_in: 1 day
-    paths:
-    - dist
-
-test:
-  <<: *cache_pull
-  tags:
-  - nvm
-  image: registry.gitlab.com/rxap/gitlab-ci/angular-test
-  stage: test
-  coverage: '/Statements\s*:\s*(\d+\.?\d*)%/'
-  script: yarn test:ci
-  rules:
-  - changes:
-    - "**/*.ts"
-    when: on_success
-  artifacts:
-    expire_in: 1 day
-    reports:
-      cobertura: coverage/cobertura-coverage.xml
-      junit: junit.xml
-    paths:
-    - coverage
+#image: node:lts
+#
+#include:
+#- project: 'rxap/gitlab-ci'
+#  ref: stable
+#  file: '/templates/setup.yml'
+#- project: 'rxap/gitlab-ci'
+#  ref: stable
+#  file: '/pwa.yml'
+#
+#variables:
+#  GIT_DEPTH: "3"
+#  GIT_STRATEGY: clone
+#  GIT_SUBMODULE_STRATEGY: none
+#
+#.cache:pull: &cache_pull
+#  cache:
+#    key:
+#      files:
+#      - yarn.lock
+#    paths:
+#    - node_modules/
+#    policy: pull
+#
+#stages:
+#- setup
+#- build
+#- test
+#- deploy
+#- e2e
+#- postdeploy
+#- generate
+#- trigger
+#
+#generate:storybook:config:
+#  before_script:
+#  - rm .npmrc
+#  - npm install handlebars
+#  script: node tools/gitlab-ci-generator/storybook.js
+#  stage: generate
+#  needs: []
+#  artifacts:
+#    paths:
+#    - .storybook.gitlab-ci.yml
+#    expire_in: 1h
+#  rules:
+#  - if: '$DISABLE_LIBRARY_STORYBOOK'
+#    when: never
+#  - if: '$CI_COMMIT_REF_NAME == "master"'
+#    when: always
+#
+#trigger:build:storybook:
+#  stage: trigger
+#  needs:
+#  - generate:storybook:config
+#  rules:
+#  - if: '$DISABLE_LIBRARY_STORYBOOK'
+#    when: never
+#  - if: '$CI_COMMIT_REF_NAME == "master"'
+#    when: always
+#  trigger:
+#    include:
+#    - artifact: .storybook.gitlab-ci.yml
+#      job: generate:storybook:config
+#
+#generate:compodoc:config:
+#  before_script:
+#  - rm .npmrc
+#  - npm install handlebars
+#  script: node tools/gitlab-ci-generator/compodoc.js
+#  stage: generate
+#  needs: []
+#  artifacts:
+#    paths:
+#    - .compodoc.gitlab-ci.yml
+#    expire_in: 1h
+#  rules:
+#  - if: '$DISABLE_LIBRARY_COMPODOC'
+#    when: never
+#  - if: '$CI_COMMIT_REF_NAME == "master"'
+#    when: always
+#
+#trigger:build:compodoc:
+#  stage: trigger
+#  needs:
+#  - generate:compodoc:config
+#  rules:
+#  - if: '$DISABLE_LIBRARY_COMPODOC'
+#    when: never
+#  - if: '$CI_COMMIT_REF_NAME == "master"'
+#    when: always
+#  trigger:
+#    include:
+#    - artifact: .compodoc.gitlab-ci.yml
+#      job: generate:compodoc:config
+#
+#build:
+#  <<: *cache_pull
+#  tags:
+#  - nvm
+#  image: registry.gitlab.com/rxap/gitlab-ci/angular-build
+#  stage: build
+#  script: yarn nx run-many --target=pack --all --parallel --with-deps
+#  rules:
+#  - changes:
+#    - libs/**/src/**
+#    when: on_success
+#  artifacts:
+#    expire_in: 1 day
+#    paths:
+#    - dist
+#
+#test:
+#  <<: *cache_pull
+#  tags:
+#  - nvm
+#  image: registry.gitlab.com/rxap/gitlab-ci/angular-test
+#  stage: test
+#  coverage: '/Statements\s*:\s*(\d+\.?\d*)%/'
+#  script: yarn test:ci
+#  rules:
+#  - changes:
+#    - "**/*.ts"
+#    when: on_success
+#  artifacts:
+#    expire_in: 1 day
+#    reports:
+#      cobertura: coverage/cobertura-coverage.xml
+#      junit: junit.xml
+#    paths:
+#    - coverage
 
 #setup:generate:library:config:
 #  before_script:

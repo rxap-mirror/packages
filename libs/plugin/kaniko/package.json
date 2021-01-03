@@ -1,7 +1,15 @@
 {
-  "name": "@rxap/kaniko",
-  "version": "0.0.1",
+  "name": "@rxap-plugin/kaniko",
+  "version": "10.0.0",
   "main": "src/index.js",
   "schematics": "./collection.json",
-  "builders": "./builders.json"
+  "builders": "./builders.json",
+  "scripts": {
+    "prepublish": "yarn --cwd ../../../ nx run plugin-kaniko:pack --with-deps",
+    "version": "node ../../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../../ nx run plugin-kaniko:build --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../../dist/libs/plugin/kaniko"
+  }
 }

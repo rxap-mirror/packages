@@ -12,6 +12,8 @@ migrations.json
 /documentation.json
 openapi.json
 
+test.js
+
 junit.xml
 # compiled output
 /dist

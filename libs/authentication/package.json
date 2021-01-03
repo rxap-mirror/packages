@@ -1,6 +1,6 @@
 {
   "name": "@rxap/authentication",
-  "version": "0.4.2",
+  "version": "10.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -26,18 +26,26 @@
     ]
   },
   "peerDependencies": {
-    "@rxap/forms": ">=0.0.5",
-    "@rxap/utilities": ">=0.3.7",
-    "rxjs": ">=6.5",
-    "@rxap/definition": ">=0.0.4",
-    "@angular/core": ">=9",
-    "@angular/forms": ">=9",
-    "@angular/platform-browser": ">=9",
-    "@angular/flex-layout": ">=9",
-    "@angular/router": ">=9",
-    "@angular/material": ">=9",
-    "@angular/animations": ">=9",
-    "@angular/common": ">=9"
+    "@angular/animations": "^10.0.6",
+    "@angular/common": "^10.0.6",
+    "@angular/core": "^10.0.6",
+    "@angular/flex-layout": "^10.0.0-beta.32",
+    "@angular/forms": "^10.0.6",
+    "@angular/material": "^10.1.1",
+    "@angular/platform-browser": "^10.0.6",
+    "@angular/router": "^10.0.6",
+    "@rxap/definition": ">=10.0.0",
+    "@rxap/forms": ">=10.0.0",
+    "@rxap/utilities": ">=10.0.0",
+    "rxjs": "^6.5.5"
   },
-  "schematics": "./schematics/collection.json"
+  "schematics": "./schematics/collection.json",
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run authentication:pack --with-deps",
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run authentication:build --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/authentication"
+  }
 }

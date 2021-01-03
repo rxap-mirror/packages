@@ -1,6 +1,6 @@
 {
   "name": "@rxap/handlebars",
-  "version": "0.0.2",
+  "version": "10.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -17,13 +17,21 @@
   "description": "An angular wrapper package for handlebars.",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": ">=9",
-    "@angular/core": ">=9",
-    "tslib": "^1.10.0"
+    "@angular/common": "^10.0.6",
+    "@angular/core": "^10.0.6",
+    "tslib": "^2.0.0"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",
     "packageGroup": []
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run handlebars:pack --with-deps",
+    "version": "node ../../tools/update-dependencies.js $PWD",
+    "preversion": "yarn --cwd ../../ nx run handlebars:build --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/handlebars"
   }
 }
