@@ -31,5 +31,11 @@
       "@rxap/services",
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run services:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/services"
   }
 }

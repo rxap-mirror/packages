@@ -16,5 +16,11 @@
       "@rxap/contenteditable",
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run contenteditable:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/contenteditable"
   }
 }

@@ -1,32 +1,21 @@
+const Project = require('@lerna/project');
+
 module.exports = {
-  extends: ['@commitlint/config-angular'],
+  extends: [
+    '@commitlint/config-conventional'
+  ],
   rules: {
-    'type-enum': [
-      2,
-      'always',
-      [
-        // Minor
-        'feat',
-        // Patch
-        'build',
-        'docs',
-        'fix',
-        'perf',
-        'refactor',
-        // None
-        'chore',
-        'ci',
-        'revert',
-        'test'
-      ]
-    ],
-    'scope-empty': [0],
-    'scope-enum': [
-      2,
-      'always',
-      // prettier-ignore
-      []
-    ]
+    'scope-enum': async () => {
+
+      const packages = await new Project(process.cwd()).getPackages();
+
+      return [
+        2,
+        'always',
+        packages.map(p => p.name.replace(/@rxap[-\/]/, '').replace(/\//g, '-'))
+      ];
+
+    }
   },
   ignores: [message => message.toLowerCase().startsWith('wip')]
 };

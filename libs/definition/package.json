@@ -27,5 +27,11 @@
       "@rxap/definition",
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run definition:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/definition"
   }
 }

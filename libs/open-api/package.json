@@ -42,5 +42,11 @@
       "@rxap/mixin",
       "@rxap/schematics"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run open-api:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/open-api"
   }
 }

@@ -29,5 +29,11 @@
       "@rxap/pipes",
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run pipes:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/pipes"
   }
 }

@@ -25,5 +25,11 @@
     "packageGroup": [
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run mixin:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/mixin"
   }
 }

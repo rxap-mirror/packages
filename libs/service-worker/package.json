@@ -34,5 +34,11 @@
       "@rxap/utilities",
       "@rxap/life-cycle"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run service-worker:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/service-worker"
   }
 }

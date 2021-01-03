@@ -40,5 +40,11 @@
       "@rxap/components",
       "@rxap/directives"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run window-system:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/window-system"
   }
 }

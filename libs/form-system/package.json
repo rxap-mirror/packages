@@ -41,5 +41,11 @@
       "@rxap/forms",
       "@rxap/mixin"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run form-system:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/form-system"
   }
 }

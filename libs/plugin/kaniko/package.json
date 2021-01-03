@@ -3,5 +3,11 @@
   "version": "0.0.1",
   "main": "src/index.js",
   "schematics": "./collection.json",
-  "builders": "./builders.json"
+  "builders": "./builders.json",
+  "scripts": {
+    "prepublish": "yarn --cwd ../../../ nx run kaniko:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../../dist/libs/kaniko"
+  }
 }

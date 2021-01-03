@@ -47,5 +47,11 @@
       "@rxap/components",
       "@rxap/directives"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run form-window-system:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/form-window-system"
   }
 }

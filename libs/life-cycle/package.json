@@ -31,5 +31,11 @@
       "@rxap/life-cycle",
       "@rxap/utilities"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run life-cycle:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/life-cycle"
   }
 }

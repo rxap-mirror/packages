@@ -44,5 +44,11 @@
       "@rxap/directives",
       "@rxap/services"
     ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../ nx run dialog:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/dialog"
   }
 }

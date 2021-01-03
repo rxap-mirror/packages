@@ -30,5 +30,11 @@
     "@angular-devkit/core": "9",
     "@angular-devkit/schematics": "9",
     "@angular-devkit/architect": "0.901"
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../../ nx run plugin-library-schematics:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../../dist/libs/plugin/library-schematics"
   }
 }
