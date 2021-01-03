@@ -1,6 +1,6 @@
 {
   "name": "@rxap/open-api",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -19,13 +19,13 @@
   },
   "description": "Provides the functionality to create DataSource and RemoteMethod instances from an OpenAPI config.",
   "peerDependencies": {
-    "@angular/common": "^10.0.6",
-    "@angular/core": "^10.0.6",
-    "@angular/platform-browser": "^10.0.6",
-    "@rxap/data-source": ">=10.0.0",
-    "@rxap/definition": ">=10.0.0",
-    "@rxap/mixin": ">=10.0.0",
-    "@rxap/remote-method": ">=10.0.0",
+    "@angular/common": "^11.0.5",
+    "@angular/core": "^11.0.5",
+    "@angular/platform-browser": "^11.0.5",
+    "@rxap/data-source": ">=11.0.0",
+    "@rxap/definition": ">=11.0.0",
+    "@rxap/mixin": ">=11.0.0",
+    "@rxap/remote-method": ">=11.0.0",
     "@rxap/schematics": ">=0",
     "@rxap/utilities": ">=10.0.0",
     "rxjs": "^6.5.5"

@@ -1,8 +1,8 @@
 {
   "name": "@rxap/contenteditable",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "peerDependencies": {
-    "@angular/core": "^10.0.6",
+    "@angular/core": "^11.0.5",
     "@rxap/utilities": ">=10.0.0",
     "rxjs": "^6.5.5"
   },

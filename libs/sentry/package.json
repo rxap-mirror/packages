@@ -1,6 +1,6 @@
 {
   "name": "@rxap/sentry",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -16,8 +16,8 @@
   },
   "description": "A simple angular wrapper package for @sentry/browser.",
   "peerDependencies": {
-    "@angular/common": "^10.0.6",
-    "@angular/core": "^10.0.6",
+    "@angular/common": "^11.0.5",
+    "@angular/core": "^11.0.5",
     "@sentry/browser": "^5.20.1"
   },
   "schematics": "./schematics/collection.json",
