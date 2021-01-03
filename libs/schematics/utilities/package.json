@@ -11,7 +11,8 @@
     "tslib": "^2.0.0"
   },
   "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run schematics-utilities:pack --with-deps"
+    "prepublish": "yarn --cwd ../../../ nx run schematics-utilities:pack --with-deps",
+    "version": "node ../../../tools/update-dependencies.js $PWD"
   },
   "publishConfig": {
     "directory": "../../../dist/libs/schematics/utilities"

@@ -18,7 +18,8 @@
     ]
   },
   "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run contenteditable:pack --with-deps"
+    "prepublish": "yarn --cwd ../../ nx run contenteditable:pack --with-deps",
+    "version": "node ../../tools/update-dependencies.js $PWD"
   },
   "publishConfig": {
     "directory": "../../dist/libs/contenteditable"

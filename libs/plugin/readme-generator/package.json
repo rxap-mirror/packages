@@ -24,7 +24,8 @@
   },
   "description": "A builder to generate readme files for libraries.",
   "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run plugin-readme-generator:pack --with-deps"
+    "prepublish": "yarn --cwd ../../../ nx run plugin-readme-generator:pack --with-deps",
+    "version": "node ../../../tools/update-dependencies.js $PWD"
   },
   "publishConfig": {
     "directory": "../../../dist/libs/plugin/readme-generator"

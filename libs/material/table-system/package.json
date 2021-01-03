@@ -29,7 +29,8 @@
     ]
   },
   "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run material-table-system:pack --with-deps"
+    "prepublish": "yarn --cwd ../../../ nx run material-table-system:pack --with-deps",
+    "version": "node ../../../tools/update-dependencies.js $PWD"
   },
   "publishConfig": {
     "directory": "../../../dist/libs/material/table-system"

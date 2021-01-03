@@ -5,7 +5,8 @@
   "schematics": "./collection.json",
   "builders": "./builders.json",
   "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run kaniko:pack --with-deps"
+    "prepublish": "yarn --cwd ../../../ nx run kaniko:pack --with-deps",
+    "version": "node ../../../tools/update-dependencies.js $PWD"
   },
   "publishConfig": {
     "directory": "../../../dist/libs/kaniko"
