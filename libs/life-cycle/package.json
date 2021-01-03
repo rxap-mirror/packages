@@ -33,7 +33,8 @@
     ]
   },
   "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run life-cycle:pack --with-deps"
+    "prepublish": "yarn --cwd ../../ nx run life-cycle:pack --with-deps",
+    "version": "node ../../tools/update-dependencies.js $PWD"
   },
   "publishConfig": {
     "directory": "../../dist/libs/life-cycle"

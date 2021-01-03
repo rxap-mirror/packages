@@ -31,7 +31,8 @@
     "@schematics/angular": ">=9"
   },
   "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run plugin-scss-bundle:pack --with-deps"
+    "prepublish": "yarn --cwd ../../../ nx run plugin-scss-bundle:pack --with-deps",
+    "version": "node ../../../tools/update-dependencies.js $PWD"
   },
   "publishConfig": {
     "directory": "../../../dist/libs/plugin/scss-bundle"

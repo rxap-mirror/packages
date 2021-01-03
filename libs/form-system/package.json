@@ -43,7 +43,8 @@
     ]
   },
   "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run form-system:pack --with-deps"
+    "prepublish": "yarn --cwd ../../ nx run form-system:pack --with-deps",
+    "version": "node ../../tools/update-dependencies.js $PWD"
   },
   "publishConfig": {
     "directory": "../../dist/libs/form-system"

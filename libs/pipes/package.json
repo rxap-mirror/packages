@@ -31,7 +31,8 @@
     ]
   },
   "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run pipes:pack --with-deps"
+    "prepublish": "yarn --cwd ../../ nx run pipes:pack --with-deps",
+    "version": "node ../../tools/update-dependencies.js $PWD"
   },
   "publishConfig": {
     "directory": "../../dist/libs/pipes"

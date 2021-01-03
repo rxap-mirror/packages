@@ -31,7 +31,8 @@
     "node": ">8"
   },
   "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run plugin-app-engine:pack --with-deps"
+    "prepublish": "yarn --cwd ../../../ nx run plugin-app-engine:pack --with-deps",
+    "version": "node ../../../tools/update-dependencies.js $PWD"
   },
   "publishConfig": {
     "directory": "../../../dist/libs/plugin-app-engine"
