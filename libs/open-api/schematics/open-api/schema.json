@@ -3,6 +3,7 @@
   "id": "open-api",
   "type": "object",
   "description": "",
+  "properties": {},
   "oneOf": [
     {
       "properties": {
