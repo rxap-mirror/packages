@@ -13,7 +13,6 @@ module.exports = {
     '<rootDir>/libs/authentication',
     '<rootDir>/libs/layout',
     '<rootDir>/libs/pipes',
-    '<rootDir>/libs/plugin/app-engine',
     '<rootDir>/libs/plugin/library-schematics',
     '<rootDir>/libs/open-api',
     '<rootDir>/libs/recorder',
