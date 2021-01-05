@@ -1,6 +1,6 @@
 {
   "name": "@rxap/recorder",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -19,7 +19,7 @@
   "peerDependencies": {
     "@angular/core": "^11.0.5",
     "@rxap/across-tabs": ">=11.0.0",
-    "@rxap/definition": ">=11.0.0",
+    "@rxap/definition": ">=11.0.1",
     "@rxap/utilities": ">=11.0.0",
     "rxjs": "^6.5.5"
   },
