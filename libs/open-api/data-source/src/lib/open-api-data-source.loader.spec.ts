@@ -18,8 +18,6 @@ describe('Data Source', () => {
 
     beforeAll(() => {
       OpenApiConfigService.Config = {
-        host:     'rxap.dev',
-        basePath: '/api',
         openapi:  '3.0',
         info:     {
           title:   'Testing',
@@ -75,7 +73,9 @@ describe('Data Source', () => {
       expect(dataSource).not.toBeNull();
       expect(dataSource).toBeInstanceOf(OpenApiDataSource);
       expect(dataSource!.id).toBe('getAllUsers');
-      expect(dataSource!.metadata.url).toBe('http://server.de/api/users');
+      const url: any = dataSource!.metadata.url;
+      expect(typeof url).toBe('function');
+      expect(url()).toBe('http://server.de/api/users');
 
     });
 
