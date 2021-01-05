@@ -96,7 +96,6 @@
         "libs/data-source/recorder/src/public_api.ts"
       ],
       "@rxap/utilities/modules": ["libs/utilities/modules/src/public_api.ts"],
-      "@rxap/plugin/app-engine": ["libs/plugin/app-engine/src/index.ts"],
       "@rxap/plugin/library-schematics": [
         "libs/plugin/library-schematics/src/index.ts"
       ],
