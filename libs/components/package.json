@@ -1,6 +1,6 @@
 {
   "name": "@rxap/components",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/-/tree/master/libs/components",
@@ -24,7 +24,7 @@
     "@angular/material": "^10.1.1",
     "@angular/platform-browser": "^10.0.6",
     "@angular/router": "^10.0.6",
-    "@rxap/directives": ">=10.0.0",
+    "@rxap/directives": ">=10.0.1",
     "@rxap/services": ">=10.0.0",
     "@rxap/utilities": ">=10.0.0",
     "rxjs": "^6.5.5"
