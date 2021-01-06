@@ -29,7 +29,9 @@
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",
-    "packageGroup": []
+    "packageGroup": [
+      "@rxap/across-tabs"
+    ]
   },
   "publishConfig": {
     "directory": "../../dist/libs/across-tabs"
