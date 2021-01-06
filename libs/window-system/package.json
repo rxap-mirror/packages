@@ -35,10 +35,10 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/window-system",
-      "@rxap/utilities",
-      "@rxap/services",
       "@rxap/components",
-      "@rxap/directives"
+      "@rxap/directives",
+      "@rxap/services",
+      "@rxap/utilities"
     ]
   },
   "scripts": {
