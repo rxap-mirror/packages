@@ -1,6 +1,6 @@
 {
   "name": "@rxap/table-system",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "peerDependencies": {
     "@angular/animations": "^10.0.6",
     "@angular/cdk": "^10.1.1",

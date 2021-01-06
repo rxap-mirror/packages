@@ -1,6 +1,6 @@
 {
   "name": "@rxap/firebase",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -20,7 +20,7 @@
     "@angular/core": "^10.0.6",
     "@angular/fire": "^6.0.2",
     "@angular/router": "^10.0.6",
-    "@rxap/config": ">=10.0.0",
+    "@rxap/config": ">=10.0.1",
     "@rxap/utilities": ">=10.0.0",
     "firebase": "^7.17.1",
     "rxjs": "^6.5.5"
