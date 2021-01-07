@@ -4,12 +4,16 @@ const { join } = require('path');
 
 const rootPackageJson = JSON.parse(readFileSync(join(__dirname, '..', 'package.json')).toString('utf-8'));
 
-function getNewVersion(packageName, version) {
+async function getNewVersion(packageName, version) {
   if (!version) {
-    const match = packageName.match(/@rxap[-\/]([^@]+)/);
+    const match = packageName.match(/@rxap\/([^@]+)/);
     if (match) {
       const name = match[1].replace(/testing\//, '');
-      const packageJsonPath = join(__dirname, '..', 'libs', name, 'package.json');
+      const path = name
+        .replace(/plugin-/, 'plugin/')
+        .replace(/schematics-/, 'schematics/')
+        .replace(/material-/, 'material/');
+      const packageJsonPath = join(__dirname, '..', 'libs', path, 'package.json');
       if (existsSync(packageJsonPath)) {
         const parsed = JSON.parse(readFileSync(packageJsonPath).toString('utf-8'));
         version = `>=${parsed.version}`;
@@ -31,14 +35,14 @@ function getNewVersion(packageName, version) {
   return version;
 }
 
-function updateForPackage(manifestLocation, rootDependencies) {
+async function updateForPackage(manifestLocation, rootDependencies) {
   const parsed = JSON.parse(readFileSync(manifestLocation).toString('utf-8'));
 
   console.log('=========');
   console.log(`Project '${parsed.name}'`);
 
   for (const packageName of Object.keys(parsed.peerDependencies || {})) {
-    const newVersion = getNewVersion(packageName, rootDependencies[packageName]);
+    const newVersion = await getNewVersion(packageName, rootDependencies[packageName]);
     if (newVersion) {
       console.log(`Update package '${packageName}' to version '${newVersion}'`);
       parsed.peerDependencies[packageName] = newVersion;
@@ -57,7 +61,7 @@ async function update(rootDependencies) {
   const packages = await new Project(join(__dirname, '..')).getPackages();
 
   for (const pkg of packages) {
-    updateForPackage(pkg.manifestLocation, rootDependencies);
+    await updateForPackage(pkg.manifestLocation, rootDependencies);
   }
 
 }
