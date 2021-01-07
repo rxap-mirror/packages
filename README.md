@@ -38,14 +38,11 @@ Name | License | Version | Dependencies | Description
 @rxap/json-schema-to-typescript | MIT | - | - | Generates typescript interfaces from json schema definition.
 @rxap/layout | MIT | - | - | A collection of components and services that provides standard layouts for angular applications.
 @rxap/life-cycle | MIT | - | - | A utility package to execute logic after the angular app is ready
-@rxap/material-form-system |  | - | - | 
-@rxap/material-table-system |  | - | - | 
 @rxap/mixin | MIT | - | - | A collection of typescript decorators.
 @rxap/open-api | MIT | - | - | Provides the functionality to create DataSource and RemoteMethod instances from an OpenAPI config.
 @rxap/pipes | MIT | - | - | A collection of utility angular pipes used in RxAP.
 @rxap/recorder | MIT | - | - | Client package for https://recorder.rxap.dev.
 @rxap/remote-method | BSD-4-Clause | - | - | Provides the RemoteMethod concept for RxAP.
-@rxap/schematics-utilities |  | - | - | 
 @rxap/sentry | MIT | - | - | A simple angular wrapper package for @sentry/browser.
 @rxap/service-worker | MIT | - | - | A utility package for the update process of apps with services worker
 @rxap/services | MIT | - | - | A collection of utility angular services used in RxAP.
@@ -56,13 +53,30 @@ Name | License | Version | Dependencies | Description
 @rxap/window-system | BSD-4-Clause | - | - | Provides the WindowSystem concept for RxAP.
 @rxap/xml-parser | BSD-4-Clause | - | - | A utility packages to convert xml files into class instances.
 
+  ## Material Extensions
+
+  Name | License | Version | Dependencies | Description
+  --- | --- | --- | --- | ---
+      @rxap/material-form-system |  | - | - | 
+      @rxap/material-table-system |  | - | - | 
+
+
 ## Plugins
 
 Name | License | Version | Dependencies | Description
 --- | --- | --- | --- | ---
+@rxap/plugin-kaniko |  | - | - | 
+@rxap/plugin-library-publish |  | - | - | 
 @rxap/plugin-library-schematics | MIT | - | - | A builder to compile angular library schematics.
 @rxap/plugin-pack | MIT | - | - | A builder to execute a collection of architect targets in sequence.
 @rxap/plugin-readme-generator | MIT | - | - | A builder to generate readme files for libraries.
 @rxap/plugin-scss-bundle | MIT | - | - | A builder to bundle scss theme files for angular libraries.
 
+
+
+  ## Schematics
+
+  Name | License | Version | Dependencies | Description
+  --- | --- | --- | --- | ---
+      @rxap/schematics-utilities |  | - | - | 
 

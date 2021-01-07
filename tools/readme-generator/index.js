@@ -5,25 +5,46 @@ const { join } = require('path');
 const https = require('https');
 
 const libraries = Object
-  .values(angularJson.projects)
-  .filter(project => project.projectType === 'library')
-  .filter(project => project.prefix === 'rxap')
+  .entries(angularJson.projects)
+  .filter(([name, project]) => project.projectType === 'library')
+  .filter(([name, project]) => !name.match(/^plugin-/) && !name.match(/^devkit-/) && !name.match(/^schematics-/) && !name.match(/^material-/))
+  .map(([name, project]) => project)
   .map(project => readFileSync(join(project.root, 'package.json')).toString('utf-8'))
   .map(packageJson => JSON.parse(packageJson))
   .sort((a, b) => a.name.localeCompare(b.name));
 
 const plugins = Object
-  .values(angularJson.projects)
-  .filter(project => project.projectType === 'library')
-  .filter(project => project.prefix === 'rxap-plugin')
+  .entries(angularJson.projects)
+  .filter(([name, project]) => project.projectType === 'library')
+  .filter(([name, project]) => name.match(/^plugin-/))
+  .map(([name, project]) => project)
   .map(project => readFileSync(join(project.root, 'package.json')).toString('utf-8'))
   .map(packageJson => JSON.parse(packageJson))
   .sort((a, b) => a.name.localeCompare(b.name));
 
 const devkits = Object
-  .values(angularJson.projects)
-  .filter(project => project.projectType === 'library')
-  .filter(project => project.prefix === 'rxap-devkit')
+  .entries(angularJson.projects)
+  .filter(([name, project]) => project.projectType === 'library')
+  .filter(([name, project]) => name.match(/^devkit-/))
+  .map(([name, project]) => project)
+  .map(project => readFileSync(join(project.root, 'package.json')).toString('utf-8'))
+  .map(packageJson => JSON.parse(packageJson))
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+const schematics = Object
+  .entries(angularJson.projects)
+  .filter(([name, project]) => project.projectType === 'library')
+  .filter(([name, project]) => name.match(/^schematics-/))
+  .map(([name, project]) => project)
+  .map(project => readFileSync(join(project.root, 'package.json')).toString('utf-8'))
+  .map(packageJson => JSON.parse(packageJson))
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+const materials = Object
+  .entries(angularJson.projects)
+  .filter(([name, project]) => project.projectType === 'library')
+  .filter(([name, project]) => name.match(/^material-/))
+  .map(([name, project]) => project)
   .map(project => readFileSync(join(project.root, 'package.json')).toString('utf-8'))
   .map(packageJson => JSON.parse(packageJson))
   .sort((a, b) => a.name.localeCompare(b.name));
@@ -65,9 +86,9 @@ async function tagUnpublished(projects) {
 const readmeTemplateFile = readFileSync('README.md.handlebars').toString('utf-8');
 const readmeTemplate = compile(readmeTemplateFile);
 
-tagUnpublished([...libraries, ...plugins, ...devkits]).then(() => {
+tagUnpublished([...libraries, ...plugins, ...devkits, ...materials, ...schematics]).then(() => {
 
-  const readmeFile = readmeTemplate({ libraries, plugins, devkits, package: packageJson });
+  const readmeFile = readmeTemplate({ libraries, plugins, devkits, package: packageJson, materials, schematics });
 
   writeFileSync('README.md', readmeFile);
 
