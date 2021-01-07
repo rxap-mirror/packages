@@ -19,6 +19,8 @@ export * from './lib/decorators/use-form-control';
 export * from './lib/decorators/use-form-group';
 export * from './lib/decorators/form';
 
+const test = 'test';
+
 // endregion
 
 // region directives
