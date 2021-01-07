@@ -1,167 +1,118 @@
-#image: node:lts
-#
-#include:
-#- project: 'rxap/gitlab-ci'
-#  ref: stable
-#  file: '/templates/setup.yml'
-#- project: 'rxap/gitlab-ci'
-#  ref: stable
-#  file: '/pwa.yml'
-#
-#variables:
-#  GIT_DEPTH: "3"
-#  GIT_STRATEGY: clone
-#  GIT_SUBMODULE_STRATEGY: none
-#
-#.cache:pull: &cache_pull
-#  cache:
-#    key:
-#      files:
-#      - yarn.lock
-#    paths:
-#    - node_modules/
-#    policy: pull
-#
-#stages:
-#- setup
-#- build
-#- test
-#- deploy
-#- e2e
-#- postdeploy
-#- generate
-#- trigger
-#
-#generate:storybook:config:
-#  before_script:
-#  - rm .npmrc
-#  - npm install handlebars
-#  script: node tools/gitlab-ci-generator/storybook.js
-#  stage: generate
-#  needs: []
-#  artifacts:
-#    paths:
-#    - .storybook.gitlab-ci.yml
-#    expire_in: 1h
-#  rules:
-#  - if: '$DISABLE_LIBRARY_STORYBOOK'
-#    when: never
-#  - if: '$CI_COMMIT_REF_NAME == "master"'
-#    when: always
-#
-#trigger:build:storybook:
-#  stage: trigger
-#  needs:
-#  - generate:storybook:config
-#  rules:
-#  - if: '$DISABLE_LIBRARY_STORYBOOK'
-#    when: never
-#  - if: '$CI_COMMIT_REF_NAME == "master"'
-#    when: always
-#  trigger:
-#    include:
-#    - artifact: .storybook.gitlab-ci.yml
-#      job: generate:storybook:config
-#
-#generate:compodoc:config:
-#  before_script:
-#  - rm .npmrc
-#  - npm install handlebars
-#  script: node tools/gitlab-ci-generator/compodoc.js
-#  stage: generate
-#  needs: []
-#  artifacts:
-#    paths:
-#    - .compodoc.gitlab-ci.yml
-#    expire_in: 1h
-#  rules:
-#  - if: '$DISABLE_LIBRARY_COMPODOC'
-#    when: never
-#  - if: '$CI_COMMIT_REF_NAME == "master"'
-#    when: always
-#
-#trigger:build:compodoc:
-#  stage: trigger
-#  needs:
-#  - generate:compodoc:config
-#  rules:
-#  - if: '$DISABLE_LIBRARY_COMPODOC'
-#    when: never
-#  - if: '$CI_COMMIT_REF_NAME == "master"'
-#    when: always
-#  trigger:
-#    include:
-#    - artifact: .compodoc.gitlab-ci.yml
-#      job: generate:compodoc:config
-#
-#build:
-#  <<: *cache_pull
-#  tags:
-#  - nvm
-#  image: registry.gitlab.com/rxap/gitlab-ci/angular-build
-#  stage: build
-#  script: yarn nx run-many --target=pack --all --parallel --with-deps
-#  rules:
-#  - changes:
-#    - libs/**/src/**
-#    when: on_success
-#  artifacts:
-#    expire_in: 1 day
-#    paths:
-#    - dist
-#
-#test:
-#  <<: *cache_pull
-#  tags:
-#  - nvm
-#  image: registry.gitlab.com/rxap/gitlab-ci/angular-test
-#  stage: test
-#  coverage: '/Statements\s*:\s*(\d+\.?\d*)%/'
-#  script: yarn test:ci
-#  rules:
-#  - changes:
-#    - "**/*.ts"
-#    when: on_success
-#  artifacts:
-#    expire_in: 1 day
-#    reports:
-#      cobertura: coverage/cobertura-coverage.xml
-#      junit: junit.xml
-#    paths:
-#    - coverage
+image: node:lts
 
-#setup:generate:library:config:
-#  before_script:
-#  - rm .npmrc
-#  - npm install handlebars @nrwl/workspace typescript @nrwl/cli
-#  - yarn yarn nx print-affected
-#  script: node tools/gitlab-ci-generator/library.js
-#  stage: setup
-#  needs: []
-#  artifacts:
-#    paths:
-#    - .library.gitlab-ci.yml
-#    expire_in: 1h
-#  rules:
-#  - if: '$DISABLE_LIBRARY'
-#    when: never
-#  - if: '$CI_COMMIT_REF_NAME == "master"'
-#    changes:
-#    - libs/**/*
-#    when: always
-#
-#trigger:build:library:
-#  stage: trigger
-#  needs:
-#  - setup:generate:library:config
-#  rules:
-#  - if: '$DISABLE_LIBRARY'
-#    when: never
-#  - if: '$CI_COMMIT_REF_NAME == "master"'
-#    changes:
-#    - libs/**/*
-#    when: always
-#  trigger:
-#    include:
-#    - artifact: .library.gitlab-ci.yml
-#      job: setup:generate:library:config
+stages:
+- build
+- test
+- publish
+
+setup:
+  stage: .pre
+  tags:
+  - build
+  script: yarn --prefer-offline
+  cache:
+    key:
+      files:
+      - yarn.lock
+    paths:
+    - node_modules/
+  rules:
+  - if: '$CI_COMMIT_TAG'
+    when: never
+
+build:
+  stage: build
+  tags:
+  - build
+  needs:
+  - setup
+  before_script:
+  - yarn --prefer-offline
+  script: yarn nx run-many --target=build --all --with-deps
+  cache:
+    key:
+      files:
+      - yarn.lock
+    paths:
+    - node_modules/
+    policy: pull
+  rules:
+  - if: '$CI_COMMIT_TAG'
+    when: never
+
+test:
+  stage: test
+  tags:
+  - build
+  before_script:
+  - yarn --prefer-offline
+  script: yarn nx run-many --target=test --all --with-deps
+  needs:
+  - setup
+  cache:
+    key:
+      files:
+      - yarn.lock
+    paths:
+    - node_modules/
+    policy: pull
+  rules:
+  - if: '$CI_COMMIT_TAG'
+    when: never
+    allow_failure: true
+
+build:publish:
+  stage: build
+  tags:
+  - build
+  before_script:
+  - yarn --prefer-offline
+  script: yarn nx run-many --target=pack --projects="$(echo $CI_COMMIT_TAG | cut -d'@' -f2 | cut -d'/' -f2)" --with-deps
+  cache:
+    key:
+      files:
+      - yarn.lock
+    paths:
+    - node_modules/
+  rules:
+  - if: '$CI_COMMIT_TAG =~ /@rxap\/.+@\d+\.\d+\.\d+/'
+    when: always
+
+.publish:
+  tags:
+  - build
+  cache:
+    key:
+      files:
+      - yarn.lock
+    paths:
+    - node_modules/
+    policy: pull
+  rules:
+  - if: '$CI_COMMIT_TAG =~ /@rxap\/.+@\d+\.\d+\.\d+/'
+    when: on_success
+  script: yarn lerna publish from-git --yes --registry $NPM_REGISTRY
+
+publish:npm:
+  extends: .publish
+  before_script:
+  - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}">.npmrc
+  rules:
+  - if: '$CI_COMMIT_TAG =~ /@rxap\/.+@\d+\.\d+\.\d+/'
+    when: manual
+  variables:
+    NPM_REGISTRY: https://registry.npmjs.org
+
+publish:rxap:
+  extends: .publish
+  before_script:
+  - echo "//npm.rxap.dev/:_authToken=${RXAP_NPM_TOKEN}">.npmrc
+  variables:
+    NPM_REGISTRY: https://npm.rxap.dev
+
+publish:gitlab:
+  extends: .publish
+  before_script:
+  - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
+  variables:
+    NPM_REGISTRY: "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm"
