@@ -87,9 +87,6 @@
     "icon": {
       "tags": []
     },
-    "testing": {
-      "tags": []
-    },
     "firebase": {
       "tags": [
         "rxap"
@@ -110,9 +107,6 @@
       "tags": []
     },
     "plugin-scss-bundle": {
-      "tags": []
-    },
-    "pwa": {
       "tags": []
     },
     "form-system": {
