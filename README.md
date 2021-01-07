@@ -53,12 +53,12 @@ Name | License | Version | Dependencies | Description
 @rxap/window-system | BSD-4-Clause | - | - | Provides the WindowSystem concept for RxAP.
 @rxap/xml-parser | BSD-4-Clause | - | - | A utility packages to convert xml files into class instances.
 
-  ## Material Extensions
+## Material Extensions
 
-  Name | License | Version | Dependencies | Description
-  --- | --- | --- | --- | ---
-      @rxap/material-form-system |  | - | - | 
-      @rxap/material-table-system |  | - | - | 
+Name | License | Version | Dependencies | Description
+--- | --- | --- | --- | ---
+@rxap/material-form-system |  | - | - | 
+@rxap/material-table-system |  | - | - | 
 
 
 ## Plugins
@@ -74,9 +74,9 @@ Name | License | Version | Dependencies | Description
 
 
 
-  ## Schematics
+## Schematics
 
-  Name | License | Version | Dependencies | Description
-  --- | --- | --- | --- | ---
-      @rxap/schematics-utilities |  | - | - | 
+Name | License | Version | Dependencies | Description
+--- | --- | --- | --- | ---
+@rxap/schematics-utilities |  | - | - | 
 
