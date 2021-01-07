@@ -7,6 +7,7 @@ RxAP
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 > 
 
@@ -16,11 +17,11 @@ RxAP
 
 Name | License | Version | Dependencies | Description
 --- | --- | --- | --- | ---
-@rxap/material-form-system |  | - | - | 
 @rxap/across-tabs | MIT | - | - | An angular wrapper package for across-tabs.
 @rxap/authentication | MIT | - | - | A collection of components and services to simplify the authentication process implementation.
 @rxap/components | MIT | - | - | A collection of utility angular components used in RxAP.
 @rxap/config | MIT | - | - | Simple config file manager for angular applications.
+@rxap/contenteditable |  | - | - | 
 @rxap/data-grid |  | - | - | 
 @rxap/data-source | ![NPM](https://img.shields.io/npm/l/@rxap/data-source?style=flat-square) | [![npm version](https://img.shields.io/npm/v/@rxap/data-source?style=flat-square)](https://www.npmjs.com/package/@rxap/data-source) | ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@rxap/data-source) | Provides the DataSource concept for RxAP.
 @rxap/definition | ![NPM](https://img.shields.io/npm/l/@rxap/definition?style=flat-square) | [![npm version](https://img.shields.io/npm/v/@rxap/definition?style=flat-square)](https://www.npmjs.com/package/@rxap/definition) | ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@rxap/definition) | Provides the Definition concept for RxAP.
@@ -37,11 +38,14 @@ Name | License | Version | Dependencies | Description
 @rxap/json-schema-to-typescript | MIT | - | - | Generates typescript interfaces from json schema definition.
 @rxap/layout | MIT | - | - | A collection of components and services that provides standard layouts for angular applications.
 @rxap/life-cycle | MIT | - | - | A utility package to execute logic after the angular app is ready
+@rxap/material-form-system |  | - | - | 
+@rxap/material-table-system |  | - | - | 
 @rxap/mixin | MIT | - | - | A collection of typescript decorators.
 @rxap/open-api | MIT | - | - | Provides the functionality to create DataSource and RemoteMethod instances from an OpenAPI config.
 @rxap/pipes | MIT | - | - | A collection of utility angular pipes used in RxAP.
 @rxap/recorder | MIT | - | - | Client package for https://recorder.rxap.dev.
 @rxap/remote-method | BSD-4-Clause | - | - | Provides the RemoteMethod concept for RxAP.
+@rxap/schematics-utilities |  | - | - | 
 @rxap/sentry | MIT | - | - | A simple angular wrapper package for @sentry/browser.
 @rxap/service-worker | MIT | - | - | A utility package for the update process of apps with services worker
 @rxap/services | MIT | - | - | A collection of utility angular services used in RxAP.
