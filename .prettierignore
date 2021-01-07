@@ -4,3 +4,4 @@
 /coverage
 *.handlebars
 *.template
+README.md.handlebars
