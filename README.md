@@ -16,7 +16,7 @@ RxAP
 
 Name | License | Version | Dependencies | Description
 --- | --- | --- | --- | ---
-@rxap-material/form-system |  | - | - | 
+@rxap/material-form-system |  | - | - | 
 @rxap/across-tabs | MIT | - | - | An angular wrapper package for across-tabs.
 @rxap/authentication | MIT | - | - | A collection of components and services to simplify the authentication process implementation.
 @rxap/components | MIT | - | - | A collection of utility angular components used in RxAP.
@@ -56,9 +56,9 @@ Name | License | Version | Dependencies | Description
 
 Name | License | Version | Dependencies | Description
 --- | --- | --- | --- | ---
-@rxap-plugin/library-schematics | MIT | - | - | A builder to compile angular library schematics.
-@rxap-plugin/pack | MIT | - | - | A builder to execute a collection of architect targets in sequence.
-@rxap-plugin/readme-generator | MIT | - | - | A builder to generate readme files for libraries.
-@rxap-plugin/scss-bundle | MIT | - | - | A builder to bundle scss theme files for angular libraries.
+@rxap/plugin-library-schematics | MIT | - | - | A builder to compile angular library schematics.
+@rxap/plugin-pack | MIT | - | - | A builder to execute a collection of architect targets in sequence.
+@rxap/plugin-readme-generator | MIT | - | - | A builder to generate readme files for libraries.
+@rxap/plugin-scss-bundle | MIT | - | - | A builder to bundle scss theme files for angular libraries.
 
 

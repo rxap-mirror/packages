@@ -1,5 +1,5 @@
 {
-  "name": "@rxap-plugin/scss-bundle",
+  "name": "@rxap/plugin-scss-bundle",
   "version": "11.0.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",

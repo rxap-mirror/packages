@@ -12,7 +12,7 @@ import { MockBuilderContext } from '@nrwl/workspace/testing';
 import { Builder } from './builder';
 import { ReadFile } from './read-file';
 
-describe('@rxap-plugin/library-schematics', () => {
+describe('@rxap/plugin-library-schematics', () => {
 
   let architect: Architect;
   let architectHost: TestingArchitectHost;
@@ -43,7 +43,7 @@ describe('@rxap-plugin/library-schematics', () => {
 
     beforeEach(() => {
       options = { buildTarget: 'test:build', skipBuild: true, tsConfig: 'tsconfig.schematics.json' };
-      architectHost.addTarget({ project: 'test', target: 'schematics' }, '@rxap-plugin/library-schematics:build', options);
+      architectHost.addTarget({ project: 'test', target: 'schematics' }, '@rxap/plugin-library-schematics:build', options);
       architectHost.addTarget({ project: 'test', target: 'build' }, 'angular', { outputPath: 'path', project: 'libs/test/ng-package.json' });
       getProjectMetadata = jest.spyOn(architectHost, 'getProjectMetadata').mockResolvedValue({ root: 'app' });
     });

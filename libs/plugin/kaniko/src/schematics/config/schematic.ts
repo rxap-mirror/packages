@@ -70,7 +70,7 @@ export default function(options: ConfigSchema): Rule {
 
           project.targets.add({
             name:    'kaniko',
-            builder: `@rxap-plugin/kaniko:executor`,
+            builder: `@rxap/plugin-kaniko:executor`,
             options: targetOptions
           });
 

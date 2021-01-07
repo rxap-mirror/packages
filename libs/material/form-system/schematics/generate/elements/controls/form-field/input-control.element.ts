@@ -11,7 +11,7 @@ import {
   LeafFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { SourceFile } from 'ts-morph';
 
 const { dasherize, classify, camelize, capitalize } = strings;
@@ -45,7 +45,7 @@ export class InputControlElement extends FormFieldElement {
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponentModule({ project, sourceFile, options });
     AddNgModuleImport(sourceFile, 'MatInputModule', '@angular/material/input');
-    AddNgModuleImport(sourceFile, 'RequiredDirectiveModule', '@rxap-material/form-system');
+    AddNgModuleImport(sourceFile, 'RequiredDirectiveModule', '@rxap/material-form-system');
   }
 
 }

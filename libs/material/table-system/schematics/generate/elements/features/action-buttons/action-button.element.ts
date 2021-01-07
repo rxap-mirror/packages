@@ -5,7 +5,7 @@ import {
   HandleComponent,
   HandleComponentModule,
   ToValueContext
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { Rule } from '@angular-devkit/schematics';
 import { ActionButtonsElement } from './action-buttons.element';
 

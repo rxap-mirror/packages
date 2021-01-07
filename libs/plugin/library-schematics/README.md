@@ -1,12 +1,12 @@
-@rxap-plugin/library-schematics (Nx/Ng Plugin)
+@rxap/plugin-library-schematics (Nx/Ng Plugin)
 ======
 
-[![npm version](https://img.shields.io/npm/v/@rxap-plugin/library-schematics?style=flat-square)](https://www.npmjs.com/package/@rxap-plugin/library-schematics)
+[![npm version](https://img.shields.io/npm/v/@rxap/plugin-library-schematics?style=flat-square)](https://www.npmjs.com/package/@rxap/plugin-library-schematics)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@rxap-plugin/library-schematics)
-![npm](https://img.shields.io/npm/dm/@rxap-plugin/library-schematics)
-![NPM](https://img.shields.io/npm/l/@rxap-plugin/library-schematics)
+![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@rxap/plugin-library-schematics)
+![npm](https://img.shields.io/npm/dm/@rxap/plugin-library-schematics)
+![NPM](https://img.shields.io/npm/l/@rxap/plugin-library-schematics)
 
 > A builder to compile angular library schematics.
 
@@ -20,14 +20,14 @@ Add the plugin to your workspace:
 
 
 ```
-yarn add @rxap-plugin/library-schematics
+yarn add @rxap/plugin-library-schematics
 ```
 
 
-Configure @rxap-plugin/library-schematics for a project:
+Configure @rxap/plugin-library-schematics for a project:
 
 ```
-ng g @rxap-plugin/library-schematics:config [project]
+ng g @rxap/plugin-library-schematics:config [project]
 ```
 
 *Add a schematics configuration and the @plugin-library-schematics:build to the specified project*
@@ -38,7 +38,7 @@ ng g @rxap-plugin/library-schematics:config [project]
 **Add a schematics configuration and the @plugin-library-schematics:build to the specified project**
 
 ```
-ng g @rxap-plugin/library-schematics:config
+ng g @rxap/plugin-library-schematics:config
 ```
 
 Option | Type | Default | Description
@@ -58,7 +58,7 @@ onlyBuilder | boolean | false | Whether only the builder configuration should be
 **Builds the library schematics and copy all files into the out path**
 
 ```
-@rxap-plugin/library-schematics:build
+@rxap/plugin-library-schematics:build
 ```
 
 Option | Type | Default | Description
@@ -70,7 +70,7 @@ tsConfig | string |  | The schematics ts config file
 **Updates the package group array in the package.json**
 
 ```
-@rxap-plugin/library-schematics:update-package-group
+@rxap/plugin-library-schematics:update-package-group
 ```
 
 Option | Type | Default | Description

@@ -14,7 +14,7 @@ import {
   ModuleElement,
   OpenApiRemoteMethodElement,
   AddComponentProvider
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import {
   Rule,
   chain,

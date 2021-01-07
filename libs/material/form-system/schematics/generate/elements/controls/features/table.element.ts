@@ -8,7 +8,7 @@ import {
 import { join } from 'path';
 import { ControlElement } from '../control.element';
 import { strings } from '@angular-devkit/core';
-import { ToValueContext } from '@rxap-schematics/utilities';
+import { ToValueContext } from '@rxap/schematics-utilities';
 import {
   Rule,
   chain,
@@ -45,7 +45,7 @@ export class TableElement extends ControlFeatureElement {
     return chain([
       () => console.log(`Execute table component generator schematic for '${this.templateValue}'`),
       externalSchematic(
-        '@rxap-material/table-system',
+        '@rxap/material-table-system',
         'generate',
         {
           project:         options.project,

@@ -6,7 +6,7 @@
     "config": {
       "factory": "./src/schematics/config/schematic",
       "schema": "./src/schematics/config/schema.json",
-      "description": "Adds the @rxap-plugin/readme-generator builder to the specified project."
+      "description": "Adds the @rxap/plugin-readme-generator builder to the specified project."
     }
   }
 }

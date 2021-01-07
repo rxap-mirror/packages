@@ -8,7 +8,7 @@ import {
 import { join } from 'path';
 import { ControlElement } from '../control.element';
 import { strings } from '@angular-devkit/core';
-import { ToValueContext } from '@rxap-schematics/utilities';
+import { ToValueContext } from '@rxap/schematics-utilities';
 import {
   Rule,
   chain,
@@ -45,7 +45,7 @@ export class FormElement extends ControlFeatureElement {
     return chain([
       () => console.log(`Execute form component generator schematic for '${this.templateValue}'`),
       externalSchematic(
-        '@rxap-material/form-system',
+        '@rxap/material-form-system',
         'generate',
         {
           project:         options.project,

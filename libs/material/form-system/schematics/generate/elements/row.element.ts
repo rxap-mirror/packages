@@ -8,7 +8,7 @@ import {
   ToValueContext,
   AddNgModuleImport,
   NodeFactory
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { SourceFile } from 'ts-morph';
 
 @ElementExtends(NodeElement)

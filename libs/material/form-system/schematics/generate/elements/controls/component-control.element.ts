@@ -9,7 +9,7 @@ import {
   NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import {
   SourceFile,
   Scope,

@@ -13,7 +13,7 @@ import {
 import {
   ToValueContext,
   AddComponentProvider
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { GenerateSchema } from '../../schema';
 
 @ElementExtends(FormFeatureElement)

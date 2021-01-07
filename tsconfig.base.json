@@ -151,25 +151,25 @@
       "@rxap/definition": [
         "libs/definition/src/index.ts"
       ],
-      "@rxap-plugin/pack": [
+      "@rxap/plugin-pack": [
         "libs/plugin/pack/src/index.ts"
       ],
-      "@rxap-plugin/scss-bundle": [
+      "@rxap/plugin-scss-bundle": [
         "libs/plugin/scss-bundle/src/index.ts"
       ],
       "@rxap/form-system": [
         "libs/form-system/src/index.ts"
       ],
-      "@rxap-plugin/readme-generator": [
+      "@rxap/plugin-readme-generator": [
         "libs/plugin/readme-generator/src/index.ts"
       ],
-      "@rxap-plugin/kaniko": [
+      "@rxap/plugin-kaniko": [
         "libs/plugin/kaniko/src/index.ts"
       ],
       "@rxap/data-grid": [
         "libs/data-grid/src/index.ts"
       ],
-      "@rxap-plugin/library-publish": [
+      "@rxap/plugin-library-publish": [
         "libs/plugin/library-publish/src/index.ts"
       ],
       "@rxap/fullstory": [
@@ -208,13 +208,13 @@
       "@rxap/table-system": [
         "libs/table-system/src/index.ts"
       ],
-      "@rxap-material/form-system": [
+      "@rxap/material-form-system": [
         "libs/material/form-system/src/index.ts"
       ],
-      "@rxap-material/table-system": [
+      "@rxap/material-table-system": [
         "libs/material/table-system/src/index.ts"
       ],
-      "@rxap-schematics/utilities": [
+      "@rxap/schematics-utilities": [
         "libs/schematics/utilities/src/index.ts"
       ],
       "@rxap/contenteditable": [

@@ -16,7 +16,7 @@ import {
   ParseTemplate,
   ApplyTsMorphProject,
   FixMissingImports
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import {
   IndentationText,
   QuoteKind,
@@ -67,7 +67,7 @@ export default function(options: GenerateSchema): Rule {
 
     options.path = path = join(path, dasherize(options.name) + '-form');
 
-    console.log('@rxap-material/form-system base path: ', path);
+    console.log('@rxap/material-form-system base path: ', path);
 
     const componentTemplateFilePath = join(path, dasherize(options.name) + '-form.component.html');
     const componentModuleFilePath   = join(path, dasherize(options.name) + '-form.component.module.ts');

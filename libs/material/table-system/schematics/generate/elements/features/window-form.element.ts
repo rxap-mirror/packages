@@ -17,7 +17,7 @@ import {
   MethodElement,
   ToValueContext,
   AddComponentProvider
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { strings } from '@angular-devkit/core';
 import { join } from 'path';
 import {
@@ -81,7 +81,7 @@ export class WindowFormElement implements ParsedElement {
   public toValue({ options, project }: ToValueContext<GenerateSchema>): Rule {
     return chain([
       externalSchematic(
-        '@rxap-material/form-system',
+        '@rxap/material-form-system',
         'generate',
         {
           path:            options.path?.replace(/^\//, ''),

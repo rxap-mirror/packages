@@ -17,7 +17,7 @@ import {
   ModuleElement,
   MethodElement,
   AddComponentProvider
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import {
   Rule,
   chain,

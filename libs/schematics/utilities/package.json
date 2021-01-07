@@ -1,5 +1,5 @@
 {
-  "name": "@rxap-schematics/utilities",
+  "name": "@rxap/schematics-utilities",
   "version": "11.0.0",
   "peerDependencies": {
     "@rxap/mixin": ">=11.0.0",

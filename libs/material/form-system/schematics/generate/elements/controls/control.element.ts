@@ -11,7 +11,7 @@ import {
   WithTemplate,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import {
   chain,
   Rule

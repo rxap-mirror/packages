@@ -12,7 +12,7 @@ import {
   ToValueContext,
   AddNgModuleImport,
   WithTemplate
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { Rule } from '@angular-devkit/schematics';
 import { SourceFile } from 'ts-morph';
 
@@ -52,7 +52,7 @@ export class ErrorsElement implements ParsedElement<Rule>, HandleComponent, Hand
   }
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
-    AddNgModuleImport(sourceFile, 'ControlErrorDirectiveModule', '@rxap-material/form-system');
+    AddNgModuleImport(sourceFile, 'ControlErrorDirectiveModule', '@rxap/material-form-system');
   }
 
   public toValue({ project, options }: ToValueContext): Rule {

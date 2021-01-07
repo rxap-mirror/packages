@@ -9,7 +9,7 @@ import {
   NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { SourceFile } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
 import { FormElement } from '../form.element';
@@ -43,7 +43,7 @@ export class FooterControlsElement extends FormFeatureElement {
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, 'FooterDirectiveModule', '@rxap/layout');
-    AddNgModuleImport(sourceFile, 'FormControlsComponentModule', '@rxap-material/form-system');
+    AddNgModuleImport(sourceFile, 'FormControlsComponentModule', '@rxap/material-form-system');
   }
 
 }

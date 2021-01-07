@@ -37,7 +37,7 @@ export default function(options: ConfigSchema): Rule {
 
           project.targets.add({
             name:    'readme',
-            builder: `@rxap-plugin/readme-generator:${options.type}`,
+            builder: `@rxap/plugin-readme-generator:${options.type}`,
             options: {}
           });
 

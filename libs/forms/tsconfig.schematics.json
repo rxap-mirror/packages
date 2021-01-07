@@ -39,7 +39,7 @@
       "@rxap/xml-parser/testing": [
         "../../dist/libs/xml-parser/testing"
       ],
-      "@rxap-schematics/utilities": [
+      "@rxap/schematics-utilities": [
         "../../dist/libs/schematics/utilities"
       ]
     }

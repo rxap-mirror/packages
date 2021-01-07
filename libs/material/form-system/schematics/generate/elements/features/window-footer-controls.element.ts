@@ -8,7 +8,7 @@ import {
   ToValueContext,
   AddNgModuleImport,
   AddComponentProvider
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import {
   SourceFile,
   Scope,
@@ -43,7 +43,7 @@ export class WindowFooterControlsElement extends FormFeatureElement {
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, 'FormWindowFooterDirectiveModule', '@rxap/form-window-system');
-    AddNgModuleImport(sourceFile, 'FormControlsComponentModule', '@rxap-material/form-system');
+    AddNgModuleImport(sourceFile, 'FormControlsComponentModule', '@rxap/material-form-system');
   }
 
 
