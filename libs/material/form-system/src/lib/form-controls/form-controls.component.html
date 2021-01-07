@@ -7,7 +7,7 @@
             i18n="@@rxap/material.form-system.components.form-controls.reset"
             mat-stroked-button>
       Reset
-      <-button>
+    </button>
     <button (click)="cancel()"
             [disabled]="submitting$ | async"
             type="button"
@@ -15,7 +15,7 @@
             i18n="@@rxap/material.form-system.components.form-controls.cancel"
             mat-stroked-button>
       Cancel
-      <-button>
+    </button>
     <button (click)="submit(!allowResubmit)"
             [disabled]="submitting$ | async"
             type="button"
@@ -25,7 +25,7 @@
             mat-raised-button>
       <span fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
         <span fxFlex="nogrow"
-              i18n="@@rxap/material.form-system.components.form-controls.submit">Submit<-span>
+              i18n="@@rxap/material.form-system.components.form-controls.submit">Submit</span>
         <mat-spinner [fxShow]="submitting$ | async" fxFlex="nogrow" mode="indeterminate" [diameter]="15" color="accent"></mat-spinner>
       </span>
     </button>
@@ -40,7 +40,7 @@
         <span fxFlex="nogrow"
               i18n="@@rxap/material.form-system.components.form-controls.submit-and-close">
           Submit and Close
-        <-span>
+        </span>
         <mat-spinner [fxShow]="submitting$ | async" fxFlex="nogrow" mode="indeterminate" [diameter]="15" color="accent"></mat-spinner>
       </span>
     </button>
