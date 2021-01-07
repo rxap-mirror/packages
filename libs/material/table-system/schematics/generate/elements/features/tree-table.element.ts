@@ -22,7 +22,7 @@ import {
   MethodElement,
   HandleComponent,
   AddComponentProvider
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { GenerateSchema } from '../../schema';
 
 const { dasherize, classify, camelize } = strings;

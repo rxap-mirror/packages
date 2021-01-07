@@ -6,7 +6,7 @@ import {
   HandleComponent,
   HandleComponentModule,
   ToValueContext
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { SourceFile } from 'ts-morph';
 import { FormElement } from '../form.element';
 

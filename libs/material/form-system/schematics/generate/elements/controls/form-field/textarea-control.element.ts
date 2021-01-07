@@ -8,7 +8,7 @@ import {
   NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { SourceFile } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
 
@@ -35,7 +35,7 @@ export class TextareaControlElement extends FormFieldElement {
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponentModule({ project, sourceFile, options });
     AddNgModuleImport(sourceFile, 'MatInputModule', '@angular/material/input');
-    AddNgModuleImport(sourceFile, 'RequiredDirectiveModule', '@rxap-material/form-system');
+    AddNgModuleImport(sourceFile, 'RequiredDirectiveModule', '@rxap/material-form-system');
   }
 
 }

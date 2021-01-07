@@ -6,9 +6,9 @@ import {
 import {
   AddComponentAnimations,
   GetComponentOptionsObject
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 
-describe('@rxap-schematics/utilities', () => {
+describe('@rxap/schematics-utilities', () => {
 
   describe('AddComponentAnimations', () => {
 
@@ -27,7 +27,7 @@ describe('@rxap-schematics/utilities', () => {
       class MyComponent {}
       `);
 
-      AddComponentAnimations(sourceFile, 'RowAnimations', '@rxap-material/table-system');
+      AddComponentAnimations(sourceFile, 'RowAnimations', '@rxap/material-table-system');
 
       const componentOptions                       = GetComponentOptionsObject(sourceFile);
       const animationsProperty: PropertyAssignment = componentOptions.getProperty('animations') as any;
@@ -41,7 +41,7 @@ describe('@rxap-schematics/utilities', () => {
       const rowAnimationsElement = animationsInitializer.getElements()[ 0 ];
       expect(rowAnimationsElement.getFullText()).toBe('RowAnimations');
       expect(sourceFile.getImportDeclarations()).toHaveLength(1);
-      expect(sourceFile.getImportDeclarations()[ 0 ].getModuleSpecifierValue()).toBe('@rxap-material/table-system');
+      expect(sourceFile.getImportDeclarations()[ 0 ].getModuleSpecifierValue()).toBe('@rxap/material-table-system');
 
     });
 
@@ -55,7 +55,7 @@ describe('@rxap-schematics/utilities', () => {
       class MyComponent {}
       `);
 
-      AddComponentAnimations(sourceFile, 'RowAnimations', '@rxap-material/table-system');
+      AddComponentAnimations(sourceFile, 'RowAnimations', '@rxap/material-table-system');
 
       const componentOptions                       = GetComponentOptionsObject(sourceFile);
       const animationsProperty: PropertyAssignment = componentOptions.getProperty('animations') as any;
@@ -69,7 +69,7 @@ describe('@rxap-schematics/utilities', () => {
       const rowAnimationsElement = animationsInitializer.getElements()[ 1 ];
       expect(rowAnimationsElement.getFullText().trim()).toBe('RowAnimations');
       expect(sourceFile.getImportDeclarations()).toHaveLength(1);
-      expect(sourceFile.getImportDeclarations()[ 0 ].getModuleSpecifierValue()).toBe('@rxap-material/table-system');
+      expect(sourceFile.getImportDeclarations()[ 0 ].getModuleSpecifierValue()).toBe('@rxap/material-table-system');
 
     });
 
@@ -83,7 +83,7 @@ describe('@rxap-schematics/utilities', () => {
       class MyComponent {}
       `);
 
-      AddComponentAnimations(sourceFile, 'RowAnimations', '@rxap-material/table-system');
+      AddComponentAnimations(sourceFile, 'RowAnimations', '@rxap/material-table-system');
 
       const componentOptions                       = GetComponentOptionsObject(sourceFile);
       const animationsProperty: PropertyAssignment = componentOptions.getProperty('animations') as any;
@@ -97,7 +97,7 @@ describe('@rxap-schematics/utilities', () => {
       const rowAnimationsElement = animationsInitializer.getElements()[ 0 ];
       expect(rowAnimationsElement.getFullText().trim()).toBe('RowAnimations');
       expect(sourceFile.getImportDeclarations()).toHaveLength(1);
-      expect(sourceFile.getImportDeclarations()[ 0 ].getModuleSpecifierValue()).toBe('@rxap-material/table-system');
+      expect(sourceFile.getImportDeclarations()[ 0 ].getModuleSpecifierValue()).toBe('@rxap/material-table-system');
 
     });
 

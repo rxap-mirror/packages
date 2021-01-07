@@ -6,7 +6,7 @@
     "config": {
       "factory": "./src/schematics/config/schematic",
       "schema": "./src/schematics/config/schema.json",
-      "description": "Add a schematics configuration and the @rxap-plugin/library-publish:build to the specified project"
+      "description": "Add a schematics configuration and the @rxap/plugin-library-publish:build to the specified project"
     }
   }
 }

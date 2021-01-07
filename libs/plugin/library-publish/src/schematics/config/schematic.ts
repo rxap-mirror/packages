@@ -59,7 +59,7 @@ export default function(options: ConfigSchema): Rule {
 
           project.targets.add({
             name:    'publish',
-            builder: '@rxap-plugin/library-publish:publish',
+            builder: '@rxap/plugin-library-publish:publish',
             options: targetOptions
           });
 

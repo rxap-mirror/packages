@@ -10,7 +10,7 @@ import {
   HandleComponent,
   AddComponentProvider,
   ToValueContext
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { GenerateSchema } from '../schema';
 
 @ElementDef('adapter')

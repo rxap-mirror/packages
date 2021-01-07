@@ -25,7 +25,7 @@ import {
   AddVariableProvider,
   HandleComponent,
   AddComponentProvider
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import {
   Rule,
   noop

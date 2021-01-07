@@ -15,7 +15,7 @@ import {
   AddNgModuleImport,
   ToValueContext,
   AddComponentProvider
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { GenerateSchema } from '../../schema';
 
 @ElementExtends(FeatureElement)
@@ -26,7 +26,7 @@ export class SelectableElement extends FeatureElement {
   public multiple?: boolean;
 
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
-    AddNgModuleImport(sourceFile, 'SelectRowModule', '@rxap-material/table-system');
+    AddNgModuleImport(sourceFile, 'SelectRowModule', '@rxap/material-table-system');
   }
 
   public handleComponent({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
@@ -42,7 +42,7 @@ export class SelectableElement extends FeatureElement {
         [
           {
             namedImports:    [ 'RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS' ],
-            moduleSpecifier: '@rxap-material/table-system'
+            moduleSpecifier: '@rxap/material-table-system'
           }
         ],
         options.overwrite
@@ -54,7 +54,7 @@ export class SelectableElement extends FeatureElement {
       [
         {
           namedImports:    [ 'SelectRowService' ],
-          moduleSpecifier: '@rxap-material/table-system'
+          moduleSpecifier: '@rxap/material-table-system'
         }
       ],
       options.overwrite

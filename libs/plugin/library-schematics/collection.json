@@ -1,6 +1,6 @@
 {
   "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
-  "name": "@rxap-plugin/library-schematics",
+  "name": "@rxap/plugin-library-schematics",
   "version": "0.0.1",
   "schematics": {
     "config": {

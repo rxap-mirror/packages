@@ -45,7 +45,7 @@ export default function(options: AddSchema): Rule {
 
           project.targets.add({
             name:    'scss-bundle',
-            builder: '@rxap-plugin/scss-bundle:build',
+            builder: '@rxap/plugin-scss-bundle:build',
             options: {
               buildTarget:   `${options.project}:build:production`,
               skipBuild:     true,

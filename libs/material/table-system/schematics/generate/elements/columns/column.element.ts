@@ -18,7 +18,7 @@ import {
   HandleComponentModule,
   AddNgModuleImport,
   ToValueContext
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { Rule } from '@angular-devkit/schematics';
 import { GenerateSchema } from '../../schema';
 import { DisplayColumn } from '../features/feature.element';
@@ -129,7 +129,7 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
       AddNgModuleImport(sourceFile, 'MatIconModule', '@angular/material/icon');
       AddNgModuleImport(sourceFile, 'MatInputModule', '@angular/material/input');
       AddNgModuleImport(sourceFile, 'MatButtonModule', '@angular/material/button');
-      AddNgModuleImport(sourceFile, 'InputClearButtonDirectiveModule', '@rxap-material/form-system');
+      AddNgModuleImport(sourceFile, 'InputClearButtonDirectiveModule', '@rxap/material-form-system');
       AddNgModuleImport(sourceFile, 'FormFieldNoPaddingModule', '@rxap/directives/form-field-no-padding');
     }
 

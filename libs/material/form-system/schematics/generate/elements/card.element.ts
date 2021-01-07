@@ -15,7 +15,7 @@ import {
   NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { ParsedElement } from '@rxap/xml-parser';
 import { Rule } from '@angular-devkit/schematics';
 import { SourceFile } from 'ts-morph';

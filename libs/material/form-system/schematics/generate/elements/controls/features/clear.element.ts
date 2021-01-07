@@ -8,7 +8,7 @@ import {
   NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { SourceFile } from 'ts-morph';
 
 @ElementExtends(ControlFeatureElement)
@@ -33,7 +33,7 @@ export class ClearElement extends ControlFeatureElement {
     if (this.stopPropagation) {
       AddNgModuleImport(sourceFile, 'StopPropagationDirectiveModule', '@rxap/directives');
     }
-    AddNgModuleImport(sourceFile, 'InputClearButtonDirectiveModule', '@rxap-material/form-system');
+    AddNgModuleImport(sourceFile, 'InputClearButtonDirectiveModule', '@rxap/material-form-system');
     AddNgModuleImport(sourceFile, 'MatIconModule', '@angular/material/icon');
     AddNgModuleImport(sourceFile, 'MatButtonModule', '@angular/material/button');
   }

@@ -57,7 +57,7 @@ export default function(options: AddSchema): Rule {
 
           project.targets.add({
             name:    'schematics',
-            builder: '@rxap-plugin/library-schematics:build',
+            builder: '@rxap/plugin-library-schematics:build',
             options: {
               buildTarget: `${options.project}:build:production`,
               skipBuild:   options.skipBuild,
@@ -73,7 +73,7 @@ export default function(options: AddSchema): Rule {
 
           project.targets.add({
             name:    'update-package-group',
-            builder: '@rxap-plugin/library-schematics:update-package-group',
+            builder: '@rxap/plugin-library-schematics:update-package-group',
             options: {}
           });
 

@@ -11,7 +11,7 @@ import {
   ProviderObject,
   MethodElement,
   AddComponentProvider
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 
 export abstract class MethodActionElement extends ActionButtonElement {
 

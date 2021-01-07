@@ -13,7 +13,7 @@ import {
   AddDir,
   AddNgModuleImport,
   AddComponentProvider
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { SourceFile } from 'ts-morph';
 import {
   chain,

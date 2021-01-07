@@ -9,7 +9,7 @@ import { SourceFile } from 'ts-morph';
 import {
   ToValueContext,
   AddNgModuleImport
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import {
   Rule,
   chain

@@ -29,7 +29,7 @@ import {
   ParseTemplate,
   ApplyTsMorphProject,
   FixMissingImports
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 
 
 const { dasherize, classify, camelize } = strings;

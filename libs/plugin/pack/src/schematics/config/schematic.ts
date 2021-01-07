@@ -36,7 +36,7 @@ export default function(options: ConfigSchema): Rule {
 
           project.targets.add({
             name:    'pack',
-            builder: '@rxap-plugin/pack:build',
+            builder: '@rxap/plugin-pack:build',
             options: { targets }
           });
 

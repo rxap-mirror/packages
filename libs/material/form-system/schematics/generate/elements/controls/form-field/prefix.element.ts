@@ -13,7 +13,7 @@ import {
   HandleComponentModule,
   WithTemplate,
   AddNgModuleImport
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import {
   Rule,
   noop,

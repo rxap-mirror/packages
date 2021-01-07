@@ -25,7 +25,7 @@ import {
   AddComponentInput,
   NodeFactory,
   WithTemplate
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { FormElement } from '@rxap/forms/schematics/generate/elements/form.element';
 import {
   chain,

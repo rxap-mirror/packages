@@ -13,7 +13,7 @@ import {
   ToValueContext,
   HandleComponentModule,
   HandleComponent
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { SourceFile } from 'ts-morph';
 
 @ElementDef('node')

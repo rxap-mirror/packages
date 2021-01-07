@@ -8,7 +8,7 @@ import { SourceFile } from 'ts-morph';
 import {
   ToValueContext,
   AddNgModuleImport
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 
 @ElementExtends(ControlFeatureElement)
 @ElementDef('directive')

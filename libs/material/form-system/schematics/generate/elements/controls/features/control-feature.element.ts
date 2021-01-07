@@ -6,7 +6,7 @@ import {
   WithTemplate,
   ToValueContext,
   StringOrFactory
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { ElementDef } from '@rxap/xml-parser/decorators';
 import { SourceFile } from 'ts-morph';
 import { ControlElement } from '../control.element';

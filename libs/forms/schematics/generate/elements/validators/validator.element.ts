@@ -11,7 +11,7 @@ import {
 import {
   AddControlValidator,
   ToValueContext
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 
 export interface ValidatorToValueContext extends ToValueContext {
   controlOptions: ObjectLiteralExpression;

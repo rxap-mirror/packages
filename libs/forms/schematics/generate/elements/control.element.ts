@@ -21,7 +21,7 @@ import {
   OverwriteProperty,
   AddControlValidator,
   ToValueContext
-} from '@rxap-schematics/utilities';
+} from '@rxap/schematics-utilities';
 import { GenerateSchema } from '../schema';
 import { FormElement } from './form.element';
 
