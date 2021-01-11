@@ -64,11 +64,15 @@ export class ComponentControlElement extends ControlElement {
   }
 
   public template(): string {
+    const attributes: string[] = [
+      `formControlName="${this.name}"`,
+      `i18n="@@form.${this.controlPath}.label"`,
+      `data-cy="form.${this.controlPath}"`
+    ];
     return NodeFactory(
       this.selector,
       this.flexTemplateAttribute,
-      `formControlName="${this.name}"`,
-      `i18n="@@form.${this.controlPath}.label"`,
+      ...attributes,
       ...this.attributes
     )(`\n${capitalize(this.name)}\n`);
   }

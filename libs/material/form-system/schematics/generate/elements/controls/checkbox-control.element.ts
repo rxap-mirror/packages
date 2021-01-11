@@ -23,11 +23,15 @@ export class CheckboxControlElement extends ControlElement {
   public label?: string;
 
   public template(): string {
+    const attributes: string[] = [
+      `formControlName="${this.name}"`,
+      `i18n="@@form.${this.controlPath}.label"`,
+      `data-cy="form.${this.controlPath}"`
+    ];
     return NodeFactory(
       'mat-checkbox',
       this.flexTemplateAttribute,
-      `formControlName="${this.name}"`,
-      `i18n="@@form.${this.controlPath}.label"`
+      ...attributes
     )('\n' + (this.label ?? capitalize(this.name)) + '\n');
   }
 
