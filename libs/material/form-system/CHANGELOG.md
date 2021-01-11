@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.2](https://gitlab.com/rxap/packages/compare/@rxap-material/form-system@10.0.1...@rxap-material/form-system@10.0.2) (2021-01-11)
+
+
+### Bug Fixes
+
+* add support for cypress tags ([b42f07c](https://gitlab.com/rxap/packages/commit/b42f07c5c628dc1636e3a0b574129349db221dc5))
+
+
+
+
+
 ## [10.0.1](https://gitlab.com/rxap/packages/compare/@rxap-material/form-system@10.0.0...@rxap-material/form-system@10.0.1) (2021-01-06)
 
 

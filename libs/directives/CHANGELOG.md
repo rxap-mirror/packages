@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.2](https://gitlab.com/rxap/packages/compare/@rxap/directives@10.0.1...@rxap/directives@10.0.2) (2021-01-11)
+
+
+### Bug Fixes
+
+* update support for angular material 10.2.7 ([9e96b07](https://gitlab.com/rxap/packages/commit/9e96b079e168962c1e28a80624e6bd8313393615))
+
+
+
+
+
 ## [10.0.1](https://gitlab.com/rxap/packages/compare/@rxap/directives@10.0.0...@rxap/directives@10.0.1) (2021-01-06)
 
 **Note:** Version bump only for package @rxap/directives
