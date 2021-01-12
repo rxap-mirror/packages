@@ -52,7 +52,7 @@
     "workspace-generator": "nx workspace-generator",
     "lerna": "lerna",
     "lerna:version": "lerna version --create-release gitlab",
-    "lerna:publish": "publish --create-release gitlab"
+    "lerna:publish": "lerna publish --create-release gitlab"
   },
   "private": true,
   "quokka": {
