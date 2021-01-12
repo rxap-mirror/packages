@@ -33,7 +33,7 @@ export class IconElement implements ParsedElement<Rule>, HandleComponent, Handle
 
   public template(...attributes: Array<string | (() => string)>): string {
     if (this.svg) {
-      return NodeFactory('mat-icon', `svgIcon="${this.name}"`, ...attributes)(this.name);
+      return NodeFactory('mat-icon', `svgIcon="${this.name}"`, ...attributes)();
     }
     return NodeFactory('mat-icon', ...attributes)(this.name);
   }
