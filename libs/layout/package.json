@@ -31,7 +31,7 @@
     "@rxap/definition": ">=11.0.1",
     "@rxap/directives": ">=11.0.1",
     "@rxap/forms": ">=11.0.1",
-    "@rxap/services": ">=11.0.0",
+    "@rxap/services": ">=11.0.1",
     "@rxap/utilities": ">=11.0.0",
     "rxjs": "^6.5.5"
   },
@@ -40,13 +40,13 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/layout",
-      "@rxap/utilities",
-      "@rxap/services",
       "@rxap/authentication",
-      "@rxap/forms",
+      "@rxap/components",
       "@rxap/definition",
       "@rxap/directives",
-      "@rxap/components"
+      "@rxap/forms",
+      "@rxap/services",
+      "@rxap/utilities"
     ]
   },
   "scripts": {

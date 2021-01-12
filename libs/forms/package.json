@@ -32,10 +32,10 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/forms",
-      "@rxap/utilities",
+      "@rxap/schematics-utilities",
       "@rxap/definition",
-      "@rxap/xml-parser",
-      "@rxap/schematics-utilities"
+      "@rxap/utilities",
+      "@rxap/xml-parser"
     ]
   },
   "scripts": {

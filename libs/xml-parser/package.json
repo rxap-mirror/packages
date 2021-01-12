@@ -17,7 +17,7 @@
   },
   "description": "A utility packages to convert xml files into class instances.",
   "peerDependencies": {
-    "@rxap/mixin": ">=11.0.0",
+    "@rxap/mixin": ">=11.0.1",
     "@rxap/utilities": ">=11.0.0"
   },
   "schematics": "./schematics/collection.json",

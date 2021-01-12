@@ -20,9 +20,9 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/authentication",
+      "@rxap/definition",
       "@rxap/forms",
-      "@rxap/utilities",
-      "@rxap/definition"
+      "@rxap/utilities"
     ]
   },
   "peerDependencies": {

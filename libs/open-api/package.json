@@ -35,12 +35,12 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/open-api",
-      "@rxap/utilities",
       "@rxap/data-source",
-      "@rxap/remote-method",
       "@rxap/definition",
       "@rxap/mixin",
-      "@rxap/schematics"
+      "@rxap/remote-method",
+      "@rxap/schematics",
+      "@rxap/utilities"
     ]
   },
   "scripts": {

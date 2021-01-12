@@ -21,7 +21,7 @@
     "@angular/material": "^11.0.3",
     "@angular/platform-browser": "^11.0.5",
     "@angular/router": "^11.0.5",
-    "@rxap/services": ">=11.0.0",
+    "@rxap/services": ">=11.0.1",
     "@rxap/utilities": ">=11.0.0"
   },
   "schematics": "./schematics/collection.json",

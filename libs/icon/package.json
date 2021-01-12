@@ -23,7 +23,9 @@
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",
-    "packageGroup": []
+    "packageGroup": [
+      "@rxap/icon"
+    ]
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run icon:pack --with-deps",

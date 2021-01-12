@@ -27,9 +27,10 @@
   "ng-update": {
     "migrations": "./schematics/migration.json",
     "packageGroup": [
-      "@rxap/utilities",
+      "@rxap/recorder",
       "@rxap/across-tabs",
-      "@rxap/definition"
+      "@rxap/definition",
+      "@rxap/utilities"
     ]
   },
   "scripts": {

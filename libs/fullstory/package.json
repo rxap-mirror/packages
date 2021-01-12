@@ -23,7 +23,9 @@
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",
-    "packageGroup": []
+    "packageGroup": [
+      "@rxap/fullstory"
+    ]
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run fullstory:pack --with-deps",

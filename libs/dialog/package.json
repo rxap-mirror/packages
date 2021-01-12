@@ -28,7 +28,7 @@
     "@angular/router": "^11.0.5",
     "@rxap/components": ">=11.0.1",
     "@rxap/directives": ">=11.0.1",
-    "@rxap/services": ">=11.0.0",
+    "@rxap/services": ">=11.0.1",
     "@rxap/utilities": ">=11.0.0"
   },
   "dependencies": {
@@ -39,10 +39,10 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/dialog",
-      "@rxap/utilities",
       "@rxap/components",
       "@rxap/directives",
-      "@rxap/services"
+      "@rxap/services",
+      "@rxap/utilities"
     ]
   },
   "scripts": {

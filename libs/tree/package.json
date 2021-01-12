@@ -36,10 +36,10 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/tree",
-      "@rxap/utilities",
-      "@rxap/remote-method",
+      "@rxap/data-source",
       "@rxap/definition",
-      "@rxap/data-source"
+      "@rxap/remote-method",
+      "@rxap/utilities"
     ]
   },
   "scripts": {
