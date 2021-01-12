@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.3](https://gitlab.com/rxap/packages/compare/@rxap-material/form-system@10.0.2...@rxap-material/form-system@10.0.3) (2021-01-12)
+
+
+### Bug Fixes
+
+* **schematics:** only include the icon name if not svg icon ([633a4c0](https://gitlab.com/rxap/packages/commit/633a4c0e5302a3e5d5a5e4b171d342b94470db84))
+
+
+
+
+
 ## [10.0.2](https://gitlab.com/rxap/packages/compare/@rxap-material/form-system@10.0.1...@rxap-material/form-system@10.0.2) (2021-01-11)
 
 
