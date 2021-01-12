@@ -2,7 +2,7 @@
   "name": "@rxap/schematics-utilities",
   "version": "11.0.0",
   "peerDependencies": {
-    "@rxap/mixin": ">=11.0.0",
+    "@rxap/mixin": ">=11.0.1",
     "@rxap/utilities": ">=11.0.0",
     "@rxap/xml-parser": ">=11.0.0",
     "rxjs": "^6.5.5"

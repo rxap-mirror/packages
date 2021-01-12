@@ -30,7 +30,7 @@
     "@rxap/definition": ">=11.0.1",
     "@rxap/directives": ">=11.0.1",
     "@rxap/forms": ">=11.0.1",
-    "@rxap/services": ">=11.0.0",
+    "@rxap/services": ">=11.0.1",
     "@rxap/utilities": ">=11.0.0",
     "@rxap/window-system": ">=11.0.0"
   },
@@ -39,13 +39,13 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/form-window-system",
-      "@rxap/forms",
-      "@rxap/utilities",
-      "@rxap/definition",
-      "@rxap/window-system",
-      "@rxap/services",
       "@rxap/components",
-      "@rxap/directives"
+      "@rxap/definition",
+      "@rxap/directives",
+      "@rxap/forms",
+      "@rxap/services",
+      "@rxap/utilities",
+      "@rxap/window-system"
     ]
   },
   "scripts": {

@@ -24,7 +24,9 @@
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",
-    "packageGroup": []
+    "packageGroup": [
+      "@rxap/handlebars"
+    ]
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run handlebars:pack --with-deps",

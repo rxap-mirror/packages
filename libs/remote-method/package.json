@@ -29,8 +29,8 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/remote-method",
-      "@rxap/utilities",
-      "@rxap/definition"
+      "@rxap/definition",
+      "@rxap/utilities"
     ]
   },
   "scripts": {

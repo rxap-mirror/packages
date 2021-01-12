@@ -36,10 +36,10 @@
     "packageGroup": [
       "@rxap/form-system",
       "@rxap/data-source",
-      "@rxap/utilities",
       "@rxap/definition",
       "@rxap/forms",
-      "@rxap/mixin"
+      "@rxap/mixin",
+      "@rxap/utilities"
     ]
   },
   "scripts": {

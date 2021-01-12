@@ -12,7 +12,7 @@
     "@rxap/definition": ">=11.0.1",
     "@rxap/forms": ">=11.0.1",
     "@rxap/mixin": ">=11.0.1",
-    "@rxap/pipes": ">=11.0.0",
+    "@rxap/pipes": ">=11.0.1",
     "@rxap/utilities": ">=11.0.0",
     "@rxap/xml-parser": ">=11.0.0",
     "rxjs": "^6.5.5"
@@ -25,13 +25,13 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/data-grid",
-      "@rxap/utilities",
-      "@rxap/pipes",
-      "@rxap/forms",
-      "@rxap/xml-parser",
-      "@rxap/mixin",
       "@rxap/schematics-utilities",
-      "@rxap/definition"
+      "@rxap/definition",
+      "@rxap/forms",
+      "@rxap/mixin",
+      "@rxap/pipes",
+      "@rxap/utilities",
+      "@rxap/xml-parser"
     ]
   },
   "scripts": {

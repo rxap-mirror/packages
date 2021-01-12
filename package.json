@@ -50,7 +50,9 @@
     "commit": "git-cz",
     "test:ci": "jest --coverage --ci --reporters default --reporters jest-junit",
     "workspace-generator": "nx workspace-generator",
-    "lerna": "lerna"
+    "lerna": "lerna",
+    "lerna:version": "lerna version --create-release gitlab",
+    "lerna:publish": "publish --create-release gitlab"
   },
   "private": true,
   "quokka": {

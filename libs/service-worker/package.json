@@ -31,8 +31,8 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/service-worker",
-      "@rxap/utilities",
-      "@rxap/life-cycle"
+      "@rxap/life-cycle",
+      "@rxap/utilities"
     ]
   },
   "scripts": {
