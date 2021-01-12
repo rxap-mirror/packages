@@ -1,6 +1,6 @@
 {
   "name": "@rxap/form-system",
-  "version": "11.0.1",
+  "version": "11.0.2",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -25,8 +25,8 @@
     "@angular/router": "^11.0.5",
     "@rxap/data-source": ">=11.0.1",
     "@rxap/definition": ">=11.0.1",
-    "@rxap/forms": ">=11.0.1",
-    "@rxap/mixin": ">=11.0.1",
+    "@rxap/forms": ">=11.0.2",
+    "@rxap/mixin": ">=11.0.2",
     "@rxap/utilities": ">=11.0.0",
     "rxjs": "^6.5.5"
   },

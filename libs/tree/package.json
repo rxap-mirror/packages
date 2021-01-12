@@ -1,6 +1,6 @@
 {
   "name": "@rxap/tree",
-  "version": "11.0.1",
+  "version": "11.0.2",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -24,7 +24,7 @@
     "@angular/platform-browser": "^11.0.5",
     "@rxap/data-source": ">=11.0.1",
     "@rxap/definition": ">=11.0.1",
-    "@rxap/remote-method": ">=11.0.1",
+    "@rxap/remote-method": ">=11.0.2",
     "@rxap/utilities": ">=11.0.0",
     "rxjs": "^6.5.5"
   },
