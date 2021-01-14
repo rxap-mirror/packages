@@ -13,6 +13,19 @@ export class ConfigService<Config extends object> {
 
   public static Config: any = null;
 
+  /**
+   * Static default values for the config object.
+   * Will be overwritten by an dynamic config file specified in
+   * the Urls array.
+   */
+  public static Defaults: any = {};
+
+  /**
+   * Any value definition in the Overwrites object will overwrite any
+   * value form the Defaults values or dynamic config files
+   */
+  public static Overwrites: any = {};
+
   public static LocalStorageKey = 'rxap/config/local-config';
 
   public static Urls = [ '/assets/config.json' ];
@@ -26,7 +39,7 @@ export class ConfigService<Config extends object> {
    *
    */
   public static async Load(): Promise<void> {
-    let config = {};
+    let config = this.Defaults;
     for (const url of ConfigService.Urls) {
       try {
 
@@ -37,6 +50,8 @@ export class ConfigService<Config extends object> {
         console.error(url, error.message, error);
       }
     }
+
+    config = deepMerge(config, this.Overwrites);
 
     const localConfig = localStorage.getItem(ConfigService.LocalStorageKey);
 
