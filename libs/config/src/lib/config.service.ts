@@ -11,6 +11,7 @@ import { RXAP_CONFIG } from './tokens';
 
 export interface ConfigLoadOptions {
   fromUrlParam?: string | boolean;
+  fromLocalStorage?: boolean;
 }
 
 @Injectable({
@@ -60,14 +61,18 @@ export class ConfigService<Config extends object> {
 
     config = deepMerge(config, this.Overwrites);
 
-    const localConfig = localStorage.getItem(ConfigService.LocalStorageKey);
+    if (options?.fromLocalStorage !== false) {
 
-    if (localConfig) {
-      try {
-        config = deepMerge(config, JSON.parse(localConfig));
-      } catch (e) {
-        console.error('local config could not be parsed');
+      const localConfig = localStorage.getItem(ConfigService.LocalStorageKey);
+
+      if (localConfig) {
+        try {
+          config = deepMerge(config, JSON.parse(localConfig));
+        } catch (e) {
+          console.error('local config could not be parsed');
+        }
       }
+
     }
 
     if (options?.fromUrlParam) {
