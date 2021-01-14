@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@10.0.0...@rxap/utilities@10.0.1) (2021-01-14)
+
+
+### Bug Fixes
+
+* **icon:** allow undefined icon object ([bc5a4e8](https://gitlab.com/rxap/packages/commit/bc5a4e825539f5c4820eefe0a2f737181ae05607))
+
+
+
+
+
 # 10.0.0 (2021-01-03)
 
 
