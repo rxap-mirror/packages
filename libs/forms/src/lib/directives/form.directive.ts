@@ -219,8 +219,6 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
 
   private loadInitialState(form: RxapFormGroup): void {
 
-    console.debug('Load initial state', form);
-
     if (this.initial) {
       if (isDevMode()) {
         console.log('use the value from input initial');
