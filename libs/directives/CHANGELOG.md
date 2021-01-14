@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.3](https://gitlab.com/rxap/packages/compare/@rxap/directives@10.0.2...@rxap/directives@10.0.3) (2021-01-14)
+
+
+### Bug Fixes
+
+* **icon:** detect icon object change ([716f826](https://gitlab.com/rxap/packages/commit/716f826d83f81b2d8185ba716170ff1813938d4d))
+
+
+
+
+
 ## [10.0.2](https://gitlab.com/rxap/packages/compare/@rxap/directives@10.0.1...@rxap/directives@10.0.2) (2021-01-11)
 
 
