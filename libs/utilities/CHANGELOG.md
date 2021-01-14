@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@10.0.1...@rxap/utilities@10.1.0) (2021-01-14)
+
+
+### Features
+
+* add set object value method ([aa22363](https://gitlab.com/rxap/packages/commit/aa22363429c46532cb388e643c8967ae25fd6143))
+
+
+
+
+
 ## [10.0.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@10.0.0...@rxap/utilities@10.0.1) (2021-01-14)
 
 
