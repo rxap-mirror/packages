@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.0.1...@rxap/forms@10.0.2) (2021-01-14)
+
+
+### Bug Fixes
+
+* **from-directive:** remove console debug ([34a722d](https://gitlab.com/rxap/packages/commit/34a722d610a3b3c48f0bff2ad66474fed6756e4a))
+
+
+
+
+
 ## [10.0.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.0.0...@rxap/forms@10.0.1) (2021-01-06)
 
 **Note:** Version bump only for package @rxap/forms
