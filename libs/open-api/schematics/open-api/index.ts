@@ -68,7 +68,7 @@ export function CreateDirective({ filePath, sourceFile, name, prefix, parameters
     return;
   }
 
-  const directiveNameParts = [remoteMethodName];
+  const directiveNameParts = [ remoteMethodName ];
 
   if (template) {
     directiveNameParts.push('template');
@@ -93,10 +93,10 @@ export function CreateDirective({ filePath, sourceFile, name, prefix, parameters
   const selectorFragments = [ prefix, name ];
 
   if (collection) {
-    selectorFragments.push('collection')
+    selectorFragments.push('collection');
   }
 
-  selectorFragments.push('remote-method')
+  selectorFragments.push('remote-method');
 
   const selector = camelize(selectorFragments.join('-'));
   // endregion
@@ -193,9 +193,9 @@ export function CreateDirective({ filePath, sourceFile, name, prefix, parameters
     directiveClassProperties.push({
       name:             'parameters',
       hasQuestionToken: true,
-      scope: Scope.Public,
+      scope:            Scope.Public,
       type:             parametersType,
-      leadingTrivia: '// tslint:disable-next-line:no-input-rename',
+      leadingTrivia:    '// tslint:disable-next-line:no-input-rename',
       decorators:       [
         {
           name:      'Input',
@@ -255,8 +255,8 @@ export function CreateDirective({ filePath, sourceFile, name, prefix, parameters
         {
           name:             'errorTemplate',
           hasQuestionToken: true,
-          leadingTrivia: '// tslint:disable-next-line:no-input-rename',
-          scope: Scope.Public,
+          leadingTrivia:    '// tslint:disable-next-line:no-input-rename',
+          scope:            Scope.Public,
           type:             `TemplateRef<RemoteMethodTemplateCollectionDirectiveErrorContext>`,
           decorators:       [
             {
@@ -266,18 +266,18 @@ export function CreateDirective({ filePath, sourceFile, name, prefix, parameters
           ]
         },
         {
-          name: 'emptyTemplate',
-          leadingTrivia: '// tslint:disable-next-line:no-input-rename',
+          name:             'emptyTemplate',
+          leadingTrivia:    '// tslint:disable-next-line:no-input-rename',
           hasQuestionToken: true,
-          scope: Scope.Public,
-          type: 'TemplateRef<void>',
-          decorators: [
+          scope:            Scope.Public,
+          type:             'TemplateRef<void>',
+          decorators:       [
             {
-              name: 'Input',
+              name:      'Input',
               arguments: [ writer => writer.quote(camelize([ selector, 'Empty' ].join('-'))) ]
             }
           ]
-        },
+        }
       );
 
       angularCoreImportStructure.namedImports.push(
@@ -313,8 +313,8 @@ export function CreateDirective({ filePath, sourceFile, name, prefix, parameters
           name:             'errorTemplate',
           hasQuestionToken: true,
           type:             `TemplateRef<RemoteMethodTemplateDirectiveErrorContext>`,
-          leadingTrivia: '// tslint:disable-next-line:no-input-rename',
-          scope: Scope.Public,
+          leadingTrivia:    '// tslint:disable-next-line:no-input-rename',
+          scope:            Scope.Public,
           decorators:       [
             {
               name:      'Input',
@@ -363,8 +363,8 @@ export function CreateDirective({ filePath, sourceFile, name, prefix, parameters
   }
 
   const directiveClassStructure: OptionalKind<ClassDeclarationStructure> = {
-    name:       directiveName,
-    decorators: [
+    name:         directiveName,
+    decorators:   [
       {
         name:      'Directive',
         arguments: Writers.object({
@@ -373,8 +373,8 @@ export function CreateDirective({ filePath, sourceFile, name, prefix, parameters
         })
       }
     ],
-    extends:    directiveClassExtends,
-    ctors:      [
+    extends:      directiveClassExtends,
+    ctors:        [
       {
         parameters: ctorsParameters,
         statements: [
@@ -385,8 +385,8 @@ export function CreateDirective({ filePath, sourceFile, name, prefix, parameters
       }
     ],
     setAccessors: directiveClassSetAccessors,
-    properties: directiveClassProperties,
-    isExported: true
+    properties:   directiveClassProperties,
+    isExported:   true
   };
 
   const directiveModuleClassStructure: OptionalKind<ClassDeclarationStructure> = {
@@ -418,13 +418,34 @@ export function CoerceOpenApiProject(project: string): Rule {
 
     if (!angularJson.projects.hasOwnProperty(project)) {
       const defaultProjectPrefix = angularJson.projects[ angularJson.defaultProject ].prefix;
-      return externalSchematic('@nrwl/angular', 'library', {
-        name: project,
-        importPath: `@${defaultProjectPrefix}/${project}`,
-      });
+      return chain([
+        externalSchematic('@nrwl/angular', 'library', {
+          name:       project,
+          importPath: `@${defaultProjectPrefix}/${project}`
+        }),
+        tree => {
+          const baseTsconfig = JSON.parse(tree.read('/tsconfig.base.json')?.toString() ?? '{}');
+
+          const paths = baseTsconfig?.compilerOptions?.paths ?? {};
+
+          if (Object.keys(paths).length) {
+
+            for (const key of Object.keys(paths)) {
+              if (key.match(/\/open-api$/)) {
+                delete paths[ key ];
+                paths[ key + '/*' ] = [ 'libs/open-api/src/lib/*' ];
+              }
+            }
+
+            tree.overwrite('/tsconfig.base.json', JSON.stringify(baseTsconfig, undefined, 2));
+
+          }
+
+        }
+      ]);
     }
 
-  }
+  };
 }
 
 export function IsOpenApiSchemaFromPath(options: OpenApiSchema): options is OpenApiSchemaFromPath {
@@ -470,7 +491,7 @@ export function httpRequest<T>(url: string): Promise<T> {
         }
       });
 
-    }
+    };
 
   }
 
@@ -545,7 +566,7 @@ export function isCollectionResponse(operation: OpenAPIV3.OperationObject): bool
   const response = getResponse(operation);
 
   if (!IsAnySchemaObject(response)) {
-    if(!IsReferenceObject(response)) {
+    if (!IsReferenceObject(response)) {
       return response.type === 'array';
     }
   }
@@ -554,7 +575,7 @@ export function isCollectionResponse(operation: OpenAPIV3.OperationObject): bool
 }
 
 export function isWithoutParameters(operation: OpenAPIV3.OperationObject): boolean {
-  return !operation.parameters || !operation.parameters.length
+  return !operation.parameters || !operation.parameters.length;
 }
 
 export interface AnySchemaObject {
@@ -562,7 +583,7 @@ export interface AnySchemaObject {
 }
 
 export function IsAnySchemaObject(obj: any): obj is AnySchemaObject {
-  return obj && obj.hasOwnProperty('type') && obj.type === 'any'
+  return obj && obj.hasOwnProperty('type') && obj.type === 'any';
 }
 
 export function getRequestBody(operation: OpenAPIV3.OperationObject): OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject | AnySchemaObject {
@@ -570,7 +591,7 @@ export function getRequestBody(operation: OpenAPIV3.OperationObject): OpenAPIV3.
   if (operation.requestBody) {
 
     if (IsReferenceObject(operation.requestBody)) {
-      throw new Error('Reference object are not supported in operation requestBody!')
+      throw new Error('Reference object are not supported in operation requestBody!');
     }
 
     const requestBodies: Record<string, OpenAPIV3.MediaTypeObject> | undefined = operation.requestBody.content;
@@ -607,7 +628,7 @@ export function getRequestBody(operation: OpenAPIV3.OperationObject): OpenAPIV3.
 export async function generateResponse(
   operation: OpenAPIV3.OperationObject,
   project: Project,
-  components: OpenAPIV3.ComponentsObject,
+  components: OpenAPIV3.ComponentsObject
 ): Promise<void> {
 
   const response = getResponse(operation);
@@ -618,7 +639,7 @@ export async function generateResponse(
     const generator = new TypescriptInterfaceGenerator(
       { ...response, components },
       { suffix: RESPONSE_FILE_SUFFIX, basePath: RESPONSE_BASE_PATH },
-      project,
+      project
     );
 
     console.log(`Generate response interface for: ${operationId}`);
@@ -644,7 +665,7 @@ export async function generateResponse(
 export async function generateRequestBody(
   operation: OpenAPIV3.OperationObject,
   project: Project,
-  components: OpenAPIV3.ComponentsObject,
+  components: OpenAPIV3.ComponentsObject
 ): Promise<void> {
 
   const requestBodySchema = getRequestBody(operation);
@@ -655,7 +676,7 @@ export async function generateRequestBody(
     const generator = new TypescriptInterfaceGenerator(
       { ...requestBodySchema, components },
       { suffix: REQUEST_BODY_FILE_SUFFIX, basePath: REQUEST_BODY_BASE_PATH },
-      project,
+      project
     );
 
     console.log(`Generate request body interface for: ${operationId}`);
@@ -681,15 +702,15 @@ export async function generateRequestBody(
 export async function generateParameters(
   operation: OpenAPIV3.OperationObject,
   project: Project,
-  components: OpenAPIV3.ComponentsObject,
+  components: OpenAPIV3.ComponentsObject
 ): Promise<void> {
 
   if (operation.parameters && operation.parameters.length && operation.operationId) {
 
     const operationId = operation.operationId;
 
-    const properties: Record<string, OpenAPIV3.SchemaObject | AnySchemaObject | OpenAPIV3.ReferenceObject> = {}
-    const required: string[]                     = [];
+    const properties: Record<string, OpenAPIV3.SchemaObject | AnySchemaObject | OpenAPIV3.ReferenceObject> = {};
+    const required: string[]                                                                               = [];
 
     if (operation.parameters.some(parameter => IsReferenceObject(parameter))) {
       throw new Error('Reference object are not supported in the parameter definition!');
@@ -712,13 +733,13 @@ export async function generateParameters(
     const parametersSchema: OpenAPIV3.SchemaObject = {
       type:       'object',
       properties: properties as any,
-      required,
+      required
     };
 
     const generator = new TypescriptInterfaceGenerator(
       { ...parametersSchema, components },
       { suffix: PARAMETER_FILE_SUFFIX, basePath: PARAMETER_BASE_PATH },
-      project,
+      project
     );
 
     console.log(`Generate parameter interface for: ${operationId}`);
@@ -736,7 +757,7 @@ export async function generateParameters(
 }
 
 export const REQUEST_BODY_FILE_SUFFIX = 'request-body';
-export const REQUEST_BODY_BASE_PATH = 'request-bodies';
+export const REQUEST_BODY_BASE_PATH   = 'request-bodies';
 
 export function getRequestBodyType(operation: OpenAPIV3.OperationObject): string {
 
@@ -760,7 +781,7 @@ export function getRequestBodyType(operation: OpenAPIV3.OperationObject): string
 
 export async function generateDataSource(
   operation: OpenAPIV3.OperationObject,
-  project: Project,
+  project: Project
 ): Promise<void> {
   if (operation.operationId) {
 
@@ -814,7 +835,7 @@ export async function generateDataSource(
           writer.write(parameterType);
           writer.write('>');
         },
-        isExported: true,
+        isExported: true
       };
 
       sourceFile.addImportDeclarations(importStructures);
@@ -850,7 +871,7 @@ export function getResponseType(operation: OpenAPIV3.OperationObject): string {
 
 }
 
-export const RESPONSE_BASE_PATH = 'responses';
+export const RESPONSE_BASE_PATH   = 'responses';
 export const RESPONSE_FILE_SUFFIX = 'response';
 
 export function getParameterType(operation: OpenAPIV3.OperationObject): string {
@@ -872,19 +893,19 @@ export function getParameterType(operation: OpenAPIV3.OperationObject): string {
 
 }
 
-export const PARAMETER_BASE_PATH = 'parameters';
+export const PARAMETER_BASE_PATH   = 'parameters';
 export const PARAMETER_FILE_SUFFIX = 'parameter';
 
-export const DATA_SOURCE_BASE_PATH = 'data-sources';
+export const DATA_SOURCE_BASE_PATH   = 'data-sources';
 export const DATA_SOURCE_FILE_SUFFIX = 'data-source';
 
-export const REMOTE_METHOD_BASE_PATH = 'remote-methods';
+export const REMOTE_METHOD_BASE_PATH   = 'remote-methods';
 export const REMOTE_METHOD_FILE_SUFFIX = 'remote-method';
 
 export async function generateRemoteMethod(
   operation: OpenAPIV3.OperationObject,
   project: Project,
-  prefix: string,
+  prefix: string
 ): Promise<void> {
   if (operation.operationId) {
 
@@ -916,8 +937,8 @@ export async function generateRemoteMethod(
         }
       ];
 
-      const responseType: string  = getResponseType(operation);
-      const parameterType: string = getParameterType(operation);
+      const responseType: string    = getResponseType(operation);
+      const parameterType: string   = getParameterType(operation);
       const requestBodyType: string = getRequestBodyType(operation);
 
       const classStructure: OptionalKind<ClassDeclarationStructure> = {
@@ -938,11 +959,11 @@ export async function generateRemoteMethod(
           writer.write(responseType);
           writer.write(', ');
           writer.write(parameterType);
-          writer.write(', ')
+          writer.write(', ');
           writer.write(requestBodyType);
           writer.write('>');
         },
-        isExported: true,
+        isExported: true
       };
 
       sourceFile.addClass(classStructure);
@@ -955,13 +976,13 @@ export async function generateRemoteMethod(
           namedImports: [ { name: 'ArrayElement' } ]
         });
         CreateDirective({
-          filePath: fileName,
-          name: operationId,
+          filePath:       fileName,
+          name:           operationId,
           prefix,
           parametersType: `OpenApiRemoteMethodParameter<${parameterType}, ${requestBodyType}>`,
-          returnType: `ArrayElement<${responseType}>`,
-          template: true,
-          collection: true,
+          returnType:     `ArrayElement<${responseType}>`,
+          template:       true,
+          collection:     true,
           sourceFile,
           withoutParameters
         });
@@ -970,31 +991,31 @@ export async function generateRemoteMethod(
       sourceFile.addImportDeclarations(importStructures);
 
       CreateDirective({
-        filePath: fileName,
-        name: operationId,
+        filePath:       fileName,
+        name:           operationId,
         prefix,
         parametersType: `OpenApiRemoteMethodParameter<${parameterType}, ${requestBodyType}>`,
-        returnType: responseType,
-        template: true,
-        collection: false,
+        returnType:     responseType,
+        template:       true,
+        collection:     false,
         sourceFile,
         withoutParameters
       });
 
       CreateDirective({
-        filePath: fileName,
-        name: operationId,
+        filePath:       fileName,
+        name:           operationId,
         prefix,
         parametersType: `OpenApiRemoteMethodParameter<${parameterType}, ${requestBodyType}>`,
-        returnType: responseType,
-        template: false,
-        collection: false,
+        returnType:     responseType,
+        template:       false,
+        collection:     false,
         sourceFile,
         withoutParameters
       });
 
       sourceFile.organizeImports({
-        ensureNewLineAtEndOfFile: true,
+        ensureNewLineAtEndOfFile: true
       });
 
     } catch (error) {
@@ -1011,11 +1032,11 @@ export async function generateRemoteMethod(
 export function generateModels(
   schemas: Record<string, OpenAPIV3.ReferenceObject | OpenAPIV3.SchemaObject>,
   project: Project,
-  components: OpenAPIV3.ComponentsObject,
+  components: OpenAPIV3.ComponentsObject
 ): Rule {
   return async (tree, context) => {
 
-    for await (const [name, schema] of Object.entries(schemas)) {
+    for await (const [ name, schema ] of Object.entries(schemas)) {
 
       console.log(`Generate model '${name}'.`);
 
@@ -1034,7 +1055,7 @@ export function generateModels(
 
     }
 
-  }
+  };
 }
 
 export function IsOperationObject(obj: any): obj is OpenAPIV3.OperationObject {
@@ -1053,7 +1074,7 @@ export function CreateFilesFromTsMorphProject(project: Project, basePath: string
     let indexFile = ``;
 
     for (const sourceFile of project.getSourceFiles()) {
-      const filePath = join(basePath, sourceFile.getFilePath())
+      const filePath = join(basePath, sourceFile.getFilePath());
       console.log(`Process file: ${filePath}`);
       sourceFile.fixMissingImports();
       createOrOverwrite(filePath, sourceFile.getFullText())(tree, context);
@@ -1062,7 +1083,7 @@ export function CreateFilesFromTsMorphProject(project: Project, basePath: string
 
     createOrOverwrite(join(basePath, '..', 'index.ts'), indexFile)(tree, context);
 
-  }
+  };
 }
 
 export function IgnoreOperation(tags: string[] = []): (operation: OpenAPIV3.OperationObject) => boolean {
@@ -1074,7 +1095,7 @@ export function IgnoreOperation(tags: string[] = []): (operation: OpenAPIV3.Oper
 
     return false;
 
-  }
+  };
 }
 
 export function getPrefix(host: Tree, projectName: string): string {
@@ -1096,7 +1117,7 @@ export default function(options: OpenApiSchema): Rule {
 
   return async (host: Tree) => {
 
-    let openapi: OpenAPI.Document
+    let openapi: OpenAPI.Document;
 
     if (IsOpenApiSchemaFromPath(options)) {
 
@@ -1115,12 +1136,12 @@ export default function(options: OpenApiSchema): Rule {
     }
 
     const project = new Project({
-      manipulationSettings: {
-        indentationText: IndentationText.TwoSpaces,
-        quoteKind: QuoteKind.Single,
+      manipulationSettings:  {
+        indentationText:   IndentationText.TwoSpaces,
+        quoteKind:         QuoteKind.Single,
         useTrailingCommas: true
       },
-      useInMemoryFileSystem: true,
+      useInMemoryFileSystem: true
     });
 
     const basePath = `libs/${options.target}/src/lib`;
@@ -1137,11 +1158,11 @@ export default function(options: OpenApiSchema): Rule {
 
       for await (const method of Object.keys(methods).filter(IsHttpMethod)) {
 
-        const operation = methods[method];
+        const operation = methods[ method ];
 
         if (IsOperationObject(operation)) {
 
-          if (IgnoreOperation(['hidden'])(operation)) {
+          if (IgnoreOperation([ 'hidden' ])(operation)) {
 
             console.log(`Ignore operation '${operation.operationId}'`);
 
@@ -1167,7 +1188,7 @@ export default function(options: OpenApiSchema): Rule {
 
     return chain([
       CoerceOpenApiProject(options.target),
-      CreateFilesFromTsMorphProject(project, basePath),
+      CreateFilesFromTsMorphProject(project, basePath)
     ]);
 
   };
