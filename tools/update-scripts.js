@@ -18,7 +18,7 @@ async function update() {
 
     parsed.scripts.prepublish = `yarn --cwd ${rel}/ nx run ${name}:pack --with-deps`;
     parsed.scripts.version = `node ${rel}/tools/update-dependencies.js $PWD`;
-    parsed.scripts.preversion = `yarn --cwd ${rel}/ nx run ${name}:build --with-deps`;
+    parsed.scripts.preversion = `yarn --cwd ${rel}/ nx run ${name}:pack --with-deps`;
     parsed.publishConfig = { directory: `${rel}/dist/libs/${namePath}` };
 
     writeFileSync(pkg.manifestLocation, JSON.stringify(parsed, undefined, 2));

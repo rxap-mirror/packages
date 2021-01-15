@@ -26,9 +26,9 @@
   "scripts": {
     "prepublish": "yarn --cwd ../../../ nx run plugin-readme-generator:pack --with-deps",
     "version": "node ../../../tools/update-dependencies.js $PWD",
-    "preversion": "yarn --cwd ../../../ nx run plugin-readme-generator:build --with-deps"
+    "preversion": "yarn --cwd ../../../ nx run plugin-readme-generator:pack --with-deps"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/plugin/readme-generator"
+    "directory": "../../../dist/libs/plugin-readme-generator"
   }
 }
