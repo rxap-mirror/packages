@@ -3,8 +3,16 @@ import {
   Optional,
   Inject
 } from '@angular/core';
-import { deepMerge } from '@rxap/utilities';
+import {
+  deepMerge,
+  SetObjectValue
+} from '@rxap/utilities';
 import { RXAP_CONFIG } from './tokens';
+
+export interface ConfigLoadOptions {
+  fromUrlParam?: string | boolean;
+  fromLocalStorage?: boolean;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +20,19 @@ import { RXAP_CONFIG } from './tokens';
 export class ConfigService<Config extends object> {
 
   public static Config: any = null;
+
+  /**
+   * Static default values for the config object.
+   * Will be overwritten by an dynamic config file specified in
+   * the Urls array.
+   */
+  public static Defaults: any = {};
+
+  /**
+   * Any value definition in the Overwrites object will overwrite any
+   * value form the Defaults values or dynamic config files
+   */
+  public static Overwrites: any = {};
 
   public static LocalStorageKey = 'rxap/config/local-config';
 
@@ -25,8 +46,8 @@ export class ConfigService<Config extends object> {
    * .catch(err => console.error(err))
    *
    */
-  public static async Load(): Promise<void> {
-    let config = {};
+  public static async Load(options?: ConfigLoadOptions): Promise<void> {
+    let config = this.Defaults;
     for (const url of ConfigService.Urls) {
       try {
 
@@ -38,19 +59,56 @@ export class ConfigService<Config extends object> {
       }
     }
 
-    const localConfig = localStorage.getItem(ConfigService.LocalStorageKey);
+    config = deepMerge(config, this.Overwrites);
 
-    if (localConfig) {
-      try {
-        config = deepMerge(config, JSON.parse(localConfig));
-      } catch (e) {
-        console.error('local config could not be parsed');
+    if (options?.fromLocalStorage !== false) {
+
+      const localConfig = localStorage.getItem(ConfigService.LocalStorageKey);
+
+      if (localConfig) {
+        try {
+          config = deepMerge(config, JSON.parse(localConfig));
+        } catch (e) {
+          console.error('local config could not be parsed');
+        }
       }
+
+    }
+
+    if (options?.fromUrlParam) {
+      const param = typeof options.fromUrlParam === 'string' ? options.fromUrlParam : 'config';
+      config      = deepMerge(config, this.LoadConfigDefaultFromUrlParam(param));
     }
 
     console.debug('app config', config);
 
     ConfigService.Config = config;
+  }
+
+  private static LoadConfigDefaultFromUrlParam(param: string = 'config') {
+
+    const queryString = window.location.search;
+    const urlParams   = new URLSearchParams(queryString);
+
+    const configFromParams = {};
+
+    for (const configParam of urlParams.getAll('config')) {
+
+      try {
+        const split = configParam.split(';');
+        if (split.length === 2) {
+          const keyPath = split[ 0 ];
+          const value   = split[ 1 ];
+          SetObjectValue(configFromParams, keyPath, value);
+        }
+      } catch (e) {
+        console.warn(`Parsing of url config param failed for '${configParam}': ${e.message}`);
+      }
+
+    }
+
+    return configFromParams;
+
   }
 
   public static Get<T>(path: string, defaultValue?: T, config = this.Config): T {

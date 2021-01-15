@@ -33,6 +33,7 @@ export * from './lib/get-proxy-target';
 export * from './lib/confirm-click';
 export * from './lib/hooks';
 export * from './lib/refreshable';
+export * from './lib/set-object-value';
 
 export * from './lib/download-object-as-json-file';
 

@@ -2,10 +2,11 @@ import {
   Directive,
   Input,
   Inject,
-  OnInit,
   Renderer2,
   ElementRef,
-  NgModule
+  NgModule,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import {
   IconConfig,
@@ -17,7 +18,7 @@ import { MatIcon } from '@angular/material/icon';
 @Directive({
   selector: 'mat-icon[rxapIcon]'
 })
-export class IconDirective implements OnInit {
+export class IconDirective implements OnChanges {
 
   public get isSimpleIcon(): boolean {
     return typeof this.icon === 'string';
@@ -42,7 +43,13 @@ export class IconDirective implements OnInit {
     private readonly elementRef: ElementRef
   ) {}
 
-  public ngOnInit(): void {
+  public ngOnChanges(changes: SimpleChanges) {
+    if (changes.icon) {
+      this.updateIcon();
+    }
+  }
+
+  public updateIcon(): void {
     if (this.isSimpleIcon) {
       this.matIcon._elementRef.nativeElement.textContent = this.simpleIcon;
       this.matIcon.ngOnInit();
@@ -54,6 +61,8 @@ export class IconDirective implements OnInit {
       }
       if (icon.fontColor) {
         this.renderer.setStyle(this.elementRef.nativeElement, 'color', icon.fontColor);
+      } else {
+        this.renderer.removeStyle(this.elementRef.nativeElement, 'color');
       }
       if (IsMaterialIcon(icon)) {
         this.matIcon._elementRef.nativeElement.textContent = icon.icon;
