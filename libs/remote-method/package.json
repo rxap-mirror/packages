@@ -1,6 +1,6 @@
 {
   "name": "@rxap/remote-method",
-  "version": "11.0.2",
+  "version": "11.0.3",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -21,7 +21,7 @@
     "@angular/core": "^11.0.5",
     "@angular/platform-browser": "^11.0.5",
     "@rxap/definition": ">=11.0.1",
-    "@rxap/utilities": ">=11.0.0",
+    "@rxap/utilities": ">=11.0.1",
     "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",

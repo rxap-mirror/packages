@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.2](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.0.1...@rxap/material-form-system@11.0.2) (2021-01-15)
+
+
+### Bug Fixes
+
+* add custom i18n support ([d347a01](https://gitlab.com/rxap/packages/commit/d347a01fa6408c06743a49d7e226778eb0846e31))
+* add support for cypress tags ([b42f07c](https://gitlab.com/rxap/packages/commit/b42f07c5c628dc1636e3a0b574129349db221dc5))
+* **schematics:** only include the icon name if not svg icon ([633a4c0](https://gitlab.com/rxap/packages/commit/633a4c0e5302a3e5d5a5e4b171d342b94470db84))
+
+
+
+
+
 ## 11.0.1 (2021-01-12)
 
 
