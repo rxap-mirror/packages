@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+
+@mixin mfd-table-column-menu-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .mfd-table-column-menu {
+  }
+
+}
+
+@mixin mfd-table-column-menu-typography($config) {
+  .mfd-table-column-menu {
+  }
+}
