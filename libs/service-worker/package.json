@@ -38,7 +38,7 @@
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run service-worker:pack --with-deps",
     "version": "node ../../tools/update-dependencies.js $PWD",
-    "preversion": "yarn --cwd ../../ nx run service-worker:build --with-deps"
+    "preversion": "yarn --cwd ../../ nx run service-worker:pack --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/service-worker"

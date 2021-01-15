@@ -30,7 +30,7 @@
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run fullstory:pack --with-deps",
     "version": "node ../../tools/update-dependencies.js $PWD",
-    "preversion": "yarn --cwd ../../ nx run fullstory:build --with-deps"
+    "preversion": "yarn --cwd ../../ nx run fullstory:pack --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/fullstory"

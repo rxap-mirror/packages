@@ -15,7 +15,7 @@
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run environment:pack --with-deps",
     "version": "node ../../tools/update-dependencies.js $PWD",
-    "preversion": "yarn --cwd ../../ nx run environment:build --with-deps"
+    "preversion": "yarn --cwd ../../ nx run environment:pack --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/environment"

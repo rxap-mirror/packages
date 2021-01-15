@@ -33,9 +33,9 @@
   "scripts": {
     "prepublish": "yarn --cwd ../../../ nx run plugin-pack:pack --with-deps",
     "version": "node ../../../tools/update-dependencies.js $PWD",
-    "preversion": "yarn --cwd ../../../ nx run plugin-pack:build --with-deps"
+    "preversion": "yarn --cwd ../../../ nx run plugin-pack:pack --with-deps"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/plugin/pack"
+    "directory": "../../../dist/libs/plugin-pack"
   }
 }

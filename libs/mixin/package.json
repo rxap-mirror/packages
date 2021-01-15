@@ -30,7 +30,7 @@
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run mixin:pack --with-deps",
     "version": "node ../../tools/update-dependencies.js $PWD",
-    "preversion": "yarn --cwd ../../ nx run mixin:build --with-deps"
+    "preversion": "yarn --cwd ../../ nx run mixin:pack --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/mixin"

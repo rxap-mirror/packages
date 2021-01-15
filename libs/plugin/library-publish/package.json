@@ -7,9 +7,9 @@
   "scripts": {
     "prepublish": "yarn --cwd ../../../ nx run plugin-library-publish:pack --with-deps",
     "version": "node ../../../tools/update-dependencies.js $PWD",
-    "preversion": "yarn --cwd ../../../ nx run plugin-library-publish:build --with-deps"
+    "preversion": "yarn --cwd ../../../ nx run plugin-library-publish:pack --with-deps"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/plugin/library-publish"
+    "directory": "../../../dist/libs/plugin-library-publish"
   }
 }

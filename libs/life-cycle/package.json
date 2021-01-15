@@ -35,7 +35,7 @@
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run life-cycle:pack --with-deps",
     "version": "node ../../tools/update-dependencies.js $PWD",
-    "preversion": "yarn --cwd ../../ nx run life-cycle:build --with-deps"
+    "preversion": "yarn --cwd ../../ nx run life-cycle:pack --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/life-cycle"

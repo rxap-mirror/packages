@@ -25,7 +25,7 @@
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run table-system:pack --with-deps",
     "version": "node ../../tools/update-dependencies.js $PWD",
-    "preversion": "yarn --cwd ../../ nx run table-system:build --with-deps"
+    "preversion": "yarn --cwd ../../ nx run table-system:pack --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/table-system"

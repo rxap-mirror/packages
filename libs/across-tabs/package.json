@@ -24,7 +24,7 @@
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run across-tabs:pack --with-deps",
     "version": "node ../../tools/update-dependencies.js $PWD",
-    "preversion": "yarn --cwd ../../ nx run across-tabs:build --with-deps"
+    "preversion": "yarn --cwd ../../ nx run across-tabs:pack --with-deps"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {

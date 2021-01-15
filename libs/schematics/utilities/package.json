@@ -13,9 +13,9 @@
   "scripts": {
     "prepublish": "yarn --cwd ../../../ nx run schematics-utilities:pack --with-deps",
     "version": "node ../../../tools/update-dependencies.js $PWD",
-    "preversion": "yarn --cwd ../../../ nx run schematics-utilities:build --with-deps"
+    "preversion": "yarn --cwd ../../../ nx run schematics-utilities:pack --with-deps"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/schematics/utilities"
+    "directory": "../../../dist/libs/schematics-utilities"
   }
 }

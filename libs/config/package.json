@@ -33,7 +33,7 @@
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run config:pack --with-deps",
     "version": "node ../../tools/update-dependencies.js $PWD",
-    "preversion": "yarn --cwd ../../ nx run config:build --with-deps"
+    "preversion": "yarn --cwd ../../ nx run config:pack --with-deps"
   },
   "publishConfig": {
     "directory": "../../dist/libs/config"
