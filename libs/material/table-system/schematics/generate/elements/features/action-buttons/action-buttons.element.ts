@@ -42,7 +42,7 @@ export class ControlsColumnElement extends ColumnElement {
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponentModule({ sourceFile, project, options });
     // TODO : mv TableRowControlsModule to rxap
-    AddNgModuleImport(sourceFile, 'TableRowControlsModule', '@mfd/shared/table-row-controls/table-row-controls.module');
+    AddNgModuleImport(sourceFile, 'TableRowControlsModule', '@rxap/material-table-system');
   }
 
 }

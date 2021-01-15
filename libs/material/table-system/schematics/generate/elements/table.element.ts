@@ -229,7 +229,7 @@ export class TableElement implements ParsedElement<Rule> {
     const sourceFile = FindComponentSourceFile(this.name, project);
 
     // TODO : mv RowAnimation to rxap
-    AddComponentAnimations(sourceFile, 'RowAnimation', '@mfd/shared/row-animation');
+    AddComponentAnimations(sourceFile, 'RowAnimation', '@rxap/material-table-system');
 
     if (this.method) {
       AddComponentProvider(
@@ -241,8 +241,7 @@ export class TableElement implements ParsedElement<Rule> {
         [
           {
             namedImports:    [ 'TABLE_REMOTE_METHOD' ],
-            // TODO : mv TABLE_REMOTE_METHOD to rxap
-            moduleSpecifier: '@mfd/shared/table-data-source.directive'
+            moduleSpecifier: '@rxap/material-table-system'
           }
         ],
         options.overwrite
@@ -289,7 +288,7 @@ export class TableElement implements ParsedElement<Rule> {
         [
           {
             namedImports:    [ 'RXAP_TABLE_FILTER_FORM_DEFINITION' ],
-            moduleSpecifier: '@mfd/shared/table-filter/tokens'
+            moduleSpecifier: '@rxap/material-table-system'
           },
           {
             namedImports:    [ 'FormFactory', 'FormProviders' ],
@@ -320,7 +319,7 @@ export class TableElement implements ParsedElement<Rule> {
         [
           {
             namedImports:    [ 'TableFilterService' ],
-            moduleSpecifier: '@mfd/shared/table-filter/table-filter.service'
+            moduleSpecifier: '@rxap/material-table-system'
           }
         ],
         options.overwrite
@@ -344,13 +343,11 @@ export class TableElement implements ParsedElement<Rule> {
     AddNgModuleImport(sourceFile, 'CardProgressBarModule', '@rxap/directives/material/card');
     AddNgModuleImport(sourceFile, 'MatTableModule', '@angular/material/table');
     AddNgModuleImport(sourceFile, 'FlexLayoutModule', '@angular/flex-layout');
-    // TODO : move TableDataSourceModule to rxap
-    AddNgModuleImport(sourceFile, 'TableDataSourceModule', '@mfd/shared/table-data-source.directive');
+    AddNgModuleImport(sourceFile, 'TableDataSourceModule', '@rxap/material-table-system');
 
     // filter table modules
     if (this.hasFilter) {
-      // TODO : move TableFilterModule to rxap
-      AddNgModuleImport(sourceFile, 'TableFilterModule', '@mfd/shared/table-filter/table-filter.module');
+      AddNgModuleImport(sourceFile, 'TableFilterModule', '@rxap/material-table-system');
       AddNgModuleImport(sourceFile, 'RxapFormsModule', '@rxap/forms');
       AddNgModuleImport(sourceFile, 'ReactiveFormsModule', '@angular/forms');
     }

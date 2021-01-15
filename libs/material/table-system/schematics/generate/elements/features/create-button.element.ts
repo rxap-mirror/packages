@@ -43,7 +43,7 @@ export class CreateButtonElement extends FeatureElement {
   public windowForm?: WindowFormElement;
 
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
-    AddNgModuleImport(sourceFile, 'TableCreateButtonComponentModule', '@mfd/shared/table-create-button/table-create-button.component.module');
+    AddNgModuleImport(sourceFile, 'TableCreateButtonComponentModule', '@rxap/material-table-system');
     this.module?.handleComponentModule({ sourceFile, options, project });
     this.routerLink?.handleComponentModule({ sourceFile, options, project });
   }
@@ -56,7 +56,7 @@ export class CreateButtonElement extends FeatureElement {
     const importStructures: Array<OptionalKind<ImportDeclarationStructure>> = [
       {
         namedImports:    [ 'TABLE_CREATE_REMOTE_METHOD' ],
-        moduleSpecifier: '@mfd/shared/table-create-button/tokens'
+        moduleSpecifier: '@rxap/material-table-system'
       }
     ];
 

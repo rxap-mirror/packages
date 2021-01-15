@@ -315,8 +315,7 @@ export class TreeTableElement extends FeatureElement {
         },
         {
           namedImports:    [ 'TABLE_DATA_SOURCE' ],
-          // TODO : mv TABLE_DATA_SOURCE to rxap
-          moduleSpecifier: '@mfd/shared/table-data-source.directive'
+          moduleSpecifier: '@rxap/material-table-system'
         }
       ],
       options.overwrite
