@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.3](https://gitlab.com/rxap/packages/compare/@rxap/directives@10.0.3...@rxap/directives@11.0.3) (2021-01-15)
+
+
+### Bug Fixes
+
+* **IconDirective:** update to new MatIcon API ([40af574](https://gitlab.com/rxap/packages/commit/40af57492d4def10e7215e8d9d17fdb7f0700538))
+
+
+
+
+
 ## [11.0.2](https://gitlab.com/rxap/packages/compare/@rxap/directives@11.0.1...@rxap/directives@11.0.2) (2021-01-12)
 
 **Note:** Version bump only for package @rxap/directives
