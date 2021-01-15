@@ -11,10 +11,10 @@
     "@angular/platform-browser": "^11.0.5",
     "@angular/router": "^11.0.5",
     "@rxap/definition": ">=11.0.1",
-    "@rxap/forms": ">=11.0.3",
+    "@rxap/forms": ">=11.0.2",
     "@rxap/mixin": ">=11.0.2",
     "@rxap/schematics-utilities": ">=11.0.1",
-    "@rxap/utilities": ">=11.0.1",
+    "@rxap/utilities": ">=11.0.0",
     "@rxap/xml-parser": ">=11.0.1",
     "rxjs": "^6.5.5"
   },
@@ -26,10 +26,10 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/material-table-system",
-      "@rxap/schematics-utilities",
       "@rxap/definition",
       "@rxap/forms",
       "@rxap/mixin",
+      "@rxap/schematics-utilities",
       "@rxap/utilities",
       "@rxap/xml-parser"
     ]
@@ -41,5 +41,6 @@
   },
   "publishConfig": {
     "directory": "../../../dist/libs/material/table-system"
-  }
+  },
+  "gitHead": "e75f92d806744f93d00f5abf69fb80cfec0ccace"
 }
