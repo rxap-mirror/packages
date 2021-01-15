@@ -62,7 +62,7 @@ export class MfdLoaderElement extends EditActionLoaderElement {
           namedImports:    [ 'RowEditLoaderMethod' ]
         },
         {
-          moduleSpecifier: '@mfd/shared/table-row-controls/tokens',
+          moduleSpecifier: '@rxap/material-table-system',
           namedImports:    [ 'ROW_EDIT_LOADER_METHOD' ]
         }
       ],

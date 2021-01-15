@@ -29,7 +29,7 @@ export class ColumnMenuElement extends FeatureElement {
 
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
     // TODO : mv TableColumnMenuComponentModule to rxap
-    AddNgModuleImport(sourceFile, 'TableColumnMenuComponentModule', '@mfd/shared/table-column-menu/table-column-menu.component.module');
+    AddNgModuleImport(sourceFile, 'TableColumnMenuComponentModule', '@rxap/material-table-system');
     if (this.showArchived) {
       AddNgModuleImport(sourceFile, 'DateCellComponentModule', '@mfd/shared/date-cell/date-cell.component.module');
       AddNgModuleImport(sourceFile, 'MatDividerModule', '@angular/material/divider');

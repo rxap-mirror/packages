@@ -32,7 +32,7 @@ export abstract class MethodActionElement extends ActionButtonElement {
     const importStructures: Array<OptionalKind<ImportDeclarationStructure>> = [
       {
         namedImports:    [ provide ],
-        moduleSpecifier: '@mfd/shared/table-row-controls/tokens'
+        moduleSpecifier: '@rxap/material-table-system'
       }
     ];
     if (this.method) {

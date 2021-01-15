@@ -38,7 +38,7 @@ export class AdapterElement implements ParsedElement, HandleComponent {
         {
           namedImports:    [ 'TABLE_REMOTE_METHOD_ADAPTER_FACTORY' ],
           // TODO : mv TABLE_REMOTE_METHOD_ADAPTER_FACTORY to rxap
-          moduleSpecifier: '@mfd/shared/table-data-source.directive'
+          moduleSpecifier: '@rxap/material-table-system'
         },
         {
           namedImports:    [ this.factoryName ],
