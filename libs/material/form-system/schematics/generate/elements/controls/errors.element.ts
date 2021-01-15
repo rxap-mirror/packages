@@ -43,7 +43,7 @@ export class ErrorsElement implements ParsedElement<Rule>, HandleComponent, Hand
   public template(): string {
     let template = '';
     for (const [ error, message ] of Object.entries(this.errors)) {
-      template += NodeFactory('mat-error', `*rxapControlError="let error key '${error}'"`)(message);
+      template += NodeFactory('mat-error', `*rxapControlError="let error key '${error}'"`, `data-cy="error.${error}"`)(message);
     }
     return template;
   }

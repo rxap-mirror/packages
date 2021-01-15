@@ -188,10 +188,10 @@ export interface SvgIcon extends BaseIcon {
 
 export type IconConfig = MaterialIcon | SvgIcon;
 
-export function IsSvgIcon(icon: IconConfig): icon is SvgIcon {
-  return icon.hasOwnProperty('svgIcon');
+export function IsSvgIcon(icon?: IconConfig): icon is SvgIcon {
+  return icon?.hasOwnProperty('svgIcon') ?? false;
 }
 
-export function IsMaterialIcon(icon: IconConfig): icon is MaterialIcon {
-  return icon.hasOwnProperty('icon');
+export function IsMaterialIcon(icon?: IconConfig): icon is MaterialIcon {
+  return icon?.hasOwnProperty('icon') ?? false;
 }

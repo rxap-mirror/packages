@@ -58,6 +58,7 @@ export abstract class FormFieldElement extends ControlElement {
     if (this.features) {
       nodes.push(...this.features);
     }
+    attributes.push(`data-cy="form.${this.controlPath}"`);
     return NodeFactory('mat-form-field', this.flexTemplateAttribute, ...this.attributes, ...attributes)(nodes);
   }
 

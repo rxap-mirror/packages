@@ -86,7 +86,8 @@ export class PasswordControlElement extends ControlElement {
       name:       this.name + '-repeat',
       standalone: true,
       innerAttributes: [
-        `#${camelize(this.name)}ValidateInput`
+        `#${camelize(this.name)}ValidateInput`,
+        `data-cy="form.${this.controlPath}.repeat"`
       ],
       prefix:     new PasswordPrefixElement(`${camelize(this.name)}ValidateInput`),
       __parent:   this.__parent,
@@ -95,7 +96,12 @@ export class PasswordControlElement extends ControlElement {
   }
 
   public template(): string {
-    return NodeFactory('div', 'fxLayout="row"', 'fxLayoutGap="16px"', this.flexTemplateAttribute)([
+    const attributes: string[] = [
+      'fxLayout="row"',
+      'fxLayoutGap="16px"',
+      `data-cy="form.${this.controlPath}.container"`
+    ];
+    return NodeFactory('div', this.flexTemplateAttribute, ...attributes)([
       this.passwordControl.template(),
       this.passwordValidateControl.template()
     ]);
