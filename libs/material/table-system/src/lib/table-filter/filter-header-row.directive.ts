@@ -1,4 +1,7 @@
-import { FormDirective } from '@rxap/forms';
+import {
+  FormDirective,
+  FormDefinition
+} from '@rxap/forms';
 import {
   ChangeDetectorRef,
   Directive,
@@ -8,7 +11,6 @@ import {
   OnInit,
   Optional
 } from '@angular/core';
-import { FormDefinition } from '@rxap/forms/lib/model';
 import { TableFilterService } from './table-filter.service';
 import { Subscription } from 'rxjs';
 import {
@@ -40,7 +42,7 @@ export class FilterHeaderRowDirective extends FormDirective implements OnInit, O
     cdr: ChangeDetectorRef,
     @Optional()
     @Inject(RXAP_TABLE_FILTER_FORM_DEFINITION)
-      formDefinition?: FormDefinition | null
+      formDefinition: FormDefinition | null
   ) {
     super(cdr, formDefinition);
   }

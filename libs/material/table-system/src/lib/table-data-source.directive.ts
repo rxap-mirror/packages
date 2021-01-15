@@ -37,7 +37,7 @@ export const TABLE_REMOTE_METHOD                 = new InjectionToken('table-rem
 export const TABLE_REMOTE_METHOD_ADAPTER_FACTORY = new InjectionToken('table-remote-method-adapter-factory');
 export const TABLE_DATA_SOURCE                   = new InjectionToken('table-data-source');
 
-export type TableRemoteMethodAdapterFactory<Data extends Record<string, any>> = (
+export type TableRemoteMethodAdapterFactory<Data extends Record<string, any> = Record<string, any>> = (
   remoteMethod: OpenApiRemoteMethod,
   paginator?: PaginatorLike
 ) => BaseRemoteMethod<Data[], TableEvent>;
@@ -63,6 +63,8 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any> im
 
   protected _subscription = new Subscription();
 
+  private readonly adapterFactory: TableRemoteMethodAdapterFactory<Data> | null = null;
+
   constructor(
     @Inject(CdkTable)
     private readonly matTable: CdkTable<Data>,
@@ -75,7 +77,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any> im
     private readonly sourceDataSource: AbstractTableDataSource<Data> | null                         = null,
     @Optional()
     @Inject(TABLE_REMOTE_METHOD_ADAPTER_FACTORY)
-    private readonly adapterFactory: TableRemoteMethodAdapterFactory<Data> | null                   = null,
+      adapterFactory: any                                                                           = null,
     @Optional()
     @Inject(MatSort)
     private readonly matSort: MatSort | null                                                        = null,
@@ -84,6 +86,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any> im
     private readonly tableFilter: TableFilterService | null                                         = null
   ) {
     this.matTable.trackBy = this.trackBy;
+    this.adapterFactory   = adapterFactory;
   }
 
   private trackBy(index: number, item: Data): string | number {
