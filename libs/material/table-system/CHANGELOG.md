@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.0.1...@rxap/material-table-system@11.1.0) (2021-01-15)
+
+
+### Features
+
+* add table material components ([2aa41e0](https://gitlab.com/rxap/packages/commit/2aa41e01c6c68cea6ad410e658a31412612b3211))
+
+
+
+
+
 ## 11.0.1 (2021-01-12)
 
 
