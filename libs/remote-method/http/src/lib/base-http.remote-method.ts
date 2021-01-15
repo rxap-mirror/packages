@@ -106,6 +106,7 @@ export abstract class BaseHttpRemoteMethod<ReturnType = any,
     }
 
     return this._httpRequest.clone({
+      withCredentials: this.metadata.withCredentials,
       ...parameters,
       url
     });
