@@ -1,6 +1,6 @@
 {
   "name": "@rxap/mixin",
-  "version": "11.0.2",
+  "version": "11.0.3",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -16,7 +16,7 @@
   "description": "A collection of typescript decorators.",
   "license": "MIT",
   "peerDependencies": {
-    "@rxap/utilities": ">=11.0.0",
+    "@rxap/utilities": ">=11.0.1",
     "reflect-metadata": "^0.1.13"
   },
   "schematics": "./schematics/collection.json",
