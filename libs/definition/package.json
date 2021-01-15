@@ -1,6 +1,6 @@
 {
   "name": "@rxap/definition",
-  "version": "11.0.1",
+  "version": "11.0.2",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -17,7 +17,7 @@
   "description": "Provides the Definition concept for RxAP.",
   "peerDependencies": {
     "@angular/core": "^11.0.5",
-    "@rxap/utilities": ">=11.0.0",
+    "@rxap/utilities": ">=11.0.1",
     "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",
