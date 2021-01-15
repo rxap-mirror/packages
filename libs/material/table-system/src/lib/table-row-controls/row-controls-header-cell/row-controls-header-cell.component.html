@@ -1,0 +1,24 @@
+<div fxLayout="row">
+
+  <!-- archive -->
+  <button type="button" *ngIf="selectRow && (showArchive$ | async)" [disabled]="disabled$ | async"
+          (confirmed)="archiveSelected($event)" mat-icon-button
+          [rxapConfirm]="selectRow.selectedRows" fxFlex="40px">
+    <mat-icon>archive</mat-icon>
+  </button>
+
+  <!-- unarchive -->
+  <button type="button" *ngIf="selectRow && (showUnarchive$ | async)" [disabled]="disabled$ | async"
+          (confirmed)="unarchiveSelected($event)" mat-icon-button
+          [rxapConfirm]="selectRow.selectedRows" fxFlex="40px">
+    <mat-icon>unarchive</mat-icon>
+  </button>
+
+  <!-- delete -->
+  <button type="button" *ngIf="selectRow && (showDelete$ | async)" [disabled]="disabled$ | async" (confirmed)="deleteSelected($event)"
+          mat-icon-button color="warn"
+          [rxapConfirm]="selectRow.selectedRows" fxFlex="40px">
+    <mat-icon>delete</mat-icon>
+  </button>
+
+</div>

@@ -1,0 +1,37 @@
+<div fxLayout="row">
+
+  <!-- archive -->
+  <button type="button" *ngIf="!element.__archived && archiveRemoteMethod" (confirmed)="archive()" mat-icon-button rxapConfirm
+          fxFlex="40px">
+    <mat-icon>archive</mat-icon>
+  </button>
+
+  <!-- unarchive -->
+  <button type="button" *ngIf="element.__archived && unarchiveRemoteMethod" (confirmed)="unarchive()" mat-icon-button rxapConfirm
+          fxFlex="40px">
+    <mat-icon>unarchive</mat-icon>
+  </button>
+
+  <!-- delete -->
+  <button type="button" *ngIf="(element.__archived && deleteRemoteMethod) || (deleteRemoteMethod && !unarchiveRemoteMethod && !archiveRemoteMethod)"
+          (confirmed)="remove()" mat-icon-button color="warn"
+          rxapConfirm fxFlex="40px">
+    <mat-icon>delete</mat-icon>
+  </button>
+
+  <!-- edit -->
+  <button type="button" *ngIf="!element.__archived && editRemoteMethod" (click)="edit()" mat-icon-button fxFlex="40px">
+    <mat-icon>edit</mat-icon>
+  </button>
+
+  <!-- view -->
+  <button type="button" *ngIf="rowViewMethod" (click)="view()" mat-icon-button fxFlex="40px">
+    <mat-icon>visibility</mat-icon>
+  </button>
+
+  <!-- link -->
+  <button type="button" *ngIf="rowLinkMethod" (click)="link()" mat-icon-button fxFlex="40px">
+    <mat-icon svgIcon="database-import"></mat-icon>
+  </button>
+
+</div>
