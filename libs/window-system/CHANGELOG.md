@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.2.1](https://gitlab.com/rxap/packages/compare/@rxap/window-system@10.2.0...@rxap/window-system@10.2.1) (2021-01-20)
+
+
+### Bug Fixes
+
+* run loading task detected ([9d13216](https://gitlab.com/rxap/packages/commit/9d13216f55535f2ac565ed7874ea81aedcdf224e))
+
+
+
+
+
 # [10.2.0](https://gitlab.com/rxap/packages/compare/@rxap/window-system@10.1.0...@rxap/window-system@10.2.0) (2021-01-20)
 
 
