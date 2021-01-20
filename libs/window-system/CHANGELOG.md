@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0](https://gitlab.com/rxap/packages/compare/@rxap/window-system@10.0.2...@rxap/window-system@10.1.0) (2021-01-20)
+
+
+### Features
+
+* add window loading support ([85aecb1](https://gitlab.com/rxap/packages/commit/85aecb1bdbcbe0f5540c8cfbfa67e4f8022daddc))
+
+
+
+
+
 ## [10.0.2](https://gitlab.com/rxap/packages/compare/@rxap/window-system@10.0.1...@rxap/window-system@10.0.2) (2021-01-20)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@10.1.0...@rxap/utilities@10.1.1) (2021-01-20)
+
+
+### Bug Fixes
+
+* **ToggleSubject:** bind next function to this ([a538009](https://gitlab.com/rxap/packages/commit/a5380097cd08ee33afa35b12631620e133b159aa))
+
+
+
+
+
 # [10.1.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@10.0.1...@rxap/utilities@10.1.0) (2021-01-14)
 
 
