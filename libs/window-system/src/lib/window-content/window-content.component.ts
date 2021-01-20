@@ -26,12 +26,15 @@ import {
   take,
   tap,
   timeout,
-  catchError
+  catchError,
+  filter,
+  delay
 } from 'rxjs/operators';
 import { isDefined } from '@rxap/utilities';
 import {
   TimeoutError,
-  throwError
+  throwError,
+  isObservable
 } from 'rxjs';
 
 @Component({
@@ -71,10 +74,24 @@ export class WindowContentComponent implements AfterViewInit {
       isDefined(),
       take(1),
       tap(attachedRef => {
+        const promise: Promise<any>[] = [];
         if (attachedRef instanceof ComponentRef) {
           attachedRef.changeDetectorRef.detectChanges();
+          const loading$ = attachedRef.instance.loading$;
+          if (loading$ && isObservable(loading$)) {
+            if (isDevMode()) {
+              console.warn('The component has a loading indicator member');
+            }
+            promise.push(loading$.pipe(
+              filter(Boolean),
+              take(1),
+              delay(100),
+              tap(() => attachedRef.changeDetectorRef.detectChanges())
+            ).toPromise());
+          }
         }
         this.windowRef.setAttachedRef(attachedRef);
+        return Promise.all(promise);
       }),
       timeout(10000),
       catchError(error => {
