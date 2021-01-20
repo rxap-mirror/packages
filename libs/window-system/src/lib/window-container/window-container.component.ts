@@ -22,6 +22,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { WindowResizerComponent } from '../window-resizer/window-resizer.component';
 import { WindowRef } from '../window-ref';
+import { WindowInstanceService } from '../window-instance.service';
 
 export interface Point {
   x: number;
@@ -57,6 +58,8 @@ export class WindowContainerComponent<D> implements OnInit {
     public readonly context: any,
     @Inject(RXAP_WINDOW_REF)
     public readonly windowRef: WindowRef<D>,
+    @Inject(WindowInstanceService)
+    public readonly windowInstance: WindowInstanceService
   ) {}
 
   public ngOnInit() {

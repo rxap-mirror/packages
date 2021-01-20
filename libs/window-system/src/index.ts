@@ -14,3 +14,4 @@ export * from './lib/window-task-bar/window-task-bar-container/window-task-bar-c
 export * from './lib/window-task-bar/window-task-bar.component';
 export * from './lib/window-footer.directive';
 export * from './lib/window-title.directive';
+export * from './lib/window-instance.service';

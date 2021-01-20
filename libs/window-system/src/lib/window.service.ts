@@ -34,6 +34,7 @@ import { DefaultWindowComponent } from './default-window/default-window.componen
 import { uuid } from '@rxap/utilities';
 import { GetWindowStartPos } from './utilities';
 import { Subject } from 'rxjs';
+import { WindowInstanceService } from './window-instance.service';
 
 @Injectable({ providedIn: 'root' })
 export class WindowService {
@@ -117,6 +118,10 @@ export class WindowService {
         {
           provide:  RXAP_WINDOW_REF,
           useValue: windowRef
+        },
+        {
+          provide:  WindowInstanceService,
+          useClass: WindowInstanceService
         }
       ],
       name:      windowConfig?.injectorName ?? 'WindowService'
@@ -154,7 +159,7 @@ export class WindowService {
     this.activeCount$.next(this.active.size);
   }
 
-  private createOverlay({ panelClass, width, height }: OverlayConfig) {
+  private createOverlay({ panelClass, width, height, minHeight, minWidth, maxHeight, maxWidth }: OverlayConfig) {
 
     const startPos = GetWindowStartPos();
 
@@ -168,8 +173,10 @@ export class WindowService {
       scrollStrategy: this.overlay.scrollStrategies.block(),
       width,
       height,
-      maxWidth:       '100vw',
-      maxHeight:      '100vh',
+      maxWidth:       maxWidth ?? '100vw',
+      maxHeight:      maxHeight ?? '100vh',
+      minWidth:       minWidth ?? '384px',
+      minHeight:      minHeight ?? '192px',
       positionStrategy
     });
 

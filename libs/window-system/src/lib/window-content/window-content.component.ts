@@ -36,6 +36,7 @@ import {
   throwError,
   isObservable
 } from 'rxjs';
+import { WindowInstanceService } from '../window-instance.service';
 
 @Component({
   selector:        'rxap-window-content',
@@ -58,7 +59,8 @@ export class WindowContentComponent implements AfterViewInit {
     @Inject(RXAP_WINDOW_REF)
     private readonly windowRef: WindowRef,
     private readonly  injector: Injector,
-    private readonly  viewContainerRef: ViewContainerRef
+    private readonly  viewContainerRef: ViewContainerRef,
+    private readonly windowInstance: WindowInstanceService
   ) {
     this.context = context;
     if (this.context.template) {
@@ -82,6 +84,7 @@ export class WindowContentComponent implements AfterViewInit {
             if (isDevMode()) {
               console.warn('The component has a loading indicator member');
             }
+            this.windowInstance.attachLoading(loading$);
             promise.push(loading$.pipe(
               filter(Boolean),
               take(1),

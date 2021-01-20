@@ -21,6 +21,10 @@ export interface WindowSettings<D = any> {
   icon?: IconConfig;
   width?: string;
   height?: string;
+  minWidth?: string;
+  minHeight?: string;
+  maxWidth?: string;
+  maxHeight?: string;
   resizeable?: boolean;
   draggable?: boolean;
   panelClass?: string;
@@ -42,4 +46,8 @@ export const DEFAULT_WINDOW_CONFIG: WindowConfig<any, any> = {
   draggable:                true,
   injector:                 null,
   componentFactoryResolver: null,
+  minWidth:                 '384px',
+  minHeight:                '192px',
+  maxWidth:                 '100vw',
+  maxHeight:                '100vw'
 };
