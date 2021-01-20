@@ -15,6 +15,7 @@ import { WindowActionBarComponent } from './window-action-bar/window-action-bar.
 import { WindowTaskBarModule } from './window-task-bar/window-task-bar.module';
 import { ButtonComponentModule } from '@rxap/components';
 import { PortalModule } from '@angular/cdk/portal';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { PortalModule } from '@angular/cdk/portal';
     MatButtonModule,
     OverlayModule,
     ButtonComponentModule,
-    PortalModule
+    PortalModule,
+    MatProgressBarModule
   ],
   declarations:    [
     WindowContainerComponent,
