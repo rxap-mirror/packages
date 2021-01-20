@@ -13,9 +13,11 @@ import {
   LayoutComponent,
   LayoutModule
 } from '@rxap/layout';
+import { InnerComponent } from './inner/inner.component';
+import { IconModule } from '@rxap/icon';
 
 @NgModule({
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, InnerComponent ],
   imports:      [
     BrowserModule,
     BrowserAnimationsModule,
@@ -28,11 +30,12 @@ import {
       }
     ]),
     RxapAuthenticationModule,
+    IconModule,
     LayoutModule.withNavigation([
       {
-        label: 'overview',
-        routerLink: ['/'],
-        icon: { icon: 'home' }
+        label:      'overview',
+        routerLink: [ '/' ],
+        icon:       { icon: 'home' }
       }
     ])
   ],
