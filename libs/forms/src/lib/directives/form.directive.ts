@@ -48,6 +48,7 @@ import {
 } from './models';
 import { BehaviorSubject } from 'rxjs';
 import { RxapFormBuilder } from '../form-builder';
+import { LoadingIndicatorService } from '@rxap/services';
 
 @Directive({
   selector:  'form:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',
@@ -147,7 +148,7 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
   public set useFormDefinition(value: FormDefinition<T> | '') {
     if (value) {
       this._formDefinition = value;
-      this.form = value.rxapFormGroup;
+      this.form            = value.rxapFormGroup;
     }
   }
 
@@ -183,7 +184,8 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
     // skip self, bc the token is set to null
     @SkipSelf() @Optional() @Inject(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD) private readonly submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null,
     // skip self, bc the token is set to null
-    @SkipSelf() @Optional() @Inject(RXAP_FORM_DEFINITION_BUILDER) private readonly formDefinitionBuilder: RxapFormBuilder | null                   = null
+    @SkipSelf() @Optional() @Inject(RXAP_FORM_DEFINITION_BUILDER) private readonly formDefinitionBuilder: RxapFormBuilder | null                   = null,
+    @Optional() @Inject(LoadingIndicatorService) private readonly loadingIndicatorService: LoadingIndicatorService | null                          = null
   ) {
     super([], []);
     if (submitMethod) {
@@ -196,6 +198,8 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
       this._formDefinition = formDefinition;
       this.form            = formDefinition.rxapFormGroup;
     }
+    this.loadingIndicatorService?.attachLoading(this.loading$);
+    this.loadingIndicatorService?.attachLoading(this.submitting$);
   }
 
   public ngOnChanges(changes: SimpleChanges) {
