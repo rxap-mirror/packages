@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.2](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@10.0.1...@rxap/remote-method@10.0.2) (2021-01-20)
+
+
+### Bug Fixes
+
+* add withCredentials support ([6213f25](https://gitlab.com/rxap/packages/commit/6213f2526814f8a9c51f93ec5c052e7d23e76e97))
+
+
+
+
+
 ## [10.0.1](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@10.0.0...@rxap/remote-method@10.0.1) (2021-01-06)
 
 **Note:** Version bump only for package @rxap/remote-method
