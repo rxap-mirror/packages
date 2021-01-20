@@ -6,6 +6,7 @@
 @import "../../../../libs/authentication/src/index";
 @import "../../../../libs/components/src/index";
 @import "../../../../libs/layout/src/index";
+@import "../../../../libs/window-system/src/index";
 
 @import 'typography';
 
@@ -34,6 +35,7 @@ $pwa-theme-dark: mat-dark-theme($pwa-primary, $pwa-accent, $pwa-warn);
   @include rxap-authentication-theme($theme);
   @include rxap-components-theme($theme);
   @include rxap-layout-theme($theme);
+  @include rxap-window-system-theme($theme);
 }
 
 @media (prefers-color-scheme: dark) {
