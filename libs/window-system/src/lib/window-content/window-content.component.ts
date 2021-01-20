@@ -7,7 +7,9 @@ import {
   ViewChild,
   AfterViewInit,
   ComponentRef,
-  isDevMode
+  isDevMode,
+  OnInit,
+  NgZone
 } from '@angular/core';
 import {
   RXAP_WINDOW_CONTAINER_CONTEXT,
@@ -44,7 +46,7 @@ import { LoadingIndicatorService } from '@rxap/services';
   styleUrls:       [ './window-content.component.scss' ],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WindowContentComponent implements AfterViewInit {
+export class WindowContentComponent implements AfterViewInit, OnInit {
 
   public context: WindowContainerContext<any>;
 
@@ -60,14 +62,25 @@ export class WindowContentComponent implements AfterViewInit {
     private readonly windowRef: WindowRef,
     private readonly  injector: Injector,
     private readonly  viewContainerRef: ViewContainerRef,
-    private readonly windowInstance: LoadingIndicatorService
+    private readonly windowInstance: LoadingIndicatorService,
+    private readonly zone: NgZone
   ) {
     this.context = context;
-    if (this.context.template) {
-      this.portal = new TemplatePortal(this.context.template, this.viewContainerRef);
-    } else if (this.context.component) {
-      this.portal = new ComponentPortal<any>(this.context.component, this.viewContainerRef, this.injector);
-    }
+  }
+
+  public ngOnInit() {
+    this.zone.onStable.pipe(
+      take(1),
+      tap(() => {
+        this.zone.run(() => {
+          if (this.context.template) {
+            this.portal = new TemplatePortal(this.context.template, this.viewContainerRef);
+          } else if (this.context.component) {
+            this.portal = new ComponentPortal<any>(this.context.component, this.viewContainerRef, this.injector);
+          }
+        });
+      })
+    ).subscribe();
   }
 
   public ngAfterViewInit() {

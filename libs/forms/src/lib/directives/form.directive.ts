@@ -13,7 +13,8 @@ import {
   OnChanges,
   SimpleChanges,
   isDevMode,
-  SkipSelf
+  SkipSelf,
+  NgZone
 } from '@angular/core';
 import {
   ControlContainer,
@@ -49,6 +50,10 @@ import {
 import { BehaviorSubject } from 'rxjs';
 import { RxapFormBuilder } from '../form-builder';
 import { LoadingIndicatorService } from '@rxap/services';
+import {
+  take,
+  tap
+} from 'rxjs/operators';
 
 @Directive({
   selector:  'form:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',
@@ -185,7 +190,9 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
     @SkipSelf() @Optional() @Inject(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD) private readonly submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null,
     // skip self, bc the token is set to null
     @SkipSelf() @Optional() @Inject(RXAP_FORM_DEFINITION_BUILDER) private readonly formDefinitionBuilder: RxapFormBuilder | null                   = null,
-    @Optional() @Inject(LoadingIndicatorService) private readonly loadingIndicatorService: LoadingIndicatorService | null                          = null
+    @Optional() @Inject(LoadingIndicatorService) private readonly loadingIndicatorService: LoadingIndicatorService | null                          = null,
+    @Inject(NgZone)
+    private readonly zone: NgZone | null                                                                                                           = null
   ) {
     super([], []);
     if (submitMethod) {
@@ -218,7 +225,18 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
       // TODO : replace with rxap error
       throw new Error('The form definition instance is not defined');
     }
-    this.loadInitialState(this.form);
+    if (this.zone) {
+      this.zone.onStable.pipe(
+        take(1),
+        tap(() => {
+          this.zone?.run(() => {
+            this.loadInitialState(this.form);
+          });
+        })
+      ).subscribe();
+    } else {
+      this.loadInitialState(this.form);
+    }
   }
 
   private loadInitialState(form: RxapFormGroup): void {
