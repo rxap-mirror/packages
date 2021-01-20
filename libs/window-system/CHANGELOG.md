@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0](https://gitlab.com/rxap/packages/compare/@rxap/window-system@10.1.0...@rxap/window-system@10.2.0) (2021-01-20)
+
+
+### Features
+
+* add loading indicator service support ([d03e829](https://gitlab.com/rxap/packages/commit/d03e8294e082b66c73f5471b056ed4021cb1310d))
+
+
+
+
+
 # [10.1.0](https://gitlab.com/rxap/packages/compare/@rxap/window-system@10.0.2...@rxap/window-system@10.1.0) (2021-01-20)
 
 
