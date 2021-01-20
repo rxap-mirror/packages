@@ -36,7 +36,7 @@ import {
   throwError,
   isObservable
 } from 'rxjs';
-import { WindowInstanceService } from '../window-instance.service';
+import { LoadingIndicatorService } from '@rxap/services';
 
 @Component({
   selector:        'rxap-window-content',
@@ -60,7 +60,7 @@ export class WindowContentComponent implements AfterViewInit {
     private readonly windowRef: WindowRef,
     private readonly  injector: Injector,
     private readonly  viewContainerRef: ViewContainerRef,
-    private readonly windowInstance: WindowInstanceService
+    private readonly windowInstance: LoadingIndicatorService
   ) {
     this.context = context;
     if (this.context.template) {

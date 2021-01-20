@@ -34,7 +34,7 @@ import { DefaultWindowComponent } from './default-window/default-window.componen
 import { uuid } from '@rxap/utilities';
 import { GetWindowStartPos } from './utilities';
 import { Subject } from 'rxjs';
-import { WindowInstanceService } from './window-instance.service';
+import { LoadingIndicatorService } from '@rxap/services';
 
 @Injectable({ providedIn: 'root' })
 export class WindowService {
@@ -120,8 +120,8 @@ export class WindowService {
           useValue: windowRef
         },
         {
-          provide:  WindowInstanceService,
-          useClass: WindowInstanceService
+          provide:  LoadingIndicatorService,
+          useClass: LoadingIndicatorService
         }
       ],
       name:      windowConfig?.injectorName ?? 'WindowService'
