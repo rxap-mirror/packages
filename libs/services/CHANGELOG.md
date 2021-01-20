@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0](https://gitlab.com/rxap/packages/compare/@rxap/services@10.0.1...@rxap/services@10.1.0) (2021-01-20)
+
+
+### Features
+
+* add loading indicator service support ([d03e829](https://gitlab.com/rxap/packages/commit/d03e8294e082b66c73f5471b056ed4021cb1310d))
+
+
+
+
+
 ## [10.0.1](https://gitlab.com/rxap/packages/compare/@rxap/services@10.0.0...@rxap/services@10.0.1) (2021-01-06)
 
 **Note:** Version bump only for package @rxap/services
