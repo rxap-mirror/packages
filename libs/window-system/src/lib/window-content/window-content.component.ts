@@ -88,6 +88,7 @@ export class WindowContentComponent implements AfterViewInit, OnInit {
       startWith(this.portalOutlet.attachedRef),
       isDefined(),
       take(1),
+      tap(attachedRef => this.windowRef.setAttachedRef(attachedRef)),
       tap(attachedRef => {
         const promise: Promise<any>[] = [];
         if (attachedRef instanceof ComponentRef) {
@@ -104,9 +105,12 @@ export class WindowContentComponent implements AfterViewInit, OnInit {
               delay(100),
               tap(() => attachedRef.changeDetectorRef.detectChanges())
             ).toPromise());
+          } else {
+            this.windowInstance.loading$.disable();
           }
+        } else {
+          this.windowInstance.loading$.disable();
         }
-        this.windowRef.setAttachedRef(attachedRef);
         return Promise.all(promise);
       }),
       timeout(10000),

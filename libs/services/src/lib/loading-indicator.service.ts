@@ -15,7 +15,7 @@ import {
 @Injectable()
 export class LoadingIndicatorService implements OnDestroy {
 
-  public readonly loading$ = new ToggleSubject(false);
+  public readonly loading$ = new ToggleSubject(true);
 
   private readonly _attachedLoadingSubscription = new Subscription();
 
