@@ -1,6 +1,5 @@
 module.exports = {
   projects: [
-    '<rootDir>/apps/testing',
     '<rootDir>/libs/utilities',
     '<rootDir>/libs/data-source',
     '<rootDir>/libs/window-system',
@@ -25,7 +24,6 @@ module.exports = {
     '<rootDir>/libs/definition',
     '<rootDir>/libs/plugin/pack',
     '<rootDir>/libs/plugin/scss-bundle',
-    '<rootDir>/apps/pwa',
     '<rootDir>/libs/form-system',
     '<rootDir>/libs/plugin/readme-generator',
     '<rootDir>/libs/plugin/kaniko',
