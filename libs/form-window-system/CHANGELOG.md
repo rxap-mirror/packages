@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@11.0.3...@rxap/form-window-system@11.0.4) (2021-01-21)
+
+
+### Bug Fixes
+
+* stream line loading ([fa74558](https://gitlab.com/rxap/packages/commit/fa745582bb06e2af69aee9ee6e1f25e09f4550fe))
+
+
+
+
+
 ## [11.0.3](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@11.0.2...@rxap/form-window-system@11.0.3) (2021-01-15)
 
 **Note:** Version bump only for package @rxap/form-window-system
