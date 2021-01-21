@@ -17,9 +17,11 @@ async function update() {
     const rel = relative(pkg.location, pkg.rootPath);
 
     parsed.scripts.prepublish = `yarn --cwd ${rel}/ nx run ${name}:pack --with-deps`;
-    parsed.scripts.version = `node ${rel}/tools/update-dependencies.js $PWD`;
+    if (parsed.scripts.version) {
+      delete parsed.scripts.version;
+    }
     parsed.scripts.preversion = `yarn --cwd ${rel}/ nx run ${name}:pack --with-deps`;
-    parsed.publishConfig = { directory: `${rel}/dist/libs/${namePath}` };
+    parsed.publishConfig = { directory: `${rel}/dist/${relative(pkg.rootPath, pkg.location)}` };
 
     writeFileSync(pkg.manifestLocation, JSON.stringify(parsed, undefined, 2));
   }

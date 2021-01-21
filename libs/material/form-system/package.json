@@ -34,10 +34,9 @@
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../../ nx run material-form-system:pack --with-deps",
-    "version": "node ../../../tools/update-dependencies.js $PWD",
     "preversion": "yarn --cwd ../../../ nx run material-form-system:pack --with-deps"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/material-form-system"
+    "directory": "../../../dist/libs/material/form-system"
   }
 }

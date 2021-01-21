@@ -6,10 +6,9 @@
   "builders": "./builders.json",
   "scripts": {
     "prepublish": "yarn --cwd ../../../ nx run plugin-kaniko:pack --with-deps",
-    "version": "node ../../../tools/update-dependencies.js $PWD",
     "preversion": "yarn --cwd ../../../ nx run plugin-kaniko:pack --with-deps"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/plugin-kaniko"
+    "directory": "../../../dist/libs/plugin/kaniko"
   }
 }

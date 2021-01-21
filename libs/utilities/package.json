@@ -32,7 +32,6 @@
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../ nx run utilities:pack --with-deps",
-    "version": "node ../../tools/update-dependencies.js $PWD",
     "preversion": "yarn --cwd ../../ nx run utilities:pack --with-deps"
   },
   "publishConfig": {
