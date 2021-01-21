@@ -14,6 +14,7 @@ export class ToggleSubject extends BehaviorSubject<boolean> {
 
   constructor(value: boolean = false) {
     super(value);
+    this.next = this.next.bind(this);
   }
 
   public toggle(): void {
