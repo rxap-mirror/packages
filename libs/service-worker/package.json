@@ -21,7 +21,7 @@
     "@angular/router": "^11.0.5",
     "@angular/service-worker": "^11.0.5",
     "@rxap/life-cycle": ">=11.0.2",
-    "@rxap/utilities": ">=11.0.1"
+    "@rxap/utilities": ">=11.0.3"
   },
   "dependencies": {
     "tslib": "2.0.1"

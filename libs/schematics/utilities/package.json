@@ -3,7 +3,7 @@
   "version": "11.0.2",
   "peerDependencies": {
     "@rxap/mixin": ">=11.0.3",
-    "@rxap/utilities": ">=11.0.2",
+    "@rxap/utilities": ">=11.0.3",
     "@rxap/xml-parser": ">=11.0.2",
     "rxjs": "^6.5.5"
   },

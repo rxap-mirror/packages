@@ -8,7 +8,7 @@
     "@angular/core": "^11.0.5",
     "@angular/material": "^11.0.3",
     "@angular/platform-browser": "^11.0.5",
-    "@rxap/utilities": ">=11.0.1",
+    "@rxap/utilities": ">=11.0.3",
     "rxjs": "^6.5.5"
   },
   "dependencies": {
