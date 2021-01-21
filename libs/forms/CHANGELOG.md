@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.1.1...@rxap/forms@11.0.5) (2021-01-21)
+
+
+### Bug Fixes
+
+* **RxapFormControl:** update to new Angular FormControl API ([372e4ae](https://gitlab.com/rxap/packages/commit/372e4aec82082e1ef60c632a05df87bcc5791355))
+
+
+### Reverts
+
+* fix: run loading task detected ([eb73683](https://gitlab.com/rxap/packages/commit/eb73683802a58a25839c77d6e50579c5610024be))
+
+
+
+
+
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@11.0.3...@rxap/forms@11.0.4) (2021-01-15)
 
 **Note:** Version bump only for package @rxap/forms
