@@ -7,7 +7,9 @@ import {
   ViewChild,
   AfterViewInit,
   ComponentRef,
-  isDevMode
+  isDevMode,
+  OnInit,
+  NgZone
 } from '@angular/core';
 import {
   RXAP_WINDOW_CONTAINER_CONTEXT,
@@ -26,13 +28,17 @@ import {
   take,
   tap,
   timeout,
-  catchError
+  catchError,
+  filter,
+  delay
 } from 'rxjs/operators';
 import { isDefined } from '@rxap/utilities';
 import {
   TimeoutError,
-  throwError
+  throwError,
+  isObservable
 } from 'rxjs';
+import { LoadingIndicatorService } from '@rxap/services';
 
 @Component({
   selector:        'rxap-window-content',
@@ -40,7 +46,7 @@ import {
   styleUrls:       [ './window-content.component.scss' ],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WindowContentComponent implements AfterViewInit {
+export class WindowContentComponent implements AfterViewInit, OnInit {
 
   public context: WindowContainerContext<any>;
 
@@ -55,14 +61,26 @@ export class WindowContentComponent implements AfterViewInit {
     @Inject(RXAP_WINDOW_REF)
     private readonly windowRef: WindowRef,
     private readonly  injector: Injector,
-    private readonly  viewContainerRef: ViewContainerRef
+    private readonly  viewContainerRef: ViewContainerRef,
+    private readonly windowInstance: LoadingIndicatorService,
+    private readonly zone: NgZone
   ) {
     this.context = context;
-    if (this.context.template) {
-      this.portal = new TemplatePortal(this.context.template, this.viewContainerRef);
-    } else if (this.context.component) {
-      this.portal = new ComponentPortal<any>(this.context.component, this.viewContainerRef, this.injector);
-    }
+  }
+
+  public ngOnInit() {
+    this.zone.onStable.pipe(
+      take(1),
+      tap(() => {
+        this.zone.run(() => {
+          if (this.context.template) {
+            this.portal = new TemplatePortal(this.context.template, this.viewContainerRef);
+          } else if (this.context.component) {
+            this.portal = new ComponentPortal<any>(this.context.component, this.viewContainerRef, this.injector);
+          }
+        });
+      })
+    ).subscribe();
   }
 
   public ngAfterViewInit() {
@@ -70,11 +88,30 @@ export class WindowContentComponent implements AfterViewInit {
       startWith(this.portalOutlet.attachedRef),
       isDefined(),
       take(1),
+      tap(attachedRef => this.windowRef.setAttachedRef(attachedRef)),
       tap(attachedRef => {
+        const promise: Promise<any>[] = [];
         if (attachedRef instanceof ComponentRef) {
           attachedRef.changeDetectorRef.detectChanges();
+          const loading$ = attachedRef.instance.loading$;
+          if (loading$ && isObservable(loading$)) {
+            if (isDevMode()) {
+              console.warn('The component has a loading indicator member');
+            }
+            this.windowInstance.attachLoading(loading$);
+            promise.push(loading$.pipe(
+              filter(Boolean),
+              take(1),
+              delay(100),
+              tap(() => attachedRef.changeDetectorRef.detectChanges())
+            ).toPromise());
+          } else {
+            this.windowInstance.loading$.disable();
+          }
+        } else {
+          this.windowInstance.loading$.disable();
         }
-        this.windowRef.setAttachedRef(attachedRef);
+        return Promise.all(promise);
       }),
       timeout(10000),
       catchError(error => {
