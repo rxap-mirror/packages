@@ -36,11 +36,10 @@
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../../ nx run material-table-system:pack --with-deps",
-    "version": "node ../../../tools/update-dependencies.js $PWD",
     "preversion": "yarn --cwd ../../../ nx run material-table-system:pack --with-deps"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/material-table-system"
+    "directory": "../../../dist/libs/material/table-system"
   },
   "gitHead": "e75f92d806744f93d00f5abf69fb80cfec0ccace"
 }

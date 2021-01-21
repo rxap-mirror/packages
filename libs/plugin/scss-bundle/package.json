@@ -32,10 +32,9 @@
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../../ nx run plugin-scss-bundle:pack --with-deps",
-    "version": "node ../../../tools/update-dependencies.js $PWD",
     "preversion": "yarn --cwd ../../../ nx run plugin-scss-bundle:pack --with-deps"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/plugin-scss-bundle"
+    "directory": "../../../dist/libs/plugin/scss-bundle"
   }
 }
