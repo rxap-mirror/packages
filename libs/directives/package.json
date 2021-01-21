@@ -21,8 +21,8 @@
     "@angular/material": "^11.0.3",
     "@angular/platform-browser": "^11.0.5",
     "@angular/router": "^11.0.5",
-    "@rxap/services": ">=11.0.1",
-    "@rxap/utilities": ">=11.0.1"
+    "@rxap/services": ">=11.0.3",
+    "@rxap/utilities": ">=11.0.3"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {

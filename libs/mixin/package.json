@@ -16,7 +16,7 @@
   "description": "A collection of typescript decorators.",
   "license": "MIT",
   "peerDependencies": {
-    "@rxap/utilities": ">=11.0.1",
+    "@rxap/utilities": ">=11.0.3",
     "reflect-metadata": "^0.1.13"
   },
   "schematics": "./schematics/collection.json",
