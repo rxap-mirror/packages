@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.1.1...@rxap/forms@10.1.2) (2021-01-26)
+
+
+### Reverts
+
+* fix: run loading task detected ([eb73683](https://gitlab.com/rxap/packages/commit/eb73683802a58a25839c77d6e50579c5610024be))
+
+
+
+
+
 ## [10.1.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.1.0...@rxap/forms@10.1.1) (2021-01-20)
 
 

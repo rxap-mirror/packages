@@ -1,6 +1,6 @@
 {
   "name": "@rxap/window-system",
-  "version": "10.2.1",
+  "version": "10.2.2",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -26,7 +26,7 @@
     "@angular/router": "^10.0.6",
     "@rxap/components": ">=10.0.1",
     "@rxap/directives": ">=10.0.3",
-    "@rxap/services": ">=10.1.0",
+    "@rxap/services": ">=10.1.1",
     "@rxap/utilities": ">=10.1.1",
     "rxjs": "^6.5.5"
   },
