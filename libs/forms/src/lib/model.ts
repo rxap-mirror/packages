@@ -35,6 +35,12 @@ export interface RxapAbstractControlOptionsWithDefinition extends RxapAbstractCo
 
 export interface FormDefinition<T extends Record<string, any> = any, E extends object = any> {
   rxapFormGroup: RxapFormGroup<T, E>;
+
+  /**
+   * The Reuse hook is called when the instance is reused.
+   * And can be used to reset or alter the local state of the instance.
+   */
+  rxapReuse?(): void
 }
 
 export interface FormDefinitionArray<T> extends Array<T> {

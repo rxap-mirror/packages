@@ -116,6 +116,10 @@ export class FormControlsComponent<FormData> implements OnInit {
       submitHandle = submitHandle.pipe(
         tap(() => this.close.emit(this._submitted.length > 1 ? this._submitted : this._submitted[ 0 ]))
       );
+    } else {
+      if (typeof this.formDirective.formDefinition.rxapReuse === 'function') {
+        this.formDirective.formDefinition.rxapReuse();
+      }
     }
 
     submitSubscription = submitHandle.pipe(
