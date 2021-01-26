@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.1.2...@rxap/forms@10.2.0) (2021-01-26)
+
+
+### Features
+
+* add the reused hook to the form definition ([bfe183a](https://gitlab.com/rxap/packages/commit/bfe183a44e1f3954fd4037f1664eafad103f4555))
+
+
+
+
+
 ## [10.1.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.1.1...@rxap/forms@10.1.2) (2021-01-26)
 
 
