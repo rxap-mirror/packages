@@ -69,18 +69,11 @@ export class WindowContentComponent implements AfterViewInit, OnInit {
   }
 
   public ngOnInit() {
-    this.zone.onStable.pipe(
-      take(1),
-      tap(() => {
-        this.zone.run(() => {
-          if (this.context.template) {
-            this.portal = new TemplatePortal(this.context.template, this.viewContainerRef);
-          } else if (this.context.component) {
-            this.portal = new ComponentPortal<any>(this.context.component, this.viewContainerRef, this.injector);
-          }
-        });
-      })
-    ).subscribe();
+    if (this.context.template) {
+      this.portal = new TemplatePortal(this.context.template, this.viewContainerRef);
+    } else if (this.context.component) {
+      this.portal = new ComponentPortal<any>(this.context.component, this.viewContainerRef, this.injector);
+    }
   }
 
   public ngAfterViewInit() {
