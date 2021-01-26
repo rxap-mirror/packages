@@ -1,6 +1,6 @@
 {
   "name": "@rxap-material/form-system",
-  "version": "10.0.3",
+  "version": "10.1.0",
   "peerDependencies": {
     "@angular/common": "^10.0.6",
     "@angular/core": "^10.0.6",
@@ -10,9 +10,9 @@
     "@angular/router": "^10.0.6",
     "@rxap-schematics/utilities": ">=10.0.0",
     "@rxap/definition": ">=10.0.1",
-    "@rxap/forms": ">=10.0.1",
+    "@rxap/forms": ">=10.2.0",
     "@rxap/mixin": ">=10.0.1",
-    "@rxap/utilities": ">=10.0.0",
+    "@rxap/utilities": ">=10.1.1",
     "@rxap/xml-parser": ">=10.0.1",
     "rxjs": "^6.5.5"
   },
