@@ -110,24 +110,20 @@ export class FormControlsComponent<FormData> implements OnInit {
       tap(() => this.snackBar.open($localize`:@@rxap-material.form-system.form-controls.form-is-invalid:Form is not valid`, 'ok', { duration: 5000 }))
     ).subscribe();
 
-    let submitHandle = this.formDirective.rxapSubmit.pipe(
+    submitSubscription = this.formDirective.rxapSubmit.pipe(
       take(1),
       map(value => clone(value)),
       tap(value => this._submitted.push(value)),
-      tap(value => this.submitted.emit(value))
-    );
-
-    if (closeAfterSubmit) {
-      submitHandle = submitHandle.pipe(
-        tap(() => this.close.emit(this._submitted.length > 1 ? this._submitted : this._submitted[ 0 ]))
-      );
-    } else {
-      if (typeof this.formDirective.formDefinition.rxapReuse === 'function') {
-        this.formDirective.formDefinition.rxapReuse();
-      }
-    }
-
-    submitSubscription = submitHandle.pipe(
+      tap(value => this.submitted.emit(value)),
+      tap(() => {
+        if (closeAfterSubmit) {
+          this.close.emit(this._submitted.length > 1 ? this._submitted : this._submitted[ 0 ]);
+        } else {
+          if (typeof this.formDirective.formDefinition.rxapReuse === 'function') {
+            this.formDirective.formDefinition.rxapReuse();
+          }
+        }
+      }),
       tap(() => invalidSubmitSubscription.unsubscribe()),
       tap(() => this.invalid = false),
       tap(() => this.cdr.detectChanges())
