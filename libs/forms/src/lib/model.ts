@@ -25,7 +25,7 @@ export interface InjectableValidator {
 }
 
 export interface RxapAbstractControlOptions extends AbstractControlOptions {
-  state?: any;
+  state?: any | (() => any);
   injectValidators?: Array<Type<InjectableValidator> | InjectionToken<InjectableValidator> | AbstractType<InjectableValidator>>;
 }
 
