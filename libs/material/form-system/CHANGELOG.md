@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0](https://gitlab.com/rxap/packages/compare/@rxap-material/form-system@10.1.0...@rxap-material/form-system@10.2.0) (2021-01-29)
+
+
+### Features
+
+* **form-control:** clone submit value ([fe8dc63](https://gitlab.com/rxap/packages/commit/fe8dc63dff27677bfc96e1ab664d69672352f566))
+
+
+
+
+
 # [10.1.0](https://gitlab.com/rxap/packages/compare/@rxap-material/form-system@10.0.3...@rxap-material/form-system@10.1.0) (2021-01-26)
 
 
