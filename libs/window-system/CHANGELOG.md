@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.3.0](https://gitlab.com/rxap/packages/compare/@rxap/window-system@10.2.2...@rxap/window-system@10.3.0) (2021-01-29)
+
+
+### Features
+
+* **window-service:** add support for default window settings ([625ce4f](https://gitlab.com/rxap/packages/commit/625ce4f8cadf6196d9bfdff2a945c1d32c05fcae))
+
+
+
+
+
 ## [10.2.2](https://gitlab.com/rxap/packages/compare/@rxap/window-system@10.2.1...@rxap/window-system@10.2.2) (2021-01-26)
 
 
