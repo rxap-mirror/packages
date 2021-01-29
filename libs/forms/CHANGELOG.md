@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.3.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.2.0...@rxap/forms@10.3.0) (2021-01-29)
+
+
+### Features
+
+* **form-builder:** add support for function initial state ([adbd89b](https://gitlab.com/rxap/packages/commit/adbd89bcd5918bb81aca033fd2742487bbce23d0))
+
+
+
+
+
 # [10.2.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.1.2...@rxap/forms@10.2.0) (2021-01-26)
 
 
