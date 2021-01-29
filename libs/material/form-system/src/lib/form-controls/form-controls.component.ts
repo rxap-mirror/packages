@@ -13,10 +13,14 @@ import {
   Observable,
   Subscription
 } from 'rxjs';
-import { coerceBoolean } from '@rxap/utilities';
+import {
+  coerceBoolean,
+  clone
+} from '@rxap/utilities';
 import {
   take,
-  tap
+  tap,
+  map
 } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -108,6 +112,7 @@ export class FormControlsComponent<FormData> implements OnInit {
 
     let submitHandle = this.formDirective.rxapSubmit.pipe(
       take(1),
+      map(value => clone(value)),
       tap(value => this._submitted.push(value)),
       tap(value => this.submitted.emit(value))
     );
