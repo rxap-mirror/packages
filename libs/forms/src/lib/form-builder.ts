@@ -441,7 +441,10 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
     if (builderFormState && builderFormState[ controlId ] !== undefined) {
       formState = builderFormState[ controlId ];
     } else if (optionsFormState !== undefined) {
-      formState = optionsFormState;
+      if (typeof optionsFormState === 'function') {
+        formState = optionsFormState() ?? null;
+      }
+      formState = optionsFormState ?? null;
     }
 
     return formState;
