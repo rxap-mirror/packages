@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.2.1](https://gitlab.com/rxap/packages/compare/@rxap-material/form-system@10.2.0...@rxap-material/form-system@10.2.1) (2021-01-29)
+
+
+### Bug Fixes
+
+* **form-control:** handle reuse hook after the submit is completed ([254df30](https://gitlab.com/rxap/packages/commit/254df302004c710b155c7df487aec04b2493144d))
+
+
+
+
+
 # [10.2.0](https://gitlab.com/rxap/packages/compare/@rxap-material/form-system@10.1.0...@rxap-material/form-system@10.2.0) (2021-01-29)
 
 
