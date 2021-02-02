@@ -4,8 +4,10 @@
       <ng-template [cdkPortalOutlet]="titlePortal"></ng-template>
     </ng-template>
     <ng-template #titleFromSettings>
-      <mat-icon *ngIf="windowRef.settings.icon" [svgIcon]="windowRef.settings.icon" fxFlex="40px"></mat-icon>
-      <h3 *ngIf="windowRef.settings.title" fxFlex="nogrow">{{windowRef.settings.title}}</h3>
+      <ng-template [ngIf]="windowRef.settings$ | async" let-settings>
+        <mat-icon *ngIf="settings.icon" [rxapIcon]="settings.icon" fxFlex="40px"></mat-icon>
+        <h3 *ngIf="settings.title" fxFlex="nogrow">{{settings.title}}</h3>
+      </ng-template>
     </ng-template>
   </div>
   <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start center">
