@@ -6,7 +6,8 @@ import {
   Input,
   OnInit,
   Output,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  isDevMode
 } from '@angular/core';
 import { FormDirective } from '@rxap/forms';
 import {
@@ -58,6 +59,8 @@ export class FormControlsComponent<FormData> implements OnInit {
 
   @Output()
   public submitted = new EventEmitter<FormData>();
+
+  public isDevMode = isDevMode();
 
   /**
    * Collection of successful submitted values
@@ -130,6 +133,10 @@ export class FormControlsComponent<FormData> implements OnInit {
     ).subscribe();
 
     this.formDirective.onSubmit(new Event('submit'));
+  }
+
+  public logCurrentFormState() {
+    console.log(clone(this.formDirective.form.value));
   }
 
 }
