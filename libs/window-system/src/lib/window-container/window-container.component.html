@@ -26,7 +26,7 @@
     <ng-template [cdkPortalOutlet]="footerPortal"></ng-template>
   </mat-toolbar>
 
-  <mat-progress-bar mode="indeterminate" *ngIf="windowInstance.loading$ | async"></mat-progress-bar>
+  <mat-progress-bar mode="indeterminate" *ngIf="windowInstance.isLoading$ | async"></mat-progress-bar>
 
   <rxap-window-resizer [containerRef]="containerRef"></rxap-window-resizer>
 
