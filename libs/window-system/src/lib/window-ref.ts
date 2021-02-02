@@ -50,6 +50,8 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
    */
   public titlePortal$ = new ReplaySubject<Portal<any>>(1);
 
+  public settings$ = new ReplaySubject<WindowSettings>(1);
+
   constructor(
     public readonly overlayRef: OverlayRef,
     private readonly overlay: Overlay,
@@ -177,6 +179,8 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
   public setAttachedRef(attachedRef: ComponentRef<any> | EmbeddedViewRef<any>) {
     if (attachedRef instanceof ComponentRef) {
       this.updateWindowSettings(attachedRef);
+    } else {
+      this.updateWindowSettings();
     }
     this.attachedRef$.next(attachedRef);
   }
@@ -187,12 +191,12 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
    * the settings
    * @private
    */
-  private updateWindowSettings(componentRef: ComponentRef<any>) {
-    const settings = componentRef.injector.get(RXAP_WINDOW_SETTINGS, null, InjectFlags.Optional);
+  private updateWindowSettings(componentRef?: ComponentRef<any>) {
+    const settings = componentRef?.injector.get(RXAP_WINDOW_SETTINGS, null, InjectFlags.Optional) ?? this.settings;
     if (settings) {
       // prevent change diction error: ExpressionChangedAfterItHasBeenCheckedError
       setTimeout(() => {
-        this.settings = Object.assign({}, this.settings, settings);
+        this.settings$.next(Object.assign({}, this.settings, settings));
       });
     }
   }
