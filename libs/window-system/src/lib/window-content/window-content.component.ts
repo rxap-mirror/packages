@@ -8,8 +8,7 @@ import {
   AfterViewInit,
   ComponentRef,
   isDevMode,
-  OnInit,
-  NgZone
+  OnInit
 } from '@angular/core';
 import {
   RXAP_WINDOW_CONTAINER_CONTEXT,
@@ -62,8 +61,7 @@ export class WindowContentComponent implements AfterViewInit, OnInit {
     private readonly windowRef: WindowRef,
     private readonly  injector: Injector,
     private readonly  viewContainerRef: ViewContainerRef,
-    private readonly windowInstance: LoadingIndicatorService,
-    private readonly zone: NgZone
+    private readonly loadingIndicatorService: LoadingIndicatorService
   ) {
     this.context = context;
   }
@@ -91,7 +89,7 @@ export class WindowContentComponent implements AfterViewInit, OnInit {
             if (isDevMode()) {
               console.warn('The component has a loading indicator member');
             }
-            this.windowInstance.attachLoading(loading$);
+            this.loadingIndicatorService.attachLoading(loading$);
             promise.push(loading$.pipe(
               filter(Boolean),
               take(1),
@@ -99,10 +97,10 @@ export class WindowContentComponent implements AfterViewInit, OnInit {
               tap(() => attachedRef.changeDetectorRef.detectChanges())
             ).toPromise());
           } else {
-            this.windowInstance.loading$.disable();
+            this.loadingIndicatorService.disable();
           }
         } else {
-          this.windowInstance.loading$.disable();
+          this.loadingIndicatorService.disable();
         }
         return Promise.all(promise);
       }),
