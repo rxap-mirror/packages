@@ -169,7 +169,13 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
   }
 
   public reset(formState?: OrBoxedValue<T>, options?: ControlEventOptions): void {
-    super.reset(formState ?? this.initialState, options);
+    const newState = formState ?? this.initialState;
+
+    if (typeof newState === 'function') {
+      super.reset((newState as any)(), options);
+    } else {
+      super.reset(newState, options);
+    }
   }
 
   public setValidators(newValidator: Validator, updateValueAndValidity: boolean = true): void {
