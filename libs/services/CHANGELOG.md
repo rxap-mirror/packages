@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.2](https://gitlab.com/rxap/packages/compare/@rxap/services@10.1.1...@rxap/services@10.1.2) (2021-02-02)
+
+
+### Bug Fixes
+
+* **loading-indicator:** prevent ExpressionChangedAfterItHasBeenCheckedError ([dcbe3eb](https://gitlab.com/rxap/packages/commit/dcbe3ebb6ad87c0ad128db712e9a658c25f38f06))
+
+
+
+
+
 ## [10.1.1](https://gitlab.com/rxap/packages/compare/@rxap/services@10.1.0...@rxap/services@10.1.1) (2021-01-26)
 
 
