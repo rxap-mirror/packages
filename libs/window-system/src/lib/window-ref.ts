@@ -163,11 +163,15 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
    * @param portal
    */
   public setFooterPortal(portal: Portal<any>) {
-    this.footerPortal$.next(portal);
+    setTimeout(() => {
+      this.footerPortal$.next(portal);
+    });
   }
 
   public setTitlePortal(portal: Portal<any>) {
-    this.titlePortal$.next(portal);
+    setTimeout(() => {
+      this.titlePortal$.next(portal);
+    });
   }
 
   public setAttachedRef(attachedRef: ComponentRef<any> | EmbeddedViewRef<any>) {
