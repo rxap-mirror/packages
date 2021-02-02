@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.2.2](https://gitlab.com/rxap/packages/compare/@rxap-material/form-system@10.2.1...@rxap-material/form-system@10.2.2) (2021-02-02)
+
+
+### Bug Fixes
+
+* **form-controls:** add form state logger ([8e98195](https://gitlab.com/rxap/packages/commit/8e98195dece3ac4a2a026a83ebb27dddad4cbc64))
+
+
+
+
+
 ## [10.2.1](https://gitlab.com/rxap/packages/compare/@rxap-material/form-system@10.2.0...@rxap-material/form-system@10.2.1) (2021-01-29)
 
 
