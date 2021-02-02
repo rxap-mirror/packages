@@ -186,7 +186,10 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
   private updateWindowSettings(componentRef: ComponentRef<any>) {
     const settings = componentRef.injector.get(RXAP_WINDOW_SETTINGS, null, InjectFlags.Optional);
     if (settings) {
-      this.settings = Object.assign({}, this.settings, settings);
+      // prevent change diction error: ExpressionChangedAfterItHasBeenCheckedError
+      setTimeout(() => {
+        this.settings = Object.assign({}, this.settings, settings);
+      });
     }
   }
 
