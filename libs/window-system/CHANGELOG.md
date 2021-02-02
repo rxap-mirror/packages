@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.1](https://gitlab.com/rxap/packages/compare/@rxap/window-system@10.3.0...@rxap/window-system@10.3.1) (2021-02-02)
+
+
+### Bug Fixes
+
+* **loading-indicator:** prevent ExpressionChangedAfterItHasBeenCheckedError ([ba2195f](https://gitlab.com/rxap/packages/commit/ba2195f7a3941ab48b15f9b900e888211f61bbac))
+* **loading-indicator:** prevent ExpressionChangedAfterItHasBeenCheckedError ([dcbe3eb](https://gitlab.com/rxap/packages/commit/dcbe3ebb6ad87c0ad128db712e9a658c25f38f06))
+
+
+
+
+
 # [10.3.0](https://gitlab.com/rxap/packages/compare/@rxap/window-system@10.2.2...@rxap/window-system@10.3.0) (2021-01-29)
 
 
