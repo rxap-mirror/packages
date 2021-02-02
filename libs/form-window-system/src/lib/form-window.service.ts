@@ -21,7 +21,8 @@ import {
   RXAP_FORM_SUBMIT_METHOD,
   RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
   FormSubmitSuccessfulMethod,
-  RXAP_FORM_LOAD_METHOD
+  RXAP_FORM_LOAD_METHOD,
+  FormLoadMethod
 } from '@rxap/forms';
 import {
   Constructor,
@@ -37,6 +38,7 @@ export interface FormWindowOptions<FormData, D = any, T = any> extends WindowCon
   providers?: StaticProvider[];
   resetLoad?: boolean;
   resetSubmit?: boolean;
+  loadMethod?: FormLoadMethod<FormData>;
 }
 
 @Injectable({
@@ -98,10 +100,16 @@ export class FormWindowService {
           useValue: null
         });
       }
-      if (options.resetLoad) {
+      if (options.resetLoad && !options.loadMethod) {
         providers.push({
           provide:  RXAP_FORM_LOAD_METHOD,
           useValue: null
+        });
+      }
+      if (options.loadMethod) {
+        providers.push({
+          provide:  RXAP_FORM_LOAD_METHOD,
+          useValue: options.loadMethod
         });
       }
     }
