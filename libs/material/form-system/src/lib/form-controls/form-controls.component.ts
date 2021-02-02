@@ -20,8 +20,7 @@ import {
 } from '@rxap/utilities';
 import {
   take,
-  tap,
-  map
+  tap
 } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -115,10 +114,12 @@ export class FormControlsComponent<FormData> implements OnInit {
 
     submitSubscription = this.formDirective.rxapSubmit.pipe(
       take(1),
-      map(value => clone(value)),
-      tap(value => this._submitted.push(value)),
-      tap(value => this.submitted.emit(value)),
-      tap(() => {
+      tap(value => {
+
+        const clonedValue = clone(value);
+        this._submitted.push(clonedValue);
+        this.submitted.emit(clonedValue);
+
         if (closeAfterSubmit) {
           this.close.emit(this._submitted.length > 1 ? this._submitted : this._submitted[ 0 ]);
         } else {
@@ -126,10 +127,11 @@ export class FormControlsComponent<FormData> implements OnInit {
             this.formDirective.formDefinition.rxapReuse();
           }
         }
-      }),
-      tap(() => invalidSubmitSubscription.unsubscribe()),
-      tap(() => this.invalid = false),
-      tap(() => this.cdr.detectChanges())
+
+        invalidSubmitSubscription.unsubscribe();
+        this.invalid = false;
+        this.cdr.detectChanges();
+      })
     ).subscribe();
 
     this.formDirective.onSubmit(new Event('submit'));
