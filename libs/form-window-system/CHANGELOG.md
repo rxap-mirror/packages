@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@10.0.2...@rxap/form-window-system@10.1.0) (2021-02-02)
+
+
+### Features
+
+* **form-window-service:** add support for custom form load method ([45ec319](https://gitlab.com/rxap/packages/commit/45ec319e4f7d7dd1ded6cae3795d838be41e8f38))
+
+
+
+
+
 ## [10.0.2](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@10.0.1...@rxap/form-window-system@10.0.2) (2021-01-26)
 
 
