@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.3.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.3.0...@rxap/forms@10.3.1) (2021-02-02)
+
+
+### Bug Fixes
+
+* **form-control:** ensure state function execution ([3bbc480](https://gitlab.com/rxap/packages/commit/3bbc480540fc68d3d48c50bdaf67ac7481b15c7d))
+
+
+
+
+
 # [10.3.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.2.0...@rxap/forms@10.3.0) (2021-01-29)
 
 

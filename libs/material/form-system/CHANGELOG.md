@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.2.3](https://gitlab.com/rxap/packages/compare/@rxap-material/form-system@10.2.2...@rxap-material/form-system@10.2.3) (2021-02-02)
+
+
+### Bug Fixes
+
+* **form-controls:** simplify submit handler ([f0871d7](https://gitlab.com/rxap/packages/commit/f0871d726ce08a49c3a397d45fbcb1ba4dfb1e23))
+
+
+
+
+
 ## [10.2.2](https://gitlab.com/rxap/packages/compare/@rxap-material/form-system@10.2.1...@rxap-material/form-system@10.2.2) (2021-02-02)
 
 
