@@ -62,7 +62,7 @@ export interface BoxedValue<T> {
   disabled?: boolean;
 }
 
-export type OrBoxedValue<T> = T | BoxedValue<T>;
+export type OrBoxedValue<T> = T | BoxedValue<T> | (() => T);
 
 type ArrayType<T> = T extends Array<infer R> ? R : any;
 
