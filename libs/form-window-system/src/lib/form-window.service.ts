@@ -22,7 +22,8 @@ import {
   RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
   FormSubmitSuccessfulMethod,
   RXAP_FORM_LOAD_METHOD,
-  FormLoadMethod
+  FormLoadMethod,
+  RXAP_FORM_CONTEXT
 } from '@rxap/forms';
 import {
   Constructor,
@@ -30,7 +31,6 @@ import {
   DeleteUndefinedProperties
 } from '@rxap/utilities';
 import { FormSystemMetadataKeys } from '@rxap/form-system';
-import { RXAP_FORM_WINDOW_CONTEXT } from './tokens';
 
 export interface FormWindowOptions<FormData, D = any, T = any> extends WindowConfig<D, T> {
   initial?: FormData;
@@ -121,7 +121,7 @@ export class FormWindowService {
       }
       if (options.context) {
         providers.push({
-          provide:  RXAP_FORM_WINDOW_CONTEXT,
+          provide:  RXAP_FORM_CONTEXT,
           useValue: options.context
         });
       }
