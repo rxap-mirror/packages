@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.4.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.3.2...@rxap/forms@10.4.0) (2021-02-03)
+
+
+### Features
+
+* add support for the form context token ([6ce4aed](https://gitlab.com/rxap/packages/commit/6ce4aed51c369336db8032fbcedf37e9b4bcd7d9))
+
+
+
+
+
 ## [10.3.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.3.1...@rxap/forms@10.3.2) (2021-02-02)
 
 
