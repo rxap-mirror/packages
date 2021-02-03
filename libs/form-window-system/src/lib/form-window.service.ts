@@ -30,6 +30,7 @@ import {
   DeleteUndefinedProperties
 } from '@rxap/utilities';
 import { FormSystemMetadataKeys } from '@rxap/form-system';
+import { RXAP_FORM_WINDOW_CONTEXT } from './tokens';
 
 export interface FormWindowOptions<FormData, D = any, T = any> extends WindowConfig<D, T> {
   initial?: FormData;
@@ -39,6 +40,12 @@ export interface FormWindowOptions<FormData, D = any, T = any> extends WindowCon
   resetLoad?: boolean;
   resetSubmit?: boolean;
   loadMethod?: FormLoadMethod<FormData>;
+  /**
+   * Stores the context of the form window.
+   * Can be used to transfer the id or uuid of the
+   * document the is currently edited
+   */
+  context?: any;
 }
 
 @Injectable({
@@ -110,6 +117,12 @@ export class FormWindowService {
         providers.push({
           provide:  RXAP_FORM_LOAD_METHOD,
           useValue: options.loadMethod
+        });
+      }
+      if (options.context) {
+        providers.push({
+          provide:  RXAP_FORM_WINDOW_CONTEXT,
+          useValue: options.context
         });
       }
     }
