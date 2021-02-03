@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.3.0](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@10.2.0...@rxap/form-window-system@10.3.0) (2021-02-03)
+
+
+### Features
+
+* add support for the form context token ([6ce4aed](https://gitlab.com/rxap/packages/commit/6ce4aed51c369336db8032fbcedf37e9b4bcd7d9))
+
+
+
+
+
 # [10.2.0](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@10.1.0...@rxap/form-window-system@10.2.0) (2021-02-03)
 
 
