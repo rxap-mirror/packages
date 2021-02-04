@@ -10,7 +10,8 @@ import {
   OnChanges,
   SimpleChanges,
   NgZone,
-  EmbeddedViewRef
+  EmbeddedViewRef,
+  AfterViewInit
 } from '@angular/core';
 import {
   DataSourceLoader,
@@ -37,7 +38,8 @@ export interface DataSourceTemplate<Data> {
   selector: '[rxapDataSource]',
   exportAs: 'rxapDataSource'
 })
-export class DataSourceDirective<Data = any> implements OnDestroy, OnChanges {
+export class DataSourceDirective<Data = any>
+  implements OnDestroy, OnChanges, AfterViewInit {
 
   @Input('rxapDataSourceFrom')
   @Required
@@ -69,8 +71,21 @@ export class DataSourceDirective<Data = any> implements OnDestroy, OnChanges {
     const dataSourceOrIdOrTokenChange = changes.dataSourceOrIdOrToken;
     if (dataSourceOrIdOrTokenChange) {
       this.dataSource = this.loadDataSource();
-      this.connect();
+      // Dont connect to the data source on the first change.
+      // Else the parent/sibling components are not initialized
+      // and the parameters from the parent/sibling components can not
+      // be used in the connect logic.
+      // Example: The PaginationDataSource required the pageSize, but the pageSize
+      // in the MatPaginator will be set after the ngOnChanges logic is called.
+      // So the initial pageSize is undefined.
+      if (!dataSourceOrIdOrTokenChange.firstChange) {
+        this.connect();
+      }
     }
+  }
+
+  public ngAfterViewInit() {
+    this.connect();
   }
 
   protected loadDataSource(): BaseDataSource<Data> | null {
