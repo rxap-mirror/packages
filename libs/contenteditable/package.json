@@ -1,9 +1,9 @@
 {
   "name": "@rxap/contenteditable",
-  "version": "11.0.2",
+  "version": "11.0.3",
   "peerDependencies": {
     "@angular/core": "^11.0.5",
-    "@rxap/utilities": ">=11.0.3",
+    "@rxap/utilities": ">=11.0.4",
     "rxjs": "^6.5.5"
   },
   "dependencies": {

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.2](https://gitlab.com/rxap/packages/compare/@rxap/sentry@11.0.1...@rxap/sentry@11.0.2) (2021-02-04)
+
+**Note:** Version bump only for package @rxap/sentry
+
+
+
+
+
 ## [11.0.1](https://gitlab.com/rxap/packages/compare/@rxap/sentry@11.0.0...@rxap/sentry@11.0.1) (2021-01-15)
 
 **Note:** Version bump only for package @rxap/sentry

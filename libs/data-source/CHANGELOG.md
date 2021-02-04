@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.3](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.0.2...@rxap/data-source@11.0.3) (2021-02-04)
+
+
+### Bug Fixes
+
+* **data-source.directive:** mv the connect logic in the ngAfterViewInit hook ([8e6f8bb](https://gitlab.com/rxap/packages/commit/8e6f8bb88fe72c57b8e3675825d561a5a19008bc))
+
+
+
+
+
 ## [11.0.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@10.0.1...@rxap/data-source@11.0.2) (2021-01-15)
 
 **Note:** Version bump only for package @rxap/data-source
