@@ -5,7 +5,6 @@ import {
   INJECTOR
 } from '@angular/core';
 import { RxapAuthenticationService } from '@rxap/authentication';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   RxapFormBuilder,
   RXAP_FORM_DEFINITION_BUILDER,
@@ -23,7 +22,13 @@ import { ConfigService } from '@rxap/config';
 import { RxapOnInit } from '@rxap/utilities';
 
 @RxapForm({
-  id: 'rxap-login'
+  id:        'rxap-login',
+  providers: [
+    {
+      provide:     ConfigService,
+      useExisting: ConfigService
+    }
+  ]
 })
 @Injectable()
 export class LoginForm implements FormDefinition, RxapOnInit {
@@ -49,8 +54,6 @@ export class LoginForm implements FormDefinition, RxapOnInit {
   public remember!: RxapFormControl;
 
   constructor(
-    public readonly authentication: RxapAuthenticationService,
-    public readonly snackBar: MatSnackBar,
     public readonly config: ConfigService<any>
   ) {}
 
@@ -62,15 +65,6 @@ export class LoginForm implements FormDefinition, RxapOnInit {
     const password = this.config.get<string>('authentication.default.password');
     if (password) {
       this.password.setValue(password);
-    }
-  }
-
-  public async forgotPassword() {
-    const successful = await this.authentication.requestPasswordReset(this.rxapFormGroup.value.email!);
-    if (successful) {
-      this.snackBar.open('FORMS.rxap-login.forgot.SNACK_BAR.SUCCESSFUL', 'ok', { duration: 2500 });
-    } else {
-      this.snackBar.open('FORMS.rxap-login.forgot.SNACK_BAR.FAILED', 'ok', { panelClass: 'snack-bar-error' });
     }
   }
 
