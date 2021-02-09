@@ -19,12 +19,14 @@ import {
   RXAP_FORM_SUBMIT_METHOD
 } from '@rxap/forms';
 import { Validators } from '@angular/forms';
+import { ConfigService } from '@rxap/config';
+import { RxapOnInit } from '@rxap/utilities';
 
 @RxapForm({
   id: 'rxap-login'
 })
 @Injectable()
-export class LoginForm implements FormDefinition {
+export class LoginForm implements FormDefinition, RxapOnInit {
 
   public rxapFormGroup!: RxapFormGroup;
 
@@ -48,8 +50,20 @@ export class LoginForm implements FormDefinition {
 
   constructor(
     public readonly authentication: RxapAuthenticationService,
-    public readonly snackBar: MatSnackBar
+    public readonly snackBar: MatSnackBar,
+    public readonly config: ConfigService<any>
   ) {}
+
+  public rxapOnInit() {
+    const email = this.config.get<string>('authentication.default.email');
+    if (email) {
+      this.email.setValue(email);
+    }
+    const password = this.config.get<string>('authentication.default.password');
+    if (password) {
+      this.password.setValue(password);
+    }
+  }
 
   public async forgotPassword() {
     const successful = await this.authentication.requestPasswordReset(this.rxapFormGroup.value.email!);
