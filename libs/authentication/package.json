@@ -1,6 +1,6 @@
 {
   "name": "@rxap/authentication",
-  "version": "10.0.1",
+  "version": "10.1.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -35,8 +35,8 @@
     "@angular/platform-browser": "^10.0.6",
     "@angular/router": "^10.0.6",
     "@rxap/definition": ">=10.0.1",
-    "@rxap/forms": ">=10.0.1",
-    "@rxap/utilities": ">=10.0.0",
+    "@rxap/forms": ">=10.4.0",
+    "@rxap/utilities": ">=10.1.1",
     "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",
