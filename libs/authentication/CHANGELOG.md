@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0](https://gitlab.com/rxap/packages/compare/@rxap/authentication@10.1.0...@rxap/authentication@10.2.0) (2021-02-09)
+
+
+### Features
+
+* add default login support ([e940b7b](https://gitlab.com/rxap/packages/commit/e940b7b0203bf5fcc3d473883a6c235863bbd0ad))
+
+
+
+
+
 # [10.1.0](https://gitlab.com/rxap/packages/compare/@rxap/authentication@10.0.1...@rxap/authentication@10.1.0) (2021-02-09)
 
 
