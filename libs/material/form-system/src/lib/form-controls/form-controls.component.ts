@@ -6,14 +6,18 @@ import {
   Input,
   OnInit,
   Output,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  isDevMode
 } from '@angular/core';
 import { FormDirective } from '@rxap/forms';
 import {
   Observable,
   Subscription
 } from 'rxjs';
-import { coerceBoolean } from '@rxap/utilities';
+import {
+  coerceBoolean,
+  clone
+} from '@rxap/utilities';
 import {
   take,
   tap
@@ -54,6 +58,8 @@ export class FormControlsComponent<FormData> implements OnInit {
 
   @Output()
   public submitted = new EventEmitter<FormData>();
+
+  public isDevMode = isDevMode();
 
   /**
    * Collection of successful submitted values
@@ -106,25 +112,33 @@ export class FormControlsComponent<FormData> implements OnInit {
       tap(() => this.snackBar.open($localize`:@@rxap-material.form-system.form-controls.form-is-invalid:Form is not valid`, 'ok', { duration: 5000 }))
     ).subscribe();
 
-    let submitHandle = this.formDirective.rxapSubmit.pipe(
+    submitSubscription = this.formDirective.rxapSubmit.pipe(
       take(1),
-      tap(value => this._submitted.push(value)),
-      tap(value => this.submitted.emit(value))
-    );
+      tap(value => {
 
-    if (closeAfterSubmit) {
-      submitHandle = submitHandle.pipe(
-        tap(() => this.close.emit(this._submitted.length > 1 ? this._submitted : this._submitted[ 0 ]))
-      );
-    }
+        const clonedValue = clone(value);
+        this._submitted.push(clonedValue);
+        this.submitted.emit(clonedValue);
 
-    submitSubscription = submitHandle.pipe(
-      tap(() => invalidSubmitSubscription.unsubscribe()),
-      tap(() => this.invalid = false),
-      tap(() => this.cdr.detectChanges())
+        if (closeAfterSubmit) {
+          this.close.emit(this._submitted.length > 1 ? this._submitted : this._submitted[ 0 ]);
+        } else {
+          if (typeof this.formDirective.formDefinition.rxapReuse === 'function') {
+            this.formDirective.formDefinition.rxapReuse();
+          }
+        }
+
+        invalidSubmitSubscription.unsubscribe();
+        this.invalid = false;
+        this.cdr.detectChanges();
+      })
     ).subscribe();
 
     this.formDirective.onSubmit(new Event('submit'));
+  }
+
+  public logCurrentFormState() {
+    console.log(clone(this.formDirective.form.value));
   }
 
 }
