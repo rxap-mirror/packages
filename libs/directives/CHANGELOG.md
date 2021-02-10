@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@11.0.5...@rxap/directives@11.1.0) (2021-02-10)
+
+
+### Features
+
+* add contenteditable directives ([48ccf78](https://gitlab.com/rxap/packages/commit/48ccf78970720b89ec2b67fe87da06ee668ce838))
+
+
+
+
+
 ## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/directives@11.0.4...@rxap/directives@11.0.5) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/directives

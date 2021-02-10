@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/services@11.0.4...@rxap/services@11.0.5) (2021-02-10)
+
+
+### Bug Fixes
+
+* **loading-indicator:** prevent ExpressionChangedAfterItHasBeenCheckedError ([dcbe3eb](https://gitlab.com/rxap/packages/commit/dcbe3ebb6ad87c0ad128db712e9a658c25f38f06))
+
+
+
+
+
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/services@11.0.3...@rxap/services@11.0.4) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/services

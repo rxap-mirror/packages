@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@11.0.6...@rxap/forms@11.1.0) (2021-02-10)
+
+
+### Bug Fixes
+
+* **form-control:** ensure state function execution ([fdeffbe](https://gitlab.com/rxap/packages/commit/fdeffbe33a675621c721eff0204a62abb096a24b))
+* **form-control:** ensure state function execution ([3bbc480](https://gitlab.com/rxap/packages/commit/3bbc480540fc68d3d48c50bdaf67ac7481b15c7d))
+* expose builder injector error ([1c9c640](https://gitlab.com/rxap/packages/commit/1c9c6406bceb170126b8abf91e296b0e64574a21))
+
+
+### Features
+
+* **form-builder:** add support for function initial state ([adbd89b](https://gitlab.com/rxap/packages/commit/adbd89bcd5918bb81aca033fd2742487bbce23d0))
+* add support for the form context token ([6ce4aed](https://gitlab.com/rxap/packages/commit/6ce4aed51c369336db8032fbcedf37e9b4bcd7d9))
+* add the reused hook to the form definition ([bfe183a](https://gitlab.com/rxap/packages/commit/bfe183a44e1f3954fd4037f1664eafad103f4555))
+
+
+
+
+
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/forms@11.0.5...@rxap/forms@11.0.6) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/forms

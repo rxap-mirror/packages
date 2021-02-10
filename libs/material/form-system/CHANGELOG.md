@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.0.4...@rxap/material-form-system@11.1.0) (2021-02-10)
+
+
+### Bug Fixes
+
+* **form-control:** handle reuse hook after the submit is completed ([254df30](https://gitlab.com/rxap/packages/commit/254df302004c710b155c7df487aec04b2493144d))
+* **form-controls:** add form state logger ([8e98195](https://gitlab.com/rxap/packages/commit/8e98195dece3ac4a2a026a83ebb27dddad4cbc64))
+* **form-controls:** simplify submit handler ([f0871d7](https://gitlab.com/rxap/packages/commit/f0871d726ce08a49c3a397d45fbcb1ba4dfb1e23))
+
+
+### Features
+
+* add the reused hook to the form definition ([bfe183a](https://gitlab.com/rxap/packages/commit/bfe183a44e1f3954fd4037f1664eafad103f4555))
+* **form-control:** clone submit value ([fe8dc63](https://gitlab.com/rxap/packages/commit/fe8dc63dff27677bfc96e1ab664d69672352f566))
+
+
+
+
+
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.0.3...@rxap/material-form-system@11.0.4) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/material-form-system
