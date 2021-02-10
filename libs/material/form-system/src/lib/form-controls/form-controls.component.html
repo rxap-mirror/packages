@@ -44,5 +44,6 @@
         <mat-spinner [fxShow]="submitting$ | async" fxFlex="nogrow" mode="indeterminate" [diameter]="15" color="accent"></mat-spinner>
       </span>
     </button>
+    <button *ngIf="isDevMode" mat-button fxFlex="nogrow" (click)="logCurrentFormState()">Current Form State</button>
   </div>
 </div>

@@ -50,6 +50,8 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
    */
   public titlePortal$ = new ReplaySubject<Portal<any>>(1);
 
+  public settings$ = new ReplaySubject<WindowSettings>(1);
+
   constructor(
     public readonly overlayRef: OverlayRef,
     private readonly overlay: Overlay,
@@ -163,16 +165,22 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
    * @param portal
    */
   public setFooterPortal(portal: Portal<any>) {
-    this.footerPortal$.next(portal);
+    setTimeout(() => {
+      this.footerPortal$.next(portal);
+    });
   }
 
   public setTitlePortal(portal: Portal<any>) {
-    this.titlePortal$.next(portal);
+    setTimeout(() => {
+      this.titlePortal$.next(portal);
+    });
   }
 
   public setAttachedRef(attachedRef: ComponentRef<any> | EmbeddedViewRef<any>) {
     if (attachedRef instanceof ComponentRef) {
       this.updateWindowSettings(attachedRef);
+    } else {
+      this.updateWindowSettings();
     }
     this.attachedRef$.next(attachedRef);
   }
@@ -183,10 +191,13 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
    * the settings
    * @private
    */
-  private updateWindowSettings(componentRef: ComponentRef<any>) {
-    const settings = componentRef.injector.get(RXAP_WINDOW_SETTINGS, null, InjectFlags.Optional);
+  private updateWindowSettings(componentRef?: ComponentRef<any>) {
+    const settings = componentRef?.injector.get(RXAP_WINDOW_SETTINGS, null, InjectFlags.Optional) ?? this.settings;
     if (settings) {
-      this.settings = Object.assign({}, this.settings, settings);
+      // prevent change diction error: ExpressionChangedAfterItHasBeenCheckedError
+      setTimeout(() => {
+        this.settings$.next(Object.assign({}, this.settings, settings));
+      });
     }
   }
 

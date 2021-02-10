@@ -15,9 +15,15 @@ import {
 @Injectable()
 export class LoadingIndicatorService implements OnDestroy {
 
-  public readonly loading$ = new ToggleSubject(true);
+  private readonly loading$ = new ToggleSubject(true);
+
+  public isLoading$: Observable<boolean>;
 
   private readonly _attachedLoadingSubscription = new Subscription();
+
+  constructor() {
+    this.isLoading$ = this.loading$.asObservable();
+  }
 
   public attachLoading(loading$: Observable<any>) {
     this._attachedLoadingSubscription.add(
@@ -27,6 +33,18 @@ export class LoadingIndicatorService implements OnDestroy {
 
   public ngOnDestroy() {
     this._attachedLoadingSubscription.unsubscribe();
+  }
+
+  public disable() {
+    setTimeout(() => {
+      this.loading$.disable();
+    });
+  }
+
+  public enable() {
+    setTimeout(() => {
+      this.loading$.enable();
+    });
   }
 
 }

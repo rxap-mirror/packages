@@ -4,11 +4,13 @@ import {
   ComponentFactoryResolver,
   Inject,
   ViewContainerRef,
-  InjectFlags
+  InjectFlags,
+  Optional
 } from '@angular/core';
 import {
   WindowConfig,
-  DEFAULT_WINDOW_CONFIG
+  DEFAULT_WINDOW_CONFIG,
+  WindowSettings
 } from './window-config';
 import {
   OverlayConfig,
@@ -19,7 +21,8 @@ import { WindowRef } from './window-ref';
 import {
   RXAP_WINDOW_CONTEXT,
   RXAP_WINDOW_CONTAINER_CONTEXT,
-  RXAP_WINDOW_REF
+  RXAP_WINDOW_REF,
+  RXAP_WINDOW_DEFAULT_SETTINGS
 } from './tokens';
 import {
   WindowContext,
@@ -57,7 +60,10 @@ export class WindowService {
   constructor(
     @Inject(Injector) private readonly injector: Injector,
     @Inject(Overlay) private readonly overlay: Overlay,
-    @Inject(ComponentFactoryResolver) private readonly componentFactoryResolver: ComponentFactoryResolver
+    @Inject(ComponentFactoryResolver) private readonly componentFactoryResolver: ComponentFactoryResolver,
+    @Optional()
+    @Inject(RXAP_WINDOW_DEFAULT_SETTINGS)
+    private readonly defaultWindowSettings?: WindowSettings
   ) {}
 
   public get<D>(id: string): WindowRef<D> {
@@ -80,7 +86,12 @@ export class WindowService {
   public open<D, T>(config: WindowConfig<D, T>): WindowRef<D> {
 
     // Override default configuration
-    const windowConfig = { id: uuid(), ...DEFAULT_WINDOW_CONFIG, ...config };
+    const windowConfig = {
+      id: uuid(),
+      ...DEFAULT_WINDOW_CONFIG,
+      ...(this.defaultWindowSettings ?? {}),
+      ...config
+    };
 
     if (this.has(windowConfig.id)) {
       return this.get(windowConfig.id);
@@ -173,10 +184,10 @@ export class WindowService {
       scrollStrategy: this.overlay.scrollStrategies.block(),
       width,
       height,
-      maxWidth:       maxWidth ?? '100vw',
-      maxHeight:      maxHeight ?? '100vh',
-      minWidth:       minWidth ?? '384px',
-      minHeight:      minHeight ?? '192px',
+      maxWidth:       maxWidth ?? this.defaultWindowSettings?.maxWidth ?? '100vw',
+      maxHeight:      maxHeight ?? this.defaultWindowSettings?.maxHeight ?? '100vh',
+      minWidth:       minWidth ?? this.defaultWindowSettings?.minWidth ?? '384px',
+      minHeight:      minHeight ?? this.defaultWindowSettings?.minHeight ?? '192px',
       positionStrategy
     });
 
