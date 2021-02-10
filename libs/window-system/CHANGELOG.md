@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/window-system@11.0.4...@rxap/window-system@11.1.0) (2021-02-10)
+
+
+### Bug Fixes
+
+* **loading-indicator:** prevent ExpressionChangedAfterItHasBeenCheckedError ([46eed9d](https://gitlab.com/rxap/packages/commit/46eed9d377c86aee6572ff1daf4de215a568ca1c))
+* **loading-indicator:** prevent ExpressionChangedAfterItHasBeenCheckedError ([4b5463f](https://gitlab.com/rxap/packages/commit/4b5463f77d9da1c3d476e1ae6952dd1fe16996a2))
+* **loading-indicator:** prevent ExpressionChangedAfterItHasBeenCheckedError ([81c1f1e](https://gitlab.com/rxap/packages/commit/81c1f1e6ff5acd3115fa5da853b2844a6a4614e3))
+* **loading-indicator:** prevent ExpressionChangedAfterItHasBeenCheckedError ([eacefde](https://gitlab.com/rxap/packages/commit/eacefde8aa5901aa629875b236cf9d829737c6ca))
+* **loading-indicator:** prevent ExpressionChangedAfterItHasBeenCheckedError ([ba2195f](https://gitlab.com/rxap/packages/commit/ba2195f7a3941ab48b15f9b900e888211f61bbac))
+* **loading-indicator:** prevent ExpressionChangedAfterItHasBeenCheckedError ([dcbe3eb](https://gitlab.com/rxap/packages/commit/dcbe3ebb6ad87c0ad128db712e9a658c25f38f06))
+
+
+### Features
+
+* **window-service:** add support for default window settings ([625ce4f](https://gitlab.com/rxap/packages/commit/625ce4f8cadf6196d9bfdff2a945c1d32c05fcae))
+
+
+### Reverts
+
+* fix: zone isolation ([6e8d17a](https://gitlab.com/rxap/packages/commit/6e8d17ab0c9cdb46bfd71142d4243b30eb9e74e6))
+
+
+
+
+
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/window-system@11.0.3...@rxap/window-system@11.0.4) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/window-system

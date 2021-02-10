@@ -1,6 +1,6 @@
 {
   "name": "@rxap/form-window-system",
-  "version": "11.0.5",
+  "version": "11.1.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -28,11 +28,11 @@
     "@angular/router": "^11.0.5",
     "@rxap/components": ">=11.0.4",
     "@rxap/definition": ">=11.0.3",
-    "@rxap/directives": ">=11.0.5",
-    "@rxap/forms": ">=11.0.6",
-    "@rxap/services": ">=11.0.4",
+    "@rxap/directives": ">=11.1.0",
+    "@rxap/forms": ">=11.1.0",
+    "@rxap/services": ">=11.0.5",
     "@rxap/utilities": ">=11.0.4",
-    "@rxap/window-system": ">=11.0.4"
+    "@rxap/window-system": ">=11.1.0"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {

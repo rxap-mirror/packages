@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@11.0.5...@rxap/form-window-system@11.1.0) (2021-02-10)
+
+
+### Features
+
+* **form-window-service:** add support for custom form load method ([45ec319](https://gitlab.com/rxap/packages/commit/45ec319e4f7d7dd1ded6cae3795d838be41e8f38))
+* add support for the form context token ([6ce4aed](https://gitlab.com/rxap/packages/commit/6ce4aed51c369336db8032fbcedf37e9b4bcd7d9))
+* add support for the form window context ([5815a2d](https://gitlab.com/rxap/packages/commit/5815a2dbc35599c383af612566d616e96b423d45))
+
+
+
+
+
 ## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@11.0.4...@rxap/form-window-system@11.0.5) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/form-window-system
