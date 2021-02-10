@@ -122,7 +122,7 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
       form = injector.get(this.definition);
     } catch (e) {
       if (isDevMode()) {
-        console.warn('Could not inject the definition instance. Fallback and call the constructor of the definition class.');
+        console.error(`Could not inject the definition instance. Fallback and call the constructor of the definition class: ${e.message}`);
       }
       form = (new this.definition()) as Form & Record<string, Function>;
     }
