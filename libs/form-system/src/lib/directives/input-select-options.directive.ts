@@ -10,7 +10,8 @@ import {
   INJECTOR,
   Optional,
   ChangeDetectorRef,
-  NgModule
+  NgModule,
+  isDevMode
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import {
@@ -143,11 +144,28 @@ export class InputSelectOptionsDirective implements OnInit, OnDestroy {
 
     const useDataSourceValue = useDataSourceValueMap.get(DATA_SOURCE_NAME)!;
 
-    let dataSource = this.dataSourceLoader.load(
-      useDataSourceValue.dataSource,
-      this.metadata,
-      this.injector
-    );
+    let dataSource: BaseDataSource;
+
+    try {
+
+      dataSource = this.dataSourceLoader.load(
+        useDataSourceValue.dataSource,
+        this.metadata,
+        this.injector
+      );
+
+    } catch (e) {
+
+      if (e.name && e.name === 'NullInjectorError') {
+        if (isDevMode()) {
+          console.error('Cloud not inject the options data source', useDataSourceValue);
+        }
+        throw new Error('Cloud not inject the options data source:\n' + e.message);
+      }
+
+      throw e;
+
+    }
 
     const settings = useDataSourceValue.settings;
 
