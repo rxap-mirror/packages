@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.1.1...@rxap/utilities@11.1.2) (2021-02-25)
+
+
+### Bug Fixes
+
+* rename getFromObjectFactory to GetFromObjectFactory ([734c26e](https://gitlab.com/rxap/packages/commit/734c26e83a3d62c11f99fabb129369e59c09ee74))
+
+
+
+
+
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.1.0...@rxap/utilities@11.1.1) (2021-02-25)
 
 
