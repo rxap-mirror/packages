@@ -30,7 +30,7 @@ export function getFromObjectFactory<T, D = undefined>(path: string, defaultValu
   return (obj: object) => getFromObject(obj, path, defaultValue);
 }
 
-export function setToObject(obj: any, path: string, value: any): void {
+export function SetToObject(obj: any, path: string, value: any): void {
 
   const fragments: string[] = path.split('.').filter(Boolean);
 
@@ -46,7 +46,7 @@ export function setToObject(obj: any, path: string, value: any): void {
       if (fragments.length === 0) {
         obj[ fragment ] = value;
       } else {
-        setToObject(obj[ fragment ], fragments.join('.'), value);
+        SetToObject(obj[ fragment ], fragments.join('.'), value);
       }
 
     } else {
@@ -55,7 +55,7 @@ export function setToObject(obj: any, path: string, value: any): void {
         obj[ fragment ] = value;
       } else {
         obj[ fragment ] = {};
-        setToObject(obj[ fragment ], fragments.join('.'), value);
+        SetToObject(obj[ fragment ], fragments.join('.'), value);
       }
 
     }
