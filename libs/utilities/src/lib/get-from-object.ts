@@ -26,9 +26,14 @@ export function getFromObject<T, D = undefined>(obj: object, path: string, defau
 
 }
 
-export function getFromObjectFactory<T, D = undefined>(path: string, defaultValue?: D): (obj: object) => T | D {
+export function GetFromObjectFactory<T, D = undefined>(path: string, defaultValue?: D): (obj: object) => T | D {
   return (obj: object) => getFromObject(obj, path, defaultValue);
 }
+
+/**
+ * @deprecated use GetFromObjectFactory instead
+ */
+export const getFromObjectFactory = GetFromObjectFactory;
 
 export function SetToObject(obj: any, path: string, value: any): void {
 
