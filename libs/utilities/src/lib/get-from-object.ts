@@ -29,3 +29,37 @@ export function getFromObject<T, D = undefined>(obj: object, path: string, defau
 export function getFromObjectFactory<T, D = undefined>(path: string, defaultValue?: D): (obj: object) => T | D {
   return (obj: object) => getFromObject(obj, path, defaultValue);
 }
+
+export function setToObject(obj: any, path: string, value: any): void {
+
+  const fragments: string[] = path.split('.').filter(Boolean);
+
+  if (fragments.length === 0) {
+    return;
+  }
+
+  if (obj && typeof obj === 'object') {
+    const fragment: string = fragments.shift()!;
+
+    if (obj.hasOwnProperty(fragment)) {
+
+      if (fragments.length === 0) {
+        obj[ fragment ] = value;
+      } else {
+        setToObject(obj[ fragment ], fragments.join('.'), value);
+      }
+
+    } else {
+
+      if (fragments.length === 0) {
+        obj[ fragment ] = value;
+      } else {
+        obj[ fragment ] = {};
+        setToObject(obj[ fragment ], fragments.join('.'), value);
+      }
+
+    }
+
+  }
+
+}
