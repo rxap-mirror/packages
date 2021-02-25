@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.1.0...@rxap/material-form-system@11.1.1) (2021-02-25)
+
+
+### Bug Fixes
+
+* **form-controls:** update i18n id ([0fbe03b](https://gitlab.com/rxap/packages/commit/0fbe03bf80c553079dee6f58d9e88a350b6845fa))
+
+
+
+
+
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.0.4...@rxap/material-form-system@11.1.0) (2021-02-10)
 
 
