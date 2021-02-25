@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.0.4...@rxap/utilities@11.1.0) (2021-02-25)
+
+
+### Features
+
+* add setToObject function ([f5a2975](https://gitlab.com/rxap/packages/commit/f5a2975016f55552f382eaffe13665515f124c74))
+
+
+
+
+
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.0.3...@rxap/utilities@11.0.4) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/utilities
