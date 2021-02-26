@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.2.1...@rxap/material-table-system@11.2.2) (2021-02-26)
+
+
+### Bug Fixes
+
+* remove table create button ([848d86f](https://gitlab.com/rxap/packages/commit/848d86fd6e2b9560148affb9e43cae79407e6a3c))
+
+
+
+
+
 ## [11.2.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.2.0...@rxap/material-table-system@11.2.1) (2021-02-26)
 
 
