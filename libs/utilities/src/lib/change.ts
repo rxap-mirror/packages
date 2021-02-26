@@ -10,9 +10,14 @@ export interface RxapOnPropertyChange {
   rxapOnPropertyChange(change: PropertyChange): void;
 }
 
-export function hasOnChangeMethod<T>(obj: T): obj is RxapOnPropertyChange & T {
+export function HasOnChangeMethod<T>(obj: T): obj is RxapOnPropertyChange & T {
   return (obj as any)[ 'rxapOnPropertyChange' ] && typeof (obj as any)[ 'rxapOnPropertyChange' ] === 'function';
 }
+
+/**
+ * @deprecated use HasOnChangeMethod instead
+ */
+export const hasOnChangeMethod = HasOnChangeMethod;
 
 export interface PropertyChange<Value = any> {
   propertyKey: string | number | symbol;
