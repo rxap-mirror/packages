@@ -16,7 +16,8 @@ import {
   ToValueContext,
   ModuleElement,
   MethodElement,
-  AddComponentProvider
+  AddComponentProvider,
+  NodeFactory
 } from '@rxap/schematics-utilities';
 import {
   Rule,
@@ -77,7 +78,18 @@ export class CreateButtonElement extends FeatureElement {
   }
 
   public headerTemplate(): string {
-    return '<mfd-table-create-button [dataSource]="tableDataSourceDirective"></mfd-table-create-button>';
+    const attributes: string[] = [
+      'mat-mini-fab',
+      'color="primary"',
+      '[rxapTableCreate]="tableDataSourceDirective"',
+      `rxapHasAuthorization="table.${this.__parent.id}.table.create-button"`
+    ];
+    return NodeFactory(
+      'button',
+      ...attributes
+    )(
+      NodeFactory('mat-icon')('add')
+    );
   }
 
   public toValue({ options, project }: ToValueContext<GenerateSchema>): Rule {
