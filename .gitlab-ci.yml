@@ -103,6 +103,7 @@ publish:npm:
   extends: .publish
   before_script:
   - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}">.npmrc
+  - git update-index --assume-unchanged .npmrc
   rules:
   - if: '$CI_COMMIT_TAG =~ /@rxap\/.+@\d+\.\d+\.\d+/'
     when: manual
@@ -114,6 +115,7 @@ publish:rxap:
   extends: .publish
   before_script:
   - echo "//npm.rxap.dev/:_authToken=${RXAP_NPM_TOKEN}">.npmrc
+  - git update-index --assume-unchanged .npmrc
   variables:
     NPM_REGISTRY: https://npm.rxap.dev
 
@@ -121,5 +123,6 @@ publish:gitlab:
   extends: .publish
   before_script:
   - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
+  - git update-index --assume-unchanged .npmrc
   variables:
     NPM_REGISTRY: "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm"
