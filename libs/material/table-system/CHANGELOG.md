@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.2.2...@rxap/material-table-system@11.2.3) (2021-02-26)
+
+
+### Bug Fixes
+
+* **schematics:** add id parameter ([4953320](https://gitlab.com/rxap/packages/commit/49533203031a06f3065389a589f53ba9baceea2e))
+
+
+
+
+
 ## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.2.1...@rxap/material-table-system@11.2.2) (2021-02-26)
 
 
