@@ -178,6 +178,7 @@ export class TableElement implements ParsedElement<Rule> {
       attributes.push('[rxapTableDataSource]="dataSource"');
     }
     attributes.push('[parameters]="parameters"');
+    attributes.push(`id="${this.id}"`);
     if (this.hasFilter) {
       attributes.push('rxap-filter-header-row');
     }
