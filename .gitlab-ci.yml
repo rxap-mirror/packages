@@ -125,4 +125,4 @@ publish:gitlab:
   - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
   - git update-index --assume-unchanged .npmrc
   variables:
-    NPM_REGISTRY: "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm"
+    NPM_REGISTRY: "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/"
