@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.3](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.1.2...@rxap/utilities@11.1.3) (2021-02-26)
+
+
+### Bug Fixes
+
+* rename hasOnChangeMethod to HasOnChangeMethod ([0dd4a0d](https://gitlab.com/rxap/packages/commit/0dd4a0d82c79bb912aed1a841455038459c97722))
+
+
+
+
+
 ## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.1.1...@rxap/utilities@11.1.2) (2021-02-25)
 
 
