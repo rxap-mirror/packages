@@ -100,7 +100,7 @@ build:publish:
   script:
   - echo "@rxap:registry=$NPM_REGISTRY" >> .npmrc
   - git update-index --assume-unchanged .npmrc
-  - yarn lerna publish from-git --yes --ignore-scripts --no-git-reset
+  - yarn lerna publish from-git --yes --ignore-scripts --no-git-reset --registry $NPM_REGISTRY
 
 publish:npm:
   extends: .publish
