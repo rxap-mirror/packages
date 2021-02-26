@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.1.4...@rxap/material-table-system@11.2.0) (2021-02-26)
+
+
+### Features
+
+* add TableCreateButtonDirective ([880d9e0](https://gitlab.com/rxap/packages/commit/880d9e05b59389a53563ca2d25371c5a6258817a))
+
+
+
+
+
 ## [11.1.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.1.3...@rxap/material-table-system@11.1.4) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/material-table-system
