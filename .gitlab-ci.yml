@@ -87,6 +87,7 @@ build:publish:
     when: always
 
 .publish:
+  stage: publish
   tags:
   - build
   needs:
