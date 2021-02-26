@@ -38,9 +38,8 @@ export * from './lib/table-column-menu/table-column-option/table-column-option.c
 
 // region table create button
 
-export * from './lib/table-create-button/table-create-button.component';
 export * from './lib/table-create-button/table-create-button.directive';
-export * from './lib/table-create-button/table-create-button.component.module';
+export * from './lib/table-create-button/tokens';
 
 // endregion
 
