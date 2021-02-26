@@ -44,7 +44,7 @@ export class CreateButtonElement extends FeatureElement {
   public windowForm?: WindowFormElement;
 
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
-    AddNgModuleImport(sourceFile, 'TableCreateButtonComponentModule', '@rxap/material-table-system');
+    AddNgModuleImport(sourceFile, 'TableCreateButtonDirectiveModule', '@rxap/material-table-system');
     this.module?.handleComponentModule({ sourceFile, options, project });
     this.routerLink?.handleComponentModule({ sourceFile, options, project });
   }
