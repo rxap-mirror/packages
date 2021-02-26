@@ -88,7 +88,7 @@ build:publish:
 
 .publish:
   stage: publish
-  image: registry.gitlab.com/digitaix/gitlab-ci/helpers/lerna
+  image: registry.gitlab.com/rxap/gitlab-ci/lerna
   tags:
   - build
   needs:
