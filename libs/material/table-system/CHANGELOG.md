@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.6](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.2.5...@rxap/material-table-system@11.2.6) (2021-03-01)
+
+
+### Bug Fixes
+
+* **schematics:** add missing router link provider factory deps ([2b5da57](https://gitlab.com/rxap/packages/commit/2b5da57a72e9f262bcc715c00f1a39b01e263143))
+
+
+
+
+
 ## [11.2.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.2.4...@rxap/material-table-system@11.2.5) (2021-03-01)
 
 
