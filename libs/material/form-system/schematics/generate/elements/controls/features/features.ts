@@ -6,6 +6,7 @@ import { HideElement } from './hide.element';
 import { DirectiveElement } from './directive.element';
 import { FormElement } from './form.element';
 import { TableElement } from './table.element';
+import { PermissionsElement } from './permissions.element';
 
 export const Features: Array<Constructor<ParsedElement>> = [
   ControlFeatureElement,
@@ -13,5 +14,6 @@ export const Features: Array<Constructor<ParsedElement>> = [
   HideElement,
   DirectiveElement,
   TableElement,
-  FormElement
+  FormElement,
+  PermissionsElement
 ];
