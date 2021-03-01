@@ -2,7 +2,8 @@ import { FeatureElement } from './feature.element';
 import {
   ElementChild,
   ElementDef,
-  ElementExtends
+  ElementExtends,
+  ElementAttribute
 } from '@rxap/xml-parser/decorators';
 import {
   ImportDeclarationStructure,
@@ -43,10 +44,16 @@ export class CreateButtonElement extends FeatureElement {
   @ElementChild(WindowFormElement)
   public windowForm?: WindowFormElement;
 
+  @ElementAttribute()
+  public withPermission?: boolean;
+
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, 'TableCreateButtonDirectiveModule', '@rxap/material-table-system');
     this.module?.handleComponentModule({ sourceFile, options, project });
     this.routerLink?.handleComponentModule({ sourceFile, options, project });
+    if (this.withPermission) {
+      AddNgModuleImport(sourceFile, 'HasPermissionModule', '@mfd/shared/authorization/has-permission.module');
+    }
   }
 
   public handleComponent({ sourceFile, project, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
@@ -81,9 +88,11 @@ export class CreateButtonElement extends FeatureElement {
     const attributes: string[] = [
       'mat-mini-fab',
       'color="primary"',
-      '[rxapTableCreate]="tableDataSourceDirective"',
-      `rxapHasAuthorization="table.${this.__parent.id}.table.create-button"`
+      '[rxapTableCreate]="tableDataSourceDirective"'
     ];
+    if (this.withPermission) {
+      attributes.push(`rxapHasEnablePermission="table.${this.__parent.id}.table.create-button"`);
+    }
     return NodeFactory(
       'button',
       ...attributes
