@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.2.1...@rxap/material-form-system@11.2.2) (2021-03-01)
+
+
+### Bug Fixes
+
+* **schematics:** add type definition for permission elements ([ccb5afe](https://gitlab.com/rxap/packages/commit/ccb5afee59ffee1d6b5c0bcee2dd8b0951bc1973))
+
+
+
+
+
 ## [11.2.1](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.2.0...@rxap/material-form-system@11.2.1) (2021-03-01)
 
 
