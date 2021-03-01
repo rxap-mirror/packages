@@ -21,6 +21,15 @@ export class InputClearButtonDirective {
   @HostBinding('attr.tabindex')
   public tabIndex = '-1';
 
+  public get control() {
+    return this.formField._control;
+  }
+
+  @HostBinding('disabled')
+  public get isDisabled() {
+    return this.control.disabled;
+  }
+
   constructor(
     @Inject(MAT_FORM_FIELD)
     private formField: MatFormField
@@ -28,10 +37,10 @@ export class InputClearButtonDirective {
 
   @HostListener('click')
   public onClick() {
-    if (this.formField._control.ngControl) {
-      this.formField._control.ngControl.reset();
+    if (this.control.ngControl) {
+      this.control.ngControl.reset();
     } else {
-      this.formField._control.value = null;
+      this.control.value = null;
     }
   }
 
