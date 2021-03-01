@@ -42,7 +42,7 @@ export abstract class FormFieldElement extends ControlElement {
   public template(...attributes: Array<string | (() => string)>): string {
     if (this.hasFeature('permissions')) {
       const permissionsElement = this.getFeature<PermissionsElement>('permissions');
-      this.innerAttributes.push(...permissionsElement.getAttributes([ 'form', this.controlPath ].join('')));
+      this.innerAttributes.push(...permissionsElement.getAttributes([ 'form', this.controlPath ].join('.')));
     }
     const nodes: Array<WithTemplate | string> = [
       NodeFactory('mat-label', `i18n="@@form.${this.controlPath}.label"`)('\n' + (this.label ?? capitalize(this.name)) + '\n'),
@@ -69,7 +69,7 @@ export abstract class FormFieldElement extends ControlElement {
 
     if (this.hasFeature('permissions')) {
       const permissionsElement = this.getFeature<PermissionsElement>('permissions');
-      node                     = permissionsElement.wrapNode(node, [ 'form', this.controlPath ].join(''));
+      node = permissionsElement.wrapNode(node, [ 'form', this.controlPath ].join('.'));
     }
 
     return node;

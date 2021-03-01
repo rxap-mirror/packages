@@ -31,7 +31,7 @@ export class CheckboxControlElement extends ControlElement {
     ];
     if (this.hasFeature('permissions')) {
       const permissionsElement = this.getFeature<PermissionsElement>('permissions');
-      attributes.push(...permissionsElement.getAttributes([ 'form', this.controlPath ].join('')));
+      attributes.push(...permissionsElement.getAttributes([ 'form', this.controlPath ].join('.')));
     }
     let node = NodeFactory(
       'mat-checkbox',
@@ -42,7 +42,7 @@ export class CheckboxControlElement extends ControlElement {
 
     if (this.hasFeature('permissions')) {
       const permissionsElement = this.getFeature<PermissionsElement>('permissions');
-      node                     = permissionsElement.wrapNode(node, [ 'form', this.controlPath ].join(''));
+      node = permissionsElement.wrapNode(node, [ 'form', this.controlPath ].join('.'));
     }
 
     return node;

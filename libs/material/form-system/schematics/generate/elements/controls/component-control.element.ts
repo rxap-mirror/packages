@@ -72,7 +72,7 @@ export class ComponentControlElement extends ControlElement {
     ];
     if (this.hasFeature('permissions')) {
       const permissionsElement = this.getFeature<PermissionsElement>('permissions');
-      attributes.push(...permissionsElement.getAttributes([ 'form', this.controlPath ].join('')));
+      attributes.push(...permissionsElement.getAttributes([ 'form', this.controlPath ].join('.')));
     }
     let node = NodeFactory(
       this.selector,
@@ -82,7 +82,7 @@ export class ComponentControlElement extends ControlElement {
     )(`\n${capitalize(this.name)}\n`);
     if (this.hasFeature('permissions')) {
       const permissionsElement = this.getFeature<PermissionsElement>('permissions');
-      node                     = permissionsElement.wrapNode(node, [ 'form', this.controlPath ].join(''));
+      node = permissionsElement.wrapNode(node, [ 'form', this.controlPath ].join('.'));
     }
 
     return node;
