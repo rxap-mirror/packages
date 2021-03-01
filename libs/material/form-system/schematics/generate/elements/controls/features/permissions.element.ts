@@ -109,7 +109,7 @@ export class PermissionsElement extends ControlFeatureElement {
       if (permission.type === PermissionElementType.Wrapper) {
         node = NodeFactory(
           'ng-container',
-          `*${permission.directiveName}n="'${permission.getPermissionIdentifier(basePermissionIdentifier)}'"`
+          `*${permission.directiveName}="'${permission.getPermissionIdentifier(basePermissionIdentifier)}'"`
         )(node);
       }
     }
