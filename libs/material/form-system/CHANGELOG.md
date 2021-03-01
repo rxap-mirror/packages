@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.1](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.2.0...@rxap/material-form-system@11.2.1) (2021-03-01)
+
+
+### Bug Fixes
+
+* **schematics:** add missing element export ([d3a3e6f](https://gitlab.com/rxap/packages/commit/d3a3e6f7f2f43161ab2fe14ba18f68a44345ad0b))
+
+
+
+
+
 # [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.1.1...@rxap/material-form-system@11.2.0) (2021-03-01)
 
 
