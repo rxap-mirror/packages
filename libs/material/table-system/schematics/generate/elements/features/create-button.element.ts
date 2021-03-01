@@ -49,6 +49,8 @@ export class CreateButtonElement extends FeatureElement {
 
   public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, 'TableCreateButtonDirectiveModule', '@rxap/material-table-system');
+    AddNgModuleImport(sourceFile, 'MatIconModule', '@angular/material/icon');
+    AddNgModuleImport(sourceFile, 'MatButtonModule', '@angular/material/button');
     this.module?.handleComponentModule({ sourceFile, options, project });
     this.routerLink?.handleComponentModule({ sourceFile, options, project });
     if (this.withPermission) {
