@@ -16,6 +16,7 @@ import {
   WithTemplate
 } from '@rxap/schematics-utilities';
 import { SourceFile } from 'ts-morph';
+import { PermissionsElement } from '../features/permissions.element';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
@@ -39,6 +40,10 @@ export abstract class FormFieldElement extends ControlElement {
   public innerAttributes: Array<string | (() => string)> = [];
 
   public template(...attributes: Array<string | (() => string)>): string {
+    if (this.hasFeature('permissions')) {
+      const permissionsElement = this.getFeature<PermissionsElement>('permissions');
+      this.innerAttributes.push(...permissionsElement.getAttributes([ 'form', this.controlPath ].join('')));
+    }
     const nodes: Array<WithTemplate | string> = [
       NodeFactory('mat-label', `i18n="@@form.${this.controlPath}.label"`)('\n' + (this.label ?? capitalize(this.name)) + '\n'),
       this.innerTemplate()
@@ -59,7 +64,15 @@ export abstract class FormFieldElement extends ControlElement {
       nodes.push(...this.features);
     }
     attributes.push(`data-cy="form.${this.controlPath}"`);
-    return NodeFactory('mat-form-field', this.flexTemplateAttribute, ...this.attributes, ...attributes)(nodes);
+
+    let node = NodeFactory('mat-form-field', this.flexTemplateAttribute, ...this.attributes, ...attributes)(nodes);
+
+    if (this.hasFeature('permissions')) {
+      const permissionsElement = this.getFeature<PermissionsElement>('permissions');
+      node                     = permissionsElement.wrapNode(node, [ 'form', this.controlPath ].join(''));
+    }
+
+    return node;
   }
 
   protected abstract innerTemplate(): string;

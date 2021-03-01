@@ -12,6 +12,7 @@ import {
   AddNgModuleImport
 } from '@rxap/schematics-utilities';
 import { SourceFile } from 'ts-morph';
+import { PermissionsElement } from './features/permissions.element';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
@@ -23,16 +24,28 @@ export class CheckboxControlElement extends ControlElement {
   public label?: string;
 
   public template(): string {
-    const attributes: string[] = [
+    const attributes: Array<string | (() => string)> = [
       `formControlName="${this.name}"`,
       `i18n="@@form.${this.controlPath}.label"`,
       `data-cy="form.${this.controlPath}"`
     ];
-    return NodeFactory(
+    if (this.hasFeature('permissions')) {
+      const permissionsElement = this.getFeature<PermissionsElement>('permissions');
+      attributes.push(...permissionsElement.getAttributes([ 'form', this.controlPath ].join('')));
+    }
+    let node = NodeFactory(
       'mat-checkbox',
       this.flexTemplateAttribute,
-      ...attributes
+      ...attributes,
+      ...this.attributes
     )('\n' + (this.label ?? capitalize(this.name)) + '\n');
+
+    if (this.hasFeature('permissions')) {
+      const permissionsElement = this.getFeature<PermissionsElement>('permissions');
+      node                     = permissionsElement.wrapNode(node, [ 'form', this.controlPath ].join(''));
+    }
+
+    return node;
   }
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
