@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.2.3...@rxap/material-table-system@11.2.4) (2021-03-01)
+
+
+### Bug Fixes
+
+* **schematics:** add module import for permission directives ([aa1efe4](https://gitlab.com/rxap/packages/commit/aa1efe4d2703465e60315f7a83f345823847311f))
+
+
+
+
+
 ## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.2.2...@rxap/material-table-system@11.2.3) (2021-02-26)
 
 
