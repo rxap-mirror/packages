@@ -51,6 +51,8 @@ export class EnablePermissionElement extends PermissionElement {
 
   public directiveName = 'rxapHasEnablePermission';
 
+  public type = PermissionElementType.Attribute;
+
 }
 
 @ElementDef('write')
@@ -59,6 +61,8 @@ export class WritePermissionElement extends PermissionElement {
 
   public directiveName = 'rxapHasWritePermission';
 
+  public type = PermissionElementType.Attribute;
+
 }
 
 @ElementDef('show')
@@ -66,6 +70,8 @@ export class WritePermissionElement extends PermissionElement {
 export class ShowPermissionElement extends PermissionElement {
 
   public directiveName = 'rxapIfHasPermission';
+
+  public type = PermissionElementType.Wrapper;
 
 }
 
