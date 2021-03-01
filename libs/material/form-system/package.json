@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-form-system",
-  "version": "11.2.3",
+  "version": "11.2.4",
   "peerDependencies": {
     "@angular/common": "^11.0.5",
     "@angular/core": "^11.0.5",
