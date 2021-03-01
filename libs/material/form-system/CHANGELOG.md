@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.4](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.2.3...@rxap/material-form-system@11.2.4) (2021-03-01)
+
+
+### Bug Fixes
+
+* **input-clear-button:** disable button if control is disabled ([e0fc849](https://gitlab.com/rxap/packages/commit/e0fc84969e079bead2518462393f3e3dc1769b92))
+* **schematics:** rn structure directive name template ([6b59b44](https://gitlab.com/rxap/packages/commit/6b59b4405f17d24d72da8f2362752ee48c82aaba))
+
+
+
+
+
 ## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.2.2...@rxap/material-form-system@11.2.3) (2021-03-01)
 
 
