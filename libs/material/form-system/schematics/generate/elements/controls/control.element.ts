@@ -48,6 +48,18 @@ export class ControlElement implements WithTemplate, ParsedElement, NodeElement 
     this.flexTemplateAttribute = this.flexTemplateAttribute.bind(this);
   }
 
+  public hasFeature(tag: string) {
+    return !!this.features?.find(feature => feature.__tag === tag);
+  }
+
+  public getFeature<T extends ControlFeatureElement>(tag: string): T {
+    const featureElement = this.features?.find(feature => feature.__tag === tag);
+    if (!featureElement) {
+      throw new Error(`Could not find feature '${tag}' for the control '${this.controlPath}'!`);
+    }
+    return featureElement as any;
+  }
+
   protected flexTemplateAttribute(): string {
     return `fxFlex="${this.flex}"`;
   }
