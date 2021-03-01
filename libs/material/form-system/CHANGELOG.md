@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.1.1...@rxap/material-form-system@11.2.0) (2021-03-01)
+
+
+### Features
+
+* **schematics:** add permissions support ([3c19a02](https://gitlab.com/rxap/packages/commit/3c19a026421ed717566656a381114ad87f28ef22))
+
+
+
+
+
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.1.0...@rxap/material-form-system@11.1.1) (2021-02-25)
 
 
