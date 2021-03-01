@@ -67,7 +67,7 @@ export class RouterLinkElement implements ParsedElement<Omit<ProviderObject, 'pr
   public toValue({ sourceFile, project, options, type }: ToValueContext & { sourceFile: SourceFile, type: string }): Omit<ProviderObject, 'provide'> {
     const factoryName                                     = classify(type) + 'MethodFactory';
     const providerObject: Omit<ProviderObject, 'provide'> = {
-      deps:       [ 'Router' ],
+      deps:       [ 'Router', 'ActivatedRoute', 'INJECTOR' ],
       useFactory: factoryName
     };
 
@@ -87,16 +87,23 @@ export class RouterLinkElement implements ParsedElement<Omit<ProviderObject, 'pr
       });
       sourceFile.addImportDeclarations([
         {
-          namedImports:    [ 'Router' ],
-          moduleSpecifier: '@angular/router'
-        },
-        {
           namedImports:    [ 'Method' ],
           moduleSpecifier: '@rxap/utilities'
         }
       ]);
 
     }
+
+    sourceFile.addImportDeclarations([
+      {
+        namedImports:    [ 'Router', 'ActivatedRoute' ],
+        moduleSpecifier: '@angular/router'
+      },
+      {
+        namedImports:    [ 'INJECTOR' ],
+        moduleSpecifier: '@angular/core'
+      }
+    ]);
 
     return providerObject;
   }
