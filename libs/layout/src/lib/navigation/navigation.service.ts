@@ -1,36 +1,52 @@
 import {
   Injectable,
   Inject,
-  Optional
+  Optional,
+  Injector
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {
+  Observable,
+  ReplaySubject,
+  of,
+  combineLatest,
+  from
+} from 'rxjs';
 import {
   Navigation,
   NavigationWithInserts,
   IsNavigationInsertItem,
   IsNavigationItem,
-  IsNavigationDividerItem
+  IsNavigationDividerItem,
+  NavigationItem,
+  NavigationDividerItem
 } from './navigation-item';
 import {
   RXAP_NAVIGATION_CONFIG,
   RXAP_NAVIGATION_CONFIG_INSERTS
 } from '../tokens';
+import {
+  switchMap,
+  map
+} from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class NavigationService {
 
-  public config$ = new BehaviorSubject<Navigation>([]);
+  public readonly config$: Observable<Navigation>;
 
   private inserts = new Map<string, NavigationWithInserts>();
 
-  private readonly navigation: NavigationWithInserts
+  private readonly navigation: NavigationWithInserts;
+
+  private readonly navigation$ = new ReplaySubject<Navigation>(1);
 
   constructor(
     @Inject(RXAP_NAVIGATION_CONFIG)
-    navigation: any,
+      navigation: any,
+    private readonly injector: Injector,
     @Optional()
     @Inject(RXAP_NAVIGATION_CONFIG_INSERTS)
-    inserts: any | null = null,
+      inserts: any | null = null
   ) {
     if (typeof navigation === 'function') {
       this.navigation = navigation();
@@ -40,11 +56,14 @@ export class NavigationService {
     if (inserts) {
       Object
         .entries(inserts)
-        .forEach(([id, insert]: [string, any]) =>
+        .forEach(([ id, insert ]: [ string, any ]) =>
           this.insert(id, insert, false)
         );
     }
     this.updateNavigation();
+    this.config$ = this.navigation$.pipe(
+      switchMap(navigationWithoutStatusCheck => this.checkNavigationStatusProviders(navigationWithoutStatusCheck))
+    );
   }
 
   /**
@@ -80,7 +99,67 @@ export class NavigationService {
   }
 
   public updateNavigation(): void {
-    this.config$.next(this.replaceInserts(this.navigation));
+    this.navigation$.next(this.replaceInserts(this.navigation));
+  }
+
+  /**
+   * @internal
+   * @param navigationItem
+   */
+  public checkNavigationItemStatusProviders(navigationItem: NavigationItem | NavigationDividerItem): Observable<NavigationItem | NavigationDividerItem | null> {
+    if (IsNavigationDividerItem(navigationItem) || !navigationItem.status) {
+      return of(navigationItem);
+    }
+    const isVisibleArray$: Array<Observable<boolean>> = navigationItem
+      .status
+      .map(statusToken => this.injector.get(statusToken))
+      .map(status => {
+        const isVisible = status.isVisible(navigationItem.routerLink);
+        if (typeof isVisible === 'boolean') {
+          return of(isVisible);
+        } else {
+          return from(isVisible);
+        }
+      });
+    // TODO : dont wait for all status services to complete, but cancel waiting if one returns false
+    return combineLatest(isVisibleArray$).pipe(
+      map(isVisibleArray => isVisibleArray.reduce((acc, isVisible) => acc && isVisible, true)),
+      map(isVisible => isVisible ? navigationItem : null),
+      switchMap(navigationItemOrNull => {
+        if (navigationItemOrNull) {
+          if (navigationItemOrNull.children) {
+            return this.checkNavigationStatusProviders(navigationItemOrNull.children).pipe(
+              map(children => ({
+                ...navigationItemOrNull,
+                children
+              }))
+            );
+          }
+          return of(navigationItemOrNull);
+        }
+        return of(null);
+      })
+    );
+  }
+
+  /**
+   * @internal
+   * @param navigationItem
+   */
+  public checkNavigationStatusProviders(navigation: Navigation): Observable<Navigation> {
+    return combineLatest(navigation.map(navigationItem => this.checkNavigationItemStatusProviders(navigationItem))).pipe(
+      map(navigationWithNullItems => {
+        const cleanNavigation: Navigation = [];
+
+        for (const navigationItem of navigationWithNullItems) {
+          if (navigationItem !== null) {
+            cleanNavigation.push(navigationItem);
+          }
+        }
+
+        return cleanNavigation;
+      })
+    );
   }
 
   private replaceInserts(navigationWithInserts: NavigationWithInserts): Navigation {
