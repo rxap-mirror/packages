@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.0.4...@rxap/layout@11.1.0) (2021-03-02)
+
+
+### Features
+
+* **navigation:** add status provider support ([1dba44a](https://gitlab.com/rxap/packages/commit/1dba44a5efe7d8a9154ef542e3a2424e9d33b5dd))
+
+
+
+
+
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.0.3...@rxap/layout@11.0.4) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/layout
