@@ -1,7 +1,10 @@
+import { IconConfig } from '@rxap/utilities';
 import {
-  Action,
-  IconConfig
-} from '@rxap/utilities';
+  InjectionToken,
+  Type,
+  AbstractType
+} from '@angular/core';
+import { Observable } from 'rxjs';
 
 export type Navigation = Array<NavigationItem | NavigationDividerItem>;
 
@@ -24,11 +27,16 @@ export function IsNavigationInsertItem(item: any): item is NavigationInsertItem 
   return item && item.hasOwnProperty('insert');
 }
 
+export interface NavigationStatus {
+  isVisible(routerLink: string[]): Observable<boolean> | Promise<boolean> | boolean;
+}
+
 export interface NavigationItem<Children = Navigation> {
   routerLink: string[];
   label: string;
   children?: Children;
   icon?: IconConfig;
+  status?: Array<Type<NavigationStatus> | InjectionToken<NavigationStatus> | AbstractType<NavigationStatus>>
 }
 
 export function IsNavigationItem(item: any): item is NavigationItem {
