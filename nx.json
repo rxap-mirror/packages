@@ -10,64 +10,40 @@
   },
   "projects": {
     "utilities": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "services": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "config": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "data-source": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "components": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "window-system": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "mixin": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "xml-parser": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "pipes": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "remote-method": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "authentication": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "layout": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "plugin-library-schematics": {
       "tags": []
@@ -88,14 +64,10 @@
       "tags": []
     },
     "firebase": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "directives": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "handlebars": {
       "tags": []
@@ -168,23 +140,21 @@
     },
     "contenteditable": {
       "tags": []
+    },
+    "demo": {
+      "tags": []
+    },
+    "demo-e2e": {
+      "tags": [],
+      "implicitDependencies": ["demo"]
     }
   },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "pack",
-          "test",
-          "lint",
-          "e2e"
-        ],
-        "strictlyOrderedTargets": [
-          "build",
-          "pack"
-        ]
+        "cacheableOperations": ["build", "pack", "test", "lint", "e2e"],
+        "strictlyOrderedTargets": ["build", "pack"]
       }
     }
   },

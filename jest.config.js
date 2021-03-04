@@ -43,6 +43,7 @@ module.exports = {
     '<rootDir>/libs/material/form-system',
     '<rootDir>/libs/material/table-system',
     '<rootDir>/libs/schematics/utilities',
-    '<rootDir>/libs/contenteditable'
-  ]
+    '<rootDir>/libs/contenteditable',
+    '<rootDir>/apps/demo',
+  ],
 };
