@@ -1,10 +1,10 @@
 <div class="toggle-button">
   <button (click)="toggle()" mat-icon-button>
     <ng-template [ngIfElse]="hide" [ngIf]="!openWindowSidenav">
-      <mat-icon svgIcon="chevron-left"></mat-icon>
+      <mat-icon>keyboard_arrow_left</mat-icon>
     </ng-template>
     <ng-template #hide>
-      <mat-icon svgIcon="chevron-right"></mat-icon>
+      <mat-icon>keyboard_arrow_right</mat-icon>
     </ng-template>
   </button>
 </div>
