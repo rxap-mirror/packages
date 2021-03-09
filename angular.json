@@ -3909,6 +3909,72 @@
           }
         }
       }
+    },
+    "schematics-router": {
+      "projectType": "library",
+      "root": "libs/schematics/router",
+      "sourceRoot": "libs/schematics/router/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/schematics/router/tsconfig.lib.json",
+            "project": "libs/schematics/router/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/schematics/router/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/schematics/router/tsconfig.lib.json",
+              "libs/schematics/router/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/schematics/router/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/schematics/router"],
+          "options": {
+            "jestConfig": "libs/schematics/router/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "schematics-router:update-package-group",
+              "schematics-router:build:production",
+              "schematics-router:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap/plugin-library-schematics:build",
+          "options": {
+            "buildTarget": "schematics-router:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/schematics/router/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap/plugin-library-publish:publish",
+          "options": {
+            "buildTarget": "schematics-router:build:production",
+            "preTarget": "schematics-router:pack"
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",
