@@ -147,6 +147,9 @@
     "demo-e2e": {
       "tags": [],
       "implicitDependencies": ["demo"]
+    },
+    "schematics-router": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

@@ -45,5 +45,6 @@ module.exports = {
     '<rootDir>/libs/schematics/utilities',
     '<rootDir>/libs/contenteditable',
     '<rootDir>/apps/demo',
+    '<rootDir>/libs/schematics/router',
   ],
 };
