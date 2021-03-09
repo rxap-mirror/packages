@@ -12,8 +12,9 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "experimentalDecorators": true,
+    "noUnusedLocals": false,
     "rootDir": "schematics",
     "outDir": "../../../dist/libs/schematics/router/schematics",
     "skipDefaultLibCheck": true,
@@ -24,7 +25,24 @@
     "types": [
       "jest",
       "node"
-    ]
+    ],
+    "paths": {
+      "@rxap/xml-parser": [
+        "../../../dist/libs/xml-parser"
+      ],
+      "@rxap/xml-parser/elements": [
+        "../../../dist/libs/xml-parser/elements"
+      ],
+      "@rxap/xml-parser/decorators": [
+        "../../../dist/libs/xml-parser/decorators"
+      ],
+      "@rxap/xml-parser/testing": [
+        "../../../dist/libs/xml-parser/testing"
+      ],
+      "@rxap/schematics-utilities": [
+        "../../../dist/libs/schematics/utilities"
+      ]
+    }
   },
   "include": [
     "schematics/**/*"
