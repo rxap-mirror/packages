@@ -55,7 +55,7 @@ export class ConfigService<Config extends object> {
         config         = deepMerge(config, await response.json());
 
       } catch (error) {
-        console.error(url, error.message, error);
+        console.error(url, error.message);
       }
     }
 
@@ -123,7 +123,7 @@ export class ConfigService<Config extends object> {
         if (defaultValue !== undefined) {
           return defaultValue;
         }
-        throw new Error(`Config with path '${path}' not found`);
+        console.warn(`Config with path '${path}' not found`)
       }
     }
     return configValue;
