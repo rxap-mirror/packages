@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "routing",
+  "type": "object",
+  "description": "",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": ""
+    },
+    "template": {
+      "type": "string",
+      "format": "path",
+      "default": "templates/routing.xml"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false
+    },
+    "organizeImports": {
+      "type": "boolean",
+      "default": true
+    },
+    "openApiModule": {
+      "type": "string",
+      "description": ""
+    },
+    "fixImports": {
+      "type": "boolean",
+      "default": true
+    },
+    "format": {
+      "type": "boolean",
+      "default": true
+    },
+    "feature": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "template",
+    "project"
+  ]
+}
