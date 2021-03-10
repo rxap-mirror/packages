@@ -412,9 +412,9 @@ export function CreateDirective({ filePath, sourceFile, name, prefix, parameters
 }
 
 export function CoerceOpenApiProject(project: string): Rule {
-  return (tree: Tree) => {
+  return (host: Tree) => {
 
-    const angularJson = readAngularJsonFile(tree);
+    const angularJson = readAngularJsonFile(host);
 
     if (!angularJson.projects.hasOwnProperty(project)) {
       const defaultProjectPrefix = angularJson.projects[ angularJson.defaultProject ].prefix;
