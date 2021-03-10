@@ -14,10 +14,12 @@ export interface ConfigLoadOptions {
   fromLocalStorage?: boolean;
 }
 
+export declare type NoInferType<T> = [T][T extends any ? 0 : never];
+
 @Injectable({
   providedIn: 'root'
 })
-export class ConfigService<Config extends object> {
+export class ConfigService<Config extends Record<string, any> = Record<string, any>> {
 
   public static Config: any = null;
 
@@ -111,11 +113,15 @@ export class ConfigService<Config extends object> {
 
   }
 
-  public static Get<T>(path: string, defaultValue?: T, config = this.Config): T {
+  public static Get<T = any, K extends Record<string, any> = Record<string, any>>(path: keyof K, defaultValue: T | undefined, config: Record<string, any>): T
+  public static Get<T = any, K extends Record<string, any> = Record<string, any>>(path: keyof K, defaultValue: NoInferType<T>, config: Record<string, any> = this.Config): T {
     if (!config) {
       throw new Error('config not loaded');
     }
     let configValue: any = config;
+    if (typeof path !== 'string') {
+      throw new Error('The config property path is not a string');
+    }
     for (const fragment of path.split('.')) {
       if (configValue.hasOwnProperty(fragment)) {
         configValue = configValue[ fragment ];
@@ -123,7 +129,8 @@ export class ConfigService<Config extends object> {
         if (defaultValue !== undefined) {
           return defaultValue;
         }
-        console.warn(`Config with path '${path}' not found`)
+        console.warn(`Config with path '${path}' not found`);
+        return undefined as any;
       }
     }
     return configValue;
@@ -149,8 +156,10 @@ export class ConfigService<Config extends object> {
     localStorage.removeItem(ConfigService.LocalStorageKey);
   }
 
-  public get<T>(path: string, defaultValue?: T): T {
-    return ConfigService.Get(path, defaultValue, this.config);
+  public get<T = any>(propertyPath: keyof Config): T | undefined;
+  public get<T = any>(propertyPath: keyof Config, defaultValue: NoInferType<T>): T;
+  public get<T = any>(propertyPath: keyof Config, defaultValue?: T): T | undefined {
+    return ConfigService.Get(propertyPath, defaultValue, this.config);
   }
 
 
