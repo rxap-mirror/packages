@@ -16,6 +16,10 @@
           "type": "string",
           "description": "The target project where the data sources and remote methods should be generated.",
           "default": "open-api"
+        },
+        "transport": {
+          "type": "string",
+          "enum": [ "amplify" ]
         }
       },
       "required": ["path"]
@@ -24,13 +28,16 @@
       "properties": {
         "url": {
           "type": "string",
-          "description": "The url to the openapi config",
-          "format": "url"
+          "description": "The url to the openapi config"
         },
         "target": {
           "type": "string",
           "description": "The target project where the data sources and remote methods should be generated.",
           "default": "open-api"
+        },
+        "transport": {
+          "type": "string",
+          "enum": [ "amplify" ]
         }
       },
       "required": ["url"]

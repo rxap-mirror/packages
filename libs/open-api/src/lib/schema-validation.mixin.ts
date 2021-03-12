@@ -18,6 +18,13 @@ import { RxapOpenApiError } from './error';
 import { OpenAPIV3 } from 'openapi-types';
 import { HttpRemoteMethodParameter } from '@rxap/remote-method/http';
 
+export interface SchemaValidationResponse<Data> {
+  headers: Record<string, any>;
+  status: number;
+  body?: Data | null;
+  data?: Data;
+}
+
 export class SchemaValidationMixin<Response = any, Parameters extends Record<string, any> = any, RequestBody = any> {
 
   public static STRICT: boolean = false;
@@ -89,7 +96,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
    * @param strict
    * @protected
    */
-  public validateResponse(operation: OperationObjectWithMetadata, response: HttpResponse<Response>, strict: boolean = false): void {
+  public validateResponse(operation: OperationObjectWithMetadata, response: SchemaValidationResponse<Response>, strict: boolean = false): void {
 
     // region only validate the response if the content type is undefined or application/json
 
@@ -133,8 +140,10 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
           const schema = responseObject.content['application/json'].schema;
 
-          if (!this.validate(schema, response.body)) {
-            this.validationError('The response is not valid ageist the operation schema!', strict, schema, response.body);
+          const data = response.body ?? response.data;
+
+          if (!this.validate(schema, data)) {
+            this.validationError('The response is not valid ageist the operation schema!', strict, schema, data);
           }
 
         }
@@ -302,7 +311,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
    * @param parameters
    * @param requestBody
    */
-  public buildHttpOptions(operation: OperationObjectWithMetadata, parameters?: Parameters, requestBody?: RequestBody) {
+  public buildHttpOptions(operation: OperationObjectWithMetadata, parameters?: Parameters, requestBody?: RequestBody): HttpRemoteMethodParameter {
 
     const options: HttpRemoteMethodParameter = {};
 
