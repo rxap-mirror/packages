@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.1.0...@rxap/open-api@11.1.1) (2021-03-12)
+
+
+### Bug Fixes
+
+* add amplify open-api transport support ([3fc53ee](https://gitlab.com/rxap/packages/commit/3fc53ee41cc5d87bf0dafb0812be2cb3bd3b1dac))
+
+
+
+
+
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.0.5...@rxap/open-api@11.1.0) (2021-03-12)
 
 
