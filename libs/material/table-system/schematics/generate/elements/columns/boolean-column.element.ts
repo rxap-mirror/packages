@@ -43,7 +43,7 @@ ${capitalize(this.name)}
       AddNgModuleImport(sourceFile, 'MatCheckboxModule', '@angular/material/checkbox');
     }
     // TODO : mv BooleanCellComponentModule to rxap
-    AddNgModuleImport(sourceFile, 'BooleanCellComponentModule', '@mfd/shared/boolean-cell/boolean-cell.component.module');
+    AddNgModuleImport(sourceFile, 'BooleanCellComponentModule', '@rxap/material-table-system');
   }
 
 }

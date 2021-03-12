@@ -31,12 +31,12 @@ export class ColumnMenuElement extends FeatureElement {
     // TODO : mv TableColumnMenuComponentModule to rxap
     AddNgModuleImport(sourceFile, 'TableColumnMenuComponentModule', '@rxap/material-table-system');
     if (this.showArchived) {
-      AddNgModuleImport(sourceFile, 'DateCellComponentModule', '@mfd/shared/date-cell/date-cell.component.module');
+      AddNgModuleImport(sourceFile, 'DateCellComponentModule', '@rxap/material-table-system');
       AddNgModuleImport(sourceFile, 'MatDividerModule', '@angular/material/divider');
       AddNgModuleImport(
         sourceFile,
         'TableShowArchivedSlideComponentModule',
-        '@mfd/shared/table-show-archived-slide/table-show-archived-slide.component.module'
+        '@rxap/material-table-system'
       );
     }
   }

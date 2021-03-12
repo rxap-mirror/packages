@@ -1,0 +1,28 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-boolean-cell-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-boolean-cell {
+
+    .truthy {
+      color: mat-color($primary);
+    }
+
+    .falsy {
+      color: mat-color($warn);
+    }
+
+  }
+
+}
+
+@mixin rxap-boolean-cell-typography($config) {
+  .rxap-boolean-cell {
+  }
+}
