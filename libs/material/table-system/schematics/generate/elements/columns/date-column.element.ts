@@ -51,8 +51,7 @@ export class DateColumnElement extends ColumnElement {
       AddNgModuleImport(sourceFile, 'MatDatepickerModule', '@angular/material/datepicker');
       AddNgModuleImport(sourceFile, 'FormFieldNoPaddingModule', '@rxap/directives/form-field-no-padding');
     }
-    // TODO : mv DateCellComponentModule to rxap
-    AddNgModuleImport(sourceFile, 'DateCellComponentModule', '@mfd/shared/date-cell/date-cell.component.module');
+    AddNgModuleImport(sourceFile, 'DateCellComponentModule', '@rxap/material-table-system');
   }
 
 

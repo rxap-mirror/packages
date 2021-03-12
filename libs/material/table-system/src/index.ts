@@ -32,6 +32,8 @@ export * from './lib/table-filter/tokens';
 
 export * from './lib/table-column-menu/table-column-menu.component';
 export * from './lib/table-column-menu/table-column-menu.component.module';
+export * from './lib/table-column-menu/table-show-archived-slide/table-show-archived-slide.component';
+export * from './lib/table-column-menu/table-show-archived-slide/table-show-archived-slide.component.module';
 export * from './lib/table-column-menu/table-column-option/table-column-option.component';
 
 // endregion
@@ -58,5 +60,37 @@ export * from './lib/table-row-controls/tokens';
 
 export * from './lib/table-select-controls/table-select-controls.component';
 export * from './lib/table-select-controls/table-select-controls.component.module';
+
+// endregion
+
+// region cells
+
+// region date cell
+
+export * from './lib/cells/date-cell/date-cell.component';
+export * from './lib/cells/date-cell/date-cell.component.module';
+
+// endregion
+
+// region link cell
+
+export * from './lib/cells/link-cell/link-cell.component';
+export * from './lib/cells/link-cell/link-cell.component.module';
+
+// endregion
+
+// region options cell
+
+export * from './lib/cells/options-cell/options-cell.component';
+export * from './lib/cells/options-cell/options-cell.component.module';
+
+// endregion
+
+// region boolean cell
+
+export * from './lib/cells/boolean-cell/boolean-cell.component';
+export * from './lib/cells/boolean-cell/boolean-cell.component.module';
+
+// endregion
 
 // endregion
