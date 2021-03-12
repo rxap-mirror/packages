@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.2.6...@rxap/material-table-system@11.3.0) (2021-03-12)
+
+
+### Features
+
+* add date, options, link and boolean cells ([e12a8f8](https://gitlab.com/rxap/packages/commit/e12a8f87c0c18ef5edafce674ca7e537956f23d1))
+
+
+
+
+
 ## [11.2.6](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.2.5...@rxap/material-table-system@11.2.6) (2021-03-01)
 
 

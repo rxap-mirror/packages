@@ -1,6 +1,6 @@
 {
   "name": "@rxap/authentication",
-  "version": "11.0.6",
+  "version": "11.0.7",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -20,10 +20,10 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/authentication",
+      "@rxap/config",
       "@rxap/definition",
       "@rxap/forms",
-      "@rxap/utilities",
-      "@rxap/config"
+      "@rxap/utilities"
     ]
   },
   "peerDependencies": {
@@ -35,7 +35,7 @@
     "@angular/material": "^11.0.3",
     "@angular/platform-browser": "^11.0.5",
     "@angular/router": "^11.0.5",
-    "@rxap/config": ">=11.0.5",
+    "@rxap/config": ">=11.0.6",
     "@rxap/definition": ">=11.0.3",
     "@rxap/forms": ">=11.1.1",
     "@rxap/utilities": ">=11.1.3",

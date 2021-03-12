@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/authentication@11.0.6...@rxap/authentication@11.0.7) (2021-03-12)
+
+
+### Bug Fixes
+
+* add login submit successful handler ([577fb6a](https://gitlab.com/rxap/packages/commit/577fb6a663d658061a78f0e96ec532a8345115e1))
+
+
+
+
+
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/authentication@11.0.5...@rxap/authentication@11.0.6) (2021-03-10)
 
 
