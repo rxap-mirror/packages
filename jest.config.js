@@ -46,5 +46,6 @@ module.exports = {
     '<rootDir>/libs/contenteditable',
     '<rootDir>/apps/demo',
     '<rootDir>/libs/schematics/router',
+    '<rootDir>/libs/amplify/open-api',
   ],
 };
