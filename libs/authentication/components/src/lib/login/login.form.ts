@@ -15,11 +15,14 @@ import {
   RxapFormControl,
   RxapFormGroup,
   FormSubmitMethod,
-  RXAP_FORM_SUBMIT_METHOD
+  RXAP_FORM_SUBMIT_METHOD,
+  FormSubmitSuccessfulMethod,
+  RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD
 } from '@rxap/forms';
 import { Validators } from '@angular/forms';
 import { ConfigService } from '@rxap/config';
 import { RxapOnInit } from '@rxap/utilities';
+import { Router } from '@angular/router';
 
 @RxapForm({
   id:        'rxap-login',
@@ -81,6 +84,17 @@ export class LoginFormSubmitMethod implements FormSubmitMethod<any> {
 
 }
 
+@Injectable()
+export class LoginFormSubmitSuccessful implements FormSubmitSuccessfulMethod<any> {
+
+  constructor(private readonly router: Router) {}
+
+  public call(): Promise<any> {
+    return this.router.navigate(['/']);
+  }
+
+}
+
 export const LoginFormProviders: Provider[] = [
   LoginForm,
   {
@@ -96,5 +110,9 @@ export const LoginFormProviders: Provider[] = [
   {
     provide:  RXAP_FORM_SUBMIT_METHOD,
     useClass: LoginFormSubmitMethod
+  },
+  {
+    provide: RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
+    useClass: LoginFormSubmitSuccessful
   }
 ];
