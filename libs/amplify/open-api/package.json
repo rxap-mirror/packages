@@ -13,9 +13,29 @@
     "axios": "^0.21.1",
     "rxjs": "^6.5.5"
   },
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "license": "MIT",
+  "keywords": [
+    "rxap",
+    "amplify",
+    "open-api"
+  ],
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",
     "packageGroup": []
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../../ nx run authentication:pack --with-deps",
+    "preversion": "yarn --cwd ../../../ nx run authentication:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../../dist/libs/authentication"
   }
 }
