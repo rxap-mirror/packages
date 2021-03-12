@@ -44,6 +44,6 @@
     "preversion": "yarn --cwd ../../../ nx run amplify-open-api:pack --with-deps"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/amplify-open-api"
+    "directory": "../../../dist/libs/amplify/open-api"
   }
 }
