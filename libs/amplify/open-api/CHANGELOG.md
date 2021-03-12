@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.3](https://gitlab.com/rxap/packages/compare/@rxap/amplify-open-api@11.1.2...@rxap/amplify-open-api@11.1.3) (2021-03-12)
+
+
+### Bug Fixes
+
+* update package json information ([e8a19ce](https://gitlab.com/rxap/packages/commit/e8a19ce70520c60e295c852624ed2c81c5ab0b5e))
+
+
+
+
+
 ## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/amplify-open-api@11.1.1...@rxap/amplify-open-api@11.1.2) (2021-03-12)
 
 

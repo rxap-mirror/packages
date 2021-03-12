@@ -1,6 +1,6 @@
 {
   "name": "@rxap/amplify-open-api",
-  "version": "11.1.2",
+  "version": "11.1.3",
   "peerDependencies": {
     "@angular/platform-browser": "^11.0.5",
     "@rxap/data-source": ">=11.0.3",
