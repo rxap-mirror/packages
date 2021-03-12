@@ -32,8 +32,8 @@
     "packageGroup": []
   },
   "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run authentication:pack --with-deps",
-    "preversion": "yarn --cwd ../../../ nx run authentication:pack --with-deps"
+    "prepublish": "yarn --cwd ../../../ nx run amplify-open-api:pack --with-deps",
+    "preversion": "yarn --cwd ../../../ nx run amplify-open-api:pack --with-deps"
   },
   "publishConfig": {
     "directory": "../../../dist/libs/authentication"
