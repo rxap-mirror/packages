@@ -24,17 +24,17 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy {
   @Input('empty')
   public emptyViewValue!: string;
 
-  public viewValue: string;
+  public viewValue!: string;
 
   private _subscription?: Subscription;
 
   constructor() {
-    this.defaultViewValue = $localize`:@@rxap-material.table-system.options-cell.unknown:unknown`;
-    this.emptyViewValue = $localize`:@@rxap-material.table-system.options-cell.empty:empty`;
+    this.defaultViewValue = '' // $localize`:@@rxap-material.table-system.options-cell.unknown:unknown`;
+    this.emptyViewValue =  '' // $localize`:@@rxap-material.table-system.options-cell.empty:empty`;
   }
 
   @ContentChildren(MatOption, {descendants: true})
-  public options: QueryList<MatOption>;
+  public options!: QueryList<MatOption>;
 
   public ngAfterContentInit() {
     if (this.value === undefined || this.value === null) {
