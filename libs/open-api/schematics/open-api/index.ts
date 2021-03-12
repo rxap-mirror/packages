@@ -905,7 +905,8 @@ export const REMOTE_METHOD_FILE_SUFFIX = 'remote-method';
 export async function generateRemoteMethod(
   operation: OpenAPIV3.OperationObject,
   project: Project,
-  prefix: string
+  prefix: string,
+  transport?: 'amplify',
 ): Promise<void> {
   if (operation.operationId) {
 
@@ -925,7 +926,6 @@ export async function generateRemoteMethod(
           moduleSpecifier: '@rxap/open-api/remote-method',
           namedImports:    [
             { name: 'RxapOpenApiRemoteMethod' },
-            { name: 'OpenApiRemoteMethod' },
             { name: 'OpenApiRemoteMethodParameter' }
           ]
         },
@@ -936,6 +936,28 @@ export async function generateRemoteMethod(
           ]
         }
       ];
+
+      switch (transport) {
+
+        case 'amplify':
+          importStructures.push({
+            moduleSpecifier: '@rxap/amplify-open-api',
+            namedImports: [
+              { name: 'AmplifyOpenApiRemoteMethod' }
+            ]
+          });
+          break;
+
+        default:
+          importStructures.push({
+            moduleSpecifier: '@rxap/open-api/remote-method',
+            namedImports: [
+              { name: 'OpenApiRemoteMethod' }
+            ]
+          });
+          break;
+
+      }
 
       const responseType: string    = getResponseType(operation);
       const parameterType: string   = getParameterType(operation);
@@ -954,7 +976,15 @@ export async function generateRemoteMethod(
           }
         ],
         extends:    writer => {
-          writer.write('OpenApiRemoteMethod');
+          switch (transport) {
+            case 'amplify':
+              writer.write('AmplifyOpenApiRemoteMethod');
+              break;
+
+            default:
+              writer.write('OpenApiRemoteMethod');
+              break;
+          }
           writer.write('<');
           writer.write(responseType);
           writer.write(', ');
