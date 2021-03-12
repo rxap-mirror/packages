@@ -3,7 +3,8 @@
     "libs/*",
     "libs/material/*",
     "libs/plugin/*",
-    "libs/schematics/*"
+    "libs/schematics/*",
+    "libs/amplify/*"
   ],
   "version": "independent",
   "command": {
