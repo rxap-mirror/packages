@@ -3975,6 +3975,72 @@
           }
         }
       }
+    },
+    "amplify-open-api": {
+      "projectType": "library",
+      "root": "libs/amplify/open-api",
+      "sourceRoot": "libs/amplify/open-api/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/amplify/open-api/tsconfig.lib.json",
+            "project": "libs/amplify/open-api/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/amplify/open-api/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/amplify/open-api/tsconfig.lib.json",
+              "libs/amplify/open-api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/amplify/open-api/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/amplify/open-api"],
+          "options": {
+            "jestConfig": "libs/amplify/open-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "amplify-open-api:update-package-group",
+              "amplify-open-api:build:production",
+              "amplify-open-api:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap/plugin-library-schematics:build",
+          "options": {
+            "buildTarget": "amplify-open-api:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/amplify/open-api/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap/plugin-library-publish:publish",
+          "options": {
+            "buildTarget": "amplify-open-api:build:production",
+            "preTarget": "amplify-open-api:pack"
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",

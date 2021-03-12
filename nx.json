@@ -150,6 +150,9 @@
     },
     "schematics-router": {
       "tags": []
+    },
+    "amplify-open-api": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

@@ -1,0 +1,16 @@
+{
+  "name": "@rxap/amplify-open-api",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^11.0.5",
+    "@angular/core": "^11.0.5"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": []
+  }
+}
