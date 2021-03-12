@@ -1,6 +1,6 @@
 {
   "name": "@rxap/amplify-open-api",
-  "version": "11.1.1",
+  "version": "11.1.2",
   "peerDependencies": {
     "@angular/platform-browser": "^11.0.5",
     "@rxap/data-source": ">=11.0.3",
@@ -29,7 +29,15 @@
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",
-    "packageGroup": []
+    "packageGroup": [
+      "@rxap/amplify-open-api",
+      "@rxap/data-source",
+      "@rxap/definition",
+      "@rxap/mixin",
+      "@rxap/open-api",
+      "@rxap/remote-method",
+      "@rxap/utilities"
+    ]
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../../ nx run amplify-open-api:pack --with-deps",
