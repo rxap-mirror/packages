@@ -2,9 +2,9 @@ import {
   Component,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { TableFilterService } from '../table-filter/table-filter.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { TableColumnMenuComponent } from '../table-column-menu/table-column-menu.component';
+import { TableFilterService } from '../../table-filter/table-filter.service';
+import { TableColumnMenuComponent } from '../table-column-menu.component';
 
 @Component({
   selector: 'mfd-table-show-archived-slide',
