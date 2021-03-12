@@ -906,7 +906,7 @@ export async function generateRemoteMethod(
   operation: OpenAPIV3.OperationObject,
   project: Project,
   prefix: string,
-  transport?: 'amplify',
+  transport: 'amplify' | undefined,
 ): Promise<void> {
   if (operation.operationId) {
 
@@ -1206,7 +1206,7 @@ export default function(options: OpenApiSchema): Rule {
               await generateDataSource(operation, project);
             }
 
-            await generateRemoteMethod(operation, project, prefix);
+            await generateRemoteMethod(operation, project, prefix, options.transport);
 
           }
 
