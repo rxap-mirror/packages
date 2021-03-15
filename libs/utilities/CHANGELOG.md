@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.4](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.1.3...@rxap/utilities@11.1.4) (2021-03-15)
+
+
+### Bug Fixes
+
+* add missing default values ([dd025e9](https://gitlab.com/rxap/packages/commit/dd025e9599c4d4349195e400407458857cdc99f3))
+
+
+
+
+
 ## [11.1.3](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.1.2...@rxap/utilities@11.1.3) (2021-02-26)
 
 
