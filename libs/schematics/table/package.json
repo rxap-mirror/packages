@@ -15,8 +15,8 @@
     "packageGroup": [
       "@rxap/schematics-table",
       "@rxap/mixin",
-      "@rxap/xml-parser",
-      "@rxap/schematics-utilities"
+      "@rxap/schematics-utilities",
+      "@rxap/xml-parser"
     ]
   },
   "scripts": {

@@ -16,7 +16,7 @@
     "experimentalDecorators": true,
     "noUnusedLocals": false,
     "rootDir": "schematics",
-    "outDir": "../../../dist/libs/material/table-system/schematics",
+    "outDir": "../../../dist/libs/schematics/table/schematics",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
