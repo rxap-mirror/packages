@@ -4107,6 +4107,75 @@
           }
         }
       }
+    },
+    "material-table-window-system": {
+      "projectType": "library",
+      "root": "libs/material/table-window-system",
+      "sourceRoot": "libs/material/table-window-system/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/material/table-window-system/tsconfig.lib.json",
+            "project": "libs/material/table-window-system/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/material/table-window-system/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/material/table-window-system/tsconfig.lib.json",
+              "libs/material/table-window-system/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/material/table-window-system/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/material/table-window-system"],
+          "options": {
+            "jestConfig": "libs/material/table-window-system/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "material-table-window-system:update-package-group",
+              "material-table-window-system:build:production",
+              "material-table-window-system:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap/plugin-library-schematics:build",
+          "options": {
+            "buildTarget": "material-table-window-system:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/material/table-window-system/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap/plugin-library-publish:publish",
+          "options": {
+            "buildTarget": "material-table-window-system:build:production",
+            "preTarget": "material-table-window-system:pack"
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",

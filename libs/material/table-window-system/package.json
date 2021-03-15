@@ -1,0 +1,62 @@
+{
+  "name": "@rxap/material-table-window-system",
+  "version": "11.0.0",
+  "peerDependencies": {
+    "@angular/core": "^11.0.5",
+    "@angular/common": "^11.0.5",
+    "@rxap/material-table-system": ">=11.4.0",
+    "@angular/material": "^11.0.3",
+    "@angular/flex-layout": "^11.0.0-beta.33",
+    "rxjs": "6.5.5",
+    "@rxap/utilities": ">=11.1.4",
+    "@angular/cdk": "^11.0.3",
+    "@angular/animations": "^11.0.5",
+    "@angular/platform-browser": "^11.0.5",
+    "@rxap/directives": ">=11.1.0",
+    "@rxap/services": ">=11.0.5",
+    "@angular/router": "^11.0.5",
+    "@rxap/data-source": ">=11.0.3",
+    "@rxap/definition": ">=11.0.3",
+    "@rxap/remote-method": ">=11.0.5",
+    "@rxap/open-api": ">=11.1.1",
+    "@rxap/mixin": ">=11.0.4",
+    "@rxap/forms": ">=11.1.1",
+    "@rxap/xml-parser": ">=11.0.3",
+    "@rxap/schematics-utilities": ">=11.0.3",
+    "@angular/forms": "^11.0.5",
+    "@rxap/components": ">=11.0.4",
+    "@rxap/window-system": ">=11.1.0",
+    "@angular/localize": "^11.0.5"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/material-table-window-system",
+      "@rxap/material-table-system",
+      "@rxap/utilities",
+      "@rxap/directives",
+      "@rxap/services",
+      "@rxap/data-source",
+      "@rxap/definition",
+      "@rxap/remote-method",
+      "@rxap/open-api",
+      "@rxap/mixin",
+      "@rxap/forms",
+      "@rxap/xml-parser",
+      "@rxap/schematics-utilities",
+      "@rxap/components",
+      "@rxap/window-system"
+    ]
+  },
+  "scripts": {
+    "prepublish": "yarn --cwd ../../../ nx run material-table-window-system:pack --with-deps",
+    "preversion": "yarn --cwd ../../../ nx run material-table-window-system:pack --with-deps"
+  },
+  "publishConfig": {
+    "directory": "../../../dist/libs/material/table-window-system"
+  }
+}

@@ -156,6 +156,9 @@
     },
     "schematics-table": {
       "tags": []
+    },
+    "material-table-window-system": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
