@@ -48,5 +48,6 @@ module.exports = {
     '<rootDir>/libs/schematics/router',
     '<rootDir>/libs/amplify/open-api',
     '<rootDir>/libs/schematics/table',
+    '<rootDir>/libs/material/table-window-system',
   ],
 };
