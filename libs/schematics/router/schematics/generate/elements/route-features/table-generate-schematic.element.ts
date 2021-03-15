@@ -58,7 +58,7 @@ export class TableGenerateSchematicElement extends RouteFeatureElement {
     return chain([
       () => console.log(`Execute table generator schematic for '${this.template}'`),
       externalSchematic(
-        '@rxap/material-table-system',
+        '@rxap/schematics-table',
         'generate',
         {
           project:         options.project,

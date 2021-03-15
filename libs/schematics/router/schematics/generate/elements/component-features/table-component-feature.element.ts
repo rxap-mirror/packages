@@ -44,7 +44,7 @@ export class TableComponentFeatureElement extends ComponentFeatureElement {
     return chain([
       () => console.log(`Execute table generator schematic for '${this.template}'`),
       externalSchematic(
-        '@rxap/material-table-system',
+        '@rxap/schematics-table',
         'generate',
         {
           project:         options.project,

@@ -4041,6 +4041,72 @@
           }
         }
       }
+    },
+    "schematics-table": {
+      "projectType": "library",
+      "root": "libs/schematics/table",
+      "sourceRoot": "libs/schematics/table/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/schematics/table/tsconfig.lib.json",
+            "project": "libs/schematics/table/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/schematics/table/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/schematics/table/tsconfig.lib.json",
+              "libs/schematics/table/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/schematics/table/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/schematics/table"],
+          "options": {
+            "jestConfig": "libs/schematics/table/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "schematics-table:update-package-group",
+              "schematics-table:build:production",
+              "schematics-table:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap/plugin-library-schematics:build",
+          "options": {
+            "buildTarget": "schematics-table:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/schematics/table/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap/plugin-library-publish:publish",
+          "options": {
+            "buildTarget": "schematics-table:build:production",
+            "preTarget": "schematics-table:pack"
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",

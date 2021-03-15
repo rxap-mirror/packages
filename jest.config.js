@@ -47,5 +47,6 @@ module.exports = {
     '<rootDir>/apps/demo',
     '<rootDir>/libs/schematics/router',
     '<rootDir>/libs/amplify/open-api',
+    '<rootDir>/libs/schematics/table',
   ],
 };

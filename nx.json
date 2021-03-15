@@ -153,6 +153,9 @@
     },
     "amplify-open-api": {
       "tags": []
+    },
+    "schematics-table": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
