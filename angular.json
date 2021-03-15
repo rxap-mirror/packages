@@ -4176,6 +4176,72 @@
           }
         }
       }
+    },
+    "schematics-shared": {
+      "projectType": "library",
+      "root": "libs/schematics/shared",
+      "sourceRoot": "libs/schematics/shared/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/schematics/shared/tsconfig.lib.json",
+            "project": "libs/schematics/shared/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/schematics/shared/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/schematics/shared/tsconfig.lib.json",
+              "libs/schematics/shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/schematics/shared/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/schematics/shared"],
+          "options": {
+            "jestConfig": "libs/schematics/shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "schematics-shared:update-package-group",
+              "schematics-shared:build:production",
+              "schematics-shared:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap/plugin-library-schematics:build",
+          "options": {
+            "buildTarget": "schematics-shared:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/schematics/shared/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap/plugin-library-publish:publish",
+          "options": {
+            "buildTarget": "schematics-shared:build:production",
+            "preTarget": "schematics-shared:pack"
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",

@@ -159,6 +159,9 @@
     },
     "material-table-window-system": {
       "tags": []
+    },
+    "schematics-shared": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
