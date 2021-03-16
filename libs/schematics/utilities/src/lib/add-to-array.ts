@@ -4,11 +4,21 @@ import {
 } from 'ts-morph';
 import { CoerceVariableDeclaration } from './coerce-variable-declaration';
 
+/**
+ * Adds the value to the array with the name arrayName
+ *
+ * @param sourceFile
+ * @param arrayName
+ * @param value
+ * @param type The variable type of the array declaration
+ * @param overwrite
+ * @constructor
+ */
 export function AddToArray(
   sourceFile: SourceFile,
   arrayName: string,
   value: string,
-  type: string,
+  type: string       = 'any[]',
   overwrite: boolean = false
 ) {
 
@@ -16,7 +26,6 @@ export function AddToArray(
     sourceFile,
     arrayName,
     {
-      name:        arrayName,
       initializer: '[]',
       type
     }

@@ -2,22 +2,29 @@ import {
   ElementDef,
   ElementExtends,
   ElementRequired,
-  ElementTextContent
+  ElementTextContent,
+  ElementAttribute
 } from '@rxap/xml-parser/decorators';
 import { ParsedElement } from '@rxap/xml-parser';
 import { SourceFile } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
-import { MethodElement } from './method.element';
+import {
+  MethodElement,
+  IMethodElement
+} from './method.element';
 
 const { dasherize, classify, camelize } = strings;
 
 @ElementExtends(MethodElement)
 @ElementDef('open-api-remote-method')
-export class OpenApiRemoteMethodElement implements ParsedElement<string> {
+export class OpenApiRemoteMethodElement implements ParsedElement<string>, IMethodElement {
 
   @ElementTextContent()
   @ElementRequired()
   public name!: string;
+
+  @ElementAttribute()
+  public mock?: boolean;
 
   public toValue({ sourceFile, options }: { sourceFile: SourceFile, options: { openApiModule?: string } }): string {
 
