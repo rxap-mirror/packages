@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.1.4...@rxap/utilities@11.2.0) (2021-03-16)
+
+
+### Features
+
+* add CoerceSuffix method ([8d4052f](https://gitlab.com/rxap/packages/commit/8d4052f4df180dfa80faf2f81de1f3143b5c0cd4))
+
+
+
+
+
 ## [11.1.4](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.1.3...@rxap/utilities@11.1.4) (2021-03-15)
 
 
