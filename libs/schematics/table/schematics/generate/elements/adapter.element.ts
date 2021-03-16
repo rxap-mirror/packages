@@ -9,12 +9,16 @@ import { SourceFile } from 'ts-morph';
 import {
   HandleComponent,
   AddComponentProvider,
-  ToValueContext
+  ToValueContext,
+  AddComponentMockProvider
 } from '@rxap/schematics-utilities';
 import { GenerateSchema } from '../schema';
+import type { TableElement } from './table.element';
 
 @ElementDef('adapter')
 export class AdapterElement implements ParsedElement, HandleComponent {
+
+  public __parent!: TableElement;
 
   @ElementTextContent()
   @ElementRequired()
@@ -28,25 +32,36 @@ export class AdapterElement implements ParsedElement, HandleComponent {
   }
 
   public handleComponent({ sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }): void {
-    AddComponentProvider(
-      sourceFile,
+    const providerObject  = {
+      provide:  'TABLE_REMOTE_METHOD_ADAPTER_FACTORY',
+      useValue: this.factoryName
+    };
+    const importStructure = [
       {
-        provide:  'TABLE_REMOTE_METHOD_ADAPTER_FACTORY',
-        useValue: this.factoryName
+        namedImports:    [ 'TABLE_REMOTE_METHOD_ADAPTER_FACTORY' ],
+        moduleSpecifier: '@rxap/material-table-system'
       },
-      [
-        {
-          namedImports:    [ 'TABLE_REMOTE_METHOD_ADAPTER_FACTORY' ],
-          // TODO : mv TABLE_REMOTE_METHOD_ADAPTER_FACTORY to rxap
-          moduleSpecifier: '@rxap/material-table-system'
-        },
-        {
-          namedImports:    [ this.factoryName ],
-          moduleSpecifier: this.importFrom
-        }
-      ],
-      options.overwrite
-    );
+      {
+        namedImports:    [ this.factoryName ],
+        moduleSpecifier: this.importFrom
+      }
+    ];
+    if (this.__parent.method?.mock) {
+      AddComponentMockProvider(
+        sourceFile,
+        undefined,
+        providerObject,
+        importStructure,
+        options.overwrite
+      );
+    } else {
+      AddComponentProvider(
+        sourceFile,
+        providerObject,
+        importStructure,
+        options.overwrite
+      );
+    }
   }
 
 }

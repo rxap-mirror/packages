@@ -24,13 +24,16 @@ import {
   AddComponentProvider,
   AddComponentInput,
   NodeFactory,
-  WithTemplate
+  WithTemplate,
+  AddComponentMockProvider,
+  CoerceMethodClass
 } from '@rxap/schematics-utilities';
 import { FormElement } from '@rxap/forms/schematics/generate/elements/form.element';
 import {
   chain,
   Rule
 } from '@angular-devkit/schematics';
+import { join } from 'path';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -233,20 +236,67 @@ export class TableElement implements ParsedElement<Rule> {
     AddComponentAnimations(sourceFile, 'RowAnimation', '@rxap/material-table-system');
 
     if (this.method) {
-      AddComponentProvider(
-        sourceFile,
-        {
-          provide:  'TABLE_REMOTE_METHOD',
-          useClass: this.method.toValue({ sourceFile, project, options })
-        },
-        [
+      if (this.method.mock) {
+        const mockClassName     = `${classify(this.name)}TableMockMethod`;
+        const mockClassFileName = `${dasherize(this.name)}-table.mock.method`;
+        AddComponentMockProvider(
+          sourceFile,
           {
-            namedImports:    [ 'TABLE_REMOTE_METHOD' ],
-            moduleSpecifier: '@rxap/material-table-system'
-          }
-        ],
-        options.overwrite
-      );
+            provide:  'TABLE_REMOTE_METHOD',
+            useClass: mockClassName
+          },
+          {
+            provide:  'TABLE_REMOTE_METHOD',
+            useClass: this.method.toValue({ sourceFile, project, options })
+          },
+          [
+            {
+              moduleSpecifier: `./${mockClassFileName}`,
+              namedImports:    [
+                mockClassName
+              ]
+            },
+            {
+              namedImports:    [ 'TABLE_REMOTE_METHOD' ],
+              moduleSpecifier: '@rxap/material-table-system'
+            }
+          ],
+          options.overwrite
+        );
+        const methodClassFilePath = join(
+          sourceFile.getDirectoryPath(),
+          mockClassFileName
+        );
+        const methodSourceFile    = project.createSourceFile(methodClassFilePath, project.getSourceFile(methodClassFilePath)?.getFullText());
+        CoerceMethodClass(
+          methodSourceFile,
+          mockClassName,
+          [
+            {
+              namedImports:    [ 'TableEvent' ],
+              moduleSpecifier: '@rxap/data-source/table'
+            }
+          ],
+          'Array<Record<string, any>>',
+          'TableEvent',
+          false
+        );
+      } else {
+        AddComponentProvider(
+          sourceFile,
+          {
+            provide:  'TABLE_REMOTE_METHOD',
+            useClass: this.method.toValue({ sourceFile, project, options })
+          },
+          [
+            {
+              namedImports:    [ 'TABLE_REMOTE_METHOD' ],
+              moduleSpecifier: '@rxap/material-table-system'
+            }
+          ],
+          options.overwrite
+        );
+      }
     } else {
       AddComponentInput(
         sourceFile,
