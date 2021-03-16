@@ -9,6 +9,8 @@ import { SourceFile } from 'ts-morph';
 import { ToValueContext } from '../../to-value-context';
 import { join } from 'path';
 import { strings } from '@angular-devkit/core';
+import { CoerceMethodClass } from '../../coerce-method-class';
+import { CoerceSuffix } from '@rxap/utilities';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -37,39 +39,10 @@ export class MethodElement implements ParsedElement<string>, IMethodElement {
       });
       return this.name;
     } else {
-      const methodName     = classify(this.name) + 'Method';
-      const methodFilePath = join('/methods', `${dasherize(this.name)}.method.ts`);
-      if (!project.getSourceFile(methodFilePath)) {
-        const methodSourceFile = project.createSourceFile(methodFilePath);
-        methodSourceFile.addClass({
-          name:       methodName,
-          isExported: true,
-          decorators: [
-            {
-              name:      'Injectable',
-              arguments: []
-            }
-          ],
-          implements: [ 'Method' ],
-          methods:    [
-            {
-              name:       'call',
-              parameters: [ { name: 'parameters', type: 'any' } ],
-              returnType: 'any'
-            }
-          ]
-        });
-        methodSourceFile.addImportDeclarations([
-          {
-            namedImports:    [ 'Injectable' ],
-            moduleSpecifier: '@angular/core'
-          },
-          {
-            namedImports:    [ 'Method' ],
-            moduleSpecifier: '@rxap/utilities'
-          }
-        ]);
-      }
+      const methodName       = CoerceSuffix(classify(this.name), 'Method');
+      const methodFilePath   = join('/methods', `${dasherize(this.name)}.method.ts`);
+      const methodSourceFile = project.createSourceFile(methodFilePath, project.getSourceFile(methodFilePath)?.getFullText());
+      CoerceMethodClass(methodSourceFile, methodName);
       return methodName;
     }
   }

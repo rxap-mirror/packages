@@ -32,6 +32,9 @@ export * from './lib/add-component-provider';
 export * from './lib/organize-imports';
 export * from './lib/get-component-class';
 export * from './lib/add-component-input';
+export * from './lib/add-component-mock-provider';
+export * from './lib/add-method-class';
+export * from './lib/coerce-method-class';
 
 // region elements
 
