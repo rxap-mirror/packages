@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-table-system",
-  "version": "11.4.0",
+  "version": "11.4.1",
   "peerDependencies": {
     "@angular/animations": "^11.0.5",
     "@angular/cdk": "^11.0.3",
@@ -20,7 +20,7 @@
     "@rxap/open-api": ">=11.1.1",
     "@rxap/remote-method": ">=11.0.5",
     "@rxap/services": ">=11.0.5",
-    "@rxap/utilities": ">=11.1.4",
+    "@rxap/utilities": ">=11.2.0",
     "@rxap/window-system": ">=11.1.0",
     "rxjs": "^6.5.5"
   },
@@ -32,17 +32,17 @@
     "migrations": "./schematics/migration.json",
     "packageGroup": [
       "@rxap/material-table-system",
-      "@rxap/directives",
-      "@rxap/services",
-      "@rxap/data-source",
-      "@rxap/remote-method",
-      "@rxap/open-api",
       "@rxap/components",
-      "@rxap/window-system",
+      "@rxap/data-source",
       "@rxap/definition",
+      "@rxap/directives",
       "@rxap/forms",
       "@rxap/mixin",
-      "@rxap/utilities"
+      "@rxap/open-api",
+      "@rxap/remote-method",
+      "@rxap/services",
+      "@rxap/utilities",
+      "@rxap/window-system"
     ]
   },
   "scripts": {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.1.2...@rxap/schematics-utilities@11.1.3) (2021-03-16)
+
+
+### Bug Fixes
+
+* **AddMethodClass:** add default scope fro call method ([2fe52df](https://gitlab.com/rxap/packages/commit/2fe52df21a3a4cd7e8d3f6c13b4b482391c3cc97))
+
+
+
+
+
 ## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.1.1...@rxap/schematics-utilities@11.1.2) (2021-03-16)
 
 
