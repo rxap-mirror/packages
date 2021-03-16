@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.1.1...@rxap/schematics-table@11.2.0) (2021-03-16)
+
+
+### Features
+
+* add support for mock providers ([24a4b07](https://gitlab.com/rxap/packages/commit/24a4b0739e5b79390b58570bad76322de47192d8))
+
+
+
+
+
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.1.0...@rxap/schematics-table@11.1.1) (2021-03-15)
 
 

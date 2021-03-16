@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.0.3...@rxap/schematics-utilities@11.1.0) (2021-03-16)
+
+
+### Bug Fixes
+
+* **AddComponentMockProvider:** add support for optional provider objects ([3ec9e6f](https://gitlab.com/rxap/packages/commit/3ec9e6f0695f53805fbcbdb0886136aba7741f58))
+
+
+### Features
+
+* add AddComponentMockProvider method ([96175a3](https://gitlab.com/rxap/packages/commit/96175a38b217926e81ad64032dd384b5ea9d98ba))
+* add CoerceMethodClass and AddMethodClass method ([9c44984](https://gitlab.com/rxap/packages/commit/9c44984b78abfdfb8c74497a47f2e398b6785145))
+
+
+
+
+
 ## [11.0.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.0.2...@rxap/schematics-utilities@11.0.3) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/schematics-utilities
