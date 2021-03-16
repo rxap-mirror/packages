@@ -3,10 +3,8 @@ import {
   PropertyAssignment,
   ArrayLiteralExpression
 } from 'ts-morph';
-import {
-  AddComponentAnimations,
-  GetComponentOptionsObject
-} from '@rxap/schematics-utilities';
+import { AddComponentAnimations } from './add-component-animations';
+import { GetComponentOptionsObject } from './get-component-options-object';
 
 describe('@rxap/schematics-utilities', () => {
 
