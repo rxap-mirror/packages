@@ -12,8 +12,12 @@ import { strings } from '@angular-devkit/core';
 
 const { dasherize, classify, camelize } = strings;
 
+export interface IMethodElement extends ParsedElement<string> {
+  mock?: boolean;
+}
+
 @ElementDef('method')
-export class MethodElement implements ParsedElement<string> {
+export class MethodElement implements ParsedElement<string>, IMethodElement {
 
   @ElementTextContent()
   @ElementRequired()
@@ -21,6 +25,9 @@ export class MethodElement implements ParsedElement<string> {
 
   @ElementAttribute()
   public from?: string;
+
+  @ElementAttribute()
+  public mock?: boolean;
 
   public toValue({ sourceFile, project }: { sourceFile: SourceFile } & ToValueContext): string {
     if (this.from) {

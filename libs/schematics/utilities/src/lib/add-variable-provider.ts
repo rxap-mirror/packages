@@ -22,7 +22,6 @@ export function AddVariableProvider(
     sourceFile,
     variableName,
     {
-      name:        variableName,
       initializer: '[]',
       type:        'Provider[]'
     }
