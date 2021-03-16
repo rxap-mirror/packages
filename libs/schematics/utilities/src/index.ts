@@ -35,6 +35,7 @@ export * from './lib/add-component-input';
 export * from './lib/add-component-mock-provider';
 export * from './lib/add-method-class';
 export * from './lib/coerce-method-class';
+export * from './lib/coerce-source-file';
 
 // region elements
 

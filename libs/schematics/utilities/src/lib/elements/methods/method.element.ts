@@ -11,6 +11,7 @@ import { join } from 'path';
 import { strings } from '@angular-devkit/core';
 import { CoerceMethodClass } from '../../coerce-method-class';
 import { CoerceSuffix } from '@rxap/utilities';
+import { CoerceSourceFile } from '../../coerce-source-file';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -41,7 +42,7 @@ export class MethodElement implements ParsedElement<string>, IMethodElement {
     } else {
       const methodName       = CoerceSuffix(classify(this.name), 'Method');
       const methodFilePath   = join('/methods', `${dasherize(this.name)}.method.ts`);
-      const methodSourceFile = project.createSourceFile(methodFilePath, project.getSourceFile(methodFilePath)?.getFullText());
+      const methodSourceFile = CoerceSourceFile(project, methodFilePath);
       CoerceMethodClass(methodSourceFile, methodName);
       return methodName;
     }
