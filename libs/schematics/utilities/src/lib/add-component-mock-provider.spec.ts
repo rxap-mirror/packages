@@ -31,13 +31,6 @@ export class Module {}
       sourceFile.organizeImports();
 
       expect(sourceFile.getFullText()).toEqual(`import { isDevMode, Provider } from "@angular/core";
-
-@Component({
-        providers: [MOCK_PROVIDER_FACTORY]
-    })
-export class Module {}
-
-export const MOCK_PROVIDER_FACTORY = isDevMode() ? MOCK_PROVIDERS : REAL_PROVIDERS;
 export const MOCK_PROVIDERS: Provider[] = [{
         provide: MOCK_PROVIDE,
         useValue: test
@@ -46,20 +39,18 @@ export const REAL_PROVIDERS: Provider[] = [{
         provide: REAL_PROVIDE,
         useValue: test
     }];
-`);
+export const MOCK_PROVIDER_FACTORY = isDevMode() ? MOCK_PROVIDERS : REAL_PROVIDERS;
+
+@Component({
+        providers: [MOCK_PROVIDER_FACTORY]
+    })
+export class Module {}`);
 
     });
 
     it('should add provider to existing', () => {
 
       const sourceFile = project.createSourceFile('test.ts', `import { isDevMode, Provider } from "@angular/core";
-
-@Component({
-        providers: [MOCK_PROVIDER_FACTORY]
-    })
-export class Module {}
-
-export const MOCK_PROVIDER_FACTORY = isDevMode() ? MOCK_PROVIDERS : REAL_PROVIDERS;
 export const MOCK_PROVIDERS: Provider[] = [{
         provide: MOCK_PROVIDE,
         useValue: test
@@ -68,6 +59,12 @@ export const REAL_PROVIDERS: Provider[] = [{
         provide: REAL_PROVIDE,
         useValue: test
     }];
+export const MOCK_PROVIDER_FACTORY = isDevMode() ? MOCK_PROVIDERS : REAL_PROVIDERS;
+
+@Component({
+        providers: [MOCK_PROVIDER_FACTORY]
+    })
+export class Module {}
 `);
 
       AddComponentMockProvider(sourceFile, {
@@ -82,12 +79,6 @@ export const REAL_PROVIDERS: Provider[] = [{
 
       expect(sourceFile.getFullText()).toEqual(`import { isDevMode, Provider } from "@angular/core";
 
-@Component({
-        providers: [MOCK_PROVIDER_FACTORY]
-    })
-export class Module {}
-
-export const MOCK_PROVIDER_FACTORY = isDevMode() ? MOCK_PROVIDERS : REAL_PROVIDERS;
 export const MOCK_PROVIDERS: Provider[] = [{
         provide: MOCK_PROVIDE,
         useValue: test
@@ -106,6 +97,12 @@ export const REAL_PROVIDERS: Provider[] = [{
         useValue: test2
     }
 ];
+export const MOCK_PROVIDER_FACTORY = isDevMode() ? MOCK_PROVIDERS : REAL_PROVIDERS;
+
+@Component({
+        providers: [MOCK_PROVIDER_FACTORY]
+    })
+export class Module {}
 `);
 
     });
