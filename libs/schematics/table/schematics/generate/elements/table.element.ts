@@ -26,7 +26,8 @@ import {
   NodeFactory,
   WithTemplate,
   AddComponentMockProvider,
-  CoerceMethodClass
+  CoerceMethodClass,
+  CoerceSourceFile
 } from '@rxap/schematics-utilities';
 import { FormElement } from '@rxap/forms/schematics/generate/elements/form.element';
 import {
@@ -267,7 +268,7 @@ export class TableElement implements ParsedElement<Rule> {
           sourceFile.getDirectoryPath(),
           mockClassFileName
         );
-        const methodSourceFile    = project.createSourceFile(methodClassFilePath, project.getSourceFile(methodClassFilePath)?.getFullText());
+        const methodSourceFile    = CoerceSourceFile(project, methodClassFilePath);
         CoerceMethodClass(
           methodSourceFile,
           mockClassName,
