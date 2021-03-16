@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.1.1...@rxap/schematics-utilities@11.1.2) (2021-03-16)
+
+
+### Bug Fixes
+
+* **AddComponentMockProvider:** reorder variable declarations ([11a115a](https://gitlab.com/rxap/packages/commit/11a115ac309e20d27d13c538a05b4c52cbcad458))
+
+
+
+
+
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.1.0...@rxap/schematics-utilities@11.1.1) (2021-03-16)
 
 
