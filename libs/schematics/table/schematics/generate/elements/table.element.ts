@@ -266,7 +266,7 @@ export class TableElement implements ParsedElement<Rule> {
         );
         const methodClassFilePath = join(
           sourceFile.getDirectoryPath(),
-          mockClassFileName
+          mockClassFileName + '.ts'
         );
         const methodSourceFile    = CoerceSourceFile(project, methodClassFilePath);
         CoerceMethodClass(
