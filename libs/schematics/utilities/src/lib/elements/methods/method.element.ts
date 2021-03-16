@@ -32,6 +32,10 @@ export class MethodElement implements ParsedElement<string>, IMethodElement {
   @ElementAttribute()
   public mock?: boolean;
 
+  public postParse() {
+    this.name = this.name.replace(/[-_\s]?[m,M]ethod$/, '');
+  }
+
   public toValue({ sourceFile, project }: { sourceFile: SourceFile } & ToValueContext): string {
     if (this.from) {
       sourceFile.addImportDeclaration({
