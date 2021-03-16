@@ -3,14 +3,12 @@ import {
   OptionalKind,
   ImportDeclarationStructure
 } from 'ts-morph';
-import {
-  ProviderObject,
-  AddComponentProvider,
-  CoerceVariableDeclaration,
-  AddProviderToArray
-} from '@rxap/schematics-utilities';
 import { GetArrayDeclaration } from './get-array-declaration';
 import { AssertArrayLiteralExpression } from './is-array-literal-expression';
+import { CoerceVariableDeclaration } from './coerce-variable-declaration';
+import { ProviderObject } from './provider-object';
+import { AddProviderToArray } from './add-provider-to-array';
+import { AddComponentProvider } from './add-component-provider';
 
 export function AddComponentMockProvider(
   sourceFile: SourceFile,

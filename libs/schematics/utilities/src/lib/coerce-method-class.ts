@@ -3,7 +3,7 @@ import {
   OptionalKind,
   ImportDeclarationStructure
 } from 'ts-morph';
-import { AddMethodClass } from '@rxap/schematics-utilities';
+import { AddMethodClass } from './add-method-class';
 import { CoerceSuffix } from '@rxap/utilities';
 
 export function CoerceMethodClass(
