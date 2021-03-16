@@ -19,12 +19,12 @@ import { MatSort } from '@angular/material/sort';
 import {
   AbstractTableDataSource,
   DynamicTableDataSource,
-  TableEvent
+  TableEvent,
+  SortLike
 } from '@rxap/data-source/table';
 import { BaseRemoteMethod } from '@rxap/remote-method';
 import { PaginatorLike } from '@rxap/data-source/pagination';
 import { CdkTable } from '@angular/cdk/table';
-import { OpenApiRemoteMethod } from '@rxap/open-api/remote-method';
 import { TableFilterService } from './table-filter/table-filter.service';
 import {
   debounceTime,
@@ -32,14 +32,26 @@ import {
   filter,
   tap
 } from 'rxjs/operators';
+import {
+  Required,
+  Method
+} from '@rxap/utilities';
 
-export const TABLE_REMOTE_METHOD                 = new InjectionToken('table-remote-method');
+// TODO : add migration schematic
+export const RXAP_TABLE_METHOD                   = new InjectionToken('rxap/material/table-system/table-method');
+/**
+ * @deprecated use TABLE_METHOD instead
+ */
+export const TABLE_REMOTE_METHOD                 = RXAP_TABLE_METHOD;
 export const TABLE_REMOTE_METHOD_ADAPTER_FACTORY = new InjectionToken('table-remote-method-adapter-factory');
 export const TABLE_DATA_SOURCE                   = new InjectionToken('table-data-source');
 
 export type TableRemoteMethodAdapterFactory<Data extends Record<string, any> = Record<string, any>> = (
-  remoteMethod: OpenApiRemoteMethod,
-  paginator?: PaginatorLike
+  method: Method,
+  paginator?: PaginatorLike,
+  sort?: SortLike | null,
+  filter?: TableFilterService | null,
+  parameters?: Observable<Record<string, any>>
 ) => BaseRemoteMethod<Data[], TableEvent>;
 
 @Directive({
@@ -56,10 +68,28 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any> im
 
   public loading$: Observable<boolean> = EMPTY;
 
+  @Input()
+  @Required
+  public id!: string;
+
   @Input('rxapTableDataSource')
   public dataSource?: AbstractTableDataSource<Data>;
 
-  public remoteMethod?: BaseRemoteMethod<Data[], TableEvent>;
+  public method?: Method<Data[], TableEvent>;
+
+  /**
+   * @deprecated use method instead
+   */
+  public get remoteMethod(): Method<Data[], TableEvent> | undefined {
+    return this.method;
+  }
+
+  /**
+   * @deprecated use sourceMethod instead
+   */
+  public get sourceRemoteMethod(): Method<Data[] | any, TableEvent | any> | null {
+    return this.sourceMethod;
+  }
 
   protected _subscription = new Subscription();
 
@@ -70,8 +100,8 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any> im
     private readonly matTable: CdkTable<Data>,
     protected readonly cdr: ChangeDetectorRef,
     @Optional()
-    @Inject(TABLE_REMOTE_METHOD)
-    private readonly sourceRemoteMethod: OpenApiRemoteMethod<Data[] | any, TableEvent | any> | null = null,
+    @Inject(RXAP_TABLE_METHOD)
+    private readonly sourceMethod: Method<Data[] | any, TableEvent | any> | null                    = null,
     @Optional()
     @Inject(TABLE_DATA_SOURCE)
     private readonly sourceDataSource: AbstractTableDataSource<Data> | null                         = null,
@@ -94,23 +124,24 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any> im
   }
 
   public ngOnInit() {
-    if (this.sourceRemoteMethod) {
+    if (this.sourceMethod) {
       if (this.adapterFactory) {
-        this.remoteMethod = this.adapterFactory(this.sourceRemoteMethod, this.paginator);
+        this.method = this.adapterFactory(this.sourceMethod, this.paginator, this.matSort, this.tableFilter, this.parameters);
       } else {
-        this.remoteMethod = this.sourceRemoteMethod;
+        this.method = this.sourceMethod;
       }
       this.dataSource = new DynamicTableDataSource<Data>(
-        this.remoteMethod,
+        this.method,
         this.paginator,
         this.matSort,
         this.tableFilter,
-        this.parameters
+        this.parameters,
+        this.method.metadata ?? { id: this.id }
       );
     } else if (this.sourceDataSource) {
       this.dataSource = this.sourceDataSource;
     } else if (!this.dataSource) {
-      throw new Error('The TABLE_DATA_SOURCE and TABLE_REMOTE_METHOD token are not defined!');
+      throw new Error('The TABLE_DATA_SOURCE and TABLE_METHOD token are not defined!');
     }
     this.dataSource.paginator  = this.paginator;
     this.dataSource.sort       = this.matSort ?? undefined;
