@@ -1,7 +1,8 @@
 import {
   SourceFile,
   OptionalKind,
-  ImportDeclarationStructure
+  ImportDeclarationStructure,
+  Scope
 } from 'ts-morph';
 import { CoerceSuffix } from '@rxap/utilities';
 
@@ -30,6 +31,7 @@ export function AddMethodClass(
       {
         name:       'call',
         isAsync:    isAsync,
+        scope:      Scope.Public,
         parameters: [ { name: 'parameters', type: parameterType } ],
         returnType: isAsync ? `Promise<${returnType}>` : returnType
       }
