@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.0.3...@rxap/data-source@11.0.4) (2021-03-16)
+
+
+### Bug Fixes
+
+* **TableEvent:** add setTotalLength function ([2aada6f](https://gitlab.com/rxap/packages/commit/2aada6f8fab181e0fcdcdc6e02ccc19d0ef3d7f7))
+
+
+
+
+
 ## [11.0.3](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.0.2...@rxap/data-source@11.0.3) (2021-02-04)
 
 

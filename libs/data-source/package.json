@@ -1,6 +1,6 @@
 {
   "name": "@rxap/data-source",
-  "version": "11.0.3",
+  "version": "11.0.4",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -21,7 +21,7 @@
     "@angular/core": "^11.0.5",
     "@angular/platform-browser": "^11.0.5",
     "@rxap/definition": ">=11.0.3",
-    "@rxap/utilities": ">=11.0.4",
+    "@rxap/utilities": ">=11.2.0",
     "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",
