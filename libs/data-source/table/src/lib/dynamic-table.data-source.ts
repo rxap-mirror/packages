@@ -58,6 +58,7 @@ export interface TableEvent<Parameters = any> {
   parameters?: Parameters;
   /** time of the last refresh call */
   refresh?: number;
+  setTotalLength?: (length: number) => void
 }
 
 export interface DynamicTableDataSourceViewer<Parameters> extends BaseDataSourceViewer<Parameters> {
@@ -123,7 +124,10 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
           parameters,
           refresh
         };
-        return clone(tableEvent);
+        return {
+          ...clone(tableEvent),
+          setTotalLength: this.setTotalLength.bind(this)
+        };
       }),
       distinctUntilChanged((a, b) => equals(a, b)),
       tap(() => this.loading$.enable()),
@@ -134,6 +138,12 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
 
   protected async loadPage(tableEvent: TableEvent): Promise<Data[]> {
     return this.remoteMethod.call(tableEvent);
+  }
+
+  public setTotalLength(length: number): void {
+    if (this.paginator) {
+      this.paginator.length = length;
+    }
   }
 
   public refresh(): any {
