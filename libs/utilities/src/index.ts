@@ -78,6 +78,12 @@ export * from './lib/options/to-options';
 
 // endregion
 
+// region strings
+
+export * from './lib/strings/coerce-suffix';
+
+// endregion
+
 // region rxjs
 
 // region operators
