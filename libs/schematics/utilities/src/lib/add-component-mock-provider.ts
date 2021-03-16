@@ -18,6 +18,8 @@ export function AddComponentMockProvider(
   overwrite: boolean                                                  = false
 ) {
 
+  const hasMockProviderFactory = !!sourceFile.getVariableStatement('MOCK_PROVIDER_FACTORY');
+
   CoerceVariableDeclaration(
     sourceFile,
     'MOCK_PROVIDER_FACTORY',
@@ -70,6 +72,23 @@ export function AddComponentMockProvider(
   sourceFile.addImportDeclarations(structures);
 
   AddComponentProvider(sourceFile, 'MOCK_PROVIDER_FACTORY');
+
+  // region order variable statements
+
+  // ensures that the variable declaration is before the component decorator
+  if (!hasMockProviderFactory) {
+    // only re order if the member were added in this method
+    const classOrder = Math.max(
+      sourceFile.getVariableStatement('MOCK_PROVIDER_FACTORY')?.getChildIndex() ?? 0,
+      sourceFile.getVariableStatement('MOCK_PROVIDERS')?.getChildIndex() ?? 0,
+      sourceFile.getVariableStatement('REAL_PROVIDERS')?.getChildIndex() ?? 0
+    );
+    sourceFile.getVariableStatement('MOCK_PROVIDER_FACTORY')?.setOrder(classOrder);
+    sourceFile.getClasses()[ 0 ]?.setOrder(classOrder);
+  }
+
+  // endregion
+
 }
 
 /*
