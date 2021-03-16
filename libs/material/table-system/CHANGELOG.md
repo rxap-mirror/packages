@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.4.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.4.0...@rxap/material-table-system@11.4.1) (2021-03-16)
+
+
+### Bug Fixes
+
+* **TableDataSourceDirective:** add support for methods ([e712e5f](https://gitlab.com/rxap/packages/commit/e712e5f8f2e9af828badd8c28663be7c9ba1d62c))
+
+
+
+
+
 # [11.4.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.3.0...@rxap/material-table-system@11.4.0) (2021-03-15)
 
 
