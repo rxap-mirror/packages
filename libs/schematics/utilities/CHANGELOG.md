@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.1.0...@rxap/schematics-utilities@11.1.1) (2021-03-16)
+
+
+### Bug Fixes
+
+* add CoerceSourceFile Function ([cda4369](https://gitlab.com/rxap/packages/commit/cda43690400d5538bcefdd916b1d0fc542f673bc))
+
+
+
+
+
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.0.3...@rxap/schematics-utilities@11.1.0) (2021-03-16)
 
 
