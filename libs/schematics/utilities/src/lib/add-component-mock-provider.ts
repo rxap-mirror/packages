@@ -14,8 +14,8 @@ import { AssertArrayLiteralExpression } from './is-array-literal-expression';
 
 export function AddComponentMockProvider(
   sourceFile: SourceFile,
-  mockProviderObject: ProviderObject | string,
-  realProviderObject: ProviderObject | string,
+  mockProviderObject: ProviderObject | string | undefined,
+  realProviderObject: ProviderObject | string | undefined,
   structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = [],
   overwrite: boolean                                                  = false
 ) {
@@ -44,21 +44,25 @@ export function AddComponentMockProvider(
 
   AssertArrayLiteralExpression(mockArrayInitializer, 'MOCK_PROVIDERS');
 
-  AddProviderToArray(
-    mockProviderObject,
-    mockArrayInitializer,
-    overwrite
-  );
+  if (mockProviderObject) {
+    AddProviderToArray(
+      mockProviderObject,
+      mockArrayInitializer,
+      overwrite
+    );
+  }
 
   const realArrayInitializer = realArrayDeclaration.getInitializer();
 
   AssertArrayLiteralExpression(realArrayInitializer, 'REAL_PROVIDERS');
 
-  AddProviderToArray(
-    realProviderObject,
-    realArrayInitializer,
-    overwrite
-  );
+  if (realProviderObject) {
+    AddProviderToArray(
+      realProviderObject,
+      realArrayInitializer,
+      overwrite
+    );
+  }
 
   sourceFile.addImportDeclaration({
     moduleSpecifier: '@angular/core',
