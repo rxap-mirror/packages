@@ -10,7 +10,7 @@ import { TabGroupElement } from './tab.element';
 import { Features } from './features/features';
 import { DividerElement } from './divider.element';
 import { CardElement } from './card.element';
-import { ComponentElement } from './component.element';
+import { Components } from './component/components';
 
 export const Elements: Array<Constructor<ParsedElement>> = [
   NodeElement,
@@ -21,7 +21,7 @@ export const Elements: Array<Constructor<ParsedElement>> = [
   TabGroupElement,
   DividerElement,
   CardElement,
-  ComponentElement,
+  ...Components,
   ...Controls,
   ...Features
 ];

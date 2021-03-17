@@ -1,4 +1,4 @@
-import { NodeElement } from './node.element';
+import { NodeElement } from '../node.element';
 import {
   WithTemplate,
   ToValueContext,
@@ -11,7 +11,8 @@ import {
   ElementDef,
   ElementChildTextContent,
   ElementAttribute,
-  ElementRequired
+  ElementRequired,
+  ElementChildren
 } from '@rxap/xml-parser/decorators';
 import { strings } from '@angular-devkit/core';
 import { SourceFile } from 'ts-morph';
@@ -21,6 +22,7 @@ import {
   externalSchematic
 } from '@angular-devkit/schematics';
 import { join } from 'path';
+import { ComponentFeatureElement } from './features/component-feature.element';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
@@ -32,6 +34,9 @@ export class ComponentElement implements WithTemplate, ParsedElement, NodeElemen
   public __parent!: NodeElement;
 
   public nodes: NodeElement[] = [];
+
+  @ElementChildren(ComponentFeatureElement, { group: 'features' })
+  public features: ComponentFeatureElement[] = [];
 
   @ElementAttribute()
   @ElementRequired()
@@ -79,16 +84,29 @@ export class ComponentElement implements WithTemplate, ParsedElement, NodeElemen
     return true;
   }
 
-  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {}
+  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+    this.features?.forEach(feature => feature.handleComponent({
+      project,
+      formSourceFile:      sourceFile,
+      componentSourceFile: project.getSourceFile(join(sourceFile.getDirectoryPath(), dasherize(this.name), dasherize(this.name) + '.component.ts'))!,
+      options
+    }));
+  }
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
     AddNgModuleImport(sourceFile, 'ReactiveFormsModule', '@angular/forms');
     AddNgModuleImport(sourceFile, 'FlexLayoutModule', '@angular/flex-layout');
     AddNgModuleImport(sourceFile, this.componentModuleName, this.from);
+    this.features?.forEach(feature => feature.handleComponentModule({
+      project,
+      formSourceFile:      sourceFile,
+      componentSourceFile: project.getSourceFile(join(sourceFile.getDirectoryPath(), dasherize(this.name), dasherize(this.name) + '.component.module.ts'))!,
+      options
+    }));
   }
 
   public toValue({ project, options }: ToValueContext): Rule {
-    const rules: Rule[] = [];
+    const rules: Rule[] = this.features?.map(feature => feature.toValue({ project, options })) ?? [];
     if (this.createComponent) {
       rules.push(tree => {
 
