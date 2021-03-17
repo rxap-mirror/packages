@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.6](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.1.5...@rxap/schematics-utilities@11.1.6) (2021-03-17)
+
+
+### Bug Fixes
+
+* extend error logs ([e18d426](https://gitlab.com/rxap/packages/commit/e18d4264c91cce47d502db93e1fb23f74b4c604a))
+* use coerce suffix function ([49b4612](https://gitlab.com/rxap/packages/commit/49b4612ea10a469f5f03379a69c23cb49a426551))
+
+
+
+
+
 ## [11.1.5](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.1.4...@rxap/schematics-utilities@11.1.5) (2021-03-17)
 
 
