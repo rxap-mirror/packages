@@ -208,7 +208,7 @@ export class TableSelectControlElement extends SelectControlElement {
     return chain([
       super.toValue({ project, options }),
       () => this.createOpenMethodFile(project),
-      externalSchematic('@rxap/material-table-system', 'generate', {
+      externalSchematic('@rxap/schematics-table', 'generate', {
         template:        this.table.template,
         name:            this.tableSelectName,
         path:            join(options.path, 'select-tables').replace(/^\//, ''),
