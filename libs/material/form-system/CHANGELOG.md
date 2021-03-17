@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.8](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.2.7...@rxap/material-form-system@11.2.8) (2021-03-17)
+
+
+### Bug Fixes
+
+* add missing module import ([781faa7](https://gitlab.com/rxap/packages/commit/781faa763238b47f217666e60a2aeb173907d844))
+
+
+
+
+
 ## [11.2.7](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.2.6...@rxap/material-form-system@11.2.7) (2021-03-17)
 
 
