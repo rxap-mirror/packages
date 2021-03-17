@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@11.1.0...@rxap/material-table-window-system@11.1.1) (2021-03-17)
+
+
+### Bug Fixes
+
+* add table select control element support ([53584d2](https://gitlab.com/rxap/packages/commit/53584d21f06655b0ac999cbbc07d99d9d4ddd096))
+
+
+
+
+
 # 11.1.0 (2021-03-15)
 
 
