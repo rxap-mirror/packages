@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.2.2...@rxap/schematics-table@11.2.3) (2021-03-17)
+
+
+### Bug Fixes
+
+* add create and edit form providers ([ca96f5e](https://gitlab.com/rxap/packages/commit/ca96f5e5b4fc6ba82082c01691d291c24d9f3d3e))
+
+
+
+
+
 ## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.2.1...@rxap/schematics-table@11.2.2) (2021-03-16)
 
 
