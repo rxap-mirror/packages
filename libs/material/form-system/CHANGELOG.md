@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.4.2](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.4.1...@rxap/material-form-system@11.4.2) (2021-03-17)
+
+
+### Bug Fixes
+
+* table component generator parameters ([04d8983](https://gitlab.com/rxap/packages/commit/04d89834e909a7971be5408483ddd60d26477436))
+
+
+
+
+
 ## [11.4.1](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.4.0...@rxap/material-form-system@11.4.1) (2021-03-17)
 
 
