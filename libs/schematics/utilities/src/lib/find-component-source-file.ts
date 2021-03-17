@@ -8,5 +8,17 @@ import {
 } from '@rxap/utilities';
 
 export function FindComponentSourceFile(name: string, project: Project): SourceFile {
-  return project.getSourceFileOrThrow(sourceFile => !!sourceFile.getClass(CoerceSuffix(classify(name), 'Component')));
+  const className = CoerceSuffix(classify(name), 'Component');
+  try {
+    return project.getSourceFileOrThrow(sourceFile => !!sourceFile.getClass(className));
+  } catch (e) {
+
+    console.debug(`Could not find class '${className}' in any of this files.`, project
+      .getSourceFiles()
+      .map(sourceFile => sourceFile.getFilePath())
+      .filter(filePath => filePath.match(/\.component\.ts/))
+    );
+
+    throw e;
+  }
 }
