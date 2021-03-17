@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.5](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.1.4...@rxap/schematics-utilities@11.1.5) (2021-03-17)
+
+
+### Bug Fixes
+
+* **MethodElement:** only change the name if a new method could be created ([19c69bf](https://gitlab.com/rxap/packages/commit/19c69bfc49b5f5ed0e31b8d9b3cd478705547fca))
+
+
+
+
+
 ## [11.1.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.1.3...@rxap/schematics-utilities@11.1.4) (2021-03-16)
 
 
