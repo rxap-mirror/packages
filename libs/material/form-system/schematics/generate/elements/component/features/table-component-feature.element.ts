@@ -55,7 +55,7 @@ export class TableComponentFeatureElement extends ComponentFeatureElement {
         {
           project:         options.project,
           template:        this.template,
-          name:            dasherize(this.name) + '-table',
+          name:            dasherize(this.name),
           path:            join(options.path, dasherize(this.__parent.name)).replace(/^\//, ''),
           organizeImports: false,
           fixImports:      false,
