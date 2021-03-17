@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.7](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.2.6...@rxap/material-form-system@11.2.7) (2021-03-17)
+
+
+### Bug Fixes
+
+* change to new table schematics package ([b38918e](https://gitlab.com/rxap/packages/commit/b38918e65acd29c8fa02c2c478a04668301f550e))
+
+
+
+
+
 ## [11.2.6](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.2.5...@rxap/material-form-system@11.2.6) (2021-03-17)
 
 
