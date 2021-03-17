@@ -27,6 +27,8 @@ import {
 } from '@angular-devkit/schematics';
 import { WindowFormElement } from './window-form.element';
 import { GenerateSchema } from '../../schema';
+import { join } from 'path';
+import { dasherize } from '@rxap/utilities';
 
 @ElementExtends(FeatureElement)
 @ElementDef('create-button')
@@ -84,6 +86,31 @@ export class CreateButtonElement extends FeatureElement {
       importStructures,
       options.overwrite
     );
+
+    // if a windowForm is used the corresponding FormProvider must be added
+    if (this.windowForm) {
+
+      const formProviderName = 'CreateFormProviders';
+
+      AddComponentProvider(
+        sourceFile,
+        formProviderName,
+        [
+          {
+            moduleSpecifier: `./${join(dasherize(this.windowForm.name!) + '-form', 'form.providers')}`,
+            namedImports:    [
+              {
+                name:  'FormProviders',
+                alias: formProviderName
+              }
+            ]
+          }
+        ],
+        options.overwrite
+      );
+
+    }
+
   }
 
   public headerTemplate(): string {

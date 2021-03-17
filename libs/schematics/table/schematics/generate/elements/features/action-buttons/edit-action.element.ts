@@ -24,6 +24,7 @@ import { SourceFile } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
 import { GenerateSchema } from '../../../schema';
 import { WindowFormElement } from '../window-form.element';
+import { join } from 'path';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -104,6 +105,29 @@ export class EditActionElement extends MethodActionElement {
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponent({ project, options, sourceFile });
     this.loader?.handleComponent({ project, options, sourceFile });
+    // if a windowForm is used the corresponding FormProvider must be added
+    if (this.windowForm) {
+
+      const formProviderName = 'EditFormProviders';
+
+      AddComponentProvider(
+        sourceFile,
+        formProviderName,
+        [
+          {
+            moduleSpecifier: `./${join(dasherize(this.windowForm.name!) + '-form', 'form.providers')}`,
+            namedImports:    [
+              {
+                name:  'FormProviders',
+                alias: formProviderName
+              }
+            ]
+          }
+        ],
+        options.overwrite
+      );
+
+    }
   }
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
