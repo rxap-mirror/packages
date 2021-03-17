@@ -196,7 +196,7 @@ export class TableSelectControlElement extends SelectControlElement {
     // TODO : mv to rxap
     AddNgModuleImport(sourceFile, 'OpenTableSelectDirectiveModule', '@rxap/material-table-window-system');
     AddNgModuleImport(sourceFile, 'StopPropagationDirectiveModule', '@rxap/directives');
-    AddNgModuleImport(sourceFile, 'TableSelectControlsComponentModule', '@rxap/material-table-system');
+    AddNgModuleImport(sourceFile, 'WindowTableSelectModule', '@rxap/material-table-window-system');
     AddNgModuleImport(
       sourceFile,
       `${classify(this.tableSelectName)}TableComponentModule`,
