@@ -32,10 +32,6 @@ export class MethodElement implements ParsedElement<string>, IMethodElement {
   @ElementAttribute()
   public mock?: boolean;
 
-  public postParse() {
-    this.name = this.name.replace(/[-_\s]?[m,M]ethod$/, '');
-  }
-
   public toValue({ sourceFile, project }: { sourceFile: SourceFile } & ToValueContext): string {
     if (this.from) {
       sourceFile.addImportDeclaration({
@@ -45,7 +41,7 @@ export class MethodElement implements ParsedElement<string>, IMethodElement {
       return this.name;
     } else {
       const methodName       = CoerceSuffix(classify(this.name), 'Method');
-      const methodFilePath   = join('/methods', `${dasherize(this.name)}.method.ts`);
+      const methodFilePath   = join('/methods', `${dasherize(this.name.replace(/[-_\s]?[m|M]ethod$/, ''))}.method.ts`);
       const methodSourceFile = CoerceSourceFile(project, methodFilePath);
       CoerceMethodClass(methodSourceFile, methodName);
       return methodName;
