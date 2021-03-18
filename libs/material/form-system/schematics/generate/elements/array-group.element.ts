@@ -1,4 +1,3 @@
-import { NodeElement } from '@rxap/material-form-system/schematics/generate/elements/node.element';
 import {
   ElementAttribute,
   ElementChildren,
@@ -16,6 +15,7 @@ import {
   chain,
   Rule
 } from '@angular-devkit/schematics';
+import { NodeElement } from './node.element';
 
 @ElementExtends(NodeElement)
 @ElementDef('array-group')
