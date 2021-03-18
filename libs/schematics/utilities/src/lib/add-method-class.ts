@@ -2,18 +2,35 @@ import {
   SourceFile,
   OptionalKind,
   ImportDeclarationStructure,
-  Scope
+  Scope,
+  WriterFunction,
+  StatementStructures
 } from 'ts-morph';
 import { CoerceSuffix } from '@rxap/utilities';
+
+export interface AddMethodClassOptions {
+  structures?: ReadonlyArray<OptionalKind<ImportDeclarationStructure>>;
+  returnType?: string;
+  parameterType?: string;
+  isAsync?: boolean;
+  statements?: (string | WriterFunction | StatementStructures)[] | string | WriterFunction | null
+}
+
+export const DEFAULT_ADD_METHOD_CLASS_OPTIONS: Required<AddMethodClassOptions> = {
+  structures:    [],
+  returnType:    'any',
+  parameterType: 'any',
+  isAsync:       false,
+  statements:    null
+};
 
 export function AddMethodClass(
   sourceFile: SourceFile,
   name: string,
-  structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = [],
-  returnType: string                                                  = 'any',
-  parameterType: string                                               = 'any',
-  isAsync?: boolean
+  options: AddMethodClassOptions = {}
 ): void {
+
+  const parameters: Required<AddMethodClassOptions> = Object.assign({}, DEFAULT_ADD_METHOD_CLASS_OPTIONS, options);
 
   name = CoerceSuffix(name, 'Method');
 
@@ -26,14 +43,15 @@ export function AddMethodClass(
         arguments: []
       }
     ],
-    implements: [ `Method<${returnType}, ${parameterType}>` ],
+    implements: [ `Method<${parameters.returnType}, ${parameters.parameterType}>` ],
     methods:    [
       {
         name:       'call',
-        isAsync:    isAsync,
+        isAsync:    parameters.isAsync,
         scope:      Scope.Public,
-        parameters: [ { name: 'parameters', type: parameterType } ],
-        returnType: isAsync ? `Promise<${returnType}>` : returnType
+        parameters: [ { name: 'parameters', type: parameters.parameterType } ],
+        returnType: parameters.isAsync ? `Promise<${parameters.returnType}>` : parameters.returnType,
+        statements: parameters.statements ?? []
       }
     ]
   });
@@ -47,6 +65,6 @@ export function AddMethodClass(
       moduleSpecifier: '@rxap/utilities'
     }
   ]);
-  sourceFile.addImportDeclarations(structures);
+  sourceFile.addImportDeclarations(parameters.structures);
 
 }
