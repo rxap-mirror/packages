@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.4.2...@rxap/material-form-system@11.5.0) (2021-03-18)
+
+
+### Features
+
+* add array elements ([48a829d](https://gitlab.com/rxap/packages/commit/48a829d7bff275f10ed21c8e959d108bfd64a556))
+* add ArrayGroupElement ([29f926d](https://gitlab.com/rxap/packages/commit/29f926d83ac947559b7a83c36f74508c6226a7fd))
+
+
+
+
+
 ## [11.4.2](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@11.4.1...@rxap/material-form-system@11.4.2) (2021-03-17)
 
 
