@@ -1,4 +1,3 @@
-import { ControlElement } from './control.element';
 import {
   ElementChildTextContent,
   ElementDef,
@@ -23,13 +22,14 @@ import {
 } from '@angular-devkit/schematics';
 import { join } from 'path';
 import { GenerateSchema } from '../../schema';
+import { ArrayElement } from './array.element';
 import { PermissionsElement } from './features/permissions.element';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
 @ElementExtends(NodeElement)
-@ElementDef('component-control')
-export class ComponentControlElement extends ControlElement {
+@ElementDef('component-array')
+export class ComponentArrayElement extends ArrayElement {
 
   @ElementChildTextContent('name')
   public componentName!: string;
@@ -49,15 +49,15 @@ export class ComponentControlElement extends ControlElement {
     if (!this.componentName) {
       this.createComponent     = true;
       this.componentName       = classify(this.name);
-      this.selector            = `rxap-${dasherize(this.name)}-control`;
-      this.from                = `./${dasherize(this.name)}-control/${dasherize(this.name)}-control.component.module`;
-      this.componentModuleName = `${this.componentName}ControlComponentModule`;
+      this.selector            = `rxap-${dasherize(this.name)}-array-group`;
+      this.from                = `./${dasherize(this.name)}-array-group/${dasherize(this.name)}-array-group.component.module`;
+      this.componentModuleName = `${this.componentName}ArrayGroupComponentModule`;
     }
     if (!this.selector) {
-      this.selector = `rxap-${dasherize(this.name)}-control`;
+      this.selector = `rxap-${dasherize(this.name)}-array-group`;
     }
     if (!this.from) {
-      this.from = `./${dasherize(this.name)}-control/${dasherize(this.name)}-control.component.module`;
+      this.from = `./${dasherize(this.name)}-array-group/${dasherize(this.name)}-array-group.component.module`;
     }
     if (!this.componentModuleName) {
       this.componentModuleName = `${this.componentName}Module`;
@@ -66,7 +66,7 @@ export class ComponentControlElement extends ControlElement {
 
   public template(): string {
     const attributes: Array<string | (() => string)> = [
-      `formControlName="${this.name}"`,
+      `formArrayName="${this.name}"`,
       `i18n="@@form.${this.controlPath}.label"`,
       `data-cy="form.${this.controlPath}"`
     ];
@@ -82,7 +82,7 @@ export class ComponentControlElement extends ControlElement {
     )(`\n${capitalize(this.name)}\n`);
     if (this.hasFeature('permissions')) {
       const permissionsElement = this.getFeature<PermissionsElement>('permissions');
-      node = permissionsElement.wrapNode(node, [ 'form', this.controlPath ].join('.'));
+      node                     = permissionsElement.wrapNode(node, [ 'form', this.controlPath ].join('.'));
     }
 
     return node;
@@ -103,22 +103,22 @@ export class ComponentControlElement extends ControlElement {
         const componentModulePath = join(options.path ?? '', this.from + '.ts');
         if (!tree.exists(componentModulePath)) {
           return chain([
-            externalSchematic(
-              '@rxap/schematics',
-              'component-module',
-              {
-                name:       dasherize(this.name) + '-control',
+              externalSchematic(
+                '@rxap/schematics',
+                'component-module',
+                {
+                  name:     dasherize(this.name) + '-array-group',
                   path:     options.path?.replace(/^\//, ''),
                   selector: this.selector,
                   project:  options.project
                 }
               ),
-              tree => {
+              () => {
 
-                const componentSourceFile = project.createSourceFile(`./${dasherize(this.name)}-control/${dasherize(this.name)}-control.component.ts`);
+                const componentSourceFile = project.createSourceFile(`./${dasherize(this.name)}-array-group/${dasherize(this.name)}-array-group.component.ts`);
 
                 componentSourceFile.addClass({
-                  name:       this.componentName + 'ControlComponent',
+                  name:       this.componentName + 'ArrayGroupComponent',
                   extends:    'ControlValueAccessor',
                   properties: [
                     {
@@ -149,16 +149,16 @@ export class ComponentControlElement extends ControlElement {
                       arguments: [
                         Writers.object({
                           selector:        w => w.quote(this.selector),
-                          templateUrl:     w => w.quote(`./${dasherize(this.name)}-control.component.html`),
-                          styleUrls:       `[ './${dasherize(this.name)}-control.component.scss' ]`,
+                          templateUrl:     w => w.quote(`./${dasherize(this.name)}-array-group.component.html`),
+                          styleUrls:       `[ './${dasherize(this.name)}-array-group.component.scss' ]`,
                           changeDetection: 'ChangeDetectionStrategy.OnPush',
-                          host:            Writers.object({ class: w => w.quote(`rxap-${dasherize(name)}-control`) }),
+                          host:            Writers.object({ class: w => w.quote(`rxap-${dasherize(name)}-array-group`) }),
                           providers:       w => {
                             w.writeLine('[');
                             Writers.object({
                               provide:     'NG_VALUE_ACCESSOR',
                               multi:       'true',
-                              useExisting: `forwardRef(() => ${this.componentName}ControlComponent)`
+                              useExisting: `forwardRef(() => ${this.componentName}ArrayGroupComponent)`
                             })(w);
                             w.write(']');
                           }
