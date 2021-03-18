@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.1.1...@rxap/open-api@11.2.0) (2021-03-18)
+
+
+### Features
+
+* add call with response as return support ([c7c618d](https://gitlab.com/rxap/packages/commit/c7c618de6d4315fc01f11b16146be2d0e5576ea6))
+
+
+
+
+
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.1.0...@rxap/open-api@11.1.1) (2021-03-12)
 
 
