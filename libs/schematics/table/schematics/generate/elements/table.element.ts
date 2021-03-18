@@ -272,15 +272,28 @@ export class TableElement implements ParsedElement<Rule> {
         CoerceMethodClass(
           methodSourceFile,
           mockClassName,
-          [
-            {
-              namedImports:    [ 'TableEvent' ],
-              moduleSpecifier: '@rxap/data-source/table'
+
+          {
+            structures:    [
+              {
+                namedImports:    [ 'TableEvent' ],
+                moduleSpecifier: '@rxap/data-source/table'
+              }
+            ],
+            returnType:    'Array<Record<string, any>>',
+            parameterType: 'TableEvent',
+            statements:    writer => {
+              writer.writeLine('parameters?.setTotalLength(');
+              writer.indent(1);
+              writer.writeLine('parameters.page?.pageSize * (parameters.page?.pageIndex + 1) + parameters.page?.pageSize');
+              writer.writeLine(');');
+              writer.writeLine('return Range.Create(1, parameters.page?.pageSize)');
+              writer.indent(1);
+              writer.writeLine('.toArray()');
+              writer.writeLine('.map(() => ({');
+              writer.writeLine('} as any));');
             }
-          ],
-          'Array<Record<string, any>>',
-          'TableEvent',
-          false
+          }
         );
       } else {
         AddComponentProvider(
