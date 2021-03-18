@@ -152,7 +152,7 @@ export class ComponentArrayElement extends ArrayElement {
                           templateUrl:     w => w.quote(`./${dasherize(this.name)}-array-group.component.html`),
                           styleUrls:       `[ './${dasherize(this.name)}-array-group.component.scss' ]`,
                           changeDetection: 'ChangeDetectionStrategy.OnPush',
-                          host:            Writers.object({ class: w => w.quote(`rxap-${dasherize(name)}-array-group`) }),
+                          host:            Writers.object({ class: w => w.quote(`rxap-${dasherize(this.name)}-array-group`) }),
                           providers:       w => {
                             w.writeLine('[');
                             Writers.object({

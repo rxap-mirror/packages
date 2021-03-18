@@ -152,7 +152,7 @@ export class ComponentControlElement extends ControlElement {
                           templateUrl:     w => w.quote(`./${dasherize(this.name)}-control.component.html`),
                           styleUrls:       `[ './${dasherize(this.name)}-control.component.scss' ]`,
                           changeDetection: 'ChangeDetectionStrategy.OnPush',
-                          host:            Writers.object({ class: w => w.quote(`rxap-${dasherize(name)}-control`) }),
+                          host:            Writers.object({ class: w => w.quote(`rxap-${dasherize(this.name)}-control`) }),
                           providers:       w => {
                             w.writeLine('[');
                             Writers.object({
