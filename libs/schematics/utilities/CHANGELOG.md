@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.1.6...@rxap/schematics-utilities@11.2.0) (2021-03-18)
+
+
+### Features
+
+* add support for custom call method statements ([3184152](https://gitlab.com/rxap/packages/commit/3184152a7e89ec75b44c62eb324df981eedfaf73))
+
+
+
+
+
 ## [11.1.6](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.1.5...@rxap/schematics-utilities@11.1.6) (2021-03-17)
 
 
