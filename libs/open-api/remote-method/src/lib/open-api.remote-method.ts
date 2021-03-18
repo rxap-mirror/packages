@@ -22,13 +22,9 @@ import {
   REMOTE_METHOD_META_DATA,
   RxapRemoteMethod
 } from '@rxap/remote-method';
-import {
-  joinPath,
-  isDefined
-} from '@rxap/utilities';
+import { joinPath } from '@rxap/utilities';
 import {
   filter,
-  map,
   timeout,
   retry,
   catchError,
@@ -99,7 +95,37 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
     this.strict = strict || this.metadata.strict || false;
   }
 
-  protected _call(args: OpenApiRemoteMethodParameter<Parameters, RequestBody> = {}): Promise<Response> {
+  protected async _call(args: OpenApiRemoteMethodParameter<Parameters, RequestBody> = {}): Promise<Response> {
+
+    this.validateParameters(this.operation, args.parameters, this.strict);
+    this.validateRequestBody(this.operation, args.requestBody, this.strict);
+
+    const response = await this._callWithResponse(args);
+
+    if (response.body) {
+      return response.body;
+    }
+
+    throw new Error('The response body is empty!');
+  }
+
+  /**
+   * Instead of returning the response body the full response object is returned
+   */
+  public async callWithResponse(args: OpenApiRemoteMethodParameter<Parameters, RequestBody> = {}): Promise<HttpResponse<Response>> {
+    this.init();
+    this.executionsInProgress$.increase();
+    const result = await this._callWithResponse(args);
+    this.executionsInProgress$.decrease();
+    if (result.body) {
+      this.executed$.next(result.body);
+      this.executed(result.body);
+    }
+    return result;
+  }
+
+  // TODO : update to the new call method concept (the remove of the _call method concept)
+  public _callWithResponse(args: OpenApiRemoteMethodParameter<Parameters, RequestBody> = {}): Promise<HttpResponse<Response>> {
 
     this.validateParameters(this.operation, args.parameters, this.strict);
     this.validateRequestBody(this.operation, args.requestBody, this.strict);
@@ -119,13 +145,10 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
           .next({ response, parameters: args.parameters, requestBody: args.requestBody })
         );
       }),
-      map((event: HttpResponse<Response>) => event.body),
-      isDefined(),
       take(1),
       timeout(this.timeout)
     ).toPromise();
 
   }
-
 
 }
