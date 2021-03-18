@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/dialog@11.0.4...@rxap/dialog@11.1.0) (2021-03-18)
+
+
+### Features
+
+* add http error message dialog ([7d769da](https://gitlab.com/rxap/packages/commit/7d769dae8321c938163b155f62a71497381f1cb0))
+
+
+
+
+
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/dialog@11.0.3...@rxap/dialog@11.0.4) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/dialog
