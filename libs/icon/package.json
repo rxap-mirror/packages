@@ -26,5 +26,6 @@
   },
   "publishConfig": {
     "directory": "../../dist/libs/icon"
-  }
+  },
+  "peerDependencies": {}
 }

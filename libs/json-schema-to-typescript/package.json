@@ -24,8 +24,5 @@
   "publishConfig": {
     "directory": "../../dist/libs/json-schema-to-typescript"
   },
-  "peerDependencies": {
-    "@apidevtools/json-schema-ref-parser": "^9.0.6",
-    "ts-morph": "^8.2.0"
-  }
+  "peerDependencies": {}
 }

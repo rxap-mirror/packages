@@ -27,7 +27,5 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "peerDependencies": {
-    "jest-preset-angular": "^8.3.1"
-  }
+  "peerDependencies": {}
 }
