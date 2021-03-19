@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
 import {
   tap,
   switchMap,
-  first,
   take
 } from 'rxjs/operators';
 
