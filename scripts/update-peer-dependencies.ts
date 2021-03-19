@@ -14,11 +14,11 @@ import * as conventionalRecommendedBump from 'conventional-recommended-bump';
 // @ts-ignore
 import { inc } from 'semver';
 // @ts-ignore
-import * as Project from '@lerna/project';
+import { Project } from '@lerna/project';
 // @ts-ignore
-import * as PackageGraph from '@lerna/package-graph';
+import { PackageGraph } from '@lerna/package-graph';
 // @ts-ignore
-import * as collectUpdates from '@lerna/collect-updates';
+import { collectUpdates } from '@lerna/collect-updates';
 
 const projectGraph: ProjectGraph = createProjectGraph();
 
@@ -99,31 +99,38 @@ async function GetNewProjectVersion(projectName: string): Promise<string> {
   const packageJson = GetProjectPackageJson(projectName);
   const version     = packageJson.version;
 
-  return new Promise((resolve, reject) => {
+  if (await HasProjectVersionChange(projectName)) {
 
-    const options = {
-      lernaPackage: packageJson.name,
-      path:         dirname(join(__dirname, '..', GetProjectPackageJsonPath(projectName))),
-      config:       require('conventional-changelog-angular')
-    };
 
-    conventionalRecommendedBump(options, (err: any, data: any) => {
-      if (err) {
-        return reject(err);
-      }
+    return new Promise((resolve, reject) => {
 
-      const releaseType = data.releaseType ?? 'patch';
-      const newVersion = inc(version, releaseType);
+      const options = {
+        lernaPackage: packageJson.name,
+        path:         dirname(join(__dirname, '..', GetProjectPackageJsonPath(projectName))),
+        config:       require('conventional-changelog-angular')
+      };
 
-      if (newVersion !== version) {
-        projectNewVersion.set(projectName, [ version, newVersion ]);
-      }
+      conventionalRecommendedBump(options, (err: any, data: any) => {
+        if (err) {
+          return reject(err);
+        }
 
-      resolve(newVersion);
+        const releaseType = data.releaseType ?? 'patch';
+        const newVersion  = inc(version, releaseType);
+
+        if (newVersion !== version) {
+          projectNewVersion.set(projectName, [ version, newVersion ]);
+        }
+
+        resolve(newVersion);
+
+      });
 
     });
 
-  });
+  }
+
+  return version;
 
 }
 
@@ -226,19 +233,51 @@ const project = new Project(join(__dirname, '..'));
 
 const packages$ = project.getPackages();
 
-const projectGraph$ = packages$.then((packages: any) => new PackageGraph(packages));
+const packageGraph$ = packages$.then((packages: any) => new PackageGraph(packages));
 
-const updates$ = projectGraph$.then((projectGraph: any) => {
+const updates$ = packageGraph$.then((packageGraph: any) => {
 
   const updates = collectUpdates(
     packageGraph.rawPackageList,
-    packageGraph
-  );
+    packageGraph,
+    {
+      cwd: join(__dirname, '..')
+    },
+    {
+      conventionalCommits: true
+    }
+  ).filter((node: any) => {
+    // --no-private completely removes private packages from consideration
+    if (node.pkg.private) {
+      // TODO: (major) make --no-private the default
+      return false;
+    }
+
+    if (!node.version) {
+      // a package may be unversioned only if it is private
+      if (node.pkg.private) {
+        console.info('version', 'Skipping unversioned private package %j', node.name);
+      } else {
+        throw new Error('failed');
+      }
+    }
+
+    return !!node.version;
+  });
+
+  console.log(`Changed packages count: ${updates.length}`);
+
+  return updates;
 
 });
 
-async function HasProjectVersionChange(projectName: string): boolean {
+async function HasProjectVersionChange(projectName: string): Promise<boolean> {
 
+  const updates = await updates$;
+
+  const packageJson = GetProjectPackageJson(projectName);
+
+  return !!updates.find((pkg: any) => pkg.name === packageJson.name);
 
 }
 
@@ -251,7 +290,7 @@ async function Update({ dryRun }: { dryRun?: boolean } = {}) {
       continue;
     }
 
-    if (!HasProjectVersionChange(name)) {
+    if (!(await HasProjectVersionChange(name))) {
       continue;
     }
 
