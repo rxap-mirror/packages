@@ -97,7 +97,8 @@ async function GetNewProjectVersion(projectName: string): Promise<string> {
 
     const options = {
       lernaPackage: packageJson.name,
-      path:         dirname(join(__dirname, '..', GetProjectPackageJsonPath(projectName)))
+      path:         dirname(join(__dirname, '..', GetProjectPackageJsonPath(projectName))),
+      config:       require('conventional-changelog-angular')
     };
 
     conventionalRecommendedBump(options, (err: any, data: any) => {
@@ -106,7 +107,6 @@ async function GetNewProjectVersion(projectName: string): Promise<string> {
       }
 
       const releaseType = data.releaseType ?? 'patch';
-      console.log(options.path);
       const newVersion = inc(version, releaseType);
 
       if (newVersion !== version) {
