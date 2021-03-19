@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@11.1.2...@rxap/material-table-window-system@11.1.3) (2021-03-19)
+
+
+### Bug Fixes
+
+* update peer dependencies ([dd22b0c](https://gitlab.com/rxap/packages/commit/dd22b0ce053bc266c7aea659a2faf3be39f424e7))
+
+
+
+
+
 ## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@11.1.1...@rxap/material-table-window-system@11.1.2) (2021-03-19)
 
 
