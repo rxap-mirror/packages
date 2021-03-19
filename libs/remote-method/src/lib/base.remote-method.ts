@@ -41,9 +41,9 @@ export abstract class BaseRemoteMethod<ReturnType = any,
   Parameter = any,
   Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata> extends BaseDefinition<Metadata> {
 
-  public executed$ = new Subject<ReturnType>();
+  public executed$: Subject<ReturnType> = new Subject<ReturnType>();
 
-  public executionsInProgress$ = new CounterSubject();
+  public executionsInProgress$: CounterSubject = new CounterSubject();
 
   public readonly injector: Injector;
 
