@@ -296,7 +296,7 @@ async function Update({ dryRun, all }: { dryRun?: boolean, all?: boolean } = {})
 
     const flattenDependencies = FlattenDependencies(dependencies);
 
-    const peerDependencies          = flattenDependencies.filter(dependency => !blackListNpmPeerDependencies.every(regex => dependency.match(regex)));
+    const peerDependencies          = flattenDependencies.filter(dependency => !blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
     const blackListPeerDependencies = flattenDependencies.filter(dependency => blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
 
     const packageJson = GetProjectPackageJson(name);
