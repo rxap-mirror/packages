@@ -48,15 +48,16 @@ export class FormElement extends ControlFeatureElement {
         '@rxap/material-form-system',
         'generate',
         {
-          project:         options.project,
-          template:        this.templateValue,
-          name:            this.name,
-          organizeImports: false,
-          fixImports:      false,
-          format:          false,
-          overwrite:       options.overwrite,
-          openApiModule:   options.openApiModule,
-          path:            join(options.path?.replace(/^\//, '') ?? '', dasherize(this.__parent.name) + '-control')
+          project:          options.project,
+          template:         this.templateValue,
+          name:             this.name,
+          organizeImports:  false,
+          fixImports:       false,
+          format:           false,
+          templateBasePath: options.templateBasePath,
+          overwrite:        options.overwrite,
+          openApiModule:    options.openApiModule,
+          path:             join(options.path?.replace(/^\//, '') ?? '', dasherize(this.__parent.name) + '-control')
         }
       )
     ]);

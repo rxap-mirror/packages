@@ -8,4 +8,5 @@ export interface GenerateSchema {
   organizeImports: boolean;
   fixImports: boolean;
   format: boolean;
+  templateBasePath?: string;
 }

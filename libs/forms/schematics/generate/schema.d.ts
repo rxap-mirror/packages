@@ -12,4 +12,5 @@ export interface GenerateSchema {
   fixImports: boolean;
   format: boolean;
   overwrite: boolean;
+  templateBasePath?: string;
 }

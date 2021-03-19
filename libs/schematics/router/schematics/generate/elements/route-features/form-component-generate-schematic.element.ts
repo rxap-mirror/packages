@@ -68,14 +68,15 @@ export class FormComponentGenerateSchematicElement extends RouteFeatureElement {
         '@rxap/material-form-system',
         'generate',
         {
-          project:         options.project,
-          template:        this.template,
-          name:            this.name,
-          organizeImports: false,
-          fixImports:      false,
-          format:          false,
-          overwrite:       options.overwrite,
-          openApiModule:   options.openApiModule
+          project:          options.project,
+          template:         this.template,
+          name:             this.name,
+          organizeImports:  false,
+          fixImports:       false,
+          format:           false,
+          templateBasePath: options.templateBasePath,
+          overwrite:        options.overwrite,
+          openApiModule:    options.openApiModule
         }
       ),
       ...(this.features?.map(feature => feature.toValue({

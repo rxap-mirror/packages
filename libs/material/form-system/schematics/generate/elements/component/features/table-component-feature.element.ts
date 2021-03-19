@@ -19,6 +19,7 @@ import {
   AddNgModuleImport
 } from '@rxap/schematics-utilities';
 import { SourceFile } from 'ts-morph';
+import { GenerateSchema } from '../../../schema';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
@@ -46,22 +47,23 @@ export class TableComponentFeatureElement extends ComponentFeatureElement {
     return !!this.template;
   }
 
-  public toValue({ project, options }: ToValueContext<{ path: string, project: string, overwrite: boolean, openApiModule: string }>): Rule {
+  public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
     return chain([
       () => console.log(`Execute table generator schematic for '${this.template}'`),
       externalSchematic(
         '@rxap/schematics-table',
         'generate',
         {
-          project:         options.project,
-          template:        this.template,
-          name:            dasherize(this.name),
-          path:            join(options.path, dasherize(this.__parent.name)).replace(/^\//, ''),
-          organizeImports: false,
-          fixImports:      false,
-          format:          false,
-          overwrite:       options.overwrite,
-          openApiModule:   options.openApiModule
+          project:          options.project,
+          template:         this.template,
+          name:             dasherize(this.name),
+          path:             join(options.path?.replace(/^\//, '') ?? '', dasherize(this.__parent.name)),
+          organizeImports:  false,
+          fixImports:       false,
+          format:           false,
+          templateBasePath: options.templateBasePath,
+          overwrite:        options.overwrite,
+          openApiModule:    options.openApiModule
         }
       )
     ]);

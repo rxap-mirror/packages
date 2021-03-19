@@ -116,14 +116,15 @@ export class FeatureModuleElement implements ParsedElement<Rule> {
           rules.push(() => console.log(`Execute schematic routing for '${this.name}'`));
           rules.push(HandelTemplate({
             ...options,
-            path:            basePath,
-            project:         projectName,
-            routingModule:   featureModuleFilePath,
-            template:        `templates/features/${dasherize(this.name)}/${dasherize(this.name)}.xml`,
-            organizeImports: false,
-            fixImports:      false,
-            format:          false,
-            overwrite:       options.overwrite
+            path:             basePath,
+            project:          projectName,
+            routingModule:    featureModuleFilePath,
+            template:         `templates/features/${dasherize(this.name)}/${dasherize(this.name)}.xml`,
+            templateBasePath: `features/${dasherize(this.name)}`,
+            organizeImports:  false,
+            fixImports:       false,
+            format:           false,
+            overwrite:        options.overwrite
           }));
         }
       }

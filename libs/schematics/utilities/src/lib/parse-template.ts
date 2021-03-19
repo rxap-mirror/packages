@@ -9,24 +9,67 @@ import {
 } from '@angular-devkit/schematics';
 import { join } from 'path';
 
-export function FindTemplate(template: string, host: Tree, baseDirEntry: DirEntry = host.getDir('templates')): string | null {
+export function FindTemplate(template: string, host: Tree, basePath: string | undefined, baseDirEntry: DirEntry = host.getDir('templates')): string | null {
 
-  if (!host.exists(join(baseDirEntry.path, template))) {
-    for (const dirPath of host.getDir(join(baseDirEntry.path, 'features')).subdirs) {
-      const templateFilePath = FindTemplate(template, host, host.getDir(join(baseDirEntry.path, 'features', dirPath)));
-      if (templateFilePath) {
-        return templateFilePath;
-      }
+  if (basePath) {
+    if (host.exists(join(baseDirEntry.path, basePath, template))) {
+      return join(baseDirEntry.path, basePath, template);
     }
-
-    return null;
+  } else {
+    if (host.exists(join(baseDirEntry.path, template))) {
+      return join(baseDirEntry.path, template);
+    }
   }
 
-  return join(baseDirEntry.path, template);
+  if (host.exists(join(baseDirEntry.path, 'shared', template))) {
+    return join(baseDirEntry.path, 'shared', template);
+  }
 
+  return null;
 }
 
-export function ParseTemplate<T extends ParsedElement>(host: Tree, template: string, ...elements: Array<Constructor<ParsedElement>>): T {
+/**
+ * Parse the template and returns the ParsedElement object
+ *
+ * The template parameter can be an xml document or a path to a xml document.
+ *
+ * The xml document must be in the templates directory.
+ *
+ * It is possible to provide a relative template path.
+ * If the basePath property is not set to undefined then a search in the sub directory is
+ * started.
+ *
+ * Examples
+ *
+ * Example 1
+ *
+ * template = 'views/tables/product.xml'
+ * basePath = undefined
+ *
+ * The following path are checked in order:
+ * - templates/views/tables/product.xml
+ * - templates/shared/views/tables/product.xml
+ *
+ * Example 2
+ *
+ * template = 'views/tables/product.xml'
+ * basePath = 'feature/product'
+ *
+ * The following path are checked in order:
+ * - templates/feature/product/views/tables/product.xml
+ * - templates/shared/views/tables/product.xml
+ *
+ * @param host a schematic Tree instance
+ * @param template the path to the template xml document or a xml document
+ * @param basePath the basePath for the search
+ * @param elements a collection of ParsedElement class constructors that should be include in the xml parsing
+ */
+export function ParseTemplate<T extends ParsedElement>(
+  host: Tree,
+  template: string,
+  basePath: string | undefined,
+  ...elements: Array<Constructor<ParsedElement>>
+): T {
 
   let templateFile: string;
   let filename = '__inline__';
@@ -35,7 +78,7 @@ export function ParseTemplate<T extends ParsedElement>(host: Tree, template: str
 
     let templateFilePath: string | null = template;
     if (!host.exists(template)) {
-      templateFilePath = FindTemplate(template, host);
+      templateFilePath = FindTemplate(template, host, basePath);
     }
 
     if (!templateFilePath) {
