@@ -14,7 +14,6 @@ import {
   isDevMode
 } from '@angular/core';
 import {
-  ConfirmClick,
   Constructor,
   Required,
   IconConfig
@@ -25,6 +24,7 @@ import {
 } from '@rxap/forms';
 import { FormWindowService } from './form-window.service';
 import { WindowRef } from '@rxap/window-system';
+import { ConfirmClick } from '@rxap/directives';
 
 /**
  * @deprecated
