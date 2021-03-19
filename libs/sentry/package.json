@@ -18,8 +18,7 @@
   "peerDependencies": {
     "@angular/common": "^11.2.6",
     "@angular/core": "^11.2.6",
-    "@sentry/browser": "^5.20.1",
-    "jest-preset-angular": "^8.3.1"
+    "@sentry/browser": "^5.20.1"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {

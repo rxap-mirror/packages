@@ -29,7 +29,5 @@
     "directory": "../../dist/libs/slugify"
   },
   "private": false,
-  "peerDependencies": {
-    "jest-preset-angular": "^8.3.1"
-  }
+  "peerDependencies": {}
 }

@@ -8,19 +8,14 @@
     "@angular/forms": "^11.2.6",
     "@angular/platform-browser": "^11.2.6",
     "@angular/router": "^11.2.6",
-    "@rxap/definition": "^11.0.5",
-    "@rxap/directives": "^11.2.1",
-    "@rxap/forms": "^11.3.1",
-    "@rxap/pipes": "^11.0.5",
-    "@rxap/services": "^11.0.7",
-    "@rxap/utilities": "^11.3.1",
-    "@storybook/addon-knobs": "^5.3.19",
-    "@storybook/angular": "^5.3.19",
-    "jest-preset-angular": "^8.3.1",
-    "ramda": "^0.27.1",
+    "@rxap/definition": "^11.0.6",
+    "@rxap/directives": "^11.2.2",
+    "@rxap/forms": "^11.3.2",
+    "@rxap/pipes": "^11.0.6",
+    "@rxap/services": "^11.0.8",
+    "@rxap/utilities": "^11.3.2",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.5",
-    "uuid": "^7.0.3"
+    "rxjs": "^6.5.5"
   },
   "dependencies": {
     "tslib": "2.0.1"
