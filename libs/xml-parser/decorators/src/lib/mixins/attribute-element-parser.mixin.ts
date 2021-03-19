@@ -26,7 +26,7 @@ export interface AttributeElementParserMixin<Value>
 export class AttributeElementParserMixin<Value> {
 
   public get attribute(): string {
-    return this.options.attribute;
+    return this.options.attribute!;
   }
 
   constructor(readonly options: any = {}) {}
