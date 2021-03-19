@@ -21,6 +21,7 @@
     "e2e": "ng e2e",
     "scss-bundle": "scss-bundle",
     "preversion": "ts-node scripts/update-peer-dependencies.ts",
+    "version": "nx affected --target=pack --parallel --maxParallel=5",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
