@@ -16,7 +16,7 @@ import { WindowTaskBarModule } from './window-task-bar/window-task-bar.module';
 import { ButtonComponentModule } from '@rxap/components';
 import { PortalModule } from '@angular/cdk/portal';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { IconDirectiveModule } from '@rxap/directives/material/icon';
+import { IconDirectiveModule } from '@rxap/material-directives/icon';
 
 @NgModule({
   imports: [

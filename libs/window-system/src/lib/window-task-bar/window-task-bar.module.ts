@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { WindowTaskBarContainerComponent } from './window-task-bar-container/window-task-bar-container.component';
 import { StopPropagationDirectiveModule } from '@rxap/directives';
-import { IconDirectiveModule } from '@rxap/directives/material/icon';
+import { IconDirectiveModule } from '@rxap/material-directives/icon';
 
 @NgModule({
   declarations:    [ WindowTaskBarComponent, WindowTaskComponent, WindowTaskBarContainerComponent ],

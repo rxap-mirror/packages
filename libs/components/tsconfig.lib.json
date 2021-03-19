@@ -17,8 +17,8 @@
       "@rxap/services": [
         "dist/libs/services"
       ],
-      "@rxap/directives/material/icon": [
-        "dist/libs/directives/material/icon"
+      "@rxap/material-directives/icon": [
+        "dist/libs/material/directives/icon"
       ],
       "@rxap/directives": [
         "dist/libs/directives"
