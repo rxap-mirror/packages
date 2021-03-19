@@ -33,10 +33,6 @@
       "@rxap/xml-parser"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run schematics-form:pack --with-deps",
-    "preversion": "yarn --cwd ../../../ nx run schematics-form:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../../dist/libs/schematics/form"
   },

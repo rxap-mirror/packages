@@ -51,10 +51,6 @@
       "@rxap/utilities"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run tree:pack --with-deps",
-    "preversion": "yarn --cwd ../../ nx run tree:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../dist/libs/tree"
   },

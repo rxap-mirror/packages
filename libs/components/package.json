@@ -47,10 +47,6 @@
       "@rxap/utilities"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run components:pack --with-deps",
-    "preversion": "yarn --cwd ../../ nx run components:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../dist/libs/components"
   }

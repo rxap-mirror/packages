@@ -41,5 +41,8 @@
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "publishConfig": {
+    "directory": "../../../dist/libs/material/directives"
   }
 }

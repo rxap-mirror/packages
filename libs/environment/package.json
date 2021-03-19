@@ -15,10 +15,6 @@
       "@rxap/environment"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run environment:pack --with-deps",
-    "preversion": "yarn --cwd ../../ nx run environment:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../dist/libs/environment"
   },

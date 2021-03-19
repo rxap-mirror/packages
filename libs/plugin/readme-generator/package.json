@@ -23,10 +23,6 @@
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "description": "A builder to generate readme files for libraries.",
-  "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run plugin-readme-generator:pack --with-deps",
-    "preversion": "yarn --cwd ../../../ nx run plugin-readme-generator:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../../dist/libs/plugin/readme-generator"
   },

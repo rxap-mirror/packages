@@ -53,10 +53,6 @@
     "uuid": "^7.0.3"
   },
   "schematics": "./schematics/collection.json",
-  "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run authentication:pack --with-deps",
-    "preversion": "yarn --cwd ../../ nx run authentication:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../dist/libs/authentication"
   }

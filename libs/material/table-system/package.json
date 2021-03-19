@@ -61,10 +61,6 @@
       "@rxap/window-system"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run material-table-system:pack --with-deps",
-    "preversion": "yarn --cwd ../../../ nx run material-table-system:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../../dist/libs/material/table-system"
   },

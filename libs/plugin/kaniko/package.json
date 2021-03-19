@@ -4,10 +4,6 @@
   "main": "src/index.js",
   "schematics": "./collection.json",
   "builders": "./builders.json",
-  "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run plugin-kaniko:pack --with-deps",
-    "preversion": "yarn --cwd ../../../ nx run plugin-kaniko:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../../dist/libs/plugin/kaniko"
   },
