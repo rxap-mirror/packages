@@ -1,5 +1,5 @@
 {
-  "name": "@rxap/upeload",
+  "name": "@rxap/upload",
   "version": "11.1.1",
   "peerDependencies": {
     "@angular/common": "^11.2.6",
@@ -34,7 +34,7 @@
   "ng-update": {
     "migrations": "./schematics/migration.json",
     "packageGroup": [
-      "@rxap/upeload",
+      "@rxap/upload",
       "@rxap/definition",
       "@rxap/remote-method",
       "@rxap/schematics",
