@@ -14,8 +14,8 @@
       "@rxap/authentication": [
         "dist/authentication"
       ],
-      "@rxap/directives/material/icon": [
-        "dist/directives/material/icon"
+      "@rxap/material-directives/icon": [
+        "dist/material/directives/icon"
       ]
     }
   },

@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmComponentModule } from '../confirm/confirm.component.module';
-import { IconDirectiveModule } from '@rxap/directives/material/icon';
+import { IconDirectiveModule } from '@rxap/material-directives/icon';
 
 
 @NgModule({

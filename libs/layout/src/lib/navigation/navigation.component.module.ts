@@ -7,7 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReplaceRouterPathsPipe } from './replace-router-paths.pipe';
-import { IconDirectiveModule } from '@rxap/directives/material/icon';
+import { IconDirectiveModule } from '@rxap/material-directives/icon';
 import { ButtonComponentModule } from '@rxap/components';
 import { MatRippleModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
