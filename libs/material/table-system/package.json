@@ -2,27 +2,31 @@
   "name": "@rxap/material-table-system",
   "version": "11.4.1",
   "peerDependencies": {
-    "@angular/animations": "^11.0.5",
-    "@angular/cdk": "^11.0.3",
-    "@angular/common": "^11.0.5",
-    "@angular/core": "^11.0.5",
+    "@rxap/components": "^11.0.5",
+    "@rxap/data-source": "^11.0.5",
+    "@rxap/definition": "^11.0.4",
+    "@rxap/directives": "^11.1.1",
+    "@rxap/forms": "^11.2.1",
+    "@rxap/json-schema-to-typescript": "^11.0.3",
+    "@rxap/material-directives": "^11.0.1",
+    "@rxap/mixin": "^11.0.5",
+    "@angular/animations": "^11.2.6",
+    "@angular/cdk": "^11.2.5",
+    "@angular/common": "^11.2.6",
+    "@angular/core": "^11.2.6",
     "@angular/flex-layout": "^11.0.0-beta.33",
-    "@angular/forms": "^11.0.5",
-    "@angular/material": "^11.0.3",
-    "@angular/platform-browser": "^11.0.5",
-    "@angular/router": "^11.0.5",
-    "@rxap/components": ">=11.0.4",
-    "@rxap/data-source": ">=11.0.3",
-    "@rxap/definition": ">=11.0.3",
-    "@rxap/directives": ">=11.1.0",
-    "@rxap/forms": ">=11.1.1",
-    "@rxap/mixin": ">=11.0.4",
-    "@rxap/open-api": ">=11.1.1",
-    "@rxap/remote-method": ">=11.0.5",
-    "@rxap/services": ">=11.0.5",
-    "@rxap/utilities": ">=11.2.0",
-    "@rxap/window-system": ">=11.1.0",
-    "rxjs": "^6.5.5"
+    "@angular/forms": "^11.2.6",
+    "@angular/material": "^11.2.5",
+    "@angular/platform-browser": "^11.2.6",
+    "@angular/router": "^11.2.6",
+    "@rxap/schematics": "^11.3.4",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.5",
+    "@rxap/open-api": "^11.2.1",
+    "@rxap/remote-method": "^11.0.7",
+    "@rxap/services": "^11.0.6",
+    "@rxap/utilities": "^11.2.3",
+    "@rxap/window-system": "^11.1.1"
   },
   "dependencies": {
     "tslib": "^2.0.0"
@@ -37,7 +41,10 @@
       "@rxap/definition",
       "@rxap/directives",
       "@rxap/forms",
+      "@rxap/json-schema-to-typescript",
+      "@rxap/material-directives",
       "@rxap/mixin",
+      "@rxap/schematics",
       "@rxap/open-api",
       "@rxap/remote-method",
       "@rxap/services",
@@ -52,5 +59,19 @@
   "publishConfig": {
     "directory": "../../../dist/libs/material/table-system"
   },
-  "gitHead": "e75f92d806744f93d00f5abf69fb80cfec0ccace"
+  "gitHead": "e75f92d806744f93d00f5abf69fb80cfec0ccace",
+  "license": "MIT",
+  "keywords": [
+    "rxap",
+    "angular",
+    "material"
+  ],
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "author": "Merzough Münker",
+  "private": false,
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  }
 }

@@ -19,16 +19,18 @@
   },
   "description": "Provides the functionality to create DataSource and RemoteMethod instances from an OpenAPI config.",
   "peerDependencies": {
-    "@angular/common": "^11.0.5",
-    "@angular/core": "^11.0.5",
-    "@angular/platform-browser": "^11.0.5",
-    "@rxap/data-source": ">=11.0.4",
-    "@rxap/definition": ">=11.0.3",
-    "@rxap/mixin": ">=11.0.4",
-    "@rxap/remote-method": ">=11.0.5",
-    "@rxap/schematics": ">=0",
-    "@rxap/utilities": ">=11.2.1",
-    "rxjs": "^6.5.5"
+    "@rxap/data-source": "^11.0.5",
+    "@rxap/definition": "^11.0.4",
+    "@rxap/json-schema-to-typescript": "^11.0.3",
+    "@rxap/mixin": "^11.0.5",
+    "@angular/common": "^11.2.6",
+    "@angular/core": "^11.2.6",
+    "@angular/platform-browser": "^11.2.6",
+    "@rxap/schematics": "^11.3.4",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.5",
+    "@rxap/remote-method": "^11.0.7",
+    "@rxap/utilities": "^11.2.3"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {
@@ -37,9 +39,10 @@
       "@rxap/open-api",
       "@rxap/data-source",
       "@rxap/definition",
+      "@rxap/json-schema-to-typescript",
       "@rxap/mixin",
-      "@rxap/remote-method",
       "@rxap/schematics",
+      "@rxap/remote-method",
       "@rxap/utilities"
     ]
   },

@@ -27,5 +27,6 @@
   },
   "publishConfig": {
     "directory": "../../dist/libs/json-schema-to-typescript"
-  }
+  },
+  "peerDependencies": {}
 }

@@ -16,9 +16,10 @@
   },
   "description": "Provides the Definition concept for RxAP.",
   "peerDependencies": {
-    "@angular/core": "^11.0.5",
-    "@rxap/utilities": ">=11.0.4",
-    "rxjs": "^6.5.5"
+    "@angular/core": "^11.2.6",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.5",
+    "@rxap/utilities": "^11.2.3"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {

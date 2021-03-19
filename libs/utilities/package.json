@@ -17,10 +17,10 @@
   "description": "A collection of utility functions, types and interfaces.",
   "dependencies": {
     "ramda": "0.27.1",
-    "reflect-metadata": "0.1.13",
     "uuid": "8.3.0"
   },
   "peerDependencies": {
+    "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
   "schematics": "./schematics/collection.json",

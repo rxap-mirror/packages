@@ -28,7 +28,7 @@
     "@angular-devkit/schematics": "10"
   },
   "peerDependencies": {
-    "@nrwl/workspace": ">=9"
+    "@nrwl/workspace": "^11.0.8"
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../../ nx run plugin-pack:pack --with-deps",

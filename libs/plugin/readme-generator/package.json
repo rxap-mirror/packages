@@ -29,5 +29,9 @@
   },
   "publishConfig": {
     "directory": "../../../dist/libs/plugin/readme-generator"
-  }
+  },
+  "peerDependencies": {
+    "@nrwl/workspace": "^11.0.8"
+  },
+  "private": false
 }
