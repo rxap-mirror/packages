@@ -32,5 +32,8 @@
   "publishConfig": {
     "directory": "../../dist/libs/slugify"
   },
-  "private": false
+  "private": false,
+  "peerDependencies": {
+    "jest-preset-angular": "^8.3.1"
+  }
 }

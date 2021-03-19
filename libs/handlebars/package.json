@@ -17,7 +17,9 @@
   "description": "An angular wrapper package for handlebars.",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/core": "^11.2.6"
+    "@angular/core": "^11.2.6",
+    "handlebars": "^4.7.6",
+    "jest-preset-angular": "^8.3.1"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {

@@ -31,7 +31,8 @@
     "directory": "../../../dist/libs/plugin/readme-generator"
   },
   "peerDependencies": {
-    "@nrwl/workspace": "^11.0.8"
+    "@nrwl/workspace": "^11.0.8",
+    "handlebars": "^4.7.6"
   },
   "private": false
 }

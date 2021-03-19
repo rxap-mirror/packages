@@ -22,8 +22,11 @@
     "@rxap/config": "^11.0.7",
     "@rxap/utilities": "^11.3.0",
     "firebase": "^7.17.1",
+    "jest-preset-angular": "^8.3.1",
+    "ramda": "^0.27.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.5.5",
+    "uuid": "^7.0.3"
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {
