@@ -221,10 +221,10 @@ function HasProjectVersionChange(projectName: string): boolean {
   const version    = GetDependencyVersion(projectName);
   const newVersion = GetNewProjectVersion(projectName);
 
-  return version === newVersion;
+  return version !== newVersion;
 }
 
-async function Update() {
+async function Update({ dryRun }: { dryRun?: boolean } = {}) {
 
   for await (const [ name, dependencies ] of
     Object.entries(projectGraph.dependencies).filter(ExcludeNpmDependencies).map(([ _, dList ]) => [ _, dList.map(d => d.target) ] as [ string, string[] ])) {
@@ -274,7 +274,11 @@ async function Update() {
 
     AddDefaultPackageJsonProperties(packageJson);
 
-    WriteProjectPackageJson(name, packageJson);
+    if (!dryRun) {
+      WriteProjectPackageJson(name, packageJson);
+    } else {
+      console.log('Dry run!');
+    }
 
   }
 
@@ -285,4 +289,10 @@ async function Update() {
 
 }
 
-Update();
+const args = process.argv.slice(2);
+
+const options = {
+  dryRun: args.includes('--dry-run')
+};
+
+Update(options);
