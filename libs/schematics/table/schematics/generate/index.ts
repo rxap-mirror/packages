@@ -109,7 +109,7 @@ export default function(options: GenerateSchema): Rule {
         })
       ]), MergeStrategy.Overwrite),
       tableElement.hasFilter ? externalSchematic(
-        '@rxap/forms',
+        '@rxap/schematics-form',
         'generate',
         {
           path:             path.replace(/^\//, ''),

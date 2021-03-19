@@ -42,8 +42,8 @@
       "@rxap/schematics-utilities": [
         "../../../dist/libs/schematics/utilities"
       ],
-      "@rxap/forms/schematics/*": [
-        "../../../dist/libs/forms/schematics/*"
+      "@rxap/schematics-form/schematics/*": [
+        "../../../dist/libs/schematics/form/schematics/*"
       ]
     }
   },

@@ -12,7 +12,7 @@ import {
 import { strings } from '@angular-devkit/core';
 import { SourceFile } from 'ts-morph';
 import { TableElement } from '../table.element';
-import { ControlElement } from '@rxap/forms/schematics/generate/elements/control.element';
+import { ControlElement } from '@rxap/schematics-form/schematics/generate/elements/control.element';
 import {
   HandleComponent,
   HandleComponentModule,

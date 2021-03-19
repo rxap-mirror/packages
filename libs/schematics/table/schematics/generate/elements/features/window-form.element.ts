@@ -9,7 +9,7 @@ import {
   ElementRequired,
   ElementChildRawContent
 } from '@rxap/xml-parser/decorators';
-import { SubmitHandleMethod } from '@rxap/forms/schematics/generate/elements/form.element';
+import { SubmitHandleMethod } from '@rxap/schematics-form/schematics/generate/elements/form.element';
 import { CreateButtonElement } from './create-button.element';
 import { EditActionElement } from './action-buttons/edit-action.element';
 import {
@@ -81,8 +81,8 @@ export class WindowFormElement implements ParsedElement {
   public toValue({ options, project }: ToValueContext<GenerateSchema>): Rule {
     return chain([
       externalSchematic(
-        '@rxap/material-form-system',
-        'generate',
+        '@rxap/schematics-form',
+        'generate-view',
         {
           path:             options.path?.replace(/^\//, ''),
           template:         this.template,

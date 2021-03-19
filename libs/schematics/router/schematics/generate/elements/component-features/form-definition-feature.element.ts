@@ -44,7 +44,7 @@ export class FormDefinitionFeatureElement extends ComponentFeatureElement {
     return chain([
       () => console.log(`Execute form generator schematic for '${this.template}'`),
       externalSchematic(
-        '@rxap/forms',
+        '@rxap/schematics-form',
         'generate',
         {
           project:          options.project,
