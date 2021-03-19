@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.2.0...@rxap/schematics-utilities@11.3.0) (2021-03-19)
+
+
+### Features
+
+* add template base path support ([46c7486](https://gitlab.com/rxap/packages/commit/46c74866397d1e1c963c8ced70a6a0f83ee82c5a))
+
+
+
+
+
 # [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.1.6...@rxap/schematics-utilities@11.2.0) (2021-03-18)
 
 
