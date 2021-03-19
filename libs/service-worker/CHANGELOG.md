@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@11.0.6...@rxap/service-worker@11.0.7) (2021-03-19)
+
+
+### Bug Fixes
+
+* update peer dependencies ([954fde4](https://gitlab.com/rxap/packages/commit/954fde47836ff0c1f25a77c33ff871ddc7685b6c))
+
+
+
+
+
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@11.0.5...@rxap/service-worker@11.0.6) (2021-03-19)
 
 

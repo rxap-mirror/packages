@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-table-window-system",
-  "version": "11.1.3",
+  "version": "11.1.4",
   "peerDependencies": {
     "@angular/animations": "^11.2.6",
     "@angular/cdk": "^11.2.5",
@@ -44,7 +44,6 @@
       "@rxap/directives",
       "@rxap/form-system",
       "@rxap/forms",
-      "@rxap/json-schema-to-typescript",
       "@rxap/material-directives",
       "@rxap/material-table-system",
       "@rxap/mixin",

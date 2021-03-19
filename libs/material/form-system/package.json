@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-form-system",
-  "version": "11.7.1",
+  "version": "11.7.2",
   "peerDependencies": {
     "@angular/cdk": "^11.2.5",
     "@angular/common": "^11.2.6",

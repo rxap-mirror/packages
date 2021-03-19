@@ -1,6 +1,6 @@
 {
   "name": "@rxap/open-api",
-  "version": "11.2.2",
+  "version": "11.2.3",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -38,7 +38,6 @@
       "@rxap/open-api",
       "@rxap/data-source",
       "@rxap/definition",
-      "@rxap/json-schema-to-typescript",
       "@rxap/mixin",
       "@rxap/remote-method",
       "@rxap/schematics",
