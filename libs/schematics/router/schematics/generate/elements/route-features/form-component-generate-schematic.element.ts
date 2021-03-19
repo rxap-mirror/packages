@@ -65,8 +65,8 @@ export class FormComponentGenerateSchematicElement extends RouteFeatureElement {
     return chain([
       () => console.log(`Execute form component generator schematic for '${this.template}'`),
       externalSchematic(
-        '@rxap/material-form-system',
-        'generate',
+        '@rxap/schematics-form',
+        'generate-view',
         {
           project:          options.project,
           template:         this.template,

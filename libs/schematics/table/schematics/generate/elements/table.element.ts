@@ -29,7 +29,7 @@ import {
   CoerceMethodClass,
   CoerceSourceFile
 } from '@rxap/schematics-utilities';
-import { FormElement } from '@rxap/forms/schematics/generate/elements/form.element';
+import { FormElement } from '@rxap/schematics-form/schematics/generate/elements/form.element';
 import {
   chain,
   Rule
