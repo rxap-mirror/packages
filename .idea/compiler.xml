@@ -2,7 +2,7 @@
 <project version="4">
   <component name="TypeScriptCompiler">
     <option name="recompileOnChanges" value="true" />
-    <option name="scopeName" value="schematics and builders" />
+    <option name="scopeName" value="Scripts" />
     <option name="typeScriptCompilerParams" value="--experimentalDecorators --strictNullChecks" />
     <option name="useConfig" value="true" />
   </component>
