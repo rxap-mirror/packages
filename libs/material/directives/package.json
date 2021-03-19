@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-directives",
-  "version": "11.0.0",
+  "version": "11.1.0",
   "peerDependencies": {
     "@angular/cdk": "^11.2.5",
     "@angular/common": "^11.2.6",

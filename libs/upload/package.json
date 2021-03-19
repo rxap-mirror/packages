@@ -1,6 +1,6 @@
 {
   "name": "@rxap/upeload",
-  "version": "11.1.0",
+  "version": "11.1.1",
   "peerDependencies": {
     "@angular/common": "^11.2.6",
     "@angular/core": "^11.2.6",
@@ -36,8 +36,8 @@
     "packageGroup": [
       "@rxap/upeload",
       "@rxap/definition",
-      "@rxap/schematics",
       "@rxap/remote-method",
+      "@rxap/schematics",
       "@rxap/utilities"
     ]
   },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-kaniko@11.0.3...@rxap/plugin-kaniko@11.0.4) (2021-03-19)
+
+
+### Bug Fixes
+
+* update peer dependencies ([c7d1267](https://gitlab.com/rxap/packages/commit/c7d12671f3efc198985cddee92caa2558e74b023))
+
+
+
+
+
 ## [11.0.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-kaniko@11.0.2...@rxap/plugin-kaniko@11.0.3) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/plugin-kaniko
