@@ -1,6 +1,6 @@
 {
   "name": "@rxap/tree",
-  "version": "11.0.4",
+  "version": "11.0.5",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -40,8 +40,8 @@
       "@rxap/tree",
       "@rxap/data-source",
       "@rxap/definition",
-      "@rxap/schematics",
       "@rxap/remote-method",
+      "@rxap/schematics",
       "@rxap/utilities"
     ]
   },

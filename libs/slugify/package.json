@@ -1,6 +1,6 @@
 {
   "name": "@rxap/slugify",
-  "version": "11.0.2",
+  "version": "11.0.3",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -32,6 +32,5 @@
   "publishConfig": {
     "directory": "../../dist/libs/slugify"
   },
-  "peerDependencies": {},
   "private": false
 }
