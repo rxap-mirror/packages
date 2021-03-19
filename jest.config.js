@@ -50,5 +50,6 @@ module.exports = {
     '<rootDir>/libs/schematics/table',
     '<rootDir>/libs/material/table-window-system',
     '<rootDir>/libs/schematics/shared',
+    '<rootDir>/libs/upload'
   ],
 };

@@ -4242,6 +4242,77 @@
           }
         }
       }
+    },
+    "upload": {
+      "projectType": "library",
+      "root": "libs/upload",
+      "sourceRoot": "libs/upload/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/upload/tsconfig.lib.json",
+            "project": "libs/upload/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/upload/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/upload/tsconfig.lib.json",
+              "libs/upload/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/upload/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/upload"
+          ],
+          "options": {
+            "jestConfig": "libs/upload/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "upload:update-package-group",
+              "upload:build:production",
+              "upload:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap/plugin-library-schematics:build",
+          "options": {
+            "buildTarget": "upload:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/upload/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap/plugin-library-publish:publish",
+          "options": {
+            "buildTarget": "upload:build:production",
+            "preTarget": "upload:pack"
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",
