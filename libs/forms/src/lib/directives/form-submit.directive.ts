@@ -8,18 +8,15 @@ import {
   EventEmitter,
   Output
 } from '@angular/core';
-import {
-  ConfirmClick,
-  coerceBoolean
-} from '@rxap/utilities';
+import { coerceBoolean } from '@rxap/utilities';
 import { FormDirective } from './form.directive';
 import {
-  first,
   tap,
   take
 } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { ConfirmClick } from '@rxap/directives';
 
 @Directive({
   selector: '[rxapFormSubmit]',
