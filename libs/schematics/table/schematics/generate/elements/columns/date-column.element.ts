@@ -49,7 +49,7 @@ export class DateColumnElement extends ColumnElement {
 
     if (this.filter) {
       AddNgModuleImport(sourceFile, 'MatDatepickerModule', '@angular/material/datepicker');
-      AddNgModuleImport(sourceFile, 'FormFieldNoPaddingModule', '@rxap/directives/form-field-no-padding');
+      AddNgModuleImport(sourceFile, 'FormFieldNoPaddingModule', '@rxap/material-directives/form-field');
     }
     AddNgModuleImport(sourceFile, 'DateCellComponentModule', '@rxap/material-table-system');
   }

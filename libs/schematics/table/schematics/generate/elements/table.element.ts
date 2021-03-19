@@ -405,7 +405,7 @@ export class TableElement implements ParsedElement<Rule> {
     // core table modules
     AddNgModuleImport(sourceFile, 'MatCardModule', '@angular/material/card');
     AddNgModuleImport(sourceFile, 'MatProgressBarModule', '@angular/material/progress-bar');
-    AddNgModuleImport(sourceFile, 'CardProgressBarModule', '@rxap/directives/material/card');
+    AddNgModuleImport(sourceFile, 'CardProgressBarModule', '@rxap/material-directives/card');
     AddNgModuleImport(sourceFile, 'MatTableModule', '@angular/material/table');
     AddNgModuleImport(sourceFile, 'FlexLayoutModule', '@angular/flex-layout');
     AddNgModuleImport(sourceFile, 'TableDataSourceModule', '@rxap/material-table-system');

@@ -130,7 +130,7 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
       AddNgModuleImport(sourceFile, 'MatInputModule', '@angular/material/input');
       AddNgModuleImport(sourceFile, 'MatButtonModule', '@angular/material/button');
       AddNgModuleImport(sourceFile, 'InputClearButtonDirectiveModule', '@rxap/material-form-system');
-      AddNgModuleImport(sourceFile, 'FormFieldNoPaddingModule', '@rxap/directives/form-field-no-padding');
+      AddNgModuleImport(sourceFile, 'FormFieldNoPaddingModule', '@rxap/material-directives/form-field');
     }
 
   }
