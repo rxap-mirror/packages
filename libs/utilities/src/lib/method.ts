@@ -1,12 +1,15 @@
-import { Subject } from 'rxjs';
+import {
+  Subject,
+  Observable
+} from 'rxjs';
 import { CounterSubject } from './counter.subject';
 
 export interface Method<ReturnType = any, Parameter = any> {
-  executed$?: Subject<ReturnType>;
-  destroyed$?: Subject<void>;
-  initialised$?: Subject<void>;
-  interceptors?: Set<Subject<any>>;
-  executionsInProgress$?: CounterSubject;
+  executed$?: Observable<ReturnType>;
+  destroyed$?: Observable<void>;
+  initialised$?: Observable<void>;
+  interceptors?: Set<Observable<any>>;
+  executionsInProgress$?: Observable<number>;
   metadata?: any;
 
   call(parameters?: Parameter, ...args: any[]): Promise<ReturnType> | ReturnType;
