@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@11.0.4...@rxap/xml-parser@11.0.5) (2021-03-19)
+
+
+### Bug Fixes
+
+* **AttributeElement:** set the attribute option key optional ([394ccb6](https://gitlab.com/rxap/packages/commit/394ccb6bd9eec70a530955e3f3ef516e4d975738))
+
+
+
+
+
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@11.0.3...@rxap/xml-parser@11.0.4) (2021-03-19)
 
 

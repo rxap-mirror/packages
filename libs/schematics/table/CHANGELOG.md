@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.5.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.5.0...@rxap/schematics-table@11.5.1) (2021-03-19)
+
+
+### Bug Fixes
+
+* mv the material directives to the package rxap/material-directives ([17f5ea7](https://gitlab.com/rxap/packages/commit/17f5ea73060cd608175686c557ad7af0cf3ea65e))
+
+
+
+
+
 # [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.4.0...@rxap/schematics-table@11.5.0) (2021-03-19)
 
 
