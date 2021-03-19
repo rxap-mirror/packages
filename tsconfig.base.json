@@ -110,43 +110,60 @@
         "libs/open-api/remote-method/src/public_api.ts"
       ],
       "@rxap/recorder": ["libs/recorder/src/index.ts"],
-      "@rxap/data-source/http": ["libs/data-source/http/src/public_api.ts"],
-      "@rxap/across-tabs": ["libs/across-tabs/src/index.ts"],
-      "@rxap/forms": ["libs/forms/src/index.ts"],
-      "@rxap/icon": ["libs/icon/src/index.ts"],
-      "@rxap/hammerjs": ["libs/hammerjs/src/index.ts"],
-      "@rxap/remote-method/http": ["libs/remote-method/http/src/public_api.ts"],
-      "@rxap/refresh": ["libs/rxap/refresh/src/index.ts"],
+      "@rxap/data-source/http": [
+        "libs/data-source/http/src/public_api.ts"
+      ],
+      "@rxap/across-tabs": [
+        "libs/across-tabs/src/index.ts"
+      ],
+      "@rxap/forms": [
+        "libs/forms/src/index.ts"
+      ],
+      "@rxap/icon": [
+        "libs/icon/src/index.ts"
+      ],
+      "@rxap/hammerjs": [
+        "libs/hammerjs/src/index.ts"
+      ],
+      "@rxap/remote-method/http": [
+        "libs/remote-method/http/src/public_api.ts"
+      ],
+      "@rxap/refresh": [
+        "libs/rxap/refresh/src/index.ts"
+      ],
       "@rxap/remote-method/http/directive": [
         "libs/remote-method/http/directive/src/public_api.ts"
       ],
-      "@rxap/directives/form-field-no-padding": [
-        "libs/directives/form-field-no-padding/src/public_api.ts"
+      "@rxap/material-directives/form-field": [
+        "libs/material/directives/form-field/src/public_api.ts"
       ],
-      "@rxap/directives/material/card": [
-        "libs/directives/material/card/src/public_api.ts"
+      "@rxap/material-directives/card": [
+        "libs/material/directives/card/src/public_api.ts"
       ],
-      "@rxap/directives/material/expansion": [
-        "libs/directives/material/expansion/src/public_api.ts"
+      "@rxap/material-directives/expansion": [
+        "libs/material/directives/expansion/src/public_api.ts"
       ],
-      "@rxap/directives/material": [
-        "libs/directives/material/src/public_api.ts"
+      "@rxap/material-directives/tabs": [
+        "libs/material/directives/tabs/src/public_api.ts"
       ],
-      "@rxap/directives/material/tabs": [
-        "libs/directives/material/tabs/src/public_api.ts"
+      "@rxap/material-directives/icon": [
+        "libs/material/directives/icon/src/public_api.ts"
       ],
-      "@rxap/directives/material/icon": [
-        "libs/directives/material/icon/src/public_api.ts"
+      "@rxap/directives": [
+        "libs/directives/src/index.ts"
       ],
-      "@rxap/directives": ["libs/directives/src/index.ts"],
-      "@rxap/handlebars": ["libs/handlebars/src/index.ts"],
+      "@rxap/handlebars": [
+        "libs/handlebars/src/index.ts"
+      ],
       "@rxap/data-source/pagination/directives": [
         "libs/data-source/pagination/directives/src/public_api.ts"
       ],
       "@rxap/data-source/http/pagination": [
         "libs/data-source/http/pagination/src/public_api.ts"
       ],
-      "@rxap/definition": ["libs/definition/src/index.ts"],
+      "@rxap/definition": [
+        "libs/definition/src/index.ts"
+      ],
       "@rxap/plugin-pack": ["libs/plugin/pack/src/index.ts"],
       "@rxap/plugin-scss-bundle": ["libs/plugin/scss-bundle/src/index.ts"],
       "@rxap/form-system": ["libs/form-system/src/index.ts"],
@@ -169,12 +186,24 @@
       "@rxap/json-schema-to-typescript": [
         "libs/json-schema-to-typescript/src/index.ts"
       ],
-      "@rxap/tree": ["libs/tree/src/index.ts"],
-      "@rxap/dialog": ["libs/dialog/src/index.ts"],
-      "@rxap/form-window-system": ["libs/form-window-system/src/index.ts"],
-      "@rxap/environment": ["libs/environment/src/index.ts"],
-      "@rxap/table-system": ["libs/table-system/src/index.ts"],
-      "@rxap/material-form-system": ["libs/material/form-system/src/index.ts"],
+      "@rxap/tree": [
+        "libs/tree/src/index.ts"
+      ],
+      "@rxap/dialog": [
+        "libs/dialog/src/index.ts"
+      ],
+      "@rxap/form-window-system": [
+        "libs/form-window-system/src/index.ts"
+      ],
+      "@rxap/environment": [
+        "libs/environment/src/index.ts"
+      ],
+      "@rxap/table-system": [
+        "libs/table-system/src/index.ts"
+      ],
+      "@rxap/material-form-system": [
+        "libs/material/form-system/src/index.ts"
+      ],
       "@rxap/material-table-system": [
         "libs/material/table-system/src/index.ts"
       ],
@@ -201,6 +230,12 @@
       ],
       "@rxap/upeload": [
         "libs/upload/src/index.ts"
+      ],
+      "@rxap/schematics-form": [
+        "libs/schematics/form/src/index.ts"
+      ],
+      "@rxap/material-directives": [
+        "libs/material/directives/src/index.ts"
       ]
     }
   },

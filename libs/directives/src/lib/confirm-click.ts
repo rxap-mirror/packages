@@ -3,7 +3,7 @@ import {
   HostListener,
   Injectable
 } from '@angular/core';
-import { coerceBoolean } from './coerce/boolean';
+import { coerceBoolean } from '@rxap/utilities';
 
 @Injectable()
 export abstract class ConfirmClick {

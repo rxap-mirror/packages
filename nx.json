@@ -165,6 +165,12 @@
     },
     "upload": {
       "tags": []
+    },
+    "schematics-form": {
+      "tags": []
+    },
+    "material-directives": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

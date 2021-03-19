@@ -4313,6 +4313,148 @@
           }
         }
       }
+    },
+    "schematics-form": {
+      "projectType": "library",
+      "root": "libs/schematics/form",
+      "sourceRoot": "libs/schematics/form/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/schematics/form/tsconfig.lib.json",
+            "project": "libs/schematics/form/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/schematics/form/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/schematics/form/tsconfig.lib.json",
+              "libs/schematics/form/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/schematics/form/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/schematics/form"
+          ],
+          "options": {
+            "jestConfig": "libs/schematics/form/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "schematics-form:update-package-group",
+              "schematics-form:build:production",
+              "schematics-form:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap/plugin-library-schematics:build",
+          "options": {
+            "buildTarget": "schematics-form:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/schematics/form/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap/plugin-library-publish:publish",
+          "options": {
+            "buildTarget": "schematics-form:build:production",
+            "preTarget": "schematics-form:pack"
+          }
+        }
+      }
+    },
+    "material-directives": {
+      "projectType": "library",
+      "root": "libs/material/directives",
+      "sourceRoot": "libs/material/directives/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/material/directives/tsconfig.lib.json",
+            "project": "libs/material/directives/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/material/directives/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/material/directives/tsconfig.lib.json",
+              "libs/material/directives/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/material/directives/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/material/directives"
+          ],
+          "options": {
+            "jestConfig": "libs/material/directives/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "material-directives:update-package-group",
+              "material-directives:build:production",
+              "material-directives:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap/plugin-library-schematics:build",
+          "options": {
+            "buildTarget": "material-directives:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/material/directives/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap/plugin-library-publish:publish",
+          "options": {
+            "buildTarget": "material-directives:build:production",
+            "preTarget": "material-directives:pack"
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",
