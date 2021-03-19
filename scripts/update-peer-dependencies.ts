@@ -216,19 +216,32 @@ function AddDefaultPackageJsonProperties(packageJson: Record<string, any>): void
 
 }
 
+function HasProjectVersionChange(projectName: string): boolean {
+
+  const version    = GetDependencyVersion(projectName);
+  const newVersion = GetNewProjectVersion(projectName);
+
+  return version === newVersion;
+}
+
 async function Update() {
 
   for await (const [ name, dependencies ] of
     Object.entries(projectGraph.dependencies).filter(ExcludeNpmDependencies).map(([ _, dList ]) => [ _, dList.map(d => d.target) ] as [ string, string[] ])) {
+
+    if (projectGraph.nodes[ name ].data.root.match(/apps\//)) {
+      continue;
+    }
+
+    if (!HasProjectVersionChange(name)) {
+      continue;
+    }
+
     const flattenDependencies = FlattenDependencies(dependencies);
 
     const peerDependencies          = flattenDependencies.filter(dependency => !dependency.match(/^npm:/) ||
                                                                                !blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
     const blackListPeerDependencies = flattenDependencies.filter(dependency => blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
-
-    if (projectGraph.nodes[ name ].data.root.match(/apps\//)) {
-      continue;
-    }
 
     const packageJson = GetProjectPackageJson(name);
 
