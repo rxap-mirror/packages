@@ -31,5 +31,7 @@
   },
   "publishConfig": {
     "directory": "../../dist/libs/slugify"
-  }
+  },
+  "peerDependencies": {},
+  "private": false
 }

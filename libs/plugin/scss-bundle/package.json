@@ -27,8 +27,7 @@
     "@angular-devkit/schematics": "10"
   },
   "peerDependencies": {
-    "@nrwl/workspace": ">=9",
-    "@schematics/angular": ">=9"
+    "@nrwl/workspace": "^11.0.8"
   },
   "scripts": {
     "prepublish": "yarn --cwd ../../../ nx run plugin-scss-bundle:pack --with-deps",
@@ -36,5 +35,6 @@
   },
   "publishConfig": {
     "directory": "../../../dist/libs/plugin/scss-bundle"
-  }
+  },
+  "private": false
 }

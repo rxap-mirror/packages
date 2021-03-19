@@ -18,15 +18,17 @@
   },
   "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
   "peerDependencies": {
-    "@angular/cdk": "^11.0.3",
-    "@angular/common": "^11.0.5",
-    "@angular/core": "^11.0.5",
-    "@angular/platform-browser": "^11.0.5",
-    "@rxap/data-source": ">=11.0.3",
-    "@rxap/definition": ">=11.0.3",
-    "@rxap/remote-method": ">=11.0.5",
-    "@rxap/utilities": ">=11.0.4",
-    "rxjs": "^6.5.5"
+    "@rxap/data-source": "^11.0.5",
+    "@rxap/definition": "^11.0.4",
+    "@angular/cdk": "^11.2.5",
+    "@angular/common": "^11.2.6",
+    "@angular/core": "^11.2.6",
+    "@angular/platform-browser": "^11.2.6",
+    "@rxap/schematics": "^11.3.4",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.5",
+    "@rxap/remote-method": "^11.0.7",
+    "@rxap/utilities": "^11.2.3"
   },
   "dependencies": {
     "tslib": "2.0.1"
@@ -38,6 +40,7 @@
       "@rxap/tree",
       "@rxap/data-source",
       "@rxap/definition",
+      "@rxap/schematics",
       "@rxap/remote-method",
       "@rxap/utilities"
     ]
@@ -48,5 +51,6 @@
   },
   "publishConfig": {
     "directory": "../../dist/libs/tree"
-  }
+  },
+  "private": false
 }

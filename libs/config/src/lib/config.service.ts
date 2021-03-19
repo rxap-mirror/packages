@@ -8,13 +8,12 @@ import {
   SetObjectValue
 } from '@rxap/utilities';
 import { RXAP_CONFIG } from './tokens';
+import { NoInferType } from './types';
 
 export interface ConfigLoadOptions {
   fromUrlParam?: string | boolean;
   fromLocalStorage?: boolean;
 }
-
-export declare type NoInferType<T> = [T][T extends any ? 0 : never];
 
 @Injectable({
   providedIn: 'root'
@@ -113,8 +112,12 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   }
 
-  public static Get<T = any, K extends Record<string, any> = Record<string, any>>(path: keyof K, defaultValue: T | undefined, config: Record<string, any>): T
-  public static Get<T = any, K extends Record<string, any> = Record<string, any>>(path: keyof K, defaultValue: NoInferType<T>, config: Record<string, any> = this.Config): T {
+  public static Get<T = any, K extends Record<string, any> = Record<string, any>>(path: string, defaultValue: T | undefined, config: Record<string, any>): T
+  public static Get<T = any, K extends Record<string, any> = Record<string, any>>(
+    path: string,
+    defaultValue: NoInferType<T>,
+    config: Record<string, any> = this.Config
+  ): T {
     if (!config) {
       throw new Error('config not loaded');
     }
@@ -122,7 +125,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     if (typeof path !== 'string') {
       throw new Error('The config property path is not a string');
     }
-    for (const fragment of path.split('.')) {
+    for (const fragment of (path as any).split('.')) {
       if (configValue.hasOwnProperty(fragment)) {
         configValue = configValue[ fragment ];
       } else {
@@ -156,9 +159,9 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     localStorage.removeItem(ConfigService.LocalStorageKey);
   }
 
-  public get<T = any>(propertyPath: keyof Config): T | undefined;
-  public get<T = any>(propertyPath: keyof Config, defaultValue: NoInferType<T>): T;
-  public get<T = any>(propertyPath: keyof Config, defaultValue?: T): T | undefined {
+  public get<T = any>(propertyPath: string): T | undefined;
+  public get<T = any>(propertyPath: string, defaultValue: NoInferType<T>): T;
+  public get<T = any>(propertyPath: string, defaultValue?: T): T | undefined {
     return ConfigService.Get(propertyPath, defaultValue, this.config);
   }
 

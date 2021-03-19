@@ -17,9 +17,7 @@
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
   "license": "MIT",
-  "peerDependencies": {
-    "@angular/material": "^11.0.3"
-  },
+  "peerDependencies": {},
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",

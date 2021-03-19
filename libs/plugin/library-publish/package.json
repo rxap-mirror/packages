@@ -10,5 +10,22 @@
   },
   "publishConfig": {
     "directory": "../../../dist/libs/plugin/library-publish"
+  },
+  "peerDependencies": {
+    "@nrwl/workspace": "^11.0.8"
+  },
+  "license": "MIT",
+  "keywords": [
+    "rxap",
+    "plugin",
+    "nrwl"
+  ],
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "author": "Merzough Münker",
+  "private": false,
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   }
 }
