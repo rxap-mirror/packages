@@ -35,7 +35,7 @@ const blackListNpmPeerDependencies: RegExp[] = [
   /npm:openapi-types/,
   /npm:ajv-oai/,
   /npm:@apidevtools\/json-schema-ref-parser/,
-  /@rxap\/json-schema-to-typescript/,
+  /json-schema-to-typescript/,
   /npm:xmldom/,
   /npm:handlebars/,
   /npm:axios/
