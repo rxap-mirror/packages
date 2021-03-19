@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-form-system",
-  "version": "11.5.2",
+  "version": "11.6.0",
   "peerDependencies": {
     "@angular/common": "^11.0.5",
     "@angular/core": "^11.0.5",
@@ -9,10 +9,10 @@
     "@angular/platform-browser": "^11.0.5",
     "@angular/router": "^11.0.5",
     "@rxap/definition": ">=11.0.3",
-    "@rxap/forms": ">=11.1.1",
+    "@rxap/forms": ">=11.2.0",
     "@rxap/mixin": ">=11.0.4",
-    "@rxap/schematics-utilities": ">=11.2.0",
-    "@rxap/utilities": ">=11.2.1",
+    "@rxap/schematics-utilities": ">=11.3.0",
+    "@rxap/utilities": ">=11.2.2",
     "@rxap/xml-parser": ">=11.0.3",
     "rxjs": "^6.5.5"
   },

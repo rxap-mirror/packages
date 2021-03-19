@@ -1,9 +1,9 @@
 {
   "name": "@rxap/schematics-router",
-  "version": "11.2.1",
+  "version": "11.3.0",
   "peerDependencies": {
-    "@rxap/schematics-table": ">=11.3.0",
-    "@rxap/schematics-utilities": ">=11.2.0",
+    "@rxap/schematics-table": ">=11.4.0",
+    "@rxap/schematics-utilities": ">=11.3.0",
     "@rxap/xml-parser": ">=11.0.3",
     "rxjs": "^6.5.5"
   },

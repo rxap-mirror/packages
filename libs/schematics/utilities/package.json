@@ -1,9 +1,9 @@
 {
   "name": "@rxap/schematics-utilities",
-  "version": "11.2.0",
+  "version": "11.3.0",
   "peerDependencies": {
     "@rxap/mixin": ">=11.0.4",
-    "@rxap/utilities": ">=11.2.1",
+    "@rxap/utilities": ">=11.2.2",
     "@rxap/xml-parser": ">=11.0.3",
     "rxjs": "^6.5.5"
   },
