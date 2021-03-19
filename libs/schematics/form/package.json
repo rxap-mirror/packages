@@ -32,7 +32,7 @@
     "preversion": "yarn --cwd ../../../ nx run schematics-form:pack --with-deps"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/form/table"
+    "directory": "../../../dist/libs/schematics/form"
   },
   "license": "MIT",
   "keywords": [
@@ -47,5 +47,6 @@
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  }
+  },
+  "gitHead": "e97bbc8cd889c25c0e1b134eeb74fd5ea3a19981"
 }
