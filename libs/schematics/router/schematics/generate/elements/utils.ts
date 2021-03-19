@@ -1,7 +1,14 @@
-import { IndentationText, Project, QuoteKind } from 'ts-morph';
+import {
+  IndentationText,
+  Project,
+  QuoteKind
+} from 'ts-morph';
 import { strings } from '@angular-devkit/core';
 import { RoutingSchema } from '../schema';
-import { Rule, Tree } from '@angular-devkit/schematics';
+import {
+  Rule,
+  Tree
+} from '@angular-devkit/schematics';
 import { join } from 'path';
 import { createDefaultPath } from '@schematics/angular/utility/workspace';
 import { ParseTemplate } from '@rxap/schematics-utilities';
@@ -31,14 +38,14 @@ export function HandelTemplate(options: RoutingSchema): Rule {
     }
 
     const projectRootPath = await createDefaultPath(tree, options.project as string);
-    const routingElement = ParseTemplate<RoutingElement>(tree, options.template, ...Elements);
-    const project = new Project({
+    const routingElement  = ParseTemplate<RoutingElement>(tree, options.template, options.templateBasePath, ...Elements);
+    const project         = new Project({
       useInMemoryFileSystem: true,
-      manipulationSettings: {
-        indentationText: IndentationText.TwoSpaces,
-        quoteKind: QuoteKind.Single,
-        useTrailingCommas: true,
-      },
+      manipulationSettings:  {
+        indentationText:   IndentationText.TwoSpaces,
+        quoteKind:         QuoteKind.Single,
+        useTrailingCommas: true
+      }
     });
     if (!options.routingModule) {
       options.routingModule = FindRoutingModule(tree, projectRootPath);

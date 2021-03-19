@@ -40,7 +40,7 @@ export default function(options: GenerateSchema): Rule {
       path = join(projectRootPath, options.path);
     }
 
-    const formElement = ParseTemplate<FormElement>(host, options.template, ...Elements);
+    const formElement = ParseTemplate<FormElement>(host, options.template, options.templateBasePath, ...Elements);
     options.name      = options.name ?? formElement.name;
 
     const project = new Project({

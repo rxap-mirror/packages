@@ -50,7 +50,7 @@ export default function(options: GenerateSchema): Rule {
     let formElement: FormElement | undefined = options.formElement;
 
     if (!formElement) {
-      formElement = ParseTemplate<FormElement>(host, options.template, ...Elements);
+      formElement = ParseTemplate<FormElement>(host, options.template, options.templateBasePath, ...Elements);
     }
 
     const project = new Project({

@@ -38,6 +38,7 @@ import {
   PrefixElement
 } from './form-field/prefix.element';
 import { SelectControlElement } from './form-field/select-control.element';
+import { GenerateSchema } from '../../schema';
 
 export interface InjectionDefinition {
   injectionToken: string;
@@ -204,21 +205,26 @@ export class TableSelectControlElement extends SelectControlElement {
     );
   }
 
-  public toValue({ project, options }: ToValueContext<{ path: string, project: string, overwrite: boolean, openApiModule: string }>): Rule {
+  public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
     return chain([
       super.toValue({ project, options }),
       () => this.createOpenMethodFile(project),
-      externalSchematic('@rxap/schematics-table', 'generate', {
-        template:        this.table.template,
-        name:            this.tableSelectName,
-        path:            join(options.path, 'select-tables').replace(/^\//, ''),
-        project:         options.project,
-        organizeImports: false,
-        fixImports:      false,
-        format:          false,
-        overwrite:       options.overwrite,
-        openApiModule:   options.openApiModule
-      })
+      externalSchematic(
+        '@rxap/schematics-table',
+        'generate',
+        {
+          template:         this.table.template,
+          name:             this.tableSelectName,
+          path:             join(options.path?.replace(/^\//, '') ?? '', 'select-tables'),
+          project:          options.project,
+          organizeImports:  false,
+          fixImports:       false,
+          format:           false,
+          templateBasePath: options.templateBasePath,
+          overwrite:        options.overwrite,
+          openApiModule:    options.openApiModule
+        }
+      )
     ]);
   }
 

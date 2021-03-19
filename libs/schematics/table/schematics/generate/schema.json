@@ -18,6 +18,11 @@
       "description": "",
       "visible": false
     },
+    "templateBasePath": {
+      "type": "string",
+      "description": "a template base path",
+      "visible": false
+    },
     "flat": {
       "type": "boolean",
       "description": "",

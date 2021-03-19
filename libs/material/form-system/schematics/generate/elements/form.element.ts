@@ -107,16 +107,17 @@ export class FormElement extends GroupElement {
         '@rxap/forms',
         'generate',
         {
-          project:         options.project,
-          name:            options.name,
-          template:        join('forms', dasherize(this.form ?? this.name) + '.xml'),
-          path:            options.path!.replace(/^\//, ''),
-          flat:            true,
-          organizeImports: false,
-          fixImports:      false,
-          format:          false,
-          openApiModule:   options.openApiModule,
-          overwrite:       options.overwrite
+          project:          options.project,
+          name:             options.name,
+          template:         join('forms', dasherize(this.form ?? this.name) + '.xml'),
+          path:             options.path?.replace(/^\//, '') ?? '',
+          flat:             true,
+          organizeImports:  false,
+          fixImports:       false,
+          format:           false,
+          templateBasePath: options.templateBasePath,
+          openApiModule:    options.openApiModule,
+          overwrite:        options.overwrite
         }
       ),
       options.overwrite ? tree => tree.overwrite(componentTemplateFilePath, this.template()) : noop(),

@@ -84,15 +84,16 @@ export class WindowFormElement implements ParsedElement {
         '@rxap/material-form-system',
         'generate',
         {
-          path:            options.path?.replace(/^\//, ''),
-          template:        this.template,
-          name:            this.name,
-          project:         options.project,
-          organizeImports: false,
-          fixImports:      false,
-          format:          false,
-          overwrite:       options.overwrite,
-          openApiModule:   options.openApiModule
+          path:             options.path?.replace(/^\//, ''),
+          template:         this.template,
+          name:             this.name,
+          project:          options.project,
+          organizeImports:  false,
+          fixImports:       false,
+          format:           false,
+          templateBasePath: options.templateBasePath,
+          overwrite:        options.overwrite,
+          openApiModule:    options.openApiModule
         }
       ),
       tree => {

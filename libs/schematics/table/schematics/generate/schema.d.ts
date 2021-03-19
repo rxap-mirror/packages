@@ -1,12 +1,13 @@
 export interface GenerateSchema {
-  name?: string;
-  path?: string;
-  project?: string;
-  flat?: boolean;
+  name: string | undefined;
+  path: string | undefined;
+  project: string | undefined;
+  flat: boolean | undefined;
   template: string;
-  openApiModule?: string;
+  openApiModule: string | undefined;
   overwrite: boolean;
   organizeImports: boolean;
   fixImports: boolean;
   format: boolean;
+  templateBasePath: string | undefined;
 }

@@ -40,7 +40,7 @@ export default function(options: GenerateSchema): Rule {
 
     const projectRootPath = await createDefaultPath(host, options.project as string);
 
-    const tableElement = ParseTemplate<TableElement>(host, options.template, ...TableSystemElements);
+    const tableElement = ParseTemplate<TableElement>(host, options.template, options.templateBasePath, ...TableSystemElements);
 
     options.name    = options.name ?? tableElement.id;
     tableElement.id = options.name;
@@ -108,17 +108,22 @@ export default function(options: GenerateSchema): Rule {
           return fileEntry;
         })
       ]), MergeStrategy.Overwrite),
-      tableElement.hasFilter ? externalSchematic('@rxap/forms', 'generate', {
-        path:            path.replace(/^\//, ''),
-        formElement:     tableElement.createFormElement(),
-        component:       false,
-        project:         options.project,
-        flat:            true,
-        organizeImports: false,
-        fixImports:      false,
-        format:          false,
-        overwrite:       options.overwrite
-      }) : noop(),
+      tableElement.hasFilter ? externalSchematic(
+        '@rxap/forms',
+        'generate',
+        {
+          path:             path.replace(/^\//, ''),
+          formElement:      tableElement.createFormElement(),
+          component:        false,
+          project:          options.project,
+          flat:             true,
+          organizeImports:  false,
+          fixImports:       false,
+          format:           false,
+          templateBasePath: options.templateBasePath,
+          overwrite:        options.overwrite
+        }
+      ) : noop(),
       tableElement.toValue({ project, options }),
       ApplyTsMorphProject(project, options.path, options.organizeImports),
       options.fixImports ? FixMissingImports() : noop(),

@@ -45,15 +45,16 @@ export class FormComponentFeatureElement extends ComponentFeatureElement {
         '@rxap/material-form-system',
         'generate',
         {
-          project:         options.project,
-          template:        this.template,
-          name:            this.name,
-          path:            componentPath,
-          organizeImports: false,
-          fixImports:      false,
-          format:          false,
-          overwrite:       options.overwrite,
-          openApiModule:   options.openApiModule
+          project:          options.project,
+          template:         this.template,
+          name:             this.name,
+          path:             componentPath,
+          templateBasePath: options.templateBasePath,
+          organizeImports:  false,
+          fixImports:       false,
+          format:           false,
+          overwrite:        options.overwrite,
+          openApiModule:    options.openApiModule
         }
       )
     ]);

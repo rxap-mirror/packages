@@ -61,14 +61,15 @@ export class TableGenerateSchematicElement extends RouteFeatureElement {
         '@rxap/schematics-table',
         'generate',
         {
-          project:         options.project,
-          template:        this.template,
-          name:            this.name,
-          organizeImports: false,
-          fixImports:      false,
-          format:          false,
-          overwrite:       options.overwrite,
-          openApiModule:   options.openApiModule
+          project:          options.project,
+          template:         this.template,
+          name:             this.name,
+          organizeImports:  false,
+          fixImports:       false,
+          format:           false,
+          templateBasePath: options.templateBasePath,
+          overwrite:        options.overwrite,
+          openApiModule:    options.openApiModule
         }
       )
     ]);
