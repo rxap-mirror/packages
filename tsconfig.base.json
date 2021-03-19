@@ -178,15 +178,30 @@
       "@rxap/material-table-system": [
         "libs/material/table-system/src/index.ts"
       ],
-      "@rxap/schematics-utilities": ["libs/schematics/utilities/src/index.ts"],
-      "@rxap/contenteditable": ["libs/contenteditable/src/index.ts"],
-      "@rxap/schematics-router": ["libs/schematics/router/src/index.ts"],
-      "@rxap/amplify-open-api": ["libs/amplify/open-api/src/index.ts"],
-      "@rxap/schematics-table": ["libs/schematics/table/src/index.ts"],
+      "@rxap/schematics-utilities": [
+        "libs/schematics/utilities/src/index.ts"
+      ],
+      "@rxap/contenteditable": [
+        "libs/contenteditable/src/index.ts"
+      ],
+      "@rxap/schematics-router": [
+        "libs/schematics/router/src/index.ts"
+      ],
+      "@rxap/amplify-open-api": [
+        "libs/amplify/open-api/src/index.ts"
+      ],
+      "@rxap/schematics-table": [
+        "libs/schematics/table/src/index.ts"
+      ],
       "@rxap/material-table-window-system": [
         "libs/material/table-window-system/src/index.ts"
       ],
-      "@rxap/schematics-shared": ["libs/schematics/shared/src/index.ts"]
+      "@rxap/schematics-shared": [
+        "libs/schematics/shared/src/index.ts"
+      ],
+      "@rxap/upeload": [
+        "libs/upload/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp", "*.sandbox.ts"]
