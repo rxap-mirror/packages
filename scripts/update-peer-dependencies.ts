@@ -100,7 +100,9 @@ async function GetNewProjectVersion(projectName: string): Promise<string> {
         return reject(err);
       }
 
-      const newVersion = inc(version, data.releaseType ?? 'patch');
+      const releaseType = data.releaseType ?? 'patch';
+      console.log(GetProjectPackageJsonPath(projectName));
+      const newVersion = inc(version, releaseType);
 
       if (newVersion !== version) {
         projectNewVersion.set(projectName, [ version, newVersion ]);
@@ -229,9 +231,9 @@ async function Update() {
       = (await Promise.all(peerDependencies.map(async peerDependency => ({ [ GetPackageName(peerDependency) ]: await GetDependencyVersion(peerDependency) }))))
       .reduce((map, item) => ({ ...map, ...item }), {});
 
-    console.log(`Update project ${name}:`);
-    console.log('peerDependencies:', packageJson.peerDependencies);
-    console.log('blackList', blackListPeerDependencies);
+    // console.log(`Update project ${name}:`);
+    // console.log('peerDependencies:', packageJson.peerDependencies);
+    // console.log('blackList', blackListPeerDependencies);
 
     AddDefaultPackageJsonProperties(packageJson);
 
