@@ -28,7 +28,7 @@ import { FormFeatureElement } from './features/form-feature.element';
 import {
   SubmitHandleMethod,
   LoadHandleMethod
-} from '@rxap/forms/schematics/generate/elements/form.element';
+} from '../../generate/elements/form.element';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
@@ -104,7 +104,7 @@ export class FormElement extends GroupElement {
     const componentTemplateFilePath = join(options.path!, dasherize(options.name!) + '-form.component.html');
     return chain([
       externalSchematic(
-        '@rxap/forms',
+        '@rxap/schematics-form',
         'generate',
         {
           project:          options.project,

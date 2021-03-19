@@ -2,15 +2,15 @@ import { FormElement } from './elements/form.element';
 
 export interface GenerateSchema {
   project: string;
-  path: string;
+  path: string | undefined;
   template: string;
-  openApiModule: string;
+  openApiModule: string | undefined;
   formElement?: FormElement;
-  name?: string;
+  name: string | undefined;
   flat?: boolean;
   organizeImports: boolean;
   fixImports: boolean;
   format: boolean;
-  overwrite: boolean;
-  templateBasePath?: string;
+  overwrite: boolean | undefined;
+  templateBasePath: string | undefined;
 }

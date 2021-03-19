@@ -65,7 +65,7 @@ export class DataSourceTransformerElement implements ParsedElement<string> {
 
 }
 
-export function OptionsProviderExport(project: Project, name: string, from: string, overwrite: boolean) {
+export function OptionsProviderExport(project: Project, name: string, from: string, overwrite: boolean | undefined) {
   const optionsProviderSourceFilePath = 'data-sources/options-data-source.providers';
   const optionsProviderSourceFile     = project.getSourceFile(optionsProviderSourceFilePath + '.ts') ??
                                         project.createSourceFile(optionsProviderSourceFilePath + '.ts');

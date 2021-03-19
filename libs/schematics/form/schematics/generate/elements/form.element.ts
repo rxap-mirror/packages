@@ -267,7 +267,7 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
 
   }
 
-  private addToFormProviders(formName: string, project: Project, namedImports: string[] = [ formName ], overwrite: boolean): void {
+  private addToFormProviders(formName: string, project: Project, namedImports: string[] = [ formName ], overwrite: boolean | undefined): void {
 
     const formProviderSourceFile = AddToFormProviders(project, formName, overwrite);
 
