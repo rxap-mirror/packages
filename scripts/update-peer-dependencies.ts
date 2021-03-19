@@ -1,6 +1,9 @@
 import { createProjectGraph } from '@nrwl/workspace/src/core/project-graph';
 import { ProjectGraph } from '@nrwl/workspace/src/core/project-graph/project-graph-models';
-import { join } from 'path';
+import {
+  join,
+  dirname
+} from 'path';
 import {
   readFileSync,
   existsSync,
@@ -92,16 +95,18 @@ async function GetNewProjectVersion(projectName: string): Promise<string> {
 
   return new Promise((resolve, reject) => {
 
-    conventionalRecommendedBump({
+    const options = {
       lernaPackage: packageJson.name,
-      path:         GetProjectPackageJsonPath(projectName)
-    }, (err: any, data: any) => {
+      path:         dirname(join(__dirname, '..', GetProjectPackageJsonPath(projectName)))
+    };
+
+    conventionalRecommendedBump(options, (err: any, data: any) => {
       if (err) {
         return reject(err);
       }
 
       const releaseType = data.releaseType ?? 'patch';
-      console.log(GetProjectPackageJsonPath(projectName));
+      console.log(options.path);
       const newVersion = inc(version, releaseType);
 
       if (newVersion !== version) {
