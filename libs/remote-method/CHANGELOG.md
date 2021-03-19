@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@11.0.5...@rxap/remote-method@11.0.6) (2021-03-19)
+
+
+### Bug Fixes
+
+* generalize method properties ([d93b3ac](https://gitlab.com/rxap/packages/commit/d93b3ac9de6562bf3c5d37f3351e127c9f4ba631))
+
+
+
+
+
 ## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@10.0.2...@rxap/remote-method@11.0.5) (2021-02-04)
 
 **Note:** Version bump only for package @rxap/remote-method

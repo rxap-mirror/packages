@@ -1,16 +1,16 @@
 {
   "name": "@rxap/upeload",
-  "version": "11.0.0",
+  "version": "11.1.0",
   "peerDependencies": {
-    "rxjs": "^6.5.5",
-    "@angular/core": "^11.0.5",
-    "@rxap/remote-method": ">=11.0.5",
-    "@rxap/utilities": ">=11.2.1",
-    "@rxap/definition": ">=11.0.3",
-    "@angular/platform-browser": "^11.0.5",
     "@angular/common": "^11.0.5",
+    "@angular/core": "^11.0.5",
     "@angular/flex-layout": "^11.0.0-beta.33",
-    "@angular/material": "^11.0.3"
+    "@angular/material": "^11.0.3",
+    "@angular/platform-browser": "^11.0.5",
+    "@rxap/definition": ">=11.0.3",
+    "@rxap/remote-method": ">=11.0.6",
+    "@rxap/utilities": ">=11.2.2",
+    "rxjs": "^6.5.5"
   },
   "dependencies": {
     "tslib": "^2.0.0"
