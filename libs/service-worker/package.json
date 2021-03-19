@@ -1,6 +1,6 @@
 {
   "name": "@rxap/service-worker",
-  "version": "11.0.6",
+  "version": "11.0.7",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",

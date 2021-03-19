@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-table-system",
-  "version": "11.4.3",
+  "version": "11.4.4",
   "peerDependencies": {
     "@angular/animations": "^11.2.6",
     "@angular/cdk": "^11.2.5",
@@ -40,7 +40,6 @@
       "@rxap/definition",
       "@rxap/directives",
       "@rxap/forms",
-      "@rxap/json-schema-to-typescript",
       "@rxap/material-directives",
       "@rxap/mixin",
       "@rxap/open-api",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library-schematics@11.0.5...@rxap/plugin-library-schematics@11.0.6) (2021-03-19)
+
+**Note:** Version bump only for package @rxap/plugin-library-schematics
+
+
+
+
+
 ## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library-schematics@11.0.4...@rxap/plugin-library-schematics@11.0.5) (2021-03-19)
 
 

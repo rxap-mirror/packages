@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematics-utilities",
-  "version": "11.3.2",
+  "version": "11.3.3",
   "peerDependencies": {
     "@angular/core": "^11.2.6",
     "@rxap/mixin": "^11.0.7",
