@@ -28,10 +28,6 @@
       "@rxap/fullstory"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run fullstory:pack --with-deps",
-    "preversion": "yarn --cwd ../../ nx run fullstory:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../dist/libs/fullstory"
   },

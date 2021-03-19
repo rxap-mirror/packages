@@ -18,10 +18,6 @@
   "dependencies": {
     "tslib": "^2.0.0"
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run schematics-utilities:pack --with-deps",
-    "preversion": "yarn --cwd ../../../ nx run schematics-utilities:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../../dist/libs/schematics/utilities"
   },

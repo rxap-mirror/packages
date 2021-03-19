@@ -21,10 +21,6 @@
   "dependencies": {
     "tslib": "2.0.1"
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run json-schema-to-typescript:pack --with-deps",
-    "preversion": "yarn --cwd ../../ nx run json-schema-to-typescript:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../dist/libs/json-schema-to-typescript"
   },

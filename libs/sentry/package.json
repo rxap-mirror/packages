@@ -28,10 +28,6 @@
       "@rxap/sentry"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run sentry:pack --with-deps",
-    "preversion": "yarn --cwd ../../ nx run sentry:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../dist/libs/sentry"
   },

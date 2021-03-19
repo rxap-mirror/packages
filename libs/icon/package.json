@@ -24,10 +24,6 @@
       "@rxap/icon"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run icon:pack --with-deps",
-    "preversion": "yarn --cwd ../../ nx run icon:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../dist/libs/icon"
   }

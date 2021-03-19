@@ -11,10 +11,6 @@
       "@rxap/schematics-shared"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../../ nx run schematics-shared:pack --with-deps",
-    "preversion": "yarn --cwd ../../../ nx run schematics-shared:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../../dist/libs/schematics/shared"
   },

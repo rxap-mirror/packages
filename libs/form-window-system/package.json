@@ -63,10 +63,6 @@
       "@rxap/window-system"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run form-window-system:pack --with-deps",
-    "preversion": "yarn --cwd ../../ nx run form-window-system:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../dist/libs/form-window-system"
   },

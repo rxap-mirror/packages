@@ -38,10 +38,6 @@
       "@rxap/utilities"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run data-grid:pack --with-deps",
-    "preversion": "yarn --cwd ../../ nx run data-grid:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../dist/libs/data-grid"
   },

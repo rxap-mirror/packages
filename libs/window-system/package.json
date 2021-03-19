@@ -49,10 +49,6 @@
       "@rxap/utilities"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run window-system:pack --with-deps",
-    "preversion": "yarn --cwd ../../ nx run window-system:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../dist/libs/window-system"
   }

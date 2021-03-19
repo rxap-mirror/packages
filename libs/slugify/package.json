@@ -25,10 +25,6 @@
       "@rxap/slugify"
     ]
   },
-  "scripts": {
-    "prepublish": "yarn --cwd ../../ nx run slugify:pack --with-deps",
-    "preversion": "yarn --cwd ../../ nx run slugify:pack --with-deps"
-  },
   "publishConfig": {
     "directory": "../../dist/libs/slugify"
   },
