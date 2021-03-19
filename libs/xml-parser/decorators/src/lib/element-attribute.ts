@@ -64,16 +64,17 @@ export class ElementAttributeParser<T extends ParsedElement = ParsedElement, Val
 
 export function ElementAttribute<Value>(): (target: any, propertyKey: string) => void;
 export function ElementAttribute<Value>(attribute: string): (target: any, propertyKey: string) => void;
-export function ElementAttribute<Value>(options: ElementAttributeOptions<Value>): (target: any, propertyKey: string) => void;
-export function ElementAttribute<Value>(optionsOrString?: ElementAttributeOptions<Value> | string): (target: any, propertyKey: string) => void {
+export function ElementAttribute<Value>(options: Partial<ElementAttributeOptions<Value>>): (target: any, propertyKey: string) => void;
+export function ElementAttribute<Value>(optionsOrString?: Partial<ElementAttributeOptions<Value>> | string): (target: any, propertyKey: string) => void {
   return function(target: any, propertyKey: string) {
-    let options: ElementAttributeOptions<Value> = optionsOrString === undefined ?
-                                                  { attribute: propertyKey } :
-                                                  typeof optionsOrString === 'string' ? { attribute: optionsOrString } : optionsOrString;
-    options                                     = deepMerge(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {});
-    const parser                                = new ElementAttributeParser(propertyKey, options);
+    let options: Partial<ElementAttributeOptions<Value>>      = optionsOrString === undefined ?
+                                                                { attribute: propertyKey } :
+                                                                typeof optionsOrString === 'string' ? { attribute: optionsOrString } : optionsOrString;
+    options                                                   = deepMerge(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) ?? {});
+    const optionsWithDefaults: ElementAttributeOptions<Value> = Object.assign({ attribute: propertyKey }, options);
+    const parser                                              = new ElementAttributeParser(propertyKey, optionsWithDefaults);
     AddParserToMetadata(parser, target);
-    if (options.required) {
+    if (optionsWithDefaults.required) {
       RequiredProperty()(target, propertyKey);
     }
   };
