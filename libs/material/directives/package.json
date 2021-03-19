@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-directives",
-  "version": "11.1.0",
+  "version": "11.1.1",
   "peerDependencies": {
     "@angular/cdk": "^11.2.5",
     "@angular/common": "^11.2.6",
@@ -8,8 +8,8 @@
     "@angular/material": "^11.2.5",
     "@angular/platform-browser": "^11.2.6",
     "@angular/router": "^11.2.6",
-    "@rxap/services": "^11.0.6",
-    "@rxap/utilities": "^11.3.0",
+    "@rxap/services": "^11.0.7",
+    "@rxap/utilities": "^11.3.1",
     "jest-preset-angular": "^8.3.1",
     "ramda": "^0.27.1",
     "reflect-metadata": "^0.1.13",

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/xml-parser",
-  "version": "11.0.5",
+  "version": "11.0.6",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -18,8 +18,8 @@
   "description": "A utility packages to convert xml files into class instances.",
   "peerDependencies": {
     "@angular/core": "^11.2.6",
-    "@rxap/mixin": "^11.0.5",
-    "@rxap/utilities": "^11.3.0",
+    "@rxap/mixin": "^11.0.6",
+    "@rxap/utilities": "^11.3.1",
     "handlebars": "^4.7.6",
     "jest-preset-angular": "^8.3.1",
     "ramda": "^0.27.1",
