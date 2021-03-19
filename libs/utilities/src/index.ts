@@ -30,7 +30,6 @@ export * from './lib/asserts-instance-of';
 export * from './lib/request-in-progress.subject';
 export * from './lib/method';
 export * from './lib/get-proxy-target';
-export * from './lib/confirm-click';
 export * from './lib/hooks';
 export * from './lib/refreshable';
 export * from './lib/set-object-value';
