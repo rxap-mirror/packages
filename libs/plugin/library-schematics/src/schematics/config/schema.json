@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
+  "$schema": "http://json-schema.org/schema",
   "id": "AddSchema",
   "title": "Add schema options",
   "description": "Adds the schematics builder to the specified project. Optionally the schematics configuration files can be generated",
