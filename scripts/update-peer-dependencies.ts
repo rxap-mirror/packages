@@ -6,6 +6,10 @@ import {
   existsSync,
   writeFileSync
 } from 'fs';
+// @ts-ignore
+import * as conventionalRecommendedBump from 'conventional-recommended-bump';
+// @ts-ignore
+import { inc } from 'semver';
 
 const projectGraph: ProjectGraph = createProjectGraph();
 
@@ -47,14 +51,17 @@ function ParsePackageJson(filePath: string): Record<string, any> {
   return JSON.parse(readFileSync(join(__dirname, '..', filePath)).toString('utf-8'));
 }
 
-function GetProjectPackageJson(projectName: string): Record<string, any> {
+function GetProjectPackageJsonPath(projectName: string): string {
   const packageJsonFile = join(projectGraph.nodes[ projectName ].data.root, 'package.json');
 
   if (!existsSync(packageJsonFile)) {
     throw new Error(`Could not find the package.json file for the project '${projectName}'`);
   }
+  return packageJsonFile;
+}
 
-  return ParsePackageJson(packageJsonFile);
+function GetProjectPackageJson(projectName: string): Record<string, any> {
+  return ParsePackageJson(GetProjectPackageJsonPath(projectName));
 }
 
 function LoadRootPackageVersionMap() {
@@ -77,7 +84,37 @@ const rootPackageVersionMap = LoadRootPackageVersionMap();
 
 const dependencyVersionMap = new Map<string, string>();
 
-function GetDependencyVersion(dependencyName: string): string {
+const projectNewVersion = new Map<string, string[]>();
+
+async function GetNewProjectVersion(projectName: string): Promise<string> {
+  const packageJson = GetProjectPackageJson(projectName);
+  const version     = packageJson.version;
+
+  return new Promise((resolve, reject) => {
+
+    conventionalRecommendedBump({
+      lernaPackage: packageJson.name,
+      path:         GetProjectPackageJsonPath(projectName)
+    }, (err: any, data: any) => {
+      if (err) {
+        return reject(err);
+      }
+
+      const newVersion = inc(version, data.releaseType ?? 'patch');
+
+      if (newVersion !== version) {
+        projectNewVersion.set(projectName, [ version, newVersion ]);
+      }
+
+      resolve(newVersion);
+
+    });
+
+  });
+
+}
+
+async function GetDependencyVersion(dependencyName: string): Promise<string> {
 
   if (!dependencyVersionMap.has(dependencyName)) {
 
@@ -93,8 +130,7 @@ function GetDependencyVersion(dependencyName: string): string {
       const version = '^' + rootPackageVersionMap.get(packageName)!;
       dependencyVersionMap.set(dependencyName, version);
     } else {
-      const packageJson = GetProjectPackageJson(dependencyName);
-      const version     = '^' + packageJson.version;
+      const version = '^' + await GetNewProjectVersion(dependencyName);
       dependencyVersionMap.set(dependencyName, version);
     }
 
@@ -173,29 +209,41 @@ function AddDefaultPackageJsonProperties(packageJson: Record<string, any>): void
 
 }
 
-for (const [ name, dependencies ] of
-  Object.entries(projectGraph.dependencies).filter(ExcludeNpmDependencies).map(([ _, dList ]) => [ _, dList.map(d => d.target) ] as [ string, string[] ])) {
-  const flattenDependencies = FlattenDependencies(dependencies).sort((a, b) => a.localeCompare(b));
+async function Update() {
 
-  const peerDependencies          = flattenDependencies.filter(dependency => !dependency.match(/^npm:/) ||
-                                                                             !blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
-  const blackListPeerDependencies = flattenDependencies.filter(dependency => blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
+  for await (const [ name, dependencies ] of
+    Object.entries(projectGraph.dependencies).filter(ExcludeNpmDependencies).map(([ _, dList ]) => [ _, dList.map(d => d.target) ] as [ string, string[] ])) {
+    const flattenDependencies = FlattenDependencies(dependencies).sort((a, b) => a.localeCompare(b));
 
-  if (projectGraph.nodes[ name ].data.root.match(/apps\//)) {
-    continue;
+    const peerDependencies          = flattenDependencies.filter(dependency => !dependency.match(/^npm:/) ||
+                                                                               !blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
+    const blackListPeerDependencies = flattenDependencies.filter(dependency => blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
+
+    if (projectGraph.nodes[ name ].data.root.match(/apps\//)) {
+      continue;
+    }
+
+    const packageJson = GetProjectPackageJson(name);
+
+    packageJson.peerDependencies
+      = (await Promise.all(peerDependencies.map(async peerDependency => ({ [ GetPackageName(peerDependency) ]: await GetDependencyVersion(peerDependency) }))))
+      .reduce((map, item) => ({ ...map, ...item }), {});
+
+    console.log(`Update project ${name}:`);
+    console.log('peerDependencies:', packageJson.peerDependencies);
+    console.log('blackList', blackListPeerDependencies);
+
+    AddDefaultPackageJsonProperties(packageJson);
+
+    WriteProjectPackageJson(name, packageJson);
+
   }
 
-  const packageJson = GetProjectPackageJson(name);
-
-  packageJson.peerDependencies = peerDependencies.map(peerDependency => ({ [ GetPackageName(peerDependency) ]: GetDependencyVersion(peerDependency) }))
-                                                 .reduce((map, item) => ({ ...map, ...item }), {});
-
-  console.log(`Update project ${name}:`);
-  console.log('peerDependencies:', packageJson.peerDependencies);
-  console.log('blackList', blackListPeerDependencies);
-
-  AddDefaultPackageJsonProperties(packageJson);
-
-  WriteProjectPackageJson(name, packageJson);
+  for (const projectName of Array.from(projectNewVersion.keys())) {
+    const versions = projectNewVersion.get(projectName)!;
+    console.log(`${projectName}   ${versions[ 0 ]} -> ${versions[ 1 ]}`);
+  }
 
 }
+
+Update();
