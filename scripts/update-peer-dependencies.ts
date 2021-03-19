@@ -281,7 +281,7 @@ async function HasProjectVersionChange(projectName: string): Promise<boolean> {
 
 }
 
-async function Update({ dryRun }: { dryRun?: boolean } = {}) {
+async function Update({ dryRun, all }: { dryRun?: boolean, all?: boolean } = {}) {
 
   for await (const [ name, dependencies ] of
     Object.entries(projectGraph.dependencies).filter(ExcludeNpmDependencies).map(([ _, dList ]) => [ _, dList.map(d => d.target) ] as [ string, string[] ])) {
@@ -290,14 +290,13 @@ async function Update({ dryRun }: { dryRun?: boolean } = {}) {
       continue;
     }
 
-    if (!(await HasProjectVersionChange(name))) {
+    if (!all && !(await HasProjectVersionChange(name))) {
       continue;
     }
 
     const flattenDependencies = FlattenDependencies(dependencies);
 
-    const peerDependencies          = flattenDependencies.filter(dependency => !dependency.match(/^npm:/) ||
-                                                                               !blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
+    const peerDependencies          = flattenDependencies.filter(dependency => !blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
     const blackListPeerDependencies = flattenDependencies.filter(dependency => blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
 
     const packageJson = GetProjectPackageJson(name);
@@ -349,7 +348,8 @@ async function Update({ dryRun }: { dryRun?: boolean } = {}) {
 const args = process.argv.slice(2);
 
 const options = {
-  dryRun: args.includes('--dry-run')
+  dryRun: args.includes('--dry-run'),
+  all:    args.includes('--all')
 };
 
 Update(options);
