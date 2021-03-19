@@ -13,6 +13,12 @@ import {
 import * as conventionalRecommendedBump from 'conventional-recommended-bump';
 // @ts-ignore
 import { inc } from 'semver';
+// @ts-ignore
+import * as Project from '@lerna/project';
+// @ts-ignore
+import * as PackageGraph from '@lerna/package-graph';
+// @ts-ignore
+import * as collectUpdates from '@lerna/collect-updates';
 
 const projectGraph: ProjectGraph = createProjectGraph();
 
@@ -216,12 +222,24 @@ function AddDefaultPackageJsonProperties(packageJson: Record<string, any>): void
 
 }
 
-function HasProjectVersionChange(projectName: string): boolean {
+const project = new Project(join(__dirname, '..'));
 
-  const version    = GetDependencyVersion(projectName);
-  const newVersion = GetNewProjectVersion(projectName);
+const packages$ = project.getPackages();
 
-  return version !== newVersion;
+const projectGraph$ = packages$.then((packages: any) => new PackageGraph(packages));
+
+const updates$ = projectGraph$.then((projectGraph: any) => {
+
+  const updates = collectUpdates(
+    packageGraph.rawPackageList,
+    packageGraph
+  );
+
+});
+
+async function HasProjectVersionChange(projectName: string): boolean {
+
+
 }
 
 async function Update({ dryRun }: { dryRun?: boolean } = {}) {
