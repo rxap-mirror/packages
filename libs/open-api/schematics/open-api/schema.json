@@ -19,10 +19,14 @@
         },
         "transport": {
           "type": "string",
-          "enum": [ "amplify" ]
+          "enum": [
+            "amplify"
+          ]
         }
       },
-      "required": ["path"]
+      "required": [
+        "path"
+      ]
     },
     {
       "properties": {
@@ -37,10 +41,14 @@
         },
         "transport": {
           "type": "string",
-          "enum": [ "amplify" ]
+          "enum": [
+            "amplify"
+          ]
         }
       },
-      "required": ["url"]
+      "required": [
+        "url"
+      ]
     }
   ]
 }
