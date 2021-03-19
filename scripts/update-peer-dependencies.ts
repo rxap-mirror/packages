@@ -220,7 +220,7 @@ async function Update() {
 
   for await (const [ name, dependencies ] of
     Object.entries(projectGraph.dependencies).filter(ExcludeNpmDependencies).map(([ _, dList ]) => [ _, dList.map(d => d.target) ] as [ string, string[] ])) {
-    const flattenDependencies = FlattenDependencies(dependencies).sort((a, b) => a.localeCompare(b));
+    const flattenDependencies = FlattenDependencies(dependencies);
 
     const peerDependencies          = flattenDependencies.filter(dependency => !dependency.match(/^npm:/) ||
                                                                                !blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
@@ -233,12 +233,31 @@ async function Update() {
     const packageJson = GetProjectPackageJson(name);
 
     packageJson.peerDependencies
-      = (await Promise.all(peerDependencies.map(async peerDependency => ({ [ GetPackageName(peerDependency) ]: await GetDependencyVersion(peerDependency) }))))
+      = (await Promise.all(peerDependencies.map(async peerDependency => [ GetPackageName(peerDependency), await GetDependencyVersion(peerDependency) ])))
+      .sort((aItem, bItem) => {
+
+        const a = aItem[ 0 ];
+        const b = bItem[ 0 ];
+
+        if (a.match(/^@/)) {
+          if (b.match(/^@/)) {
+            return a.replace(/^@/, '').localeCompare(b.replace(/^@/, ''));
+          } else {
+            return -1;
+          }
+        } else if (b.match(/^@/)) {
+          return 1;
+        } else {
+          return a.localeCompare(b);
+        }
+
+      })
+      .map(item => ({ [ item[ 0 ] ]: item[ 1 ] }))
       .reduce((map, item) => ({ ...map, ...item }), {});
 
-    // console.log(`Update project ${name}:`);
-    // console.log('peerDependencies:', packageJson.peerDependencies);
-    // console.log('blackList', blackListPeerDependencies);
+    console.log(`Update project ${name}:`);
+    console.log('peerDependencies:', packageJson.peerDependencies);
+    console.log('blackList', blackListPeerDependencies);
 
     AddDefaultPackageJsonProperties(packageJson);
 
