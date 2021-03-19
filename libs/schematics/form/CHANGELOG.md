@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@0.1.0...@rxap/schematics-form@11.0.1) (2021-03-19)
+
+
+### Bug Fixes
+
+* bump version ([572dec7](https://gitlab.com/rxap/packages/commit/572dec733813d608e5a9e231317acbdea4d56882))
+
+
+
+
+
 # 0.1.0 (2021-03-19)
 
 
