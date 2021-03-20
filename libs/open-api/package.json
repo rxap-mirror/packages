@@ -25,7 +25,7 @@
     "@rxap/data-source": "^11.0.7",
     "@rxap/definition": "^11.0.6",
     "@rxap/mixin": "^11.0.7",
-    "@rxap/remote-method": "^11.0.9",
+    "@rxap/remote-method": "^11.0.10",
     "@rxap/schematics": "^11.3.4",
     "@rxap/utilities": "^11.3.2",
     "reflect-metadata": "^0.1.13",
