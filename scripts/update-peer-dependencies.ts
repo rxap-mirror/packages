@@ -1,8 +1,12 @@
-import { createProjectGraph } from '@nrwl/workspace/src/core/project-graph';
+import {
+  createProjectGraph,
+  ProjectGraphNode
+} from '@nrwl/workspace/src/core/project-graph';
 import { ProjectGraph } from '@nrwl/workspace/src/core/project-graph/project-graph-models';
 import {
   join,
-  dirname
+  dirname,
+  relative
 } from 'path';
 import {
   readFileSync,
@@ -180,7 +184,7 @@ function WriteProjectPackageJson(projectName: string, packageJson: Record<string
   writeFileSync(packageJsonFile, JSON.stringify(packageJson, undefined, 2));
 }
 
-function AddDefaultPackageJsonProperties(packageJson: Record<string, any>): void {
+function AddDefaultPackageJsonProperties(packageJson: Record<string, any>, node: ProjectGraphNode): void {
 
   if (!packageJson.license) {
     packageJson.license = 'MIT';
@@ -217,6 +221,12 @@ function AddDefaultPackageJsonProperties(packageJson: Record<string, any>): void
       packageJson.keywords.push('firebase');
     }
   }
+
+  if (!packageJson.publishConfig) {
+    packageJson.publishConfig = {};
+  }
+
+  packageJson.publishConfig.directory = relative(node.data.root!, join('dist', (node.data.root!)));
 
   packageJson.repository = 'git@gitlab.com:rxap/packages.git';
   packageJson.homepage   = 'https://gitlab.com/rxap/packages';
@@ -286,7 +296,7 @@ async function Update({ dryRun, all }: { dryRun?: boolean, all?: boolean } = {})
   for await (const [ name, dependencies ] of
     Object.entries(projectGraph.dependencies).filter(ExcludeNpmDependencies).map(([ _, dList ]) => [ _, dList.map(d => d.target) ] as [ string, string[] ])) {
 
-    if (projectGraph.nodes[ name ].data.root.match(/apps\//)) {
+    if (projectGraph.nodes[ name ].data.root?.match(/apps\//)) {
       continue;
     }
 
@@ -328,7 +338,7 @@ async function Update({ dryRun, all }: { dryRun?: boolean, all?: boolean } = {})
     console.log('peerDependencies:', packageJson.peerDependencies);
     console.log('blackList', blackListPeerDependencies);
 
-    AddDefaultPackageJsonProperties(packageJson);
+    AddDefaultPackageJsonProperties(packageJson, projectGraph.nodes[ name ]);
 
     if (!dryRun) {
       WriteProjectPackageJson(name, packageJson);
