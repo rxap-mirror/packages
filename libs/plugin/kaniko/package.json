@@ -8,7 +8,7 @@
     "directory": "../../../dist/libs/plugin/kaniko"
   },
   "peerDependencies": {
-    "@nrwl/workspace": "^11.0.8"
+    "@nrwl/workspace": "^11.5.2"
   },
   "license": "MIT",
   "keywords": [

@@ -27,7 +27,7 @@
     "@angular-devkit/schematics": "10"
   },
   "peerDependencies": {
-    "@nrwl/workspace": "^11.0.8"
+    "@nrwl/workspace": "^11.5.2"
   },
   "publishConfig": {
     "directory": "../../../dist/libs/plugin/scss-bundle"
