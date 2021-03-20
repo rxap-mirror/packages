@@ -72,11 +72,11 @@ export class Builder {
     return outputPath;
   }
 
-  public async compileSchematics(): Promise<void> {
+  public async compileSchematics(): Promise<any> {
 
     const tsc = new Tsc(this.context.logger);
 
-    await tsc.compile({ tsConfig: join(process.cwd(), this.options.tsConfig) });
+    return tsc.compile({ tsConfig: join(process.cwd(), this.options.tsConfig) });
 
   }
 
@@ -105,7 +105,16 @@ export class Builder {
 
     console.log('Building schematics');
 
-    await this.compileSchematics();
+    try {
+      const result = await this.compileSchematics();
+
+      if (result) {
+        return { success: false };
+      }
+
+    } catch (e) {
+      return { success: false };
+    }
 
     console.log('Copy schema.json files');
 
