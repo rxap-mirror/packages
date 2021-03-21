@@ -22,7 +22,7 @@
   "schematics": "./collection.json",
   "builders": "./builders.json",
   "dependencies": {
-    "@angular-devkit/architect": "0.1000.4",
+    "@angular-devkit/architect": "0.1102.5",
     "@angular-devkit/core": "10",
     "@angular-devkit/schematics": "10"
   },
