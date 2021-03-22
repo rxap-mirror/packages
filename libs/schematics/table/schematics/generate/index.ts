@@ -32,7 +32,7 @@ import {
 } from '@rxap/schematics-utilities';
 
 
-const { dasherize, classify, camelize } = strings;
+const { dasherize } = strings;
 
 export default function(options: GenerateSchema): Rule {
 
