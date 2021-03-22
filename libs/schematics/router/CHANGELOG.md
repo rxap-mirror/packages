@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.4.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@11.4.2...@rxap/schematics-router@11.4.3) (2021-03-22)
+
+**Note:** Version bump only for package @rxap/schematics-router
+
+
+
+
+
 ## [11.4.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@11.4.1...@rxap/schematics-router@11.4.2) (2021-03-19)
 
 

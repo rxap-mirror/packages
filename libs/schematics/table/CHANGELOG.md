@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.5.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.5.3...@rxap/schematics-table@11.5.4) (2021-03-22)
+
+
+### Bug Fixes
+
+* remove unused imports ([15ac28a](https://gitlab.com/rxap/packages/commit/15ac28a4357edc3f26653a5169860a8b3d2a9858))
+
+
+
+
+
 ## [11.5.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.5.2...@rxap/schematics-table@11.5.3) (2021-03-19)
 
 
