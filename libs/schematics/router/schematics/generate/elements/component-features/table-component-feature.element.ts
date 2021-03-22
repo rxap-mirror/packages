@@ -31,7 +31,7 @@ export class TableComponentFeatureElement extends ComponentFeatureElement {
 
   public postParse() {
     if (!this.template && this.name) {
-      this.template = (!this.shared ? 'features/' + this.__parent.__parent.__parent.id + '/' : '') + join('views', 'tables', dasherize(this.name) + '.xml');
+      this.template = join('views', 'tables', dasherize(this.name) + '.xml');
       console.log('set template path to: ' + this.template);
     }
   }
