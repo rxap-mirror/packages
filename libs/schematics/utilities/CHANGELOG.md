@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.3.3...@rxap/schematics-utilities@11.3.4) (2021-03-22)
+
+
+### Bug Fixes
+
+* **FindTemplate:** add logging ([0d2b490](https://gitlab.com/rxap/packages/commit/0d2b4904aec3de87b1852d2f6e66c449a33058e1))
+
+
+
+
+
 ## [11.3.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.3.2...@rxap/schematics-utilities@11.3.3) (2021-03-19)
 
 
