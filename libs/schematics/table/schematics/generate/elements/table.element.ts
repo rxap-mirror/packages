@@ -274,10 +274,14 @@ export class TableElement implements ParsedElement<Rule> {
           mockClassName,
 
           {
-            structures:    [
+            structures: [
               {
                 namedImports:    [ 'TableEvent' ],
                 moduleSpecifier: '@rxap/data-source/table'
+              },
+              {
+                namedImports:    [ 'Range' ],
+                moduleSpecifier: '@rxap/utilities'
               }
             ],
             returnType:    'Array<Record<string, any>>',
