@@ -12,17 +12,28 @@ import { join } from 'path';
 export function FindTemplate(template: string, host: Tree, basePath: string | undefined, baseDirEntry: DirEntry = host.getDir('templates')): string | null {
 
   if (basePath) {
-    if (host.exists(join(baseDirEntry.path, basePath, template))) {
-      return join(baseDirEntry.path, basePath, template);
+    const path = join(baseDirEntry.path, basePath, template);
+    if (host.exists(path)) {
+      return path;
+    } else {
+      console.warn(`Could not find template path with a provided basePath: ${path}`);
     }
   } else {
-    if (host.exists(join(baseDirEntry.path, template))) {
-      return join(baseDirEntry.path, template);
+    const path = join(baseDirEntry.path, template);
+    if (host.exists(path)) {
+      return path;
+    } else {
+      console.warn(`Could not find template path without a basePath: ${path}`);
     }
   }
 
-  if (host.exists(join(baseDirEntry.path, 'shared', template))) {
-    return join(baseDirEntry.path, 'shared', template);
+  {
+    const path = join(baseDirEntry.path, 'shared', template);
+    if (host.exists(path)) {
+      return path;
+    } else {
+      console.warn(`Could not find template path in the shared folder: ${path}`);
+    }
   }
 
   return null;
