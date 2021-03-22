@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.4.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@11.4.3...@rxap/schematics-router@11.4.4) (2021-03-22)
+
+
+### Bug Fixes
+
+* **TableComponentFeatureElement:** remove old shared template ([cbd5f76](https://gitlab.com/rxap/packages/commit/cbd5f7601740d79d4c1d5395eb747e5b5b8ccc9c))
+
+
+
+
+
 ## [11.4.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@11.4.2...@rxap/schematics-router@11.4.3) (2021-03-22)
 
 **Note:** Version bump only for package @rxap/schematics-router
