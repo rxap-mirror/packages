@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-pack@11.0.6...@rxap/plugin-pack@11.0.7) (2021-03-22)
+
+
+### Bug Fixes
+
+* **deps:** update angular ([b3d46bb](https://gitlab.com/rxap/packages/commit/b3d46bbaf3fe948cf1cf8b37a14a467dfc608221))
+
+
+
+
+
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-pack@11.0.5...@rxap/plugin-pack@11.0.6) (2021-03-19)
 
 **Note:** Version bump only for package @rxap/plugin-pack
