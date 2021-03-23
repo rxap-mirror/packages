@@ -93,7 +93,7 @@
     "aws-amplify": "^3.3.23",
     "axios": "^0.21.1",
     "core-js": "3.9.1",
-    "date-fns": "2.15.0",
+    "date-fns": "2.19.0",
     "firebase": "7.17.1",
     "handlebars": "4.7.6",
     "json-schema": "0.2.5",
