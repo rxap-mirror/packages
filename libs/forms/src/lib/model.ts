@@ -40,7 +40,13 @@ export interface FormDefinition<T extends Record<string, any> = any, E extends o
    * The Reuse hook is called when the instance is reused.
    * And can be used to reset or alter the local state of the instance.
    */
-  rxapReuse?(): void
+  rxapReuse?(): void;
+
+  /**
+   * Called to get the value that should be submitted. If not defined
+   * the value property of the root RxapFormGroup instance will be used
+   */
+  getSubmitValue?(): T;
 }
 
 export interface FormDefinitionArray<T> extends Array<T> {
