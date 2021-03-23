@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@11.0.6...@rxap/schematics-form@11.0.7) (2021-03-23)
+
+
+### Bug Fixes
+
+* **ComponentElement:** use coerce source file helper ([52aec46](https://gitlab.com/rxap/packages/commit/52aec46df194c8710892223b70f60bfd662b096e))
+
+
+
+
+
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@11.0.5...@rxap/schematics-form@11.0.6) (2021-03-23)
 
 
