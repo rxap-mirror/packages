@@ -83,11 +83,11 @@ export function ParseTemplate<T extends ParsedElement>(
 ): T {
 
   let templateFile: string;
-  let filename = '__inline__';
+  let filename                        = '__inline__';
+  let templateFilePath: string | null = template;
 
   if (template.match(/\.xml$/)) {
 
-    let templateFilePath: string | null = template;
     if (!host.exists(template)) {
       templateFilePath = FindTemplate(template, host, basePath);
     }
@@ -114,5 +114,5 @@ export function ParseTemplate<T extends ParsedElement>(
 
   parser.register(...elements);
 
-  return parser.parseFromXml<T>(templateFile!, filename);
+  return parser.parseFromXml<T>(templateFile!, filename, templateFilePath);
 }
