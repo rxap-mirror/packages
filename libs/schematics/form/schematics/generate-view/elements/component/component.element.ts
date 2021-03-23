@@ -85,40 +85,28 @@ export class ComponentElement implements WithTemplate, ParsedElement, NodeElemen
   }
 
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
-    this.features?.forEach(feature => feature.handleComponent({
-      project,
-      formSourceFile:      sourceFile,
-      componentSourceFile: project.getSourceFile(join(sourceFile.getDirectoryPath(), dasherize(this.name), dasherize(this.name) + '.component.ts'))!,
-      options
-    }));
+
   }
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
     AddNgModuleImport(sourceFile, 'ReactiveFormsModule', '@angular/forms');
     AddNgModuleImport(sourceFile, 'FlexLayoutModule', '@angular/flex-layout');
     AddNgModuleImport(sourceFile, this.componentModuleName, this.from);
-    this.features?.forEach(feature => feature.handleComponentModule({
-      project,
-      formSourceFile:      sourceFile,
-      componentSourceFile: project.getSourceFile(join(sourceFile.getDirectoryPath(), dasherize(this.name), dasherize(this.name) + '.component.module.ts'))!,
-      options
-    }));
   }
 
   public toValue({ project, options }: ToValueContext): Rule {
-    const rules: Rule[] = this.features?.map(feature => feature.toValue({ project, options })) ?? [];
+    const rules: Rule[]       = [];
+    const componentModulePath = join(options.path ?? '', this.from + '.ts');
     if (this.createComponent) {
       rules.push(tree => {
-
-        const componentModulePath = join(options.path ?? '', this.from + '.ts');
         if (!tree.exists(componentModulePath)) {
           return chain([
               externalSchematic(
                 '@rxap/schematics',
                 'component-module',
                 {
-                  name:     dasherize(this.name),
-                  path:     options.path?.replace(/^\//, ''),
+                  name:       dasherize(this.name),
+                  path:       options.path?.replace(/^\//, ''),
                   selector: this.selector,
                   project:  options.project
                 }
@@ -131,6 +119,39 @@ export class ComponentElement implements WithTemplate, ParsedElement, NodeElemen
 
       });
     }
+    rules.push(chain(this.features?.map(feature => feature.toValue({ project, options })) ?? []));
+    rules.push(tree => {
+
+      const componentPath = componentModulePath.replace(/\.module\./, '.');
+
+      if (!tree.exists(componentPath)) {
+        throw new Error(`Component in path '${componentPath}' does not exists`);
+      }
+
+      if (!tree.exists(componentModulePath)) {
+        throw new Error(`ComponentModule in path '${componentModulePath}' does not exists`);
+      }
+
+      const componentModuleSourceFile = project.createSourceFile(this.from + '.ts', tree.get(componentModulePath)!.content.toString('utf-8'));
+      const componentSourceFile       = project.createSourceFile(
+        this.from.replace(/\.module$/, '') + '.ts',
+        tree.get(componentPath)!.content.toString('utf-8')
+      );
+
+      return chain([
+        () => this.features?.forEach(feature => feature.handleComponent({
+          project,
+          sourceFile: componentSourceFile,
+          options
+        })),
+        () => this.features?.forEach(feature => feature.handleComponentModule({
+          project,
+          sourceFile: componentModuleSourceFile,
+          options
+        }))
+      ]);
+
+    });
     return chain(rules);
   }
 

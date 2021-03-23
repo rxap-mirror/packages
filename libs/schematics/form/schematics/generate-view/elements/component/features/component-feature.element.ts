@@ -15,18 +15,16 @@ export class ComponentFeatureElement implements ParsedElement<Rule> {
 
   handleComponent({
                     project,
-                    formSourceFile,
-                    componentSourceFile,
+                    sourceFile,
                     options
-                  }: ToValueContext & { formSourceFile: SourceFile, componentSourceFile: SourceFile }): void {
+                  }: ToValueContext & { sourceFile: SourceFile }): void {
   }
 
   handleComponentModule({
                           project,
-                          formSourceFile,
-                          componentSourceFile,
+                          sourceFile,
                           options
-                        }: ToValueContext & { formSourceFile: SourceFile, componentSourceFile: SourceFile }): void {
+                        }: ToValueContext & { sourceFile: SourceFile }): void {
   }
 
   toValue({ project, options }: ToValueContext): Rule {

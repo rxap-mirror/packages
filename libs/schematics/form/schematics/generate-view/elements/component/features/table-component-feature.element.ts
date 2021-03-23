@@ -71,13 +71,12 @@ export class TableComponentFeatureElement extends ComponentFeatureElement {
 
   public handleComponentModule({
                                  project,
-                                 formSourceFile,
-                                 componentSourceFile,
+                                 sourceFile,
                                  options
-                               }: ToValueContext & { formSourceFile: SourceFile, componentSourceFile: SourceFile }) {
-    super.handleComponentModule({ project, formSourceFile, componentSourceFile, options });
+                               }: ToValueContext & { sourceFile: SourceFile }) {
+    super.handleComponentModule({ project, sourceFile, options });
     AddNgModuleImport(
-      componentSourceFile,
+      sourceFile,
       `${classify(this.name)}TableComponentModule`,
       `./${dasherize(this.name)}-table/${dasherize(this.name)}-table.component.module`
     );
