@@ -338,8 +338,20 @@ export class FormDirective<T extends Record<string, any> = any> extends FormGrou
     }
   }
 
+  private getSubmitValue(): T {
+    let value: T;
+
+    if (typeof this._formDefinition[ 'getSubmitValue' ] === 'function') {
+      value = this._formDefinition.getSubmitValue();
+    } else {
+      value = this.form.value;
+    }
+
+    return clone(value);
+  }
+
   private submit() {
-    const value = clone(this.form.value);
+    const value = this.getSubmitValue();
     if (this.submitMethod) {
       Reflect.set(this, 'submitted', false);
       this.submitting$.enable();
