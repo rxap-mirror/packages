@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.4.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.4.0...@rxap/schematics-utilities@11.4.1) (2021-03-23)
+
+
+### Bug Fixes
+
+* **CoerceSourceFile:** add support for default content ([cdc6731](https://gitlab.com/rxap/packages/commit/cdc6731d90657c8d497718c63a72e10ed06cf35c))
+
+
+
+
+
 # [11.4.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.3.4...@rxap/schematics-utilities@11.4.0) (2021-03-23)
 
 
