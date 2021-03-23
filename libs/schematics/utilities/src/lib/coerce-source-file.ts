@@ -5,13 +5,14 @@ import {
 
 export function CoerceSourceFile(
   project: Project,
-  fileNameOrPath: string
+  fileNameOrPath: string,
+  content?: string
 ): SourceFile {
 
   let sourceFile = project.getSourceFile(fileNameOrPath);
 
   if (!sourceFile) {
-    sourceFile = project.createSourceFile(fileNameOrPath);
+    sourceFile = project.createSourceFile(fileNameOrPath, content);
   }
 
   return sourceFile;
