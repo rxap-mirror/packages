@@ -1,11 +1,11 @@
 {
   "name": "@rxap/schematics-utilities",
-  "version": "11.3.4",
+  "version": "11.4.0",
   "peerDependencies": {
     "@angular/core": "^11.2.6",
     "@rxap/mixin": "^11.0.7",
     "@rxap/utilities": "^11.3.2",
-    "@rxap/xml-parser": "^11.0.7",
+    "@rxap/xml-parser": "^11.1.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },

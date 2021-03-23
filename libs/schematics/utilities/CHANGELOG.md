@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.4.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.3.4...@rxap/schematics-utilities@11.4.0) (2021-03-23)
+
+
+### Features
+
+* **ParseTemplate:** pass the location of the template file to the element instance ([cac3e3c](https://gitlab.com/rxap/packages/commit/cac3e3cd51fb5819a82c30d44d623ae6b0f76b4d))
+
+
+
+
+
 ## [11.3.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.3.3...@rxap/schematics-utilities@11.3.4) (2021-03-22)
 
 
