@@ -3,7 +3,8 @@ import {
   WithTemplate,
   ToValueContext,
   AddNgModuleImport,
-  NodeFactory
+  NodeFactory,
+  CoerceSourceFile
 } from '@rxap/schematics-utilities';
 import { ParsedElement } from '@rxap/xml-parser';
 import {
@@ -132,8 +133,13 @@ export class ComponentElement implements WithTemplate, ParsedElement, NodeElemen
         throw new Error(`ComponentModule in path '${componentModulePath}' does not exists`);
       }
 
-      const componentModuleSourceFile = project.createSourceFile(this.from + '.ts', tree.get(componentModulePath)!.content.toString('utf-8'));
-      const componentSourceFile       = project.createSourceFile(
+      const componentModuleSourceFile = CoerceSourceFile(
+        project,
+        this.from + '.ts',
+        tree.get(componentModulePath)!.content.toString('utf-8')
+      );
+      const componentSourceFile       = CoerceSourceFile(
+        project,
         this.from.replace(/\.module$/, '') + '.ts',
         tree.get(componentPath)!.content.toString('utf-8')
       );
