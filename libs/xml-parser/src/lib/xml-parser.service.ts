@@ -136,9 +136,9 @@ export class XmlParserService {
   /**
    *
    * @param xml
-   * @param filename the filename without the file type
+   * @param args a list of args passed to the element constructor
    */
-  public parseFromXml<D extends ParsedElement>(xml: string, filename?: string): D {
+  public parseFromXml<D extends ParsedElement>(xml: string, ...args: any[]): D {
 
     let xmlDoc: Document;
     try {
@@ -163,7 +163,7 @@ export class XmlParserService {
       throw new Error(`The root node must be an <definition> element, but the root node is a <${root.name}> element!`);
     }
 
-    return this.parse<D>(root, root.name, null, [ filename ]);
+    return this.parse<D>(root, root.name, null, args);
 
   }
 
