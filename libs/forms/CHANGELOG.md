@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.3](https://gitlab.com/rxap/packages/compare/@rxap/forms@11.3.2...@rxap/forms@11.3.3) (2021-03-23)
+
+
+### Bug Fixes
+
+* **form-submit:** add support for custom submit value transformers ([1f76f53](https://gitlab.com/rxap/packages/commit/1f76f53ae2b2f1fd3793caceb15a9b2b56902b19))
+
+
+
+
+
 ## [11.3.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@11.3.1...@rxap/forms@11.3.2) (2021-03-19)
 
 
