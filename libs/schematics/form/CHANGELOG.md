@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@11.0.5...@rxap/schematics-form@11.0.6) (2021-03-23)
+
+
+### Bug Fixes
+
+* **ComponentElement:** feature element handleComponent fix ([8da1868](https://gitlab.com/rxap/packages/commit/8da1868add7e2e0f7caf52a71c009b6ce7e82ba0))
+
+
+
+
+
 ## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@11.0.4...@rxap/schematics-form@11.0.5) (2021-03-22)
 
 **Note:** Version bump only for package @rxap/schematics-form

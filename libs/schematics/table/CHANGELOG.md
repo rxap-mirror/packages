@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.5.5](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.5.4...@rxap/schematics-table@11.5.5) (2021-03-23)
+
+
+### Bug Fixes
+
+* **TableElement:** add missing import ([254905e](https://gitlab.com/rxap/packages/commit/254905e53db65242c8599e6126157132f4bf86d4))
+
+
+
+
+
 ## [11.5.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.5.3...@rxap/schematics-table@11.5.4) (2021-03-22)
 
 

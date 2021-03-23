@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@11.0.7...@rxap/xml-parser@11.1.0) (2021-03-23)
+
+
+### Features
+
+* **XmlParserService:** add support for custom element cotr params ([ccba34c](https://gitlab.com/rxap/packages/commit/ccba34cd39050038f0810f4b335e75591f3c1cd8))
+
+
+
+
+
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@11.0.6...@rxap/xml-parser@11.0.7) (2021-03-19)
 
 
