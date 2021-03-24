@@ -17,7 +17,7 @@ import { Required } from '@rxap/utilities';
 })
 export class ExpandControlsCellComponent<Data extends Record<string, any>> {
 
-  @Input()
+  @Input('rxap-expand-controls-cell')
   @Required
   public element!: Data;
 

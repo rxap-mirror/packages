@@ -9,6 +9,7 @@ import { TreeTableElement } from './tree-table.element';
 import { ActionsButtons } from './action-buttons/actions-buttons';
 import { PaginatorElement } from './paginator.element';
 import { SortElement } from './sort.element';
+import { ExpandableRowElement } from './expandable-row.element';
 
 export const Features: Array<Constructor<ParsedElement>> = [
   FeatureElement,
@@ -19,5 +20,6 @@ export const Features: Array<Constructor<ParsedElement>> = [
   TreeTableElement,
   PaginatorElement,
   SortElement,
+  ExpandableRowElement,
   ...ActionsButtons
 ];

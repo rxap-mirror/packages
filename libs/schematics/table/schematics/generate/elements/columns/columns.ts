@@ -6,6 +6,7 @@ import { ColumnElement } from './column.element';
 import { Filters } from './filters/filters';
 import { LinkColumnElement } from './link-column.element';
 import { OptionsColumnElement } from './options-column.element';
+import { ComponentColumnElement } from './component-column.element';
 
 export const Columns: Array<Constructor<ParsedElement>> = [
   BooleanColumnElement,
@@ -13,5 +14,6 @@ export const Columns: Array<Constructor<ParsedElement>> = [
   ColumnElement,
   LinkColumnElement,
   OptionsColumnElement,
+  ComponentColumnElement,
   ...Filters
 ];

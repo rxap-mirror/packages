@@ -215,7 +215,16 @@ export class TableElement implements ParsedElement<Rule> {
       rowDef = 'rxapTableColumns.displayColumns';
     }
     templates.push(NodeFactory('tr', 'mat-header-row', `*matHeaderRowDef="${rowDef}"`)());
-    templates.push(NodeFactory('tr', '[@rowsAnimation]', 'mat-row', `*matRowDef="let element; columns: ${rowDef};"`)());
+    const rowAttributes: Array<string | (() => string)> = [
+      '[@rowsAnimation]', 'mat-row', `*matRowDef="let element; columns: ${rowDef};"`
+    ];
+    if (this.hasFeature('expandable')) {
+      rowAttributes.push('[rxapExpandRow]="element"');
+    }
+    templates.push(NodeFactory('tr', ...rowAttributes)());
+    if (this.hasFeature('expandable')) {
+      templates.push(NodeFactory('tr', 'mat-row', '*matRowDef="let row; columns: [\'expandedRow\']"', 'class="rxap-expanded-row"')());
+    }
 
     return templates.join('\n');
   }
