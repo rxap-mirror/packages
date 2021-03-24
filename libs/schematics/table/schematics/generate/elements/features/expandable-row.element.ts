@@ -43,9 +43,10 @@ export class ExpandableRowElement extends FeatureElement {
   }
 
   public columnTemplate(): string {
-    return NodeFactory('ng-container', 'matColumnDef="expandControl"')(
-      NodeFactory('td', 'mat-cell', '[rxap-expand-controls-cell]="element"', '*matCellDef="let element"')()
-           )
+    return NodeFactory('ng-container', 'matColumnDef="expandControl"')([
+             NodeFactory('th', 'mat-header-cell', '*matHeaderCellDef')(),
+             NodeFactory('td', 'mat-cell', '[rxap-expand-controls-cell]="element"', '*matCellDef="let element"')()
+           ])
            +
            NodeFactory('ng-container', 'matColumnDef="expandedRow"')(
              NodeFactory('td', 'mat-cell', '[rxap-expand-row]="element"', '*matCellDef="let element"')(
