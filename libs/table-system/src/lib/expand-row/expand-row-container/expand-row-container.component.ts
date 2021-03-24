@@ -45,7 +45,7 @@ import {
 })
 export class ExpandRowContainerComponent<Data extends Record<string, any>> implements AfterContentInit, OnDestroy {
 
-  @Input()
+  @Input('rxap-expand-row')
   @Required
   public element!: Data;
 
