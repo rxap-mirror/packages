@@ -76,6 +76,10 @@ export class ExpandableRowElement extends FeatureElement {
     return 'multiTemplateDataRows';
   }
 
+  public columnTemplateFilter(): string {
+    return FeatureElement.ColumnNoFilter('expandControl', true);
+  }
+
   public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
     const rules: Rule[] = [ super.toValue({ project, options }) ];
 
