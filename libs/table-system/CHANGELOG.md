@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/table-system@11.1.0...@rxap/table-system@11.1.1) (2021-03-24)
+
+
+### Bug Fixes
+
+* change input name ([be9915b](https://gitlab.com/rxap/packages/commit/be9915b6f26734196b63c348d4adb67c4603d835))
+* change input name ([5467710](https://gitlab.com/rxap/packages/commit/546771063594712d699e9fc0505e3c5d01fba1a0))
+
+
+
+
+
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/table-system@11.0.6...@rxap/table-system@11.1.0) (2021-03-24)
 
 
