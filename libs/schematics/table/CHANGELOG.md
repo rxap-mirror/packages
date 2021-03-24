@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.6.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.6.0...@rxap/schematics-table@11.6.1) (2021-03-24)
+
+
+### Bug Fixes
+
+* add missing filter column definition ([bf53da9](https://gitlab.com/rxap/packages/commit/bf53da9eff960748978f102b46734a54a2d8e945))
+
+
+
+
+
 # [11.6.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.5.5...@rxap/schematics-table@11.6.0) (2021-03-24)
 
 
