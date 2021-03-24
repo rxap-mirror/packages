@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@11.0.10...@rxap/remote-method@11.1.0) (2021-03-24)
+
+
+### Features
+
+* **RemoteMethodTemplateDirective:** add embedded output ([c9d7f20](https://gitlab.com/rxap/packages/commit/c9d7f203d9cf64afaec98aa4715a8b7d29d6a162))
+
+
+
+
+
 ## [11.0.10](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@11.0.9...@rxap/remote-method@11.0.10) (2021-03-22)
 
 **Note:** Version bump only for package @rxap/remote-method
