@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/table-system@11.0.6...@rxap/table-system@11.1.0) (2021-03-24)
+
+
+### Features
+
+* add expandable row generator ([e2818a6](https://gitlab.com/rxap/packages/commit/e2818a6cfa76eb76ac9687f3b7807a2bffc0fca6))
+
+
+
+
+
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/table-system@11.0.5...@rxap/table-system@11.0.6) (2021-03-19)
 
 
