@@ -11,7 +11,9 @@ import {
   SimpleChanges,
   NgZone,
   EmbeddedViewRef,
-  AfterViewInit
+  AfterViewInit,
+  EventEmitter,
+  Output
 } from '@angular/core';
 import {
   DataSourceLoader,
@@ -21,7 +23,8 @@ import {
 import { Required } from '@rxap/utilities';
 import {
   tap,
-  take
+  take,
+  filter
 } from 'rxjs/operators';
 import {
   Observable,
@@ -48,13 +51,25 @@ export class DataSourceDirective<Data = any>
   @Input('rxapDataSourceViewer')
   public viewer!: BaseDataSourceViewer;
 
+  @Output()
+  public embedded = new EventEmitter<Data>();
+
+  public loaded = new EventEmitter();
+
   public dataSource: BaseDataSource<Data> | null = null;
 
   public connection$!: Observable<Data>;
 
+  /**
+   * @deprecated removed
+   * @protected
+   */
   protected readonly subscription = new Subscription();
 
   protected embeddedViewRef?: EmbeddedViewRef<DataSourceTemplate<Data>>;
+
+  private _dataSourceLoadingSubscription: Subscription | null    = null;
+  private _dataSourceConnectionSubscription: Subscription | null = null;
 
   constructor(
     private readonly dataSourceLoader: DataSourceLoader,
@@ -88,6 +103,23 @@ export class DataSourceDirective<Data = any>
     this.connect();
   }
 
+  public embedTemplate(response: any) {
+    this.embeddedViewRef?.destroy();
+    this.embeddedViewRef = this.viewContainerRef.createEmbeddedView(this.template, {
+      $implicit:   response,
+      connection$: this.connection$
+    });
+    this.embedded.emit(response);
+    this.cdr.detectChanges();
+  }
+
+  public ngOnDestroy(): void {
+    this.dataSource?.disconnect(this.viewer);
+    this.subscription.unsubscribe();
+    this._dataSourceConnectionSubscription?.unsubscribe();
+    this._dataSourceLoadingSubscription?.unsubscribe();
+  }
+
   protected loadDataSource(): BaseDataSource<Data> | null {
     let dataSource: BaseDataSource | null = null;
     if (typeof this.dataSourceOrIdOrToken === 'string') {
@@ -97,6 +129,8 @@ export class DataSourceDirective<Data = any>
     } else if (this.dataSourceOrIdOrToken !== null) {
       dataSource = this.injector.get<BaseDataSource<Data>>(this.dataSourceOrIdOrToken);
     }
+    this._dataSourceLoadingSubscription?.unsubscribe();
+    this._dataSourceLoadingSubscription = dataSource?.loading$.pipe(filter(Boolean)).subscribe(this.loaded) ?? null;
     return dataSource;
   }
 
@@ -108,29 +142,18 @@ export class DataSourceDirective<Data = any>
         take(1),
         tap(() => {
           this.zone.run(() => {
-            this.subscription.add(this
+            this._dataSourceConnectionSubscription?.unsubscribe();
+            this._dataSourceConnectionSubscription = this
               .connection$
-              .pipe(tap(response => this.embedTemplate(response)))
-              .subscribe());
+              .pipe(
+                tap(response => this.embedTemplate(response))
+              )
+              .subscribe();
           });
         })
       ).subscribe();
 
     }
-  }
-
-  public embedTemplate(response: any) {
-    this.embeddedViewRef?.destroy();
-    this.embeddedViewRef = this.viewContainerRef.createEmbeddedView(this.template, {
-      $implicit:   response,
-      connection$: this.connection$
-    });
-    this.cdr.detectChanges();
-  }
-
-  public ngOnDestroy(): void {
-    this.dataSource?.disconnect(this.viewer);
-    this.subscription.unsubscribe();
   }
 
 }
