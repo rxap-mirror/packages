@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.0.7...@rxap/data-source@11.1.0) (2021-03-24)
+
+
+### Features
+
+* **DataSourceDirective:** add loaded and embedded event ([971d5b4](https://gitlab.com/rxap/packages/commit/971d5b4890113d810456924e4ad6f6697cf873a2))
+
+
+
+
+
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.0.6...@rxap/data-source@11.0.7) (2021-03-19)
 
 
