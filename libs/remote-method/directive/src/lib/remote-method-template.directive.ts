@@ -10,7 +10,9 @@ import {
   NgModule,
   OnChanges,
   SimpleChanges,
-  OnInit
+  OnInit,
+  EventEmitter,
+  Output
 } from '@angular/core';
 import {
   BaseRemoteMethod,
@@ -66,6 +68,9 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   @Required
   protected _remoteMethodOrIdOrToken!: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>;
 
+  @Output()
+  public embedded = new EventEmitter();
+
   constructor(
     @Inject(TemplateRef)
     private readonly template: TemplateRef<RemoteMethodTemplateDirectiveContext<ReturnType>>,
@@ -110,6 +115,8 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
       }
       console.error(error.message);
     }
+
+    this.embedded.emit();
 
     this.cdr.detectChanges();
 
