@@ -17,7 +17,7 @@ export class ExpandRowDirective<Data extends Record<string, any>> {
     return this.expandCell.isExpanded(this.element);
   }
 
-  @Input()
+  @Input('rxapExpandRow')
   @Required
   public element!: Data;
 
