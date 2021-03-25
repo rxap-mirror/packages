@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@11.1.0...@rxap/remote-method@11.2.0) (2021-03-25)
+
+
+### Features
+
+* add support for default remote-method and data-source meta data ([4c16331](https://gitlab.com/rxap/packages/commit/4c16331707e632e7079d61ced3d20984811b952d))
+
+
+
+
+
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@11.0.10...@rxap/remote-method@11.1.0) (2021-03-24)
 
 

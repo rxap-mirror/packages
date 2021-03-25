@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.4.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.4.4...@rxap/material-table-system@11.4.5) (2021-03-25)
+
+
+### Bug Fixes
+
+* pass the context to the edit remote method ([852c316](https://gitlab.com/rxap/packages/commit/852c3162483288b95bdb10ba0b1ca2dc6f0794f3))
+
+
+
+
+
 ## [11.4.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.4.3...@rxap/material-table-system@11.4.4) (2021-03-19)
 
 
