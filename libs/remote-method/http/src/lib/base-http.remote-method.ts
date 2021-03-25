@@ -70,7 +70,6 @@ export abstract class BaseHttpRemoteMethod<ReturnType = any,
     if (!(http instanceof HttpClient)) {
       throw new RxapRemoteMethodError('The property http is not an instance of HttpClinent. Check the deps property!', '', this.constructor.name);
     }
-    this.metadata = metaData || this.getMetadata();
   }
 
   protected getRequestUrl(): string {

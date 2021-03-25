@@ -14,12 +14,12 @@ import {
   OperationObjectWithMetadata,
   OpenApiConfigService,
   SchemaValidationMixin,
-  RXAP_OPEN_API_STRICT_VALIDATOR
+  RXAP_OPEN_API_STRICT_VALIDATOR,
+  DEFAULT_OPEN_API_REMOTE_METHOD_META_DATA
 } from '@rxap/open-api';
 import { BaseHttpRemoteMethod } from '@rxap/remote-method/http';
 import {
   BaseRemoteMethodMetadata,
-  REMOTE_METHOD_META_DATA,
   RxapRemoteMethod
 } from '@rxap/remote-method';
 import { joinPath } from '@rxap/utilities';
@@ -75,10 +75,12 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
     @Inject(HttpClient) http: HttpClient,
     @Inject(Injector) injector: Injector,
     @Inject(OpenApiConfigService) openApiConfigService: OpenApiConfigService,
-    @Optional() @Inject(REMOTE_METHOD_META_DATA) metadata: OpenApiRemoteMethodMetadata | null = null,
+    @Optional()
+    @Inject(DEFAULT_OPEN_API_REMOTE_METHOD_META_DATA)
+      metadata: OpenApiRemoteMethodMetadata | null = null,
     @Optional()
     @Inject(RXAP_OPEN_API_STRICT_VALIDATOR)
-      strict: boolean | null = null,
+      strict: boolean | null                       = null
   ) {
     super(http, injector, metadata);
     let operation: OperationObjectWithMetadata;
