@@ -7,7 +7,8 @@ import {
   OperationObjectWithMetadata,
   OpenApiConfigService,
   SchemaValidationMixin,
-  RXAP_OPEN_API_STRICT_VALIDATOR
+  RXAP_OPEN_API_STRICT_VALIDATOR,
+  DEFAULT_OPEN_API_DATA_SOURCE_META_DATA
 } from '@rxap/open-api';
 import {
   HttpClient,
@@ -101,7 +102,7 @@ export class OpenApiDataSource<Response = any, Parameters extends Record<string,
     @Inject(OpenApiConfigService)
     private readonly openApiConfigService: OpenApiConfigService,
     @Optional()
-    @Inject(RXAP_DATA_SOURCE_METADATA)
+    @Inject(DEFAULT_OPEN_API_DATA_SOURCE_META_DATA)
       metadata: OpenApiDataSourceMetadata | null = null,
     @Optional()
     @Inject(RXAP_DATA_SOURCE_REFRESH)
