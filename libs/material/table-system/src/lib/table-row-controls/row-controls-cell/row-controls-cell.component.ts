@@ -102,7 +102,7 @@ export class RowControlsCellComponent<Data extends Record<string, any> & { uuid:
       if (this.editLoaderMethod) {
         initial = await this.editLoaderMethod.call(initial);
       }
-      const result = await this.editRemoteMethod.call(initial);
+      const result = await this.editRemoteMethod.call(initial, { context: this.element });
       if (isObservable(result)) {
         await result.toPromise();
       }
