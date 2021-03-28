@@ -3,7 +3,10 @@ import {
   Inject,
   Optional
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable
+} from 'rxjs';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { RXAP_AUTHENTICATION_DEACTIVATED } from './tokens';
@@ -11,7 +14,7 @@ import { RXAP_AUTHENTICATION_DEACTIVATED } from './tokens';
 export const RXAP_AUTHENTICATION_LOCAL_STORAGE_KEY = 'rxap__authenticated';
 
 export interface IAuthenticationService {
-  isAuthenticated$: BehaviorSubject<boolean | null>;
+  isAuthenticated$: Observable<boolean | null>;
 
   requestPasswordReset(email: string): Promise<boolean>;
 
