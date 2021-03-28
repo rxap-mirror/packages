@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.11](https://gitlab.com/rxap/packages/compare/@rxap/authentication@11.0.10...@rxap/authentication@11.0.11) (2021-03-28)
+
+
+### Bug Fixes
+
+* **IAuthenticationService:** set isAuthenticated$ as Observable ([ffc15f0](https://gitlab.com/rxap/packages/commit/ffc15f06cc666df3f19e2da87134afd0bce53a26))
+
+
+
+
+
 ## [11.0.10](https://gitlab.com/rxap/packages/compare/@rxap/authentication@11.0.9...@rxap/authentication@11.0.10) (2021-03-19)
 
 

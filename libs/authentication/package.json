@@ -1,6 +1,6 @@
 {
   "name": "@rxap/authentication",
-  "version": "11.0.10",
+  "version": "11.0.11",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -41,7 +41,7 @@
     "@rxap/config": "^11.0.9",
     "@rxap/definition": "^11.0.6",
     "@rxap/directives": "^11.2.2",
-    "@rxap/forms": "^11.3.2",
+    "@rxap/forms": "^11.3.3",
     "@rxap/services": "^11.0.8",
     "@rxap/utilities": "^11.3.2",
     "reflect-metadata": "^0.1.13",
