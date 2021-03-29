@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.4.1...@rxap/schematics-utilities@11.5.0) (2021-03-29)
+
+
+### Features
+
+* add rxap/fake support ([86acf7d](https://gitlab.com/rxap/packages/commit/86acf7dba2da3eef465dd033ccf9c8ffae70db19))
+
+
+
+
+
 ## [11.4.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.4.0...@rxap/schematics-utilities@11.4.1) (2021-03-23)
 
 
