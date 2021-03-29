@@ -10,7 +10,7 @@ import {
   HandleComponent,
   AddComponentProvider,
   ToValueContext,
-  AddComponentMockProvider
+  AddComponentFakeProvider
 } from '@rxap/schematics-utilities';
 import { GenerateSchema } from '../schema';
 import type { TableElement } from './table.element';
@@ -47,10 +47,11 @@ export class AdapterElement implements ParsedElement, HandleComponent {
       }
     ];
     if (this.__parent.method?.mock) {
-      AddComponentMockProvider(
+      AddComponentFakeProvider(
         sourceFile,
         undefined,
         providerObject,
+        [ 'table', this.__parent.name ].join('.'),
         importStructure,
         options.overwrite
       );
