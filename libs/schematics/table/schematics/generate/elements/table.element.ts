@@ -25,7 +25,7 @@ import {
   AddComponentInput,
   NodeFactory,
   WithTemplate,
-  AddComponentMockProvider,
+  AddComponentFakeProvider,
   CoerceMethodClass,
   CoerceSourceFile
 } from '@rxap/schematics-utilities';
@@ -35,6 +35,7 @@ import {
   Rule
 } from '@angular-devkit/schematics';
 import { join } from 'path';
+import { CoerceSuffix } from '@rxap/utilities';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -247,9 +248,9 @@ export class TableElement implements ParsedElement<Rule> {
 
     if (this.method) {
       if (this.method.mock) {
-        const mockClassName     = `${classify(this.name)}TableMockMethod`;
-        const mockClassFileName = `${dasherize(this.name)}-table.mock.method`;
-        AddComponentMockProvider(
+        const mockClassName     = `${CoerceSuffix(classify(this.name), 'Table')}FakeMethod`;
+        const mockClassFileName = `${CoerceSuffix(dasherize(this.name), '-table')}.fake.method`;
+        AddComponentFakeProvider(
           sourceFile,
           {
             provide:  'TABLE_REMOTE_METHOD',
@@ -259,6 +260,7 @@ export class TableElement implements ParsedElement<Rule> {
             provide:  'TABLE_REMOTE_METHOD',
             useClass: this.method.toValue({ sourceFile, project, options })
           },
+          [ 'table', this.name ].join('.'),
           [
             {
               moduleSpecifier: `./${mockClassFileName}`,
