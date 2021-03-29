@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.5.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.5.0...@rxap/schematics-utilities@11.5.1) (2021-03-29)
+
+
+### Bug Fixes
+
+* update IsFaked function name ([cb391a8](https://gitlab.com/rxap/packages/commit/cb391a82a69268d6225332ed4ba2ad2a8b23055a))
+
+
+
+
+
 # [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.4.1...@rxap/schematics-utilities@11.5.0) (2021-03-29)
 
 
