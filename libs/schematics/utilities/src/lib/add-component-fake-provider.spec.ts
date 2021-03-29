@@ -34,7 +34,7 @@ export class Module {}
       sourceFile.organizeImports();
 
       expect(sourceFile.getFullText()).toEqual(`import { Provider } from "@angular/core";
-import { isFaked } from "@rxap/fake";
+import { IsFaked } from "@rxap/fake";
 export const FAKE_PROVIDERS: Provider[] = [{
         provide: FAKE_PROVIDE,
         useValue: test
@@ -43,7 +43,7 @@ export const REAL_PROVIDERS: Provider[] = [{
         provide: REAL_PROVIDE,
         useValue: test
     }];
-export const FAKE_PROVIDER_FACTORY = isFaked('testing') ? FAKE_PROVIDERS : REAL_PROVIDERS;
+export const FAKE_PROVIDER_FACTORY = IsFaked('testing') ? FAKE_PROVIDERS : REAL_PROVIDERS;
 
 @Component({
         providers: [FAKE_PROVIDER_FACTORY]
@@ -55,7 +55,7 @@ export class Module {}`);
     it('should add provider to existing', () => {
 
       const sourceFile = project.createSourceFile('test.ts', `import { Provider } from "@angular/core";
-import { isFaked } from "@rxap/fake";
+import { IsFaked } from "@rxap/fake";
 
 export const FAKE_PROVIDERS: Provider[] = [{
         provide: FAKE_PROVIDE,
@@ -65,7 +65,7 @@ export const REAL_PROVIDERS: Provider[] = [{
         provide: REAL_PROVIDE,
         useValue: test
     }];
-export const FAKE_PROVIDER_FACTORY = isFaked('testing') ? FAKE_PROVIDERS : REAL_PROVIDERS;
+export const FAKE_PROVIDER_FACTORY = IsFaked('testing') ? FAKE_PROVIDERS : REAL_PROVIDERS;
 
 @Component({
         providers: [FAKE_PROVIDER_FACTORY]
@@ -88,7 +88,7 @@ export class Module {}
       sourceFile.organizeImports();
 
       expect(sourceFile.getFullText()).toEqual(`import { Provider } from "@angular/core";
-import { isFaked } from "@rxap/fake";
+import { IsFaked } from "@rxap/fake";
 
 export const FAKE_PROVIDERS: Provider[] = [{
         provide: FAKE_PROVIDE,
@@ -108,7 +108,7 @@ export const REAL_PROVIDERS: Provider[] = [{
         useValue: test2
     }
 ];
-export const FAKE_PROVIDER_FACTORY = isFaked('testing') ? FAKE_PROVIDERS : REAL_PROVIDERS;
+export const FAKE_PROVIDER_FACTORY = IsFaked('testing') ? FAKE_PROVIDERS : REAL_PROVIDERS;
 
 @Component({
         providers: [FAKE_PROVIDER_FACTORY]
