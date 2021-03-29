@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.6.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.5.1...@rxap/schematics-utilities@11.6.0) (2021-03-29)
+
+
+### Features
+
+* add AddVariableFakeProvider function ([0260269](https://gitlab.com/rxap/packages/commit/0260269a73f0c718454467b4b9112a7e07f28782))
+
+
+
+
+
 ## [11.5.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.5.0...@rxap/schematics-utilities@11.5.1) (2021-03-29)
 
 

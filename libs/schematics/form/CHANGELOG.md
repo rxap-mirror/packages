@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@11.0.7...@rxap/schematics-form@11.1.0) (2021-03-29)
+
+
+### Features
+
+* add support for submit and load faker ([1897bd9](https://gitlab.com/rxap/packages/commit/1897bd9c048e162c87a591fc2b039034ffb249e5))
+
+
+
+
+
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@11.0.6...@rxap/schematics-form@11.0.7) (2021-03-23)
 
 
