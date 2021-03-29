@@ -1,18 +1,18 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/definition@11.0.6...@rxap/definition@11.0.7) (2021-03-29)
+
+### Bug Fixes
+
+* add support for method injection ([2ccdd6c](https://gitlab.com/rxap/packages/commit/2ccdd6ccaf73d164385e443ecdcc753dc1b54ffa))
 
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/definition@11.0.5...@rxap/definition@11.0.6) (2021-03-19)
-
 
 ### Bug Fixes
 
 * update peer dependencies ([954fde4](https://gitlab.com/rxap/packages/commit/954fde47836ff0c1f25a77c33ff871ddc7685b6c))
-
-
-
-
 
 ## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/definition@11.0.4...@rxap/definition@11.0.5) (2021-03-19)
 

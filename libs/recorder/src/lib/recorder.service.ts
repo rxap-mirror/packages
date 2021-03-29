@@ -62,7 +62,7 @@ export class RecorderService {
         switchMap(info => BaseDefinition.initialised$.pipe(
           mergeMap(definition => {
             const interceptor$ = new Subject<any>();
-            definition.interceptors.add(interceptor$);
+            definition.interceptors?.add(interceptor$);
 
             const interception: Interception = {
               definitionId: definition.id,
@@ -76,7 +76,7 @@ export class RecorderService {
             console.debug('interception:', interception);
 
             return interceptor$.pipe(
-              takeUntil(definition.destroyed$),
+              takeUntil(definition.destroyed$ ?? new Subject()),
               tap(data => this.child.sendMessageToParent(JSON.stringify({
                 ...interception,
                 data

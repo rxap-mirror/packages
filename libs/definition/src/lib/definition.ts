@@ -23,17 +23,17 @@ export abstract class BaseDefinition<Metadata extends BaseDefinitionMetadata = B
   /**
    * A map of active Definition instances
    */
-  public static readonly instances: Map<string, BaseDefinition> | undefined = new Map<string, BaseDefinition>();
+  public static readonly instances: Map<string, BaseDefinition> = new Map<string, BaseDefinition>();
 
   /**
    * Emits when a new Definition instance is initialised
    */
-  public static readonly initialised$: Subject<BaseDefinition> | undefined = new Subject<BaseDefinition>();
+  public static readonly initialised$: Subject<BaseDefinition> = new Subject<BaseDefinition>();
 
   /**
    * Emits when a new Definition instance is initialised
    */
-  public static readonly destroyed$: Subject<BaseDefinition> | undefined = new Subject<BaseDefinition>();
+  public static readonly destroyed$: Subject<BaseDefinition> = new Subject<BaseDefinition>();
 
   /**
    * @param definition

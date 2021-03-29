@@ -113,12 +113,12 @@ export class HttpDataSource<Data = any, PathParams = any, Body = any> extends Ba
       tap(event => this.handelHttpEvent(event)),
       filter((event: any) => event instanceof HttpResponse),
       tap((response: HttpResponse<Data>) => {
-        this.interceptors.forEach(interceptor => interceptor
+        this.interceptors?.forEach(interceptor => interceptor
           .next({ response, options })
         );
       }),
       catchError((response: HttpErrorResponse) => {
-        this.interceptors.forEach(interceptor => interceptor
+        this.interceptors?.forEach(interceptor => interceptor
           .next({ response, options })
         );
         return throwError(response);
