@@ -13,7 +13,9 @@ import {
   ClassDeclaration,
   Scope,
   SourceFile,
-  Project
+  Project,
+  OptionalKind,
+  ImportDeclarationStructure
 } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
 import { FeatureElement } from './features/feature.element';
@@ -24,7 +26,12 @@ import {
   ToValueContext,
   AddVariableProvider,
   HandleComponent,
-  AddComponentProvider
+  AddComponentProvider,
+  ProviderObject,
+  AddVariableFakeProvider,
+  AddComponentFakeProvider,
+  CoerceSourceFile,
+  CoerceMethodClass
 } from '@rxap/schematics-utilities';
 import {
   Rule,
@@ -32,6 +39,8 @@ import {
 } from '@angular-devkit/schematics';
 import { GenerateSchema } from '../schema';
 import { HandleFormProviders } from './types';
+import { CoerceSuffix } from '@rxap/utilities';
+import { join } from 'path';
 
 const { dasherize, classify, camelize } = strings;
 
@@ -70,6 +79,8 @@ export class FormHandlerAdapterElement implements ParsedElement<Rule>, HandleFor
 
 export abstract class FormHandleMethodElement implements ParsedElement<Rule>, HandleFormProviders, HandleComponent {
 
+  public __parent!: FormElement;
+
   public abstract type: string;
 
   @ElementChild(MethodElement)
@@ -84,82 +95,81 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
   }
 
   public handleFormProviders({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
-    if (this.adapter) {
-      this.adapter.handleFormProviders({ project, sourceFile, options });
-      AddVariableProvider(
-        sourceFile,
-        'FormComponentProviders',
-        {
-          provide:    this.type,
-          useFactory: this.adapter.name,
-          deps: [ this.method.toValue({ sourceFile, project, options }), '[new Optional(), RXAP_FORM_CONTEXT]', 'INJECTOR' ]
-        },
-        [
-          {
-            namedImports:    [ this.type, 'RXAP_FORM_CONTEXT' ],
-            moduleSpecifier: '@rxap/forms'
-          },
-          {
-            namedImports:    [ 'Optional', 'INJECTOR' ],
-            moduleSpecifier: '@angular/core'
-          }
-        ],
-        options.overwrite
-      );
-    } else {
-      AddVariableProvider(
-        sourceFile,
-        'FormComponentProviders',
-        {
-          provide:  this.type,
-          useClass: this.method.toValue({ sourceFile, project, options })
-        },
-        [
-          {
-            namedImports:    [ this.type ],
-            moduleSpecifier: '@rxap/forms'
-          }
-        ],
-        options.overwrite
-      );
-    }
+    this.addProviders({ project, sourceFile, options });
   }
 
   public handleComponent({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
+    this.addProviders({ project, sourceFile, options });
+  }
+
+  private addProviders({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
+    const methodName                                                       = this.method.toValue({ sourceFile, project, options });
+    let providerObject: ProviderObject                                     = {
+      provide:  this.type,
+      useClass: methodName
+    };
+    const importStructure: Array<OptionalKind<ImportDeclarationStructure>> = [
+      {
+        namedImports:    [ this.type ],
+        moduleSpecifier: '@rxap/forms'
+      }
+    ];
     if (this.adapter) {
-      this.adapter.handleComponent({ project, sourceFile, options });
-      AddComponentProvider(
-        sourceFile,
+      this.adapter.handleFormProviders({ project, sourceFile, options });
+      providerObject = {
+        provide:    this.type,
+        useFactory: this.adapter.name,
+        deps:       [ methodName, '[new Optional(), RXAP_FORM_CONTEXT]', 'INJECTOR' ]
+      };
+      importStructure.push(
         {
-          provide:    this.type,
-          useFactory: this.adapter.name,
-          deps: [ this.method.toValue({ sourceFile, project, options }), '[new Optional(), RXAP_FORM_CONTEXT]', 'INJECTOR' ]
+          namedImports:    [ 'RXAP_FORM_CONTEXT' ],
+          moduleSpecifier: '@rxap/forms'
         },
-        [
-          {
-            namedImports:    [ this.type, 'RXAP_FORM_CONTEXT' ],
-            moduleSpecifier: '@rxap/forms'
-          },
-          {
-            namedImports:    [ 'Optional', 'INJECTOR' ],
-            moduleSpecifier: '@angular/core'
-          }
-        ],
-        options.overwrite
+        {
+          namedImports:    [ 'Optional', 'INJECTOR' ],
+          moduleSpecifier: '@angular/core'
+        }
       );
-    } else {
-      AddComponentProvider(
+    }
+    if (this.method.mock) {
+      const kind              = this.type.match(/RXAP_FORM_(.+)_METHOD/)![ 1 ];
+      const mockClassName     = `${CoerceSuffix(classify(this.__parent.id), classify(kind))}FakeMethod`;
+      const mockClassFileName = `${CoerceSuffix(dasherize(this.__parent.id), '-' + dasherize(kind))}.fake.method`;
+      AddVariableFakeProvider(
         sourceFile,
+        'FormComponentProviders',
         {
           provide:  this.type,
-          useClass: this.method.toValue({ sourceFile, project, options })
+          useClass: mockClassName
         },
-        [
-          {
-            namedImports:    [ this.type ],
-            moduleSpecifier: '@rxap/forms'
+        providerObject,
+        [ 'form', this.__parent.id ].join('.'),
+        importStructure,
+        options.overwrite
+      );
+      const methodClassFilePath = join(
+        sourceFile.getDirectoryPath(),
+        mockClassFileName + '.ts'
+      );
+      const methodSourceFile    = CoerceSourceFile(project, methodClassFilePath);
+      CoerceMethodClass(
+        methodSourceFile,
+        mockClassName,
+        {
+          structures: [],
+          returnType: 'Record<string, any>',
+          statements: writer => {
+            writer.writeLine('return {} as any');
           }
-        ],
+        }
+      );
+    } else {
+      AddVariableProvider(
+        sourceFile,
+        'FormComponentProviders',
+        providerObject,
+        importStructure,
         options.overwrite
       );
     }
