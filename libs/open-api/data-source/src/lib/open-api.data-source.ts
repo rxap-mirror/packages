@@ -177,7 +177,7 @@ export class OpenApiDataSource<Response = any, Parameters extends Record<string,
     return this.http.request<Response>(this.buildHttpRequest(options)).pipe(
       retry(this.metadata.retry ?? 0),
       catchError((response: HttpErrorResponse) => {
-        this.interceptors.forEach(interceptor => interceptor
+        this.interceptors?.forEach(interceptor => interceptor
           .next({ response, options })
         );
         return throwError(response);
@@ -185,7 +185,7 @@ export class OpenApiDataSource<Response = any, Parameters extends Record<string,
       filter((event: any) => event.type === HttpEventType.Response),
       tap((response: HttpResponse<Response>) => this.validateResponse(this.operation, response, this.strict)),
       tap((response: HttpResponse<Response>) => {
-        this.interceptors.forEach(interceptor => interceptor
+        this.interceptors?.forEach(interceptor => interceptor
           .next({ response, options })
         );
       }),
