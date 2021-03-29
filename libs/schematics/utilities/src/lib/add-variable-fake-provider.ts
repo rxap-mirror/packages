@@ -1,43 +1,38 @@
 import {
   SourceFile,
   OptionalKind,
-  ImportDeclarationStructure,
-  ArrayLiteralExpression
+  ImportDeclarationStructure
 } from 'ts-morph';
-import { AddProviderToArray } from './add-provider-to-array';
 import { ProviderObject } from './provider-object';
-import { CoerceVariableDeclaration } from './coerce-variable-declaration';
+import {
+  AddVariableProvider,
+  AddFakeProvider
+} from '@rxap/schematics-utilities';
 
-export function AddVariableProvider(
+export function AddVariableFakeProvider(
   sourceFile: SourceFile,
   variableName: string,
-  providerObject: ProviderObject | string,
+  fakeProviderObject: ProviderObject | string | undefined,
+  realProviderObject: ProviderObject | string | undefined,
+  fakeName: string,
   structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = [],
   overwrite: boolean                                                  = false
 ) {
 
-  sourceFile.addImportDeclarations(structures);
-
-  const variableDeclaration = CoerceVariableDeclaration(
+  AddVariableProvider(
     sourceFile,
     variableName,
-    {
-      initializer: '[]',
-      type:        'Provider[]'
-    }
+    'FAKE_PROVIDER_FACTORY',
+    structures,
+    overwrite
   );
 
-  sourceFile.addImportDeclaration({
-    namedImports:    [ 'Provider' ],
-    moduleSpecifier: '@angular/core'
-  });
-
-  const providerArray = variableDeclaration.getInitializer();
-
-  if (!(providerArray instanceof ArrayLiteralExpression)) {
-    throw new Error(`The variable '${variableName}' initializer is not an array literal expression`);
-  }
-
-  AddProviderToArray(providerObject, providerArray, overwrite);
+  AddFakeProvider(
+    sourceFile,
+    fakeProviderObject,
+    realProviderObject,
+    fakeName,
+    overwrite
+  );
 
 }
