@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.8](https://gitlab.com/rxap/packages/compare/@rxap/recorder@11.0.7...@rxap/recorder@11.0.8) (2021-03-29)
+
+
+### Bug Fixes
+
+* add support for method injection ([86e428e](https://gitlab.com/rxap/packages/commit/86e428e074b0a3fb42623db91a00c36845e7bccc))
+
+
+
+
+
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/recorder@11.0.6...@rxap/recorder@11.0.7) (2021-03-19)
 
 

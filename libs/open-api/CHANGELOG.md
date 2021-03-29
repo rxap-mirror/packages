@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.3.0...@rxap/open-api@11.3.1) (2021-03-29)
+
+
+### Bug Fixes
+
+* add support for method injection ([3c5899a](https://gitlab.com/rxap/packages/commit/3c5899a11a8294347558ad026e2bf6e6a3a9b20a))
+* add support for method injection ([62abfaa](https://gitlab.com/rxap/packages/commit/62abfaa8163b018fcd3974cbb4991160cf977d26))
+
+
+
+
+
 # [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.2.4...@rxap/open-api@11.3.0) (2021-03-25)
 
 
