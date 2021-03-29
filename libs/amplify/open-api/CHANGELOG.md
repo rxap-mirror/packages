@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.8](https://gitlab.com/rxap/packages/compare/@rxap/amplify-open-api@11.1.7...@rxap/amplify-open-api@11.1.8) (2021-03-29)
+
+
+### Bug Fixes
+
+* set withCredentials default to true ([72fcb16](https://gitlab.com/rxap/packages/commit/72fcb16b89ae750c7cd83d2c91452f51cdafa352))
+
+
+
+
+
 ## [11.1.7](https://gitlab.com/rxap/packages/compare/@rxap/amplify-open-api@11.1.6...@rxap/amplify-open-api@11.1.7) (2021-03-19)
 
 
