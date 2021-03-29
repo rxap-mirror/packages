@@ -130,10 +130,10 @@ export class AmplifyOpenApiRemoteMethod<Response = any, Parameters extends Recor
   private request(requestOptions: HttpRemoteMethodParameter): Promise<AxiosResponse> {
 
     const init = {
-      response: true,
-      withCredentials: this.metadata.withCredentials ?? false,
-      headers: this._httpHeadersToObject(requestOptions.headers),
-      queryStringParameters: requestOptions.params ?? {},
+      response:              true,
+      withCredentials:       this.metadata.withCredentials ?? true,
+      headers:               this._httpHeadersToObject(requestOptions.headers),
+      queryStringParameters: requestOptions.params ?? {}
     };
 
     const path = this.buildUrlWithParams(this.operation.path, requestOptions.pathParams);
