@@ -5,9 +5,9 @@ import {
 } from 'ts-morph';
 import { ProviderObject } from './provider-object';
 import {
-  AddVariableProvider,
   AddFakeProvider
-} from '@rxap/schematics-utilities';
+} from './add-fake-provider';
+import { AddVariableProvider } from './add-variable-provider';
 
 export function AddVariableFakeProvider(
   sourceFile: SourceFile,

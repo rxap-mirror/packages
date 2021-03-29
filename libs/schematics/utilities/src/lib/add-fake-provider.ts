@@ -1,11 +1,11 @@
 import {
-  CoerceVariableDeclaration,
-  AddProviderToArray,
   ProviderObject
-} from '@rxap/schematics-utilities';
+} from './provider-object';
 import { GetArrayDeclaration } from './get-array-declaration';
 import { AssertArrayLiteralExpression } from './is-array-literal-expression';
 import { SourceFile } from 'ts-morph';
+import { CoerceVariableDeclaration } from './coerce-variable-declaration';
+import { AddProviderToArray } from './add-provider-to-array';
 
 export function AddFakeProvider(
   sourceFile: SourceFile,
