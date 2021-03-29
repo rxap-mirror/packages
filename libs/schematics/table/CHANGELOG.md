@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.9.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.9.0...@rxap/schematics-table@11.9.1) (2021-03-29)
+
+
+### Bug Fixes
+
+* Element parser issue ([b7d4976](https://gitlab.com/rxap/packages/commit/b7d4976e587f6199648c53a2dd76a86706e04d50))
+
+
+
+
+
 # [11.9.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.8.0...@rxap/schematics-table@11.9.0) (2021-03-29)
 
 
