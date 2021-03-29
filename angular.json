@@ -4504,7 +4504,7 @@
           }
         },
         "schematics": {
-          "builder": "@rxap-plugin/library-schematics:build",
+          "builder": "@rxap/plugin-/library-schematics:build",
           "options": {
             "buildTarget": "fake:build:production",
             "skipBuild": false,
@@ -4512,7 +4512,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap-plugin/library-schematics:update-package-group"
+          "builder": "@rxap/plugin-/library-schematics:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
