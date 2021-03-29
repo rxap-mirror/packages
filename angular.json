@@ -4455,6 +4455,73 @@
           }
         }
       }
+    },
+    "fake": {
+      "projectType": "library",
+      "root": "libs/fake",
+      "sourceRoot": "libs/fake/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/fake/tsconfig.lib.json",
+            "project": "libs/fake/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/fake/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/fake/src/**/*.ts",
+              "libs/fake/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/fake"
+          ],
+          "options": {
+            "jestConfig": "libs/fake/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "fake:update-package-group",
+              "fake:build:production",
+              "fake:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "fake:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/fake/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap/plugin-library-publish:publish",
+          "options": {
+            "buildTarget": "fake:build:production",
+            "preTarget": "fake:pack"
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",
@@ -4468,10 +4535,14 @@
   },
   "schematics": {
     "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
       "unitTestRunner": "jest"
     },
     "@nrwl/angular:component": {

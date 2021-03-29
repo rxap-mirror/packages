@@ -52,6 +52,7 @@ module.exports = {
     '<rootDir>/libs/schematics/shared',
     '<rootDir>/libs/upload',
     '<rootDir>/libs/schematics/form',
-    '<rootDir>/libs/material/directives'
+    '<rootDir>/libs/material/directives',
+    '<rootDir>/libs/fake'
   ],
 };
