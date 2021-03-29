@@ -135,7 +135,7 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
     return this.http.request<Response>(this.updateRequest(this.buildHttpOptions(this.operation, args.parameters, args.requestBody))).pipe(
       retry(this.metadata.retry ?? 0),
       catchError((response: HttpErrorResponse) => {
-        this.interceptors.forEach(interceptor => interceptor
+        this.interceptors?.forEach(interceptor => interceptor
           .next({ response, parameters: args.parameters, requestBody: args.requestBody })
         );
         return throwError(response);
@@ -143,7 +143,7 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
       filter((event: any) => event.type === HttpEventType.Response),
       tap((response: HttpResponse<Response>) => this.validateResponse(this.operation, response, this.strict)),
       tap((response: HttpResponse<Response>) => {
-        this.interceptors.forEach(interceptor => interceptor
+        this.interceptors?.forEach(interceptor => interceptor
           .next({ response, parameters: args.parameters, requestBody: args.requestBody })
         );
       }),
