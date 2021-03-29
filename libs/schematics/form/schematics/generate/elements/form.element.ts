@@ -95,14 +95,6 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
   }
 
   public handleFormProviders({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
-    this.addProviders({ project, sourceFile, options });
-  }
-
-  public handleComponent({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
-    this.addProviders({ project, sourceFile, options });
-  }
-
-  private addProviders({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
     const methodName                                                       = this.method.toValue({ sourceFile, project, options });
     let providerObject: ProviderObject                                     = {
       provide:  this.type,
@@ -133,9 +125,7 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
       );
     }
     if (this.method.mock) {
-      const kind              = this.type.match(/RXAP_FORM_(.+)_METHOD/)![ 1 ];
-      const mockClassName     = `${CoerceSuffix(classify(this.__parent.name), classify(kind))}FakeMethod`;
-      const mockClassFileName = `${CoerceSuffix(dasherize(this.__parent.name), '-' + dasherize(kind))}.fake.method`;
+      const mockClassName = this.coerceFakeMethod({ project, sourceFile });
       AddVariableFakeProvider(
         sourceFile,
         'FormComponentProviders',
@@ -148,22 +138,7 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
         importStructure,
         options.overwrite
       );
-      const methodClassFilePath = join(
-        sourceFile.getDirectoryPath(),
-        mockClassFileName + '.ts'
-      );
-      const methodSourceFile    = CoerceSourceFile(project, methodClassFilePath);
-      CoerceMethodClass(
-        methodSourceFile,
-        mockClassName,
-        {
-          structures: [],
-          returnType: 'Record<string, any>',
-          statements: writer => {
-            writer.writeLine('return {} as any');
-          }
-        }
-      );
+
     } else {
       AddVariableProvider(
         sourceFile,
@@ -173,6 +148,88 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
         options.overwrite
       );
     }
+  }
+
+  /**
+   * Depending on the context the handleComponent method is called to overwrite form providers
+   * @param project
+   * @param sourceFile
+   * @param options
+   */
+  public handleComponent({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
+    const methodName                                                       = this.method.toValue({ sourceFile, project, options });
+    let providerObject: ProviderObject                                     = {
+      provide:  this.type,
+      useClass: methodName
+    };
+    const importStructure: Array<OptionalKind<ImportDeclarationStructure>> = [
+      {
+        namedImports:    [ this.type ],
+        moduleSpecifier: '@rxap/forms'
+      }
+    ];
+    if (this.adapter) {
+      this.adapter.handleFormProviders({ project, sourceFile, options });
+      providerObject = {
+        provide:    this.type,
+        useFactory: this.adapter.name,
+        deps:       [ methodName, '[new Optional(), RXAP_FORM_CONTEXT]', 'INJECTOR' ]
+      };
+      importStructure.push(
+        {
+          namedImports:    [ 'RXAP_FORM_CONTEXT' ],
+          moduleSpecifier: '@rxap/forms'
+        },
+        {
+          namedImports:    [ 'Optional', 'INJECTOR' ],
+          moduleSpecifier: '@angular/core'
+        }
+      );
+    }
+    if (this.method.mock) {
+      const mockClassName = this.coerceFakeMethod({ project, sourceFile });
+      AddComponentFakeProvider(
+        sourceFile,
+        {
+          provide:  this.type,
+          useClass: mockClassName
+        },
+        providerObject,
+        [ 'form', this.__parent.name ].join('.'),
+        importStructure,
+        options.overwrite
+      );
+    } else {
+      AddComponentProvider(
+        sourceFile,
+        providerObject,
+        importStructure,
+        options.overwrite
+      );
+    }
+  }
+
+  private coerceFakeMethod({ project, sourceFile }: { project: Project, sourceFile: SourceFile }): string {
+    const kind                = this.type.match(/RXAP_FORM_(.+)_METHOD/)![ 1 ].toLocaleLowerCase();
+    const mockClassName       = `${CoerceSuffix(classify(this.__parent.name), classify(kind))}FakeMethod`;
+    const mockClassFileName   = `${CoerceSuffix(dasherize(this.__parent.name), '-' + dasherize(kind))}.fake.method`;
+    const methodClassFilePath = join(
+      sourceFile.getDirectoryPath(),
+      mockClassFileName + '.ts'
+    );
+    const methodSourceFile    = CoerceSourceFile(project, methodClassFilePath);
+    CoerceMethodClass(
+      methodSourceFile,
+      mockClassName,
+      {
+        structures: [],
+        returnType: 'Record<string, any>',
+        statements: writer => {
+          writer.writeLine('return {} as any');
+        }
+      }
+    );
+    return mockClassName;
   }
 
 }
