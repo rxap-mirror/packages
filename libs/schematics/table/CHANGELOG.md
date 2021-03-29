@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.7.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.6.2...@rxap/schematics-table@11.7.0) (2021-03-29)
+
+
+### Features
+
+* add rxap/fake support ([86acf7d](https://gitlab.com/rxap/packages/commit/86acf7dba2da3eef465dd033ccf9c8ffae70db19))
+
+
+
+
+
 ## [11.6.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.6.1...@rxap/schematics-table@11.6.2) (2021-03-24)
 
 
