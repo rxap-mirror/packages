@@ -59,7 +59,7 @@ export abstract class MethodActionElement extends ActionButtonElement {
           mockClassName,
           {
             structures: [],
-            returnType: 'Array<Record<string, any>>',
+            returnType: 'Record<string, any>',
             statements: writer => {
               writer.writeLine('return {} as any');
             }
