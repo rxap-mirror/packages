@@ -283,7 +283,6 @@ export class TableElement implements ParsedElement<Rule> {
         CoerceMethodClass(
           methodSourceFile,
           mockClassName,
-
           {
             structures: [
               {
