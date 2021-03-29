@@ -36,6 +36,8 @@ export * from './lib/add-component-fake-provider';
 export * from './lib/add-method-class';
 export * from './lib/coerce-method-class';
 export * from './lib/coerce-source-file';
+export * from './lib/add-fake-provider';
+export * from './lib/add-variable-fake-provider';
 
 // region elements
 
