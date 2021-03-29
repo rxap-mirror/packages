@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.8.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.7.0...@rxap/schematics-table@11.8.0) (2021-03-29)
+
+
+### Features
+
+* add custom edit action loader ([48cb7cc](https://gitlab.com/rxap/packages/commit/48cb7ccf4a9bfd4cfbfcbecab544e031e89f5cb5))
+
+
+
+
+
 # [11.7.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.6.2...@rxap/schematics-table@11.7.0) (2021-03-29)
 
 
