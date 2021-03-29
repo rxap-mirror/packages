@@ -2,7 +2,9 @@ import {
   ElementDef,
   ElementExtends,
   ElementChild,
-  ElementRequired
+  ElementRequired,
+  ElementTextContent,
+  ElementAttribute
 } from '@rxap/xml-parser/decorators';
 import { ActionButtonElement } from './action-button.element';
 import { MethodActionElement } from './method-action.element';
@@ -13,7 +15,11 @@ import {
   ToValueContext,
   ModuleElement,
   OpenApiRemoteMethodElement,
-  AddComponentProvider
+  AddComponentProvider,
+  AddComponentFakeProvider,
+  ProviderObject,
+  CoerceSourceFile,
+  CoerceMethodClass
 } from '@rxap/schematics-utilities';
 import {
   Rule,
@@ -25,13 +31,107 @@ import { strings } from '@angular-devkit/core';
 import { GenerateSchema } from '../../../schema';
 import { WindowFormElement } from '../window-form.element';
 import { join } from 'path';
+import { TableElement } from '../../table.element';
+import { CoerceSuffix } from '@rxap/utilities';
 
 const { dasherize, classify, camelize } = strings;
+
+@ElementDef('adapter')
+export class AdapterElement implements ParsedElement {
+
+  public __parent!: EditActionLoaderElement;
+
+  public toValue({ project, options }: ToValueContext): Rule {
+    return () => {};
+  }
+
+  @ElementTextContent()
+  @ElementRequired()
+  public factoryName!: string;
+  @ElementAttribute('import')
+  @ElementRequired()
+  public importFrom!: string;
+
+}
 
 @ElementDef('loader')
 export class EditActionLoaderElement implements ParsedElement<Rule>, HandleComponentModule, HandleComponent {
 
-  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {}
+  public __parent!: EditActionElement;
+
+  @ElementChild(OpenApiRemoteMethodElement)
+  @ElementRequired()
+  public method!: OpenApiRemoteMethodElement;
+
+  @ElementChild(AdapterElement)
+  public adapter?: AdapterElement;
+
+  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+    const loadMethodName                   = this.method.toValue({ options, sourceFile });
+    let loadMethodProvider: ProviderObject = {
+      provide:  'ROW_EDIT_LOADER_METHOD',
+      useClass: loadMethodName
+    };
+    const importStructure                  = [
+      {
+        moduleSpecifier: '@rxap/material-table-system',
+        namedImports:    [ 'ROW_EDIT_LOADER_METHOD' ]
+      }
+    ];
+    if (this.adapter) {
+      loadMethodProvider = {
+        provide:    'ROW_EDIT_LOADER_METHOD',
+        useFactory: this.adapter.factoryName,
+        deps:       [ loadMethodName ]
+      };
+    }
+    if (this.method.mock) {
+      const name                = this.__parent.__parent.__parent.name;
+      const mockClassName       = `${CoerceSuffix(classify(name), 'TableEditActionLoader')}FakeMethod`;
+      const mockClassFileName   = `${CoerceSuffix(dasherize(name), '-table-edit-action-loader')}.fake.method`;
+      const methodClassFilePath = join(
+        sourceFile.getDirectoryPath(),
+        mockClassFileName + '.ts'
+      );
+      const methodSourceFile    = CoerceSourceFile(project, methodClassFilePath);
+      CoerceMethodClass(
+        methodSourceFile,
+        mockClassName,
+        {
+          structures: [],
+          returnType: 'Array<Record<string, any>>',
+          statements: writer => {
+            writer.writeLine('return {} as any');
+          }
+        }
+      );
+      AddComponentFakeProvider(
+        sourceFile,
+        {
+          provide:  'ROW_EDIT_LOADER_METHOD',
+          useClass: mockClassName
+        },
+        loadMethodProvider,
+        [ 'table', name ].join('.'),
+        [
+          {
+            moduleSpecifier: `./${mockClassFileName}`,
+            namedImports:    [
+              mockClassName
+            ]
+          },
+          ...importStructure
+        ]
+      );
+    } else {
+      AddComponentProvider(
+        sourceFile,
+        loadMethodProvider,
+        importStructure,
+        options.overwrite
+      );
+    }
+  }
 
   public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {}
 
@@ -50,7 +150,6 @@ export class MfdLoaderElement extends EditActionLoaderElement {
   public method!: OpenApiRemoteMethodElement;
 
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
-    super.handleComponent({ project, sourceFile, options });
     AddComponentProvider(
       sourceFile,
       {
