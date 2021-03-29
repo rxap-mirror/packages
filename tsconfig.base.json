@@ -102,14 +102,18 @@
       "@rxap/utilities/schematic": [
         "libs/utilities/schematic/src/public_api.ts"
       ],
-      "@rxap/open-api": ["libs/open-api/src/index.ts"],
+      "@rxap/open-api": [
+        "libs/open-api/src/index.ts"
+      ],
       "@rxap/open-api/data-source": [
         "libs/open-api/data-source/src/public_api.ts"
       ],
       "@rxap/open-api/remote-method": [
         "libs/open-api/remote-method/src/public_api.ts"
       ],
-      "@rxap/recorder": ["libs/recorder/src/index.ts"],
+      "@rxap/recorder": [
+        "libs/recorder/src/index.ts"
+      ],
       "@rxap/data-source/http": [
         "libs/data-source/http/src/public_api.ts"
       ],
@@ -164,22 +168,40 @@
       "@rxap/definition": [
         "libs/definition/src/index.ts"
       ],
-      "@rxap/plugin-pack": ["libs/plugin/pack/src/index.ts"],
-      "@rxap/plugin-scss-bundle": ["libs/plugin/scss-bundle/src/index.ts"],
-      "@rxap/form-system": ["libs/form-system/src/index.ts"],
+      "@rxap/plugin-pack": [
+        "libs/plugin/pack/src/index.ts"
+      ],
+      "@rxap/plugin-scss-bundle": [
+        "libs/plugin/scss-bundle/src/index.ts"
+      ],
+      "@rxap/form-system": [
+        "libs/form-system/src/index.ts"
+      ],
       "@rxap/plugin-readme-generator": [
         "libs/plugin/readme-generator/src/index.ts"
       ],
-      "@rxap/plugin-kaniko": ["libs/plugin/kaniko/src/index.ts"],
-      "@rxap/data-grid": ["libs/data-grid/src/index.ts"],
+      "@rxap/plugin-kaniko": [
+        "libs/plugin/kaniko/src/index.ts"
+      ],
+      "@rxap/data-grid": [
+        "libs/data-grid/src/index.ts"
+      ],
       "@rxap/plugin-library-publish": [
         "libs/plugin/library-publish/src/index.ts"
       ],
       "@rxap/fullstory": ["libs/fullstory/src/index.ts"],
-      "@rxap/sentry": ["libs/sentry/src/index.ts"],
-      "@rxap/slugify": ["libs/slugify/src/index.ts"],
-      "@rxap/service-worker": ["libs/service-worker/src/index.ts"],
-      "@rxap/life-cycle": ["libs/life-cycle/src/index.ts"],
+      "@rxap/sentry": [
+        "libs/sentry/src/index.ts"
+      ],
+      "@rxap/slugify": [
+        "libs/slugify/src/index.ts"
+      ],
+      "@rxap/service-worker": [
+        "libs/service-worker/src/index.ts"
+      ],
+      "@rxap/life-cycle": [
+        "libs/life-cycle/src/index.ts"
+      ],
       "@rxap/open-api/data-source/table": [
         "libs/open-api/data-source/data-source/table/src/public_api.ts"
       ],
@@ -236,6 +258,9 @@
       ],
       "@rxap/material-directives": [
         "libs/material/directives/src/index.ts"
+      ],
+      "@rxap/fake": [
+        "libs/fake/src/index.ts"
       ]
     }
   },
