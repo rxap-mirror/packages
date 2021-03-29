@@ -145,10 +145,6 @@ export class EditActionLoaderElement implements ParsedElement<Rule>, HandleCompo
 @ElementDef('mfd-loader')
 export class MfdLoaderElement extends EditActionLoaderElement {
 
-  @ElementChild(OpenApiRemoteMethodElement)
-  @ElementRequired()
-  public method!: OpenApiRemoteMethodElement;
-
   public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
     AddComponentProvider(
       sourceFile,
