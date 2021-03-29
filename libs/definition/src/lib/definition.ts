@@ -23,32 +23,32 @@ export abstract class BaseDefinition<Metadata extends BaseDefinitionMetadata = B
   /**
    * A map of active Definition instances
    */
-  public static readonly instances = new Map<string, BaseDefinition>();
+  public static readonly instances: Map<string, BaseDefinition> | undefined = new Map<string, BaseDefinition>();
 
   /**
    * Emits when a new Definition instance is initialised
    */
-  public static readonly initialised$ = new Subject<BaseDefinition>();
+  public static readonly initialised$: Subject<BaseDefinition> | undefined = new Subject<BaseDefinition>();
 
   /**
    * Emits when a new Definition instance is initialised
    */
-  public static readonly destroyed$ = new Subject<BaseDefinition>();
+  public static readonly destroyed$: Subject<BaseDefinition> | undefined = new Subject<BaseDefinition>();
 
   /**
    * @param definition
    */
   public static add(definition: BaseDefinition) {
-    this.instances.set(definition.__id, definition);
-    this.initialised$.next(definition);
+    this.instances?.set(definition.__id, definition);
+    this.initialised$?.next(definition);
   }
 
   /**
    * @param definition
    */
   public static remove(definition: BaseDefinition) {
-    this.instances.delete(definition.__id);
-    this.destroyed$.next(definition);
+    this.instances?.delete(definition.__id);
+    this.destroyed$?.next(definition);
   }
 
   public get id(): string {
@@ -61,14 +61,14 @@ export abstract class BaseDefinition<Metadata extends BaseDefinitionMetadata = B
   /**
    * Emits if the data source is destroyed
    */
-  public readonly destroyed$ = new Subject<void>();
+  public readonly destroyed$: Subject<void> | undefined = new Subject<void>();
 
   /**
    * Emits if the data source is initialised
    */
-  public readonly initialised$ = new Subject<void>();
+  public readonly initialised$: Subject<void> | undefined = new Subject<void>();
 
-  public readonly interceptors = new Set<Subject<any>>();
+  public readonly interceptors: Set<Subject<any>> | undefined = new Set<Subject<any>>();
 
   /**
    * unique internal id
@@ -109,7 +109,7 @@ export abstract class BaseDefinition<Metadata extends BaseDefinitionMetadata = B
   }
 
   public ngOnDestroy() {
-    this.destroyed$.next();
+    this.destroyed$?.next();
     BaseDefinition.remove(this);
   }
 
@@ -122,7 +122,7 @@ export abstract class BaseDefinition<Metadata extends BaseDefinitionMetadata = B
       self.ngOnInit();
     }
     this._initialised = true;
-    this.initialised$.next();
+    this.initialised$?.next();
     BaseDefinition.add(this);
   }
 
