@@ -25,7 +25,7 @@ export function AddComponentFakeProvider(
     sourceFile,
     'FAKE_PROVIDER_FACTORY',
     {
-      initializer: `isFaked('${fakeName}') ? FAKE_PROVIDERS : REAL_PROVIDERS`
+      initializer: `IsFaked('${fakeName}') ? FAKE_PROVIDERS : REAL_PROVIDERS`
     }
   );
 
@@ -71,7 +71,7 @@ export function AddComponentFakeProvider(
   });
   sourceFile.addImportDeclaration({
     moduleSpecifier: '@rxap/fake',
-    namedImports:    [ 'isFaked' ]
+    namedImports: [ 'IsFaked' ]
   });
 
   sourceFile.addImportDeclarations(structures);
