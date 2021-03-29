@@ -134,8 +134,8 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
     }
     if (this.method.mock) {
       const kind              = this.type.match(/RXAP_FORM_(.+)_METHOD/)![ 1 ];
-      const mockClassName     = `${CoerceSuffix(classify(this.__parent.id), classify(kind))}FakeMethod`;
-      const mockClassFileName = `${CoerceSuffix(dasherize(this.__parent.id), '-' + dasherize(kind))}.fake.method`;
+      const mockClassName     = `${CoerceSuffix(classify(this.__parent.name), classify(kind))}FakeMethod`;
+      const mockClassFileName = `${CoerceSuffix(dasherize(this.__parent.name), '-' + dasherize(kind))}.fake.method`;
       AddVariableFakeProvider(
         sourceFile,
         'FormComponentProviders',
@@ -144,7 +144,7 @@ export abstract class FormHandleMethodElement implements ParsedElement<Rule>, Ha
           useClass: mockClassName
         },
         providerObject,
-        [ 'form', this.__parent.id ].join('.'),
+        [ 'form', this.__parent.name ].join('.'),
         importStructure,
         options.overwrite
       );
@@ -238,6 +238,10 @@ export class FormElement implements ParsedElement<ClassDeclaration> {
   @ElementAttribute()
   @ElementRequired()
   public id!: string;
+
+  public get name(): string {
+    return this.id;
+  }
 
   public get controlPath(): string {
     return this.id;
