@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@11.1.1...@rxap/schematics-form@11.1.2) (2021-03-29)
+
+
+### Bug Fixes
+
+* submit fake method support ([c3444cf](https://gitlab.com/rxap/packages/commit/c3444cfa61c95fd6209ef451bad01026b773a5a7))
+
+
+
+
+
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@11.1.0...@rxap/schematics-form@11.1.1) (2021-03-29)
 
 
