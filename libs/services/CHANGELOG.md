@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/services@11.1.0...@rxap/services@11.2.0) (2021-03-30)
+
+
+### Features
+
+* **theme-service:** initialization issue ([782fb54](https://gitlab.com/rxap/packages/commit/782fb54325de2977db61564c3cf0cfb99512cc5e))
+
+
+
+
+
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/services@11.0.8...@rxap/services@11.1.0) (2021-03-30)
 
 
