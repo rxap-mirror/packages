@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.9.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.9.2...@rxap/schematics-table@11.9.3) (2021-03-30)
+
+
+### Bug Fixes
+
+* add col span support ([0fb5d9f](https://gitlab.com/rxap/packages/commit/0fb5d9fd326a915f5908c98e413b8980da2b3172))
+
+
+
+
+
 ## [11.9.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.9.1...@rxap/schematics-table@11.9.2) (2021-03-29)
 
 
