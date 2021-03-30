@@ -13,9 +13,10 @@ export class ThemeService {
   public readonly darkMode$: BehaviorSubject<boolean>;
 
   constructor() {
+    // this.darkMode$ must be first bc the this.darkMode getter is used in this.toggleDarkTheme method
+    this.darkMode$ = new BehaviorSubject<boolean>(localStorage.getItem('rxap-light-theme') === null);
     this.setBaseFontSize(this.baseFontSize);
     this.toggleDarkTheme(this.darkMode);
-    this.darkMode$ = new BehaviorSubject<boolean>(localStorage.getItem('rxap-light-theme') === null);
   }
 
   public toggleDarkTheme(checked: boolean = !this.darkMode): void {
