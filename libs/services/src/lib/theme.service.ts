@@ -1,25 +1,32 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
 
-  public darkMode     = localStorage.getItem('rxap-light-theme') === null;
+  public get darkMode() {
+    return this.darkMode$.value;
+  }
+
   public baseFontSize = Number(localStorage.getItem('rxap-base-font-size') || 62.5);
+
+  public readonly darkMode$: BehaviorSubject<boolean>;
 
   constructor() {
     this.setBaseFontSize(this.baseFontSize);
     this.toggleDarkTheme(this.darkMode);
+    this.darkMode$ = new BehaviorSubject<boolean>(localStorage.getItem('rxap-light-theme') === null);
   }
 
   public toggleDarkTheme(checked: boolean = !this.darkMode): void {
     if (checked) {
       document.body.classList.add('dark-theme');
       localStorage.removeItem('rxap-light-theme');
-      this.darkMode = true;
+      this.darkMode$.next(true);
     } else {
       document.body.classList.remove('dark-theme');
       localStorage.setItem('rxap-light-theme', 'true');
-      this.darkMode = false;
+      this.darkMode$.next(false);
     }
   }
 
