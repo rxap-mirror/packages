@@ -9,7 +9,9 @@ import {
   Inject,
   Injector,
   INJECTOR,
-  isDevMode
+  isDevMode,
+  Optional,
+  Self
 } from '@angular/core';
 import {
   RemoteMethodLoader,
@@ -23,6 +25,7 @@ import {
   Deprecated
 } from '@rxap/utilities';
 import { IdOrInstanceOrToken } from '@rxap/definition';
+import { RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN } from './tokens';
 
 @Directive({
   selector: '[rxapRemoteMethod]',
@@ -76,7 +79,15 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
     protected readonly remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR)
     private readonly injector: Injector = Injector.NULL,
-  ) {}
+    @Optional()
+    @Self()
+    @Inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN)
+    private readonly remoteMethodToken: any
+  ) {
+    if (this.remoteMethodToken) {
+      this._remoteMethodOrIdOrToken = this.remoteMethodToken;
+    }
+  }
 
   public ngOnInit(): void {
     if (this.immediately) {

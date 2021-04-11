@@ -12,15 +12,23 @@ import {
   SimpleChanges,
   OnInit,
   EventEmitter,
-  Output
+  Output,
+  isDevMode,
+  Optional,
+  Self
 } from '@angular/core';
 import {
   BaseRemoteMethod,
   BaseRemoteMethodMetadata,
   RemoteMethodLoader
 } from '@rxap/remote-method';
-import { Required } from '@rxap/utilities';
+import {
+  Required,
+  ToggleSubject,
+  Deprecated
+} from '@rxap/utilities';
 import { IdOrInstanceOrToken } from '@rxap/definition';
+import { RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN } from './tokens';
 
 export interface RemoteMethodTemplateDirectiveContext<ReturnType = any> {
   $implicit: ReturnType;
@@ -56,6 +64,23 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
     }
   }
 
+  @Output('executed')
+  public executed$ = new EventEmitter();
+
+  @Output('failure')
+  public failure$ = new EventEmitter<Error>();
+
+  @Output('successful')
+  public successful$ = new EventEmitter<ReturnType>();
+
+  @Input('rxapRemoteMethodMetadata')
+  public metadata?: Metadata;
+
+  /**
+   * true - a remote method call is in progress
+   */
+  public executing$ = new ToggleSubject();
+
   @Input('rxapRemoteMethodParameters')
   public parameters?: Parameters;
 
@@ -82,32 +107,81 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
     private readonly viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef)
     protected readonly cdr: ChangeDetectorRef,
-  ) { }
+    @Optional()
+    @Self()
+    @Inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN)
+    private readonly remoteMethodToken: any
+  ) {
+    if (this.remoteMethodToken) {
+      this._remoteMethodOrIdOrToken = this.remoteMethodToken;
+    }
+  }
 
   public ngOnChanges(changes: SimpleChanges) {
     const parametersChanges = changes.parameters;
     if (parametersChanges) {
-      this.call(parametersChanges.currentValue);
+      this.execute(parametersChanges.currentValue);
     }
   }
 
   public ngOnInit() {
     if (this.withoutParameters) {
-      this.call();
+      this.execute();
     }
   }
 
+  /**
+   * @deprecated removed
+   * @protected
+   */
+  @Deprecated('removed')
   public call(parameters?: Parameters): void {
-    this.renderTemplate(parameters)
+    this.execute(parameters)
         .catch(error => console.error('Remote method template rendering failed: ' + error.message));
   }
 
-  public async renderTemplate(parameters?: Parameters) {
+  public setParameter<Key extends keyof Parameters>(parameterKey: Key, value: Parameters[Key]): void {
+    this.updateParameters({ [ parameterKey ]: value } as any);
+  }
+
+  public updateParameters(parameters: Partial<Parameters>): void {
+    this.parameters = { ...(this.parameters ?? {}), ...parameters } as any;
+  }
+
+  public async execute(parameters: Parameters | undefined = this.parameters): Promise<void> {
+    this.executing$.enable();
+    try {
+      const result = await this.remoteMethodLoader.call$(this._remoteMethodOrIdOrToken, parameters, this.metadata, this.injector);
+      this.executed(result);
+      this.renderTemplate(result);
+      this.successful(result);
+    } catch (error) {
+      if (isDevMode()) {
+        console.error(`Remote method directive execution failed:`, error.message);
+      }
+      this.failure(error);
+    } finally {
+      this.executing$.disable();
+    }
+  }
+
+  protected executed(result: any) {
+    this.executed$.emit(result);
+  }
+
+  protected failure(error: Error) {
+    this.failure$.emit(error);
+  }
+
+  protected successful(result: ReturnType) {
+    this.successful$.emit(result);
+  }
+
+  protected renderTemplate(result: ReturnType) {
 
     this.viewContainerRef.clear();
 
     try {
-      const result = await this.remoteMethodLoader.call$(this._remoteMethodOrIdOrToken, parameters, undefined, this.injector);
       this.viewContainerRef.createEmbeddedView(this.template, { $implicit: result });
     } catch (error) {
       if (this.errorTemplate) {
