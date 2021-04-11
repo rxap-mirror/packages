@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.3](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.3.2...@rxap/utilities@11.3.3) (2021-04-11)
+
+
+### Bug Fixes
+
+* rn method ([ae2e474](https://gitlab.com/rxap/packages/commit/ae2e474c6a3b489f08fb24db92787a77455f4955))
+
+
+
+
+
 ## [11.3.2](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.3.1...@rxap/utilities@11.3.2) (2021-03-19)
 
 
