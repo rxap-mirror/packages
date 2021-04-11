@@ -756,6 +756,35 @@ export async function generateParameters(
 
 }
 
+export async function generateComponents(
+  components: OpenAPIV3.ComponentsObject,
+  project: Project
+): Promise<void> {
+
+  if (components.schemas) {
+    for (const [ name, schema ] of Object.entries(components.schemas)) {
+
+      const generator = new TypescriptInterfaceGenerator(
+        schema,
+        { basePath: COMPONENTS_BASE_PATH },
+        project
+      );
+
+      console.log(`Generate component interface for: ${name}`);
+
+      try {
+
+        await generator.build(name);
+
+      } catch (error) {
+        console.error(`Failed to generate response interface for: ${name}`, error.message);
+      }
+
+    }
+  }
+
+}
+
 export const REQUEST_BODY_FILE_SUFFIX = 'request-body';
 export const REQUEST_BODY_BASE_PATH   = 'request-bodies';
 
@@ -873,6 +902,8 @@ export function getResponseType(operation: OpenAPIV3.OperationObject): string {
 
 export const RESPONSE_BASE_PATH   = 'responses';
 export const RESPONSE_FILE_SUFFIX = 'response';
+
+export const COMPONENTS_BASE_PATH = 'components';
 
 export function getParameterType(operation: OpenAPIV3.OperationObject): string {
 
