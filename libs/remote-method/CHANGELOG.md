@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@11.2.0...@rxap/remote-method@11.3.0) (2021-04-11)
+
+
+### Features
+
+* **directive:** add static token support ([a09efaa](https://gitlab.com/rxap/packages/commit/a09efaa825f82e7a51d801821b4dc018bd2bb9e3))
+
+
+
+
+
 # [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@11.1.0...@rxap/remote-method@11.2.0) (2021-03-25)
 
 
