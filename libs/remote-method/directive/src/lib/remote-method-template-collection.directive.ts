@@ -19,7 +19,9 @@ import {
   IterableChangeRecord,
   DoCheck,
   OnInit,
-  NgZone
+  NgZone,
+  Optional,
+  Self
 } from '@angular/core';
 import {
   BaseRemoteMethod,
@@ -33,6 +35,7 @@ import {
   tap,
   take
 } from 'rxjs/operators';
+import { RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN } from './tokens';
 
 export class RemoteMethodTemplateCollectionDirectiveContext<ReturnType = any> {
   constructor(
@@ -217,8 +220,16 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
     @Inject(IterableDiffers)
     private readonly differs: IterableDiffers,
     @Inject(NgZone)
-    private readonly zone: NgZone
-  ) { }
+    private readonly zone: NgZone,
+    @Optional()
+    @Self()
+    @Inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN)
+    private readonly remoteMethodToken: any
+  ) {
+    if (this.remoteMethodToken) {
+      this._remoteMethodOrIdOrToken = this.remoteMethodToken;
+    }
+  }
 
   public ngOnChanges(changes: SimpleChanges) {
     const parametersChanges = changes.parameters;
