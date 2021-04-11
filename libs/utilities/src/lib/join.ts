@@ -1,4 +1,4 @@
-export function joinPath(...fragments: Array<string | null | undefined>) {
+export function JoinPath(...fragments: Array<string | null | undefined>) {
   return fragments
     .filter(Boolean)
     .filter(fragment => !fragment!.match(/^\/+$/))
@@ -9,3 +9,8 @@ export function joinPath(...fragments: Array<string | null | undefined>) {
     .join('/')
     .replace(/\/+$/, '');
 }
+
+/**
+ * @deprecated use JoinPath instead
+ */
+export const joinPath = JoinPath;
