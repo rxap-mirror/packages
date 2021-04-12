@@ -52,8 +52,8 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   // For each child directive that should have a template context guard
   // the template context guard must be defined
   // !! add generation of concrete template context guard to openapi schematics !!
-  static ngTemplateContextGuard<T>(dir: RemoteMethodTemplateDirectiveContext<T>, ctx: any):
-    ctx is RemoteMethodTemplateDirectiveContext<T> {
+  static ngTemplateContextGuard(dir: RemoteMethodTemplateDirectiveContext, ctx: any):
+    ctx is RemoteMethodTemplateDirectiveContext {
     return true;
   }
 
@@ -86,6 +86,9 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
 
   @Input('rxapRemoteMethodError')
   public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
+
+  @Input('rxapRemoteMethodLoading')
+  public loadingTemplate?: TemplateRef<void>;
 
   @Input('rxapRemoteMethodWithoutParameters')
   public withoutParameters: boolean = false;
@@ -125,8 +128,27 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   }
 
   public ngOnInit() {
+    this.renderLoadingTemplate();
     if (this.withoutParameters) {
       this.execute();
+    }
+  }
+
+  public async execute(parameters: Parameters | undefined = this.parameters): Promise<void> {
+    this.executing$.enable();
+    this.renderLoadingTemplate();
+    try {
+      const result = await this.remoteMethodLoader.call$(this._remoteMethodOrIdOrToken, parameters, this.metadata, this.injector);
+      this.executed(result);
+      this.renderTemplate(result);
+      this.successful(result);
+    } catch (error) {
+      if (isDevMode()) {
+        console.error(`Remote method directive execution failed:`, error.message);
+      }
+      this.failure(error);
+    } finally {
+      this.executing$.disable();
     }
   }
 
@@ -148,20 +170,10 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
     this.parameters = { ...(this.parameters ?? {}), ...parameters } as any;
   }
 
-  public async execute(parameters: Parameters | undefined = this.parameters): Promise<void> {
-    this.executing$.enable();
-    try {
-      const result = await this.remoteMethodLoader.call$(this._remoteMethodOrIdOrToken, parameters, this.metadata, this.injector);
-      this.executed(result);
-      this.renderTemplate(result);
-      this.successful(result);
-    } catch (error) {
-      if (isDevMode()) {
-        console.error(`Remote method directive execution failed:`, error.message);
-      }
-      this.failure(error);
-    } finally {
-      this.executing$.disable();
+  private renderLoadingTemplate() {
+    if (this.loadingTemplate) {
+      this.viewContainerRef.clear();
+      this.viewContainerRef.createEmbeddedView(this.loadingTemplate);
     }
   }
 
