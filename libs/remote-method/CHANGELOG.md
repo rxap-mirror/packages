@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.2](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@11.3.1...@rxap/remote-method@11.3.2) (2021-04-12)
+
+
+### Bug Fixes
+
+* add loading template support ([5e57a38](https://gitlab.com/rxap/packages/commit/5e57a387258eded6c4b123defb23d0858a996e5f))
+
+
+
+
+
 ## [11.3.1](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@11.3.0...@rxap/remote-method@11.3.1) (2021-04-11)
 
 
