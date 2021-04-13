@@ -4432,7 +4432,8 @@
             "targets": [
               "material-directives:update-package-group",
               "material-directives:build:production",
-              "material-directives:schematics"
+              "material-directives:schematics",
+              "material-directives:scss-bundle"
             ]
           }
         },
@@ -4452,6 +4453,16 @@
           "options": {
             "buildTarget": "material-directives:build:production",
             "preTarget": "material-directives:pack"
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap/plugin-scss-bundle:build",
+          "options": {
+            "buildTarget": "material-directives:build:production",
+            "skipBuild": true,
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         }
       }
