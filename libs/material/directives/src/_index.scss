@@ -1,8 +1,8 @@
 @import "../form-field/src/index";
 
-@mixin rxap-material-directives-theming($theme) {
+@mixin rxap-material-directives-theme($theme) {
 
-  @include rxap-material-directives-form-field-theming($theme);
+  @include rxap-material-directives-form-field-theme($theme);
 
 }
 
