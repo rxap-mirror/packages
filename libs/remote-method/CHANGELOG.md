@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.3](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@11.3.2...@rxap/remote-method@11.3.3) (2021-04-13)
+
+
+### Bug Fixes
+
+* **directive:** add missing optional token ([f6a0424](https://gitlab.com/rxap/packages/commit/f6a04247ede839497b8128bb2d8b4b2b0af135f4))
+
+
+
+
+
 ## [11.3.2](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@11.3.1...@rxap/remote-method@11.3.2) (2021-04-12)
 
 
