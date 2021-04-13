@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.4](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@11.1.3...@rxap/material-directives@11.1.4) (2021-04-13)
+
+
+### Bug Fixes
+
+* change mixin name ([77c184d](https://gitlab.com/rxap/packages/commit/77c184db4157f3ac587f4a2fdc30a48cb78d6423))
+
+
+
+
+
 ## [11.1.3](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@11.1.2...@rxap/material-directives@11.1.3) (2021-04-13)
 
 
