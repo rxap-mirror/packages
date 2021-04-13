@@ -1,0 +1,13 @@
+@import "./lib/form-field-no-padding.directive.theme";
+
+@mixin rxap-material-directives-form-field-theming($theme) {
+
+  @include rxap-form-field-no-padding-theme($theme);
+
+}
+
+@mixin rxap-material-directives-form-field-typography($config) {
+
+  @include rxap-form-field-no-padding-typography($config);
+
+}
