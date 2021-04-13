@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.3](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@11.1.2...@rxap/material-directives@11.1.3) (2021-04-13)
+
+
+### Bug Fixes
+
+* add scss bundle support ([c39ebe6](https://gitlab.com/rxap/packages/commit/c39ebe649d12762d1e8ffb116313c83d57056ac9))
+
+
+
+
+
 ## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@11.1.1...@rxap/material-directives@11.1.2) (2021-03-19)
 
 
