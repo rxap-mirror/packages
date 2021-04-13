@@ -82,7 +82,7 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
     @Optional()
     @Self()
     @Inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN)
-    private readonly remoteMethodToken: any
+    private readonly remoteMethodToken?: any
   ) {
     if (this.remoteMethodToken) {
       this._remoteMethodOrIdOrToken = this.remoteMethodToken;

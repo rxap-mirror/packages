@@ -224,7 +224,7 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
     @Optional()
     @Self()
     @Inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN)
-    private readonly remoteMethodToken: any
+    private readonly remoteMethodToken?: any
   ) {
     if (this.remoteMethodToken) {
       this._remoteMethodOrIdOrToken = this.remoteMethodToken;
