@@ -1127,6 +1127,7 @@ export function IsHttpMethod(method: string): method is 'get' | 'put' | 'post' |
   return [ 'get', 'put', 'post', 'delete', 'patch' ].includes(method);
 }
 
+// TODO : remove and use ApplyTsMorphProject from @rxap/schematics-utilities
 export function CreateFilesFromTsMorphProject(project: Project, basePath: string): Rule {
   return (tree, context) => {
 
