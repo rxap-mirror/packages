@@ -235,6 +235,7 @@ export class TypescriptInterfaceGenerator {
         return 'Array<any>';
 
       case undefined:
+
         if (schema.$ref) {
           const name = this.resolveRefName(schema.$ref);
 
@@ -285,7 +286,11 @@ export class TypescriptInterfaceGenerator {
           }
         }
 
-        throw new Error('The property type is undefined and a ref is not defined!');
+        console.warn('The property type is undefined and a ref is not defined!');
+
+        // TODO : add support for allOf and anyOf
+
+        return writer => writer.write('any');
 
       default:
         throw new Error(`The property' type '${schema.type}' is not supported!`);
