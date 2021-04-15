@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.7.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.6.0...@rxap/schematics-utilities@11.7.0) (2021-04-15)
+
+
+### Features
+
+* add CoerceClass method ([6cd09f5](https://gitlab.com/rxap/packages/commit/6cd09f52e33a5df1beee13fe9c0ec8a4781ccc6f))
+
+
+
+
+
 # [11.6.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.5.1...@rxap/schematics-utilities@11.6.0) (2021-03-29)
 
 
