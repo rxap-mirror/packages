@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@11.0.5...@rxap/json-schema-to-typescript@11.0.6) (2021-04-15)
+
+
+### Bug Fixes
+
+* workaround for anyOf and allOf ([537015f](https://gitlab.com/rxap/packages/commit/537015fa15630b26a66861b25ce611f748dda29b))
+
+
+
+
+
 ## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@11.0.4...@rxap/json-schema-to-typescript@11.0.5) (2021-03-19)
 
 
