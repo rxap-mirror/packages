@@ -88,7 +88,7 @@ build:publish:
 
 .publish:
   stage: publish
-  image: registry.gitlab.com/rxap/gitlab-ci/lerna
+  image: registry.gitlab.com/rxap/gitlab-ci/angular-build
   tags:
   - build
   needs:
@@ -100,7 +100,11 @@ build:publish:
   script:
   - echo "@rxap:registry=$NPM_REGISTRY" >> .npmrc
   - git update-index --assume-unchanged .npmrc
-  - yarn lerna publish from-git --yes --ignore-scripts --no-git-reset --registry $NPM_REGISTRY
+  - PROJECT="$(echo $CI_COMMIT_TAG | cut -d'@' -f2 | cut -d'/' -f2)"
+  - echo "PROJECT=${PROJECT}"
+  - DIST_PATH="dist/$(cat angular.json | jq --arg name $PROJECT -r '.projects[$name].root')"
+  - echo "DIST_PATH=${DIST_PATH}"
+  - npm --prefix $DIST_PATH publish --registry $NPM_REGISTRY
 
 publish:npm:
   extends: .publish
