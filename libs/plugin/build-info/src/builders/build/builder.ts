@@ -65,7 +65,7 @@ export class Builder {
     const buildInfoFilePath = join(this.context.workspaceRoot, outputPath, 'build.json');
 
     if (existsSync(buildInfoFilePath)) {
-      throw new Error(`The build.json file already exists in the location: '${buildInfoFilePath}'`);
+      console.warn(`The build.json file already exists in the location: '${buildInfoFilePath}'`);
     }
 
     writeFileSync(buildInfoFilePath, buildJsonFile);
