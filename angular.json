@@ -4605,6 +4605,73 @@
           "builder": "@rxap/plugin-readme-generator:plugin"
         }
       }
+    },
+    "plugin-build-info": {
+      "root": "libs/plugin/build-info",
+      "sourceRoot": "libs/plugin/build-info/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/plugin/build-info/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/plugin/build-info"
+          ],
+          "options": {
+            "jestConfig": "libs/plugin/build-info/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/plugin/build-info",
+            "tsConfig": "libs/plugin/build-info/tsconfig.lib.json",
+            "packageJson": "libs/plugin/build-info/package.json",
+            "main": "libs/plugin/build-info/src/index.ts",
+            "assets": [
+              "libs/plugin/build-info/*.md",
+              {
+                "input": "./libs/plugin/build-info/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/plugin/build-info",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/plugin/build-info",
+                "glob": "builders.json",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "plugin-build-info:readme",
+              "plugin-build-info:build"
+            ]
+          }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:plugin"
+        }
+      }
     }
   },
   "newProjectRoot": "",
