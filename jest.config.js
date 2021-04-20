@@ -53,6 +53,7 @@ module.exports = {
     '<rootDir>/libs/upload',
     '<rootDir>/libs/schematics/form',
     '<rootDir>/libs/material/directives',
-    '<rootDir>/libs/fake'
+    '<rootDir>/libs/fake',
+    '<rootDir>/libs/plugin/i18n'
   ],
 };

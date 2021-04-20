@@ -4533,6 +4533,61 @@
           }
         }
       }
+    },
+    "plugin-i18n": {
+      "root": "libs/plugin/i18n",
+      "sourceRoot": "libs/plugin/i18n/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/plugin/i18n/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/plugin/i18n"
+          ],
+          "options": {
+            "jestConfig": "libs/plugin/i18n/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/libs/plugin/i18n",
+            "tsConfig": "libs/plugin/i18n/tsconfig.lib.json",
+            "packageJson": "libs/plugin/i18n/package.json",
+            "main": "libs/plugin/i18n/src/index.ts",
+            "assets": [
+              "libs/plugin/i18n/*.md",
+              {
+                "input": "./libs/plugin/i18n/src",
+                "glob": "**/*.!(ts)",
+                "output": "./src"
+              },
+              {
+                "input": "./libs/plugin/i18n",
+                "glob": "generators.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/plugin/i18n",
+                "glob": "executors.json",
+                "output": "."
+              }
+            ]
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",

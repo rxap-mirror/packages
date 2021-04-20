@@ -204,6 +204,9 @@
     },
     "fake": {
       "tags": []
+    },
+    "plugin-i18n": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
