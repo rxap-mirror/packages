@@ -1,5 +1,5 @@
 {
-  "name": "@rxap/build-info",
+  "name": "@rxap/plugin-build-info",
   "version": "11.1.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
