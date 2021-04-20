@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "title": "Build builder",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of architect targets"
+    }
+  },
+  "required": []
+}

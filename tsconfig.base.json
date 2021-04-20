@@ -95,7 +95,9 @@
       "@rxap/data-source/recorder": [
         "libs/data-source/recorder/src/public_api.ts"
       ],
-      "@rxap/utilities/modules": ["libs/utilities/modules/src/public_api.ts"],
+      "@rxap/utilities/modules": [
+        "libs/utilities/modules/src/public_api.ts"
+      ],
       "@rxap/plugin/library-schematics": [
         "libs/plugin/library-schematics/src/index.ts"
       ],
@@ -189,7 +191,9 @@
       "@rxap/plugin-library-publish": [
         "libs/plugin/library-publish/src/index.ts"
       ],
-      "@rxap/fullstory": ["libs/fullstory/src/index.ts"],
+      "@rxap/fullstory": [
+        "libs/fullstory/src/index.ts"
+      ],
       "@rxap/sentry": [
         "libs/sentry/src/index.ts"
       ],
@@ -261,6 +265,9 @@
       ],
       "@rxap/fake": [
         "libs/fake/src/index.ts"
+      ],
+      "@rxap/plugin-i18n": [
+        "libs/plugin/i18n/src/index.ts"
       ]
     }
   },

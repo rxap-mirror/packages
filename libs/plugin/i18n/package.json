@@ -1,0 +1,28 @@
+{
+  "name": "@rxap/plugin-i18n",
+  "version": "11.0.0",
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "keywords": [
+    "rxap",
+    "plugin",
+    "nrwl",
+    "i18n",
+    "builder",
+    "angular"
+  ],
+  "license": "MIT",
+  "private": false,
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "description": "",
+  "main": "src/index.js",
+  "schematics": "./collection.json",
+  "builders": "./builders.json",
+  "publishConfig": {
+    "directory": "../../../dist/libs/plugin/i18n"
+  }
+}
