@@ -46,7 +46,7 @@ export class Builder {
 
     const indexHtmlTemplateFilePath = this.options.indexHtmlTemplate;
 
-    if (indexHtmlTemplateFilePath) {
+    if (!indexHtmlTemplateFilePath) {
       throw new Error('The i18n index html template path is not defined');
     }
 

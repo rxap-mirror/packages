@@ -18,6 +18,7 @@
 
 Add the plugin to your workspace:
 
+
   ```
   yarn add @rxap/plugin-i18n
   ```
