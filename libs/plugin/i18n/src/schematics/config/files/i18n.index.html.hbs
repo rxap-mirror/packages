@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+</head>
+<body>
+<script>
+
+  const availableLanguages = [
+    {{#each availableLanguages}}
+      '{{this}}',
+    {{/each}}
+  ];
+  const preferredLanguages = (navigator && navigator.languages) || [];
+  let redirectLanguage = '{{defaultLanguage}}';
+
+  for (const preferredLanguage of preferredLanguages) {
+    if (availableLanguages.includes(preferredLanguage)) {
+      redirectLanguage = preferredLanguage;
+      break;
+    }
+  }
+
+  const redirectUrl = location.origin + '/' + redirectLanguage + location.pathname + location.search;
+
+  location.replace(redirectUrl);
+
+</script>
+</body>
+</html>

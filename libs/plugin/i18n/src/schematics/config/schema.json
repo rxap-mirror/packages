@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/schema",
   "id": "ConfigSchema",
   "title": "Config schema options",
-  "description": "Adds the schematics builder to the specified project.",
+  "description": "Adds the i18n builder to the specified project.",
   "type": "object",
   "properties": {
     "project": {
@@ -13,6 +13,15 @@
         "index": 0
       },
       "x-prompt": "For which project should the pack builder be added?"
+    },
+    "availableLanguages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "defaultLanguage": {
+      "type": "string"
     }
   },
   "required": [
