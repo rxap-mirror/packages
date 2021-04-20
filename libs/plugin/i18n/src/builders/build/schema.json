@@ -4,12 +4,14 @@
   "description": "",
   "type": "object",
   "properties": {
-    "targets": {
+    "availableLanguages": {
       "type": "array",
       "items": {
         "type": "string"
-      },
-      "description": "A list of architect targets"
+      }
+    },
+    "defaultLanguage": {
+      "type": "string"
     }
   },
   "required": []

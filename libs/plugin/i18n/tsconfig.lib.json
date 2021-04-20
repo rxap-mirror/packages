@@ -9,6 +9,7 @@
     ]
   },
   "exclude": [
+    "**/files/**",
     "**/*.spec.ts"
   ],
   "include": [

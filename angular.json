@@ -4576,16 +4576,33 @@
               },
               {
                 "input": "./libs/plugin/i18n",
-                "glob": "generators.json",
+                "glob": "collection.json",
                 "output": "."
               },
               {
                 "input": "./libs/plugin/i18n",
-                "glob": "executors.json",
+                "glob": "builders.json",
                 "output": "."
+              },
+              {
+                "input": "./libs/plugin/i18n/src",
+                "glob": "**/files/**",
+                "output": "./src"
               }
             ]
           }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "plugin-i18n:readme",
+              "plugin-i18n:build"
+            ]
+          }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:plugin"
         }
       }
     }
