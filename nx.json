@@ -207,6 +207,9 @@
     },
     "plugin-i18n": {
       "tags": []
+    },
+    "plugin-build-info": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

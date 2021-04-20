@@ -54,6 +54,7 @@ module.exports = {
     '<rootDir>/libs/schematics/form',
     '<rootDir>/libs/material/directives',
     '<rootDir>/libs/fake',
-    '<rootDir>/libs/plugin/i18n'
+    '<rootDir>/libs/plugin/i18n',
+    '<rootDir>/libs/plugin/build-info'
   ],
 };

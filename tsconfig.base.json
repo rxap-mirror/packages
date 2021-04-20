@@ -268,6 +268,9 @@
       ],
       "@rxap/plugin-i18n": [
         "libs/plugin/i18n/src/index.ts"
+      ],
+      "@rxap/plugin-build-info": [
+        "libs/plugin/build-info/src/index.ts"
       ]
     }
   },
