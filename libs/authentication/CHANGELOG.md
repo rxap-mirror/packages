@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/authentication@11.0.11...@rxap/authentication@11.1.0) (2021-04-21)
+
+
+### Features
+
+* partial remove the isAuthenticated$ concept ([06a2a3f](https://gitlab.com/rxap/packages/commit/06a2a3f3481f93cc51671c8f202bb58b2381df09))
+
+
+
+
+
 ## [11.0.11](https://gitlab.com/rxap/packages/compare/@rxap/authentication@11.0.10...@rxap/authentication@11.0.11) (2021-03-28)
 
 
