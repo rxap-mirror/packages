@@ -61,7 +61,7 @@ export class OAuthService {
   ) {}
 
   public signInWithRedirect(lastUrl?: string): void {
-    location.replace(`${this.ssoUrl}?redirect=${btoa(location.origin + '/sso')}&secret=${this.secret}&payload=${btoa(JSON.stringify({ lastUrl }))}`);
+    location.replace(`${this.ssoUrl}?redirect=${btoa(location.origin + '/oauth')}&secret=${this.secret}&payload=${btoa(JSON.stringify({ lastUrl }))}`);
   }
 
   public async isAuthenticated(): Promise<boolean> {
