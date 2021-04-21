@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.10](https://gitlab.com/rxap/packages/compare/@rxap/config@11.0.9...@rxap/config@11.0.10) (2021-04-21)
+
+
+### Bug Fixes
+
+* update default config file path ([ca53d05](https://gitlab.com/rxap/packages/commit/ca53d05eb9605d35bda1fac41ee3c3c09683f0b0))
+
+
+
+
+
 ## [11.0.9](https://gitlab.com/rxap/packages/compare/@rxap/config@11.0.8...@rxap/config@11.0.9) (2021-03-19)
 
 
