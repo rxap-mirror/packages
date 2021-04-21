@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.2.2...@rxap/layout@11.3.0) (2021-04-21)
+
+
+### Features
+
+* add apps button concept ([be394b0](https://gitlab.com/rxap/packages/commit/be394b0bb4df0ef75f5a641943188b4b6d24ea2d))
+
+
+
+
+
 ## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.2.1...@rxap/layout@11.2.2) (2021-03-19)
 
 
