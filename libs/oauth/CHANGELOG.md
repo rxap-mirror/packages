@@ -1,6 +1,24 @@
 # Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [11.7.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.3.1...@rxap/oauth@11.7.0) (2021-04-21)
+
+
+### Bug Fixes
+
+* add missing export ([d40682d](https://gitlab.com/rxap/packages/commit/d40682d23a0add0b53b765b34e669c7682d788c3))
+* class extraction ([901336f](https://gitlab.com/rxap/packages/commit/901336ffc5d50d151b45a1f049992c3ab0c9bc3c))
+
+
+### Features
+
+* add redirect after sign out ([e1d3527](https://gitlab.com/rxap/packages/commit/e1d35275ecbd58016e31842b5f5d5bde0aa4b081))
+
+
+
+
 
 # [11.6.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.3.1...@rxap/oauth@11.6.0) (2021-04-21)
 
