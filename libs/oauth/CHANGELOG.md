@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.1.1...@rxap/oauth@11.2.0) (2021-04-21)
+
+
+### Features
+
+* add client components ([204a30d](https://gitlab.com/rxap/packages/commit/204a30d559355ec207d16823e53e95743d99c4e0))
+
+
+
+
+
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.1.0...@rxap/oauth@11.1.1) (2021-04-21)
 
 
