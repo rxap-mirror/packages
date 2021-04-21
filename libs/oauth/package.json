@@ -1,6 +1,6 @@
 {
   "name": "@rxap/oauth",
-  "version": "11.5.0",
+  "version": "11.6.0",
   "peerDependencies": {
     "@angular/animations": "^11.2.6",
     "@angular/cdk": "^11.2.5",
