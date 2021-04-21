@@ -22,7 +22,7 @@ export interface IAuthenticationService {
 
   signInWithEmailAndPassword(email: string, password: string, remember: boolean): Promise<boolean>;
 
-  signOut(): Promise<boolean>;
+  signOut(): Promise<void>;
 
 }
 
@@ -87,14 +87,10 @@ export class RxapAuthenticationService implements IAuthenticationService {
 
   }
 
-  public async signOut(): Promise<boolean> {
+  public async signOut(): Promise<void> {
     console.warn('The default RxapAuthenticationService implementation should only be used in a development environment!');
-    const logout = true;
-    this.isAuthenticated$.next(!logout);
-    if (logout) {
-      localStorage.removeItem(RXAP_AUTHENTICATION_LOCAL_STORAGE_KEY);
-    }
-    return logout;
+    this.isAuthenticated$.next(false);
+    localStorage.removeItem(RXAP_AUTHENTICATION_LOCAL_STORAGE_KEY);
   }
 
   public signInWithProvider(provider: string): Promise<boolean> {
