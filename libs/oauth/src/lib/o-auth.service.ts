@@ -189,7 +189,7 @@ export class OAuthService {
     this.expiresIn    = undefined;
   }
 
-  protected authenticated(response: OAuthStatus, remember: boolean = this.remember ?? false): void {
+  public authenticated(response: OAuthStatus, remember: boolean = this.remember ?? false): void {
     this.accessToken  = response.accessToken;
     this.refreshToken = response.refreshToken;
     this.expiresAt    = response.expiresAt;
