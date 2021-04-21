@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.7.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.7.0...@rxap/oauth@11.7.1) (2021-04-21)
+
+
+### Bug Fixes
+
+* add missing animations definition ([cc563c8](https://gitlab.com/rxap/packages/commit/cc563c8edf37970ee6b2dcf4a8ee651fb76c8536))
+
+
+
+
+
 # [11.7.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.3.1...@rxap/oauth@11.7.0) (2021-04-21)
 
 
