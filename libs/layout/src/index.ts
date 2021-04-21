@@ -22,6 +22,8 @@ export * from './lib/header/sidenav-toggle-button/sidenav-toggle-button.componen
 export * from './lib/header/sidenav-toggle-button/sidenav-toggle-button.component.module';
 export * from './lib/header/navigation-progress-bar/navigation-progress-bar.component';
 export * from './lib/header/navigation-progress-bar/navigation-progress-bar.component.module';
+export * from './lib/header/apps-button/apps-button.component.module';
+export * from './lib/header/apps-button/apps-button.component';
 
 // endregion
 

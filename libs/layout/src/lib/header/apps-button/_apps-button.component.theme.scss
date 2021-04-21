@@ -1,0 +1,47 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-apps-button-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-apps-button {
+
+
+  }
+
+  .cdk-overlay-container {
+
+    .grid-container {
+      background-color: map-get($background, dialog);
+
+      .grid {
+
+        li:not(.empty) {
+
+          &:hover {
+            background-color: map-get($background, hover);
+            cursor: pointer;
+          }
+
+          &:active {
+            background: map-get($background, focused-button);
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+@mixin rxap-apps-button-typography($config) {
+  .rxap-apps-button {
+  }
+}

@@ -1,0 +1,37 @@
+.grid-container {
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+}
+
+.grid {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-radius: 8px;
+    padding: 6px;
+    height: 84px;
+    width: 84px;
+    transition-delay: 0s;
+    transition-duration: 0.2s;
+    transition-property: tramsform;
+    transition-timing-function: cubic-bezier(0.333, 0, 0, 1);
+    position: relative;
+
+    a {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      left: 6px;
+      bottom: 6px;
+      text-align: center;
+      text-decoration: none;
+      color: black;
+    }
+
+  }
+
+}

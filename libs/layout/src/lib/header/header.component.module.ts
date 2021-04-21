@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { AppsButtonComponentModule } from './apps-button/apps-button.component.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { MatMenuModule } from '@angular/material/menu';
     CommonModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    AppsButtonComponentModule
   ],
   exports:      [ HeaderComponent ]
 })
