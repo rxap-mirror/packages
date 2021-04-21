@@ -21,14 +21,17 @@ export class LanguageSelectorService {
     this.languages        = this.config.get<any>('i18n.languages') ?? {};
     this.defaultLanguage  = this.config.get('i18n.defaultLanguage') ?? Object.keys(this.languages)[ 0 ] ?? 'en';
     this.selectedLanguage = localStorage.getItem(RXAP_SELECTED_LANGUAGE_LOCAL_STORAGE_KEY) ?? this.defaultLanguage;
-    if (localStorage.getItem(RXAP_SELECTED_LANGUAGE_LOCAL_STORAGE_KEY)) {
-      this.redirect(this.selectedLanguage);
-    }
   }
 
   public setLanguage(language: string) {
     if (language !== this.selectedLanguage) {
       this.redirect(language);
+    }
+  }
+
+  public autoRedirect() {
+    if (localStorage.getItem(RXAP_SELECTED_LANGUAGE_LOCAL_STORAGE_KEY)) {
+      this.redirect(localStorage.getItem(RXAP_SELECTED_LANGUAGE_LOCAL_STORAGE_KEY)!);
     }
   }
 
