@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.3.0...@rxap/layout@11.3.1) (2021-04-21)
+
+
+### Bug Fixes
+
+* suppressed href action ([a7874fb](https://gitlab.com/rxap/packages/commit/a7874fbf06cc85d7ccb42787d06883f016c9b8ba))
+
+
+
+
+
 # [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.2.2...@rxap/layout@11.3.0) (2021-04-21)
 
 
