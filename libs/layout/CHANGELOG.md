@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.4.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.3.1...@rxap/layout@11.4.0) (2021-04-21)
+
+
+### Features
+
+* add language selector ([4204cd4](https://gitlab.com/rxap/packages/commit/4204cd4437520ffebdabc42fd8c8000402c7ff47))
+
+
+
+
+
 ## [11.3.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.3.0...@rxap/layout@11.3.1) (2021-04-21)
 
 
