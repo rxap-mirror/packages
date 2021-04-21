@@ -17,3 +17,12 @@ export const RXAP_O_AUTH_REDIRECT_SIGN_OUT = new InjectionToken('rxap/o-auth/red
   providedIn: 'root',
   factory:    DefaultRedirectSignOutFactory
 });
+
+export function DefaultRedirectUrl(): string {
+  return location.origin + '/oauth';
+}
+
+export const RXAP_O_AUTH_REDIRECT_URL = new InjectionToken('rxap/o-auth/redirect-url', {
+  providedIn: 'root',
+  factory:    DefaultRedirectUrl
+});

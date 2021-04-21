@@ -12,7 +12,10 @@ import {
   OAuthMethod,
   OAuthMethodResponse
 } from './o-auth.method';
-import { RXAP_O_AUTH_REDIRECT_SIGN_OUT } from './tokens';
+import {
+  RXAP_O_AUTH_REDIRECT_SIGN_OUT,
+  RXAP_O_AUTH_REDIRECT_URL
+} from './tokens';
 import { Router } from '@angular/router';
 
 export const OAUTH_SECRET        = new InjectionToken('OAUTH_SECRET');
@@ -66,11 +69,17 @@ export class OAuthService {
     private readonly ssoUrl: string | null            = null,
     @Optional()
     @Inject(RXAP_O_AUTH_REDIRECT_SIGN_OUT)
-    private readonly redirectSignOut: string[] | null = null
+    private readonly redirectSignOut: string[] | null = null,
+    @Optional()
+    @Inject(RXAP_O_AUTH_REDIRECT_URL)
+    private readonly redirectUrl: string | null       = null
   ) {}
 
   public signInWithRedirect(lastUrl?: string): void {
-    location.replace(`${this.ssoUrl}?redirect=${btoa(location.origin + '/oauth')}&secret=${this.secret}&payload=${btoa(JSON.stringify({ lastUrl }))}`);
+    if (!this.redirectUrl) {
+      throw new Error('Redirect url is not defined');
+    }
+    location.replace(`${this.ssoUrl}?redirect=${btoa(this.redirectUrl)}&secret=${this.secret}&payload=${btoa(JSON.stringify({ lastUrl }))}`);
   }
 
   public async isAuthenticated(): Promise<boolean> {

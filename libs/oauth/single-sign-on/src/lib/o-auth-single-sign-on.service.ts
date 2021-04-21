@@ -7,7 +7,8 @@ import {
   OAUTH_AUTH_ENDPOINT,
   OAUTH_SECRET,
   OAUTH_SSO_URL,
-  RXAP_O_AUTH_REDIRECT_SIGN_OUT
+  RXAP_O_AUTH_REDIRECT_SIGN_OUT,
+  RXAP_O_AUTH_REDIRECT_URL
 } from '@rxap/oauth';
 import {
   Injectable,
@@ -38,18 +39,21 @@ export class OAuthSingleSignOnService extends OAuthService {
       profileEndpoint: string | null = null,
     @Optional()
     @Inject(OAUTH_AUTH_ENDPOINT)
-      authEndpoint: string | null    = null,
+      authEndpoint: string | null      = null,
     @Optional()
     @Inject(OAUTH_SECRET)
-      secret: string | null          = null,
+      secret: string | null            = null,
     @Optional()
     @Inject(OAUTH_SSO_URL)
-      ssoUrl: string | null          = null,
+      ssoUrl: string | null            = null,
     @Optional()
     @Inject(RXAP_O_AUTH_REDIRECT_SIGN_OUT)
-      redirectSignOut: string[] | null = null
+      redirectSignOut: string[] | null = null,
+    @Optional()
+    @Inject(RXAP_O_AUTH_REDIRECT_URL)
+      redirectUrl: string | null       = null
   ) {
-    super(oAuthMethod, getOAuthProfileMethod, router, profileEndpoint, authEndpoint, secret, ssoUrl, redirectSignOut);
+    super(oAuthMethod, getOAuthProfileMethod, router, profileEndpoint, authEndpoint, secret, ssoUrl, redirectSignOut, redirectUrl);
   }
 
   public async signInWithEmailAndPassword(
