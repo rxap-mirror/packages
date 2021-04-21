@@ -41,6 +41,8 @@ export class OAuthService {
   public expiresAt?: Date | null;
   public remember?: boolean;
 
+  private _isAuthenticated: boolean | null = null;
+
   constructor(
     @Inject(OAuthMethod)
     public readonly oAuthMethod: OAuthMethod,
@@ -74,6 +76,10 @@ export class OAuthService {
       throw new Error('The oauth auth endpoint is not defined');
     }
 
+    if (this._isAuthenticated !== null) {
+      return this._isAuthenticated;
+    }
+
     this.accessToken  = this.getItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY);
     this.refreshToken = this.getItem(REFRESH_TOKEN_LOCAL_STORAGE_KEY);
     if (this.getItem(REMEMBER_LOCAL_STORAGE_KEY)) {
@@ -92,7 +98,7 @@ export class OAuthService {
 
         if (!profile) {
           console.log('profile is not defined');
-          return false;
+          return this._isAuthenticated = false;
         }
 
         this.authenticated({
@@ -102,7 +108,7 @@ export class OAuthService {
           expiresIn:    this.expiresIn
         }, this.remember);
 
-        return true;
+        return this._isAuthenticated = true;
       } else {
         this.accessToken = undefined;
         this.expiresIn   = undefined;
@@ -116,7 +122,7 @@ export class OAuthService {
       console.debug('Refresh token is defined: ' + this.refreshToken);
       try {
         await this.signInWithRefreshToken(this.refreshToken);
-        return true;
+        return this._isAuthenticated = true;
       } catch (e) {
         if (e.status !== 401 && e.status !== 400) {
           console.error('Could not sign in with refresh token', e.message);
@@ -128,7 +134,7 @@ export class OAuthService {
 
     console.warn('Unauthenticated', localStorage.length);
 
-    return false;
+    return this._isAuthenticated = false;
   }
 
   public async signInWithEmailAndPassword(
@@ -182,11 +188,12 @@ export class OAuthService {
 
   public signOut() {
     this.clearStorage();
-    this.accessToken  = undefined;
-    this.refreshToken = undefined;
-    this.expiresAt    = undefined;
-    this.remember     = undefined;
-    this.expiresIn    = undefined;
+    this.accessToken      = undefined;
+    this.refreshToken     = undefined;
+    this.expiresAt        = undefined;
+    this.remember         = undefined;
+    this.expiresIn        = undefined;
+    this._isAuthenticated = false;
   }
 
   public authenticated(response: OAuthStatus, remember: boolean = this.remember ?? false): void {
@@ -215,6 +222,8 @@ export class OAuthService {
       this.removeItem(REMEMBER_LOCAL_STORAGE_KEY);
       this.removeItem(EXPIRES_AT_LOCAL_STORAGE_KEY);
     }
+
+    this._isAuthenticated = true;
 
   }
 
