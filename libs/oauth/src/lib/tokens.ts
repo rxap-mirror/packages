@@ -1,10 +1,19 @@
 import { InjectionToken } from '@angular/core';
 
-export function DefaultRedirectLoginFactory(): string[] {
+export function DefaultRedirectSignInFactory(): string[] {
   return [ '/', 'authentication', 'login' ];
 }
 
-export const RXAP_O_AUTH_REDIRECT_LOGIN = new InjectionToken('rxap/o-auth/redirect-login', {
+export const RXAP_O_AUTH_REDIRECT_SIGN_IN = new InjectionToken('rxap/o-auth/redirect-sign-in', {
   providedIn: 'root',
-  factory:    DefaultRedirectLoginFactory
+  factory:    DefaultRedirectSignInFactory
+});
+
+export function DefaultRedirectSignOutFactory(): string[] {
+  return [ '/', 'authentication', 'login' ];
+}
+
+export const RXAP_O_AUTH_REDIRECT_SIGN_OUT = new InjectionToken('rxap/o-auth/redirect-sign-out', {
+  providedIn: 'root',
+  factory:    DefaultRedirectSignOutFactory
 });

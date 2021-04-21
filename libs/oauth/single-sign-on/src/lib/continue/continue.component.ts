@@ -20,7 +20,7 @@ import {
   take
 } from 'rxjs/operators';
 import { OAuthSingleSignOnService } from '../o-auth-single-sign-on.service';
-import { RXAP_O_AUTH_REDIRECT_LOGIN } from '@rxap/oauth';
+import { RXAP_O_AUTH_REDIRECT_SIGN_IN } from '@rxap/oauth';
 
 @Component({
   selector:        'rxap-continue',
@@ -59,7 +59,7 @@ export class ContinueComponent<Profile = any> implements OnInit {
     private readonly router: Router,
     @Inject(OAuthSingleSignOnService)
     private readonly oAuthService: OAuthSingleSignOnService,
-    @Inject(RXAP_O_AUTH_REDIRECT_LOGIN)
+    @Inject(RXAP_O_AUTH_REDIRECT_SIGN_IN)
     private readonly redirectLogin: string[]
   ) {
   }

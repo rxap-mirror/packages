@@ -12,4 +12,4 @@ import { ContinueComponentModule } from './continue/continue.component.module';
     ContainerComponentModule
   ]
 })
-export class OAuthSingleSignOnModule {}
+export class OAuthSingleSignOnRoutingModule {}

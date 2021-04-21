@@ -13,3 +13,4 @@ export * from './lib/loading/loading.component';
 export * from './lib/loading/loading.component.module';
 export * from './lib/sign-in-with-redirect/sign-in-with-redirect.component';
 export * from './lib/sign-in-with-redirect/sign-in-with-redirect.component.module';
+export * from './lib/o-auth-routing.module';

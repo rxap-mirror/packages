@@ -12,6 +12,8 @@ import {
   OAuthMethod,
   OAuthMethodResponse
 } from './o-auth.method';
+import { RXAP_O_AUTH_REDIRECT_SIGN_OUT } from './tokens';
+import { Router } from '@angular/router';
 
 export const OAUTH_SECRET        = new InjectionToken('OAUTH_SECRET');
 export const OAUTH_AUTH_ENDPOINT = new InjectionToken('OAUTH_AUTH_ENDPOINT');
@@ -48,18 +50,23 @@ export class OAuthService {
     public readonly oAuthMethod: OAuthMethod,
     @Inject(GetOAuthProfileMethod)
     public readonly getOAuthProfileMethod: GetOAuthProfileMethod,
+    @Inject(Router)
+    private readonly router: Router,
     @Optional()
     @Inject(PROFILE_AUTH_ENDPOINT)
-    public profileEndpoint: string | null = null,
+    public profileEndpoint: string | null             = null,
     @Optional()
     @Inject(OAUTH_AUTH_ENDPOINT)
-    public authEndpoint: string | null    = null,
+    public authEndpoint: string | null                = null,
     @Optional()
     @Inject(OAUTH_SECRET)
-    public secret: string | null          = null,
+    public secret: string | null                      = null,
     @Optional()
     @Inject(OAUTH_SSO_URL)
-    private readonly ssoUrl: string
+    private readonly ssoUrl: string | null            = null,
+    @Optional()
+    @Inject(RXAP_O_AUTH_REDIRECT_SIGN_OUT)
+    private readonly redirectSignOut: string[] | null = null
   ) {}
 
   public signInWithRedirect(lastUrl?: string): void {
@@ -194,6 +201,9 @@ export class OAuthService {
     this.remember         = undefined;
     this.expiresIn        = undefined;
     this._isAuthenticated = false;
+    if (this.redirectSignOut) {
+      return this.router.navigate(this.redirectSignOut);
+    }
   }
 
   public authenticated(response: OAuthStatus, remember: boolean = this.remember ?? false): void {

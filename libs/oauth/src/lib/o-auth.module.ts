@@ -3,23 +3,16 @@ import {
   ModuleWithProviders
 } from '@angular/core';
 import {
-  ContainerComponentModule
-} from './container/container.component.module';
-import { LoadingComponentModule } from './loading/loading.component.module';
-import { SignInWithRedirectComponentModule } from './sign-in-with-redirect/sign-in-with-redirect.component.module';
-import { RXAP_O_AUTH_REDIRECT_LOGIN } from './tokens';
+  RXAP_O_AUTH_REDIRECT_SIGN_IN,
+  RXAP_O_AUTH_REDIRECT_SIGN_OUT
+} from './tokens';
 
 export interface OAuthModuleOptions {
-  loginPath?: string[]
+  signInPath?: string[]
+  signOutPath?: string[]
 }
 
-@NgModule({
-  exports: [
-    ContainerComponentModule,
-    LoadingComponentModule,
-    SignInWithRedirectComponentModule
-  ]
-})
+@NgModule()
 export class OAuthModule {
 
   public static forRoot(options: OAuthModuleOptions = {}): ModuleWithProviders<OAuthModule> {
@@ -27,8 +20,12 @@ export class OAuthModule {
       ngModule:  OAuthModule,
       providers: [
         {
-          provide:  RXAP_O_AUTH_REDIRECT_LOGIN,
-          useValue: options.loginPath ?? [ '/', 'oauth', 'redirect' ]
+          provide:  RXAP_O_AUTH_REDIRECT_SIGN_IN,
+          useValue: options.signInPath ?? [ '/', 'oauth', 'redirect' ]
+        },
+        {
+          provide:  RXAP_O_AUTH_REDIRECT_SIGN_OUT,
+          useValue: options.signOutPath ?? [ '/', 'oauth', 'redirect' ]
         }
       ]
     };
