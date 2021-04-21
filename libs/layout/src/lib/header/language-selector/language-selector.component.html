@@ -1,0 +1,9 @@
+<ng-template [ngIf]="(language.languages | keyvalue).length">
+  <div>
+    <mat-form-field appearance="outline" class="language-selector">
+      <mat-select (ngModelChange)="language.setLanguage($event)" [ngModel]="language.selectedLanguage">
+        <mat-option *ngFor="let item of language.languages | keyvalue" [value]="item.key">{{item.value}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</ng-template>

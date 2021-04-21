@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AppsButtonComponentModule } from './apps-button/apps-button.component.module';
+import { LanguageSelectorComponentModule } from './language-selector/language-selector.component.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AppsButtonComponentModule } from './apps-button/apps-button.component.m
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    AppsButtonComponentModule
+    AppsButtonComponentModule,
+    LanguageSelectorComponentModule
   ],
   exports:      [ HeaderComponent ]
 })
