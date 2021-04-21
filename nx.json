@@ -213,6 +213,9 @@
     },
     "single-sign-on": {
       "tags": []
+    },
+    "oauth": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

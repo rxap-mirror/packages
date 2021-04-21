@@ -274,6 +274,9 @@
       ],
       "@rxap/single-sign-on": [
         "libs/single-sign-on/src/index.ts"
+      ],
+      "@rxap/oauth": [
+        "libs/oauth/src/index.ts"
       ]
     }
   },

@@ -4749,6 +4749,73 @@
           }
         }
       }
+    },
+    "oauth": {
+      "projectType": "library",
+      "root": "libs/oauth",
+      "sourceRoot": "libs/oauth/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/oauth/tsconfig.lib.json",
+            "project": "libs/oauth/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/oauth/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/oauth/src/**/*.ts",
+              "libs/oauth/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/oauth"
+          ],
+          "options": {
+            "jestConfig": "libs/oauth/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "oauth:update-package-group",
+              "oauth:build:production",
+              "oauth:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap-plugin/library-schematics:build",
+          "options": {
+            "buildTarget": "oauth:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/oauth/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap-plugin/library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap/plugin-library-publish:publish",
+          "options": {
+            "buildTarget": "oauth:build:production",
+            "preTarget": "oauth:pack"
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",
