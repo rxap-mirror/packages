@@ -3,7 +3,7 @@
 @import "./lib/sign-in-with-redirect/sign-in-with-redirect.component.theme";
 /* IMPORT */
 
-@mixin oauth-theme($theme) {
+@mixin rxap-oauth-theme($theme) {
 
   @include rxap-container-theme($theme);
   @include rxap-oauth-single-sign-on-theme($theme);
@@ -12,7 +12,7 @@
 
 }
 
-@mixin oauth-typography($config) {
+@mixin rxap-oauth-typography($config) {
 
   @include rxap-container-typography($config);
   @include rxap-oauth-single-sign-on-typography($config);
