@@ -1,18 +1,19 @@
 {
   "name": "@rxap/oauth",
-  "version": "11.0.0",
+  "version": "11.1.0",
   "peerDependencies": {
+    "@angular/animations": "^11.2.6",
+    "@angular/cdk": "^11.2.5",
     "@angular/common": "^11.2.6",
     "@angular/core": "^11.2.6",
-    "@angular/router": "11.2.6",
-    "@angular/animations": "11.2.6",
     "@angular/flex-layout": "^11.0.0-beta.33",
     "@angular/material": "^11.2.5",
-    "@rxap/directives": "11.2.2",
-    "@rxap/services": "11.2.0",
-    "@rxap/utilities": "11.3.3",
-    "rxjs": "6.5.5",
-    "@angular/cdk": "^11.2.5"
+    "@angular/router": "^11.2.6",
+    "@rxap/directives": "^11.2.2",
+    "@rxap/services": "^11.2.0",
+    "@rxap/utilities": "^11.3.3",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.5"
   },
   "dependencies": {
     "tslib": "^2.0.0"
@@ -26,5 +27,21 @@
       "@rxap/services",
       "@rxap/utilities"
     ]
+  },
+  "license": "MIT",
+  "keywords": [
+    "rxap",
+    "angular"
+  ],
+  "publishConfig": {
+    "directory": "../../dist/libs/oauth"
+  },
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "author": "Merzough Münker",
+  "private": false,
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   }
 }
