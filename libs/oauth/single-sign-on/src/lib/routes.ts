@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
 import { ContinueComponent } from './continue/continue.component';
-import { ProfileResolve } from '@rxap/oauth';
+import {
+  ProfileResolve,
+  ContainerComponent,
+  LoadingComponent
+} from '@rxap/oauth';
 import { OAuthSingleSignOnGuard } from './o-auth-single-sign-on.guard';
-import { LoadingComponent } from './loading/loading.component';
-import { ContainerComponent } from './container/container.component';
 
 export const RXAP_O_AUTH_SINGLE_SIGN_ON_ROUTES: Routes = [
   {
@@ -18,9 +20,13 @@ export const RXAP_O_AUTH_SINGLE_SIGN_ON_ROUTES: Routes = [
         }
       },
       {
-        path:        '**',
+        path:        '',
         canActivate: [ OAuthSingleSignOnGuard ],
         component:   LoadingComponent
+      },
+      {
+        path:       '**',
+        redirectTo: ''
       }
     ]
   }

@@ -12,7 +12,7 @@ import {
 import { OAuthService } from './o-auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class OAuthGuard implements CanActivate, CanActivateChild {
+export class OAuthRedirectGuard implements CanActivate, CanActivateChild {
 
   constructor(
     @Inject(OAuthService)

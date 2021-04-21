@@ -1,7 +1,5 @@
 export * from './lib/continue/continue.component.module';
 export * from './lib/continue/continue.component';
-export * from './lib/loading/loading.component';
-export * from './lib/loading/loading.component.module';
 export * from './lib/o-auth-single-sign-on.guard';
 export * from './lib/o-auth-single-sign-on.module';
 export * from './lib/o-auth-single-sign-on.service';

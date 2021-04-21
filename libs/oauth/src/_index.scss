@@ -1,9 +1,13 @@
-@import "../single-sign-on/src/lib/container/container.component.theme";
+@import "./lib/container/container.component.theme";
+@import "../single-sign-on/src/index";
+@import "./lib/sign-in-with-redirect/sign-in-with-redirect.component.theme";
 /* IMPORT */
 
 @mixin oauth-theme($theme) {
 
   @include rxap-container-theme($theme);
+  @include rxap-oauth-single-sign-on-theme($theme);
+  @include rxap-sign-in-with-redirect-theme($theme);
   /* THEME_INCLUDE */
 
 }
@@ -11,6 +15,8 @@
 @mixin oauth-typography($config) {
 
   @include rxap-container-typography($config);
+  @include rxap-oauth-single-sign-on-typography($config);
+  @include rxap-sign-in-with-redirect-typography($config);
   /* TYPOGRAPHY_INCLUDE */
 
 }
