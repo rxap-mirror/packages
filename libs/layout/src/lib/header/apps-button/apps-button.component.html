@@ -12,7 +12,7 @@
 
       <ul [ngStyle]="{ columns: columns }" class="grid">
         <li *ngFor="let item of gridWithPadding" [ngClass]="{ empty: item.empty }">
-          <a (click)="isOpen = false" *ngIf="!item.empty" [href]="item.href">
+          <a *ngIf="!item.empty" [href]="item.href">
 
         <span fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="12px">
           <img [src]="item.image" width="53px">
