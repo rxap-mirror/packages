@@ -1,0 +1,7 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/libs/single-sign-on",
+  "lib": {
+    "entryFile": "src/index.ts"
+  }
+}

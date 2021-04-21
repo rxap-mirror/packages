@@ -271,6 +271,9 @@
       ],
       "@rxap/plugin-build-info": [
         "libs/plugin/build-info/src/index.ts"
+      ],
+      "@rxap/single-sign-on": [
+        "libs/single-sign-on/src/index.ts"
       ]
     }
   },
