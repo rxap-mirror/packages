@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.4.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.4.0...@rxap/layout@11.4.1) (2021-04-21)
+
+
+### Bug Fixes
+
+* trigger auto redirect manuel ([849e28a](https://gitlab.com/rxap/packages/commit/849e28a5ef6a7fa49a8f81903337517c9331d24a))
+
+
+
+
+
 # [11.4.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.3.1...@rxap/layout@11.4.0) (2021-04-21)
 
 

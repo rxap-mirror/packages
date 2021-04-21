@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.8.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.7.2...@rxap/oauth@11.8.0) (2021-04-21)
+
+
+### Features
+
+* add support for custom redirect url ([c5de0f2](https://gitlab.com/rxap/packages/commit/c5de0f2b04869c7cd969a3532605e7a19e5fe3d1))
+
+
+
+
+
 ## [11.7.2](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.7.1...@rxap/oauth@11.7.2) (2021-04-21)
 
 
