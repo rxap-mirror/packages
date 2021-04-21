@@ -1,0 +1,23 @@
+.language-selector {
+  width: 142px;
+
+  ::ng-deep {
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+
+      .mat-form-field-infix {
+        padding: 12px 0;
+        border-width: 6px;
+
+        .mat-select-arrow-wrapper {
+          transform: translateY(0%);
+        }
+
+      }
+
+    }
+
+  }
+
+}
