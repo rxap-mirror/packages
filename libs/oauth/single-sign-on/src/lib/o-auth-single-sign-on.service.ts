@@ -47,7 +47,7 @@ export class OAuthSingleSignOnService extends OAuthService {
       ssoUrl: string | null          = null,
     @Optional()
     @Inject(RXAP_O_AUTH_REDIRECT_SIGN_OUT)
-      redirectSignOut: string | null = null
+      redirectSignOut: string[] | null = null
   ) {
     super(oAuthMethod, getOAuthProfileMethod, router, profileEndpoint, authEndpoint, secret, ssoUrl, redirectSignOut);
   }
