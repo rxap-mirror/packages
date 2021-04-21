@@ -11,7 +11,7 @@ import {
 import { OAuthSingleSignOnService } from './o-auth-single-sign-on.service';
 import {
   OAuthService,
-  RXAP_O_AUTH_REDIRECT_LOGIN
+  RXAP_O_AUTH_REDIRECT_SIGN_IN
 } from '@rxap/oauth';
 import { RXAP_O_AUTH_SINGLE_SIGN_ON_REDIRECT_CONTINUE } from './tokens';
 
@@ -25,7 +25,7 @@ export class OAuthSingleSignOnGuard implements CanActivate {
     private readonly router: Router,
     @Inject(RXAP_O_AUTH_SINGLE_SIGN_ON_REDIRECT_CONTINUE)
     private readonly redirectContinue: string[],
-    @Inject(RXAP_O_AUTH_REDIRECT_LOGIN)
+    @Inject(RXAP_O_AUTH_REDIRECT_SIGN_IN)
     private readonly redirectLogin: string[]
   ) {
   }

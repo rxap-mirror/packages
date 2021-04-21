@@ -1,18 +1,18 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [11.4.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.3.1...@rxap/oauth@11.4.0) (2021-04-21)
+
+### Features
+
+* add redirect after sign out ([6d877c8](https://gitlab.com/rxap/packages/commit/6d877c873d92f95bffe427703a3fd9316ac880aa))
 
 ## [11.3.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.3.0...@rxap/oauth@11.3.1) (2021-04-21)
-
 
 ### Bug Fixes
 
 * injection issue while extend a service ([a32eb94](https://gitlab.com/rxap/packages/commit/a32eb94ec2d56013df0f0b9a5e77329d5f197651))
-
-
-
-
 
 # [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.2.3...@rxap/oauth@11.3.0) (2021-04-21)
 

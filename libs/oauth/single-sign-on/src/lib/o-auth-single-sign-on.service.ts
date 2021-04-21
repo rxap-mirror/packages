@@ -6,13 +6,15 @@ import {
   PROFILE_AUTH_ENDPOINT,
   OAUTH_AUTH_ENDPOINT,
   OAUTH_SECRET,
-  OAUTH_SSO_URL
+  OAUTH_SSO_URL,
+  RXAP_O_AUTH_REDIRECT_SIGN_OUT
 } from '@rxap/oauth';
 import {
   Injectable,
   Inject,
   Optional
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class OAuthSingleSignOnService extends OAuthService {
@@ -29,6 +31,8 @@ export class OAuthSingleSignOnService extends OAuthService {
       oAuthMethod: OAuthMethod,
     @Inject(GetOAuthProfileMethod)
       getOAuthProfileMethod: GetOAuthProfileMethod,
+    @Inject(Router)
+      router: Router,
     @Optional()
     @Inject(PROFILE_AUTH_ENDPOINT)
       profileEndpoint: string | null = null,
@@ -40,9 +44,12 @@ export class OAuthSingleSignOnService extends OAuthService {
       secret: string | null          = null,
     @Optional()
     @Inject(OAUTH_SSO_URL)
-      ssoUrl: string
+      ssoUrl: string | null          = null,
+    @Optional()
+    @Inject(RXAP_O_AUTH_REDIRECT_SIGN_OUT)
+      redirectSignOut: string | null = null
   ) {
-    super(oAuthMethod, getOAuthProfileMethod, profileEndpoint, authEndpoint, secret, ssoUrl);
+    super(oAuthMethod, getOAuthProfileMethod, router, profileEndpoint, authEndpoint, secret, ssoUrl, redirectSignOut);
   }
 
   public async signInWithEmailAndPassword(
