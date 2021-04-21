@@ -29,10 +29,13 @@ export class LoadingComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
-    this.subscription = this.authentication.isAuthenticated$.pipe(
-      filter(isAuthenticated => isAuthenticated !== null),
-      tap(() => this.router.navigate([ '/', 'authentication', 'login' ]))
-    ).subscribe();
+    // TODO : remove the concept of isAuthenticated$
+    if (this.authentication.isAuthenticated$) {
+      this.subscription = this.authentication.isAuthenticated$.pipe(
+        filter(isAuthenticated => isAuthenticated !== null),
+        tap(() => this.router.navigate([ '/', 'authentication', 'login' ]))
+      ).subscribe();
+    }
   }
 
   public ngOnDestroy(): void {

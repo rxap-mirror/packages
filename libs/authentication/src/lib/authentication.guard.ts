@@ -38,7 +38,7 @@ export class RxapAuthenticationGuard implements CanActivate, CanActivateChild {
   public canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<UrlTree | boolean> | boolean {
+  ): Promise<UrlTree | boolean> {
     console.debug('[RxapAuthenticationGuard] can activate', state.url);
     return this.checkAuthStatus(route, state);
   }
@@ -46,66 +46,60 @@ export class RxapAuthenticationGuard implements CanActivate, CanActivateChild {
   public canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<UrlTree | boolean> | boolean {
+  ): Promise<UrlTree | boolean> {
     console.debug('[RxapAuthenticationGuard] can activate child', state.url);
     return this.checkAuthStatus(childRoute, state);
   }
 
-  public isAuthenticated(): Observable<boolean | null> {
-    return this.authentication.isAuthenticated$;
-  }
-
-  private checkAuthStatus(
+  private async checkAuthStatus(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ) {
+  ): Promise<UrlTree | boolean> {
 
     if (this.deactivated) {
       return true;
     }
 
-    return this.isAuthenticated().pipe(
-      take(1),
-      map(authenticated => {
-        if (authenticated === null) {
-          if (!this.lastUrl || (state.url !== '/' && !state.url.match(/authentication\/login/))) {
-            this.lastUrl = state.url;
-          }
-          return this.router.createUrlTree([ '/', 'authentication', 'loading' ]);
-        }
-        if (authenticated) {
-          if (this.lastUrl && (state.url/*?*/ === '/' || state.url.match(/authentication\/login/))) {
-            const lastUrl = this.lastUrl;
-            this.lastUrl  = null;
-            return this.createUrlTreeToLastUrl(lastUrl);
-          } else {
-            if (state.url.match(/authentication/)) {
-              if (state.url.match(/authentication\/reset-password/)) {
-                return true;
-              }
-              return this.router.createUrlTree([ '/' ]);
-            } else {
-              this.lastUrl = null;
-              return true;
-            }
-          }
-        } else {
-          if (!state.url.match(/^\/?authentication/)) {
-            this.lastUrl = state.url;
-          }
-          if (state.url.match(/^\/?authentication/)) {
-            if (this.lastUrl && this.lastUrl.match(/^\/?authentication/)) {
-              const lastUrl = this.lastUrl;
-              this.lastUrl  = null;
-              return this.createUrlTreeToLastUrl(lastUrl);
-            }
+    const authenticated = await this.authentication.isAuthenticated();
+
+    if (authenticated === null) {
+      if (!this.lastUrl || (state.url !== '/' && !state.url.match(/authentication\/login/))) {
+        this.lastUrl = state.url;
+      }
+      return this.router.createUrlTree([ '/', 'authentication', 'loading' ]);
+    }
+    if (authenticated) {
+      if (this.lastUrl && (state.url/*?*/ === '/' || state.url.match(/authentication\/login/))) {
+        const lastUrl = this.lastUrl;
+        this.lastUrl  = null;
+        return this.createUrlTreeToLastUrl(lastUrl);
+      } else {
+        if (state.url.match(/authentication/)) {
+          if (state.url.match(/authentication\/reset-password/)) {
             return true;
-          } else {
-            return this.router.createUrlTree([ '/', 'authentication', 'login' ]);
           }
+          return this.router.createUrlTree([ '/' ]);
+        } else {
+          this.lastUrl = null;
+          return true;
         }
-      })
-    );
+      }
+    } else {
+      if (!state.url.match(/^\/?authentication/)) {
+        this.lastUrl = state.url;
+      }
+      if (state.url.match(/^\/?authentication/)) {
+        if (this.lastUrl && this.lastUrl.match(/^\/?authentication/)) {
+          const lastUrl = this.lastUrl;
+          this.lastUrl  = null;
+          return this.createUrlTreeToLastUrl(lastUrl);
+        }
+        return true;
+      } else {
+        return this.router.createUrlTree([ '/', 'authentication', 'login' ]);
+      }
+    }
+
   }
 
   private createUrlTreeToLastUrl(lastUrl: string): UrlTree {

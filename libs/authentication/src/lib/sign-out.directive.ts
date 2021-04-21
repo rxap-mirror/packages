@@ -21,11 +21,13 @@ export class SignOutDirective {
   constructor(private readonly auth: RxapAuthenticationService) { }
 
   @HostListener('click')
-  public onClick() {
-    this.auth
-        .signOut()
-        .then(() => this.successful.emit())
-        .catch(error => this.failure.emit(error));
+  public async onClick() {
+    try {
+      await this.auth.signOut();
+      this.successful.emit();
+    } catch (e) {
+      this.failure.emit(e);
+    }
   }
 
 }
