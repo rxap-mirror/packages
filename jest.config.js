@@ -55,6 +55,7 @@ module.exports = {
     '<rootDir>/libs/material/directives',
     '<rootDir>/libs/fake',
     '<rootDir>/libs/plugin/i18n',
-    '<rootDir>/libs/plugin/build-info'
+    '<rootDir>/libs/plugin/build-info',
+    '<rootDir>/libs/single-sign-on'
   ],
 };

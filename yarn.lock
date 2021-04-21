@@ -5352,10 +5352,10 @@
   dependencies:
     handlebars "4.7.6"
 
-"@rxap/plugin-scss-bundle@^11.0.0":
-  version "11.0.0"
-  resolved "https://npm.rxap.dev/@rxap%2fplugin-scss-bundle/-/plugin-scss-bundle-11.0.0.tgz#a8db93f9a62032d3a37760179f9a91d606892770"
-  integrity sha512-ZgVi/U8DTxwuQH63eoIFgOw3Scf+ZcfLygzHa0z8OnXiUvm1ibFB4LYeAeozgw61ctWZ3bb0lnGrq+F8q3k/Mg==
+"@rxap/plugin-scss-bundle@0":
+  version "0.0.2"
+  resolved "https://npm.rxap.dev/@rxap%2fplugin-scss-bundle/-/plugin-scss-bundle-0.0.2.tgz#54ed6f4eb5c14f7b47a33af32e53c54bf6fdd054"
+  integrity sha512-5rlJJTj1FOBsFkwwQr2TJsr380n0l4rEkXTsBV17j7+51jqoFJSYiWxTtGHMfgAn3T4Me6lIj5XepaQb4q0erQ==
   dependencies:
     "@angular-devkit/architect" "0.1000.4"
     "@angular-devkit/core" "10"

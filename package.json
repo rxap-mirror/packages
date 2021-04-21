@@ -142,7 +142,7 @@
     "@rxap/plugin-library-schematics": "11.0.0",
     "@rxap/plugin-pack": "11.0.0",
     "@rxap/plugin-readme-generator": "11.0.0",
-    "@rxap/plugin-scss-bundle": "^11.0.0",
+    "@rxap/plugin-scss-bundle": "0",
     "@rxap/schematics": "^11.3.4",
     "@storybook/addon-a11y": "5.3.21",
     "@storybook/addon-actions": "5.3.21",

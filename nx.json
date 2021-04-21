@@ -210,6 +210,9 @@
     },
     "plugin-build-info": {
       "tags": []
+    },
+    "single-sign-on": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {
