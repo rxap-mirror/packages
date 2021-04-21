@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.2.3...@rxap/oauth@11.3.0) (2021-04-21)
+
+
+### Features
+
+* cache authenticated state ([a956999](https://gitlab.com/rxap/packages/commit/a95699917e425fc0d7c35ae1aaf909f7bc74fa62))
+
+
+
+
+
 ## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.2.2...@rxap/oauth@11.2.3) (2021-04-21)
 
 
