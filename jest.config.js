@@ -56,6 +56,7 @@ module.exports = {
     '<rootDir>/libs/fake',
     '<rootDir>/libs/plugin/i18n',
     '<rootDir>/libs/plugin/build-info',
-    '<rootDir>/libs/single-sign-on'
+    '<rootDir>/libs/single-sign-on',
+    '<rootDir>/libs/oauth'
   ],
 };
