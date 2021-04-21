@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.3.1...@rxap/oauth@11.5.0) (2021-04-21)
+
+### Features
+
+* add redirect after sign out ([e1d3527](https://gitlab.com/rxap/packages/commit/e1d35275ecbd58016e31842b5f5d5bde0aa4b081))
+
 # [11.4.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.3.1...@rxap/oauth@11.4.0) (2021-04-21)
 
 ### Features
