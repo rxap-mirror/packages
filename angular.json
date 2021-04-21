@@ -4793,12 +4793,13 @@
             "targets": [
               "oauth:update-package-group",
               "oauth:build:production",
-              "oauth:schematics"
+              "oauth:schematics",
+              "oauth:scss-bundle"
             ]
           }
         },
         "schematics": {
-          "builder": "@rxap-plugin/library-schematics:build",
+          "builder": "@rxap/plugin-library-schematics:build",
           "options": {
             "buildTarget": "oauth:build:production",
             "skipBuild": false,
@@ -4806,13 +4807,23 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap-plugin/library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
           "options": {
             "buildTarget": "oauth:build:production",
             "preTarget": "oauth:pack"
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap/plugin-scss-bundle:build",
+          "options": {
+            "buildTarget": "oauth:build:production",
+            "skipBuild": true,
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         }
       }

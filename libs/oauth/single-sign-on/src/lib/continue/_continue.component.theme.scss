@@ -1,0 +1,39 @@
+@import '~@angular/material/theming';
+
+@mixin rxap-continue-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-continue {
+
+    .inner {
+      background-color: mat-color($background, background);
+
+      @if $isDark {
+
+        .mat-form-field-prefix, .mat-form-field-suffix {
+          color: mat-color($foreground, hint-text);
+        }
+
+      }
+
+
+    }
+
+  }
+
+}
+
+@mixin rxap-continue-typography($config) {
+  .rxap-continue {
+
+    .username {
+      font-weight: bold;
+    }
+
+  }
+}

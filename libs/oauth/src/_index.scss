@@ -1,0 +1,16 @@
+@import "../single-sign-on/src/lib/container/container.component.theme";
+/* IMPORT */
+
+@mixin oauth-theme($theme) {
+
+  @include rxap-container-theme($theme);
+  /* THEME_INCLUDE */
+
+}
+
+@mixin oauth-typography($config) {
+
+  @include rxap-container-typography($config);
+  /* TYPOGRAPHY_INCLUDE */
+
+}
