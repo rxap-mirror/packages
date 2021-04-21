@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.2.2...@rxap/oauth@11.2.3) (2021-04-21)
+
+
+### Bug Fixes
+
+* dynamic login redirect ([c5361e7](https://gitlab.com/rxap/packages/commit/c5361e7f97fe0e74a1a5a62cde8ea950f74330dc))
+
+
+
+
+
 ## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.2.1...@rxap/oauth@11.2.2) (2021-04-21)
 
 
