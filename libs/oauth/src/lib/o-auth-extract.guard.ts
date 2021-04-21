@@ -34,7 +34,7 @@ export class OAuthExtractGuard implements CanActivate {
         refreshToken,
         expiresIn,
         expiresAt
-      });
+      }, true);
 
       let redirectUrl = '/';
 
