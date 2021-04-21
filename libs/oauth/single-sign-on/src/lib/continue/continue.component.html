@@ -1,0 +1,33 @@
+<div [@fadeAnimation]="'in'" class="inner mat-elevation-z5" fxLayout="column" fxLayoutAlign="center center"
+     fxLayoutGap="32px">
+
+  <div class="header" fxFlex="nogrow" fxLayout="column" fxLayoutAlign="center center">
+
+    <div *ngIf="profile | async as p" [name]="p.username" [rxapAvatarBackgroundImage]="p.username"
+         class="avatar-icon"></div>
+
+  </div>
+
+  <div class="content" fxLayout="column" fxLayoutGap="32px">
+
+    <div fxLayout="column">
+
+      <p><span>Currently Sign In as: </span><span class="username"><br>{{(profile | async)?.username}}</span></p>
+
+    </div>
+
+    <div fxFlex="nogrow" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
+
+      <div fxFlex="nogrow">
+        <button (click)="redirect()" color="primary" mat-raised-button>Continue</button>
+      </div>
+
+      <div fxFlex="nogrow">
+        <button (click)="signOut()" color="accent" mat-stroked-button>Change Account</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

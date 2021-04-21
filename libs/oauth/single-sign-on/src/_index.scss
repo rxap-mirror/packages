@@ -1,0 +1,13 @@
+@import "./lib/continue/continue.component.theme";
+
+@mixin rxap-oauth-single-sign-on-theme($theme) {
+
+  @include rxap-continue-theme($theme);
+
+}
+
+@mixin rxap-oauth-single-sign-on-typography($config) {
+
+  @include rxap-continue-typography($config);
+
+}
