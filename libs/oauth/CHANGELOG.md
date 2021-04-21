@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.2.0...@rxap/oauth@11.2.1) (2021-04-21)
+
+
+### Bug Fixes
+
+* update redirect url ([48f9e73](https://gitlab.com/rxap/packages/commit/48f9e73991875ebf1e1e4e4136cea9a1ef99ff45))
+
+
+
+
+
 # [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.1.1...@rxap/oauth@11.2.0) (2021-04-21)
 
 
