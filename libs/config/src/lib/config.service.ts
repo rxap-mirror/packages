@@ -37,7 +37,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   public static LocalStorageKey = 'rxap/config/local-config';
 
-  public static Urls = [ '/assets/config.json' ];
+  public static Urls = [ 'config.json' ];
 
   /**
    * Used to load the app config from a remote resource.
