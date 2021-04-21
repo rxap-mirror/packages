@@ -13,7 +13,7 @@
       <div fxFlex="grow">
         <ng-content></ng-content>
       </div>
-      <rxap-reset-button fxFlex="nogrow"></rxap-reset-button>
+      <rxap-apps-button fxFlex="nogrow"></rxap-apps-button>
       <rxap-user-profile-icon *ngIf="hasUser$ | async" fxFlex="nogrow"></rxap-user-profile-icon>
       <div fxFlex="nogrow" *ngIf="settingsMenuPanel">
         <button mat-icon-button [matMenuTriggerFor]="settingsMenuPanel">
