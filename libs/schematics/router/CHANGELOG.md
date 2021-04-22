@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@11.4.5...@rxap/schematics-router@11.5.0) (2021-04-22)
+
+
+### Features
+
+* add sso and empty route support ([649c78e](https://gitlab.com/rxap/packages/commit/649c78edecfa399218e54f693be49703b715e91c))
+
+
+
+
+
 ## [11.4.5](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@11.4.4...@rxap/schematics-router@11.4.5) (2021-04-22)
 
 
