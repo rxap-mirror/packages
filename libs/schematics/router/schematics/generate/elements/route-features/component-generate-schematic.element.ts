@@ -36,6 +36,7 @@ export class ComponentGenerateSchematicElement extends RouteFeatureElement {
   public features?: ComponentFeatureElement[];
 
   public postValidate() {
+    this.name = this.name.replace(/-?[cC]omponent$/, '');
     if (!this.__parent.component && this.name) {
       this.__parent.component = ElementFactory(ComponentElement, {
         name: classify(this.name) + 'Component',
