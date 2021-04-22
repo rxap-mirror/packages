@@ -13,9 +13,12 @@ import {
   SourceFile,
   WriterFunctionOrValue
 } from 'ts-morph';
+import { RouteElement } from '../route.element';
 
 @ElementDef('feature')
 export class RouteFeatureElement implements ParsedElement<Rule> {
+
+  public __parent!: RouteElement;
 
   @ElementAttribute()
   public shared: boolean = false;
