@@ -27,8 +27,6 @@ build:
   - build
   needs:
   - setup
-  before_script:
-  - yarn --prefer-offline
   script: yarn nx run-many --target=build --all --with-deps
   cache:
     key:
@@ -46,8 +44,6 @@ test:
   stage: test
   tags:
   - build
-  before_script:
-  - yarn --prefer-offline
   script: yarn nx run-many --target=test --all --with-deps
   needs:
   - setup
@@ -68,8 +64,8 @@ build:publish:
   stage: build
   tags:
   - build
-  before_script:
-  - yarn --prefer-offline
+  needs:
+  - setup
   script: yarn nx run-many --target=pack --projects="$(echo $CI_COMMIT_TAG | cut -d'@' -f2 | cut -d'/' -f2)" --with-deps
   cache:
     policy: pull
@@ -98,7 +94,7 @@ build:publish:
     when: on_success
     allow_failure: true
   script:
-  - echo "@rxap:registry=$NPM_REGISTRY" >> .npmrc
+  - echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=$NPM_REGISTRY" >> .npmrc
   - git update-index --assume-unchanged .npmrc
   - PROJECT="$(echo $CI_COMMIT_TAG | cut -d'@' -f2 | cut -d'/' -f2)"
   - echo "PROJECT=${PROJECT}"
@@ -128,6 +124,6 @@ publish:rxap:
 publish:gitlab:
   extends: .publish
   before_script:
-  - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
+  - echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=\${CI_JOB_TOKEN}">.npmrc
   variables:
-    NPM_REGISTRY: "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/"
+    NPM_REGISTRY: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
