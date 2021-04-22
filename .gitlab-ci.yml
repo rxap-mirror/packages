@@ -104,7 +104,8 @@ build:publish:
   - echo "PROJECT=${PROJECT}"
   - DIST_PATH="dist/$(cat angular.json | jq --arg name $PROJECT -r '.projects[$name].root')"
   - echo "DIST_PATH=${DIST_PATH}"
-  - npm --prefix $DIST_PATH publish --registry $NPM_REGISTRY
+  - cd $DIST_PATH
+  - npm publish --registry $NPM_REGISTRY
 
 publish:npm:
   extends: .publish
