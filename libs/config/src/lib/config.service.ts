@@ -165,5 +165,14 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     return ConfigService.Get(propertyPath, defaultValue, this.config);
   }
 
+  public getOrThrow<T = any>(propertyPath: string): T;
+  public getOrThrow<T = any>(propertyPath: string, defaultValue: NoInferType<T>): T;
+  public getOrThrow<T = any>(propertyPath: string, defaultValue?: T): T {
+    const value = ConfigService.Get(propertyPath, defaultValue, this.config);
+    if (value === undefined) {
+      throw new Error(`Could not find config in path '${propertyPath}'`);
+    }
+    return value;
+  }
 
 }
