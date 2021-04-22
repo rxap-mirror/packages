@@ -64,8 +64,8 @@ build:publish:
   stage: build
   tags:
   - build
-  needs:
-  - setup
+  before_script:
+  - yarn --prefer-offline
   script: yarn nx run-many --target=pack --projects="$(echo $CI_COMMIT_TAG | cut -d'@' -f2 | cut -d'/' -f2)" --with-deps
   cache:
     policy: pull
