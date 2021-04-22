@@ -9,6 +9,7 @@ import {
   OrganizeImports,
   FixMissingImports
 } from '@rxap/schematics-utilities';
+import { join } from 'path';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
@@ -30,6 +31,12 @@ export default function (options: RoutingSchema): Rule {
       } else {
         options.openApiModule = `@${ angularJson.projects[angularJson.defaultProject].prefix }/open-api`;
       }
+    }
+
+    if (options.project && !options.path) {
+      const angularJson = readAngularJsonFile(host);
+      const project     = angularJson.projects[options.project];
+      options.path = join(project.sourceRoot, 'app');
     }
 
     console.log('Extended Elements: ', extendedElements.map(ctor => ctor.name).join(', '));
