@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.4.1...@rxap/open-api@11.5.0) (2021-04-22)
+
+
+### Features
+
+* **schematics:** add components generation ([bdb4993](https://gitlab.com/rxap/packages/commit/bdb4993b128ff5718d50807cca4401fa1cece590))
+
+
+
+
+
 ## [11.4.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.4.0...@rxap/open-api@11.4.1) (2021-04-15)
 
 **Note:** Version bump only for package @rxap/open-api
