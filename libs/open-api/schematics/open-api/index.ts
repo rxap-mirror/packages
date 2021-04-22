@@ -765,12 +765,12 @@ export async function generateComponents(
     for (const [ name, schema ] of Object.entries(components.schemas)) {
 
       const generator = new TypescriptInterfaceGenerator(
-        schema,
+        { ...schema, components },
         { basePath: COMPONENTS_BASE_PATH },
         project
       );
 
-      console.log(`Generate component interface for: ${name}`);
+      console.debug(`Generate component interface for: ${name}`);
 
       try {
 
@@ -1214,7 +1214,9 @@ export default function(options: OpenApiSchema): Rule {
 
     const prefix = getPrefix(host, options.target);
 
-    await generateModels(modelSchemas, project, components);
+    // await generateModels(modelSchemas, project, components);
+
+    await generateComponents(components, project);
 
     for await (const methods of Object.values(openapi.paths)) {
 
