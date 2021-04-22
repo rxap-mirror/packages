@@ -1,6 +1,6 @@
 export class FakedStatus {
 
-  private static fakeStatusMap: Record<string, any> | boolean = true;
+  private static fakeStatusMap: Record<string, any> | boolean = false;
 
   public static IsFaked(identifier: string): boolean {
 
