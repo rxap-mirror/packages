@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://gitlab.com/rxap/packages/compare/@rxap/fake@0.1.0...@rxap/fake@0.1.1) (2021-04-22)
+
+
+### Bug Fixes
+
+* set default fake map to false ([266c19d](https://gitlab.com/rxap/packages/commit/266c19dd4a6331344224bd9b577160a8ea0dab62))
+
+
+
+
+
 # 0.1.0 (2021-03-29)
 
 
