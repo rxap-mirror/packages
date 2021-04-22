@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.5.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@11.5.0...@rxap/schematics-router@11.5.1) (2021-04-22)
+
+
+### Bug Fixes
+
+* set a default path option ([b419285](https://gitlab.com/rxap/packages/commit/b4192853c7630bc0d9bc2ff04b1d6aca3adc5169))
+
+
+
+
+
 # [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@11.4.5...@rxap/schematics-router@11.5.0) (2021-04-22)
 
 
