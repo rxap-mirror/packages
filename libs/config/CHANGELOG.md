@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/config@11.0.10...@rxap/config@11.1.0) (2021-04-22)
+
+
+### Features
+
+* **config-service:** add method getOrThrow ([e7ca009](https://gitlab.com/rxap/packages/commit/e7ca00931d9d5017f54d3d5482864b180fccafd4))
+
+
+
+
+
 ## [11.0.10](https://gitlab.com/rxap/packages/compare/@rxap/config@11.0.9...@rxap/config@11.0.10) (2021-04-21)
 
 
