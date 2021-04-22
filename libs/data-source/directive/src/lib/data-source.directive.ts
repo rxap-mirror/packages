@@ -24,11 +24,13 @@ import { Required } from '@rxap/utilities';
 import {
   tap,
   take,
-  filter
+  filter,
+  catchError
 } from 'rxjs/operators';
 import {
   Observable,
-  Subscription
+  Subscription,
+  EMPTY
 } from 'rxjs';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 
@@ -54,7 +56,11 @@ export class DataSourceDirective<Data = any>
   @Output()
   public embedded = new EventEmitter<Data>();
 
+  @Output()
   public loaded = new EventEmitter();
+
+  @Output()
+  public error = new EventEmitter();
 
   public dataSource: BaseDataSource<Data> | null = null;
 
@@ -146,7 +152,11 @@ export class DataSourceDirective<Data = any>
             this._dataSourceConnectionSubscription = this
               .connection$
               .pipe(
-                tap(response => this.embedTemplate(response))
+                tap(response => this.embedTemplate(response)),
+                catchError(e => {
+                  this.error.emit(e);
+                  return EMPTY;
+                })
               )
               .subscribe();
           });
