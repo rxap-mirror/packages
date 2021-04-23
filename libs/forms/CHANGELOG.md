@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@11.3.3...@rxap/forms@11.3.4) (2021-04-23)
+
+
+### Bug Fixes
+
+* **form-builder:** create definition manual ([97a34d0](https://gitlab.com/rxap/packages/commit/97a34d0dc8f7df6a1cdfdba7d0d8eb51dfdc5083))
+
+
+
+
+
 ## [11.3.3](https://gitlab.com/rxap/packages/compare/@rxap/forms@11.3.2...@rxap/forms@11.3.3) (2021-03-23)
 
 
