@@ -8,7 +8,7 @@
 ![npm](https://img.shields.io/npm/dm/@rxap/plugin-build-info)
 ![NPM](https://img.shields.io/npm/l/@rxap/plugin-build-info)
 
->
+> 
 
 - [Installation](#installation)
 - [Schematics](#schematics)
@@ -18,9 +18,11 @@
 
 Add the plugin to your workspace:
 
+
   ```
   yarn add @rxap/plugin-build-info
   ```
+
 
 Configure @rxap/plugin-build-info for a project:
 
@@ -32,35 +34,38 @@ ng g @rxap/plugin-build-info:config [project]
 
 # Schematics
 
-**Adds the @plugin-pack:build to the specified project**
+
+  **Adds the @plugin-pack:build to the specified project**
 
   ```
   ng g @rxap/plugin-build-info:config
   ```
 
-Option | Type | Default | Description
+  Option | Type | Default | Description
   --- | --- | --- | ---
-project | string |  | The name of the project.
+    project | string |  | The name of the project.
 
     | Required |
     | --- |
       | project |
 
+
 # Builder
 
-**build builder**
+
+  **build builder**
 
   ```
   @rxap/plugin-build-info:build
   ```
 
-Option | Type | Default | Description
+  Option | Type | Default | Description
   --- | --- | --- | ---
-branch | string |  |
-tag | string |  |
-release | string |  |
-commit | string |  |
-timestamp | string |  | 
+    branch | string |  | 
+    tag | string |  | 
+    release | string |  | 
+    commit | string |  | 
+    timestamp | string |  | 
 
 
 
