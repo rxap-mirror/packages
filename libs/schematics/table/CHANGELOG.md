@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.10.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.9.4...@rxap/schematics-table@11.10.0) (2021-04-23)
+
+
+### Features
+
+* add icon cell component element ([462f612](https://gitlab.com/rxap/packages/commit/462f61289c15ace9898813a689429cbe6c84757b))
+
+
+
+
+
 ## [11.9.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.9.3...@rxap/schematics-table@11.9.4) (2021-04-13)
 
 
