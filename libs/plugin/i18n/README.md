@@ -8,7 +8,7 @@
 ![npm](https://img.shields.io/npm/dm/@rxap/plugin-i18n)
 ![NPM](https://img.shields.io/npm/l/@rxap/plugin-i18n)
 
->
+> 
 
 - [Installation](#installation)
 - [Schematics](#schematics)
@@ -23,6 +23,7 @@ Add the plugin to your workspace:
   yarn add @rxap/plugin-i18n
   ```
 
+
 Configure @rxap/plugin-i18n for a project:
 
 ```
@@ -33,34 +34,37 @@ ng g @rxap/plugin-i18n:config [project]
 
 # Schematics
 
-**Adds the @plugin-pack:build to the specified project**
+
+  **Adds the @plugin-pack:build to the specified project**
 
   ```
   ng g @rxap/plugin-i18n:config
   ```
 
-Option | Type | Default | Description
+  Option | Type | Default | Description
   --- | --- | --- | ---
-project | string |  | The name of the project.
-availableLanguages | array |  |
-defaultLanguage | string |  |
+    project | string |  | The name of the project.
+    availableLanguages | array |  | 
+    defaultLanguage | string |  | 
 
     | Required |
     | --- |
       | project |
 
+
 # Builder
 
-**build builder**
+
+  **build builder**
 
   ```
   @rxap/plugin-i18n:build
   ```
 
-Option | Type | Default | Description
+  Option | Type | Default | Description
   --- | --- | --- | ---
-availableLanguages | array |  |
-defaultLanguage | string |  | 
+    availableLanguages | array |  | 
+    defaultLanguage | string |  | 
 
 
 
