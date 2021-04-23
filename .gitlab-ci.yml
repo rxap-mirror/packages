@@ -124,6 +124,7 @@ publish:rxap:
 publish:gitlab:
   extends: .publish
   before_script:
-  - echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=\${CI_JOB_TOKEN}">.npmrc
+    - [[ "${CI_JOB_TOKEN}" == *"-"* ]] && echo "The CI_JOB_TOKEN contains a dash!!"
+    - echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
   variables:
     NPM_REGISTRY: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
