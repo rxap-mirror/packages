@@ -1,6 +1,6 @@
 {
   "name": "@rxap/fake",
-  "version": "0.1.1",
+  "version": "11.0.0",
   "dependencies": {
     "tslib": "^2.0.0"
   },
