@@ -160,16 +160,57 @@ export class TypescriptInterfaceGenerator {
   }
 
   private coercePropertyKey(key: string): string {
-    if (key.match(/(^[0-9]+|-|#|\.|@|\/|:)/)) {
+    if (key.match(/(^[0-9]+|-|#|\.|@|\/|:|\*)/) && !key.match(/\[\w+:\s?\w+\]/)) {
       return `'${key}'`;
     }
     return key;
+  }
+
+  private unionType(array: Array<string | WriterFunction>): WriterFunction | string {
+    if (array.length < 2) {
+      return array[0];
+    }
+
+    const first = array.shift()!;
+    const second = array.shift()!;
+
+    return Writers.unionType(first, second, ...array);
+  }
+
+  private intersectionType(array: Array<string | WriterFunction>): WriterFunction | string {
+    if (array.length < 2) {
+      return array[0];
+    }
+
+    const first = array.shift()!;
+    const second = array.shift()!;
+
+    return Writers.intersectionType(first, second, ...array);
+  }
+
+  private recordType(propertyType: string | WriterFunction, keyType: 'string' | 'number' | 'boolean' = 'string'): WriterFunction {
+    return writer => {
+      writer.write('Record<');
+      writer.write(keyType);
+      writer.write(',');
+      if (typeof propertyType === 'string') {
+        writer.write(propertyType);
+      } else {
+        propertyType(writer);
+      }
+      writer.write('>');
+    }
   }
 
   private propertyTypeWriteFunction(currentFile: SourceFile, schema: JSONSchema): WriterFunction | string {
 
     switch (schema.type) {
       case 'string':
+
+        if (schema.enum) {
+          return this.unionType((schema.enum as string[]).map(item => writer => writer.quote(item)));
+        }
+
         return 'string';
 
       case 'integer':
@@ -199,20 +240,34 @@ export class TypescriptInterfaceGenerator {
             }
           }
 
-          if (schema.patternProperties) {
+          if (schema.patternProperties && Object.keys(schema.patternProperties).length) {
+            const typeList: Array<string | WriterFunction> = [];
             for (const [ key, property ] of Object.entries(schema.patternProperties as Record<string, JSONSchema>)) {
-              objectTypeStructure.properties?.push(this.buildPropertySignatureStructure(currentFile, '[key: string]', property, true));
+              typeList.push(this.propertyTypeWriteFunction(currentFile, property));
+            }
+            if (schema.properties && Object.keys(schema.properties).length) {
+              return Writers.intersectionType(
+                Writers.objectType(objectTypeStructure),
+                this.recordType(typeList.shift()!),
+                ...typeList.map(type => this.recordType(type))
+              );
+            } else {
+              return this.intersectionType(typeList.map(type => this.recordType(type)));
             }
           }
 
           if (schema.additionalProperties) {
-            if (schema.additionalProperties === true) {
-              objectTypeStructure.properties?.push({
-                name: '[key: string]',
-                type: 'any'
-              })
+            let type: string | WriterFunction = 'any';
+            if (schema.additionalProperties !== true) {
+              type = this.propertyTypeWriteFunction(currentFile, schema.additionalProperties);
+            }
+            if (schema.properties && Object.keys(schema.properties).length) {
+              return Writers.intersectionType(
+                Writers.objectType(objectTypeStructure),
+                this.recordType(type)
+              );
             } else {
-              objectTypeStructure.properties?.push(this.buildPropertySignatureStructure(currentFile, '[key: string]', schema.additionalProperties, true));
+              return this.recordType(type);
             }
           }
 
@@ -312,11 +367,29 @@ export class TypescriptInterfaceGenerator {
             }
           }
 
-          if (typeList.length < 2) {
-            return typeList[0] ?? 'any';
+          return this.unionType(typeList);
+        } else if (schema.anyOf) {
+
+          const typeList: Array<WriterFunction | string> = [];
+
+          for (const oneOf of schema.anyOf) {
+            if (typeof oneOf !== 'boolean') {
+              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf))
+            }
           }
 
-          return Writers.unionType(typeList[0], typeList[1], ...typeList);
+          return this.unionType(typeList);
+        } else if (schema.allOf) {
+
+          const typeList: Array<WriterFunction | string> = [];
+
+          for (const oneOf of schema.allOf) {
+            if (typeof oneOf !== 'boolean') {
+              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf))
+            }
+          }
+
+          return this.intersectionType(typeList);
         } else if (schema.const) {
           return writer => writer.quote(schema.const);
         } else if (schema.properties) {
@@ -341,12 +414,16 @@ export class TypescriptInterfaceGenerator {
 
         if (Array.isArray(schema.type)) {
 
-          if (!schema.type.every(type => ['string', 'integer', 'number', 'boolean', 'null', 'any'].includes(type))) {
-            throw new Error(`If the property type is provided as array only string, integer, number, boolean, null and any are supported. But the property types '[${schema.type.join(', ')}]' was found`);
+          const primitiveTypeList = schema.type.filter(type => ['string', 'integer', 'number', 'boolean', 'null', 'any'].includes(type));
+          const complexTypeList = schema.type.filter(type => !['string', 'integer', 'number', 'boolean', 'null', 'any'].includes(type));
+
+          const typeList: Array<WriterFunction | string> = primitiveTypeList;
+
+          for (const type of complexTypeList) {
+            typeList.push(this.propertyTypeWriteFunction(currentFile, { ...schema, type }));
           }
 
-          return schema.type.join(' | ');
-
+          return this.unionType(typeList);
         }
 
         throw new Error(`The property type '${schema.type}' is not supported!`);
@@ -373,7 +450,7 @@ export class TypescriptInterfaceGenerator {
     const nameMatch = ref.match(/\/([^\/]+)$/);
 
     if (!nameMatch) {
-      throw new Error('Could not resolve ref name');
+      throw new Error(`Could not resolve ref name '${ref}'`);
     }
 
     return nameMatch[1];
