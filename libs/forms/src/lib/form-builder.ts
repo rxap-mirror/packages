@@ -124,7 +124,7 @@ export class RxapFormBuilder<Form extends FormDefinition = FormDefinition> {
       if (isDevMode()) {
         console.error(`Could not inject the definition instance. Fallback and call the constructor of the definition class: ${e.message}`);
       }
-      throw e;
+      form = new this.definition() as any;
     }
 
     const controls: Record<string, AbstractControl> = {};
