@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@11.2.2...@rxap/form-window-system@11.2.3) (2021-04-23)
+
+
+### Bug Fixes
+
+* **form-window-service:** use factory function to create form builder ([750e21a](https://gitlab.com/rxap/packages/commit/750e21af0523992b2d83de442ee0e2fce513d2e5))
+
+
+
+
+
 ## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@11.2.1...@rxap/form-window-system@11.2.2) (2021-03-19)
 
 
