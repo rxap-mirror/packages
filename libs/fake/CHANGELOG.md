@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.1](https://gitlab.com/rxap/packages/compare/@rxap/fake@0.1.1...@rxap/fake@11.0.1) (2021-04-23)
+
+**Note:** Version bump only for package @rxap/fake
+
+
+
+
+
 ## [0.1.1](https://gitlab.com/rxap/packages/compare/@rxap/fake@0.1.0...@rxap/fake@0.1.1) (2021-04-22)
 
 

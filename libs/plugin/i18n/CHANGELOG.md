@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-i18n@11.1.1...@rxap/plugin-i18n@11.1.2) (2021-04-23)
+
+**Note:** Version bump only for package @rxap/plugin-i18n
+
+
+
+
+
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-i18n@11.1.0...@rxap/plugin-i18n@11.1.1) (2021-04-20)
 
 
