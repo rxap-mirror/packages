@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.6.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.5.0...@rxap/material-table-system@11.6.0) (2021-04-23)
+
+
+### Features
+
+* add copy to clipboard cell component element ([a794439](https://gitlab.com/rxap/packages/commit/a79443997cc58bc7afa6fb7784df71d1f0de3873))
+
+
+
+
+
 # [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.4.5...@rxap/material-table-system@11.5.0) (2021-04-23)
 
 

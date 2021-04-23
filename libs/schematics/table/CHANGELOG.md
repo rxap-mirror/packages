@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.11.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.10.0...@rxap/schematics-table@11.11.0) (2021-04-23)
+
+
+### Features
+
+* add copy to clipboard cell component element ([a794439](https://gitlab.com/rxap/packages/commit/a79443997cc58bc7afa6fb7784df71d1f0de3873))
+
+
+
+
+
 # [11.10.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.9.4...@rxap/schematics-table@11.10.0) (2021-04-23)
 
 
