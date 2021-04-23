@@ -65,6 +65,13 @@ export * from './lib/table-select-controls/table-select-controls.component.modul
 
 // region cells
 
+// region icon cell
+
+export * from './lib/cells/icon-cell/icon-cell.component';
+export * from './lib/cells/icon-cell/icon-cell.component.module';
+
+// endregion
+
 // region date cell
 
 export * from './lib/cells/date-cell/date-cell.component';
