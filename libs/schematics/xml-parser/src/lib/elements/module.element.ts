@@ -1,14 +1,16 @@
 import { ParsedElement } from '@rxap/xml-parser';
-import { Rule } from '@angular-devkit/schematics';
-import { AddNgModuleImport } from '../add-ng-module-import';
+import { Rule, noop } from '@angular-devkit/schematics';
 import {
   ElementDef,
   ElementChildTextContent,
   ElementRequired
 } from '@rxap/xml-parser/decorators';
 import { SourceFile } from 'ts-morph';
-import { HandleComponentModule } from '../handle-component-module';
-import { ToValueContext } from '../to-value-context';
+import {
+  ToValueContext,
+  HandleComponentModule,
+  AddNgModuleImport
+} from '@rxap/schematics-ts-morph';
 
 @ElementDef('module')
 export class ModuleElement implements ParsedElement<Rule>, HandleComponentModule {
@@ -25,7 +27,7 @@ export class ModuleElement implements ParsedElement<Rule>, HandleComponentModule
   }
 
   public toValue({ project, options }: ToValueContext): Rule {
-    return () => {};
+    return noop();
   }
 
 }

@@ -8,16 +8,16 @@ import {
 } from '@rxap/xml-parser/decorators';
 import { ParsedElement } from '@rxap/xml-parser';
 import {
-  WithTemplate,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import {
   chain,
   Rule
 } from '@angular-devkit/schematics';
 import { SourceFile } from 'ts-morph';
 import { ArrayFeatureElement } from './features/array-feature.element';
+import { WithTemplate } from '@rxap/schematics-html';
 
 @ElementExtends(NodeElement)
 @ElementDef('array')

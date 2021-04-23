@@ -8,17 +8,19 @@ import {
 } from '@rxap/xml-parser/decorators';
 import { NodeElement } from './node.element';
 import {
-  WithTemplate,
   HandleComponentModule,
   HandleComponent,
-  StringOrFactory,
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { ParsedElement } from '@rxap/xml-parser';
 import { Rule } from '@angular-devkit/schematics';
 import { SourceFile } from 'ts-morph';
+import {
+  NodeFactory,
+  WithTemplate,
+  StringOrFactory
+} from '@rxap/schematics-html';
 
 @ElementDef('content')
 export class ContentElement extends NodeElement {

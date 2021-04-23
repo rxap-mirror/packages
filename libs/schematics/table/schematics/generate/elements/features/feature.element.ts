@@ -5,7 +5,7 @@ import {
   HandleComponent,
   HandleComponentModule,
   ToValueContext
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { Rule } from '@angular-devkit/schematics';
 import { TableElement } from '../table.element';
 

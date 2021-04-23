@@ -7,7 +7,7 @@ import { strings } from '@angular-devkit/core';
 import {
   AddNgModuleImport,
   ToValueContext
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { ColumnElement } from './column.element';
 
 const { dasherize, classify, camelize, capitalize } = strings;

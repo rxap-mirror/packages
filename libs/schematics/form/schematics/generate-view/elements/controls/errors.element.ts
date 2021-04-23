@@ -6,15 +6,17 @@ import {
 } from '@rxap/xml-parser';
 import { strings } from '@angular-devkit/core';
 import {
-  NodeFactory,
   HandleComponent,
   HandleComponentModule,
   ToValueContext,
   AddNgModuleImport,
-  WithTemplate
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { Rule } from '@angular-devkit/schematics';
 import { SourceFile } from 'ts-morph';
+import {
+  NodeFactory,
+  WithTemplate
+} from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

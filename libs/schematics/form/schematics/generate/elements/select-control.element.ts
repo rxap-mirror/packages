@@ -32,7 +32,7 @@ import {
   AddToArray,
   AddToFormProviders,
   ToValueContext
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { GenerateSchema } from '../schema';
 
 const { dasherize, classify, camelize } = strings;

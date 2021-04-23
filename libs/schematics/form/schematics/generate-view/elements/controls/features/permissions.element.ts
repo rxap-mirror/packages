@@ -6,12 +6,12 @@ import {
 } from '@rxap/xml-parser/decorators';
 import { ParsedElement } from '@rxap/xml-parser';
 import {
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import { Required } from '@rxap/utilities';
+import { NodeFactory } from '@rxap/schematics-html';
 
 export enum PermissionElementType {
   Attribute,

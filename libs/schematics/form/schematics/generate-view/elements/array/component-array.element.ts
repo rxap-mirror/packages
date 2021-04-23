@@ -5,10 +5,9 @@ import {
 } from '@rxap/xml-parser/decorators';
 import { NodeElement } from '../node.element';
 import {
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import {
   SourceFile,
   Scope,
@@ -24,6 +23,7 @@ import { join } from 'path';
 import { GenerateSchema } from '../../schema';
 import { ArrayElement } from './array.element';
 import { PermissionsElement } from './features/permissions.element';
+import { NodeFactory } from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

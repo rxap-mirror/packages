@@ -11,7 +11,7 @@ import {
   AddComponentProvider,
   ToValueContext,
   AddComponentFakeProvider
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { GenerateSchema } from '../schema';
 import type { TableElement } from './table.element';
 

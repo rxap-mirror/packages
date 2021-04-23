@@ -4,7 +4,7 @@ import {
   ClassDeclaration,
   SourceFile
 } from 'ts-morph';
-import { ToValueContext } from '@rxap/schematics-utilities';
+import { ToValueContext } from '@rxap/schematics-ts-morph';
 
 export interface FeatureElementToValueContext extends ToValueContext {
   classDeclaration: ClassDeclaration

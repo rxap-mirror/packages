@@ -13,11 +13,9 @@ import { SubmitHandleMethod } from '@rxap/schematics-form/schematics/generate/el
 import { CreateButtonElement } from './create-button.element';
 import { EditActionElement } from './action-buttons/edit-action.element';
 import {
-  ModuleElement,
-  MethodElement,
   ToValueContext,
   AddComponentProvider
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { strings } from '@angular-devkit/core';
 import { join } from 'path';
 import {
@@ -27,6 +25,10 @@ import {
 } from '@angular-devkit/schematics';
 import { GenerateSchema } from '../../schema';
 import { Writers } from 'ts-morph';
+import {
+  MethodElement,
+  ModuleElement
+} from '@rxap/schematics-xml-parser';
 
 const { dasherize, classify, camelize } = strings;
 

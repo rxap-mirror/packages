@@ -1,6 +1,6 @@
 import { ElementDef, ElementExtends } from '@rxap/xml-parser/decorators';
 import { RouteElement } from '../route.element';
-import { AddNgModuleImport, ToValueContext } from '@rxap/schematics-utilities';
+import { AddNgModuleImport, ToValueContext } from '@rxap/schematics-ts-morph';
 import { RoutingSchema } from '../../schema';
 import { SourceFile, WriterFunction, WriterFunctionOrValue, Writers } from 'ts-morph';
 import { chain, Rule, noop } from '@angular-devkit/schematics';

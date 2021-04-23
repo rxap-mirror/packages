@@ -2,11 +2,9 @@ import { ParsedElement } from '@rxap/xml-parser';
 import {
   HandleComponent,
   HandleComponentModule,
-  WithTemplate,
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import {
   ElementDef,
   ElementExtends,
@@ -15,6 +13,10 @@ import {
 import { NodeElement } from './node.element';
 import { Rule } from '@angular-devkit/schematics';
 import { SourceFile } from 'ts-morph';
+import {
+  NodeFactory,
+  WithTemplate
+} from '@rxap/schematics-html';
 
 @ElementExtends(NodeElement)
 @ElementDef('divider')

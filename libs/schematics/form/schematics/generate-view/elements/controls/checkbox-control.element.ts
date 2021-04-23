@@ -7,12 +7,12 @@ import {
 import { strings } from '@angular-devkit/core';
 import { NodeElement } from '../node.element';
 import {
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import { PermissionsElement } from './features/permissions.element';
+import { NodeFactory } from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

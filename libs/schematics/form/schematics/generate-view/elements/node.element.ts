@@ -9,12 +9,12 @@ import {
   Rule
 } from '@angular-devkit/schematics';
 import {
-  WithTemplate,
   ToValueContext,
   HandleComponentModule,
   HandleComponent
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
+import { WithTemplate } from '@rxap/schematics-html';
 
 @ElementDef('node')
 export class NodeElement implements ParsedElement<Rule>, WithTemplate, HandleComponentModule, HandleComponent {

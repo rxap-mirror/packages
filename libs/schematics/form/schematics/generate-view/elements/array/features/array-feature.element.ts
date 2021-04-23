@@ -3,13 +3,15 @@ import { Rule } from '@angular-devkit/schematics';
 import {
   HandleComponent,
   HandleComponentModule,
-  WithTemplate,
   ToValueContext,
-  StringOrFactory
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { ElementDef } from '@rxap/xml-parser/decorators';
 import { SourceFile } from 'ts-morph';
 import { ArrayElement } from '../array.element';
+import {
+  WithTemplate,
+  StringOrFactory
+} from '@rxap/schematics-html';
 
 @ElementDef('array-feature')
 export class ArrayFeatureElement implements ParsedElement<Rule>, HandleComponent, HandleComponentModule, WithTemplate {

@@ -7,10 +7,9 @@ import {
   ElementExtends
 } from '@rxap/xml-parser/decorators';
 import {
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import {
   Rule,
@@ -21,6 +20,7 @@ import {
 import { join } from 'path';
 import { strings } from '@angular-devkit/core';
 import { GenerateSchema } from '../../schema';
+import { NodeFactory } from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

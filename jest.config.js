@@ -56,6 +56,9 @@ module.exports = {
     '<rootDir>/libs/fake',
     '<rootDir>/libs/plugin/i18n',
     '<rootDir>/libs/plugin/build-info',
-    '<rootDir>/libs/oauth'
+    '<rootDir>/libs/oauth',
+    '<rootDir>/libs/schematics/ts-morph',
+    '<rootDir>/libs/schematics/html',
+    '<rootDir>/libs/schematics/xml-parser',
   ],
 };

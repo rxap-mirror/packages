@@ -8,12 +8,11 @@ import {
 } from '@rxap/xml-parser/decorators';
 import { NodeElement } from './node.element';
 import {
-  NodeFactory,
   ToValueContext,
   AddDir,
   AddNgModuleImport,
   AddComponentProvider
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import {
   chain,
@@ -29,6 +28,7 @@ import {
   SubmitHandleMethod,
   LoadHandleMethod
 } from '../../generate/elements/form.element';
+import { NodeFactory } from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

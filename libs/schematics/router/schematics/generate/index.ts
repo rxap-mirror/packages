@@ -8,7 +8,7 @@ import { Elements } from './elements/elements';
 import {
   OrganizeImports,
   FixMissingImports
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { join } from 'path';
 
 const { dasherize, classify, camelize, capitalize } = strings;

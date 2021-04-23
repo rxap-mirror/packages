@@ -4,11 +4,10 @@ import {
   ElementAttribute
 } from '@rxap/xml-parser/decorators';
 import {
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport,
   AddComponentProvider
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import {
   SourceFile,
   Scope,
@@ -18,6 +17,7 @@ import { Rule } from '@angular-devkit/schematics';
 import { strings } from '@angular-devkit/core';
 import { FormFeatureElement } from './form-feature.element';
 import { GenerateSchema } from '../../schema';
+import { NodeFactory } from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

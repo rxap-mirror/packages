@@ -20,15 +20,12 @@ import {
   FindComponentModuleSourceFile,
   AddNgModuleImport,
   AddDir,
-  MethodElement,
   AddComponentProvider,
   AddComponentInput,
-  NodeFactory,
-  WithTemplate,
   AddComponentFakeProvider,
   CoerceMethodClass,
   CoerceSourceFile
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { FormElement } from '@rxap/schematics-form/schematics/generate/elements/form.element';
 import {
   chain,
@@ -36,6 +33,11 @@ import {
 } from '@angular-devkit/schematics';
 import { join } from 'path';
 import { CoerceSuffix } from '@rxap/utilities';
+import {
+  NodeFactory,
+  WithTemplate
+} from '@rxap/schematics-html';
+import { MethodElement } from '@rxap/schematics-xml-parser';
 
 const { dasherize, classify, camelize } = strings;
 

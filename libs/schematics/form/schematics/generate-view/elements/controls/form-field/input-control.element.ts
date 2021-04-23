@@ -8,11 +8,11 @@ import { strings } from '@angular-devkit/core';
 import { NodeElement } from '../../node.element';
 import { FormFieldElement } from './form-field.element';
 import {
-  LeafFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
+import { LeafFactory } from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

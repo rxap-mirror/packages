@@ -20,9 +20,9 @@ import { readAngularJsonFile } from '@rxap/schematics/utilities';
 import {
   AddDir,
   ApplyTsMorphProject,
-  ParseTemplate,
   FixMissingImports
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
+import { ParseTemplate } from '@rxap/schematics-xml-parser';
 
 const { dasherize, classify, camelize } = strings;
 

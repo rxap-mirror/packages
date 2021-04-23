@@ -9,15 +9,15 @@ import { RouterLinkElement } from '../../router-link.element';
 import {
   ToValueContext,
   ProviderObject,
-  MethodElement,
   AddComponentProvider,
   CoerceSourceFile,
   CoerceMethodClass,
   AddComponentFakeProvider
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { CoerceSuffix } from '@rxap/utilities';
 import { join } from 'path';
 import { strings } from '@angular-devkit/core';
+import { MethodElement } from '@rxap/schematics-xml-parser';
 
 const { dasherize, classify, camelize } = strings;
 

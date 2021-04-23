@@ -18,7 +18,7 @@ import {
   HandleComponentModule,
   AddNgModuleImport,
   ToValueContext
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { Rule } from '@angular-devkit/schematics';
 import { GenerateSchema } from '../../schema';
 import { DisplayColumn } from '../features/feature.element';

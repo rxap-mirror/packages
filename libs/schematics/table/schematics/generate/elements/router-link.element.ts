@@ -13,7 +13,7 @@ import {
   AddNgModuleImport,
   ToValueContext,
   HandleComponentModule
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 
 const { dasherize, classify, camelize } = strings;
 

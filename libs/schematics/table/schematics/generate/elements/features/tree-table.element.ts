@@ -19,11 +19,11 @@ import { strings } from '@angular-devkit/core';
 import {
   ToValueContext,
   AddNgModuleImport,
-  MethodElement,
   HandleComponent,
   AddComponentProvider
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { GenerateSchema } from '../../schema';
+import { MethodElement } from '@rxap/schematics-xml-parser';
 
 const { dasherize, classify, camelize } = strings;
 

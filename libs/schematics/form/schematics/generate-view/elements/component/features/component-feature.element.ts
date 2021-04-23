@@ -3,7 +3,7 @@ import {
   Rule,
   noop
 } from '@angular-devkit/schematics';
-import { ToValueContext } from '@rxap/schematics-utilities';
+import { ToValueContext } from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import { ElementDef } from '@rxap/xml-parser/decorators';
 import { ComponentElement } from '../component.element';

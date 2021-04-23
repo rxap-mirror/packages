@@ -29,7 +29,7 @@ import {
   ParseTemplate,
   ApplyTsMorphProject,
   FixMissingImports
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 
 
 const { dasherize } = strings;

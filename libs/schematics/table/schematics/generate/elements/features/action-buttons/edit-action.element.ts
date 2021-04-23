@@ -13,14 +13,12 @@ import {
   HandleComponentModule,
   HandleComponent,
   ToValueContext,
-  ModuleElement,
-  OpenApiRemoteMethodElement,
   AddComponentProvider,
   AddComponentFakeProvider,
   ProviderObject,
   CoerceSourceFile,
   CoerceMethodClass
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import {
   Rule,
   chain,
@@ -33,6 +31,10 @@ import { WindowFormElement } from '../window-form.element';
 import { join } from 'path';
 import { TableElement } from '../../table.element';
 import { CoerceSuffix } from '@rxap/utilities';
+import {
+  OpenApiRemoteMethodElement,
+  ModuleElement
+} from '@rxap/schematics-xml-parser';
 
 const { dasherize, classify, camelize } = strings;
 

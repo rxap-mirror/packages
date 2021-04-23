@@ -7,19 +7,21 @@ import {
   ElementTextContent
 } from '@rxap/xml-parser/decorators';
 import {
-  NodeFactory,
   ToValueContext,
   HandleComponent,
   HandleComponentModule,
-  WithTemplate,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import {
   Rule,
   noop,
   chain
 } from '@angular-devkit/schematics';
 import { SourceFile } from 'ts-morph';
+import {
+  NodeFactory,
+  WithTemplate
+} from '@rxap/schematics-html';
 
 @ElementDef('icon')
 export class IconElement implements ParsedElement<Rule>, HandleComponent, HandleComponentModule, WithTemplate {

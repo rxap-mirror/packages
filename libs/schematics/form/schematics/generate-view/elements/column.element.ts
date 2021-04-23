@@ -7,9 +7,9 @@ import { NodeElement } from './node.element';
 import {
   ToValueContext,
   AddNgModuleImport,
-  NodeFactory
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
+import { NodeFactory } from '@rxap/schematics-html';
 
 @ElementExtends(NodeElement)
 @ElementDef('column')

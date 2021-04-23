@@ -1,8 +1,9 @@
 import { ElementDef, ElementExtends } from '@rxap/xml-parser/decorators';
-import { AddNgModuleImport, NodeFactory, ToValueContext } from '@rxap/schematics-utilities';
+import { AddNgModuleImport, ToValueContext } from '@rxap/schematics-ts-morph';
 import { strings } from '@angular-devkit/core';
 import { SourceFile } from 'ts-morph';
 import { ColumnElement } from './column.element';
+import { NodeFactory } from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

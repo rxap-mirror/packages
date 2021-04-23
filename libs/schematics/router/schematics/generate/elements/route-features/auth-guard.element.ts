@@ -8,7 +8,7 @@ import {
   WriterFunctionOrValue,
   SourceFile
 } from 'ts-morph';
-import { ToValueContext } from '@rxap/schematics-utilities';
+import { ToValueContext } from '@rxap/schematics-ts-morph';
 import {
   Rule,
   noop

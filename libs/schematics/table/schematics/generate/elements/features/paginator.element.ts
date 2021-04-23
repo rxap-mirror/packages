@@ -7,7 +7,7 @@ import { SourceFile } from 'ts-morph';
 import {
   AddNgModuleImport,
   ToValueContext
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 
 @ElementExtends(FeatureElement)
 @ElementDef('paginator')

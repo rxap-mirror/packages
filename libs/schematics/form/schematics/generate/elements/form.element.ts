@@ -22,7 +22,6 @@ import { FeatureElement } from './features/feature.element';
 import {
   AddToFormProviders,
   GetFormProvidersFile,
-  MethodElement,
   ToValueContext,
   AddVariableProvider,
   HandleComponent,
@@ -32,7 +31,7 @@ import {
   AddComponentFakeProvider,
   CoerceSourceFile,
   CoerceMethodClass
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import {
   Rule,
   noop
@@ -41,6 +40,7 @@ import { GenerateSchema } from '../schema';
 import { HandleFormProviders } from './types';
 import { CoerceSuffix } from '@rxap/utilities';
 import { join } from 'path';
+import { MethodElement } from '@rxap/schematics-xml-parser';
 
 const { dasherize, classify, camelize } = strings;
 

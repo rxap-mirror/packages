@@ -104,7 +104,13 @@ export function ParseTemplate<T extends ParsedElement>(
       filename = filenameMatch[ 1 ];
     }
 
-    templateFile = host.read(templateFilePath)!.toString('utf-8');
+    const templateFileBuffer = host.read(templateFilePath)
+
+    if (!templateFileBuffer) {
+      throw new Error(`Could not read the file at path '${templateFilePath}'`);
+    }
+
+    templateFile = templateFileBuffer.toString('utf-8');
 
   } else {
     templateFile = template;
@@ -114,5 +120,9 @@ export function ParseTemplate<T extends ParsedElement>(
 
   parser.register(...elements);
 
-  return parser.parseFromXml<T>(templateFile!, filename, templateFilePath);
+  if (!templateFile) {
+    throw new Error('The template for the xml parser is not defined');
+  }
+
+  return parser.parseFromXml<T>(templateFile, filename, templateFilePath);
 }

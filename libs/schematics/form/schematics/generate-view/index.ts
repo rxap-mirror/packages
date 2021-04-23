@@ -13,16 +13,16 @@ import { createDefaultPath } from '@schematics/angular/utility/workspace';
 import { strings } from '@angular-devkit/core';
 import { FormElement } from './elements/form.element';
 import {
-  ParseTemplate,
   ApplyTsMorphProject,
   FixMissingImports
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import {
   IndentationText,
   QuoteKind,
   Project
 } from 'ts-morph';
 import { readAngularJsonFile } from '@rxap/schematics/utilities';
+import { ParseTemplate } from '@rxap/schematics-xml-parser';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
