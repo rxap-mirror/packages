@@ -1,6 +1,6 @@
 {
   "name": "@rxap/forms",
-  "version": "11.3.3",
+  "version": "11.3.4",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -23,10 +23,10 @@
     "@angular/forms": "^11.2.6",
     "@angular/platform-browser": "^11.2.6",
     "@angular/router": "^11.2.6",
-    "@rxap/definition": "^11.0.6",
+    "@rxap/definition": "^11.0.9",
     "@rxap/directives": "^11.2.2",
-    "@rxap/services": "^11.0.8",
-    "@rxap/utilities": "^11.3.2",
+    "@rxap/services": "^11.2.0",
+    "@rxap/utilities": "^11.3.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
