@@ -293,7 +293,18 @@ export class TypescriptInterfaceGenerator {
         return writer => writer.write('any');
 
       default:
-        throw new Error(`The property' type '${schema.type}' is not supported!`);
+
+        if (Array.isArray(schema.type)) {
+
+          if (!schema.type.every(type => ['string', 'integer', 'number', 'boolean', 'null', 'any'].includes(type))) {
+            throw new Error(`If the property type is provided as array only string, integer, number, boolean, null and any are supported. But the property types '[${schema.type.join(', ')}]' was found`);
+          }
+
+          return schema.type.join(' | ');
+
+        }
+
+        throw new Error(`The property type '${schema.type}' is not supported!`);
 
     }
 
