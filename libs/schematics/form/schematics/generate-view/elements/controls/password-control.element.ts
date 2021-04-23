@@ -11,16 +11,16 @@ import { ControlElement } from './control.element';
 import { ErrorsElement } from './errors.element';
 import { InputControlElement } from './form-field/input-control.element';
 import {
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import { ElementFactory } from '@rxap/xml-parser';
 import {
   chain,
   Rule
 } from '@angular-devkit/schematics';
+import { NodeFactory } from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

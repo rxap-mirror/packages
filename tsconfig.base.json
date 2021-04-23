@@ -95,48 +95,28 @@
       "@rxap/data-source/recorder": [
         "libs/data-source/recorder/src/public_api.ts"
       ],
-      "@rxap/utilities/modules": [
-        "libs/utilities/modules/src/public_api.ts"
-      ],
+      "@rxap/utilities/modules": ["libs/utilities/modules/src/public_api.ts"],
       "@rxap/plugin/library-schematics": [
         "libs/plugin/library-schematics/src/index.ts"
       ],
       "@rxap/utilities/schematic": [
         "libs/utilities/schematic/src/public_api.ts"
       ],
-      "@rxap/open-api": [
-        "libs/open-api/src/index.ts"
-      ],
+      "@rxap/open-api": ["libs/open-api/src/index.ts"],
       "@rxap/open-api/data-source": [
         "libs/open-api/data-source/src/public_api.ts"
       ],
       "@rxap/open-api/remote-method": [
         "libs/open-api/remote-method/src/public_api.ts"
       ],
-      "@rxap/recorder": [
-        "libs/recorder/src/index.ts"
-      ],
-      "@rxap/data-source/http": [
-        "libs/data-source/http/src/public_api.ts"
-      ],
-      "@rxap/across-tabs": [
-        "libs/across-tabs/src/index.ts"
-      ],
-      "@rxap/forms": [
-        "libs/forms/src/index.ts"
-      ],
-      "@rxap/icon": [
-        "libs/icon/src/index.ts"
-      ],
-      "@rxap/hammerjs": [
-        "libs/hammerjs/src/index.ts"
-      ],
-      "@rxap/remote-method/http": [
-        "libs/remote-method/http/src/public_api.ts"
-      ],
-      "@rxap/refresh": [
-        "libs/rxap/refresh/src/index.ts"
-      ],
+      "@rxap/recorder": ["libs/recorder/src/index.ts"],
+      "@rxap/data-source/http": ["libs/data-source/http/src/public_api.ts"],
+      "@rxap/across-tabs": ["libs/across-tabs/src/index.ts"],
+      "@rxap/forms": ["libs/forms/src/index.ts"],
+      "@rxap/icon": ["libs/icon/src/index.ts"],
+      "@rxap/hammerjs": ["libs/hammerjs/src/index.ts"],
+      "@rxap/remote-method/http": ["libs/remote-method/http/src/public_api.ts"],
+      "@rxap/refresh": ["libs/rxap/refresh/src/index.ts"],
       "@rxap/remote-method/http/directive": [
         "libs/remote-method/http/directive/src/public_api.ts"
       ],
@@ -155,126 +135,65 @@
       "@rxap/material-directives/icon": [
         "libs/material/directives/icon/src/public_api.ts"
       ],
-      "@rxap/directives": [
-        "libs/directives/src/index.ts"
-      ],
-      "@rxap/handlebars": [
-        "libs/handlebars/src/index.ts"
-      ],
+      "@rxap/directives": ["libs/directives/src/index.ts"],
+      "@rxap/handlebars": ["libs/handlebars/src/index.ts"],
       "@rxap/data-source/pagination/directives": [
         "libs/data-source/pagination/directives/src/public_api.ts"
       ],
       "@rxap/data-source/http/pagination": [
         "libs/data-source/http/pagination/src/public_api.ts"
       ],
-      "@rxap/definition": [
-        "libs/definition/src/index.ts"
-      ],
-      "@rxap/plugin-pack": [
-        "libs/plugin/pack/src/index.ts"
-      ],
-      "@rxap/plugin-scss-bundle": [
-        "libs/plugin/scss-bundle/src/index.ts"
-      ],
-      "@rxap/form-system": [
-        "libs/form-system/src/index.ts"
-      ],
+      "@rxap/definition": ["libs/definition/src/index.ts"],
+      "@rxap/plugin-pack": ["libs/plugin/pack/src/index.ts"],
+      "@rxap/plugin-scss-bundle": ["libs/plugin/scss-bundle/src/index.ts"],
+      "@rxap/form-system": ["libs/form-system/src/index.ts"],
       "@rxap/plugin-readme-generator": [
         "libs/plugin/readme-generator/src/index.ts"
       ],
-      "@rxap/plugin-kaniko": [
-        "libs/plugin/kaniko/src/index.ts"
-      ],
-      "@rxap/data-grid": [
-        "libs/data-grid/src/index.ts"
-      ],
+      "@rxap/plugin-kaniko": ["libs/plugin/kaniko/src/index.ts"],
+      "@rxap/data-grid": ["libs/data-grid/src/index.ts"],
       "@rxap/plugin-library-publish": [
         "libs/plugin/library-publish/src/index.ts"
       ],
-      "@rxap/fullstory": [
-        "libs/fullstory/src/index.ts"
-      ],
-      "@rxap/sentry": [
-        "libs/sentry/src/index.ts"
-      ],
-      "@rxap/slugify": [
-        "libs/slugify/src/index.ts"
-      ],
-      "@rxap/service-worker": [
-        "libs/service-worker/src/index.ts"
-      ],
-      "@rxap/life-cycle": [
-        "libs/life-cycle/src/index.ts"
-      ],
+      "@rxap/fullstory": ["libs/fullstory/src/index.ts"],
+      "@rxap/sentry": ["libs/sentry/src/index.ts"],
+      "@rxap/slugify": ["libs/slugify/src/index.ts"],
+      "@rxap/service-worker": ["libs/service-worker/src/index.ts"],
+      "@rxap/life-cycle": ["libs/life-cycle/src/index.ts"],
       "@rxap/open-api/data-source/table": [
         "libs/open-api/data-source/data-source/table/src/public_api.ts"
       ],
       "@rxap/json-schema-to-typescript": [
         "libs/json-schema-to-typescript/src/index.ts"
       ],
-      "@rxap/tree": [
-        "libs/tree/src/index.ts"
-      ],
-      "@rxap/dialog": [
-        "libs/dialog/src/index.ts"
-      ],
-      "@rxap/form-window-system": [
-        "libs/form-window-system/src/index.ts"
-      ],
-      "@rxap/environment": [
-        "libs/environment/src/index.ts"
-      ],
-      "@rxap/table-system": [
-        "libs/table-system/src/index.ts"
-      ],
-      "@rxap/material-form-system": [
-        "libs/material/form-system/src/index.ts"
-      ],
+      "@rxap/tree": ["libs/tree/src/index.ts"],
+      "@rxap/dialog": ["libs/dialog/src/index.ts"],
+      "@rxap/form-window-system": ["libs/form-window-system/src/index.ts"],
+      "@rxap/environment": ["libs/environment/src/index.ts"],
+      "@rxap/table-system": ["libs/table-system/src/index.ts"],
+      "@rxap/material-form-system": ["libs/material/form-system/src/index.ts"],
       "@rxap/material-table-system": [
         "libs/material/table-system/src/index.ts"
       ],
-      "@rxap/schematics-utilities": [
-        "libs/schematics/utilities/src/index.ts"
-      ],
-      "@rxap/contenteditable": [
-        "libs/contenteditable/src/index.ts"
-      ],
-      "@rxap/schematics-router": [
-        "libs/schematics/router/src/index.ts"
-      ],
-      "@rxap/amplify-open-api": [
-        "libs/amplify/open-api/src/index.ts"
-      ],
-      "@rxap/schematics-table": [
-        "libs/schematics/table/src/index.ts"
-      ],
+      "@rxap/schematics-utilities": ["libs/schematics/utilities/src/index.ts"],
+      "@rxap/contenteditable": ["libs/contenteditable/src/index.ts"],
+      "@rxap/schematics-router": ["libs/schematics/router/src/index.ts"],
+      "@rxap/amplify-open-api": ["libs/amplify/open-api/src/index.ts"],
+      "@rxap/schematics-table": ["libs/schematics/table/src/index.ts"],
       "@rxap/material-table-window-system": [
         "libs/material/table-window-system/src/index.ts"
       ],
-      "@rxap/schematics-shared": [
-        "libs/schematics/shared/src/index.ts"
-      ],
-      "@rxap/upeload": [
-        "libs/upload/src/index.ts"
-      ],
-      "@rxap/schematics-form": [
-        "libs/schematics/form/src/index.ts"
-      ],
-      "@rxap/material-directives": [
-        "libs/material/directives/src/index.ts"
-      ],
-      "@rxap/fake": [
-        "libs/fake/src/index.ts"
-      ],
-      "@rxap/plugin-i18n": [
-        "libs/plugin/i18n/src/index.ts"
-      ],
-      "@rxap/plugin-build-info": [
-        "libs/plugin/build-info/src/index.ts"
-      ],
-      "@rxap/oauth": [
-        "libs/oauth/src/index.ts"
-      ]
+      "@rxap/schematics-shared": ["libs/schematics/shared/src/index.ts"],
+      "@rxap/upeload": ["libs/upload/src/index.ts"],
+      "@rxap/schematics-form": ["libs/schematics/form/src/index.ts"],
+      "@rxap/material-directives": ["libs/material/directives/src/index.ts"],
+      "@rxap/fake": ["libs/fake/src/index.ts"],
+      "@rxap/plugin-i18n": ["libs/plugin/i18n/src/index.ts"],
+      "@rxap/plugin-build-info": ["libs/plugin/build-info/src/index.ts"],
+      "@rxap/oauth": ["libs/oauth/src/index.ts"],
+      "@rxap/schematics-ts-morph": ["libs/schematics/ts-morph/src/index.ts"],
+      "@rxap/schematics-html": ["libs/schematics/html/src/index.ts"],
+      "@rxap/schematics-xml-parser": ["libs/schematics/xml-parser/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp", "*.sandbox.ts"]

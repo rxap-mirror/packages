@@ -6,11 +6,11 @@ import {
 } from '@rxap/xml-parser/decorators';
 import { FormFeatureElement } from './form-feature.element';
 import {
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
+import { NodeFactory } from '@rxap/schematics-html';
 
 @ElementExtends(FormFeatureElement)
 @ElementDef('window-title')

@@ -39,11 +39,17 @@
       "@rxap/xml-parser/testing": [
         "../../../dist/libs/xml-parser/testing"
       ],
-      "@rxap/schematics-utilities": [
-        "../../../dist/libs/schematics/utilities"
+      "@rxap/schematics-ts-morph": [
+        "../../../dist/libs/schematics/ts-morph"
       ],
       "@rxap/schematics-form/schematics/*": [
         "../../../dist/libs/schematics/form/schematics/*"
+      ],
+      "@rxap/schematics-html": [
+        "../../../dist/libs/schematics/html"
+      ],
+      "@rxap/schematics-xml-parser": [
+        "../../../dist/libs/schematics/xml-parser"
       ]
     }
   },

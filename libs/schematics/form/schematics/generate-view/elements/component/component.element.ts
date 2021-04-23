@@ -1,11 +1,9 @@
 import { NodeElement } from '../node.element';
 import {
-  WithTemplate,
   ToValueContext,
   AddNgModuleImport,
-  NodeFactory,
   CoerceSourceFile
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { ParsedElement } from '@rxap/xml-parser';
 import {
   ElementExtends,
@@ -24,6 +22,10 @@ import {
 } from '@angular-devkit/schematics';
 import { join } from 'path';
 import { ComponentFeatureElement } from './features/component-feature.element';
+import {
+  NodeFactory,
+  WithTemplate
+} from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

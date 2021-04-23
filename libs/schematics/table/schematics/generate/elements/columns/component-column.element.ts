@@ -12,7 +12,7 @@ import {
 import {
   AddNgModuleImport,
   ToValueContext
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { strings } from '@angular-devkit/core';
 import { join } from 'path';
 import { SourceFile } from 'ts-morph';

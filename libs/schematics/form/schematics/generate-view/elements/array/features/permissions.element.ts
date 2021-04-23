@@ -5,13 +5,13 @@ import {
 } from '@rxap/xml-parser/decorators';
 import { ParsedElement } from '@rxap/xml-parser';
 import {
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import { Required } from '@rxap/utilities';
 import { ArrayFeatureElement } from './array-feature.element';
+import { NodeFactory } from '@rxap/schematics-html';
 
 // TODO : remove duplication
 

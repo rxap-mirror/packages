@@ -10,13 +10,15 @@ import {
 import { ErrorsElement } from '../errors.element';
 import { strings } from '@angular-devkit/core';
 import {
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport,
-  WithTemplate
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import { PermissionsElement } from '../features/permissions.element';
+import {
+  NodeFactory,
+  WithTemplate
+} from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

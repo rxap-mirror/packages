@@ -6,12 +6,12 @@ import {
 } from '@rxap/xml-parser/decorators';
 import { NodeElement } from '../../node.element';
 import {
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import type { ClearElement } from '../features/clear.element';
+import { NodeFactory } from '@rxap/schematics-html';
 
 @ElementExtends(NodeElement)
 @ElementDef('select-control')

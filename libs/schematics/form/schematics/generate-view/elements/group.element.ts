@@ -7,15 +7,15 @@ import {
   ElementRequired
 } from '@rxap/xml-parser/decorators';
 import {
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import {
   Rule,
   chain
 } from '@angular-devkit/schematics';
 import { SourceFile } from 'ts-morph';
+import { NodeFactory } from '@rxap/schematics-html';
 
 @ElementExtends(NodeElement)
 @ElementDef('group')

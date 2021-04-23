@@ -6,7 +6,7 @@ import {
 import {
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import { ControlElement } from '../control.element';
 import { FormFieldElement } from '../form-field/form-field.element';

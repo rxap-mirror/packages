@@ -11,9 +11,9 @@ import {
 } from '@angular-devkit/schematics';
 import { join } from 'path';
 import { createDefaultPath } from '@schematics/angular/utility/workspace';
-import { ParseTemplate } from '@rxap/schematics-utilities';
 import { RoutingElement } from './routing.element';
 import { Elements } from './elements';
+import { ParseTemplate } from '@rxap/schematics-xml-parser';
 
 const { dasherize, classify, camelize } = strings;
 

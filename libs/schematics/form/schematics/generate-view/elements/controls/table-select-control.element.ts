@@ -24,7 +24,7 @@ import {
   AddComponentProvider,
   AddNgModuleImport,
   ToValueContext
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { strings } from '@angular-devkit/core';
 import {
   chain,

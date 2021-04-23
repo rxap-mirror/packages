@@ -15,7 +15,7 @@ import {
   AddNgModuleImport,
   ToValueContext,
   AddComponentProvider
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { GenerateSchema } from '../../schema';
 
 @ElementExtends(FeatureElement)

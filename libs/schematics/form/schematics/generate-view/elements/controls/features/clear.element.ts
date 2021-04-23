@@ -5,11 +5,11 @@ import {
   ElementAttribute
 } from '@rxap/xml-parser/decorators';
 import {
-  NodeFactory,
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
+import { NodeFactory } from '@rxap/schematics-html';
 
 @ElementExtends(ControlFeatureElement)
 @ElementDef('clear')

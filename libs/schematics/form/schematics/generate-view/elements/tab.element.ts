@@ -8,19 +8,21 @@ import {
   ElementRequired
 } from '@rxap/xml-parser/decorators';
 import {
-  NodeFactory,
-  WithTemplate,
-  StringOrFactory,
   ToValueContext,
   AddNgModuleImport,
   HandleComponentModule,
   HandleComponent
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import {
   Rule,
   chain
 } from '@angular-devkit/schematics';
+import {
+  NodeFactory,
+  WithTemplate,
+  StringOrFactory
+} from '@rxap/schematics-html';
 
 @ElementDef('tab')
 export class TabElement implements NodeElement {

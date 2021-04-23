@@ -15,11 +15,8 @@ import {
   ProviderObject,
   AddNgModuleImport,
   ToValueContext,
-  ModuleElement,
-  MethodElement,
   AddComponentProvider,
-  NodeFactory
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import {
   Rule,
   chain,
@@ -29,6 +26,11 @@ import { WindowFormElement } from './window-form.element';
 import { GenerateSchema } from '../../schema';
 import { join } from 'path';
 import { dasherize } from '@rxap/utilities';
+import { NodeFactory } from '@rxap/schematics-html';
+import {
+  MethodElement,
+  ModuleElement
+} from '@rxap/schematics-xml-parser';
 
 @ElementExtends(FeatureElement)
 @ElementDef('create-button')

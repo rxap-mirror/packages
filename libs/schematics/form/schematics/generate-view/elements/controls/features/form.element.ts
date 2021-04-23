@@ -8,7 +8,7 @@ import {
 import { join } from 'path';
 import { ControlElement } from '../control.element';
 import { strings } from '@angular-devkit/core';
-import { ToValueContext } from '@rxap/schematics-utilities';
+import { ToValueContext } from '@rxap/schematics-ts-morph';
 import {
   Rule,
   chain,

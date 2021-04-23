@@ -6,12 +6,14 @@ import {
   ElementTextContent
 } from '@rxap/xml-parser/decorators';
 import { SourceFile } from 'ts-morph';
-import { ToValueContext } from '../../to-value-context';
 import { join } from 'path';
 import { strings } from '@angular-devkit/core';
-import { CoerceMethodClass } from '../../coerce-method-class';
 import { CoerceSuffix } from '@rxap/utilities';
-import { CoerceSourceFile } from '../../coerce-source-file';
+import {
+  CoerceSourceFile,
+  CoerceMethodClass,
+  ToValueContext
+} from '@rxap/schematics-ts-morph';
 
 const { dasherize, classify, camelize } = strings;
 

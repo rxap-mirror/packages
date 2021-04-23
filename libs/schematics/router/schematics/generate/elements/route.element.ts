@@ -17,7 +17,7 @@ import {
   chain,
   Rule
 } from '@angular-devkit/schematics';
-import { ToValueContext } from '@rxap/schematics-utilities';
+import { ToValueContext } from '@rxap/schematics-ts-morph';
 import { RoutingElement } from './routing.element';
 import { FeatureModuleElement } from './feature-module.element';
 import { SchematicElement } from './schematic.element';

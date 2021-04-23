@@ -6,13 +6,14 @@ import {
 import { SourceFile } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
 import {
-  AddNgModuleImport, NodeFactory,
+  AddNgModuleImport,
   ToValueContext,
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { OptionsElement } from '@rxap/xml-parser/elements';
 import { ElementFactory } from '@rxap/xml-parser';
 import { ColumnElement } from './column.element';
 import { FilterElement } from './filters/filter.element';
+import { NodeFactory } from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

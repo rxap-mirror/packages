@@ -3,7 +3,7 @@ import { ElementChildren, ElementDef } from '@rxap/xml-parser/decorators';
 import { RouteElement } from './route.element';
 import { ArrayLiteralExpression } from 'ts-morph';
 import { chain, Rule } from '@angular-devkit/schematics';
-import { ToValueContext } from '@rxap/schematics-utilities';
+import { ToValueContext } from '@rxap/schematics-ts-morph';
 import { RoutingSchema } from '../schema';
 
 @ElementDef('definition')

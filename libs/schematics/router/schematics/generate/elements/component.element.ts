@@ -8,7 +8,7 @@ import {
   Rule,
   chain
 } from '@angular-devkit/schematics';
-import { ToValueContext } from '@rxap/schematics-utilities';
+import { ToValueContext } from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 
 @ElementDef('component')

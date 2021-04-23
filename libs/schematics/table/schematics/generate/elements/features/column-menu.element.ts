@@ -14,7 +14,7 @@ import { coerceArray } from '@rxap/utilities';
 import {
   AddNgModuleImport,
   ToValueContext
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 

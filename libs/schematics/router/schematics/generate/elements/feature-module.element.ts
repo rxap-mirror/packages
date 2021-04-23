@@ -11,7 +11,7 @@ import {
   externalSchematic
 } from '@angular-devkit/schematics';
 import { RoutingSchema } from '../schema';
-import { ToValueContext } from '@rxap/schematics-utilities';
+import { ToValueContext } from '@rxap/schematics-ts-morph';
 import {
   SourceFile,
   VariableDeclarationKind,

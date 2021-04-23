@@ -17,7 +17,7 @@ import { ComponentElement } from '../component.element';
 import {
   ToValueContext,
   AddNgModuleImport
-} from '@rxap/schematics-utilities';
+} from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import { GenerateSchema } from '../../../schema';
 
