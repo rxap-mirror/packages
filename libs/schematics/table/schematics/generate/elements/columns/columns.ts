@@ -8,6 +8,7 @@ import { LinkColumnElement } from './link-column.element';
 import { OptionsColumnElement } from './options-column.element';
 import { ComponentColumnElement } from './component-column.element';
 import { IconColumnElement } from './icon-column.element';
+import { CopyToClipboardColumnElement } from './copy-to-clipboard-column.element';
 
 export const Columns: Array<Constructor<ParsedElement>> = [
   BooleanColumnElement,
@@ -17,5 +18,6 @@ export const Columns: Array<Constructor<ParsedElement>> = [
   OptionsColumnElement,
   ComponentColumnElement,
   IconColumnElement,
+  CopyToClipboardColumnElement,
   ...Filters
 ];
