@@ -160,13 +160,13 @@ export class TypescriptInterfaceGenerator {
   }
 
   private coercePropertyKey(key: string): string {
-    if (key.match(/(^[0-9]+|-|#|\.)/)) {
+    if (key.match(/(^[0-9]+|-|#|\.|@|\/|:)/)) {
       return `'${key}'`;
     }
     return key;
   }
 
-  private propertyTypeWriteFunction(currentFile: SourceFile, schema: JSONSchema): WriterFunction | string | undefined {
+  private propertyTypeWriteFunction(currentFile: SourceFile, schema: JSONSchema): WriterFunction | string {
 
     switch (schema.type) {
       case 'string':
@@ -187,15 +187,33 @@ export class TypescriptInterfaceGenerator {
 
       case 'object':
 
-        if (schema.properties) {
+        if (schema.properties || schema.additionalProperties || schema.patternProperties) {
 
           const objectTypeStructure: TypeElementMemberedNodeStructure = {
             properties: []
           };
 
-          for (const [ key, property ] of Object.entries(schema.properties as Record<string, JSONSchema>)) {
+          if (schema.properties) {
+            for (const [ key, property ] of Object.entries(schema.properties as Record<string, JSONSchema>)) {
+              objectTypeStructure.properties?.push(this.buildPropertySignatureStructure(currentFile, key, property, this.isRequired(schema, key)));
+            }
+          }
 
-            objectTypeStructure.properties?.push(this.buildPropertySignatureStructure(currentFile, key, property, this.isRequired(schema, key)));
+          if (schema.patternProperties) {
+            for (const [ key, property ] of Object.entries(schema.patternProperties as Record<string, JSONSchema>)) {
+              objectTypeStructure.properties?.push(this.buildPropertySignatureStructure(currentFile, '[key: string]', property, true));
+            }
+          }
+
+          if (schema.additionalProperties) {
+            if (schema.additionalProperties === true) {
+              objectTypeStructure.properties?.push({
+                name: '[key: string]',
+                type: 'any'
+              })
+            } else {
+              objectTypeStructure.properties?.push(this.buildPropertySignatureStructure(currentFile, '[key: string]', schema.additionalProperties, true));
+            }
           }
 
           return Writers.objectType(objectTypeStructure);
@@ -284,9 +302,36 @@ export class TypescriptInterfaceGenerator {
             writer.write('>');
 
           }
+        } else if (schema.oneOf) {
+
+          const typeList: Array<WriterFunction | string> = [];
+
+          for (const oneOf of schema.oneOf) {
+            if (typeof oneOf !== 'boolean') {
+              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf))
+            }
+          }
+
+          if (typeList.length < 2) {
+            return typeList[0] ?? 'any';
+          }
+
+          return Writers.unionType(typeList[0], typeList[1], ...typeList);
+        } else if (schema.const) {
+          return writer => writer.quote(schema.const);
+        } else if (schema.properties) {
+          const objectTypeStructure: TypeElementMemberedNodeStructure = {
+            properties: []
+          };
+
+          for (const [ key, property ] of Object.entries(schema.properties as Record<string, JSONSchema>)) {
+            objectTypeStructure.properties?.push(this.buildPropertySignatureStructure(currentFile, key, property, this.isRequired(schema, key)));
+          }
+
+          return Writers.objectType(objectTypeStructure);
         }
 
-        console.warn('The property type is undefined and a ref is not defined!');
+        console.warn(`The property type is undefined and a ref is not defined! found: ${Object.keys(schema)}`);
 
         // TODO : add support for allOf and anyOf
 
