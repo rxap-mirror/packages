@@ -38,6 +38,12 @@ export * from './lib/download-object-as-json-file';
 
 export * from './lib/get-property-descriptor';
 
+// region function
+
+export * from './lib/function/is-function';
+
+// endregion
+
 // region array
 
 export * from './lib/array/chunk';
