@@ -65,6 +65,13 @@ export * from './lib/table-select-controls/table-select-controls.component.modul
 
 // region cells
 
+// region copy-to-clipboard cell
+
+export * from './lib/cells/copy-to-clipboard-cell/copy-to-clipboard-cell.component';
+export * from './lib/cells/copy-to-clipboard-cell/copy-to-clipboard-cell.component.module';
+
+// endregion
+
 // region icon cell
 
 export * from './lib/cells/icon-cell/icon-cell.component';
