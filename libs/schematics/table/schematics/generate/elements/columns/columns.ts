@@ -7,6 +7,7 @@ import { Filters } from './filters/filters';
 import { LinkColumnElement } from './link-column.element';
 import { OptionsColumnElement } from './options-column.element';
 import { ComponentColumnElement } from './component-column.element';
+import { IconColumnElement } from './icon-column.element';
 
 export const Columns: Array<Constructor<ParsedElement>> = [
   BooleanColumnElement,
@@ -15,5 +16,6 @@ export const Columns: Array<Constructor<ParsedElement>> = [
   LinkColumnElement,
   OptionsColumnElement,
   ComponentColumnElement,
+  IconColumnElement,
   ...Filters
 ];
