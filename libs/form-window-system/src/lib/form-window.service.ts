@@ -60,23 +60,28 @@ export class FormWindowService {
     private readonly injector: Injector,
   ) {}
 
-  private createFormDefinitionInstance(formBuilder: RxapFormBuilder, initial?: any): FormDefinition {
-    return formBuilder.build(initial);
-  }
-
   public open<FormData extends Record<string, any>>(
     formDefinitionConstructor: Constructor<FormDefinition>,
     options?: FormWindowOptions<FormData>
   ): WindowRef<FormDefinition, FormData> {
 
+    function FormDefinitionFactory(formBuilder: RxapFormBuilder, initial?: any): FormDefinition {
+      return formBuilder.build(initial);
+    }
+
+    function FormDefinitionBuilderFactory(_injector: Injector): RxapFormBuilder {
+      return new RxapFormBuilder(formDefinitionConstructor, _injector);
+    }
+
     const providers: StaticProvider[] = [
       {
         provide:  RXAP_FORM_DEFINITION_BUILDER,
-        useValue: new RxapFormBuilder(formDefinitionConstructor, options?.injector ?? this.injector)
+        useFactory: FormDefinitionBuilderFactory,
+        deps: [ INJECTOR ]
       },
       {
         provide:    RXAP_FORM_DEFINITION,
-        useFactory: this.createFormDefinitionInstance.bind(this),
+        useFactory: FormDefinitionFactory,
         deps:       [ RXAP_FORM_DEFINITION_BUILDER, [ new Optional(), RXAP_FORM_INITIAL_STATE ] ]
       },
       ...(options?.providers ?? [])
