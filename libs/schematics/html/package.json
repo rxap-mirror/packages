@@ -1,7 +1,6 @@
 {
   "name": "@rxap/schematics-html",
-  "version": "11.0.0",
-  "peerDependencies": {},
+  "version": "11.1.0",
   "dependencies": {
     "tslib": "^2.0.0"
   },

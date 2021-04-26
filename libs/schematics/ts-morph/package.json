@@ -1,7 +1,11 @@
 {
   "name": "@rxap/schematics-ts-morph",
-  "version": "11.0.0",
-  "peerDependencies": {},
+  "version": "11.1.0",
+  "peerDependencies": {
+    "@rxap/utilities": "^11.4.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.5"
+  },
   "dependencies": {
     "tslib": "^2.0.0"
   },
@@ -22,5 +26,11 @@
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "ng-update": {
+    "packageGroup": [
+      "@rxap/schematics-ts-morph",
+      "@rxap/utilities"
+    ]
   }
 }

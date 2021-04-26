@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.12.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.11.0...@rxap/schematics-table@11.12.0) (2021-04-26)
+
+
+### Bug Fixes
+
+* check for null ([f6028ef](https://gitlab.com/rxap/packages/commit/f6028ef0507e7636e2cbad19a10303aaca5ac8a7))
+
+
+### Features
+
+* split the @rxap/schematics-utilities into ts-morph, html and xml-parser ([8312bc2](https://gitlab.com/rxap/packages/commit/8312bc2c11d1b15e57185726b62d3b80acf135f9))
+
+
+
+
+
 # [11.11.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-table@11.10.0...@rxap/schematics-table@11.11.0) (2021-04-23)
 
 

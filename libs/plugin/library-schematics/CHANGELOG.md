@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library-schematics@11.0.7...@rxap/plugin-library-schematics@11.0.8) (2021-04-26)
+
+
+### Bug Fixes
+
+* **builder:** check if ng-update property is not defined ([6bf1fec](https://gitlab.com/rxap/packages/commit/6bf1fec063843931b3e86e8ce20556269cc14142))
+
+
+
+
+
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library-schematics@11.0.6...@rxap/plugin-library-schematics@11.0.7) (2021-03-22)
 
 
