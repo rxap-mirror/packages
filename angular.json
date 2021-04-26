@@ -4759,7 +4759,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap-plugin/library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -4815,7 +4815,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap-plugin/library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -4871,7 +4871,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap-plugin/library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
