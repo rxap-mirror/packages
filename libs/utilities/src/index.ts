@@ -38,6 +38,12 @@ export * from './lib/download-object-as-json-file';
 
 export * from './lib/get-property-descriptor';
 
+// region object
+
+export * from './lib/object/coerce-property';
+
+// endregion
+
 // region function
 
 export * from './lib/function/is-function';
