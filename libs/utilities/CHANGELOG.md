@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.4.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.3.3...@rxap/utilities@11.4.0) (2021-04-26)
+
+
+### Bug Fixes
+
+* **coerce-property:** prevent infinite loop ([fbca44e](https://gitlab.com/rxap/packages/commit/fbca44e743b01ba67926982226cbe8f268f54e65))
+
+
+### Features
+
+* add function CoerceProperty ([6bd01a4](https://gitlab.com/rxap/packages/commit/6bd01a4f3627d0b8821b6ca459ea2bd7b155beec))
+* add function IsFunction ([de2e47c](https://gitlab.com/rxap/packages/commit/de2e47cd4b624e5a86a326eeae279d64ad7c7740))
+
+
+
+
+
 ## [11.3.3](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.3.2...@rxap/utilities@11.3.3) (2021-04-11)
 
 

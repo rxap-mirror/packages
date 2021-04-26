@@ -1,14 +1,16 @@
 {
   "name": "@rxap/schematics-form",
-  "version": "11.1.2",
+  "version": "11.2.0",
   "peerDependencies": {
     "@angular/core": "^11.2.6",
     "@nrwl/workspace": "^11.5.2",
     "@rxap/mixin": "^11.0.7",
     "@rxap/schematics": "^11.3.4",
-    "@rxap/schematics-ts-morph": "^11.0.0",
-    "@rxap/utilities": "^11.3.2",
-    "@rxap/xml-parser": "^11.1.0",
+    "@rxap/schematics-html": "^11.1.0",
+    "@rxap/schematics-ts-morph": "^11.1.0",
+    "@rxap/schematics-xml-parser": "^11.1.0",
+    "@rxap/utilities": "^11.4.0",
+    "@rxap/xml-parser": "^11.1.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -22,7 +24,9 @@
       "@rxap/schematics-form",
       "@rxap/mixin",
       "@rxap/schematics",
+      "@rxap/schematics-html",
       "@rxap/schematics-ts-morph",
+      "@rxap/schematics-xml-parser",
       "@rxap/utilities",
       "@rxap/xml-parser"
     ]

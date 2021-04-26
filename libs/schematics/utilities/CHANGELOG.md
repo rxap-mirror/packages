@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.8.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.7.0...@rxap/schematics-utilities@11.8.0) (2021-04-26)
+
+
+### Features
+
+* add json file manipulation utility functions ([fc8e963](https://gitlab.com/rxap/packages/commit/fc8e963d65d8124e7c349745ea288a2d549312b4))
+* split the @rxap/schematics-utilities into ts-morph, html and xml-parser ([8312bc2](https://gitlab.com/rxap/packages/commit/8312bc2c11d1b15e57185726b62d3b80acf135f9))
+
+
+
+
+
 # [11.7.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.6.0...@rxap/schematics-utilities@11.7.0) (2021-04-15)
 
 

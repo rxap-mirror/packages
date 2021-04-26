@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@11.0.6...@rxap/json-schema-to-typescript@11.1.0) (2021-04-26)
+
+
+### Features
+
+* add support for additional properties ([64eded1](https://gitlab.com/rxap/packages/commit/64eded16f3b91d503e0f2b88cd89393cfaca5979))
+* add support for complex types ([242ec59](https://gitlab.com/rxap/packages/commit/242ec59d8efc990031e0053a238e5b96d04a3e10))
+* add support for list of property types ([ec1cfbf](https://gitlab.com/rxap/packages/commit/ec1cfbf51dac80054fe4e5cc94f649cc48115ad8))
+
+
+
+
+
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@11.0.5...@rxap/json-schema-to-typescript@11.0.6) (2021-04-15)
 
 

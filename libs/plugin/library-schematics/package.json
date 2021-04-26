@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-library-schematics",
-  "version": "11.0.7",
+  "version": "11.0.8",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -24,7 +24,10 @@
   "schematics": "./collection.json",
   "builders": "./builders.json",
   "peerDependencies": {
-    "@nrwl/workspace": "^11.5.2"
+    "@nrwl/workspace": "^11.5.2",
+    "@rxap/utilities": "^11.4.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.5"
   },
   "dependencies": {
     "@angular-devkit/architect": "0.1102",
