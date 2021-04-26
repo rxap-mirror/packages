@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematics-form",
-  "version": "11.2.0",
+  "version": "11.2.1",
   "peerDependencies": {
     "@angular/core": "^11.2.6",
     "@nrwl/workspace": "^11.5.2",
