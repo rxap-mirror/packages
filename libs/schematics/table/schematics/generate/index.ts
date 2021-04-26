@@ -26,10 +26,10 @@ import { TableSystemElements } from './elements/elements';
 import { TableElement } from './elements/table.element';
 import { readAngularJsonFile } from '@rxap/schematics/utilities';
 import {
-  ParseTemplate,
   ApplyTsMorphProject,
   FixMissingImports
 } from '@rxap/schematics-ts-morph';
+import { ParseTemplate } from '@rxap/schematics-xml-parser';
 
 
 const { dasherize } = strings;
@@ -73,6 +73,10 @@ export default function(options: GenerateSchema): Rule {
       path = projectRootPath;
     } else if (options.path[ 0 ] === '/') {
       path = join(projectRootPath, options.path);
+    }
+
+    if (!options.name) {
+      throw new Error('The options name is not defined!');
     }
 
     options.path = path = join(path, dasherize(options.name) + '-table');
