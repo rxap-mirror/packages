@@ -47,17 +47,17 @@ export class ComponentControlElement extends ControlElement {
 
   public postParse() {
     if (!this.componentName) {
-      this.createComponent     = true;
       this.componentName       = classify(this.name);
-      this.selector            = `rxap-${dasherize(this.name)}-control`;
-      this.from                = `./${dasherize(this.name)}-control/${dasherize(this.name)}-control.component.module`;
+    }
+    if (!this.componentModuleName) {
+      this.createComponent     = true;
       this.componentModuleName = `${this.componentName}ControlComponentModule`;
     }
     if (!this.selector) {
-      this.selector = `rxap-${dasherize(this.name)}-control`;
+      this.selector = `rxap-${dasherize(this.componentName)}-control`;
     }
     if (!this.from) {
-      this.from = `./${dasherize(this.name)}-control/${dasherize(this.name)}-control.component.module`;
+      this.from = `./${dasherize(this.componentName)}-control/${dasherize(this.componentName)}-control.component.module`;
     }
     if (!this.componentModuleName) {
       this.componentModuleName = `${this.componentName}Module`;
@@ -107,7 +107,7 @@ export class ComponentControlElement extends ControlElement {
               '@rxap/schematics',
               'component-module',
               {
-                name:       dasherize(this.name) + '-control',
+                name:       dasherize(this.componentName) + '-control',
                   path:     options.path?.replace(/^\//, ''),
                   selector: this.selector,
                   project:  options.project
@@ -115,7 +115,7 @@ export class ComponentControlElement extends ControlElement {
               ),
               tree => {
 
-                const componentSourceFile = project.createSourceFile(`./${dasherize(this.name)}-control/${dasherize(this.name)}-control.component.ts`);
+                const componentSourceFile = project.createSourceFile(`./${dasherize(this.componentName)}-control/${dasherize(this.componentName)}-control.component.ts`);
 
                 componentSourceFile.addClass({
                   name:       this.componentName + 'ControlComponent',
@@ -149,10 +149,10 @@ export class ComponentControlElement extends ControlElement {
                       arguments: [
                         Writers.object({
                           selector:        w => w.quote(this.selector),
-                          templateUrl:     w => w.quote(`./${dasherize(this.name)}-control.component.html`),
-                          styleUrls:       `[ './${dasherize(this.name)}-control.component.scss' ]`,
+                          templateUrl:     w => w.quote(`./${dasherize(this.componentName)}-control.component.html`),
+                          styleUrls:       `[ './${dasherize(this.componentName)}-control.component.scss' ]`,
                           changeDetection: 'ChangeDetectionStrategy.OnPush',
-                          host:            Writers.object({ class: w => w.quote(`rxap-${dasherize(this.name)}-control`) }),
+                          host:            Writers.object({ class: w => w.quote(`rxap-${dasherize(this.componentName)}-control`) }),
                           providers:       w => {
                             w.writeLine('[');
                             Writers.object({
