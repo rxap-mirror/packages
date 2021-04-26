@@ -8,6 +8,8 @@ import { UpdatePackageGroupBuilderSchema } from './schema';
 import { ReadFile } from './read-file';
 import { join } from 'path';
 import { WriteFile } from './write-file';
+import { existsSync } from 'fs';
+import { CoerceProperty } from '@rxap/utilities';
 
 export interface Target extends json.JsonObject {
   project: string;
@@ -57,6 +59,10 @@ export class Builder {
 
     const packageJsonFilePath = join(process.cwd(), root, 'package.json');
 
+    if (!existsSync(packageJsonFilePath)) {
+      throw new Error(`Could not find package.json in location '${packageJsonFilePath}'`);
+    }
+
     const packageJson = JSON.parse(readFile.sync(packageJsonFilePath));
 
     if (!packageJson.peerDependencies) {
@@ -74,6 +80,12 @@ export class Builder {
       const sameScopePackageGroup = Object
         .keys(packageJson.peerDependencies)
         .filter(peerName => peerName.match(new RegExp(`^@${scope}`)));
+
+      // CoerceProperty(packageJson, 'ng-update.packageGroup', []);
+
+      if (!packageJson['ng-update']) {
+        packageJson['ng-update'] = { packageGroup: [] };
+      }
 
       // extract all defined package group and exclude
       // packages with the same scope
