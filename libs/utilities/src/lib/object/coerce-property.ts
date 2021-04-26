@@ -16,6 +16,8 @@ export function CoerceProperty(obj: Record<any, any> | object, propertyPath: str
     }
   }
 
-  CoerceProperty((obj as any)[firstPath], pathList.join('.'), value);
+  if (pathList.length) {
+    // CoerceProperty((obj as any)[ firstPath ], pathList.join('.'), value);
+  }
 
 }
