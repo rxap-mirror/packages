@@ -21,7 +21,7 @@
     "@angular/fire": "^6.0.2",
     "@rxap/config": "^11.0.9",
     "@rxap/utilities": "^11.3.2",
-    "firebase": "^7.17.1",
+    "firebase": "^8.4.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
