@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/firebase@11.0.6...@rxap/firebase@11.0.7) (2021-04-27)
+
+
+### Bug Fixes
+
+* add support for vapid key and message service worker ([aadda70](https://gitlab.com/rxap/packages/commit/aadda70370ba7bc33247ce9efd0073eecc54d6e2))
+* update to firebase ^8.4.2 ([5649bdd](https://gitlab.com/rxap/packages/commit/5649bddb4522c2e94be9e1012d24202a15317b80))
+* use default firebase import ([e1b3906](https://gitlab.com/rxap/packages/commit/e1b390614fb5a14b6dbf1f7d24b257d670193911))
+
+
+
+
+
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/firebase@11.0.5...@rxap/firebase@11.0.6) (2021-03-19)
 
 
