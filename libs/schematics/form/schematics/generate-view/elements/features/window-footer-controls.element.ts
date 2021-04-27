@@ -166,8 +166,8 @@ export class WindowFooterControlsElement extends FormFeatureElement {
             moduleSpecifier: '@angular/core'
           },
           {
-            namedImports:    [ 'MethodDirective' ],
-            moduleSpecifier: '@mfd/shared/method.directive'
+            namedImports:    [ 'OpenFormWindowMethodDirective' ],
+            moduleSpecifier: '@rxap/form-window-system'
           },
           {
             namedImports:    [ `${classify(options.name!)}Form`, `I${classify(options.name!)}Form` ],
@@ -185,7 +185,7 @@ export class WindowFooterControlsElement extends FormFeatureElement {
         sourceFile.addClass({
           name:       `Open${classify(options.name!)}FormWindowMethodDirective`,
           isExported: true,
-          extends:    `MethodDirective<I${classify(options.name!)}Form, Partial<I${classify(options.name!)}Form>>`,
+          extends:    `OpenFormWindowMethodDirective<I${classify(options.name!)}Form, Partial<I${classify(options.name!)}Form>>`,
           properties: [],
           ctors:      [
             {
