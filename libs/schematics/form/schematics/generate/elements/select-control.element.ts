@@ -252,11 +252,10 @@ export class ToOptionsElement extends DataSourceTransformerElement {
   public from = '@rxap/utilities';
 
   @ElementAttribute()
-  @ElementRequired()
-  public display!: string;
+  public display?: string;
 
   @ElementTextContent()
-  public value!: string;
+  public value?: string;
 
   public validate(): boolean {
     return true;
@@ -265,12 +264,19 @@ export class ToOptionsElement extends DataSourceTransformerElement {
   public toValue({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }): any {
     super.toValue({ sourceFile, project, options });
 
-    if (this.display) {
+    if (this.display || this.value) {
       sourceFile.addImportDeclaration({
         moduleSpecifier: '@rxap/utilities',
         namedImports:    [ 'getFromObject' ]
       });
-      return `source => ${this.name}(source, value => getFromObject(value, '${this.value}'), value => getFromObject(value, '${this.display}'))`;
+    }
+
+    if (this.display) {
+      if (this.value) {
+        return `source => ${this.name}(source, value => getFromObject(value, '${this.value}'), value => getFromObject(value, '${this.display}'))`;
+      } else {
+        return `source => ${this.name}(source, value => value, value => getFromObject(value, '${this.display}'))`;
+      }
     } else if (this.value) {
       return `source => ${this.name}(source, value => getFromObject(value, '${this.value}'))`;
     } else {
