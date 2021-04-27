@@ -1,6 +1,6 @@
 {
   "name": "@rxap/form-window-system",
-  "version": "11.2.3",
+  "version": "11.3.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -31,11 +31,11 @@
     "@rxap/definition": "^11.0.9",
     "@rxap/directives": "^11.2.2",
     "@rxap/form-system": "^11.0.8",
-    "@rxap/forms": "^11.3.3",
+    "@rxap/forms": "^11.3.4",
     "@rxap/material-directives": "^11.1.4",
     "@rxap/mixin": "^11.0.7",
     "@rxap/services": "^11.2.0",
-    "@rxap/utilities": "^11.3.3",
+    "@rxap/utilities": "^11.4.0",
     "@rxap/window-system": "^11.2.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
