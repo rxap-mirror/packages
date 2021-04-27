@@ -1,6 +1,6 @@
 {
   "name": "@rxap/oauth",
-  "version": "11.8.0",
+  "version": "11.8.1",
   "peerDependencies": {
     "@angular/animations": "^11.2.6",
     "@angular/cdk": "^11.2.5",
@@ -11,7 +11,7 @@
     "@angular/router": "^11.2.6",
     "@rxap/directives": "^11.2.2",
     "@rxap/services": "^11.2.0",
-    "@rxap/utilities": "^11.3.3",
+    "@rxap/utilities": "^11.4.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },

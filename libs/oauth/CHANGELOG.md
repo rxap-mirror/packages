@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.8.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.0...@rxap/oauth@11.8.1) (2021-04-27)
+
+
+### Bug Fixes
+
+* **o-auth-service:** catch 403 on refresh token usage ([34f322f](https://gitlab.com/rxap/packages/commit/34f322f7b0ac72708d1cff696f300aa22f8d9395))
+
+
+
+
+
 # [11.8.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.7.2...@rxap/oauth@11.8.0) (2021-04-21)
 
 
