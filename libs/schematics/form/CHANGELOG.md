@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@11.3.1...@rxap/schematics-form@11.3.2) (2021-04-27)
+
+
+### Bug Fixes
+
+* add support for array ([49957b9](https://gitlab.com/rxap/packages/commit/49957b9968b12ca652a7f0a4f840bc4d60b1fb80))
+
+
+
+
+
 ## [11.3.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@11.3.0...@rxap/schematics-form@11.3.1) (2021-04-27)
 
 
