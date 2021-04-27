@@ -96,6 +96,7 @@ export interface FirebaseConfig {
     storageBucket: string | null;
     region: string | null;
     origin: string | null;
+    vapid: string | null;
     auth: {
       google: boolean;
       facebook: boolean;
