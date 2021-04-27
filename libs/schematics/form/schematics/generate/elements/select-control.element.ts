@@ -271,8 +271,10 @@ export class ToOptionsElement extends DataSourceTransformerElement {
         namedImports:    [ 'getFromObject' ]
       });
       return `source => ${this.name}(source, value => getFromObject(value, '${this.value}'), value => getFromObject(value, '${this.display}'))`;
-    } else {
+    } else if (this.value) {
       return `source => ${this.name}(source, value => getFromObject(value, '${this.value}'))`;
+    } else {
+      return `source => ${this.name}(source, value => value)`;
     }
 
   }
