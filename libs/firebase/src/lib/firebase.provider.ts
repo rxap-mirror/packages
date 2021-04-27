@@ -25,6 +25,10 @@ import {
   REGION,
   ORIGIN
 } from '@angular/fire/functions';
+import {
+  VAPID_KEY,
+  SERVICE_WORKER
+} from '@angular/fire/messaging';
 
 export function FirebaseOptionsTokenFactory(configService: ConfigService<FirebaseConfig>) {
   return configService.get('firebase.options');
@@ -64,6 +68,14 @@ export function InstrumentationEnabledFactory(configService: ConfigService<Fireb
 
 export function DataCollectionEnabledFactory(configService: ConfigService<FirebaseConfig>) {
   return true;
+}
+
+export function VapidKeyFactory(configService: ConfigService<FirebaseConfig>) {
+  return configService.get('firebase.vapid');
+}
+
+export function ServiceWorkerFactory() {
+  return (typeof navigator !== 'undefined' && navigator.serviceWorker?.getRegistration()) ?? undefined
 }
 
 export const FIREBASE_PROVIDERS: Provider[] = [
@@ -116,6 +128,16 @@ export const FIREBASE_PROVIDERS: Provider[] = [
     provide:    ORIGIN,
     useFactory: FunctionsOriginFactory,
     deps:       [ ConfigService ]
+  },
+  {
+    provide: VAPID_KEY,
+    useFactory: VapidKeyFactory,
+    deps: [ ConfigService ]
+  },
+  {
+    provide: SERVICE_WORKER,
+    useFactory: ServiceWorkerFactory,
+    deps: []
   },
   {
     provide:    FirebaseApp,
