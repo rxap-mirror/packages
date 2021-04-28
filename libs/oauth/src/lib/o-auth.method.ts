@@ -20,7 +20,7 @@ export interface OAuthMethodWithRefreshTokenParameters {
   authEndpoint: string;
 }
 
-export type OAuthMethodParameters = OAuthMethodWithUsernamePasswordParameters | OAuthMethodWithRefreshTokenParameters;
+export type OAuthMethodParameters = (OAuthMethodWithUsernamePasswordParameters | OAuthMethodWithRefreshTokenParameters) & { withCredentials?: boolean };
 
 export function IsOAuthMethodWithRefreshTokenParameters(parameters: OAuthMethodParameters): parameters is OAuthMethodWithRefreshTokenParameters {
   // eslint-disable-next-line no-prototype-builtins
@@ -128,7 +128,10 @@ export class OAuthMethod implements Method<OAuthMethodResponse, OAuthMethodParam
     });
 
     const response = await this.http
-                               .post<OAuthResponse>(parameters.authEndpoint, params.toString(), { headers })
+                               .post<OAuthResponse>(parameters.authEndpoint, params.toString(), {
+                                 headers,
+                                 withCredentials: parameters.withCredentials ?? true
+                               })
                                .toPromise();
 
     return {
