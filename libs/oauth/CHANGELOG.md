@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.8.2](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.1...@rxap/oauth@11.8.2) (2021-04-28)
+
+
+### Bug Fixes
+
+* clear oauth tokens ([bcf2245](https://gitlab.com/rxap/packages/commit/bcf2245b00e0df53d393b39b9ba00276d9f8735e))
+
+
+
+
+
 ## [11.8.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.0...@rxap/oauth@11.8.1) (2021-04-27)
 
 
