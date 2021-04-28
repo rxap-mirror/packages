@@ -148,7 +148,7 @@ export class OAuthService {
       }
     }
 
-    console.warn('Unauthenticated', localStorage.length);
+    console.warn('Unauthenticated');
 
     return this._isAuthenticated = false;
   }
@@ -263,10 +263,10 @@ export class OAuthService {
   }
 
   private clearStorage() {
-    localStorage.removeItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY);
-    localStorage.removeItem(REFRESH_TOKEN_LOCAL_STORAGE_KEY);
-    localStorage.removeItem(REMEMBER_LOCAL_STORAGE_KEY);
-    localStorage.removeItem(EXPIRES_AT_LOCAL_STORAGE_KEY);
+    this.removeItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY);
+    this.removeItem(REFRESH_TOKEN_LOCAL_STORAGE_KEY);
+    this.removeItem(REMEMBER_LOCAL_STORAGE_KEY);
+    this.removeItem(EXPIRES_AT_LOCAL_STORAGE_KEY);
   }
 
   private async signInWithRefreshToken(
