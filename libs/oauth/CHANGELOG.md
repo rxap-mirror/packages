@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.8.3](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.2...@rxap/oauth@11.8.3) (2021-04-28)
+
+
+### Bug Fixes
+
+* **o-auth-method:** send withCredentials option ([47cf216](https://gitlab.com/rxap/packages/commit/47cf216c1d4ba04926456cfa4eed0335186a2b01))
+
+
+
+
+
 ## [11.8.2](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.1...@rxap/oauth@11.8.2) (2021-04-28)
 
 
