@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.8.4](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.3...@rxap/oauth@11.8.4) (2021-04-29)
+
+
+### Bug Fixes
+
+* **o-auth-service:** set unauthed if 400 response ([293b52d](https://gitlab.com/rxap/packages/commit/293b52da4e2dea00beabddc8e5bdcb67621fec07))
+
+
+
+
+
 ## [11.8.3](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.2...@rxap/oauth@11.8.3) (2021-04-28)
 
 
