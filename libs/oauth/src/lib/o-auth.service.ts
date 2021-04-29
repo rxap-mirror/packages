@@ -140,7 +140,7 @@ export class OAuthService {
         await this.signInWithRefreshToken(this.refreshToken);
         return this._isAuthenticated = true;
       } catch (e) {
-        if (![401, 403].includes(e.status)) {
+        if (![401, 403, 400].includes(e.status)) {
           console.error('Could not sign in with refresh token', e.message);
           throw e;
         }
