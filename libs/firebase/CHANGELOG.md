@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.8](https://gitlab.com/rxap/packages/compare/@rxap/firebase@11.0.7...@rxap/firebase@11.0.8) (2021-04-29)
+
+
+### Bug Fixes
+
+* **fcm:** only request the token if the permission is checked ([5337502](https://gitlab.com/rxap/packages/commit/53375020d33538bb5ed721d768f2e9380271c03e))
+
+
+
+
+
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/firebase@11.0.6...@rxap/firebase@11.0.7) (2021-04-27)
 
 
