@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.5](https://gitlab.com/rxap/packages/compare/@rxap/forms@11.3.4...@rxap/forms@11.3.5) (2021-04-29)
+
+
+### Bug Fixes
+
+* **form-directive:** prevent default submit handling ([aae7b2a](https://gitlab.com/rxap/packages/commit/aae7b2a8ab96909010b233a5dc852d7b29ea4cdb))
+
+
+
+
+
 ## [11.3.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@11.3.3...@rxap/forms@11.3.4) (2021-04-23)
 
 
