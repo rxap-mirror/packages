@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.9.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.9.0...@rxap/schematics-utilities@11.9.1) (2021-04-30)
+
+
+### Bug Fixes
+
+* **angular-json-file:** explicit add a angular project to the map ([093bef8](https://gitlab.com/rxap/packages/commit/093bef82227ed23988f039f436eb398062edf356))
+
+
+
+
+
 # [11.9.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.8.0...@rxap/schematics-utilities@11.9.0) (2021-04-30)
 
 
