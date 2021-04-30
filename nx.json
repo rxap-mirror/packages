@@ -69,7 +69,8 @@
     "oauth": { "tags": [] },
     "schematics-ts-morph": { "tags": [] },
     "schematics-html": { "tags": [] },
-    "schematics-xml-parser": { "tags": [] }
+    "schematics-xml-parser": { "tags": [] },
+    "schematics-open-api": { "tags": [] }
   },
   "tasksRunnerOptions": {
     "default": {

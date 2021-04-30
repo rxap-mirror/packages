@@ -139,7 +139,7 @@
     "@nrwl/tao": "11.5.2",
     "@nrwl/workspace": "11.5.2",
     "@rxap/plugin-library-publish": "11.0.0",
-    "@rxap/plugin-library-schematics": "^11.0.7",
+    "@rxap/plugin-library-schematics": "^11.0.8",
     "@rxap/plugin-pack": "11.0.0",
     "@rxap/plugin-readme-generator": "11.0.0",
     "@rxap/plugin-scss-bundle": "0",

@@ -1,0 +1,33 @@
+{
+  "name": "@rxap/schematics-open-api",
+  "version": "11.0.0",
+  "peerDependencies": {},
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json",
+    "packageGroup": [
+      "@rxap/schematics-open-api"
+    ]
+  },
+  "publishConfig": {
+    "directory": "../../../dist/libs/schematics/open-api"
+  },
+  "license": "MIT",
+  "keywords": [
+    "rxap",
+    "angular",
+    "schematics",
+    "open-api"
+  ],
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "author": "Merzough Münker",
+  "private": false,
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  }
+}
