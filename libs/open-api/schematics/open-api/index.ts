@@ -582,7 +582,9 @@ export async function GenerateRemoteMethod(
 
   const callMethodParameters: OptionalKind<ParameterDeclarationStructure>[] = [];
 
-  if (parameterType !== 'void' && requestBodyType !== 'void') {
+  const withoutParametersAndRequestBody = parameterType === 'void' && requestBodyType === 'void';
+
+  if (!withoutParametersAndRequestBody) {
     callMethodParameters.push({
       name: 'parameters',
       type: `OpenApiRemoteMethodParameter<${parameterType}, ${requestBodyType}>`
@@ -608,7 +610,7 @@ export async function GenerateRemoteMethod(
         scope: Scope.Public,
         returnType: `Promise<${responseType}>`,
         statements: [
-          'return super.call(parameters);'
+          `return super.call(${withoutParametersAndRequestBody ? '' : 'parameters'});`
         ]
       }
     ],
