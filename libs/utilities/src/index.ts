@@ -41,6 +41,7 @@ export * from './lib/get-property-descriptor';
 // region object
 
 export * from './lib/object/coerce-property';
+export * from './lib/object/is-object';
 
 // endregion
 
