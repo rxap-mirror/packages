@@ -28,7 +28,6 @@ import {
   BaseHttpDataSource
 } from '@rxap/data-source/http';
 import {
-  RXAP_DATA_SOURCE_METADATA,
   RxapDataSource,
   BaseDataSourceViewer,
   RXAP_DATA_SOURCE_REFRESH
@@ -71,7 +70,7 @@ export interface OpenApiDataSourceMetadata<PathParams = KeyValue, Body = any | n
 
 }
 
-export interface OpenApiDataSourceViewer<Parameters extends Record<string, any> = any>
+export interface OpenApiDataSourceViewer<Parameters = any>
   extends BaseDataSourceViewer<Parameters> {
   parameters?: Parameters;
 }
@@ -83,11 +82,11 @@ export function RxapOpenApiDataSource(operationIdOrMetadata: string | OpenApiDat
   };
 }
 
-export interface OpenApiDataSource<Response = any, Parameters extends Record<string, any> = any> extends SchemaValidationMixin<Response, Parameters> {}
+export interface OpenApiDataSource<Response = any, Parameters = any> extends SchemaValidationMixin<Response, Parameters> {}
 
 @Mixin(SchemaValidationMixin)
 @Injectable()
-export class OpenApiDataSource<Response = any, Parameters extends Record<string, any> = any>
+export class OpenApiDataSource<Response = any, Parameters = any>
   extends BaseHttpDataSource<Response> {
 
   public get operation(): OperationObjectWithMetadata {
