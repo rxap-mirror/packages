@@ -52,17 +52,17 @@ export interface OpenApiRemoteMethodMetadata extends BaseRemoteMethodMetadata {
   id: string;
 }
 
-export interface OpenApiRemoteMethodParameter<Parameters extends Record<string, any> = any, RequestBody = any> {
+export interface OpenApiRemoteMethodParameter<Parameters extends Record<string, any> | void = any, RequestBody = any> {
   parameters?: Parameters,
   requestBody?: RequestBody
 }
 
-export interface OpenApiRemoteMethod<Response = any, Parameters extends Record<string, any> = any, RequestBody = any>
+export interface OpenApiRemoteMethod<Response = any, Parameters extends Record<string, any> | void = any, RequestBody = any>
   extends SchemaValidationMixin<Response, Parameters, RequestBody> {}
 
 @Mixin(SchemaValidationMixin)
 @Injectable()
-export class OpenApiRemoteMethod<Response = any, Parameters extends Record<string, any> = any, RequestBody = any>
+export class OpenApiRemoteMethod<Response = any, Parameters extends Record<string, any> | void = any, RequestBody = any>
   extends BaseHttpRemoteMethod<Response, any, OpenApiRemoteMethodParameter<Parameters, RequestBody>> {
 
   public get operation(): OperationObjectWithMetadata {
