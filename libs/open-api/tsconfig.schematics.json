@@ -24,7 +24,15 @@
     "types": [
       "jest",
       "node"
-    ]
+    ],
+    "paths": {
+      "@rxap/schematics-utilities": [
+        "../../dist/libs/schematics/utilities"
+      ],
+      "@rxap/schematics-open-api": [
+        "../../dist/libs/schematics/open-api"
+      ]
+    }
   },
   "include": [
     "schematics/**/*"
