@@ -108,7 +108,8 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
       return response.body;
     }
 
-    throw new Error('The response body is empty!');
+    console.warn('The response body is empty!');
+    return null as any;
   }
 
   /**
