@@ -3,7 +3,7 @@ export function IsObject(obj: any): obj is object {
 }
 
 export function IsRecord(obj: any): obj is Record<any, any> {
-  return IsObject(obj) && Object.keys(obj).length !== 0;
+  return IsObject(obj) && (Object.keys(obj).length !== 0 || JSON.stringify(obj) === '{}');
 }
 
 export function AssertObject(obj: any): asserts obj is object {
@@ -14,7 +14,7 @@ export function AssertObject(obj: any): asserts obj is object {
 
 export function AssertRecord(obj: any): asserts obj is Record<any, any> {
   if (!IsRecord(obj)) {
-    throw new Error(`The value is not a record instead: '${!obj ? obj : Object.keys(obj).length === 0 ? 'without any key' : typeof obj}'`);
+    throw new Error(`The value is not a record instead: '${!obj ? obj : typeof obj}'`);
   }
 }
 
