@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.7.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.6.3...@rxap/open-api@11.7.0) (2021-04-30)
+
+
+### Bug Fixes
+
+* **schematics:** add the call method to the remote method ([1e42413](https://gitlab.com/rxap/packages/commit/1e42413a8eef282e5988378721c666624871e261))
+* add support for parameter type void ([1bdfef5](https://gitlab.com/rxap/packages/commit/1bdfef500fac93cb37a5dbcda450d76bd4b6aed7))
+
+
+### Features
+
+* **schematics:** add clear operation ([2a8c867](https://gitlab.com/rxap/packages/commit/2a8c86788b81db22dd02e4128b3b5269c3b30a8e))
+
+
+
+
+
 ## [11.6.3](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.6.2...@rxap/open-api@11.6.3) (2021-04-30)
 
 
