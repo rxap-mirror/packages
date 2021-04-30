@@ -5,6 +5,11 @@
       "description": "Generates for each operation a remote method or data source",
       "factory": "./open-api/index",
       "schema": "./open-api/schema.json"
+    },
+    "ng-add": {
+      "description": "Add the @rxap/open-api package and all required dependencies",
+      "factory": "./ng-add/index",
+      "save": true
     }
   }
 }
