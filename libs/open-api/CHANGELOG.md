@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.7.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.7.0...@rxap/open-api@11.7.1) (2021-04-30)
+
+
+### Bug Fixes
+
+* **schematics:** add missing return ([f014a82](https://gitlab.com/rxap/packages/commit/f014a825241981fb71e8f6eef252226efa59f4a9))
+
+
+
+
+
 # [11.7.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.6.3...@rxap/open-api@11.7.0) (2021-04-30)
 
 
