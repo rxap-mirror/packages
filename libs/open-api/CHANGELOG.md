@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.7.4](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.7.3...@rxap/open-api@11.7.4) (2021-04-30)
+
+
+### Bug Fixes
+
+* add ng-add schematic ([eea86f9](https://gitlab.com/rxap/packages/commit/eea86f9effbb3627384b27d31fc5f986d514ba4d))
+
+
+
+
+
 ## [11.7.3](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.7.2...@rxap/open-api@11.7.3) (2021-04-30)
 
 
