@@ -1,10 +1,10 @@
-import { OpenAPIV3 } from 'openapi-types';
 import { GetRequestBody } from './get-reqeust-body';
 import { IsAnySchemaObject } from './any-schema-object';
 import { classify } from '@rxap/utilities';
 import { REQUEST_BODY_FILE_SUFFIX } from '../config';
+import { GenerateParameter } from '../types';
 
-export function GetRequestBodyType(operation: OpenAPIV3.OperationObject): string {
+export function GetRequestBodyType(operation: GenerateParameter<any>): string {
 
   let requestBodyType = 'void';
 
@@ -16,6 +16,8 @@ export function GetRequestBodyType(operation: OpenAPIV3.OperationObject): string
 
       requestBodyType = classify([ operation.operationId, REQUEST_BODY_FILE_SUFFIX ].join('-'));
 
+    } else if (requestBody === null) {
+      requestBodyType = 'void';
     } else {
       requestBodyType = 'any';
     }

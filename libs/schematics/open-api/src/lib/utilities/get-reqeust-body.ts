@@ -1,8 +1,9 @@
 import { OpenAPIV3 } from 'openapi-types';
 import { AnySchemaObject } from './any-schema-object';
 import { IsReferenceObject } from './is-reference-object';
+import { IsRecord } from '@rxap/utilities';
 
-export function GetRequestBody(operation: OpenAPIV3.OperationObject): OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject | AnySchemaObject {
+export function GetRequestBody(operation: OpenAPIV3.OperationObject): OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject | AnySchemaObject | null {
 
   if (operation.requestBody) {
 
@@ -12,7 +13,7 @@ export function GetRequestBody(operation: OpenAPIV3.OperationObject): OpenAPIV3.
 
     const requestBodies: Record<string, OpenAPIV3.MediaTypeObject> | undefined = operation.requestBody.content;
 
-    if (requestBodies) {
+    if (IsRecord(requestBodies)) {
 
       if (IsReferenceObject(requestBodies)) {
         console.warn('Reference object are not supported in operation requestBody!');
@@ -29,8 +30,6 @@ export function GetRequestBody(operation: OpenAPIV3.OperationObject): OpenAPIV3.
 
   }
 
-  return {
-    type: 'any'
-  };
+  return null;
 
 }
