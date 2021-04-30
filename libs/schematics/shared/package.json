@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematics-shared",
-  "version": "11.1.4",
+  "version": "11.1.5",
   "dependencies": {
     "tslib": "^2.0.0"
   },
