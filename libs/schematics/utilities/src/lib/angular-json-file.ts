@@ -21,22 +21,39 @@ export class AngularProject {
 
 }
 
-export class AngularProjectMap extends Map<string, AngularProject> {
+export class AngularProjectMap {
+
+  private readonly _map = new Map<string, AngularProject>();
 
   constructor(private readonly _projectMap: Record<string, Project>) {
-    super();
     for (const [name, project] of Object.entries(_projectMap)) {
       const angularProject = new AngularProject(project);
-      this.set(name, angularProject);
+      this._map.set(name, angularProject);
     }
   }
 
   public add(name: string, project: Project) {
-    if (this.has(name)) {
+    if (this._map.has(name)) {
       throw new Error(`A project with the name '${name}' already exists`);
     }
-    this.set(name, new AngularProject(project));
+    this._map.set(name, new AngularProject(project));
     this._projectMap[name] = project;
+  }
+
+  public get(name: string): AngularProject | undefined {
+    return this._map.get(name);
+  }
+
+  public has(name: string): boolean {
+    return this._map.has(name);
+  }
+
+  public delete(name: string): boolean {
+    const success = this._map.delete(name);
+    if (success) {
+      delete this._projectMap[name];
+    }
+    return success;
   }
 
 }
