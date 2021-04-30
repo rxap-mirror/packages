@@ -35,7 +35,12 @@ import {
   GetRequestBodyType,
   IsWithoutParameters,
   IsCollectionResponse,
-  LoadOpenApiConfig
+  LoadOpenApiConfig,
+  ClearOperation,
+  PARAMETER_BASE_PATH,
+  COMPONENTS_BASE_PATH,
+  RESPONSE_BASE_PATH,
+  REQUEST_BODY_BASE_PATH
 } from '@rxap/schematics-open-api';
 import { OpenApiSchema, OpenApiSchemaBase } from './schema';
 import { camelize } from '@rxap/utilities';
@@ -687,6 +692,17 @@ export default function(options: OpenApiSchema): Rule {
     }
 
     return chain([
+      ClearOperation(
+        [
+          COMPONENTS_BASE_PATH,
+          PARAMETER_BASE_PATH,
+          RESPONSE_BASE_PATH,
+          REQUEST_BODY_BASE_PATH,
+          DATA_SOURCE_BASE_PATH,
+          REMOTE_METHOD_BASE_PATH,
+        ],
+        basePath
+      ),
       CoerceOpenApiProject(options.project),
       () => GenerateOperation(openapi, project, options, [
         GenerateDataSource,
