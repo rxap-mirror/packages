@@ -5347,14 +5347,16 @@
   resolved "https://npm.rxap.dev/@rxap%2fplugin-library-publish/-/plugin-library-publish-11.0.0.tgz#7a64bd2a31546f67183dd47ac2a42c8e14d5a6c4"
   integrity sha512-vrEDw6YWPOjGFFs7jYO2Cp0jP3cAiC0kjKo6gXAfuII9Bu0B8EUL9BbypgewIeDAOy+LnDDO/SoFFv7soGq8dg==
 
-"@rxap/plugin-library-schematics@^11.0.7":
-  version "11.0.7"
-  resolved "https://npm.rxap.dev/@rxap%2fplugin-library-schematics/-/plugin-library-schematics-11.0.7.tgz#72fa5386c64680ecdd396465baad699e5415ebb1"
-  integrity sha512-nYFip3XqHVaM76dGACMH33iC2HgWYNHJwF1C5juIakxUxtaTNm/uekFy1hggsJzmEJAEk3xZjO5GfEbJxdBlEg==
+"@rxap/plugin-library-schematics@^11.0.8":
+  version "11.0.8"
+  resolved "https://npm.rxap.dev/@rxap%2fplugin-library-schematics/-/plugin-library-schematics-11.0.8.tgz#3eabf2c374c93311f3f1d26290312714fc8f8fae"
+  integrity sha512-2OjvMMtFiX47usZfTnI6TXOoN9A9blGYtxK9ZCpm3WeLnQoqaqSwpDI6iPkEuMh09yrpULIM78OcFAYoKggaqg==
   dependencies:
     "@angular-devkit/architect" "0.1102"
     "@angular-devkit/core" "9"
     "@angular-devkit/schematics" "9"
+    ramda "0.27.1"
+    uuid "7.0.3"
 
 "@rxap/plugin-pack@11.0.0":
   version "11.0.0"

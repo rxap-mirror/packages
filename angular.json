@@ -4881,6 +4881,62 @@
           }
         }
       }
+    },
+    "schematics-open-api": {
+      "projectType": "library",
+      "root": "libs/schematics/open-api",
+      "sourceRoot": "libs/schematics/open-api/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/schematics/open-api/tsconfig.lib.json",
+            "project": "libs/schematics/open-api/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/schematics/open-api/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/schematics/open-api/src/**/*.ts",
+              "libs/schematics/open-api/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/schematics/open-api"],
+          "options": {
+            "jestConfig": "libs/schematics/open-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "schematics-open-api:update-package-group",
+              "schematics-open-api:build:production"
+            ]
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap/plugin-library-publish:publish",
+          "options": {
+            "buildTarget": "schematics-open-api:build:production",
+            "preTarget": "schematics-open-api:pack"
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",
