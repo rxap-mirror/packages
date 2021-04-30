@@ -24,7 +24,11 @@ export class AngularProject {
 export class AngularProjectMap extends Map<string, AngularProject> {
 
   constructor(private readonly _projectMap: Record<string, Project>) {
-    super(Object.entries(_projectMap).map(([name, project]) => [name, new AngularProject(project)]));
+    super();
+    for (const [name, project] of Object.entries(_projectMap)) {
+      const angularProject = new AngularProject(project);
+      this.set(name, angularProject);
+    }
   }
 
   public add(name: string, project: Project) {
