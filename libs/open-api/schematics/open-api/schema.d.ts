@@ -1,6 +1,8 @@
 export interface OpenApiSchemaBase {
-  target: string;
+  project: string;
   transport?: 'amplify'
+  debug?: boolean;
+  prefix: string;
 }
 
 export interface OpenApiSchemaFromPath extends OpenApiSchemaBase {
