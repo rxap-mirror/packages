@@ -12,12 +12,10 @@ export function GetRequestBodyType(operation: GenerateParameter<any>): string {
 
     const requestBody = GetRequestBody(operation);
 
-    if (!IsAnySchemaObject(requestBody)) {
-
-      requestBodyType = classify([ operation.operationId, REQUEST_BODY_FILE_SUFFIX ].join('-'));
-
-    } else if (requestBody === null) {
+    if (requestBody === null) {
       requestBodyType = 'void';
+    } else if (!IsAnySchemaObject(requestBody)) {
+      requestBodyType = classify([ operation.operationId, REQUEST_BODY_FILE_SUFFIX ].join('-'));
     } else {
       requestBodyType = 'any';
     }
