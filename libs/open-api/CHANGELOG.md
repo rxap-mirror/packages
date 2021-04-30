@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.7.5](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.7.4...@rxap/open-api@11.7.5) (2021-04-30)
+
+
+### Bug Fixes
+
+* dont throw when the response is empty ([d78171b](https://gitlab.com/rxap/packages/commit/d78171b1051682b10400eea6a76701cda54d90bf))
+
+
+
+
+
 ## [11.7.4](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.7.3...@rxap/open-api@11.7.4) (2021-04-30)
 
 
