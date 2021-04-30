@@ -1,9 +1,9 @@
 import {
   GetResponse,
-  IsAnySchemaObject,
-  IsReferenceObject
-} from '@rxap/schematics-open-api';
+} from './get-response';
 import { OpenAPIV3 } from 'openapi-types';
+import { IsAnySchemaObject } from './any-schema-object';
+import { IsReferenceObject } from './is-reference-object';
 
 export function IsCollectionResponse(operation: OpenAPIV3.OperationObject): boolean {
 
