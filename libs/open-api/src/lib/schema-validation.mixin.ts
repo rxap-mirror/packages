@@ -1,11 +1,11 @@
 import {
   coerceArray,
-  isPromiseLike
+  isPromiseLike,
+  IsRecord
 } from '@rxap/utilities';
 import { isDevMode } from '@angular/core';
 import * as Ajv from 'ajv-oai';
 import {
-  HttpResponse,
   HttpParams,
   HttpHeaders
 } from '@angular/common/http';
@@ -25,7 +25,7 @@ export interface SchemaValidationResponse<Data> {
   data?: Data;
 }
 
-export class SchemaValidationMixin<Response = any, Parameters extends Record<string, any> = any, RequestBody = any> {
+export class SchemaValidationMixin<Response = any, Parameters extends Record<string, any> | void = any, RequestBody = any> {
 
   public static STRICT: boolean = false;
 
@@ -56,7 +56,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
         this.validationError('Some operation parameters are required!', strict);
       }
 
-    } else {
+    } else if (IsRecord(parameters)) {
 
       for (const parameter of operationParameters) {
 
@@ -84,6 +84,8 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
       }
 
+    } else {
+      throw new Error('The parameters object is not a record');
     }
 
   }
@@ -206,14 +208,14 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
     let params = new HttpParams();
 
-    if (parameters !== undefined) {
+    if (IsRecord(parameters)) {
 
       for (const parameter of operationParameters.filter(p => p.in === 'query')) {
         const parameterName = parameter.name;
 
         if (parameters.hasOwnProperty(parameter.name)) {
 
-          const value = parameters[parameter.name];
+          const value = parameters[ parameter.name ];
 
           if (Array.isArray(value)) {
 
@@ -247,13 +249,13 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
     let headers = new HttpHeaders();
 
-    if (parameters !== undefined) {
+    if (IsRecord(parameters)) {
 
       for (const parameter of operationParameters.filter(p => p.in === 'header')) {
 
         if (parameters.hasOwnProperty(parameter.name)) {
 
-          const value = parameters[parameter.name];
+          const value = parameters[ parameter.name ];
 
           if (Array.isArray(value)) {
 
@@ -287,12 +289,12 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
     const pathParams: Record<string, any> = {};
 
-    if (parameters !== undefined) {
+    if (IsRecord(parameters)) {
 
       for (const parameter of operationParameters.filter(p => p.in === 'path')) {
 
         if (parameters.hasOwnProperty(parameter.name)) {
-          pathParams[parameter.name] = encodeURIComponent(parameters[parameter.name]);
+          pathParams[ parameter.name ] = encodeURIComponent(parameters[ parameter.name ]);
         }
 
       }
