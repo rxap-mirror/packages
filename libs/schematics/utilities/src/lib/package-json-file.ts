@@ -52,46 +52,48 @@ export function GetLatestPackageVersion(packageName: string): Promise<string> {
   });
 }
 
-export async function AddPackageJsonDependency(
+export function AddPackageJsonDependency(
   packageName: string,
-  packageVersion: string | 'latest',
-  basePath: string = '',
-  space: string | number = 2,
-): Promise<Rule> {
+  packageVersion: string | 'latest' = 'latest',
+  basePath: string                  = '',
+  space: string | number            = 2
+): Rule {
+  return async () => {
+    if (packageVersion === 'latest') {
+      packageVersion = await GetLatestPackageVersion(packageName);
+    }
 
-  if (packageVersion === 'latest') {
-    packageVersion = await GetLatestPackageVersion(packageName);
-  }
-
-  return UpdatePackageJson(
-    packageJson => {
-      CoerceProperty(packageJson, 'dependencies', {});
-      packageJson.dependencies![packageName] = packageVersion;
-    },
-    basePath,
-    space
-  );
-
+    return UpdatePackageJson(
+      packageJson => {
+        CoerceProperty(packageJson, 'dependencies', {});
+        packageJson.dependencies![ packageName ] = packageVersion;
+      },
+      basePath,
+      space
+    );
+  };
 }
 
-export async function AddPackageJsonDevDependency(
+export function AddPackageJsonDevDependency(
   packageName: string,
-  packageVersion: string | 'latest',
-  basePath: string = '',
-  space: string | number = 2,
-): Promise<Rule> {
+  packageVersion: string | 'latest' = 'latest',
+  basePath: string                  = '',
+  space: string | number            = 2
+): Rule {
+  return async () => {
 
-  if (packageVersion === 'latest') {
-    packageVersion = await GetLatestPackageVersion(packageName);
-  }
+    if (packageVersion === 'latest') {
+      packageVersion = await GetLatestPackageVersion(packageName);
+    }
 
-  return UpdatePackageJson(
-    packageJson => {
-      CoerceProperty(packageJson, 'devDependencies', {});
-      packageJson.devDependencies![packageName] = packageVersion;
-    },
-    basePath,
-    space
-  );
+    return UpdatePackageJson(
+      packageJson => {
+        CoerceProperty(packageJson, 'devDependencies', {});
+        packageJson.devDependencies![ packageName ] = packageVersion;
+      },
+      basePath,
+      space
+    );
 
+  };
 }
