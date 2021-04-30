@@ -1,3 +1,4 @@
+export * from './lib/clear-operation';
 export * from './lib/config';
 export * from './lib/generate-components';
 export * from './lib/generate-operation';
