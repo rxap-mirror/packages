@@ -8,7 +8,7 @@ async function getNewVersion(packageName, version) {
   if (!version) {
     const match = packageName.match(/@rxap\/([^@]+)/);
     if (match) {
-      const name = match[1].replace(/testing\//, '');
+      const name = match[1];
       const path = name
         .replace(/plugin-/, 'plugin/')
         .replace(/schematics-/, 'schematics/')
@@ -41,11 +41,21 @@ async function updateForPackage(manifestLocation, rootDependencies) {
   console.log('=========');
   console.log(`Project '${parsed.name}'`);
 
-  for (const packageName of Object.keys(parsed.peerDependencies || {})) {
+  for (const packageName of Object.keys(parsed.peerDependencies ?? {})) {
     const newVersion = await getNewVersion(packageName, rootDependencies[packageName]);
     if (newVersion) {
       console.log(`Update package '${packageName}' to version '${newVersion}'`);
       parsed.peerDependencies[packageName] = newVersion;
+    } else {
+      console.log(`Could not find a version for '${packageName}'`);
+    }
+  }
+
+  for (const packageName of Object.keys(parsed.dependencies ?? {})) {
+    const newVersion = await getNewVersion(packageName, rootDependencies[packageName]);
+    if (newVersion) {
+      console.log(`Update package '${packageName}' to version '${newVersion}'`);
+      parsed.dependencies[packageName] = newVersion;
     } else {
       console.log(`Could not find a version for '${packageName}'`);
     }
