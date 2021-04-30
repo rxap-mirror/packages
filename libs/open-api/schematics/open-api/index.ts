@@ -608,7 +608,7 @@ export async function GenerateRemoteMethod(
         scope: Scope.Public,
         returnType: `Promise<${responseType}>`,
         statements: [
-          'super.call(parameters);'
+          'return super.call(parameters);'
         ]
       }
     ],
