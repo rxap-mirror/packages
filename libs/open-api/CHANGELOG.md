@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.7.3](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.7.2...@rxap/open-api@11.7.3) (2021-04-30)
+
+
+### Bug Fixes
+
+* add support for parameter type void ([ea8ad72](https://gitlab.com/rxap/packages/commit/ea8ad72dc881f80604ad4e3195bb5f404adb1753))
+
+
+
+
+
 ## [11.7.2](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.7.1...@rxap/open-api@11.7.2) (2021-04-30)
 
 
