@@ -6,18 +6,19 @@ import { Project } from 'ts-morph';
 import {
   HasOperationId,
   GenerateParameter,
-  OpenApiSchemaBase
+  OpenApiSchemaBase,
+  GeneratorFunction
 } from './types';
 import { GenerateParameters } from './generate-parameters';
 import { GenerateRequestBody } from './generate-request-body';
 import { GenerateResponse } from './generate-response';
 import { GenerateComponents } from './generate-components';
 
-export async function GenerateOperation(
+export async function GenerateOperation<Options extends OpenApiSchemaBase = OpenApiSchemaBase>(
   openapi: OpenAPIV3.Document,
   project: Project,
-  options: OpenApiSchemaBase,
-  generatorFunctionList: GeneratorFunction[],
+  options: Options,
+  generatorFunctionList: GeneratorFunction<Options>[],
 ) {
   const components: OpenAPIV3.ComponentsObject = (openapi as any).components ?? (openapi as any).definitions ?? {};
 
@@ -48,7 +49,7 @@ export async function GenerateOperation(
               for (const generatorFunction of generatorFunctionList) {
 
                 try {
-                  const parameters: GenerateParameter = {
+                  const parameters: GenerateParameter<Options> = {
                     ...operation,
                     components,
                     method,

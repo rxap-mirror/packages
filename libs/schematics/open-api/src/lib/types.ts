@@ -3,12 +3,12 @@ import { Project } from 'ts-morph';
 
 export type OperationObject = Omit<OpenAPIV3.OperationObject, 'operationId'> & { operationId: string };
 
-export interface GenerateParameter extends OperationObject {
+export interface GenerateParameter<Options extends OpenApiSchemaBase = OpenApiSchemaBase> extends OperationObject {
   method: string;
   path: string;
   project: Project;
   components: OpenAPIV3.ComponentsObject;
-  options: OpenApiSchemaBase;
+  options: Options;
 }
 
 export function HasOperationId(operation: OpenAPIV3.OperationObject): operation is OperationObject {
@@ -21,11 +21,9 @@ export function AssertWithOperationId(operation: OpenAPIV3.OperationObject): ass
   }
 }
 
-export type GeneratorFunction = (parameters: GenerateParameter) => Promise<void>;
+export type GeneratorFunction<Options extends OpenApiSchemaBase = OpenApiSchemaBase> = (parameters: GenerateParameter<Options>) => Promise<void>;
 
 export interface OpenApiSchemaBase {
-  target?: string;
-  apiName: string;
   debug?: boolean;
 }
 
