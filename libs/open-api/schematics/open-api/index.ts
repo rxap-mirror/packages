@@ -673,6 +673,10 @@ export default function(options: OpenApiSchema): Rule {
       useInMemoryFileSystem: true
     });
 
+    if (!options.project) {
+      options.project = 'open-api';
+    }
+
     const basePath = `libs/${options.project}/src/lib`;
 
     options.prefix = options.prefix ?? GetProjectPrefix(host, options.project);
