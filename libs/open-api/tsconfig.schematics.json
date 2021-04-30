@@ -31,6 +31,9 @@
       ],
       "@rxap/schematics-open-api": [
         "../../dist/libs/schematics/open-api"
+      ],
+      "@rxap/schematics-ts-morph": [
+        "../../dist/libs/schematics/ts-morph"
       ]
     }
   },
