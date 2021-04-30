@@ -1,5 +1,5 @@
 import { Tree } from '@angular-devkit/schematics';
-import { Angular, GetAngularJson } from '@rxap/schematics-utilities';
+import { Angular, GetAngularJson } from './angular-json-file';
 
 export function GetProjectPrefix(host: Tree, projectName: string): string {
 
