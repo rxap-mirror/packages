@@ -42,7 +42,10 @@ import {
   RESPONSE_BASE_PATH,
   REQUEST_BODY_BASE_PATH
 } from '@rxap/schematics-open-api';
-import { OpenApiSchema, OpenApiSchemaBase } from './schema';
+import {
+  OpenApiSchema,
+  OpenApiSchemaBase
+} from './schema';
 import { camelize } from '@rxap/utilities';
 import { GetProjectPrefix } from '@rxap/schematics-utilities';
 
@@ -577,6 +580,15 @@ export async function GenerateRemoteMethod(
   const parameterType: string   = GetParameterType(parameter);
   const requestBodyType: string = GetRequestBodyType(parameter);
 
+  const callMethodParameters: OptionalKind<ParameterDeclarationStructure>[] = [];
+
+  if (parameterType !== 'void' && requestBodyType !== 'void') {
+    callMethodParameters.push({
+      name: 'parameters',
+      type: `OpenApiRemoteMethodParameter<${parameterType}, ${requestBodyType}>`
+    });
+  }
+
   const classStructure: OptionalKind<ClassDeclarationStructure> = {
     name:       classify(name.replace(/\./g, '-')),
     decorators: [
@@ -587,6 +599,17 @@ export async function GenerateRemoteMethod(
       {
         name:      'RxapOpenApiRemoteMethod',
         arguments: writer => writer.quote(operationId)
+      }
+    ],
+    methods: [
+      {
+        name:       'call',
+        parameters: callMethodParameters,
+        scope: Scope.Public,
+        returnType: `Promise<${responseType}>`,
+        statements: [
+          'super.call(parameters);'
+        ]
       }
     ],
     extends:    writer => {
