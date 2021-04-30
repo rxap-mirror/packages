@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.9.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.9.3...@rxap/schematics-utilities@11.9.4) (2021-04-30)
+
+
+### Bug Fixes
+
+* **package-json-file:** return a Rule instead of an Promise<Rule> ([74294ef](https://gitlab.com/rxap/packages/commit/74294ef2f584a61fe39b0cb6474771b28925bf7c))
+
+
+
+
+
 ## [11.9.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.9.2...@rxap/schematics-utilities@11.9.3) (2021-04-30)
 
 
