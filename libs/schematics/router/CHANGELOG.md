@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.6.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@11.6.2...@rxap/schematics-router@11.6.3) (2021-04-30)
+
+
+### Bug Fixes
+
+* **schematics:** change module to commonjs ([39a3700](https://gitlab.com/rxap/packages/commit/39a3700a1d1194a81fb9e7944288984f64b46b88))
+
+
+
+
+
 ## [11.6.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@11.6.1...@rxap/schematics-router@11.6.2) (2021-04-30)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.5](https://gitlab.com/rxap/packages/compare/@rxap/schematics-shared@11.1.4...@rxap/schematics-shared@11.1.5) (2021-04-30)
+
+
+### Bug Fixes
+
+* **schematics:** change module to commonjs ([39a3700](https://gitlab.com/rxap/packages/commit/39a3700a1d1194a81fb9e7944288984f64b46b88))
+
+
+
+
+
 ## [11.1.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-shared@11.1.3...@rxap/schematics-shared@11.1.4) (2021-04-30)
 
 
