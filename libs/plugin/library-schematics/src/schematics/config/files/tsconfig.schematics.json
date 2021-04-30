@@ -1,35 +1,14 @@
 {
+  "extends": "<%= pathToRoot %>tsconfig.schematics.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "declaration": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmitOnError": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
     "rootDir": "schematics",
-    "outDir": "<%= pathToRoot %>dist/<%= path %>/schematics",
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "strictNullChecks": true,
-    "target": "es6",
-    "types": [
-      "jest",
-      "node"
-    ]
+    "outDir": "<%= pathToRoot %>dist/<%= path %>/schematics"
   },
   "include": [
     "schematics/**/*"
   ],
   "exclude": [
-    "schematics/*/files/**/*"
+    "schematics/*/files/**/*",
+"schematics/**/*.spec.ts"
   ]
 }

@@ -1,41 +1,23 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": ".",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
     "declaration": true,
-    "module": "esnext",
+    "module": "ES2020",
     "moduleResolution": "node",
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
+    "experimentalDecorators": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "rootDir": ".",
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "target": "es6",
+    "target": "ES2020",
     "types": [
-      "jest",
       "node"
-    ],
-    "paths": {
-      "@rxap/utilities/schematic": [
-        "libs/utilities/schematic/src/public_api.ts"
-      ]
-    }
-  },
-  "include": [
-    "libs/tools/**/schematics/**/*"
-  ],
-  "exclude": [
-    "libs/tools/**/schematics/*/files/**/*",
-    "libs/tools/**/schematics/**/*.spec.ts"
-  ]
+    ]
+  }
 }
