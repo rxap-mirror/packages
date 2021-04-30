@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.9.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.9.2...@rxap/schematics-utilities@11.9.3) (2021-04-30)
+
+
+### Bug Fixes
+
+* **angular-json-file:** mv map to class member ([23b13e9](https://gitlab.com/rxap/packages/commit/23b13e98111908379e3d2a9dba63657cd4887dec))
+
+
+
+
+
 ## [11.9.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.9.1...@rxap/schematics-utilities@11.9.2) (2021-04-30)
 
 
