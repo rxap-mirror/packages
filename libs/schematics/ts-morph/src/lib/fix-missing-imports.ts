@@ -18,7 +18,7 @@ export function FixMissingImports(): Rule {
         useTrailingCommas: true
       }
     });
-    console.log('fix missing imports for ts files');
+    console.debug('fix missing imports for ts files');
 
     for (const action of tree.actions.slice()) {
       switch (action.kind) {
