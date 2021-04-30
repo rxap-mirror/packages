@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.6.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.6.0...@rxap/material-table-system@11.6.1) (2021-04-30)
+
+
+### Bug Fixes
+
+* **schematics:** update module to esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematics tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+
+
+
+
+
 # [11.6.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.5.0...@rxap/material-table-system@11.6.0) (2021-04-23)
 
 

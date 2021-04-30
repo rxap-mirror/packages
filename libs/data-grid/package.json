@@ -1,6 +1,6 @@
 {
   "name": "@rxap/data-grid",
-  "version": "11.0.7",
+  "version": "11.0.8",
   "peerDependencies": {
     "@angular/cdk": "^11.2.5",
     "@angular/common": "^11.2.6",
@@ -8,12 +8,12 @@
     "@angular/forms": "^11.2.6",
     "@angular/platform-browser": "^11.2.6",
     "@angular/router": "^11.2.6",
-    "@rxap/definition": "^11.0.6",
-    "@rxap/directives": "^11.2.2",
-    "@rxap/forms": "^11.3.2",
-    "@rxap/pipes": "^11.0.6",
-    "@rxap/services": "^11.0.8",
-    "@rxap/utilities": "^11.3.2",
+    "@rxap/definition": "^11.0.10",
+    "@rxap/directives": "^11.2.3",
+    "@rxap/forms": "^11.3.6",
+    "@rxap/pipes": "^11.0.7",
+    "@rxap/services": "^11.2.1",
+    "@rxap/utilities": "^11.4.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },

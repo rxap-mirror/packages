@@ -1,6 +1,6 @@
 {
   "name": "@rxap/config",
-  "version": "11.1.0",
+  "version": "11.1.1",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -19,7 +19,7 @@
   "peerDependencies": {
     "@angular/common": "^11.2.6",
     "@angular/core": "^11.2.6",
-    "@rxap/utilities": "^11.3.3",
+    "@rxap/utilities": "^11.4.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
