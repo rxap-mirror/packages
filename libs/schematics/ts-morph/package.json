@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematics-ts-morph",
-  "version": "11.1.0",
+  "version": "11.1.1",
   "peerDependencies": {
     "@rxap/utilities": "^11.4.0",
     "reflect-metadata": "^0.1.13",

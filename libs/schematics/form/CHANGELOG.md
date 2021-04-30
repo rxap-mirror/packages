@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@11.3.2...@rxap/schematics-form@11.3.3) (2021-04-30)
+
+
+### Bug Fixes
+
+* update build target to es6 ([6418b27](https://gitlab.com/rxap/packages/commit/6418b27af301db0c794bb584504d786ad20cfe8c))
+
+
+
+
+
 ## [11.3.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@11.3.1...@rxap/schematics-form@11.3.2) (2021-04-27)
 
 
