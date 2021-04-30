@@ -20,7 +20,7 @@ export function AutoImport(basePath: string, autoImportBasePath: string = basePa
       }
     });
     AddDir(tree.getDir(basePath), project, basePath, pf => !!pf.match(/\.ts$/));
-    console.log('auto import for ts files');
+    console.debug('auto import for ts files');
     project.getSourceFiles().filter(sourceFile => sourceFile.getFilePath().includes(autoImportBasePath)).forEach(sourceFile => {
       sourceFile.fixMissingImports();
       tree.overwrite(sourceFile.getFilePath(), sourceFile.getFullText());

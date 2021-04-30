@@ -18,7 +18,7 @@ export function OrganizeImports(): Rule {
         useTrailingCommas: true
       }
     });
-    console.log('organize imports for ts files');
+    console.debug('organize imports for ts files');
 
     for (const action of tree.actions.slice()) {
       switch (action.kind) {
