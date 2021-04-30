@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.4.3](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.4.2...@rxap/layout@11.4.3) (2021-04-30)
+
+
+### Bug Fixes
+
+* **schematics:** update module to esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematics tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+
+
+
+
+
 ## [11.4.2](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.4.1...@rxap/layout@11.4.2) (2021-04-28)
 
 

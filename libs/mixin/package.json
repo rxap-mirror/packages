@@ -1,6 +1,6 @@
 {
   "name": "@rxap/mixin",
-  "version": "11.0.7",
+  "version": "11.0.8",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -17,7 +17,7 @@
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^11.2.6",
-    "@rxap/utilities": "^11.3.2",
+    "@rxap/utilities": "^11.4.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
