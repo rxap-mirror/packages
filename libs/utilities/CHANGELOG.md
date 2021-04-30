@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.5.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.5.0...@rxap/utilities@11.5.1) (2021-04-30)
+
+
+### Bug Fixes
+
+* **is-record:** allow empty object as record ([90288b8](https://gitlab.com/rxap/packages/commit/90288b8b17cea07c5735f6e2e8a740cf37fba374))
+
+
+
+
+
 # [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.4.1...@rxap/utilities@11.5.0) (2021-04-30)
 
 
