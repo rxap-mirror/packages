@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematics-utilities",
-  "version": "11.9.1",
+  "version": "11.9.2",
   "peerDependencies": {
     "@rxap/utilities": "^11.4.0",
     "reflect-metadata": "^0.1.13",
