@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.6.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.5.0...@rxap/open-api@11.6.0) (2021-04-30)
+
+
+### Features
+
+* **schematics:** update to use @rxap/schematics-open-api ([90c0eec](https://gitlab.com/rxap/packages/commit/90c0eecd0ae36dc756c3093cae31499adcfc0c3a))
+
+
+
+
+
 # [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.4.1...@rxap/open-api@11.5.0) (2021-04-22)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.9.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.8.0...@rxap/schematics-utilities@11.9.0) (2021-04-30)
+
+
+### Features
+
+* add GetProjectPrefix function ([8be676f](https://gitlab.com/rxap/packages/commit/8be676f5fb379e8f94f97f746350d2019ca9763b))
+* add the angular.json proxy class ([4e538e1](https://gitlab.com/rxap/packages/commit/4e538e1b073376e1ea61684b4a767f1629032e0d))
+
+
+
+
+
 # [11.8.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.7.0...@rxap/schematics-utilities@11.8.0) (2021-04-26)
 
 
