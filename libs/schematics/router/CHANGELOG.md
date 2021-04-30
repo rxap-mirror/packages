@@ -14,7 +14,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
 ## [11.6.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@11.6.0...@rxap/schematics-router@11.6.1) (2021-04-30)
 
 
