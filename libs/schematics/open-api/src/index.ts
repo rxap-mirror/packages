@@ -19,6 +19,7 @@ export * from './lib/utilities/has-operation-paramters';
 export * from './lib/utilities/has-operation-request-body';
 export * from './lib/utilities/http-request';
 export * from './lib/utilities/ignore-operation';
+export * from './lib/utilities/is-collection-response';
 export * from './lib/utilities/is-http-method';
 export * from './lib/utilities/is-open-api-schema-from-path';
 export * from './lib/utilities/is-reference-object';
