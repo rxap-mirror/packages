@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@11.2.0...@rxap/schematics-open-api@11.2.1) (2021-04-30)
+
+
+### Bug Fixes
+
+* **schematics:** add support for void request body type ([0feac0f](https://gitlab.com/rxap/packages/commit/0feac0f0e5447dfafc8e51166b2d63cf66fce208))
+
+
+
+
+
 # [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@11.1.2...@rxap/schematics-open-api@11.2.0) (2021-04-30)
 
 
