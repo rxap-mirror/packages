@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.4.1...@rxap/utilities@11.5.0) (2021-04-30)
+
+
+### Features
+
+* add IsObject and IsRecord functions ([bfa67e2](https://gitlab.com/rxap/packages/commit/bfa67e20b2b59f8b46edf43c554ba6d022eeb719))
+
+
+
+
+
 ## [11.4.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.4.0...@rxap/utilities@11.4.1) (2021-04-30)
 
 
