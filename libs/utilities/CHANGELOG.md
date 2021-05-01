@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.6.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.5.1...@rxap/utilities@11.6.0) (2021-05-01)
+
+
+### Features
+
+* add GroupBy function ([19972de](https://gitlab.com/rxap/packages/commit/19972de74e152c5d723707b05209ad5dabf4be7a))
+
+
+
+
+
 ## [11.5.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.5.0...@rxap/utilities@11.5.1) (2021-04-30)
 
 
