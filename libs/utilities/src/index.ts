@@ -55,6 +55,7 @@ export * from './lib/function/is-function';
 
 export * from './lib/array/chunk';
 export * from './lib/array/element-type';
+export * from './lib/array/group-by';
 
 // endregion
 
