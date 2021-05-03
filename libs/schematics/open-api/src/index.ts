@@ -25,6 +25,7 @@ export * from './lib/utilities/is-http-method';
 export * from './lib/utilities/is-open-api-schema-from-path';
 export * from './lib/utilities/is-reference-object';
 export * from './lib/utilities/is-without-parameters';
+export * from './lib/utilities/is-operation-object';
 
 // endregion
 
