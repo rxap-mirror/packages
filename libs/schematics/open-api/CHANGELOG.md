@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@11.2.2...@rxap/schematics-open-api@11.2.3) (2021-05-03)
+
+
+### Bug Fixes
+
+* add missing export ([0f1d683](https://gitlab.com/rxap/packages/commit/0f1d683108952b5658eb08e59f4f504183dbe17d))
+
+
+
+
+
 ## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@11.2.1...@rxap/schematics-open-api@11.2.2) (2021-04-30)
 
 
