@@ -1,30 +1,36 @@
 import {
   BehaviorSubject,
-  Subscription,
-  Observable,
   from,
-  merge
+  merge,
+  Observable,
+  Subscription
 } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import {
-  SelectionModel,
-  SelectionChange
+  SelectionChange,
+  SelectionModel
 } from '@angular/cdk/collections';
 import {
   map,
-  tap,
-  switchMap
+  switchMap,
+  tap
 } from 'rxjs/operators';
 import {
-  WithIdentifier,
-  WithChildren,
+  BaseDataSource,
+  BaseDataSourceMetadata,
+  BaseDataSourceViewer,
+  RXAP_DATA_SOURCE_METADATA
+} from '@rxap/data-source';
+import {
+  ExpandNodeFunction,
+  joinPath,
   Node,
-  Required,
-  NodeToDisplayFunction,
   NodeGetIconFunction,
   NodeHasDetailsFunction,
-  ExpandNodeFunction,
-  joinPath
+  NodeToDisplayFunction,
+  Required,
+  WithChildren,
+  WithIdentifier
 } from '@rxap/utilities';
 import {
   Inject,
@@ -32,12 +38,6 @@ import {
   InjectionToken
 } from '@angular/core';
 import { BaseRemoteMethod } from '@rxap/remote-method';
-import {
-  BaseDataSourceMetadata,
-  BaseDataSource,
-  BaseDataSourceViewer,
-  RXAP_DATA_SOURCE_METADATA
-} from '@rxap/data-source';
 
 export function isSelectionChange<T>(obj: any): obj is SelectionChange<T> {
   return !!obj && obj.hasOwnProperty('added') && obj.hasOwnProperty('removed');
@@ -46,9 +46,6 @@ export function isSelectionChange<T>(obj: any): obj is SelectionChange<T> {
 export interface TreeDataSourceMetadata extends BaseDataSourceMetadata {
   selectMultiple?: boolean;
   expandMultiple?: boolean;
-  storeState?: boolean;
-  initialSelect?: boolean;
-  initialExpand?: boolean;
 }
 
 export const RXAP_TREE_DATA_SOURCE_ROOT_REMOTE_METHOD = new InjectionToken('rxap/tree/data-source/root-remote-method');
@@ -82,7 +79,7 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
     @Inject(RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD)
     public readonly childrenRemoteMethod: BaseRemoteMethod<Data[], Node<Data>>,
     @Inject(RXAP_DATA_SOURCE_METADATA)
-    metadata: TreeDataSourceMetadata | null = null
+      metadata: TreeDataSourceMetadata | null = null
   ) {
     super(metadata);
     this.tree$.pipe(
@@ -98,7 +95,7 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
 
     const root: Data | Data[] = await this.getRoot();
 
-    let rootNodes: Array<Node<Data>> = [];
+    let rootNodes: Array<Node<Data>>;
 
     if (Array.isArray(root)) {
       rootNodes = root.map(node => this._toNode(node));
@@ -180,20 +177,16 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
 
   public async expandNode(node: Node<Data>): Promise<void> {
 
-    if (node.item.hasChildren && !node.item.children?.length) {
+    if (node.item.hasChildren && node.item.children.length === 0) {
 
       node.isLoading$.enable();
 
       const children = await this.getChildren(node);
 
-      if (children?.length) {
-        // add the loaded children to the item object
-        node.item.children = children;
+      // add the loaded children to the item object
+      node.item.children = children;
 
-        node.addChildren(children.map(child => this._toNode(child, node.depth + 1, node.onExpand, node.onCollapse)));
-      } else {
-        node.item.hasChildren = false;
-      }
+      node.addChildren(children.map(child => this._toNode(child, node.depth + 1, node.onExpand, node.onCollapse)));
 
       node.isLoading$.disable();
 
@@ -239,21 +232,21 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
         if (rootNodes) {
           const promises: Promise<any>[] = [];
           if (this.metadata.selectMultiple) {
-            if (!this.selected.hasValue() && this.metadata.initialSelect) {
+            if (!this.selected.hasValue()) {
               promises.push(...rootNodes.filter(node => node.hasDetails).map(node => node.select()));
             }
-            if (!this.expanded.hasValue() && this.metadata.initialExpand) {
+            if (!this.expanded.hasValue()) {
               promises.push(...rootNodes.filter(node => node.hasChildren).map(node => node.expand()));
             }
           } else if (rootNodes.length) {
             const rootNode = rootNodes[ 0 ];
-            if (!this.selected.hasValue() && this.metadata.initialSelect) {
+            if (!this.selected.hasValue()) {
               // TODO : rename hasDetails to isSelectable
               if (rootNode.hasDetails) {
                 promises.push(rootNode.select());
               }
             }
-            if (!this.expanded.hasValue() && this.metadata.initialExpand) {
+            if (!this.expanded.hasValue()) {
               promises.push(rootNode.expand());
             }
           }
@@ -344,7 +337,7 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
 
   private initSelected(): void {
     const key = joinPath('rxap/tree', this.id, 'selected');
-    if (this.metadata.storeState && localStorage.getItem(key)) {
+    if (localStorage.getItem(key)) {
       try {
         this._preSelected = JSON.parse(localStorage.getItem(key)!);
       } catch (e) {
@@ -353,11 +346,9 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
     }
 
     this.selected                          = new SelectionModel<Node<Data>>(!!this.metadata.selectMultiple, []);
-    if (this.metadata.storeState) {
-      this._selectedLocalStorageSubscription = this.selected.changed.pipe(
-        tap(() => localStorage.setItem(key, JSON.stringify(this.selected.selected.map(s => s.id))))
-      ).subscribe();
-    }
+    this._selectedLocalStorageSubscription = this.selected.changed.pipe(
+      tap(() => localStorage.setItem(key, JSON.stringify(this.selected.selected.map(s => s.id))))
+    ).subscribe();
   }
 
   public async refresh(): Promise<any> {
@@ -401,7 +392,7 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
   private initExpanded(): void {
     const key    = joinPath('rxap/tree', this.id, 'expanded');
     let expanded = [];
-    if (this.metadata.storeState && localStorage.getItem(key)) {
+    if (localStorage.getItem(key)) {
       try {
         expanded = JSON.parse(localStorage.getItem(key)!);
       } catch (e) {
@@ -410,11 +401,9 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
     }
 
     this.expanded                          = new SelectionModel<string>(this.metadata.expandMultiple !== false, expanded);
-    if (this.metadata.storeState) {
-      this._expandedLocalStorageSubscription = this.expanded.changed.pipe(
-        tap(() => localStorage.setItem(key, JSON.stringify(this.expanded.selected)))
-      ).subscribe();
-    }
+    this._expandedLocalStorageSubscription = this.expanded.changed.pipe(
+      tap(() => localStorage.setItem(key, JSON.stringify(this.expanded.selected)))
+    ).subscribe();
   }
 
 }
