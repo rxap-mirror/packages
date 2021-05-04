@@ -3,9 +3,7 @@ import {
   Inject,
   Optional
 } from '@angular/core';
-import {
-  OperationObjectWithMetadata,
-} from './open-api';
+import { OperationObjectWithMetadata } from './open-api';
 import { RXAP_OPEN_API_CONFIG } from './tokens';
 import {
   OpenAPIV3,
@@ -32,7 +30,7 @@ export class OpenApiConfigService {
    * .catch(err => console.error(err))
    *
    */
-  public static async Load(openApiUrl: string): Promise<void> {
+  public static async Load(openApiUrl: string = 'openapi.json'): Promise<void> {
 
     if (!openApiUrl) {
       throw new Error('The open api url is not defined!');
@@ -42,7 +40,7 @@ export class OpenApiConfigService {
     try {
 
       const response = await fetch(openApiUrl);
-      config = await response.json();
+      config         = await response.json();
 
     } catch (error) {
       console.debug(`Could not load the open api config from '${openApiUrl}'!`, error);
