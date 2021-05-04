@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.8.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.7.6...@rxap/open-api@11.8.0) (2021-05-04)
+
+
+### Features
+
+* add export option to allow the generate of the lib index.ts ([b0bd430](https://gitlab.com/rxap/packages/commit/b0bd4302acad5ae6e6b7af49f8a361bafdef168c))
+
+
+
+
+
 ## [11.7.6](https://gitlab.com/rxap/packages/compare/@rxap/open-api@11.7.5...@rxap/open-api@11.7.6) (2021-05-03)
 
 **Note:** Version bump only for package @rxap/open-api
