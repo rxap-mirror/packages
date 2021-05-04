@@ -1,6 +1,6 @@
 {
   "name": "@rxap/layout",
-  "version": "11.4.3",
+  "version": "11.4.4",
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
@@ -34,7 +34,7 @@
     "@rxap/forms": "^11.3.6",
     "@rxap/material-directives": "^11.1.5",
     "@rxap/services": "^11.2.1",
-    "@rxap/utilities": "^11.4.1",
+    "@rxap/utilities": "^11.6.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },

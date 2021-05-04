@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.4.4](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.4.3...@rxap/layout@11.4.4) (2021-05-04)
+
+
+### Bug Fixes
+
+* add missing i18n tag ([5139adb](https://gitlab.com/rxap/packages/commit/5139adb1f4ee0534987f9b66352ef0a4530e7db0))
+
+
+
+
+
 ## [11.4.3](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.4.2...@rxap/layout@11.4.3) (2021-04-30)
 
 

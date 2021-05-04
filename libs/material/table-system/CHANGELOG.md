@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.6.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.6.1...@rxap/material-table-system@11.6.2) (2021-05-04)
+
+
+### Bug Fixes
+
+* add missing i18n tag ([f061095](https://gitlab.com/rxap/packages/commit/f061095325fb35732fc3fc2ec991af95e916af47))
+
+
+
+
+
 ## [11.6.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.6.0...@rxap/material-table-system@11.6.1) (2021-04-30)
 
 
