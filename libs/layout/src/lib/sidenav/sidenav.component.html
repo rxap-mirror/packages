@@ -16,7 +16,7 @@
             (click)="sidenav.toggleNavigationCollapse()">
       <span class="content" fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="start center">
         <mat-icon fxFlex="nogrow" class="arrow">double_arrow</mat-icon>
-        <span fxFlex="grow" class="label" [fxHide]="sidenav.collapsed$ | async" i18n="rxap.layout.navigation.collapse-sidebar">Collapse sidebar</span>
+        <span [fxHide]="sidenav.collapsed$ | async" class="label" fxFlex="grow" i18n="@@rxap.layout.navigation.collapse-sidebar">Collapse sidebar</span>
       </span>
     </button>
     <ng-template [ngIf]="sidenavFooterDirective?.template">
