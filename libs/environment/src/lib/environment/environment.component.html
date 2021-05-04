@@ -1,9 +1,13 @@
 <table>
-  <tr>
+  <tr *ngIf="environment.name">
     <th>Environment</th>
     <td>{{environment.name}}</td>
   </tr>
   <tr>
+    <th>Production</th>
+    <td>{{environment.production}}</td>
+  </tr>
+  <tr *ngIf="environment.serviceWorker !== undefined">
     <th>Service Worker</th>
     <td>{{environment.serviceWorker}}</td>
   </tr>
