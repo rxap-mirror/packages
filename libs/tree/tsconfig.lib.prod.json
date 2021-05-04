@@ -17,6 +17,9 @@
       ],
       "@rxap/remote-method": [
         "dist/remote-method"
+      ],
+      "@rxap/material-directives/icon": [
+        "dist/material/directives/icon"
       ]
     }
   }

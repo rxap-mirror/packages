@@ -9,8 +9,8 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TreeContentDirective } from './tree-content.directive';
 import { PortalModule } from '@angular/cdk/portal';
-import { IconDirectiveModule } from '@rxap/material-directives/icon';
 import { ContenteditableDirectiveModule } from '@rxap/contenteditable';
+import { IconDirectiveModule } from '@rxap/material-directives/icon';
 
 @NgModule({
   imports:         [
