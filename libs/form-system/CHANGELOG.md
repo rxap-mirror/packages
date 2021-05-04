@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.2](https://gitlab.com/rxap/packages/compare/@rxap/form-system@10.0.1...@rxap/form-system@10.0.2) (2021-05-04)
+
+
+### Bug Fixes
+
+* add exception handling ([27c0f29](https://gitlab.com/rxap/packages/commit/27c0f2990a505942bd20e6f7c8055c19ea3f2ba2))
+
+
+
+
+
 ## [10.0.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@10.0.0...@rxap/form-system@10.0.1) (2021-01-06)
 
 **Note:** Version bump only for package @rxap/form-system

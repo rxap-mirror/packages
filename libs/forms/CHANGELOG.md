@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.4.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.4.0...@rxap/forms@10.4.1) (2021-05-04)
+
+
+### Bug Fixes
+
+* expose builder injector error ([1c9c640](https://gitlab.com/rxap/packages/commit/1c9c6406bceb170126b8abf91e296b0e64574a21))
+
+
+
+
+
 # [10.4.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@10.3.2...@rxap/forms@10.4.0) (2021-02-03)
 
 
