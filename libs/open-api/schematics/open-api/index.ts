@@ -40,14 +40,18 @@ import {
   PARAMETER_BASE_PATH,
   COMPONENTS_BASE_PATH,
   RESPONSE_BASE_PATH,
-  REQUEST_BODY_BASE_PATH
+  REQUEST_BODY_BASE_PATH,
+  GenerateIndexExports
 } from '@rxap/schematics-open-api';
 import {
   OpenApiSchema,
   OpenApiSchemaBase
 } from './schema';
 import { camelize } from '@rxap/utilities';
-import { GetProjectPrefix } from '@rxap/schematics-utilities';
+import {
+  GetProjectPrefix,
+  CoerceFile
+} from '@rxap/schematics-utilities';
 
 const { dasherize, classify } = strings;
 
@@ -707,13 +711,14 @@ export default function(options: OpenApiSchema): Rule {
       options.project = 'open-api';
     }
 
-    const basePath = `libs/${options.project}/src/lib`;
+    const projectBasePath = join('libs', options.project, 'src');
+    const basePath        = join(projectBasePath, 'lib');
 
     options.prefix = options.prefix ?? GetProjectPrefix(host, options.project);
 
     if (!options.debug) {
       // TODO : reset the hack after the schematic execution is finished
-      console.debug = function () {}
+      console.debug = function() {};
     }
 
     return chain([
@@ -731,10 +736,18 @@ export default function(options: OpenApiSchema): Rule {
       CoerceOpenApiProject(options.project),
       () => GenerateOperation(openapi, project, options, [
         GenerateDataSource,
-        GenerateRemoteMethod,
+        GenerateRemoteMethod
       ]),
       ApplyTsMorphProject(project, basePath),
       FixMissingImports(),
+      tree => {
+        const indexFile = join(projectBasePath, 'index.ts');
+        if (options.export) {
+          CoerceFile(tree, indexFile, GenerateIndexExports(project));
+        } else {
+          CoerceFile(tree, indexFile, 'export {};');
+        }
+      }
     ]);
 
   };

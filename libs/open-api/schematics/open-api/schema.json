@@ -17,6 +17,11 @@
           "description": "The target project where the data sources and remote methods should be generated.",
           "default": "open-api"
         },
+        "export": {
+          "type": "boolean",
+          "description": "If true the index.ts of the select project will replaced with export statement for each generate file",
+          "default": false
+        },
         "transport": {
           "type": "string",
           "enum": [
@@ -44,6 +49,11 @@
           "enum": [
             "amplify"
           ]
+        },
+        "export": {
+          "type": "boolean",
+          "description": "If true the index.ts of the select project will replaced with export statement for each generate file",
+          "default": false
         }
       },
       "required": [

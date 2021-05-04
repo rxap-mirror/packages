@@ -3,6 +3,7 @@ export interface OpenApiSchemaBase {
   transport?: 'amplify'
   debug?: boolean;
   prefix: string;
+  export: boolean
 }
 
 export interface OpenApiSchemaFromPath extends OpenApiSchemaBase {
