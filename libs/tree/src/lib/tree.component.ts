@@ -31,8 +31,8 @@ import {
 } from 'rxjs/operators';
 import { TreeContentDirective } from './tree-content.directive';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { TreeDataSource } from '@rxap/tree';
 import { RXAP_TREE_CONTENT_EDITABLE_METHOD } from './tokens';
+import { TreeDataSource } from './tree.data-source';
 
 @Component({
   // tslint:disable-next-line:component-selector
