@@ -4,8 +4,11 @@ import {
   Optional
 } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
-import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { ReplaySubject } from 'rxjs';
+import {
+  tap,
+  mergeMapTo
+} from 'rxjs/operators';
 import { RXAP_REQUEST_CLOUD_MESSAGING_TOKEN } from './tokens';
 
 export interface Message {
@@ -21,15 +24,12 @@ export interface Message {
 @Injectable({ providedIn: 'root' })
 export class RxapFirebaseMessagingService {
 
-  public token$ = new BehaviorSubject<string | null>(null);
+  public token$ = new ReplaySubject<string | null>(1);
 
   constructor(
     public readonly messaging: AngularFireMessaging,
     @Optional() @Inject(RXAP_REQUEST_CLOUD_MESSAGING_TOKEN) public readonly requestPermissionImminently: boolean = false
   ) {
-    this.messaging.tokenChanges.pipe(
-      tap(token => this.token$.next(token))
-    ).subscribe();
     this.messaging.messages.pipe(
       tap((message: any) => this.showNotification(message.notification.title, message.notification.body))
     ).subscribe();
@@ -39,11 +39,18 @@ export class RxapFirebaseMessagingService {
   }
 
   public requestPermission() {
+    console.log('request notification permission');
     this
       .messaging
       .requestPermission
+      .pipe(
+        mergeMapTo(this.messaging.tokenChanges)
+      )
       .subscribe(
-        () => console.info('cloud messaging permission is granted'),
+        (token) => {
+          console.info('cloud messaging permission is granted');
+          this.token$.next(token);
+        },
         () => console.error('cloud messaging permission is denied')
       );
   }

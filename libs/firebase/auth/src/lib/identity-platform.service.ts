@@ -2,14 +2,14 @@ import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {
   map,
-  first,
   take
 } from 'rxjs/operators';
 import {
   Injectable,
   Inject
 } from '@angular/core';
-import { auth } from 'firebase';
+import firebase from 'firebase';
+import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 
 @Injectable()
 export class IdentityPlatformService {
@@ -45,7 +45,7 @@ export class IdentityPlatformService {
   }
 
   public google(popup: boolean = true): Promise<boolean> {
-    const provider = new auth.GoogleAuthProvider();
+    const provider             = new GoogleAuthProvider();
     const signIn: Promise<any> = popup ? this.fireAuth.signInWithPopup(provider) : this.fireAuth.signInWithRedirect(provider);
     return signIn.then(() => true).catch(() => false).then(status => {
       this.isAuthenticated$.next(status);
