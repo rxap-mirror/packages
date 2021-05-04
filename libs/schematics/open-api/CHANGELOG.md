@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@11.2.3...@rxap/schematics-open-api@11.3.0) (2021-05-04)
+
+
+### Features
+
+* add GenerateIndexExports Function ([e3fce4c](https://gitlab.com/rxap/packages/commit/e3fce4cf3104f77c8122ff257ba69f3968cff6a4))
+
+
+
+
+
 ## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@11.2.2...@rxap/schematics-open-api@11.2.3) (2021-05-03)
 
 
