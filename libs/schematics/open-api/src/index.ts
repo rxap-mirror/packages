@@ -4,6 +4,7 @@ export * from './lib/generate-components';
 export * from './lib/generate-operation';
 export * from './lib/generate-parameters';
 export * from './lib/generate-request-body';
+export * from './lib/generate-index-exports';
 export * from './lib/generate-response';
 export * from './lib/load-open-api-config';
 export * from './lib/types';
