@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.8.6](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.5...@rxap/oauth@11.8.6) (2021-05-05)
+
+
+### Bug Fixes
+
+* add cached profile support ([fb6542d](https://gitlab.com/rxap/packages/commit/fb6542d7506fff055470b6ab95c84649e1c3ae4c))
+
+
+
+
+
 ## [11.8.5](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.4...@rxap/oauth@11.8.5) (2021-04-30)
 
 
