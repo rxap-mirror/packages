@@ -1,31 +1,32 @@
 <div fxLayout="row">
 
   <!-- archive -->
-  <button type="button" *ngIf="!element.__archived && archiveRemoteMethod" (confirmed)="archive()" mat-icon-button rxapConfirm
+  <button (confirmed)="archive()" *ngIf="!element.__archived && archiveRemoteMethod" mat-icon-button matTooltip="Archivieren" rxapConfirm type="button"
           fxFlex="40px">
     <mat-icon>archive</mat-icon>
   </button>
 
   <!-- unarchive -->
-  <button type="button" *ngIf="element.__archived && unarchiveRemoteMethod" (confirmed)="unarchive()" mat-icon-button rxapConfirm
+  <button (confirmed)="unarchive()" *ngIf="element.__archived && unarchiveRemoteMethod" mat-icon-button matTooltip="Wiederherstellen" rxapConfirm type="button"
           fxFlex="40px">
     <mat-icon>unarchive</mat-icon>
   </button>
 
   <!-- delete -->
-  <button type="button" *ngIf="(element.__archived && deleteRemoteMethod) || (deleteRemoteMethod && !unarchiveRemoteMethod && !archiveRemoteMethod)"
+  <button *ngIf="(element.__archived && deleteRemoteMethod) || (deleteRemoteMethod && !unarchiveRemoteMethod && !archiveRemoteMethod)" matTooltip="Löschen"
+          type="button"
           (confirmed)="remove()" mat-icon-button color="warn"
           rxapConfirm fxFlex="40px">
     <mat-icon>delete</mat-icon>
   </button>
 
   <!-- edit -->
-  <button type="button" *ngIf="!element.__archived && editRemoteMethod" (click)="edit()" mat-icon-button fxFlex="40px">
+  <button (click)="edit()" *ngIf="!element.__archived && editRemoteMethod" fxFlex="40px" mat-icon-button matTooltip="Bearbeiten" type="button">
     <mat-icon>edit</mat-icon>
   </button>
 
   <!-- view -->
-  <button type="button" *ngIf="rowViewMethod" (click)="view()" mat-icon-button fxFlex="40px">
+  <button (click)="view()" *ngIf="rowViewMethod" fxFlex="40px" mat-icon-button matTooltip="Details" type="button">
     <mat-icon>visibility</mat-icon>
   </button>
 
