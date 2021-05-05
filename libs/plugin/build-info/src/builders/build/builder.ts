@@ -4,14 +4,13 @@ import {
   createBuilder
 } from '@angular-devkit/architect';
 import { BuildBuilderSchema } from './schema';
-import { json } from '@angular-devkit/core';
 import {
   existsSync,
   writeFileSync
 } from 'fs';
 import { join } from 'path';
 
-export interface Target extends json.JsonObject {
+export interface Target extends Record<string, any> {
   project: string;
   target: string;
   configuration: string;
