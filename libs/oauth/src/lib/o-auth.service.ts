@@ -35,7 +35,7 @@ export interface OAuthStatus {
 }
 
 @Injectable({ providedIn: 'root' })
-export class OAuthService {
+export class OAuthService<Profile = any> {
 
   public accessToken?: string | null;
   public refreshToken?: string | null;
@@ -46,7 +46,13 @@ export class OAuthService {
   public expiresAt?: Date | null;
   public remember?: boolean;
 
+  private _profile?: Profile | null;
+
   private _isAuthenticated: boolean | null = null;
+
+  public get profile(): Profile | null | undefined {
+    return this._profile;
+  }
 
   constructor(
     @Inject(OAuthMethod)
@@ -179,7 +185,7 @@ export class OAuthService {
     return response;
   }
 
-  public async getProfile<T = any>(): Promise<T | null> {
+  public async getProfile<T extends Profile = Profile>(): Promise<T | null> {
     let profile: T | null = null;
 
     if (!this.accessToken) {
@@ -199,7 +205,7 @@ export class OAuthService {
       console.warn('The profile endpoint is not defined!');
     }
 
-    return profile;
+    return this._profile = profile;
   }
 
   public signOut() {
