@@ -8,6 +8,7 @@ import {
   IndentationText,
   QuoteKind
 } from 'ts-morph';
+import { join } from 'path';
 
 /**
  *
@@ -26,19 +27,20 @@ export function FixMissingImports(basePath?: string): Rule {
     });
     console.debug('fix missing imports for ts files');
 
-    function AddFiles(dir: DirEntry) {
+    function AddFiles(dir: DirEntry, parentPath: string) {
+      parentPath = join(parentPath, dir.path);
       for (const file of dir.subfiles) {
         if (file.match(/\.ts$/) && !file.match(/\.spec\.ts$/)) {
-          project.createSourceFile(file, dir.file(file)!.content.toString('utf-8'));
+          project.createSourceFile(join(parentPath, file), dir.file(file)!.content.toString('utf-8'));
         }
       }
       for (const subDir of dir.subdirs) {
-        AddFiles(dir.dir(subDir));
+        AddFiles(dir.dir(subDir), parentPath);
       }
     }
 
     if (basePath) {
-      AddFiles(tree.getDir(basePath));
+      AddFiles(tree.getDir(basePath), '');
     } else {
       for (const action of tree.actions.slice()) {
         switch (action.kind) {
@@ -56,7 +58,7 @@ export function FixMissingImports(basePath?: string): Rule {
 
     project.getSourceFiles().forEach(sourceFile => {
       sourceFile.fixMissingImports();
-      tree.overwrite(sourceFile.getFilePath(), sourceFile.getFullText());
+      tree.overwrite(join(basePath ?? '', sourceFile.getFilePath()), sourceFile.getFullText());
     });
   };
 }
