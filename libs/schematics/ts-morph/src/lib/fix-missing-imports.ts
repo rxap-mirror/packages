@@ -58,7 +58,7 @@ export function FixMissingImports(basePath?: string): Rule {
 
     project.getSourceFiles().forEach(sourceFile => {
       sourceFile.fixMissingImports();
-      tree.overwrite(join(basePath ?? '', sourceFile.getFilePath()), sourceFile.getFullText());
+      tree.overwrite(sourceFile.getFilePath(), sourceFile.getFullText());
     });
   };
 }
