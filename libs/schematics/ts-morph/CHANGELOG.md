@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.6](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@11.2.5...@rxap/schematics-ts-morph@11.2.6) (2021-05-08)
+
+
+### Bug Fixes
+
+* **fix-missing-imports:** add missing overwrite option ([cb41175](https://gitlab.com/rxap/packages/commit/cb411750e799b9857dc0f7ac5c78504f3a60b9d7))
+
+
+
+
+
 ## [11.2.5](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@11.2.4...@rxap/schematics-ts-morph@11.2.5) (2021-05-08)
 
 
