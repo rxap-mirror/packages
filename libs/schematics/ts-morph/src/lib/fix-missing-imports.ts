@@ -30,7 +30,7 @@ export function FixMissingImports(basePath?: string): Rule {
     function AddFiles(dir: DirEntry) {
       for (const file of dir.subfiles) {
         if (file.match(/\.ts$/) && !file.match(/\.spec\.ts$/)) {
-          project.createSourceFile(join(dir.path, file), dir.file(file)!.content.toString('utf-8'));
+          project.createSourceFile(join(dir.path, file), dir.file(file)!.content.toString('utf-8'), { overwrite: true });
         }
       }
       for (const subDir of dir.subdirs) {
