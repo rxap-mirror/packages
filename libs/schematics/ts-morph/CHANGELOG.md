@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@11.2.2...@rxap/schematics-ts-morph@11.2.3) (2021-05-08)
+
+
+### Bug Fixes
+
+* **fix-missing-imports:** insert parent path ([f3d32d7](https://gitlab.com/rxap/packages/commit/f3d32d750fc114dd90fcccec034e18323c979fad))
+
+
+
+
+
 ## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@11.2.1...@rxap/schematics-ts-morph@11.2.2) (2021-05-08)
 
 
