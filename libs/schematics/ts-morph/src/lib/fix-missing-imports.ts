@@ -29,11 +29,11 @@ export function FixMissingImports(basePath?: string): Rule {
     function AddFiles(dir: DirEntry) {
       for (const file of dir.subfiles) {
         if (file.match(/\.ts$/) && !file.match(/\.spec\.ts$/)) {
-          project.createSourceFile(file, tree.get(file)!.content.toString('utf-8'));
+          project.createSourceFile(file, dir.file(file)!.content.toString('utf-8'));
         }
       }
       for (const subDir of dir.subdirs) {
-        AddFiles(tree.getDir(subDir));
+        AddFiles(dir.dir(subDir));
       }
     }
 
