@@ -38,26 +38,46 @@ export function FixMissingImports(basePath?: string): Rule {
       }
     }
 
+    for (const action of tree.actions.slice()) {
+      switch (action.kind) {
+
+        case 'c':
+        case 'o':
+          if (action.path.match(/\.ts$/)) {
+            project.createSourceFile(action.path, action.content.toString('utf-8'), { overwrite: true });
+          }
+          break;
+
+      }
+    }
+
     if (basePath) {
       AddFiles(tree.getDir(basePath));
-    } else {
+
       for (const action of tree.actions.slice()) {
         switch (action.kind) {
 
           case 'c':
           case 'o':
             if (action.path.match(/\.ts$/)) {
-              project.createSourceFile(action.path, action.content.toString('utf-8'), { overwrite: true });
+              const sourceFile = project.getSourceFile(action.path);
+              if (sourceFile) {
+                sourceFile.fixMissingImports();
+                tree.overwrite(action.path, sourceFile.getFullText());
+              } else {
+                console.warn(`Could not find the changed/created file '${action.path}'.`);
+              }
             }
             break;
 
         }
       }
-    }
 
-    project.getSourceFiles().forEach(sourceFile => {
-      sourceFile.fixMissingImports();
-      tree.overwrite(sourceFile.getFilePath(), sourceFile.getFullText());
-    });
+    } else {
+      project.getSourceFiles().forEach(sourceFile => {
+        sourceFile.fixMissingImports();
+        tree.overwrite(sourceFile.getFilePath(), sourceFile.getFullText());
+      });
+    }
   };
 }
