@@ -6,4 +6,5 @@ export interface BuildBuilderSchema extends JsonObject {
   timestamp?: string;
   branch?: string;
   tag?: string;
+  name?: string;
 }

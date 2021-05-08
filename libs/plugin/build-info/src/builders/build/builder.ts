@@ -59,6 +59,26 @@ export class Builder {
       buildInfo.timestamp = new Date().toISOString();
     }
 
+    if (!buildInfo.branch && process.env.CI_COMMIT_BRANCH) {
+      buildInfo.branch = process.env.CI_COMMIT_BRANCH;
+    }
+
+    if (!buildInfo.tag && process.env.CI_COMMIT_TAG) {
+      buildInfo.tag = process.env.CI_COMMIT_TAG;
+    }
+
+    if (!buildInfo.release && process.env.VERSION) {
+      buildInfo.release = process.env.VERSION;
+    }
+
+    if (!buildInfo.commit && process.env.CI_COMMIT_SHA) {
+      buildInfo.commit = process.env.CI_COMMIT_SHA;
+    }
+
+    if (!buildInfo.name && process.env.CI_ENVIRONMENT_NAME) {
+      buildInfo.name = process.env.CI_ENVIRONMENT_NAME;
+    }
+
     const buildJsonFile = JSON.stringify(buildInfo, undefined, 2);
 
     const buildInfoFilePath = join(this.context.workspaceRoot, outputPath, 'build.json');
