@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@11.1.2...@rxap/schematics-ts-morph@11.2.0) (2021-05-08)
+
+
+### Features
+
+* **fix-missing-imports:** add base path support ([dccd57b](https://gitlab.com/rxap/packages/commit/dccd57b759e7c9d433072f1c3d6592b83090663b))
+
+
+
+
+
 ## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@11.1.1...@rxap/schematics-ts-morph@11.1.2) (2021-04-30)
 
 **Note:** Version bump only for package @rxap/schematics-ts-morph
