@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-build-info@11.2.3...@rxap/plugin-build-info@11.2.4) (2021-05-08)
+
+
+### Bug Fixes
+
+* **builder:** extract unset build info from env ([c117285](https://gitlab.com/rxap/packages/commit/c11728534206b1f74a2cabbd1b26ff3948392997))
+
+
+
+
+
 ## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-build-info@11.2.2...@rxap/plugin-build-info@11.2.3) (2021-05-05)
 
 
