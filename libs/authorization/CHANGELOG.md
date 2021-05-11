@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.1.1...@rxap/authorization@11.2.0) (2021-05-11)
+
+
+### Features
+
+* update to the new auth concept ([c0cef1b](https://gitlab.com/rxap/packages/commit/c0cef1b0a42629bc7d12f2b8b578201c30d26b70))
+
+
+
+
+
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.1.0...@rxap/authorization@11.1.1) (2021-05-11)
 
 
