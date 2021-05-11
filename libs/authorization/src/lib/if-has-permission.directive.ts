@@ -20,7 +20,7 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 })
 export class IfHasPermissionDirective implements OnInit, OnDestroy {
 
-  @Input('rxapIfHasPermission')
+  @Input()
   @Required
   public identifier!: string;
 
