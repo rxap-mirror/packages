@@ -228,7 +228,7 @@ export class FormControlAuthorizationDirective extends HasAuthorizationDirective
 
 
 @Directive({
-  selector: 'rxapHasAuthorization'
+  selector: '[rxapHasAuthorization]'
 })
 export class HasAuthorizationTemplateDirective extends HasAuthorizationDirective {
 
