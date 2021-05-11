@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.2.1...@rxap/authorization@11.2.2) (2021-05-11)
+
+
+### Bug Fixes
+
+* use base path for roles.json ([f7126c3](https://gitlab.com/rxap/packages/commit/f7126c3994c6f08d32e35c50032306e3ecc472a8))
+
+
+
+
+
 ## [11.2.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.2.0...@rxap/authorization@11.2.1) (2021-05-11)
 
 
