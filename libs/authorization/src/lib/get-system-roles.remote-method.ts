@@ -7,7 +7,7 @@ import { RemoteMethodTemplateDirective, RemoteMethodTemplateDirectiveContext, Re
 
 @RxapRemoteMethod({
   id: 'get-roles',
-  url: '/roles.json',
+  url: 'roles.json',
   method: 'GET'
 })
 @Injectable({ providedIn: 'root' })
