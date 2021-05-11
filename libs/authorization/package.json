@@ -1,9 +1,13 @@
 {
   "name": "@rxap/authorization",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "peerDependencies": {
-    "@angular/common": "^11.2.6",
-    "@angular/core": "^11.2.6"
+    "@angular/core": "^11.2.6",
+    "@angular/forms": "^11.2.6",
+    "@angular/material": "^11.2.5",
+    "@rxap/utilities": "^11.6.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.5"
   },
   "dependencies": {
     "tslib": "^2.0.0"
@@ -11,6 +15,25 @@
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",
-    "packageGroup": []
+    "packageGroup": [
+      "@rxap/authorization",
+      "@rxap/utilities"
+    ]
+  },
+  "license": "MIT",
+  "keywords": [
+    "rxap",
+    "angular"
+  ],
+  "publishConfig": {
+    "directory": "../../dist/libs/authorization"
+  },
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "homepage": "https://gitlab.com/rxap/packages",
+  "author": "Merzough Münker",
+  "private": false,
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   }
 }
