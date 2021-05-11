@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.2.0...@rxap/authorization@11.2.1) (2021-05-11)
+
+
+### Bug Fixes
+
+* add support for custom identifier ([b1a71e0](https://gitlab.com/rxap/packages/commit/b1a71e0aa681a56d42c911d9e4a43734354c8450))
+
+
+
+
+
 # [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.1.1...@rxap/authorization@11.2.0) (2021-05-11)
 
 
