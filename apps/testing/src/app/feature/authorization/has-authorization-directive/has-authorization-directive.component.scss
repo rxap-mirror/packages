@@ -1,0 +1,26 @@
+table {
+  border-spacing: 0;
+  border-collapse: separate;
+
+  thead {
+    tr {
+      th {
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+        border-bottom: 1px solid black;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td, th {
+        padding: 8px 16px;
+      }
+
+      td {
+        border-left: 1px solid black;
+      }
+    }
+  }
+}

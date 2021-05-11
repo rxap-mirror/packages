@@ -196,7 +196,8 @@
       "@rxap/schematics-xml-parser": [
         "libs/schematics/xml-parser/src/index.ts"
       ],
-      "@rxap/schematics-open-api": ["libs/schematics/open-api/src/index.ts"]
+      "@rxap/schematics-open-api": ["libs/schematics/open-api/src/index.ts"],
+      "@rxap/authorization": ["libs/authorization/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp", "*.sandbox.ts"]

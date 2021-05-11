@@ -1,0 +1,16 @@
+@import "./app/feature/authorization/has-authorization-directive/has-authorization-directive.component.theme";
+/* IMPORT */
+
+@mixin app-theme($theme) {
+
+  @include rxap-has-authorization-directive-theme($theme);
+  /* THEME_INCLUDE */
+
+}
+
+@mixin app-typography($config) {
+
+  @include rxap-has-authorization-directive-typography($config);
+  /* TYPOGRAPHY_INCLUDE */
+
+}
