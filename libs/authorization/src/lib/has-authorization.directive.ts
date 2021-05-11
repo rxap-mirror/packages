@@ -10,7 +10,9 @@ import {
   Injectable,
   AfterViewInit,
   Inject,
-  Optional
+  Optional,
+  TemplateRef,
+  ViewContainerRef
 } from '@angular/core';
 import { AuthorizationService } from './authorization.service';
 import {
@@ -224,6 +226,34 @@ export class FormControlAuthorizationDirective extends HasAuthorizationDirective
 
 }
 
+
+@Directive({
+  selector: 'rxapHasAuthorization'
+})
+export class HasAuthorizationTemplateDirective extends HasAuthorizationDirective {
+
+  @Input()
+  public identifier!: string;
+
+  constructor(
+    private readonly template: TemplateRef<void>,
+    private readonly viewContainerRef: ViewContainerRef,
+    authorization: AuthorizationService,
+    cdr: ChangeDetectorRef,
+  ) {
+    super(authorization, cdr);
+  }
+
+  public setDisabled(disabled: boolean) {
+    if (disabled) {
+      this.viewContainerRef.clear();
+    } else {
+      this.viewContainerRef.createEmbeddedView(this.template);
+    }
+  }
+
+}
+
 @NgModule({
   declarations: [
     MatButtonHasAuthorizationDirective,
@@ -231,7 +261,8 @@ export class FormControlAuthorizationDirective extends HasAuthorizationDirective
     MatSelectHasAuthorizationDirective,
     MatCheckboxHasAuthorizationDirective,
     MatSlideToggleHasAuthorizationDirective,
-    FormControlAuthorizationDirective
+    FormControlAuthorizationDirective,
+    HasAuthorizationTemplateDirective,
   ],
   exports:      [
     MatButtonHasAuthorizationDirective,
@@ -239,7 +270,8 @@ export class FormControlAuthorizationDirective extends HasAuthorizationDirective
     MatSelectHasAuthorizationDirective,
     MatCheckboxHasAuthorizationDirective,
     MatSlideToggleHasAuthorizationDirective,
-    FormControlAuthorizationDirective
+    FormControlAuthorizationDirective,
+    HasAuthorizationTemplateDirective
   ]
 })
 export class HasAuthorizationDirectiveModule {}
