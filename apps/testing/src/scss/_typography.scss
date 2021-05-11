@@ -1,0 +1,49 @@
+@import '~@angular/material/theming';
+
+$global-font-family: 'Roboto, sans-serif';
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$typography: mat-typography-config(
+  //$font-family: $global-font-family,
+  //$display-4: mat-typography-level(11.2rem, 11.2rem, 300),
+  //$display-3: mat-typography-level(5.6rem, 5.6rem, 400),
+  //$display-2: mat-typography-level(4.5rem, 4.8rem, 400),
+  //$display-1: mat-typography-level(3.4rem, 4rem, 400),
+  //$headline: mat-typography-level(2.8rem, 3.2rem, 400),
+  // h1 $title: mat-typography-level(2.4rem, 3.2rem, 300),
+  // h2 $subheading-2: mat-typography-level(1.8rem, 2.2rem, 300),
+  // h3 $subheading-1: mat-typography-level(1.8rem, 2.2rem, 500),
+  // h4 $body-2: mat-typography-level(1.3rem, 1.5rem, 500),
+  //$body-1: mat-typography-level(1.5rem, 1.8rem, 400),
+  //$caption: mat-typography-level(1.2rem, 2rem, 400),
+  //$button: mat-typography-level(1.4rem, 1.4rem, 500),
+  // Line-height must be unit-less fraction of the font-size. $input: mat-typography-level(inherit, 1.125, 400)
+);
+
+$config: (
+  edge-text: mat-typography-level(1.2rem, 1.2rem, 500),
+  advertising-heading: mat-typography-level(3.5rem, 3.7rem, 500),
+  advertising-description: mat-typography-level(1.8rem, 2.8rem, 400),
+);
+
+// Loop through the levels and set the `font-family` of the ones that don't have one to the base.
+// Note that Sass can't modify maps in place, which means that we need to merge and re-assign.
+@each $key, $level in $config {
+  @if map-get($level, font-family) == null {
+    $new-level: map-merge(
+        $level,
+        (
+          font-family: $global-font-family,
+        )
+    );
+    $config: map-merge(
+        $config,
+        (
+          $key: $new-level,
+        )
+    );
+  }
+}
+
+$typography: map-merge($typography, $config);

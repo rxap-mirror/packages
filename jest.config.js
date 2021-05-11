@@ -61,5 +61,6 @@ module.exports = {
     '<rootDir>/libs/schematics/html',
     '<rootDir>/libs/schematics/xml-parser',
     '<rootDir>/libs/schematics/open-api',
+    '<rootDir>/libs/authorization',
   ],
 };

@@ -4937,6 +4937,71 @@
           }
         }
       }
+    },
+    "authorization": {
+      "projectType": "library",
+      "root": "libs/authorization",
+      "sourceRoot": "libs/authorization/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/authorization/tsconfig.lib.json",
+            "project": "libs/authorization/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/authorization/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/authorization/src/**/*.ts",
+              "libs/authorization/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/authorization"],
+          "options": {
+            "jestConfig": "libs/authorization/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "authorization:update-package-group",
+              "authorization:build:production",
+              "authorization:schematics"
+            ]
+          }
+        },
+        "schematics": {
+          "builder": "@rxap/plugin-library-schematics:build",
+          "options": {
+            "buildTarget": "authorization:build:production",
+            "skipBuild": false,
+            "tsConfig": "libs/authorization/tsconfig.schematics.json"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library-schematics:update-package-group"
+        },
+        "publish": {
+          "builder": "@rxap/plugin-library-publish:publish",
+          "options": {
+            "buildTarget": "authorization:build:production",
+            "preTarget": "authorization:pack"
+          }
+        }
+      }
     }
   },
   "newProjectRoot": "",

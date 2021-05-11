@@ -70,7 +70,8 @@
     "schematics-ts-morph": { "tags": [] },
     "schematics-html": { "tags": [] },
     "schematics-xml-parser": { "tags": [] },
-    "schematics-open-api": { "tags": [] }
+    "schematics-open-api": { "tags": [] },
+    "authorization": { "tags": [] }
   },
   "tasksRunnerOptions": {
     "default": {

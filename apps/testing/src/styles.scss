@@ -1,0 +1,21 @@
+@import '~normalize.css';
+@import 'scss/theme';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+rxap-sidenav-content {
+  .container {
+    > .inner {
+      padding: 16px !important;
+      height: calc(100% - #{16px * 2}) !important;
+    }
+  }
+}
