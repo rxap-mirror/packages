@@ -22,7 +22,8 @@ import {
   RXAP_WINDOW_CONTEXT,
   RXAP_WINDOW_CONTAINER_CONTEXT,
   RXAP_WINDOW_REF,
-  RXAP_WINDOW_DEFAULT_SETTINGS
+  RXAP_WINDOW_DEFAULT_SETTINGS,
+  RXAP_WINDOW_DATA
 } from './tokens';
 import {
   WindowContext,
@@ -125,6 +126,10 @@ export class WindowService {
         {
           provide:  RXAP_WINDOW_CONTEXT,
           useValue: context
+        },
+        {
+          provide: RXAP_WINDOW_DATA,
+          useValue: windowConfig.data
         },
         {
           provide:  RXAP_WINDOW_REF,
