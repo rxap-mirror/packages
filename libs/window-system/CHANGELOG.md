@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/window-system@11.2.3...@rxap/window-system@11.3.0) (2021-05-18)
+
+
+### Features
+
+* add the RXAP_WINDOW_DATA InjectionToken ([337ec79](https://gitlab.com/rxap/packages/commit/337ec79d11a78d4e7699e9a54e16fb254df45a94))
+
+
+
+
+
 ## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/window-system@11.2.2...@rxap/window-system@11.2.3) (2021-04-30)
 
 
