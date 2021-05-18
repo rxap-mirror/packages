@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.1](https://gitlab.com/rxap/packages/compare/@rxap/window-system@11.3.0...@rxap/window-system@11.3.1) (2021-05-18)
+
+
+### Bug Fixes
+
+* remove dependency to svg icons ([4096f54](https://gitlab.com/rxap/packages/commit/4096f54d39e877d6302c014555bf26c1a2a73819))
+
+
+
+
+
 # [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/window-system@11.2.3...@rxap/window-system@11.3.0) (2021-05-18)
 
 
