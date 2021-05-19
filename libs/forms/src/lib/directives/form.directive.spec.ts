@@ -6,13 +6,15 @@ import { RxapFormControl } from '../form-control';
 import {
   TestBed,
   fakeAsync,
-  tick
+  tick,
+  ComponentFixture
 } from '@angular/core/testing';
 import {
   Provider,
   Injector,
   INJECTOR,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  DebugElement
 } from '@angular/core';
 import {
   RXAP_FORM_DEFINITION,
@@ -22,6 +24,12 @@ import {
 } from './tokens';
 import { UseFormControl } from '../decorators/use-form-control';
 import { RxapFormBuilder } from '../form-builder';
+import { RxapFormsModule } from '@rxap/forms';
+import {
+  MockedComponent,
+  MockRender
+} from 'ng-mocks';
+import { By } from '@angular/platform-browser';
 
 describe('@rxap/forms', () => {
 
@@ -361,6 +369,54 @@ describe('@rxap/forms', () => {
         expect(formDirective.submitError).toEqual(new Error('failed'));
 
       }));
+
+      describe('With Component', () => {
+
+        let fixture: ComponentFixture<MockedComponent<any>>;
+        let submitButton: DebugElement;
+        let formDirective: FormDirective;
+
+        beforeEach(async () => {
+
+          await TestBed.configureTestingModule({
+            imports: [ RxapFormsModule ],
+            providers: [
+              TestFormProviders
+            ]
+          });
+
+          fixture = MockRender(`
+          <form rxapForm>
+          <button type="submit">Button</button>
+          </form>
+          `);
+
+          submitButton = fixture.debugElement.query(By.css('button'));
+          formDirective = fixture.debugElement.query(By.directive(FormDirective)).injector.get(FormDirective);
+
+        });
+
+        it('should create', () => {
+          expect(formDirective).toBeDefined();
+          expect(formDirective).toBeInstanceOf(FormDirective);
+          expect(submitButton).toBeDefined();
+          expect(submitButton.name).toBe('button');
+        });
+
+        it('should only trigger the submit logic once', async () => {
+
+          const onSubmitSpy = spyOn(formDirective, 'onSubmit');
+
+          submitButton.nativeElement.click();
+
+          await fixture.whenStable();
+
+          expect(onSubmitSpy).toBeCalled();
+          expect(onSubmitSpy).toBeCalledTimes(1);
+
+        });
+
+      });
 
     });
 
