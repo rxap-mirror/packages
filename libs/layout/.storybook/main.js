@@ -3,8 +3,10 @@ module.exports = {
     {
       name: '@storybook/addon-docs',
       options: {
-        configureJSX: true
-      }
-    }
-  ]
+        configureJSX: true,
+      },
+    },
+  ],
 };
+
+module.exports.core = { ...module.exports.core, builder: 'webpack5' };
