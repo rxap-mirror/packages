@@ -5,6 +5,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { RxapFormsModule } from '@rxap/forms';
+import { RouterModule } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -14,7 +16,8 @@ import { RxapFormsModule } from '@rxap/forms';
     FlexLayoutModule,
     MatButtonModule,
     CommonModule,
-    RxapFormsModule
+    RxapFormsModule,
+    MatSnackBarModule,
   ],
   exports:      [ FormControlsComponent ]
 })
