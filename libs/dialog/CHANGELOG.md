@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.5](https://gitlab.com/rxap/packages/compare/@rxap/dialog@11.1.4...@rxap/dialog@11.1.5) (2021-05-19)
+
+
+### Bug Fixes
+
+* **confirm-dialog:** add i18n tag ([b7d6ad7](https://gitlab.com/rxap/packages/commit/b7d6ad7d96a032e478cd881981103b4aa659d5a0))
+
+
+
+
+
 ## [11.1.4](https://gitlab.com/rxap/packages/compare/@rxap/dialog@11.1.3...@rxap/dialog@11.1.4) (2021-04-30)
 
 

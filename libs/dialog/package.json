@@ -1,6 +1,6 @@
 {
   "name": "@rxap/dialog",
-  "version": "11.1.4",
+  "version": "11.1.5",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -31,11 +31,12 @@
     "@rxap/data-grid": "^11.0.8",
     "@rxap/definition": "^11.0.10",
     "@rxap/directives": "^11.2.3",
-    "@rxap/forms": "^11.3.6",
+    "@rxap/forms": "^11.3.7",
     "@rxap/material-directives": "^11.1.5",
     "@rxap/pipes": "^11.0.7",
     "@rxap/services": "^11.2.1",
-    "@rxap/utilities": "^11.4.1",
+    "@rxap/utilities": "^11.6.0",
+    "ng-mocks": "^12.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
