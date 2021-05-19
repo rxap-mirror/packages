@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 import { SelectRowService } from '../select-row/select-row.service';
 
 @Component({
+  // TODO : rn selector
   selector:        'mfd-table-select-controls',
   templateUrl:     './table-select-controls.component.html',
   styleUrls:       [ './table-select-controls.component.scss' ],
