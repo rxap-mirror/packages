@@ -7,7 +7,8 @@ import {
   OnInit,
   Output,
   ChangeDetectorRef,
-  isDevMode
+  isDevMode,
+  Optional
 } from '@angular/core';
 import { FormDirective } from '@rxap/forms';
 import {
@@ -70,9 +71,11 @@ export class FormControlsComponent<FormData> implements OnInit {
   constructor(
     @Inject(FormDirective)
     private readonly formDirective: FormDirective,
-    private readonly router: Router,
     private readonly cdr: ChangeDetectorRef,
-    private readonly snackBar: MatSnackBar
+    private readonly snackBar: MatSnackBar,
+    @Optional()
+    @Inject(Router)
+    private readonly router: Router | null,
   ) {
   }
 
@@ -82,7 +85,11 @@ export class FormControlsComponent<FormData> implements OnInit {
       take(1),
       tap(() => {
         if (this.navigateAfterSubmit) {
-          return this.router.navigate(this.navigateAfterSubmit);
+          if (this.router) {
+            return this.router.navigate(this.navigateAfterSubmit);
+          } else {
+            console.warn('The Router is not available. Ensure that tha RouterModule is imported');
+          }
         }
         return Promise.resolve();
       })
