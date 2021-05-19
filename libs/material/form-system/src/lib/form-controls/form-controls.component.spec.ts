@@ -74,7 +74,7 @@ describe('@rxap/material-form-system', () => {
       expect(formDirective).toBeInstanceOf(FormDirective);
     });
 
-    it('should only trigger submit logic once', async () => {
+    it('should only trigger the submit logic once', async () => {
 
       const submitButton = await loader.getHarness(
         MatButtonHarness.with({ text: 'Submit' })
