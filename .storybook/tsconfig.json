@@ -1,13 +1,10 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../tsconfig.base.json",
   "exclude": [
-    "../**/test.ts",
+    "../**/*.spec.js",
     "../**/*.spec.ts",
-    "../tools",
-    "../**/*.sandbox.ts",
-    "../apps/*-e2e"
+    "../**/*.spec.tsx",
+    "../**/*.spec.jsx"
   ],
-  "include": [
-    "../**/*"
-  ]
+  "include": ["../**/*"]
 }
