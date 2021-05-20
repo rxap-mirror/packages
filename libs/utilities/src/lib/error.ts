@@ -6,24 +6,32 @@ export class RxapError extends Error {
     return this._packageName;
   }
 
+  public get className(): string | undefined {
+    return this.scope;
+  }
+
   constructor(
     protected _packageName: string,
     message: string,
     public readonly code?: string,
-    public readonly className?: string,
-    public readonly stack?: string,
+    public readonly scope?: string,
+    public readonly stack?: string
   ) {
     super(message);
-    Object.setPrototypeOf(this, RxapError.prototype);
+    if ((Error as any)[ 'captureStackTrace' ]) {
+      (Error as any)[ 'captureStackTrace' ](this, RxapError);
+    }
+    this.name = 'RxapError';
   }
 
   public toJSON(): object {
     return {
-      package: this.packageName,
-      message: this.message,
-      code:    this.code,
-      class:   this.className,
-      stack:   this.stack,
+      package:   this.packageName,
+      message:   this.message,
+      code:      this.code,
+      scope:     this.scope,
+      className: this.scope,
+      stack:     this.stack
     };
   }
 
@@ -50,7 +58,9 @@ export class RxapError extends Error {
    *
    * @internal
    * @param subPackageName The sub package name
+   * @deprecated removed
    */
+  @Deprecated('removed')
   protected addSubPackageName(subPackageName: string) {
     this._packageName = [ this._packageName, subPackageName ].join('/');
   }
