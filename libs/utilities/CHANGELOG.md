@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.7.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.6.0...@rxap/utilities@11.7.0) (2021-05-20)
+
+
+### Features
+
+* add custom validation error ([dea141b](https://gitlab.com/rxap/packages/commit/dea141b479e3f8ec0c90debec559176a22924291))
+
+
+
+
+
 # [11.6.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.5.1...@rxap/utilities@11.6.0) (2021-05-01)
 
 
