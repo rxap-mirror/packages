@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin rxap-sign-in-with-redirect-theme($theme) {
   $foreground: map-get($theme, foreground);
@@ -10,12 +10,12 @@
 
   .rxap-sign-in-with-redirect {
     .inner {
-      background-color: mat-color($background, background);
+      background-color: mat.get-color-from-palette($background, background);
 
       @if $isDark {
 
         .mat-form-field-prefix, .mat-form-field-suffix {
-          color: mat-color($foreground, hint-text);
+          color: mat.get-color-from-palette($foreground, hint-text);
         }
 
       }

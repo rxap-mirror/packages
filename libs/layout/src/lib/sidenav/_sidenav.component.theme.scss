@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin rxap-sidenav-theme($theme) {
   $foreground: map-get($theme, foreground);
@@ -8,7 +8,7 @@
 
   .rxap-layout-sidenav {
 
-    background: mat-color($background, card);
+    background: mat.get-color-from-palette($background, card);
 
     .container {
 
@@ -18,24 +18,24 @@
 
           /* Handle */
           &::-webkit-scrollbar-thumb {
-            background: mat-color($accent, 100);
+            background: mat.get-color-from-palette($accent, 100);
           }
 
           /* Handle on hover */
           &::-webkit-scrollbar-thumb:hover {
-            background: mat-color($accent, 300);
+            background: mat.get-color-from-palette($accent, 300);
           }
 
           @if $isDark {
 
             /* Handle */
             &::-webkit-scrollbar-thumb {
-              background: mat-color($accent, 900);
+              background: mat.get-color-from-palette($accent, 900);
             }
 
             /* Handle on hover */
             &::-webkit-scrollbar-thumb:hover {
-              background: mat-color($accent, 700);
+              background: mat.get-color-from-palette($accent, 700);
             }
 
           }

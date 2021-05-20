@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin rxap-boolean-cell-theme($theme) {
   $foreground: map-get($theme, foreground);
@@ -11,11 +11,11 @@
   .rxap-boolean-cell {
 
     .truthy {
-      color: mat-color($primary);
+      color: mat.get-color-from-palette($primary);
     }
 
     .falsy {
-      color: mat-color($warn);
+      color: mat.get-color-from-palette($warn);
     }
 
   }

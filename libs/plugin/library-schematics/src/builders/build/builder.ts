@@ -26,7 +26,7 @@ export class Builder {
     return new Builder(options, context).run();
   }
 
-  public static Create() {
+  public static Create(): any {
     return createBuilder(Builder.Run);
   }
 
@@ -74,7 +74,7 @@ export class Builder {
 
   public async compileSchematics(): Promise<any> {
 
-    const tsc = new Tsc(this.context.logger);
+    const tsc = new Tsc(this.context.logger as any);
 
     return tsc.compile({ tsConfig: join(process.cwd(), this.options.tsConfig) });
 

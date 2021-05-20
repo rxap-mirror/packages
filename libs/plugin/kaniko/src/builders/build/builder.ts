@@ -23,7 +23,7 @@ export class Builder {
     return new Builder(options, context).run();
   }
 
-  public static Create() {
+  public static Create(): any {
     return createBuilder(Builder.Run);
   }
 
@@ -53,7 +53,7 @@ export class Builder {
       return { success: false };
     }
 
-    const kaniko = new Kaniko(this.context.logger);
+    const kaniko = new Kaniko(this.context.logger as any);
 
     if (!this.options.context) {
 

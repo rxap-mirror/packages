@@ -25,7 +25,7 @@ export class Builder {
     return new Builder(options, context).run();
   }
 
-  public static Create() {
+  public static Create(): any {
     return createBuilder(Builder.Run);
   }
 
@@ -86,7 +86,7 @@ export class Builder {
       throw new Error('The target project is not defined!');
     }
 
-    const yarn = new Yarn(this.context.logger);
+    const yarn = new Yarn(this.context.logger as any);
 
     const buildTarget = this.stringToTarget(this.options.buildTarget);
 

@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin rxap-navigation-item-theme($theme) {
   $foreground: map-get($theme, foreground);
@@ -22,9 +22,9 @@
 
       &.link-active, &:active {
         @if $isDark {
-          color: mat-color($accent, 300);
+          color: mat.get-color-from-palette($accent, 300);
         } @else {
-          color: mat-color($accent, 700);
+          color: mat.get-color-from-palette($accent, 700);
         }
       }
 

@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin rxap-container-theme($theme) {
   $foreground: map-get($theme, foreground);
@@ -13,7 +13,7 @@
     .container {
 
       .split {
-        background-color: mat-color($accent);
+        background-color: mat.get-color-from-palette($accent);
       }
 
     }
