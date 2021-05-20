@@ -22,7 +22,7 @@ export class Builder {
     return new Builder(options, context).run();
   }
 
-  public static Create() {
+  public static Create(): any {
     return createBuilder(Builder.Run);
   }
 

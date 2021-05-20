@@ -24,7 +24,7 @@ export class Builder {
     return new Builder(options, context).run();
   }
 
-  public static Create() {
+  public static Create(): any {
     return createBuilder(Builder.Run);
   }
 
@@ -112,7 +112,7 @@ export class Builder {
       return { success: false };
     }
 
-    const publish = new Publish(this.context.logger);
+    const publish = new Publish(this.context.logger as any);
 
     const result = publish.publish(outputPath, this.options.registry);
 

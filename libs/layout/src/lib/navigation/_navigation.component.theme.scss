@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
 @mixin rxap-navigation-theme($theme) {
   $foreground: map-get($theme, foreground);
@@ -17,7 +17,7 @@
       border-left: $border-width solid transparent;
 
       &.active {
-        border-left: $border-width solid mat-color($accent);
+        border-left: $border-width solid mat.get-color-from-palette($accent);
       }
 
     }
