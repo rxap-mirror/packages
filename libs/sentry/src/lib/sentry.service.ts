@@ -1,7 +1,4 @@
-import {
-  Injectable,
-  Inject
-} from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { RXAP_SENTRY_CONFIG } from './tokens';
 import {
   init,
@@ -13,7 +10,7 @@ import {
   onLoad,
   flush,
   close,
-  wrap
+  wrap,
 } from '@sentry/browser';
 import {
   captureException,
@@ -30,19 +27,28 @@ import {
   withScope,
   startTransaction,
 } from '@sentry/minimal';
-import { Breadcrumb, CaptureContext, Event, Extra, Extras, Severity, Transaction, TransactionContext, User } from '@sentry/types';
+import {
+  Breadcrumb,
+  CaptureContext,
+  Event,
+  Extra,
+  Extras,
+  Severity,
+  Transaction,
+  TransactionContext,
+  User,
+} from '@sentry/types';
 import { Scope } from '@sentry/hub';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SentryService {
-
   public readonly options: Readonly<BrowserOptions>;
 
   constructor(
     @Inject(RXAP_SENTRY_CONFIG)
-      options: any
+    options: any
   ) {
     this.options = options;
   }
@@ -112,7 +118,7 @@ export class SentryService {
    *
    * @returns The result of wrapped function call.
    */
-  public wrap(fn: Function): any {
+  public wrap(fn: (...args: any) => any): any {
     wrap(fn);
   }
 
@@ -123,7 +129,10 @@ export class SentryService {
    * @param captureContext
    * @returns The generated eventId.
    */
-  public captureException(exception: any, captureContext?: CaptureContext): string {
+  public captureException(
+    exception: any,
+    captureContext?: CaptureContext
+  ): string {
     return captureException(exception, captureContext);
   }
 
@@ -134,7 +143,10 @@ export class SentryService {
    * @param captureContext Define the level of the message.
    * @returns The generated eventId.
    */
-  public captureMessage(message: string, captureContext?: CaptureContext | Severity): string {
+  public captureMessage(
+    message: string,
+    captureContext?: CaptureContext | Severity
+  ): string {
     return captureMessage(message, captureContext);
   }
 
@@ -173,7 +185,10 @@ export class SentryService {
    * @param name of the context
    * @param context Any kind of data. This data will be normalized.
    */
-  public setContext(name: string, context: { [key: string]: any; } | null): void {
+  public setContext(
+    name: string,
+    context: { [key: string]: any } | null
+  ): void {
     setContext(name, context);
   }
 
@@ -189,7 +204,7 @@ export class SentryService {
    * Set an object that will be merged sent as tags data with the event.
    * @param tags Tags context object to merge into current context.
    */
-  public setTags(tags: { [key: string]: string; }): void {
+  public setTags(tags: { [key: string]: string }): void {
     setTags(tags);
   }
 
@@ -257,7 +272,4 @@ export class SentryService {
   public startTransaction(context: TransactionContext): Transaction {
     return startTransaction(context);
   }
-
-
-
 }
