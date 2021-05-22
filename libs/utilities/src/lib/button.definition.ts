@@ -6,6 +6,9 @@ import {
   ThemePalette
 } from './helpers';
 
+/**
+ * @deprecated removed
+ */
 export enum ButtonTypes {
   Default = 'default',
   Raised  = 'raised',
@@ -16,6 +19,9 @@ export enum ButtonTypes {
   MiniFab = 'mini-fab'
 }
 
+/**
+ * @deprecated removed
+ */
 export interface ButtonDefinition<P extends any[] = any, A = Action> {
   name: string;
   color?: FunctionOrConstant<string | null, P>;
