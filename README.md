@@ -45,7 +45,6 @@ Name | License | Version | Dependencies | Description
 @rxap/pipes | MIT | - | - | A collection of utility angular pipes used in RxAP.
 @rxap/recorder | MIT | - | - | Client package for https://recorder.rxap.dev.
 @rxap/remote-method | BSD-4-Clause | - | - | Provides the RemoteMethod concept for RxAP.
-@rxap/sentry | MIT | - | - | A simple angular wrapper package for @sentry/browser.
 @rxap/service-worker | MIT | - | - | A utility package for the update process of apps with services worker
 @rxap/services | MIT | - | - | A collection of utility angular services used in RxAP.
 @rxap/slugify | MIT | - | - | A utility to slugify a string.
