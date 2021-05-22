@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.7.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.7.0...@rxap/utilities@11.7.1) (2021-05-22)
+
+
+### Bug Fixes
+
+* mark button types as deprecated ([ab974e9](https://gitlab.com/rxap/packages/commit/ab974e94688727555fe9c603fc59e77bd05a1ffe))
+
+
+
+
+
 # [11.7.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.6.0...@rxap/utilities@11.7.0) (2021-05-20)
 
 
