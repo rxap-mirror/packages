@@ -97,7 +97,7 @@ test:publish:
       cobertura: cobertura-coverage.xml
   script:
   - *extract_project
-  - nx run ${PROJECT}:test --ci --reporters=jest-junit --reporters=default --codeCoverage --coverageReporters cobertura --coverageReporters text-summary
+  - yarn nx run ${PROJECT}:test --ci --reporters=jest-junit --reporters=default --codeCoverage --coverageReporters cobertura --coverageReporters text-summary
   - *extract_project_root_path
   - cp "coverage/${PROJECT_ROOT}/cobertura-coverage.xml" cobertura-coverage.xml
   rules:
