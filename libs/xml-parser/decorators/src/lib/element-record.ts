@@ -23,7 +23,8 @@ import {
   ParsedElement,
   XmlParserService,
   RequiredProperty,
-  RxapElement
+  RxapElement,
+  RxapXmlParserValidateRequiredError
 } from '@rxap/xml-parser';
 
 export interface ElementRecordOptions<Value>
@@ -67,7 +68,7 @@ export class ElementRecordParser<T extends ParsedElement, Value>
         parsedElement[ this.propertyKey ][ camelize(child.name) ] = child.getTextContent();
       }
     } else if (this.required) {
-      throw new Error(`Element <${element.name}> child <${this.tag}> text content is required!`);
+      throw new RxapXmlParserValidateRequiredError(`Element <${element.name}> child <${this.tag}> text content is required!`, parsedElement.__tag!);
     }
 
     return parsedElement;

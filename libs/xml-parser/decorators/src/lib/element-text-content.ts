@@ -15,7 +15,8 @@ import {
   ParsedElement,
   XmlParserService,
   RequiredProperty,
-  RxapElement
+  RxapElement,
+  RxapXmlParserValidateRequiredError
 } from '@rxap/xml-parser';
 
 
@@ -55,7 +56,7 @@ export class ElementTextContentParser<T extends ParsedElement, Value> {
 
     if (this.required) {
       if (value === undefined) {
-        throw new Error(`Element <${parsedElement.__tag}> text content is required!`);
+        throw new RxapXmlParserValidateRequiredError(`Element <${parsedElement.__tag}> text content is required!`, parsedElement.__tag!);
       }
     }
 

@@ -22,7 +22,8 @@ import {
   ParsedElement,
   XmlParserService,
   RequiredProperty,
-  RxapElement
+  RxapElement,
+  RxapXmlParserValidateRequiredError
 } from '@rxap/xml-parser';
 
 export interface ElementChildRawContentOptions<Value>
@@ -65,7 +66,7 @@ export class ElementChildRawContentParser<T extends ParsedElement>
         parsedElement[ this.propertyKey ] = this.parseValue(rawValue);
       }
     } else if (this.required) {
-      throw new Error(`Element <${element.name}> child <${this.tag}> raw content is required!`);
+      throw new RxapXmlParserValidateRequiredError(`Element <${element.name}> child <${this.tag}> raw content is required!`, parsedElement.__tag!);
     }
 
     return parsedElement;

@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.7.3](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.7.2...@rxap/utilities@11.7.3) (2021-05-22)
+
+**Note:** Version bump only for package @rxap/utilities
+
+
+
+
+
+## [11.7.2](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.7.1...@rxap/utilities@11.7.2) (2021-05-22)
+
+
+### Bug Fixes
+
+* mv unique into ([d4a1a3a](https://gitlab.com/rxap/packages/commit/d4a1a3a94b7f18297a62980196b2a3c7206dcdb3))
+
+
+
+
+
+## [11.7.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.7.0...@rxap/utilities@11.7.1) (2021-05-22)
+
+
+### Bug Fixes
+
+* mark button types as deprecated ([ab974e9](https://gitlab.com/rxap/packages/commit/ab974e94688727555fe9c603fc59e77bd05a1ffe))
+
+
+
+
+
+# [11.7.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.6.0...@rxap/utilities@11.7.0) (2021-05-20)
+
+
+### Features
+
+* add custom validation error ([dea141b](https://gitlab.com/rxap/packages/commit/dea141b479e3f8ec0c90debec559176a22924291))
+
+
+
+
+
 # [11.6.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.5.1...@rxap/utilities@11.6.0) (2021-05-01)
 
 
