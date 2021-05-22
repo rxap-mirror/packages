@@ -96,9 +96,6 @@
     "plugin-library-publish": {
       "tags": []
     },
-    "fullstory": {
-      "tags": []
-    },
     "sentry": {
       "tags": []
     },
