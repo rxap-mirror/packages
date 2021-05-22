@@ -3,7 +3,6 @@ export * from './lib/array-reducers';
 export * from './lib/meta-data';
 export * from './lib/helpers';
 export * from './lib/deep-merge';
-export * from './lib/array';
 export * from './lib/join';
 export * from './lib/flatten-object';
 export * from './lib/try-log';
@@ -56,6 +55,7 @@ export * from './lib/function/is-function';
 export * from './lib/array/chunk';
 export * from './lib/array/element-type';
 export * from './lib/array/group-by';
+export * from './lib/array/unique';
 
 // endregion
 
