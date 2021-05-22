@@ -1,15 +1,8 @@
 // TODO(jelbourn): Measure perf benefits for translate3d and will-change.
 // TODO(jelbourn): Figure out if anchor hover underline actually happens in any browser.
-@use '~@angular/cdk' as cdk;
-
-// This mixin ensures an element spans to fill the nearest ancestor with defined positioning.
-@mixin mat-fill {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-}
+@use '~@angular/material/button/button-base';
+@use '~@angular/material/core/style/layout-common';
+@use '~@angular/cdk/a11y';
 
 .mat-button, .mat-icon-button {
   .mat-button-focus-overlay {
@@ -19,9 +12,9 @@
 
 // Only basic and stroked buttons (not raised, FABs or icon buttons) have a hover style.
 // Use the same visual treatment for hover as for focus.
-.mat-button:hover,
-.mat-stroked-button:hover {
-  .mat-button-focus-overlay {
+.mat-button,
+.mat-stroked-button {
+  &:hover:not(.mat-button-disabled) .mat-button-focus-overlay {
     opacity: 0.04;
   }
 }
@@ -30,9 +23,9 @@
 // enhancement and not all desktop browsers support this kind of media query, we can't
 // use something like `@media (hover)`.
 @media (hover: none) {
-  .mat-button:hover,
-  .mat-stroked-button:hover {
-    .mat-button-focus-overlay {
+  .mat-button,
+  .mat-stroked-button {
+    &:hover:not(.mat-button-disabled) .mat-button-focus-overlay {
       opacity: 0;
     }
   }
@@ -41,17 +34,17 @@
 // Should be placed after the `:hover` styles so the focused
 // styling coming in from `mat-button-base` takes precedence.
 .mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
-  @include mat-button-base;
+  @include button-base.base;
 }
 
 .mat-raised-button {
-  @include mat-raised-button;
+  @include button-base.raised-button;
 }
 
 .mat-stroked-button {
-  border: $mat-stroked-button-border-width solid currentColor;
-  padding: $mat-stroked-button-padding;
-  line-height: $mat-stroked-button-line-height;
+  border: button-base.$stroked-button-border-width solid currentColor;
+  padding: button-base.$stroked-button-padding;
+  line-height: button-base.$stroked-button-line-height;
 
   // Since the stroked button has has an actual border that reduces the available space for
   // child elements such as the ripple container or focus overlay, an inherited border radius
@@ -61,19 +54,19 @@
   // to fully cover the actual button element. This means that the border-radius would be correct
   // then. See: https://github.com/angular/components/issues/13738
   .mat-button-ripple.mat-ripple, .mat-button-focus-overlay {
-    top: -$mat-stroked-button-border-width;
-    left: -$mat-stroked-button-border-width;
-    right: -$mat-stroked-button-border-width;
-    bottom: -$mat-stroked-button-border-width;
+    top: -(button-base.$stroked-button-border-width);
+    left: -(button-base.$stroked-button-border-width);
+    right: -(button-base.$stroked-button-border-width);
+    bottom: -(button-base.$stroked-button-border-width);
   }
 }
 
 .mat-fab {
-  @include mat-fab($mat-fab-size, $mat-fab-padding);
+  @include button-base.fab(button-base.$fab-size, button-base.$fab-padding);
 }
 
 .mat-mini-fab {
-  @include mat-fab($mat-mini-fab-size, $mat-mini-fab-padding);
+  @include button-base.fab(button-base.$mini-fab-size, button-base.$mini-fab-padding);
 }
 
 .mat-icon-button {
@@ -82,15 +75,15 @@
   // Reset the min-width from the button base.
   min-width: 0;
 
-  width: $mat-icon-button-size;
-  height: $mat-icon-button-size;
+  width: button-base.$button-size;
+  height: button-base.$button-size;
 
   flex-shrink: 0;
-  line-height: $mat-icon-button-size;
-  border-radius: $mat-icon-button-border-radius;
+  line-height: button-base.$button-size;
+  border-radius: button-base.$button-border-radius;
 
   i, .mat-icon {
-    line-height: $mat-icon-button-line-height;
+    line-height: button-base.$button-line-height;
   }
 }
 
@@ -99,7 +92,7 @@
 // the `mat-core` mixin and can potentially overwrite the absolute position of the container.
 .mat-button-ripple.mat-ripple,
 .mat-button-focus-overlay {
-  @include mat-fill;
+  @include layout-common.fill;
 
   // Disable pointer events for the ripple container and focus overlay because the container
   // will overlay the user content and we don't want to disable mouse events on the user content.
@@ -122,24 +115,10 @@
 // Element that overlays the button to show focus and hover effects.
 .mat-button-focus-overlay {
   opacity: 0;
-  transition: $mat-button-focus-transition;
+  transition: button-base.$focus-transition;
 
   ._mat-animation-noopable & {
     transition: none;
-  }
-
-  @include cdk.high-contrast(active, off) {
-    // Note that IE will render this in the same way, no
-    // matter whether the theme is light or dark. This helps
-    // with the readability of focused buttons.
-    background-color: #fff;
-  }
-
-  @include cdk.high-contrast(black-on-white, off) {
-    // For the black-on-white high contrast mode, the browser will set this element
-    // to white, making it blend in with the background, hence why we need to set
-    // it explicitly to black.
-    background-color: #000;
   }
 }
 
@@ -164,7 +143,9 @@
   .mat-form-field-prefix,
   .mat-form-field-suffix {
     .mat-icon-button {
-      display: block;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
       font-size: inherit;
       width: 2.5em;
       height: 2.5em;
@@ -174,9 +155,15 @@
 
 // Add an outline to make buttons more visible in high contrast mode. Stroked buttons
 // don't need a special look in high-contrast mode, because those already have an outline.
-@include cdk.high-contrast(active, off) {
+@include a11y.high-contrast(active, off) {
   .mat-button, .mat-flat-button, .mat-raised-button, .mat-icon-button, .mat-fab, .mat-mini-fab {
     outline: solid 1px;
+  }
+
+  .mat-button-base {
+    &.cdk-keyboard-focused, &.cdk-program-focused {
+      outline: solid 3px;
+    }
   }
 }
 

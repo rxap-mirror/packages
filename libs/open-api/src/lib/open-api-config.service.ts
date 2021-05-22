@@ -1,21 +1,13 @@
-import {
-  Injectable,
-  Inject,
-  Optional
-} from '@angular/core';
+import { Injectable, Inject, Optional } from '@angular/core';
 import { OperationObjectWithMetadata } from './open-api';
 import { RXAP_OPEN_API_CONFIG } from './tokens';
-import {
-  OpenAPIV3,
-  OpenAPI
-} from 'openapi-types';
+import { OpenAPIV3, OpenAPI } from 'openapi-types';
 import { AssertOpenApiV3 } from './utilities';
 
 export type OperationMap = Map<string, OperationObjectWithMetadata>;
 
 @Injectable({ providedIn: 'root' })
 export class OpenApiConfigService {
-
   public static Config: OpenAPIV3.Document | null = null;
 
   public static DefaultServerIndex: number = 0;
@@ -31,89 +23,111 @@ export class OpenApiConfigService {
    *
    */
   public static async Load(openApiUrl: string = 'openapi.json'): Promise<void> {
-
     if (!openApiUrl) {
       throw new Error('The open api url is not defined!');
     }
 
     let config: OpenAPIV3.Document | null = null;
     try {
-
       const response = await fetch(openApiUrl);
-      config         = await response.json();
-
+      config = await response.json();
     } catch (error) {
-      console.debug(`Could not load the open api config from '${openApiUrl}'!`, error);
-      console.error(`Could not load the open api config from '${openApiUrl}'!`, error.message);
+      console.debug(
+        `Could not load the open api config from '${openApiUrl}'!`,
+        error
+      );
+      console.error(
+        `Could not load the open api config from '${openApiUrl}'!`,
+        error.message
+      );
     }
 
     if (config) {
-
       const expandedConfig = await this.ExpandOpenApi(config);
 
       AssertOpenApiV3(expandedConfig);
 
       this.Config = expandedConfig;
-
     } else {
       this.Config = null;
     }
   }
 
   public static GetOperation(operationId: string): OperationObjectWithMetadata {
-
     if (!this.Config) {
       throw new Error('Could not load open api config');
     }
 
     if (!this._operations) {
-
       this._operations = this.LoadOperations(this.Config);
     }
     if (!this._operations!.has(operationId)) {
-      throw new Error(`The operation '${operationId}' is not defined in the openapi-json`);
+      throw new Error(
+        `The operation '${operationId}' is not defined in the openapi-json`
+      );
     }
     return this._operations!.get(operationId)!;
   }
 
   private static LoadOperations(config: OpenAPIV3.Document): OperationMap {
-
     const operations = new Map<string, OperationObjectWithMetadata>();
 
-    Object
-      .entries(config.paths)
-      .filter(([ _, methods ]) => Object.keys(methods).some(method => [ 'get', 'put', 'post', 'delete', 'patch' ].includes(method)))
-      .forEach(([ path, methods ]: [ string, OpenAPIV3.PathItemObject ]) => Object
-        .entries(methods)
-        .forEach(([ method, operation ]: [ string, OpenAPIV3.OperationObject ]) => {
+    Object.entries(config.paths)
+      .filter(
+        (item): item is [string, OpenAPIV3.PathItemObject] =>
+          item[0] !== undefined
+      )
+      .filter(
+        ([_, methods]: [string, OpenAPIV3.PathItemObject]) =>
+          methods &&
+          Object.keys(methods).some((method) =>
+            ['get', 'put', 'post', 'delete', 'patch'].includes(method)
+          )
+      )
+      .forEach(([path, methods]: [string, OpenAPIV3.PathItemObject]) =>
+        Object.entries(methods)
+          .filter(
+            (item): item is [string, OpenAPIV3.OperationObject] =>
+              item[0] !== undefined
+          )
+          .forEach(
+            ([method, operation]: [string, OpenAPIV3.OperationObject]) => {
+              if (!operation.operationId) {
+                throw new Error('The OpenApu OperationId is not defined');
+              }
 
-            if (!operation.operationId) {
-              throw new Error('The OpenApu OperationId is not defined');
-            }
+              if (operations!.has(operation.operationId)) {
+                throw new Error(
+                  `The OpenApi Operation '${operation.operationId}' is already defined.`
+                );
+              }
 
-            if (operations!.has(operation.operationId)) {
-              throw new Error(`The OpenApi Operation '${operation.operationId}' is already defined.`);
-            }
-
-          operations!
-              .set(operation.operationId, {
+              operations!.set(operation.operationId, {
                 ...operation,
-                path:    path,
-                method: method.toUpperCase()
+                path: path,
+                method: method.toUpperCase(),
               });
-          }
-        )
+            }
+          )
       );
 
     return operations;
   }
 
-  private static GetBaseUrl(config: OpenAPIV3.Document, serverIndex: number = this.DefaultServerIndex): string {
+  private static GetBaseUrl(
+    config: OpenAPIV3.Document,
+    serverIndex: number = this.DefaultServerIndex
+  ): string {
     const server = config.servers ? config.servers[serverIndex] : null;
 
     if (!server) {
-      console.debug(`Could not extract the server config with the index '${serverIndex}' from the open api config`, config);
-      throw new Error(`Could not extract the server config with the index '${serverIndex}' from the open api config`);
+      console.debug(
+        `Could not extract the server config with the index '${serverIndex}' from the open api config`,
+        config
+      );
+      throw new Error(
+        `Could not extract the server config with the index '${serverIndex}' from the open api config`
+      );
     }
 
     return server.url;
@@ -125,7 +139,9 @@ export class OpenApiConfigService {
    * @param config
    * @private
    */
-  private static ExpandOpenApi(config: OpenAPI.Document): Promise<OpenAPI.Document> {
+  private static ExpandOpenApi(
+    config: OpenAPI.Document
+  ): Promise<OpenAPI.Document> {
     return Promise.resolve(config);
   }
 
@@ -150,8 +166,13 @@ export class OpenApiConfigService {
 
   public getOperation(operationId: string): OperationObjectWithMetadata {
     if (!this._operations!.has(operationId)) {
-      console.debug(`The operation '${operationId}' is not defined in the openapi-json`, this.config);
-      throw new Error(`The operation '${operationId}' is not defined in the openapi-json`);
+      console.debug(
+        `The operation '${operationId}' is not defined in the openapi-json`,
+        this.config
+      );
+      throw new Error(
+        `The operation '${operationId}' is not defined in the openapi-json`
+      );
     }
     return this._operations!.get(operationId)!;
   }
@@ -160,11 +181,13 @@ export class OpenApiConfigService {
     return OpenApiConfigService.GetBaseUrl(this.config, serverIndex);
   }
 
-  public insertServer(serverConfig: OpenAPIV3.ServerObject, index: number = this.defaultServerIndex): void {
+  public insertServer(
+    serverConfig: OpenAPIV3.ServerObject,
+    index: number = this.defaultServerIndex
+  ): void {
     if (!this.config.servers) {
       this.config.servers = [];
     }
     this.config.servers.splice(index, 1, serverConfig);
   }
-
 }

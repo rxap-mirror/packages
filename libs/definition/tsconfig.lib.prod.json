@@ -8,6 +8,6 @@
     }
   },
   "angularCompilerOptions": {
-    "enableIvy": false
+    "enableIvy": true
   }
 }
