@@ -98,6 +98,7 @@ build:publish:
   - cat .npmrc
   - npm --version
   - npm ping
+  - npm whoami
   - git update-index --assume-unchanged .npmrc
   - PROJECT="$(echo $CI_COMMIT_TAG | cut -d'@' -f2 | cut -d'/' -f2)"
   - echo "PROJECT=${PROJECT}"
