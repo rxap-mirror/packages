@@ -29,7 +29,6 @@ module.exports = {
     '<rootDir>/libs/plugin/kaniko',
     '<rootDir>/libs/data-grid',
     '<rootDir>/libs/plugin/library-publish',
-    '<rootDir>/libs/sentry',
     '<rootDir>/libs/slugify',
     '<rootDir>/libs/service-worker',
     '<rootDir>/libs/life-cycle',

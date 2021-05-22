@@ -155,7 +155,6 @@
       "@rxap/plugin-library-publish": [
         "libs/plugin/library-publish/src/index.ts"
       ],
-      "@rxap/sentry": ["libs/sentry/src/index.ts"],
       "@rxap/slugify": ["libs/slugify/src/index.ts"],
       "@rxap/service-worker": ["libs/service-worker/src/index.ts"],
       "@rxap/life-cycle": ["libs/life-cycle/src/index.ts"],
