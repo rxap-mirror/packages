@@ -1,6 +1,6 @@
 import 'reflect-metadata';
-import { unique } from './array';
 import { deepMerge } from './deep-merge';
+import { unique } from './array/unique';
 
 export function hasMetadata(
   metadataKey: string,

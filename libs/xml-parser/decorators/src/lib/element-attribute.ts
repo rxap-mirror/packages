@@ -16,7 +16,8 @@ import {
   ParsedElement,
   XmlParserService,
   RequiredProperty,
-  RxapElement
+  RxapElement,
+  RxapXmlParserValidateRequiredError
 } from '@rxap/xml-parser';
 
 export interface ElementAttributeOptions<Value>
@@ -48,7 +49,7 @@ export class ElementAttributeParser<T extends ParsedElement = ParsedElement, Val
 
     if (value === undefined) {
       if (this.required) {
-        throw new Error(`The attribute '${this.attribute}' is required for <${parsedElement.__tag}>`);
+        throw new RxapXmlParserValidateRequiredError(`The attribute '${this.attribute}' is required for <${parsedElement.__tag}>`, parsedElement.__tag!, this.attribute);
       }
     } else {
       // @ts-ignore

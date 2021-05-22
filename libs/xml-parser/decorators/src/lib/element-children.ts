@@ -17,7 +17,9 @@ import {
   ParsedElement,
   XmlParserService,
   RequiredProperty,
-  RxapElement
+  RxapElement,
+  RxapXmlParserValidateRequiredError,
+  RxapXmlParserValidateError
 } from '@rxap/xml-parser';
 
 export interface ElementChildrenOptions extends ChildElementOptions {
@@ -66,7 +68,7 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
       const groupElement = element.getChild(this.options.group);
 
       if (!groupElement && this.required) {
-        throw new Error(`The child group element '${this.options.group}' is required for ${parsedElement.__tag}!`);
+        throw new RxapXmlParserValidateRequiredError(`The child group element '${this.options.group}' is required for ${parsedElement.__tag}!`, parsedElement.__tag!);
       }
 
       if (groupElement) {
@@ -83,15 +85,15 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
       .map(child => xmlParser.parse(child.element, child.type ?? child.element.name, parsedElement));
 
     if (this.required && children.length === 0) {
-      throw new Error(`Some element child <${this.tag}> is required in <${parsedElement.__tag}>!`);
+      throw new RxapXmlParserValidateRequiredError(`Some element child <${this.tag}> is required in <${parsedElement.__tag}>!`, parsedElement.__tag!);
     }
 
     if (this.min !== null && this.min > children.length) {
-      throw new Error(`Element child <${this.tag}> should be at least ${this.min} in <${parsedElement.__tag}>!`);
+      throw new RxapXmlParserValidateError(`Element child <${this.tag}> should be at least ${this.min} in <${parsedElement.__tag}>!`, parsedElement.__tag!);
     }
 
     if (this.max !== null && this.max > children.length) {
-      throw new Error(`Element child <${this.tag}> should be at most ${this.max} in <${parsedElement.__tag}>!`);
+      throw new RxapXmlParserValidateError(`Element child <${this.tag}> should be at most ${this.max} in <${parsedElement.__tag}>!`, parsedElement.__tag!);
     }
 
     // @ts-ignore

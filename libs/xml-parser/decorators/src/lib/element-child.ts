@@ -17,7 +17,8 @@ import {
   ParsedElement,
   XmlParserService,
   RequiredProperty,
-  RxapElement
+  RxapElement,
+  RxapXmlParserValidateRequiredError
 } from '@rxap/xml-parser';
 
 export interface ElementChildOptions extends ChildElementOptions {}
@@ -56,7 +57,7 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
       parsedElement[ this.propertyKey ] =
         xmlParser.parse(element.getChild(elementType.TAG)!, elementType, parsedElement);
     } else if (this.required) {
-      throw new Error(`Element child <${this.tag}> is required in <${parsedElement.__tag}>!`);
+      throw new RxapXmlParserValidateRequiredError(`Element child <${this.tag}> is required in <${parsedElement.__tag}>!`, parsedElement.__tag!);
     }
 
     return parsedElement;

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@11.1.2...@rxap/xml-parser@11.2.0) (2021-05-20)
+
+
+### Features
+
+* add custom validation error ([dea141b](https://gitlab.com/rxap/packages/commit/dea141b479e3f8ec0c90debec559176a22924291))
+
+
+
+
+
 ## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@11.1.1...@rxap/xml-parser@11.1.2) (2021-04-30)
 
 
