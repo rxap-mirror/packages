@@ -55,7 +55,8 @@
     "lerna": "lerna",
     "lerna:version": "lerna version --create-release gitlab",
     "lerna:publish": "lerna publish --create-release gitlab",
-    "commitlint": "commitlint"
+    "commitlint": "commitlint",
+    "generate:readme": "node tools/readme-generator/index.js"
   },
   "private": true,
   "quokka": {
