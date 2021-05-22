@@ -34,7 +34,6 @@ Name | License | Version | Dependencies | Description
 @rxap/form-system | BSD-4-Clause | - | - | Provides the FormSystem concept for RxAP.
 @rxap/form-window-system | MIT | - | - | Provides the FormSystem concept for RxAP.
 @rxap/forms | BSD-4-Clause | - | - | A typed extension for @angular/forms.
-@rxap/fullstory | MIT | - | - | A simple angular wrapper package for @fullstory/browser.
 @rxap/handlebars | MIT | - | - | An angular wrapper package for handlebars.
 @rxap/icon | ![NPM](https://img.shields.io/npm/l/@rxap/icon?style=flat-square) | [![npm version](https://img.shields.io/npm/v/@rxap/icon?style=flat-square)](https://www.npmjs.com/package/@rxap/icon) | ![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@rxap/icon) | A utility packages to load svg icons for @angular/material.
 @rxap/json-schema-to-typescript | MIT | - | - | Generates typescript interfaces from json schema definition.
