@@ -93,47 +93,45 @@ build:publish:
   - if: '$CI_COMMIT_TAG =~ /.+@\d+\.\d+\.\d+/'
     when: on_success
     allow_failure: true
+  variables:
+    PACKAGE_ACCESS: public
   script:
-  - echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=$NPM_REGISTRY" >> .npmrc
+  - echo "" > .npmrc
+  - npm config set "@${CI_PROJECT_ROOT_NAMESPACE}:registry $PACKAGE_REGISTRY"
+  - npm config set "${PACKAGE_REGISTRY#https?}:_authToken=${PACKAGE_REGISTRY_TOKEN}"
   - cat .npmrc
   - npm --version
-  - npm ping
-  - npm whoami
-  - git update-index --assume-unchanged .npmrc
+  - npm ping --registry $PACKAGE_REGISTRY
+  - npm whoami || true
   - PROJECT="$(echo $CI_COMMIT_TAG | cut -d'@' -f2 | cut -d'/' -f2)"
   - echo "PROJECT=${PROJECT}"
   - DIST_PATH="dist/$(cat angular.json | jq --arg name $PROJECT -r '.projects[$name].root')"
   - echo "DIST_PATH=${DIST_PATH}"
   - cd $DIST_PATH
-  - npm publish --registry $NPM_REGISTRY
+  - npm publish --registry $PACKAGE_REGISTRY --access $PACKAGE_ACCESS
 
 publish:npm:
   extends: .publish
-  before_script:
-  - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}">.npmrc
-  rules:
-  - if: '$CI_COMMIT_TAG =~ /.+@\d+\.\d+\.\d+/'
-    when: manual
-    allow_failure: true
   variables:
-    NPM_REGISTRY: https://registry.npmjs.org
+    PACKAGE_REGISTRY: https://registry.npmjs.org/
+    PACKAGE_REGISTRY_TOKEN: "$NPM_TOKEN"
 
 publish:rxap:
   extends: .publish
-  before_script:
-  - echo "//npm.rxap.dev/:_authToken=${RXAP_NPM_TOKEN}">.npmrc
   variables:
-    NPM_REGISTRY: https://npm.rxap.dev
+    PACKAGE_REGISTRY: https://npm.rxap.dev/
+    PACKAGE_REGISTRY_TOKEN: "$RXAP_NPM_TOKEN"
 
-.register_gitlab_token: &register_gitlab_token |
+.check_gitlab_token: &check_gitlab_token |
   if [[ "${CI_JOB_TOKEN}" == *"-"* ]]; then
     echo "The CI_JOB_TOKEN contains a dash!!"
+    exit 1
   fi
-  echo "${CI_API_V4_URL#https?}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
 
 publish:gitlab:
   extends: .publish
   before_script:
-  - *register_gitlab_token
+  - *check_gitlab_token
   variables:
-    NPM_REGISTRY: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
+    PACKAGE_REGISTRY: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/npm/"
+    PACKAGE_REGISTRY_TOKEN: "$CI_JOB_TOKEN"
