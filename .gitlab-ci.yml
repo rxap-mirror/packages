@@ -16,10 +16,15 @@ setup:
       - yarn.lock
     paths:
     - node_modules/
-  rules:
-  - if: '$CI_COMMIT_TAG'
-    when: never
-  - when: on_success
+
+.yarn_cache: &yarn_cache
+  cache:
+    key:
+      files:
+      - yarn.lock
+    paths:
+    - node_modules/
+    policy: pull
 
 build:
   stage: build
@@ -28,13 +33,7 @@ build:
   needs:
   - setup
   script: yarn nx run-many --target=build --all --with-deps
-  cache:
-    key:
-      files:
-      - yarn.lock
-    paths:
-    - node_modules/
-    policy: pull
+  <<: *yarn_cache
   rules:
   - if: '$CI_COMMIT_TAG'
     when: never
@@ -47,47 +46,71 @@ test:
   script: yarn nx run-many --target=test --all --with-deps
   needs:
   - setup
-  cache:
-    key:
-      files:
-      - yarn.lock
-    paths:
-    - node_modules/
-    policy: pull
+  <<: *yarn_cache
   rules:
   - if: '$CI_COMMIT_TAG'
     when: never
   - when: on_success
     allow_failure: true
 
+.extract_project: &extract_project |
+  PROJECT="$(echo $CI_COMMIT_TAG | cut -d'@' -f2 | cut -d'/' -f2)"
+  echo "PROJECT=${PROJECT}"
+
+.extract_project_root_path: &extract_project_root_path |
+  PROJECT_ROOT="$(cat angular.json | jq --arg name $PROJECT -r '.projects[$name].root')"
+  echo "PROJECT_ROOT=${PROJECT_ROOT}"
+
+.extract_dist_path: &extract_dist_path |
+  DIST_PATH="dist/${PROJECT_ROOT}"
+  echo "DIST_PATH=${DIST_PATH}"
+
 build:publish:
   stage: build
   tags:
   - build
-  before_script:
-  - yarn --prefer-offline
-  script: yarn nx run-many --target=pack --projects="$(echo $CI_COMMIT_TAG | cut -d'@' -f2 | cut -d'/' -f2)" --with-deps
-  cache:
-    policy: pull
-    key:
-      files:
-      - yarn.lock
-    paths:
-    - node_modules/
+  needs:
+  - setup
+  script:
+  - *extract_project
+  - yarn nx run ${PROJECT}:pack --with-deps
+  <<: *yarn_cache
   artifacts:
     paths:
     - dist
     expire_in: 7 days
   rules:
   - if: '$CI_COMMIT_TAG =~ /.+@\d+\.\d+\.\d+/'
-    when: always
+    when: on_success
+
+test:publish:
+  stage: test
+  tags:
+  - build
+  needs:
+  - setup
+  <<: *yarn_cache
+  coverage: '/Statements\s*:\s*(\d+\.?\d*)%/'
+  artifacts:
+    reports:
+      junit: junit.xml
+      cobertura: cobertura-coverage.xml
+  script:
+  - *extract_project
+  - nx run ${PROJECT}:test --ci --reporters=jest-junit --reporters=default --codeCoverage --coverageReporters cobertura --coverageReporters text-summary
+  - *extract_project_root_path
+  - cp "coverage/${PROJECT_ROOT}/cobertura-coverage.xml" cobertura-coverage.xml
+  rules:
+  - if: '$CI_COMMIT_TAG =~ /.+@\d+\.\d+\.\d+/'
+    when: on_success
+    allow_failure: true
 
 .publish:
   stage: publish
   image: registry.gitlab.com/rxap/gitlab-ci/angular-build
   tags:
   - build
-  needs:
+  dependencies:
   - build:publish
   rules:
   - if: '$CI_COMMIT_TAG =~ /.+@\d+\.\d+\.\d+/'
@@ -103,10 +126,9 @@ build:publish:
   - npm --version
   - npm ping --registry $PACKAGE_REGISTRY
   - npm whoami || true
-  - PROJECT="$(echo $CI_COMMIT_TAG | cut -d'@' -f2 | cut -d'/' -f2)"
-  - echo "PROJECT=${PROJECT}"
-  - DIST_PATH="dist/$(cat angular.json | jq --arg name $PROJECT -r '.projects[$name].root')"
-  - echo "DIST_PATH=${DIST_PATH}"
+  - *extract_project
+  - *extract_project_root_path
+  - *extract_dist_path
   - cd $DIST_PATH
   - npm publish --registry $PACKAGE_REGISTRY --access $PACKAGE_ACCESS
 
