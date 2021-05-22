@@ -6,11 +6,11 @@ describe('@rxap/utilities', () => {
 
     it('should return defaultValue if passed obj is not a object or undefined', () => {
 
-      expect(getFromObject(null, 'test.path', 'default')).toEqual('default');
-      expect(getFromObject(undefined, 'test.path', 'default')).toEqual('default');
-      expect(getFromObject(0, 'test.path', 'default')).toEqual('default');
-      expect(getFromObject('my string', 'test.path', 'default')).toEqual('default');
-      expect(getFromObject(true, 'test.path', 'default')).toEqual('default');
+      expect(getFromObject(null as any, 'test.path', 'default')).toEqual('default');
+      expect(getFromObject(undefined as any, 'test.path', 'default')).toEqual('default');
+      expect(getFromObject(0 as any, 'test.path', 'default')).toEqual('default');
+      expect(getFromObject('my string' as any, 'test.path', 'default')).toEqual('default');
+      expect(getFromObject(true as any, 'test.path', 'default')).toEqual('default');
 
     });
 
