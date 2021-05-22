@@ -96,6 +96,7 @@ build:publish:
   script:
   - echo "@${CI_PROJECT_ROOT_NAMESPACE}:registry=$NPM_REGISTRY" >> .npmrc
   - cat .npmrc
+  - npm --version
   - npm ping
   - git update-index --assume-unchanged .npmrc
   - PROJECT="$(echo $CI_COMMIT_TAG | cut -d'@' -f2 | cut -d'/' -f2)"
