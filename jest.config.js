@@ -46,7 +46,6 @@ module.exports = {
     '<rootDir>/libs/contenteditable',
     '<rootDir>/apps/demo',
     '<rootDir>/libs/schematics/router',
-    '<rootDir>/libs/amplify/open-api',
     '<rootDir>/libs/schematics/table',
     '<rootDir>/libs/material/table-window-system',
     '<rootDir>/libs/schematics/shared',

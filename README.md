@@ -18,7 +18,6 @@ RxAP
 Name | License | Version | Dependencies | Description
 --- | --- | --- | --- | ---
 @rxap/across-tabs | MIT | - | - | An angular wrapper package for across-tabs.
-@rxap/amplify-open-api | MIT | - | - |
 @rxap/authentication | MIT | - | - | A collection of components and services to simplify the authentication process implementation.
 @rxap/authorization | MIT | - | - |
 @rxap/components | MIT | - | - | A collection of utility angular components used in RxAP.

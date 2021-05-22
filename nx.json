@@ -151,9 +151,6 @@
     "schematics-router": {
       "tags": []
     },
-    "amplify-open-api": {
-      "tags": []
-    },
     "schematics-table": {
       "tags": []
     },
