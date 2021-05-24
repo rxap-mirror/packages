@@ -59,7 +59,7 @@ export class Builder {
     const rxapDependencies: any = {};
 
     for (const [packageName, version] of Object.entries(
-      packageJson.peerDependencies
+      packageJson.peerDependencies ?? {}
     )) {
       if (packageName.match(/^@rxap\//)) {
         rxapDependencies[packageName] = version;
