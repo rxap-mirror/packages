@@ -268,6 +268,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "window-system:readme",
               "window-system:update-package-group",
               "window-system:build:production",
               "window-system:scss-bundle",
@@ -302,6 +303,9 @@
             "buildTarget": "window-system:build:production",
             "preTarget": "window-system:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
