@@ -11,7 +11,7 @@
     ]
   },
   "include": [
-    "./schematics/**/*.ts"
+    "./generators/**/*.ts"
   ],
   "exclude": [
     "**/files/**"
