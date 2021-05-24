@@ -50,6 +50,7 @@
   },
   "schematics": "./schematics/collection.json",
   "publishConfig": {
-    "directory": "../../dist/libs/authentication"
+    "directory": "../../dist/libs/authentication",
+    "access": "public"
   }
 }

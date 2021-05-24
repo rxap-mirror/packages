@@ -55,7 +55,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/tree"
+    "directory": "../../dist/libs/tree",
+    "access": "public"
   },
   "private": false
 }

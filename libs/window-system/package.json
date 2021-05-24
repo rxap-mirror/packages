@@ -45,6 +45,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/window-system"
+    "directory": "../../dist/libs/window-system",
+    "access": "public"
   }
 }

@@ -35,6 +35,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/recorder"
+    "directory": "../../dist/libs/recorder",
+    "access": "public"
   }
 }

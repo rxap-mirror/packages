@@ -32,7 +32,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/schematics/table"
+    "directory": "../../../dist/libs/schematics/table",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

@@ -35,6 +35,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/firebase"
+    "directory": "../../dist/libs/firebase",
+    "access": "public"
   }
 }

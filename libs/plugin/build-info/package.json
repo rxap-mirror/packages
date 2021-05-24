@@ -23,7 +23,8 @@
   "schematics": "./collection.json",
   "builders": "./builders.json",
   "publishConfig": {
-    "directory": "../../../dist/libs/plugin/build-info"
+    "directory": "../../../dist/libs/plugin/build-info",
+    "access": "public"
   },
   "peerDependencies": {
     "@nrwl/workspace": "^12.3.4"

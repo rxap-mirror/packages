@@ -24,7 +24,8 @@
   },
   "description": "A builder to generate readme files for libraries.",
   "publishConfig": {
-    "directory": "../../../dist/libs/plugin/readme-generator"
+    "directory": "../../../dist/libs/plugin/readme-generator",
+    "access": "public"
   },
   "peerDependencies": {
     "@nrwl/workspace": "^12.3.4"

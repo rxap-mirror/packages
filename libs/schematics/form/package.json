@@ -32,7 +32,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/schematics/form"
+    "directory": "../../../dist/libs/schematics/form",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

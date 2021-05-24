@@ -32,6 +32,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/pipes"
+    "directory": "../../dist/libs/pipes",
+    "access": "public"
   }
 }

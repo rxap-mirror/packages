@@ -32,6 +32,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/config"
+    "directory": "../../dist/libs/config",
+    "access": "public"
   }
 }

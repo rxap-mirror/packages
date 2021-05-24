@@ -38,7 +38,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/service-worker"
+    "directory": "../../dist/libs/service-worker",
+    "access": "public"
   },
   "private": false
 }

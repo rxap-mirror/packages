@@ -10,7 +10,8 @@
     "tslib": "^2.0.0"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/schematics/ts-morph"
+    "directory": "../../../dist/libs/schematics/ts-morph",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

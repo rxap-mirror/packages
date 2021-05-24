@@ -18,7 +18,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/schematics/open-api"
+    "directory": "../../../dist/libs/schematics/open-api",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

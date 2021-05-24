@@ -27,6 +27,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/handlebars"
+    "directory": "../../dist/libs/handlebars",
+    "access": "public"
   }
 }

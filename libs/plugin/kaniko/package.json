@@ -5,7 +5,8 @@
   "schematics": "./collection.json",
   "builders": "./builders.json",
   "publishConfig": {
-    "directory": "../../../dist/libs/plugin/kaniko"
+    "directory": "../../../dist/libs/plugin/kaniko",
+    "access": "public"
   },
   "peerDependencies": {
     "@nrwl/workspace": "^12.3.4"

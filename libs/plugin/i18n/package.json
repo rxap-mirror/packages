@@ -23,7 +23,8 @@
   "schematics": "./collection.json",
   "builders": "./builders.json",
   "publishConfig": {
-    "directory": "../../../dist/libs/plugin/i18n"
+    "directory": "../../../dist/libs/plugin/i18n",
+    "access": "public"
   },
   "peerDependencies": {
     "@nrwl/workspace": "^12.3.4"

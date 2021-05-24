@@ -5,7 +5,8 @@
     "tslib": "^2.0.0"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/schematics/html"
+    "directory": "../../../dist/libs/schematics/html",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

@@ -29,6 +29,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/across-tabs"
+    "directory": "../../dist/libs/across-tabs",
+    "access": "public"
   }
 }

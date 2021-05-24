@@ -6,7 +6,9 @@ async function update() {
   const packages = await new Project(process.cwd()).getPackages();
 
   for (const pkg of packages) {
-    const parsed = JSON.parse(readFileSync(pkg.manifestLocation).toString('utf-8'));
+    const parsed = JSON.parse(
+      readFileSync(pkg.manifestLocation).toString('utf-8')
+    );
     if (!parsed.scripts) {
       parsed.scripts = {};
     }
@@ -19,7 +21,10 @@ async function update() {
     if (parsed.scripts) {
       delete parsed.scripts;
     }
-    parsed.publishConfig = { directory: `${rel}/dist/${relative(pkg.rootPath, pkg.location)}` };
+    parsed.publishConfig = {
+      directory: `${rel}/dist/${relative(pkg.rootPath, pkg.location)}`,
+      access: 'public',
+    };
 
     writeFileSync(pkg.manifestLocation, JSON.stringify(parsed, undefined, 2));
   }

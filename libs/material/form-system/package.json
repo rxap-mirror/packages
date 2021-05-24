@@ -42,7 +42,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/material/form-system"
+    "directory": "../../../dist/libs/material/form-system",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

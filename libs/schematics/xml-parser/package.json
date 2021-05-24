@@ -14,7 +14,8 @@
     "tslib": "^2.0.0"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/schematics/xml-parser"
+    "directory": "../../../dist/libs/schematics/xml-parser",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

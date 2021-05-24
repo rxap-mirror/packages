@@ -50,6 +50,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/form-system"
+    "directory": "../../dist/libs/form-system",
+    "access": "public"
   }
 }

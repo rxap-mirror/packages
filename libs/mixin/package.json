@@ -30,6 +30,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/mixin"
+    "directory": "../../dist/libs/mixin",
+    "access": "public"
   }
 }
