@@ -1,13 +1,7 @@
 /* IMPORT */
-
-@mixin <%= prefix %>-<%= project %>-theme($theme) {
-
-  /* THEME_INCLUDE */
-
+@mixin theme($theme) {
 }
-
-@mixin <%= prefix %>-<%= project %>-typography($config) {
-
-  /* TYPOGRAPHY_INCLUDE */
-
+@mixin color($theme) {
+}
+@mixin typography($config) {
 }
