@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@12.0.0...@rxap/remote-method@12.0.1) (2021-05-24)
+
+
+### Bug Fixes
+
+* add readme generator ([26cf6eb](https://gitlab.com/rxap/packages/commit/26cf6eb590bf9622f9ba4026f52888555587ade5))
+
+
+
+
+
 # [12.0.0](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@11.3.5...@rxap/remote-method@12.0.0) (2021-05-24)
 
 **Note:** Version bump only for package @rxap/remote-method

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@12.0.0...@rxap/schematics-utilities@12.0.1) (2021-05-24)
+
+**Note:** Version bump only for package @rxap/schematics-utilities
+
+
+
+
+
 # [12.0.0](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.9.4...@rxap/schematics-utilities@12.0.0) (2021-05-24)
 
 **Note:** Version bump only for package @rxap/schematics-utilities

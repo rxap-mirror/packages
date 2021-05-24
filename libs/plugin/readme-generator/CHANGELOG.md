@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-readme-generator@12.0.0...@rxap/plugin-readme-generator@12.1.0) (2021-05-24)
+
+
+### Bug Fixes
+
+* check if peer dependencies property is defined ([7663283](https://gitlab.com/rxap/packages/commit/7663283613f18a0fbe242b23f550cc924414c011))
+* switch library and plugin templates ([2999d46](https://gitlab.com/rxap/packages/commit/2999d46370e46749389c7c48974cf861344949fd))
+
+
+### Features
+
+* add library builder ([7ebadea](https://gitlab.com/rxap/packages/commit/7ebadea0dce1d8d8c30208b7645d63d36ac871bc))
+
+
+
+
+
 # [12.0.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-readme-generator@11.0.7...@rxap/plugin-readme-generator@12.0.0) (2021-05-24)
 
 **Note:** Version bump only for package @rxap/plugin-readme-generator

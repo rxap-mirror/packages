@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.0...@rxap/authorization@12.0.1) (2021-05-24)
+
+
+### Bug Fixes
+
+* add readme generator ([ce06885](https://gitlab.com/rxap/packages/commit/ce06885c2230518645d17eb670c2b07fbc0e392a))
+
+
+
+
+
 # [12.0.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.2.2...@rxap/authorization@12.0.0) (2021-05-24)
 
 **Note:** Version bump only for package @rxap/authorization
