@@ -195,6 +195,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "data-source:readme",
               "data-source:update-package-group",
               "data-source:build:production",
               "data-source:schematics"
@@ -210,6 +211,9 @@
             "buildTarget": "data-source:build:production",
             "preTarget": "data-source:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
