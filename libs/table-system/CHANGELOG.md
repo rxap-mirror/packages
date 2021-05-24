@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/table-system@12.0.0...@rxap/table-system@12.0.1) (2021-05-24)
+
+
+### Bug Fixes
+
+* add readme generator ([b9aab13](https://gitlab.com/rxap/packages/commit/b9aab1326eace43c4fe655d3cadaf451badeef5c))
+
+
+
+
+
 # [12.0.0](https://gitlab.com/rxap/packages/compare/@rxap/table-system@11.1.2...@rxap/table-system@12.0.0) (2021-05-24)
 
 **Note:** Version bump only for package @rxap/table-system

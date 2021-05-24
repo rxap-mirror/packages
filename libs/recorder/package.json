@@ -1,6 +1,6 @@
 {
   "name": "@rxap/recorder",
-  "version": "12.0.0",
+  "version": "12.0.1",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -18,9 +18,9 @@
   "description": "Client package for https://recorder.rxap.dev.",
   "peerDependencies": {
     "@angular/core": "^12.0.1",
-    "@rxap/across-tabs": "^11.0.7",
-    "@rxap/definition": "^11.0.11",
-    "@rxap/utilities": "^11.7.4",
+    "@rxap/across-tabs": "^12.0.1",
+    "@rxap/definition": "^12.0.1",
+    "@rxap/utilities": "^12.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },

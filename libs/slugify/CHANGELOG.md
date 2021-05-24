@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/slugify@12.0.0...@rxap/slugify@12.0.1) (2021-05-24)
+
+
+### Bug Fixes
+
+* add readme generator ([aca8e49](https://gitlab.com/rxap/packages/commit/aca8e495f06d81edf14e56fdd1e6a3c2d7de4c50))
+
+
+
+
+
 # [12.0.0](https://gitlab.com/rxap/packages/compare/@rxap/slugify@11.0.6...@rxap/slugify@12.0.0) (2021-05-24)
 
 **Note:** Version bump only for package @rxap/slugify
