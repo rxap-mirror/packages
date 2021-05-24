@@ -974,6 +974,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "authentication:readme",
               "authentication:update-package-group",
               "authentication:build:production",
               "authentication:scss-bundle",
@@ -1008,6 +1009,9 @@
             "buildTarget": "authentication:build:production",
             "preTarget": "authentication:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
