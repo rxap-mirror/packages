@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-i18n",
-  "version": "11.1.2",
+  "version": "12.0.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -26,6 +26,6 @@
     "directory": "../../../dist/libs/plugin/i18n"
   },
   "peerDependencies": {
-    "@nrwl/workspace": "^11.5.2"
+    "@nrwl/workspace": "^12.3.4"
   }
 }

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.0.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library-publish@11.0.7...@rxap/plugin-library-publish@12.0.0) (2021-05-24)
+
+**Note:** Version bump only for package @rxap/plugin-library-publish
+
+
+
+
+
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library-publish@11.0.6...@rxap/plugin-library-publish@11.0.7) (2021-03-22)
 
 **Note:** Version bump only for package @rxap/plugin-library-publish
