@@ -745,6 +745,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "remote-method:readme",
               "remote-method:update-package-group",
               "remote-method:build:production",
               "remote-method:schematics"
@@ -772,6 +773,9 @@
             "buildTarget": "remote-method:build:production",
             "preTarget": "remote-method:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
