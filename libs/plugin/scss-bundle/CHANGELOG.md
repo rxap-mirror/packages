@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.0.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-scss-bundle@11.0.7...@rxap/plugin-scss-bundle@12.0.0) (2021-05-24)
+
+
+### Features
+
+* add support for [@use](https://gitlab.com/use) imports ([468eb7f](https://gitlab.com/rxap/packages/commit/468eb7f8f65c99cb31ba65f4d4665d9d3c3ff36b))
+
+
+
+
+
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-scss-bundle@11.0.6...@rxap/plugin-scss-bundle@11.0.7) (2021-03-22)
 
 
