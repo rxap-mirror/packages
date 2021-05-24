@@ -5186,6 +5186,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "authorization:readme",
               "authorization:update-package-group",
               "authorization:build:production",
               "authorization:schematics"
@@ -5209,6 +5210,9 @@
             "buildTarget": "authorization:build:production",
             "preTarget": "authorization:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       }
     }
