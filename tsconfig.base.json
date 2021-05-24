@@ -11,18 +11,35 @@
     "target": "es2015",
     "module": "esnext",
     "strict": true,
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom", "es2018.promise"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "dom",
+      "es2020"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rxap/utilities": ["libs/utilities/src/index.ts"],
-      "@rxap/component-system": ["libs/rxap/component-system/src/index.ts"],
-      "@rxap/window-system": ["libs/window-system/src/index.ts"],
-      "@rxap/loader": ["libs/rxap/loader/src/index.ts"],
-      "@rxap/config": ["libs/config/src/index.ts"],
-      "@rxap/documents": ["libs/documents/src/index.ts"],
+      "@rxap/utilities": [
+        "libs/utilities/src/index.ts"
+      ],
+      "@rxap/component-system": [
+        "libs/rxap/component-system/src/index.ts"
+      ],
+      "@rxap/window-system": [
+        "libs/window-system/src/index.ts"
+      ],
+      "@rxap/loader": [
+        "libs/rxap/loader/src/index.ts"
+      ],
+      "@rxap/config": [
+        "libs/config/src/index.ts"
+      ],
+      "@rxap/documents": [
+        "libs/documents/src/index.ts"
+      ],
       "@rxap/data-source": ["libs/data-source/src/index.ts"],
       "@rxap/data-source/open-api": [
         "libs/data-source/open-api/src/public_api.ts"
