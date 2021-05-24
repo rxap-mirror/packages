@@ -5,6 +5,11 @@
       "implementation": "./src/builders/plugin/builder",
       "schema": "./src/builders/plugin/schema.json",
       "description": "Readme generator for plugin libraries."
+    },
+    "library": {
+      "implementation": "./src/builders/library/builder",
+      "schema": "./src/builders/library/schema.json",
+      "description": "Readme generator for library libraries."
     }
   }
 }

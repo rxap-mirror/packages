@@ -51,14 +51,21 @@ type | string | library | Specify witch builder type should be added
 | project |
 | type |
 
-
 # Builder
-
 
 **Readme generator for plugin libraries.**
 
 ```
 @rxap/plugin-readme-generator:plugin
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
+**Readme generator for library libraries.**
+
+```
+@rxap/plugin-readme-generator:library
 ```
 
 Option | Type | Default | Description
