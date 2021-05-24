@@ -26,7 +26,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/slugify"
+    "directory": "../../dist/libs/slugify",
+    "access": "public"
   },
   "private": false
 }

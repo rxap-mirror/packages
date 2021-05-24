@@ -33,6 +33,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/xml-parser"
+    "directory": "../../dist/libs/xml-parser",
+    "access": "public"
   }
 }

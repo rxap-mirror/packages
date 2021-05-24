@@ -14,7 +14,8 @@
     "rxap"
   ],
   "publishConfig": {
-    "directory": "../../dist/libs/fake"
+    "directory": "../../dist/libs/fake",
+    "access": "public"
   },
   "repository": "git@gitlab.com:rxap/packages.git",
   "homepage": "https://gitlab.com/rxap/packages",

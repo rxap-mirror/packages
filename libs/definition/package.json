@@ -30,6 +30,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/definition"
+    "directory": "../../dist/libs/definition",
+    "access": "public"
   }
 }

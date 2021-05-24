@@ -19,7 +19,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/contenteditable"
+    "directory": "../../dist/libs/contenteditable",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

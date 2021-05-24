@@ -43,6 +43,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/components"
+    "directory": "../../dist/libs/components",
+    "access": "public"
   }
 }

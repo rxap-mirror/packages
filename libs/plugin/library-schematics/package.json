@@ -35,6 +35,7 @@
     "@angular-devkit/schematics": "9"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/plugin/library-schematics"
+    "directory": "../../../dist/libs/plugin/library-schematics",
+    "access": "public"
   }
 }

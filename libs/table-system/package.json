@@ -24,7 +24,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/table-system"
+    "directory": "../../dist/libs/table-system",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

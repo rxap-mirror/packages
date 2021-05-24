@@ -34,7 +34,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/life-cycle"
+    "directory": "../../dist/libs/life-cycle",
+    "access": "public"
   },
   "private": false
 }

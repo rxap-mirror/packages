@@ -60,6 +60,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/open-api"
+    "directory": "../../dist/libs/open-api",
+    "access": "public"
   }
 }

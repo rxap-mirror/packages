@@ -42,7 +42,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/upload"
+    "directory": "../../dist/libs/upload",
+    "access": "public"
   },
   "private": false
 }

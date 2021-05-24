@@ -34,7 +34,8 @@
     "angular"
   ],
   "publishConfig": {
-    "directory": "../../dist/libs/oauth"
+    "directory": "../../dist/libs/oauth",
+    "access": "public"
   },
   "repository": "git@gitlab.com:rxap/packages.git",
   "homepage": "https://gitlab.com/rxap/packages",

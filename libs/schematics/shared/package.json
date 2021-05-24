@@ -12,7 +12,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/schematics/shared"
+    "directory": "../../../dist/libs/schematics/shared",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

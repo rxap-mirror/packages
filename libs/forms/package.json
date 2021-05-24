@@ -43,6 +43,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/forms"
+    "directory": "../../dist/libs/forms",
+    "access": "public"
   }
 }

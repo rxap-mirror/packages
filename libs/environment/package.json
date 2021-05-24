@@ -13,7 +13,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/environment"
+    "directory": "../../dist/libs/environment",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

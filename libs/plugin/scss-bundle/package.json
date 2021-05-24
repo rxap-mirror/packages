@@ -36,7 +36,8 @@
     "@nrwl/workspace": "^12.3.4"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/plugin/scss-bundle"
+    "directory": "../../../dist/libs/plugin/scss-bundle",
+    "access": "public"
   },
   "private": false
 }

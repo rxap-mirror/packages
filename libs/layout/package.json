@@ -56,6 +56,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/layout"
+    "directory": "../../dist/libs/layout",
+    "access": "public"
   }
 }

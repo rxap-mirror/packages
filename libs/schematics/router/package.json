@@ -30,7 +30,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/schematics/router"
+    "directory": "../../../dist/libs/schematics/router",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

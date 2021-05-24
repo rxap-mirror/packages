@@ -35,7 +35,8 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/data-grid"
+    "directory": "../../dist/libs/data-grid",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

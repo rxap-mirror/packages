@@ -37,6 +37,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/remote-method"
+    "directory": "../../dist/libs/remote-method",
+    "access": "public"
   }
 }

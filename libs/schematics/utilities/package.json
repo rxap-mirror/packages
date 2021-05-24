@@ -10,7 +10,8 @@
     "tslib": "^2.0.0"
   },
   "publishConfig": {
-    "directory": "../../../dist/libs/schematics/utilities"
+    "directory": "../../../dist/libs/schematics/utilities",
+    "access": "public"
   },
   "license": "MIT",
   "keywords": [

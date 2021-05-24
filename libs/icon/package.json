@@ -25,6 +25,7 @@
     ]
   },
   "publishConfig": {
-    "directory": "../../dist/libs/icon"
+    "directory": "../../dist/libs/icon",
+    "access": "public"
   }
 }
