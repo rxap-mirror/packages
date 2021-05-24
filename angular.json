@@ -3596,6 +3596,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "table-system:readme",
               "table-system:update-package-group",
               "table-system:build:production",
               "table-system:schematics",
@@ -3620,6 +3621,9 @@
             "buildTarget": "table-system:build:production",
             "preTarget": "table-system:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
