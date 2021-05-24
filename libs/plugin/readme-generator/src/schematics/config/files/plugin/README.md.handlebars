@@ -1,4 +1,4 @@
-{{package.name}}
+{{package.name}} (Nx/Ng Plugin)
 ======
 
 [![npm version](https://img.shields.io/npm/v/{{package.name}}?style=flat-square)](https://www.npmjs.com/package/{{package.name}})
@@ -11,25 +11,86 @@
 > {{package.description}}
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
+- [Schematics](#schematics)
+- [Builder](#builder)
 
 # Installation
 
+Add the plugin to your workspace:
+
+{{#if collection.schematics.ng-add}}
+
+  ```
+  ng add {{package.name}}
+  ```
+
+  *{{collection.schematics.ng-add.description}}*
+
+{{else}}
+
+  ```
+  yarn add {{package.name}}
+  ```
+
+{{/if}}
+
+Configure {{package.name}} for a project:
+
 ```
-yarn add {{package.name}} {{#each rxapDependencies}}{{@key}}@{{this}} {{/each}}
+ng g {{package.name}}:config [project]
 ```
 
-**ng add**
-```
-ng add {{package.name}}
-```
+*{{collection.schematics.config.description}}*
 
-# Get started
+# Schematics
 
-{{getstarted}}
+{{#each collection.schematics}}
 
-# Guides
+  **{{this.description}}**
 
-{{guides}}
+  ```
+  ng g {{this.name}}:{{@key}}
+  ```
+
+  Option | Type | Default | Description
+  --- | --- | --- | ---
+  {{#each this.schema.properties}}
+    {{@key}} | {{this.type}} | {{this.default}} | {{this.description}}
+  {{/each}}
+
+  {{#if this.schema.required}}
+    | Required |
+    | --- |
+    {{#each this.schema.required}}
+      | {{this}} |
+    {{/each}}
+  {{/if}}
+
+{{/each}}
+
+# Builder
+
+{{#each builders.builders}}
+
+  **{{this.description}}**
+
+  ```
+  {{this.name}}:{{@key}}
+  ```
+
+  Option | Type | Default | Description
+  --- | --- | --- | ---
+  {{#each this.schema.properties}}
+    {{@key}} | {{this.type}} | {{this.default}} | {{this.description}}
+  {{/each}}
+
+  {{#if this.schema.required}}
+    | Required |
+    | --- |
+    {{#each this.schema.required}}
+      | {{this}} |
+    {{/each}}
+  {{/if}}
+{{/each}}
+
 
