@@ -1694,6 +1694,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "forms:readme",
               "forms:update-package-group",
               "forms:build:production",
               "forms:schematics"
@@ -1717,6 +1718,9 @@
             "buildTarget": "forms:build:production",
             "preTarget": "forms:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
