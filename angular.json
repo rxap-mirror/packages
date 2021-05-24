@@ -59,6 +59,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "utilities:readme",
               "utilities:update-package-group",
               "utilities:build:production",
               "utilities:schematics"
@@ -82,6 +83,9 @@
             "buildTarget": "utilities:build:production",
             "preTarget": "utilities:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -372,6 +376,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "services:readme",
               "services:update-package-group",
               "services:build:production",
               "services:schematics"
@@ -395,6 +400,9 @@
             "buildTarget": "services:build:production",
             "preTarget": "services:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -449,6 +457,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "xml-parser:readme",
               "xml-parser:update-package-group",
               "xml-parser:build:production",
               "xml-parser:schematics"
@@ -472,6 +481,9 @@
             "buildTarget": "xml-parser:build:production",
             "preTarget": "xml-parser:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -526,6 +538,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "mixin:readme",
               "mixin:update-package-group",
               "mixin:build:production",
               "mixin:schematics"
@@ -549,6 +562,9 @@
             "buildTarget": "mixin:build:production",
             "preTarget": "mixin:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -612,6 +628,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "components:readme",
               "components:update-package-group",
               "components:build:production",
               "components:scss-bundle",
@@ -687,6 +704,9 @@
             "buildTarget": "components:build:production",
             "preTarget": "components:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -846,6 +866,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "config:readme",
               "config:update-package-group",
               "config:build:production",
               "config:schematics"
@@ -869,6 +890,9 @@
             "buildTarget": "config:build:production",
             "preTarget": "config:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -1117,6 +1141,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "layout:readme",
               "layout:update-package-group",
               "layout:build:production",
               "layout:scss-bundle",
@@ -1151,6 +1176,9 @@
             "buildTarget": "layout:build:production",
             "preTarget": "layout:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -1256,6 +1284,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "pipes:readme",
               "pipes:update-package-group",
               "pipes:build:production",
               "pipes:schematics"
@@ -1279,6 +1308,9 @@
             "buildTarget": "pipes:build:production",
             "preTarget": "pipes:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -1420,6 +1452,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "open-api:readme",
               "open-api:update-package-group",
               "open-api:build:production",
               "open-api:schematics"
@@ -1443,6 +1476,9 @@
             "buildTarget": "open-api:build:production",
             "preTarget": "open-api:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -1497,6 +1533,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "recorder:readme",
               "recorder:update-package-group",
               "recorder:build:production",
               "recorder:schematics"
@@ -1520,6 +1557,9 @@
             "buildTarget": "recorder:build:production",
             "preTarget": "recorder:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -1795,6 +1835,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "icon:readme",
               "icon:update-package-group",
               "icon:build:production",
               "icon:schematics"
@@ -1818,6 +1859,9 @@
             "buildTarget": "icon:build:production",
             "preTarget": "icon:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -1884,6 +1928,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "firebase:readme",
               "firebase:update-package-group",
               "firebase:build:production",
               "firebase:schematics"
@@ -1907,6 +1952,9 @@
             "buildTarget": "firebase:build:production",
             "preTarget": "firebase:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -2012,6 +2060,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "directives:readme",
               "directives:update-package-group",
               "directives:build:production",
               "directives:scss-bundle",
@@ -2046,6 +2095,9 @@
             "buildTarget": "directives:build:production",
             "preTarget": "directives:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -2100,6 +2152,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "handlebars:readme",
               "handlebars:update-package-group",
               "handlebars:build:production",
               "handlebars:schematics"
@@ -2123,6 +2176,9 @@
             "buildTarget": "handlebars:build:production",
             "preTarget": "handlebars:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -2189,6 +2245,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "definition:readme",
               "definition:update-package-group",
               "definition:build:production",
               "definition:schematics"
@@ -2212,6 +2269,9 @@
             "buildTarget": "definition:build:production",
             "preTarget": "definition:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -2699,6 +2759,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "data-grid:readme",
               "data-grid:update-package-group",
               "data-grid:build:production",
               "data-grid:scss-bundle",
@@ -2733,6 +2794,9 @@
             "buildTarget": "data-grid:build:production",
             "preTarget": "data-grid:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -2868,6 +2932,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "slugify:readme",
               "slugify:update-package-group",
               "slugify:build:production",
               "slugify:schematics"
@@ -2891,6 +2956,9 @@
             "buildTarget": "slugify:build:production",
             "preTarget": "slugify:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -2945,6 +3013,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "service-worker:readme",
               "service-worker:update-package-group",
               "service-worker:build:production",
               "service-worker:schematics"
@@ -2968,6 +3037,9 @@
             "buildTarget": "service-worker:build:production",
             "preTarget": "service-worker:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -3022,6 +3094,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "life-cycle:readme",
               "life-cycle:update-package-group",
               "life-cycle:build:production",
               "life-cycle:schematics"
@@ -3045,6 +3118,9 @@
             "buildTarget": "life-cycle:build:production",
             "preTarget": "life-cycle:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -3099,6 +3175,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "json-schema-to-typescript:readme",
               "json-schema-to-typescript:build:production"
             ]
           }
@@ -3109,6 +3186,9 @@
             "buildTarget": "json-schema-to-typescript:build:production",
             "preTarget": "json-schema-to-typescript:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -3173,6 +3253,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "tree:readme",
               "tree:update-package-group",
               "tree:build:production",
               "tree:schematics"
@@ -3196,6 +3277,9 @@
             "buildTarget": "tree:build:production",
             "preTarget": "tree:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -3260,6 +3344,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "dialog:readme",
               "dialog:update-package-group",
               "dialog:build:production",
               "dialog:schematics"
@@ -3283,6 +3368,9 @@
             "buildTarget": "dialog:build:production",
             "preTarget": "dialog:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -3347,6 +3435,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "form-window-system:readme",
               "form-window-system:update-package-group",
               "form-window-system:build:production",
               "form-window-system:scss-bundle",
@@ -3371,6 +3460,9 @@
             "buildTarget": "form-window-system:build:production",
             "preTarget": "form-window-system:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -3435,6 +3527,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "environment:readme",
               "environment:update-package-group",
               "environment:build:production",
               "environment:schematics"
@@ -3497,6 +3590,9 @@
           "outputs": [
             "{options.outputPath}"
           ]
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -3955,6 +4051,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "contenteditable:readme",
               "contenteditable:update-package-group",
               "contenteditable:build:production",
               "contenteditable:schematics"
@@ -3978,6 +4075,9 @@
             "buildTarget": "contenteditable:build:production",
             "preTarget": "contenteditable:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -4450,6 +4550,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "upload:readme",
               "upload:update-package-group",
               "upload:build:production",
               "upload:schematics"
@@ -4473,6 +4574,9 @@
             "buildTarget": "upload:build:production",
             "preTarget": "upload:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       }
     },
@@ -4670,6 +4774,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "fake:readme",
               "fake:update-package-group",
               "fake:build:production",
               "fake:schematics"
@@ -4693,6 +4798,9 @@
             "buildTarget": "fake:build:production",
             "preTarget": "fake:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       }
     },
@@ -4876,6 +4984,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "oauth:readme",
               "oauth:update-package-group",
               "oauth:build:production",
               "oauth:schematics",
@@ -4910,6 +5019,9 @@
               "~@angular/.*"
             ]
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       }
     },
