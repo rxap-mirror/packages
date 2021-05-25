@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@11.2.3...@rxap/directives@11.3.0) (2021-05-25)
+
+
+### Features
+
+* add method directive ([1b8c125](https://gitlab.com/rxap/packages/commit/1b8c125b42b56569e7da1ac7d91f7ba9749bce28))
+
+
+
+
+
 ## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/directives@11.2.2...@rxap/directives@11.2.3) (2021-04-30)
 
 
