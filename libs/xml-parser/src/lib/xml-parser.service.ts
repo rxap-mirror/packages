@@ -22,6 +22,8 @@ export class XmlParserService {
 
   public readonly parsers = new Map<ElementName, ElementParserWithParsers>();
 
+  protected _rootElement: string = 'definition';
+
   constructor() {
     this.parse = this.parse.bind(this);
   }
@@ -151,16 +153,16 @@ export class XmlParserService {
       throw new Error('The parsed xml has not any element');
     }
 
-    const definitionNode = Array.from(xmlDoc.childNodes).find(node => node.nodeName === 'definition');
+    const rootNode = Array.from(xmlDoc.childNodes).find(node => node.nodeName === this._rootElement);
 
-    if (!definitionNode) {
-      throw new Error('Could not find <definition> element!');
+    if (!rootNode) {
+      throw new Error(`Could not find <${this._rootElement}> element!`);
     }
 
-    const root = new RxapElement(definitionNode as Element);
+    const root = new RxapElement(rootNode as Element);
 
-    if (root.name !== 'definition') {
-      throw new Error(`The root node must be an <definition> element, but the root node is a <${root.name}> element!`);
+    if (root.name !== this._rootElement) {
+      throw new Error(`The root node must be an <${this._rootElement}> element, but the root node is a <${root.name}> element!`);
     }
 
     return this.parse<D>(root, root.name, null, args);
