@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.1](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@11.2.0...@rxap/xml-parser@11.2.1) (2021-05-25)
+
+
+### Bug Fixes
+
+* **xml-parser-service:** add support for custom root elements ([74a7789](https://gitlab.com/rxap/packages/commit/74a7789ca42529c60b566f1ee17827c0e5c8025a))
+
+
+
+
+
 # [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@11.1.2...@rxap/xml-parser@11.2.0) (2021-05-20)
 
 
