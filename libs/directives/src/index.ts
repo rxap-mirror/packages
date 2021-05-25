@@ -7,3 +7,4 @@ export * from './lib/full-width.directive';
 export * from './lib/avatar-background-image.directive';
 export * from './lib/contenteditable.directive';
 export * from './lib/confirm-click';
+export * from './lib/method.directive';
