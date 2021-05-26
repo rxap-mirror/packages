@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.6.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.6.4...@rxap/material-table-system@11.6.5) (2021-05-26)
+
+
+### Bug Fixes
+
+* add missing module import ([fb8e781](https://gitlab.com/rxap/packages/commit/fb8e781ae2cb601de57c93572e573d5e2cff8126))
+
+
+
+
+
 ## [11.6.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@11.6.3...@rxap/material-table-system@11.6.4) (2021-05-19)
 
 **Note:** Version bump only for package @rxap/material-table-system
