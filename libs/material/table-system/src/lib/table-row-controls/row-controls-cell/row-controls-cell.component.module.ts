@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmComponentModule } from '@rxap/components';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ConfirmComponentModule } from '@rxap/components';
     FlexLayoutModule,
     MatButtonModule,
     MatIconModule,
-    ConfirmComponentModule
+    ConfirmComponentModule,
+    MatTooltipModule
   ],
   exports:      [ RowControlsCellComponent ]
 })
