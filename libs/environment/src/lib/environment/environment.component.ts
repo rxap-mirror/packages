@@ -15,6 +15,8 @@ import { Environment } from '../environment';
 })
 export class EnvironmentComponent {
 
+  public show = false;
+
   constructor(
     @Inject(RXAP_ENVIRONMENT)
     public readonly environment: Environment
