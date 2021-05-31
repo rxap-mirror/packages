@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/environment@11.2.1...@rxap/environment@11.2.2) (2021-05-31)
+
+
+### Bug Fixes
+
+* update styles ([5ab4b7f](https://gitlab.com/rxap/packages/commit/5ab4b7f3af39d9b7b6742822930fe55d5eea52b8))
+
+
+
+
+
 ## [11.2.1](https://gitlab.com/rxap/packages/compare/@rxap/environment@11.2.0...@rxap/environment@11.2.1) (2021-05-31)
 
 
