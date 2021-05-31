@@ -6,6 +6,7 @@ import { EnvironmentComponentModule } from './environment.component.module';
 import { EnvironmentComponent } from './environment.component';
 import { RXAP_ENVIRONMENT } from './tokens';
 import { Environment } from '../environment';
+import '@angular/localize/init';
 
 const environment: Environment = {
   name: 'production',
@@ -43,6 +44,5 @@ export default {
 };
 
 export const basic = () => ({
-  component: EnvironmentComponent,
   props:     {}
 });

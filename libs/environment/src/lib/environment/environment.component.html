@@ -1,9 +1,20 @@
-<table>
+<button (click)="show = !show" class="collapse-button">
+  <span *ngIf="show; else hidden" i18n>Hide build info</span>
+  <ng-template #hidden>
+    <span i18n>Show build info</span>
+  </ng-template>
+</button>
+
+<table *ngIf="show">
   <tr>
     <th>Environment</th>
     <td>{{environment.name}}</td>
   </tr>
   <tr>
+    <th>Production</th>
+    <td>{{environment.production}}</td>
+  </tr>
+  <tr *ngIf="environment.serviceWorker !== undefined">
     <th>Service Worker</th>
     <td>{{environment.serviceWorker}}</td>
   </tr>
