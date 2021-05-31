@@ -3571,7 +3571,8 @@
             "targets": [
               "environment:update-package-group",
               "environment:build:production",
-              "environment:schematics"
+              "environment:schematics",
+              "environment:scss-bundle"
             ]
           }
         },
