@@ -7,9 +7,7 @@
   $primary: map-get($theme, primary);
   $warn: map-get($theme, warn);
   $isDark: map-get($theme, is-dark);
-
   .rxap-environment { }
-
 }
 
 @mixin rxap-environment-typography($config) {
