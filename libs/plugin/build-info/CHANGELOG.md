@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-build-info@11.2.4...@rxap/plugin-build-info@11.2.5) (2021-05-31)
+
+**Note:** Version bump only for package @rxap/plugin-build-info
+
+
+
+
+
 ## [11.2.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-build-info@11.2.3...@rxap/plugin-build-info@11.2.4) (2021-05-08)
 
 

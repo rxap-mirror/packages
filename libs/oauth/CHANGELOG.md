@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.8.7](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.6...@rxap/oauth@11.8.7) (2021-05-31)
+
+**Note:** Version bump only for package @rxap/oauth
+
+
+
+
+
 ## [11.8.6](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.5...@rxap/oauth@11.8.6) (2021-05-05)
 
 

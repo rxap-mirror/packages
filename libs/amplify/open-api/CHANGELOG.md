@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.1.11](https://gitlab.com/rxap/packages/compare/@rxap/amplify-open-api@11.1.10...@rxap/amplify-open-api@11.1.11) (2021-05-31)
+
+**Note:** Version bump only for package @rxap/amplify-open-api
+
+
+
+
+
 ## [11.1.10](https://gitlab.com/rxap/packages/compare/@rxap/amplify-open-api@11.1.9...@rxap/amplify-open-api@11.1.10) (2021-05-22)
 
 **Note:** Version bump only for package @rxap/amplify-open-api

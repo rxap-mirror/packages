@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.0.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-scss-bundle@11.0.7...@rxap/plugin-scss-bundle@11.0.8) (2021-05-31)
+
+**Note:** Version bump only for package @rxap/plugin-scss-bundle
+
+
+
+
+
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-scss-bundle@11.0.6...@rxap/plugin-scss-bundle@11.0.7) (2021-03-22)
 
 

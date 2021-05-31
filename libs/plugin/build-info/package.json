@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-build-info",
-  "version": "11.2.4",
+  "version": "11.2.5",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -26,6 +26,6 @@
     "directory": "../../../dist/libs/plugin/build-info"
   },
   "peerDependencies": {
-    "@nrwl/workspace": "^11.5.2"
+    "@nrwl/workspace": "^12.2.0"
   }
 }
