@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.2.2...@rxap/authorization@11.2.3) (2021-05-31)
+
+**Note:** Version bump only for package @rxap/authorization
+
+
+
+
+
 ## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.2.1...@rxap/authorization@11.2.2) (2021-05-11)
 
 

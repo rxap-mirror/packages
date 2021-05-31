@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-readme-generator",
-  "version": "11.0.7",
+  "version": "11.0.8",
   "main": "src/index.js",
   "schematics": "./collection.json",
   "builders": "./builders.json",
@@ -27,7 +27,7 @@
     "directory": "../../../dist/libs/plugin/readme-generator"
   },
   "peerDependencies": {
-    "@nrwl/workspace": "^11.5.2"
+    "@nrwl/workspace": "^12.2.0"
   },
   "private": false
 }

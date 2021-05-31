@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.3.2](https://gitlab.com/rxap/packages/compare/@rxap/window-system@11.3.1...@rxap/window-system@11.3.2) (2021-05-31)
+
+**Note:** Version bump only for package @rxap/window-system
+
+
+
+
+
 ## [11.3.1](https://gitlab.com/rxap/packages/compare/@rxap/window-system@11.3.0...@rxap/window-system@11.3.1) (2021-05-18)
 
 
