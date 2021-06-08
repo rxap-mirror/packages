@@ -4862,10 +4862,10 @@
     "@angular-devkit/core" "10"
     "@angular-devkit/schematics" "10"
 
-"@rxap/plugin-readme-generator@^12.0.0":
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-readme-generator/-/plugin-readme-generator-12.0.0.tgz#83af70ffd91897df30d74adf9114e266e5d74be3"
-  integrity sha512-VOKShtxECDe4aAM9fpVL19b0jY8lUv3lnshDwAb3igClY01i0zPlpUeb9XnMXrD4RpB6bTkshmTjGN4J9Jp5Ew==
+"@rxap/plugin-readme-generator@^12.1.0":
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-readme-generator/-/plugin-readme-generator-12.1.0.tgz#363cccc06b5021f9c705c19e3a8127220263c370"
+  integrity sha512-Qn3YUYxwuXVGGfjwvze4paToTxuQ26s+NSkpPvMJmVlTHIIOikieLtAlNGtd8VqM/DgTqcfXXL0DrYuEwNNrHg==
   dependencies:
     handlebars "4.7.7"
 
