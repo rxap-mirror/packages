@@ -1,8 +1,17 @@
+.collapse-button {
+  background-color: transparent;
+  margin: 8px 8px 20px 8px;
+  border: none;
+  cursor: pointer;
+  width: calc(100% - 16px);
+}
+
 table {
   th {
     text-align: left;
     padding-right: 16px;
   }
+
   th, td {
     font-size: 75%;
   }

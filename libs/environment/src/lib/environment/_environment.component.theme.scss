@@ -5,9 +5,13 @@
   $primary: map-get($theme, primary);
   $warn: map-get($theme, warn);
   $isDark: map-get($theme, is-dark);
+  .rxap-environment {
 
-  .rxap-environment { }
+    .collapse-button {
+      color: map-get($foreground, base);
+    }
 
+  }
 }
 
 @mixin rxap-environment-typography($config) {

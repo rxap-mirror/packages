@@ -1,4 +1,11 @@
-<table>
+<button (click)="show = !show" class="collapse-button">
+  <span *ngIf="show; else hidden" i18n>Hide build info</span>
+  <ng-template #hidden>
+    <span i18n>Show build info</span>
+  </ng-template>
+</button>
+
+<table *ngIf="show">
   <tr *ngIf="environment.name">
     <th>Environment</th>
     <td>{{environment.name}}</td>
