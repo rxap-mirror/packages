@@ -207,6 +207,18 @@
     rxjs "6.6.3"
     source-map "0.7.3"
 
+"@angular-devkit/core@12", "@angular-devkit/core@12.0.3":
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-12.0.3.tgz#01c796dd7d3e0c228b4628439ee1c34bbdda4f1f"
+  integrity sha512-d6E4ldHzIerzFpXXZkynluIbZZeYD+VteFLBZ77lOXAuUYuuLEiW8h4bpJOqribeJli5c1cJ/yyELYHrbiiLcw==
+  dependencies:
+    ajv "8.2.0"
+    ajv-formats "2.0.2"
+    fast-json-stable-stringify "2.1.0"
+    magic-string "0.25.7"
+    rxjs "6.6.7"
+    source-map "0.7.3"
+
 "@angular-devkit/core@12.0.0", "@angular-devkit/core@~12.0.0":
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-12.0.0.tgz#e5f1dc4ba2e65a7aeb1fb14659e17a0f92dbae1b"
@@ -268,6 +280,15 @@
     "@angular-devkit/core" "11.2.3"
     ora "5.3.0"
     rxjs "6.6.3"
+
+"@angular-devkit/schematics@12":
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-12.0.3.tgz#9c9a881db1fd4c07b78729f46e2932adf76906de"
+  integrity sha512-FozSvAJPI1iNLkrMVfbQvrk6XxF86zkpnVoaOeT/S2WeS64uRLW9DZmFHJxD4K2+MUPkwx6x6Y8AjARIkGtcIA==
+  dependencies:
+    "@angular-devkit/core" "12.0.3"
+    ora "5.4.0"
+    rxjs "6.6.7"
 
 "@angular-devkit/schematics@12.0.0", "@angular-devkit/schematics@~12.0.0":
   version "12.0.0"
@@ -4816,51 +4837,51 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@rxap/plugin-library-publish@11.0.7":
-  version "11.0.7"
-  resolved "https://npm.rxap.dev/@rxap%2fplugin-library-publish/-/plugin-library-publish-11.0.7.tgz#5844d78a1a0364d11a9b7ce3244c0c4c46faadcf"
-  integrity sha512-9SaWpjaXfEASKqIvj45JB/MSNT8xk4qrk5q2tpG/XXYAp400Zhzhu54keAZJaPMNoXPKMEGLmoNRVCyZ0Jd32g==
+"@rxap/plugin-library-publish@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-library-publish/-/plugin-library-publish-12.0.0.tgz#63ab3d00df0cbf3c4709b5e60cc606032cd7c2f5"
+  integrity sha512-Og7qAekq/4gq4krf9fHcsxTLVLrImNVdoTBc57KcsW8s3k6JK1xRDtO9tWZjzxnIYW+kiUkg9F01nrn16kXYxA==
 
-"@rxap/plugin-library-schematics@^11.0.9":
-  version "11.0.9"
-  resolved "https://npm.rxap.dev/@rxap%2fplugin-library-schematics/-/plugin-library-schematics-11.0.9.tgz#2cf1b6c598fe08374ea11baab7a9c46f66e27566"
-  integrity sha512-x+lhxYl2OuyU05AGDScF8J515pKRHCN45xx7bJ9IrKk0ILPYDbZKcTaCrA63Y2VvqZdxcLefQVlA+IUNHkC8Hw==
+"@rxap/plugin-library-schematics@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-library-schematics/-/plugin-library-schematics-12.0.0.tgz#152109281728f64fc1deb878fe6c9d20fe9cbdc9"
+  integrity sha512-mZuUQjtXmAfnoQukhSwuyZ8xDvYd0qm89WWNN4OUucxuPFh91PLjEE2jfxqqH9zb3S517cgRouHUqY1pLEbGcg==
   dependencies:
     "@angular-devkit/architect" "0.1102"
     "@angular-devkit/core" "9"
     "@angular-devkit/schematics" "9"
     ramda "0.27.1"
-    uuid "7.0.3"
+    uuid "8.3.2"
 
-"@rxap/plugin-pack@11.0.7":
-  version "11.0.7"
-  resolved "https://npm.rxap.dev/@rxap%2fplugin-pack/-/plugin-pack-11.0.7.tgz#0bb9bba5894ab7679d883f34637dbbb804b3b27e"
-  integrity sha512-WKRyycrj5OS4arnhQaToIDUsIr5ZaOj/QZJjA83G3dg9TOIO1MFyHF6oiBZn2qMzLbR93052ZO+0hJnCc2Qn8Q==
+"@rxap/plugin-pack@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-pack/-/plugin-pack-12.0.0.tgz#8775fac648f4f928a4fcd3119211f72a1e131c89"
+  integrity sha512-/O2moMhu6f1nUsCXlBl7S3uNi0Fk4jwOxIZzI2O5nZi3XfaEIpzzcex8+1bNhhcFl3L3GPtyMPv+VJHARo1coA==
   dependencies:
     "@angular-devkit/architect" "0.1102.5"
     "@angular-devkit/core" "10"
     "@angular-devkit/schematics" "10"
 
-"@rxap/plugin-readme-generator@11.0.7":
-  version "11.0.7"
-  resolved "https://npm.rxap.dev/@rxap%2fplugin-readme-generator/-/plugin-readme-generator-11.0.7.tgz#8eceae699f1448d490664ce9ab44f87788e1b14f"
-  integrity sha512-WghFGVB42eRFQRfQp4zBjY2upXVqjdDanqsZeMjHDVyAvS7KXfwA5zSYijB7ESD6iZLaH0NLq62eA74hseyEQA==
+"@rxap/plugin-readme-generator@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-readme-generator/-/plugin-readme-generator-12.0.0.tgz#83af70ffd91897df30d74adf9114e266e5d74be3"
+  integrity sha512-VOKShtxECDe4aAM9fpVL19b0jY8lUv3lnshDwAb3igClY01i0zPlpUeb9XnMXrD4RpB6bTkshmTjGN4J9Jp5Ew==
   dependencies:
-    handlebars "4.7.6"
+    handlebars "4.7.7"
 
-"@rxap/plugin-scss-bundle@11":
-  version "11.0.7"
-  resolved "https://npm.rxap.dev/@rxap%2fplugin-scss-bundle/-/plugin-scss-bundle-11.0.7.tgz#985a426e2b21fa948473d8eb9ec29013b461c6f3"
-  integrity sha512-zPTqQKUthl7tAo93SPOlCuQbNnP+cGVIKXaeoR3EnkzBOcRVDrAeg9+QjV/IjiyD9jGSIKCjh/hJvGS7yNpB4Q==
+"@rxap/plugin-scss-bundle@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-scss-bundle/-/plugin-scss-bundle-12.0.0.tgz#27e42ccf5aabcef3987388e2e47cf2324bfa307b"
+  integrity sha512-wB2lwHN0BF2Qq1S6lmltMV79yzd8zc/2hy9+zz6l2/AFr4k8etZFQsO5V8bJq5tsoRc0bef5TMgnu4y1lpUo4w==
   dependencies:
-    "@angular-devkit/architect" "0.1102.5"
-    "@angular-devkit/core" "10"
-    "@angular-devkit/schematics" "10"
+    "@angular-devkit/architect" "0.1200.1"
+    "@angular-devkit/core" "12"
+    "@angular-devkit/schematics" "12"
 
-"@rxap/schematics@^11.3.6":
-  version "11.3.6"
-  resolved "https://npm.rxap.dev/@rxap%2fschematics/-/schematics-11.3.6.tgz#4306db770700834f4284c66670c68bf5e2f20024"
-  integrity sha512-1bLZjuVObatv2VUtXB7PyqOAYHK++McB0C6vpFxi5KdV7wBQQLXygQE/+2uHzWRMAHxXUQOROfhrevgiAVMMQg==
+"@rxap/schematics@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics/-/schematics-12.0.0.tgz#e7923047d715c3f7d5a103fb582ec4999a1c0143"
+  integrity sha512-kpbkyCJrYnAUtAIiRfI32sBnYths/F5SMQb5VgUi7SX6UVANClKTn1pD0TRWww2YCQ6sKu2ckK1FYUYgKGj97Q==
   dependencies:
     "@angular-devkit/core" "^11.0.0"
     "@angular-devkit/schematics" "^11.0.0"
@@ -12968,10 +12989,10 @@ handle-thing@^2.0.0:
   resolved "https://npm.rxap.dev/handle-thing/-/handle-thing-2.0.1.tgz#857f79ce359580c340d43081cc648970d0bb234e"
   integrity sha512-9Qn4yBxelxoh2Ow62nP+Ka/kMnOXRi8BXnRaUwezLNhqelnN49xKz4F/dPP8OYLxLxq6JDtZb2i9XznUQbNPTg==
 
-handlebars@4.7.6, handlebars@^4.3.3, handlebars@^4.7.6:
-  version "4.7.6"
-  resolved "https://npm.rxap.dev/handlebars/-/handlebars-4.7.6.tgz#d4c05c1baf90e9945f77aa68a7a219aa4a7df74e"
-  integrity sha512-1f2BACcBfiwAfStCKZNrUCgqNZkGsAT7UM3kkYtXuLo0KnaVfjKOyf7PRzB6++aK9STyT1Pd2ZCPe3EGOXleXA==
+handlebars@4.7.7:
+  version "4.7.7"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.7.tgz#9ce33416aad02dbd6c8fafa8240d5d98004945a1"
+  integrity sha512-aAcXm5OAfE/8IXkcZvCepKU3VzW1/39Fb5ZuqMtgI/hT8X2YgoMvBY5dLhq/cpOvw7Lk1nK/UF71aLG/ZnVYRA==
   dependencies:
     minimist "^1.2.5"
     neo-async "^2.6.0"
@@ -12980,10 +13001,10 @@ handlebars@4.7.6, handlebars@^4.3.3, handlebars@^4.7.6:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-handlebars@4.7.7:
-  version "4.7.7"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.7.tgz#9ce33416aad02dbd6c8fafa8240d5d98004945a1"
-  integrity sha512-aAcXm5OAfE/8IXkcZvCepKU3VzW1/39Fb5ZuqMtgI/hT8X2YgoMvBY5dLhq/cpOvw7Lk1nK/UF71aLG/ZnVYRA==
+handlebars@^4.3.3, handlebars@^4.7.6:
+  version "4.7.6"
+  resolved "https://npm.rxap.dev/handlebars/-/handlebars-4.7.6.tgz#d4c05c1baf90e9945f77aa68a7a219aa4a7df74e"
+  integrity sha512-1f2BACcBfiwAfStCKZNrUCgqNZkGsAT7UM3kkYtXuLo0KnaVfjKOyf7PRzB6++aK9STyT1Pd2ZCPe3EGOXleXA==
   dependencies:
     minimist "^1.2.5"
     neo-async "^2.6.0"
@@ -22824,11 +22845,6 @@ uuid-browser@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid-browser/-/uuid-browser-3.1.0.tgz#0f05a40aef74f9e5951e20efbf44b11871e56410"
   integrity sha1-DwWkCu90+eWVHiDvv0SxGHHlZBA=
-
-uuid@7.0.3:
-  version "7.0.3"
-  resolved "https://npm.rxap.dev/uuid/-/uuid-7.0.3.tgz#c5c9f2c8cf25dc0a372c4df1441c41f5bd0c680b"
-  integrity sha512-DPSke0pXhTZgoF/d+WSt2QaKMCFSfx7QegxEWT+JOuHF5aWrKEn0G+ztjuJg/gG8/ItK+rbPCD/yNv8yyih6Cg==
 
 uuid@8.3.2, uuid@^8.3.0:
   version "8.3.2"
