@@ -17,11 +17,10 @@
 # Installation
 
 ```
-yarn add @rxap/window-system @rxap/components@^11.1.4 @rxap/directives@^11.2.4 @rxap/material-directives@^11.1.6 @rxap/services@^11.2.2 @rxap/utilities@^11.7.4 
+yarn add @rxap/window-system @rxap/components@^12.0.1 @rxap/directives@^12.0.1 @rxap/material-directives@^12.0.1 @rxap/services@^12.0.1 @rxap/utilities@^12.0.1 
 ```
 
 **ng add**
-
 ```
 ng add @rxap/window-system
 ```

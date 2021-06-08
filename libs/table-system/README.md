@@ -17,11 +17,10 @@
 # Installation
 
 ```
-yarn add @rxap/table-system @rxap/utilities@^11.7.4 
+yarn add @rxap/table-system @rxap/utilities@^12.0.1 
 ```
 
 **ng add**
-
 ```
 ng add @rxap/table-system
 ```

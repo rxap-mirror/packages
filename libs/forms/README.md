@@ -17,11 +17,10 @@
 # Installation
 
 ```
-yarn add @rxap/forms @rxap/definition@^11.0.11 @rxap/directives@^11.2.4 @rxap/services@^11.2.2 @rxap/utilities@^11.7.4 
+yarn add @rxap/forms @rxap/definition@^12.0.1 @rxap/directives@^12.0.1 @rxap/services@^12.0.1 @rxap/utilities@^12.0.1 
 ```
 
 **ng add**
-
 ```
 ng add @rxap/forms
 ```
