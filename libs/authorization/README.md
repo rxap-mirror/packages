@@ -17,11 +17,10 @@
 # Installation
 
 ```
-yarn add @rxap/authorization @rxap/definition@^11.0.11 @rxap/remote-method@^11.3.6 @rxap/schematics@^11.3.6 @rxap/utilities@^11.7.4 
+yarn add @rxap/authorization @rxap/definition@^12.0.1 @rxap/remote-method@^12.0.1 @rxap/schematics@^11.3.6 @rxap/utilities@^12.0.1 
 ```
 
 **ng add**
-
 ```
 ng add @rxap/authorization
 ```

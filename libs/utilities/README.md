@@ -1,26 +1,37 @@
-# @rxap/utilities
+@rxap/utilities
+======
 
-The package provides a collection of utilities function, types, rxjs operators and angular modules.
+[![npm version](https://img.shields.io/npm/v/@rxap/utilities?style=flat-square)](https://www.npmjs.com/package/@rxap/utilities)
+[![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@rxap/utilities)
+![npm](https://img.shields.io/npm/dm/@rxap/utilities)
+![NPM](https://img.shields.io/npm/l/@rxap/utilities)
 
-## Install
+> A collection of utility functions, types and interfaces.
+
+- [Installation](#installation)
+- [Get started](#get-started)
+- [Guides](#guides)
+
+# Installation
 
 ```
-yarn add @rxap/utilities
+yarn add @rxap/utilities 
 ```
 
+**ng add**
+
 ```
-npm install @rxap/utilities
+ng add @rxap/utilities
 ```
 
-### Functions
+# Get started
 
-### Types
+TODO
 
-### RxJS operators
+# Guides
 
-- hasProperty
-- isDeepEqual
-- isDefined
-- isEqual
-- log
-- toBoolean
+TODO
+
+

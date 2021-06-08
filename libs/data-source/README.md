@@ -17,11 +17,10 @@
 # Installation
 
 ```
-yarn add @rxap/data-source @rxap/definition@^11.0.11 @rxap/utilities@^11.7.4 
+yarn add @rxap/data-source @rxap/definition@^12.0.1 @rxap/utilities@^12.0.1 
 ```
 
 **ng add**
-
 ```
 ng add @rxap/data-source
 ```

@@ -1,7 +1,37 @@
-# json-schema-to-typescript
+@rxap/json-schema-to-typescript
+======
 
-This library was generated with [Nx](https://nx.dev).
+[![npm version](https://img.shields.io/npm/v/@rxap/json-schema-to-typescript?style=flat-square)](https://www.npmjs.com/package/@rxap/json-schema-to-typescript)
+[![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@rxap/json-schema-to-typescript)
+![npm](https://img.shields.io/npm/dm/@rxap/json-schema-to-typescript)
+![NPM](https://img.shields.io/npm/l/@rxap/json-schema-to-typescript)
 
-## Running unit tests
+> Generates typescript interfaces from json schema definition.
 
-Run `nx test json-schema-to-typescript` to execute the unit tests.
+- [Installation](#installation)
+- [Get started](#get-started)
+- [Guides](#guides)
+
+# Installation
+
+```
+yarn add @rxap/json-schema-to-typescript 
+```
+
+**ng add**
+```
+ng add @rxap/json-schema-to-typescript
+```
+
+# Get started
+
+TODO
+
+
+# Guides
+
+TODO
+
+
