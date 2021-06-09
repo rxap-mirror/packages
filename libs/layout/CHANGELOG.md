@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.4.5...@rxap/layout@11.5.0) (2021-06-09)
+
+
+### Features
+
+* set default sidenav collapsed state from config ([d0ad012](https://gitlab.com/rxap/packages/commit/d0ad0120e5add97e333a621205c253b15b528fe7))
+
+
+
+
+
 ## [11.4.5](https://gitlab.com/rxap/packages/compare/@rxap/layout@11.4.4...@rxap/layout@11.4.5) (2021-05-31)
 
 **Note:** Version bump only for package @rxap/layout
