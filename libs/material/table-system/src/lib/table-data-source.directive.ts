@@ -7,35 +7,24 @@ import {
   NgModule,
   OnDestroy,
   OnInit,
-  Optional
-} from "@angular/core";
-import type { MatPaginator } from "@angular/material/paginator";
-import type { Observable } from "rxjs";
-import {
-  EMPTY,
-  Subscription
-} from "rxjs";
-import { MatSort } from "@angular/material/sort";
-import type { AbstractTableDataSource } from "@rxap/data-source/table";
+  Optional,
+} from '@angular/core';
+import type { MatPaginator } from '@angular/material/paginator';
+import type { Observable } from 'rxjs';
+import { EMPTY, Subscription } from 'rxjs';
+import { MatSort } from '@angular/material/sort';
+import type { AbstractTableDataSource } from '@rxap/data-source/table';
 import {
   DynamicTableDataSource,
   TableEvent,
-  SortLike
-} from "@rxap/data-source/table";
-import { BaseRemoteMethod } from "@rxap/remote-method";
-import { PaginatorLike } from "@rxap/data-source/pagination";
-import { CdkTable } from "@angular/cdk/table";
-import { TableFilterService } from "./table-filter/table-filter.service";
-import {
-  debounceTime,
-  delay,
-  filter,
-  tap
-} from "rxjs/operators";
-import {
-  Required,
-  Method
-} from "@rxap/utilities";
+  SortLike,
+} from '@rxap/data-source/table';
+import { BaseRemoteMethod } from '@rxap/remote-method';
+import { PaginatorLike } from '@rxap/data-source/pagination';
+import { CdkTable } from '@angular/cdk/table';
+import { TableFilterService } from './table-filter/table-filter.service';
+import { debounceTime, delay, filter, tap } from 'rxjs/operators';
+import { Required, Method } from '@rxap/utilities';
 
 // TODO : add migration schematic
 export const RXAP_TABLE_METHOD = new InjectionToken(
