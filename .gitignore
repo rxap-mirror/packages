@@ -273,3 +273,5 @@ typings/
 /compodoc/
 
 __ivy_ngcc__
+
+.idea/vcs.xml

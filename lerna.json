@@ -2,7 +2,6 @@
   "packages": [
     "libs/*",
     "libs/material/*",
-    "libs/plugin/*",
     "libs/schematics/*"
   ],
   "version": "independent",

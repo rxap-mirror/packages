@@ -1,5 +1,0 @@
-/**/*.ts
-/.renovaterc.json
-/tsconfig.json
-!/**/files/**/*
-!/**/*.d.ts
