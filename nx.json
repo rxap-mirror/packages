@@ -45,9 +45,6 @@
     "layout": {
       "tags": ["rxap"]
     },
-    "plugin-library-schematics": {
-      "tags": []
-    },
     "open-api": {
       "tags": []
     },
@@ -75,25 +72,10 @@
     "definition": {
       "tags": []
     },
-    "plugin-pack": {
-      "tags": []
-    },
-    "plugin-scss-bundle": {
-      "tags": []
-    },
     "form-system": {
       "tags": []
     },
-    "plugin-readme-generator": {
-      "tags": []
-    },
-    "plugin-kaniko": {
-      "tags": []
-    },
     "data-grid": {
-      "tags": []
-    },
-    "plugin-library-publish": {
       "tags": []
     },
     "slugify": {
@@ -164,12 +146,6 @@
       "tags": []
     },
     "fake": {
-      "tags": []
-    },
-    "plugin-i18n": {
-      "tags": []
-    },
-    "plugin-build-info": {
       "tags": []
     },
     "oauth": {

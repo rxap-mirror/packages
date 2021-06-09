@@ -1,7 +1,0 @@
-/* IMPORT */
-@mixin theme($theme) {
-}
-@mixin color($theme) {
-}
-@mixin typography($config) {
-}
