@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.0.2...@rxap/forms@12.0.3) (2021-06-09)
+
+
+### Bug Fixes
+
+* **form-directive:** change submitMethod scope to public ([eba5ff5](https://gitlab.com/rxap/packages/commit/eba5ff505b47462c4fced9afeb0e6f04de6f8754))
+* **form-directive:** change submitMethod scope to public ([3a25152](https://gitlab.com/rxap/packages/commit/3a25152d4d5d20e3e4495b1d08ab18b114d29504))
+
+
+
+
+
 ## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@11.3.8...@rxap/forms@12.0.2) (2021-06-09)
 
 
