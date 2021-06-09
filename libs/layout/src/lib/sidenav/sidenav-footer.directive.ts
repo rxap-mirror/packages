@@ -1,13 +1,11 @@
-import {
-  Directive,
-  TemplateRef
-} from '@angular/core';
+import { Directive, TemplateRef, Inject } from '@angular/core';
 
 @Directive({
-  selector: '[rxapSidenavFooter]'
+  selector: '[rxapSidenavFooter]',
 })
 export class SidenavFooterDirective {
-
-  constructor(public readonly template: TemplateRef<void>) { }
-
+  constructor(
+    @Inject(TemplateRef)
+    public readonly template: TemplateRef<void>
+  ) {}
 }

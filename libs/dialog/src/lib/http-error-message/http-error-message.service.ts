@@ -1,23 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import {
-  debounceTime,
-  tap
-} from 'rxjs/operators';
+import { debounceTime, tap } from 'rxjs/operators';
 import { HttpErrorMessageComponent } from './http-error-message.component';
 
 @Injectable()
 export class HttpErrorMessageService {
   public showErrorMessage$ = new Subject();
 
-  constructor(public dialog: MatDialog) {
+  constructor(
+    @Inject(MatDialog)
+    public dialog: MatDialog
+  ) {
     this.showErrorMessage$
-        .pipe(
-          debounceTime(500),
-          tap(error => this.dialog.open(HttpErrorMessageComponent, { data: error }))
+      .pipe(
+        debounceTime(500),
+        tap((error) =>
+          this.dialog.open(HttpErrorMessageComponent, { data: error })
         )
-        .subscribe();
+      )
+      .subscribe();
   }
 
   public showErrorMessage(error: any) {

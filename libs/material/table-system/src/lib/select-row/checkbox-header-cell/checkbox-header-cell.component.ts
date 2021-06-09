@@ -2,28 +2,27 @@ import {
   Component,
   ChangeDetectionStrategy,
   OnInit,
-  Inject
+  Inject,
 } from '@angular/core';
 import { SelectRowService } from '../select-row.service';
-import {
-  Observable,
-  EMPTY
-} from 'rxjs';
+import type { Observable } from 'rxjs';
+import { EMPTY } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { CdkTable } from '@angular/cdk/table';
 
 @Component({
-  selector:        'th[rxap-checkbox-header-cell]',
-  templateUrl:     './checkbox-header-cell.component.html',
-  styleUrls:       [ './checkbox-header-cell.component.scss' ],
+  selector: 'th[rxap-checkbox-header-cell]',
+  templateUrl: './checkbox-header-cell.component.html',
+  styleUrls: ['./checkbox-header-cell.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'rxap-checkbox-header-cell' }
+  host: { class: 'rxap-checkbox-header-cell' },
 })
-export class CheckboxHeaderCellComponent<Data extends Record<string, any>> implements OnInit {
-
+export class CheckboxHeaderCellComponent<Data extends Record<string, any>>
+  implements OnInit
+{
   public indeterminate$: Observable<boolean> = EMPTY;
-  public checked$: Observable<boolean>       = EMPTY;
+  public checked$: Observable<boolean> = EMPTY;
 
   public isMultipleSelection = false;
 
@@ -32,24 +31,32 @@ export class CheckboxHeaderCellComponent<Data extends Record<string, any>> imple
     private readonly cdkTable: CdkTable<Data>,
     private readonly selectRow: SelectRowService<Data>
   ) {
-    this.isMultipleSelection = this.selectRow.selectionModel.isMultipleSelection();
+    this.isMultipleSelection =
+      this.selectRow.selectionModel.isMultipleSelection();
   }
 
   public ngOnInit() {
     this.indeterminate$ = this.selectRow.selectedRows$.pipe(
-      map(selectedRows => !!selectedRows.length && this.cdkTable[ '_data' ].length !== selectedRows.length)
+      map(
+        (selectedRows) =>
+          !!selectedRows.length &&
+          this.cdkTable['_data'].length !== selectedRows.length
+      )
     );
-    this.checked$       = this.selectRow.selectedRows$.pipe(
-      map(selectedRows => !!selectedRows.length && this.cdkTable[ '_data' ].length === selectedRows.length)
+    this.checked$ = this.selectRow.selectedRows$.pipe(
+      map(
+        (selectedRows) =>
+          !!selectedRows.length &&
+          this.cdkTable['_data'].length === selectedRows.length
+      )
     );
   }
 
   public onChange($event: MatCheckboxChange) {
     if ($event.checked) {
-      this.selectRow.selectionModel.select(...this.cdkTable[ '_data' ]);
+      this.selectRow.selectionModel.select(...this.cdkTable['_data']);
     } else {
       this.selectRow.selectionModel.clear();
     }
   }
-
 }

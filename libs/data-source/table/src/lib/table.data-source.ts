@@ -3,75 +3,73 @@ import {
   SortLike,
   FilterLike,
   AbstractTableDataSourceMetadata,
-  RxapAbstractTableDataSource
+  RxapAbstractTableDataSource,
 } from './abstract-table.data-source';
-import {
-  Optional,
-  Inject,
-  Injectable
-} from '@angular/core';
+import { Optional, Inject, Injectable } from '@angular/core';
 import {
   RXAP_TABLE_DATA_SOURCE_PAGINATOR,
   RXAP_TABLE_DATA_SOURCE_SORT,
   RXAP_TABLE_DATA_SOURCE_FILTER,
   RXAP_TABLE_DATA_SOURCE,
-  RXAP_TABLE_DATA_SOURCE_PARAMETERS
+  RXAP_TABLE_DATA_SOURCE_PARAMETERS,
 } from './tokens';
 import { PaginatorLike } from '@rxap/data-source/pagination';
+import type { BaseDataSource } from '@rxap/data-source';
 import {
   RXAP_DATA_SOURCE_METADATA,
-  BaseDataSource,
-  BaseDataSourceViewer
+  BaseDataSourceViewer,
 } from '@rxap/data-source';
-import {
-  Observable,
-  TeardownLogic,
-  combineLatest,
-  of
-} from 'rxjs';
-import {
-  tap,
-  switchMap,
-  startWith,
-  map
-} from 'rxjs/operators';
+import { Observable, TeardownLogic, combineLatest, of } from 'rxjs';
+import { tap, switchMap, startWith, map } from 'rxjs/operators';
 import { Constructor } from '@rxap/utilities';
 
-export interface TableDataSourceMetadata extends AbstractTableDataSourceMetadata {}
+export interface TableDataSourceMetadata
+  extends AbstractTableDataSourceMetadata {}
 
 @Injectable()
-export class TableDataSource<Data extends Record<any, any>, Parameters = any> extends AbstractTableDataSource<Data> {
-
+export class TableDataSource<
+  Data extends Record<any, any>,
+  Parameters = any
+> extends AbstractTableDataSource<Data> {
   constructor(
-    @Inject(RXAP_TABLE_DATA_SOURCE) private readonly dataSource: BaseDataSource<Data[]>,
-    @Optional() @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR) paginator: PaginatorLike | null   = null,
-    @Optional() @Inject(RXAP_TABLE_DATA_SOURCE_SORT) sort: SortLike | null                  = null,
-    @Optional() @Inject(RXAP_TABLE_DATA_SOURCE_FILTER) filter: FilterLike | null            = null,
+    @Inject(RXAP_TABLE_DATA_SOURCE)
+    private readonly dataSource: BaseDataSource<Data[]>,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR)
+    paginator: PaginatorLike | null = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_SORT)
+    sort: SortLike | null = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
+    filter: FilterLike | null = null,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_PARAMETERS)
-      parameters: Observable<Parameters> | null                                             = null,
-    @Optional() @Inject(RXAP_DATA_SOURCE_METADATA) metadata: TableDataSourceMetadata | null = dataSource.metadata
+    parameters: Observable<Parameters> | null = null,
+    @Optional()
+    @Inject(RXAP_DATA_SOURCE_METADATA)
+    metadata: TableDataSourceMetadata | null = dataSource.metadata
   ) {
     super(paginator, sort, filter, parameters, metadata);
   }
 
-  protected _connect(viewer: BaseDataSourceViewer): [ Observable<Data[]>, TeardownLogic ] {
+  protected _connect(
+    viewer: BaseDataSourceViewer
+  ): [Observable<Data[]>, TeardownLogic] {
     return [
       this.dataSource.connect(viewer).pipe(
-        tap(data => this.updateTotalLength(data.length)),
+        tap((data) => this.updateTotalLength(data.length)),
         tap(() => this.loading$.disable()),
-        switchMap(data => {
-
+        switchMap((data) => {
           this.assertPaginator();
 
           if (this.paginator && this.paginator.page) {
-
             return combineLatest([
               this.paginator.page.pipe(
                 startWith({
                   pageIndex: this.paginator.pageIndex,
-                  pageSize:  this.paginator.pageSize,
-                  length:    this.paginator.length
+                  pageSize: this.paginator.pageSize,
+                  length: this.paginator.length,
                 })
               ),
               this.sort?.sortChange?.pipe(
@@ -80,12 +78,9 @@ export class TableDataSource<Data extends Record<any, any>, Parameters = any> ex
                   direction: this.sort?.direction,
                 })
               ) ?? of(null),
-              this.filter?.change.pipe(
-                startWith({})
-              ) ?? of(null)
+              this.filter?.change.pipe(startWith({})) ?? of(null),
             ]).pipe(
-              map(([ page, sort, filter ]) => {
-
+              map(([page, sort, filter]) => {
                 let filteredData = data;
 
                 if (filter) {
@@ -95,35 +90,40 @@ export class TableDataSource<Data extends Record<any, any>, Parameters = any> ex
                 let sortData = filteredData;
 
                 if (sort) {
-                  sortData = this.applySortBy(sortData, sort.active, sort.direction);
+                  sortData = this.applySortBy(
+                    sortData,
+                    sort.active,
+                    sort.direction
+                  );
                 }
 
-                return this.applyPagination(sortData, page.pageSize, page.pageIndex);
+                return this.applyPagination(
+                  sortData,
+                  page.pageSize,
+                  page.pageIndex
+                );
               })
             );
-
           }
 
           throw new Error('The paginator have not a defined page property!');
-
         })
       ),
-      () => this.dataSource.disconnect(viewer)
+      () => this.dataSource.disconnect(viewer),
     ];
   }
 
   public refresh(): any {
     this.dataSource.refresh();
   }
-
 }
 
 export function RxapTableDataSource(
   metadataOrId: string | TableDataSourceMetadata,
-  className: string   = 'TableDataSource',
+  className: string = 'TableDataSource',
   packageName: string = '@rxap/data-source/table'
 ) {
-  return function(target: Constructor<TableDataSource<any>>) {
+  return function (target: Constructor<TableDataSource<any>>) {
     RxapAbstractTableDataSource(metadataOrId, className, packageName)(target);
   };
 }

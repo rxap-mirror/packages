@@ -1,8 +1,7 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "extends": "./tsconfig.lib.json",
   "angularCompilerOptions": {
-    "enableIvy": true
+    "compilationMode": "partial"
   },
   "compilerOptions": {
     "paths": {
@@ -21,6 +20,7 @@
       "@rxap/material-directives/icon": [
         "dist/material/directives/icon"
       ]
-    }
+    },
+    "declarationMap": false
   }
 }

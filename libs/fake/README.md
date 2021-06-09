@@ -8,7 +8,7 @@
 ![npm](https://img.shields.io/npm/dm/@rxap/fake)
 ![NPM](https://img.shields.io/npm/l/@rxap/fake)
 
->
+> 
 
 - [Installation](#installation)
 - [Get started](#get-started)
@@ -21,7 +21,6 @@ yarn add @rxap/fake
 ```
 
 **ng add**
-
 ```
 ng add @rxap/fake
 ```
@@ -29,6 +28,7 @@ ng add @rxap/fake
 # Get started
 
 TODO
+
 
 # Guides
 

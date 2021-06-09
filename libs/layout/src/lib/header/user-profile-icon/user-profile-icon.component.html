@@ -1,6 +1,6 @@
 <button [matMenuTriggerFor]="menu"
         [rxapAvatarBackgroundImage]="userProfileUrl$ | async"
-        [name]="userName$ | async"
+        [name]="(userName$ | async) ?? ''"
         class="profile-icon"
         fxLayout="row"
         fxLayoutAlign="center center">

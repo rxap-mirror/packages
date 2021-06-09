@@ -21,7 +21,6 @@ yarn add @rxap/pipes @rxap/utilities@^12.0.1
 ```
 
 **ng add**
-
 ```
 ng add @rxap/pipes
 ```
@@ -29,6 +28,7 @@ ng add @rxap/pipes
 # Get started
 
 TODO
+
 
 # Guides
 

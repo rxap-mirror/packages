@@ -8,9 +8,10 @@
       "@rxap/definition": [
         "dist/libs/definition"
       ]
-    }
+    },
+    "declarationMap": false
   },
   "angularCompilerOptions": {
-    "enableIvy": true
+    "compilationMode": "partial"
   }
 }

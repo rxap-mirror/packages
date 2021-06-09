@@ -14,9 +14,10 @@
       "@rxap/data-source/directive": [
         "dist/data-source/directive"
       ]
-    }
+    },
+    "declarationMap": false
   },
   "angularCompilerOptions": {
-    "enableIvy": true
+    "compilationMode": "partial"
   }
 }

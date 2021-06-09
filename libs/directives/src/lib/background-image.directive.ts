@@ -8,10 +8,9 @@ import {
   OnChanges,
   SimpleChanges,
   isDevMode,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import { ImageLoaderService } from '@rxap/services';
-import { Required } from '@rxap/utilities';
 
 export enum GlobalStyleOptions {
   INITIAL = 'initial',
@@ -21,17 +20,20 @@ export enum GlobalStyleOptions {
 // TODO : complete description
 // https://www.w3schools.com/cssref/css3_pr_background-size.asp
 export enum BackgroundSizeOptions {
-  AUTO    = 'auto',
-  COVER   = 'cover',
+  AUTO = 'auto',
+  COVER = 'cover',
   CONTAIN = 'contain',
 }
 
-export type BackgroundSize = GlobalStyleOptions | BackgroundSizeOptions | string;
+export type BackgroundSize =
+  | GlobalStyleOptions
+  | BackgroundSizeOptions
+  | string;
 
 // TODO : complete options and description
 // https://www.w3schools.com/cssref/pr_background-repeat.asp
 export enum BackgroundRepeatOptions {
-  NO_REPEAT = 'no-repeat'
+  NO_REPEAT = 'no-repeat',
 }
 
 export type BackgroundRepeat = GlobalStyleOptions | BackgroundRepeatOptions;
@@ -39,20 +41,21 @@ export type BackgroundRepeat = GlobalStyleOptions | BackgroundRepeatOptions;
 // TODO : complete options and description
 // https://www.w3schools.com/cssref/pr_background-position.asp
 export enum BackgroundPositionOptions {
-  CENTER        = 'center',
-  CENTER_CENTER = 'center center'
+  CENTER = 'center',
+  CENTER_CENTER = 'center center',
 }
 
-export type BackgroundPosition = GlobalStyleOptions | BackgroundPositionOptions | string;
+export type BackgroundPosition =
+  | GlobalStyleOptions
+  | BackgroundPositionOptions
+  | string;
 
 @Directive({
-  selector: '[rxapBackgroundImage]'
+  selector: '[rxapBackgroundImage]',
 })
 export class BackgroundImageDirective implements OnChanges, OnInit {
-
   @Input('rxapBackgroundImage')
-  @Required
-  public imageUrl!: string;
+  public imageUrl: string | null | undefined = null;
 
   @Input()
   public placeholderImageUrl!: string;
@@ -75,7 +78,7 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
     private readonly renderer: Renderer2,
     @Inject(ImageLoaderService)
     private readonly imageLoader: ImageLoaderService
-  ) { }
+  ) {}
 
   public ngOnInit() {
     if (this.size) {
@@ -91,11 +94,11 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
 
   public ngOnChanges(changes: SimpleChanges) {
     for (const propertyKey of Object.keys(changes)) {
-
       switch (propertyKey) {
-
         case 'imageUrl':
-          this.imageUrlChange(changes.imageUrl.currentValue);
+          if (changes.imageUrl.currentValue) {
+            this.imageUrlChange(changes.imageUrl.currentValue);
+          }
           break;
 
         case 'size':
@@ -109,9 +112,7 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
         case 'position':
           this.positionChange(changes.position.currentValue);
           break;
-
       }
-
     }
   }
 
@@ -132,11 +133,7 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
   }
 
   private sizeChange(size: string): void {
-    this.renderer.setStyle(
-      this.host.nativeElement,
-      'background-size',
-      size
-    );
+    this.renderer.setStyle(this.host.nativeElement, 'background-size', size);
   }
 
   private async imageUrlChange(imageUrl: string): Promise<void> {
@@ -144,7 +141,7 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
       this.renderer.setStyle(
         this.host.nativeElement,
         'background-image',
-        `url("${this.placeholderImageUrl}")`,
+        `url("${this.placeholderImageUrl}")`
       );
     }
     if (imageUrl) {
@@ -160,11 +157,10 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
       }
     }
   }
-
 }
 
 @NgModule({
-  declarations: [ BackgroundImageDirective ],
-  exports:      [ BackgroundImageDirective ]
+  declarations: [BackgroundImageDirective],
+  exports: [BackgroundImageDirective],
 })
 export class BackgroundImageDirectiveModule {}

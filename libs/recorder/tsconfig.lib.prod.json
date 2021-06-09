@@ -8,9 +8,10 @@
       "@rxap/across-tabs": [
         "dist/libs/across-tabs"
       ]
-    }
+    },
+    "declarationMap": false
   },
   "angularCompilerOptions": {
-    "enableIvy": true
+    "compilationMode": "partial"
   }
 }

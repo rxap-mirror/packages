@@ -1,14 +1,15 @@
-import { FormDefinition } from '@rxap/forms';
-import { WindowRef } from '@rxap/window-system';
+import { FormDefinition } from "@rxap/forms";
+import { WindowRef } from "@rxap/window-system";
+import { Inject } from "@angular/core";
 
 /**
  * @deprecated removed
  */
 export class FormWindowRef<Data = any> {
-
   constructor(
     public readonly formDefinition: FormDefinition,
-    public readonly windowRef: WindowRef,
+    @Inject(WindowRef)
+    public readonly windowRef: WindowRef
   ) {}
 
   public submit() {
@@ -22,5 +23,4 @@ export class FormWindowRef<Data = any> {
   public close(result?: any) {
     this.windowRef.close(result);
   }
-
 }

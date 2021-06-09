@@ -1,16 +1,6 @@
-import {
-  Injectable,
-  Inject,
-  Optional,
-  Injector
-} from '@angular/core';
-import {
-  Observable,
-  ReplaySubject,
-  of,
-  combineLatest,
-  from
-} from 'rxjs';
+import type { Injector } from '@angular/core';
+import { Injectable, Inject, Optional, INJECTOR } from '@angular/core';
+import { Observable, ReplaySubject, of, combineLatest, from } from 'rxjs';
 import {
   Navigation,
   NavigationWithInserts,
@@ -18,20 +8,16 @@ import {
   IsNavigationItem,
   IsNavigationDividerItem,
   NavigationItem,
-  NavigationDividerItem
+  NavigationDividerItem,
 } from './navigation-item';
 import {
   RXAP_NAVIGATION_CONFIG,
-  RXAP_NAVIGATION_CONFIG_INSERTS
+  RXAP_NAVIGATION_CONFIG_INSERTS,
 } from '../tokens';
-import {
-  switchMap,
-  map
-} from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class NavigationService {
-
   public readonly config$: Observable<Navigation>;
 
   private inserts = new Map<string, NavigationWithInserts>();
@@ -42,11 +28,12 @@ export class NavigationService {
 
   constructor(
     @Inject(RXAP_NAVIGATION_CONFIG)
-      navigation: any,
+    navigation: any,
+    @Inject(INJECTOR)
     private readonly injector: Injector,
     @Optional()
     @Inject(RXAP_NAVIGATION_CONFIG_INSERTS)
-      inserts: any | null = null
+    inserts: any | null = null
   ) {
     if (typeof navigation === 'function') {
       this.navigation = navigation();
@@ -54,15 +41,15 @@ export class NavigationService {
       this.navigation = navigation;
     }
     if (inserts) {
-      Object
-        .entries(inserts)
-        .forEach(([ id, insert ]: [ string, any ]) =>
-          this.insert(id, insert, false)
-        );
+      Object.entries(inserts).forEach(([id, insert]: [string, any]) =>
+        this.insert(id, insert, false)
+      );
     }
     this.updateNavigation();
     this.config$ = this.navigation$.pipe(
-      switchMap(navigationWithoutStatusCheck => this.checkNavigationStatusProviders(navigationWithoutStatusCheck))
+      switchMap((navigationWithoutStatusCheck) =>
+        this.checkNavigationStatusProviders(navigationWithoutStatusCheck)
+      )
     );
   }
 
@@ -72,11 +59,19 @@ export class NavigationService {
    * @param value
    * @param update
    */
-  public insert(id: string, value: NavigationWithInserts, update: boolean = true): void {
+  public insert(
+    id: string,
+    value: NavigationWithInserts,
+    update: boolean = true
+  ): void {
     this.add(id, value, update);
   }
 
-  public add(id: string, value: NavigationWithInserts, update: boolean = true): void {
+  public add(
+    id: string,
+    value: NavigationWithInserts,
+    update: boolean = true
+  ): void {
     this.inserts.set(id, value);
     if (update) {
       this.updateNavigation();
@@ -106,14 +101,15 @@ export class NavigationService {
    * @internal
    * @param navigationItem
    */
-  public checkNavigationItemStatusProviders(navigationItem: NavigationItem | NavigationDividerItem): Observable<NavigationItem | NavigationDividerItem | null> {
+  public checkNavigationItemStatusProviders(
+    navigationItem: NavigationItem | NavigationDividerItem
+  ): Observable<NavigationItem | NavigationDividerItem | null> {
     if (IsNavigationDividerItem(navigationItem) || !navigationItem.status) {
       return of(navigationItem);
     }
-    const isVisibleArray$: Array<Observable<boolean>> = navigationItem
-      .status
-      .map(statusToken => this.injector.get(statusToken))
-      .map(status => {
+    const isVisibleArray$: Array<Observable<boolean>> = navigationItem.status
+      .map((statusToken) => this.injector.get(statusToken))
+      .map((status) => {
         const isVisible = status.isVisible(navigationItem.routerLink);
         if (typeof isVisible === 'boolean') {
           return of(isVisible);
@@ -123,15 +119,19 @@ export class NavigationService {
       });
     // TODO : dont wait for all status services to complete, but cancel waiting if one returns false
     return combineLatest(isVisibleArray$).pipe(
-      map(isVisibleArray => isVisibleArray.reduce((acc, isVisible) => acc && isVisible, true)),
-      map(isVisible => isVisible ? navigationItem : null),
-      switchMap(navigationItemOrNull => {
+      map((isVisibleArray) =>
+        isVisibleArray.reduce((acc, isVisible) => acc && isVisible, true)
+      ),
+      map((isVisible) => (isVisible ? navigationItem : null)),
+      switchMap((navigationItemOrNull) => {
         if (navigationItemOrNull) {
           if (navigationItemOrNull.children) {
-            return this.checkNavigationStatusProviders(navigationItemOrNull.children).pipe(
-              map(children => ({
+            return this.checkNavigationStatusProviders(
+              navigationItemOrNull.children
+            ).pipe(
+              map((children) => ({
                 ...navigationItemOrNull,
-                children
+                children,
               }))
             );
           }
@@ -146,9 +146,15 @@ export class NavigationService {
    * @internal
    * @param navigationItem
    */
-  public checkNavigationStatusProviders(navigation: Navigation): Observable<Navigation> {
-    return combineLatest(navigation.map(navigationItem => this.checkNavigationItemStatusProviders(navigationItem))).pipe(
-      map(navigationWithNullItems => {
+  public checkNavigationStatusProviders(
+    navigation: Navigation
+  ): Observable<Navigation> {
+    return combineLatest(
+      navigation.map((navigationItem) =>
+        this.checkNavigationItemStatusProviders(navigationItem)
+      )
+    ).pipe(
+      map((navigationWithNullItems) => {
         const cleanNavigation: Navigation = [];
 
         for (const navigationItem of navigationWithNullItems) {
@@ -162,28 +168,28 @@ export class NavigationService {
     );
   }
 
-  private replaceInserts(navigationWithInserts: NavigationWithInserts): Navigation {
+  private replaceInserts(
+    navigationWithInserts: NavigationWithInserts
+  ): Navigation {
     const navigation: Navigation = [];
 
     for (const navigationItem of navigationWithInserts) {
-
       if (IsNavigationInsertItem(navigationItem)) {
         if (this.inserts.has(navigationItem.insert)) {
-          navigation.push(...this.replaceInserts(this.inserts.get(navigationItem.insert)!));
+          navigation.push(
+            ...this.replaceInserts(this.inserts.get(navigationItem.insert)!)
+          );
         }
       } else if (IsNavigationItem(navigationItem)) {
         navigation.push({
           ...navigationItem,
-          children: this.replaceInserts(navigationItem.children ?? [])
+          children: this.replaceInserts(navigationItem.children ?? []),
         });
       } else if (IsNavigationDividerItem(navigationItem)) {
         navigation.push(navigationItem);
       }
-
     }
 
     return navigation;
-
   }
-
 }

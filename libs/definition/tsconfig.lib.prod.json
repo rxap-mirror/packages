@@ -5,9 +5,10 @@
       "@rxap/utilities": [
         "dist/libs/utilities"
       ]
-    }
+    },
+    "declarationMap": false
   },
   "angularCompilerOptions": {
-    "enableIvy": true
+    "compilationMode": "partial"
   }
 }

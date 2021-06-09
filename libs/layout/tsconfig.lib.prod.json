@@ -17,9 +17,10 @@
       "@rxap/material-directives/icon": [
         "dist/material/directives/icon"
       ]
-    }
+    },
+    "declarationMap": false
   },
   "angularCompilerOptions": {
-    "enableIvy": true
+    "compilationMode": "full"
   }
 }

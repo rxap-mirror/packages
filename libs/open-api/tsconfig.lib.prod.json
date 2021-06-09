@@ -29,9 +29,10 @@
       "@rxap/json-schema-to-typescript": [
         "dist/libs/json-schema-to-typescript"
       ]
-    }
+    },
+    "declarationMap": false
   },
   "angularCompilerOptions": {
-    "enableIvy": true
+    "compilationMode": "partial"
   }
 }

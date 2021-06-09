@@ -3,30 +3,29 @@ import {
   ChangeDetectionStrategy,
   Inject,
   ChangeDetectorRef,
-  AfterContentInit
+  AfterContentInit,
 } from '@angular/core';
 import { RxapError } from '@rxap/utilities';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 export interface ErrorDialogMatData {
   error: RxapError;
 }
 
 @Component({
-  selector:        'rxap-error-dialog',
-  templateUrl:     './error-dialog.component.html',
-  styleUrls:       [ './error-dialog.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.Default
+  selector: 'rxap-error-dialog',
+  templateUrl: './error-dialog.component.html',
+  styleUrls: ['./error-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class ErrorDialogComponent implements AfterContentInit {
-
   public get jsonError() {
     return Object.entries(JSON.parse(JSON.stringify(this.error)))
-                 .filter(([ key, _ ]) => ![ 'class', 'package', 'code', 'message', 'stack' ].includes(key))
-                 .reduce((obj, [ key, value ]) => ({ ...obj, [ key ]: value }), {});
+      .filter(
+        ([key, _]) =>
+          !['class', 'package', 'code', 'message', 'stack'].includes(key)
+      )
+      .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {});
   }
 
   public get hasJsonError() {
@@ -37,7 +36,9 @@ export class ErrorDialogComponent implements AfterContentInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private readonly data: ErrorDialogMatData,
+    @Inject(MatDialogRef)
     public readonly dialogRef: MatDialogRef<any>,
+    @Inject(ChangeDetectorRef)
     public cdr: ChangeDetectorRef
   ) {
     this.error = this.data.error.toJSON();
@@ -46,5 +47,4 @@ export class ErrorDialogComponent implements AfterContentInit {
   public ngAfterContentInit(): void {
     this.cdr.detectChanges();
   }
-
 }

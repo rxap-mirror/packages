@@ -8,7 +8,7 @@
 ![npm](https://img.shields.io/npm/dm/@rxap/data-grid)
 ![NPM](https://img.shields.io/npm/l/@rxap/data-grid)
 
->
+> 
 
 - [Installation](#installation)
 - [Get started](#get-started)
@@ -21,7 +21,6 @@ yarn add @rxap/data-grid @rxap/definition@^12.0.1 @rxap/directives@^12.0.1 @rxap
 ```
 
 **ng add**
-
 ```
 ng add @rxap/data-grid
 ```
@@ -29,6 +28,7 @@ ng add @rxap/data-grid
 # Get started
 
 TODO
+
 
 # Guides
 

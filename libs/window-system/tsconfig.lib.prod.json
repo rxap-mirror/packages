@@ -20,9 +20,10 @@
       "@rxap/services": [
         "dist/libs/services"
       ]
-    }
+    },
+    "declarationMap": false
   },
   "angularCompilerOptions": {
-    "enableIvy": true
+    "compilationMode": "partial"
   }
 }

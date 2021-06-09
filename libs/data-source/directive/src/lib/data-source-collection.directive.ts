@@ -1,10 +1,10 @@
+import type { Injector } from '@angular/core';
 import {
   Directive,
   Input,
   NgModule,
   TemplateRef,
   ViewContainerRef,
-  Injector,
   SimpleChanges,
   OnChanges,
   OnDestroy,
@@ -18,27 +18,21 @@ import {
   EmbeddedViewRef,
   DoCheck,
   ChangeDetectorRef,
-  NgZone
+  NgZone,
+  Inject,
+  INJECTOR,
 } from '@angular/core';
 import { Required } from '@rxap/utilities';
 import {
   BaseDataSource,
   BaseDataSourceViewer,
-  DataSourceLoader
+  DataSourceLoader,
 } from '@rxap/data-source';
-import {
-  Observable,
-  Subscription
-} from 'rxjs';
-import {
-  tap,
-  first,
-  take
-} from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { tap, take } from 'rxjs/operators';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 
 export class DataSourceCollectionTemplateContext<Data> {
-
   constructor(
     public $implicit: Data,
     public connection$: Observable<Data[]>,
@@ -61,32 +55,35 @@ export class DataSourceCollectionTemplateContext<Data> {
   get odd(): boolean {
     return !this.even;
   }
-
 }
 
 function getTypeName(type: any): string {
-  return type[ 'name' ] || typeof type;
+  return type['name'] || typeof type;
 }
 
 class RecordViewTuple<T> {
-  constructor(public record: any, public view: EmbeddedViewRef<DataSourceCollectionTemplateContext<T>>) {}
+  constructor(
+    public record: any,
+    public view: EmbeddedViewRef<DataSourceCollectionTemplateContext<T>>
+  ) {}
 }
 
-
 @Directive({
-  selector: '[rxapDataSourceCollection]'
+  selector: '[rxapDataSourceCollection]',
 })
 export class DataSourceCollectionDirective<Data = any>
-  implements OnChanges, OnDestroy, AfterViewInit, DoCheck {
-
+  implements OnChanges, OnDestroy, AfterViewInit, DoCheck
+{
   /**
    * Asserts the correct type of the context for the template that `NgForOf` will render.
    *
    * The presence of this method is a signal to the Ivy template type-check compiler that the
    * `NgForOf` structural directive renders its template with a specific context type.
    */
-  static ngTemplateContextGuard<T>(dir: DataSourceCollectionDirective<T>, ctx: any):
-    ctx is DataSourceCollectionTemplateContext<T> {
+  static ngTemplateContextGuard<T>(
+    dir: DataSourceCollectionDirective<T>,
+    ctx: any
+  ): ctx is DataSourceCollectionTemplateContext<T> {
     return true;
   }
 
@@ -118,7 +115,8 @@ export class DataSourceCollectionDirective<Data = any>
       if (<any>console && <any>console.warn) {
         console.warn(
           `trackBy must be a function, but received ${JSON.stringify(fn)}. ` +
-          `See https://angular.io/api/common/NgForOf#change-propagation for more information.`);
+            `See https://angular.io/api/common/NgForOf#change-propagation for more information.`
+        );
       }
     }
     this._trackByFn = fn;
@@ -141,7 +139,7 @@ export class DataSourceCollectionDirective<Data = any>
   protected readonly subscription = new Subscription();
 
   protected set data(data: Data[]) {
-    this._data  = data;
+    this._data = data;
     this._dirty = true;
   }
 
@@ -153,7 +151,7 @@ export class DataSourceCollectionDirective<Data = any>
    * @private
    */
   private _data: Data[] | null = null;
-  private _dirty               = true;
+  private _dirty = true;
 
   /**
    * Idecates that the data source returned a empty collection
@@ -178,12 +176,21 @@ export class DataSourceCollectionDirective<Data = any>
   private _emptyTemplateViewRef: EmbeddedViewRef<void> | null = null;
 
   constructor(
+    @Inject(DataSourceLoader)
     private readonly dataSourceLoader: DataSourceLoader,
-    private readonly template: TemplateRef<DataSourceCollectionTemplateContext<Data>>,
+    @Inject(TemplateRef)
+    private readonly template: TemplateRef<
+      DataSourceCollectionTemplateContext<Data>
+    >,
+    @Inject(ViewContainerRef)
     private readonly viewContainerRef: ViewContainerRef,
+    @Inject(INJECTOR)
     private readonly injector: Injector,
+    @Inject(IterableDiffers)
     private readonly differs: IterableDiffers,
+    @Inject(ChangeDetectorRef)
     private readonly cdr: ChangeDetectorRef,
+    @Inject(NgZone)
     private readonly zone: NgZone
   ) {}
 
@@ -212,96 +219,112 @@ export class DataSourceCollectionDirective<Data = any>
   protected loadDataSource(): BaseDataSource<Data[]> | null {
     let dataSource: BaseDataSource | null = null;
     if (typeof this.dataSourceOrIdOrToken === 'string') {
-      dataSource = this.dataSourceLoader.load<BaseDataSource<Data[]>>(this.dataSourceOrIdOrToken);
+      dataSource = this.dataSourceLoader.load<BaseDataSource<Data[]>>(
+        this.dataSourceOrIdOrToken
+      );
     } else if (this.dataSourceOrIdOrToken instanceof BaseDataSource) {
       dataSource = this.dataSourceOrIdOrToken;
     } else if (this.dataSourceOrIdOrToken !== null) {
-      dataSource = this.injector.get<BaseDataSource<Data[]>>(this.dataSourceOrIdOrToken);
+      dataSource = this.injector.get<BaseDataSource<Data[]>>(
+        this.dataSourceOrIdOrToken
+      );
     }
     return dataSource;
   }
 
   protected connect() {
     if (this.dataSource) {
-      this.connection$ = this
-        .dataSource
-        .connect(this.viewer);
-      this.zone.onStable.pipe(
-        take(1),
-        tap(() => {
-          this.zone.run(() => {
-            this.subscription.add(this
-              .connection$!
-              .pipe(
-                tap(response => {
-                  this._empty = response.length === 0;
-                  this._data  = response;
-                  this.cdr.detectChanges();
-                })
-              ).subscribe());
-          });
-        })
-      ).subscribe();
+      this.connection$ = this.dataSource.connect(this.viewer);
+      this.zone.onStable
+        .pipe(
+          take(1),
+          tap(() => {
+            this.zone.run(() => {
+              this.subscription.add(
+                this.connection$!.pipe(
+                  tap((response) => {
+                    this._empty = response.length === 0;
+                    this._data = response;
+                    this.cdr.detectChanges();
+                  })
+                ).subscribe()
+              );
+            });
+          })
+        )
+        .subscribe();
     } else {
-      throw new Error('Can not connect to the data source. The data source is not loaded!');
+      throw new Error(
+        'Can not connect to the data source. The data source is not loaded!'
+      );
     }
   }
 
   protected applyChanges(changes: IterableChanges<Data>) {
-
     const insertTuples: RecordViewTuple<Data>[] = [];
     changes.forEachOperation(
-      (item: IterableChangeRecord<any>, adjustedPreviousIndex: number | null, currentIndex: number | null) => {
-
+      (
+        item: IterableChangeRecord<any>,
+        adjustedPreviousIndex: number | null,
+        currentIndex: number | null
+      ) => {
         if (item.previousIndex == null) {
-
           // NgForOf is never "null" or "undefined" here because the differ detected
           // that a new item needs to be inserted from the iterable. This implies that
           // there is an iterable value for "_ngForOf".
-          const view  = this.viewContainerRef.createEmbeddedView(
+          const view = this.viewContainerRef.createEmbeddedView(
             this.template,
-            new DataSourceCollectionTemplateContext<Data>(null!, this.connection$!, -1, -1),
+            new DataSourceCollectionTemplateContext<Data>(
+              null!,
+              this.connection$!,
+              -1,
+              -1
+            ),
             currentIndex === null ? undefined : currentIndex
           );
           const tuple = new RecordViewTuple<Data>(item, view);
           insertTuples.push(tuple);
-
         } else if (currentIndex == null) {
-
-          this.viewContainerRef.remove(adjustedPreviousIndex === null ? undefined : adjustedPreviousIndex);
-
+          this.viewContainerRef.remove(
+            adjustedPreviousIndex === null ? undefined : adjustedPreviousIndex
+          );
         } else if (adjustedPreviousIndex !== null) {
-
           const view = this.viewContainerRef.get(adjustedPreviousIndex)!;
           this.viewContainerRef.move(view, currentIndex);
-          const tuple = new RecordViewTuple(item, <EmbeddedViewRef<DataSourceCollectionTemplateContext<Data>>>view);
+          const tuple = new RecordViewTuple(
+            item,
+            <EmbeddedViewRef<DataSourceCollectionTemplateContext<Data>>>view
+          );
           insertTuples.push(tuple);
-
         }
-
-      });
+      }
+    );
 
     for (let i = 0; i < insertTuples.length; i++) {
-      this.perViewChange(insertTuples[ i ].view, insertTuples[ i ].record);
+      this.perViewChange(insertTuples[i].view, insertTuples[i].record);
     }
 
     for (let i = 0, ilen = this.viewContainerRef.length; i < ilen; i++) {
-      const viewRef               = <EmbeddedViewRef<DataSourceCollectionTemplateContext<Data>>>this.viewContainerRef.get(i);
-      viewRef.context.index       = i;
-      viewRef.context.count       = ilen;
+      const viewRef = <
+        EmbeddedViewRef<DataSourceCollectionTemplateContext<Data>>
+      >this.viewContainerRef.get(i);
+      viewRef.context.index = i;
+      viewRef.context.count = ilen;
       viewRef.context.connection$ = this.connection$!;
     }
 
     changes.forEachIdentityChange((record: any) => {
-      const viewRef =
-              <EmbeddedViewRef<DataSourceCollectionTemplateContext<Data>>>this.viewContainerRef.get(record.currentIndex);
+      const viewRef = <
+        EmbeddedViewRef<DataSourceCollectionTemplateContext<Data>>
+      >this.viewContainerRef.get(record.currentIndex);
       viewRef.context.$implicit = record.item;
     });
-
   }
 
   private perViewChange(
-    view: EmbeddedViewRef<DataSourceCollectionTemplateContext<Data>>, record: IterableChangeRecord<any>) {
+    view: EmbeddedViewRef<DataSourceCollectionTemplateContext<Data>>,
+    record: IterableChangeRecord<any>
+  ) {
     view.context.$implicit = record.item;
   }
 
@@ -310,17 +333,16 @@ export class DataSourceCollectionDirective<Data = any>
    */
   public ngDoCheck(): void {
     if (this._empty === true) {
-
       this.viewContainerRef.clear();
       this._differ = null;
 
       // attaches the empty template if the data source is empty
       if (this.emptyTemplate) {
-        this._emptyTemplateViewRef = this.viewContainerRef.createEmbeddedView(this.emptyTemplate);
+        this._emptyTemplateViewRef = this.viewContainerRef.createEmbeddedView(
+          this.emptyTemplate
+        );
       }
-
     } else if (this._empty === false) {
-
       // detach and destroy the empty template if the data source is not
       // empty any more
       if (this._emptyTemplateViewRef) {
@@ -337,8 +359,11 @@ export class DataSourceCollectionDirective<Data = any>
           try {
             this._differ = this.differs.find(value).create(this.ngForTrackBy);
           } catch {
-            throw new Error(`Cannot find a differ supporting object '${value}' of type '${
-              getTypeName(value)}'. NgFor only supports binding to Iterables such as Arrays.`);
+            throw new Error(
+              `Cannot find a differ supporting object '${value}' of type '${getTypeName(
+                value
+              )}'. NgFor only supports binding to Iterables such as Arrays.`
+            );
           }
         }
       }
@@ -353,16 +378,15 @@ export class DataSourceCollectionDirective<Data = any>
 
   public ngOnDestroy(): void {
     this._differ = null;
-    this._empty  = null;
+    this._empty = null;
     this.viewContainerRef.clear();
     this.dataSource?.disconnect(this.viewer);
     this.subscription.unsubscribe();
   }
-
 }
 
 @NgModule({
-  declarations: [ DataSourceCollectionDirective ],
-  exports:      [ DataSourceCollectionDirective ]
+  declarations: [DataSourceCollectionDirective],
+  exports: [DataSourceCollectionDirective],
 })
 export class DataSourceCollectionDirectiveModule {}

@@ -5,18 +5,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmComponentModule } from '@rxap/components';
 import { CommonModule } from '@angular/common';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
-  declarations: [ RowControlsHeaderCellComponent ],
-  imports:      [
+  declarations: [RowControlsHeaderCellComponent],
+  imports: [
     FlexLayoutModule,
     MatButtonModule,
     MatIconModule,
     ConfirmComponentModule,
-    CommonModule
+    CommonModule,
+    MatTooltipModule,
   ],
-  exports:      [ RowControlsHeaderCellComponent ]
+  exports: [RowControlsHeaderCellComponent],
 })
-export class RowControlsHeaderCellComponentModule {
-}
+export class RowControlsHeaderCellComponentModule {}

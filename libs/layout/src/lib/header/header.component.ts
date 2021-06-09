@@ -5,17 +5,11 @@ import {
   OnDestroy,
   Input,
   Optional,
-  Inject
+  Inject,
 } from '@angular/core';
 import { Constructor } from '@rxap/utilities';
-import {
-  Subscription,
-  Observable
-} from 'rxjs';
-import {
-  tap,
-  map
-} from 'rxjs/operators';
+import { Subscription, Observable } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
 import { UserService } from '@rxap/authentication';
 import { RXAP_HEADER_COMPONENT } from '../tokens';
@@ -24,16 +18,15 @@ import { MatMenuPanel } from '@angular/material/menu';
 import { ThemePalette } from '@angular/material/core';
 
 @Component({
-  selector:        'rxap-header',
-  templateUrl:     './header.component.html',
-  styleUrls:       [ './header.component.scss' ],
+  selector: 'rxap-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            {
-    class: 'rxap-layout-header'
-  }
+  host: {
+    class: 'rxap-layout-header',
+  },
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
   @Input()
   public sidenav?: MatSidenav;
 
@@ -44,13 +37,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public hasUser$: Observable<boolean>;
 
   @Input()
-  public color: ThemePalette = 'primary'
+  public color: ThemePalette = 'primary';
 
   @Input()
-  public settingsMenuPanel?: MatMenuPanel
+  public settingsMenuPanel?: MatMenuPanel;
 
   constructor(
+    @Inject(HeaderService)
     public readonly headerComponentService: HeaderService,
+    @Inject(UserService)
     private readonly userService: UserService<any>,
     @Optional() @Inject(RXAP_HEADER_COMPONENT) public headerComponent: any
   ) {
@@ -59,9 +54,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.updateComponents();
-    this.subscriptions.add(this.headerComponentService.update$.pipe(
-      tap(() => this.updateComponents())
-    ).subscribe());
+    this.subscriptions.add(
+      this.headerComponentService.update$
+        .pipe(tap(() => this.updateComponents()))
+        .subscribe()
+    );
   }
 
   public updateComponents(): void {
@@ -71,5 +68,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
-
 }

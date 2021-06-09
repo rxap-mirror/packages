@@ -21,7 +21,6 @@ yarn add @rxap/dialog @rxap/components@^12.0.1 @rxap/data-grid@^12.0.1 @rxap/def
 ```
 
 **ng add**
-
 ```
 ng add @rxap/dialog
 ```
@@ -29,6 +28,7 @@ ng add @rxap/dialog
 # Get started
 
 TODO
+
 
 # Guides
 

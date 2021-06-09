@@ -6,20 +6,15 @@ import {
   ElementRef,
   NgModule,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
-import {
-  IconConfig,
-  IsMaterialIcon,
-  IsSvgIcon
-} from '@rxap/utilities';
+import { IconConfig, IsMaterialIcon, IsSvgIcon } from '@rxap/utilities';
 import { MatIcon } from '@angular/material/icon';
 
 @Directive({
-  selector: 'mat-icon[rxapIcon]'
+  selector: 'mat-icon[rxapIcon]',
 })
 export class IconDirective implements OnChanges {
-
   public get isSimpleIcon(): boolean {
     return typeof this.icon === 'string';
   }
@@ -32,7 +27,7 @@ export class IconDirective implements OnChanges {
     return this.icon as any;
   }
 
-  @Input('rxapIcon') public icon?: IconConfig;
+  @Input('rxapIcon') public icon?: IconConfig | null;
 
   constructor(
     @Inject(MatIcon)
@@ -54,13 +49,17 @@ export class IconDirective implements OnChanges {
       this.matIcon._elementRef.nativeElement.textContent = this.simpleIcon;
       this.matIcon.ngOnInit();
     } else {
-      const icon         = this.complexIcon;
+      const icon = this.complexIcon;
       this.matIcon.color = icon.color;
       if (icon.inline !== undefined) {
         this.matIcon.inline = icon.inline;
       }
       if (icon.fontColor) {
-        this.renderer.setStyle(this.elementRef.nativeElement, 'color', icon.fontColor);
+        this.renderer.setStyle(
+          this.elementRef.nativeElement,
+          'color',
+          icon.fontColor
+        );
       } else {
         this.renderer.removeStyle(this.elementRef.nativeElement, 'color');
       }
@@ -78,11 +77,10 @@ export class IconDirective implements OnChanges {
       }
     }
   }
-
 }
 
 @NgModule({
-  exports:      [ IconDirective ],
-  declarations: [ IconDirective ]
+  exports: [IconDirective],
+  declarations: [IconDirective],
 })
 export class IconDirectiveModule {}

@@ -21,7 +21,6 @@ yarn add @rxap/slugify
 ```
 
 **ng add**
-
 ```
 ng add @rxap/slugify
 ```
@@ -29,6 +28,7 @@ ng add @rxap/slugify
 # Get started
 
 TODO
+
 
 # Guides
 

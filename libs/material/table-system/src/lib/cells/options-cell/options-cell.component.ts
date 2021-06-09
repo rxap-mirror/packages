@@ -1,20 +1,25 @@
+import type { QueryList } from '@angular/core';
 import {
   Component,
-  ChangeDetectionStrategy, Input, ContentChildren, QueryList, AfterContentInit, isDevMode, OnDestroy,
+  ChangeDetectionStrategy,
+  Input,
+  ContentChildren,
+  AfterContentInit,
+  isDevMode,
+  OnDestroy,
 } from '@angular/core';
 import { MatOption } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Component({
-  selector:        'td[rxap-options-cell]',
-  templateUrl:     './options-cell.component.html',
-  styleUrls:       [ './options-cell.component.scss' ],
+  selector: 'td[rxap-options-cell]',
+  templateUrl: './options-cell.component.html',
+  styleUrls: ['./options-cell.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'mfd-options-cell' }
+  host: { class: 'mfd-options-cell' },
 })
 export class OptionsCellComponent implements AfterContentInit, OnDestroy {
-
   @Input('rxap-options-cell')
   public value: any;
 
@@ -29,11 +34,11 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy {
   private _subscription?: Subscription;
 
   constructor() {
-    this.defaultViewValue = '' // $localize`:@@rxap-material.table-system.options-cell.unknown:unknown`;
-    this.emptyViewValue =  '' // $localize`:@@rxap-material.table-system.options-cell.empty:empty`;
+    this.defaultViewValue = ''; // $localize`:@@rxap-material.table-system.options-cell.unknown:unknown`;
+    this.emptyViewValue = ''; // $localize`:@@rxap-material.table-system.options-cell.empty:empty`;
   }
 
-  @ContentChildren(MatOption, {descendants: true})
+  @ContentChildren(MatOption, { descendants: true })
   public options!: QueryList<MatOption>;
 
   public ngAfterContentInit() {
@@ -42,9 +47,9 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy {
     } else {
       if (this.options) {
         this.viewValue = this.getViewValue();
-        this._subscription = this.options.changes.pipe(
-          tap(() => this.viewValue = this.getViewValue())
-        ).subscribe();
+        this._subscription = this.options.changes
+          .pipe(tap(() => (this.viewValue = this.getViewValue())))
+          .subscribe();
       } else if (isDevMode()) {
         console.log('Could not load any option');
       }
@@ -52,11 +57,13 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy {
   }
 
   public getViewValue(): string {
-    return this.options.find(option => option.value === this.value)?.viewValue ?? this.defaultViewValue;
+    return (
+      this.options.find((option) => option.value === this.value)?.viewValue ??
+      this.defaultViewValue
+    );
   }
 
   public ngOnDestroy() {
     this._subscription?.unsubscribe();
   }
-
 }

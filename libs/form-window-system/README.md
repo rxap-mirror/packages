@@ -21,7 +21,6 @@ yarn add @rxap/form-window-system @rxap/components@^12.0.1 @rxap/data-source@^12
 ```
 
 **ng add**
-
 ```
 ng add @rxap/form-window-system
 ```
@@ -29,6 +28,7 @@ ng add @rxap/form-window-system
 # Get started
 
 TODO
+
 
 # Guides
 

@@ -8,7 +8,7 @@
 ![npm](https://img.shields.io/npm/dm/@rxap/contenteditable)
 ![NPM](https://img.shields.io/npm/l/@rxap/contenteditable)
 
->
+> 
 
 - [Installation](#installation)
 - [Get started](#get-started)
@@ -21,7 +21,6 @@ yarn add @rxap/contenteditable @rxap/utilities@^12.0.1
 ```
 
 **ng add**
-
 ```
 ng add @rxap/contenteditable
 ```
@@ -29,6 +28,7 @@ ng add @rxap/contenteditable
 # Get started
 
 TODO
+
 
 # Guides
 

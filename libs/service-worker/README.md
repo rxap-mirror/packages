@@ -21,7 +21,6 @@ yarn add @rxap/service-worker @rxap/life-cycle@^12.0.1 @rxap/utilities@^12.0.1
 ```
 
 **ng add**
-
 ```
 ng add @rxap/service-worker
 ```
@@ -29,6 +28,7 @@ ng add @rxap/service-worker
 # Get started
 
 TODO
+
 
 # Guides
 
