@@ -1,18 +1,10 @@
 import {
   createProjectGraph,
-  ProjectGraphNode
+  ProjectGraphNode,
 } from '@nrwl/workspace/src/core/project-graph';
 import { ProjectGraph } from '@nrwl/workspace/src/core/project-graph/project-graph-models';
-import {
-  join,
-  dirname,
-  relative
-} from 'path';
-import {
-  readFileSync,
-  existsSync,
-  writeFileSync
-} from 'fs';
+import { join, dirname, relative } from 'path';
+import { readFileSync, existsSync, writeFileSync } from 'fs';
 // @ts-ignore
 import * as conventionalRecommendedBump from 'conventional-recommended-bump';
 // @ts-ignore
@@ -26,7 +18,8 @@ import { collectUpdates } from '@lerna/collect-updates';
 
 const projectGraph: ProjectGraph = createProjectGraph();
 
-const ExcludeNpmDependencies = ([ name, _ ]: [ string, any ]) => !name.match(/^npm:/);
+const ExcludeNpmDependencies = ([name, _]: [string, any]) =>
+  !name.match(/^npm:/);
 
 const blackListNpmPeerDependencies: RegExp[] = [
   /npm:@angular-devkit\//,
@@ -38,37 +31,44 @@ const blackListNpmPeerDependencies: RegExp[] = [
   /npm:across-tabs/,
   /npm:openapi-types/,
   /npm:ajv-oai/,
+  /npm:ng-mocks/,
   /npm:@apidevtools\/json-schema-ref-parser/,
   /json-schema-to-typescript/,
   /npm:xmldom/,
   /npm:handlebars/,
-  /npm:axios/
+  /npm:axios/,
 ];
 
 function FlattenDependencies(knownDependencies: string[]): string[] {
-
   const dependencies: string[] = knownDependencies.slice();
 
   for (const dep of knownDependencies) {
     dependencies.push(
-      ...FlattenDependencies(projectGraph.dependencies[ dep ].map(dependency => dependency.target))
+      ...FlattenDependencies(
+        projectGraph.dependencies[dep].map((dependency) => dependency.target)
+      )
     );
   }
 
-  return dependencies
-    .filter((n, i, s) => s.indexOf(n) === i);
-
+  return dependencies.filter((n, i, s) => s.indexOf(n) === i);
 }
 
 function ParsePackageJson(filePath: string): Record<string, any> {
-  return JSON.parse(readFileSync(join(__dirname, '..', filePath)).toString('utf-8'));
+  return JSON.parse(
+    readFileSync(join(__dirname, '..', filePath)).toString('utf-8')
+  );
 }
 
 function GetProjectPackageJsonPath(projectName: string): string {
-  const packageJsonFile = join(projectGraph.nodes[ projectName ].data.root, 'package.json');
+  const packageJsonFile = join(
+    projectGraph.nodes[projectName].data.root,
+    'package.json'
+  );
 
   if (!existsSync(packageJsonFile)) {
-    throw new Error(`Could not find the package.json file for the project '${projectName}'`);
+    throw new Error(
+      `Could not find the package.json file for the project '${projectName}'`
+    );
   }
   return packageJsonFile;
 }
@@ -82,11 +82,13 @@ function LoadRootPackageVersionMap() {
 
   const rootPackageJson = ParsePackageJson('package.json');
 
-  for (const [ name, version ] of Object.entries(rootPackageJson.dependencies)) {
+  for (const [name, version] of Object.entries(rootPackageJson.dependencies)) {
     map.set(name, (version as string).replace(/^[~^]/, ''));
   }
 
-  for (const [ name, version ] of Object.entries(rootPackageJson.devDependencies)) {
+  for (const [name, version] of Object.entries(
+    rootPackageJson.devDependencies
+  )) {
     map.set(name, (version as string).replace(/^[~^]/, ''));
   }
 
@@ -101,17 +103,16 @@ const projectNewVersion = new Map<string, string[]>();
 
 async function GetNewProjectVersion(projectName: string): Promise<string> {
   const packageJson = GetProjectPackageJson(projectName);
-  const version     = packageJson.version;
+  const version = packageJson.version;
 
   if (await HasProjectVersionChange(projectName)) {
-
-
     return new Promise((resolve, reject) => {
-
       const options = {
         lernaPackage: packageJson.name,
-        path:         dirname(join(__dirname, '..', GetProjectPackageJsonPath(projectName))),
-        config:       require('conventional-changelog-angular')
+        path: dirname(
+          join(__dirname, '..', GetProjectPackageJsonPath(projectName))
+        ),
+        config: require('conventional-changelog-angular'),
       };
 
       conventionalRecommendedBump(options, (err: any, data: any) => {
@@ -120,54 +121,47 @@ async function GetNewProjectVersion(projectName: string): Promise<string> {
         }
 
         const releaseType = data.releaseType ?? 'patch';
-        const newVersion  = inc(version, releaseType);
+        const newVersion = inc(version, releaseType);
 
         if (newVersion !== version) {
-          projectNewVersion.set(projectName, [ version, newVersion ]);
+          projectNewVersion.set(projectName, [version, newVersion]);
         }
 
         resolve(newVersion);
-
       });
-
     });
-
   }
 
   return version;
-
 }
 
 async function GetDependencyVersion(dependencyName: string): Promise<string> {
-
   if (!dependencyVersionMap.has(dependencyName)) {
-
     const match = dependencyName.match(/npm:(.*)/);
     if (match) {
-
-      const packageName = match[ 1 ];
+      const packageName = match[1];
 
       if (!rootPackageVersionMap.has(packageName)) {
-        throw new Error(`Could not find root package version for '${packageName}'`);
+        throw new Error(
+          `Could not find root package version for '${packageName}'`
+        );
       }
 
       const version = '^' + rootPackageVersionMap.get(packageName)!;
       dependencyVersionMap.set(dependencyName, version);
     } else {
-      const version = '^' + await GetNewProjectVersion(dependencyName);
+      const version = '^' + (await GetNewProjectVersion(dependencyName));
       dependencyVersionMap.set(dependencyName, version);
     }
-
   }
 
   return dependencyVersionMap.get(dependencyName)!;
-
 }
 
 function GetPackageName(dependencyName: string): string {
   const match = dependencyName.match(/npm:(.*)/);
   if (match) {
-    return match[ 1 ];
+    return match[1];
   }
 
   const packageJson = GetProjectPackageJson(dependencyName);
@@ -175,17 +169,27 @@ function GetPackageName(dependencyName: string): string {
   return packageJson.name;
 }
 
-function WriteProjectPackageJson(projectName: string, packageJson: Record<string, any>): void {
-  const packageJsonFile = join(projectGraph.nodes[ projectName ].data.root, 'package.json');
+function WriteProjectPackageJson(
+  projectName: string,
+  packageJson: Record<string, any>
+): void {
+  const packageJsonFile = join(
+    projectGraph.nodes[projectName].data.root,
+    'package.json'
+  );
 
   if (!existsSync(packageJsonFile)) {
-    throw new Error(`Could not find the package.json file for the project '${projectName}'`);
+    throw new Error(
+      `Could not find the package.json file for the project '${projectName}'`
+    );
   }
   writeFileSync(packageJsonFile, JSON.stringify(packageJson, undefined, 2));
 }
 
-function AddDefaultPackageJsonProperties(packageJson: Record<string, any>, node: ProjectGraphNode): void {
-
+function AddDefaultPackageJsonProperties(
+  packageJson: Record<string, any>,
+  node: ProjectGraphNode
+): void {
   if (!packageJson.license) {
     packageJson.license = 'MIT';
   }
@@ -195,7 +199,11 @@ function AddDefaultPackageJsonProperties(packageJson: Record<string, any>, node:
     if (packageJson.name.match(/@rxap/)) {
       packageJson.keywords.push('rxap');
     }
-    if (Object.keys(packageJson.peerDependencies).some(dep => dep.match(/@angular/))) {
+    if (
+      Object.keys(packageJson.peerDependencies).some((dep) =>
+        dep.match(/@angular/)
+      )
+    ) {
       packageJson.keywords.push('angular');
     }
     if (packageJson.name.match(/@rxap\/schematics/)) {
@@ -226,35 +234,38 @@ function AddDefaultPackageJsonProperties(packageJson: Record<string, any>, node:
     packageJson.publishConfig = {};
   }
 
-  packageJson.publishConfig.directory = relative(node.data.root!, join('dist', (node.data.root!)));
+  packageJson.publishConfig.directory = relative(
+    node.data.root!,
+    join('dist', node.data.root!)
+  );
 
   packageJson.repository = 'git@gitlab.com:rxap/packages.git';
-  packageJson.homepage   = 'https://gitlab.com/rxap/packages';
-  packageJson.author     = 'Merzough Münker';
-  packageJson.private    = false;
-  packageJson.bugs       = {
-    url:   'https://gitlab.com/rxap/packages/-/issues',
-    email: 'incoming+rxap-packages-14898188-issue-@incoming.gitlab.com'
+  packageJson.homepage = 'https://gitlab.com/rxap/packages';
+  packageJson.author = 'Merzough Münker';
+  packageJson.private = false;
+  packageJson.bugs = {
+    url: 'https://gitlab.com/rxap/packages/-/issues',
+    email: 'incoming+rxap-packages-14898188-issue-@incoming.gitlab.com',
   };
-
 }
 
 const project = new Project(join(__dirname, '..'));
 
 const packages$ = project.getPackages();
 
-const packageGraph$ = packages$.then((packages: any) => new PackageGraph(packages));
+const packageGraph$ = packages$.then(
+  (packages: any) => new PackageGraph(packages)
+);
 
 const updates$ = packageGraph$.then((packageGraph: any) => {
-
   const updates = collectUpdates(
     packageGraph.rawPackageList,
     packageGraph,
     {
-      cwd: join(__dirname, '..')
+      cwd: join(__dirname, '..'),
     },
     {
-      conventionalCommits: true
+      conventionalCommits: true,
     }
   ).filter((node: any) => {
     // --no-private completely removes private packages from consideration
@@ -266,7 +277,11 @@ const updates$ = packageGraph$.then((packageGraph: any) => {
     if (!node.version) {
       // a package may be unversioned only if it is private
       if (node.pkg.private) {
-        console.info('version', 'Skipping unversioned private package %j', node.name);
+        console.info(
+          'version',
+          'Skipping unversioned private package %j',
+          node.name
+        );
       } else {
         throw new Error('failed');
       }
@@ -278,25 +293,28 @@ const updates$ = packageGraph$.then((packageGraph: any) => {
   console.log(`Changed packages count: ${updates.length}`);
 
   return updates;
-
 });
 
 async function HasProjectVersionChange(projectName: string): Promise<boolean> {
-
   const updates = await updates$;
 
   const packageJson = GetProjectPackageJson(projectName);
 
   return !!updates.find((pkg: any) => pkg.name === packageJson.name);
-
 }
 
-async function Update({ dryRun, all }: { dryRun?: boolean, all?: boolean } = {}) {
-
-  for await (const [ name, dependencies ] of
-    Object.entries(projectGraph.dependencies).filter(ExcludeNpmDependencies).map(([ _, dList ]) => [ _, dList.map(d => d.target) ] as [ string, string[] ])) {
-
-    if (projectGraph.nodes[ name ].data.root?.match(/apps\//)) {
+async function Update({
+  dryRun,
+  all,
+}: { dryRun?: boolean; all?: boolean } = {}) {
+  for await (const [name, dependencies] of Object.entries(
+    projectGraph.dependencies
+  )
+    .filter(ExcludeNpmDependencies)
+    .map(
+      ([_, dList]) => [_, dList.map((d) => d.target)] as [string, string[]]
+    )) {
+    if (projectGraph.nodes[name].data.root?.match(/apps\//)) {
       continue;
     }
 
@@ -306,17 +324,27 @@ async function Update({ dryRun, all }: { dryRun?: boolean, all?: boolean } = {})
 
     const flattenDependencies = FlattenDependencies(dependencies);
 
-    const peerDependencies          = flattenDependencies.filter(dependency => !blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
-    const blackListPeerDependencies = flattenDependencies.filter(dependency => blackListNpmPeerDependencies.some(regex => dependency.match(regex)));
+    const peerDependencies = flattenDependencies.filter(
+      (dependency) =>
+        !blackListNpmPeerDependencies.some((regex) => dependency.match(regex))
+    );
+    const blackListPeerDependencies = flattenDependencies.filter((dependency) =>
+      blackListNpmPeerDependencies.some((regex) => dependency.match(regex))
+    );
 
     const packageJson = GetProjectPackageJson(name);
 
-    packageJson.peerDependencies
-      = (await Promise.all(peerDependencies.map(async peerDependency => [ GetPackageName(peerDependency), await GetDependencyVersion(peerDependency) ])))
+    packageJson.peerDependencies = (
+      await Promise.all(
+        peerDependencies.map(async (peerDependency) => [
+          GetPackageName(peerDependency),
+          await GetDependencyVersion(peerDependency),
+        ])
+      )
+    )
       .sort((aItem, bItem) => {
-
-        const a = aItem[ 0 ];
-        const b = bItem[ 0 ];
+        const a = aItem[0];
+        const b = bItem[0];
 
         if (a.match(/^@/)) {
           if (b.match(/^@/)) {
@@ -329,37 +357,34 @@ async function Update({ dryRun, all }: { dryRun?: boolean, all?: boolean } = {})
         } else {
           return a.localeCompare(b);
         }
-
       })
-      .map(item => ({ [ item[ 0 ] ]: item[ 1 ] }))
+      .map((item) => ({ [item[0]]: item[1] }))
       .reduce((map, item) => ({ ...map, ...item }), {});
 
     console.log(`Update project ${name}:`);
     console.log('peerDependencies:', packageJson.peerDependencies);
     console.log('blackList', blackListPeerDependencies);
 
-    AddDefaultPackageJsonProperties(packageJson, projectGraph.nodes[ name ]);
+    AddDefaultPackageJsonProperties(packageJson, projectGraph.nodes[name]);
 
     if (!dryRun) {
       WriteProjectPackageJson(name, packageJson);
     } else {
       console.log('Dry run!');
     }
-
   }
 
   for (const projectName of Array.from(projectNewVersion.keys())) {
     const versions = projectNewVersion.get(projectName)!;
-    console.log(`${projectName}   ${versions[ 0 ]} -> ${versions[ 1 ]}`);
+    console.log(`${projectName}   ${versions[0]} -> ${versions[1]}`);
   }
-
 }
 
 const args = process.argv.slice(2);
 
 const options = {
   dryRun: args.includes('--dry-run'),
-  all:    args.includes('--all')
+  all: args.includes('--all'),
 };
 
 Update(options);
