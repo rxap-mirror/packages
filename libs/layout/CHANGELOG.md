@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@10.1.0...@rxap/layout@10.1.1) (2021-06-09)
+
+
+### Bug Fixes
+
+* add missing peerDependency ([e8a03a9](https://gitlab.com/rxap/packages/commit/e8a03a99eb62a9a030e83f9e2fb92597d71879e0))
+
+
+
+
+
 # [10.1.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@10.0.1...@rxap/layout@10.1.0) (2021-06-09)
 
 
