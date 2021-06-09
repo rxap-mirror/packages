@@ -31,6 +31,7 @@
     "@rxap/definition": ">=10.0.1",
     "@rxap/directives": ">=10.1.0",
     "@rxap/forms": ">=10.4.1",
+    "@rxap/config": ">=10.1.0",
     "@rxap/services": ">=10.1.2",
     "@rxap/utilities": ">=10.1.1",
     "rxjs": "^6.5.5"
