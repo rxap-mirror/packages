@@ -1,6 +1,6 @@
 {
   "name": "@rxap/table-system",
-  "version": "12.0.1",
+  "version": "12.0.2",
   "peerDependencies": {
     "@angular/animations": "^12.0.1",
     "@angular/cdk": "^12.0.1",
@@ -8,7 +8,7 @@
     "@angular/core": "^12.0.1",
     "@angular/material": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
-    "@rxap/utilities": "^12.0.1",
+    "@rxap/utilities": "^12.0.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@11.3.8...@rxap/forms@12.0.2) (2021-06-09)
+
+
+### Bug Fixes
+
+* add readme generator ([b81db01](https://gitlab.com/rxap/packages/commit/b81db01214a8bad98b6f6ad0465aec181be5394d))
+
+
+
+
+
 ## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.0.0...@rxap/forms@12.0.1) (2021-05-24)
 
 

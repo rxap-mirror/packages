@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/window-system@11.3.2...@rxap/window-system@12.0.2) (2021-06-09)
+
+
+### Bug Fixes
+
+* add readme generator ([5458986](https://gitlab.com/rxap/packages/commit/5458986a9dc3f0d437ad0444ee5baf5749877df0))
+
+
+
+
+
 ## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/window-system@12.0.0...@rxap/window-system@12.0.1) (2021-05-24)
 
 

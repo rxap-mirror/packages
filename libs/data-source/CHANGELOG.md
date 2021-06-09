@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.2.2...@rxap/data-source@12.0.2) (2021-06-09)
+
+
+### Bug Fixes
+
+* add data source readme generator ([351fe16](https://gitlab.com/rxap/packages/commit/351fe166a8c83ceb0f30c5f098ea96a8e74accde))
+
+
+
+
+
 ## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.0.0...@rxap/data-source@12.0.1) (2021-05-24)
 
 
