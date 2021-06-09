@@ -239,12 +239,12 @@ export class FormDirective<T extends Record<string, any> = any>
   public ngOnInit() {
     if (!this.form) {
       // TODO : replace with rxap error
-      throw new Error("The form definition instance is not defined");
+      throw new Error('The form definition instance is not defined');
     }
     this.loadInitialState(this.form);
   }
 
-  @HostListener("submit", ["$event"])
+  @HostListener('submit', ['$event'])
   public onSubmit($event: Event): boolean {
     $event.preventDefault();
     super.onSubmit($event);
@@ -253,7 +253,7 @@ export class FormDirective<T extends Record<string, any> = any>
     } else {
       if (isDevMode()) {
         console.log(
-          "Form submit is not valid for: " + this.form.controlId,
+          'Form submit is not valid for: ' + this.form.controlId,
           this.form.errors
         );
 
@@ -283,7 +283,7 @@ export class FormDirective<T extends Record<string, any> = any>
                   console.groupEnd();
                 }
               }
-              console.log("value: ", control.value);
+              console.log('value: ', control.value);
             }
             console.groupEnd();
           }
@@ -300,7 +300,7 @@ export class FormDirective<T extends Record<string, any> = any>
   private loadInitialState(form: RxapFormGroup): void {
     if (this.initial) {
       if (isDevMode()) {
-        console.log("use the value from input initial");
+        console.log('use the value from input initial');
       }
       form.patchValue(this.initial);
     } else {
