@@ -53,8 +53,8 @@
     "test:ci": "jest --coverage --ci --reporters default --reporters jest-junit",
     "workspace-generator": "nx workspace-generator",
     "lerna": "env-cmd lerna",
-    "lerna:version": "lerna version --create-release gitlab",
-    "lerna:publish": "lerna publish --create-release gitlab"
+    "lerna:version": "yarn lerna version --create-release gitlab",
+    "lerna:publish": "yarn lerna publish --create-release gitlab"
   },
   "private": true,
   "quokka": {
