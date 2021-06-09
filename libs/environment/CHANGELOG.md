@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.1.2](https://gitlab.com/rxap/packages/compare/@rxap/environment@10.1.1...@rxap/environment@10.1.2) (2021-06-09)
+
+
+### Bug Fixes
+
+* add custom styles ([5e7bb02](https://gitlab.com/rxap/packages/commit/5e7bb023ba8b5d7cc5e988efdb458a2bdaf9d3d7))
+
+
+
+
+
 ## [10.1.1](https://gitlab.com/rxap/packages/compare/@rxap/environment@10.1.0...@rxap/environment@10.1.1) (2021-06-09)
 
 
