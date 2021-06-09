@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0](https://gitlab.com/rxap/packages/compare/@rxap/environment@10.0.0...@rxap/environment@10.1.0) (2021-06-09)
+
+
+### Features
+
+* add env collapse button ([1811074](https://gitlab.com/rxap/packages/commit/181107474383ab835665f227d68e30001de13b08))
+
+
+
+
+
 # 10.0.0 (2021-01-03)
 
 
