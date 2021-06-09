@@ -1,39 +1,38 @@
 import {
   BaseDefinitionMetadata,
-  GetDefinitionMetadata
+  GetDefinitionMetadata,
 } from './definition.metadata';
-import {
-  Required,
-  deepMerge,
-  uuid
-} from '@rxap/utilities';
-import {
-  Inject,
-  Optional,
-  Injectable,
-  OnDestroy
-} from '@angular/core';
+import { Required, deepMerge } from '@rxap/utilities';
+import { v4 as uuid } from 'uuid';
+import { Inject, Optional, Injectable, OnDestroy } from '@angular/core';
 import { RXAP_DEFINITION_METADATA } from './tokens';
 import { RxapDefinitionError } from './error';
 import { Subject } from 'rxjs';
 
 @Injectable()
-export abstract class BaseDefinition<Metadata extends BaseDefinitionMetadata = BaseDefinitionMetadata> implements OnDestroy {
-
+export abstract class BaseDefinition<
+  Metadata extends BaseDefinitionMetadata = BaseDefinitionMetadata
+> implements OnDestroy
+{
   /**
    * A map of active Definition instances
    */
-  public static readonly instances: Map<string, BaseDefinition> = new Map<string, BaseDefinition>();
+  public static readonly instances: Map<string, BaseDefinition> = new Map<
+    string,
+    BaseDefinition
+  >();
 
   /**
    * Emits when a new Definition instance is initialised
    */
-  public static readonly initialised$: Subject<BaseDefinition> = new Subject<BaseDefinition>();
+  public static readonly initialised$: Subject<BaseDefinition> =
+    new Subject<BaseDefinition>();
 
   /**
    * Emits when a new Definition instance is initialised
    */
-  public static readonly destroyed$: Subject<BaseDefinition> = new Subject<BaseDefinition>();
+  public static readonly destroyed$: Subject<BaseDefinition> =
+    new Subject<BaseDefinition>();
 
   /**
    * @param definition
@@ -68,17 +67,23 @@ export abstract class BaseDefinition<Metadata extends BaseDefinitionMetadata = B
    */
   public readonly initialised$: Subject<void> | undefined = new Subject<void>();
 
-  public readonly interceptors: Set<Subject<any>> | undefined = new Set<Subject<any>>();
+  public readonly interceptors: Set<Subject<any>> | undefined = new Set<
+    Subject<any>
+  >();
 
   /**
    * unique internal id
    *
    * @internal
    */
-  public __id                     = uuid();
+  public __id = uuid();
   protected _initialised: boolean = false;
 
-  constructor(@Optional() @Inject(RXAP_DEFINITION_METADATA) metadata: BaseDefinitionMetadata | null = null) {
+  constructor(
+    @Optional()
+    @Inject(RXAP_DEFINITION_METADATA)
+    metadata: BaseDefinitionMetadata | null = null
+  ) {
     if (metadata) {
       const decoratorMetadata = this.getMetadata();
       if (decoratorMetadata) {
@@ -88,7 +93,11 @@ export abstract class BaseDefinition<Metadata extends BaseDefinitionMetadata = B
       metadata = this.getMetadata();
     }
     if (!metadata) {
-      throw new RxapDefinitionError('Definition metadata is not defined', '', this.constructor.name);
+      throw new RxapDefinitionError(
+        'Definition metadata is not defined',
+        '',
+        this.constructor.name
+      );
     }
     this.metadata = metadata as Metadata;
   }
@@ -125,5 +134,4 @@ export abstract class BaseDefinition<Metadata extends BaseDefinitionMetadata = B
     this.initialised$?.next();
     BaseDefinition.add(this);
   }
-
 }

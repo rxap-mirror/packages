@@ -12,7 +12,6 @@ export * from './lib/is-promise';
 export * from './lib/is-teardown-logic';
 export * from './lib/has-index-signature';
 export * from './lib/toggle-subject';
-export * from './lib/uuid';
 export * from './lib/node';
 export * from './lib/get-from-object';
 export * from './lib/strings';
@@ -105,7 +104,7 @@ export { isDefined } from './lib/rxjs/operators/is-defined';
 export { isEqual } from './lib/rxjs/operators/is-equal';
 export {
   isDeepEqual,
-  isNotDeepEqual
+  isNotDeepEqual,
 } from './lib/rxjs/operators/is-deep-equal';
 export { hasProperty } from './lib/rxjs/operators/has-property';
 export { log } from './lib/rxjs/operators/log';

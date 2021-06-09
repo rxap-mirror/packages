@@ -1,26 +1,12 @@
-import {
-  Observable,
-  TeardownLogic,
-  EMPTY,
-  Subject
-} from 'rxjs';
+import { Observable, TeardownLogic, EMPTY, Subject } from 'rxjs';
 import {
   BaseDefinition,
   BaseDefinitionMetadata,
-  DefinitionMetadata
+  DefinitionMetadata,
 } from '@rxap/definition';
-import {
-  deepMerge,
-  Constructor,
-  clone,
-  uuid
-} from '@rxap/utilities';
-import {
-  takeUntil,
-  finalize,
-  tap,
-  take
-} from 'rxjs/operators';
+import { deepMerge, Constructor, clone } from '@rxap/utilities';
+import { v4 as uuid } from 'uuid';
+import { takeUntil, finalize, tap, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 export type DataSourceViewerId = string;
@@ -29,24 +15,27 @@ export interface BaseDataSourceViewer<View = any> {
   id?: DataSourceViewerId;
   viewChange?: Observable<View>;
 
-  [ key: string ]: any;
+  [key: string]: any;
 }
 
 // tslint:disable-next-line:no-empty-interface
 export interface BaseDataSourceMetadata extends BaseDefinitionMetadata {}
 
 @Injectable()
-export class BaseDataSource<Data = any,
+export class BaseDataSource<
+  Data = any,
   Metadata extends BaseDataSourceMetadata = BaseDataSourceMetadata,
-  Viewer extends BaseDataSourceViewer = BaseDataSourceViewer,
-  > extends BaseDefinition<Metadata> {
-
+  Viewer extends BaseDataSourceViewer = BaseDataSourceViewer
+> extends BaseDefinition<Metadata> {
   public get data() {
     return clone(this._data);
   }
 
-  protected _connectedViewer         = new Map<DataSourceViewerId, Observable<Data>>();
-  protected _connectedViewerTeardown = new Map<DataSourceViewerId, TeardownLogic>();
+  protected _connectedViewer = new Map<DataSourceViewerId, Observable<Data>>();
+  protected _connectedViewerTeardown = new Map<
+    DataSourceViewerId,
+    TeardownLogic
+  >();
   protected _data$: Observable<Data> = EMPTY;
 
   protected _data?: Data;
@@ -89,15 +78,17 @@ export class BaseDataSource<Data = any,
     if (!viewer.viewChange) {
       viewer.viewChange = EMPTY;
     }
-    const _connection                       = this._connect(viewer);
+    const _connection = this._connect(viewer);
     let connection: Observable<Data>;
     let teardownLogic: TeardownLogic | null = null;
     if (Array.isArray(_connection)) {
       if (_connection.length !== 2) {
-        throw new Error('if this._connect returns an array. The array should have two items');
+        throw new Error(
+          'if this._connect returns an array. The array should have two items'
+        );
       }
-      connection    = _connection[ 0 ];
-      teardownLogic = _connection[ 1 ];
+      connection = _connection[0];
+      teardownLogic = _connection[1];
     } else {
       connection = _connection;
     }
@@ -105,8 +96,8 @@ export class BaseDataSource<Data = any,
     const destroy$ = new Subject();
 
     connection = connection.pipe(
-      tap(data => this._data = data),
-      tap(data => this.change$.next(data)),
+      tap((data) => (this._data = data)),
+      tap((data) => this.change$.next(data)),
       finalize(() => this.disconnect(viewer)),
       takeUntil(destroy$)
     );
@@ -114,7 +105,7 @@ export class BaseDataSource<Data = any,
     this._connectedViewer.set(viewer.id, connection);
 
     if (teardownLogic) {
-      const tl      = teardownLogic;
+      const tl = teardownLogic;
       teardownLogic = () => {
         destroy$.next();
         if (typeof tl === 'function') {
@@ -134,12 +125,18 @@ export class BaseDataSource<Data = any,
   }
 
   public isConnected(viewerOrId: Viewer | DataSourceViewerId): boolean {
-    const viewerId = typeof viewerOrId === 'string' ? viewerOrId : viewerOrId.id ?? this.getViewerId(viewerOrId);
+    const viewerId =
+      typeof viewerOrId === 'string'
+        ? viewerOrId
+        : viewerOrId.id ?? this.getViewerId(viewerOrId);
     return this._connectedViewer.has(viewerId);
   }
 
   public disconnect(viewerOrId: Viewer | DataSourceViewerId) {
-    const viewerId = typeof viewerOrId === 'string' ? viewerOrId : viewerOrId.id ?? this.getViewerId(viewerOrId);
+    const viewerId =
+      typeof viewerOrId === 'string'
+        ? viewerOrId
+        : viewerOrId.id ?? this.getViewerId(viewerOrId);
     if (this.isConnected(viewerId)) {
       this._disconnect(viewerId);
       this._connectedViewer.delete(viewerId);
@@ -154,11 +151,13 @@ export class BaseDataSource<Data = any,
         }
       }
     } else {
-      console.warn(`Connection with viewer id '${viewerId}' is not connected to the data source '${this.id}'`);
+      console.warn(
+        `Connection with viewer id '${viewerId}' is not connected to the data source '${this.id}'`
+      );
     }
     // TODO : find better cleanup solution
     if (typeof viewerOrId === 'string') {
-      for (const [ viewer, id ] of this._viewerIds.entries()) {
+      for (const [viewer, id] of this._viewerIds.entries()) {
         if (viewerOrId === id) {
           this._viewerIds.delete(viewer);
         }
@@ -168,13 +167,6 @@ export class BaseDataSource<Data = any,
     }
   }
 
-  protected _connect(viewer: BaseDataSourceViewer): [ Observable<Data>, TeardownLogic ] | Observable<Data> {
-    this.init();
-    return this._data$;
-  }
-
-  protected _disconnect(viewerId: DataSourceViewerId): void {}
-
   /**
    * Creates a connection to tha data source and converts the Observable into a
    * promise.
@@ -182,16 +174,34 @@ export class BaseDataSource<Data = any,
    * @param viewer
    */
   public toPromise(viewer: Viewer): Promise<Data> {
-    return this.connect(viewer).pipe(
-      take(1)
-    ).toPromise().then(result => {
-      this.disconnect(viewer);
-      return result;
+    return this.connect(viewer)
+      .pipe(take(1))
+      .toPromise()
+      .then((result) => {
+        this.disconnect(viewer);
+        return result;
+      });
+  }
+
+  protected _disconnect(viewerId: DataSourceViewerId): void {}
+
+  public derive(
+    id: string,
+    metadata: Partial<BaseDataSourceMetadata> = this.metadata
+  ): BaseDataSource<any> {
+    return new BaseDataSource<any>({
+      ...deepMerge(this.metadata, metadata),
+      id,
     });
   }
 
-  public derive(id: string, metadata: Partial<BaseDataSourceMetadata> = this.metadata): BaseDataSource<any> {
-    return new BaseDataSource<any>({ ...deepMerge(this.metadata, metadata), id });
+  public toJSON(): object {
+    return {
+      id: this.id,
+      metadata: this.metadata,
+      connected: this._connectedViewer.keys(),
+      data: this._data,
+    };
   }
 
   public refresh(): any {}
@@ -205,23 +215,20 @@ export class BaseDataSource<Data = any,
     }
   }
 
-  public toJSON(): object {
-    return {
-      id:        this.id,
-      metadata:  this.metadata,
-      connected: this._connectedViewer.keys(),
-      data:      this._data
-    };
+  protected _connect(
+    viewer: BaseDataSourceViewer
+  ): [Observable<Data>, TeardownLogic] | Observable<Data> {
+    this.init();
+    return this._data$;
   }
-
 }
 
 export function RxapDataSource<Metadata extends BaseDataSourceMetadata>(
   dataSourceIdOrMetadata: string | Metadata,
-  className: string   = 'BaseDataSource',
+  className: string = 'BaseDataSource',
   packageName: string = '@rxap/data-source'
 ) {
-  return function(target: Constructor<BaseDataSource>) {
+  return function (target: Constructor<BaseDataSource>) {
     DefinitionMetadata(dataSourceIdOrMetadata, className, packageName)(target);
   };
 }
