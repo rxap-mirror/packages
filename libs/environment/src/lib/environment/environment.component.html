@@ -6,7 +6,7 @@
 </button>
 
 <table *ngIf="show">
-  <tr>
+  <tr *ngIf="environment.name">
     <th>Environment</th>
     <td>{{environment.name}}</td>
   </tr>
