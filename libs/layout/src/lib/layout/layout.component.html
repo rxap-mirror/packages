@@ -4,8 +4,8 @@
     [fixedBottomGap]="layoutComponentService.fixedBottomGap$ | async"
     [fixedInViewport]="true"
     [fixedTopGap]="layoutComponentService.fixedTopGap$ | async"
-    [mode]="layoutComponentService.mode$ | async"
-    [opened]="layoutComponentService.opened$ | async"
+    [mode]="(layoutComponentService.mode$ | async) ?? 'side'"
+    [opened]="(layoutComponentService.opened$ | async) ?? true"
     class="sidenav"
   >
     <rxap-sidenav>

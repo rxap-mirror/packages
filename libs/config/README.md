@@ -21,7 +21,6 @@ yarn add @rxap/config @rxap/utilities@^12.0.1
 ```
 
 **ng add**
-
 ```
 ng add @rxap/config
 ```
@@ -32,15 +31,18 @@ Update the angular application &#x60;main.ts&#x60; to support @rxap/config.
 
 &#x60;&#x60;&#x60;
 
-// (optional) Defines a list of configuration urls. ConfigService.Urls &#x3D; [&#x27;/config/config.json&#x27;];
+// (optional) Defines a list of configuration urls.
+ConfigService.Urls &#x3D; [&#x27;/config/config.json&#x27;];
 
-// Ensures that the configuration is loaded before the angular application is started Promise.all([ConfigService.Load()]).then(() &#x3D;&gt;
-platformBrowserDynamic()
-.bootstrapModule(AppModule)
-.catch((err) &#x3D;&gt; console.error(err))
+// Ensures that the configuration is loaded before the angular application is  started
+Promise.all([ConfigService.Load()]).then(() &#x3D;&gt;
+  platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .catch((err) &#x3D;&gt; console.error(err))
 );
 
 &#x60;&#x60;&#x60;
+
 
 # Guides
 

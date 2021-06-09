@@ -1,9 +1,6 @@
 import { Method } from '@rxap/utilities';
-import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpHeaders
-} from '@angular/common/http';
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export interface OAuthMethodWithUsernamePasswordParameters {
   grantType?: string;
@@ -20,31 +17,51 @@ export interface OAuthMethodWithRefreshTokenParameters {
   authEndpoint: string;
 }
 
-export type OAuthMethodParameters = (OAuthMethodWithUsernamePasswordParameters | OAuthMethodWithRefreshTokenParameters) & { withCredentials?: boolean };
+export type OAuthMethodParameters = (
+  | OAuthMethodWithUsernamePasswordParameters
+  | OAuthMethodWithRefreshTokenParameters
+) & { withCredentials?: boolean };
 
-export function IsOAuthMethodWithRefreshTokenParameters(parameters: OAuthMethodParameters): parameters is OAuthMethodWithRefreshTokenParameters {
+export function IsOAuthMethodWithRefreshTokenParameters(
+  parameters: OAuthMethodParameters
+): parameters is OAuthMethodWithRefreshTokenParameters {
   // eslint-disable-next-line no-prototype-builtins
   return parameters.hasOwnProperty('refreshToken');
 }
 
-export function IsOAuthMethodWithUsernamePasswordParameters(parameters: OAuthMethodParameters): parameters is OAuthMethodWithUsernamePasswordParameters {
+export function IsOAuthMethodWithUsernamePasswordParameters(
+  parameters: OAuthMethodParameters
+): parameters is OAuthMethodWithUsernamePasswordParameters {
   // eslint-disable-next-line no-prototype-builtins
-  return parameters.hasOwnProperty('username') && parameters.hasOwnProperty('password');
+  return (
+    parameters.hasOwnProperty('username') &&
+    parameters.hasOwnProperty('password')
+  );
 }
 
-export function AssertOAuthMethodWithUsernamePasswordParameters(parameters: OAuthMethodParameters): asserts parameters is OAuthMethodWithUsernamePasswordParameters {
+export function AssertOAuthMethodWithUsernamePasswordParameters(
+  parameters: OAuthMethodParameters
+): asserts parameters is OAuthMethodWithUsernamePasswordParameters {
   if (!IsOAuthMethodWithUsernamePasswordParameters(parameters)) {
-    throw new Error('The grant type password requires the parameters username and password');
+    throw new Error(
+      'The grant type password requires the parameters username and password'
+    );
   }
 }
 
-export function AssertOAuthMethodWithRefreshTokenParameters(parameters: OAuthMethodParameters): asserts parameters is OAuthMethodWithRefreshTokenParameters {
+export function AssertOAuthMethodWithRefreshTokenParameters(
+  parameters: OAuthMethodParameters
+): asserts parameters is OAuthMethodWithRefreshTokenParameters {
   if (!IsOAuthMethodWithRefreshTokenParameters(parameters)) {
-    throw new Error('The grant type refresh token requires the parameters refreshToken');
+    throw new Error(
+      'The grant type refresh token requires the parameters refreshToken'
+    );
   }
 }
 
-export function AssertOAuthMethodParameters(parameters: any): asserts parameters is OAuthMethodParameters {
+export function AssertOAuthMethodParameters(
+  parameters: any
+): asserts parameters is OAuthMethodParameters {
   if (!parameters.authEndpoint) {
     throw new Error('The authEndpoint parameter must be defined');
   }
@@ -53,7 +70,6 @@ export function AssertOAuthMethodParameters(parameters: any): asserts parameters
   }
   if (parameters.grantType) {
     switch (parameters.grantType) {
-
       case 'password':
         AssertOAuthMethodWithUsernamePasswordParameters(parameters);
         break;
@@ -63,15 +79,18 @@ export function AssertOAuthMethodParameters(parameters: any): asserts parameters
         break;
 
       default:
-        throw new Error(`The grant type '${parameters.grantType}' is not supported`);
-
+        throw new Error(
+          `The grant type '${parameters.grantType}' is not supported`
+        );
     }
   } else {
     if (
       !IsOAuthMethodWithRefreshTokenParameters(parameters) &&
       !IsOAuthMethodWithUsernamePasswordParameters(parameters)
     ) {
-      throw new Error('Either the refresh token or the username and password must be defined');
+      throw new Error(
+        'Either the refresh token or the username and password must be defined'
+      );
     }
   }
 }
@@ -90,22 +109,23 @@ export interface OAuthMethodResponse {
 }
 
 @Injectable({ providedIn: 'root' })
-export class OAuthMethod implements Method<OAuthMethodResponse, OAuthMethodParameters> {
-
+export class OAuthMethod
+  implements Method<OAuthMethodResponse, OAuthMethodParameters>
+{
   constructor(
+    @Inject(HttpClient)
     private readonly http: HttpClient
-  ) {
-  }
+  ) {}
 
-  public async call(parameters: OAuthMethodParameters): Promise<OAuthMethodResponse> {
-
+  public async call(
+    parameters: OAuthMethodParameters
+  ): Promise<OAuthMethodResponse> {
     AssertOAuthMethodParameters(parameters);
 
-    const params    = new URLSearchParams();
+    const params = new URLSearchParams();
     const grantType = this.getGrantType(parameters);
     params.append('grant_type', grantType);
     switch (grantType) {
-
       case 'password':
         AssertOAuthMethodWithUsernamePasswordParameters(parameters);
         params.append('username', parameters.username);
@@ -119,28 +139,26 @@ export class OAuthMethod implements Method<OAuthMethodResponse, OAuthMethodParam
 
       default:
         throw new Error('Not supported grant type');
-
     }
 
     const headers = new HttpHeaders({
       'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-      Authorization:  `Basic ${parameters.secret}`
+      Authorization: `Basic ${parameters.secret}`,
     });
 
     const response = await this.http
-                               .post<OAuthResponse>(parameters.authEndpoint, params.toString(), {
-                                 headers,
-                                 withCredentials: parameters.withCredentials ?? true
-                               })
-                               .toPromise();
+      .post<OAuthResponse>(parameters.authEndpoint, params.toString(), {
+        headers,
+        withCredentials: parameters.withCredentials ?? true,
+      })
+      .toPromise();
 
     return {
-      accessToken:  response.access_token,
+      accessToken: response.access_token,
       refreshToken: response.refresh_token,
-      expiresIn:    response.expires_in,
-      expiresAt:    new Date(Date.now() + response.expires_in * 1000)
+      expiresIn: response.expires_in,
+      expiresAt: new Date(Date.now() + response.expires_in * 1000),
     };
-
   }
 
   private getGrantType(parameters: OAuthMethodParameters) {
@@ -158,5 +176,4 @@ export class OAuthMethod implements Method<OAuthMethodResponse, OAuthMethodParam
 
     throw new Error('Could not guess the grant type');
   }
-
 }

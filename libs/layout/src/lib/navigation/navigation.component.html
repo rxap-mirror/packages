@@ -1,11 +1,11 @@
 <ng-template [ngForOf]="items" let-item ngFor>
-  <ng-template [ngIf]="item.divider" [ngIfElse]="navigationItem">
+  <ng-template [ngIf]="isNavigationDividerItem(item)">
     <mat-divider fxFlex="nogrow"></mat-divider>
     <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start end" class="divider-title">
       <span fxFlex="nogrow" *ngIf="item.title">{{item.title}}</span>
     </div>
   </ng-template>
-  <ng-template #navigationItem>
-    <li class="item" rxap-navigation-item [level]="level" [item]="item"></li>
+  <ng-template [ngIf]="isNavigationItem(item)">
+    <li class="item" rxap-navigation-item [level]="level" [item]="asNavigationItem(item)"></li>
   </ng-template>
 </ng-template>

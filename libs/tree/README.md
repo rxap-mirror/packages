@@ -21,7 +21,6 @@ yarn add @rxap/tree @rxap/contenteditable@^12.0.1 @rxap/data-source@^12.0.1 @rxa
 ```
 
 **ng add**
-
 ```
 ng add @rxap/tree
 ```
@@ -29,6 +28,7 @@ ng add @rxap/tree
 # Get started
 
 TODO
+
 
 # Guides
 

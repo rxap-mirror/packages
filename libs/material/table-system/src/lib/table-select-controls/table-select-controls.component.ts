@@ -1,26 +1,19 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject
-} from '@angular/core';
-import {
-  RXAP_WINDOW_REF,
-  WindowRef
-} from '@rxap/window-system';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import type { WindowRef } from '@rxap/window-system';
+import { RXAP_WINDOW_REF } from '@rxap/window-system';
+import type { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SelectRowService } from '../select-row/select-row.service';
 
 @Component({
   // TODO : rn selector
-  selector:        'mfd-table-select-controls',
-  templateUrl:     './table-select-controls.component.html',
-  styleUrls:       [ './table-select-controls.component.scss' ],
+  selector: 'mfd-table-select-controls',
+  templateUrl: './table-select-controls.component.html',
+  styleUrls: ['./table-select-controls.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'mfd-table-select-controls' }
+  host: { class: 'mfd-table-select-controls' },
 })
 export class TableSelectControlsComponent {
-
   public hasNotSelected$: Observable<boolean>;
 
   constructor(
@@ -28,7 +21,9 @@ export class TableSelectControlsComponent {
     @Inject(RXAP_WINDOW_REF)
     private readonly windowRef: WindowRef
   ) {
-    this.hasNotSelected$ = this.selectRows.selectedRows$.pipe(map(selected => selected.length === 0));
+    this.hasNotSelected$ = this.selectRows.selectedRows$.pipe(
+      map((selected) => selected.length === 0)
+    );
   }
 
   public cancel() {
@@ -38,5 +33,4 @@ export class TableSelectControlsComponent {
   public select() {
     this.windowRef.close(this.selectRows.selectedRows);
   }
-
 }

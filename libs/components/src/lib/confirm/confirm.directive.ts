@@ -5,26 +5,19 @@ import {
   EventEmitter,
   Output,
   OnDestroy,
-  Input
+  Input,
+  Inject,
 } from '@angular/core';
 import { ConfirmComponent } from './confirm.component';
-import {
-  Overlay,
-  OverlayRef
-} from '@angular/cdk/overlay';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import {
-  first,
-  tap,
-  take
-} from 'rxjs/operators';
+import { tap, take } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Directive({
-  selector: '[rxapConfirm]'
+  selector: '[rxapConfirm]',
 })
 export class ConfirmDirective<T = any> implements OnDestroy {
-
   // use a set input to allow auto import detection if the eventValue
   // is not set
   @Input('rxapConfirm')
@@ -47,30 +40,32 @@ export class ConfirmDirective<T = any> implements OnDestroy {
   private _eventValue?: T;
 
   constructor(
+    @Inject(Overlay)
     private readonly overlay: Overlay,
+    @Inject(ElementRef)
     private readonly elementRef: ElementRef
   ) {}
 
   @HostListener('click')
   public onClick() {
-
     if (this.subscription) {
       return;
     }
 
-    this.overlayRef      = this.overlay.create({
-      scrollStrategy:   this.overlay.scrollStrategies.close(),
+    this.overlayRef = this.overlay.create({
+      scrollStrategy: this.overlay.scrollStrategies.close(),
       positionStrategy: this.overlay
-                            .position()
-                            .flexibleConnectedTo(this.elementRef.nativeElement)
-                            .withPositions([
-                              {
-                                originX:  'start',
-                                originY:  'bottom',
-                                overlayX: 'start',
-                                overlayY: 'top'
-                              }
-                            ]).withDefaultOffsetY(10)
+        .position()
+        .flexibleConnectedTo(this.elementRef.nativeElement)
+        .withPositions([
+          {
+            originX: 'start',
+            originY: 'bottom',
+            overlayX: 'start',
+            overlayY: 'top',
+          },
+        ])
+        .withDefaultOffsetY(10),
     });
     const componentPortal = new ComponentPortal(ConfirmComponent);
 
@@ -78,33 +73,44 @@ export class ConfirmDirective<T = any> implements OnDestroy {
 
     this.subscription = new Subscription();
 
-    this.subscription.add(componentRef.instance.confirmed.pipe(
-      take(1),
-      tap(() => this.confirmed.emit(this._eventValue)),
-      tap(() => this.overlayRef?.dispose()),
-      tap(() => this.subscription = null),
-      tap(() => this.subscription?.unsubscribe())
-    ).subscribe());
+    this.subscription.add(
+      componentRef.instance.confirmed
+        .pipe(
+          take(1),
+          tap(() => this.confirmed.emit(this._eventValue)),
+          tap(() => this.overlayRef?.dispose()),
+          tap(() => (this.subscription = null)),
+          tap(() => this.subscription?.unsubscribe())
+        )
+        .subscribe()
+    );
 
-    this.subscription.add(componentRef.instance.unconfirmed.pipe(
-      take(1),
-      tap(() => this.unconfirmed.emit(this._eventValue)),
-      tap(() => this.overlayRef?.dispose()),
-      tap(() => this.subscription = null),
-      tap(() => this.subscription?.unsubscribe())
-    ).subscribe());
+    this.subscription.add(
+      componentRef.instance.unconfirmed
+        .pipe(
+          take(1),
+          tap(() => this.unconfirmed.emit(this._eventValue)),
+          tap(() => this.overlayRef?.dispose()),
+          tap(() => (this.subscription = null)),
+          tap(() => this.subscription?.unsubscribe())
+        )
+        .subscribe()
+    );
 
-    this.subscription.add(this.overlayRef.detachments().pipe(
-      take(1),
-      tap(() => this.subscription = null),
-      tap(() => this.subscription?.unsubscribe())
-    ).subscribe());
-
+    this.subscription.add(
+      this.overlayRef
+        .detachments()
+        .pipe(
+          take(1),
+          tap(() => (this.subscription = null)),
+          tap(() => this.subscription?.unsubscribe())
+        )
+        .subscribe()
+    );
   }
 
   public ngOnDestroy() {
     this.subscription?.unsubscribe();
     this.overlayRef?.dispose();
   }
-
 }

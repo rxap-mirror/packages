@@ -2,20 +2,12 @@ import {
   Injectable,
   Provider,
   Injector,
-  INJECTOR
+  INJECTOR,
+  Inject,
 } from '@angular/core';
 import { RxapAuthenticationService } from '@rxap/authentication';
-import {
-  ActivatedRoute,
-  Router
-} from '@angular/router';
-import {
-  map,
-  switchMap,
-  first,
-  tap,
-  take
-} from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, switchMap, tap, take } from 'rxjs/operators';
 import {
   UseFormControl,
   RxapFormBuilder,
@@ -28,7 +20,7 @@ import {
   RXAP_FORM_SUBMIT_METHOD,
   FormSubmitMethod,
   ControlSetValue,
-  ControlValidator
+  ControlValidator,
 } from '@rxap/forms';
 import { Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -37,59 +29,60 @@ export const RXAP_RESET_PASSWORD_FORM = 'rxap-reset-password';
 
 @Injectable()
 export class ResetPasswordFormSubmitMethod implements FormSubmitMethod<any> {
-
   constructor(
+    @Inject(ActivatedRoute)
     private readonly route: ActivatedRoute,
+    @Inject(RxapAuthenticationService)
     private readonly authentication: RxapAuthenticationService,
+    @Inject(MatSnackBar)
     private readonly snackBar: MatSnackBar,
-    private readonly router: Router,
+    @Inject(Router)
+    private readonly router: Router
   ) {}
 
   public call(value: { password: string }): boolean | Promise<boolean> {
-    return this.route.params.pipe(
-      take(1),
-      map(params => params.token),
-      switchMap(token => this.authentication.sendPasswordReset(value.password, token)),
-      tap(result => {
-        if (result) {
-          this.snackBar.open(
-            'Password reset was successful.',
-            undefined,
-            {
-              duration: 3500
-            }
-          )
-          return this.router.navigate(['/']);
-        }
-        return Promise.resolve();
-      })
-    ).toPromise();
+    return this.route.params
+      .pipe(
+        take(1),
+        map((params) => params.token),
+        switchMap((token) =>
+          this.authentication.sendPasswordReset(value.password, token)
+        ),
+        tap((result) => {
+          if (result) {
+            this.snackBar.open('Password reset was successful.', undefined, {
+              duration: 3500,
+            });
+            return this.router.navigate(['/']);
+          }
+          return Promise.resolve();
+        })
+      )
+      .toPromise();
   }
-
 }
 
 @RxapForm({
-  id: RXAP_RESET_PASSWORD_FORM
+  id: RXAP_RESET_PASSWORD_FORM,
 })
 @Injectable()
 export class ResetPasswordForm implements FormDefinition {
-
   public rxapFormGroup!: RxapFormGroup;
 
   @UseFormControl({
-    validators: [ Validators.required ]
+    validators: [Validators.required],
   })
   public password!: RxapFormControl;
 
   @UseFormControl({
-    validators: [ Validators.required ]
+    validators: [Validators.required],
   })
   public passwordRepeat!: RxapFormControl;
 
   @ControlValidator('passwordRepeat')
   public passwordEqual() {
     if (this.password.value !== this.passwordRepeat.value) {
-      return { 'equal': 'passwords are not equal' };
+      return { equal: 'passwords are not equal' };
     }
     return null;
   }
@@ -98,23 +91,23 @@ export class ResetPasswordForm implements FormDefinition {
   public resetRepeat() {
     this.passwordRepeat.reset();
   }
-
 }
 
 export const ResetPasswordFormProviders: Provider[] = [
   ResetPasswordForm,
   {
-    provide:    RXAP_FORM_DEFINITION_BUILDER,
-    useFactory: (injector: Injector) => new RxapFormBuilder(ResetPasswordForm, injector),
-    deps:       [ INJECTOR ]
+    provide: RXAP_FORM_DEFINITION_BUILDER,
+    useFactory: (injector: Injector) =>
+      new RxapFormBuilder(ResetPasswordForm, injector),
+    deps: [INJECTOR],
   },
   {
-    provide:    RXAP_FORM_DEFINITION,
+    provide: RXAP_FORM_DEFINITION,
     useFactory: (builder: RxapFormBuilder) => builder.build(),
-    deps:       [ RXAP_FORM_DEFINITION_BUILDER ]
+    deps: [RXAP_FORM_DEFINITION_BUILDER],
   },
   {
-    provide:  RXAP_FORM_SUBMIT_METHOD,
-    useClass: ResetPasswordFormSubmitMethod
-  }
+    provide: RXAP_FORM_SUBMIT_METHOD,
+    useClass: ResetPasswordFormSubmitMethod,
+  },
 ];

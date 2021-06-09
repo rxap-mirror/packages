@@ -17,9 +17,10 @@
       "@rxap/data-source": [
         "dist/libs/data-source"
       ]
-    }
+    },
+    "declarationMap": false
   },
   "angularCompilerOptions": {
-    "enableIvy": true
+    "compilationMode": "partial"
   }
 }

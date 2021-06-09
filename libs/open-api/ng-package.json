@@ -4,7 +4,7 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "whitelistedNonPeerDependencies": [
+  "allowedNonPeerDependencies": [
     "@rxap/schematics-open-api",
     "@rxap/schematics-ts-morph",
     "@rxap/schematics-utilities",

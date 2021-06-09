@@ -1,16 +1,9 @@
-import { Injectable } from '@angular/core';
-import {
-  MatDialog,
-  DialogPosition
-} from '@angular/material/dialog';
+import { Injectable, Inject } from '@angular/core';
+import { MatDialog, DialogPosition } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
 import { Direction } from '@angular/cdk/bidi';
 import { ScrollStrategy } from '@angular/cdk/overlay';
-import {
-  first,
-  map,
-  take
-} from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 export interface ConfirmDialogConfig {
   /** Custom class for the overlay pane. */
@@ -60,22 +53,34 @@ export interface ConfirmDialogConfig {
 
 @Injectable()
 export class ConfirmDialogService {
+  constructor(
+    @Inject(MatDialog)
+    private readonly dialog: MatDialog
+  ) {}
 
-  constructor(private readonly dialog: MatDialog) {}
-
-  public open(message: string, action?: string, config?: ConfirmDialogConfig): Promise<boolean> {
-    const dialogRef = this.dialog.open<ConfirmDialogComponent, { message: string; action?: string }, boolean>(ConfirmDialogComponent, {
+  public open(
+    message: string,
+    action?: string,
+    config?: ConfirmDialogConfig
+  ): Promise<boolean> {
+    const dialogRef = this.dialog.open<
+      ConfirmDialogComponent,
+      { message: string; action?: string },
+      boolean
+    >(ConfirmDialogComponent, {
       ...config,
       data: {
         message,
-        action
-      }
+        action,
+      },
     });
 
-    return dialogRef.afterClosed().pipe(
-      take(1),
-      map(result => !!result)
-    ).toPromise();
+    return dialogRef
+      .afterClosed()
+      .pipe(
+        take(1),
+        map((result) => !!result)
+      )
+      .toPromise();
   }
-
 }

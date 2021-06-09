@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "base",
+  "$id": "base",
   "type": "object",
   "description": "",
   "properties": {

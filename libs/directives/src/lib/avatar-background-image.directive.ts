@@ -3,25 +3,20 @@ import {
   Directive,
   Input,
   ElementRef,
-  Renderer2
+  Renderer2,
 } from '@angular/core';
 import {
   BackgroundImageDirective,
   BackgroundRepeatOptions,
-  BackgroundSizeOptions
+  BackgroundSizeOptions,
 } from './background-image.directive';
-import {
-  ImageLoaderService,
-  AvatarImageService
-} from '@rxap/services';
-import { Required } from '@rxap/utilities';
+import { ImageLoaderService, AvatarImageService } from '@rxap/services';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
-  selector: '[rxapAvatarBackgroundImage]'
+  selector: '[rxapAvatarBackgroundImage]',
 })
 export class AvatarBackgroundImageDirective extends BackgroundImageDirective {
-
   @Input()
   public set name(name: string) {
     if (!this.placeholderImageUrl) {
@@ -30,8 +25,7 @@ export class AvatarBackgroundImageDirective extends BackgroundImageDirective {
   }
 
   @Input('rxapAvatarBackgroundImage')
-  @Required
-  public imageUrl!: string;
+  public imageUrl: string | null | undefined = null;
 
   public size = BackgroundSizeOptions.COVER;
 
@@ -45,11 +39,10 @@ export class AvatarBackgroundImageDirective extends BackgroundImageDirective {
   ) {
     super(host, renderer, imageLoader);
   }
-
 }
 
 @NgModule({
-  declarations: [ AvatarBackgroundImageDirective ],
-  exports:      [ AvatarBackgroundImageDirective ]
+  declarations: [AvatarBackgroundImageDirective],
+  exports: [AvatarBackgroundImageDirective],
 })
 export class AvatarBackgroundImageDirectiveModule {}

@@ -3,24 +3,24 @@ import {
   NgModule,
   Input,
   OnInit,
-  isDevMode
+  isDevMode,
+  Inject,
 } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
-import {
-  Required,
-  getFromObject
-} from '@rxap/utilities';
+import { Required, getFromObject } from '@rxap/utilities';
 
 @Directive({
-  selector: 'mat-select[rxapCompareWith]'
+  selector: 'mat-select[rxapCompareWith]',
 })
 export class CompareWithDirective implements OnInit {
-
   @Input('rxapCompareWith')
   @Required
   public objectPath!: string;
 
-  constructor(private readonly matSelect: MatSelect) { }
+  constructor(
+    @Inject(MatSelect)
+    private readonly matSelect: MatSelect
+  ) {}
 
   public ngOnInit() {
     this.matSelect.compareWith = this.compareWith.bind(this);
@@ -29,13 +29,17 @@ export class CompareWithDirective implements OnInit {
   private compareWith(o1: any, o2: any): boolean {
     if (typeof o1 !== 'object' || typeof o2 !== 'object') {
       if (isDevMode()) {
-        console.warn('At least one of the select options value is not an object');
+        console.warn(
+          'At least one of the select options value is not an object'
+        );
       }
       return false;
     }
     if (o1 === null || o1 === undefined || o2 === null || o2 === undefined) {
       if (isDevMode()) {
-        console.warn('At least one of the select options value is undefined or null');
+        console.warn(
+          'At least one of the select options value is undefined or null'
+        );
       }
       return false;
     }
@@ -46,12 +50,10 @@ export class CompareWithDirective implements OnInit {
     }
     return o1Value === o2Value;
   }
-
-
 }
 
 @NgModule({
-  declarations: [ CompareWithDirective ],
-  exports:      [ CompareWithDirective ]
+  declarations: [CompareWithDirective],
+  exports: [CompareWithDirective],
 })
 export class CompareWithDirectiveModule {}

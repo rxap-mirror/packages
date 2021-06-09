@@ -21,7 +21,6 @@ yarn add @rxap/icon
 ```
 
 **ng add**
-
 ```
 ng add @rxap/icon
 ```
@@ -29,6 +28,7 @@ ng add @rxap/icon
 # Get started
 
 TODO
+
 
 # Guides
 

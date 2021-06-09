@@ -21,7 +21,6 @@ yarn add @rxap/xml-parser @rxap/mixin@^12.0.1 @rxap/utilities@^12.0.1
 ```
 
 **ng add**
-
 ```
 ng add @rxap/xml-parser
 ```
@@ -29,6 +28,7 @@ ng add @rxap/xml-parser
 # Get started
 
 TODO
+
 
 # Guides
 

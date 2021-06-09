@@ -12,7 +12,7 @@ migrations.json
 /documentation.json
 openapi.json
 
-test.js
+test.*
 
 junit.xml
 # compiled output

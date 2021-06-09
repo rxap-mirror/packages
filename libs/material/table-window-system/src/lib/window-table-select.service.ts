@@ -1,11 +1,23 @@
-import { ComponentRef, Injectable, Injector, Provider, StaticProvider, ViewContainerRef } from '@angular/core';
-import { RXAP_WINDOW_SETTINGS, WindowConfig, WindowService } from '@rxap/window-system';
+import {
+  ComponentRef,
+  Injectable,
+  Injector,
+  StaticProvider,
+  ViewContainerRef,
+  INJECTOR,
+  Inject,
+} from '@angular/core';
+import {
+  RXAP_WINDOW_SETTINGS,
+  WindowConfig,
+  WindowService,
+} from '@rxap/window-system';
 import { ComponentType } from '@angular/cdk/overlay';
 import {
   RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS,
   TABLE_REMOTE_METHOD,
   TABLE_DATA_SOURCE,
-  TableSelectControlsComponent
+  TableSelectControlsComponent,
 } from '@rxap/material-table-system';
 import { map, take, tap } from 'rxjs/operators';
 import { BaseDataSource } from '@rxap/data-source';
@@ -22,21 +34,21 @@ export interface WindowTableSelectOptions<RowData> {
   injector: Injector;
 }
 
-declare const $localize: LocalizeFn
+declare const $localize: LocalizeFn;
 
 @Injectable()
 export class WindowTableSelectService {
-
   constructor(
+    @Inject(WindowService)
     private readonly windowService: WindowService,
-    private readonly injector: Injector,
-  ) {
-  }
+    @Inject(INJECTOR)
+    private readonly injector: Injector
+  ) {}
 
   public open<RowData extends Record<string, any>>(
     component: ComponentType<any>,
     options: WindowTableSelectOptions<RowData>,
-    windowConfig: Omit<WindowConfig, 'component'> = {},
+    windowConfig: Omit<WindowConfig, 'component'> = {}
   ): Promise<RowData[]> {
     const providers: StaticProvider[] = [
       {
@@ -49,8 +61,10 @@ export class WindowTableSelectService {
       {
         provide: RXAP_WINDOW_SETTINGS,
         useValue: {
-          title: options.title ?? $localize`:@@rxap.window-table-system.select-table.title:Select Options`,
-        }
+          title:
+            options.title ??
+            $localize`:@@rxap.window-table-system.select-table.title:Select Options`,
+        },
       },
     ];
 
@@ -62,13 +76,13 @@ export class WindowTableSelectService {
     } else {
       providers.push({
         provide: TABLE_DATA_SOURCE,
-        useValue: null
+        useValue: null,
       });
     }
 
     providers.push({
       provide: TABLE_REMOTE_METHOD,
-      useValue: null
+      useValue: null,
     });
 
     const windowRef = this.windowService.open({
@@ -76,26 +90,37 @@ export class WindowTableSelectService {
       viewContainerRef: options.viewContainerRef,
       injector: Injector.create({
         parent: options.injector ?? windowConfig.injector ?? this.injector,
-        providers
+        providers,
       }),
       component,
     });
 
-    windowRef.attachedRef$.pipe(
-      take(1),
-      tap(attachedRef => {
-        if (attachedRef instanceof ComponentRef) {
-          windowRef.setFooterPortal(new ComponentPortal(TableSelectControlsComponent, options.viewContainerRef, attachedRef.injector));
-        } else {
-          throw new Error('FATAL: the attached ref was not an instance of Component ref');
-        }
-      }),
-    ).subscribe();
+    windowRef.attachedRef$
+      .pipe(
+        take(1),
+        tap((attachedRef) => {
+          if (attachedRef instanceof ComponentRef) {
+            windowRef.setFooterPortal(
+              new ComponentPortal(
+                TableSelectControlsComponent,
+                options.viewContainerRef,
+                attachedRef.injector
+              )
+            );
+          } else {
+            throw new Error(
+              'FATAL: the attached ref was not an instance of Component ref'
+            );
+          }
+        })
+      )
+      .subscribe();
 
-    return windowRef.closed$.pipe(
-      take(1),
-      map(selected => selected ?? []),
-    ).toPromise();
+    return windowRef.closed$
+      .pipe(
+        take(1),
+        map((selected) => selected ?? [])
+      )
+      .toPromise();
   }
-
 }

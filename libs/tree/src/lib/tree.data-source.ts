@@ -1,25 +1,12 @@
-import {
-  BehaviorSubject,
-  from,
-  merge,
-  Observable,
-  Subscription
-} from 'rxjs';
+import { BehaviorSubject, from, merge, Observable, Subscription } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import {
-  SelectionChange,
-  SelectionModel
-} from '@angular/cdk/collections';
-import {
-  map,
-  switchMap,
-  tap
-} from 'rxjs/operators';
+import { SelectionChange, SelectionModel } from '@angular/cdk/collections';
+import { map, switchMap, tap } from 'rxjs/operators';
 import {
   BaseDataSource,
   BaseDataSourceMetadata,
   BaseDataSourceViewer,
-  RXAP_DATA_SOURCE_METADATA
+  RXAP_DATA_SOURCE_METADATA,
 } from '@rxap/data-source';
 import {
   ExpandNodeFunction,
@@ -30,14 +17,10 @@ import {
   NodeToDisplayFunction,
   Required,
   WithChildren,
-  WithIdentifier
+  WithIdentifier,
 } from '@rxap/utilities';
-import {
-  Inject,
-  Injectable,
-  InjectionToken
-} from '@angular/core';
-import { BaseRemoteMethod } from '@rxap/remote-method';
+import { Inject, Injectable, InjectionToken } from '@angular/core';
+import type { BaseRemoteMethod } from '@rxap/remote-method';
 
 export function isSelectionChange<T>(obj: any): obj is SelectionChange<T> {
   return !!obj && obj.hasOwnProperty('added') && obj.hasOwnProperty('removed');
@@ -48,12 +31,17 @@ export interface TreeDataSourceMetadata extends BaseDataSourceMetadata {
   expandMultiple?: boolean;
 }
 
-export const RXAP_TREE_DATA_SOURCE_ROOT_REMOTE_METHOD = new InjectionToken('rxap/tree/data-source/root-remote-method');
-export const RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD = new InjectionToken('rxap/tree/data-source/children-remote-method');
+export const RXAP_TREE_DATA_SOURCE_ROOT_REMOTE_METHOD = new InjectionToken(
+  'rxap/tree/data-source/root-remote-method'
+);
+export const RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD = new InjectionToken(
+  'rxap/tree/data-source/children-remote-method'
+);
 
 @Injectable()
-export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> extends BaseDataSource<Array<Node<Data>>> {
-
+export class TreeDataSource<
+  Data extends WithIdentifier & WithChildren = any
+> extends BaseDataSource<Array<Node<Data>>> {
   public tree$ = new BehaviorSubject<Array<Node<Data>>>([]);
   @Required public treeControl!: FlatTreeControl<Node<Data>>;
   public selected!: SelectionModel<Node<Data>>;
@@ -69,8 +57,9 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
   protected _data$ = new BehaviorSubject<Array<Node<Data>>>([]);
   public metadata!: TreeDataSourceMetadata;
 
-  public toDisplay: NodeToDisplayFunction<Data>   = () => 'to display function not defined';
-  public getIcon: NodeGetIconFunction<Data>       = () => null;
+  public toDisplay: NodeToDisplayFunction<Data> = () =>
+    'to display function not defined';
+  public getIcon: NodeGetIconFunction<Data> = () => null;
   public hasDetails: NodeHasDetailsFunction<Data> = () => true;
 
   constructor(
@@ -79,12 +68,18 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
     @Inject(RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD)
     public readonly childrenRemoteMethod: BaseRemoteMethod<Data[], Node<Data>>,
     @Inject(RXAP_DATA_SOURCE_METADATA)
-      metadata: TreeDataSourceMetadata | null = null
+    metadata: TreeDataSourceMetadata | null = null
   ) {
     super(metadata);
-    this.tree$.pipe(
-      map(tree => tree.map(child => this.flatTree(child)).reduce((acc, nodes) => [ ...acc, ...nodes ], []))
-    ).subscribe(this._data$);
+    this.tree$
+      .pipe(
+        map((tree) =>
+          tree
+            .map((child) => this.flatTree(child))
+            .reduce((acc, nodes) => [...acc, ...nodes], [])
+        )
+      )
+      .subscribe(this._data$);
 
     // TODO add new SelectModel class that saves the select model to the localStorage
     this.initSelected();
@@ -92,15 +87,14 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
   }
 
   public async getTreeRoot(): Promise<Array<Node<Data>>> {
-
     const root: Data | Data[] = await this.getRoot();
 
     let rootNodes: Array<Node<Data>>;
 
     if (Array.isArray(root)) {
-      rootNodes = root.map(node => this._toNode(node));
+      rootNodes = root.map((node) => this._toNode(node));
     } else {
-      rootNodes = [ this._toNode(root) ];
+      rootNodes = [this._toNode(root)];
     }
 
     this.tree$.next(rootNodes);
@@ -111,7 +105,7 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
   public selectNode(node: Node<Data>): Promise<void> {
     if (!this.selected.isMultipleSelection()) {
       if (this.selected.hasValue()) {
-        const currentSelectedNode = this.selected.selected[ 0 ];
+        const currentSelectedNode = this.selected.selected[0];
         currentSelectedNode.deselect();
       }
     }
@@ -123,7 +117,9 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
     this.treeControl = treeControl;
   }
 
-  public setToDisplay(toDisplay: NodeToDisplayFunction<Data> = this.toDisplay): void {
+  public setToDisplay(
+    toDisplay: NodeToDisplayFunction<Data> = this.toDisplay
+  ): void {
     this.toDisplay = toDisplay;
   }
 
@@ -131,7 +127,9 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
     this.getIcon = getIcon;
   }
 
-  public setHasDetails(hasDetails: NodeHasDetailsFunction<Data> = this.hasDetails): void {
+  public setHasDetails(
+    hasDetails: NodeHasDetailsFunction<Data> = this.hasDetails
+  ): void {
     this.hasDetails = hasDetails;
   }
 
@@ -143,42 +141,55 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
   // - the SelectModel that stores the selection into the local storage?
   public _toNode(
     item: Data,
-    depth: number                        = 0,
-    onExpand: ExpandNodeFunction<Data>   = this.expandNode.bind(this),
+    depth: number = 0,
+    onExpand: ExpandNodeFunction<Data> = this.expandNode.bind(this),
     onCollapse: ExpandNodeFunction<Data> = this.collapseNode.bind(this),
-    onSelect: ExpandNodeFunction<Data>   = this.selectNode.bind(this),
+    onSelect: ExpandNodeFunction<Data> = this.selectNode.bind(this),
     onDeselect: ExpandNodeFunction<Data> = this.deselectNode.bind(this)
   ): Node<Data> {
-    const node = this.toNode(item, depth, onExpand, onCollapse, onSelect, onDeselect);
+    const node = this.toNode(
+      item,
+      depth,
+      onExpand,
+      onCollapse,
+      onSelect,
+      onDeselect
+    );
 
     if (this.expanded.isSelected(node.id)) {
-      node.expand()
-          .then(() => {
-            // TODO : remove redundant this.expanded SelectionModel. Only store expanded nodes in this.treeControl.expansionModel
-            // das problem ist das ich beim speicher in localStorage nur die id speicher.
-            // Des wegen kann ich beim laden aus dem localStorage this.treeControl.expansionModel
-            // nicht einfach mit den expanend nodes fullen. Da dort das node object benötigt wird
-            // möglich lösungen:
-            // - das node object läde die entity mithilfe der id automatisch nach
-            this.treeControl.expansionModel.select(node);
-            console.debug(`Restore expand for node '${node.id}' SUCCESSFULLY`);
-          })
-          .catch(() => console.debug(`Restore expand for node '${node.id}' FAILED`));
+      node
+        .expand()
+        .then(() => {
+          // TODO : remove redundant this.expanded SelectionModel. Only store expanded nodes in this.treeControl.expansionModel
+          // das problem ist das ich beim speicher in localStorage nur die id speicher.
+          // Des wegen kann ich beim laden aus dem localStorage this.treeControl.expansionModel
+          // nicht einfach mit den expanend nodes fullen. Da dort das node object benötigt wird
+          // möglich lösungen:
+          // - das node object läde die entity mithilfe der id automatisch nach
+          this.treeControl.expansionModel.select(node);
+          console.debug(`Restore expand for node '${node.id}' SUCCESSFULLY`);
+        })
+        .catch(() =>
+          console.debug(`Restore expand for node '${node.id}' FAILED`)
+        );
     }
 
     if (this._preSelected.includes(node.id)) {
-      node.select()
-          .then(() => console.debug(`Restore select for node '${node.id}' SUCCESSFULLY`))
-          .catch(() => console.debug(`Restore select for node '${node.id}' FAILED`));
+      node
+        .select()
+        .then(() =>
+          console.debug(`Restore select for node '${node.id}' SUCCESSFULLY`)
+        )
+        .catch(() =>
+          console.debug(`Restore select for node '${node.id}' FAILED`)
+        );
     }
 
     return node;
   }
 
   public async expandNode(node: Node<Data>): Promise<void> {
-
     if (node.item.hasChildren && node.item.children.length === 0) {
-
       node.isLoading$.enable();
 
       const children = await this.getChildren(node);
@@ -186,16 +197,18 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
       // add the loaded children to the item object
       node.item.children = children;
 
-      node.addChildren(children.map(child => this._toNode(child, node.depth + 1, node.onExpand, node.onCollapse)));
+      node.addChildren(
+        children.map((child) =>
+          this._toNode(child, node.depth + 1, node.onExpand, node.onCollapse)
+        )
+      );
 
       node.isLoading$.disable();
-
     }
 
     this.expanded.select(node.id);
 
     this.tree$.next(this.tree$.value);
-
   }
 
   public async getChildren(node: Node<Data>): Promise<Data[]> {
@@ -209,14 +222,19 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
   // TODO : find better solution to allow the overwrite of the toNode method
   // without losing the custom preselect and preexpand function
 
-  protected _connect(collectionViewer: Required<BaseDataSourceViewer>): Observable<Array<Node<Data>>> {
+  protected _connect(
+    collectionViewer: Required<BaseDataSourceViewer>
+  ): Observable<Array<Node<Data>>> {
     this.treeControl.expansionModel.changed.subscribe((change: any) => {
       if (isSelectionChange<Node<Data>>(change)) {
         if (change.added) {
-          change.added.forEach(node => node.expand());
+          change.added.forEach((node) => node.expand());
         }
         if (change.removed) {
-          change.removed.slice().reverse().forEach(node => node.collapse());
+          change.removed
+            .slice()
+            .reverse()
+            .forEach((node) => node.collapse());
         }
       }
     });
@@ -228,18 +246,26 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
     }
 
     return from(loadRoot).pipe(
-      tap(rootNodes => {
+      tap((rootNodes) => {
         if (rootNodes) {
           const promises: Promise<any>[] = [];
           if (this.metadata.selectMultiple) {
             if (!this.selected.hasValue()) {
-              promises.push(...rootNodes.filter(node => node.hasDetails).map(node => node.select()));
+              promises.push(
+                ...rootNodes
+                  .filter((node) => node.hasDetails)
+                  .map((node) => node.select())
+              );
             }
             if (!this.expanded.hasValue()) {
-              promises.push(...rootNodes.filter(node => node.hasChildren).map(node => node.expand()));
+              promises.push(
+                ...rootNodes
+                  .filter((node) => node.hasChildren)
+                  .map((node) => node.expand())
+              );
             }
           } else if (rootNodes.length) {
-            const rootNode = rootNodes[ 0 ];
+            const rootNode = rootNodes[0];
             if (!this.selected.hasValue()) {
               // TODO : rename hasDetails to isSelectable
               if (rootNode.hasDetails) {
@@ -254,23 +280,36 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
         }
         return Promise.resolve();
       }),
-      switchMap(() => merge(collectionViewer.viewChange, this._data$).pipe(map(() => this._data$.value)))
+      switchMap(() =>
+        merge(collectionViewer.viewChange, this._data$).pipe(
+          map(() => this._data$.value)
+        )
+      )
     );
   }
 
   public toNode(
     item: Data,
-    depth: number                        = 0,
-    onExpand: ExpandNodeFunction<Data>   = this.expandNode.bind(this),
+    depth: number = 0,
+    onExpand: ExpandNodeFunction<Data> = this.expandNode.bind(this),
     onCollapse: ExpandNodeFunction<Data> = this.collapseNode.bind(this),
-    onSelect: ExpandNodeFunction<Data>   = this.selectNode.bind(this),
+    onSelect: ExpandNodeFunction<Data> = this.selectNode.bind(this),
     onDeselect: ExpandNodeFunction<Data> = this.deselectNode.bind(this)
   ): Node<Data> {
-    return Node.ToNode(item, depth, onExpand, onCollapse, this.toDisplay, this.getIcon, onSelect, onDeselect, this.hasDetails);
+    return Node.ToNode(
+      item,
+      depth,
+      onExpand,
+      onCollapse,
+      this.toDisplay,
+      this.getIcon,
+      onSelect,
+      onDeselect,
+      this.hasDetails
+    );
   }
 
   public collapseNode(node: Node<Data>): Promise<void> {
-
     this.expanded.deselect(node.id);
 
     this.tree$.next(this.tree$.value);
@@ -279,32 +318,27 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
   }
 
   public flatTree(tree: Node<Data>): Array<Node<Data>> {
-
     function flat(acc: any[], list: any[]) {
-      return [ ...acc, ...list ];
+      return [...acc, ...list];
     }
 
     const flatTree = (node: Node<Data>): Array<Node<Data>> => {
-
       if (!Array.isArray(node.children)) {
         console.log(node);
         throw new Error('Node has not defined children');
       }
 
       if (node.expanded || this.expanded.isSelected(node.id)) {
-
         return [
           node,
-          ...node.children.map(child => flatTree(child)).reduce(flat, [])
+          ...node.children.map((child) => flatTree(child)).reduce(flat, []),
         ];
-
       } else {
-        return [ node ];
+        return [node];
       }
     };
 
     return flatTree(tree);
-
   }
 
   public destroy(): void {
@@ -319,7 +353,6 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
   }
 
   public getNodeById(id: string): Node<Data> | null {
-
     function getNodeById(node: Node<Data>, nodeId: string) {
       if (node.id === nodeId) {
         return node;
@@ -331,8 +364,11 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
       }
     }
 
-    return this.tree$.value.map(node => getNodeById(node, id)).filter(Boolean)[ 0 ] || null;
-
+    return (
+      this.tree$.value
+        .map((node) => getNodeById(node, id))
+        .filter(Boolean)[0] || null
+    );
   }
 
   private initSelected(): void {
@@ -345,10 +381,20 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
       }
     }
 
-    this.selected                          = new SelectionModel<Node<Data>>(!!this.metadata.selectMultiple, []);
-    this._selectedLocalStorageSubscription = this.selected.changed.pipe(
-      tap(() => localStorage.setItem(key, JSON.stringify(this.selected.selected.map(s => s.id))))
-    ).subscribe();
+    this.selected = new SelectionModel<Node<Data>>(
+      !!this.metadata.selectMultiple,
+      []
+    );
+    this._selectedLocalStorageSubscription = this.selected.changed
+      .pipe(
+        tap(() =>
+          localStorage.setItem(
+            key,
+            JSON.stringify(this.selected.selected.map((s) => s.id))
+          )
+        )
+      )
+      .subscribe();
   }
 
   public async refresh(): Promise<any> {
@@ -357,9 +403,7 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
     // refresh all expanded nodes;
 
     const loadExpandedNodes = async (children: ReadonlyArray<Node<Data>>) => {
-
       for (const child of children) {
-
         if (this.expanded.isSelected(child.id)) {
           // call the node method to ensure that the expanded property of
           // Node is set.
@@ -369,18 +413,20 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
         if (child.hasChildren) {
           await loadExpandedNodes(child.children);
         }
-
       }
-
     };
 
-    await Promise.all(rootNodes.filter(node => node.hasChildren).map(node => loadExpandedNodes(node.children)));
+    await Promise.all(
+      rootNodes
+        .filter((node) => node.hasChildren)
+        .map((node) => loadExpandedNodes(node.children))
+    );
 
-    const selected: Array<Node<Data>> = this.selected.selected.map(node => this.getNodeById(node.id)).filter(Boolean) as any;
+    const selected: Array<Node<Data>> = this.selected.selected
+      .map((node) => this.getNodeById(node.id))
+      .filter(Boolean) as any;
     this.selected.clear();
     this.selected.select(...selected);
-
-
   }
 
   public reset(): any {
@@ -390,7 +436,7 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
   }
 
   private initExpanded(): void {
-    const key    = joinPath('rxap/tree', this.id, 'expanded');
+    const key = joinPath('rxap/tree', this.id, 'expanded');
     let expanded = [];
     if (localStorage.getItem(key)) {
       try {
@@ -400,10 +446,16 @@ export class TreeDataSource<Data extends WithIdentifier & WithChildren = any> ex
       }
     }
 
-    this.expanded                          = new SelectionModel<string>(this.metadata.expandMultiple !== false, expanded);
-    this._expandedLocalStorageSubscription = this.expanded.changed.pipe(
-      tap(() => localStorage.setItem(key, JSON.stringify(this.expanded.selected)))
-    ).subscribe();
+    this.expanded = new SelectionModel<string>(
+      this.metadata.expandMultiple !== false,
+      expanded
+    );
+    this._expandedLocalStorageSubscription = this.expanded.changed
+      .pipe(
+        tap(() =>
+          localStorage.setItem(key, JSON.stringify(this.expanded.selected))
+        )
+      )
+      .subscribe();
   }
-
 }

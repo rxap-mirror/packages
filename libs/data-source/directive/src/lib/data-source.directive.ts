@@ -1,10 +1,10 @@
+import type { Injector } from '@angular/core';
 import {
   Directive,
   NgModule,
   TemplateRef,
   ViewContainerRef,
   Input,
-  Injector,
   OnDestroy,
   ChangeDetectorRef,
   OnChanges,
@@ -13,25 +13,18 @@ import {
   EmbeddedViewRef,
   AfterViewInit,
   EventEmitter,
-  Output
+  Output,
+  INJECTOR,
+  Inject,
 } from '@angular/core';
 import {
   DataSourceLoader,
   BaseDataSource,
-  BaseDataSourceViewer
+  BaseDataSourceViewer,
 } from '@rxap/data-source';
 import { Required } from '@rxap/utilities';
-import {
-  tap,
-  take,
-  filter,
-  catchError
-} from 'rxjs/operators';
-import {
-  Observable,
-  Subscription,
-  EMPTY
-} from 'rxjs';
+import { tap, take, filter, catchError } from 'rxjs/operators';
+import { Observable, Subscription, EMPTY } from 'rxjs';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 
 export interface DataSourceTemplate<Data> {
@@ -41,11 +34,11 @@ export interface DataSourceTemplate<Data> {
 
 @Directive({
   selector: '[rxapDataSource]',
-  exportAs: 'rxapDataSource'
+  exportAs: 'rxapDataSource',
 })
 export class DataSourceDirective<Data = any>
-  implements OnDestroy, OnChanges, AfterViewInit {
-
+  implements OnDestroy, OnChanges, AfterViewInit
+{
   @Input('rxapDataSourceFrom')
   @Required
   public dataSourceOrIdOrToken!: IdOrInstanceOrToken<BaseDataSource<Data>>;
@@ -74,13 +67,14 @@ export class DataSourceDirective<Data = any>
 
   protected embeddedViewRef?: EmbeddedViewRef<DataSourceTemplate<Data>>;
 
-  private _dataSourceLoadingSubscription: Subscription | null    = null;
+  private _dataSourceLoadingSubscription: Subscription | null = null;
   private _dataSourceConnectionSubscription: Subscription | null = null;
 
   constructor(
     private readonly dataSourceLoader: DataSourceLoader,
     private readonly template: TemplateRef<DataSourceTemplate<Data>>,
     private readonly viewContainerRef: ViewContainerRef,
+    @Inject(INJECTOR)
     private readonly injector: Injector,
     private readonly cdr: ChangeDetectorRef,
     private readonly zone: NgZone
@@ -111,10 +105,13 @@ export class DataSourceDirective<Data = any>
 
   public embedTemplate(response: any) {
     this.embeddedViewRef?.destroy();
-    this.embeddedViewRef = this.viewContainerRef.createEmbeddedView(this.template, {
-      $implicit:   response,
-      connection$: this.connection$
-    });
+    this.embeddedViewRef = this.viewContainerRef.createEmbeddedView(
+      this.template,
+      {
+        $implicit: response,
+        connection$: this.connection$,
+      }
+    );
     this.embedded.emit(response);
     this.cdr.detectChanges();
   }
@@ -129,49 +126,52 @@ export class DataSourceDirective<Data = any>
   protected loadDataSource(): BaseDataSource<Data> | null {
     let dataSource: BaseDataSource | null = null;
     if (typeof this.dataSourceOrIdOrToken === 'string') {
-      dataSource = this.dataSourceLoader.load<BaseDataSource<Data>>(this.dataSourceOrIdOrToken, undefined, this.injector);
+      dataSource = this.dataSourceLoader.load<BaseDataSource<Data>>(
+        this.dataSourceOrIdOrToken,
+        undefined,
+        this.injector
+      );
     } else if (this.dataSourceOrIdOrToken instanceof BaseDataSource) {
       dataSource = this.dataSourceOrIdOrToken;
     } else if (this.dataSourceOrIdOrToken !== null) {
-      dataSource = this.injector.get<BaseDataSource<Data>>(this.dataSourceOrIdOrToken);
+      dataSource = this.injector.get<BaseDataSource<Data>>(
+        this.dataSourceOrIdOrToken
+      );
     }
     this._dataSourceLoadingSubscription?.unsubscribe();
-    this._dataSourceLoadingSubscription = dataSource?.loading$.pipe(filter(Boolean)).subscribe(this.loaded) ?? null;
+    this._dataSourceLoadingSubscription =
+      dataSource?.loading$.pipe(filter(Boolean)).subscribe(this.loaded) ?? null;
     return dataSource;
   }
 
   protected connect() {
     if (this.dataSource) {
-      this.connection$ = this.dataSource
-                             .connect(this.viewer);
-      this.zone.onStable.pipe(
-        take(1),
-        tap(() => {
-          this.zone.run(() => {
-            this._dataSourceConnectionSubscription?.unsubscribe();
-            this._dataSourceConnectionSubscription = this
-              .connection$
-              .pipe(
-                tap(response => this.embedTemplate(response)),
-                catchError(e => {
-                  this.error.emit(e);
-                  return EMPTY;
-                })
-              )
-              .subscribe();
-          });
-        })
-      ).subscribe();
-
+      this.connection$ = this.dataSource.connect(this.viewer);
+      this.zone.onStable
+        .pipe(
+          take(1),
+          tap(() => {
+            this.zone.run(() => {
+              this._dataSourceConnectionSubscription?.unsubscribe();
+              this._dataSourceConnectionSubscription = this.connection$
+                .pipe(
+                  tap((response) => this.embedTemplate(response)),
+                  catchError((e) => {
+                    this.error.emit(e);
+                    return EMPTY;
+                  })
+                )
+                .subscribe();
+            });
+          })
+        )
+        .subscribe();
     }
   }
-
 }
 
 @NgModule({
-  exports:      [ DataSourceDirective ],
-  declarations: [ DataSourceDirective ]
+  exports: [DataSourceDirective],
+  declarations: [DataSourceDirective],
 })
-export class DataSourceDirectiveModule {
-
-}
+export class DataSourceDirectiveModule {}

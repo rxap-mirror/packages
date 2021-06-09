@@ -21,7 +21,6 @@ yarn add @rxap/firebase @rxap/config@^12.0.1 @rxap/utilities@^12.0.1
 ```
 
 **ng add**
-
 ```
 ng add @rxap/firebase
 ```
@@ -29,6 +28,7 @@ ng add @rxap/firebase
 # Get started
 
 TODO
+
 
 # Guides
 

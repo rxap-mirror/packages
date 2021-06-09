@@ -21,7 +21,6 @@ yarn add @rxap/recorder @rxap/across-tabs@^12.0.1 @rxap/definition@^12.0.1 @rxap
 ```
 
 **ng add**
-
 ```
 ng add @rxap/recorder
 ```
@@ -29,6 +28,7 @@ ng add @rxap/recorder
 # Get started
 
 TODO
+
 
 # Guides
 

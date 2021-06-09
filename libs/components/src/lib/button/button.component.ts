@@ -1,3 +1,4 @@
+import type { Injector } from '@angular/core';
 import {
   Component,
   OnInit,
@@ -7,7 +8,6 @@ import {
   HostBinding,
   ElementRef,
   ChangeDetectorRef,
-  Injector,
   SimpleChanges,
   Inject,
   Optional,
@@ -15,7 +15,8 @@ import {
   HostListener,
   EventEmitter,
   Output,
-  OnDestroy
+  OnDestroy,
+  INJECTOR,
 } from '@angular/core';
 import {
   Required,
@@ -25,7 +26,7 @@ import {
   IconConfig,
   applyContextToFunctionOrConstant,
   ButtonDefinition,
-  ButtonTypes
+  ButtonTypes,
 } from '@rxap/utilities';
 import { Overlay } from '@angular/cdk/overlay';
 import { MatButton } from '@angular/material/button';
@@ -43,24 +44,26 @@ const BUTTON_HOST_ATTRIBUTES = [
   'mat-raised-button',
   'mat-stroked-button',
   'mat-mini-fab',
-  'mat-fab'
+  'mat-fab',
 ];
 
 @Component({
-  selector:        'button[rxap-button]',
-  templateUrl:     './button.component.html',
-  styleUrls:       [ './button.component.scss' ],
-  inputs:          [ 'disabled', 'disableRipple', 'color' ],
-  host:            {
-    '[attr.disabled]':                 'disabled || null',
+  selector: 'button[rxap-button]',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
+  inputs: ['disabled', 'disableRipple', 'color'],
+  host: {
+    '[attr.disabled]': 'disabled || null',
     '[class._mat-animation-noopable]': '_animationMode === "NoopAnimations"',
-    'class':                           'mat-focus-indicator'
+    class: 'mat-focus-indicator',
   },
-  encapsulation:   ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent extends MatButton implements OnInit, OnChanges, OnDestroy {
-
+export class ButtonComponent
+  extends MatButton
+  implements OnInit, OnChanges, OnDestroy
+{
   @HostBinding('attr.data-svg-icon')
   public get svgIcon(): boolean {
     if (this.icon) {
@@ -142,10 +145,15 @@ export class ButtonComponent extends MatButton implements OnInit, OnChanges, OnD
   private _subscription = new Subscription();
 
   constructor(
+    @Inject(ChangeDetectorRef)
     public readonly cdr: ChangeDetectorRef,
+    @Inject(Overlay)
     public readonly overlay: Overlay,
+    @Inject(INJECTOR)
     public readonly injector: Injector,
+    @Inject(ElementRef)
     public readonly elementRef: ElementRef,
+    @Inject(FocusMonitor)
     _focusMonitor: FocusMonitor,
     @Optional() @Inject(ANIMATION_MODULE_TYPE) _animationMode: string
   ) {
@@ -153,42 +161,94 @@ export class ButtonComponent extends MatButton implements OnInit, OnChanges, OnD
   }
 
   public contextChange(context: any[] = []) {
-    this.disabled        = !!applyContextToFunctionOrConstant(this.definition.disabled, context, this.disabled);
-    this.icon            = applyContextToFunctionOrConstant(this.definition.icon, context, this.icon);
-    this.label           = applyContextToFunctionOrConstant(this.definition.label, context, this.label)!;
-    this.tooltip         = applyContextToFunctionOrConstant(this.definition.tooltip, context, this.tooltip)!;
-    this.tooltipDisabled = !!applyContextToFunctionOrConstant(this.definition.tooltipDisabled, context, this.tooltipDisabled);
-    this.confirm         = applyContextToFunctionOrConstant(this.definition.confirm, context, this.confirm)!;
-    this.color           = applyContextToFunctionOrConstant(this.definition.theme, context, this.color) as any;
-    this.action          = applyContextToFunctionOrConstant(this.definition.action, context, this.action);
+    this.disabled = !!applyContextToFunctionOrConstant(
+      this.definition.disabled,
+      context,
+      this.disabled
+    );
+    this.icon = applyContextToFunctionOrConstant(
+      this.definition.icon,
+      context,
+      this.icon
+    );
+    this.label = applyContextToFunctionOrConstant(
+      this.definition.label,
+      context,
+      this.label
+    )!;
+    this.tooltip = applyContextToFunctionOrConstant(
+      this.definition.tooltip,
+      context,
+      this.tooltip
+    )!;
+    this.tooltipDisabled = !!applyContextToFunctionOrConstant(
+      this.definition.tooltipDisabled,
+      context,
+      this.tooltipDisabled
+    );
+    this.confirm = applyContextToFunctionOrConstant(
+      this.definition.confirm,
+      context,
+      this.confirm
+    )!;
+    this.color = applyContextToFunctionOrConstant(
+      this.definition.theme,
+      context,
+      this.color
+    ) as any;
+    this.action = applyContextToFunctionOrConstant(
+      this.definition.action,
+      context,
+      this.action
+    );
 
     if (this.definition.hide) {
-      this.show = !applyContextToFunctionOrConstant(this.definition.hide, context, this.show);
+      this.show = !applyContextToFunctionOrConstant(
+        this.definition.hide,
+        context,
+        this.show
+      );
     }
 
     if (this.definition.show) {
-      this.show = !!applyContextToFunctionOrConstant(this.definition.show, context, this.show);
+      this.show = !!applyContextToFunctionOrConstant(
+        this.definition.show,
+        context,
+        this.show
+      );
     }
   }
 
   public contextAllChange(contextAll: any[][] = []) {
     this.cdr.detach();
 
-    this.show     = false;
+    this.show = false;
     this.disabled = true;
 
     if (contextAll.length) {
-      this.contextChange(contextAll[ 0 ]);
+      this.contextChange(contextAll[0]);
     }
 
     for (const context of contextAll) {
-      this.disabled = !!applyContextToFunctionOrConstant(this.definition.disabled, context, this.disabled);
+      this.disabled = !!applyContextToFunctionOrConstant(
+        this.definition.disabled,
+        context,
+        this.disabled
+      );
       if (this.definition.hide) {
-        this.show = !applyContextToFunctionOrConstant(this.definition.hide, context, this.show);
+        this.show = !applyContextToFunctionOrConstant(
+          this.definition.hide,
+          context,
+          this.show
+        );
       }
 
       if (this.definition.show) {
-        this.show = !!applyContextToFunctionOrConstant(this.definition.show, context, this.show);
+        this.show = !!applyContextToFunctionOrConstant(
+          this.definition.show,
+          context,
+          this.show
+        );
       }
     }
 
@@ -215,9 +275,16 @@ export class ButtonComponent extends MatButton implements OnInit, OnChanges, OnD
       this.contextChange();
     }
     this.updateClasses();
-    this._confirmDirective = new ConfirmDirective(this.overlay, this.elementRef);
-    this._subscription.add(this._confirmDirective.unconfirmed.subscribe(this.unconfirmed$));
-    this._subscription.add(this._confirmDirective.confirmed.subscribe(this.confirm));
+    this._confirmDirective = new ConfirmDirective(
+      this.overlay,
+      this.elementRef
+    );
+    this._subscription.add(
+      this._confirmDirective.unconfirmed.subscribe(this.unconfirmed$)
+    );
+    this._subscription.add(
+      this._confirmDirective.confirmed.subscribe(this.confirm)
+    );
   }
 
   @HostListener('click')
@@ -227,14 +294,12 @@ export class ButtonComponent extends MatButton implements OnInit, OnChanges, OnD
     }
     const actions = this.getActions();
     if (actions.length) {
-      actions.forEach(action => {
+      actions.forEach((action) => {
         this.emitClick(action);
       });
     } else {
-
       this.emitClick(null);
     }
-
   }
 
   public emitClick($event: Action | null): void {
@@ -246,25 +311,27 @@ export class ButtonComponent extends MatButton implements OnInit, OnChanges, OnD
   public getActions(): Action[] {
     if (this.contextAll && this.contextAll.length) {
       return this.contextAll
-                 .map(context => applyContextToFunctionOrConstant(this.definition.action, context, null))
-                 .filter(Boolean) as Action[];
+        .map((context) =>
+          applyContextToFunctionOrConstant(
+            this.definition.action,
+            context,
+            null
+          )
+        )
+        .filter(Boolean) as Action[];
     } else if (this.action) {
-      return [ this.action ];
+      return [this.action];
     }
     return [];
   }
 
   public _hasHostAttributes(...attributes: string[]): boolean {
-
-    const descriptor    = Object.getOwnPropertyDescriptor(this, 'definition');
+    const descriptor = Object.getOwnPropertyDescriptor(this, 'definition');
     const hasDefinition = !!descriptor && descriptor.hasOwnProperty('value');
 
     if (hasDefinition) {
-
       for (const attribute of attributes) {
-
         switch (attribute) {
-
           case 'mat-icon-button':
             if (this.definition.type === ButtonTypes.Icon) {
               return true;
@@ -290,19 +357,19 @@ export class ButtonComponent extends MatButton implements OnInit, OnChanges, OnD
             break;
 
           // TODO : add support for all mat button types
-
         }
-
       }
-
     }
 
     return super._hasHostAttributes(...attributes);
   }
 
   /** Whether the button is icon button. */
-  public isIconButton: boolean  = this._hasHostAttributes('mat-icon-button');
-  public isRoundButton: boolean = this._hasHostAttributes('mat-fab', 'mat-mini-fab');
+  public isIconButton: boolean = this._hasHostAttributes('mat-icon-button');
+  public isRoundButton: boolean = this._hasHostAttributes(
+    'mat-fab',
+    'mat-mini-fab'
+  );
 
   public ngOnDestroy() {
     super.ngOnDestroy();
@@ -311,9 +378,8 @@ export class ButtonComponent extends MatButton implements OnInit, OnChanges, OnD
   }
 
   public updateClasses(): void {
-
     this.isRoundButton = this._hasHostAttributes('mat-fab', 'mat-mini-fab');
-    this.isIconButton  = this._hasHostAttributes('mat-icon-button');
+    this.isIconButton = this._hasHostAttributes('mat-icon-button');
 
     for (const attr of BUTTON_HOST_ATTRIBUTES) {
       if (this._hasHostAttributes(attr)) {
@@ -325,6 +391,4 @@ export class ButtonComponent extends MatButton implements OnInit, OnChanges, OnD
       this.color = DEFAULT_ROUND_BUTTON_COLOR;
     }
   }
-
-
 }

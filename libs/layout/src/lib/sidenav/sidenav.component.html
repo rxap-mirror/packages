@@ -4,7 +4,7 @@
        fxLayoutAlign="space-between stretch">
     <ng-template [ngIf]="sidenavHeaderDirective?.template">
       <div fxFlex="nogrow" class="header" [fxHide]="sidenav.collapsed$ | async">
-        <ng-container *ngTemplateOutlet="sidenavHeaderDirective?.template"></ng-container>
+        <ng-container *ngTemplateOutlet="sidenavHeaderDirective?.template ?? null"></ng-container>
       </div>
       <mat-divider fxFlex="nogrow" [fxHide]="sidenav.collapsed$ | async"></mat-divider>
     </ng-template>
@@ -19,10 +19,10 @@
         <span [fxHide]="sidenav.collapsed$ | async" class="label" fxFlex="grow" i18n="@@rxap.layout.navigation.collapse-sidebar">Collapse sidebar</span>
       </span>
     </button>
-    <ng-template [ngIf]="sidenavFooterDirective?.template">
+    <ng-template [ngIf]="sidenavFooterDirective?.template ?? null">
       <mat-divider fxFlex="nogrow" [fxHide]="sidenav.collapsed$ | async"></mat-divider>
       <div fxFlex="nogrow" class="footer" [fxHide]="sidenav.collapsed$ | async">
-        <ng-container *ngTemplateOutlet="sidenavFooterDirective?.template"></ng-container>
+        <ng-container *ngTemplateOutlet="sidenavFooterDirective?.template ?? null"></ng-container>
       </div>
     </ng-template>
   </div>

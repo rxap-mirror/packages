@@ -21,7 +21,6 @@ yarn add @rxap/mixin @rxap/utilities@^12.0.1
 ```
 
 **ng add**
-
 ```
 ng add @rxap/mixin
 ```
@@ -29,6 +28,7 @@ ng add @rxap/mixin
 # Get started
 
 TODO
+
 
 # Guides
 
@@ -38,27 +38,40 @@ with ease.
 
 #### Basic example
 
-&#x60;&#x60;&#x60;typescript class DisableFeature {
+&#x60;&#x60;&#x60;typescript
+class DisableFeature {
 
-// will not be mixin the Concrete class public disabled: boolean &#x3D; false;
+  // will not be mixin the Concrete class
+  public disabled: boolean &#x3D; false;
 
-public disable(): void { this.disabled &#x3D; true; }
+  public disable(): void {
+    this.disabled &#x3D; true;
+  }
 
-public enable(): void { this.disabled &#x3D; false; }
+  public enable(): void {
+    this.disabled &#x3D; false;
+  }
 
-} &#x60;&#x60;&#x60;
+}
+&#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;typescript class ValidateFeature {
+&#x60;&#x60;&#x60;typescript
+class ValidateFeature {
 
-// will not be mixin the Concrete class public isValid: boolean &#x3D; true;
+  // will not be mixin the Concrete class
+  public isValid: boolean &#x3D; true;
 
-public get isInvalid(): boolean { return !this.isValid; }
+  public get isInvalid(): boolean {
+    return !this.isValid;
+  }
 
   public validate(): void {}
 
-} &#x60;&#x60;&#x60;
+}
+&#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;typescript import { mixin } from &#x27;@rxap/mixin&#x27;;
+&#x60;&#x60;&#x60;typescript
+import { mixin } from &#x27;@rxap/mixin&#x27;;
 
 interface Concrete extends DisableFeature, ValidateFeature {}
 
@@ -70,23 +83,32 @@ class Concrete {
   public validate(): boolean {
     return true;
   }
-
-} &#x60;&#x60;&#x60;
+  
+}
+&#x60;&#x60;&#x60;
 
 ###### Resulting Class at runtime
 
-&#x60;&#x60;&#x60;typescript class Concrete {
+&#x60;&#x60;&#x60;typescript
+class Concrete {
   
   public get isInvalid(): boolean {
     return !this.isValid;
   }
+  
+  public validate(): boolean {
+    return true;
+  }
+  
+  public disable(): void {
+    this.disabled &#x3D; true;
+  }
 
-public validate(): boolean { return true; }
-
-public disable(): void { this.disabled &#x3D; true; }
-
-public enable(): void { this.disabled &#x3D; false; }
-
-} &#x60;&#x60;&#x60;
+  public enable(): void {
+    this.disabled &#x3D; false;
+  }
+  
+}
+&#x60;&#x60;&#x60;
 
 

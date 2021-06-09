@@ -1,20 +1,12 @@
-import {
-  Component,
-  ElementRef,
-  Input
-} from '@angular/core';
-import {
-  coerceBoolean,
-  Required
-} from '@rxap/utilities';
+import { Component, ElementRef, Input, Inject } from '@angular/core';
+import { coerceBoolean, Required } from '@rxap/utilities';
 
 @Component({
-  selector:    'rxap-table-column-option',
+  selector: 'rxap-table-column-option',
   templateUrl: './table-column-option.component.html',
-  styleUrls:   [ './table-column-option.component.css' ]
+  styleUrls: ['./table-column-option.component.css'],
 })
 export class TableColumnOptionComponent {
-
   @Input()
   @Required
   public name!: string;
@@ -51,8 +43,10 @@ export class TableColumnOptionComponent {
     this._hidden = !value;
   }
 
-  constructor(private _element: ElementRef<HTMLElement>) {
-  }
+  constructor(
+    @Inject(ElementRef)
+    private _element: ElementRef<HTMLElement>
+  ) {}
 
   public toggle(): void {
     this.active = !this.active;
@@ -65,5 +59,4 @@ export class TableColumnOptionComponent {
   public deactivate() {
     this.active = false;
   }
-
 }

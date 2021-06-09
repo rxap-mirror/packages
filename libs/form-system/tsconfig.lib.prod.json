@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "extends": "./tsconfig.lib.json",
   "compilerOptions": {
@@ -18,9 +17,10 @@
       "@rxap/mixin": [
         "dist/libs/mixin"
       ]
-    }
+    },
+    "declarationMap": false
   },
   "angularCompilerOptions": {
-    "enableIvy": true
+    "compilationMode": "partial"
   }
 }

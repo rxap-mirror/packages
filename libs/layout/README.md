@@ -21,7 +21,6 @@ yarn add @rxap/layout @rxap/authentication@^12.0.1 @rxap/components@^12.0.1 @rxa
 ```
 
 **ng add**
-
 ```
 ng add @rxap/layout
 ```
@@ -29,6 +28,7 @@ ng add @rxap/layout
 # Get started
 
 TODO
+
 
 # Guides
 

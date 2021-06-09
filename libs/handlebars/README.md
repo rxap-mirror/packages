@@ -21,7 +21,6 @@ yarn add @rxap/handlebars
 ```
 
 **ng add**
-
 ```
 ng add @rxap/handlebars
 ```
@@ -29,6 +28,7 @@ ng add @rxap/handlebars
 # Get started
 
 TODO
+
 
 # Guides
 
