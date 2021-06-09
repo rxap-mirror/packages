@@ -5,7 +5,7 @@
     <scripts>
       <script value="lerna:publish"/>
     </scripts>
-    <arguments value="from-package --ignore-scripts"/>
+    <arguments value="from-package --ignore-scripts --registry https://npm.rxap.dev"/>
     <node-interpreter value="node"/>
     <envs/>
     <method v="2"/>
