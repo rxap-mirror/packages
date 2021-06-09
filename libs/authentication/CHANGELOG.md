@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/authentication@11.1.2...@rxap/authentication@12.0.2) (2021-06-09)
+
+
+### Bug Fixes
+
+* add readme generator ([cccdf15](https://gitlab.com/rxap/packages/commit/cccdf155b83de02f45feb20ef6cc28531690d3cb))
+
+
+
+
+
 ## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/authentication@12.0.0...@rxap/authentication@12.0.1) (2021-05-24)
 
 
