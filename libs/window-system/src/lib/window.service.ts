@@ -5,17 +5,14 @@ import {
   Inject,
   ViewContainerRef,
   InjectFlags,
-  Optional
+  Optional,
 } from '@angular/core';
 import {
   WindowConfig,
   DEFAULT_WINDOW_CONFIG,
-  WindowSettings
+  WindowSettings,
 } from './window-config';
-import {
-  OverlayConfig,
-  Overlay
-} from '@angular/cdk/overlay';
+import { OverlayConfig, Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { WindowRef } from './window-ref';
 import {
@@ -23,26 +20,18 @@ import {
   RXAP_WINDOW_CONTAINER_CONTEXT,
   RXAP_WINDOW_REF,
   RXAP_WINDOW_DEFAULT_SETTINGS,
-  RXAP_WINDOW_DATA
+  RXAP_WINDOW_DATA,
 } from './tokens';
-import {
-  WindowContext,
-  WindowContainerContext
-} from './window-context';
-import {
-  tap,
-  take,
-  finalize
-} from 'rxjs/operators';
+import { WindowContext, WindowContainerContext } from './window-context';
+import { tap, take, finalize } from 'rxjs/operators';
 import { DefaultWindowComponent } from './default-window/default-window.component';
-import { uuid } from '@rxap/utilities';
+import { v4 as uuid } from 'uuid';
 import { GetWindowStartPos } from './utilities';
 import { Subject } from 'rxjs';
 import { LoadingIndicatorService } from '@rxap/services';
 
 @Injectable({ providedIn: 'root' })
 export class WindowService {
-
   public get hasActiveWindows(): boolean {
     return this.active.size !== 0;
   }
@@ -56,12 +45,13 @@ export class WindowService {
   }
 
   public readonly activeCount$ = new Subject<number>();
-  private readonly active      = new Map<string, WindowRef<any>>();
+  private readonly active = new Map<string, WindowRef<any>>();
 
   constructor(
     @Inject(Injector) private readonly injector: Injector,
     @Inject(Overlay) private readonly overlay: Overlay,
-    @Inject(ComponentFactoryResolver) private readonly componentFactoryResolver: ComponentFactoryResolver,
+    @Inject(ComponentFactoryResolver)
+    private readonly componentFactoryResolver: ComponentFactoryResolver,
     @Optional()
     @Inject(RXAP_WINDOW_DEFAULT_SETTINGS)
     private readonly defaultWindowSettings?: WindowSettings
@@ -85,13 +75,12 @@ export class WindowService {
   }
 
   public open<D, T>(config: WindowConfig<D, T>): WindowRef<D> {
-
     // Override default configuration
     const windowConfig = {
       id: uuid(),
       ...DEFAULT_WINDOW_CONFIG,
       ...(this.defaultWindowSettings ?? {}),
-      ...config
+      ...config,
     };
 
     if (this.has(windowConfig.id)) {
@@ -105,57 +94,64 @@ export class WindowService {
     const windowRef = new WindowRef<D>(overlayRef, this.overlay, windowConfig);
 
     const context: WindowContext<any> = {
-      id:   windowConfig.id,
+      id: windowConfig.id,
       overlayRef,
       windowRef,
-      data: windowConfig.data
+      data: windowConfig.data,
     };
 
     const containerContext: WindowContainerContext<any> = {
-      template:  windowConfig.template,
-      component: windowConfig.component
+      template: windowConfig.template,
+      component: windowConfig.component,
     };
 
     const injector = Injector.create({
-      parent:    windowConfig.injector ?? this.injector,
+      parent: windowConfig.injector ?? this.injector,
       providers: [
         {
-          provide:  RXAP_WINDOW_CONTAINER_CONTEXT,
-          useValue: containerContext
+          provide: RXAP_WINDOW_CONTAINER_CONTEXT,
+          useValue: containerContext,
         },
         {
-          provide:  RXAP_WINDOW_CONTEXT,
-          useValue: context
+          provide: RXAP_WINDOW_CONTEXT,
+          useValue: context,
         },
         {
           provide: RXAP_WINDOW_DATA,
-          useValue: windowConfig.data
+          useValue: windowConfig.data,
         },
         {
-          provide:  RXAP_WINDOW_REF,
-          useValue: windowRef
+          provide: RXAP_WINDOW_REF,
+          useValue: windowRef,
         },
         {
-          provide:  LoadingIndicatorService,
-          useClass: LoadingIndicatorService
-        }
+          provide: LoadingIndicatorService,
+          useClass: LoadingIndicatorService,
+        },
       ],
-      name:      windowConfig?.injectorName ?? 'WindowService'
+      name: windowConfig?.injectorName ?? 'WindowService',
     });
 
     const containerPortal = new ComponentPortal(
       DefaultWindowComponent,
-      injector.get(ViewContainerRef, null, InjectFlags.Optional) ?? windowConfig.viewContainerRef ?? null,
+      injector.get(ViewContainerRef, null, InjectFlags.Optional) ??
+        windowConfig.viewContainerRef ??
+        null,
       injector,
-      injector.get(ComponentFactoryResolver, null, InjectFlags.Optional) ?? windowConfig.componentFactoryResolver ?? this.componentFactoryResolver
+      injector.get(ComponentFactoryResolver, null, InjectFlags.Optional) ??
+        windowConfig.componentFactoryResolver ??
+        this.componentFactoryResolver
     );
 
     overlayRef.attach(containerPortal);
 
-    overlayRef.backdropClick().pipe(
-      take(1),
-      tap(() => windowRef.complete())
-    ).subscribe();
+    overlayRef
+      .backdropClick()
+      .pipe(
+        take(1),
+        tap(() => windowRef.complete())
+      )
+      .subscribe();
 
     windowRef.pipe(finalize(() => this.remove(windowConfig.id))).subscribe();
 
@@ -175,28 +171,36 @@ export class WindowService {
     this.activeCount$.next(this.active.size);
   }
 
-  private createOverlay({ panelClass, width, height, minHeight, minWidth, maxHeight, maxWidth }: OverlayConfig) {
-
+  private createOverlay({
+    panelClass,
+    width,
+    height,
+    minHeight,
+    minWidth,
+    maxHeight,
+    maxWidth,
+  }: OverlayConfig) {
     const startPos = GetWindowStartPos();
 
     const positionStrategy = this.overlay
-                                 .position()
-                                 .global().top(startPos.top).left(startPos.left);
+      .position()
+      .global()
+      .top(startPos.top)
+      .left(startPos.left);
 
     const overlayConfig = new OverlayConfig({
-      hasBackdrop:    false,
+      hasBackdrop: false,
       panelClass,
       scrollStrategy: this.overlay.scrollStrategies.block(),
       width,
       height,
-      maxWidth:       maxWidth ?? this.defaultWindowSettings?.maxWidth ?? '100vw',
-      maxHeight:      maxHeight ?? this.defaultWindowSettings?.maxHeight ?? '100vh',
-      minWidth:       minWidth ?? this.defaultWindowSettings?.minWidth ?? '384px',
-      minHeight:      minHeight ?? this.defaultWindowSettings?.minHeight ?? '192px',
-      positionStrategy
+      maxWidth: maxWidth ?? this.defaultWindowSettings?.maxWidth ?? '100vw',
+      maxHeight: maxHeight ?? this.defaultWindowSettings?.maxHeight ?? '100vh',
+      minWidth: minWidth ?? this.defaultWindowSettings?.minWidth ?? '384px',
+      minHeight: minHeight ?? this.defaultWindowSettings?.minHeight ?? '192px',
+      positionStrategy,
     });
 
     return this.overlay.create(overlayConfig);
   }
-
 }
