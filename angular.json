@@ -3647,6 +3647,7 @@
             "targets": [
               "environment:update-package-group",
               "environment:build:production",
+              "environment:scss-bundle",
               "environment:schematics"
             ]
           }
@@ -3693,7 +3694,9 @@
             "config": {
               "configFolder": "libs/environment/.storybook"
             },
-            "staticDir": ["./.storybook/public"]
+            "staticDir": [
+              "./.storybook/public"
+            ]
           },
           "configurations": {
             "ci": {
