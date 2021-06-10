@@ -5,8 +5,6 @@
     "entryFile": "src/index.ts"
   },
   "allowedNonPeerDependencies": [
-    "uuid",
-    "ramda",
     "reflect-metadata"
   ]
 }
