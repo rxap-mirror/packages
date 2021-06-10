@@ -1,18 +1,12 @@
 import { IdOrInstanceOrToken } from './types';
-import {
-  Injector,
-  Injectable,
-  INJECTOR,
-  Inject,
-  InjectFlags
-} from '@angular/core';
+import { Injectable, INJECTOR, Inject, InjectFlags } from '@angular/core';
+import type { Injector } from '@angular/core';
 import { BaseDefinitionMetadata } from './definition.metadata';
 import { BaseDefinition } from './definition';
 import { RxapDefinitionError } from './error';
 
 @Injectable({ providedIn: 'root' })
 export class DefinitionLoader {
-
   constructor(
     @Inject(INJECTOR)
     private readonly injector: Injector
@@ -25,9 +19,11 @@ export class DefinitionLoader {
     notFoundValue?: Definition,
     flags?: InjectFlags
   ): Definition {
-
     if (typeof definitionIdOrInstanceOrInjectionToken === 'string') {
-      throw new RxapDefinitionError('Creating a definition instance from the definition id is not supported by the DefinitionLoader service', '');
+      throw new RxapDefinitionError(
+        'Creating a definition instance from the definition id is not supported by the DefinitionLoader service',
+        ''
+      );
     }
 
     if (definitionIdOrInstanceOrInjectionToken instanceof BaseDefinition) {
@@ -37,8 +33,10 @@ export class DefinitionLoader {
       return definitionIdOrInstanceOrInjectionToken;
     }
 
-    return injector.get<Definition>(definitionIdOrInstanceOrInjectionToken, notFoundValue, flags);
-
+    return injector.get<Definition>(
+      definitionIdOrInstanceOrInjectionToken,
+      notFoundValue,
+      flags
+    );
   }
-
 }

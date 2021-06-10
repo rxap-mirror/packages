@@ -1,17 +1,7 @@
-import {
-  Injectable,
-  Inject,
-  Optional
-} from '@angular/core';
+import { Injectable, Inject, Optional } from '@angular/core';
 import { AngularFireMessaging } from '@angular/fire/messaging';
-import {
-  BehaviorSubject,
-  ReplaySubject
-} from 'rxjs';
-import {
-  tap,
-  mergeMapTo
-} from 'rxjs/operators';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { tap, mergeMapTo } from 'rxjs/operators';
 import { RXAP_REQUEST_CLOUD_MESSAGING_TOKEN } from './tokens';
 
 export interface Message {
@@ -26,16 +16,25 @@ export interface Message {
 
 @Injectable({ providedIn: 'root' })
 export class RxapFirebaseMessagingService {
-
   public token$ = new ReplaySubject<string | null>(1);
 
   constructor(
+    @Inject(AngularFireMessaging)
     public readonly messaging: AngularFireMessaging,
-    @Optional() @Inject(RXAP_REQUEST_CLOUD_MESSAGING_TOKEN) public readonly requestPermissionImminently: boolean = false
+    @Optional()
+    @Inject(RXAP_REQUEST_CLOUD_MESSAGING_TOKEN)
+    public readonly requestPermissionImminently: boolean = false
   ) {
-    this.messaging.messages.pipe(
-      tap((message: any) => this.showNotification(message.notification.title, message.notification.body))
-    ).subscribe();
+    this.messaging.messages
+      .pipe(
+        tap((message: any) =>
+          this.showNotification(
+            message.notification.title,
+            message.notification.body
+          )
+        )
+      )
+      .subscribe();
     if (this.requestPermissionImminently) {
       this.requestPermission();
     }
@@ -43,12 +42,8 @@ export class RxapFirebaseMessagingService {
 
   public requestPermission() {
     console.log('request notification permission');
-    this
-      .messaging
-      .requestPermission
-      .pipe(
-        mergeMapTo(this.messaging.tokenChanges)
-      )
+    this.messaging.requestPermission
+      .pipe(mergeMapTo(this.messaging.tokenChanges))
       .subscribe(
         (token) => {
           console.info('cloud messaging permission is granted');
@@ -72,5 +67,4 @@ export class RxapFirebaseMessagingService {
       console.warn('Notification permission is not granted');
     }
   }
-
 }

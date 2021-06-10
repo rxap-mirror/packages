@@ -4,6 +4,7 @@ import {
   Input,
   ElementRef,
   Renderer2,
+  Inject,
 } from '@angular/core';
 import {
   BackgroundImageDirective,
@@ -32,9 +33,13 @@ export class AvatarBackgroundImageDirective extends BackgroundImageDirective {
   public repeat = BackgroundRepeatOptions.NO_REPEAT;
 
   constructor(
+    @Inject(ElementRef)
     host: ElementRef,
+    @Inject(Renderer2)
     renderer: Renderer2,
+    @Inject(ImageLoaderService)
     imageLoader: ImageLoaderService,
+    @Inject(AvatarImageService)
     private readonly avatarImage: AvatarImageService
   ) {
     super(host, renderer, imageLoader);
