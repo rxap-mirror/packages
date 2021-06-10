@@ -11,4 +11,5 @@ export interface RoutingSchema {
   overwrite: boolean;
   feature: string | undefined;
   templateBasePath: string | undefined;
+  skipTsFiles: boolean | undefined;
 }

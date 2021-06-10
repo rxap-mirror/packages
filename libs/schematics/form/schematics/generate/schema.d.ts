@@ -1,6 +1,7 @@
 import { FormElement } from './elements/form.element';
 
 export interface GenerateSchema {
+  skipTsFiles: boolean | undefined;
   project: string;
   path: string | undefined;
   template: string;

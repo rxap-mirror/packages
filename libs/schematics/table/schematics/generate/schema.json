@@ -33,6 +33,11 @@
       "description": "",
       "default": false
     },
+    "skipTsFiles": {
+      "type": "boolean",
+      "description": "",
+      "default": false
+    },
     "project": {
       "type": "string",
       "description": ""
