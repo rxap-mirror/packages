@@ -42,10 +42,7 @@ export abstract class FormFieldElement extends ControlElement {
       );
     }
     const nodes: Array<WithTemplate | string> = [
-      NodeFactory(
-        'mat-label',
-        `i18n`
-      )('\n' + (this.label ?? capitalize(this.name)) + '\n'),
+      NodeFactory('mat-label', `i18n`)(this.label ?? capitalize(this.name)),
       this.innerTemplate(),
     ];
     if (this.suffix) {

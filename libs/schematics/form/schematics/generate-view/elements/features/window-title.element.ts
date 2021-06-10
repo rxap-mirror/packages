@@ -20,7 +20,7 @@ export class WindowTitleElement extends FormFeatureElement {
     return NodeFactory(
       'ng-template',
       'rxapWindowTitle'
-    )(NodeFactory('h3', 'fxFlex="nogrow"', 'i18n')('\n' + this.title + '\n'));
+    )(NodeFactory('h3', 'fxFlex="nogrow"', 'i18n')(this.title));
   }
 
   public handleComponentModule({
