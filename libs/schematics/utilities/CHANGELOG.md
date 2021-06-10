@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@12.0.3...@rxap/schematics-utilities@12.0.4) (2021-06-10)
+
+
+### Bug Fixes
+
+* warp angularJson file in AngularUpdater wrapper ([bd15ff2](https://gitlab.com/rxap/packages/commit/bd15ff284b7b696ad5ddb0153c783b75038fe015))
+
+
+
+
+
 ## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@12.0.2...@rxap/schematics-utilities@12.0.3) (2021-06-10)
 
 
