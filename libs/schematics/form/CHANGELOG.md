@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@12.0.3...@rxap/schematics-form@12.0.4) (2021-06-10)
+
+
+### Bug Fixes
+
+* remove wrapped newline ([a5e96e2](https://gitlab.com/rxap/packages/commit/a5e96e2afb4fccbcab715e0fc16602ac66dac879))
+
+
+
+
+
 ## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@12.0.2...@rxap/schematics-form@12.0.3) (2021-06-10)
 
 
