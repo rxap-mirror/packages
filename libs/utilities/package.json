@@ -15,9 +15,7 @@
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "description": "A collection of utility functions, types and interfaces.",
-  "dependencies": {
-    "ramda": "0.27.1"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"

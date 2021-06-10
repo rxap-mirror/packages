@@ -1,7 +1,4 @@
-import {
-  FormDirective,
-  FormDefinition
-} from '@rxap/forms';
+import { FormDirective, FormDefinition } from '@rxap/forms';
 import {
   ChangeDetectorRef,
   Directive,
@@ -9,32 +6,30 @@ import {
   Inject,
   OnDestroy,
   OnInit,
-  Optional
+  Optional,
 } from '@angular/core';
 import { TableFilterService } from './table-filter.service';
 import { Subscription } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map
-} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { RXAP_TABLE_FILTER_FORM_DEFINITION } from './tokens';
 import { ControlContainer } from '@angular/forms';
-import { equals } from 'ramda';
+import { equals } from '@rxap/utilities';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
-  selector:  'table[rxap-filter-header-row]',
+  selector: 'table[rxap-filter-header-row]',
   providers: [
     {
-      provide:     ControlContainer,
+      provide: ControlContainer,
       // ignore coverage
-      useExisting: forwardRef(() => FilterHeaderRowDirective)
-    }
-  ]
+      useExisting: forwardRef(() => FilterHeaderRowDirective),
+    },
+  ],
 })
-export class FilterHeaderRowDirective extends FormDirective implements OnInit, OnDestroy {
-
+export class FilterHeaderRowDirective
+  extends FormDirective
+  implements OnInit, OnDestroy
+{
   private _subscription?: Subscription;
 
   constructor(
@@ -42,21 +37,24 @@ export class FilterHeaderRowDirective extends FormDirective implements OnInit, O
     cdr: ChangeDetectorRef,
     @Optional()
     @Inject(RXAP_TABLE_FILTER_FORM_DEFINITION)
-      formDefinition: FormDefinition | null
+    formDefinition: FormDefinition | null
   ) {
     super(cdr, formDefinition);
   }
 
   public ngOnInit() {
     super.ngOnInit();
-    this._subscription = this
-      .form
-      .value$
+    this._subscription = this.form.value$
       .pipe(
         debounceTime(1000),
-        map(values => Object.entries(values)
-                            .filter(([ key, value ]) => value !== null && value !== undefined && value !== '')
-                            .reduce((obj, [ key, value ]) => ({ ...obj, [ key ]: value }), {})),
+        map((values) =>
+          Object.entries(values)
+            .filter(
+              ([key, value]) =>
+                value !== null && value !== undefined && value !== ''
+            )
+            .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
+        ),
         distinctUntilChanged((a, b) => equals(a)(b))
       )
       .subscribe(this.tableFilter.change);
@@ -65,5 +63,4 @@ export class FilterHeaderRowDirective extends FormDirective implements OnInit, O
   public ngOnDestroy() {
     this._subscription?.unsubscribe();
   }
-
 }

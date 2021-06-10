@@ -3,31 +3,23 @@ import {
   BaseDataSourceMetadata,
   RXAP_DATA_SOURCE_METADATA,
 } from '@rxap/data-source';
-import {
-  Injectable,
-  Inject,
-  InjectionToken,
-  Optional,
-} from '@angular/core';
+import { Injectable, Inject, InjectionToken, Optional } from '@angular/core';
 import { AbstractControl } from '@rxap/forms';
-import {
-  startWith,
-  shareReplay,
-  distinctUntilChanged,
-} from 'rxjs/operators';
-import { equals } from 'ramda';
+import { startWith, shareReplay, distinctUntilChanged } from 'rxjs/operators';
+import { equals } from '@rxap/utilities';
 
-export const RXAP_FORM_CONTROL_SOURCE = new InjectionToken('rxap/forms/data-source');
+export const RXAP_FORM_CONTROL_SOURCE = new InjectionToken(
+  'rxap/forms/data-source'
+);
 
 @Injectable()
 export class ControlDataSource extends BaseDataSource {
-
   constructor(
     @Inject(RXAP_FORM_CONTROL_SOURCE)
     private readonly control: AbstractControl,
     @Optional()
     @Inject(RXAP_DATA_SOURCE_METADATA)
-      metadata: BaseDataSourceMetadata | null = null,
+    metadata: BaseDataSourceMetadata | null = null
   ) {
     super(metadata);
   }
@@ -43,10 +35,9 @@ export class ControlDataSource extends BaseDataSource {
     this._data$ = this.control.valueChanges.pipe(
       startWith(this.control.value),
       distinctUntilChanged((a, b) => equals(a, b)),
-      shareReplay(1),
+      shareReplay(1)
     );
   }
-
 }
 
 export function controlDataSource(control: AbstractControl): ControlDataSource {
