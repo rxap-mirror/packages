@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/utilities@12.0.2...@rxap/utilities@12.0.3) (2021-06-10)
+
+
+### Bug Fixes
+
+* remove ramda dependency ([cbaff8f](https://gitlab.com/rxap/packages/commit/cbaff8f5cc347ffb423468d663af64569da90d81))
+* remove rxap uuid function ([0a7e17b](https://gitlab.com/rxap/packages/commit/0a7e17b89470bb946b7806ac074a681838195c91))
+
+
+
+
+
 ## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/utilities@11.7.4...@rxap/utilities@12.0.2) (2021-06-09)
 
 
