@@ -4,14 +4,14 @@ import {
   ElementChildTextContent,
   ElementChild,
   ElementRequired,
-  ElementAttribute
+  ElementAttribute,
 } from '@rxap/xml-parser/decorators';
 import { NodeElement } from './node.element';
 import {
   HandleComponentModule,
   HandleComponent,
   ToValueContext,
-  AddNgModuleImport
+  AddNgModuleImport,
 } from '@rxap/schematics-ts-morph';
 import { ParsedElement } from '@rxap/xml-parser';
 import { Rule } from '@angular-devkit/schematics';
@@ -19,22 +19,26 @@ import { SourceFile } from 'ts-morph';
 import {
   NodeFactory,
   WithTemplate,
-  StringOrFactory
+  StringOrFactory,
 } from '@rxap/schematics-html';
 
 @ElementDef('content')
 export class ContentElement extends NodeElement {
-
   public template(): string {
     return NodeFactory('mat-card-content')(this.nodes);
   }
-
 }
 
 @ElementExtends(NodeElement)
 @ElementDef('card')
-export class CardElement implements WithTemplate, ParsedElement<Rule>, HandleComponentModule, HandleComponent, NodeElement {
-
+export class CardElement
+  implements
+    WithTemplate,
+    ParsedElement<Rule>,
+    HandleComponentModule,
+    HandleComponent,
+    NodeElement
+{
   public __tag!: string;
   public __parent!: NodeElement;
 
@@ -65,7 +69,7 @@ export class CardElement implements WithTemplate, ParsedElement<Rule>, HandleCom
       if (this.i18n) {
         i18n += `.${this.i18n}`;
       }
-      nodes.push(NodeFactory('mat-card-title', `i18n="${i18n}"`)(this.title));
+      nodes.push(NodeFactory('mat-card-title', `i18n`)(this.title));
     }
 
     nodes.push(this.content);
@@ -73,11 +77,19 @@ export class CardElement implements WithTemplate, ParsedElement<Rule>, HandleCom
     return NodeFactory('mat-card', `fxFlex="${this.flex}"`)(nodes);
   }
 
-  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
+  public handleComponent({
+    project,
+    sourceFile,
+    options,
+  }: ToValueContext & { sourceFile: SourceFile }): void {
     this.content.handleComponent({ project, options, sourceFile });
   }
 
-  public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }): void {
+  public handleComponentModule({
+    project,
+    sourceFile,
+    options,
+  }: ToValueContext & { sourceFile: SourceFile }): void {
     AddNgModuleImport(sourceFile, 'MatCardModule', '@angular/material/card');
     this.content.handleComponentModule({ project, options, sourceFile });
   }
@@ -89,5 +101,4 @@ export class CardElement implements WithTemplate, ParsedElement<Rule>, HandleCom
   public validate(): boolean {
     return true;
   }
-
 }

@@ -1,29 +1,19 @@
 import { ControlElement } from '../control.element';
 import {
   ElementChild,
-  ElementChildTextContent
+  ElementChildTextContent,
 } from '@rxap/xml-parser/decorators';
-import {
-  PrefixElement,
-  SuffixElement
-} from './prefix.element';
+import { PrefixElement, SuffixElement } from './prefix.element';
 import { ErrorsElement } from '../errors.element';
 import { strings } from '@angular-devkit/core';
-import {
-  ToValueContext,
-  AddNgModuleImport,
-} from '@rxap/schematics-ts-morph';
+import { ToValueContext, AddNgModuleImport } from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import { PermissionsElement } from '../features/permissions.element';
-import {
-  NodeFactory,
-  WithTemplate
-} from '@rxap/schematics-html';
+import { NodeFactory, WithTemplate } from '@rxap/schematics-html';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
 export abstract class FormFieldElement extends ControlElement {
-
   @ElementChildTextContent()
   public label?: string;
 
@@ -43,12 +33,20 @@ export abstract class FormFieldElement extends ControlElement {
 
   public template(...attributes: Array<string | (() => string)>): string {
     if (this.hasFeature('permissions')) {
-      const permissionsElement = this.getFeature<PermissionsElement>('permissions');
-      this.innerAttributes.push(...permissionsElement.getAttributes([ 'form', this.controlPath ].join('.')));
+      const permissionsElement =
+        this.getFeature<PermissionsElement>('permissions');
+      this.innerAttributes.push(
+        ...permissionsElement.getAttributes(
+          ['form', this.controlPath].join('.')
+        )
+      );
     }
     const nodes: Array<WithTemplate | string> = [
-      NodeFactory('mat-label', `i18n="@@form.${this.controlPath}.label"`)('\n' + (this.label ?? capitalize(this.name)) + '\n'),
-      this.innerTemplate()
+      NodeFactory(
+        'mat-label',
+        `i18n`
+      )('\n' + (this.label ?? capitalize(this.name)) + '\n'),
+      this.innerTemplate(),
     ];
     if (this.suffix) {
       nodes.push(this.suffix?.template());
@@ -67,11 +65,20 @@ export abstract class FormFieldElement extends ControlElement {
     }
     attributes.push(`data-cy="form.${this.controlPath}"`);
 
-    let node = NodeFactory('mat-form-field', this.flexTemplateAttribute, ...this.attributes, ...attributes)(nodes);
+    let node = NodeFactory(
+      'mat-form-field',
+      this.flexTemplateAttribute,
+      ...this.attributes,
+      ...attributes
+    )(nodes);
 
     if (this.hasFeature('permissions')) {
-      const permissionsElement = this.getFeature<PermissionsElement>('permissions');
-      node = permissionsElement.wrapNode(node, [ 'form', this.controlPath ].join('.'));
+      const permissionsElement =
+        this.getFeature<PermissionsElement>('permissions');
+      node = permissionsElement.wrapNode(
+        node,
+        ['form', this.controlPath].join('.')
+      );
     }
 
     return node;
@@ -79,19 +86,30 @@ export abstract class FormFieldElement extends ControlElement {
 
   protected abstract innerTemplate(): string;
 
-  public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponentModule({
+    project,
+    sourceFile,
+    options,
+  }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponentModule({ project, sourceFile, options });
-    AddNgModuleImport(sourceFile, 'MatFormFieldModule', '@angular/material/form-field');
+    AddNgModuleImport(
+      sourceFile,
+      'MatFormFieldModule',
+      '@angular/material/form-field'
+    );
     this.suffix?.handleComponentModule({ project, sourceFile, options });
     this.prefix?.handleComponentModule({ project, sourceFile, options });
     this.errors?.handleComponentModule({ project, sourceFile, options });
   }
 
-  handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+  handleComponent({
+    project,
+    sourceFile,
+    options,
+  }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponent({ project, sourceFile, options });
     this.suffix?.handleComponent({ project, sourceFile, options });
     this.prefix?.handleComponent({ project, sourceFile, options });
     this.errors?.handleComponent({ project, sourceFile, options });
   }
-
 }

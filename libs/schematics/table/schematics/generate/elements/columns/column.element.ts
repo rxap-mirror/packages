@@ -2,13 +2,10 @@ import {
   ElementAttribute,
   ElementChild,
   ElementDef,
-  ElementRequired
+  ElementRequired,
 } from '@rxap/xml-parser/decorators';
 import { FilterElement } from './filters/filter.element';
-import {
-  ParsedElement,
-  ElementFactory
-} from '@rxap/xml-parser';
+import { ParsedElement, ElementFactory } from '@rxap/xml-parser';
 import { strings } from '@angular-devkit/core';
 import { SourceFile } from 'ts-morph';
 import { TableElement } from '../table.element';
@@ -17,7 +14,7 @@ import {
   HandleComponent,
   HandleComponentModule,
   AddNgModuleImport,
-  ToValueContext
+  ToValueContext,
 } from '@rxap/schematics-ts-morph';
 import { Rule } from '@angular-devkit/schematics';
 import { GenerateSchema } from '../../schema';
@@ -26,8 +23,9 @@ import { DisplayColumn } from '../features/feature.element';
 const { dasherize, classify, camelize, capitalize } = strings;
 
 @ElementDef('column')
-export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule, HandleComponent {
-
+export class ColumnElement
+  implements ParsedElement<Rule>, HandleComponentModule, HandleComponent
+{
   public __tag!: string;
   public __parent!: TableElement;
 
@@ -59,27 +57,11 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
     return this._name ? '?.' + this._name.split('.').join('?.') : '';
   }
 
-  public get i18n(): string {
-    return `@@table.${dasherize(this.__parent.id)}.column.${dasherize(this.name)}.`;
-  }
-
-  public get i18nTitle(): string {
-    return this.i18n + 'title';
-  }
-
-  public get i18nLabel(): string {
-    return this.i18n + 'label';
-  }
-
-  public get i18nPlaceholder(): string {
-    return this.i18n + 'placeholder';
-  }
-
   public displayColumn(): DisplayColumn | DisplayColumn[] | null {
     return {
-      name:   this.name,
+      name: this.name,
       hidden: this.hidden,
-      active: this.active
+      active: this.active,
     };
   }
 
@@ -87,11 +69,12 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
     return `
     <th mat-header-cell
     *matHeaderCellDef
-    ${this.__parent.hasFeature('sort') ? 'mat-sort-header' : ''}
-    i18n="${this.i18nTitle}">
-    ${capitalize(this.name)}
+    ${this.__parent.hasFeature('sort') ? 'mat-sort-header' : ''}>
+    <ng-container i18n>${capitalize(this.name)}</ng-container>
     </th>
-    <td mat-cell *matCellDef="let element">{{ element${this.valueAccessor} }}</td>
+    <td mat-cell *matCellDef="let element">{{ element${
+      this.valueAccessor
+    } }}</td>
     `;
   }
 
@@ -99,8 +82,8 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
     return `
     <th mat-header-cell *matHeaderCellDef>
       <mat-form-field rxapNoPadding>
-        <mat-label i18n="${this.i18nLabel}">${capitalize(this.name)}</mat-label>
-        <input matInput i18n-placeholder="${this.i18nPlaceholder}"
+        <mat-label i18n>${capitalize(this.name)}</mat-label>
+        <input matInput i18n-placeholder
                placeholder="Enter the ${capitalize(this.name)} filter"
                parentControlContainer formControlName="${camelize(this.name)}">
         <button matSuffix rxapInputClearButton mat-icon-button>
@@ -123,26 +106,49 @@ export class ColumnElement implements ParsedElement<Rule>, HandleComponentModule
     return () => {};
   }
 
-  public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
-
+  public handleComponentModule({
+    sourceFile,
+    project,
+    options,
+  }: ToValueContext & { sourceFile: SourceFile }) {
     if (this.filter) {
       AddNgModuleImport(sourceFile, 'MatIconModule', '@angular/material/icon');
-      AddNgModuleImport(sourceFile, 'MatInputModule', '@angular/material/input');
-      AddNgModuleImport(sourceFile, 'MatButtonModule', '@angular/material/button');
-      AddNgModuleImport(sourceFile, 'InputClearButtonDirectiveModule', '@rxap/material-form-system');
-      AddNgModuleImport(sourceFile, 'FormFieldNoPaddingModule', '@rxap/material-directives/form-field');
+      AddNgModuleImport(
+        sourceFile,
+        'MatInputModule',
+        '@angular/material/input'
+      );
+      AddNgModuleImport(
+        sourceFile,
+        'MatButtonModule',
+        '@angular/material/button'
+      );
+      AddNgModuleImport(
+        sourceFile,
+        'InputClearButtonDirectiveModule',
+        '@rxap/material-form-system'
+      );
+      AddNgModuleImport(
+        sourceFile,
+        'FormFieldNoPaddingModule',
+        '@rxap/material-directives/form-field'
+      );
     }
-
   }
 
-  public handleComponent({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
-  }
+  public handleComponent({
+    sourceFile,
+    project,
+    options,
+  }: ToValueContext & { sourceFile: SourceFile }) {}
 
   public createControlElement(): ControlElement {
     if (!this.filter) {
       throw new Error(`The column ${this._name} has not a filter definition.`);
     }
-    return ElementFactory(ControlElement, { id: dasherize(this.name), __tag: 'control' });
+    return ElementFactory(ControlElement, {
+      id: dasherize(this.name),
+      __tag: 'control',
+    });
   }
-
 }
