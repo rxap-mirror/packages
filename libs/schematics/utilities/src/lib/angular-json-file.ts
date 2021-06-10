@@ -1,28 +1,48 @@
 import { Tree } from '@angular-devkit/schematics';
 import { AngularJson } from './angular-json';
-import {
-  GetJsonFile,
-  UpdateJsonFile
-} from './json-file';
-import { PackageJson } from './package-json';
+import { GetJsonFile, UpdateJsonFile } from './json-file';
 import { Project } from './angular-json/project';
+import { CliOptions } from './angular-json/cli-options';
+import { SchematicOptions } from './angular-json/schematic-options';
+import { I18n } from './angular-json/i18n';
 
 export function GetAngularJson(host: Tree): AngularJson {
   return GetJsonFile(host, 'angular.json');
 }
 
 export class AngularProject {
-
   public get prefix(): string | undefined {
     return this._project.prefix;
   }
 
-  constructor(private readonly _project: Project) {}
+  public get cli(): CliOptions | undefined {
+    return this._project.cli;
+  }
 
+  public get schematics(): SchematicOptions | undefined {
+    return this._project.schematics;
+  }
+
+  public get root(): string | undefined {
+    return this._project.root;
+  }
+
+  public get i18n(): I18n | undefined {
+    return this._project.i18n;
+  }
+
+  public get sourceRoot(): string | undefined {
+    return this._project.sourceRoot;
+  }
+
+  public get projectType(): string | undefined {
+    return this._project.projectType;
+  }
+
+  constructor(private readonly _project: Project) {}
 }
 
 export class AngularProjectMap {
-
   private readonly _map = new Map<string, AngularProject>();
 
   constructor(private readonly _projectMap: Record<string, Project>) {
@@ -55,13 +75,13 @@ export class AngularProjectMap {
     }
     return success;
   }
-
 }
 
 export class Angular {
-
   public get defaultProject(): AngularProject | undefined {
-    return this._angular.defaultProject ? this.projects.get(this._angular.defaultProject) : undefined;
+    return this._angular.defaultProject
+      ? this.projects.get(this._angular.defaultProject)
+      : undefined;
   }
 
   public readonly projects: AngularProjectMap;
@@ -72,12 +92,13 @@ export class Angular {
     }
     this.projects = new AngularProjectMap(this._angular.projects!);
   }
-
 }
 
 export function UpdateAngularJson(
-  updaterOrJsonFile: PackageJson | ((angularJson: PackageJson) => void | PromiseLike<void>),
-  space: string | number = 2,
+  updaterOrJsonFile:
+    | AngularJson
+    | ((angularJson: AngularJson) => void | PromiseLike<void>),
+  space: string | number = 2
 ) {
   return UpdateJsonFile(updaterOrJsonFile, 'angular.json', space);
 }
