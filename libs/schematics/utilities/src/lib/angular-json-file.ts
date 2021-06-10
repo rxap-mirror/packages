@@ -5,6 +5,7 @@ import { Project } from './angular-json/project';
 import { CliOptions } from './angular-json/cli-options';
 import { SchematicOptions } from './angular-json/schematic-options';
 import { I18n } from './angular-json/i18n';
+import { SchematicsException } from '@angular-devkit/schematics';
 
 export function GetAngularJson(host: Tree): AngularJson {
   return GetJsonFile(host, 'angular.json');
@@ -95,10 +96,20 @@ export class Angular {
 }
 
 export function UpdateAngularJson(
-  updaterOrJsonFile:
-    | AngularJson
-    | ((angularJson: AngularJson) => void | PromiseLike<void>),
+  updater: (angular: Angular) => void | PromiseLike<void>,
   space: string | number = 2
 ) {
-  return UpdateJsonFile(updaterOrJsonFile, 'angular.json', space);
+  return UpdateJsonFile(
+    async (angularJson: AngularJson) => {
+      try {
+        await updater(new Angular(angularJson));
+      } catch (e) {
+        throw new SchematicsException(
+          `Could not update the angular.json: ${e.message}`
+        );
+      }
+    },
+    'angular.json',
+    space
+  );
 }
