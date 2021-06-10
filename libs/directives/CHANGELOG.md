@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.0.3...@rxap/directives@12.0.4) (2021-06-10)
+
+
+### Bug Fixes
+
+* explicit imports ([373bf4c](https://gitlab.com/rxap/packages/commit/373bf4c739deb42441db92dd6b043b9af723d25f))
+
+
+
+
+
 ## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.0.2...@rxap/directives@12.0.3) (2021-06-09)
 
 **Note:** Version bump only for package @rxap/directives

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/definition@12.0.2...@rxap/definition@12.0.3) (2021-06-10)
+
+
+### Bug Fixes
+
+* explicit imports ([373bf4c](https://gitlab.com/rxap/packages/commit/373bf4c739deb42441db92dd6b043b9af723d25f))
+* remove rxap uuid function ([0a7e17b](https://gitlab.com/rxap/packages/commit/0a7e17b89470bb946b7806ac074a681838195c91))
+
+
+
+
+
 ## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/definition@11.0.11...@rxap/definition@12.0.2) (2021-06-09)
 
 

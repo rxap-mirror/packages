@@ -1,6 +1,6 @@
 {
   "name": "@rxap/utilities",
-  "version": "12.0.2",
+  "version": "12.0.3",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -15,7 +15,6 @@
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "description": "A collection of utility functions, types and interfaces.",
-  "dependencies": {},
   "peerDependencies": {
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.0.4...@rxap/material-table-system@12.0.5) (2021-06-10)
+
+
+### Bug Fixes
+
+* explicit imports ([373bf4c](https://gitlab.com/rxap/packages/commit/373bf4c739deb42441db92dd6b043b9af723d25f))
+* remove ramda dependency ([cbaff8f](https://gitlab.com/rxap/packages/commit/cbaff8f5cc347ffb423468d663af64569da90d81))
+
+
+
+
+
 ## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.0.3...@rxap/material-table-system@12.0.4) (2021-06-09)
 
 
