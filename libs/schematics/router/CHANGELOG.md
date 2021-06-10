@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@12.0.3...@rxap/schematics-router@12.0.4) (2021-06-10)
+
+
+### Bug Fixes
+
+* remove i18n ids generation ([c0909d2](https://gitlab.com/rxap/packages/commit/c0909d2ba1eb2259f781cf3d55b0bd09211f9d68))
+
+
+
+
+
 ## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@12.0.2...@rxap/schematics-router@12.0.3) (2021-06-10)
 
 

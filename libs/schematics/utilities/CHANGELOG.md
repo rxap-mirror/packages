@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@12.0.2...@rxap/schematics-utilities@12.0.3) (2021-06-10)
+
+
+### Bug Fixes
+
+* add some angular project properties ([2c84ebf](https://gitlab.com/rxap/packages/commit/2c84ebfdc4c8a3c2f5619dc7701f82e010bfc82c))
+* use correct type for updateNxJson ([5ee63f5](https://gitlab.com/rxap/packages/commit/5ee63f5805f457583340f5886bd619cc41c5ed96))
+
+
+
+
+
 ## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@11.9.5...@rxap/schematics-utilities@12.0.2) (2021-06-09)
 
 **Note:** Version bump only for package @rxap/schematics-utilities
