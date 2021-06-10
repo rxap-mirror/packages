@@ -55,7 +55,7 @@ export class FilterHeaderRowDirective
             )
             .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
         ),
-        distinctUntilChanged((a, b) => equals(a)(b))
+        distinctUntilChanged((a, b) => equals(a, b))
       )
       .subscribe(this.tableFilter.change);
   }
