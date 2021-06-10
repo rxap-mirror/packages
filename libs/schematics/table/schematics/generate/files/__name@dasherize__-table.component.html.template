@@ -1,7 +1,9 @@
 <% if (tableElement.hasFeature('navigate-back')) { %>
 <div class="container" fxLayout="column" fxLayoutGap="16px">
 
-  <rxap-navigate-back-button fxFlex="nogrow"><h1 i18n="@@table.<%=name%>.title"><%= tableElement.title %></h1></rxap-navigate-back-button>
+  <rxap-navigate-back-button fxFlex="nogrow">
+    <h1 i18n><%= tableElement.title %></h1>
+  </rxap-navigate-back-button>
 
   <mat-divider fxFlex="nogrow"></mat-divider>
 

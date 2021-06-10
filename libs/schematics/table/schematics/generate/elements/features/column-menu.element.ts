@@ -1,38 +1,47 @@
 import {
   ElementAttribute,
   ElementDef,
-  ElementExtends
+  ElementExtends,
 } from '@rxap/xml-parser/decorators';
-import {
-  DisplayColumn,
-  FeatureElement
-} from './feature.element';
+import { DisplayColumn, FeatureElement } from './feature.element';
 import { SourceFile } from 'ts-morph';
 import { TableElement } from '../table.element';
 import { strings } from '@angular-devkit/core';
 import { coerceArray } from '@rxap/utilities';
-import {
-  AddNgModuleImport,
-  ToValueContext
-} from '@rxap/schematics-ts-morph';
+import { AddNgModuleImport, ToValueContext } from '@rxap/schematics-ts-morph';
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
 @ElementExtends(FeatureElement)
 @ElementDef('column-menu')
 export class ColumnMenuElement extends FeatureElement {
-
   public __parent!: TableElement;
 
   @ElementAttribute()
   public showArchived?: boolean;
 
-  public handleComponentModule({ sourceFile, project, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponentModule({
+    sourceFile,
+    project,
+    options,
+  }: ToValueContext & { sourceFile: SourceFile }) {
     // TODO : mv TableColumnMenuComponentModule to rxap
-    AddNgModuleImport(sourceFile, 'TableColumnMenuComponentModule', '@rxap/material-table-system');
+    AddNgModuleImport(
+      sourceFile,
+      'TableColumnMenuComponentModule',
+      '@rxap/material-table-system'
+    );
     if (this.showArchived) {
-      AddNgModuleImport(sourceFile, 'DateCellComponentModule', '@rxap/material-table-system');
-      AddNgModuleImport(sourceFile, 'MatDividerModule', '@angular/material/divider');
+      AddNgModuleImport(
+        sourceFile,
+        'DateCellComponentModule',
+        '@rxap/material-table-system'
+      );
+      AddNgModuleImport(
+        sourceFile,
+        'MatDividerModule',
+        '@angular/material/divider'
+      );
       AddNgModuleImport(
         sourceFile,
         'TableShowArchivedSlideComponentModule',
@@ -45,7 +54,7 @@ export class ColumnMenuElement extends FeatureElement {
     return {
       name: 'removedAt',
       active: false,
-      hidden: true
+      hidden: true,
     };
   }
 
@@ -60,7 +69,9 @@ export class ColumnMenuElement extends FeatureElement {
     if (this.showArchived) {
       return `
       <ng-container matColumnDef="removedAt">
-        <th mat-header-cell *matHeaderCellDef> Removed At </th>
+        <th mat-header-cell *matHeaderCellDef>
+          <ng-container i18n>Removed At</ng-container>
+        </th>
         <td mat-cell [rxap-date-cell]="element.__removedAt" *matCellDef="let element"></td>
       </ng-container>
       `;
@@ -69,7 +80,8 @@ export class ColumnMenuElement extends FeatureElement {
   }
 
   public headerTemplate(): string {
-    let template = '<rxap-table-column-menu matCard #rxapTableColumns="rxapTableColumns">';
+    let template =
+      '<rxap-table-column-menu matCard #rxapTableColumns="rxapTableColumns">';
 
     if (this.__parent.features) {
       for (const feature of this.__parent.features) {
@@ -93,9 +105,8 @@ export class ColumnMenuElement extends FeatureElement {
         <rxap-table-column-option
         ${displayColumn.hidden ? 'hidden' : ''}
         ${displayColumn.active === false ? 'inactive' : ''}
-        i18n="@@table.${dasherize(this.__parent.id)}.column.${dasherize(displayColumn.name)}.title"
         name="${displayColumn.name}">
-        ${capitalize(displayColumn.name)}
+        <ng-container i18n>${capitalize(displayColumn.name)}</ng-container>
         </rxap-table-column-option>
         `;
       }
@@ -112,5 +123,4 @@ export class ColumnMenuElement extends FeatureElement {
     template += '</rxap-table-column-menu>';
     return template;
   }
-
 }

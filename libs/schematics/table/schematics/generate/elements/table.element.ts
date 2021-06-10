@@ -4,7 +4,7 @@ import {
   ElementChildren,
   ElementChildTextContent,
   ElementDef,
-  ElementRequired
+  ElementRequired,
 } from '@rxap/xml-parser/decorators';
 import { ColumnElement } from './columns/column.element';
 import { strings } from '@angular-devkit/core';
@@ -24,26 +24,19 @@ import {
   AddComponentInput,
   AddComponentFakeProvider,
   CoerceMethodClass,
-  CoerceSourceFile
+  CoerceSourceFile,
 } from '@rxap/schematics-ts-morph';
 import { FormElement } from '@rxap/schematics-form/schematics/generate/elements/form.element';
-import {
-  chain,
-  Rule
-} from '@angular-devkit/schematics';
+import { chain, Rule } from '@angular-devkit/schematics';
 import { join } from 'path';
 import { CoerceSuffix } from '@rxap/utilities';
-import {
-  NodeFactory,
-  WithTemplate
-} from '@rxap/schematics-html';
+import { NodeFactory, WithTemplate } from '@rxap/schematics-html';
 import { MethodElement } from '@rxap/schematics-xml-parser';
 
 const { dasherize, classify, camelize } = strings;
 
 @ElementDef('definition')
 export class TableElement implements ParsedElement<Rule> {
-
   @ElementAttribute()
   public id!: string;
 
@@ -52,7 +45,7 @@ export class TableElement implements ParsedElement<Rule> {
    */
   public get name(): string {
     const cleanId = dasherize(this.id);
-    if (!(cleanId).match(/-table$/)) {
+    if (!cleanId.match(/-table$/)) {
       return cleanId + '-table';
     }
     return cleanId;
@@ -75,15 +68,15 @@ export class TableElement implements ParsedElement<Rule> {
   public adapter?: AdapterElement;
 
   public hasFeature(name: string): boolean {
-    return !!this.features?.find(feature => feature.__tag === name);
+    return !!this.features?.find((feature) => feature.__tag === name);
   }
 
   public getFeature(name: string): FeatureElement | undefined {
-    return this.features?.find(feature => feature.__tag === name);
+    return this.features?.find((feature) => feature.__tag === name);
   }
 
   public get hasFilter(): boolean {
-    return this.columns.some(column => column.filter);
+    return this.columns.some((column) => column.filter);
   }
 
   public validate(): boolean {
@@ -100,11 +93,13 @@ export class TableElement implements ParsedElement<Rule> {
     }
 
     for (const column of this.columns) {
-      const attributes: Array<string | (() => string)> = [ `matColumnDef="${column.name}"` ];
+      const attributes: Array<string | (() => string)> = [
+        `matColumnDef="${column.name}"`,
+      ];
       if (column.sticky) {
         attributes.push('sticky');
       }
-      template += NodeFactory('ng-container', ...attributes)([ column ]);
+      template += NodeFactory('ng-container', ...attributes)([column]);
     }
 
     template += '<!-- endregion -->';
@@ -130,7 +125,9 @@ export class TableElement implements ParsedElement<Rule> {
       } else {
         innerTemplate += column.templateNoFiler();
       }
-      const attributes: Array<string | (() => string)> = [ `matColumnDef="filter_${column.name}"` ];
+      const attributes: Array<string | (() => string)> = [
+        `matColumnDef="filter_${column.name}"`,
+      ];
       if (column.sticky) {
         attributes.push('sticky');
       }
@@ -141,9 +138,11 @@ export class TableElement implements ParsedElement<Rule> {
   }
 
   public createFormElement(): FormElement {
-    const formElement    = new FormElement();
-    formElement.id       = dasherize(this.id) + '-filter';
-    formElement.controls = this.columns.filter(column => column.filter).map(column => column.createControlElement());
+    const formElement = new FormElement();
+    formElement.id = dasherize(this.id) + '-filter';
+    formElement.controls = this.columns
+      .filter((column) => column.filter)
+      .map((column) => column.createControlElement());
     return formElement;
   }
 
@@ -159,7 +158,8 @@ export class TableElement implements ParsedElement<Rule> {
   }
 
   public headerTemplate(): string {
-    let template = '<mat-progress-bar rxapCardProgressBar [loading$]="tableDataSourceDirective.loading$"></mat-progress-bar>';
+    let template =
+      '<mat-progress-bar rxapCardProgressBar [loading$]="tableDataSourceDirective.loading$"></mat-progress-bar>';
 
     if (this.features) {
       for (const feature of this.features) {
@@ -168,7 +168,7 @@ export class TableElement implements ParsedElement<Rule> {
     }
 
     if (!this.hasFeature('navigate-back') && this.title) {
-      template += `<mat-card-title i18n="@@table.${dasherize(this.id)}.title">${this.title}</mat-card-title>`;
+      template += `<mat-card-title i18n>${this.title}</mat-card-title>`;
     }
 
     return template;
@@ -177,7 +177,7 @@ export class TableElement implements ParsedElement<Rule> {
   public tableTemplate(): string {
     const attributes: Array<string | (() => string)> = [
       'mat-table',
-      '#tableDataSourceDirective="rxapTableDataSource"'
+      '#tableDataSourceDirective="rxapTableDataSource"',
     ];
     if (this.method) {
       attributes.push('rxapTableDataSource');
@@ -192,11 +192,13 @@ export class TableElement implements ParsedElement<Rule> {
     const nodes: Array<Partial<WithTemplate> | string> | string = [
       this.columnsTemplate(),
       this.columnsFilterTemplate(),
-      this.rowTemplate()
+      this.rowTemplate(),
     ];
 
     if (this.features) {
-      attributes.unshift(...this.features.map(feature => feature.tableTemplate()));
+      attributes.unshift(
+        ...this.features.map((feature) => feature.tableTemplate())
+      );
     }
 
     return NodeFactory('table', ...attributes)(nodes);
@@ -206,27 +208,56 @@ export class TableElement implements ParsedElement<Rule> {
     const templates: string[] = [];
 
     if (this.hasFilter) {
-      let filterRowDef = '[' + this.columns.map(column => column.name).map(name => `'filter_${name}'`).join(',') + ']';
+      let filterRowDef =
+        '[' +
+        this.columns
+          .map((column) => column.name)
+          .map((name) => `'filter_${name}'`)
+          .join(',') +
+        ']';
       if (this.hasFeature('column-menu')) {
         filterRowDef = 'rxapTableColumns.displayColumns | toFilterColumnNames';
       }
-      templates.push(NodeFactory('tr', 'mat-header-row', `*matHeaderRowDef="${filterRowDef}"`)());
+      templates.push(
+        NodeFactory(
+          'tr',
+          'mat-header-row',
+          `*matHeaderRowDef="${filterRowDef}"`
+        )()
+      );
     }
 
-    let rowDef = '[' + this.columns.map(column => column.name).map(name => `'${name}'`).join(',') + ']';
+    let rowDef =
+      '[' +
+      this.columns
+        .map((column) => column.name)
+        .map((name) => `'${name}'`)
+        .join(',') +
+      ']';
     if (this.hasFeature('column-menu')) {
       rowDef = 'rxapTableColumns.displayColumns';
     }
-    templates.push(NodeFactory('tr', 'mat-header-row', `*matHeaderRowDef="${rowDef}"`)());
+    templates.push(
+      NodeFactory('tr', 'mat-header-row', `*matHeaderRowDef="${rowDef}"`)()
+    );
     const rowAttributes: Array<string | (() => string)> = [
-      '[@rowsAnimation]', 'mat-row', `*matRowDef="let element; columns: ${rowDef};"`
+      '[@rowsAnimation]',
+      'mat-row',
+      `*matRowDef="let element; columns: ${rowDef};"`,
     ];
     if (this.hasFeature('expandable')) {
       rowAttributes.push('[rxapExpandRow]="element"');
     }
     templates.push(NodeFactory('tr', ...rowAttributes)());
     if (this.hasFeature('expandable')) {
-      templates.push(NodeFactory('tr', 'mat-row', '*matRowDef="let row; columns: [\'expandedRow\']"', 'class="rxap-expanded-row"')());
+      templates.push(
+        NodeFactory(
+          'tr',
+          'mat-row',
+          '*matRowDef="let row; columns: [\'expandedRow\']"',
+          'class="rxap-expanded-row"'
+        )()
+      );
     }
 
     return templates.join('\n');
@@ -234,11 +265,19 @@ export class TableElement implements ParsedElement<Rule> {
 
   public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
     return chain([
-      tree => AddDir(tree.getDir(options.path!), project, undefined, pathFragment => !!pathFragment.match(/\.ts$/)),
-      chain(this.columns.map(column => column.toValue({ project, options }))),
-      chain(this.features?.map(node => node.toValue({ project, options })) ?? []),
+      (tree) =>
+        AddDir(
+          tree.getDir(options.path!),
+          project,
+          undefined,
+          (pathFragment) => !!pathFragment.match(/\.ts$/)
+        ),
+      chain(this.columns.map((column) => column.toValue({ project, options }))),
+      chain(
+        this.features?.map((node) => node.toValue({ project, options })) ?? []
+      ),
       () => this.handleComponent(project, options),
-      () => this.handleComponentModule(project, options)
+      () => this.handleComponentModule(project, options),
     ]);
   }
 
@@ -246,34 +285,42 @@ export class TableElement implements ParsedElement<Rule> {
     const sourceFile = FindComponentSourceFile(this.name, project);
 
     // TODO : mv RowAnimation to rxap
-    AddComponentAnimations(sourceFile, 'RowAnimation', '@rxap/material-table-system');
+    AddComponentAnimations(
+      sourceFile,
+      'RowAnimation',
+      '@rxap/material-table-system'
+    );
 
     if (this.method) {
       if (this.method.mock) {
-        const mockClassName     = `${CoerceSuffix(classify(this.name), 'Table')}FakeMethod`;
-        const mockClassFileName = `${CoerceSuffix(dasherize(this.name), '-table')}.fake.method`;
+        const mockClassName = `${CoerceSuffix(
+          classify(this.name),
+          'Table'
+        )}FakeMethod`;
+        const mockClassFileName = `${CoerceSuffix(
+          dasherize(this.name),
+          '-table'
+        )}.fake.method`;
         AddComponentFakeProvider(
           sourceFile,
           {
-            provide:  'TABLE_REMOTE_METHOD',
-            useClass: mockClassName
+            provide: 'TABLE_REMOTE_METHOD',
+            useClass: mockClassName,
           },
           {
-            provide:  'TABLE_REMOTE_METHOD',
-            useClass: this.method.toValue({ sourceFile, project, options })
+            provide: 'TABLE_REMOTE_METHOD',
+            useClass: this.method.toValue({ sourceFile, project, options }),
           },
-          [ 'table', this.name ].join('.'),
+          ['table', this.name].join('.'),
           [
             {
               moduleSpecifier: `./${mockClassFileName}`,
-              namedImports:    [
-                mockClassName
-              ]
+              namedImports: [mockClassName],
             },
             {
-              namedImports:    [ 'TABLE_REMOTE_METHOD' ],
-              moduleSpecifier: '@rxap/material-table-system'
-            }
+              namedImports: ['TABLE_REMOTE_METHOD'],
+              moduleSpecifier: '@rxap/material-table-system',
+            },
           ],
           options.overwrite
         );
@@ -281,48 +328,48 @@ export class TableElement implements ParsedElement<Rule> {
           sourceFile.getDirectoryPath(),
           mockClassFileName + '.ts'
         );
-        const methodSourceFile    = CoerceSourceFile(project, methodClassFilePath);
-        CoerceMethodClass(
-          methodSourceFile,
-          mockClassName,
-          {
-            structures: [
-              {
-                namedImports:    [ 'TableEvent' ],
-                moduleSpecifier: '@rxap/data-source/table'
-              },
-              {
-                namedImports:    [ 'Range' ],
-                moduleSpecifier: '@rxap/utilities'
-              }
-            ],
-            returnType:    'Array<Record<string, any>>',
-            parameterType: 'TableEvent',
-            statements:    writer => {
-              writer.writeLine('parameters?.setTotalLength(');
-              writer.indent(1);
-              writer.writeLine('parameters.page?.pageSize * (parameters.page?.pageIndex + 1) + parameters.page?.pageSize');
-              writer.writeLine(');');
-              writer.writeLine('return Range.Create(1, parameters.page?.pageSize)');
-              writer.indent(1);
-              writer.writeLine('.toArray()');
-              writer.writeLine('.map(() => ({');
-              writer.writeLine('} as any));');
-            }
-          }
-        );
+        const methodSourceFile = CoerceSourceFile(project, methodClassFilePath);
+        CoerceMethodClass(methodSourceFile, mockClassName, {
+          structures: [
+            {
+              namedImports: ['TableEvent'],
+              moduleSpecifier: '@rxap/data-source/table',
+            },
+            {
+              namedImports: ['Range'],
+              moduleSpecifier: '@rxap/utilities',
+            },
+          ],
+          returnType: 'Array<Record<string, any>>',
+          parameterType: 'TableEvent',
+          statements: (writer) => {
+            writer.writeLine('parameters?.setTotalLength(');
+            writer.indent(1);
+            writer.writeLine(
+              'parameters.page?.pageSize * (parameters.page?.pageIndex + 1) + parameters.page?.pageSize'
+            );
+            writer.writeLine(');');
+            writer.writeLine(
+              'return Range.Create(1, parameters.page?.pageSize)'
+            );
+            writer.indent(1);
+            writer.writeLine('.toArray()');
+            writer.writeLine('.map(() => ({');
+            writer.writeLine('} as any));');
+          },
+        });
       } else {
         AddComponentProvider(
           sourceFile,
           {
-            provide:  'TABLE_REMOTE_METHOD',
-            useClass: this.method.toValue({ sourceFile, project, options })
+            provide: 'TABLE_REMOTE_METHOD',
+            useClass: this.method.toValue({ sourceFile, project, options }),
           },
           [
             {
-              namedImports:    [ 'TABLE_REMOTE_METHOD' ],
-              moduleSpecifier: '@rxap/material-table-system'
-            }
+              namedImports: ['TABLE_REMOTE_METHOD'],
+              moduleSpecifier: '@rxap/material-table-system',
+            },
           ],
           options.overwrite
         );
@@ -331,30 +378,30 @@ export class TableElement implements ParsedElement<Rule> {
       AddComponentInput(
         sourceFile,
         {
-          name:     'dataSource',
-          type:     'AbstractTableDataSource<any>',
-          required: true
+          name: 'dataSource',
+          type: 'AbstractTableDataSource<any>',
+          required: true,
         },
         [
           {
-            namedImports:    [ 'AbstractTableDataSource' ],
-            moduleSpecifier: '@rxap/data-source/table'
-          }
+            namedImports: ['AbstractTableDataSource'],
+            moduleSpecifier: '@rxap/data-source/table',
+          },
         ]
       );
     }
     AddComponentInput(
       sourceFile,
       {
-        name:     'parameters',
-        type:     'Observable<Record<string, any>>',
-        required: false
+        name: 'parameters',
+        type: 'Observable<Record<string, any>>',
+        required: false,
       },
       [
         {
-          namedImports:    [ 'Observable' ],
-          moduleSpecifier: 'rxjs'
-        }
+          namedImports: ['Observable'],
+          moduleSpecifier: 'rxjs',
+        },
       ]
     );
 
@@ -362,23 +409,23 @@ export class TableElement implements ParsedElement<Rule> {
       AddComponentProvider(
         sourceFile,
         {
-          provide:    'RXAP_TABLE_FILTER_FORM_DEFINITION',
+          provide: 'RXAP_TABLE_FILTER_FORM_DEFINITION',
           useFactory: 'FormFactory',
-          deps:       [ 'INJECTOR' ]
+          deps: ['INJECTOR'],
         },
         [
           {
-            namedImports:    [ 'RXAP_TABLE_FILTER_FORM_DEFINITION' ],
-            moduleSpecifier: '@rxap/material-table-system'
+            namedImports: ['RXAP_TABLE_FILTER_FORM_DEFINITION'],
+            moduleSpecifier: '@rxap/material-table-system',
           },
           {
-            namedImports:    [ 'FormFactory', 'FormProviders' ],
-            moduleSpecifier: './form.providers'
+            namedImports: ['FormFactory', 'FormProviders'],
+            moduleSpecifier: './form.providers',
           },
           {
-            namedImports:    [ 'INJECTOR' ],
-            moduleSpecifier: '@angular/core'
-          }
+            namedImports: ['INJECTOR'],
+            moduleSpecifier: '@angular/core',
+          },
         ],
         options.overwrite
       );
@@ -387,9 +434,9 @@ export class TableElement implements ParsedElement<Rule> {
         'FormProviders',
         [
           {
-            namedImports:    [ 'FormFactory' ],
-            moduleSpecifier: './form.providers'
-          }
+            namedImports: ['FormFactory'],
+            moduleSpecifier: './form.providers',
+          },
         ],
         options.overwrite
       );
@@ -399,9 +446,9 @@ export class TableElement implements ParsedElement<Rule> {
         'TableFilterService',
         [
           {
-            namedImports:    [ 'TableFilterService' ],
-            moduleSpecifier: '@rxap/material-table-system'
-          }
+            namedImports: ['TableFilterService'],
+            moduleSpecifier: '@rxap/material-table-system',
+          },
         ],
         options.overwrite
       );
@@ -411,8 +458,12 @@ export class TableElement implements ParsedElement<Rule> {
       this.adapter.handleComponent({ sourceFile, options, project });
     }
 
-    this.features?.forEach(feature => feature.handleComponent({ sourceFile, project, options }));
-    this.columns?.forEach(column => column.handleComponent({ sourceFile, project, options }));
+    this.features?.forEach((feature) =>
+      feature.handleComponent({ sourceFile, project, options })
+    );
+    this.columns?.forEach((column) =>
+      column.handleComponent({ sourceFile, project, options })
+    );
   }
 
   private handleComponentModule(project: Project, options: GenerateSchema) {
@@ -420,22 +471,40 @@ export class TableElement implements ParsedElement<Rule> {
 
     // core table modules
     AddNgModuleImport(sourceFile, 'MatCardModule', '@angular/material/card');
-    AddNgModuleImport(sourceFile, 'MatProgressBarModule', '@angular/material/progress-bar');
-    AddNgModuleImport(sourceFile, 'CardProgressBarModule', '@rxap/material-directives/card');
+    AddNgModuleImport(
+      sourceFile,
+      'MatProgressBarModule',
+      '@angular/material/progress-bar'
+    );
+    AddNgModuleImport(
+      sourceFile,
+      'CardProgressBarModule',
+      '@rxap/material-directives/card'
+    );
     AddNgModuleImport(sourceFile, 'MatTableModule', '@angular/material/table');
     AddNgModuleImport(sourceFile, 'FlexLayoutModule', '@angular/flex-layout');
-    AddNgModuleImport(sourceFile, 'TableDataSourceModule', '@rxap/material-table-system');
+    AddNgModuleImport(
+      sourceFile,
+      'TableDataSourceModule',
+      '@rxap/material-table-system'
+    );
 
     // filter table modules
     if (this.hasFilter) {
-      AddNgModuleImport(sourceFile, 'TableFilterModule', '@rxap/material-table-system');
+      AddNgModuleImport(
+        sourceFile,
+        'TableFilterModule',
+        '@rxap/material-table-system'
+      );
       AddNgModuleImport(sourceFile, 'RxapFormsModule', '@rxap/forms');
       AddNgModuleImport(sourceFile, 'ReactiveFormsModule', '@angular/forms');
     }
 
-    this.features?.forEach(feature => feature.handleComponentModule({ sourceFile, project, options }));
-    this.columns?.forEach(column => column.handleComponentModule({ sourceFile, project, options }));
-
+    this.features?.forEach((feature) =>
+      feature.handleComponentModule({ sourceFile, project, options })
+    );
+    this.columns?.forEach((column) =>
+      column.handleComponentModule({ sourceFile, project, options })
+    );
   }
-
 }
