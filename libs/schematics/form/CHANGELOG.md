@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.5](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@12.0.4...@rxap/schematics-form@12.0.5) (2021-06-10)
+
+
+### Bug Fixes
+
+* allow skip ts file generating ([c24b11d](https://gitlab.com/rxap/packages/commit/c24b11da77d35df21f673ed25b8a5d076968f2bb))
+
+
+
+
+
 ## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-form@12.0.3...@rxap/schematics-form@12.0.4) (2021-06-10)
 
 
