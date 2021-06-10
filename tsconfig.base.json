@@ -113,9 +113,6 @@
         "libs/data-source/recorder/src/public_api.ts"
       ],
       "@rxap/utilities/modules": ["libs/utilities/modules/src/public_api.ts"],
-      "@rxap/plugin/library-schematics": [
-        "libs/plugin/library-schematics/src/index.ts"
-      ],
       "@rxap/utilities/schematic": [
         "libs/utilities/schematic/src/public_api.ts"
       ],
@@ -161,17 +158,7 @@
         "libs/data-source/http/pagination/src/public_api.ts"
       ],
       "@rxap/definition": ["libs/definition/src/index.ts"],
-      "@rxap/plugin-pack": ["libs/plugin/pack/src/index.ts"],
-      "@rxap/plugin-scss-bundle": ["libs/plugin/scss-bundle/src/index.ts"],
-      "@rxap/form-system": ["libs/form-system/src/index.ts"],
-      "@rxap/plugin-readme-generator": [
-        "libs/plugin/readme-generator/src/index.ts"
-      ],
-      "@rxap/plugin-kaniko": ["libs/plugin/kaniko/src/index.ts"],
       "@rxap/data-grid": ["libs/data-grid/src/index.ts"],
-      "@rxap/plugin-library-publish": [
-        "libs/plugin/library-publish/src/index.ts"
-      ],
       "@rxap/slugify": ["libs/slugify/src/index.ts"],
       "@rxap/service-worker": ["libs/service-worker/src/index.ts"],
       "@rxap/life-cycle": ["libs/life-cycle/src/index.ts"],
@@ -202,8 +189,6 @@
       "@rxap/schematics-form": ["libs/schematics/form/src/index.ts"],
       "@rxap/material-directives": ["libs/material/directives/src/index.ts"],
       "@rxap/fake": ["libs/fake/src/index.ts"],
-      "@rxap/plugin-i18n": ["libs/plugin/i18n/src/index.ts"],
-      "@rxap/plugin-build-info": ["libs/plugin/build-info/src/index.ts"],
       "@rxap/oauth": ["libs/oauth/src/index.ts"],
       "@rxap/schematics-ts-morph": ["libs/schematics/ts-morph/src/index.ts"],
       "@rxap/schematics-html": ["libs/schematics/html/src/index.ts"],
