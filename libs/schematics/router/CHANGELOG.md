@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@12.0.2...@rxap/schematics-router@12.0.3) (2021-06-10)
+
+
+### Bug Fixes
+
+* allow skip ts file generating ([c24b11d](https://gitlab.com/rxap/packages/commit/c24b11da77d35df21f673ed25b8a5d076968f2bb))
+
+
+
+
+
 ## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/schematics-router@11.6.4...@rxap/schematics-router@12.0.2) (2021-06-09)
 
 **Note:** Version bump only for package @rxap/schematics-router
