@@ -51,6 +51,10 @@
     "format": {
       "type": "boolean",
       "default": true
+    },
+    "skipTsFiles": {
+      "type": "boolean",
+      "default": false
     }
   },
   "required": [

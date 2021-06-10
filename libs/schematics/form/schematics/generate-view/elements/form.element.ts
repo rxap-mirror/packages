@@ -4,21 +4,21 @@ import {
   ElementExtends,
   ElementChildren,
   ElementChildTextContent,
-  ElementChild
+  ElementChild,
 } from '@rxap/xml-parser/decorators';
 import { NodeElement } from './node.element';
 import {
   ToValueContext,
   AddDir,
   AddNgModuleImport,
-  AddComponentProvider
+  AddComponentProvider,
 } from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import {
   chain,
   Rule,
   noop,
-  externalSchematic
+  externalSchematic,
 } from '@angular-devkit/schematics';
 import { join } from 'path';
 import { strings } from '@angular-devkit/core';
@@ -26,7 +26,7 @@ import { GenerateSchema } from '../schema';
 import { FormFeatureElement } from './features/form-feature.element';
 import {
   SubmitHandleMethod,
-  LoadHandleMethod
+  LoadHandleMethod,
 } from '../../generate/elements/form.element';
 import { NodeFactory } from '@rxap/schematics-html';
 
@@ -35,7 +35,6 @@ const { dasherize, classify, camelize, capitalize } = strings;
 @ElementExtends(NodeElement)
 @ElementDef('definition')
 export class FormElement extends GroupElement {
-
   @ElementChildren(FormFeatureElement, { group: 'features' })
   public features?: FormFeatureElement[];
 
@@ -52,28 +51,35 @@ export class FormElement extends GroupElement {
   public title?: string;
 
   public template(): string {
-    return NodeFactory('form', 'rxapForm')(
-      [
-        ...this.nodes,
-        ...(this.features ?? [])
-      ]);
+    return NodeFactory(
+      'form',
+      'rxapForm'
+    )([...this.nodes, ...(this.features ?? [])]);
   }
 
   public get controlPath(): string {
     return this.name;
   }
 
-  public handleComponent({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
-    this.nodes.forEach(node => node.handleComponent({ project, sourceFile, options }));
-    this.features?.forEach(feature => feature.handleComponent({ project, sourceFile, options }));
+  public handleComponent({
+    project,
+    sourceFile,
+    options,
+  }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
+    this.nodes.forEach((node) =>
+      node.handleComponent({ project, sourceFile, options })
+    );
+    this.features?.forEach((feature) =>
+      feature.handleComponent({ project, sourceFile, options })
+    );
     AddComponentProvider(
       sourceFile,
       'FormProviders',
       [
         {
-          namedImports:    [ 'FormProviders' ],
-          moduleSpecifier: './form.providers'
-        }
+          namedImports: ['FormProviders'],
+          moduleSpecifier: './form.providers',
+        },
       ],
       options.overwrite
     );
@@ -82,9 +88,9 @@ export class FormElement extends GroupElement {
       'FormComponentProviders',
       [
         {
-          namedImports:    [ 'FormComponentProviders' ],
-          moduleSpecifier: './form.providers'
-        }
+          namedImports: ['FormComponentProviders'],
+          moduleSpecifier: './form.providers',
+        },
       ],
       options.overwrite
     );
@@ -92,43 +98,73 @@ export class FormElement extends GroupElement {
     this.load?.handleComponent({ project, options, sourceFile });
   }
 
-  public handleComponentModule({ project, sourceFile, options }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
-    this.nodes.forEach(node => node.handleComponentModule({ project, sourceFile, options }));
-    this.features?.forEach(feature => feature.handleComponentModule({ project, sourceFile, options }));
+  public handleComponentModule({
+    project,
+    sourceFile,
+    options,
+  }: ToValueContext<GenerateSchema> & { sourceFile: SourceFile }) {
+    this.nodes.forEach((node) =>
+      node.handleComponentModule({ project, sourceFile, options })
+    );
+    this.features?.forEach((feature) =>
+      feature.handleComponentModule({ project, sourceFile, options })
+    );
     AddNgModuleImport(sourceFile, 'RxapFormsModule', '@rxap/forms');
   }
 
   public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
-    const componentFile             = dasherize(options.name!) + '-form.component.ts';
-    const componentModuleFile       = dasherize(options.name!) + '-form.component.module.ts';
-    const componentTemplateFilePath = join(options.path!, dasherize(options.name!) + '-form.component.html');
+    const componentFile = dasherize(options.name!) + '-form.component.ts';
+    const componentModuleFile =
+      dasherize(options.name!) + '-form.component.module.ts';
+    const componentTemplateFilePath = join(
+      options.path!,
+      dasherize(options.name!) + '-form.component.html'
+    );
     return chain([
-      externalSchematic(
-        '@rxap/schematics-form',
-        'generate',
-        {
-          project:          options.project,
-          name:             options.name,
-          template:         join('forms', dasherize(this.form ?? this.name) + '.xml'),
-          path:             options.path?.replace(/^\//, '') ?? '',
-          flat:             true,
-          organizeImports:  false,
-          fixImports:       false,
-          format:           false,
-          templateBasePath: options.templateBasePath,
-          openApiModule:    options.openApiModule,
-          overwrite:        options.overwrite
-        }
+      externalSchematic('@rxap/schematics-form', 'generate', {
+        project: options.project,
+        name: options.name,
+        template: join('forms', dasherize(this.form ?? this.name) + '.xml'),
+        path: options.path?.replace(/^\//, '') ?? '',
+        flat: true,
+        organizeImports: false,
+        fixImports: false,
+        format: false,
+        templateBasePath: options.templateBasePath,
+        openApiModule: options.openApiModule,
+        overwrite: options.overwrite,
+        skipTsFiles: options.skipTsFiles,
+      }),
+      options.overwrite
+        ? (tree) => tree.overwrite(componentTemplateFilePath, this.template())
+        : noop(),
+      (tree) =>
+        AddDir(
+          tree.getDir(options.path!),
+          project,
+          undefined,
+          (pathFragment) => !!pathFragment.match(/\.ts$/)
+        ),
+      chain(this.nodes.map((node) => node.toValue({ project, options }))),
+      chain(
+        this.features?.map((feature) =>
+          feature.toValue({ project, options })
+        ) ?? []
       ),
-      options.overwrite ? tree => tree.overwrite(componentTemplateFilePath, this.template()) : noop(),
-      tree => AddDir(tree.getDir(options.path!), project, undefined, pathFragment => !!pathFragment.match(/\.ts$/)),
-      chain(this.nodes.map(node => node.toValue({ project, options }))),
-      chain(this.features?.map(feature => feature.toValue({ project, options })) ?? []),
-      () => this.handleComponent({ project, options, sourceFile: project.getSourceFileOrThrow(componentFile) }),
-      () => this.handleComponentModule({ project, options, sourceFile: project.getSourceFileOrThrow(componentModuleFile) }),
+      () =>
+        this.handleComponent({
+          project,
+          options,
+          sourceFile: project.getSourceFileOrThrow(componentFile),
+        }),
+      () =>
+        this.handleComponentModule({
+          project,
+          options,
+          sourceFile: project.getSourceFileOrThrow(componentModuleFile),
+        }),
       () => this.submit?.toValue({ project, options }) ?? noop(),
-      () => this.load?.toValue({ project, options }) ?? noop()
+      () => this.load?.toValue({ project, options }) ?? noop(),
     ]);
   }
-
 }

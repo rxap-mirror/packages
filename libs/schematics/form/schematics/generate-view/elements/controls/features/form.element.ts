@@ -3,17 +3,13 @@ import {
   ElementDef,
   ElementExtends,
   ElementChildTextContent,
-  ElementRequired
+  ElementRequired,
 } from '@rxap/xml-parser/decorators';
 import { join } from 'path';
 import { ControlElement } from '../control.element';
 import { strings } from '@angular-devkit/core';
 import { ToValueContext } from '@rxap/schematics-ts-morph';
-import {
-  Rule,
-  chain,
-  externalSchematic
-} from '@angular-devkit/schematics';
+import { Rule, chain, externalSchematic } from '@angular-devkit/schematics';
 import { GenerateSchema } from '../../../schema';
 
 const { dasherize, classify, camelize, capitalize } = strings;
@@ -21,7 +17,6 @@ const { dasherize, classify, camelize, capitalize } = strings;
 @ElementExtends(ControlFeatureElement)
 @ElementDef('form')
 export class FormElement extends ControlFeatureElement {
-
   public __parent!: ControlElement;
 
   @ElementChildTextContent()
@@ -33,7 +28,11 @@ export class FormElement extends ControlFeatureElement {
 
   public postParse() {
     if (!this.templateValue && this.name) {
-      this.templateValue = join('views', 'forms', dasherize(this.name) + '.xml');
+      this.templateValue = join(
+        'views',
+        'forms',
+        dasherize(this.name) + '.xml'
+      );
     }
   }
 
@@ -43,24 +42,26 @@ export class FormElement extends ControlFeatureElement {
 
   public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
     return chain([
-      () => console.log(`Execute form component generator schematic for '${this.templateValue}'`),
-      externalSchematic(
-        '@rxap/schematics-form',
-        'generate-view',
-        {
-          project:          options.project,
-          template:         this.templateValue,
-          name:             this.name,
-          organizeImports:  false,
-          fixImports:       false,
-          format:           false,
-          templateBasePath: options.templateBasePath,
-          overwrite:        options.overwrite,
-          openApiModule:    options.openApiModule,
-          path:             join(options.path?.replace(/^\//, '') ?? '', dasherize(this.__parent.name) + '-control')
-        }
-      )
+      () =>
+        console.log(
+          `Execute form component generator schematic for '${this.templateValue}'`
+        ),
+      externalSchematic('@rxap/schematics-form', 'generate-view', {
+        project: options.project,
+        template: this.templateValue,
+        name: this.name,
+        organizeImports: false,
+        fixImports: false,
+        format: false,
+        templateBasePath: options.templateBasePath,
+        overwrite: options.overwrite,
+        openApiModule: options.openApiModule,
+        path: join(
+          options.path?.replace(/^\//, '') ?? '',
+          dasherize(this.__parent.name) + '-control'
+        ),
+        skipTsFiles: options.skipTsFiles,
+      }),
     ]);
   }
-
 }

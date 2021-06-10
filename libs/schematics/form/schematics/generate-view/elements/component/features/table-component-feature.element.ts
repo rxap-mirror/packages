@@ -3,21 +3,14 @@ import {
   ElementDef,
   ElementChildTextContent,
   ElementChildRawContent,
-  ElementRequired
+  ElementRequired,
 } from '@rxap/xml-parser/decorators';
 import { join } from 'path';
-import {
-  Rule,
-  chain,
-  externalSchematic
-} from '@angular-devkit/schematics';
+import { Rule, chain, externalSchematic } from '@angular-devkit/schematics';
 import { strings } from '@angular-devkit/core';
 import { ComponentFeatureElement } from './component-feature.element';
 import { ComponentElement } from '../component.element';
-import {
-  ToValueContext,
-  AddNgModuleImport
-} from '@rxap/schematics-ts-morph';
+import { ToValueContext, AddNgModuleImport } from '@rxap/schematics-ts-morph';
 import { SourceFile } from 'ts-morph';
 import { GenerateSchema } from '../../../schema';
 
@@ -26,7 +19,6 @@ const { dasherize, classify, camelize, capitalize } = strings;
 @ElementExtends(ComponentFeatureElement)
 @ElementDef('table')
 export class TableComponentFeatureElement extends ComponentFeatureElement {
-
   public __parent!: ComponentElement;
 
   @ElementChildTextContent()
@@ -49,37 +41,39 @@ export class TableComponentFeatureElement extends ComponentFeatureElement {
 
   public toValue({ project, options }: ToValueContext<GenerateSchema>): Rule {
     return chain([
-      () => console.log(`Execute table generator schematic for '${this.template}'`),
-      externalSchematic(
-        '@rxap/schematics-table',
-        'generate',
-        {
-          project:          options.project,
-          template:         this.template,
-          name:             dasherize(this.name),
-          path:             join(options.path?.replace(/^\//, '') ?? '', dasherize(this.__parent.name)),
-          organizeImports:  false,
-          fixImports:       false,
-          format:           false,
-          templateBasePath: options.templateBasePath,
-          overwrite:        options.overwrite,
-          openApiModule:    options.openApiModule
-        }
-      )
+      () =>
+        console.log(`Execute table generator schematic for '${this.template}'`),
+      externalSchematic('@rxap/schematics-table', 'generate', {
+        project: options.project,
+        template: this.template,
+        name: dasherize(this.name),
+        path: join(
+          options.path?.replace(/^\//, '') ?? '',
+          dasherize(this.__parent.name)
+        ),
+        organizeImports: false,
+        fixImports: false,
+        format: false,
+        templateBasePath: options.templateBasePath,
+        overwrite: options.overwrite,
+        openApiModule: options.openApiModule,
+        skipTsFiles: options.skipTsFiles,
+      }),
     ]);
   }
 
   public handleComponentModule({
-                                 project,
-                                 sourceFile,
-                                 options
-                               }: ToValueContext & { sourceFile: SourceFile }) {
+    project,
+    sourceFile,
+    options,
+  }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponentModule({ project, sourceFile, options });
     AddNgModuleImport(
       sourceFile,
       `${classify(this.name)}TableComponentModule`,
-      `./${dasherize(this.name)}-table/${dasherize(this.name)}-table.component.module`
+      `./${dasherize(this.name)}-table/${dasherize(
+        this.name
+      )}-table.component.module`
     );
   }
-
 }

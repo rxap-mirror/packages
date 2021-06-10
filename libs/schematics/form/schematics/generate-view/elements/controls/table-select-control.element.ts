@@ -4,12 +4,9 @@ import {
   ElementChildTextContent,
   ElementDef,
   ElementExtends,
-  ElementRequired
+  ElementRequired,
 } from '@rxap/xml-parser/decorators';
-import {
-  ElementFactory,
-  ParsedElement
-} from '@rxap/xml-parser';
+import { ElementFactory, ParsedElement } from '@rxap/xml-parser';
 import {
   ClassDeclaration,
   ImportDeclarationStructure,
@@ -18,25 +15,18 @@ import {
   Project,
   Scope,
   SourceFile,
-  Writers
+  Writers,
 } from 'ts-morph';
 import {
   AddComponentProvider,
   AddNgModuleImport,
-  ToValueContext
+  ToValueContext,
 } from '@rxap/schematics-ts-morph';
 import { strings } from '@angular-devkit/core';
-import {
-  chain,
-  externalSchematic,
-  Rule
-} from '@angular-devkit/schematics';
+import { chain, externalSchematic, Rule } from '@angular-devkit/schematics';
 import { join } from 'path';
 import { NodeElement } from '../node.element';
-import {
-  IconElement,
-  PrefixElement
-} from './form-field/prefix.element';
+import { IconElement, PrefixElement } from './form-field/prefix.element';
 import { SelectControlElement } from './form-field/select-control.element';
 import { GenerateSchema } from '../../schema';
 
@@ -48,14 +38,14 @@ export interface InjectionDefinition {
   scope?: Scope;
 }
 
-export function CoerceClassConstructor(
-  classDeclaration: ClassDeclaration
-) {
+export function CoerceClassConstructor(classDeclaration: ClassDeclaration) {
   const constructorDeclarations = classDeclaration.getConstructors();
   if (constructorDeclarations.length === 0) {
-    constructorDeclarations.push(classDeclaration.addConstructor({
-      parameters: []
-    }));
+    constructorDeclarations.push(
+      classDeclaration.addConstructor({
+        parameters: [],
+      })
+    );
   }
   return constructorDeclarations;
 }
@@ -65,62 +55,61 @@ export function AddDependencyInjection(
   definition: InjectionDefinition,
   structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = []
 ) {
-
-  const classDeclaration = sourceFile.getClasses()[ 0 ];
+  const classDeclaration = sourceFile.getClasses()[0];
 
   if (!classDeclaration) {
     throw new Error('Could not find class declaration');
   }
 
   const constructorDeclarations = CoerceClassConstructor(classDeclaration);
-  const constructorDeclaration  = constructorDeclarations[ 0 ];
+  const constructorDeclaration = constructorDeclarations[0];
 
   if (constructorDeclaration.getParameter(definition.parameterName)) {
     return;
   }
 
   const constructorParameter: OptionalKind<ParameterDeclarationStructure> = {
-    name:       definition.parameterName,
-    type:       definition.type ?? definition.injectionToken,
-    scope:      definition.scope ?? Scope.Public,
+    name: definition.parameterName,
+    type: definition.type ?? definition.injectionToken,
+    scope: definition.scope ?? Scope.Public,
     isReadonly: true,
     decorators: [
       {
-        name:      'Inject',
-        arguments: [ definition.injectionToken ]
-      }
-    ]
+        name: 'Inject',
+        arguments: [definition.injectionToken],
+      },
+    ],
   };
 
   if (definition.optional) {
     constructorParameter.decorators?.unshift({
-      name:      'Optional',
-      arguments: []
+      name: 'Optional',
+      arguments: [],
     });
-    constructorParameter.type = Writers.intersectionType(definition.type ?? definition.injectionToken, 'null');
+    constructorParameter.type = Writers.intersectionType(
+      definition.type ?? definition.injectionToken,
+      'null'
+    );
     sourceFile.addImportDeclaration({
-      namedImports:    [ 'Optional' ],
-      moduleSpecifier: '@angular/core'
+      namedImports: ['Optional'],
+      moduleSpecifier: '@angular/core',
     });
   }
 
   constructorDeclaration.addParameter(constructorParameter);
 
   sourceFile.addImportDeclaration({
-    namedImports:    [ 'Inject' ],
-    moduleSpecifier: '@angular/core'
+    namedImports: ['Inject'],
+    moduleSpecifier: '@angular/core',
   });
 
   sourceFile.addImportDeclarations(structures);
-
-
 }
 
 const { dasherize, classify, camelize, capitalize } = strings;
 
 @ElementDef('table')
 export class TableElement implements ParsedElement {
-
   @ElementChildTextContent()
   public name?: string;
 
@@ -136,19 +125,19 @@ export class TableElement implements ParsedElement {
   public validate(): boolean {
     return !!this.template;
   }
-
 }
 
 @ElementExtends(NodeElement)
 @ElementDef('table-select-control')
 export class TableSelectControlElement extends SelectControlElement {
-
   public get openMethodName() {
     return `Open${classify(this.tableSelectName)}TableSelectMethod`;
   }
 
   public get openMethodFilePath() {
-    return `methods/open-${dasherize(this.tableSelectName)}-table-select.method`;
+    return `methods/open-${dasherize(
+      this.tableSelectName
+    )}-table-select.method`;
   }
 
   public get tableSelectName() {
@@ -166,42 +155,67 @@ export class TableSelectControlElement extends SelectControlElement {
   public postParse() {
     super.postParse();
     this.prefix = ElementFactory(PrefixElement, {
-      button:     ElementFactory(IconElement, {
-        svg:  true,
-        name: 'table-eye'
+      button: ElementFactory(IconElement, {
+        svg: true,
+        name: 'table-eye',
       }),
-      attributes: [ `[rxapOpenTableSelect]="${camelize(this.openMethodName)}"`, 'rxapStopPropagation' ]
+      attributes: [
+        `[rxapOpenTableSelect]="${camelize(this.openMethodName)}"`,
+        'rxapStopPropagation',
+      ],
     });
   }
 
-  public handleComponent({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponent({
+    project,
+    sourceFile,
+    options,
+  }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponent({ project, sourceFile, options });
     AddComponentProvider(sourceFile, this.openMethodName);
     AddDependencyInjection(
       sourceFile,
       {
         injectionToken: this.openMethodName,
-        parameterName:  camelize(this.openMethodName)
+        parameterName: camelize(this.openMethodName),
       },
       [
         {
-          namedImports:    [ this.openMethodName ],
-          moduleSpecifier: `./${this.openMethodFilePath}`
-        }
+          namedImports: [this.openMethodName],
+          moduleSpecifier: `./${this.openMethodFilePath}`,
+        },
       ]
     );
   }
 
-  public handleComponentModule({ project, sourceFile, options }: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponentModule({
+    project,
+    sourceFile,
+    options,
+  }: ToValueContext & { sourceFile: SourceFile }) {
     super.handleComponentModule({ project, sourceFile, options });
     // TODO : mv to rxap
-    AddNgModuleImport(sourceFile, 'OpenTableSelectDirectiveModule', '@rxap/material-table-window-system');
-    AddNgModuleImport(sourceFile, 'StopPropagationDirectiveModule', '@rxap/directives');
-    AddNgModuleImport(sourceFile, 'WindowTableSelectModule', '@rxap/material-table-window-system');
+    AddNgModuleImport(
+      sourceFile,
+      'OpenTableSelectDirectiveModule',
+      '@rxap/material-table-window-system'
+    );
+    AddNgModuleImport(
+      sourceFile,
+      'StopPropagationDirectiveModule',
+      '@rxap/directives'
+    );
+    AddNgModuleImport(
+      sourceFile,
+      'WindowTableSelectModule',
+      '@rxap/material-table-window-system'
+    );
     AddNgModuleImport(
       sourceFile,
       `${classify(this.tableSelectName)}TableComponentModule`,
-      `./select-tables/${dasherize(this.tableSelectName)}-table/${dasherize(this.tableSelectName)}-table.component.module`
+      `./select-tables/${dasherize(this.tableSelectName)}-table/${dasherize(
+        this.tableSelectName
+      )}-table.component.module`
     );
   }
 
@@ -209,22 +223,19 @@ export class TableSelectControlElement extends SelectControlElement {
     return chain([
       super.toValue({ project, options }),
       () => this.createOpenMethodFile(project),
-      externalSchematic(
-        '@rxap/schematics-table',
-        'generate',
-        {
-          template:         this.table.template,
-          name:             this.tableSelectName,
-          path:             join(options.path?.replace(/^\//, '') ?? '', 'select-tables'),
-          project:          options.project,
-          organizeImports:  false,
-          fixImports:       false,
-          format:           false,
-          templateBasePath: options.templateBasePath,
-          overwrite:        options.overwrite,
-          openApiModule:    options.openApiModule
-        }
-      )
+      externalSchematic('@rxap/schematics-table', 'generate', {
+        template: this.table.template,
+        name: this.tableSelectName,
+        path: join(options.path?.replace(/^\//, '') ?? '', 'select-tables'),
+        project: options.project,
+        organizeImports: false,
+        fixImports: false,
+        format: false,
+        templateBasePath: options.templateBasePath,
+        overwrite: options.overwrite,
+        openApiModule: options.openApiModule,
+        skipTsFiles: options.skipTsFiles,
+      }),
     ]);
   }
 
@@ -232,64 +243,69 @@ export class TableSelectControlElement extends SelectControlElement {
     if (project.getSourceFile(`/${this.openMethodFilePath}.ts`)) {
       return;
     }
-    const openMethodSourceFile = project.createSourceFile(`/${this.openMethodFilePath}.ts`);
+    const openMethodSourceFile = project.createSourceFile(
+      `/${this.openMethodFilePath}.ts`
+    );
     openMethodSourceFile.addImportDeclarations([
       {
-        namedImports:    [ 'Method' ],
-        moduleSpecifier: '@rxap/utilities'
+        namedImports: ['Method'],
+        moduleSpecifier: '@rxap/utilities',
       },
       {
-        namedImports:    [ 'WindowTableSelectOptions', 'WindowTableSelectService' ],
-        moduleSpecifier: '@rxap/material-table-window-system'
+        namedImports: ['WindowTableSelectOptions', 'WindowTableSelectService'],
+        moduleSpecifier: '@rxap/material-table-window-system',
       },
       {
-        namedImports:    [ 'Injectable' ],
-        moduleSpecifier: '@angular/core'
+        namedImports: ['Injectable'],
+        moduleSpecifier: '@angular/core',
       },
       {
-        namedImports:    [ classify(this.tableSelectName) + 'TableComponent' ],
-        moduleSpecifier: `../select-tables/${dasherize(this.tableSelectName)}-table/${dasherize(this.tableSelectName)}-table.component`
-      }
+        namedImports: [classify(this.tableSelectName) + 'TableComponent'],
+        moduleSpecifier: `../select-tables/${dasherize(
+          this.tableSelectName
+        )}-table/${dasherize(this.tableSelectName)}-table.component`,
+      },
     ]);
     openMethodSourceFile.addClass({
       isExported: true,
-      name:       this.openMethodName + '<Data extends Record<string, any> = any>',
-      implements: [ 'Method<Data[], WindowTableSelectOptions<Data>>' ],
+      name: this.openMethodName + '<Data extends Record<string, any> = any>',
+      implements: ['Method<Data[], WindowTableSelectOptions<Data>>'],
       decorators: [
         {
-          name:      'Injectable',
-          arguments: []
-        }
+          name: 'Injectable',
+          arguments: [],
+        },
       ],
-      ctors:      [
+      ctors: [
         {
           parameters: [
             {
-              name:       'windowTableSelect',
-              type:       'WindowTableSelectService',
+              name: 'windowTableSelect',
+              type: 'WindowTableSelectService',
               isReadonly: true,
-              scope:      Scope.Public
-            }
-          ]
-        }
+              scope: Scope.Public,
+            },
+          ],
+        },
       ],
-      methods:    [
+      methods: [
         {
-          name:       'call',
-          scope:      Scope.Public,
+          name: 'call',
+          scope: Scope.Public,
           parameters: [
             {
               name: 'options',
-              type: 'WindowTableSelectOptions<Data>'
-            }
+              type: 'WindowTableSelectOptions<Data>',
+            },
           ],
           returnType: 'Promise<Data[]>',
           statements: [
-            `return this.windowTableSelect.open(${classify(this.tableSelectName)}TableComponent, options);`
-          ]
-        }
-      ]
+            `return this.windowTableSelect.open(${classify(
+              this.tableSelectName
+            )}TableComponent, options);`,
+          ],
+        },
+      ],
     });
   }
-
 }
