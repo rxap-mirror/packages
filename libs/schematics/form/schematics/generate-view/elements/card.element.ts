@@ -54,9 +54,6 @@ export class CardElement
   @ElementChildTextContent()
   public title?: string;
 
-  @ElementAttribute()
-  public i18n?: string;
-
   @ElementChild(ContentElement)
   @ElementRequired()
   public content!: ContentElement;
@@ -65,10 +62,6 @@ export class CardElement
     const nodes: Array<string | WithTemplate> = [];
 
     if (this.title) {
-      let i18n = `@@form.${this.controlPath}.card.title`;
-      if (this.i18n) {
-        i18n += `.${this.i18n}`;
-      }
       nodes.push(NodeFactory('mat-card-title', `i18n`)(this.title));
     }
 
