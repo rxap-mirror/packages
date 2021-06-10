@@ -16,11 +16,17 @@ export class AngularProject {
     return this._project.prefix;
   }
 
-  public get cli(): CliOptions | undefined {
+  public get cli(): CliOptions {
+    if (!this._project.cli) {
+      this._project.cli = {};
+    }
     return this._project.cli;
   }
 
-  public get schematics(): SchematicOptions | undefined {
+  public get schematics(): SchematicOptions {
+    if (!this._project.schematics) {
+      this._project.schematics = {};
+    }
     return this._project.schematics;
   }
 
@@ -28,7 +34,10 @@ export class AngularProject {
     return this._project.root;
   }
 
-  public get i18n(): I18n | undefined {
+  public get i18n(): I18n {
+    if (!this._project.i18n) {
+      this._project.i18n = {};
+    }
     return this._project.i18n;
   }
 
