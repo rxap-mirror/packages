@@ -1,16 +1,16 @@
 {
   "name": "@rxap/upload",
-  "version": "12.0.2",
+  "version": "12.0.3",
   "peerDependencies": {
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",
     "@angular/flex-layout": "^12.0.0-beta.34",
     "@angular/material": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
-    "@rxap/definition": "^12.0.2",
-    "@rxap/remote-method": "^12.0.2",
+    "@rxap/definition": "^12.0.4",
+    "@rxap/remote-method": "^12.0.3",
     "@rxap/schematics": "^12.0.0",
-    "@rxap/utilities": "^12.0.2",
+    "@rxap/utilities": "^12.0.4",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },

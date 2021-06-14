@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.0.2...@rxap/tree@12.0.3) (2021-06-14)
+
+**Note:** Version bump only for package @rxap/tree
+
+
+
+
+
 ## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/tree@11.1.2...@rxap/tree@12.0.2) (2021-06-09)
 
 
