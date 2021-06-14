@@ -1,8 +1,7 @@
 {
   "packages": [
     "libs/*",
-    "libs/material/*",
-    "libs/schematics/*"
+    "libs/material/*"
   ],
   "version": "independent",
   "command": {

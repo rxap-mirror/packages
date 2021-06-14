@@ -177,25 +177,14 @@
       "@rxap/material-table-system": [
         "libs/material/table-system/src/index.ts"
       ],
-      "@rxap/schematics-utilities": ["libs/schematics/utilities/src/index.ts"],
       "@rxap/contenteditable": ["libs/contenteditable/src/index.ts"],
-      "@rxap/schematics-router": ["libs/schematics/router/src/index.ts"],
-      "@rxap/schematics-table": ["libs/schematics/table/src/index.ts"],
       "@rxap/material-table-window-system": [
         "libs/material/table-window-system/src/index.ts"
       ],
-      "@rxap/schematics-shared": ["libs/schematics/shared/src/index.ts"],
       "@rxap/upeload": ["libs/upload/src/index.ts"],
-      "@rxap/schematics-form": ["libs/schematics/form/src/index.ts"],
       "@rxap/material-directives": ["libs/material/directives/src/index.ts"],
       "@rxap/fake": ["libs/fake/src/index.ts"],
       "@rxap/oauth": ["libs/oauth/src/index.ts"],
-      "@rxap/schematics-ts-morph": ["libs/schematics/ts-morph/src/index.ts"],
-      "@rxap/schematics-html": ["libs/schematics/html/src/index.ts"],
-      "@rxap/schematics-xml-parser": [
-        "libs/schematics/xml-parser/src/index.ts"
-      ],
-      "@rxap/schematics-open-api": ["libs/schematics/open-api/src/index.ts"],
       "@rxap/authorization": ["libs/authorization/src/index.ts"]
     }
   },
