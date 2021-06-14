@@ -43,10 +43,6 @@
       "@rxap/mixin",
       "@rxap/open-api",
       "@rxap/remote-method",
-      "@rxap/schematics",
-      "@rxap/schematics-open-api",
-      "@rxap/schematics-ts-morph",
-      "@rxap/schematics-utilities",
       "@rxap/services",
       "@rxap/utilities",
       "@rxap/window-system"

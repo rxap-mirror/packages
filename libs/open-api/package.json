@@ -49,10 +49,6 @@
       "@rxap/definition",
       "@rxap/mixin",
       "@rxap/remote-method",
-      "@rxap/schematics",
-      "@rxap/schematics-open-api",
-      "@rxap/schematics-ts-morph",
-      "@rxap/schematics-utilities",
       "@rxap/utilities"
     ]
   },
