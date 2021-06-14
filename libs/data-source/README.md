@@ -11,27 +11,10 @@
 > Provides the DataSource concept for RxAP.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/data-source @rxap/definition@^12.0.1 @rxap/utilities@^12.0.1 
+yarn add @rxap/data-source @rxap/definition@^12.0.3 @rxap/utilities@^12.0.3
 ```
-
-**ng add**
-```
-ng add @rxap/data-source
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

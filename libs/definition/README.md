@@ -11,27 +11,10 @@
 > Provides the Definition concept for RxAP.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/definition @rxap/utilities@^12.0.1 
+yarn add @rxap/definition @rxap/utilities@^12.0.3
 ```
-
-**ng add**
-```
-ng add @rxap/definition
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

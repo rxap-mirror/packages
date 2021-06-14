@@ -11,27 +11,10 @@
 > A collection of utility angular directives used in RxAP.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/directives @rxap/services@^12.0.1 @rxap/utilities@^12.0.1 
+yarn add @rxap/directives @rxap/services@^12.0.2 @rxap/utilities@^12.0.3
 ```
-
-**ng add**
-```
-ng add @rxap/directives
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

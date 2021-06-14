@@ -11,27 +11,10 @@
 > A collection of components and services that provides standard layouts for angular applications.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/layout @rxap/authentication@^12.0.1 @rxap/components@^12.0.1 @rxap/config@^12.0.1 @rxap/definition@^12.0.1 @rxap/directives@^12.0.1 @rxap/forms@^12.0.1 @rxap/material-directives@^12.0.1 @rxap/services@^12.0.1 @rxap/utilities@^12.0.1 
+yarn add @rxap/layout @rxap/authentication@^12.0.3 @rxap/components@^12.0.2 @rxap/config@^12.0.2 @rxap/definition@^12.0.2 @rxap/directives@^12.0.3 @rxap/forms@^12.0.4 @rxap/material-directives@^12.0.2 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
 ```
-
-**ng add**
-```
-ng add @rxap/layout
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

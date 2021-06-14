@@ -11,27 +11,10 @@
 > A utility package to execute logic after the angular app is ready
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/life-cycle @rxap/utilities@^12.0.1 
+yarn add @rxap/life-cycle @rxap/utilities@^12.0.2
 ```
-
-**ng add**
-```
-ng add @rxap/life-cycle
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

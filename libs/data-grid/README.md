@@ -11,27 +11,10 @@
 > 
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/data-grid @rxap/definition@^12.0.1 @rxap/directives@^12.0.1 @rxap/forms@^12.0.1 @rxap/pipes@^12.0.1 @rxap/services@^12.0.1 @rxap/utilities@^12.0.1 
+yarn add @rxap/data-grid @rxap/definition@^12.0.2 @rxap/directives@^12.0.3 @rxap/forms@^12.0.4 @rxap/pipes@^12.0.2 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
 ```
-
-**ng add**
-```
-ng add @rxap/data-grid
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

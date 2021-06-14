@@ -11,27 +11,10 @@
 > Client package for https://recorder.rxap.dev.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/recorder @rxap/across-tabs@^12.0.1 @rxap/definition@^12.0.1 @rxap/utilities@^12.0.1 
+yarn add @rxap/recorder @rxap/across-tabs@^12.0.2 @rxap/definition@^12.0.2 @rxap/utilities@^12.0.2
 ```
-
-**ng add**
-```
-ng add @rxap/recorder
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

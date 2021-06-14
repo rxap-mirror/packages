@@ -11,25 +11,67 @@
 > {{package.description}}
 
 - [Installation](#installation)
+{{#if getstarted ~}}
 - [Get started](#get-started)
+{{/if}}
+{{#if guides ~}}
 - [Guides](#guides)
+{{/if}}
+{{#if hasSchematics ~}}
+- [Schematics](#schematics)
+{{/if}}
 
 # Installation
 
-```
-yarn add {{package.name}} {{#each rxapDependencies}}{{@key}}@{{this}} {{/each}}
-```
-
-**ng add**
+{{#if collection.schematics.ng-add ~}}
 ```
 ng add {{package.name}}
 ```
 
+*{{collection.schematics.ng-add.description}}*
+
+{{else}}
+```
+yarn add {{package.name}}{{#each rxapDependencies}} {{@key}}@{{this}}{{/each}}
+```
+
+{{/if}}
+{{#if getstarted ~}}
 # Get started
 
-{{getstarted}}
+{{{getstarted}}}
 
+{{/if}}
+{{#if guides ~}}
 # Guides
 
-{{guides}}
+{{{guides}}}
 
+{{/if}}
+{{#if hasSchematics ~}}
+# Schematics
+
+{{#each collection.schematics}}
+## {{@key}}
+> {{this.description}}
+
+```
+ng g {{this.name}}:{{@key}}
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+{{#each this.schema.properties}}
+{{@key}} | {{this.type}} | {{this.default}} | {{this.description}}
+{{/each}}
+
+{{#if this.schema.required}}
+| Required |
+| --- |
+{{#each this.schema.required}}
+| {{this}} |
+{{/each}}
+{{/if}}
+
+{{/each}}
+{{/if}}

@@ -60,6 +60,7 @@
           "options": {
             "targets": [
               "utilities:readme",
+              "utilities:readme",
               "utilities:update-package-group",
               "utilities:build:production",
               "utilities:schematics"
@@ -200,6 +201,7 @@
           "options": {
             "targets": [
               "data-source:readme",
+              "data-source:readme",
               "data-source:update-package-group",
               "data-source:build:production",
               "data-source:schematics"
@@ -272,6 +274,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "window-system:readme",
               "window-system:readme",
               "window-system:update-package-group",
               "window-system:build:production",
@@ -377,6 +380,7 @@
           "options": {
             "targets": [
               "services:readme",
+              "services:readme",
               "services:update-package-group",
               "services:build:production",
               "services:schematics"
@@ -458,6 +462,7 @@
           "options": {
             "targets": [
               "xml-parser:readme",
+              "xml-parser:readme",
               "xml-parser:update-package-group",
               "xml-parser:build:production",
               "xml-parser:schematics"
@@ -538,6 +543,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "mixin:readme",
               "mixin:readme",
               "mixin:update-package-group",
               "mixin:build:production",
@@ -628,6 +634,8 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "components:readme",
+              "components:readme",
               "components:readme",
               "components:update-package-group",
               "components:build:production",
@@ -770,6 +778,7 @@
           "options": {
             "targets": [
               "remote-method:readme",
+              "remote-method:readme",
               "remote-method:update-package-group",
               "remote-method:build:production",
               "remote-method:schematics"
@@ -866,6 +875,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "config:readme",
               "config:readme",
               "config:update-package-group",
               "config:build:production",
@@ -998,6 +1008,8 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "authentication:readme",
+              "authentication:readme",
               "authentication:readme",
               "authentication:update-package-group",
               "authentication:build:production",
@@ -1142,6 +1154,7 @@
           "options": {
             "targets": [
               "layout:readme",
+              "layout:readme",
               "layout:update-package-group",
               "layout:build:production",
               "layout:scss-bundle",
@@ -1285,6 +1298,7 @@
           "options": {
             "targets": [
               "pipes:readme",
+              "pipes:readme",
               "pipes:update-package-group",
               "pipes:build:production",
               "pipes:schematics"
@@ -1378,6 +1392,7 @@
           "options": {
             "targets": [
               "open-api:readme",
+              "open-api:readme",
               "open-api:update-package-group",
               "open-api:build:production",
               "open-api:schematics"
@@ -1459,6 +1474,7 @@
           "options": {
             "targets": [
               "recorder:readme",
+              "recorder:readme",
               "recorder:update-package-group",
               "recorder:build:production",
               "recorder:schematics"
@@ -1539,6 +1555,8 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "across-tabs:readme",
+              "across-tabs:readme",
               "across-tabs:update-package-group",
               "across-tabs:build:production",
               "across-tabs:schematics"
@@ -1562,6 +1580,9 @@
             "buildTarget": "across-tabs:build:production",
             "preTarget": "across-tabs:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -1668,6 +1689,7 @@
           "options": {
             "targets": [
               "forms:readme",
+              "forms:readme",
               "forms:update-package-group",
               "forms:build:production",
               "forms:schematics"
@@ -1761,6 +1783,7 @@
           "options": {
             "targets": [
               "icon:readme",
+              "icon:readme",
               "icon:update-package-group",
               "icon:build:production",
               "icon:schematics"
@@ -1853,6 +1876,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "firebase:readme",
               "firebase:readme",
               "firebase:update-package-group",
               "firebase:build:production",
@@ -1986,6 +2010,7 @@
           "options": {
             "targets": [
               "directives:readme",
+              "directives:readme",
               "directives:update-package-group",
               "directives:build:production",
               "directives:scss-bundle",
@@ -2077,6 +2102,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "handlebars:readme",
               "handlebars:readme",
               "handlebars:update-package-group",
               "handlebars:build:production",
@@ -2171,6 +2197,7 @@
           "options": {
             "targets": [
               "definition:readme",
+              "definition:readme",
               "definition:update-package-group",
               "definition:build:production",
               "definition:schematics"
@@ -2251,6 +2278,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "form-system:readme",
               "form-system:update-package-group",
               "form-system:build:production",
               "form-system:scss-bundle",
@@ -2324,6 +2352,9 @@
             "buildTarget": "form-system:build:production",
             "preTarget": "form-system:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -2378,6 +2409,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "data-grid:readme",
               "data-grid:readme",
               "data-grid:update-package-group",
               "data-grid:build:production",
@@ -2471,6 +2503,7 @@
           "options": {
             "targets": [
               "slugify:readme",
+              "slugify:readme",
               "slugify:update-package-group",
               "slugify:build:production",
               "slugify:schematics"
@@ -2551,6 +2584,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "service-worker:readme",
               "service-worker:readme",
               "service-worker:update-package-group",
               "service-worker:build:production",
@@ -2633,6 +2667,7 @@
           "options": {
             "targets": [
               "life-cycle:readme",
+              "life-cycle:readme",
               "life-cycle:update-package-group",
               "life-cycle:build:production",
               "life-cycle:schematics"
@@ -2714,6 +2749,7 @@
           "options": {
             "targets": [
               "json-schema-to-typescript:readme",
+              "json-schema-to-typescript:readme",
               "json-schema-to-typescript:build:production"
             ]
           }
@@ -2791,6 +2827,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "tree:readme",
               "tree:readme",
               "tree:update-package-group",
               "tree:build:production",
@@ -2883,6 +2920,7 @@
           "options": {
             "targets": [
               "dialog:readme",
+              "dialog:readme",
               "dialog:update-package-group",
               "dialog:build:production",
               "dialog:schematics"
@@ -2973,6 +3011,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "form-window-system:readme",
               "form-window-system:readme",
               "form-window-system:update-package-group",
               "form-window-system:build:production",
@@ -3065,6 +3104,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "environment:readme",
               "environment:readme",
               "environment:update-package-group",
               "environment:build:production",
@@ -3235,6 +3275,7 @@
           "options": {
             "targets": [
               "table-system:readme",
+              "table-system:readme",
               "table-system:update-package-group",
               "table-system:build:production",
               "table-system:schematics",
@@ -3316,6 +3357,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "material-form-system:readme",
               "material-form-system:update-package-group",
               "material-form-system:build:production",
               "material-form-system:scss-bundle",
@@ -3350,6 +3392,9 @@
         },
         "update-package-group": {
           "builder": "@rxap/plugin-library-schematics:update-package-group"
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -3404,6 +3449,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "material-table-system:readme",
               "material-table-system:update-package-group",
               "material-table-system:build:production",
               "material-table-system:scss-bundle",
@@ -3471,6 +3517,9 @@
           "outputs": [
             "{options.outputPath}"
           ]
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       },
       "schematics": {
@@ -3525,6 +3574,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "contenteditable:readme",
               "contenteditable:readme",
               "contenteditable:update-package-group",
               "contenteditable:build:production",
@@ -3740,6 +3790,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "material-table-window-system:readme",
               "material-table-window-system:update-package-group",
               "material-table-window-system:build:production",
               "material-table-window-system:schematics"
@@ -3763,6 +3814,9 @@
             "buildTarget": "material-table-window-system:build:production",
             "preTarget": "material-table-window-system:pack"
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       }
     },
@@ -3811,6 +3865,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "upload:readme",
               "upload:readme",
               "upload:update-package-group",
               "upload:build:production",
@@ -3886,6 +3941,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "material-directives:readme",
               "material-directives:update-package-group",
               "material-directives:build:production",
               "material-directives:schematics",
@@ -3920,6 +3976,9 @@
               "~@angular/.*"
             ]
           }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
         }
       }
     },
@@ -3964,6 +4023,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "fake:readme",
               "fake:readme",
               "fake:update-package-group",
               "fake:build:production",
@@ -4035,6 +4095,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "oauth:readme",
               "oauth:readme",
               "oauth:update-package-group",
               "oauth:build:production",
@@ -4117,6 +4178,8 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
+              "authorization:readme",
+              "authorization:readme",
               "authorization:readme",
               "authorization:update-package-group",
               "authorization:build:production",

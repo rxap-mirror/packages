@@ -11,27 +11,10 @@
 > A collection of utility angular services used in RxAP.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/services @rxap/utilities@^12.0.1 
+yarn add @rxap/services @rxap/utilities@^12.0.2
 ```
-
-**ng add**
-```
-ng add @rxap/services
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

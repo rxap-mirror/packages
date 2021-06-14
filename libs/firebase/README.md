@@ -11,27 +11,10 @@
 > A collection of utility angular services to interact with firebase.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/firebase @rxap/config@^12.0.1 @rxap/utilities@^12.0.1 
+yarn add @rxap/firebase @rxap/config@^12.0.3 @rxap/utilities@^12.0.3
 ```
-
-**ng add**
-```
-ng add @rxap/firebase
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

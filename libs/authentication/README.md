@@ -11,27 +11,10 @@
 > A collection of components and services to simplify the authentication process implementation.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/authentication @rxap/config@^12.0.1 @rxap/definition@^12.0.1 @rxap/directives@^12.0.1 @rxap/forms@^12.0.1 @rxap/services@^12.0.1 @rxap/utilities@^12.0.1 
+yarn add @rxap/authentication @rxap/config@^12.0.2 @rxap/definition@^12.0.2 @rxap/directives@^12.0.3 @rxap/forms@^12.0.4 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
 ```
-
-**ng add**
-```
-ng add @rxap/authentication
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 
