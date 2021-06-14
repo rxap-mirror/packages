@@ -11,27 +11,10 @@
 > 
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/environment 
+yarn add @rxap/environment
 ```
-
-**ng add**
-```
-ng add @rxap/environment
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

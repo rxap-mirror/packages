@@ -11,27 +11,10 @@
 > Provides the WindowSystem concept for RxAP.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/window-system @rxap/components@^12.0.1 @rxap/directives@^12.0.1 @rxap/material-directives@^12.0.1 @rxap/services@^12.0.1 @rxap/utilities@^12.0.1 
+yarn add @rxap/window-system @rxap/components@^12.0.2 @rxap/directives@^12.0.4 @rxap/material-directives@^12.0.2 @rxap/services@^12.0.2 @rxap/utilities@^12.0.3
 ```
-
-**ng add**
-```
-ng add @rxap/window-system
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

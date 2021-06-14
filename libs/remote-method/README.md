@@ -11,27 +11,10 @@
 > Provides the RemoteMethod concept for RxAP.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/remote-method @rxap/definition@^12.0.1 @rxap/schematics@^11.3.6 @rxap/utilities@^12.0.1 
+yarn add @rxap/remote-method @rxap/definition@^12.0.2 @rxap/schematics@^12.0.0 @rxap/utilities@^12.0.2
 ```
-
-**ng add**
-```
-ng add @rxap/remote-method
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

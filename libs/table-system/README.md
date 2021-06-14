@@ -11,27 +11,10 @@
 > 
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/table-system @rxap/utilities@^12.0.1 
+yarn add @rxap/table-system @rxap/utilities@^12.0.2
 ```
-
-**ng add**
-```
-ng add @rxap/table-system
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

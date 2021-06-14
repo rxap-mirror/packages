@@ -11,27 +11,10 @@
 > A utility to slugify a string.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/slugify 
+yarn add @rxap/slugify
 ```
-
-**ng add**
-```
-ng add @rxap/slugify
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

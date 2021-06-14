@@ -11,27 +11,10 @@
 > 
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/upload @rxap/definition@^12.0.1 @rxap/remote-method@^12.0.1 @rxap/schematics@^11.3.6 @rxap/utilities@^12.0.1 
+yarn add @rxap/upload @rxap/definition@^12.0.2 @rxap/remote-method@^12.0.2 @rxap/schematics@^12.0.0 @rxap/utilities@^12.0.2
 ```
-
-**ng add**
-```
-ng add @rxap/upload
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

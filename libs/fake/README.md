@@ -11,27 +11,10 @@
 > 
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/fake 
+yarn add @rxap/fake
 ```
-
-**ng add**
-```
-ng add @rxap/fake
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

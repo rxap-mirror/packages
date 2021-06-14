@@ -11,27 +11,10 @@
 > A collection of components, data-sources and remote methods the simplify the usage of tree like components
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/tree @rxap/contenteditable@^12.0.1 @rxap/data-source@^12.0.1 @rxap/definition@^12.0.1 @rxap/material-directives@^12.0.1 @rxap/remote-method@^12.0.1 @rxap/schematics@^11.3.6 @rxap/services@^12.0.1 @rxap/utilities@^12.0.1 
+yarn add @rxap/tree @rxap/contenteditable@^12.0.2 @rxap/data-source@^12.0.2 @rxap/definition@^12.0.2 @rxap/material-directives@^12.0.2 @rxap/remote-method@^12.0.2 @rxap/schematics@^12.0.0 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
 ```
-
-**ng add**
-```
-ng add @rxap/tree
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

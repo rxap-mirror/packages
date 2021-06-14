@@ -11,27 +11,10 @@
 > A collection of utility functions, types and interfaces.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/utilities 
+yarn add @rxap/utilities
 ```
-
-**ng add**
-```
-ng add @rxap/utilities
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

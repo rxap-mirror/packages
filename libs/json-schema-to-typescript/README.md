@@ -11,27 +11,10 @@
 > Generates typescript interfaces from json schema definition.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/json-schema-to-typescript 
+yarn add @rxap/json-schema-to-typescript
 ```
-
-**ng add**
-```
-ng add @rxap/json-schema-to-typescript
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 

@@ -11,24 +11,13 @@
 > A collection of typescript decorators.
 
 - [Installation](#installation)
-- [Get started](#get-started)
 - [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/mixin @rxap/utilities@^12.0.1 
+yarn add @rxap/mixin @rxap/utilities@^12.0.2
 ```
-
-**ng add**
-```
-ng add @rxap/mixin
-```
-
-# Get started
-
-TODO
-
 
 # Guides
 
@@ -38,28 +27,28 @@ with ease.
 
 #### Basic example
 
-&#x60;&#x60;&#x60;typescript
+```typescript
 class DisableFeature {
 
   // will not be mixin the Concrete class
-  public disabled: boolean &#x3D; false;
+  public disabled: boolean = false;
 
   public disable(): void {
-    this.disabled &#x3D; true;
+    this.disabled = true;
   }
 
   public enable(): void {
-    this.disabled &#x3D; false;
+    this.disabled = false;
   }
 
 }
-&#x60;&#x60;&#x60;
+```
 
-&#x60;&#x60;&#x60;typescript
+```typescript
 class ValidateFeature {
 
   // will not be mixin the Concrete class
-  public isValid: boolean &#x3D; true;
+  public isValid: boolean = true;
 
   public get isInvalid(): boolean {
     return !this.isValid;
@@ -68,10 +57,10 @@ class ValidateFeature {
   public validate(): void {}
 
 }
-&#x60;&#x60;&#x60;
+```
 
-&#x60;&#x60;&#x60;typescript
-import { mixin } from &#x27;@rxap/mixin&#x27;;
+```typescript
+import { mixin } from '@rxap/mixin';
 
 interface Concrete extends DisableFeature, ValidateFeature {}
 
@@ -85,11 +74,11 @@ class Concrete {
   }
   
 }
-&#x60;&#x60;&#x60;
+```
 
 ###### Resulting Class at runtime
 
-&#x60;&#x60;&#x60;typescript
+```typescript
 class Concrete {
   
   public get isInvalid(): boolean {
@@ -101,14 +90,14 @@ class Concrete {
   }
   
   public disable(): void {
-    this.disabled &#x3D; true;
+    this.disabled = true;
   }
 
   public enable(): void {
-    this.disabled &#x3D; false;
+    this.disabled = false;
   }
   
 }
-&#x60;&#x60;&#x60;
+```
 
 

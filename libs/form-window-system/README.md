@@ -11,27 +11,10 @@
 > Provides the FormSystem concept for RxAP.
 
 - [Installation](#installation)
-- [Get started](#get-started)
-- [Guides](#guides)
 
 # Installation
 
 ```
-yarn add @rxap/form-window-system @rxap/components@^12.0.1 @rxap/data-source@^12.0.1 @rxap/definition@^12.0.1 @rxap/directives@^12.0.1 @rxap/form-system@^12.0.1 @rxap/forms@^12.0.1 @rxap/material-directives@^12.0.1 @rxap/mixin@^12.0.1 @rxap/services@^12.0.1 @rxap/utilities@^12.0.1 @rxap/window-system@^12.0.1 
+yarn add @rxap/form-window-system @rxap/components@^12.0.2 @rxap/data-source@^12.0.2 @rxap/definition@^12.0.2 @rxap/directives@^12.0.3 @rxap/form-system@^12.0.3 @rxap/forms@^12.0.4 @rxap/material-directives@^12.0.2 @rxap/mixin@^12.0.2 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2 @rxap/window-system@^12.0.2
 ```
-
-**ng add**
-```
-ng add @rxap/form-window-system
-```
-
-# Get started
-
-TODO
-
-
-# Guides
-
-TODO
-
 
