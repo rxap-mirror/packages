@@ -111,9 +111,6 @@
     "material-table-system": {
       "tags": []
     },
-    "schematics-utilities": {
-      "tags": []
-    },
     "contenteditable": {
       "tags": []
     },
@@ -124,22 +121,10 @@
       "tags": [],
       "implicitDependencies": ["demo"]
     },
-    "schematics-router": {
-      "tags": []
-    },
-    "schematics-table": {
-      "tags": []
-    },
     "material-table-window-system": {
       "tags": []
     },
-    "schematics-shared": {
-      "tags": []
-    },
     "upload": {
-      "tags": []
-    },
-    "schematics-form": {
       "tags": []
     },
     "material-directives": {
@@ -149,18 +134,6 @@
       "tags": []
     },
     "oauth": {
-      "tags": []
-    },
-    "schematics-ts-morph": {
-      "tags": []
-    },
-    "schematics-html": {
-      "tags": []
-    },
-    "schematics-xml-parser": {
-      "tags": []
-    },
-    "schematics-open-api": {
       "tags": []
     },
     "authorization": {
