@@ -8,6 +8,7 @@
     "@rxap/schematics-open-api",
     "@rxap/schematics-ts-morph",
     "@rxap/schematics-utilities",
+    "@rxap/schematics",
     "@apidevtools/json-schema-ref-parser",
     "ajv-oai",
     "openapi-types",
