@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.2.0...@rxap/forms@12.2.1) (2021-06-16)
+
+
+### Bug Fixes
+
+* update migration schematic path ([8c548dc](https://gitlab.com/rxap/packages/commit/8c548dce8f1ed751c93a4f7621cbd12e30ae87b7))
+
+
+
+
+
 # [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.1.0...@rxap/forms@12.2.0) (2021-06-16)
 
 
