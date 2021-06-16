@@ -4,15 +4,16 @@ import { ExpandControlsCellComponentModule } from './expand-controls-cell/expand
 import { ExpandRowService } from './expand-row.service';
 import { ExpandRowDirective } from './expand-row.directive';
 
+/**
+ * @deprecated use from @rxap/material-table-system
+ */
 @NgModule({
   exports: [
     ExpandRowContainerComponentModule,
     ExpandControlsCellComponentModule,
     ExpandRowDirective,
   ],
-  providers: [
-    ExpandRowService,
-  ],
-  declarations: [ ExpandRowDirective]
+  providers: [ExpandRowService],
+  declarations: [ExpandRowDirective],
 })
 export class ExpandRowModule {}
