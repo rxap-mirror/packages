@@ -1,4 +1,8 @@
-import { FormDirective, FormDefinition } from '@rxap/forms';
+import {
+  FormDirective,
+  FormDefinition,
+  FormDefinitionWithMetadata,
+} from '@rxap/forms';
 import {
   ChangeDetectorRef,
   Directive,
@@ -37,7 +41,7 @@ export class FilterHeaderRowDirective
     cdr: ChangeDetectorRef,
     @Optional()
     @Inject(RXAP_TABLE_FILTER_FORM_DEFINITION)
-    formDefinition: FormDefinition | null
+    formDefinition: FormDefinitionWithMetadata | null
   ) {
     super(cdr, formDefinition);
   }
@@ -61,6 +65,7 @@ export class FilterHeaderRowDirective
   }
 
   public ngOnDestroy() {
+    super.ngOnDestroy();
     this._subscription?.unsubscribe();
   }
 }

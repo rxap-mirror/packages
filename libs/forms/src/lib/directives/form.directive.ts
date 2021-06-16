@@ -14,6 +14,7 @@ import {
   SimpleChanges,
   isDevMode,
   SkipSelf,
+  OnDestroy,
 } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import {
@@ -34,7 +35,7 @@ import {
   Required,
   clone,
 } from '@rxap/utilities';
-import { FormDefinition } from '../model';
+import { FormDefinition, FormDefinitionWithMetadata } from '../model';
 import {
   FormSubmitMethod,
   FormLoadMethod,
@@ -43,9 +44,10 @@ import {
   FormSubmitFailedMethod,
   FormSubmitSuccessfulMethod,
 } from './models';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { RxapFormBuilder } from '../form-builder';
 import { LoadingIndicatorService } from '@rxap/services';
+import { debounceTime, tap, filter } from 'rxjs/operators';
 
 @Directive({
   selector: 'form:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',
@@ -98,7 +100,7 @@ import { LoadingIndicatorService } from '@rxap/services';
 })
 export class FormDirective<T extends Record<string, any> = any>
   extends FormGroupDirective
-  implements OnInit, OnChanges
+  implements OnInit, OnChanges, OnDestroy
 {
   public form!: RxapFormGroup<T>;
 
@@ -146,12 +148,12 @@ export class FormDirective<T extends Record<string, any> = any>
   @Input('rxapForm')
   public set useFormDefinition(value: FormDefinition<T> | '') {
     if (value) {
-      this._formDefinition = value;
+      this._formDefinition = value as any;
       this.form = value.rxapFormGroup;
     }
   }
 
-  public get formDefinition(): FormDefinition<T> {
+  public get formDefinition(): FormDefinitionWithMetadata<T> {
     return this._formDefinition;
   }
 
@@ -162,16 +164,18 @@ export class FormDirective<T extends Record<string, any> = any>
   public loadingError$ = new BehaviorSubject<Error | null>(null);
 
   @Required
-  private _formDefinition!: FormDefinition<T>;
+  private _formDefinition!: FormDefinitionWithMetadata<T>;
 
   @Input()
   public submitMethod: FormSubmitMethod<any> | null = null;
+
+  private _autoSubmitSubscription = new Subscription();
 
   constructor(
     @Inject(ChangeDetectorRef) public readonly cdr: ChangeDetectorRef,
     @Optional()
     @Inject(RXAP_FORM_DEFINITION)
-    formDefinition: FormDefinition | null = null,
+    formDefinition: FormDefinitionWithMetadata | null = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
@@ -242,6 +246,25 @@ export class FormDirective<T extends Record<string, any> = any>
       throw new Error('The form definition instance is not defined');
     }
     this.loadInitialState(this.form);
+    if (this._formDefinition.rxapMetadata.autoSubmit) {
+      const debounce =
+        typeof this._formDefinition.rxapMetadata.autoSubmit === 'number'
+          ? this._formDefinition.rxapMetadata.autoSubmit
+          : 5000;
+      this._autoSubmitSubscription = this.form.valueChanges
+        .pipe(
+          debounceTime(debounce),
+          filter(() => this.form.valid),
+          tap((value) =>
+            console.debug(
+              `Auto submit form '${this._formDefinition.rxapMetadata.id}'`,
+              value
+            )
+          ),
+          tap(() => this.submit())
+        )
+        .subscribe();
+    }
   }
 
   @HostListener('submit', ['$event'])
@@ -447,5 +470,10 @@ export class FormDirective<T extends Record<string, any> = any>
           this.form.controlId
       );
     }
+  }
+
+  public ngOnDestroy() {
+    super.ngOnDestroy();
+    this._autoSubmitSubscription?.unsubscribe();
   }
 }

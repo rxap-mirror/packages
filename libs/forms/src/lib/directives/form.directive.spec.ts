@@ -7,39 +7,33 @@ import {
   TestBed,
   fakeAsync,
   tick,
-  ComponentFixture
+  ComponentFixture,
 } from '@angular/core/testing';
 import {
   Provider,
   Injector,
   INJECTOR,
   ChangeDetectorRef,
-  DebugElement
+  DebugElement,
 } from '@angular/core';
 import {
   RXAP_FORM_DEFINITION,
   RXAP_FORM_DEFINITION_BUILDER,
   RXAP_FORM_LOAD_METHOD,
-  RXAP_FORM_SUBMIT_METHOD
+  RXAP_FORM_SUBMIT_METHOD,
 } from './tokens';
 import { UseFormControl } from '../decorators/use-form-control';
 import { RxapFormBuilder } from '../form-builder';
 import { RxapFormsModule } from '@rxap/forms';
-import {
-  MockedComponent,
-  MockRender
-} from 'ng-mocks';
+import { MockedComponent, MockRender } from 'ng-mocks';
 import { By } from '@angular/platform-browser';
+import { ToMethod } from '@rxap/utilities';
 
 describe('@rxap/forms', () => {
-
   describe('directives', () => {
-
     describe('FormDirective', () => {
-
       @RxapForm('test')
       class TestForm implements FormDefinition {
-
         public rxapFormGroup!: RxapFormGroup;
 
         @UseFormControl()
@@ -47,55 +41,47 @@ describe('@rxap/forms', () => {
 
         @UseFormControl()
         public password!: RxapFormControl;
-
       }
 
       const TestFormProviders: Provider[] = [
         TestForm,
         {
-          provide:    RXAP_FORM_DEFINITION_BUILDER,
-          useFactory: (injector: Injector) => new RxapFormBuilder(TestForm, injector),
-          deps:       [ INJECTOR ]
+          provide: RXAP_FORM_DEFINITION_BUILDER,
+          useFactory: (injector: Injector) =>
+            new RxapFormBuilder(TestForm, injector),
+          deps: [INJECTOR],
         },
         {
-          provide:    RXAP_FORM_DEFINITION,
+          provide: RXAP_FORM_DEFINITION,
           useFactory: (builder: RxapFormBuilder) => builder.build(),
-          deps:       [ RXAP_FORM_DEFINITION_BUILDER ]
+          deps: [RXAP_FORM_DEFINITION_BUILDER],
         },
         {
-          provide:  ChangeDetectorRef,
-          useValue: { detectChanges: () => {} }
-        }
+          provide: ChangeDetectorRef,
+          useValue: { detectChanges: () => {} },
+        },
       ];
 
       it('should create a form definition instance', () => {
-
         TestBed.configureTestingModule({
-          providers: [
-            TestFormProviders,
-            FormDirective
-          ]
+          providers: [TestFormProviders, FormDirective],
         });
 
-        const formDirective                  = TestBed.inject(FormDirective);
-        const formDefinition: FormDefinition = TestBed.inject(RXAP_FORM_DEFINITION);
+        const formDirective = TestBed.inject(FormDirective);
+        const formDefinition: FormDefinition =
+          TestBed.inject(RXAP_FORM_DEFINITION);
 
         expect(formDirective.form).toBeInstanceOf(RxapFormGroup);
         expect(formDefinition.rxapFormGroup).toBe(formDirective.form);
         expect(formDirective.value).toEqual({
           username: null,
-          password: null
+          password: null,
         });
-
       });
 
       it('should set loaded to true if no load method is defined', () => {
-
         TestBed.configureTestingModule({
-          providers: [
-            TestFormProviders,
-            FormDirective
-          ]
+          providers: [TestFormProviders, FormDirective],
         });
         const formDirective = TestBed.inject(FormDirective);
         expect(formDirective.loaded).toBeFalsy();
@@ -103,20 +89,22 @@ describe('@rxap/forms', () => {
         formDirective.ngOnInit();
         expect(formDirective.loaded).toBeTruthy();
         expect(formDirective.loading).toBeFalsy();
-
       });
 
       it('should call the load method(sync)', () => {
-
         TestBed.configureTestingModule({
           providers: [
             TestFormProviders,
             FormDirective,
             {
-              provide:  RXAP_FORM_LOAD_METHOD,
-              useValue: { call() { return { username: 'rxap', password: 'paxr' }; } }
-            }
-          ]
+              provide: RXAP_FORM_LOAD_METHOD,
+              useValue: {
+                call() {
+                  return { username: 'rxap', password: 'paxr' };
+                },
+              },
+            },
+          ],
         });
 
         const formDirective = TestBed.inject(FormDirective);
@@ -124,7 +112,7 @@ describe('@rxap/forms', () => {
         expect(formDirective.loading).toBeFalsy();
         expect(formDirective.value).toEqual({
           username: null,
-          password: null
+          password: null,
         });
 
         formDirective.ngOnInit();
@@ -133,22 +121,24 @@ describe('@rxap/forms', () => {
         expect(formDirective.loadingError).toBeNull();
         expect(formDirective.value).toEqual({
           username: 'rxap',
-          password: 'paxr'
+          password: 'paxr',
         });
-
       });
 
       it('should call the load method(sync) with error', () => {
-
         TestBed.configureTestingModule({
           providers: [
             TestFormProviders,
             FormDirective,
             {
-              provide:  RXAP_FORM_LOAD_METHOD,
-              useValue: { call() { throw new Error('failed'); } }
-            }
-          ]
+              provide: RXAP_FORM_LOAD_METHOD,
+              useValue: {
+                call() {
+                  throw new Error('failed');
+                },
+              },
+            },
+          ],
         });
 
         const formDirective = TestBed.inject(FormDirective);
@@ -156,7 +146,7 @@ describe('@rxap/forms', () => {
         expect(formDirective.loading).toBeFalsy();
         expect(formDirective.value).toEqual({
           username: null,
-          password: null
+          password: null,
         });
 
         formDirective.ngOnInit();
@@ -165,22 +155,27 @@ describe('@rxap/forms', () => {
         expect(formDirective.loadingError).toEqual(new Error('failed'));
         expect(formDirective.value).toEqual({
           username: null,
-          password: null
+          password: null,
         });
-
       });
 
       it('should call the load method(async)', fakeAsync(() => {
-
         TestBed.configureTestingModule({
           providers: [
             TestFormProviders,
             FormDirective,
             {
-              provide:  RXAP_FORM_LOAD_METHOD,
-              useValue: { call() { return Promise.resolve({ username: 'rxap', password: 'paxr' }); } }
-            }
-          ]
+              provide: RXAP_FORM_LOAD_METHOD,
+              useValue: {
+                call() {
+                  return Promise.resolve({
+                    username: 'rxap',
+                    password: 'paxr',
+                  });
+                },
+              },
+            },
+          ],
         });
 
         const formDirective = TestBed.inject(FormDirective);
@@ -188,7 +183,7 @@ describe('@rxap/forms', () => {
         expect(formDirective.loading).toBeFalsy();
         expect(formDirective.value).toEqual({
           username: null,
-          password: null
+          password: null,
         });
 
         formDirective.ngOnInit();
@@ -202,22 +197,24 @@ describe('@rxap/forms', () => {
         expect(formDirective.loadingError).toBeNull();
         expect(formDirective.value).toEqual({
           username: 'rxap',
-          password: 'paxr'
+          password: 'paxr',
         });
-
       }));
 
       it('should call the load method(async) with error', fakeAsync(() => {
-
         TestBed.configureTestingModule({
           providers: [
             TestFormProviders,
             FormDirective,
             {
-              provide:  RXAP_FORM_LOAD_METHOD,
-              useValue: { call() { return Promise.reject(new Error('failed')); } }
-            }
-          ]
+              provide: RXAP_FORM_LOAD_METHOD,
+              useValue: {
+                call() {
+                  return Promise.reject(new Error('failed'));
+                },
+              },
+            },
+          ],
         });
 
         const formDirective = TestBed.inject(FormDirective);
@@ -225,7 +222,7 @@ describe('@rxap/forms', () => {
         expect(formDirective.loading).toBeFalsy();
         expect(formDirective.value).toEqual({
           username: null,
-          password: null
+          password: null,
         });
 
         formDirective.ngOnInit();
@@ -239,22 +236,24 @@ describe('@rxap/forms', () => {
         expect(formDirective.loadingError).toEqual(new Error('failed'));
         expect(formDirective.value).toEqual({
           username: null,
-          password: null
+          password: null,
         });
-
       }));
 
       it('should call the submit method(sync)', () => {
-
         TestBed.configureTestingModule({
           providers: [
             TestFormProviders,
             FormDirective,
             {
-              provide:  RXAP_FORM_SUBMIT_METHOD,
-              useValue: { call(value: any) { return value; } }
-            }
-          ]
+              provide: RXAP_FORM_SUBMIT_METHOD,
+              useValue: {
+                call(value: any) {
+                  return value;
+                },
+              },
+            },
+          ],
         });
 
         const formDirective = TestBed.inject(FormDirective);
@@ -267,24 +266,29 @@ describe('@rxap/forms', () => {
         formDirective.onSubmit(new Event('submit'));
 
         expect(rxapSubmitSpy).toBeCalled();
-        expect(rxapSubmitSpy).toBeCalledWith({ username: 'rxap', password: 'paxr' });
+        expect(rxapSubmitSpy).toBeCalledWith({
+          username: 'rxap',
+          password: 'paxr',
+        });
         expect(formDirective.submitted).toBeTruthy();
         expect(formDirective.submitting).toBeFalsy();
         expect(formDirective.submitError).toBeNull();
-
       });
 
       it('should call the submit method(sync) with error', () => {
-
         TestBed.configureTestingModule({
           providers: [
             TestFormProviders,
             FormDirective,
             {
-              provide:  RXAP_FORM_SUBMIT_METHOD,
-              useValue: { call(value: any) { throw new Error('failed'); } }
-            }
-          ]
+              provide: RXAP_FORM_SUBMIT_METHOD,
+              useValue: {
+                call(value: any) {
+                  throw new Error('failed');
+                },
+              },
+            },
+          ],
         });
 
         const formDirective = TestBed.inject(FormDirective);
@@ -300,20 +304,22 @@ describe('@rxap/forms', () => {
         expect(formDirective.submitted).toBeFalsy();
         expect(formDirective.submitting).toBeFalsy();
         expect(formDirective.submitError).toEqual(new Error('failed'));
-
       });
 
       it('should call the submit method(async)', fakeAsync(() => {
-
         TestBed.configureTestingModule({
           providers: [
             TestFormProviders,
             FormDirective,
             {
-              provide:  RXAP_FORM_SUBMIT_METHOD,
-              useValue: { call(value: any) { return Promise.resolve(value); } }
-            }
-          ]
+              provide: RXAP_FORM_SUBMIT_METHOD,
+              useValue: {
+                call(value: any) {
+                  return Promise.resolve(value);
+                },
+              },
+            },
+          ],
         });
 
         const formDirective = TestBed.inject(FormDirective);
@@ -330,24 +336,29 @@ describe('@rxap/forms', () => {
         tick();
 
         expect(rxapSubmitSpy).toBeCalled();
-        expect(rxapSubmitSpy).toBeCalledWith({ username: 'rxap', password: 'paxr' });
+        expect(rxapSubmitSpy).toBeCalledWith({
+          username: 'rxap',
+          password: 'paxr',
+        });
         expect(formDirective.submitted).toBeTruthy();
         expect(formDirective.submitting).toBeFalsy();
         expect(formDirective.submitError).toBeNull();
-
       }));
 
       it('should call the submit method(async) with error', fakeAsync(() => {
-
         TestBed.configureTestingModule({
           providers: [
             TestFormProviders,
             FormDirective,
             {
-              provide:  RXAP_FORM_SUBMIT_METHOD,
-              useValue: { call(value: any) { return Promise.reject(new Error('failed')); } }
-            }
-          ]
+              provide: RXAP_FORM_SUBMIT_METHOD,
+              useValue: {
+                call(value: any) {
+                  return Promise.reject(new Error('failed'));
+                },
+              },
+            },
+          ],
         });
 
         const formDirective = TestBed.inject(FormDirective);
@@ -367,22 +378,74 @@ describe('@rxap/forms', () => {
         expect(formDirective.submitted).toBeFalsy();
         expect(formDirective.submitting).toBeFalsy();
         expect(formDirective.submitError).toEqual(new Error('failed'));
+      }));
 
+      it('should auto submit', fakeAsync(() => {
+        @RxapForm({
+          id: 'test-auto-submit',
+          autoSubmit: true,
+        })
+        class TestAutoSubmit implements FormDefinition {
+          public rxapFormGroup!: RxapFormGroup;
+
+          @UseFormControl()
+          public username!: RxapFormControl;
+
+          @UseFormControl()
+          public password!: RxapFormControl;
+        }
+
+        TestBed.configureTestingModule({
+          providers: [
+            TestAutoSubmit,
+            {
+              provide: RXAP_FORM_DEFINITION_BUILDER,
+              useFactory: (injector: Injector) =>
+                new RxapFormBuilder(TestAutoSubmit, injector),
+              deps: [INJECTOR],
+            },
+            {
+              provide: RXAP_FORM_DEFINITION,
+              useFactory: (builder: RxapFormBuilder) => builder.build(),
+              deps: [RXAP_FORM_DEFINITION_BUILDER],
+            },
+            {
+              provide: ChangeDetectorRef,
+              useValue: { detectChanges: () => {} },
+            },
+            FormDirective,
+          ],
+        });
+
+        const formDirective = TestBed.inject(FormDirective);
+        formDirective.ngOnInit();
+
+        const submitSpy = jest.spyOn(formDirective, 'submit' as any);
+
+        expect(formDirective.formDefinition).toHaveProperty('rxapMetadata');
+        expect(formDirective.formDefinition.rxapMetadata).toHaveProperty(
+          'autoSubmit',
+          true
+        );
+
+        formDirective.form.setValue({ username: 'rxap', password: 'paxr' });
+
+        expect(submitSpy).not.toBeCalled();
+
+        tick(5000);
+
+        expect(submitSpy).toBeCalled();
       }));
 
       describe('With Component', () => {
-
         let fixture: ComponentFixture<MockedComponent<any>>;
         let submitButton: DebugElement;
         let formDirective: FormDirective;
 
         beforeEach(async () => {
-
           await TestBed.configureTestingModule({
-            imports: [ RxapFormsModule ],
-            providers: [
-              TestFormProviders
-            ]
+            imports: [RxapFormsModule],
+            providers: [TestFormProviders],
           });
 
           fixture = MockRender(`
@@ -392,8 +455,9 @@ describe('@rxap/forms', () => {
           `);
 
           submitButton = fixture.debugElement.query(By.css('button'));
-          formDirective = fixture.debugElement.query(By.directive(FormDirective)).injector.get(FormDirective);
-
+          formDirective = fixture.debugElement
+            .query(By.directive(FormDirective))
+            .injector.get(FormDirective);
         });
 
         it('should create', () => {
@@ -404,7 +468,6 @@ describe('@rxap/forms', () => {
         });
 
         it('should only trigger the submit logic once', async () => {
-
           const onSubmitSpy = spyOn(formDirective, 'onSubmit');
 
           submitButton.nativeElement.click();
@@ -413,15 +476,8 @@ describe('@rxap/forms', () => {
 
           expect(onSubmitSpy).toBeCalled();
           expect(onSubmitSpy).toBeCalledTimes(1);
-
         });
-
       });
-
     });
-
   });
-
 });
-
-
