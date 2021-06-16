@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/components@12.0.3...@rxap/components@12.0.4) (2021-06-16)
+
+
+### Bug Fixes
+
+* remove svg icon dependency ([9ce2a1c](https://gitlab.com/rxap/packages/commit/9ce2a1cd1c55935d1255222a68971defd498be13))
+
+
+
+
+
 ## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/components@12.0.2...@rxap/components@12.0.3) (2021-06-14)
 
 **Note:** Version bump only for package @rxap/components
