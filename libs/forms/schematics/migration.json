@@ -2,9 +2,9 @@
   "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "v12-2-0": {
-      "version": "12.2.0",
-      "factory": "./schematics/migrations/v12-2-0/index",
-      "description": "updates to v12.2.0"
+      "version": "12.2.1",
+      "factory": "./migrations/v12-2-1/index",
+      "description": "updates to v12.2.1"
     }
   }
 }
