@@ -19,11 +19,17 @@ import {
   RXAP_FORM_SUBMIT_METHOD,
   FormSubmitSuccessfulMethod,
   RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
+  FormType,
 } from '@rxap/forms';
 import { Validators } from '@angular/forms';
 import { ConfigService } from '@rxap/config';
 import { RxapOnInit } from '@rxap/utilities';
 import { Router } from '@angular/router';
+
+export interface ILoginForm {
+  email: string;
+  password: string;
+}
 
 @RxapForm({
   id: 'rxap-login',
@@ -35,7 +41,7 @@ import { Router } from '@angular/router';
   ],
 })
 @Injectable()
-export class LoginForm implements FormDefinition, RxapOnInit {
+export class LoginForm implements FormType<ILoginForm>, RxapOnInit {
   public rxapFormGroup!: RxapFormGroup;
 
   public loading = true;
@@ -106,7 +112,7 @@ export const LoginFormProviders: Provider[] = [
   {
     provide: RXAP_FORM_DEFINITION_BUILDER,
     useFactory: (injector: Injector) =>
-      new RxapFormBuilder(LoginForm, injector),
+      new RxapFormBuilder<ILoginForm>(LoginForm, injector),
     deps: [INJECTOR],
   },
   {

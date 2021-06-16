@@ -1,9 +1,4 @@
-import {
-  Observable,
-  Subject,
-  Subscription,
-  isObservable
-} from 'rxjs';
+import { Observable, Subject, Subscription, isObservable } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { FormGroup as NgFormGroup } from '@angular/forms';
 import {
@@ -17,7 +12,7 @@ import {
   AsyncValidator,
   AbstractControl,
   ControlOptions,
-  Validator
+  Validator,
 } from './types';
 import {
   validateControlOn,
@@ -36,20 +31,21 @@ import {
   markAllDirty,
   controlDisabledWhile,
   markAllPristine,
-  markAllUntouched
+  markAllUntouched,
 } from './control-actions';
 import { coerceArray } from '@rxap/utilities';
-import {
-  FormGroupOptions,
-  FormType
-} from './model';
+import { FormGroupOptions, FormType, FormDefinition } from './model';
 
-export class RxapFormGroup<T extends Record<string, any> = any, E extends object = any> extends NgFormGroup {
-
+export class RxapFormGroup<
+  T extends Record<string, any> = any,
+  E extends object = any
+> extends NgFormGroup {
   /**
    * @internal
    */
-  public get rxapFormDefinition(): FormType<T> | undefined {
+  public get rxapFormDefinition():
+    | (FormType<T> & FormDefinition<T>)
+    | undefined {
     if (!this.parent) {
       return this._rxapFormDefinition;
     }
@@ -62,7 +58,7 @@ export class RxapFormGroup<T extends Record<string, any> = any, E extends object
   /**
    * @internal
    */
-  private _rxapFormDefinition?: FormType<T>;
+  private _rxapFormDefinition?: FormType<T> & FormDefinition<T>;
 
   readonly value!: T;
   readonly errors!: E | null;
@@ -77,10 +73,10 @@ export class RxapFormGroup<T extends Record<string, any> = any, E extends object
   dirty$ = this.dirtyChanges.asObservable().pipe(distinctUntilChanged());
 
   readonly value$: Observable<T> = controlValueChanges$<T>(this);
-  readonly disabled$             = controlDisabled$<T>(this);
-  readonly enabled$              = controlEnabled$<T>(this);
-  readonly status$               = controlStatusChanges$<T>(this);
-  readonly errors$               = controlErrorChanges$<E>(this);
+  readonly disabled$ = controlDisabled$<T>(this);
+  readonly enabled$ = controlEnabled$<T>(this);
+  readonly status$ = controlStatusChanges$<T>(this);
+  readonly errors$ = controlErrorChanges$<E>(this);
 
   readonly controlId: string;
 
@@ -91,7 +87,7 @@ export class RxapFormGroup<T extends Record<string, any> = any, E extends object
         if (parent === this.root) {
           return this.controlId;
         } else {
-          return [ parent.controlPath, this.controlId ].join('.');
+          return [parent.controlPath, this.controlId].join('.');
         }
       }
     }
@@ -102,7 +98,7 @@ export class RxapFormGroup<T extends Record<string, any> = any, E extends object
     const parent: any = this.parent;
     if (parent) {
       if (parent.fullControlPath) {
-        return [ parent.fullControlPath, this.controlId ].join('.');
+        return [parent.fullControlPath, this.controlId].join('.');
       }
     }
     return this.controlId;
@@ -124,24 +120,36 @@ export class RxapFormGroup<T extends Record<string, any> = any, E extends object
     return super.getRawValue();
   }
 
-  public get<K1 extends keyof T>(path: [ K1 ]): AbstractControl<T[K1]>;
-  public get<K1 extends keyof T, K2 extends keyof T[K1]>(path: [ K1, K2 ]): AbstractControl<T[K1][K2]>;
-  public get<K1 extends keyof T, K2 extends keyof T[K1], K3 extends keyof T[K1][K2]>(
-    path: [ K1, K2, K3 ]
-  ): AbstractControl<T[K1][K2][K3]>;
+  public get<K1 extends keyof T>(path: [K1]): AbstractControl<T[K1]>;
+  public get<K1 extends keyof T, K2 extends keyof T[K1]>(
+    path: [K1, K2]
+  ): AbstractControl<T[K1][K2]>;
+  public get<
+    K1 extends keyof T,
+    K2 extends keyof T[K1],
+    K3 extends keyof T[K1][K2]
+  >(path: [K1, K2, K3]): AbstractControl<T[K1][K2][K3]>;
   public get(path: string): AbstractControl;
   public get(path: any): AbstractControl | null {
     return super.get(path);
   }
 
   public getControl<P1 extends keyof T>(prop1: P1): AbstractControl<T[P1]>;
-  public getControl<P1 extends keyof T, P2 extends keyof T[P1]>(prop1: P1, prop2: P2): AbstractControl<T[P1][P2]>;
-  public getControl<P1 extends keyof T, P2 extends keyof T[P1], P3 extends keyof T[P1][P2]>(
+  public getControl<P1 extends keyof T, P2 extends keyof T[P1]>(
     prop1: P1,
-    prop2: P2,
-    prop3: P3
-  ): AbstractControl<T[P1][P2][P3]>;
-  public getControl<P1 extends keyof T, P2 extends keyof T[P1], P3 extends keyof T[P1][P2], P4 extends keyof T[P1][P2][P3]>(
+    prop2: P2
+  ): AbstractControl<T[P1][P2]>;
+  public getControl<
+    P1 extends keyof T,
+    P2 extends keyof T[P1],
+    P3 extends keyof T[P1][P2]
+  >(prop1: P1, prop2: P2, prop3: P3): AbstractControl<T[P1][P2][P3]>;
+  public getControl<
+    P1 extends keyof T,
+    P2 extends keyof T[P1],
+    P3 extends keyof T[P1][P2],
+    P4 extends keyof T[P1][P2][P3]
+  >(
     prop1: P1,
     prop2: P2,
     prop3: P3,
@@ -151,7 +159,10 @@ export class RxapFormGroup<T extends Record<string, any> = any, E extends object
     return this.get(names.join('.'));
   }
 
-  public addControl<K extends ExtractStrings<T>>(name: K, control: AbstractControl<T[K]>): void {
+  public addControl<K extends ExtractStrings<T>>(
+    name: K,
+    control: AbstractControl<T[K]>
+  ): void {
     super.addControl(name, control);
   }
 
@@ -163,35 +174,60 @@ export class RxapFormGroup<T extends Record<string, any> = any, E extends object
     return super.contains(controlName);
   }
 
-  public setControl<K extends ExtractStrings<T>>(name: K, control: AbstractControl<T[K]>): void {
+  public setControl<K extends ExtractStrings<T>>(
+    name: K,
+    control: AbstractControl<T[K]>
+  ): void {
     super.setControl(name, control);
   }
 
-  public setValue(valueOrObservable: Observable<T>, options?: ControlEventOptions): Subscription;
+  public setValue(
+    valueOrObservable: Observable<T>,
+    options?: ControlEventOptions
+  ): Subscription;
   public setValue(valueOrObservable: T, options?: ControlEventOptions): void;
   public setValue(valueOrObservable: any, options?: ControlEventOptions): any {
     if (isObservable<T>(valueOrObservable)) {
-      return valueOrObservable.subscribe(value => super.setValue(value, options));
+      return valueOrObservable.subscribe((value) =>
+        super.setValue(value, options)
+      );
     }
 
     super.setValue(valueOrObservable, options);
   }
 
-  public patchValue(valueOrObservable: Observable<Partial<T>>, options?: ControlEventOptions): Subscription;
-  public patchValue(valueOrObservable: Partial<T>, options?: ControlEventOptions): void;
-  public patchValue(valueOrObservable: any, options?: ControlEventOptions): Subscription | void {
+  public patchValue(
+    valueOrObservable: Observable<Partial<T>>,
+    options?: ControlEventOptions
+  ): Subscription;
+  public patchValue(
+    valueOrObservable: Partial<T>,
+    options?: ControlEventOptions
+  ): void;
+  public patchValue(
+    valueOrObservable: any,
+    options?: ControlEventOptions
+  ): Subscription | void {
     if (isObservable<T>(valueOrObservable)) {
-      return valueOrObservable.subscribe(value => super.patchValue(value, options));
+      return valueOrObservable.subscribe((value) =>
+        super.patchValue(value, options)
+      );
     }
 
     super.patchValue(valueOrObservable, options);
   }
 
-  public disabledWhile(observable: Observable<boolean>, options?: ControlOptions) {
+  public disabledWhile(
+    observable: Observable<boolean>,
+    options?: ControlOptions
+  ) {
     return controlDisabledWhile(this, observable, options);
   }
 
-  public enabledWhile(observable: Observable<boolean>, options?: ControlOptions) {
+  public enabledWhile(
+    observable: Observable<boolean>,
+    options?: ControlOptions
+  ) {
     return controlEnabledWhile(this, observable, options);
   }
 
@@ -200,7 +236,10 @@ export class RxapFormGroup<T extends Record<string, any> = any, E extends object
   }
 
   public mergeAsyncValidators(validators: AsyncValidator) {
-    this.setAsyncValidators([ ...coerceArray(this.asyncValidator), ...coerceArray(validators) ]);
+    this.setAsyncValidators([
+      ...coerceArray(this.asyncValidator),
+      ...coerceArray(validators),
+    ]);
     this.updateValueAndValidity();
   }
 
@@ -240,14 +279,20 @@ export class RxapFormGroup<T extends Record<string, any> = any, E extends object
     super.reset(formState, options);
   }
 
-  public setValidators(newValidator: Validator, updateValueAndValidity: boolean = true): void {
+  public setValidators(
+    newValidator: Validator,
+    updateValueAndValidity: boolean = true
+  ): void {
     super.setValidators(newValidator);
     if (updateValueAndValidity) {
       super.updateValueAndValidity();
     }
   }
 
-  public setAsyncValidators(newValidator: AsyncValidator, updateValueAndValidity: boolean = true): void {
+  public setAsyncValidators(
+    newValidator: AsyncValidator,
+    updateValueAndValidity: boolean = true
+  ): void {
     super.setAsyncValidators(newValidator);
     if (updateValueAndValidity) {
       super.updateValueAndValidity();
@@ -258,12 +303,19 @@ export class RxapFormGroup<T extends Record<string, any> = any, E extends object
     return validateControlOn(this, observableValidation);
   }
 
-  public hasError<K1 extends keyof T>(errorCode: ExtractStrings<E>, path?: [ K1 ]): boolean;
-  public hasError<K1 extends keyof T, K2 extends keyof T[K1]>(errorCode: ExtractStrings<E>, path?: [ K1, K2 ]): boolean;
-  public hasError<K1 extends keyof T, K2 extends keyof T[K1], K3 extends keyof T[K1][K2]>(
+  public hasError<K1 extends keyof T>(
     errorCode: ExtractStrings<E>,
-    path?: [ K1, K2, K3 ]
+    path?: [K1]
   ): boolean;
+  public hasError<K1 extends keyof T, K2 extends keyof T[K1]>(
+    errorCode: ExtractStrings<E>,
+    path?: [K1, K2]
+  ): boolean;
+  public hasError<
+    K1 extends keyof T,
+    K2 extends keyof T[K1],
+    K3 extends keyof T[K1][K2]
+  >(errorCode: ExtractStrings<E>, path?: [K1, K2, K3]): boolean;
   public hasError(errorCode: ExtractStrings<E>, path?: string): boolean;
   public hasError(errorCode: ExtractStrings<E>, path?: any): boolean {
     return super.hasError(errorCode, path);
@@ -273,53 +325,82 @@ export class RxapFormGroup<T extends Record<string, any> = any, E extends object
     return super.setErrors(errors, opts);
   }
 
-  public getError<K extends keyof E, K1 extends keyof T>(errorCode: K, path?: [ K1 ]): E[K] | null;
-  public getError<K extends keyof E, K1 extends keyof T, K2 extends keyof T[K1]>(errorCode: K, path?: [ K1, K2 ]): E[K] | null;
-  public getError<K extends keyof E, K1 extends keyof T, K2 extends keyof T[K1], K3 extends keyof T[K1][K2]>(
+  public getError<K extends keyof E, K1 extends keyof T>(
     errorCode: K,
-    path?: [ K1, K2, K3 ]
+    path?: [K1]
   ): E[K] | null;
+  public getError<
+    K extends keyof E,
+    K1 extends keyof T,
+    K2 extends keyof T[K1]
+  >(errorCode: K, path?: [K1, K2]): E[K] | null;
+  public getError<
+    K extends keyof E,
+    K1 extends keyof T,
+    K2 extends keyof T[K1],
+    K3 extends keyof T[K1][K2]
+  >(errorCode: K, path?: [K1, K2, K3]): E[K] | null;
   public getError<K extends keyof E>(errorCode: K, path?: string): E[K] | null;
   public getError<K extends keyof E>(errorCode: K, path?: any): E[K] | null {
     return super.getError(errorCode as any, path) as E[K] | null;
   }
 
-  public hasErrorAndTouched<P1 extends keyof T>(error: ExtractStrings<E>, prop1?: P1): boolean;
+  public hasErrorAndTouched<P1 extends keyof T>(
+    error: ExtractStrings<E>,
+    prop1?: P1
+  ): boolean;
   public hasErrorAndTouched<P1 extends keyof T, P2 extends keyof T[P1]>(
     error: ExtractStrings<E>,
     prop1?: P1,
     prop2?: P2
   ): boolean;
-  public hasErrorAndTouched<P1 extends keyof T, P2 extends keyof T[P1], P3 extends keyof T[P1][P2]>(
+  public hasErrorAndTouched<
+    P1 extends keyof T,
+    P2 extends keyof T[P1],
+    P3 extends keyof T[P1][P2]
+  >(error: ExtractStrings<E>, prop1?: P1, prop2?: P2, prop3?: P3): boolean;
+  public hasErrorAndTouched<
+    P1 extends keyof T,
+    P2 extends keyof T[P1],
+    P3 extends keyof T[P1][P2],
+    P4 extends keyof T[P1][P2][P3]
+  >(
     error: ExtractStrings<E>,
     prop1?: P1,
     prop2?: P2,
-    prop3?: P3
+    prop3?: P3,
+    prop4?: P4
   ): boolean;
-  public hasErrorAndTouched<P1 extends keyof T,
-    P2 extends keyof T[P1],
-    P3 extends keyof T[P1][P2],
-    P4 extends keyof T[P1][P2][P3]>(error: ExtractStrings<E>, prop1?: P1, prop2?: P2, prop3?: P3, prop4?: P4): boolean;
   public hasErrorAndTouched(error: any, ...path: any): boolean {
     return hasErrorAndTouched(this, error, ...path);
   }
 
-  public hasErrorAndDirty<P1 extends keyof T>(error: ExtractStrings<E>, prop1?: P1): boolean;
+  public hasErrorAndDirty<P1 extends keyof T>(
+    error: ExtractStrings<E>,
+    prop1?: P1
+  ): boolean;
   public hasErrorAndDirty<P1 extends keyof T, P2 extends keyof T[P1]>(
     error: ExtractStrings<E>,
     prop1?: P1,
     prop2?: P2
   ): boolean;
-  public hasErrorAndDirty<P1 extends keyof T, P2 extends keyof T[P1], P3 extends keyof T[P1][P2]>(
+  public hasErrorAndDirty<
+    P1 extends keyof T,
+    P2 extends keyof T[P1],
+    P3 extends keyof T[P1][P2]
+  >(error: ExtractStrings<E>, prop1?: P1, prop2?: P2, prop3?: P3): boolean;
+  public hasErrorAndDirty<
+    P1 extends keyof T,
+    P2 extends keyof T[P1],
+    P3 extends keyof T[P1][P2],
+    P4 extends keyof T[P1][P2][P3]
+  >(
     error: ExtractStrings<E>,
     prop1?: P1,
     prop2?: P2,
-    prop3?: P3
+    prop3?: P3,
+    prop4?: P4
   ): boolean;
-  public hasErrorAndDirty<P1 extends keyof T,
-    P2 extends keyof T[P1],
-    P3 extends keyof T[P1][P2],
-    P4 extends keyof T[P1][P2][P3]>(error: ExtractStrings<E>, prop1?: P1, prop2?: P2, prop3?: P3, prop4?: P4): boolean;
   public hasErrorAndDirty(error: any, ...path: any): boolean {
     return hasErrorAndDirty(this, error, ...path);
   }

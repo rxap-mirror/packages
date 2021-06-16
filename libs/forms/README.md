@@ -15,6 +15,6 @@
 # Installation
 
 ```
-yarn add @rxap/forms @rxap/definition@^12.0.2 @rxap/directives@^12.0.3 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
+yarn add @rxap/forms @rxap/definition@^12.0.4 @rxap/directives@^12.0.5 @rxap/services@^12.0.3 @rxap/utilities@^12.0.4
 ```
 

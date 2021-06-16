@@ -1,8 +1,4 @@
-import {
-  FormDirective,
-  FormDefinition,
-  FormDefinitionWithMetadata,
-} from '@rxap/forms';
+import { FormDirective, FormDefinition } from '@rxap/forms';
 import {
   ChangeDetectorRef,
   Directive,
@@ -41,7 +37,7 @@ export class FilterHeaderRowDirective
     cdr: ChangeDetectorRef,
     @Optional()
     @Inject(RXAP_TABLE_FILTER_FORM_DEFINITION)
-    formDefinition: FormDefinitionWithMetadata | null
+    formDefinition: FormDefinition | null
   ) {
     super(cdr, formDefinition);
   }
