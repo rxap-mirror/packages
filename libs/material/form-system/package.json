@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-form-system",
-  "version": "12.0.4",
+  "version": "12.0.5",
   "peerDependencies": {
     "@angular/cdk": "^12.0.1",
     "@angular/common": "^12.0.1",
@@ -15,7 +15,7 @@
     "@rxap/definition": "^12.0.4",
     "@rxap/directives": "^12.0.5",
     "@rxap/form-system": "^12.0.5",
-    "@rxap/forms": "^12.0.5",
+    "@rxap/forms": "^12.2.1",
     "@rxap/mixin": "^12.0.3",
     "@rxap/services": "^12.0.3",
     "@rxap/utilities": "^12.0.4",
