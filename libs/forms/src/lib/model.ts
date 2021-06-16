@@ -1,7 +1,7 @@
 import {
   AbstractControlOptions,
   AsyncValidatorFn,
-  ValidatorFn
+  ValidatorFn,
 } from '@angular/forms';
 import { Constructor } from '@rxap/utilities';
 import type { RxapFormGroup } from './form-group';
@@ -9,31 +9,36 @@ import {
   StaticProvider,
   Type,
   InjectionToken,
-  AbstractType
+  AbstractType,
 } from '@angular/core';
 import { RxapFormControl } from './form-control';
-import {
-  AbstractControl,
-  ControlOptions
-} from './types';
+import { AbstractControl, ControlOptions } from './types';
 import { BaseDefinitionMetadata } from '@rxap/definition';
 import { RxapFormArray } from './form-array';
 
 export interface InjectableValidator {
   validate?: ValidatorFn;
-  asyncValidate?: AsyncValidatorFn
+  asyncValidate?: AsyncValidatorFn;
 }
 
 export interface RxapAbstractControlOptions extends AbstractControlOptions {
   state?: any | (() => any);
-  injectValidators?: Array<Type<InjectableValidator> | InjectionToken<InjectableValidator> | AbstractType<InjectableValidator>>;
+  injectValidators?: Array<
+    | Type<InjectableValidator>
+    | InjectionToken<InjectableValidator>
+    | AbstractType<InjectableValidator>
+  >;
 }
 
-export interface RxapAbstractControlOptionsWithDefinition extends RxapAbstractControlOptions {
+export interface RxapAbstractControlOptionsWithDefinition
+  extends RxapAbstractControlOptions {
   definition: Constructor;
 }
 
-export interface FormDefinition<T extends Record<string, any> = any, E extends object = any> {
+export interface FormDefinition<
+  T extends Record<string, any> = any,
+  E extends object = any
+> {
   rxapFormGroup: RxapFormGroup<T, E>;
 
   /**
@@ -49,33 +54,60 @@ export interface FormDefinition<T extends Record<string, any> = any, E extends o
   getSubmitValue?(): T;
 }
 
+/**
+ * used to access the form definition metadata type save
+ */
+export type FormDefinitionWithMetadata<
+  T extends Record<string, any> = any,
+  E extends object = any
+> = FormDefinition<T, E> & {
+  rxapMetadata: FormDefinitionMetadata;
+};
+
 export interface FormDefinitionArray<T> extends Array<T> {
   rxapFormArray: RxapFormArray;
 }
 
-export type FormType<T extends Record<string, any>> = FormDefinition<T> & {
-  [K in keyof T]: T[K] extends (infer U)[] ?
-                  FormDefinitionArray<FormType<U>> | RxapFormControl<T[K]> :
-                  T[K] extends object | undefined ?
-                  FormDefinition<T[K]> | RxapFormControl<T[K]> :
-                  RxapFormControl<T[K]>;
-}
+export type FormType<T extends Record<string, any>> = FormDefinition<T> &
+  {
+    [K in keyof T]: T[K] extends (infer U)[]
+      ? FormDefinitionArray<FormType<U>> | RxapFormControl<T[K]>
+      : T[K] extends object | undefined
+      ? FormDefinition<T[K]> | RxapFormControl<T[K]>
+      : RxapFormControl<T[K]>;
+  };
 
 export interface FormOptions extends RxapAbstractControlOptions {
   id: string;
 }
 
-export interface FormDefinitionMetadata extends BaseDefinitionMetadata, FormOptions {
+export interface FormDefinitionMetadata
+  extends BaseDefinitionMetadata,
+    FormOptions {
   providers?: StaticProvider[];
+  /**
+   * true - after 5000ms the form is automatically submitted if valid
+   * number - after the set ms the is automatically submitted if valid
+   */
+  autoSubmit?: boolean | number;
 }
 
-export type ChangeFn<T = any> = (value: T, emitViewToModelChange: boolean) => void;
+export type ChangeFn<T = any> = (
+  value: T,
+  emitViewToModelChange: boolean
+) => void;
 
 export type SetValueFn<T = any> = (value: T, options?: ControlOptions) => void;
 
-export type FormBuilderFn = (state: any, options: { controlId: string }) => FormDefinition | RxapFormControl;
+export type FormBuilderFn = (
+  state: any,
+  options: { controlId: string }
+) => FormDefinition | RxapFormControl;
 
-export type ControlInsertedFn = (index: number, controlOrDefinition: AbstractControl | FormDefinition) => void;
+export type ControlInsertedFn = (
+  index: number,
+  controlOrDefinition: AbstractControl | FormDefinition
+) => void;
 export type ControlRemovedFn = (index: number) => void;
 
 export interface FormArrayOptions extends RxapAbstractControlOptions {
