@@ -21,6 +21,7 @@ import {
   FormSubmitMethod,
   ControlSetValue,
   ControlValidator,
+  FormType,
 } from '@rxap/forms';
 import { Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -62,11 +63,16 @@ export class ResetPasswordFormSubmitMethod implements FormSubmitMethod<any> {
   }
 }
 
+export interface IResetPasswordForm {
+  password: string;
+  passwordRepeat: string;
+}
+
 @RxapForm({
   id: RXAP_RESET_PASSWORD_FORM,
 })
 @Injectable()
-export class ResetPasswordForm implements FormDefinition {
+export class ResetPasswordForm implements FormType<IResetPasswordForm> {
   public rxapFormGroup!: RxapFormGroup;
 
   @UseFormControl({
@@ -98,12 +104,13 @@ export const ResetPasswordFormProviders: Provider[] = [
   {
     provide: RXAP_FORM_DEFINITION_BUILDER,
     useFactory: (injector: Injector) =>
-      new RxapFormBuilder(ResetPasswordForm, injector),
+      new RxapFormBuilder<IResetPasswordForm>(ResetPasswordForm, injector),
     deps: [INJECTOR],
   },
   {
     provide: RXAP_FORM_DEFINITION,
-    useFactory: (builder: RxapFormBuilder) => builder.build(),
+    useFactory: (builder: RxapFormBuilder<IResetPasswordForm>) =>
+      builder.build(),
     deps: [RXAP_FORM_DEFINITION_BUILDER],
   },
   {

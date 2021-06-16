@@ -35,7 +35,7 @@ import {
   Required,
   clone,
 } from '@rxap/utilities';
-import { FormDefinition, FormDefinitionWithMetadata } from '../model';
+import { FormDefinition } from '../model';
 import {
   FormSubmitMethod,
   FormLoadMethod,
@@ -153,7 +153,7 @@ export class FormDirective<T extends Record<string, any> = any>
     }
   }
 
-  public get formDefinition(): FormDefinitionWithMetadata<T> {
+  public get formDefinition(): FormDefinition<T> {
     return this._formDefinition;
   }
 
@@ -164,7 +164,7 @@ export class FormDirective<T extends Record<string, any> = any>
   public loadingError$ = new BehaviorSubject<Error | null>(null);
 
   @Required
-  private _formDefinition!: FormDefinitionWithMetadata<T>;
+  private _formDefinition!: FormDefinition<T>;
 
   @Input()
   public submitMethod: FormSubmitMethod<any> | null = null;
@@ -175,7 +175,7 @@ export class FormDirective<T extends Record<string, any> = any>
     @Inject(ChangeDetectorRef) public readonly cdr: ChangeDetectorRef,
     @Optional()
     @Inject(RXAP_FORM_DEFINITION)
-    formDefinition: FormDefinitionWithMetadata | null = null,
+    formDefinition: FormDefinition | null = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()

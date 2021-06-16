@@ -1,6 +1,6 @@
 import {
   FormArray as NgFormArray,
-  AbstractControl as NgAbstractControl
+  AbstractControl as NgAbstractControl,
 } from '@angular/forms';
 import {
   ControlEventOptions,
@@ -12,18 +12,10 @@ import {
   AbstractControl,
   AsyncValidator,
   ControlOptions,
-  Validator
+  Validator,
 } from './types';
-import {
-  distinctUntilChanged,
-  map
-} from 'rxjs/operators';
-import {
-  isObservable,
-  Subject,
-  Observable,
-  Subscription
-} from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
+import { isObservable, Subject, Observable, Subscription } from 'rxjs';
 import {
   controlDisabled$,
   mergeControlValidators,
@@ -39,7 +31,7 @@ import {
   markAllDirty,
   controlDisabledWhile,
   markAllPristine,
-  markAllUntouched
+  markAllUntouched,
 } from './control-actions';
 import { coerceArray } from '@rxap/utilities';
 import {
@@ -47,15 +39,24 @@ import {
   FormBuilderFn,
   ControlRemovedFn,
   ControlInsertedFn,
-  FormType
+  FormType,
+  FormDefinition,
 } from './model';
 
-export class RxapFormArray<T = any, E extends object = any, Parent extends object = any> extends NgFormArray implements AbstractControl<T[]> {
-
+export class RxapFormArray<
+    T = any,
+    E extends object = any,
+    Parent extends object = any
+  >
+  extends NgFormArray
+  implements AbstractControl<T[]>
+{
   /**
    * @internal
    */
-  public get rxapFormDefinition(): FormType<Parent> | undefined {
+  public get rxapFormDefinition():
+    | (FormType<Parent> & FormDefinition<Parent>)
+    | undefined {
     return (this.parent as any).rxapFormDefinition;
   }
 
@@ -66,33 +67,42 @@ export class RxapFormArray<T = any, E extends object = any, Parent extends objec
         if (parent === this.root) {
           return this.controlId;
         } else {
-          return [ parent.controlPath, this.controlId ].join('.');
+          return [parent.controlPath, this.controlId].join('.');
         }
       }
     }
     return this.controlId;
-  }  public readonly value!: T[];
+  }
+  public readonly value!: T[];
 
   public get fullControlPath(): string {
     const parent: any = this.parent;
     if (parent) {
       if (parent.fullControlPath) {
-        return [ parent.fullControlPath, this.controlId ].join('.');
+        return [parent.fullControlPath, this.controlId].join('.');
       }
     }
     return this.controlId;
-  }  public readonly valueChanges!: Observable<T[]>;
+  }
+  public readonly valueChanges!: Observable<T[]>;
 
-  public readonly value$    = controlValueChanges$<T[]>(this);  public readonly status!: ControlState;
-  public readonly disabled$ = controlDisabled$(this);  public readonly statusChanges!: Observable<ControlState>;
-  public readonly enabled$  = controlEnabled$(this);  public readonly errors!: E | null;
-  public readonly status$   = controlStatusChanges$(this);
-  public readonly errors$   = controlErrorChanges$<E>(this);
+  public readonly value$ = controlValueChanges$<T[]>(this);
+  public readonly status!: ControlState;
+  public readonly disabled$ = controlDisabled$(this);
+  public readonly statusChanges!: Observable<ControlState>;
+  public readonly enabled$ = controlEnabled$(this);
+  public readonly errors!: E | null;
+  public readonly status$ = controlStatusChanges$(this);
+  public readonly errors$ = controlErrorChanges$<E>(this);
   public readonly controlId: string;
   private readonly touchChanges = new Subject<boolean>();
-  public readonly touch$ = this.touchChanges.asObservable().pipe(distinctUntilChanged());
+  public readonly touch$ = this.touchChanges
+    .asObservable()
+    .pipe(distinctUntilChanged());
   private readonly dirtyChanges = new Subject<boolean>();
-  public readonly dirty$ = this.dirtyChanges.asObservable().pipe(distinctUntilChanged());
+  public readonly dirty$ = this.dirtyChanges
+    .asObservable()
+    .pipe(distinctUntilChanged());
   private readonly _builder: FormBuilderFn;
   private readonly _controlInsertedFn: ControlInsertedFn;
   private readonly _controlRemovedFn: ControlRemovedFn;
@@ -102,10 +112,10 @@ export class RxapFormArray<T = any, E extends object = any, Parent extends objec
     options: FormArrayOptions
   ) {
     super(controls, options);
-    this.controlId          = options.controlId;
-    this._builder           = options.builder;
+    this.controlId = options.controlId;
+    this._builder = options.builder;
     this._controlInsertedFn = options.controlInsertedFn;
-    this._controlRemovedFn  = options.controlRemovedFn;
+    this._controlRemovedFn = options.controlRemovedFn;
   }
 
   public select<R>(mapFn: (state: T[]) => R): Observable<R> {
@@ -133,15 +143,17 @@ export class RxapFormArray<T = any, E extends object = any, Parent extends objec
    * @param state (optional) the initial state of the new control
    */
   public insertAt(index?: number, state?: T): void {
-    const insertIndex         = index ?? this.controls.length;
-    const controlOrDefinition = this._builder(state, { controlId: insertIndex.toFixed(0) });
+    const insertIndex = index ?? this.controls.length;
+    const controlOrDefinition = this._builder(state, {
+      controlId: insertIndex.toFixed(0),
+    });
 
     this._controlInsertedFn(insertIndex, controlOrDefinition);
 
     if (insertIndex < this.controls.length) {
       // update the control ids for all controls, that are moved.
       for (let i = insertIndex; i < this.controls.length; i++) {
-        Reflect.set(this.controls[ i ], 'controlId', (i + 1).toFixed(0));
+        Reflect.set(this.controls[i], 'controlId', (i + 1).toFixed(0));
       }
     }
 
@@ -154,11 +166,17 @@ export class RxapFormArray<T = any, E extends object = any, Parent extends objec
     }
   }
 
-  public disabledWhile(observable: Observable<boolean>, options?: ControlOptions) {
+  public disabledWhile(
+    observable: Observable<boolean>,
+    options?: ControlOptions
+  ) {
     return controlDisabledWhile(this, observable, options);
   }
 
-  public enabledWhile(observable: Observable<boolean>, options?: ControlOptions) {
+  public enabledWhile(
+    observable: Observable<boolean>,
+    options?: ControlOptions
+  ) {
     return controlEnabledWhile(this, observable, options);
   }
 
@@ -167,7 +185,10 @@ export class RxapFormArray<T = any, E extends object = any, Parent extends objec
   }
 
   public mergeAsyncValidators(validators: AsyncValidator) {
-    this.setAsyncValidators([ ...coerceArray(this.asyncValidator), ...coerceArray(validators) ]);
+    this.setAsyncValidators([
+      ...coerceArray(this.asyncValidator),
+      ...coerceArray(validators),
+    ]);
     this.updateValueAndValidity();
   }
 
@@ -179,9 +200,14 @@ export class RxapFormArray<T = any, E extends object = any, Parent extends objec
     markAllPristine(this);
   }
 
-  public setValue(valueOrObservable: T[] | Observable<T[]>, options?: ControlEventOptions): Subscription | void {
+  public setValue(
+    valueOrObservable: T[] | Observable<T[]>,
+    options?: ControlEventOptions
+  ): Subscription | void {
     if (isObservable(valueOrObservable)) {
-      return valueOrObservable.subscribe(value => super.setValue(value, options));
+      return valueOrObservable.subscribe((value) =>
+        super.setValue(value, options)
+      );
     }
 
     super.setValue(valueOrObservable, options);
@@ -192,16 +218,22 @@ export class RxapFormArray<T = any, E extends object = any, Parent extends objec
   }
 
   public validateOn(observableValidation: Observable<null | object>) {
-    return observableValidation.subscribe(maybeError => {
+    return observableValidation.subscribe((maybeError) => {
       this.setErrors(maybeError);
     });
   }
 
-  public hasErrorAndTouched(errorCode: ExtractStrings<E>, path?: ControlPath): boolean {
+  public hasErrorAndTouched(
+    errorCode: ExtractStrings<E>,
+    path?: ControlPath
+  ): boolean {
     return hasErrorAndTouched(this, errorCode, path);
   }
 
-  public patchValue(valueOrObservable: any, options?: ControlEventOptions): Subscription | void {
+  public patchValue(
+    valueOrObservable: any,
+    options?: ControlEventOptions
+  ): Subscription | void {
     if (isObservable<T[]>(valueOrObservable)) {
       return valueOrObservable.subscribe((value: T[]) => {
         super.patchValue(value, options);
@@ -211,9 +243,13 @@ export class RxapFormArray<T = any, E extends object = any, Parent extends objec
     super.patchValue(valueOrObservable as T[], options);
   }
 
-  public hasErrorAndDirty(errorCode: ExtractStrings<E>, path?: ControlPath): boolean {
+  public hasErrorAndDirty(
+    errorCode: ExtractStrings<E>,
+    path?: ControlPath
+  ): boolean {
     return hasErrorAndDirty(this, errorCode, path);
-  }  public removeAt(index: number) {
+  }
+  public removeAt(index: number) {
     console.warn('It is not recommend to use the FormArray.removeAt method');
     super.removeAt(index);
     this._controlRemovedFn(index);
@@ -221,7 +257,8 @@ export class RxapFormArray<T = any, E extends object = any, Parent extends objec
 
   public setEnable(enable = true, opts?: ControlEventOptions) {
     enableControl(this, enable, opts);
-  }  public push(control: AbstractControl<T>): void {
+  }
+  public push(control: AbstractControl<T>): void {
     console.warn('It is not recommend to use the FormArray.push method');
     return super.push(control);
   }
@@ -259,14 +296,20 @@ export class RxapFormArray<T = any, E extends object = any, Parent extends objec
     super.reset(value, options);
   }
 
-  public setValidators(newValidator: Validator, updateValueAndValidity: boolean = true): void {
+  public setValidators(
+    newValidator: Validator,
+    updateValueAndValidity: boolean = true
+  ): void {
     super.setValidators(newValidator);
     if (updateValueAndValidity) {
       super.updateValueAndValidity();
     }
   }
 
-  public setAsyncValidators(newValidator: AsyncValidator, updateValueAndValidity: boolean = true): void {
+  public setAsyncValidators(
+    newValidator: AsyncValidator,
+    updateValueAndValidity: boolean = true
+  ): void {
     super.setAsyncValidators(newValidator);
     if (updateValueAndValidity) {
       super.updateValueAndValidity();
@@ -281,8 +324,10 @@ export class RxapFormArray<T = any, E extends object = any, Parent extends objec
     return super.setErrors(errors, opts);
   }
 
-  public getError<K extends ExtractStrings<E>>(errorCode: K, path?: ControlPath) {
+  public getError<K extends ExtractStrings<E>>(
+    errorCode: K,
+    path?: ControlPath
+  ) {
     return super.getError(errorCode, path) as E[K] | null;
   }
-
 }

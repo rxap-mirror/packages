@@ -42,6 +42,11 @@ export interface FormDefinition<
   rxapFormGroup: RxapFormGroup<T, E>;
 
   /**
+   * used to access the form definition metadata type save
+   */
+  rxapMetadata: FormDefinitionMetadata;
+
+  /**
    * The Reuse hook is called when the instance is reused.
    * And can be used to reset or alter the local state of the instance.
    */
@@ -54,26 +59,18 @@ export interface FormDefinition<
   getSubmitValue?(): T;
 }
 
-/**
- * used to access the form definition metadata type save
- */
-export type FormDefinitionWithMetadata<
-  T extends Record<string, any> = any,
-  E extends object = any
-> = FormDefinition<T, E> & {
-  rxapMetadata: FormDefinitionMetadata;
-};
-
 export interface FormDefinitionArray<T> extends Array<T> {
   rxapFormArray: RxapFormArray;
 }
 
-export type FormType<T extends Record<string, any>> = FormDefinition<T> &
+export type FormType<T extends Record<string, any>> = Partial<
+  FormDefinition<T>
+> &
   {
     [K in keyof T]: T[K] extends (infer U)[]
       ? FormDefinitionArray<FormType<U>> | RxapFormControl<T[K]>
       : T[K] extends object | undefined
-      ? FormDefinition<T[K]> | RxapFormControl<T[K]>
+      ? Partial<FormDefinition<T[K]>> | RxapFormControl<T[K]>
       : RxapFormControl<T[K]>;
   };
 

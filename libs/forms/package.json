@@ -30,6 +30,9 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
+  "dependencies": {
+    "ts-morph": "^10.1.0"
+  },
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json",

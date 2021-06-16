@@ -12,7 +12,7 @@ import {
   hasErrorAndTouched,
   enableControl,
   controlEnabledWhile,
-  validateControlOn
+  validateControlOn,
 } from './control-actions';
 import {
   ControlEventOptions,
@@ -23,28 +23,29 @@ import {
   OrBoxedValue,
   ControlOptions,
   AsyncValidator,
-  Validator
+  Validator,
 } from './types';
 import { distinctUntilChanged } from 'rxjs/operators';
-import {
-  isObservable,
-  Subject,
-  Subscription,
-  Observable
-} from 'rxjs';
+import { isObservable, Subject, Subscription, Observable } from 'rxjs';
 import { coerceArray } from '@rxap/utilities';
 import {
   RxapAbstractControlOptions,
   SetValueFn,
-  FormType
+  FormType,
+  FormDefinition,
 } from './model';
 
-export class RxapFormControl<T = any, E extends object = any, Parent extends object = any> extends NgFormControl {
-
+export class RxapFormControl<
+  T = any,
+  E extends object = any,
+  Parent extends object = any
+> extends NgFormControl {
   /**
    * @internal
    */
-  public get rxapFormDefinition(): FormType<Parent> | undefined {
+  public get rxapFormDefinition():
+    | (FormType<Parent> & FormDefinition<Parent>)
+    | undefined {
     return (this.parent as any).rxapFormDefinition;
   }
 
@@ -60,14 +61,18 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
   private touchChanges = new Subject<boolean>();
   private dirtyChanges = new Subject<boolean>();
 
-  readonly touch$ = this.touchChanges.asObservable().pipe(distinctUntilChanged());
-  readonly dirty$ = this.dirtyChanges.asObservable().pipe(distinctUntilChanged());
+  readonly touch$ = this.touchChanges
+    .asObservable()
+    .pipe(distinctUntilChanged());
+  readonly dirty$ = this.dirtyChanges
+    .asObservable()
+    .pipe(distinctUntilChanged());
 
   readonly value$: Observable<T> = controlValueChanges$<T>(this);
-  readonly disabled$             = controlDisabled$<T>(this);
-  readonly enabled$              = controlEnabled$<T>(this);
-  readonly status$               = controlStatusChanges$<T>(this);
-  readonly errors$               = controlErrorChanges$<E>(this);
+  readonly disabled$ = controlDisabled$<T>(this);
+  readonly enabled$ = controlEnabled$<T>(this);
+  readonly status$ = controlStatusChanges$<T>(this);
+  readonly errors$ = controlErrorChanges$<E>(this);
 
   readonly controlId: string;
 
@@ -80,7 +85,7 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
         if (parent === this.root) {
           return this.controlId;
         } else {
-          return [ parent.controlPath, this.controlId ].join('.');
+          return [parent.controlPath, this.controlId].join('.');
         }
       }
     }
@@ -91,47 +96,72 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
     const parent: any = this.parent;
     if (parent) {
       if (parent.fullControlPath) {
-        return [ parent.fullControlPath, this.controlId ].join('.');
+        return [parent.fullControlPath, this.controlId].join('.');
       }
     }
     return this.controlId;
   }
 
-  constructor(formState: OrBoxedValue<T>, options: RxapAbstractControlOptions & { controlId: string }) {
+  constructor(
+    formState: OrBoxedValue<T>,
+    options: RxapAbstractControlOptions & { controlId: string }
+  ) {
     super(formState, options);
-    this.controlId    = options.controlId;
+    this.controlId = options.controlId;
     this.initialState = formState;
   }
 
-  public setValue(valueOrObservable: Observable<T>, options?: ControlOptions): Subscription;
+  public setValue(
+    valueOrObservable: Observable<T>,
+    options?: ControlOptions
+  ): Subscription;
   public setValue(valueOrObservable: T, options?: ControlOptions): void;
-  public setValue(valueOrObservable: any, options?: ControlOptions): Subscription | void {
+  public setValue(
+    valueOrObservable: any,
+    options?: ControlOptions
+  ): Subscription | void {
     if (isObservable<T>(valueOrObservable)) {
-      return valueOrObservable.subscribe(value => {
+      return valueOrObservable.subscribe((value) => {
         super.setValue(value, options);
-        this._onSetValue.forEach(setValueFn => setValueFn(value, options));
+        this._onSetValue.forEach((setValueFn) => setValueFn(value, options));
       });
     }
 
     super.setValue(valueOrObservable, options);
-    this._onSetValue.forEach(setValueFn => setValueFn(valueOrObservable, options));
+    this._onSetValue.forEach((setValueFn) =>
+      setValueFn(valueOrObservable, options)
+    );
   }
 
-  public patchValue(valueOrObservable: Observable<T>, options?: ControlOptions): Subscription;
+  public patchValue(
+    valueOrObservable: Observable<T>,
+    options?: ControlOptions
+  ): Subscription;
   public patchValue(valueOrObservable: T, options?: ControlOptions): void;
-  public patchValue(valueOrObservable: any, options?: ControlOptions): Subscription | void {
+  public patchValue(
+    valueOrObservable: any,
+    options?: ControlOptions
+  ): Subscription | void {
     if (isObservable(valueOrObservable)) {
-      return valueOrObservable.subscribe(value => super.patchValue(value, options));
+      return valueOrObservable.subscribe((value) =>
+        super.patchValue(value, options)
+      );
     }
 
     super.patchValue(valueOrObservable, options);
   }
 
-  public disabledWhile(observable: Observable<boolean>, options?: ControlOptions) {
+  public disabledWhile(
+    observable: Observable<boolean>,
+    options?: ControlOptions
+  ) {
     return controlDisabledWhile(this, observable, options);
   }
 
-  public enabledWhile(observable: Observable<boolean>, options?: ControlOptions) {
+  public enabledWhile(
+    observable: Observable<boolean>,
+    options?: ControlOptions
+  ) {
     return controlEnabledWhile(this, observable, options);
   }
 
@@ -143,7 +173,7 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
     this.setAsyncValidators([
       // TODO : remove 'as any' if solution for the type overwrite issue is found (above)
       this.asyncValidator as any,
-      ...coerceArray(validators)
+      ...coerceArray(validators),
     ]);
     this.updateValueAndValidity();
   }
@@ -172,7 +202,10 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
     this.markAsDirty({ onlySelf: true });
   }
 
-  public reset(formState?: OrBoxedValue<T>, options?: ControlEventOptions): void {
+  public reset(
+    formState?: OrBoxedValue<T>,
+    options?: ControlEventOptions
+  ): void {
     const newState = formState ?? this.initialState;
 
     if (typeof newState === 'function') {
@@ -182,14 +215,20 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
     }
   }
 
-  public setValidators(newValidator: Validator, updateValueAndValidity: boolean = true): void {
+  public setValidators(
+    newValidator: Validator,
+    updateValueAndValidity: boolean = true
+  ): void {
     super.setValidators(newValidator);
     if (updateValueAndValidity) {
       super.updateValueAndValidity();
     }
   }
 
-  public setAsyncValidators(newValidator: AsyncValidator, updateValueAndValidity: boolean = true): void {
+  public setAsyncValidators(
+    newValidator: AsyncValidator,
+    updateValueAndValidity: boolean = true
+  ): void {
     super.setAsyncValidators(newValidator);
     if (updateValueAndValidity) {
       super.updateValueAndValidity();
@@ -213,7 +252,7 @@ export class RxapFormControl<T = any, E extends object = any, Parent extends obj
   }
 
   public setError(key: string, value: any, opts: EmitEvent = {}): void {
-    super.setErrors({ [ key ]: value }, opts);
+    super.setErrors({ [key]: value }, opts);
   }
 
   public hasErrorAndTouched(error: ExtractStrings<E>): boolean {

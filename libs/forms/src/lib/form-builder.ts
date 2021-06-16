@@ -18,11 +18,10 @@ import {
   RxapAbstractControlOptions,
   RxapAbstractControlOptionsWithDefinition,
   ChangeFn,
-  FormOptions,
   FormDefinition,
   FormDefinitionMetadata,
   SetValueFn,
-  FormDefinitionWithMetadata,
+  FormType,
 } from './model';
 import { RxapFormArray } from './form-array';
 import { RxapFormGroup } from './form-group';
@@ -60,7 +59,8 @@ export class FormArrayControlManager<T extends FormDefinition> {
 }
 
 export class RxapFormBuilder<
-  Form extends FormDefinitionWithMetadata = FormDefinitionWithMetadata
+  Data extends Record<string, any> = any,
+  Form extends FormType<Data> = FormType<Data>
 > {
   private readonly formArrayGroups: Map<
     string,
@@ -81,7 +81,7 @@ export class RxapFormBuilder<
   private readonly providers: StaticProvider[];
 
   constructor(
-    private readonly definition: Constructor<Omit<Form, 'rxapMetadata'>>,
+    private readonly definition: Constructor<Form>,
     private readonly injector: Injector = Injector.NULL,
     providers: StaticProvider[] = []
   ) {
@@ -112,14 +112,14 @@ export class RxapFormBuilder<
   public build(
     state: Readonly<any> = {},
     options: Partial<FormDefinitionMetadata & { controlId?: string }> = {}
-  ): Form {
+  ): FormDefinition<Data> {
     const injector = Injector.create({
       name: `rxap/form-builder/${this.formOptions.id}`,
       parent: this.injector,
       providers: this.providers,
     });
 
-    let form: Form & Record<string, Function>;
+    let form: Record<string, Function> & FormDefinition;
 
     // don't use the notFoundValue feature of the injector.
     // if used for each call of the get method an "empty" or "fallback"
@@ -174,12 +174,12 @@ export class RxapFormBuilder<
       }
     }
 
-    return form;
+    return form as any;
   }
 
   private buildArrayControls(
     builderFormState: any,
-    form: Form & Record<string, Function>,
+    form: FormDefinition & Record<string, Function>,
     controls: Record<string, AbstractControl>
   ): void {
     for (const [controlId, options] of this.formArrayControls.entries()) {
@@ -241,7 +241,7 @@ export class RxapFormBuilder<
 
   private buildArrayGroups(
     builderFormState: any,
-    form: Form & Record<string, Function>,
+    form: FormDefinition & Record<string, Function>,
     controls: Record<string, AbstractControl>
   ): void {
     for (const [controlId, options] of this.formArrayGroups.entries()) {
@@ -310,7 +310,7 @@ export class RxapFormBuilder<
 
   private buildGroups(
     builderFormState: any,
-    form: Form & Record<string, Function>,
+    form: Record<string, Function>,
     controls: Record<string, AbstractControl>
   ): void {
     for (const [controlId, options] of this.formGroups.entries()) {
@@ -363,7 +363,7 @@ export class RxapFormBuilder<
 
   private buildControls(
     builderFormState: any,
-    form: Form & Record<string, Function>,
+    form: Record<string, Function>,
     controls: Record<string, AbstractControl>
   ): void {
     for (const [controlId, options] of this.formControls.entries()) {
@@ -452,7 +452,7 @@ export class RxapFormBuilder<
    * definition instance methods
    */
   private coerceToFnArray<T extends Function>(
-    form: Form & Record<string, Function>,
+    form: Record<string, Function>,
     methodKeys?: Iterable<string | { propertyKey: string }>
   ): Array<T> {
     const changes: Array<T> = [];
@@ -481,7 +481,7 @@ export class RxapFormBuilder<
    * @param injectValidators Injected validator functions
    */
   private coerceToValidatorArray<VF extends ValidatorFn | AsyncValidatorFn>(
-    form: Form & Record<string, Function>,
+    form: Record<string, Function>,
     optionsValidators?: Array<VF> | VF | null,
     validatorMethodKeys?: Set<string>,
     injectValidators?: Array<VF>
