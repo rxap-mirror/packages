@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.0.5...@rxap/forms@12.1.0) (2021-06-16)
+
+
+### Features
+
+* add auto submit support ([f2c7efb](https://gitlab.com/rxap/packages/commit/f2c7efb85439b8803710e720ec2b1f06c1df61c9))
+
+
+
+
+
 ## [12.0.5](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.0.4...@rxap/forms@12.0.5) (2021-06-14)
 
 **Note:** Version bump only for package @rxap/forms
