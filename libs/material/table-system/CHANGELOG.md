@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.1.0...@rxap/material-table-system@12.2.0) (2021-06-16)
+
+
+### Features
+
+* merge FormDefinition and FormDefinitionWithMetadata and enforce the FormType ([0295ee5](https://gitlab.com/rxap/packages/commit/0295ee5b9ed221101652c5e52b1108d5a9bd3051))
+
+
+
+
+
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.0.6...@rxap/material-table-system@12.1.0) (2021-06-16)
 
 
