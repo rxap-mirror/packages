@@ -6,7 +6,6 @@ export * from './lib/deep-merge';
 export * from './lib/join';
 export * from './lib/flatten-object';
 export * from './lib/try-log';
-export * from './lib/object';
 export * from './lib/change';
 export * from './lib/is-promise';
 export * from './lib/is-teardown-logic';
@@ -40,6 +39,8 @@ export * from './lib/get-property-descriptor';
 
 export * from './lib/object/coerce-property';
 export * from './lib/object/is-object';
+export * from './lib/object/delete-properties';
+export * from './lib/object/cleanup';
 
 // endregion
 
