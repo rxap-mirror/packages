@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.2.2...@rxap/forms@12.3.0) (2021-06-17)
+
+
+### Features
+
+* add support for customer RxapFormControls ([106ae46](https://gitlab.com/rxap/packages/commit/106ae4645a50799ca17d8fc10ae9621d8fd3189e))
+
+
+
+
+
 ## [12.2.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.2.1...@rxap/forms@12.2.2) (2021-06-17)
 
 
