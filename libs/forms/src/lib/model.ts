@@ -70,7 +70,7 @@ export type FormType<T extends Record<string, any>> = Partial<
     [K in keyof T]: T[K] extends (infer U)[]
       ? FormDefinitionArray<FormType<U>> | RxapFormControl<T[K]>
       : T[K] extends object | undefined
-      ? Partial<FormDefinition<T[K]>> | RxapFormControl<T[K]>
+      ? (FormType<T[K]> & Partial<FormDefinition<T[K]>>) | RxapFormControl<T[K]>
       : RxapFormControl<T[K]>;
   };
 
