@@ -1,6 +1,6 @@
 {
   "name": "@rxap/open-api",
-  "version": "12.0.6",
+  "version": "12.0.7",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages",
@@ -25,9 +25,11 @@
     "@rxap/data-source": "^12.0.4",
     "@rxap/definition": "^12.0.4",
     "@rxap/mixin": "^12.0.3",
-    "@rxap/remote-method": "^12.0.3",
-    "@rxap/schematics": "^12.0.0",
-    "@rxap/utilities": "^12.0.4",
+    "@rxap/remote-method": "^12.0.4",
+    "@rxap/schematics-open-api": "^12.0.4",
+    "@rxap/schematics-ts-morph": "^12.0.4",
+    "@rxap/schematics-utilities": "^12.1.0",
+    "@rxap/utilities": "^12.1.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -50,7 +52,9 @@
       "@rxap/definition",
       "@rxap/mixin",
       "@rxap/remote-method",
-      "@rxap/schematics",
+      "@rxap/schematics-open-api",
+      "@rxap/schematics-ts-morph",
+      "@rxap/schematics-utilities",
       "@rxap/utilities"
     ]
   },

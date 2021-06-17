@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@12.0.3...@rxap/remote-method@12.0.4) (2021-06-17)
+
+
+### Bug Fixes
+
+* remove @rxap/schematics/utilities import ([ad00fa7](https://gitlab.com/rxap/packages/commit/ad00fa7fcd5c9cbfe6608dca9211b834cd449745))
+
+
+
+
+
 ## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/remote-method@12.0.2...@rxap/remote-method@12.0.3) (2021-06-14)
 
 **Note:** Version bump only for package @rxap/remote-method
