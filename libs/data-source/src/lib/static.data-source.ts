@@ -1,42 +1,33 @@
-import {
-  clone,
-  isPromiseLike,
-  Constructor
-} from '@rxap/utilities';
-import {
-  ReplaySubject,
-  Observable,
-  isObservable,
-  Subscription
-} from 'rxjs';
-import {
-  Optional,
-  Inject,
-  OnDestroy,
-  Injectable
-} from '@angular/core';
+import { clone, isPromiseLike, Constructor } from '@rxap/utilities';
+import { ReplaySubject, Observable, isObservable, Subscription } from 'rxjs';
+import { Optional, Inject, OnDestroy, Injectable } from '@angular/core';
 import {
   RXAP_STATIC_DATA_SOURCE_DATA,
-  RXAP_DATA_SOURCE_METADATA
+  RXAP_DATA_SOURCE_METADATA,
 } from './tokens';
 import {
   BaseDataSource,
   BaseDataSourceMetadata,
-  RxapDataSource
+  RxapDataSource,
 } from './base.data-source';
 import { RxapDataSourceError } from './error';
 
-export type StaticDataSourceData<Data = any> = Data | Promise<Data> | Observable<Data> | (() => Data);
+export type StaticDataSourceData<Data = any> =
+  | Data
+  | Promise<Data>
+  | Observable<Data>
+  | (() => Data);
 
-export interface StaticDataSourceMetadata<Data = any> extends BaseDataSourceMetadata {
+export interface StaticDataSourceMetadata<Data = any>
+  extends BaseDataSourceMetadata {
   data?: StaticDataSourceData<Data>;
 }
 
 @Injectable()
 export class StaticDataSource<Data>
   extends BaseDataSource<Data, StaticDataSourceMetadata<Data>>
-  implements OnDestroy {
-
+  implements OnDestroy
+{
   public set data(value: Data) {
     const data = clone(value);
     this._data = data;
@@ -51,36 +42,39 @@ export class StaticDataSource<Data>
   private _dataSubscription?: Subscription;
 
   constructor(
-    @Optional() @Inject(RXAP_STATIC_DATA_SOURCE_DATA) data: any | null                       = null,
-    @Optional() @Inject(RXAP_DATA_SOURCE_METADATA) metadata: StaticDataSourceMetadata | null = null
+    @Optional() @Inject(RXAP_STATIC_DATA_SOURCE_DATA) data: any | null = null,
+    @Optional()
+    @Inject(RXAP_DATA_SOURCE_METADATA)
+    metadata: StaticDataSourceMetadata | null = null
   ) {
     super(metadata);
     if (data === undefined) {
       data = this.metadata.data ?? null;
     }
     if (data === undefined) {
-      throw new RxapDataSourceError(`Can not create static data source '${this.id}' with undefined as data`, '');
+      throw new RxapDataSourceError(
+        `Can not create static data source '${this.id}' with undefined as data`,
+        ''
+      );
     }
     if (isObservable<any>(data)) {
       // TODO : handle catchError
       this._dataSubscription = data.subscribe(this._data$);
     } else if (isPromiseLike(data)) {
       // TODO : handle promise rejection
-      data.then(d => this._data$.next(d));
+      data.then((d) => this._data$.next(d));
     } else if (typeof data === 'function') {
       // TODO : fix typeof function cast
-      this._data$.next(this._data = (data as any)());
+      this._data$.next((this._data = (data as any)()));
     } else {
-      this._data$.next(this._data = data);
+      this._data$.next((this._data = data));
     }
-
   }
 
   public ngOnDestroy(): void {
     super.ngOnDestroy();
     this._dataSubscription?.unsubscribe();
   }
-
 }
 
 export function RxapStaticDataSource<Data>(
@@ -88,7 +82,7 @@ export function RxapStaticDataSource<Data>(
   className: string = 'StaticDataSource',
   packageName: string = '@rxap/data-source'
 ) {
-  return function(target: Constructor<StaticDataSource<Data>>) {
+  return function (target: Constructor<StaticDataSource<Data>>) {
     RxapDataSource(metadata, className, packageName)(target);
   };
 }
