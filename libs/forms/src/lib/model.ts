@@ -21,14 +21,23 @@ export interface InjectableValidator {
   asyncValidate?: AsyncValidatorFn;
 }
 
-export interface RxapAbstractControlOptions extends AbstractControlOptions {
+/**
+ * @internal
+ */
+// tslint:disable-next-line:class-name
+export interface _RxapAbstractControlOptions extends AbstractControlOptions {
   state?: any | (() => any);
   injectValidators?: Array<
     | Type<InjectableValidator>
     | InjectionToken<InjectableValidator>
     | AbstractType<InjectableValidator>
   >;
+  controlType?: Constructor<RxapFormControl>;
 }
+
+export type RxapAbstractControlOptions<
+  T extends Record<string, any> = Record<string, any>
+> = _RxapAbstractControlOptions & T;
 
 export interface RxapAbstractControlOptionsWithDefinition
   extends RxapAbstractControlOptions {
