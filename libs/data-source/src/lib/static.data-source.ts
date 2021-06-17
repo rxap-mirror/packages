@@ -55,11 +55,11 @@ export class StaticDataSource<Data>
     @Optional() @Inject(RXAP_DATA_SOURCE_METADATA) metadata: StaticDataSourceMetadata | null = null
   ) {
     super(metadata);
-    if (data === null || data === undefined) {
-      data = this.metadata.data || null;
+    if (data === undefined) {
+      data = this.metadata.data ?? null;
     }
-    if (data === null || data === undefined) {
-      throw new RxapDataSourceError(`Can not create static data source '${this.id}' with undefined or null as data`, '');
+    if (data === undefined) {
+      throw new RxapDataSourceError(`Can not create static data source '${this.id}' with undefined as data`, '');
     }
     if (isObservable<any>(data)) {
       // TODO : handle catchError
