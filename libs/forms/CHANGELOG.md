@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.2.1...@rxap/forms@12.2.2) (2021-06-17)
+
+
+### Bug Fixes
+
+* unspecified form type case ([c4b4bc2](https://gitlab.com/rxap/packages/commit/c4b4bc23dba00ef695054bf44dcb020071a64494))
+
+
+
+
+
 ## [12.2.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.2.0...@rxap/forms@12.2.1) (2021-06-16)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@12.0.4...@rxap/utilities@12.1.0) (2021-06-17)
+
+
+### Features
+
+* add function DeleteEmptyProperties and DeleteNullProperties ([8eff172](https://gitlab.com/rxap/packages/commit/8eff17202c4a63c7ce215150ffc8d8d1bda7ee36))
+
+
+
+
+
 ## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/utilities@12.0.3...@rxap/utilities@12.0.4) (2021-06-14)
 
 **Note:** Version bump only for package @rxap/utilities
