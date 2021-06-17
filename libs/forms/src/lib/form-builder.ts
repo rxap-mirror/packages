@@ -367,7 +367,8 @@ export class RxapFormBuilder<
     controls: Record<string, AbstractControl>
   ): void {
     for (const [controlId, options] of this.formControls.entries()) {
-      const control = (controls[controlId] = new RxapFormControl(
+      const control = (controls[controlId] = new (options.controlType ??
+        RxapFormControl)(
         this.coerceToControlFormState(
           controlId,
           null,
