@@ -4835,6 +4835,14 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
+"@rxap/json-schema-to-typescript@^12.0.2":
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/@rxap/json-schema-to-typescript/-/json-schema-to-typescript-12.0.3.tgz#c84705147f4cef4b34999ce0fdc7b60a18951b38"
+  integrity sha512-YFQgvDArMV/zXoK/rYxM0bfGk2GNYgjls0APoP6k2sbKAqP/JioVXCoagSrwabl7ZKiFGX3koxMlCRpzN4ySZQ==
+  dependencies:
+    "@apidevtools/json-schema-ref-parser" "9.0.7"
+    tslib "2.0.1"
+
 "@rxap/plugin-library-publish@^12.0.0":
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/@rxap/plugin-library-publish/-/plugin-library-publish-12.0.0.tgz#63ab3d00df0cbf3c4709b5e60cc606032cd7c2f5"
@@ -4876,6 +4884,24 @@
     "@angular-devkit/architect" "0.1200.1"
     "@angular-devkit/core" "12"
     "@angular-devkit/schematics" "12"
+
+"@rxap/schematics-open-api@^12.0.3":
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-open-api/-/schematics-open-api-12.0.3.tgz#88a1d1548f437f5cfd40313bf6a7ecb5f5bc2f90"
+  integrity sha512-iweLQnbak0P7NLexBRc/uG84APEMbEuMS8OCzju8xdgwLYCcsw72oQIFZExbeJ2ZbWPxuZK9ITRkfh5vbgjqJA==
+  dependencies:
+    "@rxap/json-schema-to-typescript" "^12.0.2"
+    openapi-types "^9.0.3"
+    ts-morph "^11.0.0"
+    tslib "^2.0.0"
+
+"@rxap/schematics-ts-morph@^12.0.3":
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-ts-morph/-/schematics-ts-morph-12.0.3.tgz#965689b57bccdff7f89096424cac2bee0ebaaf15"
+  integrity sha512-pp4TT8F0UAo2eQAaesf4FNuOqZC7Py7ZkMV8lw2lX6f5eypZsFsphlINYhS78o6pXOOebSLvokqH+2sBXMyUZw==
+  dependencies:
+    ts-morph "^11.0.0"
+    tslib "^2.0.0"
 
 "@rxap/schematics@^12.0.0":
   version "12.0.0"
@@ -5697,6 +5723,16 @@
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.1.1.tgz#3348564048e7a2d7398c935d466c0414ebb6a669"
   integrity sha512-Z6DoceYb/1xSg5+e+ZlPZ9v0N16ZvZ+wYMraFue4HYrE4ttONKtsvruIRf6t9TBR0YvSOfi1hUU0fJfBLCDYow==
+
+"@ts-morph/common@~0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@ts-morph/common/-/common-0.10.0.tgz#d032ea6f6d4115b72fa50ad56009baebcc1e71b8"
+  integrity sha512-6wC+CovwzxLP+bQZcqHJEbZ7ViaIfsid8VzsVjJRkdfCQ8C8K5mm1+9/wkgmn814BPATtgSgFuDmVJnIb8/leg==
+  dependencies:
+    fast-glob "^3.2.5"
+    minimatch "^3.0.4"
+    mkdirp "^1.0.4"
+    path-browserify "^1.0.1"
 
 "@ts-morph/common@~0.5.1":
   version "0.5.2"
@@ -17090,6 +17126,11 @@ openapi-types@9.0.0:
   resolved "https://registry.yarnpkg.com/openapi-types/-/openapi-types-9.0.0.tgz#12b4971f9d0109bbce842daeb1d55e502c5cb834"
   integrity sha512-SGHObF+3VuynO2P1i8zom0xxggpFk5SeCvaFsIzmQBxJ0juWWhVqOgJ6mZs5aZDLkdx00DjYLwM2Q5mZxVzFlA==
 
+openapi-types@^9.0.3:
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/openapi-types/-/openapi-types-9.0.3.tgz#4f1fcf956165692f710ac7823b89a6b7d36b0fbb"
+  integrity sha512-c4C1xAKZOvOxeSWvRY0d2XsoaZoF8M7rifxfZZCIH2mqPEQxOz8qfFx4oEpLFaE+DfDGe08HcIA/p1Bu93keLQ==
+
 opencollective-postinstall@^2.0.2:
   version "2.0.3"
   resolved "https://npm.rxap.dev/opencollective-postinstall/-/opencollective-postinstall-2.0.3.tgz#7a0fff978f6dbfa4d006238fbac98ed4198c3259"
@@ -21681,6 +21722,14 @@ ts-morph@7.1.2:
     "@ts-morph/common" "~0.5.1"
     code-block-writer "^10.1.0"
 
+ts-morph@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/ts-morph/-/ts-morph-11.0.0.tgz#511b3caa194739fef0619367f8e65de9b475e1d4"
+  integrity sha512-u5y0jaft5c0sRFnU0K8cZhhsvPUtXjZK5L31JLIhP17qcqo9MDjwsSYLg3UryQDzlktv8wyf/UtoqpFLDYHijg==
+  dependencies:
+    "@ts-morph/common" "~0.10.0"
+    code-block-writer "^10.1.1"
+
 ts-node@9.1.1, ts-node@^9.0.0:
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-9.1.1.tgz#51a9a450a3e959401bda5f004a72d54b936d376d"
@@ -21741,6 +21790,11 @@ tsconfig-paths@^3.4.0, tsconfig-paths@^3.9.0:
     json5 "^1.0.1"
     minimist "^1.2.0"
     strip-bom "^3.0.0"
+
+tslib@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
+  integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
 
 tslib@2.2.0, tslib@^2.1.0:
   version "2.2.0"
