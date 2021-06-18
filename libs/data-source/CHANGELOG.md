@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.5](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.0.4...@rxap/data-source@12.0.5) (2021-06-18)
+
+
+### Bug Fixes
+
+* allow null for static data sources ([4035420](https://gitlab.com/rxap/packages/commit/4035420b8244b1ae22bf4197e28144780686367f))
+* allow null for static data sources ([7d2a562](https://gitlab.com/rxap/packages/commit/7d2a562bfe9b94429c541ea53d20b3f44029d4d3))
+
+
+
+
+
 ## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.0.3...@rxap/data-source@12.0.4) (2021-06-14)
 
 **Note:** Version bump only for package @rxap/data-source
