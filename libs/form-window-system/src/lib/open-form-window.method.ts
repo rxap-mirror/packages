@@ -31,7 +31,7 @@ export class OpenFormWindowMethod<
     @Inject(FormWindowService)
     private readonly formWindowService: FormWindowService,
     @Inject(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFINITION_CONSTRUCTOR)
-    private readonly formDefinitionConstructor: Constructor<FormType<any>>,
+    private readonly formDefinitionConstructor: Constructor<FormType<FormData>>,
     @Inject(INJECTOR)
     private readonly injector: Injector,
     @Optional()
