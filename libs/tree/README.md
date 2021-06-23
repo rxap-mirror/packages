@@ -11,10 +11,26 @@
 > A collection of components, data-sources and remote methods the simplify the usage of tree like components
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/tree @rxap/contenteditable@^12.0.2 @rxap/data-source@^12.0.2 @rxap/definition@^12.0.2 @rxap/material-directives@^12.0.2 @rxap/remote-method@^12.0.2 @rxap/schematics@^12.0.0 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
+ng add @rxap/tree
 ```
+
+*Setup the package @rxap/tree for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/tree for the workspace.
+
+```
+ng g @rxap/tree:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

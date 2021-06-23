@@ -11,10 +11,26 @@
 > Provides the WindowSystem concept for RxAP.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/window-system @rxap/components@^12.0.2 @rxap/directives@^12.0.4 @rxap/material-directives@^12.0.2 @rxap/services@^12.0.2 @rxap/utilities@^12.0.3
+ng add @rxap/window-system
 ```
+
+*Setup the package @rxap/window-system for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/window-system for the workspace.
+
+```
+ng g @rxap/window-system:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

@@ -11,10 +11,26 @@
 > 
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/material-table-window-system @rxap/components@^12.0.2 @rxap/data-source@^12.0.2 @rxap/definition@^12.0.2 @rxap/directives@^12.0.3 @rxap/form-system@^12.0.3 @rxap/forms@^12.0.4 @rxap/material-directives@^12.0.2 @rxap/material-table-system@^12.0.4 @rxap/mixin@^12.0.2 @rxap/open-api@^12.0.2 @rxap/remote-method@^12.0.2 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2 @rxap/window-system@^12.0.2
+ng add @rxap/material-table-window-system
 ```
+
+*Setup the package @rxap/material-table-window-system for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/material-table-window-system for the workspace.
+
+```
+ng g @rxap/material-table-window-system:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

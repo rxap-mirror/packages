@@ -11,10 +11,26 @@
 > A collection of components and services to simplify the authentication process implementation.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/authentication @rxap/config@^12.0.2 @rxap/definition@^12.0.2 @rxap/directives@^12.0.3 @rxap/forms@^12.0.4 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
+ng add @rxap/authentication
 ```
+
+*Setup the package @rxap/authentication for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/authentication for the workspace.
+
+```
+ng g @rxap/authentication:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

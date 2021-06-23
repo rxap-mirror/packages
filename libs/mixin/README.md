@@ -12,12 +12,15 @@
 
 - [Installation](#installation)
 - [Guides](#guides)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/mixin @rxap/utilities@^12.0.2
+ng add @rxap/mixin
 ```
+
+*Setup the package @rxap/mixin for the workspace.*
 
 # Guides
 
@@ -99,5 +102,18 @@ class Concrete {
   
 }
 ```
+
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/mixin for the workspace.
+
+```
+ng g @rxap/mixin:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
 
 

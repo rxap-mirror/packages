@@ -11,10 +11,26 @@
 > A utility package for the update process of apps with services worker
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/service-worker @rxap/life-cycle@^12.0.2 @rxap/utilities@^12.0.2
+ng add @rxap/service-worker
 ```
+
+*Setup the package @rxap/service-worker for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/service-worker for the workspace.
+
+```
+ng g @rxap/service-worker:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

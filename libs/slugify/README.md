@@ -11,10 +11,26 @@
 > A utility to slugify a string.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/slugify
+ng add @rxap/slugify
 ```
+
+*Setup the package @rxap/slugify for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/slugify for the workspace.
+
+```
+ng g @rxap/slugify:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

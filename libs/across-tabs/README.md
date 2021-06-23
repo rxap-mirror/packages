@@ -11,10 +11,26 @@
 > An angular wrapper package for across-tabs.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/across-tabs
+ng add @rxap/across-tabs
 ```
+
+*Setup the package @rxap/across-tabs for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/across-tabs for the workspace.
+
+```
+ng g @rxap/across-tabs:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

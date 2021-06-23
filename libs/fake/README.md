@@ -11,10 +11,26 @@
 > 
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/fake
+ng add @rxap/fake
 ```
+
+*Setup the package @rxap/fake for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/fake for the workspace.
+
+```
+ng g @rxap/fake:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

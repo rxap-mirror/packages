@@ -11,10 +11,26 @@
 > 
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/table-system @rxap/utilities@^12.0.2
+ng add @rxap/table-system
 ```
+
+*Setup the package @rxap/table-system for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/table-system for the workspace.
+
+```
+ng g @rxap/table-system:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

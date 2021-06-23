@@ -11,10 +11,26 @@
 > A collection of angular material dialog components
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/dialog @rxap/components@^12.0.2 @rxap/data-grid@^12.0.3 @rxap/definition@^12.0.2 @rxap/directives@^12.0.3 @rxap/forms@^12.0.4 @rxap/material-directives@^12.0.2 @rxap/pipes@^12.0.2 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
+ng add @rxap/dialog
 ```
+
+*Setup the package @rxap/dialog for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/dialog for the workspace.
+
+```
+ng g @rxap/dialog:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

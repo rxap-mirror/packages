@@ -11,10 +11,26 @@
 > A collection of utility functions, types and interfaces.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/utilities
+ng add @rxap/utilities
 ```
+
+*Setup the package @rxap/utilities for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/utilities for the workspace.
+
+```
+ng g @rxap/utilities:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

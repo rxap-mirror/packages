@@ -11,10 +11,26 @@
 > A collection of utility angular components used in RxAP.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/components @rxap/directives@^12.0.3 @rxap/material-directives@^12.0.2 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
+ng add @rxap/components
 ```
+
+*Setup the package @rxap/components for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/components for the workspace.
+
+```
+ng g @rxap/components:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

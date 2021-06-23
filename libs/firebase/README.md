@@ -11,10 +11,26 @@
 > A collection of utility angular services to interact with firebase.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/firebase @rxap/config@^12.0.3 @rxap/utilities@^12.0.3
+ng add @rxap/firebase
 ```
+
+*Setup the package @rxap/firebase for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/firebase for the workspace.
+
+```
+ng g @rxap/firebase:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

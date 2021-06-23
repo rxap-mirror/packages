@@ -11,10 +11,26 @@
 > An angular wrapper package for handlebars.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/handlebars
+ng add @rxap/handlebars
 ```
+
+*Setup the package @rxap/handlebars for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/handlebars for the workspace.
+
+```
+ng g @rxap/handlebars:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

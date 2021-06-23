@@ -11,10 +11,26 @@
 > A utility packages to load svg icons for @angular/material.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/icon
+ng add @rxap/icon
 ```
+
+*Setup the package @rxap/icon for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/icon for the workspace.
+
+```
+ng g @rxap/icon:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 
