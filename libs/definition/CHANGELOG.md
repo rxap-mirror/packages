@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.5](https://gitlab.com/rxap/packages/compare/@rxap/definition@12.0.4...@rxap/definition@12.0.5) (2021-06-23)
+
+**Note:** Version bump only for package @rxap/definition
+
+
+
+
+
 ## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/definition@12.0.3...@rxap/definition@12.0.4) (2021-06-14)
 
 **Note:** Version bump only for package @rxap/definition

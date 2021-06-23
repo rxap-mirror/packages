@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.2](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@12.1.1...@rxap/form-window-system@12.1.2) (2021-06-23)
+
+**Note:** Version bump only for package @rxap/form-window-system
+
+
+
+
+
 ## [12.1.1](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@12.1.0...@rxap/form-window-system@12.1.1) (2021-06-23)
 
 
