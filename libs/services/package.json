@@ -10,7 +10,7 @@
     "services",
     "angular"
   ],
-  "license": "BSD-4-Clause",
+  "license": "MIT",
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"

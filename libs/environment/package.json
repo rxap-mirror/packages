@@ -21,7 +21,7 @@
     "directory": "../../dist/libs/environment",
     "access": "public"
   },
-  "license": "BSD-4-Clause",
+  "license": "MIT",
   "keywords": [
     "rxap",
     "angular"

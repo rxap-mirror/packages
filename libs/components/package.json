@@ -5,7 +5,7 @@
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/components",
   "repository": "git@gitlab.com:rxap/packages.git",
-  "license": "BSD-4-Clause",
+  "license": "MIT",
   "keywords": [
     "rxap",
     "components",

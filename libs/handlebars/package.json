@@ -15,7 +15,7 @@
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "description": "An angular wrapper package for handlebars.",
-  "license": "BSD-4-Clause",
+  "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^12.0.1",
     "@rxap/schematics-utilities": "^12.1.0",

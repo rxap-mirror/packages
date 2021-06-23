@@ -9,7 +9,7 @@
       "@rxap/fake"
     ]
   },
-  "license": "BSD-4-Clause",
+  "license": "MIT",
   "keywords": [
     "rxap"
   ],

@@ -16,7 +16,7 @@
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/icon",
   "repository": "git@gitlab.com:rxap/packages.git",
-  "license": "BSD-4-Clause",
+  "license": "MIT",
   "schematics": "./collection.json",
   "ng-update": {
     "migrations": "./migration.json",
