@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.1](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@12.1.0...@rxap/form-window-system@12.1.1) (2021-06-23)
+
+
+### Bug Fixes
+
+* set form data type ([ad009a9](https://gitlab.com/rxap/packages/commit/ad009a9bc530f8eea8bac5271861ea7a6b1cd493))
+
+
+
+
+
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@12.0.4...@rxap/form-window-system@12.1.0) (2021-06-16)
 
 
