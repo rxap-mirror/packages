@@ -3,9 +3,9 @@
   "version": "12.0.4",
   "private": false,
   "author": "Merzough Münker",
-  "homepage": "https://gitlab.com/rxap/packages",
+  "homepage": "https://gitlab.com/rxap/packages/libs/dialog",
   "repository": "git@gitlab.com:rxap/packages.git",
-  "license": "MIT",
+  "license": "BSD-4-Clause",
   "keywords": [
     "rxap",
     "angular",
@@ -42,9 +42,9 @@
   "dependencies": {
     "tslib": "2.0.1"
   },
-  "schematics": "./schematics/collection.json",
+  "schematics": "./collection.json",
   "ng-update": {
-    "migrations": "./schematics/migration.json",
+    "migrations": "./migration.json",
     "packageGroup": [
       "@rxap/dialog",
       "@rxap/components",
@@ -61,5 +61,8 @@
   "publishConfig": {
     "directory": "../../dist/libs/dialog",
     "access": "public"
+  },
+  "ng-add": {
+    "save": "dependencies"
   }
 }

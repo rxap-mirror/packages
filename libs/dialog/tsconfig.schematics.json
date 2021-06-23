@@ -1,14 +1,22 @@
 {
-  "extends": "../../tsconfig.schematics.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "rootDir": "schematics",
-    "outDir": "../../dist/libs/dialog/schematics",
+    "outDir": "../../dist/schematics/libs/dialog",
+    "module": "commonjs",
+    "declaration": true,
+    "esModuleInterop": true,
+    "types": [
+      "node"
+    ]
   },
   "include": [
-    "schematics/**/*"
+    "src/schematics/**/*.ts"
   ],
   "exclude": [
     "schematics/*/files/**/*",
-"schematics/**/*.spec.ts"
+    "schematics/**/*.spec.ts",
+    "**/*.spec.ts",
+    "**/files/**"
   ]
 }

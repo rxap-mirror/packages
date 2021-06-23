@@ -3,9 +3,9 @@
   "version": "12.0.4",
   "private": false,
   "author": "Merzough Münker",
-  "homepage": "https://gitlab.com/rxap/packages",
+  "homepage": "https://gitlab.com/rxap/packages/libs/config",
   "repository": "git@gitlab.com:rxap/packages.git",
-  "license": "MIT",
+  "license": "BSD-4-Clause",
   "keywords": [
     "rxap",
     "config",
@@ -23,9 +23,9 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
-  "schematics": "./schematics/collection.json",
+  "schematics": "./collection.json",
   "ng-update": {
-    "migrations": "./schematics/migration.json",
+    "migrations": "./migration.json",
     "packageGroup": [
       "@rxap/config",
       "@rxap/utilities"
@@ -34,5 +34,8 @@
   "publishConfig": {
     "directory": "../../dist/libs/config",
     "access": "public"
+  },
+  "ng-add": {
+    "save": "dependencies"
   }
 }

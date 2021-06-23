@@ -14,9 +14,9 @@
   ],
   "private": false,
   "author": "Merzough Münker",
-  "homepage": "https://gitlab.com/rxap/packages",
+  "homepage": "https://gitlab.com/rxap/packages/libs/json-schema-to-typescript",
   "repository": "git@gitlab.com:rxap/packages.git",
-  "license": "MIT",
+  "license": "BSD-4-Clause",
   "description": "Generates typescript interfaces from json schema definition.",
   "dependencies": {
     "tslib": "2.0.1"
@@ -24,5 +24,15 @@
   "publishConfig": {
     "directory": "../../dist/libs/json-schema-to-typescript",
     "access": "public"
+  },
+  "schematics": "./collection.json",
+  "ng-update": {
+    "migrations": "./migration.json",
+    "packageGroup": [
+      "@rxap/json-schema-to-typescript"
+    ]
+  },
+  "ng-add": {
+    "save": "dependencies"
   }
 }

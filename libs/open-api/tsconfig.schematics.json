@@ -1,8 +1,8 @@
 {
-  "extends": "../../tsconfig.schematics.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "rootDir": "schematics",
-    "outDir": "../../dist/libs/open-api/schematics",
+    "outDir": "../../dist/schematics/libs/open-api",
     "paths": {
       "@rxap/schematics-utilities": [
         "../../dist/libs/schematics/utilities"
@@ -13,13 +13,21 @@
       "@rxap/schematics-ts-morph": [
         "../../dist/libs/schematics/ts-morph"
       ]
-    }
+    },
+    "module": "commonjs",
+    "declaration": true,
+    "esModuleInterop": true,
+    "types": [
+      "node"
+    ]
   },
   "include": [
-    "schematics/**/*"
+    "src/schematics/**/*.ts"
   ],
   "exclude": [
     "schematics/*/files/**/*",
-"schematics/**/*.spec.ts"
+    "schematics/**/*.spec.ts",
+    "**/*.spec.ts",
+    "**/files/**"
   ]
 }

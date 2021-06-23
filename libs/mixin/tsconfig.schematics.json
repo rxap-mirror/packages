@@ -1,13 +1,21 @@
 {
-  "extends": "../../tsconfig.schematics.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/libs/mixin/schematics",
+    "outDir": "../../dist/schematics/libs/mixin",
+    "module": "commonjs",
+    "declaration": true,
+    "esModuleInterop": true,
+    "types": [
+      "node"
+    ]
   },
   "include": [
-    "schematics/**/*"
+    "src/schematics/**/*.ts"
   ],
   "exclude": [
     "schematics/*/files/**/*",
-"schematics/**/*.spec.ts"
+    "schematics/**/*.spec.ts",
+    "**/*.spec.ts",
+    "**/files/**"
   ]
 }

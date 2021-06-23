@@ -4,12 +4,14 @@
   "dependencies": {
     "tslib": "^2.0.0"
   },
-  "schematics": "./schematics/collection.json",
+  "schematics": "./collection.json",
   "ng-update": {
-    "migrations": "./schematics/migration.json",
-    "packageGroup": []
+    "migrations": "./migration.json",
+    "packageGroup": [
+      "@rxap/fake"
+    ]
   },
-  "license": "MIT",
+  "license": "BSD-4-Clause",
   "keywords": [
     "rxap"
   ],
@@ -18,11 +20,14 @@
     "access": "public"
   },
   "repository": "git@gitlab.com:rxap/packages.git",
-  "homepage": "https://gitlab.com/rxap/packages",
+  "homepage": "https://gitlab.com/rxap/packages/libs/fake",
   "author": "Merzough Münker",
   "private": false,
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "ng-add": {
+    "save": "dependencies"
   }
 }

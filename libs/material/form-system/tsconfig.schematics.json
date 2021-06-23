@@ -1,8 +1,8 @@
 {
-  "extends": "../../../tsconfig.schematics.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "rootDir": "schematics",
-    "outDir": "../../../dist/libs/material/form-system/schematics",
+    "outDir": "../../../dist/schematics/libs/material/form-system",
     "paths": {
       "@rxap/xml-parser": [
         "../../../dist/libs/xml-parser"
@@ -19,13 +19,21 @@
       "@rxap/material-table-system/schematics/*": [
         "../../../dist/libs/material/table-system/schematics/*"
       ]
-    }
+    },
+    "module": "commonjs",
+    "declaration": true,
+    "esModuleInterop": true,
+    "types": [
+      "node"
+    ]
   },
   "include": [
-    "schematics/**/*"
+    "src/schematics/**/*.ts"
   ],
   "exclude": [
     "schematics/*/files/**/*",
-"schematics/**/*.spec.ts"
+    "schematics/**/*.spec.ts",
+    "**/*.spec.ts",
+    "**/files/**"
   ]
 }

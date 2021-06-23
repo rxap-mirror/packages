@@ -4255,6 +4255,17 @@
     yargs "15.4.1"
     yargs-parser "20.0.0"
 
+"@nrwl/cli@12.4.0":
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-12.4.0.tgz#d313ddbabfef0d4b1b3e799dac5fa1dafe4819d4"
+  integrity sha512-ZU1NAjxEa9iMRRhUCYmD0ZLlK1j5l+zDseDE1a0A3KdgMVGh2eOchREnf6R75skQJHl4v9hKFweqiy0Xl14ZRQ==
+  dependencies:
+    "@nrwl/tao" "12.4.0"
+    chalk "4.1.0"
+    v8-compile-cache "2.3.0"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
 "@nrwl/cypress@12.3.4":
   version "12.3.4"
   resolved "https://registry.yarnpkg.com/@nrwl/cypress/-/cypress-12.3.4.tgz#0f1cabb92cba1d102435afc4be82ce731e7b5843"
@@ -4284,6 +4295,17 @@
     strip-json-comments "^3.1.1"
     tslib "^2.0.0"
 
+"@nrwl/devkit@12.4.0":
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-12.4.0.tgz#6110327f1aed6d87d407929651e6f1140c779451"
+  integrity sha512-kGw5/SH4ze4j+rG6seEcslNenscrZFZMGpcoc3OIxfTTGlFA0mCFasFgzN8osgTX4+PgEOushvm3yRAaMmLqIg==
+  dependencies:
+    "@nrwl/tao" "12.4.0"
+    ejs "^3.1.5"
+    ignore "^5.0.4"
+    semver "7.3.4"
+    tslib "^2.0.0"
+
 "@nrwl/eslint-plugin-nx@12.3.4":
   version "12.3.4"
   resolved "https://registry.yarnpkg.com/@nrwl/eslint-plugin-nx/-/eslint-plugin-nx-12.3.4.tgz#cc7d360e0879f3f940bcf82810b5c4aea9622db9"
@@ -4305,12 +4327,33 @@
     strip-json-comments "^3.1.1"
     tslib "^2.0.0"
 
+"@nrwl/jest@12.4.0":
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-12.4.0.tgz#d59b840ba1ad79ff969aefa353ad360e952bd86c"
+  integrity sha512-YZbo4+NYsSp7StJFvY7pKAArpYOP5AtZAu4ltshzdAWYM9KgPtoDtstRBksFzDq6jnApXuMb4eEcE4ttlMj3yQ==
+  dependencies:
+    "@nrwl/devkit" "12.4.0"
+    jest-resolve "^26.6.2"
+    rxjs "^6.5.4"
+    tslib "^2.0.0"
+
 "@nrwl/linter@12.3.4":
   version "12.3.4"
   resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-12.3.4.tgz#0281b367af52404fe3122651f40562b5489ee619"
   integrity sha512-cxWLA+B1hjAjiyQadqoYIf9lUh1EKTs/kgIwXExW2qaoFv1NtTQiB+JsD2VTLUj4tKE7rWdBR13PAC9CS1Ln4g==
   dependencies:
     "@nrwl/devkit" "12.3.4"
+    glob "7.1.4"
+    minimatch "3.0.4"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+
+"@nrwl/linter@12.4.0", "@nrwl/linter@^12.3.6":
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-12.4.0.tgz#61afc3d1bfb9e71ceea1ed820d15f4163911c00b"
+  integrity sha512-n+xEKSAU5nVyMii7GtvBWDdjtrlCqMXrnozBs586k+bL0opogP4ZOrWxPZUjLnOlOHx1BuIl0nViSjBmh2y0wA==
+  dependencies:
+    "@nrwl/devkit" "12.4.0"
     glob "7.1.4"
     minimatch "3.0.4"
     tmp "~0.2.1"
@@ -4401,6 +4444,22 @@
     tslib "^2.0.0"
     yargs-parser "20.0.0"
 
+"@nrwl/tao@12.4.0":
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.4.0.tgz#90620513fc66faca22c98a64623b2d1c058bb1a4"
+  integrity sha512-WH8SqOuJuuBwXpLX9vIVVWEovDqfLmiyFQS4Ebz35KWXNoIv9MS3QgItXKCu7X463hiJnxjAA3RqVYIt8U1vXg==
+  dependencies:
+    chalk "4.1.0"
+    enquirer "~2.3.6"
+    fs-extra "^9.1.0"
+    jsonc-parser "3.0.0"
+    rxjs "^6.5.4"
+    rxjs-for-await "0.0.2"
+    semver "7.3.4"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs-parser "20.0.0"
+
 "@nrwl/workspace@12.3.4":
   version "12.3.4"
   resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-12.3.4.tgz#0a0abfa4ab3e46780894f2b692735766a498936d"
@@ -4425,6 +4484,33 @@
     rxjs "^6.5.4"
     semver "7.3.4"
     strip-json-comments "^3.1.1"
+    tmp "~0.2.1"
+    tslib "^2.0.0"
+    yargs "15.4.1"
+    yargs-parser "20.0.0"
+
+"@nrwl/workspace@^12.3.6":
+  version "12.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-12.4.0.tgz#095d29bbb1d19f6266af06c528ebc83392d07654"
+  integrity sha512-RjcvP4rQCj6CQPDrRTLlzviF6kskfDBfBlyrQfDjh4CC9HasjlRCOfB39OQynT2M4iZqckXl5upG7Ph1gP5+dg==
+  dependencies:
+    "@nrwl/cli" "12.4.0"
+    "@nrwl/devkit" "12.4.0"
+    "@nrwl/jest" "12.4.0"
+    "@nrwl/linter" "12.4.0"
+    chalk "4.1.0"
+    cosmiconfig "^4.0.0"
+    dotenv "8.2.0"
+    enquirer "~2.3.6"
+    flat "^5.0.2"
+    fs-extra "^9.1.0"
+    glob "7.1.4"
+    ignore "^5.0.4"
+    minimatch "3.0.4"
+    npm-run-all "^4.1.5"
+    open "^7.4.2"
+    rxjs "^6.5.4"
+    semver "7.3.4"
     tmp "~0.2.1"
     tslib "^2.0.0"
     yargs "15.4.1"
@@ -4678,6 +4764,21 @@
     ramda "0.27.1"
     uuid "8.3.2"
 
+"@rxap/plugin-library@^12.2.0":
+  version "12.2.0"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-library/-/plugin-library-12.2.0.tgz#3d2911d7348b3660917bb9f1be4182903598aa0c"
+  integrity sha512-2ThNqp/+UDPteTxUfP9E0qtX4Oq0lTsufefX9L8cIPXjP2DEdPAk+yKyPl5a9IDhdUO58UKq7tyr/DfKqb460A==
+  dependencies:
+    "@angular-devkit/architect" "^0.1200.3"
+    "@angular-devkit/core" "^12.0.3"
+    "@angular-devkit/schematics" "^12.0.3"
+    "@lerna/collect-updates" "^4.0.0"
+    "@lerna/package-graph" "^4.0.0"
+    "@lerna/project" "^4.0.0"
+    "@nrwl/workspace" "^12.3.6"
+    "@rxap/schematics-utilities" "^12.0.5"
+    "@rxap/utilities" "^12.0.3"
+
 "@rxap/plugin-pack@12.1.7":
   version "12.1.7"
   resolved "https://registry.yarnpkg.com/@rxap/plugin-pack/-/plugin-pack-12.1.7.tgz#d66e3829896436dbd819604716b7ae523b9d1f23"
@@ -4720,6 +4821,20 @@
   dependencies:
     tslib "^2.0.0"
 
+"@rxap/schematics-ts-morph@^12.0.7-next.0":
+  version "12.0.7-next.0"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-ts-morph/-/schematics-ts-morph-12.0.7-next.0.tgz#1a46e1c8d32fbeadbc62a6b1548541c3ec687645"
+  integrity sha512-Y6q/dscYczwUlFv5W6xi7rGXEFrDiAWqriG7KlqdtQhgy6kNyvB05jqdDGCVkB2Vuoal8EaW1htI8xSKw8v+2g==
+  dependencies:
+    "@rxap/utilities" "^12.0.3"
+
+"@rxap/schematics-utilities@^12.0.5":
+  version "12.3.3"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-12.3.3.tgz#2dd8cbf394a8af195b50da99bc496957fae4c0b6"
+  integrity sha512-efIOdfUdviN/XM2DavO0nilmfi+CxxHuwe1Y+1AQ64gOCT5qlf4vWUCrMAKeFwuIY9m+CxyGbstmHwHC5SOXKg==
+  dependencies:
+    tslib "^2.0.0"
+
 "@rxap/schematics-utilities@^12.1.0":
   version "12.1.0"
   resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-12.1.0.tgz#bad3cc6def0905fe00b403a0e700eaefa9b229ed"
@@ -4728,19 +4843,18 @@
     semver "^7.3.5"
     tslib "^2.0.0"
 
-"@rxap/schematics@^12.1.0":
-  version "12.1.0"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics/-/schematics-12.1.0.tgz#3a57cb0abf4b34c4f78b5dbd285aba39d575f603"
-  integrity sha512-dDtK36lO885MjzaC7K8GkNbZSqdzNFT+Qce87mnTPvCFkNdEoiqi0mApCQQqsJs0OzEnPlGLSaYLiyNlwgvC6w==
+"@rxap/schematics@^12.6.0-next.1":
+  version "12.6.0-next.1"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics/-/schematics-12.6.0-next.1.tgz#3c31bd90cbed97d22ed74b84c236289afe19e02c"
+  integrity sha512-wAwUcTq4FGNjl/CEZ+1Kb3cNUFpXbCVnBx2o+YPYH/swgx/2oAC7/Xg/e5tVZhNDoTeFt3SQ6aANQMHFnru4kQ==
   dependencies:
-    "@rxap/schematics-ts-morph" "^12.0.4"
-    "@rxap/schematics-utilities" "^12.1.0"
+    "@nrwl/linter" "^12.3.6"
+    "@nrwl/workspace" "^12.3.6"
+    "@rxap/schematics-ts-morph" "^12.0.7-next.0"
     "@rxap/utilities" "^12.0.3"
     "@rxap/xml-parser" "^12.0.3"
     parse5 "^6.0.1"
-    semver "^7.3.5"
     ts-morph "^11.0.0"
-    typescript "^4.2.4"
 
 "@rxap/utilities@^12.0.3":
   version "12.0.4"
@@ -21696,11 +21810,6 @@ typescript@^4.0.3:
   version "4.1.3"
   resolved "https://npm.rxap.dev/typescript/-/typescript-4.1.3.tgz#519d582bd94cba0cf8934c7d8e8467e473f53bb7"
   integrity sha512-B3ZIOf1IKeH2ixgHhj6la6xdwR9QrLC5d1VKeCSY4tvkqhF2eqd9O7txNlS0PO3GrBAFIdr3L1ndNwteUbZLYg==
-
-typescript@^4.2.4:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.3.tgz#5401db69bd3203daf1851a1a74d199cb3112c11a"
-  integrity sha512-rUvLW0WtF7PF2b9yenwWUi9Da9euvDRhmH7BLyBG4DCFfOJ850LGNknmRpp8Z8kXNUPObdZQEfKOiHtXuQHHKA==
 
 uglify-js@^3.1.4:
   version "3.12.4"

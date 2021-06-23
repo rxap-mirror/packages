@@ -15,21 +15,24 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "rootDir": "schematics",
-    "outDir": "../../dist/libs/authorization/schematics",
+    "outDir": "../../dist/schematics/libs/authorization",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": true,
     "target": "es6",
     "types": [
-      "jest",
       "node"
-    ]
+    ],
+    "esModuleInterop": true
   },
   "include": [
-    "schematics/**/*"
+    "src/schematics/**/*.ts"
   ],
   "exclude": [
-    "schematics/*/files/**/*"
-  ]
+    "schematics/*/files/**/*",
+    "**/*.spec.ts",
+    "**/files/**"
+  ],
+  "extends": "./tsconfig.json"
 }
