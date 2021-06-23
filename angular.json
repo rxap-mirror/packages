@@ -59,23 +59,14 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "utilities:readme",
-              "utilities:update-package-group",
               "utilities:build:production",
-              "utilities:schematics"
+              "utilities:build-schematics",
+              "utilities:build-migrations"
             ]
           }
         },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "utilities:build:production",
-            "skipBuild": false,
-            "tsConfig": "libs/utilities/tsconfig.schematics.json"
-          }
-        },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -86,6 +77,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/utilities",
+            "tsConfig": "libs/utilities/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/utilities",
+            "tsConfig": "libs/utilities/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -135,14 +150,6 @@
           "outputs": [
             "coverage/libs/data-source"
           ]
-        },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "data-source:build:production",
-            "skipBuild": false,
-            "tsConfig": "libs/data-source/tsconfig.schematics.json"
-          }
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -199,15 +206,14 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "data-source:readme",
-              "data-source:update-package-group",
               "data-source:build:production",
-              "data-source:schematics"
+              "data-source:build-schematics",
+              "data-source:build-migrations"
             ]
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -218,6 +224,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/data-source",
+            "tsConfig": "libs/data-source/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/data-source",
+            "tsConfig": "libs/data-source/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -272,11 +302,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "window-system:readme",
-              "window-system:update-package-group",
               "window-system:build:production",
               "window-system:scss-bundle",
-              "window-system:schematics"
+              "window-system:build-schematics",
+              "window-system:build-migrations"
             ]
           }
         },
@@ -290,16 +319,8 @@
             ]
           }
         },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "window-system:build:production",
-            "skipBuild": false,
-            "tsConfig": "libs/window-system/tsconfig.schematics.json"
-          }
-        },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -310,6 +331,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/window-system",
+            "tsConfig": "libs/window-system/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/window-system",
+            "tsConfig": "libs/window-system/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -376,23 +421,14 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "services:readme",
-              "services:update-package-group",
               "services:build:production",
-              "services:schematics"
+              "services:build-schematics",
+              "services:build-migrations"
             ]
           }
         },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "services:build:production",
-            "skipBuild": false,
-            "tsConfig": "libs/services/tsconfig.schematics.json"
-          }
-        },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -403,6 +439,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/services",
+            "tsConfig": "libs/services/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/services",
+            "tsConfig": "libs/services/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -457,23 +517,14 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "xml-parser:readme",
-              "xml-parser:update-package-group",
               "xml-parser:build:production",
-              "xml-parser:schematics"
+              "xml-parser:build-schematics",
+              "xml-parser:build-migrations"
             ]
           }
         },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "xml-parser:build:production",
-            "skipBuild": false,
-            "tsConfig": "libs/xml-parser/tsconfig.schematics.json"
-          }
-        },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -484,6 +535,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/xml-parser",
+            "tsConfig": "libs/xml-parser/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/xml-parser",
+            "tsConfig": "libs/xml-parser/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -538,23 +613,14 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "mixin:readme",
-              "mixin:update-package-group",
               "mixin:build:production",
-              "mixin:schematics"
+              "mixin:build-schematics",
+              "mixin:build-migrations"
             ]
           }
         },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "mixin:build:production",
-            "skipBuild": false,
-            "tsConfig": "libs/mixin/tsconfig.schematics.json"
-          }
-        },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -565,6 +631,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/mixin",
+            "tsConfig": "libs/mixin/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/mixin",
+            "tsConfig": "libs/mixin/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -628,11 +718,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "components:readme",
-              "components:update-package-group",
               "components:build:production",
               "components:scss-bundle",
-              "components:schematics"
+              "components:build-schematics",
+              "components:build-migrations"
             ]
           }
         },
@@ -687,16 +776,8 @@
             }
           }
         },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "components:build:production",
-            "skipBuild": false,
-            "tsConfig": "libs/components/tsconfig.schematics.json"
-          }
-        },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -707,6 +788,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/components",
+            "tsConfig": "libs/components/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/components",
+            "tsConfig": "libs/components/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -757,22 +862,13 @@
             "coverage/libs/remote-method"
           ]
         },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "remote-method:build:production",
-            "skipBuild": true,
-            "tsConfig": "libs/remote-method/tsconfig.schematics.json"
-          }
-        },
         "pack": {
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "remote-method:readme",
-              "remote-method:update-package-group",
               "remote-method:build:production",
-              "remote-method:schematics"
+              "remote-method:build-schematics",
+              "remote-method:build-migrations"
             ]
           }
         },
@@ -789,7 +885,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -800,6 +896,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/remote-method",
+            "tsConfig": "libs/remote-method/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/remote-method",
+            "tsConfig": "libs/remote-method/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -866,23 +986,14 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "config:readme",
-              "config:update-package-group",
               "config:build:production",
-              "config:schematics"
+              "config:build-schematics",
+              "config:build-migrations"
             ]
           }
         },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "config:build:production",
-            "skipBuild": false,
-            "tsConfig": "libs/config/tsconfig.schematics.json"
-          }
-        },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -893,6 +1004,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/config",
+            "tsConfig": "libs/config/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/config",
+            "tsConfig": "libs/config/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -998,11 +1133,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "authentication:readme",
-              "authentication:update-package-group",
               "authentication:build:production",
               "authentication:scss-bundle",
-              "authentication:schematics"
+              "authentication:build-schematics",
+              "authentication:build-migrations"
             ]
           }
         },
@@ -1016,16 +1150,8 @@
             ]
           }
         },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "authentication:build:production",
-            "skipBuild": false,
-            "tsConfig": "libs/authentication/tsconfig.schematics.json"
-          }
-        },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -1036,6 +1162,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/authentication",
+            "tsConfig": "libs/authentication/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/authentication",
+            "tsConfig": "libs/authentication/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -1141,11 +1291,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "layout:readme",
-              "layout:update-package-group",
               "layout:build:production",
               "layout:scss-bundle",
-              "layout:schematics"
+              "layout:build-schematics",
+              "layout:build-migrations"
             ]
           }
         },
@@ -1159,16 +1308,8 @@
             ]
           }
         },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "layout:build:production",
-            "skipBuild": false,
-            "tsConfig": "libs/layout/tsconfig.schematics.json"
-          }
-        },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -1179,6 +1320,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/layout",
+            "tsConfig": "libs/layout/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/layout",
+            "tsConfig": "libs/layout/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -1284,23 +1449,14 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "pipes:readme",
-              "pipes:update-package-group",
               "pipes:build:production",
-              "pipes:schematics"
+              "pipes:build-schematics",
+              "pipes:build-migrations"
             ]
           }
         },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "pipes:build:production",
-            "skipBuild": false,
-            "tsConfig": "libs/pipes/tsconfig.schematics.json"
-          }
-        },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -1311,6 +1467,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/pipes",
+            "tsConfig": "libs/pipes/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/pipes",
+            "tsConfig": "libs/pipes/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -1377,23 +1557,14 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "open-api:readme",
-              "open-api:update-package-group",
               "open-api:build:production",
-              "open-api:schematics"
+              "open-api:build-schematics",
+              "open-api:build-migrations"
             ]
           }
         },
-        "schematics": {
-          "builder": "@rxap/plugin-library-schematics:build",
-          "options": {
-            "buildTarget": "open-api:build:production",
-            "skipBuild": false,
-            "tsConfig": "libs/open-api/tsconfig.schematics.json"
-          }
-        },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -1404,6 +1575,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/open-api",
+            "tsConfig": "libs/open-api/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/open-api",
+            "tsConfig": "libs/open-api/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -1458,10 +1653,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "recorder:readme",
-              "recorder:update-package-group",
               "recorder:build:production",
-              "recorder:schematics"
+              "recorder:build-schematics",
+              "recorder:build-migrations"
             ]
           }
         },
@@ -1474,7 +1668,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -1485,6 +1679,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/recorder",
+            "tsConfig": "libs/recorder/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/recorder",
+            "tsConfig": "libs/recorder/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -1539,10 +1757,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "across-tabs:readme",
-              "across-tabs:update-package-group",
               "across-tabs:build:production",
-              "across-tabs:schematics"
+              "across-tabs:build-schematics",
+              "across-tabs:build-migrations"
             ]
           }
         },
@@ -1555,7 +1772,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -1566,6 +1783,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/across-tabs",
+            "tsConfig": "libs/across-tabs/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/across-tabs",
+            "tsConfig": "libs/across-tabs/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -1671,10 +1912,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "forms:readme",
-              "forms:update-package-group",
               "forms:build:production",
-              "forms:schematics"
+              "forms:build-schematics",
+              "forms:build-migrations"
             ]
           }
         },
@@ -1687,7 +1927,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -1698,6 +1938,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/forms",
+            "tsConfig": "libs/forms/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/forms",
+            "tsConfig": "libs/forms/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -1764,10 +2028,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "icon:readme",
-              "icon:update-package-group",
               "icon:build:production",
-              "icon:schematics"
+              "icon:build-schematics",
+              "icon:build-migrations"
             ]
           }
         },
@@ -1780,7 +2043,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -1791,6 +2054,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/icon",
+            "tsConfig": "libs/icon/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/icon",
+            "tsConfig": "libs/icon/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -1857,10 +2144,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "firebase:readme",
-              "firebase:update-package-group",
               "firebase:build:production",
-              "firebase:schematics"
+              "firebase:build-schematics",
+              "firebase:build-migrations"
             ]
           }
         },
@@ -1873,7 +2159,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -1884,6 +2170,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/firebase",
+            "tsConfig": "libs/firebase/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/firebase",
+            "tsConfig": "libs/firebase/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -1989,11 +2299,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "directives:readme",
-              "directives:update-package-group",
               "directives:build:production",
               "directives:scss-bundle",
-              "directives:schematics"
+              "directives:build-schematics",
+              "directives:build-migrations"
             ]
           }
         },
@@ -2016,7 +2325,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -2027,6 +2336,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/directives",
+            "tsConfig": "libs/directives/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/directives",
+            "tsConfig": "libs/directives/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -2081,10 +2414,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "handlebars:readme",
-              "handlebars:update-package-group",
               "handlebars:build:production",
-              "handlebars:schematics"
+              "handlebars:build-schematics",
+              "handlebars:build-migrations"
             ]
           }
         },
@@ -2097,7 +2429,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -2108,6 +2440,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/handlebars",
+            "tsConfig": "libs/handlebars/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/handlebars",
+            "tsConfig": "libs/handlebars/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -2174,10 +2530,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "definition:readme",
-              "definition:update-package-group",
               "definition:build:production",
-              "definition:schematics"
+              "definition:build-schematics",
+              "definition:build-migrations"
             ]
           }
         },
@@ -2190,7 +2545,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -2201,6 +2556,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/definition",
+            "tsConfig": "libs/definition/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/definition",
+            "tsConfig": "libs/definition/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -2255,11 +2634,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "form-system:readme",
-              "form-system:update-package-group",
               "form-system:build:production",
               "form-system:scss-bundle",
-              "form-system:schematics"
+              "form-system:build-schematics",
+              "form-system:build-migrations"
             ]
           }
         },
@@ -2321,7 +2699,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -2332,6 +2710,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/form-system",
+            "tsConfig": "libs/form-system/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/form-system",
+            "tsConfig": "libs/form-system/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -2386,11 +2788,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "data-grid:readme",
-              "data-grid:update-package-group",
               "data-grid:build:production",
               "data-grid:scss-bundle",
-              "data-grid:schematics"
+              "data-grid:build-schematics",
+              "data-grid:build-migrations"
             ]
           }
         },
@@ -2413,7 +2814,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -2424,6 +2825,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/data-grid",
+            "tsConfig": "libs/data-grid/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/data-grid",
+            "tsConfig": "libs/data-grid/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -2478,10 +2903,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "slugify:readme",
-              "slugify:update-package-group",
               "slugify:build:production",
-              "slugify:schematics"
+              "slugify:build-schematics",
+              "slugify:build-migrations"
             ]
           }
         },
@@ -2494,7 +2918,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -2505,6 +2929,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/slugify",
+            "tsConfig": "libs/slugify/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/slugify",
+            "tsConfig": "libs/slugify/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -2559,10 +3007,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "service-worker:readme",
-              "service-worker:update-package-group",
               "service-worker:build:production",
-              "service-worker:schematics"
+              "service-worker:build-schematics",
+              "service-worker:build-migrations"
             ]
           }
         },
@@ -2575,7 +3022,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -2586,6 +3033,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/service-worker",
+            "tsConfig": "libs/service-worker/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/service-worker",
+            "tsConfig": "libs/service-worker/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -2640,10 +3111,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "life-cycle:readme",
-              "life-cycle:update-package-group",
               "life-cycle:build:production",
-              "life-cycle:schematics"
+              "life-cycle:build-schematics",
+              "life-cycle:build-migrations"
             ]
           }
         },
@@ -2656,7 +3126,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -2667,6 +3137,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/life-cycle",
+            "tsConfig": "libs/life-cycle/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/life-cycle",
+            "tsConfig": "libs/life-cycle/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -2721,8 +3215,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "json-schema-to-typescript:readme",
-              "json-schema-to-typescript:build:production"
+              "json-schema-to-typescript:build:production",
+              "json-schema-to-typescript:build-schematics",
+              "json-schema-to-typescript:build-migrations"
             ]
           }
         },
@@ -2735,6 +3230,33 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/json-schema-to-typescript",
+            "tsConfig": "libs/json-schema-to-typescript/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/json-schema-to-typescript",
+            "tsConfig": "libs/json-schema-to-typescript/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library:update-package-group"
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -2799,10 +3321,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "tree:readme",
-              "tree:update-package-group",
               "tree:build:production",
-              "tree:schematics"
+              "tree:build-schematics",
+              "tree:build-migrations"
             ]
           }
         },
@@ -2815,7 +3336,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -2826,6 +3347,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/tree",
+            "tsConfig": "libs/tree/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/tree",
+            "tsConfig": "libs/tree/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -2890,10 +3435,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "dialog:readme",
-              "dialog:update-package-group",
               "dialog:build:production",
-              "dialog:schematics"
+              "dialog:build-schematics",
+              "dialog:build-migrations"
             ]
           }
         },
@@ -2906,7 +3450,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -2917,6 +3461,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/dialog",
+            "tsConfig": "libs/dialog/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/dialog",
+            "tsConfig": "libs/dialog/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -2981,11 +3549,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "form-window-system:readme",
-              "form-window-system:update-package-group",
               "form-window-system:build:production",
               "form-window-system:scss-bundle",
-              "form-window-system:schematics"
+              "form-window-system:build-schematics",
+              "form-window-system:build-migrations"
             ]
           }
         },
@@ -2998,7 +3565,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -3009,6 +3576,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/form-window-system",
+            "tsConfig": "libs/form-window-system/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/form-window-system",
+            "tsConfig": "libs/form-window-system/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -3073,10 +3664,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "environment:readme",
-              "environment:update-package-group",
               "environment:build:production",
-              "environment:schematics"
+              "environment:build-schematics",
+              "environment:build-migrations"
             ]
           }
         },
@@ -3089,7 +3679,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -3139,6 +3729,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/environment",
+            "tsConfig": "libs/environment/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/environment",
+            "tsConfig": "libs/environment/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -3242,11 +3856,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "table-system:readme",
-              "table-system:update-package-group",
               "table-system:build:production",
-              "table-system:schematics",
-              "table-system:scss-bundle"
+              "table-system:scss-bundle",
+              "table-system:build-schematics",
+              "table-system:build-migrations"
             ]
           }
         },
@@ -3259,7 +3872,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -3270,6 +3883,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/table-system",
+            "tsConfig": "libs/table-system/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/table-system",
+            "tsConfig": "libs/table-system/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -3324,11 +3961,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "material-form-system:readme",
-              "material-form-system:update-package-group",
               "material-form-system:build:production",
               "material-form-system:scss-bundle",
-              "material-form-system:schematics"
+              "material-form-system:build-schematics",
+              "material-form-system:build-migrations"
             ]
           }
         },
@@ -3358,10 +3994,34 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/material/form-system",
+            "tsConfig": "libs/material/form-system/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/material/form-system",
+            "tsConfig": "libs/material/form-system/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -3416,11 +4076,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "material-table-system:readme",
-              "material-table-system:update-package-group",
               "material-table-system:build:production",
               "material-table-system:scss-bundle",
-              "material-table-system:schematics"
+              "material-table-system:build-schematics",
+              "material-table-system:build-migrations"
             ]
           }
         },
@@ -3443,7 +4102,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -3487,6 +4146,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/material/table-system",
+            "tsConfig": "libs/material/table-system/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/material/table-system",
+            "tsConfig": "libs/material/table-system/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -3541,10 +4224,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "contenteditable:readme",
-              "contenteditable:update-package-group",
               "contenteditable:build:production",
-              "contenteditable:schematics"
+              "contenteditable:build-schematics",
+              "contenteditable:build-migrations"
             ]
           }
         },
@@ -3557,7 +4239,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -3568,6 +4250,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/contenteditable",
+            "tsConfig": "libs/contenteditable/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/contenteditable",
+            "tsConfig": "libs/contenteditable/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       },
       "schematics": {
@@ -3756,10 +4462,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "material-table-window-system:readme",
-              "material-table-window-system:update-package-group",
               "material-table-window-system:build:production",
-              "material-table-window-system:schematics"
+              "material-table-window-system:build-schematics",
+              "material-table-window-system:build-migrations"
             ]
           }
         },
@@ -3772,7 +4477,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -3783,6 +4488,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/material/table-window-system",
+            "tsConfig": "libs/material/table-window-system/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/material/table-window-system",
+            "tsConfig": "libs/material/table-window-system/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       }
     },
@@ -3831,10 +4560,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "upload:readme",
-              "upload:update-package-group",
               "upload:build:production",
-              "upload:schematics"
+              "upload:build-schematics",
+              "upload:build-migrations"
             ]
           }
         },
@@ -3847,7 +4575,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -3858,6 +4586,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/upload",
+            "tsConfig": "libs/upload/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/upload",
+            "tsConfig": "libs/upload/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       }
     },
@@ -3906,11 +4658,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "material-directives:readme",
-              "material-directives:update-package-group",
               "material-directives:build:production",
-              "material-directives:schematics",
-              "material-directives:scss-bundle"
+              "material-directives:scss-bundle",
+              "material-directives:build-schematics",
+              "material-directives:build-migrations"
             ]
           }
         },
@@ -3923,7 +4674,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -3944,6 +4695,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/material/directives",
+            "tsConfig": "libs/material/directives/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/material/directives",
+            "tsConfig": "libs/material/directives/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       }
     },
@@ -3988,10 +4763,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "fake:readme",
-              "fake:update-package-group",
               "fake:build:production",
-              "fake:schematics"
+              "fake:build-schematics",
+              "fake:build-migrations"
             ]
           }
         },
@@ -4004,7 +4778,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -4015,6 +4789,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/fake",
+            "tsConfig": "libs/fake/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/fake",
+            "tsConfig": "libs/fake/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       }
     },
@@ -4059,11 +4857,10 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "oauth:readme",
-              "oauth:update-package-group",
               "oauth:build:production",
-              "oauth:schematics",
-              "oauth:scss-bundle"
+              "oauth:scss-bundle",
+              "oauth:build-schematics",
+              "oauth:build-migrations"
             ]
           }
         },
@@ -4076,7 +4873,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -4097,6 +4894,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/oauth",
+            "tsConfig": "libs/oauth/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/oauth",
+            "tsConfig": "libs/oauth/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       }
     },
@@ -4141,11 +4962,9 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "authorization:readme",
-              "authorization:readme",
-              "authorization:update-package-group",
               "authorization:build:production",
-              "authorization:schematics"
+              "authorization:build-schematics",
+              "authorization:build-migrations"
             ]
           }
         },
@@ -4158,7 +4977,7 @@
           }
         },
         "update-package-group": {
-          "builder": "@rxap/plugin-library-schematics:update-package-group"
+          "builder": "@rxap/plugin-library:update-package-group"
         },
         "publish": {
           "builder": "@rxap/plugin-library-publish:publish",
@@ -4169,6 +4988,30 @@
         },
         "readme": {
           "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/authorization",
+            "tsConfig": "libs/authorization/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/authorization",
+            "tsConfig": "libs/authorization/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
         }
       }
     }

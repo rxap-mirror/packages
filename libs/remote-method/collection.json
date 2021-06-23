@@ -1,0 +1,25 @@
+{
+  "schematics": {
+    "ng-add": {
+      "description": "Setup the package @rxap/remote-method for the workspace.",
+      "factory": "./src/schematics/ng-add/index",
+      "schema": "./src/schematics/ng-add/schema.json"
+    },
+    "base": {
+      "description": "create a base remote method",
+      "factory": "./src/schematics/base/index",
+      "schema": "./src/schematics/base/schema.json"
+    },
+    "http": {
+      "description": "Creates a http remote method",
+      "factory": "./src/schematics/http/index",
+      "schema": "./src/schematics/http/schema.json"
+    },
+    "directive": {
+      "description": "add a directive for the remote method",
+      "factory": "./src/schematics/directive/index",
+      "schema": "./src/schematics/directive/schema.json"
+    }
+  },
+  "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json"
+}

@@ -3,7 +3,7 @@
   "version": "12.0.3",
   "private": false,
   "author": "Merzough Münker",
-  "homepage": "https://gitlab.com/rxap/packages",
+  "homepage": "https://gitlab.com/rxap/packages/libs/handlebars",
   "repository": "git@gitlab.com:rxap/packages.git",
   "keywords": [
     "rxap",
@@ -15,13 +15,13 @@
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "description": "An angular wrapper package for handlebars.",
-  "license": "MIT",
+  "license": "BSD-4-Clause",
   "peerDependencies": {
     "@angular/core": "^12.0.1"
   },
-  "schematics": "./schematics/collection.json",
+  "schematics": "./collection.json",
   "ng-update": {
-    "migrations": "./schematics/migration.json",
+    "migrations": "./migration.json",
     "packageGroup": [
       "@rxap/handlebars"
     ]
@@ -29,5 +29,8 @@
   "publishConfig": {
     "directory": "../../dist/libs/handlebars",
     "access": "public"
+  },
+  "ng-add": {
+    "save": "dependencies"
   }
 }

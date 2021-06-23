@@ -2,7 +2,7 @@
   "name": "@rxap/tree",
   "version": "12.0.3",
   "author": "Merzough Münker",
-  "homepage": "https://gitlab.com/rxap/packages",
+  "homepage": "https://gitlab.com/rxap/packages/libs/tree",
   "repository": "git@gitlab.com:rxap/packages.git",
   "keywords": [
     "rxap",
@@ -11,7 +11,7 @@
     "material",
     "cdk"
   ],
-  "license": "MIT",
+  "license": "BSD-4-Clause",
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
@@ -39,9 +39,9 @@
   "dependencies": {
     "tslib": "2.0.1"
   },
-  "schematics": "./schematics/collection.json",
+  "schematics": "./collection.json",
   "ng-update": {
-    "migrations": "./schematics/migration.json",
+    "migrations": "./migration.json",
     "packageGroup": [
       "@rxap/tree",
       "@rxap/contenteditable",
@@ -58,5 +58,8 @@
     "directory": "../../dist/libs/tree",
     "access": "public"
   },
-  "private": false
+  "private": false,
+  "ng-add": {
+    "save": "dependencies"
+  }
 }

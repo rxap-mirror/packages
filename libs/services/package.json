@@ -3,14 +3,14 @@
   "version": "12.0.3",
   "private": false,
   "author": "Merzough Münker",
-  "homepage": "https://gitlab.com/rxap/packages",
+  "homepage": "https://gitlab.com/rxap/packages/libs/services",
   "repository": "git@gitlab.com:rxap/packages.git",
   "keywords": [
     "rxap",
     "services",
     "angular"
   ],
-  "license": "MIT",
+  "license": "BSD-4-Clause",
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
@@ -25,9 +25,9 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
-  "schematics": "./schematics/collection.json",
+  "schematics": "./collection.json",
   "ng-update": {
-    "migrations": "./schematics/migration.json",
+    "migrations": "./migration.json",
     "packageGroup": [
       "@rxap/services",
       "@rxap/utilities"
@@ -36,5 +36,8 @@
   "publishConfig": {
     "directory": "../../dist/libs/services",
     "access": "public"
+  },
+  "ng-add": {
+    "save": "dependencies"
   }
 }

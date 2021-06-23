@@ -1,7 +1,7 @@
 {
-  "extends": "../../tsconfig.schematics.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/libs/forms/schematics",
+    "outDir": "../../dist/schematics/libs/forms",
     "paths": {
       "@rxap/xml-parser": [
         "../../dist/libs/xml-parser"
@@ -18,13 +18,21 @@
       "@rxap/schematics-utilities": [
         "../../dist/libs/schematics/utilities"
       ]
-    }
+    },
+    "module": "commonjs",
+    "declaration": true,
+    "esModuleInterop": true,
+    "types": [
+      "node"
+    ]
   },
   "include": [
-    "schematics/**/*"
+    "src/schematics/**/*.ts"
   ],
   "exclude": [
     "schematics/*/files/**/*",
-"schematics/**/*.spec.ts"
+    "schematics/**/*.spec.ts",
+    "**/*.spec.ts",
+    "**/files/**"
   ]
 }

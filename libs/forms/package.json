@@ -3,7 +3,7 @@
   "version": "12.3.0",
   "private": false,
   "author": "Merzough Münker",
-  "homepage": "https://gitlab.com/rxap/packages",
+  "homepage": "https://gitlab.com/rxap/packages/libs/forms",
   "repository": "git@gitlab.com:rxap/packages.git",
   "keywords": [
     "rxap",
@@ -33,9 +33,9 @@
   "dependencies": {
     "ts-morph": "^10.1.0"
   },
-  "schematics": "./schematics/collection.json",
+  "schematics": "./collection.json",
   "ng-update": {
-    "migrations": "./schematics/migration.json",
+    "migrations": "./migration.json",
     "packageGroup": [
       "@rxap/forms",
       "@rxap/definition",
@@ -47,5 +47,8 @@
   "publishConfig": {
     "directory": "../../dist/libs/forms",
     "access": "public"
+  },
+  "ng-add": {
+    "save": "dependencies"
   }
 }

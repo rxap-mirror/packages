@@ -16,23 +16,23 @@
   "dependencies": {
     "tslib": "^2.0.0"
   },
-  "schematics": "./schematics/collection.json",
+  "schematics": "./collection.json",
   "ng-update": {
-    "migrations": "./schematics/migration.json",
+    "migrations": "./migration.json",
     "packageGroup": [
       "@rxap/material-directives",
       "@rxap/services",
       "@rxap/utilities"
     ]
   },
-  "license": "MIT",
+  "license": "BSD-4-Clause",
   "keywords": [
     "rxap",
     "angular",
     "material"
   ],
   "repository": "git@gitlab.com:rxap/packages.git",
-  "homepage": "https://gitlab.com/rxap/packages",
+  "homepage": "https://gitlab.com/rxap/packages/libs/material/directives",
   "author": "Merzough Münker",
   "private": false,
   "bugs": {
@@ -42,5 +42,8 @@
   "publishConfig": {
     "directory": "../../../dist/libs/material/directives",
     "access": "public"
+  },
+  "ng-add": {
+    "save": "dependencies"
   }
 }

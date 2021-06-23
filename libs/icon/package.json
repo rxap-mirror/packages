@@ -14,12 +14,12 @@
   "description": "A utility packages to load svg icons for @angular/material.",
   "private": false,
   "author": "Merzough Münker",
-  "homepage": "https://gitlab.com/rxap/packages",
+  "homepage": "https://gitlab.com/rxap/packages/libs/icon",
   "repository": "git@gitlab.com:rxap/packages.git",
-  "license": "MIT",
-  "schematics": "./schematics/collection.json",
+  "license": "BSD-4-Clause",
+  "schematics": "./collection.json",
   "ng-update": {
-    "migrations": "./schematics/migration.json",
+    "migrations": "./migration.json",
     "packageGroup": [
       "@rxap/icon"
     ]
@@ -27,5 +27,8 @@
   "publishConfig": {
     "directory": "../../dist/libs/icon",
     "access": "public"
+  },
+  "ng-add": {
+    "save": "dependencies"
   }
 }

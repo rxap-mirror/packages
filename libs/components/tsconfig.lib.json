@@ -27,7 +27,9 @@
   },
   "exclude": [
     "src/test-setup.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "src/schematics/**",
+    "src/migrations/**"
   ],
   "include": [
     "**/*.ts"

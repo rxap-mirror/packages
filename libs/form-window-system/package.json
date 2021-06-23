@@ -2,7 +2,7 @@
   "name": "@rxap/form-window-system",
   "version": "12.1.1",
   "author": "Merzough Münker",
-  "homepage": "https://gitlab.com/rxap/packages",
+  "homepage": "https://gitlab.com/rxap/packages/libs/form-window-system",
   "repository": "git@gitlab.com:rxap/packages.git",
   "keywords": [
     "rxap",
@@ -16,7 +16,7 @@
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "description": "Provides the FormSystem concept for RxAP.",
-  "license": "MIT",
+  "license": "BSD-4-Clause",
   "peerDependencies": {
     "@angular/cdk": "^12.0.1",
     "@angular/common": "^12.0.1",
@@ -40,9 +40,9 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
-  "schematics": "./schematics/collection.json",
+  "schematics": "./collection.json",
   "ng-update": {
-    "migrations": "./schematics/migration.json",
+    "migrations": "./migration.json",
     "packageGroup": [
       "@rxap/form-window-system",
       "@rxap/components",
@@ -62,5 +62,8 @@
     "directory": "../../dist/libs/form-window-system",
     "access": "public"
   },
-  "private": false
+  "private": false,
+  "ng-add": {
+    "save": "dependencies"
+  }
 }
