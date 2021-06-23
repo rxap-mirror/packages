@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-form-system",
-  "version": "12.0.5",
+  "version": "12.0.6",
   "peerDependencies": {
     "@angular/cdk": "^12.0.1",
     "@angular/common": "^12.0.1",
@@ -32,12 +32,12 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/material-form-system",
       "@rxap/data-source",
       "@rxap/definition",
       "@rxap/directives",
       "@rxap/form-system",
       "@rxap/forms",
+      "@rxap/material-form-system",
       "@rxap/mixin",
       "@rxap/services",
       "@rxap/utilities"

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/service-worker",
-  "version": "12.0.3",
+  "version": "12.0.4",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/service-worker",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -32,8 +32,8 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/service-worker",
       "@rxap/life-cycle",
+      "@rxap/service-worker",
       "@rxap/utilities"
     ]
   },

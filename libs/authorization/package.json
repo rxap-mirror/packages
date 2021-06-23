@@ -1,6 +1,6 @@
 {
   "name": "@rxap/authorization",
-  "version": "12.0.3",
+  "version": "12.0.4",
   "peerDependencies": {
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",

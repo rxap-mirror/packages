@@ -1,6 +1,6 @@
 {
   "name": "@rxap/tree",
-  "version": "12.0.3",
+  "version": "12.0.4",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/tree",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -43,7 +43,6 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/tree",
       "@rxap/contenteditable",
       "@rxap/data-source",
       "@rxap/definition",
@@ -51,6 +50,7 @@
       "@rxap/remote-method",
       "@rxap/schematics",
       "@rxap/services",
+      "@rxap/tree",
       "@rxap/utilities"
     ]
   },
