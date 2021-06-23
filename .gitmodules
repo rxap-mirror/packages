@@ -2,3 +2,6 @@
 	path = tools/cli
 	url = ../tools/cli.git
 	branch = master
+[submodule "scripts"]
+	path = scripts
+	url = git@gitlab.com:rxap/scripts.git

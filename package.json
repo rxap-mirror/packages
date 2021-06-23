@@ -20,8 +20,7 @@
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
     "scss-bundle": "scss-bundle",
-    "preversion": "ts-node scripts/update-peer-dependencies.ts",
-    "version": "nx affected --target=pack --with-deps",
+    "version": "bash scripts/lerna/version.sh",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
@@ -54,7 +53,7 @@
     "workspace-generator": "nx workspace-generator",
     "lerna": "env-cmd lerna",
     "lerna:version": "yarn lerna version --create-release gitlab",
-    "lerna:publish": "yarn lerna publish --create-release gitlab",
+    "lerna:publish": "bash scripts/lerna/publish.sh",
     "commitlint": "commitlint",
     "generate:readme": "node tools/readme-generator/index.js"
   },
