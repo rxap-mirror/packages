@@ -1,6 +1,6 @@
 {
   "name": "@rxap/config",
-  "version": "12.0.5",
+  "version": "12.0.6",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/config",
@@ -20,7 +20,7 @@
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",
     "@rxap/schematics-utilities": "^12.1.0",
-    "@rxap/utilities": "^12.1.2",
+    "@rxap/utilities": "^12.1.3",
     "jest-preset-angular": "^8.4.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
@@ -30,6 +30,7 @@
     "migrations": "./migration.json",
     "packageGroup": [
       "@rxap/config",
+      "@rxap/schematics-utilities",
       "@rxap/utilities"
     ]
   },

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/environment",
-  "version": "12.0.5",
+  "version": "12.0.6",
   "peerDependencies": {
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",
@@ -14,7 +14,8 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/environment"
+      "@rxap/environment",
+      "@rxap/schematics-utilities"
     ]
   },
   "publishConfig": {

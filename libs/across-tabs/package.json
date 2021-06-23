@@ -1,6 +1,6 @@
 {
   "name": "@rxap/across-tabs",
-  "version": "12.0.4",
+  "version": "12.0.5",
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
@@ -27,7 +27,8 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/across-tabs"
+      "@rxap/across-tabs",
+      "@rxap/schematics-utilities"
     ]
   },
   "publishConfig": {
