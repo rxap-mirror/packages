@@ -18,10 +18,14 @@
   "description": "A utility packages to convert xml files into class instances.",
   "peerDependencies": {
     "@angular/core": "^12.0.1",
-    "@rxap/mixin": "^12.0.3",
-    "@rxap/utilities": "^12.0.4",
+    "@rxap/mixin": "^12.0.5",
+    "@rxap/schematics-utilities": "^12.1.0",
+    "@rxap/utilities": "^12.1.2",
+    "handlebars": "^4.7.7",
+    "jest-preset-angular": "^8.4.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.5.5",
+    "xmldom": "^0.6.0"
   },
   "schematics": "./collection.json",
   "ng-update": {
@@ -38,5 +42,6 @@
   },
   "ng-add": {
     "save": "dependencies"
-  }
+  },
+  "dependencies": {}
 }
