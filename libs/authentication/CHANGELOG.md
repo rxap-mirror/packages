@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.1](https://gitlab.com/rxap/packages/compare/@rxap/authentication@12.1.0...@rxap/authentication@12.1.1) (2021-06-23)
+
+**Note:** Version bump only for package @rxap/authentication
+
+
+
+
+
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/authentication@12.0.4...@rxap/authentication@12.1.0) (2021-06-16)
 
 
