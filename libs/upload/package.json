@@ -1,23 +1,22 @@
 {
   "name": "@rxap/upload",
-  "version": "12.0.4",
+  "version": "12.0.5",
   "peerDependencies": {
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",
     "@angular/flex-layout": "^12.0.0-beta.34",
     "@angular/material": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
-    "@rxap/definition": "^12.0.6",
-    "@rxap/remote-method": "^12.0.6",
+    "@rxap/definition": "^12.0.7",
+    "@rxap/remote-method": "^12.0.7",
     "@rxap/schematics-utilities": "^12.1.0",
-    "@rxap/utilities": "^12.1.2",
+    "@rxap/utilities": "^12.1.3",
     "jest-preset-angular": "^8.4.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5",
     "ts-morph": "^10.1.0",
     "uuid": "^8.3.2"
   },
-  "dependencies": {},
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/upload",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -37,7 +36,7 @@
     "packageGroup": [
       "@rxap/definition",
       "@rxap/remote-method",
-      "@rxap/schematics",
+      "@rxap/schematics-utilities",
       "@rxap/upload",
       "@rxap/utilities"
     ]
@@ -49,5 +48,6 @@
   "private": false,
   "ng-add": {
     "save": "dependencies"
-  }
+  },
+  "dependencies": {}
 }

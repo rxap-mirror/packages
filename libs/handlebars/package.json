@@ -1,6 +1,6 @@
 {
   "name": "@rxap/handlebars",
-  "version": "12.0.4",
+  "version": "12.0.5",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/handlebars",
@@ -26,7 +26,8 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/handlebars"
+      "@rxap/handlebars",
+      "@rxap/schematics-utilities"
     ]
   },
   "publishConfig": {
