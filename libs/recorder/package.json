@@ -1,6 +1,6 @@
 {
   "name": "@rxap/recorder",
-  "version": "12.0.3",
+  "version": "12.0.4",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/recorder",
@@ -28,9 +28,9 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/recorder",
       "@rxap/across-tabs",
       "@rxap/definition",
+      "@rxap/recorder",
       "@rxap/utilities"
     ]
   },

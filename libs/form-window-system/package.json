@@ -1,6 +1,6 @@
 {
   "name": "@rxap/form-window-system",
-  "version": "12.1.1",
+  "version": "12.1.2",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/form-window-system",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -44,12 +44,12 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/form-window-system",
       "@rxap/components",
       "@rxap/data-source",
       "@rxap/definition",
       "@rxap/directives",
       "@rxap/form-system",
+      "@rxap/form-window-system",
       "@rxap/forms",
       "@rxap/material-directives",
       "@rxap/mixin",

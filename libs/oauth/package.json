@@ -1,6 +1,6 @@
 {
   "name": "@rxap/oauth",
-  "version": "12.0.3",
+  "version": "12.0.4",
   "peerDependencies": {
     "@angular/animations": "^12.0.1",
     "@angular/cdk": "^12.0.1",
@@ -22,8 +22,8 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/oauth",
       "@rxap/directives",
+      "@rxap/oauth",
       "@rxap/services",
       "@rxap/utilities"
     ]

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/upload",
-  "version": "12.0.3",
+  "version": "12.0.4",
   "peerDependencies": {
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",
@@ -34,10 +34,10 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/upload",
       "@rxap/definition",
       "@rxap/remote-method",
       "@rxap/schematics",
+      "@rxap/upload",
       "@rxap/utilities"
     ]
   },

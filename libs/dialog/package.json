@@ -1,6 +1,6 @@
 {
   "name": "@rxap/dialog",
-  "version": "12.0.4",
+  "version": "12.0.5",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/dialog",
@@ -46,10 +46,10 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/dialog",
       "@rxap/components",
       "@rxap/data-grid",
       "@rxap/definition",
+      "@rxap/dialog",
       "@rxap/directives",
       "@rxap/forms",
       "@rxap/material-directives",
