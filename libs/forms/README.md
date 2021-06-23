@@ -11,10 +11,26 @@
 > A typed extension for @angular/forms.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/forms @rxap/definition@^12.0.4 @rxap/directives@^12.0.5 @rxap/services@^12.0.3 @rxap/utilities@^12.0.4
+ng add @rxap/forms
 ```
+
+*Setup the package @rxap/forms for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/forms for the workspace.
+
+```
+ng g @rxap/forms:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

@@ -11,10 +11,77 @@
 > Provides the RemoteMethod concept for RxAP.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/remote-method @rxap/definition@^12.0.2 @rxap/schematics@^12.0.0 @rxap/utilities@^12.0.2
+ng add @rxap/remote-method
 ```
+
+*Setup the package @rxap/remote-method for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/remote-method for the workspace.
+
+```
+ng g @rxap/remote-method:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
+
+## base
+> create a base remote method
+
+```
+ng g @rxap/remote-method:base
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+name | string |  | 
+path | string |  | 
+template | boolean | false | 
+collection | boolean | false | 
+parametersType | string | any | 
+returnType | string | any | 
+export | boolean | true | 
+project | string |  | 
+
+
+## http
+> Creates a http remote method
+
+```
+ng g @rxap/remote-method:http
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+name | string |  | 
+path | string |  | 
+project | string |  | 
+
+
+## directive
+> add a directive for the remote method
+
+```
+ng g @rxap/remote-method:directive
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+name | string |  | 
+path | string |  | 
+template | boolean | false | 
+collection | boolean | false | 
+parametersType | string | any | 
+returnType | string | any | 
+project | string |  | 
+
 

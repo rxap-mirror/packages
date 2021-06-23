@@ -11,10 +11,26 @@
 > Provides the Definition concept for RxAP.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/definition @rxap/utilities@^12.0.3
+ng add @rxap/definition
 ```
+
+*Setup the package @rxap/definition for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/definition for the workspace.
+
+```
+ng g @rxap/definition:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

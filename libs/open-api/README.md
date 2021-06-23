@@ -11,10 +11,37 @@
 > Provides the functionality to create DataSource and RemoteMethod instances from an OpenAPI config.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/open-api @rxap/data-source@^12.0.3 @rxap/definition@^12.0.3 @rxap/mixin@^12.0.2 @rxap/remote-method@^12.0.2 @rxap/utilities@^12.0.3
+ng add @rxap/open-api
 ```
+
+*Setup the package @rxap/open-api for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/open-api for the workspace.
+
+```
+ng g @rxap/open-api:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
+
+## generate
+> Generates for each operation a remote method or data source
+
+```
+ng g @rxap/open-api:generate
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

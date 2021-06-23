@@ -11,10 +11,26 @@
 > A utility packages to convert xml files into class instances.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/xml-parser @rxap/mixin@^12.0.2 @rxap/utilities@^12.0.2
+ng add @rxap/xml-parser
 ```
+
+*Setup the package @rxap/xml-parser for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/xml-parser for the workspace.
+
+```
+ng g @rxap/xml-parser:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

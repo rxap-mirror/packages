@@ -11,10 +11,26 @@
 > 
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/authorization @rxap/definition@^12.0.2 @rxap/remote-method@^12.0.2 @rxap/schematics@^12.0.0 @rxap/utilities@^12.0.2
+ng add @rxap/authorization
 ```
+
+*Setup the package @rxap/authorization for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/authorization for the workspace.
+
+```
+ng g @rxap/authorization:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

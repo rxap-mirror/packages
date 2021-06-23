@@ -11,10 +11,26 @@
 > A collection of utility angular services used in RxAP.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/services @rxap/utilities@^12.0.2
+ng add @rxap/services
 ```
+
+*Setup the package @rxap/services for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/services for the workspace.
+
+```
+ng g @rxap/services:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

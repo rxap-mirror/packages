@@ -12,12 +12,15 @@
 
 - [Installation](#installation)
 - [Get started](#get-started)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/config @rxap/utilities@^12.0.3
+ng add @rxap/config
 ```
+
+*Setup the package @rxap/config for the workspace.*
 
 # Get started
 
@@ -36,5 +39,18 @@ Promise.all([ConfigService.Load()]).then(() =>
 );
 
 ```
+
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/config for the workspace.
+
+```
+ng g @rxap/config:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
 
 

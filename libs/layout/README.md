@@ -11,10 +11,26 @@
 > A collection of components and services that provides standard layouts for angular applications.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/layout @rxap/authentication@^12.0.3 @rxap/components@^12.0.2 @rxap/config@^12.0.2 @rxap/definition@^12.0.2 @rxap/directives@^12.0.3 @rxap/forms@^12.0.4 @rxap/material-directives@^12.0.2 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
+ng add @rxap/layout
 ```
+
+*Setup the package @rxap/layout for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/layout for the workspace.
+
+```
+ng g @rxap/layout:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

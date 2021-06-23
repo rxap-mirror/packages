@@ -11,10 +11,26 @@
 > Provides the DataSource concept for RxAP.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/data-source @rxap/definition@^12.0.3 @rxap/utilities@^12.0.3
+ng add @rxap/data-source
 ```
+
+*Setup the package @rxap/data-source for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/data-source for the workspace.
+
+```
+ng g @rxap/data-source:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

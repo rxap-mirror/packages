@@ -11,10 +11,26 @@
 > 
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/upload @rxap/definition@^12.0.2 @rxap/remote-method@^12.0.2 @rxap/schematics@^12.0.0 @rxap/utilities@^12.0.2
+ng add @rxap/upload
 ```
+
+*Setup the package @rxap/upload for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/upload for the workspace.
+
+```
+ng g @rxap/upload:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

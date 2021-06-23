@@ -11,10 +11,26 @@
 > 
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/oauth @rxap/directives@^12.0.3 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
+ng add @rxap/oauth
 ```
+
+*Setup the package @rxap/oauth for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/oauth for the workspace.
+
+```
+ng g @rxap/oauth:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

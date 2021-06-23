@@ -11,10 +11,26 @@
 > 
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/material-directives @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
+ng add @rxap/material-directives
 ```
+
+*Setup the package @rxap/material-directives for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/material-directives for the workspace.
+
+```
+ng g @rxap/material-directives:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

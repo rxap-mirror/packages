@@ -11,10 +11,26 @@
 > 
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/material-form-system @rxap/data-source@^12.0.2 @rxap/definition@^12.0.2 @rxap/directives@^12.0.3 @rxap/form-system@^12.0.3 @rxap/forms@^12.0.4 @rxap/mixin@^12.0.2 @rxap/services@^12.0.2 @rxap/utilities@^12.0.2
+ng add @rxap/material-form-system
 ```
+
+*Setup the package @rxap/material-form-system for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/material-form-system for the workspace.
+
+```
+ng g @rxap/material-form-system:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

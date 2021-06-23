@@ -11,10 +11,26 @@
 > A collection of utility angular directives used in RxAP.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/directives @rxap/services@^12.0.2 @rxap/utilities@^12.0.3
+ng add @rxap/directives
 ```
+
+*Setup the package @rxap/directives for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/directives for the workspace.
+
+```
+ng g @rxap/directives:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

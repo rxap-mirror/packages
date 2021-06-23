@@ -11,10 +11,26 @@
 > Client package for https://recorder.rxap.dev.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/recorder @rxap/across-tabs@^12.0.2 @rxap/definition@^12.0.2 @rxap/utilities@^12.0.2
+ng add @rxap/recorder
 ```
+
+*Setup the package @rxap/recorder for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/recorder for the workspace.
+
+```
+ng g @rxap/recorder:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

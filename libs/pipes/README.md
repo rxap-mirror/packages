@@ -11,10 +11,26 @@
 > A collection of utility angular pipes used in RxAP.
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/pipes @rxap/utilities@^12.0.2
+ng add @rxap/pipes
 ```
+
+*Setup the package @rxap/pipes for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/pipes for the workspace.
+
+```
+ng g @rxap/pipes:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

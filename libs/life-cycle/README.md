@@ -11,10 +11,26 @@
 > A utility package to execute logic after the angular app is ready
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/life-cycle @rxap/utilities@^12.0.2
+ng add @rxap/life-cycle
 ```
+
+*Setup the package @rxap/life-cycle for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/life-cycle for the workspace.
+
+```
+ng g @rxap/life-cycle:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 

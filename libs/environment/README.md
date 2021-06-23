@@ -11,10 +11,26 @@
 > 
 
 - [Installation](#installation)
+- [Schematics](#schematics)
 
 # Installation
 
 ```
-yarn add @rxap/environment
+ng add @rxap/environment
 ```
+
+*Setup the package @rxap/environment for the workspace.*
+
+# Schematics
+
+## ng-add
+> Setup the package @rxap/environment for the workspace.
+
+```
+ng g @rxap/environment:ng-add
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+
 
