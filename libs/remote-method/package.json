@@ -20,11 +20,14 @@
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
-    "@rxap/definition": "^12.0.4",
+    "@rxap/definition": "^12.0.6",
     "@rxap/schematics-utilities": "^12.1.0",
-    "@rxap/utilities": "^12.1.0",
+    "@rxap/utilities": "^12.1.2",
+    "jest-preset-angular": "^8.4.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.5.5",
+    "ts-morph": "^10.1.0",
+    "uuid": "^8.3.2"
   },
   "schematics": "./collection.json",
   "ng-update": {
@@ -42,5 +45,6 @@
   },
   "ng-add": {
     "save": "dependencies"
-  }
+  },
+  "dependencies": {}
 }

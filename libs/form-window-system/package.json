@@ -26,19 +26,25 @@
     "@angular/material": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
     "@angular/router": "^12.0.1",
-    "@rxap/components": "^12.0.5",
-    "@rxap/data-source": "^12.0.5",
-    "@rxap/definition": "^12.0.4",
-    "@rxap/directives": "^12.0.5",
-    "@rxap/form-system": "^12.0.5",
-    "@rxap/forms": "^12.3.0",
-    "@rxap/material-directives": "^12.0.3",
-    "@rxap/mixin": "^12.0.3",
-    "@rxap/services": "^12.0.3",
-    "@rxap/utilities": "^12.1.0",
-    "@rxap/window-system": "^12.0.4",
+    "@rxap/components": "^12.0.7",
+    "@rxap/data-source": "^12.0.7",
+    "@rxap/definition": "^12.0.6",
+    "@rxap/directives": "^12.0.7",
+    "@rxap/form-system": "^12.0.7",
+    "@rxap/forms": "^12.3.2",
+    "@rxap/material-directives": "^12.0.5",
+    "@rxap/mixin": "^12.0.5",
+    "@rxap/schematics-utilities": "^12.1.0",
+    "@rxap/services": "^12.0.5",
+    "@rxap/utilities": "^12.1.2",
+    "@rxap/window-system": "^12.0.6",
+    "@storybook/addon-knobs": "^6.2.9",
+    "@storybook/angular": "^6.2.9",
+    "jest-preset-angular": "^8.4.0",
+    "ng-mocks": "^12.0.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.5.5",
+    "uuid": "^8.3.2"
   },
   "schematics": "./collection.json",
   "ng-update": {
@@ -65,5 +71,6 @@
   "private": false,
   "ng-add": {
     "save": "dependencies"
-  }
+  },
+  "dependencies": {}
 }

@@ -16,10 +16,12 @@
     "across-tabs"
   ],
   "peerDependencies": {
+    "@rxap/schematics-utilities": "^12.1.0",
+    "jest-preset-angular": "^8.4.0",
     "rxjs": "^6.5.5"
   },
   "dependencies": {
-    "across-tabs": "1.3.1"
+    "across-tabs": "^1.3.1"
   },
   "schematics": "./collection.json",
   "ng-update": {

@@ -15,9 +15,7 @@
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "description": "A utility to slugify a string.",
-  "dependencies": {
-    "tslib": "2.0.1"
-  },
+  "dependencies": {},
   "schematics": "./collection.json",
   "ng-update": {
     "migrations": "./migration.json",
@@ -32,5 +30,9 @@
   "private": false,
   "ng-add": {
     "save": "dependencies"
+  },
+  "peerDependencies": {
+    "@rxap/schematics-utilities": "^12.1.0",
+    "jest-preset-angular": "^8.4.0"
   }
 }

@@ -18,9 +18,7 @@
   "repository": "git@gitlab.com:rxap/packages.git",
   "license": "BSD-4-Clause",
   "description": "Generates typescript interfaces from json schema definition.",
-  "dependencies": {
-    "tslib": "2.0.1"
-  },
+  "dependencies": {},
   "publishConfig": {
     "directory": "../../dist/libs/json-schema-to-typescript",
     "access": "public"
@@ -34,5 +32,10 @@
   },
   "ng-add": {
     "save": "dependencies"
+  },
+  "peerDependencies": {
+    "@apidevtools/json-schema-ref-parser": "^9.0.7",
+    "@rxap/schematics-utilities": "^12.1.0",
+    "ts-morph": "^10.1.0"
   }
 }
