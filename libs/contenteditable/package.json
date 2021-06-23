@@ -22,7 +22,7 @@
     "directory": "../../dist/libs/contenteditable",
     "access": "public"
   },
-  "license": "BSD-4-Clause",
+  "license": "MIT",
   "keywords": [
     "rxap",
     "angular"

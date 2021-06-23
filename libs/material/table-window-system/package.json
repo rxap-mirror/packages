@@ -63,7 +63,7 @@
     "directory": "../../../dist/libs/material/table-window-system",
     "access": "public"
   },
-  "license": "BSD-4-Clause",
+  "license": "MIT",
   "keywords": [
     "rxap",
     "angular",

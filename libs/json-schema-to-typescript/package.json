@@ -16,7 +16,7 @@
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/json-schema-to-typescript",
   "repository": "git@gitlab.com:rxap/packages.git",
-  "license": "BSD-4-Clause",
+  "license": "BSD-3-Clause",
   "description": "Generates typescript interfaces from json schema definition.",
   "dependencies": {},
   "publishConfig": {

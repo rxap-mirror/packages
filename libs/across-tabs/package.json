@@ -10,7 +10,7 @@
   "homepage": "https://gitlab.com/rxap/packages/libs/across-tabs",
   "repository": "git@gitlab.com:rxap/packages.git",
   "author": "Merzough Münker",
-  "license": "BSD-4-Clause",
+  "license": "MIT",
   "keywords": [
     "rxap",
     "across-tabs"

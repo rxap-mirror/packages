@@ -59,7 +59,7 @@
     "access": "public"
   },
   "gitHead": "e75f92d806744f93d00f5abf69fb80cfec0ccace",
-  "license": "BSD-4-Clause",
+  "license": "MIT",
   "keywords": [
     "rxap",
     "angular",

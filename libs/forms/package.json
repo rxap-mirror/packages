@@ -15,7 +15,7 @@
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "description": "A typed extension for @angular/forms.",
-  "license": "BSD-4-Clause",
+  "license": "BSD-3-Clause",
   "peerDependencies": {
     "@angular/cdk": "^12.0.1",
     "@angular/common": "^12.0.1",

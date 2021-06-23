@@ -14,7 +14,7 @@
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/layout",
   "repository": "git@gitlab.com:rxap/packages.git",
-  "license": "BSD-4-Clause",
+  "license": "MIT",
   "description": "A collection of components and services that provides standard layouts for angular applications.",
   "peerDependencies": {
     "@angular/animations": "^12.0.1",
