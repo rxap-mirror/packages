@@ -3,5 +3,9 @@
   "dest": "../../dist/libs/oauth",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@rxap/schematics-utilities",
+    "tslib"
+  ]
 }

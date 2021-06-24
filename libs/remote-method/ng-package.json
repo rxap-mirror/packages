@@ -3,5 +3,10 @@
   "dest": "../../dist/libs/remote-method",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@rxap/schematics-utilities",
+    "ts-morph",
+    "tslib"
+  ]
 }

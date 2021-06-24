@@ -3,5 +3,9 @@
   "dest": "../../dist/libs/contenteditable",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@rxap/schematics-utilities",
+    "tslib"
+  ]
 }

@@ -3,5 +3,10 @@
   "dest": "../../dist/libs/window-system",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@rxap/schematics-utilities",
+    "tslib",
+    "uuid"
+  ]
 }
