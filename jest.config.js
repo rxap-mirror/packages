@@ -35,7 +35,6 @@ module.exports = {
     '<rootDir>/libs/material/form-system',
     '<rootDir>/libs/material/table-system',
     '<rootDir>/libs/contenteditable',
-    '<rootDir>/apps/demo',
     '<rootDir>/libs/material/table-window-system',
     '<rootDir>/libs/upload',
     '<rootDir>/libs/material/directives',
