@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.7-next.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@12.0.6...@rxap/material-table-window-system@12.0.7-next.0) (2021-06-24)
+
+
+### Bug Fixes
+
+* add missing root provider ([20614b7](https://gitlab.com/rxap/packages/commit/20614b74e6e0c2b04b7737ef528dd5ed7b15c7b8))
+
+
+
+
+
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@12.0.5...@rxap/material-table-window-system@12.0.6) (2021-06-23)
 
 **Note:** Version bump only for package @rxap/material-table-window-system
