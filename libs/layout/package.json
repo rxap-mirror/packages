@@ -1,6 +1,6 @@
 {
   "name": "@rxap/layout",
-  "version": "12.0.6",
+  "version": "12.0.7",
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
@@ -26,15 +26,15 @@
     "@angular/material": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
     "@angular/router": "^12.0.1",
-    "@rxap/authentication": "^12.1.2",
-    "@rxap/components": "^12.0.7",
-    "@rxap/config": "^12.0.6",
-    "@rxap/definition": "^12.0.6",
-    "@rxap/directives": "^12.0.7",
-    "@rxap/forms": "^12.3.2",
-    "@rxap/material-directives": "^12.0.5",
-    "@rxap/services": "^12.0.5",
-    "@rxap/utilities": "^12.1.2",
+    "@rxap/authentication": "^12.1.3",
+    "@rxap/components": "^12.0.8",
+    "@rxap/config": "^12.0.7",
+    "@rxap/definition": "^12.0.7",
+    "@rxap/directives": "^12.0.8",
+    "@rxap/forms": "^12.3.3",
+    "@rxap/material-directives": "^12.0.6",
+    "@rxap/services": "^12.0.6",
+    "@rxap/utilities": "^12.1.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -50,7 +50,6 @@
       "@rxap/forms",
       "@rxap/layout",
       "@rxap/material-directives",
-      "@rxap/schematics-utilities",
       "@rxap/services",
       "@rxap/utilities"
     ]
