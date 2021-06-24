@@ -5,21 +5,25 @@ import {
   StaticProvider,
   ViewContainerRef,
   INJECTOR,
-  Inject,
+  Inject
 } from '@angular/core';
 import {
   RXAP_WINDOW_SETTINGS,
   WindowConfig,
-  WindowService,
+  WindowService
 } from '@rxap/window-system';
 import { ComponentType } from '@angular/cdk/overlay';
 import {
   RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS,
   TABLE_REMOTE_METHOD,
   TABLE_DATA_SOURCE,
-  TableSelectControlsComponent,
+  TableSelectControlsComponent
 } from '@rxap/material-table-system';
-import { map, take, tap } from 'rxjs/operators';
+import {
+  map,
+  take,
+  tap
+} from 'rxjs/operators';
 import { BaseDataSource } from '@rxap/data-source';
 import { TableDataSource } from '@rxap/data-source/table';
 import { ComponentPortal } from '@angular/cdk/portal';
@@ -36,7 +40,7 @@ export interface WindowTableSelectOptions<RowData> {
 
 declare const $localize: LocalizeFn;
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class WindowTableSelectService {
   constructor(
     @Inject(WindowService)
