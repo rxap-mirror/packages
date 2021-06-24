@@ -5,6 +5,8 @@
     "entryFile": "src/index.ts"
   },
   "allowedNonPeerDependencies": [
-    "handlebars"
+    "@rxap/schematics-utilities",
+    "tslib",
+    "xmldom"
   ]
 }

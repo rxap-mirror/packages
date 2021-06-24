@@ -3,5 +3,10 @@
   "dest": "../../dist/libs/across-tabs",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@rxap/schematics-utilities",
+    "across-tabs",
+    "tslib"
+  ]
 }

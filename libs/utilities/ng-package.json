@@ -5,6 +5,7 @@
     "entryFile": "src/index.ts"
   },
   "allowedNonPeerDependencies": [
-    "reflect-metadata"
+    "@rxap/schematics-utilities",
+    "tslib"
   ]
 }

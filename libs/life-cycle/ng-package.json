@@ -3,5 +3,9 @@
   "dest": "../../dist/libs/life-cycle",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@rxap/schematics-utilities",
+    "tslib"
+  ]
 }

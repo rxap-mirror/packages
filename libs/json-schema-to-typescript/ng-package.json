@@ -3,5 +3,11 @@
   "dest": "../../dist/libs/json-schema-to-typescript",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@apidevtools/json-schema-ref-parser",
+    "@rxap/schematics-utilities",
+    "ts-morph",
+    "tslib"
+  ]
 }

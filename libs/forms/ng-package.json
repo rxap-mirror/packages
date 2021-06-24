@@ -5,6 +5,8 @@
     "entryFile": "src/index.ts"
   },
   "allowedNonPeerDependencies": [
-    "ts-morph"
+    "@rxap/schematics-utilities",
+    "ts-morph",
+    "tslib"
   ]
 }
