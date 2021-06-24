@@ -28,9 +28,9 @@
   "ng-add": {
     "save": "dependencies"
   },
-  "peerDependencies": {
+  "peerDependencies": {},
+  "dependencies": {
     "@rxap/schematics-utilities": "^12.1.0",
-    "jest-preset-angular": "^8.4.0"
-  },
-  "dependencies": {}
+    "tslib": "^2.2.0"
+  }
 }

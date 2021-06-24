@@ -16,8 +16,6 @@
   },
   "description": "A collection of utility functions, types and interfaces.",
   "peerDependencies": {
-    "@rxap/schematics-utilities": "^12.1.0",
-    "jest-preset-angular": "^8.4.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -36,5 +34,8 @@
   "ng-add": {
     "save": "dependencies"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@rxap/schematics-utilities": "^12.1.0",
+    "tslib": "^2.2.0"
+  }
 }
