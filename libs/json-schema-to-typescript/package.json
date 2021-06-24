@@ -33,10 +33,11 @@
   "ng-add": {
     "save": "dependencies"
   },
-  "peerDependencies": {
+  "peerDependencies": {},
+  "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.7",
     "@rxap/schematics-utilities": "^12.1.0",
-    "ts-morph": "^10.1.0"
-  },
-  "dependencies": {}
+    "ts-morph": "^10.1.0",
+    "tslib": "^2.2.0"
+  }
 }

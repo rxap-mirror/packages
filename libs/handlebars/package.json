@@ -18,9 +18,7 @@
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^12.0.1",
-    "@rxap/schematics-utilities": "^12.1.0",
-    "handlebars": "^4.7.7",
-    "jest-preset-angular": "^8.4.0"
+    "handlebars": "^4.7.7"
   },
   "schematics": "./collection.json",
   "ng-update": {
@@ -37,5 +35,8 @@
   "ng-add": {
     "save": "dependencies"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@rxap/schematics-utilities": "^12.1.0",
+    "tslib": "^2.2.0"
+  }
 }
