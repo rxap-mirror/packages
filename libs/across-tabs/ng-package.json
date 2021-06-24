@@ -3,8 +3,5 @@
   "dest": "../../dist/libs/across-tabs",
   "lib": {
     "entryFile": "src/index.ts"
-  },
-  "whitelistedNonPeerDependencies": [
-    "across-tabs"
-  ]
+  }
 }
