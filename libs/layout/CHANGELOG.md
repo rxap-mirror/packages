@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.8-next.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.0.7...@rxap/layout@12.0.8-next.0) (2021-06-29)
+
+
+### Bug Fixes
+
+* collapse styling ([e9fe775](https://gitlab.com/rxap/packages/commit/e9fe775ea950af6cfbabe3e2eb2375c1f0f24832))
+
+
+
+
+
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.0.6...@rxap/layout@12.0.7) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/layout
