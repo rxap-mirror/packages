@@ -1,12 +1,25 @@
-import { BehaviorSubject, from, merge, Observable, Subscription } from 'rxjs';
+import {
+  BehaviorSubject,
+  from,
+  merge,
+  Observable,
+  Subscription
+} from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { SelectionChange, SelectionModel } from '@angular/cdk/collections';
-import { map, switchMap, tap } from 'rxjs/operators';
+import {
+  SelectionChange,
+  SelectionModel
+} from '@angular/cdk/collections';
+import {
+  map,
+  switchMap,
+  tap
+} from 'rxjs/operators';
 import {
   BaseDataSource,
   BaseDataSourceMetadata,
   BaseDataSourceViewer,
-  RXAP_DATA_SOURCE_METADATA,
+  RXAP_DATA_SOURCE_METADATA
 } from '@rxap/data-source';
 import {
   ExpandNodeFunction,
@@ -18,9 +31,13 @@ import {
   Required,
   WithChildren,
   WithIdentifier,
+  Method
 } from '@rxap/utilities';
-import { Inject, Injectable, InjectionToken } from '@angular/core';
-import type { BaseRemoteMethod } from '@rxap/remote-method';
+import {
+  Inject,
+  Injectable,
+  InjectionToken
+} from '@angular/core';
 
 export function isSelectionChange<T>(obj: any): obj is SelectionChange<T> {
   return !!obj && obj.hasOwnProperty('added') && obj.hasOwnProperty('removed');
@@ -64,11 +81,11 @@ export class TreeDataSource<
 
   constructor(
     @Inject(RXAP_TREE_DATA_SOURCE_ROOT_REMOTE_METHOD)
-    public readonly rootRemoteMethod: BaseRemoteMethod<Data | Data[], void>,
+    public readonly rootRemoteMethod: Method<Data | Data[], void>,
     @Inject(RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD)
-    public readonly childrenRemoteMethod: BaseRemoteMethod<Data[], Node<Data>>,
+    public readonly childrenRemoteMethod: Method<Data[], Node<Data>>,
     @Inject(RXAP_DATA_SOURCE_METADATA)
-    metadata: TreeDataSourceMetadata | null = null
+      metadata: TreeDataSourceMetadata | null = null
   ) {
     super(metadata);
     this.tree$
@@ -189,7 +206,7 @@ export class TreeDataSource<
   }
 
   public async expandNode(node: Node<Data>): Promise<void> {
-    if (node.item.hasChildren && node.item.children.length === 0) {
+    if (node.item.hasChildren && !node.item.children?.length) {
       node.isLoading$.enable();
 
       const children = await this.getChildren(node);

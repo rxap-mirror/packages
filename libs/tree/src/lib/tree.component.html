@@ -1,11 +1,11 @@
-<div fxLayout="row" fxLayoutGap="3.2rem">
-  <div class="tree-container" fxFlex="nogrow">
+<div fxLayout="row">
+  <div #treeContainer class="tree-container" fxFlex="20px">
     <mat-tree *ngIf="dataSource; else loading" [dataSource]="dataSource" [treeControl]="treeControl" class="tree-view">
 
       <!-- Node without children -->
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
         <div fxLayout="row" fxLayoutAlign="start center">
-          <mat-icon fxFlex="40px" svgIcon="subdirectory-arrow-right"></mat-icon>
+          <mat-icon fxFlex="40px">subdirectory_arrow_right</mat-icon>
           <mat-icon *ngIf="node.icon" [rxapIcon]="node.icon" fxFlex="40px"></mat-icon>
           <button
             (click)="node.select()"
@@ -63,7 +63,14 @@
     </mat-tree>
   </div>
 
-  <mat-divider [vertical]="true" fxFlex="nogrow"></mat-divider>
+  <div (mousedown)="onMousedown()"
+       class="divider"
+       fxFlex="nogrow">
+    <mat-divider
+      [vertical]="true"
+    >
+    </mat-divider>
+  </div>
 
   <div class="details" fxFlex="grow">
     <ng-template [cdkPortalOutlet]="portal"></ng-template>
