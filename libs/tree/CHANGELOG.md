@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.0.6...@rxap/tree@12.1.0-next.0) (2021-06-29)
+
+
+### Features
+
+* add movable divider ([69a0fa8](https://gitlab.com/rxap/packages/commit/69a0fa8cb85f0b11243a48dcebd1d884c7250fd8))
+
+
+
+
+
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.0.5...@rxap/tree@12.0.6) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/tree
