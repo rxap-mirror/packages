@@ -1,5 +1,4 @@
 {
-  "npmScope": "rxap",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",
@@ -8,15 +7,44 @@
     "tsconfig.base.json": "*",
     ".eslintrc.json": "*"
   },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "rxap",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "pack",
+          "test",
+          "lint",
+          "e2e",
+          "build-storybook"
+        ],
+        "strictlyOrderedTargets": [
+          "build",
+          "pack"
+        ]
+      }
+    }
+  },
   "projects": {
     "utilities": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "services": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "config": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "data-source": {
       "tags": ["rxap"]
@@ -139,17 +167,5 @@
     "authorization": {
       "tags": []
     }
-  },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "pack", "test", "lint", "e2e"],
-        "strictlyOrderedTargets": ["build", "pack"]
-      }
-    }
-  },
-  "affected": {
-    "defaultBase": "master"
   }
 }
