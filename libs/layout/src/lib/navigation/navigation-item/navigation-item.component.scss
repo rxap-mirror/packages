@@ -18,7 +18,7 @@
     }
 
     .label {
-
+      padding-right: 12px;
     }
 
     &.navigation-level-1 {
@@ -44,6 +44,7 @@
 }
 
 .navigation-overlay-container {
+  padding: 0 16px;
 
   ul {
     list-style-type: none;
@@ -51,10 +52,13 @@
     padding: 0;
 
     .navigation-link {
-      padding: 0 16px;
+
+      .label {
+        padding-right: 0;
+      }
 
       .icon {
-        margin-left: -16px;
+        margin-left: 0;
       }
 
     }

@@ -38,8 +38,8 @@
   .sidebar-toggle {
     min-height: 48px;
 
-    .content {
-      padding: 0 0px;
+    .sidebar-toggle-inner {
+      padding: 0 0;
     }
 
     .arrow {
@@ -50,6 +50,10 @@
 
       .arrow {
         transform: initial;
+      }
+
+      .sidebar-toggle-inner {
+        justify-content: space-around !important;
       }
 
     }

@@ -8,9 +8,18 @@ import { LayoutModule } from './layout.component.module';
 import { LayoutComponent } from './layout.component';
 import { of } from 'rxjs';
 import { UserService } from '@rxap/authentication';
+import { ConfigService } from '@rxap/config';
+import '@angular/localize/init';
+
+ConfigService.Config = {
+  navigation: {
+    collapsed: true
+  }
+};
 
 addDecorator(moduleMetadata({
-  imports:   [
+  imports: [
+    // with navigation config is overwrite by navigation.component.stories.ts
     LayoutModule.withNavigation([
       {
         routerLink: [],
@@ -70,8 +79,13 @@ addDecorator(moduleMetadata({
       },
       {
         routerLink: [ '/', 'link-2' ],
+        label:      'Looooooooooooooooog',
+        icon:       { icon: 'donut_small' }
+      },
+      {
+        routerLink: [ '/', 'link-2' ],
         label:      'Link2',
-        icon:       { icon: 'donut_small' },
+        icon:       { icon: 'donut_small' }
       },
       {
         routerLink: [ '/', 'link-3' ],
@@ -125,5 +139,4 @@ export default {
 };
 
 export const basic = () => ({
-  component: LayoutComponent
 });

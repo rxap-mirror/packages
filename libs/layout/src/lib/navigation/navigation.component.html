@@ -1,7 +1,7 @@
 <ng-template [ngForOf]="items" let-item ngFor>
   <ng-template [ngIf]="isNavigationDividerItem(item)">
     <mat-divider fxFlex="nogrow"></mat-divider>
-    <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start end" class="divider-title">
+    <div *ngIf="!(sidenav.collapsed$ | async)" class="divider-title" fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start end">
       <span fxFlex="nogrow" *ngIf="item.title">{{item.title}}</span>
     </div>
   </ng-template>
