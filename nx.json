@@ -1,12 +1,5 @@
 {
-  "implicitDependencies": {
-    "angular.json": "*",
-    "package.json": "*",
-    "tslint.json": "*",
-    "nx.json": "*",
-    "tsconfig.base.json": "*",
-    ".eslintrc.json": "*"
-  },
+  "implicitDependencies": {},
   "affected": {
     "defaultBase": "master"
   },
