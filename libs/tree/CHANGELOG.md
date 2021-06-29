@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.1.0-next.0...@rxap/tree@12.1.0-next.1) (2021-06-29)
+
+
+### Bug Fixes
+
+* set default tree width to nogrow ([c3c4c6a](https://gitlab.com/rxap/packages/commit/c3c4c6a8a109d842d321b3637b1fa31b5b4cec91))
+
+
+
+
+
 # [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.0.6...@rxap/tree@12.1.0-next.0) (2021-06-29)
 
 
