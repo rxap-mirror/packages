@@ -42,10 +42,6 @@ addDecorator(moduleMetadata({
                       icon:       { icon: 'hourglass_top' },
                     },
                     {
-                      divider: true,
-                      title: 'My Title'
-                    },
-                    {
                       routerLink: [ '/', 'sub-2' ],
                       label:      'Sub2',
                       icon:       { icon: 'cloud_download' }
@@ -61,10 +57,6 @@ addDecorator(moduleMetadata({
                   routerLink: [ '/', 'sub-2' ],
                   label:      'Sub2',
                   icon:       { icon: 'cloud_download' }
-                },
-                {
-                  divider: true,
-                  title: 'My Title'
                 },
                 {
                   routerLink: [ '/', 'sub-3' ],
@@ -87,15 +79,17 @@ addDecorator(moduleMetadata({
         },
         {
           divider: true,
-          title: 'My Title'
+          title: 'My Title Divider Item'
         },
         {
-          insert: 'test'
+          routerLink: [ '/', 'link-2' ],
+          label:      'Looooooooooooooooog',
+          icon:       { icon: 'donut_small' }
         },
         {
           routerLink: [ '/', 'link-2' ],
           label:      'Link2',
-          icon:       { icon: 'donut_small' },
+          icon: { icon: 'donut_small' }
         },
         {
           routerLink: [ '/', 'link-3' ],
@@ -106,10 +100,6 @@ addDecorator(moduleMetadata({
               routerLink: [ '/', 'link-3', 'sub-1' ],
               label:      'Sub1',
               icon:       { icon: 'alarm_on' }
-            },
-            {
-              divider: true,
-              title: 'My Title'
             },
             {
               routerLink: [ '/', 'link-3', 'sub-2' ],

@@ -9,12 +9,12 @@
       <mat-divider fxFlex="nogrow" [fxHide]="sidenav.collapsed$ | async"></mat-divider>
     </ng-template>
     <div fxFlex="grow" class="nav-container">
-      <ul rxap-navigation root></ul>
+      <ul fxLayout="column" root rxap-navigation></ul>
     </div>
     <mat-divider fxFlex="nogrow"></mat-divider>
     <button mat-button class="sidebar-toggle" [ngClass]="{ 'collapsed': sidenav.collapsed$ | async }" fxFlex="nogrow"
             (click)="sidenav.toggleNavigationCollapse()">
-      <span class="content" fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="start center">
+      <span class="sidebar-toggle-inner" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
         <mat-icon fxFlex="nogrow" class="arrow">double_arrow</mat-icon>
         <span [fxHide]="sidenav.collapsed$ | async" class="label" fxFlex="grow" i18n="@@rxap.layout.navigation.collapse-sidebar">Collapse sidebar</span>
       </span>

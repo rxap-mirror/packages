@@ -7,17 +7,21 @@ import {
   ChangeDetectorRef,
   ViewEncapsulation,
   HostBinding,
-  Inject,
+  Inject
 } from '@angular/core';
 import {
   Navigation,
   NavigationItem,
-  NavigationDividerItem,
+  NavigationDividerItem
 } from './navigation-item';
-import { Required, coerceBoolean } from '@rxap/utilities';
+import {
+  Required,
+  coerceBoolean
+} from '@rxap/utilities';
 import { NavigationService } from './navigation.service';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { SidenavComponentService } from '../sidenav/sidenav.component.service';
 
 @Component({
   selector: 'ul[rxap-navigation]',
@@ -49,7 +53,9 @@ export class NavigationComponent implements OnInit, OnDestroy {
     @Inject(NavigationService)
     private readonly navigationService: NavigationService,
     @Inject(ChangeDetectorRef)
-    private readonly cdr: ChangeDetectorRef
+    private readonly cdr: ChangeDetectorRef,
+    @Inject(SidenavComponentService)
+    public readonly sidenav: SidenavComponentService
   ) {}
 
   public ngOnInit(): void {
