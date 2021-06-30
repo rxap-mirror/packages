@@ -230,7 +230,7 @@ export class FormDirective<T extends Record<string, any> = any>
       this.submitMethod = submitMethod;
     }
     if (!formDefinition && formDefinitionBuilder) {
-      formDefinition = formDefinitionBuilder.build();
+      formDefinition = formDefinitionBuilder.build<FormDefinition>();
     }
     if (formDefinition) {
       this._formDefinition = formDefinition;
