@@ -1,6 +1,6 @@
 {
   "name": "@rxap/directives",
-  "version": "12.0.8",
+  "version": "12.1.0-next.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/directives",
@@ -42,7 +42,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^12.1.0",
+    "@rxap/schematics-utilities": "^12.3.5",
     "tslib": "^2.2.0"
   }
 }

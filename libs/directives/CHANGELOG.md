@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.0.8...@rxap/directives@12.1.0-next.0) (2021-06-30)
+
+
+### Features
+
+* add movable divider ([e7923ff](https://gitlab.com/rxap/packages/commit/e7923ffa91a99782591bdc6623e09d1d31deeae8))
+
+
+
+
+
 ## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.0.7...@rxap/directives@12.0.8) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/directives

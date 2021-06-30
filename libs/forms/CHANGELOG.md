@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.4-next.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.3.4-next.0...@rxap/forms@12.3.4-next.1) (2021-06-30)
+
+
+### Bug Fixes
+
+* set dynamic build type ([7c238ee](https://gitlab.com/rxap/packages/commit/7c238ee04f3c5914048c4c02ef8941e7a4d16b9e))
+
+
+
+
+
 ## [12.3.4-next.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.3.3...@rxap/forms@12.3.4-next.0) (2021-06-30)
 
 
