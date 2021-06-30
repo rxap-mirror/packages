@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.4-next.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.3.3...@rxap/forms@12.3.4-next.0) (2021-06-30)
+
+
+### Bug Fixes
+
+* handle ngOnInit and ngOnDestroy for form definitions ([e44ad79](https://gitlab.com/rxap/packages/commit/e44ad7941d2ebbe501fa880c7fff04d407bdec8e))
+
+
+
+
+
 ## [12.3.3](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.3.2...@rxap/forms@12.3.3) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/forms
