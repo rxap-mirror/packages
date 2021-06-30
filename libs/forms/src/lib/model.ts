@@ -1,7 +1,7 @@
 import {
   AbstractControlOptions,
   AsyncValidatorFn,
-  ValidatorFn,
+  ValidatorFn
 } from '@angular/forms';
 import { Constructor } from '@rxap/utilities';
 import type { RxapFormGroup } from './form-group';
@@ -9,10 +9,13 @@ import {
   StaticProvider,
   Type,
   InjectionToken,
-  AbstractType,
+  AbstractType
 } from '@angular/core';
 import { RxapFormControl } from './form-control';
-import { AbstractControl, ControlOptions } from './types';
+import {
+  AbstractControl,
+  ControlOptions
+} from './types';
 import { BaseDefinitionMetadata } from '@rxap/definition';
 import { RxapFormArray } from './form-array';
 
@@ -105,10 +108,10 @@ export type ChangeFn<T = any> = (
 
 export type SetValueFn<T = any> = (value: T, options?: ControlOptions) => void;
 
-export type FormBuilderFn = (
+export type FormBuilderFn<T extends (FormDefinition<Data> | FormType<Data>) = FormDefinition, Data = Record<string, any>> = (
   state: any,
   options: { controlId: string }
-) => FormDefinition | RxapFormControl;
+) => T | RxapFormControl;
 
 export type ControlInsertedFn = (
   index: number,

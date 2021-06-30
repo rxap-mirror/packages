@@ -1,18 +1,22 @@
-import { Injector, StaticProvider, isDevMode } from '@angular/core';
+import {
+  Injector,
+  StaticProvider,
+  isDevMode
+} from '@angular/core';
 import {
   Constructor,
   getMetadata,
   assertIsObject,
   assertIsArray,
   assertIsFunction,
-  HasRxapOnInitMethod,
+  HasRxapOnInitMethod
 } from '@rxap/utilities';
 import { MetadataKeys } from './decorators/metadata-keys';
 import {
   AbstractControl,
   ValidatorFn,
   AsyncValidatorFn,
-  Validators,
+  Validators
 } from '@angular/forms';
 import {
   RxapAbstractControlOptions,
@@ -21,7 +25,7 @@ import {
   FormDefinition,
   FormDefinitionMetadata,
   SetValueFn,
-  FormType,
+  FormType
 } from './model';
 import { RxapFormArray } from './form-array';
 import { RxapFormGroup } from './form-group';
@@ -109,14 +113,14 @@ export class RxapFormBuilder<
     );
   }
 
-  public build(
-    state: Readonly<any> = {},
+  public build<T extends (FormDefinition<Data> | FormType<Data>)>(
+    state: Readonly<any>                                              = {},
     options: Partial<FormDefinitionMetadata & { controlId?: string }> = {}
-  ): FormDefinition<Data> {
+  ): T {
     const injector = Injector.create({
-      name: `rxap/form-builder/${this.formOptions.id}`,
-      parent: this.injector,
-      providers: this.providers,
+      name:      `rxap/form-builder/${this.formOptions.id}`,
+      parent:    this.injector,
+      providers: this.providers
     });
 
     let form: Record<string, Function> & FormDefinition;
@@ -276,12 +280,12 @@ export class RxapFormBuilder<
             ),
             {
               ...options,
-              builder: formGroupBuilder.build.bind(formGroupBuilder),
+              builder:           formGroupBuilder.build.bind(formGroupBuilder) as any,
               controlId,
-              validators: [],
-              asyncValidators: [],
+              validators:        [],
+              asyncValidators:   [],
               controlInsertedFn: manager.inserted.bind(manager),
-              controlRemovedFn: manager.removed.bind(manager),
+              controlRemovedFn:  manager.removed.bind(manager)
             }
           ));
 
