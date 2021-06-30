@@ -8,3 +8,4 @@ export * from './lib/avatar-background-image.directive';
 export * from './lib/contenteditable.directive';
 export * from './lib/confirm-click';
 export * from './lib/method.directive';
+export * from './lib/movable-divider.directive';
