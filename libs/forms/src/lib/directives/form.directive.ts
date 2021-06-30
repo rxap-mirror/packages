@@ -14,9 +14,12 @@ import {
   SimpleChanges,
   isDevMode,
   SkipSelf,
-  OnDestroy,
+  OnDestroy
 } from '@angular/core';
-import { ControlContainer, FormGroupDirective } from '@angular/forms';
+import {
+  ControlContainer,
+  FormGroupDirective
+} from '@angular/forms';
 import {
   RXAP_FORM_DEFINITION,
   RXAP_FORM_SUBMIT_METHOD,
@@ -25,7 +28,7 @@ import {
   RXAP_FORM_LOAD_SUCCESSFUL_METHOD,
   RXAP_FORM_SUBMIT_FAILED_METHOD,
   RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
-  RXAP_FORM_DEFINITION_BUILDER,
+  RXAP_FORM_DEFINITION_BUILDER
 } from './tokens';
 import { RxapFormGroup } from '../form-group';
 import {
@@ -33,7 +36,7 @@ import {
   isObject,
   ToggleSubject,
   Required,
-  clone,
+  clone
 } from '@rxap/utilities';
 import { FormDefinition } from '../model';
 import {
@@ -42,12 +45,19 @@ import {
   FormLoadFailedMethod,
   FormLoadSuccessfulMethod,
   FormSubmitFailedMethod,
-  FormSubmitSuccessfulMethod,
+  FormSubmitSuccessfulMethod
 } from './models';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import {
+  BehaviorSubject,
+  Subscription
+} from 'rxjs';
 import { RxapFormBuilder } from '../form-builder';
 import { LoadingIndicatorService } from '@rxap/services';
-import { debounceTime, tap, filter } from 'rxjs/operators';
+import {
+  debounceTime,
+  tap,
+  filter
+} from 'rxjs/operators';
 
 @Directive({
   selector: 'form:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',
@@ -246,15 +256,24 @@ export class FormDirective<T extends Record<string, any> = any>
       throw new Error('The form definition instance is not defined');
     }
     this.loadInitialState(this.form);
+
+    function HasNgOnInitMethod(obj: any): obj is OnInit {
+      return obj && typeof obj.ngOnInit === 'function';
+    }
+
+    if (HasNgOnInitMethod(this._formDefinition)) {
+      this._formDefinition.ngOnInit();
+    }
+
     if (this._formDefinition.rxapMetadata.autoSubmit) {
-      const debounce =
-        typeof this._formDefinition.rxapMetadata.autoSubmit === 'number'
-          ? this._formDefinition.rxapMetadata.autoSubmit
-          : 5000;
+      const debounce               =
+              typeof this._formDefinition.rxapMetadata.autoSubmit === 'number'
+              ? this._formDefinition.rxapMetadata.autoSubmit
+              : 5000;
       this._autoSubmitSubscription = this.form.valueChanges
-        .pipe(
-          debounceTime(debounce),
-          filter(() => this.form.valid),
+                                         .pipe(
+                                           debounceTime(debounce),
+                                           filter(() => this.form.valid),
           tap((value) =>
             console.debug(
               `Auto submit form '${this._formDefinition.rxapMetadata.id}'`,
@@ -475,5 +494,14 @@ export class FormDirective<T extends Record<string, any> = any>
   public ngOnDestroy() {
     super.ngOnDestroy();
     this._autoSubmitSubscription?.unsubscribe();
+
+    function HasNgOnDestroyMethod(obj: any): obj is OnDestroy {
+      return obj && typeof obj.ngOnDestroy === 'function';
+    }
+
+    if (HasNgOnDestroyMethod(this._formDefinition)) {
+      this._formDefinition.ngOnDestroy();
+    }
+
   }
 }
