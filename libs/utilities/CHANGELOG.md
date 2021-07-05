@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.4-next.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@12.1.3...@rxap/utilities@12.1.4-next.0) (2021-07-05)
+
+
+### Bug Fixes
+
+* a array should not be detected as object ([df7e425](https://gitlab.com/rxap/packages/commit/df7e42591a136f119aa2eef3d04ca9cd7cec9896))
+* **to-options:** add dynamic types ([160cdc7](https://gitlab.com/rxap/packages/commit/160cdc732d8da313dd505a675c690a2c7aad06e6))
+
+
+
+
+
 ## [12.1.3](https://gitlab.com/rxap/packages/compare/@rxap/utilities@12.1.2...@rxap/utilities@12.1.3) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/utilities
