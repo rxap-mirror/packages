@@ -62,6 +62,36 @@ describe('Utilities', () => {
 
     });
 
+    it('should deep merge objects', () => {
+
+      const a = {
+        concurrent: 10,
+        runners:    [
+          {
+            name: 'name'
+          }
+        ]
+      };
+      const b = {
+        concurrent: 15,
+        runners:    [
+          {
+            name: 'name'
+          }
+        ]
+      };
+
+      expect(deepMerge(a, b)).toEqual({
+        concurrent: 15,
+        runners:    [
+          {
+            name: 'name'
+          }
+        ]
+      });
+
+    });
+
   });
 
 });
