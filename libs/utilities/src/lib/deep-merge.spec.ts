@@ -34,6 +34,15 @@ describe('Utilities', () => {
 
     });
 
+    it('should merge objects with empty arrays', () => {
+
+      expect(deepMerge(
+        { runner: [] },
+        { runner: [] }
+      )).toEqual({ runner: [] });
+
+    });
+
     it('merge array with empty values', () => {
 
       const a: any[] = [];

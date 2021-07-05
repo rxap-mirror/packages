@@ -52,7 +52,7 @@ export function isObject(value: any): value is object {
       return false;
 
     case 'object':
-      return value !== null && value !== undefined;
+      return value !== null && value !== undefined && !Array.isArray(value);
 
     default:
       return false;
