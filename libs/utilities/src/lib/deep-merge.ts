@@ -1,4 +1,7 @@
-import { isObject, RecursivePartial } from './helpers';
+import {
+  isObject,
+  RecursivePartial
+} from './helpers';
 
 function _has(prop: string, obj: any) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
@@ -56,20 +59,19 @@ function mergeDeepRight(lObj: any, rObj: any) {
 }
 
 export function deepMerge<T>(a: T, b: Partial<T> | RecursivePartial<T> | T): T {
-  if (!isObject(a) || !isObject(b)) {
-    return b as any;
-  }
-
   if (Array.isArray(a as any) || Array.isArray(b as any)) {
     if (Array.isArray(a as any) && Array.isArray(b as any)) {
       const clone: any[] = (a as any).slice();
       for (let i = 0; i < (b as any).length; i++) {
-        if ((b as any)[i] !== undefined) {
-          clone[i] = deepMerge(clone[i], (b as any)[i]);
+        if ((b as any)[ i ] !== undefined) {
+          clone[ i ] = deepMerge(clone[ i ], (b as any)[ i ]);
         }
       }
       return clone as any;
     }
+  }
+
+  if (!isObject(a) || !isObject(b)) {
     return b as any;
   }
 
