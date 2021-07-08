@@ -6,6 +6,9 @@
   },
   "allowedNonPeerDependencies": [
     "@rxap/schematics-utilities",
+    "@rxap/schematics-ts-morph",
+    "@angular-devkit/schematics",
+    "ts-morph",
     "tslib"
   ]
 }

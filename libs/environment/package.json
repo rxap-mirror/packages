@@ -35,6 +35,9 @@
   },
   "dependencies": {
     "@rxap/schematics-utilities": "^12.1.0",
-    "tslib": "^2.2.0"
+    "@angular-devkit/schematics": "^12.1.1",
+    "tslib": "^2.2.0",
+    "ts-morph": "^11.0.0",
+    "@rxap/schematics-ts-morph": "^12.1.0"
   }
 }
