@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/config@12.0.7...@rxap/config@12.1.0-next.0) (2021-07-08)
+
+
+### Features
+
+* add ng-add logic to update project files ([68641ec](https://gitlab.com/rxap/packages/commit/68641ec726e2f12c4e9481f0943801b5d901845e))
+
+
+
+
+
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/config@12.0.6...@rxap/config@12.0.7) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/config
