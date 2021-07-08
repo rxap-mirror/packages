@@ -5,9 +5,8 @@
     "entryFile": "src/index.ts"
   },
   "allowedNonPeerDependencies": [
-    "@rxap/schematics-utilities",
     "@rxap/schematics-ts-morph",
-    "@angular-devkit/schematics",
+    "@rxap/schematics-utilities",
     "ts-morph",
     "tslib"
   ]
