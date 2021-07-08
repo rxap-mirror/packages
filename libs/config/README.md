@@ -52,5 +52,6 @@ ng g @rxap/config:ng-add
 
 Option | Type | Default | Description
 --- | --- | --- | ---
+project | string |  | The project where the environment feature should be added
 
 
