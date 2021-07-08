@@ -1,6 +1,6 @@
 {
   "name": "@rxap/environment",
-  "version": "12.1.0-next.0",
+  "version": "12.1.0-next.1",
   "peerDependencies": {
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1"

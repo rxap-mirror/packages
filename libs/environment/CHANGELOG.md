@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/environment@12.1.0-next.0...@rxap/environment@12.1.0-next.1) (2021-07-08)
+
+
+### Bug Fixes
+
+* add devDependencies ([5033932](https://gitlab.com/rxap/packages/commit/503393260b7b88824874050d783ea9866a7e4d7c))
+
+
+
+
+
 # [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/environment@12.0.7...@rxap/environment@12.1.0-next.0) (2021-07-08)
 
 
