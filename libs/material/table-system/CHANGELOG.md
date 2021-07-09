@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.2.4...@rxap/material-table-system@12.2.5) (2021-07-09)
+
+
+### Bug Fixes
+
+* **table-data-source:** change input scope to public and fix input type ([d911a52](https://gitlab.com/rxap/packages/commit/d911a52b423ad6a912370d88f990592fdb181000))
+
+
+
+
+
 ## [12.2.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.2.4-next.0...@rxap/material-table-system@12.2.4) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/material-table-system
