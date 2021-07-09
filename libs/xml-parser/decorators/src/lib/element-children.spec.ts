@@ -1,5 +1,4 @@
 import { ParsedElement } from '@rxap/xml-parser';
-import { getMetadata } from '@rxap/utilities';
 import { XmlElementMetadata } from './utilities';
 import {
   ElementChildren,
@@ -7,6 +6,7 @@ import {
 } from './element-children';
 import { ElementDef } from './element-def';
 import { TestingXmlParserService } from '@rxap/xml-parser/testing';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 describe('@rxap/xml-parser/decorators', () => {
 

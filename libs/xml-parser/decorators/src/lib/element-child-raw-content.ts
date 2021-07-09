@@ -4,7 +4,6 @@ import {
 } from './utilities';
 import {
   deepMerge,
-  getMetadata,
   dasherize
 } from '@rxap/utilities';
 import { Mixin } from '@rxap/mixin';
@@ -25,6 +24,7 @@ import {
   RxapElement,
   RxapXmlParserValidateRequiredError
 } from '@rxap/xml-parser';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 export interface ElementChildRawContentOptions<Value>
   extends TextContentElementOptions<Value>,

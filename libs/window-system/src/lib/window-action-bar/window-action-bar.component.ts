@@ -4,7 +4,7 @@ import {
   Injector
 } from '@angular/core';
 import { RXAP_WINDOW_CONTEXT } from '../tokens';
-import { ButtonDefinition } from '@rxap/utilities';
+import { ButtonDefinition } from '@rxap/utilities/rxjs';
 
 @Component({
   selector:    'rxap-window-action-bar',

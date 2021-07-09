@@ -2,10 +2,10 @@ import {
   Mixin,
   Constructor
 } from './utilities';
-import { getMetadata } from '@rxap/utilities';
 import { OVERWRITE_METADATA_KEY } from './overwrite';
 import { GetAllPropertyNames } from './get-all-property-names';
 import { GetPropertyDescriptor } from './get-property-descriptor';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 /**
  * Returns a map of property descriptors

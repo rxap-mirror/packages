@@ -7,10 +7,8 @@ import {
   EventEmitter,
   Output
 } from '@angular/core';
-import {
-  DebounceCall,
-  Method
-} from '@rxap/utilities';
+import { DebounceCall } from '@rxap/utilities';
+import { Method } from '@rxap/utilities/rxjs';
 
 export interface ContenteditableEvent {
   value: string;

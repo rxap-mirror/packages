@@ -1,9 +1,22 @@
-import { Injectable, NgModule, Inject } from '@angular/core';
-import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
-import { concatMap, tap } from 'rxjs/operators';
-import { log } from '@rxap/utilities';
+import {
+  Injectable,
+  NgModule,
+  Inject
+} from '@angular/core';
+import {
+  SwUpdate,
+  UpdateAvailableEvent
+} from '@angular/service-worker';
+import {
+  concatMap,
+  tap
+} from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import {
+  MatSnackBar,
+  MatSnackBarModule
+} from '@angular/material/snack-bar';
+import { log } from '@rxap/utilities/rxjs';
 
 @Injectable({
   providedIn: 'root',

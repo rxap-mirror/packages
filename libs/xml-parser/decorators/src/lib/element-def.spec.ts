@@ -1,9 +1,9 @@
 import { ElementDef } from './element-def';
+import { XmlElementMetadata } from './utilities';
 import {
   getMetadataKeys,
   getMetadata
-} from '@rxap/utilities';
-import { XmlElementMetadata } from './utilities';
+} from '@rxap/utilities/reflect-metadata';
 
 describe('@rxap/xml-parser/decorators', () => {
 

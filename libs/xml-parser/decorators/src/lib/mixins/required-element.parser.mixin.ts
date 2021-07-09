@@ -1,8 +1,8 @@
-import { mergeWithMetadata } from '@rxap/utilities';
 import {
   XmlElementMetadata,
   FindElementParserInstanceForPropertyKey
 } from '../utilities';
+import { mergeWithMetadata } from '@rxap/utilities/reflect-metadata';
 
 export interface RequiredElementOptions {
   required?: boolean;

@@ -6,9 +6,9 @@ import {
   RxapElement,
   XmlParserService
 } from '@rxap/xml-parser';
-import { getMetadata } from '@rxap/utilities';
 import { XmlElementMetadata } from './utilities';
 import { compile } from 'handlebars';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 describe('@rxap/xml-parser/decorators', () => {
 

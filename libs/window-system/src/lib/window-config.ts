@@ -5,10 +5,8 @@ import {
   TemplateRef,
   ViewContainerRef
 } from '@angular/core';
-import {
-  ButtonDefinition,
-  IconConfig
-} from '@rxap/utilities';
+import { IconConfig } from '@rxap/utilities';
+import { ButtonDefinition } from '@rxap/utilities/rxjs';
 
 export interface WindowActions<A> {
   position?: 'start' | 'end';

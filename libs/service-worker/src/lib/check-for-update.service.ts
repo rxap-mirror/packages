@@ -9,8 +9,8 @@ import {
   startWith
 } from 'rxjs/operators';
 import { interval } from 'rxjs';
-import { log } from '@rxap/utilities';
 import { LifeCycleService } from '@rxap/life-cycle';
+import { log } from '@rxap/utilities/rxjs';
 
 @Injectable({
   providedIn: 'root'

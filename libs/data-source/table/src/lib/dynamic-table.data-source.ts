@@ -41,10 +41,10 @@ import {
   RXAP_TABLE_DATA_SOURCE_PARAMETERS
 } from './tokens';
 import {
-  Method,
   equals,
   clone
 } from '@rxap/utilities';
+import { Method } from '@rxap/utilities/rxjs';
 
 export const RXAP_TABLE_REMOTE_METHOD = new InjectionToken('rxap/data-source/table/remote-method');
 

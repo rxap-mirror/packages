@@ -3,8 +3,8 @@ import {
   Observable,
   Subscription
 } from 'rxjs';
-import { SubscriptionHandler } from '@rxap/utilities';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { SubscriptionHandler } from '@rxap/utilities/rxjs';
 
 export const JSON_VIEW_IGNORED_PROPERTIES = new InjectionToken('rxap/form-system/inspector/ignored-properties', {
   providedIn: 'root',

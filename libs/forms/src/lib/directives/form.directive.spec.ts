@@ -7,27 +7,29 @@ import {
   TestBed,
   fakeAsync,
   tick,
-  ComponentFixture,
+  ComponentFixture
 } from '@angular/core/testing';
 import {
   Provider,
   Injector,
   INJECTOR,
   ChangeDetectorRef,
-  DebugElement,
+  DebugElement
 } from '@angular/core';
 import {
   RXAP_FORM_DEFINITION,
   RXAP_FORM_DEFINITION_BUILDER,
   RXAP_FORM_LOAD_METHOD,
-  RXAP_FORM_SUBMIT_METHOD,
+  RXAP_FORM_SUBMIT_METHOD
 } from './tokens';
 import { UseFormControl } from '../decorators/use-form-control';
 import { RxapFormBuilder } from '../form-builder';
 import { RxapFormsModule } from '@rxap/forms';
-import { MockedComponent, MockRender } from 'ng-mocks';
+import {
+  MockedComponent,
+  MockRender
+} from 'ng-mocks';
 import { By } from '@angular/platform-browser';
-import { ToMethod } from '@rxap/utilities';
 
 describe('@rxap/forms', () => {
   describe('directives', () => {

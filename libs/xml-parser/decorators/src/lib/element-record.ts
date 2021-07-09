@@ -4,7 +4,6 @@ import {
 } from './utilities';
 import {
   deepMerge,
-  getMetadata,
   dasherize,
   camelize
 } from '@rxap/utilities';
@@ -26,6 +25,7 @@ import {
   RxapElement,
   RxapXmlParserValidateRequiredError
 } from '@rxap/xml-parser';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 export interface ElementRecordOptions<Value>
   extends TextContentElementOptions<Value>,

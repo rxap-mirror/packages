@@ -3,7 +3,7 @@ import {
   storiesOf
 } from '@storybook/angular';
 import { ButtonComponentModule } from './button.component.module';
-import { ButtonTypes } from '@rxap/utilities';
+import { ButtonTypes } from '@rxap/utilities/rxjs';
 
 storiesOf('Button', module)
   .addDecorator(

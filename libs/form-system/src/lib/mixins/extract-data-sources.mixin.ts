@@ -1,8 +1,8 @@
 import { FormDefinition } from '@rxap/forms';
-import { getMetadata } from '@rxap/utilities';
 import { RxapFormSystemError } from '../error';
 import { FormSystemMetadataKeys } from '../decorators/metadata-keys';
 import { UseDataSourceValue } from '../decorators/use-data-source';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 export class ExtractDataSourcesMixin {
 

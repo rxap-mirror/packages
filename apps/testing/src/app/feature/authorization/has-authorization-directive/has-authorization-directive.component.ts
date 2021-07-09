@@ -2,8 +2,7 @@ import {
   Component,
   ChangeDetectionStrategy,
   OnInit,
-  OnDestroy,
-  AfterViewInit
+  OnDestroy
 } from '@angular/core';
 import { AuthorizationService } from '@rxap/authorization';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
@@ -14,13 +13,10 @@ import {
 import {
   tap,
   startWith,
-  map,
-  debounceTime,
-  skip
+  map
 } from 'rxjs/operators';
 import { HasAuthorizationDirectiveFormParameters } from './has-authorization-directive.form';
 import { FormDirective } from '@rxap/forms';
-import { log } from '@rxap/utilities';
 
 @Component({
   selector:        'rxap-has-authorization-directive',

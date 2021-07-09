@@ -18,11 +18,6 @@ import {
 } from '@angular/core';
 import {
   DebounceCall,
-  Method,
-  Node,
-  NodeGetIconFunction,
-  NodeHasDetailsFunction,
-  NodeToDisplayFunction,
   Required,
   WithChildren,
   WithIdentifier
@@ -37,6 +32,13 @@ import { TreeContentDirective } from './tree-content.directive';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { RXAP_TREE_CONTENT_EDITABLE_METHOD } from './tokens';
 import { TreeDataSource } from './tree.data-source';
+import {
+  Method,
+  Node,
+  NodeGetIconFunction,
+  NodeHasDetailsFunction,
+  NodeToDisplayFunction
+} from '@rxap/utilities/rxjs';
 
 @Component({
   // tslint:disable-next-line:component-selector

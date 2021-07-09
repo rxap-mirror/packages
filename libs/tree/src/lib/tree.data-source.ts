@@ -22,22 +22,24 @@ import {
   RXAP_DATA_SOURCE_METADATA
 } from '@rxap/data-source';
 import {
-  ExpandNodeFunction,
   joinPath,
-  Node,
-  NodeGetIconFunction,
-  NodeHasDetailsFunction,
-  NodeToDisplayFunction,
   Required,
   WithChildren,
-  WithIdentifier,
-  Method
+  WithIdentifier
 } from '@rxap/utilities';
 import {
   Inject,
   Injectable,
   InjectionToken
 } from '@angular/core';
+import {
+  ExpandNodeFunction,
+  Node,
+  NodeGetIconFunction,
+  NodeHasDetailsFunction,
+  NodeToDisplayFunction,
+  Method
+} from '@rxap/utilities/rxjs';
 
 export function isSelectionChange<T>(obj: any): obj is SelectionChange<T> {
   return !!obj && obj.hasOwnProperty('added') && obj.hasOwnProperty('removed');

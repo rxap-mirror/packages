@@ -34,7 +34,6 @@ import { RxapFormGroup } from '../form-group';
 import {
   isPromise,
   isObject,
-  ToggleSubject,
   Required,
   clone
 } from '@rxap/utilities';
@@ -58,6 +57,7 @@ import {
   tap,
   filter
 } from 'rxjs/operators';
+import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 @Directive({
   selector: 'form:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',

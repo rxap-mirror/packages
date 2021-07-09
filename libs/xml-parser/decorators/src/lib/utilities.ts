@@ -1,13 +1,13 @@
-import {
-  Constructor,
-  getMetadata,
-  setMetadata
-} from '@rxap/utilities';
+import { Constructor } from '@rxap/utilities';
 import { ElementParser } from './element.parser';
 import {
   ParsedElement,
   XmlElementParserFunction
 } from '@rxap/xml-parser';
+import {
+  getMetadata,
+  setMetadata
+} from '@rxap/utilities/reflect-metadata';
 
 export enum XmlElementMetadata {
   OPTIONS         = 'rxap/xml-parser/decorators/element-options',

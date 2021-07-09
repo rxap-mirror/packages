@@ -3,57 +3,32 @@ import {
   HttpResponse,
   HttpProgressEvent,
   HttpHeaderResponse,
-  HttpClient,
   HttpEvent,
   HttpEventType,
-  HttpRequest,
   HttpErrorResponse
 } from '@angular/common/http';
 import {
-  hasIndexSignature,
   deepMerge,
-  joinPath,
-  RequestInProgressSubject,
   Constructor
 } from '@rxap/utilities';
 import {
   Subject,
-  ReplaySubject,
   Observable,
-  Subscription,
-  EMPTY,
-  of,
   throwError
 } from 'rxjs';
 import {
-  switchMap,
   tap,
   retry,
   filter,
   map,
-  finalize,
-  skip,
   catchError,
-  first,
   timeout,
   take
 } from 'rxjs/operators';
-import {
-  Inject,
-  Optional,
-  Injectable
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpDataSourceOptions } from './http.data-source.options';
-import {
-  BaseDataSource,
-  RXAP_DATA_SOURCE_REFRESH,
-  RxapDataSourceError,
-  RXAP_DATA_SOURCE_METADATA,
-  RxapDataSource
-} from '@rxap/data-source';
+import { RxapDataSource } from '@rxap/data-source';
 import { HttpDataSourceMetadata } from './http.data-source.metadata';
-import { HttpDataSourceViewer } from './http.data-source.viewer';
-import { RxapHttpDataSourceError } from './error';
 import { BaseHttpDataSource } from './base-http.data-source';
 
 @Injectable()

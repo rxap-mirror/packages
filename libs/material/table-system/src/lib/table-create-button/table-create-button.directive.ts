@@ -6,12 +6,16 @@ import {
   Input,
   NgModule,
   OnInit,
-  Renderer2,
+  Renderer2
 } from '@angular/core';
-import { Method, Required } from '@rxap/utilities';
-import { isObservable, Observable } from 'rxjs';
+import { Required } from '@rxap/utilities';
+import {
+  isObservable,
+  Observable
+} from 'rxjs';
 import { TableDataSourceDirective } from '../table-data-source.directive';
 import { TABLE_CREATE_REMOTE_METHOD } from './tokens';
+import { Method } from '@rxap/utilities/rxjs';
 
 @Directive({
   selector: 'button[rxapTableCreate]',

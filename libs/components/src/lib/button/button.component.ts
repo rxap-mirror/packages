@@ -16,7 +16,7 @@ import {
   EventEmitter,
   Output,
   OnDestroy,
-  INJECTOR,
+  INJECTOR
 } from '@angular/core';
 import {
   Required,
@@ -24,9 +24,7 @@ import {
   IsSvgIcon,
   IsMaterialIcon,
   IconConfig,
-  applyContextToFunctionOrConstant,
-  ButtonDefinition,
-  ButtonTypes,
+  applyContextToFunctionOrConstant
 } from '@rxap/utilities';
 import { Overlay } from '@angular/cdk/overlay';
 import { MatButton } from '@angular/material/button';
@@ -34,6 +32,10 @@ import { FocusMonitor } from '@angular/cdk/a11y';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
 import { ConfirmDirective } from '../confirm/confirm.directive';
 import { Subscription } from 'rxjs';
+import {
+  ButtonDefinition,
+  ButtonTypes
+} from '@rxap/utilities/rxjs';
 
 const DEFAULT_ROUND_BUTTON_COLOR = 'accent';
 

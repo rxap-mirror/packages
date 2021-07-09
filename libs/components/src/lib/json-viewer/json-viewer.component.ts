@@ -11,13 +11,13 @@ import {
 import { Subscription } from 'rxjs';
 import {
   isPromiseLike,
-  isTeardownLogic,
   clone
 } from '@rxap/utilities';
 import {
   JSON_VIEW_IGNORED_PROPERTIES,
   JSON_VIEW_IGNORED_TYPES
 } from './json-viewer.tokens';
+import { isTeardownLogic } from '@rxap/utilities/rxjs';
 
 export interface Segment {
   key: string;

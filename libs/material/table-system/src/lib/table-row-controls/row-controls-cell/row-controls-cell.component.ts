@@ -5,10 +5,7 @@ import {
   Input,
   Optional
 } from '@angular/core';
-import {
-  Method,
-  Required
-} from '@rxap/utilities';
+import { Required } from '@rxap/utilities';
 import {
   ROW_ARCHIVE_METHOD,
   ROW_DELETE_METHOD,
@@ -24,6 +21,7 @@ import {
   isObservable,
   Observable
 } from 'rxjs';
+import { Method } from '@rxap/utilities/rxjs';
 
 @Component({
   selector:        'td[mfd-row-controls-cell]',

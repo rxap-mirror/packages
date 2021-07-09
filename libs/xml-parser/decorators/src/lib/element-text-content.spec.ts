@@ -1,4 +1,3 @@
-import { getMetadata } from '@rxap/utilities';
 import { XmlElementMetadata } from './utilities';
 import {
   ElementTextContent,
@@ -9,6 +8,7 @@ import {
   RxapElement
 } from '@rxap/xml-parser';
 import { compile } from 'handlebars';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 describe('@rxap/xml-parser/decorators', () => {
 

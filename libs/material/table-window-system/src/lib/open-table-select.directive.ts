@@ -13,8 +13,7 @@ import {
 } from '@angular/core';
 import {
   coerceArray,
-  ControlOptions,
-  Method
+  ControlOptions
 } from '@rxap/utilities';
 import {
   MAT_FORM_FIELD,
@@ -35,6 +34,7 @@ import {
 import { map } from 'rxjs/operators';
 import { MatSelect } from '@angular/material/select';
 import { WindowTableSelectOptions } from './window-table-select.service';
+import { Method } from '@rxap/utilities/rxjs';
 
 export interface ExtractDatasourceMixin extends ExtractFormDefinitionMixin, ExtractDataSourcesMixin {
 }

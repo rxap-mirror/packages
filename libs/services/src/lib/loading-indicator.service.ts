@@ -2,7 +2,6 @@ import {
   Injectable,
   OnDestroy
 } from '@angular/core';
-import { ToggleSubject } from '@rxap/utilities';
 import {
   Subscription,
   Observable
@@ -11,6 +10,7 @@ import {
   map,
   delay
 } from 'rxjs/operators';
+import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 @Injectable()
 export class LoadingIndicatorService implements OnDestroy {

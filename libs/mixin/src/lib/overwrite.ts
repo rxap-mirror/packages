@@ -1,7 +1,7 @@
 import {
   addToMetadata,
   setMetadata
-} from '@rxap/utilities';
+} from '@rxap/utilities/reflect-metadata';
 
 export const OVERWRITE_METADATA_KEY = 'rxap-mixin-overwrite';
 

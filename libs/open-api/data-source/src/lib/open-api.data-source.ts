@@ -19,7 +19,6 @@ import {
 import {
   KeyValue,
   joinPath,
-  isDefined,
   deepMerge
 } from '@rxap/utilities';
 import {
@@ -48,6 +47,7 @@ import {
   take
 } from 'rxjs/operators';
 import { Mixin } from '@rxap/mixin';
+import { isDefined } from '@rxap/utilities/rxjs';
 
 export interface OpenApiDataSourceMetadata<PathParams = KeyValue, Body = any | null> extends Partial<HttpDataSourceMetadata<PathParams, Body>> {
 

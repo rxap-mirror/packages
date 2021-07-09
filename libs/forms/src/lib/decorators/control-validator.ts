@@ -1,5 +1,5 @@
-import { setMetadataMapSet } from '@rxap/utilities';
 import { MetadataKeys } from './metadata-keys';
+import { setMetadataMapSet } from '@rxap/utilities/reflect-metadata';
 
 export function ControlValidator(...controlIds: string[]) {
 

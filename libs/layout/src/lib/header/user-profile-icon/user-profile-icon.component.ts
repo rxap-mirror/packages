@@ -1,8 +1,12 @@
-import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Inject
+} from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserService } from '@rxap/authentication';
-import { isDefined } from '@rxap/utilities';
 import { map } from 'rxjs/operators';
+import { isDefined } from '@rxap/utilities/rxjs';
 
 @Component({
   selector: 'rxap-user-profile-icon',
