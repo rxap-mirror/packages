@@ -5,7 +5,7 @@ import {
   OperatorFunction,
   TeardownLogic
 } from 'rxjs';
-import { hasIndexSignature } from '../../has-index-signature';
+import { hasIndexSignature } from '@rxap/utilities';
 
 export function hasProperty<T extends object | null | undefined, V>(propertyKey: keyof V, value?: any): OperatorFunction<T, T & V> {
   return function filterOperatorFunction(source: Observable<T>): Observable<T & V> {

@@ -6,6 +6,7 @@
   },
   "allowedNonPeerDependencies": [
     "@rxap/schematics-utilities",
-    "tslib"
+    "tslib",
+    "ts-morph"
   ]
 }

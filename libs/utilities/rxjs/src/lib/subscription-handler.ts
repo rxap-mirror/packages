@@ -1,9 +1,11 @@
 import {
   Subscription,
-  TeardownLogic,
+  TeardownLogic
 } from 'rxjs';
-import { objectReducer } from './array-reducers';
-import { KeyValue } from './helpers';
+import {
+  objectReducer,
+  KeyValue
+} from '@rxap/utilities';
 
 export enum SubscriptionHandlerErrorTypes {
   NOT_FOUND = 'Subscription with specified key not found',
