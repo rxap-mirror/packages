@@ -1,6 +1,6 @@
 {
   "name": "@rxap/life-cycle",
-  "version": "12.0.7-next.0",
+  "version": "12.0.7",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/life-cycle",
   "repository": "git@gitlab.com:rxap/packages.git",

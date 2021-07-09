@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@12.0.8-next.0...@rxap/material-table-window-system@12.0.8) (2021-07-09)
+
+**Note:** Version bump only for package @rxap/material-table-window-system
+
+
+
+
+
 ## [12.0.8-next.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@12.0.7...@rxap/material-table-window-system@12.0.8-next.0) (2021-07-09)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/authentication",
-  "version": "12.1.5-next.0",
+  "version": "12.1.5",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/authentication",

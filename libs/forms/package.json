@@ -1,6 +1,6 @@
 {
   "name": "@rxap/forms",
-  "version": "12.3.5-next.0",
+  "version": "12.3.5",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/forms",
