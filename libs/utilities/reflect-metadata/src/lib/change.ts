@@ -1,4 +1,4 @@
-import { equals } from './equals';
+import { equals } from '@rxap/utilities';
 import {
   getMetadata,
   addToMetadata

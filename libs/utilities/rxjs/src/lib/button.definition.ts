@@ -4,7 +4,7 @@ import {
   Action,
   IconConfig,
   ThemePalette
-} from './helpers';
+} from '@rxap/utilities';
 
 /**
  * @deprecated removed

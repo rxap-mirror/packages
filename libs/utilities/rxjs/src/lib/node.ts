@@ -3,7 +3,7 @@ import {
   WithChildren,
   getIdentifierPropertyValue,
   IconConfig
-} from './helpers';
+} from '@rxap/utilities';
 import { ToggleSubject } from './toggle-subject';
 
 export type ExpandNodeFunction<T> = (node: Node<T>) => Promise<any>;
