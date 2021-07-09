@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.4-next.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.2.3...@rxap/material-table-system@12.2.4-next.0) (2021-07-09)
+
+
+### Bug Fixes
+
+* split into rxjs and reflect-metadata sub packages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
+
+
+
+
+
 ## [12.2.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.2.2...@rxap/material-table-system@12.2.3) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/material-table-system

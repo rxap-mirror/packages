@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@12.1.4...@rxap/utilities@12.2.0-next.0) (2021-07-09)
+
+
+### Features
+
+* split into rxjs and reflect-metadata sub packages ([e39d416](https://gitlab.com/rxap/packages/commit/e39d4160550264222efe6e175157d9845d4ea507))
+
+
+
+
+
 ## [12.1.4](https://gitlab.com/rxap/packages/compare/@rxap/utilities@12.1.4-next.0...@rxap/utilities@12.1.4) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/utilities
