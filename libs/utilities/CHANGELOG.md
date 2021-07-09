@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.4](https://gitlab.com/rxap/packages/compare/@rxap/utilities@12.1.4-next.0...@rxap/utilities@12.1.4) (2021-07-09)
+
+**Note:** Version bump only for package @rxap/utilities
+
+
+
+
+
 ## [12.1.4-next.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@12.1.3...@rxap/utilities@12.1.4-next.0) (2021-07-05)
 
 

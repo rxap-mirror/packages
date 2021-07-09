@@ -1,6 +1,6 @@
 {
   "name": "@rxap/xml-parser",
-  "version": "12.0.8-next.0",
+  "version": "12.0.8",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/xml-parser",
@@ -19,7 +19,7 @@
   "peerDependencies": {
     "@angular/core": "^12.0.1",
     "@rxap/mixin": "^12.0.6",
-    "@rxap/utilities": "^12.1.3",
+    "@rxap/utilities": "^12.1.4",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@rxap/handlebars": "^12.0.6",
-    "@rxap/schematics-utilities": "^12.1.0",
+    "@rxap/schematics-utilities": "^12.4.0",
     "handlebars": "^4.7.7",
     "tslib": "^2.2.0",
     "xmldom": "^0.6.0"

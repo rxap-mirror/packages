@@ -1,6 +1,6 @@
 {
   "name": "@rxap/utilities",
-  "version": "12.1.4-next.0",
+  "version": "12.1.4",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/utilities",
@@ -34,7 +34,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^12.3.5",
+    "@rxap/schematics-utilities": "^12.4.0",
     "tslib": "^2.2.0"
   }
 }
