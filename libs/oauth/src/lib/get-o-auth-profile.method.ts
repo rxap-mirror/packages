@@ -1,6 +1,11 @@
-import { Method } from '@rxap/utilities';
-import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  InjectionToken,
+  Optional
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Method } from '@rxap/utilities/rxjs';
 
 export const PROFILE_AUTH_ENDPOINT = new InjectionToken(
   'PROFILE_AUTH_ENDPOINT'

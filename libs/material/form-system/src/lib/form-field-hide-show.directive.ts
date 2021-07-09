@@ -20,7 +20,6 @@ import {
   FormDefinition,
   RxapFormControl
 } from '@rxap/forms';
-import { getMetadata } from '@rxap/utilities';
 import {
   ControlHideShowFunction,
   ControlHideShowOptions,
@@ -35,6 +34,7 @@ import {
   startWith,
   tap
 } from 'rxjs/operators';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 export class ExtractHideShowMixin {
 

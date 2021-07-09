@@ -12,12 +12,12 @@ import {
   TreeComponent,
   TreeDataSource
 } from '@rxap/tree';
+import { WithChildren } from '@rxap/utilities';
+import { v4 as uuid } from 'uuid';
 import {
   ToMethod,
-  Node,
-  WithChildren
-} from '@rxap/utilities';
-import { v4 as uuid } from 'uuid';
+  Node
+} from '@rxap/utilities/rxjs';
 
 ConfigService.Config = {
   navigation: {

@@ -1,9 +1,9 @@
-import { setMetadata } from '@rxap/utilities';
 import {
   GetAllElementParser,
   GetAllElementParserInstances,
   XmlElementMetadata
 } from './utilities';
+import { setMetadata } from '@rxap/utilities/reflect-metadata';
 
 export function ElementClearParser() {
   return function(target: any, propertyKey: string) {

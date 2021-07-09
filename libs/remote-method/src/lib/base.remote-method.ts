@@ -17,10 +17,8 @@ import {
 } from '@rxap/definition';
 import { Subject } from 'rxjs';
 import { RxapRemoteMethodError } from './error';
-import {
-  CounterSubject,
-  Refreshable
-} from '@rxap/utilities';
+import { Refreshable } from '@rxap/utilities';
+import { CounterSubject } from '@rxap/utilities/rxjs';
 
 export interface BaseRemoteMethodMetadata extends BaseDefinitionMetadata {
   refresh?: Array<Type<Refreshable> | InjectionToken<Refreshable> | AbstractType<Refreshable>>;

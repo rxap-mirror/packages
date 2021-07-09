@@ -31,13 +31,13 @@ import {
   filter,
   delay
 } from 'rxjs/operators';
-import { isDefined } from '@rxap/utilities';
 import {
   TimeoutError,
   throwError,
   isObservable
 } from 'rxjs';
 import { LoadingIndicatorService } from '@rxap/services';
+import { isDefined } from '@rxap/utilities/rxjs';
 
 @Component({
   selector:        'rxap-window-content',

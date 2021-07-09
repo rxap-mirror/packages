@@ -2,8 +2,7 @@ import { RXAP_DATA_SOURCE_METADATA } from '@rxap/data-source';
 import { Observable } from 'rxjs';
 import {
   hasIndexSignature,
-  Constructor,
-  ToggleSubject
+  Constructor
 } from '@rxap/utilities';
 import {
   Optional,
@@ -21,6 +20,7 @@ import {
   AbstractPaginationDataSourceMetadata,
   RxapAbstractPaginationDataSource
 } from '@rxap/data-source/pagination';
+import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 export type SortDirection = 'asc' | 'desc' | '';
 

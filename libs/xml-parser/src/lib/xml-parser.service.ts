@@ -1,7 +1,6 @@
 import { RxapElement } from './element';
 import {
   Type,
-  getMetadata,
   hasIndexSignature,
   Constructor
 } from '@rxap/utilities';
@@ -12,6 +11,7 @@ import { XmlElementParserFunction } from './xml-element-parser-function';
 import { AttributeOptions } from './decorators/attribute';
 import { RxapXmlParserError } from './error';
 import { DOMParser } from 'xmldom';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 export interface ElementParserWithParsers {
   elementParser: Type<ParsedElement>;

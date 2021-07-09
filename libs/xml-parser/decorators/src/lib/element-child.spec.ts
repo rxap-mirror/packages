@@ -11,7 +11,7 @@ import {
   ParsedElement,
   XmlParserService
 } from '@rxap/xml-parser';
-import { getMetadata } from '@rxap/utilities';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 import createSpy = jasmine.createSpy;
 
 describe('@rxap/xml-parser/decorators', () => {

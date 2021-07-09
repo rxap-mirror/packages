@@ -1,10 +1,7 @@
-import {
-  setMetadataMap,
-  Constructor
-} from '@rxap/utilities';
+import { Constructor } from '@rxap/utilities';
 import { MetadataKeys } from './metadata-keys';
-import { AbstractControlOptions } from '@angular/forms';
 import { RxapAbstractControlOptions } from '../model';
+import { setMetadataMap } from '@rxap/utilities/reflect-metadata';
 
 export function UseFormGroup(definition: Constructor, options: RxapAbstractControlOptions = {}) {
 

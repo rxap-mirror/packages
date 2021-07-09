@@ -1,10 +1,22 @@
-import { Injectable, Inject } from '@angular/core';
-import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
-import { concatMap, filter, tap, map, take } from 'rxjs/operators';
+import {
+  Injectable,
+  Inject
+} from '@angular/core';
+import {
+  SwUpdate,
+  UpdateAvailableEvent
+} from '@angular/service-worker';
+import {
+  concatMap,
+  filter,
+  tap,
+  map,
+  take
+} from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { PromptUpdateComponent } from './prompt-update.component';
 import { Observable } from 'rxjs';
-import { log } from '@rxap/utilities';
+import { log } from '@rxap/utilities/rxjs';
 
 @Injectable({
   providedIn: 'root',

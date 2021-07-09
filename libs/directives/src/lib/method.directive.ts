@@ -8,11 +8,11 @@ import {
   isDevMode,
   OnInit
 } from '@angular/core';
+import { coerceBoolean } from '@rxap/utilities';
 import {
   Method,
-  coerceBoolean,
   ToggleSubject
-} from '@rxap/utilities';
+} from '@rxap/utilities/rxjs';
 
 @Directive({
   selector: '[rxapMethod]',

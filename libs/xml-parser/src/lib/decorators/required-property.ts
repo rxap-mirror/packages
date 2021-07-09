@@ -1,5 +1,5 @@
-import { mergeWithMetadata } from '@rxap/utilities';
 import { ElementParserMetaData } from './metadata-keys';
+import { mergeWithMetadata } from '@rxap/utilities/reflect-metadata';
 
 export function RequiredProperty(message?: string) {
   return function(target: any, propertyKey: string) {

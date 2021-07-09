@@ -1,9 +1,9 @@
-import { getMetadata } from '@rxap/utilities';
 import { XmlElementMetadata } from './utilities';
 import {
   ElementChildTextContent,
   ElementChildTextContentParser
 } from './element-child-text-content';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 describe('@rxap/xml-parser/decorators', () => {
 

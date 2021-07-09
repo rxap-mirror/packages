@@ -17,7 +17,6 @@ import {
   HttpRequest
 } from '@angular/common/http';
 import {
-  RequestInProgressSubject,
   hasIndexSignature,
   joinPath,
   deepMerge
@@ -37,6 +36,7 @@ import { HttpDataSourceMetadata } from './http.data-source.metadata';
 import { HttpDataSourceViewer } from './http.data-source.viewer';
 import { HttpDataSourceOptions } from './http.data-source.options';
 import { RxapHttpDataSourceError } from './error';
+import { RequestInProgressSubject } from '@rxap/utilities/rxjs';
 
 @Injectable()
 export abstract class BaseHttpDataSource<Data = any, PathParams = any, Body = any> extends BaseDataSource<

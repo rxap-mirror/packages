@@ -8,13 +8,13 @@ import {
   OnDestroy,
   StaticProvider
 } from '@angular/core';
-import {
-  coerceBoolean,
-  CounterSubject,
-  Method
-} from '@rxap/utilities';
+import { coerceBoolean } from '@rxap/utilities';
 import { WindowRef } from '@rxap/window-system';
 import { FormDefinition } from '@rxap/forms';
+import {
+  CounterSubject,
+  Method
+} from '@rxap/utilities/rxjs';
 
 @Directive({
   selector: '[rxapOpenFormWindowMethod]'

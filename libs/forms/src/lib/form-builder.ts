@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 import {
   Constructor,
-  getMetadata,
   assertIsObject,
   assertIsArray,
   assertIsFunction,
@@ -32,6 +31,7 @@ import { RxapFormGroup } from './form-group';
 import { RxapFormControl } from './form-control';
 import { GetDefinitionMetadata } from '@rxap/definition';
 import { ControlSetValueOptions } from './decorators/control-set-value';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 export class FormArrayControlManager<T extends FormDefinition> {
   constructor(private readonly form: T, private readonly controlId: keyof T) {}

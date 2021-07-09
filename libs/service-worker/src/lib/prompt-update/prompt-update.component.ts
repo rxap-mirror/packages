@@ -3,14 +3,23 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   Inject,
-  OnDestroy,
+  OnDestroy
 } from '@angular/core';
 import { UpdateAvailableEvent } from '@angular/service-worker';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { interval, Subscription } from 'rxjs';
-import { tap, first } from 'rxjs/operators';
-import { log } from '@rxap/utilities';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef
+} from '@angular/material/dialog';
+import {
+  interval,
+  Subscription
+} from 'rxjs';
+import {
+  tap,
+  first
+} from 'rxjs/operators';
 import { LifeCycleService } from '@rxap/life-cycle';
+import { log } from '@rxap/utilities/rxjs';
 
 @Component({
   selector: 'rxap-prompt-update',

@@ -1,8 +1,6 @@
-import {
-  addToMetadata,
-  Without
-} from '@rxap/utilities';
+import { Without } from '@rxap/utilities';
 import { ElementParserMetaData } from './metadata-keys';
+import { addToMetadata } from '@rxap/utilities/reflect-metadata';
 
 export interface AttributeOptions<T> {
   propertyKey: string;

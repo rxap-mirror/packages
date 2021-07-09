@@ -1,4 +1,4 @@
-import { Method } from '@rxap/utilities';
+import { Method } from '@rxap/utilities/rxjs';
 
 export interface FormSubmitMethod<T> extends Method<any, T> {
   call(parameters: T): any | Promise<any>;

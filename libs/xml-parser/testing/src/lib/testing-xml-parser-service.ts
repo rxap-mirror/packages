@@ -4,10 +4,8 @@ import {
   ElementParserMetaData,
   RxapElement
 } from '@rxap/xml-parser';
-import {
-  Constructor,
-  getMetadata
-} from '@rxap/utilities';
+import { Constructor } from '@rxap/utilities';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 export class TestingXmlParserService extends XmlParserService {
 

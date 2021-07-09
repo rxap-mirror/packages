@@ -8,7 +8,7 @@ import {
   setMetadata,
   getMetadata,
   hasMetadata
-} from '@rxap/utilities';
+} from '@rxap/utilities/reflect-metadata';
 
 describe('Mixin', () => {
 

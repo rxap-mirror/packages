@@ -1,6 +1,12 @@
-import { Method } from '@rxap/utilities';
-import { Injectable, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  Injectable,
+  Inject
+} from '@angular/core';
+import {
+  HttpClient,
+  HttpHeaders
+} from '@angular/common/http';
+import { Method } from '@rxap/utilities/rxjs';
 
 export interface OAuthMethodWithUsernamePasswordParameters {
   grantType?: string;

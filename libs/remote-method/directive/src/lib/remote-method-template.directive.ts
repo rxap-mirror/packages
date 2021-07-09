@@ -24,11 +24,11 @@ import {
 } from '@rxap/remote-method';
 import {
   Required,
-  ToggleSubject,
   Deprecated
 } from '@rxap/utilities';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 import { RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN } from './tokens';
+import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 export interface RemoteMethodTemplateDirectiveContext<ReturnType = any> {
   $implicit: ReturnType;

@@ -3,11 +3,7 @@ import {
   XmlElementMetadata,
   AddParserToMetadata
 } from './utilities';
-import {
-  deepMerge,
-  getMetadata,
-  getOwnMetadata
-} from '@rxap/utilities';
+import { deepMerge } from '@rxap/utilities';
 import { Mixin } from '@rxap/mixin';
 import {
   ChildElementParserMixin,
@@ -20,6 +16,10 @@ import {
   RxapElement,
   RxapXmlParserValidateRequiredError
 } from '@rxap/xml-parser';
+import {
+  getMetadata,
+  getOwnMetadata
+} from '@rxap/utilities/reflect-metadata';
 
 export interface ElementChildOptions extends ChildElementOptions {}
 

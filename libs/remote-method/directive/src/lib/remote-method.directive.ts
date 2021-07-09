@@ -21,11 +21,11 @@ import {
 import {
   Required,
   coerceBoolean,
-  ToggleSubject,
   Deprecated
 } from '@rxap/utilities';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 import { RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN } from './tokens';
+import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 @Directive({
   selector: '[rxapRemoteMethod]',

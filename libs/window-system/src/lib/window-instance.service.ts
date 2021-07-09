@@ -1,4 +1,3 @@
-import { ToggleSubject } from '@rxap/utilities';
 import {
   Injectable,
   OnDestroy
@@ -11,6 +10,7 @@ import {
   map,
   delay
 } from 'rxjs/operators';
+import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 @Injectable()
 export class WindowInstanceService implements OnDestroy {

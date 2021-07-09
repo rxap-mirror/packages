@@ -11,7 +11,7 @@ import {
 import { fadeAnimation } from '../fade-animation';
 import { RxapAuthenticationService } from '@rxap/authentication';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ToggleSubject } from '@rxap/utilities';
+import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 @Component({
   selector:        'rxap-login',

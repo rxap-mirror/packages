@@ -11,8 +11,7 @@ import {
 } from '@angular/core';
 import {
   Required,
-  Constructor,
-  getMetadata
+  Constructor
 } from '@rxap/utilities';
 import {
   ControlContainer,
@@ -32,6 +31,7 @@ import {
 import { Mixin } from '@rxap/mixin';
 import { ExtractDataSourcesMixin } from './mixins/extract-data-sources.mixin';
 import { map } from 'rxjs/operators';
+import { getMetadata } from '@rxap/utilities/reflect-metadata';
 
 export interface FormSystemControlDirective<T> extends ExtractDataSourcesMixin, ControlValueAccessor, OnInit {}
 

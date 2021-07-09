@@ -8,10 +8,10 @@ import {
   HostListener
 } from '@angular/core';
 import {
-  Method,
   DebounceCall,
   coerceBoolean
 } from '@rxap/utilities';
+import { Method } from '@rxap/utilities/rxjs';
 
 @Directive({
   selector: '[rxapContenteditable]'

@@ -16,10 +16,6 @@ import {
   RxapFormControl
 } from '@rxap/forms';
 import {
-  setMetadataMap,
-  getMetadata
-} from '@rxap/utilities';
-import {
   ControlContainer,
   NgControl
 } from '@angular/forms';
@@ -35,6 +31,10 @@ import {
 } from 'rxjs/operators';
 import { ExtractControlMixin } from '../mixins/extract-control.mixin';
 import { ExtractFormDefinitionMixin } from '../mixins/extract-form-definition.mixin';
+import {
+  setMetadataMap,
+  getMetadata
+} from '@rxap/utilities/reflect-metadata';
 
 export const RXAP_FORM_SYSTEM_SHOW_METADATA     = 'rxap/form-system/show-function';
 export const RXAP_FORM_SYSTEM_HIDE_METADATA     = 'rxap/form-system/hide-function';
