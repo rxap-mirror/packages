@@ -60,25 +60,32 @@ export type TableRemoteMethodAdapterFactory<
 
 @Directive({
   selector:
-    'table[mat-table][rxapTableDataSource],mat-table[rxapTableDataSource]',
-  exportAs: 'rxapTableDataSource',
+            'table[mat-table][rxapTableDataSource],mat-table[rxapTableDataSource]',
+  exportAs: 'rxapTableDataSource'
 })
 export class TableDataSourceDirective<Data extends Record<string, any> = any>
-  implements OnInit, OnDestroy
-{
-  @Input()
-  private paginator?: MatPaginator;
+  implements OnInit, OnDestroy {
+  /**
+   * @deprecated use dataSource instead
+   */
+  @Input('rxapTableDataSource')
+  public set setDataSource(dataSource: AbstractTableDataSource<Data> | '') {
+    if (typeof dataSource !== 'string') {
+      this.dataSource = dataSource;
+    }
+  }
 
   @Input()
-  private parameters?: Observable<Record<string, any>>;
+  public paginator?: MatPaginator;
 
   public loading$: Observable<boolean> = EMPTY;
 
   @Input()
   @Required
   public id!: string;
-
-  @Input('rxapTableDataSource')
+  @Input()
+  public parameters?: Observable<Record<string, any>>;
+  @Input()
   public dataSource?: AbstractTableDataSource<Data>;
 
   public method?: Method<Data[], TableEvent>;
