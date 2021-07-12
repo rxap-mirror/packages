@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.10](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.0.9...@rxap/data-source@12.0.10) (2021-07-12)
+
+
+### Bug Fixes
+
+* log template render error ([fc8592e](https://gitlab.com/rxap/packages/commit/fc8592e7174466b22ccae46080970aebeca71cca))
+
+
+
+
+
 ## [12.0.9](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.0.9-next.0...@rxap/data-source@12.0.9) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/data-source
