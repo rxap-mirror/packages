@@ -1,6 +1,6 @@
 {
   "name": "@rxap/layout",
-  "version": "12.0.9",
+  "version": "12.0.10",
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
@@ -27,15 +27,15 @@
     "@angular/material": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
     "@angular/router": "^12.0.1",
-    "@rxap/authentication": "^12.1.5-next.0",
-    "@rxap/components": "^12.0.9-next.0",
+    "@rxap/authentication": "^12.1.5",
+    "@rxap/components": "^12.0.9",
     "@rxap/config": "^12.1.0",
-    "@rxap/definition": "^12.0.8-next.0",
-    "@rxap/directives": "^12.1.1-next.0",
-    "@rxap/forms": "^12.3.5-next.0",
+    "@rxap/definition": "^12.0.8",
+    "@rxap/directives": "^12.1.1",
+    "@rxap/forms": "^12.3.5",
     "@rxap/material-directives": "^12.0.6",
-    "@rxap/services": "^12.0.7-next.0",
-    "@rxap/utilities": "^12.2.0-next.0",
+    "@rxap/services": "^12.0.7",
+    "@rxap/utilities": "^12.2.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.10](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.0.9...@rxap/layout@12.0.10) (2021-07-12)
+
+
+### Bug Fixes
+
+* **layout:** fix missing mode type ([cf1649a](https://gitlab.com/rxap/packages/commit/cf1649a5baaaed0435991296377cdecd207bc623))
+
+
+
+
+
 ## [12.0.9](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.0.9-next.0...@rxap/layout@12.0.9) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/layout
