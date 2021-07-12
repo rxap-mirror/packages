@@ -18,12 +18,13 @@ import {
 import { RXAP_LOGO_CONFIG } from '../tokens';
 import { LogoConfig } from '../types';
 import { ConfigService } from '@rxap/config';
+import { MatDrawerMode } from '@angular/material/sidenav';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutComponentService {
 
   public opened$      = new BehaviorSubject<boolean>(true);
-  public mode$        = new BehaviorSubject<'over' | 'push' | 'side'>('side');
+  public mode$        = new BehaviorSubject<MatDrawerMode>('side');
   public fixedBottomGap$: Observable<number>;
   public fixedTopGap$ = new BehaviorSubject<number>(64);
   public logo: LogoConfig;
