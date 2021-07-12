@@ -7,7 +7,6 @@
   "allowedNonPeerDependencies": [
     "@apidevtools/json-schema-ref-parser",
     "@rxap/schematics-utilities",
-    "ts-morph",
     "tslib"
   ]
 }
