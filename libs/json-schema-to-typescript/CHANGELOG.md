@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@12.0.7...@rxap/json-schema-to-typescript@12.0.8) (2021-07-12)
+
+
+### Bug Fixes
+
+* **deps:** mv ts-morph to peer dependencies ([edd31bd](https://gitlab.com/rxap/packages/commit/edd31bdcfb7387abc544862488033476d947db01))
+
+
+
+
+
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@12.0.6...@rxap/json-schema-to-typescript@12.0.7) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/json-schema-to-typescript
