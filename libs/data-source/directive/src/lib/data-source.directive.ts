@@ -15,16 +15,25 @@ import {
   EventEmitter,
   Output,
   INJECTOR,
-  Inject,
+  Inject
 } from '@angular/core';
 import {
   DataSourceLoader,
   BaseDataSource,
-  BaseDataSourceViewer,
+  BaseDataSourceViewer
 } from '@rxap/data-source';
 import { Required } from '@rxap/utilities';
-import { tap, take, filter, catchError } from 'rxjs/operators';
-import { Observable, Subscription, EMPTY } from 'rxjs';
+import {
+  tap,
+  take,
+  filter,
+  catchError
+} from 'rxjs/operators';
+import {
+  Observable,
+  Subscription,
+  EMPTY
+} from 'rxjs';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 
 export interface DataSourceTemplate<Data> {
@@ -34,7 +43,7 @@ export interface DataSourceTemplate<Data> {
 
 @Directive({
   selector: '[rxapDataSource]',
-  exportAs: 'rxapDataSource',
+  exportAs: 'rxapDataSource'
 })
 export class DataSourceDirective<Data = any>
   implements OnDestroy, OnChanges, AfterViewInit
@@ -158,6 +167,7 @@ export class DataSourceDirective<Data = any>
                   tap((response) => this.embedTemplate(response)),
                   catchError((e) => {
                     this.error.emit(e);
+                    console.error(e);
                     return EMPTY;
                   })
                 )
