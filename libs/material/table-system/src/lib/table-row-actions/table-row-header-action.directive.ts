@@ -20,6 +20,7 @@ import { TableRowActionDirective } from './table-row-action.directive';
 import { TableRowActionMethod } from './table-row-action.method';
 import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
 import { SelectRowService } from '../select-row/select-row.service';
+import { TableDataSourceDirective } from '../table-data-source.directive';
 
 @Directive({
   selector: 'button[rxapTableRowHeaderAction]'
@@ -32,8 +33,12 @@ export class TableRowHeaderActionDirective<Data extends Record<string, any>>
   constructor(
     @Inject(RXAP_TABLE_ROW_ACTION_METHOD)
       actionMethod: TableRowActionMethod<Data>,
-    cdr: ChangeDetectorRef,
-    vcr: ViewContainerRef,
+    @Inject(ChangeDetectorRef)
+      cdr: ChangeDetectorRef,
+    @Inject(ViewContainerRef)
+      vcr: ViewContainerRef,
+    @Inject(TableDataSourceDirective)
+      tableDataSourceDirective: TableDataSourceDirective,
     @Optional()
     @Inject(MatButton)
       matButton: MatButton | null,
@@ -41,7 +46,7 @@ export class TableRowHeaderActionDirective<Data extends Record<string, any>>
     @Inject(SelectRowService)
     private readonly selectRowService: SelectRowService<Data> | null
   ) {
-    super(actionMethod, cdr, vcr, matButton);
+    super(actionMethod, cdr, vcr, tableDataSourceDirective, matButton);
   }
 
   public ngOnDestroy() {

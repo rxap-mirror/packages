@@ -18,6 +18,7 @@ import { TableRowActionMethod } from './table-row-action.method';
 import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
 import { TableRowActionExecutingDirective } from './table-row-action-executing.directive';
 import { TableRowActionStatus } from './table-row-action-status';
+import { TableDataSourceDirective } from '../table-data-source.directive';
 
 @Directive({
   selector: 'button[rxapTableRowAction]'
@@ -43,8 +44,12 @@ export class TableRowActionDirective<Data extends Record<string, any>> {
   constructor(
     @Inject(RXAP_TABLE_ROW_ACTION_METHOD)
     private readonly actionMethod: TableRowActionMethod<Data>,
+    @Inject(ChangeDetectorRef)
     protected readonly cdr: ChangeDetectorRef,
+    @Inject(ViewContainerRef)
     private readonly vcr: ViewContainerRef,
+    @Inject(TableDataSourceDirective)
+    private readonly tableDataSourceDirective: TableDataSourceDirective,
     @Optional()
     @Inject(MatButton)
     private readonly matButton: MatButton | null
@@ -107,6 +112,7 @@ export class TableRowActionDirective<Data extends Record<string, any>> {
       case TableRowActionStatus.DONE:
         this.setButtonEnabled();
         this.executingDirective?.hide();
+        this.tableDataSourceDirective.refresh();
         break;
     }
     this.cdr.detectChanges();
