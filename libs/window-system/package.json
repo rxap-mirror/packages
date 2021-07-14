@@ -1,6 +1,6 @@
 {
   "name": "@rxap/window-system",
-  "version": "12.0.8",
+  "version": "12.0.9-next.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/window-system",
@@ -24,11 +24,11 @@
     "@angular/material": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
     "@angular/router": "^12.0.1",
-    "@rxap/components": "^12.0.9-next.0",
-    "@rxap/directives": "^12.1.1-next.0",
+    "@rxap/components": "^12.0.9",
+    "@rxap/directives": "^12.1.2-next.0",
     "@rxap/material-directives": "^12.0.6",
-    "@rxap/services": "^12.0.7-next.0",
-    "@rxap/utilities": "^12.2.0-next.0",
+    "@rxap/services": "^12.0.7",
+    "@rxap/utilities": "^12.2.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
