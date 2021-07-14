@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.2...@rxap/material-table-system@12.3.0-next.3) (2021-07-14)
+
+
+### Bug Fixes
+
+* expose themes ([4650536](https://gitlab.com/rxap/packages/commit/4650536986e36816b698f76f080809020f2ea125))
+
+
+
+
+
 # [12.3.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.1...@rxap/material-table-system@12.3.0-next.2) (2021-07-14)
 
 
