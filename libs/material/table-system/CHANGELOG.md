@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.3...@rxap/material-table-system@12.3.0-next.4) (2021-07-14)
+
+
+### Features
+
+* add link protocol support ([43a47ca](https://gitlab.com/rxap/packages/commit/43a47caaa71ee4ffc89c90c90064bf3be475a476))
+
+
+
+
+
 # [12.3.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.2...@rxap/material-table-system@12.3.0-next.3) (2021-07-14)
 
 
