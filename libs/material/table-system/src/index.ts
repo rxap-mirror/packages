@@ -107,4 +107,16 @@ export * from './lib/cells/boolean-cell/boolean-cell.component.module';
 
 // endregion
 
+// region table-row-actions
+
+export * from './lib/table-row-actions/table-row-action.directive';
+export * from './lib/table-row-actions/table-row-action.method';
+export * from './lib/table-row-actions/table-row-action-executing.directive';
+export * from './lib/table-row-actions/table-row-action-status';
+export * from './lib/table-row-actions/table-row-actions.module';
+export * from './lib/table-row-actions/table-row-header-action.directive';
+export * from './lib/table-row-actions/tokens';
+
+// endregion
+
 // endregion
