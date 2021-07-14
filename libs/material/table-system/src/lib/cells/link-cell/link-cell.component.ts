@@ -1,11 +1,15 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input
+} from '@angular/core';
 
 @Component({
   selector:        'td[rxap-link-cell]',
   templateUrl:     './link-cell.component.html',
   styleUrls:       [ './link-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'mfd-link-cell' }
+  host: { class: 'rxap-link-cell' }
 })
 export class LinkCellComponent {
 

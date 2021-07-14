@@ -1,4 +1,4 @@
-@mixin mfd-options-cell-theme($theme) {
+@mixin rxap-options-cell-theme($theme) {
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
   $accent: map-get($theme, accent);
@@ -6,10 +6,12 @@
   $warn: map-get($theme, warn);
   $isDark: map-get($theme, is-dark);
 
-  .mfd-options-cell { }
+  .rxap-options-cell {
+  }
 
 }
 
-@mixin mfd-options-cell-typography($config) {
-  .mfd-options-cell { }
+@mixin rxap-options-cell-typography($config) {
+  .rxap-options-cell {
+  }
 }

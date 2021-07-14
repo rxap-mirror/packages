@@ -1,4 +1,4 @@
-@mixin mfd-icon-cell-theme($theme) {
+@mixin rxap-icon-cell-theme($theme) {
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
   $accent: map-get($theme, accent);
@@ -6,10 +6,12 @@
   $warn: map-get($theme, warn);
   $isDark: map-get($theme, is-dark);
 
-  .mfd-icon-cell { }
+  .rxap-icon-cell {
+  }
 
 }
 
-@mixin mfd-icon-cell-typography($config) {
-  .mfd-icon-cell { }
+@mixin rxap-icon-cell-typography($config) {
+  .rxap-icon-cell {
+  }
 }

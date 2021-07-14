@@ -6,18 +6,18 @@ import {
   ContentChildren,
   AfterContentInit,
   isDevMode,
-  OnDestroy,
+  OnDestroy
 } from '@angular/core';
 import { MatOption } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'td[rxap-options-cell]',
-  templateUrl: './options-cell.component.html',
-  styleUrls: ['./options-cell.component.scss'],
+  selector:        'td[rxap-options-cell]',
+  templateUrl:     './options-cell.component.html',
+  styleUrls:       [ './options-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'mfd-options-cell' },
+  host:            { class: 'rxap-options-cell' }
 })
 export class OptionsCellComponent implements AfterContentInit, OnDestroy {
   @Input('rxap-options-cell')

@@ -1,6 +1,7 @@
 import {
   Component,
-  ChangeDetectionStrategy, Input,
+  ChangeDetectionStrategy,
+  Input
 } from '@angular/core';
 import { IconConfig } from '@rxap/utilities';
 
@@ -9,7 +10,7 @@ import { IconConfig } from '@rxap/utilities';
   templateUrl:     './icon-cell.component.html',
   styleUrls:       [ './icon-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'mfd-icon-cell' }
+  host: { class: 'rxap-icon-cell' }
 })
 export class IconCellComponent {
 
