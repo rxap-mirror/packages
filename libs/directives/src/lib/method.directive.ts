@@ -46,7 +46,7 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
 
   constructor() { }
 
-  public ngOnInit(): void {
+  public ngOnInit() {
     if (this.immediately) {
       this.execute();
     }
@@ -54,16 +54,19 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
 
   @HostListener('confirmed')
   public onConfirmed() {
-    this.execute();
+    return this.execute();
   }
 
   @HostListener('click')
   public onClick() {
     if (!this._hasConfirmDirective) {
-      this.execute();
+      return this.execute();
     } else {
-      console.debug('skip remote method call. Wait for confirmation.');
+      if (isDevMode()) {
+        console.debug('skip remote method call. Wait for confirmation.');
+      }
     }
+    return Promise.resolve();
   }
 
   public async execute(): Promise<void> {
