@@ -6,12 +6,18 @@ import {
   ViewContainerRef,
   NgModule,
   ChangeDetectorRef,
-  AfterContentInit,
+  AfterContentInit
 } from '@angular/core';
-import { MAT_FORM_FIELD, MatFormField } from '@angular/material/form-field';
+import {
+  MAT_FORM_FIELD,
+  MatFormField
+} from '@angular/material/form-field';
 import { controlErrorChanges$ } from '@rxap/forms';
 import { Subscription } from 'rxjs';
-import { ValidationErrors, AbstractControl } from '@angular/forms';
+import {
+  ValidationErrors,
+  AbstractControl
+} from '@angular/forms';
 import { tap } from 'rxjs/operators';
 
 export interface ControlErrorsDirectiveContext {
@@ -25,7 +31,7 @@ export interface ControlErrorsDirectiveContext {
 })
 export class ControlErrorsDirective implements AfterContentInit, OnDestroy {
   static ngTemplateContextGuard<T>(
-    dir: ControlErrorsDirectiveContext,
+    dir: ControlErrorsDirective,
     ctx: any
   ): ctx is ControlErrorsDirectiveContext {
     return true;

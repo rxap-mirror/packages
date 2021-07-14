@@ -25,7 +25,7 @@ export class WindowFooterDirective implements OnInit {
    * The presence of this method is a signal to the Ivy template type-check compiler that the
    * `NgForOf` structural directive renders its template with a specific context type.
    */
-  static ngTemplateContextGuard(dir: WindowFooterTemplateContext, ctx: any):
+  static ngTemplateContextGuard(dir: WindowFooterDirective, ctx: any):
     ctx is WindowFooterTemplateContext {
     return true;
   }
