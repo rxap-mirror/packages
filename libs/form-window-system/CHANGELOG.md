@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.6-next.0](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@12.1.5...@rxap/form-window-system@12.1.6-next.0) (2021-07-14)
+
+
+### Bug Fixes
+
+* use the ngTemplateContextGuard with the correct property types ([25cd947](https://gitlab.com/rxap/packages/commit/25cd94774f65f16ef40ab775e1093bec806d765b))
+
+
+
+
+
 ## [12.1.5](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@12.1.5-next.0...@rxap/form-window-system@12.1.5) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/form-window-system
