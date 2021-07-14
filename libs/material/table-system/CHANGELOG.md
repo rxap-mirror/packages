@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.1...@rxap/material-table-system@12.3.0-next.2) (2021-07-14)
+
+
+### Features
+
+* **table-row-action:** refresh table after action execution ([141136a](https://gitlab.com/rxap/packages/commit/141136a25428c29c394702b1b73df1d486ff6dd3))
+
+
+
+
+
 # [12.3.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.0...@rxap/material-table-system@12.3.0-next.1) (2021-07-14)
 
 
