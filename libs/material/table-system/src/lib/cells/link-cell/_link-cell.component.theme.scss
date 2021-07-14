@@ -1,4 +1,4 @@
-@mixin mfd-link-cell-theme($theme) {
+@mixin rxap-link-cell-theme($theme) {
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
   $accent: map-get($theme, accent);
@@ -6,10 +6,12 @@
   $warn: map-get($theme, warn);
   $isDark: map-get($theme, is-dark);
 
-  .mfd-link-cell { }
+  .rxap-link-cell {
+  }
 
 }
 
-@mixin mfd-link-cell-typography($config) {
-  .mfd-link-cell { }
+@mixin rxap-link-cell-typography($config) {
+  .rxap-link-cell {
+  }
 }

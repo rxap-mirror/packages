@@ -7,6 +7,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { TableRowActionDirective } from './table-row-action.directive';
 import { TableRowActionExecutingDirective } from './table-row-action-executing.directive';
 import { TableRowHeaderActionDirective } from './table-row-header-action.directive';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { TableRowHeaderActionDirective } from './table-row-header-action.directi
     MatButtonModule,
     ConfirmComponentModule,
     MatIconModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    CommonModule
   ]
 })
 export class TableRowActionsModule {}
