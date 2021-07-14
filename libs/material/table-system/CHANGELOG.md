@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.2.5...@rxap/material-table-system@12.3.0-next.0) (2021-07-14)
+
+
+### Features
+
+* add TableRowAction Module ([b4f76c1](https://gitlab.com/rxap/packages/commit/b4f76c1218ecd501697011b5b61d613573028599))
+
+
+
+
+
 ## [12.2.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.2.4...@rxap/material-table-system@12.2.5) (2021-07-09)
 
 

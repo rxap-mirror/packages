@@ -1,6 +1,6 @@
 {
   "name": "@rxap/directives",
-  "version": "12.1.1",
+  "version": "12.1.2-next.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/directives",
@@ -20,8 +20,8 @@
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",
     "@angular/router": "^12.0.1",
-    "@rxap/services": "^12.0.7-next.0",
-    "@rxap/utilities": "^12.2.0-next.0",
+    "@rxap/services": "^12.0.7",
+    "@rxap/utilities": "^12.2.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
