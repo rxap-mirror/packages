@@ -25,7 +25,7 @@ export class WindowTitleDirective implements OnInit {
    * The presence of this method is a signal to the Ivy template type-check compiler that the
    * `NgForOf` structural directive renders its template with a specific context type.
    */
-  static ngTemplateContextGuard(dir: WindowTitleTemplateContext, ctx: any):
+  static ngTemplateContextGuard(dir: WindowTitleDirective, ctx: any):
     ctx is WindowTitleTemplateContext {
     return true;
   }

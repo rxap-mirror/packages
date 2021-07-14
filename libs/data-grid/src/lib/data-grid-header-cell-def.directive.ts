@@ -1,4 +1,8 @@
-import { Directive, TemplateRef, Inject } from '@angular/core';
+import {
+  Directive,
+  TemplateRef,
+  Inject
+} from '@angular/core';
 
 export interface DataGridHeaderCellDefDirectiveContext {
   $implicit: string;
@@ -9,7 +13,7 @@ export interface DataGridHeaderCellDefDirectiveContext {
 })
 export class DataGridHeaderCellDefDirective {
   public static ngTemplateContextGuard(
-    dir: DataGridHeaderCellDefDirectiveContext,
+    dir: DataGridHeaderCellDefDirective,
     ctx: any
   ): ctx is DataGridHeaderCellDefDirectiveContext {
     return true;

@@ -52,8 +52,8 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   // For each child directive that should have a template context guard
   // the template context guard must be defined
   // !! add generation of concrete template context guard to openapi schematics !!
-  static ngTemplateContextGuard(dir: RemoteMethodTemplateDirectiveContext, ctx: any):
-    ctx is RemoteMethodTemplateDirectiveContext {
+  static ngTemplateContextGuard<T>(dir: RemoteMethodTemplateDirective<T>, ctx: any):
+    ctx is RemoteMethodTemplateDirectiveContext<T> {
     return true;
   }
 

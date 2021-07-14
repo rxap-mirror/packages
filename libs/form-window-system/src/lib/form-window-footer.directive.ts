@@ -33,7 +33,7 @@ export class FormWindowFooterDirective<Data> implements OnInit {
    * The presence of this method is a signal to the Ivy template type-check compiler that the
    * `NgForOf` structural directive renders its template with a specific context type.
    */
-  static ngTemplateContextGuard<T>(dir: FormWindowFooterTemplateContext<T>, ctx: any):
+  static ngTemplateContextGuard<T>(dir: FormWindowFooterDirective<T>, ctx: any):
     ctx is FormWindowFooterTemplateContext<T> {
     return true;
   }
