@@ -162,6 +162,9 @@
     },
     "validator": {
       "tags": []
+    },
+    "material-popover-edit": {
+      "tags": []
     }
   }
 }
