@@ -60,12 +60,12 @@ import {
 import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 @Directive({
-  selector: 'form:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',
+  selector:  'form[rxapForm]:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',
   providers: [
     {
       provide: ControlContainer,
       // ignore coverage
-      useExisting: forwardRef(() => FormDirective),
+      useExisting: forwardRef(() => FormDirective)
     },
     // region form provider clear
     // form provider that are directly associated with the current form
