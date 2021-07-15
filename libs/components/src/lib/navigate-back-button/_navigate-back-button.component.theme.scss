@@ -1,4 +1,4 @@
-@mixin srm-navigate-back-button-theme($theme) {
+@mixin rxap-navigate-back-button-theme($theme) {
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
   $accent: map-get($theme, accent);
@@ -6,12 +6,15 @@
   $warn: map-get($theme, warn);
   $isDark: map-get($theme, is-dark);
 
-  .srm-navigate-back-button {
+  .rxap-navigate-back-button {
+    h1, h2, h3, h4, h5, h6 {
+      margin: 0;
+    }
   }
 
 }
 
-@mixin srm-navigate-back-button-typography($config) {
-  .srm-navigate-back-button {
+@mixin rxap-navigate-back-button-typography($config) {
+  .rxap-navigate-back-button {
   }
 }
