@@ -63,7 +63,7 @@ export function IsUrl({ message, options }: { message?: string, options?: IsURLO
     }
     if (!isURL(control.value, options)) {
       return {
-        isNumber: {
+        isURL: {
           expected: 'A url value',
           actual:   control.value,
           message

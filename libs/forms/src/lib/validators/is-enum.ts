@@ -11,7 +11,7 @@ export function IsEnum({ message, entity }: { message?: string, entity: any }) {
     }
     if (!isEnum(control.value, entity)) {
       return {
-        isNumber: {
+        isEnum: {
           expected: 'A enum value',
           actual:   control.value,
           message
