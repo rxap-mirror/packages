@@ -4,7 +4,7 @@ import {
 } from '@angular/forms';
 import { isObject } from 'class-validator';
 
-export function IsObject({ message }: { message?: string }) {
+export function IsObject({ message }: { message?: string } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;

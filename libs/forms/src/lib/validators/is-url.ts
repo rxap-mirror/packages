@@ -56,7 +56,7 @@ export interface IsURLOptions {
   disallow_auth?: boolean | undefined;
 }
 
-export function IsUrl({ message, options }: { message?: string, options?: IsURLOptions }) {
+export function IsUrl({ message, options }: { message?: string, options?: IsURLOptions } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;

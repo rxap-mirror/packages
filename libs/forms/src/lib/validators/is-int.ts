@@ -4,7 +4,7 @@ import {
 } from '@angular/forms';
 import { isInt } from 'class-validator';
 
-export function IsInt({ message }: { message?: string }) {
+export function IsInt({ message }: { message?: string } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;

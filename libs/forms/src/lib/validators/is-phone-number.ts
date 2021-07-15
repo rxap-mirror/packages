@@ -251,7 +251,7 @@ export type CountryCode =
   | 'ZM'
   | 'ZW';
 
-export function IsPhoneNumber({ message, region }: { message?: string, region?: CountryCode }) {
+export function IsPhoneNumber({ message, region }: { message?: string, region?: CountryCode } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;

@@ -20,7 +20,7 @@ export function IsNumber(control: AbstractControl): ValidationErrors | null {
   return null;
 }
 
-export function _IsNumber({ message, options }: { message?: string, options?: IsNumberOptions }) {
+export function _IsNumber({ message, options }: { message?: string, options?: IsNumberOptions } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;
