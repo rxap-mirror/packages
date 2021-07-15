@@ -11,7 +11,7 @@ export function IsDate({ message }: { message?: string } = {}) {
     }
     if (!isDate(control.value)) {
       return {
-        isNumber: {
+        isDate: {
           expected: 'A date value',
           actual:   control.value,
           message

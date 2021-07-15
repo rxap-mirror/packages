@@ -119,9 +119,11 @@ export function IsComplex({ message, options }: { message?: string, options: Com
     const errors = checkError(control.value, options);
     if (Object.keys(errors).length) {
       return {
-        expected: options,
-        actual:   errors,
-        message
+        isComplex: {
+          expected: options,
+          actual:   errors,
+          message
+        }
       };
     }
     return null;

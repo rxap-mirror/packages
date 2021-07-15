@@ -11,7 +11,7 @@ export function IsArray({ message }: { message?: string } = {}) {
     }
     if (!isArray(control.value)) {
       return {
-        isNumber: {
+        isArray: {
           expected: 'A array value',
           actual:   control.value,
           message

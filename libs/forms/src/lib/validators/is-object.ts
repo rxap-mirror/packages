@@ -11,7 +11,7 @@ export function IsObject({ message }: { message?: string } = {}) {
     }
     if (!isObject(control.value)) {
       return {
-        isNumber: {
+        isObject: {
           expected: 'A object value',
           actual:   control.value,
           message

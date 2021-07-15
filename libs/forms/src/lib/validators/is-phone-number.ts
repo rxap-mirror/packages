@@ -258,7 +258,7 @@ export function IsPhoneNumber({ message, region }: { message?: string, region?: 
     }
     if (!isPhoneNumber(control.value, region)) {
       return {
-        isNumber: {
+        isPhoneNumber: {
           expected: 'A phone number value',
           actual:   control.value,
           message

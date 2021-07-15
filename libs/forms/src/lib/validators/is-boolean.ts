@@ -11,7 +11,7 @@ export function IsBoolean({ message }: { message?: string } = {}) {
     }
     if (!isBoolean(control.value)) {
       return {
-        isNumber: {
+        isBoolean: {
           expected: 'A boolean value',
           actual:   control.value,
           message

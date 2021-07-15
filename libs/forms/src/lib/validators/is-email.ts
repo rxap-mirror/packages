@@ -57,7 +57,7 @@ export function IsEmail({ message, options }: { message?: string, options?: IsEm
     }
     if (!isEmail(control.value, options)) {
       return {
-        isNumber: {
+        isEmail: {
           expected: 'A email value',
           actual:   control.value,
           message

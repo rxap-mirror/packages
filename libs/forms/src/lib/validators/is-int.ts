@@ -11,7 +11,7 @@ export function IsInt({ message }: { message?: string } = {}) {
     }
     if (!isInt(control.value)) {
       return {
-        isNumber: {
+        isInt: {
           expected: 'A int value',
           actual:   control.value,
           message
