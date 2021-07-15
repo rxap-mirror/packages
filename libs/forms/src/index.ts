@@ -46,6 +46,15 @@ export * from './lib/directives/parent-control-container.directive';
 
 // region validators
 
+export * from './lib/validators/index';
+
+export * from './lib/validators/is-array';
+export * from './lib/validators/is-boolean';
+export * from './lib/validators/is-date';
+export * from './lib/validators/is-enum';
+export * from './lib/validators/is-int';
 export * from './lib/validators/is-number';
+export * from './lib/validators/is-object';
+export * from './lib/validators/is-string';
 
 // endregion
