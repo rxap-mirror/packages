@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.4.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.1...@rxap/forms@12.4.0-next.2) (2021-07-15)
+
+
+### Bug Fixes
+
+* add missing default options object ([539f1d1](https://gitlab.com/rxap/packages/commit/539f1d129eb998559bac19c6a469e1bb0bf7962b))
+
+
+
+
+
 # [12.4.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.0...@rxap/forms@12.4.0-next.1) (2021-07-15)
 
 
