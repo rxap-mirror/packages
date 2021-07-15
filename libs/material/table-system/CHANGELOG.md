@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.4...@rxap/material-table-system@12.3.0-next.5) (2021-07-15)
+
+
+### Bug Fixes
+
+* support ng-content ([e5f7601](https://gitlab.com/rxap/packages/commit/e5f7601b2402bcd54556b1e9050f6efb6195f5b0))
+
+
+
+
+
 # [12.3.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.3...@rxap/material-table-system@12.3.0-next.4) (2021-07-14)
 
 
