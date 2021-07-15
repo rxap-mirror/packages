@@ -17,3 +17,4 @@ export {
 export * from './lib/lens-directives';
 export * from './lib/popover-edit-module';
 export * from './lib/table-directives';
+export * from './lib/popover-edit-form.directive';
