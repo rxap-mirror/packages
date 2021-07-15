@@ -7,13 +7,13 @@
  */
 import { Directive } from '@angular/core';
 import {
-  _CELL_SELECTOR,
   CdkEditOpen,
-  CdkRowHoverContent,
   CdkPopoverEdit,
   CdkPopoverEditTabOut,
-  _closest
-} from '../index';
+  CdkRowHoverContent
+} from './cdk/table-directives';
+import { CELL_SELECTOR } from './cdk/constants';
+import { closest } from './cdk/polyfill';
 
 const POPOVER_EDIT_HOST_BINDINGS = {
   '[attr.tabindex]':      'disabled ? null : 0',
@@ -85,7 +85,7 @@ export class MatRowHoverContent extends CdkRowHoverContent {
   }
 
   protected makeElementVisible(element: HTMLElement): void {
-    _closest(this.elementRef.nativeElement!, _CELL_SELECTOR)!
+    closest(this.elementRef.nativeElement!, CELL_SELECTOR)!
       .classList.add(MAT_ROW_HOVER_CELL_CLASS);
 
     if (this.services.directionality.value === 'rtl') {
