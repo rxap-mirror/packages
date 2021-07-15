@@ -339,7 +339,7 @@ export class FormDirective<T extends Record<string, any> = any>
     return false;
   }
 
-  private loadInitialState(form: RxapFormGroup): void {
+  protected loadInitialState(form: RxapFormGroup): void {
     if (this.initial) {
       if (isDevMode()) {
         console.log('use the value from input initial');
@@ -389,7 +389,7 @@ export class FormDirective<T extends Record<string, any> = any>
     }
   }
 
-  private loadSuccessful(value: any) {
+  protected loadSuccessful(value: any) {
     if (this.loadSuccessfulMethod) {
       this.loadSuccessfulMethod.call(value);
     } else if (isDevMode()) {
@@ -399,7 +399,7 @@ export class FormDirective<T extends Record<string, any> = any>
     }
   }
 
-  private loadFailed(error: Error) {
+  protected loadFailed(error: Error) {
     console.debug('Load Error:', error);
     console.error('Load Error:', error.message);
     if (this.loadFailedMethod) {
@@ -421,7 +421,7 @@ export class FormDirective<T extends Record<string, any> = any>
     return clone(value);
   }
 
-  private submit() {
+  protected submit() {
     const value = this.getSubmitValue();
     if (this.submitMethod) {
       Reflect.set(this, 'submitted', false);
@@ -467,7 +467,7 @@ export class FormDirective<T extends Record<string, any> = any>
     }
   }
 
-  private submitFailed(error: Error) {
+  protected submitFailed(error: Error) {
     console.debug('Submit Error:', error);
     console.error('Submit Error:', error.message);
     if (this.submitFailedMethod) {
@@ -475,18 +475,18 @@ export class FormDirective<T extends Record<string, any> = any>
     } else if (isDevMode()) {
       console.warn(
         'The form submit failed method is not defined for: ' +
-          this.form.controlId
+        this.form.controlId
       );
     }
   }
 
-  private submitSuccessful(value: any) {
+  protected submitSuccessful(value: any) {
     if (this.submitSuccessfulMethod) {
       this.submitSuccessfulMethod.call(value);
     } else if (isDevMode()) {
       console.warn(
         'The form submit successful method is not defined for: ' +
-          this.form.controlId
+        this.form.controlId
       );
     }
   }
