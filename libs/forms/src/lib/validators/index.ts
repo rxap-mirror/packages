@@ -7,6 +7,8 @@ import { IsEnum } from './is-enum';
 import { IsDate } from './is-date';
 import { IsArray } from './is-array';
 import { IsComplex } from './is-complex';
+import { IsPhoneNumber } from './is-phone-number';
+import { IsEmail } from './is-email';
 
 export const RxapValidators = {
   IsNumber,
@@ -17,5 +19,7 @@ export const RxapValidators = {
   IsInt,
   IsObject,
   IsString,
-  IsComplex
+  IsComplex,
+  IsPhoneNumber,
+  IsEmail
 };
