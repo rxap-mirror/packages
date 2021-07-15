@@ -9,6 +9,7 @@ import { IsArray } from './is-array';
 import { IsComplex } from './is-complex';
 import { IsPhoneNumber } from './is-phone-number';
 import { IsEmail } from './is-email';
+import { IsUrl } from './is-url';
 
 export const RxapValidators = {
   IsNumber,
@@ -21,5 +22,6 @@ export const RxapValidators = {
   IsString,
   IsComplex,
   IsPhoneNumber,
-  IsEmail
+  IsEmail,
+  IsUrl
 };
