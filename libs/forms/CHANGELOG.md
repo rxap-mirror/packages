@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.4.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.3...@rxap/forms@12.4.0-next.4) (2021-07-15)
+
+
+### Bug Fixes
+
+* only fail if any check fails ([4709216](https://gitlab.com/rxap/packages/commit/4709216b40bf929f1328b4c7b32c265e96e1f0fa))
+
+
+
+
+
 # [12.4.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.2...@rxap/forms@12.4.0-next.3) (2021-07-15)
 
 
