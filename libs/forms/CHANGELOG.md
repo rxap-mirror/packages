@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.4.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.0...@rxap/forms@12.4.0-next.1) (2021-07-15)
+
+
+### Features
+
+* add isPhoneNumber and isEmail validators ([1f6e333](https://gitlab.com/rxap/packages/commit/1f6e33305b42101aa48b56ab488d23901143a2f9))
+* add isUrl ([1f6e696](https://gitlab.com/rxap/packages/commit/1f6e6968d4f2c778740dcdc13a4f93c52de41c42))
+
+
+
+
+
 # [12.4.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.3.6-next.2...@rxap/forms@12.4.0-next.0) (2021-07-15)
 
 
