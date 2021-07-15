@@ -25,23 +25,30 @@ import {
   PopoverEditPositionStrategyFactory
 } from './popover-edit-position-strategy-factory';
 
-const EXPORTED_DECLARATIONS = [
-  CdkPopoverEdit,
-  CdkPopoverEditTabOut,
-  CdkRowHoverContent,
-  CdkEditControl,
-  CdkEditRevert,
-  CdkEditClose,
-  CdkEditable,
-  CdkEditOpen
-];
-
 @NgModule({
   imports:      [
     OverlayModule
   ],
-  exports:      EXPORTED_DECLARATIONS,
-  declarations: EXPORTED_DECLARATIONS,
+  exports:      [
+    CdkPopoverEdit,
+    CdkPopoverEditTabOut,
+    CdkRowHoverContent,
+    CdkEditControl,
+    CdkEditRevert,
+    CdkEditClose,
+    CdkEditable,
+    CdkEditOpen
+  ],
+  declarations: [
+    CdkPopoverEdit,
+    CdkPopoverEditTabOut,
+    CdkRowHoverContent,
+    CdkEditControl,
+    CdkEditRevert,
+    CdkEditClose,
+    CdkEditable,
+    CdkEditOpen
+  ],
   providers:    [
     {
       provide:  PopoverEditPositionStrategyFactory,
