@@ -173,4 +173,7 @@
       @include typography($typography);
     }
   }
+  td.mat-cell.cdk-cell.mat-popover-edit-cell.cdk-popover-edit-cell {
+    padding-right: calc(1.6rem + 40px) !important;
+  }
 }
