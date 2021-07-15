@@ -1,6 +1,6 @@
 {
   "name": "@rxap/forms",
-  "version": "12.3.6-next.2",
+  "version": "12.4.0-next.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/forms",
@@ -27,6 +27,7 @@
     "@rxap/directives": "^12.1.2-next.0",
     "@rxap/services": "^12.0.7",
     "@rxap/utilities": "^12.2.1-next.0",
+    "class-validator": "^0.13.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
