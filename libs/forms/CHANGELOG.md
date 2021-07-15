@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.6-next.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.3.6-next.1...@rxap/forms@12.3.6-next.2) (2021-07-15)
+
+
+### Bug Fixes
+
+* expose some class member as protected ([f133b61](https://gitlab.com/rxap/packages/commit/f133b6144983155bd232e1e61dd6a7e31a86fdae))
+
+
+
+
+
 ## [12.3.6-next.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.3.6-next.0...@rxap/forms@12.3.6-next.1) (2021-07-15)
 
 
