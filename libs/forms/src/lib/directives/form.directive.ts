@@ -159,7 +159,7 @@ export class FormDirective<T extends Record<string, any> = any>
   public set useFormDefinition(value: FormDefinition<T> | '') {
     if (value) {
       this._formDefinition = value as any;
-      this.form = value.rxapFormGroup;
+      this.form            = value.rxapFormGroup;
     }
   }
 
@@ -167,14 +167,14 @@ export class FormDirective<T extends Record<string, any> = any>
     return this._formDefinition;
   }
 
-  public submitting$ = new ToggleSubject();
-  public submitError$ = new BehaviorSubject<Error | null>(null);
-  public loading$ = new ToggleSubject();
-  public loaded$ = new ToggleSubject();
-  public loadingError$ = new BehaviorSubject<Error | null>(null);
+  public readonly submitting$   = new ToggleSubject();
+  public readonly submitError$  = new BehaviorSubject<Error | null>(null);
+  public readonly loading$      = new ToggleSubject();
+  public readonly loaded$       = new ToggleSubject();
+  public readonly loadingError$ = new BehaviorSubject<Error | null>(null);
 
   @Required
-  private _formDefinition!: FormDefinition<T>;
+  protected _formDefinition!: FormDefinition<T>;
 
   @Input()
   public submitMethod: FormSubmitMethod<any> | null = null;
@@ -185,45 +185,45 @@ export class FormDirective<T extends Record<string, any> = any>
     @Inject(ChangeDetectorRef) public readonly cdr: ChangeDetectorRef,
     @Optional()
     @Inject(RXAP_FORM_DEFINITION)
-    formDefinition: FormDefinition | null = null,
+      formDefinition: FormDefinition | null                                      = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_SUBMIT_METHOD)
-    submitMethod: FormSubmitMethod<any> | null = null,
+      submitMethod: FormSubmitMethod<any> | null                                 = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_LOAD_METHOD)
-    private readonly loadMethod: FormLoadMethod | null = null,
+    protected readonly loadMethod: FormLoadMethod | null                         = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_LOAD_FAILED_METHOD)
-    private readonly loadFailedMethod: FormLoadFailedMethod | null = null,
+    protected readonly loadFailedMethod: FormLoadFailedMethod | null             = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_LOAD_SUCCESSFUL_METHOD)
-    private readonly loadSuccessfulMethod: FormLoadSuccessfulMethod | null = null,
+    protected readonly loadSuccessfulMethod: FormLoadSuccessfulMethod | null     = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_SUBMIT_FAILED_METHOD)
-    private readonly submitFailedMethod: FormSubmitFailedMethod | null = null,
+    protected readonly submitFailedMethod: FormSubmitFailedMethod | null         = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD)
-    private readonly submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null,
+    protected readonly submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null,
     // skip self, bc the token is set to null
     @SkipSelf()
     @Optional()
     @Inject(RXAP_FORM_DEFINITION_BUILDER)
-    private readonly formDefinitionBuilder: RxapFormBuilder | null = null,
+    protected readonly formDefinitionBuilder: RxapFormBuilder | null             = null,
     @Optional()
     @Inject(LoadingIndicatorService)
-    private readonly loadingIndicatorService: LoadingIndicatorService | null = null
+    protected readonly loadingIndicatorService: LoadingIndicatorService | null   = null
   ) {
     super([], []);
     if (submitMethod) {
@@ -409,10 +409,10 @@ export class FormDirective<T extends Record<string, any> = any>
     }
   }
 
-  private getSubmitValue(): T {
+  protected getSubmitValue(): T {
     let value: T;
 
-    if (typeof this._formDefinition['getSubmitValue'] === 'function') {
+    if (typeof this._formDefinition[ 'getSubmitValue' ] === 'function') {
       value = this._formDefinition.getSubmitValue();
     } else {
       value = this.form.value;
