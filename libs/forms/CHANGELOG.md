@@ -176,6 +176,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [12.3.6-alpha.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.3.6-next.2...@rxap/forms@12.3.6-alpha.0) (2021-07-15)
+
+**Note:** Version bump only for package @rxap/forms
+
+
+
+
+
 ## [12.3.6-next.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.3.6-next.1...@rxap/forms@12.3.6-next.2) (2021-07-15)
 
 
