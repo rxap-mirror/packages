@@ -1,0 +1,16 @@
+@import "./lib/upload-button/upload-button.component.theme";
+/* IMPORT */
+
+@mixin rxap-upload-theme($theme) {
+
+  @include rxap-upload-button-theme($theme);
+  /* THEME_INCLUDE */
+
+}
+
+@mixin rxap-upload-typography($config) {
+
+  @include rxap-upload-button-typography($config);
+  /* TYPOGRAPHY_INCLUDE */
+
+}
