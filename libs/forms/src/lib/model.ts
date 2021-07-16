@@ -69,6 +69,12 @@ export interface FormDefinition<
    * the value property of the root RxapFormGroup instance will be used
    */
   getSubmitValue?(): T;
+
+  /**
+   * Called to get the value that should be submitted. If not defined
+   * the value property of the root RxapFormGroup instance will be used
+   */
+  toJSON?(): T;
 }
 
 export interface FormDefinitionArray<T> extends Array<T> {
