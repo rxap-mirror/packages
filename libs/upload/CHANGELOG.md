@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.1...@rxap/upload@12.1.0-next.2) (2021-07-16)
+
+
+### Features
+
+* add form field support ([d8b06b5](https://gitlab.com/rxap/packages/commit/d8b06b57319f9188d4423fd5b1f9594d8ac20325))
+
+
+
+
+
 # [12.1.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.0...@rxap/upload@12.1.0-next.1) (2021-07-16)
 
 
