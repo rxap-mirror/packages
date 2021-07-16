@@ -2,18 +2,21 @@
   <button
     type="button"
     fxFlex="nogrow"
-    [rxapRemoteMethod]="fileUpload"
+    #method="rxapMethod"
     (successful)="uploaded.emit($event)"
-    mat-icon-button>
-    <mat-icon svgIcon="upload"></mat-icon>
+    [parameters]="{ accept: accept }"
+    [rxapMethod]="fileUpload"
+    mat-stroked-button>
+    <span fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
+      <mat-icon fxFlex="nogrow">cloud_upload</mat-icon>&nbsp;
+      <ng-content></ng-content>
+      <mat-progress-spinner
+        *ngIf="method.executing$ | async"
+        diameter="15"
+        fxFlex="nogrow"
+        mode="indeterminate">
+      </mat-progress-spinner>
+    </span>
   </button>
-  <span fxFlex="nogrow">
-    <ng-content></ng-content>
-  </span>
-  <mat-progress-spinner
-    *ngIf="fileUpload.progress$ | async as progress"
-    [value]="progress"
-    fxFlex="nogrow"
-    [fxHide]="progress >= 100 || progress <= 0">
-  </mat-progress-spinner>
+
 </div>

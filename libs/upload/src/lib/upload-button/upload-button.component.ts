@@ -12,7 +12,7 @@ import { FileUploadMethod } from '../file-upload.method';
   templateUrl:     './upload-button.component.html',
   styleUrls:       [ './upload-button.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'mfd-upload-button' }
+  host:            { class: 'rxap-upload-button' }
 })
 export class UploadButtonComponent {
 
@@ -22,8 +22,8 @@ export class UploadButtonComponent {
   @Output()
   public uploaded = new EventEmitter<File>();
 
-
-  constructor(public readonly fileUpload: FileUploadMethod) {
-  }
+  constructor(
+    public readonly fileUpload: FileUploadMethod
+  ) { }
 
 }

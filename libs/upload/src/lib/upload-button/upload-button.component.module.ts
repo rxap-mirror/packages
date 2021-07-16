@@ -6,7 +6,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { FileUploadMethod } from '../file-upload.method';
-import { RemoteMethodDirectiveModule } from '@rxap/remote-method/directive';
+import { MethodDirectiveModule } from '@rxap/directives';
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { RemoteMethodDirectiveModule } from '@rxap/remote-method/directive';
     MatProgressSpinnerModule,
     CommonModule,
     MatButtonModule,
-    RemoteMethodDirectiveModule
+    MethodDirectiveModule
   ],
   exports:      [ UploadButtonComponent ],
   providers:    [ FileUploadMethod ]

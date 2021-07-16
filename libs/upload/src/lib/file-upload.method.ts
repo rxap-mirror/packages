@@ -8,10 +8,10 @@ import {
   take
 } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { BaseRemoteMethod } from '@rxap/remote-method';
+import { Method } from '@rxap/utilities/rxjs';
 
 @Injectable()
-export class FileUploadMethod extends BaseRemoteMethod<File, { accept: string }> {
+export class FileUploadMethod implements Method<File, { accept: string }> {
 
   public progress$: Subject<number> = new Subject<number>();
 
@@ -42,12 +42,18 @@ export class FileUploadMethod extends BaseRemoteMethod<File, { accept: string }>
     this._fileInput = null;
   }
 
-  private addInputToDom(accept: string): HTMLInputElement {
-    const fileInput = document.createElement('input');
-    fileInput.setAttribute('type', 'file');
-    fileInput.setAttribute('style', 'display: none');
-    fileInput.setAttribute('accept', accept);
-    return this._fileInput = fileInput;
+  public call(parameters?: { accept?: string }): Promise<File> {
+    const fileInput = this.addInputToDom(parameters?.accept ?? '**/**');
+
+    const change$ = fromEvent(fileInput, 'change').pipe(
+      map(event => this.handleFileInputChange(event)),
+      switchMap(file => this.readFile(file)),
+      take(1)
+    );
+
+    fileInput.click();
+
+    return change$.toPromise();
   }
 
   private readFile(file: File): Promise<File> {
@@ -72,18 +78,13 @@ export class FileUploadMethod extends BaseRemoteMethod<File, { accept: string }>
     return loadFile$.toPromise();
   }
 
-  protected _call(parameters: { accept: string }): Promise<File> {
-    const fileInput = this.addInputToDom(parameters.accept);
-
-    const change$ = fromEvent(fileInput, 'change').pipe(
-      map(event => this.handleFileInputChange(event)),
-      switchMap(file => this.readFile(file)),
-      take(1)
-    );
-
-    fileInput.click();
-
-    return change$.toPromise();
+  private addInputToDom(accept: string): HTMLInputElement {
+    const fileInput = document.createElement('input');
+    fileInput.setAttribute('type', 'file');
+    fileInput.setAttribute('style', 'display: none');
+    fileInput.setAttribute('accept', accept);
+    document.body.appendChild(fileInput);
+    return this._fileInput = fileInput;
   }
 
 }
