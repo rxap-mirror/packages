@@ -9,7 +9,8 @@ import {
   Optional,
   Self,
   ElementRef,
-  HostListener
+  HostListener,
+  Inject
 } from '@angular/core';
 import { FileUploadMethod } from '../file-upload.method';
 import {
@@ -19,6 +20,7 @@ import {
 import { ConnectedPosition } from '@angular/cdk/overlay';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { Subject } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector:        'rxap-upload-button',
@@ -101,6 +103,8 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     public readonly fileUpload: FileUploadMethod,
     private readonly cdr: ChangeDetectorRef,
     private readonly _elementRef: ElementRef,
+    @Inject(DOCUMENT)
+    private readonly document: Document,
     @Optional() @Self() public ngControl: NgControl
   ) {
     if (this.ngControl != null) {
@@ -123,13 +127,15 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     this.stateChanges.complete();
   }
 
-  public uploadComplete(file: File) {
-    this.uploaded.emit(file);
-    this.value = file;
-    if (this.onChange) {
-      this.onChange(file);
+  public uploadComplete(file: File | null) {
+    if (file) {
+      this.uploaded.emit(file);
+      this.value = file;
+      if (this.onChange) {
+        this.onChange(file);
+      }
+      this.stateChanges.next();
     }
-    this.stateChanges.next();
   }
 
   public registerOnChange(fn: any): void {
@@ -181,12 +187,12 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
 
   download() {
     if (this.value) {
-      const elm = document.createElement('a');
-      document.body.appendChild(elm);
+      const elm = this.document.createElement('a');
+      this.document.body.appendChild(elm);
       elm.href = URL.createObjectURL(this.value);
       elm.setAttribute('download', this.value.name);
       elm.click();
-      document.body.removeChild(elm);
+      this.document.body.removeChild(elm);
     }
   }
 }
