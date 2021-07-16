@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.0...@rxap/upload@12.1.0-next.1) (2021-07-16)
+
+
+### Bug Fixes
+
+* add missing multi prop ([bcf5c24](https://gitlab.com/rxap/packages/commit/bcf5c246cdf3b0b160778f2adcca99b559a5982f))
+
+
+
+
+
 # [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.0.7-next.0...@rxap/upload@12.1.0-next.0) (2021-07-16)
 
 
