@@ -410,13 +410,15 @@ export class FormDirective<T extends Record<string, any> = any>
   }
 
   protected getSubmitValue(): T {
-    let value: T;
+    let value: T = undefined as any;
 
     if (typeof this._formDefinition[ 'getSubmitValue' ] === 'function') {
       value = this._formDefinition.getSubmitValue();
-    } else {
-      value = this.form.value;
+    } else if (typeof this._formDefinition[ 'toJSON' ] === 'function') {
+      value = this._formDefinition.toJSON();
     }
+
+    value = value ?? this.form.value;
 
     return clone(value);
   }
