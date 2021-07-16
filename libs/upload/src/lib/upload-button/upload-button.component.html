@@ -2,6 +2,7 @@
   <button
     type="button"
     fxFlex="nogrow"
+    #button
     #method="rxapMethod"
     #trigger="cdkOverlayOrigin"
     [parameters]="{ accept: accept }"
@@ -12,7 +13,7 @@
     mat-stroked-button>
     <span fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
       <mat-icon fxFlex="nogrow">cloud_upload</mat-icon>&nbsp;
-      <span *ngIf="file" fxFlex="nogrow">{{file.name}}</span>
+      <span *ngIf="value" fxFlex="nogrow">{{value.name}}</span>
       <ng-content></ng-content>
       <mat-progress-spinner
         *ngIf="method.executing$ | async"
@@ -36,6 +37,6 @@
   cdkConnectedOverlay
 >
   <div class="rxap-upload-button overlay-container mat-elevation-z2">
-    <img [src]="file | readAsDataURL | async">
+    <img [src]="value | readAsDataURL | async">
   </div>
 </ng-template>
