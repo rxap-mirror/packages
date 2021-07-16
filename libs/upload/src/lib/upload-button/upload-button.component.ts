@@ -23,7 +23,8 @@ import { ConnectedPosition } from '@angular/cdk/overlay';
   providers:       [
     {
       provide:     NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => UploadButtonComponent)
+      useExisting: forwardRef(() => UploadButtonComponent),
+      multi:       true
     }
   ]
 })
