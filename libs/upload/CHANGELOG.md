@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.7-next.0](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.0.6...@rxap/upload@12.0.7-next.0) (2021-07-16)
+
+
+### Bug Fixes
+
+* update to new method concept ([eba1d37](https://gitlab.com/rxap/packages/commit/eba1d3782de3f771a19898ad7d8f66b72304fad4))
+
+
+
+
+
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.0.5...@rxap/upload@12.0.6) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/upload
