@@ -3,7 +3,7 @@
   max-width: 50vw;
   max-height: 50vh;
   padding: 6px;
-  background-color: white;
+  background-color: orange;
   border-radius: 8px;
   overflow: hidden;
 
@@ -11,4 +11,10 @@
     width: 100%;
   }
 
+}
+
+.file-name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

@@ -8,7 +8,8 @@ import {
   OnDestroy,
   Optional,
   Self,
-  ElementRef
+  ElementRef,
+  HostListener
 } from '@angular/core';
 import { FileUploadMethod } from '../file-upload.method';
 import {
@@ -144,7 +145,9 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   }
 
   public writeValue(file: File): void {
+    console.log({ file });
     this.value = file;
+    this.cdr.detectChanges();
   }
 
   public openOverlay() {
@@ -156,6 +159,7 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     }
   }
 
+  @HostListener('focusin', [ '$event' ])
   onFocusIn(event: FocusEvent) {
     if (!this.focused) {
       this.focused = true;
@@ -163,6 +167,7 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     }
   }
 
+  @HostListener('focusout', [ '$event' ])
   onFocusOut(event: FocusEvent) {
     if (!this._elementRef.nativeElement.contains(event.relatedTarget as Element)) {
       this.touched = true;
@@ -174,4 +179,14 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     }
   }
 
+  download() {
+    if (this.value) {
+      const elm = document.createElement('a');
+      document.body.appendChild(elm);
+      elm.href = URL.createObjectURL(this.value);
+      elm.setAttribute('download', this.value.name);
+      elm.click();
+      document.body.removeChild(elm);
+    }
+  }
 }
