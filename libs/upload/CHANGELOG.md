@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.3...@rxap/upload@12.1.0-next.4) (2021-07-16)
+
+
+### Bug Fixes
+
+* add overlay styles and download button ([3a7a171](https://gitlab.com/rxap/packages/commit/3a7a171a0a1831ec8344cdc499391c88cd3ff639))
+
+
+
+
+
 # [12.1.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.2...@rxap/upload@12.1.0-next.3) (2021-07-16)
 
 
