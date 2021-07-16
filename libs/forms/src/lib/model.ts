@@ -47,10 +47,10 @@ export interface RxapAbstractControlOptionsWithDefinition
   definition: Constructor;
 }
 
-export interface FormDefinition<
-  T extends Record<string, any> = any,
-  E extends object = any
-> {
+export interface FormDefinition<T extends Record<string, any> = any,
+  E extends object = any,
+  JSON extends Record<string, any> = any,
+  > {
   rxapFormGroup: RxapFormGroup<T, E>;
 
   /**
@@ -68,13 +68,13 @@ export interface FormDefinition<
    * Called to get the value that should be submitted. If not defined
    * the value property of the root RxapFormGroup instance will be used
    */
-  getSubmitValue?(): T;
+  getSubmitValue?(): JSON;
 
   /**
    * Called to get the value that should be submitted. If not defined
    * the value property of the root RxapFormGroup instance will be used
    */
-  toJSON?(): T;
+  toJSON?(): JSON;
 }
 
 export interface FormDefinitionArray<T> extends Array<T> {
