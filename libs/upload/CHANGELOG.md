@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.2...@rxap/upload@12.1.0-next.3) (2021-07-16)
+
+
+### Bug Fixes
+
+* form field circular injection issue ([3a75e0e](https://gitlab.com/rxap/packages/commit/3a75e0eb50105bc4d64910ad9a05cb0fca6754d5))
+
+
+
+
+
 # [12.1.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.1...@rxap/upload@12.1.0-next.2) (2021-07-16)
 
 
