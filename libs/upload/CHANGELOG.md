@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.4...@rxap/upload@12.1.0-next.5) (2021-07-16)
+
+
+### Bug Fixes
+
+* secure document object access ([870bad3](https://gitlab.com/rxap/packages/commit/870bad3847c762c737d8a0dc87b6b53c53b9c3f3))
+
+
+
+
+
 # [12.1.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.3...@rxap/upload@12.1.0-next.4) (2021-07-16)
 
 
