@@ -4,7 +4,6 @@ import {
   EventEmitter,
   Input,
   Output,
-  forwardRef,
   ChangeDetectorRef,
   OnDestroy,
   Optional,
@@ -14,8 +13,7 @@ import {
 import { FileUploadMethod } from '../file-upload.method';
 import {
   ControlValueAccessor,
-  NgControl,
-  NG_VALUE_ACCESSOR
+  NgControl
 } from '@angular/forms';
 import { ConnectedPosition } from '@angular/cdk/overlay';
 import { MatFormFieldControl } from '@angular/material/form-field';
@@ -28,11 +26,6 @@ import { Subject } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-upload-button' },
   providers:       [
-    {
-      provide:     NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => UploadButtonComponent),
-      multi:       true
-    },
     {
       provide:     MatFormFieldControl,
       useExisting: UploadButtonComponent
@@ -85,10 +78,6 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     return `rxap-upload-button-${UploadButtonComponent.nextId++}`;
   }
 
-  onContainerClick(event: MouseEvent): void {
-
-  }
-
   @Input()
   get placeholder() {
     return this._placeholder;
@@ -102,13 +91,6 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   @Input()
   public required: boolean = false;
 
-  setDescribedByIds(ids: string[]): void {
-    this._elementRef
-        .nativeElement
-        .querySelector('button')
-        ?.setAttribute('aria-describedby', ids.join(' '));
-  }
-
   shouldLabelFloat: boolean = true;
   public stateChanges       = new Subject<void>();
   userAriaDescribedBy?: string | undefined;
@@ -119,7 +101,22 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     private readonly cdr: ChangeDetectorRef,
     private readonly _elementRef: ElementRef,
     @Optional() @Self() public ngControl: NgControl
-  ) { }
+  ) {
+    if (this.ngControl != null) {
+      this.ngControl.valueAccessor = this;
+    }
+  }
+
+  public onContainerClick(event: MouseEvent): void {
+
+  }
+
+  public setDescribedByIds(ids: string[]): void {
+    this._elementRef
+        .nativeElement
+        .querySelector('button')
+        ?.setAttribute('aria-describedby', ids.join(' '));
+  }
 
   public ngOnDestroy() {
     this.stateChanges.complete();
