@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { FileUploadMethod } from '../file-upload.method';
 import { MethodDirectiveModule } from '@rxap/directives';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { ReadAsDataURLPipeModule } from './read-as-data-url.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { MethodDirectiveModule } from '@rxap/directives';
     MatProgressSpinnerModule,
     CommonModule,
     MatButtonModule,
-    MethodDirectiveModule
+    MethodDirectiveModule,
+    OverlayModule,
+    ReadAsDataURLPipeModule,
+    MatTooltipModule
   ],
   exports:      [ UploadButtonComponent ],
   providers:    [ FileUploadMethod ]

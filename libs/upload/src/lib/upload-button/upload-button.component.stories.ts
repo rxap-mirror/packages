@@ -5,6 +5,7 @@ import {
 } from '@storybook/angular';
 import { UploadButtonComponent } from './upload-button.component';
 import { UploadButtonComponentModule } from './upload-button.component.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
   title:      'UploadButtonComponent',
@@ -12,7 +13,8 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [
-        UploadButtonComponentModule
+        UploadButtonComponentModule,
+        BrowserAnimationsModule
       ]
     }),
     componentWrapperDecorator((story) => `<div style="margin: 3em">${story}</div>`)

@@ -1,0 +1,14 @@
+.overlay-container {
+  min-width: 256px;
+  max-width: 50vw;
+  max-height: 50vh;
+  padding: 6px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
+
+}
