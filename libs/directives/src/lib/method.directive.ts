@@ -63,7 +63,7 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
       return this.execute();
     } else {
       if (isDevMode()) {
-        console.debug('skip remote method call. Wait for confirmation.');
+        console.debug('Skip method call. Wait for confirmation.');
       }
     }
     return Promise.resolve();
@@ -77,7 +77,7 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
       this.successful(result);
     } catch (error) {
       if (isDevMode()) {
-        console.error(`Remote method directive execution failed:`, error.message);
+        console.error(`Method directive execution failed:`, error.message);
       }
       this.failure(error);
     } finally {
