@@ -9,6 +9,12 @@
   .rxap-upload-button {
   }
 
+  .cdk-overlay-container {
+    .rxap-upload-button-overlay {
+      background-color: map-get($background, card);
+    }
+  }
+
 }
 
 @mixin rxap-upload-button-typography($config) {
