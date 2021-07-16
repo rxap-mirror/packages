@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.4.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.4...@rxap/forms@12.4.0-next.5) (2021-07-16)
+
+
+### Features
+
+* add support for toJSON for FormDefinition ([f47f2b6](https://gitlab.com/rxap/packages/commit/f47f2b6e0130f6b97eb25cba93c7e57cc0582974))
+
+
+
+
+
 # [12.4.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.3...@rxap/forms@12.4.0-next.4) (2021-07-15)
 
 
