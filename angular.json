@@ -4766,7 +4766,8 @@
             "targets": [
               "upload:build:production",
               "upload:build-schematics",
-              "upload:build-migrations"
+              "upload:build-migrations",
+              "upload:scss-bundle"
             ]
           }
         },
@@ -4850,6 +4851,16 @@
             "ci": {
               "quiet": true
             }
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap/plugin-scss-bundle:build",
+          "options": {
+            "buildTarget": "upload:build:production",
+            "skipBuild": true,
+            "ignoreImports": [
+              "~@angular/.*"
+            ]
           }
         }
       }

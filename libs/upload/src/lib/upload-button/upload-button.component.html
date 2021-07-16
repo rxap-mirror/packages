@@ -23,7 +23,13 @@
       </mat-progress-spinner>
     </span>
   </button>
-  <button (click)="openOverlay()" *ngIf="isImage" fxFlex="nogrow" i18n-matTooltip mat-icon-button matTooltip="Open image preview" type="button">
+  <button (click)="openOverlay()"
+          *ngIf="isImage"
+          fxFlex="nogrow"
+          i18n-matTooltip
+          mat-icon-button
+          matTooltip="Open image preview"
+          type="button">
     <mat-icon>preview</mat-icon>
   </button>
   <button (click)="download()" *ngIf="value" fxFlex="nogrow" i18n-matTooltip mat-icon-button matTooltip="Download file" type="button">
