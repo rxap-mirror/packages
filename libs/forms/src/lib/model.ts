@@ -86,10 +86,10 @@ export type FormType<T extends Record<string, any>> = Partial<
 > &
   {
     [K in keyof T]: T[K] extends (infer U)[]
-      ? FormDefinitionArray<FormType<U>> | RxapFormControl<T[K]>
-      : T[K] extends object | undefined
-      ? (FormType<T[K]> & Partial<FormDefinition<T[K]>>) | RxapFormControl<T[K]>
-      : RxapFormControl<T[K]>;
+                    ? FormDefinitionArray<FormType<U>> | RxapFormControl<T[K]> | RxapFormArray<U>
+                    : T[K] extends object | undefined
+                      ? (FormType<T[K]> & Partial<FormDefinition<T[K]>>) | RxapFormControl<T[K]>
+                      : RxapFormControl<T[K]>;
   };
 
 export interface FormOptions extends RxapAbstractControlOptions {
