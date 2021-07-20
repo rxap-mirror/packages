@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@12.0.10-next.0...@rxap/xml-parser@12.1.0-next.0) (2021-07-20)
+
+
+### Features
+
+* **element-record:** add raw option ([fb3ca9e](https://gitlab.com/rxap/packages/commit/fb3ca9e2bff7f0361f5f4f67d21225f9c3c75a68))
+
+
+
+
+
 ## [12.0.10-next.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@12.0.9...@rxap/xml-parser@12.0.10-next.0) (2021-07-20)
 
 
