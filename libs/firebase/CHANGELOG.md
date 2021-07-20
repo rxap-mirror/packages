@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.0.7...@rxap/firebase@12.1.0-next.0) (2021-07-20)
+
+
+### Features
+
+* add appCheck and storage support ([9b32d14](https://gitlab.com/rxap/packages/commit/9b32d148e3d0882323c06d724c6f65a0a36591ae))
+
+
+
+
+
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.0.6...@rxap/firebase@12.0.7) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/firebase
