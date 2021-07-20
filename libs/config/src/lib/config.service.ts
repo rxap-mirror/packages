@@ -54,6 +54,8 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       console.error(url, error.message);
     }
 
+    console.debug(`app config side load '${propertyPath}'`, this.Config);
+
   }
 
   /**
