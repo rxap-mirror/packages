@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.4.0-next.7](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.6...@rxap/forms@12.4.0-next.7) (2021-07-20)
+
+
+### Bug Fixes
+
+* support form array in FormType expectation ([6fae0c6](https://gitlab.com/rxap/packages/commit/6fae0c6cc055758c5777e9a71c8ea42e656a417d))
+
+
+
+
+
 # [12.4.0-next.6](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.5...@rxap/forms@12.4.0-next.6) (2021-07-16)
 
 
