@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0-next.6](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.5...@rxap/material-table-system@12.3.0-next.6) (2021-07-20)
+
+
+### Features
+
+* add image cell ([18beab2](https://gitlab.com/rxap/packages/commit/18beab25db377de5effc9122996fa8d81c035191))
+
+
+
+
+
 # [12.3.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.4...@rxap/material-table-system@12.3.0-next.5) (2021-07-15)
 
 
