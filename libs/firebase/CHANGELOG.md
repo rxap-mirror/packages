@@ -46,6 +46,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [12.1.0-alpha.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.5...@rxap/firebase@12.1.0-alpha.0) (2021-07-20)
+
+**Note:** Version bump only for package @rxap/firebase
+
+
+
+
+
 # [12.1.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.4...@rxap/firebase@12.1.0-next.5) (2021-07-20)
 
 

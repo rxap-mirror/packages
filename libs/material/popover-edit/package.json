@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-popover-edit",
-  "version": "12.0.1-alpha.2",
+  "version": "12.0.1-alpha.3",
   "peerDependencies": {
     "@angular/animations": "^12.0.1",
     "@angular/cdk": "^12.0.1",
@@ -11,13 +11,13 @@
     "@angular/material": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
     "@angular/router": "^12.0.1",
-    "@rxap/components": "^12.0.9",
-    "@rxap/data-source": "^12.0.10",
+    "@rxap/components": "^12.0.10-alpha.0",
+    "@rxap/data-source": "^12.0.11-alpha.0",
     "@rxap/definition": "^12.0.8",
-    "@rxap/directives": "^12.1.2-next.0",
-    "@rxap/forms": "^12.3.6-alpha.0",
+    "@rxap/directives": "^12.1.2-alpha.0",
+    "@rxap/forms": "^12.4.0-alpha.0",
     "@rxap/material-directives": "^12.0.6",
-    "@rxap/material-table-system": "^12.3.0-next.4",
+    "@rxap/material-table-system": "^12.3.0-alpha.0",
     "@rxap/mixin": "^12.0.7",
     "@rxap/open-api": "^12.0.13",
     "@rxap/remote-method": "^12.0.9-next.0",
@@ -29,14 +29,27 @@
     "rxjs": "^6.5.5"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^12.5.0",
+    "@rxap/schematics-utilities": "^12.5.1-next.0",
     "tslib": "^2.2.0"
   },
   "schematics": "./collection.json",
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/material-popover-edit"
+      "@rxap/components",
+      "@rxap/data-source",
+      "@rxap/definition",
+      "@rxap/directives",
+      "@rxap/forms",
+      "@rxap/material-directives",
+      "@rxap/material-popover-edit",
+      "@rxap/material-table-system",
+      "@rxap/mixin",
+      "@rxap/open-api",
+      "@rxap/remote-method",
+      "@rxap/services",
+      "@rxap/utilities",
+      "@rxap/window-system"
     ]
   },
   "ng-add": {
