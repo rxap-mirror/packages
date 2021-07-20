@@ -2,8 +2,44 @@ import {
   AbstractControl,
   ValidationErrors
 } from '@angular/forms';
-import { isNumber } from 'class-validator';
-import { IsNumberOptions } from 'class-validator/types/decorator/typechecker/IsNumber';
+
+/**
+ * Options to be passed to IsNumber decorator.
+ */
+export interface IsNumberOptions {
+  allowNaN?: boolean;
+  allowInfinity?: boolean;
+  maxDecimalPlaces?: number;
+}
+
+/**
+ * Checks if a given value is a number.
+ */
+export function isNumber(value: unknown, options: IsNumberOptions = {}): value is number {
+  if (typeof value !== 'number') {
+    return false;
+  }
+
+  if (value === Infinity || value === -Infinity) {
+    return options.allowInfinity ?? false;
+  }
+
+  if (Number.isNaN(value)) {
+    return options.allowNaN ?? false;
+  }
+
+  if (options.maxDecimalPlaces !== undefined) {
+    let decimalPlaces = 0;
+    if (value % 1 !== 0) {
+      decimalPlaces = value.toString().split('.')[ 1 ].length;
+    }
+    if (decimalPlaces > options.maxDecimalPlaces) {
+      return false;
+    }
+  }
+
+  return Number.isFinite(value);
+}
 
 /**
  * @deprecated use RxapValidators.isNumber() instead

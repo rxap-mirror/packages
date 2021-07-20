@@ -2,8 +2,8 @@ import {
   AbstractControl,
   ValidationErrors
 } from '@angular/forms';
-import { isNumber as _isNumber } from 'class-validator';
 import { IsString } from './is-string';
+import { isNumber } from './is-number';
 
 export interface ComplexityOptions {
   uppercase?: number;
@@ -51,10 +51,6 @@ const lengthOptions: LengthOptions = {
   exact:    '.{n}',
   no_limit: '.*'
 };
-
-function isNumber(value: unknown): value is number {
-  return _isNumber(value);
-}
 
 type Discriminate<U, K extends PropertyKey> =
   U extends any
