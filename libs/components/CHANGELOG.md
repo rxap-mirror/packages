@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.10-next.1](https://gitlab.com/rxap/packages/compare/@rxap/components@12.0.10-next.0...@rxap/components@12.0.10-next.1) (2021-07-15)
+
+**Note:** Version bump only for package @rxap/components
+
+
+
+
+
+## [12.0.10-next.0](https://gitlab.com/rxap/packages/compare/@rxap/components@12.0.9...@rxap/components@12.0.10-next.0) (2021-07-15)
+
+
+### Bug Fixes
+
+* set margin for h* elements to 0 ([6655f23](https://gitlab.com/rxap/packages/commit/6655f237b0e488437d53aa4dc84246793dbfe805))
+
+
+
+
+
 ## [12.0.9](https://gitlab.com/rxap/packages/compare/@rxap/components@12.0.9-next.0...@rxap/components@12.0.9) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/components

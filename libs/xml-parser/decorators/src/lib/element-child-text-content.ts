@@ -66,7 +66,10 @@ export class ElementChildTextContentParser<T extends ParsedElement, Value>
         parsedElement[ this.propertyKey ] = this.parseValue(rawValue);
       }
     } else if (this.required) {
-      throw new RxapXmlParserValidateRequiredError(`Element <${element.name}> child <${this.tag}> text content is required!`, parsedElement.__tag!);
+      // @ts-ignore
+      if (parsedElement[ this.propertyKey ] === undefined) {
+        throw new RxapXmlParserValidateRequiredError(`Element <${element.name}> child <${this.tag}> text content is required!`, parsedElement.__tag!);
+      }
     }
 
     return parsedElement;

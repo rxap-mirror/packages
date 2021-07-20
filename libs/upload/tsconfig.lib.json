@@ -16,7 +16,9 @@
     "src/test-setup.ts",
     "**/*.spec.ts",
     "src/schematics/**",
-    "src/migrations/**"
+    "src/migrations/**",
+    "**/*.stories.ts",
+    "**/*.stories.js"
   ],
   "include": [
     "**/*.ts"

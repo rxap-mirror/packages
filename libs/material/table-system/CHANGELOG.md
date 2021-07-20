@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0-next.7](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.6...@rxap/material-table-system@12.3.0-next.7) (2021-07-20)
+
+
+### Bug Fixes
+
+* detach loading subscription ([2b89823](https://gitlab.com/rxap/packages/commit/2b89823e9e1176008e8a27105be379d8071867e3))
+
+
+
+
+
+# [12.3.0-next.6](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.5...@rxap/material-table-system@12.3.0-next.6) (2021-07-20)
+
+
+### Features
+
+* add image cell ([18beab2](https://gitlab.com/rxap/packages/commit/18beab25db377de5effc9122996fa8d81c035191))
+
+
+
+
+
+# [12.3.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.4...@rxap/material-table-system@12.3.0-next.5) (2021-07-15)
+
+
+### Bug Fixes
+
+* support ng-content ([e5f7601](https://gitlab.com/rxap/packages/commit/e5f7601b2402bcd54556b1e9050f6efb6195f5b0))
+
+
+
+
+
 # [12.3.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.3...@rxap/material-table-system@12.3.0-next.4) (2021-07-14)
 
 

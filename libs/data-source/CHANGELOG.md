@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.11-next.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.0.10...@rxap/data-source@12.0.11-next.0) (2021-07-19)
+
+
+### Bug Fixes
+
+* handle method exception ([a475cda](https://gitlab.com/rxap/packages/commit/a475cda593b226fd25868b3d897981e85ef48d87))
+
+
+
+
+
 ## [12.0.10](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.0.9...@rxap/data-source@12.0.10) (2021-07-12)
 
 

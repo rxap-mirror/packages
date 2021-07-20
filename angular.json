@@ -4766,7 +4766,8 @@
             "targets": [
               "upload:build:production",
               "upload:build-schematics",
-              "upload:build-migrations"
+              "upload:build-migrations",
+              "upload:scss-bundle"
             ]
           }
         },
@@ -4816,6 +4817,49 @@
               "jest-preset-angular",
               "ng-mocks",
               "@storybook\\/"
+            ]
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/upload/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/upload",
+            "config": {
+              "configFolder": "libs/upload/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "scss-bundle": {
+          "builder": "@rxap/plugin-scss-bundle:build",
+          "options": {
+            "buildTarget": "upload:build:production",
+            "skipBuild": true,
+            "ignoreImports": [
+              "~@angular/.*"
             ]
           }
         }

@@ -9,7 +9,7 @@
   @include rxap-json-viewer-theme($theme);
   @include rxap-confirm-theme($theme);
   @include rxap-dark-mode-toggle-button-theme($theme);
-  @include srm-navigate-back-button-theme($theme);
+  @include rxap-navigate-back-button-theme($theme);
   /* THEME_INCLUDE */
 
 }
@@ -19,7 +19,7 @@
   @include rxap-json-viewer-typography($config);
   @include rxap-confirm-typography($config);
   @include rxap-dark-mode-toggle-button-typography($config);
-  @include srm-navigate-back-button-typography($config);
+  @include rxap-navigate-back-button-typography($config);
   /* TYPOGRAPHY_INCLUDE */
 
 }

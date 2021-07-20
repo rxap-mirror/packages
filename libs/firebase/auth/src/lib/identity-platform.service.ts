@@ -8,8 +8,7 @@ import {
   Injectable,
   Inject
 } from '@angular/core';
-import firebase from 'firebase';
-import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
+import firebase from 'firebase/app';
 
 @Injectable()
 export class IdentityPlatformService {
@@ -45,7 +44,22 @@ export class IdentityPlatformService {
   }
 
   public google(popup: boolean = true): Promise<boolean> {
-    const provider = new GoogleAuthProvider();
+    return this.withProvider(new firebase.auth.GoogleAuthProvider(), popup);
+  }
+
+  public github(popup: boolean = true): Promise<boolean> {
+    return this.withProvider(new firebase.auth.GithubAuthProvider(), popup);
+  }
+
+  public facebook(popup: boolean = true): Promise<boolean> {
+    return this.withProvider(new firebase.auth.FacebookAuthProvider(), popup);
+  }
+
+  public twitter(popup: boolean = true): Promise<boolean> {
+    return this.withProvider(new firebase.auth.TwitterAuthProvider(), popup);
+  }
+
+  protected withProvider(provider: firebase.auth.AuthProvider, popup: boolean = true) {
     const signIn: Promise<any> = popup ? this.fireAuth.signInWithPopup(provider) : this.fireAuth.signInWithRedirect(provider);
     return signIn.then(() => true).catch(() => false).then(status => {
       this.isAuthenticated$.next(status);

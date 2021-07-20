@@ -3,9 +3,123 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [12.3.6-alpha.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.3.6-next.2...@rxap/forms@12.3.6-alpha.0) (2021-07-15)
+# [12.4.0-next.10](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.9...@rxap/forms@12.4.0-next.10) (2021-07-20)
 
-**Note:** Version bump only for package @rxap/forms
+
+### Bug Fixes
+
+* remove event handler ([77e2c36](https://gitlab.com/rxap/packages/commit/77e2c3601d34943b199a07319e7f15baae4893a0))
+
+
+
+
+
+# [12.4.0-next.9](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.8...@rxap/forms@12.4.0-next.9) (2021-07-20)
+
+
+### Bug Fixes
+
+* tree shakeable import ([9dd653f](https://gitlab.com/rxap/packages/commit/9dd653fe8586569fb822f0a1aeab661d8c85f5df))
+
+
+
+
+
+# [12.4.0-next.8](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.7...@rxap/forms@12.4.0-next.8) (2021-07-20)
+
+
+### Features
+
+* remove class-validator dependency ([e8fdb42](https://gitlab.com/rxap/packages/commit/e8fdb42a7e250d1d9bad85e7208320ba20e37d56))
+
+
+
+
+
+# [12.4.0-next.7](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.6...@rxap/forms@12.4.0-next.7) (2021-07-20)
+
+
+### Bug Fixes
+
+* support form array in FormType expectation ([6fae0c6](https://gitlab.com/rxap/packages/commit/6fae0c6cc055758c5777e9a71c8ea42e656a417d))
+
+
+
+
+
+# [12.4.0-next.6](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.5...@rxap/forms@12.4.0-next.6) (2021-07-16)
+
+
+### Bug Fixes
+
+* allow custom return type ([3025a26](https://gitlab.com/rxap/packages/commit/3025a263ce458f549c2ec5c69ee9d2b968562d1b))
+
+
+
+
+
+# [12.4.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.4...@rxap/forms@12.4.0-next.5) (2021-07-16)
+
+
+### Features
+
+* add support for toJSON for FormDefinition ([f47f2b6](https://gitlab.com/rxap/packages/commit/f47f2b6e0130f6b97eb25cba93c7e57cc0582974))
+
+
+
+
+
+# [12.4.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.3...@rxap/forms@12.4.0-next.4) (2021-07-15)
+
+
+### Bug Fixes
+
+* only fail if any check fails ([4709216](https://gitlab.com/rxap/packages/commit/4709216b40bf929f1328b4c7b32c265e96e1f0fa))
+
+
+
+
+
+# [12.4.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.2...@rxap/forms@12.4.0-next.3) (2021-07-15)
+
+
+### Bug Fixes
+
+* use correct error object ([e41dd05](https://gitlab.com/rxap/packages/commit/e41dd0543a0e7937db86875919a575b68aa45704))
+
+
+
+
+
+# [12.4.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.1...@rxap/forms@12.4.0-next.2) (2021-07-15)
+
+
+### Bug Fixes
+
+* add missing default options object ([539f1d1](https://gitlab.com/rxap/packages/commit/539f1d129eb998559bac19c6a469e1bb0bf7962b))
+
+
+
+
+
+# [12.4.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.0...@rxap/forms@12.4.0-next.1) (2021-07-15)
+
+
+### Features
+
+* add isPhoneNumber and isEmail validators ([1f6e333](https://gitlab.com/rxap/packages/commit/1f6e33305b42101aa48b56ab488d23901143a2f9))
+* add isUrl ([1f6e696](https://gitlab.com/rxap/packages/commit/1f6e6968d4f2c778740dcdc13a4f93c52de41c42))
+
+
+
+
+
+# [12.4.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.3.6-next.2...@rxap/forms@12.4.0-next.0) (2021-07-15)
+
+
+### Features
+
+* add basic validators ([c708aab](https://gitlab.com/rxap/packages/commit/c708aabd4ddb0458aa741410034500f1098c26f0))
 
 
 

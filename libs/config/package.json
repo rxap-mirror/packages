@@ -1,6 +1,6 @@
 {
   "name": "@rxap/config",
-  "version": "12.1.0",
+  "version": "12.2.0-next.2",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/config",
@@ -19,7 +19,7 @@
   "peerDependencies": {
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",
-    "@rxap/utilities": "^12.1.4",
+    "@rxap/utilities": "^12.2.1-next.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -39,8 +39,8 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-ts-morph": "^12.2.0",
-    "@rxap/schematics-utilities": "^12.4.0",
+    "@rxap/schematics-ts-morph": "^12.3.0-next.0",
+    "@rxap/schematics-utilities": "^12.5.1-next.0",
     "ts-morph": "^10.1.0",
     "tslib": "^2.2.0"
   }

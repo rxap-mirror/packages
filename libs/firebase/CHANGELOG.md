@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.4...@rxap/firebase@12.1.0-next.5) (2021-07-20)
+
+
+### Bug Fixes
+
+* add missing site key provider ([18c9a7e](https://gitlab.com/rxap/packages/commit/18c9a7e51ca456a5f36928f1702df0badc778950))
+
+
+
+
+
+# [12.1.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.3...@rxap/firebase@12.1.0-next.4) (2021-07-20)
+
+
+### Bug Fixes
+
+* update types ([ca71673](https://gitlab.com/rxap/packages/commit/ca71673c65f9f3ba9357d366fcde7befe31e0d09))
+
+
+
+
+
+# [12.1.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.2...@rxap/firebase@12.1.0-next.3) (2021-07-20)
+
+
+### Bug Fixes
+
+* use in place import ([aa1b1fe](https://gitlab.com/rxap/packages/commit/aa1b1fee080e1feb8c352694fbfac9a7dde584fd))
+
+
+
+
+
+# [12.1.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.1...@rxap/firebase@12.1.0-next.2) (2021-07-20)
+
+
+### Features
+
+* split firebase providers ([bd31c67](https://gitlab.com/rxap/packages/commit/bd31c678618613e49343327de7158d0ca7fd802f))
+* split firebase providers ([4e44bdc](https://gitlab.com/rxap/packages/commit/4e44bdc602465269d371fe21be168b108dd39311))
+
+
+
+
+
+# [12.1.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.0...@rxap/firebase@12.1.0-next.1) (2021-07-20)
+
+
+### Bug Fixes
+
+* only import requires modules ([ee9da45](https://gitlab.com/rxap/packages/commit/ee9da45df161c0eca528d809e265eb15736c24fd))
+
+
+
+
+
+# [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.0.7...@rxap/firebase@12.1.0-next.0) (2021-07-20)
+
+
+### Features
+
+* add appCheck and storage support ([9b32d14](https://gitlab.com/rxap/packages/commit/9b32d148e3d0882323c06d724c6f65a0a36591ae))
+
+
+
+
+
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.0.6...@rxap/firebase@12.0.7) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/firebase

@@ -1,23 +1,57 @@
 import {
   fromEvent,
-  Subject
+  Subject,
+  of,
+  race
 } from 'rxjs';
 import {
   map,
   switchMap,
   take
 } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { BaseRemoteMethod } from '@rxap/remote-method';
+import {
+  Inject,
+  Injectable
+} from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import {
+  log,
+  Method
+} from '@rxap/utilities/rxjs';
 
 @Injectable()
-export class FileUploadMethod extends BaseRemoteMethod<File, { accept: string }> {
+export class FileUploadMethod implements Method<File | null, { accept: string }> {
 
   public progress$: Subject<number> = new Subject<number>();
 
   private _fileInput: HTMLInputElement | null = null;
 
-  private handleFileInputChange(event: any): File {
+  constructor(
+    @Inject(DOCUMENT)
+    private readonly document: Document
+  ) {
+  }
+
+  public call(parameters?: { accept?: string }): Promise<File | null> {
+    const fileInput = this.addInputToDom(parameters?.accept ?? '**/**');
+
+    const change$ = fromEvent(fileInput, 'change').pipe(
+      map(event => this.handleFileInputChange(event)),
+      switchMap(file => file ? this.readFile(file) : of(null)),
+      take(1)
+    );
+
+    const cancel$ = fromEvent(this.document.body, 'focus').pipe(take(1), map(() => null));
+
+    fileInput.click();
+
+    return race(
+      change$,
+      cancel$
+    ).pipe(log('empty')).toPromise();
+  }
+
+  private handleFileInputChange(event: any): File | null {
     this.removeInputFromDom();
     const files: { [ key: string ]: File } = event?.target?.files as any ?? {};
     if (Object.keys(files).length !== 1) {
@@ -29,25 +63,14 @@ export class FileUploadMethod extends BaseRemoteMethod<File, { accept: string }>
         file = files[ key ];
       }
     }
-    if (!file) {
-      throw new Error('File upload failed');
-    }
     return file;
   }
 
   private removeInputFromDom(): void {
     if (this._fileInput) {
-      document.body.removeChild(this._fileInput);
+      this.document.body.removeChild(this._fileInput);
     }
     this._fileInput = null;
-  }
-
-  private addInputToDom(accept: string): HTMLInputElement {
-    const fileInput = document.createElement('input');
-    fileInput.setAttribute('type', 'file');
-    fileInput.setAttribute('style', 'display: none');
-    fileInput.setAttribute('accept', accept);
-    return this._fileInput = fileInput;
   }
 
   private readFile(file: File): Promise<File> {
@@ -72,18 +95,13 @@ export class FileUploadMethod extends BaseRemoteMethod<File, { accept: string }>
     return loadFile$.toPromise();
   }
 
-  protected _call(parameters: { accept: string }): Promise<File> {
-    const fileInput = this.addInputToDom(parameters.accept);
-
-    const change$ = fromEvent(fileInput, 'change').pipe(
-      map(event => this.handleFileInputChange(event)),
-      switchMap(file => this.readFile(file)),
-      take(1)
-    );
-
-    fileInput.click();
-
-    return change$.toPromise();
+  private addInputToDom(accept: string): HTMLInputElement {
+    const fileInput = this.document.createElement('input');
+    fileInput.setAttribute('type', 'file');
+    fileInput.setAttribute('style', 'display: none');
+    fileInput.setAttribute('accept', accept);
+    this.document.body.appendChild(fileInput);
+    return this._fileInput = fileInput;
   }
 
 }
