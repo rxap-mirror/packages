@@ -45,7 +45,8 @@ import {
 } from '@angular/fire/analytics';
 import {
   APP_CHECK_ENABLED,
-  APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED
+  APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED,
+  APP_CHECK_SITE_KEY
 } from './app-check';
 import {
   BUCKET,
@@ -139,6 +140,10 @@ export function AuthSettingsFactory(configService: ConfigService<FirebaseConfig>
 
 export function AppCheckEnabledFactory(configService: ConfigService<FirebaseConfig>) {
   return configService.get('firebase.appCheck.enabled', null);
+}
+
+export function AppCheckSiteKeyFactory(configService: ConfigService<FirebaseConfig>) {
+  return configService.get('firebase.appCheck.siteKey', null);
 }
 
 export function AppIsTokenAutoRefreshEnabledFactory(configService: ConfigService<FirebaseConfig>) {
@@ -310,6 +315,11 @@ export const FIREBASE_APP_CHECK_PROVIDERS: Provider[] = [
   {
     provide:    APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED,
     useFactory: AppIsTokenAutoRefreshEnabledFactory,
+    deps:       [ ConfigService ]
+  },
+  {
+    provide:    APP_CHECK_SITE_KEY,
+    useFactory: AppCheckSiteKeyFactory,
     deps:       [ ConfigService ]
   }
 ];
