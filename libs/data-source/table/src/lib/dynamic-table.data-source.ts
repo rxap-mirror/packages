@@ -137,7 +137,13 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
   }
 
   protected async loadPage(tableEvent: TableEvent): Promise<Data[]> {
-    return this.remoteMethod.call(tableEvent);
+    let data: Data[] = [];
+    try {
+      data = await this.remoteMethod.call(tableEvent);
+    } catch (e) {
+      console.error(`Failed to load page: ${e.message}`, e.stack);
+    }
+    return data;
   }
 
   public setTotalLength(length: number): void {

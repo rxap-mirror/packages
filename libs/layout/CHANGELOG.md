@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.11-next.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.0.10...@rxap/layout@12.0.11-next.0) (2021-07-15)
+
+
+### Bug Fixes
+
+* set default logo width to 192px ([cc1e4c2](https://gitlab.com/rxap/packages/commit/cc1e4c2ca54db76a206928a70dea4029a1c10a77))
+
+
+
+
+
 ## [12.0.10](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.0.9...@rxap/layout@12.0.10) (2021-07-12)
 
 

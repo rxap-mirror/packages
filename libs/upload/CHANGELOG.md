@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.6](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.5...@rxap/upload@12.1.0-next.6) (2021-07-16)
+
+
+### Bug Fixes
+
+* bundle scss ([ab598ad](https://gitlab.com/rxap/packages/commit/ab598ad731b4e60c7e79979e09a556bc38e52209))
+
+
+
+
+
+# [12.1.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.4...@rxap/upload@12.1.0-next.5) (2021-07-16)
+
+
+### Bug Fixes
+
+* secure document object access ([870bad3](https://gitlab.com/rxap/packages/commit/870bad3847c762c737d8a0dc87b6b53c53b9c3f3))
+
+
+
+
+
+# [12.1.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.3...@rxap/upload@12.1.0-next.4) (2021-07-16)
+
+
+### Bug Fixes
+
+* add overlay styles and download button ([3a7a171](https://gitlab.com/rxap/packages/commit/3a7a171a0a1831ec8344cdc499391c88cd3ff639))
+
+
+
+
+
+# [12.1.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.2...@rxap/upload@12.1.0-next.3) (2021-07-16)
+
+
+### Bug Fixes
+
+* form field circular injection issue ([3a75e0e](https://gitlab.com/rxap/packages/commit/3a75e0eb50105bc4d64910ad9a05cb0fca6754d5))
+
+
+
+
+
+# [12.1.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.1...@rxap/upload@12.1.0-next.2) (2021-07-16)
+
+
+### Features
+
+* add form field support ([d8b06b5](https://gitlab.com/rxap/packages/commit/d8b06b57319f9188d4423fd5b1f9594d8ac20325))
+
+
+
+
+
+# [12.1.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.0...@rxap/upload@12.1.0-next.1) (2021-07-16)
+
+
+### Bug Fixes
+
+* add missing multi prop ([bcf5c24](https://gitlab.com/rxap/packages/commit/bcf5c246cdf3b0b160778f2adcca99b559a5982f))
+
+
+
+
+
+# [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.0.7-next.0...@rxap/upload@12.1.0-next.0) (2021-07-16)
+
+
+### Features
+
+* add filename preview and image preview ([d00967e](https://gitlab.com/rxap/packages/commit/d00967e884ddec04f7d6277a648b74bc4e35324f))
+
+
+
+
+
+## [12.0.7-next.0](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.0.6...@rxap/upload@12.0.7-next.0) (2021-07-16)
+
+
+### Bug Fixes
+
+* update to new method concept ([eba1d37](https://gitlab.com/rxap/packages/commit/eba1d3782de3f771a19898ad7d8f66b72304fad4))
+
+
+
+
+
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.0.5...@rxap/upload@12.0.6) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/upload

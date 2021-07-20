@@ -47,10 +47,10 @@ export interface RxapAbstractControlOptionsWithDefinition
   definition: Constructor;
 }
 
-export interface FormDefinition<
-  T extends Record<string, any> = any,
-  E extends object = any
-> {
+export interface FormDefinition<T extends Record<string, any> = any,
+  E extends object = any,
+  JSON extends Record<string, any> = any,
+  > {
   rxapFormGroup: RxapFormGroup<T, E>;
 
   /**
@@ -68,7 +68,13 @@ export interface FormDefinition<
    * Called to get the value that should be submitted. If not defined
    * the value property of the root RxapFormGroup instance will be used
    */
-  getSubmitValue?(): T;
+  getSubmitValue?(): JSON;
+
+  /**
+   * Called to get the value that should be submitted. If not defined
+   * the value property of the root RxapFormGroup instance will be used
+   */
+  toJSON?(): JSON;
 }
 
 export interface FormDefinitionArray<T> extends Array<T> {
@@ -80,10 +86,10 @@ export type FormType<T extends Record<string, any>> = Partial<
 > &
   {
     [K in keyof T]: T[K] extends (infer U)[]
-      ? FormDefinitionArray<FormType<U>> | RxapFormControl<T[K]>
-      : T[K] extends object | undefined
-      ? (FormType<T[K]> & Partial<FormDefinition<T[K]>>) | RxapFormControl<T[K]>
-      : RxapFormControl<T[K]>;
+                    ? FormDefinitionArray<FormType<U>> | RxapFormControl<T[K]> | RxapFormArray<U>
+                    : T[K] extends object | undefined
+                      ? (FormType<T[K]> & Partial<FormDefinition<T[K]>>) | RxapFormControl<T[K]>
+                      : RxapFormControl<T[K]>;
   };
 
 export interface FormOptions extends RxapAbstractControlOptions {

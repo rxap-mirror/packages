@@ -45,7 +45,7 @@ export class LayoutComponentService {
     ).subscribe();
     this.logo = logoConfig ?? {
       src:   '/assets/logo.png',
-      width: '64'
+      width: '192'
     };
   }
 
