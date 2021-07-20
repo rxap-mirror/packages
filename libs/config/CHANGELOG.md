@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/config@12.2.0-next.0...@rxap/config@12.2.0-next.1) (2021-07-20)
+
+
+### Bug Fixes
+
+* add side load log ([0d51a2b](https://gitlab.com/rxap/packages/commit/0d51a2b5b1095aec3873b24e49bc28588f43af7b))
+
+
+
+
+
 # [12.2.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/config@12.1.0...@rxap/config@12.2.0-next.0) (2021-07-20)
 
 
