@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.4.0-next.8](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.7...@rxap/forms@12.4.0-next.8) (2021-07-20)
+
+
+### Features
+
+* remove class-validator dependency ([e8fdb42](https://gitlab.com/rxap/packages/commit/e8fdb42a7e250d1d9bad85e7208320ba20e37d56))
+
+
+
+
+
 # [12.4.0-next.7](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.6...@rxap/forms@12.4.0-next.7) (2021-07-20)
 
 
