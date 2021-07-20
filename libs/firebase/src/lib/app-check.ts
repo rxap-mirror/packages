@@ -17,7 +17,8 @@ import {
 import { ConfigService } from '@rxap/config';
 
 export const APP_CHECK_ENABLED                       = new InjectionToken('rxap/firebase/app-check-enabled');
-export const APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED = new InjectionToken('rxap/firebase/app-check-site-key');
+export const APP_CHECK_SITE_KEY                      = new InjectionToken('rxap/firebase/app-check-site-key');
+export const APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED = new InjectionToken('rxap/firebase/app-check-is-token-auto-refresh-enabled');
 
 @Injectable()
 export class AppCheckService {
@@ -35,15 +36,18 @@ export class AppCheckService {
     @Inject(APP_CHECK_ENABLED)
     private readonly enabled: boolean | null,
     @Optional()
+    @Inject(APP_CHECK_SITE_KEY)
+      siteKey: string | null,
+    @Optional()
     @Inject(APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED)
       isTokenAutoRefreshEnabled: boolean | null
   ) {
     if (this.enabled) {
-      if (options.siteKey) {
+      if (siteKey) {
         const app: any = ɵfirebaseAppFactory(options, zone, nameOrConfig);
         const appCheck = app.appCheck();
         appCheck.activate(
-          options.siteKey,
+          siteKey,
           isTokenAutoRefreshEnabled ?? undefined
         );
       } else {
