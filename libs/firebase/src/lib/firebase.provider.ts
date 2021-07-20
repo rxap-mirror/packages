@@ -43,6 +43,15 @@ import {
   COLLECTION_ENABLED,
   APP_NAME
 } from '@angular/fire/analytics';
+import {
+  APP_CHECK_ENABLED,
+  APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED
+} from './app-check';
+import {
+  BUCKET,
+  MAX_OPERATION_RETRY_TIME,
+  MAX_UPLOAD_RETRY_TIME
+} from '@angular/fire/storage';
 
 export function FirebaseOptionsTokenFactory(configService: ConfigService<FirebaseConfig>) {
   return configService.get('firebase.options');
@@ -126,6 +135,26 @@ export function AuthPersistenceFactory(configService: ConfigService<FirebaseConf
 
 export function AuthSettingsFactory(configService: ConfigService<FirebaseConfig>) {
   return configService.get('firebase.auth.settings', null);
+}
+
+export function AppCheckEnabledFactory(configService: ConfigService<FirebaseConfig>) {
+  return configService.get('firebase.appCheck.enabled', null);
+}
+
+export function AppIsTokenAutoRefreshEnabledFactory(configService: ConfigService<FirebaseConfig>) {
+  return configService.get('firebase.appCheck.isTokenAutoRefreshEnabled', null);
+}
+
+export function StorageBucketFactory(configService: ConfigService<FirebaseConfig>) {
+  return configService.get('firebase.storage.bucket', configService.get('firebase.storageBucket', null));
+}
+
+export function StorageMaxUploadRetryTimeFactory(configService: ConfigService<FirebaseConfig>) {
+  return configService.get('firebase.storage.maxUploadRetryTime', null);
+}
+
+export function StorageMaxOperationRetryTimeFactory(configService: ConfigService<FirebaseConfig>) {
+  return configService.get('firebase.storage.maxOperationRetryTime', null);
 }
 
 export function ServiceWorkerFactory() {
@@ -272,6 +301,37 @@ export const FIREBASE_AUTH_PROVIDERS: Provider[] = [
   }
 ];
 
+export const FIREBASE_APP_CHECK_PROVIDERS: Provider[] = [
+  {
+    provide:    APP_CHECK_ENABLED,
+    useFactory: AppCheckEnabledFactory,
+    deps:       [ ConfigService ]
+  },
+  {
+    provide:    APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED,
+    useFactory: AppIsTokenAutoRefreshEnabledFactory,
+    deps:       [ ConfigService ]
+  }
+];
+
+export const FIREBASE_STORAGE_PROVIDERS: Provider[] = [
+  {
+    provide:    BUCKET,
+    useFactory: StorageBucketFactory,
+    deps:       [ ConfigService ]
+  },
+  {
+    provide:    MAX_UPLOAD_RETRY_TIME,
+    useFactory: StorageMaxUploadRetryTimeFactory,
+    deps:       [ ConfigService ]
+  },
+  {
+    provide:    MAX_OPERATION_RETRY_TIME,
+    useFactory: StorageMaxOperationRetryTimeFactory,
+    deps:       [ ConfigService ]
+  }
+];
+
 export const FIREBASE_PROVIDERS: Provider[] = [
   FIREBASE_APP_PROVIDERS,
   FIREBASE_FIRESTORE_PROVIDERS,
@@ -279,5 +339,7 @@ export const FIREBASE_PROVIDERS: Provider[] = [
   FIREBASE_MESSAGING_PROVIDERS,
   FIREBASE_PERFORMANCE_PROVIDERS,
   FIREBASE_ANALYTICS_PROVIDERS,
-  FIREBASE_AUTH_PROVIDERS
+  FIREBASE_AUTH_PROVIDERS,
+  FIREBASE_APP_CHECK_PROVIDERS,
+  FIREBASE_STORAGE_PROVIDERS
 ];
