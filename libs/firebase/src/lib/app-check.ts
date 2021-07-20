@@ -16,7 +16,8 @@ import {
 } from '@angular/fire';
 import { ConfigService } from '@rxap/config';
 
-export const APP_CHECK_DISABLED = new InjectionToken('rxap/firebase/app-check-disabled');
+export const APP_CHECK_ENABLED                       = new InjectionToken('rxap/firebase/app-check-enabled');
+export const APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED = new InjectionToken('rxap/firebase/app-check-site-key');
 
 @Injectable()
 export class AppCheckService {
@@ -31,21 +32,23 @@ export class AppCheckService {
       zone: NgZone,
     private readonly config: ConfigService,
     @Optional()
-    @Inject(APP_CHECK_DISABLED)
-    private readonly disabled: boolean | null
+    @Inject(APP_CHECK_ENABLED)
+    private readonly enabled: boolean | null,
+    @Optional()
+    @Inject(APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED)
+      isTokenAutoRefreshEnabled: boolean | null
   ) {
-    if (!this.disabled) {
-      const appCheckConfig = this.config.get('firebase.appCheck');
-      if (appCheckConfig && appCheckConfig.siteKey) {
+    if (this.enabled) {
+      if (options.siteKey) {
         const app: any = ɵfirebaseAppFactory(options, zone, nameOrConfig);
         const appCheck = app.appCheck();
         appCheck.activate(
-          appCheckConfig.siteKey,
-          appCheckConfig.isTokenAutoRefreshEnabled
+          options.siteKey,
+          isTokenAutoRefreshEnabled ?? undefined
         );
       } else {
         if (isDevMode()) {
-          console.warn('The app check is not loaded');
+          console.error('The app check site key is not provided');
         }
       }
     } else {
