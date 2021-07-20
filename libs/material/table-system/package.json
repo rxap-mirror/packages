@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-table-system",
-  "version": "12.3.0-next.5",
+  "version": "12.3.0-next.6",
   "peerDependencies": {
     "@angular/animations": "^12.0.1",
     "@angular/cdk": "^12.0.1",
@@ -11,11 +11,11 @@
     "@angular/material": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
     "@angular/router": "^12.0.1",
-    "@rxap/components": "^12.0.9",
-    "@rxap/data-source": "^12.0.10",
+    "@rxap/components": "^12.0.10-next.1",
+    "@rxap/data-source": "^12.0.11-next.0",
     "@rxap/definition": "^12.0.8",
-    "@rxap/directives": "^12.1.2-next.0",
-    "@rxap/forms": "^12.3.6-next.2",
+    "@rxap/directives": "^12.1.2-next.1",
+    "@rxap/forms": "^12.4.0-next.10",
     "@rxap/material-directives": "^12.0.6",
     "@rxap/mixin": "^12.0.7",
     "@rxap/open-api": "^12.0.13",
@@ -68,7 +68,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^12.5.0",
+    "@rxap/schematics-utilities": "^12.5.1-next.0",
     "tslib": "^2.2.0"
   }
 }
