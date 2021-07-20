@@ -9,10 +9,6 @@ import {
   Inject
 } from '@angular/core';
 import firebase from 'firebase/app';
-import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
-import GithubAuthProvider = firebase.auth.GithubAuthProvider;
-import FacebookAuthProvider = firebase.auth.FacebookAuthProvider;
-import TwitterAuthProvider = firebase.auth.TwitterAuthProvider;
 
 @Injectable()
 export class IdentityPlatformService {
@@ -48,19 +44,19 @@ export class IdentityPlatformService {
   }
 
   public google(popup: boolean = true): Promise<boolean> {
-    return this.withProvider(new GoogleAuthProvider(), popup);
+    return this.withProvider(new firebase.auth.GoogleAuthProvider(), popup);
   }
 
   public github(popup: boolean = true): Promise<boolean> {
-    return this.withProvider(new GithubAuthProvider(), popup);
+    return this.withProvider(new firebase.auth.GithubAuthProvider(), popup);
   }
 
   public facebook(popup: boolean = true): Promise<boolean> {
-    return this.withProvider(new FacebookAuthProvider(), popup);
+    return this.withProvider(new firebase.auth.FacebookAuthProvider(), popup);
   }
 
   public twitter(popup: boolean = true): Promise<boolean> {
-    return this.withProvider(new TwitterAuthProvider(), popup);
+    return this.withProvider(new firebase.auth.TwitterAuthProvider(), popup);
   }
 
   protected withProvider(provider: firebase.auth.AuthProvider, popup: boolean = true) {
