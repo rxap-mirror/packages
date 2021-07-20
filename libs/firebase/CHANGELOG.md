@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.4...@rxap/firebase@12.1.0-next.5) (2021-07-20)
+
+
+### Bug Fixes
+
+* add missing site key provider ([18c9a7e](https://gitlab.com/rxap/packages/commit/18c9a7e51ca456a5f36928f1702df0badc778950))
+
+
+
+
+
 # [12.1.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.3...@rxap/firebase@12.1.0-next.4) (2021-07-20)
 
 
