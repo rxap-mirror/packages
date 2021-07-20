@@ -30,6 +30,7 @@ import { getMetadata } from '@rxap/utilities/reflect-metadata';
 export interface ElementRecordOptions<Value>
   extends TextContentElementOptions<Value>,
           TagElementOptions {
+  raw?: boolean
 }
 
 export function AssertElementRecordOptions(options: any): asserts options is ElementRecordOptions<any> {
@@ -65,7 +66,7 @@ export class ElementRecordParser<T extends ParsedElement, Value>
       parsedElement[ this.propertyKey ] = {};
       for (const child of element.getChild(this.tag)!.getAllChildNodes()) {
         // @ts-ignore
-        parsedElement[ this.propertyKey ][ camelize(child.name) ] = child.getTextContent();
+        parsedElement[ this.propertyKey ][ this.options.raw ? child.name : camelize(child.name) ] = child.getTextContent();
       }
     } else if (this.required) {
       throw new RxapXmlParserValidateRequiredError(`Element <${element.name}> child <${this.tag}> text content is required!`, parsedElement.__tag!);
