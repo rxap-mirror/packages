@@ -97,6 +97,10 @@ export interface FirebaseConfig {
     region: string | null;
     origin: string | null;
     vapid: string | null;
+    appCheck: {
+      siteKey: string;
+      isTokenAutoRefreshEnabled?: boolean;
+    };
     auth: {
       google: boolean;
       facebook: boolean;
