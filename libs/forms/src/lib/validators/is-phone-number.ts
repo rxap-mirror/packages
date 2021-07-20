@@ -2,7 +2,7 @@ import {
   AbstractControl,
   ValidationErrors
 } from '@angular/forms';
-import isMobilePhone from 'validator/lib/isMobilePhone';
+import isMobilePhone from 'validator/es/lib/isMobilePhone';
 import type ValidatorJS from 'validator';
 
 export function IsPhoneNumber({ message, locale, options }: {

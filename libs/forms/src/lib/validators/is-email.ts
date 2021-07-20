@@ -2,7 +2,7 @@ import {
   AbstractControl,
   ValidationErrors
 } from '@angular/forms';
-import isEmailValidator from 'validator/lib/isEmail';
+import isEmailValidator from 'validator/es/lib/isEmail';
 import type ValidatorJS from 'validator';
 
 export type IsEmailOptions = ValidatorJS.IsEmailOptions
