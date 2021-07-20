@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.1-alpha.3](https://gitlab.com/rxap/packages/compare/@rxap/material-popover-edit@12.0.1-alpha.2...@rxap/material-popover-edit@12.0.1-alpha.3) (2021-07-20)
+
+
+### Bug Fixes
+
+* sync table loading and submiting event ([27d7ed2](https://gitlab.com/rxap/packages/commit/27d7ed2a7e8dcd00301ae379d98e2e2e316f0999))
+
+
+
+
+
 ## [12.0.1-alpha.2](https://gitlab.com/rxap/packages/compare/@rxap/material-popover-edit@12.0.1-alpha.1...@rxap/material-popover-edit@12.0.1-alpha.2) (2021-07-15)
 
 
