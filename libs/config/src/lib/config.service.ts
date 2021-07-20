@@ -39,6 +39,23 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   public static Urls = [ 'config.json' ];
 
+  public static async SideLoad(url: string, propertyPath: string): Promise<void> {
+
+    if (!this.Config) {
+      throw new Error('Config side load is only possible after the initial config load.');
+    }
+
+    try {
+
+      const response = await fetch(url);
+      SetObjectValue(this.Config, propertyPath, await response.json());
+
+    } catch (error) {
+      console.error(url, error.message);
+    }
+
+  }
+
   /**
    * Used to load the app config from a remote resource.
    *
