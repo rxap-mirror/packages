@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.4.0-next.9](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.8...@rxap/forms@12.4.0-next.9) (2021-07-20)
+
+
+### Bug Fixes
+
+* tree shakeable import ([9dd653f](https://gitlab.com/rxap/packages/commit/9dd653fe8586569fb822f0a1aeab661d8c85f5df))
+
+
+
+
+
 # [12.4.0-next.8](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.7...@rxap/forms@12.4.0-next.8) (2021-07-20)
 
 
