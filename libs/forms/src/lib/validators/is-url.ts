@@ -2,7 +2,7 @@ import {
   AbstractControl,
   ValidationErrors
 } from '@angular/forms';
-import isUrlValidator from 'validator/lib/isURL';
+import isUrlValidator from 'validator/es/lib/isURL';
 import type ValidatorJS from 'validator';
 
 export type IsURLOptions = ValidatorJS.IsURLOptions;
