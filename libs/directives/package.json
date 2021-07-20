@@ -1,6 +1,6 @@
 {
   "name": "@rxap/directives",
-  "version": "12.1.2-next.1",
+  "version": "12.1.2-alpha.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/directives",
