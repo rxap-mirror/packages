@@ -39,7 +39,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   public static Urls = [ 'config.json' ];
 
-  public static async SideLoad(url: string, propertyPath: string): Promise<void> {
+  public static async SideLoad(url: string, propertyPath: string, required?: boolean): Promise<void> {
 
     if (!this.Config) {
       throw new Error('Config side load is only possible after the initial config load.');
@@ -51,7 +51,11 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       SetObjectValue(this.Config, propertyPath, await response.json());
 
     } catch (error) {
-      console.error(url, error.message);
+      if (required) {
+        throw new Error(`Could not side load config '${url}': ${error.message}`);
+      } else {
+        console.warn(url, error.message);
+      }
     }
 
     console.debug(`app config side load '${propertyPath}'`, this.Config);
