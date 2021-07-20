@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.1...@rxap/firebase@12.1.0-next.2) (2021-07-20)
+
+
+### Features
+
+* split firebase providers ([bd31c67](https://gitlab.com/rxap/packages/commit/bd31c678618613e49343327de7158d0ca7fd802f))
+* split firebase providers ([4e44bdc](https://gitlab.com/rxap/packages/commit/4e44bdc602465269d371fe21be168b108dd39311))
+
+
+
+
+
 # [12.1.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.0...@rxap/firebase@12.1.0-next.1) (2021-07-20)
 
 
