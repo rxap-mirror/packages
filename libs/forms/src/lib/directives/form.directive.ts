@@ -6,7 +6,6 @@ import {
   OnInit,
   EventEmitter,
   Output,
-  HostListener,
   HostBinding,
   ChangeDetectorRef,
   Input,
@@ -286,7 +285,6 @@ export class FormDirective<T extends Record<string, any> = any>
     }
   }
 
-  @HostListener('submit', ['$event'])
   public onSubmit($event: Event): boolean {
     $event.preventDefault();
     super.onSubmit($event);
