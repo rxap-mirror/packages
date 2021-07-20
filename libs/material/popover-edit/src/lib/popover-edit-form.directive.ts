@@ -34,6 +34,11 @@ import {
   PopoverEditPositionStrategyFactory
 } from './cdk/popover-edit-position-strategy-factory';
 import { MatPopoverEditModule } from './popover-edit-module';
+import { Subscription } from 'rxjs';
+import {
+  skip,
+  tap
+} from 'rxjs/operators';
 
 export const RXAP_POPOVER_EDIT_FORM_DEFINITION_BUILDER = new InjectionToken<RxapFormBuilder>('rxap-popover-edit-form-definition-builder');
 export const RXAP_POPOVER_EDIT_FORM_SUBMIT_METHOD      = new InjectionToken<RxapFormBuilder>('rxap-popover-edit-form-submit-method');
@@ -102,6 +107,8 @@ export class RxapPopoverEditPositionStrategyFactory extends DefaultPopoverEditPo
 })
 export class PopoverEditFormDirective extends FormDirective {
 
+  private _submittingSubscription: Subscription;
+
   constructor(
     @Inject(ChangeDetectorRef)
     public readonly cdr: ChangeDetectorRef,
@@ -151,11 +158,20 @@ export class PopoverEditFormDirective extends FormDirective {
       formDefinitionBuilder,
       loadingIndicatorService
     );
+    this._submittingSubscription = this.submitting$.pipe(
+      skip(1),
+      tap(submitting => this.tableDataSourceDirective?.loading$.next(submitting))
+    ).subscribe();
   }
 
   protected submitSuccessful(value: any) {
     super.submitSuccessful(value);
     this.tableDataSourceDirective?.refresh();
+  }
+
+  public ngOnDestroy() {
+    super.ngOnDestroy();
+    this._submittingSubscription.unsubscribe();
   }
 
 }
