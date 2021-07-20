@@ -1,0 +1,13 @@
+.image {
+  width: 40px;
+  height: 40px;
+
+  &.circle {
+    border-radius: 24px;
+  }
+
+  &.rounded {
+    border-radius: 8px;
+  }
+
+}
