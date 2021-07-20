@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.2...@rxap/firebase@12.1.0-next.3) (2021-07-20)
+
+
+### Bug Fixes
+
+* use in place import ([aa1b1fe](https://gitlab.com/rxap/packages/commit/aa1b1fee080e1feb8c352694fbfac9a7dde584fd))
+
+
+
+
+
 # [12.1.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.1...@rxap/firebase@12.1.0-next.2) (2021-07-20)
 
 
