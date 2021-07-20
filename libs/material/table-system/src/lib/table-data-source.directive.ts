@@ -11,10 +11,7 @@ import {
 } from '@angular/core';
 import type { MatPaginator } from '@angular/material/paginator';
 import type { Observable } from 'rxjs';
-import {
-  EMPTY,
-  Subscription
-} from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
 import type { AbstractTableDataSource } from '@rxap/data-source/table';
 import {
@@ -33,7 +30,10 @@ import {
   tap
 } from 'rxjs/operators';
 import { Required } from '@rxap/utilities';
-import { Method } from '@rxap/utilities/rxjs';
+import {
+  Method,
+  ToggleSubject
+} from '@rxap/utilities/rxjs';
 
 // TODO : add migration schematic
 export const RXAP_TABLE_METHOD = new InjectionToken(
@@ -78,7 +78,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
   @Input()
   public paginator?: MatPaginator;
 
-  public loading$: Observable<boolean> = EMPTY;
+  public readonly loading$ = new ToggleSubject(true);
 
   @Input()
   @Required
@@ -171,21 +171,25 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
         'The TABLE_DATA_SOURCE and TABLE_METHOD token are not defined!'
       );
     }
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.matSort ?? undefined;
-    this.dataSource.filter = this.tableFilter ?? undefined;
+    this.dataSource.paginator  = this.paginator;
+    this.dataSource.sort       = this.matSort ?? undefined;
+    this.dataSource.filter     = this.tableFilter ?? undefined;
     this.dataSource.parameters = this.parameters;
-    this.loading$ = this.dataSource.loading$;
+    this._subscription.add(
+      this.dataSource.loading$.pipe(
+        tap(loading => this.loading$.next(!!loading))
+      ).subscribe()
+    );
     this.matTable.dataSource = this.dataSource;
     // TODO : remove hack to trigger change detection after data source refresh (machine-definition -> physical unit)
     this._subscription.add(
       this.loading$
-        .pipe(
-          filter((loading) => !loading),
-          debounceTime(2000),
-          tap(() => this.cdr.detectChanges()),
-          tap(() => this.cdr.markForCheck()),
-          delay(500),
+          .pipe(
+            filter((loading) => !loading),
+            debounceTime(2000),
+            tap(() => this.cdr.detectChanges()),
+            tap(() => this.cdr.markForCheck()),
+            delay(500),
           tap(() => this.cdr.detectChanges()),
           tap(() => this.cdr.markForCheck()),
           delay(500),
