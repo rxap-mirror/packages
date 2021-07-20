@@ -11,10 +11,6 @@ export interface FirebaseConfig {
       storageBucket?: string;
       messagingSenderId?: string;
       appId?: string;
-      /**
-       * reCaptcha key
-       */
-      siteKey?: string;
     };
     firestore: {
       enablePersistence: boolean;
@@ -50,6 +46,9 @@ export interface FirebaseConfig {
       maxUploadRetryTime?: number,
       maxOperationRetryTime?: number,
     },
+    analytics?: {
+      enabled?: boolean;
+    },
     messaging: {
       vapid: string | null;
     },
@@ -64,6 +63,10 @@ export interface FirebaseConfig {
     },
     appCheck: {
       isTokenAutoRefreshEnabled?: boolean;
+      /**
+       * reCaptcha key
+       */
+      siteKey?: string;
     };
     auth: {
       tenantId?: string;
