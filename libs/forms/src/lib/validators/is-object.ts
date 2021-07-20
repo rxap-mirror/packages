@@ -2,14 +2,13 @@ import {
   AbstractControl,
   ValidationErrors
 } from '@angular/forms';
-import { isObject } from 'class-validator';
 
 export function IsObject({ message }: { message?: string } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;
     }
-    if (!isObject(control.value)) {
+    if (!(control.value !== undefined && (typeof control.value === 'object' || typeof control.value === 'function') && !Array.isArray(control.value))) {
       return {
         isObject: {
           expected: 'A object value',

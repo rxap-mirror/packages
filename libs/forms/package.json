@@ -27,14 +27,14 @@
     "@rxap/directives": "^12.1.2-next.1",
     "@rxap/services": "^12.0.7",
     "@rxap/utilities": "^12.2.1-next.0",
-    "class-validator": "^0.13.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
   "dependencies": {
     "@rxap/schematics-utilities": "^12.5.1-next.0",
     "ts-morph": "^10.1.0",
-    "tslib": "^2.2.0"
+    "tslib": "^2.2.0",
+    "validator": "^13.6.0"
   },
   "schematics": "./collection.json",
   "ng-update": {

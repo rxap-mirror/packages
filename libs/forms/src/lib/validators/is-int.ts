@@ -2,14 +2,17 @@ import {
   AbstractControl,
   ValidationErrors
 } from '@angular/forms';
-import { isInt } from 'class-validator';
+import {
+  isNumber,
+  IsNumberOptions
+} from './is-number';
 
-export function IsInt({ message }: { message?: string } = {}) {
+export function IsInt({ message, options }: { message?: string, options?: IsNumberOptions } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;
     }
-    if (!isInt(control.value)) {
+    if (!isNumber(control.value, options) || Number.isInteger(control.value)) {
       return {
         isInt: {
           expected: 'A int value',
