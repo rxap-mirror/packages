@@ -46,8 +46,8 @@ export interface SortLike {
 }
 
 export interface FilterLike {
-  change: Observable<Record<string, any>>;
-  current: Record<string, any>;
+  change: Observable<Record<string, any> | string>;
+  current: Record<string, any> | string;
 }
 
 export interface AbstractTableDataSourceMetadata extends AbstractPaginationDataSourceMetadata {}
@@ -67,7 +67,7 @@ export abstract class AbstractTableDataSource<Data extends Record<string, any> =
     return this.paginator!.length;
   }
 
-  public get filterValue(): Record<string, any> | undefined {
+  public get filterValue(): Record<string, any> | string | undefined {
     return this.filter?.current;
   }
 
