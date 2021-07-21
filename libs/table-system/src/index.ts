@@ -14,3 +14,7 @@ export * from './lib/select-row/checkbox-header-cell/checkbox-header-cell.compon
 export * from './lib/select-row/checkbox-header-cell/checkbox-header-cell.component.module';
 export * from './lib/select-row/select-row.service';
 export * from './lib/select-row/all-rows-selected.directive';
+
+export * from './lib/full-text-search/table-full-text-search.service';
+export * from './lib/full-text-search/table-filter-input.directive';
+export * from './lib/full-text-search/table-full-text-search.module';
