@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.0.13...@rxap/open-api@12.1.0-next.0) (2021-07-21)
+
+
+### Features
+
+* support filter string ([3062bf1](https://gitlab.com/rxap/packages/commit/3062bf1d1430d182343ac985a4b33cd2a076451d))
+
+
+
+
+
 ## [12.0.13](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.0.13-next.0...@rxap/open-api@12.0.13) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/open-api

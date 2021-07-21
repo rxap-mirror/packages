@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0-next.9](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.8...@rxap/material-table-system@12.3.0-next.9) (2021-07-21)
+
+
+### Features
+
+* support filter string ([d879a16](https://gitlab.com/rxap/packages/commit/d879a16b0ad11a639f348ba7a97f2bc491583d2e))
+
+
+
+
+
 # [12.3.0-next.8](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.7...@rxap/material-table-system@12.3.0-next.8) (2021-07-21)
 
 
