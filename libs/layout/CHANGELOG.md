@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.1.0-next.0...@rxap/layout@12.1.0-next.1) (2021-07-21)
+
+
+### Features
+
+* navigate to root after sign out ([10a64b6](https://gitlab.com/rxap/packages/commit/10a64b681fbc5a1932efb75b828cc4fe45aa016f))
+
+
+
+
+
 # [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.0.11-next.0...@rxap/layout@12.1.0-next.0) (2021-07-21)
 
 
