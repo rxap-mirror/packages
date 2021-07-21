@@ -21,26 +21,26 @@ export class IdentityPlatformService {
     this.isAuthenticated().then(isAuthenticated => this.isAuthenticated$.next(isAuthenticated));
   }
 
-  public requestPasswordReset(email: string): Promise<boolean> {
-    return this.fireAuth.sendPasswordResetEmail(email).then(() => true).catch(() => false);
+  public async requestPasswordReset(email: string): Promise<boolean> {
+    await this.fireAuth.sendPasswordResetEmail(email);
+    return true;
   }
 
-  public sendPasswordReset(password: string, token: string): Promise<boolean> {
-    return this.fireAuth.confirmPasswordReset(token, password).then(() => true).catch(() => false);
+  public async sendPasswordReset(password: string, token: string): Promise<boolean> {
+    await this.fireAuth.confirmPasswordReset(token, password);
+    return true;
   }
 
-  public signInWithEmailAndPassword(email: string, password: string, remember: boolean): Promise<boolean> {
-    return this.fireAuth.signInWithEmailAndPassword(email, password).then(() => true).catch(() => false).then(status => {
-      this.isAuthenticated$.next(status);
-      return status;
-    });
+  public async signInWithEmailAndPassword(email: string, password: string, remember: boolean): Promise<boolean> {
+    await this.fireAuth.signInWithEmailAndPassword(email, password);
+    this.isAuthenticated$.next(true);
+    return true;
   }
 
-  public signOut(): Promise<boolean> {
-    return this.fireAuth.signOut().then(() => true).catch(() => false).then(status => {
-      this.isAuthenticated$.next(!status);
-      return status;
-    });
+  public async signOut(): Promise<boolean> {
+    await this.fireAuth.signOut();
+    this.isAuthenticated$.next(false);
+    return true;
   }
 
   public google(popup: boolean = true): Promise<boolean> {
@@ -59,12 +59,11 @@ export class IdentityPlatformService {
     return this.withProvider(new firebase.auth.TwitterAuthProvider(), popup);
   }
 
-  protected withProvider(provider: firebase.auth.AuthProvider, popup: boolean = true) {
+  protected async withProvider(provider: firebase.auth.AuthProvider, popup: boolean = true) {
     const signIn: Promise<any> = popup ? this.fireAuth.signInWithPopup(provider) : this.fireAuth.signInWithRedirect(provider);
-    return signIn.then(() => true).catch(() => false).then(status => {
-      this.isAuthenticated$.next(status);
-      return status;
-    });
+    await signIn;
+    this.isAuthenticated$.next(true);
+    return true;
   }
 
   public isAuthenticated(): Promise<boolean> {
