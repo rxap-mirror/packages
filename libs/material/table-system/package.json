@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-table-system",
-  "version": "12.3.0-next.7",
+  "version": "12.3.0-next.8",
   "peerDependencies": {
     "@angular/animations": "^12.0.1",
     "@angular/cdk": "^12.0.1",
