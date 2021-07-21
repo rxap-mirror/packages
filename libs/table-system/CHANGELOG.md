@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/table-system@12.0.8-next.0...@rxap/table-system@12.1.0-next.0) (2021-07-21)
+
+
+### Features
+
+* add full text search ([fc477e1](https://gitlab.com/rxap/packages/commit/fc477e1b33e728abc4a0eb8186ef9c6d8251df97))
+
+
+
+
+
 ## [12.0.8-next.0](https://gitlab.com/rxap/packages/compare/@rxap/table-system@12.0.7...@rxap/table-system@12.0.8-next.0) (2021-07-14)
 
 
