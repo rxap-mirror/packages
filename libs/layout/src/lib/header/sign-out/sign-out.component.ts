@@ -1,7 +1,10 @@
 import {
   Component,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  Inject,
+  Optional
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector:        'rxap-sign-out',
@@ -10,4 +13,16 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-sign-out' }
 })
-export class SignOutComponent { }
+export class SignOutComponent {
+
+  constructor(
+    @Optional()
+    @Inject(Router)
+    private readonly router: Router | null
+  ) {}
+
+  public redirectToRoot() {
+    return this.router?.navigate([ '/' ]);
+  }
+
+}
