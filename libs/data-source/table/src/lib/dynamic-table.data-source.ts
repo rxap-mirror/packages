@@ -53,7 +53,7 @@ export interface TableEvent<Parameters = any> {
   end?: number;
   page?: PageEvent | null;
   sort?: Sort | null;
-  filter?: Record<string, any> | null;
+  filter?: Record<string, any> | null | string;
   /** The custom table parameter */
   parameters?: Parameters;
   /** time of the last refresh call */

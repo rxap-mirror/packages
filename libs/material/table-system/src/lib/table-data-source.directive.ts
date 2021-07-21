@@ -13,7 +13,10 @@ import type { MatPaginator } from '@angular/material/paginator';
 import type { Observable } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
-import type { AbstractTableDataSource } from '@rxap/data-source/table';
+import type {
+  AbstractTableDataSource,
+  FilterLike
+} from '@rxap/data-source/table';
 import {
   DynamicTableDataSource,
   TableEvent,
@@ -36,17 +39,18 @@ import {
 } from '@rxap/utilities/rxjs';
 
 // TODO : add migration schematic
-export const RXAP_TABLE_METHOD = new InjectionToken(
+export const RXAP_TABLE_METHOD                   = new InjectionToken(
   'rxap/material/table-system/table-method'
 );
 /**
  * @deprecated use TABLE_METHOD instead
  */
-export const TABLE_REMOTE_METHOD = RXAP_TABLE_METHOD;
+export const TABLE_REMOTE_METHOD                 = RXAP_TABLE_METHOD;
 export const TABLE_REMOTE_METHOD_ADAPTER_FACTORY = new InjectionToken(
   'table-remote-method-adapter-factory'
 );
-export const TABLE_DATA_SOURCE = new InjectionToken('table-data-source');
+export const RXAP_TABLE_FILTER                   = new InjectionToken('rxap/material-table-system/table-filter');
+export const TABLE_DATA_SOURCE                   = new InjectionToken('table-data-source');
 
 export type TableRemoteMethodAdapterFactory<
   Data extends Record<string, any> = Record<string, any>
@@ -118,22 +122,23 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
     protected readonly cdr: ChangeDetectorRef,
     @Optional()
     @Inject(RXAP_TABLE_METHOD)
-    private readonly sourceMethod: Method<
-      Data[] | any,
-      TableEvent | any
-    > | null = null,
+    private readonly sourceMethod: Method<Data[] | any,
+      TableEvent | any> | null,
     @Optional()
     @Inject(TABLE_DATA_SOURCE)
-    private readonly sourceDataSource: AbstractTableDataSource<Data> | null = null,
+    private readonly sourceDataSource: AbstractTableDataSource<Data> | null,
     @Optional()
     @Inject(TABLE_REMOTE_METHOD_ADAPTER_FACTORY)
-    adapterFactory: any = null,
+      adapterFactory: any,
     @Optional()
     @Inject(MatSort)
-    private readonly matSort: MatSort | null = null,
+    private readonly matSort: MatSort | null,
     @Optional()
     @Inject(TableFilterService)
-    private readonly tableFilter: TableFilterService | null = null
+    private readonly tableFilter: TableFilterService | null,
+    @Optional()
+    @Inject(RXAP_TABLE_FILTER)
+    private readonly _tableFilter: FilterLike | null
   ) {
     this.matTable.trackBy = this.trackBy;
     this.adapterFactory = adapterFactory;
@@ -173,7 +178,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
     }
     this.dataSource.paginator  = this.paginator;
     this.dataSource.sort       = this.matSort ?? undefined;
-    this.dataSource.filter     = this.tableFilter ?? undefined;
+    this.dataSource.filter     = this._tableFilter ?? this.tableFilter ?? undefined;
     this.dataSource.parameters = this.parameters;
     this._subscription.add(
       this.dataSource.loading$.pipe(
