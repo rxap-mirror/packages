@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.6](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.5...@rxap/firebase@12.1.0-next.6) (2021-07-21)
+
+
+### Bug Fixes
+
+* update to new auth service concept ([991c84d](https://gitlab.com/rxap/packages/commit/991c84d45a3838aef8c94da7c3de0a8784d02817))
+
+
+
+
+
 # [12.1.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.4...@rxap/firebase@12.1.0-next.5) (2021-07-20)
 
 
