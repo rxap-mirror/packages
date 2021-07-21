@@ -1,26 +1,27 @@
 import {
-  Directive,
-  OnInit,
-  OnDestroy,
-  Input,
-  Inject,
   ChangeDetectorRef,
-  ViewContainerRef,
-  Optional
+  Directive,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Optional,
+  ViewContainerRef
 } from '@angular/core';
+import { MatButton } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Required } from '@rxap/utilities';
 import { Subscription } from 'rxjs';
-import { MatButton } from '@angular/material/button';
 import {
-  startWith,
   map,
+  startWith,
   tap
 } from 'rxjs/operators';
 import { TableRowActionDirective } from './table-row-action.directive';
 import { TableRowActionMethod } from './table-row-action.method';
 import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
-import { SelectRowService } from '../select-row/select-row.service';
 import { TableDataSourceDirective } from '../table-data-source.directive';
+import { SelectRowService } from '../select-row/select-row.service';
 
 @Directive({
   selector: 'button[rxapTableRowHeaderAction]'
@@ -39,6 +40,8 @@ export class TableRowHeaderActionDirective<Data extends Record<string, any>>
       vcr: ViewContainerRef,
     @Inject(TableDataSourceDirective)
       tableDataSourceDirective: TableDataSourceDirective,
+    @Inject(MatSnackBar)
+      snackBar: MatSnackBar,
     @Optional()
     @Inject(MatButton)
       matButton: MatButton | null,
@@ -46,7 +49,14 @@ export class TableRowHeaderActionDirective<Data extends Record<string, any>>
     @Inject(SelectRowService)
     private readonly selectRowService: SelectRowService<Data> | null
   ) {
-    super(actionMethod, cdr, vcr, tableDataSourceDirective, matButton);
+    super(
+      actionMethod,
+      cdr,
+      vcr,
+      tableDataSourceDirective,
+      snackBar,
+      matButton
+    );
   }
 
   public ngOnDestroy() {
