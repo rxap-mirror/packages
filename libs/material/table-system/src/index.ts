@@ -116,6 +116,7 @@ export * from './lib/cells/boolean-cell/boolean-cell.component.module';
 
 // region table-row-actions
 
+export * from './lib/table-row-actions/decorators';
 export * from './lib/table-row-actions/table-row-action.directive';
 export * from './lib/table-row-actions/table-row-action.method';
 export * from './lib/table-row-actions/table-row-action-executing.directive';
