@@ -6,7 +6,8 @@ import {
 } from '@rxap/utilities';
 import {
   Optional,
-  Inject
+  Inject,
+  isDevMode
 } from '@angular/core';
 import {
   RXAP_TABLE_DATA_SOURCE_PAGINATOR,
@@ -142,32 +143,39 @@ export abstract class AbstractTableDataSource<Data extends Record<string, any> =
     }) : data.slice();
   }
 
-  public applyFilterBy(data: ReadonlyArray<Data>, filter: Record<string, any>): Data[] {
+  public applyFilterBy(data: ReadonlyArray<Data>, filter: Record<string, any> | string): Data[] {
     if (filter) {
-      return data.filter(row => {
-        return Object.entries(filter).every(([ key, value ]) => {
-          const type = typeof value;
-          if (row.hasOwnProperty(key) && hasIndexSignature(row)) {
-            switch (type) {
-              case 'undefined':
-                return true;
-              case 'object':
-                return value === null || value === undefined || value === row[ key ];
-              case 'boolean':
-                return value === row[ key ];
-              case 'number':
-                return value === row[ key ];
-              case 'string':
-                return (row[ key ] || '').toString().toLowerCase().includes(value.toLowerCase());
-              case 'function':
-                return value(row[ key ]);
-              case 'bigint':
-                return value === row[ key ];
+      if (typeof filter === 'string') {
+        if (isDevMode()) {
+          console.error('The filter is a string. Currently not supported by the AbstractTableDataSource');
+        }
+        return data.slice();
+      } else {
+        return data.filter(row => {
+          return Object.entries(filter).every(([ key, value ]) => {
+            const type = typeof value;
+            if (row.hasOwnProperty(key) && hasIndexSignature(row)) {
+              switch (type) {
+                case 'undefined':
+                  return true;
+                case 'object':
+                  return value === null || value === undefined || value === row[ key ];
+                case 'boolean':
+                  return value === row[ key ];
+                case 'number':
+                  return value === row[ key ];
+                case 'string':
+                  return (row[ key ] || '').toString().toLowerCase().includes(value.toLowerCase());
+                case 'function':
+                  return value(row[ key ]);
+                case 'bigint':
+                  return value === row[ key ];
+              }
             }
-          }
-          return true;
+            return true;
+          });
         });
-      });
+      }
     } else {
       return data.slice();
     }
