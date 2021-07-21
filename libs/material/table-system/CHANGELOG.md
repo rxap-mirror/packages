@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0-next.8](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.7...@rxap/material-table-system@12.3.0-next.8) (2021-07-21)
+
+
+### Bug Fixes
+
+* detect image change ([1cf9d5b](https://gitlab.com/rxap/packages/commit/1cf9d5b5bca39670f6a3b52f0cbee435243aaf5c))
+
+
+### Features
+
+* add decorators ([b795c2b](https://gitlab.com/rxap/packages/commit/b795c2b7750e1ec0f775f1fc8719424d93d7ba9d))
+
+
+
+
+
 # [12.3.0-next.7](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.6...@rxap/material-table-system@12.3.0-next.7) (2021-07-20)
 
 
