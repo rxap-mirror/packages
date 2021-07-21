@@ -9,14 +9,21 @@ import {
   Sort,
   AbstractTableDataSourceMetadata,
   RxapAbstractTableDataSource,
-  RXAP_TABLE_DATA_SOURCE_PARAMETERS,
+  RXAP_TABLE_DATA_SOURCE_PARAMETERS
 } from '@rxap/data-source/table';
-import { Injectable, Inject, Optional } from '@angular/core';
+import {
+  Injectable,
+  Inject,
+  Optional
+} from '@angular/core';
 import {
   RXAP_DATA_SOURCE_METADATA,
-  BaseDataSourceViewer,
+  BaseDataSourceViewer
 } from '@rxap/data-source';
-import { PaginatorLike, PageEvent } from '@rxap/data-source/pagination';
+import {
+  PaginatorLike,
+  PageEvent
+} from '@rxap/data-source/pagination';
 import { PaginationData } from '@rxap/data-source/http/pagination';
 import {
   Observable,
@@ -24,7 +31,7 @@ import {
   EMPTY,
   combineLatest,
   of,
-  isObservable,
+  isObservable
 } from 'rxjs';
 import { RxapOpenApiDataSourceTableError } from './error';
 import {
@@ -32,17 +39,20 @@ import {
   tap,
   filter as rxjsFilter,
   map,
-  switchMap,
+  switchMap
 } from 'rxjs/operators';
 import { RXAP_OPEN_API_TABLE_DATA_SOURCE_TO_PARAMETERS_FUNCTION } from './tokens';
-import { Constructor, isPromise } from '@rxap/utilities';
+import {
+  Constructor,
+  isPromise
+} from '@rxap/utilities';
 import type { OpenApiDataSource } from '@rxap/open-api/data-source';
 import { OpenApiDataSourceViewer } from '@rxap/open-api/data-source';
 
 export interface TableEvent {
   page: PageEvent;
   sort: Sort | null;
-  filter: Record<string, any> | null;
+  filter: Record<string, any> | string | null;
 }
 
 export interface OpenApiTableDataSourceViewer extends BaseDataSourceViewer {
