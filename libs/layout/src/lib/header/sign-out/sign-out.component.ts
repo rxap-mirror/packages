@@ -1,8 +1,7 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  Inject,
-  Optional
+  Inject
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -16,13 +15,12 @@ import { Router } from '@angular/router';
 export class SignOutComponent {
 
   constructor(
-    @Optional()
     @Inject(Router)
-    private readonly router: Router | null
+    private readonly router: Router
   ) {}
 
   public redirectToRoot() {
-    return this.router?.navigate([ '/' ]);
+    this.router.navigate([ '/' ]);
   }
 
 }
