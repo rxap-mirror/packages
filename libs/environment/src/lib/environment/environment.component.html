@@ -28,7 +28,7 @@
   </tr>
   <tr *ngIf="environment.timestamp">
     <th>Timestamp</th>
-    <td>{{environment.timestamp | date}}</td>
+    <td>{{environment.timestamp | date:'HH:mm dd.MM.yy'}}</td>
   </tr>
   <tr *ngIf="environment.branch">
     <th>Branch</th>
