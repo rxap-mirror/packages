@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.1-next.0](https://gitlab.com/rxap/packages/compare/@rxap/environment@12.1.0...@rxap/environment@12.1.1-next.0) (2021-07-22)
+
+
+### Bug Fixes
+
+* format date with hour and minute ([8c67fa7](https://gitlab.com/rxap/packages/commit/8c67fa7a0f7375fd70911e280405d2945c04271c))
+
+
+
+
+
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/environment@12.1.0-next.1...@rxap/environment@12.1.0) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/environment
