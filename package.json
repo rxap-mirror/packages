@@ -20,7 +20,7 @@
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
     "scss-bundle": "scss-bundle",
-    "version": "bash scripts/lerna/version.sh",
+    "version": "bash scripts/lerna/hooks/version.sh",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
@@ -52,7 +52,7 @@
     "test:ci": "jest --coverage --ci --reporters default --reporters jest-junit",
     "workspace-generator": "nx workspace-generator",
     "lerna": "env-cmd lerna",
-    "lerna:version": "yarn lerna version --create-release gitlab",
+    "lerna:version": "bash scripts/lerna/version.sh",
     "lerna:publish": "bash scripts/lerna/publish.sh",
     "commitlint": "commitlint",
     "generate:readme": "node tools/readme-generator/index.js"
