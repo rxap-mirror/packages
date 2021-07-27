@@ -4900,12 +4900,12 @@
     "@rxap/utilities" "^12.0.3"
     openapi-types "^9.0.3"
 
-"@rxap/schematics-ts-morph@^12.3.0-next.0":
-  version "12.3.0-next.0"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics-ts-morph/-/schematics-ts-morph-12.3.0-next.0.tgz#3499ab8d240672077bc310e606ae36c263347e84"
-  integrity sha512-TCaoj+vrG2BF5/cbVAIL9jWmu8rw5d6acBNxL9TDeRYfaFTRhI0xKwaB3wHAKA7ieNGF2YrzbsDkcxydT+7hUw==
+"@rxap/schematics-ts-morph@^12.3.0":
+  version "12.3.0"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-ts-morph/-/schematics-ts-morph-12.3.0.tgz#4ae86c634b6a5e765394727e85cebf7b433add17"
+  integrity sha512-XmhGJWZy959bItsYNAWEitRsrobXRPb/73+dVw9AKN/9s8ms2234mqMisruU73SPE2Ad9+aIHLgDJyYs3Togkw==
   dependencies:
-    "@rxap/utilities" "^12.2.0"
+    "@rxap/utilities" "^12.2.1-next.0"
     tslib "^2.0.0"
 
 "@rxap/schematics-utilities@^12.4.0":
@@ -4926,13 +4926,22 @@
     semver "^7.3.5"
     tslib "^2.0.0"
 
-"@rxap/schematics@^12.9.0-next.0":
-  version "12.9.0-next.0"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics/-/schematics-12.9.0-next.0.tgz#8eb134ad636565348d963f7fc31c7d96ea4eac19"
-  integrity sha512-8Tr2vIFG/GxdjYNQliqbPss+mxQNqlkqqsp06nhHIXUXOtx0sfNZ7vE4AiEqmCQbKILTMbQMxSo1756q+Lcogw==
+"@rxap/schematics-utilities@^12.6.0":
+  version "12.6.0"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-12.6.0.tgz#1d309d121e7d6f6766b0f2e28a92b90c38e3e00d"
+  integrity sha512-FIzewieHq2QpvVZWAXS7+OBZ1FHLBTDQwSwlJICUmbbiutU+zEnUz7gSDySSLvvcq8V/49+I6endqlIUoLUiOg==
   dependencies:
-    "@rxap/schematics-ts-morph" "^12.3.0-next.0"
     "@rxap/utilities" "^12.2.0"
+    semver "^7.3.5"
+    tslib "^2.0.0"
+
+"@rxap/schematics@^12.9.0":
+  version "12.9.0"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics/-/schematics-12.9.0.tgz#8671ee3e1efdcd343a8ef51a28c4678176fa0577"
+  integrity sha512-RNg6Sx7CU+rEV7g9GSPiTq8jvf4cY0+p8ZxFE6u4Wd/y/DncESNLjhQ5dp+ibGdLhMmDtqe3fXxZ/uTGL8JKsg==
+  dependencies:
+    "@rxap/schematics-ts-morph" "^12.3.0"
+    "@rxap/utilities" "^12.2.1-next.0"
     parse5 "^6.0.1"
     ts-morph "^11.0.0"
     tslib "^2.0.0"
@@ -4959,6 +4968,15 @@
   integrity sha512-SV3U1C1dfpf3zp2QUT4/9rpXLPq6jb1b/Tn1hhgP3w3nWlCQou6Kx8guvF2GVR8s8iWAz8aVw6i3YAAqU9inPA==
   dependencies:
     "@rxap/schematics-utilities" "^12.4.0"
+    ts-morph "^10.1.0"
+    tslib "^2.2.0"
+
+"@rxap/utilities@^12.2.1-next.0":
+  version "12.2.1"
+  resolved "https://registry.yarnpkg.com/@rxap/utilities/-/utilities-12.2.1.tgz#3c4e1f97bb50805fc1b9ba5d2ddb562b27a4016a"
+  integrity sha512-IjEOcUpgz35n+ZwyEx2T7iI0Du3npfmUg1+Oxl7eRvxLhtXibOhPI9xsCGnQ34CGYjAp2vJnwyeupiaNxQRUEg==
+  dependencies:
+    "@rxap/schematics-utilities" "^12.5.1-next.0"
     ts-morph "^10.1.0"
     tslib "^2.2.0"
 
