@@ -46,8 +46,15 @@ export default function(options: NgAddSchema): Rule {
 
       AddToArray(
         mainSourceFile,
+        'configSideLoad',
+        'Promise.resolve()',
+        'Promise<any>[]'
+      );
+
+      AddToArray(
+        mainSourceFile,
         'setup',
-        'ConfigService.Load()',
+        'ConfigService.Load().then(() => Promise.all(configSideLoad))',
         'Promise<any>[]'
       );
 
