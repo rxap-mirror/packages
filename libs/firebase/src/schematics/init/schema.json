@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "firebase-init",
+  "title": "Init",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The project name where firebase should be init",
+      "$default": {
+        "$source": "projectName"
+      },
+      "x-prompt": "Which project should be initialized?"
+    },
+    "functions": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the project should support firebase functions",
+      "x-prompt": "Should the project use firebase functions?"
+    },
+    "analytics": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the project should support firebase analytics",
+      "x-prompt": "Should the project use firebase analytics?"
+    },
+    "performance": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the project should support firebase performance",
+      "x-prompt": "Should the project use firebase performance?"
+    },
+    "storage": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the project should support firebase storage",
+      "x-prompt": "Should the project use firebase storage?"
+    },
+    "appCheck": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the project should support firebase app check",
+      "x-prompt": "Should the project use firebase app check?"
+    },
+    "firestore": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the project should support firebase firestore",
+      "x-prompt": "Should the project use firebase firestore?"
+    },
+    "auth": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the project should support firebase auth",
+      "x-prompt": "Should the project use firebase auth?"
+    },
+    "useEmulator": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the firebase emulator should be setup?",
+      "x-prompt": "Should the firebase emulator be setup?"
+    },
+    "hostingSite": {
+      "type": "string",
+      "description": "The name of the firebase hosting site",
+      "x-prompt": "Enter the name of the firebase hosting site: (optional)"
+    }
+  },
+  "required": [
+    "project"
+  ]
+}
