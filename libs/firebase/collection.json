@@ -4,6 +4,11 @@
       "description": "Setup the package @rxap/firebase for the workspace.",
       "factory": "./src/schematics/ng-add/index",
       "schema": "./src/schematics/ng-add/schema.json"
+    },
+    "init": {
+      "description": "Init the select project with required angular fire imports and providers",
+      "factory": "./src/schematics/init/index",
+      "schema": "./src/schematics/init/schema.json"
     }
   },
   "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json"
