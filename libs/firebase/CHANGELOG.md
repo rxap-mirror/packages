@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0...@rxap/firebase@12.2.0-next.0) (2021-07-28)
+
+
+### Bug Fixes
+
+* **schematics:** add missing initial app module provider ([e38b2cb](https://gitlab.com/rxap/packages/commit/e38b2cbc44ccf1b74499304b46e177c9e00459a9))
+
+
+### Features
+
+* **schematics:** add init schematic ([4e8a4bb](https://gitlab.com/rxap/packages/commit/4e8a4bbd2e4862f327720e4b0096df8573ca4ff2))
+
+
+
+
+
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.6...@rxap/firebase@12.1.0) (2021-07-22)
 
 **Note:** Version bump only for package @rxap/firebase
