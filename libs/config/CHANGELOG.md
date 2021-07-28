@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/config@12.2.0...@rxap/config@12.3.0-next.0) (2021-07-28)
+
+
+### Features
+
+* **schematics:** add side-load schematic ([1579bfd](https://gitlab.com/rxap/packages/commit/1579bfd3cd1238fefaf7562a69d05f9c1129222e))
+
+
+
+
+
 # [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/config@12.2.0-next.2...@rxap/config@12.2.0) (2021-07-22)
 
 **Note:** Version bump only for package @rxap/config

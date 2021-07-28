@@ -1,9 +1,8 @@
 {
   "name": "@rxap/validator",
-  "version": "0.0.1",
-  "peerDependencies": {},
+  "version": "0.0.2-next.0",
   "dependencies": {
-    "tslib": "^2.1.0"
+    "tslib": "^2.2.0"
   },
   "schematics": "./collection.json",
   "ng-update": {
@@ -32,5 +31,9 @@
   "publishConfig": {
     "directory": "../../dist/libs/validator",
     "access": "public"
+  },
+  "peerDependencies": {
+    "@rxap/schematics-utilities": "^12.6.0",
+    "jest-preset-angular": "^8.4.0"
   }
 }

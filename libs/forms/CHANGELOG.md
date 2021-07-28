@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.4.1-next.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0...@rxap/forms@12.4.1-next.0) (2021-07-28)
+
+
+### Bug Fixes
+
+* use @rxap/validator package ([54abed6](https://gitlab.com/rxap/packages/commit/54abed6af69235c17cc9f5b2b867cc11cdf3aad2))
+
+
+
+
+
 # [12.4.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.10...@rxap/forms@12.4.0) (2021-07-22)
 
 **Note:** Version bump only for package @rxap/forms
