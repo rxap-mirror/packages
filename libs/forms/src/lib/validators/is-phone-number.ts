@@ -2,13 +2,16 @@ import {
   AbstractControl,
   ValidationErrors
 } from '@angular/forms';
-import isMobilePhone from 'validator/es/lib/isMobilePhone';
-import type ValidatorJS from 'validator';
+import {
+  isMobilePhone,
+  MobilePhoneLocale,
+  IsMobilePhoneOptions
+} from '@rxap/validator';
 
 export function IsPhoneNumber({ message, locale, options }: {
   message?: string,
-  locale?: 'any' | ValidatorJS.MobilePhoneLocale | ValidatorJS.MobilePhoneLocale[],
-  options?: ValidatorJS.IsMobilePhoneOptions,
+  locale?: 'any' | MobilePhoneLocale | MobilePhoneLocale[],
+  options?: IsMobilePhoneOptions,
 } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {

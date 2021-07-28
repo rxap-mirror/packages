@@ -2,17 +2,17 @@ import {
   AbstractControl,
   ValidationErrors
 } from '@angular/forms';
-import isUrlValidator from 'validator/es/lib/isURL';
-import type ValidatorJS from 'validator';
+import {
+  isURL,
+  IsURLOptions
+} from '@rxap/validator';
 
-export type IsURLOptions = ValidatorJS.IsURLOptions;
-
-export function IsUrl({ message, options }: { message?: string, options?: ValidatorJS.IsURLOptions } = {}) {
+export function IsUrl({ message, options }: { message?: string, options?: IsURLOptions } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;
     }
-    if (!(typeof control.value === 'string' && isUrlValidator(control.value, options))) {
+    if (!(typeof control.value === 'string' && isURL(control.value, options))) {
       return {
         isURL: {
           expected: 'A url value',
