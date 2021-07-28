@@ -1,0 +1,36 @@
+{
+  "name": "@rxap/validator",
+  "version": "0.0.1",
+  "peerDependencies": {},
+  "dependencies": {
+    "tslib": "^2.1.0"
+  },
+  "schematics": "./collection.json",
+  "ng-update": {
+    "migrations": "./migration.json",
+    "packageGroup": [
+      "@rxap/validator"
+    ]
+  },
+  "ng-add": {
+    "save": "dependencies"
+  },
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages/-/blob/master/libs/validator",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "keywords": [
+    "rxap",
+    "validator",
+    "typescript"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/validator",
+    "access": "public"
+  }
+}
