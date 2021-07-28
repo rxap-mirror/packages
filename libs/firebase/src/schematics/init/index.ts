@@ -93,6 +93,17 @@ export default function(options: InitSchema): Rule {
       moduleSpecifier: '@rxap/utilities'
     });
 
+    AddNgModuleProvider(
+      appModuleSourceFile,
+      'FIREBASE_APP_PROVIDERS',
+      [
+        {
+          namedImports:    [ 'FIREBASE_APP_PROVIDERS' ],
+          moduleSpecifier: '@rxap/firebase'
+        }
+      ]
+    );
+
     if (options.functions) {
       AddNgModuleImport(
         appModuleSourceFile,
@@ -510,7 +521,9 @@ export default function(options: InitSchema): Rule {
         if (!buildTarget.options.assets) {
           buildTarget.options.assets = [];
         }
-        const assets: string[] = [];
+        const assets: string[] = [
+          join(projectSourceRoot, 'config.firebase.options.json')
+        ];
         if (options.functions) {
           assets.push(join(projectSourceRoot, 'config.firebase.functions.json'));
         }
@@ -649,7 +662,8 @@ service cloud.firestore {
       ) : noop(),
       UpdateIgnoreFile([
         '.firebase-emulator',
-        '.runtimeconfig.json'
+        '.runtimeconfig.json',
+        '.firebaserc'
       ]),
       UpdateIgnoreFile([
         'config.*.json'
