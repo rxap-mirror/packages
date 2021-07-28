@@ -32,5 +32,39 @@ ng g @rxap/firebase:ng-add
 
 Option | Type | Default | Description
 --- | --- | --- | ---
+project | string |  | The project name where firebase should be init
+functions | boolean |  | Whether the project should support firebase functions
+analytics | boolean |  | Whether the project should support firebase analytics
+performance | boolean |  | Whether the project should support firebase performance
+storage | boolean |  | Whether the project should support firebase storage
+appCheck | boolean |  | Whether the project should support firebase app check
+firestore | boolean |  | Whether the project should support firebase firestore
+auth | boolean |  | Whether the project should support firebase auth
+useEmulator | boolean |  | Whether the firebase emulator should be setup?
+hostingSite | string |  | The name of the firebase hosting site
 
+
+## init
+> Init the select project with required angular fire imports and providers
+
+```
+ng g @rxap/firebase:init
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+project | string |  | The project name where firebase should be init
+functions | boolean | false | Whether the project should support firebase functions
+analytics | boolean | false | Whether the project should support firebase analytics
+performance | boolean | false | Whether the project should support firebase performance
+storage | boolean | false | Whether the project should support firebase storage
+appCheck | boolean | false | Whether the project should support firebase app check
+firestore | boolean | false | Whether the project should support firebase firestore
+auth | boolean | false | Whether the project should support firebase auth
+useEmulator | boolean | false | Whether the firebase emulator should be setup?
+hostingSite | string |  | The name of the firebase hosting site
+
+| Required |
+| --- |
+| project |
 
