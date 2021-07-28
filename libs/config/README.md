@@ -55,3 +55,23 @@ Option | Type | Default | Description
 project | string |  | The project where the environment feature should be added
 
 
+## side-load
+> Add a side load config to the project main file.
+
+```
+ng g @rxap/config:side-load
+```
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+project | string |  | The project name
+url | string |  | Url for the config that should be side loaded
+propertyPath | string |  | Property path where the config should be added
+required | boolean | false | 
+
+| Required |
+| --- |
+| project |
+| url |
+| propertyPath |
+
