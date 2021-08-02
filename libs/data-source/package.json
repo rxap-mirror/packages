@@ -1,6 +1,6 @@
 {
   "name": "@rxap/data-source",
-  "version": "12.1.0",
+  "version": "12.1.1",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/data-source",
@@ -42,7 +42,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^12.5.1-next.0",
+    "@rxap/schematics-utilities": "^12.6.0",
     "tslib": "^2.2.0",
     "uuid": "^8.3.2"
   }

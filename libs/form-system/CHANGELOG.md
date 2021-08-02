@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.10](https://gitlab.com/rxap/packages/compare/@rxap/form-system@12.0.9...@rxap/form-system@12.0.10) (2021-08-02)
+
+
+### Bug Fixes
+
+* **input-select-options:** check if options are empty ([03068e6](https://gitlab.com/rxap/packages/commit/03068e626e6d14b9659a51a8adcc94d0ac3fff4f))
+
+
+
+
+
 ## [12.0.9](https://gitlab.com/rxap/packages/compare/@rxap/form-system@12.0.9-next.0...@rxap/form-system@12.0.9) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/form-system

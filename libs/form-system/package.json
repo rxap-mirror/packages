@@ -1,6 +1,6 @@
 {
   "name": "@rxap/form-system",
-  "version": "12.0.9",
+  "version": "12.0.10",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/form-system",
@@ -24,13 +24,13 @@
     "@angular/forms": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
     "@angular/router": "^12.0.1",
-    "@rxap/data-source": "^12.0.9-next.0",
-    "@rxap/definition": "^12.0.8-next.0",
-    "@rxap/directives": "^12.1.1-next.0",
-    "@rxap/forms": "^12.3.5-next.0",
-    "@rxap/mixin": "^12.0.7-next.0",
-    "@rxap/services": "^12.0.7-next.0",
-    "@rxap/utilities": "^12.2.0-next.0",
+    "@rxap/data-source": "^12.1.1",
+    "@rxap/definition": "^12.0.8",
+    "@rxap/directives": "^12.1.2",
+    "@rxap/forms": "^12.4.1",
+    "@rxap/mixin": "^12.0.7",
+    "@rxap/services": "^12.0.7",
+    "@rxap/utilities": "^12.2.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -56,7 +56,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^12.4.0",
+    "@rxap/schematics-utilities": "^12.6.0",
     "tslib": "^2.2.0"
   }
 }
