@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.9](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@12.0.8...@rxap/json-schema-to-typescript@12.0.9) (2021-08-02)
+
+
+### Bug Fixes
+
+* expose utilities as public static methods ([01b801a](https://gitlab.com/rxap/packages/commit/01b801a2fc66951725fbd103d5f15b35625ece9d))
+
+
+
+
+
 ## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@12.0.7...@rxap/json-schema-to-typescript@12.0.8) (2021-07-12)
 
 
