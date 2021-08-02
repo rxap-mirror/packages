@@ -9,15 +9,18 @@ import {
   WriterFunction,
   TypeElementMemberedNodeStructure,
   QuoteKind,
-  TypeAliasDeclarationStructure,
+  TypeAliasDeclarationStructure
 } from 'ts-morph';
 import {
   bundle,
   Options,
-  JSONSchema,
+  JSONSchema
 } from '@apidevtools/json-schema-ref-parser';
 import { joinPath } from './join';
-import { classify, dasherize } from './strings';
+import {
+  classify,
+  dasherize
+} from './strings';
 import { getFromObject } from './get-from-object';
 
 export interface TypescriptInterfaceGeneratorOptions extends Options {
@@ -98,14 +101,58 @@ export class TypescriptInterfaceGenerator {
 
     const typeAliasDeclarationStructure: OptionalKind<TypeAliasDeclarationStructure> =
       {
-        name: this.buildName(name),
+        name:       this.buildName(name),
         type,
-        isExported: true,
+        isExported: true
       };
 
     sourceFile.addTypeAlias(typeAliasDeclarationStructure);
 
     return sourceFile;
+  }
+
+  public static isRequired(schema: JSONSchema, key: string): boolean {
+    return (
+      !!schema.required &&
+      Array.isArray(schema.required) &&
+      schema.required.includes(key)
+    );
+  }
+
+  public static coercePropertyKey(key: string): string {
+    if (
+      key.match(/(^[0-9]+|-|#|\.|@|\/|:|\*)/) &&
+      !key.match(/\[\w+:\s?\w+\]/)
+    ) {
+      return `'${key}'`;
+    }
+    return key;
+  }
+
+  public static unionType(
+    array: Array<string | WriterFunction>
+  ): WriterFunction | string {
+    if (array.length < 2) {
+      return array[ 0 ];
+    }
+
+    const first  = array.shift()!;
+    const second = array.shift()!;
+
+    return Writers.unionType(first, second, ...array);
+  }
+
+  public static intersectionType(
+    array: Array<string | WriterFunction>
+  ): WriterFunction | string {
+    if (array.length < 2) {
+      return array[ 0 ];
+    }
+
+    const first  = array.shift()!;
+    const second = array.shift()!;
+
+    return Writers.intersectionType(first, second, ...array);
   }
 
   private addInterface(schema: JSONSchema, name: string): SourceFile {
@@ -141,7 +188,7 @@ export class TypescriptInterfaceGenerator {
           sourceFile,
           key,
           property,
-          this.isRequired(schema, key)
+          TypescriptInterfaceGenerator.isRequired(schema, key)
         )
       );
     }
@@ -151,14 +198,6 @@ export class TypescriptInterfaceGenerator {
     return sourceFile;
   }
 
-  private isRequired(schema: JSONSchema, key: string): boolean {
-    return (
-      !!schema.required &&
-      Array.isArray(schema.required) &&
-      schema.required.includes(key)
-    );
-  }
-
   private buildPropertySignatureStructure(
     currentFile: SourceFile,
     key: string,
@@ -166,9 +205,9 @@ export class TypescriptInterfaceGenerator {
     required: boolean
   ): OptionalKind<PropertySignatureStructure> {
     const propertyStructure: OptionalKind<PropertySignatureStructure> = {
-      name: this.coercePropertyKey(key),
-      type: this.propertyTypeWriteFunction(currentFile, property),
-      hasQuestionToken: !required,
+      name:             TypescriptInterfaceGenerator.coercePropertyKey(key),
+      type:             this.propertyTypeWriteFunction(currentFile, property),
+      hasQuestionToken: !required
     };
 
     if (property.description) {
@@ -176,42 +215,6 @@ export class TypescriptInterfaceGenerator {
     }
 
     return propertyStructure;
-  }
-
-  private coercePropertyKey(key: string): string {
-    if (
-      key.match(/(^[0-9]+|-|#|\.|@|\/|:|\*)/) &&
-      !key.match(/\[\w+:\s?\w+\]/)
-    ) {
-      return `'${key}'`;
-    }
-    return key;
-  }
-
-  private unionType(
-    array: Array<string | WriterFunction>
-  ): WriterFunction | string {
-    if (array.length < 2) {
-      return array[0];
-    }
-
-    const first = array.shift()!;
-    const second = array.shift()!;
-
-    return Writers.unionType(first, second, ...array);
-  }
-
-  private intersectionType(
-    array: Array<string | WriterFunction>
-  ): WriterFunction | string {
-    if (array.length < 2) {
-      return array[0];
-    }
-
-    const first = array.shift()!;
-    const second = array.shift()!;
-
-    return Writers.intersectionType(first, second, ...array);
   }
 
   private recordType(
@@ -238,7 +241,7 @@ export class TypescriptInterfaceGenerator {
     switch (schema.type) {
       case 'string':
         if (schema.enum) {
-          return this.unionType(
+          return TypescriptInterfaceGenerator.unionType(
             (schema.enum as string[]).map(
               (item) => (writer) => writer.quote(item)
             )
@@ -302,7 +305,7 @@ export class TypescriptInterfaceGenerator {
                   currentFile,
                   key,
                   property,
-                  this.isRequired(schema, key)
+                  TypescriptInterfaceGenerator.isRequired(schema, key)
                 )
               );
             }
@@ -327,7 +330,7 @@ export class TypescriptInterfaceGenerator {
                 ...typeList.map((type) => this.recordType(type))
               );
             } else {
-              return this.intersectionType(
+              return TypescriptInterfaceGenerator.intersectionType(
                 typeList.map((type) => this.recordType(type))
               );
             }
@@ -407,7 +410,7 @@ export class TypescriptInterfaceGenerator {
             }
           }
 
-          return this.unionType(typeList);
+          return TypescriptInterfaceGenerator.unionType(typeList);
         } else if (schema.anyOf) {
           const typeList: Array<WriterFunction | string> = [];
 
@@ -417,7 +420,7 @@ export class TypescriptInterfaceGenerator {
             }
           }
 
-          return this.unionType(typeList);
+          return TypescriptInterfaceGenerator.unionType(typeList);
         } else if (schema.allOf) {
           const typeList: Array<WriterFunction | string> = [];
 
@@ -427,7 +430,7 @@ export class TypescriptInterfaceGenerator {
             }
           }
 
-          return this.intersectionType(typeList);
+          return TypescriptInterfaceGenerator.intersectionType(typeList);
         } else if (schema.const) {
           return (writer) => writer.quote(schema.const);
         } else if (schema.properties) {
@@ -443,7 +446,7 @@ export class TypescriptInterfaceGenerator {
                 currentFile,
                 key,
                 property,
-                this.isRequired(schema, key)
+                TypescriptInterfaceGenerator.isRequired(schema, key)
               )
             );
           }
@@ -488,7 +491,7 @@ export class TypescriptInterfaceGenerator {
             );
           }
 
-          return this.unionType(typeList);
+          return TypescriptInterfaceGenerator.unionType(typeList);
         }
 
         throw new Error(`The property type '${schema.type}' is not supported!`);
