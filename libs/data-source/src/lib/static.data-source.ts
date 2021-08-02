@@ -1,14 +1,28 @@
-import { clone, isPromiseLike, Constructor } from '@rxap/utilities';
-import { ReplaySubject, Observable, isObservable, Subscription } from 'rxjs';
-import { Optional, Inject, OnDestroy, Injectable } from '@angular/core';
+import {
+  clone,
+  isPromiseLike,
+  Constructor
+} from '@rxap/utilities';
+import {
+  ReplaySubject,
+  Observable,
+  isObservable,
+  Subscription
+} from 'rxjs';
+import {
+  Optional,
+  Inject,
+  OnDestroy,
+  Injectable
+} from '@angular/core';
 import {
   RXAP_STATIC_DATA_SOURCE_DATA,
-  RXAP_DATA_SOURCE_METADATA,
+  RXAP_DATA_SOURCE_METADATA
 } from './tokens';
 import {
   BaseDataSource,
   BaseDataSourceMetadata,
-  RxapDataSource,
+  RxapDataSource
 } from './base.data-source';
 import { RxapDataSourceError } from './error';
 
@@ -42,14 +56,16 @@ export class StaticDataSource<Data>
   private _dataSubscription?: Subscription;
 
   constructor(
-    @Optional() @Inject(RXAP_STATIC_DATA_SOURCE_DATA) data: any | null = null,
+    @Optional()
+    @Inject(RXAP_STATIC_DATA_SOURCE_DATA)
+      data: any | null,
     @Optional()
     @Inject(RXAP_DATA_SOURCE_METADATA)
-    metadata: StaticDataSourceMetadata | null = null
+      metadata: StaticDataSourceMetadata | null
   ) {
     super(metadata);
-    if (data === undefined) {
-      data = this.metadata.data ?? null;
+    if ((data === undefined || data === null) && this.metadata.data !== undefined) {
+      data = this.metadata.data;
     }
     if (data === undefined) {
       throw new RxapDataSourceError(
