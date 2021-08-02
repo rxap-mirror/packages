@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0...@rxap/material-table-system@12.3.1) (2021-08-02)
+
+
+### Bug Fixes
+
+* **cell-copy-to-clipboard:** only show copy button if value is not empty ([acf7c11](https://gitlab.com/rxap/packages/commit/acf7c11fec327c12a830e673059dfcbc799f7953))
+
+
+
+
+
 # [12.3.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0-next.9...@rxap/material-table-system@12.3.0) (2021-07-22)
 
 **Note:** Version bump only for package @rxap/material-table-system
