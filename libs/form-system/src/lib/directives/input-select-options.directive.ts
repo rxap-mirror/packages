@@ -96,7 +96,7 @@ export class InputSelectOptionsDirective implements OnInit, OnDestroy {
   protected dataSource!: BaseDataSource<ControlOptions | Record<string, any>>;
 
   @Required
-  protected options!: ControlOptions | Record<string, any>;
+  protected options!: ControlOptions | Record<string, any> | null;
 
   constructor(
     @Inject(TemplateRef)
@@ -192,21 +192,27 @@ export class InputSelectOptionsDirective implements OnInit, OnDestroy {
     ).subscribe());
   }
 
-  protected renderTemplate(options: ControlOptions | Record<string, any> = this.options) {
+  protected renderTemplate(options: ControlOptions | Record<string, any> | null = this.options) {
     this.viewContainerRef.clear();
 
-    if (!Array.isArray(options)) {
+    if (options) {
+      if (!Array.isArray(options)) {
 
-      for (const [ value, display ] of Object.entries(options)) {
-        this.viewContainerRef.createEmbeddedView(this.template, { $implicit: { value, display } });
+        for (const [ value, display ] of Object.entries(options)) {
+          this.viewContainerRef.createEmbeddedView(this.template, { $implicit: { value, display } });
+        }
+
+      } else {
+
+        for (const option of options) {
+          this.viewContainerRef.createEmbeddedView(this.template, { $implicit: option });
+        }
+
       }
-
     } else {
-
-      for (const option of options) {
-        this.viewContainerRef.createEmbeddedView(this.template, { $implicit: option });
+      if (isDevMode()) {
+        console.warn(`The options for the control ${this.control.fullControlPath} is empty/null/undefined!`);
       }
-
     }
 
     this.cdr.detectChanges();
