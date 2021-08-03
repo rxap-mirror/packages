@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/dialog@12.0.7...@rxap/dialog@12.1.0-next.0) (2021-08-03)
+
+
+### Features
+
+* add MessageDialogComponent ([b5b50c2](https://gitlab.com/rxap/packages/commit/b5b50c297bc663b9d47df3eb9023935c21e94ad6))
+
+
+
+
+
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/dialog@12.0.6...@rxap/dialog@12.0.7) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/dialog
