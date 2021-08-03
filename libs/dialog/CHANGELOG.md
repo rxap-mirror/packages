@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/dialog@12.1.0-next.0...@rxap/dialog@12.1.0-next.1) (2021-08-03)
+
+
+### Bug Fixes
+
+* add custom dialog title ([f3aad4a](https://gitlab.com/rxap/packages/commit/f3aad4a1314a3100ee96d65fba3c528094b74ace))
+
+
+
+
+
 # [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/dialog@12.0.7...@rxap/dialog@12.1.0-next.0) (2021-08-03)
 
 
