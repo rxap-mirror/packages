@@ -71,10 +71,10 @@ export class MessageDialogService {
   public open(
     data: MessageDialogData,
     config?: MessageDialogConfig
-  ): Promise<boolean> {
+  ): Promise<string | undefined> {
     const dialogRef = this.dialog.open<MessageDialogComponent,
       MessageDialogData,
-      boolean>(MessageDialogComponent, {
+      string>(MessageDialogComponent, {
       ...config,
       data
     });
@@ -83,7 +83,7 @@ export class MessageDialogService {
       .afterClosed()
       .pipe(
         take(1),
-        map((result) => !!result)
+        map((result) => result)
       )
       .toPromise();
   }
