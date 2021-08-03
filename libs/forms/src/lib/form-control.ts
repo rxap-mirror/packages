@@ -13,6 +13,7 @@ import {
   enableControl,
   controlEnabledWhile,
   validateControlOn,
+  controlReadonly$
 } from './control-actions';
 import {
   ControlEventOptions,
@@ -23,16 +24,21 @@ import {
   OrBoxedValue,
   ControlOptions,
   AsyncValidator,
-  Validator,
+  Validator
 } from './types';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { isObservable, Subject, Subscription, Observable } from 'rxjs';
+import {
+  isObservable,
+  Subject,
+  Subscription,
+  Observable
+} from 'rxjs';
 import { coerceArray } from '@rxap/utilities';
 import {
   RxapAbstractControlOptions,
   SetValueFn,
   FormType,
-  FormDefinition,
+  FormDefinition
 } from './model';
 
 export class RxapFormControl<
@@ -57,26 +63,40 @@ export class RxapFormControl<
   readonly status!: ControlState;
   readonly statusChanges!: Observable<ControlState>;
   readonly initialState!: OrBoxedValue<T>;
+  private _readonly: boolean = false;
 
   private touchChanges = new Subject<boolean>();
   private dirtyChanges = new Subject<boolean>();
 
   readonly touch$ = this.touchChanges
-    .asObservable()
-    .pipe(distinctUntilChanged());
+                        .asObservable()
+                        .pipe(distinctUntilChanged());
   readonly dirty$ = this.dirtyChanges
-    .asObservable()
-    .pipe(distinctUntilChanged());
+                        .asObservable()
+                        .pipe(distinctUntilChanged());
 
   readonly value$: Observable<T> = controlValueChanges$<T>(this);
-  readonly disabled$ = controlDisabled$<T>(this);
-  readonly enabled$ = controlEnabled$<T>(this);
+  readonly disabled$             = controlDisabled$<T>(this);
+  readonly enabled$              = controlEnabled$<T>(this);
+
+  public get readonly(): boolean {
+    return (this.parent as any)?.readonly ?? this._readonly;
+  }
+
   readonly status$ = controlStatusChanges$<T>(this);
   readonly errors$ = controlErrorChanges$<E>(this);
 
   readonly controlId: string;
 
   private readonly _onSetValue: SetValueFn<T>[] = [];
+
+  public set readonly(value: boolean) {
+    this._readonly = value;
+    this.stateChanges.next();
+  }
+
+  readonly stateChanges = new Subject<void>();
+  readonly readonly$    = controlReadonly$<T>(this);
 
   public get controlPath(): string {
     const parent: any = this.parent;
@@ -85,7 +105,7 @@ export class RxapFormControl<
         if (parent === this.root) {
           return this.controlId;
         } else {
-          return [parent.controlPath, this.controlId].join('.');
+          return [ parent.controlPath, this.controlId ].join('.');
         }
       }
     }

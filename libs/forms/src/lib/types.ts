@@ -3,7 +3,10 @@ import {
   AbstractControlOptions as NgAbstractControlOptions,
   ValidationErrors as NgValidationErrors
 } from '@angular/forms';
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  Subject
+} from 'rxjs';
 import { RxapFormArray } from './form-array';
 import { RxapFormControl } from './form-control';
 import { RxapFormGroup } from './form-group';
@@ -43,6 +46,8 @@ export interface AbstractControl<T = any> extends NgAbstractControl {
   controlId?: string;
   fullControlPath?: string;
   rxapFormDefinition?: FormDefinition;
+  readonly?: boolean;
+  stateChanges?: Subject<any>;
 }
 
 export type ExtractStrings<T> = Extract<keyof T, string>;

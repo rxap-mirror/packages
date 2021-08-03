@@ -1,4 +1,9 @@
-import { Observable, Subject, Subscription, isObservable } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  Subscription,
+  isObservable
+} from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { FormGroup as NgFormGroup } from '@angular/forms';
 import {
@@ -12,7 +17,7 @@ import {
   AsyncValidator,
   AbstractControl,
   ControlOptions,
-  Validator,
+  Validator
 } from './types';
 import {
   validateControlOn,
@@ -31,10 +36,14 @@ import {
   markAllDirty,
   controlDisabledWhile,
   markAllPristine,
-  markAllUntouched,
+  markAllUntouched
 } from './control-actions';
 import { coerceArray } from '@rxap/utilities';
-import { FormGroupOptions, FormType, FormDefinition } from './model';
+import {
+  FormGroupOptions,
+  FormType,
+  FormDefinition
+} from './model';
 
 export class RxapFormGroup<
   T extends Record<string, any> = any,
@@ -53,6 +62,17 @@ export class RxapFormGroup<
       return this._rxapFormDefinition;
     }
     return (this.parent as any).rxapFormDefinition;
+  }
+
+  private _readonly: boolean = false;
+
+  public get readonly(): boolean {
+    return (this.parent as any)?.readonly ?? this._readonly;
+  }
+
+  public set readonly(value: boolean) {
+    this._readonly = value;
+    Object.values(this.controls ?? {}).forEach(control => (control as any).stateChanges?.next());
   }
 
   /**
