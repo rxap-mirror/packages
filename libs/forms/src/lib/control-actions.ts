@@ -1,10 +1,10 @@
-import { ValidationErrors } from '@angular/forms';
 import {
   defer,
   merge,
   Observable,
   of,
-  Subscription
+  Subscription,
+  EMPTY
 } from 'rxjs';
 import {
   distinctUntilChanged,
@@ -18,7 +18,6 @@ import {
   ControlPath
 } from './types';
 import {
-  IsEmpty,
   coerceArray,
   equals
 } from '@rxap/utilities';
@@ -43,7 +42,7 @@ export function controlValueChanges$<T>(control: AbstractControl<T>): Observable
 export function controlDisabled$<T>(control: AbstractControl<T>): Observable<boolean> {
   return merge(
     defer(() => of(control.disabled)),
-    control.statusChanges.pipe(
+    merge(control.statusChanges, control.stateChanges ?? EMPTY).pipe(
       map(() => control.disabled),
       distinctUntilChanged()
     )
@@ -53,8 +52,18 @@ export function controlDisabled$<T>(control: AbstractControl<T>): Observable<boo
 export function controlEnabled$<T>(control: AbstractControl<T>): Observable<boolean> {
   return merge(
     defer(() => of(control.enabled)),
-    control.statusChanges.pipe(
+    merge(control.statusChanges, control.stateChanges ?? EMPTY).pipe(
       map(() => control.enabled),
+      distinctUntilChanged()
+    )
+  );
+}
+
+export function controlReadonly$<T>(control: AbstractControl<T>): Observable<boolean> {
+  return merge(
+    defer(() => of(control.readonly ?? false)),
+    merge(control.statusChanges, control.stateChanges ?? EMPTY).pipe(
+      map(() => control.readonly ?? false),
       distinctUntilChanged()
     )
   );

@@ -1,6 +1,6 @@
 import {
   FormArray as NgFormArray,
-  AbstractControl as NgAbstractControl,
+  AbstractControl as NgAbstractControl
 } from '@angular/forms';
 import {
   ControlEventOptions,
@@ -12,10 +12,18 @@ import {
   AbstractControl,
   AsyncValidator,
   ControlOptions,
-  Validator,
+  Validator
 } from './types';
-import { distinctUntilChanged, map } from 'rxjs/operators';
-import { isObservable, Subject, Observable, Subscription } from 'rxjs';
+import {
+  distinctUntilChanged,
+  map
+} from 'rxjs/operators';
+import {
+  isObservable,
+  Subject,
+  Observable,
+  Subscription
+} from 'rxjs';
 import {
   controlDisabled$,
   mergeControlValidators,
@@ -31,7 +39,7 @@ import {
   markAllDirty,
   controlDisabledWhile,
   markAllPristine,
-  markAllUntouched,
+  markAllUntouched
 } from './control-actions';
 import { coerceArray } from '@rxap/utilities';
 import {
@@ -40,17 +48,26 @@ import {
   ControlRemovedFn,
   ControlInsertedFn,
   FormType,
-  FormDefinition,
+  FormDefinition
 } from './model';
 
-export class RxapFormArray<
-    T = any,
-    E extends object = any,
-    Parent extends object = any
-  >
+export class RxapFormArray<T = any,
+  E extends object = any,
+  Parent extends object = any>
   extends NgFormArray
-  implements AbstractControl<T[]>
-{
+  implements AbstractControl<T[]> {
+
+  private _readonly: boolean = false;
+
+  public get readonly(): boolean {
+    return (this.parent as any)?.readonly ?? this._readonly;
+  }
+
+  public set readonly(value: boolean) {
+    this._readonly = value;
+    this.controls.forEach(control => (control as any).stateChanges?.next());
+  }
+
   /**
    * @internal
    */
