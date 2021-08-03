@@ -6,6 +6,10 @@ export * from './lib/confirm-dialog/confirm-dialog.component.module';
 export * from './lib/confirm-dialog/confirm-dialog.component';
 export * from './lib/confirm-dialog/confirm-dialog.service';
 
+export * from './lib/message-dialog/message-dialog.component.module';
+export * from './lib/message-dialog/message-dialog.component';
+export * from './lib/message-dialog/message-dialog.service';
+
 // region http error dialog
 
 export * from './lib/http-error-message/http-error-message.component';

@@ -1,0 +1,19 @@
+@use '~@angular/material' as mat;
+
+@mixin rxap-message-dialog-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $isDark: map-get($theme, is-dark);
+
+  .rxap-message-dialog {
+  }
+
+}
+
+@mixin rxap-message-dialog-typography($config) {
+  .rxap-message-dialog {
+  }
+}

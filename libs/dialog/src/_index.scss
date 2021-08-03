@@ -1,9 +1,11 @@
 @import "./lib/confirm-dialog/confirm-dialog.component.theme";
+@import "./lib/message-dialog/message-dialog.component.theme";
 /* IMPORT */
 
 @mixin dialog-theme($theme) {
 
   @include rxap-confirm-dialog-theme($theme);
+  @include rxap-message-dialog-theme($theme);
   /* THEME_INCLUDE */
 
 }
@@ -11,6 +13,7 @@
 @mixin dialog-typography($config) {
 
   @include rxap-confirm-dialog-typography($config);
+  @include rxap-message-dialog-typography($config);
   /* TYPOGRAPHY_INCLUDE */
 
 }
