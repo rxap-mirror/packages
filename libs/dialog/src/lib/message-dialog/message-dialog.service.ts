@@ -69,18 +69,14 @@ export class MessageDialogService {
   ) {}
 
   public open(
-    message: string,
-    actions: MessageDialogData['actions'],
+    data: MessageDialogData,
     config?: MessageDialogConfig
   ): Promise<boolean> {
     const dialogRef = this.dialog.open<MessageDialogComponent,
       MessageDialogData,
       boolean>(MessageDialogComponent, {
       ...config,
-      data: {
-        message,
-        actions
-      }
+      data
     });
 
     return dialogRef
