@@ -434,7 +434,7 @@ export class FormDirective<T extends Record<string, any> = any>
             .then((result) => {
               Reflect.set(this, 'submitted', true);
               this.rxapSubmit.emit(result);
-              this.submitSuccessful(resultOrPromise);
+              this.submitSuccessful(result);
             })
             .catch((error) => {
               this.submitError$.next(error);
