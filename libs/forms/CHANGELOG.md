@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.5.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.1...@rxap/forms@12.5.0-next.0) (2021-08-05)
+
+
+### Bug Fixes
+
+* pass result to the submit successful method ([2441eaf](https://gitlab.com/rxap/packages/commit/2441eafe2d6c540f15edb0551499431833392d81))
+
+
+### Features
+
+* add readonly property ([3513285](https://gitlab.com/rxap/packages/commit/3513285fe44e2d2b8530fc2aac29596b5cbd23eb))
+
+
+
+
+
 ## [12.4.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.1-next.0...@rxap/forms@12.4.1) (2021-08-02)
 
 **Note:** Version bump only for package @rxap/forms
