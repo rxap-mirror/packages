@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.7-next.0](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@12.1.6...@rxap/form-window-system@12.1.7-next.0) (2021-08-10)
+
+
+### Bug Fixes
+
+* use the template injection tree for new windowRef instances ([53dd96d](https://gitlab.com/rxap/packages/commit/53dd96d83c86c8a95a96298a7186462402693823))
+
+
+
+
+
 ## [12.1.6](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@12.1.6-next.0...@rxap/form-window-system@12.1.6) (2021-07-22)
 
 **Note:** Version bump only for package @rxap/form-window-system
