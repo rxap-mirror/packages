@@ -6,7 +6,11 @@ import {
   EventEmitter,
   Output,
   OnDestroy,
-  StaticProvider
+  StaticProvider,
+  Injector,
+  Inject,
+  INJECTOR,
+  Optional
 } from '@angular/core';
 import { coerceBoolean } from '@rxap/utilities';
 import { WindowRef } from '@rxap/window-system';
@@ -63,6 +67,12 @@ export class OpenFormWindowMethodDirective<
   @Input()
   public providers?: StaticProvider[];
 
+  constructor(
+    @Optional()
+    @Inject(INJECTOR)
+    private readonly injector: Injector | null = null
+  ) {}
+
   public ngOnDestroy() {
     this._windowRefInstance.forEach(windowRef => windowRef.complete());
   }
@@ -84,18 +94,20 @@ export class OpenFormWindowMethodDirective<
   public execute(): void {
     this.executing$.increase();
 
-    const windowRef = this.method.call(this.initial, { providers: this.providers }) as WindowRef<FormDefinition, FormData>;
+    const windowRef = this.method.call(this.initial, {
+      providers: this.providers,
+      injector:  this.injector
+    }) as WindowRef<FormDefinition, FormData>;
 
     windowRef.subscribe(
-      value => this.submitted(value),
-      error => this.failure(error),
+      (value) => this.submitted(value),
+      (error) => this.failure(error),
       () => {
         this.completed();
         this.executing$.decrease();
         this._windowRefInstance.delete(windowRef);
       }
     );
-
   }
 
   protected submitted(value: FormData) {
