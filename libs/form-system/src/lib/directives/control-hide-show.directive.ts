@@ -40,7 +40,7 @@ export const RXAP_FORM_SYSTEM_SHOW_METADATA     = 'rxap/form-system/show-functio
 export const RXAP_FORM_SYSTEM_HIDE_METADATA     = 'rxap/form-system/hide-function';
 export const RXAP_FORM_SYSTEM_HIDE_SHOW_OPTIONS = 'rxap/form-system/hide-show-options';
 
-export type ControlHideShowFunction<T extends FormDefinition = FormDefinition> = (this: T, control: AbstractControl) => boolean | null;
+export type ControlHideShowFunction<T = any> = (this: T, control: AbstractControl) => boolean | null;
 
 export interface ControlHideShowOptions {
   /**
@@ -49,8 +49,8 @@ export interface ControlHideShowOptions {
   rootChange?: boolean;
 }
 
-export function UseHideFunction<T extends FormDefinition>(hideFunction: ControlHideShowFunction<T>, options: ControlHideShowOptions = {}) {
-  return function (target: T, propertyKey: string) {
+export function UseHideFunction(hideFunction: ControlHideShowFunction, options: ControlHideShowOptions = {}) {
+  return function(target: any, propertyKey: string) {
     setMetadataMap(propertyKey, hideFunction, RXAP_FORM_SYSTEM_HIDE_METADATA, target);
     if (Object.keys(options).length) {
       setMetadataMap(propertyKey, options, RXAP_FORM_SYSTEM_HIDE_SHOW_OPTIONS, target);
@@ -58,8 +58,8 @@ export function UseHideFunction<T extends FormDefinition>(hideFunction: ControlH
   };
 }
 
-export function UseShowFunction<T extends FormDefinition>(showFunction: ControlHideShowFunction<T>, options: ControlHideShowOptions = {}) {
-  return function (target: T, propertyKey: string) {
+export function UseShowFunction(showFunction: ControlHideShowFunction, options: ControlHideShowOptions = {}) {
+  return function(target: any, propertyKey: string) {
     setMetadataMap(propertyKey, showFunction, RXAP_FORM_SYSTEM_SHOW_METADATA, target);
     if (Object.keys(options).length) {
       setMetadataMap(propertyKey, options, RXAP_FORM_SYSTEM_HIDE_SHOW_OPTIONS, target);
