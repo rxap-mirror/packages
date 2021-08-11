@@ -6,16 +6,20 @@ import {
 } from '@angular/router';
 import {
   Inject,
-  Injectable
+  Injectable,
+  Optional
 } from '@angular/core';
 import { OAuthSingleSignOnService } from './o-auth-single-sign-on.service';
 import {
   OAuthService,
   RXAP_O_AUTH_REDIRECT_SIGN_IN
 } from '@rxap/oauth';
-import { RXAP_O_AUTH_SINGLE_SIGN_ON_REDIRECT_CONTINUE } from './tokens';
+import {
+  RXAP_O_AUTH_SINGLE_SIGN_ON_REDIRECT_CONTINUE,
+  RXAP_O_AUTH_SSO_REDIRECT_CONTINUE_DISABLED
+} from './tokens';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class OAuthSingleSignOnGuard implements CanActivate {
 
   constructor(
@@ -26,7 +30,10 @@ export class OAuthSingleSignOnGuard implements CanActivate {
     @Inject(RXAP_O_AUTH_SINGLE_SIGN_ON_REDIRECT_CONTINUE)
     private readonly redirectContinue: string[],
     @Inject(RXAP_O_AUTH_REDIRECT_SIGN_IN)
-    private readonly redirectLogin: string[]
+    private readonly redirectLogin: string[],
+    @Optional()
+    @Inject(RXAP_O_AUTH_SSO_REDIRECT_CONTINUE_DISABLED)
+    private readonly redirectContinueDisabled: boolean | null
   ) {
   }
 
@@ -50,6 +57,10 @@ export class OAuthSingleSignOnGuard implements CanActivate {
     console.log('isAuthenticated', isAuthenticated);
 
     if (isAuthenticated) {
+      if (this.redirectContinueDisabled) {
+        this.authentication.redirectToClient();
+        return true;
+      }
       return this.router.createUrlTree(this.redirectContinue);
     }
 

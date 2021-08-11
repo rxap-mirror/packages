@@ -8,3 +8,5 @@ export const RXAP_O_AUTH_SINGLE_SIGN_ON_REDIRECT_CONTINUE = new InjectionToken('
   providedIn: 'root',
   factory:    DefaultRedirectContinueFactory
 });
+
+export const RXAP_O_AUTH_SSO_REDIRECT_CONTINUE_DISABLED = new InjectionToken('rxap/o-auth/single-sign-on/redirect-continue-disabled');
