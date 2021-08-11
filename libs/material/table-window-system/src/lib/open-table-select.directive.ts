@@ -9,7 +9,8 @@ import {
   isDevMode,
   NgModule,
   OnInit,
-  ViewContainerRef
+  ViewContainerRef,
+  OnDestroy
 } from '@angular/core';
 import {
   coerceArray,
@@ -35,6 +36,7 @@ import { map } from 'rxjs/operators';
 import { MatSelect } from '@angular/material/select';
 import { WindowTableSelectOptions } from './window-table-select.service';
 import { Method } from '@rxap/utilities/rxjs';
+import { WindowRef } from '@rxap/window-system';
 
 export interface ExtractDatasourceMixin extends ExtractFormDefinitionMixin, ExtractDataSourcesMixin {
 }
@@ -105,7 +107,7 @@ export interface OpenTableSelectDirective<Data extends Record<string, any>> exte
 @Directive({
   selector: '[rxapOpenTableSelect]'
 })
-export class OpenTableSelectDirective<Data extends Record<string, any>> implements OnInit {
+export class OpenTableSelectDirective<Data extends Record<string, any>> implements OnInit, OnDestroy {
 
   @HostBinding('type')
   public type = 'button';
@@ -114,6 +116,8 @@ export class OpenTableSelectDirective<Data extends Record<string, any>> implemen
   public openMethod!: Method<Data[], WindowTableSelectOptions<Data>>;
 
   private tableSelectDataSource!: BaseDataSource<Data[]>;
+
+  private _windowRef: WindowRef | null = null;
 
   constructor(
     @Inject(MAT_FORM_FIELD)
@@ -153,14 +157,19 @@ export class OpenTableSelectDirective<Data extends Record<string, any>> implemen
 
   @HostListener('click')
   public async onClick() {
-
-    const selected = await this.openMethod.call({
+    const selected$ = this.openMethod.call({
       data:             this.tableSelectDataSource,
       selected:         coerceArray(this.control.value),
       multiple:         this.isMultiple(),
       injector:         this.injector,
       viewContainerRef: this.viewContainerRef
     });
+    // set the component windowRef. If the component is destroyed
+    // before the promise is resolved. The window is closed in
+    // the ngOnDestroy hook
+    this._windowRef = (selected$ as any).windowRef ?? null;
+    const selected  = await selected$;
+    this._windowRef = null;
     if (isDevMode()) {
       console.log('table select returns', selected);
     }
@@ -171,6 +180,10 @@ export class OpenTableSelectDirective<Data extends Record<string, any>> implemen
         this.control.setValue(selected[ 0 ] ?? null);
       }
     }
+  }
+
+  public ngOnDestroy() {
+    this._windowRef?.complete();
   }
 
   private isMultiple(): boolean {
