@@ -1,6 +1,6 @@
 {
   "name": "@rxap/form-window-system",
-  "version": "12.1.7-next.0",
+  "version": "12.1.7",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/form-window-system",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -30,8 +30,8 @@
     "@rxap/data-source": "^12.1.1",
     "@rxap/definition": "^12.0.8",
     "@rxap/directives": "^12.1.2",
-    "@rxap/form-system": "^12.0.10",
-    "@rxap/forms": "^12.5.0-next.0",
+    "@rxap/form-system": "^12.0.11",
+    "@rxap/forms": "^12.5.0",
     "@rxap/material-directives": "^12.0.6",
     "@rxap/mixin": "^12.0.7",
     "@rxap/services": "^12.0.7",
