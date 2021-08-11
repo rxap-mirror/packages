@@ -10,14 +10,16 @@ import {
 import {
   RXAP_WINDOW_SETTINGS,
   WindowConfig,
-  WindowService
+  WindowService,
+  WindowRef
 } from '@rxap/window-system';
 import { ComponentType } from '@angular/cdk/overlay';
 import {
   RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS,
   TABLE_REMOTE_METHOD,
   TABLE_DATA_SOURCE,
-  TableSelectControlsComponent
+  TableSelectControlsComponent,
+  RXAP_TABLE_METHOD
 } from '@rxap/material-table-system';
 import {
   map,
@@ -53,17 +55,17 @@ export class WindowTableSelectService {
     component: ComponentType<any>,
     options: WindowTableSelectOptions<RowData>,
     windowConfig: Omit<WindowConfig, 'component'> = {}
-  ): Promise<RowData[]> {
+  ): Promise<RowData[]> & { windowRef: WindowRef } {
     const providers: StaticProvider[] = [
       {
-        provide: RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS,
+        provide:  RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS,
         useValue: {
           multiple: options.multiple ?? false,
-          selected: options.selected ?? [],
-        },
+          selected: options.selected ?? []
+        }
       },
       {
-        provide: RXAP_WINDOW_SETTINGS,
+        provide:  RXAP_WINDOW_SETTINGS,
         useValue: {
           title:
             options.title ??
@@ -79,24 +81,29 @@ export class WindowTableSelectService {
       });
     } else {
       providers.push({
-        provide: TABLE_DATA_SOURCE,
-        useValue: null,
+        provide:  TABLE_DATA_SOURCE,
+        useValue: null
       });
     }
 
     providers.push({
-      provide: TABLE_REMOTE_METHOD,
-      useValue: null,
+      provide:  TABLE_REMOTE_METHOD,
+      useValue: null
+    });
+
+    providers.push({
+      provide:  RXAP_TABLE_METHOD,
+      useValue: null
     });
 
     const windowRef = this.windowService.open({
       ...windowConfig,
       viewContainerRef: options.viewContainerRef,
-      injector: Injector.create({
+      injector:         Injector.create({
         parent: options.injector ?? windowConfig.injector ?? this.injector,
-        providers,
+        providers
       }),
-      component,
+      component
     });
 
     windowRef.attachedRef$
@@ -118,13 +125,21 @@ export class WindowTableSelectService {
           }
         })
       )
-      .subscribe();
+             .subscribe();
 
-    return windowRef.closed$
-      .pipe(
-        take(1),
-        map((selected) => selected ?? [])
-      )
-      .toPromise();
+    const promise: Promise<RowData[]> & { windowRef?: WindowRef } = windowRef.closed$
+                                                                             .pipe(
+                                                                               take(1),
+                                                                               map((selected) => selected ?? [])
+                                                                             )
+                                                                             .toPromise();
+
+    // add the windowRef to the promise instance
+    // The windowRef instance can be used to cancel the window
+    // If the calling component / directive is destroyed the created window should
+    // be also destroyed
+    promise.windowRef = windowRef;
+
+    return promise as Promise<RowData[]> & { windowRef: WindowRef };
   }
 }
