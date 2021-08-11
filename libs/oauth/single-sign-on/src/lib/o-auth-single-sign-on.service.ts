@@ -17,7 +17,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class OAuthSingleSignOnService extends OAuthService {
 
   public payload: string | null  = null;
