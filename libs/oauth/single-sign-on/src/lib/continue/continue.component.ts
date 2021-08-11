@@ -2,24 +2,33 @@ import {
   ChangeDetectionStrategy,
   Component,
   Inject,
-  OnInit,
+  OnInit
 } from '@angular/core';
 import {
   animate,
   state,
   style,
   transition,
-  trigger,
+  trigger
 } from '@angular/animations';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map, take } from 'rxjs/operators';
+import {
+  ActivatedRoute,
+  Router
+} from '@angular/router';
+import {
+  map,
+  take
+} from 'rxjs/operators';
 import { OAuthSingleSignOnService } from '../o-auth-single-sign-on.service';
-import { RXAP_O_AUTH_REDIRECT_SIGN_IN } from '@rxap/oauth';
+import {
+  RXAP_O_AUTH_REDIRECT_SIGN_IN,
+  OAuthService
+} from '@rxap/oauth';
 
 @Component({
-  selector: 'rxap-continue',
-  templateUrl: './continue.component.html',
-  styleUrls: ['./continue.component.scss'],
+  selector:        'rxap-continue',
+  templateUrl:     './continue.component.html',
+  styleUrls:       [ './continue.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'rxap-continue' },
   animations: [
@@ -46,7 +55,7 @@ export class ContinueComponent<
     private readonly route: ActivatedRoute,
     @Inject(Router)
     private readonly router: Router,
-    @Inject(OAuthSingleSignOnService)
+    @Inject(OAuthService)
     private readonly oAuthService: OAuthSingleSignOnService,
     @Inject(RXAP_O_AUTH_REDIRECT_SIGN_IN)
     private readonly redirectLogin: string[]
