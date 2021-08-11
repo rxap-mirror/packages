@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.8-next.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.7...@rxap/oauth@12.0.8-next.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* support redirect continue disabled ([646f87b](https://gitlab.com/rxap/packages/commit/646f87bbce1f93b6af97c1578e5eff2d5f1c2636))
+
+
+
+
+
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.7-next.0...@rxap/oauth@12.0.7) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/oauth
