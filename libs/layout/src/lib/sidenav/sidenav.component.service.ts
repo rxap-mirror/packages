@@ -5,7 +5,7 @@ import { ConfigService } from '@rxap/config';
 @Injectable({ providedIn: 'root' })
 export class SidenavComponentService {
 
-  public readonly collapsed$ = new BehaviorSubject(false);
+  public readonly collapsed$ = new BehaviorSubject(true);
 
   constructor(private readonly config: ConfigService) {
     this.collapsed$.next(this.config.get('navigation.collapsed', this.collapsed$.value));
