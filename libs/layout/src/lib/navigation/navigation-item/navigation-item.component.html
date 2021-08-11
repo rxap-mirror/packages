@@ -1,5 +1,7 @@
 <a [routerLink]="item.routerLink"
    routerLinkActive="link-active"
+   [matTooltipDisabled]="!(sidenav.collapsed$ | async)"
+   [matTooltip]="item.label"
    class="navigation-link mat-body-2 mat-body-strong navigation-level-{{level}}" matRipple>
   <mat-icon *ngIf="item.icon" [rxapIcon]="item.icon" class="icon"></mat-icon>
   <ng-template [ngIf]="!(sidenav.collapsed$ | async)">

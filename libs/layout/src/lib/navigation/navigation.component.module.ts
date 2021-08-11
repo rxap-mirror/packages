@@ -12,6 +12,7 @@ import { ButtonComponentModule } from '@rxap/components';
 import { MatRippleModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { StopPropagationDirectiveModule } from '@rxap/directives';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { StopPropagationDirectiveModule } from '@rxap/directives';
     MatRippleModule,
     MatDividerModule,
     StopPropagationDirectiveModule,
+    MatTooltipModule
   ],
   exports:      [ NavigationComponent ]
 })
