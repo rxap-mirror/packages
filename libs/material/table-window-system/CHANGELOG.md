@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.9-next.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@12.0.8...@rxap/material-table-window-system@12.0.9-next.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* close window on destory ([13f9e1e](https://gitlab.com/rxap/packages/commit/13f9e1eea56eaab58cef1b5a9f67587d4390c3eb))
+* support form window destruction ([94fa482](https://gitlab.com/rxap/packages/commit/94fa482f837556483018683241af42832065dd58))
+
+
+
+
+
 ## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@12.0.8-next.0...@rxap/material-table-window-system@12.0.8) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/material-table-window-system
