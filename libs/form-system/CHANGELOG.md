@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.11](https://gitlab.com/rxap/packages/compare/@rxap/form-system@12.0.10...@rxap/form-system@12.0.11) (2021-08-11)
+
+
+### Bug Fixes
+
+* update types ([f9f4c5c](https://gitlab.com/rxap/packages/commit/f9f4c5c94c3733844d313c7e535a34ee11e7dba3))
+
+
+
+
+
 ## [12.0.10](https://gitlab.com/rxap/packages/compare/@rxap/form-system@12.0.9...@rxap/form-system@12.0.10) (2021-08-02)
 
 
