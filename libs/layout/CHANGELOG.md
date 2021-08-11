@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.1.0...@rxap/layout@12.2.0-next.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* default collapse sidenav ([346be5d](https://gitlab.com/rxap/packages/commit/346be5d3470d1200f2b44bd6443681c4fa3d83f9))
+
+
+### Features
+
+* add tooltip for collapsed navigation items ([0a5c87b](https://gitlab.com/rxap/packages/commit/0a5c87b6d35b206def6ce898e4070816a46c820b))
+
+
+
+
+
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.1.0-next.1...@rxap/layout@12.1.0) (2021-07-22)
 
 **Note:** Version bump only for package @rxap/layout

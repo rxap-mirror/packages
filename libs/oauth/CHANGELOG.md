@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.8-next.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.0...@rxap/oauth@12.0.8-next.1) (2021-08-11)
+
+
+### Bug Fixes
+
+* inject to OAuthService instead of the OAuthSingleSignOnService ([5896c7f](https://gitlab.com/rxap/packages/commit/5896c7fde440e800ae359952f6caf1e59e5c3fbd))
+
+
+
+
+
 ## [12.0.8-next.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.7...@rxap/oauth@12.0.8-next.0) (2021-08-11)
 
 
