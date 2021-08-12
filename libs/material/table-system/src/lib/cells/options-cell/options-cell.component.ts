@@ -11,7 +11,10 @@ import {
 } from '@angular/core';
 import { MatOption } from '@angular/material/core';
 import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {
+  tap,
+  startWith
+} from 'rxjs/operators';
 
 @Component({
   selector:        'td[rxap-options-cell]',
@@ -45,15 +48,18 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy {
   public ngAfterContentInit() {
     // Hide the mat-option elements
     this._subscription.add(this.options.changes.pipe(
+      startWith(null),
       tap(() => this.options.forEach(option => this.renderer.setStyle(option._getHostElement(), 'display', 'none')))
     ).subscribe());
     if (this.value === undefined || this.value === null) {
       this.viewValue = this.emptyViewValue;
     } else {
       if (this.options) {
-        this.viewValue = this.getViewValue();
         this._subscription.add(this.options.changes
-                                   .pipe(tap(() => (this.viewValue = this.getViewValue())))
+                                   .pipe(
+                                     startWith(null),
+                                     tap(() => (this.viewValue = this.getViewValue()))
+                                   )
                                    .subscribe());
       } else if (isDevMode()) {
         console.log('Could not load any option');
