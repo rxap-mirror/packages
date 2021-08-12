@@ -52,6 +52,12 @@ export class TableRowActionDirective<Data extends Record<string, any>> {
   @Input()
   public successMessage?: string;
 
+  /**
+   * true - after the action is executed the table datasource is refreshed
+   */
+  @Input()
+  public refresh?: boolean;
+
   @ContentChild(TableRowActionExecutingDirective)
   private readonly executingDirective?: TableRowActionExecutingDirective;
   private _currentStatus: TableRowActionStatus = TableRowActionStatus.DONE;
@@ -165,7 +171,9 @@ export class TableRowActionDirective<Data extends Record<string, any>> {
         this.executingDirective?.show();
         break;
       case TableRowActionStatus.SUCCESS:
-        this.tableDataSourceDirective.refresh();
+        if (this.refresh) {
+          this.tableDataSourceDirective.refresh();
+        }
         if (this.successMessage) {
           this.snackBar.open(this.successMessage, 'ok', { duration: 2560 });
         }
