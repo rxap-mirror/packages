@@ -6,7 +6,8 @@ import {
   ContentChildren,
   AfterContentInit,
   isDevMode,
-  OnDestroy
+  OnDestroy,
+  Renderer2
 } from '@angular/core';
 import { MatOption } from '@angular/material/core';
 import { Subscription } from 'rxjs';
@@ -31,25 +32,29 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy {
 
   public viewValue!: string;
 
-  private _subscription?: Subscription;
+  private readonly _subscription = new Subscription();
 
-  constructor() {
+  constructor(private readonly renderer: Renderer2) {
     this.defaultViewValue = ''; // $localize`:@@rxap-material.table-system.options-cell.unknown:unknown`;
-    this.emptyViewValue = ''; // $localize`:@@rxap-material.table-system.options-cell.empty:empty`;
+    this.emptyViewValue   = ''; // $localize`:@@rxap-material.table-system.options-cell.empty:empty`;
   }
 
   @ContentChildren(MatOption, { descendants: true })
   public options!: QueryList<MatOption>;
 
   public ngAfterContentInit() {
+    // Hide the mat-option elements
+    this._subscription.add(this.options.changes.pipe(
+      tap(() => this.options.forEach(option => this.renderer.setStyle(option._getHostElement(), 'display', 'none')))
+    ).subscribe());
     if (this.value === undefined || this.value === null) {
       this.viewValue = this.emptyViewValue;
     } else {
       if (this.options) {
         this.viewValue = this.getViewValue();
-        this._subscription = this.options.changes
-          .pipe(tap(() => (this.viewValue = this.getViewValue())))
-          .subscribe();
+        this._subscription.add(this.options.changes
+                                   .pipe(tap(() => (this.viewValue = this.getViewValue())))
+                                   .subscribe());
       } else if (isDevMode()) {
         console.log('Could not load any option');
       }
