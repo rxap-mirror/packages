@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.2-next.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.1...@rxap/material-table-system@12.3.2-next.0) (2021-08-12)
+
+
+### Bug Fixes
+
+* hide the mat-options elements ([1479fdc](https://gitlab.com/rxap/packages/commit/1479fdc5aa64ca99cdad54aaed721f9e57ae8e30))
+
+
+
+
+
 ## [12.3.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.0...@rxap/material-table-system@12.3.1) (2021-08-02)
 
 
