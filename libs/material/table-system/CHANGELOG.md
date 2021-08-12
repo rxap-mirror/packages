@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.2-next.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.2-next.1...@rxap/material-table-system@12.3.2-next.2) (2021-08-12)
+
+
+### Bug Fixes
+
+* add refresh input ([35613ba](https://gitlab.com/rxap/packages/commit/35613ba02b78d7b9722bf44b64d46c9f9cdbad6c))
+
+
+
+
+
 ## [12.3.2-next.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.2-next.0...@rxap/material-table-system@12.3.2-next.1) (2021-08-12)
 
 
