@@ -1,6 +1,6 @@
 {
   "name": "@rxap/data-grid",
-  "version": "12.0.8",
+  "version": "12.1.0-next.0",
   "peerDependencies": {
     "@angular/cdk": "^12.0.1",
     "@angular/common": "^12.0.1",
@@ -10,7 +10,7 @@
     "@angular/router": "^12.0.1",
     "@rxap/definition": "^12.0.8",
     "@rxap/directives": "^12.1.2",
-    "@rxap/forms": "^12.4.0",
+    "@rxap/forms": "^12.5.0",
     "@rxap/pipes": "^12.0.6",
     "@rxap/services": "^12.0.7",
     "@rxap/utilities": "^12.2.1",
@@ -51,7 +51,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^12.5.1-next.0",
+    "@rxap/schematics-utilities": "^12.6.0",
     "tslib": "^2.2.0"
   }
 }
