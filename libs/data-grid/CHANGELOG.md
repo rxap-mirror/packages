@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@12.0.8...@rxap/data-grid@12.1.0-next.0) (2021-08-16)
+
+
+### Features
+
+* add header input ([6fa1396](https://gitlab.com/rxap/packages/commit/6fa1396d980a7c75c9daf1aaf615f721b6c3b15a))
+
+
+
+
+
 ## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@12.0.8-next.0...@rxap/data-grid@12.0.8) (2021-07-22)
 
 **Note:** Version bump only for package @rxap/data-grid
