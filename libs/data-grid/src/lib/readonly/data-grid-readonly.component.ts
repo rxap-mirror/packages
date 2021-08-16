@@ -19,6 +19,9 @@ import { Required } from '@rxap/utilities';
 export class DataGridReadonlyComponent<T extends Record<string, any>> {
 
   @Input()
+  public header: boolean = true;
+
+  @Input()
   @Required
   public data!: object;
 
