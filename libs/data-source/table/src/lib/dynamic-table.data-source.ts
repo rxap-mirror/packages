@@ -109,7 +109,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
           direction: this.sort?.direction
         })
       ) ?? of(undefined),
-      this.filter?.change ?? of(undefined),
+      this.filter?.change?.pipe(tap(() => this.paginator?.firstPage && this.paginator?.firstPage())) ?? of(undefined),
       this.parameters ?? of(undefined),
       this._refresh$
     ]).pipe(
