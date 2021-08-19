@@ -1,6 +1,6 @@
 {
   "name": "@rxap/data-source",
-  "version": "12.1.1",
+  "version": "12.1.2-next.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/data-source",
