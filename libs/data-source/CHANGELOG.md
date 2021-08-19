@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.2-next.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.1.1...@rxap/data-source@12.1.2-next.0) (2021-08-19)
+
+
+### Bug Fixes
+
+* reset page on filter change ([3cc9fa2](https://gitlab.com/rxap/packages/commit/3cc9fa25341f63cc09b54bca9a620feaa6afce0f))
+
+
+
+
+
 ## [12.1.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.1.0...@rxap/data-source@12.1.1) (2021-08-02)
 
 

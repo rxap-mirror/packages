@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.2-next.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.2-next.2...@rxap/material-table-system@12.3.2-next.3) (2021-08-19)
+
+
+### Bug Fixes
+
+* use the new tableFilter concept ([52c6063](https://gitlab.com/rxap/packages/commit/52c6063ce62737682a1cced2f0df997c44ff5526))
+
+
+
+
+
 ## [12.3.2-next.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.3.2-next.1...@rxap/material-table-system@12.3.2-next.2) (2021-08-12)
 
 
