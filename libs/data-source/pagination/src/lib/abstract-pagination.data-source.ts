@@ -36,6 +36,9 @@ export interface PaginatorLike {
   pageIndex: number;
   /** The length of the total number of items that are being paginated. Defaulted to 0. */
   length: number;
+
+  /** Resets the pagination to the first page **/
+  firstPage?(): void;
 }
 
 export interface AbstractPaginationDataSourceMetadata extends BaseDataSourceMetadata {}
