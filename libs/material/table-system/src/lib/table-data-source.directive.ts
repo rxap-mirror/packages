@@ -58,7 +58,7 @@ export type TableRemoteMethodAdapterFactory<
   method: Method,
   paginator?: PaginatorLike,
   sort?: SortLike | null,
-  filter?: TableFilterService | null,
+  filter?: FilterLike | null,
   parameters?: Observable<Record<string, any>>
 ) => BaseRemoteMethod<Data[], TableEvent>;
 
@@ -149,13 +149,14 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
   }
 
   public ngOnInit() {
+    const tableFilter = this._tableFilter ?? this.tableFilter ?? undefined;
     if (this.sourceMethod) {
       if (this.adapterFactory) {
         this.method = this.adapterFactory(
           this.sourceMethod,
           this.paginator,
           this.matSort,
-          this.tableFilter,
+          tableFilter,
           this.parameters
         );
       } else {
@@ -165,7 +166,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
         this.method,
         this.paginator,
         this.matSort,
-        this.tableFilter,
+        tableFilter,
         this.parameters,
         this.method.metadata ?? { id: this.id }
       );
@@ -178,7 +179,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
     }
     this.dataSource.paginator  = this.paginator;
     this.dataSource.sort       = this.matSort ?? undefined;
-    this.dataSource.filter     = this._tableFilter ?? this.tableFilter ?? undefined;
+    this.dataSource.filter     = tableFilter;
     this.dataSource.parameters = this.parameters;
     this._subscription.add(
       this.dataSource.loading$.pipe(
