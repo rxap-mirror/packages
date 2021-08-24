@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.8-alpha.0](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@12.1.7...@rxap/form-window-system@12.1.8-alpha.0) (2021-08-24)
+
+
+### Bug Fixes
+
+* only create form definition if injectable ([3a90725](https://gitlab.com/rxap/packages/commit/3a9072515c1c80a371da2169f57cd7b98801982f))
+
+
+
+
+
 ## [12.1.7](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@12.1.7-next.0...@rxap/form-window-system@12.1.7) (2021-08-11)
 
 **Note:** Version bump only for package @rxap/form-window-system

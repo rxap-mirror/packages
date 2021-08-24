@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.1-alpha.4](https://gitlab.com/rxap/packages/compare/@rxap/material-popover-edit@12.0.1-alpha.3...@rxap/material-popover-edit@12.0.1-alpha.4) (2021-08-24)
+
+
+### Bug Fixes
+
+* add custom styles ([7170cd8](https://gitlab.com/rxap/packages/commit/7170cd823a9f6ff9d90b068af4c97be86b3ad7c1))
+* add popover edit form directive ([6e8e603](https://gitlab.com/rxap/packages/commit/6e8e603d2dd7428c7f0dfd114e28bdb54fe69165))
+* sync table loading and submiting event ([32f2f43](https://gitlab.com/rxap/packages/commit/32f2f43d9d7083ea96e0f064d37ff7f2c0d80c7e))
+
+
+
+
+
 ## [12.0.1-alpha.3](https://gitlab.com/rxap/packages/compare/@rxap/material-popover-edit@12.0.1-alpha.2...@rxap/material-popover-edit@12.0.1-alpha.3) (2021-07-20)
 
 
