@@ -157,7 +157,6 @@ export class FormWindowService {
     let windowConfig: WindowConfig<any, any> = {
       component,
       injector,
-      data: injector.get(RXAP_FORM_DEFINITION),
     };
 
     if (options) {
