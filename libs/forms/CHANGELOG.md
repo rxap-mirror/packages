@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.1-alpha.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.5.0...@rxap/forms@12.5.1-alpha.0) (2021-08-24)
+
+
+### Bug Fixes
+
+* add separate form state resolve for group and arrays ([58826f4](https://gitlab.com/rxap/packages/commit/58826f49eb6eae3f37a6fcbe23fded36e81fc625))
+
+
+
+
+
 # [12.5.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.5.0-next.0...@rxap/forms@12.5.0) (2021-08-11)
 
 **Note:** Version bump only for package @rxap/forms
