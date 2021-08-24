@@ -4,7 +4,8 @@ import {
   Optional,
   StaticProvider,
   Inject,
-  INJECTOR
+  INJECTOR,
+  InjectFlags
 } from '@angular/core';
 import {
   WindowService,
@@ -78,28 +79,31 @@ export class FormWindowService {
       return new RxapFormBuilder(formDefinitionConstructor, _injector);
     }
 
-    const providers: StaticProvider[] = [
-      {
-        provide: RXAP_FORM_DEFINITION_BUILDER,
-        useFactory: FormDefinitionBuilderFactory,
-        deps: [INJECTOR],
-      },
-      {
-        provide: RXAP_FORM_DEFINITION,
-        useFactory: FormDefinitionFactory,
-        deps: [
-          RXAP_FORM_DEFINITION_BUILDER,
-          [new Optional(), RXAP_FORM_INITIAL_STATE],
-        ],
-      },
-      ...(options?.providers ?? []),
-    ];
+    const providers: StaticProvider[] = options?.providers ?? [];
+
+    if ((options?.injector ?? this.injector).get(formDefinitionConstructor, null, InjectFlags.Optional)) {
+      providers.push(
+        {
+          provide:    RXAP_FORM_DEFINITION_BUILDER,
+          useFactory: FormDefinitionBuilderFactory,
+          deps:       [ INJECTOR ]
+        },
+        {
+          provide:    RXAP_FORM_DEFINITION,
+          useFactory: FormDefinitionFactory,
+          deps:       [
+            RXAP_FORM_DEFINITION_BUILDER,
+            [ new Optional(), RXAP_FORM_INITIAL_STATE ]
+          ]
+        }
+      );
+    }
 
     if (options) {
       if (options.initial) {
         providers.push({
-          provide: RXAP_FORM_INITIAL_STATE,
-          useValue: options.initial,
+          provide:  RXAP_FORM_INITIAL_STATE,
+          useValue: options.initial
         });
       }
       if (options.submitMethod) {
