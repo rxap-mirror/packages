@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.8-alpha.1](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@12.1.8-alpha.0...@rxap/form-window-system@12.1.8-alpha.1) (2021-08-24)
+
+
+### Bug Fixes
+
+* remove window data creation ([d3b460c](https://gitlab.com/rxap/packages/commit/d3b460cb443f4a916795de0409b3f2efc83dff47))
+
+
+
+
+
 ## [12.1.8-alpha.0](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@12.1.7...@rxap/form-window-system@12.1.8-alpha.0) (2021-08-24)
 
 
