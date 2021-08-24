@@ -27,18 +27,18 @@ import {
 } from '@rxap/forms';
 import { ControlContainer } from '@angular/forms';
 import { LoadingIndicatorService } from '@rxap/services';
-import {
-  DefaultPopoverEditPositionStrategyFactory,
-  PopoverEditPositionStrategyFactory
-} from './popover-edit/cdk/popover-edit-position-strategy-factory';
 import { OverlaySizeConfig } from '@angular/cdk/overlay';
-import { MatPopoverEditModule } from './popover-edit/popover-edit-module';
 import { TableDataSourceDirective } from '@rxap/material-table-system';
 import { Subscription } from 'rxjs';
 import {
   skip,
   tap
 } from 'rxjs/operators';
+import {
+  DefaultPopoverEditPositionStrategyFactory,
+  PopoverEditPositionStrategyFactory
+} from './cdk/popover-edit-position-strategy-factory';
+import { MatPopoverEditModule } from './popover-edit-module';
 
 export const RXAP_POPOVER_EDIT_FORM_DEFINITION_BUILDER = new InjectionToken<RxapFormBuilder>('rxap-popover-edit-form-definition-builder');
 export const RXAP_POPOVER_EDIT_FORM_SUBMIT_METHOD      = new InjectionToken<RxapFormBuilder>('rxap-popover-edit-form-submit-method');
