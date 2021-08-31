@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.8-next.2](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.1...@rxap/oauth@12.0.8-next.2) (2021-08-31)
+
+
+### Bug Fixes
+
+* always load access and refresh token from local storage ([72d75e9](https://gitlab.com/rxap/packages/commit/72d75e952bef34921a8064965f3362fe169af836))
+
+
+
+
+
 ## [12.0.8-next.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.0...@rxap/oauth@12.0.8-next.1) (2021-08-11)
 
 
