@@ -1,12 +1,20 @@
-import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  InjectionToken,
+  Optional
+} from '@angular/core';
 import {
   GetOAuthProfileMethod,
-  PROFILE_AUTH_ENDPOINT,
+  PROFILE_AUTH_ENDPOINT
 } from './get-o-auth-profile.method';
-import { OAuthMethod, OAuthMethodResponse } from './o-auth.method';
+import {
+  OAuthMethod,
+  OAuthMethodResponse
+} from './o-auth.method';
 import {
   RXAP_O_AUTH_REDIRECT_SIGN_OUT,
-  RXAP_O_AUTH_REDIRECT_URL,
+  RXAP_O_AUTH_REDIRECT_URL
 } from './tokens';
 import { Router } from '@angular/router';
 
@@ -28,14 +36,72 @@ export interface OAuthStatus {
 
 @Injectable({ providedIn: 'root' })
 export class OAuthService<Profile = any> {
-  public accessToken?: string | null;
-  public refreshToken?: string | null;
+  get expiresAt(): Date | null {
+    const expiresAt = this.getItem(EXPIRES_AT_LOCAL_STORAGE_KEY);
+    if (expiresAt) {
+      return new Date(
+        parseInt(this.getItem(EXPIRES_AT_LOCAL_STORAGE_KEY)!, 10)
+      );
+    }
+    return null;
+  }
+
+  set expiresAt(value: Date | null) {
+    if (value) {
+      this.setItem(EXPIRES_AT_LOCAL_STORAGE_KEY, value.getTime().toFixed(0));
+    } else {
+      this.removeItem(EXPIRES_AT_LOCAL_STORAGE_KEY);
+    }
+  }
+
+  get refreshToken(): string | null {
+    return this.getItem(REFRESH_TOKEN_LOCAL_STORAGE_KEY);
+  }
+
+  set refreshToken(value: string | null) {
+    if (value) {
+      this.setItem(REFRESH_TOKEN_LOCAL_STORAGE_KEY, value);
+    } else {
+      this.removeItem(REFRESH_TOKEN_LOCAL_STORAGE_KEY);
+    }
+  }
+
+  get accessToken(): string | null {
+    return this.getItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY);
+  }
+
+  set accessToken(value: string | null) {
+    if (value) {
+      this.setItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY, value);
+    } else {
+      this.removeItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY);
+    }
+  }
+
   /**
    * The time until the access token expires in seconds
    */
-  public expiresIn?: number | null;
-  public expiresAt?: Date | null;
-  public remember?: boolean;
+  public get expiresIn(): number | null {
+    const expiresAt = this.expiresAt;
+    if (expiresAt) {
+      return Math.round(
+        (expiresAt.getTime() - Date.now()) / 1000
+      );
+    }
+    return null;
+  }
+
+  public get remember(): boolean {
+    return !!this.getItem(REMEMBER_LOCAL_STORAGE_KEY);
+  }
+
+  public set remember(value: boolean) {
+    if (value) {
+      this.setItem(REMEMBER_LOCAL_STORAGE_KEY, 'true');
+    } else {
+      this.removeItem(REMEMBER_LOCAL_STORAGE_KEY);
+    }
+  }
 
   private _profile?: Profile | null;
 
@@ -96,20 +162,6 @@ export class OAuthService<Profile = any> {
       return this._isAuthenticated;
     }
 
-    this.accessToken = this.getItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY);
-    this.refreshToken = this.getItem(REFRESH_TOKEN_LOCAL_STORAGE_KEY);
-    if (this.getItem(REMEMBER_LOCAL_STORAGE_KEY)) {
-      this.remember = true;
-    }
-    if (this.getItem(EXPIRES_AT_LOCAL_STORAGE_KEY)) {
-      this.expiresAt = new Date(
-        parseInt(this.getItem(EXPIRES_AT_LOCAL_STORAGE_KEY)!, 10)
-      );
-      this.expiresIn = Math.round(
-        (this.expiresAt.getTime() - Date.now()) / 1000
-      );
-    }
-
     if (this.accessToken) {
       console.debug('Access token is defined: ' + this.accessToken);
       if (this.expiresIn && this.expiresIn > 60) {
@@ -132,11 +184,8 @@ export class OAuthService<Profile = any> {
 
         return (this._isAuthenticated = true);
       } else {
-        this.accessToken = undefined;
-        this.expiresIn = undefined;
-        this.expiresAt = undefined;
-        this.removeItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY);
-        this.removeItem(EXPIRES_AT_LOCAL_STORAGE_KEY);
+        this.accessToken = null;
+        this.expiresAt   = null;
         console.warn(
           'The access token expires soon. Use refresh token instead.'
         );
@@ -211,11 +260,9 @@ export class OAuthService<Profile = any> {
 
   public async signOut() {
     this.clearStorage();
-    this.accessToken = undefined;
-    this.refreshToken = undefined;
-    this.expiresAt = undefined;
-    this.remember = undefined;
-    this.expiresIn = undefined;
+    this.accessToken      = null;
+    this.refreshToken     = null;
+    this.expiresAt        = null;
     this._isAuthenticated = false;
     if (this.redirectSignOut) {
       await this.router.navigate(this.redirectSignOut);
@@ -226,10 +273,9 @@ export class OAuthService<Profile = any> {
     response: OAuthStatus,
     remember: boolean = this.remember ?? false
   ): void {
-    this.accessToken = response.accessToken;
-    this.refreshToken = response.refreshToken;
-    this.expiresAt = response.expiresAt;
-    this.expiresIn = response.expiresIn;
+    this.accessToken  = response.accessToken;
+    this.refreshToken = response.refreshToken ?? null;
+    this.expiresAt    = response.expiresAt;
 
     console.log(`Authenticated until ${this.expiresAt.toISOString()}`);
 
