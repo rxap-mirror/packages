@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/slugify@12.0.6...@rxap/slugify@12.1.0-next.0) (2021-09-01)
+
+
+### Features
+
+* add slugify function ([0353884](https://gitlab.com/rxap/packages/commit/03538840485eca9a6e5bcba48bc2e6034619656f))
+* add suffix option ([86a2bae](https://gitlab.com/rxap/packages/commit/86a2baee317596adad40df80c106d23dd89532ce))
+
+
+
+
+
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/slugify@12.0.5...@rxap/slugify@12.0.6) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/slugify
