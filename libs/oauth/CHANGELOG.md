@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.8-next.3](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.2...@rxap/oauth@12.0.8-next.3) (2021-09-01)
+
+
+### Bug Fixes
+
+* support token invalidation ([a15659f](https://gitlab.com/rxap/packages/commit/a15659f06d71b1043d53050537940ef5ded62464))
+
+
+
+
+
 ## [12.0.8-next.2](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.1...@rxap/oauth@12.0.8-next.2) (2021-08-31)
 
 
