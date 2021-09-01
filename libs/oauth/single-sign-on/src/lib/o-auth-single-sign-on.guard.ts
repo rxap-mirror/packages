@@ -42,13 +42,22 @@ export class OAuthSingleSignOnGuard implements CanActivate {
     const redirect = route.queryParamMap.get('redirect');
     const secret   = route.queryParamMap.get('secret');
     const payload  = route.queryParamMap.get('payload');
+    const action   = route.queryParamMap.get('action');
+
+    // must be set before signOut() is called. The localstorage key contains the secret
+    this.authentication.secret = secret;
 
     if (!redirect || !secret) {
+      if (action) {
+        if (action === 'signOut') {
+          await this.authentication.signOut();
+          return this.router.createUrlTree(this.redirectLogin);
+        }
+      }
       console.warn(`The query params 'redirect' or 'secret' is not defined!`);
       return true;
     }
 
-    this.authentication.secret   = secret;
     this.authentication.redirect = atob(redirect);
     this.authentication.payload  = payload;
 

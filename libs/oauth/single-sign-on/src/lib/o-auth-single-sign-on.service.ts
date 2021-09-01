@@ -70,4 +70,12 @@ export class OAuthSingleSignOnService extends OAuthService {
     window.location.replace(`${this.redirect}?accessToken=${this.accessToken}&refreshToken=${this.refreshToken}&expiresIn=${this.expiresIn}&payload=${this.payload}`);
   }
 
+  public async signOut() {
+    this.clearStorage();
+    this.accessToken      = null;
+    this.refreshToken     = null;
+    this.expiresAt        = null;
+    this._isAuthenticated = false;
+  }
+
 }

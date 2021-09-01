@@ -105,7 +105,7 @@ export class OAuthService<Profile = any> {
 
   private _profile?: Profile | null;
 
-  private _isAuthenticated: boolean | null = null;
+  protected _isAuthenticated: boolean | null = null;
 
   public get profile(): Profile | null | undefined {
     return this._profile;
@@ -266,6 +266,13 @@ export class OAuthService<Profile = any> {
     this._isAuthenticated = false;
     if (this.redirectSignOut) {
       await this.router.navigate(this.redirectSignOut);
+    } else {
+      if (!this.redirectUrl) {
+        throw new Error('Redirect url is not defined');
+      }
+      location.replace(
+        `${this.ssoUrl}?secret=${this.secret}&action=signOut}`
+      );
     }
   }
 
@@ -320,7 +327,7 @@ export class OAuthService<Profile = any> {
     localStorage.removeItem(this.getKey(key));
   }
 
-  private clearStorage() {
+  protected clearStorage() {
     this.removeItem(ACCESS_TOKEN_LOCAL_STORAGE_KEY);
     this.removeItem(REFRESH_TOKEN_LOCAL_STORAGE_KEY);
     this.removeItem(REMEMBER_LOCAL_STORAGE_KEY);
