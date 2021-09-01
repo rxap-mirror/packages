@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 export interface SlugifyOptions {
 
   /**
@@ -24,6 +26,11 @@ export interface SlugifyOptions {
    * language code of the locale to use
    */
   locale?: string;
+
+  /**
+   * add a random suffix to the slug
+   */
+  suffix?: boolean;
 
 }
 
@@ -66,6 +73,11 @@ export class Slugify {
         .replace(new RegExp('[^a-zA-Z0-9' + replacement + ']', 'g'), '')
         // remove duplicates of the replacement character
         .replace(new RegExp('[\\s' + replacement + ']+', 'g'), replacement);
+    }
+
+    if (options.suffix) {
+      const suffix = uuid().split('-')[ 4 ];
+      slug         = [ slug, suffix ].join('-');
     }
 
     return slug;
