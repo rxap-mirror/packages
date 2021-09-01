@@ -25,7 +25,7 @@ export class OAuthModule {
         },
         {
           provide:  RXAP_O_AUTH_REDIRECT_SIGN_OUT,
-          useValue: options.signOutPath ?? [ '/', 'oauth', 'redirect' ]
+          useValue: options.signOutPath ?? null
         }
       ]
     };
