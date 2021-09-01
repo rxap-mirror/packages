@@ -271,7 +271,7 @@ export class OAuthService<Profile = any> {
         throw new Error('Redirect url is not defined');
       }
       location.replace(
-        `${this.ssoUrl}?secret=${this.secret}&action=signOut}`
+        `${this.ssoUrl}?redirect=${btoa(this.redirectUrl)}&secret=${this.secret}&action=signOut`
       );
     }
   }
