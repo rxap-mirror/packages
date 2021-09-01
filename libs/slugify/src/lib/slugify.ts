@@ -42,7 +42,7 @@ export class Slugify {
 
     const locale: Record<string, string> = options.locale ? this.locales[ options.locale ] ?? {} : {};
 
-    const replacement = options.replacement === undefined ? '-' : options.replacement;
+    const replacement = options.replacement ?? '-';
 
     let slug = string
       .split('')
@@ -72,4 +72,12 @@ export class Slugify {
 
   }
 
+}
+
+export function slugify(string: string, options: SlugifyOptions = {}, customMap?: Record<string, string>) {
+  const instance = new Slugify();
+  if (customMap) {
+    instance.extend(customMap);
+  }
+  return instance.replace(string, options);
 }
