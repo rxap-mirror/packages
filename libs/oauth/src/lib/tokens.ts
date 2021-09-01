@@ -9,14 +9,7 @@ export const RXAP_O_AUTH_REDIRECT_SIGN_IN = new InjectionToken('rxap/o-auth/redi
   factory:    DefaultRedirectSignInFactory
 });
 
-export function DefaultRedirectSignOutFactory(): string[] {
-  return [ '/', 'authentication', 'login' ];
-}
-
-export const RXAP_O_AUTH_REDIRECT_SIGN_OUT = new InjectionToken('rxap/o-auth/redirect-sign-out', {
-  providedIn: 'root',
-  factory:    DefaultRedirectSignOutFactory
-});
+export const RXAP_O_AUTH_REDIRECT_SIGN_OUT = new InjectionToken('rxap/o-auth/redirect-sign-out');
 
 export function DefaultRedirectUrl(): string {
   return location.origin + '/oauth';
