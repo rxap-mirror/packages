@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.8-next.4](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.3...@rxap/oauth@12.0.8-next.4) (2021-09-01)
+
+
+### Bug Fixes
+
+* remove default redirect signout ([dac886f](https://gitlab.com/rxap/packages/commit/dac886f7a656b40866745fe145ccbf97f19772d3))
+
+
+
+
+
 ## [12.0.8-next.3](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.2...@rxap/oauth@12.0.8-next.3) (2021-09-01)
 
 
