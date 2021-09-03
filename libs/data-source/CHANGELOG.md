@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.1.2-next.0...@rxap/data-source@12.1.2) (2021-09-03)
+
+**Note:** Version bump only for package @rxap/data-source
+
+
+
+
+
 ## [12.1.2-next.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.1.1...@rxap/data-source@12.1.2-next.0) (2021-08-19)
 
 
