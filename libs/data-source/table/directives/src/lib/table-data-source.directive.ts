@@ -23,21 +23,14 @@ import { BaseDataSourceViewer } from '@rxap/data-source';
 })
 export class TableDataSourceDirective<Data extends Record<any, any> = any, Parameters = any> extends DataSourceCollectionDirective<Data> {
 
-  @Input('rxapPaginationDataSourcePaginator')
+  @Input('rxapTableDataSourcePaginator')
   public paginator!: PaginatorLike;
 
-  @Input('rxapPaginationDataSourceSort')
+  @Input('rxapTableDataSourceSort')
   public sort!: SortLike;
 
-  @Input('rxapPaginationDataSourceFilter')
+  @Input('rxapTableDataSourceFilter')
   public filter!: FilterLike;
-
-  @Input('rxapPaginationDataSourceViewer')
-  public viewer: BaseDataSourceViewer = { id: '[rxapDataSourceCollection]' };
-
-  @Input('rxapTableDataSourceFrom')
-  @Required
-  public dataSourceOrIdOrToken!: IdOrInstanceOrToken<AbstractTableDataSource<Data>>;
 
   public loadDataSource(): AbstractPaginationDataSource<Data> | null {
     const dataSource = super.loadDataSource();
@@ -57,9 +50,16 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
       }
     }
 
-    return dataSource;
+    return dataSource as AbstractPaginationDataSource<Data> | null;
 
   }
+
+  @Input('rxapTableDataSourceFrom')
+  @Required
+  public dataSourceOrIdOrToken!: IdOrInstanceOrToken<AbstractTableDataSource<Data>>;
+
+  @Input('rxapTableDataSourceViewer')
+  public viewer: BaseDataSourceViewer = { id: '[rxapDataSourceCollection]' };
 
 }
 
