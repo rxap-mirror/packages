@@ -26,7 +26,9 @@ import {
 import { OpenApiSchema } from './schema';
 import {
   GetProjectPrefix,
-  CoerceFile
+  CoerceFile,
+  DeleteRecursive,
+  GetProjectSourceRoot
 } from '@rxap/schematics-utilities';
 import { GenerateRemoteMethod } from './generate-remote-method';
 import { GenerateDataSource } from './generate-data-source';
@@ -71,15 +73,19 @@ export default function(options: OpenApiSchema): Rule {
           RESPONSE_BASE_PATH,
           REQUEST_BODY_BASE_PATH,
           DATA_SOURCE_BASE_PATH,
-          REMOTE_METHOD_BASE_PATH,
+          REMOTE_METHOD_BASE_PATH
         ],
         basePath
       ),
       CoerceOpenApiProject(options.project),
+      tree => {
+        const openApiProjectDir = GetProjectSourceRoot(tree, options.project);
+        DeleteRecursive(tree, tree.getDir(openApiProjectDir));
+      },
       () =>
         GenerateOperation(openapi, project, options, [
           GenerateDataSource,
-          GenerateRemoteMethod,
+          GenerateRemoteMethod
         ]),
       ApplyTsMorphProject(project, basePath),
       FixMissingImports(),
