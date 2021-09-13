@@ -11,7 +11,7 @@ export function IsIP({ message, version }: { message?: string, version?: string 
     }
     if (!(typeof control.value === 'string' && isIP(control.value, version))) {
       return {
-        isEmail: {
+        isIp: {
           expected: `A valid IPv${version ?? '4'} value`,
           actual:   control.value,
           message
