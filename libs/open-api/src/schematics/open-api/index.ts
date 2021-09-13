@@ -26,9 +26,7 @@ import {
 import { OpenApiSchema } from './schema';
 import {
   GetProjectPrefix,
-  CoerceFile,
-  DeleteRecursive,
-  GetProjectSourceRoot
+  CoerceFile
 } from '@rxap/schematics-utilities';
 import { GenerateRemoteMethod } from './generate-remote-method';
 import { GenerateDataSource } from './generate-data-source';
@@ -78,10 +76,6 @@ export default function(options: OpenApiSchema): Rule {
         basePath
       ),
       CoerceOpenApiProject(options.project),
-      tree => {
-        const openApiProjectDir = GetProjectSourceRoot(tree, options.project);
-        DeleteRecursive(tree, tree.getDir(openApiProjectDir));
-      },
       () =>
         GenerateOperation(openapi, project, options, [
           GenerateDataSource,
