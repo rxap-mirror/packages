@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.1-next.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.5.1-next.0...@rxap/forms@12.5.1-next.1) (2021-09-13)
+
+
+### Bug Fixes
+
+* **validators:** use correct scope type ([c130641](https://gitlab.com/rxap/packages/commit/c130641d0ed80224148edab8cfb681fb913e49f7))
+
+
+
+
+
 ## [12.5.1-next.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.5.0...@rxap/forms@12.5.1-next.0) (2021-09-13)
 
 
