@@ -6,6 +6,10 @@ export class RxapElement {
     return this.element.nodeName.toLowerCase().replace(/[^:]+:/, '');
   }
 
+  public get nodeName(): string {
+    return this.element.nodeName;
+  }
+
   constructor(public readonly element: Element) {}
 
   public getString<T = undefined>(qualifiedName: string, defaultValue?: T): T | string {
