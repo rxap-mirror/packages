@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.1-next.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.5.0...@rxap/forms@12.5.1-next.0) (2021-09-13)
+
+
+### Bug Fixes
+
+* **validators:** add isIp validator ([ce47ea1](https://gitlab.com/rxap/packages/commit/ce47ea11e05b942868dad26fc8f0009117cf3b3e))
+
+
+
+
+
 # [12.5.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.5.0-next.0...@rxap/forms@12.5.0) (2021-08-11)
 
 **Note:** Version bump only for package @rxap/forms
