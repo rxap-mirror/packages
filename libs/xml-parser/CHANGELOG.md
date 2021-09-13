@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.1-next.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@12.1.0...@rxap/xml-parser@12.1.1-next.0) (2021-09-13)
+
+
+### Bug Fixes
+
+* **element:** add nodeName getter ([fa37af7](https://gitlab.com/rxap/packages/commit/fa37af788bc1e01a0bea852b82acba9588968390))
+
+
+
+
+
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@12.1.0-next.1...@rxap/xml-parser@12.1.0) (2021-07-22)
 
 **Note:** Version bump only for package @rxap/xml-parser
