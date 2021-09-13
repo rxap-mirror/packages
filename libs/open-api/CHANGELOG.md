@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.1-next.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.1.0...@rxap/open-api@12.1.1-next.0) (2021-09-13)
+
+
+### Bug Fixes
+
+* **schematics:** remove old open api dir ([a60d09e](https://gitlab.com/rxap/packages/commit/a60d09ec33c78bafb64fab9766555321d11a15fe))
+
+
+
+
+
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.1.0-next.0...@rxap/open-api@12.1.0) (2021-07-22)
 
 **Note:** Version bump only for package @rxap/open-api
