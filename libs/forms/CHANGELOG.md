@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.1-alpha.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.5.0...@rxap/forms@12.5.1-alpha.0) (2021-08-24)
+
+
+### Bug Fixes
+
+* add separate form state resolve for group and arrays ([58826f4](https://gitlab.com/rxap/packages/commit/58826f49eb6eae3f37a6fcbe23fded36e81fc625))
+
+
+
+
+
 ## [12.5.1-next.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.5.1-next.0...@rxap/forms@12.5.1-next.1) (2021-09-13)
 
 
@@ -69,6 +80,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [12.4.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.10...@rxap/forms@12.4.0) (2021-07-22)
+
+**Note:** Version bump only for package @rxap/forms
+
+
+
+
+
+# [12.4.0-alpha.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.4.0-next.10...@rxap/forms@12.4.0-alpha.0) (2021-07-20)
 
 **Note:** Version bump only for package @rxap/forms
 
@@ -193,6 +212,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * add basic validators ([c708aab](https://gitlab.com/rxap/packages/commit/c708aabd4ddb0458aa741410034500f1098c26f0))
+
+
+
+
+
+## [12.3.6-alpha.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.3.6-next.2...@rxap/forms@12.3.6-alpha.0) (2021-07-15)
+
+**Note:** Version bump only for package @rxap/forms
 
 
 

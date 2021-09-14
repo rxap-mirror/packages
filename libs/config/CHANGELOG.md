@@ -30,6 +30,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+# [12.2.0-alpha.0](https://gitlab.com/rxap/packages/compare/@rxap/config@12.2.0-next.2...@rxap/config@12.2.0-alpha.0) (2021-07-20)
+
+**Note:** Version bump only for package @rxap/config
+
+
+
+
+
 # [12.2.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/config@12.2.0-next.1...@rxap/config@12.2.0-next.2) (2021-07-20)
 
 

@@ -11,6 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [12.1.2-alpha.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.1.2-next.1...@rxap/directives@12.1.2-alpha.0) (2021-07-20)
+
+**Note:** Version bump only for package @rxap/directives
+
+
+
+
+
 ## [12.1.2-next.1](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.1.2-next.0...@rxap/directives@12.1.2-next.1) (2021-07-16)
 
 

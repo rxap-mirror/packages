@@ -187,7 +187,7 @@ export class RxapFormBuilder<
     controls: Record<string, AbstractControl>
   ): void {
     for (const [controlId, options] of this.formArrayControls.entries()) {
-      const formState = this.coerceToControlFormState(
+      const formState = this.coerceToArrayFormState(
         controlId,
         [],
         builderFormState,
@@ -249,7 +249,7 @@ export class RxapFormBuilder<
     controls: Record<string, AbstractControl>
   ): void {
     for (const [controlId, options] of this.formArrayGroups.entries()) {
-      const formState = this.coerceToControlFormState(
+      const formState = this.coerceToArrayFormState(
         controlId,
         [],
         builderFormState,
@@ -318,7 +318,7 @@ export class RxapFormBuilder<
     controls: Record<string, AbstractControl>
   ): void {
     for (const [controlId, options] of this.formGroups.entries()) {
-      const formState = this.coerceToControlFormState(
+      const formState = this.coerceToGroupFormState(
         controlId,
         {},
         builderFormState,
@@ -537,6 +537,84 @@ export class RxapFormBuilder<
 
     if (typeof formState === 'function') {
       formState = formState();
+    }
+
+    return formState;
+  }
+
+  /**
+   * Coerce to the form state for the specified controlId. If none form state is
+   * found the default form state will be returned.
+   *
+   * The difference to the method coerceToControlFormState is that null will be
+   * handled as undefined and the defaultFormState is used
+   *
+   * @param controlId A control id
+   * @param defaultFormState The default form state
+   * @param builderFormState The form state provides as build state parameter
+   * @param optionsFormState The form state set by the decorator in the form definition
+   */
+  private coerceToGroupFormState(
+    controlId: string,
+    defaultFormState: any,
+    builderFormState: Record<string, any>,
+    optionsFormState?: any
+  ): any {
+    let formState = defaultFormState;
+
+    if (builderFormState && builderFormState[ controlId ]) {
+      formState = builderFormState[ controlId ];
+    } else if (optionsFormState) {
+      formState = optionsFormState;
+    }
+
+    if (typeof formState === 'function') {
+      formState = formState();
+      if (!formState) {
+        throw new Error(`The form state function for the form group '${controlId}' returns a empty value (null/undefined)`);
+      }
+      if (typeof formState !== 'object') {
+        throw new Error(`The form state function for the form group '${controlId}' returns a non object like value instead '${typeof formState}'`);
+      }
+    }
+
+    return formState;
+  }
+
+  /**
+   * Coerce to the form state for the specified controlId. If none form state is
+   * found the default form state will be returned.
+   *
+   * The difference to the method coerceToControlFormState is that null will be
+   * handled as undefined and the defaultFormState is used
+   *
+   * @param controlId A control id
+   * @param defaultFormState The default form state
+   * @param builderFormState The form state provides as build state parameter
+   * @param optionsFormState The form state set by the decorator in the form definition
+   */
+  private coerceToArrayFormState(
+    controlId: string,
+    defaultFormState: any[] | (() => any[]),
+    builderFormState: Record<string, any>,
+    optionsFormState?: any
+  ): any[] {
+    let formState = defaultFormState;
+
+    if (builderFormState && builderFormState[ controlId ] && Array.isArray(builderFormState[ controlId ])) {
+      formState = builderFormState[ controlId ];
+    } else if (optionsFormState && Array.isArray(optionsFormState)) {
+      formState = optionsFormState;
+    }
+
+    if (typeof formState === 'function') {
+      formState = formState();
+      if (!formState) {
+        throw new Error(`The form state function for the form array '${controlId}' returns a empty value (null/undefined)`);
+      }
+      if (!Array.isArray(formState)) {
+        throw new Error(`The form state function for the form array '${controlId}' returns a non array like value instead '${typeof formState}'`);
+      }
     }
 
     return formState;
