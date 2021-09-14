@@ -1,0 +1,13 @@
+@forward '~@angular/material/core/style/private.import';
+@forward '~@angular/material/core/theming/theming.import';
+@forward '~@angular/cdk/a11y/index.import';
+@forward '~@angular/material/core/typography/typography-utils.import';
+@forward 'popover-edit-theme' hide color, density, theme, typography;
+@forward 'popover-edit-theme' as mat-popover-edit-*;
+
+@import '~@angular/cdk/a11y';
+@import '~@angular/material/core/style/variables';
+@import '~@angular/material/core/style/private';
+@import '~@angular/material/core/theming/palette';
+@import '~@angular/material/core/theming/theming';
+@import '~@angular/material/core/typography/typography-utils';

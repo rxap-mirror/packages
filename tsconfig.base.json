@@ -206,6 +206,9 @@
       ],
       "@rxap/validator": [
         "libs/validator/src/index.ts"
+      ],
+      "@rxap/material-popover-edit": [
+        "libs/material/popover-edit/src/index.ts"
       ]
     }
   },

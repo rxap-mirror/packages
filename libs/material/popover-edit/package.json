@@ -1,23 +1,8 @@
 {
-  "name": "@rxap/form-window-system",
-  "version": "12.1.8-alpha.1",
-  "author": "Merzough Münker",
-  "homepage": "https://gitlab.com/rxap/packages/libs/form-window-system",
-  "repository": "git@gitlab.com:rxap/packages.git",
-  "keywords": [
-    "rxap",
-    "forms",
-    "angular",
-    "form-system",
-    "window-system"
-  ],
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "description": "Provides the FormSystem concept for RxAP.",
-  "license": "MIT",
+  "name": "@rxap/material-popover-edit",
+  "version": "12.0.1-alpha.4",
   "peerDependencies": {
+    "@angular/animations": "^12.0.1",
     "@angular/cdk": "^12.0.1",
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",
@@ -30,15 +15,22 @@
     "@rxap/data-source": "^12.1.2-next.0",
     "@rxap/definition": "^12.0.8",
     "@rxap/directives": "^12.1.2",
-    "@rxap/form-system": "^12.0.11",
     "@rxap/forms": "^12.5.0",
     "@rxap/material-directives": "^12.0.6",
+    "@rxap/material-table-system": "^12.3.2-next.3",
     "@rxap/mixin": "^12.0.7",
+    "@rxap/open-api": "^12.1.0",
+    "@rxap/remote-method": "^12.0.9",
     "@rxap/services": "^12.0.7",
     "@rxap/utilities": "^12.2.1",
     "@rxap/window-system": "^12.0.9",
+    "jest-preset-angular": "^8.4.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
+  },
+  "dependencies": {
+    "@rxap/schematics-utilities": "^12.6.0",
+    "tslib": "^2.2.0"
   },
   "schematics": "./collection.json",
   "ng-update": {
@@ -48,26 +40,33 @@
       "@rxap/data-source",
       "@rxap/definition",
       "@rxap/directives",
-      "@rxap/form-system",
-      "@rxap/form-window-system",
       "@rxap/forms",
       "@rxap/material-directives",
+      "@rxap/material-popover-edit",
+      "@rxap/material-table-system",
       "@rxap/mixin",
+      "@rxap/open-api",
+      "@rxap/remote-method",
       "@rxap/services",
       "@rxap/utilities",
       "@rxap/window-system"
     ]
   },
-  "publishConfig": {
-    "directory": "../../dist/libs/form-window-system",
-    "access": "public"
-  },
-  "private": false,
   "ng-add": {
     "save": "dependencies"
   },
-  "dependencies": {
-    "@rxap/schematics-utilities": "^12.6.0",
-    "tslib": "^2.2.0"
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages/-/blob/master/libs/material/popover-edit",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "keywords": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "publishConfig": {
+    "directory": "../../../dist/libs/material/popover-edit",
+    "access": "public"
   }
 }

@@ -1,0 +1,17 @@
+@import "./lib/popover-edit-theme";
+/* IMPORT */
+
+@mixin material-popover-edit-theme($theme) {
+
+  @include color($theme);
+  @include theme($theme);
+  /* THEME_INCLUDE */
+
+}
+
+@mixin material-popover-edit-typography($config) {
+
+  @include typography($config);
+  /* TYPOGRAPHY_INCLUDE */
+
+}
