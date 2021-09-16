@@ -17,6 +17,7 @@ export * from './lib/select-row/selected-rows.directive';
 export * from './lib/select-row/tokens';
 export * from './lib/row-animation';
 export * from './lib/table-data-source.directive';
+export * from './lib/table-row-metadata';
 
 // region table filter
 

@@ -37,6 +37,7 @@ import {
   Method,
   ToggleSubject
 } from '@rxap/utilities/rxjs';
+import { pipeDataSource } from '@rxap/data-source';
 
 // TODO : add migration schematic
 export const RXAP_TABLE_METHOD                   = new InjectionToken(
@@ -186,7 +187,9 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
         tap(loading => this.loading$.next(!!loading))
       ).subscribe()
     );
-    this.matTable.dataSource = this.dataSource;
+    this.matTable.dataSource = pipeDataSource(this.dataSource, tap(rowList => rowList.forEach((element: any) => {
+      element.__metadata__ = { loading$: new ToggleSubject() };
+    })));
     // TODO : remove hack to trigger change detection after data source refresh (machine-definition -> physical unit)
     this._subscription.add(
       this.loading$
@@ -196,7 +199,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
             tap(() => this.cdr.detectChanges()),
             tap(() => this.cdr.markForCheck()),
             delay(500),
-          tap(() => this.cdr.detectChanges()),
+            tap(() => this.cdr.detectChanges()),
           tap(() => this.cdr.markForCheck()),
           delay(500),
           tap(() => this.cdr.detectChanges()),
