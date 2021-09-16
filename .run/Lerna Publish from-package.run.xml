@@ -6,7 +6,7 @@
       <script value="lerna:publish"/>
     </scripts>
     <arguments value="from-package"/>
-    <node-interpreter value="$USER_HOME$/.nvm/versions/node/v14.16.1/bin/node"/>
+    <node-interpreter value="project"/>
     <envs/>
     <method v="2"/>
   </configuration>
