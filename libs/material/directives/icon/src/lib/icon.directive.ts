@@ -6,9 +6,13 @@ import {
   ElementRef,
   NgModule,
   OnChanges,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
-import { IconConfig, IsMaterialIcon, IsSvgIcon } from '@rxap/utilities';
+import {
+  IconConfig,
+  IsMaterialIcon,
+  IsSvgIcon
+} from '@rxap/utilities';
 import { MatIcon } from '@angular/material/icon';
 
 @Directive({
@@ -19,7 +23,7 @@ export class IconDirective implements OnChanges {
     return typeof this.icon === 'string';
   }
 
-  public get complexIcon(): IconConfig {
+  public get complexIcon(): IconConfig | null {
     return this.icon as any;
   }
 
@@ -50,30 +54,32 @@ export class IconDirective implements OnChanges {
       this.matIcon.ngOnInit();
     } else {
       const icon = this.complexIcon;
-      this.matIcon.color = icon.color;
-      if (icon.inline !== undefined) {
-        this.matIcon.inline = icon.inline;
-      }
-      if (icon.fontColor) {
-        this.renderer.setStyle(
-          this.elementRef.nativeElement,
-          'color',
-          icon.fontColor
-        );
-      } else {
-        this.renderer.removeStyle(this.elementRef.nativeElement, 'color');
-      }
-      if (IsMaterialIcon(icon)) {
-        this.matIcon._elementRef.nativeElement.textContent = icon.icon;
-        this.matIcon.ngOnInit();
-      } else if (IsSvgIcon(icon)) {
-        if (icon.fontIcon) {
-          this.matIcon.fontIcon = icon.fontIcon;
+      if (icon) {
+        this.matIcon.color = icon.color;
+        if (icon.inline !== undefined) {
+          this.matIcon.inline = icon.inline;
         }
-        if (icon.fontSet) {
-          this.matIcon.fontSet = icon.fontSet;
+        if (icon.fontColor) {
+          this.renderer.setStyle(
+            this.elementRef.nativeElement,
+            'color',
+            icon.fontColor
+          );
+        } else {
+          this.renderer.removeStyle(this.elementRef.nativeElement, 'color');
         }
-        this.matIcon.svgIcon = icon.svgIcon;
+        if (IsMaterialIcon(icon)) {
+          this.matIcon._elementRef.nativeElement.textContent = icon.icon;
+          this.matIcon.ngOnInit();
+        } else if (IsSvgIcon(icon)) {
+          if (icon.fontIcon) {
+            this.matIcon.fontIcon = icon.fontIcon;
+          }
+          if (icon.fontSet) {
+            this.matIcon.fontSet = icon.fontSet;
+          }
+          this.matIcon.svgIcon = icon.svgIcon;
+        }
       }
     }
   }
