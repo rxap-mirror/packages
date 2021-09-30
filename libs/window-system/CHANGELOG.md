@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.10-next.0](https://gitlab.com/rxap/packages/compare/@rxap/window-system@12.0.9...@rxap/window-system@12.0.10-next.0) (2021-09-30)
+
+
+### Bug Fixes
+
+* set fixed header/footer height ([693e37c](https://gitlab.com/rxap/packages/commit/693e37c2df5f5978d6f0ed292613335d205cda89))
+
+
+
+
+
 ## [12.0.9](https://gitlab.com/rxap/packages/compare/@rxap/window-system@12.0.9-next.0...@rxap/window-system@12.0.9) (2021-07-22)
 
 **Note:** Version bump only for package @rxap/window-system
