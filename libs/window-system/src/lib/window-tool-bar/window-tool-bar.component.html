@@ -1,4 +1,4 @@
-<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1.5rem">
+<mat-toolbar class="header" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1.5rem">
   <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1.0rem">
     <ng-template [ngIf]="windowRef.titlePortal$ | async" [ngIfElse]="titleFromSettings" let-titlePortal>
       <ng-template [cdkPortalOutlet]="titlePortal"></ng-template>
