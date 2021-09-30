@@ -24,12 +24,18 @@
     }
   },
   "projects": {
-    "utilities": {
+    "across-tabs": {
+      "tags": []
+    },
+    "authentication": {
       "tags": [
         "rxap"
       ]
     },
-    "services": {
+    "authorization": {
+      "tags": []
+    },
+    "components": {
       "tags": [
         "rxap"
       ]
@@ -39,125 +45,141 @@
         "rxap"
       ]
     },
-    "data-source": {
-      "tags": ["rxap"]
-    },
-    "components": {
-      "tags": ["rxap"]
-    },
-    "window-system": {
-      "tags": ["rxap"]
-    },
-    "mixin": {
-      "tags": ["rxap"]
-    },
-    "xml-parser": {
-      "tags": ["rxap"]
-    },
-    "pipes": {
-      "tags": ["rxap"]
-    },
-    "remote-method": {
-      "tags": ["rxap"]
-    },
-    "authentication": {
-      "tags": ["rxap"]
-    },
-    "layout": {
-      "tags": ["rxap"]
-    },
-    "open-api": {
-      "tags": []
-    },
-    "recorder": {
-      "tags": []
-    },
-    "across-tabs": {
-      "tags": []
-    },
-    "forms": {
-      "tags": []
-    },
-    "icon": {
-      "tags": []
-    },
-    "firebase": {
-      "tags": ["rxap"]
-    },
-    "directives": {
-      "tags": ["rxap"]
-    },
-    "handlebars": {
-      "tags": []
-    },
-    "definition": {
-      "tags": []
-    },
-    "form-system": {
+    "contenteditable": {
       "tags": []
     },
     "data-grid": {
       "tags": []
     },
-    "slugify": {
-      "tags": []
+    "data-source": {
+      "tags": [
+        "rxap"
+      ]
     },
-    "service-worker": {
-      "tags": []
-    },
-    "life-cycle": {
-      "tags": []
-    },
-    "json-schema-to-typescript": {
-      "tags": []
-    },
-    "tree": {
+    "definition": {
       "tags": []
     },
     "dialog": {
       "tags": []
     },
-    "form-window-system": {
-      "tags": []
+    "directives": {
+      "tags": [
+        "rxap"
+      ]
     },
     "environment": {
-      "tags": []
-    },
-    "table-system": {
-      "tags": []
-    },
-    "material-form-system": {
-      "tags": []
-    },
-    "material-table-system": {
-      "tags": []
-    },
-    "contenteditable": {
-      "tags": []
-    },
-    "material-table-window-system": {
-      "tags": []
-    },
-    "upload": {
-      "tags": []
-    },
-    "material-directives": {
       "tags": []
     },
     "fake": {
       "tags": []
     },
-    "oauth": {
+    "firebase": {
+      "tags": [
+        "rxap"
+      ]
+    },
+    "form-system": {
       "tags": []
     },
-    "authorization": {
+    "form-window-system": {
       "tags": []
     },
-    "validator": {
+    "forms": {
+      "tags": []
+    },
+    "handlebars": {
+      "tags": []
+    },
+    "icon": {
+      "tags": []
+    },
+    "json-schema-to-typescript": {
+      "tags": []
+    },
+    "layout": {
+      "tags": [
+        "rxap"
+      ]
+    },
+    "life-cycle": {
+      "tags": []
+    },
+    "material-directives": {
+      "tags": []
+    },
+    "material-form-system": {
       "tags": []
     },
     "material-popover-edit": {
       "tags": []
+    },
+    "material-table-system": {
+      "tags": []
+    },
+    "material-table-window-system": {
+      "tags": []
+    },
+    "mixin": {
+      "tags": [
+        "rxap"
+      ]
+    },
+    "oauth": {
+      "tags": []
+    },
+    "open-api": {
+      "tags": []
+    },
+    "pipes": {
+      "tags": [
+        "rxap"
+      ]
+    },
+    "recorder": {
+      "tags": []
+    },
+    "remote-method": {
+      "tags": [
+        "rxap"
+      ]
+    },
+    "service-worker": {
+      "tags": []
+    },
+    "services": {
+      "tags": [
+        "rxap"
+      ]
+    },
+    "slugify": {
+      "tags": []
+    },
+    "table-system": {
+      "tags": []
+    },
+    "tree": {
+      "tags": []
+    },
+    "upload": {
+      "tags": []
+    },
+    "utilities": {
+      "tags": [
+        "rxap"
+      ]
+    },
+    "validator": {
+      "tags": []
+    },
+    "window-system": {
+      "tags": [
+        "rxap"
+      ]
+    },
+    "xml-parser": {
+      "tags": [
+        "rxap"
+      ]
     }
   }
 }
