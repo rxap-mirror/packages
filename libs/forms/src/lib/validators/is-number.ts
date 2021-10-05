@@ -10,6 +10,7 @@ export interface IsNumberOptions {
   allowNaN?: boolean;
   allowInfinity?: boolean;
   maxDecimalPlaces?: number;
+  strict?: boolean;
 }
 
 /**
@@ -61,7 +62,7 @@ export function _IsNumber({ message, options }: { message?: string, options?: Is
     if (control.value === null) {
       return null;
     }
-    if (!isNumber(control.value, options)) {
+    if (!isNumber(!options?.strict && typeof control.value === 'string' ? Number(control.value) : control.value, options)) {
       return {
         isNumber: {
           expected: 'A number value',
