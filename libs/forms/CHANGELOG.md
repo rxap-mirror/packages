@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.1-next.3](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.5.1-next.2...@rxap/forms@12.5.1-next.3) (2021-10-05)
+
+
+### Bug Fixes
+
+* implicit convert numbers ([dcf398d](https://gitlab.com/rxap/packages/commit/dcf398da5814d4f649ecff259aa163714276f187))
+
+
+
+
+
 ## [12.5.1-next.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.5.1-next.1...@rxap/forms@12.5.1-next.2) (2021-09-14)
 
 
