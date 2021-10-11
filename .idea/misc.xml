@@ -6,18 +6,7 @@
   <component name="PreferredVcsStorage">
     <preferredVcsName>ApexVCS</preferredVcsName>
   </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/tools/schematics/form-control/files/__name@dasherize__-control.component.html" />
-    <file url="file://$PROJECT_DIR$/tools/schematics/form-control/files/__name@dasherize__-control.component.module.ts" />
-    <file url="file://$PROJECT_DIR$/tools/schematics/form-control/files/__name@dasherize__-control.component.scss" />
-    <file url="file://$PROJECT_DIR$/tools/schematics/form-control/files/__name@dasherize__-control.component.ts" />
-    <file url="file://$PROJECT_DIR$/tools/schematics/form-control/files/__name@dasherize__-control.sandbox.ts" />
-    <file url="file://$PROJECT_DIR$/tools/schematics/form-control/files/standalone-__name@dasherize__-control.directive.module.ts" />
-    <file url="file://$PROJECT_DIR$/tools/schematics/form-control/files/standalone-__name@dasherize__-control.directive.ts" />
-    <file url="file://$PROJECT_DIR$/tools/schematics/view-component/files/__name@dasherize__.view.component.html" />
-    <file url="file://$PROJECT_DIR$/tools/schematics/view-component/files/__name@dasherize__.view.component.module.ts" />
-    <file url="file://$PROJECT_DIR$/tools/schematics/view-component/files/__name@dasherize__.view.component.scss" />
-    <file url="file://$PROJECT_DIR$/tools/schematics/view-component/files/__name@dasherize__.view.component.ts" />
-    <file url="file://$PROJECT_DIR$/tools/schematics/view-component/files/__name@dasherize__.view.element.ts" />
+  <component name="WebPackConfiguration">
+    <option name="mode" value="DISABLED" />
   </component>
 </project>
