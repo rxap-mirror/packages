@@ -68,6 +68,9 @@ export class DataSourceDirective<Data = any>
 
   public connection$!: Observable<Data>;
 
+  @Input('rxapDataSourceTrackBy')
+  public trackBy?: (data: Data) => any;
+
   /**
    * @deprecated removed
    * @protected
@@ -76,7 +79,7 @@ export class DataSourceDirective<Data = any>
 
   protected embeddedViewRef?: EmbeddedViewRef<DataSourceTemplate<Data>>;
 
-  private _dataSourceLoadingSubscription: Subscription | null = null;
+  private _dataSourceLoadingSubscription: Subscription | null    = null;
   private _dataSourceConnectionSubscription: Subscription | null = null;
 
   constructor(
@@ -113,16 +116,30 @@ export class DataSourceDirective<Data = any>
   }
 
   public embedTemplate(response: any) {
-    this.embeddedViewRef?.destroy();
-    this.embeddedViewRef = this.viewContainerRef.createEmbeddedView(
-      this.template,
-      {
-        $implicit: response,
-        connection$: this.connection$,
-      }
-    );
+    const context = {
+      $implicit:   response,
+      connection$: this.connection$
+    };
+    if (this.embeddedViewRef && !this.hasChanged(this.embeddedViewRef.context.$implicit, response)) {
+      this.embeddedViewRef.context = context;
+    } else {
+      this.embeddedViewRef?.destroy();
+      this.embeddedViewRef = this.viewContainerRef.createEmbeddedView(
+        this.template,
+        {
+          $implicit:   response,
+          connection$: this.connection$
+        }
+      );
+    }
     this.embedded.emit(response);
     this.cdr.detectChanges();
+  }
+
+  private hasChanged(last: Data, current: Data): boolean {
+    const lastKey    = this.trackBy ? this.trackBy(last) : last;
+    const currentKey = this.trackBy ? this.trackBy(current) : current;
+    return lastKey !== currentKey;
   }
 
   public ngOnDestroy(): void {
