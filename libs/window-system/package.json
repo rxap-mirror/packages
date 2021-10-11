@@ -1,6 +1,6 @@
 {
   "name": "@rxap/window-system",
-  "version": "12.0.10-next.0",
+  "version": "12.0.10",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/window-system",
@@ -28,7 +28,7 @@
     "@rxap/components": "^12.0.10",
     "@rxap/config": "^12.3.0",
     "@rxap/directives": "^12.1.2",
-    "@rxap/material-directives": "^12.0.7-next.0",
+    "@rxap/material-directives": "^12.0.7",
     "@rxap/services": "^12.0.7",
     "@rxap/utilities": "^12.2.1",
     "reflect-metadata": "^0.1.13",
@@ -39,6 +39,7 @@
     "migrations": "./migration.json",
     "packageGroup": [
       "@rxap/components",
+      "@rxap/config",
       "@rxap/directives",
       "@rxap/material-directives",
       "@rxap/services",
