@@ -23,6 +23,8 @@ export class SubscriptionHandlerError extends Error {
 /**
  * Provide the same functionality as Subscription from rxjs.
  * With the extation that the subscriptions can be group added/unsubscribed
+ *
+ * @deprecated removed
  */
 export class SubscriptionHandler {
 
@@ -93,7 +95,7 @@ export class SubscriptionHandler {
       throw new SubscriptionHandlerError(SubscriptionHandlerErrorTypes.CLOSED, key);
     }
 
-    return subscription.add(teardown);
+    return subscription.add(teardown) as any;
   }
 
   public has(key: string): boolean {
