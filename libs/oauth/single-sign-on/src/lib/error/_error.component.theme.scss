@@ -1,6 +1,6 @@
 @use '~@angular/material' as mat;
 
-@mixin rxap-continue-theme($theme) {
+@mixin rxap-error-theme($theme) {
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
   $accent: map-get($theme, accent);
@@ -8,7 +8,7 @@
   $warn: map-get($theme, warn);
   $isDark: map-get($theme, is-dark);
 
-  .rxap-continue {
+  .rxap-error {
 
     .inner {
       background-color: mat.get-color-from-palette($background, card);
@@ -28,12 +28,7 @@
 
 }
 
-@mixin rxap-continue-typography($config) {
-  .rxap-continue {
-
-    .username {
-      font-weight: bold;
-    }
-
+@mixin rxap-error-typography($config) {
+  .rxap-error {
   }
 }

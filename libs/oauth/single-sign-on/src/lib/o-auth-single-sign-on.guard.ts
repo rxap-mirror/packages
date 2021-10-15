@@ -46,7 +46,7 @@ export class OAuthSingleSignOnGuard implements CanActivate {
 
     if (!redirect || !secret) {
       console.warn(`The query params 'redirect' or 'secret' is not defined!`);
-      return true;
+      return this.router.createUrlTree([ 'error' ]);
     }
 
     this.authentication.redirect = atob(redirect);

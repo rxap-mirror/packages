@@ -6,6 +6,7 @@ import {
   LoadingComponent
 } from '@rxap/oauth';
 import { OAuthSingleSignOnGuard } from './o-auth-single-sign-on.guard';
+import { ErrorComponent } from './error/error.component';
 
 export const RXAP_O_AUTH_SINGLE_SIGN_ON_ROUTES: Routes = [
   {
@@ -18,6 +19,10 @@ export const RXAP_O_AUTH_SINGLE_SIGN_ON_ROUTES: Routes = [
         resolve:   {
           profile: ProfileResolve
         }
+      },
+      {
+        path:      'error',
+        component: ErrorComponent
       },
       {
         path:        '',

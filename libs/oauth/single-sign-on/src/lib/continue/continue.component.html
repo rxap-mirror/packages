@@ -12,18 +12,18 @@
 
     <div fxLayout="column">
 
-      <p><span>Currently Sign In as: </span><span class="username"><br>{{(profile | async)?.username}}</span></p>
+      <p><span i18n>Currently Sign In as:</span> <span class="username"><br>{{(profile | async)?.username}}</span></p>
 
     </div>
 
     <div fxFlex="nogrow" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
 
       <div fxFlex="nogrow">
-        <button (click)="redirect()" color="primary" mat-raised-button>Continue</button>
+        <button (click)="redirect()" color="primary" i18n mat-raised-button>Continue</button>
       </div>
 
       <div fxFlex="nogrow">
-        <button (click)="signOut()" color="accent" mat-stroked-button>Change Account</button>
+        <button (click)="signOut()" color="accent" i18n mat-stroked-button>Change Account</button>
       </div>
 
     </div>
