@@ -11,7 +11,7 @@ export interface Version {
 @Injectable({ providedIn: 'root' })
 export class VersionService {
 
-  public update$  = new Subject();
+  public update$  = new Subject<void>();
   private modules = new Map<string, Version>();
 
   public setModule(moduleId: string, version: Version): void {
