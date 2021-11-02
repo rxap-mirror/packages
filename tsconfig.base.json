@@ -262,11 +262,11 @@
       "@rxap/utilities": [
         "libs/utilities/src/index.ts"
       ],
-      "@rxap/utilities/modules": [
-        "libs/utilities/modules/src/public_api.ts"
+      "@rxap/utilities/rxjs": [
+        "libs/utilities/rxjs/src/public_api.ts"
       ],
-      "@rxap/utilities/schematic": [
-        "libs/utilities/schematic/src/public_api.ts"
+      "@rxap/utilities/reflect-metadata": [
+        "libs/utilities/reflect-metadata/src/public_api.ts"
       ],
       "@rxap/validator": [
         "libs/validator/src/index.ts"
