@@ -71,6 +71,9 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   @ContentChild(TreeContentDirective, { static: true })
   public content?: TreeContentDirective;
 
+  @Input()
+  public hideLeafIcon: boolean = false;
+
   @Output()
   public details = new EventEmitter();
 
