@@ -29,4 +29,14 @@ import {
     ])
   ]
 })
-export class ErrorComponent {}
+export class ErrorComponent {
+
+  public get topLevelDomain() {
+    return location.hostname.match(/([^.]+\.[^.]+$)/);
+  }
+
+  public get mainApplicationUrl() {
+    return `${location.protocol}//${this.topLevelDomain}`;
+  }
+
+}
