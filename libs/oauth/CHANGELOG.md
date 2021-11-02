@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.9-next.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8...@rxap/oauth@12.0.9-next.0) (2021-11-02)
+
+
+### Bug Fixes
+
+* add missing export ([cb8560d](https://gitlab.com/rxap/packages/commit/cb8560dad54f2e296b82a136a6b2805b80b0d5fb))
+* add sso error component ([fcb37b1](https://gitlab.com/rxap/packages/commit/fcb37b1d983d23d9dc52670feb94767c45a66517))
+
+
+
+
+
 ## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.6...@rxap/oauth@12.0.8) (2021-09-03)
 
 **Note:** Version bump only for package @rxap/oauth

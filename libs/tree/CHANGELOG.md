@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.1.1...@rxap/tree@12.2.0-next.0) (2021-11-02)
+
+
+### Features
+
+* add hideLeafIcon input ([2dd80ae](https://gitlab.com/rxap/packages/commit/2dd80ae01d2a59b98cc8dac74f00de8ae19947c5))
+
+
+
+
+
 ## [12.1.1](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.1.1-next.0...@rxap/tree@12.1.1) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/tree
