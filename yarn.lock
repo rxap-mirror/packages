@@ -470,6 +470,16 @@
     call-me-maybe "^1.0.1"
     js-yaml "^3.13.1"
 
+"@apidevtools/json-schema-ref-parser@^9.0.7":
+  version "9.0.9"
+  resolved "https://registry.yarnpkg.com/@apidevtools/json-schema-ref-parser/-/json-schema-ref-parser-9.0.9.tgz#d720f9256e3609621280584f2b47ae165359268b"
+  integrity sha512-GBD2Le9w2+lVFoc4vswGI/TjkNIZSVp7+9xPf+X3uidBfWnAeUWmquteSyt0+VCrhNMWj/FTABISQrD3Z/YA+w==
+  dependencies:
+    "@jsdevtools/ono" "^7.1.3"
+    "@types/json-schema" "^7.0.6"
+    call-me-maybe "^1.0.1"
+    js-yaml "^4.1.0"
+
 "@babel/code-frame@7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
@@ -4357,17 +4367,6 @@
     yargs "15.4.1"
     yargs-parser "20.0.0"
 
-"@nrwl/cli@12.4.0":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-12.4.0.tgz#d313ddbabfef0d4b1b3e799dac5fa1dafe4819d4"
-  integrity sha512-ZU1NAjxEa9iMRRhUCYmD0ZLlK1j5l+zDseDE1a0A3KdgMVGh2eOchREnf6R75skQJHl4v9hKFweqiy0Xl14ZRQ==
-  dependencies:
-    "@nrwl/tao" "12.4.0"
-    chalk "4.1.0"
-    v8-compile-cache "2.3.0"
-    yargs "15.4.1"
-    yargs-parser "20.0.0"
-
 "@nrwl/cli@12.5.8":
   version "12.5.8"
   resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-12.5.8.tgz#3287fc390ffe00491cc442b5812b15ebf52b9511"
@@ -4425,17 +4424,6 @@
     strip-json-comments "^3.1.1"
     tslib "^2.0.0"
 
-"@nrwl/devkit@12.4.0":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-12.4.0.tgz#6110327f1aed6d87d407929651e6f1140c779451"
-  integrity sha512-kGw5/SH4ze4j+rG6seEcslNenscrZFZMGpcoc3OIxfTTGlFA0mCFasFgzN8osgTX4+PgEOushvm3yRAaMmLqIg==
-  dependencies:
-    "@nrwl/tao" "12.4.0"
-    ejs "^3.1.5"
-    ignore "^5.0.4"
-    semver "7.3.4"
-    tslib "^2.0.0"
-
 "@nrwl/devkit@12.5.8":
   version "12.5.8"
   resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-12.5.8.tgz#0450f9d2bb614fcc478086d1529e37ed91d9c884"
@@ -4468,16 +4456,6 @@
     strip-json-comments "^3.1.1"
     tslib "^2.0.0"
 
-"@nrwl/jest@12.4.0":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-12.4.0.tgz#d59b840ba1ad79ff969aefa353ad360e952bd86c"
-  integrity sha512-YZbo4+NYsSp7StJFvY7pKAArpYOP5AtZAu4ltshzdAWYM9KgPtoDtstRBksFzDq6jnApXuMb4eEcE4ttlMj3yQ==
-  dependencies:
-    "@nrwl/devkit" "12.4.0"
-    jest-resolve "^26.6.2"
-    rxjs "^6.5.4"
-    tslib "^2.0.0"
-
 "@nrwl/jest@12.5.8":
   version "12.5.8"
   resolved "https://registry.yarnpkg.com/@nrwl/jest/-/jest-12.5.8.tgz#8d5d7a3dd3b8895c57001155d8e0c488856e41c5"
@@ -4494,17 +4472,6 @@
   integrity sha512-cxWLA+B1hjAjiyQadqoYIf9lUh1EKTs/kgIwXExW2qaoFv1NtTQiB+JsD2VTLUj4tKE7rWdBR13PAC9CS1Ln4g==
   dependencies:
     "@nrwl/devkit" "12.3.4"
-    glob "7.1.4"
-    minimatch "3.0.4"
-    tmp "~0.2.1"
-    tslib "^2.0.0"
-
-"@nrwl/linter@12.4.0":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/linter/-/linter-12.4.0.tgz#61afc3d1bfb9e71ceea1ed820d15f4163911c00b"
-  integrity sha512-n+xEKSAU5nVyMii7GtvBWDdjtrlCqMXrnozBs586k+bL0opogP4ZOrWxPZUjLnOlOHx1BuIl0nViSjBmh2y0wA==
-  dependencies:
-    "@nrwl/devkit" "12.4.0"
     glob "7.1.4"
     minimatch "3.0.4"
     tmp "~0.2.1"
@@ -4606,22 +4573,6 @@
     tslib "^2.0.0"
     yargs-parser "20.0.0"
 
-"@nrwl/tao@12.4.0":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.4.0.tgz#90620513fc66faca22c98a64623b2d1c058bb1a4"
-  integrity sha512-WH8SqOuJuuBwXpLX9vIVVWEovDqfLmiyFQS4Ebz35KWXNoIv9MS3QgItXKCu7X463hiJnxjAA3RqVYIt8U1vXg==
-  dependencies:
-    chalk "4.1.0"
-    enquirer "~2.3.6"
-    fs-extra "^9.1.0"
-    jsonc-parser "3.0.0"
-    rxjs "^6.5.4"
-    rxjs-for-await "0.0.2"
-    semver "7.3.4"
-    tmp "~0.2.1"
-    tslib "^2.0.0"
-    yargs-parser "20.0.0"
-
 "@nrwl/tao@12.5.8":
   version "12.5.8"
   resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-12.5.8.tgz#20bde1f54210fb1d0a60f1814b5b1b6578169f7d"
@@ -4678,33 +4629,6 @@
     "@nrwl/linter" "12.5.8"
     chalk "4.1.0"
     chokidar "^3.5.1"
-    cosmiconfig "^4.0.0"
-    dotenv "8.2.0"
-    enquirer "~2.3.6"
-    flat "^5.0.2"
-    fs-extra "^9.1.0"
-    glob "7.1.4"
-    ignore "^5.0.4"
-    minimatch "3.0.4"
-    npm-run-all "^4.1.5"
-    open "^7.4.2"
-    rxjs "^6.5.4"
-    semver "7.3.4"
-    tmp "~0.2.1"
-    tslib "^2.0.0"
-    yargs "15.4.1"
-    yargs-parser "20.0.0"
-
-"@nrwl/workspace@^12.3.6":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@nrwl/workspace/-/workspace-12.4.0.tgz#095d29bbb1d19f6266af06c528ebc83392d07654"
-  integrity sha512-RjcvP4rQCj6CQPDrRTLlzviF6kskfDBfBlyrQfDjh4CC9HasjlRCOfB39OQynT2M4iZqckXl5upG7Ph1gP5+dg==
-  dependencies:
-    "@nrwl/cli" "12.4.0"
-    "@nrwl/devkit" "12.4.0"
-    "@nrwl/jest" "12.4.0"
-    "@nrwl/linter" "12.4.0"
-    chalk "4.1.0"
     cosmiconfig "^4.0.0"
     dotenv "8.2.0"
     enquirer "~2.3.6"
@@ -4946,95 +4870,94 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@rxap/json-schema-to-typescript@^12.0.2":
-  version "12.0.3"
-  resolved "https://registry.yarnpkg.com/@rxap/json-schema-to-typescript/-/json-schema-to-typescript-12.0.3.tgz#c84705147f4cef4b34999ce0fdc7b60a18951b38"
-  integrity sha512-YFQgvDArMV/zXoK/rYxM0bfGk2GNYgjls0APoP6k2sbKAqP/JioVXCoagSrwabl7ZKiFGX3koxMlCRpzN4ySZQ==
+"@rxap/json-schema-to-typescript@^12.0.9":
+  version "12.0.9"
+  resolved "https://registry.yarnpkg.com/@rxap/json-schema-to-typescript/-/json-schema-to-typescript-12.0.9.tgz#985885b64f9388d0124f68dd9ec0c97f0e98f819"
+  integrity sha512-LKgI5QIW/5wIXbvFioae4c9GrmpZ5EAmDMPUMuHN+FW9IH9+q3tjxisrH+VxG5/qxMZlIbVP2fn3BlAMHdfhZA==
   dependencies:
-    "@apidevtools/json-schema-ref-parser" "9.0.7"
-    tslib "2.0.1"
+    "@apidevtools/json-schema-ref-parser" "^9.0.7"
+    "@rxap/schematics-utilities" "^12.6.0"
+    tslib "^2.2.0"
 
-"@rxap/plugin-library-publish@^12.0.10":
-  version "12.0.10"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-library-publish/-/plugin-library-publish-12.0.10.tgz#a48ce719b5a68d4b408ca23bcd8bf6a4ae24ebf4"
-  integrity sha512-61eoV9neuJjNWgpymWz0teMa4880JjtdoCAXUSxAgJ5k4/xlRbnyWIl6aiUO/rhk2V11A7yXk145LtFCQQuzPA==
+"@rxap/plugin-library-publish@^12.0.11":
+  version "12.0.11"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-library-publish/-/plugin-library-publish-12.0.11.tgz#484d076cafe14a3a2fb37799db68d2da3be2d80b"
+  integrity sha512-tJyXqppqtDo6wWXaE2U/sIpm4nYt09p/u0+Tn+QDPxyIgpcWLwed7XmdTZiggqgVAKH+Am4UxqFMDsq89TO/4A==
   dependencies:
     "@angular-devkit/architect" "^0.1200.3"
     "@angular-devkit/core" "^12.0.3"
     "@angular-devkit/schematics" "^12.0.3"
 
-"@rxap/plugin-library-schematics@^12.0.10":
-  version "12.0.10"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-library-schematics/-/plugin-library-schematics-12.0.10.tgz#c4bd731444deffaeb419899a96ecf5cff2ec0f96"
-  integrity sha512-AnzdVuDg7HERSwzLilV88AppeuvxbQ1Qq/CeM026nx/lgKPvLgqUVz9vudpFSUw3coHAJBXYIMZ3dn0rOqQnLw==
+"@rxap/plugin-library-schematics@^12.0.11":
+  version "12.0.11"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-library-schematics/-/plugin-library-schematics-12.0.11.tgz#c0aa91dd964a4c8e0cb70c4f9e0717b0ff01fb77"
+  integrity sha512-PI7QQwM4sx4o3V8RHJzCRqfDYcLEX/bNzXVlixQFQQF99NjMHqJMqVxCc5PCaedk9Q3SVjbLype7DVarHZoVkQ==
   dependencies:
     "@angular-devkit/architect" "0.1102"
     "@angular-devkit/core" "9"
     "@angular-devkit/schematics" "9"
 
-"@rxap/plugin-library@^12.4.0":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-library/-/plugin-library-12.4.0.tgz#05db9b78686b65880c600aa7b84bdf1759064385"
-  integrity sha512-KhL/doF66RfeeizBh3G0uxhrC9LOYuZaG/cshzY3/7zNUqQZ0LpL4eYfW1QsQwI8y1btYSASTtfRkXJ6+pOWRQ==
+"@rxap/plugin-library@^12.4.2":
+  version "12.4.2"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-library/-/plugin-library-12.4.2.tgz#78fd2359cc6fdb13d1d421c7e0bcf285be0084bf"
+  integrity sha512-jPp5YWgK1XuvK/7l8oItI6ORAlZ2arNcYDZafM3DImb876lYeB9adaWclvJzTjk4PjohLVsut/EWKwtpHwBMYQ==
   dependencies:
     "@angular-devkit/architect" "^0.1200.3"
     "@angular-devkit/core" "^12.0.3"
     "@angular-devkit/schematics" "^12.0.3"
-    "@nrwl/workspace" "^12.3.6"
-    "@rxap/schematics-utilities" "^12.4.0"
-    "@rxap/utilities" "^12.1.3"
+    "@rxap/schematics-utilities" "^12.6.0"
+    "@rxap/utilities" "^12.2.0"
     tslib "^2.0.0"
     typescript "^4.2.4"
 
-"@rxap/plugin-pack@12.1.13":
-  version "12.1.13"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-pack/-/plugin-pack-12.1.13.tgz#c52990f85bb6219f165debd73aef81c9dfb38839"
-  integrity sha512-BRnW2CroZLqZni7uAn5ZTsqdOAWAnBAlcjx0eeuxy5dR9tAoxETfF9viFuz6VDSQ5pjuXHIEeB16Q9J1LkX7AQ==
+"@rxap/plugin-pack@12.2.1":
+  version "12.2.1"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-pack/-/plugin-pack-12.2.1.tgz#be010162392250e2db9112791aea6bb31949ecf9"
+  integrity sha512-dNJCnICaMjlGjJyb1HVsFZEVu5dz7QTLPUk/fqwELrG1sCjZJdn+i50e9BhWbIarl0ZGsl6DO5Jd95MAtYDKBA==
   dependencies:
     "@angular-devkit/architect" "^0.1200.3"
     "@angular-devkit/schematics" "^12.0.3"
-    "@rxap/schematics-utilities" "^12.4.0"
+    "@rxap/schematics-utilities" "^12.6.0"
     tslib "^2.0.0"
 
-"@rxap/plugin-readme-generator@12.3.4":
-  version "12.3.4"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-readme-generator/-/plugin-readme-generator-12.3.4.tgz#4db139161d52fe1e893efe6a290f10149235b7cd"
-  integrity sha512-X8fhcO4sxa1CJJpzZwieLup3C09MX/n/29BRApVaWYhXkDVgnZGh7WpThz2Enlv8dA+waD1E6mCdE3Dr0Cdtmg==
+"@rxap/plugin-readme-generator@12.3.6":
+  version "12.3.6"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-readme-generator/-/plugin-readme-generator-12.3.6.tgz#8f76040bc8fbd6e7af5538a6d793a057e006c23b"
+  integrity sha512-febOfF775rX22Umw8VUZP6z91UtJg5FkDCAkBT//e63b2PLaGniOvqFgv2drMIiayyY/Ckq5yP0aQoQIhX0cIw==
   dependencies:
     "@angular-devkit/architect" "^0.1200.3"
     "@angular-devkit/core" "^12.0.3"
     "@angular-devkit/schematics" "^12.0.3"
-    "@nrwl/workspace" "^12.3.6"
-    "@rxap/schematics-utilities" "^12.4.0"
+    "@rxap/schematics-utilities" "^12.6.0"
     handlebars "^4.7.7"
     tslib "^2.0.0"
 
-"@rxap/plugin-scss-bundle@^12.0.14":
-  version "12.0.14"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-scss-bundle/-/plugin-scss-bundle-12.0.14.tgz#8969acb82aa5e98a8c48a5c73cfa760337651f28"
-  integrity sha512-wPOpgDuxV9miN0mth4G2L1HKfyGAdCJoF0MHbJ+M/ZAtvmUBtrNya5pyP/YmvEy8fUb17JcoHNalm1YNbtqsUw==
+"@rxap/plugin-scss-bundle@^12.0.16":
+  version "12.0.16"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-scss-bundle/-/plugin-scss-bundle-12.0.16.tgz#e5a979d535eeba0faa079b7ae304a643c1f3908c"
+  integrity sha512-CUVySLMNW2vhdNBCAD44SwSv+1g+sYPgINVD8JQ82KT+CVHbmWCMgrJEGpV3vDOd1Z1YNoNiAjHdr4/tcWwRPg==
   dependencies:
     "@angular-devkit/architect" "^0.1200.3"
     "@angular-devkit/core" "^12.0.3"
     "@angular-devkit/schematics" "^12.0.3"
-    "@nrwl/workspace" "^12.3.6"
-    "@rxap/schematics-utilities" "^12.4.0"
+    "@rxap/schematics-utilities" "^12.6.0"
     globs "^0.1.4"
     tslib "^2.0.0"
 
-"@rxap/schematics-open-api@^12.0.8":
-  version "12.0.8"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics-open-api/-/schematics-open-api-12.0.8.tgz#73f89c8744083c86e28adef69fdeb762c403e76a"
-  integrity sha512-2thfKj2TGlEXTG0OI4t+wv1TtEWeHq7ZVbpXeMSLnsWgE6PXPdauqs1dpK5fGVgamWAh/iwod9iPk/jVDfvrKQ==
+"@rxap/schematics-open-api@^12.0.9":
+  version "12.0.9"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-open-api/-/schematics-open-api-12.0.9.tgz#97be3611291ea4c8eef3c4e4b40318e45367cc2b"
+  integrity sha512-2jpheTxwsxLROMAf8KGqh4JNFOzzCEtf1Yp5H/ddWHKntnT8854mLzXVwGbUjZElp28mM/wLzy/5iWiF8osKVA==
   dependencies:
-    "@rxap/json-schema-to-typescript" "^12.0.2"
-    "@rxap/utilities" "^12.0.3"
+    "@rxap/json-schema-to-typescript" "^12.0.9"
+    "@rxap/utilities" "^12.2.1"
     openapi-types "^9.0.3"
+    tslib "^2.0.0"
 
-"@rxap/schematics-ts-morph@^12.3.0":
-  version "12.3.0"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics-ts-morph/-/schematics-ts-morph-12.3.0.tgz#4ae86c634b6a5e765394727e85cebf7b433add17"
-  integrity sha512-XmhGJWZy959bItsYNAWEitRsrobXRPb/73+dVw9AKN/9s8ms2234mqMisruU73SPE2Ad9+aIHLgDJyYs3Togkw==
+"@rxap/schematics-ts-morph@^12.3.2":
+  version "12.3.2"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-ts-morph/-/schematics-ts-morph-12.3.2.tgz#7e8f0ed2f21cdaf694f778bb8584e6c7ae12d9b5"
+  integrity sha512-toaBBJw+ugHOyEFBJ7AstS9bSC5DKvFc/grHlIovrrNlw1BbGlCdUtM/Tfq0LXN1brzqdW5eeJjRLkV0nqqA3w==
   dependencies:
     "@rxap/utilities" "^12.2.1-next.0"
     tslib "^2.0.0"
@@ -5066,14 +4989,26 @@
     semver "^7.3.5"
     tslib "^2.0.0"
 
-"@rxap/schematics@^12.9.0":
-  version "12.9.0"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics/-/schematics-12.9.0.tgz#8671ee3e1efdcd343a8ef51a28c4678176fa0577"
-  integrity sha512-RNg6Sx7CU+rEV7g9GSPiTq8jvf4cY0+p8ZxFE6u4Wd/y/DncESNLjhQ5dp+ibGdLhMmDtqe3fXxZ/uTGL8JKsg==
+"@rxap/schematics-utilities@^12.6.1":
+  version "12.6.1"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-12.6.1.tgz#b782c3a27d59389c808cc8e818e08c16109d514c"
+  integrity sha512-VdMnxQa4Myc5rMhsjSG0QhTjEO+c1clwtZ6+s9Cwl/u9m0tXHsDa20fmvXEvSzlijmRmVWRV+9FwV70uLlvrJA==
   dependencies:
-    "@rxap/schematics-ts-morph" "^12.3.0"
+    "@rxap/utilities" "^12.2.1"
+    semver "^7.3.5"
+    tslib "^2.0.0"
+
+"@rxap/schematics@^12.9.7":
+  version "12.9.7"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics/-/schematics-12.9.7.tgz#98f3bf5424dec83205e26eddbb318f5cdc0738f4"
+  integrity sha512-qvnfvNJqPMXA1A0uN1jeObL7boD6SJ1Yx7ytJmq1C34klIX8nzcSKCd5WpiBi6N6Lmtz7Tf/3hM9039W3V1iZw==
+  dependencies:
+    "@rxap/schematics-ts-morph" "^12.3.2"
+    "@rxap/schematics-utilities" "^12.6.1"
     "@rxap/utilities" "^12.2.1-next.0"
+    depcheck "^1.4.2"
     parse5 "^6.0.1"
+    semver "^7.3.5"
     ts-morph "^11.0.0"
     tslib "^2.0.0"
     typescript "^4.2.4"
@@ -5085,14 +5020,6 @@
   dependencies:
     tslib "^2.1.0"
 
-"@rxap/utilities@^12.1.3":
-  version "12.1.4"
-  resolved "https://registry.yarnpkg.com/@rxap/utilities/-/utilities-12.1.4.tgz#d0fc444e638a82c4df22cdd425a54d5f5a4b3203"
-  integrity sha512-RaE4XgCRR5sBSBa9TwjwKP0KQY0Y4gqavKbPrRGwAk5nIXlWkS52ex2V0sLouhqtWwIixNm59/7Aoq9nh6Ykrw==
-  dependencies:
-    "@rxap/schematics-utilities" "^12.4.0"
-    tslib "^2.2.0"
-
 "@rxap/utilities@^12.2.0":
   version "12.2.0"
   resolved "https://registry.yarnpkg.com/@rxap/utilities/-/utilities-12.2.0.tgz#2165ba24fc8c7e56f23941e52e68ad90725a3ba1"
@@ -5102,7 +5029,7 @@
     ts-morph "^10.1.0"
     tslib "^2.2.0"
 
-"@rxap/utilities@^12.2.1-next.0":
+"@rxap/utilities@^12.2.1", "@rxap/utilities@^12.2.1-next.0":
   version "12.2.1"
   resolved "https://registry.yarnpkg.com/@rxap/utilities/-/utilities-12.2.1.tgz#3c4e1f97bb50805fc1b9ba5d2ddb562b27a4016a"
   integrity sha512-IjEOcUpgz35n+ZwyEx2T7iI0Du3npfmUg1+Oxl7eRvxLhtXibOhPI9xsCGnQ34CGYjAp2vJnwyeupiaNxQRUEg==
@@ -8255,6 +8182,11 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
+argparse@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
+  integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
+
 aria-query@^3.0.0:
   version "3.0.0"
   resolved "https://npm.rxap.dev/aria-query/-/aria-query-3.0.0.tgz#65b3fcc1ca1155a8c9ae64d6eee297f15d5133cc"
@@ -11292,6 +11224,35 @@ depcheck@1.4.1:
     debug "^4.2.0"
     deps-regex "^0.1.4"
     ignore "^5.1.8"
+    js-yaml "^3.14.0"
+    json5 "^2.1.3"
+    lodash "^4.17.20"
+    minimatch "^3.0.4"
+    multimatch "^5.0.0"
+    please-upgrade-node "^3.2.0"
+    query-ast "^1.0.3"
+    readdirp "^3.5.0"
+    require-package-name "^2.0.1"
+    resolve "^1.18.1"
+    sass "^1.29.0"
+    scss-parser "^1.0.4"
+    semver "^7.3.2"
+    yargs "^16.1.0"
+
+depcheck@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/depcheck/-/depcheck-1.4.2.tgz#dedeb8729b8fdf990e2bc45a869d99cfb4460097"
+  integrity sha512-oYaBLRbF5NMkYxc5rltnqtuPAn25Lx5xPBIJXy5oUVBgrEDDtotCoYUfFH8lvcmSWzgk1Ts9H+f4Rk0oWL51LQ==
+  dependencies:
+    "@babel/parser" "^7.12.5"
+    "@babel/traverse" "^7.12.5"
+    "@vue/compiler-sfc" "^3.0.5"
+    camelcase "^6.2.0"
+    cosmiconfig "^7.0.0"
+    debug "^4.2.0"
+    deps-regex "^0.1.4"
+    ignore "^5.1.8"
+    is-core-module "^2.4.0"
     js-yaml "^3.14.0"
     json5 "^2.1.3"
     lodash "^4.17.20"
@@ -14767,6 +14728,13 @@ is-core-module@^2.1.0, is-core-module@^2.2.0:
   dependencies:
     has "^1.0.3"
 
+is-core-module@^2.4.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.8.0.tgz#0321336c3d0925e497fd97f5d95cb114a5ccd548"
+  integrity sha512-vd15qHsaqrRL7dtH6QNuy0ndJmRDrS9HAM1CAiSifNUFv4x1a0CCVsj18hJ1mShxIG6T2i1sO78MkP56r0nYRw==
+  dependencies:
+    has "^1.0.3"
+
 is-data-descriptor@^0.1.4:
   version "0.1.4"
   resolved "https://npm.rxap.dev/is-data-descriptor/-/is-data-descriptor-0.1.4.tgz#0b5ee648388e2c860282e793f1856fec3f301b56"
@@ -15790,6 +15758,13 @@ js-yaml@^3.13.1, js-yaml@^3.14.0, js-yaml@^3.9.0:
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
+
+js-yaml@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.1.0.tgz#c1fb65f8f5017901cdd2c951864ba18458a10602"
+  integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
+  dependencies:
+    argparse "^2.0.1"
 
 jsbn@~0.1.0:
   version "0.1.1"
@@ -22782,11 +22757,6 @@ tsconfig-paths@^3.4.0, tsconfig-paths@^3.9.0:
     json5 "^1.0.1"
     minimist "^1.2.0"
     strip-bom "^3.0.0"
-
-tslib@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
-  integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
 
 tslib@2.2.0, tslib@^2.1.0:
   version "2.2.0"
