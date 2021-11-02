@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.9-next.2](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.9-next.1...@rxap/oauth@12.0.9-next.2) (2021-11-02)
+
+
+### Bug Fixes
+
+* **sso-error:** check if hostname is a valid domain ([94bcf98](https://gitlab.com/rxap/packages/commit/94bcf983ae7210123c5a65c054791503eb0429ec))
+
+
+
+
+
 ## [12.0.9-next.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.9-next.0...@rxap/oauth@12.0.9-next.1) (2021-11-02)
 
 
