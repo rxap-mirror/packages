@@ -32,7 +32,12 @@ import {
 export class ErrorComponent {
 
   public get topLevelDomain() {
-    return location.hostname.match(/([^.]+\.[^.]+$)/);
+    const match = location.hostname.match(/([^.]+\.[^.]+$)/);
+    if (match) {
+      return match[ 0 ];
+    } else {
+      return location.hostname;
+    }
   }
 
   public get mainApplicationUrl() {
