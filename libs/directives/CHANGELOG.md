@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.1.2...@rxap/directives@12.2.0-next.0) (2021-11-02)
+
+
+### Features
+
+* support revert changes ([72680f3](https://gitlab.com/rxap/packages/commit/72680f3516799bc18a8c57f00cdf529ea5e5631d))
+
+
+
+
+
 ## [12.1.2](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.1.2-next.1...@rxap/directives@12.1.2) (2021-07-22)
 
 **Note:** Version bump only for package @rxap/directives
