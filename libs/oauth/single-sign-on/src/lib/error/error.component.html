@@ -3,10 +3,13 @@
 
   <div class="content" fxLayout="column" fxLayoutGap="32px">
 
-    <div fxLayout="column">
+    <div fxLayout="column" fxLayoutGap="8px">
 
       <h2 i18n="@@rxap-oauth.single-sign-on.error.title">Error</h2>
       <p i18n="@@rxap-oauth.single-sign-on.error.message">Please open the main application again.</p>
+      <a [href]="mainApplicationUrl" color="primary" mat-raised-button>
+        <ng-container i18n="@@rxap-oauth.single-sign-on.error.action">Navigate to main application</ng-container>
+      </a>
 
     </div>
 

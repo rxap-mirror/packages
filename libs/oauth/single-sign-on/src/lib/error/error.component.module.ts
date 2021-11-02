@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ErrorComponent } from './error.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -8,7 +9,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ErrorComponent
   ],
   imports:      [
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatButtonModule
   ],
   exports:      [
     ErrorComponent
