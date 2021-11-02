@@ -1,6 +1,6 @@
 {
   "name": "@rxap/tree",
-  "version": "12.1.1",
+  "version": "12.2.0-next.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/tree",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -18,6 +18,7 @@
   },
   "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
   "peerDependencies": {
+    "@angular-devkit/schematics": "^12.2.9",
     "@angular/cdk": "^12.0.1",
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",
@@ -26,13 +27,13 @@
     "@angular/material": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
     "@angular/router": "^12.0.1",
-    "@rxap/config": "^12.1.0",
-    "@rxap/contenteditable": "^12.0.7-next.0",
-    "@rxap/data-source": "^12.0.9-next.0",
-    "@rxap/definition": "^12.0.8-next.0",
-    "@rxap/material-directives": "^12.0.6",
-    "@rxap/services": "^12.0.7-next.0",
-    "@rxap/utilities": "^12.2.0-next.0",
+    "@rxap/config": "^12.3.0",
+    "@rxap/contenteditable": "^12.0.7",
+    "@rxap/data-source": "^12.1.3",
+    "@rxap/definition": "^12.0.8",
+    "@rxap/material-directives": "^12.0.7",
+    "@rxap/services": "^12.0.8-next.0",
+    "@rxap/utilities": "^12.2.2-next.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5",
     "uuid": "^8.3.2"
@@ -60,7 +61,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^12.4.0",
+    "@rxap/schematics-utilities": "^12.6.1",
     "tslib": "^2.2.0"
   }
 }
