@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.2.0-next.0...@rxap/tree@12.2.0-next.1) (2021-11-08)
+
+
+### Bug Fixes
+
+* set container height to 100% ([134f636](https://gitlab.com/rxap/packages/commit/134f636f2aece049da108dda242d5a7a0a057620))
+
+
+
+
+
 # [12.2.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.1.1...@rxap/tree@12.2.0-next.0) (2021-11-02)
 
 
