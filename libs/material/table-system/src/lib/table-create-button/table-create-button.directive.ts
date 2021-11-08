@@ -55,7 +55,7 @@ export class TableCreateButtonDirective<Data extends Record<string, any>>
 
   @HostListener('click')
   public async onClick() {
-    const result = await this.remoteMethod.call();
+    const result = this._createObservable = await this.remoteMethod.call();
     if (isObservable(result)) {
       await result.toPromise();
     }
