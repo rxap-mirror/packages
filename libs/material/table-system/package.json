@@ -1,7 +1,8 @@
 {
   "name": "@rxap/material-table-system",
-  "version": "12.4.0",
+  "version": "12.4.1-next.0",
   "peerDependencies": {
+    "@angular-devkit/schematics": "^12.2.9",
     "@angular/animations": "^12.0.1",
     "@angular/cdk": "^12.0.1",
     "@angular/common": "^12.0.1",
@@ -16,15 +17,16 @@
     "@rxap/config": "^12.3.0",
     "@rxap/data-source": "^12.1.3",
     "@rxap/definition": "^12.0.8",
-    "@rxap/directives": "^12.1.2",
+    "@rxap/directives": "^12.2.0-next.0",
     "@rxap/forms": "^12.5.1",
     "@rxap/material-directives": "^12.0.7",
     "@rxap/mixin": "^12.0.7",
     "@rxap/open-api": "^12.1.1",
     "@rxap/remote-method": "^12.0.9",
-    "@rxap/services": "^12.0.7",
-    "@rxap/utilities": "^12.2.1",
+    "@rxap/services": "^12.0.8-next.0",
+    "@rxap/utilities": "^12.2.2-next.0",
     "@rxap/window-system": "^12.0.10",
+    "@schematics/angular": "^12.2.9",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -33,6 +35,7 @@
     "migrations": "./migration.json",
     "packageGroup": [
       "@rxap/components",
+      "@rxap/config",
       "@rxap/data-source",
       "@rxap/definition",
       "@rxap/directives",
@@ -70,7 +73,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^12.6.0",
+    "@rxap/schematics-utilities": "^12.6.1",
     "tslib": "^2.2.0"
   }
 }
