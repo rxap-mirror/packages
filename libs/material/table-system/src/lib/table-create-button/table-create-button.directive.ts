@@ -6,26 +6,29 @@ import {
   Input,
   NgModule,
   OnInit,
-  Renderer2
+  Renderer2,
+  OnDestroy
 } from '@angular/core';
 import { Required } from '@rxap/utilities';
 import {
   isObservable,
-  Observable
+  Observable,
+  Subject
 } from 'rxjs';
 import { TableDataSourceDirective } from '../table-data-source.directive';
 import { TABLE_CREATE_REMOTE_METHOD } from './tokens';
 import { Method } from '@rxap/utilities/rxjs';
 
 @Directive({
-  selector: 'button[rxapTableCreate]',
+  selector: 'button[rxapTableCreate]'
 })
 export class TableCreateButtonDirective<Data extends Record<string, any>>
-  implements OnInit
-{
+  implements OnInit, OnDestroy {
   @Input('rxapTableCreate')
   @Required
   public dataSource!: TableDataSourceDirective<Data>;
+
+  private _createObservable?: Observable<any>;
 
   constructor(
     @Inject(TABLE_CREATE_REMOTE_METHOD)
@@ -42,6 +45,12 @@ export class TableCreateButtonDirective<Data extends Record<string, any>>
       'margin-bottom',
       '6px'
     );
+  }
+
+  public ngOnDestroy() {
+    if (this._createObservable instanceof Subject) {
+      this._createObservable.complete();
+    }
   }
 
   @HostListener('click')
