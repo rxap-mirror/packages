@@ -15,5 +15,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="plugins" />
     <orderEntry type="module" module-name="schematics" />
+    <orderEntry type="module" module-name="nest" />
   </component>
 </module>
