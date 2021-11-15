@@ -1,12 +1,9 @@
 {
   "name": "@rxap/socket-io",
-  "version": "12.0.0",
-  "peerDependencies": {
-  },
+  "version": "12.0.1-next.0",
   "dependencies": {
-    "tslib": "^2.1.0",
-    "socket.io": "^4.3.2",
-    "socket.io-client": "^4.3.2"
+    "socket.io-client": "^4.3.2",
+    "tslib": "^2.2.0"
   },
   "schematics": "./collection.json",
   "ng-update": {
@@ -31,5 +28,12 @@
   "publishConfig": {
     "directory": "../../dist/libs/socket-io",
     "access": "public"
+  },
+  "peerDependencies": {
+    "@angular-devkit/schematics": "^12.2.9",
+    "@angular/core": "^12.0.1",
+    "@rxap/schematics-utilities": "^12.6.1",
+    "jest-preset-angular": "^8.4.0",
+    "rxjs": "^6.5.5"
   }
 }
