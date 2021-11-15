@@ -1,6 +1,6 @@
 {
   "name": "@rxap/socket-io",
-  "version": "12.0.1-next.0",
+  "version": "12.0.1-next.1",
   "dependencies": {
     "socket.io-client": "^2.2.0",
     "tslib": "^2.2.0"
@@ -9,6 +9,7 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
+      "@rxap/schematics-utilities",
       "@rxap/socket-io"
     ]
   },
