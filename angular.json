@@ -5355,6 +5355,100 @@
           "styleext": "scss"
         }
       }
+    },
+    "socket-io": {
+      "projectType": "library",
+      "root": "libs/socket-io",
+      "sourceRoot": "libs/socket-io/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "project": "libs/socket-io/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/socket-io/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/socket-io/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/socket-io"
+          ],
+          "options": {
+            "jestConfig": "libs/socket-io/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/socket-io/src/**/*.ts",
+              "libs/socket-io/src/**/*.html"
+            ]
+          }
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "socket-io:build",
+              "socket-io:build-schematics",
+              "socket-io:build-migrations"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "targets": [
+                "socket-io:build:production"
+              ]
+            },
+            "development": {
+              "targets": [
+                "socket-io:build:development"
+              ]
+            }
+          }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/socket-io",
+            "tsConfig": "libs/socket-io/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/socket-io",
+            "tsConfig": "libs/socket-io/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library:update-package-group"
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
+        }
+      }
     }
   }
 }

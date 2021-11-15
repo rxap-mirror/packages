@@ -1,0 +1,35 @@
+{
+  "name": "@rxap/socket-io",
+  "version": "12.0.0",
+  "peerDependencies": {
+  },
+  "dependencies": {
+    "tslib": "^2.1.0",
+    "socket.io": "^4.3.2",
+    "socket.io-client": "^4.3.2"
+  },
+  "schematics": "./collection.json",
+  "ng-update": {
+    "migrations": "./migration.json",
+    "packageGroup": [
+      "@rxap/socket-io"
+    ]
+  },
+  "ng-add": {
+    "save": "dependencies"
+  },
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages/-/blob/master/libs/socket-io",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "keywords": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/socket-io",
+    "access": "public"
+  }
+}

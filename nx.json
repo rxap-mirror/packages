@@ -16,10 +16,7 @@
           "e2e",
           "build-storybook"
         ],
-        "strictlyOrderedTargets": [
-          "build",
-          "pack"
-        ]
+        "strictlyOrderedTargets": ["build", "pack"]
       }
     }
   },
@@ -28,22 +25,16 @@
       "tags": []
     },
     "authentication": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "authorization": {
       "tags": []
     },
     "components": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "config": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "contenteditable": {
       "tags": []
@@ -52,9 +43,7 @@
       "tags": []
     },
     "data-source": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "definition": {
       "tags": []
@@ -63,9 +52,7 @@
       "tags": []
     },
     "directives": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "environment": {
       "tags": []
@@ -74,9 +61,7 @@
       "tags": []
     },
     "firebase": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "form-system": {
       "tags": []
@@ -97,9 +82,7 @@
       "tags": []
     },
     "layout": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "life-cycle": {
       "tags": []
@@ -120,9 +103,7 @@
       "tags": []
     },
     "mixin": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "oauth": {
       "tags": []
@@ -131,25 +112,19 @@
       "tags": []
     },
     "pipes": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "recorder": {
       "tags": []
     },
     "remote-method": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "service-worker": {
       "tags": []
     },
     "services": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "slugify": {
       "tags": []
@@ -164,22 +139,19 @@
       "tags": []
     },
     "utilities": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "validator": {
       "tags": []
     },
     "window-system": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
     },
     "xml-parser": {
-      "tags": [
-        "rxap"
-      ]
+      "tags": ["rxap"]
+    },
+    "socket-io": {
+      "tags": []
     }
   }
 }
