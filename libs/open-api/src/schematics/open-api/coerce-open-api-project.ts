@@ -7,7 +7,7 @@ import {
 } from '@angular-devkit/schematics';
 import { GetAngularJson } from '@rxap/schematics-utilities';
 
-export function CoerceOpenApiProject(project: string): Rule {
+export function CoerceOpenApiProject(project: string, prefix: string): Rule {
   return (host: Tree) => {
     const angularJson = GetAngularJson(host) as any;
 
@@ -17,7 +17,8 @@ export function CoerceOpenApiProject(project: string): Rule {
       return chain([
         externalSchematic('@nrwl/angular', 'library', {
           name:       project,
-          importPath: `@${defaultProjectPrefix}/${project}`
+          importPath: `@${defaultProjectPrefix}/${project}`,
+          prefix
         }),
         (tree) => {
           const baseTsconfig = JSON.parse(

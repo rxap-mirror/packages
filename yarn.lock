@@ -4989,23 +4989,23 @@
     semver "^7.3.5"
     tslib "^2.0.0"
 
-"@rxap/schematics-utilities@^12.6.1":
-  version "12.6.1"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-12.6.1.tgz#b782c3a27d59389c808cc8e818e08c16109d514c"
-  integrity sha512-VdMnxQa4Myc5rMhsjSG0QhTjEO+c1clwtZ6+s9Cwl/u9m0tXHsDa20fmvXEvSzlijmRmVWRV+9FwV70uLlvrJA==
+"@rxap/schematics-utilities@^12.7.0":
+  version "12.7.0"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-12.7.0.tgz#33be4136a70a85e028bedbbcca6819ffe528c400"
+  integrity sha512-O922a6txhsac5U1SiC90pmyPSzf/0/8Xy21zF3NSi/Z3AZj7KqqQbwESf1xjXK7vL/QlkPc0iwpFe3CD2St9uA==
   dependencies:
     "@rxap/utilities" "^12.2.1"
     semver "^7.3.5"
     tslib "^2.0.0"
 
-"@rxap/schematics@^12.9.7":
-  version "12.9.7"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics/-/schematics-12.9.7.tgz#98f3bf5424dec83205e26eddbb318f5cdc0738f4"
-  integrity sha512-qvnfvNJqPMXA1A0uN1jeObL7boD6SJ1Yx7ytJmq1C34klIX8nzcSKCd5WpiBi6N6Lmtz7Tf/3hM9039W3V1iZw==
+"@rxap/schematics@^12.9.8":
+  version "12.9.8"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics/-/schematics-12.9.8.tgz#e7d61c5f34e94d50dc0e4f946e8af4579eb77cb6"
+  integrity sha512-XQEegoh78T3Ic53DUlfkh7yaBwkGaQkjmauJXtxHb6OvSsjg/hKirT2B8pL52vSP5OACCELvolnxNhawEtCuag==
   dependencies:
     "@rxap/schematics-ts-morph" "^12.3.2"
-    "@rxap/schematics-utilities" "^12.6.1"
-    "@rxap/utilities" "^12.2.1-next.0"
+    "@rxap/schematics-utilities" "^12.7.0"
+    "@rxap/utilities" "^12.2.1"
     depcheck "^1.4.2"
     parse5 "^6.0.1"
     semver "^7.3.5"
