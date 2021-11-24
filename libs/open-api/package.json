@@ -1,6 +1,6 @@
 {
   "name": "@rxap/open-api",
-  "version": "12.1.1",
+  "version": "12.1.2-next.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/open-api",
@@ -19,6 +19,7 @@
   },
   "description": "Provides the functionality to create DataSource and RemoteMethod instances from an OpenAPI config.",
   "peerDependencies": {
+    "@angular-devkit/schematics": "^12.2.9",
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",
     "@angular/platform-browser": "^12.0.1",
@@ -26,14 +27,15 @@
     "@rxap/definition": "^12.0.8",
     "@rxap/mixin": "^12.0.7",
     "@rxap/remote-method": "^12.0.9",
-    "@rxap/utilities": "^12.2.1",
+    "@rxap/utilities": "^12.2.2-next.0",
+    "@schematics/angular": "^12.2.9",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
   "dependencies": {
-    "@rxap/schematics-open-api": "^12.0.8",
-    "@rxap/schematics-ts-morph": "^12.3.0",
-    "@rxap/schematics-utilities": "^12.6.0",
+    "@rxap/schematics-open-api": "^12.0.9",
+    "@rxap/schematics-ts-morph": "^12.3.2",
+    "@rxap/schematics-utilities": "^12.7.0",
     "ajv-oai": "^1.2.1",
     "openapi-types": "^9.0.0",
     "ts-morph": "^10.1.0",
