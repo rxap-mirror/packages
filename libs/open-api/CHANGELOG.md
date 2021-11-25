@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.2.0...@rxap/open-api@12.2.1) (2021-11-25)
+
+
+### Bug Fixes
+
+* generate openapi provider as context variable ([f197699](https://gitlab.com/rxap/packages/commit/f197699f5f7e11a5dc102435b939d6c25758de63))
+
+
+
+
+
 # [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.1.2...@rxap/open-api@12.2.0) (2021-11-25)
 
 
