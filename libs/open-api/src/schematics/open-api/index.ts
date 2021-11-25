@@ -21,7 +21,11 @@ import {
   COMPONENTS_BASE_PATH,
   RESPONSE_BASE_PATH,
   REQUEST_BODY_BASE_PATH,
-  GenerateIndexExports
+  GenerateIndexExports,
+  IsHttpMethod,
+  IsOperationObject,
+  IgnoreOperation,
+  HasOperationId
 } from '@rxap/schematics-open-api';
 import { OpenApiSchema } from './schema';
 import {
@@ -37,6 +41,45 @@ import {
   DATA_SOURCE_BASE_PATH
 } from './const';
 import { CoerceOpenApiProject } from './coerce-open-api-project';
+import { GenerateOpenapiProvider } from './generate-openapi-provider';
+import { OpenAPIV3 } from 'openapi-types';
+
+function GetOperationIdList(openapi: OpenAPIV3.Document): string[] {
+
+  const operationIdList: string[] = [];
+
+  for (const [path, methods] of Object.entries(openapi.paths)) {
+
+    if (methods) {
+
+      for (const method of Object.keys(methods).filter(IsHttpMethod)) {
+
+        const operation = methods[method];
+
+        if (IsOperationObject(operation)) {
+
+          if (IgnoreOperation([ 'hidden' ])(operation)) {
+
+            console.log(`Ignore operation '${operation.operationId}'`);
+
+          } else {
+
+            if (HasOperationId(operation)) {
+              operationIdList.push(operation.operationId);
+            }
+
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+  return operationIdList;
+
+}
 
 export default function(options: OpenApiSchema): Rule {
   return async (host: Tree) => {
@@ -83,6 +126,7 @@ export default function(options: OpenApiSchema): Rule {
           GenerateDataSource,
           GenerateRemoteMethod
         ]),
+      () => GenerateOpenapiProvider(project, GetOperationIdList(openapi)),
       ApplyTsMorphProject(project, basePath),
       FixMissingImports(),
       (tree) => {
