@@ -1,4 +1,7 @@
-import { Project } from 'ts-morph';
+import {
+  Project,
+  VariableDeclarationKind
+} from 'ts-morph';
 import { join } from 'path';
 import { strings } from '@angular-devkit/core';
 import {
@@ -38,6 +41,7 @@ export function GenerateOpenapiProvider(
   }
 
   sourceFile.addVariableStatement({
+    declarationKind: VariableDeclarationKind.Const,
     isExported: true,
     declarations: [
       {
