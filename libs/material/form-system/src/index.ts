@@ -8,3 +8,5 @@ export * from './lib/form-field-hide-show.directive';
 
 export * from './lib/form-controls/form-controls.component.module';
 export * from './lib/form-controls/form-controls.component';
+export * from './lib/chip-input-adapter.directive';
+export * from './lib/chip-list-iterator.directive';
