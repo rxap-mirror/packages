@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@12.0.11...@rxap/material-form-system@12.1.0) (2021-11-25)
+
+
+### Features
+
+* add chip control directives ([5a635af](https://gitlab.com/rxap/packages/commit/5a635afd97149438245ebe52ba80b627f3b1f250))
+
+
+
+
+
 ## [12.0.11](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@12.0.11-next.0...@rxap/material-form-system@12.0.11) (2021-08-11)
 
 **Note:** Version bump only for package @rxap/material-form-system

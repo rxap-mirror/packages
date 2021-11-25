@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/socket-io@12.0.1-next.1...@rxap/socket-io@12.0.1) (2021-11-25)
+
+**Note:** Version bump only for package @rxap/socket-io
+
+
+
+
+
 ## [12.0.1-next.1](https://gitlab.com/rxap/packages/compare/@rxap/socket-io@12.0.1-next.0...@rxap/socket-io@12.0.1-next.1) (2021-11-15)
 
 

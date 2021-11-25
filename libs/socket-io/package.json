@@ -1,6 +1,6 @@
 {
   "name": "@rxap/socket-io",
-  "version": "12.0.1-next.1",
+  "version": "12.0.1",
   "dependencies": {
     "socket.io-client": "^2.2.0",
     "tslib": "^2.2.0"
@@ -33,7 +33,7 @@
   "peerDependencies": {
     "@angular-devkit/schematics": "^12.2.9",
     "@angular/core": "^12.0.1",
-    "@rxap/schematics-utilities": "^12.6.1",
+    "@rxap/schematics-utilities": "^12.7.0",
     "jest-preset-angular": "^8.4.0",
     "rxjs": "^6.5.5"
   }
