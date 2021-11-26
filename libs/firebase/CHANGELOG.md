@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.1](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.3.0...@rxap/firebase@12.3.1) (2021-11-26)
+
+
+### Bug Fixes
+
+* only throw if the id token is not defined ([bac9c9f](https://gitlab.com/rxap/packages/commit/bac9c9fc7603d3ab6fc050ebbac3b6947183de41))
+
+
+
+
+
 # [12.3.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.2.0...@rxap/firebase@12.3.0) (2021-11-26)
 
 
