@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.2.0...@rxap/firebase@12.3.0) (2021-11-26)
+
+
+### Features
+
+* add IdentityPlatformHttpInterceptor ([0b07368](https://gitlab.com/rxap/packages/commit/0b07368b8a651fc96e3e5de38216e8eee0f85853))
+
+
+
+
+
 # [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.2.0-next.0...@rxap/firebase@12.2.0) (2021-08-02)
 
 **Note:** Version bump only for package @rxap/firebase
