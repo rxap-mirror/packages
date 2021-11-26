@@ -41,7 +41,9 @@ export class IdentityPlatformHttpInterceptor implements HttpInterceptor {
     if (this.isMatch(req)) {
       return this.fireAuth.idToken.pipe(
         tap(idToken => {
-          throw new Error(`The isToken is not defined. Ensure thet the user is logged in, before sending a request to '${req.url}'`);
+          if (!idToken) {
+            throw new Error(`The isToken is not defined. Ensure that the user is logged in, before sending a request to '${req.url}'`);
+          }
         }),
         isDefined(),
         switchMap(idToken => next.handle(req.clone({
