@@ -129,6 +129,9 @@ export class FormDirective<T extends Record<string, any> = any>
   @Output()
   public invalidSubmit = new EventEmitter();
 
+  @Output('submitSuccessful')
+  public submitSuccessful$ = new EventEmitter();
+
   @HostBinding('class.rxap-submitting')
   public get submitting(): boolean {
     return this.submitting$.value;
@@ -481,6 +484,7 @@ export class FormDirective<T extends Record<string, any> = any>
   }
 
   protected submitSuccessful(value: any) {
+    this.submitSuccessful$.next(value);
     if (this.submitSuccessfulMethod) {
       this.submitSuccessfulMethod.call(value);
     } else if (isDevMode()) {

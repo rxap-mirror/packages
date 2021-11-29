@@ -14,6 +14,7 @@ import { FormSubmitDirective } from './form-submit.directive';
 import { FormGroupNameDirective } from './form-group-name.directive';
 import { FormControlNameDirective } from './form-control-name.directive';
 import { ParentControlContainerDirective } from './parent-control-container.directive';
+import { FormSubmitSuccessfulDirective } from './form-submit-successful.directive';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ParentControlContainerDirective } from './parent-control-container.dire
     FormSubmitDirective,
     FormGroupNameDirective,
     FormControlNameDirective,
-    ParentControlContainerDirective
+    ParentControlContainerDirective,
+    FormSubmitSuccessfulDirective,
   ],
   exports:      [
     FormDirective,
@@ -49,7 +51,8 @@ import { ParentControlContainerDirective } from './parent-control-container.dire
     FormSubmitDirective,
     FormGroupNameDirective,
     FormControlNameDirective,
-    ParentControlContainerDirective
+    ParentControlContainerDirective,
+    FormSubmitSuccessfulDirective,
   ]
 })
 export class RxapFormsModule {}
