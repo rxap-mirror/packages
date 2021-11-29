@@ -19,7 +19,7 @@ export class FormSubmitSuccessfulDirective implements AfterViewInit, OnDestroy {
 
   constructor(
     @Inject(FormDirective) private readonly formDirective: FormDirective,
-    @Inject(TemplateRef) private readonly template: TemplateRef<{ $implicit: Error }>,
+    @Inject(TemplateRef) private readonly template: TemplateRef<{ $implicit: any }>,
     @Inject(ViewContainerRef) private readonly viewContainerRef: ViewContainerRef
   ) {}
 
