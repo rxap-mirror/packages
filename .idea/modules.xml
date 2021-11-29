@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../nest/.idea/nest.iml" filepath="$PROJECT_DIR$/../nest/.idea/nest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../plugins/.idea/plugins.iml" filepath="$PROJECT_DIR$/../plugins/.idea/plugins.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/rxap.iml" filepath="$PROJECT_DIR$/.idea/rxap.iml" />
       <module fileurl="file://$PROJECT_DIR$/../schematics/.idea/schematics.iml" filepath="$PROJECT_DIR$/../schematics/.idea/schematics.iml" />
     </modules>
