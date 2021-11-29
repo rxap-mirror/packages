@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.6.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.5.1...@rxap/forms@12.6.0) (2021-11-29)
+
+
+### Features
+
+* add submit successful form directive ([3c0efbd](https://gitlab.com/rxap/packages/commit/3c0efbd68f20c828059fdbb523b582faa262bf67))
+
+
+
+
+
 ## [12.5.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.5.1-next.3...@rxap/forms@12.5.1) (2021-10-11)
 
 **Note:** Version bump only for package @rxap/forms
