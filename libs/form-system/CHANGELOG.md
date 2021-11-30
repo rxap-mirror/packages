@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@12.0.11...@rxap/form-system@12.1.0) (2021-11-30)
+
+
+### Features
+
+* **input-select-options:** support mat autocomplete ([da3e58b](https://gitlab.com/rxap/packages/commit/da3e58b6bd8f672d4b474665d723ac2fc70c9bd9))
+
+
+
+
+
 ## [12.0.11](https://gitlab.com/rxap/packages/compare/@rxap/form-system@12.0.10...@rxap/form-system@12.0.11) (2021-08-11)
 
 
