@@ -11,7 +11,8 @@ import {
   Optional,
   ChangeDetectorRef,
   NgModule,
-  isDevMode
+  isDevMode,
+  AfterViewInit
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import {
@@ -40,6 +41,11 @@ import {
   UseDataSourceSettings
 } from '../decorators/use-data-source';
 import { IdOrInstanceOrToken } from '@rxap/definition';
+import {
+  MAT_FORM_FIELD,
+  MatFormField
+} from '@angular/material/form-field';
+import { MatAutocomplete } from '@angular/material/autocomplete';
 
 export interface InputSelectOptionsTemplateContext {
   $implicit: ControlOption;
@@ -79,13 +85,16 @@ export interface InputSelectOptionsDirective extends OnInit,
 @Directive({
   selector: '[rxapInputSelectOptions]'
 })
-export class InputSelectOptionsDirective implements OnInit, OnDestroy {
+export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
   @Input('rxapInputSelectOptionsViewer')
   public viewer: BaseDataSourceViewer = { id: '[rxapInputSelectOptions]' };
 
   @Input('rxapInputSelectOptionsMetadata')
   public metadata?: BaseDataSourceMetadata;
+
+  @Input('rxapInputSelectOptionsMatAutocomplete')
+  public matAutocomplete?: MatAutocomplete;
 
   protected readonly subscription = new Subscription();
 
@@ -113,24 +122,24 @@ export class InputSelectOptionsDirective implements OnInit, OnDestroy {
     // bc it is available after the content is init
     @Optional()
     @Inject(NgControl)
-    protected ngControl: NgControl | null = null
+    protected ngControl: NgControl | null = null,
+    @Optional()
+    @Inject(MAT_FORM_FIELD)
+    protected matFormField: MatFormField | null = null,
   ) { }
 
-  protected extractControl(ngControl: NgControl | null = this.ngControl): RxapFormControl {
-
-    if (!ngControl) {
-      throw new Error('The ngControl is not defined!');
+  public ngAfterViewInit() {
+    this.extractControl();
+    this.extractDatasource();
+    this.viewer = {
+      id: '[rxapInputSelectOptions]' + this.control.controlId,
+      viewChange: this.control.value$,
+      control: this.control,
     }
-
-    this.ngControl = ngControl;
-
-    const control = this.ngControl.control;
-
-    if (!(control instanceof RxapFormControl)) {
-      throw new Error('Control is not a RxapFormControl!');
+    this.loadOptions();
+    if (this.matAutocomplete) {
+      this.matAutocomplete.displayWith = this.toDisplay.bind(this);
     }
-
-    return this.control = control;
   }
 
   protected extractDatasource(control: RxapFormControl = this.control): BaseDataSource<ControlOptions | Record<string, any>> {
@@ -176,10 +185,28 @@ export class InputSelectOptionsDirective implements OnInit, OnDestroy {
     return this.dataSource = dataSource;
   }
 
-  public ngOnInit() {
-    this.extractControl();
-    this.extractDatasource();
-    this.loadOptions();
+  public toDisplay(value: any): string {
+    if (!value) {
+      return '';
+    }
+    return this.options?.find((option: any) => option.value === value)?.display ?? 'to display error';
+  }
+
+  protected extractControl(ngControl: NgControl | null = this.ngControl ?? this.matFormField?._control?.ngControl ?? null): RxapFormControl {
+
+    if (!ngControl) {
+      throw new Error('The ngControl is not defined!');
+    }
+
+    this.ngControl = ngControl;
+
+    const control = this.ngControl.control;
+
+    if (!(control instanceof RxapFormControl)) {
+      throw new Error('Control is not a RxapFormControl!');
+    }
+
+    return this.control = control;
   }
 
   public ngOnDestroy() {
