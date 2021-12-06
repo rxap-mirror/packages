@@ -104,8 +104,7 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
   @Required
   protected dataSource!: BaseDataSource<ControlOptions | Record<string, any>>;
 
-  @Required
-  protected options!: ControlOptions | Record<string, any> | null;
+  protected options: ControlOptions | Record<string, any> | null = null;
 
   constructor(
     @Inject(TemplateRef)
