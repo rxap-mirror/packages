@@ -127,7 +127,7 @@ export class FormDirective<T extends Record<string, any> = any>
   public rxapSubmit = new EventEmitter();
 
   @Output()
-  public invalidSubmit = new EventEmitter();
+  public invalidSubmit = new EventEmitter<Record<string, any>>();
 
   @Output('submitSuccessful')
   public submitSuccessful$ = new EventEmitter();
@@ -294,6 +294,34 @@ export class FormDirective<T extends Record<string, any> = any>
     if (this.form.valid) {
       this.submit();
     } else {
+
+      function reduceErrors(control: any, errors: Record<string, any> = {}): Record<string, any> {
+
+        if (control.invalid) {
+          if (control.controls) {
+            if (Array.isArray(control.controls)) {
+              const errorList = [];
+              for (const item of control.controls) {
+                errorList.push(reduceErrors(item));
+              }
+              errors[ control.controlId ] = errorList;
+            } else {
+              const innerErrors = {};
+              for (const child of Object.values(control.controls)) {
+                reduceErrors(child, innerErrors);
+              }
+              errors[ control.controlId ] = innerErrors;
+            }
+          } else {
+            if (control.errors) {
+              errors[ control.controlId ] = control.errors
+            }
+          }
+        }
+
+        return errors;
+      }
+
       if (isDevMode()) {
         console.log(
           'Form submit is not valid for: ' + this.form.controlId,
@@ -334,7 +362,7 @@ export class FormDirective<T extends Record<string, any> = any>
 
         printErrorControls(this.form);
       }
-      this.invalidSubmit.emit();
+      this.invalidSubmit.emit(reduceErrors(this.form));
     }
 
     return false;
