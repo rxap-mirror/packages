@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.7.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.6.1...@rxap/forms@12.7.0) (2021-12-07)
+
+
+### Features
+
+* add FormSubmitInvalidDirective ([d1ed559](https://gitlab.com/rxap/packages/commit/d1ed5594b0144c9c9ae741d2a3fb644f8e9e8d97))
+
+
+
+
+
 ## [12.6.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.6.0...@rxap/forms@12.6.1) (2021-11-29)
 
 
