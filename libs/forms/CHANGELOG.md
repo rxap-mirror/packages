@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.7.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.7.0...@rxap/forms@12.7.1) (2021-12-07)
+
+
+### Bug Fixes
+
+* **form-directive:** add reduce error function ([73e2b5b](https://gitlab.com/rxap/packages/commit/73e2b5b77f4cc2eab5ad7ebd10471895b7cf2035))
+
+
+
+
+
 # [12.7.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.6.1...@rxap/forms@12.7.0) (2021-12-07)
 
 
