@@ -1,6 +1,6 @@
 {
   "name": "@rxap/firebase",
-  "version": "12.3.1",
+  "version": "12.3.2",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/firebase",
@@ -23,7 +23,7 @@
     "@rxap/config": "^12.3.0",
     "@rxap/schematics-ts-morph": "^12.3.2",
     "@rxap/utilities": "^12.2.2",
-    "firebase": "^8.6.2",
+    "firebase": "^8.8.8",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5",
     "ts-morph": "^10.1.0"

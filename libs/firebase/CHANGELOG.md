@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.2](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.3.1...@rxap/firebase@12.3.2) (2021-12-07)
+
+
+### Bug Fixes
+
+* **app-check:** support http interceptors for firebase app check token ([9df1b9e](https://gitlab.com/rxap/packages/commit/9df1b9e93f506c356eed8306994081bdf7195553))
+
+
+
+
+
 ## [12.3.1](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.3.0...@rxap/firebase@12.3.1) (2021-11-26)
 
 
