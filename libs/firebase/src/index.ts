@@ -4,3 +4,4 @@ export * from './lib/firebase.config';
 export * from './lib/tokens';
 export * from './lib/app-check';
 export * from './lib/storage';
+export * from './lib/firebase-app-check.http-interceptor';
