@@ -1,6 +1,6 @@
 {
   "name": "@rxap/form-system",
-  "version": "12.1.2",
+  "version": "12.1.3",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/form-system",
@@ -29,7 +29,7 @@
     "@rxap/data-source": "^12.1.3",
     "@rxap/definition": "^12.0.8",
     "@rxap/directives": "^12.2.0",
-    "@rxap/forms": "^12.7.0",
+    "@rxap/forms": "^12.7.1",
     "@rxap/mixin": "^12.0.7",
     "@rxap/services": "^12.0.8",
     "@rxap/utilities": "^12.2.2",
