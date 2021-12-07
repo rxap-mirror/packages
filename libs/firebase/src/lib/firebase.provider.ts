@@ -46,7 +46,8 @@ import {
 import {
   APP_CHECK_ENABLED,
   APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED,
-  APP_CHECK_SITE_KEY
+  APP_CHECK_SITE_KEY,
+  AppCheckService
 } from './app-check';
 import {
   BUCKET,
@@ -321,7 +322,8 @@ export const FIREBASE_APP_CHECK_PROVIDERS: Provider[] = [
     provide:    APP_CHECK_SITE_KEY,
     useFactory: AppCheckSiteKeyFactory,
     deps:       [ ConfigService ]
-  }
+  },
+  AppCheckService,
 ];
 
 export const FIREBASE_STORAGE_PROVIDERS: Provider[] = [
