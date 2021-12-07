@@ -34,6 +34,7 @@ export * from './lib/directives/models';
 export * from './lib/directives/tokens';
 export * from './lib/directives/form-control-error.directive';
 export * from './lib/directives/form-submit-successful.directive';
+export * from './lib/directives/form-submit-invalid.directive';
 export * from './lib/directives/form-control-mark-dirty.directive';
 export * from './lib/directives/form-control-mark-pristine.directive';
 export * from './lib/directives/form-control-mark-touched.directive';
