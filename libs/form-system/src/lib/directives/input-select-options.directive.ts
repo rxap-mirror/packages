@@ -188,7 +188,7 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
     if (!value) {
       return '';
     }
-    return this.options?.find((option: any) => option.value === value)?.display ?? 'to display error';
+    return this.options?.find((option: any) => option.value === value)?.display ?? isDevMode() ? 'to display error' : '';
   }
 
   protected extractControl(ngControl: NgControl | null = this.ngControl ?? this.matFormField?._control?.ngControl ?? null): RxapFormControl {
