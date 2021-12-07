@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.3](https://gitlab.com/rxap/packages/compare/@rxap/form-system@12.1.2...@rxap/form-system@12.1.3) (2021-12-07)
+
+
+### Bug Fixes
+
+* **input-select-options:** only show error message in dev mode ([11e68f9](https://gitlab.com/rxap/packages/commit/11e68f9904e8baaefe0cca2f53cda4a2992470cf))
+
+
+
+
+
 ## [12.1.2](https://gitlab.com/rxap/packages/compare/@rxap/form-system@12.1.1...@rxap/form-system@12.1.2) (2021-12-07)
 
 
