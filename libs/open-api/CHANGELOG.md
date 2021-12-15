@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.3](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.2.2...@rxap/open-api@12.2.3) (2021-12-15)
+
+
+### Bug Fixes
+
+* **open-api-remote-method:** ignore undefined query parameters ([a2ce464](https://gitlab.com/rxap/packages/commit/a2ce46437fd247f96787320e96c493621341cf8a))
+
+
+
+
+
 ## [12.2.2](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.2.1...@rxap/open-api@12.2.2) (2021-12-07)
 
 
