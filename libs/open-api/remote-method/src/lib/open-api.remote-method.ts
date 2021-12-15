@@ -94,6 +94,7 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
       url:    () => joinPath(openApiConfigService.getBaseUrl(this.metadata.serverIndex), operation.path),
       method: operation.method as any,
       withCredentials: this.metadata.withCredentials ?? true,
+      ignoreUndefined: this.metadata.ignoreUndefined ?? true,
     });
     this.strict = strict || this.metadata.strict || false;
   }
@@ -134,7 +135,7 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
     this.validateParameters(this.operation, args.parameters, this.strict);
     this.validateRequestBody(this.operation, args.requestBody, this.strict);
 
-    return this.http.request<Response>(this.updateRequest(this.buildHttpOptions(this.operation, args.parameters, args.requestBody))).pipe(
+    return this.http.request<Response>(this.updateRequest(this.buildHttpOptions(this.operation, args.parameters, args.requestBody, this.metadata.ignoreUndefined))).pipe(
       retry(this.metadata.retry ?? 0),
       catchError((response: HttpErrorResponse) => {
         this.interceptors?.forEach(interceptor => interceptor

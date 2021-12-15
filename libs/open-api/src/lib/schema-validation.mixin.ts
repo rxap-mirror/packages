@@ -204,7 +204,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
     }
   }
 
-  public buildHttpParams(operationParameters: OpenAPIV3.ParameterObject[], parameters?: Parameters): HttpParams {
+  public buildHttpParams(operationParameters: OpenAPIV3.ParameterObject[], parameters?: Parameters, ignoreUndefined = true): HttpParams {
 
     let params = new HttpParams();
 
@@ -216,6 +216,10 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
         if (parameters.hasOwnProperty(parameter.name)) {
 
           const value = parameters[ parameter.name ];
+
+          if (value === undefined && ignoreUndefined) {
+            continue;
+          }
 
           if (Array.isArray(value)) {
 
@@ -312,8 +316,9 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
    * @param operation
    * @param parameters
    * @param requestBody
+   * @param ignoreUndefined
    */
-  public buildHttpOptions(operation: OperationObjectWithMetadata, parameters?: Parameters, requestBody?: RequestBody): HttpRemoteMethodParameter {
+  public buildHttpOptions(operation: OperationObjectWithMetadata, parameters?: Parameters, requestBody?: RequestBody, ignoreUndefined = true): HttpRemoteMethodParameter {
 
     const options: HttpRemoteMethodParameter = {};
 
@@ -323,7 +328,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
       throw new RxapOpenApiError('The operation parameters contains ReferenceObject!');
     }
 
-    const params = this.buildHttpParams(operationParameters, parameters);
+    const params = this.buildHttpParams(operationParameters, parameters, ignoreUndefined);
     const headers = this.buildHttpHeaders(operationParameters, parameters);
     const pathParams: Record<string, any> = this.buildHttpPathParams(operationParameters, parameters);
 
