@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.2.1...@rxap/tree@12.3.0) (2021-12-21)
+
+
+### Features
+
+* add checkbox select option ([110f171](https://gitlab.com/rxap/packages/commit/110f171b718841a42fa43a2afd6c5b1e7cbaa2fa))
+
+
+
+
+
 ## [12.2.1](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.2.0...@rxap/tree@12.2.1) (2021-12-21)
 
 
