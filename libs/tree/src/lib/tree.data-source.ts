@@ -38,7 +38,8 @@ import {
   NodeGetIconFunction,
   NodeHasDetailsFunction,
   NodeToDisplayFunction,
-  Method
+  Method,
+  ToggleSubject
 } from '@rxap/utilities/rxjs';
 
 export function isSelectionChange<T>(obj: any): obj is SelectionChange<T> {
@@ -77,6 +78,8 @@ export class TreeDataSource<
   protected _data$ = new BehaviorSubject<Array<Node<Data>>>([]);
   public metadata!: TreeDataSourceMetadata;
 
+  public loading$ = new ToggleSubject(true);
+
   public toDisplay: NodeToDisplayFunction<Data> = () =>
     'to display function not defined';
   public getIcon: NodeGetIconFunction<Data> = () => null;
@@ -107,6 +110,7 @@ export class TreeDataSource<
   }
 
   public async getTreeRoot(): Promise<Array<Node<Data>>> {
+    this.loading$.enable();
     const root: Data | Data[] = await this.getRoot();
 
     let rootNodes: Array<Node<Data>>;
@@ -118,6 +122,8 @@ export class TreeDataSource<
     }
 
     this.tree$.next(rootNodes);
+
+    this.loading$.disable();
 
     return rootNodes;
   }
@@ -177,7 +183,7 @@ export class TreeDataSource<
     );
 
     if (this.expanded.isSelected(node.id)) {
-      await node
+      node
         .expand()
         .then(() => {
           // TODO : remove redundant this.expanded SelectionModel. Only store expanded nodes in this.treeControl.expansionModel
