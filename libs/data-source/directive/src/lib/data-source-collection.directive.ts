@@ -21,15 +21,24 @@ import {
   NgZone,
   Inject,
   INJECTOR,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { Required } from '@rxap/utilities';
 import {
   BaseDataSource,
   BaseDataSourceViewer,
-  DataSourceLoader,
+  DataSourceLoader
 } from '@rxap/data-source';
-import { Observable, Subscription } from 'rxjs';
-import { tap, take } from 'rxjs/operators';
+import {
+  Observable,
+  Subscription
+} from 'rxjs';
+import {
+  tap,
+  take,
+  filter
+} from 'rxjs/operators';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 
 export class DataSourceCollectionTemplateContext<Data> {
@@ -134,6 +143,9 @@ export class DataSourceCollectionDirective<Data = any>
   @Input('rxapDataSourceCollectionEmpty')
   public emptyTemplate?: TemplateRef<void>;
 
+  @Output()
+  public loaded = new EventEmitter();
+
   public connection$: Observable<Data[]> | null = null;
 
   protected readonly subscription = new Subscription();
@@ -174,6 +186,8 @@ export class DataSourceCollectionDirective<Data = any>
    * @private
    */
   private _emptyTemplateViewRef: EmbeddedViewRef<void> | null = null;
+
+  private _dataSourceLoadingSubscription: Subscription | null    = null;
 
   constructor(
     @Inject(DataSourceLoader)
@@ -216,20 +230,13 @@ export class DataSourceCollectionDirective<Data = any>
     this.connect();
   }
 
-  protected loadDataSource(): BaseDataSource<Data[]> | null {
-    let dataSource: BaseDataSource | null = null;
-    if (typeof this.dataSourceOrIdOrToken === 'string') {
-      dataSource = this.dataSourceLoader.load<BaseDataSource<Data[]>>(
-        this.dataSourceOrIdOrToken
-      );
-    } else if (this.dataSourceOrIdOrToken instanceof BaseDataSource) {
-      dataSource = this.dataSourceOrIdOrToken;
-    } else if (this.dataSourceOrIdOrToken !== null) {
-      dataSource = this.injector.get<BaseDataSource<Data[]>>(
-        this.dataSourceOrIdOrToken
-      );
-    }
-    return dataSource;
+  public ngOnDestroy(): void {
+    this._differ = null;
+    this._empty = null;
+    this.viewContainerRef.clear();
+    this.dataSource?.disconnect(this.viewer);
+    this.subscription.unsubscribe();
+    this._dataSourceLoadingSubscription?.unsubscribe();
   }
 
   protected connect() {
@@ -376,12 +383,25 @@ export class DataSourceCollectionDirective<Data = any>
     }
   }
 
-  public ngOnDestroy(): void {
-    this._differ = null;
-    this._empty = null;
-    this.viewContainerRef.clear();
-    this.dataSource?.disconnect(this.viewer);
-    this.subscription.unsubscribe();
+  protected loadDataSource(): BaseDataSource<Data[]> | null {
+    let dataSource: BaseDataSource | null = null;
+    if (typeof this.dataSourceOrIdOrToken === 'string') {
+      dataSource = this.dataSourceLoader.load<BaseDataSource<Data[]>>(
+        this.dataSourceOrIdOrToken,
+        undefined,
+        this.injector
+      );
+    } else if (this.dataSourceOrIdOrToken instanceof BaseDataSource) {
+      dataSource = this.dataSourceOrIdOrToken;
+    } else if (this.dataSourceOrIdOrToken !== null) {
+      dataSource = this.injector.get<BaseDataSource<Data[]>>(
+        this.dataSourceOrIdOrToken
+      );
+    }
+    this._dataSourceLoadingSubscription?.unsubscribe();
+    this._dataSourceLoadingSubscription =
+      dataSource?.loading$.pipe(filter(Boolean)).subscribe(this.loaded) ?? null;
+    return dataSource;
   }
 }
 
