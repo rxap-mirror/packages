@@ -59,7 +59,8 @@ export const RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD = new InjectionToken(
 
 @Injectable()
 export class TreeDataSource<
-  Data extends WithIdentifier & WithChildren = any
+  Data extends WithIdentifier & WithChildren = any,
+  RootParameters = any
 > extends BaseDataSource<Array<Node<Data>>> {
   public tree$ = new BehaviorSubject<Array<Node<Data>>>([]);
   @Required public treeControl!: FlatTreeControl<Node<Data>>;
@@ -83,7 +84,7 @@ export class TreeDataSource<
 
   constructor(
     @Inject(RXAP_TREE_DATA_SOURCE_ROOT_REMOTE_METHOD)
-    public readonly rootRemoteMethod: Method<Data | Data[], void>,
+    public readonly rootRemoteMethod: Method<Data | Data[], RootParameters>,
     @Inject(RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD)
     public readonly childrenRemoteMethod: Method<Data[], Node<Data>>,
     @Inject(RXAP_DATA_SOURCE_METADATA)
@@ -111,9 +112,9 @@ export class TreeDataSource<
     let rootNodes: Array<Node<Data>>;
 
     if (Array.isArray(root)) {
-      rootNodes = root.map((node) => this._toNode(node));
+      rootNodes = await Promise.all(root.map((node) => this._toNode(node)));
     } else {
-      rootNodes = [this._toNode(root)];
+      rootNodes = [await this._toNode(root)];
     }
 
     this.tree$.next(rootNodes);
@@ -158,15 +159,15 @@ export class TreeDataSource<
   }
 
   // - the SelectModel that stores the selection into the local storage?
-  public _toNode(
+  public async _toNode(
     item: Data,
     depth: number = 0,
     onExpand: ExpandNodeFunction<Data> = this.expandNode.bind(this),
     onCollapse: ExpandNodeFunction<Data> = this.collapseNode.bind(this),
     onSelect: ExpandNodeFunction<Data> = this.selectNode.bind(this),
     onDeselect: ExpandNodeFunction<Data> = this.deselectNode.bind(this)
-  ): Node<Data> {
-    const node = this.toNode(
+  ): Promise<Node<Data>> {
+    const node = await this.toNode(
       item,
       depth,
       onExpand,
@@ -176,7 +177,7 @@ export class TreeDataSource<
     );
 
     if (this.expanded.isSelected(node.id)) {
-      node
+      await node
         .expand()
         .then(() => {
           // TODO : remove redundant this.expanded SelectionModel. Only store expanded nodes in this.treeControl.expansionModel
@@ -194,7 +195,7 @@ export class TreeDataSource<
     }
 
     if (this._preSelected.includes(node.id)) {
-      node
+      await node
         .select()
         .then(() =>
           console.debug(`Restore select for node '${node.id}' SUCCESSFULLY`)
@@ -217,9 +218,9 @@ export class TreeDataSource<
       node.item.children = children;
 
       node.addChildren(
-        children.map((child) =>
+        await Promise.all(children.map((child) =>
           this._toNode(child, node.depth + 1, node.onExpand, node.onCollapse)
-        )
+        ))
       );
 
       node.isLoading$.disable();
@@ -235,7 +236,12 @@ export class TreeDataSource<
   }
 
   public async getRoot(): Promise<Data | Data[]> {
-    return this.rootRemoteMethod.call();
+    const rootParameters = await this.getRootParameters();
+    return this.rootRemoteMethod.call(rootParameters);
+  }
+
+  public async getRootParameters(): Promise<RootParameters> {
+    return undefined as any;
   }
 
   // TODO : find better solution to allow the overwrite of the toNode method
@@ -307,14 +313,14 @@ export class TreeDataSource<
     );
   }
 
-  public toNode(
+  public async toNode(
     item: Data,
     depth: number = 0,
     onExpand: ExpandNodeFunction<Data> = this.expandNode.bind(this),
     onCollapse: ExpandNodeFunction<Data> = this.collapseNode.bind(this),
     onSelect: ExpandNodeFunction<Data> = this.selectNode.bind(this),
     onDeselect: ExpandNodeFunction<Data> = this.deselectNode.bind(this)
-  ): Node<Data> {
+  ): Promise<Node<Data>> {
     return Node.ToNode(
       item,
       depth,
