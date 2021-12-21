@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.2](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.3.1...@rxap/tree@12.3.2) (2021-12-21)
+
+
+### Bug Fixes
+
+* add cache toggle ([21176e8](https://gitlab.com/rxap/packages/commit/21176e850b2441a61ef64e150988e737e93d2e47))
+
+
+
+
+
 ## [12.3.1](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.3.0...@rxap/tree@12.3.1) (2021-12-21)
 
 
