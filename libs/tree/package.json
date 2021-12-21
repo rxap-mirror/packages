@@ -1,6 +1,6 @@
 {
   "name": "@rxap/tree",
-  "version": "12.2.0",
+  "version": "12.2.1",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/tree",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -29,7 +29,7 @@
     "@angular/router": "^12.0.1",
     "@rxap/config": "^12.3.0",
     "@rxap/contenteditable": "^12.0.7",
-    "@rxap/data-source": "^12.1.3",
+    "@rxap/data-source": "^12.1.4",
     "@rxap/definition": "^12.0.8",
     "@rxap/material-directives": "^12.0.7",
     "@rxap/services": "^12.0.8",

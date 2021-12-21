@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.4](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.1.3...@rxap/data-source@12.1.4) (2021-12-21)
+
+
+### Bug Fixes
+
+* **data-source-collection-directive:** support loaded event ([9058aa4](https://gitlab.com/rxap/packages/commit/9058aa4cca53c6623502e35a3d62991c018effd8))
+* **data-source-directive:** support template type ([c303995](https://gitlab.com/rxap/packages/commit/c30399536c9f5a36a577a0fceb3659fce50be278))
+
+
+
+
+
 ## [12.1.3](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.1.3-next.1...@rxap/data-source@12.1.3) (2021-10-11)
 
 **Note:** Version bump only for package @rxap/data-source

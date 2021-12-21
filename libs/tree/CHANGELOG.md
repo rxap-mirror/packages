@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.1](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.2.0...@rxap/tree@12.2.1) (2021-12-21)
+
+
+### Bug Fixes
+
+* **tree-data-source:** support async toNode method and custom root parameters ([02194fa](https://gitlab.com/rxap/packages/commit/02194faf2142991c0a80eafdd2e118c0edc1b06b))
+
+
+
+
+
 # [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.2.0-next.1...@rxap/tree@12.2.0) (2021-11-25)
 
 **Note:** Version bump only for package @rxap/tree
