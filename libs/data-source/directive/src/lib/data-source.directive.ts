@@ -36,7 +36,7 @@ import {
 } from 'rxjs';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 
-export interface DataSourceTemplate<Data> {
+export interface DataSourceTemplateContext<Data> {
   $implicit: Data;
   connection$: Observable<Data>;
 }
@@ -48,6 +48,20 @@ export interface DataSourceTemplate<Data> {
 export class DataSourceDirective<Data = any>
   implements OnDestroy, OnChanges, AfterViewInit
 {
+
+  /**
+   * Asserts the correct type of the context for the template that `NgForOf` will render.
+   *
+   * The presence of this method is a signal to the Ivy template type-check compiler that the
+   * `NgForOf` structural directive renders its template with a specific context type.
+   */
+  static ngTemplateContextGuard<T>(
+    dir: DataSourceDirective<T>,
+    ctx: any
+  ): ctx is DataSourceTemplateContext<T> {
+    return true;
+  }
+
   @Input('rxapDataSourceFrom')
   @Required
   public dataSourceOrIdOrToken!: IdOrInstanceOrToken<BaseDataSource<Data>>;
@@ -77,14 +91,14 @@ export class DataSourceDirective<Data = any>
    */
   protected readonly subscription = new Subscription();
 
-  protected embeddedViewRef?: EmbeddedViewRef<DataSourceTemplate<Data>>;
+  protected embeddedViewRef?: EmbeddedViewRef<DataSourceTemplateContext<Data>>;
 
   private _dataSourceLoadingSubscription: Subscription | null    = null;
   private _dataSourceConnectionSubscription: Subscription | null = null;
 
   constructor(
     private readonly dataSourceLoader: DataSourceLoader,
-    private readonly template: TemplateRef<DataSourceTemplate<Data>>,
+    private readonly template: TemplateRef<DataSourceTemplateContext<Data>>,
     private readonly viewContainerRef: ViewContainerRef,
     @Inject(INJECTOR)
     private readonly injector: Injector,
