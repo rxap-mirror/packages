@@ -120,7 +120,7 @@ export class FormDirective<T extends Record<string, any> = any>
    * Emits when the submit method is executed without errors. The result of the
    * submit method is passed as event object.
    *
-   * If no submit method is defined then emit infidelity after the submit button
+   * If no submit method is defined then emit after the submit button
    * is clicked.
    */
   @Output()
