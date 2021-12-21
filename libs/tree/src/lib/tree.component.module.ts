@@ -11,9 +11,10 @@ import { TreeContentDirective } from './tree-content.directive';
 import { PortalModule } from '@angular/cdk/portal';
 import { ContenteditableDirectiveModule } from '@rxap/contenteditable';
 import { IconDirectiveModule } from '@rxap/material-directives/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
-  imports:         [
+  imports: [
     CommonModule,
     MatTreeModule,
     MatButtonModule,
@@ -23,7 +24,8 @@ import { IconDirectiveModule } from '@rxap/material-directives/icon';
     MatProgressSpinnerModule,
     PortalModule,
     ContenteditableDirectiveModule,
-    IconDirectiveModule
+    IconDirectiveModule,
+    MatCheckboxModule
   ],
   declarations:    [ TreeComponent, TreeContentDirective ],
   exports:         [ TreeComponent, TreeContentDirective ],

@@ -66,6 +66,9 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   public getIcon?: NodeGetIconFunction<any>;
 
   @Input()
+  public multiple: boolean = false;
+
+  @Input()
   public hasDetails?: NodeHasDetailsFunction<any>;
 
   @ContentChild(TreeContentDirective, { static: true })
@@ -118,6 +121,7 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
     this.dataSource.setToDisplay(this.toDisplay);
     this.dataSource.setGetIcon(this.getIcon);
     this.dataSource.setHasDetails(this.hasDetails);
+    this.multiple = this.dataSource.metadata.selectMultiple ?? this.multiple;
 
     if (this.dataSource.selected.hasValue()) {
       this.dataSource.selected.selected.forEach((node) =>
