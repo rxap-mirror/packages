@@ -3,6 +3,7 @@ import {
   from,
   merge,
   Observable,
+  Subject,
   Subscription
 } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -12,6 +13,7 @@ import {
 } from '@angular/cdk/collections';
 import {
   map,
+  startWith,
   switchMap,
   tap
 } from 'rxjs/operators';
@@ -62,7 +64,7 @@ export const RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD = new InjectionToken(
 export class TreeDataSource<
   Data extends WithIdentifier & WithChildren = any,
   RootParameters = any
-> extends BaseDataSource<Array<Node<Data>>> {
+  > extends BaseDataSource<Array<Node<Data>>> {
   public tree$ = new BehaviorSubject<Array<Node<Data>>>([]);
   @Required public treeControl!: FlatTreeControl<Node<Data>>;
   public selected!: SelectionModel<Node<Data>>;
@@ -84,6 +86,9 @@ export class TreeDataSource<
     'to display function not defined';
   public getIcon: NodeGetIconFunction<Data> = () => null;
   public hasDetails: NodeHasDetailsFunction<Data> = () => true;
+  public matchFilter: (node: Node<Data>) => boolean = () => true;
+
+  private _refreshMatchFilter = new Subject();
 
   constructor(
     @Inject(RXAP_TREE_DATA_SOURCE_ROOT_REMOTE_METHOD)
@@ -95,14 +100,14 @@ export class TreeDataSource<
   ) {
     super(metadata);
     this.tree$
-      .pipe(
-        map((tree) =>
-          tree
-            .map((child) => this.flatTree(child))
-            .reduce((acc, nodes) => [...acc, ...nodes], [])
+        .pipe(
+          map((tree) =>
+            tree
+              .map((child) => this.flatTree(child))
+              .reduce((acc, nodes) => [...acc, ...nodes], [])
+          )
         )
-      )
-      .subscribe(this._data$);
+        .subscribe(this._data$);
 
     // TODO add new SelectModel class that saves the select model to the localStorage
     this.initSelected();
@@ -141,6 +146,10 @@ export class TreeDataSource<
 
   public setTreeControl(treeControl: FlatTreeControl<Node<Data>>): void {
     this.treeControl = treeControl;
+  }
+
+  public setMatchFilter(matchFilter: (node: Node<Data>) => boolean): void {
+    this.matchFilter = matchFilter;
   }
 
   public setToDisplay(
@@ -253,69 +262,22 @@ export class TreeDataSource<
   // TODO : find better solution to allow the overwrite of the toNode method
   // without losing the custom preselect and preexpand function
 
-  protected _connect(
-    collectionViewer: Required<BaseDataSourceViewer>
-  ): Observable<Array<Node<Data>>> {
-    this.treeControl.expansionModel.changed.subscribe((change: any) => {
-      if (isSelectionChange<Node<Data>>(change)) {
-        if (change.added) {
-          change.added.forEach((node) => node.expand());
-        }
-        if (change.removed) {
-          change.removed
-            .slice()
-            .reverse()
-            .forEach((node) => node.collapse());
-        }
+  public getNodeById(id: string): Node<Data> | null {
+    function getNodeById(node: Node<Data>, nodeId: string) {
+      if (node.id === nodeId) {
+        return node;
       }
-    });
-
-    let loadRoot: Promise<Array<Node<Data>> | void> = Promise.resolve();
-
-    if (this.tree$.value.length === 0) {
-      loadRoot = this.getTreeRoot();
+      if (node.hasNode(nodeId)) {
+        return node.getNode(nodeId);
+      } else {
+        return null;
+      }
     }
 
-    return from(loadRoot).pipe(
-      tap((rootNodes) => {
-        if (rootNodes) {
-          const promises: Promise<any>[] = [];
-          if (this.metadata.selectMultiple) {
-            if (!this.selected.hasValue()) {
-              promises.push(
-                ...rootNodes
-                  .filter((node) => node.hasDetails)
-                  .map((node) => node.select())
-              );
-            }
-            if (!this.expanded.hasValue()) {
-              promises.push(
-                ...rootNodes
-                  .filter((node) => node.hasChildren)
-                  .map((node) => node.expand())
-              );
-            }
-          } else if (rootNodes.length) {
-            const rootNode = rootNodes[0];
-            if (!this.selected.hasValue()) {
-              // TODO : rename hasDetails to isSelectable
-              if (rootNode.hasDetails) {
-                promises.push(rootNode.select());
-              }
-            }
-            if (!this.expanded.hasValue()) {
-              promises.push(rootNode.expand());
-            }
-          }
-          return Promise.all(promises);
-        }
-        return Promise.resolve();
-      }),
-      switchMap(() =>
-        merge(collectionViewer.viewChange, this._data$).pipe(
-          map(() => this._data$.value)
-        )
-      )
+    return (
+      this.tree$.value
+          .map((node) => getNodeById(node, id))
+          .filter(Boolean)[0] || null
     );
   }
 
@@ -383,49 +345,78 @@ export class TreeDataSource<
     }
   }
 
-  public getNodeById(id: string): Node<Data> | null {
-    function getNodeById(node: Node<Data>, nodeId: string) {
-      if (node.id === nodeId) {
-        return node;
-      }
-      if (node.hasNode(nodeId)) {
-        return node.getNode(nodeId);
-      } else {
-        return null;
-      }
-    }
-
-    return (
-      this.tree$.value
-        .map((node) => getNodeById(node, id))
-        .filter(Boolean)[0] || null
-    );
+  public refreshMatchFilter(): void {
+    this._refreshMatchFilter.next();
   }
 
-  private initSelected(): void {
-    const key = joinPath('rxap/tree', this.id, 'selected');
-    if (localStorage.getItem(key)) {
-      try {
-        this._preSelected = JSON.parse(localStorage.getItem(key)!);
-      } catch (e) {
-        console.debug('parse expanded tree data source nodes failed');
+  protected _connect(
+    collectionViewer: Required<BaseDataSourceViewer>
+  ): Observable<Array<Node<Data>>> {
+    this.treeControl.expansionModel.changed.subscribe((change: any) => {
+      if (isSelectionChange<Node<Data>>(change)) {
+        if (change.added) {
+          change.added.forEach((node) => node.expand());
+        }
+        if (change.removed) {
+          change.removed
+                .slice()
+                .reverse()
+                .forEach((node) => node.collapse());
+        }
       }
+    });
+
+    let loadRoot: Promise<Array<Node<Data>> | void> = Promise.resolve();
+
+    if (this.tree$.value.length === 0) {
+      loadRoot = this.getTreeRoot();
     }
 
-    this.selected = new SelectionModel<Node<Data>>(
-      !!this.metadata.selectMultiple,
-      []
-    );
-    this._selectedLocalStorageSubscription = this.selected.changed
-      .pipe(
-        tap(() =>
-          localStorage.setItem(
-            key,
-            JSON.stringify(this.selected.selected.map((s) => s.id))
-          )
+    return from(loadRoot).pipe(
+      tap((rootNodes) => {
+        if (rootNodes) {
+          const promises: Promise<any>[] = [];
+          if (this.metadata.selectMultiple) {
+            if (!this.selected.hasValue()) {
+              promises.push(
+                ...rootNodes
+                  .filter((node) => node.hasDetails)
+                  .map((node) => node.select())
+              );
+            }
+            if (!this.expanded.hasValue()) {
+              promises.push(
+                ...rootNodes
+                  .filter((node) => node.hasChildren)
+                  .map((node) => node.expand())
+              );
+            }
+          } else if (rootNodes.length) {
+            const rootNode = rootNodes[0];
+            if (!this.selected.hasValue()) {
+              // TODO : rename hasDetails to isSelectable
+              if (rootNode.hasDetails) {
+                promises.push(rootNode.select());
+              }
+            }
+            if (!this.expanded.hasValue()) {
+              promises.push(rootNode.expand());
+            }
+          }
+          return Promise.all(promises);
+        }
+        return Promise.resolve();
+      }),
+      switchMap(() =>
+        merge(collectionViewer.viewChange, this._data$).pipe(
+          map(() => this._data$.value)
         )
-      )
-      .subscribe();
+      ),
+      switchMap(nodeList => this._refreshMatchFilter.pipe(
+        startWith(null),
+        map(() => nodeList.filter(node => this.matchFilter(node)))
+      )),
+    );
   }
 
   public async refresh(): Promise<any> {
@@ -454,10 +445,40 @@ export class TreeDataSource<
     );
 
     const selected: Array<Node<Data>> = this.selected.selected
-      .map((node) => this.getNodeById(node.id))
-      .filter(Boolean) as any;
+                                            .map((node) => this.getNodeById(node.id))
+                                            .filter(Boolean) as any;
     this.selected.clear();
     this.selected.select(...selected);
+  }
+
+  private initSelected(): void {
+    const key = joinPath('rxap/tree', this.id, 'selected');
+    if (this.metadata.cacheSelected) {
+      if (localStorage.getItem(key)) {
+        try {
+          this._preSelected = JSON.parse(localStorage.getItem(key)!);
+        } catch (e) {
+          console.debug('parse expanded tree data source nodes failed');
+        }
+      }
+    }
+
+    this.selected = new SelectionModel<Node<Data>>(
+      !!this.metadata.selectMultiple,
+      []
+    );
+    if (this.metadata.cacheSelected) {
+      this._selectedLocalStorageSubscription = this.selected.changed
+                                                   .pipe(
+                                                     tap(() =>
+                                                       localStorage.setItem(
+                                                         key,
+                                                         JSON.stringify(this.selected.selected.map((s) => s.id))
+                                                       )
+                                                     )
+                                                   )
+                                                   .subscribe();
+    }
   }
 
   public reset(): any {
@@ -469,11 +490,13 @@ export class TreeDataSource<
   private initExpanded(): void {
     const key = joinPath('rxap/tree', this.id, 'expanded');
     let expanded = [];
-    if (localStorage.getItem(key)) {
-      try {
-        expanded = JSON.parse(localStorage.getItem(key)!);
-      } catch (e) {
-        console.debug('parse expanded tree data source nodes failed');
+    if (this.metadata.cacheExpanded) {
+      if (localStorage.getItem(key)) {
+        try {
+          expanded = JSON.parse(localStorage.getItem(key)!);
+        } catch (e) {
+          console.debug('parse expanded tree data source nodes failed');
+        }
       }
     }
 
@@ -481,12 +504,14 @@ export class TreeDataSource<
       this.metadata.expandMultiple !== false,
       expanded
     );
-    this._expandedLocalStorageSubscription = this.expanded.changed
-      .pipe(
-        tap(() =>
-          localStorage.setItem(key, JSON.stringify(this.expanded.selected))
-        )
-      )
-      .subscribe();
+    if (this.metadata.cacheExpanded) {
+      this._expandedLocalStorageSubscription = this.expanded.changed
+                                                   .pipe(
+                                                     tap(() =>
+                                                       localStorage.setItem(key, JSON.stringify(this.expanded.selected))
+                                                     )
+                                                   )
+                                                   .subscribe();
+    }
   }
 }
