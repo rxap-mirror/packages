@@ -6,6 +6,8 @@ import {
   OnInit
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Directive({
   selector: 'mat-paginator[rxapPersistent]'
@@ -15,8 +17,10 @@ export class PersistentPaginatorDirective implements OnInit, OnDestroy {
   @Input()
   public id?: string;
 
+  private _subscription?: Subscription;
+
   constructor(
-    private readonly matPaginator: MatPaginator
+    private readonly matPaginator: MatPaginator,
   ) {}
 
   public ngOnInit() {
@@ -24,10 +28,13 @@ export class PersistentPaginatorDirective implements OnInit, OnDestroy {
     if (config) {
       this.matPaginator.pageSize = config.pageSize;
     }
+    this._subscription = this.matPaginator.page.pipe(
+      tap(() => this.storeConfig())
+    ).subscribe()
   }
 
   public ngOnDestroy() {
-    this.storeConfig();
+    this._subscription?.unsubscribe();
   }
 
   public getKey() {
