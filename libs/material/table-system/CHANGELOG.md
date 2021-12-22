@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.0...@rxap/material-table-system@12.5.1) (2021-12-22)
+
+
+### Bug Fixes
+
+* store paginator config on page change ([3611fec](https://gitlab.com/rxap/packages/commit/3611fec678f765f4eb6c0a71ffc748d0bd852e82))
+
+
+
+
+
 # [12.5.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.4.1...@rxap/material-table-system@12.5.0) (2021-12-22)
 
 
