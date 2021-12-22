@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.5.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.4.1...@rxap/material-table-system@12.5.0) (2021-12-22)
+
+
+### Features
+
+* add persistent paginator directive ([754f782](https://gitlab.com/rxap/packages/commit/754f7821e518cfb69fd0cc386776b695785ab4f3))
+
+
+
+
+
 ## [12.4.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.4.1-next.1...@rxap/material-table-system@12.4.1) (2021-11-25)
 
 **Note:** Version bump only for package @rxap/material-table-system
