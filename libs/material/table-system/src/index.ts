@@ -19,6 +19,8 @@ export * from './lib/row-animation';
 export * from './lib/table-data-source.directive';
 export * from './lib/table-row-metadata';
 
+export * from './lib/persistent-paginator.directive';
+
 // region table filter
 
 export * from './lib/table-filter/filter-header-row.directive';
