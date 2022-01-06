@@ -1,9 +1,7 @@
 <h2 mat-dialog-title i18n="@@rxap.dialog.confirm-dialog.title">Confirm</h2>
 <mat-dialog-content>
 
-  <div class="content">
-    <p>{{data.message}}</p>
-  </div>
+  <div [innerHtml]="data.message | santization:'html'" class="content"></div>
 
 </mat-dialog-content>
 <mat-dialog-actions>

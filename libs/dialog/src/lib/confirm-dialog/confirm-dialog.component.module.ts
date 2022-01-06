@@ -4,6 +4,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ConfirmDialogService } from './confirm-dialog.service';
+import { SantizationModule } from '@rxap/pipes/santization';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ConfirmDialogService } from './confirm-dialog.service';
   imports: [
     MatDialogModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    SantizationModule
   ],
   exports: [ConfirmDialogComponent],
   providers: [ConfirmDialogService]
