@@ -1,6 +1,6 @@
 {
   "name": "@rxap/dialog",
-  "version": "12.1.0",
+  "version": "12.2.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/dialog",
@@ -19,6 +19,7 @@
   },
   "description": "A collection of angular material dialog components",
   "peerDependencies": {
+    "@angular-devkit/schematics": "^12.2.9",
     "@angular/cdk": "^12.0.1",
     "@angular/common": "^12.0.1",
     "@angular/core": "^12.0.1",
@@ -28,14 +29,14 @@
     "@angular/platform-browser": "^12.0.1",
     "@angular/router": "^12.0.1",
     "@rxap/components": "^12.0.10",
-    "@rxap/data-grid": "^12.0.8",
+    "@rxap/data-grid": "^12.1.0",
     "@rxap/definition": "^12.0.8",
-    "@rxap/directives": "^12.1.2",
-    "@rxap/forms": "^12.5.0",
-    "@rxap/material-directives": "^12.0.6",
+    "@rxap/directives": "^12.2.0",
+    "@rxap/forms": "^12.7.3",
+    "@rxap/material-directives": "^12.0.7",
     "@rxap/pipes": "^12.0.6",
-    "@rxap/services": "^12.0.7",
-    "@rxap/utilities": "^12.2.1",
+    "@rxap/services": "^12.0.8",
+    "@rxap/utilities": "^12.2.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -63,7 +64,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^12.6.0",
+    "@rxap/schematics-utilities": "^12.7.0",
     "tslib": "^2.2.0"
   }
 }
