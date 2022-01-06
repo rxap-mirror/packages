@@ -7,6 +7,9 @@
     "paths": {
       "@rxap/utilities": [
         "dist/libs/utilities"
+      ],
+      "@rxap/pipes/santization": [
+        "dist/libs/pipes/santization"
       ]
     },
     "declarationMap": false
