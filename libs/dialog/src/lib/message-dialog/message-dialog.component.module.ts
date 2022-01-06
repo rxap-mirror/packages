@@ -4,16 +4,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MessageDialogService } from './message-dialog.service';
+import { SantizationModule } from '@rxap/pipes/santization';
 
 
 @NgModule({
   declarations: [
     MessageDialogComponent
   ],
-  imports:      [
+  imports: [
     MatDialogModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
+    SantizationModule
   ],
   exports:      [
     MessageDialogComponent
