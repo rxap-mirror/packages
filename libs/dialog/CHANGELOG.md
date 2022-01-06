@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/dialog@12.1.0...@rxap/dialog@12.2.0) (2022-01-06)
+
+
+### Bug Fixes
+
+* set message dialog content as inner html ([9eb4b63](https://gitlab.com/rxap/packages/commit/9eb4b63c1aec5863cca9f82d839fb6cefe34a2fc))
+
+
+### Features
+
+* set message dialog content as inner html ([1f0902c](https://gitlab.com/rxap/packages/commit/1f0902cf2409b6ee94198de0eeb4bd5be7d7de2c))
+
+
+
+
+
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/dialog@12.1.0-next.2...@rxap/dialog@12.1.0) (2021-08-11)
 
 **Note:** Version bump only for package @rxap/dialog
