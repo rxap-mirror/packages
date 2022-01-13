@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/window-system@12.0.10...@rxap/window-system@12.1.0) (2022-01-13)
+
+
+### Features
+
+* **window-settings:** add minimizable option ([12dc7df](https://gitlab.com/rxap/packages/commit/12dc7dfe2124e31ea428ea3e706b45307f07d8f2))
+
+
+
+
+
 ## [12.0.10](https://gitlab.com/rxap/packages/compare/@rxap/window-system@12.0.10-next.0...@rxap/window-system@12.0.10) (2021-10-11)
 
 **Note:** Version bump only for package @rxap/window-system

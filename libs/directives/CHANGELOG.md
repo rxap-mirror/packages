@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.2.0...@rxap/directives@12.3.0) (2022-01-13)
+
+
+### Features
+
+* add rxapIfTruthy directive ([a59860c](https://gitlab.com/rxap/packages/commit/a59860cef9fbdbca179a911df2808572dfafc26e))
+
+
+
+
+
 # [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.2.0-next.0...@rxap/directives@12.2.0) (2021-11-25)
 
 **Note:** Version bump only for package @rxap/directives
