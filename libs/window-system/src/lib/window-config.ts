@@ -24,6 +24,7 @@ export interface WindowSettings<D = any> {
   maxWidth?: string;
   maxHeight?: string;
   resizeable?: boolean;
+  minimizable?: boolean;
   draggable?: boolean;
   panelClass?: string;
   data?: D;

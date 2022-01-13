@@ -11,7 +11,7 @@
     </ng-template>
   </div>
   <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start center">
-    <button (click)="windowRef.minimize()" fxFlex="40px" mat-icon-button type="button">
+    <button (click)="windowRef.minimize()" *ngIf="windowRef.settings.minimizable !== false" fxFlex="40px" mat-icon-button type="button">
       <mat-icon>minimize</mat-icon>
     </button>
     <button (click)="windowRef.fullScreen()" fxFlex="40px" mat-icon-button type="button">
