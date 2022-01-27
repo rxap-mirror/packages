@@ -45,7 +45,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
       throw new RxapOpenApiError('The operation parameters contains ReferenceObject!');
     }
 
-    if (parameters === undefined) {
+    if (parameters === undefined || parameters === null) {
       // TODO : find concept to definition witch parameter should not be checked if required
       // header parameters are never required if changes the semantic release manager breaks
       const requiredParameters = operationParameters.filter(parameter => parameter.required && parameter.in !== 'header');
