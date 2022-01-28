@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.2](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.2.1...@rxap/layout@12.2.2) (2022-01-28)
+
+
+### Bug Fixes
+
+* **navigation:** only check children status if children exists ([8f1d007](https://gitlab.com/rxap/packages/commit/8f1d007549985e7205450ae356d84067ff942783))
+
+
+
+
+
 ## [12.2.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.2.0...@rxap/layout@12.2.1) (2022-01-28)
 
 
