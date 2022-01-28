@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.5](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.2.4...@rxap/open-api@12.2.5) (2022-01-28)
+
+
+### Bug Fixes
+
+* **schema-validation:** only throw a validation error if schema is not matched ([288e8a9](https://gitlab.com/rxap/packages/commit/288e8a9bc7f3e183853ffaa83feaaa3107f456cc))
+
+
+
+
+
 ## [12.2.4](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.2.3...@rxap/open-api@12.2.4) (2022-01-27)
 
 
