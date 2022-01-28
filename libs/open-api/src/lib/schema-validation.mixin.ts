@@ -45,7 +45,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
       throw new RxapOpenApiError('The operation parameters contains ReferenceObject!');
     }
 
-    if (parameters === undefined || parameters === null) {
+    if (parameters === undefined) {
       // TODO : find concept to definition witch parameter should not be checked if required
       // header parameters are never required if changes the semantic release manager breaks
       const requiredParameters = operationParameters.filter(parameter => parameter.required && parameter.in !== 'header');
@@ -85,7 +85,13 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
       }
 
     } else {
-      throw new Error('The parameters object is not a record');
+      if (operationParameters.length === 0 || operationParameters.every(op => !op.required)) {
+        if (isDevMode()) {
+          console.warn(`The operation ${operation.operationId} does not expect any parameters. But a parameter is provided.`, parameters);
+        }
+      } else {
+        throw new Error('The parameters object is not a record');
+      }
     }
 
   }
