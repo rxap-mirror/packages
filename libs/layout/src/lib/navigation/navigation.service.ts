@@ -1,6 +1,17 @@
 import type { Injector } from '@angular/core';
-import { Injectable, Inject, Optional, INJECTOR } from '@angular/core';
-import { Observable, ReplaySubject, of, combineLatest, from } from 'rxjs';
+import {
+  Injectable,
+  Inject,
+  Optional,
+  INJECTOR
+} from '@angular/core';
+import {
+  Observable,
+  ReplaySubject,
+  of,
+  combineLatest,
+  from
+} from 'rxjs';
 import {
   Navigation,
   NavigationWithInserts,
@@ -8,13 +19,17 @@ import {
   IsNavigationItem,
   IsNavigationDividerItem,
   NavigationItem,
-  NavigationDividerItem,
+  NavigationDividerItem
 } from './navigation-item';
 import {
   RXAP_NAVIGATION_CONFIG,
-  RXAP_NAVIGATION_CONFIG_INSERTS,
+  RXAP_NAVIGATION_CONFIG_INSERTS
 } from '../tokens';
-import { switchMap, map } from 'rxjs/operators';
+import {
+  switchMap,
+  map,
+  catchError
+} from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class NavigationService {
@@ -110,13 +125,16 @@ export class NavigationService {
     const isVisibleArray$: Array<Observable<boolean>> = navigationItem.status
       .map((statusToken) => this.injector.get(statusToken))
       .map((status) => {
-        const isVisible = status.isVisible(navigationItem.routerLink);
+        const isVisible = status.isVisible(navigationItem);
         if (typeof isVisible === 'boolean') {
           return of(isVisible);
         } else {
           return from(isVisible);
         }
-      });
+      }).map(isVisible$ => isVisible$.pipe(catchError(e => {
+        console.error('isVisible method failed: ' + e.message);
+        return of(false);
+      })));
     // TODO : dont wait for all status services to complete, but cancel waiting if one returns false
     return combineLatest(isVisibleArray$).pipe(
       map((isVisibleArray) =>
