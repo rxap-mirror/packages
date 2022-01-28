@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.1](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.2.0...@rxap/layout@12.2.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* **navigation:** support custom navigation item properties ([a085d57](https://gitlab.com/rxap/packages/commit/a085d577edd2d4a0ba4ea60ab73672b59eeaaace))
+
+
+
+
+
 # [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.2.0-next.0...@rxap/layout@12.2.0) (2021-09-03)
 
 **Note:** Version bump only for package @rxap/layout
