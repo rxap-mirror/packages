@@ -143,7 +143,7 @@ export class NavigationService {
       map((isVisible) => (isVisible ? navigationItem : null)),
       switchMap((navigationItemOrNull) => {
         if (navigationItemOrNull) {
-          if (navigationItemOrNull.children) {
+          if (navigationItemOrNull.children?.length) {
             return this.checkNavigationStatusProviders(
               navigationItemOrNull.children
             ).pipe(
