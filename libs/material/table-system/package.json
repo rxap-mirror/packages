@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-table-system",
-  "version": "12.5.1",
+  "version": "12.5.2",
   "peerDependencies": {
     "@angular-devkit/schematics": "^12.2.9",
     "@angular/animations": "^12.0.1",
@@ -17,15 +17,15 @@
     "@rxap/config": "^12.3.0",
     "@rxap/data-source": "^12.1.4",
     "@rxap/definition": "^12.0.8",
-    "@rxap/directives": "^12.2.0",
+    "@rxap/directives": "^12.3.0",
     "@rxap/forms": "^12.7.3",
     "@rxap/material-directives": "^12.0.7",
     "@rxap/mixin": "^12.0.7",
-    "@rxap/open-api": "^12.2.3",
+    "@rxap/open-api": "^12.2.5",
     "@rxap/remote-method": "^12.0.9",
     "@rxap/services": "^12.0.8",
     "@rxap/utilities": "^12.2.2",
-    "@rxap/window-system": "^12.0.10",
+    "@rxap/window-system": "^12.1.0",
     "@schematics/angular": "^12.2.9",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
