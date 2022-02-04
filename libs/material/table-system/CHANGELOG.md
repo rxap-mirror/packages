@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.1...@rxap/material-table-system@12.5.2) (2022-02-04)
+
+
+### Bug Fixes
+
+* **action-button:** only disable the action execution and not the button ([68a7bcf](https://gitlab.com/rxap/packages/commit/68a7bcf60ad7e55b8861b85ffcaa4139f7c714af))
+
+
+
+
+
 ## [12.5.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.0...@rxap/material-table-system@12.5.1) (2021-12-22)
 
 
