@@ -64,6 +64,8 @@ export class TableRowActionDirective<Data extends Record<string, any>> {
 
   private readonly actionMethodList: Array<TableRowActionMethod<Data>>;
 
+  private _actionDisabled = false;
+
   constructor(
     @Inject(RXAP_TABLE_ROW_ACTION_METHOD)
       actionMethodList:
@@ -103,6 +105,9 @@ export class TableRowActionDirective<Data extends Record<string, any>> {
   }
 
   public async execute(): Promise<void> {
+    if (this._actionDisabled) {
+      return Promise.resolve();
+    }
     this.setStatus(TableRowActionStatus.EXECUTING);
     try {
       await Promise.all(
@@ -148,16 +153,27 @@ export class TableRowActionDirective<Data extends Record<string, any>> {
     return this.actionMethodList.filter(IsTableRowActionTypeMethod(this.type));
   }
 
+  /**
+   * Disables the action. If the button is pressed the action is NOT executed
+   *
+   * Hint: the button is set to disabled = true to prevent any conflict with
+   * extern button enable features linke : rxapHasEnablePermission
+   * @protected
+   */
   protected setButtonDisabled() {
-    if (this.matButton) {
-      this.matButton.disabled = true;
-    }
+    this._actionDisabled = true;
   }
 
+  /**
+   * Enables the action. If the button is pressed the action is executed
+   *
+   * TODO : find a way to communicate the disabled state between the features
+   * Hint: the button is set to disabled = false to prevent any conflict with
+   * extern button enable features linke : rxapHasEnablePermission
+   * @protected
+   */
   protected setButtonEnabled() {
-    if (this.matButton) {
-      this.matButton.disabled = false;
-    }
+    this._actionDisabled = false;
   }
 
   private setStatus(status: TableRowActionStatus) {
