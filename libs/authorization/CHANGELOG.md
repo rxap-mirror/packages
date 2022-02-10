@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.6...@rxap/authorization@12.0.7) (2022-02-10)
+
+
+### Bug Fixes
+
+* trigger change detection after disable state change ([9bd7c08](https://gitlab.com/rxap/packages/commit/9bd7c083095605cadf9d13a799ffbc2ce4c8c907))
+
+
+
+
+
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.5...@rxap/authorization@12.0.6) (2021-06-24)
 
 **Note:** Version bump only for package @rxap/authorization
