@@ -6,7 +6,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Optional,
+  Optional
 } from '@angular/core';
 import { AuthorizationService } from './authorization.service';
 import { Required } from '@rxap/utilities';
@@ -20,7 +20,7 @@ import { MatSlideToggle } from '@angular/material/slide-toggle';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
-  NgControl,
+  NgControl
 } from '@angular/forms';
 import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
@@ -58,6 +58,7 @@ export abstract class HasEnablePermission implements OnInit, OnDestroy {
             });
           }
           this.cdr.markForCheck();
+          this.cdr.detectChanges();
         })
       )
       .subscribe();
