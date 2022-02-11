@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.7...@rxap/authorization@12.0.8) (2022-02-11)
+
+
+### Bug Fixes
+
+* **if-has-permission:** support else template ([e8ac1b3](https://gitlab.com/rxap/packages/commit/e8ac1b3cd4c1b87629a981c7929bc87c7fd67702))
+
+
+
+
+
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.6...@rxap/authorization@12.0.7) (2022-02-10)
 
 
