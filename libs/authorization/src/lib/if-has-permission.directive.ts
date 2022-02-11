@@ -7,11 +7,14 @@ import {
   OnInit,
   Optional,
   TemplateRef,
-  ViewContainerRef,
+  ViewContainerRef
 } from '@angular/core';
 import { Required } from '@rxap/utilities';
 import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {
+  tap,
+  distinctUntilChanged
+} from 'rxjs/operators';
 import { AuthorizationService } from './authorization.service';
 import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
@@ -22,6 +25,9 @@ export class IfHasPermissionDirective implements OnInit, OnDestroy {
   @Input()
   @Required
   public identifier!: string;
+
+  @Input()
+  public else?: TemplateRef<any>
 
   private _subscription?: Subscription;
 
@@ -43,11 +49,13 @@ export class IfHasPermissionDirective implements OnInit, OnDestroy {
     this._subscription = this.authorization
       .hasPermission(this.identifier, this.scope || null)
       .pipe(
+        distinctUntilChanged(),
         tap((hasPermission) => {
+          this.viewContainerRef.clear();
           if (hasPermission) {
             this.viewContainerRef.createEmbeddedView(this.template);
-          } else {
-            this.viewContainerRef.clear();
+          } else if (this.else) {
+            this.viewContainerRef.createEmbeddedView(this.else);
           }
           this.cdr.markForCheck();
         })
