@@ -1,4 +1,7 @@
-import { FormDirective, FormDefinition } from '@rxap/forms';
+import {
+  FormDirective,
+  FormDefinition
+} from '@rxap/forms';
 import {
   ChangeDetectorRef,
   Directive,
@@ -6,11 +9,16 @@ import {
   Inject,
   OnDestroy,
   OnInit,
-  Optional,
+  Optional
 } from '@angular/core';
 import { TableFilterService } from './table-filter.service';
 import { Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  tap
+} from 'rxjs/operators';
 import { RXAP_TABLE_FILTER_FORM_DEFINITION } from './tokens';
 import { ControlContainer } from '@angular/forms';
 import { equals } from '@rxap/utilities';
@@ -55,9 +63,10 @@ export class FilterHeaderRowDirective
             )
             .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
         ),
-        distinctUntilChanged((a, b) => equals(a, b))
+        distinctUntilChanged((a, b) => equals(a, b)),
+        tap(values => this.tableFilter.setMap(values))
       )
-      .subscribe(this.tableFilter.change);
+      .subscribe();
   }
 
   public ngOnDestroy() {

@@ -21,6 +21,12 @@ export class TableFilterService implements FilterLike, OnDestroy {
     this._subscription = this.change.subscribe(current => this.current = current);
   }
 
+  public setMap(map: Record<string, any>): void {
+    const current = this.current;
+    const next = Object.assign(current, map);
+    this.change.next(next);
+  }
+
   public set(key: string, value: any): void {
     const current  = this.current;
     current[ key ] = value;
