@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "../../dist/schematics/libs/keycloak",
+    "declaration": true,
+    "esModuleInterop": true,
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "**/*.spec.ts",
+    "**/files/**"
+  ],
+  "include": [
+    "src/schematics/**/*.ts"
+  ]
+}
