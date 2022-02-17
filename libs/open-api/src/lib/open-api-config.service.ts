@@ -1,7 +1,14 @@
-import { Injectable, Inject, Optional } from '@angular/core';
+import {
+  Injectable,
+  Inject,
+  Optional
+} from '@angular/core';
 import { OperationObjectWithMetadata } from './open-api';
 import { RXAP_OPEN_API_CONFIG } from './tokens';
-import { OpenAPIV3, OpenAPI } from 'openapi-types';
+import {
+  OpenAPIV3,
+  OpenAPI
+} from 'openapi-types';
 import { AssertOpenApiV3 } from './utilities';
 
 export type OperationMap = Map<string, OperationObjectWithMetadata>;
@@ -158,7 +165,7 @@ export class OpenApiConfigService {
   ) {
     config = config ?? OpenApiConfigService.Config;
     if (!config) {
-      throw new Error('Could not load config');
+      throw new Error('Could not load open api config');
     }
     this.config = config;
     this._operations = OpenApiConfigService.LoadOperations(config);
