@@ -165,15 +165,24 @@
       "@rxap/window-system/ngrx": [
         "libs/rxap/window-system/ngrx/src/public_api.ts"
       ],
-      "@rxap/xml-parser": ["libs/xml-parser/src/index.ts"],
+      "@rxap/xml-parser": [
+        "libs/xml-parser/src/index.ts"
+      ],
       "@rxap/xml-parser/decorators": [
         "libs/xml-parser/decorators/src/public_api.ts"
       ],
       "@rxap/xml-parser/elements": [
         "libs/xml-parser/elements/src/public_api.ts"
       ],
-      "@rxap/xml-parser/testing": ["libs/xml-parser/testing/src/public_api.ts"],
-      "@rxap/socket-io": ["libs/socket-io/src/index.ts"]
+      "@rxap/xml-parser/testing": [
+        "libs/xml-parser/testing/src/public_api.ts"
+      ],
+      "@rxap/socket-io": [
+        "libs/socket-io/src/index.ts"
+      ],
+      "@rxap/keycloak": [
+        "libs/keycloak/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp", "*.sandbox.ts"]

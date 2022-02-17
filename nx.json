@@ -145,12 +145,19 @@
       "tags": []
     },
     "window-system": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "xml-parser": {
-      "tags": ["rxap"]
+      "tags": [
+        "rxap"
+      ]
     },
     "socket-io": {
+      "tags": []
+    },
+    "keycloak": {
       "tags": []
     }
   }

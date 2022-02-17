@@ -1,0 +1,34 @@
+{
+  "name": "@rxap/keycloak",
+  "version": "12.0.0",
+  "peerDependencies": {
+    "@angular/core": "^12.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0"
+  },
+  "schematics": "./collection.json",
+  "ng-update": {
+    "migrations": "./migration.json",
+    "packageGroup": [
+      "@rxap/keycloak"
+    ]
+  },
+  "ng-add": {
+    "save": "dependencies"
+  },
+  "private": false,
+  "author": "Merzough Münker",
+  "homepage": "https://gitlab.com/rxap/packages/-/blob/master/libs/keycloak",
+  "repository": "git@gitlab.com:rxap/packages.git",
+  "keywords": [],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "publishConfig": {
+    "directory": "../../dist/libs/keycloak",
+    "access": "public"
+  }
+}
