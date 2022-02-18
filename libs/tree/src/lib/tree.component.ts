@@ -37,7 +37,8 @@ import {
   Node,
   NodeGetIconFunction,
   NodeHasDetailsFunction,
-  NodeToDisplayFunction
+  NodeToDisplayFunction,
+  ToggleSubject
 } from '@rxap/utilities/rxjs';
 
 @Component({
