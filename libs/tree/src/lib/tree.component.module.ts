@@ -12,6 +12,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { ContenteditableDirectiveModule } from '@rxap/contenteditable';
 import { IconDirectiveModule } from '@rxap/material-directives/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     PortalModule,
     ContenteditableDirectiveModule,
     IconDirectiveModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressBarModule
   ],
   declarations:    [ TreeComponent, TreeContentDirective ],
   exports:         [ TreeComponent, TreeContentDirective ],
