@@ -16,149 +16,45 @@
           "e2e",
           "build-storybook"
         ],
-        "strictlyOrderedTargets": ["build", "pack"]
+        "parallel": 1
       }
     }
   },
-  "projects": {
-    "across-tabs": {
-      "tags": []
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ],
+    "pack": [
+      {
+        "target": "pack",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
     },
-    "authentication": {
-      "tags": ["rxap"]
+    "packageManager": "yarn",
+    "defaultCollection": "@rxap/schematics"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
     },
-    "authorization": {
-      "tags": []
+    "@nrwl/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
     },
-    "components": {
-      "tags": ["rxap"]
-    },
-    "config": {
-      "tags": ["rxap"]
-    },
-    "contenteditable": {
-      "tags": []
-    },
-    "data-grid": {
-      "tags": []
-    },
-    "data-source": {
-      "tags": ["rxap"]
-    },
-    "definition": {
-      "tags": []
-    },
-    "dialog": {
-      "tags": []
-    },
-    "directives": {
-      "tags": ["rxap"]
-    },
-    "environment": {
-      "tags": []
-    },
-    "fake": {
-      "tags": []
-    },
-    "firebase": {
-      "tags": ["rxap"]
-    },
-    "form-system": {
-      "tags": []
-    },
-    "form-window-system": {
-      "tags": []
-    },
-    "forms": {
-      "tags": []
-    },
-    "handlebars": {
-      "tags": []
-    },
-    "icon": {
-      "tags": []
-    },
-    "json-schema-to-typescript": {
-      "tags": []
-    },
-    "layout": {
-      "tags": ["rxap"]
-    },
-    "life-cycle": {
-      "tags": []
-    },
-    "material-directives": {
-      "tags": []
-    },
-    "material-form-system": {
-      "tags": []
-    },
-    "material-popover-edit": {
-      "tags": []
-    },
-    "material-table-system": {
-      "tags": []
-    },
-    "material-table-window-system": {
-      "tags": []
-    },
-    "mixin": {
-      "tags": ["rxap"]
-    },
-    "oauth": {
-      "tags": []
-    },
-    "open-api": {
-      "tags": []
-    },
-    "pipes": {
-      "tags": ["rxap"]
-    },
-    "recorder": {
-      "tags": []
-    },
-    "remote-method": {
-      "tags": ["rxap"]
-    },
-    "service-worker": {
-      "tags": []
-    },
-    "services": {
-      "tags": ["rxap"]
-    },
-    "slugify": {
-      "tags": []
-    },
-    "table-system": {
-      "tags": []
-    },
-    "tree": {
-      "tags": []
-    },
-    "upload": {
-      "tags": []
-    },
-    "utilities": {
-      "tags": ["rxap"]
-    },
-    "validator": {
-      "tags": []
-    },
-    "window-system": {
-      "tags": [
-        "rxap"
-      ]
-    },
-    "xml-parser": {
-      "tags": [
-        "rxap"
-      ]
-    },
-    "socket-io": {
-      "tags": []
-    },
-    "keycloak": {
-      "tags": []
+    "@nrwl/angular:component": {
+      "style": "scss"
     }
   }
 }

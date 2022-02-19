@@ -1,8 +1,8 @@
 // TODO(jelbourn): Measure perf benefits for translate3d and will-change.
 // TODO(jelbourn): Figure out if anchor hover underline actually happens in any browser.
-@use '~@angular/material/button/button-base';
-@use '~@angular/material/core/style/layout-common';
-@use '~@angular/cdk/a11y';
+@use '@angular/material/button/button-base';
+@use '@angular/material/core/style/layout-common';
+@use '@angular/cdk/a11y';
 
 .mat-button, .mat-icon-button {
   .mat-button-focus-overlay {

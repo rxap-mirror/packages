@@ -16,8 +16,8 @@ import {
 } from '@rxap/components';
 
 @NgModule({
-  declarations:    [ HttpErrorMessageComponent ],
-  imports:         [
+  declarations: [ HttpErrorMessageComponent ],
+  imports:      [
     MatDialogModule,
     MatButtonModule,
     DataGridReadonlyComponentModule,
@@ -25,8 +25,7 @@ import {
     JsonViewerModule,
     CopyToClipboardModule
   ],
-  entryComponents: [ HttpErrorMessageComponent ],
-  exports:         [ HttpErrorMessageComponent, MatDialogModule ]
+  exports:      [ HttpErrorMessageComponent, MatDialogModule ]
 })
 export class HttpErrorMessageModule {
   public static forRoot(): ModuleWithProviders<HttpErrorMessageModule> {

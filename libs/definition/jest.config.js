@@ -4,21 +4,17 @@ module.exports = {
   globals: {
     'ts-jest': {
       stringifyContentPathRegex: '\\.(html|svg)$',
-      astTransformers: {
-        before: [
-          'jest-preset-angular/build/InlineFilesTransformer',
-          'jest-preset-angular/build/StripStylesTransformer',
-        ],
-      },
+
       tsconfig: '<rootDir>/tsconfig.spec.json',
     },
   },
-  coverageDirectory: '../../coverage/libs/definition',
+  coverageDirectory: "../../coverage/libs/definition",
 
-  displayName: 'definition',
+  displayName: "definition",
   snapshotSerializers: [
-    'jest-preset-angular/build/serializers/no-ng-attributes',
-    'jest-preset-angular/build/serializers/ng-snapshot',
-    'jest-preset-angular/build/serializers/html-comment',
+    "jest-preset-angular/build/serializers/no-ng-attributes",
+    "jest-preset-angular/build/serializers/ng-snapshot",
+    "jest-preset-angular/build/serializers/html-comment"
   ],
+  transform: { "^.+\\.(ts|js|html)$": "jest-preset-angular" }
 };

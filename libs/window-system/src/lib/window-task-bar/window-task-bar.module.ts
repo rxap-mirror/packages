@@ -12,8 +12,8 @@ import { StopPropagationDirectiveModule } from '@rxap/directives';
 import { IconDirectiveModule } from '@rxap/material-directives/icon';
 
 @NgModule({
-  declarations:    [ WindowTaskBarComponent, WindowTaskComponent, WindowTaskBarContainerComponent ],
-  imports: [
+  declarations: [ WindowTaskBarComponent, WindowTaskComponent, WindowTaskBarContainerComponent ],
+  imports:      [
     CommonModule,
     FlexLayoutModule,
     MatIconModule,
@@ -23,7 +23,6 @@ import { IconDirectiveModule } from '@rxap/material-directives/icon';
     StopPropagationDirectiveModule,
     IconDirectiveModule
   ],
-  entryComponents: [ WindowTaskBarComponent ],
-  exports:         [ WindowTaskBarComponent, WindowTaskBarContainerComponent ]
+  exports:      [ WindowTaskBarComponent, WindowTaskBarContainerComponent ]
 })
 export class WindowTaskBarModule {}

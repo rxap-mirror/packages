@@ -27,7 +27,9 @@
   "exclude": [
     "schematics/*/files/**/*",
     "schematics/**/*.spec.ts",
+    "schematics/**/*.test.ts",
     "**/*.spec.ts",
+    "**/*.test.ts",
     "**/files/**"
   ]
 }
