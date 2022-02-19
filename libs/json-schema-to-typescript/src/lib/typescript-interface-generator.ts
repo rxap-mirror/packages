@@ -487,7 +487,7 @@ export class TypescriptInterfaceGenerator {
 
           for (const type of complexTypeList) {
             typeList.push(
-              this.propertyTypeWriteFunction(currentFile, { ...schema, type })
+              this.propertyTypeWriteFunction(currentFile, { ...schema, type: type as any })
             );
           }
 
