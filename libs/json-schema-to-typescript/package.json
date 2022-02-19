@@ -1,6 +1,6 @@
 {
   "name": "@rxap/json-schema-to-typescript",
-  "version": "12.0.9",
+  "version": "13.0.0-next.0",
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
@@ -33,11 +33,12 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@apidevtools/json-schema-ref-parser": "^9.0.7",
-    "@rxap/schematics-utilities": "^12.6.0",
-    "tslib": "^2.2.0"
+    "@apidevtools/json-schema-ref-parser": "^9.0.9",
+    "@rxap/schematics-utilities": "^13.0.0-next.0",
+    "tslib": "^2.3.1"
   },
   "peerDependencies": {
-    "ts-morph": "^10.1.0"
+    "@angular-devkit/schematics": "^13.2.4",
+    "ts-morph": "^13.0.3"
   }
 }
