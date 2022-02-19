@@ -11,7 +11,6 @@ import {
   Inject,
   InjectionToken
 } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { coerceArray } from '@rxap/utilities';
 import {
@@ -19,6 +18,7 @@ import {
   tap
 } from 'rxjs/operators';
 import { isDefined } from '@rxap/utilities/rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 export const IDENTITY_PLATFORM_HTTP_INTERCEPTOR_URL_PATTERN = new InjectionToken<RegExp>('identity-platform-http-interceptor-url-pattern');
 

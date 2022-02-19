@@ -3,57 +3,56 @@ import {
   Optional,
   NgZone
 } from '@angular/core';
-import {
-  INSTRUMENTATION_ENABLED,
-  DATA_COLLECTION_ENABLED
-} from '@angular/fire/performance';
 import { ConfigService } from '@rxap/config';
 import { FirebaseConfig } from './firebase.config';
-import {
-  FIREBASE_OPTIONS,
-  FIREBASE_APP_NAME,
-  FirebaseApp,
-  ɵfirebaseAppFactory
-} from '@angular/fire';
-import {
-  ENABLE_PERSISTENCE,
-  PERSISTENCE_SETTINGS,
-  SETTINGS as FIRESTORE_SETTINGS,
-  USE_EMULATOR as USE_FIRESTORE_EMULATOR
-} from '@angular/fire/firestore';
-import {
-  REGION,
-  ORIGIN,
-  NEW_ORIGIN_BEHAVIOR,
-  USE_EMULATOR as USE_FUNCTIONS_EMULATOR
-} from '@angular/fire/functions';
-import {
-  VAPID_KEY,
-  SERVICE_WORKER
-} from '@angular/fire/messaging';
-import {
-  USE_EMULATOR as USE_AUTH_EMULATOR,
-  TENANT_ID,
-  LANGUAGE_CODE,
-  USE_DEVICE_LANGUAGE,
-  PERSISTENCE,
-  SETTINGS as AUTH_SETTINGS
-} from '@angular/fire/auth';
-import {
-  COLLECTION_ENABLED,
-  APP_NAME
-} from '@angular/fire/analytics';
 import {
   APP_CHECK_ENABLED,
   APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED,
   APP_CHECK_SITE_KEY,
   AppCheckService
 } from './app-check';
+import { FirebaseApp } from '@angular/fire/app';
+import {
+  USE_DEVICE_LANGUAGE,
+  PERSISTENCE,
+  LANGUAGE_CODE,
+  TENANT_ID,
+  USE_EMULATOR as USE_AUTH_EMULATOR,
+  SETTINGS as AUTH_SETTINGS
+} from '@angular/fire/compat/auth';
+import {
+  ɵfirebaseAppFactory,
+  FIREBASE_APP_NAME,
+  FIREBASE_OPTIONS
+} from '@angular/fire/compat';
+import {
+  DATA_COLLECTION_ENABLED,
+  INSTRUMENTATION_ENABLED
+} from '@angular/fire/compat/performance';
 import {
   BUCKET,
-  MAX_OPERATION_RETRY_TIME,
-  MAX_UPLOAD_RETRY_TIME
-} from '@angular/fire/storage';
+  MAX_UPLOAD_RETRY_TIME,
+  MAX_OPERATION_RETRY_TIME
+} from '@angular/fire/compat/storage';
+import {
+  APP_NAME,
+  COLLECTION_ENABLED
+} from '@angular/fire/compat/analytics';
+import {
+  SERVICE_WORKER,
+  VAPID_KEY
+} from '@angular/fire/compat/messaging';
+import {
+  PERSISTENCE_SETTINGS,
+  ENABLE_PERSISTENCE,
+  SETTINGS as FIRESTORE_SETTINGS,
+  USE_EMULATOR as USE_FIRESTORE_EMULATOR
+} from '@angular/fire/compat/firestore';
+import {
+  ORIGIN,
+  REGION,
+  USE_EMULATOR as USE_FUNCTIONS_EMULATOR
+} from '@angular/fire/compat/functions';
 
 export function FirebaseOptionsTokenFactory(configService: ConfigService<FirebaseConfig>) {
   return configService.get('firebase.options');
@@ -213,11 +212,6 @@ export const FIREBASE_FIRESTORE_PROVIDERS: Provider[] = [
 ];
 
 export const FIREBASE_FUNCTIONS_PROVIDERS: Provider[] = [
-  {
-    provide:    NEW_ORIGIN_BEHAVIOR,
-    useFactory: FunctionsNewOriginBehaviorFactory,
-    deps:       [ ConfigService ]
-  },
   {
     provide:    REGION,
     useFactory: FunctionsRegionFactory,

@@ -7,20 +7,27 @@ import {
   NgZone,
   Optional
 } from '@angular/core';
-import {
-  FIREBASE_APP_NAME,
-  FIREBASE_OPTIONS,
-  FirebaseAppConfig,
-  FirebaseOptions,
-  ɵfirebaseAppFactory
-} from '@angular/fire';
 import { ConfigService } from '@rxap/config';
-import firebase from 'firebase/app';
 import {
   Observable,
   EMPTY
 } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
+import type {
+  AppCheckTokenResult,
+  AppCheck
+} from '@firebase/app-check';
+import {
+  FIREBASE_OPTIONS,
+  FIREBASE_APP_NAME,
+  ɵfirebaseAppFactory
+} from '@angular/fire/compat';
+import { FirebaseOptions } from 'firebase/app';
+import {
+  onTokenChanged,
+  setTokenAutoRefreshEnabled
+} from '@angular/fire/app-check';
+import { getToken } from '@angular/fire/app-check';
 
 export const APP_CHECK_ENABLED                       = new InjectionToken('rxap/firebase/app-check-enabled');
 export const APP_CHECK_SITE_KEY                      = new InjectionToken('rxap/firebase/app-check-site-key');
@@ -29,15 +36,15 @@ export const APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED = new InjectionToken('rxap/
 @Injectable()
 export class AppCheckService {
 
-  public readonly onTokenChanged$: Observable<firebase.appCheck.AppCheckTokenResult> = EMPTY;
-  private readonly _appCheck: firebase.appCheck.AppCheck | null = null;
+  public readonly onTokenChanged$: Observable<AppCheckTokenResult> = EMPTY;
+  private readonly _appCheck: AppCheck | null                      = null;
 
   constructor(
     @Inject(FIREBASE_OPTIONS)
       options: FirebaseOptions,
     @Optional()
     @Inject(FIREBASE_APP_NAME)
-      nameOrConfig: string | FirebaseAppConfig | null | undefined,
+      nameOrConfig: string,
     @Inject(NgZone)
       zone: NgZone,
     private readonly config: ConfigService,
@@ -59,8 +66,9 @@ export class AppCheckService {
           siteKey,
           isTokenAutoRefreshEnabled ?? undefined
         );
-        this.onTokenChanged$ = (new Observable<firebase.appCheck.AppCheckTokenResult>(subscriber => {
-          this._appCheck?.onTokenChanged(
+        this.onTokenChanged$ = (new Observable<AppCheckTokenResult>(subscriber => {
+          onTokenChanged(
+            appCheck,
             tokenResult => subscriber.next(tokenResult),
             error => subscriber.error(error),
             () => subscriber.complete()
@@ -81,11 +89,16 @@ export class AppCheckService {
   }
 
   public getToken(forceRefresh?: boolean): Promise<string> {
-    return this._appCheck?.getToken(forceRefresh).then(result => result.token) ?? Promise.reject(new Error('firebase app check is not initialized'));
+    if (this._appCheck) {
+      return getToken(this._appCheck, forceRefresh).then(result => result.token) ?? Promise.reject(new Error('firebase app check is not initialized'));
+    }
+    return Promise.reject(new Error('firebase app check is not initialized'));
   }
 
   public setTokenAutoRefreshEnabled(isTokenAutoRefreshEnabled: boolean): void {
-    this._appCheck?.setTokenAutoRefreshEnabled(isTokenAutoRefreshEnabled);
+    if (this._appCheck) {
+      setTokenAutoRefreshEnabled(this._appCheck, isTokenAutoRefreshEnabled);
+    }
   }
 
 }
