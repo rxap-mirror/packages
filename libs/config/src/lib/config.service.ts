@@ -50,7 +50,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       const response = await fetch(url);
       SetObjectValue(this.Config, propertyPath, await response.json());
 
-    } catch (error) {
+    } catch (error: any) {
       if (required) {
         throw new Error(`Could not side load config '${url}': ${error.message}`);
       } else {
@@ -78,7 +78,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
         const response = await fetch(url);
         config         = deepMerge(config, await response.json());
 
-      } catch (error) {
+      } catch (error: any) {
         console.error(url, error.message);
       }
     }
@@ -92,7 +92,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       if (localConfig) {
         try {
           config = deepMerge(config, JSON.parse(localConfig));
-        } catch (e) {
+        } catch (e: any) {
           console.error('local config could not be parsed');
         }
       }
@@ -125,7 +125,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
           const value   = split[ 1 ];
           SetObjectValue(configFromParams, keyPath, value);
         }
-      } catch (e) {
+      } catch (e: any) {
         console.warn(`Parsing of url config param failed for '${configParam}': ${e.message}`);
       }
 

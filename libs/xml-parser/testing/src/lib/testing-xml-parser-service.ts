@@ -18,7 +18,7 @@ export class TestingXmlParserService extends XmlParserService {
     let xmlDoc: Document;
     try {
       xmlDoc = new DOMParser().parseFromString(xml, 'text/xml');
-    } catch (e) {
+    } catch (e: any) {
       throw new Error('Could not parse xml string');
     }
 

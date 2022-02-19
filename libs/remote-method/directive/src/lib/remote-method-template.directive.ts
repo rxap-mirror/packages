@@ -142,7 +142,7 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
       this.executed(result);
       this.renderTemplate(result);
       this.successful(result);
-    } catch (error) {
+    } catch (error: any) {
       if (isDevMode()) {
         console.error(`Remote method directive execution failed:`, error.message);
       }
@@ -195,7 +195,7 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
 
     try {
       this.viewContainerRef.createEmbeddedView(this.template, { $implicit: result });
-    } catch (error) {
+    } catch (error: any) {
       if (this.errorTemplate) {
         this.viewContainerRef.createEmbeddedView(this.errorTemplate, { $implicit: error, message: error.message });
       }

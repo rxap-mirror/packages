@@ -125,7 +125,7 @@ export class TableRowActionDirective<Data extends Record<string, any>> {
         })
       );
       this.setStatus(TableRowActionStatus.SUCCESS);
-    } catch (e) {
+    } catch (e: any) {
       console.error(`Failed to execute row action: ${e.message}`);
       this.setStatus(TableRowActionStatus.ERROR);
     }

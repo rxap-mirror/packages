@@ -55,7 +55,7 @@ export abstract class KeycloakAuthGuard implements CanActivate {
 
         const result = await this.isAccessAllowed(route, state);
         resolve(result);
-      } catch (error) {
+      } catch (error: any) {
         reject('An error happened during access validation. Details:' + error);
       }
     });

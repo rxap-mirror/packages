@@ -196,8 +196,8 @@ export class OAuthService<Profile = any> {
       try {
         await this.signInWithRefreshToken(this.refreshToken);
         return (this._isAuthenticated = true);
-      } catch (e) {
-        if (![401, 403, 400].includes(e.status)) {
+      } catch (e: any) {
+        if (![ 401, 403, 400 ].includes(e.status)) {
           console.error('Could not sign in with refresh token', e.message);
           throw e;
         }
@@ -245,10 +245,10 @@ export class OAuthService<Profile = any> {
     if (this.profileEndpoint) {
       try {
         profile = await this.getOAuthProfileMethod.call({
-          accessToken: this.accessToken,
-          profileEndpoint: this.profileEndpoint,
+          accessToken:     this.accessToken,
+          profileEndpoint: this.profileEndpoint
         });
-      } catch (e) {
+      } catch (e: any) {
         console.error('Could not request the user profile', e.message);
       }
     } else {

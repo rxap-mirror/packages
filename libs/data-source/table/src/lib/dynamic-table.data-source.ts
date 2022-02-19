@@ -140,7 +140,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
     let data: Data[] = [];
     try {
       data = await this.remoteMethod.call(tableEvent);
-    } catch (e) {
+    } catch (e: any) {
       console.error(`Failed to load page: ${e.message}`, e.stack);
     }
     return data;

@@ -51,7 +51,7 @@ export class PersistentPaginatorDirective implements OnInit, OnDestroy {
     if (configStorage) {
       try {
         return JSON.parse(configStorage);
-      } catch (e) {
+      } catch (e: any) {
         console.warn(`Could not parse mat paginator persistent config: ${e.message}`);
       }
     }

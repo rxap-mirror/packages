@@ -457,7 +457,7 @@ export class TreeDataSource<
       if (localStorage.getItem(key)) {
         try {
           this._preSelected = JSON.parse(localStorage.getItem(key)!);
-        } catch (e) {
+        } catch (e: any) {
           console.debug('parse expanded tree data source nodes failed');
         }
       }
@@ -494,7 +494,7 @@ export class TreeDataSource<
       if (localStorage.getItem(key)) {
         try {
           expanded = JSON.parse(localStorage.getItem(key)!);
-        } catch (e) {
+        } catch (e: any) {
           console.debug('parse expanded tree data source nodes failed');
         }
       }

@@ -297,7 +297,7 @@ export class KeycloakService {
       }
       await this.updateToken(20);
       return true;
-    } catch (error) {
+    } catch (error: any) {
       return false;
     }
   }
