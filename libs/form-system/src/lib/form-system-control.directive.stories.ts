@@ -81,13 +81,12 @@ class SelectControlComponent extends ControlValueAccessor implements ControlWith
 }
 
 @NgModule({
-  declarations:    [ SelectControlComponent ],
-  exports:         [ SelectControlComponent ],
-  imports:         [
+  declarations: [ SelectControlComponent ],
+  exports:      [ SelectControlComponent ],
+  imports:      [
     DataSourceCollectionDirectiveModule,
     FormsModule
-  ],
-  entryComponents: [ SelectControlComponent ]
+  ]
 })
 class SelectControlComponentModule {}
 

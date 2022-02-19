@@ -1,29 +1,5 @@
 {
   "version": 1,
-  "cli": {
-    "warnings": {
-      "typescriptMismatch": false,
-      "versionMismatch": false
-    },
-    "packageManager": "yarn",
-    "defaultCollection": "@rxap/schematics"
-  },
-  "schematics": {
-    "@nrwl/angular:application": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "scss"
-    }
-  },
   "projects": {
     "across-tabs": {
       "projectType": "library",
@@ -42,19 +18,6 @@
             "production": {
               "tsConfig": "libs/across-tabs/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/across-tabs/tsconfig.lib.json",
-              "libs/across-tabs/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/across-tabs/**/*"
-            ]
           }
         },
         "test": {
@@ -134,7 +97,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "authentication": {
       "projectType": "library",
@@ -153,19 +117,6 @@
             "production": {
               "tsConfig": "libs/authentication/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/authentication/tsconfig.lib.json",
-              "libs/authentication/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/authentication/**/*"
-            ]
           }
         },
         "test": {
@@ -188,7 +139,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "authentication:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -206,7 +158,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "authentication:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -296,7 +249,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "authorization": {
       "projectType": "library",
@@ -323,7 +279,10 @@
               "libs/authorization/src/**/*.ts",
               "libs/authorization/src/**/*.html"
             ]
-          }
+          },
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -394,7 +353,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "components": {
       "projectType": "library",
@@ -413,19 +373,6 @@
             "production": {
               "tsConfig": "libs/components/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/components/tsconfig.lib.json",
-              "libs/components/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/components/**/*"
-            ]
           }
         },
         "test": {
@@ -468,7 +415,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "components:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -486,7 +434,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "components:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -555,7 +504,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "config": {
       "projectType": "library",
@@ -574,19 +526,6 @@
             "production": {
               "tsConfig": "libs/config/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/config/tsconfig.lib.json",
-              "libs/config/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/config/**/*"
-            ]
           }
         },
         "test": {
@@ -667,7 +606,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "contenteditable": {
       "projectType": "library",
@@ -686,19 +628,6 @@
             "production": {
               "tsConfig": "libs/contenteditable/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/contenteditable/tsconfig.lib.json",
-              "libs/contenteditable/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/contenteditable/**/*"
-            ]
           }
         },
         "test": {
@@ -775,7 +704,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "data-grid": {
       "projectType": "library",
@@ -794,19 +724,6 @@
             "production": {
               "tsConfig": "libs/data-grid/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/data-grid/tsconfig.lib.json",
-              "libs/data-grid/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data-grid/**/*"
-            ]
           }
         },
         "test": {
@@ -894,7 +811,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "data-source": {
       "projectType": "library",
@@ -913,19 +831,6 @@
             "production": {
               "tsConfig": "libs/data-source/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/data-source/tsconfig.lib.json",
-              "libs/data-source/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data-source/**/*"
-            ]
           }
         },
         "test": {
@@ -948,7 +853,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "data-source:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -966,7 +872,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "data-source:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -1045,7 +952,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "definition": {
       "projectType": "library",
@@ -1064,19 +974,6 @@
             "production": {
               "tsConfig": "libs/definition/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/definition/tsconfig.lib.json",
-              "libs/definition/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/definition/**/*"
-            ]
           }
         },
         "test": {
@@ -1165,7 +1062,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "dialog": {
       "projectType": "library",
@@ -1184,19 +1082,6 @@
             "production": {
               "tsConfig": "libs/dialog/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/dialog/tsconfig.lib.json",
-              "libs/dialog/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/dialog/**/*"
-            ]
           }
         },
         "test": {
@@ -1283,7 +1168,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "directives": {
       "projectType": "library",
@@ -1302,19 +1188,6 @@
             "production": {
               "tsConfig": "libs/directives/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/directives/tsconfig.lib.json",
-              "libs/directives/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/directives/**/*"
-            ]
           }
         },
         "test": {
@@ -1337,7 +1210,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "directives:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -1355,7 +1229,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "directives:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -1453,7 +1328,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "environment": {
       "projectType": "library",
@@ -1472,19 +1350,6 @@
             "production": {
               "tsConfig": "libs/environment/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/environment/tsconfig.lib.json",
-              "libs/environment/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/environment/**/*"
-            ]
           }
         },
         "test": {
@@ -1545,7 +1410,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "environment:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -1563,7 +1429,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "environment:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -1610,7 +1477,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "fake": {
       "projectType": "library",
@@ -1637,7 +1505,10 @@
               "libs/fake/src/**/*.ts",
               "libs/fake/src/**/*.html"
             ]
-          }
+          },
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -1708,7 +1579,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "firebase": {
       "projectType": "library",
@@ -1727,19 +1599,6 @@
             "production": {
               "tsConfig": "libs/firebase/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/firebase/tsconfig.lib.json",
-              "libs/firebase/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/firebase/**/*"
-            ]
           }
         },
         "test": {
@@ -1828,7 +1687,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "form-system": {
       "projectType": "library",
@@ -1847,19 +1709,6 @@
             "production": {
               "tsConfig": "libs/form-system/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/form-system/tsconfig.lib.json",
-              "libs/form-system/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/form-system/**/*"
-            ]
           }
         },
         "test": {
@@ -1901,7 +1750,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "form-system:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -1919,7 +1769,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "form-system:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -1986,7 +1837,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "form-window-system": {
       "projectType": "library",
@@ -2005,19 +1857,6 @@
             "production": {
               "tsConfig": "libs/form-window-system/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/form-window-system/tsconfig.lib.json",
-              "libs/form-window-system/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/form-window-system/**/*"
-            ]
           }
         },
         "test": {
@@ -2105,7 +1944,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "forms": {
       "projectType": "library",
@@ -2124,19 +1964,6 @@
             "production": {
               "tsConfig": "libs/forms/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/forms/tsconfig.lib.json",
-              "libs/forms/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/forms/**/*"
-            ]
           }
         },
         "test": {
@@ -2159,7 +1986,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "forms:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -2177,7 +2005,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "forms:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -2264,7 +2093,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "handlebars": {
       "projectType": "library",
@@ -2283,19 +2113,6 @@
             "production": {
               "tsConfig": "libs/handlebars/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/handlebars/tsconfig.lib.json",
-              "libs/handlebars/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/handlebars/**/*"
-            ]
           }
         },
         "test": {
@@ -2372,7 +2189,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "icon": {
       "projectType": "library",
@@ -2391,19 +2209,6 @@
             "production": {
               "tsConfig": "libs/icon/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/icon/tsconfig.lib.json",
-              "libs/icon/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/icon/**/*"
-            ]
           }
         },
         "test": {
@@ -2492,7 +2297,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "json-schema-to-typescript": {
       "projectType": "library",
@@ -2511,19 +2317,6 @@
             "production": {
               "tsConfig": "libs/json-schema-to-typescript/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/json-schema-to-typescript/tsconfig.lib.json",
-              "libs/json-schema-to-typescript/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/json-schema-to-typescript/**/*"
-            ]
           }
         },
         "test": {
@@ -2592,7 +2385,106 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
+    },
+    "keycloak": {
+      "projectType": "library",
+      "root": "libs/keycloak",
+      "sourceRoot": "libs/keycloak/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "project": "libs/keycloak/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/keycloak/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/keycloak/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/keycloak"
+          ],
+          "options": {
+            "jestConfig": "libs/keycloak/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/keycloak/src/**/*.ts",
+              "libs/keycloak/src/**/*.html"
+            ]
+          },
+          "outputs": [
+            "{options.outputFile}"
+          ]
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "keycloak:build",
+              "keycloak:build-schematics",
+              "keycloak:build-migrations"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "targets": [
+                "keycloak:build:production"
+              ]
+            },
+            "development": {
+              "targets": [
+                "keycloak:build:development"
+              ]
+            }
+          }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/keycloak",
+            "tsConfig": "libs/keycloak/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/keycloak",
+            "tsConfig": "libs/keycloak/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library:update-package-group"
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
+        }
+      },
+      "tags": []
     },
     "layout": {
       "projectType": "library",
@@ -2611,19 +2503,6 @@
             "production": {
               "tsConfig": "libs/layout/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/layout/tsconfig.lib.json",
-              "libs/layout/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/layout/**/*"
-            ]
           }
         },
         "test": {
@@ -2646,7 +2525,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "layout:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -2664,7 +2544,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "layout:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -2754,7 +2635,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "life-cycle": {
       "projectType": "library",
@@ -2773,19 +2657,6 @@
             "production": {
               "tsConfig": "libs/life-cycle/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/life-cycle/tsconfig.lib.json",
-              "libs/life-cycle/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/life-cycle/**/*"
-            ]
           }
         },
         "test": {
@@ -2862,7 +2733,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "material-directives": {
       "projectType": "library",
@@ -2880,19 +2752,6 @@
             "production": {
               "tsConfig": "libs/material/directives/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/material/directives/tsconfig.lib.json",
-              "libs/material/directives/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/material/directives/**/*"
-            ]
           }
         },
         "test": {
@@ -2975,7 +2834,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "material-form-system": {
       "projectType": "library",
@@ -2994,19 +2854,6 @@
             "production": {
               "tsConfig": "libs/material/form-system/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/material/form-system/tsconfig.lib.json",
-              "libs/material/form-system/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/material/form-system/**/*"
-            ]
           }
         },
         "test": {
@@ -3094,7 +2941,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "material-popover-edit": {
       "projectType": "library",
@@ -3134,7 +2982,10 @@
               "libs/material/popover-edit/src/**/*.ts",
               "libs/material/popover-edit/src/**/*.html"
             ]
-          }
+          },
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "pack": {
           "builder": "@rxap/plugin-pack:build",
@@ -3187,7 +3038,8 @@
             "ignore": []
           }
         }
-      }
+      },
+      "tags": []
     },
     "material-table-system": {
       "projectType": "library",
@@ -3206,19 +3058,6 @@
             "production": {
               "tsConfig": "libs/material/table-system/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/material/table-system/tsconfig.lib.json",
-              "libs/material/table-system/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/material/table-system/**/*"
-            ]
           }
         },
         "test": {
@@ -3277,7 +3116,8 @@
             "port": 4400,
             "config": {
               "configFolder": "libs/material/table-system/.storybook"
-            }
+            },
+            "projectBuildConfig": "material-table-system:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -3292,7 +3132,8 @@
             "outputPath": "dist/storybook/material-table-system",
             "config": {
               "configFolder": "libs/material/table-system/.storybook"
-            }
+            },
+            "projectBuildConfig": "material-table-system:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -3339,7 +3180,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "material-table-window-system": {
       "projectType": "library",
@@ -3357,19 +3199,6 @@
             "production": {
               "tsConfig": "libs/material/table-window-system/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/material/table-window-system/tsconfig.lib.json",
-              "libs/material/table-window-system/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/material/table-window-system/**/*"
-            ]
           }
         },
         "test": {
@@ -3441,7 +3270,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "mixin": {
       "projectType": "library",
@@ -3460,19 +3290,6 @@
             "production": {
               "tsConfig": "libs/mixin/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/mixin/tsconfig.lib.json",
-              "libs/mixin/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/mixin/**/*"
-            ]
           }
         },
         "test": {
@@ -3541,7 +3358,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "oauth": {
       "projectType": "library",
@@ -3568,7 +3388,10 @@
               "libs/oauth/src/**/*.ts",
               "libs/oauth/src/**/*.html"
             ]
-          }
+          },
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -3650,7 +3473,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "open-api": {
       "projectType": "library",
@@ -3669,19 +3493,6 @@
             "production": {
               "tsConfig": "libs/open-api/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/open-api/tsconfig.lib.json",
-              "libs/open-api/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/open-api/**/*"
-            ]
           }
         },
         "test": {
@@ -3762,7 +3573,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "pipes": {
       "projectType": "library",
@@ -3781,19 +3593,6 @@
             "production": {
               "tsConfig": "libs/pipes/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/pipes/tsconfig.lib.json",
-              "libs/pipes/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/pipes/**/*"
-            ]
           }
         },
         "test": {
@@ -3816,7 +3615,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "pipes:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -3834,7 +3634,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "pipes:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -3913,7 +3714,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "recorder": {
       "projectType": "library",
@@ -3932,19 +3736,6 @@
             "production": {
               "tsConfig": "libs/recorder/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/recorder/tsconfig.lib.json",
-              "libs/recorder/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/recorder/**/*"
-            ]
           }
         },
         "test": {
@@ -4021,7 +3812,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "remote-method": {
       "projectType": "library",
@@ -4040,19 +3832,6 @@
             "production": {
               "tsConfig": "libs/remote-method/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/remote-method/tsconfig.lib.json",
-              "libs/remote-method/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/remote-method/**/*"
-            ]
           }
         },
         "test": {
@@ -4133,7 +3912,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "service-worker": {
       "projectType": "library",
@@ -4152,19 +3934,6 @@
             "production": {
               "tsConfig": "libs/service-worker/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/service-worker/tsconfig.lib.json",
-              "libs/service-worker/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/service-worker/**/*"
-            ]
           }
         },
         "test": {
@@ -4241,7 +4010,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "services": {
       "projectType": "library",
@@ -4260,19 +4030,6 @@
             "production": {
               "tsConfig": "libs/services/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/services/tsconfig.lib.json",
-              "libs/services/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/services/**/*"
-            ]
           }
         },
         "test": {
@@ -4353,7 +4110,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "slugify": {
       "projectType": "library",
@@ -4372,19 +4132,6 @@
             "production": {
               "tsConfig": "libs/slugify/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/slugify/tsconfig.lib.json",
-              "libs/slugify/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/slugify/**/*"
-            ]
           }
         },
         "test": {
@@ -4461,7 +4208,106 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
+    },
+    "socket-io": {
+      "projectType": "library",
+      "root": "libs/socket-io",
+      "sourceRoot": "libs/socket-io/src",
+      "prefix": "rxap",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "project": "libs/socket-io/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/socket-io/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/socket-io/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/socket-io"
+          ],
+          "options": {
+            "jestConfig": "libs/socket-io/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/socket-io/src/**/*.ts",
+              "libs/socket-io/src/**/*.html"
+            ]
+          },
+          "outputs": [
+            "{options.outputFile}"
+          ]
+        },
+        "pack": {
+          "builder": "@rxap/plugin-pack:build",
+          "options": {
+            "targets": [
+              "socket-io:build",
+              "socket-io:build-schematics",
+              "socket-io:build-migrations"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "targets": [
+                "socket-io:build:production"
+              ]
+            },
+            "development": {
+              "targets": [
+                "socket-io:build:development"
+              ]
+            }
+          }
+        },
+        "readme": {
+          "builder": "@rxap/plugin-readme-generator:library"
+        },
+        "build-schematics": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/socket-io",
+            "tsConfig": "libs/socket-io/tsconfig.schematics.json",
+            "assets": [],
+            "type": "schematics"
+          }
+        },
+        "build-migrations": {
+          "builder": "@rxap/plugin-library:build-schematics",
+          "options": {
+            "outputPath": "dist/libs/socket-io",
+            "tsConfig": "libs/socket-io/tsconfig.migrations.json",
+            "assets": [],
+            "type": "migrations"
+          }
+        },
+        "update-package-group": {
+          "builder": "@rxap/plugin-library:update-package-group"
+        },
+        "update-peer-dependencies": {
+          "builder": "@rxap/plugin-library:update-peer-dependencies",
+          "options": {
+            "ignore": []
+          }
+        }
+      },
+      "tags": []
     },
     "table-system": {
       "projectType": "library",
@@ -4482,19 +4328,6 @@
             }
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/table-system/tsconfig.lib.json",
-              "libs/table-system/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/table-system/**/*"
-            ]
-          }
-        },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
           "options": {
@@ -4505,7 +4338,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "table-system:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -4523,7 +4357,8 @@
             },
             "staticDir": [
               "./.storybook/public"
-            ]
+            ],
+            "projectBuildConfig": "table-system:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -4619,7 +4454,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "tree": {
       "projectType": "library",
@@ -4638,19 +4474,6 @@
             "production": {
               "tsConfig": "libs/tree/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/tree/tsconfig.lib.json",
-              "libs/tree/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/tree/**/*"
-            ]
           }
         },
         "test": {
@@ -4739,7 +4562,8 @@
             "port": 4400,
             "config": {
               "configFolder": "libs/tree/.storybook"
-            }
+            },
+            "projectBuildConfig": "tree:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -4757,7 +4581,8 @@
             "outputPath": "dist/storybook/tree",
             "config": {
               "configFolder": "libs/tree/.storybook"
-            }
+            },
+            "projectBuildConfig": "tree:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -4770,7 +4595,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "upload": {
       "projectType": "library",
@@ -4788,19 +4614,6 @@
             "production": {
               "tsConfig": "libs/upload/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/upload/tsconfig.lib.json",
-              "libs/upload/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/upload/**/*"
-            ]
           }
         },
         "test": {
@@ -4880,7 +4693,8 @@
             "port": 4400,
             "config": {
               "configFolder": "libs/upload/.storybook"
-            }
+            },
+            "projectBuildConfig": "upload:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -4898,7 +4712,8 @@
             "outputPath": "dist/storybook/upload",
             "config": {
               "configFolder": "libs/upload/.storybook"
-            }
+            },
+            "projectBuildConfig": "upload:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -4916,7 +4731,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "utilities": {
       "projectType": "library",
@@ -4935,19 +4751,6 @@
             "production": {
               "tsConfig": "libs/utilities/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/utilities/tsconfig.lib.json",
-              "libs/utilities/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/utilities/**/*"
-            ]
           }
         },
         "test": {
@@ -5028,7 +4831,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "validator": {
       "projectType": "library",
@@ -5068,7 +4874,10 @@
               "libs/validator/src/**/*.ts",
               "libs/validator/src/**/*.html"
             ]
-          }
+          },
+          "outputs": [
+            "{options.outputFile}"
+          ]
         },
         "pack": {
           "builder": "@rxap/plugin-pack:build",
@@ -5110,7 +4919,8 @@
             "ignore": []
           }
         }
-      }
+      },
+      "tags": []
     },
     "window-system": {
       "projectType": "library",
@@ -5129,19 +4939,6 @@
             "production": {
               "tsConfig": "libs/window-system/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/window-system/tsconfig.lib.json",
-              "libs/window-system/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/window-system/**/*"
-            ]
           }
         },
         "test": {
@@ -5223,7 +5020,8 @@
             "port": 4400,
             "config": {
               "configFolder": "libs/window-system/.storybook"
-            }
+            },
+            "projectBuildConfig": "window-system:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -5241,7 +5039,8 @@
             "outputPath": "dist/storybook/window-system",
             "config": {
               "configFolder": "libs/window-system/.storybook"
-            }
+            },
+            "projectBuildConfig": "window-system:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -5254,7 +5053,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     },
     "xml-parser": {
       "projectType": "library",
@@ -5273,19 +5075,6 @@
             "production": {
               "tsConfig": "libs/xml-parser/tsconfig.lib.prod.json"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/xml-parser/tsconfig.lib.json",
-              "libs/xml-parser/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/xml-parser/**/*"
-            ]
           }
         },
         "test": {
@@ -5354,195 +5143,10 @@
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
-      }
-    },
-    "socket-io": {
-      "projectType": "library",
-      "root": "libs/socket-io",
-      "sourceRoot": "libs/socket-io/src",
-      "prefix": "rxap",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "project": "libs/socket-io/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/socket-io/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/socket-io/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/socket-io"
-          ],
-          "options": {
-            "jestConfig": "libs/socket-io/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/socket-io/src/**/*.ts",
-              "libs/socket-io/src/**/*.html"
-            ]
-          }
-        },
-        "pack": {
-          "builder": "@rxap/plugin-pack:build",
-          "options": {
-            "targets": [
-              "socket-io:build",
-              "socket-io:build-schematics",
-              "socket-io:build-migrations"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "targets": [
-                "socket-io:build:production"
-              ]
-            },
-            "development": {
-              "targets": [
-                "socket-io:build:development"
-              ]
-            }
-          }
-        },
-        "readme": {
-          "builder": "@rxap/plugin-readme-generator:library"
-        },
-        "build-schematics": {
-          "builder": "@rxap/plugin-library:build-schematics",
-          "options": {
-            "outputPath": "dist/libs/socket-io",
-            "tsConfig": "libs/socket-io/tsconfig.schematics.json",
-            "assets": [],
-            "type": "schematics"
-          }
-        },
-        "build-migrations": {
-          "builder": "@rxap/plugin-library:build-schematics",
-          "options": {
-            "outputPath": "dist/libs/socket-io",
-            "tsConfig": "libs/socket-io/tsconfig.migrations.json",
-            "assets": [],
-            "type": "migrations"
-          }
-        },
-        "update-package-group": {
-          "builder": "@rxap/plugin-library:update-package-group"
-        },
-        "update-peer-dependencies": {
-          "builder": "@rxap/plugin-library:update-peer-dependencies",
-          "options": {
-            "ignore": []
-          }
-        }
-      }
-    },
-    "keycloak": {
-      "projectType": "library",
-      "root": "libs/keycloak",
-      "sourceRoot": "libs/keycloak/src",
-      "prefix": "rxap",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "project": "libs/keycloak/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/keycloak/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/keycloak/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/keycloak"
-          ],
-          "options": {
-            "jestConfig": "libs/keycloak/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/keycloak/src/**/*.ts",
-              "libs/keycloak/src/**/*.html"
-            ]
-          }
-        },
-        "pack": {
-          "builder": "@rxap/plugin-pack:build",
-          "options": {
-            "targets": [
-              "keycloak:build",
-              "keycloak:build-schematics",
-              "keycloak:build-migrations"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "targets": [
-                "keycloak:build:production"
-              ]
-            },
-            "development": {
-              "targets": [
-                "keycloak:build:development"
-              ]
-            }
-          }
-        },
-        "readme": {
-          "builder": "@rxap/plugin-readme-generator:library"
-        },
-        "build-schematics": {
-          "builder": "@rxap/plugin-library:build-schematics",
-          "options": {
-            "outputPath": "dist/libs/keycloak",
-            "tsConfig": "libs/keycloak/tsconfig.schematics.json",
-            "assets": [],
-            "type": "schematics"
-          }
-        },
-        "build-migrations": {
-          "builder": "@rxap/plugin-library:build-schematics",
-          "options": {
-            "outputPath": "dist/libs/keycloak",
-            "tsConfig": "libs/keycloak/tsconfig.migrations.json",
-            "assets": [],
-            "type": "migrations"
-          }
-        },
-        "update-package-group": {
-          "builder": "@rxap/plugin-library:update-package-group"
-        },
-        "update-peer-dependencies": {
-          "builder": "@rxap/plugin-library:update-peer-dependencies",
-          "options": {
-            "ignore": []
-          }
-        }
-      }
+      },
+      "tags": [
+        "rxap"
+      ]
     }
   }
 }

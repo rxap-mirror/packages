@@ -19,7 +19,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { IconDirectiveModule } from '@rxap/material-directives/icon';
 
 @NgModule({
-  imports: [
+  imports:      [
     MatToolbarModule,
     FlexLayoutModule,
     CommonModule,
@@ -32,18 +32,15 @@ import { IconDirectiveModule } from '@rxap/material-directives/icon';
     MatProgressBarModule,
     IconDirectiveModule
   ],
-  declarations:    [
+  declarations: [
     WindowContainerComponent,
     WindowToolBarComponent,
     WindowResizerComponent,
     DefaultWindowComponent,
     WindowContentComponent,
-    WindowActionBarComponent,
+    WindowActionBarComponent
   ],
-  entryComponents: [
-    DefaultWindowComponent
-  ],
-  exports:         [
+  exports:      [
     WindowContainerComponent,
     WindowToolBarComponent,
     WindowResizerComponent,

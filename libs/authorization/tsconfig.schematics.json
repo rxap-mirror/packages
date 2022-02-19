@@ -32,6 +32,7 @@
   "exclude": [
     "schematics/*/files/**/*",
     "**/*.spec.ts",
+    "**/*.test.ts",
     "**/files/**"
   ],
   "extends": "./tsconfig.json"

@@ -1,4 +1,4 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 
 @mixin rxap-navigation-item-theme($theme) {
   $foreground: map-get($theme, foreground);

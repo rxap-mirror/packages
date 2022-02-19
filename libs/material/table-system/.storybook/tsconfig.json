@@ -2,8 +2,13 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "emitDecoratorMetadata": true
-    
   },
-  "exclude": ["../**/*.spec.ts" ],
-  "include": ["../src/**/*", "*.js"]
+  "exclude": [
+    "../**/*.spec.ts",
+    "../**/*.test.ts"
+  ],
+  "include": [
+    "../src/**/*",
+    "*.js"
+  ]
 }

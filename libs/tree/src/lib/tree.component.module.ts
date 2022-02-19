@@ -15,7 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
-  imports: [
+  imports:      [
     CommonModule,
     MatTreeModule,
     MatButtonModule,
@@ -29,8 +29,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatCheckboxModule,
     MatProgressBarModule
   ],
-  declarations:    [ TreeComponent, TreeContentDirective ],
-  exports:         [ TreeComponent, TreeContentDirective ],
-  entryComponents: [ TreeComponent ]
+  declarations: [ TreeComponent, TreeContentDirective ],
+  exports:      [ TreeComponent, TreeContentDirective ]
 })
 export class TreeComponentModule {}
