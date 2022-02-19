@@ -1,6 +1,6 @@
 {
   "name": "@rxap/utilities",
-  "version": "12.2.2",
+  "version": "13.0.0-next.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/utilities",
@@ -16,7 +16,9 @@
   },
   "description": "A collection of utility functions, types and interfaces.",
   "peerDependencies": {
-    "@angular-devkit/schematics": "^12.2.9",
+    "@angular-devkit/schematics": "^13.2.4",
+    "@angular/core": "^13.2.3",
+    "@angular/platform-browser-dynamic": "^13.2.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -35,8 +37,8 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^12.7.0",
-    "ts-morph": "^10.1.0",
-    "tslib": "^2.2.0"
+    "@rxap/schematics-utilities": "^13.0.0-next.0",
+    "ts-morph": "^13.0.3",
+    "tslib": "^2.3.1"
   }
 }

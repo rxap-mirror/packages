@@ -1,6 +1,6 @@
 {
   "name": "@rxap/pipes",
-  "version": "12.0.6",
+  "version": "13.0.0-next.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/pipes",
@@ -16,10 +16,12 @@
   },
   "description": "A collection of utility angular pipes used in RxAP.",
   "peerDependencies": {
-    "@angular/common": "^12.0.1",
-    "@angular/core": "^12.0.1",
-    "@angular/platform-browser": "^12.0.1",
-    "@rxap/utilities": "^12.1.3",
+    "@angular-devkit/schematics": "^13.2.4",
+    "@angular/common": "^13.2.3",
+    "@angular/core": "^13.2.3",
+    "@angular/platform-browser": "^13.2.3",
+    "@angular/platform-browser-dynamic": "^13.2.3",
+    "@rxap/utilities": "^13.0.0-next.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -39,7 +41,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^12.1.0",
-    "tslib": "^2.2.0"
+    "@rxap/schematics-utilities": "^13.0.0-next.0",
+    "tslib": "^2.3.1"
   }
 }

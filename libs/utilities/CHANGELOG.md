@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@12.2.2...@rxap/utilities@13.0.0-next.0) (2022-02-19)
+
+
+### Bug Fixes
+
+* update types ([7c29363](https://gitlab.com/rxap/packages/commit/7c29363f2040acd8d2f106a68d2edcd308744344))
+
+
+### Build System
+
+* upgrade to nrwl/angular 13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+
+
+### BREAKING CHANGES
+
+* update the core nrwl/angular packages to 13.x.x
+
+Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
+
+
+
+
+
 ## [12.2.2](https://gitlab.com/rxap/packages/compare/@rxap/utilities@12.2.2-next.0...@rxap/utilities@12.2.2) (2021-11-25)
 
 **Note:** Version bump only for package @rxap/utilities

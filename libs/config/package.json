@@ -1,6 +1,6 @@
 {
   "name": "@rxap/config",
-  "version": "12.3.0",
+  "version": "13.0.0-next.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/config",
@@ -17,9 +17,11 @@
   },
   "description": "Simple config file manager for angular applications.",
   "peerDependencies": {
-    "@angular/common": "^12.0.1",
-    "@angular/core": "^12.0.1",
-    "@rxap/utilities": "^12.2.1",
+    "@angular-devkit/schematics": "^13.2.4",
+    "@angular/common": "^13.2.3",
+    "@angular/core": "^13.2.3",
+    "@angular/platform-browser-dynamic": "^13.2.3",
+    "@rxap/utilities": "^13.0.0-next.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -39,9 +41,9 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-ts-morph": "^12.3.0",
-    "@rxap/schematics-utilities": "^12.6.0",
-    "ts-morph": "^10.1.0",
-    "tslib": "^2.2.0"
+    "@rxap/schematics-ts-morph": "^13.0.0-next.0",
+    "@rxap/schematics-utilities": "^13.0.0-next.0",
+    "ts-morph": "^13.0.3",
+    "tslib": "^2.3.1"
   }
 }
