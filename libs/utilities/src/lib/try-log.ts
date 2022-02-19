@@ -5,7 +5,7 @@ export function TryAndLogOnError<T, A extends any[]>(fnc: (...args: A) => T, def
 
     try {
       result = fnc(...args);
-    } catch (e) {
+    } catch (e: any) {
       console.error(e.message, e);
     }
 
@@ -24,7 +24,7 @@ export function TryAndLogOnErrorAsync<T, A extends any[]>(
 
     try {
       result = await fnc(...args);
-    } catch (e) {
+    } catch (e: any) {
       console.error(e.message, e);
     }
 
