@@ -21,7 +21,7 @@ export function coerceString(value: any, settings: CoerceStringSettings = {}): s
     case 'symbol':
       return 'symbol';
     case 'bigint':
-      return value.toString();
+      return value + '';
   }
   return '';
 }
