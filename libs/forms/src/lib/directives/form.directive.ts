@@ -401,7 +401,7 @@ export class FormDirective<T extends Record<string, any> = any>
             this.loadSuccessful(resultOrPromise);
             this.loading$.disable();
           }
-        } catch (error) {
+        } catch (error: any) {
           this.loaded$.disable();
           this.loadingError$.next(error);
           this.loadFailed(error);
@@ -481,7 +481,7 @@ export class FormDirective<T extends Record<string, any> = any>
           this.submitSuccessful(resultOrPromise);
           this.submitting$.disable();
         }
-      } catch (error) {
+      } catch (error: any) {
         this.submitting$.disable();
         this.submitError$.next(error);
         this.submitFailed(error);

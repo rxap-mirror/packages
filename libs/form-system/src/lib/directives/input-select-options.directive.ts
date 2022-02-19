@@ -162,7 +162,7 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
         this.injector
       );
 
-    } catch (e) {
+    } catch (e: any) {
 
       if (e.name && e.name === 'NullInjectorError') {
         if (isDevMode()) {

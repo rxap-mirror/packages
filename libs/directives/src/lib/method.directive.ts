@@ -75,7 +75,7 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
       const result = await this.method.call(this.parameters);
       this.executed(result);
       this.successful(result);
-    } catch (error) {
+    } catch (error: any) {
       if (isDevMode()) {
         console.error(`Method directive execution failed:`, error.message);
       }

@@ -115,7 +115,7 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
       const result = await this.remoteMethodLoader.call$(this._remoteMethodOrIdOrToken, this.parameters, this.metadata, this.injector);
       this.executed(result);
       this.successful(result);
-    } catch (error) {
+    } catch (error: any) {
       if (isDevMode()) {
         console.error(`Remote method directive execution failed:`, error.message);
       }

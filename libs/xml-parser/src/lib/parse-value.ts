@@ -26,7 +26,7 @@ export function parseValue<T>(value: string): T {
   } else if ((value[ 0 ] === '[' && value[ value.length - 1 ] === ']') || (value[ 0 ] === '{' && value[ value.length - 1 ] === '}')) {
     try {
       return JSON.parse(value);
-    } catch (e) {
+    } catch (e: any) {
     }
   }
 

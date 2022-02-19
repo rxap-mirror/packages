@@ -45,7 +45,7 @@ export class OAuthExtractGuard implements CanActivate {
           if (payload.lastUrl) {
             redirectUrl = payload.lastUrl;
           }
-        } catch (e) {
+        } catch (e: any) {
           console.error('Could not parse redirect payload', e.message);
         }
       }

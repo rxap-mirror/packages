@@ -364,7 +364,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
     try {
       result = new Ajv().validate(schema, value);
-    } catch (e) {
+    } catch (e: any) {
       console.error(e.message);
       return false;
     }

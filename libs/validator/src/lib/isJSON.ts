@@ -16,6 +16,6 @@ export function isJSON(str, options) {
 
     const obj = JSON.parse(str);
     return primitives.includes(obj) || (!!obj && typeof obj === 'object');
-  } catch (e) { /* ignore */ }
+  } catch (e: any) { /* ignore */ }
   return false;
 }

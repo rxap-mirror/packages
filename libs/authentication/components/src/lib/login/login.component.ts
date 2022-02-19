@@ -64,7 +64,7 @@ export class LoginComponent {
         );
       }
 
-    } catch (e) {
+    } catch (e: any) {
       this.snackBar.open(
         e.message,
         undefined,

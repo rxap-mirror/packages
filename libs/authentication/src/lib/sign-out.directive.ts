@@ -25,7 +25,7 @@ export class SignOutDirective {
     try {
       await this.auth.signOut();
       this.successful.emit();
-    } catch (e) {
+    } catch (e: any) {
       this.failure.emit(e);
     }
   }

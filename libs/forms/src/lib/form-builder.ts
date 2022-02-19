@@ -131,7 +131,7 @@ export class RxapFormBuilder<
 
     try {
       form = injector.get(this.definition);
-    } catch (e) {
+    } catch (e: any) {
       if (isDevMode()) {
         console.error(
           `Could not inject the definition instance. Fallback and call the constructor of the definition class: ${e.message}`

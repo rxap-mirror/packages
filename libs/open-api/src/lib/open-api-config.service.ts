@@ -37,8 +37,8 @@ export class OpenApiConfigService {
     let config: OpenAPIV3.Document | null = null;
     try {
       const response = await fetch(openApiUrl);
-      config = await response.json();
-    } catch (error) {
+      config         = await response.json();
+    } catch (error: any) {
       console.debug(
         `Could not load the open api config from '${openApiUrl}'!`,
         error
