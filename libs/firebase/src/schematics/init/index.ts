@@ -81,7 +81,7 @@ export default function(options: InitSchema): Rule {
           try {
             const response = await fetch('/__/firebase/init.json');
             SetObjectValue(ConfigService.Config, 'firebase.options', await response.json());
-          } catch (e) {
+          } catch (e: any) {
             throw new Error(\`Could not load the firebase: \${e.message}\`);
           }
         }

@@ -4,7 +4,7 @@ import {
   NgModule,
   Optional
 } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 export const USE_STORAGE_EMULATOR = new InjectionToken<[ string, number ]>('rxap/firebase/use-storage-emulator');
 

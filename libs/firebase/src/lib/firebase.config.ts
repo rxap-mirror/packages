@@ -1,4 +1,8 @@
-import type firebase from 'firebase/app';
+import type {
+  FirestoreSettings,
+  PersistenceSettings
+} from '@firebase/firestore';
+import type { AuthSettings } from '@firebase/auth';
 
 export interface FirebaseConfig {
   firebase: null | {
@@ -18,12 +22,12 @@ export interface FirebaseConfig {
        * Specifies custom configurations for your Cloud Firestore instance.
        * You must set these before invoking any other methods.
        */
-      settings: firebase.firestore.Settings;
+      settings: FirestoreSettings;
       /**
        * Settings that can be passed to Firestore.enablePersistence() to configure
        * Firestore persistence.
        */
-      persistenceSettings: firebase.firestore.PersistenceSettings;
+      persistenceSettings: PersistenceSettings;
     };
     /**
      * @deprecated use storage.bucket
@@ -73,7 +77,7 @@ export interface FirebaseConfig {
       languageCode?: string;
       useDeviceLanguage?: boolean;
       persistence?: boolean;
-      settings?: firebase.auth.AuthSettings;
+      settings?: AuthSettings;
       google: boolean;
       facebook: boolean;
       twitter: boolean;

@@ -1,5 +1,4 @@
 import { BehaviorSubject } from 'rxjs';
-import { AngularFireAuth } from '@angular/fire/auth';
 import {
   map,
   take
@@ -8,7 +7,14 @@ import {
   Injectable,
   Inject
 } from '@angular/core';
-import firebase from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import {
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  FacebookAuthProvider,
+  TwitterAuthProvider,
+  AuthProvider
+} from '@firebase/auth';
 
 @Injectable()
 export class IdentityPlatformService {
@@ -44,22 +50,22 @@ export class IdentityPlatformService {
   }
 
   public google(popup: boolean = true): Promise<boolean> {
-    return this.withProvider(new firebase.auth.GoogleAuthProvider(), popup);
+    return this.withProvider(new GoogleAuthProvider(), popup);
   }
 
   public github(popup: boolean = true): Promise<boolean> {
-    return this.withProvider(new firebase.auth.GithubAuthProvider(), popup);
+    return this.withProvider(new GithubAuthProvider(), popup);
   }
 
   public facebook(popup: boolean = true): Promise<boolean> {
-    return this.withProvider(new firebase.auth.FacebookAuthProvider(), popup);
+    return this.withProvider(new FacebookAuthProvider(), popup);
   }
 
   public twitter(popup: boolean = true): Promise<boolean> {
-    return this.withProvider(new firebase.auth.TwitterAuthProvider(), popup);
+    return this.withProvider(new TwitterAuthProvider(), popup);
   }
 
-  protected async withProvider(provider: firebase.auth.AuthProvider, popup: boolean = true) {
+  protected async withProvider(provider: AuthProvider, popup: boolean = true) {
     const signIn: Promise<any> = popup ? this.fireAuth.signInWithPopup(provider) : this.fireAuth.signInWithRedirect(provider);
     await signIn;
     this.isAuthenticated$.next(true);
