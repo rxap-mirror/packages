@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/pipes@13.0.0-next.0...@rxap/pipes@13.0.0-next.1) (2022-02-23)
+
+
+### Bug Fixes
+
+* **santization:** support null value ([a340f09](https://gitlab.com/rxap/packages/commit/a340f0963bd72e100253f45ea038cae399d6170e))
+
+
+
+
+
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/pipes@12.0.6...@rxap/pipes@13.0.0-next.0) (2022-02-19)
 
 
