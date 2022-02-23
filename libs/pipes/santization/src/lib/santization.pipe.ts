@@ -9,9 +9,9 @@ export class SantizationPipe implements PipeTransform {
   constructor(private readonly santizationService: SantizationService) {}
 
   transform(
-    value: string,
-    type: 'html' | 'style' | 'script' | 'url' | 'resourceUrl' = 'url',
-  ): SafeValue {
+    value: string | null,
+    type: 'html' | 'style' | 'script' | 'url' | 'resourceUrl' = 'url'
+  ): SafeValue | null {
     return this.santizationService.transform(value, type);
   }
 }

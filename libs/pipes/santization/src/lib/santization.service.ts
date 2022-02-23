@@ -1,6 +1,7 @@
 import {
   Inject,
-  Injectable
+  Injectable,
+  SecurityContext
 } from '@angular/core';
 import {
   DomSanitizer,
@@ -15,9 +16,12 @@ export class SantizationService {
   constructor(@Inject(DomSanitizer) private _sanitizer: DomSanitizer) {}
 
   transform(
-    value: string,
+    value: string | null,
     type: 'html' | 'style' | 'script' | 'url' | 'resourceUrl' = 'url'
-  ): SafeValue {
+  ): SafeValue | null {
+    if (value === null) {
+      return this._sanitizer.sanitize(SecurityContext.NONE, value);
+    }
     switch (type) {
       case 'html':
         return this._sanitizer.bypassSecurityTrustHtml(value);
