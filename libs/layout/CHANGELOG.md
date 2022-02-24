@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.3](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.2.2...@rxap/layout@12.2.3) (2022-02-24)
+
+
+### Bug Fixes
+
+* **navigation:** expose replace router pipe ([3a2a238](https://gitlab.com/rxap/packages/commit/3a2a2380766bb4889e06bf5e7160829f67d0ef4b))
+
+
+
+
+
 ## [12.2.2](https://gitlab.com/rxap/packages/compare/@rxap/layout@12.2.1...@rxap/layout@12.2.2) (2022-01-28)
 
 
