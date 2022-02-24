@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ReplaceRouterPathsPipe } from './replace-router-paths.pipe';
+import { ReplaceRouterPathsPipeModule } from './replace-router-paths.pipe';
 import { IconDirectiveModule } from '@rxap/material-directives/icon';
 import { ButtonComponentModule } from '@rxap/components';
 import { MatRippleModule } from '@angular/material/core';
@@ -16,8 +16,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
-  declarations: [ NavigationComponent, NavigationItemComponent, ReplaceRouterPathsPipe ],
-  imports: [
+  declarations: [ NavigationComponent, NavigationItemComponent ],
+  imports:      [
     MatIconModule,
     MatButtonModule,
     FlexLayoutModule,
@@ -28,7 +28,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatRippleModule,
     MatDividerModule,
     StopPropagationDirectiveModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ReplaceRouterPathsPipeModule
   ],
   exports:      [ NavigationComponent ]
 })
