@@ -1,4 +1,11 @@
-import { Component, ElementRef, Input, Inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  Inject,
+  OnInit
+} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { coerceBoolean, Required } from '@rxap/utilities';
 
 @Component({
@@ -6,7 +13,7 @@ import { coerceBoolean, Required } from '@rxap/utilities';
   templateUrl: './table-column-option.component.html',
   styleUrls: ['./table-column-option.component.css'],
 })
-export class TableColumnOptionComponent {
+export class TableColumnOptionComponent implements OnInit {
   @Input()
   @Required
   public name!: string;
@@ -43,20 +50,38 @@ export class TableColumnOptionComponent {
     this._hidden = !value;
   }
 
+  private get cacheId(): string {
+    return this.route.snapshot.url.map(u => u.path).join('__');
+  }
+
   constructor(
     @Inject(ElementRef)
-    private _element: ElementRef<HTMLElement>
+    private _element: ElementRef<HTMLElement>,
+    private readonly route: ActivatedRoute,
   ) {}
+
+  public ngOnInit() {
+    const cachedValue = localStorage.getItem(this.cacheId);
+    if (cachedValue === 'true') {
+      this.active = true;
+    }
+    if (cachedValue === 'false') {
+      this.active = false;
+    }
+  }
 
   public toggle(): void {
     this.active = !this.active;
+    localStorage.setItem(this.cacheId, this.active ? 'true' : 'false');
   }
 
   public activate() {
     this.active = true;
+    localStorage.setItem(this.cacheId, 'true');
   }
 
   public deactivate() {
     this.active = false;
+    localStorage.setItem(this.cacheId, 'false');
   }
 }
