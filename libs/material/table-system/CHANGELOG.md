@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.4...@rxap/material-table-system@12.5.5) (2022-03-03)
+
+
+### Bug Fixes
+
+* add missing cache key ([7537639](https://gitlab.com/rxap/packages/commit/75376393725f7d627c66f2a1975deae859fa836f))
+
+
+
+
+
 ## [12.5.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.3...@rxap/material-table-system@12.5.4) (2022-03-03)
 
 
