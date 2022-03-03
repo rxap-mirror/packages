@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.3...@rxap/material-table-system@12.5.4) (2022-03-03)
+
+
+### Bug Fixes
+
+* add cached column active state ([baf303d](https://gitlab.com/rxap/packages/commit/baf303d4b1c90fd2258e878c21582d43796a0ded))
+
+
+
+
+
 ## [12.5.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.2...@rxap/material-table-system@12.5.3) (2022-02-16)
 
 
