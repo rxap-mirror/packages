@@ -51,7 +51,7 @@ export class TableColumnOptionComponent implements OnInit {
   }
 
   private get cacheId(): string {
-    return this.route.snapshot.url.map(u => u.path).join('__');
+    return this.route.snapshot.url.map(u => u.path).join('__') + '--' + this.name;
   }
 
   constructor(
