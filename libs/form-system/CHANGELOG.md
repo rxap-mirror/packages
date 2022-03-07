@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.4](https://gitlab.com/rxap/packages/compare/@rxap/form-system@12.1.3...@rxap/form-system@12.1.4) (2022-03-07)
+
+
+### Bug Fixes
+
+* reduce log population in production mode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
+
+
+
+
+
 ## [12.1.3](https://gitlab.com/rxap/packages/compare/@rxap/form-system@12.1.2...@rxap/form-system@12.1.3) (2021-12-07)
 
 

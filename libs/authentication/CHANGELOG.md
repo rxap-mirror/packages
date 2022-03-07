@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.6](https://gitlab.com/rxap/packages/compare/@rxap/authentication@12.1.5...@rxap/authentication@12.1.6) (2022-03-07)
+
+
+### Bug Fixes
+
+* reduce log population in production mode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
+
+
+
+
+
 ## [12.1.5](https://gitlab.com/rxap/packages/compare/@rxap/authentication@12.1.5-next.0...@rxap/authentication@12.1.5) (2021-07-09)
 
 **Note:** Version bump only for package @rxap/authentication

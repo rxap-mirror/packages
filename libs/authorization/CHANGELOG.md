@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.9](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.8...@rxap/authorization@12.0.9) (2022-03-07)
+
+
+### Bug Fixes
+
+* reduce log population in production mode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
+
+
+
+
+
 ## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.7...@rxap/authorization@12.0.8) (2022-02-11)
 
 
