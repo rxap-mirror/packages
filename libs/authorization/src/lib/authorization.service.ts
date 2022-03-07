@@ -1,4 +1,8 @@
-import { Inject, Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  isDevMode
+} from '@angular/core';
 import { BehaviorSubject, defer, from, Observable } from 'rxjs';
 import { distinctUntilChanged, map, shareReplay, take } from 'rxjs/operators';
 import { GetSystemRolesRemoteMethod } from './get-system-roles.remote-method';
@@ -45,12 +49,14 @@ export class AuthorizationService {
     permissions: string[],
     scope?: string | null
   ): boolean {
-    console.log(
-      `check permission for '${identifier}'${
-        scope ? ` with scope '${scope}': ` : ' :'
-      }`,
-      permissions
-    );
+    if (isDevMode()) {
+      console.log(
+        `check permission for '${identifier}'${
+          scope ? ` with scope '${scope}': ` : ' :'
+        }`,
+        permissions
+      );
+    }
 
     // holds all permission, but if a scope is defined only permissions without scope
     // or with the matching scope and the scope prefix is removed

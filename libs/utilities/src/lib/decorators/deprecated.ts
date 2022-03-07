@@ -1,3 +1,5 @@
+import { isDevMode } from '@angular/core';
+
 export function Deprecated(message: string) {
   return function(target: object, propertyKey: string, descriptor?: PropertyDescriptor): any {
     if (descriptor) {
@@ -7,7 +9,9 @@ export function Deprecated(message: string) {
         return {
           ...descriptor,
           value: function(...args: any[]) {
-            console.warn(`[${this.constructor.name}.${propertyKey}()] is deprecated!`, message);
+            if (isDevMode()) {
+              console.warn(`[${this.constructor.name}.${propertyKey}()] is deprecated!`, message);
+            }
             return (descriptor.value as Function).apply(this, args);
           }
         };
@@ -16,11 +20,15 @@ export function Deprecated(message: string) {
       // class member
       Object.defineProperty(target, propertyKey, {
         get() {
-          console.warn(`[${this.constructor.name}.${propertyKey}:get] is deprecated!`, message);
+          if (isDevMode()) {
+            console.warn(`[${this.constructor.name}.${propertyKey}:get] is deprecated!`, message);
+          }
           return this[ `__deprecated__${propertyKey}` ];
         },
         set(value): void {
-          console.warn(`[${this.constructor.name}.${propertyKey}:set] is deprecated!`, message);
+          if (isDevMode()) {
+            console.warn(`[${this.constructor.name}.${propertyKey}:set] is deprecated!`, message);
+          }
           this[ `__deprecated__${propertyKey}` ] = value;
         }
       });
