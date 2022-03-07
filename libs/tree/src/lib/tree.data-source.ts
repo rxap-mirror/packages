@@ -32,7 +32,8 @@ import {
 import {
   Inject,
   Injectable,
-  InjectionToken
+  InjectionToken,
+  isDevMode
 } from '@angular/core';
 import {
   ExpandNodeFunction,
@@ -317,7 +318,9 @@ export class TreeDataSource<
 
     const flatTree = (node: Node<Data>): Array<Node<Data>> => {
       if (!Array.isArray(node.children)) {
-        console.log(node);
+        if (isDevMode()) {
+          console.log(node);
+        }
         throw new Error('Node has not defined children');
       }
 

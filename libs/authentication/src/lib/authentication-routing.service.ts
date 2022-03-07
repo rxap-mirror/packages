@@ -23,7 +23,7 @@ export class AuthenticationRoutingService {
     private readonly deactivated: boolean | null = null
   ) {
     if (!deactivated) {
-      console.warn('Authentication is enabled');
+      console.log('Authentication is enabled');
       this.authenticationService.isAuthenticated$.pipe(
         tap(isAuthenticated => {
           if (isAuthenticated) {
