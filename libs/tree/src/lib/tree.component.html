@@ -1,5 +1,5 @@
 <div class="container" fxLayout="row">
-  <div #treeContainer class="tree-container" fxFlex="nogrow">
+  <div [ngStyle]="{ maxWidth: dividerOffset, minWidth: dividerOffset, flexBasis: dividerOffset }" #treeContainer class="tree-container" fxFlex="nogrow">
     <mat-progress-bar *ngIf="!dataSource || (dataSource.loading$ | async)" mode="indeterminate"></mat-progress-bar>
     <mat-tree *ngIf="dataSource; else loading" [dataSource]="dataSource" [treeControl]="treeControl" class="tree-view">
 
