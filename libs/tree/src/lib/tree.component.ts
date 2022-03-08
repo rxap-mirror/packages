@@ -14,7 +14,8 @@ import {
   ElementRef,
   ViewChild,
   Renderer2,
-  HostListener
+  HostListener,
+  isDevMode
 } from '@angular/core';
 import {
   DebounceCall,
@@ -84,6 +85,9 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   @Output()
   public details = new EventEmitter();
 
+  @Input()
+  public dividerOffset: string = '256px';
+
   public get cacheId() {
     return ['rxap', 'tree', this.id].join('/');
   }
@@ -140,6 +144,8 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
     const cachedOffset = localStorage.getItem(this.cacheId);
     if (cachedOffset && cachedOffset.match(/^(\d+\.)?\d+px$/)) {
       this.setDividerOffset(cachedOffset);
+    } else if (isDevMode()) {
+      console.log("Divider offset cache is not available or invalid: " + cachedOffset);
     }
   }
 
@@ -196,6 +202,10 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   }
 
   private setDividerOffset(offset: string) {
+    if (isDevMode()) {
+      console.log("set divider offset to: " + offset);
+    }
+    this.dividerOffset = offset;
     this.renderer.setStyle(this.treeContainer.nativeElement, 'max-width', offset);
     this.renderer.setStyle(this.treeContainer.nativeElement, 'min-width', offset);
     this.renderer.setStyle(this.treeContainer.nativeElement, 'flex-basis', offset);
