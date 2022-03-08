@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.5.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.4.1...@rxap/tree@12.5.0) (2022-03-08)
+
+
+### Features
+
+* support cached divider offset ([dd351ea](https://gitlab.com/rxap/packages/commit/dd351eaaa5b1ed742030b416586e53f520a68c59))
+
+
+
+
+
 ## [12.4.1](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.4.0...@rxap/tree@12.4.1) (2022-03-07)
 
 
