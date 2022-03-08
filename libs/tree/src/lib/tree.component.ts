@@ -78,8 +78,15 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   @Input()
   public hideLeafIcon: boolean = false;
 
+  @Input()
+  public id?: string;
+
   @Output()
   public details = new EventEmitter();
+
+  public get cacheId() {
+    return ['rxap', 'tree', this.id].join('/');
+  }
 
   public portal: TemplatePortal | null = null;
   public getLevel                      = (node: Node<Data>) => node.depth;
@@ -128,6 +135,11 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
       this.dataSource.selected.selected.forEach((node) =>
         this.openDetails(node)
       );
+    }
+
+    const cachedOffset = localStorage.getItem(this.cacheId);
+    if (cachedOffset && cachedOffset.match(/^(\d+\.)?\d+px$/)) {
+      this.setDividerOffset(cachedOffset);
     }
   }
 
@@ -178,10 +190,16 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
         this._treeContainerWidth = this.treeContainer.nativeElement.clientWidth as number;
       }
       this._treeContainerWidth = $event.clientX - 75;
-      const width              = this._treeContainerWidth + 'px';
-      this.renderer.setStyle(this.treeContainer.nativeElement, 'max-width', width);
-      this.renderer.setStyle(this.treeContainer.nativeElement, 'min-width', width);
-      this.renderer.setStyle(this.treeContainer.nativeElement, 'flex-basis', width);
+      const offset              = this._treeContainerWidth + 'px';
+      this.setDividerOffset(offset);
     }
   }
+
+  private setDividerOffset(offset: string) {
+    this.renderer.setStyle(this.treeContainer.nativeElement, 'max-width', offset);
+    this.renderer.setStyle(this.treeContainer.nativeElement, 'min-width', offset);
+    this.renderer.setStyle(this.treeContainer.nativeElement, 'flex-basis', offset);
+    localStorage.setItem(this.cacheId, offset);
+  }
+
 }
