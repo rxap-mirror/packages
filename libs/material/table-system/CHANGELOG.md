@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.6](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.5...@rxap/material-table-system@12.5.6) (2022-03-08)
+
+
+### Bug Fixes
+
+* use router url as cache id base ([b25f7f0](https://gitlab.com/rxap/packages/commit/b25f7f017161ced0db69b318129290fb679b2ece))
+
+
+
+
+
 ## [12.5.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.4...@rxap/material-table-system@12.5.5) (2022-03-03)
 
 
