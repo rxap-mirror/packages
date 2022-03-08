@@ -5,7 +5,7 @@ import {
   Inject,
   OnInit
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { coerceBoolean, Required } from '@rxap/utilities';
 
 @Component({
@@ -51,13 +51,13 @@ export class TableColumnOptionComponent implements OnInit {
   }
 
   private get cacheId(): string {
-    return this.route.snapshot.url.map(u => u.path).join('__') + '--' + this.name;
+    return this.router.url + '--' + this.name;
   }
 
   constructor(
     @Inject(ElementRef)
     private _element: ElementRef<HTMLElement>,
-    private readonly route: ActivatedRoute,
+    private readonly router: Router,
   ) {}
 
   public ngOnInit() {
