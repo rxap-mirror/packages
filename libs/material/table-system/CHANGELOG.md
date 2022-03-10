@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.7](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.6...@rxap/material-table-system@12.5.7) (2022-03-10)
+
+
+### Bug Fixes
+
+* update options cell content on change ([a4a829f](https://gitlab.com/rxap/packages/commit/a4a829f35aa10cb9ea075d4c2b3c0040f6b61d60))
+
+
+
+
+
 ## [12.5.6](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.5...@rxap/material-table-system@12.5.6) (2022-03-08)
 
 
