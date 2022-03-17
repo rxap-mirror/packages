@@ -1,6 +1,6 @@
 {
   "name": "@rxap/tree",
-  "version": "13.0.0-next.0",
+  "version": "13.0.0-next.1",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/tree",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -34,7 +34,7 @@
     "@rxap/definition": "^13.0.0-next.0",
     "@rxap/material-directives": "^13.0.0-next.0",
     "@rxap/services": "^13.0.0-next.0",
-    "@rxap/utilities": "^13.0.0-next.0",
+    "@rxap/utilities": "^13.0.0-next.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5",
     "uuid": "^8.3.2"
