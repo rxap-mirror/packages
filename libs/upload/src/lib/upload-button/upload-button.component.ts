@@ -10,7 +10,8 @@ import {
   Self,
   ElementRef,
   HostListener,
-  Inject
+  Inject,
+  isDevMode
 } from '@angular/core';
 import { FileUploadMethod } from '../file-upload.method';
 import {
@@ -151,7 +152,9 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   }
 
   public writeValue(file: File): void {
-    console.log({ file });
+    if (isDevMode()) {
+      console.log({ file });
+    }
     this.value = file;
     this.cdr.detectChanges();
   }

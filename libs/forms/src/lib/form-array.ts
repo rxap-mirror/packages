@@ -50,6 +50,7 @@ import {
   FormType,
   FormDefinition
 } from './model';
+import { isDevMode } from '@angular/core';
 
 export class RxapFormArray<T = any,
   E extends object = any,
@@ -148,7 +149,9 @@ export class RxapFormArray<T = any,
   }
 
   public insert(index: number, control: AbstractControl<T>): void {
-    console.warn('It is not recommend to use the FormArray.insert method');
+    if (isDevMode()) {
+      console.warn('It is not recommend to use the FormArray.insert method');
+    }
     return super.insert(index, control);
   }
 
@@ -267,7 +270,9 @@ export class RxapFormArray<T = any,
     return hasErrorAndDirty(this, errorCode, path);
   }
   public removeAt(index: number) {
-    console.warn('It is not recommend to use the FormArray.removeAt method');
+    if (isDevMode()) {
+      console.warn('It is not recommend to use the FormArray.removeAt method');
+    }
     super.removeAt(index);
     this._controlRemovedFn(index);
   }
@@ -276,7 +281,9 @@ export class RxapFormArray<T = any,
     enableControl(this, enable, opts);
   }
   public push(control: AbstractControl<T>): void {
-    console.warn('It is not recommend to use the FormArray.push method');
+    if (isDevMode()) {
+      console.warn('It is not recommend to use the FormArray.push method');
+    }
     return super.push(control);
   }
 
@@ -285,7 +292,9 @@ export class RxapFormArray<T = any,
   }
 
   public setControl(index: number, control: AbstractControl<T>): void {
-    console.warn('It is not recommend to use the FormArray.setControl method');
+    if (isDevMode()) {
+      console.warn('It is not recommend to use the FormArray.setControl method');
+    }
     return super.setControl(index, control);
   }
 

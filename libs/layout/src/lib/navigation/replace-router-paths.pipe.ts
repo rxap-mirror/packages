@@ -1,4 +1,5 @@
 import {
+  NgModule,
   Pipe,
   PipeTransform
 } from '@angular/core';
@@ -17,3 +18,9 @@ export class ReplaceRouterPathsPipe implements PipeTransform {
     return this.rrp.transform(routerLink);
   }
 }
+
+@NgModule({
+  declarations: [ ReplaceRouterPathsPipe ],
+  exports:      [ ReplaceRouterPathsPipe ]
+})
+export class ReplaceRouterPathsPipeModule {}
