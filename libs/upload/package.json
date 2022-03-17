@@ -1,6 +1,6 @@
 {
   "name": "@rxap/upload",
-  "version": "13.0.0-next.0",
+  "version": "13.0.0-next.1",
   "peerDependencies": {
     "@angular-devkit/schematics": "^13.2.4",
     "@angular/cdk": "^13.2.3",
@@ -14,9 +14,9 @@
     "@angular/platform-browser-dynamic": "^13.2.3",
     "@angular/router": "^13.2.3",
     "@rxap/config": "^13.0.0-next.0",
-    "@rxap/directives": "^13.0.0-next.0",
+    "@rxap/directives": "^13.0.0-next.1",
     "@rxap/services": "^13.0.0-next.0",
-    "@rxap/utilities": "^13.0.0-next.0",
+    "@rxap/utilities": "^13.0.0-next.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
