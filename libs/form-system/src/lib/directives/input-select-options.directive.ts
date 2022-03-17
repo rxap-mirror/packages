@@ -51,7 +51,20 @@ export interface InputSelectOptionsTemplateContext {
   $implicit: ControlOption;
 }
 
-export interface InputSelectOptionsSettings<Source> extends UseDataSourceSettings<Source, ControlOptions | Record<string, any>> {}
+export interface InputSelectOptionsSettings<Source> extends UseDataSourceSettings<Source, ControlOptions | Record<string, any>> {
+  /**
+   * true - the selected value is not send to the data source with the viewChange event.
+   * Instead an empty object {} is send to trigger a data source refresh.
+   *
+   * The OpenApiDataSource expects a Paramters Object in the viewChange event. This
+   * can couse issue if the select value object as a property that is also a parameter for
+   * the open-api operation. For instaed the select object has the property company and
+   * the open-api operation has a query parameter company. Then the BuildOptions method
+   * in the OpenApiDataSource would create a HttpParams object with the param company and the
+   * value from the select object property company. This will result in unpredictable behaviors.
+   */
+  ignoreSelectedValue?: boolean;
+}
 
 
 export const DATA_SOURCE_NAME = 'options';
@@ -106,6 +119,8 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
   protected options: ControlOptions | Record<string, any> | null = null;
 
+  protected settings!: InputSelectOptionsSettings<any>;
+
   constructor(
     @Inject(TemplateRef)
     protected readonly template: TemplateRef<InputSelectOptionsTemplateContext>,
@@ -132,7 +147,14 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
     this.extractDatasource();
     this.viewer = {
       id: '[rxapInputSelectOptions]' + this.control.controlId,
-      viewChange: this.control.value$,
+      viewChange: this.control.value$.pipe(
+        map(value => {
+          if (this.settings?.ignoreSelectedValue) {
+            return {}
+          }
+          return value;
+        })
+      ),
       control: this.control,
     }
     this.loadOptions();
@@ -151,6 +173,8 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
     }
 
     const useDataSourceValue = useDataSourceValueMap.get(DATA_SOURCE_NAME)!;
+
+    this.settings = useDataSourceValue.settings as any;
 
     let dataSource: BaseDataSource;
 
