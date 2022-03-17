@@ -3,7 +3,13 @@ import {
   BaseDataSourceMetadata,
   RXAP_DATA_SOURCE_METADATA,
 } from '@rxap/data-source';
-import { Injectable, Inject, InjectionToken, Optional } from '@angular/core';
+import {
+  Injectable,
+  Inject,
+  InjectionToken,
+  Optional,
+  isDevMode
+} from '@angular/core';
 import { AbstractControl } from '@rxap/forms';
 import { startWith, shareReplay, distinctUntilChanged } from 'rxjs/operators';
 import { equals } from '@rxap/utilities';
@@ -30,7 +36,9 @@ export class ControlDataSource extends BaseDataSource {
     }
     super.init();
 
-    console.log(this.control);
+    if (isDevMode()) {
+      console.log(this.control);
+    }
 
     this._data$ = this.control.valueChanges.pipe(
       startWith(this.control.value),

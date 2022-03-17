@@ -12,6 +12,7 @@ import { AttributeOptions } from './decorators/attribute';
 import { RxapXmlParserError } from './error';
 import { DOMParser } from 'xmldom';
 import { getMetadata } from '@rxap/utilities/reflect-metadata';
+import { isDevMode } from '@angular/core';
 
 export interface ElementParserWithParsers {
   elementParser: Type<ParsedElement>;
@@ -114,7 +115,9 @@ export class XmlParserService {
     if (requiredProperties && hasIndexSignature(instance)) {
       for (const [ propertyKey, message ] of Object.entries(requiredProperties)) {
         if (instance[ propertyKey ] === undefined) {
-          console.log('prop', instance[ propertyKey ]);
+          if (isDevMode()) {
+            console.log('prop', instance[ propertyKey ]);
+          }
           throw new RxapXmlParserError(`[${elementName}] ${message}`, '', instance.constructor.name);
         }
       }

@@ -1,4 +1,8 @@
-import type { QueryList } from '@angular/core';
+import type {
+  QueryList,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -23,7 +27,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-options-cell' }
 })
-export class OptionsCellComponent implements AfterContentInit, OnDestroy {
+export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChanges {
   @Input('rxap-options-cell')
   public value: any;
 
@@ -36,6 +40,8 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy {
   public viewValue!: string;
 
   private readonly _subscription = new Subscription();
+
+  private _initialised = false;
 
   constructor(private readonly renderer: Renderer2) {
     this.defaultViewValue = ''; // $localize`:@@rxap-material.table-system.options-cell.unknown:unknown`;
@@ -51,6 +57,11 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy {
       startWith(null),
       tap(() => this.options.forEach(option => this.renderer.setStyle(option._getHostElement(), 'display', 'none')))
     ).subscribe());
+    this.setViewValue();
+    this._initialised = true;
+  }
+
+  public setViewValue() {
     if (this.value === undefined || this.value === null) {
       this.viewValue = this.emptyViewValue;
     } else {
@@ -63,6 +74,14 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy {
                                    .subscribe());
       } else if (isDevMode()) {
         console.log('Could not load any option');
+      }
+    }
+  }
+
+  public ngOnChanges(changes: SimpleChanges) {
+    if (this._initialised) {
+      if (changes['value']) {
+        this.setViewValue();
       }
     }
   }

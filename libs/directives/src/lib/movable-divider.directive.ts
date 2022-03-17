@@ -6,7 +6,8 @@ import {
   NgModule,
   OnDestroy,
   OnInit,
-  Renderer2
+  Renderer2,
+  isDevMode
 } from '@angular/core';
 import { Required } from '@rxap/utilities';
 import {
@@ -62,11 +63,13 @@ export class MovableDividerDirective implements OnDestroy, OnInit {
           if (this.origin === 'right') {
             this._fixedElementWidth = $event.clientX - this.containerElement.getBoundingClientRect().left;
           } else if (this.origin === 'left') {
-            console.log({
-              clientWidth: this.containerElement.clientWidth,
-              clientX:     $event.clientX,
-              clientLeft:  this.containerElement.getBoundingClientRect().left
-            });
+            if (isDevMode()) {
+              console.log({
+                clientWidth: this.containerElement.clientWidth,
+                clientX:     $event.clientX,
+                clientLeft:  this.containerElement.getBoundingClientRect().left
+              });
+            }
             this._fixedElementWidth = this.containerElement.clientWidth - $event.clientX + this.containerElement.getBoundingClientRect().left;
           } else {
             throw new Error(`The origin '${this.origin}' is not supported.`);

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.1](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0...@rxap/upload@12.1.1) (2022-03-07)
+
+
+### Bug Fixes
+
+* reduce log population in production mode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
+
+
+
+
+
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0...@rxap/upload@13.0.0-next.0) (2022-02-19)
 
 

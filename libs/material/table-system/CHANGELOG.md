@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.7](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.6...@rxap/material-table-system@12.5.7) (2022-03-10)
+
+
+### Bug Fixes
+
+* update options cell content on change ([a4a829f](https://gitlab.com/rxap/packages/commit/a4a829f35aa10cb9ea075d4c2b3c0040f6b61d60))
+
+
+
+
+
+## [12.5.6](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.5...@rxap/material-table-system@12.5.6) (2022-03-08)
+
+
+### Bug Fixes
+
+* use router url as cache id base ([b25f7f0](https://gitlab.com/rxap/packages/commit/b25f7f017161ced0db69b318129290fb679b2ece))
+
+
+
+
+
+## [12.5.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.4...@rxap/material-table-system@12.5.5) (2022-03-03)
+
+
+### Bug Fixes
+
+* add missing cache key ([7537639](https://gitlab.com/rxap/packages/commit/75376393725f7d627c66f2a1975deae859fa836f))
+
+
+
+
+
+## [12.5.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.3...@rxap/material-table-system@12.5.4) (2022-03-03)
+
+
+### Bug Fixes
+
+* add cached column active state ([baf303d](https://gitlab.com/rxap/packages/commit/baf303d4b1c90fd2258e878c21582d43796a0ded))
+
+
+
+
+
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.3...@rxap/material-table-system@13.0.0-next.0) (2022-02-19)
 
 
