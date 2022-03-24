@@ -23,7 +23,7 @@
     "@angular/core": "^13.2.3",
     "@angular/platform-browser-dynamic": "^13.2.3",
     "@angular/router": "^13.2.3",
-    "@rxap/utilities": "^13.0.0-next.0",
+    "@rxap/utilities": "^13.0.0-next.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },

@@ -5,8 +5,7 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/fake",
-      "@rxap/schematics-utilities"
+      "@rxap/fake"
     ]
   },
   "license": "MIT",

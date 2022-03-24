@@ -21,7 +21,8 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/icon"
+      "@rxap/icon",
+      "@rxap/schematics-utilities"
     ]
   },
   "publishConfig": {
