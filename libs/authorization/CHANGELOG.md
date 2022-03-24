@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/authorization@13.0.0-next.1...@rxap/authorization@13.0.0-next.2) (2022-03-24)
+
+
+### Bug Fixes
+
+* change scope to protected ([f5f861e](https://gitlab.com/rxap/packages/commit/f5f861e9c9aaa0d9c7701b2dd5fc7a8938ee3f53))
+
+
+
+
+
 # [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.9...@rxap/authorization@13.0.0-next.1) (2022-03-17)
 
 
