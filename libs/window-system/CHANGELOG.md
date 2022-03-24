@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/window-system@13.0.0-next.0...@rxap/window-system@13.0.0-next.1) (2022-03-24)
+
+
+### Bug Fixes
+
+* add default background color ([5ca6611](https://gitlab.com/rxap/packages/commit/5ca6611e44d40438ba4bd6b25958dcd48f43ba27))
+
+
+
+
+
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/window-system@12.1.0...@rxap/window-system@13.0.0-next.0) (2022-02-19)
 
 
