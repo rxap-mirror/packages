@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.5](https://gitlab.com/rxap/packages/compare/@rxap/form-system@12.1.4...@rxap/form-system@12.1.5) (2022-03-17)
+
+
+### Bug Fixes
+
+* allow that select value is not passed to the data source view change ([a79c25f](https://gitlab.com/rxap/packages/commit/a79c25fbdd69ddd7a7151dd083fa7e9d653a1881))
+
+
+
+
+
 # [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@12.1.4...@rxap/form-system@13.0.0-next.1) (2022-03-17)
 
 
