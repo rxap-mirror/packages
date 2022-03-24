@@ -9,15 +9,6 @@
 
     .container {
       background-color: map-get($background, background);
-
-      .accept {
-        color: darkgreen;
-      }
-
-      .decline {
-        color: darkred;
-      }
-
     }
 
   }
