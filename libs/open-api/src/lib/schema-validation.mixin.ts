@@ -1,7 +1,8 @@
 import {
   coerceArray,
   isPromiseLike,
-  IsRecord
+  IsRecord,
+  clone
 } from '@rxap/utilities';
 import { isDevMode } from '@angular/core';
 import * as Ajv from 'ajv-oai';
@@ -363,7 +364,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
     let result: boolean | PromiseLike<any>;
 
     try {
-      result = new Ajv().validate(schema, value);
+      result = new Ajv().validate(schema, clone(value));
     } catch (e: any) {
       console.error(e.message);
       return false;
