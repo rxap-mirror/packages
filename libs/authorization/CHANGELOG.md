@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/authorization@13.0.0-next.2...@rxap/authorization@13.0.0-next.3) (2022-03-24)
+
+
+### Features
+
+* add development controls ([6e506aa](https://gitlab.com/rxap/packages/commit/6e506aa9c89c52eaeaadc8db6690f82e31f46523))
+
+
+
+
+
 # [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/authorization@13.0.0-next.1...@rxap/authorization@13.0.0-next.2) (2022-03-24)
 
 
