@@ -1,0 +1,19 @@
+<button mat-raised-button color="primary" (click)="isOpen = !isOpen" cdkOverlayOrigin #trigger="cdkOverlayOrigin">Change Permissions</button>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen"
+>
+  <div class="container mat-elevation-z2">
+    <mat-list role="list">
+      <mat-list-item *ngFor="let permission of authorization.usedPermissions$ | async" role="listitem">
+        <mat-slide-toggle
+          (toggleChange)="authorization.togglePermission(permission)"
+          [checked]="authorization.hasPermission(permission) | async">
+          {{permission}}
+        </mat-slide-toggle>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</ng-template>
