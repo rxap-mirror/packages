@@ -11,9 +11,9 @@ type Item = [string, number, Item[]];
 
 @Injectable({ providedIn: 'root' })
 export class AuthorizationService {
-  private readonly permissions$ = new BehaviorSubject<string[]>([]);
+  protected readonly permissions$ = new BehaviorSubject<string[]>([]);
 
-  private readonly systemRoles$: Observable<Record<string, string[]>>;
+  protected readonly systemRoles$: Observable<Record<string, string[]>>;
 
   constructor(
     @Inject(GetSystemRolesRemoteMethod)
