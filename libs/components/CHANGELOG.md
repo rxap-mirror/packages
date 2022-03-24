@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/components@13.0.0-next.0...@rxap/components@13.0.0-next.1) (2022-03-24)
+
+
+### Bug Fixes
+
+* add default background color ([ccb3edd](https://gitlab.com/rxap/packages/commit/ccb3edd2eb06168f638e53922ee2780f1b7e3d3a))
+
+
+
+
+
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/components@12.0.10...@rxap/components@13.0.0-next.0) (2022-02-19)
 
 

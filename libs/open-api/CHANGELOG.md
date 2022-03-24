@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.2.7...@rxap/open-api@13.0.0-next.1) (2022-03-24)
+
+
+### Build System
+
+* upgrade to nrwl/angular 13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+
+
+### BREAKING CHANGES
+
+* update the core nrwl/angular packages to 13.x.x
+
+Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
+
+
+
+
+
 ## [12.2.7](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.2.6...@rxap/open-api@12.2.7) (2022-03-17)
 
 
