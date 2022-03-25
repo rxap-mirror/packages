@@ -17,6 +17,8 @@ import {
   RXAP_O_AUTH_REDIRECT_URL
 } from './tokens';
 import { Router } from '@angular/router';
+import { ReplaySubject, Subject } from 'rxjs';
+import { AuthenticationEvent, AuthenticationEventType } from '@rxap/authentication';
 
 export const OAUTH_SECRET = new InjectionToken('OAUTH_SECRET');
 export const OAUTH_AUTH_ENDPOINT = new InjectionToken('OAUTH_AUTH_ENDPOINT');
@@ -37,6 +39,9 @@ export interface OAuthStatus {
 
 @Injectable({ providedIn: 'root' })
 export class OAuthService<Profile = any> {
+
+  public readonly events$ = new ReplaySubject<AuthenticationEvent>();
+
   get expiresAt(): Date | null {
     const expiresAt = this.getItem(EXPIRES_AT_LOCAL_STORAGE_KEY);
     if (expiresAt) {
@@ -233,6 +238,9 @@ export class OAuthService<Profile = any> {
       authEndpoint: this.authEndpoint,
       secret: this.secret,
       clientId: this.clientId ?? undefined
+    }).catch(e => {
+      this.events$.next({ type: AuthenticationEventType.OnAuthError });
+      throw e;
     });
 
     this.authenticated(response, remember);
@@ -279,6 +287,7 @@ export class OAuthService<Profile = any> {
         `${this.ssoUrl}?redirect=${btoa(this.redirectUrl)}&secret=${this.secret}&action=signOut`
       );
     }
+    this.events$.next({ type: AuthenticationEventType.OnLogout });
   }
 
   public authenticated(
@@ -314,6 +323,7 @@ export class OAuthService<Profile = any> {
     }
 
     this._isAuthenticated = true;
+    this.events$.next({ type: AuthenticationEventType.OnAuthSuccess });
   }
 
   private getKey(key: string): string {
