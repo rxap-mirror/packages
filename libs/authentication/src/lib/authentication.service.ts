@@ -6,7 +6,8 @@ import {
 import {
   BehaviorSubject,
   Observable,
-  Subject
+  Subject,
+  ReplaySubject
 } from 'rxjs';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
@@ -63,7 +64,7 @@ export class RxapAuthenticationService implements IAuthenticationService {
 
   public isAuthenticated$ = new BehaviorSubject<boolean | null>(null);
 
-  public readonly events$ = new Subject<AuthenticationEvent>();
+  public readonly events$ = new ReplaySubject<AuthenticationEvent>();
 
   constructor() {
     console.warn('The default RxapAuthenticationService implementation should only be used in a development environment!');
