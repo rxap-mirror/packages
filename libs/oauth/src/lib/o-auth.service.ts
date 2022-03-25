@@ -21,6 +21,7 @@ import { Router } from '@angular/router';
 export const OAUTH_SECRET = new InjectionToken('OAUTH_SECRET');
 export const OAUTH_AUTH_ENDPOINT = new InjectionToken('OAUTH_AUTH_ENDPOINT');
 export const OAUTH_SSO_URL = new InjectionToken('OAUTH_SSO_URL');
+export const OAUTH_CLIENT_ID = new InjectionToken('OAUTH_CLIENT_ID');
 
 export const ACCESS_TOKEN_LOCAL_STORAGE_KEY = 'access_token';
 export const REFRESH_TOKEN_LOCAL_STORAGE_KEY = 'refresh_token';
@@ -135,7 +136,10 @@ export class OAuthService<Profile = any> {
     private readonly redirectSignOut: string[] | null = null,
     @Optional()
     @Inject(RXAP_O_AUTH_REDIRECT_URL)
-    private readonly redirectUrl: string | null = null
+    private readonly redirectUrl: string | null = null,
+    @Optional()
+    @Inject(OAUTH_CLIENT_ID)
+    public clientId: string | null = null,
   ) {}
 
   public signInWithRedirect(lastUrl?: string): void {
@@ -228,6 +232,7 @@ export class OAuthService<Profile = any> {
       password: password,
       authEndpoint: this.authEndpoint,
       secret: this.secret,
+      clientId: this.clientId ?? undefined
     });
 
     this.authenticated(response, remember);
@@ -349,6 +354,7 @@ export class OAuthService<Profile = any> {
       refreshToken,
       authEndpoint: this.authEndpoint,
       secret: this.secret,
+      clientId: this.clientId ?? undefined,
     });
 
     this.authenticated(response);
