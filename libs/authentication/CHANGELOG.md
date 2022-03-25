@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/authentication@12.1.7...@rxap/authentication@12.2.0) (2022-03-25)
+
+
+### Features
+
+* add auth event system ([7c7b699](https://gitlab.com/rxap/packages/commit/7c7b699aaade46640bac09c5d809de5e2c7cddde))
+
+
+
+
+
 ## [12.1.7](https://gitlab.com/rxap/packages/compare/@rxap/authentication@12.1.6...@rxap/authentication@12.1.7) (2022-03-25)
 
 
