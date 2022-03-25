@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.11](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.10...@rxap/oauth@12.0.11) (2022-03-25)
+
+
+### Bug Fixes
+
+* support clientId and clientSecret auth flow ([e17381c](https://gitlab.com/rxap/packages/commit/e17381cd48e7189c68a7c03d9cb025cd53c96dc7))
+
+
+
+
+
 ## [12.0.10](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.9...@rxap/oauth@12.0.10) (2022-03-07)
 
 
