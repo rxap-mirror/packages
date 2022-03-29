@@ -10,3 +10,4 @@ export * from './lib/confirm-click';
 export * from './lib/method.directive';
 export * from './lib/movable-divider.directive';
 export * from './lib/if-truthy.directive';
+export * from './lib/method-template.directive';
