@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/directives@13.0.0-next.2...@rxap/directives@13.0.0-next.3) (2022-03-29)
+
+
+### Bug Fixes
+
+* render error template on method error ([23a12e1](https://gitlab.com/rxap/packages/commit/23a12e11af23dc930f28fc01a3f28738e693ce4a))
+
+
+
+
+
 # [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/directives@13.0.0-next.1...@rxap/directives@13.0.0-next.2) (2022-03-29)
 
 
