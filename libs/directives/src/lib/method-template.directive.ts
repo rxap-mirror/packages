@@ -109,6 +109,7 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
       if (isDevMode()) {
         console.error(`Method directive execution failed:`, error.message);
       }
+      this.renderErrorTemplate(error);
       this.failure(error);
     } finally {
       this.executing$.disable();
@@ -142,6 +143,15 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
     this.successful$.emit(result);
   }
 
+  protected renderErrorTemplate(error: Error) {
+    if (this.errorTemplate) {
+      this.viewContainerRef.clear();
+      if (this.errorTemplate) {
+        this.viewContainerRef.createEmbeddedView(this.errorTemplate, { $implicit: error, message: error.message });
+      }
+    }
+  }
+
   protected renderTemplate(result: ReturnType) {
 
     this.viewContainerRef.clear();
@@ -149,10 +159,9 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
     try {
       this.viewContainerRef.createEmbeddedView(this.template, { $implicit: result });
     } catch (error: any) {
-      if (this.errorTemplate) {
-        this.viewContainerRef.createEmbeddedView(this.errorTemplate, { $implicit: error, message: error.message });
-      }
+      this.renderErrorTemplate(error);
       console.error(error.message);
+      throw error;
     }
 
     this.embedded.emit();
