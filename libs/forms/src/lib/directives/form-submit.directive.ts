@@ -8,7 +8,10 @@ import {
   EventEmitter,
   Output
 } from '@angular/core';
-import { coerceBoolean } from '@rxap/utilities';
+import {
+  coerceBoolean,
+  clone
+} from '@rxap/utilities';
 import { FormDirective } from './form.directive';
 import {
   tap,
@@ -56,10 +59,14 @@ export class FormSubmitDirective extends ConfirmClick implements OnDestroy {
   }
 
   protected execute() {
+    this.formDirective.form.markAllAsDirty();
+    this.formDirective.form.markAllAsTouched();
+    this.formDirective.cdr.markForCheck();
     this.subscription = this.formDirective.rxapSubmit.pipe(
       take(1),
-      tap(event => {
-        this.afterSubmit.emit(event);
+      tap(value => {
+        const clonedValue = clone(value);
+        this.afterSubmit.emit(clonedValue);
         if (this._resetAfterSubmit) {
           this.formDirective.reset();
         }
