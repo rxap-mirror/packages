@@ -1,6 +1,6 @@
 {
   "name": "@rxap/firebase",
-  "version": "13.0.0-next.0",
+  "version": "13.0.0-next.1",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/firebase",
@@ -21,7 +21,7 @@
     "@angular/core": "^13.2.3",
     "@angular/fire": "^7.2.1",
     "@angular/platform-browser-dynamic": "^13.2.3",
-    "@rxap/config": "^13.0.0-next.0",
+    "@rxap/config": "^13.0.0-next.1",
     "@rxap/schematics-ts-morph": "^13.0.0-next.0",
     "@rxap/utilities": "^13.0.0-next.1",
     "firebase": "^9.6.7",
