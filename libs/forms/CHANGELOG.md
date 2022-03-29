@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.0-next.1...@rxap/forms@13.0.0-next.2) (2022-03-29)
+
+
+### Bug Fixes
+
+* mark all form controls to be checked ([9188ccd](https://gitlab.com/rxap/packages/commit/9188ccde6a7d7c65b18f89266b76cdebabc8dcf2))
+
+
+
+
+
 # [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@12.7.4...@rxap/forms@13.0.0-next.1) (2022-03-17)
 
 
