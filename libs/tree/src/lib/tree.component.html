@@ -50,6 +50,7 @@
               (click)="node.select()"
               [color]="node.selected ? 'primary' : null"
               fxFlex="nogrow"
+              [ngStyle]="node.style"
               mat-button
             >
               {{ node.display }}
@@ -60,6 +61,7 @@
               (change)="onContentEditableChange($event, node)"
               [disabled]="!nodeDisplayEditable"
               fxFlex="nogrow"
+              [ngStyle]="node.style"
               rxapContenteditable>
               {{ node.display }}
             </span>
