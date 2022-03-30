@@ -12,6 +12,8 @@ export type NodeToDisplayFunction<T extends WithIdentifier & WithChildren> = (it
 
 export type NodeGetIconFunction<T extends WithIdentifier & WithChildren> = (item: T) => IconConfig | null;
 
+export type NodeGetStyleFunction<T extends WithIdentifier & WithChildren> = (item: T) => Record<string, string>;
+
 export type NodeHasDetailsFunction<T extends WithIdentifier & WithChildren> = (item: T) => boolean;
 
 export class Node<T extends WithIdentifier & WithChildren, CustomParameters = any> {
@@ -26,6 +28,7 @@ export class Node<T extends WithIdentifier & WithChildren, CustomParameters = an
     onSelect: ExpandNodeFunction<T> | null   = null,
     onDeselect: ExpandNodeFunction<T> | null = null,
     hasDetails: NodeHasDetailsFunction<T>    = () => true,
+    getStyle: NodeGetStyleFunction<T> = () => ({}),
     parameters: CustomParameters | null      = null
   ): Node<T, CustomParameters> {
     const children = (item.children ?? []).map((child: any) => Node.ToNode(
@@ -38,6 +41,7 @@ export class Node<T extends WithIdentifier & WithChildren, CustomParameters = an
       onSelect,
       onDeselect,
       hasDetails,
+      getStyle,
       parameters
     ));
     return new Node<T>(
@@ -51,6 +55,7 @@ export class Node<T extends WithIdentifier & WithChildren, CustomParameters = an
       onSelect,
       onDeselect,
       hasDetails(item),
+      getStyle(item),
       parameters
     );
   }
@@ -103,6 +108,7 @@ export class Node<T extends WithIdentifier & WithChildren, CustomParameters = an
     public onSelect: ExpandNodeFunction<T> | null   = null,
     public onDeselect: ExpandNodeFunction<T> | null = null,
     public hasDetails: boolean                      = true,
+    public style: Record<string, string> = {},
     /**
      * Custom parameters passed to all child mode to transport non-standard
      * information to allow custom implementations

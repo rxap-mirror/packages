@@ -9,13 +9,21 @@
           <mat-icon [fxHide]="hideLeafIcon" fxFlex="40px">subdirectory_arrow_right</mat-icon>
           <mat-icon *ngIf="node.icon" [rxapIcon]="node.icon" fxFlex="40px"></mat-icon>
           <ng-template [ngIf]="multiple">
-            <mat-checkbox (change)="node.toggleSelect()" [checked]="node.selected" [disabled]="!node.hasDetails" fxFlex="nogrow">{{ node.display }}</mat-checkbox>
+            <mat-checkbox
+              (change)="node.toggleSelect()"
+              [checked]="node.selected"
+              [disabled]="!node.hasDetails"
+              [ngStyle]="node.style"
+              fxFlex="nogrow">
+              {{ node.display }}
+            </mat-checkbox>
           </ng-template>
           <ng-template [ngIf]="!multiple">
             <button
               (click)="node.select()"
               [color]="node.selected ? 'primary' : null"
               [disabled]="!node.hasDetails"
+              [ngStyle]="node.style"
               fxFlex="nogrow"
               mat-button
             >
