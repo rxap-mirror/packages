@@ -4,6 +4,9 @@
     "paths": {
       "@rxap/utilities": [
         "dist/libs/utilities"
+      ],
+      "@rxap/utilities/reflect-metadata": [
+        "dist/libs/utilities/reflect-metadata"
       ]
     },
     "declarationMap": false
