@@ -5,6 +5,9 @@
       "@rxap/utilities": [
         "dist/libs/utilities"
       ],
+      "@rxap/utilities/rxjs": [
+        "dist/libs/utilities/rxjs"
+      ],
       "@rxap/services": [
         "dist/libs/services"
       ]
