@@ -64,7 +64,8 @@ export const RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD = new InjectionToken(
 @Injectable()
 export class TreeDataSource<
   Data extends WithIdentifier & WithChildren = any,
-  RootParameters = any
+  RootParameters = any,
+  NodeParameters = any,
   > extends BaseDataSource<Array<Node<Data>>> {
   public tree$ = new BehaviorSubject<Array<Node<Data>>>([]);
   @Required public treeControl!: FlatTreeControl<Node<Data>>;
@@ -89,7 +90,17 @@ export class TreeDataSource<
   public hasDetails: NodeHasDetailsFunction<Data> = () => true;
   public matchFilter: (node: Node<Data>) => boolean = () => true;
 
+  public get nodeParameters(): NodeParameters | null {
+    return this._nodeParameters;
+  }
+
+  public set nodeParameters(nodeParameters: NodeParameters | null) {
+    this._nodeParameters = nodeParameters;
+    this._data$.value.forEach(node => node.parameters = nodeParameters);
+  }
+
   private _refreshMatchFilter = new Subject();
+  private _nodeParameters: NodeParameters | null = null;
 
   constructor(
     @Inject(RXAP_TREE_DATA_SOURCE_ROOT_REMOTE_METHOD)
@@ -299,7 +310,8 @@ export class TreeDataSource<
       this.getIcon,
       onSelect,
       onDeselect,
-      this.hasDetails
+      this.hasDetails,
+      this.nodeParameters
     );
   }
 

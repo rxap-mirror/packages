@@ -14,9 +14,9 @@ export type NodeGetIconFunction<T extends WithIdentifier & WithChildren> = (item
 
 export type NodeHasDetailsFunction<T extends WithIdentifier & WithChildren> = (item: T) => boolean;
 
-export class Node<T extends WithIdentifier & WithChildren> {
+export class Node<T extends WithIdentifier & WithChildren, CustomParameters = any> {
 
-  public static ToNode<T extends WithIdentifier & WithChildren>(
+  public static ToNode<T extends WithIdentifier & WithChildren, CustomParameters = any>(
     item: T & WithChildren,
     depth: number,
     onExpand: ExpandNodeFunction<T>,
@@ -25,8 +25,9 @@ export class Node<T extends WithIdentifier & WithChildren> {
     getIcon: NodeGetIconFunction<T>          = () => null,
     onSelect: ExpandNodeFunction<T> | null   = null,
     onDeselect: ExpandNodeFunction<T> | null = null,
-    hasDetails: NodeHasDetailsFunction<T>    = () => true
-  ): Node<T> {
+    hasDetails: NodeHasDetailsFunction<T>    = () => true,
+    parameters: CustomParameters | null      = null
+  ): Node<T, CustomParameters> {
     const children = (item.children ?? []).map((child: any) => Node.ToNode(
       child,
       depth + 1,
@@ -36,7 +37,8 @@ export class Node<T extends WithIdentifier & WithChildren> {
       getIcon,
       onSelect,
       onDeselect,
-      hasDetails
+      hasDetails,
+      parameters
     ));
     return new Node<T>(
       item,
@@ -48,7 +50,8 @@ export class Node<T extends WithIdentifier & WithChildren> {
       getIcon(item),
       onSelect,
       onDeselect,
-      hasDetails(item)
+      hasDetails(item),
+      parameters
     );
   }
 
@@ -78,6 +81,15 @@ export class Node<T extends WithIdentifier & WithChildren> {
 
   public hasChildren = false;
 
+  public get parameters(): CustomParameters | null {
+    return this._parameters;
+  }
+
+  public set parameters(parameters: CustomParameters | null) {
+    this._parameters = parameters;
+    this.children.forEach(child => child.parameters = parameters);
+  }
+
   private _children: ReadonlyArray<Node<T>> = Object.freeze([]);
 
   constructor(
@@ -90,7 +102,12 @@ export class Node<T extends WithIdentifier & WithChildren> {
     public icon: IconConfig | null                  = null,
     public onSelect: ExpandNodeFunction<T> | null   = null,
     public onDeselect: ExpandNodeFunction<T> | null = null,
-    public hasDetails: boolean                      = true
+    public hasDetails: boolean                      = true,
+    /**
+     * Custom parameters passed to all child mode to transport non-standard
+     * information to allow custom implementations
+     */
+    private _parameters: CustomParameters | null      = null
   ) {
     this.setChildren(children);
     const identifier = getIdentifierPropertyValue(this.item);
