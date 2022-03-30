@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/tree@13.0.0-next.2...@rxap/tree@13.0.0-next.3) (2022-03-30)
+
+
+### Features
+
+* add support for custom parameters ([0df905f](https://gitlab.com/rxap/packages/commit/0df905f44e64d5f14b3cbe38acaf5f7216697329))
+* add support for getStyle method ([ba0baa8](https://gitlab.com/rxap/packages/commit/ba0baa8fb9bddf0cc1de8456a81ca395cd039386))
+
+
+
+
+
 # [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/tree@13.0.0-next.1...@rxap/tree@13.0.0-next.2) (2022-03-29)
 
 **Note:** Version bump only for package @rxap/tree
