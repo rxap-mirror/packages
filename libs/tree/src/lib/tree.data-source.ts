@@ -42,7 +42,8 @@ import {
   NodeHasDetailsFunction,
   NodeToDisplayFunction,
   Method,
-  ToggleSubject
+  ToggleSubject,
+  NodeGetStyleFunction
 } from '@rxap/utilities/rxjs';
 
 export function isSelectionChange<T>(obj: any): obj is SelectionChange<T> {
@@ -87,6 +88,7 @@ export class TreeDataSource<
   public toDisplay: NodeToDisplayFunction<Data> = () =>
     'to display function not defined';
   public getIcon: NodeGetIconFunction<Data> = () => null;
+  public getStyle: NodeGetStyleFunction<Data> = () => ({});
   public hasDetails: NodeHasDetailsFunction<Data> = () => true;
   public matchFilter: (node: Node<Data>) => boolean = () => true;
 
@@ -96,7 +98,7 @@ export class TreeDataSource<
 
   public set nodeParameters(nodeParameters: NodeParameters | null) {
     this._nodeParameters = nodeParameters;
-    this._data$.value.forEach(node => node.parameters = nodeParameters);
+    this.tree$.value.forEach(node => node.parameters = nodeParameters);
   }
 
   private _refreshMatchFilter = new Subject();
@@ -192,7 +194,7 @@ export class TreeDataSource<
     onExpand: ExpandNodeFunction<Data> = this.expandNode.bind(this),
     onCollapse: ExpandNodeFunction<Data> = this.collapseNode.bind(this),
     onSelect: ExpandNodeFunction<Data> = this.selectNode.bind(this),
-    onDeselect: ExpandNodeFunction<Data> = this.deselectNode.bind(this)
+    onDeselect: ExpandNodeFunction<Data> = this.deselectNode.bind(this),
   ): Promise<Node<Data>> {
     const node = await this.toNode(
       item,
@@ -311,6 +313,7 @@ export class TreeDataSource<
       onSelect,
       onDeselect,
       this.hasDetails,
+      this.getStyle,
       this.nodeParameters
     );
   }
@@ -529,4 +532,22 @@ export class TreeDataSource<
                                                    .subscribe();
     }
   }
+
+  public setGetStyle(getStyle: NodeGetStyleFunction<any> = this.getStyle) {
+    this.getStyle = getStyle;
+  }
+
+  /**
+   * recall the getStyle, getIcon and toDisplay methods
+   * and update the node objects
+   */
+  public updateNodes() {
+    this._data$.value.forEach(node => {
+      node.style = this.getStyle(node.item);
+      node.icon = this.getIcon(node.item);
+      node.display = this.toDisplay(node.item);
+    });
+    this._data$.next(this._data$.value);
+  }
+
 }

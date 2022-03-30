@@ -39,7 +39,8 @@ import {
   NodeGetIconFunction,
   NodeHasDetailsFunction,
   NodeToDisplayFunction,
-  ToggleSubject
+  ToggleSubject,
+  NodeGetStyleFunction
 } from '@rxap/utilities/rxjs';
 
 @Component({
@@ -66,6 +67,9 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
 
   @Input()
   public getIcon?: NodeGetIconFunction<any>;
+
+  @Input()
+  public getStyle?: NodeGetStyleFunction<any>;
 
   @Input()
   public multiple: boolean = false;
@@ -133,6 +137,7 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
     this.dataSource.setToDisplay(this.toDisplay);
     this.dataSource.setGetIcon(this.getIcon);
     this.dataSource.setHasDetails(this.hasDetails);
+    this.dataSource.setGetStyle(this.getStyle);
     this.multiple = this.dataSource.metadata.selectMultiple ?? this.multiple;
 
     if (this.dataSource.selected.hasValue()) {
