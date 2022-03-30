@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/tree@13.0.0-next.3...@rxap/tree@13.0.0-next.4) (2022-03-30)
+
+
+### Bug Fixes
+
+* add missing style bindings ([6d5e777](https://gitlab.com/rxap/packages/commit/6d5e777ec0f7da1fdada8a2135a682778c8467e1))
+
+
+
+
+
 # [13.0.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/tree@13.0.0-next.2...@rxap/tree@13.0.0-next.3) (2022-03-30)
 
 
