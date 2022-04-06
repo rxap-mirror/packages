@@ -16,7 +16,8 @@ import {
   SchemaValidationMixin,
   RXAP_OPEN_API_STRICT_VALIDATOR,
   DEFAULT_OPEN_API_REMOTE_METHOD_META_DATA,
-  DISABLE_SCHEMA_VALIDATION
+  DISABLE_SCHEMA_VALIDATION,
+  DISABLE_VALIDATION
 } from '@rxap/open-api';
 import { BaseHttpRemoteMethod } from '@rxap/remote-method/http';
 import {
@@ -72,6 +73,7 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
 
   private readonly strict: boolean = false;
   protected readonly disableSchemaValidation: boolean = false;
+  protected readonly disableValidation: boolean = false;
 
   constructor(
     @Inject(HttpClient) http: HttpClient,
@@ -85,7 +87,10 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
       strict: boolean | null                                   = null,
     @Optional()
     @Inject(DISABLE_SCHEMA_VALIDATION)
-    disableSchemaValidation: boolean | null = null
+    disableSchemaValidation: boolean | null = null,
+    @Optional()
+    @Inject(DISABLE_VALIDATION)
+      disableValidation: boolean | null = null
   ) {
     super(http, injector, metadata);
     let operation: OperationObjectWithMetadata;
@@ -103,11 +108,12 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
     });
     this.strict = strict || this.metadata.strict || false;
     this.disableSchemaValidation = disableSchemaValidation || this.metadata.disableSchemaValidation || false;
+    this.disableValidation = disableValidation || this.metadata.disableValidation || false;
   }
 
   protected async _call(args: OpenApiRemoteMethodParameter<Parameters, RequestBody> = {}): Promise<Response> {
 
-    if (!this.disableSchemaValidation) {
+    if (!this.disableValidation) {
       this.validateParameters(this.operation, args.parameters, this.strict);
       this.validateRequestBody(this.operation, args.requestBody, this.strict);
     }
@@ -140,7 +146,7 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
   // TODO : update to the new call method concept (the remove of the _call method concept)
   public _callWithResponse(args: OpenApiRemoteMethodParameter<Parameters, RequestBody> = {}): Promise<HttpResponse<Response>> {
 
-    if (!this.disableSchemaValidation) {
+    if (!this.disableValidation) {
       this.validateParameters(this.operation, args.parameters, this.strict);
       this.validateRequestBody(this.operation, args.requestBody, this.strict);
     }
@@ -155,7 +161,7 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
       }),
       filter((event: any) => event.type === HttpEventType.Response),
       tap((response: HttpResponse<Response>) => {
-        if (this.disableSchemaValidation) {
+        if (this.disableValidation) {
           this.validateResponse(this.operation, response, this.strict);
         }
       }),
