@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.2.7...@rxap/open-api@12.3.0) (2022-04-06)
+
+
+### Features
+
+* add injection token to disable schema validation ([668ea74](https://gitlab.com/rxap/packages/commit/668ea742ba88e67f7dd967797e4ef179d0b389f7))
+
+
+
+
+
 ## [12.2.7](https://gitlab.com/rxap/packages/compare/@rxap/open-api@12.2.6...@rxap/open-api@12.2.7) (2022-03-17)
 
 
