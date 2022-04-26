@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.0.0-next.2...@rxap/data-source@13.0.0-next.3) (2022-04-26)
+
+
+### Bug Fixes
+
+* replace RXAP_TABLE_REMOTE_METHOD with RXAP_TABLE_METHOD ([67416a1](https://gitlab.com/rxap/packages/commit/67416a10c5a103301b6a7612f22ab6ea78bc52c7))
+
+
+
+
+
 # [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.0.0-next.1...@rxap/data-source@13.0.0-next.2) (2022-03-30)
 
 **Note:** Version bump only for package @rxap/data-source
