@@ -45,7 +45,11 @@ import {
   clone
 } from '@rxap/utilities';
 import { Method } from '@rxap/utilities/rxjs';
+import { RXAP_TABLE_METHOD } from './tokens';
 
+/**
+ * @deprecated removed use RXAP_TABLE_METHOD instead
+ */
 export const RXAP_TABLE_REMOTE_METHOD = new InjectionToken('rxap/data-source/table/remote-method');
 
 export interface TableEvent<Parameters = any> {
@@ -71,10 +75,18 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
 
   private _refresh$ = new BehaviorSubject<number>(Date.now());
 
+  /**
+   * @deprecated use method instead
+   * @private
+   */
+  private get remoteMethod(): Method<Data[], TableEvent<Parameters>> {
+    return this.method;
+  }
+
   constructor(
     @Optional()
-    @Inject(RXAP_TABLE_REMOTE_METHOD)
-    private readonly remoteMethod: Method<Data[], TableEvent<Parameters>>,
+    @Inject(RXAP_TABLE_METHOD)
+    protected readonly method: Method<Data[], TableEvent<Parameters>>,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR)
       paginator: PaginatorLike | null           = null,
@@ -89,7 +101,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
       parameters: Observable<Parameters> | null = null,
     @Optional()
     @Inject(RXAP_DATA_SOURCE_METADATA)
-      metadata: TableDataSourceMetadata | null  = remoteMethod.metadata
+      metadata: TableDataSourceMetadata | null  = method.metadata
   ) {
     super(paginator, sort, filter, parameters, metadata);
   }
@@ -139,7 +151,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
   protected async loadPage(tableEvent: TableEvent): Promise<Data[]> {
     let data: Data[] = [];
     try {
-      data = await this.remoteMethod.call(tableEvent);
+      data = await this.method.call(tableEvent);
     } catch (e: any) {
       console.error(`Failed to load page: ${e.message}`, e.stack);
     }

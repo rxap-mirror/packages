@@ -38,11 +38,10 @@ import {
   ToggleSubject
 } from '@rxap/utilities/rxjs';
 import { pipeDataSource } from '@rxap/data-source';
+import { RXAP_TABLE_METHOD } from '@rxap/data-source/table';
 
-// TODO : add migration schematic
-export const RXAP_TABLE_METHOD                   = new InjectionToken(
-  'rxap/material/table-system/table-method'
-);
+export { RXAP_TABLE_METHOD } from '@rxap/data-source/table';
+
 /**
  * @deprecated use TABLE_METHOD instead
  */
