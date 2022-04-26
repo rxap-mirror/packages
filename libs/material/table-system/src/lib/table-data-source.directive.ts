@@ -150,32 +150,35 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
 
   public ngOnInit() {
     const tableFilter = this._tableFilter ?? this.tableFilter ?? undefined;
-    if (this.sourceMethod) {
-      if (this.adapterFactory) {
-        this.method = this.adapterFactory(
-          this.sourceMethod,
+    if (!this.dataSource) {
+      if (this.sourceDataSource) {
+        this.dataSource = this.sourceDataSource
+      } else if (this.sourceMethod) {
+        if (this.adapterFactory) {
+          this.method = this.adapterFactory(
+            this.sourceMethod,
+            this.paginator,
+            this.matSort,
+            tableFilter,
+            this.parameters
+          );
+        } else {
+          this.method = this.sourceMethod;
+        }
+        this.dataSource = new DynamicTableDataSource<Data>(
+          this.method,
           this.paginator,
           this.matSort,
           tableFilter,
-          this.parameters
+          this.parameters,
+          this.method.metadata ?? { id: this.id }
         );
-      } else {
-        this.method = this.sourceMethod;
       }
-      this.dataSource = new DynamicTableDataSource<Data>(
-        this.method,
-        this.paginator,
-        this.matSort,
-        tableFilter,
-        this.parameters,
-        this.method.metadata ?? { id: this.id }
-      );
-    } else if (this.sourceDataSource) {
-      this.dataSource = this.sourceDataSource;
-    } else if (!this.dataSource) {
-      throw new Error(
-        'The TABLE_DATA_SOURCE and TABLE_METHOD token are not defined!'
-      );
+      if (!this.dataSource) {
+        throw new Error(
+          'The TABLE_DATA_SOURCE and TABLE_METHOD token are not defined!'
+        );
+      }
     }
     this.dataSource.paginator  = this.paginator;
     this.dataSource.sort       = this.matSort ?? undefined;
