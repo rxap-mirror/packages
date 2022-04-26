@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.0.0-next.4...@rxap/material-table-system@13.0.0-next.5) (2022-04-26)
+
+
+### Bug Fixes
+
+* reorder datasource priority ([2bea16a](https://gitlab.com/rxap/packages/commit/2bea16a9fe0be4bc1887c67035c84137040db585))
+
+
+
+
+
 # [13.0.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.0.0-next.3...@rxap/material-table-system@13.0.0-next.4) (2022-04-26)
 
 
