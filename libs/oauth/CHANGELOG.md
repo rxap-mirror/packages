@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/oauth@13.0.0-next.2...@rxap/oauth@13.0.0-next.3) (2022-05-02)
+
+
+### Bug Fixes
+
+* support clientId and clientSecret auth flow ([e17381c](https://gitlab.com/rxap/packages/commit/e17381cd48e7189c68a7c03d9cb025cd53c96dc7))
+
+
+### Features
+
+* add auth event system ([b421849](https://gitlab.com/rxap/packages/commit/b421849721c7b76bb7963d0fd440943e25779f5c))
+
+
+
+
+
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.11...@rxap/oauth@12.1.0) (2022-03-25)
 
 
