@@ -5,7 +5,9 @@ import {
 } from '@angular/core';
 import {
   BehaviorSubject,
-  Observable
+  Observable,
+  Subject,
+  ReplaySubject
 } from 'rxjs';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
@@ -46,11 +48,23 @@ export function TimeoutResolve<T>(value: T, ms: number): Promise<T> {
   });
 }
 
+export enum AuthenticationEventType {
+  OnAuthSuccess = 'on-auth-success',
+  OnAuthError = 'on-auth-error',
+  OnLogout = 'on-logout',
+}
+
+export interface AuthenticationEvent extends Record<string, any> {
+  type: AuthenticationEventType;
+}
+
 @Injectable({ providedIn: 'root' })
 /* ignore coverage */
 export class RxapAuthenticationService implements IAuthenticationService {
 
   public isAuthenticated$ = new BehaviorSubject<boolean | null>(null);
+
+  public readonly events$ = new ReplaySubject<AuthenticationEvent>();
 
   constructor() {
     console.warn('The default RxapAuthenticationService implementation should only be used in a development environment!');
@@ -78,9 +92,11 @@ export class RxapAuthenticationService implements IAuthenticationService {
           localStorage.setItem(RXAP_AUTHENTICATION_LOCAL_STORAGE_KEY, 'true');
         }
         resolve(login);
+        this.events$.next({ type: AuthenticationEventType.OnAuthSuccess });
       } else {
         localStorage.removeItem(RXAP_AUTHENTICATION_LOCAL_STORAGE_KEY);
         reject(new Error('Login credentials are invalid'));
+        this.events$.next({ type: AuthenticationEventType.OnAuthError });
       }
 
     }, 2500);
@@ -91,6 +107,7 @@ export class RxapAuthenticationService implements IAuthenticationService {
     console.warn('The default RxapAuthenticationService implementation should only be used in a development environment!');
     this.isAuthenticated$.next(false);
     localStorage.removeItem(RXAP_AUTHENTICATION_LOCAL_STORAGE_KEY);
+    this.events$.next({ type: AuthenticationEventType.OnLogout });
   }
 
   public signInWithProvider(provider: string): Promise<boolean> {

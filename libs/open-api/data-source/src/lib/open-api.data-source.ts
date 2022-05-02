@@ -8,7 +8,9 @@ import {
   OpenApiConfigService,
   SchemaValidationMixin,
   RXAP_OPEN_API_STRICT_VALIDATOR,
-  DEFAULT_OPEN_API_DATA_SOURCE_META_DATA
+  DEFAULT_OPEN_API_DATA_SOURCE_META_DATA,
+  DISABLE_SCHEMA_VALIDATION,
+  DISABLE_VALIDATION
 } from '@rxap/open-api';
 import {
   HttpClient,
@@ -93,7 +95,9 @@ export class OpenApiDataSource<Response = any, Parameters = any>
     return this.metadata.operation;
   }
 
-  private readonly strict: boolean = false;
+  protected readonly strict: boolean = false;
+  protected readonly disableSchemaValidation: boolean = false;
+  protected readonly disableValidation: boolean = false;
 
   constructor(
     @Inject(HttpClient)
@@ -109,6 +113,12 @@ export class OpenApiDataSource<Response = any, Parameters = any>
     @Optional()
     @Inject(RXAP_OPEN_API_STRICT_VALIDATOR)
     strict: boolean | null = null,
+    @Optional()
+    @Inject(DISABLE_SCHEMA_VALIDATION)
+    disableSchemaValidation: boolean | null = null,
+    @Optional()
+    @Inject(DISABLE_VALIDATION)
+      disableValidation: boolean | null = null
   ) {
     super(http, metadata as any);
     let operation: OperationObjectWithMetadata;
@@ -129,6 +139,8 @@ export class OpenApiDataSource<Response = any, Parameters = any>
     });
 
     this.strict = strict || this.metadata.strict || false;
+    this.disableSchemaValidation = disableSchemaValidation || this.metadata.disableSchemaValidation || false;
+    this.disableValidation = disableValidation || this.metadata.disableValidation || false;
 
   }
 
@@ -149,13 +161,17 @@ export class OpenApiDataSource<Response = any, Parameters = any>
 
 
     if (viewer.parameters) {
-      this.validateParameters(this.operation, viewer.parameters, this.strict);
+      if (!this.disableValidation) {
+        this.validateParameters(this.operation, viewer.parameters, this.strict);
+      }
     } else {
       if (viewer.viewChange === EMPTY || viewer.viewChange === undefined) {
         // set the viewer parameters to an empty parameter and test if that
         // is valid.
         viewer.parameters = {} as any;
-        this.validateParameters(this.operation, viewer.parameters, this.strict);
+        if (!this.disableValidation) {
+          this.validateParameters(this.operation, viewer.parameters, this.strict);
+        }
       }
     }
 
@@ -165,7 +181,11 @@ export class OpenApiDataSource<Response = any, Parameters = any>
       // if the view change is an empty observable. Then dont apply the pipe logic
       // else the http request is never triggered
       viewChange: viewer.viewChange === EMPTY ? viewer.viewChange : viewer.viewChange?.pipe(
-        tap(parameters => this.validateParameters(this.operation, parameters, this.strict)),
+        tap(parameters => {
+          if (!this.disableValidation) {
+            this.validateParameters(this.operation, parameters, this.strict);
+          }
+        }),
         map(parameters => this.buildHttpOptions(this.operation, parameters))
       )
     });
@@ -182,7 +202,11 @@ export class OpenApiDataSource<Response = any, Parameters = any>
         return throwError(response);
       }),
       filter((event: any) => event.type === HttpEventType.Response),
-      tap((response: HttpResponse<Response>) => this.validateResponse(this.operation, response, this.strict)),
+      tap((response: HttpResponse<Response>) => {
+        if (!this.disableValidation) {
+          this.validateResponse(this.operation, response, this.strict);
+        }
+      }),
       tap((response: HttpResponse<Response>) => {
         this.interceptors?.forEach(interceptor => interceptor
           .next({ response, options })

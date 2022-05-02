@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.3.0](https://gitlab.com/rxap/packages/compare/@rxap/authentication@12.2.0...@rxap/authentication@12.3.0) (2022-03-25)
+
+
+### Features
+
+* add auth event system ([b421849](https://gitlab.com/rxap/packages/commit/b421849721c7b76bb7963d0fd440943e25779f5c))
+
+
+
+
+
+# [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/authentication@12.1.7...@rxap/authentication@12.2.0) (2022-03-25)
+
+
+### Features
+
+* add auth event system ([7c7b699](https://gitlab.com/rxap/packages/commit/7c7b699aaade46640bac09c5d809de5e2c7cddde))
+
+
+
+
+
+## [12.1.7](https://gitlab.com/rxap/packages/compare/@rxap/authentication@12.1.6...@rxap/authentication@12.1.7) (2022-03-25)
+
+
+### Bug Fixes
+
+* expose animations ([b26fee6](https://gitlab.com/rxap/packages/commit/b26fee61b8ec00341b8c68a4b9e9e9a8b10934b2))
+
+
+
+
+
 # [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/authentication@13.0.0-next.1...@rxap/authentication@13.0.0-next.2) (2022-03-29)
 
 **Note:** Version bump only for package @rxap/authentication
