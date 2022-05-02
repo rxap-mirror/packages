@@ -13,6 +13,7 @@ export interface OAuthMethodWithUsernamePasswordParameters {
   username: string;
   password: string;
   secret: string;
+  clientId?: string;
   authEndpoint: string;
 }
 
@@ -20,6 +21,7 @@ export interface OAuthMethodWithRefreshTokenParameters {
   grantType?: string;
   refreshToken: string;
   secret: string;
+  clientId?: string;
   authEndpoint: string;
 }
 
@@ -147,10 +149,16 @@ export class OAuthMethod
         throw new Error('Not supported grant type');
     }
 
-    const headers = new HttpHeaders({
-      'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-      Authorization: `Basic ${parameters.secret}`,
-    });
+    let headers = new HttpHeaders();
+
+    headers = headers.append('Content-type', 'application/x-www-form-urlencoded; charset=utf-8');
+
+    if (parameters.secret && parameters.clientId) {
+      params.append('client_id', parameters.clientId);
+      params.append('client_secret', parameters.secret);
+    } else {
+      headers = headers.append('Authorization', `Basic ${parameters.secret}`);
+    }
 
     const response = await this.http
       .post<OAuthResponse>(parameters.authEndpoint, params.toString(), {

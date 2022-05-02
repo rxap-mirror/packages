@@ -30,6 +30,8 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
   public static STRICT: boolean = false;
 
+  protected disableSchemaValidation?: boolean
+
   /**
    * Validates the parameters against the schema specified in the operation object
    *
@@ -360,6 +362,10 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
   }
 
   private validate(schema: string | boolean | object, value: any): boolean {
+
+    if (this.disableSchemaValidation) {
+      return true;
+    }
 
     let result: boolean | PromiseLike<any>;
 

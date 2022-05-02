@@ -10,3 +10,4 @@ export * from './lib/reset-password/reset-password.component.module';
 export * from './lib/reset-password/reset-password.component';
 export * from './lib/authentication-container/authentication-container.component';
 export * from './lib/authentication-container/authentication-container.component.module';
+export * from './lib/fade-animation';
