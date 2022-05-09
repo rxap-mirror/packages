@@ -12,8 +12,8 @@ export function CoerceOpenApiProject(project: string, prefix: string): Rule {
     const angularJson = GetAngularJson(host) as any;
 
     if (!angularJson.projects.hasOwnProperty(project)) {
-      const defaultProjectPrefix =
-              angularJson.projects[ angularJson.defaultProject ].prefix;
+      const defaultProject = angularJson.projects[ angularJson.defaultProject ];
+      const defaultProjectPrefix = prefix ?? defaultProject.prefix;
       return chain([
         externalSchematic('@nrwl/angular', 'library', {
           name:       project,
@@ -29,9 +29,9 @@ export function CoerceOpenApiProject(project: string, prefix: string): Rule {
 
           if (Object.keys(paths).length) {
             for (const key of Object.keys(paths)) {
-              if (key.match(/\/open-api$/)) {
+              if (key.match(new RegExp(`\/${project}$`))) {
                 delete paths[ key ];
-                paths[ key + '/*' ] = [ 'libs/open-api/src/lib/*' ];
+                paths[ key + '/*' ] = [ `libs/${project}/src/lib/*` ];
               }
             }
 

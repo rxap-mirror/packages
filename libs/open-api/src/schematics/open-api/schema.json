@@ -22,6 +22,9 @@
           "description": "If true the index.ts of the select project will replaced with export statement for each generate file",
           "default": false
         },
+        "prefix": {
+          "type": "string"
+        },
         "transport": {
           "type": "string",
           "enum": [
@@ -43,6 +46,9 @@
           "type": "string",
           "description": "The target project where the data sources and remote methods should be generated.",
           "default": "open-api"
+        },
+        "prefix": {
+          "type": "string"
         },
         "transport": {
           "type": "string",
