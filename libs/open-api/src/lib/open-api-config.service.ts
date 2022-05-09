@@ -152,11 +152,20 @@ export class OpenApiConfigService {
     return Promise.resolve(config);
   }
 
-  public readonly config: OpenAPIV3.Document;
+  public get config(): OpenAPIV3.Document {
+    if (!this._config) {
+      throw new Error('Could not load open api config');
+    }
+    return this._config;
+  }
 
   public defaultServerIndex: number = OpenApiConfigService.DefaultServerIndex;
 
-  private readonly _operations: OperationMap;
+  private _operations: OperationMap | null = null;
+
+  private serverConfigMap = new Map<string | undefined, OpenAPIV3.ServerObject[]>();
+
+  private _config: OpenAPIV3.Document | null = null;
 
   constructor(
     @Optional()
@@ -164,15 +173,20 @@ export class OpenApiConfigService {
     config: OpenAPIV3.Document | null = null
   ) {
     config = config ?? OpenApiConfigService.Config;
-    if (!config) {
-      throw new Error('Could not load open api config');
+    if (config) {
+      this._config = config;
+      this._operations = OpenApiConfigService.LoadOperations(config);
     }
-    this.config = config;
-    this._operations = OpenApiConfigService.LoadOperations(config);
   }
 
   public getOperation(operationId: string): OperationObjectWithMetadata {
-    if (!this._operations!.has(operationId)) {
+    if (!this._operations) {
+      if (!this._config) {
+        throw new Error('The operations map is not loaded and the config object is not loaded');
+      }
+      this._operations = OpenApiConfigService.LoadOperations(this._config);
+    }
+    if (!this._operations.has(operationId)) {
       console.debug(
         `The operation '${operationId}' is not defined in the openapi-json`,
         this.config
@@ -181,20 +195,39 @@ export class OpenApiConfigService {
         `The operation '${operationId}' is not defined in the openapi-json`
       );
     }
-    return this._operations!.get(operationId)!;
+    return this._operations.get(operationId)!;
   }
 
-  public getBaseUrl(serverIndex: number = this.defaultServerIndex): string {
+  public getBaseUrl(serverIndex: number = this.defaultServerIndex, serverId?: string): string {
+    let serverConfig: OpenAPIV3.ServerObject | undefined;
+    if (!serverId && this._config?.servers) {
+      serverConfig = this._config.servers[serverIndex];
+    }
+    if (this.serverConfigMap.has(serverId)) {
+      serverConfig = this.serverConfigMap.get(serverId)![serverIndex];
+    }
+    if (!serverConfig) {
+      throw new Error(`Could not determine the base url with the index: ${serverIndex} and the serverId: ${serverId}`);
+    }
     return OpenApiConfigService.GetBaseUrl(this.config, serverIndex);
   }
 
   public insertServer(
     serverConfig: OpenAPIV3.ServerObject,
-    index: number = this.defaultServerIndex
+    index: number = this.defaultServerIndex,
+    serverId?: string
   ): void {
-    if (!this.config.servers) {
-      this.config.servers = [];
+    if (this._config) {
+      if (!this.config.servers) {
+        this.config.servers = [];
+      }
+      this.config.servers.splice(index, 1, serverConfig);
     }
-    this.config.servers.splice(index, 1, serverConfig);
+    if (!this.serverConfigMap.has(serverId)) {
+      this.serverConfigMap.set(serverId, []);
+    }
+    const list = this.serverConfigMap.get(serverId)!;
+    list[index] = serverConfig;
+    this.serverConfigMap.set(serverId, list);
   }
 }
