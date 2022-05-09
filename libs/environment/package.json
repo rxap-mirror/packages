@@ -1,6 +1,6 @@
 {
   "name": "@rxap/environment",
-  "version": "13.0.0-next.0",
+  "version": "13.0.0-next.1",
   "peerDependencies": {
     "@angular-devkit/schematics": "^13.2.4",
     "@angular/common": "^13.2.3",
@@ -38,8 +38,8 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-ts-morph": "^13.0.0-next.0",
-    "@rxap/schematics-utilities": "^13.0.0-next.0",
+    "@rxap/schematics-ts-morph": "^13.0.0-next.1",
+    "@rxap/schematics-utilities": "^13.0.0-next.1",
     "ts-morph": "^13.0.3",
     "tslib": "^2.3.1"
   }
