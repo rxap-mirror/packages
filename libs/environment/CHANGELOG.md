@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/environment@13.0.0-next.0...@rxap/environment@13.0.0-next.1) (2022-05-09)
+
+
+### Bug Fixes
+
+* add new environment keys ([862aa5c](https://gitlab.com/rxap/packages/commit/862aa5c8136ab2c6b4502f1bf44e426a379e9e23))
+
+
+
+
+
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/environment@12.1.1...@rxap/environment@13.0.0-next.0) (2022-02-19)
 
 
