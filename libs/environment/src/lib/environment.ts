@@ -32,5 +32,11 @@ export interface Environment {
    */
   tag?: string | null;
 
+  tier: string;
+
+  slug: {
+    name: string;
+  };
+
   [ key: string ]: any;
 }
