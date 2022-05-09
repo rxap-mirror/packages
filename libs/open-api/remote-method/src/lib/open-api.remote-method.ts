@@ -42,11 +42,15 @@ export interface OperationForMetadata extends OperationObjectWithMetadata {
    * used to specify the target server for the reset api operation
    */
   serverId?: string;
+  /**
+   * the fallback id used if the operation does not have a operationId
+   */
+  fallbackId?: string;
 }
 
 export function RxapOpenApiRemoteMethod(operationOrId: string | OperationForMetadata, serverIndex: number = 0) {
   return function(target: any) {
-    const id = typeof operationOrId === 'string' ? operationOrId : operationOrId.operation.operationId;
+    const id = typeof operationOrId === 'string' ? operationOrId : (operationOrId.operation.operationId ?? operationOrId.fallbackId);
     if (!id) {
       throw new Error('The operationId for the open api remote method is not defined');
     }
