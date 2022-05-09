@@ -406,7 +406,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@apidevtools/json-schema-ref-parser@9.0.9", "@apidevtools/json-schema-ref-parser@^9.0.7":
+"@apidevtools/json-schema-ref-parser@9.0.9":
   version "9.0.9"
   resolved "https://registry.yarnpkg.com/@apidevtools/json-schema-ref-parser/-/json-schema-ref-parser-9.0.9.tgz#d720f9256e3609621280584f2b47ae165359268b"
   integrity sha512-GBD2Le9w2+lVFoc4vswGI/TjkNIZSVp7+9xPf+X3uidBfWnAeUWmquteSyt0+VCrhNMWj/FTABISQrD3Z/YA+w==
@@ -4282,15 +4282,6 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@rxap/json-schema-to-typescript@^12.0.9":
-  version "12.0.9"
-  resolved "https://registry.yarnpkg.com/@rxap/json-schema-to-typescript/-/json-schema-to-typescript-12.0.9.tgz#985885b64f9388d0124f68dd9ec0c97f0e98f819"
-  integrity sha512-LKgI5QIW/5wIXbvFioae4c9GrmpZ5EAmDMPUMuHN+FW9IH9+q3tjxisrH+VxG5/qxMZlIbVP2fn3BlAMHdfhZA==
-  dependencies:
-    "@apidevtools/json-schema-ref-parser" "^9.0.7"
-    "@rxap/schematics-utilities" "^12.6.0"
-    tslib "^2.2.0"
-
 "@rxap/plugin-library-publish@^13.0.0-next.1":
   version "13.0.0-next.1"
   resolved "https://registry.yarnpkg.com/@rxap/plugin-library-publish/-/plugin-library-publish-13.0.0-next.1.tgz#bf4de445c466a9546ed198d9b070a42fa86147b0"
@@ -4356,14 +4347,11 @@
     globs "^0.1.4"
     tslib "^2.3.1"
 
-"@rxap/schematics-open-api@^13.0.0-next.1":
-  version "13.0.0-next.1"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics-open-api/-/schematics-open-api-13.0.0-next.1.tgz#a43f1f3c52650011b2cfc94991534a59ab065e5b"
-  integrity sha512-xedUrjS9QaGf3OAHAyBGYOh3+1Tvw4L0fRAN+D+hoB3epUcGGFx4mmaUURbuuai+MvfJbp6TELdv+Mjheuq9oQ==
+"@rxap/schematics-open-api@13.0.0-next.2":
+  version "13.0.0-next.2"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-open-api/-/schematics-open-api-13.0.0-next.2.tgz#751f64df45d2350bed7b077237419b86f346638f"
+  integrity sha512-TyejvpRjoXwezHd3d21XVV+Nf5R9WHiTHpZsN3MRIlesGOHY9ZfqXGsdOv/RW2E7quuytSQZoh/1VGw14tuAow==
   dependencies:
-    "@rxap/json-schema-to-typescript" "^12.0.9"
-    openapi-types "^10.0.0"
-    semver "^7.3.5"
     tslib "^2.3.1"
 
 "@rxap/schematics-ts-morph@^13.0.0-next.1":
@@ -4374,7 +4362,7 @@
     semver "^7.3.5"
     tslib "^2.3.1"
 
-"@rxap/schematics-utilities@^12.6.0", "@rxap/schematics-utilities@^12.7.0":
+"@rxap/schematics-utilities@^12.7.0":
   version "12.7.0"
   resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-12.7.0.tgz#33be4136a70a85e028bedbbcca6819ffe528c400"
   integrity sha512-O922a6txhsac5U1SiC90pmyPSzf/0/8Xy21zF3NSi/Z3AZj7KqqQbwESf1xjXK7vL/QlkPc0iwpFe3CD2St9uA==
@@ -16482,7 +16470,7 @@ open@^7.0.3:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
 
-openapi-types@10.0.0, openapi-types@^10.0.0:
+openapi-types@10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/openapi-types/-/openapi-types-10.0.0.tgz#0debbf663b2feed0322030b5b7c9080804076934"
   integrity sha512-Y8xOCT2eiKGYDzMW9R4x5cmfc3vGaaI4EL2pwhDmodWw1HlK18YcZ4uJxc7Rdp7/gGzAygzH9SXr6GKYIXbRcQ==

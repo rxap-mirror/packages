@@ -4,7 +4,8 @@ import {
   GetParameterType,
   GetRequestBodyType,
   IsWithoutParameters,
-  IsCollectionResponse
+  IsCollectionResponse,
+  GenerateParameterToOperationObjectWithMetadata
 } from '@rxap/schematics-open-api';
 import { OpenApiSchemaBase } from './schema';
 import { join } from 'path';
@@ -93,7 +94,10 @@ export async function GenerateRemoteMethod(
       },
       {
         name:      'RxapOpenApiRemoteMethod',
-        arguments: (writer) => writer.quote(operationId)
+        arguments: (writer) => Writers.object({
+          serverId: parameter.options.serverId ? w => w.quote(parameter.options.serverId!) : 'undefined',
+          operation: `JSON.parse(${JSON.stringify(GenerateParameterToOperationObjectWithMetadata(parameter))})`
+        })
       }
     ],
     methods:    [

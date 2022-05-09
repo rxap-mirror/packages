@@ -24,7 +24,7 @@ import {
   BaseRemoteMethodMetadata,
   RxapRemoteMethod
 } from '@rxap/remote-method';
-import { joinPath } from '@rxap/utilities';
+import { JoinPath } from '@rxap/utilities';
 import {
   filter,
   timeout,
@@ -36,9 +36,29 @@ import {
 import { throwError } from 'rxjs';
 import { Mixin } from '@rxap/mixin';
 
-export function RxapOpenApiRemoteMethod(operationId: string, serverIndex: number = 0) {
+export interface OperationForMetadata extends OperationObjectWithMetadata {
+  operation: OperationObjectWithMetadata;
+  /**
+   * used to specify the target server for the reset api operation
+   */
+  serverId?: string;
+}
+
+export function RxapOpenApiRemoteMethod(operationOrId: string | OperationForMetadata, serverIndex: number = 0) {
   return function(target: any) {
-    RxapRemoteMethod({ id: operationId, serverIndex })(target);
+    const id = typeof operationOrId === 'string' ? operationOrId : operationOrId.operation.operationId;
+    if (!id) {
+      throw new Error('The operationId for the open api remote method is not defined');
+    }
+    const metadata: OpenApiRemoteMethodMetadata = {
+      id,
+      serverIndex
+    };
+    if (typeof operationOrId !== 'string') {
+      metadata.operation = operationOrId.operation;
+      metadata.serverId = operationOrId.serverId;
+    }
+    RxapRemoteMethod(metadata)(target);
   };
 }
 
@@ -51,6 +71,10 @@ export interface OpenApiRemoteMethodMetadata extends BaseRemoteMethodMetadata {
    * The index of the server object in the servers array in the open api config
    */
   serverIndex?: number;
+  /**
+   * used to specify the target server for the reset api operation
+   */
+  serverId?: string;
   id: string;
 }
 
@@ -93,7 +117,7 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
       disableValidation: boolean | null = null
   ) {
     super(http, injector, metadata);
-    let operation: OperationObjectWithMetadata;
+    let operation: OperationObjectWithMetadata & { serverId?: string };
     if (!this.metadata.operation) {
       this.metadata.operation = operation = openApiConfigService.getOperation(this.metadata.id);
     } else {
@@ -101,7 +125,7 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
     }
     this.applyMetadata({
       id:     operation.operationId,
-      url:    () => joinPath(openApiConfigService.getBaseUrl(this.metadata.serverIndex), operation.path),
+      url:    () => JoinPath(openApiConfigService.getBaseUrl(this.metadata.serverIndex, this.metadata.serverId), operation.path),
       method: operation.method as any,
       withCredentials: this.metadata.withCredentials ?? true,
       ignoreUndefined: this.metadata.ignoreUndefined ?? true,
