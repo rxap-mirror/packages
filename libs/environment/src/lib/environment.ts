@@ -32,10 +32,10 @@ export interface Environment {
    */
   tag?: string | null;
 
-  tier: string;
+  tier?: string;
 
-  slug: {
-    name: string;
+  slug?: {
+    name?: string;
   };
 
   [ key: string ]: any;
