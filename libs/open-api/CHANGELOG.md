@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.5](https://gitlab.com/rxap/packages/compare/@rxap/open-api@13.0.0-next.4...@rxap/open-api@13.0.0-next.5) (2022-05-09)
+
+
+### Bug Fixes
+
+* remove @rxap/utiliteis dependency ([daa90d8](https://gitlab.com/rxap/packages/commit/daa90d877ceaa2702a853459e3abd6c1990bfe57))
+
+
+
+
+
 # [13.0.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/open-api@13.0.0-next.3...@rxap/open-api@13.0.0-next.4) (2022-05-09)
 
 
