@@ -10,7 +10,6 @@ import {
   Writers,
   ImportSpecifierStructure
 } from 'ts-morph';
-import { camelize } from '@rxap/utilities';
 import { strings } from '@angular-devkit/core';
 import { CreateDirectiveOptions } from './options';
 
@@ -24,7 +23,7 @@ function AssertImportSpecifierStructureArray(
   }
 }
 
-const { classify } = strings;
+const { classify, camelize } = strings;
 
 export function CreateDirective({
                                   filePath,
