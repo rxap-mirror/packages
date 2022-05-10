@@ -30,6 +30,10 @@
           "enum": [
             "amplify"
           ]
+        },
+        "inline": {
+          "type": "boolean",
+          "default": false
         }
       },
       "required": [
@@ -59,6 +63,10 @@
         "export": {
           "type": "boolean",
           "description": "If true the index.ts of the select project will replaced with export statement for each generate file",
+          "default": false
+        },
+        "inline": {
+          "type": "boolean",
           "default": false
         }
       },
