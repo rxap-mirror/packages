@@ -36,7 +36,7 @@ import {
 import { throwError } from 'rxjs';
 import { Mixin } from '@rxap/mixin';
 
-export interface OperationForMetadata extends OperationObjectWithMetadata {
+export interface OperationForMetadata {
   operation: OperationObjectWithMetadata;
   /**
    * used to specify the target server for the reset api operation
