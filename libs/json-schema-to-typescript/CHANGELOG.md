@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@13.0.0-next.0...@rxap/json-schema-to-typescript@13.0.0-next.1) (2022-05-23)
+
+
+### Bug Fixes
+
+* support int type ([59d1dcb](https://gitlab.com/rxap/packages/commit/59d1dcbd0ca0ee8197a9a00b4391ec053018ac61))
+
+
+
+
+
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@12.0.9...@rxap/json-schema-to-typescript@13.0.0-next.0) (2022-02-19)
 
 
