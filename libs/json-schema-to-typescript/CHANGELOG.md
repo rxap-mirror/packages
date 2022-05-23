@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@13.0.0-next.2...@rxap/json-schema-to-typescript@13.0.0-next.3) (2022-05-23)
+
+
+### Bug Fixes
+
+* compile to commonjs ([99bac85](https://gitlab.com/rxap/packages/commit/99bac8537305ce976c576c2ec49c6cfd811922fe))
+
+
+
+
+
 # [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@13.0.0-next.1...@rxap/json-schema-to-typescript@13.0.0-next.2) (2022-05-23)
 
 
