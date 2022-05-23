@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@13.0.0-next.3...@rxap/json-schema-to-typescript@13.0.0-next.4) (2022-05-23)
+
+
+### Bug Fixes
+
+* import ref parser with context ([d3bb855](https://gitlab.com/rxap/packages/commit/d3bb855dff8533c9ed5e8e04093fbf33afbc5b61))
+
+
+
+
+
 # [13.0.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@13.0.0-next.2...@rxap/json-schema-to-typescript@13.0.0-next.3) (2022-05-23)
 
 
