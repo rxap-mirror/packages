@@ -11,8 +11,8 @@ import {
   QuoteKind,
   TypeAliasDeclarationStructure
 } from 'ts-morph';
-import {
-  bundle,
+import * as $RefParser from '@apidevtools/json-schema-ref-parser';
+import type {
   Options,
   JSONSchema
 } from '@apidevtools/json-schema-ref-parser';
@@ -544,7 +544,7 @@ export class TypescriptInterfaceGenerator {
 
   private async bundleSchema(): Promise<void> {
     if (!this.bundledSchema) {
-      this.bundledSchema = await bundle(this.schema, this.options);
+      this.bundledSchema = await $RefParser.bundle(this.schema, this.options);
     }
   }
 }
