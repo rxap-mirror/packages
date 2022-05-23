@@ -48,7 +48,7 @@ function GetOperationIdList(openapi: OpenAPIV3.Document): string[] {
 
   const operationIdList: string[] = [];
 
-  for (const [path, methods] of Object.entries(openapi.paths)) {
+  for (const [_, methods] of Object.entries(openapi.paths)) {
 
     if (methods) {
 
