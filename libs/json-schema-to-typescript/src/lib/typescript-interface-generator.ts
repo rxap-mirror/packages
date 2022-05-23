@@ -31,10 +31,6 @@ export interface TypescriptInterfaceGeneratorOptions extends Options {
 
 export class TypescriptInterfaceGenerator {
 
-  private bundledSchema: JSONSchema | null = null;
-
-  private readonly project: Project;
-
   constructor(
     private readonly schema: JSONSchema,
     private readonly options: TypescriptInterfaceGeneratorOptions = {},
@@ -49,6 +45,54 @@ export class TypescriptInterfaceGenerator {
         },
       });
   }
+
+  public static isRequired(schema: JSONSchema, key: string): boolean {
+    return (
+      !!schema.required &&
+      Array.isArray(schema.required) &&
+      schema.required.includes(key)
+    );
+  }
+
+  public static coercePropertyKey(key: string): string {
+    if (
+      key.match(/(^[0-9]+|-|#|\.|@|\/|:|\*)/) &&
+      !key.match(/\[\w+:\s?\w+\]/)
+    ) {
+      return `'${key}'`;
+    }
+    return key;
+  }
+
+  public static unionType(
+    array: Array<string | WriterFunction>
+  ): WriterFunction | string {
+    if (array.length < 2) {
+      return array[ 0 ];
+    }
+
+    const first  = array.shift()!;
+    const second = array.shift()!;
+
+    return Writers.unionType(first, second, ...array);
+  }
+
+  public static intersectionType(
+    array: Array<string | WriterFunction>
+  ): WriterFunction | string {
+    if (array.length < 2) {
+      return array[ 0 ];
+    }
+
+    const first  = array.shift()!;
+    const second = array.shift()!;
+
+    return Writers.intersectionType(first, second, ...array);
+  }
+
+  private bundledSchema: JSONSchema | null = null;
+
+  private readonly project: Project;
 
   public async build(name: string): Promise<SourceFile> {
     await this.bundleSchema();
@@ -110,50 +154,6 @@ export class TypescriptInterfaceGenerator {
     sourceFile.addTypeAlias(typeAliasDeclarationStructure);
 
     return sourceFile;
-  }
-
-  public static isRequired(schema: JSONSchema, key: string): boolean {
-    return (
-      !!schema.required &&
-      Array.isArray(schema.required) &&
-      schema.required.includes(key)
-    );
-  }
-
-  public static coercePropertyKey(key: string): string {
-    if (
-      key.match(/(^[0-9]+|-|#|\.|@|\/|:|\*)/) &&
-      !key.match(/\[\w+:\s?\w+\]/)
-    ) {
-      return `'${key}'`;
-    }
-    return key;
-  }
-
-  public static unionType(
-    array: Array<string | WriterFunction>
-  ): WriterFunction | string {
-    if (array.length < 2) {
-      return array[ 0 ];
-    }
-
-    const first  = array.shift()!;
-    const second = array.shift()!;
-
-    return Writers.unionType(first, second, ...array);
-  }
-
-  public static intersectionType(
-    array: Array<string | WriterFunction>
-  ): WriterFunction | string {
-    if (array.length < 2) {
-      return array[ 0 ];
-    }
-
-    const first  = array.shift()!;
-    const second = array.shift()!;
-
-    return Writers.intersectionType(first, second, ...array);
   }
 
   private addInterface(schema: JSONSchema, name: string): SourceFile {
