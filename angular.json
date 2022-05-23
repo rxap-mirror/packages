@@ -2307,17 +2307,32 @@
       "prefix": "rxap",
       "architect": {
         "build": {
-          "builder": "@nrwl/angular:package",
+          "builder": "@nrwl/node:package",
           "options": {
+            "outputPath": "dist/libs/json-schema-to-typescript",
             "tsConfig": "libs/json-schema-to-typescript/tsconfig.lib.json",
-            "project": "libs/json-schema-to-typescript/ng-package.json",
-            "buildableProjectDepsInPackageJsonType": "dependencies"
+            "packageJson": "libs/json-schema-to-typescript/package.json",
+            "main": "libs/json-schema-to-typescript/src/index.ts",
+            "srcRootForCompilationRoot": "libs/json-schema-to-typescript",
+            "buildableProjectDepsInPackageJsonType": "dependencies",
+            "assets": [
+              "libs/json-schema-to-typescript/*.md",
+              "libs/json-schema-to-typescript/LICENSE",
+              {
+                "input": "./libs/json-schema-to-typescript",
+                "glob": "collection.json",
+                "output": "."
+              },
+              {
+                "input": "./libs/json-schema-to-typescript",
+                "glob": "migration.json",
+                "output": "."
+              }
+            ]
           },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/json-schema-to-typescript/tsconfig.lib.prod.json"
-            }
-          }
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -2333,7 +2348,7 @@
           "builder": "@rxap/plugin-pack:build",
           "options": {
             "targets": [
-              "json-schema-to-typescript:build:production",
+              "json-schema-to-typescript:build",
               "json-schema-to-typescript:build-schematics",
               "json-schema-to-typescript:build-migrations"
             ]

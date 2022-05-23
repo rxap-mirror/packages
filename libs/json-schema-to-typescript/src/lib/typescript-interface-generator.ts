@@ -30,6 +30,7 @@ export interface TypescriptInterfaceGeneratorOptions extends Options {
 }
 
 export class TypescriptInterfaceGenerator {
+
   private bundledSchema: JSONSchema | null = null;
 
   private readonly project: Project;
