@@ -251,6 +251,7 @@ export class TypescriptInterfaceGenerator {
         return 'string';
 
       case 'integer':
+      case 'int':
       case 'number':
         return 'number';
 
