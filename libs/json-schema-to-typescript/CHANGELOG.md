@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@13.0.0-next.1...@rxap/json-schema-to-typescript@13.0.0-next.2) (2022-05-23)
+
+
+### Bug Fixes
+
+* remove angular compiler ([ad1970d](https://gitlab.com/rxap/packages/commit/ad1970d3ccd5786590d7bd27ac932e9faa7d1307))
+
+
+
+
+
 # [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@13.0.0-next.0...@rxap/json-schema-to-typescript@13.0.0-next.1) (2022-05-23)
 
 
