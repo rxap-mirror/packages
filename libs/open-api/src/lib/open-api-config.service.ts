@@ -217,7 +217,7 @@ export class OpenApiConfigService {
     index: number = this.defaultServerIndex,
     serverId?: string
   ): void {
-    if (this._config) {
+    if (!serverId && this._config) {
       if (!this.config.servers) {
         this.config.servers = [];
       }
