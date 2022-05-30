@@ -209,7 +209,7 @@ export class OpenApiConfigService {
     if (!serverConfig) {
       throw new Error(`Could not determine the base url with the index: ${serverIndex} and the serverId: ${serverId}`);
     }
-    return OpenApiConfigService.GetBaseUrl(this.config, serverIndex);
+    return serverConfig.url;
   }
 
   public insertServer(
