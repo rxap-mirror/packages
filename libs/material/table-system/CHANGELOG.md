@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.8](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.7...@rxap/material-table-system@12.5.8) (2022-06-27)
+
+
+### Bug Fixes
+
+* support filter property clearing ([157219f](https://gitlab.com/rxap/packages/commit/157219f5b2188684cb5b2f28d0279a4049e249d2))
+
+
+
+
+
 ## [12.5.7](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@12.5.6...@rxap/material-table-system@12.5.7) (2022-03-10)
 
 
