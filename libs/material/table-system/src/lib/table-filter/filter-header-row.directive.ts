@@ -57,10 +57,6 @@ export class FilterHeaderRowDirective
         debounceTime(1000),
         map((values) =>
           Object.entries(values)
-            .filter(
-              ([key, value]) =>
-                value !== null && value !== undefined && value !== ''
-            )
             .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
         ),
         distinctUntilChanged((a, b) => equals(a, b)),

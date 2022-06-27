@@ -7,6 +7,7 @@ import {
   ReplaySubject,
   Subscription
 } from 'rxjs';
+import { DeleteEmptyProperties } from '@rxap/utilities';
 
 @Injectable()
 export class TableFilterService implements FilterLike, OnDestroy {
@@ -23,14 +24,18 @@ export class TableFilterService implements FilterLike, OnDestroy {
 
   public setMap(map: Record<string, any>): void {
     const current = this.current;
-    const next = Object.assign(current, map);
+    const next = DeleteEmptyProperties(Object.assign(current, map));
     this.change.next(next);
   }
 
   public set(key: string, value: any): void {
-    const current  = this.current;
-    current[ key ] = value;
-    this.change.next(current);
+    if (value === null || value === undefined || value === '') {
+      this.remove(key);
+    } else {
+      const current  = this.current;
+      current[ key ] = value;
+      this.change.next(current);
+    }
   }
 
   public remove(key: string): void {
