@@ -49,6 +49,20 @@ export async function GenerateDataSource(
   const responseType: string  = GetResponseType(parameter);
   const parameterType: string = GetParameterType(parameter);
 
+  if (!['void', 'any'].includes(responseType)) {
+    importStructures.push({
+      moduleSpecifier: `../responses/${dasherize(responseType.replace(/Response$/, ''))}.response`,
+      namedImports:    [ { name: responseType } ]
+    })
+  }
+
+  if (!['void', 'any'].includes(parameterType)) {
+    importStructures.push({
+      moduleSpecifier: `../parameters/${dasherize(responseType.replace(/Parameter$/, ''))}.parameter`,
+      namedImports:    [ { name: parameterType } ]
+    })
+  }
+
   const classStructure: OptionalKind<ClassDeclarationStructure> = {
     name:       classify(name.replace(/\./g, '-')),
     decorators: [
