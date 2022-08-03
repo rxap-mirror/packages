@@ -70,6 +70,27 @@ export async function GenerateRemoteMethod(
   const parameterType: string   = GetParameterType(parameter);
   const requestBodyType: string = GetRequestBodyType(parameter);
 
+  if (!['void', 'any'].includes(responseType)) {
+    importStructures.push({
+      moduleSpecifier: `../responses/${dasherize(responseType.replace(/Response$/, ''))}.response`,
+      namedImports:    [ { name: responseType } ]
+    })
+  }
+
+  if (!['void', 'any'].includes(parameterType)) {
+    importStructures.push({
+      moduleSpecifier: `../parameters/${dasherize(responseType.replace(/Parameter$/, ''))}.parameter`,
+      namedImports:    [ { name: parameterType } ]
+    })
+  }
+
+  if (!['void', 'any'].includes(requestBodyType)) {
+    importStructures.push({
+      moduleSpecifier: `../request-bodies/${dasherize(responseType.replace(/RequestBody$/, ''))}.request-body`,
+      namedImports:    [ { name: requestBodyType } ]
+    })
+  }
+
   const callMethodParameters: OptionalKind<ParameterDeclarationStructure>[] =
           [];
 
