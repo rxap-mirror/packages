@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0](https://gitlab.com/rxap/packages/compare/@rxap/keycloak@13.0.0-next.0...@rxap/keycloak@13.0.0) (2022-09-11)
+
+**Note:** Version bump only for package @rxap/keycloak
+
+
+
+
+
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/keycloak@12.0.1...@rxap/keycloak@13.0.0-next.0) (2022-02-19)
 
 

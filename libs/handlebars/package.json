@@ -1,6 +1,6 @@
 {
   "name": "@rxap/handlebars",
-  "version": "13.0.0-next.0",
+  "version": "13.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/handlebars",
@@ -37,7 +37,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^13.0.0-next.0",
+    "@rxap/schematics-utilities": "^13.0.0-next.1",
     "tslib": "^2.3.1"
   }
 }

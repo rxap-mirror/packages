@@ -1,6 +1,6 @@
 {
   "name": "@rxap/mixin",
-  "version": "13.0.0-next.1",
+  "version": "13.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/mixin",
@@ -19,7 +19,7 @@
     "@angular-devkit/schematics": "^13.2.4",
     "@angular/core": "^13.2.3",
     "@angular/platform-browser-dynamic": "^13.2.3",
-    "@rxap/utilities": "^13.0.0-next.1",
+    "@rxap/utilities": "^13.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -39,7 +39,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^13.0.0-next.0",
+    "@rxap/schematics-utilities": "^13.0.0-next.1",
     "tslib": "^2.3.1"
   }
 }

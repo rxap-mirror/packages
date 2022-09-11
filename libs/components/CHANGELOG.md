@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0](https://gitlab.com/rxap/packages/compare/@rxap/components@13.0.0-next.2...@rxap/components@13.0.0) (2022-09-11)
+
+**Note:** Version bump only for package @rxap/components
+
+
+
+
+
 # [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/components@13.0.0-next.1...@rxap/components@13.0.0-next.2) (2022-03-29)
 
 **Note:** Version bump only for package @rxap/components

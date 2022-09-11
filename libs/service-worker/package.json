@@ -1,6 +1,6 @@
 {
   "name": "@rxap/service-worker",
-  "version": "13.0.0-next.1",
+  "version": "13.0.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/service-worker",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -22,8 +22,8 @@
     "@angular/platform-browser-dynamic": "^13.2.3",
     "@angular/router": "^13.2.3",
     "@angular/service-worker": "^13.2.3",
-    "@rxap/life-cycle": "^13.0.0-next.1",
-    "@rxap/utilities": "^13.0.0-next.1",
+    "@rxap/life-cycle": "^13.0.0",
+    "@rxap/utilities": "^13.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -45,7 +45,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^13.0.0-next.0",
+    "@rxap/schematics-utilities": "^13.0.0-next.1",
     "tslib": "^2.3.1"
   }
 }

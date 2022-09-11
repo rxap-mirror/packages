@@ -1,6 +1,6 @@
 {
   "name": "@rxap/life-cycle",
-  "version": "13.0.0-next.1",
+  "version": "13.0.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/life-cycle",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -20,7 +20,7 @@
     "@angular/core": "^13.2.3",
     "@angular/platform-browser-dynamic": "^13.2.3",
     "@angular/router": "^13.2.3",
-    "@rxap/utilities": "^13.0.0-next.1",
+    "@rxap/utilities": "^13.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -41,7 +41,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^13.0.0-next.0",
+    "@rxap/schematics-utilities": "^13.0.0-next.1",
     "tslib": "^2.3.1"
   }
 }
