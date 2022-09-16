@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.0.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@13.0.0...@rxap/xml-parser@14.0.0) (2022-09-16)
+
+
+### chore
+
+* upgrade to 14.x.x ([66f0719](https://gitlab.com/rxap/packages/commit/66f0719ecac1378ca6f3edbf670de8de2fc33401))
+
+
+### BREAKING CHANGES
+
+* upgrade to 14.x.x
+
+
+
+
+
 # [13.0.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@13.0.0-next.2...@rxap/xml-parser@13.0.0) (2022-09-11)
 
 **Note:** Version bump only for package @rxap/xml-parser
