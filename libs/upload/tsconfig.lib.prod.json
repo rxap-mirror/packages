@@ -6,6 +6,9 @@
       "@rxap/utilities": [
         "dist/libs/utilities"
       ],
+      "@rxap/utilities/rxjs": [
+        "dist/libs/utilities/rxjs"
+      ],
       "@rxap/remote-method": [
         "dist/libs/remote-method"
       ],

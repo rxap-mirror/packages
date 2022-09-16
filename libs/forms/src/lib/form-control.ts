@@ -1,4 +1,4 @@
-import { FormControl as NgFormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import {
   controlEnabled$,
   controlDisabled$,
@@ -45,7 +45,7 @@ export class RxapFormControl<
   T = any,
   E extends object = any,
   Parent extends object = any
-> extends NgFormControl {
+> extends UntypedFormControl {
   /**
    * @internal
    */

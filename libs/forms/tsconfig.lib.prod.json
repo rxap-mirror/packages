@@ -5,6 +5,12 @@
       "@rxap/utilities": [
         "dist/libs/utilities"
       ],
+      "@rxap/utilities/reflect-metadata": [
+        "dist/libs/utilities/reflect-metadata"
+      ],
+      "@rxap/utilities/rxjs": [
+        "dist/libs/utilities/rxjs"
+      ],
       "@rxap/definition": [
         "dist/libs/definition"
       ]

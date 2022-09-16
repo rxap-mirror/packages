@@ -41,7 +41,7 @@ export interface SortLike {
    * The direction to set when an MatSortable is initially sorted.
    * May be overriden by the MatSortable's sort start.
    */
-  start: 'asc' | 'desc';
+  start: SortDirection;
   /** The sort direction of the currently active MatSortable. */
   direction: SortDirection;
 }

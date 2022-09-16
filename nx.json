@@ -16,7 +16,7 @@
           "e2e",
           "build-storybook"
         ],
-        "parallel": 1
+        "parallel": 5
       }
     }
   },

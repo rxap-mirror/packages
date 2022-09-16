@@ -40,13 +40,13 @@ export class RowControlsCellComponent<Data extends Record<string, any> & { uuid:
     private readonly tableDataSource: TableDataSourceDirective<Data>,
     @Optional()
     @Inject(ROW_DELETE_METHOD)
-    public readonly deleteRemoteMethod: OpenApiRemoteMethod<any, { uuid: string }> | null    = null,
+    public readonly deleteRemoteMethod: OpenApiRemoteMethod<any, { uuid: string }> & Method | null    = null,
     @Optional()
     @Inject(ROW_ARCHIVE_METHOD)
-    public readonly archiveRemoteMethod: OpenApiRemoteMethod<any, { uuid: string }> | null   = null,
+    public readonly archiveRemoteMethod: OpenApiRemoteMethod<any, { uuid: string }> & Method | null   = null,
     @Optional()
     @Inject(ROW_RESTORE_METHOD)
-    public readonly unarchiveRemoteMethod: OpenApiRemoteMethod<any, { uuid: string }> | null = null,
+    public readonly unarchiveRemoteMethod: OpenApiRemoteMethod<any, { uuid: string }> & Method | null = null,
     @Optional()
     @Inject(ROW_EDIT_METHOD)
     public readonly editRemoteMethod: Method<any, Data | Observable<Data>> | null            = null,

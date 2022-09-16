@@ -27,7 +27,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     ContenteditableDirectiveModule,
     IconDirectiveModule,
     MatCheckboxModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
   declarations: [ TreeComponent, TreeContentDirective ],
   exports:      [ TreeComponent, TreeContentDirective ]

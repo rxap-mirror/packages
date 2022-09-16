@@ -16,6 +16,7 @@ import {
 import { TableDataSourceDirective } from '../../table-data-source.directive';
 import { SelectRowService } from '../../select-row/select-row.service';
 import { OpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import { Method } from '@rxap/utilities/rxjs';
 
 @Component({
   selector: 'th[mfd-row-controls-header-cell]',
@@ -46,19 +47,19 @@ export class RowControlsHeaderCellComponent<Data extends Record<string, any>> {
     private readonly deleteRemoteMethod: OpenApiRemoteMethod<
       any,
       { uuid: string }
-    > | null = null,
+    > & Method| null = null,
     @Optional()
     @Inject(ROW_ARCHIVE_METHOD)
     private readonly archiveRemoteMethod: OpenApiRemoteMethod<
       any,
       { uuid: string }
-    > | null = null,
+    > & Method | null = null,
     @Optional()
     @Inject(ROW_RESTORE_METHOD)
     private readonly unarchiveRemoteMethod: OpenApiRemoteMethod<
       any,
       { uuid: string }
-    > | null = null
+    > & Method | null = null
   ) {
     this.disabled$ =
       this.selectRow?.selectedRows$.pipe(
