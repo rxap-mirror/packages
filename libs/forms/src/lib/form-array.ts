@@ -1,5 +1,5 @@
 import {
-  FormArray as NgFormArray,
+  UntypedFormArray,
   AbstractControl as NgAbstractControl
 } from '@angular/forms';
 import {
@@ -55,7 +55,7 @@ import { isDevMode } from '@angular/core';
 export class RxapFormArray<T = any,
   E extends object = any,
   Parent extends object = any>
-  extends NgFormArray
+  extends UntypedFormArray
   implements AbstractControl<T[]> {
 
   private _readonly: boolean = false;

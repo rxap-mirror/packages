@@ -2307,7 +2307,7 @@
       "prefix": "rxap",
       "architect": {
         "build": {
-          "builder": "@nrwl/node:package",
+          "builder": "@nrwl/js:tsc",
           "options": {
             "outputPath": "dist/libs/json-schema-to-typescript",
             "tsConfig": "libs/json-schema-to-typescript/tsconfig.lib.json",

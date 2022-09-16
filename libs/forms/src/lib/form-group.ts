@@ -5,7 +5,7 @@ import {
   isObservable
 } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { FormGroup as NgFormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import {
   ControlEventOptions,
   ExtractStrings,
@@ -48,7 +48,7 @@ import {
 export class RxapFormGroup<
   T extends Record<string, any> = any,
   E extends object = any
-> extends NgFormGroup {
+> extends UntypedFormGroup {
   /**
    * @internal
    */

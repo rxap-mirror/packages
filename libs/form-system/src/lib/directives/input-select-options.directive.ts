@@ -14,7 +14,10 @@ import {
   isDevMode,
   AfterViewInit
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import {
+  NgControl,
+  AbstractControlDirective
+} from '@angular/forms';
 import {
   DataSourceLoader,
   BaseDataSource,
@@ -215,10 +218,14 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
     return this.options?.find((option: any) => option.value === value)?.display ?? (isDevMode() ? 'to display error' : '');
   }
 
-  protected extractControl(ngControl: NgControl | null = this.ngControl ?? this.matFormField?._control?.ngControl ?? null): RxapFormControl {
+  protected extractControl(ngControl: AbstractControlDirective | null = this.ngControl ?? this.matFormField?._control?.ngControl ?? null): RxapFormControl {
 
     if (!ngControl) {
       throw new Error('The ngControl is not defined!');
+    }
+
+    if (!(ngControl instanceof NgControl)) {
+      throw new Error(`The control is not an instance of ngControl`);
     }
 
     this.ngControl = ngControl;

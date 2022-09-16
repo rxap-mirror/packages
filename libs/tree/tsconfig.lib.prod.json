@@ -18,10 +18,10 @@
         "dist/libs/data-source"
       ],
       "@rxap/remote-method": [
-        "dist/remote-method"
+        "dist/libs/remote-method"
       ],
       "@rxap/material-directives/icon": [
-        "dist/material/directives/icon"
+        "dist/libs/material/directives/icon"
       ]
     },
     "declarationMap": false
