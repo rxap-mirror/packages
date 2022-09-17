@@ -1,6 +1,6 @@
 {
   "name": "@rxap/recorder",
-  "version": "14.0.0",
+  "version": "14.0.1",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/recorder",
@@ -17,14 +17,14 @@
   },
   "description": "Client package for https://recorder.rxap.dev.",
   "peerDependencies": {
-    "@angular-devkit/schematics": "^13.2.4",
-    "@angular/core": "^13.2.3",
-    "@angular/platform-browser-dynamic": "^13.2.3",
-    "@rxap/across-tabs": "^13.0.0",
-    "@rxap/definition": "^13.0.0",
-    "@rxap/utilities": "^13.0.0",
+    "@angular-devkit/schematics": "^14.2.3",
+    "@angular/core": "^14.2.2",
+    "@angular/platform-browser-dynamic": "^14.2.2",
+    "@rxap/across-tabs": "^14.0.1",
+    "@rxap/definition": "^14.0.1",
+    "@rxap/utilities": "^14.0.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.6.0"
   },
   "schematics": "./collection.json",
   "ng-update": {
@@ -44,7 +44,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^13.0.0-next.1",
+    "@rxap/schematics-utilities": "^14.0.0",
     "tslib": "^2.3.1"
   }
 }

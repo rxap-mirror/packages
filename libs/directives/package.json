@@ -1,6 +1,6 @@
 {
   "name": "@rxap/directives",
-  "version": "14.0.0",
+  "version": "14.0.1",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/directives",
@@ -16,16 +16,16 @@
   },
   "description": "A collection of utility angular directives used in RxAP.",
   "peerDependencies": {
-    "@angular-devkit/schematics": "^13.2.4",
-    "@angular/cdk": "^13.2.3",
-    "@angular/common": "^13.2.3",
-    "@angular/core": "^13.2.3",
-    "@angular/platform-browser-dynamic": "^13.2.3",
-    "@angular/router": "^13.2.3",
-    "@rxap/services": "^13.0.0",
-    "@rxap/utilities": "^13.0.0",
+    "@angular-devkit/schematics": "^14.2.3",
+    "@angular/cdk": "^14.2.2",
+    "@angular/common": "^14.2.2",
+    "@angular/core": "^14.2.2",
+    "@angular/platform-browser-dynamic": "^14.2.2",
+    "@angular/router": "^14.2.2",
+    "@rxap/services": "^14.0.1",
+    "@rxap/utilities": "^14.0.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.6.0"
   },
   "schematics": "./collection.json",
   "ng-update": {
@@ -44,7 +44,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^13.0.0-next.1",
+    "@rxap/schematics-utilities": "^14.0.0",
     "tslib": "^2.3.1"
   }
 }
