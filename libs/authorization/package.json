@@ -1,22 +1,22 @@
 {
   "name": "@rxap/authorization",
-  "version": "14.0.0",
+  "version": "14.0.1",
   "peerDependencies": {
-    "@angular-devkit/schematics": "^13.2.4",
-    "@angular/cdk": "^13.2.3",
-    "@angular/common": "^13.2.3",
-    "@angular/core": "^13.2.3",
-    "@angular/flex-layout": "^13.0.0-beta.38",
-    "@angular/forms": "^13.2.3",
-    "@angular/material": "^13.2.3",
-    "@angular/platform-browser": "^13.2.3",
-    "@angular/platform-browser-dynamic": "^13.2.3",
-    "@rxap/definition": "^13.0.0",
-    "@rxap/remote-method": "^13.0.0",
-    "@rxap/utilities": "^13.0.0",
+    "@angular-devkit/schematics": "^14.2.3",
+    "@angular/cdk": "^14.2.2",
+    "@angular/common": "^14.2.2",
+    "@angular/core": "^14.2.2",
+    "@angular/flex-layout": "^14.0.0-beta.40",
+    "@angular/forms": "^14.2.2",
+    "@angular/material": "^14.2.2",
+    "@angular/platform-browser": "^14.2.2",
+    "@angular/platform-browser-dynamic": "^14.2.2",
+    "@rxap/definition": "^14.0.1",
+    "@rxap/remote-method": "^14.0.0",
+    "@rxap/utilities": "^14.0.1",
     "@schematics/angular": "^13.2.4",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.6.0"
   },
   "schematics": "./collection.json",
   "ng-update": {
@@ -49,7 +49,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^13.0.0-next.1",
+    "@rxap/schematics-utilities": "^14.0.0",
     "tslib": "^2.3.1"
   }
 }

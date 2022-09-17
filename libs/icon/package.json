@@ -1,6 +1,6 @@
 {
   "name": "@rxap/icon",
-  "version": "14.0.0",
+  "version": "14.0.1",
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
@@ -36,12 +36,12 @@
     "tslib": "^2.3.1"
   },
   "peerDependencies": {
-    "@angular-devkit/schematics": "^13.2.4",
-    "@angular/common": "^13.2.3",
-    "@angular/core": "^13.2.3",
-    "@angular/material": "^13.2.3",
-    "@angular/platform-browser": "^13.2.3",
-    "@angular/platform-browser-dynamic": "^13.2.3",
-    "@rxap/schematics-utilities": "^13.0.0-next.1"
+    "@angular-devkit/schematics": "^14.2.3",
+    "@angular/common": "^14.2.2",
+    "@angular/core": "^14.2.2",
+    "@angular/material": "^14.2.2",
+    "@angular/platform-browser": "^14.2.2",
+    "@angular/platform-browser-dynamic": "^14.2.2",
+    "@rxap/schematics-utilities": "^14.0.0"
   }
 }
