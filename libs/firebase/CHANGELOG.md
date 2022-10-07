@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/firebase@14.0.1...@rxap/firebase@14.0.2) (2022-10-07)
+
+
+### Bug Fixes
+
+* replace package.json with ng-package.json ([ebaaf92](https://gitlab.com/rxap/packages/commit/ebaaf92a403fd31a4aa538f698fda1e004c037bd))
+
+
+
+
+
 ## [14.0.1](https://gitlab.com/rxap/packages/compare/@rxap/firebase@13.0.0...@rxap/firebase@14.0.1) (2022-09-17)
 
 **Note:** Version bump only for package @rxap/firebase
