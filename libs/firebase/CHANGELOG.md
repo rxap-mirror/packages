@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@14.0.2...@rxap/firebase@14.1.0) (2022-10-10)
+
+
+### Features
+
+* migrate to firebase modular ([afa93b9](https://gitlab.com/rxap/packages/commit/afa93b9351d1b9c44342f6f53519ac9c9ad89f86))
+
+
+
+
+
 ## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/firebase@14.0.1...@rxap/firebase@14.0.2) (2022-10-07)
 
 
