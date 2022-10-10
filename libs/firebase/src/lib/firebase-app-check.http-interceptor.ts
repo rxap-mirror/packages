@@ -1,7 +1,6 @@
 import {
   Inject,
   Injectable,
-  InjectionToken,
   Optional,
   Provider
 } from '@angular/core';
@@ -12,18 +11,23 @@ import {
   HttpRequest,
   HTTP_INTERCEPTORS
 } from '@angular/common/http';
-import {
-  AppCheckService,
-  APP_CHECK_ENABLED
-} from './app-check';
 import { coerceArray } from '@rxap/utilities';
-import { switchMap } from 'rxjs/operators';
+import {
+  switchMap,
+  map
+} from 'rxjs/operators';
 import {
   Observable,
   from
 } from 'rxjs';
-
-export const FIREBASE_APP_CHECK_HTTP_INTERCEPTOR_URL_PATTERN = new InjectionToken<RegExp>('firebase-app-check-http-interceptor-url-pattern');
+import {
+  getToken,
+  AppCheck
+} from '@angular/fire/app-check';
+import {
+  APP_CHECK_ENABLED,
+  FIREBASE_APP_CHECK_HTTP_INTERCEPTOR_URL_PATTERN
+} from './tokens';
 
 @Injectable()
 export class FirebaseAppCheckHttpInterceptor implements HttpInterceptor {
@@ -31,7 +35,7 @@ export class FirebaseAppCheckHttpInterceptor implements HttpInterceptor {
   private readonly urlPattern: RegExp[] = [];
 
   constructor(
-    public readonly appCheck: AppCheckService,
+    public readonly appCheck: AppCheck,
     @Inject(FIREBASE_APP_CHECK_HTTP_INTERCEPTOR_URL_PATTERN)
       urlPattern: RegExp | RegExp[],
     @Optional()
@@ -43,7 +47,8 @@ export class FirebaseAppCheckHttpInterceptor implements HttpInterceptor {
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.enabled && this.isMatch(req)) {
-      return from(this.appCheck.getToken()).pipe(
+      return from(getToken(this.appCheck)).pipe(
+        map(response => response.token),
         switchMap(token => next.handle(req.clone({
           setHeaders: {
             'X-Firebase-AppCheck': token

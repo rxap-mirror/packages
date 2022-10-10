@@ -1,50 +1,62 @@
-import { BehaviorSubject } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  EMPTY
+} from 'rxjs';
 import {
   map,
   take
 } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import {
-  Injectable,
-  Inject
-} from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {
+  Auth,
+  authState,
+  signOut,
+  User,
   GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+  sendPasswordResetEmail,
+  confirmPasswordReset,
+  signInWithEmailAndPassword,
   GithubAuthProvider,
   FacebookAuthProvider,
   TwitterAuthProvider,
   AuthProvider
-} from '@firebase/auth';
+} from '@angular/fire/auth';
+import { traceUntilFirst } from '@angular/fire/performance';
 
 @Injectable()
 export class IdentityPlatformService {
   isAuthenticated$: BehaviorSubject<boolean | null> = new BehaviorSubject<boolean | null>(null);
 
+  public readonly user: Observable<User | null> = EMPTY;
+
   constructor(
-    @Inject(AngularFireAuth)
-    public fireAuth: AngularFireAuth
+    public readonly auth: Auth
   ) {
+    this.user = authState(this.auth);
     this.isAuthenticated().then(isAuthenticated => this.isAuthenticated$.next(isAuthenticated));
   }
 
   public async requestPasswordReset(email: string): Promise<boolean> {
-    await this.fireAuth.sendPasswordResetEmail(email);
+    await sendPasswordResetEmail(this.auth, email);
     return true;
   }
 
   public async sendPasswordReset(password: string, token: string): Promise<boolean> {
-    await this.fireAuth.confirmPasswordReset(token, password);
+    await confirmPasswordReset(this.auth, token, password);
     return true;
   }
 
   public async signInWithEmailAndPassword(email: string, password: string, remember: boolean): Promise<boolean> {
-    await this.fireAuth.signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(this.auth, email, password);
     this.isAuthenticated$.next(true);
     return true;
   }
 
   public async signOut(): Promise<boolean> {
-    await this.fireAuth.signOut();
+    await signOut(this.auth);
     this.isAuthenticated$.next(false);
     return true;
   }
@@ -66,14 +78,15 @@ export class IdentityPlatformService {
   }
 
   protected async withProvider(provider: AuthProvider, popup: boolean = true) {
-    const signIn: Promise<any> = popup ? this.fireAuth.signInWithPopup(provider) : this.fireAuth.signInWithRedirect(provider);
+    const signIn: Promise<any> = popup ? signInWithPopup(this.auth, provider) : signInWithRedirect(this.auth, provider);
     await signIn;
     this.isAuthenticated$.next(true);
     return true;
   }
 
   public isAuthenticated(): Promise<boolean> {
-    return this.fireAuth.authState.pipe(
+    return authState(this.auth).pipe(
+      traceUntilFirst('auth'),
       take(1),
       map(Boolean)
     ).toPromise();

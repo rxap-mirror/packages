@@ -1,7 +1,6 @@
 import {
   Inject,
   Injectable,
-  InjectionToken,
   isDevMode,
   NgModule,
   NgZone,
@@ -13,10 +12,6 @@ import {
   EMPTY
 } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-import type {
-  AppCheckTokenResult,
-  AppCheck
-} from '@firebase/app-check';
 import {
   FIREBASE_OPTIONS,
   FIREBASE_APP_NAME,
@@ -25,13 +20,16 @@ import {
 import { FirebaseOptions } from 'firebase/app';
 import {
   onTokenChanged,
-  setTokenAutoRefreshEnabled
+  setTokenAutoRefreshEnabled,
+  getToken,
+  AppCheck,
+  AppCheckTokenResult
 } from '@angular/fire/app-check';
-import { getToken } from '@angular/fire/app-check';
-
-export const APP_CHECK_ENABLED                       = new InjectionToken('rxap/firebase/app-check-enabled');
-export const APP_CHECK_SITE_KEY                      = new InjectionToken('rxap/firebase/app-check-site-key');
-export const APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED = new InjectionToken('rxap/firebase/app-check-is-token-auto-refresh-enabled');
+import {
+  APP_CHECK_ENABLED,
+  APP_CHECK_SITE_KEY,
+  APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED
+} from './tokens';
 
 @Injectable()
 export class AppCheckService {
