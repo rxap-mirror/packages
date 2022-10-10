@@ -18,7 +18,10 @@ import {
   tap
 } from 'rxjs/operators';
 import { isDefined } from '@rxap/utilities/rxjs';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import {
+  Auth,
+  idToken
+} from '@angular/fire/auth';
 
 export const IDENTITY_PLATFORM_HTTP_INTERCEPTOR_URL_PATTERN = new InjectionToken<RegExp>('identity-platform-http-interceptor-url-pattern');
 
@@ -29,8 +32,7 @@ export class IdentityPlatformHttpInterceptor implements HttpInterceptor {
   private readonly urlPattern: RegExp[] = [];
 
   constructor(
-    @Inject(AngularFireAuth)
-    public fireAuth: AngularFireAuth,
+    public readonly auth: Auth,
     @Inject(IDENTITY_PLATFORM_HTTP_INTERCEPTOR_URL_PATTERN)
     urlPattern: RegExp | RegExp[]
   ) {
@@ -39,16 +41,16 @@ export class IdentityPlatformHttpInterceptor implements HttpInterceptor {
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.isMatch(req)) {
-      return this.fireAuth.idToken.pipe(
-        tap(idToken => {
-          if (!idToken) {
+      return idToken(this.auth).pipe(
+        tap(idTokenValue => {
+          if (!idTokenValue) {
             throw new Error(`The isToken is not defined. Ensure that the user is logged in, before sending a request to '${req.url}'`);
           }
         }),
         isDefined(),
-        switchMap(idToken => next.handle(req.clone({
+        switchMap(idTokenValue => next.handle(req.clone({
           setHeaders: {
-            idToken: idToken
+            idToken: idTokenValue
           }
         })))
       );

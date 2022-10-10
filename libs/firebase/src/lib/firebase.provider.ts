@@ -5,12 +5,6 @@ import {
 } from '@angular/core';
 import { ConfigService } from '@rxap/config';
 import { FirebaseConfig } from './firebase.config';
-import {
-  APP_CHECK_ENABLED,
-  APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED,
-  APP_CHECK_SITE_KEY,
-  AppCheckService
-} from './app-check';
 import { FirebaseApp } from '@angular/fire/app';
 import {
   USE_DEVICE_LANGUAGE,
@@ -53,6 +47,12 @@ import {
   REGION,
   USE_EMULATOR as USE_FUNCTIONS_EMULATOR
 } from '@angular/fire/compat/functions';
+import {
+  APP_CHECK_ENABLED,
+  APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED,
+  APP_CHECK_SITE_KEY
+} from './tokens';
+import { AppCheckService } from './app-check';
 
 export function FirebaseOptionsTokenFactory(configService: ConfigService<FirebaseConfig>) {
   return configService.get('firebase.options');
