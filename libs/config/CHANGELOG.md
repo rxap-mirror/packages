@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.1.1](https://gitlab.com/rxap/packages/compare/@rxap/config@13.1.0...@rxap/config@13.1.1) (2022-10-17)
+
+
+### Bug Fixes
+
+* use AnySchema instead of ObjectSchama as schema type ([627d785](https://gitlab.com/rxap/packages/commit/627d7859b12cc7b177fd5ee2b1721ece10172ff5))
+
+
+
+
+
 # [13.1.0](https://gitlab.com/rxap/packages/compare/@rxap/config@13.0.0...@rxap/config@13.1.0) (2022-10-17)
 
 
