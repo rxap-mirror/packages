@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.1.0](https://gitlab.com/rxap/packages/compare/@rxap/config@13.0.0...@rxap/config@13.1.0) (2022-10-17)
+
+
+### Features
+
+* support joi config validation ([1fda2e8](https://gitlab.com/rxap/packages/commit/1fda2e8ae2e28663d76110e8faf2dad6abaa08db))
+
+
+
+
+
 # [13.0.0](https://gitlab.com/rxap/packages/compare/@rxap/config@13.0.0-next.1...@rxap/config@13.0.0) (2022-09-11)
 
 **Note:** Version bump only for package @rxap/config
