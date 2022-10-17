@@ -51,6 +51,7 @@
     "commit": "git-cz",
     "test:ci": "jest --coverage --ci --reporters default --reporters jest-junit",
     "workspace-generator": "nx workspace-generator",
+    "prepare": "husky install",
     "lerna": "env-cmd lerna",
     "lerna:version": "bash scripts/lerna/version.sh",
     "lerna:publish": "bash scripts/lerna/publish.sh",
