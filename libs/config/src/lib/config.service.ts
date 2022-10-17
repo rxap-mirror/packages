@@ -74,7 +74,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
     if (schema) {
       try {
-        schema.validate(config);
+        config = await schema.validateAsync(config);
       } catch (error: any) {
         const message = `Config from '${url}' is not valid: ${error.message}`;
         if (required) {
