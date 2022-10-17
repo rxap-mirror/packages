@@ -9,12 +9,12 @@ import {
 } from '@rxap/utilities';
 import { RXAP_CONFIG } from './tokens';
 import { NoInferType } from './types';
-import { ObjectSchema } from 'joi';
+import { AnySchema } from 'joi';
 
 export interface ConfigLoadOptions {
   fromUrlParam?: string | boolean;
   fromLocalStorage?: boolean;
-  schema?: ObjectSchema;
+  schema?: AnySchema;
 }
 
 @Injectable({
@@ -41,7 +41,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   public static Urls = [ 'config.json' ];
 
-  private static async loadConfig<T = any>(url: string, required?: boolean, schema?: ObjectSchema): Promise<T | null> {
+  private static async loadConfig<T = any>(url: string, required?: boolean, schema?: AnySchema): Promise<T | null> {
 
     let config: any;
     let response: any;
@@ -91,7 +91,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   }
 
-  public static async SideLoad(url: string, propertyPath: string, required?: boolean, schema?: ObjectSchema): Promise<void> {
+  public static async SideLoad(url: string, propertyPath: string, required?: boolean, schema?: AnySchema): Promise<void> {
 
     if (!this.Config) {
       throw new Error('Config side load is only possible after the initial config load.');
