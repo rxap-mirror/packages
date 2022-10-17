@@ -97,7 +97,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       throw new Error('Config side load is only possible after the initial config load.');
     }
 
-    const config = this.loadConfig(url, required, schema);
+    const config = await this.loadConfig(url, required, schema);
 
     SetObjectValue(this.Config, propertyPath, config);
 
