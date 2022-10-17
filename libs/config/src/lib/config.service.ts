@@ -9,10 +9,12 @@ import {
 } from '@rxap/utilities';
 import { RXAP_CONFIG } from './tokens';
 import { NoInferType } from './types';
+import { ObjectSchema } from 'joi';
 
 export interface ConfigLoadOptions {
   fromUrlParam?: string | boolean;
   fromLocalStorage?: boolean;
+  schema?: ObjectSchema;
 }
 
 @Injectable({
@@ -39,26 +41,67 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   public static Urls = [ 'config.json' ];
 
-  public static async SideLoad(url: string, propertyPath: string, required?: boolean): Promise<void> {
+  private static async loadConfig<T = any>(url: string, required?: boolean, schema?: ObjectSchema): Promise<T | null> {
+
+    let config: any;
+    let response: any;
+
+    try {
+      response = await fetch(url)
+    } catch (error: any) {
+      const message = `Could not fetch config from '${url}': ${error.message}`;
+      if (required) {
+        alert(message);
+        throw new Error(message);
+      } else {
+        console.warn(message);
+        return null;
+      }
+    }
+
+    try {
+      config = await response.json()
+    } catch (error: any) {
+      const message = `Could not parse config from '${url}' to a json object: ${error.message}`;
+      if (required) {
+        alert(message);
+        throw new Error(message);
+      } else {
+        console.warn(message);
+        return null;
+      }
+    }
+
+    if (schema) {
+      try {
+        schema.validate(config);
+      } catch (error: any) {
+        const message = `Config from '${url}' is not valid: ${error.message}`;
+        if (required) {
+          alert(message);
+          throw new Error(message);
+        } else {
+          console.warn(message);
+          return null;
+        }
+      }
+    }
+
+    return config;
+
+  }
+
+  public static async SideLoad(url: string, propertyPath: string, required?: boolean, schema?: ObjectSchema): Promise<void> {
 
     if (!this.Config) {
       throw new Error('Config side load is only possible after the initial config load.');
     }
 
-    try {
+    const config = this.loadConfig(url, required, schema);
 
-      const response = await fetch(url);
-      SetObjectValue(this.Config, propertyPath, await response.json());
+    SetObjectValue(this.Config, propertyPath, config);
 
-    } catch (error: any) {
-      if (required) {
-        throw new Error(`Could not side load config '${url}': ${error.message}`);
-      } else {
-        console.warn(url, error.message);
-      }
-    }
-
-    console.debug(`app config side load '${propertyPath}'`, this.Config);
+    console.debug(`Side loaded config for '${propertyPath}' successful`, this.Config);
 
   }
 
@@ -73,14 +116,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
   public static async Load(options?: ConfigLoadOptions): Promise<void> {
     let config = this.Defaults;
     for (const url of ConfigService.Urls) {
-      try {
-
-        const response = await fetch(url);
-        config         = deepMerge(config, await response.json());
-
-      } catch (error: any) {
-        console.error(url, error.message);
-      }
+      config = await this.loadConfig(url, true, options?.schema);
     }
 
     config = deepMerge(config, this.Overwrites);
@@ -106,7 +142,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
     console.debug('app config', config);
 
-    ConfigService.Config = config;
+    this.Config = config;
   }
 
   private static LoadConfigDefaultFromUrlParam(param: string = 'config') {
