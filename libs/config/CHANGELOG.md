@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.1.3](https://gitlab.com/rxap/packages/compare/@rxap/config@13.1.2...@rxap/config@13.1.3) (2022-10-17)
+
+
+### Bug Fixes
+
+* change to async validation ([9de8f83](https://gitlab.com/rxap/packages/commit/9de8f8397042fa4026134b6c2e16f44552d2bebb))
+
+
+
+
+
 ## [13.1.2](https://gitlab.com/rxap/packages/compare/@rxap/config@13.1.1...@rxap/config@13.1.2) (2022-10-17)
 
 
