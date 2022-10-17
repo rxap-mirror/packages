@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.1.2](https://gitlab.com/rxap/packages/compare/@rxap/config@13.1.1...@rxap/config@13.1.2) (2022-10-17)
+
+
+### Bug Fixes
+
+* resolve config promise ([7cce859](https://gitlab.com/rxap/packages/commit/7cce859826f6b042ce203c4220868692b052c47c))
+
+
+
+
+
 ## [13.1.1](https://gitlab.com/rxap/packages/compare/@rxap/config@13.1.0...@rxap/config@13.1.1) (2022-10-17)
 
 
