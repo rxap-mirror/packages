@@ -22,6 +22,14 @@ export class TableFilterService implements FilterLike, OnDestroy {
 
   private _subscription: Subscription;
 
+  /**
+   * a flag to indicate whether any value was already send to the change subject
+   * true - a value was send
+   * false - no value was send
+   * @private
+   */
+  private _init = false;
+
   constructor() {
     this._subscription = this.change.subscribe(current => this.current = current);
   }
@@ -30,7 +38,8 @@ export class TableFilterService implements FilterLike, OnDestroy {
     const current = this.current;
     const copy = clone(this.current);
     const next = DeleteEmptyProperties(Object.assign(current, map));
-    if (!equals(copy, next)) {
+    if (!this._init || !equals(copy, next)) {
+      this._init = true;
       this.change.next(next);
     }
   }
