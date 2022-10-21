@@ -55,14 +55,6 @@ export class FilterHeaderRowDirective
     this._subscription = this.form.value$
       .pipe(
         debounceTime(1000),
-        map((values) =>
-          Object.entries(values)
-            .filter(
-              ([key, value]) =>
-                value !== null && value !== undefined && value !== ''
-            )
-            .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {})
-        ),
         distinctUntilChanged((a, b) => equals(a, b)),
         tap(values => this.tableFilter.setMap(values))
       )
