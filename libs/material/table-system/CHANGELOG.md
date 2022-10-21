@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.0.1...@rxap/material-table-system@13.0.2) (2022-10-21)
+
+
+### Bug Fixes
+
+* send initial value first ([5ed4bd0](https://gitlab.com/rxap/packages/commit/5ed4bd0aa5b898ce216041edd2c045ba6f0a2db6))
+
+
+
+
+
 ## [13.0.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.0.0...@rxap/material-table-system@13.0.1) (2022-10-21)
 
 
