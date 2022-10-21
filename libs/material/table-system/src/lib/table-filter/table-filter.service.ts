@@ -7,6 +7,11 @@ import {
   ReplaySubject,
   Subscription
 } from 'rxjs';
+import {
+  clone,
+  equals,
+  DeleteEmptyProperties
+} from '@rxap/utilities';
 
 @Injectable()
 export class TableFilterService implements FilterLike, OnDestroy {
@@ -23,8 +28,11 @@ export class TableFilterService implements FilterLike, OnDestroy {
 
   public setMap(map: Record<string, any>): void {
     const current = this.current;
-    const next = Object.assign(current, map);
-    this.change.next(next);
+    const copy = clone(this.current);
+    const next = DeleteEmptyProperties(Object.assign(current, map));
+    if (!equals(copy, next)) {
+      this.change.next(next);
+    }
   }
 
   public set(key: string, value: any): void {
