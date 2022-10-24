@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.0.2...@rxap/material-table-system@13.0.3) (2022-10-24)
+
+
+### Bug Fixes
+
+* remove i18n specific ids ([f72eb17](https://gitlab.com/rxap/packages/commit/f72eb1720d5222da48171fac681d5738dd066f6d))
+
+
+
+
+
 ## [13.0.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.0.1...@rxap/material-table-system@13.0.2) (2022-10-21)
 
 

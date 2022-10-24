@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-table-system",
-  "version": "13.0.2",
+  "version": "13.0.3",
   "peerDependencies": {
     "@angular-devkit/schematics": "^13.2.4",
     "@angular/animations": "^13.2.3",
