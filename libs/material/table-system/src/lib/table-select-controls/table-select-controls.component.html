@@ -1,8 +1,8 @@
 <div fxLayout="row" fxLayoutGap="16px">
-  <button fxFlex="nogrow" mat-stroked-button (click)="cancel()" type="button"
-          i18n="@@rxap-material.table-system.table-select-controls.cancel">Cancel
+  <button fxFlex="nogrow" mat-stroked-button (click)="cancel()" type="button">
+    <ng-container i18n>Cancel</ng-container>
   </button>
-  <button fxFlex="nogrow" mat-raised-button (click)="select()" type="button" [disabled]="hasNotSelected$ | async"
-          i18n="@@rxap-material.table-system.table-select-controls.select">Select
+  <button fxFlex="nogrow" mat-raised-button (click)="select()" type="button" [disabled]="hasNotSelected$ | async">
+    <ng-container i18n>Select</ng-container>
   </button>
 </div>
