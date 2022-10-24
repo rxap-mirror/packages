@@ -4,17 +4,15 @@
             [disabled]="submitting$ | async"
             type="button"
             fxFlex="nogrow"
-            i18n="@@rxap-material.form-system.components.form-controls.reset"
             mat-stroked-button>
-      Reset
+      <ng-container i18n>Reset</ng-container>
     </button>
     <button (click)="cancel()"
             [disabled]="submitting$ | async"
             type="button"
             color="warn" fxFlex="nogrow"
-            i18n="@@rxap-material.form-system.components.form-controls.cancel"
             mat-stroked-button>
-      Cancel
+      <ng-container i18n>Cancel</ng-container>
     </button>
     <button (click)="submit(!allowResubmit)"
             [disabled]="submitting$ | async"
@@ -24,8 +22,9 @@
             [ngClass]="{ invalid: invalid }"
             mat-raised-button>
       <span fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
-        <span fxFlex="nogrow"
-              i18n="@@rxap-material.form-system.components.form-controls.submit">Submit</span>
+        <span fxFlex="nogrow">
+          <ng-container i18n>Submit</ng-container>
+        </span>
         <mat-spinner [fxShow]="submitting$ | async" fxFlex="nogrow" mode="indeterminate" [diameter]="15" color="accent"></mat-spinner>
       </span>
     </button>
@@ -37,9 +36,8 @@
             [disabled]="submitting$ | async"
             mat-raised-button>
       <span fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
-        <span fxFlex="nogrow"
-              i18n="@@rxap-material.form-system.components.form-controls.submit-and-close">
-          Submit and Close
+        <span fxFlex="nogrow">
+          <ng-container i18n>Submit and Close</ng-container>
         </span>
         <mat-spinner [fxShow]="submitting$ | async" fxFlex="nogrow" mode="indeterminate" [diameter]="15" color="accent"></mat-spinner>
       </span>
