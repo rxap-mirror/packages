@@ -13,24 +13,24 @@
 
       <mat-form-field class="email-input">
         <mat-icon matPrefix inline>email</mat-icon>
-        <mat-label i18n="user login email input label|The user email input label">Email</mat-label>
+        <mat-label i18n>Email</mat-label>
         <input matInput
                i18n-placeholder
                placeholder="Enter your email address"
                type="email"
                fxFlex="nogrow"
                formControlName="email">
-        <mat-error *rxapFormControlError="let error from 'email'; if: 'required'" i18n="user login email input error required">
+        <mat-error *rxapFormControlError="let error from 'email'; if: 'required'">
           Email is <strong>required</strong>
         </mat-error>
-        <mat-error *rxapFormControlError="let error from 'email'; if: 'email'" i18n="user login email input error format">
+        <mat-error *rxapFormControlError="let error from 'email'; if: 'email'">
           Please enter a valid email address
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="password-input">
         <mat-icon matPrefix inline>vpn_key</mat-icon>
-        <mat-label i18n="user login password input label|The user password input label">Password</mat-label>
+        <mat-label i18n>Password</mat-label>
         <input matInput
                type="password"
                i18n-placeholder
@@ -38,7 +38,7 @@
                fxFlex="nogrow"
                #passwordInput
                formControlName="password">
-        <mat-error *rxapFormControlError="let error from 'password'; if: 'required'" i18n="user login password input error required">
+        <mat-error *rxapFormControlError="let error from 'password'; if: 'required'">
           Password is <strong>required</strong>
         </mat-error>
         <button tabIndex="-1" matSuffix *ngIf="passwordInput.type === 'password'" mat-icon-button type="button" (click)="passwordInput.type = 'test'">
@@ -62,7 +62,6 @@
         <button color="accent"
                 type="button"
                 mat-button
-                i18n
                 (click)="requestPasswordReset(form.value.email)"
                 [disabled]="!form.value.email || form.control.controls.email.hasError('email')">
             <span fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="space-between center">
