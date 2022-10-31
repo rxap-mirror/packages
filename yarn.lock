@@ -6170,14 +6170,6 @@
   dependencies:
     tslib "^2.3.1"
 
-"@rxap/schematics-utilities@14.0.2":
-  version "14.0.2"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-14.0.2.tgz#c5da272e929aeb481b9c4621fbb0d973b838b7c5"
-  integrity sha512-ol1aIYzEo7t81j4IeRZrNbWL5AmoY5L1o4ZJOQu5MpiBuAQLf1KWSJmxdlZ9pKekKwMKiq+c2DgSKtppsT1BGA==
-  dependencies:
-    semver "^7.3.5"
-    tslib "^2.3.1"
-
 "@rxap/schematics-utilities@^12.7.0":
   version "12.7.0"
   resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-12.7.0.tgz#33be4136a70a85e028bedbbcca6819ffe528c400"
@@ -6186,6 +6178,14 @@
     "@rxap/utilities" "^12.2.1"
     semver "^7.3.5"
     tslib "^2.0.0"
+
+"@rxap/schematics-utilities@^14.0.0":
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-14.0.2.tgz#c5da272e929aeb481b9c4621fbb0d973b838b7c5"
+  integrity sha512-ol1aIYzEo7t81j4IeRZrNbWL5AmoY5L1o4ZJOQu5MpiBuAQLf1KWSJmxdlZ9pKekKwMKiq+c2DgSKtppsT1BGA==
+  dependencies:
+    semver "^7.3.5"
+    tslib "^2.3.1"
 
 "@rxap/schematics@^14.0.0":
   version "14.0.0"
