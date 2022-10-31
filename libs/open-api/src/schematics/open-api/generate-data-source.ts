@@ -58,7 +58,7 @@ export async function GenerateDataSource(
 
   if (!['void', 'any'].includes(parameterType)) {
     importStructures.push({
-      moduleSpecifier: `../parameters/${dasherize(responseType.replace(/Parameter$/, ''))}.parameter`,
+      moduleSpecifier: `../parameters/${dasherize(parameterType.replace(/Parameter$/, ''))}.parameter`,
       namedImports:    [ { name: parameterType } ]
     })
   }
