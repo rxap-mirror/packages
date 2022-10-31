@@ -185,7 +185,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       throw new Error('The config property path is not a string');
     }
     for (const fragment of (path as any).split('.')) {
-      if (configValue.hasOwnProperty(fragment)) {
+      if (configValue?.hasOwnProperty(fragment)) {
         configValue = configValue[ fragment ];
       } else {
         if (defaultValue !== undefined) {
