@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.3](https://gitlab.com/rxap/packages/compare/@rxap/open-api@14.0.2...@rxap/open-api@14.0.3) (2022-10-31)
+
+
+### Bug Fixes
+
+* **schematics:** remove copy-cat issues ([d036e27](https://gitlab.com/rxap/packages/commit/d036e27fad271d8835e82e5785121b231accd330))
+
+
+
+
+
 ## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/open-api@14.0.1...@rxap/open-api@14.0.2) (2022-10-31)
 
 
