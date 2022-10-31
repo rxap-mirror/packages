@@ -1,6 +1,6 @@
 {
   "name": "@rxap/config",
-  "version": "14.0.1",
+  "version": "14.1.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/config",
@@ -22,6 +22,7 @@
     "@angular/core": "^14.2.2",
     "@angular/platform-browser-dynamic": "^14.2.2",
     "@rxap/utilities": "^14.0.1",
+    "joi": "^17.6.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.0"
   },

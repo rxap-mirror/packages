@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/dialog@14.0.1...@rxap/dialog@14.0.2) (2022-10-31)
+
+
+### Bug Fixes
+
+* remove i18n specific ids ([21ef36d](https://gitlab.com/rxap/packages/commit/21ef36dfeaaef4e12f12dd21cdb86f6fdf8ff25a))
+
+
+
+
+
 ## [14.0.1](https://gitlab.com/rxap/packages/compare/@rxap/dialog@13.0.0...@rxap/dialog@14.0.1) (2022-09-17)
 
 **Note:** Version bump only for package @rxap/dialog

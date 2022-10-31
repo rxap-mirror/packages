@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0](https://gitlab.com/rxap/packages/compare/@rxap/config@14.0.1...@rxap/config@14.1.0) (2022-10-31)
+
+
+### Bug Fixes
+
+* change to async validation ([8363721](https://gitlab.com/rxap/packages/commit/83637213fa134046da9c6fc6dd6a4ee034a6c106))
+* resolve config promise ([e193e38](https://gitlab.com/rxap/packages/commit/e193e38c03598b33d1d1b976b2f76f2acbeaf8cf))
+* use AnySchema instead of ObjectSchama as schema type ([85a2dd5](https://gitlab.com/rxap/packages/commit/85a2dd52f1561948640576f1c42198afd9b4a14c))
+
+
+### Features
+
+* support joi config validation ([eafea07](https://gitlab.com/rxap/packages/commit/eafea07385967a0b7051632e59e4ef6362af333b))
+
+
+
+
+
 ## [14.0.1](https://gitlab.com/rxap/packages/compare/@rxap/config@13.0.0...@rxap/config@14.0.1) (2022-09-17)
 
 **Note:** Version bump only for package @rxap/config
