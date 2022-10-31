@@ -1,6 +1,6 @@
 {
   "name": "@rxap/open-api",
-  "version": "14.0.1",
+  "version": "14.0.2",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/open-api",
@@ -36,7 +36,7 @@
   "dependencies": {
     "@rxap/schematics-open-api": "^14.0.0",
     "@rxap/schematics-ts-morph": "^14.0.0",
-    "@rxap/schematics-utilities": "^14.0.0",
+    "@rxap/schematics-utilities": "^14.0.2",
     "ajv-oai": "^1.2.1",
     "openapi-types": "^10.0.0",
     "ts-morph": "^13.0.3",
