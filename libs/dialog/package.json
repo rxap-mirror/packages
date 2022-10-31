@@ -1,6 +1,6 @@
 {
   "name": "@rxap/dialog",
-  "version": "14.0.1",
+  "version": "14.0.2",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/dialog",
@@ -36,7 +36,7 @@
     "@rxap/forms": "^14.0.0",
     "@rxap/material-directives": "^14.0.0",
     "@rxap/pipes": "^14.0.0",
-    "@rxap/services": "^14.0.1",
+    "@rxap/services": "^14.0.2",
     "@rxap/utilities": "^14.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.0"
