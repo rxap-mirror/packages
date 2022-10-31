@@ -79,14 +79,14 @@ export async function GenerateRemoteMethod(
 
   if (!['void', 'any'].includes(parameterType)) {
     importStructures.push({
-      moduleSpecifier: `../parameters/${dasherize(responseType.replace(/Parameter$/, ''))}.parameter`,
+      moduleSpecifier: `../parameters/${dasherize(parameterType.replace(/Parameter$/, ''))}.parameter`,
       namedImports:    [ { name: parameterType } ]
     })
   }
 
   if (!['void', 'any'].includes(requestBodyType)) {
     importStructures.push({
-      moduleSpecifier: `../request-bodies/${dasherize(responseType.replace(/RequestBody$/, ''))}.request-body`,
+      moduleSpecifier: `../request-bodies/${dasherize(requestBodyType.replace(/RequestBody$/, ''))}.request-body`,
       namedImports:    [ { name: requestBodyType } ]
     })
   }
