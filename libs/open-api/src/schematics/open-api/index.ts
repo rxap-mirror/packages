@@ -32,7 +32,8 @@ import {
   GetProjectPrefix,
   CoerceFile,
   HasProject,
-  GetDefaultPrefix
+  GetDefaultPrefix,
+  GetProjectSourceRoot
 } from '@rxap/schematics-utilities';
 import { GenerateRemoteMethod } from './generate-remote-method';
 import { GenerateDataSource } from './generate-data-source';
@@ -98,7 +99,7 @@ export default function(options: OpenApiSchema): Rule {
       options.project = 'open-api';
     }
 
-    const projectBasePath = join('libs', options.project, 'src');
+    const projectBasePath = GetProjectSourceRoot(host, options.project);
     const basePath = join(projectBasePath, 'lib');
 
     options.prefix = options.prefix ?? (HasProject(host, options.project) ? GetProjectPrefix(host, options.project) : GetDefaultPrefix(host)) ?? 'rxap';
