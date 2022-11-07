@@ -184,11 +184,24 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
     this.dataSource.sort       = this.matSort ?? undefined;
     this.dataSource.filter     = tableFilter;
     this.dataSource.parameters = this.parameters;
+    if (this.dataSource instanceof DynamicTableDataSource) {
+      this.dataSource.setPaginator(this.paginator, this.id);
+      this.dataSource.setSort(this.matSort, this.id);
+      this.dataSource.setFilter(tableFilter, this.id);
+      this.dataSource.setParameters(this.parameters, this.id);
+    }
     this._subscription.add(
       this.dataSource.loading$.pipe(
         tap(loading => this.loading$.next(!!loading))
       ).subscribe()
     );
+    // create the id property for the mat table component.
+    // the instance of the mat table component is used as viewer object
+    // with the set of the id property it is possible to use the same data source
+    // instance for multiple table component simultaneously
+    // on connect the data source can then use the correct paginator/matSort/tableFilter/parameters instance
+    // to create the TableEvent objects
+    Reflect.set(this.matTable, 'id', this.id);
     this.matTable.dataSource = pipeDataSource(this.dataSource, tap(rowList => rowList.forEach((element: any) => {
       element.__metadata__ = { loading$: new ToggleSubject() };
     })));
