@@ -7,7 +7,8 @@ import {
 } from '@angular/core';
 import {
   RXAP_DATA_SOURCE_METADATA,
-  BaseDataSourceViewer
+  BaseDataSourceViewer,
+  DataSourceViewerId
 } from '@rxap/data-source';
 import {
   PaginatorLike,
@@ -17,7 +18,8 @@ import {
   Observable,
   combineLatest,
   of,
-  BehaviorSubject
+  BehaviorSubject,
+  TeardownLogic
 } from 'rxjs';
 import {
   startWith,
@@ -46,6 +48,8 @@ import {
 } from '@rxap/utilities';
 import { Method } from '@rxap/utilities/rxjs';
 import { RXAP_TABLE_METHOD } from './tokens';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 /**
  * @deprecated removed use RXAP_TABLE_METHOD instead
@@ -83,6 +87,11 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
     return this.method;
   }
 
+  public paginatorMap = new Map<string, PaginatorLike>();
+  public sortMap = new Map<string, SortLike>();
+  public filterMap = new Map<string, FilterLike>();
+  public parametersMap = new Map<string, Observable<Parameters>>();
+
   constructor(
     @Optional()
     @Inject(RXAP_TABLE_METHOD)
@@ -107,22 +116,26 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
   }
 
   public ngOnInit() {
-    this._data$ = combineLatest([
-      this.paginator?.page?.pipe(
+    this._data$ = this.createTableDataLoader(this.paginator, this.sort, this.filter, this.parameters)
+  }
+
+  private createTableDataLoader(paginatorLike?: PaginatorLike, sortLike?: SortLike, filterLike?: FilterLike, parametersLike?: Observable<Parameters>) {
+    return combineLatest([
+      paginatorLike?.page?.pipe(
         startWith({
-          pageIndex: this.paginator?.pageIndex ?? 0,
-          pageSize:  this.paginator?.pageSize ?? Number.MAX_SAFE_INTEGER,
-          length:    this.paginator?.length
+          pageIndex: paginatorLike?.pageIndex ?? 0,
+          pageSize:  paginatorLike?.pageSize ?? Number.MAX_SAFE_INTEGER,
+          length:    paginatorLike?.length
         })
       ) ?? of(undefined),
-      this.sort?.sortChange?.pipe(
+      sortLike?.sortChange?.pipe(
         startWith({
-          active:    this.sort?.active,
-          direction: this.sort?.direction
+          active:    sortLike?.active,
+          direction: sortLike?.direction
         })
       ) ?? of(undefined),
-      this.filter?.change?.pipe(tap(() => this.paginator?.firstPage && this.paginator?.firstPage())) ?? of(undefined),
-      this.parameters ?? of(undefined),
+      filterLike?.change?.pipe(tap(() => paginatorLike?.firstPage && paginatorLike?.firstPage())) ?? of(undefined),
+      parametersLike ?? of(undefined),
       this._refresh$
     ]).pipe(
       debounceTime(100),
@@ -148,6 +161,30 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
     );
   }
 
+  protected _connect(viewer: BaseDataSourceViewer): [Observable<Data[]>, TeardownLogic] | Observable<Data[]> {
+    // call to ensure all parent logic is executed
+    let data = super._connect(viewer);
+    if (viewer.id && this.hasDynamicInputs(viewer.id)) {
+      data = this.createTableDataLoader(
+        this.paginatorMap.get(viewer.id),
+        this.sortMap.get(viewer.id),
+        this.filterMap.get(viewer.id),
+        this.parametersMap.get(viewer.id)
+      );
+    }
+    return data;
+  }
+
+  protected _disconnect(viewerId: DataSourceViewerId) {
+    if (this.hasDynamicInputs(viewerId)) {
+      this.paginatorMap.delete(viewerId);
+      this.sortMap.delete(viewerId);
+      this.filterMap.delete(viewerId);
+      this.parametersMap.delete(viewerId);
+    }
+    super._disconnect(viewerId);
+  }
+
   protected async loadPage(tableEvent: TableEvent): Promise<Data[]> {
     let data: Data[] = [];
     try {
@@ -158,6 +195,10 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
     return data;
   }
 
+  protected hasDynamicInputs(id: string) {
+    return this.paginatorMap.has(id) || this.sortMap.has(id) || this.filterMap.has(id) || this.parametersMap.has(id);
+  }
+
   public setTotalLength(length: number): void {
     if (this.paginator) {
       this.paginator.length = length;
@@ -166,6 +207,46 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
 
   public refresh(): any {
     this._refresh$.next(Date.now());
+  }
+
+  setPaginator(paginator: PaginatorLike | undefined, id?: string) {
+    if (paginator) {
+      if (id) {
+        this.paginatorMap.set(id, paginator);
+      } else {
+        this.paginator = paginator;
+      }
+    }
+  }
+
+  setSort(sort: SortLike | null, id?: string) {
+    if (sort) {
+      if (id) {
+        this.sortMap.set(id, sort)
+      } else {
+        this.sort = sort;
+      }
+    }
+  }
+
+  setFilter(tableFilter: FilterLike | undefined, id?: string) {
+    if (tableFilter) {
+      if (id) {
+        this.filterMap.set(id, tableFilter);
+      } else {
+        this.filter = tableFilter;
+      }
+    }
+  }
+
+  setParameters(parameters: Observable<Parameters> | undefined, id?: string) {
+    if (parameters) {
+      if (id) {
+        this.parametersMap.set(id, parameters);
+      } else {
+        this.parameters = parameters;
+      }
+    }
   }
 
 }
