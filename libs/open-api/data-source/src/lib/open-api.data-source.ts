@@ -134,7 +134,7 @@ export class OpenApiDataSource<Response = any, Parameters = any>
 
     this.applyMetadata({
       id:     operation.operationId,
-      url:    () => joinPath(openApiConfigService.getBaseUrl(this.metadata.serverIndex), operation.path),
+      url:    () => openApiConfigService.getBaseUrl(this.metadata.serverIndex) + operation.path,
       method: 'GET'
     });
 
