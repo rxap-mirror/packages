@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-table-system",
-  "version": "13.0.3",
+  "version": "13.1.0",
   "peerDependencies": {
     "@angular-devkit/schematics": "^13.2.4",
     "@angular/animations": "^13.2.3",
@@ -22,7 +22,7 @@
     "@rxap/forms": "^13.0.0",
     "@rxap/material-directives": "^13.0.0",
     "@rxap/mixin": "^13.0.0",
-    "@rxap/open-api": "^13.0.0",
+    "@rxap/open-api": "^13.0.1",
     "@rxap/remote-method": "^13.0.0",
     "@rxap/services": "^13.0.0",
     "@rxap/utilities": "^13.0.0",

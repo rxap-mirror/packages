@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.1.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.0.3...@rxap/material-table-system@13.1.0) (2022-11-07)
+
+
+### Features
+
+* compare with function for select state ([4890bdb](https://gitlab.com/rxap/packages/commit/4890bdb45af48d304612c401f996ee0a8b2ee597))
+
+
+
+
+
 ## [13.0.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.0.2...@rxap/material-table-system@13.0.3) (2022-10-24)
 
 
