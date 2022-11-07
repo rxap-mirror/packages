@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.1.0...@rxap/material-table-system@13.2.0) (2022-11-07)
+
+
+### Features
+
+* support multi use of DynamicTableDataSources in material tables ([3d2d8c0](https://gitlab.com/rxap/packages/commit/3d2d8c093aa319923313a27960d8822f4bf5f4a0))
+
+
+
+
+
 # [13.1.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.0.3...@rxap/material-table-system@13.1.0) (2022-11-07)
 
 
