@@ -3,7 +3,8 @@ import {
   HTTP_INTERCEPTORS,
   HttpRequest,
   HttpHandler,
-  HttpEvent
+  HttpEvent,
+  HttpErrorResponse
 } from '@angular/common/http';
 import {
   Injectable,
@@ -11,11 +12,15 @@ import {
   Inject,
   InjectionToken
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  throwError
+} from 'rxjs';
 import { coerceArray } from '@rxap/utilities';
 import {
   switchMap,
-  tap
+  tap,
+  catchError
 } from 'rxjs/operators';
 import { isDefined } from '@rxap/utilities/rxjs';
 import {
@@ -52,7 +57,16 @@ export class IdentityPlatformHttpInterceptor implements HttpInterceptor {
           setHeaders: {
             idToken: idTokenValue
           }
-        })))
+        })).pipe(
+          catchError(error => {
+            if (error instanceof HttpErrorResponse) {
+              if (error.status === 401) {
+                this.auth.signOut().then(() => location.reload());
+              }
+            }
+            return throwError(error);
+          })
+        ))
       );
     }
     return next.handle(req);
