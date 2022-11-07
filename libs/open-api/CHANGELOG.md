@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.4](https://gitlab.com/rxap/packages/compare/@rxap/open-api@14.0.3...@rxap/open-api@14.0.4) (2022-11-07)
+
+
+### Bug Fixes
+
+* join base url and path with empty string ([c8a77b6](https://gitlab.com/rxap/packages/commit/c8a77b6e0a5997eb6c17cae55b5e55480af8ab0e))
+
+
+
+
+
 ## [14.0.3](https://gitlab.com/rxap/packages/compare/@rxap/open-api@14.0.2...@rxap/open-api@14.0.3) (2022-10-31)
 
 

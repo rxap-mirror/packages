@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.2.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@14.1.0...@rxap/material-table-system@14.2.0) (2022-11-07)
+
+
+### Bug Fixes
+
+* **link-cell:** add short options ([3adaada](https://gitlab.com/rxap/packages/commit/3adaadae6dadf849478740a15d48578b8c69a8ae))
+
+
+### Features
+
+* support multi use of DynamicTableDataSources in material tables ([98f8dd1](https://gitlab.com/rxap/packages/commit/98f8dd15ed59e5bb2cfb94c05e4e702c1bf54545))
+
+
+
+
+
 # [14.1.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@14.0.1...@rxap/material-table-system@14.1.0) (2022-11-07)
 
 
