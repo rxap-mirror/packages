@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.1.1](https://gitlab.com/rxap/packages/compare/@rxap/firebase@14.1.0...@rxap/firebase@14.1.1) (2022-11-07)
+
+
+### Bug Fixes
+
+* **auth:** sign out if 401 response and reload application ([16d16c0](https://gitlab.com/rxap/packages/commit/16d16c087ec15cea9d57013c1d7db8fc2de7debf))
+
+
+
+
+
 # [14.1.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@14.0.2...@rxap/firebase@14.1.0) (2022-10-10)
 
 
