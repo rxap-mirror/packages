@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.2.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.2.0...@rxap/material-table-system@13.2.1) (2022-11-07)
+
+
+### Bug Fixes
+
+* **link-cell:** add short options ([32b5e1f](https://gitlab.com/rxap/packages/commit/32b5e1ffe8de2e5506622b2bd52c32466169803c))
+
+
+
+
+
 # [13.2.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.1.0...@rxap/material-table-system@13.2.0) (2022-11-07)
 
 
