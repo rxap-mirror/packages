@@ -129,7 +129,7 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
     }
     this.applyMetadata({
       id:     operation.operationId,
-      url:    () => JoinPath(openApiConfigService.getBaseUrl(this.metadata.serverIndex, this.metadata.serverId), operation.path),
+      url:    () => openApiConfigService.getBaseUrl(this.metadata.serverIndex, this.metadata.serverId) + operation.path,
       method: operation.method as any,
       withCredentials: this.metadata.withCredentials ?? true,
       ignoreUndefined: this.metadata.ignoreUndefined ?? true,
