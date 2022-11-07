@@ -20,10 +20,12 @@ export class SelectRowService<Data extends Record<string, any>> {
     @Inject(RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS)
     options: SelectRowOptions<Data> | null = null
   ) {
-    this.selectionModel = new SelectionModel<Data>(options?.multiple);
-    if (options?.selected) {
-      this.selectionModel.select(...options?.selected);
-    }
+    this.selectionModel = new SelectionModel<Data>(
+      options?.multiple,
+      options?.selected,
+      options?.emitChanges,
+      options?.compareWith
+    );
     this.selectedRows$ = this.selectionModel.changed.pipe(
       map(() => this.selectionModel.selected)
     );
