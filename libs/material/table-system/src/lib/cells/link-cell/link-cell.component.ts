@@ -26,4 +26,7 @@ export class LinkCellComponent {
   @Input()
   public protocol?: 'tel' | 'mailto';
 
+  @Input()
+  public short = true;
+
 }
