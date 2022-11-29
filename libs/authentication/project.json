@@ -1,0 +1,146 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/authentication/src",
+  "prefix": "rxap",
+  "targets": {
+    "version": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["echo ok"]
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "options": {
+        "tsConfig": "libs/authentication/tsconfig.lib.json",
+        "project": "libs/authentication/ng-package.json",
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/authentication/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/authentication/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/libs/authentication"]
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/authentication/.storybook"
+        },
+        "staticDir": ["./.storybook/public"],
+        "projectBuildConfig": "authentication:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "outputPath": "dist/storybook/rxap/authentication",
+        "config": {
+          "configFolder": "libs/authentication/.storybook"
+        },
+        "staticDir": ["./.storybook/public"],
+        "projectBuildConfig": "authentication:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/authentication/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/authentication"
+      },
+      "configurations": {
+        "json": {
+          "exportFormat": "json"
+        }
+      }
+    },
+    "pack": {
+      "executor": "@rxap/plugin-pack:build",
+      "options": {
+        "targets": [
+          "authentication:build:production",
+          "authentication:scss-bundle",
+          "authentication:build-schematics",
+          "authentication:build-migrations"
+        ]
+      }
+    },
+    "scss-bundle": {
+      "executor": "@rxap/plugin-scss-bundle:build",
+      "options": {
+        "buildTarget": "authentication:build:production",
+        "skipBuild": true,
+        "ignoreImports": ["~@angular/.*"]
+      }
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "publish": {
+      "executor": "@rxap/plugin-library-publish:publish",
+      "options": {
+        "buildTarget": "authentication:build:production",
+        "preTarget": "authentication:pack"
+      }
+    },
+    "readme": {
+      "executor": "@rxap/plugin-readme-generator:library"
+    },
+    "build-schematics": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/authentication",
+        "tsConfig": "libs/authentication/tsconfig.schematics.json",
+        "assets": [],
+        "type": "schematics"
+      }
+    },
+    "build-migrations": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/authentication",
+        "tsConfig": "libs/authentication/tsconfig.migrations.json",
+        "assets": [],
+        "type": "migrations"
+      }
+    },
+    "update-peer-dependencies": {
+      "executor": "@rxap/plugin-library:update-peer-dependencies",
+      "options": {
+        "ignore": ["jest-preset-angular", "ng-mocks", "@storybook\\/"]
+      }
+    }
+  },
+  "generators": {
+    "@nrwl/angular:component": {
+      "styleext": "scss"
+    }
+  },
+  "tags": ["rxap"]
+}
