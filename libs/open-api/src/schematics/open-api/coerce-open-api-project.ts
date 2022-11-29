@@ -5,20 +5,26 @@ import {
   externalSchematic,
   noop
 } from '@angular-devkit/schematics';
-import { GetAngularJson } from '@rxap/schematics-utilities';
+import {
+  GetAngularJson,
+  dasherize
+} from '@rxap/schematics-utilities';
 
-export function CoerceOpenApiProject(project: string, prefix: string): Rule {
+export function CoerceOpenApiProject(project: string, prefix: string, directory?: string): Rule {
   return (host: Tree) => {
     const angularJson = GetAngularJson(host) as any;
 
-    if (!angularJson.projects.hasOwnProperty(project)) {
+    const projectName = `${directory ? directory + '-' : ''}${project}`
+
+    if (!angularJson.projects.hasOwnProperty(projectName)) {
       const defaultProject = angularJson.projects[ angularJson.defaultProject ];
       const defaultProjectPrefix = prefix ?? defaultProject.prefix;
       return chain([
         externalSchematic('@nrwl/angular', 'library', {
           name:       project,
-          importPath: `@${defaultProjectPrefix}/${project}`,
-          prefix
+          importPath: `@${defaultProjectPrefix}/${projectName}`,
+          prefix,
+          directory
         }),
         (tree) => {
           const baseTsconfig = JSON.parse(
@@ -29,9 +35,16 @@ export function CoerceOpenApiProject(project: string, prefix: string): Rule {
 
           if (Object.keys(paths).length) {
             for (const key of Object.keys(paths)) {
-              if (key.match(new RegExp(`\/${project}$`))) {
-                delete paths[ key ];
-                paths[ key + '/*' ] = [ `libs/${project}/src/lib/*` ];
+              if (directory) {
+                if (key.match(new RegExp(`\/${directory}}\/${project}$`))) {
+                  delete paths[ key ];
+                  paths[ key + '/*' ] = [ `libs/${directory}/${project}/src/lib/*` ];
+                }
+              } else {
+                if (key.match(new RegExp(`\/${project}$`))) {
+                  delete paths[ key ];
+                  paths[ key + '/*' ] = [ `libs/${project}/src/lib/*` ];
+                }
               }
             }
 

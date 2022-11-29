@@ -33,7 +33,8 @@ import {
   CoerceFile,
   HasProject,
   GetDefaultPrefix,
-  GetProjectSourceRoot
+  GetProjectSourceRoot,
+  dasherize
 } from '@rxap/schematics-utilities';
 import { GenerateRemoteMethod } from './generate-remote-method';
 import { GenerateDataSource } from './generate-data-source';
@@ -99,10 +100,16 @@ export default function(options: OpenApiSchema): Rule {
       options.project = 'open-api';
     }
 
-    const projectBasePath = GetProjectSourceRoot(host, options.project);
+    if (options.directory) {
+      options.directory = dasherize(options.directory)
+    }
+
+    const projectName = `${options.directory ? options.directory + '-' : ''}${project}`
+
+    const projectBasePath = HasProject(host, projectName) ? GetProjectSourceRoot(host, projectName) : `libs/${options.directory ? options.directory + '/' : ''}${project}/src`;
     const basePath = join(projectBasePath, 'lib');
 
-    options.prefix = options.prefix ?? (HasProject(host, options.project) ? GetProjectPrefix(host, options.project) : GetDefaultPrefix(host)) ?? 'rxap';
+    options.prefix = options.prefix ?? (HasProject(host, projectName) ? GetProjectPrefix(host, projectName) : GetDefaultPrefix(host)) ?? 'rxap';
 
     if (!options.debug) {
       // TODO : reset the hack after the schematic execution is finished
@@ -121,7 +128,7 @@ export default function(options: OpenApiSchema): Rule {
         ],
         basePath
       ),
-      CoerceOpenApiProject(options.project, options.prefix),
+      CoerceOpenApiProject(options.project, options.prefix, options.directory),
       () =>
         GenerateOperation(openapi, project, options, [
           GenerateDataSource,
