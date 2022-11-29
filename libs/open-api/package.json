@@ -1,6 +1,6 @@
 {
   "name": "@rxap/open-api",
-  "version": "13.0.2",
+  "version": "13.0.3",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/open-api",
@@ -29,7 +29,7 @@
     "@rxap/definition": "^13.0.0",
     "@rxap/mixin": "^13.0.0",
     "@rxap/remote-method": "^13.0.0",
-    "@rxap/utilities": "^13.0.0",
+    "@rxap/utilities": "^13.0.1",
     "@schematics/angular": "^13.2.4",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
