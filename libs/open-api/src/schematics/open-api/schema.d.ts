@@ -7,6 +7,10 @@ export interface OpenApiSchemaBase {
   serverId?: string;
   inline: boolean;
   directory?: string;
+  skipDataSource: boolean;
+  skipRemoteMethod: boolean;
+  skipProvider: boolean;
+  skipDirectives: boolean;
 }
 
 export interface OpenApiSchemaFromPath extends OpenApiSchemaBase {
