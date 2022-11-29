@@ -6,6 +6,7 @@ export interface OpenApiSchemaBase {
   export: boolean;
   serverId?: string;
   inline: boolean;
+  directory?: string;
 }
 
 export interface OpenApiSchemaFromPath extends OpenApiSchemaBase {
