@@ -36,7 +36,7 @@ export function CoerceOpenApiProject(project: string, prefix: string, directory?
           if (Object.keys(paths).length) {
             for (const key of Object.keys(paths)) {
               if (directory) {
-                if (key.match(new RegExp(`\/${directory}}\/${project}$`))) {
+                if (key.match(new RegExp(`\/${directory}-${project}$`))) {
                   delete paths[ key ];
                   paths[ key + '/*' ] = [ `libs/${directory}/${project}/src/lib/*` ];
                 }
