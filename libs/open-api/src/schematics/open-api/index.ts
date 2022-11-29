@@ -1,7 +1,8 @@
 import {
   Rule,
   Tree,
-  chain
+  chain,
+  noop
 } from '@angular-devkit/schematics';
 import { join } from 'path';
 import {
@@ -25,7 +26,8 @@ import {
   IsHttpMethod,
   IsOperationObject,
   IgnoreOperation,
-  HasOperationId
+  HasOperationId,
+  GeneratorFunction
 } from '@rxap/schematics-open-api';
 import { OpenApiSchema } from './schema';
 import {
@@ -116,6 +118,19 @@ export default function(options: OpenApiSchema): Rule {
       console.debug = function () {};
     }
 
+    const generatorFunctionList: GeneratorFunction<OpenApiSchema>[] = [];
+    const clearPathList: string[] = [];
+
+    if (!options.skipDataSource) {
+      generatorFunctionList.push(GenerateDataSource);
+      clearPathList.push(DATA_SOURCE_BASE_PATH);
+    }
+
+    if (!options.skipRemoteMethod) {
+      generatorFunctionList.push(GenerateRemoteMethod);
+      clearPathList.push(REMOTE_METHOD_BASE_PATH);
+    }
+
     return chain([
       ClearOperation(
         [
@@ -123,18 +138,13 @@ export default function(options: OpenApiSchema): Rule {
           PARAMETER_BASE_PATH,
           RESPONSE_BASE_PATH,
           REQUEST_BODY_BASE_PATH,
-          DATA_SOURCE_BASE_PATH,
-          REMOTE_METHOD_BASE_PATH
+          ...clearPathList,
         ],
         basePath
       ),
       CoerceOpenApiProject(options.project, options.prefix, options.directory),
-      () =>
-        GenerateOperation(openapi, project, options, [
-          GenerateDataSource,
-          GenerateRemoteMethod
-        ]),
-      () => GenerateOpenapiProvider(project, GetOperationIdList(openapi)),
+      () => GenerateOperation(openapi, project, options, generatorFunctionList),
+      () => options.skipProvider ? noop() : GenerateOpenapiProvider(project, GetOperationIdList(openapi), options),
       ApplyTsMorphProject(project, basePath),
       FixMissingImports(),
       (tree) => {

@@ -8,12 +8,14 @@ import {
   REMOTE_METHOD_BASE_PATH,
   REMOTE_METHOD_FILE_SUFFIX
 } from './const';
+import { OpenApiSchema } from './schema';
 
 const { dasherize, classify } = strings;
 
 export function GenerateOpenapiProvider(
   project: Project,
   operatorIdList: string[],
+  options: OpenApiSchema
 ) {
 
   const sourceFile = project.createSourceFile('open-api-providers.ts');
@@ -27,16 +29,18 @@ export function GenerateOpenapiProvider(
 
   for (const operationId of operatorIdList) {
 
-    const name     = [ operationId, REMOTE_METHOD_FILE_SUFFIX ].join('.');
-    const moduleSpecifier = './' + join(REMOTE_METHOD_BASE_PATH, dasherize(name));
-    const className = classify(name.replace(/\./g, '-'));
+    if (!options.skipRemoteMethod) {
+      const name            = [ operationId, REMOTE_METHOD_FILE_SUFFIX ].join('.');
+      const moduleSpecifier = './' + join(REMOTE_METHOD_BASE_PATH, dasherize(name));
+      const className       = classify(name.replace(/\./g, '-'));
 
-    sourceFile.addImportDeclaration({
-      moduleSpecifier,
-      namedImports: [ className ]
-    });
+      sourceFile.addImportDeclaration({
+        moduleSpecifier,
+        namedImports: [ className ]
+      });
 
-    providerList.push(className);
+      providerList.push(className);
+    }
 
   }
 

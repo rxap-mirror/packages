@@ -38,6 +38,22 @@
         "inline": {
           "type": "boolean",
           "default": false
+        },
+        "skipDataSource": {
+          "type": "boolean",
+          "default": false
+        },
+        "skipRemoteMethod": {
+          "type": "boolean",
+          "default": false
+        },
+        "skipProvider": {
+          "type": "boolean",
+          "default": false
+        },
+        "skipDirectives": {
+          "type": "boolean",
+          "default": false
         }
       },
       "required": [
@@ -74,6 +90,22 @@
           "default": false
         },
         "inline": {
+          "type": "boolean",
+          "default": false
+        },
+        "skipDataSource": {
+          "type": "boolean",
+          "default": false
+        },
+        "skipRemoteMethod": {
+          "type": "boolean",
+          "default": false
+        },
+        "skipProvider": {
+          "type": "boolean",
+          "default": false
+        },
+        "skipDirectives": {
           "type": "boolean",
           "default": false
         }

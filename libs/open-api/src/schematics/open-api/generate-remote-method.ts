@@ -159,49 +159,53 @@ export async function GenerateRemoteMethod(
 
   const withoutParameters = IsWithoutParameters(parameter);
 
-  if (IsCollectionResponse(parameter)) {
-    importStructures.push({
-      moduleSpecifier: '@rxap/utilities',
-      namedImports:    [ { name: 'ArrayElement' } ]
-    });
+  if (!parameter.options.skipDirectives) {
+
+    if (IsCollectionResponse(parameter)) {
+      importStructures.push({
+        moduleSpecifier: '@rxap/utilities',
+        namedImports:    [ { name: 'ArrayElement' } ]
+      });
+      CreateDirective({
+        filePath:       fileName,
+        name:           operationId,
+        prefix:         parameter.options.prefix,
+        parametersType: `OpenApiRemoteMethodParameter<${parameterType}, ${requestBodyType}>`,
+        returnType:     `ArrayElement<${responseType}>`,
+        template:       true,
+        collection:     true,
+        sourceFile,
+        withoutParameters
+      });
+    }
+
     CreateDirective({
       filePath:       fileName,
       name:           operationId,
       prefix:         parameter.options.prefix,
       parametersType: `OpenApiRemoteMethodParameter<${parameterType}, ${requestBodyType}>`,
-      returnType:     `ArrayElement<${responseType}>`,
+      returnType:     responseType,
       template:       true,
-      collection:     true,
+      collection:     false,
       sourceFile,
       withoutParameters
     });
+
+    CreateDirective({
+      filePath:       fileName,
+      name:           operationId,
+      prefix:         parameter.options.prefix,
+      parametersType: `OpenApiRemoteMethodParameter<${parameterType}, ${requestBodyType}>`,
+      returnType:     responseType,
+      template:       false,
+      collection:     false,
+      sourceFile,
+      withoutParameters
+    });
+
   }
 
   sourceFile.addImportDeclarations(importStructures);
-
-  CreateDirective({
-    filePath:       fileName,
-    name:           operationId,
-    prefix:         parameter.options.prefix,
-    parametersType: `OpenApiRemoteMethodParameter<${parameterType}, ${requestBodyType}>`,
-    returnType:     responseType,
-    template:       true,
-    collection:     false,
-    sourceFile,
-    withoutParameters
-  });
-
-  CreateDirective({
-    filePath:       fileName,
-    name:           operationId,
-    prefix:         parameter.options.prefix,
-    parametersType: `OpenApiRemoteMethodParameter<${parameterType}, ${requestBodyType}>`,
-    returnType:     responseType,
-    template:       false,
-    collection:     false,
-    sourceFile,
-    withoutParameters
-  });
 
   sourceFile.organizeImports({
     ensureNewLineAtEndOfFile: true
