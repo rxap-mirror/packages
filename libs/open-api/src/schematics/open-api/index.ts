@@ -106,7 +106,7 @@ export default function(options: OpenApiSchema): Rule {
       options.directory = dasherize(options.directory)
     }
 
-    const projectName = `${options.directory ? options.directory + '-' : ''}${project}`
+    const projectName = `${options.directory ? options.directory + '-' : ''}${options.project}`
 
     const projectBasePath = HasProject(host, projectName) ? GetProjectSourceRoot(host, projectName) : `libs/${options.directory ? options.directory + '/' : ''}${project}/src`;
     const basePath = join(projectBasePath, 'lib');
