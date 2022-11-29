@@ -1,5 +1,12 @@
 {
-  "implicitDependencies": {},
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
   "affected": {
     "defaultBase": "master"
   },
@@ -10,29 +17,81 @@
       "options": {
         "cacheableOperations": [
           "build",
-          "pack",
           "test",
           "lint",
           "e2e",
-          "build-storybook"
+          "build-storybook",
+          "build-migrations",
+          "build-schematics",
+          "readme",
+          "update-package-group",
+          "update-peer-dependencies"
         ],
         "parallel": 5
       }
     }
   },
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ],
-    "pack": [
-      {
-        "target": "pack",
-        "projects": "dependencies"
-      }
-    ]
+  "targetDefaults": {
+    "build-schematics": {
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "build-migrations": {
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "version": {
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        },
+        {
+          "target": "build-migrations",
+          "projects": "self"
+        },
+        {
+          "target": "build-schematics",
+          "projects": "self"
+        }
+      ]
+    },
+    "build": {
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "dependencies"
+        },
+        {
+          "target": "readme",
+          "projects": "self"
+        },
+        {
+          "target": "update-package-group",
+          "projects": "self"
+        },
+        {
+          "target": "update-peer-dependencies",
+          "projects": "self"
+        }
+      ]
+    },
+    "update-peer-dependencies": {
+      "dependsOn": [
+        {
+          "target": "update-package-group",
+          "projects": "self"
+        }
+      ]
+    }
   },
   "cli": {
     "warnings": {

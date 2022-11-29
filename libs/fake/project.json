@@ -1,0 +1,99 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/fake/src",
+  "prefix": "rxap",
+  "targets": {
+    "version": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["echo ok"]
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "options": {
+        "tsConfig": "libs/fake/tsconfig.lib.json",
+        "project": "libs/fake/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/fake/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/fake/src/**/*.ts", "libs/fake/src/**/*.html"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/fake"],
+      "options": {
+        "jestConfig": "libs/fake/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "pack": {
+      "executor": "@rxap/plugin-pack:build",
+      "options": {
+        "targets": [
+          "fake:build:production",
+          "fake:build-schematics",
+          "fake:build-migrations"
+        ]
+      }
+    },
+    "schematics": {
+      "executor": "@rxap/plugin-library-schematics:build",
+      "options": {
+        "buildTarget": "fake:build:production",
+        "skipBuild": false,
+        "tsConfig": "libs/fake/tsconfig.schematics.json"
+      }
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "publish": {
+      "executor": "@rxap/plugin-library-publish:publish",
+      "options": {
+        "buildTarget": "fake:build:production",
+        "preTarget": "fake:pack"
+      }
+    },
+    "readme": {
+      "executor": "@rxap/plugin-readme-generator:library"
+    },
+    "build-schematics": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/fake",
+        "tsConfig": "libs/fake/tsconfig.schematics.json",
+        "assets": [],
+        "type": "schematics"
+      }
+    },
+    "build-migrations": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/fake",
+        "tsConfig": "libs/fake/tsconfig.migrations.json",
+        "assets": [],
+        "type": "migrations"
+      }
+    },
+    "update-peer-dependencies": {
+      "executor": "@rxap/plugin-library:update-peer-dependencies",
+      "options": {
+        "ignore": ["jest-preset-angular", "ng-mocks", "@storybook\\/"]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,102 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/remote-method/src",
+  "prefix": "rxap",
+  "targets": {
+    "version": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["echo ok"]
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "options": {
+        "tsConfig": "libs/remote-method/tsconfig.lib.json",
+        "project": "libs/remote-method/ng-package.json",
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/remote-method/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/remote-method/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/libs/remote-method"]
+    },
+    "pack": {
+      "executor": "@rxap/plugin-pack:build",
+      "options": {
+        "targets": [
+          "remote-method:build:production",
+          "remote-method:build-schematics",
+          "remote-method:build-migrations"
+        ]
+      }
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/remote-method/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/remote-method"
+      },
+      "configurations": {
+        "json": {
+          "exportFormat": "json"
+        }
+      }
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "publish": {
+      "executor": "@rxap/plugin-library-publish:publish",
+      "options": {
+        "buildTarget": "remote-method:build:production",
+        "preTarget": "remote-method:pack"
+      }
+    },
+    "readme": {
+      "executor": "@rxap/plugin-readme-generator:library"
+    },
+    "build-schematics": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/remote-method",
+        "tsConfig": "libs/remote-method/tsconfig.schematics.json",
+        "assets": [],
+        "type": "schematics"
+      }
+    },
+    "build-migrations": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/remote-method",
+        "tsConfig": "libs/remote-method/tsconfig.migrations.json",
+        "assets": [],
+        "type": "migrations"
+      }
+    },
+    "update-peer-dependencies": {
+      "executor": "@rxap/plugin-library:update-peer-dependencies",
+      "options": {
+        "ignore": ["jest-preset-angular", "ng-mocks", "@storybook\\/"]
+      }
+    }
+  },
+  "generators": {
+    "@nrwl/angular:component": {
+      "styleext": "scss"
+    }
+  },
+  "tags": ["rxap"]
+}

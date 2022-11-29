@@ -1,0 +1,137 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/pipes/src",
+  "prefix": "rxap",
+  "targets": {
+    "version": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["echo ok"]
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "options": {
+        "tsConfig": "libs/pipes/tsconfig.lib.json",
+        "project": "libs/pipes/ng-package.json",
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/pipes/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/pipes/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/libs/pipes"]
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/pipes/.storybook"
+        },
+        "staticDir": ["./.storybook/public"],
+        "projectBuildConfig": "pipes:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "outputPath": "dist/storybook/rxap/pipes",
+        "config": {
+          "configFolder": "libs/pipes/.storybook"
+        },
+        "staticDir": ["./.storybook/public"],
+        "projectBuildConfig": "pipes:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "compodoc": {
+      "executor": "@twittwer/compodoc:compodoc",
+      "options": {
+        "tsConfig": "libs/pipes/tsconfig.lib.json",
+        "outputPath": "dist/compodoc/pipes"
+      },
+      "configurations": {
+        "json": {
+          "exportFormat": "json"
+        }
+      }
+    },
+    "pack": {
+      "executor": "@rxap/plugin-pack:build",
+      "options": {
+        "targets": [
+          "pipes:build:production",
+          "pipes:build-schematics",
+          "pipes:build-migrations"
+        ]
+      }
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "publish": {
+      "executor": "@rxap/plugin-library-publish:publish",
+      "options": {
+        "buildTarget": "pipes:build:production",
+        "preTarget": "pipes:pack"
+      }
+    },
+    "readme": {
+      "executor": "@rxap/plugin-readme-generator:library"
+    },
+    "build-schematics": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/pipes",
+        "tsConfig": "libs/pipes/tsconfig.schematics.json",
+        "assets": [],
+        "type": "schematics"
+      }
+    },
+    "build-migrations": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/pipes",
+        "tsConfig": "libs/pipes/tsconfig.migrations.json",
+        "assets": [],
+        "type": "migrations"
+      }
+    },
+    "update-peer-dependencies": {
+      "executor": "@rxap/plugin-library:update-peer-dependencies",
+      "options": {
+        "ignore": ["jest-preset-angular", "ng-mocks", "@storybook\\/"]
+      }
+    }
+  },
+  "generators": {
+    "@nrwl/angular:component": {
+      "styleext": "scss"
+    }
+  },
+  "tags": ["rxap"]
+}

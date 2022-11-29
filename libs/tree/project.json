@@ -1,0 +1,139 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/tree/src",
+  "prefix": "rxap",
+  "targets": {
+    "version": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["echo ok"]
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "options": {
+        "tsConfig": "libs/tree/tsconfig.lib.json",
+        "project": "libs/tree/ng-package.json",
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/tree/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/tree/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/libs/tree"]
+    },
+    "scss-bundle": {
+      "executor": "@rxap/plugin-scss-bundle:build",
+      "options": {
+        "buildTarget": "tree:build:production",
+        "skipBuild": true,
+        "ignoreImports": ["~@angular/.*"]
+      }
+    },
+    "pack": {
+      "executor": "@rxap/plugin-pack:build",
+      "options": {
+        "targets": [
+          "tree:build:production",
+          "tree:build-schematics",
+          "tree:build-migrations"
+        ]
+      }
+    },
+    "schematics": {
+      "executor": "@rxap/plugin-library-schematics:build",
+      "options": {
+        "buildTarget": "tree:build:production",
+        "skipBuild": false,
+        "tsConfig": "libs/tree/tsconfig.schematics.json"
+      }
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "publish": {
+      "executor": "@rxap/plugin-library-publish:publish",
+      "options": {
+        "buildTarget": "tree:build:production",
+        "preTarget": "tree:pack"
+      }
+    },
+    "readme": {
+      "executor": "@rxap/plugin-readme-generator:library"
+    },
+    "build-schematics": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/tree",
+        "tsConfig": "libs/tree/tsconfig.schematics.json",
+        "assets": [],
+        "type": "schematics"
+      }
+    },
+    "build-migrations": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/tree",
+        "tsConfig": "libs/tree/tsconfig.migrations.json",
+        "assets": [],
+        "type": "migrations"
+      }
+    },
+    "update-peer-dependencies": {
+      "executor": "@rxap/plugin-library:update-peer-dependencies",
+      "options": {
+        "ignore": ["jest-preset-angular", "ng-mocks", "@storybook\\/"]
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/tree/.storybook"
+        },
+        "projectBuildConfig": "tree:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "outputPath": "dist/storybook/tree",
+        "config": {
+          "configFolder": "libs/tree/.storybook"
+        },
+        "projectBuildConfig": "tree:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  },
+  "generators": {
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "tags": []
+}

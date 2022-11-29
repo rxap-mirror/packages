@@ -1,0 +1,134 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/upload/src",
+  "prefix": "rxap",
+  "targets": {
+    "version": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["echo ok"]
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "options": {
+        "tsConfig": "libs/upload/tsconfig.lib.json",
+        "project": "libs/upload/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/upload/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/upload"],
+      "options": {
+        "jestConfig": "libs/upload/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "pack": {
+      "executor": "@rxap/plugin-pack:build",
+      "options": {
+        "targets": [
+          "upload:build:production",
+          "upload:build-schematics",
+          "upload:build-migrations",
+          "upload:scss-bundle"
+        ]
+      }
+    },
+    "schematics": {
+      "executor": "@rxap/plugin-library-schematics:build",
+      "options": {
+        "buildTarget": "upload:build:production",
+        "skipBuild": false,
+        "tsConfig": "libs/upload/tsconfig.schematics.json"
+      }
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "publish": {
+      "executor": "@rxap/plugin-library-publish:publish",
+      "options": {
+        "buildTarget": "upload:build:production",
+        "preTarget": "upload:pack"
+      }
+    },
+    "readme": {
+      "executor": "@rxap/plugin-readme-generator:library"
+    },
+    "build-schematics": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/upload",
+        "tsConfig": "libs/upload/tsconfig.schematics.json",
+        "assets": [],
+        "type": "schematics"
+      }
+    },
+    "build-migrations": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/upload",
+        "tsConfig": "libs/upload/tsconfig.migrations.json",
+        "assets": [],
+        "type": "migrations"
+      }
+    },
+    "update-peer-dependencies": {
+      "executor": "@rxap/plugin-library:update-peer-dependencies",
+      "options": {
+        "ignore": ["jest-preset-angular", "ng-mocks", "@storybook\\/"]
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/upload/.storybook"
+        },
+        "projectBuildConfig": "upload:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "outputPath": "dist/storybook/upload",
+        "config": {
+          "configFolder": "libs/upload/.storybook"
+        },
+        "projectBuildConfig": "upload:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "scss-bundle": {
+      "executor": "@rxap/plugin-scss-bundle:build",
+      "options": {
+        "buildTarget": "upload:build:production",
+        "skipBuild": true,
+        "ignoreImports": ["~@angular/.*"]
+      }
+    }
+  },
+  "tags": []
+}

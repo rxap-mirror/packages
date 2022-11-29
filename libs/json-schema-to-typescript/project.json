@@ -1,0 +1,103 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/json-schema-to-typescript/src",
+  "prefix": "rxap",
+  "targets": {
+    "version": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["echo ok"]
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/libs/json-schema-to-typescript",
+        "tsConfig": "libs/json-schema-to-typescript/tsconfig.lib.json",
+        "packageJson": "libs/json-schema-to-typescript/package.json",
+        "main": "libs/json-schema-to-typescript/src/index.ts",
+        "srcRootForCompilationRoot": "libs/json-schema-to-typescript",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "assets": [
+          "libs/json-schema-to-typescript/*.md",
+          "libs/json-schema-to-typescript/LICENSE",
+          {
+            "input": "./libs/json-schema-to-typescript",
+            "glob": "collection.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/json-schema-to-typescript",
+            "glob": "migration.json",
+            "output": "."
+          }
+        ]
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/json-schema-to-typescript/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/libs/json-schema-to-typescript"]
+    },
+    "pack": {
+      "executor": "@rxap/plugin-pack:build",
+      "options": {
+        "targets": [
+          "json-schema-to-typescript:build",
+          "json-schema-to-typescript:build-schematics",
+          "json-schema-to-typescript:build-migrations"
+        ]
+      }
+    },
+    "publish": {
+      "executor": "@rxap/plugin-library-publish:publish",
+      "options": {
+        "buildTarget": "json-schema-to-typescript:build:production",
+        "preTarget": "json-schema-to-typescript:pack"
+      }
+    },
+    "readme": {
+      "executor": "@rxap/plugin-readme-generator:library"
+    },
+    "build-schematics": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/json-schema-to-typescript",
+        "tsConfig": "libs/json-schema-to-typescript/tsconfig.schematics.json",
+        "assets": [],
+        "type": "schematics"
+      }
+    },
+    "build-migrations": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/json-schema-to-typescript",
+        "tsConfig": "libs/json-schema-to-typescript/tsconfig.migrations.json",
+        "assets": [],
+        "type": "migrations"
+      }
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "update-peer-dependencies": {
+      "executor": "@rxap/plugin-library:update-peer-dependencies",
+      "options": {
+        "ignore": ["jest-preset-angular", "ng-mocks", "@storybook\\/"]
+      }
+    }
+  },
+  "generators": {
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "tags": []
+}

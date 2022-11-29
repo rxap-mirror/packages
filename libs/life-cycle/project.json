@@ -1,0 +1,98 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/life-cycle/src",
+  "prefix": "rxap",
+  "targets": {
+    "version": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["echo ok"]
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "options": {
+        "tsConfig": "libs/life-cycle/tsconfig.lib.json",
+        "project": "libs/life-cycle/ng-package.json",
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/life-cycle/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "libs/life-cycle/jest.config.js",
+        "passWithNoTests": true
+      },
+      "outputs": ["coverage/libs/life-cycle"]
+    },
+    "pack": {
+      "executor": "@rxap/plugin-pack:build",
+      "options": {
+        "targets": [
+          "life-cycle:build:production",
+          "life-cycle:build-schematics",
+          "life-cycle:build-migrations"
+        ]
+      }
+    },
+    "schematics": {
+      "executor": "@rxap/plugin-library-schematics:build",
+      "options": {
+        "buildTarget": "life-cycle:build:production",
+        "skipBuild": false,
+        "tsConfig": "libs/life-cycle/tsconfig.schematics.json"
+      }
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "publish": {
+      "executor": "@rxap/plugin-library-publish:publish",
+      "options": {
+        "buildTarget": "life-cycle:build:production",
+        "preTarget": "life-cycle:pack"
+      }
+    },
+    "readme": {
+      "executor": "@rxap/plugin-readme-generator:library"
+    },
+    "build-schematics": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/life-cycle",
+        "tsConfig": "libs/life-cycle/tsconfig.schematics.json",
+        "assets": [],
+        "type": "schematics"
+      }
+    },
+    "build-migrations": {
+      "executor": "@rxap/plugin-library:build-schematics",
+      "options": {
+        "outputPath": "dist/libs/life-cycle",
+        "tsConfig": "libs/life-cycle/tsconfig.migrations.json",
+        "assets": [],
+        "type": "migrations"
+      }
+    },
+    "update-peer-dependencies": {
+      "executor": "@rxap/plugin-library:update-peer-dependencies",
+      "options": {
+        "ignore": ["jest-preset-angular", "ng-mocks", "@storybook\\/"]
+      }
+    }
+  },
+  "generators": {
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "tags": []
+}
