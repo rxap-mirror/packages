@@ -127,6 +127,7 @@ export async function GenerateRemoteMethod(
         parameters: callMethodParameters,
         scope:      Scope.Public,
         returnType: `Promise<${responseType}>`,
+        hasOverrideKeyword: true,
         statements: [
           `return super.call(${
             withoutParametersAndRequestBody ? '' : 'parameters'
