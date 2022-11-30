@@ -70,7 +70,7 @@ export interface OpenApiRemoteMethodMetadata extends BaseRemoteMethodMetadata {
   /**
    * The operation object with path and method
    */
-  operation?: OperationObjectWithMetadata;
+  operation?: OperationObjectWithMetadata | string;
   /**
    * The index of the server object in the servers array in the open api config
    */
@@ -121,12 +121,15 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
       disableValidation: boolean | null = null
   ) {
     super(http, injector, metadata);
-    let operation: OperationObjectWithMetadata & { serverId?: string };
-    if (!this.metadata.operation) {
-      this.metadata.operation = operation = openApiConfigService.getOperation(this.metadata.id);
-    } else {
-      operation = this.metadata.operation;
+    this.metadata.operation ??= openApiConfigService.getOperation(this.metadata.id);
+    if (typeof this.metadata.operation === 'string') {
+      try {
+        this.metadata.operation = JSON.parse(this.metadata.operation);
+      } catch (e: any) {
+        throw new Error(`could not parse the remote method operation string into an object: ${this.constructor.name}`);
+      }
     }
+    const operation: OperationObjectWithMetadata & { serverId?: string } = this.metadata.operation;
     this.applyMetadata({
       id:     operation.operationId,
       url:    () => openApiConfigService.getBaseUrl(this.metadata.serverIndex, this.metadata.serverId) + operation.path,
