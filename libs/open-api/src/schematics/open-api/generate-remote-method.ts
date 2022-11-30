@@ -117,6 +117,7 @@ export async function GenerateRemoteMethod(
         name:      'RxapOpenApiRemoteMethod',
         arguments: parameter.options.inline ? (writer) => Writers.object({
           serverId: parameter.options.serverId ? w => w.quote(parameter.options.serverId!) : 'undefined',
+          operationId: w => w.quote(parameter.operationId),
           operation: w => w.quote(JSON.stringify(GenerateParameterToOperationObjectWithMetadata(parameter)).replace(/[\n\r\\]+/g, ''))
         })(writer) : w => w.quote(operationId)
       }
