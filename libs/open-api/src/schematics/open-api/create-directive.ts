@@ -181,6 +181,7 @@ export function CreateDirective({
       scope:            Scope.Public,
       type:             parametersType,
       leadingTrivia:    '// tslint:disable-next-line:no-input-rename',
+      hasOverrideKeyword: true,
       decorators:       [
         {
           name:      'Input',
@@ -246,6 +247,7 @@ export function CreateDirective({
         {
           name:             'errorTemplate',
           hasQuestionToken: true,
+          hasOverrideKeyword: true,
           leadingTrivia:    '// tslint:disable-next-line:no-input-rename',
           scope:            Scope.Public,
           type:             `TemplateRef<RemoteMethodTemplateCollectionDirectiveErrorContext>`,
@@ -306,6 +308,7 @@ export function CreateDirective({
       directiveClassProperties.push({
         name:             'errorTemplate',
         hasQuestionToken: true,
+        hasOverrideKeyword: true,
         type:             `TemplateRef<RemoteMethodTemplateDirectiveErrorContext>`,
         leadingTrivia:    '// tslint:disable-next-line:no-input-rename',
         scope:            Scope.Public,
