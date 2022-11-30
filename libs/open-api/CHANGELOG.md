@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.1.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@13.0.6...@rxap/open-api@13.1.0) (2022-11-30)
+
+
+### Bug Fixes
+
+* **schematics:** add missing overwrite modifier ([56af11a](https://gitlab.com/rxap/packages/commit/56af11ab888b4c0ae0a53ca0868b450901798977))
+
+
+### Features
+
+* support string operation definitions ([2284cca](https://gitlab.com/rxap/packages/commit/2284cca8d352a6596fe735f742693f4e9b371ed7))
+
+
+
+
+
 ## [13.0.6](https://gitlab.com/rxap/packages/compare/@rxap/open-api@13.0.5...@rxap/open-api@13.0.6) (2022-11-30)
 
 
