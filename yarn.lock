@@ -4359,10 +4359,18 @@
     globs "^0.1.4"
     tslib "^2.3.1"
 
-"@rxap/schematics-open-api@13.0.0-next.4":
-  version "13.0.0-next.4"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics-open-api/-/schematics-open-api-13.0.0-next.4.tgz#536fdb347bca47f353a4d0074f0206f86bd401d6"
-  integrity sha512-km8fan5WgNBFyZ1S2t/29XhCkmInpl6T1dAlx4b3VHgB5/m93d9o/tTZiw4t3Ynbq00wdgKZzQwxWWW70VbXcQ==
+"@rxap/schematics-open-api@13.1.0":
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-open-api/-/schematics-open-api-13.1.0.tgz#6c2b2004133d5104efb7211fb735756957a14bb7"
+  integrity sha512-Jveo54BesovFbWB1kbc/LAJmR+yRnQzSJAHwTQ2Fxt13TE1B9L2eeD2T2U0WvXsNTr/MePz8hk++QhCJ7d/8jg==
+  dependencies:
+    semver "^7.3.5"
+    tslib "^2.3.1"
+
+"@rxap/schematics-ts-morph@13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-ts-morph/-/schematics-ts-morph-13.0.0.tgz#b111af07acf351db7c0bb1d257363a7db34b1321"
+  integrity sha512-wPSIFfGwB9ISaufXsIGA+USlaC4AtJC2TqUtWR6gu9VluImoMDjeeiZ+d/GAvu99NwD3PgN4MnEv26T3Iz5Bow==
   dependencies:
     semver "^7.3.5"
     tslib "^2.3.1"
@@ -4371,6 +4379,14 @@
   version "13.0.0-next.1"
   resolved "https://registry.yarnpkg.com/@rxap/schematics-ts-morph/-/schematics-ts-morph-13.0.0-next.1.tgz#5a24969c7595cf43d0becb999f39fd8c7b1f9ac6"
   integrity sha512-3SD9E8yqsKaw/Iu6WQjLfUBi88OQGsoq+cglKEVGUFIMNwUpn7qtHkKavdqengHqVnBSmGwfrf7iLrO/0Rsf4w==
+  dependencies:
+    semver "^7.3.5"
+    tslib "^2.3.1"
+
+"@rxap/schematics-utilities@13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-13.0.0.tgz#2ab8e8ad1fc3741f99d07e75c5142ef36e7cf549"
+  integrity sha512-2Af3wHOj7xgp7zX63xtgaWui6WuwEQFrEqNsrqfoepJZjOtq+OTixjz0lGjzHQ/YwlyKv/++gt8wEYziK2MTcA==
   dependencies:
     semver "^7.3.5"
     tslib "^2.3.1"
