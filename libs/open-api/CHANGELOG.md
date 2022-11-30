@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.6](https://gitlab.com/rxap/packages/compare/@rxap/open-api@13.0.5...@rxap/open-api@13.0.6) (2022-11-30)
+
+
+### Bug Fixes
+
+* **schematics:** use project options correctly ([6a63de0](https://gitlab.com/rxap/packages/commit/6a63de055a3ace322e883e08536c32ae33a7d7d5))
+
+
+
+
+
 ## [13.0.5](https://gitlab.com/rxap/packages/compare/@rxap/open-api@13.0.4...@rxap/open-api@13.0.5) (2022-11-29)
 
 
