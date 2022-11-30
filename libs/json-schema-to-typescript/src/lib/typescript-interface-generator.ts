@@ -265,6 +265,9 @@ export class TypescriptInterfaceGenerator {
       case 'any':
         return 'any';
 
+      case 'unknown':
+        return 'unknown';
+
       case 'array':
         if (schema.items) {
           const items = schema.items;
@@ -285,7 +288,7 @@ export class TypescriptInterfaceGenerator {
           }
         }
 
-        return 'Array<any>';
+        return 'Array<unknown>';
 
       case 'object':
       case undefined:
@@ -339,7 +342,7 @@ export class TypescriptInterfaceGenerator {
           }
 
           if (schema.additionalProperties) {
-            let type: string | WriterFunction = 'any';
+            let type: string | WriterFunction = 'Record<string, unknown>';
             if (schema.additionalProperties !== true) {
               type = this.propertyTypeWriteFunction(
                 currentFile,
@@ -383,7 +386,7 @@ export class TypescriptInterfaceGenerator {
             writer.write(',');
 
             if (typeof additionalProperties === 'boolean') {
-              writer.write('any');
+              writer.write('unknown');
             } else {
               const type = this.propertyTypeWriteFunction(
                 currentFile,
@@ -397,7 +400,7 @@ export class TypescriptInterfaceGenerator {
                   type(writer);
                 }
               } else {
-                writer.write('any');
+                writer.write('unknown');
               }
             }
 
@@ -454,6 +457,8 @@ export class TypescriptInterfaceGenerator {
           }
 
           return Writers.objectType(objectTypeStructure);
+        } else if (schema.type === 'object') {
+          return w => w.write('Record<string, unknown>')
         }
 
         console.warn(
@@ -462,14 +467,15 @@ export class TypescriptInterfaceGenerator {
           )}`
         );
 
-        // TODO : add support for allOf and anyOf
+        return (writer) => writer.write('unknown');
 
-        return (writer) => writer.write('any');
+      case 'file':
+        return w => w.write('Buffer');
 
       default:
         if (Array.isArray(schema.type)) {
           const primitiveTypeList = schema.type.filter((type) =>
-            ['string', 'integer', 'number', 'boolean', 'null', 'any'].includes(
+            ['string', 'integer', 'number', 'boolean', 'null', 'any', 'unknown'].includes(
               type
             )
           );
@@ -482,6 +488,7 @@ export class TypescriptInterfaceGenerator {
                 'boolean',
                 'null',
                 'any',
+                'unknown'
               ].includes(type)
           );
 
