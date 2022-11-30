@@ -108,7 +108,7 @@ export default function(options: OpenApiSchema): Rule {
 
     const projectName = `${options.directory ? options.directory + '-' : ''}${options.project}`
 
-    const projectBasePath = HasProject(host, projectName) ? GetProjectSourceRoot(host, projectName) : `libs/${options.directory ? options.directory + '/' : ''}${project}/src`;
+    const projectBasePath = HasProject(host, projectName) ? GetProjectSourceRoot(host, projectName) : `libs/${options.directory ? options.directory + '/' : ''}${options.project}/src`;
     const basePath = join(projectBasePath, 'lib');
 
     options.prefix = options.prefix ?? (HasProject(host, projectName) ? GetProjectPrefix(host, projectName) : GetDefaultPrefix(host)) ?? 'rxap';
