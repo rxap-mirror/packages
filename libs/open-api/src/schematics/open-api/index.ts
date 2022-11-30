@@ -143,7 +143,7 @@ export default function(options: OpenApiSchema): Rule {
         basePath
       ),
       CoerceOpenApiProject(options.project, options.prefix, options.directory),
-      () => GenerateOperation(openapi, project, options, generatorFunctionList),
+      async () => { await GenerateOperation(openapi, project, options, generatorFunctionList) },
       () => options.skipProvider ? noop() : GenerateOpenapiProvider(project, GetOperationIdList(openapi), options),
       ApplyTsMorphProject(project, basePath),
       FixMissingImports(),
