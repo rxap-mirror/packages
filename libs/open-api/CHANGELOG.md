@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.1.4](https://gitlab.com/rxap/packages/compare/@rxap/open-api@13.1.3...@rxap/open-api@13.1.4) (2022-12-04)
+
+
+### Bug Fixes
+
+* **schematics:** add missing option serverId ([c91a167](https://gitlab.com/rxap/packages/commit/c91a167b88ee26195159a1d55e949bb1cd5bb5f1))
+
+
+
+
+
 ## [13.1.3](https://gitlab.com/rxap/packages/compare/@rxap/open-api@13.1.2...@rxap/open-api@13.1.3) (2022-11-30)
 
 
