@@ -5,7 +5,8 @@ import {
 import {
   OperatorFunction,
   Observable,
-  TeardownLogic
+  TeardownLogic,
+  Subject
 } from 'rxjs';
 import {
   Injectable,
@@ -18,6 +19,11 @@ import {
   RXAP_PIPE_DATA_SOURCE_OPERATOR
 } from './tokens';
 import { RxapDataSourceError } from './error';
+import {
+  switchMap,
+  startWith,
+  map
+} from 'rxjs/operators';
 
 @Injectable()
 export class PipeDataSource<Source = any, Target = Source>
@@ -29,6 +35,8 @@ export class PipeDataSource<Source = any, Target = Source>
   }
 
   private _operations: Array<OperatorFunction<any, any>> = [];
+
+  private readonly _refresh = new Subject<void>();
 
   constructor(
     @Inject(RXAP_DATA_SOURCE) public readonly dataSource: BaseDataSource<Source>,
@@ -52,6 +60,10 @@ export class PipeDataSource<Source = any, Target = Source>
     this.init();
     return [
       this.dataSource.connect(viewer).pipe(
+        switchMap(data => this._refresh.pipe(
+          startWith(null),
+          map(() => data),
+        )),
         // @ts-ignore
         ...this.operations
       ),
@@ -64,8 +76,15 @@ export class PipeDataSource<Source = any, Target = Source>
     this.dataSource.disconnect(this.metadata);
   }
 
-  public refresh(): any {
-    return this.dataSource.refresh();
+  /**
+   * @param parent true - call the refresh method of the parent data source
+   */
+  public refresh(parent?: boolean): any {
+    if (parent) {
+      this.dataSource.refresh();
+    } else {
+      this._refresh.next();
+    }
   }
 
   public reset(): any {
