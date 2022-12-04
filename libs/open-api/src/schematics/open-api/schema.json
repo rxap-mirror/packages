@@ -54,6 +54,9 @@
         "skipDirectives": {
           "type": "boolean",
           "default": false
+        },
+        "serverId": {
+          "type": "string"
         }
       },
       "required": [
@@ -108,6 +111,9 @@
         "skipDirectives": {
           "type": "boolean",
           "default": false
+        },
+        "serverId": {
+          "type": "string"
         }
       },
       "required": [
