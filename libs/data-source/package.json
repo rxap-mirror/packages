@@ -1,6 +1,6 @@
 {
   "name": "@rxap/data-source",
-  "version": "13.1.0",
+  "version": "13.1.1",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/data-source",
@@ -24,7 +24,7 @@
     "@angular/platform-browser": "^13.2.3",
     "@angular/platform-browser-dynamic": "^13.2.3",
     "@rxap/definition": "^13.0.0",
-    "@rxap/utilities": "^13.0.0",
+    "@rxap/utilities": "^13.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.5"
   },
@@ -45,7 +45,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^13.0.0-next.1",
+    "@rxap/schematics-utilities": "^13.0.0",
     "tslib": "^2.3.1",
     "uuid": "^8.3.2"
   }
