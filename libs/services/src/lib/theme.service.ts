@@ -23,11 +23,12 @@ export class ThemeService {
     if (checked) {
       document.body.classList.add('dark-theme');
       localStorage.removeItem('rxap-light-theme');
-      this.darkMode$.next(true);
     } else {
       document.body.classList.remove('dark-theme');
       localStorage.setItem('rxap-light-theme', 'true');
-      this.darkMode$.next(false);
+    }
+    if (checked !== this.darkMode$.value) {
+      this.darkMode$.next(checked);
     }
   }
 
