@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.3](https://gitlab.com/rxap/packages/compare/@rxap/services@14.0.2...@rxap/services@14.0.3) (2022-12-13)
+
+
+### Bug Fixes
+
+* **theme:** only emit dark mode state if changed ([f973bef](https://gitlab.com/rxap/packages/commit/f973bef4768a437d00053775525a814a264d683c))
+
+
+
+
+
 ## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/services@14.0.1...@rxap/services@14.0.2) (2022-10-07)
 
 

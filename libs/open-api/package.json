@@ -1,6 +1,6 @@
 {
   "name": "@rxap/open-api",
-  "version": "14.0.4",
+  "version": "14.1.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/open-api",
@@ -25,12 +25,12 @@
     "@angular/material": "^14.2.2",
     "@angular/platform-browser": "^14.2.2",
     "@angular/platform-browser-dynamic": "^14.2.2",
-    "@rxap/data-source": "^14.1.0",
+    "@rxap/data-source": "^14.1.1",
     "@rxap/definition": "^14.0.1",
     "@rxap/mixin": "^14.0.0",
     "@rxap/remote-method": "^14.0.0",
-    "@rxap/utilities": "^14.0.1",
-    "@schematics/angular": "^13.2.4",
+    "@rxap/utilities": "^14.0.2",
+    "@schematics/angular": "^14.2.10",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.0"
   },
