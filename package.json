@@ -152,7 +152,7 @@
     "@rxap/plugin-readme-generator": "14.0.0",
     "@rxap/plugin-scss-bundle": "^14.0.0",
     "@rxap/schematics": "^14.0.0",
-    "@schematics/angular": "^13.2.4",
+    "@schematics/angular": "14.2.10",
     "@storybook/core-server": "6.4.22",
     "@storybook/addon-a11y": "6.4.19",
     "@storybook/addon-actions": "6.4.19",
