@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.1.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@14.1.0...@rxap/data-source@14.1.1) (2022-12-13)
+
+
+### Bug Fixes
+
+* refresh pipe data source operations ([5fe91d9](https://gitlab.com/rxap/packages/commit/5fe91d9944b41c317bd201482c1e26fddc966529))
+
+
+
+
+
 # [14.1.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@14.0.0...@rxap/data-source@14.1.0) (2022-11-07)
 
 

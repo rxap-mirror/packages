@@ -1,6 +1,6 @@
 {
   "name": "@rxap/data-source",
-  "version": "14.1.0",
+  "version": "14.1.1",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/data-source",
@@ -24,7 +24,7 @@
     "@angular/platform-browser": "^14.2.2",
     "@angular/platform-browser-dynamic": "^14.2.2",
     "@rxap/definition": "^14.0.1",
-    "@rxap/utilities": "^14.0.1",
+    "@rxap/utilities": "^14.0.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.0"
   },

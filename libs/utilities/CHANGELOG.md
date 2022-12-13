@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/utilities@14.0.1...@rxap/utilities@14.0.2) (2022-12-13)
+
+
+### Bug Fixes
+
+* use new set object value implementation ([9ec85ad](https://gitlab.com/rxap/packages/commit/9ec85ad72339f247457e50ec470f26656f7bc4c6))
+
+
+
+
+
 ## [14.0.1](https://gitlab.com/rxap/packages/compare/@rxap/utilities@13.0.0...@rxap/utilities@14.0.1) (2022-09-17)
 
 **Note:** Version bump only for package @rxap/utilities

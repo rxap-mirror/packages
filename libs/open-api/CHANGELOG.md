@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@14.0.4...@rxap/open-api@14.1.0) (2022-12-13)
+
+
+### Bug Fixes
+
+* **schematics:** add missing option serverId ([6a049a5](https://gitlab.com/rxap/packages/commit/6a049a5fedb04a335115ad8baf75839230bddc7f))
+* support string operation definitions ([7d76f80](https://gitlab.com/rxap/packages/commit/7d76f80937c1f579bf7f5f24036cc47144b25245))
+* update schematics packages ([5ae9da5](https://gitlab.com/rxap/packages/commit/5ae9da520c4120ec378106d6261f304649eb6378))
+* update schematics packages ([d0881ae](https://gitlab.com/rxap/packages/commit/d0881ae44c826af6c8ec8a4df98c6102c950c191))
+* **schematics:** add missing overwrite modifier ([7c09ef6](https://gitlab.com/rxap/packages/commit/7c09ef6b330f4dc7f3385eccfb3032af5c16e2a4))
+* **schematics:** add skip options ([3e9f8cd](https://gitlab.com/rxap/packages/commit/3e9f8cd5b1a2b74243ccd05c04ee691020f7da74))
+* **schematics:** use project options correctly ([456ce66](https://gitlab.com/rxap/packages/commit/456ce6604183d26b04cab87ec2e252c5e92199bf))
+* **schematics:** use project options correctly ([927d407](https://gitlab.com/rxap/packages/commit/927d407f456ce0b321dcd57aa2965830997cb358))
+* support directory options in library creation ([739bb69](https://gitlab.com/rxap/packages/commit/739bb69641ad5c029c1e5bf8182b349eb6224020))
+
+
+### Features
+
+* support string operation definitions ([6c22d3c](https://gitlab.com/rxap/packages/commit/6c22d3cff07016456533f9340e17429cbe65e0b6))
+
+
+
+
+
 ## [14.0.4](https://gitlab.com/rxap/packages/compare/@rxap/open-api@14.0.3...@rxap/open-api@14.0.4) (2022-11-07)
 
 
