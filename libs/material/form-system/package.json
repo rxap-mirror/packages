@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-form-system",
-  "version": "14.0.1",
+  "version": "14.0.2",
   "peerDependencies": {
     "@angular-devkit/schematics": "^14.2.3",
     "@angular/cdk": "^14.2.2",

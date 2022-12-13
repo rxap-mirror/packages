@@ -1,6 +1,6 @@
 {
   "name": "@rxap/oauth",
-  "version": "14.0.3",
+  "version": "14.0.4",
   "peerDependencies": {
     "@angular-devkit/schematics": "^14.2.3",
     "@angular/animations": "^14.2.2",
