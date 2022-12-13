@@ -1,6 +1,6 @@
 {
   "name": "@rxap/forms",
-  "version": "14.0.0",
+  "version": "14.0.1",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/forms",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@rxap/schematics-utilities": "^14.0.0",
-    "@rxap/validator": "^1.0.0",
+    "@rxap/validator": "^1.0.1",
     "ts-morph": "^13.0.3",
     "tslib": "^2.3.1"
   },
