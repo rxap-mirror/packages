@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.1.3](https://gitlab.com/rxap/packages/compare/@rxap/firebase@14.1.2...@rxap/firebase@14.1.3) (2022-12-14)
+
+**Note:** Version bump only for package @rxap/firebase
+
+
+
+
+
 ## [14.1.2](https://gitlab.com/rxap/packages/compare/@rxap/firebase@14.1.1...@rxap/firebase@14.1.2) (2022-12-13)
 
 **Note:** Version bump only for package @rxap/firebase
