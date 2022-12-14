@@ -20,8 +20,8 @@
     "@angular-devkit/schematics": "^14.2.3",
     "@angular/core": "^14.2.2",
     "@angular/platform-browser-dynamic": "^14.2.2",
-    "@rxap/mixin": "^14.0.0",
-    "@rxap/utilities": "^14.0.1",
+    "@rxap/mixin": "^14.0.1",
+    "@rxap/utilities": "^14.0.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.0"
   },
