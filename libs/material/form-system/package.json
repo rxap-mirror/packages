@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-form-system",
-  "version": "14.0.2",
+  "version": "14.0.3",
   "peerDependencies": {
     "@angular-devkit/schematics": "^14.2.3",
     "@angular/cdk": "^14.2.2",
@@ -13,13 +13,13 @@
     "@angular/platform-browser": "^14.2.2",
     "@angular/platform-browser-dynamic": "^14.2.2",
     "@angular/router": "^14.2.2",
-    "@rxap/data-source": "^14.1.2",
-    "@rxap/definition": "^14.0.2",
-    "@rxap/directives": "^14.0.2",
-    "@rxap/form-system": "^14.0.1",
-    "@rxap/forms": "^14.0.1",
-    "@rxap/mixin": "^14.0.1",
-    "@rxap/services": "^14.0.4",
+    "@rxap/data-source": "^14.1.3",
+    "@rxap/definition": "^14.0.3",
+    "@rxap/directives": "^14.0.3",
+    "@rxap/form-system": "^14.0.2",
+    "@rxap/forms": "^14.0.2",
+    "@rxap/mixin": "^14.0.2",
+    "@rxap/services": "^14.0.5",
     "@rxap/utilities": "^14.0.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.0"
