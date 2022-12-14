@@ -13,7 +13,7 @@
   "npmScope": "rxap",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": [
           "build",
@@ -27,7 +27,8 @@
           "update-package-group",
           "update-peer-dependencies"
         ],
-        "parallel": 5
+        "parallel": 5,
+        "accessToken": "NWQxMzM4ODktNzk2Zi00M2IyLWFiYTktOTU2ZWFhNjNkNjU0fHJlYWQtd3JpdGU="
       }
     }
   },
