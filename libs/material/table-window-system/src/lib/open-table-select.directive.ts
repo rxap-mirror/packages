@@ -17,9 +17,9 @@ import {
   ControlOptions
 } from '@rxap/utilities';
 import {
-  MAT_FORM_FIELD,
-  MatFormField
-} from '@angular/material/form-field';
+  MAT_LEGACY_FORM_FIELD as MAT_FORM_FIELD,
+  MatLegacyFormField as MatFormField
+} from '@angular/material/legacy-form-field';
 import {
   ExtractDataSourcesMixin,
   ExtractFormDefinitionMixin
@@ -33,7 +33,7 @@ import {
   PipeDataSource
 } from '@rxap/data-source';
 import { map } from 'rxjs/operators';
-import { MatSelect } from '@angular/material/select';
+import { MatLegacySelect as MatSelect } from '@angular/material/legacy-select';
 import { WindowTableSelectOptions } from './window-table-select.service';
 import { Method } from '@rxap/utilities/rxjs';
 import { WindowRef } from '@rxap/window-system';

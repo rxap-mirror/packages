@@ -21,8 +21,7 @@
   "ng-update": {
     "migrations": "./migration.json",
     "packageGroup": [
-      "@rxap/icon",
-      "@rxap/schematics-utilities"
+      "@rxap/icon"
     ]
   },
   "publishConfig": {
@@ -35,13 +34,5 @@
   "dependencies": {
     "tslib": "^2.3.1"
   },
-  "peerDependencies": {
-    "@angular-devkit/schematics": "^14.2.3",
-    "@angular/common": "^14.2.2",
-    "@angular/core": "^14.2.2",
-    "@angular/material": "^14.2.2",
-    "@angular/platform-browser": "^14.2.2",
-    "@angular/platform-browser-dynamic": "^14.2.2",
-    "@rxap/schematics-utilities": "^14.0.0"
-  }
+  "peerDependencies": {}
 }

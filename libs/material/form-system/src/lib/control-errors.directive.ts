@@ -9,9 +9,9 @@ import {
   AfterContentInit
 } from '@angular/core';
 import {
-  MAT_FORM_FIELD,
-  MatFormField
-} from '@angular/material/form-field';
+  MAT_LEGACY_FORM_FIELD as MAT_FORM_FIELD,
+  MatLegacyFormField as MatFormField
+} from '@angular/material/legacy-form-field';
 import { controlErrorChanges$ } from '@rxap/forms';
 import { Subscription } from 'rxjs';
 import {

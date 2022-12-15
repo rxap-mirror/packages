@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { UserProfileIconComponent } from './user-profile-icon.component';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';

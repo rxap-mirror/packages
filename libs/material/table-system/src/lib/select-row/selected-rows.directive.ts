@@ -17,7 +17,7 @@ import {
   distinctUntilChanged
 } from 'rxjs/operators';
 import { CdkTable } from '@angular/cdk/table';
-import { MatTable } from '@angular/material/table';
+import { MatLegacyTable as MatTable } from '@angular/material/legacy-table';
 
 export interface SelectedRowsDirectiveContext<Data extends Record<string, any>> {
   $implicit: Data[];

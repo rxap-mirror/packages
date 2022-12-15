@@ -24,7 +24,7 @@ import {
   FormType,
 } from '@rxap/forms';
 import { Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 
 export const RXAP_RESET_PASSWORD_FORM = 'rxap-reset-password';
 

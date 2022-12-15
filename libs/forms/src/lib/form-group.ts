@@ -17,7 +17,8 @@ import {
   AsyncValidator,
   AbstractControl,
   ControlOptions,
-  Validator
+  Validator,
+  ValidationErrors
 } from './types';
 import {
   validateControlOn,
@@ -46,8 +47,8 @@ import {
 } from './model';
 
 export class RxapFormGroup<
-  T extends Record<string, any> = any,
-  E extends object = any
+  T = any,
+  E extends ValidationErrors = any
 > extends UntypedFormGroup {
   /**
    * @internal
@@ -209,7 +210,8 @@ export class RxapFormGroup<
   public setValue(valueOrObservable: any, options?: ControlEventOptions): any {
     if (isObservable<T>(valueOrObservable)) {
       return valueOrObservable.subscribe((value) =>
-        super.setValue(value, options)
+        // TODO : refactor RxapFormGroup to typed FormGroup
+        super.setValue(value as any, options)
       );
     }
 
@@ -224,8 +226,10 @@ export class RxapFormGroup<
     if (value == null /* both `null` and `undefined` */)
       return;
     Object.keys(value).forEach(name => {
-      if (this.controls[name]) {
-        this.controls[name].patchValue(value[name], { ...(options ?? {}), onlySelf: true });
+      // TODO : resolve type issue
+      const controls = this.controls as any;
+      if (controls[name]) {
+        controls[name].patchValue((value as any)[name], { ...(options ?? {}), onlySelf: true });
       }
     });
     this.updateValueAndValidity(options);
@@ -245,7 +249,8 @@ export class RxapFormGroup<
   ): Subscription | void {
     if (isObservable<T>(valueOrObservable)) {
       return valueOrObservable.subscribe((value) =>
-        this._patchValue(value, options)
+        // TODO : refactor RxapFormGroup to typed FormGroup
+        super.patchValue(value as any, options)
       );
     }
 

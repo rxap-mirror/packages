@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { WindowContainerComponent } from './window-container/window-container.component';
@@ -13,9 +13,8 @@ import { WindowContentComponent } from './window-content/window-content.componen
 import { OverlayModule } from '@angular/cdk/overlay';
 import { WindowActionBarComponent } from './window-action-bar/window-action-bar.component';
 import { WindowTaskBarModule } from './window-task-bar/window-task-bar.module';
-import { ButtonComponentModule } from '@rxap/components';
 import { PortalModule } from '@angular/cdk/portal';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatLegacyProgressBarModule as MatProgressBarModule } from '@angular/material/legacy-progress-bar';
 import { IconDirectiveModule } from '@rxap/material-directives/icon';
 
 @NgModule({
@@ -27,7 +26,6 @@ import { IconDirectiveModule } from '@rxap/material-directives/icon';
     MatIconModule,
     MatButtonModule,
     OverlayModule,
-    ButtonComponentModule,
     PortalModule,
     MatProgressBarModule,
     IconDirectiveModule

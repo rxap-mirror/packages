@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CheckboxCellComponent } from './checkbox-cell.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatLegacyCheckboxModule as MatCheckboxModule } from '@angular/material/legacy-checkbox';
 import { CommonModule } from '@angular/common';
 
 

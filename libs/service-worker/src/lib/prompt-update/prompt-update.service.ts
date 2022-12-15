@@ -13,7 +13,7 @@ import {
   map,
   take
 } from 'rxjs/operators';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { PromptUpdateComponent } from './prompt-update.component';
 import { Observable } from 'rxjs';
 import { log } from '@rxap/utilities/rxjs';

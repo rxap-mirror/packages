@@ -1,10 +1,11 @@
 {
+  "name": "window-system",
   "projectType": "library",
   "sourceRoot": "libs/window-system/src",
   "prefix": "rxap",
   "targets": {
     "version": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": ["echo ok"]
       },
@@ -86,7 +87,7 @@
     "update-peer-dependencies": {
       "executor": "@rxap/plugin-library:update-peer-dependencies",
       "options": {
-        "ignore": ["jest-preset-angular", "ng-mocks", "@storybook\\/"]
+        "ignore": ["tsconfig-paths-webpack-plugin", "jest-preset-angular", "ng-mocks", "@storybook\\/"]
       }
     },
     "storybook": {

@@ -104,6 +104,15 @@
           "projects": "self"
         }
       ]
+    },
+    "test": {
+      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
+    },
+    "lint": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+    },
+    "build-storybook": {
+      "inputs": ["default", "^default", "{workspaceRoot}/.storybook/**/*"]
     }
   },
   "cli": {

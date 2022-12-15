@@ -39,7 +39,6 @@ import {
   dasherize
 } from '@rxap/schematics-utilities';
 import { GenerateRemoteMethod } from './generate-remote-method';
-import { GenerateDataSource } from './generate-data-source';
 import {
   REMOTE_METHOD_BASE_PATH,
   DATA_SOURCE_BASE_PATH
@@ -120,11 +119,6 @@ export default function(options: OpenApiSchema): Rule {
 
     const generatorFunctionList: GeneratorFunction<OpenApiSchema>[] = [];
     const clearPathList: string[] = [];
-
-    if (!options.skipDataSource) {
-      generatorFunctionList.push(GenerateDataSource);
-      clearPathList.push(DATA_SOURCE_BASE_PATH);
-    }
 
     if (!options.skipRemoteMethod) {
       generatorFunctionList.push(GenerateRemoteMethod);

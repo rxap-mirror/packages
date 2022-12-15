@@ -1,10 +1,11 @@
 {
+  "name": "xml-parser",
   "projectType": "library",
   "sourceRoot": "libs/xml-parser/src",
   "prefix": "rxap",
   "targets": {
     "version": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": ["echo ok"]
       },

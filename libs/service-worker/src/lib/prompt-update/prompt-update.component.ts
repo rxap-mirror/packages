@@ -7,9 +7,9 @@ import {
 } from '@angular/core';
 import { UpdateAvailableEvent } from '@angular/service-worker';
 import {
-  MAT_DIALOG_DATA,
-  MatDialogRef
-} from '@angular/material/dialog';
+  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
+  MatLegacyDialogRef as MatDialogRef
+} from '@angular/material/legacy-dialog';
 import {
   interval,
   Subscription

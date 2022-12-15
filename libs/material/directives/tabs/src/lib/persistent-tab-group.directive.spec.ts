@@ -13,9 +13,9 @@ import {
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import {
-  MatTabGroup,
-  MatTabsModule
-} from '@angular/material/tabs';
+  MatLegacyTabGroup as MatTabGroup,
+  MatLegacyTabsModule as MatTabsModule
+} from '@angular/material/legacy-tabs';
 import { PersistentTabGroupDirective } from './persistent-tab-group.directive';
 
 describe('@rxap/directives/material/expansion', () => {

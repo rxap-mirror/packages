@@ -5,7 +5,7 @@ import {
   OnDestroy,
   OnInit
 } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 

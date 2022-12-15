@@ -5,13 +5,11 @@
   },
   "compilerOptions": {
     "paths": {
-      "@rxap/utilities": [
-        "dist/libs/utilities"
-      ],
-      "@rxap/pipes/santization": [
-        "dist/libs/pipes/santization"
-      ]
+      "@rxap/utilities": ["dist/libs/utilities"],
+      "@rxap/pipes/santization": ["dist/libs/pipes/santization"]
     },
-    "declarationMap": false
+    "declarationMap": false,
+    "target": "ES2022",
+    "useDefineForClassFields": false
   }
 }

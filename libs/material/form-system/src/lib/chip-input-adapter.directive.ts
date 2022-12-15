@@ -9,7 +9,7 @@ import {
   OnInit
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { MatChipInput } from '@angular/material/chips';
+import { MatLegacyChipInput as MatChipInput } from '@angular/material/legacy-chips';
 import { unique } from '@rxap/utilities';
 import { Subscription } from 'rxjs';
 import {

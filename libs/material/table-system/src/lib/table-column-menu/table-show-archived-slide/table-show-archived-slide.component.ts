@@ -2,7 +2,7 @@ import {
   Component,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatLegacySlideToggleChange as MatSlideToggleChange } from '@angular/material/legacy-slide-toggle';
 import { TableFilterService } from '../../table-filter/table-filter.service';
 import { TableColumnMenuComponent } from '../table-column-menu.component';
 

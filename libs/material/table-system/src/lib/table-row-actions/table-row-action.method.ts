@@ -44,7 +44,7 @@ export function HasTableRowActionCheckFunction(method: TableRowActionMethod<any>
   )?.checkFunction !== undefined;
 }
 
-export function GetTableRowActionCheckFunction<Data>(method: TableRowActionMethod<Data>): RowActionCheckFunction<Data> {
+export function GetTableRowActionCheckFunction<Data extends Record<string, unknown> = Record<string, unknown>>(method: TableRowActionMethod<Data>): RowActionCheckFunction<Data> {
   const checkFunction = getMetadata<TableActionMethodOptions<Data>>(RXAP_TABLE_ACTION_METHOD_METADATA, method.constructor)?.checkFunction;
   if (!checkFunction) {
     throw new Error(`Extracted check function from '${method.constructor.name}' is empty`);

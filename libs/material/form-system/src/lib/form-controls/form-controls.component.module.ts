@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { FormControlsComponent } from './form-controls.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { CommonModule } from '@angular/common';
 import { RxapFormsModule } from '@rxap/forms';
 import { RouterModule } from '@angular/router';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 
 
 @NgModule({

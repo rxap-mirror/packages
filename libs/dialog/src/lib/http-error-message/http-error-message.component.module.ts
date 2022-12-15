@@ -3,8 +3,8 @@ import {
   ModuleWithProviders
 } from '@angular/core';
 import { HttpErrorMessageComponent } from './http-error-message.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpErrorMessageInterceptor } from './http-error-message.interceptor';

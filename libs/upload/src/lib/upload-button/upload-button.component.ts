@@ -19,7 +19,7 @@ import {
   NgControl
 } from '@angular/forms';
 import { ConnectedPosition } from '@angular/cdk/overlay';
-import { MatFormFieldControl } from '@angular/material/form-field';
+import { MatLegacyFormFieldControl as MatFormFieldControl } from '@angular/material/legacy-form-field';
 import { Subject } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 

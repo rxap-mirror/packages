@@ -2,7 +2,9 @@ import {
   NgControl,
   AbstractControlDirective
 } from '@angular/forms';
-import { MatFormField } from '@angular/material/form-field';
+import {
+  MatLegacyFormField as MatFormField
+} from '@angular/material/legacy-form-field';
 import { RxapFormControl } from '@rxap/forms';
 
 export class ExtractControlMixin {

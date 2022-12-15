@@ -11,7 +11,7 @@ import {
 @Pipe({
   name: 'rxapRowActionCheck',
 })
-export class RowActionCheckPipe<RowType> implements PipeTransform {
+export class RowActionCheckPipe<RowType extends Record<string, unknown> = Record<string, unknown>> implements PipeTransform {
 
   private readonly actionMethodList: Array<TableRowActionTypeMethod<RowType>>;
 

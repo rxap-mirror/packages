@@ -6,9 +6,9 @@ import {
   HostBinding
 } from '@angular/core';
 import {
-  MatFormField,
-  MAT_FORM_FIELD
-} from '@angular/material/form-field';
+  MatLegacyFormField as MatFormField,
+  MAT_LEGACY_FORM_FIELD as MAT_FORM_FIELD
+} from '@angular/material/legacy-form-field';
 
 @Directive({
   selector: '[rxapInputClearButton]'

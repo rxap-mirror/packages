@@ -2,23 +2,15 @@
   "extends": "./tsconfig.lib.json",
   "compilerOptions": {
     "paths": {
-      "@rxap/utilities": [
-        "dist/libs/utilities"
-      ],
-      "@rxap/utilities/rxjs": [
-        "dist/libs/utilities/rxjs"
-      ],
-      "@rxap/definition": [
-        "dist/libs/definition"
-      ],
-      "@rxap/data-source": [
-        "dist/libs/data-source"
-      ],
-      "@rxap/data-source/directive": [
-        "dist/data-source/directive"
-      ]
+      "@rxap/utilities": ["dist/libs/utilities"],
+      "@rxap/utilities/rxjs": ["dist/libs/utilities/rxjs"],
+      "@rxap/definition": ["dist/libs/definition"],
+      "@rxap/data-source": ["dist/libs/data-source"],
+      "@rxap/data-source/directive": ["dist/data-source/directive"]
     },
-    "declarationMap": false
+    "declarationMap": false,
+    "target": "ES2022",
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "compilationMode": "partial"

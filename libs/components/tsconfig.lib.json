@@ -2,31 +2,19 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "target": "es2015",
+    "target": "ES2022",
     "declaration": true,
     "inlineSources": true,
     "types": [],
-    "lib": [
-      "dom",
-      "es2018"
-    ],
+    "lib": ["dom", "es2018"],
     "paths": {
-      "@rxap/utilities": [
-        "dist/libs/utilities"
-      ],
-      "@rxap/utilities/rxjs": [
-        "dist/libs/utilities/rxjs"
-      ],
-      "@rxap/services": [
-        "dist/libs/services"
-      ],
-      "@rxap/material-directives/icon": [
-        "dist/libs/material/directives/icon"
-      ],
-      "@rxap/directives": [
-        "dist/libs/directives"
-      ]
-    }
+      "@rxap/utilities": ["dist/libs/utilities"],
+      "@rxap/utilities/rxjs": ["dist/libs/utilities/rxjs"],
+      "@rxap/services": ["dist/libs/services"],
+      "@rxap/material-directives/icon": ["dist/libs/material/directives/icon"],
+      "@rxap/directives": ["dist/libs/directives"]
+    },
+    "useDefineForClassFields": false
   },
   "exclude": [
     "src/test-setup.ts",
@@ -35,7 +23,5 @@
     "src/schematics/**",
     "src/migrations/**"
   ],
-  "include": [
-    "**/*.ts"
-  ]
+  "include": ["**/*.ts"]
 }

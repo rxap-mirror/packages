@@ -2,26 +2,16 @@
   "extends": "./tsconfig.lib.json",
   "compilerOptions": {
     "paths": {
-      "@rxap/utilities": [
-        "dist/utilities"
-      ],
-      "@rxap/utilities/rxjs": [
-        "dist/utilities/rxjs"
-      ],
-      "@rxap/services": [
-        "dist/services"
-      ],
-      "@rxap/config": [
-        "dist/config"
-      ],
-      "@rxap/authentication": [
-        "dist/authentication"
-      ],
-      "@rxap/material-directives/icon": [
-        "dist/material/directives/icon"
-      ]
+      "@rxap/utilities": ["dist/utilities"],
+      "@rxap/utilities/rxjs": ["dist/utilities/rxjs"],
+      "@rxap/services": ["dist/services"],
+      "@rxap/config": ["dist/config"],
+      "@rxap/authentication": ["dist/authentication"],
+      "@rxap/material-directives/icon": ["dist/material/directives/icon"]
     },
-    "declarationMap": false
+    "declarationMap": false,
+    "target": "ES2022",
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "compilationMode": "full"
