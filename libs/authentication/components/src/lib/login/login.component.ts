@@ -10,7 +10,7 @@ import {
 } from '@angular/material/core';
 import { fadeAnimation } from '../fade-animation';
 import { RxapAuthenticationService } from '@rxap/authentication';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 @Component({

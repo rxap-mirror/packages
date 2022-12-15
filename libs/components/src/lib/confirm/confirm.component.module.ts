@@ -4,7 +4,7 @@ import { FlexModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmDirective } from './confirm.directive';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 
 @NgModule({
   declarations: [ ConfirmComponent, ConfirmDirective ],

@@ -8,9 +8,9 @@ import { SidenavToggleButtonComponentModule } from './sidenav-toggle-button/side
 import { ResetButtonComponentModule } from './reset-button/reset-button.component.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
 import { AppsButtonComponentModule } from './apps-button/apps-button.component.module';
 import { LanguageSelectorComponentModule } from './language-selector/language-selector.component.module';
 

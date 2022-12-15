@@ -10,7 +10,7 @@ import {
   EMPTY
 } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatLegacyCheckboxChange as MatCheckboxChange } from '@angular/material/legacy-checkbox';
 import { CdkTable } from '@angular/cdk/table';
 
 @Component({

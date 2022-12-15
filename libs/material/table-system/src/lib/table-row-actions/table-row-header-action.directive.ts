@@ -9,8 +9,8 @@ import {
   ViewContainerRef,
   ElementRef
 } from '@angular/core';
-import { MatButton } from '@angular/material/button';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacyButton as MatButton } from '@angular/material/legacy-button';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { Required } from '@rxap/utilities';
 import { Subscription } from 'rxjs';
 import {

@@ -39,10 +39,6 @@
           "type": "boolean",
           "default": false
         },
-        "skipDataSource": {
-          "type": "boolean",
-          "default": false
-        },
         "skipRemoteMethod": {
           "type": "boolean",
           "default": false
@@ -93,10 +89,6 @@
           "default": false
         },
         "inline": {
-          "type": "boolean",
-          "default": false
-        },
-        "skipDataSource": {
           "type": "boolean",
           "default": false
         },

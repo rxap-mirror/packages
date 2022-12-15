@@ -7,7 +7,7 @@ import {
   moduleMetadata,
   Story
 } from '@storybook/angular';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import {
   WindowService,
   RxapWindowSystemModule

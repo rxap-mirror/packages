@@ -51,7 +51,7 @@ import {
 } from '@rxap/utilities';
 import { Method } from '@rxap/utilities/rxjs';
 import { RXAP_TABLE_METHOD } from './tokens';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 import { MatSort } from '@angular/material/sort';
 
 /**

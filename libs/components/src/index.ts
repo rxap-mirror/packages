@@ -1,10 +1,3 @@
-// region button
-
-export * from './lib/button/button.component.module';
-export * from './lib/button/button.component';
-
-// endregion
-
 // region confirm
 
 export * from './lib/confirm/confirm.component';

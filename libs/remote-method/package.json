@@ -17,14 +17,12 @@
   },
   "description": "Provides the RemoteMethod concept for RxAP.",
   "peerDependencies": {
-    "@angular-devkit/schematics": "^14.2.3",
-    "@angular/common": "^14.2.2",
-    "@angular/core": "^14.2.2",
-    "@angular/platform-browser": "^14.2.2",
-    "@angular/platform-browser-dynamic": "^14.2.2",
+    "@angular-devkit/core": "^15.0.3",
+    "@angular/common": "^15.0.3",
+    "@angular/platform-browser": "^15.0.3",
+    "@angular/platform-browser-dynamic": "^15.0.3",
     "@rxap/definition": "^14.0.3",
     "@rxap/utilities": "^14.1.0",
-    "@schematics/angular": "^14.2.10",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.0"
   },
@@ -45,7 +43,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^14.0.0",
+    "@rxap/schematics-utilities": "^15.0.0",
     "ts-morph": "^13.0.3",
     "tslib": "^2.3.1"
   }

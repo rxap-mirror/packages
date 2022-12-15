@@ -18,7 +18,7 @@ export type AsyncValidatorFn<T = any, E = any> = (
   control: AbstractControl<T>
 ) => Promise<ValidationErrors<E> | null> | Observable<ValidationErrors<E> | null>;
 
-export interface AbstractControlOptions<T = any, E = any> extends NgAbstractControlOptions {
+export interface AbstractControlOptions<T = any, E extends NgValidationErrors = any> extends NgAbstractControlOptions {
   validators?: ValidatorFn<T, E> | ValidatorFn<T, E>[] | null;
   asyncValidators?: AsyncValidatorFn<T, E> | AsyncValidatorFn<T, E>[] | null;
 }
@@ -97,7 +97,7 @@ export type OrBoxedValue<T> = T | BoxedValue<T> | (() => T);
 
 type ArrayType<T> = T extends Array<infer R> ? R : any;
 
-export type KeyValueControls<T extends Record<string, any>> = {
+export type KeyValueControls<T> = {
   [K in keyof T]: T[K] extends RxapFormControl<T[K]>
                   ? RxapFormControl<T[K]>
                   : T[K] extends RxapFormGroup<T[K]>

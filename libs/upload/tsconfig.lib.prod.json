@@ -3,22 +3,14 @@
   "compilerOptions": {
     "declarationMap": false,
     "paths": {
-      "@rxap/utilities": [
-        "dist/libs/utilities"
-      ],
-      "@rxap/utilities/rxjs": [
-        "dist/libs/utilities/rxjs"
-      ],
-      "@rxap/remote-method": [
-        "dist/libs/remote-method"
-      ],
-      "@rxap/definition": [
-        "dist/libs/definition"
-      ],
-      "@rxap/remote-method/directive": [
-        "dist/libs/remote-method/directive"
-      ]
-    }
+      "@rxap/utilities": ["dist/libs/utilities"],
+      "@rxap/utilities/rxjs": ["dist/libs/utilities/rxjs"],
+      "@rxap/remote-method": ["dist/libs/remote-method"],
+      "@rxap/definition": ["dist/libs/definition"],
+      "@rxap/remote-method/directive": ["dist/libs/remote-method/directive"]
+    },
+    "target": "ES2022",
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "compilationMode": "partial"

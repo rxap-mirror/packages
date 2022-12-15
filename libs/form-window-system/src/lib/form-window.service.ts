@@ -62,7 +62,7 @@ export class FormWindowService {
     private readonly injector: Injector
   ) {}
 
-  public open<FormData extends Record<string, any>>(
+  public open<FormData>(
     formDefinitionConstructor: Constructor<FormType<any>>,
     options?: FormWindowOptions<FormData>
   ): WindowRef<FormDefinition, FormData> {

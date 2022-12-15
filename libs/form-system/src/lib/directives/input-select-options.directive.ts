@@ -44,10 +44,10 @@ import {
 import { UseDataSource } from '../decorators/use-data-source';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 import {
-  MAT_FORM_FIELD,
-  MatFormField
-} from '@angular/material/form-field';
-import { MatAutocomplete } from '@angular/material/autocomplete';
+  MAT_LEGACY_FORM_FIELD as MAT_FORM_FIELD,
+  MatLegacyFormField as MatFormField
+} from '@angular/material/legacy-form-field';
+import { MatLegacyAutocomplete as MatAutocomplete } from '@angular/material/legacy-autocomplete';
 import {
   ExtractOptionsDataSourceMixin,
   UseOptionsDataSourceSettings

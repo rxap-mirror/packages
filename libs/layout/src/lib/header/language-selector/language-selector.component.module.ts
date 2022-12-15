@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { LanguageSelectorComponent } from './language-selector.component';
-import { MatSelectModule } from '@angular/material/select';
+import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

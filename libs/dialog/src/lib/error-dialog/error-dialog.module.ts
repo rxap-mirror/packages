@@ -5,11 +5,11 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ErrorDialogComponent } from './error-dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { ErrorDialogErrorHandler } from './error-dialog.error-handler';
 import { JsonViewerModule } from '@rxap/components';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 
 @NgModule({
   declarations:    [ ErrorDialogComponent ],

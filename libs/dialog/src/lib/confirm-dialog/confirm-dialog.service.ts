@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { MatDialog, DialogPosition } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog, LegacyDialogPosition as DialogPosition } from '@angular/material/legacy-dialog';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
 import { Direction } from '@angular/cdk/bidi';
 import { ScrollStrategy } from '@angular/cdk/overlay';

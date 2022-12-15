@@ -14,7 +14,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { UserService } from '@rxap/authentication';
 import { RXAP_HEADER_COMPONENT } from '../tokens';
 import { HeaderService } from '@rxap/services';
-import { MatMenuPanel } from '@angular/material/menu';
+import { MatLegacyMenuPanel as MatMenuPanel } from '@angular/material/legacy-menu';
 import { ThemePalette } from '@angular/material/core';
 
 @Component({

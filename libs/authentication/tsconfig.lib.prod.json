@@ -2,20 +2,14 @@
   "extends": "./tsconfig.lib.json",
   "compilerOptions": {
     "paths": {
-      "@rxap/utilities": [
-        "dist/libs/utilities"
-      ],
-      "@rxap/utilities/rxjs": [
-        "dist/libs/utilities/rxjs"
-      ],
-      "@rxap/authentication": [
-        "dist/libs/authentication"
-      ],
-      "@rxap/forms": [
-        "dist/libs/forms"
-      ]
+      "@rxap/utilities": ["dist/libs/utilities"],
+      "@rxap/utilities/rxjs": ["dist/libs/utilities/rxjs"],
+      "@rxap/authentication": ["dist/libs/authentication"],
+      "@rxap/forms": ["dist/libs/forms"]
     },
-    "declarationMap": false
+    "declarationMap": false,
+    "target": "ES2022",
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "compilationMode": "partial"

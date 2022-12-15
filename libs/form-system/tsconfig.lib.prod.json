@@ -2,26 +2,18 @@
   "extends": "./tsconfig.lib.json",
   "compilerOptions": {
     "paths": {
-      "@rxap/forms": [
-        "dist/libs/forms"
-      ],
-      "@rxap/data-source": [
-        "dist/libs/data-source"
-      ],
-      "@rxap/utilities": [
-        "dist/libs/utilities"
-      ],
+      "@rxap/forms": ["dist/libs/forms"],
+      "@rxap/data-source": ["dist/libs/data-source"],
+      "@rxap/utilities": ["dist/libs/utilities"],
       "@rxap/utilities/reflect-metadata": [
         "dist/libs/utilities/reflect-metadata"
       ],
-      "@rxap/definition": [
-        "dist/libs/definition"
-      ],
-      "@rxap/mixin": [
-        "dist/libs/mixin"
-      ]
+      "@rxap/definition": ["dist/libs/definition"],
+      "@rxap/mixin": ["dist/libs/mixin"]
     },
-    "declarationMap": false
+    "declarationMap": false,
+    "target": "ES2022",
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "compilationMode": "partial"

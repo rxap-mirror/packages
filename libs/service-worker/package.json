@@ -16,12 +16,11 @@
   },
   "description": "A utility package for the update process of apps with services worker",
   "peerDependencies": {
-    "@angular-devkit/schematics": "^14.2.3",
-    "@angular/core": "^14.2.2",
-    "@angular/material": "^14.2.2",
-    "@angular/platform-browser-dynamic": "^14.2.2",
-    "@angular/router": "^14.2.2",
-    "@angular/service-worker": "^14.2.2",
+    "@angular/core": "^15.0.3",
+    "@angular/material": "^15.0.2",
+    "@angular/platform-browser-dynamic": "^15.0.3",
+    "@angular/router": "^15.0.3",
+    "@angular/service-worker": "^15.0.3",
     "@rxap/life-cycle": "^14.0.3",
     "@rxap/utilities": "^14.0.3",
     "reflect-metadata": "^0.1.13",
@@ -45,7 +44,7 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^14.0.0",
+    "@rxap/schematics-utilities": "^15.0.0",
     "tslib": "^2.3.1"
   }
 }

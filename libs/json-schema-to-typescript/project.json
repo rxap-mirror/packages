@@ -1,10 +1,11 @@
 {
+  "name": "json-schema-to-typescript",
   "projectType": "library",
   "sourceRoot": "libs/json-schema-to-typescript/src",
   "prefix": "rxap",
   "targets": {
     "version": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": ["echo ok"]
       },

@@ -6,7 +6,7 @@ import {
   isDevMode,
   Inject
 } from '@angular/core';
-import { MatSelect } from '@angular/material/select';
+import { MatLegacySelect as MatSelect } from '@angular/material/legacy-select';
 import {
   getFromObject,
   equals

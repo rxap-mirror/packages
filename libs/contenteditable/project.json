@@ -1,10 +1,11 @@
 {
+  "name": "contenteditable",
   "projectType": "library",
   "sourceRoot": "libs/contenteditable/src",
   "prefix": "rxap",
   "targets": {
     "version": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": ["echo ok"]
       },

@@ -1,10 +1,11 @@
 {
+  "name": "table-system",
   "projectType": "library",
   "sourceRoot": "libs/table-system/src",
   "prefix": "rxap",
   "targets": {
     "version": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": ["echo ok"]
       },

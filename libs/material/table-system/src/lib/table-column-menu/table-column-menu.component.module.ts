@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { TableColumnMenuComponent } from './table-column-menu.component';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatLegacyMenuModule as MatMenuModule } from '@angular/material/legacy-menu';
 import { CommonModule } from '@angular/common';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatLegacyCheckboxModule as MatCheckboxModule } from '@angular/material/legacy-checkbox';
 import { TableColumnOptionComponent } from './table-column-option/table-column-option.component';
 import { StopPropagationDirectiveModule } from '@rxap/directives';
 import { FlexLayoutModule } from '@angular/flex-layout';

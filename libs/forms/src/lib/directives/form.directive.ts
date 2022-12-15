@@ -107,7 +107,7 @@ import { ToggleSubject } from '@rxap/utilities/rxjs';
   outputs: ['ngSubmit'],
   exportAs: 'rxapForm',
 })
-export class FormDirective<T extends Record<string, any> = any>
+export class FormDirective<T = any>
   extends FormGroupDirective
   implements OnInit, OnChanges, OnDestroy
 {

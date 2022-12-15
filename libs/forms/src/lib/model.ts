@@ -47,7 +47,7 @@ export interface RxapAbstractControlOptionsWithDefinition
   definition: Constructor;
 }
 
-export interface FormDefinition<T extends Record<string, any> = any,
+export interface FormDefinition<T = any,
   E extends object = any,
   JSON extends Record<string, any> = any,
   > {
@@ -81,13 +81,13 @@ export interface FormDefinitionArray<T> extends Array<T> {
   rxapFormArray: RxapFormArray;
 }
 
-export type FormType<T extends Record<string, any>> = Partial<
+export type FormType<T> = Partial<
   FormDefinition<T>
 > &
   {
     [K in keyof T]: T[K] extends (infer U)[]
                     ? FormDefinitionArray<FormType<U>> | RxapFormControl<T[K]> | RxapFormArray<U>
-                    : T[K] extends object | undefined
+                    : T[K] extends Record<string, any>
                       ? (FormType<T[K]> & Partial<FormDefinition<T[K]>>) | RxapFormControl<T[K]>
                       : RxapFormControl<T[K]>;
   };

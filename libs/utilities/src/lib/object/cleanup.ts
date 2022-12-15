@@ -1,4 +1,4 @@
-export function DeleteUndefinedProperties<T>(obj: T): Exclude<T, undefined> {
+export function DeleteUndefinedProperties<T extends {}>(obj: T): Exclude<T, undefined> {
   const keys          = Object.keys(obj);
   const cloneObj: any = {};
 
@@ -11,7 +11,7 @@ export function DeleteUndefinedProperties<T>(obj: T): Exclude<T, undefined> {
   return cloneObj;
 }
 
-export function DeleteNullProperties<T>(obj: T): Exclude<T, null> {
+export function DeleteNullProperties<T extends {}>(obj: T): Exclude<T, null> {
   const keys          = Object.keys(obj);
   const cloneObj: any = {};
 
@@ -24,6 +24,6 @@ export function DeleteNullProperties<T>(obj: T): Exclude<T, null> {
   return cloneObj;
 }
 
-export function DeleteEmptyProperties<T>(obj: T): Exclude<Exclude<T, null>, undefined> {
+export function DeleteEmptyProperties<T extends {}>(obj: T): Exclude<Exclude<T, null>, undefined> {
   return DeleteUndefinedProperties(DeleteNullProperties(obj));
 }
