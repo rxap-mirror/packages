@@ -4359,10 +4359,10 @@
     globs "^0.1.4"
     tslib "^2.3.1"
 
-"@rxap/schematics-open-api@13.1.1":
-  version "13.1.1"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics-open-api/-/schematics-open-api-13.1.1.tgz#294c8dec3cd697d61d519ce1494cb00f5a16afd0"
-  integrity sha512-8HZsD9ZRGZ8aOcqOhjObGhltw1rDVn2eAs3RdOdVIkp4KzUCrCPDABZy36r1N5sg10XX5vG+jkcGlYQhCJ/UOg==
+"@rxap/schematics-open-api@13.1.3":
+  version "13.1.3"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-open-api/-/schematics-open-api-13.1.3.tgz#59344f4f547d60b728ec182c68e7e5f7dbcd2b34"
+  integrity sha512-MDCrsi/rJNnAGFFidqhO27dS3CafUmbER4ngg6JHSU+Q1+UII0otex9K0ijDOFauU5c/vBBYoBFYmliQldkoQw==
   dependencies:
     semver "^7.3.5"
     tslib "^2.3.1"
