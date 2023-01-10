@@ -10,11 +10,14 @@ import {
   dasherize
 } from '@rxap/schematics-utilities';
 
+/**
+ * @deprecated use function from the @rxap/schematics-utilities package
+ */
 export function CoerceOpenApiProject(project: string, prefix: string, directory?: string): Rule {
   return (host: Tree) => {
     const angularJson = GetAngularJson(host) as any;
 
-    const projectName = `${directory ? directory + '-' : ''}${project}`
+    const projectName = `${directory ? directory.split('/').join('-') + '-' : ''}${project}`
 
     if (!angularJson.projects.hasOwnProperty(projectName)) {
       const defaultProject = angularJson.projects[ angularJson.defaultProject ];
@@ -36,7 +39,7 @@ export function CoerceOpenApiProject(project: string, prefix: string, directory?
           if (Object.keys(paths).length) {
             for (const key of Object.keys(paths)) {
               if (directory) {
-                if (key.match(new RegExp(`\/${directory}-${project}$`))) {
+                if (key.match(new RegExp(`\/${directory.split('/').join('-')}-${project}$`))) {
                   delete paths[ key ];
                   paths[ key + '/*' ] = [ `libs/${directory}/${project}/src/lib/*` ];
                 }

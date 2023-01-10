@@ -103,10 +103,10 @@ export default function(options: OpenApiSchema): Rule {
     }
 
     if (options.directory) {
-      options.directory = dasherize(options.directory)
+      options.directory = options.directory.split('/').map(item => dasherize(item)).join('/');
     }
 
-    const projectName = `${options.directory ? options.directory + '-' : ''}${options.project}`
+    const projectName = `${options.directory ? options.directory.split('/').join('-') + '-' : ''}${options.project}`;
 
     const projectBasePath = HasProject(host, projectName) ? GetProjectSourceRoot(host, projectName) : `libs/${options.directory ? options.directory + '/' : ''}${options.project}/src`;
     const basePath = join(projectBasePath, 'lib');
