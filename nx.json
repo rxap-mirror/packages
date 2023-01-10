@@ -49,6 +49,14 @@
         }
       ]
     },
+    "scss-bundle": {
+      "dependsOn": [
+        {
+          "target": "scss-bundle",
+          "projects": "self"
+        }
+      ]
+    },
     "version": {
       "dependsOn": [
         {
@@ -61,6 +69,10 @@
         },
         {
           "target": "build-schematics",
+          "projects": "self"
+        },
+        {
+          "target": "scss-bundle",
           "projects": "self"
         }
       ]
