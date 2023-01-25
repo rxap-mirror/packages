@@ -13,16 +13,16 @@ import {
   ParseValueElementOptions
 } from './parse-value-element-parser.mixin';
 
-export interface TextContentElementOptions<Value>
-  extends DefaultValueElementOptions<Value>,
+export interface TextContentElementOptions<Value, DefaultValue = Value>
+  extends DefaultValueElementOptions<DefaultValue>,
           RequiredElementOptions,
           ParseValueElementOptions<Value> {
 }
 
-export interface TextContentElementParserMixin<Value>
+export interface TextContentElementParserMixin<Value, DefaultValue = Value>
   extends RequiredElementParserMixin,
-          DefaultValueElementParserMixin<Value>,
+          DefaultValueElementParserMixin<DefaultValue>,
           ParseValueElementParserMixin<Value> {}
 
 @Mixin(RequiredElementParserMixin, DefaultValueElementParserMixin, TagElementParserMixin, ParseValueElementParserMixin)
-export class TextContentElementParserMixin<Value> {}
+export class TextContentElementParserMixin<Value, DefaultValue = Value> {}
