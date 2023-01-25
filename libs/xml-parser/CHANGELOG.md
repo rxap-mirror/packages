@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@14.0.3...@rxap/xml-parser@14.1.0-dev.0) (2023-01-25)
+
+
+### Features
+
+* **decorator:** add ElementChildrenTextContent ([f456c33](https://gitlab.com/rxap/packages/commit/f456c3351412226c7abe00a3f5c215dc1ff2af6c))
+
+
+
+
+
 ## [14.0.3](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@14.0.2...@rxap/xml-parser@14.0.3) (2022-12-14)
 
 **Note:** Version bump only for package @rxap/xml-parser
