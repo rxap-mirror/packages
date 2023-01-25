@@ -16,6 +16,10 @@ export {
   ElementChildTextContentOptions
 } from './lib/element-child-text-content';
 export {
+  ElementChildrenTextContent,
+  ElementChildrenTextContentOptions
+} from './lib/element-children-text-content';
+export {
   ElementTextContent,
   ElementTextContentOptions
 } from './lib/element-text-content';
