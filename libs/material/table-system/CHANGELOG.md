@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.4.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@14.3.0...@rxap/material-table-system@14.4.0-dev.0) (2023-01-31)
+
+
+### Features
+
+* **table-row-actions:** add rxapRowActionCheckPipe ([4f774e2](https://gitlab.com/rxap/packages/commit/4f774e2704ccdf65df205952d1ebd8efdc771f4a))
+
+
+
+
+
 # [14.3.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@14.2.2...@rxap/material-table-system@14.3.0) (2023-01-27)
 
 
