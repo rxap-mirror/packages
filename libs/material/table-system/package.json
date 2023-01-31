@@ -56,7 +56,6 @@
     "directory": "../../../dist/libs/material/table-system",
     "access": "public"
   },
-  "gitHead": "e75f92d806744f93d00f5abf69fb80cfec0ccace",
   "license": "MIT",
   "keywords": [
     "rxap",

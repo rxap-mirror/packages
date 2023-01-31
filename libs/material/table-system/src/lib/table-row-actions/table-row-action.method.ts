@@ -2,16 +2,16 @@ import {
   getMetadata,
   hasMetadata
 } from '@rxap/utilities/reflect-metadata';
-import { Method } from '@rxap/utilities/rxjs';
-import { RXAP_TABLE_ACTION_METHOD_TYPE_METADATA } from './decorators';
-
-export type TableRowActionTypeSwitchMethod<Data extends Record<string, any>> = Method<any, { element: Data; type: string }>;
-export type TableRowActionTypeMethod<Data extends Record<string, any>> = Method<any,
-  Data>;
-
-export type TableRowActionMethod<Data extends Record<string, any>> =
-  | TableRowActionTypeSwitchMethod<Data>
-  | TableRowActionTypeMethod<Data>;
+import {
+  RXAP_TABLE_ACTION_METHOD_TYPE_METADATA,
+  RXAP_TABLE_ACTION_METHOD_CHECK_FUNCTION_METADATA
+} from './decorators';
+import {
+  TableRowActionMethod,
+  TableRowActionTypeMethod,
+  TableRowActionTypeSwitchMethod,
+  RowActionCheckFunction
+} from './types';
 
 export function IsTableRowActionTypeSwitchMethod<Data extends Record<string, any>>(
   method: TableRowActionMethod<Data>
@@ -35,4 +35,19 @@ export function IsTableRowActionTypeMethod<Data extends Record<string, any>>(
       ) === type
     );
   };
+}
+
+export function HasTableRowActionCheckFunction(method: TableRowActionMethod<any>): boolean {
+  return hasMetadata(
+    RXAP_TABLE_ACTION_METHOD_CHECK_FUNCTION_METADATA,
+    method.constructor
+  );
+}
+
+export function GetTableRowActionCheckFunction<Data>(method: TableRowActionMethod<Data>): RowActionCheckFunction<Data> {
+  const checkFunction = getMetadata<RowActionCheckFunction<Data>>(RXAP_TABLE_ACTION_METHOD_CHECK_FUNCTION_METADATA, method.constructor);
+  if (!checkFunction) {
+    throw new Error(`Extracted check function from '${method.constructor.name}' is empty`);
+  }
+  return checkFunction;
 }
