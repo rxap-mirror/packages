@@ -18,10 +18,10 @@ import {
   tap
 } from 'rxjs/operators';
 import { TableRowActionDirective } from './table-row-action.directive';
-import { TableRowActionMethod } from './table-row-action.method';
 import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
 import { TableDataSourceDirective } from '../table-data-source.directive';
 import { SelectRowService } from '../select-row/select-row.service';
+import { TableRowActionMethod } from './types';
 
 @Directive({
   selector: 'button[rxapTableRowHeaderAction]'

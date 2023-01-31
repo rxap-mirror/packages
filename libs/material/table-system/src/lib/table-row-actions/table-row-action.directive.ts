@@ -20,13 +20,15 @@ import { TableRowActionExecutingDirective } from './table-row-action-executing.d
 import { TableRowActionStatus } from './table-row-action-status';
 import {
   IsTableRowActionTypeMethod,
-  IsTableRowActionTypeSwitchMethod,
-  TableRowActionMethod,
-  TableRowActionTypeMethod,
-  TableRowActionTypeSwitchMethod
+  IsTableRowActionTypeSwitchMethod
 } from './table-row-action.method';
 import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
 import { TableDataSourceDirective } from '../table-data-source.directive';
+import {
+  TableRowActionMethod,
+  TableRowActionTypeMethod,
+  TableRowActionTypeSwitchMethod
+} from './types';
 
 @Directive({
   selector: 'button[rxapTableRowAction]'

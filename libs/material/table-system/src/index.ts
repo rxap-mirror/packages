@@ -127,6 +127,8 @@ export * from './lib/table-row-actions/table-row-action-status';
 export * from './lib/table-row-actions/table-row-actions.module';
 export * from './lib/table-row-actions/table-row-header-action.directive';
 export * from './lib/table-row-actions/tokens';
+export * from './lib/table-row-actions/types';
+export * from './lib/table-row-actions/row-action-check.pipe';
 
 // endregion
 
