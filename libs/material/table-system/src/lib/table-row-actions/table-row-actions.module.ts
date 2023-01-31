@@ -8,17 +8,20 @@ import { ConfirmComponentModule } from '@rxap/components';
 import { TableRowActionExecutingDirective } from './table-row-action-executing.directive';
 import { TableRowActionDirective } from './table-row-action.directive';
 import { TableRowHeaderActionDirective } from './table-row-header-action.directive';
+import { RowActionCheckPipe } from './row-action-check.pipe';
 
 @NgModule({
   declarations: [
     TableRowActionDirective,
     TableRowActionExecutingDirective,
-    TableRowHeaderActionDirective
+    TableRowHeaderActionDirective,
+    RowActionCheckPipe
   ],
   exports:      [
     TableRowActionDirective,
     TableRowHeaderActionDirective,
     TableRowActionExecutingDirective,
+    RowActionCheckPipe,
     MatTooltipModule,
     MatButtonModule,
     ConfirmComponentModule,
