@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.1](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.0...@rxap/forms@13.0.1) (2023-02-27)
+
+
+### Bug Fixes
+
+* **forms:** introduce the ControlOption coerce ([154870c](https://gitlab.com/rxap/packages/commit/154870caca7aad2a0b44ef0356640a8155e3555c))
+
+
+
+
+
 # [13.0.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.0-next.2...@rxap/forms@13.0.0) (2022-09-11)
 
 **Note:** Version bump only for package @rxap/forms
