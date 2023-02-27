@@ -33,9 +33,16 @@ export interface ControlOptions {
   emitModelToViewChange?: boolean;
   emitViewToModelChange?: boolean;
   initial?: boolean;
+  /**
+   * used in the RxapFormArray setValue/patchValue methods.
+   *
+   * true - if the value/state has not a control with any index. The control is created
+   * false - default behavior
+   */
+  coerce?: boolean;
 }
 
-export type ControlEventOptions = Pick<ControlOptions, 'emitEvent' | 'onlySelf'>;
+export type ControlEventOptions = Pick<ControlOptions, 'emitEvent' | 'onlySelf' | 'coerce'>;
 export type OnlySelf = Pick<ControlOptions, 'onlySelf'>;
 export type EmitEvent = Pick<ControlOptions, 'emitEvent'>;
 export type ControlPath = Array<string | number> | string;
