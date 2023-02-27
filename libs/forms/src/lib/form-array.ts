@@ -161,8 +161,9 @@ export class RxapFormArray<T = any,
    *
    * @param index (optional) the index where the control should be created
    * @param state (optional) the initial state of the new control
+   * @param options (optional) ControlEventOptions
    */
-  public insertAt(index?: number, state?: T): void {
+  public insertAt(index?: number, state?: T, options?: ControlEventOptions): void {
     const insertIndex = index ?? this.controls.length;
     const controlOrDefinition = this._builder(state, {
       controlId: insertIndex.toFixed(0),
@@ -180,9 +181,9 @@ export class RxapFormArray<T = any,
     // call the super insert after the update, bc the insert method will
     // trigger a change detection
     if (controlOrDefinition instanceof NgAbstractControl) {
-      super.insert(insertIndex, controlOrDefinition);
+      super.insert(insertIndex, controlOrDefinition, options);
     } else {
-      super.insert(insertIndex, controlOrDefinition.rxapFormGroup!);
+      super.insert(insertIndex, controlOrDefinition.rxapFormGroup!, options);
     }
   }
 
@@ -220,14 +221,30 @@ export class RxapFormArray<T = any,
     markAllPristine(this);
   }
 
+  private coerceValue(value: T[]) {
+    for (let index = 0; index < value.length; index++) {
+      if (!this.at(index)) {
+        this.insertAt(index, value[ index ]);
+      }
+    }
+  }
+
   public setValue(
     valueOrObservable: T[] | Observable<T[]>,
     options?: ControlEventOptions
   ): Subscription | void {
     if (isObservable(valueOrObservable)) {
-      return valueOrObservable.subscribe((value) =>
-        super.setValue(value, options)
+      return valueOrObservable.subscribe((value) => {
+          if (options?.coerce) {
+            this.coerceValue(value);
+          }
+          super.setValue(value, options);
+        }
       );
+    }
+
+    if (options?.coerce) {
+      this.coerceValue(valueOrObservable);
     }
 
     super.setValue(valueOrObservable, options);
@@ -256,8 +273,15 @@ export class RxapFormArray<T = any,
   ): Subscription | void {
     if (isObservable<T[]>(valueOrObservable)) {
       return valueOrObservable.subscribe((value: T[]) => {
+        if (options?.coerce) {
+          this.coerceValue(value);
+        }
         super.patchValue(value, options);
       });
+    }
+
+    if (options?.coerce) {
+      this.coerceValue(valueOrObservable);
     }
 
     super.patchValue(valueOrObservable as T[], options);
@@ -280,22 +304,22 @@ export class RxapFormArray<T = any,
   public setEnable(enable = true, opts?: ControlEventOptions) {
     enableControl(this, enable, opts);
   }
-  public push(control: AbstractControl<T>): void {
+  public push(control: AbstractControl<T>, options?: ControlEventOptions): void {
     if (isDevMode()) {
       console.warn('It is not recommend to use the FormArray.push method');
     }
-    return super.push(control);
+    return super.push(control, options);
   }
 
   public setDisable(disable = true, opts?: ControlEventOptions) {
     disableControl(this, disable, opts);
   }
 
-  public setControl(index: number, control: AbstractControl<T>): void {
+  public setControl(index: number, control: AbstractControl<T>, options?: ControlEventOptions): void {
     if (isDevMode()) {
       console.warn('It is not recommend to use the FormArray.setControl method');
     }
-    return super.setControl(index, control);
+    return super.setControl(index, control, options);
   }
 
   public markAsTouched(opts?: OnlySelf): void {
