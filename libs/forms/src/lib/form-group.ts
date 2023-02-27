@@ -216,6 +216,21 @@ export class RxapFormGroup<
     super.setValue(valueOrObservable, options);
   }
 
+  private _patchValue(value: T, options?: ControlEventOptions) {
+    // Even though the `value` argument type doesn't allow `null` and `undefined` values, the
+    // `patchValue` can be called recursively and inner data structures might have these values, so
+    // we just ignore such cases when a field containing FormGroup instance receives `null` or
+    // `undefined` as a value.
+    if (value == null /* both `null` and `undefined` */)
+      return;
+    Object.keys(value).forEach(name => {
+      if (this.controls[name]) {
+        this.controls[name].patchValue(value[name], { ...(options ?? {}), onlySelf: true });
+      }
+    });
+    this.updateValueAndValidity(options);
+  }
+
   public patchValue(
     valueOrObservable: Observable<Partial<T>>,
     options?: ControlEventOptions
@@ -230,11 +245,11 @@ export class RxapFormGroup<
   ): Subscription | void {
     if (isObservable<T>(valueOrObservable)) {
       return valueOrObservable.subscribe((value) =>
-        super.patchValue(value, options)
+        this._patchValue(value, options)
       );
     }
 
-    super.patchValue(valueOrObservable, options);
+    this._patchValue(valueOrObservable, options);
   }
 
   public disabledWhile(

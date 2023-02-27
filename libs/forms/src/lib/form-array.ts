@@ -221,30 +221,15 @@ export class RxapFormArray<T = any,
     markAllPristine(this);
   }
 
-  private coerceValue(value: T[]) {
-    for (let index = 0; index < value.length; index++) {
-      if (!this.at(index)) {
-        this.insertAt(index, value[ index ]);
-      }
-    }
-  }
-
   public setValue(
     valueOrObservable: T[] | Observable<T[]>,
     options?: ControlEventOptions
   ): Subscription | void {
     if (isObservable(valueOrObservable)) {
       return valueOrObservable.subscribe((value) => {
-          if (options?.coerce) {
-            this.coerceValue(value);
-          }
           super.setValue(value, options);
         }
       );
-    }
-
-    if (options?.coerce) {
-      this.coerceValue(valueOrObservable);
     }
 
     super.setValue(valueOrObservable, options);
@@ -267,24 +252,34 @@ export class RxapFormArray<T = any,
     return hasErrorAndTouched(this, errorCode, path);
   }
 
+  private _patchValue(value: T[], options?: ControlEventOptions) {
+    // Even though the `value` argument type doesn't allow `null` and `undefined` values, the
+    // `patchValue` can be called recursively and inner data structures might have these values, so
+    // we just ignore such cases when a field containing FormArray instance receives `null` or
+    // `undefined` as a value.
+    if (value == null /* both `null` and `undefined` */)
+      return;
+    value.forEach((newValue, index) => {
+      if (this.at(index)) {
+        this.at(index).patchValue(newValue, { ...(options ?? {}), onlySelf: true });
+      } else if (options?.coerce) {
+        this.insertAt(index, value[ index ]);
+      }
+    });
+    this.updateValueAndValidity(options);
+  }
+
   public patchValue(
     valueOrObservable: any,
     options?: ControlEventOptions
   ): Subscription | void {
     if (isObservable<T[]>(valueOrObservable)) {
       return valueOrObservable.subscribe((value: T[]) => {
-        if (options?.coerce) {
-          this.coerceValue(value);
-        }
-        super.patchValue(value, options);
+        this._patchValue(value, options);
       });
     }
 
-    if (options?.coerce) {
-      this.coerceValue(valueOrObservable);
-    }
-
-    super.patchValue(valueOrObservable as T[], options);
+    this._patchValue(valueOrObservable as T[], options);
   }
 
   public hasErrorAndDirty(

@@ -34,9 +34,9 @@ export interface ControlOptions {
   emitViewToModelChange?: boolean;
   initial?: boolean;
   /**
-   * used in the RxapFormArray setValue/patchValue methods.
+   * used in the RxapFormArray patchValue method.
    *
-   * true - if the value/state has not a control with any index. The control is created
+   * true - if the value has not a control with any index. The control is created
    * false - default behavior
    */
   coerce?: boolean;
