@@ -40,9 +40,34 @@ export interface ControlOptions {
    * false - default behavior
    */
   coerce?: boolean;
+
+  /**
+   * used in the RxapFormArray patchValue method.
+   *
+   * true - the count of array item controls is limited to the largest control id.
+   * false - default behavior
+   *
+   * example with strict = true
+   *
+   * current from array controls: [ 0: {}, 1: {}, 2: {} ]
+   *
+   * patch value A: [ 0: {}, 1: {}, 2: {} ]
+   * result: [ 0: {}, 1: {}, 2: {} ]
+   *
+   * path value B: [ 0: {}, 1: {} ]
+   * result: [ 0: {}, 1: {} ]
+   *
+   * patch value C: [ 1: {} ]
+   * result: [ 0: {}, 1: {} ]
+   *
+   * patch value D: [ 2: {} ]
+   * result: [ 0: {}, 1: {}, 2: {} ]
+   *
+   */
+  strict?: boolean;
 }
 
-export type ControlEventOptions = Pick<ControlOptions, 'emitEvent' | 'onlySelf' | 'coerce'>;
+export type ControlEventOptions = Pick<ControlOptions, 'emitEvent' | 'onlySelf' | 'coerce' | 'strict'>;
 export type OnlySelf = Pick<ControlOptions, 'onlySelf'>;
 export type EmitEvent = Pick<ControlOptions, 'emitEvent'>;
 export type ControlPath = Array<string | number> | string;
