@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.3...@rxap/forms@13.0.4) (2023-02-28)
+
+
+### Bug Fixes
+
+* **forms:** move strict check before the values are patched ([7d1d618](https://gitlab.com/rxap/packages/commit/7d1d618d8d35a81ecf0e7c83087569931389a033))
+
+
+
+
+
 ## [13.0.3](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.2...@rxap/forms@13.0.3) (2023-02-28)
 
 
