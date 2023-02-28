@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.3](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.2...@rxap/forms@13.0.3) (2023-02-28)
+
+
+### Bug Fixes
+
+* **forms:** introduce strict control option for patchValue methods ([3a48094](https://gitlab.com/rxap/packages/commit/3a480946cc197679a284262ecdbcac02993cb36c))
+
+
+
+
+
 ## [13.0.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.1...@rxap/forms@13.0.2) (2023-02-27)
 
 
