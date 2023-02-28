@@ -44,7 +44,7 @@ export interface ControlOptions {
   /**
    * used in the RxapFormArray patchValue method.
    *
-   * true - the count of array item controls is limited to the largest control id.
+   * true - the length of the control array is limited by the length of the value.
    * false - default behavior
    *
    * example with strict = true
@@ -56,12 +56,6 @@ export interface ControlOptions {
    *
    * path value B: [ 0: {}, 1: {} ]
    * result: [ 0: {}, 1: {} ]
-   *
-   * patch value C: [ 1: {} ]
-   * result: [ 0: {}, 1: {} ]
-   *
-   * patch value D: [ 2: {} ]
-   * result: [ 0: {}, 1: {}, 2: {} ]
    *
    */
   strict?: boolean;
