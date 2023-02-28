@@ -259,16 +259,18 @@ export class RxapFormArray<T = any,
     // `undefined` as a value.
     if (value == null /* both `null` and `undefined` */)
       return;
-    const largesIndex = value.length === 0 ? -1 : Object.keys(value).map(Number).sort().reverse()[0];
-    value.forEach((newValue, index) => {
-      if (options?.strict && index > largesIndex) {
-        this.removeAt(index)
-      } else {
-        if (this.at(index)) {
-          this.at(index).patchValue(newValue, { ...(options ?? {}), onlySelf: true });
-        } else if (options?.coerce) {
-          this.insertAt(index, value[ index ]);
+    if (options?.strict) {
+      if (this.length > value.length) {
+        for (let index = this.length - 1; index >= value.length; index--) {
+          this.removeAt(index);
         }
+      }
+    }
+    value.forEach((newValue, index) => {
+      if (this.at(index)) {
+        this.at(index).patchValue(newValue, { ...(options ?? {}), onlySelf: true });
+      } else if (options?.coerce) {
+        this.insertAt(index, value[ index ]);
       }
     });
     this.updateValueAndValidity(options);
