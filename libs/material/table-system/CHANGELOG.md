@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.3.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.3.0...@rxap/material-table-system@13.3.1) (2023-03-03)
+
+
+### Bug Fixes
+
+* **material-form-system:** support formDefinition from input ([6ab015c](https://gitlab.com/rxap/packages/commit/6ab015ceb555ebb9ccb924bc5f8fe2020c6f5305))
+
+
+
+
+
 # [13.3.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.2.1...@rxap/material-table-system@13.3.0) (2023-01-31)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.5](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.4...@rxap/forms@13.0.5) (2023-03-03)
+
+
+### Bug Fixes
+
+* **forms:** check if formDefinition instance exists in ngOnInit ([98ccc58](https://gitlab.com/rxap/packages/commit/98ccc58bb410554c56f0a0129452af3a2eac1cd3))
+
+
+
+
+
 ## [13.0.4](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.3...@rxap/forms@13.0.4) (2023-02-28)
 
 
