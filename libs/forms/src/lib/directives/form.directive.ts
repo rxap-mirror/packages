@@ -253,9 +253,13 @@ export class FormDirective<T extends Record<string, any> = any>
   }
 
   public ngOnInit() {
-    if (!this.form) {
+    if (!this._formDefinition) {
       // TODO : replace with rxap error
       throw new Error('The form definition instance is not defined');
+    }
+    if (!this.form) {
+      // TODO : replace with rxap error
+      throw new Error('The form instance is not defined');
     }
     this.loadInitialState(this.form);
 
@@ -272,15 +276,20 @@ export class FormDirective<T extends Record<string, any> = any>
               typeof this._formDefinition.rxapMetadata.autoSubmit === 'number'
               ? this._formDefinition.rxapMetadata.autoSubmit
               : 5000;
-      this._autoSubmitSubscription = this.form.valueChanges
-                                         .pipe(
-                                           debounceTime(debounce),
-                                           filter(() => this.form.valid),
-          tap((value) =>
-            console.debug(
-              `Auto submit form '${this._formDefinition.rxapMetadata.id}'`,
-              value
-            )
+      this._autoSubmitSubscription = this
+        .form
+        .valueChanges
+        .pipe(
+          debounceTime(debounce),
+          filter(() => this.form.valid),
+          tap((value) => {
+              if (isDevMode()) {
+                console.debug(
+                  `Auto submit form '${this._formDefinition.rxapMetadata.id}'`,
+                  value
+                );
+              }
+            }
           ),
           tap(() => this.submit())
         )
