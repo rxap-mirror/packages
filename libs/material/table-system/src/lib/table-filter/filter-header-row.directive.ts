@@ -9,7 +9,8 @@ import {
   Inject,
   OnDestroy,
   OnInit,
-  Optional
+  Optional,
+  Input
 } from '@angular/core';
 import { TableFilterService } from './table-filter.service';
 import { Subscription } from 'rxjs';
@@ -38,6 +39,15 @@ export class FilterHeaderRowDirective
   extends FormDirective
   implements OnInit, OnDestroy
 {
+
+  @Input('rxap-filter-header-row')
+  public set useFormDefinition(value: FormDefinition | '') {
+    if (value) {
+      this._formDefinition = value as any;
+      this.form            = value.rxapFormGroup;
+    }
+  }
+
   private _subscription?: Subscription;
 
   constructor(
