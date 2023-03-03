@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.6](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.5...@rxap/forms@13.0.6) (2023-03-03)
+
+
+### Bug Fixes
+
+* **forms:** workaround form angular form is not defined error ([2e7ddbd](https://gitlab.com/rxap/packages/commit/2e7ddbdd3e9c691f7acd846784cd35733b86f17e))
+
+
+
+
+
 ## [13.0.5](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.4...@rxap/forms@13.0.5) (2023-03-03)
 
 
