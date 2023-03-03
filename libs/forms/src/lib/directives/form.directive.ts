@@ -243,12 +243,6 @@ export class FormDirective<T extends Record<string, any> = any>
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    // depending on the usage the member from is set after another member
-    // triggers the ngOnChanges hook. to prevent an "angular" exception
-    // the ngOnChanges is skipped if the member form is not set
-    if (!this.form) {
-      return;
-    }
     super.ngOnChanges(changes);
 
     const formChange = changes.form;
