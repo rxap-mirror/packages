@@ -29,10 +29,14 @@ import {
   Required
 } from '@rxap/utilities';
 import { Mixin } from '@rxap/mixin';
-import { Subscription } from 'rxjs';
+import {
+  Subscription,
+  of
+} from 'rxjs';
 import {
   tap,
-  map
+  map,
+  switchMap
 } from 'rxjs/operators';
 import { ExtractDataSourcesMixin } from '../mixins/extract-data-sources.mixin';
 import { ExtractFormDefinitionMixin } from '../mixins/extract-form-definition.mixin';
@@ -64,6 +68,15 @@ export interface InputSelectOptionsSettings<Source> extends UseDataSourceSetting
    * value from the select object property company. This will result in unpredictable behaviors.
    */
   ignoreSelectedValue?: boolean;
+
+  /**
+   * true - the options list is filtered by the current control value if the
+   * control value is of type string. Then the display value of each option is
+   * compared to the control value. If the display value of an option includes
+   * the control value, then the option is used. This comprehensions it not type
+   * sensitive
+   */
+  filteredOptions?: boolean;
 }
 
 
@@ -157,10 +170,11 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
       ),
       control: this.control,
     }
-    this.loadOptions();
     if (this.matAutocomplete) {
       this.matAutocomplete.displayWith = this.toDisplay.bind(this);
+      this.settings.filteredOptions ??= true;
     }
+    this.loadOptions();
   }
 
   protected extractDatasource(control: RxapFormControl = this.control): BaseDataSource<ControlOptions | Record<string, any>> {
@@ -238,6 +252,26 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
   private loadOptions(dataSource: BaseDataSource<ControlOptions | Record<string, any>> = this.dataSource) {
     this.subscription.add(dataSource.connect(this.viewer).pipe(
+      switchMap(options => {
+        if (this.settings.filteredOptions) {
+          return this.control.value$.pipe(
+            map(controlValue => {
+              if (typeof controlValue === 'string' && controlValue) {
+                controlValue = controlValue.toLowerCase();
+                if (Array.isArray(options)) {
+                  return options.filter(option => option.display.toLowerCase().includes(controlValue))
+                } else {
+                  return Object.entries(options)
+                               .filter(([value, display]) => typeof display === 'string' && display.toLowerCase().includes(controlValue))
+                    .map(([value, display]) => ({ value, display }))
+                }
+              }
+              return options;
+            })
+          );
+        }
+        return of(options);
+      }),
       tap(options => this.renderTemplate(this.options = options))
     ).subscribe());
   }
