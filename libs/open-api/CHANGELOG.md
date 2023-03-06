@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://gitlab.com/rxap/packages/compare/@rxap/open-api@13.1.7...@rxap/open-api@13.2.0) (2023-03-06)
+
+
+### Features
+
+* **open-api:** add OpenApiHttpResponseError ([bf2f407](https://gitlab.com/rxap/packages/commit/bf2f40778b0db08b8e496c7e509fd01afed6df4c))
+
+
+
+
+
 ## [13.1.7](https://gitlab.com/rxap/packages/compare/@rxap/open-api@13.1.6...@rxap/open-api@13.1.7) (2023-01-10)
 
 
