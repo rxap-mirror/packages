@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.1.1...@rxap/data-source@13.2.0) (2023-03-06)
+
+
+### Features
+
+* **data-source:** introduce errorTemplate concept ([1cf1e03](https://gitlab.com/rxap/packages/commit/1cf1e03b18942fbce2fe0826924da5a3f3535012))
+
+
+
+
+
 ## [13.1.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.1.0...@rxap/data-source@13.1.1) (2022-12-04)
 
 
