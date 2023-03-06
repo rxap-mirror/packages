@@ -2,7 +2,8 @@ import {
   Inject,
   Injector,
   Optional,
-  Injectable
+  Injectable,
+  isDevMode
 } from '@angular/core';
 import {
   HttpClient,
@@ -17,23 +18,19 @@ import {
   RXAP_OPEN_API_STRICT_VALIDATOR,
   DEFAULT_OPEN_API_REMOTE_METHOD_META_DATA,
   DISABLE_SCHEMA_VALIDATION,
-  DISABLE_VALIDATION
+  DISABLE_VALIDATION,
+  OpenApiHttpResponseError,
+  OpenApiMetaData
 } from '@rxap/open-api';
 import { BaseHttpRemoteMethod } from '@rxap/remote-method/http';
-import {
-  BaseRemoteMethodMetadata,
-  RxapRemoteMethod
-} from '@rxap/remote-method';
-import { JoinPath } from '@rxap/utilities';
+import { RxapRemoteMethod } from '@rxap/remote-method';
 import {
   filter,
   timeout,
   retry,
-  catchError,
   tap,
   take
 } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 import { Mixin } from '@rxap/mixin';
 
 export interface OperationForMetadata {
@@ -79,20 +76,8 @@ export function RxapOpenApiRemoteMethod(operationOrId: string | OperationForMeta
   };
 }
 
-export interface OpenApiRemoteMethodMetadata extends BaseRemoteMethodMetadata {
-  /**
-   * The operation object with path and method
-   */
-  operation?: OperationObjectWithMetadata | string;
-  /**
-   * The index of the server object in the servers array in the open api config
-   */
-  serverIndex?: number;
-  /**
-   * used to specify the target server for the reset api operation
-   */
-  serverId?: string;
-  id: string;
+export interface OpenApiRemoteMethodMetadata extends OpenApiMetaData {
+
 }
 
 export interface OpenApiRemoteMethodParameter<Parameters extends Record<string, any> | void = any, RequestBody = any> {
@@ -162,13 +147,28 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
       this.validateRequestBody(this.operation, args.requestBody, this.strict);
     }
 
-    const response = await this._callWithResponse(args);
+    let response: HttpResponse<Response>;
+
+    try {
+      response = await this._callWithResponse(args);
+    } catch (error: any) {
+      if (error instanceof HttpErrorResponse) {
+        throw new OpenApiHttpResponseError(
+          error,
+          this.metadata
+        );
+      } else {
+        throw error;
+      }
+    }
 
     if (response.body) {
       return response.body;
     }
 
-    console.warn('The response body is empty!');
+    if (isDevMode()) {
+      console.warn('The response body is empty!');
+    }
     return null as any;
   }
 
@@ -197,11 +197,14 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
 
     return this.http.request<Response>(this.updateRequest(this.buildHttpOptions(this.operation, args.parameters, args.requestBody, this.metadata.ignoreUndefined))).pipe(
       retry(this.metadata.retry ?? 0),
-      catchError((response: HttpErrorResponse) => {
-        this.interceptors?.forEach(interceptor => interceptor
-          .next({ response, parameters: args.parameters, requestBody: args.requestBody })
-        );
-        return throwError(response);
+      tap({
+        error: (error) => {
+          if (error instanceof HttpErrorResponse) {
+            this.interceptors?.forEach(interceptor => interceptor
+              .next({ response: error, parameters: args.parameters, requestBody: args.requestBody })
+            );
+          }
+        }
       }),
       filter((event: any) => event.type === HttpEventType.Response),
       tap((response: HttpResponse<Response>) => {
