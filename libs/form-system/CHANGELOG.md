@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.1.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.0.0...@rxap/form-system@13.1.0) (2023-03-06)
+
+
+### Features
+
+* **form-system:** support filterOptions in InputSelectOptionsDirective ([a7c34de](https://gitlab.com/rxap/packages/commit/a7c34de0dd55b221c4399e4346311fab6c4205c2))
+
+
+
+
+
 # [13.0.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.0.0-next.3...@rxap/form-system@13.0.0) (2022-09-11)
 
 **Note:** Version bump only for package @rxap/form-system
