@@ -132,7 +132,7 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
   protected options: ControlOptions | Record<string, any> | null = null;
 
-  protected settings!: InputSelectOptionsSettings<any>;
+  protected settings?: InputSelectOptionsSettings<any>;
 
   constructor(
     @Inject(TemplateRef)
@@ -172,6 +172,7 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
     }
     if (this.matAutocomplete) {
       this.matAutocomplete.displayWith = this.toDisplay.bind(this);
+      this.settings ??= {};
       this.settings.filteredOptions ??= true;
     }
     this.loadOptions();
@@ -188,7 +189,7 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
     const useDataSourceValue = useDataSourceValueMap.get(DATA_SOURCE_NAME)!;
 
-    this.settings = useDataSourceValue.settings as any;
+    this.settings = useDataSourceValue.settings ?? {};
 
     let dataSource: BaseDataSource;
 
@@ -213,10 +214,8 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
     }
 
-    const settings = useDataSourceValue.settings;
-
-    if (settings?.transformer) {
-      dataSource = new PipeDataSource(dataSource, map(settings.transformer));
+    if (this.settings?.transformer) {
+      dataSource = new PipeDataSource(dataSource, map(this.settings.transformer));
     }
 
     return this.dataSource = dataSource;
@@ -253,7 +252,7 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
   private loadOptions(dataSource: BaseDataSource<ControlOptions | Record<string, any>> = this.dataSource) {
     this.subscription.add(dataSource.connect(this.viewer).pipe(
       switchMap(options => {
-        if (this.settings.filteredOptions) {
+        if (this.settings?.filteredOptions) {
           return this.control.value$.pipe(
             map(controlValue => {
               if (typeof controlValue === 'string' && controlValue) {
