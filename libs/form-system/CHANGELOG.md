@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.1.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.1.0...@rxap/form-system@13.1.1) (2023-03-06)
+
+
+### Bug Fixes
+
+* **form-system:** ensure the InputSelectOptionsDirective settings is defined ([57a607b](https://gitlab.com/rxap/packages/commit/57a607b30bc71a2d486c31c113db5fd73a89b99d))
+
+
+
+
+
 # [13.1.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.0.0...@rxap/form-system@13.1.0) (2023-03-06)
 
 
