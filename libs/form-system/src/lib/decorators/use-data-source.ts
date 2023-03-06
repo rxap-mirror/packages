@@ -4,7 +4,7 @@ import { IdOrInstanceOrToken } from '@rxap/definition';
 import { setMetadataMapMap } from '@rxap/utilities/reflect-metadata';
 
 export interface UseDataSourceSettings<Source = any, Target = any> {
-  transformer: (source: Source) => Target;
+  transformer?: (source: Source) => Target;
 }
 
 export interface UseDataSourceValue<Source = any, Target = any> {
