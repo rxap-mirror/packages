@@ -1,4 +1,10 @@
-import { Observable, TeardownLogic, EMPTY, Subject } from 'rxjs';
+import {
+  Observable,
+  TeardownLogic,
+  EMPTY,
+  Subject,
+  ReplaySubject
+} from 'rxjs';
 import {
   BaseDefinition,
   BaseDefinitionMetadata,
@@ -8,6 +14,7 @@ import { deepMerge, Constructor, clone } from '@rxap/utilities';
 import { v4 as uuid } from 'uuid';
 import { takeUntil, finalize, tap, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 export type DataSourceViewerId = string;
 
@@ -53,6 +60,8 @@ export class BaseDataSource<
    * Indicates weather the data source is currently loading new data
    */
   public loading$: Observable<boolean> = EMPTY;
+
+  public readonly hasError$ = new ToggleSubject();
 
   public get hasConnections(): boolean {
     return this._connectedViewer.size > 0;

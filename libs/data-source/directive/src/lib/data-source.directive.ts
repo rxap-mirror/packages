@@ -15,7 +15,8 @@ import {
   EventEmitter,
   Output,
   INJECTOR,
-  Inject
+  Inject,
+  isDevMode
 } from '@angular/core';
 import {
   DataSourceLoader,
@@ -26,19 +27,22 @@ import { Required } from '@rxap/utilities';
 import {
   tap,
   take,
-  filter,
-  catchError
+  filter
 } from 'rxjs/operators';
 import {
   Observable,
-  Subscription,
-  EMPTY
+  Subscription
 } from 'rxjs';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 
 export interface DataSourceTemplateContext<Data> {
   $implicit: Data;
   connection$: Observable<Data>;
+}
+
+export interface DataSourceErrorTemplateContext {
+  $implicit: unknown | null;
+  refresh: () => void;
 }
 
 @Directive({
@@ -69,6 +73,9 @@ export class DataSourceDirective<Data = any>
   @Input('rxapDataSourceViewer')
   public viewer!: BaseDataSourceViewer;
 
+  @Input('rxapDataSourceErrorTemplate')
+  public errorTemplate?: TemplateRef<DataSourceErrorTemplateContext>;
+
   @Output()
   public embedded = new EventEmitter<Data>();
 
@@ -92,6 +99,7 @@ export class DataSourceDirective<Data = any>
   protected readonly subscription = new Subscription();
 
   protected embeddedViewRef?: EmbeddedViewRef<DataSourceTemplateContext<Data>>;
+  protected embeddedErrorViewRef?: EmbeddedViewRef<DataSourceErrorTemplateContext>;
 
   private _dataSourceLoadingSubscription: Subscription | null    = null;
   private _dataSourceConnectionSubscription: Subscription | null = null;
@@ -129,7 +137,28 @@ export class DataSourceDirective<Data = any>
     this.connect();
   }
 
+  public embedErrorTemplate(error: unknown | null) {
+    if (!this.errorTemplate) {
+      if (isDevMode()) {
+        console.log('Skip error template embedding. ErrorTemplate is not defined');
+      }
+      return;
+    }
+    const context = {
+      $implicit: error,
+      refresh: this.dataSource?.refresh.bind(this.dataSource) ?? (() => {})
+    };
+    this.embeddedErrorViewRef?.destroy();
+    this.embeddedViewRef?.destroy();
+    this.embeddedErrorViewRef = this.viewContainerRef.createEmbeddedView(
+      this.errorTemplate,
+      context
+    );
+    this.cdr.detectChanges();
+  }
+
   public embedTemplate(response: any) {
+    this.embeddedErrorViewRef?.destroy();
     const context = {
       $implicit:   response,
       connection$: this.connection$
@@ -140,10 +169,7 @@ export class DataSourceDirective<Data = any>
       this.embeddedViewRef?.destroy();
       this.embeddedViewRef = this.viewContainerRef.createEmbeddedView(
         this.template,
-        {
-          $implicit:   response,
-          connection$: this.connection$
-        }
+        context
       );
     }
     this.embedded.emit(response);
@@ -186,6 +212,16 @@ export class DataSourceDirective<Data = any>
 
   protected connect() {
     if (this.dataSource) {
+      this.dataSource.hasError$.pipe(
+        filter(Boolean),
+        tap(hasError => {
+          if (hasError) {
+            this.embedErrorTemplate(null)
+          } else {
+            this.embeddedErrorViewRef?.destroy();
+          }
+        })
+      ).subscribe();
       this.connection$ = this.dataSource.connect(this.viewer);
       this.zone.onStable
         .pipe(
@@ -195,12 +231,14 @@ export class DataSourceDirective<Data = any>
               this._dataSourceConnectionSubscription?.unsubscribe();
               this._dataSourceConnectionSubscription = this.connection$
                 .pipe(
-                  tap((response) => this.embedTemplate(response)),
-                  catchError((e) => {
-                    this.error.emit(e);
-                    console.error(e);
-                    return EMPTY;
-                  })
+                  tap({
+                    next: (response) => this.embedTemplate(response),
+                    error: (error) => {
+                      this.error.emit(error);
+                      console.error(`Connection failure in ${this.dataSource!.constructor.name}: ${error.message}`, error);
+                      this.embedErrorTemplate(error);
+                    }
+                  }),
                 )
                 .subscribe();
             });
