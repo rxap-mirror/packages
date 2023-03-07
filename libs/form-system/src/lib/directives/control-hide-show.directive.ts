@@ -29,7 +29,7 @@ import {
   startWith,
   catchError
 } from 'rxjs/operators';
-import { ExtractControlMixin } from '../mixins/extract-control.mixin';
+import { ExtractControlFromParentMixin } from '../mixins/extract-control-from-parent.mixin';
 import { ExtractFormDefinitionMixin } from '../mixins/extract-form-definition.mixin';
 import {
   setMetadataMap,
@@ -67,10 +67,10 @@ export function UseShowFunction(showFunction: ControlHideShowFunction, options: 
   };
 }
 
-export interface ControlHideShowDirective extends ExtractControlMixin,
+export interface ControlHideShowDirective extends ExtractControlFromParentMixin,
                                                   ExtractFormDefinitionMixin {}
 
-@Mixin(ExtractControlMixin, ExtractFormDefinitionMixin)
+@Mixin(ExtractControlFromParentMixin, ExtractFormDefinitionMixin)
 @Directive({
   selector: '[rxapControlHideShow]'
 })
@@ -107,7 +107,7 @@ export class ControlHideShowDirective implements OnInit, OnDestroy {
       throw new Error('If the NgControl is not injectable then the control id must be defined!');
     }
 
-    const control = this.ngControl?.control ?? this.extractControl(this.parent!, this.controlId!);
+    const control = this.ngControl?.control ?? this.extractControlFromParent(this.parent!, this.controlId!);
 
     if (!(control instanceof RxapFormControl)) {
       throw new Error('The control is not an instance of RxapFormControl');
