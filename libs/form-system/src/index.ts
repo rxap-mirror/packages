@@ -6,8 +6,10 @@ export * from './lib/control-data-source';
 // region mixin
 
 export * from './lib/mixins/extract-data-sources.mixin';
-export * from './lib/mixins/extract-control.mixin';
+export * from './lib/mixins/extract-control-from-parent.mixin';
 export * from './lib/mixins/extract-form-definition.mixin';
+export * from './lib/mixins/extract-options-data-source.mixin';
+export * from './lib/mixins/extract-control.mixin';
 
 // endregion
 

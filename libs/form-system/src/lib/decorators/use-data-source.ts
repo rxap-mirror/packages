@@ -3,13 +3,18 @@ import { FormSystemMetadataKeys } from './metadata-keys';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 import { setMetadataMapMap } from '@rxap/utilities/reflect-metadata';
 
-export interface UseDataSourceSettings<Source = any, Target = any> {
+export interface UseDataSourceSettings<Source = any, Target = Source> {
   transformer?: (source: Source) => Target;
 }
 
-export interface UseDataSourceValue<Source = any, Target = any> {
+export interface UseDataSourceValue<Source = any, Target = Source> {
   dataSource: IdOrInstanceOrToken<BaseDataSource>,
   settings?: UseDataSourceSettings<Source, Target>,
+
+  /**
+   * The last value of the data source
+   */
+  lastValue?: Target,
 }
 
 export function UseDataSource<Data>(dataSource: IdOrInstanceOrToken<BaseDataSource<Data>>, name: string, settings?: UseDataSourceSettings) {

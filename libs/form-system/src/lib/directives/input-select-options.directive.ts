@@ -1,7 +1,6 @@
 import {
   Directive,
   TemplateRef,
-  OnInit,
   Inject,
   ViewContainerRef,
   Input,
@@ -14,10 +13,7 @@ import {
   isDevMode,
   AfterViewInit
 } from '@angular/core';
-import {
-  NgControl,
-  AbstractControlDirective
-} from '@angular/forms';
+import { NgControl } from '@angular/forms';
 import {
   DataSourceLoader,
   BaseDataSource,
@@ -41,24 +37,23 @@ import {
   map,
   switchMap
 } from 'rxjs/operators';
-import { ExtractDataSourcesMixin } from '../mixins/extract-data-sources.mixin';
-import { ExtractFormDefinitionMixin } from '../mixins/extract-form-definition.mixin';
-import {
-  UseDataSource,
-  UseDataSourceSettings
-} from '../decorators/use-data-source';
+import { UseDataSource } from '../decorators/use-data-source';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 import {
   MAT_FORM_FIELD,
   MatFormField
 } from '@angular/material/form-field';
 import { MatAutocomplete } from '@angular/material/autocomplete';
+import {
+  ExtractOptionsDataSourceMixin,
+  UseOptionsDataSourceSettings
+} from '../mixins/extract-options-data-source.mixin';
 
 export interface InputSelectOptionsTemplateContext {
   $implicit: ControlOption;
 }
 
-export interface InputSelectOptionsSettings<Source> extends UseDataSourceSettings<Source, ControlOptions | Record<string, any>> {
+export interface InputSelectOptionsSettings<Source> extends UseOptionsDataSourceSettings<Source> {
   /**
    * true - the selected value is not send to the data source with the viewChange event.
    * Instead an empty object {} is send to trigger a data source refresh.
@@ -82,35 +77,10 @@ export interface InputSelectOptionsSettings<Source> extends UseDataSourceSetting
   filteredOptions?: boolean;
 }
 
+export interface InputSelectOptionsDirective extends OnDestroy, AfterViewInit,
+                                                     ExtractOptionsDataSourceMixin {}
 
-export const DATA_SOURCE_NAME = 'options';
-
-export function ComposeOptionsTransformers(...fnc: Array<(value: any) => any>): (value: any) => any {
-  return base => fnc.reduce((source, transform) => transform(source), base);
-}
-
-// tslint:disable-next-line:max-line-length
-export function UseOptionsDataSource<Source>(
-  dataSource: IdOrInstanceOrToken<BaseDataSource<Source>>,
-  settings?: InputSelectOptionsSettings<Source>
-): (
-  target: any,
-  propertyKey: string
-) => any;
-export function UseOptionsDataSource(
-  dataSource: IdOrInstanceOrToken<BaseDataSource>,
-  settings?: InputSelectOptionsSettings<ControlOptions>
-) {
-  return function(target: any, propertyKey: string) {
-    UseDataSource(dataSource, DATA_SOURCE_NAME, settings)(target, propertyKey);
-  };
-}
-
-export interface InputSelectOptionsDirective extends OnInit,
-                                                     ExtractFormDefinitionMixin,
-                                                     ExtractDataSourcesMixin {}
-
-@Mixin(ExtractFormDefinitionMixin, ExtractDataSourcesMixin)
+@Mixin(ExtractOptionsDataSourceMixin)
 @Directive({
   selector: '[rxapInputSelectOptions]'
 })
@@ -159,8 +129,7 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
   ) { }
 
   public ngAfterViewInit() {
-    this.extractControl();
-    this.extractDatasource();
+    this.extractOptionsDatasource();
     this.viewer = {
       id: '[rxapInputSelectOptions]' + this.control.controlId,
       viewChange: this.control.value$.pipe(
@@ -181,75 +150,11 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
     this.loadOptions();
   }
 
-  protected extractDatasource(control: RxapFormControl = this.control): BaseDataSource<ControlOptions | Record<string, any>> {
-    const formDefinition = this.extractFormDefinition(control);
-
-    const useDataSourceValueMap = this.extractDataSources(formDefinition, control.controlId);
-
-    if (!useDataSourceValueMap.has(DATA_SOURCE_NAME)) {
-      throw new Error(`The data source with the name 'options' is not defined`);
-    }
-
-    const useDataSourceValue = useDataSourceValueMap.get(DATA_SOURCE_NAME)!;
-
-    this.settings = useDataSourceValue.settings ?? {};
-
-    let dataSource: BaseDataSource;
-
-    try {
-
-      dataSource = this.dataSourceLoader.load(
-        useDataSourceValue.dataSource,
-        this.metadata,
-        this.injector
-      );
-
-    } catch (e: any) {
-
-      if (e.name && e.name === 'NullInjectorError') {
-        if (isDevMode()) {
-          console.error('Cloud not inject the options data source', useDataSourceValue);
-        }
-        throw new Error('Cloud not inject the options data source:\n' + e.message);
-      }
-
-      throw e;
-
-    }
-
-    if (this.settings?.transformer) {
-      dataSource = new PipeDataSource(dataSource, map(this.settings.transformer));
-    }
-
-    return this.dataSource = dataSource;
-  }
-
   public toDisplay(value: any): string {
     if (!value) {
       return '';
     }
     return this.options?.find((option: any) => option.value === value)?.display ?? (isDevMode() ? 'to display error' : '');
-  }
-
-  protected extractControl(ngControl: AbstractControlDirective | null = this.ngControl ?? this.matFormField?._control?.ngControl ?? null): RxapFormControl {
-
-    if (!ngControl) {
-      throw new Error('The ngControl is not defined!');
-    }
-
-    if (!(ngControl instanceof NgControl)) {
-      throw new Error(`The control is not an instance of ngControl`);
-    }
-
-    this.ngControl = ngControl;
-
-    const control = this.ngControl.control;
-
-    if (!(control instanceof RxapFormControl)) {
-      throw new Error('Control is not a RxapFormControl!');
-    }
-
-    return this.control = control;
   }
 
   public ngOnDestroy() {
