@@ -40,5 +40,6 @@ export * from './lib/directives/input-select-options.directive';
 // region validators
 
 export * from './lib/validators/is-equal-to';
+export * from './lib/validators/is-selectable-value.directive';
 
 // endregion
