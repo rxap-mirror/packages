@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.3.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.2.1...@rxap/form-system@13.3.0) (2023-03-07)
+
+
+### Features
+
+* **form-system:** add IsSelectableValueDirective ([11b6c28](https://gitlab.com/rxap/packages/commit/11b6c28d54a7dc7f968220603a9993fa8d8af91a))
+
+
+
+
+
 ## [13.2.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.2.0...@rxap/form-system@13.2.1) (2023-03-07)
 
 
