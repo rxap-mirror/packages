@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.1.1...@rxap/form-system@13.2.0) (2023-03-07)
+
+
+### Features
+
+* **form-system:** introduce generic extract options data source mixin ([a36a695](https://gitlab.com/rxap/packages/commit/a36a695498478a73ec643bd58d13bb97a2f5b2b2))
+
+
+
+
+
 ## [13.1.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.1.0...@rxap/form-system@13.1.1) (2023-03-06)
 
 
