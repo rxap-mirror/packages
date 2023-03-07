@@ -1,34 +1,30 @@
-import { ControlContainer } from '@angular/forms';
-import {
-  RxapFormControl,
-  AbstractControl,
-  RxapFormGroup,
-  RxapFormArray,
-} from '@rxap/forms';
-import { RxapFormSystemError } from '../error';
+import { NgControl } from "@angular/forms";
+import { MatFormField } from '@angular/material/form-field';
+import { RxapFormControl } from '@rxap/forms';
 
 export class ExtractControlMixin {
 
-  protected extractControl(parent: ControlContainer, controlPath: string): AbstractControl {
-    if (!controlPath) {
-      throw new RxapFormSystemError('The control path is empty', '');
+  protected ngControl!: NgControl | null;
+
+  protected readonly matFormField!: MatFormField | null;
+
+  protected control?: RxapFormControl;
+
+  protected extractControl(ngControl: NgControl | null = this.ngControl ?? this.matFormField?._control?.ngControl ?? null): RxapFormControl {
+
+    if (!ngControl) {
+      throw new Error('The ngControl is not defined!');
     }
 
-    if (!parent.control) {
-      throw new RxapFormSystemError('The control property of ControlContainer is not defined', '');
+    this.ngControl = ngControl;
+
+    const control = this.ngControl.control;
+
+    if (!(control instanceof RxapFormControl)) {
+      throw new Error('Control is not a RxapFormControl!');
     }
 
-    const control = parent.control.get(controlPath);
-
-    if (!control) {
-      throw new RxapFormSystemError('Could not find the control instance', '');
-    }
-
-    if (!(control instanceof RxapFormControl) && !(control instanceof RxapFormGroup) && !(control instanceof RxapFormArray)) {
-      throw new RxapFormSystemError('The extracted control is not a RxapFormControl', '');
-    }
-
-    return control;
+    return this.control = control;
   }
 
 }
