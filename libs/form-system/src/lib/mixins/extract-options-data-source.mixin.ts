@@ -72,6 +72,8 @@ export class ExtractOptionsDataSourceMixin {
 
   protected readonly injector!: Injector;
 
+  protected useDataSourceValue?: UseDataSourceValue<ControlOptions | Record<string, any>>;
+
   protected extractOptionsDatasource(control?: AbstractControl): BaseDataSource<ControlOptions | Record<string, any>> {
     control ??= this.extractControl();
 
@@ -87,9 +89,9 @@ export class ExtractOptionsDataSourceMixin {
       throw new Error(`The data source with the name 'options' is not defined`);
     }
 
-    const useDataSourceValue: UseDataSourceValue<ControlOptions | Record<string, any>> = useDataSourceValueMap.get('options')!;
+    const useDataSourceValue = this.useDataSourceValue = useDataSourceValueMap.get('options')!;
 
-    this.settings = useDataSourceValue.settings ?? {};
+    this.settings = this.useDataSourceValue.settings ?? {};
 
     let dataSource: BaseDataSource;
 
@@ -105,7 +107,7 @@ export class ExtractOptionsDataSourceMixin {
 
       if (e.name && e.name === 'NullInjectorError') {
         if (isDevMode()) {
-          console.error('Cloud not inject the options data source', useDataSourceValue);
+          console.error('Cloud not inject the options data source', this.useDataSourceValue);
         }
         throw new Error('Cloud not inject the options data source:\n' + e.message);
       }
