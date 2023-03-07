@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.2.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.2.0...@rxap/form-system@13.2.1) (2023-03-07)
+
+
+### Bug Fixes
+
+* **form-system:** expose useDataSourceValue property ([72897ed](https://gitlab.com/rxap/packages/commit/72897eddcce608818f5f837669317b6ee266be05))
+
+
+
+
+
 # [13.2.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.1.1...@rxap/form-system@13.2.0) (2023-03-07)
 
 
