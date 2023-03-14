@@ -94,6 +94,8 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
 
   public method?: Method<Data[], TableEvent>;
 
+  public readonly hasError$ = new ToggleSubject();
+
   /**
    * @deprecated use method instead
    */
@@ -195,6 +197,11 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
         tap(loading => this.loading$.next(!!loading))
       ).subscribe()
     );
+    this._subscription.add(
+      this.dataSource.hasError$.pipe(
+        tap(hasError => this.hasError$.next(!!hasError))
+      ).subscribe()
+    );
     // create the id property for the mat table component.
     // the instance of the mat table component is used as viewer object
     // with the set of the id property it is possible to use the same data source
@@ -235,12 +242,17 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
   }
 
   public ngOnDestroy() {
-    this._subscription.unsubscribe();
+    this._subscription?.unsubscribe();
   }
 
   public refresh() {
     this.dataSource?.refresh();
   }
+
+  public retry() {
+    this.dataSource?.retry();
+  }
+
 }
 
 @NgModule({
