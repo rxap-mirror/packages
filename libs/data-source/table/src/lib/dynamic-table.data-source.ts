@@ -19,7 +19,8 @@ import {
   combineLatest,
   of,
   BehaviorSubject,
-  TeardownLogic
+  TeardownLogic,
+  Subject
 } from 'rxjs';
 import {
   startWith,
@@ -27,7 +28,8 @@ import {
   tap,
   map,
   debounceTime,
-  distinctUntilChanged
+  distinctUntilChanged,
+  retryWhen
 } from 'rxjs/operators';
 import {
   AbstractTableDataSource,
@@ -77,7 +79,7 @@ export interface DynamicTableDataSourceViewer<Parameters> extends BaseDataSource
 export class DynamicTableDataSource<Data extends Record<any, any> = any, Parameters = any>
   extends AbstractTableDataSource<Data, Parameters> implements OnInit {
 
-  private _refresh$ = new BehaviorSubject<number>(Date.now());
+  protected _refresh$ = new BehaviorSubject<number>(Date.now());
 
   /**
    * @deprecated use method instead
@@ -157,7 +159,9 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
       distinctUntilChanged((a, b) => equals(a, b)),
       tap(() => this.loading$.enable()),
       switchMap(tableEvent => this.loadPage(tableEvent)),
-      tap(() => this.loading$.disable())
+      tap(() => this.loading$.disable()),
+      retryWhen(this.genericRetryFunction),
+      tap(() => this.hasError$.disable())
     );
   }
 
