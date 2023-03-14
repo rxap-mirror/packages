@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.4.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.3.1...@rxap/material-table-system@13.4.0) (2023-03-14)
+
+
+### Features
+
+* support data source retry feature ([588228e](https://gitlab.com/rxap/packages/commit/588228eccd7085216030dc09efaee2430dab0a3c))
+
+
+
+
+
 ## [13.3.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.3.0...@rxap/material-table-system@13.3.1) (2023-03-03)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.3.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.2.0...@rxap/data-source@13.3.0) (2023-03-14)
+
+
+### Features
+
+* introduce dataSource retry ([a7ca0a1](https://gitlab.com/rxap/packages/commit/a7ca0a1ce6c5577a8d406058e7ddd28152546ce6))
+* support data source retry feature ([529b650](https://gitlab.com/rxap/packages/commit/529b65050328dc7c28b27660da96245c00611e94))
+
+
+
+
+
 # [13.2.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.1.1...@rxap/data-source@13.2.0) (2023-03-06)
 
 
