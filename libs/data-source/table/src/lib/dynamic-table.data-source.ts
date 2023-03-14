@@ -196,7 +196,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
 
   protected handelError(error: any) {
     if (isDevMode()) {
-      console.error(`Failed to load page: ${error.message}`, isDevMode() ? error : undefined);
+      console.error(`Failed to load page: ${error.message}`, error);
     }
   }
 
