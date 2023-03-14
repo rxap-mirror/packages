@@ -17,7 +17,8 @@ import { takeUntil, finalize, tap, take } from 'rxjs/operators';
 import {
   Injectable,
   Optional,
-  Inject
+  Inject,
+  isDevMode
 } from '@angular/core';
 import { ToggleSubject } from '@rxap/utilities/rxjs';
 
@@ -78,7 +79,7 @@ export class BaseDataSource<
       metadata: Metadata | null = null
   ) {
     super(metadata);
-    this.genericRetryFunction.bind(this);
+    this.genericRetryFunction = this.genericRetryFunction.bind(this);
   }
 
   public get hasConnections(): boolean {
@@ -237,10 +238,17 @@ export class BaseDataSource<
     this._retry$.next();
   }
 
-  protected genericRetryFunction(error: any) {
+  protected genericRetryFunction(error: any): Observable<any> {
     this.hasError$.enable();
     this.error$.next(error);
-    return this._retry$;
+    this.handelError(error);
+    return this._retry$.asObservable();
+  }
+
+  protected handelError(error: any) {
+    if (isDevMode()) {
+      console.log(`DataSource '${this.id}' has an error:`, error);
+    }
   }
 
   public reset(): any {
