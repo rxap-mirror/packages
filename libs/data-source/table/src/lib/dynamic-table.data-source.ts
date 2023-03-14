@@ -3,7 +3,8 @@ import {
   Optional,
   Inject,
   InjectionToken,
-  OnInit
+  OnInit,
+  isDevMode
 } from '@angular/core';
 import {
   RXAP_DATA_SOURCE_METADATA,
@@ -190,13 +191,13 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
   }
 
   protected async loadPage(tableEvent: TableEvent): Promise<Data[]> {
-    let data: Data[] = [];
-    try {
-      data = await this.method.call(tableEvent);
-    } catch (e: any) {
-      console.error(`Failed to load page: ${e.message}`, e.stack);
+    return this.method.call(tableEvent);
+  }
+
+  protected handelError(error: any) {
+    if (isDevMode()) {
+      console.error(`Failed to load page: ${error.message}`, isDevMode() ? error : undefined);
     }
-    return data;
   }
 
   protected hasDynamicInputs(id: string) {
