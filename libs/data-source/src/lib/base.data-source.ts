@@ -9,11 +9,16 @@ import {
   BaseDefinition,
   BaseDefinitionMetadata,
   DefinitionMetadata,
+  RXAP_DEFINITION_METADATA
 } from '@rxap/definition';
 import { deepMerge, Constructor, clone } from '@rxap/utilities';
 import { v4 as uuid } from 'uuid';
 import { takeUntil, finalize, tap, take } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
+import {
+  Injectable,
+  Optional,
+  Inject
+} from '@angular/core';
 import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 export type DataSourceViewerId = string;
@@ -62,6 +67,19 @@ export class BaseDataSource<
   public loading$: Observable<boolean> = EMPTY;
 
   public readonly hasError$ = new ToggleSubject();
+
+  public readonly error$ = new Subject<Error>();
+
+  protected _retry$ = new Subject();
+
+  constructor(
+    @Optional()
+    @Inject(RXAP_DEFINITION_METADATA)
+      metadata: Metadata | null = null
+  ) {
+    super(metadata);
+    this.genericRetryFunction.bind(this);
+  }
 
   public get hasConnections(): boolean {
     return this._connectedViewer.size > 0;
@@ -214,6 +232,16 @@ export class BaseDataSource<
   }
 
   public refresh(): any {}
+
+  public retry(): any {
+    this._retry$.next();
+  }
+
+  protected genericRetryFunction(error: any) {
+    this.hasError$.enable();
+    this.error$.next(error);
+    return this._retry$;
+  }
 
   public reset(): any {
     for (const viewerId of this._connectedViewer.keys()) {
