@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.4.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.4.0...@rxap/data-source@13.4.1) (2023-03-14)
+
+
+### Bug Fixes
+
+* remove error suppression ([129109d](https://gitlab.com/rxap/packages/commit/129109d6dc5e5da5080b1a2d35564b20579a3f24))
+
+
+
+
+
 # [13.4.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.3.0...@rxap/data-source@13.4.0) (2023-03-14)
 
 
