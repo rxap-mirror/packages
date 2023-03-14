@@ -21,12 +21,16 @@ export class ToggleSubject extends BehaviorSubject<boolean> {
     this.next(!this.value);
   }
 
-  public enable(): void {
-    this.next(true);
+  public enable(alwaysEmit: boolean = false): void {
+    if (!alwaysEmit || !this.value) {
+      this.next(true);
+    }
   }
 
-  public disable(): void {
-    this.next(false);
+  public disable(alwaysEmit: boolean = false): void {
+    if (!alwaysEmit || this.value) {
+      this.next(false);
+    }
   }
 
   public next(value: boolean): void {
