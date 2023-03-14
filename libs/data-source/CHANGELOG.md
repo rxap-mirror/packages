@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.4.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.3.0...@rxap/data-source@13.4.0) (2023-03-14)
+
+
+### Bug Fixes
+
+* remove error suppression ([ebc0ca6](https://gitlab.com/rxap/packages/commit/ebc0ca639d3bed9b3fb2cae59fcca5cb84000196))
+
+
+### Features
+
+* add handleError method ([5a7f7bb](https://gitlab.com/rxap/packages/commit/5a7f7bb3cc4f6b1e3e76467d31156b616c2b11c7))
+
+
+
+
+
 # [13.3.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.2.0...@rxap/data-source@13.3.0) (2023-03-14)
 
 
