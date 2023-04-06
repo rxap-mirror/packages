@@ -77,6 +77,11 @@ class RecordViewTuple<T> {
   ) {}
 }
 
+export interface DataSourceCollectionErrorTemplateContext {
+  $implicit: unknown | null;
+  refresh: () => void;
+}
+
 @Directive({
   selector: '[rxapDataSourceCollection]',
 })
@@ -143,12 +148,20 @@ export class DataSourceCollectionDirective<Data = any>
   @Input('rxapDataSourceCollectionEmpty')
   public emptyTemplate?: TemplateRef<void>;
 
+  @Input('rxapDataSourceCollectionErrorTemplate')
+  public errorTemplate?: TemplateRef<DataSourceCollectionErrorTemplateContext>;
+
   @Output()
   public loaded = new EventEmitter();
+
+  @Output()
+  public error = new EventEmitter();
 
   public connection$: Observable<Data[]> | null = null;
 
   protected readonly subscription = new Subscription();
+
+  protected embeddedErrorViewRef?: EmbeddedViewRef<DataSourceCollectionErrorTemplateContext>;
 
   protected set data(data: Data[]) {
     this._data = data;
@@ -249,11 +262,18 @@ export class DataSourceCollectionDirective<Data = any>
             this.zone.run(() => {
               this.subscription.add(
                 this.connection$!.pipe(
-                  tap((response) => {
-                    this._empty = response.length === 0;
-                    this._data = response;
-                    this.cdr.detectChanges();
-                  })
+                  tap({
+                    next: (response) => {
+                      this._empty = response.length === 0;
+                      this._data = response;
+                      this.cdr.detectChanges();
+                    },
+                    error: (error) => {
+                      this.error.emit(error);
+                      console.error(`Connection failure in ${this.dataSource!.constructor.name}: ${error.message}`, error);
+                      this.embedErrorTemplate(error);
+                    }
+                  }),
                 ).subscribe()
               );
             });
@@ -403,6 +423,27 @@ export class DataSourceCollectionDirective<Data = any>
       dataSource?.loading$.pipe(filter(Boolean)).subscribe(this.loaded) ?? null;
     return dataSource;
   }
+
+  public embedErrorTemplate(error: unknown | null) {
+    if (!this.errorTemplate) {
+      if (isDevMode()) {
+        console.log('Skip error template embedding. ErrorTemplate is not defined');
+      }
+      return;
+    }
+    const context = {
+      $implicit: error,
+      refresh: this.dataSource?.refresh.bind(this.dataSource) ?? (() => {})
+    };
+    this.embeddedErrorViewRef?.destroy();
+    this.viewContainerRef.clear();
+    this.embeddedErrorViewRef = this.viewContainerRef.createEmbeddedView(
+      this.errorTemplate,
+      context
+    );
+    this.cdr.detectChanges();
+  }
+
 }
 
 @NgModule({
