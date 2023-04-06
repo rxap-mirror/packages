@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.4.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.4.1...@rxap/data-source@13.4.2) (2023-04-06)
+
+
+### Bug Fixes
+
+* **directives:** support error template in data source collection directive ([9f57c33](https://gitlab.com/rxap/packages/commit/9f57c33035a8ae656179b1bfa44c60d3dc045d6f))
+
+
+
+
+
 ## [13.4.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.4.0...@rxap/data-source@13.4.1) (2023-03-14)
 
 
