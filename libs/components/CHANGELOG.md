@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.1](https://gitlab.com/rxap/packages/compare/@rxap/components@13.0.0...@rxap/components@13.0.1) (2023-04-09)
+
+
+### Bug Fixes
+
+* **confirm:** split on click method ([30119fe](https://gitlab.com/rxap/packages/commit/30119feb583cf9da0df0ac70d8038188783ce34a))
+
+
+
+
+
 # [13.0.0](https://gitlab.com/rxap/packages/compare/@rxap/components@13.0.0-next.2...@rxap/components@13.0.0) (2022-09-11)
 
 **Note:** Version bump only for package @rxap/components

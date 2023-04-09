@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.5.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.4.0...@rxap/material-table-system@13.5.0) (2023-04-09)
+
+
+### Features
+
+* **table-row-actions:** support options objects ([1a31282](https://gitlab.com/rxap/packages/commit/1a31282b827fac830632248e8b926df9e5c2e9ad))
+
+
+
+
+
 # [13.4.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.3.1...@rxap/material-table-system@13.4.0) (2023-03-14)
 
 
