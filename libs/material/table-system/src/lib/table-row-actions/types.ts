@@ -4,6 +4,6 @@ export type RowActionCheckFunction<Data extends Record<string, any>> = (element:
 export type TableRowActionTypeSwitchMethod<Data extends Record<string, any>> = Method<any, { element: Data; type: string }>;
 export type TableRowActionTypeMethod<Data extends Record<string, any>> = Method<any,
   Data>;
-export type TableRowActionMethod<Data extends Record<string, any>> =
+export type TableRowActionMethod<Data extends Record<string, any> = Record<string, any>> =
   | TableRowActionTypeSwitchMethod<Data>
   | TableRowActionTypeMethod<Data>;

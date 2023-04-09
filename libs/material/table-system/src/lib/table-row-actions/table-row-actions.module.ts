@@ -17,6 +17,9 @@ import { RowActionCheckPipe } from './row-action-check.pipe';
     TableRowHeaderActionDirective,
     RowActionCheckPipe
   ],
+  imports:      [
+    ConfirmComponentModule
+  ],
   exports:      [
     TableRowActionDirective,
     TableRowHeaderActionDirective,
