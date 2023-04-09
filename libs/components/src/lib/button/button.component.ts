@@ -289,10 +289,10 @@ export class ButtonComponent
     );
   }
 
-  @HostListener('click')
-  public onClick() {
+  @HostListener('click', [ '$event' ])
+  public onClick($event: Event) {
     if (this.confirm) {
-      this._confirmDirective.onClick();
+      this._confirmDirective.onClick($event);
     }
     const actions = this.getActions();
     if (actions.length) {
