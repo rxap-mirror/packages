@@ -68,7 +68,7 @@ export class ConfirmDirective<T = any> implements OnDestroy {
   }
 
   @HostListener('click', [ '$event' ])
-  public onClick($event: Event) {
+  public onClick($event?: Event) {
     this.openConfirmOverly();
   }
 
