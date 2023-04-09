@@ -7,7 +7,9 @@ import {
   Input,
   isDevMode,
   Optional,
-  ViewContainerRef
+  ViewContainerRef,
+  OnInit,
+  ElementRef
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -20,7 +22,8 @@ import { TableRowActionExecutingDirective } from './table-row-action-executing.d
 import { TableRowActionStatus } from './table-row-action-status';
 import {
   IsTableRowActionTypeMethod,
-  IsTableRowActionTypeSwitchMethod
+  IsTableRowActionTypeSwitchMethod,
+  GetTableRowActionMetadata
 } from './table-row-action.method';
 import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
 import { TableDataSourceDirective } from '../table-data-source.directive';
@@ -29,11 +32,15 @@ import {
   TableRowActionTypeMethod,
   TableRowActionTypeSwitchMethod
 } from './types';
+import { TableActionMethodOptions } from './decorators';
+import { MatTooltip } from '@angular/material/tooltip';
+import { ConfirmDirective } from '@rxap/components';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Directive({
   selector: 'button[rxapTableRowAction]'
 })
-export class TableRowActionDirective<Data extends Record<string, any>> {
+export class TableRowActionDirective<Data extends Record<string, any>> extends ConfirmDirective implements OnInit {
   private _hasConfirmDirective = false;
 
   @Input('rxapConfirm')
@@ -68,7 +75,13 @@ export class TableRowActionDirective<Data extends Record<string, any>> {
 
   private _actionDisabled = false;
 
+  protected options: TableActionMethodOptions | null = null;
+
   constructor(
+    @Inject(Overlay)
+    overlay: Overlay,
+    @Inject(ElementRef)
+    elementRef: ElementRef,
     @Inject(RXAP_TABLE_ROW_ACTION_METHOD)
       actionMethodList:
       | Array<TableRowActionMethod<Data>>
@@ -83,9 +96,25 @@ export class TableRowActionDirective<Data extends Record<string, any>> {
     private readonly snackBar: MatSnackBar,
     @Optional()
     @Inject(MatButton)
-    private readonly matButton: MatButton | null
+    private readonly matButton: MatButton | null,
+    @Optional()
+    @Inject(MatTooltip)
+    private readonly matTooltip: MatTooltip | null
   ) {
+    super(overlay, elementRef);
     this.actionMethodList = coerceArray(actionMethodList);
+  }
+
+  ngOnInit() {
+    this.options = this.getTableActionOptions()
+    if (this.options) {
+      this.refresh ??= this.options.refresh ?? false;
+      this.errorMessage ??= this.options.errorMessage ?? undefined;
+      this.successMessage ??= this.options.successMessage ?? undefined;
+      if (this.matTooltip && this.options.tooltip) {
+        this.matTooltip.message = this.options.tooltip;
+      }
+    }
   }
 
   @HostListener('confirmed')
@@ -94,10 +123,12 @@ export class TableRowActionDirective<Data extends Record<string, any>> {
   }
 
   @HostListener('click', [ '$event' ])
-  public onClick($event: Event) {
+  public override onClick($event: Event) {
     $event.stopPropagation();
-    if (!this._hasConfirmDirective) {
+    if (!this._hasConfirmDirective && !this.options?.confirm) {
       return this.execute();
+    } else if (this.options?.confirm) {
+      this.openConfirmOverly();
     } else {
       if (isDevMode()) {
         console.debug('skip remote method call. Wait for confirmation.');
@@ -210,4 +241,13 @@ export class TableRowActionDirective<Data extends Record<string, any>> {
     }
     this.cdr.detectChanges();
   }
+
+  private getTableActionOptions(): TableActionMethodOptions | null {
+    const metadataList = this.actionMethodList.map(actionMethod => GetTableRowActionMetadata(actionMethod));
+    if (metadataList.length === 0) {
+      return null;
+    }
+    return metadataList.filter(metadata => metadata.type === this.type).sort((a, b) => (a.priority ?? 0) - (b.priority ?? 0))[0];
+  }
+
 }
