@@ -6,7 +6,8 @@ import {
   OnDestroy,
   OnInit,
   Optional,
-  ViewContainerRef
+  ViewContainerRef,
+  ElementRef
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -22,6 +23,8 @@ import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
 import { TableDataSourceDirective } from '../table-data-source.directive';
 import { SelectRowService } from '../select-row/select-row.service';
 import { TableRowActionMethod } from './types';
+import { Overlay } from '@angular/cdk/overlay';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Directive({
   selector: 'button[rxapTableRowHeaderAction]'
@@ -32,6 +35,10 @@ export class TableRowHeaderActionDirective<Data extends Record<string, any>>
   private _subscription?: Subscription;
 
   constructor(
+    @Inject(Overlay)
+      overlay: Overlay,
+    @Inject(ElementRef)
+      elementRef: ElementRef,
     @Inject(RXAP_TABLE_ROW_ACTION_METHOD)
       actionMethod: TableRowActionMethod<Data>,
     @Inject(ChangeDetectorRef)
@@ -46,16 +53,22 @@ export class TableRowHeaderActionDirective<Data extends Record<string, any>>
     @Inject(MatButton)
       matButton: MatButton | null,
     @Optional()
+    @Inject(MatTooltip)
+    matTooltip: MatTooltip | null,
+    @Optional()
     @Inject(SelectRowService)
     private readonly selectRowService: SelectRowService<Data> | null
   ) {
     super(
+      overlay,
+      elementRef,
       actionMethod,
       cdr,
       vcr,
       tableDataSourceDirective,
       snackBar,
-      matButton
+      matButton,
+      matTooltip
     );
   }
 
