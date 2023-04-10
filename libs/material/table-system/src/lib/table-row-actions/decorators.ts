@@ -13,7 +13,7 @@ export const RXAP_TABLE_ACTION_METHOD_METADATA = 'rxap-table-action-method-metad
 export const RXAP_TABLE_ACTION_METHOD_CHECK_FUNCTION_METADATA = 'rxap-table-action-method-check-function-metadata';
 
 export interface TableActionMethodOptions<Data = unknown> {
-  type: string;
+  type?: string;
   checkFunction?: RowActionCheckFunction<Data>;
   /**
    * If true, the table will be refreshed after the action is executed.
@@ -49,7 +49,7 @@ export interface TableActionMethodOptions<Data = unknown> {
 export function TableActionMethod<Data = unknown>(options: TableActionMethodOptions): ClassDecorator;
 export function TableActionMethod<Data = unknown>(type: string, checkFunction?: RowActionCheckFunction<Data>): ClassDecorator;
 export function TableActionMethod<Data = unknown>(typeOrOptions: string | TableActionMethodOptions, checkFunction?: RowActionCheckFunction<Data>): ClassDecorator {
-  let type: string;
+  let type: string | undefined;
   let options: TableActionMethodOptions<Data>;
   if (typeof typeOrOptions === 'string') {
     type = typeOrOptions;
@@ -61,7 +61,9 @@ export function TableActionMethod<Data = unknown>(typeOrOptions: string | TableA
   }
   return function(target: any) {
     setMetadata(RXAP_TABLE_ACTION_METHOD_METADATA, options, target);
-    setMetadata(RXAP_TABLE_ACTION_METHOD_TYPE_METADATA, type, target);
+    if (type) {
+      setMetadata(RXAP_TABLE_ACTION_METHOD_TYPE_METADATA, type, target);
+    }
     if (checkFunction) {
       setMetadata(RXAP_TABLE_ACTION_METHOD_CHECK_FUNCTION_METADATA, checkFunction, target);
     }
