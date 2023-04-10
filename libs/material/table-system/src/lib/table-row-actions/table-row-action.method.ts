@@ -19,7 +19,7 @@ export function IsTableRowActionTypeSwitchMethod<Data extends Record<string, any
   return getMetadata<TableActionMethodOptions>(
     RXAP_TABLE_ACTION_METHOD_METADATA,
     method.constructor
-  )?.type !== undefined;
+  )?.type === undefined;
 }
 
 export function IsTableRowActionTypeMethod<Data extends Record<string, any>>(
