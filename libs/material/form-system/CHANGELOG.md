@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.2](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@13.0.1...@rxap/material-form-system@13.0.2) (2023-04-11)
+
+
+### Bug Fixes
+
+* **control-error:** ignore type cases ([af8b65a](https://gitlab.com/rxap/packages/commit/af8b65a3bd1bd7baa8b5a451639609b9f58b9cdc))
+
+
+
+
+
 ## [13.0.1](https://gitlab.com/rxap/packages/compare/@rxap/material-form-system@13.0.0...@rxap/material-form-system@13.0.1) (2022-10-24)
 
 

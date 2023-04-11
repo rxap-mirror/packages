@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.1.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.7...@rxap/forms@13.1.0) (2023-04-11)
+
+
+### Features
+
+* add validators IsPort And IsUuid ([24f1d0e](https://gitlab.com/rxap/packages/commit/24f1d0ed3668d9cd4d31ee2b965b0f8cd578930c))
+
+
+
+
+
 ## [13.0.7](https://gitlab.com/rxap/packages/compare/@rxap/forms@13.0.6...@rxap/forms@13.0.7) (2023-03-06)
 
 
