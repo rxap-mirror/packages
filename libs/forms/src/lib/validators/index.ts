@@ -11,6 +11,8 @@ import { IsPhoneNumber } from './is-phone-number';
 import { IsEmail } from './is-email';
 import { IsUrl } from './is-url';
 import { IsIP } from './is-ip';
+import { IsPort } from './is-port';
+import { IsUUID } from './is-uuid';
 
 export const RxapValidators = {
   IsNumber,
@@ -25,5 +27,7 @@ export const RxapValidators = {
   IsPhoneNumber,
   IsEmail,
   IsUrl,
-  IsIP
+  IsIP,
+  IsPort,
+  IsUUID,
 };
