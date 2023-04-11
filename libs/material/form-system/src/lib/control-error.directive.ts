@@ -72,15 +72,19 @@ export class ControlErrorDirective implements AfterContentInit, OnDestroy {
 
   protected render(errors: ValidationErrors | null) {
     this.viewContainerRef.clear();
-    if (errors && errors.hasOwnProperty(this.key)) {
-      const error = errors[this.key];
-      if (!this._control) {
-        throw new Error('The control is not defined!');
+    if (errors) {
+      const errorKeys = Object.keys(errors);
+      const matchingKey = errorKeys.find((key) => key.toLowerCase() === this.key.toLowerCase());
+      if (matchingKey) {
+        const error = errors[ matchingKey ];
+        if (!this._control) {
+          throw new Error('The control is not defined!');
+        }
+        this.viewContainerRef.createEmbeddedView(this.template, {
+          $implicit: error,
+          control:   this._control,
+        });
       }
-      this.viewContainerRef.createEmbeddedView(this.template, {
-        $implicit: error,
-        control: this._control,
-      });
     }
     this.cdr.detectChanges();
   }
