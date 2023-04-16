@@ -242,7 +242,9 @@ export class BaseDataSource<
     this.hasError$.enable();
     this.error$.next(error);
     this.handelError(error);
-    return this._retry$.asObservable();
+    return this._retry$.asObservable().pipe(
+      tap(() => this.hasError$.disable())
+    );
   }
 
   protected handelError(error: any) {

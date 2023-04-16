@@ -162,8 +162,12 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
       switchMap(tableEvent => this.loadPage(tableEvent)),
       tap(() => this.loading$.disable()),
       retryWhen(this.genericRetryFunction),
-      tap(() => this.hasError$.disable())
     );
+  }
+
+  protected override genericRetryFunction(error: any): Observable<any> {
+    this.loading$.disable();
+    return super.genericRetryFunction(error);
   }
 
   protected _connect(viewer: BaseDataSourceViewer): [Observable<Data[]>, TeardownLogic] | Observable<Data[]> {
