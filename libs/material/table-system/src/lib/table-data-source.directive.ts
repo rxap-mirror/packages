@@ -144,6 +144,8 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
   ) {
     this.matTable.trackBy = this.trackBy;
     this.adapterFactory = adapterFactory;
+    this.retry = this.retry.bind(this);
+    this.refresh = this.refresh.bind(this);
   }
 
   private trackBy(index: number, item: Data): string | number {
