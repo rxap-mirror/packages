@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.2](https://gitlab.com/rxap/packages/compare/@rxap/components@13.0.1...@rxap/components@13.0.2) (2023-04-16)
+
+
+### Bug Fixes
+
+* **json-viewer:** remove old size concept ([e7c47f4](https://gitlab.com/rxap/packages/commit/e7c47f4f349eca4337f3afcdb22195c66dc198ad))
+
+
+
+
+
 ## [13.0.1](https://gitlab.com/rxap/packages/compare/@rxap/components@13.0.0...@rxap/components@13.0.1) (2023-04-09)
 
 
