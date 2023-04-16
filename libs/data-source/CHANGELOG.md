@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.4.3](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.4.2...@rxap/data-source@13.4.3) (2023-04-16)
+
+
+### Bug Fixes
+
+* handle hasError and loading stats ([65223f4](https://gitlab.com/rxap/packages/commit/65223f4d3a34ba3b98e86b6229f35244cf6e152e))
+
+
+
+
+
 ## [13.4.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.4.1...@rxap/data-source@13.4.2) (2023-04-06)
 
 
