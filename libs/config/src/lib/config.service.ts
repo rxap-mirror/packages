@@ -98,11 +98,10 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     ul.style.position = 'fixed';
     ul.style.bottom = '16px';
     ul.style.right = '16px';
-    ul.style.width = '100%';
-    ul.style.height = '100%';
     ul.style.backgroundColor = 'white';
-    ul.style.padding = '16px';
+    ul.style.padding = '32px';
     ul.style.zIndex = '99999999';
+    ul.style.color = 'black';
     const li = document.createElement('li');
     li.innerText = message;
     ul.appendChild(li);
