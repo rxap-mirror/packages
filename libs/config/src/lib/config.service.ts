@@ -51,7 +51,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     } catch (error: any) {
       const message = `Could not fetch config from '${url}': ${error.message}`;
       if (required) {
-        alert(message);
+        this.showError(message);
         throw new Error(message);
       } else {
         console.warn(message);
@@ -64,7 +64,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     } catch (error: any) {
       const message = `Could not parse config from '${url}' to a json object: ${error.message}`;
       if (required) {
-        alert(message);
+        this.showError(message);
         throw new Error(message);
       } else {
         console.warn(message);
@@ -78,7 +78,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       } catch (error: any) {
         const message = `Config from '${url}' is not valid: ${error.message}`;
         if (required) {
-          alert(message);
+          this.showError(message);
           throw new Error(message);
         } else {
           console.warn(message);
@@ -89,6 +89,26 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
     return config;
 
+  }
+
+  private static showError(message: string) {
+    const hasUl = document.getElementById('rxap-config-error') !== null;
+    const ul = document.getElementById('rxap-config-error') ?? document.createElement('ul');
+    ul.id = 'rxap-config-error';
+    ul.style.position = 'fixed';
+    ul.style.bottom = '16px';
+    ul.style.right = '16px';
+    ul.style.width = '100%';
+    ul.style.height = '100%';
+    ul.style.backgroundColor = 'white';
+    ul.style.padding = '16px';
+    ul.style.zIndex = '99999999';
+    const li = document.createElement('li');
+    li.innerText = message;
+    ul.appendChild(li);
+    if (!hasUl) {
+      document.body.appendChild(ul);
+    }
   }
 
   public static async SideLoad(url: string, propertyPath: string, required?: boolean, schema?: AnySchema): Promise<void> {
