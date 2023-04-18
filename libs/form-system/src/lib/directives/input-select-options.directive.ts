@@ -183,7 +183,10 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
         }
         return of(options);
       }),
-      tap(options => this.renderTemplate(this.options = options))
+      tap(options => this.renderTemplate(this.options = options)),
+      // trigger a change detection after the options are rendered
+      // this is needed to trigger the mat-autocomplete options to display function
+      tap(() => this.ngControl?.control?.setValue(this.ngControl?.control?.value))
     ).subscribe());
   }
 
