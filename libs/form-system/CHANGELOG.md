@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.3.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.3.0...@rxap/form-system@13.3.1) (2023-04-18)
+
+
+### Bug Fixes
+
+* trigger the mat autocomplete to display function ([f1f19d2](https://gitlab.com/rxap/packages/commit/f1f19d20406d5a7ffa6cc3093a9eae0c3a881cdf))
+
+
+
+
+
 # [13.3.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.2.1...@rxap/form-system@13.3.0) (2023-03-07)
 
 
