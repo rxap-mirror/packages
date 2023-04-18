@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.3-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/components@14.0.2...@rxap/components@14.0.3-dev.0) (2023-04-18)
+
+
+### Bug Fixes
+
+* **confirm:** split on click method ([907a411](https://gitlab.com/rxap/packages/commit/907a411bc2aba6eaf98b91fe00f6f65b1f411763))
+* **json-viewer:** remove old size concept ([32a4588](https://gitlab.com/rxap/packages/commit/32a45887f82fb3e20b690ec133285c51c706cb93))
+
+
+
+
+
 ## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/components@14.0.1...@rxap/components@14.0.2) (2022-12-14)
 
 **Note:** Version bump only for package @rxap/components

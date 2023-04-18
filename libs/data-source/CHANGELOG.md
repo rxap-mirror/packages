@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@14.1.3...@rxap/data-source@14.2.0-dev.0) (2023-04-18)
+
+
+### Bug Fixes
+
+* handle hasError and loading stats ([9c3ad26](https://gitlab.com/rxap/packages/commit/9c3ad26e12863db8c78693869e7214b5a41c576c))
+* **directives:** support error template in data source collection directive ([92f7653](https://gitlab.com/rxap/packages/commit/92f76533ffae9ed07eeda605bf1ae06543072c1a))
+* remove error suppression ([3a9be76](https://gitlab.com/rxap/packages/commit/3a9be76342c79b8cb33902bdeb960a3f731b22f2))
+* remove error suppression ([2301653](https://gitlab.com/rxap/packages/commit/2301653434653a6db4eedb36e821086eb7e6d08c))
+
+
+### Features
+
+* add handleError method ([4547aa6](https://gitlab.com/rxap/packages/commit/4547aa6c004bd81f90cf5be06b2d790e5e649e45))
+* introduce dataSource retry ([8351956](https://gitlab.com/rxap/packages/commit/835195620a8cf6b022f17e28cff593152d78a0c2))
+* support data source retry feature ([58a6c9e](https://gitlab.com/rxap/packages/commit/58a6c9e8af577c61472907aeb9393ec571918cf4))
+* **data-source:** introduce errorTemplate concept ([d1bc29f](https://gitlab.com/rxap/packages/commit/d1bc29f7e86ea574c1e0cc60b7758fa622256bd9))
+
+
+
+
+
 ## [14.1.3](https://gitlab.com/rxap/packages/compare/@rxap/data-source@14.1.2...@rxap/data-source@14.1.3) (2022-12-14)
 
 **Note:** Version bump only for package @rxap/data-source

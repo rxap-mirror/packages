@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@14.0.2...@rxap/form-system@14.1.0-dev.0) (2023-04-18)
+
+
+### Bug Fixes
+
+* add check for ngControl instance ([045011e](https://gitlab.com/rxap/packages/commit/045011ef4a695815b9e9b1414a2a212dc08b39fe))
+* trigger the mat autocomplete to display function ([b16fbcc](https://gitlab.com/rxap/packages/commit/b16fbcc2fa931201640fd6c9847b0f2825f086d6))
+* **form-system:** ensure the InputSelectOptionsDirective settings is defined ([b3ba44e](https://gitlab.com/rxap/packages/commit/b3ba44e88d22ab9d5c3bb86ba79e31f30e9fcd15))
+* **form-system:** expose useDataSourceValue property ([0543a9f](https://gitlab.com/rxap/packages/commit/0543a9f5b2feb15d1bbb523f759b7a37178cbf52))
+
+
+### Features
+
+* **form-system:** add IsSelectableValueDirective ([878c343](https://gitlab.com/rxap/packages/commit/878c34375316057a06a93a8a5c6311eb4b3af6e7))
+* **form-system:** introduce generic extract options data source mixin ([e22d2e7](https://gitlab.com/rxap/packages/commit/e22d2e70e86e174c39922949862706e9267e5d29))
+* **form-system:** support filterOptions in InputSelectOptionsDirective ([fe79c7b](https://gitlab.com/rxap/packages/commit/fe79c7b6f4fdce4f86e679c66ec575cd75667098))
+
+
+
+
+
 ## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/form-system@14.0.1...@rxap/form-system@14.0.2) (2022-12-14)
 
 **Note:** Version bump only for package @rxap/form-system

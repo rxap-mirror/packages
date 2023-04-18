@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.1.4-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@14.1.3...@rxap/config@14.1.4-dev.0) (2023-04-18)
+
+
+### Bug Fixes
+
+* show error in overlay box instead of alert ([af37e19](https://gitlab.com/rxap/packages/commit/af37e19e8caba07e9cc21485a9582585e544879d))
+* show error in overlay box instead of alert ([c4c78ab](https://gitlab.com/rxap/packages/commit/c4c78ab49a57e159d86730f90cc5448edaaa1dc7))
+
+
+
+
+
 ## [14.1.3](https://gitlab.com/rxap/packages/compare/@rxap/config@14.1.2...@rxap/config@14.1.3) (2022-12-14)
 
 **Note:** Version bump only for package @rxap/config
