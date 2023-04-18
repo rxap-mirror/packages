@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.4.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@14.4.0-dev.0...@rxap/material-table-system@14.4.0-dev.1) (2023-04-18)
+
+
+### Bug Fixes
+
+* bind retry and refresh methods ([c2efa6b](https://gitlab.com/rxap/packages/commit/c2efa6b030d5bf4293bc8d4ecee7a599af9ff232))
+* **material-form-system:** support formDefinition from input ([c44ef49](https://gitlab.com/rxap/packages/commit/c44ef497f0ca840135bb630f4cdda3958800c915))
+* **table-row-actions:** support untyped table actions ([9db5157](https://gitlab.com/rxap/packages/commit/9db515738ac482ffadfac8759400130267dfc56d))
+
+
+### Features
+
+* **table-row-actions:** support options objects ([1b81b65](https://gitlab.com/rxap/packages/commit/1b81b6547af2bc6c0dc0d4dc1652bea30c158808))
+* support data source retry feature ([0a16994](https://gitlab.com/rxap/packages/commit/0a16994d57fa04736c914093e4f6397b375ca122))
+
+
+
+
+
 # [14.4.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@14.3.0...@rxap/material-table-system@14.4.0-dev.0) (2023-01-31)
 
 

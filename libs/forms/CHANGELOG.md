@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/forms@14.0.2...@rxap/forms@14.1.0-dev.0) (2023-04-18)
+
+
+### Bug Fixes
+
+* **forms:** check if formDefinition instance exists in ngOnInit ([11e48a7](https://gitlab.com/rxap/packages/commit/11e48a721464b0519abea17f6c5f89f912312e56))
+* **forms:** introduce strict control option for patchValue methods ([4d38dad](https://gitlab.com/rxap/packages/commit/4d38dad6c7fb23aa3f6a0795c0b802ae251c9e8b))
+* **forms:** introduce the ControlOption coerce ([574261d](https://gitlab.com/rxap/packages/commit/574261d4879ff0544bad815ea53a6b0a0dbdf7aa))
+* **forms:** move strict check before the values are patched ([ae72a82](https://gitlab.com/rxap/packages/commit/ae72a820ff6e01c6b9a5d33dc71612bbccf513e7))
+* **forms:** replace patchValue with custom implementation ([b83b912](https://gitlab.com/rxap/packages/commit/b83b912bd71c46a95af2fd81c738b8d7d58fd2df))
+* **forms:** revert - workaround form angular form is not defined error ([57d1e57](https://gitlab.com/rxap/packages/commit/57d1e570a9b2b03413585cf1db4142332c98d938))
+* **forms:** workaround form angular form is not defined error ([88f469e](https://gitlab.com/rxap/packages/commit/88f469e556fa1e44fe7f547abb01b5d1d2690740))
+
+
+### Features
+
+* add validators IsPort And IsUuid ([0a5f08b](https://gitlab.com/rxap/packages/commit/0a5f08b5879108a63c7fad0743d1cda21c9b003e))
+
+
+
+
+
 ## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/forms@14.0.1...@rxap/forms@14.0.2) (2022-12-14)
 
 **Note:** Version bump only for package @rxap/forms

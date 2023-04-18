@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/utilities@14.0.3...@rxap/utilities@14.1.0-dev.0) (2023-04-18)
+
+
+### Features
+
+* **toggle-subject:** only emit if changed ([8c4ce3b](https://gitlab.com/rxap/packages/commit/8c4ce3bc75e5a021882eb2f1f0255db995bc5d03))
+
+
+
+
+
 ## [14.0.3](https://gitlab.com/rxap/packages/compare/@rxap/utilities@14.0.2...@rxap/utilities@14.0.3) (2022-12-13)
 
 **Note:** Version bump only for package @rxap/utilities

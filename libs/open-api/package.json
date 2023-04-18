@@ -1,6 +1,6 @@
 {
   "name": "@rxap/open-api",
-  "version": "14.1.3",
+  "version": "14.2.0-dev.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/open-api",
