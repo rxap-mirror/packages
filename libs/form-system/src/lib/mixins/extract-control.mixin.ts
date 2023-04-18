@@ -1,4 +1,7 @@
-import { NgControl } from "@angular/forms";
+import {
+  NgControl,
+  AbstractControlDirective
+} from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
 import { RxapFormControl } from '@rxap/forms';
 
@@ -10,10 +13,14 @@ export class ExtractControlMixin {
 
   protected control?: RxapFormControl;
 
-  protected extractControl(ngControl: NgControl | null = this.ngControl ?? this.matFormField?._control?.ngControl ?? null): RxapFormControl {
+  protected extractControl(ngControl: AbstractControlDirective | null = this.ngControl ?? this.matFormField?._control?.ngControl ?? null): RxapFormControl {
 
     if (!ngControl) {
       throw new Error('The ngControl is not defined!');
+    }
+
+    if (!(ngControl instanceof NgControl)) {
+      throw new Error('The AbstractControlDirective is not a NgControl!');
     }
 
     this.ngControl = ngControl;
