@@ -25,17 +25,21 @@ import { RxapFormControl } from '@rxap/forms';
 import {
   ControlOptions,
   ControlOption,
-  Required
+  Required,
+  equals
 } from '@rxap/utilities';
 import { Mixin } from '@rxap/mixin';
 import {
   Subscription,
-  of
+  of,
+  EMPTY
 } from 'rxjs';
 import {
   tap,
   map,
-  switchMap
+  switchMap,
+  distinctUntilChanged,
+  throttleTime
 } from 'rxjs/operators';
 import { UseDataSource } from '../decorators/use-data-source';
 import { IdOrInstanceOrToken } from '@rxap/definition';
@@ -75,6 +79,10 @@ export interface InputSelectOptionsSettings<Source> extends UseOptionsDataSource
    * sensitive
    */
   filteredOptions?: boolean;
+  /**
+   * true - the options list is only loaded once and not refreshed on each value change
+   */
+  loadOnce?: boolean;
 }
 
 export interface InputSelectOptionsDirective extends OnDestroy, AfterViewInit,
@@ -132,7 +140,9 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
     this.extractOptionsDatasource();
     this.viewer = {
       id: '[rxapInputSelectOptions]' + this.control.controlId,
-      viewChange: this.control.value$.pipe(
+      viewChange: this.settings?.loadOnce ? EMPTY : this.control.value$.pipe(
+        throttleTime(1000),
+        distinctUntilChanged((a, b) => equals(a, b)),
         map(value => {
           if (this.settings?.ignoreSelectedValue) {
             return {}
