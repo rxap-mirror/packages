@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.3.3](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.3.2...@rxap/form-system@13.3.3) (2023-04-25)
+
+
+### Bug Fixes
+
+* only trigger a options reload if value changes ([a9b6fc6](https://gitlab.com/rxap/packages/commit/a9b6fc66c5e87ed1baa239ad4e46457b937cfdd4))
+
+
+
+
+
 ## [13.3.2](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.3.1...@rxap/form-system@13.3.2) (2023-04-25)
 
 
