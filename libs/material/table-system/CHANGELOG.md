@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.5.3](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.5.2...@rxap/material-table-system@13.5.3) (2023-04-25)
+
+
+### Bug Fixes
+
+* only show table header controls if possible ([6259f5a](https://gitlab.com/rxap/packages/commit/6259f5a4ae24bf9b6bb24d74e2f8aed71a874110))
+
+
+
+
+
 ## [13.5.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@13.5.1...@rxap/material-table-system@13.5.2) (2023-04-16)
 
 
