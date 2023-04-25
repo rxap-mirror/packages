@@ -86,6 +86,15 @@ export class RowControlsHeaderCellComponent<Data extends Record<string, any>> {
         ),
         distinctUntilChanged()
       ) ?? of(true);
+    if (!this.archiveRemoteMethod) {
+      this.showArchive$ = of(false);
+    }
+    if (!this.unarchiveRemoteMethod) {
+      this.showUnarchive$ = of(false);
+    }
+    if (!this.deleteRemoteMethod) {
+      this.showDelete$ = of(false);
+    }
   }
 
   public async archiveSelected(selectedRows: Data[] | undefined) {
