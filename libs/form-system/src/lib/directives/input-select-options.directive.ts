@@ -79,6 +79,7 @@ export interface InputSelectOptionsSettings<Source> extends UseOptionsDataSource
    * sensitive
    */
   filteredOptions?: boolean;
+
   /**
    * true - the options list is only loaded once and not refreshed on each value change
    */
