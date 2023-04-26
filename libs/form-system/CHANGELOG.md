@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.3.4](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.3.3...@rxap/form-system@13.3.4) (2023-04-26)
+
+
+### Bug Fixes
+
+* prevent call stack issue ([45ce2b2](https://gitlab.com/rxap/packages/commit/45ce2b27a0886c3e24f4043d82b5f38c07bb5c07))
+
+
+
+
+
 ## [13.3.3](https://gitlab.com/rxap/packages/compare/@rxap/form-system@13.3.2...@rxap/form-system@13.3.3) (2023-04-25)
 
 
