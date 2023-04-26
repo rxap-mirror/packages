@@ -116,6 +116,15 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
   protected settings?: InputSelectOptionsSettings<any>;
 
+  /**
+   * This flag is used to prevent the setValue is called for each refresh
+   * of the options list. This is needed because the setValue method will
+   * trigger a new refresh of the options list. This results in an endless
+   * call stack. This flag is set to true if the setValue method is called
+   * once.
+   */
+  private isAutocompleteToDisplayTriggered = false;
+
   constructor(
     @Inject(TemplateRef)
     protected readonly template: TemplateRef<InputSelectOptionsTemplateContext>,
@@ -195,9 +204,14 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
         return of(options);
       }),
       tap(options => this.renderTemplate(this.options = options)),
-      // trigger a change detection after the options are rendered
-      // this is needed to trigger the mat-autocomplete options to display function
-      tap(() => this.ngControl?.control?.setValue(this.ngControl?.control?.value))
+      tap(() => {
+        if (this.matAutocomplete && !this.isAutocompleteToDisplayTriggered) {
+          this.isAutocompleteToDisplayTriggered = true;
+          // trigger a change detection after the options are rendered
+          // this is needed to trigger the mat-autocomplete options to display function
+          this.ngControl?.control?.setValue(this.ngControl?.control?.value);
+        }
+      })
     ).subscribe());
   }
 
