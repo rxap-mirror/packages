@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/form-system@14.1.0-dev.0...@rxap/form-system@14.1.0-dev.1) (2023-05-11)
+
+
+### Bug Fixes
+
+* only trigger a options reload if value changes ([fa5e248](https://gitlab.com/rxap/packages/commit/fa5e248acc4c22232b454110e8affa4f11a78cda))
+* prevent call stack issue ([48d244d](https://gitlab.com/rxap/packages/commit/48d244d02824800c02b454ce9c9f2baf5bdef26d))
+
+
+
+
+
 # [14.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/form-system@14.0.2...@rxap/form-system@14.1.0-dev.0) (2023-04-18)
 
 
