@@ -3,9 +3,9 @@
   "version": "15.0.0",
   "peerDependencies": {
     "@angular-devkit/schematics": "^15.0.3",
-    "@angular/common": "^15.0.3",
-    "@angular/core": "^15.0.3",
-    "@angular/platform-browser-dynamic": "^15.0.3"
+    "@angular/common": "^16.0.2",
+    "@angular/core": "^16.0.2",
+    "@angular/platform-browser-dynamic": "^16.0.2"
   },
   "devDependencies": {
     "@angular/localize": "^12.0.1"
@@ -38,8 +38,8 @@
     "save": "dependencies"
   },
   "dependencies": {
-    "@rxap/schematics-ts-morph": "^15.0.0",
-    "@rxap/schematics-utilities": "^15.0.0",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.0",
+    "@rxap/schematics-utilities": "^16.0.0-dev.0",
     "ts-morph": "^13.0.3",
     "tslib": "^2.3.1"
   }

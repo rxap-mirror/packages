@@ -1,5 +1,6 @@
 {
   "name": "environment",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/environment/src",
   "prefix": "rxap",
@@ -14,7 +15,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "options": {
         "tsConfig": "libs/environment/tsconfig.lib.json",
         "project": "libs/environment/ng-package.json",
@@ -27,7 +28,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
         "jestConfig": "libs/environment/jest.config.js",
         "passWithNoTests": true
@@ -71,15 +72,12 @@
       }
     },
     "storybook": {
-      "executor": "@nrwl/storybook:storybook",
+      "executor": "@nx/storybook:storybook",
       "options": {
-        "uiFramework": "@storybook/angular",
         "port": 4400,
-        "config": {
-          "configFolder": "libs/environment/.storybook"
-        },
         "staticDir": ["./.storybook/public"],
-        "projectBuildConfig": "environment:build-storybook"
+        "projectBuildConfig": "environment:build-storybook",
+        "configDir": "libs/environment/.storybook"
       },
       "configurations": {
         "ci": {
@@ -88,22 +86,19 @@
       }
     },
     "build-storybook": {
-      "executor": "@nrwl/storybook:build",
+      "executor": "@nx/storybook:build",
       "options": {
-        "uiFramework": "@storybook/angular",
-        "outputPath": "dist/storybook/rxap/environment",
-        "config": {
-          "configFolder": "libs/environment/.storybook"
-        },
         "staticDir": ["./.storybook/public"],
-        "projectBuildConfig": "environment:build-storybook"
+        "projectBuildConfig": "environment:build-storybook",
+        "configDir": "libs/environment/.storybook",
+        "outputDir": "dist/storybook/rxap/environment"
       },
       "configurations": {
         "ci": {
           "quiet": true
         }
       },
-      "outputs": ["{options.outputPath}"]
+      "outputs": ["{options.outputDir}"]
     },
     "readme": {
       "executor": "@rxap/plugin-readme-generator:library"
@@ -129,12 +124,17 @@
     "update-peer-dependencies": {
       "executor": "@rxap/plugin-library:update-peer-dependencies",
       "options": {
-        "ignore": ["tsconfig-paths-webpack-plugin", "jest-preset-angular", "ng-mocks", "@storybook\\/"]
+        "ignore": [
+          "tsconfig-paths-webpack-plugin",
+          "jest-preset-angular",
+          "ng-mocks",
+          "@storybook\\/"
+        ]
       }
     }
   },
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "style": "scss"
     }
   },

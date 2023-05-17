@@ -3,31 +3,34 @@ import {
   Tree,
   chain,
   externalSchematic,
-  noop
+  noop,
 } from '@angular-devkit/schematics';
-import {
-  GetAngularJson,
-  dasherize
-} from '@rxap/schematics-utilities';
+import { GetAngularJson, dasherize } from '@rxap/schematics-utilities';
 
 /**
  * @deprecated use function from the @rxap/schematics-utilities package
  */
-export function CoerceOpenApiProject(project: string, prefix: string, directory?: string): Rule {
+export function CoerceOpenApiProject(
+  project: string,
+  prefix: string,
+  directory?: string
+): Rule {
   return (host: Tree) => {
     const angularJson = GetAngularJson(host) as any;
 
-    const projectName = `${directory ? directory.split('/').join('-') + '-' : ''}${project}`
+    const projectName = `${
+      directory ? directory.split('/').join('-') + '-' : ''
+    }${project}`;
 
     if (!angularJson.projects.hasOwnProperty(projectName)) {
-      const defaultProject = angularJson.projects[ angularJson.defaultProject ];
+      const defaultProject = angularJson.projects[angularJson.defaultProject];
       const defaultProjectPrefix = prefix ?? defaultProject.prefix;
       return chain([
-        externalSchematic('@nrwl/angular', 'library', {
-          name:       project,
+        externalSchematic('@nx/angular', 'library', {
+          name: project,
           importPath: `@${defaultProjectPrefix}/${projectName}`,
           prefix,
-          directory
+          directory,
         }),
         (tree) => {
           const baseTsconfig = JSON.parse(
@@ -39,14 +42,22 @@ export function CoerceOpenApiProject(project: string, prefix: string, directory?
           if (Object.keys(paths).length) {
             for (const key of Object.keys(paths)) {
               if (directory) {
-                if (key.match(new RegExp(`\/${directory.split('/').join('-')}-${project}$`))) {
-                  delete paths[ key ];
-                  paths[ key + '/*' ] = [ `libs/${directory}/${project}/src/lib/*` ];
+                if (
+                  key.match(
+                    new RegExp(
+                      `\/${directory.split('/').join('-')}-${project}$`
+                    )
+                  )
+                ) {
+                  delete paths[key];
+                  paths[key + '/*'] = [
+                    `libs/${directory}/${project}/src/lib/*`,
+                  ];
                 }
               } else {
                 if (key.match(new RegExp(`\/${project}$`))) {
-                  delete paths[ key ];
-                  paths[ key + '/*' ] = [ `libs/${project}/src/lib/*` ];
+                  delete paths[key];
+                  paths[key + '/*'] = [`libs/${project}/src/lib/*`];
                 }
               }
             }
@@ -56,7 +67,7 @@ export function CoerceOpenApiProject(project: string, prefix: string, directory?
               JSON.stringify(baseTsconfig, undefined, 2)
             );
           }
-        }
+        },
       ]);
     }
 

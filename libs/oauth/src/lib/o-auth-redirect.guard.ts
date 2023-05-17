@@ -1,10 +1,4 @@
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanActivateChild,
-  RouterStateSnapshot,
-  UrlTree
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import {
   Injectable,
   Inject,
@@ -13,7 +7,7 @@ import {
 import { OAuthService } from './o-auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class OAuthRedirectGuard implements CanActivate, CanActivateChild {
+export class OAuthRedirectGuard  {
 
   constructor(
     @Inject(OAuthService)

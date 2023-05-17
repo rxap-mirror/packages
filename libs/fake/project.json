@@ -1,5 +1,6 @@
 {
   "name": "fake",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/fake/src",
   "prefix": "rxap",
@@ -14,7 +15,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "options": {
         "tsConfig": "libs/fake/tsconfig.lib.json",
         "project": "libs/fake/ng-package.json"
@@ -26,14 +27,14 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": ["libs/fake/src/**/*.ts", "libs/fake/src/**/*.html"]
       },
       "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["coverage/libs/fake"],
       "options": {
         "jestConfig": "libs/fake/jest.config.js",

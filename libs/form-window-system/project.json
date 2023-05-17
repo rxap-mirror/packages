@@ -1,5 +1,6 @@
 {
   "name": "form-window-system",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/form-window-system/src",
   "prefix": "rxap",
@@ -14,7 +15,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "options": {
         "tsConfig": "libs/form-window-system/tsconfig.lib.json",
         "project": "libs/form-window-system/ng-package.json",
@@ -27,7 +28,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
         "jestConfig": "libs/form-window-system/jest.config.js",
         "passWithNoTests": true
@@ -100,7 +101,7 @@
     }
   },
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "style": "scss"
     }
   },

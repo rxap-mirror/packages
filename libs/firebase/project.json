@@ -1,5 +1,6 @@
 {
   "name": "firebase",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/firebase/src",
   "prefix": "rxap",
@@ -14,7 +15,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "options": {
         "tsConfig": "libs/firebase/tsconfig.lib.json",
         "project": "libs/firebase/ng-package.json",
@@ -27,7 +28,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
         "jestConfig": "libs/firebase/jest.config.js",
         "passWithNoTests": true
@@ -98,12 +99,18 @@
     "update-peer-dependencies": {
       "executor": "@rxap/plugin-library:update-peer-dependencies",
       "options": {
-        "ignore": ["@firebase/auth", "@firebase/firestore", "jest-preset-angular", "ng-mocks", "@storybook\\/"]
+        "ignore": [
+          "@firebase/auth",
+          "@firebase/firestore",
+          "jest-preset-angular",
+          "ng-mocks",
+          "@storybook\\/"
+        ]
       }
     }
   },
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "styleext": "scss"
     }
   },

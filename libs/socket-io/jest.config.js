@@ -2,17 +2,20 @@ module.exports = {
   displayName: 'socket-io',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  globals: {
-    'ts-jest': {
-      tsconfig: "<rootDir>/tsconfig.spec.json",
-      stringifyContentPathRegex: "\\.(html|svg)$"
-    },
-  },
-  coverageDirectory: "../../coverage/libs/socket-io",
+  globals: {},
+  coverageDirectory: '../../coverage/libs/socket-io',
   snapshotSerializers: [
-    "jest-preset-angular/build/serializers/no-ng-attributes",
-    "jest-preset-angular/build/serializers/ng-snapshot",
-    "jest-preset-angular/build/serializers/html-comment"
+    'jest-preset-angular/build/serializers/no-ng-attributes',
+    'jest-preset-angular/build/serializers/ng-snapshot',
+    'jest-preset-angular/build/serializers/html-comment',
   ],
-  transform: { "^.+\\.(ts|js|html)$": "jest-preset-angular" }
+  transform: {
+    '^.+\\.(ts|js|html)$': [
+      'jest-preset-angular',
+      {
+        tsconfig: '<rootDir>/tsconfig.spec.json',
+        stringifyContentPathRegex: '\\.(html|svg)$',
+      },
+    ],
+  },
 };

@@ -1,14 +1,9 @@
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  UrlTree,
-  Router
-} from '@angular/router';
+import { ActivatedRouteSnapshot, UrlTree, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { OAuthService } from './o-auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class OAuthExtractGuard implements CanActivate {
+export class OAuthExtractGuard  {
 
   constructor(
     private readonly router: Router,
