@@ -13,7 +13,7 @@
     "@angular/platform-browser": "^14.2.2",
     "@angular/platform-browser-dynamic": "^14.2.2",
     "@angular/router": "^14.2.2",
-    "@rxap/data-source": "^14.2.0-dev.0",
+    "@rxap/data-source": "^14.2.0-dev.1",
     "@rxap/definition": "^14.0.3",
     "@rxap/directives": "^14.0.3",
     "@rxap/form-system": "^14.1.0-dev.1",
