@@ -1,6 +1,6 @@
 {
   "name": "@rxap/utilities",
-  "version": "14.1.0",
+  "version": "15.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/utilities",
@@ -17,6 +17,8 @@
   "description": "A collection of utility functions, types and interfaces.",
   "peerDependencies": {
     "@angular-devkit/core": "^15.0.3",
+    "@angular-devkit/schematics": "^15.0.3",
+    "@angular/core": "^15.0.3",
     "@angular/platform-browser-dynamic": "^15.0.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.0"

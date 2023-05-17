@@ -1,6 +1,6 @@
 {
   "name": "@rxap/remote-method",
-  "version": "14.0.2",
+  "version": "15.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/remote-method",
@@ -18,11 +18,14 @@
   "description": "Provides the RemoteMethod concept for RxAP.",
   "peerDependencies": {
     "@angular-devkit/core": "^15.0.3",
+    "@angular-devkit/schematics": "^15.0.3",
     "@angular/common": "^15.0.3",
+    "@angular/core": "^15.0.3",
     "@angular/platform-browser": "^15.0.3",
     "@angular/platform-browser-dynamic": "^15.0.3",
-    "@rxap/definition": "^14.0.3",
-    "@rxap/utilities": "^14.1.0",
+    "@rxap/definition": "^15.0.0",
+    "@rxap/utilities": "^15.0.0",
+    "@schematics/angular": "^15.0.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.0"
   },

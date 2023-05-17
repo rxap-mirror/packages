@@ -1,6 +1,6 @@
 {
   "name": "@rxap/fake",
-  "version": "14.0.2",
+  "version": "15.0.0",
   "schematics": "./collection.json",
   "ng-update": {
     "migrations": "./migration.json",
@@ -32,6 +32,8 @@
     "tslib": "^2.3.1"
   },
   "peerDependencies": {
+    "@angular-devkit/schematics": "^15.0.3",
+    "@angular/core": "^15.0.3",
     "@angular/platform-browser-dynamic": "^15.0.3"
   }
 }

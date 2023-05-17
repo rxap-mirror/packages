@@ -1,6 +1,6 @@
 {
   "name": "@rxap/config",
-  "version": "14.1.4",
+  "version": "15.0.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/config",
@@ -17,9 +17,11 @@
   },
   "description": "Simple config file manager for angular applications.",
   "peerDependencies": {
+    "@angular-devkit/schematics": "^15.0.3",
     "@angular/common": "^15.0.3",
+    "@angular/core": "^15.0.3",
     "@angular/platform-browser-dynamic": "^15.0.3",
-    "@rxap/utilities": "^14.1.0",
+    "@rxap/utilities": "^15.0.0",
     "joi": "^17.6.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.0"
