@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
-    "@rxap/schematics-utilities": "^15.0.0",
+    "@rxap/schematics-utilities": "^16.0.0-dev.0",
     "tslib": "^2.3.1"
   },
   "peerDependencies": {

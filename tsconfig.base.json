@@ -167,6 +167,7 @@
       "@rxap/window-system/ngrx": [
         "libs/rxap/window-system/ngrx/src/public_api.ts"
       ],
+      "@rxap/workspace-plugin": ["tools/workspace-plugin/src/index.ts"],
       "@rxap/xml-parser": ["libs/xml-parser/src/index.ts"],
       "@rxap/xml-parser/decorators": [
         "libs/xml-parser/decorators/src/public_api.ts"

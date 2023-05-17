@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot
-} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LifeCycleService } from './life-cycle.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IsAppReadyGuard implements CanActivate {
+export class IsAppReadyGuard  {
 
   constructor(private readonly lifecycle: LifeCycleService) {}
 

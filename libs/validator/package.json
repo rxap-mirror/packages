@@ -35,9 +35,9 @@
   },
   "peerDependencies": {
     "@angular-devkit/schematics": "^15.0.3",
-    "@angular/core": "^15.0.3",
-    "@angular/platform-browser-dynamic": "^15.0.3",
-    "@rxap/schematics-utilities": "^15.0.0",
-    "jest-preset-angular": "^12.2.3"
+    "@angular/core": "^16.0.2",
+    "@angular/platform-browser-dynamic": "^16.0.2",
+    "@rxap/schematics-utilities": "^16.0.0-dev.0",
+    "jest-preset-angular": "^13.1.1"
   }
 }

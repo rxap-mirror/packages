@@ -11,7 +11,8 @@ migrations.json
 .library.gitlab-ci.yml
 /documentation.json
 openapi.json
-
+storybook-migration-summary.md
+migrate-to-component-system.txt
 test.*
 
 junit.xml

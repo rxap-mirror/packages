@@ -6,13 +6,7 @@
  * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
  */
 
-import {
-  CanActivate,
-  Router,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree
-} from '@angular/router';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 
 import { KeycloakService } from './keycloak.service';
 
@@ -22,7 +16,7 @@ import { KeycloakService } from './keycloak.service';
  * The reason for this is that the authorization flow is usually not unique, so in this way you will
  * have more freedom to customize your authorization flow.
  */
-export abstract class KeycloakAuthGuard implements CanActivate {
+export abstract class KeycloakAuthGuard  {
   /**
    * Indicates if the user is authenticated or not.
    */

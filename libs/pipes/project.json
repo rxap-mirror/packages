@@ -1,5 +1,6 @@
 {
   "name": "pipes",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/pipes/src",
   "prefix": "rxap",
@@ -14,7 +15,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "options": {
         "tsConfig": "libs/pipes/tsconfig.lib.json",
         "project": "libs/pipes/ng-package.json",
@@ -27,7 +28,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
         "jestConfig": "libs/pipes/jest.config.js",
         "passWithNoTests": true
@@ -35,15 +36,12 @@
       "outputs": ["coverage/libs/pipes"]
     },
     "storybook": {
-      "executor": "@nrwl/storybook:storybook",
+      "executor": "@nx/storybook:storybook",
       "options": {
-        "uiFramework": "@storybook/angular",
         "port": 4400,
-        "config": {
-          "configFolder": "libs/pipes/.storybook"
-        },
         "staticDir": ["./.storybook/public"],
-        "projectBuildConfig": "pipes:build-storybook"
+        "projectBuildConfig": "pipes:build-storybook",
+        "configDir": "libs/pipes/.storybook"
       },
       "configurations": {
         "ci": {
@@ -52,22 +50,19 @@
       }
     },
     "build-storybook": {
-      "executor": "@nrwl/storybook:build",
+      "executor": "@nx/storybook:build",
       "options": {
-        "uiFramework": "@storybook/angular",
-        "outputPath": "dist/storybook/rxap/pipes",
-        "config": {
-          "configFolder": "libs/pipes/.storybook"
-        },
         "staticDir": ["./.storybook/public"],
-        "projectBuildConfig": "pipes:build-storybook"
+        "projectBuildConfig": "pipes:build-storybook",
+        "configDir": "libs/pipes/.storybook",
+        "outputDir": "dist/storybook/rxap/pipes"
       },
       "configurations": {
         "ci": {
           "quiet": true
         }
       },
-      "outputs": ["{options.outputPath}"]
+      "outputs": ["{options.outputDir}"]
     },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",
@@ -130,7 +125,7 @@
     }
   },
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "styleext": "scss"
     }
   },

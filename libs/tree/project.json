@@ -1,5 +1,6 @@
 {
   "name": "tree",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/tree/src",
   "prefix": "rxap",
@@ -14,7 +15,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "options": {
         "tsConfig": "libs/tree/tsconfig.lib.json",
         "project": "libs/tree/ng-package.json",
@@ -27,7 +28,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
         "jestConfig": "libs/tree/jest.config.js",
         "passWithNoTests": true
@@ -94,18 +95,20 @@
     "update-peer-dependencies": {
       "executor": "@rxap/plugin-library:update-peer-dependencies",
       "options": {
-        "ignore": ["tsconfig-paths-webpack-plugin", "jest-preset-angular", "ng-mocks", "@storybook\\/"]
+        "ignore": [
+          "tsconfig-paths-webpack-plugin",
+          "jest-preset-angular",
+          "ng-mocks",
+          "@storybook\\/"
+        ]
       }
     },
     "storybook": {
-      "executor": "@nrwl/storybook:storybook",
+      "executor": "@nx/storybook:storybook",
       "options": {
-        "uiFramework": "@storybook/angular",
         "port": 4400,
-        "config": {
-          "configFolder": "libs/tree/.storybook"
-        },
-        "projectBuildConfig": "tree:build-storybook"
+        "projectBuildConfig": "tree:build-storybook",
+        "configDir": "libs/tree/.storybook"
       },
       "configurations": {
         "ci": {
@@ -114,15 +117,12 @@
       }
     },
     "build-storybook": {
-      "executor": "@nrwl/storybook:build",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
       "options": {
-        "uiFramework": "@storybook/angular",
-        "outputPath": "dist/storybook/tree",
-        "config": {
-          "configFolder": "libs/tree/.storybook"
-        },
-        "projectBuildConfig": "tree:build-storybook"
+        "projectBuildConfig": "tree:build-storybook",
+        "configDir": "libs/tree/.storybook",
+        "outputDir": "dist/storybook/tree"
       },
       "configurations": {
         "ci": {
@@ -132,7 +132,7 @@
     }
   },
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "style": "scss"
     }
   },

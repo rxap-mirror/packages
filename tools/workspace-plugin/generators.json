@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "scss-transform": {
+      "implementation": "./src/generators/scss-transform",
+      "schema": "./src/generators/scss-transform/schema.json",
+      "description": ""
+    }
+  }
+}

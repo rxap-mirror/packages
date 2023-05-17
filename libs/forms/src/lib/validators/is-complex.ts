@@ -57,7 +57,7 @@ type Discriminate<U, K extends PropertyKey> =
   ? K extends keyof U ? U : U & Record<K, unknown>
   : never;
 
-function inOperator<K extends PropertyKey, T>(k: K, o: T): o is Discriminate<T, K> {
+function inOperator<K extends PropertyKey, T extends object>(k: K, o: T): o is Discriminate<T, K> {
   return k in o;
 }
 

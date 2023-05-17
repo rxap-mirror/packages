@@ -1,9 +1,4 @@
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  UrlTree
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Router, UrlTree } from '@angular/router';
 import {
   Inject,
   Injectable,
@@ -20,7 +15,7 @@ import {
 } from './tokens';
 
 @Injectable()
-export class OAuthSingleSignOnGuard implements CanActivate {
+export class OAuthSingleSignOnGuard  {
 
   constructor(
     @Inject(OAuthService)

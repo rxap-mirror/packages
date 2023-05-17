@@ -1,5 +1,6 @@
 {
   "name": "json-schema-to-typescript",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/json-schema-to-typescript/src",
   "prefix": "rxap",
@@ -40,7 +41,7 @@
       "outputs": ["{options.outputPath}"]
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "options": {
         "jestConfig": "libs/json-schema-to-typescript/jest.config.js",
         "passWithNoTests": true
@@ -96,7 +97,7 @@
     }
   },
   "generators": {
-    "@nrwl/angular:component": {
+    "@nx/angular:component": {
       "style": "scss"
     }
   },

@@ -239,7 +239,8 @@ export class TypescriptInterfaceGenerator {
     currentFile: SourceFile,
     schema: JSONSchema
   ): WriterFunction | string {
-    switch (schema.type) {
+    // convert to any to support non-standard types like int, unknown, file, etc.
+    switch (schema.type as any) {
       case 'string':
         if (schema.enum) {
           return TypescriptInterfaceGenerator.unionType(
