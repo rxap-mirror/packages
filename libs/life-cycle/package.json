@@ -1,6 +1,6 @@
 {
   "name": "@rxap/life-cycle",
-  "version": "14.0.3",
+  "version": "15.0.0",
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/life-cycle",
   "repository": "git@gitlab.com:rxap/packages.git",
@@ -16,9 +16,11 @@
   "description": "A utility package to execute logic after the angular app is ready",
   "license": "MIT",
   "peerDependencies": {
+    "@angular-devkit/schematics": "^15.0.3",
+    "@angular/core": "^15.0.3",
     "@angular/platform-browser-dynamic": "^15.0.3",
     "@angular/router": "^15.0.3",
-    "@rxap/utilities": "^14.0.3",
+    "@rxap/utilities": "^15.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.0"
   },

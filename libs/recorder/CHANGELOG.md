@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.0.0](https://gitlab.com/rxap/packages/compare/@rxap/recorder@14.0.3...@rxap/recorder@15.0.0) (2023-05-17)
+
+
+### chore
+
+* upgrade to nrwl 15.x.x ([ad95577](https://gitlab.com/rxap/packages/commit/ad95577538adc5cd134cde8d1ff3b8fad52c9c2b))
+
+
+### BREAKING CHANGES
+
+* upgrade nrwl 15.x.x
+
+
+
+
+
 ## [14.0.3](https://gitlab.com/rxap/packages/compare/@rxap/recorder@14.0.2...@rxap/recorder@14.0.3) (2022-12-14)
 
 **Note:** Version bump only for package @rxap/recorder

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.0.0](https://gitlab.com/rxap/packages/compare/@rxap/components@14.0.3...@rxap/components@15.0.0) (2023-05-17)
+
+
+### chore
+
+* upgrade to nrwl 15.x.x ([ad95577](https://gitlab.com/rxap/packages/commit/ad95577538adc5cd134cde8d1ff3b8fad52c9c2b))
+
+
+### BREAKING CHANGES
+
+* upgrade nrwl 15.x.x
+
+
+
+
+
 ## [14.0.3](https://gitlab.com/rxap/packages/compare/@rxap/components@14.0.3-dev.0...@rxap/components@14.0.3) (2023-05-17)
 
 **Note:** Version bump only for package @rxap/components

@@ -1,11 +1,14 @@
 {
   "name": "@rxap/keycloak",
-  "version": "14.0.2",
+  "version": "15.0.0",
   "peerDependencies": {
+    "@angular-devkit/schematics": "^15.0.3",
     "@angular/common": "^15.0.3",
+    "@angular/core": "^15.0.3",
     "@angular/platform-browser-dynamic": "^15.0.3",
     "@angular/router": "^15.0.3",
     "@rxap/schematics-utilities": "^15.0.0",
+    "jest-preset-angular": "^12.2.3",
     "keycloak-js": "^17.0.0",
     "rxjs": "^6.6.0"
   },
