@@ -1,6 +1,6 @@
 {
   "name": "@rxap/forms",
-  "version": "14.1.0-dev.0",
+  "version": "14.1.0",
   "private": false,
   "author": "Merzough Münker",
   "homepage": "https://gitlab.com/rxap/packages/libs/forms",
@@ -28,7 +28,7 @@
     "@rxap/definition": "^14.0.3",
     "@rxap/directives": "^14.0.3",
     "@rxap/services": "^14.0.5",
-    "@rxap/utilities": "^14.0.3",
+    "@rxap/utilities": "^14.1.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.0"
   },
