@@ -1,6 +1,7 @@
 import {
   BaseDataSource,
-  BaseDataSourceViewer
+  BaseDataSourceViewer,
+  BaseDataSourceMetadata
 } from './base.data-source';
 import {
   OperatorFunction,
@@ -25,6 +26,10 @@ import {
   map
 } from 'rxjs/operators';
 
+export interface PipeDataSourceMetadata extends BaseDataSourceMetadata {
+  refreshParent?: boolean;
+}
+
 @Injectable()
 export class PipeDataSource<Source = any, Target = Source>
   extends BaseDataSource<Target>
@@ -41,11 +46,17 @@ export class PipeDataSource<Source = any, Target = Source>
   constructor(
     @Inject(RXAP_DATA_SOURCE) public readonly dataSource: BaseDataSource<Source>,
     @Optional() @Inject(RXAP_PIPE_DATA_SOURCE_OPERATOR) operation: OperatorFunction<Source, any> | null = null,
-    ...operations: Array<OperatorFunction<any, any>>
+    ...operations: Array<OperatorFunction<any, any> | PipeDataSourceMetadata>
   ) {
     super(dataSource.metadata);
     if (operation) {
-      this.setOperations(operation, ...operations);
+      this.setOperations(operation, ...operations.filter(op => typeof op === 'function') as Array<OperatorFunction<any, any>>);
+      if (operations.some(op => typeof op !== 'function')) {
+        this.metadata = {
+          ...this.metadata,
+          ...operations.find(op => typeof op !== 'function')
+        };
+      }
     }
   }
 
@@ -79,7 +90,7 @@ export class PipeDataSource<Source = any, Target = Source>
   /**
    * @param parent true - call the refresh method of the parent data source
    */
-  public refresh(parent?: boolean): any {
+  public refresh(parent: boolean = this.metadata.refreshParent ?? false): any {
     if (parent) {
       this.dataSource.refresh();
     } else {
@@ -103,7 +114,7 @@ export class PipeDataSource<Source = any, Target = Source>
 export function pipeDataSource<Source, Target>(
   dataSource: BaseDataSource<Source>,
   operation: OperatorFunction<Source, any>,
-  ...operations: Array<OperatorFunction<any, any>>
+  ...operations: Array<OperatorFunction<any, any> | PipeDataSourceMetadata>
 ): PipeDataSource<Source, Target> {
   return new PipeDataSource<Source, Target>(dataSource, operation, ...operations);
 }
