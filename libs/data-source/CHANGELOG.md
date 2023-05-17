@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.5.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.4.3...@rxap/data-source@13.5.0) (2023-05-17)
+
+
+### Features
+
+* **pipe-data-source:** support custom metadata in factory function ([0192977](https://gitlab.com/rxap/packages/commit/01929773e618b31dba82b870cea665c1b0934330))
+
+
+
+
+
 ## [13.4.3](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.4.2...@rxap/data-source@13.4.3) (2023-04-16)
 
 
