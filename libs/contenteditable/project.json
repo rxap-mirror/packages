@@ -35,16 +35,6 @@
       },
       "outputs": ["coverage/libs/contenteditable"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "contenteditable:build:production",
-          "contenteditable:build-schematics",
-          "contenteditable:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {

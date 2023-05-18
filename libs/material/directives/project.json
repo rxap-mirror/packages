@@ -34,17 +34,6 @@
         "passWithNoTests": true
       }
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "material-directives:build:production",
-          "material-directives:scss-bundle",
-          "material-directives:build-schematics",
-          "material-directives:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {

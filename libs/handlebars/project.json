@@ -35,16 +35,6 @@
       },
       "outputs": ["coverage/libs/handlebars"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "handlebars:build:production",
-          "handlebars:build-schematics",
-          "handlebars:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {

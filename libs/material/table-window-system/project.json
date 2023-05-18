@@ -34,16 +34,6 @@
         "passWithNoTests": true
       }
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "material-table-window-system:build:production",
-          "material-table-window-system:build-schematics",
-          "material-table-window-system:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {

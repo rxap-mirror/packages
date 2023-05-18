@@ -72,17 +72,6 @@
         "ignoreImports": ["~@angular/.*"]
       }
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "table-system:build:production",
-          "table-system:scss-bundle",
-          "table-system:build-schematics",
-          "table-system:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {

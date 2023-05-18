@@ -35,16 +35,6 @@
       },
       "outputs": ["coverage/libs/service-worker"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "service-worker:build:production",
-          "service-worker:build-schematics",
-          "service-worker:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {

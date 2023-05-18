@@ -35,16 +35,6 @@
       },
       "outputs": ["coverage/libs/mixin"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "mixin:build:production",
-          "mixin:build-schematics",
-          "mixin:build-migrations"
-        ]
-      }
-    },
     "update-package-group": {
       "executor": "@rxap/plugin-library:update-package-group"
     },

@@ -35,16 +35,6 @@
       },
       "outputs": ["coverage/libs/remote-method"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "remote-method:build:production",
-          "remote-method:build-schematics",
-          "remote-method:build-migrations"
-        ]
-      }
-    },
     "compodoc": {
       "executor": "@twittwer/compodoc:compodoc",
       "options": {

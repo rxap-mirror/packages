@@ -47,24 +47,6 @@
       },
       "outputs": ["{options.outputFile}"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "keycloak:build",
-          "keycloak:build-schematics",
-          "keycloak:build-migrations"
-        ]
-      },
-      "configurations": {
-        "production": {
-          "targets": ["keycloak:build:production"]
-        },
-        "development": {
-          "targets": ["keycloak:build:development"]
-        }
-      }
-    },
     "readme": {
       "executor": "@rxap/plugin-readme-generator:library"
     },

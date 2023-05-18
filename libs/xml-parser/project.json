@@ -35,16 +35,6 @@
       },
       "outputs": ["coverage/libs/xml-parser"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "xml-parser:build:production",
-          "xml-parser:build-schematics",
-          "xml-parser:build-migrations"
-        ]
-      }
-    },
     "update-package-group": {
       "executor": "@rxap/plugin-library:update-package-group"
     },

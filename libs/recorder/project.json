@@ -35,16 +35,6 @@
       },
       "outputs": ["coverage/libs/recorder"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "recorder:build:production",
-          "recorder:build-schematics",
-          "recorder:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {

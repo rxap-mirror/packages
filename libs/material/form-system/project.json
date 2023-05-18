@@ -35,17 +35,6 @@
       },
       "outputs": ["coverage/libs/material/form-system"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "material-form-system:build:production",
-          "material-form-system:scss-bundle",
-          "material-form-system:build-schematics",
-          "material-form-system:build-migrations"
-        ]
-      }
-    },
     "scss-bundle": {
       "executor": "@rxap/plugin-scss-bundle:build",
       "options": {

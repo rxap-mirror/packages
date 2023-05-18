@@ -76,17 +76,6 @@
         }
       }
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "layout:build:production",
-          "layout:scss-bundle",
-          "layout:build-schematics",
-          "layout:build-migrations"
-        ]
-      }
-    },
     "scss-bundle": {
       "executor": "@rxap/plugin-scss-bundle:build",
       "options": {

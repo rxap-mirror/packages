@@ -34,17 +34,6 @@
         "passWithNoTests": true
       }
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "upload:build:production",
-          "upload:build-schematics",
-          "upload:build-migrations",
-          "upload:scss-bundle"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {
