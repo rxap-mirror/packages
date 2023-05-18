@@ -35,17 +35,6 @@
       },
       "outputs": ["coverage/libs/data-grid"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "data-grid:build:production",
-          "data-grid:scss-bundle",
-          "data-grid:build-schematics",
-          "data-grid:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {

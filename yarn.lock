@@ -351,6 +351,17 @@
     ora "5.4.1"
     rxjs "7.8.1"
 
+"@angular-devkit/schematics@16.0.2", "@angular-devkit/schematics@^16.0.1":
+  version "16.0.2"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-16.0.2.tgz#231398703ce50d7c44e7c9853e9fb39307c89556"
+  integrity sha512-z9GDVHhpEXvOQeekFuGghoFR/HikI66LoEifG+jT659N5ggFLJ88hDnXxeR21yUy3BjvnI+c3gRaOnccWAA7ug==
+  dependencies:
+    "@angular-devkit/core" "16.0.2"
+    jsonc-parser "3.2.0"
+    magic-string "0.30.0"
+    ora "5.4.1"
+    rxjs "7.8.1"
+
 "@angular-devkit/schematics@9":
   version "9.1.15"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-9.1.15.tgz#b5ff0ea5072501cb8f39e8a2873bcf14c5dca5fc"
@@ -370,17 +381,6 @@
     magic-string "0.25.7"
     ora "5.4.1"
     rxjs "6.6.7"
-
-"@angular-devkit/schematics@^16.0.1":
-  version "16.0.2"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-16.0.2.tgz#231398703ce50d7c44e7c9853e9fb39307c89556"
-  integrity sha512-z9GDVHhpEXvOQeekFuGghoFR/HikI66LoEifG+jT659N5ggFLJ88hDnXxeR21yUy3BjvnI+c3gRaOnccWAA7ug==
-  dependencies:
-    "@angular-devkit/core" "16.0.2"
-    jsonc-parser "3.2.0"
-    magic-string "0.30.0"
-    ora "5.4.1"
-    rxjs "7.8.1"
 
 "@angular-eslint/bundled-angular-compiler@16.0.2":
   version "16.0.2"
@@ -7680,29 +7680,29 @@
     estree-walker "^2.0.2"
     picomatch "^2.3.1"
 
-"@rxap/plugin-library-publish@16.0.0-dev.1":
-  version "16.0.0-dev.1"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-library-publish/-/plugin-library-publish-16.0.0-dev.1.tgz#d10f7ba921ac081133b715d6a9a1e321673dfc51"
-  integrity sha512-znQEmE/yhPGI/EsMf+B5jksPG0GT7TkWImyTF0PJVCYBODQ9k1rI48eDVDtC+ChGkyqT7UfSW1uj8pMaIcm29Q==
+"@rxap/plugin-library-publish@16.0.0-dev.2":
+  version "16.0.0-dev.2"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-library-publish/-/plugin-library-publish-16.0.0-dev.2.tgz#35c206befe844017d2d2887fbd42daea73588cea"
+  integrity sha512-rhWhCLGurW1ZSr1kYJ3hzoWireTzE1xPIPuPYN0OloFA65SF23QGd1WOydBjw509Rg3tYfG02S17jdWZtXDGWg==
   dependencies:
     "@angular-devkit/architect" "0.1600.1"
     "@angular-devkit/core" "16.0.1"
     "@angular-devkit/schematics" "16.0.1"
 
-"@rxap/plugin-library-schematics@16.0.0-dev.1":
-  version "16.0.0-dev.1"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-library-schematics/-/plugin-library-schematics-16.0.0-dev.1.tgz#dcb52fb68da6517f27aeb6d7f0a0528eba2af997"
-  integrity sha512-maTTUZVson3qSjAqW5rzQhxYKWzJFoLHfxhTyqEs6f76RlZ8RLLHEuBrJYoN6bLI/U5RLwV2CxpWjuL+s+Bc/Q==
+"@rxap/plugin-library-schematics@16.0.0-dev.2":
+  version "16.0.0-dev.2"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-library-schematics/-/plugin-library-schematics-16.0.0-dev.2.tgz#0ec99c6c761bd7fc12cc7b4adc124a324581344f"
+  integrity sha512-vYDsOfL1WngJeNopIHrfiFXH46UNXstsCMj6ue9D+TTnrWojzDZw4F+s1pWxs30Y7//Owiu7i+SluOESQv3D6g==
   dependencies:
     "@angular-devkit/architect" "0.1102"
     "@angular-devkit/core" "9"
     "@angular-devkit/schematics" "9"
     glob "7.1.7"
 
-"@rxap/plugin-library@16.0.0-dev.1":
-  version "16.0.0-dev.1"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-library/-/plugin-library-16.0.0-dev.1.tgz#74a5dfdc6f65a3246245eecc6fd81d0df998652a"
-  integrity sha512-8pWIMn23ZElMoWIFSNxxxndLOqhWA5hJgyAa6E5i1PTlA+SAEwdoXG4G+Rk7sRa+1fPjsJjXk46OuB2aalbA2w==
+"@rxap/plugin-library@16.0.0-dev.3":
+  version "16.0.0-dev.3"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-library/-/plugin-library-16.0.0-dev.3.tgz#bc6a7a06978a728bb970e4e5aaaab9df61d9a2c7"
+  integrity sha512-dpWaXY/hGhYBQmltMKc0rCI515TMXvdp5SOmyvn5SWbaREPd2gHPTinnH57vjdRjp3w48xMxf3vOC/DbX1vjmg==
   dependencies:
     "@angular-devkit/architect" "^0.1600.1"
     "@angular-devkit/core" "^16.0.1"
@@ -7714,20 +7714,10 @@
     tslib "^2.3.1"
     typescript "^5.0.4"
 
-"@rxap/plugin-pack@16.0.0-dev.1":
-  version "16.0.0-dev.1"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-pack/-/plugin-pack-16.0.0-dev.1.tgz#ff99dce5bf9655f436832485ffe21d2f5cd5033e"
-  integrity sha512-LnGgmRwRl54udjEQDqU3JS+C3WDdtKHL+KGjiwoPhbtzCnpMrpJOSrIBLLSUnlBnMvkKHfZWSvfsebniExJNjg==
-  dependencies:
-    "@angular-devkit/architect" "^0.1600.1"
-    "@angular-devkit/schematics" "^16.0.1"
-    "@rxap/schematics-utilities" "^16.0.0-dev.0"
-    tslib "^2.3.1"
-
-"@rxap/plugin-readme-generator@16.0.0-dev.1":
-  version "16.0.0-dev.1"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-readme-generator/-/plugin-readme-generator-16.0.0-dev.1.tgz#89e2540a033c570a0da2288e8f0f4ef0242b4116"
-  integrity sha512-lgj66qvTgaNrmlYcyVjwR8VeKVs4lrspCcA4C1kokn7WM4LiBF7cVfEK2Qt4FUpwAEfaL/uW776vYC8M5v1QSg==
+"@rxap/plugin-readme-generator@16.0.0-dev.3":
+  version "16.0.0-dev.3"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-readme-generator/-/plugin-readme-generator-16.0.0-dev.3.tgz#a787ac9543a54d1228fec1bb086983de1e589d13"
+  integrity sha512-UJXLTzteBx6Kcnl01hTBEca4Itgmu8K8QIHhr+IaKdnG6uV9ELIYJynx2OkeOPOiVfPgXc2Rqqog3LKX3n1MVA==
   dependencies:
     "@angular-devkit/architect" "^0.1600.1"
     "@angular-devkit/core" "^16.0.1"
@@ -7736,10 +7726,10 @@
     handlebars "^4.7.7"
     tslib "^2.3.1"
 
-"@rxap/plugin-scss-bundle@16.0.0-dev.1":
-  version "16.0.0-dev.1"
-  resolved "https://registry.yarnpkg.com/@rxap/plugin-scss-bundle/-/plugin-scss-bundle-16.0.0-dev.1.tgz#c3ab8f07d0544e37f89097aeff8ccc30b66b57b7"
-  integrity sha512-1BtDwSzzhHnfPD5lIK9LHywlAE3ssGL+dBIkkNgVDhVDE486A01exdn3sSf8mXcZLzd3vUGyE3k2qYA9rAH4Nw==
+"@rxap/plugin-scss-bundle@16.0.0-dev.3":
+  version "16.0.0-dev.3"
+  resolved "https://registry.yarnpkg.com/@rxap/plugin-scss-bundle/-/plugin-scss-bundle-16.0.0-dev.3.tgz#c4e15b4287e93dd6aaae0297b3d5ff8b0160f8a1"
+  integrity sha512-AY9NGikS1CYbYpdtOfWkvLmTw+nEuNybHQWOaMnbe5fSuoozbkVLi9S9CcdwH23CTNSDAT2McHHFspIBsv9rOw==
   dependencies:
     "@angular-devkit/architect" "^0.1600.1"
     "@angular-devkit/core" "^16.0.1"
@@ -7748,23 +7738,31 @@
     globs "^0.1.4"
     tslib "^2.3.1"
 
-"@rxap/schematics-open-api@16.0.0-dev.0":
-  version "16.0.0-dev.0"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics-open-api/-/schematics-open-api-16.0.0-dev.0.tgz#c331d5060bc061d8ad5a80a28c427b0158c5edbe"
-  integrity sha512-I5mdp0YiEQVFbKycLfmuH4pdK9jIIzayivgHSCq0JGFeoXeEgbkPt8eLKT5LaNxRuGnf/+K1HbYlFpZYgPI+Fg==
+"@rxap/schematics-open-api@16.0.0-dev.2":
+  version "16.0.0-dev.2"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-open-api/-/schematics-open-api-16.0.0-dev.2.tgz#069e0d5020c14f19491aeff958a08dfb717fbaf4"
+  integrity sha512-hnR7P5IQ35m4turDFbbFEWaI9YijzgkB9XtD4VobC+QKH/BCDOLB6VdO6bpSHRr89qLgwYa7yn/XTUIZzknF/w==
   dependencies:
     semver "^7.3.5"
     tslib "^2.3.1"
 
-"@rxap/schematics-ts-morph@16.0.0-dev.0":
-  version "16.0.0-dev.0"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics-ts-morph/-/schematics-ts-morph-16.0.0-dev.0.tgz#92b278246265c7a265b1e5b168b65bc372a65e89"
-  integrity sha512-0Ud5kaOijfuTEEYHQ8Kt0wT5+EMgkKvWbFSnvXgU+UTgcIfj5O10UgV8M1tPfjvpJykEdLEt05ZkMYey8ZU1OA==
+"@rxap/schematics-ts-morph@16.0.0-dev.1":
+  version "16.0.0-dev.1"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-ts-morph/-/schematics-ts-morph-16.0.0-dev.1.tgz#d4cc7894b4427e3075a66e1f415307e74f6377b1"
+  integrity sha512-++BjXka7lsy9j7jlNyLM9R2BMBGch0UyP7aRJqzqI+Nphv1I3jU+ThXJr8twjSt+zBUIFiXIMTHOi95VHBhWhQ==
   dependencies:
     semver "^7.3.5"
     tslib "^2.3.1"
 
-"@rxap/schematics-utilities@16.0.0-dev.0", "@rxap/schematics-utilities@^16.0.0-dev.0":
+"@rxap/schematics-utilities@16.0.0-dev.1":
+  version "16.0.0-dev.1"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-16.0.0-dev.1.tgz#525e34c0352a0b91ba04855ac0cc278df5af62fc"
+  integrity sha512-E5y+q2xdX0692aHVtL4BouHwfHfNyGoKNOzvtyAP814JmKJSaHpwOTtTIwJDSh5WnFID6hkPQ10IsnChWNMTSw==
+  dependencies:
+    semver "^7.3.5"
+    tslib "^2.3.1"
+
+"@rxap/schematics-utilities@^16.0.0-dev.0":
   version "16.0.0-dev.0"
   resolved "https://registry.yarnpkg.com/@rxap/schematics-utilities/-/schematics-utilities-16.0.0-dev.0.tgz#f5b8b50b238d2c9ee263d047fbc5eb6f03ebcc7c"
   integrity sha512-F0fYKX0KfaA0SGbQ9y31a7Zb8OeChVd8wk+OzczblFTIuiM1x46mAEwFTirLmyAuOBFGRUvsjcd6KRHTdSi5Tw==
@@ -7772,10 +7770,10 @@
     semver "^7.3.5"
     tslib "^2.3.1"
 
-"@rxap/schematics@16.0.0-dev.0":
-  version "16.0.0-dev.0"
-  resolved "https://registry.yarnpkg.com/@rxap/schematics/-/schematics-16.0.0-dev.0.tgz#ae29b4b308646bbd4e89095c757ace5355bdb0b3"
-  integrity sha512-MrV8YBSeeAs1JBU/xHDzRBGwa3RmgYYNaCK4m7eDRZqCz/NXWT5eNk3L8R6YrIJeG+DeDL7ZECjGYcEo2Kp2LQ==
+"@rxap/schematics@16.0.0-dev.1":
+  version "16.0.0-dev.1"
+  resolved "https://registry.yarnpkg.com/@rxap/schematics/-/schematics-16.0.0-dev.1.tgz#bea72f6376242460d065c7d210c7a2ed3f61b479"
+  integrity sha512-F6HF9OoqeYK3WyZD7vW01YsQ5MkzvChAQuM/DqBzDXvbwpc8W93G7Xe264DC4FPxa+sQErPCxpaU7aaACwGqGg==
   dependencies:
     resolve "1.22.0"
     semver "^7.3.5"
@@ -7788,6 +7786,15 @@
   dependencies:
     "@angular-devkit/core" "15.0.3"
     "@angular-devkit/schematics" "15.0.3"
+    jsonc-parser "3.2.0"
+
+"@schematics/angular@16.0.2":
+  version "16.0.2"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-16.0.2.tgz#9f40b6f1c64748f50735e22af1813e0df1e0bda3"
+  integrity sha512-uur0oSAKu9vkFJuXhSiMjkhgLb7RFtAkUpED7Mx5APXIgAvNylOVQXONmBHBY/2mBJDjt+7giLKweAqSK9PtTg==
+  dependencies:
+    "@angular-devkit/core" "16.0.2"
+    "@angular-devkit/schematics" "16.0.2"
     jsonc-parser "3.2.0"
 
 "@sideway/address@^4.1.3":
@@ -19461,7 +19468,7 @@ ng-mocks@^13.0.2:
   resolved "https://registry.yarnpkg.com/ng-mocks/-/ng-mocks-13.0.2.tgz#0182e83fe1e6a4a6e441300972eef3acadf7697a"
   integrity sha512-3CJt3WMI9mZLHEdG2hOms648lQJbrYN4zfwT0/Wi73c6fYTblUdXQdaqYXHkcZDicWTUGbUASrdgSXg5teB0bA==
 
-ng-packagr@~16.0.0:
+ng-packagr@16.0.1:
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-16.0.1.tgz#7f1f33b676911208f4f8907462dba060ca5bd4d6"
   integrity sha512-MiJvSR+8olzCViwkQ6ihHLFWVNLdsfUNPCxrZqR7u1nOC/dXlWPf//l2IG0KLdVhHNCiM64mNdwaTpgDEBMD3w==

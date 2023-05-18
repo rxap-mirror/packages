@@ -42,17 +42,6 @@
         "ignoreImports": ["~@angular/.*"]
       }
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "components:build:production",
-          "components:scss-bundle",
-          "components:build-schematics",
-          "components:build-migrations"
-        ]
-      }
-    },
     "storybook": {
       "executor": "@nx/storybook:storybook",
       "options": {

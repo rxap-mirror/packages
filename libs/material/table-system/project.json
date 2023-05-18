@@ -35,17 +35,6 @@
       },
       "outputs": ["coverage/libs/material/table-system"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "material-table-system:build:production",
-          "material-table-system:scss-bundle",
-          "material-table-system:build-schematics",
-          "material-table-system:build-migrations"
-        ]
-      }
-    },
     "scss-bundle": {
       "executor": "@rxap/plugin-scss-bundle:build",
       "options": {

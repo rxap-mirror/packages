@@ -35,16 +35,6 @@
       },
       "outputs": ["coverage/libs/life-cycle"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "life-cycle:build:production",
-          "life-cycle:build-schematics",
-          "life-cycle:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {

@@ -35,16 +35,6 @@
       },
       "outputs": ["coverage/libs/across-tabs"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "across-tabs:build:production",
-          "across-tabs:build-schematics",
-          "across-tabs:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {

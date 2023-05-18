@@ -47,24 +47,6 @@
       },
       "outputs": ["{options.outputFile}"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "socket-io:build",
-          "socket-io:build-schematics",
-          "socket-io:build-migrations"
-        ]
-      },
-      "configurations": {
-        "production": {
-          "targets": ["socket-io:build:production"]
-        },
-        "development": {
-          "targets": ["socket-io:build:development"]
-        }
-      }
-    },
     "readme": {
       "executor": "@rxap/plugin-readme-generator:library"
     },

@@ -47,17 +47,6 @@
       },
       "outputs": ["{options.outputFile}"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "material-popover-edit:build:production",
-          "material-popover-edit:scss-bundle",
-          "material-popover-edit:build-schematics",
-          "material-popover-edit:build-migrations"
-        ]
-      }
-    },
     "scss-bundle": {
       "executor": "@rxap/plugin-scss-bundle:build",
       "options": {

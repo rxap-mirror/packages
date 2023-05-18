@@ -43,16 +43,6 @@
         "ignoreImports": ["~@angular/.*"]
       }
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "environment:build:production",
-          "environment:build-schematics",
-          "environment:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {

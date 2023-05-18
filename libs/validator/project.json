@@ -47,16 +47,6 @@
       },
       "outputs": ["{options.outputFile}"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "validator:build:production",
-          "validator:build-schematics",
-          "validator:build-migrations"
-        ]
-      }
-    },
     "readme": {
       "executor": "@rxap/plugin-readme-generator:library"
     },

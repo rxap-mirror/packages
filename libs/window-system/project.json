@@ -35,17 +35,6 @@
       },
       "outputs": ["coverage/libs/window-system"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "window-system:build:production",
-          "window-system:scss-bundle",
-          "window-system:build-schematics",
-          "window-system:build-migrations"
-        ]
-      }
-    },
     "scss-bundle": {
       "executor": "@rxap/plugin-scss-bundle:build",
       "options": {

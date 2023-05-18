@@ -43,17 +43,6 @@
         "ignoreImports": ["~@angular/.*"]
       }
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "form-window-system:build:production",
-          "form-window-system:scss-bundle",
-          "form-window-system:build-schematics",
-          "form-window-system:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {

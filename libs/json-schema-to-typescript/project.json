@@ -48,16 +48,6 @@
       },
       "outputs": ["coverage/libs/json-schema-to-typescript"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "json-schema-to-typescript:build",
-          "json-schema-to-typescript:build-schematics",
-          "json-schema-to-typescript:build-migrations"
-        ]
-      }
-    },
     "publish": {
       "executor": "@rxap/plugin-library-publish:publish",
       "options": {

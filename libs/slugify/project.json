@@ -35,16 +35,6 @@
       },
       "outputs": ["coverage/libs/slugify"]
     },
-    "pack": {
-      "executor": "@rxap/plugin-pack:build",
-      "options": {
-        "targets": [
-          "slugify:build:production",
-          "slugify:build-schematics",
-          "slugify:build-migrations"
-        ]
-      }
-    },
     "schematics": {
       "executor": "@rxap/plugin-library-schematics:build",
       "options": {
