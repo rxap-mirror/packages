@@ -35,9 +35,9 @@
     "rxjs": "^6.6.0"
   },
   "dependencies": {
-    "@rxap/schematics-open-api": "^16.0.0-dev.0",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.0",
-    "@rxap/schematics-utilities": "^16.0.0-dev.0",
+    "@rxap/schematics-open-api": "^16.0.0-dev.2",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.1",
+    "@rxap/schematics-utilities": "^16.0.0-dev.1",
     "ajv-oai": "^1.2.1",
     "openapi-types": "^10.0.0",
     "ts-morph": "^13.0.3",
