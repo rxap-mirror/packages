@@ -1,6 +1,6 @@
 {
   "name": "@rxap/validator",
-  "version": "2.0.0",
+  "version": "3.0.0-dev.0",
   "dependencies": {
     "tslib": "^2.3.1"
   },

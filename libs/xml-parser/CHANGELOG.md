@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@15.0.0...@rxap/xml-parser@16.0.0-dev.0) (2023-05-18)
+
+
+### chore
+
+* upgrade to nrwl 16.x.x ([12dd87e](https://gitlab.com/rxap/packages/commit/12dd87ef38d465c8af33cd26f7d5d7714bf7c392))
+
+
+### BREAKING CHANGES
+
+* upgrade nrwl 16.x.x
+
+
+
+
+
 # [15.0.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@14.1.0...@rxap/xml-parser@15.0.0) (2023-05-17)
 
 
