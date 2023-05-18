@@ -34,7 +34,7 @@
     "rxjs": "^6.6.0"
   },
   "dependencies": {
-    "@rxap/schematics-utilities": "^16.0.0-dev.0",
+    "@rxap/schematics-utilities": "^16.0.0-dev.1",
     "@rxap/validator": "^3.0.0-dev.0",
     "ts-morph": "^13.0.3",
     "tslib": "^2.3.1"
