@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@16.0.0-dev.0...@rxap/authorization@16.0.0-dev.1) (2023-05-18)
+
+
+### Bug Fixes
+
+* update rxap package dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+
+
+
+
+
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@15.0.0...@rxap/authorization@16.0.0-dev.0) (2023-05-18)
 
 

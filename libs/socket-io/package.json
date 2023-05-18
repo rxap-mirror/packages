@@ -1,6 +1,6 @@
 {
   "name": "@rxap/socket-io",
-  "version": "16.0.0-dev.0",
+  "version": "16.0.0-dev.1",
   "dependencies": {
     "socket.io-client": "^2.2.0",
     "tslib": "^2.3.1"

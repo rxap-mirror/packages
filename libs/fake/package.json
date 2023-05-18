@@ -1,6 +1,6 @@
 {
   "name": "@rxap/fake",
-  "version": "16.0.0-dev.0",
+  "version": "16.0.0-dev.1",
   "schematics": "./collection.json",
   "ng-update": {
     "migrations": "./migration.json",
