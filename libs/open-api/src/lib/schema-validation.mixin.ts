@@ -236,16 +236,16 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
               const first = value.shift();
 
-              params = params.set(parameterName, first);
+              params = params.set(parameterName, typeof first === 'object' ? JSON.stringify(first) : first);
 
               for (const item of value) {
-                params = params.append(parameterName, item);
+                params = params.append(parameterName, typeof item === 'object' ? JSON.stringify(item) : item);
               }
 
             }
 
           } else {
-            params = params.set(parameter.name, value);
+            params = params.set(parameter.name, typeof value === 'object' ? JSON.stringify(value) : value);
           }
 
         }
@@ -276,16 +276,16 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
               const first = value.shift();
 
-              headers = headers.set(parameters.name, first);
+              headers = headers.set(parameters.name, typeof first === 'object' ? JSON.stringify(first) : first);
 
               for (const item of value) {
-                headers = headers.append(parameters.name, item);
+                headers = headers.append(parameters.name, typeof item === 'object' ? JSON.stringify(item) : item);
               }
 
             }
 
           } else {
-            headers = headers.set(parameter.name, value);
+            headers = headers.set(parameter.name, typeof value === 'object' ? JSON.stringify(value) : value);
           }
 
         }
@@ -307,7 +307,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
       for (const parameter of operationParameters.filter(p => p.in === 'path')) {
 
         if (parameters.hasOwnProperty(parameter.name)) {
-          pathParams[ parameter.name ] = encodeURIComponent(parameters[ parameter.name ]);
+          pathParams[ parameter.name ] = encodeURIComponent(typeof parameters[ parameter.name ] === 'object' ? JSON.stringify(parameters[ parameter.name ]) : parameters[ parameter.name ]);
         }
 
       }
