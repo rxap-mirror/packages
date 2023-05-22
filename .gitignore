@@ -1,5 +1,6 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
-
+migrate-to-component-system.txt
+storybook-migration-summary.md
 /chromium-user-data/
 migrations.json
 /libs/rxap
