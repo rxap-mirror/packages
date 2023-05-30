@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.5.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.5.1...@rxap/data-source@13.5.2) (2023-05-30)
+
+
+### Bug Fixes
+
+* support paginator set length with id mapper ([f9568f5](https://gitlab.com/rxap/packages/commit/f9568f59ce1e2b13f105b7ae8f95b1bac135a875))
+
+
+
+
+
 ## [13.5.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.5.0...@rxap/data-source@13.5.1) (2023-05-30)
 
 
