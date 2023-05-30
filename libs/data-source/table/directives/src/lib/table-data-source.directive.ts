@@ -11,7 +11,8 @@ import {
   SortLike,
   FilterLike,
   AbstractTableDataSource,
-  RxapTableDataSourceError
+  RxapTableDataSourceError,
+  DynamicTableDataSource
 } from '@rxap/data-source/table';
 import { Required } from '@rxap/utilities';
 import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
@@ -39,14 +40,20 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
       if (!(dataSource instanceof AbstractTableDataSource)) {
         throw new RxapTableDataSourceError('The data source is not a AbstractTableDataSource', '');
       }
-      if (dataSource.paginator !== this.paginator) {
-        dataSource.paginator = this.paginator;
-      }
-      if (dataSource.sort !== this.sort) {
-        dataSource.sort = this.sort;
-      }
-      if (dataSource.filter !== this.filter) {
-        dataSource.filter = this.filter;
+      if (this.viewer.id && dataSource instanceof DynamicTableDataSource) {
+        dataSource.setPaginator(this.paginator, this.viewer.id);
+        dataSource.setSort(this.sort, this.viewer.id);
+        dataSource.setFilter(this.filter, this.viewer.id);
+      } else {
+        if (dataSource.paginator !== this.paginator) {
+          dataSource.paginator = this.paginator;
+        }
+        if (dataSource.sort !== this.sort) {
+          dataSource.sort = this.sort;
+        }
+        if (dataSource.filter !== this.filter) {
+          dataSource.filter = this.filter;
+        }
       }
     }
 
