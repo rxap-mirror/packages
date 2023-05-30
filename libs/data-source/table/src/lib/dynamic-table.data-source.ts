@@ -122,7 +122,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
     this._data$ = this.createTableDataLoader(this.paginator, this.sort, this.filter, this.parameters)
   }
 
-  private createTableDataLoader(paginatorLike?: PaginatorLike, sortLike?: SortLike, filterLike?: FilterLike, parametersLike?: Observable<Parameters>) {
+  private createTableDataLoader(paginatorLike?: PaginatorLike, sortLike?: SortLike, filterLike?: FilterLike, parametersLike?: Observable<Parameters>, id?: string) {
     return combineLatest([
       paginatorLike?.page?.pipe(
         startWith({
@@ -154,7 +154,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
         };
         return {
           ...clone(tableEvent),
-          setTotalLength: this.setTotalLength.bind(this)
+          setTotalLength: this.setTotalLengthFactory(id)
         };
       }),
       distinctUntilChanged((a, b) => equals(a, b)),
@@ -178,7 +178,8 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
         this.paginatorMap.get(viewer.id),
         this.sortMap.get(viewer.id),
         this.filterMap.get(viewer.id),
-        this.parametersMap.get(viewer.id)
+        this.parametersMap.get(viewer.id),
+        viewer.id,
       );
     }
     return data;
@@ -208,9 +209,25 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
     return this.paginatorMap.has(id) || this.sortMap.has(id) || this.filterMap.has(id) || this.parametersMap.has(id);
   }
 
-  public setTotalLength(length: number): void {
-    if (this.paginator) {
-      this.paginator.length = length;
+  public setTotalLengthFactory(id?: string) {
+    const paginator: PaginatorLike | undefined = id ? this.paginatorMap.get(id) : this.paginator;
+    function setTotalLength(length: number): void {
+      if (paginator) {
+        paginator.length = length;
+      }
+    }
+    return setTotalLength;
+  }
+
+  public setTotalLength(length: number, id?: string): void {
+    if (id) {
+      if (this.paginatorMap.has(id)) {
+        this.paginatorMap.get(id)!.length = length;
+      }
+    } else {
+      if (this.paginator) {
+        this.paginator.length = length;
+      }
     }
   }
 
