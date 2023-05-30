@@ -27,7 +27,7 @@
     "@angular/platform-browser": "^16.0.2",
     "@angular/platform-browser-dynamic": "^16.0.2",
     "@angular/router": "^16.0.2",
-    "@rxap/data-source": "^16.0.0-dev.1",
+    "@rxap/data-source": "^16.0.0-dev.2",
     "@rxap/definition": "^16.0.0-dev.1",
     "@rxap/directives": "^16.0.0-dev.1",
     "@rxap/forms": "^16.0.0-dev.1",

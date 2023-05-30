@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.1...@rxap/data-source@16.0.0-dev.2) (2023-05-30)
+
+
+### Bug Fixes
+
+* support paginator set length with id mapper ([e318860](https://gitlab.com/rxap/packages/commit/e318860a15abe5ed30ce4232a260e677f344c52b))
+* use the set methods for DynamicTableDataSource ([6a8b8d2](https://gitlab.com/rxap/packages/commit/6a8b8d2fda0cb78b6e4d6c0973e4a7387b697e24))
+
+
+
+
+
 # [16.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.0...@rxap/data-source@16.0.0-dev.1) (2023-05-18)
 
 
