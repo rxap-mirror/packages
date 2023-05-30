@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.5.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.5.0...@rxap/data-source@13.5.1) (2023-05-30)
+
+
+### Bug Fixes
+
+* use the set methods for DynamicTableDataSource ([c9c2156](https://gitlab.com/rxap/packages/commit/c9c2156e3379ba83dbd0b58e34223c8e6e2cb48a))
+
+
+
+
+
 # [13.5.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.4.3...@rxap/data-source@13.5.0) (2023-05-17)
 
 
