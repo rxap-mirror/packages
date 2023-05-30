@@ -31,7 +31,7 @@
     "@angular/router": "^16.0.2",
     "@rxap/components": "^16.0.0-dev.1",
     "@rxap/config": "^16.0.0-dev.1",
-    "@rxap/data-source": "^16.0.0-dev.1",
+    "@rxap/data-source": "^16.0.0-dev.2",
     "@rxap/definition": "^16.0.0-dev.1",
     "@rxap/directives": "^16.0.0-dev.1",
     "@rxap/form-system": "^16.0.0-dev.1",

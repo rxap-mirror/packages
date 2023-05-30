@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.1...@rxap/open-api@16.0.0-dev.2) (2023-05-30)
+
+
+### Bug Fixes
+
+* ensure http params are converted to primitive types ([d24a4ff](https://gitlab.com/rxap/packages/commit/d24a4ff6aa77303171bc6bf9b53c80a207234f03))
+
+
+
+
+
 # [16.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.0...@rxap/open-api@16.0.0-dev.1) (2023-05-18)
 
 
