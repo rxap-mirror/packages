@@ -12,7 +12,7 @@ import {
   tap
 } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector:        'rxap-auth-loading',
@@ -21,7 +21,7 @@ import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-ba
   host:            { class: 'rxap-auth-loading' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:      true,
-  imports:         [ MatLegacyProgressBarModule ]
+  imports:         [ MatProgressBarModule ]
 })
 export class LoadingComponent implements OnInit, OnDestroy {
   public subscription?: Subscription;

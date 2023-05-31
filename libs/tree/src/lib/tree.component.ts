@@ -45,14 +45,14 @@ import {
   NodeGetStyleFunction
 } from '@rxap/utilities/rxjs';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ContenteditableDirective } from '@rxap/contenteditable';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyCheckboxModule } from '@angular/material/legacy-checkbox';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { IconDirective } from '@rxap/material-directives/icon';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTreeModule } from '@angular/material/tree';
-import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ExtendedModule } from '@angular/flex-layout/extended';
 import {
   NgStyle,
@@ -73,14 +73,14 @@ import { FlexModule } from '@angular/flex-layout/flex';
     NgStyle,
     ExtendedModule,
     NgIf,
-    MatLegacyProgressBarModule,
+    MatProgressBarModule,
     MatTreeModule,
     MatIconModule,
     IconDirective,
-    MatLegacyCheckboxModule,
-    MatLegacyButtonModule,
+    MatCheckboxModule,
+    MatButtonModule,
     ContenteditableDirective,
-    MatLegacyProgressSpinnerModule,
+    MatProgressSpinnerModule,
     MatDividerModule,
     PortalModule,
     AsyncPipe

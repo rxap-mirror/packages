@@ -4,11 +4,11 @@ import {
   Inject
 } from '@angular/core';
 import {
-  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
-  MatLegacyDialogModule
-} from '@angular/material/legacy-dialog';
+  MAT_DIALOG_DATA,
+  MatDialogModule
+} from '@angular/material/dialog';
 import { RXAP_DIALOG_HTTP_ERROR_MESSAGE_IS_PRODUCTION } from './tokens';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import {
   JsonViewerComponent,
   CopyToClipboardComponent
@@ -29,15 +29,15 @@ import {
   styleUrls:       [ './http-error-message.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:      true,
-  imports:         [
-    MatLegacyDialogModule,
+  imports: [
+    MatDialogModule,
     DataGridReadonlyComponent,
     DataGridRowDefDirective,
     NgIf,
     DataGridCellDefDirective,
     CopyToClipboardComponent,
     JsonViewerComponent,
-    MatLegacyButtonModule,
+    MatButtonModule,
     JsonPipe
   ]
 })

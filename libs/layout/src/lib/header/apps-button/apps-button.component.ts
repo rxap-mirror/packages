@@ -13,7 +13,7 @@ import {
   CdkOverlayOrigin,
   CdkConnectedOverlay
 } from '@angular/cdk/overlay';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import {
   NgIf,
   NgStyle,
@@ -42,9 +42,9 @@ export interface EmptyAppsButtonGridItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-apps-button' },
   standalone:      true,
-  imports:         [
+  imports: [
     NgIf,
-    MatLegacyButtonModule,
+    MatButtonModule,
     CdkOverlayOrigin,
     MatIconModule,
     CdkConnectedOverlay,

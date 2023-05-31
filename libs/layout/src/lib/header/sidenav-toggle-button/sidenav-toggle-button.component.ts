@@ -7,7 +7,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Required } from '@rxap/utilities';
 import { MatIconModule } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector:        'rxap-sidenav-toggle-button',
@@ -16,7 +16,7 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-sidenav-toggle-button' },
   standalone:      true,
-  imports:         [ MatLegacyButtonModule, NgIf, MatIconModule ]
+  imports:         [ MatButtonModule, NgIf, MatIconModule ]
 })
 export class SidenavToggleButtonComponent {
 

@@ -24,15 +24,15 @@ import {
   tap
 } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
-import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {
   NgClass,
   NgIf,
   AsyncPipe
 } from '@angular/common';
 import { ExtendedModule } from '@angular/flex-layout/extended';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { FlexModule } from '@angular/flex-layout/flex';
 import '@angular/localize/init';
 
@@ -45,10 +45,10 @@ import '@angular/localize/init';
   standalone:      true,
   imports:         [
     FlexModule,
-    MatLegacyButtonModule,
+    MatButtonModule,
     ExtendedModule,
     NgClass,
-    MatLegacyProgressSpinnerModule,
+    MatProgressSpinnerModule,
     NgIf,
     AsyncPipe
   ]

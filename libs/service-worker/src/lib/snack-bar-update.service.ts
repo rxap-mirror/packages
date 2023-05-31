@@ -13,9 +13,9 @@ import {
 } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import {
-  MatLegacySnackBar as MatSnackBar,
-  MatLegacySnackBarModule as MatSnackBarModule
-} from '@angular/material/legacy-snack-bar';
+  MatSnackBar,
+  MatSnackBarModule
+} from '@angular/material/snack-bar';
 import { log } from '@rxap/utilities/rxjs';
 
 @Injectable({

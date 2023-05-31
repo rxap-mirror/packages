@@ -25,7 +25,7 @@ import {
 import { WindowResizerComponent } from '../window-resizer/window-resizer.component';
 import { WindowRef } from '../window-ref';
 import { LoadingIndicatorService } from '@rxap/services';
-import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PortalModule } from '@angular/cdk/portal';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { WindowToolBarComponent } from '../window-tool-bar/window-tool-bar.component';
@@ -51,7 +51,7 @@ export interface Point {
     class: 'rxap-window-container'
   },
   standalone:      true,
-  imports:         [
+  imports: [
     CdkDrag,
     FlexModule,
     ExtendedModule,
@@ -61,7 +61,7 @@ export interface Point {
     NgIf,
     MatToolbarModule,
     PortalModule,
-    MatLegacyProgressBarModule,
+    MatProgressBarModule,
     WindowResizerComponent,
     AsyncPipe
   ]

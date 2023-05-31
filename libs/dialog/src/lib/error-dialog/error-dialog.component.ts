@@ -7,11 +7,11 @@ import {
 } from '@angular/core';
 import { RxapError } from '@rxap/utilities';
 import {
-  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
-  MatLegacyDialogRef as MatDialogRef,
-  MatLegacyDialogModule
-} from '@angular/material/legacy-dialog';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogModule
+} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { JsonViewerComponent } from '@rxap/components';
 import { FlexModule } from '@angular/flex-layout';
 import { NgIf } from '@angular/common';
@@ -27,11 +27,11 @@ export interface ErrorDialogMatData {
   changeDetection: ChangeDetectionStrategy.Default,
   standalone:      true,
   imports:         [
-    MatLegacyDialogModule,
+    MatDialogModule,
     NgIf,
     FlexModule,
     JsonViewerComponent,
-    MatLegacyButtonModule
+    MatButtonModule
   ]
 })
 export class ErrorDialogComponent implements AfterContentInit {

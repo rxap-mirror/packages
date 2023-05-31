@@ -10,9 +10,9 @@ import {
 } from '@angular/material/core';
 import { fadeAnimation } from '../fade-animation';
 import { RxapAuthenticationService } from '@rxap/authentication';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToggleSubject } from '@rxap/utilities/rxjs';
-import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {
   FormSubmittingDirective,
   FormSubmitFailedDirective,
@@ -20,16 +20,16 @@ import {
   FormControlErrorDirective,
   FormDirective
 } from '@rxap/forms';
-import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
-import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
-import { MatLegacyCheckboxModule } from '@angular/material/legacy-checkbox';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
 import {
   NgIf,
   AsyncPipe
 } from '@angular/common';
-import { MatLegacyInputModule } from '@angular/material/legacy-input';
-import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexModule } from '@angular/flex-layout/flex';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -55,18 +55,18 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormDirective,
     FlexModule,
     MatIconModule,
-    MatLegacyFormFieldModule,
-    MatLegacyInputModule,
+    MatFormFieldModule,
+    MatInputModule,
     FormControlErrorDirective,
     NgIf,
-    MatLegacyButtonModule,
-    MatLegacyCheckboxModule,
-    MatLegacyTooltipModule,
-    MatLegacyProgressSpinnerModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
     FormControlMarkDirtyDirective,
     FormSubmitFailedDirective,
     FormSubmittingDirective,
-    MatLegacyProgressBarModule,
+    MatProgressBarModule,
     AsyncPipe
   ]
 })

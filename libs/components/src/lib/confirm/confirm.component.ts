@@ -5,7 +5,7 @@ import {
   Output
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { FlexModule } from '@angular/flex-layout';
 
 @Component({
@@ -17,7 +17,7 @@ import { FlexModule } from '@angular/flex-layout';
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:      true,
-  imports:         [ FlexModule, MatLegacyButtonModule, MatIconModule ]
+  imports:         [ FlexModule, MatButtonModule, MatIconModule ]
 })
 export class ConfirmComponent {
 

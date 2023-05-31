@@ -23,8 +23,8 @@ import { OpenApiRemoteMethod } from '@rxap/open-api/remote-method';
 import { Method } from '@rxap/utilities/rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmDirective } from '@rxap/components';
-import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 import {
   NgIf,
   AsyncPipe
@@ -41,8 +41,8 @@ import { FlexModule } from '@angular/flex-layout/flex';
   imports:         [
     FlexModule,
     NgIf,
-    MatLegacyButtonModule,
-    MatLegacyTooltipModule,
+    MatButtonModule,
+    MatTooltipModule,
     ConfirmDirective,
     MatIconModule,
     AsyncPipe

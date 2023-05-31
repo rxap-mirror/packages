@@ -24,8 +24,8 @@ import {
 import { Method } from '@rxap/utilities/rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmDirective } from '@rxap/components';
-import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 import { NgIf } from '@angular/common';
 import { FlexModule } from '@angular/flex-layout/flex';
 
@@ -36,7 +36,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'mfd-row-controls-cell' },
   standalone:      true,
-  imports:         [ FlexModule, NgIf, MatLegacyButtonModule, MatLegacyTooltipModule, ConfirmDirective, MatIconModule ]
+  imports:         [ FlexModule, NgIf, MatButtonModule, MatTooltipModule, ConfirmDirective, MatIconModule ]
 })
 export class RowControlsCellComponent<Data extends Record<string, any> & { uuid: string }> {
 

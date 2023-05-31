@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component
 } from '@angular/core';
-import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector:        'rxap-loading',
@@ -11,7 +11,7 @@ import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-ba
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-loading' },
   standalone:      true,
-  imports:         [ MatLegacyProgressBarModule ]
+  imports:         [ MatProgressBarModule ]
 })
 export class LoadingComponent {
 }

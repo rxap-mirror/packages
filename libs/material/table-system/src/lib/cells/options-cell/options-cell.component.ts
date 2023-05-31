@@ -13,7 +13,7 @@ import {
   OnDestroy,
   Renderer2
 } from '@angular/core';
-import { MatLegacyOption as MatOption } from '@angular/material/legacy-core';
+import { MatOption } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import {
   tap,

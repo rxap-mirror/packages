@@ -4,13 +4,13 @@ import {
   Inject
 } from '@angular/core';
 import {
-  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
-  MatLegacyDialogModule
-} from '@angular/material/legacy-dialog';
+  MAT_DIALOG_DATA,
+  MatDialogModule
+} from '@angular/material/dialog';
 import { MessageDialogData } from './types';
 import { SantizationPipe } from '@rxap/pipes/santization';
 import { NgFor } from '@angular/common';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector:        'rxap-message-dialog',
@@ -19,7 +19,7 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-message-dialog' },
   standalone:      true,
-  imports:         [ MatLegacyDialogModule, MatLegacyButtonModule, NgFor, SantizationPipe ]
+  imports:         [ MatDialogModule, MatButtonModule, NgFor, SantizationPipe ]
 })
 export class MessageDialogComponent {
 

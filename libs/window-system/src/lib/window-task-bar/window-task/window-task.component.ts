@@ -6,7 +6,7 @@ import {
 import { Required } from '@rxap/utilities';
 import { WindowRef } from '../../window-ref';
 import { StopPropagationDirective } from '@rxap/directives';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { IconDirective } from '@rxap/material-directives/icon';
 import { MatIconModule } from '@angular/material/icon';
 import { ExtendedModule } from '@angular/flex-layout/extended';
@@ -23,7 +23,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
   styleUrls:       [ './window-task.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:      true,
-  imports:         [ FlexModule, NgClass, ExtendedModule, NgIf, MatIconModule, IconDirective, MatLegacyButtonModule, StopPropagationDirective, AsyncPipe ]
+  imports: [ FlexModule, NgClass, ExtendedModule, NgIf, MatIconModule, IconDirective, MatButtonModule, StopPropagationDirective, AsyncPipe ]
 })
 export class WindowTaskComponent {
 

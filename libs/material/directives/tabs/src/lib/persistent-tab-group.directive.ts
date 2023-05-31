@@ -5,7 +5,7 @@ import {
   OnInit,
   OnDestroy
 } from '@angular/core';
-import { MatLegacyTabGroup as MatTabGroup } from '@angular/material/legacy-tabs';
+import { MatTabGroup } from '@angular/material/tabs';
 import { LocalStorageService } from '@rxap/services';
 import { Required } from '@rxap/utilities';
 import { Subscription } from 'rxjs';

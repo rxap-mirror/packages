@@ -9,7 +9,7 @@ import type { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SelectRowService } from '../select-row/select-row.service';
 import { AsyncPipe } from '@angular/common';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
@@ -22,7 +22,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
   standalone:      true,
   imports:         [
     FlexModule,
-    MatLegacyButtonModule,
+    MatButtonModule,
     AsyncPipe
   ]
 })

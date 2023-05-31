@@ -13,7 +13,7 @@ import {
   AsyncPipe
 } from '@angular/common';
 import { AvatarBackgroundImageDirective } from '@rxap/directives';
-import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
@@ -25,7 +25,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
   standalone:      true,
   imports:         [
     FlexModule,
-    MatLegacyMenuModule,
+    MatMenuModule,
     AvatarBackgroundImageDirective,
     NgIf,
     MatIconModule,

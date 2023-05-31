@@ -10,7 +10,7 @@ import {
   transition,
   animate
 } from '@angular/animations';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexModule } from '@angular/flex-layout/flex';
 
@@ -34,7 +34,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
     ])
   ],
   standalone:      true,
-  imports:         [ FlexModule, MatIconModule, MatLegacyButtonModule ]
+  imports:         [ FlexModule, MatIconModule, MatButtonModule ]
 })
 export class SignInWithRedirectComponent {
 

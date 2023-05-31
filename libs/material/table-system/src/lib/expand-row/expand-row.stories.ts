@@ -3,7 +3,7 @@ import {
   addDecorator
 } from '@storybook/angular';
 import { Component } from '@angular/core';
-import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy-table';
+import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExpandRowService } from './expand-row.service';
@@ -11,7 +11,7 @@ import { ExpandRowModule } from './expand-row.module';
 
 @Component({
   styles:   [
-      `
+    `
 
       table {
         width: 100%;
@@ -37,7 +37,7 @@ import { ExpandRowModule } from './expand-row.module';
         border-bottom-width: 0;
       }
 
-      `
+    `
   ],
   template: `
 

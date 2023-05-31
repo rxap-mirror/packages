@@ -5,10 +5,10 @@ import {
   Inject
 } from '@angular/core';
 import { ConfigService } from '@rxap/config';
-import { MatLegacyOptionModule } from '@angular/material/legacy-core';
+import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
-import { MatLegacySelectModule } from '@angular/material/legacy-select';
-import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import {
   NgIf,
   NgFor,
@@ -96,13 +96,13 @@ export class LanguageSelectorService {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-language-selector' },
   standalone:      true,
-  imports:         [
+  imports: [
     NgIf,
-    MatLegacyFormFieldModule,
-    MatLegacySelectModule,
+    MatFormFieldModule,
+    MatSelectModule,
     FormsModule,
     NgFor,
-    MatLegacyOptionModule,
+    MatOptionModule,
     KeyValuePipe
   ]
 })

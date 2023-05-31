@@ -1,9 +1,18 @@
-import { Injectable, Inject } from '@angular/core';
-import { MatLegacyDialog as MatDialog, LegacyDialogPosition as DialogPosition } from '@angular/material/legacy-dialog';
+import {
+  Injectable,
+  Inject
+} from '@angular/core';
+import {
+  MatDialog,
+  DialogPosition
+} from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
 import { Direction } from '@angular/cdk/bidi';
 import { ScrollStrategy } from '@angular/cdk/overlay';
-import { map, take } from 'rxjs/operators';
+import {
+  map,
+  take
+} from 'rxjs/operators';
 
 export interface ConfirmDialogConfig {
   /** Custom class for the overlay pane. */

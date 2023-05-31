@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexModule } from '@angular/flex-layout/flex';
-import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {
   NgIf,
   NgSwitch,
@@ -20,7 +20,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-link-cell' },
   standalone:      true,
-  imports:         [ NgIf, MatLegacyTooltipModule, FlexModule, NgSwitch, NgSwitchCase, MatIconModule, NgSwitchDefault ]
+  imports:         [ NgIf, MatTooltipModule, FlexModule, NgSwitch, NgSwitchCase, MatIconModule, NgSwitchDefault ]
 })
 export class LinkCellComponent {
 

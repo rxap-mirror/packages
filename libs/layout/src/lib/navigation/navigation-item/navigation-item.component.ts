@@ -63,7 +63,7 @@ import {
   NgFor,
   AsyncPipe
 } from '@angular/common';
-import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRippleModule } from '@angular/material/core';
 
 @Component({
@@ -93,7 +93,7 @@ import { MatRippleModule } from '@angular/material/core';
     RouterLinkActive,
     MatRippleModule,
     RouterLink,
-    MatLegacyTooltipModule,
+    MatTooltipModule,
     NgIf,
     MatIconModule,
     IconDirective,

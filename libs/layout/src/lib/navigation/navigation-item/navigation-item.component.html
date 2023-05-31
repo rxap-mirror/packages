@@ -25,7 +25,7 @@
     <ul>
       <li *ngFor="let child of children">
         <a *ngIf="isNavigationItem(child)" [routerLink]="asNavigationItem(child).routerLink"
-           class="navigation-link mat-body-2 mat-body-strong" matRipple>
+           class="navigation-link mat-subtitle-2 mat-body-strong" matRipple>
           <mat-icon *ngIf="asNavigationItem(child).icon" [rxapIcon]="asNavigationItem(child).icon" class="icon"></mat-icon>
           <span class="label">{{ asNavigationItem(child).label }}</span>
         </a>
