@@ -20066,7 +20066,7 @@ nx@16.2.1:
     "@nx/nx-win32-arm64-msvc" "16.2.1"
     "@nx/nx-win32-x64-msvc" "16.2.1"
 
-nx@16.3.0:
+nx@16.3.0, nx@^16.3.0:
   version "16.3.0"
   resolved "https://registry.yarnpkg.com/nx/-/nx-16.3.0.tgz#85f5747e3737dd699a81070c9f8b1e1dd07f617f"
   integrity sha512-D1gzsc7Cq+PweUiIsUjKyc0gldtDl95BF61kzXnGXIiAi/R19uaEBN3A24uD6lY/ngnWEBSV/u/T6Jb7PUZ2nw==

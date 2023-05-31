@@ -3,17 +3,6 @@
   "compilerOptions": {
     "rootDir": "schematics",
     "outDir": "../../dist/schematics/libs/open-api",
-    "paths": {
-      "@rxap/schematics-utilities": [
-        "../../dist/libs/schematics/utilities"
-      ],
-      "@rxap/schematics-open-api": [
-        "../../dist/libs/schematics/open-api"
-      ],
-      "@rxap/schematics-ts-morph": [
-        "../../dist/libs/schematics/ts-morph"
-      ]
-    },
     "module": "commonjs",
     "declaration": true,
     "esModuleInterop": true,

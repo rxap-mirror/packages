@@ -1,10 +1,6 @@
 {
   "extends": "./tsconfig.lib.json",
   "compilerOptions": {
-    "paths": {
-      "@rxap/definition": ["dist/libs/definition"],
-      "@rxap/across-tabs": ["dist/libs/across-tabs"]
-    },
     "declarationMap": false,
     "target": "ES2022",
     "useDefineForClassFields": false

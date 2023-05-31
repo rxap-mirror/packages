@@ -7,9 +7,6 @@
     "inlineSources": true,
     "types": [],
     "lib": ["dom", "es2018"],
-    "paths": {
-      "@rxap/utilities": ["dist/libs/utilities"]
-    },
     "useDefineForClassFields": false
   },
   "exclude": [

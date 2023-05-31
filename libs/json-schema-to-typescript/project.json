@@ -15,7 +15,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nx/js:tsc",
       "options": {
         "outputPath": "dist/libs/json-schema-to-typescript",
         "tsConfig": "libs/json-schema-to-typescript/tsconfig.lib.json",

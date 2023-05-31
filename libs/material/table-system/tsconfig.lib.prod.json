@@ -5,18 +5,6 @@
   },
   "compilerOptions": {
     "declarationMap": false,
-    "paths": {
-      "@rxap/utilities/rxjs": ["dist/libs/utilities/rxjs"],
-      "@rxap/utilities/reflect-metadata": [
-        "dist/libs/utilities/reflect-metadata"
-      ],
-      "@rxap/data-source": ["dist/libs/data-source"],
-      "@rxap/material-directives/icon": ["dist/libs/material/directives/icon"],
-      "@rxap/data-source/table": ["dist/libs/data-source/table"],
-      "@rxap/data-source/http": ["dist/libs/data-source/http"],
-      "@rxap/data-source/pagination": ["dist/libs/data-source/pagination"],
-      "@rxap/open-api/remote-method": ["dist/libs/open-api/remote-method"]
-    },
     "target": "ES2022",
     "useDefineForClassFields": false
   }
