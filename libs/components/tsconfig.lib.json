@@ -7,13 +7,6 @@
     "inlineSources": true,
     "types": [],
     "lib": ["dom", "es2018"],
-    "paths": {
-      "@rxap/utilities": ["dist/libs/utilities"],
-      "@rxap/utilities/rxjs": ["dist/libs/utilities/rxjs"],
-      "@rxap/services": ["dist/libs/services"],
-      "@rxap/material-directives/icon": ["dist/libs/material/directives/icon"],
-      "@rxap/directives": ["dist/libs/directives"]
-    },
     "useDefineForClassFields": false
   },
   "exclude": [

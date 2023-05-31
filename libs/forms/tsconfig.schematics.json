@@ -2,23 +2,6 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/schematics/libs/forms",
-    "paths": {
-      "@rxap/xml-parser": [
-        "../../dist/libs/xml-parser"
-      ],
-      "@rxap/xml-parser/elements": [
-        "../../dist/libs/xml-parser/elements"
-      ],
-      "@rxap/xml-parser/decorators": [
-        "../../dist/libs/xml-parser/decorators"
-      ],
-      "@rxap/xml-parser/testing": [
-        "../../dist/libs/xml-parser/testing"
-      ],
-      "@rxap/schematics-utilities": [
-        "../../dist/libs/schematics/utilities"
-      ]
-    },
     "module": "commonjs",
     "declaration": true,
     "esModuleInterop": true,

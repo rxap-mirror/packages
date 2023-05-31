@@ -1,12 +1,6 @@
 {
   "extends": "./tsconfig.lib.json",
   "compilerOptions": {
-    "paths": {
-      "@rxap/utilities": ["dist/libs/utilities"],
-      "@rxap/utilities/reflect-metadata": [
-        "dist/libs/utilities/reflect-metadata"
-      ]
-    },
     "declarationMap": false,
     "target": "ES2022",
     "useDefineForClassFields": false

@@ -4,14 +4,6 @@
     "compilationMode": "partial"
   },
   "compilerOptions": {
-    "paths": {
-      "@rxap/utilities": ["dist/libs/utilities"],
-      "@rxap/utilities/rxjs": ["dist/libs/utilities/rxjs"],
-      "@rxap/definition": ["dist/libs/definition"],
-      "@rxap/data-source": ["dist/libs/data-source"],
-      "@rxap/remote-method": ["dist/libs/remote-method"],
-      "@rxap/material-directives/icon": ["dist/libs/material/directives/icon"]
-    },
     "declarationMap": false,
     "target": "ES2022",
     "useDefineForClassFields": false
