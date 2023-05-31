@@ -14,7 +14,8 @@ import {
 } from 'rxjs/operators';
 
 @Directive({
-  selector: '[rxapFormSubmitting]'
+  selector:   '[rxapFormSubmitting]',
+  standalone: true
 })
 export class FormSubmittingDirective implements AfterViewInit, OnDestroy {
 

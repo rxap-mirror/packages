@@ -2,7 +2,7 @@ import {
   moduleMetadata,
   addDecorator
 } from '@storybook/angular';
-import { ExpandRowContainerComponentModule } from './expand-row-container.component.module';
+
 import { ExpandRowContainerComponent } from './expand-row-container.component';
 import {
   object,
@@ -10,9 +10,7 @@ import {
 } from '@storybook/addon-knobs';
 
 addDecorator(moduleMetadata({
-  imports: [
-    ExpandRowContainerComponentModule
-  ]
+  imports: []
 }));
 
 export default {

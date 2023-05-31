@@ -3,20 +3,36 @@ import {
   ChangeDetectionStrategy,
   Inject,
   ChangeDetectorRef,
-  AfterContentInit,
+  AfterContentInit
 } from '@angular/core';
 import { RxapError } from '@rxap/utilities';
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
+import {
+  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
+  MatLegacyDialogRef as MatDialogRef,
+  MatLegacyDialogModule
+} from '@angular/material/legacy-dialog';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { JsonViewerComponent } from '@rxap/components';
+import { FlexModule } from '@angular/flex-layout';
+import { NgIf } from '@angular/common';
 
 export interface ErrorDialogMatData {
   error: RxapError;
 }
 
 @Component({
-  selector: 'rxap-error-dialog',
-  templateUrl: './error-dialog.component.html',
-  styleUrls: ['./error-dialog.component.scss'],
+  selector:        'rxap-error-dialog',
+  templateUrl:     './error-dialog.component.html',
+  styleUrls:       [ './error-dialog.component.scss' ],
   changeDetection: ChangeDetectionStrategy.Default,
+  standalone:      true,
+  imports:         [
+    MatLegacyDialogModule,
+    NgIf,
+    FlexModule,
+    JsonViewerComponent,
+    MatLegacyButtonModule
+  ]
 })
 export class ErrorDialogComponent implements AfterContentInit {
   public get jsonError() {

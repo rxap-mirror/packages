@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   OnInit,
   OnDestroy,
   Inject
@@ -14,7 +13,8 @@ import {
 } from 'rxjs/operators';
 
 @Directive({
-  selector: 'mat-tab-group[rxapScrollToTabOnFocus]',
+  selector:   'mat-tab-group[rxapScrollToTabOnFocus]',
+  standalone: true
 })
 export class ScrollToTabOnFocusDirective implements OnInit, OnDestroy {
 
@@ -41,8 +41,4 @@ export class ScrollToTabOnFocusDirective implements OnInit, OnDestroy {
 
 }
 
-@NgModule({
-  exports:      [ ScrollToTabOnFocusDirective ],
-  declarations: [ ScrollToTabOnFocusDirective ],
-})
-export class ScrollToTabOnFocusDirectiveModule {}
+

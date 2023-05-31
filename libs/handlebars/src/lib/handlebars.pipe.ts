@@ -1,12 +1,12 @@
 import {
   Pipe,
-  PipeTransform,
-  NgModule
+  PipeTransform
 } from '@angular/core';
 import { compile } from 'handlebars';
 
 @Pipe({
-  name: 'handlebars'
+  name:       'handlebars',
+  standalone: true
 })
 export class HandlebarsPipe implements PipeTransform {
 
@@ -16,8 +16,4 @@ export class HandlebarsPipe implements PipeTransform {
 
 }
 
-@NgModule({
-  declarations: [ HandlebarsPipe ],
-  exports:      [ HandlebarsPipe ]
-})
-export class HandlebarsPipeModule {}
+

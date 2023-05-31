@@ -72,8 +72,8 @@ export abstract class HasEnablePermission implements OnInit, OnDestroy {
 }
 
 @Directive({
-  selector:
-    'button[rxapHasEnablePermission],[mat-button][rxapHasEnablePermission],[mat-raised-button][rxapHasEnablePermission],[mat-stroked-button][rxapHasEnablePermission],[mat-flat-button][rxapHasEnablePermission],[mat-icon-button][rxapHasEnablePermission],[mat-fab][rxapHasEnablePermission],[mat-mini-fab][rxapHasEnablePermission]',
+  selector:   'button[rxapHasEnablePermission],[mat-button][rxapHasEnablePermission],[mat-raised-button][rxapHasEnablePermission],[mat-stroked-button][rxapHasEnablePermission],[mat-flat-button][rxapHasEnablePermission],[mat-icon-button][rxapHasEnablePermission],[mat-fab][rxapHasEnablePermission],[mat-mini-fab][rxapHasEnablePermission]',
+  standalone: true
 })
 export class MatButtonHasEnablePermissionDirective extends HasEnablePermission {
   @Input('rxapHasEnablePermission')
@@ -99,8 +99,8 @@ export class MatButtonHasEnablePermissionDirective extends HasEnablePermission {
 }
 
 @Directive({
-  selector:
-    '[matInput][rxapHasEnablePermission]:not([formControl]):not([formControlName])',
+  selector:   '[matInput][rxapHasEnablePermission]:not([formControl]):not([formControlName])',
+  standalone: true
 })
 export class MatInputHasEnablePermissionDirective extends HasEnablePermission {
   @Input('rxapHasEnablePermission')
@@ -129,8 +129,8 @@ export class MatInputHasEnablePermissionDirective extends HasEnablePermission {
 }
 
 @Directive({
-  selector:
-    'mat-select[rxapHasEnablePermission]:not([formControl]):not([formControlName])',
+  selector:   'mat-select[rxapHasEnablePermission]:not([formControl]):not([formControlName])',
+  standalone: true
 })
 export class MatSelectHasEnablePermissionDirective extends HasEnablePermission {
   @Input('rxapHasEnablePermission')
@@ -159,8 +159,8 @@ export class MatSelectHasEnablePermissionDirective extends HasEnablePermission {
 }
 
 @Directive({
-  selector:
-    'mat-checkbox[rxapHasEnablePermission]:not([formControl]):not([formControlName])',
+  selector:   'mat-checkbox[rxapHasEnablePermission]:not([formControl]):not([formControlName])',
+  standalone: true
 })
 export class MatCheckboxHasEnablePermissionDirective extends HasEnablePermission {
   @Input('rxapHasEnablePermission')
@@ -189,8 +189,8 @@ export class MatCheckboxHasEnablePermissionDirective extends HasEnablePermission
 }
 
 @Directive({
-  selector:
-    'mat-slide-toggle[rxapHasEnablePermission]:not([formControl]):not([formControlName])',
+  selector:   'mat-slide-toggle[rxapHasEnablePermission]:not([formControl]):not([formControlName])',
+  standalone: true
 })
 export class MatSlideToggleHasEnablePermissionDirective extends HasEnablePermission {
   @Input('rxapHasEnablePermission')
@@ -219,8 +219,8 @@ export class MatSlideToggleHasEnablePermissionDirective extends HasEnablePermiss
 }
 
 @Directive({
-  selector:
-    '[formControl][rxapHasEnablePermission],[formControlName][rxapHasEnablePermission]',
+  selector:   '[formControl][rxapHasEnablePermission],[formControlName][rxapHasEnablePermission]',
+  standalone: true
 })
 export class FormControlHasEnablePermissionDirective extends HasEnablePermission {
   @Input('rxapHasEnablePermission')

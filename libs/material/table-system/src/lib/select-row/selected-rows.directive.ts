@@ -5,26 +5,22 @@ import {
   OnInit,
   OnDestroy,
   ChangeDetectorRef,
-  Inject,
-  Input,
-  Optional
+  Inject
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SelectRowService } from './select-row.service';
 import {
-  map,
   tap,
   distinctUntilChanged
 } from 'rxjs/operators';
-import { CdkTable } from '@angular/cdk/table';
-import { MatLegacyTable as MatTable } from '@angular/material/legacy-table';
 
 export interface SelectedRowsDirectiveContext<Data extends Record<string, any>> {
   $implicit: Data[];
 }
 
 @Directive({
-  selector: '[rxapSelectedRows]'
+  selector:   '[rxapSelectedRows]',
+  standalone: true
 })
 export class SelectedRowsDirective<Data extends Record<string, any>> implements OnInit, OnDestroy {
 

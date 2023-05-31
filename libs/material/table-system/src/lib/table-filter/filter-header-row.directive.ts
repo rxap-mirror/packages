@@ -17,7 +17,6 @@ import { Subscription } from 'rxjs';
 import {
   debounceTime,
   distinctUntilChanged,
-  map,
   tap
 } from 'rxjs/operators';
 import { RXAP_TABLE_FILTER_FORM_DEFINITION } from './tokens';
@@ -26,14 +25,15 @@ import { equals } from '@rxap/utilities';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
-  selector: 'table[rxap-filter-header-row]',
-  providers: [
+  selector:   'table[rxap-filter-header-row]',
+  providers:  [
     {
       provide: ControlContainer,
       // ignore coverage
-      useExisting: forwardRef(() => FilterHeaderRowDirective),
-    },
+      useExisting: forwardRef(() => FilterHeaderRowDirective)
+    }
   ],
+  standalone: true
 })
 export class FilterHeaderRowDirective
   extends FormDirective

@@ -2,21 +2,34 @@ import {
   Component,
   ChangeDetectionStrategy,
   OnInit,
-  Inject,
+  Inject
 } from '@angular/core';
 import { SelectRowService } from '../select-row.service';
 import type { Observable } from 'rxjs';
 import { EMPTY } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MatLegacyCheckboxChange as MatCheckboxChange } from '@angular/material/legacy-checkbox';
+import {
+  MatLegacyCheckboxChange as MatCheckboxChange,
+  MatLegacyCheckboxModule
+} from '@angular/material/legacy-checkbox';
 import { CdkTable } from '@angular/cdk/table';
+import {
+  NgIf,
+  AsyncPipe
+} from '@angular/common';
 
 @Component({
-  selector: 'th[rxap-checkbox-header-cell]',
-  templateUrl: './checkbox-header-cell.component.html',
-  styleUrls: ['./checkbox-header-cell.component.scss'],
+  selector:        'th[rxap-checkbox-header-cell]',
+  templateUrl:     './checkbox-header-cell.component.html',
+  styleUrls:       [ './checkbox-header-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'rxap-checkbox-header-cell' },
+  host:            { class: 'rxap-checkbox-header-cell' },
+  standalone:      true,
+  imports:         [
+    NgIf,
+    MatLegacyCheckboxModule,
+    AsyncPipe
+  ]
 })
 export class CheckboxHeaderCellComponent<Data extends Record<string, any>>
   implements OnInit

@@ -19,7 +19,8 @@ import {
   ComponentPortal,
   Portal,
   TemplatePortal,
-  CdkPortalOutlet
+  CdkPortalOutlet,
+  PortalModule
 } from '@angular/cdk/portal';
 import type { WindowRef } from '../window-ref';
 import {
@@ -43,7 +44,9 @@ import { isDefined } from '@rxap/utilities/rxjs';
   selector:        'rxap-window-content',
   templateUrl:     './window-content.component.html',
   styleUrls:       [ './window-content.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.Default,
+  standalone:      true,
+  imports:         [ PortalModule ]
 })
 export class WindowContentComponent implements AfterViewInit, OnInit {
 

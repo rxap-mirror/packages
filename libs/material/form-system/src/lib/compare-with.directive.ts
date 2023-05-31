@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   Input,
   OnInit,
   isDevMode,
@@ -13,7 +12,8 @@ import {
 } from '@rxap/utilities';
 
 @Directive({
-  selector: 'mat-select[rxapCompareWith]',
+  selector:   'mat-select[rxapCompareWith]',
+  standalone: true
 })
 export class CompareWithDirective implements OnInit {
   @Input('rxapCompareWith')
@@ -58,8 +58,4 @@ export class CompareWithDirective implements OnInit {
   }
 }
 
-@NgModule({
-  declarations: [CompareWithDirective],
-  exports: [CompareWithDirective],
-})
-export class CompareWithDirectiveModule {}
+

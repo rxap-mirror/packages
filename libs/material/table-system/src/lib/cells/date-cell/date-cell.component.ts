@@ -1,11 +1,21 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input
+} from '@angular/core';
+import {
+  NgIf,
+  DatePipe
+} from '@angular/common';
 
 @Component({
-  selector: 'td[rxap-date-cell]',
-  templateUrl: './date-cell.component.html',
-  styleUrls: ['./date-cell.component.scss'],
+  selector:        'td[rxap-date-cell]',
+  templateUrl:     './date-cell.component.html',
+  styleUrls:       [ './date-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {class: 'rxap-date-cell'},
+  host:            { class: 'rxap-date-cell' },
+  standalone:      true,
+  imports:         [ NgIf, DatePipe ]
 })
 export class DateCellComponent {
 

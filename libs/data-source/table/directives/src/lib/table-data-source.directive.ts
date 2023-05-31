@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   Input
 } from '@angular/core';
 import {
@@ -20,7 +19,8 @@ import { IdOrInstanceOrToken } from '@rxap/definition';
 import { BaseDataSourceViewer } from '@rxap/data-source';
 
 @Directive({
-  selector: '[rxapTableDataSource]'
+  selector:   '[rxapTableDataSource]',
+  standalone: true
 })
 export class TableDataSourceDirective<Data extends Record<any, any> = any, Parameters = any> extends DataSourceCollectionDirective<Data> {
 
@@ -70,8 +70,4 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
 
 }
 
-@NgModule({
-  exports:      [ TableDataSourceDirective ],
-  declarations: [ TableDataSourceDirective ]
-})
-export class TableDataSourceDirectiveModule {}
+

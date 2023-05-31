@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   HostBinding,
   OnInit,
   Input,
@@ -18,7 +17,8 @@ import {
 import { tap } from 'rxjs/operators';
 
 @Directive({
-  selector: 'mat-progress-bar[rxapCardProgressBar]',
+  selector:   'mat-progress-bar[rxapCardProgressBar]',
+  standalone: true
 })
 export class CardProgressBarDirective implements OnInit, OnDestroy, OnChanges {
 
@@ -83,8 +83,4 @@ export class CardProgressBarDirective implements OnInit, OnDestroy, OnChanges {
 
 }
 
-@NgModule({
-  declarations: [ CardProgressBarDirective ],
-  exports:      [ CardProgressBarDirective ],
-})
-export class CardProgressBarModule {}
+

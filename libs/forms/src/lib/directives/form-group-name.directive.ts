@@ -22,14 +22,15 @@ import { RxapFormGroup } from '../form-group';
  * @deprecated use the ParentControlContainerDirective
  */
 @Directive({
-  selector: '[rxapFormGroupName]',
-  providers: [
+  selector:   '[rxapFormGroupName]',
+  providers:  [
     {
-      provide: ControlContainer,
+      provide:     ControlContainer,
       useExisting: forwardRef(() => FormGroupNameDirective)
     }
   ],
-  exportAs: 'rxapFormGroup'
+  exportAs:   'rxapFormGroup',
+  standalone: true
 })
 export class FormGroupNameDirective extends FormGroupName {
 

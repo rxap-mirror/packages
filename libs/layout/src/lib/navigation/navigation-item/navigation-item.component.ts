@@ -16,16 +16,29 @@ import {
   TemplateRef,
   ViewContainerRef,
   EmbeddedViewRef,
-  Inject,
+  Inject
 } from '@angular/core';
-import { Required, DebounceCall } from '@rxap/utilities';
-import { trigger, style, transition, animate } from '@angular/animations';
+import {
+  Required,
+  DebounceCall
+} from '@rxap/utilities';
+import {
+  trigger,
+  style,
+  transition,
+  animate
+} from '@angular/animations';
 import {
   NavigationItem,
   Navigation,
-  NavigationDividerItem,
+  NavigationDividerItem
 } from '../navigation-item';
-import { RouterLinkActive, Router, NavigationEnd } from '@angular/router';
+import {
+  RouterLinkActive,
+  Router,
+  NavigationEnd,
+  RouterLink
+} from '@angular/router';
 import { Subscription } from 'rxjs';
 import {
   filter,
@@ -33,34 +46,62 @@ import {
   delay,
   startWith,
   distinctUntilChanged,
-  skip,
+  skip
 } from 'rxjs/operators';
 import { SidenavComponentService } from '../../sidenav/sidenav.component.service';
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import {
+  Overlay,
+  OverlayRef
+} from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
+import { FlexModule } from '@angular/flex-layout/flex';
+import { NavigationComponent } from '../navigation.component';
+import { IconDirective } from '@rxap/material-directives/icon';
+import { MatIconModule } from '@angular/material/icon';
+import {
+  NgIf,
+  NgFor,
+  AsyncPipe
+} from '@angular/common';
+import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatRippleModule } from '@angular/material/core';
 
 @Component({
-  selector: 'li[rxap-navigation-item]',
-  templateUrl: './navigation-item.component.html',
-  styleUrls: ['./navigation-item.component.scss'],
+  selector:        'li[rxap-navigation-item]',
+  templateUrl:     './navigation-item.component.html',
+  styleUrls:       [ './navigation-item.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  host: {
-    class: 'rxap-navigation-item',
+  encapsulation:   ViewEncapsulation.None,
+  host:            {
+    class: 'rxap-navigation-item'
   },
-  animations: [
+  animations:      [
     trigger('sub-nav', [
       transition(':enter', [
         style({ display: 'block', height: '0', overflow: 'hidden' }),
-        animate(150, style({ height: '*' })),
+        animate(150, style({ height: '*' }))
       ]),
       transition(':leave', [
         style({ overflow: 'hidden' }),
         animate(300, style({ height: '0' })),
-        style({ display: 'none' }),
-      ]),
-    ]),
+        style({ display: 'none' })
+      ])
+    ])
   ],
+  standalone:      true,
+  imports:         [
+    RouterLinkActive,
+    MatRippleModule,
+    RouterLink,
+    MatLegacyTooltipModule,
+    NgIf,
+    MatIconModule,
+    IconDirective,
+    NavigationComponent,
+    FlexModule,
+    NgFor,
+    AsyncPipe
+  ]
 })
 export class NavigationItemComponent
   implements OnChanges, AfterViewInit, OnDestroy, OnInit

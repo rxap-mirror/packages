@@ -4,7 +4,6 @@ import {
   OnDestroy,
   TemplateRef,
   ViewContainerRef,
-  NgModule,
   ChangeDetectorRef,
   AfterContentInit
 } from '@angular/core';
@@ -27,7 +26,8 @@ export interface ControlErrorsDirectiveContext {
 
 @Directive({
   // tslint:disable-next-line:directive-selector
-  selector: '[rxapControlErrors]',
+  selector:   '[rxapControlErrors]',
+  standalone: true
 })
 export class ControlErrorsDirective implements AfterContentInit, OnDestroy {
   static ngTemplateContextGuard<T>(
@@ -83,8 +83,4 @@ export class ControlErrorsDirective implements AfterContentInit, OnDestroy {
   }
 }
 
-@NgModule({
-  declarations: [ControlErrorsDirective],
-  exports: [ControlErrorsDirective],
-})
-export class ControlErrorsDirectiveModule {}
+

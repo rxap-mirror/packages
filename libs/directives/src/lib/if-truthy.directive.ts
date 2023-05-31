@@ -2,7 +2,6 @@ import {
   ChangeDetectorRef,
   Directive,
   Input,
-  NgModule,
   OnChanges,
   SimpleChanges,
   TemplateRef,
@@ -17,7 +16,8 @@ export interface IfTruthyDirectiveTemplateContext<Data> {
 // TODO : mv to rxap package
 
 @Directive({
-  selector: '[rxapIfTruthy]'
+  selector:   '[rxapIfTruthy]',
+  standalone: true
 })
 export class IfTruthyDirective<Data, Parameters = any> implements OnChanges {
 
@@ -88,9 +88,4 @@ export class IfTruthyDirective<Data, Parameters = any> implements OnChanges {
 
 }
 
-@NgModule({
-  declarations: [ IfTruthyDirective ],
-  exports: [ IfTruthyDirective ]
-})
-export class IfTruthyDirectiveModule {
-}
+

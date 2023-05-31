@@ -6,7 +6,6 @@ import {
   Renderer2,
   ElementRef,
   OnDestroy,
-  NgModule,
   Optional,
   Self
 } from '@angular/core';
@@ -72,7 +71,8 @@ export interface ControlHideShowDirective extends ExtractControlFromParentMixin,
 
 @Mixin(ExtractControlFromParentMixin, ExtractFormDefinitionMixin)
 @Directive({
-  selector: '[rxapControlHideShow]'
+  selector:   '[rxapControlHideShow]',
+  standalone: true
 })
 export class ControlHideShowDirective implements OnInit, OnDestroy {
 
@@ -249,8 +249,4 @@ export class ControlHideShowDirective implements OnInit, OnDestroy {
 
 }
 
-@NgModule({
-  declarations: [ ControlHideShowDirective ],
-  exports:      [ ControlHideShowDirective ]
-})
-export class ControlHideShowDirectiveModule {}
+

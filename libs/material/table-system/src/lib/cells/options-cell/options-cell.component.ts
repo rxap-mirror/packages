@@ -25,7 +25,8 @@ import {
   templateUrl:     './options-cell.component.html',
   styleUrls:       [ './options-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'rxap-options-cell' }
+  host:            { class: 'rxap-options-cell' },
+  standalone:      true
 })
 export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChanges {
   @Input('rxap-options-cell')

@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   HostBinding,
   Input,
   EventEmitter,
@@ -14,7 +13,8 @@ import {
 import { Method } from '@rxap/utilities/rxjs';
 
 @Directive({
-  selector: '[rxapContenteditable]'
+  selector:   '[rxapContenteditable]',
+  standalone: true
 })
 export class ContenteditableDirective {
 
@@ -59,8 +59,4 @@ export class ContenteditableDirective {
 
 }
 
-@NgModule({
-  declarations: [ ContenteditableDirective ],
-  exports:      [ ContenteditableDirective ]
-})
-export class ContenteditableDirectiveModule {}
+

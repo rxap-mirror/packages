@@ -5,15 +5,13 @@ import {
 import { EnvironmentComponent } from './environment.component';
 import { Environment } from '../environment';
 import { RXAP_ENVIRONMENT } from './tokens';
-import { CommonModule } from '@angular/common';
 
 
 @NgModule({
-  declarations: [EnvironmentComponent],
   imports: [
-    CommonModule
+    EnvironmentComponent
   ],
-  exports: [EnvironmentComponent]
+  exports: [ EnvironmentComponent ]
 })
 export class EnvironmentComponentModule {
 

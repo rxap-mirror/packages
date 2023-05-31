@@ -4,7 +4,6 @@ import {
   Inject,
   InjectionToken,
   Input,
-  NgModule,
   OnDestroy,
   OnInit,
   Optional
@@ -20,7 +19,8 @@ import type {
 import {
   DynamicTableDataSource,
   TableEvent,
-  SortLike
+  SortLike,
+  RXAP_TABLE_METHOD
 } from '@rxap/data-source/table';
 import { BaseRemoteMethod } from '@rxap/remote-method';
 import { PaginatorLike } from '@rxap/data-source/pagination';
@@ -38,7 +38,6 @@ import {
   ToggleSubject
 } from '@rxap/utilities/rxjs';
 import { pipeDataSource } from '@rxap/data-source';
-import { RXAP_TABLE_METHOD } from '@rxap/data-source/table';
 
 export { RXAP_TABLE_METHOD } from '@rxap/data-source/table';
 
@@ -63,9 +62,9 @@ export type TableRemoteMethodAdapterFactory<
 ) => BaseRemoteMethod<Data[], TableEvent>;
 
 @Directive({
-  selector:
-            'table[mat-table][rxapTableDataSource],mat-table[rxapTableDataSource]',
-  exportAs: 'rxapTableDataSource'
+  selector:   'table[mat-table][rxapTableDataSource],mat-table[rxapTableDataSource]',
+  exportAs:   'rxapTableDataSource',
+  standalone: true
 })
 export class TableDataSourceDirective<Data extends Record<string, any> = any>
   implements OnInit, OnDestroy {
@@ -257,8 +256,4 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
 
 }
 
-@NgModule({
-  exports: [TableDataSourceDirective],
-  declarations: [TableDataSourceDirective],
-})
-export class TableDataSourceModule {}
+

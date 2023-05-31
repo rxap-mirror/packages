@@ -7,7 +7,6 @@ import {
   Injector,
   Input,
   isDevMode,
-  NgModule,
   OnInit,
   ViewContainerRef,
   OnDestroy
@@ -105,7 +104,8 @@ export interface OpenTableSelectDirective<Data extends Record<string, any>> exte
 
 @Mixin(ExtractDatasourceMixin)
 @Directive({
-  selector: '[rxapOpenTableSelect]'
+  selector:   '[rxapOpenTableSelect]',
+  standalone: true
 })
 export class OpenTableSelectDirective<Data extends Record<string, any>> implements OnInit, OnDestroy {
 
@@ -199,9 +199,4 @@ export class OpenTableSelectDirective<Data extends Record<string, any>> implemen
 
 }
 
-@NgModule({
-  declarations: [ OpenTableSelectDirective ],
-  exports:      [ OpenTableSelectDirective ]
-})
-export class OpenTableSelectDirectiveModule {
-}
+

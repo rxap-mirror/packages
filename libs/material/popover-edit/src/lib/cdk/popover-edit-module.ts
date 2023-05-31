@@ -26,10 +26,8 @@ import {
 } from './popover-edit-position-strategy-factory';
 
 @NgModule({
-  imports:      [
-    OverlayModule
-  ],
-  exports:      [
+  imports:   [
+    OverlayModule,
     CdkPopoverEdit,
     CdkPopoverEditTabOut,
     CdkRowHoverContent,
@@ -39,7 +37,7 @@ import {
     CdkEditable,
     CdkEditOpen
   ],
-  declarations: [
+  exports:   [
     CdkPopoverEdit,
     CdkPopoverEditTabOut,
     CdkRowHoverContent,
@@ -49,7 +47,7 @@ import {
     CdkEditable,
     CdkEditOpen
   ],
-  providers:    [
+  providers: [
     {
       provide:  PopoverEditPositionStrategyFactory,
       useClass: DefaultPopoverEditPositionStrategyFactory

@@ -9,7 +9,6 @@ import {
   INJECTOR,
   Optional,
   ChangeDetectorRef,
-  NgModule,
   isDevMode,
   AfterViewInit
 } from '@angular/core';
@@ -18,8 +17,7 @@ import {
   DataSourceLoader,
   BaseDataSource,
   BaseDataSourceViewer,
-  BaseDataSourceMetadata,
-  PipeDataSource
+  BaseDataSourceMetadata
 } from '@rxap/data-source';
 import { RxapFormControl } from '@rxap/forms';
 import {
@@ -41,8 +39,6 @@ import {
   distinctUntilChanged,
   throttleTime
 } from 'rxjs/operators';
-import { UseDataSource } from '../decorators/use-data-source';
-import { IdOrInstanceOrToken } from '@rxap/definition';
 import {
   MAT_LEGACY_FORM_FIELD as MAT_FORM_FIELD,
   MatLegacyFormField as MatFormField
@@ -91,7 +87,8 @@ export interface InputSelectOptionsDirective extends OnDestroy, AfterViewInit,
 
 @Mixin(ExtractOptionsDataSourceMixin)
 @Directive({
-  selector: '[rxapInputSelectOptions]'
+  selector:   '[rxapInputSelectOptions]',
+  standalone: true
 })
 export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
@@ -243,8 +240,4 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
 }
 
-@NgModule({
-  declarations: [ InputSelectOptionsDirective ],
-  exports:      [ InputSelectOptionsDirective ]
-})
-export class InputSelectOptionsDirectiveModule {}
+

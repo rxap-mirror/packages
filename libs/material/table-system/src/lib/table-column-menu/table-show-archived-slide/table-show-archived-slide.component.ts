@@ -1,17 +1,23 @@
 import {
   Component,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy
 } from '@angular/core';
-import { MatLegacySlideToggleChange as MatSlideToggleChange } from '@angular/material/legacy-slide-toggle';
+import {
+  MatLegacySlideToggleChange as MatSlideToggleChange,
+  MatLegacySlideToggleModule
+} from '@angular/material/legacy-slide-toggle';
 import { TableFilterService } from '../../table-filter/table-filter.service';
 import { TableColumnMenuComponent } from '../table-column-menu.component';
+import { StopPropagationDirective } from '@rxap/directives';
 
 @Component({
-  selector: 'mfd-table-show-archived-slide',
-  templateUrl: './table-show-archived-slide.component.html',
-  styleUrls: ['./table-show-archived-slide.component.scss'],
+  selector:        'mfd-table-show-archived-slide',
+  templateUrl:     './table-show-archived-slide.component.html',
+  styleUrls:       [ './table-show-archived-slide.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {class: 'mfd-table-show-archived-slide'},
+  host:            { class: 'mfd-table-show-archived-slide' },
+  standalone:      true,
+  imports:         [ StopPropagationDirective, MatLegacySlideToggleModule ]
 })
 export class TableShowArchivedSlideComponent {
 

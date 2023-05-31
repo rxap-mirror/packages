@@ -14,7 +14,8 @@ export interface DataGridEditCellDefDirectiveContext<T extends Record<string, an
 }
 
 @Directive({
-  selector: '[rxapDataGridEditCellDef]'
+  selector:   '[rxapDataGridEditCellDef]',
+  standalone: true
 })
 export class DataGridEditCellDefDirective<T extends Record<string, any>> {
   public static ngTemplateContextGuard<T extends Record<string, any>>(

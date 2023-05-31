@@ -2,8 +2,7 @@ import {
   Directive,
   HostListener,
   Input,
-  Injectable,
-  NgModule
+  Injectable
 } from '@angular/core';
 import { Required } from '@rxap/utilities';
 
@@ -36,7 +35,8 @@ export class ShareService {
 }
 
 @Directive({
-  selector: '[rxapShareButton]'
+  selector:   '[rxapShareButton]',
+  standalone: true
 })
 export class ShareButtonDirective {
 
@@ -64,10 +64,4 @@ export class ShareButtonDirective {
 
 }
 
-@NgModule({
-  exports:      [ ShareButtonDirective ],
-  declarations: [ ShareButtonDirective ]
-})
-export class ShareButtonDirectiveModule {
 
-}

@@ -6,7 +6,7 @@ import {
   Output,
   OnDestroy,
   Input,
-  Inject,
+  Inject
 } from '@angular/core';
 import { ConfirmComponent } from './confirm.component';
 import {
@@ -15,11 +15,15 @@ import {
   PositionStrategy
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { tap, take } from 'rxjs/operators';
+import {
+  tap,
+  take
+} from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Directive({
-  selector: '[rxapConfirm]',
+  selector:   '[rxapConfirm]',
+  standalone: true
 })
 export class ConfirmDirective<T = any> implements OnDestroy {
   // use a set input to allow auto import detection if the eventValue

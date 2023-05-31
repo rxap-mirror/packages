@@ -14,13 +14,20 @@ import {
   filter,
   map
 } from 'rxjs/operators';
+import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
+import {
+  NgIf,
+  AsyncPipe
+} from '@angular/common';
 
 @Component({
   selector:        'rxap-navigation-progress-bar',
   templateUrl:     './navigation-progress-bar.component.html',
   styleUrls:       [ './navigation-progress-bar.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'rxap-navigation-progress-bar' }
+  host:            { class: 'rxap-navigation-progress-bar' },
+  standalone:      true,
+  imports:         [ NgIf, MatLegacyProgressBarModule, AsyncPipe ]
 })
 export class NavigationProgressBarComponent {
 

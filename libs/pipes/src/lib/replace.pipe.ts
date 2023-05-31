@@ -1,11 +1,11 @@
 import {
   Pipe,
-  PipeTransform,
-  NgModule,
+  PipeTransform
 } from '@angular/core';
 
 @Pipe({
-  name: 'replace',
+  name:       'replace',
+  standalone: true
 })
 export class ReplacePipe implements PipeTransform {
 
@@ -15,8 +15,4 @@ export class ReplacePipe implements PipeTransform {
 
 }
 
-@NgModule({
-  declarations: [ ReplacePipe ],
-  exports:      [ ReplacePipe ],
-})
-export class ReplacePipeModule {}
+

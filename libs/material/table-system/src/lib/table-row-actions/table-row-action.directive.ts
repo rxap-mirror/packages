@@ -38,7 +38,8 @@ import { ConfirmDirective } from '@rxap/components';
 import { Overlay } from '@angular/cdk/overlay';
 
 @Directive({
-  selector: 'button[rxapTableRowAction]'
+  selector:   'button[rxapTableRowAction]',
+  standalone: true
 })
 export class TableRowActionDirective<Data extends Record<string, any>> extends ConfirmDirective implements OnInit {
   private _hasConfirmDirective = false;

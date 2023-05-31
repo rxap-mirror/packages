@@ -1,12 +1,12 @@
 import {
   Pipe,
-  PipeTransform,
-  NgModule
+  PipeTransform
 } from '@angular/core';
 import { getFromObject } from '@rxap/utilities';
 
 @Pipe({
-  name: 'getFromObject'
+  name:       'getFromObject',
+  standalone: true
 })
 export class GetFromObjectPipe implements PipeTransform {
   transform(value: any, path: string): any {
@@ -14,8 +14,4 @@ export class GetFromObjectPipe implements PipeTransform {
   }
 }
 
-@NgModule({
-  exports:      [ GetFromObjectPipe ],
-  declarations: [ GetFromObjectPipe ]
-})
-export class GetFromObjectPipeModule {}
+

@@ -29,14 +29,15 @@ import { RxapFormControl } from '../form-control';
  * @deprecated use the ParentControlContainerDirective
  */
 @Directive({
-  selector: '[rxapFormControlName]',
-  providers: [
+  selector:   '[rxapFormControlName]',
+  providers:  [
     {
-      provide: NgControl,
+      provide:     NgControl,
       useExisting: forwardRef(() => FormControlNameDirective)
     }
   ],
-  exportAs: 'rxapFormControl'
+  exportAs:   'rxapFormControl',
+  standalone: true
 })
 export class FormControlNameDirective extends FormControlName {
 

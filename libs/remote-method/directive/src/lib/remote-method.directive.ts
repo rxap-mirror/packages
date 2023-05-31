@@ -1,6 +1,5 @@
 import {
   Input,
-  NgModule,
   Output,
   EventEmitter,
   Directive,
@@ -28,8 +27,9 @@ import { RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN } from './tokens';
 import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 @Directive({
-  selector: '[rxapRemoteMethod]',
-  exportAs: 'rxapRemoteMethod'
+  selector:   '[rxapRemoteMethod]',
+  exportAs:   'rxapRemoteMethod',
+  standalone: true
 })
 export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata>
   implements OnInit {
@@ -159,8 +159,4 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
 
 }
 
-@NgModule({
-  declarations: [ RemoteMethodDirective ],
-  exports:      [ RemoteMethodDirective ]
-})
-export class RemoteMethodDirectiveModule {}
+

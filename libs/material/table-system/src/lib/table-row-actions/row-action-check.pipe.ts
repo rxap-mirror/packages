@@ -1,4 +1,9 @@
-import { Inject, NgModule, Optional, Pipe, PipeTransform } from '@angular/core';
+import {
+  Inject,
+  Optional,
+  Pipe,
+  PipeTransform
+} from '@angular/core';
 import { coerceArray } from '@rxap/utilities';
 import { TableRowActionTypeMethod } from './types';
 import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
@@ -9,7 +14,8 @@ import {
 } from './table-row-action.method';
 
 @Pipe({
-  name: 'rxapRowActionCheck',
+  name:       'rxapRowActionCheck',
+  standalone: true
 })
 export class RowActionCheckPipe<RowType extends Record<string, unknown> = Record<string, unknown>> implements PipeTransform {
 

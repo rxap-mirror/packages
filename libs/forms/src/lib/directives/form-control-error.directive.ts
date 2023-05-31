@@ -22,7 +22,8 @@ import {
  * @deprecated removed
  */
 @Directive({
-  selector: '[rxapFormControlError]'
+  selector:   '[rxapFormControlError]',
+  standalone: true
 })
 export class FormControlErrorDirective implements OnInit, OnDestroy {
 

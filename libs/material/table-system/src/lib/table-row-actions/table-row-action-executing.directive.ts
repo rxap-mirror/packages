@@ -5,7 +5,8 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[rxapTableRowActionExecuting]'
+  selector:   '[rxapTableRowActionExecuting]',
+  standalone: true
 })
 export class TableRowActionExecutingDirective {
   constructor(

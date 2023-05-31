@@ -5,7 +5,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationComponent } from './navigation.component';
-import { NavigationComponentModule } from './navigation.component.module';
+
 import {
   RXAP_NAVIGATION_CONFIG,
   RXAP_NAVIGATION_CONFIG_INSERTS
@@ -13,13 +13,12 @@ import {
 
 addDecorator(moduleMetadata({
   imports:   [
-    NavigationComponentModule,
     BrowserAnimationsModule,
     RouterTestingModule
   ],
   providers: [
     {
-      provide: RXAP_NAVIGATION_CONFIG,
+      provide:  RXAP_NAVIGATION_CONFIG,
       useValue: [
         {
           routerLink: [],

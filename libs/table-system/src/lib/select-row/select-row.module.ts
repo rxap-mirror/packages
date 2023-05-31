@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { SelectRowService } from './select-row.service';
-import { CheckboxCellComponentModule } from './checkbox-cell/checkbox-cell.component.module';
-import { CheckboxHeaderCellComponentModule } from './checkbox-header-cell/checkbox-header-cell.component.module';
+
+
 import { AllRowsSelectedDirective } from './all-rows-selected.directive';
 
 
 @NgModule({
+  imports:   [ AllRowsSelectedDirective ],
   exports:   [
-    CheckboxCellComponentModule,
-    CheckboxHeaderCellComponentModule,
-    AllRowsSelectedDirective,
+    AllRowsSelectedDirective
   ],
-  providers: [ SelectRowService ],
-  declarations: [AllRowsSelectedDirective]
+  providers: [ SelectRowService ]
 })
 export class SelectRowModule {}

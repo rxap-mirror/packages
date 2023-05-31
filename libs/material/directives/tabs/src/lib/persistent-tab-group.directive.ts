@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   Inject,
   Input,
   OnInit,
@@ -13,7 +12,8 @@ import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Directive({
-  selector: 'mat-tab-group[rxapPersistentTabGroup]',
+  selector:   'mat-tab-group[rxapPersistentTabGroup]',
+  standalone: true
 })
 export class PersistentTabGroupDirective implements OnInit, OnDestroy {
 
@@ -55,8 +55,4 @@ export class PersistentTabGroupDirective implements OnInit, OnDestroy {
 
 }
 
-@NgModule({
-  declarations: [ PersistentTabGroupDirective ],
-  exports:      [ PersistentTabGroupDirective ],
-})
-export class PersistentTabGroupDirectiveModule {}
+

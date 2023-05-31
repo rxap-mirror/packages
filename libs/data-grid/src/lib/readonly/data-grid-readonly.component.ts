@@ -7,6 +7,12 @@ import {
 } from '@angular/core';
 import { DataGridRowDefDirective } from '../data-grid-row-def.directive';
 import { Required } from '@rxap/utilities';
+import { GetFromObjectPipe } from '@rxap/pipes';
+import {
+  NgIf,
+  NgFor,
+  NgTemplateOutlet
+} from '@angular/common';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -14,7 +20,9 @@ import { Required } from '@rxap/utilities';
   templateUrl:     './data-grid-readonly.component.html',
   styleUrls:       [ './data-grid-readonly.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'rxap-data-grid-readonly' }
+  host:            { class: 'rxap-data-grid-readonly' },
+  standalone:      true,
+  imports:         [ NgIf, NgFor, NgTemplateOutlet, GetFromObjectPipe ]
 })
 export class DataGridReadonlyComponent<T extends Record<string, any>> {
 

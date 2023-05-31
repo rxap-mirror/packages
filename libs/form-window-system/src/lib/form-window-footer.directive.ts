@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   OnInit,
   Inject,
   TemplateRef,
@@ -23,7 +22,8 @@ export interface FormWindowFooterTemplateContext<Data = any> {
 }
 
 @Directive({
-  selector: '[rxapFormWindowFooter]'
+  selector:   '[rxapFormWindowFooter]',
+  standalone: true
 })
 export class FormWindowFooterDirective<Data> implements OnInit {
 
@@ -63,8 +63,4 @@ export class FormWindowFooterDirective<Data> implements OnInit {
 
 }
 
-@NgModule({
-  exports:      [ FormWindowFooterDirective ],
-  declarations: [ FormWindowFooterDirective ]
-})
-export class FormWindowFooterDirectiveModule {}
+

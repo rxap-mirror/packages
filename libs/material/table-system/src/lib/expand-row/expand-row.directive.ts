@@ -8,7 +8,8 @@ import { ExpandRowService } from './expand-row.service';
 import { Required } from '@rxap/utilities';
 
 @Directive({
-  selector: 'tr[rxapExpandRow]'
+  selector:   'tr[rxapExpandRow]',
+  standalone: true
 })
 export class ExpandRowDirective<Data extends Record<string, any>> {
 

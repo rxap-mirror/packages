@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   Input,
   OnInit,
   Inject,
@@ -13,7 +12,8 @@ import { LocalStorageService } from '@rxap/services';
 import { Subscription } from 'rxjs';
 
 @Directive({
-  selector: 'mat-expansion-panel[rxapPersistentExpansionPanel]'
+  selector:   'mat-expansion-panel[rxapPersistentExpansionPanel]',
+  standalone: true
 })
 export class PersistentExpansionPanelDirective implements OnInit, OnDestroy {
 
@@ -68,8 +68,4 @@ export class PersistentExpansionPanelDirective implements OnInit, OnDestroy {
 
 }
 
-@NgModule({
-  declarations: [ PersistentExpansionPanelDirective ],
-  exports:      [ PersistentExpansionPanelDirective ]
-})
-export class PersistentExpansionPanelDirectiveModule {}
+

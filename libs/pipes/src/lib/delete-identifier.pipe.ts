@@ -1,7 +1,6 @@
 import {
   Pipe,
-  PipeTransform,
-  NgModule
+  PipeTransform
 } from '@angular/core';
 import {
   WithIdentifier,
@@ -11,7 +10,8 @@ import {
 } from '@rxap/utilities';
 
 @Pipe({
-  name: 'deleteIdentifier',
+  name:       'deleteIdentifier',
+  standalone: true
 })
 export class DeleteIdentifierPipe implements PipeTransform {
 
@@ -30,10 +30,4 @@ export class DeleteIdentifierPipe implements PipeTransform {
 
 }
 
-@NgModule({
-  exports:      [ DeleteIdentifierPipe ],
-  declarations: [ DeleteIdentifierPipe ],
-})
-export class DeleteIdentifierPipeModule {
 
-}

@@ -1,6 +1,22 @@
-import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
-import { Directive, forwardRef, Inject, INJECTOR, Injector, Input, isDevMode, NgModule } from '@angular/core';
-import { BaseDataSourceViewer, DataSourceLoader } from '@rxap/data-source';
+import {
+  AbstractControl,
+  NG_VALIDATORS,
+  ValidationErrors,
+  Validator
+} from '@angular/forms';
+import {
+  Directive,
+  forwardRef,
+  Inject,
+  INJECTOR,
+  Injector,
+  Input,
+  isDevMode
+} from '@angular/core';
+import {
+  BaseDataSourceViewer,
+  DataSourceLoader
+} from '@rxap/data-source';
 import { Mixin } from '@rxap/mixin';
 import { ControlOptions } from '@rxap/utilities';
 import { ExtractOptionsDataSourceMixin } from '../mixins/extract-options-data-source.mixin';
@@ -9,14 +25,15 @@ export interface IsSelectableValueDirective extends ExtractOptionsDataSourceMixi
 
 @Mixin(ExtractOptionsDataSourceMixin)
 @Directive({
-  selector: '[rxapIsSelectableValue]',
-  providers: [
+  selector:   '[rxapIsSelectableValue]',
+  providers:  [
     {
       provide:     NG_VALIDATORS,
       multi:       true,
       useExisting: forwardRef(() => IsSelectableValueDirective)
     }
-  ]
+  ],
+  standalone: true
 })
 export class IsSelectableValueDirective implements Validator {
 
@@ -57,8 +74,4 @@ export class IsSelectableValueDirective implements Validator {
 
 }
 
-@NgModule({
-  declarations: [IsSelectableValueDirective],
-  exports: [IsSelectableValueDirective]
-})
-export class IsSelectableValueDirectiveModule {}
+

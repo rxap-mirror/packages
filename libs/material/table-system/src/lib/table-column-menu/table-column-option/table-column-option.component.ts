@@ -5,13 +5,17 @@ import {
   Inject,
   OnInit
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { coerceBoolean, Required } from '@rxap/utilities';
+import { Router } from '@angular/router';
+import {
+  coerceBoolean,
+  Required
+} from '@rxap/utilities';
 
 @Component({
-  selector: 'rxap-table-column-option',
+  selector:    'rxap-table-column-option',
   templateUrl: './table-column-option.component.html',
-  styleUrls: ['./table-column-option.component.css'],
+  styleUrls:   [ './table-column-option.component.css' ],
+  standalone:  true
 })
 export class TableColumnOptionComponent implements OnInit {
   @Input()

@@ -6,7 +6,8 @@ import {
 import { CurrencyPipe } from '@angular/common';
 
 @Pipe({
-  name: 'currency'
+  name:       'currency',
+  standalone: true
 })
 export class RxapCurrencyPipe implements PipeTransform {
 
@@ -58,8 +59,8 @@ export class RxapCurrencyPipe implements PipeTransform {
 }
 
 @NgModule({
-  exports:      [ RxapCurrencyPipe ],
-  declarations: [ RxapCurrencyPipe ],
-  providers:    [ CurrencyPipe ]
+  imports:   [ RxapCurrencyPipe ],
+  exports:   [ RxapCurrencyPipe ],
+  providers: [ CurrencyPipe ]
 })
 export class CurrencyPipeModule {}

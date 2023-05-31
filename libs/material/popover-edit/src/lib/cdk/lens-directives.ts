@@ -31,14 +31,15 @@ export type PopoverEditClickOutBehavior = 'close' | 'submit' | 'noop';
  * out.
  */
 @Directive({
-  selector:  'form[cdkEditControl]',
-  inputs:    [
+  selector:   'form[cdkEditControl]',
+  inputs:     [
     'clickOutBehavior: cdkEditControlClickOutBehavior',
     'preservedFormValue: cdkEditControlPreservedFormValue',
     'ignoreSubmitUnlessValid: cdkEditControlIgnoreSubmitUnlessValid'
   ],
-  outputs:   [ 'preservedFormValueChange: cdkEditControlPreservedFormValueChange' ],
-  providers: [ EditRef ]
+  outputs:    [ 'preservedFormValueChange: cdkEditControlPreservedFormValueChange' ],
+  providers:  [ EditRef ],
+  standalone: true
 })
 export class CdkEditControl<FormValue> implements OnDestroy, OnInit {
   /**
@@ -149,10 +150,11 @@ export class CdkEditControl<FormValue> implements OnDestroy, OnInit {
 
 /** Reverts the form to its initial or previously submitted state on click. */
 @Directive({
-  selector: 'button[cdkEditRevert]',
-  host:     {
+  selector:   'button[cdkEditRevert]',
+  host:       {
     'type': 'button' // Prevents accidental form submits.
-  }
+  },
+  standalone: true
 })
 export class CdkEditRevert<FormValue> {
   /** Type of the button. Defaults to `button` to avoid accident form submits. */
@@ -172,7 +174,10 @@ export class CdkEditRevert<FormValue> {
 }
 
 /** Closes the lens on click. */
-@Directive({ selector: '[cdkEditClose]' })
+@Directive({
+  selector:   '[cdkEditClose]',
+  standalone: true
+})
 export class CdkEditClose<FormValue> {
   constructor(
     protected readonly elementRef: ElementRef<HTMLElement>,

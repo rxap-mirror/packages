@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   Input
 } from '@angular/core';
 import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
@@ -13,7 +12,8 @@ import { Required } from '@rxap/utilities';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 
 @Directive({
-  selector: '[rxapPaginationDataSource]'
+  selector:   '[rxapPaginationDataSource]',
+  standalone: true
 })
 export class PaginationDataSourceDirective<Data> extends DataSourceCollectionDirective<Data> {
 
@@ -42,10 +42,4 @@ export class PaginationDataSourceDirective<Data> extends DataSourceCollectionDir
 
 }
 
-@NgModule({
-  declarations: [ PaginationDataSourceDirective ],
-  exports:      [ PaginationDataSourceDirective ]
-})
-export class PaginationDataSourceDirectiveModule {
 
-}

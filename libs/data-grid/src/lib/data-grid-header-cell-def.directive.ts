@@ -9,7 +9,8 @@ export interface DataGridHeaderCellDefDirectiveContext {
 }
 
 @Directive({
-  selector: '[rxapDataGridHeaderCellDef]',
+  selector:   '[rxapDataGridHeaderCellDef]',
+  standalone: true
 })
 export class DataGridHeaderCellDefDirective {
   public static ngTemplateContextGuard(

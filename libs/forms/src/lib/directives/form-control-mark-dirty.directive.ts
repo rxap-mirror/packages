@@ -6,7 +6,8 @@ import { ControlContainer } from '@angular/forms';
 import { hasIndexSignature } from '@rxap/utilities';
 
 @Directive({
-  selector: '[rxapFormControlMarkDirty]'
+  selector:   '[rxapFormControlMarkDirty]',
+  standalone: true
 })
 export class FormControlMarkDirtyDirective {
 

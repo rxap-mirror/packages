@@ -1,7 +1,12 @@
-import { Directive, Inject, TemplateRef } from '@angular/core';
+import {
+  Directive,
+  Inject,
+  TemplateRef
+} from '@angular/core';
 
 @Directive({
-  selector: '[rxapSidenavHeader]',
+  selector:   '[rxapSidenavHeader]',
+  standalone: true
 })
 export class SidenavHeaderDirective {
   constructor(

@@ -2,14 +2,23 @@ import {
   Component,
   ChangeDetectionStrategy,
   Injectable,
-  Inject,
+  Inject
 } from '@angular/core';
 import { ConfigService } from '@rxap/config';
+import { MatLegacyOptionModule } from '@angular/material/legacy-core';
+import { FormsModule } from '@angular/forms';
+import { MatLegacySelectModule } from '@angular/material/legacy-select';
+import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import {
+  NgIf,
+  NgFor,
+  KeyValuePipe
+} from '@angular/common';
 
-export const RXAP_SELECTED_LANGUAGE_LOCAL_STORAGE_KEY =
-  'rxap__selected_language';
+export const RXAP_SELECTED_LANGUAGE_LOCAL_STORAGE_KEY        =
+               'rxap__selected_language';
 export const RXAP_SELECTED_LANGUAGE_CHANGE_LOCAL_STORAGE_KEY =
-  'rxap__selected_language_last_change';
+               'rxap__selected_language_last_change';
 
 @Injectable({ providedIn: 'root' })
 export class LanguageSelectorService {
@@ -81,11 +90,21 @@ export class LanguageSelectorService {
 }
 
 @Component({
-  selector: 'rxap-language-selector',
-  templateUrl: './language-selector.component.html',
-  styleUrls: ['./language-selector.component.scss'],
+  selector:        'rxap-language-selector',
+  templateUrl:     './language-selector.component.html',
+  styleUrls:       [ './language-selector.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'rxap-language-selector' },
+  host:            { class: 'rxap-language-selector' },
+  standalone:      true,
+  imports:         [
+    NgIf,
+    MatLegacyFormFieldModule,
+    MatLegacySelectModule,
+    FormsModule,
+    NgFor,
+    MatLegacyOptionModule,
+    KeyValuePipe
+  ]
 })
 export class LanguageSelectorComponent {
   constructor(public readonly language: LanguageSelectorService) {}

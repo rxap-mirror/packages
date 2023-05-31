@@ -15,7 +15,6 @@ import {
   Injectable,
   Injector,
   INJECTOR,
-  NgModule,
   Input
 } from '@angular/core';
 import {
@@ -35,20 +34,22 @@ import {
   RxapFormBuilder,
   RxapFormsModule
 } from '@rxap/forms';
-import { DataSourceCollectionDirectiveModule } from '@rxap/data-source/directive';
+import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  template: `
-              <label>{{label}}</label>
-              <select [ngModel]="value" (ngModelChange)="onChange($event)">
-                <option
-                  *rxapDataSourceCollection="let option from optionsDataSource"
-                  [value]="option">
-                  {{option}}
-                </option>
-              </select>
-            `
+  template:   `
+                <label>{{label}}</label>
+                <select [ngModel]="value" (ngModelChange)="onChange($event)">
+                  <option
+                    *rxapDataSourceCollection="let option from optionsDataSource"
+                    [value]="option">
+                    {{option}}
+                  </option>
+                </select>
+              `,
+  standalone: true,
+  imports:    [ FormsModule, DataSourceCollectionDirective ]
 })
 class SelectControlComponent extends ControlValueAccessor implements ControlWithDataSource {
 
@@ -80,15 +81,7 @@ class SelectControlComponent extends ControlValueAccessor implements ControlWith
 
 }
 
-@NgModule({
-  declarations: [ SelectControlComponent ],
-  exports:      [ SelectControlComponent ],
-  imports:      [
-    DataSourceCollectionDirectiveModule,
-    FormsModule
-  ]
-})
-class SelectControlComponentModule {}
+
 
 @RxapStaticDataSource({
   id:   'cars',
@@ -119,8 +112,7 @@ addDecorator(moduleMetadata({
   imports:   [
     FormSystemModule,
     RxapFormsModule,
-    BrowserAnimationsModule,
-    SelectControlComponentModule
+    BrowserAnimationsModule
   ],
   providers: [
     CarDataSource,

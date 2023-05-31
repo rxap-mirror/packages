@@ -2,13 +2,11 @@ import {
   moduleMetadata,
   addDecorator
 } from '@storybook/angular';
-import { NavigationProgressBarComponentModule } from './navigation-progress-bar.component.module';
+
 import { NavigationProgressBarComponent } from './navigation-progress-bar.component';
 
 addDecorator(moduleMetadata({
-  imports: [
-    NavigationProgressBarComponentModule,
-  ]
+  imports: []
 }));
 
 export default {

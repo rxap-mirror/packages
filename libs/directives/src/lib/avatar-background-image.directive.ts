@@ -1,21 +1,24 @@
 import {
-  NgModule,
   Directive,
   Input,
   ElementRef,
   Renderer2,
-  Inject,
+  Inject
 } from '@angular/core';
 import {
   BackgroundImageDirective,
   BackgroundRepeatOptions,
-  BackgroundSizeOptions,
+  BackgroundSizeOptions
 } from './background-image.directive';
-import { ImageLoaderService, AvatarImageService } from '@rxap/services';
+import {
+  ImageLoaderService,
+  AvatarImageService
+} from '@rxap/services';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
-  selector: '[rxapAvatarBackgroundImage]',
+  selector:   '[rxapAvatarBackgroundImage]',
+  standalone: true
 })
 export class AvatarBackgroundImageDirective extends BackgroundImageDirective {
   @Input()
@@ -46,8 +49,4 @@ export class AvatarBackgroundImageDirective extends BackgroundImageDirective {
   }
 }
 
-@NgModule({
-  declarations: [AvatarBackgroundImageDirective],
-  exports: [AvatarBackgroundImageDirective],
-})
-export class AvatarBackgroundImageDirectiveModule {}
+

@@ -22,14 +22,31 @@ import { NavigationService } from './navigation.service';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { SidenavComponentService } from '../sidenav/sidenav.component.service';
+import { NavigationItemComponent } from './navigation-item/navigation-item.component';
+import { FlexModule } from '@angular/flex-layout/flex';
+import { MatDividerModule } from '@angular/material/divider';
+import {
+  NgFor,
+  NgIf,
+  AsyncPipe
+} from '@angular/common';
 
 @Component({
-  selector: 'ul[rxap-navigation]',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss'],
+  selector:        'ul[rxap-navigation]',
+  templateUrl:     './navigation.component.html',
+  styleUrls:       [ './navigation.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  host: { class: 'rxap-navigation' },
+  encapsulation:   ViewEncapsulation.None,
+  host:            { class: 'rxap-navigation' },
+  standalone:      true,
+  imports:         [
+    NgFor,
+    NgIf,
+    MatDividerModule,
+    FlexModule,
+    NavigationItemComponent,
+    AsyncPipe
+  ]
 })
 export class NavigationComponent implements OnInit, OnDestroy {
   @HostBinding('class.rxap-root-navigation')

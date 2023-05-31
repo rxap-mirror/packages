@@ -27,7 +27,8 @@ import { Overlay } from '@angular/cdk/overlay';
 import { MatTooltip } from '@angular/material/tooltip';
 
 @Directive({
-  selector: 'button[rxapTableRowHeaderAction]'
+  selector:   'button[rxapTableRowHeaderAction]',
+  standalone: true
 })
 export class TableRowHeaderActionDirective<Data extends Record<string, any>>
   extends TableRowActionDirective<Data>

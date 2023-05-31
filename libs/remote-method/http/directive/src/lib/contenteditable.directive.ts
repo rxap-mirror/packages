@@ -2,15 +2,18 @@ import {
   Directive,
   Input,
   HostListener,
-  NgModule,
   HostBinding,
-  Inject,
+  Inject
 } from '@angular/core';
-import { Required, DebounceCall } from '@rxap/utilities';
+import {
+  Required,
+  DebounceCall
+} from '@rxap/utilities';
 import { HttpRemoteMethodLoader } from '@rxap/remote-method/http';
 
 @Directive({
-  selector: '[rxapContenteditable]',
+  selector:   '[rxapContenteditable]',
+  standalone: true
 })
 export class ContenteditableDirective {
   @HostBinding('attr.contenteditable')
@@ -55,8 +58,4 @@ export class ContenteditableDirective {
 /**
  * @deprecated removed
  */
-@NgModule({
-  declarations: [ContenteditableDirective],
-  exports: [ContenteditableDirective],
-})
-export class ContenteditableDirectiveModule {}
+

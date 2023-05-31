@@ -2,13 +2,11 @@ import {
   moduleMetadata,
   addDecorator
 } from '@storybook/angular';
-import { NavigateBackButtonComponentModule } from './navigate-back-button.component.module';
+
 import { NavigateBackButtonComponent } from './navigate-back-button.component';
 
 addDecorator(moduleMetadata({
-  imports: [
-    NavigateBackButtonComponentModule
-  ]
+  imports: []
 }));
 
 export default {

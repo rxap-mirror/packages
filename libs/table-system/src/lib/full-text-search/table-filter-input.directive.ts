@@ -14,7 +14,8 @@ import {
 import { TableFullTextSearchService } from './table-full-text-search.service';
 
 @Directive({
-  selector: 'input[ngModel][rxapTableFilterInput]'
+  selector:   'input[ngModel][rxapTableFilterInput]',
+  standalone: true
 })
 export class TableFilterInputDirective implements OnInit, OnDestroy {
   private _subscription?: Subscription;

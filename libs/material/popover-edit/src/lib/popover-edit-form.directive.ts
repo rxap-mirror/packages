@@ -57,8 +57,8 @@ export class RxapPopoverEditPositionStrategyFactory extends DefaultPopoverEditPo
 }
 
 @Directive({
-  selector:  'form[rxapPopoverEditForm]:not([formGroup]):not([ngForm]),rxap-form,form[rxapPopoverEditForm]',
-  providers: [
+  selector:   'form[rxapPopoverEditForm]:not([formGroup]):not([ngForm]),rxap-form,form[rxapPopoverEditForm]',
+  providers:  [
     {
       provide: ControlContainer,
       // ignore coverage
@@ -101,9 +101,10 @@ export class RxapPopoverEditPositionStrategyFactory extends DefaultPopoverEditPo
     }
     // endregion
   ],
-  host:      { '(reset)': 'onReset()' },
-  outputs:   [ 'ngSubmit' ],
-  exportAs:  'rxapPopoverEditForm'
+  host:       { '(reset)': 'onReset()' },
+  outputs:    [ 'ngSubmit' ],
+  exportAs:   'rxapPopoverEditForm',
+  standalone: true
 })
 export class PopoverEditFormDirective extends FormDirective {
 
@@ -177,12 +178,12 @@ export class PopoverEditFormDirective extends FormDirective {
 }
 
 @NgModule({
-  declarations: [ PopoverEditFormDirective ],
-  exports:      [
+  imports:   [ PopoverEditFormDirective ],
+  exports:   [
     PopoverEditFormDirective,
     MatPopoverEditModule
   ],
-  providers:    [
+  providers: [
     {
       provide:  PopoverEditPositionStrategyFactory,
       useClass: RxapPopoverEditPositionStrategyFactory

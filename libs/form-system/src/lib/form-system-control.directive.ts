@@ -37,7 +37,8 @@ export interface FormSystemControlDirective<T> extends ExtractDataSourcesMixin, 
 
 @Mixin(ExtractDataSourcesMixin)
 @Directive({
-  selector: '[rxapFormSystemControl]'
+  selector:   '[rxapFormSystemControl]',
+  standalone: true
 })
 export class FormSystemControlDirective<T> implements ControlValueAccessor, OnInit {
 

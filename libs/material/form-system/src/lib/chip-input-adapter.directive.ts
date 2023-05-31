@@ -4,7 +4,6 @@ import {
 } from '@angular/cdk/keycodes';
 import {
   Directive,
-  NgModule,
   OnDestroy,
   OnInit
 } from '@angular/core';
@@ -18,7 +17,8 @@ import {
 } from 'rxjs/operators';
 
 @Directive({
-  selector: '[matChipInputFor][rxapChipInputAdapter]'
+  selector:   '[matChipInputFor][rxapChipInputAdapter]',
+  standalone: true
 })
 export class ChipInputAdapterDirective implements OnDestroy, OnInit {
   private _subscription?: Subscription;
@@ -51,9 +51,4 @@ export class ChipInputAdapterDirective implements OnDestroy, OnInit {
   }
 }
 
-@NgModule({
-  exports: [ ChipInputAdapterDirective ],
-  declarations: [ ChipInputAdapterDirective ]
-})
-export class ChipInputAdapterDirectiveModule {
-}
+

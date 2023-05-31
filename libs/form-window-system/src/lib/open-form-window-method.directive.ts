@@ -2,7 +2,6 @@ import {
   Directive,
   HostListener,
   Input,
-  NgModule,
   EventEmitter,
   Output,
   OnDestroy,
@@ -21,7 +20,8 @@ import {
 } from '@rxap/utilities/rxjs';
 
 @Directive({
-  selector: '[rxapOpenFormWindowMethod]'
+  selector:   '[rxapOpenFormWindowMethod]',
+  standalone: true
 })
 export class OpenFormWindowMethodDirective<
   FormData extends Record<string, any> = Record<string, any>,
@@ -124,8 +124,4 @@ export class OpenFormWindowMethodDirective<
 
 }
 
-@NgModule({
-  exports: [OpenFormWindowMethodDirective],
-  declarations: [OpenFormWindowMethodDirective]
-})
-export class OpenFormWindowMethodDirectiveModule {}
+

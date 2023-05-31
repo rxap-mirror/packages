@@ -21,32 +21,37 @@ import { EditRef } from './cdk/edit-ref';
  * out.
  */
 @Directive({
-  selector:  'form[matEditLens]',
-  host:      {
+  selector:   'form[matEditLens]',
+  host:       {
     'class': 'mat-edit-lens'
   },
-  inputs:    [
+  inputs:     [
     'clickOutBehavior: matEditLensClickOutBehavior',
     'preservedFormValue: matEditLensPreservedFormValue',
     'ignoreSubmitUnlessValid: matEditLensIgnoreSubmitUnlessValid'
   ],
-  outputs:   [ 'preservedFormValueChange: matEditLensPreservedFormValueChange' ],
-  providers: [ EditRef ]
+  outputs:    [ 'preservedFormValueChange: matEditLensPreservedFormValueChange' ],
+  providers:  [ EditRef ],
+  standalone: true
 })
 export class MatEditLens<FormValue> extends CdkEditControl<FormValue> {
 }
 
 /** Reverts the form to its initial or previously submitted state on click. */
 @Directive({
-  selector: 'button[matEditRevert]',
-  host:     {
+  selector:   'button[matEditRevert]',
+  host:       {
     'type': 'button' // Prevents accidental form submits.
-  }
+  },
+  standalone: true
 })
 export class MatEditRevert<FormValue> extends CdkEditRevert<FormValue> {
 }
 
 /** Closes the lens on click. */
-@Directive({ selector: '[matEditClose]' })
+@Directive({
+  selector:   '[matEditClose]',
+  standalone: true
+})
 export class MatEditClose<FormValue> extends CdkEditClose<FormValue> {
 }

@@ -1,11 +1,11 @@
 import {
   Directive,
-  HostBinding,
-  NgModule
+  HostBinding
 } from '@angular/core';
 
 @Directive({
-  selector: '[rxapFullWidth]',
+  selector:   '[rxapFullWidth]',
+  standalone: true
 })
 export class FullWidthDirective {
 
@@ -14,8 +14,4 @@ export class FullWidthDirective {
 
 }
 
-@NgModule({
-  declarations: [FullWidthDirective],
-  exports: [FullWidthDirective]
-})
-export class FullWidthDirectiveModule {}
+

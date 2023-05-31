@@ -21,7 +21,8 @@ export interface AllRowsSelectedDirectiveContext<Data extends Record<string, any
 }
 
 @Directive({
-  selector: '[rxapAllRowsSelected]'
+  selector:   '[rxapAllRowsSelected]',
+  standalone: true
 })
 export class AllRowsSelectedDirective<Data extends Record<string, any>> implements OnInit, OnDestroy {
 

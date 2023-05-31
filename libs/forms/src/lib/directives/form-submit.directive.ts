@@ -22,11 +22,12 @@ import { Router } from '@angular/router';
 import { ConfirmClick } from '@rxap/directives';
 
 @Directive({
-  selector: '[rxapFormSubmit]',
-  host: {
-    '(click)': 'onClick()',
-    '(confirmed)': 'onConfirm()',
-  }
+  selector:   '[rxapFormSubmit]',
+  host:       {
+    '(click)':     'onClick()',
+    '(confirmed)': 'onConfirm()'
+  },
+  standalone: true
 })
 export class FormSubmitDirective extends ConfirmClick implements OnDestroy {
 

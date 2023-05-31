@@ -2,13 +2,11 @@ import {
   moduleMetadata,
   addDecorator
 } from '@storybook/angular';
-import { LanguageSelectorComponentModule } from './language-selector.component.module';
+
 import { LanguageSelectorComponent } from './language-selector.component';
 
 addDecorator(moduleMetadata({
-  imports: [
-    LanguageSelectorComponentModule
-  ]
+  imports: []
 }));
 
 export default {
