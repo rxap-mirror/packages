@@ -4,7 +4,7 @@ import {
   OnDestroy,
   Inject
 } from '@angular/core';
-import { MatLegacyTabGroup as MatTabGroup } from '@angular/material/legacy-tabs';
+import { MatTabGroup } from '@angular/material/tabs';
 import { Subscription } from 'rxjs';
 import {
   tap,

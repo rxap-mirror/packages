@@ -11,8 +11,8 @@ import {
   OnInit,
   ElementRef
 } from '@angular/core';
-import { MatLegacyButton as MatButton } from '@angular/material/legacy-button';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatButton } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   coerceArray,
   coerceBoolean,

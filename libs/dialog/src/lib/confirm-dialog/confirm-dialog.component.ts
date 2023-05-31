@@ -4,11 +4,11 @@ import {
   Inject
 } from '@angular/core';
 import {
-  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
-  MatLegacyDialogModule
-} from '@angular/material/legacy-dialog';
+  MAT_DIALOG_DATA,
+  MatDialogModule
+} from '@angular/material/dialog';
 import { SantizationPipe } from '@rxap/pipes/santization';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector:        'rxap-confirm-dialog',
@@ -17,7 +17,7 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-confirm-dialog' },
   standalone:      true,
-  imports:         [ MatLegacyDialogModule, MatLegacyButtonModule, SantizationPipe ]
+  imports:         [ MatDialogModule, MatButtonModule, SantizationPipe ]
 })
 export class ConfirmDialogComponent {
 

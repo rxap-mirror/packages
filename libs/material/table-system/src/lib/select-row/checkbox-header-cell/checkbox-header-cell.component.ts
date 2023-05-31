@@ -9,9 +9,9 @@ import type { Observable } from 'rxjs';
 import { EMPTY } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
-  MatLegacyCheckboxChange as MatCheckboxChange,
-  MatLegacyCheckboxModule
-} from '@angular/material/legacy-checkbox';
+  MatCheckboxChange,
+  MatCheckboxModule
+} from '@angular/material/checkbox';
 import { CdkTable } from '@angular/cdk/table';
 import {
   NgIf,
@@ -27,7 +27,7 @@ import {
   standalone:      true,
   imports:         [
     NgIf,
-    MatLegacyCheckboxModule,
+    MatCheckboxModule,
     AsyncPipe
   ]
 })

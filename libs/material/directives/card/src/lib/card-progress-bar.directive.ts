@@ -9,7 +9,7 @@ import {
   Inject,
   ChangeDetectorRef
 } from '@angular/core';
-import { MatLegacyProgressBar as MatProgressBar } from '@angular/material/legacy-progress-bar';
+import { MatProgressBar } from '@angular/material/progress-bar';
 import {
   Observable,
   Subscription

@@ -4,17 +4,17 @@ import {
 } from '@angular/core';
 import { AuthorizationService } from '../authorization.service';
 import { AuthorizationDevelopmentService } from './authorization-development.service';
-import { MatLegacySlideToggleModule } from '@angular/material/legacy-slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {
   NgFor,
   AsyncPipe
 } from '@angular/common';
-import { MatLegacyListModule } from '@angular/material/legacy-list';
+import { MatListModule } from '@angular/material/list';
 import {
   CdkOverlayOrigin,
   CdkConnectedOverlay
 } from '@angular/cdk/overlay';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector:    'rxap-authorization-development-controls',
@@ -22,12 +22,12 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
   styleUrls:   [ './authorization-development-controls.component.scss' ],
   standalone:  true,
   imports:     [
-    MatLegacyButtonModule,
+    MatButtonModule,
     CdkOverlayOrigin,
     CdkConnectedOverlay,
-    MatLegacyListModule,
+    MatListModule,
     NgFor,
-    MatLegacySlideToggleModule,
+    MatSlideToggleModule,
     AsyncPipe
   ]
 })

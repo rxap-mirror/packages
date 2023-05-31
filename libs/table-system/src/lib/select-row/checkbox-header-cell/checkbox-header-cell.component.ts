@@ -11,9 +11,9 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
-  MatLegacyCheckboxChange as MatCheckboxChange,
-  MatLegacyCheckboxModule
-} from '@angular/material/legacy-checkbox';
+  MatCheckboxChange,
+  MatCheckboxModule
+} from '@angular/material/checkbox';
 import { CdkTable } from '@angular/cdk/table';
 import { AsyncPipe } from '@angular/common';
 
@@ -24,7 +24,7 @@ import { AsyncPipe } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-checkbox-header-cell' },
   standalone:      true,
-  imports:         [ MatLegacyCheckboxModule, AsyncPipe ]
+  imports:         [ MatCheckboxModule, AsyncPipe ]
 })
 export class CheckboxHeaderCellComponent<Data extends Record<string, any>> implements OnInit {
 

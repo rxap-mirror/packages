@@ -7,7 +7,7 @@ import { ThemeService } from '@rxap/services';
 import { MatIconModule } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
 import { StopPropagationDirective } from '@rxap/directives';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector:        'rxap-dark-mode-toggle-button',
@@ -17,7 +17,7 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
   host:            { class: 'rxap-dark-mode-toggle-button' },
   standalone:      true,
   imports:         [
-    MatLegacyButtonModule,
+    MatButtonModule,
     StopPropagationDirective,
     NgIf,
     MatIconModule

@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 import { UpdateAvailableEvent } from '@angular/service-worker';
 import {
-  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
-  MatLegacyDialogRef as MatDialogRef,
-  MatLegacyDialogModule
-} from '@angular/material/legacy-dialog';
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogModule
+} from '@angular/material/dialog';
 import {
   interval,
   Subscription
@@ -21,9 +21,9 @@ import {
 } from 'rxjs/operators';
 import { LifeCycleService } from '@rxap/life-cycle';
 import { log } from '@rxap/utilities/rxjs';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
-import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector:        'rxap-prompt-update',
@@ -32,10 +32,10 @@ import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-ba
   changeDetection: ChangeDetectionStrategy.Default,
   standalone:      true,
   imports:         [
-    MatLegacyDialogModule,
-    MatLegacyProgressBarModule,
-    MatLegacyTooltipModule,
-    MatLegacyButtonModule
+    MatDialogModule,
+    MatProgressBarModule,
+    MatTooltipModule,
+    MatButtonModule
   ]
 })
 export class PromptUpdateComponent implements OnInit, OnDestroy {

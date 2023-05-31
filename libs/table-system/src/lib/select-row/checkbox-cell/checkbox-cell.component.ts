@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { Required } from '@rxap/utilities';
 import { SelectRowService } from '../select-row.service';
-import { MatLegacyCheckboxModule } from '@angular/material/legacy-checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector:        'td[rxap-checkbox-cell]',
@@ -15,7 +15,7 @@ import { MatLegacyCheckboxModule } from '@angular/material/legacy-checkbox';
   changeDetection: ChangeDetectionStrategy.Default,
   host:            { class: 'rxap-checkbox-cell' },
   standalone:      true,
-  imports:         [ MatLegacyCheckboxModule ]
+  imports:         [ MatCheckboxModule ]
 })
 export class CheckboxCellComponent<Data extends Record<string, any>> {
 

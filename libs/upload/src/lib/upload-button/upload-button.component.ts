@@ -23,7 +23,7 @@ import {
   CdkOverlayOrigin,
   CdkConnectedOverlay
 } from '@angular/cdk/overlay';
-import { MatLegacyFormFieldControl as MatFormFieldControl } from '@angular/material/legacy-form-field';
+import { MatFormFieldControl } from '@angular/material/form-field';
 import { Subject } from 'rxjs';
 import {
   DOCUMENT,
@@ -31,11 +31,11 @@ import {
   AsyncPipe
 } from '@angular/common';
 import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
-import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
-import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MethodDirective } from '@rxap/directives';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
@@ -53,13 +53,13 @@ import { FlexModule } from '@angular/flex-layout/flex';
   standalone:      true,
   imports:         [
     FlexModule,
-    MatLegacyButtonModule,
+    MatButtonModule,
     CdkOverlayOrigin,
     MethodDirective,
     MatIconModule,
     NgIf,
-    MatLegacyProgressSpinnerModule,
-    MatLegacyTooltipModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
     CdkConnectedOverlay,
     AsyncPipe,
     ReadAsDataURLPipe

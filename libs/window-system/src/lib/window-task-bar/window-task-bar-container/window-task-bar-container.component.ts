@@ -10,7 +10,7 @@ import { ExtendedModule } from '@angular/flex-layout/extended';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { FlexModule } from '@angular/flex-layout/flex';
 import { NgIf } from '@angular/common';
 
@@ -21,11 +21,11 @@ export interface WindowTaskBarContainerSettings {
 export const RXAP_WINDOW_TASK_BAR_CONTAINER_SETTINGS = new InjectionToken('rxap/window-system/task-bar-container');
 
 @Component({
-  selector:    'rxap-window-task-bar-container',
+  selector: 'rxap-window-task-bar-container',
   templateUrl: './window-task-bar-container.component.html',
   styleUrls:   [ './window-task-bar-container.component.scss' ],
   standalone:  true,
-  imports:     [ NgIf, FlexModule, MatLegacyButtonModule, MatBadgeModule, MatIconModule, MatToolbarModule, ExtendedModule, WindowTaskBarComponent ]
+  imports:  [ NgIf, FlexModule, MatButtonModule, MatBadgeModule, MatIconModule, MatToolbarModule, ExtendedModule, WindowTaskBarComponent ]
 })
 export class WindowTaskBarContainerComponent {
 

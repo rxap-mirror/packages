@@ -9,13 +9,13 @@ import {
 } from '@angular/core';
 import { TableColumnOptionComponent } from './table-column-option/table-column-option.component';
 import { coerceBoolean } from '@rxap/utilities';
-import { MatLegacyCheckboxModule } from '@angular/material/legacy-checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ExtendedModule } from '@angular/flex-layout/extended';
 import { StopPropagationDirective } from '@rxap/directives';
 import { NgFor } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector:        'rxap-table-column-menu',
@@ -26,13 +26,13 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
   exportAs:        'rxapTableColumns',
   standalone:      true,
   imports:         [
-    MatLegacyButtonModule,
-    MatLegacyMenuModule,
+    MatButtonModule,
+    MatMenuModule,
     MatIconModule,
     NgFor,
     StopPropagationDirective,
     ExtendedModule,
-    MatLegacyCheckboxModule
+    MatCheckboxModule
   ]
 })
 export class TableColumnMenuComponent implements AfterContentInit {

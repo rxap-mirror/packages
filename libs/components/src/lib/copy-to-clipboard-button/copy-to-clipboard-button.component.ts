@@ -4,10 +4,10 @@ import {
   Input,
   Inject
 } from '@angular/core';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { ClipboardModule } from '@angular/cdk/clipboard';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector:        'rxap-copy-to-clipboard-button',
@@ -17,7 +17,7 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
   host:            { class: 'rxap-copy-to-clipboard-button' },
   standalone:      true,
   imports:         [
-    MatLegacyButtonModule,
+    MatButtonModule,
     ClipboardModule,
     MatIconModule
   ]

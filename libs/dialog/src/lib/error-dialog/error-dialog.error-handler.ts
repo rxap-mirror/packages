@@ -1,5 +1,9 @@
-import { ErrorHandler, Injectable, Inject } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import {
+  ErrorHandler,
+  Injectable,
+  Inject
+} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { RxapError } from '@rxap/utilities';
 import { ErrorDialogComponent } from './error-dialog.component';
 

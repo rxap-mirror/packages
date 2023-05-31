@@ -11,7 +11,7 @@ import {
   NgIf,
   AsyncPipe
 } from '@angular/common';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -21,7 +21,7 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-expand-controls-cell' },
   standalone:      true,
-  imports:         [ MatLegacyButtonModule, NgIf, MatIconModule, AsyncPipe ]
+  imports:         [ MatButtonModule, NgIf, MatIconModule, AsyncPipe ]
 })
 export class ExpandControlsCellComponent<Data extends Record<string, any>> {
 

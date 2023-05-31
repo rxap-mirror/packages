@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector:        'rxap-toggle-window-sidenav-button',
@@ -19,7 +19,7 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
     class: 'rxap-toggle-window-sidenav-button'
   },
   standalone:      true,
-  imports:         [ MatLegacyButtonModule, NgIf, MatIconModule ]
+  imports:         [ MatButtonModule, NgIf, MatIconModule ]
 })
 export class ToggleWindowSidenavButtonComponent implements OnInit {
 

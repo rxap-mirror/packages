@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { WindowRef } from '../window-ref';
 import { RXAP_WINDOW_CONTEXT } from '../tokens';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { IconDirective } from '@rxap/material-directives/icon';
 import { MatIconModule } from '@angular/material/icon';
 import { PortalModule } from '@angular/cdk/portal';
@@ -22,7 +22,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   styleUrls:       [ './window-tool-bar.component.scss' ],
   changeDetection: ChangeDetectionStrategy.Default,
   standalone:      true,
-  imports:         [ MatToolbarModule, FlexModule, NgIf, PortalModule, MatIconModule, IconDirective, MatLegacyButtonModule, AsyncPipe ]
+  imports: [ MatToolbarModule, FlexModule, NgIf, PortalModule, MatIconModule, IconDirective, MatButtonModule, AsyncPipe ]
 })
 export class WindowToolBarComponent<D> {
 

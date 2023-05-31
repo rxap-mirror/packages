@@ -3,16 +3,23 @@ import {
   Provider,
   Injector,
   INJECTOR,
-  Inject,
+  Inject
 } from '@angular/core';
 import { RxapAuthenticationService } from '@rxap/authentication';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map, switchMap, tap, take } from 'rxjs/operators';
+import {
+  ActivatedRoute,
+  Router
+} from '@angular/router';
+import {
+  map,
+  switchMap,
+  tap,
+  take
+} from 'rxjs/operators';
 import {
   UseFormControl,
   RxapFormBuilder,
   RXAP_FORM_DEFINITION_BUILDER,
-  FormDefinition,
   RXAP_FORM_DEFINITION,
   RxapForm,
   RxapFormControl,
@@ -21,10 +28,10 @@ import {
   FormSubmitMethod,
   ControlSetValue,
   ControlValidator,
-  FormType,
+  FormType
 } from '@rxap/forms';
 import { Validators } from '@angular/forms';
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export const RXAP_RESET_PASSWORD_FORM = 'rxap-reset-password';
 

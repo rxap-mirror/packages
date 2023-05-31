@@ -11,7 +11,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { MatLegacyChipEvent as MatChipEvent } from '@angular/material/legacy-chips';
+import { MatChipEvent } from '@angular/material/chips';
 import { log } from '@rxap/utilities/rxjs';
 import { Subscription } from 'rxjs';
 import {

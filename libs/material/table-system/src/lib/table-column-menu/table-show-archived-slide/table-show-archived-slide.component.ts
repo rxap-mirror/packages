@@ -3,9 +3,9 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import {
-  MatLegacySlideToggleChange as MatSlideToggleChange,
-  MatLegacySlideToggleModule
-} from '@angular/material/legacy-slide-toggle';
+  MatSlideToggleChange,
+  MatSlideToggleModule
+} from '@angular/material/slide-toggle';
 import { TableFilterService } from '../../table-filter/table-filter.service';
 import { TableColumnMenuComponent } from '../table-column-menu.component';
 import { StopPropagationDirective } from '@rxap/directives';
@@ -17,7 +17,7 @@ import { StopPropagationDirective } from '@rxap/directives';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'mfd-table-show-archived-slide' },
   standalone:      true,
-  imports:         [ StopPropagationDirective, MatLegacySlideToggleModule ]
+  imports:         [ StopPropagationDirective, MatSlideToggleModule ]
 })
 export class TableShowArchivedSlideComponent {
 

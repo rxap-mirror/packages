@@ -9,7 +9,7 @@ import {
   transition,
   trigger
 } from '@angular/animations';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
@@ -29,7 +29,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
     ])
   ],
   standalone:      true,
-  imports:         [ FlexModule, MatLegacyButtonModule ]
+  imports:         [ FlexModule, MatButtonModule ]
 })
 export class ErrorComponent {
 

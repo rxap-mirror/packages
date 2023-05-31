@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { FlexModule } from '@angular/flex-layout';
 
 @Component({
@@ -13,7 +13,7 @@ import { FlexModule } from '@angular/flex-layout';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-navigate-back-button' },
   standalone:      true,
-  imports:         [ FlexModule, MatLegacyButtonModule, MatIconModule ]
+  imports:         [ FlexModule, MatButtonModule, MatIconModule ]
 })
 export class NavigateBackButtonComponent {
 

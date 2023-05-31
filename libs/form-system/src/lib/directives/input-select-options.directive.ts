@@ -40,10 +40,10 @@ import {
   throttleTime
 } from 'rxjs/operators';
 import {
-  MAT_LEGACY_FORM_FIELD as MAT_FORM_FIELD,
-  MatLegacyFormField as MatFormField
-} from '@angular/material/legacy-form-field';
-import { MatLegacyAutocomplete as MatAutocomplete } from '@angular/material/legacy-autocomplete';
+  MAT_FORM_FIELD,
+  MatFormField
+} from '@angular/material/form-field';
+import { MatAutocomplete } from '@angular/material/autocomplete';
 import {
   ExtractOptionsDataSourceMixin,
   UseOptionsDataSourceSettings

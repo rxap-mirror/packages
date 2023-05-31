@@ -24,7 +24,7 @@ import {
   RXAP_O_AUTH_REDIRECT_SIGN_IN,
   OAuthService
 } from '@rxap/oauth';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { AvatarBackgroundImageDirective } from '@rxap/directives';
 import {
   NgIf,
@@ -33,9 +33,9 @@ import {
 import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
-  selector:        'rxap-continue',
-  templateUrl:     './continue.component.html',
-  styleUrls:       [ './continue.component.scss' ],
+  selector:    'rxap-continue',
+  templateUrl: './continue.component.html',
+  styleUrls:   [ './continue.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-continue' },
   animations:      [
@@ -49,11 +49,11 @@ import { FlexModule } from '@angular/flex-layout/flex';
     ])
   ],
   standalone:      true,
-  imports:         [
+  imports:     [
     FlexModule,
     NgIf,
     AvatarBackgroundImageDirective,
-    MatLegacyButtonModule,
+    MatButtonModule,
     AsyncPipe
   ]
 })

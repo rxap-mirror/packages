@@ -3,9 +3,9 @@ import {
   Inject
 } from '@angular/core';
 import {
-  MatLegacyDialog as MatDialog,
-  LegacyDialogPosition as DialogPosition
-} from '@angular/material/legacy-dialog';
+  MatDialog,
+  DialogPosition
+} from '@angular/material/dialog';
 import { Direction } from '@angular/cdk/bidi';
 import { ScrollStrategy } from '@angular/cdk/overlay';
 import {

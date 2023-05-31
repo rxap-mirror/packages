@@ -8,7 +8,7 @@ import {
   ShowOnDirtyErrorStateMatcher
 } from '@angular/material/core';
 import { fadeAnimation } from '../fade-animation';
-import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {
   FormSubmittingDirective,
   FormSubmitFailedDirective,
@@ -16,10 +16,10 @@ import {
   FormControlErrorDirective,
   FormDirective
 } from '@rxap/forms';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { NgIf } from '@angular/common';
-import { MatLegacyInputModule } from '@angular/material/legacy-input';
-import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexModule } from '@angular/flex-layout/flex';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -45,15 +45,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormDirective,
     FlexModule,
     MatIconModule,
-    MatLegacyFormFieldModule,
-    MatLegacyInputModule,
+    MatFormFieldModule,
+    MatInputModule,
     FormControlErrorDirective,
     NgIf,
-    MatLegacyButtonModule,
+    MatButtonModule,
     FormControlMarkDirtyDirective,
     FormSubmitFailedDirective,
     FormSubmittingDirective,
-    MatLegacyProgressBarModule
+    MatProgressBarModule
   ]
 })
 export class ResetPasswordComponent {}

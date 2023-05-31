@@ -20,8 +20,7 @@ import {
   combineLatest,
   of,
   BehaviorSubject,
-  TeardownLogic,
-  Subject
+  TeardownLogic
 } from 'rxjs';
 import {
   startWith,
@@ -43,16 +42,14 @@ import {
   RXAP_TABLE_DATA_SOURCE_PAGINATOR,
   RXAP_TABLE_DATA_SOURCE_SORT,
   RXAP_TABLE_DATA_SOURCE_FILTER,
-  RXAP_TABLE_DATA_SOURCE_PARAMETERS
+  RXAP_TABLE_DATA_SOURCE_PARAMETERS,
+  RXAP_TABLE_METHOD
 } from './tokens';
 import {
   equals,
   clone
 } from '@rxap/utilities';
 import { Method } from '@rxap/utilities/rxjs';
-import { RXAP_TABLE_METHOD } from './tokens';
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
-import { MatSort } from '@angular/material/sort';
 
 /**
  * @deprecated removed use RXAP_TABLE_METHOD instead

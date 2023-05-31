@@ -8,9 +8,9 @@
 //  If you specify typography styles for the components you use elsewhere, you should delete this line.
 //  If you don't need the default component typographies but still want the hierarchy styles,
 //  you can delete this line and instead use:
-//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
-@include mat.all-legacy-component-typographies();
-@include mat.legacy-core();
+//    `@include mat.legacy-typography-hierarchy(mat.define-typography-config());`
+@include mat.all-component-typographies();
+@include mat.core();
 $primary: mat.define-palette(mat.$lime-palette);
 $accent: mat.define-palette(mat.$amber-palette);
 $warn: mat.define-palette(mat.$red-palette);
@@ -24,7 +24,7 @@ $theme-light: mat.define-light-theme((
 ));
 
 @mixin body-theme($theme) {
-  @include mat.all-legacy-component-themes($theme);
+  @include mat.all-component-themes($theme);
   background-color: mat.get-color-from-palette(map-get($theme, background), background);
 
   @include rxap-authentication-theme($theme);

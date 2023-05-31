@@ -1,7 +1,13 @@
-import { Injectable, Inject } from '@angular/core';
+import {
+  Injectable,
+  Inject
+} from '@angular/core';
 import { Subject } from 'rxjs';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
-import { debounceTime, tap } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  debounceTime,
+  tap
+} from 'rxjs/operators';
 import { HttpErrorMessageComponent } from './http-error-message.component';
 
 @Injectable()

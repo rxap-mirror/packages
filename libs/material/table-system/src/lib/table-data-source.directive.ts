@@ -8,7 +8,7 @@ import {
   OnInit,
   Optional
 } from '@angular/core';
-import type { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import type { MatPaginator } from '@angular/material/paginator';
 import type { Observable } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { MatSort } from '@angular/material/sort';

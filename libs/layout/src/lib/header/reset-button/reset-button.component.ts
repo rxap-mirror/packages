@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { ResetService } from '@rxap/services';
 import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector:        'rxap-reset-button',
@@ -14,7 +14,7 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-reset-button' },
   standalone:      true,
-  imports:         [ MatLegacyButtonModule, MatIconModule ]
+  imports:         [ MatButtonModule, MatIconModule ]
 })
 export class ResetButtonComponent {
   constructor(

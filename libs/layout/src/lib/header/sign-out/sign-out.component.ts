@@ -6,7 +6,7 @@ import {
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { SignOutDirective } from '@rxap/authentication';
-import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector:        'rxap-sign-out',
@@ -15,7 +15,7 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            { class: 'rxap-sign-out' },
   standalone:      true,
-  imports:         [ MatLegacyButtonModule, SignOutDirective, MatIconModule ]
+  imports:         [ MatButtonModule, SignOutDirective, MatIconModule ]
 })
 export class SignOutComponent {
 
