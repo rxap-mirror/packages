@@ -9,7 +9,8 @@ export interface ExpandCellContentDirectiveContext<Data extends Record<string, a
 }
 
 @Directive({
-  selector: '[rxapExpandRowContent]'
+  selector:   '[rxapExpandRowContent]',
+  standalone: true
 })
 export class ExpandRowContentDirective<Data extends Record<string, any>> {
 

@@ -11,7 +11,8 @@ import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Directive({
-  selector: '[rxapFormLoadingError]'
+  selector:   '[rxapFormLoadingError]',
+  standalone: true
 })
 export class FormLoadingErrorDirective implements AfterViewInit, OnDestroy {
 

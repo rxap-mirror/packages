@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   ElementRef,
   Inject,
   Renderer2,
@@ -8,7 +7,7 @@ import {
   OnChanges,
   SimpleChanges,
   isDevMode,
-  OnInit,
+  OnInit
 } from '@angular/core';
 import { ImageLoaderService } from '@rxap/services';
 
@@ -51,7 +50,8 @@ export type BackgroundPosition =
   | string;
 
 @Directive({
-  selector: '[rxapBackgroundImage]',
+  selector:   '[rxapBackgroundImage]',
+  standalone: true
 })
 export class BackgroundImageDirective implements OnChanges, OnInit {
   @Input('rxapBackgroundImage')
@@ -159,8 +159,4 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
   }
 }
 
-@NgModule({
-  declarations: [BackgroundImageDirective],
-  exports: [BackgroundImageDirective],
-})
-export class BackgroundImageDirectiveModule {}
+

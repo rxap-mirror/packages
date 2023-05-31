@@ -9,12 +9,18 @@ import {
   Injector,
   INJECTOR,
   OnDestroy,
-  NgModule,
   Optional,
-  isDevMode,
+  isDevMode
 } from '@angular/core';
-import { Constructor, Required, IconConfig } from '@rxap/utilities';
-import { FormDefinition, ToFormMethod, FormType } from '@rxap/forms';
+import {
+  Constructor,
+  Required,
+  IconConfig
+} from '@rxap/utilities';
+import {
+  ToFormMethod,
+  FormType
+} from '@rxap/forms';
 import { FormWindowService } from './form-window.service';
 import { WindowRef } from '@rxap/window-system';
 import { ConfirmClick } from '@rxap/directives';
@@ -30,11 +36,12 @@ export const RXAP_WINDOW_FORM_SYSTEM_OPEN_FORM_CONSTRUCTOR = new InjectionToken(
  * @deprecated
  */
 @Directive({
-  selector: '[rxapOpenForm]',
-  host: {
-    '(click)': 'onClick()',
-    '(confirmed)': 'onConfirm()',
+  selector:   '[rxapOpenForm]',
+  host:       {
+    '(click)':     'onClick()',
+    '(confirmed)': 'onConfirm()'
   },
+  standalone: true
 })
 export class OpenFormDirective<Data, Result = Data>
   extends ConfirmClick
@@ -139,8 +146,4 @@ export class OpenFormDirective<Data, Result = Data>
 /**
  * @deprecated
  */
-@NgModule({
-  exports: [OpenFormDirective],
-  declarations: [OpenFormDirective],
-})
-export class OpenFormDirectiveModule {}
+

@@ -2,13 +2,11 @@ import {
   moduleMetadata,
   addDecorator
 } from '@storybook/angular';
-import { DarkModeToggleButtonComponentModule } from './dark-mode-toggle-button.component.module';
+
 import { DarkModeToggleButtonComponent } from './dark-mode-toggle-button.component';
 
 addDecorator(moduleMetadata({
-  imports: [
-    DarkModeToggleButtonComponentModule,
-  ]
+  imports: []
 }));
 
 export default {

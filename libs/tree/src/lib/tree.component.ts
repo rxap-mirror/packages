@@ -30,7 +30,10 @@ import {
   tap
 } from 'rxjs/operators';
 import { TreeContentDirective } from './tree-content.directive';
-import { TemplatePortal } from '@angular/cdk/portal';
+import {
+  TemplatePortal,
+  PortalModule
+} from '@angular/cdk/portal';
 import { RXAP_TREE_CONTENT_EDITABLE_METHOD } from './tokens';
 import { TreeDataSource } from './tree.data-source';
 import {
@@ -39,16 +42,49 @@ import {
   NodeGetIconFunction,
   NodeHasDetailsFunction,
   NodeToDisplayFunction,
-  ToggleSubject,
   NodeGetStyleFunction
 } from '@rxap/utilities/rxjs';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
+import { ContenteditableDirective } from '@rxap/contenteditable';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyCheckboxModule } from '@angular/material/legacy-checkbox';
+import { IconDirective } from '@rxap/material-directives/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
+import { ExtendedModule } from '@angular/flex-layout/extended';
+import {
+  NgStyle,
+  NgIf,
+  AsyncPipe
+} from '@angular/common';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector:        'rxap-tree',
   templateUrl:     './tree.component.html',
   styleUrls:       [ './tree.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone:      true,
+  imports:         [
+    FlexModule,
+    NgStyle,
+    ExtendedModule,
+    NgIf,
+    MatLegacyProgressBarModule,
+    MatTreeModule,
+    MatIconModule,
+    IconDirective,
+    MatLegacyCheckboxModule,
+    MatLegacyButtonModule,
+    ContenteditableDirective,
+    MatLegacyProgressSpinnerModule,
+    MatDividerModule,
+    PortalModule,
+    AsyncPipe
+  ]
 })
 export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   implements OnInit, AfterContentInit {

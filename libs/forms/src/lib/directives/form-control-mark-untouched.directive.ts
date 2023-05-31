@@ -6,7 +6,8 @@ import { ControlContainer } from '@angular/forms';
 import { hasIndexSignature } from '@rxap/utilities';
 
 @Directive({
-  selector: '[rxapFormControlMarkUntouched]'
+  selector:   '[rxapFormControlMarkUntouched]',
+  standalone: true
 })
 export class FormControlMarkUntouchedDirective {
 

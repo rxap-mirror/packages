@@ -7,7 +7,6 @@ import {
   INJECTOR,
   ViewContainerRef,
   ChangeDetectorRef,
-  NgModule,
   SimpleChanges,
   OnChanges,
   EmbeddedViewRef,
@@ -31,7 +30,6 @@ import {
 import { Required } from '@rxap/utilities';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 import {
-  first,
   tap,
   take
 } from 'rxjs/operators';
@@ -76,8 +74,9 @@ class RecordViewTuple<T> {
 }
 
 @Directive({
-  selector: '[rxapRemoteMethodCollection]',
-  exportAs: 'rxapRemoteMethodCollection'
+  selector:   '[rxapRemoteMethodCollection]',
+  exportAs:   'rxapRemoteMethodCollection',
+  standalone: true
 })
 export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
   Parameters = any,
@@ -385,8 +384,4 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
 
 }
 
-@NgModule({
-  declarations: [RemoteMethodTemplateCollectionDirective],
-  exports: [RemoteMethodTemplateCollectionDirective]
-})
-export class RemoteMethodTemplateCollectionDirectiveModule {}
+

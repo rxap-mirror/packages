@@ -1,4 +1,4 @@
-export * from './lib/form-system.module';
+
 
 export * from './lib/error';
 export * from './lib/control-data-source';
@@ -32,7 +32,7 @@ export * from './lib/decorators/use-form-component';
 // region directives
 
 export * from './lib/directives/control-hide-show.directive';
-export * from './lib/directives/form-directives.module';
+
 export * from './lib/directives/input-select-options.directive';
 
 // endregion

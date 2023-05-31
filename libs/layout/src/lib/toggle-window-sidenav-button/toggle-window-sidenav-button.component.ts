@@ -6,6 +6,9 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { NgIf } from '@angular/common';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 
 @Component({
   selector:        'rxap-toggle-window-sidenav-button',
@@ -14,7 +17,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host:            {
     class: 'rxap-toggle-window-sidenav-button'
-  }
+  },
+  standalone:      true,
+  imports:         [ MatLegacyButtonModule, NgIf, MatIconModule ]
 })
 export class ToggleWindowSidenavButtonComponent implements OnInit {
 

@@ -14,22 +14,18 @@ import {
   host:        { class: 'rxap-authentication-container' },
   animations:  [
     trigger('routeAnimations', [
-      transition(
-        ':enter',
-        [
-          style({ opacity: 0 }),
-          animate('512ms', style({ opacity: 1 }))
-        ]
-      ),
-      transition(
-        ':leave',
-        [
-          style({ opacity: 1 }),
-          animate('512ms', style({ opacity: 0 }))
-        ]
-      )
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('512ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate('512ms', style({ opacity: 0 }))
+      ])
     ])
-  ]
+  ],
+  standalone:  true,
+  imports:     [ RouterOutlet ]
 })
 export class AuthenticationContainerComponent {
 

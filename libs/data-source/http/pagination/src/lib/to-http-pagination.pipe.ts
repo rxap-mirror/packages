@@ -1,7 +1,6 @@
 import {
   Pipe,
-  PipeTransform,
-  NgModule
+  PipeTransform
 } from '@angular/core';
 import { HttpDataSource } from '@rxap/data-source/http';
 import {
@@ -12,7 +11,8 @@ import {
 import { PaginatorLike } from '@rxap/data-source/pagination';
 
 @Pipe({
-  name: 'toHttpPagination'
+  name:       'toHttpPagination',
+  standalone: true
 })
 export class ToHttpPaginationPipe implements PipeTransform {
 
@@ -26,8 +26,4 @@ export class ToHttpPaginationPipe implements PipeTransform {
 
 }
 
-@NgModule({
-  declarations: [ ToHttpPaginationPipe ],
-  exports:      [ ToHttpPaginationPipe ]
-})
-export class ToHttpPaginationPipeModule {}
+

@@ -7,7 +7,6 @@ import {
   INJECTOR,
   ViewContainerRef,
   ChangeDetectorRef,
-  NgModule,
   OnChanges,
   SimpleChanges,
   OnInit,
@@ -40,8 +39,9 @@ export interface RemoteMethodTemplateDirectiveErrorContext {
 }
 
 @Directive({
-  selector: '[rxapRemoteMethod]',
-  exportAs: 'rxapRemoteMethod'
+  selector:   '[rxapRemoteMethod]',
+  exportAs:   'rxapRemoteMethod',
+  standalone: true
 })
 export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata>
   implements OnChanges, OnInit {
@@ -210,8 +210,4 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
 
 }
 
-@NgModule({
-  declarations: [RemoteMethodTemplateDirective],
-  exports: [RemoteMethodTemplateDirective]
-})
-export class RemoteMethodTemplateDirectiveModule {}
+

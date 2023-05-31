@@ -1,8 +1,7 @@
 import {
   Directive,
   forwardRef,
-  Input,
-  NgModule
+  Input
 } from '@angular/core';
 import {
   AbstractControl,
@@ -13,14 +12,15 @@ import {
 import { Required } from '@rxap/utilities';
 
 @Directive({
-  selector:  '[rxapIsEqualTo]',
-  providers: [
+  selector:   '[rxapIsEqualTo]',
+  providers:  [
     {
       provide:     NG_VALIDATORS,
       multi:       true,
       useExisting: forwardRef(() => IsEqualToDirective)
     }
-  ]
+  ],
+  standalone: true
 })
 export class IsEqualToDirective implements Validator {
 
@@ -57,9 +57,4 @@ export class IsEqualToDirective implements Validator {
 
 }
 
-@NgModule({
-  declarations: [ IsEqualToDirective ],
-  exports:      [ IsEqualToDirective ]
-})
-export class IsEqualToDirectiveModule {
-}
+

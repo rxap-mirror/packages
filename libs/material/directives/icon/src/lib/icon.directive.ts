@@ -4,7 +4,6 @@ import {
   Inject,
   Renderer2,
   ElementRef,
-  NgModule,
   OnChanges,
   SimpleChanges
 } from '@angular/core';
@@ -16,7 +15,8 @@ import {
 import { MatIcon } from '@angular/material/icon';
 
 @Directive({
-  selector: 'mat-icon[rxapIcon]',
+  selector:   'mat-icon[rxapIcon]',
+  standalone: true
 })
 export class IconDirective implements OnChanges {
   public get isSimpleIcon(): boolean {
@@ -85,8 +85,4 @@ export class IconDirective implements OnChanges {
   }
 }
 
-@NgModule({
-  exports: [IconDirective],
-  declarations: [IconDirective],
-})
-export class IconDirectiveModule {}
+

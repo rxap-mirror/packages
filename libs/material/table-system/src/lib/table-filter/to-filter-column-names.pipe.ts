@@ -4,7 +4,8 @@ import {
 } from '@angular/core';
 
 @Pipe({
-  name: 'toFilterColumnNames'
+  name:       'toFilterColumnNames',
+  standalone: true
 })
 export class ToFilterColumnNamesPipe implements PipeTransform {
 

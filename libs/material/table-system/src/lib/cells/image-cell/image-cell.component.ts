@@ -9,15 +9,22 @@ import {
   BackgroundRepeat,
   BackgroundRepeatOptions,
   BackgroundSize,
-  BackgroundSizeOptions
+  BackgroundSizeOptions,
+  BackgroundImageDirective
 } from '@rxap/directives';
+import {
+  NgIf,
+  NgClass
+} from '@angular/common';
 
 @Component({
   selector:        'td[rxap-image-cell]',
   templateUrl:     './image-cell.component.html',
   styleUrls:       [ './image-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'rxap-image-cell' }
+  host:            { class: 'rxap-image-cell' },
+  standalone:      true,
+  imports:         [ NgIf, NgClass, BackgroundImageDirective ]
 })
 export class ImageCellComponent {
 

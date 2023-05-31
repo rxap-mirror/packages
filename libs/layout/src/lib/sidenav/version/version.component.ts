@@ -15,12 +15,19 @@ import {
 } from '@rxap/utilities';
 import { tap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import {
+  NgFor,
+  KeyValuePipe
+} from '@angular/common';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector:        'rxap-version',
   templateUrl:     './version.component.html',
   styleUrls:       [ './version.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone:      true,
+  imports:         [ FlexModule, NgFor, KeyValuePipe ]
 })
 export class VersionComponent implements OnInit, OnDestroy {
 

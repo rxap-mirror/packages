@@ -2,7 +2,6 @@ import {
   Directive,
   Input,
   HostListener,
-  NgModule,
   HostBinding,
   EventEmitter,
   Output,
@@ -17,7 +16,8 @@ export interface ContenteditableEvent {
 }
 
 @Directive({
-  selector: '[rxapContenteditable]'
+  selector:   '[rxapContenteditable]',
+  standalone: true
 })
 export class ContenteditableDirective {
 
@@ -68,10 +68,5 @@ export class ContenteditableDirective {
 
 }
 
-@NgModule({
-  declarations: [ ContenteditableDirective ],
-  exports:      [ ContenteditableDirective ]
-})
-export class ContenteditableDirectiveModule {
-}
+
 

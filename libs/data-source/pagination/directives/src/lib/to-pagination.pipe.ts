@@ -1,7 +1,6 @@
 import {
   Pipe,
-  PipeTransform,
-  NgModule
+  PipeTransform
 } from '@angular/core';
 import {
   BaseDataSource,
@@ -18,7 +17,8 @@ import {
 } from 'rxjs';
 
 @Pipe({
-  name: 'toPagination'
+  name:       'toPagination',
+  standalone: true
 })
 export class ToPaginationPipe implements PipeTransform {
 
@@ -36,8 +36,4 @@ export class ToPaginationPipe implements PipeTransform {
 
 }
 
-@NgModule({
-  declarations: [ ToPaginationPipe ],
-  exports:      [ ToPaginationPipe ]
-})
-export class ToPaginationPipeModule {}
+

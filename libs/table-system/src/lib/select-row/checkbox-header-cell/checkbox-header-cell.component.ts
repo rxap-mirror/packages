@@ -10,15 +10,21 @@ import {
   EMPTY
 } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MatLegacyCheckboxChange as MatCheckboxChange } from '@angular/material/legacy-checkbox';
+import {
+  MatLegacyCheckboxChange as MatCheckboxChange,
+  MatLegacyCheckboxModule
+} from '@angular/material/legacy-checkbox';
 import { CdkTable } from '@angular/cdk/table';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector:        'th[rxap-checkbox-header-cell]',
   templateUrl:     './checkbox-header-cell.component.html',
   styleUrls:       [ './checkbox-header-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'rxap-checkbox-header-cell' }
+  host:            { class: 'rxap-checkbox-header-cell' },
+  standalone:      true,
+  imports:         [ MatLegacyCheckboxModule, AsyncPipe ]
 })
 export class CheckboxHeaderCellComponent<Data extends Record<string, any>> implements OnInit {
 

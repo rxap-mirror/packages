@@ -12,7 +12,10 @@ import {
   ExpandRowContentDirective,
   ExpandCellContentDirectiveContext
 } from './expand-row-content.directive';
-import { TemplatePortal } from '@angular/cdk/portal';
+import {
+  TemplatePortal,
+  PortalModule
+} from '@angular/cdk/portal';
 import { Required } from '@rxap/utilities';
 import {
   trigger,
@@ -27,6 +30,7 @@ import {
   tap,
   filter
 } from 'rxjs/operators';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -41,7 +45,9 @@ import {
       state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
     ])
-  ]
+  ],
+  standalone:      true,
+  imports:         [ PortalModule, AsyncPipe ]
 })
 export class ExpandRowContainerComponent<Data extends Record<string, any>> implements AfterContentInit, OnDestroy {
 

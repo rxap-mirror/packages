@@ -1,5 +1,4 @@
 import {
-  NgModule,
   Directive,
   Inject,
   HostListener,
@@ -11,7 +10,8 @@ import {
 } from '@angular/material/legacy-form-field';
 
 @Directive({
-  selector: '[rxapInputClearButton]'
+  selector:   '[rxapInputClearButton]',
+  standalone: true
 })
 export class InputClearButtonDirective {
 
@@ -47,8 +47,4 @@ export class InputClearButtonDirective {
 
 }
 
-@NgModule({
-  declarations: [ InputClearButtonDirective ],
-  exports:      [ InputClearButtonDirective ]
-})
-export class InputClearButtonDirectiveModule {}
+

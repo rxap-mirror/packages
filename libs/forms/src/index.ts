@@ -29,7 +29,7 @@ export * from './lib/directives/form-loading.directive';
 export * from './lib/directives/form-submitting.directive';
 export * from './lib/directives/form-loaded.directive';
 export * from './lib/directives/form-loading-error.directive';
-export * from './lib/directives/forms.module';
+
 export * from './lib/directives/models';
 export * from './lib/directives/tokens';
 export * from './lib/directives/form-control-error.directive';

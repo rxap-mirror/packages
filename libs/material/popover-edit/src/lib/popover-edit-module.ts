@@ -23,11 +23,18 @@ import { CdkPopoverEditModule } from './cdk/popover-edit-module';
 import { CdkEditable } from './cdk/table-directives';
 
 @NgModule({
-  imports:      [
+  imports: [
     CdkPopoverEditModule,
-    MatCommonModule
+    MatCommonModule,
+    MatPopoverEdit,
+    MatPopoverEditTabOut,
+    MatRowHoverContent,
+    MatEditLens,
+    MatEditRevert,
+    MatEditClose,
+    MatEditOpen
   ],
-  exports:      [
+  exports: [
     MatPopoverEdit,
     MatPopoverEditTabOut,
     MatRowHoverContent,
@@ -36,15 +43,6 @@ import { CdkEditable } from './cdk/table-directives';
     MatEditClose,
     MatEditOpen,
     CdkEditable
-  ],
-  declarations: [
-    MatPopoverEdit,
-    MatPopoverEditTabOut,
-    MatRowHoverContent,
-    MatEditLens,
-    MatEditRevert,
-    MatEditClose,
-    MatEditOpen
   ]
 })
 export class MatPopoverEditModule {}

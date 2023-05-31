@@ -3,11 +3,11 @@ import {
   Story
 } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponentModule } from './login.component.module';
+
 import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RxapAuthenticationService } from '@rxap/authentication';
-import { AuthenticationContainerComponentModule } from '../authentication-container/authentication-container.component.module';
+
 
 export default {
   title:      'LoginComponent',
@@ -15,8 +15,6 @@ export default {
   decorators: [
     moduleMetadata({
       imports:   [
-        LoginComponentModule,
-        AuthenticationContainerComponentModule,
         BrowserAnimationsModule,
         RouterTestingModule
       ],

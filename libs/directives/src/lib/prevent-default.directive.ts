@@ -1,11 +1,11 @@
 import {
   Directive,
-  NgModule,
   HostListener
 } from '@angular/core';
 
 @Directive({
-  selector: '[rxapPreventDefault]'
+  selector:   '[rxapPreventDefault]',
+  standalone: true
 })
 export class PreventDefaultDirective {
 
@@ -16,8 +16,4 @@ export class PreventDefaultDirective {
 
 }
 
-@NgModule({
-  exports:      [ PreventDefaultDirective ],
-  declarations: [ PreventDefaultDirective ]
-})
-export class PreventDefaultDirectiveModule {}
+

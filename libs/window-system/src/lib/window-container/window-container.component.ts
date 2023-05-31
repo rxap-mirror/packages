@@ -18,11 +18,24 @@ import {
 } from 'rxjs';
 import {
   CdkDragEnd,
-  DragRef
+  DragRef,
+  CdkDrag,
+  CdkDragHandle
 } from '@angular/cdk/drag-drop';
 import { WindowResizerComponent } from '../window-resizer/window-resizer.component';
 import { WindowRef } from '../window-ref';
 import { LoadingIndicatorService } from '@rxap/services';
+import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
+import { PortalModule } from '@angular/cdk/portal';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { WindowToolBarComponent } from '../window-tool-bar/window-tool-bar.component';
+import {
+  NgStyle,
+  NgIf,
+  AsyncPipe
+} from '@angular/common';
+import { ExtendedModule } from '@angular/flex-layout/extended';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 export interface Point {
   x: number;
@@ -36,7 +49,22 @@ export interface Point {
   changeDetection: ChangeDetectionStrategy.Default,
   host:            {
     class: 'rxap-window-container'
-  }
+  },
+  standalone:      true,
+  imports:         [
+    CdkDrag,
+    FlexModule,
+    ExtendedModule,
+    NgStyle,
+    CdkDragHandle,
+    WindowToolBarComponent,
+    NgIf,
+    MatToolbarModule,
+    PortalModule,
+    MatLegacyProgressBarModule,
+    WindowResizerComponent,
+    AsyncPipe
+  ]
 })
 export class WindowContainerComponent<D> implements OnInit {
 

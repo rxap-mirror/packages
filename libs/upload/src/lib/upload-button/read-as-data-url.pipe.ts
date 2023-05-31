@@ -1,7 +1,6 @@
 import {
   Pipe,
-  PipeTransform,
-  NgModule
+  PipeTransform
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import {
@@ -11,7 +10,8 @@ import {
 import { log } from '@rxap/utilities/rxjs';
 
 @Pipe({
-  name: 'readAsDataURL'
+  name:       'readAsDataURL',
+  standalone: true
 })
 export class ReadAsDataURLPipe implements PipeTransform {
 
@@ -36,8 +36,4 @@ export class ReadAsDataURLPipe implements PipeTransform {
 
 }
 
-@NgModule({
-  declarations: [ ReadAsDataURLPipe ],
-  exports:      [ ReadAsDataURLPipe ]
-})
-export class ReadAsDataURLPipeModule {}
+

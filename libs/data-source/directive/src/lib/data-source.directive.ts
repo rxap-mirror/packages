@@ -1,7 +1,6 @@
 import type { Injector } from '@angular/core';
 import {
   Directive,
-  NgModule,
   TemplateRef,
   ViewContainerRef,
   Input,
@@ -46,8 +45,9 @@ export interface DataSourceErrorTemplateContext {
 }
 
 @Directive({
-  selector: '[rxapDataSource]',
-  exportAs: 'rxapDataSource'
+  selector:   '[rxapDataSource]',
+  exportAs:   'rxapDataSource',
+  standalone: true
 })
 export class DataSourceDirective<Data = any>
   implements OnDestroy, OnChanges, AfterViewInit
@@ -249,8 +249,4 @@ export class DataSourceDirective<Data = any>
   }
 }
 
-@NgModule({
-  exports: [DataSourceDirective],
-  declarations: [DataSourceDirective],
-})
-export class DataSourceDirectiveModule {}
+

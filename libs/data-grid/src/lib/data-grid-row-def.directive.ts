@@ -10,7 +10,8 @@ import { DataGridEditCellDefDirective } from './data-grid-edit-cell-def.directiv
 
 @Directive({
   // tslint:disable-next-line:directive-selector
-  selector: '[rxapDataGridRowDef]'
+  selector:   '[rxapDataGridRowDef]',
+  standalone: true
 })
 export class DataGridRowDefDirective<T extends Record<string, any>> {
 

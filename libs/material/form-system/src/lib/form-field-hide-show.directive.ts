@@ -3,7 +3,6 @@ import {
   Directive,
   ElementRef,
   Inject,
-  NgModule,
   OnDestroy,
   OnInit,
   Renderer2
@@ -93,7 +92,8 @@ export interface FormFieldHideShowDirective extends ExtractHideShowMixin, Extrac
 
 @Mixin(ExtractHideShowMixin, ExtractFormDefinitionMixin)
 @Directive({
-  selector: 'mat-form-field[rxapHideShow]'
+  selector:   'mat-form-field[rxapHideShow]',
+  standalone: true
 })
 export class FormFieldHideShowDirective implements AfterContentInit, OnDestroy {
 
@@ -215,9 +215,4 @@ export class FormFieldHideShowDirective implements AfterContentInit, OnDestroy {
 
 }
 
-@NgModule({
-  declarations: [ FormFieldHideShowDirective ],
-  exports:      [ FormFieldHideShowDirective ]
-})
-export class FormFieldHideShowDirectiveModule {
-}
+

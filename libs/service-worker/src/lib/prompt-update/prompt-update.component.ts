@@ -8,7 +8,8 @@ import {
 import { UpdateAvailableEvent } from '@angular/service-worker';
 import {
   MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
-  MatLegacyDialogRef as MatDialogRef
+  MatLegacyDialogRef as MatDialogRef,
+  MatLegacyDialogModule
 } from '@angular/material/legacy-dialog';
 import {
   interval,
@@ -20,12 +21,22 @@ import {
 } from 'rxjs/operators';
 import { LifeCycleService } from '@rxap/life-cycle';
 import { log } from '@rxap/utilities/rxjs';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
 
 @Component({
-  selector: 'rxap-prompt-update',
-  templateUrl: './prompt-update.component.html',
-  styleUrls: ['./prompt-update.component.scss'],
+  selector:        'rxap-prompt-update',
+  templateUrl:     './prompt-update.component.html',
+  styleUrls:       [ './prompt-update.component.scss' ],
   changeDetection: ChangeDetectionStrategy.Default,
+  standalone:      true,
+  imports:         [
+    MatLegacyDialogModule,
+    MatLegacyProgressBarModule,
+    MatLegacyTooltipModule,
+    MatLegacyButtonModule
+  ]
 })
 export class PromptUpdateComponent implements OnInit, OnDestroy {
   public static AUTO_UPDATE_IN = 1000 * 60 * 1.5;

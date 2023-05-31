@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   Input,
   Output,
   EventEmitter,
@@ -15,8 +14,9 @@ import {
 } from '@rxap/utilities/rxjs';
 
 @Directive({
-  selector: '[rxapMethod]',
-  exportAs: 'rxapMethod'
+  selector:   '[rxapMethod]',
+  exportAs:   'rxapMethod',
+  standalone: true
 })
 export class MethodDirective<ReturnType = any, Parameters = any> implements OnInit {
 
@@ -107,8 +107,4 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
 
 }
 
-@NgModule({
-  declarations: [ MethodDirective ],
-  exports:      [ MethodDirective ]
-})
-export class MethodDirectiveModule {}
+

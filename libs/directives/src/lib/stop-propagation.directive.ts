@@ -1,11 +1,11 @@
 import {
   Directive,
-  NgModule,
   HostListener
 } from '@angular/core';
 
 @Directive({
-  selector: '[rxapStopPropagation]'
+  selector:   '[rxapStopPropagation]',
+  standalone: true
 })
 export class StopPropagationDirective {
 
@@ -16,8 +16,4 @@ export class StopPropagationDirective {
 
 }
 
-@NgModule({
-  exports:      [ StopPropagationDirective ],
-  declarations: [ StopPropagationDirective ]
-})
-export class StopPropagationDirectiveModule {}
+

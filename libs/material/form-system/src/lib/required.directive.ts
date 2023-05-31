@@ -1,7 +1,6 @@
 import {
   Directive,
   Inject,
-  NgModule,
   AfterContentInit
 } from '@angular/core';
 import {
@@ -10,7 +9,8 @@ import {
 } from '@angular/material/legacy-form-field';
 
 @Directive({
-  selector: '[formControlName][rxapRequired]'
+  selector:   '[formControlName][rxapRequired]',
+  standalone: true
 })
 export class RequiredDirective implements AfterContentInit {
 
@@ -33,8 +33,4 @@ export class RequiredDirective implements AfterContentInit {
 
 }
 
-@NgModule({
-  exports:      [ RequiredDirective ],
-  declarations: [ RequiredDirective ]
-})
-export class RequiredDirectiveModule {}
+

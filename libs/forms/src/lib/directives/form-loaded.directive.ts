@@ -14,7 +14,8 @@ import {
 } from 'rxjs/operators';
 
 @Directive({
-  selector: '[rxapFormLoaded]'
+  selector:   '[rxapFormLoaded]',
+  standalone: true
 })
 export class FormLoadedDirective implements AfterViewInit, OnDestroy {
 

@@ -24,25 +24,38 @@ import {
   RXAP_O_AUTH_REDIRECT_SIGN_IN,
   OAuthService
 } from '@rxap/oauth';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { AvatarBackgroundImageDirective } from '@rxap/directives';
+import {
+  NgIf,
+  AsyncPipe
+} from '@angular/common';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector:        'rxap-continue',
   templateUrl:     './continue.component.html',
   styleUrls:       [ './continue.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'rxap-continue' },
-  animations: [
+  host:            { class: 'rxap-continue' },
+  animations:      [
     trigger('fadeAnimation', [
       // the "in" style determines the "resting" state of the element when it is visible.
       state('in', style({ opacity: 1 })),
-
       // fade in when created. this could also be written as transition('void => *')
-      transition(':enter', [style({ opacity: 0 }), animate(300)]),
-
+      transition(':enter', [ style({ opacity: 0 }), animate(300) ]),
       // fade out when destroyed. this could also be written as transition('void => *')
-      transition(':leave', animate(300, style({ opacity: 0 }))),
-    ]),
+      transition(':leave', animate(300, style({ opacity: 0 })))
+    ])
   ],
+  standalone:      true,
+  imports:         [
+    FlexModule,
+    NgIf,
+    AvatarBackgroundImageDirective,
+    MatLegacyButtonModule,
+    AsyncPipe
+  ]
 })
 export class ContinueComponent<
   Profile extends Record<string, any> = Record<string, any>

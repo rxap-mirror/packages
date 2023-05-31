@@ -1,21 +1,23 @@
 import { HttpRemoteMethod } from '@rxap/remote-method/http';
-import { RxapRemoteMethod, RemoteMethodLoader } from '@rxap/remote-method';
+import {
+  RxapRemoteMethod,
+  RemoteMethodLoader
+} from '@rxap/remote-method';
 import type { Injector } from '@angular/core';
 import {
   Injectable,
   Inject,
   Directive,
-  NgModule,
   INJECTOR,
   TemplateRef,
   ChangeDetectorRef,
   ViewContainerRef,
-  Input,
+  Input
 } from '@angular/core';
 import {
   RemoteMethodTemplateDirective,
   RemoteMethodTemplateDirectiveContext,
-  RemoteMethodTemplateDirectiveErrorContext,
+  RemoteMethodTemplateDirectiveErrorContext
 } from '@rxap/remote-method/directive';
 
 @RxapRemoteMethod({
@@ -29,8 +31,9 @@ export class GetSystemRolesRemoteMethod extends HttpRemoteMethod<
 > {}
 
 @Directive({
-  selector: '[rxapGetSystemRolesRemoteMethod]',
-  exportAs: 'rxapGetSystemRolesRemoteMethod',
+  selector:   '[rxapGetSystemRolesRemoteMethod]',
+  exportAs:   'rxapGetSystemRolesRemoteMethod',
+  standalone: true
 })
 export class GetSystemRolesRemoteMethodDirective extends RemoteMethodTemplateDirective<
   Record<string, string[]>,
@@ -59,8 +62,4 @@ export class GetSystemRolesRemoteMethodDirective extends RemoteMethodTemplateDir
   }
 }
 
-@NgModule({
-  declarations: [GetSystemRolesRemoteMethodDirective],
-  exports: [GetSystemRolesRemoteMethodDirective],
-})
-export class GetSystemRolesRemoteMethodDirectiveModule {}
+

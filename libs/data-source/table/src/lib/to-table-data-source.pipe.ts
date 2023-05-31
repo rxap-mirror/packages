@@ -1,7 +1,6 @@
 import {
   Pipe,
-  PipeTransform,
-  NgModule
+  PipeTransform
 } from '@angular/core';
 import { PaginatorLike } from '@rxap/data-source/pagination';
 import { TableDataSource } from './table.data-source';
@@ -12,7 +11,8 @@ import {
 } from './abstract-table.data-source';
 
 @Pipe({
-  name: 'toTableDataSource'
+  name:       'toTableDataSource',
+  standalone: true
 })
 export class ToTableDataSourcePipe implements PipeTransform {
 
@@ -27,8 +27,4 @@ export class ToTableDataSourcePipe implements PipeTransform {
 
 }
 
-@NgModule({
-  declarations: [ ToTableDataSourcePipe ],
-  exports:      [ ToTableDataSourcePipe ]
-})
-export class ToTableDataSourcePipeModule {}
+

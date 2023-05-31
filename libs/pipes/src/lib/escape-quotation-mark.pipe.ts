@@ -1,12 +1,12 @@
 import {
   Pipe,
-  PipeTransform,
-  NgModule
+  PipeTransform
 } from '@angular/core';
 import { ReplacePipe } from './replace.pipe';
 
 @Pipe({
-  name: 'escapeQuotationMark'
+  name:       'escapeQuotationMark',
+  standalone: true
 })
 export class EscapeQuotationMarkPipe implements PipeTransform {
 
@@ -20,8 +20,4 @@ export class EscapeQuotationMarkPipe implements PipeTransform {
 
 }
 
-@NgModule({
-  declarations: [ EscapeQuotationMarkPipe ],
-  exports:      [ EscapeQuotationMarkPipe ]
-})
-export class EscapeQuotationMarkPipeModule {}
+

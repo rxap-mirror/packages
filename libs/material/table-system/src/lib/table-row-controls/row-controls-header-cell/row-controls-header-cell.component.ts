@@ -2,28 +2,51 @@ import {
   ChangeDetectionStrategy,
   Component,
   Inject,
-  Optional,
+  Optional
 } from '@angular/core';
 import { TableFilterService } from '../../table-filter/table-filter.service';
 import type { Observable } from 'rxjs';
 import { of } from 'rxjs';
-import { distinctUntilChanged, map, startWith } from 'rxjs/operators';
+import {
+  distinctUntilChanged,
+  map,
+  startWith
+} from 'rxjs/operators';
 import {
   ROW_ARCHIVE_METHOD,
   ROW_DELETE_METHOD,
-  ROW_RESTORE_METHOD,
+  ROW_RESTORE_METHOD
 } from '../tokens';
 import { TableDataSourceDirective } from '../../table-data-source.directive';
 import { SelectRowService } from '../../select-row/select-row.service';
 import { OpenApiRemoteMethod } from '@rxap/open-api/remote-method';
 import { Method } from '@rxap/utilities/rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { ConfirmDirective } from '@rxap/components';
+import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import {
+  NgIf,
+  AsyncPipe
+} from '@angular/common';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
-  selector: 'th[mfd-row-controls-header-cell]',
-  templateUrl: './row-controls-header-cell.component.html',
-  styleUrls: ['./row-controls-header-cell.component.scss'],
+  selector:        'th[mfd-row-controls-header-cell]',
+  templateUrl:     './row-controls-header-cell.component.html',
+  styleUrls:       [ './row-controls-header-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'mfd-row-controls-header-cell' },
+  host:            { class: 'mfd-row-controls-header-cell' },
+  standalone:      true,
+  imports:         [
+    FlexModule,
+    NgIf,
+    MatLegacyButtonModule,
+    MatLegacyTooltipModule,
+    ConfirmDirective,
+    MatIconModule,
+    AsyncPipe
+  ]
 })
 export class RowControlsHeaderCellComponent<Data extends Record<string, any>> {
   public showArchive$: Observable<boolean>;

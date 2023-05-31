@@ -3,7 +3,6 @@ import {
   Inject,
   TemplateRef,
   OnInit,
-  NgModule,
   ViewContainerRef
 } from '@angular/core';
 import { WindowRef } from './window-ref';
@@ -15,7 +14,8 @@ export interface WindowFooterTemplateContext {
 }
 
 @Directive({
-  selector: '[rxapWindowFooter]',
+  selector:   '[rxapWindowFooter]',
+  standalone: true
 })
 export class WindowFooterDirective implements OnInit {
 
@@ -51,8 +51,4 @@ export class WindowFooterDirective implements OnInit {
 
 }
 
-@NgModule({
-  declarations: [WindowFooterDirective],
-  exports: [WindowFooterDirective]
-})
-export class WindowFooterDirectiveModule {}
+

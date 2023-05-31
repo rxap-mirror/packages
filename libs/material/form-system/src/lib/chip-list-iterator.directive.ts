@@ -5,7 +5,6 @@ import {
   IterableChanges,
   IterableDiffer,
   IterableDiffers,
-  NgModule,
   OnDestroy,
   OnInit,
   TemplateRef,
@@ -39,7 +38,8 @@ class RecordViewTuple {
 }
 
 @Directive({
-  selector: '[rxapChipListIterator]'
+  selector:   '[rxapChipListIterator]',
+  standalone: true
 })
 export class ChipListIteratorDirective implements OnInit, OnDestroy {
   private _subscription?: Subscription;
@@ -154,9 +154,4 @@ export class ChipListIteratorDirective implements OnInit, OnDestroy {
   }
 }
 
-@NgModule({
-  exports: [ ChipListIteratorDirective ],
-  declarations: [ ChipListIteratorDirective ]
-})
-export class ChipListIteratorDirectiveModule {
-}
+

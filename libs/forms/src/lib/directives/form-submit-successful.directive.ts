@@ -11,7 +11,8 @@ import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Directive({
-  selector: '[rxapFormSubmitSuccessful]'
+  selector:   '[rxapFormSubmitSuccessful]',
+  standalone: true
 })
 export class FormSubmitSuccessfulDirective implements AfterViewInit, OnDestroy {
 

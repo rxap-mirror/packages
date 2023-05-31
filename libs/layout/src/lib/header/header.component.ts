@@ -5,26 +5,73 @@ import {
   OnDestroy,
   Input,
   Optional,
-  Inject,
+  Inject
 } from '@angular/core';
 import { Constructor } from '@rxap/utilities';
-import { Subscription, Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import {
+  Subscription,
+  Observable
+} from 'rxjs';
+import {
+  tap,
+  map
+} from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
 import { UserService } from '@rxap/authentication';
 import { RXAP_HEADER_COMPONENT } from '../tokens';
 import { HeaderService } from '@rxap/services';
-import { MatLegacyMenuPanel as MatMenuPanel } from '@angular/material/legacy-menu';
+import {
+  MatLegacyMenuPanel as MatMenuPanel,
+  MatLegacyMenuModule
+} from '@angular/material/legacy-menu';
 import { ThemePalette } from '@angular/material/core';
+import { NavigationProgressBarComponent } from './navigation-progress-bar/navigation-progress-bar.component';
+import { SignOutComponent } from './sign-out/sign-out.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.component';
+import { AppsButtonComponent } from './apps-button/apps-button.component';
+import { LanguageSelectorComponent } from './language-selector/language-selector.component';
+import { SidenavToggleButtonComponent } from './sidenav-toggle-button/sidenav-toggle-button.component';
+import { FlexModule } from '@angular/flex-layout/flex';
+import {
+  NgClass,
+  NgFor,
+  NgComponentOutlet,
+  NgIf,
+  AsyncPipe
+} from '@angular/common';
+import { ExtendedModule } from '@angular/flex-layout/extended';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
-  selector: 'rxap-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  selector:        'rxap-header',
+  templateUrl:     './header.component.html',
+  styleUrls:       [ './header.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'rxap-layout-header',
+  host:            {
+    class: 'rxap-layout-header'
   },
+  standalone:      true,
+  imports:         [
+    MatToolbarModule,
+    ExtendedModule,
+    NgClass,
+    NgFor,
+    NgComponentOutlet,
+    FlexModule,
+    NgIf,
+    SidenavToggleButtonComponent,
+    LanguageSelectorComponent,
+    AppsButtonComponent,
+    UserProfileIconComponent,
+    MatLegacyButtonModule,
+    MatLegacyMenuModule,
+    MatIconModule,
+    SignOutComponent,
+    NavigationProgressBarComponent,
+    AsyncPipe
+  ]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   @Input()

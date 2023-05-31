@@ -3,26 +3,18 @@ import {
   ModuleWithProviders,
   Provider
 } from '@angular/core';
-import {
-  ContainerComponentModule,
-  LoadingComponentModule
-} from '@rxap/oauth';
-import { ContinueComponentModule } from './continue/continue.component.module';
+
+
 import { RXAP_O_AUTH_SSO_REDIRECT_CONTINUE_DISABLED } from './tokens';
 import { OAuthSingleSignOnGuard } from './o-auth-single-sign-on.guard';
-import { ErrorComponentModule } from './error/error.component.module';
+
 
 export interface OAuthSingleSignOnOptions {
   redirectContinueDisabled?: boolean
 }
 
 @NgModule({
-  exports: [
-    ContinueComponentModule,
-    LoadingComponentModule,
-    ContainerComponentModule,
-    ErrorComponentModule
-  ],
+  exports:   [],
   providers: [
     OAuthSingleSignOnGuard
   ]

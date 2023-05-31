@@ -1,17 +1,30 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject
+} from '@angular/core';
 import type { WindowRef } from '@rxap/window-system';
 import { RXAP_WINDOW_REF } from '@rxap/window-system';
 import type { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SelectRowService } from '../select-row/select-row.service';
+import { AsyncPipe } from '@angular/common';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   // TODO : rn selector
-  selector: 'mfd-table-select-controls',
-  templateUrl: './table-select-controls.component.html',
-  styleUrls: ['./table-select-controls.component.scss'],
+  selector:        'mfd-table-select-controls',
+  templateUrl:     './table-select-controls.component.html',
+  styleUrls:       [ './table-select-controls.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'mfd-table-select-controls' },
+  host:            { class: 'mfd-table-select-controls' },
+  standalone:      true,
+  imports:         [
+    FlexModule,
+    MatLegacyButtonModule,
+    AsyncPipe
+  ]
 })
 export class TableSelectControlsComponent {
   public hasNotSelected$: Observable<boolean>;

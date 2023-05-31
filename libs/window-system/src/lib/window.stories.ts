@@ -7,7 +7,6 @@ import {
   moduleMetadata,
   Story
 } from '@storybook/angular';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import {
   WindowService,
   RxapWindowSystemModule
@@ -47,7 +46,6 @@ class WindowSystemPlaygroundComponent {
 @NgModule({
   declarations: [ WindowSystemPlaygroundComponent ],
   imports:      [
-    MatButtonModule,
     RxapWindowSystemModule
   ],
   exports:      [ WindowSystemPlaygroundComponent ]

@@ -4,14 +4,14 @@ import {
   OnDestroy,
   TemplateRef,
   ViewContainerRef,
-  NgModule,
-  Inject,
+  Inject
 } from '@angular/core';
 import { FooterService } from '@rxap/services';
 import { TemplatePortal } from '@angular/cdk/portal';
 
 @Directive({
-  selector: '[rxapFooter]',
+  selector:   '[rxapFooter]',
+  standalone: true
 })
 export class FooterDirective implements OnInit, OnDestroy {
   private _portal?: TemplatePortal<void>;
@@ -40,8 +40,4 @@ export class FooterDirective implements OnInit, OnDestroy {
   }
 }
 
-@NgModule({
-  declarations: [FooterDirective],
-  exports: [FooterDirective],
-})
-export class FooterDirectiveModule {}
+

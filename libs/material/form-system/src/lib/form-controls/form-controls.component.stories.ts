@@ -2,14 +2,12 @@ import {
   addDecorator,
   moduleMetadata
 } from '@storybook/angular';
-import { FormControlsComponentModule } from './form-controls.component.module';
+
 import { FormControlsComponent } from './form-controls.component';
 import { FormDirective } from '@rxap/forms';
 
 addDecorator(moduleMetadata({
-  imports:   [
-    FormControlsComponentModule
-  ],
+  imports:   [],
   providers: [
     {
       provide:  FormDirective,

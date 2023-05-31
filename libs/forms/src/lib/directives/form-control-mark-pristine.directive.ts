@@ -6,7 +6,8 @@ import { ControlContainer } from '@angular/forms';
 import { hasIndexSignature } from '@rxap/utilities';
 
 @Directive({
-  selector: '[rxapFormControlMarkPristine]'
+  selector:   '[rxapFormControlMarkPristine]',
+  standalone: true
 })
 export class FormControlMarkPristineDirective {
 

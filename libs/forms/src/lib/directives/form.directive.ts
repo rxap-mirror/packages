@@ -59,8 +59,8 @@ import {
 import { ToggleSubject } from '@rxap/utilities/rxjs';
 
 @Directive({
-  selector:  'form[rxapForm]:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',
-  providers: [
+  selector:   'form[rxapForm]:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',
+  providers:  [
     {
       provide: ControlContainer,
       // ignore coverage
@@ -74,38 +74,39 @@ import { ToggleSubject } from '@rxap/utilities/rxjs';
     // not cleared then the inner form uses the parent submit method provider on
     // submit
     {
-      provide: RXAP_FORM_SUBMIT_METHOD,
-      useValue: null,
+      provide:  RXAP_FORM_SUBMIT_METHOD,
+      useValue: null
     },
     {
-      provide: RXAP_FORM_LOAD_METHOD,
-      useValue: null,
+      provide:  RXAP_FORM_LOAD_METHOD,
+      useValue: null
     },
     {
-      provide: RXAP_FORM_LOAD_FAILED_METHOD,
-      useValue: null,
+      provide:  RXAP_FORM_LOAD_FAILED_METHOD,
+      useValue: null
     },
     {
-      provide: RXAP_FORM_LOAD_SUCCESSFUL_METHOD,
-      useValue: null,
+      provide:  RXAP_FORM_LOAD_SUCCESSFUL_METHOD,
+      useValue: null
     },
     {
-      provide: RXAP_FORM_SUBMIT_FAILED_METHOD,
-      useValue: null,
+      provide:  RXAP_FORM_SUBMIT_FAILED_METHOD,
+      useValue: null
     },
     {
-      provide: RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
-      useValue: null,
+      provide:  RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
+      useValue: null
     },
     {
-      provide: RXAP_FORM_DEFINITION_BUILDER,
-      useValue: null,
-    },
+      provide:  RXAP_FORM_DEFINITION_BUILDER,
+      useValue: null
+    }
     // endregion
   ],
-  host: { '(reset)': 'onReset()' },
-  outputs: ['ngSubmit'],
-  exportAs: 'rxapForm',
+  host:       { '(reset)': 'onReset()' },
+  outputs:    [ 'ngSubmit' ],
+  exportAs:   'rxapForm',
+  standalone: true
 })
 export class FormDirective<T = any>
   extends FormGroupDirective

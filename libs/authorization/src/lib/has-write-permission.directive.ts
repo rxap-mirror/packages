@@ -6,7 +6,7 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Optional,
+  Optional
 } from '@angular/core';
 import { AuthorizationService } from './authorization.service';
 import { Required } from '@rxap/utilities';
@@ -15,7 +15,8 @@ import { tap } from 'rxjs/operators';
 import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
 @Directive({
-  selector: '[rxapHasWritePermission]',
+  selector:   '[rxapHasWritePermission]',
+  standalone: true
 })
 export class HasWritePermissionDirective implements OnInit, OnDestroy {
   @Input('rxapHasWritePermission')

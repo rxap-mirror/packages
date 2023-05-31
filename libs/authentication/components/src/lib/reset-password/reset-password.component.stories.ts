@@ -6,14 +6,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RxapAuthenticationService } from '@rxap/authentication';
 import { ResetPasswordComponent } from './reset-password.component';
-import { ResetPasswordComponentModule } from './reset-password.component.module';
-import { AuthenticationContainerComponentModule } from '../authentication-container/authentication-container.component.module';
+
 
 addDecorator(moduleMetadata({
   imports:   [
-    ResetPasswordComponentModule,
     BrowserAnimationsModule,
-    AuthenticationContainerComponentModule,
     RouterTestingModule
   ],
   providers: [

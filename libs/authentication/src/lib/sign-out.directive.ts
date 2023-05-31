@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   HostListener,
   EventEmitter,
   Output
@@ -8,7 +7,8 @@ import {
 import { RxapAuthenticationService } from './authentication.service';
 
 @Directive({
-  selector: '[rxapSignOut]'
+  selector:   '[rxapSignOut]',
+  standalone: true
 })
 export class SignOutDirective {
 
@@ -32,8 +32,4 @@ export class SignOutDirective {
 
 }
 
-@NgModule({
-  declarations: [ SignOutDirective ],
-  exports:      [ SignOutDirective ]
-})
-export class SignOutDirectiveModule {}
+

@@ -1,7 +1,6 @@
 import {
   Pipe,
-  PipeTransform,
-  NgModule
+  PipeTransform
 } from '@angular/core';
 import { HttpDataSource } from '@rxap/data-source/http';
 import { PaginationData } from '@rxap/data-source/http/pagination';
@@ -16,7 +15,8 @@ import {
 } from './http-table.data-source';
 
 @Pipe({
-  name: 'toHttpTableDataSource'
+  name:       'toHttpTableDataSource',
+  standalone: true
 })
 export class ToHttpTableDataSourcePipe implements PipeTransform {
 
@@ -32,8 +32,4 @@ export class ToHttpTableDataSourcePipe implements PipeTransform {
 
 }
 
-@NgModule({
-  declarations: [ ToHttpTableDataSourcePipe ],
-  exports:      [ ToHttpTableDataSourcePipe ]
-})
-export class ToHttpTableDataSourcePipeModule {}
+

@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   Input,
   OnDestroy,
   OnInit
@@ -10,7 +9,8 @@ import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Directive({
-  selector: 'mat-paginator[rxapPersistent]'
+  selector:   'mat-paginator[rxapPersistent]',
+  standalone: true
 })
 export class PersistentPaginatorDirective implements OnInit, OnDestroy {
 
@@ -60,8 +60,4 @@ export class PersistentPaginatorDirective implements OnInit, OnDestroy {
 
 }
 
-@NgModule({
-  exports: [ PersistentPaginatorDirective ],
-  declarations: [ PersistentPaginatorDirective ]
-})
-export class PersistentPaginatorDirectiveModule {}
+

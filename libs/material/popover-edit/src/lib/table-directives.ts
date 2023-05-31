@@ -41,9 +41,10 @@ const MAT_ROW_HOVER_CELL_CLASS    = MAT_ROW_HOVER_CLASS + '-host-cell';
  * Makes the cell focusable.
  */
 @Directive({
-  selector: '[matPopoverEdit]:not([matPopoverEditTabOut])',
-  host:     POPOVER_EDIT_HOST_BINDINGS,
-  inputs:   POPOVER_EDIT_INPUTS
+  selector:   '[matPopoverEdit]:not([matPopoverEditTabOut])',
+  host:       POPOVER_EDIT_HOST_BINDINGS,
+  inputs:     POPOVER_EDIT_INPUTS,
+  standalone: true
 })
 export class MatPopoverEdit<C> extends CdkPopoverEdit<C> {
   protected panelClass(): string {
@@ -57,9 +58,10 @@ export class MatPopoverEdit<C> extends CdkPopoverEdit<C> {
  * Makes the cell focusable.
  */
 @Directive({
-  selector: '[matPopoverEdit][matPopoverEditTabOut]',
-  host:     POPOVER_EDIT_HOST_BINDINGS,
-  inputs:   POPOVER_EDIT_INPUTS
+  selector:   '[matPopoverEdit][matPopoverEditTabOut]',
+  host:       POPOVER_EDIT_HOST_BINDINGS,
+  inputs:     POPOVER_EDIT_INPUTS,
+  standalone: true
 })
 export class MatPopoverEditTabOut<C> extends CdkPopoverEditTabOut<C> {
   protected panelClass(): string {
@@ -72,7 +74,8 @@ export class MatPopoverEditTabOut<C> extends CdkPopoverEditTabOut<C> {
  * it is hovered or when an element in the row has focus.
  */
 @Directive({
-  selector: '[matRowHoverContent]'
+  selector:   '[matRowHoverContent]',
+  standalone: true
 })
 export class MatRowHoverContent extends CdkRowHoverContent {
   protected initElement(element: HTMLElement) {
@@ -108,7 +111,8 @@ export class MatRowHoverContent extends CdkRowHoverContent {
  * element or an ancestor element.
  */
 @Directive({
-  selector: '[matEditOpen]'
+  selector:   '[matEditOpen]',
+  standalone: true
 })
 export class MatEditOpen extends CdkEditOpen {
 }

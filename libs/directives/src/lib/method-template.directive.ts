@@ -1,6 +1,5 @@
 import {
   Directive,
-  NgModule,
   Input,
   Output,
   EventEmitter,
@@ -29,8 +28,9 @@ export interface MethodTemplateDirectiveErrorContext {
 }
 
 @Directive({
-  selector: '[rxapMethod]',
-  exportAs: 'rxapMethod'
+  selector:   '[rxapMethod]',
+  exportAs:   'rxapMethod',
+  standalone: true
 })
 export class MethodTemplateDirective<ReturnType = any, Parameters = any> implements OnInit, OnChanges {
 
@@ -172,8 +172,4 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
 
 }
 
-@NgModule({
-  declarations: [ MethodTemplateDirective ],
-  exports:      [ MethodTemplateDirective ]
-})
-export class MethodTemplateDirectiveModule {}
+

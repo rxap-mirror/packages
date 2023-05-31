@@ -1,5 +1,4 @@
 import {
-  NgModule,
   Pipe,
   PipeTransform
 } from '@angular/core';
@@ -7,7 +6,8 @@ import { Observable } from 'rxjs';
 import { ReplaceRouterPathsService } from './replace-router-paths.service';
 
 @Pipe({
-  name: 'replaceRouterPaths'
+  name:       'replaceRouterPaths',
+  standalone: true
 })
 export class ReplaceRouterPathsPipe implements PipeTransform {
   constructor(
@@ -19,8 +19,4 @@ export class ReplaceRouterPathsPipe implements PipeTransform {
   }
 }
 
-@NgModule({
-  declarations: [ ReplaceRouterPathsPipe ],
-  exports:      [ ReplaceRouterPathsPipe ]
-})
-export class ReplaceRouterPathsPipeModule {}
+

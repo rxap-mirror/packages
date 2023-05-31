@@ -1,9 +1,7 @@
 import {
   Directive,
-  Input,
-  NgModule
+  Input
 } from '@angular/core';
-import { Required } from '@rxap/utilities';
 import { RemoteMethodDirective } from '@rxap/remote-method/directive';
 import {
   HttpRemoteMethodParameter,
@@ -13,7 +11,8 @@ import { BaseRemoteMethod } from '@rxap/remote-method';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 
 @Directive({
-  selector: 'button[rxapHttpRemoteMethod]'
+  selector:   'button[rxapHttpRemoteMethod]',
+  standalone: true
 })
 export class HttpRemoteMethodDirective<ReturnType = any, Metadata extends HttpRemoteMethodMetadata = HttpRemoteMethodMetadata> extends RemoteMethodDirective<ReturnType, HttpRemoteMethodParameter, Metadata> {
 
@@ -71,8 +70,4 @@ export class HttpRemoteMethodDirective<ReturnType = any, Metadata extends HttpRe
 
 }
 
-@NgModule({
-  declarations: [ HttpRemoteMethodDirective ],
-  exports:      [ HttpRemoteMethodDirective ]
-})
-export class HttpRemoteMethodDirectiveModule {}
+

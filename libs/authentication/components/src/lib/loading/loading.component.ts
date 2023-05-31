@@ -3,19 +3,25 @@ import {
   ChangeDetectionStrategy,
   OnInit,
   OnDestroy,
-  Inject,
+  Inject
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RxapAuthenticationService } from '@rxap/authentication';
-import { filter, tap } from 'rxjs/operators';
+import {
+  filter,
+  tap
+} from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
 
 @Component({
-  selector: 'rxap-auth-loading',
-  templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss'],
-  host: { class: 'rxap-auth-loading' },
+  selector:        'rxap-auth-loading',
+  templateUrl:     './loading.component.html',
+  styleUrls:       [ './loading.component.scss' ],
+  host:            { class: 'rxap-auth-loading' },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone:      true,
+  imports:         [ MatLegacyProgressBarModule ]
 })
 export class LoadingComponent implements OnInit, OnDestroy {
   public subscription?: Subscription;

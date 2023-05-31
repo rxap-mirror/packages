@@ -3,13 +3,24 @@ import {
   Component,
   Input
 } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { FlexModule } from '@angular/flex-layout/flex';
+import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
+import {
+  NgIf,
+  NgSwitch,
+  NgSwitchCase,
+  NgSwitchDefault
+} from '@angular/common';
 
 @Component({
   selector:        'td[rxap-link-cell]',
   templateUrl:     './link-cell.component.html',
   styleUrls:       [ './link-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'rxap-link-cell' }
+  host:            { class: 'rxap-link-cell' },
+  standalone:      true,
+  imports:         [ NgIf, MatLegacyTooltipModule, FlexModule, NgSwitch, NgSwitchCase, MatIconModule, NgSwitchDefault ]
 })
 export class LinkCellComponent {
 

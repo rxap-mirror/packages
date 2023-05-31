@@ -7,13 +7,30 @@ import { Observable } from 'rxjs';
 import { UserService } from '@rxap/authentication';
 import { map } from 'rxjs/operators';
 import { isDefined } from '@rxap/utilities/rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import {
+  NgIf,
+  AsyncPipe
+} from '@angular/common';
+import { AvatarBackgroundImageDirective } from '@rxap/directives';
+import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
-  selector: 'rxap-user-profile-icon',
-  templateUrl: './user-profile-icon.component.html',
-  styleUrls: ['./user-profile-icon.component.scss'],
+  selector:        'rxap-user-profile-icon',
+  templateUrl:     './user-profile-icon.component.html',
+  styleUrls:       [ './user-profile-icon.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'rxap-user-profile-icon' },
+  host:            { class: 'rxap-user-profile-icon' },
+  standalone:      true,
+  imports:         [
+    FlexModule,
+    MatLegacyMenuModule,
+    AvatarBackgroundImageDirective,
+    NgIf,
+    MatIconModule,
+    AsyncPipe
+  ]
 })
 export class UserProfileIconComponent {
   public userProfileUrl$: Observable<string | undefined>;

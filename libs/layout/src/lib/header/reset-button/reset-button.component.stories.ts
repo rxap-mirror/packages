@@ -2,13 +2,11 @@ import {
   moduleMetadata,
   addDecorator
 } from '@storybook/angular';
-import { ResetButtonComponentModule } from './reset-button.component.module';
+
 import { ResetButtonComponent } from './reset-button.component';
 
 addDecorator(moduleMetadata({
-  imports: [
-    ResetButtonComponentModule,
-  ]
+  imports: []
 }));
 
 export default {

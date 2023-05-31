@@ -3,7 +3,6 @@ import {
   HostBinding,
   HostListener,
   Input,
-  NgModule,
   OnDestroy,
   OnInit,
   Renderer2,
@@ -17,7 +16,8 @@ import {
 import { tap } from 'rxjs/operators';
 
 @Directive({
-  selector: '[rxapMovableDivider]'
+  selector:   '[rxapMovableDivider]',
+  standalone: true
 })
 export class MovableDividerDirective implements OnDestroy, OnInit {
 
@@ -93,8 +93,4 @@ export class MovableDividerDirective implements OnDestroy, OnInit {
 
 }
 
-@NgModule({
-  declarations: [ MovableDividerDirective ],
-  exports:      [ MovableDividerDirective ]
-})
-export class MovableDividerDirectiveModule {}
+

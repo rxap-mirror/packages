@@ -18,10 +18,25 @@ import {
   ControlValueAccessor,
   NgControl
 } from '@angular/forms';
-import { ConnectedPosition } from '@angular/cdk/overlay';
+import {
+  ConnectedPosition,
+  CdkOverlayOrigin,
+  CdkConnectedOverlay
+} from '@angular/cdk/overlay';
 import { MatLegacyFormFieldControl as MatFormFieldControl } from '@angular/material/legacy-form-field';
 import { Subject } from 'rxjs';
-import { DOCUMENT } from '@angular/common';
+import {
+  DOCUMENT,
+  NgIf,
+  AsyncPipe
+} from '@angular/common';
+import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
+import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { MethodDirective } from '@rxap/directives';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector:        'rxap-upload-button',
@@ -34,6 +49,20 @@ import { DOCUMENT } from '@angular/common';
       provide:     MatFormFieldControl,
       useExisting: UploadButtonComponent
     }
+  ],
+  standalone:      true,
+  imports:         [
+    FlexModule,
+    MatLegacyButtonModule,
+    CdkOverlayOrigin,
+    MethodDirective,
+    MatIconModule,
+    NgIf,
+    MatLegacyProgressSpinnerModule,
+    MatLegacyTooltipModule,
+    CdkConnectedOverlay,
+    AsyncPipe,
+    ReadAsDataURLPipe
   ]
 })
 export class UploadButtonComponent implements ControlValueAccessor, MatFormFieldControl<File>, OnDestroy {

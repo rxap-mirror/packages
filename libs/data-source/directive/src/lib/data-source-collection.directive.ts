@@ -2,7 +2,6 @@ import type { Injector } from '@angular/core';
 import {
   Directive,
   Input,
-  NgModule,
   TemplateRef,
   ViewContainerRef,
   SimpleChanges,
@@ -83,7 +82,8 @@ export interface DataSourceCollectionErrorTemplateContext {
 }
 
 @Directive({
-  selector: '[rxapDataSourceCollection]',
+  selector:   '[rxapDataSourceCollection]',
+  standalone: true
 })
 export class DataSourceCollectionDirective<Data = any>
   implements OnChanges, OnDestroy, AfterViewInit, DoCheck
@@ -446,8 +446,4 @@ export class DataSourceCollectionDirective<Data = any>
 
 }
 
-@NgModule({
-  declarations: [DataSourceCollectionDirective],
-  exports: [DataSourceCollectionDirective],
-})
-export class DataSourceCollectionDirectiveModule {}
+

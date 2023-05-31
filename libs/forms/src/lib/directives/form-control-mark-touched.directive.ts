@@ -5,7 +5,8 @@ import {
 import { ControlContainer } from '@angular/forms';
 
 @Directive({
-  selector: '[rxapFormControlMarkTouched]'
+  selector:   '[rxapFormControlMarkTouched]',
+  standalone: true
 })
 export class FormControlMarkTouchedDirective {
 

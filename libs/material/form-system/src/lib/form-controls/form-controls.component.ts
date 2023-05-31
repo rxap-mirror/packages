@@ -8,22 +8,50 @@ import {
   Output,
   ChangeDetectorRef,
   isDevMode,
-  Optional,
+  Optional
 } from '@angular/core';
 import { FormDirective } from '@rxap/forms';
-import { Observable, Subscription } from 'rxjs';
-import { coerceBoolean, clone } from '@rxap/utilities';
-import { take, tap } from 'rxjs/operators';
+import {
+  Observable,
+  Subscription
+} from 'rxjs';
+import {
+  coerceBoolean,
+  clone
+} from '@rxap/utilities';
+import {
+  take,
+  tap
+} from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
+import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
+import {
+  NgClass,
+  NgIf,
+  AsyncPipe
+} from '@angular/common';
+import { ExtendedModule } from '@angular/flex-layout/extended';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { FlexModule } from '@angular/flex-layout/flex';
 import '@angular/localize/init';
 
 @Component({
-  selector: 'rxap-form-controls',
-  templateUrl: './form-controls.component.html',
-  styleUrls: ['./form-controls.component.scss'],
+  selector:        'rxap-form-controls',
+  templateUrl:     './form-controls.component.html',
+  styleUrls:       [ './form-controls.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'mfd-form-controls' },
+  host:            { class: 'mfd-form-controls' },
+  standalone:      true,
+  imports:         [
+    FlexModule,
+    MatLegacyButtonModule,
+    ExtendedModule,
+    NgClass,
+    MatLegacyProgressSpinnerModule,
+    NgIf,
+    AsyncPipe
+  ]
 })
 export class FormControlsComponent<FormData> implements OnInit {
   @Input()

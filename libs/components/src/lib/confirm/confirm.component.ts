@@ -4,6 +4,9 @@ import {
   EventEmitter,
   Output
 } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { FlexModule } from '@angular/flex-layout';
 
 @Component({
   selector:        'rxap-confirm',
@@ -12,7 +15,9 @@ import {
   host:            {
     class: 'rxap-confirm'
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone:      true,
+  imports:         [ FlexModule, MatLegacyButtonModule, MatIconModule ]
 })
 export class ConfirmComponent {
 

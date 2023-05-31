@@ -6,7 +6,8 @@ import {
   OnChanges,
   SimpleChanges,
   Inject,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  forwardRef
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {
@@ -18,6 +19,11 @@ import {
   JSON_VIEW_IGNORED_TYPES
 } from './json-viewer.tokens';
 import { isTeardownLogic } from '@rxap/utilities/rxjs';
+import {
+  NgFor,
+  NgClass,
+  NgIf
+} from '@angular/common';
 
 export interface Segment {
   key: string;
@@ -32,7 +38,9 @@ export interface Segment {
   templateUrl:     './json-viewer.component.html',
   styleUrls:       [ './json-viewer.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'rxap-json-viewer' }
+  host:            { class: 'rxap-json-viewer' },
+  standalone:      true,
+  imports:         [ NgFor, NgClass, NgIf, forwardRef(() => JsonViewerComponent) ]
 })
 export class JsonViewerComponent implements OnInit, OnChanges {
 

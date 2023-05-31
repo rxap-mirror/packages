@@ -1,13 +1,13 @@
 import {
   Pipe,
-  PipeTransform,
-  NgModule
+  PipeTransform
 } from '@angular/core';
 import { ToDisplayFunction } from '@rxap/utilities';
 import { JsonPipe } from '@angular/common';
 
 @Pipe({
-  name: 'toDisplay'
+  name:       'toDisplay',
+  standalone: true
 })
 export class ToDisplayPipe implements PipeTransform {
 
@@ -19,10 +19,4 @@ export class ToDisplayPipe implements PipeTransform {
 
 }
 
-@NgModule({
-  declarations: [ ToDisplayPipe ],
-  exports:      [ ToDisplayPipe ]
-})
-export class ToDisplayPipeModule {
 
-}

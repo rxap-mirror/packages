@@ -1,10 +1,12 @@
 import {
   HostBinding,
-  Directive,
-  NgModule
+  Directive
 } from '@angular/core';
 
-@Directive({ selector: '[rxapCardAction]' })
+@Directive({
+  selector:   '[rxapCardAction]',
+  standalone: true
+})
 export class CardActionDirective {
 
   @HostBinding('style.position')
@@ -18,10 +20,6 @@ export class CardActionDirective {
 
 }
 
-@NgModule({
-  declarations: [ CardActionDirective ],
-  exports:      [ CardActionDirective ]
-})
-export class CardActionModule {}
+
 
 

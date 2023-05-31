@@ -19,7 +19,8 @@ import { AuthorizationService } from './authorization.service';
 import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
 @Directive({
-  selector: '[rxapIfHasPermission]',
+  selector:   '[rxapIfHasPermission]',
+  standalone: true
 })
 export class IfHasPermissionDirective implements OnInit, OnDestroy {
   @Input()

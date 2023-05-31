@@ -78,8 +78,9 @@ const MOUSE_MOVE_THROTTLE_TIME_MS = 10;
  * EditEventDispatcher service for use by the other edit directives.
  */
 @Directive({
-  selector:  'table[editable], cdk-table[editable], mat-table[editable]',
-  providers: [ EditEventDispatcher, EditServices ]
+  selector:   'table[editable], cdk-table[editable], mat-table[editable]',
+  providers:  [ EditEventDispatcher, EditServices ],
+  standalone: true
 })
 export class CdkEditable implements AfterViewInit, OnDestroy {
   protected readonly destroyed = new Subject<void>();
@@ -188,9 +189,10 @@ const POPOVER_EDIT_INPUTS = [
  * Makes the cell focusable.
  */
 @Directive({
-  selector: '[cdkPopoverEdit]:not([cdkPopoverEditTabOut])',
-  host:     POPOVER_EDIT_HOST_BINDINGS,
-  inputs:   POPOVER_EDIT_INPUTS
+  selector:   '[cdkPopoverEdit]:not([cdkPopoverEditTabOut])',
+  host:       POPOVER_EDIT_HOST_BINDINGS,
+  inputs:     POPOVER_EDIT_INPUTS,
+  standalone: true
 })
 export class CdkPopoverEdit<C> implements AfterViewInit, OnDestroy {
   private _colspan: CdkPopoverEditColspan = {};
@@ -378,9 +380,10 @@ export class CdkPopoverEdit<C> implements AfterViewInit, OnDestroy {
  * Makes the cell focusable.
  */
 @Directive({
-  selector: '[cdkPopoverEdit][cdkPopoverEditTabOut]',
-  host:     POPOVER_EDIT_HOST_BINDINGS,
-  inputs:   POPOVER_EDIT_INPUTS
+  selector:   '[cdkPopoverEdit][cdkPopoverEditTabOut]',
+  host:       POPOVER_EDIT_HOST_BINDINGS,
+  inputs:     POPOVER_EDIT_INPUTS,
+  standalone: true
 })
 export class CdkPopoverEditTabOut<C> extends CdkPopoverEdit<C> {
   protected focusTrap?: FocusEscapeNotifier;
@@ -415,7 +418,8 @@ export class CdkPopoverEditTabOut<C> extends CdkPopoverEdit<C> {
  * it is hovered or when an element in the row has focus.
  */
 @Directive({
-  selector: '[cdkRowHoverContent]'
+  selector:   '[cdkRowHoverContent]',
+  standalone: true
 })
 export class CdkRowHoverContent implements AfterViewInit, OnDestroy {
   protected readonly destroyed                   = new Subject<void>();
@@ -507,7 +511,8 @@ export class CdkRowHoverContent implements AfterViewInit, OnDestroy {
  * element or an ancestor element.
  */
 @Directive({
-  selector: '[cdkEditOpen]'
+  selector:   '[cdkEditOpen]',
+  standalone: true
 })
 export class CdkEditOpen {
   constructor(

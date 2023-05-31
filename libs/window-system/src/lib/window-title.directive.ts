@@ -3,7 +3,6 @@ import {
   Inject,
   TemplateRef,
   OnInit,
-  NgModule,
   ViewContainerRef
 } from '@angular/core';
 import { WindowRef } from './window-ref';
@@ -15,7 +14,8 @@ export interface WindowTitleTemplateContext {
 }
 
 @Directive({
-  selector: '[rxapWindowTitle]'
+  selector:   '[rxapWindowTitle]',
+  standalone: true
 })
 export class WindowTitleDirective implements OnInit {
 
@@ -51,8 +51,4 @@ export class WindowTitleDirective implements OnInit {
 
 }
 
-@NgModule({
-  declarations: [ WindowTitleDirective ],
-  exports:      [ WindowTitleDirective ]
-})
-export class WindowTitleDirectiveModule {}
+

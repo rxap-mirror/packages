@@ -12,6 +12,27 @@ import { fadeAnimation } from '../fade-animation';
 import { RxapAuthenticationService } from '@rxap/authentication';
 import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { ToggleSubject } from '@rxap/utilities/rxjs';
+import { MatLegacyProgressBarModule } from '@angular/material/legacy-progress-bar';
+import {
+  FormSubmittingDirective,
+  FormSubmitFailedDirective,
+  FormControlMarkDirtyDirective,
+  FormControlErrorDirective,
+  FormDirective
+} from '@rxap/forms';
+import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
+import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatLegacyCheckboxModule } from '@angular/material/legacy-checkbox';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import {
+  NgIf,
+  AsyncPipe
+} from '@angular/common';
+import { MatLegacyInputModule } from '@angular/material/legacy-input';
+import { MatLegacyFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { FlexModule } from '@angular/flex-layout/flex';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector:        'rxap-login',
@@ -27,6 +48,26 @@ import { ToggleSubject } from '@rxap/utilities/rxjs';
   ],
   animations:      [
     fadeAnimation
+  ],
+  standalone:      true,
+  imports:         [
+    ReactiveFormsModule,
+    FormDirective,
+    FlexModule,
+    MatIconModule,
+    MatLegacyFormFieldModule,
+    MatLegacyInputModule,
+    FormControlErrorDirective,
+    NgIf,
+    MatLegacyButtonModule,
+    MatLegacyCheckboxModule,
+    MatLegacyTooltipModule,
+    MatLegacyProgressSpinnerModule,
+    FormControlMarkDirtyDirective,
+    FormSubmitFailedDirective,
+    FormSubmittingDirective,
+    MatLegacyProgressBarModule,
+    AsyncPipe
   ]
 })
 export class LoginComponent {

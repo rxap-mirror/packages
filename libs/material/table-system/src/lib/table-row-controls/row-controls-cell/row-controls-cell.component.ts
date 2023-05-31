@@ -22,13 +22,21 @@ import {
   Observable
 } from 'rxjs';
 import { Method } from '@rxap/utilities/rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { ConfirmDirective } from '@rxap/components';
+import { MatLegacyTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatLegacyButtonModule } from '@angular/material/legacy-button';
+import { NgIf } from '@angular/common';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector:        'td[mfd-row-controls-cell]',
   templateUrl:     './row-controls-cell.component.html',
   styleUrls:       [ './row-controls-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host:            { class: 'mfd-row-controls-cell' }
+  host:            { class: 'mfd-row-controls-cell' },
+  standalone:      true,
+  imports:         [ FlexModule, NgIf, MatLegacyButtonModule, MatLegacyTooltipModule, ConfirmDirective, MatIconModule ]
 })
 export class RowControlsCellComponent<Data extends Record<string, any> & { uuid: string }> {
 

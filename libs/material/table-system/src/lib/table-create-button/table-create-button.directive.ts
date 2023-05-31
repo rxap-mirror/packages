@@ -4,7 +4,6 @@ import {
   HostListener,
   Inject,
   Input,
-  NgModule,
   OnInit,
   Renderer2,
   OnDestroy
@@ -20,7 +19,8 @@ import { TABLE_CREATE_REMOTE_METHOD } from './tokens';
 import { Method } from '@rxap/utilities/rxjs';
 
 @Directive({
-  selector: 'button[rxapTableCreate]'
+  selector:   'button[rxapTableCreate]',
+  standalone: true
 })
 export class TableCreateButtonDirective<Data extends Record<string, any>>
   implements OnInit, OnDestroy {
@@ -63,8 +63,4 @@ export class TableCreateButtonDirective<Data extends Record<string, any>>
   }
 }
 
-@NgModule({
-  declarations: [TableCreateButtonDirective],
-  exports: [TableCreateButtonDirective],
-})
-export class TableCreateButtonDirectiveModule {}
+
