@@ -1,6 +1,6 @@
 {
   "name": "@rxap/contenteditable",
-  "version": "16.0.0-dev.1",
+  "version": "16.0.0-dev.2",
   "peerDependencies": {
     "@angular-devkit/schematics": "^15.0.3",
     "@angular/core": "^16.0.2",
