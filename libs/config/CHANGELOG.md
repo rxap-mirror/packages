@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.2.0](https://gitlab.com/rxap/packages/compare/@rxap/config@13.1.5...@rxap/config@13.2.0) (2023-06-01)
+
+
+### Features
+
+* add url option to configuration Load method ([c5ad5c4](https://gitlab.com/rxap/packages/commit/c5ad5c4812c4652c95a477ab5e0c96887d7f25c9))
+
+
+
+
+
 ## [13.1.5](https://gitlab.com/rxap/packages/compare/@rxap/config@13.1.4...@rxap/config@13.1.5) (2023-04-17)
 
 
