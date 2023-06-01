@@ -56,7 +56,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
    */
   public static async Load(options?: ConfigLoadOptions): Promise<void> {
     let config = this.Defaults;
-    const urls = options?.url ? coerceArray(config.url) : ConfigService.Urls;
+    const urls = options?.url ? coerceArray(options.url) : ConfigService.Urls;
     for (const url of urls) {
       config = await this.loadConfig(url, true, options?.schema);
     }
