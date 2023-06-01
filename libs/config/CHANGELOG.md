@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.2.1](https://gitlab.com/rxap/packages/compare/@rxap/config@13.2.0...@rxap/config@13.2.1) (2023-06-01)
+
+
+### Bug Fixes
+
+* use correct object for url property ([c6075a0](https://gitlab.com/rxap/packages/commit/c6075a05c05f0250cc9a49ef9b03701ab8a98ccc))
+
+
+
+
+
 # [13.2.0](https://gitlab.com/rxap/packages/compare/@rxap/config@13.1.5...@rxap/config@13.2.0) (2023-06-01)
 
 
