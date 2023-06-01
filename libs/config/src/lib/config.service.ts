@@ -5,7 +5,8 @@ import {
 } from '@angular/core';
 import {
   deepMerge,
-  SetObjectValue
+  SetObjectValue,
+  coerceArray
 } from '@rxap/utilities';
 import { RXAP_CONFIG } from './tokens';
 import { NoInferType } from './types';
@@ -15,6 +16,7 @@ export interface ConfigLoadOptions {
   fromUrlParam?: string | boolean;
   fromLocalStorage?: boolean;
   schema?: AnySchema;
+  url?: string | string[];
 }
 
 @Injectable({
@@ -39,7 +41,84 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   public static LocalStorageKey = 'rxap/config/local-config';
 
+  /**
+   * @deprecated instead use the url property of the ConfigLoadOptions
+   */
   public static Urls = [ 'config.json' ];
+
+  /**
+   * Used to load the app config from a remote resource.
+   *
+   * Promise.all([ ConfigService.Load() ])
+   * .then(() => platformBrowserDynamic().bootstrapModule(AppModule))
+   * .catch(err => console.error(err))
+   *
+   */
+  public static async Load(options?: ConfigLoadOptions): Promise<void> {
+    let config = this.Defaults;
+    const urls = options?.url ? coerceArray(config.url) : ConfigService.Urls;
+    for (const url of urls) {
+      config = await this.loadConfig(url, true, options?.schema);
+    }
+
+    config = deepMerge(config, this.Overwrites);
+
+    if (options?.fromLocalStorage !== false) {
+
+      const localConfig = localStorage.getItem(ConfigService.LocalStorageKey);
+
+      if (localConfig) {
+        try {
+          config = deepMerge(config, JSON.parse(localConfig));
+        } catch (e: any) {
+          console.error('local config could not be parsed');
+        }
+      }
+
+    }
+
+    if (options?.fromUrlParam) {
+      const param = typeof options.fromUrlParam === 'string' ? options.fromUrlParam : 'config';
+      config      = deepMerge(config, this.LoadConfigDefaultFromUrlParam(param));
+    }
+
+    console.debug('app config', config);
+
+    this.Config = config;
+  }
+
+  private static showError(message: string) {
+    const hasUl = document.getElementById('rxap-config-error') !== null;
+    const ul = document.getElementById('rxap-config-error') ?? document.createElement('ul');
+    ul.id = 'rxap-config-error';
+    ul.style.position = 'fixed';
+    ul.style.bottom = '16px';
+    ul.style.right = '16px';
+    ul.style.backgroundColor = 'white';
+    ul.style.padding = '32px';
+    ul.style.zIndex = '99999999';
+    ul.style.color = 'black';
+    const li = document.createElement('li');
+    li.innerText = message;
+    ul.appendChild(li);
+    if (!hasUl) {
+      document.body.appendChild(ul);
+    }
+  }
+
+  public static async SideLoad(url: string, propertyPath: string, required?: boolean, schema?: AnySchema): Promise<void> {
+
+    if (!this.Config) {
+      throw new Error('Config side load is only possible after the initial config load.');
+    }
+
+    const config = await this.loadConfig(url, required, schema);
+
+    SetObjectValue(this.Config, propertyPath, config);
+
+    console.debug(`Side loaded config for '${propertyPath}' successful`, this.Config);
+
+  }
 
   private static async loadConfig<T = any>(url: string, required?: boolean, schema?: AnySchema): Promise<T | null> {
 
@@ -47,7 +126,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     let response: any;
 
     try {
-      response = await fetch(url)
+      response = await fetch(url);
     } catch (error: any) {
       const message = `Could not fetch config from '${url}': ${error.message}`;
       if (required) {
@@ -89,79 +168,6 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
     return config;
 
-  }
-
-  private static showError(message: string) {
-    const hasUl = document.getElementById('rxap-config-error') !== null;
-    const ul = document.getElementById('rxap-config-error') ?? document.createElement('ul');
-    ul.id = 'rxap-config-error';
-    ul.style.position = 'fixed';
-    ul.style.bottom = '16px';
-    ul.style.right = '16px';
-    ul.style.backgroundColor = 'white';
-    ul.style.padding = '32px';
-    ul.style.zIndex = '99999999';
-    ul.style.color = 'black';
-    const li = document.createElement('li');
-    li.innerText = message;
-    ul.appendChild(li);
-    if (!hasUl) {
-      document.body.appendChild(ul);
-    }
-  }
-
-  public static async SideLoad(url: string, propertyPath: string, required?: boolean, schema?: AnySchema): Promise<void> {
-
-    if (!this.Config) {
-      throw new Error('Config side load is only possible after the initial config load.');
-    }
-
-    const config = await this.loadConfig(url, required, schema);
-
-    SetObjectValue(this.Config, propertyPath, config);
-
-    console.debug(`Side loaded config for '${propertyPath}' successful`, this.Config);
-
-  }
-
-  /**
-   * Used to load the app config from a remote resource.
-   *
-   * Promise.all([ ConfigService.Load() ])
-   * .then(() => platformBrowserDynamic().bootstrapModule(AppModule))
-   * .catch(err => console.error(err))
-   *
-   */
-  public static async Load(options?: ConfigLoadOptions): Promise<void> {
-    let config = this.Defaults;
-    for (const url of ConfigService.Urls) {
-      config = await this.loadConfig(url, true, options?.schema);
-    }
-
-    config = deepMerge(config, this.Overwrites);
-
-    if (options?.fromLocalStorage !== false) {
-
-      const localConfig = localStorage.getItem(ConfigService.LocalStorageKey);
-
-      if (localConfig) {
-        try {
-          config = deepMerge(config, JSON.parse(localConfig));
-        } catch (e: any) {
-          console.error('local config could not be parsed');
-        }
-      }
-
-    }
-
-    if (options?.fromUrlParam) {
-      const param = typeof options.fromUrlParam === 'string' ? options.fromUrlParam : 'config';
-      config      = deepMerge(config, this.LoadConfigDefaultFromUrlParam(param));
-    }
-
-    console.debug('app config', config);
-
-    this.Config = config;
   }
 
   private static LoadConfigDefaultFromUrlParam(param: string = 'config') {
