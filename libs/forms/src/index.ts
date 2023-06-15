@@ -24,6 +24,7 @@ export * from './lib/decorators/form';
 // region directives
 
 export * from './lib/directives/form.directive';
+export * from './lib/directives/forms.module';
 export * from './lib/directives/form-submit-failed.directive';
 export * from './lib/directives/form-loading.directive';
 export * from './lib/directives/form-submitting.directive';
