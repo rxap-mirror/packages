@@ -113,7 +113,6 @@
     "zone.js": "0.11.4"
   },
   "devDependencies": {
-    "nx": "^16.3.0",
     "@angular-builders/custom-webpack": "14.1.0",
     "@angular-builders/jest": "14.1.0",
     "@angular-devkit/architect": "0.1500.3",
@@ -202,6 +201,7 @@
     "lerna": "^3.22.1",
     "ng-mocks": "^13.0.2",
     "ng-packagr": "16.0.1",
+    "nx": "^16.3.0",
     "postcss": "^8.4.6",
     "postcss-import": "14.1.0",
     "postcss-preset-env": "7.5.0",
@@ -227,5 +227,6 @@
     "commitizen": {
       "path": "@commitlint/prompt"
     }
-  }
+  },
+  "packageManager": "yarn@1.22.1"
 }
