@@ -10,9 +10,7 @@
     "@angular/material": "^16.0.0",
     "@rxap/directives": "^16.0.0-dev.3",
     "@rxap/pattern": "^1.0.1-dev.0",
-    "cypress": "^12.11.0",
-    "rxjs": "^7.8.0",
-    "workspace": "^1.0.0"
+    "rxjs": "^7.8.0"
   },
   "sideEffects": false,
   "dependencies": {
