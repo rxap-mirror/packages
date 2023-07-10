@@ -84,7 +84,7 @@ function updateProjectPackageJson(
   packageJson.scripts ??= {};
   packageJson.scripts.version
     = `yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=${ projectName }`;
-  packageJson.scripts.preversion = `nx g @rxap/plugin-library:fix-dependencies --strict --project ${ projectName }`;
+  packageJson.scripts.preversion = `yarn run --top-level nx run ${ projectName }:fix-dependencies`;
   if (packageJson.scripts.prepublishOnly) {
     delete packageJson.scripts.prepublishOnly;
   }
@@ -125,11 +125,25 @@ function hasIndexScss(tree: Tree, project: ProjectConfiguration) {
 }
 
 function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
-  project.targets ??= {};
-  project.targets['update-dependencies'] ??= { executor: '@rxap/plugin-library:update-dependencies' };
-  project.targets['update-package-group'] ??= { executor: '@rxap/plugin-library:update-package-group' };
-  project.targets['readme'] ??= { executor: '@rxap/plugin-library:readme' };
-  updateProjectConfiguration(tree, project.name, project);
+  if (project.projectType === 'library') {
+    project.targets ??= {};
+    project.targets['update-dependencies'] ??= { executor: '@rxap/plugin-library:update-dependencies' };
+    project.targets['update-package-group'] ??= { executor: '@rxap/plugin-library:update-package-group' };
+    project.targets['readme'] ??= { executor: '@rxap/plugin-library:readme' };
+    project.targets['fix-dependencies'] ??= {
+      executor: '@rxap/plugin-library:run-generator',
+      outputs: [
+        '{workspaceRoot}/{projectRoot}/package.json',
+      ],
+      options: {
+        generator: '@rxap/plugin-library:fix-dependencies',
+        options: {
+          strict: true,
+        },
+      },
+    };
+    updateProjectConfiguration(tree, project.name, project);
+  }
 }
 
 interface NgPackageJson {
