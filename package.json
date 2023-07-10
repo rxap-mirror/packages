@@ -50,6 +50,7 @@
     "@angular/common": "16.1.4",
     "@angular/compiler": "16.1.4",
     "@angular/core": "16.1.4",
+    "@angular/fire": "7.5.0",
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/forms": "16.1.4",
     "@angular/localize": "16.1.4",
@@ -68,6 +69,7 @@
     "@sentry/types": "^7.28.1",
     "class-transformer": "0.5.1",
     "class-validator": "0.14.0",
+    "firebase": "^9.6.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -97,6 +99,7 @@
     "@nx/js": "16.5.0",
     "@nx/linter": "16.5.0",
     "@nx/nest": "16.5.0",
+    "@nx/plugin": "16.5.0",
     "@schematics/angular": "16.1.4",
     "@storybook/addon-knobs": "7.0.2",
     "@storybook/angular": "^7.0.20",
