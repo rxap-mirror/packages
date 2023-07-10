@@ -1,4 +1,4 @@
-import {deepMerge} from './deep-merge';
+import { deepMerge } from './deep-merge';
 
 describe('Utilities', () => {
 

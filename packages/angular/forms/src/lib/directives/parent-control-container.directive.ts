@@ -1,5 +1,5 @@
-import {Directive} from '@angular/core';
-import {ControlContainer} from '@angular/forms';
+import { Directive } from '@angular/core';
+import { ControlContainer } from '@angular/forms';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector

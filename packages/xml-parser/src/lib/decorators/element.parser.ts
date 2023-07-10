@@ -1,6 +1,6 @@
-import {ParsedElement} from '../elements/parsed-element';
-import {XmlParserService} from '../xml-parser.service';
-import {RxapElement} from '../element';
+import { ParsedElement } from '../elements/parsed-element';
+import { XmlParserService } from '../xml-parser.service';
+import { RxapElement } from '../element';
 
 
 export interface ElementParser<T extends ParsedElement = ParsedElement, Options = any> {

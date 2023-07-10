@@ -22,11 +22,18 @@ import {
   TrackByFunction,
   ViewContainerRef,
 } from '@angular/core';
-import {BaseRemoteMethod, BaseRemoteMethodMetadata, RemoteMethodLoader} from '@rxap/remote-method';
-import {Required} from '@rxap/utilities';
-import {IdOrInstanceOrToken} from '@rxap/definition';
-import {take, tap} from 'rxjs/operators';
-import {RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN} from './tokens';
+import {
+  BaseRemoteMethod,
+  BaseRemoteMethodMetadata,
+  RemoteMethodLoader,
+} from '@rxap/remote-method';
+import { Required } from '@rxap/utilities';
+import { IdOrInstanceOrToken } from '@rxap/definition';
+import {
+  take,
+  tap,
+} from 'rxjs/operators';
+import { RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN } from './tokens';
 
 export class RemoteMethodTemplateCollectionDirectiveContext<ReturnType = any> {
   constructor(

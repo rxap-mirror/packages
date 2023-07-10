@@ -1,4 +1,7 @@
-import {EnvMapToString, StringToEnvMap} from './env-file';
+import {
+  EnvMapToString,
+  StringToEnvMap,
+} from './env-file';
 
 describe('@rxap/schematics-utilities', () => {
 

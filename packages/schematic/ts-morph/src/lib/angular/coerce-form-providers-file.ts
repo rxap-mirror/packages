@@ -1,13 +1,16 @@
-import {classify, CoerceSuffix} from '@rxap/schematics-utilities';
-import {TsMorphAngularProjectTransform} from '../ts-morph-transform';
-import {CoerceFunction} from '../ts-morph/coerce-function';
-import {Writers} from 'ts-morph';
-import {CoerceFormBuilderProvider} from './coerce-form-builder-provider';
-import {CoerceFormProvider} from './coerce-form-provider';
-import {CoerceFormComponentProvider} from './coerce-form-component-provider';
-import {CoerceStatements} from '../ts-morph/coerce-statements';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {CoerceSourceFile} from '../coerce-source-file';
+import {
+  classify,
+  CoerceSuffix,
+} from '@rxap/schematics-utilities';
+import { TsMorphAngularProjectTransform } from '../ts-morph-transform';
+import { CoerceFunction } from '../ts-morph/coerce-function';
+import { Writers } from 'ts-morph';
+import { CoerceFormBuilderProvider } from './coerce-form-builder-provider';
+import { CoerceFormProvider } from './coerce-form-provider';
+import { CoerceFormComponentProvider } from './coerce-form-component-provider';
+import { CoerceStatements } from '../ts-morph/coerce-statements';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceSourceFile } from '../coerce-source-file';
 
 export interface CoerceFormProvidersFileOptions {
   project: string;
@@ -17,7 +20,7 @@ export interface CoerceFormProvidersFileOptions {
 }
 
 export function CoerceFormProvidersFile(options: Readonly<CoerceFormProvidersFileOptions>) {
-  const {name} = options;
+  const { name } = options;
   const className = CoerceSuffix(classify(name), 'Form');
   const interfaceName = `I${className}`;
 

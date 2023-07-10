@@ -1,5 +1,5 @@
-import { DownloadExecutorSchema } from "./schema";
-import { YarnRun } from "@rxap/plugin-utilities";
+import { DownloadExecutorSchema } from './schema';
+import { YarnRun } from '@rxap/plugin-utilities';
 
 export default async function runExecutor(options: DownloadExecutorSchema) {
 

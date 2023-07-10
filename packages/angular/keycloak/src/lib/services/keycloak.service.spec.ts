@@ -6,9 +6,12 @@
  * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
  */
 
-import {inject, TestBed} from '@angular/core/testing';
+import {
+  inject,
+  TestBed,
+} from '@angular/core/testing';
 
-import {KeycloakService} from './keycloak.service';
+import { KeycloakService } from './keycloak.service';
 
 describe('KeycloakService', () => {
   beforeEach(() => {

@@ -1,6 +1,13 @@
-import {ImportDeclarationStructure, JSDocStructure, OptionalKind, Scope, SourceFile, WriterFunction} from 'ts-morph';
-import {GetComponentClass} from './get-component-class';
-import {CoerceImports} from './ts-morph/index';
+import {
+  ImportDeclarationStructure,
+  JSDocStructure,
+  OptionalKind,
+  Scope,
+  SourceFile,
+  WriterFunction,
+} from 'ts-morph';
+import { GetComponentClass } from './get-component-class';
+import { CoerceImports } from './ts-morph/index';
 
 export interface ComponentInputDefinition {
   name: string;

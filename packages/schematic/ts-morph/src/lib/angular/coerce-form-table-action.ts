@@ -1,17 +1,31 @@
-import {CoerceTableActionOptions, CoerceTableActionRule} from './coerce-table-action';
-import {classify} from '@rxap/schematics-utilities';
-import {Scope, StatementStructures, WriterFunction} from 'ts-morph';
-import {CoerceParameterDeclaration} from '../ts-morph/coerce-parameter-declaration';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {CoerceClassConstructor} from '../coerce-class-constructor';
-import {OperationIdToClassImportPath, OperationIdToClassName} from '../operation-id-utilities';
+import {
+  CoerceTableActionOptions,
+  CoerceTableActionRule,
+} from './coerce-table-action';
+import { classify } from '@rxap/schematics-utilities';
+import {
+  Scope,
+  StatementStructures,
+  WriterFunction,
+} from 'ts-morph';
+import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
+import {
+  OperationIdToClassImportPath,
+  OperationIdToClassName,
+} from '../operation-id-utilities';
 
 export interface CoerceFormTableActionOptions extends CoerceTableActionOptions {
   loadOperationId?: string;
 }
 
 export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions) {
-  let {actionType, loadOperationId, tsMorphTransform} = options;
+  let {
+    actionType,
+    loadOperationId,
+    tsMorphTransform,
+  } = options;
   tsMorphTransform ??= () => ({});
 
   return CoerceTableActionRule({

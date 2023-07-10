@@ -1,15 +1,30 @@
-import {Rule, SchematicsException, Tree} from '@angular-devkit/schematics';
-import {join} from 'path';
-import {CollectionJson} from './collection-json';
-import {GetJsonFile, UpdateJsonFile, UpdateJsonFileOptions} from './json-file';
-import {GetProjectPackageJson, GetProjectRoot} from './get-project';
+import {
+  Rule,
+  SchematicsException,
+  Tree,
+} from '@angular-devkit/schematics';
+import { join } from 'path';
+import { CollectionJson } from './collection-json';
+import {
+  GetJsonFile,
+  UpdateJsonFile,
+  UpdateJsonFileOptions,
+} from './json-file';
+import {
+  GetProjectPackageJson,
+  GetProjectRoot,
+} from './get-project';
 
 export enum CollectionJsonType {
   SCHEMATICS = 'schematics',
   MIGRATIONS = 'migrations'
 }
 
-export function HasProjectCollectionJsonFile(host: Tree, projectName: string, type: CollectionJsonType = CollectionJsonType.SCHEMATICS): boolean {
+export function HasProjectCollectionJsonFile(
+  host: Tree,
+  projectName: string,
+  type: CollectionJsonType = CollectionJsonType.SCHEMATICS,
+): boolean {
 
   const projectPackageJson = GetProjectPackageJson(host, projectName);
   const projectRoot = GetProjectRoot(host, projectName);

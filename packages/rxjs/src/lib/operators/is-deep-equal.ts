@@ -1,6 +1,6 @@
-import {MonoTypeOperatorFunction} from 'rxjs';
-import {filter} from 'rxjs/operators';
-import {equals} from '@rxap/utilities';
+import { MonoTypeOperatorFunction } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { equals } from '@rxap/utilities';
 
 export function isDeepEqual<T>(compareTo: T): MonoTypeOperatorFunction<T> {
   return filter(value => equals(value, compareTo));

@@ -1,8 +1,13 @@
-import {chain, externalSchematic, noop, Rule} from '@angular-devkit/schematics';
-import {CoerceNestServiceProject} from './coerce-nest-service-project';
-import {HasNestModule} from './has-nest-module';
-import {AddNestModuleToAppModule} from './add-nest-module-to-app-module';
-import {buildNestProjectName} from './project-utilities';
+import {
+  chain,
+  externalSchematic,
+  noop,
+  Rule,
+} from '@angular-devkit/schematics';
+import { CoerceNestServiceProject } from './coerce-nest-service-project';
+import { HasNestModule } from './has-nest-module';
+import { AddNestModuleToAppModule } from './add-nest-module-to-app-module';
+import { buildNestProjectName } from './project-utilities';
 
 export interface CoerceNestModuleOptions {
   project: string;
@@ -12,7 +17,7 @@ export interface CoerceNestModuleOptions {
 }
 
 export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
-  const {name} = options;
+  const { name } = options;
   return chain([
     CoerceNestServiceProject(options),
     tree => {

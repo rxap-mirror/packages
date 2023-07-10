@@ -11,11 +11,11 @@ import {
   Output,
   StaticProvider,
 } from '@angular/core';
-import {coerceBoolean} from '@rxap/utilities';
-import {WindowRef} from '@rxap/window-system';
-import {FormDefinition} from '@rxap/forms';
-import {CounterSubject} from '@rxap/rxjs';
-import {Method} from '@rxap/pattern';
+import { coerceBoolean } from '@rxap/utilities';
+import { WindowRef } from '@rxap/window-system';
+import { FormDefinition } from '@rxap/forms';
+import { CounterSubject } from '@rxap/rxjs';
+import { Method } from '@rxap/pattern';
 
 @Directive({
   selector: '[rxapOpenFormWindowMethod]',

@@ -4,8 +4,8 @@ import {
 } from '@angular/forms';
 import {
   isMobilePhone,
-  MobilePhoneLocale,
   IsMobilePhoneOptions,
+  MobilePhoneLocale,
 } from '@rxap/validator';
 
 export function IsPhoneNumber({message, locale, options}: {

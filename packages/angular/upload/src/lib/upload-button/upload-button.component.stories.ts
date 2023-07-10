@@ -1,8 +1,11 @@
-import {text} from '@storybook/addon-knobs';
-import {componentWrapperDecorator, moduleMetadata} from '@storybook/angular';
-import {UploadButtonComponent} from './upload-button.component';
-import {UploadButtonComponentModule} from './upload-button.component.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { text } from '@storybook/addon-knobs';
+import {
+  componentWrapperDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
+import { UploadButtonComponent } from './upload-button.component';
+import { UploadButtonComponentModule } from './upload-button.component.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
   title: 'UploadButtonComponent',

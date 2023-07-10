@@ -1,5 +1,5 @@
-import {merge} from './util/merge';
-import {assertString} from './util/assertString';
+import { merge } from './util/merge';
+import { assertString } from './util/assertString';
 
 export interface IsCurrencyOptions {
   symbol?: string;

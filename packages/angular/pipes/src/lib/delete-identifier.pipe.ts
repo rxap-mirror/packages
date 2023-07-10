@@ -1,5 +1,13 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {clone, getIdentifierProperties, hasIdentifierProperty, WithIdentifier} from '@rxap/utilities';
+import {
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
+import {
+  clone,
+  getIdentifierProperties,
+  hasIdentifierProperty,
+  WithIdentifier,
+} from '@rxap/utilities';
 
 @Pipe({
   name: 'deleteIdentifier',

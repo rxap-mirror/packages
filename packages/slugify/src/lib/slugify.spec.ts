@@ -1,4 +1,7 @@
-import {slugify, Slugify} from './slugify';
+import {
+  slugify,
+  Slugify,
+} from './slugify';
 
 describe('@rxap/slugify', () => {
 

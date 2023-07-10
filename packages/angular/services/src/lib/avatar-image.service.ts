@@ -1,15 +1,18 @@
-import {Injectable} from '@angular/core';
-import {HttpParams, HttpRequest} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import {
+  HttpParams,
+  HttpRequest,
+} from '@angular/common/http';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AvatarImageService {
 
-  public get({name}: { name: string }): string {
+  public get({ name }: { name: string }): string {
     return new HttpRequest(
       'GET',
       'https://eu.ui-avatars.com/api',
       {
-        params: new HttpParams({fromObject: {name}}),
+        params: new HttpParams({ fromObject: { name } }),
       },
     ).urlWithParams;
   }

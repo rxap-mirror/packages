@@ -1,6 +1,6 @@
-import {FormDefinition} from '@rxap/forms';
-import {WindowRef} from '@rxap/window-system';
-import {Inject} from '@angular/core';
+import { FormDefinition } from '@rxap/forms';
+import { WindowRef } from '@rxap/window-system';
+import { Inject } from '@angular/core';
 
 /**
  * @deprecated removed

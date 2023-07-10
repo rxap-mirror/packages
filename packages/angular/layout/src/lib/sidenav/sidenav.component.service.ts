@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {ConfigService} from '@rxap/config';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { ConfigService } from '@rxap/config';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class SidenavComponentService {
 
   public readonly collapsed$ = new BehaviorSubject(true);

@@ -1,8 +1,15 @@
-import {Inject, Injectable, Optional} from '@angular/core';
-import {deepMerge, SetObjectValue} from '@rxap/utilities';
-import {RXAP_CONFIG} from './tokens';
-import {NoInferType} from './types';
-import {AnySchema} from 'joi';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
+import {
+  deepMerge,
+  SetObjectValue,
+} from '@rxap/utilities';
+import { RXAP_CONFIG } from './tokens';
+import { NoInferType } from './types';
+import { AnySchema } from 'joi';
 
 export interface ConfigLoadOptions {
   fromUrlParam?: string | boolean;

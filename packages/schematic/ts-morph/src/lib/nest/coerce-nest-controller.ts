@@ -1,8 +1,14 @@
-import {chain, externalSchematic, noop, Rule, SchematicsException} from '@angular-devkit/schematics';
-import {CoerceNestModule} from './coerce-nest-module';
-import {CoerceNestServiceProject} from './coerce-nest-service-project';
-import {HasNestController} from './has-nest-controller';
-import {buildNestProjectName} from './project-utilities';
+import {
+  chain,
+  externalSchematic,
+  noop,
+  Rule,
+  SchematicsException,
+} from '@angular-devkit/schematics';
+import { CoerceNestModule } from './coerce-nest-module';
+import { CoerceNestServiceProject } from './coerce-nest-service-project';
+import { HasNestController } from './has-nest-controller';
+import { buildNestProjectName } from './project-utilities';
 
 
 export interface CoerceNestControllerOptions {

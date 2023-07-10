@@ -1,4 +1,8 @@
-import {InternalServerErrorException, Logger, NotFoundException} from '@nestjs/common';
+import {
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 
 export function FirestoreErrorHandler<T>(logger: Logger): (err: T) => T {
 

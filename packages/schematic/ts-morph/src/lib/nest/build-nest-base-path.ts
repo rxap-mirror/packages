@@ -1,7 +1,7 @@
-import {Tree} from '@angular-devkit/schematics';
-import {GetProjectSourceRoot} from '@rxap/schematics-utilities';
-import {join} from 'path';
-import {buildNestProjectName} from './project-utilities';
+import { Tree } from '@angular-devkit/schematics';
+import { GetProjectSourceRoot } from '@rxap/schematics-utilities';
+import { join } from 'path';
+import { buildNestProjectName } from './project-utilities';
 
 export interface BuildNestBasePathOptions {
   project: string;
@@ -11,7 +11,7 @@ export interface BuildNestBasePathOptions {
 }
 
 export function BuildNestBasePath(host: Tree, options: BuildNestBasePathOptions): string {
-  let {directory} = options;
+  let { directory } = options;
   directory ??= '';
   // get the project source root after the coerce call.
   // else it is possible that GetProjectSourceRoot fails, bc the project does not yet exist.

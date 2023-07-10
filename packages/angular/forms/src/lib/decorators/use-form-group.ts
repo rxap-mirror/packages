@@ -1,7 +1,7 @@
-import {Constructor} from '@rxap/utilities';
-import {MetadataKeys} from './metadata-keys';
-import {RxapAbstractControlOptions} from '../model';
-import {setMetadataMap} from '@rxap/reflect-metadata';
+import { Constructor } from '@rxap/utilities';
+import { MetadataKeys } from './metadata-keys';
+import { RxapAbstractControlOptions } from '../model';
+import { setMetadataMap } from '@rxap/reflect-metadata';
 
 export function UseFormGroup(definition: Constructor, options: RxapAbstractControlOptions = {}) {
 
@@ -9,7 +9,10 @@ export function UseFormGroup(definition: Constructor, options: RxapAbstractContr
 
     setMetadataMap(
       propertyKey,
-      {...options, definition},
+      {
+        ...options,
+        definition,
+      },
       MetadataKeys.FORM_GROUPS,
       target,
     );

@@ -1,4 +1,4 @@
-import {assertString} from './util/assertString';
+import { assertString } from './util/assertString';
 
 const validators: Record<string, (str: string) => boolean> = {
   'cs-CZ': str =>

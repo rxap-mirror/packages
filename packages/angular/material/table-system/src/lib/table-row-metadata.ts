@@ -1,4 +1,4 @@
-import {ToggleSubject} from '@rxap/rxjs';
+import { ToggleSubject } from '@rxap/rxjs';
 
 export interface TableRowMetadata {
   __metadata__: {

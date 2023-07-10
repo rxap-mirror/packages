@@ -1,5 +1,5 @@
-import {SchematicsException} from '@angular-devkit/schematics';
-import {CoerceSuffix} from '@rxap/schematics-utilities';
+import { SchematicsException } from '@angular-devkit/schematics';
+import { CoerceSuffix } from '@rxap/schematics-utilities';
 
 export interface BuildNestControllerNameOptions {
   name?: string | null;

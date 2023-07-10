@@ -1,5 +1,5 @@
-import {OpenAPIV3} from 'openapi-types';
-import {Project} from 'ts-morph';
+import { OpenAPIV3 } from 'openapi-types';
+import { Project } from 'ts-morph';
 
 export type OperationObject = Omit<OpenAPIV3.OperationObject, 'operationId'> & { operationId: string };
 

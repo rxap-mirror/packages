@@ -12,11 +12,18 @@ import {
   Optional,
   Output,
 } from '@angular/core';
-import {Constructor, IconConfig, Required} from '@rxap/utilities';
-import {FormType, ToFormMethod} from '@rxap/forms';
-import {FormWindowService} from './form-window.service';
-import {WindowRef} from '@rxap/window-system';
-import {ConfirmClick} from '@rxap/directives';
+import {
+  Constructor,
+  IconConfig,
+  Required,
+} from '@rxap/utilities';
+import {
+  FormType,
+  ToFormMethod,
+} from '@rxap/forms';
+import { FormWindowService } from './form-window.service';
+import { WindowRef } from '@rxap/window-system';
+import { ConfirmClick } from '@rxap/directives';
 
 /**
  * @deprecated

@@ -1,21 +1,43 @@
-import {ChangeDetectorRef, Directive, Inject, InjectionToken, Input, OnDestroy, OnInit, Optional} from '@angular/core';
-import type {MatPaginator} from '@angular/material/paginator';
-import type {Observable} from 'rxjs';
-import {Subscription} from 'rxjs';
-import {MatSort} from '@angular/material/sort';
-import type {AbstractTableDataSource, FilterLike} from '@rxap/data-source/table';
-import {DynamicTableDataSource, RXAP_TABLE_METHOD, SortLike, TableEvent} from '@rxap/data-source/table';
-import {BaseRemoteMethod} from '@rxap/remote-method';
-import {PaginatorLike} from '@rxap/data-source/pagination';
-import {CdkTable} from '@angular/cdk/table';
-import {TableFilterService} from './table-filter/table-filter.service';
-import {debounceTime, delay, filter, tap} from 'rxjs/operators';
-import {Required} from '@rxap/utilities';
-import {ToggleSubject} from '@rxap/rxjs';
-import {Method} from '@rxap/pattern';
-import {pipeDataSource} from '@rxap/data-source';
+import {
+  ChangeDetectorRef,
+  Directive,
+  Inject,
+  InjectionToken,
+  Input,
+  OnDestroy,
+  OnInit,
+  Optional,
+} from '@angular/core';
+import type { MatPaginator } from '@angular/material/paginator';
+import type { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { MatSort } from '@angular/material/sort';
+import type {
+  AbstractTableDataSource,
+  FilterLike,
+} from '@rxap/data-source/table';
+import {
+  DynamicTableDataSource,
+  RXAP_TABLE_METHOD,
+  SortLike,
+  TableEvent,
+} from '@rxap/data-source/table';
+import { BaseRemoteMethod } from '@rxap/remote-method';
+import { PaginatorLike } from '@rxap/data-source/pagination';
+import { CdkTable } from '@angular/cdk/table';
+import { TableFilterService } from './table-filter/table-filter.service';
+import {
+  debounceTime,
+  delay,
+  filter,
+  tap,
+} from 'rxjs/operators';
+import { Required } from '@rxap/utilities';
+import { ToggleSubject } from '@rxap/rxjs';
+import { Method } from '@rxap/pattern';
+import { pipeDataSource } from '@rxap/data-source';
 
-export {RXAP_TABLE_METHOD} from '@rxap/data-source/table';
+export { RXAP_TABLE_METHOD } from '@rxap/data-source/table';
 
 /**
  * @deprecated use TABLE_METHOD instead

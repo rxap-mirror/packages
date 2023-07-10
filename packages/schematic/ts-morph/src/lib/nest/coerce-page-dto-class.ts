@@ -1,8 +1,13 @@
-import {CoerceDtoClass} from './coerce-dto-class';
-import {CoerceSuffix} from '@rxap/schematics-utilities';
-import {basename} from 'path';
-import {ClassDeclarationStructure, ImportDeclarationStructure, OptionalKind, Project} from 'ts-morph';
-import {DtoClassProperty} from '../create-dto-class';
+import { CoerceDtoClass } from './coerce-dto-class';
+import { CoerceSuffix } from '@rxap/schematics-utilities';
+import { basename } from 'path';
+import {
+  ClassDeclarationStructure,
+  ImportDeclarationStructure,
+  OptionalKind,
+  Project,
+} from 'ts-morph';
+import { DtoClassProperty } from '../create-dto-class';
 
 export interface CoercePageDtoClassOptions {
   project: Project,

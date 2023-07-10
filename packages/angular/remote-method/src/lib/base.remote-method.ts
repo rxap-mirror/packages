@@ -9,12 +9,16 @@ import {
   Optional,
   Type,
 } from '@angular/core';
-import {REMOTE_METHOD_META_DATA} from './tokens';
-import {BaseDefinition, BaseDefinitionMetadata, DefinitionMetadata} from '@rxap/definition';
-import {Subject} from 'rxjs';
-import {RxapRemoteMethodError} from './error';
-import {Refreshable} from '@rxap/utilities';
-import {CounterSubject} from '@rxap/rxjs';
+import { REMOTE_METHOD_META_DATA } from './tokens';
+import {
+  BaseDefinition,
+  BaseDefinitionMetadata,
+  DefinitionMetadata,
+} from '@rxap/definition';
+import { Subject } from 'rxjs';
+import { RxapRemoteMethodError } from './error';
+import { Refreshable } from '@rxap/utilities';
+import { CounterSubject } from '@rxap/rxjs';
 
 export interface BaseRemoteMethodMetadata extends BaseDefinitionMetadata {
   refresh?: Array<Type<Refreshable> | InjectionToken<Refreshable> | AbstractType<Refreshable>>;

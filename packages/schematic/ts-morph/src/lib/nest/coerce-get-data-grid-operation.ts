@@ -1,9 +1,12 @@
-import {CoerceOperation, CoerceOperationOptions} from './coerce-operation';
-import {CoerceDtoClass} from './coerce-dto-class';
-import {CoerceSuffix} from '@rxap/schematics-utilities';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {DtoClassProperty} from '../create-dto-class';
-import {SchematicsException} from '@angular-devkit/schematics';
+import {
+  CoerceOperation,
+  CoerceOperationOptions,
+} from './coerce-operation';
+import { CoerceDtoClass } from './coerce-dto-class';
+import { CoerceSuffix } from '@rxap/schematics-utilities';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { DtoClassProperty } from '../create-dto-class';
+import { SchematicsException } from '@angular-devkit/schematics';
 
 export interface CoerceGetDataGridOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
   collection?: boolean;
@@ -11,7 +14,14 @@ export interface CoerceGetDataGridOperationOptions extends Omit<CoerceOperationO
 }
 
 export function CoerceGetDataGridOperation(options: Readonly<CoerceGetDataGridOperationOptions>) {
-  let {tsMorphTransform, collection, propertyList, controllerName, nestController, name} = options;
+  let {
+    tsMorphTransform,
+    collection,
+    propertyList,
+    controllerName,
+    nestController,
+    name,
+  } = options;
   collection ??= false;
   tsMorphTransform ??= () => ({});
   propertyList ??= [];

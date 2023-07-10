@@ -1,10 +1,43 @@
-import {Inject, Injectable, InjectionToken, isDevMode, OnInit, Optional} from '@angular/core';
-import {BaseDataSourceViewer, DataSourceViewerId, RXAP_DATA_SOURCE_METADATA} from '@rxap/data-source';
-import {PageEvent, PaginatorLike} from '@rxap/data-source/pagination';
-import {BehaviorSubject, combineLatest, Observable, of, TeardownLogic} from 'rxjs';
-import {debounceTime, distinctUntilChanged, map, retryWhen, startWith, switchMap, tap} from 'rxjs/operators';
-import {AbstractTableDataSource, FilterLike, Sort, SortLike} from './abstract-table.data-source';
-import {TableDataSourceMetadata} from './table.data-source';
+import {
+  Inject,
+  Injectable,
+  InjectionToken,
+  isDevMode,
+  OnInit,
+  Optional,
+} from '@angular/core';
+import {
+  BaseDataSourceViewer,
+  DataSourceViewerId,
+  RXAP_DATA_SOURCE_METADATA,
+} from '@rxap/data-source';
+import {
+  PageEvent,
+  PaginatorLike,
+} from '@rxap/data-source/pagination';
+import {
+  BehaviorSubject,
+  combineLatest,
+  Observable,
+  of,
+  TeardownLogic,
+} from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  retryWhen,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
+import {
+  AbstractTableDataSource,
+  FilterLike,
+  Sort,
+  SortLike,
+} from './abstract-table.data-source';
+import { TableDataSourceMetadata } from './table.data-source';
 import {
   RXAP_TABLE_DATA_SOURCE_FILTER,
   RXAP_TABLE_DATA_SOURCE_PAGINATOR,
@@ -12,8 +45,11 @@ import {
   RXAP_TABLE_DATA_SOURCE_SORT,
   RXAP_TABLE_METHOD,
 } from './tokens';
-import {clone, equals} from '@rxap/utilities';
-import {Method} from '@rxap/pattern';
+import {
+  clone,
+  equals,
+} from '@rxap/utilities';
+import { Method } from '@rxap/pattern';
 
 /**
  * @deprecated removed use RXAP_TABLE_METHOD instead

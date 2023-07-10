@@ -1,7 +1,14 @@
-import {SchematicsException, Tree} from '@angular-devkit/schematics';
-import {dasherize, GetProjectSourceRoot, HasProject} from '@rxap/schematics-utilities';
-import {join} from 'path';
-import {buildNestProjectName} from './project-utilities';
+import {
+  SchematicsException,
+  Tree,
+} from '@angular-devkit/schematics';
+import {
+  dasherize,
+  GetProjectSourceRoot,
+  HasProject,
+} from '@rxap/schematics-utilities';
+import { join } from 'path';
+import { buildNestProjectName } from './project-utilities';
 
 export interface HasNestModuleOptions {
   project: string;

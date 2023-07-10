@@ -10,22 +10,32 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import {fromEvent, Subscription} from 'rxjs';
-import {filter, finalize, map, switchMap, takeUntil, tap} from 'rxjs/operators';
-import {RXAP_WINDOW_CONTEXT} from '../tokens';
-import {WindowRef} from '../window-ref';
-import {Required} from '@rxap/utilities';
-import {AsyncPipe} from '@angular/common';
-import {ExtendedModule} from '@angular/flex-layout/extended';
-import {MatIconModule} from '@angular/material/icon';
+import {
+  fromEvent,
+  Subscription,
+} from 'rxjs';
+import {
+  filter,
+  finalize,
+  map,
+  switchMap,
+  takeUntil,
+  tap,
+} from 'rxjs/operators';
+import { RXAP_WINDOW_CONTEXT } from '../tokens';
+import { WindowRef } from '../window-ref';
+import { Required } from '@rxap/utilities';
+import { AsyncPipe } from '@angular/common';
+import { ExtendedModule } from '@angular/flex-layout/extended';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'rxap-window-resizer',
   templateUrl: './window-resizer.component.html',
-  styleUrls: ['./window-resizer.component.scss'],
+  styleUrls: [ './window-resizer.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MatIconModule, ExtendedModule, AsyncPipe],
+  imports: [ MatIconModule, ExtendedModule, AsyncPipe ],
 })
 export class WindowResizerComponent implements OnInit, OnDestroy {
 

@@ -1,10 +1,10 @@
 // the fade-in/fade-out animation.
 import {
-  trigger,
+  animate,
   state,
   style,
   transition,
-  animate,
+  trigger,
 } from '@angular/animations';
 
 export const fadeAnimation = trigger('fadeAnimation', [

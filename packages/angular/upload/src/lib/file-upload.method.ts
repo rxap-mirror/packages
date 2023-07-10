@@ -1,8 +1,21 @@
-import {firstValueFrom, fromEvent, of, race, Subject} from 'rxjs';
-import {map, switchMap, take} from 'rxjs/operators';
-import {Inject, Injectable} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {Method} from '@rxap/pattern';
+import {
+  firstValueFrom,
+  fromEvent,
+  of,
+  race,
+  Subject,
+} from 'rxjs';
+import {
+  map,
+  switchMap,
+  take,
+} from 'rxjs/operators';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Method } from '@rxap/pattern';
 
 @Injectable()
 export class FileUploadMethod implements Method<File | null, { accept: string }> {

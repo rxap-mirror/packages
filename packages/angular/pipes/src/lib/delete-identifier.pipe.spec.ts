@@ -1,4 +1,4 @@
-import {DeleteIdentifierPipe} from './delete-identifier.pipe';
+import { DeleteIdentifierPipe } from './delete-identifier.pipe';
 
 describe('@rxap/pipes', () => {
 

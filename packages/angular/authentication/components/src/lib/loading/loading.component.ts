@@ -1,17 +1,26 @@
-import {ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {RxapAuthenticationService} from '@rxap/authentication';
-import {filter, tap} from 'rxjs/operators';
-import {Router} from '@angular/router';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { Subscription } from 'rxjs';
+import { RxapAuthenticationService } from '@rxap/authentication';
+import {
+  filter,
+  tap,
+} from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'rxap-auth-loading',
   templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss'],
+  styleUrls: [ './loading.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MatProgressBarModule],
+  imports: [ MatProgressBarModule ],
 })
 export class LoadingComponent implements OnInit, OnDestroy {
   public subscription?: Subscription;

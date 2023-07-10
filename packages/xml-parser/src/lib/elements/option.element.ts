@@ -1,12 +1,15 @@
-import {ControlOption, ControlOptions} from '@rxap/utilities';
-import {DataSourceElement} from './data-source.element';
-import {ParsedElement} from './parsed-element';
-import {ElementDef} from '../decorators/element-def';
-import {ElementAttribute} from '../decorators/element-attribute';
-import {ElementTextContent} from '../decorators/element-text-content';
-import {ElementRequired} from '../decorators/mixins/required-element.parser.mixin';
-import {ElementChildren} from '../decorators/element-children';
-import {ElementChild} from '../decorators/element-child';
+import {
+  ControlOption,
+  ControlOptions,
+} from '@rxap/utilities';
+import { DataSourceElement } from './data-source.element';
+import { ParsedElement } from './parsed-element';
+import { ElementDef } from '../decorators/element-def';
+import { ElementAttribute } from '../decorators/element-attribute';
+import { ElementTextContent } from '../decorators/element-text-content';
+import { ElementRequired } from '../decorators/mixins/required-element.parser.mixin';
+import { ElementChildren } from '../decorators/element-children';
+import { ElementChild } from '../decorators/element-child';
 
 @ElementDef('option')
 export class OptionElement implements ParsedElement<ControlOption> {

@@ -1,5 +1,5 @@
-import {assertString} from './util/assertString';
-import {decimal} from './alpha';
+import { assertString } from './util/assertString';
+import { decimal } from './alpha';
 
 const numericNoSymbols = /^[0-9]+$/;
 

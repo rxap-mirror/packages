@@ -1,6 +1,10 @@
-import {Rule} from '@angular-devkit/schematics';
-import {join} from 'path';
-import {Node, Project, SourceFile} from 'ts-morph';
+import { Rule } from '@angular-devkit/schematics';
+import { join } from 'path';
+import {
+  Node,
+  Project,
+  SourceFile,
+} from 'ts-morph';
 
 function areSame(sourceFile1: SourceFile, sourceFile2: SourceFile) {
   const leafNodes1 = getLeafNodes(sourceFile1);

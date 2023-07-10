@@ -6,9 +6,14 @@
  * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
  */
 
-import {ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 
-import {KeycloakService} from './keycloak.service';
+import { KeycloakService } from './keycloak.service';
 
 /**
  * A simple guard implementation out of the box. This class should be inherited and

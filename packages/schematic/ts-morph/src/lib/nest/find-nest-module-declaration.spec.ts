@@ -1,5 +1,8 @@
-import {Project, Writers} from 'ts-morph';
-import {FindNestModuleDeclaration} from './find-nest-module-declaration';
+import {
+  Project,
+  Writers,
+} from 'ts-morph';
+import { FindNestModuleDeclaration } from './find-nest-module-declaration';
 
 describe('@rxap/schematics-ts-morph', () => {
 
@@ -9,7 +12,7 @@ describe('@rxap/schematics-ts-morph', () => {
 
       it('should find declaration', () => {
 
-        const project = new Project({useInMemoryFileSystem: true});
+        const project = new Project({ useInMemoryFileSystem: true });
 
         const sourceFile = project.createSourceFile('module.ts');
 

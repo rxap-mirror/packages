@@ -1,4 +1,8 @@
-import {ImportDeclarationStructure, OptionalKind, SourceFile} from 'ts-morph';
+import {
+  ImportDeclarationStructure,
+  OptionalKind,
+  SourceFile,
+} from 'ts-morph';
 
 export function CoerceImports(
   sourceFile: SourceFile,

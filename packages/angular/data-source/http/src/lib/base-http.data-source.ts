@@ -4,16 +4,40 @@ import {
   RXAP_DATA_SOURCE_REFRESH,
   RxapDataSourceError,
 } from '@rxap/data-source';
-import {EMPTY, firstValueFrom, Observable, of, ReplaySubject, Subject, Subscription} from 'rxjs';
-import {HttpClient, HttpRequest} from '@angular/common/http';
-import {deepMerge, hasIndexSignature, joinPath} from '@rxap/utilities';
-import {Inject, Injectable, Optional} from '@angular/core';
-import {finalize, skip, switchMap, tap} from 'rxjs/operators';
-import {HttpDataSourceMetadata} from './http.data-source.metadata';
-import {HttpDataSourceViewer} from './http.data-source.viewer';
-import {HttpDataSourceOptions} from './http.data-source.options';
-import {RxapHttpDataSourceError} from './error';
-import {RequestInProgressSubject} from '@rxap/rxjs';
+import {
+  EMPTY,
+  firstValueFrom,
+  Observable,
+  of,
+  ReplaySubject,
+  Subject,
+  Subscription,
+} from 'rxjs';
+import {
+  HttpClient,
+  HttpRequest,
+} from '@angular/common/http';
+import {
+  deepMerge,
+  hasIndexSignature,
+  joinPath,
+} from '@rxap/utilities';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
+import {
+  finalize,
+  skip,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
+import { HttpDataSourceMetadata } from './http.data-source.metadata';
+import { HttpDataSourceViewer } from './http.data-source.viewer';
+import { HttpDataSourceOptions } from './http.data-source.options';
+import { RxapHttpDataSourceError } from './error';
+import { RequestInProgressSubject } from '@rxap/rxjs';
 
 @Injectable()
 export abstract class BaseHttpDataSource<Data = any, PathParams = any, Body = any> extends BaseDataSource<

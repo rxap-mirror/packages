@@ -1,6 +1,6 @@
-import {Tree} from '@angular-devkit/schematics';
-import {GuessProjectName} from './guess-project-name';
-import {GetProjectSourceRoot} from './get-project';
+import { Tree } from '@angular-devkit/schematics';
+import { GuessProjectName } from './guess-project-name';
+import { GetProjectSourceRoot } from './get-project';
 
 /**
  * Tries to guess the project source root from the option path and project

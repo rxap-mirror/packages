@@ -1,4 +1,7 @@
-import {Project, SourceFile} from 'ts-morph';
+import {
+  Project,
+  SourceFile,
+} from 'ts-morph';
 
 export function CoerceSourceFile(
   project: Project,

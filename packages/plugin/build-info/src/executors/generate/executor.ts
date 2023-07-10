@@ -1,8 +1,11 @@
-import {GenerateExecutorSchema} from './schema';
-import {ExecutorContext} from '@nx/devkit';
-import {GuessOutputPath} from '@rxap/plugin-utilities';
-import {join} from 'path';
-import {existsSync, writeFileSync} from 'fs';
+import { GenerateExecutorSchema } from './schema';
+import { ExecutorContext } from '@nx/devkit';
+import { GuessOutputPath } from '@rxap/plugin-utilities';
+import { join } from 'path';
+import {
+  existsSync,
+  writeFileSync,
+} from 'fs';
 
 interface BuildInfo {
   release?: string;

@@ -1,4 +1,4 @@
-import { Tree } from "@nx/devkit";
+import { Tree } from '@nx/devkit';
 
 export function CoerceIgnorePattern(tree: Tree, filePath: string, patternList: string[]) {
 

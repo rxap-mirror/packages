@@ -1,9 +1,9 @@
 import {
-  Project,
   IndentationText,
+  Project,
   QuoteKind,
 } from 'ts-morph';
-import {GenerateIndexExports} from './generate-index-exports';
+import { GenerateIndexExports } from './generate-index-exports';
 
 describe('@rxap/schematics-open-api', () => {
 

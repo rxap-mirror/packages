@@ -1,7 +1,11 @@
-import {NgZone, Optional, Provider} from '@angular/core';
-import {ConfigService} from '@rxap/config';
-import {FirebaseConfig} from './firebase.config';
-import {FirebaseApp} from '@angular/fire/app';
+import {
+  NgZone,
+  Optional,
+  Provider,
+} from '@angular/core';
+import { ConfigService } from '@rxap/config';
+import { FirebaseConfig } from './firebase.config';
+import { FirebaseApp } from '@angular/fire/app';
 import {
   LANGUAGE_CODE,
   PERSISTENCE,
@@ -10,20 +14,45 @@ import {
   USE_DEVICE_LANGUAGE,
   USE_EMULATOR as USE_AUTH_EMULATOR,
 } from '@angular/fire/compat/auth';
-import {FIREBASE_APP_NAME, FIREBASE_OPTIONS, ɵfirebaseAppFactory} from '@angular/fire/compat';
-import {DATA_COLLECTION_ENABLED, INSTRUMENTATION_ENABLED} from '@angular/fire/compat/performance';
-import {BUCKET, MAX_OPERATION_RETRY_TIME, MAX_UPLOAD_RETRY_TIME} from '@angular/fire/compat/storage';
-import {APP_NAME, COLLECTION_ENABLED} from '@angular/fire/compat/analytics';
-import {SERVICE_WORKER, VAPID_KEY} from '@angular/fire/compat/messaging';
+import {
+  FIREBASE_APP_NAME,
+  FIREBASE_OPTIONS,
+  ɵfirebaseAppFactory,
+} from '@angular/fire/compat';
+import {
+  DATA_COLLECTION_ENABLED,
+  INSTRUMENTATION_ENABLED,
+} from '@angular/fire/compat/performance';
+import {
+  BUCKET,
+  MAX_OPERATION_RETRY_TIME,
+  MAX_UPLOAD_RETRY_TIME,
+} from '@angular/fire/compat/storage';
+import {
+  APP_NAME,
+  COLLECTION_ENABLED,
+} from '@angular/fire/compat/analytics';
+import {
+  SERVICE_WORKER,
+  VAPID_KEY,
+} from '@angular/fire/compat/messaging';
 import {
   ENABLE_PERSISTENCE,
   PERSISTENCE_SETTINGS,
   SETTINGS as FIRESTORE_SETTINGS,
   USE_EMULATOR as USE_FIRESTORE_EMULATOR,
 } from '@angular/fire/compat/firestore';
-import {ORIGIN, REGION, USE_EMULATOR as USE_FUNCTIONS_EMULATOR} from '@angular/fire/compat/functions';
-import {APP_CHECK_ENABLED, APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED, APP_CHECK_SITE_KEY} from './tokens';
-import {AppCheckService} from './app-check';
+import {
+  ORIGIN,
+  REGION,
+  USE_EMULATOR as USE_FUNCTIONS_EMULATOR,
+} from '@angular/fire/compat/functions';
+import {
+  APP_CHECK_ENABLED,
+  APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED,
+  APP_CHECK_SITE_KEY,
+} from './tokens';
+import { AppCheckService } from './app-check';
 
 export function FirebaseOptionsTokenFactory(configService: ConfigService<FirebaseConfig>) {
   return configService.get('firebase.options');

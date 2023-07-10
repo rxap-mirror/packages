@@ -1,4 +1,4 @@
-import {Environment} from './environment';
+import { Environment } from './environment';
 
 export const RXAP_GLOBAL_STATE: { environment: Environment | null } = {environment: null};
 

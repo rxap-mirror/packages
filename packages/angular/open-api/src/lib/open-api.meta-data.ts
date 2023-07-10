@@ -1,5 +1,5 @@
-import {OperationObjectWithMetadata} from './open-api';
-import {BaseRemoteMethodMetadata} from '@rxap/remote-method';
+import { OperationObjectWithMetadata } from './open-api';
+import { BaseRemoteMethodMetadata } from '@rxap/remote-method';
 
 export interface OpenApiMetaData extends BaseRemoteMethodMetadata {
   /**

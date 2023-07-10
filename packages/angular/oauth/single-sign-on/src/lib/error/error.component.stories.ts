@@ -1,6 +1,9 @@
-import {addDecorator, moduleMetadata} from '@storybook/angular';
+import {
+  addDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 
-import {ErrorComponent} from './error.component';
+import { ErrorComponent } from './error.component';
 
 addDecorator(moduleMetadata({
   imports: [],

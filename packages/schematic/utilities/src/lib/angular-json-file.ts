@@ -1,12 +1,21 @@
-import {Rule, SchematicsException, Tree} from '@angular-devkit/schematics';
-import {AngularJson} from './angular-json';
-import {CliOptions} from './angular-json/cli-options';
-import {I18n} from './angular-json/i18n';
-import {Project} from './angular-json/project';
-import {SchematicOptions} from './angular-json/schematic-options';
-import {Target} from './angular-json/target';
-import {clone} from './clone';
-import {GetJsonFile, HasJsonFile, UpdateJsonFile, UpdateJsonFileOptions} from './json-file';
+import {
+  Rule,
+  SchematicsException,
+  Tree,
+} from '@angular-devkit/schematics';
+import { AngularJson } from './angular-json';
+import { CliOptions } from './angular-json/cli-options';
+import { I18n } from './angular-json/i18n';
+import { Project } from './angular-json/project';
+import { SchematicOptions } from './angular-json/schematic-options';
+import { Target } from './angular-json/target';
+import { clone } from './clone';
+import {
+  GetJsonFile,
+  HasJsonFile,
+  UpdateJsonFile,
+  UpdateJsonFileOptions,
+} from './json-file';
 
 export function IsAngularJson(angularJson: AngularJson | FragmentedAngularJson): angularJson is AngularJson {
   return !!angularJson.projects && Object.values(angularJson.projects).every(project => typeof project === 'object');

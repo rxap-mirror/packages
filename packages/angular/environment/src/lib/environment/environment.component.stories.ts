@@ -1,8 +1,11 @@
-import {addDecorator, moduleMetadata} from '@storybook/angular';
-import {EnvironmentComponentModule} from './environment.component.module';
-import {EnvironmentComponent} from './environment.component';
-import {RXAP_ENVIRONMENT} from './tokens';
-import {Environment} from '../environment';
+import {
+  addDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
+import { EnvironmentComponentModule } from './environment.component.module';
+import { EnvironmentComponent } from './environment.component';
+import { RXAP_ENVIRONMENT } from './tokens';
+import { Environment } from '../environment';
 import '@angular/localize/init';
 
 const environment: Environment = {

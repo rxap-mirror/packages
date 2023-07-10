@@ -1,4 +1,7 @@
-import {ArrayLiteralExpression, Expression} from 'ts-morph';
+import {
+  ArrayLiteralExpression,
+  Expression,
+} from 'ts-morph';
 
 export function IsArrayLiteralExpression(expression?: Expression): expression is ArrayLiteralExpression {
   return expression instanceof ArrayLiteralExpression;

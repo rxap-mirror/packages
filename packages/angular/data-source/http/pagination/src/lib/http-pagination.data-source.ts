@@ -7,15 +7,34 @@ import {
   RXAP_PAGINATION_DATA_SOURCE_PAGINATOR,
   RxapAbstractPaginationDataSource,
 } from '@rxap/data-source/pagination';
-import {Inject, Injectable, Optional} from '@angular/core';
-import type {HttpDataSource} from '@rxap/data-source/http';
-import {HttpDataSourceOptions, HttpDataSourceViewer} from '@rxap/data-source/http';
-import {BaseDataSourceViewer, RXAP_DATA_SOURCE_METADATA} from '@rxap/data-source';
-import {EMPTY, Observable, TeardownLogic} from 'rxjs';
-import {filter, map, startWith, tap} from 'rxjs/operators';
-import {RxapHttpPaginationDataSourceError} from './error';
-import {Constructor} from '@rxap/utilities';
-import {RXAP_HTTP_PAGINATION_DATA_SOURCE_TO_OPTIONS_FUNCTION} from './tokens';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
+import type { HttpDataSource } from '@rxap/data-source/http';
+import {
+  HttpDataSourceOptions,
+  HttpDataSourceViewer,
+} from '@rxap/data-source/http';
+import {
+  BaseDataSourceViewer,
+  RXAP_DATA_SOURCE_METADATA,
+} from '@rxap/data-source';
+import {
+  EMPTY,
+  Observable,
+  TeardownLogic,
+} from 'rxjs';
+import {
+  filter,
+  map,
+  startWith,
+  tap,
+} from 'rxjs/operators';
+import { RxapHttpPaginationDataSourceError } from './error';
+import { Constructor } from '@rxap/utilities';
+import { RXAP_HTTP_PAGINATION_DATA_SOURCE_TO_OPTIONS_FUNCTION } from './tokens';
 
 export interface PaginationData<Data = any> {
   /**

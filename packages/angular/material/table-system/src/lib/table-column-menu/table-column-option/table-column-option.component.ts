@@ -1,11 +1,11 @@
 import {
   Component,
   ElementRef,
-  Input,
   Inject,
+  Input,
   OnInit,
 } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import {
   coerceBoolean,
   Required,

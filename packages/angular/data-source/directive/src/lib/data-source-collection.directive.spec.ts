@@ -1,8 +1,14 @@
-import {RxapDataSource, StaticDataSource} from '@rxap/data-source';
-import {Component, Injectable} from '@angular/core';
-import {TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {DataSourceCollectionDirective} from './data-source-collection.directive';
+import {
+  RxapDataSource,
+  StaticDataSource,
+} from '@rxap/data-source';
+import {
+  Component,
+  Injectable,
+} from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { DataSourceCollectionDirective } from './data-source-collection.directive';
 
 describe('@rxap/data-source/directive', () => {
 

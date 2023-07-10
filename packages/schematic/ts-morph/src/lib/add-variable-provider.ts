@@ -1,8 +1,13 @@
-import {ArrayLiteralExpression, ImportDeclarationStructure, OptionalKind, SourceFile} from 'ts-morph';
-import {AddProviderToArray} from './add-provider-to-array';
-import {ProviderObject} from './provider-object';
-import {CoerceVariableDeclaration} from './coerce-variable-declaration';
-import {CoerceImports} from './ts-morph/index';
+import {
+  ArrayLiteralExpression,
+  ImportDeclarationStructure,
+  OptionalKind,
+  SourceFile,
+} from 'ts-morph';
+import { AddProviderToArray } from './add-provider-to-array';
+import { ProviderObject } from './provider-object';
+import { CoerceVariableDeclaration } from './coerce-variable-declaration';
+import { CoerceImports } from './ts-morph/index';
 
 export function AddVariableProvider(
   sourceFile: SourceFile,

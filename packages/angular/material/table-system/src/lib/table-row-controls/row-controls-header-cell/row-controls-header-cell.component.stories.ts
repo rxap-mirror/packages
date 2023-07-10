@@ -1,9 +1,9 @@
 import {
-  moduleMetadata,
   addDecorator,
+  moduleMetadata,
 } from '@storybook/angular';
-import {RowControlsHeaderCellComponentModule} from './row-controls-header-cell.component.module';
-import {RowControlsHeaderCellComponent} from './row-controls-header-cell.component';
+import { RowControlsHeaderCellComponentModule } from './row-controls-header-cell.component.module';
+import { RowControlsHeaderCellComponent } from './row-controls-header-cell.component';
 
 addDecorator(moduleMetadata({
   imports: [

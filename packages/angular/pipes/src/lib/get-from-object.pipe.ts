@@ -1,5 +1,8 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {getFromObject} from '@rxap/utilities';
+import {
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
+import { getFromObject } from '@rxap/utilities';
 
 @Pipe({
   name: 'getFromObject',

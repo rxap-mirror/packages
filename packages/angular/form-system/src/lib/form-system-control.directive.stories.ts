@@ -1,12 +1,25 @@
-import {addDecorator, moduleMetadata} from '@storybook/angular';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormSystemControlDirective} from './form-system-control.directive';
-import {UseComponent} from './decorators/use-component';
-import {UseDataSource} from './decorators/use-data-source';
-import {ControlWithDataSource} from './control-with-data-source';
-import {Component, Injectable, Injector, INJECTOR, Input} from '@angular/core';
-import {BaseDataSource, RxapStaticDataSource, StaticDataSource} from '@rxap/data-source';
-import {Required} from '@rxap/utilities';
+import {
+  addDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormSystemControlDirective } from './form-system-control.directive';
+import { UseComponent } from './decorators/use-component';
+import { UseDataSource } from './decorators/use-data-source';
+import { ControlWithDataSource } from './control-with-data-source';
+import {
+  Component,
+  Injectable,
+  Injector,
+  INJECTOR,
+  Input,
+} from '@angular/core';
+import {
+  BaseDataSource,
+  RxapStaticDataSource,
+  StaticDataSource,
+} from '@rxap/data-source';
+import { Required } from '@rxap/utilities';
 import {
   ControlValueAccessor,
   FormDefinition,
@@ -18,8 +31,8 @@ import {
   RxapFormsModule,
   UseFormControl,
 } from '@rxap/forms';
-import {DataSourceCollectionDirective} from '@rxap/data-source/directive';
-import {FormsModule} from '@angular/forms';
+import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   template: `

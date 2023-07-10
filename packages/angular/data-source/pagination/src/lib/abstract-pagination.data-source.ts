@@ -1,9 +1,21 @@
-import {BaseDataSource, BaseDataSourceMetadata, RXAP_DATA_SOURCE_METADATA, RxapDataSource} from '@rxap/data-source';
-import {Inject, Injectable, Optional} from '@angular/core';
-import {RXAP_PAGINATION_DATA_SOURCE_PAGINATOR} from './tokens';
-import {RxapPaginationDataSourceError} from './error';
-import {Constructor, IsRequiredPropertyDefined} from '@rxap/utilities';
-import {Observable} from 'rxjs';
+import {
+  BaseDataSource,
+  BaseDataSourceMetadata,
+  RXAP_DATA_SOURCE_METADATA,
+  RxapDataSource,
+} from '@rxap/data-source';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
+import { RXAP_PAGINATION_DATA_SOURCE_PAGINATOR } from './tokens';
+import { RxapPaginationDataSourceError } from './error';
+import {
+  Constructor,
+  IsRequiredPropertyDefined,
+} from '@rxap/utilities';
+import { Observable } from 'rxjs';
 
 export interface PageEvent {
   /** The current page index. */

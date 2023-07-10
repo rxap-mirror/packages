@@ -4,9 +4,9 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {Subscription} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import { MatPaginator } from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Directive({
   selector: 'mat-paginator[rxapPersistent]',

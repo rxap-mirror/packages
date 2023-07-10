@@ -1,4 +1,4 @@
-import {Deprecated} from './decorators/deprecated';
+import { Deprecated } from './decorators/deprecated';
 
 export class RxapError extends Error {
 

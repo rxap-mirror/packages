@@ -1,4 +1,4 @@
-import {Method} from '@rxap/pattern';
+import { Method } from '@rxap/pattern';
 
 export type RowActionCheckFunction<Data extends Record<string, any>> = (element: Data, index: number, array: Data[]) => boolean;
 export type TableRowActionTypeSwitchMethod<Data extends Record<string, any>> = Method<any, {

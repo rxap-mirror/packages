@@ -1,7 +1,7 @@
-import {BaseDataSource} from '@rxap/data-source';
-import {FormSystemMetadataKeys} from './metadata-keys';
-import {IdOrInstanceOrToken} from '@rxap/definition';
-import {setMetadataMapMap} from '@rxap/reflect-metadata';
+import { BaseDataSource } from '@rxap/data-source';
+import { FormSystemMetadataKeys } from './metadata-keys';
+import { IdOrInstanceOrToken } from '@rxap/definition';
+import { setMetadataMapMap } from '@rxap/reflect-metadata';
 
 export interface UseDataSourceSettings<Source = any, Target = Source> {
   transformer?: (source: Source) => Target;

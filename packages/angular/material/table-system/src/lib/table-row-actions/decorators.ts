@@ -1,5 +1,5 @@
-import {setMetadata} from '@rxap/reflect-metadata';
-import {RowActionCheckFunction} from './types';
+import { setMetadata } from '@rxap/reflect-metadata';
+import { RowActionCheckFunction } from './types';
 
 /**
  * @deprecated use RXAP_TABLE_ACTION_METHOD_METADATA instead

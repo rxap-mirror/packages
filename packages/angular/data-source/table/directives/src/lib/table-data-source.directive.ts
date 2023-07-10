@@ -1,5 +1,11 @@
-import {Directive, Input} from '@angular/core';
-import {AbstractPaginationDataSource, PaginatorLike} from '@rxap/data-source/pagination';
+import {
+  Directive,
+  Input,
+} from '@angular/core';
+import {
+  AbstractPaginationDataSource,
+  PaginatorLike,
+} from '@rxap/data-source/pagination';
 import {
   AbstractTableDataSource,
   DynamicTableDataSource,
@@ -7,16 +13,17 @@ import {
   RxapTableDataSourceError,
   SortLike,
 } from '@rxap/data-source/table';
-import {Required} from '@rxap/utilities';
-import {DataSourceCollectionDirective} from '@rxap/data-source/directive';
-import {IdOrInstanceOrToken} from '@rxap/definition';
-import {BaseDataSourceViewer} from '@rxap/data-source';
+import { Required } from '@rxap/utilities';
+import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
+import { IdOrInstanceOrToken } from '@rxap/definition';
+import { BaseDataSourceViewer } from '@rxap/data-source';
 
 @Directive({
   selector: '[rxapTableDataSource]',
   standalone: true,
 })
-export class TableDataSourceDirective<Data extends Record<any, any> = any, Parameters = any> extends DataSourceCollectionDirective<Data> {
+export class TableDataSourceDirective<Data extends Record<any, any> = any, Parameters = any>
+  extends DataSourceCollectionDirective<Data> {
 
   @Input('rxapTableDataSourcePaginator')
   public paginator!: PaginatorLike;

@@ -1,9 +1,9 @@
 import {
-  moduleMetadata,
   addDecorator,
+  moduleMetadata,
 } from '@storybook/angular';
 
-import {SignOutComponent} from './sign-out.component';
+import { SignOutComponent } from './sign-out.component';
 
 addDecorator(moduleMetadata({
   imports: [],

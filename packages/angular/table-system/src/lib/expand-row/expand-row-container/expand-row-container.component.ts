@@ -8,24 +8,45 @@ import {
   OnDestroy,
   ViewContainerRef,
 } from '@angular/core';
-import {ExpandCellContentDirectiveContext, ExpandRowContentDirective} from './expand-row-content.directive';
-import {PortalModule, TemplatePortal} from '@angular/cdk/portal';
-import {Required} from '@rxap/utilities';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {ExpandRowService} from '../expand-row.service';
-import {Subscription} from 'rxjs';
-import {filter, tap} from 'rxjs/operators';
-import {AsyncPipe} from '@angular/common';
+import {
+  ExpandCellContentDirectiveContext,
+  ExpandRowContentDirective,
+} from './expand-row-content.directive';
+import {
+  PortalModule,
+  TemplatePortal,
+} from '@angular/cdk/portal';
+import { Required } from '@rxap/utilities';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { ExpandRowService } from '../expand-row.service';
+import { Subscription } from 'rxjs';
+import {
+  filter,
+  tap,
+} from 'rxjs/operators';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'td[rxap-expand-row]',
   templateUrl: './expand-row-container.component.html',
-  styleUrls: ['./expand-row-container.component.scss'],
+  styleUrls: [ './expand-row-container.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state(
+        'collapsed',
+        style({
+          height: '0px',
+          minHeight: '0',
+        }),
+      ),
       state('expanded', style({height: '*'})),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),

@@ -1,4 +1,9 @@
-import {getMetadata, setMetadataMap, setMetadataMapMap, setMetadataMapSet} from './meta-data';
+import {
+  getMetadata,
+  setMetadataMap,
+  setMetadataMapMap,
+  setMetadataMapSet,
+} from './meta-data';
 
 describe('@rxap/utilities', () => {
 

@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {MessageDialogComponent} from './message-dialog.component';
-import {MessageDialogService} from './message-dialog.service';
+import { NgModule } from '@angular/core';
+import { MessageDialogComponent } from './message-dialog.component';
+import { MessageDialogService } from './message-dialog.service';
 
 
 @NgModule({

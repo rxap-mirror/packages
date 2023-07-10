@@ -1,9 +1,15 @@
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {HttpClient} from '@angular/common/http';
-import {OpenApiRemoteMethod, RxapOpenApiRemoteMethod} from './open-api.remote-method';
-import {TestBed} from '@angular/core/testing';
-import {Injector} from '@angular/core';
-import {OpenApiConfigService} from '@rxap/open-api';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
+import { HttpClient } from '@angular/common/http';
+import {
+  OpenApiRemoteMethod,
+  RxapOpenApiRemoteMethod,
+} from './open-api.remote-method';
+import { TestBed } from '@angular/core/testing';
+import { Injector } from '@angular/core';
+import { OpenApiConfigService } from '@rxap/open-api';
 
 describe('@rxap/open-api/remote-method', () => {
 

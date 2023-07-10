@@ -1,4 +1,7 @@
-import {STRING_UNDERSCORE_REGEXP_1, STRING_UNDERSCORE_REGEXP_2} from './const';
+import {
+  STRING_UNDERSCORE_REGEXP_1,
+  STRING_UNDERSCORE_REGEXP_2,
+} from './const';
 
 /**
  More general than decamelize. Returns the lower\_case\_and\_underscored

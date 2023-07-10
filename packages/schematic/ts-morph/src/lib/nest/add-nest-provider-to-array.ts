@@ -1,6 +1,11 @@
-import {NestProviderObject} from './nest-provider-object';
-import {ArrayLiteralExpression, ObjectLiteralExpression, PropertyAssignment, Writers} from 'ts-morph';
-import {DeleteUndefinedProperties} from '@rxap/schematics-utilities';
+import { NestProviderObject } from './nest-provider-object';
+import {
+  ArrayLiteralExpression,
+  ObjectLiteralExpression,
+  PropertyAssignment,
+  Writers,
+} from 'ts-morph';
+import { DeleteUndefinedProperties } from '@rxap/schematics-utilities';
 
 export function AddNestProviderToArray(
   providerObject: NestProviderObject | string,

@@ -9,11 +9,14 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import {Required} from '@rxap/utilities';
-import {Subscription} from 'rxjs';
-import {distinctUntilChanged, tap} from 'rxjs/operators';
-import {AuthorizationService} from './authorization.service';
-import {RXAP_AUTHORIZATION_SCOPE} from './tokens';
+import { Required } from '@rxap/utilities';
+import { Subscription } from 'rxjs';
+import {
+  distinctUntilChanged,
+  tap,
+} from 'rxjs/operators';
+import { AuthorizationService } from './authorization.service';
+import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
 @Directive({
   selector: '[rxapIfHasPermission]',

@@ -1,30 +1,30 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
+  Component,
   Inject,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
 import {
-  WindowContainerSidenavService,
   ContainerComponent,
+  WindowContainerSidenavService,
 } from '@rxap/services';
 import {
   ComponentPortal,
   PortalModule,
 } from '@angular/cdk/portal';
-import {tap} from 'rxjs/operators';
-import {Subscription} from 'rxjs';
-import {NgFor} from '@angular/common';
-import {FlexModule} from '@angular/flex-layout/flex';
+import { tap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { NgFor } from '@angular/common';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector: 'rxap-window-container-sidenav',
   templateUrl: './window-container-sidenav.component.html',
-  styleUrls: ['./window-container-sidenav.component.scss'],
+  styleUrls: [ './window-container-sidenav.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [FlexModule, NgFor, PortalModule],
+  imports: [ FlexModule, NgFor, PortalModule ],
 })
 export class WindowContainerSidenavComponent implements OnInit, OnDestroy {
 

@@ -9,17 +9,29 @@ import {
   OnInit,
   ViewContainerRef,
 } from '@angular/core';
-import {Constructor, Required} from '@rxap/utilities';
-import {ControlContainer, ControlValueAccessor} from '@angular/forms';
-import {RxapFormSystemError} from './error';
-import {FormDefinition, RxapFormControl} from '@rxap/forms';
-import {FormSystemMetadataKeys} from './decorators/metadata-keys';
-import {ControlWithDataSource} from './control-with-data-source';
-import {DataSourceLoader, PipeDataSource} from '@rxap/data-source';
-import {Mixin} from '@rxap/mixin';
-import {ExtractDataSourcesMixin} from './mixins/extract-data-sources.mixin';
-import {map} from 'rxjs/operators';
-import {getMetadata} from '@rxap/reflect-metadata';
+import {
+  Constructor,
+  Required,
+} from '@rxap/utilities';
+import {
+  ControlContainer,
+  ControlValueAccessor,
+} from '@angular/forms';
+import { RxapFormSystemError } from './error';
+import {
+  FormDefinition,
+  RxapFormControl,
+} from '@rxap/forms';
+import { FormSystemMetadataKeys } from './decorators/metadata-keys';
+import { ControlWithDataSource } from './control-with-data-source';
+import {
+  DataSourceLoader,
+  PipeDataSource,
+} from '@rxap/data-source';
+import { Mixin } from '@rxap/mixin';
+import { ExtractDataSourcesMixin } from './mixins/extract-data-sources.mixin';
+import { map } from 'rxjs/operators';
+import { getMetadata } from '@rxap/reflect-metadata';
 
 export interface FormSystemControlDirective<T> extends ExtractDataSourcesMixin, ControlValueAccessor, OnInit {
 }

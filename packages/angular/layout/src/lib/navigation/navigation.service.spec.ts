@@ -1,13 +1,16 @@
-import {NavigationItem, NavigationStatus} from './navigation-item';
-import {NavigationService} from './navigation.service';
-import {RXAP_NAVIGATION_CONFIG} from '../tokens';
+import {
+  NavigationItem,
+  NavigationStatus,
+} from './navigation-item';
+import { NavigationService } from './navigation.service';
+import { RXAP_NAVIGATION_CONFIG } from '../tokens';
 import {
   Observable,
   of,
 } from 'rxjs';
-import {TestBed} from '@angular/core/testing';
-import {Injectable} from '@angular/core';
-import {take} from 'rxjs/operators';
+import { TestBed } from '@angular/core/testing';
+import { Injectable } from '@angular/core';
+import { take } from 'rxjs/operators';
 
 describe('@rxap/layout', () => {
 

@@ -1,5 +1,8 @@
-import {DirEntry, Tree} from '@angular-devkit/schematics';
-import {join} from 'path';
+import {
+  DirEntry,
+  Tree,
+} from '@angular-devkit/schematics';
+import { join } from 'path';
 
 export function DeleteRecursive(tree: Tree, dir: DirEntry) {
 

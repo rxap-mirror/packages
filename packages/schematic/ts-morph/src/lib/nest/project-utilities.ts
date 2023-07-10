@@ -1,13 +1,13 @@
-import {HasProject} from '@rxap/schematics-utilities';
-import {Tree} from '@angular-devkit/schematics';
+import { HasProject } from '@rxap/schematics-utilities';
+import { Tree } from '@angular-devkit/schematics';
 
 
 export function buildNestProjectName(options: { project: string, feature?: string, shared?: boolean }) {
   if (options.feature) {
     if (options.shared) {
-      return `service-feature-${options.feature}`;
+      return `service-feature-${ options.feature }`;
     } else {
-      return `service-app-${options.project}-${options.feature}`;
+      return `service-app-${ options.project }-${ options.feature }`;
     }
   } else {
     return options.project;

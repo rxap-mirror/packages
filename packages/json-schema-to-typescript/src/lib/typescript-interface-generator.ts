@@ -1,27 +1,27 @@
 import {
-  InterfaceDeclarationStructure,
-  Project,
   IndentationText,
+  InterfaceDeclarationStructure,
   OptionalKind,
+  Project,
   PropertySignatureStructure,
-  Writers,
-  SourceFile,
-  WriterFunction,
-  TypeElementMemberedNodeStructure,
   QuoteKind,
+  SourceFile,
   TypeAliasDeclarationStructure,
+  TypeElementMemberedNodeStructure,
+  WriterFunction,
+  Writers,
 } from 'ts-morph';
-import * as $RefParser from '@apidevtools/json-schema-ref-parser';
 import type {
-  Options,
   JSONSchema,
+  Options,
 } from '@apidevtools/json-schema-ref-parser';
-import {joinPath} from './join';
+import * as $RefParser from '@apidevtools/json-schema-ref-parser';
+import { joinPath } from './join';
 import {
   classify,
   dasherize,
 } from './strings';
-import {getFromObject} from './get-from-object';
+import { getFromObject } from './get-from-object';
 
 export interface TypescriptInterfaceGeneratorOptions extends Options {
   suffix?: string;

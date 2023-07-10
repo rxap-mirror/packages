@@ -1,4 +1,4 @@
-import {FilterLike} from '@rxap/data-source/table';
+import { FilterLike } from '@rxap/data-source/table';
 import {
   Injectable,
   OnDestroy,
@@ -9,8 +9,8 @@ import {
 } from 'rxjs';
 import {
   clone,
-  equals,
   DeleteEmptyProperties,
+  equals,
 } from '@rxap/utilities';
 
 @Injectable()

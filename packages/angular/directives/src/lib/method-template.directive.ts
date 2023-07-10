@@ -13,8 +13,8 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import {ToggleSubject} from '@rxap/rxjs';
-import {Method} from '@rxap/pattern';
+import { ToggleSubject } from '@rxap/rxjs';
+import { Method } from '@rxap/pattern';
 
 export interface MethodTemplateDirectiveContext<ReturnType = any> {
   $implicit: ReturnType;

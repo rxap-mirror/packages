@@ -1,4 +1,7 @@
-import {isObject, RecursivePartial} from './helpers';
+import {
+  isObject,
+  RecursivePartial,
+} from './helpers';
 
 function _has(prop: string, obj: any) {
   return Object.prototype.hasOwnProperty.call(obj, prop);

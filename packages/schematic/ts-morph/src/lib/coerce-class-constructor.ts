@@ -1,4 +1,4 @@
-import {ClassDeclaration} from 'ts-morph';
+import { ClassDeclaration } from 'ts-morph';
 
 export function CoerceClassConstructor(classDeclaration: ClassDeclaration) {
   const constructorDeclarations = classDeclaration.getConstructors();

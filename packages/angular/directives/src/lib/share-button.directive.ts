@@ -1,7 +1,12 @@
-import {Directive, HostListener, Injectable, Input} from '@angular/core';
-import {Required} from '@rxap/utilities';
+import {
+  Directive,
+  HostListener,
+  Injectable,
+  Input,
+} from '@angular/core';
+import { Required } from '@rxap/utilities';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ShareService {
 
   public async share(data: { url?: string, text?: string, title?: string, files?: ReadonlyArray<File> }) {

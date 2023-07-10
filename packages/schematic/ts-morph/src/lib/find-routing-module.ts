@@ -1,5 +1,5 @@
-import {join} from 'path';
-import {Tree} from '@angular-devkit/schematics';
+import { join } from 'path';
+import { Tree } from '@angular-devkit/schematics';
 
 export function FindRoutingModule(tree: Tree, basePath: string): string {
   const baseDir = tree.getDir(basePath);

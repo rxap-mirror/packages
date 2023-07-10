@@ -1,7 +1,15 @@
-import {Directive, EventEmitter, HostListener, Input, isDevMode, OnInit, Output} from '@angular/core';
-import {coerceBoolean} from '@rxap/utilities';
-import {ToggleSubject} from '@rxap/rxjs';
-import {Method} from '@rxap/pattern';
+import {
+  Directive,
+  EventEmitter,
+  HostListener,
+  Input,
+  isDevMode,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { coerceBoolean } from '@rxap/utilities';
+import { ToggleSubject } from '@rxap/rxjs';
+import { Method } from '@rxap/pattern';
 
 @Directive({
   selector: '[rxapMethod]',

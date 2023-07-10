@@ -1,4 +1,4 @@
-import type {ClassTransformOptions} from 'class-transformer';
+import type { ClassTransformOptions } from 'class-transformer';
 
 export const classTransformOptions: ClassTransformOptions = {
   enableImplicitConversion: true,

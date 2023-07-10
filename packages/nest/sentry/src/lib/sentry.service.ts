@@ -1,8 +1,16 @@
-import {Inject, Injectable, OnApplicationBootstrap, OnApplicationShutdown} from '@nestjs/common';
-import {Client, ClientOptions} from '@sentry/types';
+import {
+  Inject,
+  Injectable,
+  OnApplicationBootstrap,
+  OnApplicationShutdown,
+} from '@nestjs/common';
+import {
+  Client,
+  ClientOptions,
+} from '@sentry/types';
 import * as Sentry from '@sentry/node';
-import {SENTRY_MODULE_OPTIONS} from './tokens';
-import {SentryModuleOptions} from './sentry.interfaces';
+import { SENTRY_MODULE_OPTIONS } from './tokens';
+import { SentryModuleOptions } from './sentry.interfaces';
 
 @Injectable()
 export class SentryService implements OnApplicationShutdown, OnApplicationBootstrap {

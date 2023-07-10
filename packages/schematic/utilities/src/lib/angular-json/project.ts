@@ -1,7 +1,7 @@
-import {CliOptions} from './cli-options';
-import {I18n} from './i18n';
-import {SchematicOptions} from './schematic-options';
-import {Target} from './target';
+import { CliOptions } from './cli-options';
+import { I18n } from './i18n';
+import { SchematicOptions } from './schematic-options';
+import { Target } from './target';
 
 export interface Project {
   cli?: CliOptions;

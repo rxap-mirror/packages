@@ -1,7 +1,7 @@
-import {assertString} from './util/assertString';
+import { assertString } from './util/assertString';
 
-import {fullWidth} from './isFullWidth';
-import {halfWidth} from './isHalfWidth';
+import { fullWidth } from './isFullWidth';
+import { halfWidth } from './isHalfWidth';
 
 export function isVariableWidth(str: unknown) {
   assertString(str);

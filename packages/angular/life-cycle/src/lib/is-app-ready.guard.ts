@@ -1,7 +1,10 @@
-import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-import {Observable} from 'rxjs';
-import {LifeCycleService} from './life-cycle.service';
+import { Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+} from '@angular/router';
+import { Observable } from 'rxjs';
+import { LifeCycleService } from './life-cycle.service';
 
 @Injectable({
   providedIn: 'root',

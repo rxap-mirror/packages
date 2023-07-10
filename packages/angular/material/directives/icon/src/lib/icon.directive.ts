@@ -1,6 +1,18 @@
-import {Directive, ElementRef, Inject, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
-import {IconConfig, IsMaterialIcon, IsSvgIcon} from '@rxap/utilities';
-import {MatIcon} from '@angular/material/icon';
+import {
+  Directive,
+  ElementRef,
+  Inject,
+  Input,
+  OnChanges,
+  Renderer2,
+  SimpleChanges,
+} from '@angular/core';
+import {
+  IconConfig,
+  IsMaterialIcon,
+  IsSvgIcon,
+} from '@rxap/utilities';
+import { MatIcon } from '@angular/material/icon';
 
 @Directive({
   selector: 'mat-icon[rxapIcon]',

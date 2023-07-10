@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {SelectionModel} from '@angular/cdk/collections';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { SelectionModel } from '@angular/cdk/collections';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class SelectRowService<Data extends Record<string, any>> {

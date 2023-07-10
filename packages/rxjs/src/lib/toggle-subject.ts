@@ -1,4 +1,4 @@
-import {BehaviorSubject} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 /**
  * Represents a rxjs BehaviorSubject of the type boolean.

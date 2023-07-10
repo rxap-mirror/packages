@@ -1,9 +1,13 @@
-import {Server} from './server';
-import {INestApplication, Logger, NestApplicationOptions} from '@nestjs/common';
-import {NestFactory} from '@nestjs/core';
-import {ConfigService} from '@nestjs/config';
-import {GlobalPrefixOptions} from '@nestjs/common/interfaces';
-import {DetermineVersion} from '@rxap/nest-utilities';
+import { Server } from './server';
+import {
+  INestApplication,
+  Logger,
+  NestApplicationOptions,
+} from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { ConfigService } from '@nestjs/config';
+import { GlobalPrefixOptions } from '@nestjs/common/interfaces';
+import { DetermineVersion } from '@rxap/nest-utilities';
 
 export interface MonolithicBootstrapOptions {
   publicUrl: string;
@@ -13,7 +17,8 @@ export interface MonolithicBootstrapOptions {
   globalPrefixOptions: GlobalPrefixOptions;
 }
 
-export class Monolithic<O extends NestApplicationOptions, T extends INestApplication = INestApplication> extends Server<O, T, MonolithicBootstrapOptions> {
+export class Monolithic<O extends NestApplicationOptions, T extends INestApplication = INestApplication>
+  extends Server<O, T, MonolithicBootstrapOptions> {
 
   protected override create(): Promise<T> {
     return NestFactory.create<T>(this.module, this.options);

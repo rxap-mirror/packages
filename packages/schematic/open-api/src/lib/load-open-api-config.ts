@@ -1,8 +1,8 @@
-import {IsOpenApiSchemaFromPath} from './utilities/is-open-api-schema-from-path';
-import {HttpRequest} from './utilities/http-request';
-import {OpenAPIV3} from 'openapi-types';
-import {Tree} from '@angular-devkit/schematics';
-import {OpenApiSchema} from './types';
+import { IsOpenApiSchemaFromPath } from './utilities/is-open-api-schema-from-path';
+import { HttpRequest } from './utilities/http-request';
+import { OpenAPIV3 } from 'openapi-types';
+import { Tree } from '@angular-devkit/schematics';
+import { OpenApiSchema } from './types';
 
 export async function LoadOpenApiConfig(host: Tree, options: OpenApiSchema): Promise<OpenAPIV3.Document> {
   let openapi: OpenAPIV3.Document;

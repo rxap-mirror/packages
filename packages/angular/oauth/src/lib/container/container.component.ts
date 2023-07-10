@@ -1,14 +1,22 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-import {animate, style, transition, trigger} from '@angular/animations';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import {
+  animate,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'rxap-container',
   templateUrl: './container.component.html',
-  styleUrls: ['./container.component.scss'],
+  styleUrls: [ './container.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {class: 'rxap-container'},
+  host: { class: 'rxap-container' },
   animations: [
     trigger('routeAnimations', [
       transition(':enter', [

@@ -1,6 +1,14 @@
-import {BehaviorSubject, EMPTY, firstValueFrom, Observable} from 'rxjs';
-import {map, take} from 'rxjs/operators';
-import {Injectable} from '@angular/core';
+import {
+  BehaviorSubject,
+  EMPTY,
+  firstValueFrom,
+  Observable,
+} from 'rxjs';
+import {
+  map,
+  take,
+} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import {
   Auth,
   AuthProvider,
@@ -17,7 +25,7 @@ import {
   TwitterAuthProvider,
   User,
 } from '@angular/fire/auth';
-import {traceUntilFirst} from '@angular/fire/performance';
+import { traceUntilFirst } from '@angular/fire/performance';
 
 @Injectable()
 export class IdentityPlatformService {

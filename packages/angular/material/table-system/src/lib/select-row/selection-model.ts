@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 
 declare const ngDevMode: object | null;
 

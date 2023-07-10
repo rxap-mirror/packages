@@ -1,7 +1,7 @@
-import {merge} from './util/merge';
-import {assertString} from './util/assertString';
-import {includes} from './util/includes';
-import {decimal} from './alpha';
+import { merge } from './util/merge';
+import { assertString } from './util/assertString';
+import { includes } from './util/includes';
+import { decimal } from './alpha';
 
 export interface IsDecimalOptions {
   locale?: string;
@@ -10,7 +10,9 @@ export interface IsDecimalOptions {
 }
 
 function decimalRegExp(options: Required<IsDecimalOptions>) {
-  const regExp = new RegExp(`^[-+]?([0-9]+)?(\\${decimal[options.locale]}[0-9]{${options.decimal_digits}})${options.force_decimal ? '' : '?'}$`);
+  const regExp = new RegExp(`^[-+]?([0-9]+)?(\\${ decimal[options.locale] }[0-9]{${ options.decimal_digits }})${ options.force_decimal ?
+    '' :
+    '?' }$`);
   return regExp;
 }
 

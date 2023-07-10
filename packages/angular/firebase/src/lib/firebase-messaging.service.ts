@@ -1,8 +1,15 @@
-import {Inject, Injectable, Optional} from '@angular/core';
-import {ReplaySubject} from 'rxjs';
-import {mergeMapTo, tap} from 'rxjs/operators';
-import {RXAP_REQUEST_CLOUD_MESSAGING_TOKEN} from './tokens';
-import {AngularFireMessaging} from '@angular/fire/compat/messaging';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
+import { ReplaySubject } from 'rxjs';
+import {
+  mergeMapTo,
+  tap,
+} from 'rxjs/operators';
+import { RXAP_REQUEST_CLOUD_MESSAGING_TOKEN } from './tokens';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 
 export interface Message {
   collapse_key: string;

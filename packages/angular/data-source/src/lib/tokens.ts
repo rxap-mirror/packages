@@ -1,4 +1,4 @@
-import {InjectionToken} from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
 export const RXAP_STATIC_DATA_SOURCE_DATA = new InjectionToken('rxap/data-source/static-data-source-data');
 

@@ -1,34 +1,34 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  Input,
-  OnDestroy,
   ChangeDetectorRef,
-  ViewEncapsulation,
+  Component,
   HostBinding,
   Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   Navigation,
-  NavigationItem,
   NavigationDividerItem,
+  NavigationItem,
 } from './navigation-item';
 import {
-  Required,
   coerceBoolean,
+  Required,
 } from '@rxap/utilities';
-import {NavigationService} from './navigation.service';
-import {Subscription} from 'rxjs';
-import {tap} from 'rxjs/operators';
-import {SidenavComponentService} from '../sidenav/sidenav.component.service';
-import {NavigationItemComponent} from './navigation-item/navigation-item.component';
-import {FlexModule} from '@angular/flex-layout/flex';
-import {MatDividerModule} from '@angular/material/divider';
+import { NavigationService } from './navigation.service';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { SidenavComponentService } from '../sidenav/sidenav.component.service';
+import { NavigationItemComponent } from './navigation-item/navigation-item.component';
+import { FlexModule } from '@angular/flex-layout/flex';
+import { MatDividerModule } from '@angular/material/divider';
 import {
+  AsyncPipe,
   NgFor,
   NgIf,
-  AsyncPipe,
 } from '@angular/common';
 
 @Component({

@@ -1,17 +1,9 @@
-import {
-  Injectable,
-  Inject,
-  Optional,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
   Observable,
-  Subject,
   ReplaySubject,
 } from 'rxjs';
-import {Router} from '@angular/router';
-import {tap} from 'rxjs/operators';
-import {RXAP_AUTHENTICATION_DEACTIVATED} from './tokens';
 
 export const RXAP_AUTHENTICATION_LOCAL_STORAGE_KEY = 'rxap__authenticated';
 

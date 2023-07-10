@@ -6,12 +6,19 @@ import {
   ElementTextContent,
   ParsedElement,
 } from '@rxap/xml-parser';
-import {SourceFile} from 'ts-morph';
-import {strings} from '@angular-devkit/core';
-import {IMethodElement, MethodElement} from './method.element';
-import {CoerceImports} from '@rxap/schematics-ts-morph';
+import { SourceFile } from 'ts-morph';
+import { strings } from '@angular-devkit/core';
+import {
+  IMethodElement,
+  MethodElement,
+} from './method.element';
+import { CoerceImports } from '@rxap/schematics-ts-morph';
 
-const {dasherize, classify, camelize} = strings;
+const {
+  dasherize,
+  classify,
+  camelize,
+} = strings;
 
 @ElementExtends(MethodElement)
 @ElementDef('open-api-remote-method')

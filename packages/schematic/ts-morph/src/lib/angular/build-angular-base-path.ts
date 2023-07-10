@@ -1,6 +1,9 @@
-import {Tree} from '@angular-devkit/schematics';
-import {GetProjectSourceRoot, GetProjectType} from '@rxap/schematics-utilities';
-import {join} from 'path';
+import { Tree } from '@angular-devkit/schematics';
+import {
+  GetProjectSourceRoot,
+  GetProjectType,
+} from '@rxap/schematics-utilities';
+import { join } from 'path';
 
 export interface BuildAngularBasePathOptions {
   project: string;
@@ -10,7 +13,12 @@ export interface BuildAngularBasePathOptions {
 }
 
 export function BuildAngularBasePath(host: Tree, options: Readonly<BuildAngularBasePathOptions>): string {
-  let {project, feature, directory, shared} = options;
+  let {
+    project,
+    feature,
+    directory,
+    shared,
+  } = options;
   directory ??= '';
   project = shared ? 'shared' : project;
   const projectSourceRoot = GetProjectSourceRoot(host, project);

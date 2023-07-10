@@ -1,9 +1,9 @@
 import {
-  moduleMetadata,
   addDecorator,
+  moduleMetadata,
 } from '@storybook/angular';
-import {ConfirmDialogComponentModule} from './confirm-dialog.component.module';
-import {ConfirmDialogComponent} from './confirm-dialog.component';
+import { ConfirmDialogComponentModule } from './confirm-dialog.component.module';
+import { ConfirmDialogComponent } from './confirm-dialog.component';
 
 addDecorator(moduleMetadata({
   imports: [

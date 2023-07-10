@@ -1,6 +1,12 @@
-import {SchematicsException, Tree} from '@angular-devkit/schematics';
-import {GetProjectSourceRoot, HasProject} from '@rxap/schematics-utilities';
-import {buildNestProjectName} from './project-utilities';
+import {
+  SchematicsException,
+  Tree,
+} from '@angular-devkit/schematics';
+import {
+  GetProjectSourceRoot,
+  HasProject,
+} from '@rxap/schematics-utilities';
+import { buildNestProjectName } from './project-utilities';
 
 export interface HasNestControllerOptions {
   project: string;

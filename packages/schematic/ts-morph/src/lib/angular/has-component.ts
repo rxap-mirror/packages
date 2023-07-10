@@ -1,8 +1,14 @@
-import {SchematicsException, Tree} from '@angular-devkit/schematics';
-import {GetProjectType, HasProject} from '@rxap/schematics-utilities';
-import {HasProjectFeature} from './has-project-feature';
-import {join} from 'path';
-import {BuildAngularBasePath} from './build-angular-base-path';
+import {
+  SchematicsException,
+  Tree,
+} from '@angular-devkit/schematics';
+import {
+  GetProjectType,
+  HasProject,
+} from '@rxap/schematics-utilities';
+import { HasProjectFeature } from './has-project-feature';
+import { join } from 'path';
+import { BuildAngularBasePath } from './build-angular-base-path';
 
 export interface HasComponentOptions {
   project: string;
@@ -12,7 +18,11 @@ export interface HasComponentOptions {
 }
 
 export function HasComponent(host: Tree, options: Readonly<HasComponentOptions>): boolean {
-  const {project, feature, name} = options;
+  const {
+    project,
+    feature,
+    name,
+  } = options;
 
   if (!HasProject(host, project)) {
     throw new SchematicsException(`The component '${name}' does not exists. The project '${project}' does not exists.`);

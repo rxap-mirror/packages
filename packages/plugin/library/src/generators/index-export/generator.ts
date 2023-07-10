@@ -1,6 +1,10 @@
 import { Tree } from '@nx/devkit';
 import { IndexExportGeneratorSchema } from './schema';
-import { CoerceFile, GetProjectSourceRoot, VisitTree } from '@rxap/generator-utilities';
+import {
+  CoerceFile,
+  GetProjectSourceRoot,
+  VisitTree,
+} from '@rxap/generator-utilities';
 import { join } from 'path';
 
 export async function indexExportGenerator(tree: Tree, options: IndexExportGeneratorSchema) {

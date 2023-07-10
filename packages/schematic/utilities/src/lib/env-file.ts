@@ -1,16 +1,20 @@
-import {Rule, SchematicsException, Tree} from '@angular-devkit/schematics';
-import {CoerceFile} from './coerce-file';
-import {deepMerge} from './deep-merge';
+import {
+  Rule,
+  SchematicsException,
+  Tree,
+} from '@angular-devkit/schematics';
+import { CoerceFile } from './coerce-file';
+import { deepMerge } from './deep-merge';
 
 export type EnvFile = Record<string, string | number | boolean>
 
 export function EnvMapToString(map: EnvFile): string {
-  return Object.entries(map).map(([name, value]) => {
+  return Object.entries(map).map(([ name, value ]) => {
 
-    let stringValue = `${value}`;
+    let stringValue = `${ value }`;
     if (typeof value === 'string') {
       if (value.includes(' ') || !isNaN(Number(value)) || value === 'true' || value === 'false') {
-        stringValue = `"${value}"`;
+        stringValue = `"${ value }"`;
       }
     }
 

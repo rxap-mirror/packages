@@ -1,4 +1,7 @@
-import { Injectable, NgModule } from '@angular/core';
+import {
+  Injectable,
+  NgModule,
+} from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 
 @Injectable({

@@ -1,7 +1,10 @@
-import {addDecorator, moduleMetadata} from '@storybook/angular';
+import {
+  addDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 
-import {FormControlsComponent} from './form-controls.component';
-import {FormDirective} from '@rxap/forms';
+import { FormControlsComponent } from './form-controls.component';
+import { FormDirective } from '@rxap/forms';
 
 addDecorator(moduleMetadata({
   imports: [],

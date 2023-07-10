@@ -1,5 +1,8 @@
-import {IsNotNull, IsNull} from './is-null';
-import {RxapUtilitiesError} from './error';
+import {
+  IsNotNull,
+  IsNull,
+} from './is-null';
+import { RxapUtilitiesError } from './error';
 
 export function IsDefined<T>(value: T | undefined): value is T {
   return value !== undefined;

@@ -1,44 +1,44 @@
-import {UntypedFormControl} from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import {
-  controlEnabled$,
   controlDisabled$,
-  mergeControlValidators,
-  controlStatusChanges$,
-  disableControl,
-  controlValueChanges$,
-  controlErrorChanges$,
   controlDisabledWhile,
+  controlEnabled$,
+  controlEnabledWhile,
+  controlErrorChanges$,
+  controlReadonly$,
+  controlStatusChanges$,
+  controlValueChanges$,
+  disableControl,
+  enableControl,
   hasErrorAndDirty,
   hasErrorAndTouched,
-  enableControl,
-  controlEnabledWhile,
+  mergeControlValidators,
   validateControlOn,
-  controlReadonly$,
 } from './control-actions';
 import {
+  AsyncValidator,
   ControlEventOptions,
-  ExtractStrings,
-  EmitEvent,
+  ControlOptions,
   ControlState,
+  EmitEvent,
+  ExtractStrings,
   OnlySelf,
   OrBoxedValue,
-  ControlOptions,
-  AsyncValidator,
   Validator,
 } from './types';
-import {distinctUntilChanged} from 'rxjs/operators';
+import { distinctUntilChanged } from 'rxjs/operators';
 import {
   isObservable,
+  Observable,
   Subject,
   Subscription,
-  Observable,
 } from 'rxjs';
-import {coerceArray} from '@rxap/utilities';
+import { coerceArray } from '@rxap/utilities';
 import {
+  FormDefinition,
+  FormType,
   RxapAbstractControlOptions,
   SetValueFn,
-  FormType,
-  FormDefinition,
 } from './model';
 
 export class RxapFormControl<

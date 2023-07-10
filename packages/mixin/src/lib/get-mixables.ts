@@ -1,8 +1,11 @@
-import {Constructor, Mixin} from './utilities';
-import {OVERWRITE_METADATA_KEY} from './overwrite';
-import {GetAllPropertyNames} from './get-all-property-names';
-import {GetPropertyDescriptor} from './get-property-descriptor';
-import {getMetadata} from '@rxap/reflect-metadata';
+import {
+  Constructor,
+  Mixin,
+} from './utilities';
+import { OVERWRITE_METADATA_KEY } from './overwrite';
+import { GetAllPropertyNames } from './get-all-property-names';
+import { GetPropertyDescriptor } from './get-property-descriptor';
+import { getMetadata } from '@rxap/reflect-metadata';
 
 /**
  * Returns a map of property descriptors

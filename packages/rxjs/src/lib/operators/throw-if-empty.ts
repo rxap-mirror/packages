@@ -1,4 +1,10 @@
-import {Observable, Operator, OperatorFunction, Subscriber, TeardownLogic} from 'rxjs';
+import {
+  Observable,
+  Operator,
+  OperatorFunction,
+  Subscriber,
+  TeardownLogic,
+} from 'rxjs';
 
 export function throwIfEmpty<T>(message: string): OperatorFunction<T, NonNullable<T>> {
   return function filterOperatorFunction(source: Observable<T>): Observable<NonNullable<T>> {

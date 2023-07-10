@@ -1,9 +1,23 @@
-import {Inject, Injectable, isDevMode, NgModule, NgZone, Optional} from '@angular/core';
-import {ConfigService} from '@rxap/config';
-import {EMPTY, Observable} from 'rxjs';
-import {shareReplay} from 'rxjs/operators';
-import {FIREBASE_APP_NAME, FIREBASE_OPTIONS, ɵfirebaseAppFactory} from '@angular/fire/compat';
-import {FirebaseOptions} from 'firebase/app';
+import {
+  Inject,
+  Injectable,
+  isDevMode,
+  NgModule,
+  NgZone,
+  Optional,
+} from '@angular/core';
+import { ConfigService } from '@rxap/config';
+import {
+  EMPTY,
+  Observable,
+} from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
+import {
+  FIREBASE_APP_NAME,
+  FIREBASE_OPTIONS,
+  ɵfirebaseAppFactory,
+} from '@angular/fire/compat';
+import { FirebaseOptions } from 'firebase/app';
 import {
   AppCheck,
   AppCheckTokenResult,
@@ -11,7 +25,11 @@ import {
   onTokenChanged,
   setTokenAutoRefreshEnabled,
 } from '@angular/fire/app-check';
-import {APP_CHECK_ENABLED, APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED, APP_CHECK_SITE_KEY} from './tokens';
+import {
+  APP_CHECK_ENABLED,
+  APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED,
+  APP_CHECK_SITE_KEY,
+} from './tokens';
 
 @Injectable()
 export class AppCheckService {

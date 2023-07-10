@@ -1,5 +1,5 @@
-import {ConfigurableModuleBuilder} from '@nestjs/common';
-import {ClientOptions} from 'minio';
+import { ConfigurableModuleBuilder } from '@nestjs/common';
+import { ClientOptions } from 'minio';
 
 export const {
   ConfigurableModuleClass,

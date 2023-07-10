@@ -1,4 +1,8 @@
-import {DecoratorStructure, OptionalKind, PropertyDeclaration} from 'ts-morph';
+import {
+  DecoratorStructure,
+  OptionalKind,
+  PropertyDeclaration,
+} from 'ts-morph';
 
 export function OverwriteDecorator(
   controlProperty: PropertyDeclaration,

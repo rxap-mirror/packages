@@ -1,7 +1,7 @@
-import {Constructor} from '@rxap/utilities';
-import {FormSystemMetadataKeys} from './metadata-keys';
-import {ControlValueAccessor} from '@angular/forms';
-import {setMetadataMap} from '@rxap/reflect-metadata';
+import { Constructor } from '@rxap/utilities';
+import { FormSystemMetadataKeys } from './metadata-keys';
+import { ControlValueAccessor } from '@angular/forms';
+import { setMetadataMap } from '@rxap/reflect-metadata';
 
 export function UseComponent<Component extends ControlValueAccessor>(
   component: Constructor<Component>,

@@ -1,6 +1,10 @@
-import {ElementRequired} from './required-element.parser.mixin';
-import {XmlElementMetadata} from '../utilities';
-import {addToMetadata, getMetadata, getMetadataKeys} from '@rxap/reflect-metadata';
+import { ElementRequired } from './required-element.parser.mixin';
+import { XmlElementMetadata } from '../utilities';
+import {
+  addToMetadata,
+  getMetadata,
+  getMetadataKeys,
+} from '@rxap/reflect-metadata';
 
 describe('@rxap/xml-parser', () => {
 

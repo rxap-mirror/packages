@@ -1,13 +1,17 @@
-import {RxapElement} from './element';
-import {Constructor, hasIndexSignature, Type} from '@rxap/utilities';
-import {ParsedElement} from './elements/parsed-element';
-import {ElementParserMetaData} from './decorators/metadata-keys';
-import {ElementName} from './element-name';
-import {XmlElementParserFunction} from './xml-element-parser-function';
-import {AttributeOptions} from './decorators/attribute';
-import {RxapXmlParserError} from './error';
-import {DOMParser} from 'xmldom';
-import {getMetadata} from '@rxap/reflect-metadata';
+import { RxapElement } from './element';
+import {
+  Constructor,
+  hasIndexSignature,
+  Type,
+} from '@rxap/utilities';
+import { ParsedElement } from './elements/parsed-element';
+import { ElementParserMetaData } from './decorators/metadata-keys';
+import { ElementName } from './element-name';
+import { XmlElementParserFunction } from './xml-element-parser-function';
+import { AttributeOptions } from './decorators/attribute';
+import { RxapXmlParserError } from './error';
+import { DOMParser } from 'xmldom';
+import { getMetadata } from '@rxap/reflect-metadata';
 
 export interface ElementParserWithParsers {
   elementParser: Type<ParsedElement>;

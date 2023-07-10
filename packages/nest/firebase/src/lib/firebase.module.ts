@@ -1,4 +1,9 @@
-import {DynamicModule, Global, Logger, Module} from '@nestjs/common';
+import {
+  DynamicModule,
+  Global,
+  Logger,
+  Module,
+} from '@nestjs/common';
 import * as admin from 'firebase-admin';
 import {
   ALLOW_UNVERIFIED_EMAIL,
@@ -8,8 +13,8 @@ import {
   FIREBASE_TOKEN,
   FIRESTORE,
 } from './tokens';
-import {FirebaseAuthGuard} from './firebase-auth.guard';
-import {FirebaseAppCheckGuard} from './firebase-app-check.guard';
+import { FirebaseAuthGuard } from './firebase-auth.guard';
+import { FirebaseAppCheckGuard } from './firebase-app-check.guard';
 
 export type FirebaseAppOptions = admin.AppOptions;
 

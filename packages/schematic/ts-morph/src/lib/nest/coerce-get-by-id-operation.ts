@@ -1,10 +1,10 @@
-import {CoerceDtoClass} from './coerce-dto-class';
-import {CoerceOperation} from './coerce-operation';
-import {CoerceSuffix} from '@rxap/schematics-utilities';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {OperationParameter} from '../add-operation-to-controller';
-import {DtoClassProperty} from '../create-dto-class';
-import {SchematicsException} from '@angular-devkit/schematics';
+import { CoerceDtoClass } from './coerce-dto-class';
+import { CoerceOperation } from './coerce-operation';
+import { CoerceSuffix } from '@rxap/schematics-utilities';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { OperationParameter } from '../add-operation-to-controller';
+import { DtoClassProperty } from '../create-dto-class';
+import { SchematicsException } from '@angular-devkit/schematics';
 
 export interface CoerceGetByIdControllerOptions {
   name?: string;

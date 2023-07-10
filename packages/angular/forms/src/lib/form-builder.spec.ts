@@ -1,24 +1,22 @@
-import {RxapFormControl} from './form-control';
-import {RxapFormGroup} from './form-group';
+import { RxapFormControl } from './form-control';
+import { RxapFormGroup } from './form-group';
 import {
-  Injector,
   Injectable,
+  Injector,
 } from '@angular/core';
+import { RxapFormBuilder } from './form-builder';
+import { UseFormControl } from './decorators/use-form-control';
+import { RxapForm } from './decorators/form';
 import {
-  RxapFormBuilder,
-} from './form-builder';
-import {UseFormControl} from './decorators/use-form-control';
-import {RxapForm} from './decorators/form';
-import {
-  UseFormArrayGroup,
   UseFormArrayControl,
+  UseFormArrayGroup,
 } from './decorators/use-form-array';
-import {UseFormGroup} from './decorators/use-form-group';
+import { UseFormGroup } from './decorators/use-form-group';
 import {
-  FormDefinition,
-  FormDefinitionArray, FormType,
+  FormDefinitionArray,
+  FormType,
 } from './model';
-import {RxapFormArray} from './form-array';
+import { RxapFormArray } from './form-array';
 
 describe('@rxap/forms', () => {
 

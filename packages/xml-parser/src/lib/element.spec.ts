@@ -1,4 +1,4 @@
-import {RxapElement} from './element';
+import { RxapElement } from './element';
 
 describe('XML Parser', () => {
 

@@ -1,6 +1,6 @@
-import {ChildElementParserMixin} from './child-element-parser.mixin';
-import {ElementDef} from '../element-def';
-import {ParsedElement} from '../../elements/parsed-element';
+import { ChildElementParserMixin } from './child-element-parser.mixin';
+import { ElementDef } from '../element-def';
+import { ParsedElement } from '../../elements/parsed-element';
 
 describe('@rxap/xml-parser', () => {
 

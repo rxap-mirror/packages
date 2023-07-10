@@ -8,10 +8,18 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import {Constructor} from '@rxap/utilities';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {ComponentPortal, Portal, TemplatePortal} from '@angular/cdk/portal';
-import {map} from 'rxjs/operators';
+import { Constructor } from '@rxap/utilities';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+} from 'rxjs';
+import {
+  ComponentPortal,
+  Portal,
+  TemplatePortal,
+} from '@angular/cdk/portal';
+import { map } from 'rxjs/operators';
 
 export interface FooterComponentOptions extends Record<string, any> {
   order?: number;

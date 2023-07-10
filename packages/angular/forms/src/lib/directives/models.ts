@@ -1,4 +1,4 @@
-import {Method} from '@rxap/pattern';
+import { Method } from '@rxap/pattern';
 
 export interface FormSubmitMethod<T> extends Method<any, T> {
   call(parameters: T): any | Promise<any>;

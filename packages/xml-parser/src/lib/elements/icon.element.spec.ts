@@ -1,5 +1,5 @@
-import {IconElement} from './icon.element';
-import {TestingXmlParserService} from '../testing/testing-xml-parser-service';
+import { IconElement } from './icon.element';
+import { TestingXmlParserService } from '../testing/testing-xml-parser-service';
 
 describe('@rxap/xml-parser/elements', () => {
 

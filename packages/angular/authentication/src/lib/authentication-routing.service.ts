@@ -1,12 +1,12 @@
 import {
-  Injectable,
   Inject,
+  Injectable,
   Optional,
 } from '@angular/core';
-import {Router} from '@angular/router';
-import {RxapAuthenticationService} from './authentication.service';
-import {RXAP_AUTHENTICATION_DEACTIVATED} from './tokens';
-import {tap} from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { RxapAuthenticationService } from './authentication.service';
+import { RXAP_AUTHENTICATION_DEACTIVATED } from './tokens';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',

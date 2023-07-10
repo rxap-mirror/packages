@@ -7,10 +7,17 @@ import {
   Optional,
   ViewContainerRef,
 } from '@angular/core';
-import {DEFAULT_WINDOW_CONFIG, WindowConfig, WindowSettings} from './window-config';
-import {Overlay, OverlayConfig} from '@angular/cdk/overlay';
-import {ComponentPortal} from '@angular/cdk/portal';
-import {WindowRef} from './window-ref';
+import {
+  DEFAULT_WINDOW_CONFIG,
+  WindowConfig,
+  WindowSettings,
+} from './window-config';
+import {
+  Overlay,
+  OverlayConfig,
+} from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { WindowRef } from './window-ref';
 import {
   RXAP_WINDOW_CONTAINER_CONTEXT,
   RXAP_WINDOW_CONTEXT,
@@ -18,15 +25,22 @@ import {
   RXAP_WINDOW_DEFAULT_SETTINGS,
   RXAP_WINDOW_REF,
 } from './tokens';
-import {WindowContainerContext, WindowContext} from './window-context';
-import {finalize, take, tap} from 'rxjs/operators';
-import {DefaultWindowComponent} from './default-window/default-window.component';
-import {GetWindowStartPos} from './utilities';
-import {Subject} from 'rxjs';
-import {LoadingIndicatorService} from '@rxap/services';
-import {GenerateRandomString} from '@rxap/utilities';
+import {
+  WindowContainerContext,
+  WindowContext,
+} from './window-context';
+import {
+  finalize,
+  take,
+  tap,
+} from 'rxjs/operators';
+import { DefaultWindowComponent } from './default-window/default-window.component';
+import { GetWindowStartPos } from './utilities';
+import { Subject } from 'rxjs';
+import { LoadingIndicatorService } from '@rxap/services';
+import { GenerateRandomString } from '@rxap/utilities';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class WindowService {
   public readonly activeCount$ = new Subject<number>();
   private readonly active = new Map<string, WindowRef<any>>();

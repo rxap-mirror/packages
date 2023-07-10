@@ -1,27 +1,27 @@
 import {
-  moduleMetadata,
   addDecorator,
+  moduleMetadata,
 } from '@storybook/angular';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RxapFormsModule} from './forms.module';
-import {FormDefinition} from '../model';
-import {RxapFormGroup} from '../form-group';
-import {RxapFormControl} from '../form-control';
-import {UseFormControl} from '../decorators/use-form-control';
-import {RxapForm} from '../decorators/form';
-import {RxapFormBuilder} from '../form-builder';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RxapFormsModule } from './forms.module';
+import { FormDefinition } from '../model';
+import { RxapFormGroup } from '../form-group';
+import { RxapFormControl } from '../form-control';
+import { UseFormControl } from '../decorators/use-form-control';
+import { RxapForm } from '../decorators/form';
+import { RxapFormBuilder } from '../form-builder';
 import {
-  RXAP_FORM_DEFINITION_BUILDER,
   RXAP_FORM_DEFINITION,
+  RXAP_FORM_DEFINITION_BUILDER,
   RXAP_FORM_SUBMIT_METHOD,
 } from './tokens';
 import {
-  Injector,
-  INJECTOR,
   Injectable,
+  INJECTOR,
+  Injector,
 } from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
-import {FormSubmitMethod} from './models';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormSubmitMethod } from './models';
 
 @RxapForm('test')
 class TestForm implements FormDefinition {

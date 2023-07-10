@@ -1,6 +1,11 @@
-import {ComponentFactoryResolver, Injectable, Injector, ViewContainerRef} from '@angular/core';
-import {Subject} from 'rxjs';
-import {Constructor} from '@rxap/utilities';
+import {
+  ComponentFactoryResolver,
+  Injectable,
+  Injector,
+  ViewContainerRef,
+} from '@angular/core';
+import { Subject } from 'rxjs';
+import { Constructor } from '@rxap/utilities';
 
 export interface ContainerComponent {
   id: string;
@@ -10,7 +15,7 @@ export interface ContainerComponent {
   componentFactoryResolver?: ComponentFactoryResolver | null;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class WindowContainerSidenavService {
 
   public add$ = new Subject<ContainerComponent>();

@@ -1,15 +1,15 @@
-import {ElementDef} from './element-def';
-import {Constructor} from '@rxap/utilities';
-import {ElementAttribute} from './element-attribute';
-import {ElementChild} from './element-child';
-import {ElementTextContent} from './element-text-content';
-import {ElementChildTextContent} from './element-child-text-content';
-import {ElementChildren} from './element-children';
-import {getMetadata} from '@rxap/reflect-metadata';
-import {XmlParserService} from '../xml-parser.service';
-import {ParsedElement} from '../elements/parsed-element';
-import {ElementParserMetaData} from './metadata-keys';
-import {RxapElement} from '../element';
+import { ElementDef } from './element-def';
+import { Constructor } from '@rxap/utilities';
+import { ElementAttribute } from './element-attribute';
+import { ElementChild } from './element-child';
+import { ElementTextContent } from './element-text-content';
+import { ElementChildTextContent } from './element-child-text-content';
+import { ElementChildren } from './element-children';
+import { getMetadata } from '@rxap/reflect-metadata';
+import { XmlParserService } from '../xml-parser.service';
+import { ParsedElement } from '../elements/parsed-element';
+import { ElementParserMetaData } from './metadata-keys';
+import { RxapElement } from '../element';
 
 export class TestingXmlParserService extends XmlParserService {
 

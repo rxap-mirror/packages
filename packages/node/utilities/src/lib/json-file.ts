@@ -1,4 +1,8 @@
-import {existsSync, readFileSync, writeFileSync} from 'fs';
+import {
+  existsSync,
+  readFileSync,
+  writeFileSync,
+} from 'fs';
 
 export function jsonFile<T = Record<string, unknown>>(jsonFilePath: string): T {
   if (!existsSync(jsonFilePath)) {

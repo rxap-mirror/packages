@@ -1,36 +1,36 @@
 import {
-  Component,
-  ChangeDetectionStrategy,
-  Input,
-  ContentChild,
-  ViewContainerRef,
-  OnDestroy,
   AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
   Inject,
+  Input,
+  OnDestroy,
+  ViewContainerRef,
 } from '@angular/core';
 import {
-  ExpandRowContentDirective,
   ExpandCellContentDirectiveContext,
+  ExpandRowContentDirective,
 } from './expand-row-content.directive';
 import {
-  TemplatePortal,
   PortalModule,
+  TemplatePortal,
 } from '@angular/cdk/portal';
-import {Required} from '@rxap/utilities';
+import { Required } from '@rxap/utilities';
 import {
-  trigger,
+  animate,
   state,
   style,
   transition,
-  animate,
+  trigger,
 } from '@angular/animations';
-import {ExpandRowService} from '../expand-row.service';
-import {Subscription} from 'rxjs';
+import { ExpandRowService } from '../expand-row.service';
+import { Subscription } from 'rxjs';
 import {
-  tap,
   filter,
+  tap,
 } from 'rxjs/operators';
-import {AsyncPipe} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector

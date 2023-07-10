@@ -1,7 +1,7 @@
-import {PaginationDataSource} from './pagination.data-source';
-import {StaticDataSource} from '@rxap/data-source';
-import {PaginatorFake} from '@rxap/data-source/testing';
-import {Subject} from 'rxjs';
+import { PaginationDataSource } from './pagination.data-source';
+import { StaticDataSource } from '@rxap/data-source';
+import { PaginatorFake } from '@rxap/data-source/testing';
+import { Subject } from 'rxjs';
 
 describe('@rxap/data-source', () => {
 

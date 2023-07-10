@@ -1,5 +1,5 @@
-import {Project} from 'ts-morph';
-import {join} from 'path';
+import { Project } from 'ts-morph';
+import { join } from 'path';
 
 export function GenerateIndexExports(project: Project) {
 
@@ -9,7 +9,11 @@ export function GenerateIndexExports(project: Project) {
 
     sourceFile.getDirectoryPath();
 
-    exports.push(`export * from '.${join('/lib', sourceFile.getDirectoryPath(), sourceFile.getBaseNameWithoutExtension())}';`);
+    exports.push(`export * from '.${ join(
+      '/lib',
+      sourceFile.getDirectoryPath(),
+      sourceFile.getBaseNameWithoutExtension(),
+    ) }';`);
 
   }
 

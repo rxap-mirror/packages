@@ -1,16 +1,30 @@
-import {ParsedElement, XmlParserService} from '@rxap/xml-parser';
-import {coerceArray, Constructor} from '@rxap/schematics-utilities';
-import {DirEntry, Tree} from '@angular-devkit/schematics';
-import {join} from 'path';
+import {
+  ParsedElement,
+  XmlParserService,
+} from '@rxap/xml-parser';
+import {
+  coerceArray,
+  Constructor,
+} from '@rxap/schematics-utilities';
+import {
+  DirEntry,
+  Tree,
+} from '@angular-devkit/schematics';
+import { join } from 'path';
 
-export function FindTemplate(template: string, host: Tree, basePath: string | undefined, baseDirEntry: DirEntry = host.getDir('templates')): string | null {
+export function FindTemplate(
+  template: string,
+  host: Tree,
+  basePath: string | undefined,
+  baseDirEntry: DirEntry = host.getDir('templates'),
+): string | null {
 
   if (basePath) {
     const path = join(baseDirEntry.path, basePath, template);
     if (host.exists(path)) {
       return path;
     } else {
-      console.warn(`Could not find template path with a provided basePath: ${path}`);
+      console.warn(`Could not find template path with a provided basePath: ${ path }`);
     }
   } else {
     const path = join(baseDirEntry.path, template);

@@ -1,7 +1,7 @@
 import {
   Directive,
-  TemplateRef,
   Inject,
+  TemplateRef,
 } from '@angular/core';
 
 @Directive({

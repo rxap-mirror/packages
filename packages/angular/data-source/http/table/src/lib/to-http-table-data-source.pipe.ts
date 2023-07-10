@@ -1,9 +1,18 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {HttpDataSource} from '@rxap/data-source/http';
-import {PaginationData} from '@rxap/data-source/http/pagination';
-import {PaginatorLike} from '@rxap/data-source/pagination';
-import {FilterLike, SortLike} from '@rxap/data-source/table';
-import {HttpTableDataSource, TableEventToHttpOptionsFunction} from './http-table.data-source';
+import {
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
+import { HttpDataSource } from '@rxap/data-source/http';
+import { PaginationData } from '@rxap/data-source/http/pagination';
+import { PaginatorLike } from '@rxap/data-source/pagination';
+import {
+  FilterLike,
+  SortLike,
+} from '@rxap/data-source/table';
+import {
+  HttpTableDataSource,
+  TableEventToHttpOptionsFunction,
+} from './http-table.data-source';
 
 @Pipe({
   name: 'toHttpTableDataSource',

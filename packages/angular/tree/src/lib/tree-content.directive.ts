@@ -1,4 +1,8 @@
-import {Directive, Inject, TemplateRef} from '@angular/core';
+import {
+  Directive,
+  Inject,
+  TemplateRef,
+} from '@angular/core';
 
 @Directive({
   // tslint:disable-next-line:directive-selector

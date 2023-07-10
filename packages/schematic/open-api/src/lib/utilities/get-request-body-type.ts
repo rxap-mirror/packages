@@ -1,8 +1,8 @@
-import {GetRequestBody} from './get-reqeust-body';
-import {IsAnySchemaObject} from './any-schema-object';
-import {classify} from '@rxap/schematics-utilities';
-import {REQUEST_BODY_FILE_SUFFIX} from '../config';
-import {GenerateParameter} from '../types';
+import { GetRequestBody } from './get-reqeust-body';
+import { IsAnySchemaObject } from './any-schema-object';
+import { classify } from '@rxap/schematics-utilities';
+import { REQUEST_BODY_FILE_SUFFIX } from '../config';
+import { GenerateParameter } from '../types';
 
 export function GetRequestBodyType(operation: GenerateParameter<any>): string {
 

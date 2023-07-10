@@ -1,5 +1,5 @@
-import {Project} from 'ts-morph';
-import {AddComponentFakeProvider} from './add-component-fake-provider';
+import { Project } from 'ts-morph';
+import { AddComponentFakeProvider } from './add-component-fake-provider';
 
 describe('Helpers', () => {
 

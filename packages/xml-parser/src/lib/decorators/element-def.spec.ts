@@ -1,6 +1,9 @@
-import {ElementDef} from './element-def';
-import {XmlElementMetadata} from './utilities';
-import {getMetadata, getMetadataKeys} from '@rxap/reflect-metadata';
+import { ElementDef } from './element-def';
+import { XmlElementMetadata } from './utilities';
+import {
+  getMetadata,
+  getMetadataKeys,
+} from '@rxap/reflect-metadata';
 
 describe('@rxap/xml-parser', () => {
 

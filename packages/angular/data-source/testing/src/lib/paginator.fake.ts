@@ -1,6 +1,6 @@
-import {Subject} from 'rxjs';
-import {tap} from 'rxjs/operators';
-import {PageEvent} from '@rxap/data-source/pagination';
+import { Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { PageEvent } from '@rxap/data-source/pagination';
 
 export class PaginatorFake {
 

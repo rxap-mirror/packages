@@ -1,9 +1,9 @@
-import {assertString} from './util/assertString';
+import { assertString } from './util/assertString';
 
-import {merge} from './util/merge';
-import {isByteLength} from './isByteLength';
-import {isFQDN} from './isFQDN';
-import {isIP} from './isIP';
+import { merge } from './util/merge';
+import { isByteLength } from './isByteLength';
+import { isFQDN } from './isFQDN';
+import { isIP } from './isIP';
 
 const default_email_options = {
   allow_display_name: false,

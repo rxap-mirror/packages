@@ -1,19 +1,18 @@
 import {
-  Injectable,
   Inject,
+  Injectable,
   Optional,
 } from '@angular/core';
-import {ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
-import {Observable} from 'rxjs';
-import {RxapAuthenticationService} from './authentication.service';
 import {
-  map,
-  first,
-  take,
-} from 'rxjs/operators';
-import {RXAP_AUTHENTICATION_DEACTIVATED} from './tokens';
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
+import { RxapAuthenticationService } from './authentication.service';
+import { RXAP_AUTHENTICATION_DEACTIVATED } from './tokens';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class RxapAuthenticationGuard {
 
   public lastUrl: string | null = null;

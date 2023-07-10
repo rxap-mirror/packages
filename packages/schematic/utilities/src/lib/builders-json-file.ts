@@ -1,14 +1,30 @@
-import {Rule, SchematicsException, Tree} from '@angular-devkit/schematics';
-import {join} from 'path';
-import {BuildersJson} from './builders-json';
-import {GetProjectPackageJson, GetProjectRoot} from './get-project';
-import {GetJsonFile, UpdateJsonFile, UpdateJsonFileOptions} from './json-file';
+import {
+  Rule,
+  SchematicsException,
+  Tree,
+} from '@angular-devkit/schematics';
+import { join } from 'path';
+import { BuildersJson } from './builders-json';
+import {
+  GetProjectPackageJson,
+  GetProjectRoot,
+} from './get-project';
+import {
+  GetJsonFile,
+  UpdateJsonFile,
+  UpdateJsonFileOptions,
+} from './json-file';
 
 export enum BuildersJsonType {
   BUILDERS = 'builders'
 }
 
-export function GetProjectBuildersJsonFilePath(host: Tree, projectName: string, type: BuildersJsonType = BuildersJsonType.BUILDERS, create?: boolean): string {
+export function GetProjectBuildersJsonFilePath(
+  host: Tree,
+  projectName: string,
+  type: BuildersJsonType = BuildersJsonType.BUILDERS,
+  create?: boolean,
+): string {
 
   const projectPackageJson = GetProjectPackageJson(host, projectName);
   const projectRoot = GetProjectRoot(host, projectName);

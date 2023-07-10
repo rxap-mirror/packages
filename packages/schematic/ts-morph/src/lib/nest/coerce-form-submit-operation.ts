@@ -1,7 +1,10 @@
-import {CoerceDtoClass} from './coerce-dto-class';
-import {CoerceOperation, CoerceOperationOptions} from './coerce-operation';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {DtoClassProperty} from '../create-dto-class';
+import { CoerceDtoClass } from './coerce-dto-class';
+import {
+  CoerceOperation,
+  CoerceOperationOptions,
+} from './coerce-operation';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { DtoClassProperty } from '../create-dto-class';
 
 export interface CoerceFormSubmitOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
   propertyList?: DtoClassProperty[] | null,

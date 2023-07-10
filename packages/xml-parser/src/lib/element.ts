@@ -1,4 +1,4 @@
-import {parseValue} from './parse-value';
+import { parseValue } from './parse-value';
 
 export class RxapElement {
 

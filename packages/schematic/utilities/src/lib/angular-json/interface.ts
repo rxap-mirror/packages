@@ -1,6 +1,6 @@
-import {CliOptions} from './cli-options';
-import {FileVersion} from './file-version';
-import {Project} from './project';
+import { CliOptions } from './cli-options';
+import { FileVersion } from './file-version';
+import { Project } from './project';
 
 export interface AngularJson {
   $schema?: string;

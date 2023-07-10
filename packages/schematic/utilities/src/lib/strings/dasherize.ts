@@ -1,5 +1,5 @@
-import {STRING_DASHERIZE_REGEXP} from './const';
-import {decamelize} from './decamelize';
+import { STRING_DASHERIZE_REGEXP } from './const';
+import { decamelize } from './decamelize';
 
 /**
  Replaces underscores, spaces, or camelCase with dashes.

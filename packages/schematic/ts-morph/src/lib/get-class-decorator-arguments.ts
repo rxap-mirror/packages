@@ -1,4 +1,8 @@
-import {ClassDeclaration, Decorator, Node} from 'ts-morph';
+import {
+  ClassDeclaration,
+  Decorator,
+  Node,
+} from 'ts-morph';
 
 export function GetClassDecoratorArguments(
   classDeclaration: ClassDeclaration,

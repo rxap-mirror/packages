@@ -1,6 +1,14 @@
-import {DirEntry, Rule, Tree} from '@angular-devkit/schematics';
-import {IndentationText, Project, QuoteKind} from 'ts-morph';
-import {join} from 'path';
+import {
+  DirEntry,
+  Rule,
+  Tree,
+} from '@angular-devkit/schematics';
+import {
+  IndentationText,
+  Project,
+  QuoteKind,
+} from 'ts-morph';
+import { join } from 'path';
 
 /**
  *

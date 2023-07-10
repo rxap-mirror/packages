@@ -1,7 +1,19 @@
-import {Directive, HostBinding, HostListener, Input, isDevMode, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {Required} from '@rxap/utilities';
-import {fromEvent, Subscription} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {
+  Directive,
+  HostBinding,
+  HostListener,
+  Input,
+  isDevMode,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
+import { Required } from '@rxap/utilities';
+import {
+  fromEvent,
+  Subscription,
+} from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Directive({
   selector: '[rxapMovableDivider]',

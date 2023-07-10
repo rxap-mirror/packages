@@ -1,4 +1,4 @@
-import {RxapDataSourceError} from '@rxap/data-source';
+import { RxapDataSourceError } from '@rxap/data-source';
 
 export class RxapHttpDataSourceError extends RxapDataSourceError {
 

@@ -1,16 +1,28 @@
-import {CoerceOperation, CoerceOperationOptions} from './coerce-operation';
-import {camelize, CoerceSuffix} from '@rxap/schematics-utilities';
-import {CoercePageDtoClass} from './coerce-page-dto-class';
-import {CoerceRowDtoClass} from './coerce-row-dto-class';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {SchematicsException} from '@angular-devkit/schematics';
+import {
+  CoerceOperation,
+  CoerceOperationOptions,
+} from './coerce-operation';
+import {
+  camelize,
+  CoerceSuffix,
+} from '@rxap/schematics-utilities';
+import { CoercePageDtoClass } from './coerce-page-dto-class';
+import { CoerceRowDtoClass } from './coerce-row-dto-class';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { SchematicsException } from '@angular-devkit/schematics';
 
 export interface CoerceGetPageOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
   columnList: Array<{ name: string, type?: string }>;
 }
 
 export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationOptions>) {
-  let {tsMorphTransform, name, columnList, controllerName, nestController} = options;
+  let {
+    tsMorphTransform,
+    name,
+    columnList,
+    controllerName,
+    nestController,
+  } = options;
   tsMorphTransform ??= () => ({});
   controllerName ??= nestController;
   controllerName ??= name;

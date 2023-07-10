@@ -1,10 +1,13 @@
-import {TsMorphAngularProjectTransform, TsMorphAngularProjectTransformOptions} from '../ts-morph-transform';
-import {classify} from '@rxap/schematics-utilities';
-import {CoerceParameterDeclaration} from '../ts-morph/coerce-parameter-declaration';
-import {CoercePropertyDeclaration} from '../nest/coerce-dto-class';
-import {Scope} from 'ts-morph';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {CoerceClassConstructor} from '../coerce-class-constructor';
+import {
+  TsMorphAngularProjectTransform,
+  TsMorphAngularProjectTransformOptions,
+} from '../ts-morph-transform';
+import { classify } from '@rxap/schematics-utilities';
+import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
+import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
+import { Scope } from 'ts-morph';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
 
 export interface CoerceTableParametersFromRouteRuleOptions extends TsMorphAngularProjectTransformOptions {
   parameterList: string[];
@@ -12,7 +15,10 @@ export interface CoerceTableParametersFromRouteRuleOptions extends TsMorphAngula
 }
 
 export function CoerceTableParametersFromRouteRule(options: CoerceTableParametersFromRouteRuleOptions) {
-  const {parameterList, tableName} = options;
+  const {
+    parameterList,
+    tableName,
+  } = options;
   return TsMorphAngularProjectTransform(options, (project) => {
 
     const sourceFile = project.getSourceFileOrThrow(`${tableName}.component.ts`);

@@ -1,8 +1,20 @@
-import {ChangeDetectorRef, Directive, Inject, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {SelectRowService} from './select-row.service';
-import {distinctUntilChanged, map, tap} from 'rxjs/operators';
-import {CdkTable} from '@angular/cdk/table';
+import {
+  ChangeDetectorRef,
+  Directive,
+  Inject,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SelectRowService } from './select-row.service';
+import {
+  distinctUntilChanged,
+  map,
+  tap,
+} from 'rxjs/operators';
+import { CdkTable } from '@angular/cdk/table';
 
 export interface AllRowsSelectedDirectiveContext<Data extends Record<string, any>> {
   $implicit: Data[];

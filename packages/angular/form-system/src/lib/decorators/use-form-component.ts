@@ -1,6 +1,6 @@
-import {Constructor} from '@rxap/utilities';
-import {FormSystemMetadataKeys} from './metadata-keys';
-import {setMetadata} from '@rxap/reflect-metadata';
+import { Constructor } from '@rxap/utilities';
+import { FormSystemMetadataKeys } from './metadata-keys';
+import { setMetadata } from '@rxap/reflect-metadata';
 
 /**
  * Links a component with a form definition

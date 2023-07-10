@@ -1,6 +1,11 @@
-import {ControlContainer} from '@angular/forms';
-import {AbstractControl, RxapFormArray, RxapFormControl, RxapFormGroup} from '@rxap/forms';
-import {RxapFormSystemError} from '../error';
+import { ControlContainer } from '@angular/forms';
+import {
+  AbstractControl,
+  RxapFormArray,
+  RxapFormControl,
+  RxapFormGroup,
+} from '@rxap/forms';
+import { RxapFormSystemError } from '../error';
 
 export class ExtractControlFromParentMixin {
 

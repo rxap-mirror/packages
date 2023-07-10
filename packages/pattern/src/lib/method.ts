@@ -1,4 +1,4 @@
-import {MetaData} from './meta-data';
+import { MetaData } from './meta-data';
 
 export interface Method<ReturnType = any, Parameter = any> extends MetaData {
   call(parameters?: Parameter, ...args: any[]): Promise<ReturnType> | ReturnType;

@@ -1,6 +1,9 @@
-import {ComponentType, OverlayRef} from '@angular/cdk/overlay';
-import {WindowRef} from './window-ref';
-import {TemplateRef} from '@angular/core';
+import {
+  ComponentType,
+  OverlayRef,
+} from '@angular/cdk/overlay';
+import { WindowRef } from './window-ref';
+import { TemplateRef } from '@angular/core';
 
 export interface WindowContext<D> {
   overlayRef: OverlayRef;

@@ -1,9 +1,9 @@
 import {
-  trigger,
-  transition,
-  style,
-  sequence,
   animate,
+  sequence,
+  style,
+  transition,
+  trigger,
 } from '@angular/animations';
 
 const offset = '50';

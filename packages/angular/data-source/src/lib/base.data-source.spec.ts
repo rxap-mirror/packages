@@ -1,6 +1,10 @@
-import {BaseDataSource, BaseDataSourceViewer, RxapDataSource} from './base.data-source';
-import {fakeAsync} from '@angular/core/testing';
-import {StaticDataSource} from './static.data-source';
+import {
+  BaseDataSource,
+  BaseDataSourceViewer,
+  RxapDataSource,
+} from './base.data-source';
+import { fakeAsync } from '@angular/core/testing';
+import { StaticDataSource } from './static.data-source';
 
 describe('@rxap/data-source', () => {
 
@@ -9,7 +13,10 @@ describe('@rxap/data-source', () => {
     let dataSource: BaseDataSource<any>;
 
     beforeEach(() => {
-      dataSource = new BaseDataSource<any>({id: 'test', deps: []});
+      dataSource = new BaseDataSource<any>({
+        id: 'test',
+        deps: [],
+      });
     });
 
     it('connect and disconnect', () => {

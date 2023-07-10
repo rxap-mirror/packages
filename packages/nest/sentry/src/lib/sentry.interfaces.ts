@@ -1,8 +1,14 @@
-import {ConsoleLoggerOptions} from '@nestjs/common';
-import {ModuleMetadata, Type} from '@nestjs/common/interfaces';
-import {NodeOptions, SeverityLevel} from '@sentry/node';
-import {AddRequestDataToEventOptions} from '@sentry/node/types/requestdata';
-import {Integration} from '@sentry/types';
+import { ConsoleLoggerOptions } from '@nestjs/common';
+import {
+  ModuleMetadata,
+  Type,
+} from '@nestjs/common/interfaces';
+import {
+  NodeOptions,
+  SeverityLevel,
+} from '@sentry/node';
+import { AddRequestDataToEventOptions } from '@sentry/node/types/requestdata';
+import { Integration } from '@sentry/types';
 
 export interface SentryCloseOptions {
   enabled: boolean;

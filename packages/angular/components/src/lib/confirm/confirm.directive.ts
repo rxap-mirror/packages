@@ -1,25 +1,25 @@
 import {
   Directive,
-  HostListener,
   ElementRef,
   EventEmitter,
-  Output,
-  OnDestroy,
-  Input,
+  HostListener,
   Inject,
+  Input,
+  OnDestroy,
+  Output,
 } from '@angular/core';
-import {ConfirmComponent} from './confirm.component';
+import { ConfirmComponent } from './confirm.component';
 import {
   Overlay,
   OverlayRef,
   PositionStrategy,
 } from '@angular/cdk/overlay';
-import {ComponentPortal} from '@angular/cdk/portal';
+import { ComponentPortal } from '@angular/cdk/portal';
 import {
-  tap,
   take,
+  tap,
 } from 'rxjs/operators';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[rxapConfirm]',

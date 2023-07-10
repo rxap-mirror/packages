@@ -1,9 +1,17 @@
-import {Directive, Inject, OnDestroy, OnInit} from '@angular/core';
-import {NgModel} from '@angular/forms';
-import {RXAP_TABLE_FILTER} from '@rxap/material-table-system';
-import {Subscription} from 'rxjs';
-import {debounceTime, tap} from 'rxjs/operators';
-import {TableFullTextSearchService} from './table-full-text-search.service';
+import {
+  Directive,
+  Inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { NgModel } from '@angular/forms';
+import { RXAP_TABLE_FILTER } from '@rxap/material-table-system';
+import { Subscription } from 'rxjs';
+import {
+  debounceTime,
+  tap,
+} from 'rxjs/operators';
+import { TableFullTextSearchService } from './table-full-text-search.service';
 
 @Directive({
   selector: 'input[ngModel][rxapTableFilterInput]',

@@ -1,7 +1,15 @@
-import {Inject, Injectable, Logger} from '@nestjs/common';
-import {ClientProxy, ReadPacket, WritePacket} from '@nestjs/microservices';
-import {randomBytes} from 'crypto';
-import {SocketIoClientProvider} from './socket-io-client.provider';
+import {
+  Inject,
+  Injectable,
+  Logger,
+} from '@nestjs/common';
+import {
+  ClientProxy,
+  ReadPacket,
+  WritePacket,
+} from '@nestjs/microservices';
+import { randomBytes } from 'crypto';
+import { SocketIoClientProvider } from './socket-io-client.provider';
 
 @Injectable()
 export class SocketIoClientProxyService extends ClientProxy {

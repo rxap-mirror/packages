@@ -1,6 +1,15 @@
-import {Directive, Inject, Input, isDevMode, OnInit} from '@angular/core';
-import {MatSelect} from '@angular/material/select';
-import {equals, getFromObject} from '@rxap/utilities';
+import {
+  Directive,
+  Inject,
+  Input,
+  isDevMode,
+  OnInit,
+} from '@angular/core';
+import { MatSelect } from '@angular/material/select';
+import {
+  equals,
+  getFromObject,
+} from '@rxap/utilities';
 
 @Directive({
   selector: 'mat-select[rxapCompareWith]',

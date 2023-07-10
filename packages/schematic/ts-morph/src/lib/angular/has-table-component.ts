@@ -1,7 +1,7 @@
-import {Tree} from '@angular-devkit/schematics';
-import {HasComponent} from './has-component';
-import {BuildAngularBasePath} from './build-angular-base-path';
-import {join} from 'path';
+import { Tree } from '@angular-devkit/schematics';
+import { HasComponent } from './has-component';
+import { BuildAngularBasePath } from './build-angular-base-path';
+import { join } from 'path';
 
 export interface HasTableComponentOptions {
   project: string;
@@ -11,7 +11,7 @@ export interface HasTableComponentOptions {
 }
 
 export function HasTableComponent(host: Tree, options: HasTableComponentOptions) {
-  const {name} = options;
+  const { name } = options;
   if (!HasComponent(host, options)) {
     return false;
   }

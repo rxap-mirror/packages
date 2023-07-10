@@ -1,4 +1,4 @@
-import {assertString} from './util/assertString';
+import { assertString } from './util/assertString';
 
 export function toInt(str: unknown, radix?: number): number {
   assertString(str);

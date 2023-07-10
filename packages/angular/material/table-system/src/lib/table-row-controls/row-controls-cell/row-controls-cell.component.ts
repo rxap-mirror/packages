@@ -1,5 +1,11 @@
-import {ChangeDetectionStrategy, Component, Inject, Input, Optional} from '@angular/core';
-import {Required} from '@rxap/utilities';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Input,
+  Optional,
+} from '@angular/core';
+import { Required } from '@rxap/utilities';
 import {
   ROW_ARCHIVE_METHOD,
   ROW_DELETE_METHOD,
@@ -9,25 +15,28 @@ import {
   ROW_RESTORE_METHOD,
   ROW_VIEW_METHOD,
 } from '../tokens';
-import {OpenApiRemoteMethod} from '@rxap/open-api/remote-method';
-import {TableDataSourceDirective} from '../../table-data-source.directive';
-import {isObservable, Observable} from 'rxjs';
-import {Method} from '@rxap/pattern';
-import {MatIconModule} from '@angular/material/icon';
-import {ConfirmDirective} from '@rxap/components';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatButtonModule} from '@angular/material/button';
-import {NgIf} from '@angular/common';
-import {FlexModule} from '@angular/flex-layout/flex';
+import { OpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import { TableDataSourceDirective } from '../../table-data-source.directive';
+import {
+  isObservable,
+  Observable,
+} from 'rxjs';
+import { Method } from '@rxap/pattern';
+import { MatIconModule } from '@angular/material/icon';
+import { ConfirmDirective } from '@rxap/components';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { NgIf } from '@angular/common';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'td[rxap-row-controls-cell]',
   templateUrl: './row-controls-cell.component.html',
-  styleUrls: ['./row-controls-cell.component.scss'],
+  styleUrls: [ './row-controls-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [FlexModule, NgIf, MatButtonModule, MatTooltipModule, ConfirmDirective, MatIconModule],
+  imports: [ FlexModule, NgIf, MatButtonModule, MatTooltipModule, ConfirmDirective, MatIconModule ],
 })
 export class RowControlsCellComponent<Data extends Record<string, any> & { uuid: string }> {
 

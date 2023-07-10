@@ -1,4 +1,8 @@
-import {ClassDeclaration, OptionalKind, PropertyDeclarationStructure} from 'ts-morph';
+import {
+  ClassDeclaration,
+  OptionalKind,
+  PropertyDeclarationStructure,
+} from 'ts-morph';
 
 export function CoerceClassProperty(
   classDeclaration: ClassDeclaration,

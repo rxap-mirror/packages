@@ -1,9 +1,9 @@
-import {Routes} from '@angular/router';
-import {LoginComponent} from './login/login.component';
-import {AuthenticationContainerComponent} from './authentication-container/authentication-container.component';
-import {ResetPasswordComponent} from './reset-password/reset-password.component';
-import {LoadingComponent} from './loading/loading.component';
-import {RxapAuthenticationGuard} from '@rxap/authentication';
+import { Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { AuthenticationContainerComponent } from './authentication-container/authentication-container.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { LoadingComponent } from './loading/loading.component';
+import { RxapAuthenticationGuard } from '@rxap/authentication';
 
 export const AuthenticationRoutes: Routes = [
   {
@@ -11,7 +11,7 @@ export const AuthenticationRoutes: Routes = [
     component: AuthenticationContainerComponent,
     children: [
       {
-        canActivate: [RxapAuthenticationGuard],
+        canActivate: [ RxapAuthenticationGuard ],
         path: 'login',
         component: LoginComponent,
       },

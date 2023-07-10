@@ -1,6 +1,9 @@
-import {SchematicsException, Tree} from '@angular-devkit/schematics';
-import {GetJsonFile} from './json-file';
-import {Angular} from './angular-json-file';
+import {
+  SchematicsException,
+  Tree,
+} from '@angular-devkit/schematics';
+import { GetJsonFile } from './json-file';
+import { Angular } from './angular-json-file';
 
 export function GetWorkspace(host: Tree) {
 

@@ -1,4 +1,4 @@
-import {IdOrInstanceOrToken} from '@rxap/definition';
+import { IdOrInstanceOrToken } from '@rxap/definition';
 import {
   BaseDataSource,
   BaseDataSourceMetadata,
@@ -6,17 +6,27 @@ import {
   DataSourceLoader,
   PipeDataSource,
 } from '@rxap/data-source';
-import {ControlOptions} from '@rxap/utilities';
-import {UseDataSource, UseDataSourceSettings, UseDataSourceValue} from '../decorators/use-data-source';
-import {InputSelectOptionsSettings} from '../directives/input-select-options.directive';
-import {Mixin} from '@rxap/mixin';
-import {ExtractFormDefinitionMixin} from './extract-form-definition.mixin';
-import {ExtractDataSourcesMixin} from './extract-data-sources.mixin';
-import {ExtractControlMixin} from './extract-control.mixin';
-import {Injector, isDevMode} from '@angular/core';
-import {AbstractControl} from '@angular/forms';
-import {RxapFormControl} from '@rxap/forms';
-import {map, tap} from 'rxjs/operators';
+import { ControlOptions } from '@rxap/utilities';
+import {
+  UseDataSource,
+  UseDataSourceSettings,
+  UseDataSourceValue,
+} from '../decorators/use-data-source';
+import { InputSelectOptionsSettings } from '../directives/input-select-options.directive';
+import { Mixin } from '@rxap/mixin';
+import { ExtractFormDefinitionMixin } from './extract-form-definition.mixin';
+import { ExtractDataSourcesMixin } from './extract-data-sources.mixin';
+import { ExtractControlMixin } from './extract-control.mixin';
+import {
+  Injector,
+  isDevMode,
+} from '@angular/core';
+import { AbstractControl } from '@angular/forms';
+import { RxapFormControl } from '@rxap/forms';
+import {
+  map,
+  tap,
+} from 'rxjs/operators';
 
 export type UseOptionsDataSourceSettings<Source> = UseDataSourceSettings<Source, ControlOptions | Record<string, any>>
 

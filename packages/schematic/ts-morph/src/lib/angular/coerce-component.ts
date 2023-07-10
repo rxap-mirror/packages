@@ -9,10 +9,10 @@ import {
   Rule,
   url,
 } from '@angular-devkit/schematics';
-import {HasComponent} from './has-component';
-import {BuildAngularBasePath} from './build-angular-base-path';
-import {strings} from '@angular-devkit/core';
-import {join} from 'path';
+import { HasComponent } from './has-component';
+import { BuildAngularBasePath } from './build-angular-base-path';
+import { strings } from '@angular-devkit/core';
+import { join } from 'path';
 
 export interface CoerceComponentOptions {
   project: string;

@@ -2,8 +2,8 @@ import {
   Directive,
   HostListener,
 } from '@angular/core';
-import {ControlContainer} from '@angular/forms';
-import {hasIndexSignature} from '@rxap/utilities';
+import { ControlContainer } from '@angular/forms';
+import { hasIndexSignature } from '@rxap/utilities';
 
 @Directive({
   selector: '[rxapFormControlMarkPristine]',

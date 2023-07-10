@@ -1,4 +1,7 @@
-import {getProjects, Tree} from '@nx/devkit';
+import {
+  getProjects,
+  Tree,
+} from '@nx/devkit';
 
 export function GetProject(tree: Tree, projectName: string) {
   const projects = getProjects(tree);

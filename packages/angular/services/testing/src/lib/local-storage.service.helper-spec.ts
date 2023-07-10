@@ -1,5 +1,8 @@
-import {Injectable, Provider} from '@angular/core';
-import {LocalStorageService} from '@rxap/services';
+import {
+  Injectable,
+  Provider,
+} from '@angular/core';
+import { LocalStorageService } from '@rxap/services';
 
 @Injectable()
 export class LocalStorageServiceFake implements LocalStorageService {

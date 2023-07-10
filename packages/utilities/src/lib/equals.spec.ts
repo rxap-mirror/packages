@@ -1,4 +1,4 @@
-import {equals} from './equals';
+import { equals } from './equals';
 
 describe('@rxap/utilities', () => {
   describe('equals', () => {

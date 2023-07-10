@@ -1,6 +1,6 @@
-import {assertString} from './util/assertString';
-import {toString} from './util/toString';
-import {merge} from './util/merge';
+import { assertString } from './util/assertString';
+import { toString } from './util/toString';
+import { merge } from './util/merge';
 
 export interface ContainsOptions {
   ignoreCase?: boolean;

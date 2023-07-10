@@ -1,8 +1,22 @@
-import {ActivatedRouteSnapshot, Router, UrlTree} from '@angular/router';
-import {Inject, Injectable, Optional} from '@angular/core';
-import {OAuthSingleSignOnService} from './o-auth-single-sign-on.service';
-import {OAuthService, RXAP_O_AUTH_REDIRECT_SIGN_IN} from '@rxap/oauth';
-import {RXAP_O_AUTH_SINGLE_SIGN_ON_REDIRECT_CONTINUE, RXAP_O_AUTH_SSO_REDIRECT_CONTINUE_DISABLED} from './tokens';
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  UrlTree,
+} from '@angular/router';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
+import { OAuthSingleSignOnService } from './o-auth-single-sign-on.service';
+import {
+  OAuthService,
+  RXAP_O_AUTH_REDIRECT_SIGN_IN,
+} from '@rxap/oauth';
+import {
+  RXAP_O_AUTH_SINGLE_SIGN_ON_REDIRECT_CONTINUE,
+  RXAP_O_AUTH_SSO_REDIRECT_CONTINUE_DISABLED,
+} from './tokens';
 
 @Injectable()
 export class OAuthSingleSignOnGuard {

@@ -1,6 +1,10 @@
-import {Global, Logger, Module} from '@nestjs/common';
-import {SocketIoClientProxyService} from './socket-io-client-proxy.service';
-import {SocketIoClientProvider} from './socket-io-client.provider';
+import {
+  Global,
+  Logger,
+  Module,
+} from '@nestjs/common';
+import { SocketIoClientProxyService } from './socket-io-client-proxy.service';
+import { SocketIoClientProvider } from './socket-io-client.provider';
 
 @Global()
 @Module({

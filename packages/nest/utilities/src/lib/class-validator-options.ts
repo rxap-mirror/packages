@@ -1,4 +1,4 @@
-import type {ValidatorOptions} from 'class-validator';
+import type { ValidatorOptions } from 'class-validator';
 
 export const validatorOptions: ValidatorOptions = {
   enableDebugMessages: true,

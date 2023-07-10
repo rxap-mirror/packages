@@ -13,27 +13,38 @@ import {
   Output,
   Self,
 } from '@angular/core';
-import {FileUploadMethod} from '../file-upload.method';
-import {ControlValueAccessor, NgControl} from '@angular/forms';
-import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition} from '@angular/cdk/overlay';
-import {MatFormFieldControl} from '@angular/material/form-field';
-import {Subject} from 'rxjs';
-import {AsyncPipe, DOCUMENT, NgIf} from '@angular/common';
-import {ReadAsDataURLPipe} from './read-as-data-url.pipe';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatIconModule} from '@angular/material/icon';
-import {MethodDirective} from '@rxap/directives';
-import {MatButtonModule} from '@angular/material/button';
-import {FlexModule} from '@angular/flex-layout/flex';
+import { FileUploadMethod } from '../file-upload.method';
+import {
+  ControlValueAccessor,
+  NgControl,
+} from '@angular/forms';
+import {
+  CdkConnectedOverlay,
+  CdkOverlayOrigin,
+  ConnectedPosition,
+} from '@angular/cdk/overlay';
+import { MatFormFieldControl } from '@angular/material/form-field';
+import { Subject } from 'rxjs';
+import {
+  AsyncPipe,
+  DOCUMENT,
+  NgIf,
+} from '@angular/common';
+import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { MethodDirective } from '@rxap/directives';
+import { MatButtonModule } from '@angular/material/button';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector: 'rxap-upload-button',
   templateUrl: './upload-button.component.html',
-  styleUrls: ['./upload-button.component.scss'],
+  styleUrls: [ './upload-button.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {class: 'rxap-upload-button'},
+  host: { class: 'rxap-upload-button' },
   providers: [
     {
       provide: MatFormFieldControl,

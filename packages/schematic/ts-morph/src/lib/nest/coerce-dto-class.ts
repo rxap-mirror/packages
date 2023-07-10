@@ -12,7 +12,12 @@ import {
   Writers,
 } from 'ts-morph';
 import { join } from 'path';
-import { camelize, classify, CoerceSuffix, dasherize } from '@rxap/schematics-utilities';
+import {
+  camelize,
+  classify,
+  CoerceSuffix,
+  dasherize,
+} from '@rxap/schematics-utilities';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { DtoClassProperty } from '../create-dto-class';

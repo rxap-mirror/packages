@@ -1,7 +1,7 @@
-import {ParsedElement} from './parsed-element';
-import {ElementAttribute} from '../decorators/element-attribute';
-import {XmlParserService} from '../xml-parser.service';
-import {RxapElement} from '../element';
+import { ParsedElement } from './parsed-element';
+import { ElementAttribute } from '../decorators/element-attribute';
+import { XmlParserService } from '../xml-parser.service';
+import { RxapElement } from '../element';
 
 
 export abstract class BaseDefinitionElement implements ParsedElement {

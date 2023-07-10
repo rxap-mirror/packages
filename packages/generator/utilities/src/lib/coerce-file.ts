@@ -1,4 +1,4 @@
-import {Tree} from '@nx/devkit';
+import { Tree } from '@nx/devkit';
 
 export function CoerceFile(tree: Tree, filePath: string, content = '', overwrite = false): string {
   if (tree.exists(filePath)) {

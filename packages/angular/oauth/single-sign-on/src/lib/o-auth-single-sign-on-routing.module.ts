@@ -1,12 +1,16 @@
-import {ModuleWithProviders, NgModule, Provider} from '@angular/core';
+import {
+  ModuleWithProviders,
+  NgModule,
+  Provider,
+} from '@angular/core';
 
 
-import {RXAP_O_AUTH_SSO_REDIRECT_CONTINUE_DISABLED} from './tokens';
-import {OAuthSingleSignOnGuard} from './o-auth-single-sign-on.guard';
+import { RXAP_O_AUTH_SSO_REDIRECT_CONTINUE_DISABLED } from './tokens';
+import { OAuthSingleSignOnGuard } from './o-auth-single-sign-on.guard';
 
 
 export interface OAuthSingleSignOnOptions {
-  redirectContinueDisabled?: boolean
+  redirectContinueDisabled?: boolean;
 }
 
 @NgModule({

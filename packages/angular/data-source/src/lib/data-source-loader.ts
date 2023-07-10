@@ -1,9 +1,20 @@
-import {Injectable, InjectFlags, Injector} from '@angular/core';
-import {BaseDataSource, BaseDataSourceMetadata, BaseDataSourceViewer} from './base.data-source';
-import {Observable} from 'rxjs';
-import {DefinitionLoader, IdOrInstanceOrToken} from '@rxap/definition';
+import {
+  Injectable,
+  InjectFlags,
+  Injector,
+} from '@angular/core';
+import {
+  BaseDataSource,
+  BaseDataSourceMetadata,
+  BaseDataSourceViewer,
+} from './base.data-source';
+import { Observable } from 'rxjs';
+import {
+  DefinitionLoader,
+  IdOrInstanceOrToken,
+} from '@rxap/definition';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class DataSourceLoader extends DefinitionLoader {
 
   public connect<Data>(

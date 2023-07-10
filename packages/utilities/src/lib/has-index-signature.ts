@@ -1,4 +1,4 @@
-import {KeyValue} from './helpers';
+import { KeyValue } from './helpers';
 
 export type WithIndexSignature<T> = T & KeyValue;
 

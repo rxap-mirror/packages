@@ -3,19 +3,19 @@ import {
   Component,
   Inject,
 } from '@angular/core';
-import type {WindowRef} from '@rxap/window-system';
-import {RXAP_WINDOW_REF} from '@rxap/window-system';
-import type {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {SelectRowService} from '../select-row/select-row.service';
-import {AsyncPipe} from '@angular/common';
-import {MatButtonModule} from '@angular/material/button';
-import {FlexModule} from '@angular/flex-layout/flex';
+import type { WindowRef } from '@rxap/window-system';
+import { RXAP_WINDOW_REF } from '@rxap/window-system';
+import type { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { SelectRowService } from '../select-row/select-row.service';
+import { AsyncPipe } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector: 'rxap-table-select-controls',
   templateUrl: './table-select-controls.component.html',
-  styleUrls: ['./table-select-controls.component.scss'],
+  styleUrls: [ './table-select-controls.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [

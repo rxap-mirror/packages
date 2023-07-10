@@ -1,10 +1,33 @@
-import {Inject, Injectable, Optional, Provider} from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {coerceArray} from '@rxap/utilities';
-import {map, switchMap} from 'rxjs/operators';
-import {from, Observable} from 'rxjs';
-import {AppCheck, getToken} from '@angular/fire/app-check';
-import {APP_CHECK_ENABLED, FIREBASE_APP_CHECK_HTTP_INTERCEPTOR_URL_PATTERN} from './tokens';
+import {
+  Inject,
+  Injectable,
+  Optional,
+  Provider,
+} from '@angular/core';
+import {
+  HTTP_INTERCEPTORS,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
+import { coerceArray } from '@rxap/utilities';
+import {
+  map,
+  switchMap,
+} from 'rxjs/operators';
+import {
+  from,
+  Observable,
+} from 'rxjs';
+import {
+  AppCheck,
+  getToken,
+} from '@angular/fire/app-check';
+import {
+  APP_CHECK_ENABLED,
+  FIREBASE_APP_CHECK_HTTP_INTERCEPTOR_URL_PATTERN,
+} from './tokens';
 
 @Injectable()
 export class FirebaseAppCheckHttpInterceptor implements HttpInterceptor {

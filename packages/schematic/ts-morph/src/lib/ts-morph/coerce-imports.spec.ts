@@ -1,12 +1,15 @@
-import {Project, SourceFile} from 'ts-morph';
-import {CoerceImports} from './coerce-imports';
+import {
+  Project,
+  SourceFile,
+} from 'ts-morph';
+import { CoerceImports } from './coerce-imports';
 
 describe('CoerceImports', () => {
 
   let sourceFile: SourceFile;
 
   beforeEach(() => {
-    const project = new Project({useInMemoryFileSystem: true});
+    const project = new Project({ useInMemoryFileSystem: true });
     sourceFile = project.createSourceFile('test.ts', `import { Component } from '@angular/core';`);
   });
 

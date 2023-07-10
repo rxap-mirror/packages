@@ -1,14 +1,21 @@
-import {SaveExecutorSchema} from './schema';
-import {ExecutorContext} from '@nx/devkit';
-import {GetProjectConfiguration, GetTarget, GetTargetOptions} from '@rxap/plugin-utilities';
-import {dockerSave, getGitlabRegistryDestination} from '../utilities';
+import { SaveExecutorSchema } from './schema';
+import { ExecutorContext } from '@nx/devkit';
+import {
+  GetProjectConfiguration,
+  GetTarget,
+  GetTargetOptions,
+} from '@rxap/plugin-utilities';
+import {
+  dockerSave,
+  getGitlabRegistryDestination,
+} from '../utilities';
 
 function getOutputName(options: SaveExecutorSchema, context: ExecutorContext): string {
   const project = context.projectName;
   if (!options.outputPath) {
-    options.outputPath = `dist`
+    options.outputPath = `dist`;
   }
-  return `${options.outputPath}/${project}`
+  return `${ options.outputPath }/${ project }`;
 }
 
 export default async function runExecutor(

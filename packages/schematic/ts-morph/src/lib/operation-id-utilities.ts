@@ -1,13 +1,16 @@
-import {classify, dasherize} from '@rxap/schematics-utilities';
-import {buildNestProjectName} from './nest/project-utilities';
+import {
+  classify,
+  dasherize,
+} from '@rxap/schematics-utilities';
+import { buildNestProjectName } from './nest/project-utilities';
 
 export function OperationIdToClassName(operationId: string) {
-  const [id] = operationId.split('@');
+  const [ id ] = operationId.split('@');
   return classify(id) + 'RemoteMethod';
 }
 
 export function ServiceOperationIdToClassName(operationId: string) {
-  const [id] = operationId.split('@');
+  const [ id ] = operationId.split('@');
   return classify(id) + 'Command';
 }
 

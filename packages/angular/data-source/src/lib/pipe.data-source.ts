@@ -1,9 +1,30 @@
-import {BaseDataSource, BaseDataSourceMetadata, BaseDataSourceViewer} from './base.data-source';
-import {Observable, OperatorFunction, Subject, TeardownLogic} from 'rxjs';
-import {Inject, Injectable, OnDestroy, Optional} from '@angular/core';
-import {RXAP_DATA_SOURCE, RXAP_PIPE_DATA_SOURCE_OPERATOR} from './tokens';
-import {RxapDataSourceError} from './error';
-import {map, startWith, switchMap} from 'rxjs/operators';
+import {
+  BaseDataSource,
+  BaseDataSourceMetadata,
+  BaseDataSourceViewer,
+} from './base.data-source';
+import {
+  Observable,
+  OperatorFunction,
+  Subject,
+  TeardownLogic,
+} from 'rxjs';
+import {
+  Inject,
+  Injectable,
+  OnDestroy,
+  Optional,
+} from '@angular/core';
+import {
+  RXAP_DATA_SOURCE,
+  RXAP_PIPE_DATA_SOURCE_OPERATOR,
+} from './tokens';
+import { RxapDataSourceError } from './error';
+import {
+  map,
+  startWith,
+  switchMap,
+} from 'rxjs/operators';
 
 export interface PipeDataSourceMetadata extends BaseDataSourceMetadata {
   refreshParent?: boolean;

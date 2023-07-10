@@ -1,13 +1,13 @@
 import {
   Directive,
-  OnInit,
+  Inject,
   OnDestroy,
+  OnInit,
   TemplateRef,
   ViewContainerRef,
-  Inject,
 } from '@angular/core';
-import {FooterService} from '@rxap/services';
-import {TemplatePortal} from '@angular/cdk/portal';
+import { FooterService } from '@rxap/services';
+import { TemplatePortal } from '@angular/cdk/portal';
 
 @Directive({
   selector: '[rxapFooter]',

@@ -1,4 +1,8 @@
-import {ArrayLiteralExpression, ObjectLiteralExpression, PropertyAssignment} from 'ts-morph';
+import {
+  ArrayLiteralExpression,
+  ObjectLiteralExpression,
+  PropertyAssignment,
+} from 'ts-morph';
 
 export function DefaultAddControlValidatorCompare(a: string, b: string): boolean {
   return a.trim().replace(/[\r\n\t]/g, '') === b.trim().replace(/[\r\n\t]/g, '');

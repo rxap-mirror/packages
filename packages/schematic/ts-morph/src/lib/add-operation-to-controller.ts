@@ -12,9 +12,15 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import {camelize, capitalize} from '@rxap/schematics-utilities';
-import {CoerceClassMethod} from './coerce-class-method';
-import {CoerceDecorator, CoerceStatements} from './ts-morph/index';
+import {
+  camelize,
+  capitalize,
+} from '@rxap/schematics-utilities';
+import { CoerceClassMethod } from './coerce-class-method';
+import {
+  CoerceDecorator,
+  CoerceStatements,
+} from './ts-morph/index';
 
 export interface OperationParameter {
   name: string;

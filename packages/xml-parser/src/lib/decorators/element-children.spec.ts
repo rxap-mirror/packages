@@ -1,9 +1,12 @@
-import {ParsedElement} from '../elements/parsed-element';
-import {XmlElementMetadata} from './utilities';
-import {ElementChildren, ElementChildrenParser} from './element-children';
-import {ElementDef} from './element-def';
-import {getMetadata} from '@rxap/reflect-metadata';
-import {TestingXmlParserService} from '../testing/testing-xml-parser-service';
+import { ParsedElement } from '../elements/parsed-element';
+import { XmlElementMetadata } from './utilities';
+import {
+  ElementChildren,
+  ElementChildrenParser,
+} from './element-children';
+import { ElementDef } from './element-def';
+import { getMetadata } from '@rxap/reflect-metadata';
+import { TestingXmlParserService } from '../testing/testing-xml-parser-service';
 
 describe('@rxap/xml-parser', () => {
 

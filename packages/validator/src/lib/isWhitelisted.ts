@@ -1,4 +1,4 @@
-import {assertString} from './util/assertString';
+import { assertString } from './util/assertString';
 
 export function isWhitelisted(str: string, chars: string | string[]) {
   assertString(str);

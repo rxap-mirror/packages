@@ -1,6 +1,6 @@
-import {OpenAPIV3} from 'openapi-types';
-import {AnySchemaObject} from './any-schema-object';
-import {IsReferenceObject} from './is-reference-object';
+import { OpenAPIV3 } from 'openapi-types';
+import { AnySchemaObject } from './any-schema-object';
+import { IsReferenceObject } from './is-reference-object';
 
 export function GetResponse(operation: OpenAPIV3.OperationObject): OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject | AnySchemaObject | null {
 

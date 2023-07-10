@@ -1,4 +1,4 @@
-import {ReplacePipe} from './replace.pipe';
+import { ReplacePipe } from './replace.pipe';
 
 describe('EscapePipe', () => {
   it('create an instance', () => {

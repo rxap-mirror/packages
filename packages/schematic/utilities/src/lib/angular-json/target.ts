@@ -1,12 +1,12 @@
-import {AppShell} from './app-shell';
-import {Browser} from './browser';
-import {DevServer} from './dev-server';
-import {Extracti18n} from './extracti18n';
-import {Karma} from './karma';
-import {NgPackagr} from './ng-packagr';
-import {Protractor} from './protractor';
-import {Server} from './server';
-import {Tslint} from './tslint';
+import { AppShell } from './app-shell';
+import { Browser } from './browser';
+import { DevServer } from './dev-server';
+import { Extracti18n } from './extracti18n';
+import { Karma } from './karma';
+import { NgPackagr } from './ng-packagr';
+import { Protractor } from './protractor';
+import { Server } from './server';
+import { Tslint } from './tslint';
 
 export type Target = {
   /** The builder used for this package. */

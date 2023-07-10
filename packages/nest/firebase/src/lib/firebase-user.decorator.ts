@@ -1,5 +1,8 @@
-import {createParamDecorator, ExecutionContext} from '@nestjs/common';
-import {auth} from 'firebase-admin';
+import {
+  createParamDecorator,
+  ExecutionContext,
+} from '@nestjs/common';
+import { auth } from 'firebase-admin';
 import DecodedIdToken = auth.DecodedIdToken;
 
 /**

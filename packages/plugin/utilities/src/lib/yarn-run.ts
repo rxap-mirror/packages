@@ -1,4 +1,4 @@
-import { spawn } from "child_process";
+import { spawn } from 'child_process';
 
 export function YarnRun(args: string[]) {
   console.log(`$ yarn ${ args.join(" ") }`);

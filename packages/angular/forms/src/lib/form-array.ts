@@ -1,17 +1,17 @@
 import {
-  UntypedFormArray,
   AbstractControl as NgAbstractControl,
+  UntypedFormArray,
 } from '@angular/forms';
 import {
-  ControlEventOptions,
-  ExtractStrings,
-  EmitEvent,
-  ControlPath,
-  ControlState,
-  OnlySelf,
   AbstractControl,
   AsyncValidator,
+  ControlEventOptions,
   ControlOptions,
+  ControlPath,
+  ControlState,
+  EmitEvent,
+  ExtractStrings,
+  OnlySelf,
   Validator,
 } from './types';
 import {
@@ -20,37 +20,37 @@ import {
 } from 'rxjs/operators';
 import {
   isObservable,
-  Subject,
   Observable,
+  Subject,
   Subscription,
 } from 'rxjs';
 import {
   controlDisabled$,
-  mergeControlValidators,
+  controlDisabledWhile,
+  controlEnabled$,
+  controlEnabledWhile,
+  controlErrorChanges$,
+  controlStatusChanges$,
+  controlValueChanges$,
+  disableControl,
+  enableControl,
   hasErrorAndDirty,
   hasErrorAndTouched,
-  controlStatusChanges$,
-  enableControl,
-  controlEnabledWhile,
-  disableControl,
-  controlValueChanges$,
-  controlEnabled$,
-  controlErrorChanges$,
   markAllDirty,
-  controlDisabledWhile,
   markAllPristine,
   markAllUntouched,
+  mergeControlValidators,
 } from './control-actions';
-import {coerceArray} from '@rxap/utilities';
+import { coerceArray } from '@rxap/utilities';
 import {
+  ControlInsertedFn,
+  ControlRemovedFn,
   FormArrayOptions,
   FormBuilderFn,
-  ControlRemovedFn,
-  ControlInsertedFn,
-  FormType,
   FormDefinition,
+  FormType,
 } from './model';
-import {isDevMode} from '@angular/core';
+import { isDevMode } from '@angular/core';
 
 export class RxapFormArray<T = any,
   E extends object = any,

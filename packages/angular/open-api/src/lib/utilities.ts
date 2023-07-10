@@ -1,5 +1,5 @@
-import {OpenAPIV3} from 'openapi-types';
-import {RxapOpenApiError} from './error';
+import { OpenAPIV3 } from 'openapi-types';
+import { RxapOpenApiError } from './error';
 
 export function IsReferenceObject(obj?: any): obj is OpenAPIV3.ReferenceObject {
   return !!obj && obj.hasOwnProperty('$ref');

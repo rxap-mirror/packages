@@ -1,17 +1,33 @@
-import {ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {UpdateAvailableEvent} from '@angular/service-worker';
-import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
-import {interval, Subscription} from 'rxjs';
-import {first, tap} from 'rxjs/operators';
-import {LifeCycleService} from '@rxap/life-cycle';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { UpdateAvailableEvent } from '@angular/service-worker';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import {
+  interval,
+  Subscription,
+} from 'rxjs';
+import {
+  first,
+  tap,
+} from 'rxjs/operators';
+import { LifeCycleService } from '@rxap/life-cycle';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'rxap-prompt-update',
   templateUrl: './prompt-update.component.html',
-  styleUrls: ['./prompt-update.component.scss'],
+  styleUrls: [ './prompt-update.component.scss' ],
   changeDetection: ChangeDetectionStrategy.Default,
   standalone: true,
   imports: [

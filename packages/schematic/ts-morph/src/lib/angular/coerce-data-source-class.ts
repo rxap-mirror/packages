@@ -1,9 +1,16 @@
-import {ClassDeclaration, Project, SourceFile} from 'ts-morph';
-import {classify, CoerceSuffix} from '@rxap/schematics-utilities';
-import {TsMorphAngularProjectTransform} from '../ts-morph-transform';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {CoerceSourceFile} from '../coerce-source-file';
-import {CoerceClass} from '../coerce-class';
+import {
+  ClassDeclaration,
+  Project,
+  SourceFile,
+} from 'ts-morph';
+import {
+  classify,
+  CoerceSuffix,
+} from '@rxap/schematics-utilities';
+import { TsMorphAngularProjectTransform } from '../ts-morph-transform';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { CoerceClass } from '../coerce-class';
 
 export interface CoerceDataSourceClassOptions {
   name: string;

@@ -1,9 +1,15 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { RXAP_O_AUTH_REDIRECT_SIGN_IN, RXAP_O_AUTH_REDIRECT_SIGN_OUT } from './tokens';
+import {
+  ModuleWithProviders,
+  NgModule,
+} from '@angular/core';
+import {
+  RXAP_O_AUTH_REDIRECT_SIGN_IN,
+  RXAP_O_AUTH_REDIRECT_SIGN_OUT,
+} from './tokens';
 
 export interface OAuthModuleOptions {
-  signInPath?: string[]
-  signOutPath?: string[]
+  signInPath?: string[];
+  signOutPath?: string[];
 }
 
 @NgModule({})

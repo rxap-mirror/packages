@@ -1,6 +1,13 @@
-import { Inject, Injectable, NgModule } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  NgModule,
+} from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { startWith, tap } from 'rxjs/operators';
+import {
+  startWith,
+  tap,
+} from 'rxjs/operators';
 import { interval } from 'rxjs';
 import { LifeCycleService } from '@rxap/life-cycle';
 

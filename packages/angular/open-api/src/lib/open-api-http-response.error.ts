@@ -1,5 +1,5 @@
-import {HttpErrorResponse} from '@angular/common/http';
-import {OpenApiMetaData} from './open-api.meta-data';
+import { HttpErrorResponse } from '@angular/common/http';
+import { OpenApiMetaData } from './open-api.meta-data';
 
 export class OpenApiHttpResponseError extends Error {
 

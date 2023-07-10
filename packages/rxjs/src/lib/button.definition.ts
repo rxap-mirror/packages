@@ -1,5 +1,10 @@
-import {Subject} from 'rxjs';
-import {Action, FunctionOrConstant, IconConfig, ThemePalette} from '@rxap/utilities';
+import { Subject } from 'rxjs';
+import {
+  Action,
+  FunctionOrConstant,
+  IconConfig,
+  ThemePalette,
+} from '@rxap/utilities';
 
 /**
  * @deprecated removed

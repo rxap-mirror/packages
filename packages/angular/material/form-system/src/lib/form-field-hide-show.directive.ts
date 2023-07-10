@@ -1,7 +1,24 @@
-import {AfterContentInit, Directive, ElementRef, Inject, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {MAT_FORM_FIELD, MatFormField} from '@angular/material/form-field';
-import {of, Subscription} from 'rxjs';
-import {FormDefinition, RxapFormControl} from '@rxap/forms';
+import {
+  AfterContentInit,
+  Directive,
+  ElementRef,
+  Inject,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
+import {
+  MAT_FORM_FIELD,
+  MatFormField,
+} from '@angular/material/form-field';
+import {
+  of,
+  Subscription,
+} from 'rxjs';
+import {
+  FormDefinition,
+  RxapFormControl,
+} from '@rxap/forms';
 import {
   ControlHideShowFunction,
   ControlHideShowOptions,
@@ -10,9 +27,13 @@ import {
   RXAP_FORM_SYSTEM_HIDE_SHOW_OPTIONS,
   RXAP_FORM_SYSTEM_SHOW_METADATA,
 } from '@rxap/form-system';
-import {Mixin} from '@rxap/mixin';
-import {catchError, startWith, tap} from 'rxjs/operators';
-import {getMetadata} from '@rxap/reflect-metadata';
+import { Mixin } from '@rxap/mixin';
+import {
+  catchError,
+  startWith,
+  tap,
+} from 'rxjs/operators';
+import { getMetadata } from '@rxap/reflect-metadata';
 
 export class ExtractHideShowMixin {
 

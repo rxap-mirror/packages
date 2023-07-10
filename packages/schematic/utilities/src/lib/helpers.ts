@@ -1,4 +1,4 @@
-import {hasProperty} from './has-property';
+import { hasProperty } from './has-property';
 
 export type ThemePalette = 'primary' | 'accent' | 'warn' | undefined;
 

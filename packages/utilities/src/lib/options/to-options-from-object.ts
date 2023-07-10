@@ -1,4 +1,4 @@
-import {ControlOptions} from '../helpers';
+import { ControlOptions } from '../helpers';
 
 export function ToOptionsFromObject<Value, Property>(
   source: Record<string, Property>,

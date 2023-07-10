@@ -2,8 +2,8 @@ import {
   Pipe,
   PipeTransform,
 } from '@angular/core';
-import {Observable} from 'rxjs';
-import {ReplaceRouterPathsService} from './replace-router-paths.service';
+import { Observable } from 'rxjs';
+import { ReplaceRouterPathsService } from './replace-router-paths.service';
 
 @Pipe({
   name: 'replaceRouterPaths',

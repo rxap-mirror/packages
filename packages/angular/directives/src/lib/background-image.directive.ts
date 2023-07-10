@@ -9,7 +9,7 @@ import {
   Renderer2,
   SimpleChanges,
 } from '@angular/core';
-import {ImageLoaderService} from '@rxap/services';
+import { ImageLoaderService } from '@rxap/services';
 
 export enum GlobalStyleOptions {
   INITIAL = 'initial',

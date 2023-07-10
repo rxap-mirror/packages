@@ -1,6 +1,15 @@
-import {Directive, forwardRef, Input} from '@angular/core';
-import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from '@angular/forms';
-import {Required} from '@rxap/utilities';
+import {
+  Directive,
+  forwardRef,
+  Input,
+} from '@angular/core';
+import {
+  AbstractControl,
+  NG_VALIDATORS,
+  ValidationErrors,
+  Validator,
+} from '@angular/forms';
+import { Required } from '@rxap/utilities';
 
 @Directive({
   selector: '[rxapIsEqualTo]',

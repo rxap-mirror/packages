@@ -2,8 +2,8 @@ import {
   of,
   Subject,
 } from 'rxjs';
-import {Validators} from '@angular/forms';
-import {RxapFormControl} from './form-control';
+import { Validators } from '@angular/forms';
+import { RxapFormControl } from './form-control';
 
 describe('@rxap/forms', () => {
 
@@ -12,7 +12,7 @@ describe('@rxap/forms', () => {
     let control: RxapFormControl;
 
     beforeEach(() => {
-      control = new RxapFormControl(null, {controlId: 'test'});
+      control = new RxapFormControl(null, { controlId: 'test' });
     });
 
     it('should valueChanges$', () => {

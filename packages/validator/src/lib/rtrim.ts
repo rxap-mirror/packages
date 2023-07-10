@@ -1,4 +1,4 @@
-import {assertString} from './util/assertString';
+import { assertString } from './util/assertString';
 
 export function rtrim(str: unknown, chars: string) {
   assertString(str);

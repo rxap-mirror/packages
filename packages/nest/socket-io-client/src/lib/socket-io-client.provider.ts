@@ -1,7 +1,17 @@
-import {Inject, Injectable, Logger} from '@nestjs/common';
-import {ConfigService} from '@nestjs/config';
-import {BehaviorSubject, Subject} from 'rxjs';
-import {io, Socket} from 'socket.io-client';
+import {
+  Inject,
+  Injectable,
+  Logger,
+} from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import {
+  BehaviorSubject,
+  Subject,
+} from 'rxjs';
+import {
+  io,
+  Socket,
+} from 'socket.io-client';
 
 export enum DisconnectReason {
   /**

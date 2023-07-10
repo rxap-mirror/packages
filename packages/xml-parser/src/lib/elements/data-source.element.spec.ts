@@ -1,5 +1,5 @@
-import {DataSourceElement} from './data-source.element';
-import {TestingXmlParserService} from '../testing/testing-xml-parser-service';
+import { DataSourceElement } from './data-source.element';
+import { TestingXmlParserService } from '../testing/testing-xml-parser-service';
 
 describe('@rxap/xml-parser', () => {
 

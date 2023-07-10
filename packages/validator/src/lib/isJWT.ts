@@ -1,5 +1,5 @@
-import {assertString} from './util/assertString';
-import {isBase64} from './isBase64';
+import { assertString } from './util/assertString';
+import { isBase64 } from './isBase64';
 
 export function isJWT(str: unknown) {
   assertString(str);

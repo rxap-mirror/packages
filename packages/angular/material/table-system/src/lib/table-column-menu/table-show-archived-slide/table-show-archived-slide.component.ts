@@ -1,22 +1,22 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
 } from '@angular/core';
 import {
   MatSlideToggleChange,
   MatSlideToggleModule,
 } from '@angular/material/slide-toggle';
-import {TableFilterService} from '../../table-filter/table-filter.service';
-import {TableColumnMenuComponent} from '../table-column-menu.component';
-import {StopPropagationDirective} from '@rxap/directives';
+import { TableFilterService } from '../../table-filter/table-filter.service';
+import { TableColumnMenuComponent } from '../table-column-menu.component';
+import { StopPropagationDirective } from '@rxap/directives';
 
 @Component({
   selector: 'rxap-table-show-archived-slide',
   templateUrl: './table-show-archived-slide.component.html',
-  styleUrls: ['./table-show-archived-slide.component.scss'],
+  styleUrls: [ './table-show-archived-slide.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [StopPropagationDirective, MatSlideToggleModule],
+  imports: [ StopPropagationDirective, MatSlideToggleModule ],
 })
 export class TableShowArchivedSlideComponent {
 

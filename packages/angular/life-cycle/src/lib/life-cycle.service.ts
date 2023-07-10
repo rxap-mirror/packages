@@ -1,7 +1,21 @@
-import {ApplicationRef, Inject, Injectable} from '@angular/core';
-import {filter, switchMap, take, tap} from 'rxjs/operators';
-import {BehaviorSubject, isObservable, Observable, of} from 'rxjs';
-import {isPromiseLike} from '@rxap/utilities';
+import {
+  ApplicationRef,
+  Inject,
+  Injectable,
+} from '@angular/core';
+import {
+  filter,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  isObservable,
+  Observable,
+  of,
+} from 'rxjs';
+import { isPromiseLike } from '@rxap/utilities';
 
 export interface LifeCycleHook {
   promise: PromiseLike<any>;

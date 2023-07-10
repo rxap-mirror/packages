@@ -1,13 +1,16 @@
 import * as Handlebars from 'handlebars';
-import {ExecutorContext, readJsonFile} from '@nx/devkit';
+import {
+  ExecutorContext,
+  readJsonFile,
+} from '@nx/devkit';
 import {
   GetProjectRoot,
   readFileFromProjectRoot,
   readPackageJsonForProject,
   writeFileToProjectRoot,
 } from '@rxap/plugin-utilities';
-import {join} from 'path';
-import {ReadmeExecutorSchema} from './schema';
+import { join } from 'path';
+import { ReadmeExecutorSchema } from './schema';
 
 function readGetStartedFile(context: ExecutorContext): string {
   // TODO : support GET_STARTED.md but with an fallback to GETSTARTED.md

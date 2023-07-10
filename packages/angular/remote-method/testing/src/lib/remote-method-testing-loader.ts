@@ -1,5 +1,14 @@
-import {BaseRemoteMethod, BaseRemoteMethodMetadata, RemoteMethodLoader} from '@rxap/remote-method';
-import {AbstractType, InjectionToken, Provider, Type} from '@angular/core';
+import {
+  BaseRemoteMethod,
+  BaseRemoteMethodMetadata,
+  RemoteMethodLoader,
+} from '@rxap/remote-method';
+import {
+  AbstractType,
+  InjectionToken,
+  Provider,
+  Type,
+} from '@angular/core';
 
 export type MockRemoteMethod = (parameters?: any, metadata?: any) => any;
 

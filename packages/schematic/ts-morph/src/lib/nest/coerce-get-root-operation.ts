@@ -1,13 +1,24 @@
-import {CoerceOperation, CoerceOperationOptions} from './coerce-operation';
-import {CoerceDtoClass} from './coerce-dto-class';
-import {classify, CoerceSuffix} from '@rxap/schematics-utilities';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {SchematicsException} from '@angular-devkit/schematics';
+import {
+  CoerceOperation,
+  CoerceOperationOptions,
+} from './coerce-operation';
+import { CoerceDtoClass } from './coerce-dto-class';
+import {
+  classify,
+  CoerceSuffix,
+} from '@rxap/schematics-utilities';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { SchematicsException } from '@angular-devkit/schematics';
 
 export type CoerceGetRootOperationOptions = Omit<CoerceOperationOptions, 'operationName'>
 
 export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationOptions>) {
-  let {tsMorphTransform, name, controllerName, nestController} = options;
+  let {
+    tsMorphTransform,
+    name,
+    controllerName,
+    nestController,
+  } = options;
   tsMorphTransform ??= () => ({});
   controllerName ??= nestController;
   controllerName ??= name;

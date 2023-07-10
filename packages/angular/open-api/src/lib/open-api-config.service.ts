@@ -1,12 +1,19 @@
-import {Inject, Injectable, Optional} from '@angular/core';
-import {OperationObjectWithMetadata} from './open-api';
-import {RXAP_OPEN_API_CONFIG} from './tokens';
-import {OpenAPI, OpenAPIV3} from 'openapi-types';
-import {AssertOpenApiV3} from './utilities';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
+import { OperationObjectWithMetadata } from './open-api';
+import { RXAP_OPEN_API_CONFIG } from './tokens';
+import {
+  OpenAPI,
+  OpenAPIV3,
+} from 'openapi-types';
+import { AssertOpenApiV3 } from './utilities';
 
 export type OperationMap = Map<string, OperationObjectWithMetadata>;
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class OpenApiConfigService {
   public static Config: OpenAPIV3.Document | null = null;
 

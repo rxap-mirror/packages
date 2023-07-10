@@ -1,5 +1,13 @@
-import {Directive, HostBinding, HostListener, Inject} from '@angular/core';
-import {MAT_FORM_FIELD, MatFormField} from '@angular/material/form-field';
+import {
+  Directive,
+  HostBinding,
+  HostListener,
+  Inject,
+} from '@angular/core';
+import {
+  MAT_FORM_FIELD,
+  MatFormField,
+} from '@angular/material/form-field';
 
 @Directive({
   selector: '[rxapInputClearButton]',

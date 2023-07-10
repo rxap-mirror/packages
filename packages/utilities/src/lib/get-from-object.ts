@@ -1,4 +1,4 @@
-import {hasIndexSignature} from './has-index-signature';
+import { hasIndexSignature } from './has-index-signature';
 
 export function getFromObject<T, D = undefined>(obj: object, path: string, defaultValue?: D): T | D {
 

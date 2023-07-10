@@ -1,9 +1,9 @@
-import {AssetPattern} from './asset-pattern';
-import {Budget} from './budget';
-import {ExtraEntryPoint} from './extra-entry-point';
-import {FileReplacement} from './file-replacement';
-import {Localize} from './localize';
-import {MissingTranslation} from './missing-translation';
+import { AssetPattern } from './asset-pattern';
+import { Budget } from './budget';
+import { ExtraEntryPoint } from './extra-entry-point';
+import { FileReplacement } from './file-replacement';
+import { Localize } from './localize';
+import { MissingTranslation } from './missing-translation';
 
 export type Browser = {
   /** List of static application assets. */

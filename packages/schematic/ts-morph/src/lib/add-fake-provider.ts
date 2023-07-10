@@ -1,10 +1,10 @@
-import {ProviderObject} from './provider-object';
-import {GetArrayDeclaration} from './get-array-declaration';
-import {AssertArrayLiteralExpression} from './is-array-literal-expression';
-import {SourceFile} from 'ts-morph';
-import {CoerceVariableDeclaration} from './coerce-variable-declaration';
-import {AddProviderToArray} from './add-provider-to-array';
-import {CoerceImports} from './ts-morph/index';
+import { ProviderObject } from './provider-object';
+import { GetArrayDeclaration } from './get-array-declaration';
+import { AssertArrayLiteralExpression } from './is-array-literal-expression';
+import { SourceFile } from 'ts-morph';
+import { CoerceVariableDeclaration } from './coerce-variable-declaration';
+import { AddProviderToArray } from './add-provider-to-array';
+import { CoerceImports } from './ts-morph/index';
 
 export function AddFakeProvider(
   sourceFile: SourceFile,

@@ -1,12 +1,39 @@
-import {Directive, ElementRef, Inject, Input, OnDestroy, OnInit, Optional, Renderer2, Self} from '@angular/core';
-import {AbstractControl, FormDefinition, RxapFormControl} from '@rxap/forms';
-import {ControlContainer, NgControl} from '@angular/forms';
-import {Mixin} from '@rxap/mixin';
-import {of, Subscription} from 'rxjs';
-import {catchError, startWith, tap} from 'rxjs/operators';
-import {ExtractControlFromParentMixin} from '../mixins/extract-control-from-parent.mixin';
-import {ExtractFormDefinitionMixin} from '../mixins/extract-form-definition.mixin';
-import {getMetadata, setMetadataMap} from '@rxap/reflect-metadata';
+import {
+  Directive,
+  ElementRef,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Renderer2,
+  Self,
+} from '@angular/core';
+import {
+  AbstractControl,
+  FormDefinition,
+  RxapFormControl,
+} from '@rxap/forms';
+import {
+  ControlContainer,
+  NgControl,
+} from '@angular/forms';
+import { Mixin } from '@rxap/mixin';
+import {
+  of,
+  Subscription,
+} from 'rxjs';
+import {
+  catchError,
+  startWith,
+  tap,
+} from 'rxjs/operators';
+import { ExtractControlFromParentMixin } from '../mixins/extract-control-from-parent.mixin';
+import { ExtractFormDefinitionMixin } from '../mixins/extract-form-definition.mixin';
+import {
+  getMetadata,
+  setMetadataMap,
+} from '@rxap/reflect-metadata';
 
 export const RXAP_FORM_SYSTEM_SHOW_METADATA = 'rxap/form-system/show-function';
 export const RXAP_FORM_SYSTEM_HIDE_METADATA = 'rxap/form-system/hide-function';

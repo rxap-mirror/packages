@@ -1,27 +1,27 @@
 import {
-  FormDirective,
   FormDefinition,
+  FormDirective,
 } from '@rxap/forms';
 import {
   ChangeDetectorRef,
   Directive,
   forwardRef,
   Inject,
+  Input,
   OnDestroy,
   OnInit,
   Optional,
-  Input,
 } from '@angular/core';
-import {TableFilterService} from './table-filter.service';
-import {Subscription} from 'rxjs';
+import { TableFilterService } from './table-filter.service';
+import { Subscription } from 'rxjs';
 import {
   debounceTime,
   distinctUntilChanged,
   tap,
 } from 'rxjs/operators';
-import {RXAP_TABLE_FILTER_FORM_DEFINITION} from './tokens';
-import {ControlContainer} from '@angular/forms';
-import {equals} from '@rxap/utilities';
+import { RXAP_TABLE_FILTER_FORM_DEFINITION } from './tokens';
+import { ControlContainer } from '@angular/forms';
+import { equals } from '@rxap/utilities';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector

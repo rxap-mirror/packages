@@ -1,11 +1,20 @@
-import {PersistentExpansionPanelDirective} from './persistent-expansion-panel.directive';
-import {MatExpansionModule, MatExpansionPanel} from '@angular/material/expansion';
-import {Subject} from 'rxjs';
-import {LOCAL_STORAGE_SERVICE_FAKE_PROVIDER, LocalStorageServiceFake} from '@rxap/services/testing';
-import {Component} from '@angular/core';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {By} from '@angular/platform-browser';
+import { PersistentExpansionPanelDirective } from './persistent-expansion-panel.directive';
+import {
+  MatExpansionModule,
+  MatExpansionPanel,
+} from '@angular/material/expansion';
+import { Subject } from 'rxjs';
+import {
+  LOCAL_STORAGE_SERVICE_FAKE_PROVIDER,
+  LocalStorageServiceFake,
+} from '@rxap/services/testing';
+import { Component } from '@angular/core';
+import {
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { By } from '@angular/platform-browser';
 
 describe('@rxap/directives/material/expansion', () => {
 

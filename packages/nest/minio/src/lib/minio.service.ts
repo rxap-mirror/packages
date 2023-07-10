@@ -1,6 +1,14 @@
-import {Inject, Injectable, OnApplicationBootstrap} from '@nestjs/common';
-import {Client, ClientOptions, CopyConditions} from 'minio';
-import {MODULE_OPTIONS_TOKEN} from './configurable-module-builder';
+import {
+  Inject,
+  Injectable,
+  OnApplicationBootstrap,
+} from '@nestjs/common';
+import {
+  Client,
+  ClientOptions,
+  CopyConditions,
+} from 'minio';
+import { MODULE_OPTIONS_TOKEN } from './configurable-module-builder';
 
 @Injectable()
 export class MinioService implements OnApplicationBootstrap {

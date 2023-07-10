@@ -7,7 +7,7 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import {Method} from '@rxap/pattern';
+import { Method } from '@rxap/pattern';
 
 export interface IfTruthyDirectiveTemplateContext<Data> {
   $implicit: Data;

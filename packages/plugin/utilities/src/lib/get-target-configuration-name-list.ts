@@ -1,4 +1,7 @@
-import { ProjectConfiguration, TargetConfiguration } from "@nx/devkit";
+import {
+  ProjectConfiguration,
+  TargetConfiguration,
+} from '@nx/devkit';
 
 export function GetTargetConfigurationNameList(projectConfiguration: ProjectConfiguration, targetName: string): string[] {
   const configurationNameList: string[] = [];

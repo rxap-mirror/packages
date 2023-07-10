@@ -6,14 +6,30 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import {Inject, Injectable, InjectionToken, Provider} from '@angular/core';
-import {Observable, throwError} from 'rxjs';
-import {coerceArray} from '@rxap/utilities';
-import {catchError, switchMap, tap} from 'rxjs/operators';
-import {isDefined} from '@rxap/rxjs';
-import {Auth, idToken} from '@angular/fire/auth';
+import {
+  Inject,
+  Injectable,
+  InjectionToken,
+  Provider,
+} from '@angular/core';
+import {
+  Observable,
+  throwError,
+} from 'rxjs';
+import { coerceArray } from '@rxap/utilities';
+import {
+  catchError,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
+import { isDefined } from '@rxap/rxjs';
+import {
+  Auth,
+  idToken,
+} from '@angular/fire/auth';
 
-export const IDENTITY_PLATFORM_HTTP_INTERCEPTOR_URL_PATTERN = new InjectionToken<RegExp>('identity-platform-http-interceptor-url-pattern');
+export const IDENTITY_PLATFORM_HTTP_INTERCEPTOR_URL_PATTERN = new InjectionToken<RegExp>(
+  'identity-platform-http-interceptor-url-pattern');
 
 
 @Injectable()

@@ -1,9 +1,25 @@
-import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from '@angular/forms';
-import {Directive, forwardRef, Inject, INJECTOR, Injector, Input, isDevMode} from '@angular/core';
-import {BaseDataSourceViewer, DataSourceLoader} from '@rxap/data-source';
-import {Mixin} from '@rxap/mixin';
-import {ControlOptions} from '@rxap/utilities';
-import {ExtractOptionsDataSourceMixin} from '../mixins/extract-options-data-source.mixin';
+import {
+  AbstractControl,
+  NG_VALIDATORS,
+  ValidationErrors,
+  Validator,
+} from '@angular/forms';
+import {
+  Directive,
+  forwardRef,
+  Inject,
+  INJECTOR,
+  Injector,
+  Input,
+  isDevMode,
+} from '@angular/core';
+import {
+  BaseDataSourceViewer,
+  DataSourceLoader,
+} from '@rxap/data-source';
+import { Mixin } from '@rxap/mixin';
+import { ControlOptions } from '@rxap/utilities';
+import { ExtractOptionsDataSourceMixin } from '../mixins/extract-options-data-source.mixin';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IsSelectableValueDirective extends ExtractOptionsDataSourceMixin {

@@ -1,7 +1,19 @@
-import {ElementChildTextContent, ElementDef, ElementRequired, ParsedElement} from '@rxap/xml-parser';
-import {noop, Rule} from '@angular-devkit/schematics';
-import {SourceFile} from 'ts-morph';
-import {AddNgModuleImport, HandleComponentModule, ToValueContext} from '@rxap/schematics-ts-morph';
+import {
+  ElementChildTextContent,
+  ElementDef,
+  ElementRequired,
+  ParsedElement,
+} from '@rxap/xml-parser';
+import {
+  noop,
+  Rule,
+} from '@angular-devkit/schematics';
+import { SourceFile } from 'ts-morph';
+import {
+  AddNgModuleImport,
+  HandleComponentModule,
+  ToValueContext,
+} from '@rxap/schematics-ts-morph';
 
 @ElementDef('module')
 export class ModuleElement implements ParsedElement<Rule>, HandleComponentModule {

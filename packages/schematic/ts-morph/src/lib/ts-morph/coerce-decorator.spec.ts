@@ -1,12 +1,15 @@
-import {DecoratableNode, Project} from 'ts-morph';
-import {CoerceDecorator} from './coerce-decorator';
+import {
+  DecoratableNode,
+  Project,
+} from 'ts-morph';
+import { CoerceDecorator } from './coerce-decorator';
 
 describe('CoerceDecorator', () => {
 
   let decoratableNode: DecoratableNode;
 
   beforeEach(() => {
-    const project = new Project({useInMemoryFileSystem: true});
+    const project = new Project({ useInMemoryFileSystem: true });
     const sourceFile = project.createSourceFile('test.ts', `export class MyClass {}`);
     decoratableNode = sourceFile.getClassOrThrow('MyClass');
   });

@@ -1,6 +1,6 @@
-import {toBoolean} from './operators/to-boolean';
-import {Observable} from 'rxjs';
-import {CounterSubject} from './counter.subject';
+import { toBoolean } from './operators/to-boolean';
+import { Observable } from 'rxjs';
+import { CounterSubject } from './counter.subject';
 
 export class RequestInProgressSubject extends CounterSubject {
 

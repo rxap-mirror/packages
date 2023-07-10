@@ -1,7 +1,13 @@
-import {Directive, Inject, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {WindowRef} from './window-ref';
-import {RXAP_WINDOW_REF} from './tokens';
-import {TemplatePortal} from '@angular/cdk/portal';
+import {
+  Directive,
+  Inject,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
+import { WindowRef } from './window-ref';
+import { RXAP_WINDOW_REF } from './tokens';
+import { TemplatePortal } from '@angular/cdk/portal';
 
 export interface WindowTitleTemplateContext {
   $implicit: WindowRef;

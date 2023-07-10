@@ -1,4 +1,8 @@
-import {OptionalKind, ParameterDeclarationStructure, ParameteredNode} from 'ts-morph';
+import {
+  OptionalKind,
+  ParameterDeclarationStructure,
+  ParameteredNode,
+} from 'ts-morph';
 
 export function CoerceParameterDeclaration(
   node: ParameteredNode,

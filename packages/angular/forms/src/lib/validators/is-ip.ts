@@ -2,7 +2,7 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
-import {isIP} from '@rxap/validator';
+import { isIP } from '@rxap/validator';
 
 export function IsIP({message, version}: { message?: string, version?: string | number } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {

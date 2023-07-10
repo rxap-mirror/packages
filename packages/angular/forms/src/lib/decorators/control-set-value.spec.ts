@@ -1,20 +1,20 @@
-import {RxapForm} from './form';
-import {RxapFormControl} from '../form-control';
-import {UseFormControl} from './use-form-control';
-import {RxapFormGroup} from '../form-group';
-import {FormDefinition, FormType} from '../model';
-import {ControlSetValue} from './control-set-value';
+import { RxapForm } from './form';
+import { RxapFormControl } from '../form-control';
+import { UseFormControl } from './use-form-control';
+import { RxapFormGroup } from '../form-group';
+import { FormType } from '../model';
+import { ControlSetValue } from './control-set-value';
 import {
-  Provider,
   Injector,
   INJECTOR,
+  Provider,
 } from '@angular/core';
 import {
-  RXAP_FORM_DEFINITION_BUILDER,
   RXAP_FORM_DEFINITION,
+  RXAP_FORM_DEFINITION_BUILDER,
 } from '../directives/tokens';
-import {TestBed} from '@angular/core/testing';
-import {RxapFormBuilder} from '../form-builder';
+import { TestBed } from '@angular/core/testing';
+import { RxapFormBuilder } from '../form-builder';
 
 describe('@rxap/forms', () => {
 
@@ -23,7 +23,7 @@ describe('@rxap/forms', () => {
     describe('@ControlSetValue', () => {
 
       interface ITestForm {
-        username: string
+        username: string;
       }
 
       @RxapForm('test')

@@ -1,7 +1,14 @@
-import {fakeAsync, TestBed, tick} from '@angular/core/testing';
-import {ApplicationRef} from '@angular/core';
-import {of, Subject} from 'rxjs';
-import {LifeCycleService} from './life-cycle.service';
+import {
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import { ApplicationRef } from '@angular/core';
+import {
+  of,
+  Subject,
+} from 'rxjs';
+import { LifeCycleService } from './life-cycle.service';
 
 describe('LifeCycle', () => {
 

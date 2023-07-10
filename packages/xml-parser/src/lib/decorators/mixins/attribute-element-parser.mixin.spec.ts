@@ -1,4 +1,4 @@
-import {AttributeElementParserMixin} from './attribute-element-parser.mixin';
+import { AttributeElementParserMixin } from './attribute-element-parser.mixin';
 
 describe('@rxap/xml-parser', () => {
 

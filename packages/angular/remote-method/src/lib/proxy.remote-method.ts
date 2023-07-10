@@ -1,6 +1,17 @@
-import {Inject, Injectable, INJECTOR, Injector} from '@angular/core';
-import {BaseRemoteMethod, BaseRemoteMethodMetadata} from './base.remote-method';
-import {REMOTE_METHOD_META_DATA, RXAP_PROXY_REMOTE_METHOD_TARGET} from './tokens';
+import {
+  Inject,
+  Injectable,
+  INJECTOR,
+  Injector,
+} from '@angular/core';
+import {
+  BaseRemoteMethod,
+  BaseRemoteMethodMetadata,
+} from './base.remote-method';
+import {
+  REMOTE_METHOD_META_DATA,
+  RXAP_PROXY_REMOTE_METHOD_TARGET,
+} from './tokens';
 
 @Injectable()
 export abstract class ProxyRemoteMethod<ReturnType = any, SourceParameter = any, TargetParameter = SourceParameter>

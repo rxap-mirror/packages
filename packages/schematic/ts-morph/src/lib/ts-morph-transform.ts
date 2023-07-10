@@ -1,11 +1,19 @@
-import {chain, Rule} from '@angular-devkit/schematics';
-import {IndentationText, Project, ProjectOptions, QuoteKind} from 'ts-morph';
-import {deepMerge} from '@rxap/schematics-utilities';
-import {CoerceNestServiceProject} from './nest/coerce-nest-service-project';
-import {BuildAngularBasePath} from './angular/build-angular-base-path';
-import {BuildNestBasePath} from './nest/build-nest-base-path';
-import {ApplyTsMorphProject} from './ts-morph/apply-ts-morph-project';
-import {AddDir} from './add-dir';
+import {
+  chain,
+  Rule,
+} from '@angular-devkit/schematics';
+import {
+  IndentationText,
+  Project,
+  ProjectOptions,
+  QuoteKind,
+} from 'ts-morph';
+import { deepMerge } from '@rxap/schematics-utilities';
+import { CoerceNestServiceProject } from './nest/coerce-nest-service-project';
+import { BuildAngularBasePath } from './angular/build-angular-base-path';
+import { BuildNestBasePath } from './nest/build-nest-base-path';
+import { ApplyTsMorphProject } from './ts-morph/apply-ts-morph-project';
+import { AddDir } from './add-dir';
 
 export function TsMorphTransform(
   sourceRoot: string,

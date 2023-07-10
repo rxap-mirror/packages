@@ -1,5 +1,8 @@
-import {AbstractControl, FormDefinition} from '@rxap/forms';
-import {RxapFormSystemError} from '../error';
+import {
+  AbstractControl,
+  FormDefinition,
+} from '@rxap/forms';
+import { RxapFormSystemError } from '../error';
 
 export class ExtractFormDefinitionMixin {
 

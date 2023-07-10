@@ -1,19 +1,19 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   Inject,
 } from '@angular/core';
-import {ResetService} from '@rxap/services';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
+import { ResetService } from '@rxap/services';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'rxap-reset-button',
   templateUrl: './reset-button.component.html',
-  styleUrls: ['./reset-button.component.scss'],
+  styleUrls: [ './reset-button.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MatButtonModule, MatIconModule],
+  imports: [ MatButtonModule, MatIconModule ],
 })
 export class ResetButtonComponent {
   constructor(

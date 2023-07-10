@@ -1,10 +1,10 @@
 import {
   Directive,
-  HostListener,
   EventEmitter,
+  HostListener,
   Output,
 } from '@angular/core';
-import {RxapAuthenticationService} from './authentication.service';
+import { RxapAuthenticationService } from './authentication.service';
 
 @Directive({
   selector: '[rxapSignOut]',
