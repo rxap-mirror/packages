@@ -15,17 +15,20 @@ export async function indexExportGenerator(tree: Tree, options: IndexExportGener
 
   let filePathList: string[] = [];
 
-  for (const { path, isFile } of VisitTree(tree, libRoot)) {
+  for (const {
+    path,
+    isFile
+  } of VisitTree(tree, libRoot)) {
     if (isFile &&
-        path.endsWith('.ts') &&
-        !path.endsWith('.spec.ts') &&
-        !path.endsWith('.stories.ts') &&
-        !path.endsWith('.d.ts')) {
+      path.endsWith('.ts') &&
+      !path.endsWith('.spec.ts') &&
+      !path.endsWith('.stories.ts') &&
+      !path.endsWith('.d.ts')) {
       filePathList.push(path);
     }
   }
 
-  filePathList = filePathList.map(path => path.replace(new RegExp(`^${libRoot}/`), ''));
+  filePathList = filePathList.map(path => path.replace(new RegExp(`^${ libRoot }/`), ''));
 
   const map = new Map<string, string[]>();
 

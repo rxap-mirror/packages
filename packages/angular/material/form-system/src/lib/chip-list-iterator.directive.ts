@@ -56,33 +56,33 @@ export class ChipListIteratorDirective implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this._subscription = this.ngControl.valueChanges
-      ?.pipe(
-        startWith(this.ngControl.value),
-        filter((value) => Array.isArray(value)),
-        tap((items) => {
-          this._dirty = false;
-          // React on ngForOf changes only once all inputs have been initialized
-          const value = items;
-          if (!this._differ && value) {
-            try {
-              this._differ = this.differs.find(value).create((_, item) => item);
-            } catch {
-              throw new Error(
-                `Cannot find a differ supporting object '${value}' of type '${getTypeName(
-                  value,
-                )}'. NgFor only supports binding to Iterables such as Arrays.`,
-              );
-            }
-          }
-          if (this._differ) {
-            const changes = this._differ.diff(items);
-            if (changes) {
-              this.applyChanges(changes);
-            }
-          }
-        }),
-      )
-      .subscribe();
+                             ?.pipe(
+                               startWith(this.ngControl.value),
+                               filter((value) => Array.isArray(value)),
+                               tap((items) => {
+                                 this._dirty = false;
+                                 // React on ngForOf changes only once all inputs have been initialized
+                                 const value = items;
+                                 if (!this._differ && value) {
+                                   try {
+                                     this._differ = this.differs.find(value).create((_, item) => item);
+                                   } catch {
+                                     throw new Error(
+                                       `Cannot find a differ supporting object '${ value }' of type '${ getTypeName(
+                                         value,
+                                       ) }'. NgFor only supports binding to Iterables such as Arrays.`,
+                                     );
+                                   }
+                                 }
+                                 if (this._differ) {
+                                   const changes = this._differ.diff(items);
+                                   if (changes) {
+                                     this.applyChanges(changes);
+                                   }
+                                 }
+                               }),
+                             )
+                             .subscribe();
   }
 
   public ngOnDestroy() {
@@ -103,7 +103,10 @@ export class ChipListIteratorDirective implements OnInit, OnDestroy {
           // there is an iterable value for "_ngForOf".
           const view = this.viewContainerRef.createEmbeddedView(
             this.template,
-            {$implicit: item.item, onRemoved: this.onRemoved.bind(this)},
+            {
+              $implicit: item.item,
+              onRemoved: this.onRemoved.bind(this),
+            },
             currentIndex === null ? undefined : currentIndex,
           );
           const tuple = new RecordViewTuple(item, view);

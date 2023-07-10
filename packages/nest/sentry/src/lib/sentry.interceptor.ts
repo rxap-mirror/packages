@@ -78,7 +78,7 @@ export class SentryInterceptor implements NestInterceptor {
   }
 
   private captureHttpException(scope: Scope, http: HttpArgumentsHost, exception: unknown): void {
-    const data = addRequestDataToEvent({}, http.getRequest(), {include: this.options});
+    const data = addRequestDataToEvent({}, http.getRequest(), { include: this.options });
 
     scope.setExtra('req', data.request);
 
@@ -119,6 +119,9 @@ export class SentryInterceptor implements NestInterceptor {
     }
 
     return this.options.filters
-      .some(({type, filter}) => !(exception instanceof type && (!filter || filter(exception))));
+               .some(({
+                        type,
+                        filter,
+                      }) => !(exception instanceof type && (!filter || filter(exception))));
   }
 }

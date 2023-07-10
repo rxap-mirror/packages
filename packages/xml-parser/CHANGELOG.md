@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@15.0.0...@rxap/xml-parser@16.0.0-dev.0) (2023-05-18)
 
@@ -38,8 +37,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **decorator:** add
-  ElementChildrenTextContent ([cb26fa7](https://gitlab.com/rxap/packages/commit/cb26fa7c827e1beb58feb7e5d650f7c7ff19aadb))
+* **decorator:** addElementChildrenTextContent ([cb26fa7](https://gitlab.com/rxap/packages/commit/cb26fa7c827e1beb58feb7e5d650f7c7ff19aadb))
 
 ## [14.0.3](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@14.0.2...@rxap/xml-parser@14.0.3) (2022-12-14)
 
@@ -53,8 +51,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* replace package.json with
-  ng-package.json ([ebaaf92](https://gitlab.com/rxap/packages/commit/ebaaf92a403fd31a4aa538f698fda1e004c037bd))
+* replace package.json withng-package.json ([ebaaf92](https://gitlab.com/rxap/packages/commit/ebaaf92a403fd31a4aa538f698fda1e004c037bd))
 
 # [14.0.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@13.0.0...@rxap/xml-parser@14.0.0) (2022-09-16)
 
@@ -78,8 +75,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -91,15 +87,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* reduce log population in production
-  mode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
+* reduce log population in productionmode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
 
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@12.1.1...@rxap/xml-parser@13.0.0-next.0) (2022-02-19)
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -115,8 +109,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **element:** add nodeName
-  getter ([fa37af7](https://gitlab.com/rxap/packages/commit/fa37af788bc1e01a0bea852b82acba9588968390))
+* **element:** add nodeNamegetter ([fa37af7](https://gitlab.com/rxap/packages/commit/fa37af788bc1e01a0bea852b82acba9588968390))
 
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@12.1.0-next.1...@rxap/xml-parser@12.1.0) (2021-07-22)
 
@@ -130,22 +123,19 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* **element-record:** add propertyKey
-  attribute ([56e101e](https://gitlab.com/rxap/packages/commit/56e101e02d29ceb879bb4a8ee3372728eca0a317))
+* **element-record:** add propertyKeyattribute ([56e101e](https://gitlab.com/rxap/packages/commit/56e101e02d29ceb879bb4a8ee3372728eca0a317))
 
 # [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@12.0.10-next.0...@rxap/xml-parser@12.1.0-next.0) (2021-07-20)
 
 ### Features
 
-* **element-record:** add raw
-  option ([fb3ca9e](https://gitlab.com/rxap/packages/commit/fb3ca9e2bff7f0361f5f4f67d21225f9c3c75a68))
+* **element-record:** add rawoption ([fb3ca9e](https://gitlab.com/rxap/packages/commit/fb3ca9e2bff7f0361f5f4f67d21225f9c3c75a68))
 
 ## [12.0.10-next.0](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@12.0.9...@rxap/xml-parser@12.0.10-next.0) (2021-07-20)
 
 ### Bug Fixes
 
-* **element-child-text-content:** only fail required if property is not
-  defined ([def9653](https://gitlab.com/rxap/packages/commit/def9653b8c526f83e523672b75aed93950d6f3b5))
+* **element-child-text-content:** only fail required if property is notdefined ([def9653](https://gitlab.com/rxap/packages/commit/def9653b8c526f83e523672b75aed93950d6f3b5))
 
 ## [12.0.9](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@12.0.9-next.0...@rxap/xml-parser@12.0.9) (2021-07-09)
 
@@ -155,8 +145,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* split into rxjs and reflect-metadata sub
-  packages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
+* split into rxjs and reflect-metadata subpackages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
 
 ## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@12.0.8-next.0...@rxap/xml-parser@12.0.8) (2021-07-09)
 
@@ -206,17 +195,14 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* add custom validation
-  error ([dea141b](https://gitlab.com/rxap/packages/commit/dea141b479e3f8ec0c90debec559176a22924291))
+* add custom validationerror ([dea141b](https://gitlab.com/rxap/packages/commit/dea141b479e3f8ec0c90debec559176a22924291))
 
 ## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@11.1.1...@rxap/xml-parser@11.1.2) (2021-04-30)
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@11.1.0...@rxap/xml-parser@11.1.1) (2021-04-18)
 
@@ -226,8 +212,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* **XmlParserService:** add support for custom element cotr
-  params ([ccba34c](https://gitlab.com/rxap/packages/commit/ccba34cd39050038f0810f4b335e75591f3c1cd8))
+* **XmlParserService:** add support for custom element cotrparams ([ccba34c](https://gitlab.com/rxap/packages/commit/ccba34cd39050038f0810f4b335e75591f3c1cd8))
 
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@11.0.6...@rxap/xml-parser@11.0.7) (2021-03-19)
 
@@ -245,8 +230,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **AttributeElement:** set the attribute option key
-  optional ([394ccb6](https://gitlab.com/rxap/packages/commit/394ccb6bd9eec70a530955e3f3ef516e4d975738))
+* **AttributeElement:** set the attribute option keyoptional ([394ccb6](https://gitlab.com/rxap/packages/commit/394ccb6bd9eec70a530955e3f3ef516e4d975738))
 
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@11.0.3...@rxap/xml-parser@11.0.4) (2021-03-19)
 
@@ -275,32 +259,21 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **ElementFactory:** add support for required
-  get/set ([8152ac7](https://gitlab.com/rxap/packages/commit/8152ac7d9afc9fb6a62b9b8e825283f90e8557f3))
-* **ElementFactory:** use the tag
-  name ([46de68b](https://gitlab.com/rxap/packages/commit/46de68b38c99e2ba0a201eac77fc047abf8c9006))
-* add support for i18n
-  options ([969d6d7](https://gitlab.com/rxap/packages/commit/969d6d722eb81822d8a11a26566d8cfd1692628e))
-* add support for multi child
-  elements ([3349514](https://gitlab.com/rxap/packages/commit/33495143ebd6631a27a9d92e2892007f0aec1115))
-* add support for required
-  get/set ([81c2cd8](https://gitlab.com/rxap/packages/commit/81c2cd86c18711c96df309d85ad434b532e06dd5))
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* **ElementFactory:** add support for requiredget/set ([8152ac7](https://gitlab.com/rxap/packages/commit/8152ac7d9afc9fb6a62b9b8e825283f90e8557f3))
+* **ElementFactory:** use the tagname ([46de68b](https://gitlab.com/rxap/packages/commit/46de68b38c99e2ba0a201eac77fc047abf8c9006))
+* add support for i18noptions ([969d6d7](https://gitlab.com/rxap/packages/commit/969d6d722eb81822d8a11a26566d8cfd1692628e))
+* add support for multi childelements ([3349514](https://gitlab.com/rxap/packages/commit/33495143ebd6631a27a9d92e2892007f0aec1115))
+* add support for requiredget/set ([81c2cd8](https://gitlab.com/rxap/packages/commit/81c2cd86c18711c96df309d85ad434b532e06dd5))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
 * extract raw node content ([85d9beb](https://gitlab.com/rxap/packages/commit/85d9bebf8a1cca1b1b427edbfb82faeaedf9d321))
-* prevent child reorder on extend child
-  types ([6ad8eff](https://gitlab.com/rxap/packages/commit/6ad8effd8f99df3a53219a1cd70b7334485d659f))
-* text content parsing
-  issue ([370d953](https://gitlab.com/rxap/packages/commit/370d9537c2f0b37375f65022dbe9f38a1a295e99))
-* use default value if child text content is
-  undefined ([46577ec](https://gitlab.com/rxap/packages/commit/46577ecd35cfd39e5934e36b7a74198109b4ad74))
+* prevent child reorder on extend childtypes ([6ad8eff](https://gitlab.com/rxap/packages/commit/6ad8effd8f99df3a53219a1cd70b7334485d659f))
+* text content parsingissue ([370d953](https://gitlab.com/rxap/packages/commit/370d9537c2f0b37375f65022dbe9f38a1a295e99))
+* use default value if child text content isundefined ([46577ec](https://gitlab.com/rxap/packages/commit/46577ecd35cfd39e5934e36b7a74198109b4ad74))
 
 ### Features
 
-* add
-  ElementChildRawContent ([3519be4](https://gitlab.com/rxap/packages/commit/3519be4ef1510061cfd3e3b9cf929a4317198a4d))
+* addElementChildRawContent ([3519be4](https://gitlab.com/rxap/packages/commit/3519be4ef1510061cfd3e3b9cf929a4317198a4d))
 * add xml parser hooks ([c1d463c](https://gitlab.com/rxap/packages/commit/c1d463ce2cfc58610d0f1a6031f268be65f80ac5))
 * ElementRecord ([04e4909](https://gitlab.com/rxap/packages/commit/04e4909f19e9e7f8ffa699990e5326bbcc61c5d0))
-* remove angular
-  dependency ([4023ab1](https://gitlab.com/rxap/packages/commit/4023ab1bf90edf87e8c67781564e5d701b602403))
+* remove angulardependency ([4023ab1](https://gitlab.com/rxap/packages/commit/4023ab1bf90edf87e8c67781564e5d701b602403))
 * update parser concept ([9ab34b9](https://gitlab.com/rxap/packages/commit/9ab34b9e51a9228fda786f917a460c08141d9915))

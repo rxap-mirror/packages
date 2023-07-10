@@ -5,7 +5,8 @@ describe(TableSelectControlsComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(TableSelectControlsComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

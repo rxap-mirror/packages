@@ -39,14 +39,14 @@ export class HasWritePermissionDirective implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this._subscription = this.authorization
-      .hasPermission(this.identifier, this.scope || null)
-      .pipe(
-        tap((hasPermission) => {
-          this.readonly = !hasPermission;
-          this.cdr.markForCheck();
-        }),
-      )
-      .subscribe();
+                             .hasPermission(this.identifier, this.scope || null)
+                             .pipe(
+                               tap((hasPermission) => {
+                                 this.readonly = !hasPermission;
+                                 this.cdr.markForCheck();
+                               }),
+                             )
+                             .subscribe();
   }
 
   public ngOnDestroy() {

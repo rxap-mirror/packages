@@ -40,14 +40,14 @@ interface Executor<Schema = unknown> {
 }
 
 function getSchematics(context: ExecutorContext): Generator[] {
-  const {schematics} = readPackageJsonForProject(context);
+  const { schematics } = readPackageJsonForProject(context);
   if (!schematics) {
     return [];
   }
   const projectRoot = GetProjectRoot(context);
   const collectionJson = readJsonFile<{ schematics: Record<string, Generator<string>> }>(join(projectRoot, schematics));
   const schematicList: Generator[] = [];
-  for (const [schematic, config] of Object.entries(collectionJson.schematics ?? {})) {
+  for (const [ schematic, config ] of Object.entries(collectionJson.schematics ?? {})) {
     schematicList.push({
       name: schematic,
       description: config.description,
@@ -58,14 +58,14 @@ function getSchematics(context: ExecutorContext): Generator[] {
 }
 
 function getGenerators(context: ExecutorContext) {
-  const {generators} = readPackageJsonForProject(context);
+  const { generators } = readPackageJsonForProject(context);
   if (!generators) {
     return [];
   }
   const projectRoot = GetProjectRoot(context);
   const collectionJson = readJsonFile<{ generators: Record<string, Generator<string>> }>(join(projectRoot, generators));
   const generatorList: Generator[] = [];
-  for (const [generator, config] of Object.entries(collectionJson.generators ?? {})) {
+  for (const [ generator, config ] of Object.entries(collectionJson.generators ?? {})) {
     generatorList.push({
       name: generator,
       description: config.description,
@@ -73,18 +73,18 @@ function getGenerators(context: ExecutorContext) {
     });
   }
   const schematicList = getSchematics(context);
-  return [...generatorList, ...schematicList];
+  return [ ...generatorList, ...schematicList ];
 }
 
 function getBuilders(context: ExecutorContext): Executor[] {
-  const {builders} = readPackageJsonForProject(context);
+  const { builders } = readPackageJsonForProject(context);
   if (!builders) {
     return [];
   }
   const projectRoot = GetProjectRoot(context);
   const buildersJson = readJsonFile<{ builders: Record<string, Generator<string>> }>(join(projectRoot, builders));
   const builderList: Executor[] = [];
-  for (const [builder, config] of Object.entries(buildersJson.builders ?? {})) {
+  for (const [ builder, config ] of Object.entries(buildersJson.builders ?? {})) {
     builderList.push({
       name: builder,
       description: config.description,
@@ -95,14 +95,14 @@ function getBuilders(context: ExecutorContext): Executor[] {
 }
 
 function getExecutors(context: ExecutorContext) {
-  const {executors} = readPackageJsonForProject(context);
+  const { executors } = readPackageJsonForProject(context);
   if (!executors) {
     return [];
   }
   const projectRoot = GetProjectRoot(context);
   const executorsJson = readJsonFile<{ executors: Record<string, Generator<string>> }>(join(projectRoot, executors));
   const executorList: Executor[] = [];
-  for (const [executor, config] of Object.entries(executorsJson.executors ?? {})) {
+  for (const [ executor, config ] of Object.entries(executorsJson.executors ?? {})) {
     executorList.push({
       name: executor,
       description: config.description,
@@ -110,18 +110,21 @@ function getExecutors(context: ExecutorContext) {
     });
   }
   const builderList = getBuilders(context);
-  return [...executorList, ...builderList];
+  return [ ...executorList, ...builderList ];
 }
 
 function getPeerDependencyList(context: ExecutorContext): Array<{ name: string, version: string }> {
   const packageJson = readPackageJsonForProject(context);
   const peerDependencyList: Array<{ name: string, version: string }> = [];
 
-  for (const [packageName, version] of Object.entries(
+  for (const [ packageName, version ] of Object.entries(
     packageJson.peerDependencies ?? {},
   )) {
     if (packageName.match(/^@rxap\//)) {
-      peerDependencyList.push({name: packageName, version});
+      peerDependencyList.push({
+        name: packageName,
+        version,
+      });
     }
   }
   return peerDependencyList;

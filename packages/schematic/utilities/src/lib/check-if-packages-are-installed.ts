@@ -16,7 +16,8 @@ import { UpdatePackageJson } from './package-json-file';
 export function CheckIfPackagesAreInstalled(packageList: string[]): Rule {
   return UpdatePackageJson(packageJson => {
     // check if packages are listed in the root package json
-    const notReferenced = [].filter(packageName => !(packageJson.dependencies ?? {})[packageName] && !(packageJson.devDependencies ?? {})[packageName]);
+    const notReferenced = [].filter(packageName => !(packageJson.dependencies ?? {})[packageName] &&
+      !(packageJson.devDependencies ?? {})[packageName]);
 
     // check if not referenced packages are installed and can be imported
     const notInstalled = notReferenced.filter(packageName => {
@@ -29,16 +30,18 @@ export function CheckIfPackagesAreInstalled(packageList: string[]): Rule {
     });
     const onlyNotReferenced = notReferenced.filter(packageName => !notInstalled.includes(packageName));
     if (onlyNotReferenced.length) {
-      console.warn('Some dependencies are installed, but not referenced in the root package json. It is recommend to add the dependencies to the root pacakge json');
+      console.warn(
+        'Some dependencies are installed, but not referenced in the root package json. It is recommend to add the dependencies to the root pacakge json');
       for (const packageName of notInstalled) {
-        console.log(`ng add ${packageName}`);
+        console.log(`ng add ${ packageName }`);
       }
     }
     if (notInstalled.length) {
       for (const packageName of notInstalled) {
-        console.log(`ng add ${packageName}`);
+        console.log(`ng add ${ packageName }`);
       }
-      throw new SchematicsException('Some required dev dependencies are not installed! Add the dependencies and run the schematic again');
+      throw new SchematicsException(
+        'Some required dev dependencies are not installed! Add the dependencies and run the schematic again');
     }
   });
 }

@@ -111,11 +111,11 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
   }
 
   public setParameter<Key extends keyof Parameters>(parameterKey: Key, value: Parameters[Key]): void {
-    this.updateParameters({[parameterKey]: value} as any);
+    this.updateParameters({ [parameterKey]: value } as any);
   }
 
   public updateParameters(parameters: Partial<Parameters>): void {
-    this.parameters = {...(this.parameters ?? {}), ...parameters} as any;
+    this.parameters = { ...(this.parameters ?? {}), ...parameters } as any;
   }
 
   protected executed(result: any) {
@@ -134,7 +134,12 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
     if (this.errorTemplate) {
       this.viewContainerRef.clear();
       if (this.errorTemplate) {
-        this.viewContainerRef.createEmbeddedView(this.errorTemplate, {$implicit: error, message: error.message});
+        this.viewContainerRef.createEmbeddedView(this.errorTemplate,
+          {
+            $implicit: error,
+            message: error.message,
+          },
+        );
       }
     }
   }
@@ -144,7 +149,7 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
     this.viewContainerRef.clear();
 
     try {
-      this.viewContainerRef.createEmbeddedView(this.template, {$implicit: result});
+      this.viewContainerRef.createEmbeddedView(this.template, { $implicit: result });
     } catch (error: any) {
       this.renderErrorTemplate(error);
       console.error(error.message);

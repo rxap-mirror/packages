@@ -20,7 +20,11 @@ export class VersionService {
   }
 
   public get(): KeyValue<Version> {
-    return Array.from(this.modules.entries()).reduce((map, [moduleId, version]) => ({...map, [moduleId]: version}), {});
+    return Array.from(this.modules.entries())
+                .reduce((map, [ moduleId, version ]) => ({
+                  ...map,
+                  [moduleId]: version,
+                }), {});
   }
 
 }

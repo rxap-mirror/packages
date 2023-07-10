@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/dialog@15.0.0...@rxap/dialog@16.0.0-dev.0) (2023-05-18)
 
@@ -68,8 +67,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -81,13 +79,11 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* set message dialog content as inner
-  html ([9eb4b63](https://gitlab.com/rxap/packages/commit/9eb4b63c1aec5863cca9f82d839fb6cefe34a2fc))
+* set message dialog content as innerhtml ([9eb4b63](https://gitlab.com/rxap/packages/commit/9eb4b63c1aec5863cca9f82d839fb6cefe34a2fc))
 
 ### Features
 
-* set message dialog content as inner
-  html ([1f0902c](https://gitlab.com/rxap/packages/commit/1f0902cf2409b6ee94198de0eeb4bd5be7d7de2c))
+* set message dialog content as innerhtml ([1f0902c](https://gitlab.com/rxap/packages/commit/1f0902cf2409b6ee94198de0eeb4bd5be7d7de2c))
 
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/dialog@12.1.0-next.2...@rxap/dialog@12.1.0) (2021-08-11)
 
@@ -97,8 +93,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* use correct response
-  type ([4304da1](https://gitlab.com/rxap/packages/commit/4304da1ad63edefbcb559d4ed275720c946ebc54))
+* use correct responsetype ([4304da1](https://gitlab.com/rxap/packages/commit/4304da1ad63edefbcb559d4ed275720c946ebc54))
 
 # [12.1.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/dialog@12.1.0-next.0...@rxap/dialog@12.1.0-next.1) (2021-08-03)
 
@@ -110,8 +105,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* add
-  MessageDialogComponent ([b5b50c2](https://gitlab.com/rxap/packages/commit/b5b50c297bc663b9d47df3eb9023935c21e94ad6))
+* addMessageDialogComponent ([b5b50c2](https://gitlab.com/rxap/packages/commit/b5b50c297bc663b9d47df3eb9023935c21e94ad6))
 
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/dialog@12.0.6...@rxap/dialog@12.0.7) (2021-06-24)
 
@@ -133,8 +127,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* remove ng-mocks
-  peerDependency ([0940f5f](https://gitlab.com/rxap/packages/commit/0940f5f9a79d07c3ad82d7cf6ae17aeb28b23158))
+* remove ng-mockspeerDependency ([0940f5f](https://gitlab.com/rxap/packages/commit/0940f5f9a79d07c3ad82d7cf6ae17aeb28b23158))
 
 ## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/dialog@11.1.7...@rxap/dialog@12.0.2) (2021-06-09)
 
@@ -156,24 +149,20 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **i18n:** add i18n tag for the confirm dialog
-  title ([9284396](https://gitlab.com/rxap/packages/commit/928439615918cee9569b743278e8e5c0e933fdbf))
+* **i18n:** add i18n tag for the confirm dialogtitle ([9284396](https://gitlab.com/rxap/packages/commit/928439615918cee9569b743278e8e5c0e933fdbf))
 
 ## [11.1.5](https://gitlab.com/rxap/packages/compare/@rxap/dialog@11.1.4...@rxap/dialog@11.1.5) (2021-05-19)
 
 ### Bug Fixes
 
-* **confirm-dialog:** add i18n
-  tag ([b7d6ad7](https://gitlab.com/rxap/packages/commit/b7d6ad7d96a032e478cd881981103b4aa659d5a0))
+* **confirm-dialog:** add i18ntag ([b7d6ad7](https://gitlab.com/rxap/packages/commit/b7d6ad7d96a032e478cd881981103b4aa659d5a0))
 
 ## [11.1.4](https://gitlab.com/rxap/packages/compare/@rxap/dialog@11.1.3...@rxap/dialog@11.1.4) (2021-04-30)
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 ## [11.1.3](https://gitlab.com/rxap/packages/compare/@rxap/dialog@11.1.2...@rxap/dialog@11.1.3) (2021-03-19)
 
@@ -198,8 +187,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* add http error message
-  dialog ([7d769da](https://gitlab.com/rxap/packages/commit/7d769dae8321c938163b155f62a71497381f1cb0))
+* add http error messagedialog ([7d769da](https://gitlab.com/rxap/packages/commit/7d769dae8321c938163b155f62a71497381f1cb0))
 
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/dialog@11.0.3...@rxap/dialog@11.0.4) (2021-02-04)
 
@@ -225,7 +213,6 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
 * replace all rxjs operators first() with take(
-  1) ([e2ae457](https://gitlab.com/rxap/packages/commit/e2ae45771c8b01f30fc1a00f962e067d610296b7))
+    1) ([e2ae457](https://gitlab.com/rxap/packages/commit/e2ae45771c8b01f30fc1a00f962e067d610296b7))

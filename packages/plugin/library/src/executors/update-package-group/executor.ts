@@ -15,9 +15,9 @@ function getPackageGroup(context: ExecutorContext): ArrayPackageGroup {
   const directPackageDependencies = getDirectPackageDependenciesForProject(context);
   return Object.entries(directPackageDependencies)
                .map(([ packageName, version ]) => ({
-      package: packageName,
-      version: '^' + version,
-    }));
+                 package: packageName,
+                 version: '^' + version,
+               }));
 }
 
 function mergePackageGroup(original: PackageGroup, updated: ArrayPackageGroup): ArrayPackageGroup {

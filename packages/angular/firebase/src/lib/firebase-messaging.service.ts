@@ -21,7 +21,7 @@ export interface Message {
   };
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class RxapFirebaseMessagingService {
   public token$ = new ReplaySubject<string | null>(1);
 
@@ -33,15 +33,15 @@ export class RxapFirebaseMessagingService {
     public readonly requestPermissionImminently: boolean = false,
   ) {
     this.messaging.messages
-      .pipe(
-        tap((message: any) =>
-          this.showNotification(
-            message.notification.title,
-            message.notification.body,
+        .pipe(
+          tap((message: any) =>
+            this.showNotification(
+              message.notification.title,
+              message.notification.body,
+            ),
           ),
-        ),
-      )
-      .subscribe();
+        )
+        .subscribe();
     if (this.requestPermissionImminently) {
       this.requestPermission();
     }
@@ -50,14 +50,14 @@ export class RxapFirebaseMessagingService {
   public requestPermission() {
     console.log('request notification permission');
     this.messaging.requestPermission
-      .pipe(mergeMapTo(this.messaging.tokenChanges))
-      .subscribe(
-        (token) => {
-          console.info('cloud messaging permission is granted');
-          this.token$.next(token);
-        },
-        () => console.error('cloud messaging permission is denied'),
-      );
+        .pipe(mergeMapTo(this.messaging.tokenChanges))
+        .subscribe(
+          (token) => {
+            console.info('cloud messaging permission is granted');
+            this.token$.next(token);
+          },
+          () => console.error('cloud messaging permission is denied'),
+        );
   }
 
   public showNotification(title: string, body: string): void {
@@ -69,7 +69,7 @@ export class RxapFirebaseMessagingService {
     // Let's check whether notification permissions have already been granted
     else if (Notification.permission === 'granted') {
       // If it's okay let's create a notification
-      new Notification(title, {body});
+      new Notification(title, { body });
     } else {
       console.warn('Notification permission is not granted');
     }

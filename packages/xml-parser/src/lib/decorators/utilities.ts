@@ -32,7 +32,10 @@ export function GetAllElementParserInstances<T extends ParsedElement>(type: Cons
   return getMetadata(XmlElementMetadata.PARSER_INSTANCE, type.prototype) || [];
 }
 
-export function FindElementParserInstanceForPropertyKey<T extends ParsedElement>(type: Constructor<T>, propertyKey: string): ElementParser<T> | undefined {
+export function FindElementParserInstanceForPropertyKey<T extends ParsedElement>(
+  type: Constructor<T>,
+  propertyKey: string,
+): ElementParser<T> | undefined {
   return GetAllElementParserInstances(type).find(parser => parser.propertyKey === propertyKey);
 }
 
@@ -50,7 +53,7 @@ export function AddParserToMetadata(parser: ElementParser, target: any) {
 
   setMetadata(
     XmlElementMetadata.PARSER,
-    [...addedParser, parser.parse],
+    [ ...addedParser, parser.parse ],
     target.constructor,
   );
 
@@ -59,7 +62,7 @@ export function AddParserToMetadata(parser: ElementParser, target: any) {
 
   setMetadata(
     XmlElementMetadata.PARSER_INSTANCE,
-    [...addedElementParser, parser],
+    [ ...addedElementParser, parser ],
     target,
   );
 

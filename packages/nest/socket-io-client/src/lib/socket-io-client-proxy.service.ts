@@ -50,7 +50,7 @@ export class SocketIoClientProxyService extends ClientProxy {
     callback: (packet: WritePacket) => void,
   ): () => void {
     this.logger.debug(
-      `publish to pattern '${packet.pattern}'`,
+      `publish to pattern '${ packet.pattern }'`,
       'SocketIoClientProxyService',
     );
     this.logger.verbose(
@@ -61,10 +61,17 @@ export class SocketIoClientProxyService extends ClientProxy {
     const event = randomBytes(64).toString('hex');
 
     const socket = this.client.getSocket().on(event, (data: unknown) => {
-      callback({response: data});
+      callback({ response: data });
     });
 
-    this.client.getSocket().emit(packet.pattern, {data: packet.data, event});
+    this.client.getSocket()
+        .emit(
+          packet.pattern,
+          {
+            data: packet.data,
+            event,
+          },
+        );
 
     return () => socket.off(event, () => {
       this.logger.log('socket off', 'SocketIoClientProxyService');

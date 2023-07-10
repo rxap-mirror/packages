@@ -46,7 +46,7 @@ export function AddPackageJsonScript(
 
 export function GetLatestPackageVersion(packageName: string): Promise<string> {
   return new Promise<string>((resolve, reject) => {
-    exec(`npm view ${packageName} version`, (err, stdout, stderr) => {
+    exec(`npm view ${ packageName } version`, (err, stdout, stderr) => {
       if (err) {
         reject(stderr);
       } else {

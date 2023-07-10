@@ -5,7 +5,8 @@ describe(SidenavToggleButtonComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(SidenavToggleButtonComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

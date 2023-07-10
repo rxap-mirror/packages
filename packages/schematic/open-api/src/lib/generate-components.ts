@@ -12,19 +12,25 @@ async function executeInterfaceBuild(
 ) {
 
   const generator = new TypescriptInterfaceGenerator(
-    {...schema, components},
-    {basePath: COMPONENTS_BASE_PATH, addImports: true},
+    {
+      ...schema,
+      components,
+    },
+    {
+      basePath: COMPONENTS_BASE_PATH,
+      addImports: true,
+    },
     project,
   );
 
-  console.debug(`Generate component interface for: ${name}`);
+  console.debug(`Generate component interface for: ${ name }`);
 
   try {
 
     await generator.build(name);
 
   } catch (error: any) {
-    console.error(`Failed to generate response interface for: ${name}`, error.message);
+    console.error(`Failed to generate response interface for: ${ name }`, error.message);
   }
 }
 
@@ -36,7 +42,7 @@ export function GenerateComponents(
   const promiseList: Array<Promise<void>> = [];
 
   if (components.schemas) {
-    for (const [name, schema] of Object.entries(components.schemas)) {
+    for (const [ name, schema ] of Object.entries(components.schemas)) {
       promiseList.push(executeInterfaceBuild(components, project, schema, name));
     }
   }

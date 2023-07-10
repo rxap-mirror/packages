@@ -5,7 +5,8 @@ describe(WindowContentComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(WindowContentComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

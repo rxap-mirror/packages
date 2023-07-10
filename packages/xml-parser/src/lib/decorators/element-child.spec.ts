@@ -31,44 +31,51 @@ describe('@rxap/xml-parser', () => {
 
         const hasChild = jest.fn().mockReturnValue(false);
 
-        expect(() => parser.parse({} as any, {hasChild} as any, {} as any)).toThrowError(RxapXmlParserValidateRequiredError);
+        expect(() => parser.parse({} as any, { hasChild } as any, {} as any))
+          .toThrowError(RxapXmlParserValidateRequiredError);
         expect(hasChild).toBeCalledTimes(1);
         expect(hasChild).toBeCalledWith('tag');
 
       });
 
-      it('should call xml parser with the xml child element and the child element type and set child element type', () => {
+      it(
+        'should call xml parser with the xml child element and the child element type and set child element type',
+        () => {
 
-        const xmlChildElement: RxapElement = {data: 'xml'} as any;
-        const getChild = jest.fn().mockReturnValue(xmlChildElement);
-        const hasChild = jest.fn().mockReturnValue(true);
-        const childElementType: ParsedElementType = class {
-        };
-        const childElement: ParsedElement = {data: 'my-child'} as any;
-        const parsedElement: ParsedElement = {data: 'self'} as any;
-        const parse = jest.fn().mockReturnValue(childElement);
-        const xmlParser: XmlParserService = {parse} as any;
-        const element: RxapElement = {getChild, hasChild} as any;
+          const xmlChildElement: RxapElement = { data: 'xml' } as any;
+          const getChild = jest.fn().mockReturnValue(xmlChildElement);
+          const hasChild = jest.fn().mockReturnValue(true);
+          const childElementType: ParsedElementType = class {
+          };
+          const childElement: ParsedElement = { data: 'my-child' } as any;
+          const parsedElement: ParsedElement = { data: 'self' } as any;
+          const parse = jest.fn().mockReturnValue(childElement);
+          const xmlParser: XmlParserService = { parse } as any;
+          const element: RxapElement = {
+            getChild,
+            hasChild,
+          } as any;
 
-        const parser = new ElementChildParser('property', childElementType, {tag: 'tag'});
+          const parser = new ElementChildParser('property', childElementType, { tag: 'tag' });
 
-        expect(parser.parse(xmlParser, element, parsedElement)).toHaveProperty('property', childElement);
-        expect(getChild).toBeCalledTimes(1);
-        expect(getChild).toBeCalledWith('tag');
-        expect(hasChild).toBeCalledTimes(1);
-        expect(hasChild).toBeCalledWith('tag');
-        expect(parse).toBeCalledTimes(1);
-        expect(parse).toBeCalledWith(xmlChildElement, childElementType, parsedElement);
+          expect(parser.parse(xmlParser, element, parsedElement)).toHaveProperty('property', childElement);
+          expect(getChild).toBeCalledTimes(1);
+          expect(getChild).toBeCalledWith('tag');
+          expect(hasChild).toBeCalledTimes(1);
+          expect(hasChild).toBeCalledWith('tag');
+          expect(parse).toBeCalledTimes(1);
+          expect(parse).toBeCalledWith(xmlChildElement, childElementType, parsedElement);
 
-      });
+        },
+      );
 
       it('should not set property if child element is not present', () => {
 
-        const parser = new ElementChildParser('property', {} as any, {tag: 'tag'});
+        const parser = new ElementChildParser('property', {} as any, { tag: 'tag' });
 
         const hasChild = jest.fn().mockReturnValue(false);
 
-        expect(parser.parse({} as any, {hasChild} as any, {} as any)).not.toHaveProperty('property');
+        expect(parser.parse({} as any, { hasChild } as any, {} as any)).not.toHaveProperty('property');
         expect(hasChild).toBeCalledTimes(1);
         expect(hasChild).toBeCalledWith('tag');
 

@@ -136,7 +136,10 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
 
   public getPos(): { x: string, y: string } {
     const pos = this.overlayRef.overlayElement.getBoundingClientRect();
-    return {x: pos.left + 'px', y: pos.top + 'px'};
+    return {
+      x: pos.left + 'px',
+      y: pos.top + 'px',
+    };
   }
 
   public fullScreen(): void {

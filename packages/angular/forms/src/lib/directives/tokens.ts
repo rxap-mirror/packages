@@ -14,7 +14,8 @@ export const RXAP_FORM_SUBMIT_METHOD = new InjectionToken<FormSubmitMethod<any>>
 
 export const RXAP_FORM_SUBMIT_FAILED_METHOD = new InjectionToken<FormSubmitMethod<any>>('rxap/form/submit-failed-method');
 
-export const RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD = new InjectionToken<FormSubmitMethod<any>>('rxap/form/submit-successful-method');
+export const RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD = new InjectionToken<FormSubmitMethod<any>>(
+  'rxap/form/submit-successful-method');
 
 export const RXAP_FORM_LOAD_METHOD = new InjectionToken<FormLoadMethod>('rxap/form/load-method');
 

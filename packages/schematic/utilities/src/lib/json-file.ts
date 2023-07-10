@@ -25,7 +25,7 @@ export function GetJsonFile<T = any>(host: Tree, filePath: string, create = fals
 
   if (!host.exists(filePath)) {
     if (!create) {
-      throw new Error(`A json file at path '${filePath}' does not exists`);
+      throw new Error(`A json file at path '${ filePath }' does not exists`);
     } else {
       host.create(filePath, '{}');
     }
@@ -36,7 +36,7 @@ export function GetJsonFile<T = any>(host: Tree, filePath: string, create = fals
   try {
     return JSON.parse(content);
   } catch (e: any) {
-    throw new SchematicsException(`Could not parse the json file '${filePath}': ${e.message}`);
+    throw new SchematicsException(`Could not parse the json file '${ filePath }': ${ e.message }`);
   }
 
 }

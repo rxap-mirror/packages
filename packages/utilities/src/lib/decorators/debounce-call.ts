@@ -3,7 +3,7 @@ export function DebounceCall(delay = 300): MethodDecorator {
 
     if (typeof propertyKey === 'string') {
       const original = descriptor.value;
-      const key = `__timeout__${propertyKey}`;
+      const key = `__timeout__${ propertyKey }`;
 
       descriptor.value = function (...args: any[]) {
         clearTimeout(Reflect.get(this, key));

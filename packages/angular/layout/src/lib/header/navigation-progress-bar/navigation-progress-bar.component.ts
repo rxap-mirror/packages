@@ -23,10 +23,10 @@ import {
 @Component({
   selector: 'rxap-navigation-progress-bar',
   templateUrl: './navigation-progress-bar.component.html',
-  styleUrls: ['./navigation-progress-bar.component.scss'],
+  styleUrls: [ './navigation-progress-bar.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgIf, MatProgressBarModule, AsyncPipe],
+  imports: [ NgIf, MatProgressBarModule, AsyncPipe ],
 })
 export class NavigationProgressBarComponent {
 

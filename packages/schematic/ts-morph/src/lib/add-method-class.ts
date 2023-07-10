@@ -60,7 +60,7 @@ export function AddMethodClass(
     decorators,
     typeParameters: parameters.typeParameters,
     implements: [
-      `Method<${parameters.returnType}, ${parameters.parameterType}>`,
+      `Method<${ parameters.returnType }, ${ parameters.parameterType }>`,
       ...parameters.implements,
     ],
     ctors: parameters.ctors,
@@ -69,19 +69,24 @@ export function AddMethodClass(
         name: 'call',
         isAsync: parameters.isAsync,
         scope: Scope.Public,
-        parameters: [{name: 'parameters', type: parameters.parameterType}],
-        returnType: parameters.isAsync ? `Promise<${parameters.returnType}>` : parameters.returnType,
+        parameters: [
+          {
+            name: 'parameters',
+            type: parameters.parameterType,
+          },
+        ],
+        returnType: parameters.isAsync ? `Promise<${ parameters.returnType }>` : parameters.returnType,
         statements: parameters.statements ?? [],
       },
     ],
   });
   CoerceImports(sourceFile, [
     {
-      namedImports: ['Injectable'],
+      namedImports: [ 'Injectable' ],
       moduleSpecifier: '@angular/core',
     },
     {
-      namedImports: ['Method'],
+      namedImports: [ 'Method' ],
       moduleSpecifier: '@rxap/rxjs',
     },
   ]);

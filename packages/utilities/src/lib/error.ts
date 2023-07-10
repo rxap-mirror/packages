@@ -62,7 +62,7 @@ export class RxapError extends Error {
    */
   @Deprecated('removed')
   protected addSubPackageName(subPackageName: string) {
-    this._packageName = [this._packageName, subPackageName].join('/');
+    this._packageName = [ this._packageName, subPackageName ].join('/');
   }
 
   /**

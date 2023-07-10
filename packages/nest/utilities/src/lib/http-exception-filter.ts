@@ -18,7 +18,7 @@ export class HttpExceptionFilter extends BaseExceptionFilter {
     const request = ctx.getRequest();
     const status = exception.getStatus();
 
-    this.logger?.debug(exception.message, `(${status}) ${request.method.toUpperCase()} ${request.path}`);
+    this.logger?.debug(exception.message, `(${ status }) ${ request.method.toUpperCase() } ${ request.path }`);
 
     super.catch(exception, host);
   }

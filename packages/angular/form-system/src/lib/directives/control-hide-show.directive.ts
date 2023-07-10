@@ -67,7 +67,7 @@ export function UseShowFunction(showFunction: ControlHideShowFunction, options: 
 }
 
 export interface ControlHideShowDirective extends ExtractControlFromParentMixin,
-  ExtractFormDefinitionMixin {
+                                                  ExtractFormDefinitionMixin {
 }
 
 @Mixin(ExtractControlFromParentMixin, ExtractFormDefinitionMixin)
@@ -204,7 +204,10 @@ export class ControlHideShowDirective implements OnInit, OnDestroy {
   }
 
   private extractOptions(formDefinition: FormDefinition): ControlHideShowOptions {
-    const map = getMetadata<Map<string, ControlHideShowOptions>>(RXAP_FORM_SYSTEM_HIDE_SHOW_OPTIONS, Object.getPrototypeOf(formDefinition)) ?? null;
+    const map = getMetadata<Map<string, ControlHideShowOptions>>(
+      RXAP_FORM_SYSTEM_HIDE_SHOW_OPTIONS,
+      Object.getPrototypeOf(formDefinition),
+    ) ?? null;
 
     if (!map || !map.has(this.control.controlId)) {
       return {};
@@ -215,7 +218,10 @@ export class ControlHideShowDirective implements OnInit, OnDestroy {
   }
 
   private extractHideFunction(formDefinition: FormDefinition): ControlHideShowFunction | null {
-    const map = getMetadata<Map<string, ControlHideShowFunction>>(RXAP_FORM_SYSTEM_HIDE_METADATA, Object.getPrototypeOf(formDefinition)) ?? null;
+    const map = getMetadata<Map<string, ControlHideShowFunction>>(
+      RXAP_FORM_SYSTEM_HIDE_METADATA,
+      Object.getPrototypeOf(formDefinition),
+    ) ?? null;
 
     if (!map || !map.has(this.control.controlId)) {
       return null;
@@ -226,7 +232,10 @@ export class ControlHideShowDirective implements OnInit, OnDestroy {
   }
 
   private extractShowFunction(formDefinition: FormDefinition): ControlHideShowFunction | null {
-    const map = getMetadata<Map<string, ControlHideShowFunction>>(RXAP_FORM_SYSTEM_SHOW_METADATA, Object.getPrototypeOf(formDefinition)) ?? null;
+    const map = getMetadata<Map<string, ControlHideShowFunction>>(
+      RXAP_FORM_SYSTEM_SHOW_METADATA,
+      Object.getPrototypeOf(formDefinition),
+    ) ?? null;
 
     if (!map || !map.has(this.control.controlId)) {
       return null;

@@ -17,7 +17,7 @@ export default {
         BrowserAnimationsModule,
       ],
     }),
-    componentWrapperDecorator((story) => `<div style="margin: 3em">${story}</div>`),
+    componentWrapperDecorator((story) => `<div style="margin: 3em">${ story }</div>`),
   ],
 };
 

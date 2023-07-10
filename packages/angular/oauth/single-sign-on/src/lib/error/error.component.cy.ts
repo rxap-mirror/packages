@@ -5,7 +5,8 @@ describe(ErrorComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(ErrorComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

@@ -11,10 +11,10 @@ import { FlexModule } from '@angular/flex-layout';
 @Component({
   selector: 'rxap-confirm',
   templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.scss'],
+  styleUrls: [ './confirm.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [FlexModule, MatButtonModule, MatIconModule],
+  imports: [ FlexModule, MatButtonModule, MatIconModule ],
 })
 export class ConfirmComponent {
 

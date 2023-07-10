@@ -45,9 +45,12 @@ export function HasTableRowActionCheckFunction(method: TableRowActionMethod<any>
 }
 
 export function GetTableRowActionCheckFunction<Data extends Record<string, unknown> = Record<string, unknown>>(method: TableRowActionMethod<Data>): RowActionCheckFunction<Data> {
-  const checkFunction = getMetadata<TableActionMethodOptions<Data>>(RXAP_TABLE_ACTION_METHOD_METADATA, method.constructor)?.checkFunction;
+  const checkFunction = getMetadata<TableActionMethodOptions<Data>>(
+    RXAP_TABLE_ACTION_METHOD_METADATA,
+    method.constructor,
+  )?.checkFunction;
   if (!checkFunction) {
-    throw new Error(`Extracted check function from '${method.constructor.name}' is empty`);
+    throw new Error(`Extracted check function from '${ method.constructor.name }' is empty`);
   }
   return checkFunction;
 }
@@ -65,7 +68,7 @@ export function GetTableRowActionMetadata(method: TableRowActionMethod): TableAc
     method.constructor,
   );
   if (!metadata) {
-    throw new Error(`Extracted metadata from '${method.constructor.name}' is empty`);
+    throw new Error(`Extracted metadata from '${ method.constructor.name }' is empty`);
   }
   return metadata;
 }

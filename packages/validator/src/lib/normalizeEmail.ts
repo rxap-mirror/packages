@@ -193,7 +193,7 @@ export function normalizeEmail(email: string, options: NormalizeEmailOptions = {
   }
 
   const user = raw_parts.join('@');
-  const parts = [user, domain];
+  const parts = [ user, domain ];
 
   // The domain is always lowercased, as it's case-insensitive per RFC 1035
   parts[1] = parts[1].toLowerCase();

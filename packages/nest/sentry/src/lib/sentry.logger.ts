@@ -31,7 +31,7 @@ export class SentryLogger extends RxapLogger {
         asBreadcrumb = optionalParams.pop();
       }
     }
-    const {context} = this._getContextAndMessagesToPrint([
+    const { context } = this._getContextAndMessagesToPrint([
       message,
       ...optionalParams,
     ]);
@@ -53,7 +53,7 @@ export class SentryLogger extends RxapLogger {
         }) :
         Sentry.captureMessage(message, {
           level: 'log',
-          extra: {context},
+          extra: { context },
         });
     } catch (err: any) {
       console.error('Failed to capture message with sentry: ' + err.message);
@@ -61,7 +61,10 @@ export class SentryLogger extends RxapLogger {
   }
 
   override error(message: string, ...optionalParams: any[]) {
-    const {context, stack} = this._getContextAndStackAndMessagesToPrint([
+    const {
+      context,
+      stack,
+    } = this._getContextAndStackAndMessagesToPrint([
       message,
       ...optionalParams,
     ]);
@@ -75,7 +78,10 @@ export class SentryLogger extends RxapLogger {
     try {
       Sentry.captureMessage(message, {
         level: 'error',
-        extra: {context, stack},
+        extra: {
+          context,
+          stack,
+        },
       });
     } catch (err: any) {
       console.error('Failed to capture message with sentry: ' + err.message);
@@ -89,7 +95,7 @@ export class SentryLogger extends RxapLogger {
         asBreadcrumb = optionalParams.pop();
       }
     }
-    const {context} = this._getContextAndMessagesToPrint([
+    const { context } = this._getContextAndMessagesToPrint([
       message,
       ...optionalParams,
     ]);
@@ -111,7 +117,7 @@ export class SentryLogger extends RxapLogger {
         }) :
         Sentry.captureMessage(message, {
           level: 'warning',
-          extra: {context},
+          extra: { context },
         });
     } catch (err: any) {
       console.error('Failed to capture message with sentry: ' + err.message);
@@ -125,7 +131,7 @@ export class SentryLogger extends RxapLogger {
         asBreadcrumb = optionalParams.pop();
       }
     }
-    const {context} = this._getContextAndMessagesToPrint([
+    const { context } = this._getContextAndMessagesToPrint([
       message,
       ...optionalParams,
     ]);
@@ -147,7 +153,7 @@ export class SentryLogger extends RxapLogger {
         }) :
         Sentry.captureMessage(message, {
           level: 'debug',
-          extra: {context},
+          extra: { context },
         });
     } catch (err: any) {
       console.error('Failed to capture message with sentry: ' + err.message);
@@ -156,12 +162,18 @@ export class SentryLogger extends RxapLogger {
 
   private _getContextAndMessagesToPrint(args: unknown[]) {
     if (args?.length <= 1) {
-      return {messages: args, context: this.context};
+      return {
+        messages: args,
+        context: this.context,
+      };
     }
     const lastElement = args[args.length - 1];
     const isContext = isString(lastElement);
     if (!isContext) {
-      return {messages: args, context: this.context};
+      return {
+        messages: args,
+        context: this.context,
+      };
     }
     return {
       context: lastElement as string,
@@ -170,15 +182,24 @@ export class SentryLogger extends RxapLogger {
   }
 
   private _getContextAndStackAndMessagesToPrint(args: unknown[]) {
-    const {messages, context} = this._getContextAndMessagesToPrint(args);
+    const {
+      messages,
+      context,
+    } = this._getContextAndMessagesToPrint(args);
     if (messages?.length <= 1) {
-      return {messages, context};
+      return {
+        messages,
+        context,
+      };
     }
     const lastElement = messages[messages.length - 1];
     const isStack = isString(lastElement);
     // https://github.com/nestjs/nest/issues/11074#issuecomment-1421680060
     if (!isStack && !isUndefined(lastElement)) {
-      return {messages, context};
+      return {
+        messages,
+        context,
+      };
     }
     return {
       stack: lastElement as string,

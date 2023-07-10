@@ -43,42 +43,55 @@ function setGeneralTargetDefaults(nxJson: NxJsonConfiguration) {
   nxJson.targetDefaults ??= {};
 
   // region build
-  nxJson.targetDefaults["build"] ??= { dependsOn: [ "^build" ] };
-  if (!nxJson.targetDefaults["build"].dependsOn
-    .find(dependsOn => typeof dependsOn === "object" && dependsOn.target === "readme")) {
-    nxJson.targetDefaults["build"].dependsOn
-      .push({ target: "readme", projects: "self" });
+  nxJson.targetDefaults['build'] ??= { dependsOn: [ '^build' ] };
+  if (!nxJson.targetDefaults['build'].dependsOn
+                                     .find(dependsOn => typeof dependsOn ===
+                                       'object' &&
+                                       dependsOn.target ===
+                                       'readme')) {
+    nxJson.targetDefaults['build'].dependsOn
+                                  .push({
+                                    target: 'readme',
+                                    projects: 'self',
+                                  });
   }
-  if (!nxJson.targetDefaults["build"].dependsOn
-    .find(dependsOn => typeof dependsOn === "object" && dependsOn.target === "scss-bundle")) {
-    nxJson.targetDefaults["build"].dependsOn
-      .push({ target: "scss-bundle", projects: "self" });
+  if (!nxJson.targetDefaults['build'].dependsOn
+                                     .find(dependsOn => typeof dependsOn ===
+                                       'object' &&
+                                       dependsOn.target ===
+                                       'scss-bundle')) {
+    nxJson.targetDefaults['build'].dependsOn
+                                  .push({
+                                    target: 'scss-bundle',
+                                    projects: 'self',
+                                  });
   }
   // endregion
 
   // region readme
-  nxJson.targetDefaults["readme"] ??= {};
-  nxJson.targetDefaults["readme"].inputs = [
-    "{projectRoot}/README.md.handlebars",
-    "{projectRoot}/GETSTARTED.md",
-    "{projectRoot}/GUIDES.md",
-    "{projectRoot}/package.json",
-    "{projectRoot}/collection.json",
-    "{projectRoot}/generators.json",
-    "{projectRoot}/executors.json",
-    "{projectRoot}/builders.json",
+  nxJson.targetDefaults['readme'] ??= {};
+  nxJson.targetDefaults['readme'].inputs = [
+    '{projectRoot}/README.md.handlebars',
+    '{projectRoot}/GETSTARTED.md',
+    '{projectRoot}/GUIDES.md',
+    '{projectRoot}/package.json',
+    '{projectRoot}/collection.json',
+    '{projectRoot}/generators.json',
+    '{projectRoot}/executors.json',
+    '{projectRoot}/builders.json',
   ];
-  nxJson.targetDefaults["readme"].outputs = [ "{projectRoot}/README.md" ];
+  nxJson.targetDefaults['readme'].outputs = [ '{projectRoot}/README.md' ];
   // endregion
 
 }
 
-function updateProjectPackageJson(tree: Tree,
-                                  project: ProjectConfiguration,
-                                  projectName: string,
-                                  rootPackageJson: ProjectPackageJson,
+function updateProjectPackageJson(
+  tree: Tree,
+  project: ProjectConfiguration,
+  projectName: string,
+  rootPackageJson: ProjectPackageJson,
 ) {
-  const packageJson: ProjectPackageJson = readJson(tree, join(project.root, "package.json"));
+  const packageJson: ProjectPackageJson = readJson(tree, join(project.root, 'package.json'));
   packageJson.scripts ??= {};
   packageJson.scripts.version
     = `yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=${ projectName }`;
@@ -87,23 +100,23 @@ function updateProjectPackageJson(tree: Tree,
     delete packageJson.scripts.prepublishOnly;
   }
   packageJson.publishConfig ??= {};
-  packageJson.publishConfig.access = "public";
+  packageJson.publishConfig.access = 'public';
   const output = getBuildOutputForProject(project, tree.root);
   packageJson.publishConfig.directory = relative(join(tree.root, project.root), output);
 
   // add common properties
   packageJson.keywords = [
     ...new Set([
-                 ...(
-                   packageJson.keywords ?? []
-                 ),
-                 ...(
-                   rootPackageJson.keywords ?? []
-                 ),
-                 ...(
-                   project.tags ?? []
-                 ),
-               ]),
+      ...(
+        packageJson.keywords ?? []
+      ),
+      ...(
+        rootPackageJson.keywords ?? []
+      ),
+      ...(
+        project.tags ?? []
+      ),
+    ]),
   ];
   packageJson.homepage = join(rootPackageJson.homepage, project.root);
   packageJson.bugs = rootPackageJson.bugs;
@@ -111,15 +124,15 @@ function updateProjectPackageJson(tree: Tree,
   packageJson.contributors = rootPackageJson.contributors;
   packageJson.funding = rootPackageJson.funding;
   packageJson.repository = rootPackageJson.repository;
-  if (packageJson.repository && typeof packageJson.repository === "object") {
+  if (packageJson.repository && typeof packageJson.repository === 'object') {
     packageJson.repository.directory = project.root;
   }
   packageJson.author = rootPackageJson.author;
-  writeJson(tree, join(project.root, "package.json"), packageJson);
+  writeJson(tree, join(project.root, 'package.json'), packageJson);
 }
 
 function hasIndexScss(tree: Tree, project: ProjectConfiguration) {
-  return tree.exists(join(project.sourceRoot, "_index.scss"));
+  return tree.exists(join(project.sourceRoot, '_index.scss'));
 }
 
 function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
@@ -135,26 +148,34 @@ interface NgPackageJson {
 }
 
 function readNgPackageJson(tree: Tree, project: ProjectConfiguration): NgPackageJson {
-  if (!tree.exists(join(project.root, "ng-package.json"))) {
+  if (!tree.exists(join(project.root, 'ng-package.json'))) {
     throw new Error(`The project ${ project.name } has no ng-package.json file.`);
   }
-  return readJson(tree, join(project.root, "ng-package.json"));
+  return readJson(tree, join(project.root, 'ng-package.json'));
 }
 
 function writeNgPackageJson(tree: Tree, project: ProjectConfiguration, ngPackageJson: NgPackageJson) {
-  writeJson(tree, join(project.root, "ng-package.json"), ngPackageJson);
+  writeJson(tree, join(project.root, 'ng-package.json'), ngPackageJson);
 }
 
 function updateProjectNgPackageConfiguration(tree: Tree, project: ProjectConfiguration) {
   const ngPackageJson = readNgPackageJson(tree, project);
 
   ngPackageJson.assets = [
-    "README.md", "CHANGELOG.md",
+    'README.md', 'CHANGELOG.md',
   ];
 
   if (hasIndexScss(tree, project)) {
-    const assetThemes = { input: '.', glob: '**/*.theme.scss', output: '.' };
-    const assetIndex = { input: '.', glob: '_index.scss', output: '.' };
+    const assetThemes = {
+      input: '.',
+      glob: '**/*.theme.scss',
+      output: '.',
+    };
+    const assetIndex = {
+      input: '.',
+      glob: '_index.scss',
+      output: '.',
+    };
     for (const asset of [ assetThemes, assetIndex ]) {
       if (!ngPackageJson.assets.some(a => typeof a === 'object' && a.input === asset.input && a.glob === asset.glob)) {
         ngPackageJson.assets.push(asset);
@@ -192,7 +213,10 @@ function skipProject(
 }
 
 function hasComponents(tree: Tree, projectRoot: string) {
-  for (const { path, isFile } of VisitTree(tree, projectRoot)) {
+  for (const {
+    path,
+    isFile
+  } of VisitTree(tree, projectRoot)) {
     if (isFile && path.endsWith('.component.ts')) {
       return true;
     }
@@ -204,7 +228,10 @@ async function coerceCypressComponentTesting(tree: Tree, project: ProjectConfigu
 
   if (!project.targets['component-test']) {
     await cypressComponentConfiguration(tree, {
-      project: projectName, generateTests: true, skipFormat: false, buildTarget: 'angular:build:development',
+      project: projectName,
+      generateTests: true,
+      skipFormat: false,
+      buildTarget: 'angular:build:development',
     });
     const _project = readProjectConfiguration(tree, projectName);
     _project.targets['component-test'].configurations ??= {};

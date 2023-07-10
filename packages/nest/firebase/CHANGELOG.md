@@ -41,24 +41,20 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* handle firestore error with code
-  2 ([ecb0e0b](https://gitlab.com/rxap/nest/commit/ecb0e0b58c9bcf48a5bd38c017f01ef1cb78cd92))
-* make all inject token
-  optional ([4d7ded3](https://gitlab.com/rxap/nest/commit/4d7ded3fae1dffa3f062793432ef450c7a43023c))
+* handle firestore error with code2 ([ecb0e0b](https://gitlab.com/rxap/nest/commit/ecb0e0b58c9bcf48a5bd38c017f01ef1cb78cd92))
+* make all inject tokenoptional ([4d7ded3](https://gitlab.com/rxap/nest/commit/4d7ded3fae1dffa3f062793432ef450c7a43023c))
 
 # [7.3.0-next.1](https://gitlab.com/rxap/nest/compare/@rxap/nest-firebase@7.3.0-next.0...@rxap/nest-firebase@7.3.0-next.1) (2021-11-26)
 
 ### Bug Fixes
 
-* add forRoot option to deactivate app check and firebase
-  auth ([15de3bf](https://gitlab.com/rxap/nest/commit/15de3bfc459eb5d0c73bfc039d63a0c3070cd375))
+* add forRoot option to deactivate app check and firebaseauth ([15de3bf](https://gitlab.com/rxap/nest/commit/15de3bfc459eb5d0c73bfc039d63a0c3070cd375))
 
 # [7.3.0-next.0](https://gitlab.com/rxap/nest/compare/@rxap/nest-firebase@7.2.4-next.0...@rxap/nest-firebase@7.3.0-next.0) (2021-11-26)
 
 ### Features
 
-* support app check and firebase auth guard
-  deactivation ([fa3511b](https://gitlab.com/rxap/nest/commit/fa3511befb45906ecf04bf73a2574cff01771d25))
+* support app check and firebase auth guarddeactivation ([fa3511b](https://gitlab.com/rxap/nest/commit/fa3511befb45906ecf04bf73a2574cff01771d25))
 
 ## [7.2.4-next.0](https://gitlab.com/rxap/nest/compare/@rxap/nest-firebase@7.2.3...@rxap/nest-firebase@7.2.4-next.0) (2021-11-26)
 
@@ -70,29 +66,25 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* add missing firebase module
-  export ([d8893a7](https://gitlab.com/rxap/nest/commit/d8893a7862be356e2ffafff03cbdd33b575c461c))
+* add missing firebase moduleexport ([d8893a7](https://gitlab.com/rxap/nest/commit/d8893a7862be356e2ffafff03cbdd33b575c461c))
 
 ## [7.2.2](https://gitlab.com/rxap/nest/compare/@rxap/nest-firebase@7.2.1...@rxap/nest-firebase@7.2.2) (2021-11-16)
 
 ### Bug Fixes
 
-* add missing firebase module
-  export ([a9635c1](https://gitlab.com/rxap/nest/commit/a9635c174a1a69a45c4fc12a6c8f89f7ecb99ad7))
+* add missing firebase moduleexport ([a9635c1](https://gitlab.com/rxap/nest/commit/a9635c174a1a69a45c4fc12a6c8f89f7ecb99ad7))
 
 ## [7.2.1](https://gitlab.com/rxap/nest/compare/@rxap/nest-firebase@7.2.0...@rxap/nest-firebase@7.2.1) (2021-11-13)
 
 ### Bug Fixes
 
-* **firestore-error-handler:** pass promise
-  type ([7d3da12](https://gitlab.com/rxap/nest/commit/7d3da125d08ae97d4f0e7cb67c30da3bb629b8d6))
+* **firestore-error-handler:** pass promisetype ([7d3da12](https://gitlab.com/rxap/nest/commit/7d3da125d08ae97d4f0e7cb67c30da3bb629b8d6))
 
 # [7.2.0](https://gitlab.com/rxap/nest/compare/@rxap/nest-firebase@7.1.2...@rxap/nest-firebase@7.2.0) (2021-11-11)
 
 ### Features
 
-* add a generic firestore error
-  handler ([3f76fc1](https://gitlab.com/rxap/nest/commit/3f76fc1d8a1954ed58a5f91713540e172f8766fc))
+* add a generic firestore errorhandler ([3f76fc1](https://gitlab.com/rxap/nest/commit/3f76fc1d8a1954ed58a5f91713540e172f8766fc))
 
 ## [7.1.2](https://gitlab.com/rxap/nest/compare/@rxap/nest-firebase@7.1.1...@rxap/nest-firebase@7.1.2) (2021-11-11)
 
@@ -104,26 +96,22 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* add AppCheckGuard to module
-  providers ([47fb6fb](https://gitlab.com/rxap/nest/commit/47fb6fb1cb504c711ef93bd6cadb9bfe063d72d5))
+* add AppCheckGuard to moduleproviders ([47fb6fb](https://gitlab.com/rxap/nest/commit/47fb6fb1cb504c711ef93bd6cadb9bfe063d72d5))
 
 # [7.1.0](https://gitlab.com/rxap/nest/compare/@rxap/nest-firebase@7.0.3...@rxap/nest-firebase@7.1.0) (2021-11-10)
 
 ### Features
 
 * add app check guard ([cc6a0e6](https://gitlab.com/rxap/nest/commit/cc6a0e6c17aba6cd441eacf695ce254abd222260))
-* add basic documentation and add helper types and
-  interfaces ([11a87a4](https://gitlab.com/rxap/nest/commit/11a87a4e19462553d9375d4dea3d42a65eb71c9e))
-* add the firebase user
-  decorator ([28b937c](https://gitlab.com/rxap/nest/commit/28b937ce63b28a9fb68cae0194cb9866604d2412))
+* add basic documentation and add helper types andinterfaces ([11a87a4](https://gitlab.com/rxap/nest/commit/11a87a4e19462553d9375d4dea3d42a65eb71c9e))
+* add the firebase userdecorator ([28b937c](https://gitlab.com/rxap/nest/commit/28b937ce63b28a9fb68cae0194cb9866604d2412))
 * extend firebase auth support ([702e92b](https://gitlab.com/rxap/nest/commit/702e92b7fe83ce3401cef1d9c79b91a48633d8dc))
 
 ## [7.0.3](https://gitlab.com/rxap/nest/compare/@rxap/nest-firebase@7.0.2...@rxap/nest-firebase@7.0.3) (2021-10-19)
 
 ### Bug Fixes
 
-* **module:** set allowUnverifiedEmail default to
-  false ([cc3edd5](https://gitlab.com/rxap/nest/commit/cc3edd54aaa622626016f7bd832c0dcb9d305c09))
+* **module:** set allowUnverifiedEmail default tofalse ([cc3edd5](https://gitlab.com/rxap/nest/commit/cc3edd54aaa622626016f7bd832c0dcb9d305c09))
 
 ## [7.0.2](https://gitlab.com/rxap/nest/compare/@rxap/nest-firebase@7.0.1...@rxap/nest-firebase@7.0.2) (2021-07-06)
 

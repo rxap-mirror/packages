@@ -41,7 +41,7 @@ export class LayoutComponent {
 
   public openWindowSidenav = false;
 
-  @ViewChild(MatSidenav, {static: true}) public sidenav!: MatSidenav;
+  @ViewChild(MatSidenav, { static: true }) public sidenav!: MatSidenav;
 
   constructor(
     public readonly layoutComponentService: LayoutComponentService,

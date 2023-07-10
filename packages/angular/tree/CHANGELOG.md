@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@15.0.0...@rxap/tree@16.0.0-dev.0) (2023-05-18)
 
@@ -60,17 +59,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* add missing style
-  bindings ([6d5e777](https://gitlab.com/rxap/packages/commit/6d5e777ec0f7da1fdada8a2135a682778c8467e1))
+* add missing stylebindings ([6d5e777](https://gitlab.com/rxap/packages/commit/6d5e777ec0f7da1fdada8a2135a682778c8467e1))
 
 # [13.0.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/tree@13.0.0-next.2...@rxap/tree@13.0.0-next.3) (2022-03-30)
 
 ### Features
 
-* add support for custom
-  parameters ([0df905f](https://gitlab.com/rxap/packages/commit/0df905f44e64d5f14b3cbe38acaf5f7216697329))
-* add support for getStyle
-  method ([ba0baa8](https://gitlab.com/rxap/packages/commit/ba0baa8fb9bddf0cc1de8456a81ca395cd039386))
+* add support for customparameters ([0df905f](https://gitlab.com/rxap/packages/commit/0df905f44e64d5f14b3cbe38acaf5f7216697329))
+* add support for getStylemethod ([ba0baa8](https://gitlab.com/rxap/packages/commit/ba0baa8fb9bddf0cc1de8456a81ca395cd039386))
 
 # [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/tree@13.0.0-next.1...@rxap/tree@13.0.0-next.2) (2022-03-29)
 
@@ -80,8 +76,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -93,29 +88,25 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* support cached divider
-  offset ([a1df8b2](https://gitlab.com/rxap/packages/commit/a1df8b2bd5e6823eb46e5ecd3c602ec5409675e0))
+* support cached divideroffset ([a1df8b2](https://gitlab.com/rxap/packages/commit/a1df8b2bd5e6823eb46e5ecd3c602ec5409675e0))
 
 # [12.5.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.4.1...@rxap/tree@12.5.0) (2022-03-08)
 
 ### Features
 
-* support cached divider
-  offset ([dd351ea](https://gitlab.com/rxap/packages/commit/dd351eaaa5b1ed742030b416586e53f520a68c59))
+* support cached divideroffset ([dd351ea](https://gitlab.com/rxap/packages/commit/dd351eaaa5b1ed742030b416586e53f520a68c59))
 
 ## [12.4.1](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.4.0...@rxap/tree@12.4.1) (2022-03-07)
 
 ### Bug Fixes
 
-* reduce log population in production
-  mode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
+* reduce log population in productionmode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
 
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.4.0...@rxap/tree@13.0.0-next.0) (2022-02-19)
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -145,15 +136,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* add checkbox select
-  option ([110f171](https://gitlab.com/rxap/packages/commit/110f171b718841a42fa43a2afd6c5b1e7cbaa2fa))
+* add checkbox selectoption ([110f171](https://gitlab.com/rxap/packages/commit/110f171b718841a42fa43a2afd6c5b1e7cbaa2fa))
 
 ## [12.2.1](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.2.0...@rxap/tree@12.2.1) (2021-12-21)
 
 ### Bug Fixes
 
-* **tree-data-source:** support async toNode method and custom root
-  parameters ([02194fa](https://gitlab.com/rxap/packages/commit/02194faf2142991c0a80eafdd2e118c0edc1b06b))
+* **tree-data-source:** support async toNode method and custom rootparameters ([02194fa](https://gitlab.com/rxap/packages/commit/02194faf2142991c0a80eafdd2e118c0edc1b06b))
 
 # [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.2.0-next.1...@rxap/tree@12.2.0) (2021-11-25)
 
@@ -163,8 +152,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* set container height to
-  100% ([134f636](https://gitlab.com/rxap/packages/commit/134f636f2aece049da108dda242d5a7a0a057620))
+* set container height to100% ([134f636](https://gitlab.com/rxap/packages/commit/134f636f2aece049da108dda242d5a7a0a057620))
 
 # [12.2.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.1.1...@rxap/tree@12.2.0-next.0) (2021-11-02)
 
@@ -180,8 +168,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* split into rxjs and reflect-metadata sub
-  packages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
+* split into rxjs and reflect-metadata subpackages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
 
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.1.0-next.1...@rxap/tree@12.1.0) (2021-07-09)
 
@@ -191,8 +178,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* set default tree width to
-  nogrow ([c3c4c6a](https://gitlab.com/rxap/packages/commit/c3c4c6a8a109d842d321b3637b1fa31b5b4cec91))
+* set default tree width tonogrow ([c3c4c6a](https://gitlab.com/rxap/packages/commit/c3c4c6a8a109d842d321b3637b1fa31b5b4cec91))
 
 # [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/tree@12.0.6...@rxap/tree@12.1.0-next.0) (2021-06-29)
 
@@ -249,10 +235,8 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/tree@11.0.6...@rxap/tree@11.0.7) (2021-03-19)
 
@@ -297,5 +281,4 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))

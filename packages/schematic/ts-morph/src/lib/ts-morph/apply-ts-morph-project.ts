@@ -15,12 +15,15 @@ function areSame(sourceFile1: SourceFile, sourceFile2: SourceFile) {
     const leaf1 = leafNodes1.next();
     const leaf2 = leafNodes2.next();
 
-    if (leaf1.done && leaf2.done)
+    if (leaf1.done && leaf2.done) {
       return true;
-    if (leaf1.done || leaf2.done)
+    }
+    if (leaf1.done || leaf2.done) {
       return false;
-    if (leaf1.value.getText() !== leaf2.value.getText())
+    }
+    if (leaf1.value.getText() !== leaf2.value.getText()) {
       return false;
+    }
   }
 
   function* getLeafNodes(sourceFile: SourceFile): Iterator<Node> {
@@ -28,15 +31,23 @@ function areSame(sourceFile1: SourceFile, sourceFile2: SourceFile) {
 
     function* searchNode(node: Node): any {
       const children = node.getChildren();
-      if (children.length === 0) yield node;
-      else {
-        for (const child of children) yield* searchNode(child);
+      if (children.length === 0) {
+        yield node;
+      } else {
+        for (const child of children) {
+          yield * searchNode(child);
+        }
       }
     }
   }
 }
 
-export function ApplyTsMorphProject(project: Project, basePath = '', organizeImports = true, fixMissingImports = false): Rule {
+export function ApplyTsMorphProject(
+  project: Project,
+  basePath = '',
+  organizeImports = true,
+  fixMissingImports = false,
+): Rule {
   return tree => {
 
     if (organizeImports || fixMissingImports) {

@@ -5,7 +5,8 @@ describe(JsonViewerComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(JsonViewerComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });
@@ -19,15 +20,25 @@ describe(JsonViewerComponent.name, () => {
       componentProperties: {
         json: {
           'employee': {
-            'firstName': 'John', 'lastName': 'Doe', 'age': 30, 'email': 'john.doe@example.com', 'address': {
-              'street': '1234 Park St', 'city': 'San Francisco', 'state': 'CA', 'postalCode': '94104',
-            }, 'roles': [ 'Developer', 'Team Lead' ], projects: [
+            'firstName': 'John',
+            'lastName': 'Doe',
+            'age': 30,
+            'email': 'john.doe@example.com',
+            'address': {
+              'street': '1234 Park St',
+              'city': 'San Francisco',
+              'state': 'CA',
+              'postalCode': '94104',
+            },
+            'roles': [ 'Developer', 'Team Lead' ],
+            projects: [
               {
                 name: 'project 1',
               },
             ],
           },
-        }, expanded: true,
+        },
+        expanded: true,
       },
     });
     cy.get('section.segment-main.expandable')

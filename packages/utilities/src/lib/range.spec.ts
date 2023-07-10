@@ -12,7 +12,7 @@ describe('@rxap/utilities', () => {
         array.push(value);
       }
 
-      expect(array).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+      expect(array).toEqual([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]);
 
     });
 
@@ -24,7 +24,7 @@ describe('@rxap/utilities', () => {
         array.push(value);
       }
 
-      expect(array).toEqual([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]);
+      expect(array).toEqual([ -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5 ]);
 
     });
 
@@ -36,7 +36,7 @@ describe('@rxap/utilities', () => {
         array.push(value);
       }
 
-      expect(array).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].reverse());
+      expect(array).toEqual([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ].reverse());
 
     });
 
@@ -48,7 +48,7 @@ describe('@rxap/utilities', () => {
         array.push(value);
       }
 
-      expect(array).toEqual([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5].reverse());
+      expect(array).toEqual([ -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5 ].reverse());
 
     });
 

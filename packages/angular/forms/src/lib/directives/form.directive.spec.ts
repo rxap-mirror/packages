@@ -60,12 +60,12 @@ describe('@rxap/forms', () => {
           provide: RXAP_FORM_DEFINITION_BUILDER,
           useFactory: (injector: Injector) =>
             new RxapFormBuilder<ITestForm>(TestForm, injector),
-          deps: [INJECTOR],
+          deps: [ INJECTOR ],
         },
         {
           provide: RXAP_FORM_DEFINITION,
           useFactory: (builder: RxapFormBuilder) => builder.build(),
-          deps: [RXAP_FORM_DEFINITION_BUILDER],
+          deps: [ RXAP_FORM_DEFINITION_BUILDER ],
         },
         {
           provide: ChangeDetectorRef,
@@ -78,7 +78,7 @@ describe('@rxap/forms', () => {
 
       it('should create a form definition instance', () => {
         TestBed.configureTestingModule({
-          providers: [TestFormProviders, FormDirective],
+          providers: [ TestFormProviders, FormDirective ],
         });
 
         const formDirective = TestBed.inject(FormDirective);
@@ -95,7 +95,7 @@ describe('@rxap/forms', () => {
 
       it('should set loaded to true if no load method is defined', () => {
         TestBed.configureTestingModule({
-          providers: [TestFormProviders, FormDirective],
+          providers: [ TestFormProviders, FormDirective ],
         });
         const formDirective = TestBed.inject(FormDirective);
         expect(formDirective.loaded).toBeFalsy();
@@ -114,7 +114,10 @@ describe('@rxap/forms', () => {
               provide: RXAP_FORM_LOAD_METHOD,
               useValue: {
                 call() {
-                  return {username: 'rxap', password: 'paxr'};
+                  return {
+                    username: 'rxap',
+                    password: 'paxr',
+                  };
                 },
               },
             },
@@ -271,7 +274,10 @@ describe('@rxap/forms', () => {
         });
 
         const formDirective = TestBed.inject(FormDirective);
-        formDirective.form.setValue({username: 'rxap', password: 'paxr'});
+        formDirective.form.setValue({
+          username: 'rxap',
+          password: 'paxr',
+        });
 
         const rxapSubmitSpy = jest.fn();
 
@@ -306,7 +312,10 @@ describe('@rxap/forms', () => {
         });
 
         const formDirective = TestBed.inject(FormDirective);
-        formDirective.form.setValue({username: 'rxap', password: 'paxr'});
+        formDirective.form.setValue({
+          username: 'rxap',
+          password: 'paxr',
+        });
 
         const rxapSubmitSpy = jest.fn();
 
@@ -337,7 +346,10 @@ describe('@rxap/forms', () => {
         });
 
         const formDirective = TestBed.inject(FormDirective);
-        formDirective.form.setValue({username: 'rxap', password: 'paxr'});
+        formDirective.form.setValue({
+          username: 'rxap',
+          password: 'paxr',
+        });
 
         const rxapSubmitSpy = jest.fn();
 
@@ -376,7 +388,10 @@ describe('@rxap/forms', () => {
         });
 
         const formDirective = TestBed.inject(FormDirective);
-        formDirective.form.setValue({username: 'rxap', password: 'paxr'});
+        formDirective.form.setValue({
+          username: 'rxap',
+          password: 'paxr',
+        });
 
         const rxapSubmitSpy = jest.fn();
 
@@ -422,12 +437,12 @@ describe('@rxap/forms', () => {
               provide: RXAP_FORM_DEFINITION_BUILDER,
               useFactory: (injector: Injector) =>
                 new RxapFormBuilder<ITestAutoSubmit>(TestAutoSubmit, injector),
-              deps: [INJECTOR],
+              deps: [ INJECTOR ],
             },
             {
               provide: RXAP_FORM_DEFINITION,
               useFactory: (builder: RxapFormBuilder) => builder.build(),
-              deps: [RXAP_FORM_DEFINITION_BUILDER],
+              deps: [ RXAP_FORM_DEFINITION_BUILDER ],
             },
             {
               provide: ChangeDetectorRef,
@@ -451,7 +466,10 @@ describe('@rxap/forms', () => {
           true,
         );
 
-        formDirective.form.setValue({username: 'rxap', password: 'paxr'});
+        formDirective.form.setValue({
+          username: 'rxap',
+          password: 'paxr',
+        });
 
         expect(submitSpy).not.toBeCalled();
 
@@ -467,8 +485,8 @@ describe('@rxap/forms', () => {
 
         beforeEach(async () => {
           await TestBed.configureTestingModule({
-            imports: [RxapFormsModule],
-            providers: [TestFormProviders],
+            imports: [ RxapFormsModule ],
+            providers: [ TestFormProviders ],
           });
 
           fixture = MockRender(`
@@ -479,8 +497,8 @@ describe('@rxap/forms', () => {
 
           submitButton = fixture.debugElement.query(By.css('button'));
           formDirective = fixture.debugElement
-            .query(By.directive(FormDirective))
-            .injector.get(FormDirective);
+                                 .query(By.directive(FormDirective))
+                                 .injector.get(FormDirective);
         });
 
         it('should create', () => {

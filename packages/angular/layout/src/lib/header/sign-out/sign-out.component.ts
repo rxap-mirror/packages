@@ -25,7 +25,7 @@ export class SignOutComponent {
   }
 
   public redirectToRoot() {
-    this.router.navigate(['/']);
+    this.router.navigate([ '/' ]);
   }
 
 }

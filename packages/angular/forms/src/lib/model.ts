@@ -98,7 +98,7 @@ export interface FormOptions extends RxapAbstractControlOptions {
 
 export interface FormDefinitionMetadata
   extends BaseDefinitionMetadata,
-    FormOptions {
+          FormOptions {
   providers?: StaticProvider[];
   /**
    * true - after 5000ms the form is automatically submitted if valid

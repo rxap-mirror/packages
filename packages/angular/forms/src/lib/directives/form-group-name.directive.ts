@@ -45,7 +45,8 @@ export class FormGroupNameDirective extends FormGroupName {
   constructor(
     @Optional() @SkipSelf() parent: ControlContainer,
     @Optional() @Self() @Inject(NG_VALIDATORS) validators: any[],
-    @Optional() @Self() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: any[]) {
+    @Optional() @Self() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: any[],
+  ) {
     super(parent, validators, asyncValidators);
   }
 

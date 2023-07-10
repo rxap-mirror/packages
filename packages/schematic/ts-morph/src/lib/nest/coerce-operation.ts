@@ -106,7 +106,7 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
     nestModule = controllerName;
   }
 
-  console.log(`Coerce Operation '${operationName}' with path '${path}' in the controller '${controllerName}' in the module '${nestModule}'`);
+  console.log(`Coerce Operation '${ operationName }' with path '${ path }' in the controller '${ controllerName }' in the module '${ nestModule }'`);
 
   if (!nestModule) {
     throw new SchematicsException('FATAL: the nestModule property is not defined');
@@ -114,7 +114,12 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
 
   return chain([
     skipCoerce ? noop() : chain([
-      CoerceNestModule({project, feature, shared, name: nestModule}),
+      CoerceNestModule({
+        project,
+        feature,
+        shared,
+        name: nestModule,
+      }),
       CoerceNestController({
         ...options,
         name: controllerName,
@@ -123,21 +128,23 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
     ]),
     TsMorphNestProjectTransform(options, project => {
 
-      const sourceFile = project.getSourceFileOrThrow(`/${nestModule}/${controllerName}.controller.ts`);
-      const classDeclaration = sourceFile.getClassOrThrow(`${classify(controllerName!)}Controller`);
+      const sourceFile = project.getSourceFileOrThrow(`/${ nestModule }/${ controllerName }.controller.ts`);
+      const classDeclaration = sourceFile.getClassOrThrow(`${ classify(controllerName!) }Controller`);
 
       const operationOptions = tsMorphTransform!(project, sourceFile, classDeclaration, controllerName!);
 
       if (controllerPath) {
         classDeclaration.getDecoratorOrThrow('Controller').set({
-          arguments: [w => w.quote(`${nestModule}/${controllerPath}`)],
+          arguments: [ w => w.quote(`${ nestModule }/${ controllerPath }`) ],
         });
       } else if (!isFirstBornSibling) {
         const parentParamList = paramList!.filter(p => p.fromParent);
         classDeclaration.getDecoratorOrThrow('Controller').set({
-          arguments: [w => w.quote(`${nestModule}/${parentParamList.length ?
-            parentParamList.map(param => `:${param.name}`).join('/') + '/' :
-            ''}${controllerName!.replace(nestModule + '-', '')}`)],
+          arguments: [
+            w => w.quote(`${ nestModule }/${ parentParamList.length ?
+              parentParamList.map(param => `:${ param.name }`).join('/') + '/' :
+              '' }${ controllerName!.replace(nestModule + '-', '') }`),
+          ],
         });
       }
 

@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/services@15.0.0...@rxap/services@16.0.0-dev.0) (2023-05-18)
 
@@ -46,15 +45,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* **theme:** only emit dark mode state if
-  changed ([f973bef](https://gitlab.com/rxap/packages/commit/f973bef4768a437d00053775525a814a264d683c))
+* **theme:** only emit dark mode state ifchanged ([f973bef](https://gitlab.com/rxap/packages/commit/f973bef4768a437d00053775525a814a264d683c))
 
 ## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/services@14.0.1...@rxap/services@14.0.2) (2022-10-07)
 
 ### Bug Fixes
 
-* replace package.json with
-  ng-package.json ([ebaaf92](https://gitlab.com/rxap/packages/commit/ebaaf92a403fd31a4aa538f698fda1e004c037bd))
+* replace package.json withng-package.json ([ebaaf92](https://gitlab.com/rxap/packages/commit/ebaaf92a403fd31a4aa538f698fda1e004c037bd))
 
 ## [14.0.1](https://gitlab.com/rxap/packages/compare/@rxap/services@13.0.0...@rxap/services@14.0.1) (2022-09-17)
 
@@ -76,8 +73,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -101,8 +97,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* split into rxjs and reflect-metadata sub
-  packages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
+* split into rxjs and reflect-metadata subpackages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
 
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/services@12.0.5...@rxap/services@12.0.6) (2021-06-24)
 
@@ -140,24 +135,20 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 # [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/services@11.1.0...@rxap/services@11.2.0) (2021-03-30)
 
 ### Features
 
-* **theme-service:** initialization
-  issue ([782fb54](https://gitlab.com/rxap/packages/commit/782fb54325de2977db61564c3cf0cfb99512cc5e))
+* **theme-service:** initializationissue ([782fb54](https://gitlab.com/rxap/packages/commit/782fb54325de2977db61564c3cf0cfb99512cc5e))
 
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/services@11.0.8...@rxap/services@11.1.0) (2021-03-30)
 
 ### Features
 
-* **theme-service:** add observable dark mode
-  state ([fc35e7e](https://gitlab.com/rxap/packages/commit/fc35e7e652c1a0d617941951d631cf709ea11062))
+* **theme-service:** add observable dark modestate ([fc35e7e](https://gitlab.com/rxap/packages/commit/fc35e7e652c1a0d617941951d631cf709ea11062))
 
 ## [11.0.8](https://gitlab.com/rxap/packages/compare/@rxap/services@11.0.7...@rxap/services@11.0.8) (2021-03-19)
 
@@ -182,8 +173,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **loading-indicator:** prevent
-  ExpressionChangedAfterItHasBeenCheckedError ([dcbe3eb](https://gitlab.com/rxap/packages/commit/dcbe3ebb6ad87c0ad128db712e9a658c25f38f06))
+* **loading-indicator:** preventExpressionChangedAfterItHasBeenCheckedError ([dcbe3eb](https://gitlab.com/rxap/packages/commit/dcbe3ebb6ad87c0ad128db712e9a658c25f38f06))
 
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/services@11.0.3...@rxap/services@11.0.4) (2021-02-04)
 
@@ -211,10 +201,8 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
 
 ### Features
 
-* support for the new footer service
-  concept ([4a175e8](https://gitlab.com/rxap/packages/commit/4a175e885b43a1cb2ac4ac96d05c351bf5307337))
+* support for the new footer serviceconcept ([4a175e8](https://gitlab.com/rxap/packages/commit/4a175e885b43a1cb2ac4ac96d05c351bf5307337))

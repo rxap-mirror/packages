@@ -5,7 +5,8 @@ describe(WindowContainerSidenavComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(WindowContainerSidenavComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

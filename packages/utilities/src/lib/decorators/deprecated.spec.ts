@@ -23,7 +23,7 @@ describe('@rxap/utilities', () => {
 
         @Deprecated('use getUser() instate')
         public getPerson(): any {
-          return {id: 'user'};
+          return { id: 'user' };
         }
 
         @Deprecated('use testMe() instate')
@@ -102,7 +102,7 @@ describe('@rxap/utilities', () => {
 
         const consoleWarnSpy = jest.spyOn(console, 'warn');
 
-        expect(myClass.getPerson()).toEqual({id: 'user'});
+        expect(myClass.getPerson()).toEqual({ id: 'user' });
 
         expect(consoleWarnSpy).toBeCalledTimes(1);
         expect(consoleWarnSpy).toBeCalledWith('[MyClass.getPerson()] is deprecated!', 'use getUser() instate');

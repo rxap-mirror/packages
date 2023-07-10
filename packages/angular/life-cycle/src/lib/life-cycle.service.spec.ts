@@ -23,7 +23,7 @@ describe('LifeCycle', () => {
         providers: [
           {
             provide: ApplicationRef,
-            useValue: {isStable},
+            useValue: { isStable },
           },
         ],
       });

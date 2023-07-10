@@ -20,53 +20,56 @@ export default async function runExecutor(options: UploadExecutorSchema, context
 
   if (!options.readKey) {
     const projectConfiguration = GetProjectConfiguration(context);
-    const downloadTarget = GetTarget(projectConfiguration, "localazy-download");
+    const downloadTarget = GetTarget(projectConfiguration, 'localazy-download');
     const downloadTargetOptions = GetTargetOptions<DownloadExecutorSchema>(downloadTarget, context.configurationName);
     options.readKey = downloadTargetOptions.readKey;
   }
 
-  const args: string[] = [ "localazy", "upload" ];
+  const args: string[] = [ 'localazy', 'upload' ];
 
   if (this.options.readKey) {
-    args.push("-r " + this.options.readKey);
+    args.push('-r ' + this.options.readKey);
   }
 
   if (this.options.writeKey) {
-    args.push("-w " + this.options.writeKey);
+    args.push('-w ' + this.options.writeKey);
   }
 
   if (this.options.configJson) {
-    args.push("-c \"" + this.options.configJson + "\"");
+    args.push('-c "' + this.options.configJson + '"');
   }
 
   if (this.options.workingDirectory) {
-    args.push("-d \"" + this.options.workingDirectory + "\"");
+    args.push('-d "' + this.options.workingDirectory + '"');
   }
 
   if (this.options.keysJson) {
-    args.push("-k \"" + this.options.keysJson + "\"");
+    args.push('-k "' + this.options.keysJson + '"');
   }
 
   if (this.options.version) {
-    args.push("-v " + this.options.version);
+    args.push('-v ' + this.options.version);
   }
 
   if (this.options.dryRun) {
-    args.push("-s");
+    args.push('-s');
   }
 
   if (this.options.quite) {
-    args.push("-q");
+    args.push('-q');
   }
 
   if (this.options.force) {
-    args.push("-f");
+    args.push('-f');
   }
 
   try {
     await YarnRun(args);
   } catch (e: any) {
-    return { success: false, error: e.message };
+    return {
+      success: false,
+      error: e.message,
+    };
   }
 
   return {

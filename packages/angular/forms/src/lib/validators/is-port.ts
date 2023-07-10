@@ -4,7 +4,7 @@ import {
 } from '@angular/forms';
 import { isPort } from '@rxap/validator';
 
-export function IsPort({message}: { message?: string } = {}) {
+export function IsPort({ message }: { message?: string } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;

@@ -94,7 +94,7 @@ export class DataSourceCollectionDirective<Data = any>
   @Required
   public dataSourceOrIdOrToken!: IdOrInstanceOrToken<BaseDataSource<Data[]>>;
   @Input('rxapDataSourceCollectionViewer')
-  public viewer: BaseDataSourceViewer = {id: '[rxapDataSourceCollection]'};
+  public viewer: BaseDataSourceViewer = { id: '[rxapDataSourceCollection]' };
   public dataSource: BaseDataSource<Data[]> | null = null;
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('rxapDataSourceCollectionEmpty')
@@ -177,7 +177,7 @@ export class DataSourceCollectionDirective<Data = any>
       // TODO(vicb): use a log service once there is a public one available
       if (<any>console && <any>console.warn) {
         console.warn(
-          `trackBy must be a function, but received ${JSON.stringify(fn)}. ` +
+          `trackBy must be a function, but received ${ JSON.stringify(fn) }. ` +
           `See https://angular.io/api/common/NgForOf#change-propagation for more information.`,
         );
       }
@@ -279,9 +279,9 @@ export class DataSourceCollectionDirective<Data = any>
             this._differ = this.differs.find(value).create(this.ngForTrackBy);
           } catch {
             throw new Error(
-              `Cannot find a differ supporting object '${value}' of type '${getTypeName(
+              `Cannot find a differ supporting object '${ value }' of type '${ getTypeName(
                 value,
-              )}'. NgFor only supports binding to Iterables such as Arrays.`,
+              ) }'. NgFor only supports binding to Iterables such as Arrays.`,
             );
           }
         }
@@ -321,30 +321,33 @@ export class DataSourceCollectionDirective<Data = any>
     if (this.dataSource) {
       this.connection$ = this.dataSource.connect(this.viewer);
       this.zone.onStable
-        .pipe(
-          take(1),
-          tap(() => {
-            this.zone.run(() => {
-              this.subscription.add(
-                this.connection$!.pipe(
-                  tap({
-                    next: (response) => {
-                      this._empty = response.length === 0;
-                      this._data = response;
-                      this.cdr.detectChanges();
-                    },
-                    error: (error) => {
-                      this.error.emit(error);
-                      console.error(`Connection failure in ${this.dataSource!.constructor.name}: ${error.message}`, error);
-                      this.embedErrorTemplate(error);
-                    },
-                  }),
-                ).subscribe(),
-              );
-            });
-          }),
-        )
-        .subscribe();
+          .pipe(
+            take(1),
+            tap(() => {
+              this.zone.run(() => {
+                this.subscription.add(
+                  this.connection$!.pipe(
+                    tap({
+                      next: (response) => {
+                        this._empty = response.length === 0;
+                        this._data = response;
+                        this.cdr.detectChanges();
+                      },
+                      error: (error) => {
+                        this.error.emit(error);
+                        console.error(
+                          `Connection failure in ${ this.dataSource!.constructor.name }: ${ error.message }`,
+                          error,
+                        );
+                        this.embedErrorTemplate(error);
+                      },
+                    }),
+                  ).subscribe(),
+                );
+              });
+            }),
+          )
+          .subscribe();
     } else {
       throw new Error(
         'Can not connect to the data source. The data source is not loaded!',
@@ -396,7 +399,8 @@ export class DataSourceCollectionDirective<Data = any>
       this.perViewChange(insertTuples[i].view, insertTuples[i].record);
     }
 
-    for (let i = 0, ilen = this.viewContainerRef.length; i < ilen; i++) {
+    for (let i = 0,
+           ilen = this.viewContainerRef.length; i < ilen; i++) {
       const viewRef = <
         EmbeddedViewRef<DataSourceCollectionTemplateContext<Data>>
         >this.viewContainerRef.get(i);

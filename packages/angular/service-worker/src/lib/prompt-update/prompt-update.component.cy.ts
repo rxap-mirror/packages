@@ -5,7 +5,8 @@ describe(PromptUpdateComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(PromptUpdateComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

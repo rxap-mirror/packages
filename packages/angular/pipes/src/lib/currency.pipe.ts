@@ -60,9 +60,9 @@ export class RxapCurrencyPipe implements PipeTransform {
 }
 
 @NgModule({
-  imports: [RxapCurrencyPipe],
-  exports: [RxapCurrencyPipe],
-  providers: [CurrencyPipe],
+  imports: [ RxapCurrencyPipe ],
+  exports: [ RxapCurrencyPipe ],
+  providers: [ CurrencyPipe ],
 })
 export class CurrencyPipeModule {
 }

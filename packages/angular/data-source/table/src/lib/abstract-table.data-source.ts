@@ -153,7 +153,7 @@ export abstract class AbstractTableDataSource<Data extends Record<string, any> =
         return data.slice();
       } else {
         return data.filter(row => {
-          return Object.entries(filter).every(([key, value]) => {
+          return Object.entries(filter).every(([ key, value ]) => {
             const type = typeof value;
             if (row[key] !== undefined && hasIndexSignature(row)) {
               switch (type) {

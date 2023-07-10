@@ -23,9 +23,18 @@ export const RXAP_WINDOW_TASK_BAR_CONTAINER_SETTINGS = new InjectionToken('rxap/
 @Component({
   selector: 'rxap-window-task-bar-container',
   templateUrl: './window-task-bar-container.component.html',
-  styleUrls: ['./window-task-bar-container.component.scss'],
+  styleUrls: [ './window-task-bar-container.component.scss' ],
   standalone: true,
-  imports: [NgIf, FlexModule, MatButtonModule, MatBadgeModule, MatIconModule, MatToolbarModule, ExtendedModule, WindowTaskBarComponent],
+  imports: [
+    NgIf,
+    FlexModule,
+    MatButtonModule,
+    MatBadgeModule,
+    MatIconModule,
+    MatToolbarModule,
+    ExtendedModule,
+    WindowTaskBarComponent,
+  ],
 })
 export class WindowTaskBarContainerComponent {
 

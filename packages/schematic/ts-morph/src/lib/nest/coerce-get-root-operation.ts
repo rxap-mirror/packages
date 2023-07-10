@@ -40,12 +40,21 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
       controllerName,
     ) => {
 
-      const {className, filePath} = CoerceDtoClass(
+      const {
+        className,
+        filePath,
+      } = CoerceDtoClass(
         project,
         CoerceSuffix(controllerName, '-item'),
         [
-          {name: 'uuid', type: 'string'},
-          {name: 'hasChildren', type: 'boolean'},
+          {
+            name: 'uuid',
+            type: 'string',
+          },
+          {
+            name: 'hasChildren',
+            type: 'boolean',
+          },
           {
             name: 'children',
             type: classify(CoerceSuffix(controllerName, '-item-dto')),
@@ -58,16 +67,16 @@ export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationO
 
       CoerceImports(sourceFile, [
         {
-          namedImports: ['plainToInstance'],
+          namedImports: [ 'plainToInstance' ],
           moduleSpecifier: 'class-transformer',
         },
         {
-          namedImports: ['classTransformOptions'],
+          namedImports: [ 'classTransformOptions' ],
           moduleSpecifier: '@rxap/nest/class-transformer/options',
         },
         {
-          namedImports: [className],
-          moduleSpecifier: `..${filePath}`,
+          namedImports: [ className ],
+          moduleSpecifier: `..${ filePath }`,
         },
       ]);
 

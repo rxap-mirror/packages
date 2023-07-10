@@ -15,7 +15,7 @@ export function isJSON(str: unknown, options: IsJSONOptions = {}) {
     options = merge(options, default_json_options);
     let primitives: Array<null | boolean> = [];
     if (options.allow_primitives) {
-      primitives = [null, false, true];
+      primitives = [ null, false, true ];
     }
 
     const obj = JSON.parse(str);

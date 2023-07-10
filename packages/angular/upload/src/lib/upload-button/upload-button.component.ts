@@ -135,7 +135,7 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   }
 
   public get id(): string {
-    return `rxap-upload-button-${UploadButtonComponent.nextId++}`;
+    return `rxap-upload-button-${ UploadButtonComponent.nextId++ }`;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -145,9 +145,9 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
 
   public setDescribedByIds(ids: string[]): void {
     this._elementRef
-      .nativeElement
-      .querySelector('button')
-      ?.setAttribute('aria-describedby', ids.join(' '));
+        .nativeElement
+        .querySelector('button')
+        ?.setAttribute('aria-describedby', ids.join(' '));
   }
 
   public ngOnDestroy() {
@@ -179,7 +179,7 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
 
   public writeValue(file: File): void {
     if (isDevMode()) {
-      console.log({file});
+      console.log({ file });
     }
     this.value = file;
     this.cdr.detectChanges();
@@ -194,7 +194,7 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     }
   }
 
-  @HostListener('focusin', ['$event'])
+  @HostListener('focusin', [ '$event' ])
   onFocusIn(event: FocusEvent) {
     if (!this.focused) {
       this.focused = true;
@@ -202,7 +202,7 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     }
   }
 
-  @HostListener('focusout', ['$event'])
+  @HostListener('focusout', [ '$event' ])
   onFocusOut(event: FocusEvent) {
     if (!this._elementRef.nativeElement.contains(event.relatedTarget as Element)) {
       this.touched = true;

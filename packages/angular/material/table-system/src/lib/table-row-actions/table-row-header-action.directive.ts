@@ -80,19 +80,19 @@ export class TableRowHeaderActionDirective<Data extends Record<string, any>>
   public override ngOnInit() {
     if (this.selectRowService) {
       this._subscription = this.selectRowService.selectedRows$
-        .pipe(
-          startWith(this.selectRowService.selectedRows),
-          map((rows) => rows.length !== 0),
-          tap((hasSelected) => {
-            if (hasSelected) {
-              this.setButtonEnabled();
-            } else {
-              this.setButtonDisabled();
-            }
-            this.cdr.detectChanges();
-          }),
-        )
-        .subscribe();
+                               .pipe(
+                                 startWith(this.selectRowService.selectedRows),
+                                 map((rows) => rows.length !== 0),
+                                 tap((hasSelected) => {
+                                   if (hasSelected) {
+                                     this.setButtonEnabled();
+                                   } else {
+                                     this.setButtonDisabled();
+                                   }
+                                   this.cdr.detectChanges();
+                                 }),
+                               )
+                               .subscribe();
     } else {
       this.setButtonDisabled();
     }

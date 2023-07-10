@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@15.0.0...@rxap/authorization@16.0.0-dev.0) (2023-05-18)
 
@@ -64,15 +63,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* change scope to
-  protected ([f5f861e](https://gitlab.com/rxap/packages/commit/f5f861e9c9aaa0d9c7701b2dd5fc7a8938ee3f53))
+* change scope toprotected ([f5f861e](https://gitlab.com/rxap/packages/commit/f5f861e9c9aaa0d9c7701b2dd5fc7a8938ee3f53))
 
 # [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.9...@rxap/authorization@13.0.0-next.1) (2022-03-17)
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -84,15 +81,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* reduce log population in production
-  mode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
+* reduce log population in productionmode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
 
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.8...@rxap/authorization@13.0.0-next.0) (2022-02-19)
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -104,15 +99,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **if-has-permission:** support else
-  template ([e8ac1b3](https://gitlab.com/rxap/packages/commit/e8ac1b3cd4c1b87629a981c7929bc87c7fd67702))
+* **if-has-permission:** support elsetemplate ([e8ac1b3](https://gitlab.com/rxap/packages/commit/e8ac1b3cd4c1b87629a981c7929bc87c7fd67702))
 
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.6...@rxap/authorization@12.0.7) (2022-02-10)
 
 ### Bug Fixes
 
-* trigger change detection after disable state
-  change ([9bd7c08](https://gitlab.com/rxap/packages/commit/9bd7c083095605cadf9d13a799ffbc2ce4c8c907))
+* trigger change detection after disable statechange ([9bd7c08](https://gitlab.com/rxap/packages/commit/9bd7c083095605cadf9d13a799ffbc2ce4c8c907))
 
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.5...@rxap/authorization@12.0.6) (2021-06-24)
 
@@ -150,22 +143,19 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* use base path for
-  roles.json ([f7126c3](https://gitlab.com/rxap/packages/commit/f7126c3994c6f08d32e35c50032306e3ecc472a8))
+* use base path forroles.json ([f7126c3](https://gitlab.com/rxap/packages/commit/f7126c3994c6f08d32e35c50032306e3ecc472a8))
 
 ## [11.2.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.2.0...@rxap/authorization@11.2.1) (2021-05-11)
 
 ### Bug Fixes
 
-* add support for custom
-  identifier ([b1a71e0](https://gitlab.com/rxap/packages/commit/b1a71e0aa681a56d42c911d9e4a43734354c8450))
+* add support for customidentifier ([b1a71e0](https://gitlab.com/rxap/packages/commit/b1a71e0aa681a56d42c911d9e4a43734354c8450))
 
 # [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.1.1...@rxap/authorization@11.2.0) (2021-05-11)
 
 ### Features
 
-* update to the new auth
-  concept ([c0cef1b](https://gitlab.com/rxap/packages/commit/c0cef1b0a42629bc7d12f2b8b578201c30d26b70))
+* update to the new authconcept ([c0cef1b](https://gitlab.com/rxap/packages/commit/c0cef1b0a42629bc7d12f2b8b578201c30d26b70))
 
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.1.0...@rxap/authorization@11.1.1) (2021-05-11)
 

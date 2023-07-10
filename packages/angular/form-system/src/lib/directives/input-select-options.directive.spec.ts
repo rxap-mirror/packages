@@ -44,7 +44,9 @@ describe('@rxap/form-system', () => {
       const loadOptions = spyOn<any>(inputSelectOptions, 'loadOptions');
       const extractControl = spyOn<any>(inputSelectOptions, 'extractControl');
       const formDefinition = spyOn<any>(inputSelectOptions, 'extractFormDefinition');
-      const extractDataSources = spyOn<any>(inputSelectOptions, 'extractDataSources').and.returnValue(useDataSourceValueMap);
+      const extractDataSources = spyOn<any>(inputSelectOptions, 'extractDataSources')
+        .and
+        .returnValue(useDataSourceValueMap);
 
       Reflect.set(inputSelectOptions, 'control', {});
 

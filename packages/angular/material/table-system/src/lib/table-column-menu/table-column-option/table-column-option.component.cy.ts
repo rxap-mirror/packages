@@ -5,7 +5,8 @@ describe(TableColumnOptionComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(TableColumnOptionComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });
@@ -13,7 +14,11 @@ describe(TableColumnOptionComponent.name, () => {
   it('renders', () => {
     cy.mount(TableColumnOptionComponent, {
       componentProperties: {
-        name: '', active: true, inactive: '', hidden: '', show: '',
+        name: '',
+        active: true,
+        inactive: '',
+        hidden: '',
+        show: '',
       },
     });
   });

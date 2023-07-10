@@ -22,7 +22,7 @@ export function CoerceVariableDeclaration(
     variableStatement = sourceFile.addVariableStatement({
       isExported: true,
       declarationKind: VariableDeclarationKind.Const,
-      declarations: [declaration],
+      declarations: [ declaration ],
     });
   }
 

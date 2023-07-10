@@ -5,7 +5,8 @@ describe(RowControlsHeaderCellComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(RowControlsHeaderCellComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

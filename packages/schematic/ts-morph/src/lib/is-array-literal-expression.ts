@@ -12,6 +12,6 @@ export function AssertArrayLiteralExpression(
   variableDeclarationName: string,
 ): asserts expression is ArrayLiteralExpression {
   if (!IsArrayLiteralExpression(expression)) {
-    throw new Error(`The variable declaration '${variableDeclarationName}' is not an array!`);
+    throw new Error(`The variable declaration '${ variableDeclarationName }' is not an array!`);
   }
 }

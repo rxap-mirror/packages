@@ -26,11 +26,11 @@ export function CoerceTableActionIndexProviderRule(options: Readonly<CoerceTable
     directory,
   }, (project) => {
 
-    const sourceFile = CoerceSourceFile(project, `${tableName}.component.ts`);
+    const sourceFile = CoerceSourceFile(project, `${ tableName }.component.ts`);
 
     AddComponentProvider(sourceFile, 'TABLE_ROW_ACTION_METHODS');
     CoerceImports(sourceFile, {
-      namedImports: ['TABLE_ROW_ACTION_METHODS'],
+      namedImports: [ 'TABLE_ROW_ACTION_METHODS' ],
       moduleSpecifier: './methods/action',
     });
 

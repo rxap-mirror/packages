@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/components@15.0.0...@rxap/components@16.0.0-dev.0) (2023-05-18)
 
@@ -42,10 +41,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* **confirm:** split on click
-  method ([907a411](https://gitlab.com/rxap/packages/commit/907a411bc2aba6eaf98b91fe00f6f65b1f411763))
-* **json-viewer:** remove old size
-  concept ([32a4588](https://gitlab.com/rxap/packages/commit/32a45887f82fb3e20b690ec133285c51c706cb93))
+* **confirm:** split on clickmethod ([907a411](https://gitlab.com/rxap/packages/commit/907a411bc2aba6eaf98b91fe00f6f65b1f411763))
+* **json-viewer:** remove old sizeconcept ([32a4588](https://gitlab.com/rxap/packages/commit/32a45887f82fb3e20b690ec133285c51c706cb93))
 
 ## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/components@14.0.1...@rxap/components@14.0.2) (2022-12-14)
 
@@ -77,15 +74,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* add default background
-  color ([ccb3edd](https://gitlab.com/rxap/packages/commit/ccb3edd2eb06168f638e53922ee2780f1b7e3d3a))
+* add default backgroundcolor ([ccb3edd](https://gitlab.com/rxap/packages/commit/ccb3edd2eb06168f638e53922ee2780f1b7e3d3a))
 
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/components@12.0.10...@rxap/components@13.0.0-next.0) (2022-02-19)
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -109,8 +104,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* set margin for h* elements to
-  0 ([6655f23](https://gitlab.com/rxap/packages/commit/6655f237b0e488437d53aa4dc84246793dbfe805))
+* set margin for h* elements to0 ([6655f23](https://gitlab.com/rxap/packages/commit/6655f237b0e488437d53aa4dc84246793dbfe805))
 
 ## [12.0.9](https://gitlab.com/rxap/packages/compare/@rxap/components@12.0.9-next.0...@rxap/components@12.0.9) (2021-07-09)
 
@@ -120,8 +114,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* split into rxjs and reflect-metadata sub
-  packages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
+* split into rxjs and reflect-metadata subpackages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
 
 ## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/components@12.0.7...@rxap/components@12.0.8) (2021-06-24)
 
@@ -139,15 +132,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* remove svg icon
-  dependency ([242d46e](https://gitlab.com/rxap/packages/commit/242d46ef8cae1120c6dd0aae62475357150bef09))
+* remove svg icondependency ([242d46e](https://gitlab.com/rxap/packages/commit/242d46ef8cae1120c6dd0aae62475357150bef09))
 
 ## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/components@12.0.3...@rxap/components@12.0.4) (2021-06-16)
 
 ### Bug Fixes
 
-* remove svg icon
-  dependency ([9ce2a1c](https://gitlab.com/rxap/packages/commit/9ce2a1cd1c55935d1255222a68971defd498be13))
+* remove svg icondependency ([9ce2a1c](https://gitlab.com/rxap/packages/commit/9ce2a1cd1c55935d1255222a68971defd498be13))
 
 ## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/components@12.0.2...@rxap/components@12.0.3) (2021-06-14)
 
@@ -173,10 +164,8 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 ## [11.1.2](https://gitlab.com/rxap/packages/compare/@rxap/components@11.1.1...@rxap/components@11.1.2) (2021-03-19)
 
@@ -199,8 +188,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* mv the material directives to the package
-  rxap/material-directives ([d54c5fe](https://gitlab.com/rxap/packages/commit/d54c5feaecf49f84b64f7ff327eb3496b00122b6))
+* mv the material directives to the packagerxap/material-directives ([d54c5fe](https://gitlab.com/rxap/packages/commit/d54c5feaecf49f84b64f7ff327eb3496b00122b6))
 
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/components@11.0.3...@rxap/components@11.0.4) (2021-02-04)
 
@@ -226,11 +214,8 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
 * replace all rxjs operators first() with take(
-  1) ([e2ae457](https://gitlab.com/rxap/packages/commit/e2ae45771c8b01f30fc1a00f962e067d610296b7))
-* **Confirm:** enforce button
-  type ([4ef069f](https://gitlab.com/rxap/packages/commit/4ef069f7aa97334dea74d3d60d0aab89da033f6a))
-* **CopyToClipboard:** update to new cdk
-  api ([95dcd83](https://gitlab.com/rxap/packages/commit/95dcd8320a899cd7279397e5f75be3e369de7329))
+    1) ([e2ae457](https://gitlab.com/rxap/packages/commit/e2ae45771c8b01f30fc1a00f962e067d610296b7))
+* **Confirm:** enforce buttontype ([4ef069f](https://gitlab.com/rxap/packages/commit/4ef069f7aa97334dea74d3d60d0aab89da033f6a))
+* **CopyToClipboard:** update to new cdkapi ([95dcd83](https://gitlab.com/rxap/packages/commit/95dcd8320a899cd7279397e5f75be3e369de7329))

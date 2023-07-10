@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/upload@15.0.0...@rxap/upload@16.0.0-dev.0) (2023-05-18)
 
@@ -64,8 +63,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -77,15 +75,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* reduce log population in production
-  mode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
+* reduce log population in productionmode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
 
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0...@rxap/upload@13.0.0-next.0) (2022-02-19)
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -111,22 +107,19 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* secure document object
-  access ([870bad3](https://gitlab.com/rxap/packages/commit/870bad3847c762c737d8a0dc87b6b53c53b9c3f3))
+* secure document objectaccess ([870bad3](https://gitlab.com/rxap/packages/commit/870bad3847c762c737d8a0dc87b6b53c53b9c3f3))
 
 # [12.1.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.3...@rxap/upload@12.1.0-next.4) (2021-07-16)
 
 ### Bug Fixes
 
-* add overlay styles and download
-  button ([3a7a171](https://gitlab.com/rxap/packages/commit/3a7a171a0a1831ec8344cdc499391c88cd3ff639))
+* add overlay styles and downloadbutton ([3a7a171](https://gitlab.com/rxap/packages/commit/3a7a171a0a1831ec8344cdc499391c88cd3ff639))
 
 # [12.1.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.2...@rxap/upload@12.1.0-next.3) (2021-07-16)
 
 ### Bug Fixes
 
-* form field circular injection
-  issue ([3a75e0e](https://gitlab.com/rxap/packages/commit/3a75e0eb50105bc4d64910ad9a05cb0fca6754d5))
+* form field circular injectionissue ([3a75e0e](https://gitlab.com/rxap/packages/commit/3a75e0eb50105bc4d64910ad9a05cb0fca6754d5))
 
 # [12.1.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.1.0-next.1...@rxap/upload@12.1.0-next.2) (2021-07-16)
 
@@ -144,15 +137,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* add filename preview and image
-  preview ([d00967e](https://gitlab.com/rxap/packages/commit/d00967e884ddec04f7d6277a648b74bc4e35324f))
+* add filename preview and imagepreview ([d00967e](https://gitlab.com/rxap/packages/commit/d00967e884ddec04f7d6277a648b74bc4e35324f))
 
 ## [12.0.7-next.0](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.0.6...@rxap/upload@12.0.7-next.0) (2021-07-16)
 
 ### Bug Fixes
 
-* update to new method
-  concept ([eba1d37](https://gitlab.com/rxap/packages/commit/eba1d3782de3f771a19898ad7d8f66b72304fad4))
+* update to new methodconcept ([eba1d37](https://gitlab.com/rxap/packages/commit/eba1d3782de3f771a19898ad7d8f66b72304fad4))
 
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/upload@12.0.5...@rxap/upload@12.0.6) (2021-06-24)
 
@@ -190,10 +181,8 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 ## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/upload@11.2.1...@rxap/upload@11.2.2) (2021-03-19)
 

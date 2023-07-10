@@ -20,7 +20,7 @@ export interface InjectionDefinition {
   optional?: boolean;
   type?: string;
   scope?: Scope;
-  module?: Module
+  module?: Module;
 }
 
 export function AddDependencyInjection(
@@ -54,7 +54,7 @@ export function AddDependencyInjection(
     decorators: [
       {
         name: 'Inject',
-        arguments: [definition.injectionToken],
+        arguments: [ definition.injectionToken ],
       },
     ],
   };
@@ -69,7 +69,7 @@ export function AddDependencyInjection(
       'null',
     );
     CoerceImports(sourceFile, {
-      namedImports: ['Optional'],
+      namedImports: [ 'Optional' ],
       moduleSpecifier: definition.module,
     });
   }
@@ -77,7 +77,7 @@ export function AddDependencyInjection(
   constructorDeclaration.addParameter(constructorParameter);
 
   CoerceImports(sourceFile, {
-    namedImports: ['Inject'],
+    namedImports: [ 'Inject' ],
     moduleSpecifier: definition.module,
   });
 

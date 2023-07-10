@@ -43,7 +43,7 @@ export class WindowResizerComponent implements OnInit, OnDestroy {
 
   public windowRef: WindowRef<any>;
 
-  @ViewChild('resizer', {static: true}) public resizerRef!: ElementRef<any>;
+  @ViewChild('resizer', { static: true }) public resizerRef!: ElementRef<any>;
 
   // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output('width') public width$ = new EventEmitter<string>();
@@ -98,7 +98,10 @@ export class WindowResizerComponent implements OnInit, OnDestroy {
               size.height &&
               (Number(this.windowRef.getSizeConfig().minWidth) || 0) <=
               size.width),
-            map(size => ({width: size.width + 'px', height: size.height + 'px'})),
+            map(size => ({
+              width: size.width + 'px',
+              height: size.height + 'px',
+            })),
             tap(size => {
               this.width$.emit(size.width);
               this.height$.emit(size.height);

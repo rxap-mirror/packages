@@ -31,7 +31,10 @@ export class OpenApiRemoteMethodElement implements ParsedElement<string>, IMetho
   @ElementAttribute()
   public mock?: boolean;
 
-  public toValue({sourceFile, options}: { sourceFile: SourceFile, options: { openApiModule?: string } }): string {
+  public toValue({
+                   sourceFile,
+                   options,
+                 }: { sourceFile: SourceFile, options: { openApiModule?: string } }): string {
 
     const openApiRemoteMethodName = classify(this.name) + 'RemoteMethod';
 
@@ -40,8 +43,8 @@ export class OpenApiRemoteMethodElement implements ParsedElement<string>, IMetho
     }
 
     CoerceImports(sourceFile, {
-      namedImports: [openApiRemoteMethodName],
-      moduleSpecifier: `${options.openApiModule}/remote-methods/${dasherize(this.name)}.remote-method`,
+      namedImports: [ openApiRemoteMethodName ],
+      moduleSpecifier: `${ options.openApiModule }/remote-methods/${ dasherize(this.name) }.remote-method`,
     });
 
     return openApiRemoteMethodName;

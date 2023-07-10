@@ -29,8 +29,8 @@ describe('@rxap/utilities', () => {
         expect(childMap).toBeInstanceOf(Map);
         expect(parentMap).not.toBe(childMap);
 
-        expect(Array.from(parentMap!.keys())).toEqual(['parent']);
-        expect(Array.from(childMap!.keys())).toEqual(['parent', 'child']);
+        expect(Array.from(parentMap!.keys())).toEqual([ 'parent' ]);
+        expect(Array.from(childMap!.keys())).toEqual([ 'parent', 'child' ]);
 
       });
 
@@ -56,8 +56,8 @@ describe('@rxap/utilities', () => {
         expect(childMap).toBeInstanceOf(Map);
         expect(parentMap).not.toBe(childMap);
 
-        expect(Array.from(parentMap!.keys())).toEqual(['parent']);
-        expect(Array.from(childMap!.keys())).toEqual(['parent', 'child']);
+        expect(Array.from(parentMap!.keys())).toEqual([ 'parent' ]);
+        expect(Array.from(childMap!.keys())).toEqual([ 'parent', 'child' ]);
 
       });
 
@@ -83,8 +83,8 @@ describe('@rxap/utilities', () => {
         expect(childMap).toBeInstanceOf(Map);
         expect(parentMap).not.toBe(childMap);
 
-        expect(Array.from(parentMap!.keys())).toEqual(['parent']);
-        expect(Array.from(childMap!.keys())).toEqual(['parent', 'child']);
+        expect(Array.from(parentMap!.keys())).toEqual([ 'parent' ]);
+        expect(Array.from(childMap!.keys())).toEqual([ 'parent', 'child' ]);
 
       });
 

@@ -16,11 +16,11 @@ export function AddDir(
   filter: ((fileName: string, dirPath: string) => boolean) = path => path.endsWith('.ts'),
 ) {
   if (tree.isFile(directoryPath)) {
-    throw new Error(`The path '${directoryPath}' does not point to a dir entry`);
+    throw new Error(`The path '${ directoryPath }' does not point to a dir entry`);
   }
   for (const fileName of tree.children(directoryPath)
-    .filter(fileOrDirectoryName => tree.isFile(join(directoryPath, fileOrDirectoryName)))
-    .filter(fileName => filter(fileName, directoryPath))) {
+                             .filter(fileOrDirectoryName => tree.isFile(join(directoryPath, fileOrDirectoryName)))
+                             .filter(fileName => filter(fileName, directoryPath))) {
     const filePath = join(directoryPath, fileName);
     if (!project.getSourceFile(filePath)) {
       project.createSourceFile(filePath, tree.read(filePath)!.toString('utf-8'));

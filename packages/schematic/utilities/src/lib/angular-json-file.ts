@@ -28,7 +28,7 @@ export function GetAngularJsonFragments(host: Tree, angularJson: FragmentedAngul
     copy.projects = {};
   }
 
-  for (const [project, path] of Object.entries(copy.projects)) {
+  for (const [ project, path ] of Object.entries(copy.projects)) {
     copy.projects[project] = GetJsonFile(host, path + '/project.json');
   }
 
@@ -73,14 +73,14 @@ export class AngularProjectTargetConfigurationsMap {
   private readonly _map = new Map<string, Record<string, any>>();
 
   constructor(private readonly _configurationsMap: Record<string, Record<string, any>>) {
-    for (const [name, configuration] of Object.entries(_configurationsMap)) {
+    for (const [ name, configuration ] of Object.entries(_configurationsMap)) {
       this._map.set(name, configuration);
     }
   }
 
   public add(name: string, configuration: Record<string, any>) {
     if (this._map.has(name)) {
-      throw new Error(`A configuration with the name '${name}' already exists`);
+      throw new Error(`A configuration with the name '${ name }' already exists`);
     }
     this._map.set(name, configuration);
     this._configurationsMap[name] = configuration;
@@ -140,7 +140,7 @@ export class AngularProjectTargetMap {
   private readonly _map = new Map<string, AngularProjectTarget<any>>();
 
   constructor(private readonly _targetMap: Record<string, Target>) {
-    for (const [name, target] of Object.entries(_targetMap)) {
+    for (const [ name, target ] of Object.entries(_targetMap)) {
       const angularProjectTarget = new AngularProjectTarget(target);
       this._map.set(name, angularProjectTarget);
     }
@@ -148,7 +148,7 @@ export class AngularProjectTargetMap {
 
   public add(name: string, target: Target) {
     if (this._map.has(name)) {
-      throw new Error(`A target with the name '${name}' already exists`);
+      throw new Error(`A target with the name '${ name }' already exists`);
     }
     this._map.set(name, new AngularProjectTarget(target));
     this._targetMap[name] = target;
@@ -178,7 +178,7 @@ export class AngularProjectTargetMap {
     return this._map.values();
   }
 
-  public entries(): IterableIterator<[string, AngularProjectTarget]> {
+  public entries(): IterableIterator<[ string, AngularProjectTarget ]> {
     return this._map.entries();
   }
 
@@ -237,7 +237,7 @@ export class AngularProjectMap {
   private readonly _map = new Map<string, AngularProject>();
 
   constructor(public readonly _projectMap: Record<string, Project>) {
-    for (const [name, project] of Object.entries(_projectMap)) {
+    for (const [ name, project ] of Object.entries(_projectMap)) {
       const angularProject = new AngularProject(project, name);
       this._map.set(name, angularProject);
     }
@@ -245,7 +245,7 @@ export class AngularProjectMap {
 
   public add(name: string, project: Project) {
     if (this._map.has(name)) {
-      throw new Error(`A project with the name '${name}' already exists`);
+      throw new Error(`A project with the name '${ name }' already exists`);
     }
     this._map.set(name, new AngularProject(project, name));
     this._projectMap[name] = project;
@@ -275,7 +275,7 @@ export class AngularProjectMap {
     return this._map.values();
   }
 
-  public entries(): IterableIterator<[string, AngularProject]> {
+  public entries(): IterableIterator<[ string, AngularProject ]> {
     return this._map.entries();
   }
 
@@ -328,7 +328,7 @@ export function UpdateAngularJson(
         await updater(new Angular(angularJson));
       } catch (e: any) {
         throw new SchematicsException(
-          `Could not update the angular.json: ${e.message}`,
+          `Could not update the angular.json: ${ e.message }`,
         );
       }
     },
@@ -351,13 +351,13 @@ export function UpdateAngularProject(
   return UpdateAngularJson(
     async (angular: Angular) => {
       if (!angular.projects.has(options.projectName)) {
-        throw new SchematicsException(`The project '${options.projectName}' does not exists.`);
+        throw new SchematicsException(`The project '${ options.projectName }' does not exists.`);
       }
       const project = angular.projects.get(options.projectName)!;
       try {
         await updater(project);
       } catch (e: any) {
-        throw new SchematicsException(`Could not update the project '${options.projectName}'`);
+        throw new SchematicsException(`Could not update the project '${ options.projectName }'`);
       }
     },
     options,

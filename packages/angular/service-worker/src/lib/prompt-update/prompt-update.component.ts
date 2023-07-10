@@ -55,20 +55,20 @@ export class PromptUpdateComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.subscription = this.lifecycle
-      .whenReady(() =>
-        interval(100).pipe(
-          tap(
-            (i) =>
-              (this.progress = Math.floor(
-                ((i + 1) / (PromptUpdateComponent.AUTO_UPDATE_IN / 100)) * 100,
-              )),
-          ),
-          first((i) => i >= PromptUpdateComponent.AUTO_UPDATE_IN / 100),
-          tap(() => console.log('start auto update')),
-          tap(() => this.dialogRef.close(true)),
-        ),
-      )
-      .subscribe();
+                            .whenReady(() =>
+                              interval(100).pipe(
+                                tap(
+                                  (i) =>
+                                    (this.progress = Math.floor(
+                                      ((i + 1) / (PromptUpdateComponent.AUTO_UPDATE_IN / 100)) * 100,
+                                    )),
+                                ),
+                                first((i) => i >= PromptUpdateComponent.AUTO_UPDATE_IN / 100),
+                                tap(() => console.log('start auto update')),
+                                tap(() => this.dialogRef.close(true)),
+                              ),
+                            )
+                            .subscribe();
   }
 
   public ngOnDestroy(): void {

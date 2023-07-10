@@ -22,7 +22,10 @@ export interface CoerceDataSourceClassOptions {
 }
 
 export function CoerceDataSourceClass(options: CoerceDataSourceClassOptions) {
-  let {name, tsMorphTransform} = options;
+  let {
+    name,
+    tsMorphTransform,
+  } = options;
   tsMorphTransform ??= () => undefined;
   const className = classify(CoerceSuffix(name, 'DataSource'));
   const fileName = CoerceSuffix(name, '.data-source.ts');
@@ -38,17 +41,17 @@ export function CoerceDataSourceClass(options: CoerceDataSourceClassOptions) {
         },
         {
           name: 'RxapDataSource',
-          arguments: [w => w.quote(name)],
+          arguments: [ w => w.quote(name) ],
         },
       ],
     });
     CoerceImports(sourceFile, {
       moduleSpecifier: '@rxap/data-source',
-      namedImports: ['RxapDataSource'],
+      namedImports: [ 'RxapDataSource' ],
     });
     CoerceImports(sourceFile, {
       moduleSpecifier: '@angular/core',
-      namedImports: ['Injectable'],
+      namedImports: [ 'Injectable' ],
     });
     tsMorphTransform!(project, sourceFile, classDeclaration);
 

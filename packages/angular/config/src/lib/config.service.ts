@@ -39,7 +39,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   public static LocalStorageKey = 'rxap/config/local-config';
 
-  public static Urls = ['config.json'];
+  public static Urls = [ 'config.json' ];
   public readonly config!: Config;
 
   constructor(@Optional() @Inject(RXAP_CONFIG) config: any | null = null) {
@@ -52,7 +52,12 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     }
   }
 
-  public static async SideLoad(url: string, propertyPath: string, required?: boolean, schema?: AnySchema): Promise<void> {
+  public static async SideLoad(
+    url: string,
+    propertyPath: string,
+    required?: boolean,
+    schema?: AnySchema,
+  ): Promise<void> {
 
     if (!this.Config) {
       throw new Error('Config side load is only possible after the initial config load.');
@@ -62,7 +67,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
     SetObjectValue(this.Config, propertyPath, config);
 
-    console.debug(`Side loaded config for '${propertyPath}' successful`, this.Config);
+    console.debug(`Side loaded config for '${ propertyPath }' successful`, this.Config);
 
   }
 
@@ -106,7 +111,11 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     this.Config = config;
   }
 
-  public static Get<T = any, K extends Record<string, any> = Record<string, any>>(path: string, defaultValue: T | undefined, config: Record<string, any>): T
+  public static Get<T = any, K extends Record<string, any> = Record<string, any>>(
+    path: string,
+    defaultValue: T | undefined,
+    config: Record<string, any>,
+  ): T
 
   public static Get<T = any, K extends Record<string, any> = Record<string, any>>(
     path: string,
@@ -127,7 +136,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
         if (defaultValue !== undefined) {
           return defaultValue;
         }
-        console.warn(`Config with path '${path}' not found`);
+        console.warn(`Config with path '${ path }' not found`);
         return undefined as any;
       }
     }
@@ -142,7 +151,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     try {
       response = await fetch(url);
     } catch (error: any) {
-      const message = `Could not fetch config from '${url}': ${error.message}`;
+      const message = `Could not fetch config from '${ url }': ${ error.message }`;
       if (required) {
         this.showError(message);
         throw new Error(message);
@@ -155,7 +164,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     try {
       config = await response.json();
     } catch (error: any) {
-      const message = `Could not parse config from '${url}' to a json object: ${error.message}`;
+      const message = `Could not parse config from '${ url }' to a json object: ${ error.message }`;
       if (required) {
         this.showError(message);
         throw new Error(message);
@@ -169,7 +178,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       try {
         config = await schema.validateAsync(config);
       } catch (error: any) {
-        const message = `Config from '${url}' is not valid: ${error.message}`;
+        const message = `Config from '${ url }' is not valid: ${ error.message }`;
         if (required) {
           this.showError(message);
           throw new Error(message);
@@ -220,7 +229,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
           SetObjectValue(configFromParams, keyPath, value);
         }
       } catch (e: any) {
-        console.warn(`Parsing of url config param failed for '${configParam}': ${e.message}`);
+        console.warn(`Parsing of url config param failed for '${ configParam }': ${ e.message }`);
       }
 
     }
@@ -248,7 +257,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
   public getOrThrow<T = any>(propertyPath: string, defaultValue?: T): T {
     const value = ConfigService.Get(propertyPath, defaultValue, this.config);
     if (value === undefined) {
-      throw new Error(`Could not find config in path '${propertyPath}'`);
+      throw new Error(`Could not find config in path '${ propertyPath }'`);
     }
     return value;
   }

@@ -26,7 +26,7 @@ export class LoggingInterceptor implements NestInterceptor {
 
     const request = context.switchToHttp().getRequest<Request>();
 
-    this.logger.debug(`${request.method.toUpperCase()} ${request.url}`, classType.name);
+    this.logger.debug(`${ request.method.toUpperCase() } ${ request.url }`, classType.name);
 
     const now = Date.now();
     return next
@@ -34,15 +34,18 @@ export class LoggingInterceptor implements NestInterceptor {
       .pipe(
         tap({
           next: (body: any) => {
-            this.logger.debug(`SUCCESS ${request.method.toUpperCase()} ${request.url} +${Date.now() - now}ms`, classType.name);
+            this.logger.debug(
+              `SUCCESS ${ request.method.toUpperCase() } ${ request.url } +${ Date.now() - now }ms`,
+              classType.name,
+            );
             if (body) {
-              this.logger.verbose(`RESPONSE ${JSON.stringify(body)}`, classType.name);
+              this.logger.verbose(`RESPONSE ${ JSON.stringify(body) }`, classType.name);
             } else {
               this.logger.verbose(`RESPONSE <empty>`, classType.name);
             }
           },
           error: (error: any) => {
-            this.logger.debug(`FAILURE ${error.message} ${request.url} +${Date.now() - now}ms`, classType.name);
+            this.logger.debug(`FAILURE ${ error.message } ${ request.url } +${ Date.now() - now }ms`, classType.name);
           },
         }),
       );

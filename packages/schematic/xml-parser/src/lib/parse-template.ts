@@ -31,7 +31,7 @@ export function FindTemplate(
     if (host.exists(path)) {
       return path;
     } else {
-      console.warn(`Could not find template path without a basePath: ${path}`);
+      console.warn(`Could not find template path without a basePath: ${ path }`);
     }
   }
 
@@ -40,7 +40,7 @@ export function FindTemplate(
     if (host.exists(path)) {
       return path;
     } else {
-      console.warn(`Could not find template path in the shared folder: ${path}`);
+      console.warn(`Could not find template path in the shared folder: ${ path }`);
     }
   }
 
@@ -107,9 +107,9 @@ export function ParseTemplate<T extends ParsedElement>(
     }
 
     if (!templateFilePath) {
-      throw new Error(`Could not find template file for '${template}'`);
+      throw new Error(`Could not find template file for '${ template }'`);
     } else {
-      console.log(`Find template file path '${templateFilePath}' for '${template}'`);
+      console.log(`Find template file path '${ templateFilePath }' for '${ template }'`);
     }
 
     const filenameMatch = templateFilePath.match(/\/([^/]+)\.xml$/);
@@ -121,7 +121,7 @@ export function ParseTemplate<T extends ParsedElement>(
     const templateFileBuffer = host.read(templateFilePath);
 
     if (!templateFileBuffer) {
-      throw new Error(`Could not read the file at path '${templateFilePath}'`);
+      throw new Error(`Could not read the file at path '${ templateFilePath }'`);
     }
 
     templateFile = templateFileBuffer.toString('utf-8');

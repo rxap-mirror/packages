@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="2px">
-    <rxap-copy-to-clipboard-button *ngIf="active" [value]="value" fxFlex="40px"></rxap-copy-to-clipboard-button>
-    <span #ref class="content" fxFlex="nogrow"><ng-content></ng-content></span>
-    <span *ngIf="!ref.innerHTML.trim()" class="content" fxFlex="nogrow">{{ value }}</span>
+  <rxap-copy-to-clipboard-button *ngIf="active" [value]="value" fxFlex="40px"></rxap-copy-to-clipboard-button>
+  <span #ref class="content" fxFlex="nogrow"><ng-content></ng-content></span>
+  <span *ngIf="!ref.innerHTML.trim()" class="content" fxFlex="nogrow">{{ value }}</span>
 </div>

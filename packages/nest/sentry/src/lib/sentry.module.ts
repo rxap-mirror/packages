@@ -32,7 +32,7 @@ export class SentryModule {
     }: ConsoleLoggerOptions = {},
   ): DynamicModule {
     return {
-      exports: [SentryService],
+      exports: [ SentryService ],
       module: SentryModule,
       providers: [
         {
@@ -41,7 +41,10 @@ export class SentryModule {
         },
         {
           provide: CONSOLE_LOGGER_OPTIONS,
-          useValue: {timestamp: timestamp ?? true, logLevels: logLevels ?? ['log', 'error', 'warn']},
+          useValue: {
+            timestamp: timestamp ?? true,
+            logLevels: logLevels ?? [ 'log', 'error', 'warn' ],
+          },
         },
       ],
     };
@@ -49,17 +52,23 @@ export class SentryModule {
 
   public static forRootAsync(
     options: SentryModuleAsyncOptions,
-    {timestamp, logLevels}: ConsoleLoggerOptions = {},
+    {
+      timestamp,
+      logLevels,
+    }: ConsoleLoggerOptions = {},
   ): DynamicModule {
     return {
-      exports: [SentryService],
+      exports: [ SentryService ],
       imports: options.imports,
       module: SentryModule,
       providers: [
         ...this.createAsyncProviders(options),
         {
           provide: CONSOLE_LOGGER_OPTIONS,
-          useValue: {timestamp: timestamp ?? true, logLevels: logLevels ?? ['log', 'error', 'warn']},
+          useValue: {
+            timestamp: timestamp ?? true,
+            logLevels: logLevels ?? [ 'log', 'error', 'warn' ],
+          },
         },
       ],
     };
@@ -69,7 +78,7 @@ export class SentryModule {
     options: SentryModuleAsyncOptions,
   ): Provider[] {
     if (options.useExisting || options.useFactory) {
-      return [this.createAsyncOptionsProvider(options)];
+      return [ this.createAsyncOptionsProvider(options) ];
     }
     const useClass = options.useClass as Type<SentryOptionsFactory>;
     return [

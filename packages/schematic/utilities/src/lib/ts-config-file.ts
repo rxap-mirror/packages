@@ -24,7 +24,11 @@ export function UpdateTsConfigJson(
   updater: (tsConfig: TsConfigJson) => void | PromiseLike<void>,
   options?: UpdateTsConfigJsonOptions,
 ): Rule {
-  return UpdateJsonFile(updater, join(options?.basePath ?? '', options?.infix ? `tsconfig.${options.infix}.json` : 'tsconfig.json'), options);
+  return UpdateJsonFile(
+    updater,
+    join(options?.basePath ?? '', options?.infix ? `tsconfig.${ options.infix }.json` : 'tsconfig.json'),
+    options,
+  );
 }
 
 export interface UpdateProjectTsConfigJsonOptions extends UpdateJsonFileOptions {

@@ -29,7 +29,7 @@ export class FormSubmitInvalidDirective implements AfterViewInit, OnDestroy {
     this.subscription = this.formDirective.invalidSubmit.pipe(
       tap(result => {
         this.viewContainerRef.clear();
-        this.viewContainerRef.createEmbeddedView(this.template, {$implicit: result});
+        this.viewContainerRef.createEmbeddedView(this.template, { $implicit: result });
       }),
     ).subscribe();
   }

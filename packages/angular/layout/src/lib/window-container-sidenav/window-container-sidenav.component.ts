@@ -61,9 +61,14 @@ export class WindowContainerSidenavComponent implements OnInit, OnDestroy {
 
   private add(component: ContainerComponent) {
     if (this.portals.has(component.id)) {
-      throw new Error(`Component portal with id ${component.id} already exists`);
+      throw new Error(`Component portal with id ${ component.id } already exists`);
     }
-    const portal = new ComponentPortal(component.component, component.viewContainerRef, component.injector, component.componentFactoryResolver);
+    const portal = new ComponentPortal(
+      component.component,
+      component.viewContainerRef,
+      component.injector,
+      component.componentFactoryResolver,
+    );
     this.portals.set(component.id, portal);
   }
 

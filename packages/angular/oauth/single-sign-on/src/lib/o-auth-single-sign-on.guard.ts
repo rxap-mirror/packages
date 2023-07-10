@@ -45,7 +45,7 @@ export class OAuthSingleSignOnGuard {
 
     if (!redirect || !secret) {
       console.warn(`The query params 'redirect' or 'secret' is not defined!`);
-      return this.router.createUrlTree(['error']);
+      return this.router.createUrlTree([ 'error' ]);
     }
 
     this.authentication.redirect = atob(redirect);

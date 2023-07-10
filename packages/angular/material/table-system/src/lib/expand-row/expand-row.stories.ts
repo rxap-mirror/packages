@@ -80,13 +80,13 @@ import { ExpandRowModule } from './expand-row.module';
 class DemoTableComponent {
 
   public data = [
-    {name: 'Name1'},
-    {name: 'Name2'},
-    {name: 'Name3'},
-    {name: 'Name4'},
-    {name: 'Name5'},
-    {name: 'Name6'},
-    {name: 'Name7'},
+    { name: 'Name1' },
+    { name: 'Name2' },
+    { name: 'Name3' },
+    { name: 'Name4' },
+    { name: 'Name5' },
+    { name: 'Name6' },
+    { name: 'Name7' },
   ];
 
   constructor(public readonly expandCell: ExpandRowService<any>) {

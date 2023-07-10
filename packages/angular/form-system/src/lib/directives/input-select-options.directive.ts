@@ -83,7 +83,7 @@ export interface InputSelectOptionsSettings<Source> extends UseOptionsDataSource
 }
 
 export interface InputSelectOptionsDirective extends OnDestroy, AfterViewInit,
-  ExtractOptionsDataSourceMixin {
+                                                     ExtractOptionsDataSourceMixin {
 }
 
 @Mixin(ExtractOptionsDataSourceMixin)
@@ -94,7 +94,7 @@ export interface InputSelectOptionsDirective extends OnDestroy, AfterViewInit,
 export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
   @Input('rxapInputSelectOptionsViewer')
-  public viewer: BaseDataSourceViewer = {id: '[rxapInputSelectOptions]'};
+  public viewer: BaseDataSourceViewer = { id: '[rxapInputSelectOptions]' };
 
   @Input('rxapInputSelectOptionsMetadata')
   public metadata?: BaseDataSourceMetadata;
@@ -173,7 +173,8 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
     if (!value) {
       return '';
     }
-    return this.options?.find((option: any) => option.value === value)?.display ?? (isDevMode() ? 'to display error' : '');
+    return this.options?.find((option: any) => option.value === value)?.display ??
+      (isDevMode() ? 'to display error' : '');
   }
 
   public ngOnDestroy() {
@@ -192,8 +193,13 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
                   return options.filter(option => option.display.toLowerCase().includes(controlValue));
                 } else {
                   return Object.entries(options)
-                    .filter(([value, display]) => typeof display === 'string' && display.toLowerCase().includes(controlValue))
-                    .map(([value, display]) => ({value, display}));
+                               .filter(([ value, display ]) => typeof display ===
+                                 'string' &&
+                                 display.toLowerCase().includes(controlValue))
+                               .map(([ value, display ]) => ({
+                                 value,
+                                 display,
+                               }));
                 }
               }
               return options;
@@ -220,20 +226,28 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
     if (options) {
       if (!Array.isArray(options)) {
 
-        for (const [value, display] of Object.entries(options)) {
-          this.viewContainerRef.createEmbeddedView(this.template, {$implicit: {value, display}});
+        for (const [ value, display ] of Object.entries(options)) {
+          this.viewContainerRef.createEmbeddedView(
+            this.template,
+            {
+              $implicit: {
+                value,
+                display,
+              },
+            },
+          );
         }
 
       } else {
 
         for (const option of options) {
-          this.viewContainerRef.createEmbeddedView(this.template, {$implicit: option});
+          this.viewContainerRef.createEmbeddedView(this.template, { $implicit: option });
         }
 
       }
     } else {
       if (isDevMode()) {
-        console.warn(`The options for the control ${this.control.fullControlPath} is empty/null/undefined!`);
+        console.warn(`The options for the control ${ this.control.fullControlPath } is empty/null/undefined!`);
       }
     }
 

@@ -11,7 +11,7 @@ export interface UserProfile {
   avatarUrl?: string;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 /* ignore coverage */
 export class UserService<User extends UserProfile = UserProfile> {
 

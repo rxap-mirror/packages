@@ -40,7 +40,7 @@ export interface OAuthStatus {
   expiresAt: Date;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class OAuthService<Profile = any> {
 
   public readonly events$ = new ReplaySubject<AuthenticationEvent>();
@@ -155,9 +155,9 @@ export class OAuthService<Profile = any> {
       throw new Error('Redirect url is not defined');
     }
     location.replace(
-      `${this.ssoUrl}?redirect=${btoa(this.redirectUrl)}&secret=${
+      `${ this.ssoUrl }?redirect=${ btoa(this.redirectUrl) }&secret=${
         this.secret
-      }&payload=${btoa(JSON.stringify({lastUrl}))}`,
+      }&payload=${ btoa(JSON.stringify({ lastUrl })) }`,
     );
   }
 
@@ -209,7 +209,7 @@ export class OAuthService<Profile = any> {
         await this.signInWithRefreshToken(this.refreshToken);
         return (this._isAuthenticated = true);
       } catch (e: any) {
-        if (![401, 403, 400].includes(e.status)) {
+        if (![ 401, 403, 400 ].includes(e.status)) {
           console.error('Could not sign in with refresh token', e.message);
           throw e;
         }
@@ -242,7 +242,7 @@ export class OAuthService<Profile = any> {
       secret: this.secret,
       clientId: this.clientId ?? undefined,
     }).catch(e => {
-      this.events$.next({type: AuthenticationEventType.OnAuthError});
+      this.events$.next({ type: AuthenticationEventType.OnAuthError });
       throw e;
     });
 
@@ -287,10 +287,10 @@ export class OAuthService<Profile = any> {
         throw new Error('Redirect url is not defined');
       }
       location.replace(
-        `${this.ssoUrl}?redirect=${btoa(this.redirectUrl)}&secret=${this.secret}&action=signOut`,
+        `${ this.ssoUrl }?redirect=${ btoa(this.redirectUrl) }&secret=${ this.secret }&action=signOut`,
       );
     }
-    this.events$.next({type: AuthenticationEventType.OnLogout});
+    this.events$.next({ type: AuthenticationEventType.OnLogout });
   }
 
   public authenticated(
@@ -301,7 +301,7 @@ export class OAuthService<Profile = any> {
     this.refreshToken = response.refreshToken ?? null;
     this.expiresAt = response.expiresAt;
 
-    console.log(`Authenticated until ${this.expiresAt.toISOString()}`);
+    console.log(`Authenticated until ${ this.expiresAt.toISOString() }`);
 
     this.remember = remember;
 
@@ -312,7 +312,7 @@ export class OAuthService<Profile = any> {
       }
       this.setItem(REMEMBER_LOCAL_STORAGE_KEY, 'true');
       if (response.expiresAt) {
-        console.log(`Authenticated until ${response.expiresAt.toISOString()}`);
+        console.log(`Authenticated until ${ response.expiresAt.toISOString() }`);
         this.setItem(
           EXPIRES_AT_LOCAL_STORAGE_KEY,
           response.expiresAt.getTime().toFixed(0),
@@ -326,7 +326,7 @@ export class OAuthService<Profile = any> {
     }
 
     this._isAuthenticated = true;
-    this.events$.next({type: AuthenticationEventType.OnAuthSuccess});
+    this.events$.next({ type: AuthenticationEventType.OnAuthSuccess });
   }
 
   protected clearStorage() {
@@ -337,7 +337,7 @@ export class OAuthService<Profile = any> {
   }
 
   private getKey(key: string): string {
-    return [this.secret, key].join('__');
+    return [ this.secret, key ].join('__');
   }
 
   private getItem(key: string): string | null {

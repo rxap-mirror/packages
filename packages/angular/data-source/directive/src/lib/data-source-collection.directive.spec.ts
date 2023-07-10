@@ -59,9 +59,9 @@ describe('@rxap/data-source/directive', () => {
     xit('with filled list', async () => {
 
       await TestBed.configureTestingModule({
-        imports: [DataSourceCollectionDirective],
-        declarations: [TestComponent],
-        providers: [TestDataSource],
+        imports: [ DataSourceCollectionDirective ],
+        declarations: [ TestComponent ],
+        providers: [ TestDataSource ],
       }).compileComponents();
 
       const componentFixture = TestBed.createComponent(TestComponent);
@@ -77,8 +77,8 @@ describe('@rxap/data-source/directive', () => {
     xit('with empty list', async () => {
 
       await TestBed.configureTestingModule({
-        imports: [DataSourceCollectionDirective],
-        declarations: [TestComponent],
+        imports: [ DataSourceCollectionDirective ],
+        declarations: [ TestComponent ],
         providers: [
           {
             provide: TestDataSource,

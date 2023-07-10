@@ -22,7 +22,7 @@ export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
     CoerceNestServiceProject(options),
     tree => {
       if (!HasNestModule(tree, options)) {
-        console.log(`The project '${buildNestProjectName(options)}' has not the module '${name}'. The module will now be created ...`);
+        console.log(`The project '${ buildNestProjectName(options) }' has not the module '${ name }'. The module will now be created ...`);
         return chain([
           externalSchematic(
             '@nrwl/nest',

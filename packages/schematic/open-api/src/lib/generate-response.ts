@@ -20,19 +20,26 @@ export async function GenerateResponse(
     const operationId = operation.operationId;
 
     const generator = new TypescriptInterfaceGenerator(
-      {...response, components},
-      {suffix: RESPONSE_FILE_SUFFIX, basePath: RESPONSE_BASE_PATH, addImports: true},
+      {
+        ...response,
+        components,
+      },
+      {
+        suffix: RESPONSE_FILE_SUFFIX,
+        basePath: RESPONSE_BASE_PATH,
+        addImports: true,
+      },
       project,
     );
 
-    console.debug(`Generate response interface for: ${operationId}`);
+    console.debug(`Generate response interface for: ${ operationId }`);
 
     try {
 
       await generator.build(operationId);
 
     } catch (error: any) {
-      console.error(`Failed to generate response interface for: ${operationId}`, error.message);
+      console.error(`Failed to generate response interface for: ${ operationId }`, error.message);
     }
 
   }

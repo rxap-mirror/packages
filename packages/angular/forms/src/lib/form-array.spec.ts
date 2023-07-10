@@ -14,8 +14,8 @@ describe('@rxap/forms', () => {
     beforeEach(() => {
 
       control = new RxapFormArray<string>([
-        new RxapFormControl('', {controlId: 'control1'}),
-        new RxapFormControl('', {controlId: 'control1'}),
+        new RxapFormControl('', { controlId: 'control1' }),
+        new RxapFormControl('', { controlId: 'control1' }),
       ], {
         controlId: 'test',
         builder: () => {
@@ -32,9 +32,9 @@ describe('@rxap/forms', () => {
     it('should valueChanges$', () => {
       const spy = jest.fn();
       control.value$.subscribe(spy);
-      expect(spy).toHaveBeenCalledWith(['', '']);
-      control.patchValue(['1', '2']);
-      expect(spy).toHaveBeenCalledWith(['1', '2']);
+      expect(spy).toHaveBeenCalledWith([ '', '' ]);
+      control.patchValue([ '1', '2' ]);
+      expect(spy).toHaveBeenCalledWith([ '1', '2' ]);
     });
 
     it('should disabledChanges$', () => {
@@ -69,26 +69,26 @@ describe('@rxap/forms', () => {
       const spy = jest.fn();
       control.select(state => state[0]).subscribe(spy);
       expect(spy).toHaveBeenCalledWith('');
-      control.patchValue(['1', '2']);
+      control.patchValue([ '1', '2' ]);
       expect(spy).toHaveBeenCalledWith('1');
-      control.patchValue(['1', '2']);
+      control.patchValue([ '1', '2' ]);
       expect(spy).toHaveBeenCalledTimes(2);
     });
 
     it('should setValue', () => {
 
-      control.setValue(of(['1', '2']));
-      expect(control.value).toEqual(['1', '2']);
-      control.setValue(['3', '4']);
-      expect(control.value).toEqual(['3', '4']);
+      control.setValue(of([ '1', '2' ]));
+      expect(control.value).toEqual([ '1', '2' ]);
+      control.setValue([ '3', '4' ]);
+      expect(control.value).toEqual([ '3', '4' ]);
     });
 
     it('should patchValue', () => {
 
-      control.patchValue(of(['1', '2']));
-      expect(control.value).toEqual(['1', '2']);
-      control.patchValue(['5', '4']);
-      expect(control.value).toEqual(['5', '4']);
+      control.patchValue(of([ '1', '2' ]));
+      expect(control.value).toEqual([ '1', '2' ]);
+      control.patchValue([ '5', '4' ]);
+      expect(control.value).toEqual([ '5', '4' ]);
     });
 
     it('should disabledWhile', () => {
@@ -164,8 +164,8 @@ describe('@rxap/forms', () => {
 
       const subject = new Subject<object | null>();
       control.validateOn(subject);
-      subject.next({someError: true});
-      expect(control.errors).toEqual({someError: true});
+      subject.next({ someError: true });
+      expect(control.errors).toEqual({ someError: true });
       subject.next(null);
       expect(control.errors).toEqual(null);
     });
@@ -175,14 +175,15 @@ describe('@rxap/forms', () => {
       beforeEach(() => {
 
         const errorFn = (group: any) => {
-          return {isInvalid: true};
+          return { isInvalid: true };
         };
 
         control = new RxapFormArray<string>([
-          new RxapFormControl('', {controlId: 'control1'}),
-          new RxapFormControl('', {controlId: 'control1'}),
+          new RxapFormControl('', { controlId: 'control1' }),
+          new RxapFormControl('', { controlId: 'control1' }),
         ], {
-          validators: [errorFn], controlId: 'test',
+          validators: [ errorFn ],
+          controlId: 'test',
           controlRemovedFn: () => {
           },
           controlInsertedFn: () => {
@@ -226,12 +227,12 @@ describe('@rxap/forms', () => {
 
     it('should errorChanges$', () => {
       const spy = jest.fn();
-      const validator = (_control: RxapFormArray) => (_control.length < 4 ? {minimum: 4} : null);
+      const validator = (_control: RxapFormArray) => (_control.length < 4 ? { minimum: 4 } : null);
       control.setValidators(validator as any);
       control.errors$.subscribe(spy);
-      expect(spy).toHaveBeenCalledWith({minimum: 4});
-      control.push(new RxapFormControl('Name', {controlId: 'control1'}));
-      control.push(new RxapFormControl('Phone', {controlId: 'control1'}));
+      expect(spy).toHaveBeenCalledWith({ minimum: 4 });
+      control.push(new RxapFormControl('Name', { controlId: 'control1' }));
+      control.push(new RxapFormControl('Phone', { controlId: 'control1' }));
       expect(spy).toHaveBeenCalledWith(null);
     });
 

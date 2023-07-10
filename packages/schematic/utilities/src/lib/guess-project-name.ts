@@ -14,7 +14,12 @@ import { GetWorkspace } from './workspace';
  * @param host the current Tree
  * @param options a partial option object with path or/and project defined
  */
-export function GuessProjectName(host: Tree, {path, project}: { path?: string, project?: string }) {
+export function GuessProjectName(host: Tree,
+                                 {
+                                   path,
+                                   project,
+                                 }: { path?: string, project?: string },
+) {
 
   if (!path && !project) {
     throw new SchematicsException('The options path and project are not defined. At least one of them must be defined');
@@ -24,11 +29,11 @@ export function GuessProjectName(host: Tree, {path, project}: { path?: string, p
     return project;
   }
 
-  const projectRoot = GuessProjectRoot(host, {path});
+  const projectRoot = GuessProjectRoot(host, { path });
 
   const workspace = GetWorkspace(host);
 
-  for (const [name, project] of workspace.projects.entries()) {
+  for (const [ name, project ] of workspace.projects.entries()) {
     if (project.root === projectRoot) {
       return name;
     }

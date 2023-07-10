@@ -25,18 +25,20 @@ export function HasComponent(host: Tree, options: Readonly<HasComponentOptions>)
   } = options;
 
   if (!HasProject(host, project)) {
-    throw new SchematicsException(`The component '${name}' does not exists. The project '${project}' does not exists.`);
+    throw new SchematicsException(`The component '${ name }' does not exists. The project '${ project }' does not exists.`);
   }
   const type = GetProjectType(host, project);
   if (type !== 'library' && !HasProjectFeature(host, options)) {
-    throw new SchematicsException(`The component '${name}' does not exists. The project '${project}' has not the feature '${feature}'.`);
+    throw new SchematicsException(`The component '${ name }' does not exists. The project '${ project }' has not the feature '${ feature }'.`);
   }
   let basePath = BuildAngularBasePath(host, options);
   if (!basePath.endsWith(name)) {
     basePath = join(basePath, name);
   }
-  return host.exists(join(basePath,
+  return host.exists(join(
+    basePath,
     name +
-    '.component.ts'));
+    '.component.ts',
+  ));
 
 }

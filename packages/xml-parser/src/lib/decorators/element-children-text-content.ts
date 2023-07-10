@@ -45,8 +45,8 @@ export function AssertElementChildrenTextContentOptions(options: any): asserts o
 
 export interface ElementChildrenTextContentParser<T extends ParsedElement, Value>
   extends TextContentElementParserMixin<Value, Value[]>,
-    TagElementParserMixin,
-    ChildrenElementParserMixin {
+          TagElementParserMixin,
+          ChildrenElementParserMixin {
 }
 
 @Mixin(TextContentElementParserMixin, TagElementParserMixin, ChildrenElementParserMixin)
@@ -71,7 +71,7 @@ export class ElementChildrenTextContentParser<T extends ParsedElement, Value>
 
     if (!elementChildren) {
       throw new RxapXmlParserValidateRequiredError(
-        `The child group element '${this.options.group}' is required for ${parsedElement.__tag}!`,
+        `The child group element '${ this.options.group }' is required for ${ parsedElement.__tag }!`,
         parsedElement.__tag!,
       );
     }
@@ -89,15 +89,24 @@ export class ElementChildrenTextContentParser<T extends ParsedElement, Value>
     }
 
     if (this.required && list.length === 0) {
-      throw new RxapXmlParserValidateRequiredError(`Some element child <${this.tag}> is required in <${parsedElement.__tag}>!`, parsedElement.__tag!);
+      throw new RxapXmlParserValidateRequiredError(
+        `Some element child <${ this.tag }> is required in <${ parsedElement.__tag }>!`,
+        parsedElement.__tag!,
+      );
     }
 
     if (this.min !== null && this.min > list.length) {
-      throw new RxapXmlParserValidateError(`Element child <${this.tag}> should be at least ${this.min} in <${parsedElement.__tag}>!`, parsedElement.__tag!);
+      throw new RxapXmlParserValidateError(
+        `Element child <${ this.tag }> should be at least ${ this.min } in <${ parsedElement.__tag }>!`,
+        parsedElement.__tag!,
+      );
     }
 
     if (this.max !== null && this.max > list.length) {
-      throw new RxapXmlParserValidateError(`Element child <${this.tag}> should be at most ${this.max} in <${parsedElement.__tag}>!`, parsedElement.__tag!);
+      throw new RxapXmlParserValidateError(
+        `Element child <${ this.tag }> should be at most ${ this.max } in <${ parsedElement.__tag }>!`,
+        parsedElement.__tag!,
+      );
     }
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -112,8 +121,8 @@ export class ElementChildrenTextContentParser<T extends ParsedElement, Value>
 export function ElementChildrenTextContent<Value>(optionsOrString?: Partial<ElementChildrenTextContentOptions<Value>> | string) {
   return function (target: any, propertyKey: string) {
     let options = optionsOrString === undefined ?
-      {tag: dasherize(propertyKey)} :
-      typeof optionsOrString === 'string' ? {tag: optionsOrString} : optionsOrString;
+      { tag: dasherize(propertyKey) } :
+      typeof optionsOrString === 'string' ? { tag: optionsOrString } : optionsOrString;
     options = deepMerge(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {});
     if (!options.tag) {
       options.tag = dasherize(propertyKey);

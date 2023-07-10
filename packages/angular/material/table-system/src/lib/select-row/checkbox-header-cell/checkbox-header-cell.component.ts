@@ -22,7 +22,7 @@ import {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'th[rxap-checkbox-header-cell]',
   templateUrl: './checkbox-header-cell.component.html',
-  styleUrls: ['./checkbox-header-cell.component.scss'],
+  styleUrls: [ './checkbox-header-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [

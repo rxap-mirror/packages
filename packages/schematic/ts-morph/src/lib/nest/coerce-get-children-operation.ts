@@ -31,7 +31,10 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
   }
   controllerName = CoerceSuffix(controllerName, '-tree-table');
   paramList ??= [];
-  paramList.push({name: 'parentUuid', type: 'string'});
+  paramList.push({
+    name: 'parentUuid',
+    type: 'string',
+  });
   return CoerceOperation({
     ...options,
     // TODO : remove after migration to controllerName
@@ -47,12 +50,21 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
       controllerName,
     ) => {
 
-      const {className, filePath} = CoerceDtoClass(
+      const {
+        className,
+        filePath,
+      } = CoerceDtoClass(
         project,
         CoerceSuffix(name!, '-item'),
         [
-          {name: 'uuid', type: 'string'},
-          {name: 'hasChildren', type: 'boolean'},
+          {
+            name: 'uuid',
+            type: 'string',
+          },
+          {
+            name: 'hasChildren',
+            type: 'boolean',
+          },
           {
             name: 'children',
             type: classify(CoerceSuffix(name!, '-item-dto')),
@@ -65,16 +77,16 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
 
       CoerceImports(sourceFile, [
         {
-          namedImports: ['plainToInstance'],
+          namedImports: [ 'plainToInstance' ],
           moduleSpecifier: 'class-transformer',
         },
         {
-          namedImports: ['classTransformOptions'],
+          namedImports: [ 'classTransformOptions' ],
           moduleSpecifier: '@rxap/nest/class-transformer/options',
         },
         {
-          namedImports: [className],
-          moduleSpecifier: `..${filePath}`,
+          namedImports: [ className ],
+          moduleSpecifier: `..${ filePath }`,
         },
       ]);
 

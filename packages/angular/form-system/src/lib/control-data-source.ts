@@ -54,5 +54,5 @@ export class ControlDataSource extends BaseDataSource {
 
 export function controlDataSource(control: AbstractControl): ControlDataSource {
   // TODO : remove as any (wait for @rxap/forms update)
-  return new ControlDataSource(control, {id: (control as any).controlId});
+  return new ControlDataSource(control, { id: (control as any).controlId });
 }

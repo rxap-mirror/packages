@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@15.0.0...@rxap/oauth@16.0.0-dev.0) (2023-05-18)
 
@@ -52,8 +51,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* replace package.json with
-  ng-package.json ([ebaaf92](https://gitlab.com/rxap/packages/commit/ebaaf92a403fd31a4aa538f698fda1e004c037bd))
+* replace package.json withng-package.json ([ebaaf92](https://gitlab.com/rxap/packages/commit/ebaaf92a403fd31a4aa538f698fda1e004c037bd))
 
 ## [14.0.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@13.0.0...@rxap/oauth@14.0.1) (2022-09-17)
 
@@ -67,8 +65,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* support clientId and clientSecret auth
-  flow ([e17381c](https://gitlab.com/rxap/packages/commit/e17381cd48e7189c68a7c03d9cb025cd53c96dc7))
+* support clientId and clientSecret authflow ([e17381c](https://gitlab.com/rxap/packages/commit/e17381cd48e7189c68a7c03d9cb025cd53c96dc7))
 
 ### Features
 
@@ -84,8 +81,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* support clientId and clientSecret auth
-  flow ([e17381c](https://gitlab.com/rxap/packages/commit/e17381cd48e7189c68a7c03d9cb025cd53c96dc7))
+* support clientId and clientSecret authflow ([e17381c](https://gitlab.com/rxap/packages/commit/e17381cd48e7189c68a7c03d9cb025cd53c96dc7))
 
 # [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/oauth@13.0.0-next.1...@rxap/oauth@13.0.0-next.2) (2022-03-29)
 
@@ -95,8 +91,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -108,15 +103,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* reduce log population in production
-  mode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
+* reduce log population in productionmode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
 
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.9...@rxap/oauth@13.0.0-next.0) (2022-02-19)
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -132,15 +125,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **sso-error:** check if hostname is a valid
-  domain ([94bcf98](https://gitlab.com/rxap/packages/commit/94bcf983ae7210123c5a65c054791503eb0429ec))
+* **sso-error:** check if hostname is a validdomain ([94bcf98](https://gitlab.com/rxap/packages/commit/94bcf983ae7210123c5a65c054791503eb0429ec))
 
 ## [12.0.9-next.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.9-next.0...@rxap/oauth@12.0.9-next.1) (2021-11-02)
 
 ### Bug Fixes
 
-* **sso-error:** add navigate to main application
-  button ([6923283](https://gitlab.com/rxap/packages/commit/6923283953812dbe531390ebdfa7230028f02a87))
+* **sso-error:** add navigate to main applicationbutton ([6923283](https://gitlab.com/rxap/packages/commit/6923283953812dbe531390ebdfa7230028f02a87))
 
 ## [12.0.9-next.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8...@rxap/oauth@12.0.9-next.0) (2021-11-02)
 
@@ -157,50 +148,43 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* remove default redirect
-  signout ([75f12ea](https://gitlab.com/rxap/packages/commit/75f12ea13570bbbf842885faf771d5205916ef0f))
+* remove default redirectsignout ([75f12ea](https://gitlab.com/rxap/packages/commit/75f12ea13570bbbf842885faf771d5205916ef0f))
 
 ## [12.0.8-next.5](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.4...@rxap/oauth@12.0.8-next.5) (2021-09-01)
 
 ### Bug Fixes
 
-* remove default redirect
-  signout ([b49ac55](https://gitlab.com/rxap/packages/commit/b49ac559b2a0ae4c19858e75b38d60c6cd7d7467))
+* remove default redirectsignout ([b49ac55](https://gitlab.com/rxap/packages/commit/b49ac559b2a0ae4c19858e75b38d60c6cd7d7467))
 
 ## [12.0.8-next.4](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.3...@rxap/oauth@12.0.8-next.4) (2021-09-01)
 
 ### Bug Fixes
 
-* remove default redirect
-  signout ([dac886f](https://gitlab.com/rxap/packages/commit/dac886f7a656b40866745fe145ccbf97f19772d3))
+* remove default redirectsignout ([dac886f](https://gitlab.com/rxap/packages/commit/dac886f7a656b40866745fe145ccbf97f19772d3))
 
 ## [12.0.8-next.3](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.2...@rxap/oauth@12.0.8-next.3) (2021-09-01)
 
 ### Bug Fixes
 
-* support token
-  invalidation ([a15659f](https://gitlab.com/rxap/packages/commit/a15659f06d71b1043d53050537940ef5ded62464))
+* support tokeninvalidation ([a15659f](https://gitlab.com/rxap/packages/commit/a15659f06d71b1043d53050537940ef5ded62464))
 
 ## [12.0.8-next.2](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.1...@rxap/oauth@12.0.8-next.2) (2021-08-31)
 
 ### Bug Fixes
 
-* always load access and refresh token from local
-  storage ([72d75e9](https://gitlab.com/rxap/packages/commit/72d75e952bef34921a8064965f3362fe169af836))
+* always load access and refresh token from localstorage ([72d75e9](https://gitlab.com/rxap/packages/commit/72d75e952bef34921a8064965f3362fe169af836))
 
 ## [12.0.8-next.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.8-next.0...@rxap/oauth@12.0.8-next.1) (2021-08-11)
 
 ### Bug Fixes
 
-* inject to OAuthService instead of the
-  OAuthSingleSignOnService ([5896c7f](https://gitlab.com/rxap/packages/commit/5896c7fde440e800ae359952f6caf1e59e5c3fbd))
+* inject to OAuthService instead of theOAuthSingleSignOnService ([5896c7f](https://gitlab.com/rxap/packages/commit/5896c7fde440e800ae359952f6caf1e59e5c3fbd))
 
 ## [12.0.8-next.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.7...@rxap/oauth@12.0.8-next.0) (2021-08-11)
 
 ### Bug Fixes
 
-* support redirect continue
-  disabled ([646f87b](https://gitlab.com/rxap/packages/commit/646f87bbce1f93b6af97c1578e5eff2d5f1c2636))
+* support redirect continuedisabled ([646f87b](https://gitlab.com/rxap/packages/commit/646f87bbce1f93b6af97c1578e5eff2d5f1c2636))
 
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.7-next.0...@rxap/oauth@12.0.7) (2021-07-09)
 
@@ -210,8 +194,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* split into rxjs and reflect-metadata sub
-  packages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
+* split into rxjs and reflect-metadata subpackages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
 
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/oauth@12.0.5...@rxap/oauth@12.0.6) (2021-06-24)
 
@@ -249,31 +232,26 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* add cached profile
-  support ([fb6542d](https://gitlab.com/rxap/packages/commit/fb6542d7506fff055470b6ab95c84649e1c3ae4c))
+* add cached profilesupport ([fb6542d](https://gitlab.com/rxap/packages/commit/fb6542d7506fff055470b6ab95c84649e1c3ae4c))
 
 ## [11.8.5](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.4...@rxap/oauth@11.8.5) (2021-04-30)
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 ## [11.8.4](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.3...@rxap/oauth@11.8.4) (2021-04-29)
 
 ### Bug Fixes
 
-* **o-auth-service:** set unauthed if 400
-  response ([293b52d](https://gitlab.com/rxap/packages/commit/293b52da4e2dea00beabddc8e5bdcb67621fec07))
+* **o-auth-service:** set unauthed if 400response ([293b52d](https://gitlab.com/rxap/packages/commit/293b52da4e2dea00beabddc8e5bdcb67621fec07))
 
 ## [11.8.3](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.2...@rxap/oauth@11.8.3) (2021-04-28)
 
 ### Bug Fixes
 
-* **o-auth-method:** send withCredentials
-  option ([47cf216](https://gitlab.com/rxap/packages/commit/47cf216c1d4ba04926456cfa4eed0335186a2b01))
+* **o-auth-method:** send withCredentialsoption ([47cf216](https://gitlab.com/rxap/packages/commit/47cf216c1d4ba04926456cfa4eed0335186a2b01))
 
 ## [11.8.2](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.8.1...@rxap/oauth@11.8.2) (2021-04-28)
 
@@ -285,29 +263,25 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **o-auth-service:** catch 403 on refresh token
-  usage ([34f322f](https://gitlab.com/rxap/packages/commit/34f322f7b0ac72708d1cff696f300aa22f8d9395))
+* **o-auth-service:** catch 403 on refresh tokenusage ([34f322f](https://gitlab.com/rxap/packages/commit/34f322f7b0ac72708d1cff696f300aa22f8d9395))
 
 # [11.8.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.7.2...@rxap/oauth@11.8.0) (2021-04-21)
 
 ### Features
 
-* add support for custom redirect
-  url ([c5de0f2](https://gitlab.com/rxap/packages/commit/c5de0f2b04869c7cd969a3532605e7a19e5fe3d1))
+* add support for custom redirecturl ([c5de0f2](https://gitlab.com/rxap/packages/commit/c5de0f2b04869c7cd969a3532605e7a19e5fe3d1))
 
 ## [11.7.2](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.7.1...@rxap/oauth@11.7.2) (2021-04-21)
 
 ### Bug Fixes
 
-* remember login if
-  redirected ([412d3f2](https://gitlab.com/rxap/packages/commit/412d3f2a3f689069d84b2a121d68af30619dced2))
+* remember login ifredirected ([412d3f2](https://gitlab.com/rxap/packages/commit/412d3f2a3f689069d84b2a121d68af30619dced2))
 
 ## [11.7.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.7.0...@rxap/oauth@11.7.1) (2021-04-21)
 
 ### Bug Fixes
 
-* add missing animations
-  definition ([cc563c8](https://gitlab.com/rxap/packages/commit/cc563c8edf37970ee6b2dcf4a8ee651fb76c8536))
+* add missing animationsdefinition ([cc563c8](https://gitlab.com/rxap/packages/commit/cc563c8edf37970ee6b2dcf4a8ee651fb76c8536))
 
 # [11.7.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.3.1...@rxap/oauth@11.7.0) (2021-04-21)
 
@@ -318,8 +292,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* add redirect after sign
-  out ([e1d3527](https://gitlab.com/rxap/packages/commit/e1d35275ecbd58016e31842b5f5d5bde0aa4b081))
+* add redirect after signout ([e1d3527](https://gitlab.com/rxap/packages/commit/e1d35275ecbd58016e31842b5f5d5bde0aa4b081))
 
 # [11.6.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.3.1...@rxap/oauth@11.6.0) (2021-04-21)
 
@@ -329,36 +302,31 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* add redirect after sign
-  out ([e1d3527](https://gitlab.com/rxap/packages/commit/e1d35275ecbd58016e31842b5f5d5bde0aa4b081))
+* add redirect after signout ([e1d3527](https://gitlab.com/rxap/packages/commit/e1d35275ecbd58016e31842b5f5d5bde0aa4b081))
 
 # [11.5.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.3.1...@rxap/oauth@11.5.0) (2021-04-21)
 
 ### Features
 
-* add redirect after sign
-  out ([e1d3527](https://gitlab.com/rxap/packages/commit/e1d35275ecbd58016e31842b5f5d5bde0aa4b081))
+* add redirect after signout ([e1d3527](https://gitlab.com/rxap/packages/commit/e1d35275ecbd58016e31842b5f5d5bde0aa4b081))
 
 # [11.4.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.3.1...@rxap/oauth@11.4.0) (2021-04-21)
 
 ### Features
 
-* add redirect after sign
-  out ([6d877c8](https://gitlab.com/rxap/packages/commit/6d877c873d92f95bffe427703a3fd9316ac880aa))
+* add redirect after signout ([6d877c8](https://gitlab.com/rxap/packages/commit/6d877c873d92f95bffe427703a3fd9316ac880aa))
 
 ## [11.3.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.3.0...@rxap/oauth@11.3.1) (2021-04-21)
 
 ### Bug Fixes
 
-* injection issue while extend a
-  service ([a32eb94](https://gitlab.com/rxap/packages/commit/a32eb94ec2d56013df0f0b9a5e77329d5f197651))
+* injection issue while extend aservice ([a32eb94](https://gitlab.com/rxap/packages/commit/a32eb94ec2d56013df0f0b9a5e77329d5f197651))
 
 # [11.3.0](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.2.3...@rxap/oauth@11.3.0) (2021-04-21)
 
 ### Features
 
-* cache authenticated
-  state ([a956999](https://gitlab.com/rxap/packages/commit/a95699917e425fc0d7c35ae1aaf909f7bc74fa62))
+* cache authenticatedstate ([a956999](https://gitlab.com/rxap/packages/commit/a95699917e425fc0d7c35ae1aaf909f7bc74fa62))
 
 ## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.2.2...@rxap/oauth@11.2.3) (2021-04-21)
 
@@ -370,8 +338,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* add missing theme function name
-  prefix ([de776bf](https://gitlab.com/rxap/packages/commit/de776bf33ba7ec35b318017f40bf35835c6597e5))
+* add missing theme function nameprefix ([de776bf](https://gitlab.com/rxap/packages/commit/de776bf33ba7ec35b318017f40bf35835c6597e5))
 
 ## [11.2.1](https://gitlab.com/rxap/packages/compare/@rxap/oauth@11.2.0...@rxap/oauth@11.2.1) (2021-04-21)
 
@@ -389,8 +356,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **single-sign-on:** add missing module
-  export ([d875f82](https://gitlab.com/rxap/packages/commit/d875f825ab775b703488dacb8743e66dcb05d555))
+* **single-sign-on:** add missing moduleexport ([d875f82](https://gitlab.com/rxap/packages/commit/d875f825ab775b703488dacb8743e66dcb05d555))
 
 # 11.1.0 (2021-04-21)
 

@@ -38,7 +38,7 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
   @Required
   public override dataSourceOrIdOrToken!: IdOrInstanceOrToken<AbstractTableDataSource<Data>>;
   @Input('rxapTableDataSourceViewer')
-  public override viewer: BaseDataSourceViewer = {id: '[rxapDataSourceCollection]'};
+  public override viewer: BaseDataSourceViewer = { id: '[rxapDataSourceCollection]' };
 
   public override loadDataSource(): AbstractPaginationDataSource<Data> | null {
     const dataSource = super.loadDataSource();

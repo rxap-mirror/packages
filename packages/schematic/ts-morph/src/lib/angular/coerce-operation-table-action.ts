@@ -29,7 +29,7 @@ export function CoerceOperationTableActionRule(options: CoerceOperationTableActi
     ...options,
     tsMorphTransform: (project, sourceFile, classDeclaration) => {
 
-      const [constructorDeclaration] = CoerceClassConstructor(classDeclaration);
+      const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
 
       CoerceParameterDeclaration(constructorDeclaration, 'method').set({
         type: OperationIdToClassName(operationId),
@@ -38,15 +38,15 @@ export function CoerceOperationTableActionRule(options: CoerceOperationTableActi
       });
 
       CoerceImports(sourceFile, {
-        namedImports: [OperationIdToClassName(operationId)],
+        namedImports: [ OperationIdToClassName(operationId) ],
         moduleSpecifier: OperationIdToClassImportPath(operationId),
       });
 
       return {
         statements: [
-          `console.log(\`action row type: ${actionType}\`, parameters);`,
+          `console.log(\`action row type: ${ actionType }\`, parameters);`,
           `const { __rowId: rowId } = parameters;`,
-          `if (!rowId) { throw new Error('The table action ${actionType} is called with a row object that does not have the property rowId.'); }`,
+          `if (!rowId) { throw new Error('The table action ${ actionType } is called with a row object that does not have the property rowId.'); }`,
           `return this.method.call({ parameters: { rowId } });`,
         ],
         returnType: `Promise<void>`,

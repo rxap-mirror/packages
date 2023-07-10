@@ -19,7 +19,7 @@ import { merge } from './util/merge';
 
 
 const default_url_options = {
-  protocols: ['http', 'https', 'ftp'],
+  protocols: [ 'http', 'https', 'ftp' ],
   require_tld: true,
   require_protocol: false,
   require_host: true,

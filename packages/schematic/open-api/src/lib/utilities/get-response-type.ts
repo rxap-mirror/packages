@@ -14,7 +14,7 @@ export function GetResponseType(operation: OpenAPIV3.OperationObject): string {
 
     // only generate the response interface if the type is not any
     if (response && !IsAnySchemaObject(response)) {
-      responseType = classify([operation.operationId, RESPONSE_FILE_SUFFIX].join('-'));
+      responseType = classify([ operation.operationId, RESPONSE_FILE_SUFFIX ].join('-'));
     } else {
       responseType = 'void';
     }

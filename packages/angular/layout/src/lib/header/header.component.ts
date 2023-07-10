@@ -100,8 +100,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.updateComponents();
     this.subscriptions.add(
       this.headerComponentService.update$
-        .pipe(tap(() => this.updateComponents()))
-        .subscribe(),
+          .pipe(tap(() => this.updateComponents()))
+          .subscribe(),
     );
   }
 

@@ -5,7 +5,8 @@ describe(DateCellComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(DateCellComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });
@@ -13,7 +14,8 @@ describe(DateCellComponent.name, () => {
   it('renders', () => {
     cy.mount(DateCellComponent, {
       componentProperties: {
-        date: null, format: 'dd.MM.yyyy HH:mm',
+        date: null,
+        format: 'dd.MM.yyyy HH:mm',
       },
     });
   });

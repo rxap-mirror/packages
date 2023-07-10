@@ -19,7 +19,7 @@ import {
   styleUrls: [ './sidenav-content.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgClass, NgStyle, RouterOutlet, AsyncPipe],
+  imports: [ NgClass, NgStyle, RouterOutlet, AsyncPipe ],
 })
 export class SidenavContentComponent {
 

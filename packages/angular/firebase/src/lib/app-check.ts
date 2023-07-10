@@ -88,7 +88,8 @@ export class AppCheckService {
 
   public getToken(forceRefresh?: boolean): Promise<string> {
     if (this._appCheck) {
-      return getToken(this._appCheck, forceRefresh).then(result => result.token) ?? Promise.reject(new Error('firebase app check is not initialized'));
+      return getToken(this._appCheck, forceRefresh).then(result => result.token) ??
+        Promise.reject(new Error('firebase app check is not initialized'));
     }
     return Promise.reject(new Error('firebase app check is not initialized'));
   }
@@ -102,7 +103,7 @@ export class AppCheckService {
 }
 
 @NgModule({
-  providers: [AppCheckService],
+  providers: [ AppCheckService ],
 })
 export class RxapAngularFireAppCheckModule {
 

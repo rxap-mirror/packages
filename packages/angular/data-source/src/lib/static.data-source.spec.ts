@@ -17,9 +17,9 @@ describe('@rxap/data-source', () => {
 
         const dataSource = observableDataSource(subject);
 
-        const connection1 = dataSource.connect({id: '1'});
-        const connection2 = dataSource.connect({id: '2'});
-        const connection3 = dataSource.connect({id: '3'});
+        const connection1 = dataSource.connect({ id: '1' });
+        const connection2 = dataSource.connect({ id: '2' });
+        const connection3 = dataSource.connect({ id: '3' });
 
         const subscribe1 = jest.fn();
         const subscribe2 = jest.fn();

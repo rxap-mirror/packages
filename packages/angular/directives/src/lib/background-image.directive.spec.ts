@@ -48,7 +48,7 @@ describe('@rxap/directives', () => {
       expect(setStyleSpy).toBeCalledTimes(2);
 
       expect(setStyleSpy).toBeCalled();
-      expect(setStyleSpy.mock.calls[1]).toEqual([divElement, 'background-image', `url("${imageUrl}")`]);
+      expect(setStyleSpy.mock.calls[1]).toEqual([ divElement, 'background-image', `url("${ imageUrl }")` ]);
 
       expect(divElement.style.backgroundImage).toContain(imageUrl);
 

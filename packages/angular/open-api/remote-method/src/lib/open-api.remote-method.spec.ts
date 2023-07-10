@@ -46,23 +46,45 @@ describe('@rxap/open-api/remote-method', () => {
           title: 'Testing',
           version: '1',
         },
-        servers: [{url: 'https://server.de/api'}],
+        servers: [ { url: 'https://server.de/api' } ],
         paths: {
           '/users': {
-            get: {operationId: 'getAllUsers', responses: {200: {description: 'ok'}}},
-            post: {operationId: 'createUser', responses: {200: {description: 'ok'}}},
+            get: {
+              operationId: 'getAllUsers',
+              responses: { 200: { description: 'ok' } },
+            },
+            post: {
+              operationId: 'createUser',
+              responses: { 200: { description: 'ok' } },
+            },
           },
           '/users/{uuid}': {
-            get: {operationId: 'getUserById', responses: {200: {description: 'ok'}}},
-            delete: {operationId: 'deleteUserById', responses: {200: {description: 'ok'}}},
+            get: {
+              operationId: 'getUserById',
+              responses: { 200: { description: 'ok' } },
+            },
+            delete: {
+              operationId: 'deleteUserById',
+              responses: { 200: { description: 'ok' } },
+            },
           },
           '/users/{uuid}/cars/{carUuid}': {
-            get: {operationId: 'getUserCarById', responses: {200: {description: 'ok'}}},
+            get: {
+              operationId: 'getUserCarById',
+              responses: { 200: { description: 'ok' } },
+            },
           },
         },
       });
 
-      remoteMethod = new OpenApiRemoteMethod(http, Injector.NULL, openApiService, {id: 'test', operation});
+      remoteMethod = new OpenApiRemoteMethod(http,
+        Injector.NULL,
+        openApiService,
+        {
+          id: 'test',
+          operation,
+        },
+      );
     });
 
     afterEach(() => {
@@ -85,11 +107,11 @@ describe('@rxap/open-api/remote-method', () => {
 
     it('should create open api remote method from operationId', async () => {
 
-      remoteMethod = new OpenApiRemoteMethod(http, Injector.NULL, openApiService, {id: 'createUser'});
+      remoteMethod = new OpenApiRemoteMethod(http, Injector.NULL, openApiService, { id: 'createUser' });
 
       OpenApiConfigService.Config = null;
 
-      const data = {data: 'data'};
+      const data = { data: 'data' };
 
       const result = remoteMethod.call();
 
@@ -116,7 +138,7 @@ describe('@rxap/open-api/remote-method', () => {
 
       OpenApiConfigService.Config = null;
 
-      const data = {data: 'data'};
+      const data = { data: 'data' };
 
       const result = remoteMethod.call();
 

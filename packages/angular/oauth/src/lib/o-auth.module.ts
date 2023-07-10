@@ -21,7 +21,7 @@ export class OAuthModule {
       providers: [
         {
           provide: RXAP_O_AUTH_REDIRECT_SIGN_IN,
-          useValue: options.signInPath ?? ['/', 'oauth', 'redirect'],
+          useValue: options.signInPath ?? [ '/', 'oauth', 'redirect' ],
         },
         {
           provide: RXAP_O_AUTH_REDIRECT_SIGN_OUT,

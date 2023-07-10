@@ -2,7 +2,7 @@ import { assertString } from './util/assertString';
 
 const isbn10Maybe = /^(?:[0-9]{9}X|[0-9]{10})$/;
 const isbn13Maybe = /^(?:[0-9]{13})$/;
-const factor = [1, 3];
+const factor = [ 1, 3 ];
 
 export function isISBN(str: unknown, version: string | number = ''): boolean {
   assertString(str);

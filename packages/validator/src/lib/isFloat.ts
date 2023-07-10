@@ -11,7 +11,9 @@ export interface IsFloatOptions {
 
 export function isFloat(str: unknown, options: IsFloatOptions = {}) {
   assertString(str);
-  const float = new RegExp(`^(?:[-+])?(?:[0-9]+)?(?:\\${options.locale ? decimal[options.locale] : '.'}[0-9]*)?(?:[eE][\\+\\-]?(?:[0-9]+))?$`);
+  const float = new RegExp(`^(?:[-+])?(?:[0-9]+)?(?:\\${ options.locale ?
+    decimal[options.locale] :
+    '.' }[0-9]*)?(?:[eE][\\+\\-]?(?:[0-9]+))?$`);
   if (str === '' || str === '.' || str === '-' || str === '+') {
     return false;
   }

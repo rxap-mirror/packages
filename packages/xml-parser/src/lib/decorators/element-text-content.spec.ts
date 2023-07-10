@@ -20,43 +20,55 @@ describe('@rxap/xml-parser', () => {
         'should not set parsed element property if attribute is not present and if not required and no default value is defined',
         () => {
 
-        const parser = new ElementTextContentParser('property', {});
+          const parser = new ElementTextContentParser('property', {});
 
-        expect(parser.parse(xmlParser, {getTextContent: () => ''} as any, {} as any)).toHaveProperty('property');
+          expect(parser.parse(xmlParser, { getTextContent: () => '' } as any, {} as any)).toHaveProperty('property');
 
-      });
+        },
+      );
 
       it('should throw if element attribute is not present and if required', () => {
 
-        const parser = new ElementTextContentParser('property', {required: true});
+        const parser = new ElementTextContentParser('property', { required: true });
 
-        expect(() => parser.parse(xmlParser, {getTextContent: () => ''} as any, {} as any)).toThrowError();
+        expect(() => parser.parse(xmlParser, { getTextContent: () => '' } as any, {} as any)).toThrowError();
 
       });
 
       it('should set parsed element property with default value if attribute is not present', () => {
 
-        const parser = new ElementTextContentParser('property', {defaultValue: 'my-default-value'});
+        const parser = new ElementTextContentParser('property', { defaultValue: 'my-default-value' });
 
-        expect(parser.parse(xmlParser, {getTextContent: () => ''} as any, {} as any)).toHaveProperty('property', 'my-default-value');
-
-      });
-
-      it('should not throw if element attribute is not present and if required had have defined default property', () => {
-
-        const parser = new ElementTextContentParser('property', {required: true, defaultValue: 'my-default-value'});
-
-        expect(() => parser.parse(xmlParser, {getTextContent: () => ''} as any, {} as any)).not.toThrowError();
-
-        expect(parser.parse(xmlParser, {getTextContent: () => ''} as any, {} as any)).toHaveProperty('property', 'my-default-value');
+        expect(parser.parse(xmlParser, { getTextContent: () => '' } as any, {} as any))
+          .toHaveProperty('property', 'my-default-value');
 
       });
+
+      it(
+        'should not throw if element attribute is not present and if required had have defined default property',
+        () => {
+
+          const parser = new ElementTextContentParser(
+            'property',
+            {
+              required: true,
+              defaultValue: 'my-default-value',
+            },
+          );
+
+          expect(() => parser.parse(xmlParser, { getTextContent: () => '' } as any, {} as any)).not.toThrowError();
+
+          expect(parser.parse(xmlParser, { getTextContent: () => '' } as any, {} as any))
+            .toHaveProperty('property', 'my-default-value');
+
+        },
+      );
 
       it('should use default value parse if attribute is present and no value parse is defined', () => {
 
         const parser = new ElementTextContentParser('property', {});
 
-        const element: RxapElement = {getTextContent: () => ''} as any;
+        const element: RxapElement = { getTextContent: () => '' } as any;
 
         const elementGetSpy = jest.spyOn(element, 'getTextContent');
 
@@ -97,9 +109,9 @@ describe('@rxap/xml-parser', () => {
 
       it('should use Number() as parser', () => {
 
-        const parser = new ElementTextContentParser('property', {parseValue: Number});
+        const parser = new ElementTextContentParser('property', { parseValue: Number });
 
-        const element: RxapElement = {getTextContent: () => ''} as any;
+        const element: RxapElement = { getTextContent: () => '' } as any;
 
         const elementGetSpy = jest.spyOn(element, 'getTextContent');
 
@@ -134,9 +146,9 @@ describe('@rxap/xml-parser', () => {
 
       it('should use String() as parser', () => {
 
-        const parser = new ElementTextContentParser('property', {parseValue: String});
+        const parser = new ElementTextContentParser('property', { parseValue: String });
 
-        const element: RxapElement = {getTextContent: () => ''} as any;
+        const element: RxapElement = { getTextContent: () => '' } as any;
 
         const elementGetSpy = jest.spyOn(element, 'getTextContent');
 
@@ -171,9 +183,9 @@ describe('@rxap/xml-parser', () => {
 
       it('should use Boolean() as parser', () => {
 
-        const parser = new ElementTextContentParser('property', {parseValue: Boolean});
+        const parser = new ElementTextContentParser('property', { parseValue: Boolean });
 
-        const element: RxapElement = {getTextContent: () => ''} as any;
+        const element: RxapElement = { getTextContent: () => '' } as any;
 
         const elementGetSpy = jest.spyOn(element, 'getTextContent');
 
@@ -208,46 +220,46 @@ describe('@rxap/xml-parser', () => {
 
       it('should use Array() as parser', () => {
 
-        const parser = new ElementTextContentParser('property', {parseValue: Array});
+        const parser = new ElementTextContentParser('property', { parseValue: Array });
 
-        const element: RxapElement = {getTextContent: () => ''} as any;
+        const element: RxapElement = { getTextContent: () => '' } as any;
 
         const elementGetSpy = jest.spyOn(element, 'getTextContent');
 
         elementGetSpy.mockReturnValue('my-value');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['my-value']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ 'my-value' ]);
 
         elementGetSpy.mockReturnValue('true');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['true']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ 'true' ]);
 
         elementGetSpy.mockReturnValue('false');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['false']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ 'false' ]);
 
         elementGetSpy.mockReturnValue('[]');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['[]']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ '[]' ]);
 
         elementGetSpy.mockReturnValue('{}');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['{}']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ '{}' ]);
 
         elementGetSpy.mockReturnValue('0');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['0']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ '0' ]);
 
         elementGetSpy.mockReturnValue('1');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['1']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ '1' ]);
 
         elementGetSpy.mockReturnValue('-1');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['-1']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ '-1' ]);
 
         elementGetSpy.mockReturnValue('');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ '' ]);
 
       });
 
       it('should use Array() as parser', () => {
 
-        const parser = new ElementTextContentParser('property', {parseValue: JSON.parse});
+        const parser = new ElementTextContentParser('property', { parseValue: JSON.parse });
 
-        const element: RxapElement = {getTextContent: () => ''} as any;
+        const element: RxapElement = { getTextContent: () => '' } as any;
 
         const elementGetSpy = jest.spyOn(element, 'getTextContent');
 
@@ -282,9 +294,9 @@ describe('@rxap/xml-parser', () => {
 
       it('should use Handlebars.compile as parser', () => {
 
-        const parser = new ElementTextContentParser('property', {parseValue: compile});
+        const parser = new ElementTextContentParser('property', { parseValue: compile });
 
-        const element: RxapElement = {getTextContent: () => ''} as any;
+        const element: RxapElement = { getTextContent: () => '' } as any;
 
         const elementGetSpy = jest.spyOn(element, 'getTextContent');
         elementGetSpy.mockReturnValue('my-value');

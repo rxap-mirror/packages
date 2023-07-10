@@ -161,7 +161,10 @@ export class KeycloakService {
    */
   public async init(options: KeycloakOptions = {}) {
     this.initServiceValues(options);
-    const {config, initOptions} = options;
+    const {
+      config,
+      initOptions,
+    } = options;
 
     this._instance = Keycloak(config);
     this.bindsKeycloakEvents();
@@ -232,7 +235,7 @@ export class KeycloakService {
    * A void Promise if the register flow was successful.
    */
   public async register(
-    options: Keycloak.KeycloakLoginOptions = {action: 'register'},
+    options: Keycloak.KeycloakLoginOptions = { action: 'register' },
   ) {
     await this._instance.register(options);
   }
@@ -453,7 +456,7 @@ export class KeycloakService {
     };
 
     this._instance.onAuthLogout = () => {
-      this._keycloakEvents$.next({type: KeycloakEventType.OnAuthLogout});
+      this._keycloakEvents$.next({ type: KeycloakEventType.OnAuthLogout });
     };
 
     this._instance.onAuthRefreshSuccess = () => {
@@ -469,7 +472,7 @@ export class KeycloakService {
     };
 
     this._instance.onAuthSuccess = () => {
-      this._keycloakEvents$.next({type: KeycloakEventType.OnAuthSuccess});
+      this._keycloakEvents$.next({ type: KeycloakEventType.OnAuthSuccess });
     };
 
     this._instance.onTokenExpired = () => {
@@ -507,7 +510,10 @@ export class KeycloakService {
     for (const item of bearerExcludedUrls) {
       let excludedUrl: ExcludedUrlRegex;
       if (typeof item === 'string') {
-        excludedUrl = {urlPattern: new RegExp(item, 'i'), httpMethods: []};
+        excludedUrl = {
+          urlPattern: new RegExp(item, 'i'),
+          httpMethods: [],
+        };
       } else {
         excludedUrl = {
           urlPattern: new RegExp(item.url, 'i'),

@@ -189,7 +189,7 @@ describe('Mixin', () => {
 
       it('should copy metadata', () => {
 
-        AddMetadata({data: true})(WithMetadata);
+        AddMetadata({ data: true })(WithMetadata);
 
         @Mixin(WithMetadata)
         class Target {
@@ -197,33 +197,41 @@ describe('Mixin', () => {
 
         expect(hasMetadata('metadata', Target)).toBeTruthy();
         expect(hasMetadata('metadata', Target.prototype)).toBeTruthy();
-        expect(getMetadata('metadata', Target)).toEqual({data: true});
-        expect(getMetadata('metadata', Target.prototype)).toEqual({data: true});
+        expect(getMetadata('metadata', Target)).toEqual({ data: true });
+        expect(getMetadata('metadata', Target.prototype)).toEqual({ data: true });
 
       });
 
       it('should merge object metadata', () => {
 
-        AddMetadata({data: true})(WithMetadata);
+        AddMetadata({ data: true })(WithMetadata);
 
         @Mixin(WithMetadata)
-        @AddMetadata({local: true})
+        @AddMetadata({ local: true })
         class Target {
         }
 
         expect(hasMetadata('metadata', Target)).toBeTruthy();
         expect(hasMetadata('metadata', Target.prototype)).toBeTruthy();
-        expect(getMetadata('metadata', Target)).toEqual({data: true, local: true});
-        expect(getMetadata('metadata', Target.prototype)).toEqual({data: true, local: true});
+        expect(getMetadata('metadata', Target))
+          .toEqual({
+            data: true,
+            local: true,
+          });
+        expect(getMetadata('metadata', Target.prototype))
+          .toEqual({
+            data: true,
+            local: true,
+          });
 
       });
 
       it('should merge array metadata', () => {
 
-        AddMetadata(['item1'])(WithMetadata);
+        AddMetadata([ 'item1' ])(WithMetadata);
 
         @Mixin(WithMetadata)
-        @AddMetadata(['item2'])
+        @AddMetadata([ 'item2' ])
         class Target {
         }
 

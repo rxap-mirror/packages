@@ -48,7 +48,10 @@ export function CoerceMethodClassLegacy(
 }
 
 export function CoerceMethodClass(options: CoerceMethodClassOptions) {
-  let {name, tsMorphTransform} = options;
+  let {
+    name,
+    tsMorphTransform,
+  } = options;
   tsMorphTransform ??= () => ({});
   const className = classify(CoerceSuffix(name, 'Method'));
   const fileName = CoerceSuffix(name, '.method.ts');
@@ -63,18 +66,24 @@ export function CoerceMethodClass(options: CoerceMethodClassOptions) {
           arguments: [],
         },
       ],
-      implements: ['Method'],
+      implements: [ 'Method' ],
     });
     CoerceImports(sourceFile, {
       moduleSpecifier: '@rxap/rxjs',
-      namedImports: ['Method'],
+      namedImports: [ 'Method' ],
     });
     CoerceImports(sourceFile, {
       moduleSpecifier: '@angular/core',
-      namedImports: ['Injectable'],
+      namedImports: [ 'Injectable' ],
     });
     const methodStructure = tsMorphTransform!(project, sourceFile, classDeclaration);
-    methodStructure.parameters ??= [{name: 'parameters', hasQuestionToken: true, type: 'any'}];
+    methodStructure.parameters ??= [
+      {
+        name: 'parameters',
+        hasQuestionToken: true,
+        type: 'any',
+      },
+    ];
     methodStructure.returnType ??= 'any';
     CoerceClassMethod(classDeclaration, 'call', methodStructure);
   });

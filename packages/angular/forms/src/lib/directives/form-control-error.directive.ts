@@ -59,7 +59,7 @@ export class FormControlErrorDirective implements OnInit, OnDestroy {
       tap(() => {
         this.viewContainerRef.clear();
         if (control.hasError(this.errorKey)) {
-          this.viewContainerRef.createEmbeddedView(this.template, {$implicit: control.getError(this.errorKey)});
+          this.viewContainerRef.createEmbeddedView(this.template, { $implicit: control.getError(this.errorKey) });
         }
       }),
     ).subscribe();

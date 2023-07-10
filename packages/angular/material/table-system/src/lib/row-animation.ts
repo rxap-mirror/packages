@@ -23,10 +23,21 @@ export const RowAnimation = trigger('rowsAnimation', [
         transform: 'translateX(0)',
         'box-shadow': 'none',
       })),
-      animate('.35s ease', style({height: '*', opacity: 1, transform: 'translateX(0)'})),
+      animate(
+        '.35s ease',
+        style({
+          height: '*',
+          opacity: 1,
+          transform: 'translateX(0)',
+        }),
+      ),
     ]),
   ]),
   transition('* => void', [
-    style({height: '0', opacity: '0', 'box-shadow': 'none'}),
+    style({
+      height: '0',
+      opacity: '0',
+      'box-shadow': 'none',
+    }),
   ]),
 ]);

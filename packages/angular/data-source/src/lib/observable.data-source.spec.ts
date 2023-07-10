@@ -15,14 +15,14 @@ describe('@rxap/data-source', () => {
 
       expect(dataSource.hasConnections).toBeFalsy();
 
-      const source = dataSource.connect({id: 'test'});
+      const source = dataSource.connect({ id: 'test' });
 
       expect(dataSource.hasConnections).toBeTruthy();
       expect(dataSource.isConnected('test')).toBeTruthy();
 
-      const observableDataSource = new ObservableDataSource(source, {id: 'observable'});
+      const observableDataSource = new ObservableDataSource(source, { id: 'observable' });
 
-      observableDataSource.connect({id: 'test'});
+      observableDataSource.connect({ id: 'test' });
       observableDataSource.disconnect('test');
 
       tick(10000);

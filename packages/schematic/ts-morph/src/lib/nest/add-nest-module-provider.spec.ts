@@ -24,13 +24,13 @@ describe('@rxap/schematics-ts-morph', () => {
           decorators: [
             {
               name: 'Module',
-              arguments: [Writers.object({})],
+              arguments: [ Writers.object({}) ],
             },
           ],
         });
 
         sourceFile.addImportDeclaration({
-          namedImports: ['Module'],
+          namedImports: [ 'Module' ],
           moduleSpecifier: '@nestjs/common',
         });
 
@@ -39,7 +39,8 @@ describe('@rxap/schematics-ts-morph', () => {
         const metadata = GetNestModuleMetadata(sourceFile);
 
         expect(metadata.getProperties()).toHaveLength(1);
-        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim()).toEqual('[Test]');
+        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim())
+          .toEqual('[Test]');
 
 
       });

@@ -17,7 +17,12 @@ import { IsDefined } from './is-defined';
  * @param host the current Tree
  * @param options a partial option object with path or/and project defined
  */
-export function GuessProjectRoot(host: Tree, {path, project}: { path?: string, project?: string }): string {
+export function GuessProjectRoot(host: Tree,
+                                 {
+                                   path,
+                                   project,
+                                 }: { path?: string, project?: string },
+): string {
 
   if (!path && !project) {
     throw new SchematicsException('The options path and project are not defined. At least one of them must be defined');
@@ -34,8 +39,8 @@ export function GuessProjectRoot(host: Tree, {path, project}: { path?: string, p
   const workspace = GetWorkspace(host);
 
   const allProjectRoots: string[] = Array.from(workspace.projects.values())
-    .map(project => project.root)
-    .filter(IsDefined);
+                                         .map(project => project.root)
+                                         .filter(IsDefined);
 
   let bestMatch: string | null = null;
 

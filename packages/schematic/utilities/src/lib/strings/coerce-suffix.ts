@@ -2,7 +2,7 @@ export function CoerceSuffix(input: string, suffix: string, regexp?: RegExp): st
 
   if (regexp) {
 
-    if (!input.match(regexp ?? new RegExp(`${suffix}$`))) {
+    if (!input.match(regexp ?? new RegExp(`${ suffix }$`))) {
       return input + suffix;
     }
 

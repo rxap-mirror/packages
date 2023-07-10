@@ -18,7 +18,7 @@ describe('CoerceClassImplementation', () => {
 
     CoerceClassImplementation(classDeclaration, 'MyImplementation');
 
-    expect(classDeclaration.getImplements().map(impl => impl.getText())).toEqual(['MyImplementation']);
+    expect(classDeclaration.getImplements().map(impl => impl.getText())).toEqual([ 'MyImplementation' ]);
 
   });
 
@@ -28,7 +28,7 @@ describe('CoerceClassImplementation', () => {
 
     CoerceClassImplementation(classDeclaration, 'MyImplementation');
 
-    expect(classDeclaration.getImplements().map(impl => impl.getText())).toEqual(['MyImplementation']);
+    expect(classDeclaration.getImplements().map(impl => impl.getText())).toEqual([ 'MyImplementation' ]);
 
   });
 

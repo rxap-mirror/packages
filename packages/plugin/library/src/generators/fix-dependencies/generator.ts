@@ -29,7 +29,11 @@ function resolveProjectDependencies(
   for (const dependency of projectDependencies) {
     if (!dependency.target.startsWith('npm:')) {
       dependencies.push(dependency.target);
-      dependencies.push(...resolveProjectDependencies(projectGraph, dependency.target, [...resolved, dependency.target, project]));
+      dependencies.push(...resolveProjectDependencies(
+        projectGraph,
+        dependency.target,
+        [ ...resolved, dependency.target, project ],
+      ));
     }
   }
   return dependencies.filter((value, index, array) => array.indexOf(value) === index);
@@ -56,20 +60,100 @@ function getPackageListFromSourceFiles(project: Project): string[] {
 
       if (!packageList.includes(packageName)) {
         packageList.push(packageName);
-        console.log(`Add package ${packageName} from source file ${sourceFile.getFilePath()}`);
+        console.log(`Add package ${ packageName } from source file ${ sourceFile.getFilePath() }`);
       }
     });
   });
 
   return packageList
     .filter((value, index, array) => array.indexOf(value) === index)
-    .filter(packageName => !PACKAGE_ADD_BLACK_LIST.some(regexOrString => typeof regexOrString === 'string' ? regexOrString === packageName : regexOrString.test(packageName)));
+    .filter(packageName => !PACKAGE_ADD_BLACK_LIST.some(regexOrString => typeof regexOrString === 'string' ?
+      regexOrString === packageName :
+      regexOrString.test(packageName)));
 }
 
 const TESTING_FILE_EXTENSIONS = [ '.spec.ts', '.e2e-spec.ts', '.stories.ts', 'test-setup.ts', '.cy.ts' ];
 
-const PACKAGE_REMOVE_BLACK_LIST = ['tslib'];
-const PACKAGE_ADD_BLACK_LIST = [/@firebase/, 'fs', 'path', 'child_process', 'os', 'crypto', 'util', 'events', 'stream', 'assert', 'tty', 'net', 'dns', 'tls', 'http', 'https', 'zlib', 'url', 'querystring', 'punycode', 'string_decoder', 'http2', 'perf_hooks', 'worker_threads', 'v8', 'vm', 'async_hooks', 'inspector', 'trace_events', 'console', 'buffer', 'constants', 'v8', 'domain', 'readline', 'repl', 'timers', 'module', 'process', 'cluster', 'dgram', 'fs/promises', 'perf_hooks', 'readline', 'repl', 'string_decoder', 'tls/promises', 'trace_events', 'tty', 'worker_threads', 'zlib/promises', 'assert', 'async_hooks', 'buffer', 'child_process', 'console', 'crypto', 'dns/promises', 'domain', 'events', 'fs', 'http', 'http2', 'https', 'net', 'os', 'path', 'querystring', 'stream', 'timers', 'tls', 'tty', 'url', 'util', 'v8', 'vm', 'zlib'];
+const PACKAGE_REMOVE_BLACK_LIST = [ 'tslib' ];
+const PACKAGE_ADD_BLACK_LIST = [
+  /@firebase/,
+  'fs',
+  'path',
+  'child_process',
+  'os',
+  'crypto',
+  'util',
+  'events',
+  'stream',
+  'assert',
+  'tty',
+  'net',
+  'dns',
+  'tls',
+  'http',
+  'https',
+  'zlib',
+  'url',
+  'querystring',
+  'punycode',
+  'string_decoder',
+  'http2',
+  'perf_hooks',
+  'worker_threads',
+  'v8',
+  'vm',
+  'async_hooks',
+  'inspector',
+  'trace_events',
+  'console',
+  'buffer',
+  'constants',
+  'v8',
+  'domain',
+  'readline',
+  'repl',
+  'timers',
+  'module',
+  'process',
+  'cluster',
+  'dgram',
+  'fs/promises',
+  'perf_hooks',
+  'readline',
+  'repl',
+  'string_decoder',
+  'tls/promises',
+  'trace_events',
+  'tty',
+  'worker_threads',
+  'zlib/promises',
+  'assert',
+  'async_hooks',
+  'buffer',
+  'child_process',
+  'console',
+  'crypto',
+  'dns/promises',
+  'domain',
+  'events',
+  'fs',
+  'http',
+  'http2',
+  'https',
+  'net',
+  'os',
+  'path',
+  'querystring',
+  'stream',
+  'timers',
+  'tls',
+  'tty',
+  'url',
+  'util',
+  'v8',
+  'vm',
+  'zlib',
+];
 
 const PACKAGE_NAME_TO_PROJECT_NAME_CACHE: Record<string, string> = {};
 const PROJECT_NAME_TO_PACKAGE_NAME_CACHE: Record<string, string> = {};
@@ -79,7 +163,7 @@ function loadProjectToPackageMapping(tree: Tree, projectGraph: ProjectGraph) {
   for (const projectName of projectNames) {
     const project = projectGraph.nodes[projectName];
     const projectRoot = project.data.root;
-    const packageJSON = JSON.parse(tree.read(`${projectRoot}/package.json`)!.toString('utf-8'));
+    const packageJSON = JSON.parse(tree.read(`${ projectRoot }/package.json`)!.toString('utf-8'));
     PACKAGE_NAME_TO_PROJECT_NAME_CACHE[packageJSON.name] = projectName;
     PROJECT_NAME_TO_PACKAGE_NAME_CACHE[projectName] = packageJSON.name;
   }
@@ -89,21 +173,27 @@ function packageNameToProjectName(packageName: string): string {
   if (PACKAGE_NAME_TO_PROJECT_NAME_CACHE[packageName]) {
     return PACKAGE_NAME_TO_PROJECT_NAME_CACHE[packageName];
   }
-  throw new Error(`Could not find project for package '${packageName}'`);
+  throw new Error(`Could not find project for package '${ packageName }'`);
 }
 
 function projectNameToPackageName(projectName: string): string {
   if (PROJECT_NAME_TO_PACKAGE_NAME_CACHE[projectName]) {
     return PROJECT_NAME_TO_PACKAGE_NAME_CACHE[projectName];
   }
-  throw new Error(`Could not find package for project '${projectName}'`);
+  throw new Error(`Could not find package for project '${ projectName }'`);
 }
 
 function hasProjectWithPackageName(packageName: string) {
   return PACKAGE_NAME_TO_PROJECT_NAME_CACHE[packageName] !== undefined;
 }
 
-function addDependedProjects(projectGraph: ProjectGraph, tree: Tree, packageName: string, projectRoot: string, dependencies: Record<string, string>) {
+function addDependedProjects(
+  projectGraph: ProjectGraph,
+  tree: Tree,
+  packageName: string,
+  projectRoot: string,
+  dependencies: Record<string, string>,
+) {
   const projectName = packageNameToProjectName(packageName);
   const dependedProjectList = resolveProjectDependencies(projectGraph, projectName);
   for (const dependedProject of dependedProjectList) {
@@ -133,7 +223,14 @@ function fixPeerDependenciesWithTsMorphProject(
     useInMemoryFileSystem: true,
   });
 
-  AddDir(tree, projectRoot, project, (fileName, path) => !path.includes('node_modules') && fileName.endsWith('.ts') && !TESTING_FILE_EXTENSIONS.some(ext => fileName.endsWith(ext)));
+  AddDir(
+    tree,
+    projectRoot,
+    project,
+    (fileName, path) => !path.includes('node_modules') &&
+      fileName.endsWith('.ts') &&
+      !TESTING_FILE_EXTENSIONS.some(ext => fileName.endsWith(ext)),
+  );
 
   const packageList: string[] = getPackageListFromSourceFiles(project);
 
@@ -144,13 +241,13 @@ function fixPeerDependenciesWithTsMorphProject(
 
   for (const packageName of Object.keys(peerDependencies)) {
     if (!packageList.includes(packageName) && !PACKAGE_REMOVE_BLACK_LIST.includes(packageName)) {
-      removedPackageList.push(`${packageName}@${peerDependencies[packageName]} from peerDependencies`);
+      removedPackageList.push(`${ packageName }@${ peerDependencies[packageName] } from peerDependencies`);
       delete peerDependencies[packageName];
     }
   }
   for (const packageName of Object.keys(dependencies)) {
     if (!packageList.includes(packageName) && !PACKAGE_REMOVE_BLACK_LIST.includes(packageName)) {
-      removedPackageList.push(`${packageName}@${dependencies[packageName]} from dependencies`);
+      removedPackageList.push(`${ packageName }@${ dependencies[packageName] } from dependencies`);
       delete dependencies[packageName];
     }
   }
@@ -165,11 +262,11 @@ function fixPeerDependenciesWithTsMorphProject(
         const version = findBasePackageVersion(tree, packageName, projectRoot);
         if (peerDependencies[packageName]) {
           if (peerDependencies[packageName] !== version) {
-            changedPackageList.push(`${packageName}@${peerDependencies[packageName]} -> ${version}`);
+            changedPackageList.push(`${ packageName }@${ peerDependencies[packageName] } -> ${ version }`);
             peerDependencies[packageName] = version;
           }
         } else {
-          addedPackageList.push(`${packageName}@${version}`);
+          addedPackageList.push(`${ packageName }@${ version }`);
           peerDependencies[packageName] = version;
         }
         if (version === 'latest') {
@@ -208,7 +305,14 @@ function fixDevDependenciesWithTsMorphProject(
     useInMemoryFileSystem: true,
   });
 
-  AddDir(tree, projectRoot, project, (fileName, path) => !path.includes('node_modules') && fileName.endsWith('.ts') && TESTING_FILE_EXTENSIONS.some(ext => fileName.endsWith(ext)));
+  AddDir(
+    tree,
+    projectRoot,
+    project,
+    (fileName, path) => !path.includes('node_modules') &&
+      fileName.endsWith('.ts') &&
+      TESTING_FILE_EXTENSIONS.some(ext => fileName.endsWith(ext)),
+  );
 
   const packageList: string[] = getPackageListFromSourceFiles(project);
 
@@ -218,8 +322,10 @@ function fixDevDependenciesWithTsMorphProject(
   const unknownPackageList: string[] = [];
 
   for (const packageName of Object.keys(devDependencies)) {
-    if (!packageList.includes(packageName) && !peerDependencies[packageName] && !PACKAGE_REMOVE_BLACK_LIST.includes(packageName)) {
-      removedPackageList.push(`${packageName}@${devDependencies[packageName]} from devDependencies`);
+    if (!packageList.includes(packageName) &&
+      !peerDependencies[packageName] &&
+      !PACKAGE_REMOVE_BLACK_LIST.includes(packageName)) {
+      removedPackageList.push(`${ packageName }@${ devDependencies[packageName] } from devDependencies`);
       delete devDependencies[packageName];
     }
   }
@@ -234,11 +340,11 @@ function fixDevDependenciesWithTsMorphProject(
         const version = findBasePackageVersion(tree, packageName, projectRoot);
         if (devDependencies[packageName]) {
           if (devDependencies[packageName] !== version) {
-            changedPackageList.push(`${packageName}@${devDependencies[packageName]} -> ${version}`);
+            changedPackageList.push(`${ packageName }@${ devDependencies[packageName] } -> ${ version }`);
             devDependencies[packageName] = version;
           }
         } else {
-          addedPackageList.push(`${packageName}@${version}`);
+          addedPackageList.push(`${ packageName }@${ version }`);
           devDependencies[packageName] = version;
         }
         if (version === 'latest') {
@@ -264,7 +370,7 @@ function loadAvailablePackageVersion(tree: Tree, projectRoot: string) {
   PACKAGE_VERSION_MAP[projectRoot] = {};
 
   function updateMap(dependencies: Record<string, string> | undefined): void {
-    for (const [packageName, version] of Object.entries(dependencies ?? {})) {
+    for (const [ packageName, version ] of Object.entries(dependencies ?? {})) {
       if (version !== '*' && !hasProjectWithPackageName(packageName)) {
         if (!PACKAGE_VERSION_MAP[packageName]) {
           PACKAGE_VERSION_MAP[projectRoot][packageName] = version;
@@ -274,12 +380,12 @@ function loadAvailablePackageVersion(tree: Tree, projectRoot: string) {
   }
 
   function pinVersionToMajorRelease(versionMap: Record<string, string>) {
-    for (const [packageName, version] of Object.entries(versionMap)) {
+    for (const [ packageName, version ] of Object.entries(versionMap)) {
       if (version.startsWith('~')) {
         versionMap[packageName] = version.replace('~', '^');
       }
       if (version.match(/^\d+/)) {
-        versionMap[packageName] = `^${version}`;
+        versionMap[packageName] = `^${ version }`;
       }
     }
   }
@@ -288,7 +394,8 @@ function loadAvailablePackageVersion(tree: Tree, projectRoot: string) {
   let lastWorkingDirectory = '';
   do {
     if (tree.exists(join(workingDirectory, 'package.json'))) {
-      const packageJson: ProjectPackageJson = JSON.parse(tree.read(join(workingDirectory, 'package.json'))!.toString('utf-8'));
+      const packageJson: ProjectPackageJson = JSON.parse(tree.read(join(workingDirectory, 'package.json'))!.toString(
+        'utf-8'));
       updateMap(packageJson.dependencies);
       updateMap(packageJson.peerDependencies);
       updateMap(packageJson.devDependencies);
@@ -325,34 +432,34 @@ function printReport(
   },
 ) {
   if (addedPackageList.length) {
-    console.log(`Added packages: ${addedPackageList.length}`);
+    console.log(`Added packages: ${ addedPackageList.length }`);
     console.log(addedPackageList.join('\n'));
   }
   if (changedPackageList.length) {
-    console.log(`Changed packages: ${changedPackageList.length}`);
+    console.log(`Changed packages: ${ changedPackageList.length }`);
     console.log(changedPackageList.join('\n'));
   }
   if (removedPackageList.length) {
-    console.log(`Removed packages: ${removedPackageList.length}`);
+    console.log(`Removed packages: ${ removedPackageList.length }`);
     console.log(removedPackageList.join('\n'));
   }
   if (unknownPackageList.length) {
-    console.log(`Unknown packages: ${unknownPackageList.length}`);
+    console.log(`Unknown packages: ${ unknownPackageList.length }`);
     console.log(unknownPackageList.join('\n'));
   }
 }
 
 function skipProject(tree: Tree, project: string, projectRoot: string, projects: string[] = []) {
   if (projects.length && !projects.includes(project)) {
-    console.debug(`Skip project ${project} because it is not in the list of projects`);
+    console.debug(`Skip project ${ project } because it is not in the list of projects`);
     return true;
   }
   if (projectRoot === '.') {
     console.debug('skip root project');
     return true;
   }
-  if (!tree.exists(`${projectRoot}/package.json`)) {
-    console.debug(`No package.json file found in ${projectRoot}`);
+  if (!tree.exists(`${ projectRoot }/package.json`)) {
+    console.debug(`No package.json file found in ${ projectRoot }`);
     return true;
   }
   return false;
@@ -368,7 +475,7 @@ export async function resolveLatestPackageVersion(packageName: string) {
 }
 
 export async function replaceLatestPackageVersionForProject(tree: Tree, projectName: string) {
-  console.log(`Replace latest package version for project ${projectName}`);
+  console.log(`Replace latest package version for project ${ projectName }`);
   const projectRoot = GetProjectRoot(tree, projectName);
   const packageJson: ProjectPackageJson = JSON.parse(tree.read(join(projectRoot, 'package.json'))!.toString('utf-8'));
   const dependencies = packageJson.dependencies;
@@ -377,12 +484,12 @@ export async function replaceLatestPackageVersionForProject(tree: Tree, projectN
   const optionalDependencies = packageJson.optionalDependencies;
 
   async function replaceLatestPackageVersion(dependencies: Record<string, string> | undefined): Promise<void> {
-    for (const [packageName, version] of Object.entries(dependencies ?? {})) {
+    for (const [ packageName, version ] of Object.entries(dependencies ?? {})) {
       if (version === 'latest') {
         const resolvedVersion = await resolveLatestPackageVersion(packageName);
         if (resolvedVersion !== 'latest') {
           dependencies![packageName] = resolvedVersion;
-          console.log(`Replace latest version of ${packageName} with ${resolvedVersion}`);
+          console.log(`Replace latest version of ${ packageName } with ${ resolvedVersion }`);
         }
       }
     }
@@ -393,7 +500,7 @@ export async function replaceLatestPackageVersionForProject(tree: Tree, projectN
   await replaceLatestPackageVersion(devDependencies);
   await replaceLatestPackageVersion(optionalDependencies);
 
-  tree.write(join(projectRoot, "package.json"), JSON.stringify(packageJson, null, 2) + "\n");
+  tree.write(join(projectRoot, 'package.json'), JSON.stringify(packageJson, null, 2) + '\n');
 }
 
 export function removePackageFromDependencies(packageName: string, dependencies: Record<string, string>) {
@@ -403,7 +510,10 @@ export function removePackageFromDependencies(packageName: string, dependencies:
 }
 
 export function removeSelfReferenceFromDependencies(projectName: string, {
-  dependencies, peerDependencies, devDependencies, optionalDependencies,
+  dependencies,
+  peerDependencies,
+  devDependencies,
+  optionalDependencies,
 }: ProjectPackageJson) {
   const packageName = projectNameToPackageName(projectName);
   removePackageFromDependencies(packageName, dependencies);
@@ -447,14 +557,14 @@ export async function fixDependenciesGenerator(
       if (skipProject(tree, projectName, projectRoot, options.projects)) {
         return;
       }
-      const packageJson = JSON.parse(tree.read(`${projectRoot}/package.json`)!.toString('utf-8'));
+      const packageJson = JSON.parse(tree.read(`${ projectRoot }/package.json`)!.toString('utf-8'));
       if (options.resetAll) {
         packageJson.dependencies = {};
       }
       packageJson.peerDependencies = {};
       packageJson.devDependencies = {};
       packageJson.optionalDependencies = {};
-      tree.write(`${projectRoot}/package.json`, JSON.stringify(packageJson, null, 2) + '\n');
+      tree.write(`${ projectRoot }/package.json`, JSON.stringify(packageJson, null, 2) + '\n');
     });
   }
 
@@ -470,14 +580,14 @@ export async function fixDependenciesGenerator(
       return;
     }
 
-    const packageJson = JSON.parse(tree.read(`${projectRoot}/package.json`)!.toString('utf-8'));
+    const packageJson = JSON.parse(tree.read(`${ projectRoot }/package.json`)!.toString('utf-8'));
     packageJson.dependencies ??= {};
     packageJson.peerDependencies ??= {};
     packageJson.devDependencies ??= {};
     packageJson.optionalDependencies ??= {};
 
-    if (!packageJson.dependencies["tslib"]) {
-      packageJson.dependencies["tslib"] = latestTsLibVersion;
+    if (!packageJson.dependencies['tslib']) {
+      packageJson.dependencies['tslib'] = latestTsLibVersion;
     }
 
     loadAvailablePackageVersion(tree, projectRoot);
@@ -487,7 +597,7 @@ export async function fixDependenciesGenerator(
     removeSelfReferenceFromDependencies(projectName, packageJson);
 
     console.log(`====================  Report for project ${ projectName }`);
-    console.log("========== Peer dependencies:");
+    console.log('========== Peer dependencies:');
     printReport(peerReport);
 
     unknownPackageMap[projectName] = peerReport.unknownPackageList.filter((packageName, index, self) => self.indexOf(
@@ -506,7 +616,7 @@ export async function fixDependenciesGenerator(
       delete packageJson.optionalDependencies;
     }
 
-    tree.write(`${projectRoot}/package.json`, JSON.stringify(packageJson, null, 2) + '\n');
+    tree.write(`${ projectRoot }/package.json`, JSON.stringify(packageJson, null, 2) + '\n');
 
   });
 
@@ -525,12 +635,12 @@ export async function fixDependenciesGenerator(
     console.log(`============================================================`);
     console.log(`Unknown packages: ${ Object.keys(unknownPackageMapToProject).length }`);
     console.log(Object.entries(unknownPackageMapToProject)
-                  .map(([ packageName, projectNameList ]) => `${ packageName }: ${ projectNameList.join(", ") }`)
-                  .join("\n"));
-    console.log("============================================================");
-    console.log("Use the option --resolve to replace all latest version with the latest version from npm");
+                      .map(([ packageName, projectNameList ]) => `${ packageName }: ${ projectNameList.join(', ') }`)
+                      .join('\n'));
+    console.log('============================================================');
+    console.log('Use the option --resolve to replace all latest version with the latest version from npm');
     if (options.strict) {
-      throw new Error("Packages with unknown version found");
+      throw new Error('Packages with unknown version found');
     }
   }
 

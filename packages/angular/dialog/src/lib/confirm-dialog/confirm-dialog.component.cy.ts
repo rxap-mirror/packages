@@ -6,7 +6,8 @@ describe(ConfirmDialogComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(ConfirmDialogComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

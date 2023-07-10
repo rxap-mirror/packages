@@ -16,7 +16,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class SidenavContentComponentService {
 
   public headerRows$ = new BehaviorSubject<number>(1);
@@ -43,15 +43,15 @@ export class SidenavContentComponentService {
       this.headerRows$,
       this.footerRows$,
     ]).pipe(
-      map(([headerRows, footerRows]) => `calc(100% - ${64 * (headerRows + footerRows)}px)`),
+      map(([ headerRows, footerRows ]) => `calc(100% - ${ 64 * (headerRows + footerRows) }px)`),
     );
 
     this.marginTop$ = this.headerRows$.pipe(
-      map(headerRows => `${headerRows * 64}px`),
+      map(headerRows => `${ headerRows * 64 }px`),
     );
 
     this.marginBottom$ = this.footerRows$.pipe(
-      map(footerRows => `${footerRows * 64}px`),
+      map(footerRows => `${ footerRows * 64 }px`),
     );
 
   }

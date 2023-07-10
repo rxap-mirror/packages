@@ -20,14 +20,14 @@ describe('@rxap/authorization', () => {
 
       beforeEach(() => {
 
-        const method = {call: () => Promise.resolve({})} as any;
+        const method = { call: () => Promise.resolve({}) } as any;
         authorization = new AuthorizationService(method);
 
       });
 
       it('permission: *', () => {
 
-        const permissions = ['*'];
+        const permissions = [ '*' ];
 
         expect(authorization.checkPermission(identifiers[0], permissions)).toBe(true);
         expect(authorization.checkPermission(identifiers[0], permissions, scope)).toBe(true);
@@ -42,7 +42,7 @@ describe('@rxap/authorization', () => {
 
       it('permission: table.*', () => {
 
-        const permissions = ['table.*'];
+        const permissions = [ 'table.*' ];
 
         expect(authorization.checkPermission(identifiers[0], permissions)).toBe(true);
         expect(authorization.checkPermission(identifiers[0], permissions, scope)).toBe(true);
@@ -56,7 +56,7 @@ describe('@rxap/authorization', () => {
       });
       it('permission: table.machine.*', () => {
 
-        const permissions = ['table.machine.*'];
+        const permissions = [ 'table.machine.*' ];
 
         expect(authorization.checkPermission(identifiers[0], permissions)).toBe(true);
         expect(authorization.checkPermission(identifiers[0], permissions, scope)).toBe(true);
@@ -70,7 +70,7 @@ describe('@rxap/authorization', () => {
       });
       it('permission: table.machine.create-button', () => {
 
-        const permissions = ['table.machine.create-button'];
+        const permissions = [ 'table.machine.create-button' ];
 
         expect(authorization.checkPermission(identifiers[0], permissions)).toBe(true);
         expect(authorization.checkPermission(identifiers[0], permissions, scope)).toBe(true);
@@ -84,7 +84,7 @@ describe('@rxap/authorization', () => {
       });
       it('permission: table.*.create-button', () => {
 
-        const permissions = ['table.*.create-button'];
+        const permissions = [ 'table.*.create-button' ];
 
         expect(authorization.checkPermission(identifiers[0], permissions)).toBe(true);
         expect(authorization.checkPermission(identifiers[0], permissions, scope)).toBe(true);
@@ -98,7 +98,7 @@ describe('@rxap/authorization', () => {
       });
       it('permission: feature.machine/*', () => {
 
-        const permissions = ['feature.machine/*'];
+        const permissions = [ 'feature.machine/*' ];
 
         expect(authorization.checkPermission(identifiers[0], permissions)).toBe(false);
         expect(authorization.checkPermission(identifiers[0], permissions, scope)).toBe(true);
@@ -112,7 +112,7 @@ describe('@rxap/authorization', () => {
       });
       it('permission: feature.machine/table.*', () => {
 
-        const permissions = ['feature.machine/table.*'];
+        const permissions = [ 'feature.machine/table.*' ];
 
         expect(authorization.checkPermission(identifiers[0], permissions)).toBe(false);
         expect(authorization.checkPermission(identifiers[0], permissions, scope)).toBe(true);
@@ -126,7 +126,7 @@ describe('@rxap/authorization', () => {
       });
       it('permission: feature.machine/table.machine.*', () => {
 
-        const permissions = ['feature.machine/table.machine.*'];
+        const permissions = [ 'feature.machine/table.machine.*' ];
 
         expect(authorization.checkPermission(identifiers[0], permissions)).toBe(false);
         expect(authorization.checkPermission(identifiers[0], permissions, scope)).toBe(true);
@@ -140,7 +140,7 @@ describe('@rxap/authorization', () => {
       });
       it('permission: feature.machine/table.machine.create-button', () => {
 
-        const permissions = ['feature.machine/table.machine.create-button'];
+        const permissions = [ 'feature.machine/table.machine.create-button' ];
 
         expect(authorization.checkPermission(identifiers[0], permissions)).toBe(false);
         expect(authorization.checkPermission(identifiers[0], permissions, scope)).toBe(true);
@@ -164,9 +164,9 @@ describe('@rxap/authorization', () => {
 
         const method = {
           call: () => Promise.resolve({
-            admin: ['*'],
-            manager: ['feature.machine/*'],
-            default: ['feature.machine/table.*'],
+            admin: [ '*' ],
+            manager: [ 'feature.machine/*' ],
+            default: [ 'feature.machine/table.*' ],
           }),
         } as any;
         authorization = new AuthorizationService(method);
@@ -175,17 +175,17 @@ describe('@rxap/authorization', () => {
 
       it('set one role', async () => {
 
-        const permissions = await authorization.setUserRoles(['admin']);
+        const permissions = await authorization.setUserRoles([ 'admin' ]);
 
-        expect(permissions).toEqual(['*']);
+        expect(permissions).toEqual([ '*' ]);
 
       });
 
       it('set multiple role', async () => {
 
-        const permissions = await authorization.setUserRoles(['admin', 'manager']);
+        const permissions = await authorization.setUserRoles([ 'admin', 'manager' ]);
 
-        expect(permissions).toEqual(['*', 'feature.machine/*']);
+        expect(permissions).toEqual([ '*', 'feature.machine/*' ]);
 
       });
 

@@ -16,7 +16,7 @@ describe('@rxap/pipes', () => {
       expect(pipe.transform('"')).toEqual('\\"');
       expect(pipe.transform('"Test"')).toEqual('\\"Test\\"');
       expect(pipe.transform('"Test": "Test"')).toEqual('\\"Test\\": \\"Test\\"');
-      expect(pipe.transform(JSON.stringify({data: 'data'}))).toEqual('{\\"data\\":\\"data\\"}');
+      expect(pipe.transform(JSON.stringify({ data: 'data' }))).toEqual('{\\"data\\":\\"data\\"}');
 
     });
 

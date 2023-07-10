@@ -26,7 +26,7 @@ export function AddNestController(
   options: AddNestControllerOptions = {},
 ): SourceFile {
 
-  const sourceFile = options.sourceFile ?? CoerceSourceFile(project, `${dasherize(name)}.controller.ts`);
+  const sourceFile = options.sourceFile ?? CoerceSourceFile(project, `${ dasherize(name) }.controller.ts`);
 
   const controllerClass = CoerceSuffix(classify(name), 'Controller');
 
@@ -38,14 +38,14 @@ export function AddNestController(
       decorators: [
         {
           name: 'Controller',
-          arguments: [w => w.quote(options.prefix ?? dasherize(name))],
+          arguments: [ w => w.quote(options.prefix ?? dasherize(name)) ],
         },
       ],
     },
   );
 
   CoerceImports(sourceFile, {
-    namedImports: ['Controller'],
+    namedImports: [ 'Controller' ],
     moduleSpecifier: '@nestjs/common',
   });
 
@@ -62,7 +62,7 @@ export function AddNestController(
     }
 
     if (!moduleSourceFile) {
-      throw new Error(`Could not find a file at path '${modulePath}'`);
+      throw new Error(`Could not find a file at path '${ modulePath }'`);
     }
 
     AddNestModuleController(
@@ -70,7 +70,7 @@ export function AddNestController(
       controllerClass,
       [
         {
-          namedImports: [controllerClass],
+          namedImports: [ controllerClass ],
           moduleSpecifier: './' + moduleSourceFile.getRelativePathTo(sourceFile).replace(/\.ts$/, ''),
         },
       ],

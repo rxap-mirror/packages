@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@15.0.0...@rxap/data-grid@16.0.0-dev.0) (2023-05-18)
 
@@ -62,8 +61,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -89,8 +87,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* use the ngTemplateContextGuard with the correct property
-  types ([25cd947](https://gitlab.com/rxap/packages/commit/25cd94774f65f16ef40ab775e1093bec806d765b))
+* use the ngTemplateContextGuard with the correct propertytypes ([25cd947](https://gitlab.com/rxap/packages/commit/25cd94774f65f16ef40ab775e1093bec806d765b))
 
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@12.0.6...@rxap/data-grid@12.0.7) (2021-06-24)
 
@@ -112,8 +109,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* remove ng-mocks
-  peerDependency ([0940f5f](https://gitlab.com/rxap/packages/commit/0940f5f9a79d07c3ad82d7cf6ae17aeb28b23158))
+* remove ng-mockspeerDependency ([0940f5f](https://gitlab.com/rxap/packages/commit/0940f5f9a79d07c3ad82d7cf6ae17aeb28b23158))
 
 ## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@11.0.9...@rxap/data-grid@12.0.2) (2021-06-09)
 
@@ -135,10 +131,8 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@11.0.6...@rxap/data-grid@11.0.7) (2021-03-19)
 
@@ -184,17 +178,12 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 ### Bug Fixes
 
 * add default td and th ([1e1dc3b](https://gitlab.com/rxap/packages/commit/1e1dc3b7dbbbc5e1fb3ea50eae19d1255f56ea31))
-* add missing data grid
-  theme ([3ae8bb5](https://gitlab.com/rxap/packages/commit/3ae8bb5f7ee478a74415c8b0478c45a7bd9d3bf4))
-* add missing data grid
-  theme ([dece678](https://gitlab.com/rxap/packages/commit/dece6789a9b6e175b7d913e58f40756708188c28))
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* add missing data gridtheme ([3ae8bb5](https://gitlab.com/rxap/packages/commit/3ae8bb5f7ee478a74415c8b0478c45a7bd9d3bf4))
+* add missing data gridtheme ([dece678](https://gitlab.com/rxap/packages/commit/dece6789a9b6e175b7d913e58f40756708188c28))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
 * unused model and tokens ([8f7b23e](https://gitlab.com/rxap/packages/commit/8f7b23e6921b439aad070674bb662c9f86df4bac))
 
 ### Features
 
-* add support for custom th and
-  td ([b376b97](https://gitlab.com/rxap/packages/commit/b376b97ca75cbc355e74967ff7ae70453ede585b))
-* support for a edit data
-  grid ([5b0a85c](https://gitlab.com/rxap/packages/commit/5b0a85ce7cc331582b6d27326eacc735c1373ffe))
+* add support for custom th andtd ([b376b97](https://gitlab.com/rxap/packages/commit/b376b97ca75cbc355e74967ff7ae70453ede585b))
+* support for a edit datagrid ([5b0a85c](https://gitlab.com/rxap/packages/commit/5b0a85ce7cc331582b6d27326eacc735c1373ffe))

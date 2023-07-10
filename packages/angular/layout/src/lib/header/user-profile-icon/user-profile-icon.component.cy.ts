@@ -5,7 +5,8 @@ describe(UserProfileIconComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(UserProfileIconComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

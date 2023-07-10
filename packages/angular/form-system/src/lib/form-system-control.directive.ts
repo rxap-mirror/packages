@@ -114,7 +114,7 @@ export class FormSystemControlDirective<T> implements ControlValueAccessor, OnIn
 
     const useDataSourceValueMap = this.extractDataSources(formDefinition, this.controlId);
 
-    for (const [name, useDataSourceValue] of useDataSourceValueMap.entries()) {
+    for (const [ name, useDataSourceValue ] of useDataSourceValueMap.entries()) {
 
       let dataSource = this.dataSourceLoader.load(useDataSourceValue.dataSource);
 
@@ -133,7 +133,7 @@ export class FormSystemControlDirective<T> implements ControlValueAccessor, OnIn
   private setComponentProperties(formDefinition: FormDefinition, component: any) {
     const componentProperties = this.extractComponentProperties(formDefinition);
 
-    for (const [key, value] of Object.entries(componentProperties)) {
+    for (const [ key, value ] of Object.entries(componentProperties)) {
       Reflect.set(component, key, value);
     }
 
@@ -174,7 +174,10 @@ export class FormSystemControlDirective<T> implements ControlValueAccessor, OnIn
   }
 
   private extractComponent(formDefinition: FormDefinition): Constructor<ControlValueAccessor> {
-    const map = getMetadata<Map<string, Constructor<ControlValueAccessor>>>(FormSystemMetadataKeys.COMPONENTS, Object.getPrototypeOf(formDefinition));
+    const map = getMetadata<Map<string, Constructor<ControlValueAccessor>>>(
+      FormSystemMetadataKeys.COMPONENTS,
+      Object.getPrototypeOf(formDefinition),
+    );
 
     if (!map) {
       throw new RxapFormSystemError('Could not extract the use component map from the form definition instance', '');
@@ -188,10 +191,16 @@ export class FormSystemControlDirective<T> implements ControlValueAccessor, OnIn
   }
 
   private extractComponentProperties(formDefinition: FormDefinition): Record<string, any> {
-    const map = getMetadata<Map<string, Record<string, any>>>(FormSystemMetadataKeys.COMPONENTS_PROPERTIES, Object.getPrototypeOf(formDefinition));
+    const map = getMetadata<Map<string, Record<string, any>>>(
+      FormSystemMetadataKeys.COMPONENTS_PROPERTIES,
+      Object.getPrototypeOf(formDefinition),
+    );
 
     if (!map) {
-      throw new RxapFormSystemError('Could not extract the use component properties map from the form definition instance', '');
+      throw new RxapFormSystemError(
+        'Could not extract the use component properties map from the form definition instance',
+        '',
+      );
     }
 
     if (!map.has(this.controlId)) {

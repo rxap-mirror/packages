@@ -8,5 +8,5 @@ export function ToMethod<ReturnType = any, Parameter = any>(call: ((
   parameters?: Parameter,
   ...args: any[]
 ) => Promise<ReturnType> | ReturnType)): Method<ReturnType, Parameter> {
-  return {call};
+  return { call };
 }

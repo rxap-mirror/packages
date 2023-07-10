@@ -55,12 +55,12 @@ addDecorator(moduleMetadata({
     {
       provide: RXAP_FORM_DEFINITION_BUILDER,
       useFactory: (injector: Injector) => new RxapFormBuilder(TestForm, injector),
-      deps: [INJECTOR],
+      deps: [ INJECTOR ],
     },
     {
       provide: RXAP_FORM_DEFINITION,
       useFactory: (builder: RxapFormBuilder) => builder.build(),
-      deps: [RXAP_FORM_DEFINITION_BUILDER],
+      deps: [ RXAP_FORM_DEFINITION_BUILDER ],
     },
     {
       provide: RXAP_FORM_LOAD_METHOD,

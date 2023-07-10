@@ -25,5 +25,8 @@ export function GetWindowStartPos(): { top: string, left: string } {
     }
   }
 
-  return {top, left};
+  return {
+    top,
+    left,
+  };
 }

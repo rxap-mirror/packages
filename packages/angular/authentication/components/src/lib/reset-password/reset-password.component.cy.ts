@@ -12,7 +12,9 @@ describe(ResetPasswordComponent.name, () => {
         <rxap-authentication-container>
             <rxap-reset-password></rxap-reset-password>
         </rxap-authentication-container>
-    `, standalone: true, imports: [
+    `,
+    standalone: true,
+    imports: [
       AuthenticationContainerComponent, ResetPasswordComponent,
     ],
   })
@@ -21,7 +23,8 @@ describe(ResetPasswordComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(TestComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

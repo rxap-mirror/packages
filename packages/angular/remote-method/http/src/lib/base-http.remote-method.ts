@@ -64,10 +64,18 @@ export abstract class BaseHttpRemoteMethod<ReturnType = any,
     super(injector, metaData);
     this.timeout = this.metadata.timeout ?? this.timeout;
     if (http === undefined) {
-      throw new RxapRemoteMethodError('HttpClient is undefined. Ensure that the HttpClient is added to the deps property!', '', this.constructor.name);
+      throw new RxapRemoteMethodError(
+        'HttpClient is undefined. Ensure that the HttpClient is added to the deps property!',
+        '',
+        this.constructor.name,
+      );
     }
     if (!(http instanceof HttpClient)) {
-      throw new RxapRemoteMethodError('The property http is not an instance of HttpClinent. Check the deps property!', '', this.constructor.name);
+      throw new RxapRemoteMethodError(
+        'The property http is not an instance of HttpClinent. Check the deps property!',
+        '',
+        this.constructor.name,
+      );
     }
   }
 
@@ -105,7 +113,11 @@ export abstract class BaseHttpRemoteMethod<ReturnType = any,
     if (pathParams) {
 
       if (!hasIndexSignature(pathParams)) {
-        throw new RxapRemoteMethodError(`Path params for remote method '${this.id}' has not an index signature`, '', this.constructor.name);
+        throw new RxapRemoteMethodError(
+          `Path params for remote method '${ this.id }' has not an index signature`,
+          '',
+          this.constructor.name,
+        );
       }
 
       const matches = url.match(/\{[^}]+\}/g);
@@ -114,7 +126,11 @@ export abstract class BaseHttpRemoteMethod<ReturnType = any,
         for (const match of matches) {
           const param = match.substr(1, match.length - 2);
           if (pathParams[param] === undefined) {
-            throw new RxapRemoteMethodError(`Path params for remote method '${this.id}' has not a defined value for '${param}'`, '', this.constructor.name);
+            throw new RxapRemoteMethodError(
+              `Path params for remote method '${ this.id }' has not a defined value for '${ param }'`,
+              '',
+              this.constructor.name,
+            );
           }
           url = url.replace(match, encodeURIComponent(pathParams[param]));
         }

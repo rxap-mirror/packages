@@ -52,23 +52,23 @@ export class ResetPasswordFormSubmitMethod implements FormSubmitMethod<any> {
 
   public call(value: { password: string }): boolean | Promise<boolean> {
     return firstValueFrom(this.route.params
-      .pipe(
-        take(1),
-        map((params) => params['token']),
-        switchMap((token) =>
-          this.authentication.sendPasswordReset(value.password, token),
-        ),
-        tap((result) => {
-          if (result) {
-            this.snackBar.open('Password reset was successful.', undefined, {
-              duration: 3500,
-            });
-            return this.router.navigate(['/']);
-          }
-          return Promise.resolve();
-        }),
-        map(() => true),
-      ));
+                              .pipe(
+                                take(1),
+                                map((params) => params['token']),
+                                switchMap((token) =>
+                                  this.authentication.sendPasswordReset(value.password, token),
+                                ),
+                                tap((result) => {
+                                  if (result) {
+                                    this.snackBar.open('Password reset was successful.', undefined, {
+                                      duration: 3500,
+                                    });
+                                    return this.router.navigate([ '/' ]);
+                                  }
+                                  return Promise.resolve();
+                                }),
+                                map(() => true),
+                              ));
   }
 }
 
@@ -85,12 +85,12 @@ export class ResetPasswordForm implements FormType<IResetPasswordForm> {
   public rxapFormGroup!: RxapFormGroup;
 
   @UseFormControl({
-    validators: [Validators.required],
+    validators: [ Validators.required ],
   })
   public password!: RxapFormControl;
 
   @UseFormControl({
-    validators: [Validators.required],
+    validators: [ Validators.required ],
   })
   public passwordRepeat!: RxapFormControl;
 
@@ -117,13 +117,13 @@ export const ResetPasswordFormProviders: Provider[] = [
     provide: RXAP_FORM_DEFINITION_BUILDER,
     useFactory: (injector: Injector) =>
       new RxapFormBuilder<IResetPasswordForm>(ResetPasswordForm, injector),
-    deps: [INJECTOR],
+    deps: [ INJECTOR ],
   },
   {
     provide: RXAP_FORM_DEFINITION,
     useFactory: (builder: RxapFormBuilder<IResetPasswordForm>) =>
       builder.build(),
-    deps: [RXAP_FORM_DEFINITION_BUILDER],
+    deps: [ RXAP_FORM_DEFINITION_BUILDER ],
   },
   {
     provide: RXAP_FORM_SUBMIT_METHOD,

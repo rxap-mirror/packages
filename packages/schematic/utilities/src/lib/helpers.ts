@@ -132,7 +132,10 @@ export interface ControlOption<Value = any, Display = string> {
 export type ControlOptions<Value = any, Display = string> = Array<ControlOption<Value, Display>>;
 
 export function ToControlOptions(values: string[]): ControlOptions<string> {
-  return values.map(value => ({value, display: value}));
+  return values.map(value => ({
+    value,
+    display: value,
+  }));
 }
 
 export const IDENTIFIER_PROPERTY_KEYS = [

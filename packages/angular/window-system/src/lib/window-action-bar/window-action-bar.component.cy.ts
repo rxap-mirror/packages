@@ -5,7 +5,8 @@ describe(WindowActionBarComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(WindowActionBarComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

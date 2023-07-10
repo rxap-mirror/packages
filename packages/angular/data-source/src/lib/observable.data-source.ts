@@ -48,7 +48,7 @@ export function RxapObservableDataSource<Data>(
 
 export function observableDataSource<Data>(
   data: Observable<Data>,
-  metadata: ObservableDataSourceMetadata<Data> = {id: 'static'},
+  metadata: ObservableDataSourceMetadata<Data> = { id: 'static' },
 ): ObservableDataSource<Data> {
   return new ObservableDataSource(data, metadata);
 }

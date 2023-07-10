@@ -22,13 +22,13 @@ describe('@rxap/schematics-ts-morph', () => {
           decorators: [
             {
               name: 'Module',
-              arguments: [Writers.object({})],
+              arguments: [ Writers.object({}) ],
             },
           ],
         });
 
         sourceFile.addImportDeclaration({
-          namedImports: ['Module'],
+          namedImports: [ 'Module' ],
           moduleSpecifier: '@nestjs/common',
         });
 
@@ -38,7 +38,7 @@ describe('@rxap/schematics-ts-morph', () => {
 
       it('should find sourceFile in directory', () => {
 
-        const project = new Project({useInMemoryFileSystem: true});
+        const project = new Project({ useInMemoryFileSystem: true });
 
         const sourceFile0 = project.createSourceFile('my.module.ts');
 
@@ -48,13 +48,13 @@ describe('@rxap/schematics-ts-morph', () => {
           decorators: [
             {
               name: 'Module',
-              arguments: [Writers.object({})],
+              arguments: [ Writers.object({}) ],
             },
           ],
         });
 
         sourceFile0.addImportDeclaration({
-          namedImports: ['Module'],
+          namedImports: [ 'Module' ],
           moduleSpecifier: '@nestjs/common',
         });
 
@@ -70,13 +70,13 @@ describe('@rxap/schematics-ts-morph', () => {
           decorators: [
             {
               name: 'Module',
-              arguments: [Writers.object({})],
+              arguments: [ Writers.object({}) ],
             },
           ],
         });
 
         sourceFile1.addImportDeclaration({
-          namedImports: ['Module'],
+          namedImports: [ 'Module' ],
           moduleSpecifier: '@nestjs/common',
         });
 

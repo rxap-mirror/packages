@@ -38,10 +38,10 @@ export interface EmptyAppsButtonGridItem {
 @Component({
   selector: 'rxap-apps-button',
   templateUrl: './apps-button.component.html',
-  styleUrls: ['./apps-button.component.scss'],
+  styleUrls: [ './apps-button.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {class: 'rxap-apps-button'},
+  host: { class: 'rxap-apps-button' },
   standalone: true,
   imports: [
     NgIf,
@@ -63,7 +63,7 @@ export class AppsButtonComponent {
     const gridWithPadding: Array<AppsButtonGridItem | EmptyAppsButtonGridItem> =
       this.grid.slice();
     while (gridWithPadding.length % this.columns !== 0) {
-      gridWithPadding.push({empty: true});
+      gridWithPadding.push({ empty: true });
     }
     return gridWithPadding;
   }

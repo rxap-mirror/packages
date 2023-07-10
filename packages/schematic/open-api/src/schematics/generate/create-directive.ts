@@ -19,11 +19,22 @@ function AssertImportSpecifierStructureArray(obj: any): asserts obj is Array<Opt
   }
 }
 
-const { classify, camelize } = strings;
+const {
+  classify,
+  camelize,
+} = strings;
 
 export function CreateDirective({
-  filePath, sourceFile, name, prefix, parametersType, returnType, template, collection, withoutParameters,
-}: CreateDirectiveOptions): void {
+                                  filePath,
+                                  sourceFile,
+                                  name,
+                                  prefix,
+                                  parametersType,
+                                  returnType,
+                                  template,
+                                  collection,
+                                  withoutParameters,
+                                }: CreateDirectiveOptions): void {
   const remoteMethodName = classify([ name, 'remote-method' ].join('-'));
 
   if (!sourceFile.getClass(remoteMethodName)) {
@@ -66,21 +77,30 @@ export function CreateDirective({
 
   const ctorsParameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
-      name: 'remoteMethodLoader', type: 'RemoteMethodLoader', decorators: [
+      name: 'remoteMethodLoader',
+      type: 'RemoteMethodLoader',
+      decorators: [
         {
-          name: 'Inject', arguments: [ 'RemoteMethodLoader' ],
+          name: 'Inject',
+          arguments: [ 'RemoteMethodLoader' ],
         },
       ],
     }, {
-      name: 'injector', type: 'Injector', decorators: [
+      name: 'injector',
+      type: 'Injector',
+      decorators: [
         {
-          name: 'Inject', arguments: [ 'INJECTOR' ],
+          name: 'Inject',
+          arguments: [ 'INJECTOR' ],
         },
       ],
     }, {
-      name: 'remoteMethod', type: remoteMethodName, decorators: [
+      name: 'remoteMethod',
+      type: remoteMethodName,
+      decorators: [
         {
-          name: 'Inject', arguments: [ remoteMethodName ],
+          name: 'Inject',
+          arguments: [ remoteMethodName ],
         },
       ],
     },
@@ -90,17 +110,20 @@ export function CreateDirective({
   let directiveClassExtends: string;
 
   const remoteMethodDirectiveImportStructure: OptionalKind<ImportDeclarationStructure> = {
-    namedImports: [], moduleSpecifier: '@rxap/remote-method/directive',
+    namedImports: [],
+    moduleSpecifier: '@rxap/remote-method/directive',
   };
 
   const remoteMethodImportStructure: OptionalKind<ImportDeclarationStructure> = {
-    namedImports: [ { name: 'RemoteMethodLoader' } ], moduleSpecifier: '@rxap/remote-method',
+    namedImports: [ { name: 'RemoteMethodLoader' } ],
+    moduleSpecifier: '@rxap/remote-method',
   };
 
   const angularCoreImportStructure: OptionalKind<ImportDeclarationStructure> = {
     namedImports: [
       { name: 'Inject' }, { name: 'Directive' }, { name: 'NgModule' }, { name: 'INJECTOR' }, { name: 'Injector' },
-    ], moduleSpecifier: '@angular/core',
+    ],
+    moduleSpecifier: '@angular/core',
   };
 
   const directiveClassProperties: OptionalKind<PropertyDeclarationStructure>[] = [];
@@ -137,7 +160,8 @@ export function CreateDirective({
       hasOverrideKeyword: true,
       decorators: [
         {
-          name: 'Input', arguments: [
+          name: 'Input',
+          arguments: [
             (writer) => writer.quote(camelize([ selector, 'Parameters' ].join('-'))),
           ],
         },
@@ -159,24 +183,32 @@ export function CreateDirective({
         type: `TemplateRef<RemoteMethodTemplateCollectionDirectiveContext<${ returnType }>>`,
         decorators: [
           {
-            name: 'Inject', arguments: [ 'TemplateRef' ],
+            name: 'Inject',
+            arguments: [ 'TemplateRef' ],
           },
         ],
       }, {
-        name: 'differs', type: 'IterableDiffers', decorators: [
+        name: 'differs',
+        type: 'IterableDiffers',
+        decorators: [
           {
-            name: 'Inject', arguments: [ 'IterableDiffers' ],
+            name: 'Inject',
+            arguments: [ 'IterableDiffers' ],
           },
         ],
       }, {
-        name: 'zone', type: 'NgZone', decorators: [
+        name: 'zone',
+        type: 'NgZone',
+        decorators: [
           {
-            name: 'Inject', arguments: [ 'NgZone' ],
+            name: 'Inject',
+            arguments: [ 'NgZone' ],
           },
         ],
       });
 
-      remoteMethodDirectiveImportStructure.namedImports.push({ name: 'RemoteMethodTemplateCollectionDirectiveContext' },
+      remoteMethodDirectiveImportStructure.namedImports.push(
+        { name: 'RemoteMethodTemplateCollectionDirectiveContext' },
         { name: 'RemoteMethodTemplateCollectionDirectiveErrorContext' },
       );
 
@@ -189,7 +221,8 @@ export function CreateDirective({
         type: `TemplateRef<RemoteMethodTemplateCollectionDirectiveErrorContext>`,
         decorators: [
           {
-            name: 'Input', arguments: [
+            name: 'Input',
+            arguments: [
               (writer) => writer.quote(camelize([ selector, 'Error' ].join('-'))),
             ],
           },
@@ -202,7 +235,8 @@ export function CreateDirective({
         type: 'TemplateRef<void>',
         decorators: [
           {
-            name: 'Input', arguments: [
+            name: 'Input',
+            arguments: [
               (writer) => writer.quote(camelize([ selector, 'Empty' ].join('-'))),
             ],
           },
@@ -217,14 +251,18 @@ export function CreateDirective({
       });
 
       ctorsParameters.push({
-        name: 'template', type: `TemplateRef<RemoteMethodTemplateDirectiveContext<${ returnType }>>`, decorators: [
+        name: 'template',
+        type: `TemplateRef<RemoteMethodTemplateDirectiveContext<${ returnType }>>`,
+        decorators: [
           {
-            name: 'Inject', arguments: [ 'TemplateRef' ],
+            name: 'Inject',
+            arguments: [ 'TemplateRef' ],
           },
         ],
       });
 
-      remoteMethodDirectiveImportStructure.namedImports.push({ name: 'RemoteMethodTemplateDirectiveContext' },
+      remoteMethodDirectiveImportStructure.namedImports.push(
+        { name: 'RemoteMethodTemplateDirectiveContext' },
         { name: 'RemoteMethodTemplateDirectiveErrorContext' },
       );
 
@@ -237,7 +275,8 @@ export function CreateDirective({
         scope: Scope.Public,
         decorators: [
           {
-            name: 'Input', arguments: [
+            name: 'Input',
+            arguments: [
               (writer) => writer.quote(camelize([ selector, 'Error' ].join('-'))),
             ],
           },
@@ -246,20 +285,27 @@ export function CreateDirective({
     }
 
     ctorsParameters.push({
-      name: 'viewContainerRef', type: 'ViewContainerRef', decorators: [
+      name: 'viewContainerRef',
+      type: 'ViewContainerRef',
+      decorators: [
         {
-          name: 'Inject', arguments: [ 'ViewContainerRef' ],
+          name: 'Inject',
+          arguments: [ 'ViewContainerRef' ],
         },
       ],
     }, {
-      name: 'cdr', type: 'ChangeDetectorRef', decorators: [
+      name: 'cdr',
+      type: 'ChangeDetectorRef',
+      decorators: [
         {
-          name: 'Inject', arguments: [ 'ChangeDetectorRef' ],
+          name: 'Inject',
+          arguments: [ 'ChangeDetectorRef' ],
         },
       ],
     });
 
-    angularCoreImportStructure.namedImports.push({ name: 'ChangeDetectorRef' },
+    angularCoreImportStructure.namedImports.push(
+      { name: 'ChangeDetectorRef' },
       { name: 'ViewContainerRef' },
       { name: 'Input' },
     );
@@ -271,31 +317,44 @@ export function CreateDirective({
   }
 
   const directiveClassStructure: OptionalKind<ClassDeclarationStructure> = {
-    name: directiveName, decorators: [
+    name: directiveName,
+    decorators: [
       {
-        name: 'Directive', arguments: Writers.object({
-          selector: (writer) => writer.quote(`[${ selector }]`), exportAs: (writer) => writer.quote(selector),
+        name: 'Directive',
+        arguments: Writers.object({
+          selector: (writer) => writer.quote(`[${ selector }]`),
+          exportAs: (writer) => writer.quote(selector),
         }),
       },
-    ], extends: directiveClassExtends, ctors: [
+    ],
+    extends: directiveClassExtends,
+    ctors: [
       {
-        parameters: ctorsParameters, statements: [
+        parameters: ctorsParameters,
+        statements: [
           `super(${ ctorsSupperCallParameters });`, 'this.remoteMethodOrIdOrToken = remoteMethod;', ...ctorsStatements,
         ],
       },
-    ], setAccessors: directiveClassSetAccessors, properties: directiveClassProperties, isExported: true,
+    ],
+    setAccessors: directiveClassSetAccessors,
+    properties: directiveClassProperties,
+    isExported: true,
   };
 
   const directiveModuleClassStructure: OptionalKind<ClassDeclarationStructure> = {
-    name: directiveName + 'Module', decorators: [
+    name: directiveName + 'Module',
+    decorators: [
       {
-        name: 'NgModule', arguments: [
+        name: 'NgModule',
+        arguments: [
           Writers.object({
-            declarations: `[ ${ directiveName } ]`, exports: `[ ${ directiveName } ]`,
+            declarations: `[ ${ directiveName } ]`,
+            exports: `[ ${ directiveName } ]`,
           }),
         ],
       },
-    ], isExported: true,
+    ],
+    isExported: true,
   };
 
   sourceFile.addClass(directiveClassStructure);

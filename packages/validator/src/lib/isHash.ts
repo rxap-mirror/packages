@@ -18,6 +18,6 @@ const lengths: Record<string, number> = {
 
 export function isHash(str: unknown, algorithm: string) {
   assertString(str);
-  const hash = new RegExp(`^[a-fA-F0-9]{${lengths[algorithm]}}$`);
+  const hash = new RegExp(`^[a-fA-F0-9]{${ lengths[algorithm] }}$`);
   return hash.test(str);
 }

@@ -69,11 +69,11 @@ export class RxapFormControl<
   private dirtyChanges = new Subject<boolean>();
 
   readonly touch$ = this.touchChanges
-    .asObservable()
-    .pipe(distinctUntilChanged());
+                        .asObservable()
+                        .pipe(distinctUntilChanged());
   readonly dirty$ = this.dirtyChanges
-    .asObservable()
-    .pipe(distinctUntilChanged());
+                        .asObservable()
+                        .pipe(distinctUntilChanged());
 
   readonly value$: Observable<T> = controlValueChanges$<T>(this);
   readonly disabled$ = controlDisabled$<T>(this);
@@ -105,7 +105,7 @@ export class RxapFormControl<
         if (parent === this.root) {
           return this.controlId;
         } else {
-          return [parent.controlPath, this.controlId].join('.');
+          return [ parent.controlPath, this.controlId ].join('.');
         }
       }
     }
@@ -116,7 +116,7 @@ export class RxapFormControl<
     const parent: any = this.parent;
     if (parent) {
       if (parent.fullControlPath) {
-        return [parent.fullControlPath, this.controlId].join('.');
+        return [ parent.fullControlPath, this.controlId ].join('.');
       }
     }
     return this.controlId;
@@ -219,7 +219,7 @@ export class RxapFormControl<
   }
 
   public markAllAsDirty(): void {
-    this.markAsDirty({onlySelf: true});
+    this.markAsDirty({ onlySelf: true });
   }
 
   public override reset(
@@ -272,7 +272,7 @@ export class RxapFormControl<
   }
 
   public setError(key: string, value: any, opts: EmitEvent = {}): void {
-    super.setErrors({[key]: value}, opts);
+    super.setErrors({ [key]: value }, opts);
   }
 
   public hasErrorAndTouched(error: ExtractStrings<E>): boolean {

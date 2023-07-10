@@ -1,5 +1,5 @@
 export interface AnySchemaObject {
-  type: 'any'
+  type: 'any';
 }
 
 export function IsAnySchemaObject(obj: any): obj is AnySchemaObject {

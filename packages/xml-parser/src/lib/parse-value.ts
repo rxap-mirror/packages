@@ -23,7 +23,8 @@ export function parseValue<T>(value: string): T {
     return value.substr(1, value.length - 2) as any;
   } else if (value[0] === '\'' && value[value.length - 1] === '\'') {
     return value.substr(1, value.length - 2) as any;
-  } else if ((value[0] === '[' && value[value.length - 1] === ']') || (value[0] === '{' && value[value.length - 1] === '}')) {
+  } else if ((value[0] === '[' && value[value.length - 1] === ']') ||
+    (value[0] === '{' && value[value.length - 1] === '}')) {
     try {
       return JSON.parse(value);
     } catch (e: any) {

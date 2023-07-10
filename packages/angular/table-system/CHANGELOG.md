@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/table-system@15.0.0...@rxap/table-system@16.0.0-dev.0) (2023-05-18)
 
@@ -62,8 +61,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -85,8 +83,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* use the ngTemplateContextGuard with the correct property
-  types ([25cd947](https://gitlab.com/rxap/packages/commit/25cd94774f65f16ef40ab775e1093bec806d765b))
+* use the ngTemplateContextGuard with the correct propertytypes ([25cd947](https://gitlab.com/rxap/packages/commit/25cd94774f65f16ef40ab775e1093bec806d765b))
 
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/table-system@12.0.6...@rxap/table-system@12.0.7) (2021-06-24)
 
@@ -104,8 +101,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* mark expand row as
-  deprecated ([b5cb5c8](https://gitlab.com/rxap/packages/commit/b5cb5c89efdd648906f42322b277884abc1c885a))
+* mark expand row asdeprecated ([b5cb5c8](https://gitlab.com/rxap/packages/commit/b5cb5c89efdd648906f42322b277884abc1c885a))
 
 ## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/table-system@12.0.2...@rxap/table-system@12.0.3) (2021-06-14)
 
@@ -131,10 +127,8 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/table-system@11.1.0...@rxap/table-system@11.1.1) (2021-03-24)
 
@@ -147,8 +141,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* add expandable row
-  generator ([e2818a6](https://gitlab.com/rxap/packages/commit/e2818a6cfa76eb76ac9687f3b7807a2bffc0fca6))
+* add expandable rowgenerator ([e2818a6](https://gitlab.com/rxap/packages/commit/e2818a6cfa76eb76ac9687f3b7807a2bffc0fca6))
 
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/table-system@11.0.5...@rxap/table-system@11.0.6) (2021-03-19)
 
@@ -189,5 +182,4 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))

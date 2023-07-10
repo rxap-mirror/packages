@@ -19,13 +19,13 @@ export class HttpErrorMessageService {
     public dialog: MatDialog,
   ) {
     this.showErrorMessage$
-      .pipe(
-        debounceTime(500),
-        tap((error) =>
-          this.dialog.open(HttpErrorMessageComponent, {data: error}),
-        ),
-      )
-      .subscribe();
+        .pipe(
+          debounceTime(500),
+          tap((error) =>
+            this.dialog.open(HttpErrorMessageComponent, { data: error }),
+          ),
+        )
+        .subscribe();
   }
 
   public showErrorMessage(error: any) {

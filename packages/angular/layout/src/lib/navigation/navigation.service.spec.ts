@@ -29,63 +29,63 @@ describe('@rxap/layout', () => {
 
         const navigation = [
           {
-            routerLink: ['/', 'overview'],
-            icon: {svgIcon: 'home'},
+            routerLink: [ '/', 'overview' ],
+            icon: { svgIcon: 'home' },
             label: `:@@navigation.overview:Overview`,
           },
           {
-            routerLink: ['/', 'dashboard'],
-            icon: {svgIcon: 'view-dashboard'},
+            routerLink: [ '/', 'dashboard' ],
+            icon: { svgIcon: 'view-dashboard' },
             label: `:@@navigation.dashboard:Dashboard`,
-            status: [NavigationStatusService],
+            status: [ NavigationStatusService ],
           },
           {
             label: `:@@navigation.notifications:Notifications`,
-            routerLink: ['/', 'notifications'],
-            icon: {svgIcon: 'bell'},
-            status: [NavigationStatusService],
+            routerLink: [ '/', 'notifications' ],
+            icon: { svgIcon: 'bell' },
+            status: [ NavigationStatusService ],
           },
           {
-            routerLink: ['/', 'settings'],
-            icon: {svgIcon: 'cog'},
+            routerLink: [ '/', 'settings' ],
+            icon: { svgIcon: 'cog' },
             label: `:@@navigation.settings:Einstellungen`,
-            status: [NavigationStatusService],
+            status: [ NavigationStatusService ],
             children: [
               {
-                routerLink: ['/', 'settings', 'company'],
-                icon: {svgIcon: 'domain'},
+                routerLink: [ '/', 'settings', 'company' ],
+                icon: { svgIcon: 'domain' },
                 label: `:@@navigation.company:Company`,
-                status: [NavigationStatusService],
+                status: [ NavigationStatusService ],
               },
               {
-                routerLink: ['/', 'settings', 'user'],
-                icon: {svgIcon: 'account-multiple'},
+                routerLink: [ '/', 'settings', 'user' ],
+                icon: { svgIcon: 'account-multiple' },
                 label: `:@@navigation.user:User`,
-                status: [NavigationStatusService],
+                status: [ NavigationStatusService ],
               },
               {
-                routerLink: ['/', 'settings', 'thing'],
-                icon: {svgIcon: 'router-wireless'},
+                routerLink: [ '/', 'settings', 'thing' ],
+                icon: { svgIcon: 'router-wireless' },
                 label: `:@@navigation.thing:Thing`,
-                status: [NavigationStatusService],
+                status: [ NavigationStatusService ],
               },
               {
-                routerLink: ['/', 'settings', 'machine'],
-                icon: {svgIcon: 'robot-industrial'},
+                routerLink: [ '/', 'settings', 'machine' ],
+                icon: { svgIcon: 'robot-industrial' },
                 label: `:@@navigation.thing.machine:Machine`,
-                status: [NavigationStatusService],
+                status: [ NavigationStatusService ],
               },
               {
-                routerLink: ['/', 'settings', 'machine-definition'],
-                icon: {svgIcon: 'sitemap'},
+                routerLink: [ '/', 'settings', 'machine-definition' ],
+                icon: { svgIcon: 'sitemap' },
                 label: `:@@navigation.thing.machine-definition:Machine Definition`,
-                status: [NavigationStatusService],
+                status: [ NavigationStatusService ],
               },
               {
-                routerLink: ['/', 'settings', 'node-red'],
-                icon: {svgIcon: 'resistor-nodes'},
+                routerLink: [ '/', 'settings', 'node-red' ],
+                icon: { svgIcon: 'resistor-nodes' },
                 label: `:@@navigation.node-red:Node Red`,
-                status: [NavigationStatusService],
+                status: [ NavigationStatusService ],
               },
             ],
           },
@@ -162,7 +162,7 @@ describe('@rxap/layout', () => {
               divider: true,
             }).pipe(take(1)).toPromise();
 
-            expect(nav).toEqual({divider: true});
+            expect(nav).toEqual({ divider: true });
 
           });
 
@@ -170,12 +170,12 @@ describe('@rxap/layout', () => {
 
             const nav = await navigationService.checkNavigationItemStatusProviders({
               label: 'test',
-              routerLink: ['/', 'test'],
+              routerLink: [ '/', 'test' ],
             }).pipe(take(1)).toPromise();
 
             expect(nav).toEqual({
               label: 'test',
-              routerLink: ['/', 'test'],
+              routerLink: [ '/', 'test' ],
             });
 
           });
@@ -186,8 +186,8 @@ describe('@rxap/layout', () => {
 
             const nav = await navigationService.checkNavigationItemStatusProviders({
               label: 'test',
-              routerLink: ['/', 'test'],
-              status: [NavigationStatusService],
+              routerLink: [ '/', 'test' ],
+              status: [ NavigationStatusService ],
             }).pipe(take(1)).toPromise();
 
             expect(nav).toBeNull();
@@ -200,14 +200,14 @@ describe('@rxap/layout', () => {
 
             const nav = await navigationService.checkNavigationItemStatusProviders({
               label: 'test',
-              routerLink: ['/', 'test'],
-              status: [NavigationStatusService],
+              routerLink: [ '/', 'test' ],
+              status: [ NavigationStatusService ],
             }).pipe(take(1)).toPromise();
 
             expect(nav).toEqual({
               label: 'test',
-              routerLink: ['/', 'test'],
-              status: [NavigationStatusService],
+              routerLink: [ '/', 'test' ],
+              status: [ NavigationStatusService ],
             });
 
           });
@@ -223,33 +223,33 @@ describe('@rxap/layout', () => {
 
             const nav = await navigationService.checkNavigationItemStatusProviders({
               label: 'test',
-              routerLink: ['/', 'test'],
+              routerLink: [ '/', 'test' ],
               children: [
                 {
                   label: 'child1',
-                  routerLink: ['/', 'test', 'sub'],
-                  status: [NavigationStatusService],
+                  routerLink: [ '/', 'test', 'sub' ],
+                  status: [ NavigationStatusService ],
                 },
                 {
                   label: 'child1',
-                  routerLink: ['/', 'test', 'hidden'],
-                  status: [NavigationStatusService],
+                  routerLink: [ '/', 'test', 'hidden' ],
+                  status: [ NavigationStatusService ],
                 },
               ],
-              status: [NavigationStatusService],
+              status: [ NavigationStatusService ],
             }).pipe(take(1)).toPromise();
 
             expect(nav).toEqual({
               label: 'test',
-              routerLink: ['/', 'test'],
+              routerLink: [ '/', 'test' ],
               children: [
                 {
                   label: 'child1',
-                  routerLink: ['/', 'test', 'sub'],
-                  status: [NavigationStatusService],
+                  routerLink: [ '/', 'test', 'sub' ],
+                  status: [ NavigationStatusService ],
                 },
               ],
-              status: [NavigationStatusService],
+              status: [ NavigationStatusService ],
             });
 
           });

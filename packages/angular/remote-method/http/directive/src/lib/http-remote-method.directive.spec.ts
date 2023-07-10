@@ -32,7 +32,7 @@ describe('@rxap/remote-method/directive/button', () => {
         imports: [
           HttpRemoteMethodDirective,
         ],
-        declarations: [TestComponent],
+        declarations: [ TestComponent ],
         providers: [
           {
             provide: RemoteMethodLoader,

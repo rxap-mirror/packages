@@ -33,7 +33,7 @@ export class TestingXmlParserService extends XmlParserService {
     const root = new RxapElement(xmlDoc.childNodes.item(0) as Element);
 
     if (root.name !== elementName) {
-      throw new Error(`The root node must be an <${elementName}> element but found <${root.name}>`);
+      throw new Error(`The root node must be an <${ elementName }> element but found <${ root.name }>`);
     }
 
     return this.parse<D>(root, root.name, [] as any);
@@ -57,10 +57,13 @@ describe('@rxap/xml-parser', () => {
       @ElementDef('my-element')
       class MyElement implements ParsedElement {
 
-        @ElementAttribute({attribute: 'name'})
+        @ElementAttribute({ attribute: 'name' })
         public name!: string;
 
-        @ElementAttribute({attribute: 'age', parseValue: Number})
+        @ElementAttribute({
+          attribute: 'age',
+          parseValue: Number,
+        })
         public age!: number;
 
         public validate(): boolean {
@@ -83,7 +86,7 @@ describe('@rxap/xml-parser', () => {
       @ElementDef('my-child')
       class ChildElement implements ParsedElement {
 
-        @ElementAttribute({attribute: 'name'})
+        @ElementAttribute({ attribute: 'name' })
         public name!: string;
 
         public validate(): boolean {
@@ -141,10 +144,10 @@ describe('@rxap/xml-parser', () => {
       @ElementDef('my-element')
       class MyElement implements ParsedElement {
 
-        @ElementChildTextContent({tag: 'my-child'})
+        @ElementChildTextContent({ tag: 'my-child' })
         public text!: string;
 
-        @ElementChildTextContent({tag: 'my-name'})
+        @ElementChildTextContent({ tag: 'my-name' })
         public name!: string;
 
         public validate(): boolean {
@@ -170,7 +173,7 @@ describe('@rxap/xml-parser', () => {
       @ElementDef('my-child')
       class ChildElement implements ParsedElement {
 
-        @ElementAttribute({attribute: 'name'})
+        @ElementAttribute({ attribute: 'name' })
         public name!: string;
 
         public validate(): boolean {

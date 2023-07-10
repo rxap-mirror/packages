@@ -24,13 +24,13 @@ describe('@rxap/schematics-ts-morph', () => {
           decorators: [
             {
               name: 'Module',
-              arguments: [Writers.object({})],
+              arguments: [ Writers.object({}) ],
             },
           ],
         });
 
         sourceFile.addImportDeclaration({
-          namedImports: ['Module'],
+          namedImports: [ 'Module' ],
           moduleSpecifier: '@nestjs/common',
         });
 
@@ -39,14 +39,15 @@ describe('@rxap/schematics-ts-morph', () => {
         const metadata = GetNestModuleMetadata(sourceFile);
 
         expect(metadata.getProperties()).toHaveLength(1);
-        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim()).toEqual('[TestModule]');
+        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim())
+          .toEqual('[TestModule]');
 
 
       });
 
       it('should add module import with writer function', () => {
 
-        const project = new Project({useInMemoryFileSystem: true});
+        const project = new Project({ useInMemoryFileSystem: true });
 
         const sourceFile = project.createSourceFile('module.ts');
 
@@ -56,13 +57,13 @@ describe('@rxap/schematics-ts-morph', () => {
           decorators: [
             {
               name: 'Module',
-              arguments: [Writers.object({})],
+              arguments: [ Writers.object({}) ],
             },
           ],
         });
 
         sourceFile.addImportDeclaration({
-          namedImports: ['Module'],
+          namedImports: [ 'Module' ],
           moduleSpecifier: '@nestjs/common',
         });
 
@@ -74,14 +75,15 @@ describe('@rxap/schematics-ts-morph', () => {
         const metadata = GetNestModuleMetadata(sourceFile);
 
         expect(metadata.getProperties()).toHaveLength(1);
-        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim()).toEqual('[TestModule.forRoot()]');
+        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim())
+          .toEqual('[TestModule.forRoot()]');
 
 
       });
 
       it('should not overwrite module import', () => {
 
-        const project = new Project({useInMemoryFileSystem: true});
+        const project = new Project({ useInMemoryFileSystem: true });
 
         const sourceFile = project.createSourceFile('module.ts');
 
@@ -91,13 +93,13 @@ describe('@rxap/schematics-ts-morph', () => {
           decorators: [
             {
               name: 'Module',
-              arguments: [Writers.object({imports: '[TestModule]'})],
+              arguments: [ Writers.object({ imports: '[TestModule]' }) ],
             },
           ],
         });
 
         sourceFile.addImportDeclaration({
-          namedImports: ['Module'],
+          namedImports: [ 'Module' ],
           moduleSpecifier: '@nestjs/common',
         });
 
@@ -106,13 +108,14 @@ describe('@rxap/schematics-ts-morph', () => {
         const metadata = GetNestModuleMetadata(sourceFile);
 
         expect(metadata.getProperties()).toHaveLength(1);
-        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim()).toEqual('[TestModule]');
+        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim())
+          .toEqual('[TestModule]');
 
       });
 
       it('should overwrite module import', () => {
 
-        const project = new Project({useInMemoryFileSystem: true});
+        const project = new Project({ useInMemoryFileSystem: true });
 
         const sourceFile = project.createSourceFile('module.ts');
 
@@ -122,13 +125,13 @@ describe('@rxap/schematics-ts-morph', () => {
           decorators: [
             {
               name: 'Module',
-              arguments: [Writers.object({imports: '[TestModule]'})],
+              arguments: [ Writers.object({ imports: '[TestModule]' }) ],
             },
           ],
         });
 
         sourceFile.addImportDeclaration({
-          namedImports: ['Module'],
+          namedImports: [ 'Module' ],
           moduleSpecifier: '@nestjs/common',
         });
 
@@ -137,13 +140,14 @@ describe('@rxap/schematics-ts-morph', () => {
         const metadata = GetNestModuleMetadata(sourceFile);
 
         expect(metadata.getProperties()).toHaveLength(1);
-        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim()).toEqual('[TestModule]');
+        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim())
+          .toEqual('[TestModule]');
 
       });
 
       it('should not overwrite module import with writer function', () => {
 
-        const project = new Project({useInMemoryFileSystem: true});
+        const project = new Project({ useInMemoryFileSystem: true });
 
         const sourceFile = project.createSourceFile('module.ts');
 
@@ -153,15 +157,17 @@ describe('@rxap/schematics-ts-morph', () => {
           decorators: [
             {
               name: 'Module',
-              arguments: [Writers.object({
-                imports: '[TestModule.forRoot()]',
-              })],
+              arguments: [
+                Writers.object({
+                  imports: '[TestModule.forRoot()]',
+                }),
+              ],
             },
           ],
         });
 
         sourceFile.addImportDeclaration({
-          namedImports: ['Module'],
+          namedImports: [ 'Module' ],
           moduleSpecifier: '@nestjs/common',
         });
 
@@ -173,14 +179,15 @@ describe('@rxap/schematics-ts-morph', () => {
         const metadata = GetNestModuleMetadata(sourceFile);
 
         expect(metadata.getProperties()).toHaveLength(1);
-        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim()).toEqual('[TestModule.forRoot()]');
+        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim())
+          .toEqual('[TestModule.forRoot()]');
 
 
       });
 
       it('should not overwrite module import with writer function', () => {
 
-        const project = new Project({useInMemoryFileSystem: true});
+        const project = new Project({ useInMemoryFileSystem: true });
 
         const sourceFile = project.createSourceFile('module.ts');
 
@@ -190,15 +197,17 @@ describe('@rxap/schematics-ts-morph', () => {
           decorators: [
             {
               name: 'Module',
-              arguments: [Writers.object({
-                imports: '[TestModule.forRoot()]',
-              })],
+              arguments: [
+                Writers.object({
+                  imports: '[TestModule.forRoot()]',
+                }),
+              ],
             },
           ],
         });
 
         sourceFile.addImportDeclaration({
-          namedImports: ['Module'],
+          namedImports: [ 'Module' ],
           moduleSpecifier: '@nestjs/common',
         });
 
@@ -210,7 +219,8 @@ describe('@rxap/schematics-ts-morph', () => {
         const metadata = GetNestModuleMetadata(sourceFile);
 
         expect(metadata.getProperties()).toHaveLength(1);
-        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim()).toEqual('[TestModule.forRoot({ test: true })]');
+        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim())
+          .toEqual('[TestModule.forRoot({ test: true })]');
 
 
       });

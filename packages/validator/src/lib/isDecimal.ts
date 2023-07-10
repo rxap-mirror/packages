@@ -22,7 +22,7 @@ const default_decimal_options = {
   locale: 'en-US',
 };
 
-const blacklist = ['', '-', '+'];
+const blacklist = [ '', '-', '+' ];
 
 export function isDecimal(str: unknown, options: IsDecimalOptions = {}) {
   assertString(str);
@@ -30,5 +30,5 @@ export function isDecimal(str: unknown, options: IsDecimalOptions = {}) {
   if (_options.locale in decimal) {
     return !includes(blacklist, str.replace(/ /g, '')) && decimalRegExp(_options).test(str);
   }
-  throw new Error(`Invalid locale '${options.locale}'`);
+  throw new Error(`Invalid locale '${ options.locale }'`);
 }

@@ -193,8 +193,8 @@ export function equals(a: any, b: any, stackA: any[] = [], stackB: any[] = []): 
       return _uniqContentEquals(
         a.entries(),
         b.entries(),
-        stackA.concat([a]),
-        stackB.concat([b]),
+        stackA.concat([ a ]),
+        stackB.concat([ b ]),
       );
     case 'Set':
       if (a.size !== b.size) {
@@ -204,8 +204,8 @@ export function equals(a: any, b: any, stackA: any[] = [], stackB: any[] = []): 
       return _uniqContentEquals(
         a.values(),
         b.values(),
-        stackA.concat([a]),
-        stackB.concat([b]),
+        stackA.concat([ a ]),
+        stackB.concat([ b ]),
       );
     case 'Arguments':
     case 'Array':
@@ -237,8 +237,8 @@ export function equals(a: any, b: any, stackA: any[] = [], stackB: any[] = []): 
     return false;
   }
 
-  const extendedStackA = stackA.concat([a]);
-  const extendedStackB = stackB.concat([b]);
+  const extendedStackA = stackA.concat([ a ]);
+  const extendedStackB = stackB.concat([ b ]);
 
   idx = keysA.length - 1;
   while (idx >= 0) {

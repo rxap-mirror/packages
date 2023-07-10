@@ -37,19 +37,19 @@ export class ContenteditableDirective {
   ) {
   }
 
-  @HostListener('click', ['$event'])
+  @HostListener('click', [ '$event' ])
   public onClick($event: Event) {
     $event.stopPropagation();
   }
 
-  @HostListener('input', ['$event'])
+  @HostListener('input', [ '$event' ])
   @DebounceCall(1000)
   public onInput($event: any) {
     const value = ($event.target as HTMLElement).textContent;
     if (value && value.length > 3) {
       return this.httpRemoteMethodLoader.request$(this.remoteMethodId, {
-        pathParams: {uuid: this.uuid},
-        body: {[this.property]: value},
+        pathParams: { uuid: this.uuid },
+        body: { [this.property]: value },
       });
     }
     return Promise.resolve();

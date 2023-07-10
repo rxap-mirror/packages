@@ -34,43 +34,47 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
 
       CoerceImports(sourceFile, {
         moduleSpecifier: '@angular/core',
-        namedImports: ['ChangeDetectorRef', 'Inject', 'INJECTOR', 'Injector'],
+        namedImports: [ 'ChangeDetectorRef', 'Inject', 'INJECTOR', 'Injector' ],
       });
-      const openFormWindowMethod = `Open${classify(actionType)}FormWindowMethod`;
+      const openFormWindowMethod = `Open${ classify(actionType) }FormWindowMethod`;
       CoerceImports(sourceFile, {
-        moduleSpecifier: `../../${actionType}-form/open-${actionType}-form-window.method`,
-        namedImports: [openFormWindowMethod],
+        moduleSpecifier: `../../${ actionType }-form/open-${ actionType }-form-window.method`,
+        namedImports: [ openFormWindowMethod ],
       });
       CoerceImports(sourceFile, {
-        namedImports: ['firstValueFrom'],
+        namedImports: [ 'firstValueFrom' ],
         moduleSpecifier: 'rxjs',
       });
       if (loadOperationId) {
         CoerceImports(sourceFile, {
           moduleSpecifier: OperationIdToClassImportPath(loadOperationId),
-          namedImports: [OperationIdToClassName(loadOperationId)],
+          namedImports: [ OperationIdToClassName(loadOperationId) ],
         });
       }
 
-      const [constructorDeclaration] = CoerceClassConstructor(classDeclaration);
+      const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
       CoerceParameterDeclaration(constructorDeclaration, 'openFormWindow').set({
         name: 'openFormWindow',
         type: openFormWindowMethod,
         isReadonly: true,
         scope: Scope.Private,
-        decorators: [{
-          name: 'Inject',
-          arguments: [openFormWindowMethod],
-        }],
+        decorators: [
+          {
+            name: 'Inject',
+            arguments: [ openFormWindowMethod ],
+          },
+        ],
       });
       CoerceParameterDeclaration(constructorDeclaration, 'injector').set({
         type: 'Injector',
         isReadonly: true,
         scope: Scope.Private,
-        decorators: [{
-          name: 'Inject',
-          arguments: ['INJECTOR'],
-        }],
+        decorators: [
+          {
+            name: 'Inject',
+            arguments: [ 'INJECTOR' ],
+          },
+        ],
       });
       CoerceParameterDeclaration(constructorDeclaration, 'cdr').set({
         type: 'ChangeDetectorRef',
@@ -85,10 +89,10 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
         });
       }
       const statements: (string | WriterFunction | StatementStructures)[] = [];
-      statements.push(`console.log(\`action row type: ${actionType}\`, parameters);`);
+      statements.push(`console.log(\`action row type: ${ actionType }\`, parameters);`);
       if (loadOperationId) {
         statements.push(`const { __rowId: rowId } = parameters;`);
-        statements.push(`if (!rowId) { throw new Error('The table action ${actionType} is called with a row object that does not have the property __rowId.'); }`);
+        statements.push(`if (!rowId) { throw new Error('The table action ${ actionType } is called with a row object that does not have the property __rowId.'); }`);
         statements.push(`const initial = await this.getInitial.call({parameters: { rowId }});`);
       } else {
         statements.push(`const initial = parameters;`);

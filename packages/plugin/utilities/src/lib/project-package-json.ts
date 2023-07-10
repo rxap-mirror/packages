@@ -17,7 +17,7 @@ export interface ProjectPackageJson extends PackageJson {
   publishConfig?: {
     access?: 'public' | 'restricted';
     directory?: string;
-  }
+  };
   author?: string | ProjectPackageJsonPerson;
   keywords?: string[];
   homepage?: string;
@@ -28,12 +28,19 @@ export interface ProjectPackageJson extends PackageJson {
   description?: string;
 }
 
-export function readPackageJsonForProject(context: ExecutorContext, projectName = context.projectName): ProjectPackageJson {
+export function readPackageJsonForProject(
+  context: ExecutorContext,
+  projectName = context.projectName,
+): ProjectPackageJson {
   const packageJsonPath = join(context.root, GetProjectRoot(context, projectName), 'package.json');
   return jsonFile(packageJsonPath);
 }
 
-export function writePackageJsonFormProject<T = ProjectPackageJson>(context: ExecutorContext, content: T, projectName = context.projectName) {
+export function writePackageJsonFormProject<T = ProjectPackageJson>(
+  context: ExecutorContext,
+  content: T,
+  projectName = context.projectName,
+) {
   const packageJsonPath = join(context.root, GetProjectRoot(context, projectName), 'package.json');
   writeJsonFile<T>(packageJsonPath, content);
 }

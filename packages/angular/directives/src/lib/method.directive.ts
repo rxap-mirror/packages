@@ -82,11 +82,11 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
   }
 
   public setParameter<Key extends keyof Parameters>(parameterKey: Key, value: Parameters[Key]): void {
-    this.updateParameters({[parameterKey]: value} as any);
+    this.updateParameters({ [parameterKey]: value } as any);
   }
 
   public updateParameters(parameters: Partial<Parameters>): void {
-    this.parameters = {...(this.parameters ?? {}), ...parameters} as any;
+    this.parameters = { ...(this.parameters ?? {}), ...parameters } as any;
   }
 
   protected executed(result: any) {

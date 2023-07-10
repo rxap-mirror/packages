@@ -5,7 +5,8 @@ describe(AuthenticationContainerComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(AuthenticationContainerComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

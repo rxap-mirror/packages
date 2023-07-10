@@ -43,8 +43,8 @@ describe('XML Parser', () => {
 
     it('should parse json object', () => {
 
-      expect(parseValue('{ "username": "my-username" }')).toEqual({'username': 'my-username'});
-      expect(parseValue('[{ "username": "my-username" }]')).toEqual([{'username': 'my-username'}]);
+      expect(parseValue('{ "username": "my-username" }')).toEqual({ 'username': 'my-username' });
+      expect(parseValue('[{ "username": "my-username" }]')).toEqual([ { 'username': 'my-username' } ]);
 
     });
 

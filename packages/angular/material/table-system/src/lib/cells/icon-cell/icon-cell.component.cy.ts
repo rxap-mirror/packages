@@ -5,7 +5,8 @@ describe(IconCellComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(IconCellComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

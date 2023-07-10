@@ -3,7 +3,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 
-export function IsString({message}: { message?: string } = {}) {
+export function IsString({ message }: { message?: string } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;

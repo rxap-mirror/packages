@@ -24,7 +24,9 @@ export class ExtractControlFromParentMixin {
       throw new RxapFormSystemError('Could not find the control instance', '');
     }
 
-    if (!(control instanceof RxapFormControl) && !(control instanceof RxapFormGroup) && !(control instanceof RxapFormArray)) {
+    if (!(control instanceof RxapFormControl) &&
+      !(control instanceof RxapFormGroup) &&
+      !(control instanceof RxapFormArray)) {
       throw new RxapFormSystemError('The extracted control is not a RxapFormControl', '');
     }
 

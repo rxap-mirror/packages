@@ -35,11 +35,11 @@ import {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'ul[rxap-navigation]',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss'],
+  styleUrls: [ './navigation.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {class: 'rxap-navigation'},
+  host: { class: 'rxap-navigation' },
   standalone: true,
   imports: [
     NgFor,
@@ -82,11 +82,11 @@ export class NavigationComponent implements OnInit, OnDestroy {
     if (this._root) {
       this.items = [];
       this.subscription = this.navigationService.config$
-        .pipe(
-          tap((navigation) => (this.items = navigation)),
-          tap(() => this.cdr.detectChanges()),
-        )
-        .subscribe();
+                              .pipe(
+                                tap((navigation) => (this.items = navigation)),
+                                tap(() => this.cdr.detectChanges()),
+                              )
+                              .subscribe();
     }
   }
 

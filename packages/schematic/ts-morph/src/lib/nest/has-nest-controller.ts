@@ -18,12 +18,16 @@ export interface HasNestControllerOptions {
 }
 
 export function HasNestController(host: Tree, options: HasNestControllerOptions) {
-  let {name, module, nestModule} = options;
+  let {
+    name,
+    module,
+    nestModule,
+  } = options;
   nestModule ??= module;
   if (!HasProject(host, buildNestProjectName(options))) {
-    throw new SchematicsException(`The nest controller ${name} does not exists. The project ${buildNestProjectName(
-      options)} does not exist.`);
+    throw new SchematicsException(`The nest controller ${ name } does not exists. The project ${ buildNestProjectName(
+      options) } does not exist.`);
   }
   const projectSourceRoot = GetProjectSourceRoot(host, buildNestProjectName(options));
-  return host.exists(`${projectSourceRoot}/${nestModule}/${name}.controller.ts`);
+  return host.exists(`${ projectSourceRoot }/${ nestModule }/${ name }.controller.ts`);
 }

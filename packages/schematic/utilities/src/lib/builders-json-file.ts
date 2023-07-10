@@ -37,7 +37,7 @@ export function GetProjectBuildersJsonFilePath(
       break;
 
     default:
-      throw new SchematicsException(`The builders json type '${type}' is not supported`);
+      throw new SchematicsException(`The builders json type '${ type }' is not supported`);
 
   }
 
@@ -50,16 +50,21 @@ export function GetProjectBuildersJsonFilePath(
         host.create(buildersJsonPath, '{}');
         return buildersJsonPath;
       } else {
-        throw new SchematicsException(`The builders json path of type '${type}' for the project '${projectName}' does not exists`);
+        throw new SchematicsException(`The builders json path of type '${ type }' for the project '${ projectName }' does not exists`);
       }
     }
   } else {
-    throw new SchematicsException(`The project '${projectName}' does not have a '${type}' property in the package.json`);
+    throw new SchematicsException(`The project '${ projectName }' does not have a '${ type }' property in the package.json`);
   }
 
 }
 
-export function GetProjectBuildersJson(host: Tree, projectName: string, type: BuildersJsonType = BuildersJsonType.BUILDERS, create?: boolean): BuildersJson {
+export function GetProjectBuildersJson(
+  host: Tree,
+  projectName: string,
+  type: BuildersJsonType = BuildersJsonType.BUILDERS,
+  create?: boolean,
+): BuildersJson {
 
   const buildersJsonFilePath = GetProjectBuildersJsonFilePath(host, projectName, type, create);
 
@@ -78,7 +83,12 @@ export function UpdateBuildersJson(
 ): Rule {
   return tree => {
 
-    const buildersJsonFilePath = GetProjectBuildersJsonFilePath(tree, options.projectName, options.type, options.create);
+    const buildersJsonFilePath = GetProjectBuildersJsonFilePath(
+      tree,
+      options.projectName,
+      options.type,
+      options.create,
+    );
 
     return UpdateJsonFile(updater, buildersJsonFilePath, options);
 

@@ -16,7 +16,7 @@ export const AuthenticationRoutes: Routes = [
         component: LoginComponent,
       },
       {
-        canActivate: [RxapAuthenticationGuard],
+        canActivate: [ RxapAuthenticationGuard ],
         path: 'reset-password/:token',
         component: ResetPasswordComponent,
       },

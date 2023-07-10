@@ -37,7 +37,7 @@ describe('@rxap/forms', () => {
 
         @ControlValidator('username')
         public uniqueUsername(control: RxapFormControl): ValidationErrors | null {
-          return control.value === 'rxap' ? null : {username: 'only rxap is allowed'};
+          return control.value === 'rxap' ? null : { username: 'only rxap is allowed' };
         }
 
       }
@@ -47,12 +47,12 @@ describe('@rxap/forms', () => {
         {
           provide: RXAP_FORM_DEFINITION_BUILDER,
           useFactory: (injector: Injector) => new RxapFormBuilder<ITestForm>(TestForm, injector),
-          deps: [INJECTOR],
+          deps: [ INJECTOR ],
         },
         {
           provide: RXAP_FORM_DEFINITION,
           useFactory: (builder: RxapFormBuilder) => builder.build(),
-          deps: [RXAP_FORM_DEFINITION_BUILDER],
+          deps: [ RXAP_FORM_DEFINITION_BUILDER ],
         },
       ];
 
@@ -68,7 +68,7 @@ describe('@rxap/forms', () => {
 
         expect(form).toBeInstanceOf(TestForm);
         expect(form.username.validator).not.toBeNull();
-        expect(form.username.validator!(form.username)).toEqual({username: 'only rxap is allowed'});
+        expect(form.username.validator!(form.username)).toEqual({ username: 'only rxap is allowed' });
 
       });
 

@@ -5,7 +5,8 @@ describe(LoadingComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(LoadingComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

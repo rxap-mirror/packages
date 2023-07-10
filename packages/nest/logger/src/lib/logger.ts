@@ -8,27 +8,42 @@ import {
 export class RxapLogger extends ConsoleLogger {
 
   override log(message: string, ...optionalParams: any[]) {
-    const {msg, params} = this.interpolate(message, optionalParams, 'log');
+    const {
+      msg,
+      params,
+    } = this.interpolate(message, optionalParams, 'log');
     super.log(msg, ...params);
   }
 
   override error(message: string, ...optionalParams: any[]) {
-    const {msg, params} = this.interpolate(message, optionalParams, 'error');
+    const {
+      msg,
+      params,
+    } = this.interpolate(message, optionalParams, 'error');
     super.error(msg, ...params);
   }
 
   override warn(message: string, ...optionalParams: any[]) {
-    const {msg, params} = this.interpolate(message, optionalParams, 'warn');
+    const {
+      msg,
+      params,
+    } = this.interpolate(message, optionalParams, 'warn');
     super.warn(msg, ...params);
   }
 
   override debug(message: string, ...optionalParams: any[]) {
-    const {msg, params} = this.interpolate(message, optionalParams, 'debug');
+    const {
+      msg,
+      params,
+    } = this.interpolate(message, optionalParams, 'debug');
     super.debug(msg, ...params);
   }
 
   override verbose(message: string, ...optionalParams: any[]) {
-    const {msg, params} = this.interpolate(message, optionalParams, 'verbose');
+    const {
+      msg,
+      params,
+    } = this.interpolate(message, optionalParams, 'verbose');
     super.verbose(msg, ...params);
   }
 
@@ -47,10 +62,16 @@ export class RxapLogger extends ConsoleLogger {
           }
           return '<json>';
         });
-        return {msg, params: optionalParams};
+        return {
+          msg,
+          params: optionalParams,
+        };
       }
     }
-    return {msg: message, params: optionalParams};
+    return {
+      msg: message,
+      params: optionalParams,
+    };
   }
 
   protected stringifyCircular(obj: any) {

@@ -34,7 +34,10 @@ export class XmlParserService {
         throw new Error('Element Parser is undefined or null');
       }
       const elementName = getMetadata<string>(ElementParserMetaData.ELEMENT_NAME, elementParser);
-      const parsers = getMetadata<XmlElementParserFunction<any>[]>(ElementParserMetaData.ELEMENT_PARSERS, elementParser);
+      const parsers = getMetadata<XmlElementParserFunction<any>[]>(
+        ElementParserMetaData.ELEMENT_PARSERS,
+        elementParser,
+      );
 
       if (!elementName) {
         throw new Error('Element name is not defined. Ensure that the @ElementParser is used');
@@ -44,12 +47,21 @@ export class XmlParserService {
         throw new Error('Element parsers are not defined. Ensure that the @ElementParser is used');
       }
 
-      this.parsers.set(elementName, {elementParser, parsers});
+      this.parsers.set(
+        elementName,
+        {
+          elementParser,
+          parsers,
+        },
+      );
     }
   }
 
   public parseAttributes(parsedElement: ParsedElement, element: RxapElement): void {
-    const attributes: AttributeOptions<any>[] = getMetadata(ElementParserMetaData.ATTRIBUTE, Object.getPrototypeOf(parsedElement)) || [];
+    const attributes: AttributeOptions<any>[] = getMetadata(
+      ElementParserMetaData.ATTRIBUTE,
+      Object.getPrototypeOf(parsedElement),
+    ) || [];
     for (const attribute of attributes) {
       const textContent = element.getChildTextContent(attribute.elementName);
       if (hasIndexSignature(parsedElement)) {
@@ -80,14 +92,17 @@ export class XmlParserService {
     if (typeof elementNameOrConstructor === 'string') {
       elementName = elementNameOrConstructor;
       if (!this.parsers.has(elementName)) {
-        throw new Error(`Parser for element '${elementName}' is not registered`);
+        throw new Error(`Parser for element '${ elementName }' is not registered`);
       }
 
       parser = this.parsers.get(elementName) as any;
     } else {
       elementName = getMetadata<string>(ElementParserMetaData.ELEMENT_NAME, elementNameOrConstructor)!;
       parser = {
-        parsers: getMetadata<XmlElementParserFunction<any>[]>(ElementParserMetaData.ELEMENT_PARSERS, elementNameOrConstructor)!,
+        parsers: getMetadata<XmlElementParserFunction<any>[]>(
+          ElementParserMetaData.ELEMENT_PARSERS,
+          elementNameOrConstructor,
+        )!,
         elementParser: elementNameOrConstructor,
       };
     }
@@ -112,10 +127,10 @@ export class XmlParserService {
     const requiredProperties = getMetadata<object>(ElementParserMetaData.REQUIRED_ELEMENT_PROPERTIES, instance);
 
     if (requiredProperties && hasIndexSignature(instance)) {
-      for (const [propertyKey, message] of Object.entries(requiredProperties)) {
+      for (const [ propertyKey, message ] of Object.entries(requiredProperties)) {
         if (instance[propertyKey] === undefined) {
           console.log('prop', instance[propertyKey]);
-          throw new RxapXmlParserError(`[${elementName}] ${message}`, '', instance.constructor.name);
+          throw new RxapXmlParserError(`[${ elementName }] ${ message }`, '', instance.constructor.name);
         }
       }
     }
@@ -125,7 +140,11 @@ export class XmlParserService {
     }
 
     if (instance.validate && !instance.validate()) {
-      throw new RxapXmlParserError(`Could not parse element '${elementName}'. Parsed element is not valid`, '', instance.constructor.name);
+      throw new RxapXmlParserError(
+        `Could not parse element '${ elementName }'. Parsed element is not valid`,
+        '',
+        instance.constructor.name,
+      );
     }
 
     if (instance.postValidate) {
@@ -156,13 +175,13 @@ export class XmlParserService {
     const rootNode = Array.from(xmlDoc.childNodes).find(node => node.nodeName === this._rootElement);
 
     if (!rootNode) {
-      throw new Error(`Could not find <${this._rootElement}> element!`);
+      throw new Error(`Could not find <${ this._rootElement }> element!`);
     }
 
     const root = new RxapElement(rootNode as Element);
 
     if (root.name !== this._rootElement) {
-      throw new Error(`The root node must be an <${this._rootElement}> element, but the root node is a <${root.name}> element!`);
+      throw new Error(`The root node must be an <${ this._rootElement }> element, but the root node is a <${ root.name }> element!`);
     }
 
     return this.parse<D>(root, root.name, null, args);

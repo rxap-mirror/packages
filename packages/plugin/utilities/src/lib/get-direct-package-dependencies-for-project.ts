@@ -9,8 +9,11 @@ import { readPackageJsonForProject } from './project-package-json';
  * @param context
  * @param projectName
  */
-export function getDirectPackageDependenciesForProject(context: ExecutorContext, projectName = context.projectName): Record<string, string> {
-  const {projectGraph} = context;
+export function getDirectPackageDependenciesForProject(
+  context: ExecutorContext,
+  projectName = context.projectName,
+): Record<string, string> {
+  const { projectGraph } = context;
 
   if (!projectGraph) {
     throw new Error('The projectGraph is undefined. Ensure the projectGraph is passed into the executor context.');
@@ -24,5 +27,14 @@ export function getDirectPackageDependenciesForProject(context: ExecutorContext,
     .filter(dependency => !dependency.target.startsWith('npm:'))
     .map(dependency => dependency.target)
     .map(projectName => readPackageJsonForProject(context, projectName))
-    .reduce((acc, {name, version}) => ({...acc, [name]: version}), {});
+    .reduce((
+      acc,
+      {
+        name,
+        version,
+      },
+    ) => ({
+      ...acc,
+      [name]: version,
+    }), {});
 }

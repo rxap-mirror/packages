@@ -71,9 +71,10 @@ export class MovableDividerDirective implements OnDestroy, OnInit {
                 clientLeft: this.containerElement.getBoundingClientRect().left,
               });
             }
-            this._fixedElementWidth = this.containerElement.clientWidth - $event.clientX + this.containerElement.getBoundingClientRect().left;
+            this._fixedElementWidth =
+              this.containerElement.clientWidth - $event.clientX + this.containerElement.getBoundingClientRect().left;
           } else {
-            throw new Error(`The origin '${this.origin}' is not supported.`);
+            throw new Error(`The origin '${ this.origin }' is not supported.`);
           }
           const width = this._fixedElementWidth + 'px';
           this.renderer.setStyle(this.fixedElement, 'max-width', width);

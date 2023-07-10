@@ -25,11 +25,11 @@ const isValidDate = (str: string) => {
   const year = match[1];
   const month = match[2];
   const day = match[3];
-  const monthString = month ? `0${month}`.slice(-2) : month;
-  const dayString = day ? `0${day}`.slice(-2) : day;
+  const monthString = month ? `0${ month }`.slice(-2) : month;
+  const dayString = day ? `0${ day }`.slice(-2) : day;
 
   // create a date object and compare
-  const d = new Date(`${year}-${monthString || '01'}-${dayString || '01'}`);
+  const d = new Date(`${ year }-${ monthString || '01' }-${ dayString || '01' }`);
   if (month && day) {
     return d.getUTCFullYear() === year
       && (d.getUTCMonth() + 1) === month

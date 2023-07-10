@@ -8,13 +8,13 @@ export function IsRecord(obj: any): obj is Record<any, any> {
 
 export function AssertObject(obj: any): asserts obj is object {
   if (!IsObject(obj)) {
-    throw new Error(`The value is not a object instead: '${!obj ? obj : typeof obj}'`);
+    throw new Error(`The value is not a object instead: '${ !obj ? obj : typeof obj }'`);
   }
 }
 
 export function AssertRecord(obj: any): asserts obj is Record<any, any> {
   if (!IsRecord(obj)) {
-    throw new Error(`The value is not a record instead: '${!obj ? obj : typeof obj}'`);
+    throw new Error(`The value is not a record instead: '${ !obj ? obj : typeof obj }'`);
   }
 }
 

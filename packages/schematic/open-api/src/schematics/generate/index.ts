@@ -91,8 +91,11 @@ export default function (options: OpenApiSchema): Rule {
 
     const project = new Project({
       manipulationSettings: {
-        indentationText: IndentationText.TwoSpaces, quoteKind: QuoteKind.Single, useTrailingCommas: true,
-      }, useInMemoryFileSystem: true,
+        indentationText: IndentationText.TwoSpaces,
+        quoteKind: QuoteKind.Single,
+        useTrailingCommas: true,
+      },
+      useInMemoryFileSystem: true,
     });
 
     if (!options.project) {
@@ -104,19 +107,19 @@ export default function (options: OpenApiSchema): Rule {
     }
 
     const projectName = `${ options.directory ?
-                            options.directory.split('/').join('-') + '-' :
-                            '' }${ options.project }`;
+      options.directory.split('/').join('-') + '-' :
+      '' }${ options.project }`;
 
     const projectBasePath = HasProject(host, projectName) ?
-                            GetProjectSourceRoot(host, projectName) :
-                            `libs/${ options.directory ? options.directory + '/' : '' }${ options.project }/src`;
+      GetProjectSourceRoot(host, projectName) :
+      `libs/${ options.directory ? options.directory + '/' : '' }${ options.project }/src`;
     const basePath = join(projectBasePath, 'lib');
 
     options.prefix = options.prefix ??
-                     (
-                       HasProject(host, projectName) ? GetProjectPrefix(host, projectName) : GetDefaultPrefix(host)
-                     ) ??
-                     'rxap';
+      (
+        HasProject(host, projectName) ? GetProjectPrefix(host, projectName) : GetDefaultPrefix(host)
+      ) ??
+      'rxap';
 
     if (!options.debug) {
       // TODO : reset the hack after the schematic execution is finished

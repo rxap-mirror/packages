@@ -5,7 +5,10 @@ export function ToOptionsWithObject<Value extends Record<string, Property>, Prop
   toDisplay: (property: Property) => string,
 ): ControlOptions<Value> {
   if (Array.isArray(source)) {
-    return source.map(item => ({value: item, display: toDisplay(item)}));
+    return source.map(item => ({
+      value: item,
+      display: toDisplay(item),
+    }));
   }
 
   return [];

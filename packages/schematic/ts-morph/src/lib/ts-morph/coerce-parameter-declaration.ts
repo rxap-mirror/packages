@@ -11,7 +11,7 @@ export function CoerceParameterDeclaration(
 ) {
   let parameterDeclaration = node.getParameter(name);
   if (!parameterDeclaration) {
-    parameterDeclaration = node.addParameter({name});
+    parameterDeclaration = node.addParameter({ name });
     parameterDeclaration.set(structure ??
       {});
   }

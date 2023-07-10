@@ -5,7 +5,8 @@ describe(TableColumnMenuComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(TableColumnMenuComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

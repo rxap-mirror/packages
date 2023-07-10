@@ -91,9 +91,9 @@ describe('@rxap/forms', () => {
 
     it('should mergeValidators', () => {
       control.setValidators(Validators.required);
-      expect(control.errors).toEqual({required: true});
+      expect(control.errors).toEqual({ required: true });
       control.mergeValidators(Validators.minLength(2));
-      expect(control.errors).toEqual({required: true});
+      expect(control.errors).toEqual({ required: true });
       control.patchValue('a');
       expect(control.errors).toEqual({
         minlength: {
@@ -148,8 +148,8 @@ describe('@rxap/forms', () => {
     it('should validateOn', () => {
       const subject = new Subject<object | null>();
       control.validateOn(subject);
-      subject.next({someError: true});
-      expect(control.errors).toEqual({someError: true});
+      subject.next({ someError: true });
+      expect(control.errors).toEqual({ someError: true });
       subject.next(null);
       expect(control.errors).toEqual(null);
     });
@@ -188,11 +188,11 @@ describe('@rxap/forms', () => {
       control.setValidators(Validators.required);
       const spy = jest.fn();
       control.errors$.subscribe(spy);
-      expect(spy).toHaveBeenCalledWith({required: true});
+      expect(spy).toHaveBeenCalledWith({ required: true });
       control.patchValue(null);
       control.patchValue('');
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenCalledWith({required: true});
+      expect(spy).toHaveBeenCalledWith({ required: true });
       control.patchValue('Test');
       expect(spy).toHaveBeenCalledWith(null);
     });

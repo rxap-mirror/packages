@@ -14,7 +14,9 @@ export function isNotDeepEqual<CompareTo, Context = any>(
 ): MonoTypeOperatorFunction<CompareTo> {
   return filter(value => {
     // TODO : find typing issue solution. Stack Overflow?
-    const compareTo: CompareTo = typeof compareToOrFunction === 'function' ? (compareToOrFunction as any).call(context) : compareToOrFunction;
+    const compareTo: CompareTo = typeof compareToOrFunction === 'function' ?
+      (compareToOrFunction as any).call(context) :
+      compareToOrFunction;
     return !equals(value, compareTo);
   });
 }

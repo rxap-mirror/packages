@@ -63,16 +63,16 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
 
     // TODO : add test. Persevere child element order with extend child type
     if (!this.elementType) {
-      throw new Error(`The element type is not defined for <${element.name}>`);
+      throw new Error(`The element type is not defined for <${ element.name }>`);
     }
 
-    const elementTypes = [this.elementType, ...this.getExtendedTypes(this.elementType)];
+    const elementTypes = [ this.elementType, ...this.getExtendedTypes(this.elementType) ];
 
     const rxapElementChildren = this.getChildren(element);
 
     if (!rxapElementChildren) {
       throw new RxapXmlParserValidateRequiredError(
-        `The child group element '${this.options.group}' is required for ${parsedElement.__tag}!`,
+        `The child group element '${ this.options.group }' is required for ${ parsedElement.__tag }!`,
         parsedElement.__tag!,
       );
     }
@@ -85,15 +85,24 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
       .map(child => xmlParser.parse(child.element, child.type ?? child.element.name, parsedElement));
 
     if (this.required && children.length === 0) {
-      throw new RxapXmlParserValidateRequiredError(`Some element child <${this.tag}> is required in <${parsedElement.__tag}>!`, parsedElement.__tag!);
+      throw new RxapXmlParserValidateRequiredError(
+        `Some element child <${ this.tag }> is required in <${ parsedElement.__tag }>!`,
+        parsedElement.__tag!,
+      );
     }
 
     if (this.min !== null && this.min > children.length) {
-      throw new RxapXmlParserValidateError(`Element child <${this.tag}> should be at least ${this.min} in <${parsedElement.__tag}>!`, parsedElement.__tag!);
+      throw new RxapXmlParserValidateError(
+        `Element child <${ this.tag }> should be at least ${ this.min } in <${ parsedElement.__tag }>!`,
+        parsedElement.__tag!,
+      );
     }
 
     if (this.max !== null && this.max > children.length) {
-      throw new RxapXmlParserValidateError(`Element child <${this.tag}> should be at most ${this.max} in <${parsedElement.__tag}>!`, parsedElement.__tag!);
+      throw new RxapXmlParserValidateError(
+        `Element child <${ this.tag }> should be at most ${ this.max } in <${ parsedElement.__tag }>!`,
+        parsedElement.__tag!,
+      );
     }
 
     if (!hasIndexSignature(parsedElement)) {
@@ -115,27 +124,39 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
   private attachType(element: RxapElement, elementTypes: ParsedElementType<Child>[]): ElementWithType<Child> {
     if (this.hasTag) {
       if (element.name === this.tag) {
-        return {element, type: this.elementType};
+        return {
+          element,
+          type: this.elementType,
+        };
       }
     } else {
       if (element.name === this.elementType?.TAG) {
-        return {element, type: this.elementType};
+        return {
+          element,
+          type: this.elementType,
+        };
       }
     }
 
     const extendedElementType = elementTypes.find(et => element.name === et.TAG);
 
     if (extendedElementType) {
-      return {element, type: extendedElementType};
+      return {
+        element,
+        type: extendedElementType,
+      };
     }
 
-    return {element, type: null};
+    return {
+      element,
+      type: null,
+    };
   }
 
   private getExtendedTypes(type: ParsedElementType<Child>): Array<ParsedElementType<Child>> {
     const extendedTypes = getOwnMetadata<Array<ParsedElementType<Child>>>(XmlElementMetadata.EXTENDS, type) ?? [];
 
-    for (const extendedType of [...extendedTypes]) {
+    for (const extendedType of [ ...extendedTypes ]) {
       extendedTypes.push(...this.getExtendedTypes(extendedType));
     }
 
@@ -144,7 +165,10 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
 
 }
 
-export function ElementChildren<Child extends ParsedElement>(elementTyp: ParsedElementType<Child> | null = null, options: ElementChildrenOptions = {}) {
+export function ElementChildren<Child extends ParsedElement>(
+  elementTyp: ParsedElementType<Child> | null = null,
+  options: ElementChildrenOptions = {},
+) {
   return function (target: any, propertyKey: string) {
     options = deepMerge(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {});
     const parser = new ElementChildrenParser(propertyKey, elementTyp, options);

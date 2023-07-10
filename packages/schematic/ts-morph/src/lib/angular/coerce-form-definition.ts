@@ -47,40 +47,46 @@ export function CoerceInterfaceFormType(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
   formTypeName: string,
-  {controlList}: CoerceFormDefinitionOptions,
+  { controlList }: CoerceFormDefinitionOptions,
 ) {
   const interfaceDeclaration = CoerceInterface(sourceFile, formTypeName);
   interfaceDeclaration.setIsExported(true);
   for (const control of controlList) {
-    CoercePropertyDeclaration(interfaceDeclaration, camelize(control.name), {type: control.type});
+    CoercePropertyDeclaration(interfaceDeclaration, camelize(control.name), { type: control.type });
   }
 }
 
 export function CoerceFormControls(
   sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
-  {controlList}: CoerceFormDefinitionOptions,
+  { controlList }: CoerceFormDefinitionOptions,
 ) {
   for (const control of controlList) {
     const propertyDeclaration = CoercePropertyDeclaration(classDeclaration, camelize(control.name), {
-      type: `RxapFormControl<${control.type}>`,
+      type: `RxapFormControl<${ control.type }>`,
       hasExclamationToken: true,
       scope: Scope.Public,
       isReadonly: true,
     });
     CoerceDecorator(propertyDeclaration, {
       name: 'UseFormControl',
-      arguments: ['{}'],
+      arguments: [ '{}' ],
     });
   }
   CoerceImports(sourceFile, {
-    namedImports: ['RxapFormControl', 'UseFormControl'],
+    namedImports: [ 'RxapFormControl', 'UseFormControl' ],
     moduleSpecifier: '@rxap/forms',
   });
 }
 
 export function CoerceFormDefinition(options: Readonly<CoerceFormDefinitionOptions>): Rule {
-  let {controlList, coerceFormControls, name, tsMorphTransform, coerceFormType} = options;
+  let {
+    controlList,
+    coerceFormControls,
+    name,
+    tsMorphTransform,
+    coerceFormType,
+  } = options;
 
   tsMorphTransform ??= () => undefined;
   coerceFormType ??= CoerceInterfaceFormType;
@@ -91,28 +97,28 @@ export function CoerceFormDefinition(options: Readonly<CoerceFormDefinitionOptio
   return TsMorphAngularProjectTransform(options, (project: Project) => {
 
     const sourceFile = CoerceSourceFile(project, '/' + CoerceSuffix(name, '.form.ts'));
-    const classDeclaration = CoerceClass(sourceFile, className, {isExported: true});
+    const classDeclaration = CoerceClass(sourceFile, className, { isExported: true });
 
     // region add controls to interface
-    const interfaceName = `I${className}`;
+    const interfaceName = `I${ className }`;
     coerceFormType!(sourceFile, classDeclaration, interfaceName, options);
     if (!classDeclaration.getImplements().some(implement => implement.getText().startsWith('FormType'))) {
-      classDeclaration.addImplements(`FormType<${interfaceName}>`);
+      classDeclaration.addImplements(`FormType<${ interfaceName }>`);
     }
     CoerceImports(sourceFile, {
-      namedImports: ['FormType'],
+      namedImports: [ 'FormType' ],
       moduleSpecifier: '@rxap/forms',
     });
     // endregion
 
     CoercePropertyDeclaration(classDeclaration, 'rxapFormGroup', {
-      type: `RxapFormGroup<${interfaceName}>`,
+      type: `RxapFormGroup<${ interfaceName }>`,
       hasExclamationToken: true,
       isReadonly: true,
       scope: Scope.Public,
     });
     CoerceImports(sourceFile, {
-      namedImports: ['RxapFormGroup'],
+      namedImports: [ 'RxapFormGroup' ],
       moduleSpecifier: '@rxap/forms',
     });
 
@@ -121,10 +127,10 @@ export function CoerceFormDefinition(options: Readonly<CoerceFormDefinitionOptio
     // region add class decorators
     CoerceDecorator(classDeclaration, {
       name: 'RxapForm',
-      arguments: [w => w.quote(name)],
+      arguments: [ w => w.quote(name) ],
     });
     CoerceImports(sourceFile, {
-      namedImports: ['RxapForm'],
+      namedImports: [ 'RxapForm' ],
       moduleSpecifier: '@rxap/forms',
     });
 
@@ -133,7 +139,7 @@ export function CoerceFormDefinition(options: Readonly<CoerceFormDefinitionOptio
       arguments: [],
     });
     CoerceImports(sourceFile, {
-      namedImports: ['Injectable'],
+      namedImports: [ 'Injectable' ],
       moduleSpecifier: '@angular/core',
     });
     // endregion

@@ -62,7 +62,7 @@ export function addToMetadata<V>(
     setMetadata(metadataKey, [], target, propertyKey);
   }
   const metadata = getMetadata<V[]>(metadataKey, target, propertyKey) || [];
-  setMetadata(metadataKey, [...metadata, metadataValue].filter(unique()), target, propertyKey);
+  setMetadata(metadataKey, [ ...metadata, metadataValue ].filter(unique()), target, propertyKey);
 }
 
 export function mergeWithMetadata<V extends object>(
@@ -95,7 +95,13 @@ export function removeFromMetadata<V>(
   );
 }
 
-export function setMetadataMap<V = any, K = string>(key: K, value: V, metadataKey: string, target: any, propertyKey?: string) {
+export function setMetadataMap<V = any, K = string>(
+  key: K,
+  value: V,
+  metadataKey: string,
+  target: any,
+  propertyKey?: string,
+) {
 
   let map: Map<K, V> | null = getOwnMetadata(metadataKey, target, propertyKey);
 
@@ -114,7 +120,13 @@ export function setMetadataMap<V = any, K = string>(key: K, value: V, metadataKe
 
 }
 
-export function setMetadataMapSet<V = any, K = string>(key: K, value: V, metadataKey: string, target: any, propertyKey?: string) {
+export function setMetadataMapSet<V = any, K = string>(
+  key: K,
+  value: V,
+  metadataKey: string,
+  target: any,
+  propertyKey?: string,
+) {
 
   let map: Map<K, Set<V>> | null = getOwnMetadata(metadataKey, target, propertyKey);
 
@@ -139,7 +151,14 @@ export function setMetadataMapSet<V = any, K = string>(key: K, value: V, metadat
 
 }
 
-export function setMetadataMapMap<V = any, K = string, K2 = string>(key: K, key2: K2, value: V, metadataKey: string, target: any, propertyKey?: string) {
+export function setMetadataMapMap<V = any, K = string, K2 = string>(
+  key: K,
+  key2: K2,
+  value: V,
+  metadataKey: string,
+  target: any,
+  propertyKey?: string,
+) {
 
   let map: Map<K, Map<K2, V>> | null = getOwnMetadata(metadataKey, target, propertyKey);
 

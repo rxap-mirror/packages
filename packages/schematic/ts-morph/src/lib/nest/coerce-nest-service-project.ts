@@ -22,7 +22,7 @@ export function CoerceNestServiceProject(options: CoerceNestServiceProjectOption
   } = options;
   return tree => {
     if (!HasNestServiceProject(tree, options)) {
-      console.log(`The nest service project '${buildNestProjectName(options)}' does not exists. Project will now be created ...`);
+      console.log(`The nest service project '${ buildNestProjectName(options) }' does not exists. Project will now be created ...`);
       if (feature) {
         if (shared) {
           return schematic(

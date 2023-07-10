@@ -62,12 +62,12 @@ export class FilterHeaderRowDirective
   public override ngOnInit() {
     super.ngOnInit();
     this._subscription = this.form.value$
-      .pipe(
-        debounceTime(1000),
-        distinctUntilChanged((a, b) => equals(a, b)),
-        tap(values => this.tableFilter.setMap(values)),
-      )
-      .subscribe();
+                             .pipe(
+                               debounceTime(1000),
+                               distinctUntilChanged((a, b) => equals(a, b)),
+                               tap(values => this.tableFilter.setMap(values)),
+                             )
+                             .subscribe();
   }
 
   public override ngOnDestroy() {

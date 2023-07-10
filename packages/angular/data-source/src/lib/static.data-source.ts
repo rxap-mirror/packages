@@ -60,7 +60,7 @@ export class StaticDataSource<Data>
     }
     if (data === undefined) {
       throw new RxapDataSourceError(
-        `Can not create static data source '${this.id}' with undefined as data`,
+        `Can not create static data source '${ this.id }' with undefined as data`,
         '',
       );
     }
@@ -121,7 +121,7 @@ export function RxapStaticDataSource<Data>(
 
 export function staticDataSource<Data>(
   data: StaticDataSourceData<Data>,
-  metadata: StaticDataSourceMetadata<Data> = {id: 'static'},
+  metadata: StaticDataSourceMetadata<Data> = { id: 'static' },
 ): StaticDataSource<Data> {
   return new StaticDataSource(data, metadata);
 }

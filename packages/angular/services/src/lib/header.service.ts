@@ -49,7 +49,10 @@ export class HeaderService {
   }
 
   public addComponent(component: Constructor, order = 0): void {
-    this.components.push({component, order});
+    this.components.push({
+      component,
+      order,
+    });
     this.update$.next();
   }
 

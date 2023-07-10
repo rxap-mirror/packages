@@ -18,7 +18,7 @@ export interface GetOAuthProfileMethodParameters {
   withCredentials?: boolean;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class GetOAuthProfileMethod<T = any>
   implements Method<T, GetOAuthProfileMethodParameters> {
   constructor(
@@ -38,11 +38,11 @@ export class GetOAuthProfileMethod<T = any>
     }
 
     return firstValueFrom(this.http
-      .get<T>(profileEndpoint, {
-        headers: {
-          Authorization: `Bearer ${parameters.accessToken}`,
-        },
-        withCredentials: parameters.withCredentials ?? true,
-      }));
+                              .get<T>(profileEndpoint, {
+                                headers: {
+                                  Authorization: `Bearer ${ parameters.accessToken }`,
+                                },
+                                withCredentials: parameters.withCredentials ?? true,
+                              }));
   }
 }

@@ -1,52 +1,52 @@
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-    <button
-            #button
-            #method="rxapMethod"
-            #trigger="cdkOverlayOrigin"
-            (successful)="uploadComplete($event)"
-            [disabled]="disabled"
-            [parameters]="{ accept: accept }"
-            [rxapMethod]="fileUpload"
-            cdkOverlayOrigin
-            fxFlex="nogrow"
-            mat-stroked-button
-            type="button">
+  <button
+    #button
+    #method="rxapMethod"
+    #trigger="cdkOverlayOrigin"
+    (successful)="uploadComplete($event)"
+    [disabled]="disabled"
+    [parameters]="{ accept: accept }"
+    [rxapMethod]="fileUpload"
+    cdkOverlayOrigin
+    fxFlex="nogrow"
+    mat-stroked-button
+    type="button">
     <span fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
       <mat-icon fxFlex="nogrow">cloud_upload</mat-icon>&nbsp;
       <span *ngIf="value" class="file-name" fxFlex="nogrow">{{value.name}}</span>
       <ng-content></ng-content>
       <mat-progress-spinner
-              *ngIf="method.executing$ | async"
-              diameter="15"
-              fxFlex="nogrow"
-              mode="indeterminate">
+        *ngIf="method.executing$ | async"
+        diameter="15"
+        fxFlex="nogrow"
+        mode="indeterminate">
       </mat-progress-spinner>
     </span>
-    </button>
-    <button (click)="openOverlay()"
-            *ngIf="isImage"
-            fxFlex="nogrow"
-            i18n-matTooltip
-            mat-icon-button
-            matTooltip="Open image preview"
-            type="button">
-        <mat-icon>preview</mat-icon>
-    </button>
-    <button (click)="download()" *ngIf="value" fxFlex="nogrow" i18n-matTooltip mat-icon-button
-            matTooltip="Download file" type="button">
-        <mat-icon>cloud_download</mat-icon>
-    </button>
+  </button>
+  <button (click)="openOverlay()"
+          *ngIf="isImage"
+          fxFlex="nogrow"
+          i18n-matTooltip
+          mat-icon-button
+          matTooltip="Open image preview"
+          type="button">
+    <mat-icon>preview</mat-icon>
+  </button>
+  <button (click)="download()" *ngIf="value" fxFlex="nogrow" i18n-matTooltip mat-icon-button
+          matTooltip="Download file" type="button">
+    <mat-icon>cloud_download</mat-icon>
+  </button>
 </div>
 
 <ng-template
-        (backdropClick)="isOpen = false"
-        [cdkConnectedOverlayHasBackdrop]="true"
-        [cdkConnectedOverlayOpen]="isOpen"
-        [cdkConnectedOverlayOrigin]="trigger"
-        [cdkConnectedOverlayPositions]="positions"
-        cdkConnectedOverlay
+  (backdropClick)="isOpen = false"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayOpen]="isOpen"
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayPositions]="positions"
+  cdkConnectedOverlay
 >
-    <div class="rxap-upload-button-overlay overlay-container mat-elevation-z2">
-        <img [src]="value | readAsDataURL | async">
-    </div>
+  <div class="rxap-upload-button-overlay overlay-container mat-elevation-z2">
+    <img [src]="value | readAsDataURL | async">
+  </div>
 </ng-template>

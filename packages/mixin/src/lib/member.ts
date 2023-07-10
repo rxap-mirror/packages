@@ -11,7 +11,16 @@ export function Member(initial: null | number | boolean | string | symbol | ((..
         return initial;
       },
       set(value) {
-        Object.defineProperty(this, propertyKey, {value, writable: true, configurable: true, enumerable: true});
+        Object.defineProperty(
+          this,
+          propertyKey,
+          {
+            value,
+            writable: true,
+            configurable: true,
+            enumerable: true,
+          },
+        );
       },
       configurable: true,
       enumerable: true,
@@ -24,11 +33,29 @@ export function MemberFactory(initialFactory: (self: any) => any) {
     Object.defineProperty(target, propertyKey, {
       get() {
         const value = initialFactory(this);
-        Object.defineProperty(this, propertyKey, {value, writable: true, configurable: true, enumerable: true});
+        Object.defineProperty(
+          this,
+          propertyKey,
+          {
+            value,
+            writable: true,
+            configurable: true,
+            enumerable: true,
+          },
+        );
         return value;
       },
       set(value) {
-        Object.defineProperty(this, propertyKey, {value, writable: true, configurable: true, enumerable: true});
+        Object.defineProperty(
+          this,
+          propertyKey,
+          {
+            value,
+            writable: true,
+            configurable: true,
+            enumerable: true,
+          },
+        );
       },
       configurable: true,
       enumerable: true,

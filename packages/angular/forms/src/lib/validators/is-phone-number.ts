@@ -8,7 +8,11 @@ import {
   MobilePhoneLocale,
 } from '@rxap/validator';
 
-export function IsPhoneNumber({message, locale, options}: {
+export function IsPhoneNumber({
+                                message,
+                                locale,
+                                options,
+                              }: {
   message?: string,
   locale?: 'any' | MobilePhoneLocale | MobilePhoneLocale[],
   options?: IsMobilePhoneOptions,

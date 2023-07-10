@@ -69,10 +69,10 @@ export interface Point {
 })
 export class WindowContainerComponent<D> implements OnInit {
 
-  @ContentChild('[footer]', {static: true}) public footerContent!: ElementRef<any>;
+  @ContentChild('[footer]', { static: true }) public footerContent!: ElementRef<any>;
 
-  @ViewChild('container', {static: true}) public containerRef!: ElementRef<any>;
-  @ViewChild(WindowResizerComponent, {static: true}) public windowContainerResizer!: WindowResizerComponent;
+  @ViewChild('container', { static: true }) public containerRef!: ElementRef<any>;
+  @ViewChild(WindowResizerComponent, { static: true }) public windowContainerResizer!: WindowResizerComponent;
   public width$!: Observable<string>;
   public height$!: Observable<string>;
 

@@ -53,38 +53,39 @@ export class HttpRemoteMethod<ReturnType = any,
   }
 
   protected _call(parameters?: Parameter): Promise<ReturnType> {
-    return firstValueFrom(this.http.request<ReturnType>(this.updateRequest(this.createHttpRequestParameters(parameters))).pipe(
-      retry(this.metadata.retry ?? 0),
-      tap(event => {
-        switch (event.type) {
+    return firstValueFrom(this.http.request<ReturnType>(this.updateRequest(this.createHttpRequestParameters(parameters)))
+                              .pipe(
+                                retry(this.metadata.retry ?? 0),
+                                tap(event => {
+                                  switch (event.type) {
 
-          case HttpEventType.Sent:
-            this.onSentEvent(event);
-            break;
+                                    case HttpEventType.Sent:
+                                      this.onSentEvent(event);
+                                      break;
 
-          case HttpEventType.Response:
-            this.onResponse(event);
-            break;
+                                    case HttpEventType.Response:
+                                      this.onResponse(event);
+                                      break;
 
-          case HttpEventType.DownloadProgress:
-            this.onProgressEvent(event);
-            break;
+                                    case HttpEventType.DownloadProgress:
+                                      this.onProgressEvent(event);
+                                      break;
 
-          case HttpEventType.UploadProgress:
-            this.onProgressEvent(event);
-            break;
+                                    case HttpEventType.UploadProgress:
+                                      this.onProgressEvent(event);
+                                      break;
 
-          case HttpEventType.ResponseHeader:
-            this.onHeaderResponse(event);
-            break;
+                                    case HttpEventType.ResponseHeader:
+                                      this.onHeaderResponse(event);
+                                      break;
 
-        }
-      }),
-      filter((event: any) => event instanceof HttpResponse),
-      map((event: HttpResponse<ReturnType>) => event.body),
-      map(body => this.transformer(body)),
-      timeout(this.timeout),
-    ));
+                                  }
+                                }),
+                                filter((event: any) => event instanceof HttpResponse),
+                                map((event: HttpResponse<ReturnType>) => event.body),
+                                map(body => this.transformer(body)),
+                                timeout(this.timeout),
+                              ));
   }
 
 }

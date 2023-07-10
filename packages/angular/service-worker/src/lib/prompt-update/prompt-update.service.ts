@@ -32,18 +32,18 @@ export class PromptUpdateService {
   public start(): void {
     console.debug('start prompt update');
     this.updates.available
-      .pipe(
-        concatMap((event) => this.promptUser(event)),
-        filter(Boolean),
-        tap(() => console.log('start app update')),
-        tap(() =>
-          this.updates.activateUpdate().then(() => {
-            console.log('app update completed. Reload app.');
-            document.location.reload();
-          }),
-        ),
-      )
-      .subscribe();
+        .pipe(
+          concatMap((event) => this.promptUser(event)),
+          filter(Boolean),
+          tap(() => console.log('start app update')),
+          tap(() =>
+            this.updates.activateUpdate().then(() => {
+              console.log('app update completed. Reload app.');
+              document.location.reload();
+            }),
+          ),
+        )
+        .subscribe();
   }
 
   private promptUser(event: UpdateAvailableEvent): Observable<boolean> {

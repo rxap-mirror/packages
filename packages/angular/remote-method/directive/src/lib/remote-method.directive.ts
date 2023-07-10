@@ -110,7 +110,12 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
   public async execute(): Promise<void> {
     this.executing$.enable();
     try {
-      const result = await this.remoteMethodLoader.call$(this._remoteMethodOrIdOrToken, this.parameters, this.metadata, this.injector);
+      const result = await this.remoteMethodLoader.call$(
+        this._remoteMethodOrIdOrToken,
+        this.parameters,
+        this.metadata,
+        this.injector,
+      );
       this.executed(result);
       this.successful(result);
     } catch (error: any) {
@@ -124,11 +129,11 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
   }
 
   public setParameter<Key extends keyof Parameters>(parameterKey: Key, value: Parameters[Key]): void {
-    this.updateParameters({[parameterKey]: value} as any);
+    this.updateParameters({ [parameterKey]: value } as any);
   }
 
   public updateParameters(parameters: Partial<Parameters>): void {
-    this.parameters = {...(this.parameters ?? {}), ...parameters} as any;
+    this.parameters = { ...(this.parameters ?? {}), ...parameters } as any;
   }
 
   protected executed(result: any) {
@@ -150,7 +155,12 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
   @Deprecated('removed')
   protected async call(): Promise<any> {
     this.executing$.enable();
-    const result = await this.remoteMethodLoader.call$(this._remoteMethodOrIdOrToken, this.parameters, this.metadata, this.injector);
+    const result = await this.remoteMethodLoader.call$(
+      this._remoteMethodOrIdOrToken,
+      this.parameters,
+      this.metadata,
+      this.injector,
+    );
     this.executing$.disable();
     return result;
   }

@@ -4,7 +4,7 @@ import {
   of,
 } from 'rxjs';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ReplaceRouterPathsService {
 
   public transform(routerLink: string[]): Observable<string[]> {

@@ -5,7 +5,8 @@ describe(BooleanCellComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(BooleanCellComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

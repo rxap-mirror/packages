@@ -60,7 +60,7 @@ export function CoerceTableActionRule(options: CoerceTableActionOptions) {
       name: CoerceSuffix(actionType, '-table-row-action'),
       tsMorphTransform: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => {
 
-        const tableInterfaceName = `I${classify(tableName)}`;
+        const tableInterfaceName = `I${ classify(tableName) }`;
 
         const optionsObj: Record<string, WriterFunctionOrValue> = {
           type: w => w.quote(actionType),
@@ -83,31 +83,37 @@ export function CoerceTableActionRule(options: CoerceTableActionOptions) {
             optionsObj['checkFunction'] = checkFunction;
           } else {
             optionsObj['checkFunction'] =
-              `(element: ${tableInterfaceName}, index: number, array: ${tableInterfaceName}[]) => ${checkFunction}`;
+              `(element: ${ tableInterfaceName }, index: number, array: ${ tableInterfaceName }[]) => ${ checkFunction }`;
           }
         }
 
         CoerceDecorator(classDeclaration, 'TableActionMethod', {
-          arguments: [Writers.object(optionsObj)],
+          arguments: [ Writers.object(optionsObj) ],
         });
         CoerceImports(sourceFile, {
           moduleSpecifier: '@rxap/material-table-system',
-          namedImports: ['TableActionMethod', 'TableRowActionTypeMethod'],
+          namedImports: [ 'TableActionMethod', 'TableRowActionTypeMethod' ],
         });
         CoerceImports(sourceFile, {
-          moduleSpecifier: `../../${tableName}`,
-          namedImports: [tableInterfaceName],
+          moduleSpecifier: `../../${ tableName }`,
+          namedImports: [ tableInterfaceName ],
         });
 
-        CoerceClassImplementation(classDeclaration, `TableRowActionTypeMethod<${tableInterfaceName}>`);
+        CoerceClassImplementation(classDeclaration, `TableRowActionTypeMethod<${ tableInterfaceName }>`);
 
         return {
           statements: [
-            `console.log(\`action row type: ${actionType}\`, parameters);`,
+            `console.log(\`action row type: ${ actionType }\`, parameters);`,
             `return parameters;`,
           ],
           isAsync: true,
-          parameters: [{name: 'parameters', type: tableInterfaceName, hasQuestionToken: false}],
+          parameters: [
+            {
+              name: 'parameters',
+              type: tableInterfaceName,
+              hasQuestionToken: false,
+            },
+          ],
           returnType: `Promise<unknown>`,
           ...tsMorphTransform!(project, sourceFile, classDeclaration),
         };

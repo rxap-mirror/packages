@@ -15,7 +15,7 @@ export function AddToFormProviders(project: Project, value: string, overwrite = 
   const sourceFile = GetFormProvidersFile(project);
   CoerceImports(sourceFile, {
     moduleSpecifier: '@angular/core',
-    namedImports: ['Provider'],
+    namedImports: [ 'Provider' ],
   });
   AddToArray(sourceFile, 'FormProviders', value, 'Provider[]', overwrite);
   return sourceFile;

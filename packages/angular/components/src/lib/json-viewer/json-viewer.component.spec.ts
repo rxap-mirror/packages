@@ -57,7 +57,7 @@ describe('JsonViewerComponent', () => {
           async$: null,
         },
       },
-    })).toEqual({deep: {deep: {}}});
+    })).toEqual({ deep: { deep: {} } });
 
   });
 
@@ -82,7 +82,7 @@ describe('JsonViewerComponent', () => {
     obj3.promise = Promise.resolve();
     obj3.obj1 = obj1;
 
-    expect(component.cleanObject(obj1)).toEqual({obj2: {obj3: {obj1: '__circular__'}}});
+    expect(component.cleanObject(obj1)).toEqual({ obj2: { obj3: { obj1: '__circular__' } } });
 
   });
 

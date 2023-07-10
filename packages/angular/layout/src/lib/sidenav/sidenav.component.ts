@@ -22,7 +22,7 @@ import { ExtendedModule } from '@angular/flex-layout/extended';
 @Component({
   selector: 'rxap-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss'],
+  styleUrls: [ './sidenav.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {

@@ -15,7 +15,7 @@ export class RxapAngularFireStorageModule {
     private readonly storage: AngularFireStorage,
     @Optional()
     @Inject(USE_STORAGE_EMULATOR)
-      useEmulator: [string, number] | null,
+      useEmulator: [ string, number ] | null,
   ) {
     if (useEmulator) {
       this.storage.storage.useEmulator(...useEmulator);

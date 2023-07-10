@@ -104,9 +104,9 @@ import { ToggleSubject } from '@rxap/rxjs';
     // endregion
   ],
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {'(reset)': 'onReset()'},
+  host: { '(reset)': 'onReset()' },
   // eslint-disable-next-line @angular-eslint/no-outputs-metadata-property
-  outputs: ['ngSubmit'],
+  outputs: [ 'ngSubmit' ],
   exportAs: 'rxapForm',
   standalone: true,
 })
@@ -288,7 +288,7 @@ export class FormDirective<T = any>
           tap((value) => {
               if (isDevMode()) {
                 console.debug(
-                  `Auto submit form '${this._formDefinition.rxapMetadata.id}'`,
+                  `Auto submit form '${ this._formDefinition.rxapMetadata.id }'`,
                   value,
                 );
               }
@@ -350,7 +350,7 @@ export class FormDirective<T = any>
                 for (let i = 0; i < control.controls.length; i++) {
                   const child = control.controls[i];
                   if (!child.valid) {
-                    console.group(`index: ${i}`);
+                    console.group(`index: ${ i }`);
                     printErrorControls(child);
                     console.groupEnd();
                   }
@@ -362,7 +362,7 @@ export class FormDirective<T = any>
               }
             } else {
               if (control.errors) {
-                for (const [key, value] of Object.entries(control.errors)) {
+                for (const [ key, value ] of Object.entries(control.errors)) {
                   console.group(key);
                   console.log(value);
                   console.groupEnd();

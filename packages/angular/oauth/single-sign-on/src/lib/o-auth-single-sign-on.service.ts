@@ -53,7 +53,17 @@ export class OAuthSingleSignOnService extends OAuthService {
     @Inject(RXAP_O_AUTH_REDIRECT_URL)
       redirectUrl: string | null = null,
   ) {
-    super(oAuthMethod, getOAuthProfileMethod, router, profileEndpoint, authEndpoint, secret, ssoUrl, redirectSignOut, redirectUrl);
+    super(
+      oAuthMethod,
+      getOAuthProfileMethod,
+      router,
+      profileEndpoint,
+      authEndpoint,
+      secret,
+      ssoUrl,
+      redirectSignOut,
+      redirectUrl,
+    );
   }
 
   public override async signInWithEmailAndPassword(
@@ -67,7 +77,7 @@ export class OAuthSingleSignOnService extends OAuthService {
   }
 
   public redirectToClient() {
-    window.location.replace(`${this.redirect}?accessToken=${this.accessToken}&refreshToken=${this.refreshToken}&expiresIn=${this.expiresIn}&payload=${this.payload}`);
+    window.location.replace(`${ this.redirect }?accessToken=${ this.accessToken }&refreshToken=${ this.refreshToken }&expiresIn=${ this.expiresIn }&payload=${ this.payload }`);
   }
 
   public override async signOut() {

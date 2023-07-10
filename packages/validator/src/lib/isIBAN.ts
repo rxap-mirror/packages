@@ -125,7 +125,7 @@ function hasValidIbanChecksum(str: string) {
   const alphaCapsReplacedWithDigits = rearranged.replace(/[A-Z]/g, char => (char.charCodeAt(0) - 55).toFixed(0));
 
   const remainder = alphaCapsReplacedWithDigits.match(/\d{1,7}/g)
-    ?.reduce((acc: number, value: string) => Number(acc + value) % 97, 0);
+                                               ?.reduce((acc: number, value: string) => Number(acc + value) % 97, 0);
 
   return remainder === 1;
 }

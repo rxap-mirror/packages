@@ -17,7 +17,7 @@ import {
   styleUrls: [ './footer.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgIf, MatToolbarModule, NgFor, PortalModule, AsyncPipe],
+  imports: [ NgIf, MatToolbarModule, NgFor, PortalModule, AsyncPipe ],
 })
 export class FooterComponent {
 

@@ -20,19 +20,26 @@ export async function GenerateRequestBody(
     const operationId = operation.operationId;
 
     const generator = new TypescriptInterfaceGenerator(
-      {...requestBodySchema, components},
-      {suffix: REQUEST_BODY_FILE_SUFFIX, basePath: REQUEST_BODY_BASE_PATH, addImports: true},
+      {
+        ...requestBodySchema,
+        components,
+      },
+      {
+        suffix: REQUEST_BODY_FILE_SUFFIX,
+        basePath: REQUEST_BODY_BASE_PATH,
+        addImports: true,
+      },
       project,
     );
 
-    console.debug(`Generate request body interface for: ${operationId}`);
+    console.debug(`Generate request body interface for: ${ operationId }`);
 
     try {
 
       await generator.build(operationId);
 
     } catch (error: any) {
-      console.error(`Failed to generate request body interface for: ${operationId}`, error.message);
+      console.error(`Failed to generate request body interface for: ${ operationId }`, error.message);
     }
 
   }

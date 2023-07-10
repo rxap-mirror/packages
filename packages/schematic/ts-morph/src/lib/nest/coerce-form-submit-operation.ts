@@ -31,15 +31,18 @@ export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOpti
       controllerName,
     ) => {
 
-      const {className: dtoClassName, filePath: dtoFilePath} = CoerceDtoClass(
+      const {
+        className: dtoClassName,
+        filePath: dtoFilePath,
+      } = CoerceDtoClass(
         project,
         controllerName,
         propertyList!,
       );
 
       CoerceImports(sourceFile, {
-        namedImports: [dtoClassName],
-        moduleSpecifier: `..${dtoFilePath}`,
+        namedImports: [ dtoClassName ],
+        moduleSpecifier: `..${ dtoFilePath }`,
       });
 
       return {

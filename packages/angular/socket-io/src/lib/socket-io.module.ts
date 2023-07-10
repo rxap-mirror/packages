@@ -21,11 +21,14 @@ export class SocketIoModule {
     return {
       ngModule: SocketIoModule,
       providers: [
-        {provide: SOCKET_CONFIG_TOKEN, useValue: config},
+        {
+          provide: SOCKET_CONFIG_TOKEN,
+          useValue: config,
+        },
         {
           provide: WrappedSocket,
           useFactory: SocketFactory,
-          deps: [SOCKET_CONFIG_TOKEN],
+          deps: [ SOCKET_CONFIG_TOKEN ],
         },
       ],
     };

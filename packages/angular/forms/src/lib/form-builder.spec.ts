@@ -135,11 +135,13 @@ describe('@rxap/forms', () => {
     it('should build flat form', () => {
 
       const builder = new RxapFormBuilder<ITestForm>(TestForm, Injector.create({
-        providers: [{
-          provide: TestForm,
-          useClass: TestForm,
-          deps: [],
-        }],
+        providers: [
+          {
+            provide: TestForm,
+            useClass: TestForm,
+            deps: [],
+          },
+        ],
       }));
 
       const form = builder.build<TestForm>();
@@ -238,8 +240,8 @@ describe('@rxap/forms', () => {
       const form = formBuilder.build<TestFormWithSubArray>({
         username: 'rxap',
         contacts: [
-          {zip: '6584214'},
-          {zip: '653523'},
+          { zip: '6584214' },
+          { zip: '653523' },
         ],
       });
 
@@ -285,13 +287,17 @@ describe('@rxap/forms', () => {
 
     it('should build form with sub array controls', () => {
 
-      const formBuilder = new RxapFormBuilder<ITestFormWithSubArrayControls>(TestFormWithSubArrayControls, Injector.NULL, [
-        {
-          provide: TestFormWithSubArrayControls,
-          useClass: TestFormWithSubArrayControls,
-          deps: [],
-        },
-      ]);
+      const formBuilder = new RxapFormBuilder<ITestFormWithSubArrayControls>(
+        TestFormWithSubArrayControls,
+        Injector.NULL,
+        [
+          {
+            provide: TestFormWithSubArrayControls,
+            useClass: TestFormWithSubArrayControls,
+            deps: [],
+          },
+        ],
+      );
 
       const form = formBuilder.build<TestFormWithSubArrayControls>();
 
@@ -307,13 +313,17 @@ describe('@rxap/forms', () => {
 
     it('should build form with sub array controls and initial value', () => {
 
-      const formBuilder = new RxapFormBuilder<ITestFormWithSubArrayControls>(TestFormWithSubArrayControls, Injector.NULL, [
-        {
-          provide: TestFormWithSubArrayControls,
-          useClass: TestFormWithSubArrayControls,
-          deps: [],
-        },
-      ]);
+      const formBuilder = new RxapFormBuilder<ITestFormWithSubArrayControls>(
+        TestFormWithSubArrayControls,
+        Injector.NULL,
+        [
+          {
+            provide: TestFormWithSubArrayControls,
+            useClass: TestFormWithSubArrayControls,
+            deps: [],
+          },
+        ],
+      );
 
       const form = formBuilder.build<TestFormWithSubArrayControls>({
         username: 'rxap',
@@ -362,11 +372,11 @@ describe('@rxap/forms', () => {
 
       const form = formBuilder.build<TestFormWithSubGroup>({
         username: 'rxap',
-        contact: {zip: '4534'},
+        contact: { zip: '4534' },
       });
 
       expect(form.username.value).toEqual('rxap');
-      expect(form.contact.rxapFormGroup!.value).toEqual({zip: '4534'});
+      expect(form.contact.rxapFormGroup!.value).toEqual({ zip: '4534' });
       expect(form.contact.zip.value).toEqual('4534');
 
     });
@@ -384,27 +394,27 @@ describe('@rxap/forms', () => {
       const form = formBuilder.build<TestFormWithSubArray>({
         username: 'rxap',
         contacts: [
-          {zip: '6584214'},
-          {zip: '653523'},
+          { zip: '6584214' },
+          { zip: '653523' },
         ],
       });
 
       expect(form.rxapFormGroup.value).toEqual({
         username: 'rxap',
         contacts: [
-          {zip: '6584214'},
-          {zip: '653523'},
+          { zip: '6584214' },
+          { zip: '653523' },
         ],
       });
       expect(form.contacts.length).toBe(2);
-      form.contacts.rxapFormArray.insertAt(undefined, {zip: '44444'});
+      form.contacts.rxapFormArray.insertAt(undefined, { zip: '44444' });
       expect(form.contacts.length).toBe(3);
       expect(form.rxapFormGroup.value).toEqual({
         username: 'rxap',
         contacts: [
-          {zip: '6584214'},
-          {zip: '653523'},
-          {zip: '44444'},
+          { zip: '6584214' },
+          { zip: '653523' },
+          { zip: '44444' },
         ],
       });
       expect(form.contacts[2].rxapFormGroup.controlId).toEqual('2');
@@ -426,27 +436,27 @@ describe('@rxap/forms', () => {
       const form = formBuilder.build<TestFormWithSubArray>({
         username: 'rxap',
         contacts: [
-          {zip: '6584214'},
-          {zip: '653523'},
+          { zip: '6584214' },
+          { zip: '653523' },
         ],
       });
 
       expect(form.rxapFormGroup.value).toEqual({
         username: 'rxap',
         contacts: [
-          {zip: '6584214'},
-          {zip: '653523'},
+          { zip: '6584214' },
+          { zip: '653523' },
         ],
       });
       expect(form.contacts.length).toBe(2);
-      form.contacts.rxapFormArray.insertAt(0, {zip: '44444'});
+      form.contacts.rxapFormArray.insertAt(0, { zip: '44444' });
       expect(form.contacts.length).toBe(3);
       expect(form.rxapFormGroup.value).toEqual({
         username: 'rxap',
         contacts: [
-          {zip: '44444'},
-          {zip: '6584214'},
-          {zip: '653523'},
+          { zip: '44444' },
+          { zip: '6584214' },
+          { zip: '653523' },
         ],
       });
 

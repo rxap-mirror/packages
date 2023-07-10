@@ -50,7 +50,7 @@ export class IdentityPlatformHttpInterceptor implements HttpInterceptor {
       return idToken(this.auth).pipe(
         tap(idTokenValue => {
           if (!idTokenValue) {
-            throw new Error(`The isToken is not defined. Ensure that the user is logged in, before sending a request to '${req.url}'`);
+            throw new Error(`The isToken is not defined. Ensure that the user is logged in, before sending a request to '${ req.url }'`);
           }
         }),
         isDefined(),

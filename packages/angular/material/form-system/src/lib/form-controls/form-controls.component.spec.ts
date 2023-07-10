@@ -57,7 +57,7 @@ describe('@rxap/material-form-system', () => {
           {
             provide: RXAP_FORM_DEFINITION,
             useFactory: FormFactory,
-            deps: [INJECTOR],
+            deps: [ INJECTOR ],
           },
         ],
       }).compileComponents();
@@ -79,7 +79,7 @@ describe('@rxap/material-form-system', () => {
     it('should only trigger the submit logic once', async () => {
 
       const submitButton = await loader.getHarness(
-        MatButtonHarness.with({text: 'Submit'}),
+        MatButtonHarness.with({ text: 'Submit' }),
       );
 
       const onSubmitSpy = spyOn(formDirective, 'onSubmit');

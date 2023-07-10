@@ -52,7 +52,7 @@ export function IsFooterComponent(obj: any): obj is FooterComponent {
   return !!obj && !!obj['component'];
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class FooterService {
 
   /**
@@ -72,9 +72,9 @@ export class FooterService {
         console.warn('The RXAP_FOOTER_COMPONENT InjectionToken is deprecated and will be removed in the feature!');
       }
       if (Array.isArray(footerComponents)) {
-        footerComponents.forEach((comp, index) => this.addComponent(comp, {order: index}, true));
+        footerComponents.forEach((comp, index) => this.addComponent(comp, { order: index }, true));
       } else {
-        this.addComponent(footerComponents, {order: 0}, true);
+        this.addComponent(footerComponents, { order: 0 }, true);
       }
     }
   }
@@ -123,7 +123,7 @@ export class FooterService {
 
   public pushPortal(portal: Portal<any>) {
     if (!this.portals$.value.includes(portal)) {
-      this.portals$.next([...this.portals$.value, portal]);
+      this.portals$.next([ ...this.portals$.value, portal ]);
     } else {
       if (isDevMode()) {
         console.warn('Can not add the same portal multiple times');
@@ -134,7 +134,7 @@ export class FooterService {
   public removePortal(portal: Portal<any>) {
     const index = this.portals$.value.indexOf(portal);
     if (index !== -1) {
-      const portals = [...this.portals$.value];
+      const portals = [ ...this.portals$.value ];
       portals.splice(index, 1);
       this.portals$.next(portals);
     }
@@ -143,8 +143,11 @@ export class FooterService {
   /**
    * @deprecated removed
    */
-  public addComponent(component: Constructor, options: FooterComponentOptions = {order: 0}, silent = false): void {
-    this.components.push({...options, component});
+  public addComponent(component: Constructor, options: FooterComponentOptions = { order: 0 }, silent = false): void {
+    this.components.push({
+      ...options,
+      component,
+    });
 
     if (!silent) {
       this.update$.next();
@@ -173,10 +176,13 @@ export class FooterService {
   public addTemplate(
     template: TemplateRef<any>,
     viewContainerRef: ViewContainerRef,
-    options: FooterComponentOptions = {order: 0},
+    options: FooterComponentOptions = { order: 0 },
     silent = false,
   ): void {
-    this.templates.push({...options, template});
+    this.templates.push({
+      ...options,
+      template,
+    });
 
     if (!silent) {
       this.update$.next();
@@ -221,7 +227,7 @@ export class FooterService {
    * @deprecated removed
    */
   public getComponentsAndTemplates(): Array<FooterComponent | FooterTemplate> {
-    return [...this.templates, ...this.components]
+    return [ ...this.templates, ...this.components ]
       .sort((a, b) => (a.order || 0) - (b.order || 0));
   }
 

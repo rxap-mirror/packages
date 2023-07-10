@@ -5,7 +5,8 @@ describe(ExpandControlsCellComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(ExpandControlsCellComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

@@ -52,17 +52,28 @@ export function IsNumber(control: AbstractControl): ValidationErrors | null {
     return null;
   }
   if (isNaN(Number(control.value))) {
-    return {isNumber: {expected: 'A number or a string representing a number', actual: control.value}};
+    return {
+      isNumber: {
+        expected: 'A number or a string representing a number',
+        actual: control.value,
+      },
+    };
   }
   return null;
 }
 
-export function _IsNumber({message, options}: { message?: string, options?: IsNumberOptions } = {}) {
+export function _IsNumber({
+                            message,
+                            options,
+                          }: { message?: string, options?: IsNumberOptions } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;
     }
-    if (!isNumber(!options?.strict && typeof control.value === 'string' ? Number(control.value) : control.value, options)) {
+    if (!isNumber(
+      !options?.strict && typeof control.value === 'string' ? Number(control.value) : control.value,
+      options,
+    )) {
       return {
         isNumber: {
           expected: 'A number value',

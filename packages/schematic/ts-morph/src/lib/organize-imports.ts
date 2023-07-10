@@ -26,7 +26,7 @@ export function OrganizeImports(): Rule {
         case 'c':
         case 'o':
           if (action.path.match(/\.ts$/)) {
-            project.createSourceFile(action.path, action.content.toString('utf-8'), {overwrite: true});
+            project.createSourceFile(action.path, action.content.toString('utf-8'), { overwrite: true });
           }
           break;
 

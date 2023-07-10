@@ -59,7 +59,7 @@ export class RxapAuthenticationGuard {
       if (!this.lastUrl || (state.url !== '/' && !state.url.match(/authentication\/login/))) {
         this.lastUrl = state.url;
       }
-      return this.router.createUrlTree(['/', 'authentication', 'loading']);
+      return this.router.createUrlTree([ '/', 'authentication', 'loading' ]);
     }
     if (authenticated) {
       if (this.lastUrl && (state.url/*?*/ === '/' || state.url.match(/authentication\/login/))) {
@@ -71,7 +71,7 @@ export class RxapAuthenticationGuard {
           if (state.url.match(/authentication\/reset-password/)) {
             return true;
           }
-          return this.router.createUrlTree(['/']);
+          return this.router.createUrlTree([ '/' ]);
         } else {
           this.lastUrl = null;
           return true;
@@ -89,7 +89,7 @@ export class RxapAuthenticationGuard {
         }
         return true;
       } else {
-        return this.router.createUrlTree(['/', 'authentication', 'login']);
+        return this.router.createUrlTree([ '/', 'authentication', 'login' ]);
       }
     }
 
@@ -107,8 +107,8 @@ export class RxapAuthenticationGuard {
         const queryParamsString = urlMatch[3];
         queryParams = queryParamsString.split('&').map(param => {
           const split = param.split('=');
-          return {[split[0]]: split[1]};
-        }).reduce((params, param) => ({...params, ...param}), {});
+          return { [split[0]]: split[1] };
+        }).reduce((params, param) => ({ ...params, ...param }), {});
       }
 
       let fragment: string | undefined = undefined;
@@ -117,14 +117,14 @@ export class RxapAuthenticationGuard {
         fragment = urlMatch[5];
       }
 
-      return this.router.createUrlTree([urlMatch[1]], {
+      return this.router.createUrlTree([ urlMatch[1] ], {
         queryParams,
         fragment,
       });
 
     }
 
-    return this.router.createUrlTree([lastUrl]);
+    return this.router.createUrlTree([ lastUrl ]);
 
   }
 

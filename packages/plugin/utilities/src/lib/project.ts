@@ -1,10 +1,11 @@
 import { ExecutorContext } from '@nx/devkit';
 
 export function GetProjectConfiguration(context: ExecutorContext, projectName = context.projectName) {
-  const {projectsConfigurations} = context;
+  const { projectsConfigurations } = context;
 
   if (!projectsConfigurations) {
-    throw new Error('The projectsConfigurations is undefined. Ensure the projectsConfigurations is passed into the executor context.');
+    throw new Error(
+      'The projectsConfigurations is undefined. Ensure the projectsConfigurations is passed into the executor context.');
   }
 
   if (!projectName) {
@@ -14,7 +15,7 @@ export function GetProjectConfiguration(context: ExecutorContext, projectName = 
   const projectConfiguration = projectsConfigurations.projects[projectName];
 
   if (!projectConfiguration) {
-    throw new Error(`The project configuration for project '${projectName}' not found!`);
+    throw new Error(`The project configuration for project '${ projectName }' not found!`);
   }
 
   return projectConfiguration;

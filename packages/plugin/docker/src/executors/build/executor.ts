@@ -18,7 +18,7 @@ export default async function runExecutor(
   if (!options.context) {
     const outputPath = GuessOutputPath(context);
 
-    console.log(`Using output path: ${outputPath}`);
+    console.log(`Using output path: ${ outputPath }`);
 
     options.context = join(context.root, outputPath);
   }
@@ -40,12 +40,17 @@ export default async function runExecutor(
   const fallbackImageName = 'docker';
 
   if (options.tag && !Array.isArray(options.tag)) {
-    options.tag = [options.tag];
+    options.tag = [ options.tag ];
   }
 
   if (!options.tag?.length) {
     console.log('create registry tag');
-    destinationList.push(getGitlabRegistryDestination(options, fallbackImageName, undefined, context.configurationName));
+    destinationList.push(getGitlabRegistryDestination(
+      options,
+      fallbackImageName,
+      undefined,
+      context.configurationName,
+    ));
   } else {
     for (const tag of options.tag) {
       destinationList.push(getGitlabRegistryDestination(options, fallbackImageName, tag, context.configurationName));
@@ -56,7 +61,7 @@ export default async function runExecutor(
     destinationList.push(getGitlabRegistryDestination(options, fallbackImageName, 'latest'));
   }
 
-  console.log(`start docker build for ${options.dockerfile}`);
+  console.log(`start docker build for ${ options.dockerfile }`);
 
   let result = await dockerBuild(
     options.command,
@@ -66,7 +71,7 @@ export default async function runExecutor(
   );
 
   if (Number(result)) {
-    return {success: false};
+    return { success: false };
   }
 
   if (options.push) {
@@ -76,5 +81,5 @@ export default async function runExecutor(
     );
   }
 
-  return {success: !Number(result)};
+  return { success: !Number(result) };
 }

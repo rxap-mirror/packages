@@ -55,7 +55,8 @@ describe('@rxap/directives/material/expansion', () => {
       });
 
       it('should build the key', () => {
-        expect(directive.key).toEqual([PersistentExpansionPanelDirective.BASE_KEY, 'group', 'uuid', 'id', 'isExpanded'].join('/'));
+        expect(directive.key)
+          .toEqual([ PersistentExpansionPanelDirective.BASE_KEY, 'group', 'uuid', 'id', 'isExpanded' ].join('/'));
       });
 
       it('should set panel open if local storage item exists', () => {
@@ -133,8 +134,8 @@ describe('@rxap/directives/material/expansion', () => {
             NoopAnimationsModule,
             PersistentExpansionPanelDirective,
           ],
-          declarations: [TestComponent],
-          providers: [LOCAL_STORAGE_SERVICE_FAKE_PROVIDER],
+          declarations: [ TestComponent ],
+          providers: [ LOCAL_STORAGE_SERVICE_FAKE_PROVIDER ],
         }).compileComponents();
 
         componentFixture = TestBed.createComponent(TestComponent);

@@ -7,7 +7,7 @@ export function Deprecated(message: string) {
         return {
           ...descriptor,
           value: function (...args: any[]) {
-            console.warn(`[${this.constructor.name}.${propertyKey}()] is deprecated!`, message);
+            console.warn(`[${ this.constructor.name }.${ propertyKey }()] is deprecated!`, message);
             return (descriptor.value).apply(this, args);
           },
         };
@@ -16,12 +16,12 @@ export function Deprecated(message: string) {
       // class member
       Object.defineProperty(target, propertyKey, {
         get() {
-          console.warn(`[${this.constructor.name}.${propertyKey}:get] is deprecated!`, message);
-          return this[`__deprecated__${propertyKey}`];
+          console.warn(`[${ this.constructor.name }.${ propertyKey }:get] is deprecated!`, message);
+          return this[`__deprecated__${ propertyKey }`];
         },
         set(value): void {
-          console.warn(`[${this.constructor.name}.${propertyKey}:set] is deprecated!`, message);
-          this[`__deprecated__${propertyKey}`] = value;
+          console.warn(`[${ this.constructor.name }.${ propertyKey }:set] is deprecated!`, message);
+          this[`__deprecated__${ propertyKey }`] = value;
         },
       });
     }

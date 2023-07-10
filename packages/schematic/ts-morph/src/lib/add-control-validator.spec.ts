@@ -58,7 +58,10 @@ describe('Helpers', () => {
 
     it('should replace a validator property if multiple exists', () => {
 
-      const sourceFile = project.createSourceFile('test.ts', `const options = { validators: [value, test, newTest, exi] };`);
+      const sourceFile = project.createSourceFile(
+        'test.ts',
+        `const options = { validators: [value, test, newTest, exi] };`,
+      );
       const controlOptions = sourceFile.getVariableDeclaration('options')!.getInitializer() as ObjectLiteralExpression;
 
       expect(controlOptions.getProperties()).toHaveLength(1);

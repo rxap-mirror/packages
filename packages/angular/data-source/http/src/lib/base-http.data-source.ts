@@ -70,20 +70,27 @@ export abstract class BaseHttpDataSource<Data = any, PathParams = any, Body = an
     this.timeout = this.metadata.timeout ?? this.timeout;
     this.loading$ = this.requestsInProgress$.loading$();
     if (http === undefined) {
-      throw new RxapDataSourceError('HttpClient is undefined. Ensure that the HttpClient is added to the deps property!', '', this.constructor.name);
+      throw new RxapDataSourceError(
+        'HttpClient is undefined. Ensure that the HttpClient is added to the deps property!',
+        '',
+        this.constructor.name,
+      );
     }
     if (refresh$) {
       this.refresh$ = refresh$;
     }
   }
 
-  public abstract override derive(id: string, metadata: Partial<HttpDataSourceMetadata<PathParams, Body>>): BaseHttpDataSource<Data>;
+  public abstract override derive(
+    id: string,
+    metadata: Partial<HttpDataSourceMetadata<PathParams, Body>>,
+  ): BaseHttpDataSource<Data>;
 
   public request$(options: HttpDataSourceOptions<PathParams, Body> = this._options, merge = false): Promise<Data> {
     this.init();
     if (merge) {
       // TODO : add deep merge
-      options = {...this._options, ...options};
+      options = { ...this._options, ...options };
     }
     // test if options is defined. Can be undefined if the init method is not yet been called
     if (!options) {
@@ -111,7 +118,7 @@ export abstract class BaseHttpDataSource<Data = any, PathParams = any, Body = an
     if (force || this._connectedViewer.size !== 0) {
       if (merge) {
         // TODO : add deep merge
-        options = {...this._options, ...options};
+        options = { ...this._options, ...options };
       }
       // test if options is defined. Can be undefined if the init method is not yet been called
       if (!options) {
@@ -162,14 +169,16 @@ export abstract class BaseHttpDataSource<Data = any, PathParams = any, Body = an
     return !!this._options && keys.every(key => this._options[key] === options[key]);
   }
 
-  protected override _connect(viewer: HttpDataSourceViewer<PathParams, Body>): [Observable<Data>, Subscription] {
+  protected override _connect(viewer: HttpDataSourceViewer<PathParams, Body>): [ Observable<Data>, Subscription ] {
     this.init();
 
     if (viewer.url === this.metadata.url) {
       delete viewer.url;
     }
 
-    if (viewer.viewChange === EMPTY && (!viewer.lazy || this._data === undefined || !this.isEqualToLastOptions(viewer))) {
+    if (viewer.viewChange ===
+      EMPTY &&
+      (!viewer.lazy || this._data === undefined || !this.isEqualToLastOptions(viewer))) {
       viewer.realtime = this._data !== undefined;
       viewer.viewChange = of(viewer);
     }
@@ -213,7 +222,11 @@ export abstract class BaseHttpDataSource<Data = any, PathParams = any, Body = an
     if (matches) {
 
       if (!hasIndexSignature(pathParams)) {
-        throw new RxapDataSourceError(`Path params for connection '${this.id}' has not an index signature`, '', this.constructor.name);
+        throw new RxapDataSourceError(
+          `Path params for connection '${ this.id }' has not an index signature`,
+          '',
+          this.constructor.name,
+        );
       }
 
       for (const match of matches) {
@@ -224,7 +237,11 @@ export abstract class BaseHttpDataSource<Data = any, PathParams = any, Body = an
           replace = encodeURIComponent(pathParams[param]);
         }
         if (replace === null) {
-          throw new RxapDataSourceError(`Path params for connection '${this.id}' has not a defined value for '${param}'`, '', this.constructor.name);
+          throw new RxapDataSourceError(
+            `Path params for connection '${ this.id }' has not a defined value for '${ param }'`,
+            '',
+            this.constructor.name,
+          );
         }
         url = url.replace(match, replace);
       }

@@ -80,13 +80,17 @@ import { MatRippleModule } from '@angular/material/core';
   animations: [
     trigger('sub-nav', [
       transition(':enter', [
-        style({display: 'block', height: '0', overflow: 'hidden'}),
-        animate(150, style({height: '*'})),
+        style({
+          display: 'block',
+          height: '0',
+          overflow: 'hidden',
+        }),
+        animate(150, style({ height: '*' })),
       ]),
       transition(':leave', [
-        style({overflow: 'hidden'}),
-        animate(300, style({height: '0'})),
-        style({display: 'none'}),
+        style({ overflow: 'hidden' }),
+        animate(300, style({ height: '0' })),
+        style({ display: 'none' }),
       ]),
     ]),
   ],
@@ -109,7 +113,7 @@ export class NavigationItemComponent
   implements OnChanges, AfterViewInit, OnDestroy, OnInit {
   public children: Navigation | null = null;
 
-  @ViewChild(RouterLinkActive, {static: true})
+  @ViewChild(RouterLinkActive, { static: true })
   public routerLinkActive!: RouterLinkActive;
 
   @Input()
@@ -162,26 +166,26 @@ export class NavigationItemComponent
   public ngAfterViewInit() {
     this._subscription.add(
       this.router.events
-        .pipe(
-          filter((event) => event instanceof NavigationEnd),
-          startWith(true),
-          delay(100),
-          tap(() => {
-            if (this.routerLinkActive.isActive) {
-              if (!this.sidenav.collapsed$.value) {
-                // only close the overlay if sidenav collapsed
-                this._overlayRef?.detach();
+          .pipe(
+            filter((event) => event instanceof NavigationEnd),
+            startWith(true),
+            delay(100),
+            tap(() => {
+              if (this.routerLinkActive.isActive) {
+                if (!this.sidenav.collapsed$.value) {
+                  // only close the overlay if sidenav collapsed
+                  this._overlayRef?.detach();
+                }
+                this.renderer.addClass(this.elementRef.nativeElement, 'active');
+              } else {
+                this.renderer.removeClass(
+                  this.elementRef.nativeElement,
+                  'active',
+                );
               }
-              this.renderer.addClass(this.elementRef.nativeElement, 'active');
-            } else {
-              this.renderer.removeClass(
-                this.elementRef.nativeElement,
-                'active',
-              );
-            }
-          }),
-        )
-        .subscribe(),
+            }),
+          )
+          .subscribe(),
     );
   }
 
@@ -190,12 +194,12 @@ export class NavigationItemComponent
     // state is changed
     this._subscription.add(
       this.sidenav.collapsed$
-        .pipe(
-          skip(1),
-          distinctUntilChanged(),
-          tap(() => this._overlayRef?.detach()),
-        )
-        .subscribe(),
+          .pipe(
+            skip(1),
+            distinctUntilChanged(),
+            tap(() => this._overlayRef?.detach()),
+          )
+          .subscribe(),
     );
   }
 
@@ -211,16 +215,16 @@ export class NavigationItemComponent
         if (!this._overlayRef) {
           this._overlayRef = this.overlay.create({
             positionStrategy: this.overlay
-              .position()
-              .flexibleConnectedTo(this.elementRef)
-              .withPositions([
-                {
-                  originY: 'top',
-                  originX: 'end',
-                  overlayY: 'top',
-                  overlayX: 'start',
-                },
-              ]),
+                                  .position()
+                                  .flexibleConnectedTo(this.elementRef)
+                                  .withPositions([
+                                    {
+                                      originY: 'top',
+                                      originX: 'end',
+                                      overlayY: 'top',
+                                      overlayX: 'start',
+                                    },
+                                  ]),
           });
         }
         if (!this._overlayRef.hasAttached()) {

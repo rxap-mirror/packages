@@ -5,7 +5,8 @@ describe(TreeComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(TreeComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });
@@ -13,7 +14,10 @@ describe(TreeComponent.name, () => {
   it('renders', () => {
     cy.mount(TreeComponent, {
       componentProperties: {
-        multiple: false, hideLeafIcon: false, id: '', dividerOffset: '256px',
+        multiple: false,
+        hideLeafIcon: false,
+        id: '',
+        dividerOffset: '256px',
       },
     });
   });

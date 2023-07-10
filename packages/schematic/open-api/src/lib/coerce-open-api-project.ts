@@ -19,7 +19,7 @@ export function CoerceOpenApiProject(project: string, prefix: string, directory?
       return chain([
         externalSchematic('@nrwl/angular', 'library', {
           name: project,
-          importPath: `@${defaultProjectPrefix}/${projectName}`,
+          importPath: `@${ defaultProjectPrefix }/${ projectName }`,
           prefix,
           directory,
         }),
@@ -33,14 +33,14 @@ export function CoerceOpenApiProject(project: string, prefix: string, directory?
           if (Object.keys(paths).length) {
             for (const key of Object.keys(paths)) {
               if (directory) {
-                if (key.match(new RegExp(`/${directory.split('/').join('-')}-${project}$`))) {
+                if (key.match(new RegExp(`/${ directory.split('/').join('-') }-${ project }$`))) {
                   delete paths[key];
-                  paths[key + '/*'] = [`libs/${directory}/${project}/src/lib/*`];
+                  paths[key + '/*'] = [ `libs/${ directory }/${ project }/src/lib/*` ];
                 }
               } else {
-                if (key.match(new RegExp(`/${project}$`))) {
+                if (key.match(new RegExp(`/${ project }$`))) {
                   delete paths[key];
-                  paths[key + '/*'] = [`libs/${project}/src/lib/*`];
+                  paths[key + '/*'] = [ `libs/${ project }/src/lib/*` ];
                 }
               }
             }

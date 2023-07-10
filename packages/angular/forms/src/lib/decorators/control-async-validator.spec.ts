@@ -38,7 +38,7 @@ describe('@rxap/form-system', () => {
 
         @ControlAsyncValidator('username')
         public uniqueUsername(control: RxapFormControl): Promise<ValidationErrors | null> {
-          return Promise.resolve(control.value === 'rxap' ? null : {username: 'only rxap is allowed'});
+          return Promise.resolve(control.value === 'rxap' ? null : { username: 'only rxap is allowed' });
         }
 
       }
@@ -48,12 +48,12 @@ describe('@rxap/form-system', () => {
         {
           provide: RXAP_FORM_DEFINITION_BUILDER,
           useFactory: (injector: Injector) => new RxapFormBuilder<ITestForm>(TestForm, injector),
-          deps: [INJECTOR],
+          deps: [ INJECTOR ],
         },
         {
           provide: RXAP_FORM_DEFINITION,
           useFactory: (builder: RxapFormBuilder) => builder.build(),
-          deps: [RXAP_FORM_DEFINITION_BUILDER],
+          deps: [ RXAP_FORM_DEFINITION_BUILDER ],
         },
       ];
 
@@ -70,7 +70,7 @@ describe('@rxap/form-system', () => {
         expect(form).toBeInstanceOf(TestForm);
         const asyncValidator = form.username.asyncValidator!(form.username);
         expect(asyncValidator).toBeInstanceOf(Observable);
-        expect((asyncValidator as any).toPromise()).resolves.toEqual({username: 'only rxap is allowed'});
+        expect((asyncValidator as any).toPromise()).resolves.toEqual({ username: 'only rxap is allowed' });
 
       });
 

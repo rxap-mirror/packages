@@ -10,6 +10,6 @@ export * from './lib/determine-version';
 export * from './lib/is-public';
 export * from './lib/logging.interceptor';
 export * from './lib/validator.interceptor';
-export * from './lib/class-transformer-options'
-export * from './lib/class-validator-options'
+export * from './lib/class-transformer-options';
+export * from './lib/class-validator-options';
 export * from './lib/tokens';

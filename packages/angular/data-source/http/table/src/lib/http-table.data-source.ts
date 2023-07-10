@@ -112,7 +112,7 @@ export class HttpTableDataSource<
 
   protected override _connect(
     viewer: HttpDataSourceViewer,
-  ): [Observable<Data[]>, TeardownLogic] {
+  ): [ Observable<Data[]>, TeardownLogic ] {
     this.assertPaginator();
 
     if (viewer.viewChange && viewer.viewChange !== EMPTY) {
@@ -148,7 +148,11 @@ export class HttpTableDataSource<
       ) ?? of(null),
       this.filter?.change ?? of(null),
     ]).pipe(
-      map(([page, sort, filter]) => ({page, sort, filter})),
+      map(([ page, sort, filter ]) => ({
+        page,
+        sort,
+        filter,
+      })),
       switchMap((event) => {
         const options = this.tableEventToHttpOptions(event);
         if (isPromise(options) || isObservable(options)) {

@@ -89,7 +89,7 @@ export function AssertOAuthMethodParameters(
 
       default:
         throw new Error(
-          `The grant type '${parameters.grantType}' is not supported`,
+          `The grant type '${ parameters.grantType }' is not supported`,
         );
     }
   } else {
@@ -117,7 +117,7 @@ export interface OAuthMethodResponse {
   expiresAt: Date;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class OAuthMethod
   implements Method<OAuthMethodResponse, OAuthMethodParameters> {
   constructor(
@@ -158,14 +158,14 @@ export class OAuthMethod
       params.append('client_id', parameters.clientId);
       params.append('client_secret', parameters.secret);
     } else {
-      headers = headers.append('Authorization', `Basic ${parameters.secret}`);
+      headers = headers.append('Authorization', `Basic ${ parameters.secret }`);
     }
 
     const response = await firstValueFrom(this.http
-      .post<OAuthResponse>(parameters.authEndpoint, params.toString(), {
-        headers,
-        withCredentials: parameters.withCredentials ?? true,
-      }));
+                                              .post<OAuthResponse>(parameters.authEndpoint, params.toString(), {
+                                                headers,
+                                                withCredentials: parameters.withCredentials ?? true,
+                                              }));
 
     return {
       accessToken: response.access_token,

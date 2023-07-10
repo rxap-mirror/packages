@@ -18,7 +18,7 @@ export function EnvMapToString(map: EnvFile): string {
       }
     }
 
-    return `${name}=${stringValue}`;
+    return `${ name }=${ stringValue }`;
   }).join('\n') + '\n';
 }
 
@@ -69,7 +69,7 @@ export function StringToEnvMap(content: string): EnvFile {
 
         memo[key] = value;
       } else {
-        console.warn(`Could not parse env line '${line}'`);
+        console.warn(`Could not parse env line '${ line }'`);
       }
       return memo;
     }, {} as Record<string, string | boolean | number>);
@@ -109,7 +109,7 @@ export function WriteEnvFile(tree: Tree, content: EnvFile, filePath = '.env'): v
 export function GetEnvFile(tree: Tree, filePath = '.env'): EnvFile {
 
   if (!tree.exists(filePath)) {
-    throw new SchematicsException(`Could not find a env file in '${filePath}'.`);
+    throw new SchematicsException(`Could not find a env file in '${ filePath }'.`);
   }
 
   return StringToEnvMap(tree.read(filePath)!.toString());

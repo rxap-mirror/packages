@@ -15,12 +15,12 @@ function replaceVersionWithCurrentVersion(
   const directPackageDependencies = getDirectPackageDependenciesForProject(context);
 
   for (const [ packageName ] of Object.entries(dependencies)) {
-    console.log(`Check if ${packageName} is a direct dependency`);
+    console.log(`Check if ${ packageName } is a direct dependency`);
     if (directPackageDependencies[packageName]) {
       dependencies[packageName] = '^' + directPackageDependencies[packageName];
-      console.log(`Updated the version of ${packageName} to ${directPackageDependencies[packageName]}`);
+      console.log(`Updated the version of ${ packageName } to ${ directPackageDependencies[packageName] }`);
     } else {
-      console.log(`Skip ${packageName} because it is not a direct dependency`);
+      console.log(`Skip ${ packageName } because it is not a direct dependency`);
     }
   }
 
@@ -35,7 +35,7 @@ export default async function runExecutor(
   const {
     dependencies,
     peerDependencies,
-    optionalDependencies
+    optionalDependencies,
   } = packageJson;
 
   replaceVersionWithCurrentVersion(dependencies, context);

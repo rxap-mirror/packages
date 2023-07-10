@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@15.0.0...@rxap/material-table-window-system@16.0.0-dev.0) (2023-05-18)
 
@@ -62,8 +61,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -80,8 +78,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 ### Bug Fixes
 
 * close window on destory ([13f9e1e](https://gitlab.com/rxap/packages/commit/13f9e1eea56eaab58cef1b5a9f67587d4390c3eb))
-* support form window
-  destruction ([94fa482](https://gitlab.com/rxap/packages/commit/94fa482f837556483018683241af42832065dd58))
+* support form windowdestruction ([94fa482](https://gitlab.com/rxap/packages/commit/94fa482f837556483018683241af42832065dd58))
 
 ## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@12.0.8-next.0...@rxap/material-table-window-system@12.0.8) (2021-07-09)
 
@@ -91,8 +88,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* split into rxjs and reflect-metadata sub
-  packages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
+* split into rxjs and reflect-metadata subpackages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
 
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@12.0.7-next.0...@rxap/material-table-window-system@12.0.7) (2021-06-24)
 
@@ -102,8 +98,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* add missing root
-  provider ([20614b7](https://gitlab.com/rxap/packages/commit/20614b74e6e0c2b04b7737ef528dd5ed7b15c7b8))
+* add missing rootprovider ([20614b7](https://gitlab.com/rxap/packages/commit/20614b74e6e0c2b04b7737ef528dd5ed7b15c7b8))
 
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@12.0.5...@rxap/material-table-window-system@12.0.6) (2021-06-23)
 
@@ -121,8 +116,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* remove ng-mocks
-  peerDependency ([0940f5f](https://gitlab.com/rxap/packages/commit/0940f5f9a79d07c3ad82d7cf6ae17aeb28b23158))
+* remove ng-mockspeerDependency ([0940f5f](https://gitlab.com/rxap/packages/commit/0940f5f9a79d07c3ad82d7cf6ae17aeb28b23158))
 
 ## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@11.1.6...@rxap/material-table-window-system@12.0.2) (2021-06-09)
 
@@ -140,10 +134,8 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 ## [11.1.4](https://gitlab.com/rxap/packages/compare/@rxap/material-table-window-system@11.1.3...@rxap/material-table-window-system@11.1.4) (2021-03-19)
 
@@ -168,12 +160,10 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* add table select control element
-  support ([53584d2](https://gitlab.com/rxap/packages/commit/53584d21f06655b0ac999cbbc07d99d9d4ddd096))
+* add table select control elementsupport ([53584d2](https://gitlab.com/rxap/packages/commit/53584d21f06655b0ac999cbbc07d99d9d4ddd096))
 
 # 11.1.0 (2021-03-15)
 
 ### Features
 
-* add table-window-system
-  package ([dd5fc59](https://gitlab.com/rxap/packages/commit/dd5fc5913b76329560997cd23242b1218842ce04))
+* add table-window-systempackage ([dd5fc59](https://gitlab.com/rxap/packages/commit/dd5fc5913b76329560997cd23242b1218842ce04))

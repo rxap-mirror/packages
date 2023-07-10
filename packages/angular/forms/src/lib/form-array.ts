@@ -85,7 +85,7 @@ export class RxapFormArray<T = any,
         if (parent === this.root) {
           return this.controlId;
         } else {
-          return [parent.controlPath, this.controlId].join('.');
+          return [ parent.controlPath, this.controlId ].join('.');
         }
       }
     }
@@ -98,7 +98,7 @@ export class RxapFormArray<T = any,
     const parent: any = this.parent;
     if (parent) {
       if (parent.fullControlPath) {
-        return [parent.fullControlPath, this.controlId].join('.');
+        return [ parent.fullControlPath, this.controlId ].join('.');
       }
     }
     return this.controlId;
@@ -117,12 +117,12 @@ export class RxapFormArray<T = any,
   public readonly controlId: string;
   private readonly touchChanges = new Subject<boolean>();
   public readonly touch$ = this.touchChanges
-    .asObservable()
-    .pipe(distinctUntilChanged());
+                               .asObservable()
+                               .pipe(distinctUntilChanged());
   private readonly dirtyChanges = new Subject<boolean>();
   public readonly dirty$ = this.dirtyChanges
-    .asObservable()
-    .pipe(distinctUntilChanged());
+                               .asObservable()
+                               .pipe(distinctUntilChanged());
   private readonly _builder: FormBuilderFn;
   private readonly _controlInsertedFn: ControlInsertedFn;
   private readonly _controlRemovedFn: ControlRemovedFn;
@@ -259,8 +259,9 @@ export class RxapFormArray<T = any,
     // `patchValue` can be called recursively and inner data structures might have these values, so
     // we just ignore such cases when a field containing FormArray instance receives `null` or
     // `undefined` as a value.
-    if (value == null /* both `null` and `undefined` */)
+    if (value == null /* both `null` and `undefined` */) {
       return;
+    }
     if (options?.strict) {
       if (this.length > value.length) {
         for (let index = this.length - 1; index >= value.length; index--) {
@@ -270,7 +271,14 @@ export class RxapFormArray<T = any,
     }
     value.forEach((newValue, index) => {
       if (this.at(index)) {
-        this.at(index).patchValue(newValue, {...(options ?? {}), onlySelf: true});
+        this.at(index)
+            .patchValue(
+              newValue,
+              {
+                ...(options ?? {}),
+                onlySelf: true,
+              },
+            );
       } else if (options?.coerce) {
         this.insertAt(index, value[index]);
       }

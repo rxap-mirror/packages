@@ -42,7 +42,10 @@ export interface CoerceFormComponentProviderRuleOptions extends TsMorphAngularPr
 export function CoerceFormComponentProviderRule(
   options: CoerceFormComponentProviderRuleOptions,
 ): Rule {
-  let {providerObject, importStructures} = options;
+  let {
+    providerObject,
+    importStructures,
+  } = options;
   importStructures ??= [];
   const fileName = 'form.providers.ts';
   return TsMorphAngularProjectTransform(options, project => {

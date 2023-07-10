@@ -40,7 +40,7 @@ export function HasProjectCollectionJsonFile(
       break;
 
     default:
-      throw new SchematicsException(`The collection json type '${type}' is not supported`);
+      throw new SchematicsException(`The collection json type '${ type }' is not supported`);
 
   }
 
@@ -48,7 +48,12 @@ export function HasProjectCollectionJsonFile(
 
 }
 
-export function GetProjectCollectionJsonFilePath(host: Tree, projectName: string, type: CollectionJsonType = CollectionJsonType.SCHEMATICS, create?: boolean): string {
+export function GetProjectCollectionJsonFilePath(
+  host: Tree,
+  projectName: string,
+  type: CollectionJsonType = CollectionJsonType.SCHEMATICS,
+  create?: boolean,
+): string {
 
   const projectPackageJson = GetProjectPackageJson(host, projectName);
   const projectRoot = GetProjectRoot(host, projectName);
@@ -64,7 +69,7 @@ export function GetProjectCollectionJsonFilePath(host: Tree, projectName: string
       break;
 
     default:
-      throw new SchematicsException(`The collection json type '${type}' is not supported`);
+      throw new SchematicsException(`The collection json type '${ type }' is not supported`);
 
   }
 
@@ -77,16 +82,21 @@ export function GetProjectCollectionJsonFilePath(host: Tree, projectName: string
         host.create(collectionJsonPath, '{}');
         return collectionJsonPath;
       } else {
-        throw new SchematicsException(`The collection json path of type '${type}' for the project '${projectName}' does not exists`);
+        throw new SchematicsException(`The collection json path of type '${ type }' for the project '${ projectName }' does not exists`);
       }
     }
   } else {
-    throw new SchematicsException(`The project '${projectName}' does not have a '${type}' property in the package.json`);
+    throw new SchematicsException(`The project '${ projectName }' does not have a '${ type }' property in the package.json`);
   }
 
 }
 
-export function GetProjectCollectionJson(host: Tree, projectName: string, type: CollectionJsonType = CollectionJsonType.SCHEMATICS, create?: boolean): CollectionJson {
+export function GetProjectCollectionJson(
+  host: Tree,
+  projectName: string,
+  type: CollectionJsonType = CollectionJsonType.SCHEMATICS,
+  create?: boolean,
+): CollectionJson {
 
   const collectionJsonFilePath = GetProjectCollectionJsonFilePath(host, projectName, type, create);
 
@@ -105,7 +115,12 @@ export function UpdateCollectionJson(
 ): Rule {
   return tree => {
 
-    const collectionJsonFilePath = GetProjectCollectionJsonFilePath(tree, options.projectName, options.type, options.create);
+    const collectionJsonFilePath = GetProjectCollectionJsonFilePath(
+      tree,
+      options.projectName,
+      options.type,
+      options.create,
+    );
 
     return UpdateJsonFile(updater, collectionJsonFilePath, options);
 

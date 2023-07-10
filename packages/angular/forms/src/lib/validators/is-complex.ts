@@ -63,7 +63,7 @@ function inOperator<K extends PropertyKey, T extends object>(k: K, o: T): o is D
 
 function create(options: ComplexityOptions): string {
   let regex = '^';
-  for (const [key, value] of Object.entries(regexOptions)) {
+  for (const [ key, value ] of Object.entries(regexOptions)) {
     if (inOperator(key, options) && isNumber(options[key])) {
       regex += '(?=' + value.repeat(options[key]) + ')';
     }
@@ -95,18 +95,21 @@ function check(str: string, regexStringOrOptions: string | ComplexityOptions) {
 
 function checkError(str: string, options: ComplexityOptions) {
   const returnObject: Record<string, boolean> = {};
-  for (const [key, value] of Object.entries(options)) {
-    returnObject[key] = check(str, {[key]: value});
+  for (const [ key, value ] of Object.entries(options)) {
+    returnObject[key] = check(str, { [key]: value });
   }
   return returnObject;
 }
 
-export function IsComplex({message, options}: { message?: string, options: ComplexityOptions }) {
+export function IsComplex({
+                            message,
+                            options,
+                          }: { message?: string, options: ComplexityOptions }) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;
     }
-    const isNotString = IsString({message})(control);
+    const isNotString = IsString({ message })(control);
     if (isNotString !== null) {
       return isNotString;
     }

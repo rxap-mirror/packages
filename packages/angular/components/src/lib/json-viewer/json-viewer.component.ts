@@ -101,22 +101,25 @@ export class JsonViewerComponent implements OnInit, OnChanges {
       .filter(([ key, value ]) => !isPromiseLike(value))
       .filter(([ key, value ]) => !isTeardownLogic(value))
       .filter(([ key, value ]) => this.ignoredProperties.every(ip => typeof ip === 'string' ?
-                                                                     key !== ip :
-                                                                     !key.match(ip)))
-      .filter(([key, value]) => [...this.ignoredTypes].every(type => !(value instanceof type)))
-      .map(([key, value]) => {
+        key !== ip :
+        !key.match(ip)))
+      .filter(([ key, value ]) => [ ...this.ignoredTypes ].every(type => !(value instanceof type)))
+      .map(([ key, value ]) => {
         if (value && typeof value === 'object') {
           if (Array.isArray(value)) {
-            return [key, value.map(item => this.cleanObject(item, stack))];
+            return [ key, value.map(item => this.cleanObject(item, stack)) ];
           }
           if (typeof value === 'object') {
-            return [key, this.cleanObject(value, stack)];
+            return [ key, this.cleanObject(value, stack) ];
           }
         }
-        return [key, value];
+        return [ key, value ];
       })
       .sort((a, b) => a[0].localeCompare(b[0]))
-      .reduce((controlView, [key, value]) => ({...controlView, [key]: value}), {});
+      .reduce((controlView, [ key, value ]) => ({
+        ...controlView,
+        [key]: value,
+      }), {});
   }
 
   public setInspectValue(json: any): void {
@@ -144,7 +147,7 @@ export class JsonViewerComponent implements OnInit, OnChanges {
         this.segments.push(this.parseKeyValue(key, inspectValue[key]));
       });
     } else {
-      this.segments.push(this.parseKeyValue(`(${typeof inspectValue})`, inspectValue));
+      this.segments.push(this.parseKeyValue(`(${ typeof inspectValue })`, inspectValue));
     }
   }
 

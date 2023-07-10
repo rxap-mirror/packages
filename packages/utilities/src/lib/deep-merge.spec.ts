@@ -21,25 +21,39 @@ describe('Utilities', () => {
 
     it('merge object values', () => {
 
-      expect(deepMerge({a: 'test', b: 'nop'}, {b: 'test'})).toEqual({a: 'test', b: 'test'});
-      expect(deepMerge({a: 'test', b: {a: 'test'}}, {b: 'test' as any})).toEqual({a: 'test', b: 'test'});
+      expect(deepMerge({
+        a: 'test',
+        b: 'nop',
+      }, { b: 'test' }))
+        .toEqual({
+          a: 'test',
+          b: 'test',
+        });
+      expect(deepMerge({
+        a: 'test',
+        b: { a: 'test' },
+      }, { b: 'test' as any }))
+        .toEqual({
+          a: 'test',
+          b: 'test',
+        });
 
     });
 
     it('merge array values', () => {
 
       expect(deepMerge([], [])).toEqual([]);
-      expect(deepMerge(['a'], [])).toEqual(['a']);
-      expect(deepMerge(['a'], ['b'])).toEqual(['b']);
+      expect(deepMerge([ 'a' ], [])).toEqual([ 'a' ]);
+      expect(deepMerge([ 'a' ], [ 'b' ])).toEqual([ 'b' ]);
 
     });
 
     it('should merge objects with empty arrays', () => {
 
       expect(deepMerge(
-        {runner: []},
-        {runner: []},
-      )).toEqual({runner: []});
+        { runner: [] },
+        { runner: [] },
+      )).toEqual({ runner: [] });
 
     });
 
@@ -52,12 +66,12 @@ describe('Utilities', () => {
 
       a[0] = 'test';
 
-      expect(deepMerge(a, b)).toEqual(['test']);
+      expect(deepMerge(a, b)).toEqual([ 'test' ]);
 
       b[1] = 'b';
       b[2] = 'b';
 
-      expect(deepMerge(a, b)).toEqual(['test', 'b', 'b']);
+      expect(deepMerge(a, b)).toEqual([ 'test', 'b', 'b' ]);
 
 
     });

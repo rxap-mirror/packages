@@ -48,7 +48,7 @@ export class SelectedRowsDirective<Data extends Record<string, any>> implements 
       tap(selectedAllRows => {
         this.viewContainerRef.clear();
         if (selectedAllRows) {
-          this.viewContainerRef.createEmbeddedView(this.template, {$implicit: this.selectRowService.selectedRows});
+          this.viewContainerRef.createEmbeddedView(this.template, { $implicit: this.selectRowService.selectedRows });
         }
         this.cdr.detectChanges();
       }),

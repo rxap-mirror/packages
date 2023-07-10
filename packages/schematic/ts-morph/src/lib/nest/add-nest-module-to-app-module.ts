@@ -17,10 +17,12 @@ export function AddNestModuleToAppModule(options: AddNestModuleToAppModuleOption
     project => {
 
       const sourceFile = project.getSourceFileOrThrow('/app/app.module.ts');
-      AddNestModuleImport(sourceFile, classify(name) + 'Module', [{
-        namedImports: [classify(name) + 'Module'],
-        moduleSpecifier: `../${name}/${name}.module`,
-      }]);
+      AddNestModuleImport(sourceFile, classify(name) + 'Module', [
+        {
+          namedImports: [ classify(name) + 'Module' ],
+          moduleSpecifier: `../${ name }/${ name }.module`,
+        },
+      ]);
 
     },
   );

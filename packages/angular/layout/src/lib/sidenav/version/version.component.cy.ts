@@ -5,7 +5,8 @@ describe(VersionComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(VersionComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

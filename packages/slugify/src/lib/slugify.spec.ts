@@ -14,7 +14,7 @@ describe('@rxap/slugify', () => {
 
   it('should create with random suffix', () => {
 
-    expect(slugify('value', {suffix: true})).toMatch(/^value-\w{12}$/);
+    expect(slugify('value', { suffix: true })).toMatch(/^value-\w{12}$/);
 
   });
 

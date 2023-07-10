@@ -34,14 +34,14 @@ export class TableFilterInputDirective implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this._subscription = this.ngModel.valueChanges
-      ?.pipe(
-        debounceTime(128),
-        tap((value) =>
-          this.stringFilterService.change.next(
-            value && value.length >= 3 ? value : null,
-          ),
-        ),
-      )
-      .subscribe();
+                             ?.pipe(
+                               debounceTime(128),
+                               tap((value) =>
+                                 this.stringFilterService.change.next(
+                                   value && value.length >= 3 ? value : null,
+                                 ),
+                               ),
+                             )
+                             .subscribe();
   }
 }

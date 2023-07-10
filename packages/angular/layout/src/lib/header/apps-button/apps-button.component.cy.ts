@@ -5,7 +5,8 @@ describe(AppsButtonComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(AppsButtonComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

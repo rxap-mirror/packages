@@ -97,7 +97,7 @@ export class HttpPaginationDataSource<
 
   protected override _connect(
     viewer: HttpDataSourceViewer,
-  ): [Observable<Data[]>, TeardownLogic] {
+  ): [ Observable<Data[]>, TeardownLogic ] {
     this.assertPaginator();
 
     if (viewer.viewChange && viewer.viewChange !== EMPTY) {

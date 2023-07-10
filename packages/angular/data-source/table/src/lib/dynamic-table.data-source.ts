@@ -66,7 +66,7 @@ export interface TableEvent<Parameters = any> {
   parameters?: Parameters;
   /** time of the last refresh call */
   refresh?: number;
-  setTotalLength?: (length: number) => void
+  setTotalLength?: (length: number) => void;
 }
 
 export interface DynamicTableDataSourceViewer<Parameters> extends BaseDataSourceViewer<Parameters> {
@@ -192,7 +192,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
     return super.genericRetryFunction(error);
   }
 
-  protected override _connect(viewer: BaseDataSourceViewer): [Observable<Data[]>, TeardownLogic] | Observable<Data[]> {
+  protected override _connect(viewer: BaseDataSourceViewer): [ Observable<Data[]>, TeardownLogic ] | Observable<Data[]> {
     // call to ensure all parent logic is executed
     let data = super._connect(viewer);
     if (viewer.id && this.hasDynamicInputs(viewer.id)) {
@@ -223,7 +223,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
 
   protected override handelError(error: any) {
     if (isDevMode()) {
-      console.error(`Failed to load page: ${error.message}`, error);
+      console.error(`Failed to load page: ${ error.message }`, error);
     }
   }
 
@@ -231,7 +231,13 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
     return this.paginatorMap.has(id) || this.sortMap.has(id) || this.filterMap.has(id) || this.parametersMap.has(id);
   }
 
-  private createTableDataLoader(paginatorLike?: PaginatorLike, sortLike?: SortLike, filterLike?: FilterLike, parametersLike?: Observable<Parameters>, id?: string) {
+  private createTableDataLoader(
+    paginatorLike?: PaginatorLike,
+    sortLike?: SortLike,
+    filterLike?: FilterLike,
+    parametersLike?: Observable<Parameters>,
+    id?: string,
+  ) {
     return combineLatest([
       paginatorLike?.page?.pipe(
         startWith({
@@ -251,7 +257,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
       this._refresh$,
     ]).pipe(
       debounceTime(100),
-      map(([page, sort, filter, parameters, refresh]) => {
+      map(([ page, sort, filter, parameters, refresh ]) => {
         const tableEvent: TableEvent = {
           page,
           start: page ? page.pageSize * page.pageIndex : 0,

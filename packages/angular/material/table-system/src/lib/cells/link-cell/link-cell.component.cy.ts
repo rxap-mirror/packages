@@ -5,7 +5,8 @@ describe(LinkCellComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(LinkCellComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

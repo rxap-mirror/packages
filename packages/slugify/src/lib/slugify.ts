@@ -79,7 +79,7 @@ export class Slugify {
 
     if (options.suffix) {
       const suffix = this.generateRandomString(options.suffixLength);
-      slug = [slug, suffix].join('-');
+      slug = [ slug, suffix ].join('-');
     }
 
     return slug;

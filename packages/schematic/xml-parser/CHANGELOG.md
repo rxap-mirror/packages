@@ -7,22 +7,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* use the CoerceImports function for all
-  imports ([901a68a](https://gitlab.com/rxap/packages/commit/901a68a4fcb81d691573ea4ad20412b40cea3ec4))
+* use the CoerceImports function for allimports ([901a68a](https://gitlab.com/rxap/packages/commit/901a68a4fcb81d691573ea4ad20412b40cea3ec4))
 
 # [16.0.0-dev.2](https://gitlab.com/rxap/schematics/compare/@rxap/schematics-xml-parser@16.0.0-dev.1...@rxap/schematics-xml-parser@16.0.0-dev.2) (2023-05-18)
 
 ### Bug Fixes
 
-* remove deprecated pack target
-  concept ([eeb3748](https://gitlab.com/rxap/schematics/commit/eeb3748be1201fa7f5b3cd05771b95502376d4a3))
+* remove deprecated pack targetconcept ([eeb3748](https://gitlab.com/rxap/schematics/commit/eeb3748be1201fa7f5b3cd05771b95502376d4a3))
 
 # [16.0.0-dev.1](https://gitlab.com/rxap/schematics/compare/@rxap/schematics-xml-parser@16.0.0-dev.0...@rxap/schematics-xml-parser@16.0.0-dev.1) (2023-05-18)
 
 ### Bug Fixes
 
-* **deps:** update rxap packages to
-  16.x.x ([f9c2263](https://gitlab.com/rxap/schematics/commit/f9c226356bebe4b3ece8b80f4b08cb80582854a7))
+* **deps:** update rxap packages to16.x.x ([f9c2263](https://gitlab.com/rxap/schematics/commit/f9c226356bebe4b3ece8b80f4b08cb80582854a7))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/schematics/compare/@rxap/schematics-xml-parser@15.0.0...@rxap/schematics-xml-parser@16.0.0-dev.0) (2023-05-17)
 
@@ -54,8 +51,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* upgrade all rxap packages to
-  14.x.x ([a720767](https://gitlab.com/rxap/schematics/commit/a7207671d2a7d5b668aa0daaf346ca4393447a90))
+* upgrade all rxap packages to14.x.x ([a720767](https://gitlab.com/rxap/schematics/commit/a7207671d2a7d5b668aa0daaf346ca4393447a90))
 
 # [14.0.0](https://gitlab.com/rxap/schematics/compare/@rxap/schematics-xml-parser@13.0.1...@rxap/schematics-xml-parser@14.0.0) (2022-09-11)
 
@@ -79,8 +75,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* remove rxap/utilities
-  dependency ([d8dfe16](https://gitlab.com/rxap/schematics/commit/d8dfe168f5d3afd5cd88d4fd143bd2c7b2c687b7))
+* remove rxap/utilitiesdependency ([d8dfe16](https://gitlab.com/rxap/schematics/commit/d8dfe168f5d3afd5cd88d4fd143bd2c7b2c687b7))
 
 ## [13.0.1-next.0](https://gitlab.com/rxap/schematics/compare/@rxap/schematics-xml-parser@13.0.0-next.0...@rxap/schematics-xml-parser@13.0.1-next.0) (2022-03-03)
 
@@ -106,15 +101,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* **type-element:** expose the type property
-  accessor ([b64f710](https://gitlab.com/rxap/schematics/commit/b64f7104025aa808e14bb352cfcaa30bc31c42f0))
+* **type-element:** expose the type propertyaccessor ([b64f710](https://gitlab.com/rxap/schematics/commit/b64f7104025aa808e14bb352cfcaa30bc31c42f0))
 
 ## [12.1.1](https://gitlab.com/rxap/schematics/compare/@rxap/schematics-xml-parser@12.1.0...@rxap/schematics-xml-parser@12.1.1) (2021-08-02)
 
 ### Bug Fixes
 
-* add missing peer
-  dependencies ([83481ea](https://gitlab.com/rxap/schematics/commit/83481eafb7912aef4e9574abc416edfd5f025898))
+* add missing peerdependencies ([83481ea](https://gitlab.com/rxap/schematics/commit/83481eafb7912aef4e9574abc416edfd5f025898))
 
 # [12.1.0](https://gitlab.com/rxap/schematics/compare/@rxap/schematics-xml-parser@12.1.0-next.1...@rxap/schematics-xml-parser@12.1.0) (2021-07-22)
 
@@ -124,15 +117,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* add TypeElement
-  classes ([775f0c1](https://gitlab.com/rxap/schematics/commit/775f0c11c145881f61ac1964e334b29677647810))
+* add TypeElementclasses ([775f0c1](https://gitlab.com/rxap/schematics/commit/775f0c11c145881f61ac1964e334b29677647810))
 
 # [12.1.0-next.0](https://gitlab.com/rxap/schematics/compare/@rxap/schematics-xml-parser@12.0.8...@rxap/schematics-xml-parser@12.1.0-next.0) (2021-07-12)
 
 ### Features
 
-* **parse-template:** support multiple base template
-  paths ([24773c4](https://gitlab.com/rxap/schematics/commit/24773c426793a0840db06774633be9ccd6383682))
+* **parse-template:** support multiple base templatepaths ([24773c4](https://gitlab.com/rxap/schematics/commit/24773c426793a0840db06774633be9ccd6383682))
 
 ## [12.0.8](https://gitlab.com/rxap/schematics/compare/@rxap/schematics-xml-parser@12.0.8-next.0...@rxap/schematics-xml-parser@12.0.8) (2021-06-29)
 
@@ -158,8 +149,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* set correct peerDependencies and
-  dependencies ([92c5eae](https://gitlab.com/rxap/schematics/commit/92c5eae7eb84c65381ed005da1900ce5f0ce80a3))
+* set correct peerDependencies anddependencies ([92c5eae](https://gitlab.com/rxap/schematics/commit/92c5eae7eb84c65381ed005da1900ce5f0ce80a3))
 
 ## 12.0.3 (2021-06-14)
 
@@ -181,12 +171,10 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* update build target to
-  es6 ([6418b27](https://gitlab.com/rxap/schematics/commit/6418b27af301db0c794bb584504d786ad20cfe8c))
+* update build target toes6 ([6418b27](https://gitlab.com/rxap/schematics/commit/6418b27af301db0c794bb584504d786ad20cfe8c))
 
 # 11.1.0 (2021-04-26)
 
 ### Features
 
-* split the @rxap/schematics-utilities into ts-morph, html and
-  xml-parser ([8312bc2](https://gitlab.com/rxap/schematics/commit/8312bc2c11d1b15e57185726b62d3b80acf135f9))
+* split the @rxap/schematics-utilities into ts-morph, html andxml-parser ([8312bc2](https://gitlab.com/rxap/schematics/commit/8312bc2c11d1b15e57185726b62d3b80acf135f9))

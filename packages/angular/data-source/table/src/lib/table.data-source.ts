@@ -72,7 +72,7 @@ export class TableDataSource<
 
   protected override _connect(
     viewer: BaseDataSourceViewer,
-  ): [Observable<Data[]>, TeardownLogic] {
+  ): [ Observable<Data[]>, TeardownLogic ] {
     return [
       this.dataSource.connect(viewer).pipe(
         tap((data) => this.updateTotalLength(data.length)),
@@ -97,7 +97,7 @@ export class TableDataSource<
               ) ?? of(null),
               this.filter?.change.pipe(startWith({})) ?? of(null),
             ]).pipe(
-              map(([page, sort, filter]) => {
+              map(([ page, sort, filter ]) => {
                 let filteredData = data;
 
                 if (filter) {

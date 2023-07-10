@@ -7,7 +7,10 @@ import {
   IsNumberOptions,
 } from './is-number';
 
-export function IsInt({message, options}: { message?: string, options?: IsNumberOptions } = {}) {
+export function IsInt({
+                        message,
+                        options,
+                      }: { message?: string, options?: IsNumberOptions } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;

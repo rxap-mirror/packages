@@ -18,7 +18,7 @@ describe('CoerceImports', () => {
     CoerceImports(sourceFile, [
       {
         moduleSpecifier: '@angular/material',
-        namedImports: ['MatFormField'],
+        namedImports: [ 'MatFormField' ],
       },
     ]);
 
@@ -31,13 +31,13 @@ describe('CoerceImports', () => {
     CoerceImports(sourceFile, [
       {
         moduleSpecifier: '@angular/core',
-        namedImports: ['Component', 'Directive'],
+        namedImports: [ 'Component', 'Directive' ],
       },
     ]);
 
     expect(sourceFile.getImportDeclarations()).toHaveLength(1);
     expect(sourceFile.getImportDeclaration('@angular/core')?.getNamedImports().map(named => named.getText()))
-      .toEqual(['Component', 'Directive']);
+      .toEqual([ 'Component', 'Directive' ]);
 
   });
 

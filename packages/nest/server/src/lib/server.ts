@@ -115,10 +115,10 @@ export abstract class Server<O extends object, T extends INestApplicationContext
         const buildJson = JSON.parse(readFileSync(buildJsonFilePath).toString('utf-8'));
         Object.assign(environment, buildJson);
       } catch (e) {
-        Logger.warn(`Could not parse build.json in the path '${buildJsonFilePath}'`, 'Bootstrap');
+        Logger.warn(`Could not parse build.json in the path '${ buildJsonFilePath }'`, 'Bootstrap');
       }
     } else {
-      Logger.warn(`The build.json file does not exists in the path '${buildJsonFilePath}'`, 'Bootstrap');
+      Logger.warn(`The build.json file does not exists in the path '${ buildJsonFilePath }'`, 'Bootstrap');
     }
   }
 

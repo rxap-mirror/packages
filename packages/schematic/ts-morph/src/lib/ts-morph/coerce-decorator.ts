@@ -35,9 +35,12 @@ export function CoerceDecorator(
     name = structureOrName.name;
     structure = structureOrName ?? structure;
   }
-  let decorator = decoratableNode.getDecorator(compareTo({...structure, name}));
+  let decorator = decoratableNode.getDecorator(compareTo({
+    ...structure,
+    name,
+  }));
   if (!decorator) {
-    decorator = decoratableNode.addDecorator({name});
+    decorator = decoratableNode.addDecorator({ name });
     decorator.set(structure);
   }
   return decorator;

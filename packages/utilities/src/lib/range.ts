@@ -24,7 +24,7 @@ export class Range {
     public end: number,
   ) {
     if (this.start > this.end) {
-      throw new Error(`The range start '${this.start}' must be less then the range end '${this.end}'!`);
+      throw new Error(`The range start '${ this.start }' must be less then the range end '${ this.end }'!`);
     }
   }
 

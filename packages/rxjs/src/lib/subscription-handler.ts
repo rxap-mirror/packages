@@ -143,7 +143,9 @@ export class SubscriptionHandler {
    * started when the Subscription was created.
    */
   public unsubscribeAll(): KeyValue<Subscription> {
-    return Array.from(this.subscriptions.keys()).map(key => ({[key]: this.unsubscribe(key)})).reduce(objectReducer, {});
+    return Array.from(this.subscriptions.keys())
+                .map(key => ({ [key]: this.unsubscribe(key) }))
+                .reduce(objectReducer, {});
   }
 
   /**

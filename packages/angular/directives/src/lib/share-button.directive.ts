@@ -58,9 +58,14 @@ export class ShareButtonDirective {
 
   @HostListener('click')
   public share() {
-    this.shareService.share({url: this.url, text: this.text, files: this.files, title: this.title})
-      .then(() => console.log('share successfully'))
-      .catch(err => console.error('share failed', err.message));
+    this.shareService.share({
+          url: this.url,
+          text: this.text,
+          files: this.files,
+          title: this.title,
+        })
+        .then(() => console.log('share successfully'))
+        .catch(err => console.error('share failed', err.message));
   }
 
 }

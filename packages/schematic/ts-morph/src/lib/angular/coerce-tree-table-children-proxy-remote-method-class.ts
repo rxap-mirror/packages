@@ -21,29 +21,32 @@ export interface CoerceTreeTableChildrenProxyRemoteMethodClassOptions
 }
 
 export function CoerceTreeTableChildrenProxyRemoteMethodClass(options: CoerceTreeTableChildrenProxyRemoteMethodClassOptions) {
-  let {tsMorphTransform, getChildrenOperationId} = options;
+  let {
+    tsMorphTransform,
+    getChildrenOperationId,
+  } = options;
   tsMorphTransform ??= () => ({});
   return CoerceProxyRemoteMethodClass({
     ...options,
     name: 'tree-table-children',
     sourceType: 'Node<unknown>',
-    targetType: `OpenApiRemoteMethodParameter<${OperationIdToParameterClassName(getChildrenOperationId)}>`,
+    targetType: `OpenApiRemoteMethodParameter<${ OperationIdToParameterClassName(getChildrenOperationId) }>`,
     proxyMethod: OperationIdToClassName(getChildrenOperationId),
     tsMorphTransform: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => {
       CoerceImports(sourceFile, {
-        namedImports: [OperationIdToClassName(getChildrenOperationId)],
+        namedImports: [ OperationIdToClassName(getChildrenOperationId) ],
         moduleSpecifier: OperationIdToClassImportPath(getChildrenOperationId),
       });
       CoerceImports(sourceFile, {
-        namedImports: ['Node'],
+        namedImports: [ 'Node' ],
         moduleSpecifier: '@rxap/rxjs',
       });
       CoerceImports(sourceFile, {
-        namedImports: ['OpenApiRemoteMethodParameter'],
+        namedImports: [ 'OpenApiRemoteMethodParameter' ],
         moduleSpecifier: '@rxap/open-api/remote-method',
       });
       CoerceImports(sourceFile, {
-        namedImports: [OperationIdToParameterClassName(getChildrenOperationId)],
+        namedImports: [ OperationIdToParameterClassName(getChildrenOperationId) ],
         moduleSpecifier: OperationIdToParameterClassImportPath(getChildrenOperationId),
       });
       return tsMorphTransform!(project, sourceFile, classDeclaration);

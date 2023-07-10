@@ -44,7 +44,10 @@ export class PipeDataSource<Source = any, Target = Source>
   ) {
     super(dataSource.metadata);
     if (operation) {
-      this.setOperations(operation, ...operations.filter(op => typeof op === 'function') as Array<OperatorFunction<any, any>>);
+      this.setOperations(
+        operation,
+        ...operations.filter(op => typeof op === 'function') as Array<OperatorFunction<any, any>>,
+      );
       if (operations.some(op => typeof op !== 'function')) {
         this.metadata = {
           ...this.metadata,
@@ -60,11 +63,18 @@ export class PipeDataSource<Source = any, Target = Source>
     return this._operations;
   }
 
-  public setOperations(operation: OperatorFunction<Source, any>, ...operations: Array<OperatorFunction<any, any>>): void {
+  public setOperations(
+    operation: OperatorFunction<Source, any>,
+    ...operations: Array<OperatorFunction<any, any>>
+  ): void {
     if (this._initialised) {
-      throw new RxapDataSourceError('Can not set operations after the data source is initialised', '', 'PipeDataSource');
+      throw new RxapDataSourceError(
+        'Can not set operations after the data source is initialised',
+        '',
+        'PipeDataSource',
+      );
     }
-    this._operations = [operation, ...operations];
+    this._operations = [ operation, ...operations ];
   }
 
   public override ngOnDestroy() {
@@ -94,7 +104,7 @@ export class PipeDataSource<Source = any, Target = Source>
     };
   }
 
-  protected override _connect(viewer: BaseDataSourceViewer): [Observable<Target>, TeardownLogic] {
+  protected override _connect(viewer: BaseDataSourceViewer): [ Observable<Target>, TeardownLogic ] {
     this.init();
     return [
       this.dataSource.connect(viewer).pipe(

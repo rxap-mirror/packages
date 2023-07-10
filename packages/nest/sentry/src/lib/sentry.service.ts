@@ -27,7 +27,10 @@ export class SentryService implements OnApplicationShutdown, OnApplicationBootst
       console.warn('Could not create SentryService instance. The required option dsn is not defined');
       return;
     }
-    const {integrations = [], ...sentryOptions} = this.options;
+    const {
+      integrations = [],
+      ...sentryOptions
+    } = this.options;
     Sentry.init({
       ...sentryOptions,
       integrations: [
@@ -47,7 +50,7 @@ export class SentryService implements OnApplicationShutdown, OnApplicationBootst
             }
           },
         }),
-        new Sentry.Integrations.OnUnhandledRejection({mode: 'warn'}),
+        new Sentry.Integrations.OnUnhandledRejection({ mode: 'warn' }),
         ...integrations,
       ],
     });

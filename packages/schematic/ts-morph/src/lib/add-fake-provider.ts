@@ -20,7 +20,7 @@ export function AddFakeProvider(
     sourceFile,
     'FAKE_PROVIDER_FACTORY',
     {
-      initializer: `IsFaked('${fakeName}') ? FAKE_PROVIDERS : REAL_PROVIDERS`,
+      initializer: `IsFaked('${ fakeName }') ? FAKE_PROVIDERS : REAL_PROVIDERS`,
     },
   );
 
@@ -62,11 +62,11 @@ export function AddFakeProvider(
 
   CoerceImports(sourceFile, {
     moduleSpecifier: '@angular/core',
-    namedImports: ['Provider'],
+    namedImports: [ 'Provider' ],
   });
   CoerceImports(sourceFile, {
     moduleSpecifier: '@rxap/fake',
-    namedImports: ['IsFaked'],
+    namedImports: [ 'IsFaked' ],
   });
 
   // region order variable statements

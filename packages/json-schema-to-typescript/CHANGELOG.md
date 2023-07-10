@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@15.0.0...@rxap/json-schema-to-typescript@16.0.0-dev.0) (2023-05-18)
 
@@ -56,8 +55,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* import ref parser with
-  context ([d3bb855](https://gitlab.com/rxap/packages/commit/d3bb855dff8533c9ed5e8e04093fbf33afbc5b61))
+* import ref parser withcontext ([d3bb855](https://gitlab.com/rxap/packages/commit/d3bb855dff8533c9ed5e8e04093fbf33afbc5b61))
 
 # [13.0.0-next.3](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@13.0.0-next.2...@rxap/json-schema-to-typescript@13.0.0-next.3) (2022-05-23)
 
@@ -81,8 +79,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -94,15 +91,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* expose utilities as public static
-  methods ([01b801a](https://gitlab.com/rxap/packages/commit/01b801a2fc66951725fbd103d5f15b35625ece9d))
+* expose utilities as public staticmethods ([01b801a](https://gitlab.com/rxap/packages/commit/01b801a2fc66951725fbd103d5f15b35625ece9d))
 
 ## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@12.0.7...@rxap/json-schema-to-typescript@12.0.8) (2021-07-12)
 
 ### Bug Fixes
 
-* **deps:** mv ts-morph to peer
-  dependencies ([edd31bd](https://gitlab.com/rxap/packages/commit/edd31bdcfb7387abc544862488033476d947db01))
+* **deps:** mv ts-morph to peerdependencies ([edd31bd](https://gitlab.com/rxap/packages/commit/edd31bdcfb7387abc544862488033476d947db01))
 
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@12.0.6...@rxap/json-schema-to-typescript@12.0.7) (2021-06-24)
 
@@ -120,8 +115,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* add support for root allOf,
-  anyOf ([7a5e902](https://gitlab.com/rxap/packages/commit/7a5e902984de04481bebd9eadf84aeb214d87977))
+* add support for root allOf,anyOf ([7a5e902](https://gitlab.com/rxap/packages/commit/7a5e902984de04481bebd9eadf84aeb214d87977))
 
 ## [12.0.3](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@12.0.2...@rxap/json-schema-to-typescript@12.0.3) (2021-06-14)
 
@@ -145,35 +139,28 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@11.1.0...@rxap/json-schema-to-typescript@11.1.1) (2021-04-30)
 
 ### Bug Fixes
 
-* update build target to
-  es6 ([6418b27](https://gitlab.com/rxap/packages/commit/6418b27af301db0c794bb584504d786ad20cfe8c))
+* update build target toes6 ([6418b27](https://gitlab.com/rxap/packages/commit/6418b27af301db0c794bb584504d786ad20cfe8c))
 
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@11.0.6...@rxap/json-schema-to-typescript@11.1.0) (2021-04-26)
 
 ### Features
 
-* add support for additional
-  properties ([64eded1](https://gitlab.com/rxap/packages/commit/64eded16f3b91d503e0f2b88cd89393cfaca5979))
-* add support for complex
-  types ([242ec59](https://gitlab.com/rxap/packages/commit/242ec59d8efc990031e0053a238e5b96d04a3e10))
-* add support for list of property
-  types ([ec1cfbf](https://gitlab.com/rxap/packages/commit/ec1cfbf51dac80054fe4e5cc94f649cc48115ad8))
+* add support for additionalproperties ([64eded1](https://gitlab.com/rxap/packages/commit/64eded16f3b91d503e0f2b88cd89393cfaca5979))
+* add support for complextypes ([242ec59](https://gitlab.com/rxap/packages/commit/242ec59d8efc990031e0053a238e5b96d04a3e10))
+* add support for list of propertytypes ([ec1cfbf](https://gitlab.com/rxap/packages/commit/ec1cfbf51dac80054fe4e5cc94f649cc48115ad8))
 
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@11.0.5...@rxap/json-schema-to-typescript@11.0.6) (2021-04-15)
 
 ### Bug Fixes
 
-* workaround for anyOf and
-  allOf ([537015f](https://gitlab.com/rxap/packages/commit/537015fa15630b26a66861b25ce611f748dda29b))
+* workaround for anyOf andallOf ([537015f](https://gitlab.com/rxap/packages/commit/537015fa15630b26a66861b25ce611f748dda29b))
 
 ## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@11.0.4...@rxap/json-schema-to-typescript@11.0.5) (2021-03-19)
 
@@ -209,5 +196,4 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))

@@ -52,8 +52,12 @@ export function AddProviderToArray(
         useFactory: providerObject.useFactory,
         useExisting: providerObject.useExisting,
         useValue: providerObject.useValue,
-        deps: providerObject.deps ? Array.isArray(providerObject.deps) ? `[ ${providerObject.deps.join(',')} ]` : providerObject.deps : undefined,
-        multi: providerObject.multi === true ? w => w.write('true') : providerObject.multi === false ? w => w.write('false') : undefined,
+        deps: providerObject.deps ?
+          Array.isArray(providerObject.deps) ? `[ ${ providerObject.deps.join(',') } ]` : providerObject.deps :
+          undefined,
+        multi: providerObject.multi === true ?
+          w => w.write('true') :
+          providerObject.multi === false ? w => w.write('false') : undefined,
       })));
     }
 

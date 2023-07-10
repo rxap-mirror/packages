@@ -20,26 +20,36 @@ export interface CoercePageDtoClassOptions {
 }
 
 export function CoercePageDtoClass(options: CoercePageDtoClassOptions) {
-  let {project, name, propertyList, classStructure, importStructureList, rowClassName, rowFilePath} = options;
+  let {
+    project,
+    name,
+    propertyList,
+    classStructure,
+    importStructureList,
+    rowClassName,
+    rowFilePath,
+  } = options;
   importStructureList ??= [];
   importStructureList.push(
     {
-      namedImports: ['PageDto'],
+      namedImports: [ 'PageDto' ],
       moduleSpecifier: '@eurogard/service-nest-utilities',
     },
     {
-      namedImports: [rowClassName],
-      moduleSpecifier: `./${basename(rowFilePath)}`,
+      namedImports: [ rowClassName ],
+      moduleSpecifier: `./${ basename(rowFilePath) }`,
     },
   );
   classStructure ??= {};
-  classStructure.extends = `PageDto<${rowClassName}>`;
-  propertyList ??= [{
-    name: 'rows',
-    type: rowClassName,
-    isArray: true,
-    isType: true,
-  }];
+  classStructure.extends = `PageDto<${ rowClassName }>`;
+  propertyList ??= [
+    {
+      name: 'rows',
+      type: rowClassName,
+      isArray: true,
+      isType: true,
+    },
+  ];
   propertyList.push();
   return CoerceDtoClass(
     project,

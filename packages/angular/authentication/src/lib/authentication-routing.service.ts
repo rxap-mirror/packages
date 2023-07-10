@@ -27,9 +27,9 @@ export class AuthenticationRoutingService {
       this.authenticationService.isAuthenticated$.pipe(
         tap(isAuthenticated => {
           if (isAuthenticated) {
-            return this.router.navigate(['/']);
+            return this.router.navigate([ '/' ]);
           } else {
-            return this.router.navigate(['/', 'authentication', 'login']);
+            return this.router.navigate([ '/', 'authentication', 'login' ]);
           }
         }),
       ).subscribe();

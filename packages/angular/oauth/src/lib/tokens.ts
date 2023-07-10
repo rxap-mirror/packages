@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 
 export function DefaultRedirectSignInFactory(): string[] {
-  return ['/', 'authentication', 'login'];
+  return [ '/', 'authentication', 'login' ];
 }
 
 export const RXAP_O_AUTH_REDIRECT_SIGN_IN = new InjectionToken('rxap/o-auth/redirect-sign-in', {

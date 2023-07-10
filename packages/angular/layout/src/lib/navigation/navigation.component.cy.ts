@@ -5,7 +5,8 @@ describe(NavigationComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(NavigationComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });
@@ -13,7 +14,8 @@ describe(NavigationComponent.name, () => {
   it('renders', () => {
     cy.mount(NavigationComponent, {
       componentProperties: {
-        root: '', level: 0,
+        root: '',
+        level: 0,
       },
     });
   });

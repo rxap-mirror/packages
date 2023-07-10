@@ -31,7 +31,7 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class NavigationService {
   public readonly config$: Observable<Navigation>;
 
@@ -56,7 +56,7 @@ export class NavigationService {
       this.navigation = navigation;
     }
     if (inserts) {
-      Object.entries(inserts).forEach(([id, insert]: [string, any]) =>
+      Object.entries(inserts).forEach(([ id, insert ]: [ string, any ]) =>
         this.insert(id, insert, false),
       );
     }
@@ -123,18 +123,22 @@ export class NavigationService {
       return of(navigationItem);
     }
     const isVisibleArray$: Array<Observable<boolean>> = navigationItem.status
-      .map((statusToken) => this.injector.get(statusToken))
-      .map((status) => {
-        const isVisible = status.isVisible(navigationItem);
-        if (typeof isVisible === 'boolean') {
-          return of(isVisible);
-        } else {
-          return from(isVisible);
-        }
-      }).map(isVisible$ => isVisible$.pipe(catchError(e => {
-        console.error('isVisible method failed: ' + e.message);
-        return of(false);
-      })));
+                                                                      .map((statusToken) => this.injector.get(
+                                                                        statusToken))
+                                                                      .map((status) => {
+                                                                        const isVisible = status.isVisible(
+                                                                          navigationItem);
+                                                                        if (typeof isVisible === 'boolean') {
+                                                                          return of(isVisible);
+                                                                        } else {
+                                                                          return from(isVisible);
+                                                                        }
+                                                                      })
+                                                                      .map(isVisible$ => isVisible$.pipe(catchError(e => {
+                                                                        console.error('isVisible method failed: ' +
+                                                                          e.message);
+                                                                        return of(false);
+                                                                      })));
     // TODO : dont wait for all status services to complete, but cancel waiting if one returns false
     return combineLatest(isVisibleArray$).pipe(
       map((isVisibleArray) =>

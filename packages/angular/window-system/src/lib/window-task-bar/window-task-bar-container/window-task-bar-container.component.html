@@ -1,18 +1,18 @@
 <div *ngIf="windowService.hasActiveWindows" class="container" fxLayout="column">
-    <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="end end">
-        <button (click)="expand = !expand"
-                [matBadgeHidden]="!windowService.hasActiveWindows"
-                [matBadge]="windowService.activeWindowCount.toFixed(0)"
-                class="pin"
-                color="primary"
-                mat-icon-button
-                matBadgePosition="above before"
-                type="button">
-            <mat-icon *ngIf="!expand">keyboard_arrow_up</mat-icon>
-            <mat-icon *ngIf="expand">keyboard_arrow_down</mat-icon>
-        </button>
-    </div>
-    <mat-toolbar [fxShow]="expand" class="tasks">
-        <rxap-window-task-bar></rxap-window-task-bar>
-    </mat-toolbar>
+  <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="end end">
+    <button (click)="expand = !expand"
+            [matBadgeHidden]="!windowService.hasActiveWindows"
+            [matBadge]="windowService.activeWindowCount.toFixed(0)"
+            class="pin"
+            color="primary"
+            mat-icon-button
+            matBadgePosition="above before"
+            type="button">
+      <mat-icon *ngIf="!expand">keyboard_arrow_up</mat-icon>
+      <mat-icon *ngIf="expand">keyboard_arrow_down</mat-icon>
+    </button>
+  </div>
+  <mat-toolbar [fxShow]="expand" class="tasks">
+    <rxap-window-task-bar></rxap-window-task-bar>
+  </mat-toolbar>
 </div>

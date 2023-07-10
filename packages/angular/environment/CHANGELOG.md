@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/environment@15.0.0...@rxap/environment@16.0.0-dev.0) (2023-05-18)
 
@@ -50,8 +49,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* mark tier and slug
-  optional ([0552a32](https://gitlab.com/rxap/packages/commit/0552a32ab6071b9fa9224aae34ab3449f2b489ca))
+* mark tier and slugoptional ([0552a32](https://gitlab.com/rxap/packages/commit/0552a32ab6071b9fa9224aae34ab3449f2b489ca))
 
 # [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/environment@13.0.0-next.0...@rxap/environment@13.0.0-next.1) (2022-05-09)
 
@@ -63,8 +61,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -80,8 +77,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* format date with hour and
-  minute ([8c67fa7](https://gitlab.com/rxap/packages/commit/8c67fa7a0f7375fd70911e280405d2945c04271c))
+* format date with hour andminute ([8c67fa7](https://gitlab.com/rxap/packages/commit/8c67fa7a0f7375fd70911e280405d2945c04271c))
 
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/environment@12.1.0-next.1...@rxap/environment@12.1.0) (2021-07-09)
 
@@ -97,8 +93,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* add ng-add logic to update project
-  files ([dca873d](https://gitlab.com/rxap/packages/commit/dca873d475efc965641cb86b59ec89982cd13ab0))
+* add ng-add logic to update projectfiles ([dca873d](https://gitlab.com/rxap/packages/commit/dca873d475efc965641cb86b59ec89982cd13ab0))
 
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/environment@12.0.6...@rxap/environment@12.0.7) (2021-06-24)
 
@@ -146,17 +141,14 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/environment@11.0.5...@rxap/environment@11.1.0) (2021-04-21)
 
 ### Features
 
-* add UpdateEnvironment
-  function ([1445522](https://gitlab.com/rxap/packages/commit/1445522176b1d9bb69c1c91f0a2e735749e84273))
+* add UpdateEnvironmentfunction ([1445522](https://gitlab.com/rxap/packages/commit/1445522176b1d9bb69c1c91f0a2e735749e84273))
 
 ## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/environment@11.0.4...@rxap/environment@11.0.5) (2021-03-19)
 
@@ -192,5 +184,4 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
