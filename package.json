@@ -5,8 +5,8 @@
   "packageManager": "yarn@3.6.0",
   "scripts": {
     "prepare": "husky install",
-    "version": "nx run packages:readme",
-    "preversion": "nx run-many --target build,test,lint",
+    "version": "nx run-many --target update-dependencies,update-package-group && nx run packages:readme",
+    "preversion": "nx run-many --target fix-dependencies && nx run-many --target build,test,lint",
     "prepublishOnly": "nx run-many --target build --configuration production",
     "lerna:publish": "env-cmd bash tools/scripts/lerna/publish.sh",
     "lerna:version": "env-cmd bash tools/scripts/lerna/version.sh"

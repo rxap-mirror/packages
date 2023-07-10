@@ -3,10 +3,6 @@
   "version": "16.0.0-dev.3",
   "type": "commonjs",
   "executors": "./executors.json",
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=plugin-library",
-    "preversion": "yarn run --top-level nx run plugin-library:fix-dependencies"
-  },
   "generators": "./generators.json",
   "publishConfig": {
     "access": "public",

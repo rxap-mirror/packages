@@ -17,6 +17,30 @@
       }
     }
   },
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*"
+    ],
+    "typescript": [
+      "{projectRoot}/**/*.ts",
+      "{projectRoot}/tsconfig.json",
+      "{projectRoot}/tsconfig.*.json"
+    ],
+    "test": [
+      "typescript",
+      "{projectRoot}/src/**/*",
+      "!{projectRoot}/tsconfig.lib.json",
+      "!{projectRoot}/tsconfig.lib.prod.json"
+    ],
+    "production": [
+      "typescript",
+      "{projectRoot}/src/**/*",
+      "!{projectRoot}/**/*.{spec,stories,cy}.ts",
+      "!{projectRoot}/jest.config.ts",
+      "!{projectRoot}/src/test-setup.ts",
+      "!{projectRoot}/tsconfig.spec.json"
+    ]
+  },
   "targetDefaults": {
     "lint": {
       "inputs": [
@@ -25,11 +49,28 @@
         "{workspaceRoot}/.eslintignore"
       ]
     },
+    "fix-dependencies": {
+      "inputs": [
+        "typescript"
+      ]
+    },
+    "update-package-group": {
+      "inputs": [
+        "production"
+      ]
+    },
+    "update-dependencies": {
+      "inputs": [
+        "{workspaceRoot}/package.json",
+        "{projectRoot}/package.json"
+      ]
+    },
     "test": {
       "inputs": [
-        "default",
-        "^default",
-        "{workspaceRoot}/jest.preset.js"
+        "test",
+        "^test",
+        "{workspaceRoot}/jest.preset.js",
+        "{workspaceRoot}/jest.preset.ts"
       ]
     },
     "build": {
@@ -43,6 +84,10 @@
           "target": "index-export",
           "projects": "self"
         }
+      ],
+      "inputs": [
+        "production",
+        "^production"
       ]
     },
     "readme": {

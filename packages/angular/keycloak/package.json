@@ -12,10 +12,6 @@
     "tslib": "2.5.3"
   },
   "sideEffects": false,
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-keycloak",
-    "preversion": "yarn run --top-level nx run angular-keycloak:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/angular/keycloak"

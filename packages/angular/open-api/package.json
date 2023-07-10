@@ -16,10 +16,6 @@
   },
   "description": "Provides the functionality to create DataSource and RemoteMethod instances from an OpenAPI config.",
   "sideEffects": false,
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-open-api",
-    "preversion": "yarn run --top-level nx run angular-open-api:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/angular/open-api"

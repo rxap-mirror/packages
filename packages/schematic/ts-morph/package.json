@@ -11,10 +11,6 @@
   "dependencies": {
     "tslib": "2.5.3"
   },
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=schematic-ts-morph",
-    "preversion": "yarn run --top-level nx run schematic-ts-morph:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/schematic/ts-morph"

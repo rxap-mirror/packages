@@ -15,10 +15,6 @@
     "tslib": "2.5.3"
   },
   "description": "A collection of utility angular services used in RxAP.",
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-services",
-    "preversion": "yarn run --top-level nx run angular-services:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/angular/services"

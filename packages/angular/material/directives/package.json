@@ -12,10 +12,6 @@
   "dependencies": {
     "tslib": "2.5.3"
   },
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-material-directives",
-    "preversion": "yarn run --top-level nx run angular-material-directives:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../../dist/packages/angular/material/directives"

@@ -19,10 +19,6 @@
     "tslib": "2.5.3"
   },
   "description": "Provides the FormSystem concept for RxAP.",
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-form-window-system",
-    "preversion": "yarn run --top-level nx run angular-form-window-system:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/angular/form-window-system"

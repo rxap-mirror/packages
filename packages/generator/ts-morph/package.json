@@ -9,10 +9,6 @@
   "dependencies": {
     "tslib": "2.5.3"
   },
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=generator-ts-morph",
-    "preversion": "yarn run --top-level nx run generator-ts-morph:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/generator/ts-morph"

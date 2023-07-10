@@ -4,10 +4,6 @@
   "type": "commonjs",
   "executors": "./executors.json",
   "generators": "./generators.json",
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=plugin-localazy",
-    "preversion": "yarn run --top-level nx run plugin-localazy:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/plugin/localazy"
