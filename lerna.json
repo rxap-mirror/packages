@@ -22,7 +22,9 @@
         "**/*.stories.ts",
         "**/*.cy.ts",
         "**/*.js",
-        "**/*.json",
+        "**/*.handlebars",
+        "**/tsconfig.json",
+        "**/tsconfig.*.json",
         "**/*.yaml"
       ]
     }
