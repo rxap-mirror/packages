@@ -1,4 +1,4 @@
-import {WriterFunction} from 'ts-morph';
+import { WriterFunction } from 'ts-morph';
 
 export interface ProviderObject {
   provide: string | WriterFunction;

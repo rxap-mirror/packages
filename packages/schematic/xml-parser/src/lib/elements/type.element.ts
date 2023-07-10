@@ -6,8 +6,8 @@ import {
   ElementRequired,
   ParsedElement,
 } from '@rxap/xml-parser';
-import {SourceFile} from 'ts-morph';
-import {CoerceImports} from '@rxap/schematics-ts-morph';
+import { SourceFile } from 'ts-morph';
+import { CoerceImports } from '@rxap/schematics-ts-morph';
 
 @ElementDef('type')
 export class TypeElement implements ParsedElement {

@@ -1,10 +1,10 @@
-import {IconConfig} from '@rxap/utilities';
+import { IconConfig } from '@rxap/utilities';
 import {
+  AbstractType,
   InjectionToken,
   Type,
-  AbstractType,
 } from '@angular/core';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 export type Navigation = Array<NavigationItem | NavigationDividerItem>;
 

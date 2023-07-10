@@ -1,7 +1,12 @@
-import {readNxJson, Tree, updateNxJson, updateProjectConfiguration} from '@nx/devkit';
-import {ConfigGeneratorSchema} from './schema';
-import {readProjectConfiguration} from 'nx/src/generators/utils/project-configuration';
-import {CreateConfigurationMapMatchingWithTarget} from '@rxap/plugin-utilities';
+import {
+  readNxJson,
+  Tree,
+  updateNxJson,
+  updateProjectConfiguration,
+} from '@nx/devkit';
+import { ConfigGeneratorSchema } from './schema';
+import { readProjectConfiguration } from 'nx/src/generators/utils/project-configuration';
+import { CreateConfigurationMapMatchingWithTarget } from '@rxap/plugin-utilities';
 
 export async function configGenerator(
   tree: Tree,

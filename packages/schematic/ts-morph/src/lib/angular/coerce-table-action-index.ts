@@ -1,6 +1,9 @@
-import {TsMorphAngularProjectTransform, TsMorphAngularProjectTransformOptions} from '../ts-morph-transform';
-import {CoerceSourceFile} from '../coerce-source-file';
-import {CoerceVariableDeclaration} from '../coerce-variable-declaration';
+import {
+  TsMorphAngularProjectTransform,
+  TsMorphAngularProjectTransformOptions,
+} from '../ts-morph-transform';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
 
 export type CoerceTableActionIndexOptions = TsMorphAngularProjectTransformOptions
 

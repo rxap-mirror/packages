@@ -9,9 +9,13 @@ import {
   Optional,
   UnauthorizedException,
 } from '@nestjs/common';
-import {ALLOW_UNVERIFIED_EMAIL, DEACTIVATE_FIREBASE_AUTH_GUARD, FIREBASE_AUTH_HEADER} from './tokens';
+import {
+  ALLOW_UNVERIFIED_EMAIL,
+  DEACTIVATE_FIREBASE_AUTH_GUARD,
+  FIREBASE_AUTH_HEADER,
+} from './tokens';
 import * as admin from 'firebase-admin';
-import {FirebaseUser} from './types';
+import { FirebaseUser } from './types';
 
 
 export interface RequestWithDecodedIdToken extends Request {

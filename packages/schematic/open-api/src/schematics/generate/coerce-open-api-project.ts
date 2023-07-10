@@ -1,4 +1,10 @@
-import { chain, externalSchematic, noop, Rule, Tree } from '@angular-devkit/schematics';
+import {
+  chain,
+  externalSchematic,
+  noop,
+  Rule,
+  Tree,
+} from '@angular-devkit/schematics';
 import { GetAngularJson } from '@rxap/schematics-utilities';
 
 /**

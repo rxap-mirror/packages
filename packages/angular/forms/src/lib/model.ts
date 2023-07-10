@@ -3,21 +3,21 @@ import {
   AsyncValidatorFn,
   ValidatorFn,
 } from '@angular/forms';
-import {Constructor} from '@rxap/utilities';
-import type {RxapFormGroup} from './form-group';
+import { Constructor } from '@rxap/utilities';
+import type { RxapFormGroup } from './form-group';
 import {
+  AbstractType,
+  InjectionToken,
   StaticProvider,
   Type,
-  InjectionToken,
-  AbstractType,
 } from '@angular/core';
-import {RxapFormControl} from './form-control';
+import { RxapFormControl } from './form-control';
 import {
   AbstractControl,
   ControlOptions,
 } from './types';
-import {BaseDefinitionMetadata} from '@rxap/definition';
-import {RxapFormArray} from './form-array';
+import { BaseDefinitionMetadata } from '@rxap/definition';
+import { RxapFormArray } from './form-array';
 
 export interface InjectableValidator {
   validate?: ValidatorFn;

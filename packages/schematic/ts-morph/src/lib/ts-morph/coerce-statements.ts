@@ -1,4 +1,8 @@
-import {StatementedNode, StatementStructures, WriterFunction} from 'ts-morph';
+import {
+  StatementedNode,
+  StatementStructures,
+  WriterFunction,
+} from 'ts-morph';
 
 export function CoerceStatements(
   node: StatementedNode,

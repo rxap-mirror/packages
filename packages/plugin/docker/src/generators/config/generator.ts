@@ -7,9 +7,9 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import * as path from 'path';
-import {ConfigGeneratorSchema} from './schema';
-import {GetProjectSourceRoot} from '@rxap/generator-utilities';
-import {CreateConfigurationMapMatchingWithTarget} from '@rxap/plugin-utilities';
+import { ConfigGeneratorSchema } from './schema';
+import { GetProjectSourceRoot } from '@rxap/generator-utilities';
+import { CreateConfigurationMapMatchingWithTarget } from '@rxap/plugin-utilities';
 
 export async function configGenerator(
   tree: Tree,

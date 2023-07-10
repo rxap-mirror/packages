@@ -1,13 +1,25 @@
-import {ClassDeclaration, Project, SourceFile, WriterFunctionOrValue, Writers} from 'ts-morph';
-import {CoerceMethodClass, CoerceMethodClassOptions} from './coerce-method-class';
-import {classify, CoerceSuffix} from '@rxap/schematics-utilities';
-import {CoerceClassImplementation} from '../ts-morph/coerce-class-implementation';
-import {chain} from '@angular-devkit/schematics';
-import {CoerceTableActionIndexRule} from './coerce-table-action-index';
-import {CoerceTableActionIndexProviderRule} from './coerce-table-action-index-provider';
-import {CoerceTableActionProviderRule} from './coerce-table-action-provider';
-import {CoerceDecorator} from '../ts-morph/coerce-decorator';
-import {CoerceImports} from '../ts-morph/coerce-imports';
+import {
+  ClassDeclaration,
+  Project,
+  SourceFile,
+  WriterFunctionOrValue,
+  Writers,
+} from 'ts-morph';
+import {
+  CoerceMethodClass,
+  CoerceMethodClassOptions,
+} from './coerce-method-class';
+import {
+  classify,
+  CoerceSuffix,
+} from '@rxap/schematics-utilities';
+import { CoerceClassImplementation } from '../ts-morph/coerce-class-implementation';
+import { chain } from '@angular-devkit/schematics';
+import { CoerceTableActionIndexRule } from './coerce-table-action-index';
+import { CoerceTableActionIndexProviderRule } from './coerce-table-action-index-provider';
+import { CoerceTableActionProviderRule } from './coerce-table-action-provider';
+import { CoerceDecorator } from '../ts-morph/coerce-decorator';
+import { CoerceImports } from '../ts-morph/coerce-imports';
 
 export interface CoerceTableActionOptions extends Omit<CoerceMethodClassOptions, 'name'> {
   actionType: string;

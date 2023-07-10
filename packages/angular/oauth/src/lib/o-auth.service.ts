@@ -1,10 +1,27 @@
-import {Inject, Injectable, InjectionToken, Optional} from '@angular/core';
-import {GetOAuthProfileMethod, PROFILE_AUTH_ENDPOINT} from './get-o-auth-profile.method';
-import {OAuthMethod, OAuthMethodResponse} from './o-auth.method';
-import {RXAP_O_AUTH_REDIRECT_SIGN_OUT, RXAP_O_AUTH_REDIRECT_URL} from './tokens';
-import {Router} from '@angular/router';
-import {ReplaySubject} from 'rxjs';
-import {AuthenticationEvent, AuthenticationEventType} from '@rxap/authentication';
+import {
+  Inject,
+  Injectable,
+  InjectionToken,
+  Optional,
+} from '@angular/core';
+import {
+  GetOAuthProfileMethod,
+  PROFILE_AUTH_ENDPOINT,
+} from './get-o-auth-profile.method';
+import {
+  OAuthMethod,
+  OAuthMethodResponse,
+} from './o-auth.method';
+import {
+  RXAP_O_AUTH_REDIRECT_SIGN_OUT,
+  RXAP_O_AUTH_REDIRECT_URL,
+} from './tokens';
+import { Router } from '@angular/router';
+import { ReplaySubject } from 'rxjs';
+import {
+  AuthenticationEvent,
+  AuthenticationEventType,
+} from '@rxap/authentication';
 
 export const OAUTH_SECRET = new InjectionToken('OAUTH_SECRET');
 export const OAUTH_AUTH_ENDPOINT = new InjectionToken('OAUTH_AUTH_ENDPOINT');

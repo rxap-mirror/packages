@@ -1,13 +1,22 @@
-import {CoerceSuffix} from '@rxap/schematics-utilities';
-import {CoerceFormSubmitOperation, CoerceFormSubmitOperationOptions} from './coerce-form-submit-operation';
-import {SchematicsException} from '@angular-devkit/schematics';
+import { CoerceSuffix } from '@rxap/schematics-utilities';
+import {
+  CoerceFormSubmitOperation,
+  CoerceFormSubmitOperationOptions,
+} from './coerce-form-submit-operation';
+import { SchematicsException } from '@angular-devkit/schematics';
 
 export interface CoerceSubmitDataGridOperationOptions extends Omit<CoerceFormSubmitOperationOptions, 'operationName'> {
   collection?: boolean;
 }
 
 export function CoerceSubmitDataGridOperation(options: Readonly<CoerceSubmitDataGridOperationOptions>) {
-  let {paramList, collection, controllerName, nestController, name} = options;
+  let {
+    paramList,
+    collection,
+    controllerName,
+    nestController,
+    name,
+  } = options;
   collection ??= false;
   paramList ??= [];
   controllerName ??= nestController;

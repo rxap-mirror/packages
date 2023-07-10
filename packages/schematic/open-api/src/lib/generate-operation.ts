@@ -1,13 +1,19 @@
-import {OpenAPIV3} from 'openapi-types';
-import {Project} from 'ts-morph';
-import {GenerateComponents} from './generate-components';
-import {GenerateParameters} from './generate-parameters';
-import {GenerateRequestBody} from './generate-request-body';
-import {GenerateResponse} from './generate-response';
-import {GenerateParameter, GeneratorFunction, HasOperationId, OpenApiSchemaBase, OperationObject} from './types';
-import {IgnoreOperation} from './utilities/ignore-operation';
-import {IsHttpMethod} from './utilities/is-http-method';
-import {IsOperationObject} from './utilities/is-operation-object';
+import { OpenAPIV3 } from 'openapi-types';
+import { Project } from 'ts-morph';
+import { GenerateComponents } from './generate-components';
+import { GenerateParameters } from './generate-parameters';
+import { GenerateRequestBody } from './generate-request-body';
+import { GenerateResponse } from './generate-response';
+import {
+  GenerateParameter,
+  GeneratorFunction,
+  HasOperationId,
+  OpenApiSchemaBase,
+  OperationObject,
+} from './types';
+import { IgnoreOperation } from './utilities/ignore-operation';
+import { IsHttpMethod } from './utilities/is-http-method';
+import { IsOperationObject } from './utilities/is-operation-object';
 
 async function executeGenerator<Options extends OpenApiSchemaBase>(
   project: Project,

@@ -6,10 +6,10 @@ import {
   ElementTextContent,
   ParsedElement,
 } from '@rxap/xml-parser';
-import {SourceFile} from 'ts-morph';
-import {join} from 'path';
-import {strings} from '@angular-devkit/core';
-import {CoerceSuffix} from '@rxap/schematics-utilities';
+import { SourceFile } from 'ts-morph';
+import { join } from 'path';
+import { strings } from '@angular-devkit/core';
+import { CoerceSuffix } from '@rxap/schematics-utilities';
 import {
   AddMethodClassOptions,
   CoerceImports,
@@ -17,9 +17,13 @@ import {
   CoerceSourceFile,
   ToValueContext,
 } from '@rxap/schematics-ts-morph';
-import {TypeElement} from '../type.element';
+import { TypeElement } from '../type.element';
 
-const {dasherize, classify, camelize} = strings;
+const {
+  dasherize,
+  classify,
+  camelize,
+} = strings;
 
 export interface IMethodElement extends ParsedElement<string> {
   mock?: boolean;

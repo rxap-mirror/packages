@@ -3,12 +3,19 @@ import {
   Injectable,
   INJECTOR,
   Injector,
-  OnDestroy,
   Provider,
 } from '@angular/core';
 import { RxapAuthenticationService } from '@rxap/authentication';
-import {ActivatedRoute, Router} from '@angular/router';
-import {map, switchMap, take, tap} from 'rxjs/operators';
+import {
+  ActivatedRoute,
+  Router,
+} from '@angular/router';
+import {
+  map,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs/operators';
 import {
   ControlSetValue,
   ControlValidator,
@@ -23,10 +30,9 @@ import {
   RxapFormGroup,
   UseFormControl,
 } from '@rxap/forms';
-import {Validators} from '@angular/forms';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { firstValueFrom } from 'rxjs';
-import { addDefaultE2EConfig } from '@nx/cypress/src/utils/config';
 
 export const RXAP_RESET_PASSWORD_FORM = 'rxap-reset-password';
 

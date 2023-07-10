@@ -1,5 +1,5 @@
-import {AssetPattern} from './asset-pattern';
-import {ExtraEntryPoint} from './extra-entry-point';
+import { AssetPattern } from './asset-pattern';
+import { ExtraEntryPoint } from './extra-entry-point';
 
 export interface Karma {
   /** The name of the main entry-point file. */

@@ -1,4 +1,7 @@
-import {isPromise, isPromiseLike} from './is-promise';
+import {
+  isPromise,
+  isPromiseLike,
+} from './is-promise';
 
 describe('Utilities', () => {
 

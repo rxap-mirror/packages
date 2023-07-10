@@ -1,10 +1,20 @@
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Directive, OnDestroy, OnInit} from '@angular/core';
-import {NgControl} from '@angular/forms';
-import {MatChipInput} from '@angular/material/chips';
-import {unique} from '@rxap/utilities';
-import {Subscription} from 'rxjs';
-import {filter, tap} from 'rxjs/operators';
+import {
+  COMMA,
+  ENTER,
+} from '@angular/cdk/keycodes';
+import {
+  Directive,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { NgControl } from '@angular/forms';
+import { MatChipInput } from '@angular/material/chips';
+import { unique } from '@rxap/utilities';
+import { Subscription } from 'rxjs';
+import {
+  filter,
+  tap,
+} from 'rxjs/operators';
 
 @Directive({
   selector: '[matChipInputFor][rxapChipInputAdapter]',

@@ -9,8 +9,8 @@ import {
   TypeParameteredNodeStructure,
   WriterFunction,
 } from 'ts-morph';
-import {CoerceSuffix} from '@rxap/schematics-utilities';
-import {CoerceImports} from './ts-morph/index';
+import { CoerceSuffix } from '@rxap/schematics-utilities';
+import { CoerceImports } from './ts-morph/index';
 
 export interface AddMethodClassOptions extends TypeParameteredNodeStructure {
   structures?: ReadonlyArray<OptionalKind<ImportDeclarationStructure>>;
@@ -20,7 +20,7 @@ export interface AddMethodClassOptions extends TypeParameteredNodeStructure {
   statements?: (string | WriterFunction | StatementStructures)[] | string | WriterFunction | null;
   implements?: string[];
   decorators?: OptionalKind<DecoratorStructure>[];
-  ctors?: OptionalKind<ConstructorDeclarationStructure>[]
+  ctors?: OptionalKind<ConstructorDeclarationStructure>[];
 }
 
 export const DEFAULT_ADD_METHOD_CLASS_OPTIONS: Required<AddMethodClassOptions> = {

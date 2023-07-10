@@ -1,5 +1,8 @@
-import {SubscriptionHandler, SubscriptionHandlerError} from './subscription-handler';
-import {EMPTY} from 'rxjs';
+import {
+  SubscriptionHandler,
+  SubscriptionHandlerError,
+} from './subscription-handler';
+import { EMPTY } from 'rxjs';
 
 describe('SubscriptionHandler', () => {
 

@@ -1,8 +1,8 @@
-import {TypescriptInterfaceGenerator} from '@rxap/json-schema-to-typescript';
-import {OpenAPIV3} from 'openapi-types';
-import {Project} from 'ts-morph';
+import { TypescriptInterfaceGenerator } from '@rxap/json-schema-to-typescript';
+import { OpenAPIV3 } from 'openapi-types';
+import { Project } from 'ts-morph';
 
-import {COMPONENTS_BASE_PATH} from './config';
+import { COMPONENTS_BASE_PATH } from './config';
 
 async function executeInterfaceBuild(
   components: OpenAPIV3.ComponentsObject,

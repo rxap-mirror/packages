@@ -1,13 +1,22 @@
-import {AddParserToMetadata, XmlElementMetadata} from './utilities';
-import {deepMerge, hasIndexSignature} from '@rxap/utilities';
-import {Mixin} from '@rxap/mixin';
-import {TextContentElementOptions, TextContentElementParserMixin} from './mixins/text-content-element.parser';
-import {getMetadata} from '@rxap/reflect-metadata';
-import {ParsedElement} from '../elements/parsed-element';
-import {XmlParserService} from '../xml-parser.service';
-import {RxapElement} from '../element';
-import {RxapXmlParserValidateRequiredError} from '../error';
-import {RequiredProperty} from './required-property';
+import {
+  AddParserToMetadata,
+  XmlElementMetadata,
+} from './utilities';
+import {
+  deepMerge,
+  hasIndexSignature,
+} from '@rxap/utilities';
+import { Mixin } from '@rxap/mixin';
+import {
+  TextContentElementOptions,
+  TextContentElementParserMixin,
+} from './mixins/text-content-element.parser';
+import { getMetadata } from '@rxap/reflect-metadata';
+import { ParsedElement } from '../elements/parsed-element';
+import { XmlParserService } from '../xml-parser.service';
+import { RxapElement } from '../element';
+import { RxapXmlParserValidateRequiredError } from '../error';
+import { RequiredProperty } from './required-property';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ElementTextContentOptions<Value>

@@ -1,4 +1,4 @@
-import {ConfigService} from './config.service';
+import { ConfigService } from './config.service';
 
 describe('Config', () => {
 

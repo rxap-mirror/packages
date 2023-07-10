@@ -1,5 +1,5 @@
-import {UpdateDependenciesExecutorSchema} from './schema';
-import type {ExecutorContext} from '@nx/devkit';
+import { UpdateDependenciesExecutorSchema } from './schema';
+import type { ExecutorContext } from '@nx/devkit';
 import {
   getDirectPackageDependenciesForProject,
   readPackageJsonForProject,

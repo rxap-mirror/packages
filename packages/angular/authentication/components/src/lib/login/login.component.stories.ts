@@ -1,9 +1,12 @@
-import {moduleMetadata, Story} from '@storybook/angular';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  moduleMetadata,
+  Story,
+} from '@storybook/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {LoginComponent} from './login.component';
-import {RouterTestingModule} from '@angular/router/testing';
-import {RxapAuthenticationService} from '@rxap/authentication';
+import { LoginComponent } from './login.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { RxapAuthenticationService } from '@rxap/authentication';
 
 
 export default {

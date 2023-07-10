@@ -1,5 +1,11 @@
-import {Subscription, TeardownLogic} from 'rxjs';
-import {KeyValue, objectReducer} from '@rxap/utilities';
+import {
+  Subscription,
+  TeardownLogic,
+} from 'rxjs';
+import {
+  KeyValue,
+  objectReducer,
+} from '@rxap/utilities';
 
 export enum SubscriptionHandlerErrorTypes {
   NOT_FOUND = 'Subscription with specified key not found',
@@ -8,7 +14,7 @@ export enum SubscriptionHandlerErrorTypes {
 
 export class SubscriptionHandlerError extends Error {
   constructor(public type: SubscriptionHandlerErrorTypes, public key: string) {
-    super(type + ` [${key}]`);
+    super(type + ` [${ key }]`);
 
     Object.setPrototypeOf(this, SubscriptionHandlerError.prototype);
   }

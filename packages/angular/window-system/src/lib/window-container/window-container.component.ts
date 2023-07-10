@@ -8,19 +8,34 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import {RXAP_WINDOW_CONTEXT, RXAP_WINDOW_REF} from '../tokens';
-import {merge, Observable} from 'rxjs';
-import {CdkDrag, CdkDragEnd, CdkDragHandle, DragRef} from '@angular/cdk/drag-drop';
-import {WindowResizerComponent} from '../window-resizer/window-resizer.component';
-import {WindowRef} from '../window-ref';
-import {LoadingIndicatorService} from '@rxap/services';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {PortalModule} from '@angular/cdk/portal';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {WindowToolBarComponent} from '../window-tool-bar/window-tool-bar.component';
-import {AsyncPipe, NgIf, NgStyle} from '@angular/common';
-import {ExtendedModule} from '@angular/flex-layout/extended';
-import {FlexModule} from '@angular/flex-layout/flex';
+import {
+  RXAP_WINDOW_CONTEXT,
+  RXAP_WINDOW_REF,
+} from '../tokens';
+import {
+  merge,
+  Observable,
+} from 'rxjs';
+import {
+  CdkDrag,
+  CdkDragEnd,
+  CdkDragHandle,
+  DragRef,
+} from '@angular/cdk/drag-drop';
+import { WindowResizerComponent } from '../window-resizer/window-resizer.component';
+import { WindowRef } from '../window-ref';
+import { LoadingIndicatorService } from '@rxap/services';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { PortalModule } from '@angular/cdk/portal';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { WindowToolBarComponent } from '../window-tool-bar/window-tool-bar.component';
+import {
+  AsyncPipe,
+  NgIf,
+  NgStyle,
+} from '@angular/common';
+import { ExtendedModule } from '@angular/flex-layout/extended';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 export interface Point {
   x: number;
@@ -30,7 +45,7 @@ export interface Point {
 @Component({
   selector: 'rxap-window-container',
   templateUrl: './window-container.component.html',
-  styleUrls: ['./window-container.component.scss'],
+  styleUrls: [ './window-container.component.scss' ],
   changeDetection: ChangeDetectionStrategy.Default,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {

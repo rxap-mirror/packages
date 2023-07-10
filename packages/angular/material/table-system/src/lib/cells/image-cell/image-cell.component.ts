@@ -4,17 +4,17 @@ import {
   Input,
 } from '@angular/core';
 import {
+  BackgroundImageDirective,
   BackgroundPosition,
   BackgroundPositionOptions,
   BackgroundRepeat,
   BackgroundRepeatOptions,
   BackgroundSize,
   BackgroundSizeOptions,
-  BackgroundImageDirective,
 } from '@rxap/directives';
 import {
-  NgIf,
   NgClass,
+  NgIf,
 } from '@angular/common';
 
 @Component({

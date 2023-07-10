@@ -6,15 +6,25 @@
  * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
  */
 
-import {Injectable} from '@angular/core';
-import {HttpHeaders} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpHeaders } from '@angular/common/http';
 
-import {from, Subject} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {
+  from,
+  Subject,
+} from 'rxjs';
+import { map } from 'rxjs/operators';
 import Keycloak from 'keycloak-js';
 
-import {ExcludedUrl, ExcludedUrlRegex, KeycloakOptions} from '../interfaces/keycloak-options';
-import {KeycloakEvent, KeycloakEventType} from '../interfaces/keycloak-event';
+import {
+  ExcludedUrl,
+  ExcludedUrlRegex,
+  KeycloakOptions,
+} from '../interfaces/keycloak-options';
+import {
+  KeycloakEvent,
+  KeycloakEventType,
+} from '../interfaces/keycloak-event';
 
 /**
  * Service to expose existent methods from the Keycloak JS adapter, adding new

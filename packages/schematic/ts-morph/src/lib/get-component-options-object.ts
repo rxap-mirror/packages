@@ -1,4 +1,8 @@
-import {ObjectLiteralExpression, SourceFile, Writers} from 'ts-morph';
+import {
+  ObjectLiteralExpression,
+  SourceFile,
+  Writers,
+} from 'ts-morph';
 
 export function GetComponentOptionsObject(sourceFile: SourceFile): ObjectLiteralExpression {
 

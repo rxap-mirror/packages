@@ -1,11 +1,11 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 
 
-import {ExpandRowService} from './expand-row.service';
-import {ExpandRowDirective} from './expand-row.directive';
+import { ExpandRowService } from './expand-row.service';
+import { ExpandRowDirective } from './expand-row.directive';
 
 @NgModule({
-  imports: [ExpandRowDirective],
+  imports: [ ExpandRowDirective ],
   exports: [
     ExpandRowDirective,
   ],

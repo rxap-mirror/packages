@@ -1,6 +1,6 @@
-import {Tree} from '@nx/devkit';
-import {Project} from 'ts-morph';
-import {join} from 'path';
+import { Tree } from '@nx/devkit';
+import { Project } from 'ts-morph';
+import { join } from 'path';
 
 /**
  * Adds all files recursively from a specify path to the project.
@@ -9,7 +9,12 @@ import {join} from 'path';
  * @param project A ts-morph Project instance
  * @param filter A filter function base on the pathFragment and dirEntry
  */
-export function AddDir(tree: Tree, directoryPath: string, project: Project, filter: ((fileName: string, dirPath: string) => boolean) = path => path.endsWith('.ts')) {
+export function AddDir(
+  tree: Tree,
+  directoryPath: string,
+  project: Project,
+  filter: ((fileName: string, dirPath: string) => boolean) = path => path.endsWith('.ts'),
+) {
   if (tree.isFile(directoryPath)) {
     throw new Error(`The path '${directoryPath}' does not point to a dir entry`);
   }

@@ -1,4 +1,4 @@
-import {getFromObject} from './get-from-object';
+import { getFromObject } from './get-from-object';
 
 describe('@rxap/utilities', () => {
 

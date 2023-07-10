@@ -1,6 +1,15 @@
-import {Directive, HostBinding, HostListener, Inject, Input} from '@angular/core';
-import {DebounceCall, Required} from '@rxap/utilities';
-import {HttpRemoteMethodLoader} from '@rxap/remote-method/http';
+import {
+  Directive,
+  HostBinding,
+  HostListener,
+  Inject,
+  Input,
+} from '@angular/core';
+import {
+  DebounceCall,
+  Required,
+} from '@rxap/utilities';
+import { HttpRemoteMethodLoader } from '@rxap/remote-method/http';
 
 @Directive({
   selector: '[rxapContenteditable]',

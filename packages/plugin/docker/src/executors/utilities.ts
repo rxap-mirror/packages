@@ -1,11 +1,11 @@
-import {spawn} from 'child_process';
-import {BuildExecutorSchema} from './build/schema';
+import { spawn } from 'child_process';
+import { BuildExecutorSchema } from './build/schema';
 
 export async function dockerLogin(command: string, registry: string, username: string, password: string) {
 
   const args = [
-    `--password="${password}"`,
-    `--username="${username}"`,
+    `--password="${ password }"`,
+    `--username="${ username }"`,
   ];
 
   args.push(registry);

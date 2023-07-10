@@ -1,4 +1,7 @@
-import {hasIndexSignature, isObject} from '@rxap/utilities';
+import {
+  hasIndexSignature,
+  isObject,
+} from '@rxap/utilities';
 
 export interface TagElementOptions {
   tag: string;

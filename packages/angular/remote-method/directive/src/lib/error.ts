@@ -1,4 +1,4 @@
-import {RxapRemoteMethodError} from '@rxap/remote-method';
+import { RxapRemoteMethodError } from '@rxap/remote-method';
 
 export class RxapRemoteMethodDirectiveError extends RxapRemoteMethodError {
 

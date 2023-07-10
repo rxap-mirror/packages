@@ -1,25 +1,41 @@
-import {ChangeDetectionStrategy, Component, Inject, Optional} from '@angular/core';
-import {TableFilterService} from '../../table-filter/table-filter.service';
-import type {Observable} from 'rxjs';
-import {of} from 'rxjs';
-import {distinctUntilChanged, map, startWith} from 'rxjs/operators';
-import {ROW_ARCHIVE_METHOD, ROW_DELETE_METHOD, ROW_RESTORE_METHOD} from '../tokens';
-import {TableDataSourceDirective} from '../../table-data-source.directive';
-import {SelectRowService} from '../../select-row/select-row.service';
-import {OpenApiRemoteMethod} from '@rxap/open-api/remote-method';
-import {Method} from '@rxap/pattern';
-import {MatIconModule} from '@angular/material/icon';
-import {ConfirmDirective} from '@rxap/components';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatButtonModule} from '@angular/material/button';
-import {AsyncPipe, NgIf} from '@angular/common';
-import {FlexModule} from '@angular/flex-layout/flex';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Optional,
+} from '@angular/core';
+import { TableFilterService } from '../../table-filter/table-filter.service';
+import type { Observable } from 'rxjs';
+import { of } from 'rxjs';
+import {
+  distinctUntilChanged,
+  map,
+  startWith,
+} from 'rxjs/operators';
+import {
+  ROW_ARCHIVE_METHOD,
+  ROW_DELETE_METHOD,
+  ROW_RESTORE_METHOD,
+} from '../tokens';
+import { TableDataSourceDirective } from '../../table-data-source.directive';
+import { SelectRowService } from '../../select-row/select-row.service';
+import { OpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import { Method } from '@rxap/pattern';
+import { MatIconModule } from '@angular/material/icon';
+import { ConfirmDirective } from '@rxap/components';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import {
+  AsyncPipe,
+  NgIf,
+} from '@angular/common';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'th[rxap-row-controls-header-cell]',
   templateUrl: './row-controls-header-cell.component.html',
-  styleUrls: ['./row-controls-header-cell.component.scss'],
+  styleUrls: [ './row-controls-header-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [

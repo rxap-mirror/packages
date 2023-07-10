@@ -1,7 +1,10 @@
-import {Mixin} from '@rxap/mixin';
-import {RequiredElementOptions, RequiredElementParserMixin} from './required-element.parser.mixin';
-import {ParsedElementType} from '../utilities';
-import {ParsedElement} from '../../elements/parsed-element';
+import { Mixin } from '@rxap/mixin';
+import {
+  RequiredElementOptions,
+  RequiredElementParserMixin,
+} from './required-element.parser.mixin';
+import { ParsedElementType } from '../utilities';
+import { ParsedElement } from '../../elements/parsed-element';
 
 export interface ChildElementOptions extends RequiredElementOptions {
   tag?: string;

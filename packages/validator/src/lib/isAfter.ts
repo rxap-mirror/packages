@@ -1,5 +1,5 @@
-import {assertString} from './util/assertString';
-import {toDate} from './toDate';
+import { assertString } from './util/assertString';
+import { toDate } from './toDate';
 
 export function isAfter(str: unknown, date = String(new Date())) {
   assertString(str);

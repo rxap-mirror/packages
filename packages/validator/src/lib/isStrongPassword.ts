@@ -1,5 +1,5 @@
-import {merge} from './util/merge';
-import {assertString} from './util/assertString';
+import { merge } from './util/merge';
+import { assertString } from './util/assertString';
 
 const upperCaseRegex = /^[A-Z]$/;
 const lowerCaseRegex = /^[a-z]$/;

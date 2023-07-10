@@ -1,6 +1,14 @@
-import {Directive, ElementRef, EventEmitter, HostBinding, HostListener, Input, Output} from '@angular/core';
-import {DebounceCall} from '@rxap/utilities';
-import {Method} from '@rxap/pattern';
+import {
+  Directive,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
+import { DebounceCall } from '@rxap/utilities';
+import { Method } from '@rxap/pattern';
 
 export interface ContenteditableEvent {
   value: string;

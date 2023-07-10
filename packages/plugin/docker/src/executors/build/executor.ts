@@ -1,8 +1,13 @@
-import {BuildExecutorSchema} from './schema';
-import {join} from 'path';
-import {ExecutorContext} from '@nx/devkit';
-import {GuessOutputPath} from '@rxap/plugin-utilities';
-import {dockerBuild, dockerPush, getGitlabRegistryDestination, loginToRegistry} from '../utilities';
+import { BuildExecutorSchema } from './schema';
+import { join } from 'path';
+import { ExecutorContext } from '@nx/devkit';
+import { GuessOutputPath } from '@rxap/plugin-utilities';
+import {
+  dockerBuild,
+  dockerPush,
+  getGitlabRegistryDestination,
+  loginToRegistry,
+} from '../utilities';
 
 
 export default async function runExecutor(

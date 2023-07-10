@@ -6,10 +6,13 @@
  * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
  */
 
-import {inject, TestBed} from '@angular/core/testing';
+import {
+  inject,
+  TestBed,
+} from '@angular/core/testing';
 
-import {KeycloakBearerInterceptor} from './keycloak-bearer.interceptor';
-import {KeycloakService} from '../services/keycloak.service';
+import { KeycloakBearerInterceptor } from './keycloak-bearer.interceptor';
+import { KeycloakService } from '../services/keycloak.service';
 
 describe('KeycloakBearerInterceptor', () => {
   beforeEach(() => {

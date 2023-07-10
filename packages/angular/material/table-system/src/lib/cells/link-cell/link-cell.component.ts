@@ -3,9 +3,9 @@ import {
   Component,
   Input,
 } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import {FlexModule} from '@angular/flex-layout/flex';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
+import { FlexModule } from '@angular/flex-layout/flex';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {
   NgIf,
   NgSwitch,

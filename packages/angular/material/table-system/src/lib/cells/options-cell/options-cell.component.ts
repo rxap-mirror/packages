@@ -1,30 +1,30 @@
 import type {
-  QueryList,
   OnChanges,
+  QueryList,
   SimpleChanges,
 } from '@angular/core';
 import {
-  Component,
-  ChangeDetectionStrategy,
-  Input,
-  ContentChildren,
   AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  Input,
   isDevMode,
   OnDestroy,
   Renderer2,
 } from '@angular/core';
-import {MatOption} from '@angular/material/core';
-import {Subscription} from 'rxjs';
+import { MatOption } from '@angular/material/core';
+import { Subscription } from 'rxjs';
 import {
-  tap,
   startWith,
+  tap,
 } from 'rxjs/operators';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'td[rxap-options-cell]',
   templateUrl: './options-cell.component.html',
-  styleUrls: ['./options-cell.component.scss'],
+  styleUrls: [ './options-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

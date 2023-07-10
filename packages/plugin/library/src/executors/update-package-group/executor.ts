@@ -1,6 +1,10 @@
-import {UpdatePackageGroupExecutorSchema} from './schema';
-import {ExecutorContext} from '@nx/devkit';
-import {ArrayPackageGroup, normalizePackageGroup, PackageGroup} from 'nx/src/utils/package-json';
+import { UpdatePackageGroupExecutorSchema } from './schema';
+import { ExecutorContext } from '@nx/devkit';
+import {
+  ArrayPackageGroup,
+  normalizePackageGroup,
+  PackageGroup,
+} from 'nx/src/utils/package-json';
 import {
   getDirectPackageDependenciesForProject,
   readPackageJsonForProject,
@@ -10,7 +14,7 @@ import {
 function getPackageGroup(context: ExecutorContext): ArrayPackageGroup {
   const directPackageDependencies = getDirectPackageDependenciesForProject(context);
   return Object.entries(directPackageDependencies)
-    .map(([packageName, version]) => ({
+               .map(([ packageName, version ]) => ({
       package: packageName,
       version: '^' + version,
     }));

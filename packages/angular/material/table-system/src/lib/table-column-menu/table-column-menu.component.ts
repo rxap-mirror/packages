@@ -1,26 +1,26 @@
-import type {QueryList} from '@angular/core';
+import type { QueryList } from '@angular/core';
 import {
-  Component,
-  ChangeDetectionStrategy,
-  ContentChildren,
   AfterContentInit,
-  Input,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
   HostBinding,
+  Input,
 } from '@angular/core';
-import {TableColumnOptionComponent} from './table-column-option/table-column-option.component';
-import {coerceBoolean} from '@rxap/utilities';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {ExtendedModule} from '@angular/flex-layout/extended';
-import {StopPropagationDirective} from '@rxap/directives';
-import {NgFor} from '@angular/common';
-import {MatIconModule} from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
+import { TableColumnOptionComponent } from './table-column-option/table-column-option.component';
+import { coerceBoolean } from '@rxap/utilities';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ExtendedModule } from '@angular/flex-layout/extended';
+import { StopPropagationDirective } from '@rxap/directives';
+import { NgFor } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'rxap-table-column-menu',
   templateUrl: './table-column-menu.component.html',
-  styleUrls: ['./table-column-menu.component.scss'],
+  styleUrls: [ './table-column-menu.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'rxapTableColumns',
   standalone: true,

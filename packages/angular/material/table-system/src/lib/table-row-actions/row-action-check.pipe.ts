@@ -4,13 +4,13 @@ import {
   Pipe,
   PipeTransform,
 } from '@angular/core';
-import {coerceArray} from '@rxap/utilities';
-import {TableRowActionTypeMethod} from './types';
-import {RXAP_TABLE_ROW_ACTION_METHOD} from './tokens';
+import { coerceArray } from '@rxap/utilities';
+import { TableRowActionTypeMethod } from './types';
+import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
 import {
-  IsTableRowActionTypeMethod,
-  HasTableRowActionCheckFunction,
   GetTableRowActionCheckFunction,
+  HasTableRowActionCheckFunction,
+  IsTableRowActionTypeMethod,
 } from './table-row-action.method';
 
 @Pipe({

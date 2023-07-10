@@ -4,11 +4,16 @@ import {
   RemoteMethodLoader,
   RxapRemoteMethodError,
 } from '@rxap/remote-method';
-import {HttpRemoteMethod} from './http.remote-method';
-import {Inject, Injectable, InjectFlags, Injector} from '@angular/core';
-import {IdOrInstanceOrToken} from '@rxap/definition';
+import { HttpRemoteMethod } from './http.remote-method';
+import {
+  Inject,
+  Injectable,
+  InjectFlags,
+  Injector,
+} from '@angular/core';
+import { IdOrInstanceOrToken } from '@rxap/definition';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class HttpRemoteMethodLoader {
 
   // Instead of extanding the RemoteMethodLoader class the RemoteMethodLoader instance

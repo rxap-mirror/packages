@@ -1,15 +1,29 @@
-import {Inject, Injectable} from '@angular/core';
-import {Constructor} from '@rxap/utilities';
-import {Observable, Subject} from 'rxjs';
-import {NavigationCancel, NavigationEnd, NavigationStart, Router} from '@angular/router';
-import {filter, map} from 'rxjs/operators';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
+import { Constructor } from '@rxap/utilities';
+import {
+  Observable,
+  Subject,
+} from 'rxjs';
+import {
+  NavigationCancel,
+  NavigationEnd,
+  NavigationStart,
+  Router,
+} from '@angular/router';
+import {
+  filter,
+  map,
+} from 'rxjs/operators';
 
 export interface SortedComponent {
   component: Constructor;
   order: number;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class HeaderService {
 
   public readonly update$ = new Subject<void>();

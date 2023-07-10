@@ -1,10 +1,13 @@
-import {addDecorator, moduleMetadata} from '@storybook/angular';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  addDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {LoadingComponent} from './loading.component';
-import {RouterTestingModule} from '@angular/router/testing';
-import {RxapAuthenticationService} from '@rxap/authentication';
-import {of} from 'rxjs';
+import { LoadingComponent } from './loading.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { RxapAuthenticationService } from '@rxap/authentication';
+import { of } from 'rxjs';
 
 
 addDecorator(moduleMetadata({

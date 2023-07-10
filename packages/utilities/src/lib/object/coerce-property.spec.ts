@@ -1,4 +1,4 @@
-import {CoerceProperty} from './coerce-property';
+import { CoerceProperty } from './coerce-property';
 
 describe('@rxap/utilities', () => {
 

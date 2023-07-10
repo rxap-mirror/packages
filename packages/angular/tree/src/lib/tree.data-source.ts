@@ -1,15 +1,40 @@
-import {BehaviorSubject, from, merge, Observable, Subject, Subscription} from 'rxjs';
-import {FlatTreeControl} from '@angular/cdk/tree';
-import {SelectionChange, SelectionModel} from '@angular/cdk/collections';
-import {map, startWith, switchMap, tap} from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  from,
+  merge,
+  Observable,
+  Subject,
+  Subscription,
+} from 'rxjs';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import {
+  SelectionChange,
+  SelectionModel,
+} from '@angular/cdk/collections';
+import {
+  map,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
 import {
   BaseDataSource,
   BaseDataSourceMetadata,
   BaseDataSourceViewer,
   RXAP_DATA_SOURCE_METADATA,
 } from '@rxap/data-source';
-import {joinPath, Required, WithChildren, WithIdentifier} from '@rxap/utilities';
-import {Inject, Injectable, InjectionToken, isDevMode} from '@angular/core';
+import {
+  joinPath,
+  Required,
+  WithChildren,
+  WithIdentifier,
+} from '@rxap/utilities';
+import {
+  Inject,
+  Injectable,
+  InjectionToken,
+  isDevMode,
+} from '@angular/core';
 import {
   ExpandNodeFunction,
   Node,
@@ -18,8 +43,8 @@ import {
   NodeHasDetailsFunction,
   NodeToDisplayFunction,
 } from '@rxap/data-structure-tree';
-import {Method} from '@rxap/pattern';
-import {ToggleSubject} from '@rxap/rxjs';
+import { Method } from '@rxap/pattern';
+import { ToggleSubject } from '@rxap/rxjs';
 
 export function isSelectionChange<T>(obj: any): obj is SelectionChange<T> {
   return !!obj && !!obj['added'] && !!obj['removed'];

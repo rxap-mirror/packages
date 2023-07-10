@@ -1,14 +1,14 @@
 import {
-  TestBed,
   fakeAsync,
+  TestBed,
   tick,
 } from '@angular/core/testing';
-import {SidenavContentComponentService} from './sidenav-content.component.service';
+import { SidenavContentComponentService } from './sidenav-content.component.service';
 import {
-  HeaderService,
   FooterService,
+  HeaderService,
 } from '@rxap/services';
-import {RouterTestingModule} from '@angular/router/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('Layout', () => {
 

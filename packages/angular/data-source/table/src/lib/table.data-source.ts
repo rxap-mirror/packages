@@ -5,7 +5,11 @@ import {
   RxapAbstractTableDataSource,
   SortLike,
 } from './abstract-table.data-source';
-import {Inject, Injectable, Optional} from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
 import {
   RXAP_TABLE_DATA_SOURCE,
   RXAP_TABLE_DATA_SOURCE_FILTER,
@@ -13,11 +17,25 @@ import {
   RXAP_TABLE_DATA_SOURCE_PARAMETERS,
   RXAP_TABLE_DATA_SOURCE_SORT,
 } from './tokens';
-import {PaginatorLike} from '@rxap/data-source/pagination';
-import {BaseDataSource, BaseDataSourceViewer, RXAP_DATA_SOURCE_METADATA} from '@rxap/data-source';
-import {combineLatest, Observable, of, TeardownLogic} from 'rxjs';
-import {map, startWith, switchMap, tap} from 'rxjs/operators';
-import {Constructor} from '@rxap/utilities';
+import { PaginatorLike } from '@rxap/data-source/pagination';
+import {
+  BaseDataSource,
+  BaseDataSourceViewer,
+  RXAP_DATA_SOURCE_METADATA,
+} from '@rxap/data-source';
+import {
+  combineLatest,
+  Observable,
+  of,
+  TeardownLogic,
+} from 'rxjs';
+import {
+  map,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
+import { Constructor } from '@rxap/utilities';
 
 export type TableDataSourceMetadata = AbstractTableDataSourceMetadata
 

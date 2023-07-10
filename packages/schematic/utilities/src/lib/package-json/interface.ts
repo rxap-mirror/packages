@@ -1,17 +1,17 @@
-import {Dependency} from './dependency';
-import {PackageExportsEntryObject} from './package-exports-entry-object';
-import {PackageExportsEntryOrFallback} from './package-exports-entry-or-fallback';
-import {PackageExportsEntryPath} from './package-exports-entry-path';
-import {PackageExportsFallback} from './package-exports-fallback';
-import {Person} from './person';
-import {ScriptsInstallAfter} from './scripts-install-after';
-import {ScriptsPublishAfter} from './scripts-publish-after';
-import {ScriptsRestart} from './scripts-restart';
-import {ScriptsStart} from './scripts-start';
-import {ScriptsStop} from './scripts-stop';
-import {ScriptsTest} from './scripts-test';
-import {ScriptsUninstallBefore} from './scripts-uninstall-before';
-import {ScriptsVersionBefore} from './scripts-version-before';
+import { Dependency } from './dependency';
+import { PackageExportsEntryObject } from './package-exports-entry-object';
+import { PackageExportsEntryOrFallback } from './package-exports-entry-or-fallback';
+import { PackageExportsEntryPath } from './package-exports-entry-path';
+import { PackageExportsFallback } from './package-exports-fallback';
+import { Person } from './person';
+import { ScriptsInstallAfter } from './scripts-install-after';
+import { ScriptsPublishAfter } from './scripts-publish-after';
+import { ScriptsRestart } from './scripts-restart';
+import { ScriptsStart } from './scripts-start';
+import { ScriptsStop } from './scripts-stop';
+import { ScriptsTest } from './scripts-test';
+import { ScriptsUninstallBefore } from './scripts-uninstall-before';
+import { ScriptsVersionBefore } from './scripts-version-before';
 
 export interface PackageJson {
   /** The name of the package. */

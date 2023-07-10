@@ -1,4 +1,4 @@
-import {assertString} from './util/assertString';
+import { assertString } from './util/assertString';
 
 const lengths: Record<string, number> = {
   md5: 32,

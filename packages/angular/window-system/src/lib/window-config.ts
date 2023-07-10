@@ -1,11 +1,16 @@
-import {ComponentType} from '@angular/cdk/portal';
-import {ComponentFactoryResolver, Injector, TemplateRef, ViewContainerRef} from '@angular/core';
-import {IconConfig} from '@rxap/utilities';
-import {ButtonDefinition} from '@rxap/rxjs';
+import { ComponentType } from '@angular/cdk/portal';
+import {
+  ComponentFactoryResolver,
+  Injector,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
+import { IconConfig } from '@rxap/utilities';
+import { ButtonDefinition } from '@rxap/rxjs';
 
 export interface WindowActions<A> {
   position?: 'start' | 'end';
-  definitions: ButtonDefinition<[A]>[];
+  definitions: ButtonDefinition<[ A ]>[];
 }
 
 export interface WindowSettings<D = any> {

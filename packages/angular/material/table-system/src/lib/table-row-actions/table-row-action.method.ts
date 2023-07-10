@@ -7,10 +7,10 @@ import {
   TableActionMethodOptions,
 } from './decorators';
 import {
+  RowActionCheckFunction,
   TableRowActionMethod,
   TableRowActionTypeMethod,
   TableRowActionTypeSwitchMethod,
-  RowActionCheckFunction,
 } from './types';
 
 export function IsTableRowActionTypeSwitchMethod<Data extends Record<string, any>>(

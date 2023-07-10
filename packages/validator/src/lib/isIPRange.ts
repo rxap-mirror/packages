@@ -1,5 +1,5 @@
-import {assertString} from './util/assertString';
-import {isIP} from './isIP';
+import { assertString } from './util/assertString';
+import { isIP } from './isIP';
 
 const subnetMaybe = /^\d{1,3}$/;
 const v4Subnet = 32;

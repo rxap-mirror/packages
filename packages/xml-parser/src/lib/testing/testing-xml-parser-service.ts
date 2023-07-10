@@ -1,9 +1,9 @@
-import {Constructor} from '@rxap/utilities';
-import {getMetadata} from '@rxap/reflect-metadata';
-import {XmlParserService} from '../xml-parser.service';
-import {ParsedElement} from '../elements/parsed-element';
-import {ElementParserMetaData} from '../decorators/metadata-keys';
-import {RxapElement} from '../element';
+import { Constructor } from '@rxap/utilities';
+import { getMetadata } from '@rxap/reflect-metadata';
+import { XmlParserService } from '../xml-parser.service';
+import { ParsedElement } from '../elements/parsed-element';
+import { ElementParserMetaData } from '../decorators/metadata-keys';
+import { RxapElement } from '../element';
 
 export class TestingXmlParserService extends XmlParserService {
 

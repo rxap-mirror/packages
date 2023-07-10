@@ -1,8 +1,8 @@
-import {classify} from '@rxap/schematics-utilities';
-import {OpenAPIV3} from 'openapi-types';
-import {RESPONSE_FILE_SUFFIX} from '../config';
-import {IsAnySchemaObject} from './any-schema-object';
-import {GetResponse} from './get-response';
+import { classify } from '@rxap/schematics-utilities';
+import { OpenAPIV3 } from 'openapi-types';
+import { RESPONSE_FILE_SUFFIX } from '../config';
+import { IsAnySchemaObject } from './any-schema-object';
+import { GetResponse } from './get-response';
 
 export function GetResponseType(operation: OpenAPIV3.OperationObject): string {
 

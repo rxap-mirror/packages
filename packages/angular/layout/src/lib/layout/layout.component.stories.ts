@@ -1,14 +1,14 @@
 import {
-  moduleMetadata,
   addDecorator,
+  moduleMetadata,
 } from '@storybook/angular';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterTestingModule} from '@angular/router/testing';
-import {LayoutModule} from './layout.component.module';
-import {LayoutComponent} from './layout.component';
-import {of} from 'rxjs';
-import {UserService} from '@rxap/authentication';
-import {ConfigService} from '@rxap/config';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { LayoutModule } from './layout.component.module';
+import { LayoutComponent } from './layout.component';
+import { of } from 'rxjs';
+import { UserService } from '@rxap/authentication';
+import { ConfigService } from '@rxap/config';
 import '@angular/localize/init';
 
 ConfigService.Config = {

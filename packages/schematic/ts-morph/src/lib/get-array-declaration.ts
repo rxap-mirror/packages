@@ -1,6 +1,9 @@
-import {SourceFile, VariableDeclaration} from 'ts-morph';
-import {CoerceVariableDeclaration} from './coerce-variable-declaration';
-import {AssertArrayLiteralExpression} from './is-array-literal-expression';
+import {
+  SourceFile,
+  VariableDeclaration,
+} from 'ts-morph';
+import { CoerceVariableDeclaration } from './coerce-variable-declaration';
+import { AssertArrayLiteralExpression } from './is-array-literal-expression';
 
 export function GetArrayDeclaration(
   sourceFile: SourceFile,

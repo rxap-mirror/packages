@@ -1,9 +1,9 @@
 import {
-  moduleMetadata,
   addDecorator,
+  moduleMetadata,
 } from '@storybook/angular';
 
-import {SidenavToggleButtonComponent} from './sidenav-toggle-button.component';
+import { SidenavToggleButtonComponent } from './sidenav-toggle-button.component';
 
 addDecorator(moduleMetadata({
   imports: [],

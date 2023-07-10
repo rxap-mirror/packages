@@ -1,10 +1,16 @@
-import {ElementChild, ElementChildParser} from './element-child';
-import {ParsedElementType, XmlElementMetadata} from './utilities';
-import {getMetadata} from '@rxap/reflect-metadata';
-import {RxapElement} from '../element';
-import {ParsedElement} from '../elements/parsed-element';
-import {XmlParserService} from '../xml-parser.service';
-import {RxapXmlParserValidateRequiredError} from '../error';
+import {
+  ElementChild,
+  ElementChildParser,
+} from './element-child';
+import {
+  ParsedElementType,
+  XmlElementMetadata,
+} from './utilities';
+import { getMetadata } from '@rxap/reflect-metadata';
+import { RxapElement } from '../element';
+import { ParsedElement } from '../elements/parsed-element';
+import { XmlParserService } from '../xml-parser.service';
+import { RxapXmlParserValidateRequiredError } from '../error';
 
 describe('@rxap/xml-parser', () => {
 
@@ -14,7 +20,14 @@ describe('@rxap/xml-parser', () => {
 
       it('should throw if the child element is not defined but required', () => {
 
-        const parser = new ElementChildParser('property', {} as any, {tag: 'tag', required: true});
+        const parser = new ElementChildParser(
+          'property',
+          {} as any,
+          {
+            tag: 'tag',
+            required: true,
+          },
+        );
 
         const hasChild = jest.fn().mockReturnValue(false);
 

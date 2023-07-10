@@ -1,19 +1,19 @@
 import {
-  Directive,
-  Inject,
-  Optional,
-  forwardRef,
-  OnInit,
-  EventEmitter,
-  Output,
-  HostBinding,
   ChangeDetectorRef,
+  Directive,
+  EventEmitter,
+  forwardRef,
+  HostBinding,
+  Inject,
   Input,
-  OnChanges,
-  SimpleChanges,
   isDevMode,
-  SkipSelf,
+  OnChanges,
   OnDestroy,
+  OnInit,
+  Optional,
+  Output,
+  SimpleChanges,
+  SkipSelf,
 } from '@angular/core';
 import {
   ControlContainer,
@@ -21,42 +21,42 @@ import {
 } from '@angular/forms';
 import {
   RXAP_FORM_DEFINITION,
-  RXAP_FORM_SUBMIT_METHOD,
-  RXAP_FORM_LOAD_METHOD,
+  RXAP_FORM_DEFINITION_BUILDER,
   RXAP_FORM_LOAD_FAILED_METHOD,
+  RXAP_FORM_LOAD_METHOD,
   RXAP_FORM_LOAD_SUCCESSFUL_METHOD,
   RXAP_FORM_SUBMIT_FAILED_METHOD,
+  RXAP_FORM_SUBMIT_METHOD,
   RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
-  RXAP_FORM_DEFINITION_BUILDER,
 } from './tokens';
-import {RxapFormGroup} from '../form-group';
+import { RxapFormGroup } from '../form-group';
 import {
-  isPromise,
-  isObject,
-  Required,
   clone,
+  isObject,
+  isPromise,
+  Required,
 } from '@rxap/utilities';
-import {FormDefinition} from '../model';
+import { FormDefinition } from '../model';
 import {
-  FormSubmitMethod,
-  FormLoadMethod,
   FormLoadFailedMethod,
+  FormLoadMethod,
   FormLoadSuccessfulMethod,
   FormSubmitFailedMethod,
+  FormSubmitMethod,
   FormSubmitSuccessfulMethod,
 } from './models';
 import {
   BehaviorSubject,
   Subscription,
 } from 'rxjs';
-import {RxapFormBuilder} from '../form-builder';
-import {LoadingIndicatorService} from '@rxap/services';
+import { RxapFormBuilder } from '../form-builder';
+import { LoadingIndicatorService } from '@rxap/services';
 import {
   debounceTime,
-  tap,
   filter,
+  tap,
 } from 'rxjs/operators';
-import {ToggleSubject} from '@rxap/rxjs';
+import { ToggleSubject } from '@rxap/rxjs';
 
 @Directive({
   selector: 'form[rxapForm]:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',

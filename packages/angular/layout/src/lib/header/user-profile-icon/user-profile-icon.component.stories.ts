@@ -1,9 +1,9 @@
 import {
-  moduleMetadata,
   addDecorator,
+  moduleMetadata,
 } from '@storybook/angular';
 
-import {UserProfileIconComponent} from './user-profile-icon.component';
+import { UserProfileIconComponent } from './user-profile-icon.component';
 
 addDecorator(moduleMetadata({
   imports: [],

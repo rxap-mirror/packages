@@ -1,8 +1,8 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
 } from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   templateUrl: './empty-router-outlet.component.html',

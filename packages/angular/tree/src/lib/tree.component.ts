@@ -17,13 +17,25 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import {DebounceCall, Required, WithChildren, WithIdentifier} from '@rxap/utilities';
-import {FlatTreeControl} from '@angular/cdk/tree';
-import {map, startWith, tap} from 'rxjs/operators';
-import {TreeContentDirective} from './tree-content.directive';
-import {PortalModule, TemplatePortal} from '@angular/cdk/portal';
-import {RXAP_TREE_CONTENT_EDITABLE_METHOD} from './tokens';
-import {TreeDataSource} from './tree.data-source';
+import {
+  DebounceCall,
+  Required,
+  WithChildren,
+  WithIdentifier,
+} from '@rxap/utilities';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import {
+  map,
+  startWith,
+  tap,
+} from 'rxjs/operators';
+import { TreeContentDirective } from './tree-content.directive';
+import {
+  PortalModule,
+  TemplatePortal,
+} from '@angular/cdk/portal';
+import { RXAP_TREE_CONTENT_EDITABLE_METHOD } from './tokens';
+import { TreeDataSource } from './tree.data-source';
 import {
   Node,
   NodeGetIconFunction,
@@ -31,25 +43,29 @@ import {
   NodeHasDetailsFunction,
   NodeToDisplayFunction,
 } from '@rxap/data-structure-tree';
-import {Method} from '@rxap/pattern';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {ContenteditableDirective} from '@rxap/contenteditable';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {IconDirective} from '@rxap/material-directives/icon';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTreeModule} from '@angular/material/tree';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {ExtendedModule} from '@angular/flex-layout/extended';
-import {AsyncPipe, NgIf, NgStyle} from '@angular/common';
-import {FlexModule} from '@angular/flex-layout/flex';
+import { Method } from '@rxap/pattern';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ContenteditableDirective } from '@rxap/contenteditable';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { IconDirective } from '@rxap/material-directives/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ExtendedModule } from '@angular/flex-layout/extended';
+import {
+  AsyncPipe,
+  NgIf,
+  NgStyle,
+} from '@angular/common';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'rxap-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss'],
+  styleUrls: [ './tree.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [

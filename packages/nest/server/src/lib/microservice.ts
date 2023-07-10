@@ -1,15 +1,19 @@
-import {Server} from './server';
-import {NestFactory} from '@nestjs/core';
-import {INestMicroservice, Logger} from '@nestjs/common';
-import {MicroserviceOptions} from '@nestjs/microservices';
-import {ConfigService} from '@nestjs/config';
-import {DetermineVersion} from '@rxap/nest-utilities';
+import { Server } from './server';
+import { NestFactory } from '@nestjs/core';
+import {
+  INestMicroservice,
+  Logger,
+} from '@nestjs/common';
+import { MicroserviceOptions } from '@nestjs/microservices';
+import { ConfigService } from '@nestjs/config';
+import { DetermineVersion } from '@rxap/nest-utilities';
 
 export interface MicroserviceBootstrapOptions {
   version: string;
 }
 
-export class Microservice<O extends object = MicroserviceOptions> extends Server<O, INestMicroservice, MicroserviceBootstrapOptions> {
+export class Microservice<O extends object = MicroserviceOptions>
+  extends Server<O, INestMicroservice, MicroserviceBootstrapOptions> {
 
   protected override create(): Promise<INestMicroservice> {
     return NestFactory.createMicroservice(this.module, this.options);

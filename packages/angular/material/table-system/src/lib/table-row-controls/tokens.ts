@@ -1,6 +1,6 @@
-import {InjectionToken} from '@angular/core';
-import {OpenApiRemoteMethod} from '@rxap/open-api/remote-method';
-import {BaseRemoteMethod} from '@rxap/remote-method';
+import { InjectionToken } from '@angular/core';
+import { OpenApiRemoteMethod } from '@rxap/open-api/remote-method';
+import { BaseRemoteMethod } from '@rxap/remote-method';
 
 export const ROW_ARCHIVE_METHOD = new InjectionToken<OpenApiRemoteMethod<any, {
   uuid: string

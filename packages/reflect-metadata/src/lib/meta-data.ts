@@ -1,5 +1,8 @@
 import 'reflect-metadata';
-import {deepMerge, unique} from '@rxap/utilities';
+import {
+  deepMerge,
+  unique,
+} from '@rxap/utilities';
 
 export function hasMetadata(
   metadataKey: string,

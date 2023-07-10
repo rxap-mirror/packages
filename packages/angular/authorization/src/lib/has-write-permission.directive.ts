@@ -1,9 +1,18 @@
-import {ChangeDetectorRef, Directive, HostBinding, Inject, Input, OnDestroy, OnInit, Optional} from '@angular/core';
-import {AuthorizationService} from './authorization.service';
-import {Required} from '@rxap/utilities';
-import {Subscription} from 'rxjs';
-import {tap} from 'rxjs/operators';
-import {RXAP_AUTHORIZATION_SCOPE} from './tokens';
+import {
+  ChangeDetectorRef,
+  Directive,
+  HostBinding,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Optional,
+} from '@angular/core';
+import { AuthorizationService } from './authorization.service';
+import { Required } from '@rxap/utilities';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
 @Directive({
   selector: '[rxapHasWritePermission]',

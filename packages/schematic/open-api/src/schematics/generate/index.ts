@@ -1,21 +1,48 @@
-import { chain, noop, Rule, Tree } from '@angular-devkit/schematics';
+import {
+  chain,
+  noop,
+  Rule,
+  Tree,
+} from '@angular-devkit/schematics';
 import { join } from 'path';
-import { IndentationText, Project, QuoteKind } from 'ts-morph';
-import { ApplyTsMorphProject, FixMissingImports } from '@rxap/schematics-ts-morph';
+import {
+  IndentationText,
+  Project,
+  QuoteKind,
+} from 'ts-morph';
+import {
+  ApplyTsMorphProject,
+  FixMissingImports,
+} from '@rxap/schematics-ts-morph';
 import { OpenApiSchema } from './schema';
 import {
-  CoerceFile, dasherize, GetDefaultPrefix, GetProjectPrefix, GetProjectSourceRoot, HasProject,
+  CoerceFile,
+  dasherize,
+  GetDefaultPrefix,
+  GetProjectPrefix,
+  GetProjectSourceRoot,
+  HasProject,
 } from '@rxap/schematics-utilities';
 import { GenerateRemoteMethod } from './generate-remote-method';
 import { REMOTE_METHOD_BASE_PATH } from './const';
 import { CoerceOpenApiProject } from './coerce-open-api-project';
 import { GenerateOpenapiProvider } from './generate-openapi-provider';
 import { OpenAPIV3 } from 'openapi-types';
-import { IgnoreOperation, IsHttpMethod, IsOperationObject } from '../../lib/utilities';
-import { LoadOpenApiConfig } from '../../lib/load-open-api-config';
-import { GeneratorFunction, HasOperationId } from '../../lib/types';
 import {
-  COMPONENTS_BASE_PATH, PARAMETER_BASE_PATH, REQUEST_BODY_BASE_PATH, RESPONSE_BASE_PATH,
+  IgnoreOperation,
+  IsHttpMethod,
+  IsOperationObject,
+} from '../../lib/utilities';
+import { LoadOpenApiConfig } from '../../lib/load-open-api-config';
+import {
+  GeneratorFunction,
+  HasOperationId,
+} from '../../lib/types';
+import {
+  COMPONENTS_BASE_PATH,
+  PARAMETER_BASE_PATH,
+  REQUEST_BODY_BASE_PATH,
+  RESPONSE_BASE_PATH,
 } from '../../lib/config';
 import { ClearOperation } from '../../lib/clear-operation';
 import { GenerateIndexExports } from '../../lib/generate-index-exports';

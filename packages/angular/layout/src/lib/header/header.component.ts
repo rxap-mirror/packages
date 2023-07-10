@@ -1,53 +1,53 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
-  OnDestroy,
-  Input,
-  Optional,
+  Component,
   Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Optional,
 } from '@angular/core';
-import {Constructor} from '@rxap/utilities';
+import { Constructor } from '@rxap/utilities';
 import {
-  Subscription,
   Observable,
+  Subscription,
 } from 'rxjs';
 import {
-  tap,
   map,
+  tap,
 } from 'rxjs/operators';
-import {MatSidenav} from '@angular/material/sidenav';
-import {UserService} from '@rxap/authentication';
-import {RXAP_HEADER_COMPONENT} from '../tokens';
-import {HeaderService} from '@rxap/services';
+import { MatSidenav } from '@angular/material/sidenav';
+import { UserService } from '@rxap/authentication';
+import { RXAP_HEADER_COMPONENT } from '../tokens';
+import { HeaderService } from '@rxap/services';
 import {
-  MatMenuPanel,
   MatMenuModule,
+  MatMenuPanel,
 } from '@angular/material/menu';
-import {ThemePalette} from '@angular/material/core';
-import {NavigationProgressBarComponent} from './navigation-progress-bar/navigation-progress-bar.component';
-import {SignOutComponent} from './sign-out/sign-out.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {UserProfileIconComponent} from './user-profile-icon/user-profile-icon.component';
-import {AppsButtonComponent} from './apps-button/apps-button.component';
-import {LanguageSelectorComponent} from './language-selector/language-selector.component';
-import {SidenavToggleButtonComponent} from './sidenav-toggle-button/sidenav-toggle-button.component';
-import {FlexModule} from '@angular/flex-layout/flex';
+import { ThemePalette } from '@angular/material/core';
+import { NavigationProgressBarComponent } from './navigation-progress-bar/navigation-progress-bar.component';
+import { SignOutComponent } from './sign-out/sign-out.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.component';
+import { AppsButtonComponent } from './apps-button/apps-button.component';
+import { LanguageSelectorComponent } from './language-selector/language-selector.component';
+import { SidenavToggleButtonComponent } from './sidenav-toggle-button/sidenav-toggle-button.component';
+import { FlexModule } from '@angular/flex-layout/flex';
 import {
-  NgClass,
-  NgFor,
-  NgComponentOutlet,
-  NgIf,
   AsyncPipe,
+  NgClass,
+  NgComponentOutlet,
+  NgFor,
+  NgIf,
 } from '@angular/common';
-import {ExtendedModule} from '@angular/flex-layout/extended';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { ExtendedModule } from '@angular/flex-layout/extended';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'rxap-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrls: [ './header.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [

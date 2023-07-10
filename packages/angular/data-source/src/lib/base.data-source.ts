@@ -1,9 +1,35 @@
-import {EMPTY, firstValueFrom, Observable, Subject, TeardownLogic} from 'rxjs';
-import {BaseDefinition, BaseDefinitionMetadata, DefinitionMetadata, RXAP_DEFINITION_METADATA} from '@rxap/definition';
-import {clone, Constructor, deepMerge, GenerateRandomString} from '@rxap/utilities';
-import {finalize, take, takeUntil, tap} from 'rxjs/operators';
-import {Inject, Injectable, isDevMode, Optional} from '@angular/core';
-import {ToggleSubject} from '@rxap/rxjs';
+import {
+  EMPTY,
+  firstValueFrom,
+  Observable,
+  Subject,
+  TeardownLogic,
+} from 'rxjs';
+import {
+  BaseDefinition,
+  BaseDefinitionMetadata,
+  DefinitionMetadata,
+  RXAP_DEFINITION_METADATA,
+} from '@rxap/definition';
+import {
+  clone,
+  Constructor,
+  deepMerge,
+  GenerateRandomString,
+} from '@rxap/utilities';
+import {
+  finalize,
+  take,
+  takeUntil,
+  tap,
+} from 'rxjs/operators';
+import {
+  Inject,
+  Injectable,
+  isDevMode,
+  Optional,
+} from '@angular/core';
+import { ToggleSubject } from '@rxap/rxjs';
 
 export type DataSourceViewerId = string;
 

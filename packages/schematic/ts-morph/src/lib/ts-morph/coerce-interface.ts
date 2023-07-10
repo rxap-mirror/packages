@@ -1,4 +1,8 @@
-import {InterfaceDeclarationStructure, OptionalKind, SourceFile} from 'ts-morph';
+import {
+  InterfaceDeclarationStructure,
+  OptionalKind,
+  SourceFile,
+} from 'ts-morph';
 
 export function CoerceInterface(
   sourceFile: SourceFile,

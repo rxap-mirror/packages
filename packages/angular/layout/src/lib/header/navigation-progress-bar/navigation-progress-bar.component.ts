@@ -1,23 +1,23 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   Inject,
 } from '@angular/core';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import {
-  Router,
-  NavigationStart,
-  NavigationEnd,
   NavigationCancel,
+  NavigationEnd,
+  NavigationStart,
+  Router,
 } from '@angular/router';
 import {
   filter,
   map,
 } from 'rxjs/operators';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {
-  NgIf,
   AsyncPipe,
+  NgIf,
 } from '@angular/common';
 
 @Component({

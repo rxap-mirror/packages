@@ -1,9 +1,12 @@
-import {FormControlsComponent} from './form-controls.component';
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {HarnessLoader} from '@angular/cdk/testing';
-import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
-import {MatLegacyButtonHarness as MatButtonHarness} from '@angular/material/legacy-button/testing';
-import {MockRender} from 'ng-mocks';
+import { FormControlsComponent } from './form-controls.component';
+import {
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { HarnessLoader } from '@angular/cdk/testing';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { MatLegacyButtonHarness as MatButtonHarness } from '@angular/material/legacy-button/testing';
+import { MockRender } from 'ng-mocks';
 import {
   FormDirective,
   FormType,
@@ -13,8 +16,12 @@ import {
   RxapFormGroup,
   RxapFormsModule,
 } from '@rxap/forms';
-import {Injectable, Injector, INJECTOR} from '@angular/core';
-import {By} from '@angular/platform-browser';
+import {
+  Injectable,
+  Injector,
+  INJECTOR,
+} from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('@rxap/material-form-system', () => {
 

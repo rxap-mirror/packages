@@ -1,6 +1,9 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import {
+  BehaviorSubject,
+  Observable,
+} from 'rxjs';
+import { map } from 'rxjs/operators';
 
 /**
  * @deprecated use from @rxap/material-table-system

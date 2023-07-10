@@ -1,13 +1,22 @@
-import {Rule} from '@angular-devkit/schematics';
-import {camelize, classify, CoerceSuffix} from '@rxap/schematics-utilities';
-import {TsMorphAngularProjectTransform} from '../ts-morph-transform';
-import {CoerceInterface} from '../ts-morph/coerce-interface';
-import {CoercePropertyDeclaration} from '../nest/coerce-dto-class';
-import {ClassDeclaration, Project, Scope, SourceFile} from 'ts-morph';
-import {CoerceDecorator} from '../ts-morph/coerce-decorator';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {CoerceSourceFile} from '../coerce-source-file';
-import {CoerceClass} from '../coerce-class';
+import { Rule } from '@angular-devkit/schematics';
+import {
+  camelize,
+  classify,
+  CoerceSuffix,
+} from '@rxap/schematics-utilities';
+import { TsMorphAngularProjectTransform } from '../ts-morph-transform';
+import { CoerceInterface } from '../ts-morph/coerce-interface';
+import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
+import {
+  ClassDeclaration,
+  Project,
+  Scope,
+  SourceFile,
+} from 'ts-morph';
+import { CoerceDecorator } from '../ts-morph/coerce-decorator';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { CoerceClass } from '../coerce-class';
 
 export interface FormDefinitionControl {
   name: string;

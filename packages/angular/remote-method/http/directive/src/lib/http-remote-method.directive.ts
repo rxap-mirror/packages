@@ -1,18 +1,25 @@
-import {Directive, Input} from '@angular/core';
-import {RemoteMethodDirective} from '@rxap/remote-method/directive';
-import {HttpRemoteMethodMetadata, HttpRemoteMethodParameter} from '@rxap/remote-method/http';
-import {BaseRemoteMethod} from '@rxap/remote-method';
-import {IdOrInstanceOrToken} from '@rxap/definition';
+import {
+  Directive,
+  Input,
+} from '@angular/core';
+import { RemoteMethodDirective } from '@rxap/remote-method/directive';
+import {
+  HttpRemoteMethodMetadata,
+  HttpRemoteMethodParameter,
+} from '@rxap/remote-method/http';
+import { BaseRemoteMethod } from '@rxap/remote-method';
+import { IdOrInstanceOrToken } from '@rxap/definition';
 
 @Directive({
   selector: 'button[rxapHttpRemoteMethod]',
   standalone: true,
 })
-export class HttpRemoteMethodDirective<ReturnType = any, Metadata extends HttpRemoteMethodMetadata = HttpRemoteMethodMetadata> extends RemoteMethodDirective<ReturnType, HttpRemoteMethodParameter, Metadata> {
+export class HttpRemoteMethodDirective<ReturnType = any, Metadata extends HttpRemoteMethodMetadata = HttpRemoteMethodMetadata>
+  extends RemoteMethodDirective<ReturnType, HttpRemoteMethodParameter, Metadata> {
 
   @Input()
   public set headers(headers: HttpRemoteMethodParameter['headers']) {
-    this.updateParameters({headers});
+    this.updateParameters({ headers });
   }
 
   @Input()

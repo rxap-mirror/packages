@@ -1,4 +1,4 @@
-import {RxapError} from '@rxap/utilities';
+import { RxapError } from '@rxap/utilities';
 
 export class RxapXmlParserError extends RxapError {
 

@@ -2,8 +2,8 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
-import {IsString} from './is-string';
-import {isNumber} from './is-number';
+import { IsString } from './is-string';
+import { isNumber } from './is-number';
 
 export interface ComplexityOptions {
   uppercase?: number;

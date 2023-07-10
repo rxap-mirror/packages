@@ -1,10 +1,23 @@
-import {chain, noop, Rule} from '@angular-devkit/schematics';
-import {dirname, join} from 'path';
-import {NodePackageInstallTask, RunSchematicTask} from '@angular-devkit/schematics/tasks';
-import {PackageJson} from './package-json';
-import {GetJsonFile} from './json-file';
-import {CollectionJson} from './collection-json';
-import {AddPackageJsonDependency, AddPackageJsonDevDependency} from './package-json-file';
+import {
+  chain,
+  noop,
+  Rule,
+} from '@angular-devkit/schematics';
+import {
+  dirname,
+  join,
+} from 'path';
+import {
+  NodePackageInstallTask,
+  RunSchematicTask,
+} from '@angular-devkit/schematics/tasks';
+import { PackageJson } from './package-json';
+import { GetJsonFile } from './json-file';
+import { CollectionJson } from './collection-json';
+import {
+  AddPackageJsonDependency,
+  AddPackageJsonDevDependency,
+} from './package-json-file';
 
 export function InstallPeerDependencies(): Rule {
   return (host, context) => {
@@ -13,7 +26,7 @@ export function InstallPeerDependencies(): Rule {
     try {
       packageJson = require(packageJsonFilePath);
     } catch (e: any) {
-      console.warn(`Could not load schematic package.json file from '${packageJsonFilePath}': ${e.message}`);
+      console.warn(`Could not load schematic package.json file from '${ packageJsonFilePath }': ${ e.message }`);
       return noop();
     }
 

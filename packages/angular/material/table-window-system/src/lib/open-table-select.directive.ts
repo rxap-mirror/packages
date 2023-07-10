@@ -11,17 +11,31 @@ import {
   OnInit,
   ViewContainerRef,
 } from '@angular/core';
-import {coerceArray, ControlOptions} from '@rxap/utilities';
-import {MAT_FORM_FIELD, MatFormField} from '@angular/material/form-field';
-import {ExtractDataSourcesMixin, ExtractFormDefinitionMixin} from '@rxap/form-system';
-import {Mixin} from '@rxap/mixin';
-import {RxapFormControl} from '@rxap/forms';
-import {BaseDataSource, BaseDataSourceMetadata, DataSourceLoader, PipeDataSource} from '@rxap/data-source';
-import {map} from 'rxjs/operators';
-import {MatSelect} from '@angular/material/select';
-import {WindowTableSelectOptions} from './window-table-select.service';
-import {Method} from '@rxap/pattern';
-import {WindowRef} from '@rxap/window-system';
+import {
+  coerceArray,
+  ControlOptions,
+} from '@rxap/utilities';
+import {
+  MAT_FORM_FIELD,
+  MatFormField,
+} from '@angular/material/form-field';
+import {
+  ExtractDataSourcesMixin,
+  ExtractFormDefinitionMixin,
+} from '@rxap/form-system';
+import { Mixin } from '@rxap/mixin';
+import { RxapFormControl } from '@rxap/forms';
+import {
+  BaseDataSource,
+  BaseDataSourceMetadata,
+  DataSourceLoader,
+  PipeDataSource,
+} from '@rxap/data-source';
+import { map } from 'rxjs/operators';
+import { MatSelect } from '@angular/material/select';
+import { WindowTableSelectOptions } from './window-table-select.service';
+import { Method } from '@rxap/pattern';
+import { WindowRef } from '@rxap/window-system';
 
 export interface ExtractDatasourceMixin extends ExtractFormDefinitionMixin, ExtractDataSourcesMixin {
 }

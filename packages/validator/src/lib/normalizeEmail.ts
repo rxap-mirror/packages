@@ -1,4 +1,4 @@
-import {merge} from './util/merge';
+import { merge } from './util/merge';
 
 interface NormalizeEmailOptions {
   all_lowercase?: boolean;

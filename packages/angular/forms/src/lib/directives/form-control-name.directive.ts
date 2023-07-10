@@ -1,26 +1,26 @@
 import {
   Directive,
+  forwardRef,
   Inject,
+  Input,
   Optional,
   Self,
   SkipSelf,
-  Input,
-  forwardRef,
 } from '@angular/core';
 import {
+  AsyncValidator,
+  AsyncValidatorFn,
+  ControlContainer,
+  ControlValueAccessor,
   FormControlName,
   NG_ASYNC_VALIDATORS,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
-  ControlContainer,
+  NgControl,
   Validator,
   ValidatorFn,
-  AsyncValidator,
-  AsyncValidatorFn,
-  ControlValueAccessor,
-  NgControl,
 } from '@angular/forms';
-import {RxapFormControl} from '../form-control';
+import { RxapFormControl } from '../form-control';
 
 /**
  * A full exertion of FormControlName from @angular/forms. The only change is the

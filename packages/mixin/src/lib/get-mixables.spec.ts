@@ -1,5 +1,5 @@
-import {getMixables} from './get-mixables';
-import {Overwrite} from './overwrite';
+import { getMixables } from './get-mixables';
+import { Overwrite } from './overwrite';
 
 describe('Mixin', () => {
 

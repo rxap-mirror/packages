@@ -1,7 +1,12 @@
-import {Mixin} from './utilities';
-import {mix} from './mix';
-import {deepMerge} from '@rxap/utilities';
-import {getMetadata, getMetadataKeys, hasMetadata, setMetadata} from '@rxap/reflect-metadata';
+import { Mixin } from './utilities';
+import { mix } from './mix';
+import { deepMerge } from '@rxap/utilities';
+import {
+  getMetadata,
+  getMetadataKeys,
+  hasMetadata,
+  setMetadata,
+} from '@rxap/reflect-metadata';
 
 /**
  * @deprecated use @Mixin instead

@@ -1,5 +1,12 @@
-import {AfterContentInit, Directive, Inject} from '@angular/core';
-import {MAT_FORM_FIELD, MatFormField} from '@angular/material/form-field';
+import {
+  AfterContentInit,
+  Directive,
+  Inject,
+} from '@angular/core';
+import {
+  MAT_FORM_FIELD,
+  MatFormField,
+} from '@angular/material/form-field';
 
 @Directive({
   selector: '[formControlName][rxapRequired]',

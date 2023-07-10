@@ -1,8 +1,11 @@
-import {ParsedElement} from './elements/parsed-element';
-import {Constructor, hasIndexSignature} from '@rxap/utilities';
-import {ElementParserMetaData} from './decorators/metadata-keys';
-import {RxapXmlParserError} from './error';
-import {getMetadata} from '@rxap/reflect-metadata';
+import { ParsedElement } from './elements/parsed-element';
+import {
+  Constructor,
+  hasIndexSignature,
+} from '@rxap/utilities';
+import { ElementParserMetaData } from './decorators/metadata-keys';
+import { RxapXmlParserError } from './error';
+import { getMetadata } from '@rxap/reflect-metadata';
 
 export function ElementFactory<Element extends ParsedElement>(
   ElementConstructor: Constructor<Element> & { TAG?: string },

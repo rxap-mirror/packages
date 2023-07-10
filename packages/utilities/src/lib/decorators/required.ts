@@ -1,4 +1,4 @@
-import {RxapUtilitiesError} from '../error';
+import { RxapUtilitiesError } from '../error';
 
 function required(target: any, propertyKey: string) {
   Object.defineProperty(target, propertyKey, {

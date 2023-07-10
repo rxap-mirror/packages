@@ -2,7 +2,7 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
-import {isPort} from '@rxap/validator';
+import { isPort } from '@rxap/validator';
 
 export function IsPort({message}: { message?: string } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {

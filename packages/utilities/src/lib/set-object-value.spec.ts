@@ -1,4 +1,4 @@
-import {SetObjectValue} from './set-object-value';
+import { SetObjectValue } from './set-object-value';
 
 describe('@rxap/utilities', () => {
 

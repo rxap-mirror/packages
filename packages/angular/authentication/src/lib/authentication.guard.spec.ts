@@ -1,17 +1,17 @@
-import {RxapAuthenticationGuard} from './authentication.guard';
+import { RxapAuthenticationGuard } from './authentication.guard';
 import {
-  TestBed,
   fakeAsync,
+  TestBed,
   tick,
 } from '@angular/core/testing';
-import {RouterTestingModule} from '@angular/router/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import {
+  Router,
   Routes,
   ɵEmptyOutletComponent,
-  Router,
 } from '@angular/router';
-import {Location} from '@angular/common';
-import {RxapAuthenticationService} from './authentication.service';
+import { Location } from '@angular/common';
+import { RxapAuthenticationService } from './authentication.service';
 
 describe('Authentication', () => {
 

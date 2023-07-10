@@ -1,7 +1,14 @@
-import {BackgroundImageDirective, BackgroundSizeOptions} from './background-image.directive';
-import {ElementRef, Renderer2, RendererFactory2} from '@angular/core';
-import {TestBed} from '@angular/core/testing';
-import {ImageLoaderService} from '@rxap/services';
+import {
+  BackgroundImageDirective,
+  BackgroundSizeOptions,
+} from './background-image.directive';
+import {
+  ElementRef,
+  Renderer2,
+  RendererFactory2,
+} from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { ImageLoaderService } from '@rxap/services';
 
 describe('@rxap/directives', () => {
 

@@ -1,9 +1,9 @@
-import {InjectionToken} from '@angular/core';
-import {FormDefinition} from '../model';
-import {RxapFormBuilder} from '../form-builder';
+import { InjectionToken } from '@angular/core';
+import { FormDefinition } from '../model';
+import { RxapFormBuilder } from '../form-builder';
 import {
-  FormSubmitMethod,
   FormLoadMethod,
+  FormSubmitMethod,
 } from './models';
 
 export const RXAP_FORM_DEFINITION = new InjectionToken<FormDefinition>('rxap/forms/definition');

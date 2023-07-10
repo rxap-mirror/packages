@@ -1,6 +1,13 @@
-import {CoerceProxyRemoteMethodClass, CoerceProxyRemoteMethodClassOptions} from './coerce-proxy-remote-method-class';
-import {ClassDeclaration, Project, SourceFile} from 'ts-morph';
-import {CoerceImports} from '../ts-morph/coerce-imports';
+import {
+  CoerceProxyRemoteMethodClass,
+  CoerceProxyRemoteMethodClassOptions,
+} from './coerce-proxy-remote-method-class';
+import {
+  ClassDeclaration,
+  Project,
+  SourceFile,
+} from 'ts-morph';
+import { CoerceImports } from '../ts-morph/coerce-imports';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,

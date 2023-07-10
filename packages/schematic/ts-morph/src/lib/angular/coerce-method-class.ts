@@ -1,11 +1,23 @@
-import {ClassDeclaration, MethodDeclarationStructure, OptionalKind, Project, SourceFile} from 'ts-morph';
-import {classify, CoerceSuffix} from '@rxap/schematics-utilities';
-import {CoerceClassMethod} from '../coerce-class-method';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {CoerceSourceFile} from '../coerce-source-file';
-import {CoerceClass} from '../coerce-class';
-import {TsMorphAngularProjectTransform} from '../ts-morph-transform';
-import {AddMethodClass, AddMethodClassOptions} from '../add-method-class';
+import {
+  ClassDeclaration,
+  MethodDeclarationStructure,
+  OptionalKind,
+  Project,
+  SourceFile,
+} from 'ts-morph';
+import {
+  classify,
+  CoerceSuffix,
+} from '@rxap/schematics-utilities';
+import { CoerceClassMethod } from '../coerce-class-method';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { CoerceClass } from '../coerce-class';
+import { TsMorphAngularProjectTransform } from '../ts-morph-transform';
+import {
+  AddMethodClass,
+  AddMethodClassOptions,
+} from '../add-method-class';
 
 export interface CoerceMethodClassOptions {
   name: string;

@@ -1,4 +1,4 @@
-import {assertString} from './util/assertString';
+import { assertString } from './util/assertString';
 
 export function unescape(str: unknown) {
   assertString(str);

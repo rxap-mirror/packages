@@ -1,7 +1,7 @@
-import {Rule} from '@angular-devkit/schematics';
-import {classify} from '@rxap/schematics-utilities';
-import {TsMorphNestProjectTransform} from '../ts-morph-transform';
-import {AddNestModuleImport} from './add-nest-module-import';
+import { Rule } from '@angular-devkit/schematics';
+import { classify } from '@rxap/schematics-utilities';
+import { TsMorphNestProjectTransform } from '../ts-morph-transform';
+import { AddNestModuleImport } from './add-nest-module-import';
 
 export interface AddNestModuleToAppModuleOptions {
   project: string;
@@ -11,7 +11,7 @@ export interface AddNestModuleToAppModuleOptions {
 }
 
 export function AddNestModuleToAppModule(options: AddNestModuleToAppModuleOptions): Rule {
-  const {name} = options;
+  const { name } = options;
   return TsMorphNestProjectTransform(
     options,
     project => {

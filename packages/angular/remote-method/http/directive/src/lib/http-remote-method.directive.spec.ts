@@ -1,8 +1,15 @@
-import {Component, DebugElement} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {HttpRemoteMethodDirective} from './http-remote-method.directive';
-import {By} from '@angular/platform-browser';
-import {RemoteMethodLoader} from '@rxap/remote-method';
+import {
+  Component,
+  DebugElement,
+} from '@angular/core';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { HttpRemoteMethodDirective } from './http-remote-method.directive';
+import { By } from '@angular/platform-browser';
+import { RemoteMethodLoader } from '@rxap/remote-method';
 
 describe('@rxap/remote-method/directive/button', () => {
 

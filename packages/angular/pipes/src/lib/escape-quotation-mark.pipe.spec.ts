@@ -1,4 +1,4 @@
-import {EscapeQuotationMarkPipe} from './escape-quotation-mark.pipe';
+import { EscapeQuotationMarkPipe } from './escape-quotation-mark.pipe';
 
 describe('@rxap/pipes', () => {
 

@@ -1,18 +1,18 @@
 import {
-  NgModule,
   ModuleWithProviders,
+  NgModule,
 } from '@angular/core';
-import {LayoutComponent} from './layout.component';
+import { LayoutComponent } from './layout.component';
 
 
-import {NavigationWithInserts} from '../navigation/navigation-item';
-import {RXAP_NAVIGATION_CONFIG} from '../tokens';
+import { NavigationWithInserts } from '../navigation/navigation-item';
+import { RXAP_NAVIGATION_CONFIG } from '../tokens';
 
 @NgModule({
   imports: [
     LayoutComponent,
   ],
-  exports: [LayoutComponent],
+  exports: [ LayoutComponent ],
 })
 export class LayoutModule {
 

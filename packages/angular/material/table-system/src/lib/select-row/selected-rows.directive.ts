@@ -1,17 +1,17 @@
 import {
+  ChangeDetectorRef,
   Directive,
+  Inject,
+  OnDestroy,
+  OnInit,
   TemplateRef,
   ViewContainerRef,
-  OnInit,
-  OnDestroy,
-  ChangeDetectorRef,
-  Inject,
 } from '@angular/core';
-import {Subscription} from 'rxjs';
-import {SelectRowService} from './select-row.service';
+import { Subscription } from 'rxjs';
+import { SelectRowService } from './select-row.service';
 import {
-  tap,
   distinctUntilChanged,
+  tap,
 } from 'rxjs/operators';
 
 export interface SelectedRowsDirectiveContext<Data extends Record<string, any>> {

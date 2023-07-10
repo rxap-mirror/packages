@@ -1,6 +1,10 @@
-import {Project, PropertyAssignment, Writers} from 'ts-morph';
-import {GetNestModuleMetadata} from './get-nest-module-metadata';
-import {AddNestModuleImport} from './add-nest-module-import';
+import {
+  Project,
+  PropertyAssignment,
+  Writers,
+} from 'ts-morph';
+import { GetNestModuleMetadata } from './get-nest-module-metadata';
+import { AddNestModuleImport } from './add-nest-module-import';
 
 describe('@rxap/schematics-ts-morph', () => {
 
@@ -10,7 +14,7 @@ describe('@rxap/schematics-ts-morph', () => {
 
       it('should add module import', () => {
 
-        const project = new Project({useInMemoryFileSystem: true});
+        const project = new Project({ useInMemoryFileSystem: true });
 
         const sourceFile = project.createSourceFile('module.ts');
 

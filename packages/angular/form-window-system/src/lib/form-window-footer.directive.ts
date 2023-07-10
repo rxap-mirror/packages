@@ -1,7 +1,19 @@
-import {Directive, Inject, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {RXAP_WINDOW_REF, WindowRef} from '@rxap/window-system';
-import {FormDefinition, FormDirective} from '@rxap/forms';
-import {TemplatePortal} from '@angular/cdk/portal';
+import {
+  Directive,
+  Inject,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
+import {
+  RXAP_WINDOW_REF,
+  WindowRef,
+} from '@rxap/window-system';
+import {
+  FormDefinition,
+  FormDirective,
+} from '@rxap/forms';
+import { TemplatePortal } from '@angular/cdk/portal';
 
 export interface FormWindowFooterTemplateContext<Data = any> {
   $implicit: WindowRef;

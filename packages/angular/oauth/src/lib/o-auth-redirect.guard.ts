@@ -1,8 +1,15 @@
-import {ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {Inject, Injectable} from '@angular/core';
-import {OAuthService} from './o-auth.service';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
+import { OAuthService } from './o-auth.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class OAuthRedirectGuard {
 
   constructor(

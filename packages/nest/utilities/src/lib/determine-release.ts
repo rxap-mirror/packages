@@ -1,4 +1,4 @@
-import {Environment} from './environment';
+import { Environment } from './environment';
 
 /**
  * Determines the sentry release based on the build info object.

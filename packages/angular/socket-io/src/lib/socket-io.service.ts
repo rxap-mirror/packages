@@ -1,9 +1,9 @@
-import {Observable} from 'rxjs';
-import {share} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { share } from 'rxjs/operators';
 
 import * as io from 'socket.io-client';
 
-import {SocketIoConfig} from './socket-io.config';
+import { SocketIoConfig } from './socket-io.config';
 
 export class WrappedSocket {
   subscribersCounter: Record<string, number> = {};

@@ -1,4 +1,4 @@
-import {Environment} from './environment';
+import { Environment } from './environment';
 
 export function DetermineProductionEnvironmentName(environment: Environment) {
   if (environment.tag) {

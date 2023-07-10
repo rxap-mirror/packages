@@ -1,11 +1,11 @@
-import {assertString} from './util/assertString';
-import {alpha} from './alpha';
+import { assertString } from './util/assertString';
+import { alpha } from './alpha';
 
 export function isAlpha(_str: unknown, locale = 'en-US', options: Record<string, unknown> = {}) {
   assertString(_str);
 
   let str = _str;
-  const {ignore} = options;
+  const { ignore } = options;
 
   if (ignore) {
     if (ignore instanceof RegExp) {

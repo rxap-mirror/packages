@@ -1,5 +1,5 @@
-import {TestBed} from '@angular/core/testing';
-import {ImageLoaderService} from './image-loader.service';
+import { TestBed } from '@angular/core/testing';
+import { ImageLoaderService } from './image-loader.service';
 
 describe('@rxap/services', () => {
 

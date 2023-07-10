@@ -1,6 +1,13 @@
-import {Component, NgModule, TemplateRef} from '@angular/core';
-import {moduleMetadata, Story} from '@storybook/angular';
-import {WindowService} from './window.service';
+import {
+  Component,
+  NgModule,
+  TemplateRef,
+} from '@angular/core';
+import {
+  moduleMetadata,
+  Story,
+} from '@storybook/angular';
+import { WindowService } from './window.service';
 
 @Component({
   template:

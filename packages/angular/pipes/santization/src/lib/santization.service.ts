@@ -1,5 +1,12 @@
-import {Inject, Injectable, SecurityContext} from '@angular/core';
-import {DomSanitizer, SafeValue} from '@angular/platform-browser';
+import {
+  Inject,
+  Injectable,
+  SecurityContext,
+} from '@angular/core';
+import {
+  DomSanitizer,
+  SafeValue,
+} from '@angular/platform-browser';
 
 // TODO : move to @rxap/services
 @Injectable({

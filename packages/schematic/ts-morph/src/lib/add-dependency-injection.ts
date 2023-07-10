@@ -6,8 +6,8 @@ import {
   SourceFile,
   Writers,
 } from 'ts-morph';
-import {CoerceClassConstructor} from './coerce-class-constructor';
-import {CoerceImports} from './ts-morph/index';
+import { CoerceClassConstructor } from './coerce-class-constructor';
+import { CoerceImports } from './ts-morph/index';
 
 export enum Module {
   ANGULAR = '@angular/core',

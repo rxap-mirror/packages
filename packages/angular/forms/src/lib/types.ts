@@ -7,10 +7,10 @@ import {
   Observable,
   Subject,
 } from 'rxjs';
-import {RxapFormArray} from './form-array';
-import {RxapFormControl} from './form-control';
-import {RxapFormGroup} from './form-group';
-import {FormDefinition} from './model';
+import { RxapFormArray } from './form-array';
+import { RxapFormControl } from './form-control';
+import { RxapFormGroup } from './form-group';
+import { FormDefinition } from './model';
 
 export type ValidationErrors<T = NgValidationErrors> = T;
 export type ValidatorFn<T = any, E = any> = (control: AbstractControl<T>) => ValidationErrors<E> | null;

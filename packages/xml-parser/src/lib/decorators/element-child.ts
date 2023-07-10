@@ -1,13 +1,23 @@
-import {AddParserToMetadata, ParsedElementType, XmlElementMetadata} from './utilities';
-import {deepMerge} from '@rxap/utilities';
-import {Mixin} from '@rxap/mixin';
-import {ChildElementOptions, ChildElementParserMixin} from './mixins/child-element-parser.mixin';
-import {getMetadata, getOwnMetadata} from '@rxap/reflect-metadata';
-import {ParsedElement} from '../elements/parsed-element';
-import {XmlParserService} from '../xml-parser.service';
-import {RxapElement} from '../element';
-import {RxapXmlParserValidateRequiredError} from '../error';
-import {RequiredProperty} from './required-property';
+import {
+  AddParserToMetadata,
+  ParsedElementType,
+  XmlElementMetadata,
+} from './utilities';
+import { deepMerge } from '@rxap/utilities';
+import { Mixin } from '@rxap/mixin';
+import {
+  ChildElementOptions,
+  ChildElementParserMixin,
+} from './mixins/child-element-parser.mixin';
+import {
+  getMetadata,
+  getOwnMetadata,
+} from '@rxap/reflect-metadata';
+import { ParsedElement } from '../elements/parsed-element';
+import { XmlParserService } from '../xml-parser.service';
+import { RxapElement } from '../element';
+import { RxapXmlParserValidateRequiredError } from '../error';
+import { RequiredProperty } from './required-property';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ElementChildOptions extends ChildElementOptions {

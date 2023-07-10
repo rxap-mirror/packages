@@ -1,10 +1,10 @@
 import {
-  moduleMetadata,
   addDecorator,
+  moduleMetadata,
 } from '@storybook/angular';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {AuthenticationContainerComponent} from './authentication-container.component';
+import { AuthenticationContainerComponent } from './authentication-container.component';
 
 addDecorator(moduleMetadata({
   imports: [

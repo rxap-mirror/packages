@@ -1,14 +1,33 @@
-import {AddParserToMetadata, ParsedElementType, XmlElementMetadata} from './utilities';
-import {deepMerge, hasIndexSignature} from '@rxap/utilities';
-import {Mixin} from '@rxap/mixin';
-import {ChildElementOptions, ChildElementParserMixin} from './mixins/child-element-parser.mixin';
-import {getMetadata, getOwnMetadata} from '@rxap/reflect-metadata';
-import {ChildrenElementOptions, ChildrenElementParserMixin} from './mixins/children-element-parser.mixin';
-import {RxapElement} from '../element';
-import {ParsedElement} from '../elements/parsed-element';
-import {XmlParserService} from '../xml-parser.service';
-import {RxapXmlParserValidateError, RxapXmlParserValidateRequiredError} from '../error';
-import {RequiredProperty} from './required-property';
+import {
+  AddParserToMetadata,
+  ParsedElementType,
+  XmlElementMetadata,
+} from './utilities';
+import {
+  deepMerge,
+  hasIndexSignature,
+} from '@rxap/utilities';
+import { Mixin } from '@rxap/mixin';
+import {
+  ChildElementOptions,
+  ChildElementParserMixin,
+} from './mixins/child-element-parser.mixin';
+import {
+  getMetadata,
+  getOwnMetadata,
+} from '@rxap/reflect-metadata';
+import {
+  ChildrenElementOptions,
+  ChildrenElementParserMixin,
+} from './mixins/children-element-parser.mixin';
+import { RxapElement } from '../element';
+import { ParsedElement } from '../elements/parsed-element';
+import { XmlParserService } from '../xml-parser.service';
+import {
+  RxapXmlParserValidateError,
+  RxapXmlParserValidateRequiredError,
+} from '../error';
+import { RequiredProperty } from './required-property';
 
 export interface ElementChildrenOptions extends ChildElementOptions, ChildrenElementOptions {
 

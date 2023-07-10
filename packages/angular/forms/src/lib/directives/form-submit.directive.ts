@@ -1,25 +1,25 @@
 import {
   Directive,
+  EventEmitter,
+  HostBinding,
   Inject,
   Input,
   OnDestroy,
   Optional,
-  HostBinding,
-  EventEmitter,
   Output,
 } from '@angular/core';
 import {
-  coerceBoolean,
   clone,
+  coerceBoolean,
 } from '@rxap/utilities';
-import {FormDirective} from './form.directive';
+import { FormDirective } from './form.directive';
 import {
-  tap,
   take,
+  tap,
 } from 'rxjs/operators';
-import {Subscription} from 'rxjs';
-import {Router} from '@angular/router';
-import {ConfirmClick} from '@rxap/directives';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { ConfirmClick } from '@rxap/directives';
 
 @Directive({
   selector: '[rxapFormSubmit]',

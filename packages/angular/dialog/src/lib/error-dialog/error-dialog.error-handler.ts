@@ -1,11 +1,15 @@
-import {ErrorHandler, Inject, Injectable} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
-import {RxapError} from '@rxap/utilities';
-import {ErrorDialogComponent} from './error-dialog.component';
+import {
+  ErrorHandler,
+  Inject,
+  Injectable,
+} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { RxapError } from '@rxap/utilities';
+import { ErrorDialogComponent } from './error-dialog.component';
 
 @Injectable()
 export class ErrorDialogErrorHandler extends ErrorHandler {
-  private lastErrorMessage: [RxapError, number] | null = null;
+  private lastErrorMessage: [ RxapError, number ] | null = null;
 
   constructor(
     @Inject(MatDialog)

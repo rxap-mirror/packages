@@ -1,6 +1,9 @@
-import {Mixin} from './mixin';
-import {Member, MemberFactory} from './member';
-import {GetPropertyDescriptor} from './get-property-descriptor';
+import { Mixin } from './mixin';
+import {
+  Member,
+  MemberFactory,
+} from './member';
+import { GetPropertyDescriptor } from './get-property-descriptor';
 
 describe('@rxap/mixin', () => {
 

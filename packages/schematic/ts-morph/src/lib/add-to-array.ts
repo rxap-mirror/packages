@@ -1,5 +1,8 @@
-import {ArrayLiteralExpression, SourceFile} from 'ts-morph';
-import {CoerceVariableDeclaration} from './coerce-variable-declaration';
+import {
+  ArrayLiteralExpression,
+  SourceFile,
+} from 'ts-morph';
+import { CoerceVariableDeclaration } from './coerce-variable-declaration';
 
 /**
  * Adds the value to the array with the name arrayName

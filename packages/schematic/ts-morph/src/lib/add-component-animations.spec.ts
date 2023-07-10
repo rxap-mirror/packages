@@ -1,6 +1,10 @@
-import {ArrayLiteralExpression, Project, PropertyAssignment} from 'ts-morph';
-import {AddComponentAnimations} from './add-component-animations';
-import {GetComponentOptionsObject} from './get-component-options-object';
+import {
+  ArrayLiteralExpression,
+  Project,
+  PropertyAssignment,
+} from 'ts-morph';
+import { AddComponentAnimations } from './add-component-animations';
+import { GetComponentOptionsObject } from './get-component-options-object';
 
 describe('@rxap/schematics-utilities', () => {
 

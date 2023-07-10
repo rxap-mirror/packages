@@ -12,15 +12,38 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import {NgControl} from '@angular/forms';
-import {BaseDataSource, BaseDataSourceMetadata, BaseDataSourceViewer, DataSourceLoader} from '@rxap/data-source';
-import {RxapFormControl} from '@rxap/forms';
-import {ControlOption, ControlOptions, equals, Required} from '@rxap/utilities';
-import {Mixin} from '@rxap/mixin';
-import {EMPTY, of, Subscription} from 'rxjs';
-import {distinctUntilChanged, map, switchMap, tap, throttleTime} from 'rxjs/operators';
-import {MAT_FORM_FIELD, MatFormField} from '@angular/material/form-field';
-import {MatAutocomplete} from '@angular/material/autocomplete';
+import { NgControl } from '@angular/forms';
+import {
+  BaseDataSource,
+  BaseDataSourceMetadata,
+  BaseDataSourceViewer,
+  DataSourceLoader,
+} from '@rxap/data-source';
+import { RxapFormControl } from '@rxap/forms';
+import {
+  ControlOption,
+  ControlOptions,
+  equals,
+  Required,
+} from '@rxap/utilities';
+import { Mixin } from '@rxap/mixin';
+import {
+  EMPTY,
+  of,
+  Subscription,
+} from 'rxjs';
+import {
+  distinctUntilChanged,
+  map,
+  switchMap,
+  tap,
+  throttleTime,
+} from 'rxjs/operators';
+import {
+  MAT_FORM_FIELD,
+  MatFormField,
+} from '@angular/material/form-field';
+import { MatAutocomplete } from '@angular/material/autocomplete';
 import {
   ExtractOptionsDataSourceMixin,
   UseOptionsDataSourceSettings,

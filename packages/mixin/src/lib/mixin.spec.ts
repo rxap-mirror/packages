@@ -1,5 +1,12 @@
-import {mixin, Mixin} from './mixin';
-import {getMetadata, hasMetadata, setMetadata} from '@rxap/reflect-metadata';
+import {
+  mixin,
+  Mixin,
+} from './mixin';
+import {
+  getMetadata,
+  hasMetadata,
+  setMetadata,
+} from '@rxap/reflect-metadata';
 
 describe('Mixin', () => {
 

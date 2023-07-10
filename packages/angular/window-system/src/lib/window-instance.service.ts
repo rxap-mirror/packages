@@ -1,7 +1,16 @@
-import {Injectable, OnDestroy} from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
-import {delay, map} from 'rxjs/operators';
-import {ToggleSubject} from '@rxap/rxjs';
+import {
+  Injectable,
+  OnDestroy,
+} from '@angular/core';
+import {
+  Observable,
+  Subscription,
+} from 'rxjs';
+import {
+  delay,
+  map,
+} from 'rxjs/operators';
+import { ToggleSubject } from '@rxap/rxjs';
 
 @Injectable()
 export class WindowInstanceService implements OnDestroy {

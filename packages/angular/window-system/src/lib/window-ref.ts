@@ -1,10 +1,22 @@
-import {Overlay, OverlayRef, OverlaySizeConfig} from '@angular/cdk/overlay';
-import {WindowSettings} from './window-config';
-import {BehaviorSubject, ReplaySubject, Subject} from 'rxjs';
-import {GetWindowStartPos} from './utilities';
-import {Portal} from '@angular/cdk/portal';
-import {ComponentRef, EmbeddedViewRef, InjectFlags} from '@angular/core';
-import {RXAP_WINDOW_SETTINGS} from './tokens';
+import {
+  Overlay,
+  OverlayRef,
+  OverlaySizeConfig,
+} from '@angular/cdk/overlay';
+import { WindowSettings } from './window-config';
+import {
+  BehaviorSubject,
+  ReplaySubject,
+  Subject,
+} from 'rxjs';
+import { GetWindowStartPos } from './utilities';
+import { Portal } from '@angular/cdk/portal';
+import {
+  ComponentRef,
+  EmbeddedViewRef,
+  InjectFlags,
+} from '@angular/core';
+import { RXAP_WINDOW_SETTINGS } from './tokens';
 
 export class WindowRef<D = any, R = any> extends Subject<R> {
 

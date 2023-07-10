@@ -10,10 +10,14 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import {NgControl} from '@angular/forms';
-import {MatChipEvent} from '@angular/material/chips';
-import {Subscription} from 'rxjs';
-import {filter, startWith, tap} from 'rxjs/operators';
+import { NgControl } from '@angular/forms';
+import { MatChipEvent } from '@angular/material/chips';
+import { Subscription } from 'rxjs';
+import {
+  filter,
+  startWith,
+  tap,
+} from 'rxjs/operators';
 
 function getTypeName(type: any): string {
   return type['name'] || typeof type;

@@ -4,8 +4,8 @@ import {
   Input,
 } from '@angular/core';
 import {
-  NgIf,
   DatePipe,
+  NgIf,
 } from '@angular/common';
 
 @Component({

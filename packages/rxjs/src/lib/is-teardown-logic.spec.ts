@@ -1,5 +1,5 @@
-import {isTeardownLogic} from './is-teardown-logic';
-import {Subscription} from 'rxjs';
+import { isTeardownLogic } from './is-teardown-logic';
+import { Subscription } from 'rxjs';
 
 
 describe('Utilities', () => {

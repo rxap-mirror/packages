@@ -1,4 +1,7 @@
-import {FunctionDeclarationStructure, SourceFile} from 'ts-morph';
+import {
+  FunctionDeclarationStructure,
+  SourceFile,
+} from 'ts-morph';
 
 export function CoerceFunction(
   sourceFile: SourceFile,

@@ -1,8 +1,12 @@
-import {ActivatedRouteSnapshot, Router, UrlTree} from '@angular/router';
-import {Injectable} from '@angular/core';
-import {OAuthService} from './o-auth.service';
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  UrlTree,
+} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { OAuthService } from './o-auth.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class OAuthExtractGuard {
 
   constructor(

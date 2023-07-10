@@ -1,15 +1,28 @@
-import {ChangeDetectorRef, Directive, Inject, Injectable, Input, OnDestroy, OnInit, Optional} from '@angular/core';
-import {AuthorizationService} from './authorization.service';
-import {Required} from '@rxap/utilities';
-import {Subscription} from 'rxjs';
-import {tap} from 'rxjs/operators';
-import {MatButton} from '@angular/material/button';
-import {MatInput} from '@angular/material/input';
-import {MatSelect} from '@angular/material/select';
-import {MatCheckbox} from '@angular/material/checkbox';
-import {MatSlideToggle} from '@angular/material/slide-toggle';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
-import {RXAP_AUTHORIZATION_SCOPE} from './tokens';
+import {
+  ChangeDetectorRef,
+  Directive,
+  Inject,
+  Injectable,
+  Input,
+  OnDestroy,
+  OnInit,
+  Optional,
+} from '@angular/core';
+import { AuthorizationService } from './authorization.service';
+import { Required } from '@rxap/utilities';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { MatButton } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
+import { MatSelect } from '@angular/material/select';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  NgControl,
+} from '@angular/forms';
+import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
 @Injectable()
 export abstract class HasEnablePermission implements OnInit, OnDestroy {

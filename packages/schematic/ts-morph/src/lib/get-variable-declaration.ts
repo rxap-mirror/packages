@@ -1,4 +1,7 @@
-import {SourceFile, VariableDeclaration} from 'ts-morph';
+import {
+  SourceFile,
+  VariableDeclaration,
+} from 'ts-morph';
 
 export function GetVariableDeclaration(sourceFile: SourceFile, name: string): VariableDeclaration | null {
   const variableStatement = sourceFile.getVariableStatement(name);

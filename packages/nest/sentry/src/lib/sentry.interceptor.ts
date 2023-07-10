@@ -7,15 +7,20 @@ import {
   NestInterceptor,
   Optional,
 } from '@nestjs/common';
-import {ContextType, HttpArgumentsHost, RpcArgumentsHost, WsArgumentsHost} from '@nestjs/common/interfaces';
-import {Scope} from '@sentry/core';
-import {addRequestDataToEvent} from '@sentry/node';
-import {Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
-import {SentryInterceptorOptions} from './sentry.interfaces';
+import {
+  ContextType,
+  HttpArgumentsHost,
+  RpcArgumentsHost,
+  WsArgumentsHost,
+} from '@nestjs/common/interfaces';
+import { Scope } from '@sentry/core';
+import { addRequestDataToEvent } from '@sentry/node';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { SentryInterceptorOptions } from './sentry.interfaces';
 
-import {SentryService} from './sentry.service';
-import {SENTRY_INTERCEPTOR_OPTIONS} from './tokens';
+import { SentryService } from './sentry.service';
+import { SENTRY_INTERCEPTOR_OPTIONS } from './tokens';
 
 
 @Injectable()

@@ -1,6 +1,9 @@
-import {OptionElement, OptionsElement} from './option.element';
-import {TestingXmlParserService} from '../testing/testing-xml-parser-service';
-import {DataSourceElement} from './data-source.element';
+import {
+  OptionElement,
+  OptionsElement,
+} from './option.element';
+import { TestingXmlParserService } from '../testing/testing-xml-parser-service';
+import { DataSourceElement } from './data-source.element';
 
 describe('@rxap/form-system/xml-parser', () => {
 

@@ -1,4 +1,4 @@
-import {Deprecated} from './deprecated';
+import { Deprecated } from './deprecated';
 
 describe('@rxap/utilities', () => {
 

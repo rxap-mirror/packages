@@ -8,9 +8,9 @@ import {
   Logger,
   Optional,
 } from '@nestjs/common';
-import {RequestWithDecodedIdToken} from './firebase-auth.guard';
+import { RequestWithDecodedIdToken } from './firebase-auth.guard';
 import * as admin from 'firebase-admin';
-import {DEACTIVATE_APP_CHECK_GUARD} from './tokens';
+import { DEACTIVATE_APP_CHECK_GUARD } from './tokens';
 
 @Injectable()
 export class FirebaseAppCheckGuard implements CanActivate {

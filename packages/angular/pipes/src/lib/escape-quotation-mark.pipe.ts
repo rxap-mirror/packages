@@ -1,5 +1,8 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {ReplacePipe} from './replace.pipe';
+import {
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
+import { ReplacePipe } from './replace.pipe';
 
 @Pipe({
   name: 'escapeQuotationMark',

@@ -1,4 +1,4 @@
-import {RxapOpenApiError} from '@rxap/open-api';
+import { RxapOpenApiError } from '@rxap/open-api';
 
 export class RxapOpenApiRemoteMethodError extends RxapOpenApiError {
 

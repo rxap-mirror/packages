@@ -1,19 +1,35 @@
-import {DynamicModule, Global, Module, Provider, Type} from '@nestjs/common';
-import {CONSOLE_LOGGER_OPTIONS, SENTRY_MODULE_OPTIONS} from './tokens';
-import {SentryModuleAsyncOptions, SentryModuleOptions, SentryOptionsFactory} from './sentry.interfaces';
-import {SentryLogger} from './sentry.logger';
-import {SentryService} from './sentry.service';
-import {ConsoleLoggerOptions} from '@nestjs/common/services/console-logger.service';
+import {
+  DynamicModule,
+  Global,
+  Module,
+  Provider,
+  Type,
+} from '@nestjs/common';
+import {
+  CONSOLE_LOGGER_OPTIONS,
+  SENTRY_MODULE_OPTIONS,
+} from './tokens';
+import {
+  SentryModuleAsyncOptions,
+  SentryModuleOptions,
+  SentryOptionsFactory,
+} from './sentry.interfaces';
+import { SentryLogger } from './sentry.logger';
+import { SentryService } from './sentry.service';
+import { ConsoleLoggerOptions } from '@nestjs/common/services/console-logger.service';
 
 @Global()
 @Module({
-  providers: [SentryLogger, SentryService],
-  exports: [SentryLogger, SentryService],
+  providers: [ SentryLogger, SentryService ],
+  exports: [ SentryLogger, SentryService ],
 })
 export class SentryModule {
   public static forRoot(
     options: SentryModuleOptions,
-    {timestamp, logLevels}: ConsoleLoggerOptions = {},
+    {
+      timestamp,
+      logLevels,
+    }: ConsoleLoggerOptions = {},
   ): DynamicModule {
     return {
       exports: [SentryService],

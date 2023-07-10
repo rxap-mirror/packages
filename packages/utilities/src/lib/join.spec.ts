@@ -1,4 +1,4 @@
-import {joinPath} from './join';
+import { joinPath } from './join';
 
 describe('Utilities', () => {
 

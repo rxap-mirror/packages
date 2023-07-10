@@ -7,17 +7,33 @@ import {
   HttpResponse,
   HttpSentEvent,
 } from '@angular/common/http';
-import {Constructor, deepMerge} from '@rxap/utilities';
-import {Observable, Subject, throwError} from 'rxjs';
-import {catchError, filter, map, retry, take, tap, timeout} from 'rxjs/operators';
-import {Injectable} from '@angular/core';
-import {HttpDataSourceOptions} from './http.data-source.options';
-import {RxapDataSource} from '@rxap/data-source';
-import {HttpDataSourceMetadata} from './http.data-source.metadata';
-import {BaseHttpDataSource} from './base-http.data-source';
+import {
+  Constructor,
+  deepMerge,
+} from '@rxap/utilities';
+import {
+  Observable,
+  Subject,
+  throwError,
+} from 'rxjs';
+import {
+  catchError,
+  filter,
+  map,
+  retry,
+  take,
+  tap,
+  timeout,
+} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { HttpDataSourceOptions } from './http.data-source.options';
+import { RxapDataSource } from '@rxap/data-source';
+import { HttpDataSourceMetadata } from './http.data-source.metadata';
+import { BaseHttpDataSource } from './base-http.data-source';
 
 @Injectable()
-export class HttpDataSource<Data = any, PathParams = any, Body = any> extends BaseHttpDataSource<Data, PathParams, Body> {
+export class HttpDataSource<Data = any, PathParams = any, Body = any>
+  extends BaseHttpDataSource<Data, PathParams, Body> {
 
   public readonly onSentEvent$ = new Subject<HttpSentEvent>();
   public readonly onResponse$ = new Subject<HttpResponse<Data>>();

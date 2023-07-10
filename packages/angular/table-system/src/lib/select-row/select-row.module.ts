@@ -1,12 +1,12 @@
-import {NgModule} from '@angular/core';
-import {SelectRowService} from './select-row.service';
+import { NgModule } from '@angular/core';
+import { SelectRowService } from './select-row.service';
 
 
-import {AllRowsSelectedDirective} from './all-rows-selected.directive';
+import { AllRowsSelectedDirective } from './all-rows-selected.directive';
 
 
 @NgModule({
-  imports: [AllRowsSelectedDirective],
+  imports: [ AllRowsSelectedDirective ],
   exports: [
     AllRowsSelectedDirective,
   ],

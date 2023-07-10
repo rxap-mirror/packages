@@ -1,8 +1,8 @@
-import {RxapFormControl} from './form-control';
-import {RxapFormArray} from './form-array';
+import { RxapFormControl } from './form-control';
+import { RxapFormArray } from './form-array';
 import {
-  Subject,
   of,
+  Subject,
 } from 'rxjs';
 
 describe('@rxap/forms', () => {

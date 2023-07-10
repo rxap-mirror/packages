@@ -2,7 +2,7 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
-import {isUUID} from '@rxap/validator';
+import { isUUID } from '@rxap/validator';
 
 export function IsUUID({message, version = 'all'}: { message?: string, version?: string } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {

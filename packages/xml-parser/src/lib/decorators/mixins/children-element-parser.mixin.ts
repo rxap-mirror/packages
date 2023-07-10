@@ -1,7 +1,10 @@
-import {Mixin} from '@rxap/mixin';
-import {RequiredElementOptions, RequiredElementParserMixin} from './required-element.parser.mixin';
-import {RxapElement} from '../../element';
-import {hasIndexSignature} from '@rxap/utilities';
+import { Mixin } from '@rxap/mixin';
+import {
+  RequiredElementOptions,
+  RequiredElementParserMixin,
+} from './required-element.parser.mixin';
+import { RxapElement } from '../../element';
+import { hasIndexSignature } from '@rxap/utilities';
 
 export interface ChildrenElementOptions extends RequiredElementOptions {
   min?: number;

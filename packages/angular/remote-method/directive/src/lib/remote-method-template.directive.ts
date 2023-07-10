@@ -16,11 +16,18 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import {BaseRemoteMethod, BaseRemoteMethodMetadata, RemoteMethodLoader} from '@rxap/remote-method';
-import {Deprecated, Required} from '@rxap/utilities';
-import {IdOrInstanceOrToken} from '@rxap/definition';
-import {RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN} from './tokens';
-import {ToggleSubject} from '@rxap/rxjs';
+import {
+  BaseRemoteMethod,
+  BaseRemoteMethodMetadata,
+  RemoteMethodLoader,
+} from '@rxap/remote-method';
+import {
+  Deprecated,
+  Required,
+} from '@rxap/utilities';
+import { IdOrInstanceOrToken } from '@rxap/definition';
+import { RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN } from './tokens';
+import { ToggleSubject } from '@rxap/rxjs';
 
 export interface RemoteMethodTemplateDirectiveContext<ReturnType = any> {
   $implicit: ReturnType;

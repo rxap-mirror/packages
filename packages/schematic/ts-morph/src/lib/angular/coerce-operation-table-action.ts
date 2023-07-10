@@ -1,16 +1,27 @@
-import {CoerceTableActionOptions, CoerceTableActionRule} from './coerce-table-action';
-import {Scope} from 'ts-morph';
-import {CoerceParameterDeclaration} from '../ts-morph/coerce-parameter-declaration';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {CoerceClassConstructor} from '../coerce-class-constructor';
-import {OperationIdToClassImportPath, OperationIdToClassName} from '../operation-id-utilities';
+import {
+  CoerceTableActionOptions,
+  CoerceTableActionRule,
+} from './coerce-table-action';
+import { Scope } from 'ts-morph';
+import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
+import {
+  OperationIdToClassImportPath,
+  OperationIdToClassName,
+} from '../operation-id-utilities';
 
 export interface CoerceOperationTableActionRuleOptions extends CoerceTableActionOptions {
   operationId: string;
 }
 
 export function CoerceOperationTableActionRule(options: CoerceOperationTableActionRuleOptions) {
-  let {tsMorphTransform, operationId, tableName, actionType} = options;
+  let {
+    tsMorphTransform,
+    operationId,
+    tableName,
+    actionType,
+  } = options;
   tsMorphTransform ??= () => ({});
 
 

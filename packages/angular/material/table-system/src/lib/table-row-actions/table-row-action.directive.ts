@@ -2,40 +2,40 @@ import {
   ChangeDetectorRef,
   ContentChild,
   Directive,
+  ElementRef,
   HostListener,
   Inject,
   Input,
   isDevMode,
+  OnInit,
   Optional,
   ViewContainerRef,
-  OnInit,
-  ElementRef,
 } from '@angular/core';
-import {MatButton} from '@angular/material/button';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatButton } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   coerceArray,
   coerceBoolean,
   Required,
 } from '@rxap/utilities';
-import {TableRowActionExecutingDirective} from './table-row-action-executing.directive';
-import {TableRowActionStatus} from './table-row-action-status';
+import { TableRowActionExecutingDirective } from './table-row-action-executing.directive';
+import { TableRowActionStatus } from './table-row-action-status';
 import {
+  GetTableRowActionMetadata,
   IsTableRowActionTypeMethod,
   IsTableRowActionTypeSwitchMethod,
-  GetTableRowActionMetadata,
 } from './table-row-action.method';
-import {RXAP_TABLE_ROW_ACTION_METHOD} from './tokens';
-import {TableDataSourceDirective} from '../table-data-source.directive';
+import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
+import { TableDataSourceDirective } from '../table-data-source.directive';
 import {
   TableRowActionMethod,
   TableRowActionTypeMethod,
   TableRowActionTypeSwitchMethod,
 } from './types';
-import {TableActionMethodOptions} from './decorators';
-import {MatTooltip} from '@angular/material/tooltip';
-import {ConfirmDirective} from '@rxap/components';
-import {Overlay} from '@angular/cdk/overlay';
+import { TableActionMethodOptions } from './decorators';
+import { MatTooltip } from '@angular/material/tooltip';
+import { ConfirmDirective } from '@rxap/components';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Directive({
   selector: 'button[rxapTableRowAction]',

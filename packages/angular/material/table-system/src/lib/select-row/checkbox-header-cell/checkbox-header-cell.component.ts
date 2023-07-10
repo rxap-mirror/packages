@@ -1,21 +1,21 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  OnInit,
+  Component,
   Inject,
+  OnInit,
 } from '@angular/core';
-import {SelectRowService} from '../select-row.service';
-import type {Observable} from 'rxjs';
-import {EMPTY} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { SelectRowService } from '../select-row.service';
+import type { Observable } from 'rxjs';
+import { EMPTY } from 'rxjs';
+import { map } from 'rxjs/operators';
 import {
   MatCheckboxChange,
   MatCheckboxModule,
 } from '@angular/material/checkbox';
-import {CdkTable} from '@angular/cdk/table';
+import { CdkTable } from '@angular/cdk/table';
 import {
-  NgIf,
   AsyncPipe,
+  NgIf,
 } from '@angular/common';
 
 @Component({

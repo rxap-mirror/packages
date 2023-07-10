@@ -1,14 +1,20 @@
-import {AttributeElementOptions, AttributeElementParserMixin} from './mixins/attribute-element-parser.mixin';
-import {Mixin} from '@rxap/mixin';
-import {ElementParser} from './element.parser';
-import {deepMerge} from '@rxap/utilities';
-import {AddParserToMetadata, XmlElementMetadata} from './utilities';
-import {getMetadata} from '@rxap/reflect-metadata';
-import {ParsedElement} from '../elements/parsed-element';
-import {XmlParserService} from '../xml-parser.service';
-import {RxapElement} from '../element';
-import {RxapXmlParserValidateRequiredError} from '../error';
-import {RequiredProperty} from './required-property';
+import {
+  AttributeElementOptions,
+  AttributeElementParserMixin,
+} from './mixins/attribute-element-parser.mixin';
+import { Mixin } from '@rxap/mixin';
+import { ElementParser } from './element.parser';
+import { deepMerge } from '@rxap/utilities';
+import {
+  AddParserToMetadata,
+  XmlElementMetadata,
+} from './utilities';
+import { getMetadata } from '@rxap/reflect-metadata';
+import { ParsedElement } from '../elements/parsed-element';
+import { XmlParserService } from '../xml-parser.service';
+import { RxapElement } from '../element';
+import { RxapXmlParserValidateRequiredError } from '../error';
+import { RequiredProperty } from './required-property';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ElementAttributeOptions<Value>

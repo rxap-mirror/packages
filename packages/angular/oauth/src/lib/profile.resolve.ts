@@ -1,9 +1,12 @@
-import {Router} from '@angular/router';
-import {Inject, Injectable} from '@angular/core';
-import {OAuthService} from './o-auth.service';
-import {RXAP_O_AUTH_REDIRECT_SIGN_IN} from './tokens';
+import { Router } from '@angular/router';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
+import { OAuthService } from './o-auth.service';
+import { RXAP_O_AUTH_REDIRECT_SIGN_IN } from './tokens';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ProfileResolve<T = Record<string, any>> {
 
   constructor(

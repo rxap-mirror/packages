@@ -1,6 +1,10 @@
-import {InjectionToken, ModuleWithProviders, NgModule} from '@angular/core';
-import {SocketIoConfig} from './socket-io.config';
-import {WrappedSocket} from './socket-io.service';
+import {
+  InjectionToken,
+  ModuleWithProviders,
+  NgModule,
+} from '@angular/core';
+import { SocketIoConfig } from './socket-io.config';
+import { WrappedSocket } from './socket-io.service';
 
 /** Socket factory */
 export function SocketFactory(config: SocketIoConfig) {

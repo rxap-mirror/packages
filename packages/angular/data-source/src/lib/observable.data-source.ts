@@ -1,11 +1,22 @@
-import {Inject, Injectable, Optional} from '@angular/core';
-import {BaseDataSource, BaseDataSourceMetadata, RxapDataSource} from './base.data-source';
-import {Observable} from 'rxjs';
-import {RXAP_DATA_SOURCE_METADATA, RXAP_OBSERVABLE_DATA_SOURCE} from './tokens';
-import {Constructor} from '@rxap/utilities';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
+import {
+  BaseDataSource,
+  BaseDataSourceMetadata,
+  RxapDataSource,
+} from './base.data-source';
+import { Observable } from 'rxjs';
+import {
+  RXAP_DATA_SOURCE_METADATA,
+  RXAP_OBSERVABLE_DATA_SOURCE,
+} from './tokens';
+import { Constructor } from '@rxap/utilities';
 
 export interface ObservableDataSourceMetadata<Data> extends BaseDataSourceMetadata {
-  data?: Observable<Data>
+  data?: Observable<Data>;
 }
 
 @Injectable()

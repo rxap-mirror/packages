@@ -1,8 +1,14 @@
-import {Inject, Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
-import {MatDialog} from '@angular/material/dialog';
-import {debounceTime, tap} from 'rxjs/operators';
-import {HttpErrorMessageComponent} from './http-error-message.component';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
+import { Subject } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  debounceTime,
+  tap,
+} from 'rxjs/operators';
+import { HttpErrorMessageComponent } from './http-error-message.component';
 
 @Injectable()
 export class HttpErrorMessageService {

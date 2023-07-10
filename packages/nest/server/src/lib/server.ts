@@ -1,12 +1,26 @@
-import {INestApplicationContext, Logger} from '@nestjs/common';
-import {ConfigService} from '@nestjs/config';
-import {join} from 'path';
-import {existsSync, readFileSync} from 'fs';
-import {Environment, RXAP_GLOBAL_STATE} from '@rxap/nest-utilities';
+import {
+  INestApplicationContext,
+  Logger,
+} from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { join } from 'path';
+import {
+  existsSync,
+  readFileSync,
+} from 'fs';
+import {
+  Environment,
+  RXAP_GLOBAL_STATE,
+} from '@rxap/nest-utilities';
 
 export type MainBeforeFunction<O extends object> = (options: O) => any | Promise<any>;
 
-export type MainAfterFunction<T extends INestApplicationContext, B extends object> = (app: T, config: ConfigService<unknown>, logger: Logger, options: B) => any | Promise<any>;
+export type MainAfterFunction<T extends INestApplicationContext, B extends object> = (
+  app: T,
+  config: ConfigService<unknown>,
+  logger: Logger,
+  options: B,
+) => any | Promise<any>;
 
 declare const module: { hot?: { accept: () => any, dispose: (cb: () => any) => any } };
 

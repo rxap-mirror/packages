@@ -1,11 +1,11 @@
-import {ElementRequired} from './required-element.parser.mixin';
-import {FindElementParserInstanceForPropertyKey} from '../utilities';
-import {ElementAttribute} from '../element-attribute';
-import {ElementChild} from '../element-child';
-import {ElementChildTextContent} from '../element-child-text-content';
-import {ElementChildren} from '../element-children';
-import {ElementTextContent} from '../element-text-content';
-import {ParsedElement} from '../../elements/parsed-element';
+import { ElementRequired } from './required-element.parser.mixin';
+import { FindElementParserInstanceForPropertyKey } from '../utilities';
+import { ElementAttribute } from '../element-attribute';
+import { ElementChild } from '../element-child';
+import { ElementChildTextContent } from '../element-child-text-content';
+import { ElementChildren } from '../element-children';
+import { ElementTextContent } from '../element-text-content';
+import { ParsedElement } from '../../elements/parsed-element';
 
 describe('@rxap/xml-parser', () => {
 

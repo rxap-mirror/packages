@@ -1,6 +1,6 @@
 import {
-  PipeTransform,
   Pipe,
+  PipeTransform,
 } from '@angular/core';
 
 @Pipe({

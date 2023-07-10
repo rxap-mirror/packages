@@ -1,23 +1,23 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   ContentChild,
 } from '@angular/core';
-import {SidenavFooterDirective} from './sidenav-footer.directive';
-import {SidenavHeaderDirective} from './sidenav-header.directive';
-import {SidenavComponentService} from './sidenav.component.service';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {NavigationComponent} from '../navigation/navigation.component';
-import {MatDividerModule} from '@angular/material/divider';
-import {FlexModule} from '@angular/flex-layout/flex';
+import { SidenavFooterDirective } from './sidenav-footer.directive';
+import { SidenavHeaderDirective } from './sidenav-header.directive';
+import { SidenavComponentService } from './sidenav.component.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { NavigationComponent } from '../navigation/navigation.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { FlexModule } from '@angular/flex-layout/flex';
 import {
+  AsyncPipe,
   NgClass,
   NgIf,
   NgTemplateOutlet,
-  AsyncPipe,
 } from '@angular/common';
-import {ExtendedModule} from '@angular/flex-layout/extended';
+import { ExtendedModule } from '@angular/flex-layout/extended';
 
 @Component({
   selector: 'rxap-sidenav',

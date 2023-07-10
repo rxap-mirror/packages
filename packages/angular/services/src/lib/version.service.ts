@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {KeyValue} from '@rxap/utilities';
-import {Subject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { KeyValue } from '@rxap/utilities';
+import { Subject } from 'rxjs';
 
 export interface Version {
   name: string;
@@ -8,7 +8,7 @@ export interface Version {
   semantic: string;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class VersionService {
 
   public update$ = new Subject<void>();

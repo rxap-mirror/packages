@@ -1,19 +1,33 @@
 import { OpenApiSchemaBase } from './schema';
 import { join } from 'path';
 import {
-  ClassDeclarationStructure, ImportDeclarationStructure, OptionalKind, ParameterDeclarationStructure, Scope, Writers,
+  ClassDeclarationStructure,
+  ImportDeclarationStructure,
+  OptionalKind,
+  ParameterDeclarationStructure,
+  Scope,
+  Writers,
 } from 'ts-morph';
 import { strings } from '@angular-devkit/core';
 import { CreateDirective } from './create-directive';
-import { REMOTE_METHOD_BASE_PATH, REMOTE_METHOD_FILE_SUFFIX } from './const';
-import { GenerateParameter, GenerateParameterToOperationObjectWithMetadata } from '../../lib/types';
+import {
+  REMOTE_METHOD_BASE_PATH,
+  REMOTE_METHOD_FILE_SUFFIX,
+} from './const';
+import {
+  GenerateParameter,
+  GenerateParameterToOperationObjectWithMetadata,
+} from '../../lib/types';
 import { GetResponseType } from '../../lib/utilities/get-response-type';
 import { GetRequestBodyType } from '../../lib/utilities/get-request-body-type';
 import { GetParameterType } from '../../lib/utilities/get-parameter-type';
 import { IsCollectionResponse } from '../../lib/utilities/is-collection-response';
 import { IsWithoutParameters } from '../../lib/utilities/is-without-parameters';
 
-const { dasherize, classify } = strings;
+const {
+  dasherize,
+  classify,
+} = strings;
 
 export async function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiSchemaBase>): Promise<void> {
   const operationId = parameter.operationId;

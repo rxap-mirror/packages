@@ -1,10 +1,19 @@
-import {Inject, Injectable} from '@angular/core';
-import {DialogPosition, MatDialog} from '@angular/material/dialog';
-import {Direction} from '@angular/cdk/bidi';
-import {ScrollStrategy} from '@angular/cdk/overlay';
-import {map, take} from 'rxjs/operators';
-import {MessageDialogComponent} from './message-dialog.component';
-import {MessageDialogData} from './types';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
+import {
+  DialogPosition,
+  MatDialog,
+} from '@angular/material/dialog';
+import { Direction } from '@angular/cdk/bidi';
+import { ScrollStrategy } from '@angular/cdk/overlay';
+import {
+  map,
+  take,
+} from 'rxjs/operators';
+import { MessageDialogComponent } from './message-dialog.component';
+import { MessageDialogData } from './types';
 
 export interface MessageDialogConfig {
   /** Custom class for the overlay pane. */

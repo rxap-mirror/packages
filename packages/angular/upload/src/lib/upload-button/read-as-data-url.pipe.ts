@@ -1,6 +1,12 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {fromEvent} from 'rxjs';
-import {map, take} from 'rxjs/operators';
+import {
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
+import { fromEvent } from 'rxjs';
+import {
+  map,
+  take,
+} from 'rxjs/operators';
 
 @Pipe({
   name: 'readAsDataURL',

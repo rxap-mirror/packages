@@ -1,6 +1,9 @@
-import {addDecorator, moduleMetadata} from '@storybook/angular';
+import {
+  addDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 
-import {CheckboxHeaderCellComponent} from './checkbox-header-cell.component';
+import { CheckboxHeaderCellComponent } from './checkbox-header-cell.component';
 
 addDecorator(moduleMetadata({
   imports: [],

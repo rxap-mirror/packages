@@ -1,6 +1,9 @@
-import {XmlElementMetadata} from './utilities';
-import {ElementChildTextContent, ElementChildTextContentParser} from './element-child-text-content';
-import {getMetadata} from '@rxap/reflect-metadata';
+import { XmlElementMetadata } from './utilities';
+import {
+  ElementChildTextContent,
+  ElementChildTextContentParser,
+} from './element-child-text-content';
+import { getMetadata } from '@rxap/reflect-metadata';
 
 describe('@rxap/xml-parser', () => {
 

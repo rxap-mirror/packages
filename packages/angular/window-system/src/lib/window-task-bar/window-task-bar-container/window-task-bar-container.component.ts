@@ -1,13 +1,18 @@
-import {Component, Inject, InjectionToken, Optional} from '@angular/core';
-import {WindowService} from '../../window.service';
-import {WindowTaskBarComponent} from '../window-task-bar.component';
-import {ExtendedModule} from '@angular/flex-layout/extended';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatBadgeModule} from '@angular/material/badge';
-import {MatButtonModule} from '@angular/material/button';
-import {FlexModule} from '@angular/flex-layout/flex';
-import {NgIf} from '@angular/common';
+import {
+  Component,
+  Inject,
+  InjectionToken,
+  Optional,
+} from '@angular/core';
+import { WindowService } from '../../window.service';
+import { WindowTaskBarComponent } from '../window-task-bar.component';
+import { ExtendedModule } from '@angular/flex-layout/extended';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { FlexModule } from '@angular/flex-layout/flex';
+import { NgIf } from '@angular/common';
 
 export interface WindowTaskBarContainerSettings {
   expand?: boolean;

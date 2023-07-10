@@ -1,5 +1,8 @@
-import {addToMetadata, getMetadata} from './meta-data';
-import {equals} from '@rxap/utilities';
+import {
+  addToMetadata,
+  getMetadata,
+} from './meta-data';
+import { equals } from '@rxap/utilities';
 
 export interface RxapOnPropertyChange {
   initialized?: boolean;

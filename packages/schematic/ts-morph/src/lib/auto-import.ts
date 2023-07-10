@@ -1,6 +1,10 @@
-import {IndentationText, Project, QuoteKind} from 'ts-morph';
-import {Rule} from '@angular-devkit/schematics';
-import {AddDir} from './add-dir';
+import {
+  IndentationText,
+  Project,
+  QuoteKind,
+} from 'ts-morph';
+import { Rule } from '@angular-devkit/schematics';
+import { AddDir } from './add-dir';
 
 /**
  * @deprecated use FixMissingImports instead

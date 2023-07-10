@@ -1,12 +1,22 @@
-import {Inject, Injectable, Injector, Optional} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams, HttpRequest} from '@angular/common/http';
+import {
+  Inject,
+  Injectable,
+  Injector,
+  Optional,
+} from '@angular/core';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpParams,
+  HttpRequest,
+} from '@angular/common/http';
 import {
   BaseRemoteMethod,
   BaseRemoteMethodMetadata,
   REMOTE_METHOD_META_DATA,
   RxapRemoteMethodError,
 } from '@rxap/remote-method';
-import {hasIndexSignature} from '@rxap/utilities';
+import { hasIndexSignature } from '@rxap/utilities';
 
 export interface HttpRemoteMethodMetadata extends BaseRemoteMethodMetadata {
   url: string | (() => string);

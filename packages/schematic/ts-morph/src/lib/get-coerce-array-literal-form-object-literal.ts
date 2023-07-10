@@ -1,4 +1,8 @@
-import {ArrayLiteralExpression, ObjectLiteralExpression, PropertyAssignment} from 'ts-morph';
+import {
+  ArrayLiteralExpression,
+  ObjectLiteralExpression,
+  PropertyAssignment,
+} from 'ts-morph';
 
 export function GetCoerceArrayLiteralFromObjectLiteral(objectLiteral: ObjectLiteralExpression, propertyKey: string): ArrayLiteralExpression {
 

@@ -1,19 +1,19 @@
 import {
   Directive,
+  forwardRef,
   Inject,
-  SkipSelf,
+  Input,
   Optional,
   Self,
-  Input,
-  forwardRef,
+  SkipSelf,
 } from '@angular/core';
 import {
+  ControlContainer,
   FormGroupName,
   NG_ASYNC_VALIDATORS,
-  ControlContainer,
   NG_VALIDATORS,
 } from '@angular/forms';
-import {RxapFormGroup} from '../form-group';
+import { RxapFormGroup } from '../form-group';
 
 /**
  * A full exertion of FormGroupName from @angular/forms. The only change is the

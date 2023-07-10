@@ -1,9 +1,13 @@
-import {Injectable, Optional, Inject} from '@angular/core';
-import type {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {SelectRowOptions} from './select-row.options';
-import {RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS} from './tokens';
-import {SelectionModel} from './selection-model';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
+import type { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { SelectRowOptions } from './select-row.options';
+import { RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS } from './tokens';
+import { SelectionModel } from './selection-model';
 
 @Injectable()
 export class SelectRowService<Data extends Record<string, any>> {

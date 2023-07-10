@@ -1,12 +1,15 @@
-import {Directive, Input} from '@angular/core';
-import {DataSourceCollectionDirective} from '@rxap/data-source/directive';
+import {
+  Directive,
+  Input,
+} from '@angular/core';
+import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
 import {
   AbstractPaginationDataSource,
   PaginatorLike,
   RxapPaginationDataSourceError,
 } from '@rxap/data-source/pagination';
-import {Required} from '@rxap/utilities';
-import {IdOrInstanceOrToken} from '@rxap/definition';
+import { Required } from '@rxap/utilities';
+import { IdOrInstanceOrToken } from '@rxap/definition';
 
 @Directive({
   selector: '[rxapPaginationDataSource]',

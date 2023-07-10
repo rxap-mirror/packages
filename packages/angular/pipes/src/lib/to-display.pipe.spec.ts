@@ -1,4 +1,4 @@
-import {ToDisplayPipe} from './to-display.pipe';
+import { ToDisplayPipe } from './to-display.pipe';
 
 describe('ToDisplayPipe', () => {
   it('create an instance', () => {

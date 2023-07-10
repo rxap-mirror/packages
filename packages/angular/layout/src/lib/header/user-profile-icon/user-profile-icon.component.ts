@@ -1,25 +1,25 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   Inject,
 } from '@angular/core';
-import {Observable} from 'rxjs';
-import {UserService} from '@rxap/authentication';
-import {map} from 'rxjs/operators';
-import {isDefined} from '@rxap/rxjs';
-import {MatIconModule} from '@angular/material/icon';
+import { Observable } from 'rxjs';
+import { UserService } from '@rxap/authentication';
+import { map } from 'rxjs/operators';
+import { isDefined } from '@rxap/rxjs';
+import { MatIconModule } from '@angular/material/icon';
 import {
-  NgIf,
   AsyncPipe,
+  NgIf,
 } from '@angular/common';
-import {AvatarBackgroundImageDirective} from '@rxap/directives';
-import {MatMenuModule} from '@angular/material/menu';
-import {FlexModule} from '@angular/flex-layout/flex';
+import { AvatarBackgroundImageDirective } from '@rxap/directives';
+import { MatMenuModule } from '@angular/material/menu';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector: 'rxap-user-profile-icon',
   templateUrl: './user-profile-icon.component.html',
-  styleUrls: ['./user-profile-icon.component.scss'],
+  styleUrls: [ './user-profile-icon.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [

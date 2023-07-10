@@ -1,8 +1,15 @@
-import {CoerceTableActionOptions, CoerceTableActionRule} from './coerce-table-action';
-import {Scope, StatementStructures, WriterFunction} from 'ts-morph';
-import {CoerceParameterDeclaration} from '../ts-morph/coerce-parameter-declaration';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {CoerceClassConstructor} from '../coerce-class-constructor';
+import {
+  CoerceTableActionOptions,
+  CoerceTableActionRule,
+} from './coerce-table-action';
+import {
+  Scope,
+  StatementStructures,
+  WriterFunction,
+} from 'ts-morph';
+import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
 
 export interface CoerceLinkTableActionRuleOptions extends CoerceTableActionOptions {
   route?: string;

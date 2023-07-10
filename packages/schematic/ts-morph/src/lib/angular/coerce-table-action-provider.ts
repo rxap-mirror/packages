@@ -1,10 +1,16 @@
-import {TsMorphAngularProjectTransform} from '../ts-morph-transform';
-import {ArrayLiteralExpression, PropertyAssignment} from 'ts-morph';
-import {classify, CoerceSuffix} from '@rxap/schematics-utilities';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {CoerceSourceFile} from '../coerce-source-file';
-import {CoerceVariableDeclaration} from '../coerce-variable-declaration';
-import {AddProviderToArray} from '../add-provider-to-array';
+import { TsMorphAngularProjectTransform } from '../ts-morph-transform';
+import {
+  ArrayLiteralExpression,
+  PropertyAssignment,
+} from 'ts-morph';
+import {
+  classify,
+  CoerceSuffix,
+} from '@rxap/schematics-utilities';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
+import { AddProviderToArray } from '../add-provider-to-array';
 
 export interface CoerceTableActionProviderOptions {
   project: string;

@@ -1,8 +1,11 @@
-import {ExecutorContext} from '@nx/devkit';
-import {PackageJson} from 'nx/src/utils/package-json';
-import {join} from 'path';
-import {jsonFile, writeJsonFile} from '@rxap/node-utilities';
-import {GetProjectRoot} from './project';
+import { ExecutorContext } from '@nx/devkit';
+import { PackageJson } from 'nx/src/utils/package-json';
+import { join } from 'path';
+import {
+  jsonFile,
+  writeJsonFile,
+} from '@rxap/node-utilities';
+import { GetProjectRoot } from './project';
 
 export interface ProjectPackageJsonPerson {
   name?: string;

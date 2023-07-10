@@ -1,16 +1,16 @@
 import {
+  AfterViewInit,
   Directive,
   Inject,
+  OnDestroy,
   TemplateRef,
   ViewContainerRef,
-  OnDestroy,
-  AfterViewInit,
 } from '@angular/core';
-import {FormDirective} from './form.directive';
-import {Subscription} from 'rxjs';
+import { FormDirective } from './form.directive';
+import { Subscription } from 'rxjs';
 import {
-  tap,
   distinctUntilChanged,
+  tap,
 } from 'rxjs/operators';
 
 @Directive({

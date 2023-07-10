@@ -1,8 +1,8 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-import {JsonViewerComponent} from './json-viewer.component';
-import {ChangeDetectorRef} from '@angular/core';
-import {EMPTY} from 'rxjs';
+import { JsonViewerComponent } from './json-viewer.component';
+import { ChangeDetectorRef } from '@angular/core';
+import { EMPTY } from 'rxjs';
 
 describe('JsonViewerComponent', () => {
   let component: JsonViewerComponent;

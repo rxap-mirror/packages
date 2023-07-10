@@ -1,9 +1,9 @@
-import {XmlParserService} from './xml-parser.service';
-import {ParsedElement} from './elements/parsed-element';
-import {ElementAttribute} from './decorators/element-attribute';
-import {ElementDef} from './decorators/element-def';
-import {ElementRequired} from './decorators/mixins/required-element.parser.mixin';
-import {ElementChildren} from './decorators/element-children';
+import { XmlParserService } from './xml-parser.service';
+import { ParsedElement } from './elements/parsed-element';
+import { ElementAttribute } from './decorators/element-attribute';
+import { ElementDef } from './decorators/element-def';
+import { ElementRequired } from './decorators/mixins/required-element.parser.mixin';
+import { ElementChildren } from './decorators/element-children';
 
 describe('XML Parser', () => {
 

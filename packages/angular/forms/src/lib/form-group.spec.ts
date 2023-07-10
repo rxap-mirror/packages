@@ -2,8 +2,8 @@ import {
   of,
   Subject,
 } from 'rxjs';
-import {RxapFormGroup} from './form-group';
-import {RxapFormControl} from './form-control';
+import { RxapFormGroup } from './form-group';
+import { RxapFormControl } from './form-control';
 
 interface Person {
   name: string | null;

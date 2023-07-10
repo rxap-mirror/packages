@@ -1,11 +1,29 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Inject, Input, OnChanges, OnInit, SimpleChanges,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  forwardRef,
+  Inject,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { clone, isPromiseLike } from '@rxap/utilities';
-import { JSON_VIEW_IGNORED_PROPERTIES, JSON_VIEW_IGNORED_TYPES } from './json-viewer.tokens';
+import {
+  clone,
+  isPromiseLike,
+} from '@rxap/utilities';
+import {
+  JSON_VIEW_IGNORED_PROPERTIES,
+  JSON_VIEW_IGNORED_TYPES,
+} from './json-viewer.tokens';
 import { isTeardownLogic } from '@rxap/rxjs';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import {
+  NgClass,
+  NgFor,
+  NgIf,
+} from '@angular/common';
 
 export interface Segment {
   key: string;

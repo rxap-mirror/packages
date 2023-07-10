@@ -1,10 +1,17 @@
-import {Project, SourceFile} from 'ts-morph';
-import {CoerceClass} from '../coerce-class';
-import {classify, CoerceSuffix, dasherize} from '@rxap/schematics-utilities';
-import {CoerceSourceFile} from '../coerce-source-file';
-import {FindNestModuleSourceFile} from './find-nest-module-source-file';
-import {AddNestModuleController} from './add-nest-module-controller';
-import {CoerceImports} from '../ts-morph/index';
+import {
+  Project,
+  SourceFile,
+} from 'ts-morph';
+import { CoerceClass } from '../coerce-class';
+import {
+  classify,
+  CoerceSuffix,
+  dasherize,
+} from '@rxap/schematics-utilities';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { FindNestModuleSourceFile } from './find-nest-module-source-file';
+import { AddNestModuleController } from './add-nest-module-controller';
+import { CoerceImports } from '../ts-morph/index';
 
 export interface AddNestControllerOptions {
   prefix?: string;

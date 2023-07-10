@@ -1,7 +1,11 @@
-import {ElementParserMetaData} from './metadata-keys';
-import {ElementName} from '../element-name';
-import {XmlElementParserFunction} from '../xml-element-parser-function';
-import {addToMetadata, hasMetadata, setMetadata} from '@rxap/reflect-metadata';
+import { ElementParserMetaData } from './metadata-keys';
+import { ElementName } from '../element-name';
+import { XmlElementParserFunction } from '../xml-element-parser-function';
+import {
+  addToMetadata,
+  hasMetadata,
+  setMetadata,
+} from '@rxap/reflect-metadata';
 
 export function ElementParser(
   elementName: ElementName,

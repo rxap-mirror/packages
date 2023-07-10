@@ -1,8 +1,22 @@
-import {BaseDataSource, BaseDataSourceMetadata, RXAP_DATA_SOURCE_METADATA} from '@rxap/data-source';
-import {Inject, Injectable, InjectionToken, isDevMode, Optional} from '@angular/core';
-import {AbstractControl} from '@rxap/forms';
-import {distinctUntilChanged, shareReplay, startWith} from 'rxjs/operators';
-import {equals} from '@rxap/utilities';
+import {
+  BaseDataSource,
+  BaseDataSourceMetadata,
+  RXAP_DATA_SOURCE_METADATA,
+} from '@rxap/data-source';
+import {
+  Inject,
+  Injectable,
+  InjectionToken,
+  isDevMode,
+  Optional,
+} from '@angular/core';
+import { AbstractControl } from '@rxap/forms';
+import {
+  distinctUntilChanged,
+  shareReplay,
+  startWith,
+} from 'rxjs/operators';
+import { equals } from '@rxap/utilities';
 
 export const RXAP_FORM_CONTROL_SOURCE = new InjectionToken(
   'rxap/forms/data-source',

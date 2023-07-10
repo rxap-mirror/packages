@@ -1,5 +1,5 @@
-import {assertString} from './util/assertString';
-import {multilineRegexp} from './util/multilineRegex';
+import { assertString } from './util/assertString';
+import { multilineRegexp } from './util/multilineRegex';
 
 /**
  * Regular Expression to match

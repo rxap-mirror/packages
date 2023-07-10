@@ -1,9 +1,12 @@
-import {XmlElementMetadata} from './utilities';
-import {ElementTextContent, ElementTextContentParser} from './element-text-content';
-import {compile} from 'handlebars';
-import {getMetadata} from '@rxap/reflect-metadata';
-import {XmlParserService} from '../xml-parser.service';
-import {RxapElement} from '../element';
+import { XmlElementMetadata } from './utilities';
+import {
+  ElementTextContent,
+  ElementTextContentParser,
+} from './element-text-content';
+import { compile } from 'handlebars';
+import { getMetadata } from '@rxap/reflect-metadata';
+import { XmlParserService } from '../xml-parser.service';
+import { RxapElement } from '../element';
 
 describe('@rxap/xml-parser', () => {
 
@@ -13,7 +16,9 @@ describe('@rxap/xml-parser', () => {
 
       const xmlParser: XmlParserService = {} as any;
 
-      it('should not set parsed element property if attribute is not present and if not required and no default value is defined', () => {
+      it(
+        'should not set parsed element property if attribute is not present and if not required and no default value is defined',
+        () => {
 
         const parser = new ElementTextContentParser('property', {});
 

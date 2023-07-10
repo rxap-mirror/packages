@@ -3,13 +3,13 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
-import {relative} from 'path';
+import { relative } from 'path';
 import {
   Angular,
   AngularProject,
   GetAngularJson,
 } from './angular-json-file';
-import {PackageJson} from './package-json';
+import { PackageJson } from './package-json';
 import {
   GetPackageJson,
   UpdatePackageJson,

@@ -1,24 +1,24 @@
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   Inject,
   Optional,
 } from '@angular/core';
-import {RXAP_LAYOUT_APPS_GRID} from '../../tokens';
-import {ConfigService} from '@rxap/config';
-import {FlexModule} from '@angular/flex-layout/flex';
-import {ExtendedModule} from '@angular/flex-layout/extended';
-import {MatIconModule} from '@angular/material/icon';
+import { RXAP_LAYOUT_APPS_GRID } from '../../tokens';
+import { ConfigService } from '@rxap/config';
+import { FlexModule } from '@angular/flex-layout/flex';
+import { ExtendedModule } from '@angular/flex-layout/extended';
+import { MatIconModule } from '@angular/material/icon';
 import {
-  CdkOverlayOrigin,
   CdkConnectedOverlay,
+  CdkOverlayOrigin,
 } from '@angular/cdk/overlay';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import {
+  NgClass,
+  NgFor,
   NgIf,
   NgStyle,
-  NgFor,
-  NgClass,
 } from '@angular/common';
 
 export interface AppsButtonGridItem {

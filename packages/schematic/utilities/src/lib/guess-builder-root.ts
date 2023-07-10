@@ -1,7 +1,7 @@
-import {Tree} from '@angular-devkit/schematics';
-import {join} from 'path';
-import {GetProjectRoot} from './get-project';
-import {GetProjectBuildersJson} from './builders-json-file';
+import { Tree } from '@angular-devkit/schematics';
+import { join } from 'path';
+import { GetProjectRoot } from './get-project';
+import { GetProjectBuildersJson } from './builders-json-file';
 
 /**
  * Tries to guess the builder root of a project.

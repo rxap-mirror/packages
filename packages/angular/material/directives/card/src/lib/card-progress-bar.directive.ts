@@ -9,9 +9,12 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import {MatProgressBar} from '@angular/material/progress-bar';
-import {Observable, Subscription} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import { MatProgressBar } from '@angular/material/progress-bar';
+import {
+  Observable,
+  Subscription,
+} from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Directive({
   selector: 'mat-progress-bar[rxapCardProgressBar]',

@@ -1,6 +1,6 @@
-import {FileReplacement} from './file-replacement';
-import {Localize} from './localize';
-import {MissingTranslation} from './missing-translation';
+import { FileReplacement } from './file-replacement';
+import { Localize } from './localize';
+import { MissingTranslation } from './missing-translation';
 
 export type Server = {
   /** The name of the main entry-point file. */

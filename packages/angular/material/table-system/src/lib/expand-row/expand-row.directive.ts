@@ -1,11 +1,11 @@
 import {
   Directive,
-  Input,
   HostListener,
   Inject,
+  Input,
 } from '@angular/core';
-import {ExpandRowService} from './expand-row.service';
-import {Required} from '@rxap/utilities';
+import { ExpandRowService } from './expand-row.service';
+import { Required } from '@rxap/utilities';
 
 @Directive({
   selector: 'tr[rxapExpandRow]',

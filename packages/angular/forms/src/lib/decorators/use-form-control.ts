@@ -1,6 +1,6 @@
-import {MetadataKeys} from './metadata-keys';
-import {RxapAbstractControlOptions} from '../model';
-import {setMetadataMap} from '@rxap/reflect-metadata';
+import { MetadataKeys } from './metadata-keys';
+import { RxapAbstractControlOptions } from '../model';
+import { setMetadataMap } from '@rxap/reflect-metadata';
 
 export function UseFormControl(options: RxapAbstractControlOptions = {}) {
 

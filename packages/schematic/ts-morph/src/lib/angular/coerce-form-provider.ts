@@ -1,11 +1,19 @@
-import {ArrayLiteralExpression, ImportDeclarationStructure, OptionalKind, SourceFile} from 'ts-morph';
-import {TsMorphAngularProjectTransform, TsMorphAngularProjectTransformOptions} from '../ts-morph-transform';
-import {Rule} from '@angular-devkit/schematics';
-import {CoerceImports} from '../ts-morph/coerce-imports';
-import {ProviderObject} from '../provider-object';
-import {CoerceVariableDeclaration} from '../coerce-variable-declaration';
-import {AddProviderToArray} from '../add-provider-to-array';
-import {CoerceSourceFile} from '../coerce-source-file';
+import {
+  ArrayLiteralExpression,
+  ImportDeclarationStructure,
+  OptionalKind,
+  SourceFile,
+} from 'ts-morph';
+import {
+  TsMorphAngularProjectTransform,
+  TsMorphAngularProjectTransformOptions,
+} from '../ts-morph-transform';
+import { Rule } from '@angular-devkit/schematics';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { ProviderObject } from '../provider-object';
+import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
+import { AddProviderToArray } from '../add-provider-to-array';
+import { CoerceSourceFile } from '../coerce-source-file';
 
 export function CoerceFormProvider(sourceFile: SourceFile, providerObject: ProviderObject | string) {
   const formProviders = CoerceVariableDeclaration(sourceFile, 'FormProviders', {
@@ -13,7 +21,7 @@ export function CoerceFormProvider(sourceFile: SourceFile, providerObject: Provi
     initializer: '[]',
   });
   CoerceImports(sourceFile, {
-    namedImports: ['Provider'],
+    namedImports: [ 'Provider' ],
     moduleSpecifier: '@angular/core',
   });
 

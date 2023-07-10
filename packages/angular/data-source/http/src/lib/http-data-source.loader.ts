@@ -1,11 +1,19 @@
-import {Inject, Injectable, InjectFlags, Injector} from '@angular/core';
-import {HttpDataSource} from './http.data-source';
-import {HttpDataSourceOptions} from './http.data-source.options';
-import {HttpDataSourceMetadata} from './http.data-source.metadata';
-import {DataSourceLoader, RxapDataSourceError} from '@rxap/data-source';
-import {IdOrInstanceOrToken} from '@rxap/definition';
+import {
+  Inject,
+  Injectable,
+  InjectFlags,
+  Injector,
+} from '@angular/core';
+import { HttpDataSource } from './http.data-source';
+import { HttpDataSourceOptions } from './http.data-source.options';
+import { HttpDataSourceMetadata } from './http.data-source.metadata';
+import {
+  DataSourceLoader,
+  RxapDataSourceError,
+} from '@rxap/data-source';
+import { IdOrInstanceOrToken } from '@rxap/definition';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class HttpDataSourceLoader {
 
   // Instead of extanding the DataSourceLoader class the DataSourceLoader instance

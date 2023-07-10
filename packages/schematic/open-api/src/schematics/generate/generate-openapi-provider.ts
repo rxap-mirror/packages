@@ -1,7 +1,13 @@
-import { Project, VariableDeclarationKind } from 'ts-morph';
+import {
+  Project,
+  VariableDeclarationKind,
+} from 'ts-morph';
 import { join } from 'path';
 import { strings } from '@angular-devkit/core';
-import { REMOTE_METHOD_BASE_PATH, REMOTE_METHOD_FILE_SUFFIX } from './const';
+import {
+  REMOTE_METHOD_BASE_PATH,
+  REMOTE_METHOD_FILE_SUFFIX,
+} from './const';
 import { OpenApiSchema } from './schema';
 
 const { dasherize, classify } = strings;

@@ -1,4 +1,4 @@
-import {RxapHttpDataSourceError} from '@rxap/data-source/http';
+import { RxapHttpDataSourceError } from '@rxap/data-source/http';
 
 export class RxapHttpPaginationDataSourceError extends RxapHttpDataSourceError {
 

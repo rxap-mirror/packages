@@ -1,15 +1,35 @@
-import {BaseDataSource, BaseDataSourceViewer, RXAP_DATA_SOURCE_METADATA, RxapDataSource} from '@rxap/data-source';
-import {RXAP_PAGINATION_DATA_SOURCE, RXAP_PAGINATION_DATA_SOURCE_PAGINATOR} from './tokens';
-import {Inject, Injectable, Optional} from '@angular/core';
-import {Observable, TeardownLogic} from 'rxjs';
-import {map, startWith, switchMap, tap} from 'rxjs/operators';
-import {RxapPaginationDataSourceError} from './error';
+import {
+  BaseDataSource,
+  BaseDataSourceViewer,
+  RXAP_DATA_SOURCE_METADATA,
+  RxapDataSource,
+} from '@rxap/data-source';
+import {
+  RXAP_PAGINATION_DATA_SOURCE,
+  RXAP_PAGINATION_DATA_SOURCE_PAGINATOR,
+} from './tokens';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
+import {
+  Observable,
+  TeardownLogic,
+} from 'rxjs';
+import {
+  map,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
+import { RxapPaginationDataSourceError } from './error';
 import {
   AbstractPaginationDataSource,
   AbstractPaginationDataSourceMetadata,
   PaginatorLike,
 } from './abstract-pagination.data-source';
-import {Constructor} from '@rxap/utilities';
+import { Constructor } from '@rxap/utilities';
 
 export type PaginationDataSourceMetadata = AbstractPaginationDataSourceMetadata
 

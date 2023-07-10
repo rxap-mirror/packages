@@ -1,34 +1,34 @@
-import type {Injector} from '@angular/core';
+import type { Injector } from '@angular/core';
 import {
-  Injectable,
   Inject,
-  Optional,
+  Injectable,
   INJECTOR,
+  Optional,
 } from '@angular/core';
 import {
-  Observable,
-  ReplaySubject,
-  of,
   combineLatest,
   from,
+  Observable,
+  of,
+  ReplaySubject,
 } from 'rxjs';
 import {
-  Navigation,
-  NavigationWithInserts,
+  IsNavigationDividerItem,
   IsNavigationInsertItem,
   IsNavigationItem,
-  IsNavigationDividerItem,
-  NavigationItem,
+  Navigation,
   NavigationDividerItem,
+  NavigationItem,
+  NavigationWithInserts,
 } from './navigation-item';
 import {
   RXAP_NAVIGATION_CONFIG,
   RXAP_NAVIGATION_CONFIG_INSERTS,
 } from '../tokens';
 import {
-  switchMap,
-  map,
   catchError,
+  map,
+  switchMap,
 } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})

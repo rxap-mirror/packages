@@ -1,7 +1,10 @@
-import {Tree} from '@angular-devkit/schematics';
-import {join} from 'path';
-import {GetProjectRoot} from './get-project';
-import {GetProjectCollectionJson, HasProjectCollectionJsonFile} from './collection-json-file';
+import { Tree } from '@angular-devkit/schematics';
+import { join } from 'path';
+import { GetProjectRoot } from './get-project';
+import {
+  GetProjectCollectionJson,
+  HasProjectCollectionJsonFile,
+} from './collection-json-file';
 
 /**
  * Tries to guess the schematic root of a project.

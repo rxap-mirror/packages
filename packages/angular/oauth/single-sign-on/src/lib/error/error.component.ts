@@ -1,15 +1,24 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {MatButtonModule} from '@angular/material/button';
-import {FlexModule} from '@angular/flex-layout/flex';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector: 'rxap-error',
   templateUrl: './error.component.html',
-  styleUrls: ['./error.component.scss'],
+  styleUrls: [ './error.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {class: 'rxap-error'},
+  host: { class: 'rxap-error' },
   animations: [
     trigger('fadeAnimation', [
       // the "in" style determines the "resting" state of the element when it is visible.

@@ -1,7 +1,11 @@
-import {ImportDeclarationStructure, OptionalKind, SourceFile} from 'ts-morph';
-import {ProviderObject} from './provider-object';
-import {AddComponentProvider} from './add-component-provider';
-import {AddFakeProvider} from './add-fake-provider';
+import {
+  ImportDeclarationStructure,
+  OptionalKind,
+  SourceFile,
+} from 'ts-morph';
+import { ProviderObject } from './provider-object';
+import { AddComponentProvider } from './add-component-provider';
+import { AddFakeProvider } from './add-fake-provider';
 
 export function AddComponentFakeProvider(
   sourceFile: SourceFile,

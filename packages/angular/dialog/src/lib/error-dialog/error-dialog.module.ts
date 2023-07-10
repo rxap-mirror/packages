@@ -1,10 +1,14 @@
-import {ErrorHandler, ModuleWithProviders, NgModule} from '@angular/core';
-import {ErrorDialogComponent} from './error-dialog.component';
-import {ErrorDialogErrorHandler} from './error-dialog.error-handler';
+import {
+  ErrorHandler,
+  ModuleWithProviders,
+  NgModule,
+} from '@angular/core';
+import { ErrorDialogComponent } from './error-dialog.component';
+import { ErrorDialogErrorHandler } from './error-dialog.error-handler';
 
 @NgModule({
-  exports: [ErrorDialogComponent],
-  imports: [ErrorDialogComponent],
+  exports: [ ErrorDialogComponent ],
+  imports: [ ErrorDialogComponent ],
 })
 export class ErrorDialogModule {
 

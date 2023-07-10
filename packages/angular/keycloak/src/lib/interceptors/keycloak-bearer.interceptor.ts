@@ -6,14 +6,22 @@
  * found in the LICENSE file at https://github.com/mauriciovigolo/keycloak-angular/LICENSE
  */
 
-import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
 
-import {from, Observable} from 'rxjs';
-import {mergeMap} from 'rxjs/operators';
+import {
+  from,
+  Observable,
+} from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 
-import {KeycloakService} from '../services/keycloak.service';
-import {ExcludedUrlRegex} from '../interfaces/keycloak-options';
+import { KeycloakService } from '../services/keycloak.service';
+import { ExcludedUrlRegex } from '../interfaces/keycloak-options';
 
 /**
  * This interceptor includes the bearer by default in all HttpClient requests.

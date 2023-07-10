@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import type {Observable} from 'rxjs';
-import {BehaviorSubject} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import type { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ExpandRowService<Data extends Record<string, any>> {

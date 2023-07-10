@@ -1,6 +1,6 @@
-import { GetProjectConfiguration } from "./project";
-import { ExecutorContext } from "@nx/devkit";
-import { GetTargetOptions } from "./get-target-configuration-name-list";
+import { GetProjectConfiguration } from './project';
+import { ExecutorContext } from '@nx/devkit';
+import { GetTargetOptions } from './get-target-configuration-name-list';
 
 
 export function GuessOutputPath(context: ExecutorContext) {
@@ -8,7 +8,7 @@ export function GuessOutputPath(context: ExecutorContext) {
   const project = GetProjectConfiguration(context);
 
   if (!project.targets) {
-    throw new Error(`Could not guess the output path. The project ${project.name} does not have any targets`)
+    throw new Error(`Could not guess the output path. The project ${ project.name } does not have any targets`);
   }
 
   const buildTarget = project.targets['build'];

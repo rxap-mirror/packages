@@ -1,76 +1,76 @@
 import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-  OnChanges,
-  SimpleChanges,
-  ViewChild,
-  OnDestroy,
   AfterViewInit,
-  HostBinding,
-  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Component,
   ElementRef,
-  Renderer2,
-  HostListener,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
   EmbeddedViewRef,
+  HostBinding,
+  HostListener,
   Inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+  ViewContainerRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
-  Required,
   DebounceCall,
+  Required,
 } from '@rxap/utilities';
 import {
-  trigger,
+  animate,
   style,
   transition,
-  animate,
+  trigger,
 } from '@angular/animations';
 import {
-  NavigationItem,
   Navigation,
   NavigationDividerItem,
+  NavigationItem,
 } from '../navigation-item';
 import {
-  RouterLinkActive,
-  Router,
   NavigationEnd,
+  Router,
   RouterLink,
+  RouterLinkActive,
 } from '@angular/router';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 import {
-  filter,
-  tap,
   delay,
-  startWith,
   distinctUntilChanged,
+  filter,
   skip,
+  startWith,
+  tap,
 } from 'rxjs/operators';
-import {SidenavComponentService} from '../../sidenav/sidenav.component.service';
+import { SidenavComponentService } from '../../sidenav/sidenav.component.service';
 import {
   Overlay,
   OverlayRef,
 } from '@angular/cdk/overlay';
-import {TemplatePortal} from '@angular/cdk/portal';
-import {FlexModule} from '@angular/flex-layout/flex';
-import {NavigationComponent} from '../navigation.component';
-import {IconDirective} from '@rxap/material-directives/icon';
-import {MatIconModule} from '@angular/material/icon';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { FlexModule } from '@angular/flex-layout/flex';
+import { NavigationComponent } from '../navigation.component';
+import { IconDirective } from '@rxap/material-directives/icon';
+import { MatIconModule } from '@angular/material/icon';
 import {
-  NgIf,
-  NgFor,
   AsyncPipe,
+  NgFor,
+  NgIf,
 } from '@angular/common';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatRippleModule} from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRippleModule } from '@angular/material/core';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'li[rxap-navigation-item]',
   templateUrl: './navigation-item.component.html',
-  styleUrls: ['./navigation-item.component.scss'],
+  styleUrls: [ './navigation-item.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property

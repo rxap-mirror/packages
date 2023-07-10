@@ -1,6 +1,6 @@
-import {assertString} from './util/assertString';
+import { assertString } from './util/assertString';
 
-import {blacklist} from './blacklist';
+import { blacklist } from './blacklist';
 
 export function stripLow(str: unknown, keep_new_lines?: boolean) {
   assertString(str);

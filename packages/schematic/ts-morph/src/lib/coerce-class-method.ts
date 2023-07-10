@@ -1,4 +1,8 @@
-import {ClassDeclaration, MethodDeclarationStructure, OptionalKind} from 'ts-morph';
+import {
+  ClassDeclaration,
+  MethodDeclarationStructure,
+  OptionalKind,
+} from 'ts-morph';
 
 export function CoerceClassMethod(
   classDeclaration: ClassDeclaration,

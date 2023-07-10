@@ -1,4 +1,4 @@
-import {OpenAPIV3} from 'openapi-types';
+import { OpenAPIV3 } from 'openapi-types';
 
 export type OperationObjectWithoutParameters = Omit<OpenAPIV3.OperationObject, 'parameters'>;
 

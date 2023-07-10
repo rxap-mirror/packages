@@ -1,12 +1,15 @@
-import {ClassDeclaration, Project} from 'ts-morph';
-import {CoerceClassImplementation} from './coerce-class-implementation';
+import {
+  ClassDeclaration,
+  Project,
+} from 'ts-morph';
+import { CoerceClassImplementation } from './coerce-class-implementation';
 
 describe('CoerceClassImplementation', () => {
 
   let classDeclaration: ClassDeclaration;
 
   beforeEach(() => {
-    const project = new Project({useInMemoryFileSystem: true});
+    const project = new Project({ useInMemoryFileSystem: true });
     const sourceFile = project.createSourceFile('test.ts', `export class MyClass {}`);
     classDeclaration = sourceFile.getClassOrThrow('MyClass');
   });

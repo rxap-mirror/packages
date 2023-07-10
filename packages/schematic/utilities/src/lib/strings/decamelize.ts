@@ -1,4 +1,4 @@
-import {STRING_DECAMELIZE_REGEXP} from './const';
+import { STRING_DECAMELIZE_REGEXP } from './const';
 
 /**
  * Converts a camelized string into all lower case separated by underscores.

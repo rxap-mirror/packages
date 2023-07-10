@@ -1,5 +1,9 @@
-import {NgModule, Pipe, PipeTransform} from '@angular/core';
-import {CurrencyPipe} from '@angular/common';
+import {
+  NgModule,
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 
 @Pipe({
   name: 'currency',

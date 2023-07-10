@@ -1,9 +1,22 @@
-import {Directive, ElementRef, HostListener, Inject, Input, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {Required} from '@rxap/utilities';
-import {isObservable, Observable, Subject} from 'rxjs';
-import {TableDataSourceDirective} from '../table-data-source.directive';
-import {TABLE_CREATE_REMOTE_METHOD} from './tokens';
-import {Method} from '@rxap/pattern';
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
+import { Required } from '@rxap/utilities';
+import {
+  isObservable,
+  Observable,
+  Subject,
+} from 'rxjs';
+import { TableDataSourceDirective } from '../table-data-source.directive';
+import { TABLE_CREATE_REMOTE_METHOD } from './tokens';
+import { Method } from '@rxap/pattern';
 
 @Directive({
   selector: 'button[rxapTableCreate]',

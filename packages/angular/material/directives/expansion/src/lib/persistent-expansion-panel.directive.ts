@@ -1,9 +1,15 @@
-import {Directive, Inject, Input, OnDestroy, OnInit} from '@angular/core';
-import {Required} from '@rxap/utilities';
-import {MatExpansionPanel} from '@angular/material/expansion';
-import {tap} from 'rxjs/operators';
-import {LocalStorageService} from '@rxap/services';
-import {Subscription} from 'rxjs';
+import {
+  Directive,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { Required } from '@rxap/utilities';
+import { MatExpansionPanel } from '@angular/material/expansion';
+import { tap } from 'rxjs/operators';
+import { LocalStorageService } from '@rxap/services';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: 'mat-expansion-panel[rxapPersistentExpansionPanel]',

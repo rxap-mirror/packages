@@ -1,6 +1,9 @@
-import {Constructor} from '@rxap/utilities';
-import {BaseDefinition} from './definition';
-import {getMetadata, setMetadata} from '@rxap/reflect-metadata';
+import { Constructor } from '@rxap/utilities';
+import { BaseDefinition } from './definition';
+import {
+  getMetadata,
+  setMetadata,
+} from '@rxap/reflect-metadata';
 
 export interface BaseDefinitionMetadata {
   id: string;

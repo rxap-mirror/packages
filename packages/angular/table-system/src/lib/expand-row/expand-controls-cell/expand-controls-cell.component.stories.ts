@@ -1,9 +1,9 @@
 import {
-  moduleMetadata,
   addDecorator,
+  moduleMetadata,
 } from '@storybook/angular';
 
-import {ExpandControlsCellComponent} from './expand-controls-cell.component';
+import { ExpandControlsCellComponent } from './expand-controls-cell.component';
 
 addDecorator(moduleMetadata({
   imports: [],

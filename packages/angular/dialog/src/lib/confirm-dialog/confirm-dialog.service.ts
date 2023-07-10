@@ -1,19 +1,19 @@
 import {
-  Injectable,
   Inject,
+  Injectable,
 } from '@angular/core';
 import {
-  MatDialog,
   DialogPosition,
+  MatDialog,
 } from '@angular/material/dialog';
-import {ConfirmDialogComponent} from './confirm-dialog.component';
-import {Direction} from '@angular/cdk/bidi';
-import {ScrollStrategy} from '@angular/cdk/overlay';
+import { ConfirmDialogComponent } from './confirm-dialog.component';
+import { Direction } from '@angular/cdk/bidi';
+import { ScrollStrategy } from '@angular/cdk/overlay';
 import {
   map,
   take,
 } from 'rxjs/operators';
-import {firstValueFrom} from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 export interface ConfirmDialogConfig {
   /** Custom class for the overlay pane. */

@@ -1,5 +1,8 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {compile} from 'handlebars';
+import {
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
+import { compile } from 'handlebars';
 
 @Pipe({
   name: 'handlebars',
@@ -8,7 +11,7 @@ import {compile} from 'handlebars';
 export class HandlebarsPipe implements PipeTransform {
 
   transform(value: string, context: any): string {
-    return compile(value)({context});
+    return compile(value)({ context });
   }
 
 }

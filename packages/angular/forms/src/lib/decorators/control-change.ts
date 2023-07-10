@@ -1,5 +1,5 @@
-import {MetadataKeys} from './metadata-keys';
-import {setMetadataMapSet} from '@rxap/reflect-metadata';
+import { MetadataKeys } from './metadata-keys';
+import { setMetadataMapSet } from '@rxap/reflect-metadata';
 
 export function ControlChange(...controlIds: string[]) {
 

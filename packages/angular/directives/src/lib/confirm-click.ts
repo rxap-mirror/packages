@@ -1,5 +1,9 @@
-import {HostListener, Injectable, Input} from '@angular/core';
-import {coerceBoolean} from '@rxap/utilities';
+import {
+  HostListener,
+  Injectable,
+  Input,
+} from '@angular/core';
+import { coerceBoolean } from '@rxap/utilities';
 
 @Injectable()
 export abstract class ConfirmClick {

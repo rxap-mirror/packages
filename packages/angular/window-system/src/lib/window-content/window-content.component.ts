@@ -10,22 +10,43 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import {RXAP_WINDOW_CONTAINER_CONTEXT, RXAP_WINDOW_REF} from '../tokens';
-import {WindowContainerContext} from '../window-context';
-import {CdkPortalOutlet, ComponentPortal, Portal, PortalModule, TemplatePortal} from '@angular/cdk/portal';
-import type {WindowRef} from '../window-ref';
-import {catchError, delay, filter, startWith, take, tap, timeout} from 'rxjs/operators';
-import {isObservable, throwError, TimeoutError} from 'rxjs';
-import {LoadingIndicatorService} from '@rxap/services';
-import {isDefined} from '@rxap/rxjs';
+import {
+  RXAP_WINDOW_CONTAINER_CONTEXT,
+  RXAP_WINDOW_REF,
+} from '../tokens';
+import { WindowContainerContext } from '../window-context';
+import {
+  CdkPortalOutlet,
+  ComponentPortal,
+  Portal,
+  PortalModule,
+  TemplatePortal,
+} from '@angular/cdk/portal';
+import type { WindowRef } from '../window-ref';
+import {
+  catchError,
+  delay,
+  filter,
+  startWith,
+  take,
+  tap,
+  timeout,
+} from 'rxjs/operators';
+import {
+  isObservable,
+  throwError,
+  TimeoutError,
+} from 'rxjs';
+import { LoadingIndicatorService } from '@rxap/services';
+import { isDefined } from '@rxap/rxjs';
 
 @Component({
   selector: 'rxap-window-content',
   templateUrl: './window-content.component.html',
-  styleUrls: ['./window-content.component.scss'],
+  styleUrls: [ './window-content.component.scss' ],
   changeDetection: ChangeDetectionStrategy.Default,
   standalone: true,
-  imports: [PortalModule],
+  imports: [ PortalModule ],
 })
 export class WindowContentComponent implements AfterViewInit, OnInit {
 

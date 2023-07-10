@@ -1,4 +1,8 @@
-import {Directive, Inject, TemplateRef} from '@angular/core';
+import {
+  Directive,
+  Inject,
+  TemplateRef,
+} from '@angular/core';
 
 export interface ExpandCellContentDirectiveContext<Data extends Record<string, any>> {
   $implicit: Data

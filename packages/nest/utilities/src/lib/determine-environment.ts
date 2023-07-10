@@ -1,5 +1,5 @@
-import {DetermineProductionEnvironmentName} from './determine-production-environment-name';
-import {Environment} from './environment';
+import { DetermineProductionEnvironmentName } from './determine-production-environment-name';
+import { Environment } from './environment';
 
 /**
  * Determines the sentry environment based on the build info object.

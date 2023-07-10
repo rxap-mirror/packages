@@ -1,4 +1,4 @@
-import {Tree} from '@angular-devkit/schematics';
+import { Tree } from '@angular-devkit/schematics';
 
 export function CoerceFile(tree: Tree, filePath: string, content: string | Buffer): void {
   if (tree.exists(filePath)) {

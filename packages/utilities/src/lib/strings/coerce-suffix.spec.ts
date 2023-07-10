@@ -1,4 +1,4 @@
-import {CoerceSuffix} from './coerce-suffix';
+import { CoerceSuffix } from './coerce-suffix';
 
 describe('Utilities', () => {
 

@@ -1,5 +1,10 @@
-import {getIdentifierPropertyValue, IconConfig, WithChildren, WithIdentifier} from '@rxap/utilities';
-import {ToggleSubject} from '@rxap/rxjs';
+import {
+  getIdentifierPropertyValue,
+  IconConfig,
+  WithChildren,
+  WithIdentifier,
+} from '@rxap/utilities';
+import { ToggleSubject } from '@rxap/rxjs';
 
 export type ExpandNodeFunction<T> = (node: Node<T>) => Promise<any>;
 

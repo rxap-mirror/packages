@@ -1,5 +1,8 @@
-import {ObjectLiteralExpression, Project} from 'ts-morph';
-import {AddControlValidator} from './add-control-validator';
+import {
+  ObjectLiteralExpression,
+  Project,
+} from 'ts-morph';
+import { AddControlValidator } from './add-control-validator';
 
 describe('Helpers', () => {
 

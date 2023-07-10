@@ -1,13 +1,16 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'rxap-loading',
   templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss'],
+  styleUrls: [ './loading.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MatProgressBarModule],
+  imports: [ MatProgressBarModule ],
 })
 export class LoadingComponent {
 }

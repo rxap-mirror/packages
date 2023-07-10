@@ -1,18 +1,18 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  Injectable,
+  Component,
   Inject,
+  Injectable,
 } from '@angular/core';
-import {ConfigService} from '@rxap/config';
-import {MatOptionModule} from '@angular/material/core';
-import {FormsModule} from '@angular/forms';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { ConfigService } from '@rxap/config';
+import { MatOptionModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import {
-  NgIf,
-  NgFor,
   KeyValuePipe,
+  NgFor,
+  NgIf,
 } from '@angular/common';
 
 export const RXAP_SELECTED_LANGUAGE_LOCAL_STORAGE_KEY =

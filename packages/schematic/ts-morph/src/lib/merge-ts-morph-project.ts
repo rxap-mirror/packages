@@ -1,5 +1,5 @@
-import {Project} from 'ts-morph';
-import {join} from 'path';
+import { Project } from 'ts-morph';
+import { join } from 'path';
 
 /**
  * Copies all files from the source project to the target project.

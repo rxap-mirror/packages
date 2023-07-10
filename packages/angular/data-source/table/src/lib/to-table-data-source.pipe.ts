@@ -1,8 +1,14 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {PaginatorLike} from '@rxap/data-source/pagination';
-import {TableDataSource} from './table.data-source';
-import {BaseDataSource} from '@rxap/data-source';
-import {FilterLike, SortLike} from './abstract-table.data-source';
+import {
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
+import { PaginatorLike } from '@rxap/data-source/pagination';
+import { TableDataSource } from './table.data-source';
+import { BaseDataSource } from '@rxap/data-source';
+import {
+  FilterLike,
+  SortLike,
+} from './abstract-table.data-source';
 
 @Pipe({
   name: 'toTableDataSource',

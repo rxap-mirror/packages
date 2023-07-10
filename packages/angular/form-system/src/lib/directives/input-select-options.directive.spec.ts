@@ -1,6 +1,11 @@
-import {TestBed} from '@angular/core/testing';
-import {ChangeDetectorRef, InjectionToken, TemplateRef, ViewContainerRef} from '@angular/core';
-import {InputSelectOptionsDirective} from './input-select-options.directive';
+import { TestBed } from '@angular/core/testing';
+import {
+  ChangeDetectorRef,
+  InjectionToken,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
+import { InputSelectOptionsDirective } from './input-select-options.directive';
 
 describe('@rxap/form-system', () => {
 

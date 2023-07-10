@@ -1,13 +1,13 @@
 import {
-  moduleMetadata,
   addDecorator,
+  moduleMetadata,
 } from '@storybook/angular';
-import {Component} from '@angular/core';
-import {MatTableModule} from '@angular/material/table';
-import {CommonModule} from '@angular/common';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ExpandRowService} from './expand-row.service';
-import {ExpandRowModule} from './expand-row.module';
+import { Component } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ExpandRowService } from './expand-row.service';
+import { ExpandRowModule } from './expand-row.module';
 
 @Component({
   styles: [

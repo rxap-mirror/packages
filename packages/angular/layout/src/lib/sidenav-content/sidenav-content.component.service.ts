@@ -1,19 +1,19 @@
 import {
-  Injectable,
   Inject,
+  Injectable,
 } from '@angular/core';
 import {
-  HeaderService,
   FooterService,
+  HeaderService,
 } from '@rxap/services';
 import {
   BehaviorSubject,
-  Observable,
   combineLatest,
+  Observable,
 } from 'rxjs';
 import {
-  tap,
   map,
+  tap,
 } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})

@@ -1,5 +1,5 @@
-import {assertString} from './util/assertString';
-import {merge} from './util/merge';
+import { assertString } from './util/assertString';
+import { merge } from './util/merge';
 
 interface FQDNOptions {
   require_tld?: boolean;

@@ -1,17 +1,17 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  Input,
+  Component,
   Inject,
+  Input,
 } from '@angular/core';
-import {ExpandRowService} from '../expand-row.service';
-import {Required} from '@rxap/utilities';
-import {MatIconModule} from '@angular/material/icon';
+import { ExpandRowService } from '../expand-row.service';
+import { Required } from '@rxap/utilities';
+import { MatIconModule } from '@angular/material/icon';
 import {
-  NgIf,
   AsyncPipe,
+  NgIf,
 } from '@angular/common';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector

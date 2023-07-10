@@ -1,5 +1,5 @@
-import {ReplaySubject} from 'rxjs';
-import {AuthorizationService} from './authorization.service';
+import { ReplaySubject } from 'rxjs';
+import { AuthorizationService } from './authorization.service';
 
 describe('@rxap/authorization', () => {
 

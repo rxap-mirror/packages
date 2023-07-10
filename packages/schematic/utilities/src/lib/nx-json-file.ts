@@ -1,6 +1,10 @@
-import {Tree} from '@angular-devkit/schematics';
-import {NxJson} from './nx-json';
-import {GetJsonFile, UpdateJsonFile, UpdateJsonFileOptions} from './json-file';
+import { Tree } from '@angular-devkit/schematics';
+import { NxJson } from './nx-json';
+import {
+  GetJsonFile,
+  UpdateJsonFile,
+  UpdateJsonFileOptions,
+} from './json-file';
 
 export function GetNxJson(host: Tree): NxJson {
   return GetJsonFile(host, 'nx.json');

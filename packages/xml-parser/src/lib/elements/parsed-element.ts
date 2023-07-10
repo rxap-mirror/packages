@@ -1,4 +1,4 @@
-import {KeyValue} from '@rxap/utilities';
+import { KeyValue } from '@rxap/utilities';
 
 export interface ParsedElement<Value = any> {
 

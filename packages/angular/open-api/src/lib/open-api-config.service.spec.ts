@@ -1,4 +1,4 @@
-import {OpenApiConfigService} from './open-api-config.service';
+import { OpenApiConfigService } from './open-api-config.service';
 
 describe('@rxap/open-api', () => {
 

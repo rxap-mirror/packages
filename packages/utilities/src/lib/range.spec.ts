@@ -1,4 +1,4 @@
-import {Range} from './range';
+import { Range } from './range';
 
 describe('@rxap/utilities', () => {
 

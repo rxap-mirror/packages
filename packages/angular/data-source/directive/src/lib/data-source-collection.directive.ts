@@ -1,4 +1,4 @@
-import type {Injector} from '@angular/core';
+import type { Injector } from '@angular/core';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -23,11 +23,22 @@ import {
   TrackByFunction,
   ViewContainerRef,
 } from '@angular/core';
-import {Required} from '@rxap/utilities';
-import {BaseDataSource, BaseDataSourceViewer, DataSourceLoader} from '@rxap/data-source';
-import {Observable, Subscription} from 'rxjs';
-import {filter, take, tap} from 'rxjs/operators';
-import {IdOrInstanceOrToken} from '@rxap/definition';
+import { Required } from '@rxap/utilities';
+import {
+  BaseDataSource,
+  BaseDataSourceViewer,
+  DataSourceLoader,
+} from '@rxap/data-source';
+import {
+  Observable,
+  Subscription,
+} from 'rxjs';
+import {
+  filter,
+  take,
+  tap,
+} from 'rxjs/operators';
+import { IdOrInstanceOrToken } from '@rxap/definition';
 
 export class DataSourceCollectionTemplateContext<Data> {
   constructor(

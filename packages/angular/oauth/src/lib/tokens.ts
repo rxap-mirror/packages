@@ -1,4 +1,4 @@
-import {InjectionToken} from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
 export function DefaultRedirectSignInFactory(): string[] {
   return ['/', 'authentication', 'login'];

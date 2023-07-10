@@ -1,10 +1,10 @@
 import {
   defer,
+  EMPTY,
   merge,
   Observable,
   of,
   Subscription,
-  EMPTY,
 } from 'rxjs';
 import {
   distinctUntilChanged,
@@ -13,17 +13,17 @@ import {
 import {
   AbstractControl,
   ControlOptions,
+  ControlPath,
   ControlState,
   ValidatorFn,
-  ControlPath,
 } from './types';
 import {
   coerceArray,
   equals,
 } from '@rxap/utilities';
-import {RxapFormArray} from './form-array';
-import {RxapFormGroup} from './form-group';
-import {RxapFormControl} from './form-control';
+import { RxapFormArray } from './form-array';
+import { RxapFormGroup } from './form-group';
+import { RxapFormControl } from './form-control';
 
 function getControlValue<T>(control: AbstractControl<T>): T {
   if ((control as any).getRawValue) {

@@ -1,5 +1,5 @@
-import {camelize} from './camelize';
-import {capitalize} from './capitalize';
+import { camelize } from './camelize';
+import { capitalize } from './capitalize';
 
 /**
  Returns the UpperCamelCase form of a string.

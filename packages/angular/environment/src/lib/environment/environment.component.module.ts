@@ -1,14 +1,17 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
-import {EnvironmentComponent} from './environment.component';
-import {Environment} from '../environment';
-import {RXAP_ENVIRONMENT} from './tokens';
+import {
+  ModuleWithProviders,
+  NgModule,
+} from '@angular/core';
+import { EnvironmentComponent } from './environment.component';
+import { Environment } from '../environment';
+import { RXAP_ENVIRONMENT } from './tokens';
 
 
 @NgModule({
   imports: [
     EnvironmentComponent,
   ],
-  exports: [EnvironmentComponent],
+  exports: [ EnvironmentComponent ],
 })
 export class EnvironmentComponentModule {
 

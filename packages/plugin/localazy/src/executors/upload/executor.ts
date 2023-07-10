@@ -1,7 +1,12 @@
-import { UploadExecutorSchema } from "./schema";
-import { GetProjectConfiguration, GetTarget, GetTargetOptions, YarnRun } from "@rxap/plugin-utilities";
-import { ExecutorContext } from "@nx/devkit";
-import { DownloadExecutorSchema } from "../download/schema";
+import { UploadExecutorSchema } from './schema';
+import {
+  GetProjectConfiguration,
+  GetTarget,
+  GetTargetOptions,
+  YarnRun,
+} from '@rxap/plugin-utilities';
+import { ExecutorContext } from '@nx/devkit';
+import { DownloadExecutorSchema } from '../download/schema';
 
 export default async function runExecutor(options: UploadExecutorSchema, context: ExecutorContext) {
 

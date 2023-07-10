@@ -1,6 +1,9 @@
-import {observableDataSource} from './observable.data-source';
-import {Subject} from 'rxjs';
-import {fakeAsync, tick} from '@angular/core/testing';
+import { observableDataSource } from './observable.data-source';
+import { Subject } from 'rxjs';
+import {
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 
 describe('@rxap/data-source', () => {
 

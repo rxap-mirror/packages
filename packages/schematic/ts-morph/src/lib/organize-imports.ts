@@ -1,5 +1,12 @@
-import {Rule, Tree} from '@angular-devkit/schematics';
-import {IndentationText, Project, QuoteKind} from 'ts-morph';
+import {
+  Rule,
+  Tree,
+} from '@angular-devkit/schematics';
+import {
+  IndentationText,
+  Project,
+  QuoteKind,
+} from 'ts-morph';
 
 export function OrganizeImports(): Rule {
   return (tree: Tree) => {

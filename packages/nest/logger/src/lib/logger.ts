@@ -1,4 +1,8 @@
-import {ConsoleLogger, Injectable, LogLevel} from '@nestjs/common';
+import {
+  ConsoleLogger,
+  Injectable,
+  LogLevel,
+} from '@nestjs/common';
 
 @Injectable()
 export class RxapLogger extends ConsoleLogger {

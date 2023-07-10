@@ -1,6 +1,16 @@
-import {Directive, EventEmitter, HostBinding, HostListener, Input, Output} from '@angular/core';
-import {coerceBoolean, DebounceCall} from '@rxap/utilities';
-import {Method} from '@rxap/pattern';
+import {
+  Directive,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
+import {
+  coerceBoolean,
+  DebounceCall,
+} from '@rxap/utilities';
+import { Method } from '@rxap/pattern';
 
 @Directive({
   selector: '[rxapContenteditable]',

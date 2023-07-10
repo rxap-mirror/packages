@@ -1,7 +1,7 @@
-import {OpenAPIV3} from 'openapi-types';
-import {AnySchemaObject} from './any-schema-object';
-import {IsReferenceObject} from './is-reference-object';
-import {IsRecord} from '@rxap/schematics-utilities';
+import { OpenAPIV3 } from 'openapi-types';
+import { AnySchemaObject } from './any-schema-object';
+import { IsReferenceObject } from './is-reference-object';
+import { IsRecord } from '@rxap/schematics-utilities';
 
 export function GetRequestBody(operation: OpenAPIV3.OperationObject): OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject | AnySchemaObject | null {
 

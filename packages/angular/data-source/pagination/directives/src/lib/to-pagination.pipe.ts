@@ -1,7 +1,20 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {BaseDataSource, observableDataSource, staticDataSource} from '@rxap/data-source';
-import {PaginationDataSource, PaginatorLike} from '@rxap/data-source/pagination';
-import {isObservable, Observable} from 'rxjs';
+import {
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
+import {
+  BaseDataSource,
+  observableDataSource,
+  staticDataSource,
+} from '@rxap/data-source';
+import {
+  PaginationDataSource,
+  PaginatorLike,
+} from '@rxap/data-source/pagination';
+import {
+  isObservable,
+  Observable,
+} from 'rxjs';
 
 @Pipe({
   name: 'toPagination',
@@ -9,7 +22,10 @@ import {isObservable, Observable} from 'rxjs';
 })
 export class ToPaginationPipe implements PipeTransform {
 
-  transform<Data>(value: BaseDataSource<Data[]> | Data[] | Observable<Data[]>, paginator: PaginatorLike | null = null): PaginationDataSource<Data> {
+  transform<Data>(
+    value: BaseDataSource<Data[]> | Data[] | Observable<Data[]>,
+    paginator: PaginatorLike | null = null,
+  ): PaginationDataSource<Data> {
     let dataSource: BaseDataSource<Data[]>;
     if (Array.isArray(value)) {
       dataSource = staticDataSource(value, {id: 'auto-to-pagination'});

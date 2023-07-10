@@ -1,4 +1,4 @@
-import {GetAllPropertyNames} from './get-all-property-names';
+import { GetAllPropertyNames } from './get-all-property-names';
 
 describe('@rxap/mixin', () => {
 

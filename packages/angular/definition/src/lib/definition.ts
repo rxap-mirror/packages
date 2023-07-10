@@ -1,9 +1,21 @@
-import {BaseDefinitionMetadata, GetDefinitionMetadata} from './definition.metadata';
-import {deepMerge, GenerateRandomString, Required} from '@rxap/utilities';
-import {Inject, Injectable, OnDestroy, Optional} from '@angular/core';
-import {RXAP_DEFINITION_METADATA} from './tokens';
-import {RxapDefinitionError} from './error';
-import {Subject} from 'rxjs';
+import {
+  BaseDefinitionMetadata,
+  GetDefinitionMetadata,
+} from './definition.metadata';
+import {
+  deepMerge,
+  GenerateRandomString,
+  Required,
+} from '@rxap/utilities';
+import {
+  Inject,
+  Injectable,
+  OnDestroy,
+  Optional,
+} from '@angular/core';
+import { RXAP_DEFINITION_METADATA } from './tokens';
+import { RxapDefinitionError } from './error';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export abstract class BaseDefinition<

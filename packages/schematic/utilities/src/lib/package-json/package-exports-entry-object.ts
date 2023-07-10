@@ -1,4 +1,4 @@
-import {PackageExportsEntryOrFallback} from './package-exports-entry-or-fallback';
+import { PackageExportsEntryOrFallback } from './package-exports-entry-or-fallback';
 
 export interface PackageExportsEntryObject {
   /** The module path that is resolved when this specifier is imported as a CommonJS module using the `require(...)` function. */

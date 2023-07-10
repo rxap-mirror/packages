@@ -1,11 +1,17 @@
-import {chain, externalSchematic, noop, Rule, Tree} from '@angular-devkit/schematics';
-import {GetAngularJson} from '@rxap/schematics-utilities';
+import {
+  chain,
+  externalSchematic,
+  noop,
+  Rule,
+  Tree,
+} from '@angular-devkit/schematics';
+import { GetAngularJson } from '@rxap/schematics-utilities';
 
 export function CoerceOpenApiProject(project: string, prefix: string, directory?: string): Rule {
   return (host: Tree) => {
     const angularJson = GetAngularJson(host) as any;
 
-    const projectName = `${directory ? directory.split('/').join('-') + '-' : ''}${project}`;
+    const projectName = `${ directory ? directory.split('/').join('-') + '-' : '' }${ project }`;
 
     if (!angularJson.projects[projectName]) {
       const defaultProject = angularJson.projects[angularJson.defaultProject];

@@ -1,6 +1,6 @@
-import {assertString} from './util/assertString';
+import { assertString } from './util/assertString';
 import * as algorithms from './util/algorithms';
-import {isDate} from './isDate';
+import { isDate } from './isDate';
 
 /**
  * TIN Validation

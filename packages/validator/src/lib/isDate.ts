@@ -1,14 +1,15 @@
-import {merge} from './util/merge';
-import {isNumeric} from './isNumeric';
+import { merge } from './util/merge';
+import { isNumeric } from './isNumeric';
 
 const default_date_options = {
   format: 'YYYY/MM/DD',
-  delimiters: ['/', '-'],
+  delimiters: [ '/', '-' ],
   strictMode: false,
 };
 
 function isValidFormat(format: string) {
-  return /(^(y{4}|y{2})[\/-](m{1,2})[\/-](d{1,2})$)|(^(m{1,2})[\/-](d{1,2})[\/-]((y{4}|y{2})$))|(^(d{1,2})[\/-](m{1,2})[\/-]((y{4}|y{2})$))/gi.test(format);
+  return /(^(y{4}|y{2})[\/-](m{1,2})[\/-](d{1,2})$)|(^(m{1,2})[\/-](d{1,2})[\/-]((y{4}|y{2})$))|(^(d{1,2})[\/-](m{1,2})[\/-]((y{4}|y{2})$))/gi.test(
+    format);
 }
 
 function zip<D, F>(date: D[], format: F[]): Array<[D, F]> {

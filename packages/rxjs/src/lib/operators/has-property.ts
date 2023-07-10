@@ -1,7 +1,16 @@
-import {Observable, Operator, OperatorFunction, Subscriber, TeardownLogic} from 'rxjs';
-import {hasIndexSignature} from '@rxap/utilities';
+import {
+  Observable,
+  Operator,
+  OperatorFunction,
+  Subscriber,
+  TeardownLogic,
+} from 'rxjs';
+import { hasIndexSignature } from '@rxap/utilities';
 
-export function hasProperty<T extends object | null | undefined, V>(propertyKey: keyof V, value?: any): OperatorFunction<T, T & V> {
+export function hasProperty<T extends object | null | undefined, V>(
+  propertyKey: keyof V,
+  value?: any,
+): OperatorFunction<T, T & V> {
   return function filterOperatorFunction(source: Observable<T>): Observable<T & V> {
     return source.lift(new HasPropertyOperator(propertyKey, value));
   };

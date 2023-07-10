@@ -1,4 +1,4 @@
-import {isFloat} from './isFloat';
+import { isFloat } from './isFloat';
 
 export function toFloat(str: string) {
   if (!isFloat(str)) {

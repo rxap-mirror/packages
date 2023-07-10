@@ -19,25 +19,27 @@ import {
   map,
   take,
 } from 'rxjs/operators';
-import {OAuthSingleSignOnService} from '../o-auth-single-sign-on.service';
-import {RXAP_O_AUTH_REDIRECT_SIGN_IN} from '@rxap/oauth';
-import {OAuthService} from '@rxap/oauth';
-import {MatButtonModule} from '@angular/material/button';
-import {AvatarBackgroundImageDirective} from '@rxap/directives';
+import { OAuthSingleSignOnService } from '../o-auth-single-sign-on.service';
 import {
-  NgIf,
+  OAuthService,
+  RXAP_O_AUTH_REDIRECT_SIGN_IN,
+} from '@rxap/oauth';
+import { MatButtonModule } from '@angular/material/button';
+import { AvatarBackgroundImageDirective } from '@rxap/directives';
+import {
   AsyncPipe,
+  NgIf,
 } from '@angular/common';
-import {FlexModule} from '@angular/flex-layout/flex';
-import {firstValueFrom} from 'rxjs';
+import { FlexModule } from '@angular/flex-layout/flex';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'rxap-continue',
   templateUrl: './continue.component.html',
-  styleUrls: ['./continue.component.scss'],
+  styleUrls: [ './continue.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {class: 'rxap-continue'},
+  host: { class: 'rxap-continue' },
   animations: [
     trigger('fadeAnimation', [
       // the "in" style determines the "resting" state of the element when it is visible.

@@ -1,9 +1,18 @@
-import {Inject, Injectable} from '@angular/core';
-import {firstValueFrom, Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {finalize, share} from 'rxjs/operators';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
+import {
+  firstValueFrom,
+  Observable,
+} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import {
+  finalize,
+  share,
+} from 'rxjs/operators';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ConfigLoaderService {
   public readonly configs = new Map<string, any>();
 

@@ -1,5 +1,17 @@
-import {Inject, Injectable, InjectFlags, INJECTOR, Injector, Optional, StaticProvider} from '@angular/core';
-import {WindowConfig, WindowRef, WindowService} from '@rxap/window-system';
+import {
+  Inject,
+  Injectable,
+  InjectFlags,
+  INJECTOR,
+  Injector,
+  Optional,
+  StaticProvider,
+} from '@angular/core';
+import {
+  WindowConfig,
+  WindowRef,
+  WindowService,
+} from '@rxap/window-system';
 import {
   FormDefinition,
   FormLoadMethod,
@@ -15,9 +27,12 @@ import {
   RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
   RxapFormBuilder,
 } from '@rxap/forms';
-import {Constructor, DeleteUndefinedProperties} from '@rxap/utilities';
-import {FormSystemMetadataKeys} from '@rxap/form-system';
-import {getMetadata} from '@rxap/reflect-metadata';
+import {
+  Constructor,
+  DeleteUndefinedProperties,
+} from '@rxap/utilities';
+import { FormSystemMetadataKeys } from '@rxap/form-system';
+import { getMetadata } from '@rxap/reflect-metadata';
 
 export interface FormWindowOptions<FormData, D = any, T = any>
   extends WindowConfig<D, T> {

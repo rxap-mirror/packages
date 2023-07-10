@@ -2,7 +2,7 @@ import {
   Directive,
   HostListener,
 } from '@angular/core';
-import {ControlContainer} from '@angular/forms';
+import { ControlContainer } from '@angular/forms';
 
 @Directive({
   selector: '[rxapFormControlMarkTouched]',

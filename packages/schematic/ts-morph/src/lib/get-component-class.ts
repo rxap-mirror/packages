@@ -1,4 +1,7 @@
-import {ClassDeclaration, SourceFile} from 'ts-morph';
+import {
+  ClassDeclaration,
+  SourceFile,
+} from 'ts-morph';
 
 export function GetComponentClass(sourceFile: SourceFile): ClassDeclaration {
   const classWithComponent = sourceFile.getClasses().find(cls => cls.getDecorator('Component'));

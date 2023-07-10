@@ -1,10 +1,19 @@
-import {Inject, Injectable} from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+} from '@nestjs/common';
 import * as Sentry from '@sentry/node';
-import {SentryModuleOptions} from './sentry.interfaces';
-import {CONSOLE_LOGGER_OPTIONS, SENTRY_MODULE_OPTIONS} from './tokens';
-import {ConsoleLoggerOptions} from '@nestjs/common/services/console-logger.service';
-import {isString, isUndefined} from '@nestjs/common/utils/shared.utils';
-import {RxapLogger} from '@rxap/nest-logger';
+import { SentryModuleOptions } from './sentry.interfaces';
+import {
+  CONSOLE_LOGGER_OPTIONS,
+  SENTRY_MODULE_OPTIONS,
+} from './tokens';
+import { ConsoleLoggerOptions } from '@nestjs/common/services/console-logger.service';
+import {
+  isString,
+  isUndefined,
+} from '@nestjs/common/utils/shared.utils';
+import { RxapLogger } from '@rxap/nest-logger';
 
 @Injectable()
 export class SentryLogger extends RxapLogger {

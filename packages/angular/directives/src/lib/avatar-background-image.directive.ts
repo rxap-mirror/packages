@@ -1,6 +1,19 @@
-import {Directive, ElementRef, Inject, Input, Renderer2} from '@angular/core';
-import {BackgroundImageDirective, BackgroundRepeatOptions, BackgroundSizeOptions} from './background-image.directive';
-import {AvatarImageService, ImageLoaderService} from '@rxap/services';
+import {
+  Directive,
+  ElementRef,
+  Inject,
+  Input,
+  Renderer2,
+} from '@angular/core';
+import {
+  BackgroundImageDirective,
+  BackgroundRepeatOptions,
+  BackgroundSizeOptions,
+} from './background-image.directive';
+import {
+  AvatarImageService,
+  ImageLoaderService,
+} from '@rxap/services';
 
 @Directive({
   // tslint:disable-next-line:directive-selector

@@ -1,4 +1,4 @@
-import {ExecutorContext} from '@nx/devkit';
+import { ExecutorContext } from '@nx/devkit';
 
 export function GetProjectConfiguration(context: ExecutorContext, projectName = context.projectName) {
   const {projectsConfigurations} = context;

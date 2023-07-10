@@ -1,5 +1,9 @@
-import {noop, Rule, schematic} from '@angular-devkit/schematics';
-import {HasProjectFeature} from './has-project-feature';
+import {
+  noop,
+  Rule,
+  schematic,
+} from '@angular-devkit/schematics';
+import { HasProjectFeature } from './has-project-feature';
 
 export interface CoerceProjectFeatureOptions {
   project: string;
@@ -7,7 +11,10 @@ export interface CoerceProjectFeatureOptions {
 }
 
 export function CoerceProjectFeature(options: CoerceProjectFeatureOptions): Rule {
-  const {project, feature} = options;
+  const {
+    project,
+    feature,
+  } = options;
   return tree => {
     if (!HasProjectFeature(tree, options)) {
       console.log(`The project '${project}' does not have the feature '${feature}'. The feature will new be created ...`);

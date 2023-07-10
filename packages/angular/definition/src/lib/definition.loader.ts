@@ -1,11 +1,16 @@
-import {IdOrInstanceOrToken} from './types';
-import type {Injector} from '@angular/core';
-import {Inject, Injectable, InjectFlags, INJECTOR} from '@angular/core';
-import {BaseDefinitionMetadata} from './definition.metadata';
-import {BaseDefinition} from './definition';
-import {RxapDefinitionError} from './error';
+import { IdOrInstanceOrToken } from './types';
+import type { Injector } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  InjectFlags,
+  INJECTOR,
+} from '@angular/core';
+import { BaseDefinitionMetadata } from './definition.metadata';
+import { BaseDefinition } from './definition';
+import { RxapDefinitionError } from './error';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class DefinitionLoader {
   constructor(
     @Inject(INJECTOR)

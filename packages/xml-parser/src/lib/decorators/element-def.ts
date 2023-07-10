@@ -1,5 +1,8 @@
-import {XmlElementMetadata} from './utilities';
-import {hasMetadata, setMetadata} from '@rxap/reflect-metadata';
+import { XmlElementMetadata } from './utilities';
+import {
+  hasMetadata,
+  setMetadata,
+} from '@rxap/reflect-metadata';
 
 export function ElementDef(tag: string) {
   return function (target: any) {

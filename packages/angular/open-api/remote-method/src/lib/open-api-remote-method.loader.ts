@@ -1,9 +1,13 @@
-import {Inject, Injectable, Injector} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {OpenApiRemoteMethod} from './open-api.remote-method';
-import {OpenApiConfigService} from '@rxap/open-api';
+import {
+  Inject,
+  Injectable,
+  Injector,
+} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { OpenApiRemoteMethod } from './open-api.remote-method';
+import { OpenApiConfigService } from '@rxap/open-api';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class OpenApiRemoteMethodLoader {
 
   constructor(

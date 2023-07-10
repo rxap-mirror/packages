@@ -10,8 +10,12 @@ import {
   RXAP_O_AUTH_REDIRECT_SIGN_OUT,
   RXAP_O_AUTH_REDIRECT_URL,
 } from '@rxap/oauth';
-import {Inject, Injectable, Optional} from '@angular/core';
-import {Router} from '@angular/router';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class OAuthSingleSignOnService extends OAuthService {

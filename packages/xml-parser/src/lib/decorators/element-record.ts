@@ -1,19 +1,34 @@
-import {AddParserToMetadata, XmlElementMetadata} from './utilities';
-import {camelize, dasherize, deepMerge, hasIndexSignature} from '@rxap/utilities';
-import {Mixin} from '@rxap/mixin';
-import {IsTagElementOptions, TagElementOptions, TagElementParserMixin} from './mixins/tag-element.parser.mixin';
-import {TextContentElementOptions, TextContentElementParserMixin} from './mixins/text-content-element.parser';
-import {ElementParser} from './element.parser';
-import {getMetadata} from '@rxap/reflect-metadata';
-import {ParsedElement} from '../elements/parsed-element';
-import {XmlParserService} from '../xml-parser.service';
-import {RxapElement} from '../element';
-import {RxapXmlParserValidateRequiredError} from '../error';
-import {RequiredProperty} from './required-property';
+import {
+  AddParserToMetadata,
+  XmlElementMetadata,
+} from './utilities';
+import {
+  camelize,
+  dasherize,
+  deepMerge,
+  hasIndexSignature,
+} from '@rxap/utilities';
+import { Mixin } from '@rxap/mixin';
+import {
+  IsTagElementOptions,
+  TagElementOptions,
+  TagElementParserMixin,
+} from './mixins/tag-element.parser.mixin';
+import {
+  TextContentElementOptions,
+  TextContentElementParserMixin,
+} from './mixins/text-content-element.parser';
+import { ElementParser } from './element.parser';
+import { getMetadata } from '@rxap/reflect-metadata';
+import { ParsedElement } from '../elements/parsed-element';
+import { XmlParserService } from '../xml-parser.service';
+import { RxapElement } from '../element';
+import { RxapXmlParserValidateRequiredError } from '../error';
+import { RequiredProperty } from './required-property';
 
 export interface ElementRecordOptions<Value>
   extends TextContentElementOptions<Value>,
-    TagElementOptions {
+          TagElementOptions {
 }
 
 export function AssertElementRecordOptions(options: any): asserts options is ElementRecordOptions<any> {

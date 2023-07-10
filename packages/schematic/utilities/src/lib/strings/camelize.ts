@@ -1,4 +1,4 @@
-import {STRING_CAMELIZE_REGEXP} from './const';
+import { STRING_CAMELIZE_REGEXP } from './const';
 
 /**
  Returns the lowerCamelCase form of a string.

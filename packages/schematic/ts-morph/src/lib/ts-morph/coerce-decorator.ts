@@ -1,5 +1,13 @@
-import {DecoratableNode, Decorator, DecoratorStructure, OptionalKind} from 'ts-morph';
-import {FindByNameFunction, FindFunctionFactory} from './find-function';
+import {
+  DecoratableNode,
+  Decorator,
+  DecoratorStructure,
+  OptionalKind,
+} from 'ts-morph';
+import {
+  FindByNameFunction,
+  FindFunctionFactory,
+} from './find-function';
 
 export function CoerceDecorator(
   decoratableNode: DecoratableNode,
