@@ -11,9 +11,7 @@
     "@rxap/data-source": "^16.0.0-dev.4",
     "@rxap/material-table-system": "^16.0.0-dev.3",
     "@rxap/utilities": "^16.0.0-dev.2",
-    "cypress": "^12.11.0",
-    "rxjs": "^7.8.0",
-    "workspace": "^1.0.0"
+    "rxjs": "^7.8.0"
   },
   "sideEffects": false,
   "dependencies": {
@@ -45,10 +43,6 @@
   },
   "nx-migrations": {
     "packageGroup": [
-      {
-        "package": "workspace",
-        "version": "1.0.0"
-      },
       {
         "package": "@rxap/data-source",
         "version": "16.0.0-dev.4"

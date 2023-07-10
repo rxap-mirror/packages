@@ -17,9 +17,7 @@
     "@rxap/rxjs": "^1.0.1-dev.0",
     "@rxap/services": "^16.0.0-dev.3",
     "@rxap/utilities": "^16.0.0-dev.2",
-    "cypress": "^12.11.0",
-    "rxjs": "^7.8.0",
-    "workspace": "^1.0.0"
+    "rxjs": "^7.8.0"
   },
   "sideEffects": false,
   "dependencies": {
@@ -51,10 +49,6 @@
   },
   "nx-migrations": {
     "packageGroup": [
-      {
-        "package": "workspace",
-        "version": "1.0.0"
-      },
       {
         "package": "@rxap/authentication",
         "version": "16.0.0-dev.3"

@@ -6,9 +6,7 @@
     "@angular/material": "^16.0.0",
     "@angular/service-worker": "^16.0.0",
     "@rxap/life-cycle": "^16.0.0-dev.2",
-    "cypress": "^12.11.0",
-    "rxjs": "^7.8.0",
-    "workspace": "^1.0.0"
+    "rxjs": "^7.8.0"
   },
   "sideEffects": false,
   "dependencies": {
@@ -40,10 +38,6 @@
   },
   "nx-migrations": {
     "packageGroup": [
-      {
-        "package": "workspace",
-        "version": "1.0.0"
-      },
       {
         "package": "@rxap/life-cycle",
         "version": "16.0.0-dev.2"
