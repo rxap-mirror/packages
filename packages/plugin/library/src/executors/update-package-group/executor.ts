@@ -14,6 +14,7 @@ import {
 function getPackageGroup(context: ExecutorContext): ArrayPackageGroup {
   const directPackageDependencies = getDirectPackageDependenciesForProject(context);
   return Object.entries(directPackageDependencies)
+               .filter(([ packageName ]) => packageName.startsWith('@rxap/'))
                .map(([ packageName, version ]) => ({
                  package: packageName,
                  version: version,
@@ -24,7 +25,7 @@ function mergePackageGroup(original: PackageGroup, updated: ArrayPackageGroup): 
   const normalized = normalizePackageGroup(original);
   return [ ...updated, ...normalized ].filter((item, index, array) => {
     return array.findIndex(({ package: packageName }) => packageName === item.package) === index;
-  });
+  }).filter(({ package: packageName }) => packageName.startsWith('@rxap/'));
 }
 
 export default async function runExecutor(
