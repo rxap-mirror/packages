@@ -2,7 +2,7 @@
   "name": "@rxap/definition",
   "version": "16.0.0-dev.3",
   "peerDependencies": {
-    "@angular/core": "^16.0.0",
+    "@angular/core": "^16.1.4",
     "@rxap/reflect-metadata": "^1.0.1-dev.0",
     "@rxap/utilities": "^16.0.0-dev.2",
     "rxjs": "^7.8.0"

@@ -2,8 +2,8 @@
   "name": "@rxap/remote-method",
   "version": "16.0.0-dev.3",
   "peerDependencies": {
-    "@angular/common": "^16.0.0",
-    "@angular/core": "^16.0.0",
+    "@angular/common": "^16.1.4",
+    "@angular/core": "^16.1.4",
     "@rxap/definition": "^16.0.0-dev.3",
     "@rxap/rxjs": "^1.0.1-dev.0",
     "@rxap/utilities": "^16.0.0-dev.2",

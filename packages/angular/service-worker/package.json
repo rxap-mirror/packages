@@ -2,9 +2,9 @@
   "name": "@rxap/service-worker",
   "version": "16.0.0-dev.3",
   "peerDependencies": {
-    "@angular/core": "^16.0.0",
-    "@angular/material": "^16.0.0",
-    "@angular/service-worker": "^16.0.0",
+    "@angular/core": "^16.1.4",
+    "@angular/material": "^16.1.4",
+    "@angular/service-worker": "^16.1.4",
     "@rxap/life-cycle": "^16.0.0-dev.2",
     "rxjs": "^7.8.0"
   },
