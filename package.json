@@ -7,7 +7,9 @@
     "prepare": "husky install",
     "version": "nx run packages:readme",
     "preversion": "nx run-many --target build,test,lint",
-    "prepublishOnly": "nx run-many --target build --configuration production"
+    "prepublishOnly": "nx run-many --target build --configuration production",
+    "lerna:publish": "bash tools/scripts/lerna/publish.sh",
+    "lerna:version": "bash tools/scripts/lerna/version.sh"
   },
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
