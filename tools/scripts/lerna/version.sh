@@ -49,15 +49,20 @@ echo "LERNA_PRE_ID=${LERNA_PRE_ID}"
 
 read -r -p "Are you sure? [y/N] " response
 
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
-  echo "Executing..."
-else
+if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+  exit 1
+fi
+
+if [[ -z "$GL_TOKEN" ]]; then
+  echo "GL_TOKEN is not set"
   exit 1
 fi
 
 if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
 
   echo "Executing lerna version for pre-release..."
+
+  echo "yarn lerna version --create-release gitlab --conventional-graduate --preid $LERNA_PRE_ID $@"
 
   yarn lerna version \
   --create-release gitlab \
@@ -69,6 +74,8 @@ fi
 if [[ "$LERNA_PRE_RELEASE" == "false" ]]; then
 
   echo "Executing lerna version for release..."
+
+  echo "yarn lerna version --create-release gitlab --conventional-graduate $@"
 
   yarn lerna version \
   --create-release gitlab \
