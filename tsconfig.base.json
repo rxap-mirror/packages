@@ -10,173 +10,291 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "strict": true,
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["dom", "es2020"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rxap/across-tabs": ["libs/across-tabs/src/index.ts"],
-      "@rxap/actions": ["libs/rxap/actions/src/index.ts"],
-      "@rxap/apollo": ["libs/apollo/src/index.ts"],
-      "@rxap/authentication": ["libs/authentication/src/index.ts"],
+      "@rxap/authentication": [
+        "packages/angular/authentication/src/index.ts"
+      ],
       "@rxap/authentication/components": [
-        "libs/authentication/components/src/public_api.ts"
+        "packages/angular/authentication/components/src/index.ts"
       ],
-      "@rxap/authorization": ["libs/authorization/src/index.ts"],
-      "@rxap/component-system": ["libs/rxap/component-system/src/index.ts"],
-      "@rxap/components": ["libs/components/src/index.ts"],
-      "@rxap/components/ngrx": ["libs/components/ngrx/src/public_api.ts"],
-      "@rxap/config": ["libs/config/src/index.ts"],
-      "@rxap/contenteditable": ["libs/contenteditable/src/index.ts"],
-      "@rxap/data-grid": ["libs/data-grid/src/index.ts"],
-      "@rxap/data-source": ["libs/data-source/src/index.ts"],
+      "@rxap/authorization": [
+        "packages/angular/authorization/src/index.ts"
+      ],
+      "@rxap/components": [
+        "packages/angular/components/src/index.ts"
+      ],
+      "@rxap/config": [
+        "packages/angular/config/src/index.ts"
+      ],
+      "@rxap/contenteditable": [
+        "packages/angular/contenteditable/src/index.ts"
+      ],
+      "@rxap/data-grid": [
+        "packages/angular/data-grid/src/index.ts"
+      ],
+      "@rxap/data-source": [
+        "packages/angular/data-source/src/index.ts"
+      ],
       "@rxap/data-source/directive": [
-        "libs/data-source/directive/src/public_api.ts"
+        "packages/angular/data-source/directive/src/index.ts"
       ],
-      "@rxap/data-source/http": ["libs/data-source/http/src/public_api.ts"],
+      "@rxap/data-source/http": [
+        "packages/angular/data-source/http/src/index.ts"
+      ],
       "@rxap/data-source/http/pagination": [
-        "libs/data-source/http/pagination/src/public_api.ts"
+        "packages/angular/data-source/http/pagination/src/index.ts"
       ],
-      "@rxap/data-source/open-api": [
-        "libs/data-source/open-api/src/public_api.ts"
+      "@rxap/data-source/http/table": [
+        "packages/angular/data-source/http/table/src/index.ts"
       ],
       "@rxap/data-source/pagination": [
-        "libs/data-source/pagination/src/public_api.ts"
+        "packages/angular/data-source/pagination/src/index.ts"
       ],
       "@rxap/data-source/pagination/directives": [
-        "libs/data-source/pagination/directives/src/public_api.ts"
+        "packages/angular/data-source/pagination/directives/src/index.ts"
       ],
-      "@rxap/data-source/recorder": [
-        "libs/data-source/recorder/src/public_api.ts"
+      "@rxap/data-source/table": [
+        "packages/angular/data-source/table/src/index.ts"
       ],
-      "@rxap/data-source/table": ["libs/data-source/table/src/public_api.ts"],
+      "@rxap/data-source/table/directives": [
+        "packages/angular/data-source/table/directives/src/index.ts"
+      ],
       "@rxap/data-source/testing": [
-        "libs/data-source/testing/src/public_api.ts"
+        "packages/angular/data-source/testing/src/index.ts"
       ],
-      "@rxap/definition": ["libs/definition/src/index.ts"],
-      "@rxap/dialog": ["libs/dialog/src/index.ts"],
-      "@rxap/directives": ["libs/directives/src/index.ts"],
-      "@rxap/documents": ["libs/documents/src/index.ts"],
-      "@rxap/environment": ["libs/environment/src/index.ts"],
-      "@rxap/fake": ["libs/fake/src/index.ts"],
-      "@rxap/firebase": ["libs/firebase/src/index.ts"],
-      "@rxap/firebase/auth": ["libs/firebase/auth/src/public_api.ts"],
-      "@rxap/form-window-system": ["libs/form-window-system/src/index.ts"],
-      "@rxap/forms": ["libs/forms/src/index.ts"],
-      "@rxap/hammerjs": ["libs/hammerjs/src/index.ts"],
-      "@rxap/handlebars": ["libs/handlebars/src/index.ts"],
-      "@rxap/hooks": ["libs/rxap/hooks/src/index.ts"],
-      "@rxap/icon": ["libs/icon/src/index.ts"],
-      "@rxap/inspector": ["libs/rxap/inspector/src/index.ts"],
+      "@rxap/data-structure-tree": [
+        "packages/data-structure/tree/src/index.ts"
+      ],
+      "@rxap/definition": [
+        "packages/angular/definition/src/index.ts"
+      ],
+      "@rxap/dialog": [
+        "packages/angular/dialog/src/index.ts"
+      ],
+      "@rxap/directives": [
+        "packages/angular/directives/src/index.ts"
+      ],
+      "@rxap/environment": [
+        "packages/angular/environment/src/index.ts"
+      ],
+      "@rxap/firebase": [
+        "packages/angular/firebase/src/index.ts"
+      ],
+      "@rxap/firebase/auth": [
+        "packages/angular/firebase/auth/src/index.ts"
+      ],
+      "@rxap/form-system": [
+        "packages/angular/form-system/src/index.ts"
+      ],
+      "@rxap/form-window-system": [
+        "packages/angular/form-window-system/src/index.ts"
+      ],
+      "@rxap/forms": [
+        "packages/angular/forms/src/index.ts"
+      ],
+      "@rxap/generator-ts-morph": [
+        "packages/generator/ts-morph/src/index.ts"
+      ],
+      "@rxap/generator-utilities": [
+        "packages/generator/utilities/src/index.ts"
+      ],
+      "@rxap/handlebars": [
+        "packages/angular/handlebars/src/index.ts"
+      ],
+      "@rxap/icon": [
+        "packages/angular/icon/src/index.ts"
+      ],
       "@rxap/json-schema-to-typescript": [
-        "libs/json-schema-to-typescript/src/index.ts"
+        "packages/json-schema-to-typescript/src/index.ts"
       ],
-      "@rxap/keycloak": ["libs/keycloak/src/index.ts"],
-      "@rxap/layout": ["libs/layout/src/index.ts"],
-      "@rxap/life-cycle": ["libs/life-cycle/src/index.ts"],
-      "@rxap/loader": ["libs/rxap/loader/src/index.ts"],
-      "@rxap/material-directives": ["libs/material/directives/src/index.ts"],
+      "@rxap/keycloak": [
+        "packages/angular/keycloak/src/index.ts"
+      ],
+      "@rxap/layout": [
+        "packages/angular/layout/src/index.ts"
+      ],
+      "@rxap/life-cycle": [
+        "packages/angular/life-cycle/src/index.ts"
+      ],
+      "@rxap/material-directives": [
+        "packages/angular/material/directives/src/index.ts"
+      ],
       "@rxap/material-directives/card": [
-        "libs/material/directives/card/src/public_api.ts"
+        "packages/angular/material/directives/card/src/index.ts"
       ],
       "@rxap/material-directives/expansion": [
-        "libs/material/directives/expansion/src/public_api.ts"
+        "packages/angular/material/directives/expansion/src/index.ts"
       ],
       "@rxap/material-directives/form-field": [
-        "libs/material/directives/form-field/src/public_api.ts"
+        "packages/angular/material/directives/form-field/src/index.ts"
       ],
       "@rxap/material-directives/icon": [
-        "libs/material/directives/icon/src/public_api.ts"
+        "packages/angular/material/directives/icon/src/index.ts"
       ],
       "@rxap/material-directives/tabs": [
-        "libs/material/directives/tabs/src/public_api.ts"
+        "packages/angular/material/directives/tabs/src/index.ts"
       ],
-      "@rxap/material-form-system": ["libs/material/form-system/src/index.ts"],
-      "@rxap/material-popover-edit": [
-        "libs/material/popover-edit/src/index.ts"
+      "@rxap/material-form-system": [
+        "packages/angular/material/form-system/src/index.ts"
       ],
       "@rxap/material-table-system": [
-        "libs/material/table-system/src/index.ts"
+        "packages/angular/material/table-system/src/index.ts"
       ],
       "@rxap/material-table-window-system": [
-        "libs/material/table-window-system/src/index.ts"
+        "packages/angular/material/table-window-system/src/index.ts"
       ],
-      "@rxap/mixin": ["libs/mixin/src/index.ts"],
-      "@rxap/oauth": ["libs/oauth/src/index.ts"],
-      "@rxap/open-api": ["libs/open-api/src/index.ts"],
-      "@rxap/open-api/data-source": [
-        "libs/open-api/data-source/src/public_api.ts"
+      "@rxap/mixin": [
+        "packages/mixin/src/index.ts"
       ],
-      "@rxap/open-api/data-source/table": [
-        "libs/open-api/data-source/data-source/table/src/public_api.ts"
+      "@rxap/nest-firebase": [
+        "packages/nest/firebase/src/index.ts"
+      ],
+      "@rxap/nest-logger": [
+        "packages/nest/logger/src/index.ts"
+      ],
+      "@rxap/nest-minio": [
+        "packages/nest/minio/src/index.ts"
+      ],
+      "@rxap/nest-sentry": [
+        "packages/nest/sentry/src/index.ts"
+      ],
+      "@rxap/nest-server": [
+        "packages/nest/server/src/index.ts"
+      ],
+      "@rxap/nest-socket-io-client": [
+        "packages/nest/socket-io-client/src/index.ts"
+      ],
+      "@rxap/nest-utilities": [
+        "packages/nest/utilities/src/index.ts"
+      ],
+      "@rxap/node-utilities": [
+        "packages/node/utilities/src/index.ts"
+      ],
+      "@rxap/oauth": [
+        "packages/angular/oauth/src/index.ts"
+      ],
+      "@rxap/oauth/single-sign-on": [
+        "packages/angular/oauth/single-sign-on/src/index.ts"
+      ],
+      "@rxap/open-api": [
+        "packages/angular/open-api/src/index.ts"
       ],
       "@rxap/open-api/remote-method": [
-        "libs/open-api/remote-method/src/public_api.ts"
+        "packages/angular/open-api/remote-method/src/index.ts"
       ],
-      "@rxap/openvidu": ["libs/openvidu/src/index.ts"],
-      "@rxap/pipes": ["libs/pipes/src/index.ts"],
-      "@rxap/pipes/santization": ["libs/pipes/santization/src/public_api.ts"],
-      "@rxap/playground": ["libs/playground/src/index.ts"],
-      "@rxap/recorder": ["libs/recorder/src/index.ts"],
-      "@rxap/refresh": ["libs/rxap/refresh/src/index.ts"],
-      "@rxap/registry": ["libs/registry/src/index.ts"],
-      "@rxap/remote-method": ["libs/remote-method/src/index.ts"],
+      "@rxap/pattern": [
+        "packages/pattern/src/index.ts"
+      ],
+      "@rxap/pipes": [
+        "packages/angular/pipes/src/index.ts"
+      ],
+      "@rxap/pipes/santization": [
+        "packages/angular/pipes/santization/src/index.ts"
+      ],
+      "@rxap/plugin-build-info": [
+        "packages/plugin/build-info/src/index.ts"
+      ],
+      "@rxap/plugin-docker": [
+        "packages/plugin/docker/src/index.ts"
+      ],
+      "@rxap/plugin-library": [
+        "packages/plugin/library/src/index.ts"
+      ],
+      "@rxap/plugin-localazy": [
+        "packages/plugin/localazy/src/index.ts"
+      ],
+      "@rxap/plugin-readme-generator": [
+        "packages/plugin/readme-generator/src/index.ts"
+      ],
+      "@rxap/plugin-utilities": [
+        "packages/plugin/utilities/src/index.ts"
+      ],
+      "@rxap/reflect-metadata": [
+        "packages/reflect-metadata/src/index.ts"
+      ],
+      "@rxap/remote-method": [
+        "packages/angular/remote-method/src/index.ts"
+      ],
       "@rxap/remote-method/directive": [
-        "libs/remote-method/directive/src/public_api.ts"
+        "packages/angular/remote-method/directive/src/index.ts"
       ],
-      "@rxap/remote-method/directive/button": [
-        "libs/remote-method/directive/button/src/public_api.ts"
+      "@rxap/remote-method/http": [
+        "packages/angular/remote-method/http/src/index.ts"
       ],
-      "@rxap/remote-method/http": ["libs/remote-method/http/src/public_api.ts"],
       "@rxap/remote-method/http/directive": [
-        "libs/remote-method/http/directive/src/public_api.ts"
-      ],
-      "@rxap/remote-method/open-api": [
-        "libs/remote-method/open-api/src/public_api.ts"
-      ],
-      "@rxap/remote-method/refresh": [
-        "libs/remote-method/refresh/src/public_api.ts"
+        "packages/angular/remote-method/http/directive/src/index.ts"
       ],
       "@rxap/remote-method/testing": [
-        "libs/remote-method/testing/src/public_api.ts"
+        "packages/angular/remote-method/testing/src/index.ts"
       ],
-      "@rxap/service-worker": ["libs/service-worker/src/index.ts"],
-      "@rxap/services": ["libs/services/src/index.ts"],
-      "@rxap/services/testing": ["libs/services/testing/src/public_api.ts"],
-      "@rxap/slugify": ["libs/slugify/src/index.ts"],
-      "@rxap/socket-io": ["libs/socket-io/src/index.ts"],
-      "@rxap/table-system": ["libs/table-system/src/index.ts"],
-      "@rxap/tree": ["libs/tree/src/index.ts"],
-      "@rxap/upload": ["libs/upload/src/index.ts"],
-      "@rxap/utilities": ["libs/utilities/src/index.ts"],
-      "@rxap/utilities/reflect-metadata": [
-        "libs/utilities/reflect-metadata/src/public_api.ts"
+      "@rxap/rxjs": [
+        "packages/rxjs/src/index.ts"
       ],
-      "@rxap/utilities/rxjs": ["libs/utilities/rxjs/src/public_api.ts"],
-      "@rxap/validator": ["libs/validator/src/index.ts"],
-      "@rxap/view-system": ["libs/rxap/view-system/src/index.ts"],
-      "@rxap/view-system/material": [
-        "libs/rxap/view-system/material/src/public_api.ts"
+      "@rxap/schematics-open-api": [
+        "packages/schematic/open-api/src/index.ts"
       ],
-      "@rxap/view-system/ngrx": [
-        "libs/rxap/view-system/ngrx/src/public_api.ts"
+      "@rxap/schematics-ts-morph": [
+        "packages/schematic/ts-morph/src/index.ts"
       ],
-      "@rxap/window-system": ["libs/window-system/src/index.ts"],
-      "@rxap/window-system/ngrx": [
-        "libs/rxap/window-system/ngrx/src/public_api.ts"
+      "@rxap/schematics-utilities": [
+        "packages/schematic/utilities/src/index.ts"
       ],
-      "@rxap/workspace-plugin": ["tools/workspace-plugin/src/index.ts"],
-      "@rxap/xml-parser": ["libs/xml-parser/src/index.ts"],
-      "@rxap/xml-parser/decorators": [
-        "libs/xml-parser/decorators/src/public_api.ts"
+      "@rxap/schematics-xml-parser": [
+        "packages/schematic/xml-parser/src/index.ts"
       ],
-      "@rxap/xml-parser/elements": [
-        "libs/xml-parser/elements/src/public_api.ts"
+      "@rxap/service-worker": [
+        "packages/angular/service-worker/src/index.ts"
       ],
-      "@rxap/xml-parser/testing": ["libs/xml-parser/testing/src/public_api.ts"]
+      "@rxap/services": [
+        "packages/angular/services/src/index.ts"
+      ],
+      "@rxap/services/testing": [
+        "packages/angular/services/testing/src/index.ts"
+      ],
+      "@rxap/slugify": [
+        "packages/slugify/src/index.ts"
+      ],
+      "@rxap/socket-io": [
+        "packages/angular/socket-io/src/index.ts"
+      ],
+      "@rxap/table-system": [
+        "packages/angular/table-system/src/index.ts"
+      ],
+      "@rxap/tree": [
+        "packages/angular/tree/src/index.ts"
+      ],
+      "@rxap/upload": [
+        "packages/angular/upload/src/index.ts"
+      ],
+      "@rxap/utilities": [
+        "packages/utilities/src/index.ts"
+      ],
+      "@rxap/validator": [
+        "packages/validator/src/index.ts"
+      ],
+      "@rxap/window-system": [
+        "packages/angular/window-system/src/index.ts"
+      ],
+      "@rxap/xml-parser": [
+        "packages/xml-parser/src/index.ts"
+      ],
+      "workspace": [
+        "tools/workspace/src/index.ts"
+      ],
+      "workspace/commands": [
+        "tools/workspace/src/cypress/commands.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp", "*.sandbox.ts"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

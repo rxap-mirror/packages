@@ -1,4 +1,0 @@
-schematics/**/*.d.ts
-schematics/**/*.js
-schematics/**/*.js.map
-!schematics/**/schema.d.ts

@@ -1,0 +1,38 @@
+{
+  "name": "@rxap/reflect-metadata",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "peerDependencies": {
+    "@rxap/utilities": "^16.0.0-dev.1",
+    "reflect-metadata": "^0.1.13"
+  },
+  "dependencies": {
+    "tslib": "2.5.3"
+  },
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=reflect-metadata",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project reflect-metadata"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/reflect-metadata"
+  },
+  "keywords": [
+    "rxap"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/reflect-metadata",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/reflect-metadata"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

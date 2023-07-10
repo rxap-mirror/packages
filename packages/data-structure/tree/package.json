@@ -1,0 +1,38 @@
+{
+  "name": "@rxap/data-structure-tree",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "dependencies": {
+    "tslib": "2.5.3"
+  },
+  "peerDependencies": {
+    "@rxap/rxjs": "^1.0.0",
+    "@rxap/utilities": "^16.0.0-dev.1"
+  },
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=data-structure-tree",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project data-structure-tree"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/data-structure/tree"
+  },
+  "keywords": [
+    "rxap"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/data-structure/tree",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/data-structure/tree"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

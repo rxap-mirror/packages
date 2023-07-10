@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="schematics and builders" pattern="file[rxap]:tools/schematics//*||file[rxap]:libs/*/schematics//*||file[rxap]:libs/*/builders//*" />
-</component>

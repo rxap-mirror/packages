@@ -1,0 +1,8 @@
+<div class="container shadow-lg hover:shadow-xl" fxLayout="row" fxLayoutGap="4px">
+    <button (click)="confirmed.emit()" class="accept" mat-icon-button type="button">
+        <mat-icon>done</mat-icon>
+    </button>
+    <button (click)="unconfirmed.emit()" class="decline" mat-icon-button type="button">
+        <mat-icon>clear</mat-icon>
+    </button>
+</div>

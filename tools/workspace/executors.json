@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "readme": {
+      "implementation": "./src/executors/readme/executor",
+      "schema": "./src/executors/readme/schema.json",
+      "description": "Generate the project readme"
+    }
+  }
+}

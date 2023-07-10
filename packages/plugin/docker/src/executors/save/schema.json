@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Save executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "outputPath": {
+      "type": "string",
+      "description": "output path for the tar.gz files"
+    },
+    "imageSuffix": {
+      "type": "string",
+      "description": "A suffix added to the base image name"
+    },
+    "imageName": {
+      "type": "string",
+      "description": "The base image name"
+    }
+  },
+  "required": []
+}

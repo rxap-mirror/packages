@@ -1,0 +1,40 @@
+{
+  "name": "@rxap/environment",
+  "version": "16.0.0-dev.2",
+  "peerDependencies": {
+    "@angular/common": "^16.0.4",
+    "@angular/core": "^16.0.4"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "2.5.3"
+  },
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-environment",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-environment"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/environment"
+  },
+  "keywords": [
+    "rxap",
+    "angular",
+    "ngx"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/environment",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/environment"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

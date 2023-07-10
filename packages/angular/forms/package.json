@@ -1,0 +1,50 @@
+{
+  "name": "@rxap/forms",
+  "version": "16.0.0-dev.2",
+  "peerDependencies": {
+    "@angular/core": "^16.0.4",
+    "@angular/forms": "^16.0.4",
+    "@angular/router": "^16.0.4",
+    "@rxap/definition": "^16.0.0-dev.2",
+    "@rxap/directives": "^16.0.0-dev.2",
+    "@rxap/pattern": "^1.0.0",
+    "@rxap/reflect-metadata": "^1.0.0",
+    "@rxap/rxjs": "^1.0.0",
+    "@rxap/services": "^16.0.0-dev.2",
+    "@rxap/utilities": "^16.0.0-dev.1",
+    "@rxap/validator": "^3.0.0-dev.1",
+    "rxjs": "^7.8.0"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "2.5.3"
+  },
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-forms",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-forms"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/forms"
+  },
+  "keywords": [
+    "rxap",
+    "angular",
+    "ngx"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/forms",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/forms"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

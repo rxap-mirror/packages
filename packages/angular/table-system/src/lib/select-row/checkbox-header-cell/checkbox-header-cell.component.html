@@ -1,0 +1,5 @@
+<mat-checkbox
+        (change)="onChange($event)"
+        [checked]="(checked$ | async) ?? false"
+        [indeterminate]="indeterminate$ | async">
+</mat-checkbox>

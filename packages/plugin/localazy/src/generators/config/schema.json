@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Config",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "For which project should the localazy builder be added?"
+    },
+    "extractTarget": {
+      "type": "string",
+      "description": "The target that extracts or generate the translation source file."
+    },
+    "writeKey": {
+      "type": "string",
+      "description": "The localazy write key.",
+      "x-prompt": "(optional) Enter the localazy write key. This key will be added to the .env file."
+    },
+    "readKey": {
+      "type": "string",
+      "description": "The localazy read key.",
+      "x-prompt": "(optional) Enter the localazy read key. This key will be added to the .env file."
+    }
+  },
+  "required": [
+    "project"
+  ]
+}

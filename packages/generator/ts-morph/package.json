@@ -1,0 +1,38 @@
+{
+  "name": "@rxap/generator-ts-morph",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "peerDependencies": {
+    "@nx/devkit": "^16.3.2",
+    "ts-morph": "^18.0.0"
+  },
+  "dependencies": {
+    "tslib": "2.5.3"
+  },
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=generator-ts-morph",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project generator-ts-morph"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/generator/ts-morph"
+  },
+  "keywords": [
+    "rxap"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/generator/ts-morph",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/generator/ts-morph"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

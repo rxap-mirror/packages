@@ -1,0 +1,13 @@
+{
+  "upload": {
+    "type": "xliff",
+    "features": [
+      "use_defined_lang_for_source",
+      "dont_parse_target"
+    ],
+    "files": "<%= sourceRoot %>/i18n/messages.xlf"
+  },
+  "download": {
+    "files": "<%= sourceRoot %>/i18n/${lang}.xlf"
+  }
+}

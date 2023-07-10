@@ -1,0 +1,42 @@
+{
+  "name": "@rxap/schematics-xml-parser",
+  "version": "16.0.0-dev.3",
+  "type": "commonjs",
+  "peerDependencies": {
+    "@angular-devkit/core": "^16.0.0",
+    "@angular-devkit/schematics": "^16.0.0",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.2",
+    "@rxap/schematics-utilities": "^16.0.0-dev.2",
+    "@rxap/xml-parser": "^16.0.0-dev.2",
+    "ts-morph": "^18.0.0"
+  },
+  "dependencies": {
+    "tslib": "2.5.3"
+  },
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=schematic-xml-parser",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project schematic-xml-parser"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/schematic/xml-parser"
+  },
+  "keywords": [
+    "rxap"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/xml-parser",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/schematic/xml-parser"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/packages/angular/open-api",
+  "lib": {
+    "entryFile": "src/index.ts"
+  },
+  "allowedNonPeerDependencies": [
+    "openapi-types",
+    "ajv-oai"
+  ],
+  "assets": [
+    "README.md",
+    "CHANGELOG.md"
+  ]
+}

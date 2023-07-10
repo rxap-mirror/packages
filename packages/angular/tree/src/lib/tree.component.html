@@ -1,0 +1,99 @@
+<div class="container" fxLayout="row">
+    <div #treeContainer [ngStyle]="{ maxWidth: dividerOffset, minWidth: dividerOffset, flexBasis: dividerOffset }"
+         class="tree-container" fxFlex="nogrow">
+        <mat-progress-bar *ngIf="!dataSource || (dataSource.loading$ | async)" mode="indeterminate"></mat-progress-bar>
+        <mat-tree *ngIf="dataSource; else loading" [dataSource]="dataSource" [treeControl]="treeControl"
+                  class="tree-view">
+
+            <!-- Node without children -->
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon [fxHide]="hideLeafIcon" fxFlex="40px">subdirectory_arrow_right</mat-icon>
+                    <mat-icon *ngIf="node.icon" [rxapIcon]="node.icon" fxFlex="40px"></mat-icon>
+                    <ng-template [ngIf]="multiple">
+                        <mat-checkbox
+                                (change)="node.toggleSelect()"
+                                [checked]="node.selected"
+                                [disabled]="!node.hasDetails"
+                                [ngStyle]="node.style"
+                                fxFlex="nogrow">
+                            {{ node.display }}
+                        </mat-checkbox>
+                    </ng-template>
+                    <ng-template [ngIf]="!multiple">
+                        <button
+                                (click)="node.select()"
+                                [color]="node.selected ? 'primary' : null"
+                                [disabled]="!node.hasDetails"
+                                [ngStyle]="node.style"
+                                fxFlex="nogrow"
+                                mat-button
+                        >
+                            {{ node.display }}
+                        </button>
+                    </ng-template>
+                </div>
+            </mat-tree-node>
+
+            <!-- Node with children -->
+            <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+                <button [attr.aria-label]="'toggle ' + node.filename" mat-icon-button matTreeNodeToggle>
+                    <mat-icon class="mat-icon-rtl-mirror">
+                        {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+                    </mat-icon>
+                </button>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon *ngIf="node.icon; else withoutIcon" [rxapIcon]="node.icon" fxFlex="40px"></mat-icon>
+                    <ng-template #withoutIcon>
+                        <div fxFlex="0"></div>
+                    </ng-template>
+                    <ng-template [ngIfElse]="withoutDetails" [ngIf]="node.hasDetails">
+                        <button
+                                (click)="node.select()"
+                                [color]="node.selected ? 'primary' : null"
+                                [ngStyle]="node.style"
+                                fxFlex="nogrow"
+                                mat-button
+                        >
+                            {{ node.display }}
+                        </button>
+                    </ng-template>
+                    <ng-template #withoutDetails>
+            <span
+                    (change)="onContentEditableChange($event, node)"
+                    [disabled]="!nodeDisplayEditable"
+                    [ngStyle]="node.style"
+                    fxFlex="nogrow"
+                    rxapContenteditable>
+              {{ node.display }}
+            </span>
+                    </ng-template>
+                    <mat-progress-spinner
+                            *ngIf="node.isLoading$ | async"
+                            [diameter]="16"
+                            fxFlex="nogrow"
+                            fxFlexOffset="16px"
+                            mode="indeterminate"
+                    ></mat-progress-spinner>
+                </div>
+            </mat-tree-node>
+
+        </mat-tree>
+    </div>
+
+    <div (mousedown)="onMousedown()"
+         class="divider"
+         fxFlex="nogrow">
+        <mat-divider
+                [vertical]="true"
+        >
+        </mat-divider>
+    </div>
+
+    <div class="details" fxFlex="grow">
+        <ng-template [cdkPortalOutlet]="portal"></ng-template>
+        <ng-content></ng-content>
+    </div>
+</div>
+
+<ng-template #loading>Load data source</ng-template>

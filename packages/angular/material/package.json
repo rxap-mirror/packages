@@ -1,0 +1,7 @@
+{
+  "name": "angular-material",
+  "private": true,
+  "workspaces": [
+    "./"
+  ]
+}

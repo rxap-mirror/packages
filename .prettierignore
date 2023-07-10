@@ -1,7 +1,8 @@
 # Add files here to ignore them from prettier formatting
-
 /dist
 /coverage
+.angular
+.yarn
 *.handlebars
-*.template
-README.md.handlebars
+node_modules
+tmp

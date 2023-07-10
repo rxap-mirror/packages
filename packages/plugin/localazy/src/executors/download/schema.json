@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Download executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "readKey": {
+      "type": "string",
+      "description": "Provide the writeKey on the command line."
+    },
+    "writeKey": {
+      "type": "string",
+      "description": "Provide the readkey on the command line."
+    },
+    "keysJson": {
+      "type": "string",
+      "description": "Override the keys file name."
+    },
+    "configJson": {
+      "type": "string",
+      "description": "Override the configuration file name."
+    },
+    "workingDirectory": {
+      "type": "string",
+      "description": "Set the working directory that all paths are relative to."
+    },
+    "dryRun": {
+      "type": "boolean",
+      "description": "Do not perform the actual operation, only simulate the process. No files are uploaded nor written.",
+      "default": false
+    },
+    "quite": {
+      "type": "boolean",
+      "description": "Quiet mode. Print only important information.",
+      "default": false
+    },
+    "force": {
+      "type": "boolean",
+      "description": "Force the upload operation if the validation step fails.",
+      "default": false
+    },
+    "tag": {
+      "type": "string",
+      "description": "Perform the operation for the given release tag."
+    }
+  },
+  "required": []
+}

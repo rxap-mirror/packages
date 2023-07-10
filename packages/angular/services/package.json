@@ -1,0 +1,46 @@
+{
+  "name": "@rxap/services",
+  "version": "16.0.0-dev.2",
+  "peerDependencies": {
+    "@angular/cdk": "^16.0.4",
+    "@angular/common": "^16.0.4",
+    "@angular/core": "^16.0.4",
+    "@angular/router": "^16.0.4",
+    "@rxap/rxjs": "^1.0.0",
+    "@rxap/utilities": "^16.0.0-dev.1",
+    "rxjs": "^7.8.0"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "2.5.3"
+  },
+  "description": "A collection of utility angular services used in RxAP.",
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-services",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-services"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/services"
+  },
+  "keywords": [
+    "rxap",
+    "angular",
+    "ngx"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/services",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/services"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

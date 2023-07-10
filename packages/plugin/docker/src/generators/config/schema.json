@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Config",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "For which project should the build executor be added?"
+    },
+    "context": {
+      "type": "string",
+      "description": "Path to context for the docker build process."
+    },
+    "dockerfile": {
+      "type": "string",
+      "description": "Path to the dockerfile."
+    },
+    "buildTarget": {
+      "type": "string",
+      "description": "The target from witch the output path can be extract."
+    },
+    "imageSuffix": {
+      "type": "string",
+      "description": "A suffix added to the base image name"
+    },
+    "imageName": {
+      "type": "string",
+      "description": "The base image name"
+    },
+    "imageRegistry": {
+      "type": "string",
+      "description": "The image registry"
+    },
+    "command": {
+      "type": "string",
+      "description": "The command to start docker"
+    },
+    "save": {
+      "type": "boolean",
+      "description": "Whether to create a save target"
+    }
+  },
+  "required": [
+    "project"
+  ]
+}
