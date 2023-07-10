@@ -28,7 +28,7 @@ export class IfHasPermissionDirective implements OnInit, OnDestroy {
   public identifier!: string;
 
   @Input()
-  public else?: TemplateRef<any>
+  public else?: TemplateRef<any>;
 
   private _subscription?: Subscription;
 

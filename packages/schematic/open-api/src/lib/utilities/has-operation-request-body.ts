@@ -5,5 +5,5 @@ export type OperationObjectWithRequestBody =
   & Required<Pick<OpenAPIV3.OperationObject, 'requestBody'>>;
 
 export function HasOperationRequestBody(operation: OpenAPIV3.OperationObject): operation is OperationObjectWithRequestBody {
-  return !!operation.requestBody
+  return !!operation.requestBody;
 }

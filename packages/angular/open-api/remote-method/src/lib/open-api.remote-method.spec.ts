@@ -118,7 +118,7 @@ describe('@rxap/open-api/remote-method', () => {
 
       const data = {data: 'data'};
 
-      const result = remoteMethod.call()
+      const result = remoteMethod.call();
 
       let url: string;
       if (typeof remoteMethod.metadata.url === 'function') {

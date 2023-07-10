@@ -68,7 +68,7 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
 
     const elementTypes = [this.elementType, ...this.getExtendedTypes(this.elementType)];
 
-    const rxapElementChildren = this.getChildren(element)
+    const rxapElementChildren = this.getChildren(element);
 
     if (!rxapElementChildren) {
       throw new RxapXmlParserValidateRequiredError(

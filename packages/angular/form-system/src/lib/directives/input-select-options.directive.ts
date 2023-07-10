@@ -154,13 +154,13 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
         distinctUntilChanged((a, b) => equals(a, b)),
         map(value => {
           if (this.settings?.ignoreSelectedValue) {
-            return {}
+            return {};
           }
           return value;
         }),
       ),
       control: this.control,
-    }
+    };
     if (this.matAutocomplete) {
       this.matAutocomplete.displayWith = this.toDisplay.bind(this);
       this.settings ??= {};
@@ -189,11 +189,11 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
               if (typeof controlValue === 'string' && controlValue) {
                 controlValue = controlValue.toLowerCase();
                 if (Array.isArray(options)) {
-                  return options.filter(option => option.display.toLowerCase().includes(controlValue))
+                  return options.filter(option => option.display.toLowerCase().includes(controlValue));
                 } else {
                   return Object.entries(options)
                     .filter(([value, display]) => typeof display === 'string' && display.toLowerCase().includes(controlValue))
-                    .map(([value, display]) => ({value, display}))
+                    .map(([value, display]) => ({value, display}));
                 }
               }
               return options;

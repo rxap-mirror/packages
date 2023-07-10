@@ -327,7 +327,7 @@ export class FormDirective<T = any>
             }
           } else {
             if (control.errors) {
-              errors[control.controlId] = control.errors
+              errors[control.controlId] = control.errors;
             }
           }
         }

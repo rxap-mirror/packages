@@ -36,8 +36,8 @@ export function StringToEnvMap(content: string): EnvFile {
       // pull out key/values (value can have spaces, remove quotes)
       const kv = line.match(/^([^=]+)=(.*)$/);
       if (kv) {
-        const key = kv[1].trim()
-        const val = kv[2].trim().replace(/['"]/g, '')
+        const key = kv[1].trim();
+        const val = kv[2].trim().replace(/['"]/g, '');
 
         const isString = kv[2].trim().match(/^['"].*['"]$/);
 
@@ -93,7 +93,7 @@ export function MergeWithEnvFile(content: EnvFile, filePath = '.env'): Rule {
 
     WriteEnvFile(tree, newContent, filePath);
 
-  }
+  };
 }
 
 export function WriteEnvFile(tree: Tree, content: EnvFile, filePath = '.env'): void {

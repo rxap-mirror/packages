@@ -26,6 +26,6 @@ export function FirestoreErrorHandler<T>(logger: Logger): (err: T) => T {
 
     throw new InternalServerErrorException(message, details);
 
-  }
+  };
 
 }

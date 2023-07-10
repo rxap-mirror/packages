@@ -54,7 +54,7 @@ export class FirebaseAppCheckHttpInterceptor implements HttpInterceptor {
             'X-Firebase-AppCheck': token,
           },
         }))),
-      )
+      );
     }
     return next.handle(req);
   }
@@ -69,4 +69,4 @@ export const FIREBASE_APP_CHECK_HTTP_INTERCEPTOR: Provider = {
   provide: HTTP_INTERCEPTORS,
   useClass: FirebaseAppCheckHttpInterceptor,
   multi: true,
-}
+};

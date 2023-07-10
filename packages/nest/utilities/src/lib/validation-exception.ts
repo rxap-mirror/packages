@@ -19,7 +19,7 @@ export function ValidationErrorListToString(errors: ReadonlyArray<ValidationErro
 
   for (const group of Object.keys(groups)) {
     message += `An instance of '${group}' has failed the validation:\n`;
-    message += groups[group].map(error => `\t- property '${error.property}' has failed the following constraints: ${Object.keys(error.constraints ?? {}).join(', ')}`).join('\n')
+    message += groups[group].map(error => `\t- property '${error.property}' has failed the following constraints: ${Object.keys(error.constraints ?? {}).join(', ')}`).join('\n');
   }
 
   return message;

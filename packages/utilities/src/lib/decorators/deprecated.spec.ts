@@ -68,7 +68,7 @@ describe('@rxap/utilities', () => {
 
         expect(myClass.age).toEqual(42);
 
-        consoleWarnSpy.mock.calls//??
+        consoleWarnSpy.mock.calls;//??
 
         expect(consoleWarnSpy).toBeCalledTimes(1);
         expect(consoleWarnSpy).toBeCalledWith('[MyClass.age:get] is deprecated!', 'use birthday instate');

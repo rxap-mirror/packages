@@ -227,7 +227,7 @@ export class AngularProject {
 
   constructor(public readonly _project: Project, public readonly name: string) {
     if (!this._project.targets && !this._project.architect) {
-      this._project.targets = {} as any
+      this._project.targets = {} as any;
     }
     this.targets = new AngularProjectTargetMap(this._project.architect ?? this._project.targets ?? {});
   }
@@ -361,5 +361,5 @@ export function UpdateAngularProject(
       }
     },
     options,
-  )
+  );
 }

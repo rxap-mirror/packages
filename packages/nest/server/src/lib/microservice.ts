@@ -33,7 +33,7 @@ export class Microservice<O extends object = MicroserviceOptions>
   }
 
   protected override listen(app: INestMicroservice, logger: Logger, options: MicroserviceBootstrapOptions) {
-    return app.listen()
+    return app.listen();
   }
 
 }

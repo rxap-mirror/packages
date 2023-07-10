@@ -6,6 +6,7 @@ import {
 } from '@rxap/utilities';
 import {
   Inject,
+  Injectable,
   isDevMode,
   Optional,
 } from '@angular/core';
@@ -53,6 +54,7 @@ export interface FilterLike {
 
 export type AbstractTableDataSourceMetadata = AbstractPaginationDataSourceMetadata
 
+@Injectable()
 export abstract class AbstractTableDataSource<Data extends Record<string, any> = any, Parameters = any>
   extends AbstractPaginationDataSource<Data> {
 

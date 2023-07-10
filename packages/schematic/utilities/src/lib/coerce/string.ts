@@ -17,7 +17,7 @@ export function coerceString(value: any, settings: CoerceStringSettings = {}): s
     case 'string':
       return value;
     case 'function':
-      return 'function'
+      return 'function';
     case 'symbol':
       return 'symbol';
     case 'bigint':

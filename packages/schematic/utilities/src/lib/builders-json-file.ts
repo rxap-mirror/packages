@@ -82,5 +82,5 @@ export function UpdateBuildersJson(
 
     return UpdateJsonFile(updater, buildersJsonFilePath, options);
 
-  }
+  };
 }

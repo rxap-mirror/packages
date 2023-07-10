@@ -50,7 +50,7 @@ export async function dockerBuild(command: string, context: string, destinationL
   const args: string[] = [];
 
   if (dockerfile) {
-    args.push(`--file="${dockerfile}"`)
+    args.push(`--file="${dockerfile}"`);
   }
 
   if (!destinationList.length) {

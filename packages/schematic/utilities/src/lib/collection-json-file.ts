@@ -109,5 +109,5 @@ export function UpdateCollectionJson(
 
     return UpdateJsonFile(updater, collectionJsonFilePath, options);
 
-  }
+  };
 }

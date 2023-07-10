@@ -21,7 +21,7 @@ const isValidDate = (str: string) => {
     }
     return oDay <= 365;
   }
-  const match = str.match(/(\d{4})-?(\d{0,2})-?(\d*)/)?.map(Number) ?? []
+  const match = str.match(/(\d{4})-?(\d{0,2})-?(\d*)/)?.map(Number) ?? [];
   const year = match[1];
   const month = match[2];
   const day = match[3];

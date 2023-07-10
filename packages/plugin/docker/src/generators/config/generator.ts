@@ -73,7 +73,7 @@ export async function configGenerator(
       projectConfiguration.targets['docker-save'] = {
         executor: '@rxap/plugin-docker:save',
         configurations: CreateConfigurationMapMatchingWithTarget(projectConfiguration, 'build'),
-      }
+      };
     }
   }
 

@@ -79,15 +79,15 @@ function createBuildInfo(options: GenerateExecutorSchema) {
   }
 
   if (!buildInfo.slug.name && process.env.CI_ENVIRONMENT_SLUG) {
-    buildInfo.slug.name = process.env.CI_ENVIRONMENT_SLUG
+    buildInfo.slug.name = process.env.CI_ENVIRONMENT_SLUG;
   }
 
   if (!buildInfo.slug.tag && process.env.CI_COMMIT_TAG && process.env.CI_COMMIT_REF_SLUG) {
-    buildInfo.slug.tag = process.env.CI_COMMIT_REF_SLUG
+    buildInfo.slug.tag = process.env.CI_COMMIT_REF_SLUG;
   }
 
   if (!buildInfo.slug.branch && process.env.CI_COMMIT_BRANCH && process.env.CI_COMMIT_REF_SLUG) {
-    buildInfo.slug.branch = process.env.CI_COMMIT_REF_SLUG
+    buildInfo.slug.branch = process.env.CI_COMMIT_REF_SLUG;
   }
 
   return buildInfo;

@@ -47,7 +47,7 @@ export function ApplyTsMorphProject(project: Project, basePath = '', organizeImp
             sourceFile.fixMissingImports();
           }
           if (organizeImports) {
-            sourceFile.organizeImports()
+            sourceFile.organizeImports();
           }
         });
     }

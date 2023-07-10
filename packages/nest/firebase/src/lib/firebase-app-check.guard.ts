@@ -20,7 +20,7 @@ export class FirebaseAppCheckGuard implements CanActivate {
 
   @Optional()
   @Inject(DEACTIVATE_APP_CHECK_GUARD)
-  private readonly deactivated: boolean = false
+  private readonly deactivated: boolean = false;
 
   public async canActivate(context: ExecutionContext): Promise<boolean> {
 

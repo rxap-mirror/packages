@@ -11,7 +11,7 @@ export function AddClassMethod(
   overwrite?: boolean,
 ) {
 
-  let methodDeclaration = classDeclaration.getMethod(name)
+  let methodDeclaration = classDeclaration.getMethod(name);
 
   if (methodDeclaration) {
 

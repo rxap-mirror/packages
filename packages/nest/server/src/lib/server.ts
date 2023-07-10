@@ -57,11 +57,11 @@ export abstract class Server<O extends object, T extends INestApplicationContext
     this.config = this.app.get(ConfigService);
 
     if (!this.logger) {
-      throw new Error('Could not inject a Logger instance')
+      throw new Error('Could not inject a Logger instance');
     }
 
     if (!this.config) {
-      throw new Error('Could not inject a ConfigService instance')
+      throw new Error('Could not inject a ConfigService instance');
     }
 
     await this.handleAfter(this.app, this.logger, this.config, options);

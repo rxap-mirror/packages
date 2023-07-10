@@ -154,7 +154,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
     const tableFilter = this._tableFilter ?? this.tableFilter ?? undefined;
     if (!this.dataSource) {
       if (this.sourceDataSource) {
-        this.dataSource = this.sourceDataSource
+        this.dataSource = this.sourceDataSource;
       } else if (this.sourceMethod) {
         if (this.adapterFactory) {
           this.method = this.adapterFactory(

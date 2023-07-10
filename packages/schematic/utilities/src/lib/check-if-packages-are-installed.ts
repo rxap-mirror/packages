@@ -23,7 +23,7 @@ export function CheckIfPackagesAreInstalled(packageList: string[]): Rule {
       try {
         require(packageName);
       } catch (e: any) {
-        return true
+        return true;
       }
       return false;
     });
@@ -40,5 +40,5 @@ export function CheckIfPackagesAreInstalled(packageList: string[]): Rule {
       }
       throw new SchematicsException('Some required dev dependencies are not installed! Add the dependencies and run the schematic again');
     }
-  })
+  });
 }

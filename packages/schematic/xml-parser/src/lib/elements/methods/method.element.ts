@@ -43,7 +43,7 @@ export class MethodElement implements ParsedElement<string>, IMethodElement {
   public mock?: boolean;
 
   @ElementChild(TypeElement)
-  public parameterType?: TypeElement
+  public parameterType?: TypeElement;
 
   public toValue({sourceFile, project}: { sourceFile: SourceFile } & ToValueContext): string {
     if (this.from) {

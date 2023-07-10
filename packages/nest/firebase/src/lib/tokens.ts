@@ -31,14 +31,14 @@ export const FIREBASE_AUTH_HEADER = 'FIREBASE_AUTH_HEADER';
 /**
  * InjectionToken to access the firestore instance in the current context
  */
-export const FIRESTORE = 'FIRESTORE'
+export const FIRESTORE = 'FIRESTORE';
 
 /**
  * true - the AppCheckGuard is skipped and always return true
  */
-export const DEACTIVATE_APP_CHECK_GUARD = 'DEACTIVATE_APP_CHECK_GUARD'
+export const DEACTIVATE_APP_CHECK_GUARD = 'DEACTIVATE_APP_CHECK_GUARD';
 
 /**
  * true - the FirebaseAuthGuard is skipped and always return true
  */
-export const DEACTIVATE_FIREBASE_AUTH_GUARD = 'DEACTIVATE_FIREBASE_AUTH_GUARD'
+export const DEACTIVATE_FIREBASE_AUTH_GUARD = 'DEACTIVATE_FIREBASE_AUTH_GUARD';

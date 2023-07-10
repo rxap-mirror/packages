@@ -116,7 +116,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
 
   // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   public ngOnInit() {
-    this._data$ = this.createTableDataLoader(this.paginator, this.sort, this.filter, this.parameters)
+    this._data$ = this.createTableDataLoader(this.paginator, this.sort, this.filter, this.parameters);
   }
 
   public setTotalLengthFactory(id?: string) {
@@ -160,7 +160,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
   setSort(sort: SortLike | null, id?: string) {
     if (sort) {
       if (id) {
-        this.sortMap.set(id, sort)
+        this.sortMap.set(id, sort);
       } else {
         this.sort = sort;
       }

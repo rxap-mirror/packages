@@ -140,12 +140,12 @@ export function InstallPackageIfNotExists(
       }
       context.addTask(new NodePackageInstallTask());
     }
-  }
+  };
 }
 
 export function InstallNodePackages(): Rule {
   return (_, context) => {
     context.addTask(new NodePackageInstallTask());
-  }
+  };
 }
 
