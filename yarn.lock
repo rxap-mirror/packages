@@ -7697,9 +7697,7 @@ __metadata:
     "@rxap/forms": ^16.0.0-dev.3
     "@rxap/rxjs": ^1.0.1-dev.0
     "@rxap/utilities": ^16.0.0-dev.2
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -7717,10 +7715,8 @@ __metadata:
     "@rxap/pattern": ^1.0.1-dev.0
     "@rxap/remote-method": ^16.0.0-dev.3
     "@rxap/utilities": ^16.0.0-dev.2
-    cypress: ^12.11.0
     ng-mocks: ^14.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -7740,9 +7736,7 @@ __metadata:
     "@rxap/rxjs": ^1.0.1-dev.0
     "@rxap/services": ^16.0.0-dev.3
     "@rxap/utilities": ^16.0.0-dev.2
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -7788,9 +7782,7 @@ __metadata:
     "@rxap/pipes": ^16.0.0-dev.3
     "@rxap/rxjs": ^1.0.1-dev.0
     "@rxap/utilities": ^16.0.0-dev.2
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -7849,9 +7841,7 @@ __metadata:
     "@rxap/data-grid": ^16.0.0-dev.3
     "@rxap/pipes": ^16.0.0-dev.3
     "@rxap/utilities": ^16.0.0-dev.2
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -7878,8 +7868,6 @@ __metadata:
   peerDependencies:
     "@angular/common": ^16.0.0
     "@angular/core": ^16.0.0
-    cypress: ^12.11.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -8051,9 +8039,7 @@ __metadata:
     "@rxap/rxjs": ^1.0.1-dev.0
     "@rxap/services": ^16.0.0-dev.3
     "@rxap/utilities": ^16.0.0-dev.2
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -8103,9 +8089,7 @@ __metadata:
     "@rxap/mixin": ^16.0.0-dev.3
     "@rxap/reflect-metadata": ^1.0.1-dev.0
     "@rxap/utilities": ^16.0.0-dev.2
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -8135,9 +8119,7 @@ __metadata:
     "@rxap/rxjs": ^1.0.1-dev.0
     "@rxap/utilities": ^16.0.0-dev.2
     "@rxap/window-system": ^16.0.0-dev.3
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -8287,9 +8269,7 @@ __metadata:
     "@rxap/authentication": ^16.0.0-dev.3
     "@rxap/directives": ^16.0.0-dev.3
     "@rxap/pattern": ^1.0.1-dev.0
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -8501,9 +8481,7 @@ __metadata:
     "@angular/material": ^16.0.0
     "@angular/service-worker": ^16.0.0
     "@rxap/life-cycle": ^16.0.0-dev.2
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -8558,9 +8536,7 @@ __metadata:
     "@rxap/data-source": ^16.0.0-dev.4
     "@rxap/material-table-system": ^16.0.0-dev.3
     "@rxap/utilities": ^16.0.0-dev.2
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -8582,9 +8558,7 @@ __metadata:
     "@rxap/pattern": ^1.0.1-dev.0
     "@rxap/rxjs": ^1.0.1-dev.0
     "@rxap/utilities": ^16.0.0-dev.2
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -8602,9 +8576,7 @@ __metadata:
     "@angular/material": ^16.0.0
     "@rxap/directives": ^16.0.0-dev.3
     "@rxap/pattern": ^1.0.1-dev.0
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
@@ -8640,9 +8612,7 @@ __metadata:
     "@rxap/rxjs": ^1.0.1-dev.0
     "@rxap/services": ^16.0.0-dev.3
     "@rxap/utilities": ^16.0.0-dev.2
-    cypress: ^12.11.0
     rxjs: ^7.8.0
-    workspace: ^1.0.0
   languageName: unknown
   linkType: soft
 
