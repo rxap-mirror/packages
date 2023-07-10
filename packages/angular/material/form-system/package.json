@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-form-system",
-  "version": "16.0.0-dev.3",
+  "version": "16.0.0-dev.4",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
@@ -10,9 +10,9 @@
     "@angular/localize": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/form-system": "^16.0.0-dev.3",
-    "@rxap/forms": "^16.0.0-dev.3",
-    "@rxap/mixin": "^16.0.0-dev.3",
+    "@rxap/form-system": "^16.0.0-dev.4",
+    "@rxap/forms": "^16.0.0-dev.4",
+    "@rxap/mixin": "^16.0.0-dev.4",
     "@rxap/reflect-metadata": "^1.0.1-dev.0",
     "@rxap/utilities": "^16.0.0-dev.2",
     "rxjs": "^7.8.0"
@@ -49,15 +49,15 @@
     "packageGroup": [
       {
         "package": "@rxap/form-system",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/reflect-metadata",

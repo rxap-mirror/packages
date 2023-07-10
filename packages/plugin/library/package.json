@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-library",
-  "version": "16.0.0-dev.4",
+  "version": "16.0.0-dev.5",
   "type": "commonjs",
   "executors": "./executors.json",
   "generators": "./generators.json",
@@ -12,19 +12,19 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.1-dev.0"
+        "version": "1.0.1-dev.1"
       },
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.0.1-dev.0"
+        "version": "1.0.1-dev.1"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "1.0.1-dev.0"
+        "version": "1.0.1-dev.1"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       }
     ]
   },
@@ -53,10 +53,10 @@
   "peerDependencies": {
     "@nx/angular": "^16.5.0",
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-ts-morph": "^1.0.1-dev.0",
-    "@rxap/generator-utilities": "^1.0.1-dev.0",
-    "@rxap/plugin-utilities": "^1.0.1-dev.0",
-    "@rxap/schematics-utilities": "^16.0.0-dev.3",
+    "@rxap/generator-ts-morph": "^1.0.1-dev.1",
+    "@rxap/generator-utilities": "^1.0.1-dev.1",
+    "@rxap/plugin-utilities": "^1.0.1-dev.1",
+    "@rxap/schematics-utilities": "^16.0.0-dev.4",
     "nx": "^16.5.0",
     "ts-morph": "^18.0.0"
   }

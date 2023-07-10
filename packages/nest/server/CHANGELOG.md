@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@1.0.1-dev.0...@rxap/nest-server@1.0.1-dev.1) (2023-07-10)
+
+### Bug Fixes
+
+- update package dependency versions ([8479f5c](https://gitlab.com/rxap/packages/commit/8479f5c405a885cc0f300cec6156584e4c65d59c))
+- update to nx 16.5.0 ([73f7575](https://gitlab.com/rxap/packages/commit/73f7575ba378b8b03d2a2646f1761c01b16a6e09))
+
 ## 1.0.1-dev.0 (2023-07-10)
 
 ### Bug Fixes

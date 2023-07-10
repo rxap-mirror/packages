@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.4...@rxap/open-api@16.0.0-dev.5) (2023-07-10)
+
+### Bug Fixes
+
+- update package dependency versions ([8479f5c](https://gitlab.com/rxap/packages/commit/8479f5c405a885cc0f300cec6156584e4c65d59c))
+
 # [16.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.3...@rxap/open-api@16.0.0-dev.4) (2023-07-10)
 
 ### Bug Fixes
