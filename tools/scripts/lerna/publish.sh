@@ -52,9 +52,12 @@ echo "PUBLISH_REGISTRY=${PUBLISH_REGISTRY}"
 
 read -r -p "Are you sure? [y/N] " response
 
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
-  echo "Executing..."
-else
+if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+  exit 1
+fi
+
+if [[ -z "$GL_TOKEN" ]]; then
+  echo "GL_TOKEN is not set"
   exit 1
 fi
 
@@ -67,6 +70,8 @@ if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
 
   echo "Executing lerna publish for pre-release..."
 
+  echo "yarn lerna publish --create-release gitlab --conventional-prerelease --dist-tag $LERNA_DIST_TAG --registry $PUBLISH_REGISTRY --preid $LERNA_PRE_ID $@"
+
   yarn lerna publish \
   --create-release gitlab \
   --conventional-prerelease \
@@ -78,7 +83,9 @@ fi
 
 if [[ "$LERNA_PRE_RELEASE" == "false" ]]; then
 
-echo "Executing lerna publish for release..."
+  echo "Executing lerna publish for release..."
+
+  echo "yarn lerna publish --create-release gitlab --conventional-graduate --dist-tag $LERNA_DIST_TAG --registry $PUBLISH_REGISTRY $@"
 
   yarn lerna publish \
   --create-release gitlab \
