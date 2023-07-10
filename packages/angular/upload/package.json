@@ -43,10 +43,6 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "workspace",
-        "version": "1.0.0"
-      },
-      {
         "package": "@rxap/directives",
         "version": "16.0.0-dev.3"
       },
