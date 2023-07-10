@@ -11,7 +11,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=reflect-metadata",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project reflect-metadata"
+    "preversion": "yarn run --top-level nx run reflect-metadata:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

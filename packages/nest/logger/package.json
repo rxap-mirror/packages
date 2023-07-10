@@ -10,7 +10,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=nest-logger",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project nest-logger"
+    "preversion": "yarn run --top-level nx run nest-logger:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

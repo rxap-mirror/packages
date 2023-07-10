@@ -12,7 +12,7 @@
   "sideEffects": false,
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-socket-io",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-socket-io"
+    "preversion": "yarn run --top-level nx run angular-socket-io:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

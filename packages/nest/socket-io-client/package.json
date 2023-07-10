@@ -14,7 +14,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=nest-socket-io-client",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project nest-socket-io-client"
+    "preversion": "yarn run --top-level nx run nest-socket-io-client:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

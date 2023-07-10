@@ -16,7 +16,7 @@
   "description": "Provides the RemoteMethod concept for RxAP.",
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-remote-method",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-remote-method"
+    "preversion": "yarn run --top-level nx run angular-remote-method:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

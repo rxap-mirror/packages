@@ -12,6 +12,13 @@
     },
     "readme": {
       "executor": "workspace:readme"
+    },
+    "init": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-library:init",
+        "withoutProjectArgument": true
+      }
     }
   }
 }

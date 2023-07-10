@@ -17,7 +17,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=schematic-open-api",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project schematic-open-api"
+    "preversion": "yarn run --top-level nx run schematic-open-api:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

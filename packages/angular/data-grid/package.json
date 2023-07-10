@@ -14,7 +14,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-data-grid",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-data-grid"
+    "preversion": "yarn run --top-level nx run angular-data-grid:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

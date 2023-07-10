@@ -13,7 +13,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-pipes",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-pipes"
+    "preversion": "yarn run --top-level nx run angular-pipes:fix-dependencies"
   },
   "description": "A collection of utility angular pipes used in RxAP.",
   "publishConfig": {

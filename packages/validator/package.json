@@ -7,7 +7,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=validator",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project validator"
+    "preversion": "yarn run --top-level nx run validator:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

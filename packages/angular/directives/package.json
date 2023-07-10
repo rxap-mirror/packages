@@ -16,7 +16,7 @@
   "description": "A collection of utility angular directives used in RxAP.",
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-directives",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-directives"
+    "preversion": "yarn run --top-level nx run angular-directives:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

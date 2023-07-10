@@ -20,7 +20,7 @@
   "description": "A collection of angular material dialog components",
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-dialog",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-dialog"
+    "preversion": "yarn run --top-level nx run angular-dialog:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

@@ -7,7 +7,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=slugify",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project slugify"
+    "preversion": "yarn run --top-level nx run slugify:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",
