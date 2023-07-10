@@ -12,6 +12,15 @@
     "options": {
       "type": "object",
       "description": "Options to pass to the generator"
+    },
+    "withoutProjectArgument": {
+      "type": "boolean",
+      "description": "If true, the project argument will not be passed to the generator"
+    },
+    "dryRun": {
+      "alias": "dry-run",
+      "type": "boolean",
+      "description": "If true, the generator will be executed in dry run mode"
     }
   },
   "required": []

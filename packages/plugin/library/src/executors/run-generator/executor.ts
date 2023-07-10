@@ -25,9 +25,23 @@ function buildParameters(options: Record<string, unknown> = {}): string {
 export default async function runExecutor(options: RunGeneratorExecutorSchema, context: ExecutorContext) {
   console.log('Executor ran for RunGenerator', options);
 
+  let command = `nx g ${ options.generator }`;
+
+  if (!options.withoutProjectArgument) {
+    command += ` --project ${ context.projectName }`;
+  }
+
+  command += ` ${ buildParameters(options.options) }`;
+
+  if (options.dryRun) {
+    command += ' --dry-run';
+  }
+
+  console.log('command: ', command);
+
   return run({
     cwd: context.root,
-    command: `nx g ${ options.generator } --project ${ context.projectName } ${ buildParameters(options.options) }`,
+    command,
     __unparsed__: [],
   }, context);
 }
