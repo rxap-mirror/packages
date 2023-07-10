@@ -5,6 +5,7 @@
   "packageManager": "yarn@3.6.0",
   "scripts": {
     "prepare": "husky install",
+    "version": "nx run packages:readme",
     "preversion": "nx run-many --target build,test,lint",
     "prepublishOnly": "nx run-many --target build --configuration production"
   },
