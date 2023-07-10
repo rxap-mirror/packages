@@ -2,9 +2,9 @@
   "name": "@rxap/forms",
   "version": "16.0.0-dev.3",
   "peerDependencies": {
-    "@angular/core": "^16.0.0",
-    "@angular/forms": "^16.0.0",
-    "@angular/router": "^16.0.0",
+    "@angular/core": "^16.1.4",
+    "@angular/forms": "^16.1.4",
+    "@angular/router": "^16.1.4",
     "@rxap/definition": "^16.0.0-dev.3",
     "@rxap/directives": "^16.0.0-dev.3",
     "@rxap/pattern": "^1.0.1-dev.0",

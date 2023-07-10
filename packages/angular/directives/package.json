@@ -2,7 +2,7 @@
   "name": "@rxap/directives",
   "version": "16.0.0-dev.3",
   "peerDependencies": {
-    "@angular/core": "^16.0.0",
+    "@angular/core": "^16.1.4",
     "@rxap/pattern": "^1.0.1-dev.0",
     "@rxap/rxjs": "^1.0.1-dev.0",
     "@rxap/services": "^16.0.0-dev.3",

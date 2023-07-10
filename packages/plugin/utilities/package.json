@@ -25,9 +25,9 @@
     "email": "mmuenker@digitaix.com"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.3.2",
+    "@nx/devkit": "^16.5.0",
     "@rxap/node-utilities": "^1.0.1-dev.0",
-    "nx": "^16.3.0"
+    "nx": "^16.5.0"
   },
   "dependencies": {
     "tslib": "2.5.3"

@@ -32,9 +32,9 @@
     "tslib": "2.5.3"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.3.2",
+    "@nx/devkit": "^16.5.0",
     "@rxap/plugin-utilities": "^1.0.1-dev.0",
-    "nx": "^16.3.0"
+    "nx": "^16.5.0"
   },
   "generators": "./generators.json",
   "nx-migrations": {

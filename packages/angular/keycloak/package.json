@@ -2,9 +2,9 @@
   "name": "@rxap/keycloak",
   "version": "16.0.0-dev.2",
   "peerDependencies": {
-    "@angular/common": "^16.0.0",
-    "@angular/core": "^16.0.0",
-    "@angular/router": "^16.0.0",
+    "@angular/common": "^16.1.4",
+    "@angular/core": "^16.1.4",
+    "@angular/router": "^16.1.4",
     "rxjs": "^7.8.0"
   },
   "dependencies": {

@@ -25,7 +25,7 @@
     "email": "mmuenker@digitaix.com"
   },
   "peerDependencies": {
-    "@angular-devkit/schematics": "^16.0.0"
+    "@angular-devkit/schematics": "^16.1.4"
   },
   "dependencies": {
     "semver": "^7.3.5",

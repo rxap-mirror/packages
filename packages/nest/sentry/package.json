@@ -6,7 +6,7 @@
     "tslib": "2.5.3"
   },
   "peerDependencies": {
-    "@nestjs/common": "^9.2.1",
+    "@nestjs/common": "^10.0.5",
     "@rxap/nest-logger": "^1.0.1-dev.0",
     "@sentry/core": "^7.28.1",
     "@sentry/node": "^7.28.1",

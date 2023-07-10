@@ -51,13 +51,13 @@
     "tslib": "2.5.3"
   },
   "peerDependencies": {
-    "@nx/angular": "^16.3.2",
-    "@nx/devkit": "^16.3.2",
+    "@nx/angular": "^16.5.0",
+    "@nx/devkit": "^16.5.0",
     "@rxap/generator-ts-morph": "^1.0.1-dev.0",
     "@rxap/generator-utilities": "^1.0.1-dev.0",
     "@rxap/plugin-utilities": "^1.0.1-dev.0",
     "@rxap/schematics-utilities": "^16.0.0-dev.3",
-    "nx": "^16.3.0",
+    "nx": "^16.5.0",
     "ts-morph": "^18.0.0"
   }
 }
