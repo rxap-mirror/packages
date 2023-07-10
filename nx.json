@@ -37,7 +37,7 @@
       "{projectRoot}/src/**/*",
       "!{projectRoot}/**/*.{spec,stories,cy}.ts",
       "!{projectRoot}/jest.config.ts",
-      "!{projectRoot}/src/test-setup.ts",
+      "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/tsconfig.spec.json"
     ]
   },
