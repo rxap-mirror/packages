@@ -16,7 +16,7 @@ function getPackageGroup(context: ExecutorContext): ArrayPackageGroup {
   return Object.entries(directPackageDependencies)
                .map(([ packageName, version ]) => ({
                  package: packageName,
-                 version: '^' + version,
+                 version: version,
                }));
 }
 
