@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/services@16.0.0-dev.2...@rxap/services@16.0.0-dev.3) (2023-07-10)
+
+### Bug Fixes
+
+- restructure and merge mono repos packages, schematics, plugins and nest ([653b4cd](https://gitlab.com/rxap/packages/commit/653b4cd39fc92d322df9b3959651fea0aa6079da))
+
 # [16.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/services@16.0.0-dev.1...@rxap/services@16.0.0-dev.2) (2023-05-31)
 
 **Note:** Version bump only for package @rxap/services
@@ -11,27 +17,27 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+- update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/services@15.0.0...@rxap/services@16.0.0-dev.0) (2023-05-18)
 
 ### chore
 
-* upgrade to nrwl 16.x.x ([12dd87e](https://gitlab.com/rxap/packages/commit/12dd87ef38d465c8af33cd26f7d5d7714bf7c392))
+- upgrade to nrwl 16.x.x ([12dd87e](https://gitlab.com/rxap/packages/commit/12dd87ef38d465c8af33cd26f7d5d7714bf7c392))
 
 ### BREAKING CHANGES
 
-* upgrade nrwl 16.x.x
+- upgrade nrwl 16.x.x
 
 # [15.0.0](https://gitlab.com/rxap/packages/compare/@rxap/services@14.0.5...@rxap/services@15.0.0) (2023-05-17)
 
 ### chore
 
-* upgrade to nrwl 15.x.x ([ad95577](https://gitlab.com/rxap/packages/commit/ad95577538adc5cd134cde8d1ff3b8fad52c9c2b))
+- upgrade to nrwl 15.x.x ([ad95577](https://gitlab.com/rxap/packages/commit/ad95577538adc5cd134cde8d1ff3b8fad52c9c2b))
 
 ### BREAKING CHANGES
 
-* upgrade nrwl 15.x.x
+- upgrade nrwl 15.x.x
 
 ## [14.0.5](https://gitlab.com/rxap/packages/compare/@rxap/services@14.0.4...@rxap/services@14.0.5) (2022-12-14)
 
@@ -45,13 +51,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* **theme:** only emit dark mode state ifchanged ([f973bef](https://gitlab.com/rxap/packages/commit/f973bef4768a437d00053775525a814a264d683c))
+- **theme:** only emit dark mode state ifchanged ([f973bef](https://gitlab.com/rxap/packages/commit/f973bef4768a437d00053775525a814a264d683c))
 
 ## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/services@14.0.1...@rxap/services@14.0.2) (2022-10-07)
 
 ### Bug Fixes
 
-* replace package.json withng-package.json ([ebaaf92](https://gitlab.com/rxap/packages/commit/ebaaf92a403fd31a4aa538f698fda1e004c037bd))
+- replace package.json withng-package.json ([ebaaf92](https://gitlab.com/rxap/packages/commit/ebaaf92a403fd31a4aa538f698fda1e004c037bd))
 
 ## [14.0.1](https://gitlab.com/rxap/packages/compare/@rxap/services@13.0.0...@rxap/services@14.0.1) (2022-09-17)
 
@@ -73,11 +79,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+- upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
-* update the core nrwl/angular packages to 13.x.x
+- update the core nrwl/angular packages to 13.x.x
 
 Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
@@ -97,7 +103,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* split into rxjs and reflect-metadata subpackages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
+- split into rxjs and reflect-metadata subpackages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
 
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/services@12.0.5...@rxap/services@12.0.6) (2021-06-24)
 
@@ -119,13 +125,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* add readme generator ([aca8e49](https://gitlab.com/rxap/packages/commit/aca8e495f06d81edf14e56fdd1e6a3c2d7de4c50))
+- add readme generator ([aca8e49](https://gitlab.com/rxap/packages/commit/aca8e495f06d81edf14e56fdd1e6a3c2d7de4c50))
 
 ## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/services@12.0.0...@rxap/services@12.0.1) (2021-05-24)
 
 ### Bug Fixes
 
-* add readme generator ([aca8e49](https://gitlab.com/rxap/packages/commit/aca8e495f06d81edf14e56fdd1e6a3c2d7de4c50))
+- add readme generator ([aca8e49](https://gitlab.com/rxap/packages/commit/aca8e495f06d81edf14e56fdd1e6a3c2d7de4c50))
 
 # [12.0.0](https://gitlab.com/rxap/packages/compare/@rxap/services@11.2.1...@rxap/services@12.0.0) (2021-05-24)
 
@@ -135,45 +141,45 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+- **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+- **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 # [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/services@11.1.0...@rxap/services@11.2.0) (2021-03-30)
 
 ### Features
 
-* **theme-service:** initializationissue ([782fb54](https://gitlab.com/rxap/packages/commit/782fb54325de2977db61564c3cf0cfb99512cc5e))
+- **theme-service:** initializationissue ([782fb54](https://gitlab.com/rxap/packages/commit/782fb54325de2977db61564c3cf0cfb99512cc5e))
 
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/services@11.0.8...@rxap/services@11.1.0) (2021-03-30)
 
 ### Features
 
-* **theme-service:** add observable dark modestate ([fc35e7e](https://gitlab.com/rxap/packages/commit/fc35e7e652c1a0d617941951d631cf709ea11062))
+- **theme-service:** add observable dark modestate ([fc35e7e](https://gitlab.com/rxap/packages/commit/fc35e7e652c1a0d617941951d631cf709ea11062))
 
 ## [11.0.8](https://gitlab.com/rxap/packages/compare/@rxap/services@11.0.7...@rxap/services@11.0.8) (2021-03-19)
 
 ### Bug Fixes
 
-* update peer dependencies ([954fde4](https://gitlab.com/rxap/packages/commit/954fde47836ff0c1f25a77c33ff871ddc7685b6c))
+- update peer dependencies ([954fde4](https://gitlab.com/rxap/packages/commit/954fde47836ff0c1f25a77c33ff871ddc7685b6c))
 
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/services@11.0.6...@rxap/services@11.0.7) (2021-03-19)
 
 ### Bug Fixes
 
-* update peer dependencies ([dd22b0c](https://gitlab.com/rxap/packages/commit/dd22b0ce053bc266c7aea659a2faf3be39f424e7))
+- update peer dependencies ([dd22b0c](https://gitlab.com/rxap/packages/commit/dd22b0ce053bc266c7aea659a2faf3be39f424e7))
 
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/services@11.0.5...@rxap/services@11.0.6) (2021-03-19)
 
 ### Bug Fixes
 
-* update peer dependencies ([2eeb7eb](https://gitlab.com/rxap/packages/commit/2eeb7eb85eedd6d610e855dc1724c7153cf01fd0))
-* update peer dependencies ([c7d1267](https://gitlab.com/rxap/packages/commit/c7d12671f3efc198985cddee92caa2558e74b023))
+- update peer dependencies ([2eeb7eb](https://gitlab.com/rxap/packages/commit/2eeb7eb85eedd6d610e855dc1724c7153cf01fd0))
+- update peer dependencies ([c7d1267](https://gitlab.com/rxap/packages/commit/c7d12671f3efc198985cddee92caa2558e74b023))
 
 ## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/services@11.0.4...@rxap/services@11.0.5) (2021-02-10)
 
 ### Bug Fixes
 
-* **loading-indicator:** preventExpressionChangedAfterItHasBeenCheckedError ([dcbe3eb](https://gitlab.com/rxap/packages/commit/dcbe3ebb6ad87c0ad128db712e9a658c25f38f06))
+- **loading-indicator:** preventExpressionChangedAfterItHasBeenCheckedError ([dcbe3eb](https://gitlab.com/rxap/packages/commit/dcbe3ebb6ad87c0ad128db712e9a658c25f38f06))
 
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/services@11.0.3...@rxap/services@11.0.4) (2021-02-04)
 
@@ -183,7 +189,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* stream line loading ([fa74558](https://gitlab.com/rxap/packages/commit/fa745582bb06e2af69aee9ee6e1f25e09f4550fe))
+- stream line loading ([fa74558](https://gitlab.com/rxap/packages/commit/fa745582bb06e2af69aee9ee6e1f25e09f4550fe))
 
 ## [11.0.2](https://gitlab.com/rxap/packages/compare/@rxap/services@10.0.1...@rxap/services@11.0.2) (2021-01-15)
 
@@ -201,8 +207,8 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+- custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
 
 ### Features
 
-* support for the new footer serviceconcept ([4a175e8](https://gitlab.com/rxap/packages/commit/4a175e885b43a1cb2ac4ac96d05c351bf5307337))
+- support for the new footer serviceconcept ([4a175e8](https://gitlab.com/rxap/packages/commit/4a175e885b43a1cb2ac4ac96d05c351bf5307337))

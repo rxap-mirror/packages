@@ -1,9 +1,11 @@
 {
   "name": "@rxap/environment",
-  "version": "16.0.0-dev.2",
+  "version": "16.0.0-dev.3",
   "peerDependencies": {
-    "@angular/common": "^16.0.4",
-    "@angular/core": "^16.0.4"
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0",
+    "cypress": "^12.11.0",
+    "workspace": "^1.0.0"
   },
   "sideEffects": false,
   "dependencies": {
@@ -32,5 +34,13 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "workspace",
+        "version": "1.0.0"
+      }
+    ]
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-localazy",
-  "version": "1.0.0",
+  "version": "1.0.1-dev.0",
   "type": "commonjs",
   "executors": "./executors.json",
   "generators": "./generators.json",
@@ -34,8 +34,20 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.3.2",
-    "@rxap/generator-utilities": "^1.0.0",
-    "@rxap/plugin-utilities": "^1.0.0",
+    "@rxap/generator-utilities": "^1.0.1-dev.0",
+    "@rxap/plugin-utilities": "^1.0.1-dev.0",
     "nx": "^16.3.0"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/generator-utilities",
+        "version": "1.0.1-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "1.0.1-dev.0"
+      }
+    ]
   }
 }

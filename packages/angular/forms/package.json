@@ -1,18 +1,18 @@
 {
   "name": "@rxap/forms",
-  "version": "16.0.0-dev.2",
+  "version": "16.0.0-dev.3",
   "peerDependencies": {
-    "@angular/core": "^16.0.4",
-    "@angular/forms": "^16.0.4",
-    "@angular/router": "^16.0.4",
-    "@rxap/definition": "^16.0.0-dev.2",
-    "@rxap/directives": "^16.0.0-dev.2",
-    "@rxap/pattern": "^1.0.0",
-    "@rxap/reflect-metadata": "^1.0.0",
-    "@rxap/rxjs": "^1.0.0",
-    "@rxap/services": "^16.0.0-dev.2",
-    "@rxap/utilities": "^16.0.0-dev.1",
-    "@rxap/validator": "^3.0.0-dev.1",
+    "@angular/core": "^16.0.0",
+    "@angular/forms": "^16.0.0",
+    "@angular/router": "^16.0.0",
+    "@rxap/definition": "^16.0.0-dev.3",
+    "@rxap/directives": "^16.0.0-dev.3",
+    "@rxap/pattern": "^1.0.1-dev.0",
+    "@rxap/reflect-metadata": "^1.0.1-dev.0",
+    "@rxap/rxjs": "^1.0.1-dev.0",
+    "@rxap/services": "^16.0.0-dev.3",
+    "@rxap/utilities": "^16.0.0-dev.2",
+    "@rxap/validator": "^3.0.0-dev.2",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -42,5 +42,41 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/definition",
+        "version": "16.0.0-dev.3"
+      },
+      {
+        "package": "@rxap/directives",
+        "version": "16.0.0-dev.3"
+      },
+      {
+        "package": "@rxap/pattern",
+        "version": "1.0.1-dev.0"
+      },
+      {
+        "package": "@rxap/reflect-metadata",
+        "version": "1.0.1-dev.0"
+      },
+      {
+        "package": "@rxap/rxjs",
+        "version": "1.0.1-dev.0"
+      },
+      {
+        "package": "@rxap/services",
+        "version": "16.0.0-dev.3"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.2"
+      },
+      {
+        "package": "@rxap/validator",
+        "version": "3.0.0-dev.2"
+      }
+    ]
   }
 }

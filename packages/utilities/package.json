@@ -1,6 +1,6 @@
 {
   "name": "@rxap/utilities",
-  "version": "16.0.0-dev.1",
+  "version": "16.0.0-dev.2",
   "type": "commonjs",
   "dependencies": {
     "tslib": "2.5.3"
@@ -27,5 +27,8 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": []
   }
 }

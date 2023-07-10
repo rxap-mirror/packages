@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/authorization@16.0.0-dev.2...@rxap/authorization@16.0.0-dev.3) (2023-07-10)
+
+### Bug Fixes
+
+- restructure and merge mono repos packages, schematics, plugins and nest ([653b4cd](https://gitlab.com/rxap/packages/commit/653b4cd39fc92d322df9b3959651fea0aa6079da))
+
 # [16.0.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/authorization@16.0.0-dev.1...@rxap/authorization@16.0.0-dev.2) (2023-05-31)
 
 **Note:** Version bump only for package @rxap/authorization
@@ -11,27 +17,27 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+- update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@15.0.0...@rxap/authorization@16.0.0-dev.0) (2023-05-18)
 
 ### chore
 
-* upgrade to nrwl 16.x.x ([12dd87e](https://gitlab.com/rxap/packages/commit/12dd87ef38d465c8af33cd26f7d5d7714bf7c392))
+- upgrade to nrwl 16.x.x ([12dd87e](https://gitlab.com/rxap/packages/commit/12dd87ef38d465c8af33cd26f7d5d7714bf7c392))
 
 ### BREAKING CHANGES
 
-* upgrade nrwl 16.x.x
+- upgrade nrwl 16.x.x
 
 # [15.0.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@14.0.3...@rxap/authorization@15.0.0) (2023-05-17)
 
 ### chore
 
-* upgrade to nrwl 15.x.x ([ad95577](https://gitlab.com/rxap/packages/commit/ad95577538adc5cd134cde8d1ff3b8fad52c9c2b))
+- upgrade to nrwl 15.x.x ([ad95577](https://gitlab.com/rxap/packages/commit/ad95577538adc5cd134cde8d1ff3b8fad52c9c2b))
 
 ### BREAKING CHANGES
 
-* upgrade nrwl 15.x.x
+- upgrade nrwl 15.x.x
 
 ## [14.0.3](https://gitlab.com/rxap/packages/compare/@rxap/authorization@14.0.2...@rxap/authorization@14.0.3) (2022-12-14)
 
@@ -57,23 +63,23 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* add development controls ([6e506aa](https://gitlab.com/rxap/packages/commit/6e506aa9c89c52eaeaadc8db6690f82e31f46523))
+- add development controls ([6e506aa](https://gitlab.com/rxap/packages/commit/6e506aa9c89c52eaeaadc8db6690f82e31f46523))
 
 # [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/authorization@13.0.0-next.1...@rxap/authorization@13.0.0-next.2) (2022-03-24)
 
 ### Bug Fixes
 
-* change scope toprotected ([f5f861e](https://gitlab.com/rxap/packages/commit/f5f861e9c9aaa0d9c7701b2dd5fc7a8938ee3f53))
+- change scope toprotected ([f5f861e](https://gitlab.com/rxap/packages/commit/f5f861e9c9aaa0d9c7701b2dd5fc7a8938ee3f53))
 
 # [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.9...@rxap/authorization@13.0.0-next.1) (2022-03-17)
 
 ### Build System
 
-* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+- upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
-* update the core nrwl/angular packages to 13.x.x
+- update the core nrwl/angular packages to 13.x.x
 
 Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
@@ -81,17 +87,17 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* reduce log population in productionmode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
+- reduce log population in productionmode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
 
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.8...@rxap/authorization@13.0.0-next.0) (2022-02-19)
 
 ### Build System
 
-* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+- upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
-* update the core nrwl/angular packages to 13.x.x
+- update the core nrwl/angular packages to 13.x.x
 
 Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
@@ -99,13 +105,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **if-has-permission:** support elsetemplate ([e8ac1b3](https://gitlab.com/rxap/packages/commit/e8ac1b3cd4c1b87629a981c7929bc87c7fd67702))
+- **if-has-permission:** support elsetemplate ([e8ac1b3](https://gitlab.com/rxap/packages/commit/e8ac1b3cd4c1b87629a981c7929bc87c7fd67702))
 
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.6...@rxap/authorization@12.0.7) (2022-02-10)
 
 ### Bug Fixes
 
-* trigger change detection after disable statechange ([9bd7c08](https://gitlab.com/rxap/packages/commit/9bd7c083095605cadf9d13a799ffbc2ce4c8c907))
+- trigger change detection after disable statechange ([9bd7c08](https://gitlab.com/rxap/packages/commit/9bd7c083095605cadf9d13a799ffbc2ce4c8c907))
 
 ## [12.0.6](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.5...@rxap/authorization@12.0.6) (2021-06-24)
 
@@ -127,13 +133,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* add readme generator ([ce06885](https://gitlab.com/rxap/packages/commit/ce06885c2230518645d17eb670c2b07fbc0e392a))
+- add readme generator ([ce06885](https://gitlab.com/rxap/packages/commit/ce06885c2230518645d17eb670c2b07fbc0e392a))
 
 ## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@12.0.0...@rxap/authorization@12.0.1) (2021-05-24)
 
 ### Bug Fixes
 
-* add readme generator ([ce06885](https://gitlab.com/rxap/packages/commit/ce06885c2230518645d17eb670c2b07fbc0e392a))
+- add readme generator ([ce06885](https://gitlab.com/rxap/packages/commit/ce06885c2230518645d17eb670c2b07fbc0e392a))
 
 # [12.0.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.2.2...@rxap/authorization@12.0.0) (2021-05-24)
 
@@ -143,31 +149,31 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* use base path forroles.json ([f7126c3](https://gitlab.com/rxap/packages/commit/f7126c3994c6f08d32e35c50032306e3ecc472a8))
+- use base path forroles.json ([f7126c3](https://gitlab.com/rxap/packages/commit/f7126c3994c6f08d32e35c50032306e3ecc472a8))
 
 ## [11.2.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.2.0...@rxap/authorization@11.2.1) (2021-05-11)
 
 ### Bug Fixes
 
-* add support for customidentifier ([b1a71e0](https://gitlab.com/rxap/packages/commit/b1a71e0aa681a56d42c911d9e4a43734354c8450))
+- add support for customidentifier ([b1a71e0](https://gitlab.com/rxap/packages/commit/b1a71e0aa681a56d42c911d9e4a43734354c8450))
 
 # [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.1.1...@rxap/authorization@11.2.0) (2021-05-11)
 
 ### Features
 
-* update to the new authconcept ([c0cef1b](https://gitlab.com/rxap/packages/commit/c0cef1b0a42629bc7d12f2b8b578201c30d26b70))
+- update to the new authconcept ([c0cef1b](https://gitlab.com/rxap/packages/commit/c0cef1b0a42629bc7d12f2b8b578201c30d26b70))
 
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.1.0...@rxap/authorization@11.1.1) (2021-05-11)
 
 ### Bug Fixes
 
-* update template selector ([186ce28](https://gitlab.com/rxap/packages/commit/186ce28ce2f764e02f2fa72c8056cd7d236b8e41))
+- update template selector ([186ce28](https://gitlab.com/rxap/packages/commit/186ce28ce2f764e02f2fa72c8056cd7d236b8e41))
 
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/authorization@11.0.1...@rxap/authorization@11.1.0) (2021-05-11)
 
 ### Features
 
-* add template directive ([1562a3b](https://gitlab.com/rxap/packages/commit/1562a3b6c8fae41770483b8b0448f18336e27e2a))
+- add template directive ([1562a3b](https://gitlab.com/rxap/packages/commit/1562a3b6c8fae41770483b8b0448f18336e27e2a))
 
 ## 11.0.1 (2021-05-11)
 

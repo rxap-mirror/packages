@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-docker",
-  "version": "16.0.0-dev.3",
+  "version": "16.0.0-dev.4",
   "type": "commonjs",
   "generators": "./generators.json",
   "executors": "./executors.json",
@@ -9,8 +9,8 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.3.2",
-    "@rxap/generator-utilities": "^1.0.0",
-    "@rxap/plugin-utilities": "^1.0.0"
+    "@rxap/generator-utilities": "^1.0.1-dev.0",
+    "@rxap/plugin-utilities": "^1.0.1-dev.0"
   },
   "publishConfig": {
     "access": "public",
@@ -36,5 +36,17 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/generator-utilities",
+        "version": "1.0.1-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "1.0.1-dev.0"
+      }
+    ]
   }
 }

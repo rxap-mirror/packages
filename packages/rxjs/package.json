@@ -1,9 +1,9 @@
 {
   "name": "@rxap/rxjs",
-  "version": "1.0.0",
+  "version": "1.0.1-dev.0",
   "type": "commonjs",
   "peerDependencies": {
-    "@rxap/utilities": "^16.0.0-dev.1",
+    "@rxap/utilities": "^16.0.0-dev.2",
     "rxjs": "^7.8.0"
   },
   "dependencies": {
@@ -30,5 +30,13 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.2"
+      }
+    ]
   }
 }

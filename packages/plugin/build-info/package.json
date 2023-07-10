@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-build-info",
-  "version": "16.0.0-dev.3",
+  "version": "16.0.0-dev.4",
   "type": "commonjs",
   "executors": "./executors.json",
   "publishConfig": {
@@ -33,8 +33,16 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.3.2",
-    "@rxap/plugin-utilities": "^1.0.0",
+    "@rxap/plugin-utilities": "^1.0.1-dev.0",
     "nx": "^16.3.0"
   },
-  "generators": "./generators.json"
+  "generators": "./generators.json",
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "1.0.1-dev.0"
+      }
+    ]
+  }
 }

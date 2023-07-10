@@ -1,21 +1,23 @@
 {
   "name": "@rxap/material-form-system",
-  "version": "16.0.0-dev.2",
+  "version": "16.0.0-dev.3",
   "peerDependencies": {
-    "@angular/cdk": "^16.0.4",
-    "@angular/common": "^16.0.4",
-    "@angular/core": "^16.0.4",
+    "@angular/cdk": "^16.0.0",
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0",
     "@angular/flex-layout": "^15.0.0-beta.42",
-    "@angular/forms": "^16.0.4",
-    "@angular/localize": "^16.0.4",
-    "@angular/material": "^16.0.4",
-    "@angular/router": "^16.0.4",
-    "@rxap/form-system": "^16.0.0-dev.2",
-    "@rxap/forms": "^16.0.0-dev.2",
-    "@rxap/mixin": "^16.0.0-dev.2",
-    "@rxap/reflect-metadata": "^1.0.0",
-    "@rxap/utilities": "^16.0.0-dev.1",
-    "rxjs": "^7.8.0"
+    "@angular/forms": "^16.0.0",
+    "@angular/localize": "^16.0.0",
+    "@angular/material": "^16.0.0",
+    "@angular/router": "^16.0.0",
+    "@rxap/form-system": "^16.0.0-dev.3",
+    "@rxap/forms": "^16.0.0-dev.3",
+    "@rxap/mixin": "^16.0.0-dev.3",
+    "@rxap/reflect-metadata": "^1.0.1-dev.0",
+    "@rxap/utilities": "^16.0.0-dev.2",
+    "cypress": "^12.11.0",
+    "rxjs": "^7.8.0",
+    "workspace": "^1.0.0"
   },
   "sideEffects": false,
   "dependencies": {
@@ -44,5 +46,33 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "workspace",
+        "version": "1.0.0"
+      },
+      {
+        "package": "@rxap/form-system",
+        "version": "16.0.0-dev.3"
+      },
+      {
+        "package": "@rxap/forms",
+        "version": "16.0.0-dev.3"
+      },
+      {
+        "package": "@rxap/mixin",
+        "version": "16.0.0-dev.3"
+      },
+      {
+        "package": "@rxap/reflect-metadata",
+        "version": "1.0.1-dev.0"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.2"
+      }
+    ]
   }
 }
