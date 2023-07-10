@@ -56,6 +56,9 @@ function getProjects(context: ExecutorContext) {
   }
   const groupedProjectList: Record<string, Array<{ name: string, description: string }>> = {};
   for (const [ project, config ] of Object.entries(projectsConfigurations.projects)) {
+    if (config.projectType !== 'library') {
+      continue;
+    }
     const packageJson = readPackageJsonForProject(context, project);
     if (packageJson.name.startsWith('@rxap/')) {
       const group = getGroupKeyForProject(config);
