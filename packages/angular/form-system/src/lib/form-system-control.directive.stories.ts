@@ -46,7 +46,7 @@ import { FormsModule } from '@angular/forms';
                 </select>
               `,
   standalone: true,
-  imports: [FormsModule, DataSourceCollectionDirective],
+  imports: [ FormsModule, DataSourceCollectionDirective ],
 })
 class SelectControlComponent extends ControlValueAccessor implements ControlWithDataSource {
 
@@ -67,7 +67,7 @@ class SelectControlComponent extends ControlValueAccessor implements ControlWith
         break;
 
       default:
-        throw new Error(`Unsupported data source '${name}'`);
+        throw new Error(`Unsupported data source '${ name }'`);
 
     }
   }
@@ -117,7 +117,7 @@ addDecorator(moduleMetadata({
     {
       provide: RXAP_FORM_DEFINITION,
       useFactory: (injector: Injector) => new RxapFormBuilder(TestForm, injector).build(),
-      deps: [INJECTOR],
+      deps: [ INJECTOR ],
     },
   ],
 }));

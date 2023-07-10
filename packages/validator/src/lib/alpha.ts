@@ -73,10 +73,11 @@ export const decimal: Record<string, string> = {
 };
 
 
-export const englishLocales = ['AU', 'GB', 'HK', 'IN', 'NZ', 'ZA', 'ZM'];
+export const englishLocales = [ 'AU', 'GB', 'HK', 'IN', 'NZ', 'ZA', 'ZM' ];
 
-for (let locale, i = 0; i < englishLocales.length; i++) {
-  locale = `en-${englishLocales[i]}`;
+for (let locale,
+       i = 0; i < englishLocales.length; i++) {
+  locale = `en-${ englishLocales[i] }`;
   alpha[locale] = alpha['en-US'];
   alphanumeric[locale] = alphanumeric['en-US'];
   decimal[locale] = decimal['en-US'];
@@ -88,8 +89,9 @@ export const arabicLocales = [
   'MA', 'QM', 'QA', 'SA', 'SD', 'SY', 'TN', 'YE',
 ];
 
-for (let locale, i = 0; i < arabicLocales.length; i++) {
-  locale = `ar-${arabicLocales[i]}`;
+for (let locale,
+       i = 0; i < arabicLocales.length; i++) {
+  locale = `ar-${ arabicLocales[i] }`;
   alpha[locale] = alpha['ar'];
   alphanumeric[locale] = alphanumeric['ar'];
   decimal[locale] = decimal['ar'];
@@ -99,14 +101,15 @@ export const farsiLocales = [
   'IR', 'AF',
 ];
 
-for (let locale, i = 0; i < farsiLocales.length; i++) {
-  locale = `fa-${farsiLocales[i]}`;
+for (let locale,
+       i = 0; i < farsiLocales.length; i++) {
+  locale = `fa-${ farsiLocales[i] }`;
   alphanumeric[locale] = alphanumeric['fa'];
   decimal[locale] = decimal['ar'];
 }
 
 // Source: https://en.wikipedia.org/wiki/Decimal_mark
-export const dotDecimal = ['ar-EG', 'ar-LB', 'ar-LY'];
+export const dotDecimal = [ 'ar-EG', 'ar-LB', 'ar-LY' ];
 export const commaDecimal = [
   'bg-BG', 'cs-CZ', 'da-DK', 'de-DE', 'el-GR', 'en-ZM', 'es-ES', 'fr-CA', 'fr-FR',
   'id-ID', 'it-IT', 'ku-IQ', 'hu-HU', 'nb-NO', 'nn-NO', 'nl-NL', 'pl-PL', 'pt-PT',

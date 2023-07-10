@@ -25,11 +25,18 @@ export class ModuleElement implements ParsedElement<Rule>, HandleComponentModule
   @ElementChildTextContent()
   public form?: string;
 
-  public handleComponentModule({sourceFile, project, options}: ToValueContext & { sourceFile: SourceFile }) {
+  public handleComponentModule({
+                                 sourceFile,
+                                 project,
+                                 options,
+                               }: ToValueContext & { sourceFile: SourceFile }) {
     AddNgModuleImport(sourceFile, this.name, this.form);
   }
 
-  public toValue({project, options}: ToValueContext): Rule {
+  public toValue({
+                   project,
+                   options,
+                 }: ToValueContext): Rule {
     return noop();
   }
 

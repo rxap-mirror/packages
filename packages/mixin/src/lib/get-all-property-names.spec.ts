@@ -17,7 +17,7 @@ describe('@rxap/mixin', () => {
 
     it('should return all property names from the class', () => {
 
-      expect(GetAllPropertyNames(Root.prototype)).toEqual(['constructor', 'name', 'getRoot']);
+      expect(GetAllPropertyNames(Root.prototype)).toEqual([ 'constructor', 'name', 'getRoot' ]);
       expect(GetAllPropertyNames(Root.prototype)).toEqual(Object.getOwnPropertyNames(Root.prototype));
 
     });
@@ -35,7 +35,8 @@ describe('@rxap/mixin', () => {
 
       }
 
-      expect(GetAllPropertyNames(Child.prototype)).toEqual(['constructor', 'username', 'getChild', 'name', 'getRoot']);
+      expect(GetAllPropertyNames(Child.prototype))
+        .toEqual([ 'constructor', 'username', 'getChild', 'name', 'getRoot' ]);
 
     });
 

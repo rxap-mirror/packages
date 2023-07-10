@@ -22,7 +22,7 @@ export interface TextContentElementOptions<Value, DefaultValue = Value>
 export interface TextContentElementParserMixin<Value, DefaultValue = Value>
   extends RequiredElementParserMixin,
           DefaultValueElementParserMixin<DefaultValue>,
-    ParseValueElementParserMixin<Value> {
+          ParseValueElementParserMixin<Value> {
 }
 
 @Mixin(RequiredElementParserMixin, DefaultValueElementParserMixin, TagElementParserMixin, ParseValueElementParserMixin)

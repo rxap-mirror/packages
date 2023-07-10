@@ -28,7 +28,9 @@ export function AddComponentInput(
   const componentClass = GetComponentClass(sourceFile);
 
   if (!componentClass.getConstructors().some(cotr => cotr.getParameters()
-    .some(param => !!param.getScope() && param.getName() === componentInputDefinition.name))) {
+                                                         .some(param => !!param.getScope() &&
+                                                           param.getName() ===
+                                                           componentInputDefinition.name))) {
 
     if (componentInputDefinition.setAccessor) {
       if (!componentClass.getSetAccessor(componentInputDefinition.name)) {
@@ -43,12 +45,12 @@ export function AddComponentInput(
           ],
           docs: componentInputDefinition.docs,
           statements: [
-            `this._${componentInputDefinition.name} = ${componentInputDefinition.name};`,
+            `this._${ componentInputDefinition.name } = ${ componentInputDefinition.name };`,
           ],
           decorators: [
             {
               name: 'Input',
-              arguments: componentInputDefinition.selector ? [componentInputDefinition.selector] : [],
+              arguments: componentInputDefinition.selector ? [ componentInputDefinition.selector ] : [],
             },
           ],
         });
@@ -63,7 +65,7 @@ export function AddComponentInput(
           });
         }
         CoerceImports(sourceFile, {
-          namedImports: ['Input'],
+          namedImports: [ 'Input' ],
           moduleSpecifier: '@angular/core',
         });
       }
@@ -80,12 +82,12 @@ export function AddComponentInput(
           decorators: [
             {
               name: 'Input',
-              arguments: componentInputDefinition.selector ? [componentInputDefinition.selector] : [],
+              arguments: componentInputDefinition.selector ? [ componentInputDefinition.selector ] : [],
             },
           ],
         });
         CoerceImports(sourceFile, {
-          namedImports: ['Input'],
+          namedImports: [ 'Input' ],
           moduleSpecifier: '@angular/core',
         });
       }

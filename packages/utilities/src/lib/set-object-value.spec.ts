@@ -20,7 +20,7 @@ describe('@rxap/utilities', () => {
 
       const obj = {};
       SetObjectValue(obj, 'key', 'value');
-      expect(obj).toEqual({key: 'value'});
+      expect(obj).toEqual({ key: 'value' });
 
     });
 
@@ -28,15 +28,25 @@ describe('@rxap/utilities', () => {
 
       const obj = {};
       SetObjectValue(obj, 'key.sub', 'value');
-      expect(obj).toEqual({key: {sub: 'value'}});
+      expect(obj).toEqual({ key: { sub: 'value' } });
 
     });
 
     it('path deep 2 with data', () => {
 
-      const obj = {key: {test: 'value'}, side: 'value'};
+      const obj = {
+        key: { test: 'value' },
+        side: 'value',
+      };
       SetObjectValue(obj, 'key.sub', 'value');
-      expect(obj).toEqual({key: {sub: 'value', test: 'value'}, side: 'value'});
+      expect(obj)
+        .toEqual({
+          key: {
+            sub: 'value',
+            test: 'value',
+          },
+          side: 'value',
+        });
 
     });
 

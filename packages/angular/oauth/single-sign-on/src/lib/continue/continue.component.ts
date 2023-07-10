@@ -43,11 +43,11 @@ import { firstValueFrom } from 'rxjs';
   animations: [
     trigger('fadeAnimation', [
       // the "in" style determines the "resting" state of the element when it is visible.
-      state('in', style({opacity: 1})),
+      state('in', style({ opacity: 1 })),
       // fade in when created. this could also be written as transition('void => *')
-      transition(':enter', [style({opacity: 0}), animate(300)]),
+      transition(':enter', [ style({ opacity: 0 }), animate(300) ]),
       // fade out when destroyed. this could also be written as transition('void => *')
-      transition(':leave', animate(300, style({opacity: 0}))),
+      transition(':leave', animate(300, style({ opacity: 0 }))),
     ]),
   ],
   standalone: true,
@@ -78,10 +78,10 @@ export class ContinueComponent<
 
   public ngOnInit() {
     this.profile = firstValueFrom(this.route.data
-      .pipe(
-        take(1),
-        map((data) => data['profile']),
-      ));
+                                      .pipe(
+                                        take(1),
+                                        map((data) => data['profile']),
+                                      ));
   }
 
   signOut() {

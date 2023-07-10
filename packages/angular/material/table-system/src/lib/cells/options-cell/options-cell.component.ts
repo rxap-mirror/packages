@@ -51,7 +51,7 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChan
     this.emptyViewValue = ''; // $localize`:@@rxap-material.table-system.options-cell.empty:empty`;
   }
 
-  @ContentChildren(MatOption, {descendants: true})
+  @ContentChildren(MatOption, { descendants: true })
   public options!: QueryList<MatOption>;
 
   public ngAfterContentInit() {
@@ -70,11 +70,11 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChan
     } else {
       if (this.options) {
         this._subscription.add(this.options.changes
-          .pipe(
-            startWith(null),
-            tap(() => (this.viewValue = this.getViewValue())),
-          )
-          .subscribe());
+                                   .pipe(
+                                     startWith(null),
+                                     tap(() => (this.viewValue = this.getViewValue())),
+                                   )
+                                   .subscribe());
       } else if (isDevMode()) {
         console.log('Could not load any option');
       }

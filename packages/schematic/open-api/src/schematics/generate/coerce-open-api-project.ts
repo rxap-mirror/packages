@@ -21,7 +21,10 @@ export function CoerceOpenApiProject(project: string, prefix: string, directory?
       const defaultProjectPrefix = prefix ?? defaultProject.prefix;
       return chain([
         externalSchematic('@nx/angular', 'library', {
-          name: project, importPath: `@${ defaultProjectPrefix }/${ projectName }`, prefix, directory,
+          name: project,
+          importPath: `@${ defaultProjectPrefix }/${ projectName }`,
+          prefix,
+          directory,
         }), (tree) => {
           const baseTsconfig = JSON.parse(tree.read('/tsconfig.base.json')?.toString() ?? '{}');
 

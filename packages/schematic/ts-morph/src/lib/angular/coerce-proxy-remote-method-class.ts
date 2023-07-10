@@ -32,7 +32,13 @@ export interface CoerceProxyRemoteMethodClassOptions {
 }
 
 export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodClassOptions) {
-  let {name, tsMorphTransform, sourceType, targetType, proxyMethod} = options;
+  let {
+    name,
+    tsMorphTransform,
+    sourceType,
+    targetType,
+    proxyMethod,
+  } = options;
   tsMorphTransform ??= () => ({});
   const className = classify(CoerceSuffix(name, 'ProxyMethod'));
   const fileName = CoerceSuffix(name, '-proxy.method.ts');
@@ -48,20 +54,26 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
         },
         {
           name: 'RxapRemoteMethod',
-          arguments: [w => w.quote(CoerceSuffix(name, '-proxy'))],
+          arguments: [ w => w.quote(CoerceSuffix(name, '-proxy')) ],
         },
       ],
-      ctors: [{
-        parameters: [{
-          name: 'method',
-          type: proxyMethod,
-          decorators: [{
-            name: 'Inject',
-            arguments: [proxyMethod],
-          }],
-        }],
-        statements: ['super(method);'],
-      }],
+      ctors: [
+        {
+          parameters: [
+            {
+              name: 'method',
+              type: proxyMethod,
+              decorators: [
+                {
+                  name: 'Inject',
+                  arguments: [ proxyMethod ],
+                },
+              ],
+            },
+          ],
+          statements: [ 'super(method);' ],
+        },
+      ],
       extends: w => {
         w.write('ProxyRemoteMethod<');
         if (typeof sourceType === 'string') {
@@ -80,19 +92,24 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
     });
     CoerceImports(sourceFile, {
       moduleSpecifier: '@rxap/rxjs',
-      namedImports: ['Method'],
+      namedImports: [ 'Method' ],
     });
     CoerceImports(sourceFile, {
       moduleSpecifier: '@angular/core',
-      namedImports: ['Injectable', 'Inject'],
+      namedImports: [ 'Injectable', 'Inject' ],
     });
     CoerceImports(sourceFile, {
       moduleSpecifier: '@rxap/remote-method',
-      namedImports: ['RxapRemoteMethod', 'ProxyRemoteMethod'],
+      namedImports: [ 'RxapRemoteMethod', 'ProxyRemoteMethod' ],
     });
     const methodStructure = tsMorphTransform!(project, sourceFile, classDeclaration);
-    methodStructure.parameters ??= [{name: 'source', type: sourceType}];
-    methodStructure.statements ??= ['return source as any'];
+    methodStructure.parameters ??= [
+      {
+        name: 'source',
+        type: sourceType,
+      },
+    ];
+    methodStructure.statements ??= [ 'return source as any' ];
     methodStructure.returnType ??= w => {
       w.write('Promise<');
       if (typeof targetType ===

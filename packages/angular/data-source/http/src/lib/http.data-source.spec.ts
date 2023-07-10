@@ -33,7 +33,14 @@ describe('@rxap/data-source', () => {
       http = TestBed.get(HttpClient);
       httpMock = TestBed.get(HttpTestingController);
 
-      dataSource = new HttpDataSource<any>(http, {id: 'test', deps: [], url});
+      dataSource = new HttpDataSource<any>(
+        http,
+        {
+          id: 'test',
+          deps: [],
+          url,
+        },
+      );
     });
 
     describe('with http verify', () => {
@@ -44,7 +51,7 @@ describe('@rxap/data-source', () => {
 
       it('should emit http response without viewChange option', fakeAsync(() => {
 
-        const viewer = {id: 'test'};
+        const viewer = { id: 'test' };
         const data = {};
 
         const connection = dataSource.connect(viewer);
@@ -67,7 +74,10 @@ describe('@rxap/data-source', () => {
       it('should emit http response with viewChange option', fakeAsync(() => {
 
         const viewChange = new Subject<any>();
-        const viewer = {id: 'test', viewChange};
+        const viewer = {
+          id: 'test',
+          viewChange,
+        };
         const data = {};
 
         const connection = dataSource.connect(viewer);
@@ -86,7 +96,7 @@ describe('@rxap/data-source', () => {
         expect(errorSpy).not.toBeCalled();
         expect(completeSpy).not.toBeCalled();
 
-        viewChange.next({headers: new HttpHeaders({'header1': 'value'})});
+        viewChange.next({ headers: new HttpHeaders({ 'header1': 'value' }) });
 
         const request = httpMock.expectOne(url);
 
@@ -101,9 +111,18 @@ describe('@rxap/data-source', () => {
 
       it('should share http response with all connections', fakeAsync(() => {
 
-        const viewer1 = {id: 'viewer1', viewChange: new Subject<any>()};
-        const viewer2 = {id: 'viewer2', viewChange: new Subject<any>()};
-        const viewer3 = {id: 'viewer3', viewChange: new Subject<any>()};
+        const viewer1 = {
+          id: 'viewer1',
+          viewChange: new Subject<any>(),
+        };
+        const viewer2 = {
+          id: 'viewer2',
+          viewChange: new Subject<any>(),
+        };
+        const viewer3 = {
+          id: 'viewer3',
+          viewChange: new Subject<any>(),
+        };
         const next1Spy = jest.fn();
         const next2Spy = jest.fn();
         const next3Spy = jest.fn();
@@ -174,7 +193,10 @@ describe('@rxap/data-source', () => {
           },
         );
 
-        const viewer = {id: 'test', viewChange: new Subject<any>()};
+        const viewer = {
+          id: 'test',
+          viewChange: new Subject<any>(),
+        };
 
         const connection = dataSource.connect(viewer);
 
@@ -184,7 +206,7 @@ describe('@rxap/data-source', () => {
 
         connection.subscribe(nextSpy, errorSpy, completeSpy);
 
-        viewer.viewChange.next({pathParams: {id: 'my-id'}});
+        viewer.viewChange.next({ pathParams: { id: 'my-id' } });
 
         httpMock.expectOne('http://server.test/api/user/my-id').flush('data');
 
@@ -206,7 +228,10 @@ describe('@rxap/data-source', () => {
           },
         );
 
-        const viewer = {id: 'test', viewChange: new Subject<any>()};
+        const viewer = {
+          id: 'test',
+          viewChange: new Subject<any>(),
+        };
 
         const connection = dataSource.connect(viewer);
 
@@ -218,7 +243,7 @@ describe('@rxap/data-source', () => {
 
         expect(subscription.closed).toBeFalsy();
 
-        viewer.viewChange.next({pathParams: {id: 'my-id'}});
+        viewer.viewChange.next({ pathParams: { id: 'my-id' } });
 
         expect(nextSpy).not.toBeCalled();
         expect(errorSpy).toBeCalledTimes(1);
@@ -238,7 +263,10 @@ describe('@rxap/data-source', () => {
           },
         );
 
-        const viewer = {id: 'test', viewChange: new Subject<any>()};
+        const viewer = {
+          id: 'test',
+          viewChange: new Subject<any>(),
+        };
 
         const connection = dataSource.connect(viewer);
 
@@ -248,7 +276,12 @@ describe('@rxap/data-source', () => {
 
         connection.subscribe(nextSpy, errorSpy, completeSpy);
 
-        viewer.viewChange.next({pathParams: {id: 'my-id', 'pId': 'p-id'}});
+        viewer.viewChange.next({
+          pathParams: {
+            id: 'my-id',
+            'pId': 'p-id',
+          },
+        });
 
         httpMock
           .expectOne('http://server.test/api/user/my-id/product/p-id')
@@ -275,7 +308,7 @@ describe('@rxap/data-source', () => {
       it('connect', () => {
 
         expect(initSpy).not.toBeCalled();
-        dataSource.connect({id: 'test'});
+        dataSource.connect({ id: 'test' });
         expect(initSpy).toBeCalled();
 
       });

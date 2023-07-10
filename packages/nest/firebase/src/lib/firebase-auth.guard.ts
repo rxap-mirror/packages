@@ -54,18 +54,21 @@ export class FirebaseAuthGuard implements CanActivate {
     const idToken = (request.headers as any as Record<string, string | string[]>)[this.authHeaderName?.toLowerCase()];
 
     if (!idToken) {
-      throw new BadRequestException(`The idToken header is missing. Expected a header with the name '${this.authHeaderName}'`);
+      throw new BadRequestException(`The idToken header is missing. Expected a header with the name '${ this.authHeaderName }'`);
     }
 
     if (Array.isArray(idToken)) {
-      throw new BadRequestException(`The idToken header '${this.authHeaderName}' is provided multiple times. Ensure that the header is only send once with the request.`);
+      throw new BadRequestException(`The idToken header '${ this.authHeaderName }' is provided multiple times. Ensure that the header is only send once with the request.`);
     }
 
     let decodedIdToken: FirebaseUser | null = null;
     try {
       decodedIdToken = await this.validateIdToken(idToken);
     } catch (e: any) {
-      throw new InternalServerErrorException('Could not validate the idToken. The validation request failed without an expected error.', e.message);
+      throw new InternalServerErrorException(
+        'Could not validate the idToken. The validation request failed without an expected error.',
+        e.message,
+      );
     }
 
     if (!decodedIdToken) {
@@ -89,7 +92,10 @@ export class FirebaseAuthGuard implements CanActivate {
           return res;
         } else {
           this.logger.debug('The idToken is valid', 'FirebaseAuthGuard');
-          this.logger.verbose('check if email is verified. AllowUnverifiedEmail: ' + this.allowUnverifiedEmail, 'FirebaseAuthGuard');
+          this.logger.verbose(
+            'check if email is verified. AllowUnverifiedEmail: ' + this.allowUnverifiedEmail,
+            'FirebaseAuthGuard',
+          );
           if (this.allowUnverifiedEmail || !!res.email_verified) {
             return res;
           }
@@ -98,7 +104,7 @@ export class FirebaseAuthGuard implements CanActivate {
         return null;
       })
       .catch((err) => {
-        this.logger.debug(`The idToken is not valid: ${err.message}`, 'FirebaseAuthGuard');
+        this.logger.debug(`The idToken is not valid: ${ err.message }`, 'FirebaseAuthGuard');
         return null;
       });
   }

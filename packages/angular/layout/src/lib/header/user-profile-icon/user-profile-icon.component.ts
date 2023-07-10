@@ -49,7 +49,7 @@ export class UserProfileIconComponent {
         (user) =>
           user.name ??
           (user.firstname || user.lastname
-            ? [user.firstname, user.lastname].join(' ').trim()
+            ? [ user.firstname, user.lastname ].join(' ').trim()
             : null) ??
           user.username,
       ),

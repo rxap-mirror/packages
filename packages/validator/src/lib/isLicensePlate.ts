@@ -29,5 +29,5 @@ export function isLicensePlate(str: unknown, locale: string) {
     }
     return false;
   }
-  throw new Error(`Invalid locale '${locale}'`);
+  throw new Error(`Invalid locale '${ locale }'`);
 }

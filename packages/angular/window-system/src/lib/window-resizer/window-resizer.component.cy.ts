@@ -5,7 +5,8 @@ describe(WindowResizerComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(WindowResizerComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

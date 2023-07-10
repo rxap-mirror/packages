@@ -14,7 +14,7 @@ import {
 @Component({
   selector: 'rxap-table-column-option',
   templateUrl: './table-column-option.component.html',
-  styleUrls: ['./table-column-option.component.css'],
+  styleUrls: [ './table-column-option.component.css' ],
   standalone: true,
 })
 export class TableColumnOptionComponent implements OnInit {

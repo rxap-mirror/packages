@@ -3,7 +3,10 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 
-export function IsEnum({message, entity}: { message?: string, entity: any }) {
+export function IsEnum({
+                         message,
+                         entity,
+                       }: { message?: string, entity: any }) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;

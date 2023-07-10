@@ -6,7 +6,8 @@ describe(MessageDialogComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(MessageDialogComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

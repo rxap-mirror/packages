@@ -53,7 +53,8 @@ export function UseOptionsDataSource(
   };
 }
 
-export interface ExtractOptionsDataSourceMixin extends ExtractFormDefinitionMixin, ExtractDataSourcesMixin, ExtractControlMixin {
+export interface ExtractOptionsDataSourceMixin extends ExtractFormDefinitionMixin, ExtractDataSourcesMixin,
+                                                       ExtractControlMixin {
 }
 
 @Mixin(ExtractControlMixin, ExtractFormDefinitionMixin, ExtractDataSourcesMixin)
@@ -116,12 +117,14 @@ export class ExtractOptionsDataSourceMixin {
     }
 
     if (this.settings?.transformer) {
-      dataSource = new PipeDataSource(dataSource,
+      dataSource = new PipeDataSource(
+        dataSource,
         map(this.settings.transformer),
         tap(options => useDataSourceValue.lastValue = options),
       );
     } else {
-      dataSource = new PipeDataSource(dataSource,
+      dataSource = new PipeDataSource(
+        dataSource,
         tap(options => useDataSourceValue.lastValue = options),
       );
     }

@@ -5,7 +5,8 @@ describe(CopyToClipboardCellComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(CopyToClipboardCellComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

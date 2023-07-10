@@ -9,7 +9,7 @@ import {
 })
 export class StopPropagationDirective {
 
-  @HostListener('click', ['$event'])
+  @HostListener('click', [ '$event' ])
   public onClick($event: Event): void {
     $event.stopPropagation();
   }

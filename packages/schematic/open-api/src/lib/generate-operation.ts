@@ -35,7 +35,7 @@ async function executeGenerator<Options extends OpenApiSchemaBase>(
     };
     await generatorFunction(parameters);
   } catch (e) {
-    console.error(`Failed to generate [${generatorFunction?.name}] for operation: ${operation.operationId}`);
+    console.error(`Failed to generate [${ generatorFunction?.name }] for operation: ${ operation.operationId }`);
   }
 }
 
@@ -51,7 +51,7 @@ export function GenerateOperation<Options extends OpenApiSchemaBase = OpenApiSch
 
   promiseList.push(...GenerateComponents(components, project));
 
-  for (const [path, methods] of Object.entries(openapi.paths)) {
+  for (const [ path, methods ] of Object.entries(openapi.paths)) {
 
     if (methods) {
 
@@ -61,9 +61,9 @@ export function GenerateOperation<Options extends OpenApiSchemaBase = OpenApiSch
 
         if (IsOperationObject(operation)) {
 
-          if (IgnoreOperation(['hidden'])(operation)) {
+          if (IgnoreOperation([ 'hidden' ])(operation)) {
 
-            console.log(`Ignore operation '${operation.operationId}'`);
+            console.log(`Ignore operation '${ operation.operationId }'`);
 
           } else {
 

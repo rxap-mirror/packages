@@ -17,12 +17,28 @@ export interface CoerceRowDtoClassOptions {
 }
 
 export function CoerceRowDtoClass(options: CoerceRowDtoClassOptions) {
-  let {project, name, propertyList, classStructure, importStructureList} = options;
+  let {
+    project,
+    name,
+    propertyList,
+    classStructure,
+    importStructureList,
+  } = options;
   propertyList ??= [];
   propertyList.push(
-    {name: '__rowId', type: 'string'},
-    {name: '__archived', type: 'boolean'},
-    {name: '__removedAt', type: 'string', isOptional: true},
+    {
+      name: '__rowId',
+      type: 'string',
+    },
+    {
+      name: '__archived',
+      type: 'boolean',
+    },
+    {
+      name: '__removedAt',
+      type: 'string',
+      isOptional: true,
+    },
   );
   return CoerceDtoClass(
     project,

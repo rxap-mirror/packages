@@ -40,7 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'rxap-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styleUrls: [ './login.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     LoginFormProviders,

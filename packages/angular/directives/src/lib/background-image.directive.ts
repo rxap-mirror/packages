@@ -142,7 +142,7 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
       this.renderer.setStyle(
         this.host.nativeElement,
         'background-image',
-        `url("${this.placeholderImageUrl}")`,
+        `url("${ this.placeholderImageUrl }")`,
       );
     }
     if (imageUrl) {
@@ -150,7 +150,7 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
       this.renderer.setStyle(
         this.host.nativeElement,
         'background-image',
-        `url("${imageUrl}")`,
+        `url("${ imageUrl }")`,
       );
     } else {
       if (isDevMode()) {

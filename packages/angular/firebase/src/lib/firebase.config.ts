@@ -61,9 +61,9 @@ export interface FirebaseConfig {
       origin: string | null;
     },
     emulator: {
-      firestore?: [string, number],
-      functions?: [string, number],
-      auth?: [string, number],
+      firestore?: [ string, number ],
+      functions?: [ string, number ],
+      auth?: [ string, number ],
     },
     appCheck: {
       isTokenAutoRefreshEnabled?: boolean;
@@ -83,5 +83,5 @@ export interface FirebaseConfig {
       twitter: boolean;
       github: boolean;
     };
-  }
+  };
 }

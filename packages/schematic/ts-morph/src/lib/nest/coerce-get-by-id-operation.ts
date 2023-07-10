@@ -61,7 +61,10 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
   const isFirstBornSibling = !nestModule || nestModule === controllerName;
 
   if (isFirstBornSibling && !propertyList.some(param => param.name === 'uuid')) {
-    propertyList.unshift({name: 'uuid', type: 'string'});
+    propertyList.unshift({
+      name: 'uuid',
+      type: 'string',
+    });
   }
 
   if (isFirstBornSibling) {
@@ -96,15 +99,18 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
       controllerName,
     ) => {
 
-      const {className: dtoClassName, filePath: dtoFilePath} = CoerceDtoClass(
+      const {
+        className: dtoClassName,
+        filePath: dtoFilePath,
+      } = CoerceDtoClass(
         project,
         controllerName,
         propertyList!,
       );
 
       CoerceImports(sourceFile, {
-        namedImports: [dtoClassName],
-        moduleSpecifier: `..${dtoFilePath}`,
+        namedImports: [ dtoClassName ],
+        moduleSpecifier: `..${ dtoFilePath }`,
       });
 
       return {

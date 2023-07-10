@@ -27,7 +27,7 @@ function CopyMetadata(source: any, target: any) {
       } else {
         const targetMetadata = getMetadata(key, target)!;
         if (Array.isArray(targetMetadata) && Array.isArray(sourceMetadata)) {
-          setMetadata(key, [...targetMetadata, ...sourceMetadata], target);
+          setMetadata(key, [ ...targetMetadata, ...sourceMetadata ], target);
         } else {
           const mergedMetadata = deepMerge(targetMetadata, sourceMetadata);
           setMetadata(key, mergedMetadata, target);

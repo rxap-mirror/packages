@@ -11,17 +11,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* support paginator set length with id
-  mapper ([e318860](https://gitlab.com/rxap/packages/commit/e318860a15abe5ed30ce4232a260e677f344c52b))
-* use the set methods for
-  DynamicTableDataSource ([6a8b8d2](https://gitlab.com/rxap/packages/commit/6a8b8d2fda0cb78b6e4d6c0973e4a7387b697e24))
+* support paginator set length with idmapper ([e318860](https://gitlab.com/rxap/packages/commit/e318860a15abe5ed30ce4232a260e677f344c52b))
+* use the set methods forDynamicTableDataSource ([6a8b8d2](https://gitlab.com/rxap/packages/commit/6a8b8d2fda0cb78b6e4d6c0973e4a7387b697e24))
 
 # [16.0.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.0...@rxap/data-source@16.0.0-dev.1) (2023-05-18)
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@15.0.0...@rxap/data-source@16.0.0-dev.0) (2023-05-18)
 
@@ -51,29 +48,23 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **pipe-data-source:** support custom metadata in factory
-  function ([8e0e48a](https://gitlab.com/rxap/packages/commit/8e0e48a5ad54c785d1a99ff30fd2676e90ad8ae1))
+* **pipe-data-source:** support custom metadata in factoryfunction ([8e0e48a](https://gitlab.com/rxap/packages/commit/8e0e48a5ad54c785d1a99ff30fd2676e90ad8ae1))
 
 # [14.2.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@14.1.3...@rxap/data-source@14.2.0-dev.0) (2023-04-18)
 
 ### Bug Fixes
 
-* handle hasError and loading
-  stats ([9c3ad26](https://gitlab.com/rxap/packages/commit/9c3ad26e12863db8c78693869e7214b5a41c576c))
-* **directives:** support error template in data source collection
-  directive ([92f7653](https://gitlab.com/rxap/packages/commit/92f76533ffae9ed07eeda605bf1ae06543072c1a))
+* handle hasError and loadingstats ([9c3ad26](https://gitlab.com/rxap/packages/commit/9c3ad26e12863db8c78693869e7214b5a41c576c))
+* **directives:** support error template in data source collectiondirective ([92f7653](https://gitlab.com/rxap/packages/commit/92f76533ffae9ed07eeda605bf1ae06543072c1a))
 * remove error suppression ([3a9be76](https://gitlab.com/rxap/packages/commit/3a9be76342c79b8cb33902bdeb960a3f731b22f2))
 * remove error suppression ([2301653](https://gitlab.com/rxap/packages/commit/2301653434653a6db4eedb36e821086eb7e6d08c))
 
 ### Features
 
 * add handleError method ([4547aa6](https://gitlab.com/rxap/packages/commit/4547aa6c004bd81f90cf5be06b2d790e5e649e45))
-* introduce dataSource
-  retry ([8351956](https://gitlab.com/rxap/packages/commit/835195620a8cf6b022f17e28cff593152d78a0c2))
-* support data source retry
-  feature ([58a6c9e](https://gitlab.com/rxap/packages/commit/58a6c9e8af577c61472907aeb9393ec571918cf4))
-* **data-source:** introduce errorTemplate
-  concept ([d1bc29f](https://gitlab.com/rxap/packages/commit/d1bc29f7e86ea574c1e0cc60b7758fa622256bd9))
+* introduce dataSourceretry ([8351956](https://gitlab.com/rxap/packages/commit/835195620a8cf6b022f17e28cff593152d78a0c2))
+* support data source retryfeature ([58a6c9e](https://gitlab.com/rxap/packages/commit/58a6c9e8af577c61472907aeb9393ec571918cf4))
+* **data-source:** introduce errorTemplateconcept ([d1bc29f](https://gitlab.com/rxap/packages/commit/d1bc29f7e86ea574c1e0cc60b7758fa622256bd9))
 
 ## [14.1.3](https://gitlab.com/rxap/packages/compare/@rxap/data-source@14.1.2...@rxap/data-source@14.1.3) (2022-12-14)
 
@@ -87,15 +78,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* refresh pipe data source
-  operations ([5fe91d9](https://gitlab.com/rxap/packages/commit/5fe91d9944b41c317bd201482c1e26fddc966529))
+* refresh pipe data sourceoperations ([5fe91d9](https://gitlab.com/rxap/packages/commit/5fe91d9944b41c317bd201482c1e26fddc966529))
 
 # [14.1.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@14.0.0...@rxap/data-source@14.1.0) (2022-11-07)
 
 ### Features
 
-* support multi use of DynamicTableDataSources in material
-  tables ([98f8dd1](https://gitlab.com/rxap/packages/commit/98f8dd15ed59e5bb2cfb94c05e4e702c1bf54545))
+* support multi use of DynamicTableDataSources in materialtables ([98f8dd1](https://gitlab.com/rxap/packages/commit/98f8dd15ed59e5bb2cfb94c05e4e702c1bf54545))
 
 # [14.0.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.0.0...@rxap/data-source@14.0.0) (2022-09-16)
 
@@ -115,8 +104,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* replace RXAP_TABLE_REMOTE_METHOD with
-  RXAP_TABLE_METHOD ([67416a1](https://gitlab.com/rxap/packages/commit/67416a10c5a103301b6a7612f22ab6ea78bc52c7))
+* replace RXAP_TABLE_REMOTE_METHOD withRXAP_TABLE_METHOD ([67416a1](https://gitlab.com/rxap/packages/commit/67416a10c5a103301b6a7612f22ab6ea78bc52c7))
 
 # [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@13.0.0-next.1...@rxap/data-source@13.0.0-next.2) (2022-03-30)
 
@@ -130,8 +118,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -143,10 +130,8 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **data-source-collection-directive:** support loaded
-  event ([9058aa4](https://gitlab.com/rxap/packages/commit/9058aa4cca53c6623502e35a3d62991c018effd8))
-* **data-source-directive:** support template
-  type ([c303995](https://gitlab.com/rxap/packages/commit/c30399536c9f5a36a577a0fceb3659fce50be278))
+* **data-source-collection-directive:** support loadedevent ([9058aa4](https://gitlab.com/rxap/packages/commit/9058aa4cca53c6623502e35a3d62991c018effd8))
+* **data-source-directive:** support templatetype ([c303995](https://gitlab.com/rxap/packages/commit/c30399536c9f5a36a577a0fceb3659fce50be278))
 
 ## [12.1.3](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.1.3-next.1...@rxap/data-source@12.1.3) (2021-10-11)
 
@@ -156,8 +141,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* support data source
-  trackBy ([901df0d](https://gitlab.com/rxap/packages/commit/901df0d65908b33730aa34b3bda457cff78273ec))
+* support data sourcetrackBy ([901df0d](https://gitlab.com/rxap/packages/commit/901df0d65908b33730aa34b3bda457cff78273ec))
 
 ## [12.1.3-next.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.1.2...@rxap/data-source@12.1.3-next.0) (2021-09-13)
 
@@ -173,15 +157,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* reset page on filter
-  change ([3cc9fa2](https://gitlab.com/rxap/packages/commit/3cc9fa25341f63cc09b54bca9a620feaa6afce0f))
+* reset page on filterchange ([3cc9fa2](https://gitlab.com/rxap/packages/commit/3cc9fa25341f63cc09b54bca9a620feaa6afce0f))
 
 ## [12.1.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.1.0...@rxap/data-source@12.1.1) (2021-08-02)
 
 ### Bug Fixes
 
-* **static-data-source:** if the provided data is null or undefined use the metadata data
-  value ([97fdb10](https://gitlab.com/rxap/packages/commit/97fdb102c862febb4f167bcb2b322f6132f0f56f))
+* **static-data-source:** if the provided data is null or undefined use the metadata datavalue ([97fdb10](https://gitlab.com/rxap/packages/commit/97fdb102c862febb4f167bcb2b322f6132f0f56f))
 
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.1.0-next.0...@rxap/data-source@12.1.0) (2021-07-22)
 
@@ -208,8 +190,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* log template render
-  error ([fc8592e](https://gitlab.com/rxap/packages/commit/fc8592e7174466b22ccae46080970aebeca71cca))
+* log template rendererror ([fc8592e](https://gitlab.com/rxap/packages/commit/fc8592e7174466b22ccae46080970aebeca71cca))
 
 ## [12.0.9](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.0.9-next.0...@rxap/data-source@12.0.9) (2021-07-09)
 
@@ -219,8 +200,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* split into rxjs and reflect-metadata sub
-  packages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
+* split into rxjs and reflect-metadata subpackages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
 
 ## [12.0.8](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.0.7...@rxap/data-source@12.0.8) (2021-06-24)
 
@@ -238,10 +218,8 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* allow null for static data
-  sources ([4035420](https://gitlab.com/rxap/packages/commit/4035420b8244b1ae22bf4197e28144780686367f))
-* allow null for static data
-  sources ([7d2a562](https://gitlab.com/rxap/packages/commit/7d2a562bfe9b94429c541ea53d20b3f44029d4d3))
+* allow null for static datasources ([4035420](https://gitlab.com/rxap/packages/commit/4035420b8244b1ae22bf4197e28144780686367f))
+* allow null for static datasources ([7d2a562](https://gitlab.com/rxap/packages/commit/7d2a562bfe9b94429c541ea53d20b3f44029d4d3))
 
 ## [12.0.4](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.0.3...@rxap/data-source@12.0.4) (2021-06-14)
 
@@ -251,22 +229,19 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* remove rxap uuid
-  function ([0a7e17b](https://gitlab.com/rxap/packages/commit/0a7e17b89470bb946b7806ac074a681838195c91))
+* remove rxap uuidfunction ([0a7e17b](https://gitlab.com/rxap/packages/commit/0a7e17b89470bb946b7806ac074a681838195c91))
 
 ## [12.0.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.2.2...@rxap/data-source@12.0.2) (2021-06-09)
 
 ### Bug Fixes
 
-* add data source readme
-  generator ([351fe16](https://gitlab.com/rxap/packages/commit/351fe166a8c83ceb0f30c5f098ea96a8e74accde))
+* add data source readmegenerator ([351fe16](https://gitlab.com/rxap/packages/commit/351fe166a8c83ceb0f30c5f098ea96a8e74accde))
 
 ## [12.0.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@12.0.0...@rxap/data-source@12.0.1) (2021-05-24)
 
 ### Bug Fixes
 
-* add data source readme
-  generator ([351fe16](https://gitlab.com/rxap/packages/commit/351fe166a8c83ceb0f30c5f098ea96a8e74accde))
+* add data source readmegenerator ([351fe16](https://gitlab.com/rxap/packages/commit/351fe166a8c83ceb0f30c5f098ea96a8e74accde))
 
 # [12.0.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.2.1...@rxap/data-source@12.0.0) (2021-05-24)
 
@@ -276,31 +251,26 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 # [11.2.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.1.1...@rxap/data-source@11.2.0) (2021-04-22)
 
 ### Features
 
-* **data-source-directive:** emit error and loaded as component
-  outputs ([0a306da](https://gitlab.com/rxap/packages/commit/0a306dace6ec775e7b2cd17880d57594caf0d3e8))
+* **data-source-directive:** emit error and loaded as componentoutputs ([0a306da](https://gitlab.com/rxap/packages/commit/0a306dace6ec775e7b2cd17880d57594caf0d3e8))
 
 ## [11.1.1](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.1.0...@rxap/data-source@11.1.1) (2021-03-29)
 
 ### Bug Fixes
 
-* add support for method
-  injection ([86e428e](https://gitlab.com/rxap/packages/commit/86e428e074b0a3fb42623db91a00c36845e7bccc))
+* add support for methodinjection ([86e428e](https://gitlab.com/rxap/packages/commit/86e428e074b0a3fb42623db91a00c36845e7bccc))
 
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.0.7...@rxap/data-source@11.1.0) (2021-03-24)
 
 ### Features
 
-* **DataSourceDirective:** add loaded and embedded
-  event ([971d5b4](https://gitlab.com/rxap/packages/commit/971d5b4890113d810456924e4ad6f6697cf873a2))
+* **DataSourceDirective:** add loaded and embeddedevent ([971d5b4](https://gitlab.com/rxap/packages/commit/971d5b4890113d810456924e4ad6f6697cf873a2))
 
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.0.6...@rxap/data-source@11.0.7) (2021-03-19)
 
@@ -325,15 +295,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **TableEvent:** add setTotalLength
-  function ([2aada6f](https://gitlab.com/rxap/packages/commit/2aada6f8fab181e0fcdcdc6e02ccc19d0ef3d7f7))
+* **TableEvent:** add setTotalLengthfunction ([2aada6f](https://gitlab.com/rxap/packages/commit/2aada6f8fab181e0fcdcdc6e02ccc19d0ef3d7f7))
 
 ## [11.0.3](https://gitlab.com/rxap/packages/compare/@rxap/data-source@11.0.2...@rxap/data-source@11.0.3) (2021-02-04)
 
 ### Bug Fixes
 
-* **data-source.directive:** mv the connect logic in the ngAfterViewInit
-  hook ([8e6f8bb](https://gitlab.com/rxap/packages/commit/8e6f8bb88fe72c57b8e3675825d561a5a19008bc))
+* **data-source.directive:** mv the connect logic in the ngAfterViewInithook ([8e6f8bb](https://gitlab.com/rxap/packages/commit/8e6f8bb88fe72c57b8e3675825d561a5a19008bc))
 
 ## [11.0.2](https://gitlab.com/rxap/packages/compare/@rxap/data-source@10.0.1...@rxap/data-source@11.0.2) (2021-01-15)
 
@@ -351,24 +319,16 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **PipeDataSource:** call the connect for each
-  pipe.connect ([11fde3f](https://gitlab.com/rxap/packages/commit/11fde3f702ce75e594b6dc151d3b8b7fc17f40e4))
-* **TableDataSource:** disable loading if connection
-  resolved ([b0a0786](https://gitlab.com/rxap/packages/commit/b0a07862c9fae44982b5c0d286d855f34ed1a904))
-* add support for static
-  array ([3b7fd10](https://gitlab.com/rxap/packages/commit/3b7fd104ebc7054687cc7d513c91d10a1f88c0ef))
-* create viewer if from viewer object
-  ref ([fe5d6f0](https://gitlab.com/rxap/packages/commit/fe5d6f0b1397840cadb48016657505b9cf18d406))
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* **PipeDataSource:** call the connect for eachpipe.connect ([11fde3f](https://gitlab.com/rxap/packages/commit/11fde3f702ce75e594b6dc151d3b8b7fc17f40e4))
+* **TableDataSource:** disable loading if connectionresolved ([b0a0786](https://gitlab.com/rxap/packages/commit/b0a07862c9fae44982b5c0d286d855f34ed1a904))
+* add support for staticarray ([3b7fd10](https://gitlab.com/rxap/packages/commit/3b7fd104ebc7054687cc7d513c91d10a1f88c0ef))
+* create viewer if from viewer objectref ([fe5d6f0](https://gitlab.com/rxap/packages/commit/fe5d6f0b1397840cadb48016657505b9cf18d406))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
 * fix viewer is issue ([922acfd](https://gitlab.com/rxap/packages/commit/922acfdab33ffdaf0c2a87525ca39147ff8661c0))
-* mv parameters member to abstract table data
-  source ([cebacda](https://gitlab.com/rxap/packages/commit/cebacdadac41445543ddb8988f2c4eec0d1feb3a))
-* replace all rxjs operators first() with take(
-  1) ([e2ae457](https://gitlab.com/rxap/packages/commit/e2ae45771c8b01f30fc1a00f962e067d610296b7))
+* mv parameters member to abstract table datasource ([cebacda](https://gitlab.com/rxap/packages/commit/cebacdadac41445543ddb8988f2c4eec0d1feb3a))
+* replace all rxjs operators first() with take(1) ([e2ae457](https://gitlab.com/rxap/packages/commit/e2ae45771c8b01f30fc1a00f962e067d610296b7))
 
 ### Features
 
 * support for dynamic url ([ea9cad0](https://gitlab.com/rxap/packages/commit/ea9cad003cf796cdc0b78ea0be5bf71b3d1fc4c2))
-* **DataSourceDirective:** run template creation in
-  zone ([dcba2b0](https://gitlab.com/rxap/packages/commit/dcba2b094471b873fcc5c7775befef3c6aef22a5))
+* **DataSourceDirective:** run template creation inzone ([dcba2b0](https://gitlab.com/rxap/packages/commit/dcba2b094471b873fcc5c7775befef3c6aef22a5))

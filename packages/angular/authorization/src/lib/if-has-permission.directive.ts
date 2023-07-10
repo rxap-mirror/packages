@@ -49,20 +49,20 @@ export class IfHasPermissionDirective implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this._subscription = this.authorization
-      .hasPermission(this.identifier, this.scope || null)
-      .pipe(
-        distinctUntilChanged(),
-        tap((hasPermission) => {
-          this.viewContainerRef.clear();
-          if (hasPermission) {
-            this.viewContainerRef.createEmbeddedView(this.template);
-          } else if (this.else) {
-            this.viewContainerRef.createEmbeddedView(this.else);
-          }
-          this.cdr.markForCheck();
-        }),
-      )
-      .subscribe();
+                             .hasPermission(this.identifier, this.scope || null)
+                             .pipe(
+                               distinctUntilChanged(),
+                               tap((hasPermission) => {
+                                 this.viewContainerRef.clear();
+                                 if (hasPermission) {
+                                   this.viewContainerRef.createEmbeddedView(this.template);
+                                 } else if (this.else) {
+                                   this.viewContainerRef.createEmbeddedView(this.else);
+                                 }
+                                 this.cdr.markForCheck();
+                               }),
+                             )
+                             .subscribe();
   }
 
   public ngOnDestroy() {

@@ -104,7 +104,7 @@ export class RxapFormBuilder<
     // merge the providers from the from options with the providers from the
     // constructor. If the provider is defined in the form options and constructor
     // then the provider from the constructor will be used.
-    this.providers = [...providers, ...(formOptions.providers ?? [])].filter(
+    this.providers = [ ...providers, ...(formOptions.providers ?? []) ].filter(
       (provider: any, index, self) =>
         provider['provide'] &&
         self.findIndex(
@@ -120,7 +120,7 @@ export class RxapFormBuilder<
     options: Partial<FormDefinitionMetadata & { controlId?: string }> = {},
   ): T {
     const injector = Injector.create({
-      name: `rxap/form-builder/${this.formOptions.id}`,
+      name: `rxap/form-builder/${ this.formOptions.id }`,
       parent: this.injector,
       providers: this.providers,
     });
@@ -182,7 +182,7 @@ export class RxapFormBuilder<
           form,
           controlSetValueOnInit,
         )) {
-          onSetValue(control.value, {initial: true});
+          onSetValue(control.value, { initial: true });
         }
       }
     }
@@ -195,7 +195,7 @@ export class RxapFormBuilder<
     form: FormDefinition & Record<string, Function>,
     controls: Record<string, AbstractControl>,
   ): void {
-    for (const [controlId, options] of this.formArrayControls.entries()) {
+    for (const [ controlId, options ] of this.formArrayControls.entries()) {
       const formState = this.coerceToArrayFormState(
         controlId,
         [],
@@ -206,7 +206,7 @@ export class RxapFormBuilder<
       assertIsArray(formState);
 
       const formControls: any = formState.map(
-        (fs, index) => new RxapFormControl(fs, {controlId: index.toFixed(0)}),
+        (fs, index) => new RxapFormControl(fs, { controlId: index.toFixed(0) }),
       );
 
       const manager = new FormArrayControlManager(form, controlId);
@@ -257,7 +257,7 @@ export class RxapFormBuilder<
     form: FormDefinition & Record<string, Function>,
     controls: Record<string, AbstractControl>,
   ): void {
-    for (const [controlId, options] of this.formArrayGroups.entries()) {
+    for (const [ controlId, options ] of this.formArrayGroups.entries()) {
       const formState = this.coerceToArrayFormState(
         controlId,
         [],
@@ -275,7 +275,7 @@ export class RxapFormBuilder<
 
       // TODO : add the formGroupOptions property. To definition of the form group options
       const formGroupDefinitions: any = formState.map((fs, index) =>
-        formGroupBuilder.build(fs, {id: index.toFixed(0)}),
+        formGroupBuilder.build(fs, { id: index.toFixed(0) }),
       );
 
       const manager = new FormArrayControlManager(form, controlId);
@@ -326,7 +326,7 @@ export class RxapFormBuilder<
     form: Record<string, Function>,
     controls: Record<string, AbstractControl>,
   ): void {
-    for (const [controlId, options] of this.formGroups.entries()) {
+    for (const [ controlId, options ] of this.formGroups.entries()) {
       const formState = this.coerceToGroupFormState(
         controlId,
         {},
@@ -379,7 +379,7 @@ export class RxapFormBuilder<
     form: Record<string, Function>,
     controls: Record<string, AbstractControl>,
   ): void {
-    for (const [controlId, options] of this.formControls.entries()) {
+    for (const [ controlId, options ] of this.formControls.entries()) {
       const control = (controls[controlId] = new (options.controlType ??
         RxapFormControl)(
         this.coerceToControlFormState(
@@ -578,10 +578,10 @@ export class RxapFormBuilder<
     if (typeof formState === 'function') {
       formState = formState();
       if (!formState) {
-        throw new Error(`The form state function for the form group '${controlId}' returns a empty value (null/undefined)`);
+        throw new Error(`The form state function for the form group '${ controlId }' returns a empty value (null/undefined)`);
       }
       if (typeof formState !== 'object') {
-        throw new Error(`The form state function for the form group '${controlId}' returns a non object like value instead '${typeof formState}'`);
+        throw new Error(`The form state function for the form group '${ controlId }' returns a non object like value instead '${ typeof formState }'`);
       }
     }
 
@@ -617,10 +617,10 @@ export class RxapFormBuilder<
     if (typeof formState === 'function') {
       formState = formState();
       if (!formState) {
-        throw new Error(`The form state function for the form array '${controlId}' returns a empty value (null/undefined)`);
+        throw new Error(`The form state function for the form array '${ controlId }' returns a empty value (null/undefined)`);
       }
       if (!Array.isArray(formState)) {
-        throw new Error(`The form state function for the form array '${controlId}' returns a non array like value instead '${typeof formState}'`);
+        throw new Error(`The form state function for the form array '${ controlId }' returns a non array like value instead '${ typeof formState }'`);
       }
     }
 

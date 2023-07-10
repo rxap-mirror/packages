@@ -29,12 +29,16 @@ export interface CoerceComponentClassRuleOptions extends TsMorphAngularProjectTr
 }
 
 export function CoerceComponentClassRule(options: Readonly<CoerceComponentClassRuleOptions>) {
-  let {componentName, selector, tsMorphTransform} = options;
+  let {
+    componentName,
+    selector,
+    tsMorphTransform,
+  } = options;
   tsMorphTransform ??= () => undefined;
 
   return TsMorphAngularProjectTransform(options, (project: Project) => {
 
-    const sourceFile = CoerceSourceFile(project, `/${componentName}.component.ts`);
+    const sourceFile = CoerceSourceFile(project, `/${ componentName }.component.ts`);
     const classDeclaration = CoerceClass(
       sourceFile,
       classify(componentName) + 'Component', {
@@ -42,18 +46,20 @@ export function CoerceComponentClassRule(options: Readonly<CoerceComponentClassR
       },
     );
     const componentDecoratorDeclaration = CoerceDecorator(classDeclaration, 'Component', {
-      arguments: [Writers.object({
-        selector: selector ?? componentName,
-        template: '',
-        styles: '[]',
-      })],
+      arguments: [
+        Writers.object({
+          selector: selector ?? componentName,
+          template: '',
+          styles: '[]',
+        }),
+      ],
     });
     const componentDecoratorObject = componentDecoratorDeclaration.getArguments()[0];
     if (!componentDecoratorObject) {
-      throw new SchematicsException(`Could not find component decorator object for component '${componentName}'`);
+      throw new SchematicsException(`Could not find component decorator object for component '${ componentName }'`);
     }
     if (!(componentDecoratorObject instanceof ObjectLiteralExpression)) {
-      throw new SchematicsException(`Component decorator object for component '${componentName}' is not an object literal expression`);
+      throw new SchematicsException(`Component decorator object for component '${ componentName }' is not an object literal expression`);
     }
     // const providerArrayDeclaration = CoercePropertyDeclaration(componentDecoratorObject, 'providers', {
     throw new Error('Not implemented yet');

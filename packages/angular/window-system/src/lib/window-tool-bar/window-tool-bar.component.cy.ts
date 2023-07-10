@@ -5,7 +5,8 @@ describe(WindowToolBarComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(WindowToolBarComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

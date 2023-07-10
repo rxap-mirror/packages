@@ -51,37 +51,51 @@ export function getMixables(client: Constructor<any>, mixin: Mixin<any>): Proper
 
   const propertyDescriptorMap: PropertyDescriptorMap = mixinKeys.filter(key => {
 
-      if (clientKeys.includes(key)) {
+                                                                  if (clientKeys.includes(key)) {
 
-        if (!overwriteKeys.includes(key)) {
-          // propertyKey is already defined in the client prototype
-          // and is not mark with overwrite
-          return false;
-        }
+                                                                    if (!overwriteKeys.includes(key)) {
+                                                                      // propertyKey is already defined in the client prototype
+                                                                      // and is not mark with overwrite
+                                                                      return false;
+                                                                    }
 
-        const onlySelf = !!getMetadata(OVERWRITE_METADATA_KEY, prototype, key);
+                                                                    const onlySelf = !!getMetadata(OVERWRITE_METADATA_KEY, prototype, key);
 
-        if (onlySelf) {
+                                                                    if (onlySelf) {
 
-          if (onlyOwnClientKeys.includes(key)) {
-            // if the parent client keys not contain the propertyKey the
-            // client has this property direct defined
-            return false;
-          }
+                                                                      if (onlyOwnClientKeys.includes(key)) {
+                                                                        // if the parent client keys not contain the propertyKey the
+                                                                        // client has this property direct defined
+                                                                        return false;
+                                                                      }
 
-        }
+                                                                    }
 
-      }
+                                                                  }
 
-      return true;
-    })
-    .filter(key => {
-      const descriptor = GetPropertyDescriptor(prototype, key);
-      return !!descriptor &&
-        (descriptor.set || descriptor.get || typeof descriptor.value === 'function');
-    })
-    .map(key => ({[key]: GetPropertyDescriptor(prototype, key)}))
-    .reduce((map: PropertyDescriptorMap, descriptor: any) => ({...map, ...descriptor}), {});
+                                                                  return true;
+                                                                })
+                                                                .filter(key => {
+                                                                  const descriptor = GetPropertyDescriptor(
+                                                                    prototype,
+                                                                    key,
+                                                                  );
+                                                                  return !!descriptor &&
+                                                                    (descriptor.set ||
+                                                                      descriptor.get ||
+                                                                      typeof descriptor.value ===
+                                                                      'function');
+                                                                })
+                                                                .map(key => ({
+                                                                  [key]: GetPropertyDescriptor(
+                                                                    prototype,
+                                                                    key,
+                                                                  ),
+                                                                }))
+                                                                .reduce((
+                                                                  map: PropertyDescriptorMap,
+                                                                  descriptor: any,
+                                                                ) => ({ ...map, ...descriptor }), {});
 
   return propertyDescriptorMap;
 

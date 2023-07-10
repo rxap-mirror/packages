@@ -64,7 +64,7 @@ export class SocketIoClientProvider {
       transportOptions: {
         polling: {
           extraHeaders: {
-            Authorization: `Bearer ${this.config.getOrThrow('COORDINATOR_JWT')}`,
+            Authorization: `Bearer ${ this.config.getOrThrow('COORDINATOR_JWT') }`,
           },
         },
       },

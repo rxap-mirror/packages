@@ -43,12 +43,12 @@ export class ContenteditableDirective {
   constructor(private readonly elementRef: ElementRef) {
   }
 
-  @HostListener('click', ['$event'])
+  @HostListener('click', [ '$event' ])
   public onClick($event: Event) {
     $event.stopPropagation();
   }
 
-  @HostListener('input', ['$event'])
+  @HostListener('input', [ '$event' ])
   @DebounceCall(1000)
   public async onInput($event: any) {
     const value = (($event.target as HTMLElement).textContent)?.trim();

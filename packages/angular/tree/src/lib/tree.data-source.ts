@@ -93,14 +93,14 @@ export class TreeDataSource<
   ) {
     super(metadata);
     this.tree$
-      .pipe(
-        map((tree) =>
-          tree
-            .map((child) => this.flatTree(child))
-            .reduce((acc, nodes) => [...acc, ...nodes], []),
-        ),
-      )
-      .subscribe(this._data$);
+        .pipe(
+          map((tree) =>
+            tree
+              .map((child) => this.flatTree(child))
+              .reduce((acc, nodes) => [ ...acc, ...nodes ], []),
+          ),
+        )
+        .subscribe(this._data$);
 
     // TODO add new SelectModel class that saves the select model to the localStorage
     this.initSelected();
@@ -138,7 +138,7 @@ export class TreeDataSource<
     if (Array.isArray(root)) {
       rootNodes = await Promise.all(root.map((node) => this._toNode(node)));
     } else {
-      rootNodes = [await this._toNode(root)];
+      rootNodes = [ await this._toNode(root) ];
     }
 
     this.tree$.next(rootNodes);
@@ -217,10 +217,10 @@ export class TreeDataSource<
           // möglich lösungen:
           // - das node object läde die entity mithilfe der id automatisch nach
           this.treeControl.expansionModel.select(node);
-          console.debug(`Restore expand for node '${node.id}' SUCCESSFULLY`);
+          console.debug(`Restore expand for node '${ node.id }' SUCCESSFULLY`);
         })
         .catch(() =>
-          console.debug(`Restore expand for node '${node.id}' FAILED`),
+          console.debug(`Restore expand for node '${ node.id }' FAILED`),
         );
     }
 
@@ -228,10 +228,10 @@ export class TreeDataSource<
       await node
         .select()
         .then(() =>
-          console.debug(`Restore select for node '${node.id}' SUCCESSFULLY`),
+          console.debug(`Restore select for node '${ node.id }' SUCCESSFULLY`),
         )
         .catch(() =>
-          console.debug(`Restore select for node '${node.id}' FAILED`),
+          console.debug(`Restore select for node '${ node.id }' FAILED`),
         );
     }
 
@@ -291,8 +291,8 @@ export class TreeDataSource<
 
     return (
       this.tree$.value
-        .map((node) => getNodeById(node, id))
-        .filter(Boolean)[0] || null
+          .map((node) => getNodeById(node, id))
+          .filter(Boolean)[0] || null
     );
   }
 
@@ -329,7 +329,7 @@ export class TreeDataSource<
 
   public flatTree(tree: Node<Data>): Array<Node<Data>> {
     function flat(acc: any[], list: any[]) {
-      return [...acc, ...list];
+      return [ ...acc, ...list ];
     }
 
     const flatTree = (node: Node<Data>): Array<Node<Data>> => {
@@ -346,7 +346,7 @@ export class TreeDataSource<
           ...node.children.map((child) => flatTree(child)).reduce(flat, []),
         ];
       } else {
-        return [node];
+        return [ node ];
       }
     };
 
@@ -394,8 +394,8 @@ export class TreeDataSource<
     );
 
     const selected: Array<Node<Data>> = this.selected.selected
-      .map((node) => this.getNodeById(node.id))
-      .filter(Boolean) as any;
+                                            .map((node) => this.getNodeById(node.id))
+                                            .filter(Boolean) as any;
     this.selected.clear();
     this.selected.select(...selected);
   }
@@ -433,9 +433,9 @@ export class TreeDataSource<
         }
         if (change.removed) {
           change.removed
-            .slice()
-            .reverse()
-            .forEach((node) => node.collapse());
+                .slice()
+                .reverse()
+                .forEach((node) => node.collapse());
         }
       }
     });
@@ -511,15 +511,15 @@ export class TreeDataSource<
     );
     if (this.metadata['cacheSelected']) {
       this._selectedLocalStorageSubscription = this.selected.changed
-        .pipe(
-          tap(() =>
-            localStorage.setItem(
-              key,
-              JSON.stringify(this.selected.selected.map((s) => s.id)),
-            ),
-          ),
-        )
-        .subscribe();
+                                                   .pipe(
+                                                     tap(() =>
+                                                       localStorage.setItem(
+                                                         key,
+                                                         JSON.stringify(this.selected.selected.map((s) => s.id)),
+                                                       ),
+                                                     ),
+                                                   )
+                                                   .subscribe();
     }
   }
 
@@ -542,12 +542,15 @@ export class TreeDataSource<
     );
     if (this.metadata['cacheExpanded']) {
       this._expandedLocalStorageSubscription = this.expanded.changed
-        .pipe(
-          tap(() =>
-            localStorage.setItem(key, JSON.stringify(this.expanded.selected)),
-          ),
-        )
-        .subscribe();
+                                                   .pipe(
+                                                     tap(() =>
+                                                       localStorage.setItem(
+                                                         key,
+                                                         JSON.stringify(this.expanded.selected),
+                                                       ),
+                                                     ),
+                                                   )
+                                                   .subscribe();
     }
   }
 

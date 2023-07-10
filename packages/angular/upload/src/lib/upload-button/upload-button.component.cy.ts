@@ -5,7 +5,8 @@ describe(UploadButtonComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(UploadButtonComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });
@@ -13,7 +14,10 @@ describe(UploadButtonComponent.name, () => {
   it('renders', () => {
     cy.mount(UploadButtonComponent, {
       componentProperties: {
-        accept: '**/**', disabled: false, required: false, placeholder: '',
+        accept: '**/**',
+        disabled: false,
+        required: false,
+        placeholder: '',
       },
     });
   });

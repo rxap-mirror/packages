@@ -5,7 +5,8 @@ describe(NavigationItemComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(NavigationItemComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

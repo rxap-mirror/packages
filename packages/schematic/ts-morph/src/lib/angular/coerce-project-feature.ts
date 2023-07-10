@@ -17,7 +17,7 @@ export function CoerceProjectFeature(options: CoerceProjectFeatureOptions): Rule
   } = options;
   return tree => {
     if (!HasProjectFeature(tree, options)) {
-      console.log(`The project '${project}' does not have the feature '${feature}'. The feature will new be created ...`);
+      console.log(`The project '${ project }' does not have the feature '${ feature }'. The feature will new be created ...`);
       return schematic(
         'lazy-feature-module',
         {

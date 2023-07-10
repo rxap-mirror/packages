@@ -40,12 +40,12 @@ export class LoginForm implements FormType<ILoginForm>, RxapOnInit {
   public loginFailed = false;
 
   @UseFormControl({
-    validators: [Validators.required, Validators.email],
+    validators: [ Validators.required, Validators.email ],
   })
   public email!: RxapFormControl<string>;
 
   @UseFormControl({
-    validators: [Validators.required],
+    validators: [ Validators.required ],
   })
   public password!: RxapFormControl;
 
@@ -97,7 +97,7 @@ export class LoginFormSubmitSuccessful
   }
 
   public call(): Promise<any> {
-    return this.router.navigate(['/']);
+    return this.router.navigate([ '/' ]);
   }
 }
 
@@ -107,12 +107,12 @@ export const LoginFormProviders: Provider[] = [
     provide: RXAP_FORM_DEFINITION_BUILDER,
     useFactory: (injector: Injector) =>
       new RxapFormBuilder<ILoginForm>(LoginForm, injector),
-    deps: [INJECTOR],
+    deps: [ INJECTOR ],
   },
   {
     provide: RXAP_FORM_DEFINITION,
     useFactory: (builder: RxapFormBuilder) => builder.build(),
-    deps: [RXAP_FORM_DEFINITION_BUILDER],
+    deps: [ RXAP_FORM_DEFINITION_BUILDER ],
   },
   {
     provide: RXAP_FORM_SUBMIT_METHOD,

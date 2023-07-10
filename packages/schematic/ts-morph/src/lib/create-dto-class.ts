@@ -34,31 +34,59 @@ export function CreateDtoClass(
   classStructure.isExported = true;
   for (const property of propertyList) {
     const decorators: Array<OptionalKind<DecoratorStructure>> = [
-      {name: 'Expose', arguments: []},
+      {
+        name: 'Expose',
+        arguments: [],
+      },
     ];
-    CoerceImports(sourceFile, {namedImports: ['Expose'], moduleSpecifier: 'class-transformer'});
+    CoerceImports(
+      sourceFile,
+      {
+        namedImports: [ 'Expose' ],
+        moduleSpecifier: 'class-transformer',
+      },
+    );
     if (property.isArray) {
-      decorators.push({name: 'IsArray', arguments: []});
-      CoerceImports(sourceFile, {namedImports: ['IsArray'], moduleSpecifier: 'class-validator'});
+      decorators.push({
+        name: 'IsArray',
+        arguments: [],
+      });
+      CoerceImports(
+        sourceFile,
+        {
+          namedImports: [ 'IsArray' ],
+          moduleSpecifier: 'class-validator',
+        },
+      );
     }
     if (property.isType) {
       decorators.push({
-        name: 'Type', arguments: [w => {
-          w.write('() => ');
-          if (typeof property.type === 'string') {
-            if (property.type === 'date') {
-              w.write('Date');
+        name: 'Type',
+        arguments: [
+          w => {
+            w.write('() => ');
+            if (typeof property.type === 'string') {
+              if (property.type === 'date') {
+                w.write('Date');
+              } else {
+                w.write(property.type);
+              }
             } else {
-              w.write(property.type);
+              property.type(w);
             }
-          } else {
-            property.type(w);
-          }
-        }],
+          },
+        ],
       });
-      CoerceImports(sourceFile, {namedImports: ['Type'], moduleSpecifier: 'class-transformer'});
+      CoerceImports(
+        sourceFile,
+        {
+          namedImports: [ 'Type' ],
+          moduleSpecifier: 'class-transformer',
+        },
+      );
       decorators.push({
-        name: 'IsInstance', arguments: [
+        name: 'IsInstance',
+        arguments: [
           w => {
             if (typeof property.type === 'string') {
               if (property.type === 'date') {
@@ -72,33 +100,84 @@ export function CreateDtoClass(
           },
           w => {
             if (property.isArray) {
-              Writers.object({each: 'true'})(w);
+              Writers.object({ each: 'true' })(w);
             }
           },
         ],
       });
-      CoerceImports(sourceFile, {namedImports: ['IsInstance'], moduleSpecifier: 'class-validator'});
+      CoerceImports(
+        sourceFile,
+        {
+          namedImports: [ 'IsInstance' ],
+          moduleSpecifier: 'class-validator',
+        },
+      );
     }
     if (property.isOptional) {
-      decorators.push({name: 'IsOptional', arguments: []});
-      CoerceImports(sourceFile, {namedImports: ['IsOptional'], moduleSpecifier: 'class-validator'});
+      decorators.push({
+        name: 'IsOptional',
+        arguments: [],
+      });
+      CoerceImports(
+        sourceFile,
+        {
+          namedImports: [ 'IsOptional' ],
+          moduleSpecifier: 'class-validator',
+        },
+      );
     }
     if (property.type === 'string') {
       if (property.name === 'uuid') {
-        CoerceImports(sourceFile, {namedImports: ['IsUUID'], moduleSpecifier: 'class-validator'});
-        decorators.push({name: 'IsUUID', arguments: []});
+        CoerceImports(
+          sourceFile,
+          {
+            namedImports: [ 'IsUUID' ],
+            moduleSpecifier: 'class-validator',
+          },
+        );
+        decorators.push({
+          name: 'IsUUID',
+          arguments: [],
+        });
       } else {
-        CoerceImports(sourceFile, {namedImports: ['IsString'], moduleSpecifier: 'class-validator'});
-        decorators.push({name: 'IsString', arguments: []});
+        CoerceImports(
+          sourceFile,
+          {
+            namedImports: [ 'IsString' ],
+            moduleSpecifier: 'class-validator',
+          },
+        );
+        decorators.push({
+          name: 'IsString',
+          arguments: [],
+        });
       }
     }
     if (property.type === 'boolean') {
-      CoerceImports(sourceFile, {namedImports: ['IsBoolean'], moduleSpecifier: 'class-validator'});
-      decorators.push({name: 'IsBoolean', arguments: []});
+      CoerceImports(
+        sourceFile,
+        {
+          namedImports: [ 'IsBoolean' ],
+          moduleSpecifier: 'class-validator',
+        },
+      );
+      decorators.push({
+        name: 'IsBoolean',
+        arguments: [],
+      });
     }
     if (property.type === 'number') {
-      CoerceImports(sourceFile, {namedImports: ['IsBoolean'], moduleSpecifier: 'class-validator'});
-      decorators.push({name: 'IsBoolean', arguments: []});
+      CoerceImports(
+        sourceFile,
+        {
+          namedImports: [ 'IsBoolean' ],
+          moduleSpecifier: 'class-validator',
+        },
+      );
+      decorators.push({
+        name: 'IsBoolean',
+        arguments: [],
+      });
     }
     classStructure.properties.push({
       name: property.name,
@@ -157,7 +236,7 @@ export function CreatePageDtoClass(
   };
   structures ??= [];
   structures.push({
-    namedImports: ['PageDto'],
+    namedImports: [ 'PageDto' ],
     moduleSpecifier: '@eurogard/service-nest-utilities',
   });
 

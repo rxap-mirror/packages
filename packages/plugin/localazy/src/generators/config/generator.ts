@@ -27,10 +27,10 @@ export async function configGenerator(tree: Tree, options: ConfigGeneratorSchema
   const projectConfiguration = readProjectConfiguration(tree, options.project);
 
   projectConfiguration.targets ??= {};
-  projectConfiguration.targets["localazy-download"] ??= {
-    executor: "@rxap/plugin-localazy:download",
+  projectConfiguration.targets['localazy-download'] ??= {
+    executor: '@rxap/plugin-localazy:download',
   };
-  if (!projectConfiguration.targets["localazy-upload"]) {
+  if (!projectConfiguration.targets['localazy-upload']) {
 
     const buildOptions: UploadExecutorSchema = {};
 
@@ -38,16 +38,17 @@ export async function configGenerator(tree: Tree, options: ConfigGeneratorSchema
       buildOptions.extractTarget = options.extractTarget;
     }
 
-    projectConfiguration.targets["localazy-upload"] = {
-      executor: "@rxap/plugin-localazy:upload", options: buildOptions,
+    projectConfiguration.targets['localazy-upload'] = {
+      executor: '@rxap/plugin-localazy:upload',
+      options: buildOptions,
     };
 
   }
 
-  if (projectConfiguration.targets["extract-i18n"]) {
-    projectConfiguration.targets["extract-i18n"].options ??= {};
-    projectConfiguration.targets["extract-i18n"].options.format = "xliff2";
-    projectConfiguration.targets["extract-i18n"].options.options.outputPath = join(projectSourceRoot, "i18n");
+  if (projectConfiguration.targets['extract-i18n']) {
+    projectConfiguration.targets['extract-i18n'].options ??= {};
+    projectConfiguration.targets['extract-i18n'].options.format = 'xliff2';
+    projectConfiguration.targets['extract-i18n'].options.options.outputPath = join(projectSourceRoot, 'i18n');
   }
 
   updateProjectConfiguration(tree, options.project, projectConfiguration);
@@ -55,13 +56,13 @@ export async function configGenerator(tree: Tree, options: ConfigGeneratorSchema
   const nxJson = readNxJson(tree);
 
   nxJson.targetDefaults ??= {};
-  nxJson.targetDefaults["localazy-upload"] ??= {
-    dependsOn: [ "extract-i18n" ],
+  nxJson.targetDefaults['localazy-upload'] ??= {
+    dependsOn: [ 'extract-i18n' ],
   };
 
   updateNxJson(tree, nxJson);
 
-  CoerceIgnorePattern(tree, join(projectSourceRoot, ".gitignore"), [ "/i18n" ]);
+  CoerceIgnorePattern(tree, join(projectSourceRoot, '.gitignore'), [ '/i18n' ]);
 
 }
 

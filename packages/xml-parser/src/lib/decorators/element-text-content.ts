@@ -60,7 +60,10 @@ export class ElementTextContentParser<T extends ParsedElement, Value> {
 
     if (value === undefined || value === null || value === '') {
       if (this.required && this.defaultValue === undefined) {
-        throw new RxapXmlParserValidateRequiredError(`Element <${parsedElement.__tag}> text content is required!`, parsedElement.__tag!);
+        throw new RxapXmlParserValidateRequiredError(
+          `Element <${ parsedElement.__tag }> text content is required!`,
+          parsedElement.__tag!,
+        );
       } else if (this.defaultValue !== undefined) {
         value = this.defaultValue;
       }
@@ -77,7 +80,10 @@ export class ElementTextContentParser<T extends ParsedElement, Value> {
 
 export function ElementTextContent<Value>(options: ElementTextContentOptions<Value> = {}) {
   return function (target: any, propertyKey: string) {
-    options = deepMerge<ElementTextContentOptions<Value>>(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {});
+    options = deepMerge<ElementTextContentOptions<Value>>(
+      options,
+      getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {},
+    );
     const parser = new ElementTextContentParser(propertyKey, options);
     AddParserToMetadata(parser, target);
     if (options.required) {

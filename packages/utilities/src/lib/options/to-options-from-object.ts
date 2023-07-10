@@ -7,5 +7,8 @@ export function ToOptionsFromObject<Value, Property>(
 ): ControlOptions<Value> {
   return Object
     .entries(source)
-    .map(([key, value]: [string, Property]) => ({value: toValue(key), display: toDisplay(value)}));
+    .map(([ key, value ]: [ string, Property ]) => ({
+      value: toValue(key),
+      display: toDisplay(value),
+    }));
 }

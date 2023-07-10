@@ -15,7 +15,7 @@ export function GetRequestBodyType(operation: GenerateParameter<any>): string {
     if (requestBody === null) {
       requestBodyType = 'void';
     } else if (!IsAnySchemaObject(requestBody)) {
-      requestBodyType = classify([operation.operationId, REQUEST_BODY_FILE_SUFFIX].join('-'));
+      requestBodyType = classify([ operation.operationId, REQUEST_BODY_FILE_SUFFIX ].join('-'));
     } else {
       requestBodyType = 'any';
     }

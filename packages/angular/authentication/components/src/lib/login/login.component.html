@@ -1,4 +1,5 @@
-<form #form="rxapForm" [@fadeAnimation]="'in'" class="inner mat-elevation-z5" fxLayout="column" fxLayoutAlign="center center"
+<form #form="rxapForm" [@fadeAnimation]="'in'" class="inner mat-elevation-z5" fxLayout="column"
+      fxLayoutAlign="center center"
       fxLayoutGap="32px" novalidate
       rxapForm>
 
@@ -42,11 +43,13 @@
         <mat-error *rxapFormControlError="let error from 'password'; if: 'required'">
           Password is <strong>required</strong>
         </mat-error>
-        <button (click)="passwordInput.type = 'test'" *ngIf="passwordInput.type === 'password'" mat-icon-button matSuffix tabIndex="-1"
+        <button (click)="passwordInput.type = 'test'" *ngIf="passwordInput.type === 'password'" mat-icon-button
+                matSuffix tabIndex="-1"
                 type="button">
           <mat-icon>visibility</mat-icon>
         </button>
-        <button (click)="passwordInput.type = 'password'" *ngIf="passwordInput.type === 'text'" mat-icon-button matSuffix tabIndex="-1"
+        <button (click)="passwordInput.type = 'password'" *ngIf="passwordInput.type === 'text'" mat-icon-button
+                matSuffix tabIndex="-1"
                 type="button">
           <mat-icon>visibility_off</mat-icon>
         </button>

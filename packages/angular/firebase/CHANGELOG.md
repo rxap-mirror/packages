@@ -7,8 +7,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@15.0.0...@rxap/firebase@16.0.0-dev.0) (2023-05-18)
 
@@ -42,22 +41,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* **auth:** sign out if 401 response and reload
-  application ([16d16c0](https://gitlab.com/rxap/packages/commit/16d16c087ec15cea9d57013c1d7db8fc2de7debf))
+* **auth:** sign out if 401 response and reloadapplication ([16d16c0](https://gitlab.com/rxap/packages/commit/16d16c087ec15cea9d57013c1d7db8fc2de7debf))
 
 # [14.1.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@14.0.2...@rxap/firebase@14.1.0) (2022-10-10)
 
 ### Features
 
-* migrate to firebase
-  modular ([afa93b9](https://gitlab.com/rxap/packages/commit/afa93b9351d1b9c44342f6f53519ac9c9ad89f86))
+* migrate to firebasemodular ([afa93b9](https://gitlab.com/rxap/packages/commit/afa93b9351d1b9c44342f6f53519ac9c9ad89f86))
 
 ## [14.0.2](https://gitlab.com/rxap/packages/compare/@rxap/firebase@14.0.1...@rxap/firebase@14.0.2) (2022-10-07)
 
 ### Bug Fixes
 
-* replace package.json with
-  ng-package.json ([ebaaf92](https://gitlab.com/rxap/packages/commit/ebaaf92a403fd31a4aa538f698fda1e004c037bd))
+* replace package.json withng-package.json ([ebaaf92](https://gitlab.com/rxap/packages/commit/ebaaf92a403fd31a4aa538f698fda1e004c037bd))
 
 ## [14.0.1](https://gitlab.com/rxap/packages/compare/@rxap/firebase@13.0.0...@rxap/firebase@14.0.1) (2022-09-17)
 
@@ -75,8 +71,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -88,22 +83,19 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **app-check:** support http interceptors for firebase app check
-  token ([9df1b9e](https://gitlab.com/rxap/packages/commit/9df1b9e93f506c356eed8306994081bdf7195553))
+* **app-check:** support http interceptors for firebase app checktoken ([9df1b9e](https://gitlab.com/rxap/packages/commit/9df1b9e93f506c356eed8306994081bdf7195553))
 
 ## [12.3.1](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.3.0...@rxap/firebase@12.3.1) (2021-11-26)
 
 ### Bug Fixes
 
-* only throw if the id token is not
-  defined ([bac9c9f](https://gitlab.com/rxap/packages/commit/bac9c9fc7603d3ab6fc050ebbac3b6947183de41))
+* only throw if the id token is notdefined ([bac9c9f](https://gitlab.com/rxap/packages/commit/bac9c9fc7603d3ab6fc050ebbac3b6947183de41))
 
 # [12.3.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.2.0...@rxap/firebase@12.3.0) (2021-11-26)
 
 ### Features
 
-* add
-  IdentityPlatformHttpInterceptor ([0b07368](https://gitlab.com/rxap/packages/commit/0b07368b8a651fc96e3e5de38216e8eee0f85853))
+* addIdentityPlatformHttpInterceptor ([0b07368](https://gitlab.com/rxap/packages/commit/0b07368b8a651fc96e3e5de38216e8eee0f85853))
 
 # [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.2.0-next.0...@rxap/firebase@12.2.0) (2021-08-02)
 
@@ -113,13 +105,11 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** add missing initial app module
-  provider ([e38b2cb](https://gitlab.com/rxap/packages/commit/e38b2cbc44ccf1b74499304b46e177c9e00459a9))
+* **schematics:** add missing initial app moduleprovider ([e38b2cb](https://gitlab.com/rxap/packages/commit/e38b2cbc44ccf1b74499304b46e177c9e00459a9))
 
 ### Features
 
-* **schematics:** add init
-  schematic ([4e8a4bb](https://gitlab.com/rxap/packages/commit/4e8a4bbd2e4862f327720e4b0096df8573ca4ff2))
+* **schematics:** add initschematic ([4e8a4bb](https://gitlab.com/rxap/packages/commit/4e8a4bbd2e4862f327720e4b0096df8573ca4ff2))
 
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.6...@rxap/firebase@12.1.0) (2021-07-22)
 
@@ -129,8 +119,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* update to new auth service
-  concept ([991c84d](https://gitlab.com/rxap/packages/commit/991c84d45a3838aef8c94da7c3de0a8784d02817))
+* update to new auth serviceconcept ([991c84d](https://gitlab.com/rxap/packages/commit/991c84d45a3838aef8c94da7c3de0a8784d02817))
 
 # [12.1.0-alpha.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.5...@rxap/firebase@12.1.0-alpha.0) (2021-07-20)
 
@@ -140,8 +129,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* add missing site key
-  provider ([18c9a7e](https://gitlab.com/rxap/packages/commit/18c9a7e51ca456a5f36928f1702df0badc778950))
+* add missing site keyprovider ([18c9a7e](https://gitlab.com/rxap/packages/commit/18c9a7e51ca456a5f36928f1702df0badc778950))
 
 # [12.1.0-next.4](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.1.0-next.3...@rxap/firebase@12.1.0-next.4) (2021-07-20)
 
@@ -166,15 +154,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* only import requires
-  modules ([ee9da45](https://gitlab.com/rxap/packages/commit/ee9da45df161c0eca528d809e265eb15736c24fd))
+* only import requiresmodules ([ee9da45](https://gitlab.com/rxap/packages/commit/ee9da45df161c0eca528d809e265eb15736c24fd))
 
 # [12.1.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.0.7...@rxap/firebase@12.1.0-next.0) (2021-07-20)
 
 ### Features
 
-* add appCheck and storage
-  support ([9b32d14](https://gitlab.com/rxap/packages/commit/9b32d148e3d0882323c06d724c6f65a0a36591ae))
+* add appCheck and storagesupport ([9b32d14](https://gitlab.com/rxap/packages/commit/9b32d148e3d0882323c06d724c6f65a0a36591ae))
 
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/firebase@12.0.6...@rxap/firebase@12.0.7) (2021-06-24)
 
@@ -218,28 +204,23 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 ## [11.0.8](https://gitlab.com/rxap/packages/compare/@rxap/firebase@11.0.7...@rxap/firebase@11.0.8) (2021-04-29)
 
 ### Bug Fixes
 
-* **fcm:** only request the token if the permission is
-  checked ([5337502](https://gitlab.com/rxap/packages/commit/53375020d33538bb5ed721d768f2e9380271c03e))
+* **fcm:** only request the token if the permission ischecked ([5337502](https://gitlab.com/rxap/packages/commit/53375020d33538bb5ed721d768f2e9380271c03e))
 
 ## [11.0.7](https://gitlab.com/rxap/packages/compare/@rxap/firebase@11.0.6...@rxap/firebase@11.0.7) (2021-04-27)
 
 ### Bug Fixes
 
-* add support for vapid key and message service
-  worker ([aadda70](https://gitlab.com/rxap/packages/commit/aadda70370ba7bc33247ce9efd0073eecc54d6e2))
+* add support for vapid key and message serviceworker ([aadda70](https://gitlab.com/rxap/packages/commit/aadda70370ba7bc33247ce9efd0073eecc54d6e2))
 * update to firebase
   ^8.4.2 ([5649bdd](https://gitlab.com/rxap/packages/commit/5649bddb4522c2e94be9e1012d24202a15317b80))
-* use default firebase
-  import ([e1b3906](https://gitlab.com/rxap/packages/commit/e1b390614fb5a14b6dbf1f7d24b257d670193911))
+* use default firebaseimport ([e1b3906](https://gitlab.com/rxap/packages/commit/e1b390614fb5a14b6dbf1f7d24b257d670193911))
 
 ## [11.0.6](https://gitlab.com/rxap/packages/compare/@rxap/firebase@11.0.5...@rxap/firebase@11.0.6) (2021-03-19)
 
@@ -280,7 +261,6 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
 * replace all rxjs operators first() with take(
-  1) ([e2ae457](https://gitlab.com/rxap/packages/commit/e2ae45771c8b01f30fc1a00f962e067d610296b7))
+    1) ([e2ae457](https://gitlab.com/rxap/packages/commit/e2ae45771c8b01f30fc1a00f962e067d610296b7))

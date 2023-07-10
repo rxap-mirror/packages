@@ -70,7 +70,7 @@ export class WindowService {
 
   public get<D>(id: string): WindowRef<D> {
     if (!this.has(id)) {
-      throw new Error(`Active Window with id '${id}' not found`);
+      throw new Error(`Active Window with id '${ id }' not found`);
     }
     // tslint:disable-next-line:no-non-null-assertion
     return this.active.get(id)!;
@@ -194,10 +194,10 @@ export class WindowService {
     const startPos = GetWindowStartPos();
 
     const positionStrategy = this.overlay
-      .position()
-      .global()
-      .top(startPos.top)
-      .left(startPos.left);
+                                 .position()
+                                 .global()
+                                 .top(startPos.top)
+                                 .left(startPos.left);
 
     const overlayConfig = new OverlayConfig({
       hasBackdrop: false,

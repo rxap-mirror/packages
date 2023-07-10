@@ -27,7 +27,7 @@ export class ChipInputAdapterDirective implements OnDestroy, OnInit {
     private readonly matChipInput: MatChipInput,
     private readonly ngControl: NgControl,
   ) {
-    this.matChipInput.separatorKeyCodes = [ENTER, COMMA] as const;
+    this.matChipInput.separatorKeyCodes = [ ENTER, COMMA ] as const;
     this.matChipInput.addOnBlur = true;
   }
 
@@ -37,17 +37,17 @@ export class ChipInputAdapterDirective implements OnDestroy, OnInit {
 
   public ngOnInit() {
     this._subscription = this.matChipInput.chipEnd
-      .pipe(
-        filter((add) => !!add.value?.trim()),
-        tap((add) => {
-          const value = this.ngControl.value ?? [];
-          this.ngControl.control?.setValue(
-            [...value, add.value].filter(unique()),
-          );
-          this.matChipInput.clear();
-        }),
-      )
-      .subscribe();
+                             .pipe(
+                               filter((add) => !!add.value?.trim()),
+                               tap((add) => {
+                                 const value = this.ngControl.value ?? [];
+                                 this.ngControl.control?.setValue(
+                                   [ ...value, add.value ].filter(unique()),
+                                 );
+                                 this.matChipInput.clear();
+                               }),
+                             )
+                             .subscribe();
   }
 }
 

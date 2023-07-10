@@ -57,11 +57,19 @@ export abstract class BaseRemoteMethod<ReturnType = any,
   ) {
     super(metaData);
     if (injector === undefined) {
-      throw new RxapRemoteMethodError('Injector is undefined. Ensure that the Injector is added to the deps property!', '', this.constructor.name);
+      throw new RxapRemoteMethodError(
+        'Injector is undefined. Ensure that the Injector is added to the deps property!',
+        '',
+        this.constructor.name,
+      );
     }
     this.injector = injector ?? Injector.NULL;
     if (typeof this.injector.get !== 'function') {
-      throw new RxapRemoteMethodError('The property injector is not Injector like. Check the deps property!', '', this.constructor.name);
+      throw new RxapRemoteMethodError(
+        'The property injector is not Injector like. Check the deps property!',
+        '',
+        this.constructor.name,
+      );
     }
   }
 

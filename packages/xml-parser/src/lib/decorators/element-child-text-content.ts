@@ -37,7 +37,7 @@ export function AssertElementChildTextContentOptions(options: any): asserts opti
 
 export interface ElementChildTextContentParser<T extends ParsedElement, Value>
   extends TextContentElementParserMixin<Value>,
-    TagElementParserMixin {
+          TagElementParserMixin {
 }
 
 @Mixin(TextContentElementParserMixin, TagElementParserMixin)
@@ -69,7 +69,10 @@ export class ElementChildTextContentParser<T extends ParsedElement, Value>
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       if (parsedElement[this.propertyKey] === undefined) {
-        throw new RxapXmlParserValidateRequiredError(`Element <${element.name}> child <${this.tag}> text content is required!`, parsedElement.__tag!);
+        throw new RxapXmlParserValidateRequiredError(
+          `Element <${ element.name }> child <${ this.tag }> text content is required!`,
+          parsedElement.__tag!,
+        );
       }
     }
 
@@ -81,8 +84,8 @@ export class ElementChildTextContentParser<T extends ParsedElement, Value>
 export function ElementChildTextContent<Value>(optionsOrString?: Partial<ElementChildTextContentOptions<Value>> | string) {
   return function (target: any, propertyKey: string) {
     let options = optionsOrString === undefined ?
-      {tag: dasherize(propertyKey)} :
-      typeof optionsOrString === 'string' ? {tag: optionsOrString} : optionsOrString;
+      { tag: dasherize(propertyKey) } :
+      typeof optionsOrString === 'string' ? { tag: optionsOrString } : optionsOrString;
     options = deepMerge(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {});
     if (!options.tag) {
       options.tag = dasherize(propertyKey);

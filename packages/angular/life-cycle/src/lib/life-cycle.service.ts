@@ -38,12 +38,13 @@ export class LifeCycleService {
       tap(() => console.log('app is ready')),
     ).toPromise());
 
-    Promise.all(Array.from(LifeCycleService.hooks.values()).map(hook => hook.promise)).then(() => this.isReady$.next(true));
+    Promise.all(Array.from(LifeCycleService.hooks.values()).map(hook => hook.promise))
+           .then(() => this.isReady$.next(true));
 
   }
 
   public static AddHook(name: string, promise: PromiseLike<any>): void {
-    LifeCycleService.hooks.set(name, {promise});
+    LifeCycleService.hooks.set(name, { promise });
   }
 
   public whenReady<T>(thenOrFunction: Observable<T> | PromiseLike<T> | (() => Observable<T>) | (() => PromiseLike<T>) | (() => T)): Observable<T> {

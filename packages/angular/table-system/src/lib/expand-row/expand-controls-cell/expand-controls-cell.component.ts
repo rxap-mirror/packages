@@ -17,10 +17,10 @@ import { MatButtonModule } from '@angular/material/button';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'td[rxap-expand-controls-cell]',
   templateUrl: './expand-controls-cell.component.html',
-  styleUrls: ['./expand-controls-cell.component.scss'],
+  styleUrls: [ './expand-controls-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MatButtonModule, NgIf, MatIconModule, AsyncPipe],
+  imports: [ MatButtonModule, NgIf, MatIconModule, AsyncPipe ],
 })
 export class ExpandControlsCellComponent<Data extends Record<string, any>> {
 

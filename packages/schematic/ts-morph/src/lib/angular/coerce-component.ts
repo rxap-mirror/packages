@@ -26,7 +26,15 @@ export interface CoerceComponentOptions {
 }
 
 export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): Rule {
-  let {template, project, feature, directory, name, flat, overwrite} = options;
+  let {
+    template,
+    project,
+    feature,
+    directory,
+    name,
+    flat,
+    overwrite,
+  } = options;
   overwrite ??= false;
   directory ??= '';
   flat ??= directory.endsWith(name);
@@ -37,7 +45,7 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
     const rules: Rule[] = [];
 
     if (!HasComponent(tree, options)) {
-      rules.push(() => console.log(`Project '${project}' does not have a component '${name}' in the feature '${feature}' in the directory '${directory}', New component will be created.`));
+      rules.push(() => console.log(`Project '${ project }' does not have a component '${ name }' in the feature '${ feature }' in the directory '${ directory }', New component will be created.`));
       rules.push(externalSchematic('@rxap/schematics', 'component-module', {
         project,
         name,
@@ -52,7 +60,7 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
     if (template && (overwrite || !HasComponent(tree, options))) {
       template.url ??= './files/component';
       rules.push(
-        () => console.log(`Template '${template!.url}' will be used to modify the component.`),
+        () => console.log(`Template '${ template!.url }' will be used to modify the component.`),
         mergeWith(apply(url(template.url), [
           applyTemplates({
             ...strings,

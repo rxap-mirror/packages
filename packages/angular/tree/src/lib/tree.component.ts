@@ -104,7 +104,7 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   public multiple = false;
   @Input()
   public hasDetails?: NodeHasDetailsFunction<any>;
-  @ContentChild(TreeContentDirective, {static: true})
+  @ContentChild(TreeContentDirective, { static: true })
   public content?: TreeContentDirective;
   @Input()
   public hideLeafIcon = false;
@@ -115,7 +115,7 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   @Input()
   public dividerOffset = '256px';
   public portal: TemplatePortal | null = null;
-  @ViewChild('treeContainer', {static: true})
+  @ViewChild('treeContainer', { static: true })
   public treeContainer!: ElementRef;
   /**
    * Indicates that the divider is moved with mouse down
@@ -149,7 +149,7 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   }
 
   public get cacheId() {
-    return ['rxap', 'tree', this.id].join('/');
+    return [ 'rxap', 'tree', this.id ].join('/');
   }
 
   public getLevel = (node: Node<Data>) => node.depth;
@@ -182,12 +182,12 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
 
   public ngAfterContentInit(): void {
     this.dataSource.selected.changed
-      .pipe(
-        map(($event) => $event.source.selected),
-        startWith(this.dataSource.selected.selected),
-        tap((selected) => selected.forEach((node) => this.openDetails(node))),
-      )
-      .subscribe();
+        .pipe(
+          map(($event) => $event.source.selected),
+          startWith(this.dataSource.selected.selected),
+          tap((selected) => selected.forEach((node) => this.openDetails(node))),
+        )
+        .subscribe();
   }
 
   @DebounceCall(100)
@@ -220,7 +220,7 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
     this._moveDivider = false;
   }
 
-  @HostListener('mousemove', ['$event'])
+  @HostListener('mousemove', [ '$event' ])
   onMousemove($event: MouseEvent) {
     if (this._moveDivider) {
       if (!this._treeContainerWidth) {

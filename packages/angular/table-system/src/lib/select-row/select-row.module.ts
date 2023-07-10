@@ -10,7 +10,7 @@ import { AllRowsSelectedDirective } from './all-rows-selected.directive';
   exports: [
     AllRowsSelectedDirective,
   ],
-  providers: [SelectRowService],
+  providers: [ SelectRowService ],
 })
 export class SelectRowModule {
 }

@@ -59,21 +59,21 @@ export class TableColumnMenuComponent implements AfterContentInit {
       );
     }
     this.displayColumns = this.columns
-      .filter((option) => option.active)
-      .map((option) => option.name);
+                              .filter((option) => option.active)
+                              .map((option) => option.name);
   }
 
   public activate(columnName: string) {
     this.columns
-      ?.filter((option) => option.name === columnName)
-      .forEach((column) => column.activate());
+        ?.filter((option) => option.name === columnName)
+        .forEach((column) => column.activate());
     this.updateDisplayColumns();
   }
 
   public deactivate(columnName: string) {
     this.columns
-      ?.filter((option) => option.name === columnName)
-      .forEach((column) => column.deactivate());
+        ?.filter((option) => option.name === columnName)
+        .forEach((column) => column.deactivate());
     this.updateDisplayColumns();
   }
 }

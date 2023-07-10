@@ -14,7 +14,7 @@ export function CoerceClassMethod(
 
   if (!methodDeclaration) {
 
-    methodDeclaration = classDeclaration.addMethod({name});
+    methodDeclaration = classDeclaration.addMethod({ name });
 
     methodDeclaration.set(structure);
 

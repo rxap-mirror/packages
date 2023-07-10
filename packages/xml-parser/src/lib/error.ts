@@ -36,7 +36,11 @@ export class RxapXmlParserValidateError extends RxapXmlParserError {
 
 export class RxapXmlParserValidateRequiredError extends RxapXmlParserValidateError {
 
-  constructor(message: string, public override readonly elementTag: string, public override readonly attribute?: string) {
+  constructor(
+    message: string,
+    public override readonly elementTag: string,
+    public override readonly attribute?: string,
+  ) {
     super(message, '0000');
 
     if ((Error as any)['captureStackTrace']) {

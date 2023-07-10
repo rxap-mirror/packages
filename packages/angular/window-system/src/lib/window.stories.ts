@@ -42,11 +42,11 @@ class WindowSystemPlaygroundComponent {
 }
 
 @NgModule({
-  declarations: [WindowSystemPlaygroundComponent],
+  declarations: [ WindowSystemPlaygroundComponent ],
   imports: [
     RxapWindowSystemModule,
   ],
-  exports: [WindowSystemPlaygroundComponent],
+  exports: [ WindowSystemPlaygroundComponent ],
 })
 class WindowSystemPlaygroundModule {
 }

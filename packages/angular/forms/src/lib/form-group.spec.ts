@@ -21,16 +21,19 @@ describe('FormGroup', () => {
 
     control = new RxapFormGroup<Person>(
       {
-        name: new RxapFormControl(null, {controlId: 'name'}),
+        name: new RxapFormControl(null, { controlId: 'name' }),
         phone: new RxapFormGroup(
           {
-            num: new RxapFormControl(null, {controlId: 'num'}),
-            prefix: new RxapFormControl(null, {controlId: 'prefix'}),
+            num: new RxapFormControl(null, { controlId: 'num' }),
+            prefix: new RxapFormControl(null, { controlId: 'prefix' }),
           },
-          {controlId: 'phone'},
+          { controlId: 'phone' },
         ),
       },
-      {validators: () => ({isInvalid: true}), controlId: 'person'},
+      {
+        validators: () => ({ isInvalid: true }),
+        controlId: 'person',
+      },
     );
 
   });
@@ -38,11 +41,25 @@ describe('FormGroup', () => {
   it('should valueChanges$', () => {
     const spy = jest.fn();
     control.value$.subscribe(spy);
-    expect(spy).toHaveBeenCalledWith({name: null, phone: {num: null, prefix: null}});
+    expect(spy)
+      .toHaveBeenCalledWith({
+        name: null,
+        phone: {
+          num: null,
+          prefix: null,
+        },
+      });
     control.patchValue({
       name: 'changed',
     });
-    expect(spy).toHaveBeenCalledWith({name: 'changed', phone: {num: null, prefix: null}});
+    expect(spy)
+      .toHaveBeenCalledWith({
+        name: 'changed',
+        phone: {
+          num: null,
+          prefix: null,
+        },
+      });
   });
 
   it('should disabledChanges$', () => {
@@ -221,8 +238,8 @@ describe('FormGroup', () => {
   it('should validateOn', () => {
     const subject = new Subject<object | null>();
     control.validateOn(subject);
-    subject.next({someError: true});
-    expect(control.errors).toEqual({someError: true});
+    subject.next({ someError: true });
+    expect(control.errors).toEqual({ someError: true });
     subject.next(null);
     expect(control.errors).toEqual(null);
   });
@@ -262,12 +279,12 @@ describe('FormGroup', () => {
 
   it('should errorChanges$', () => {
     const validator = (_control: RxapFormGroup<Person>) =>
-      _control.getRawValue().name === 'Test' ? {invalidName: true} : null;
+      _control.getRawValue().name === 'Test' ? { invalidName: true } : null;
     control.setValidators(validator as any);
     const spy = jest.fn();
     control.errors$.subscribe(spy);
     expect(spy).toHaveBeenCalledWith(null);
-    control.patchValue({name: 'Test'});
-    expect(spy).toHaveBeenCalledWith({invalidName: true});
+    control.patchValue({ name: 'Test' });
+    expect(spy).toHaveBeenCalledWith({ invalidName: true });
   });
 });

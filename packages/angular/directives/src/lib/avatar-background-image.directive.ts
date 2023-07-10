@@ -42,7 +42,7 @@ export class AvatarBackgroundImageDirective extends BackgroundImageDirective {
   @Input()
   public set name(name: string) {
     if (!this.placeholderImageUrl) {
-      this.placeholderImageUrl = this.avatarImage.get({name});
+      this.placeholderImageUrl = this.avatarImage.get({ name });
     }
   }
 }

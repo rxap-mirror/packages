@@ -26,8 +26,8 @@ export default async function runExecutor(options: RunGeneratorExecutorSchema, c
   console.log('Executor ran for RunGenerator', options);
 
   return run({
-               cwd: context.root,
-               command: `nx g ${ options.generator } --project ${ context.projectName } ${ buildParameters(options.options) }`,
-               __unparsed__: [],
-             }, context);
+    cwd: context.root,
+    command: `nx g ${ options.generator } --project ${ context.projectName } ${ buildParameters(options.options) }`,
+    __unparsed__: [],
+  }, context);
 }

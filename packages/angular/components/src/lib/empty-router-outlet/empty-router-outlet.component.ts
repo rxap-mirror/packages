@@ -8,7 +8,7 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './empty-router-outlet.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [ RouterOutlet ],
 })
 export class EmptyRouterOutletComponent {
 }

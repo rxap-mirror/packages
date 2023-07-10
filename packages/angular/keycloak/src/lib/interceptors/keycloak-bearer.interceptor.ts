@@ -45,7 +45,10 @@ export class KeycloakBearerInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    const {enableBearerInterceptor, excludedUrls} = this.keycloak;
+    const {
+      enableBearerInterceptor,
+      excludedUrls,
+    } = this.keycloak;
     if (!enableBearerInterceptor) {
       return next.handle(req);
     }
@@ -74,8 +77,14 @@ export class KeycloakBearerInterceptor implements HttpInterceptor {
    * excluded from adding the bearer at the Http Request.
    */
   private isUrlExcluded(
-    {method, url}: HttpRequest<any>,
-    {urlPattern, httpMethods}: ExcludedUrlRegex,
+    {
+      method,
+      url,
+    }: HttpRequest<any>,
+    {
+      urlPattern,
+      httpMethods,
+    }: ExcludedUrlRegex,
   ): boolean {
     const httpTest =
       !httpMethods?.length ||
@@ -98,7 +107,7 @@ export class KeycloakBearerInterceptor implements HttpInterceptor {
   ): Observable<any> {
     return this.keycloak.addTokenToHeader(req.headers).pipe(
       mergeMap((headersWithBearer) => {
-        const kcReq = req.clone({headers: headersWithBearer});
+        const kcReq = req.clone({ headers: headersWithBearer });
         return next.handle(kcReq);
       }),
     );

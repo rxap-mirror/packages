@@ -7,7 +7,10 @@ import {
   IsEmailOptions,
 } from '@rxap/validator';
 
-export function IsEmail({message, options}: { message?: string, options?: IsEmailOptions } = {}) {
+export function IsEmail({
+                          message,
+                          options,
+                        }: { message?: string, options?: IsEmailOptions } = {}) {
   return (control: AbstractControl): ValidationErrors | null => {
     if (control.value === null) {
       return null;

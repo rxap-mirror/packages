@@ -24,42 +24,42 @@ export class HttpRemoteMethodDirective<ReturnType = any, Metadata extends HttpRe
 
   @Input()
   public set reportProgress(reportProgress: HttpRemoteMethodParameter['reportProgress']) {
-    this.updateParameters({reportProgress});
+    this.updateParameters({ reportProgress });
   }
 
   @Input()
   public set params(params: HttpRemoteMethodParameter['params']) {
-    this.updateParameters({params});
+    this.updateParameters({ params });
   }
 
   @Input()
   public set responseType(responseType: HttpRemoteMethodParameter['responseType']) {
-    this.updateParameters({responseType});
+    this.updateParameters({ responseType });
   }
 
   @Input()
   public set withCredentials(withCredentials: HttpRemoteMethodParameter['withCredentials']) {
-    this.updateParameters({withCredentials});
+    this.updateParameters({ withCredentials });
   }
 
   @Input()
   public set body(body: HttpRemoteMethodParameter['body']) {
-    this.updateParameters({body});
+    this.updateParameters({ body });
   }
 
   @Input()
   public set setHeaders(setHeaders: HttpRemoteMethodParameter['setHeaders']) {
-    this.updateParameters({setHeaders});
+    this.updateParameters({ setHeaders });
   }
 
   @Input()
   public set setParams(setParams: HttpRemoteMethodParameter['setParams']) {
-    this.updateParameters({setParams});
+    this.updateParameters({ setParams });
   }
 
   @Input()
   public set pathParams(pathParams: HttpRemoteMethodParameter['pathParams']) {
-    this.updateParameters({pathParams});
+    this.updateParameters({ pathParams });
   }
 
   @Input('rxapHttpRemoteMethod')

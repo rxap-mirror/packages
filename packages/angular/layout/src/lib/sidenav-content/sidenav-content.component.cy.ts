@@ -5,7 +5,8 @@ describe(SidenavContentComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(SidenavContentComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

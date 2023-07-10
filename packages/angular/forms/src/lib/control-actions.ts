@@ -123,7 +123,7 @@ export function mergeControlValidators<T, Control extends AbstractControl<T>>(
   control: Control,
   validators: ValidatorFn<T> | ValidatorFn<T>[],
 ): void {
-  control.setValidators([...coerceArray(control.validator), ...coerceArray(validators)]);
+  control.setValidators([ ...coerceArray(control.validator), ...coerceArray(validators) ]);
   control.updateValueAndValidity();
 }
 
@@ -144,17 +144,17 @@ export function hasErrorAndDirty<T>(control: AbstractControl<T>, error: string, 
 }
 
 export function markAllDirty<T>(control: RxapFormArray<T> | RxapFormGroup<T>): void {
-  control.markAsDirty({onlySelf: true});
+  control.markAsDirty({ onlySelf: true });
   (control as any)._forEachChild((_control: any) => _control.markAllAsDirty());
 }
 
 export function markAllPristine<T>(control: RxapFormArray<T> | RxapFormGroup<T>): void {
-  control.markAsPristine({onlySelf: true});
+  control.markAsPristine({ onlySelf: true });
   (control as any)._forEachChild((_control: any) => _control.markAllAsPristine());
 }
 
 export function markAllUntouched<T>(control: RxapFormArray<T> | RxapFormGroup<T>): void {
-  control.markAsUntouched({onlySelf: true});
+  control.markAsUntouched({ onlySelf: true });
   (control as any)._forEachChild((_control: any) => _control.markAllAsUntouched());
 }
 

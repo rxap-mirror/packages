@@ -24,15 +24,15 @@ export class TypeElement implements ParsedElement {
 
   public get type(): string {
     if (this.nullable) {
-      return [this.name, 'null'].join(' | ');
+      return [ this.name, 'null' ].join(' | ');
     }
     return this.name;
   }
 
-  public toValue({sourceFile}: { sourceFile: SourceFile }): string {
+  public toValue({ sourceFile }: { sourceFile: SourceFile }): string {
     if (this.from) {
       CoerceImports(sourceFile, {
-        namedImports: [this.name],
+        namedImports: [ this.name ],
         moduleSpecifier: this.from,
       });
     }

@@ -25,7 +25,7 @@ export function isISIN(str: unknown) {
       const hi = Math.trunc(value / 10);
       // letters have two digits, so handle the low order
       // and high order digits separately.
-      for (const digit of [lo, hi]) {
+      for (const digit of [ lo, hi ]) {
         if (double) {
           if (digit >= 5) {
             sum += 1 + ((digit - 5) * 2);

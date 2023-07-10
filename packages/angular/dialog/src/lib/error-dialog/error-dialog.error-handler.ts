@@ -40,10 +40,10 @@ export class ErrorDialogErrorHandler extends ErrorHandler {
           this.lastErrorMessage[1] + 10000 < Date.now()
         ) {
           this.dialog.open(ErrorDialogComponent, {
-            data: {error: rxapError},
+            data: { error: rxapError },
             hasBackdrop: true,
           });
-          this.lastErrorMessage = [rxapError, Date.now()];
+          this.lastErrorMessage = [ rxapError, Date.now() ];
         }
 
         return;

@@ -40,7 +40,7 @@ export class RemoteMethodTestingLoader extends RemoteMethodLoader {
 
   public getMock(remoteMethodId: string): MockRemoteMethod {
     if (!this.hasMock(remoteMethodId)) {
-      throw new Error(`A remote method mock with the id '${remoteMethodId}' is not registered`);
+      throw new Error(`A remote method mock with the id '${ remoteMethodId }' is not registered`);
     }
     return this.mockedRemoteMethods.get(remoteMethodId)!;
   }

@@ -9,6 +9,6 @@ export function assertString(input: unknown): asserts input is string {
       invalidType = input.constructor.name;
     }
 
-    throw new TypeError(`Expected a string but received a ${invalidType}`);
+    throw new TypeError(`Expected a string but received a ${ invalidType }`);
   }
 }

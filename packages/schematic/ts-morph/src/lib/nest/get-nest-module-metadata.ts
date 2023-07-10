@@ -16,7 +16,7 @@ export function GetNestModuleMetadata(sourceFile: SourceFile): ObjectLiteralExpr
   const [ metadata ] = GetClassDecoratorArguments(classDeclaration, 'Module');
 
   if (!(metadata instanceof ObjectLiteralExpression)) {
-    throw new Error(`The NestJs Module class in the sourceFile '${sourceFile.getFilePath()}' does not have the @Module decorator with a metadata object literal expression.`);
+    throw new Error(`The NestJs Module class in the sourceFile '${ sourceFile.getFilePath() }' does not have the @Module decorator with a metadata object literal expression.`);
   }
 
   return metadata;

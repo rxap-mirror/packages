@@ -55,16 +55,16 @@ export class ErrorDialogComponent {
 
   public get jsonError() {
     return Object.entries(JSON.parse(JSON.stringify(this.error)))
-      .filter(
-        ([ key, _ ]) =>
-          ![ 'class', 'package', 'code', 'message', 'stack' ].includes(key),
-      )
-      .reduce((obj, [ key, value ]) => (
-        {
-          ...obj,
-          [key]: value,
-        }
-      ), {});
+                 .filter(
+                   ([ key, _ ]) =>
+                     ![ 'class', 'package', 'code', 'message', 'stack' ].includes(key),
+                 )
+                 .reduce((obj, [ key, value ]) => (
+                   {
+                     ...obj,
+                     [key]: value,
+                   }
+                 ), {});
   }
 
 }

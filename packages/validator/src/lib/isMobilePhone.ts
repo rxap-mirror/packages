@@ -226,7 +226,11 @@ export interface IsMobilePhoneOptions {
   strictMode?: boolean | undefined;
 }
 
-export function isMobilePhone(str: unknown, locale: 'any' | MobilePhoneLocale | MobilePhoneLocale[] = 'any', options: IsMobilePhoneOptions = {}) {
+export function isMobilePhone(
+  str: unknown,
+  locale: 'any' | MobilePhoneLocale | MobilePhoneLocale[] = 'any',
+  options: IsMobilePhoneOptions = {},
+) {
   assertString(str);
   if (options && options.strictMode && !str.startsWith('+')) {
     return false;
@@ -258,7 +262,7 @@ export function isMobilePhone(str: unknown, locale: 'any' | MobilePhoneLocale | 
     }
     return false;
   }
-  throw new Error(`Invalid locale '${locale}'`);
+  throw new Error(`Invalid locale '${ locale }'`);
 }
 
 export const isMobilePhoneLocales = Object.keys(phones);

@@ -48,7 +48,10 @@ export class HttpDataSource<Data = any, PathParams = any, Body = any>
   ): HttpDataSource<D, PathParams, Body> {
     return new HttpDataSource<D, PathParams, Body>(
       this.http,
-      {...deepMerge(this.metadata, metadata), id},
+      {
+        ...deepMerge(this.metadata, metadata),
+        id,
+      },
       isolated ? null : this.refresh$,
     );
   }
@@ -90,12 +93,18 @@ export class HttpDataSource<Data = any, PathParams = any, Body = any>
       filter((event: any) => event instanceof HttpResponse),
       tap((response: HttpResponse<Data>) => {
         this.interceptors?.forEach(interceptor => interceptor
-          .next({response, options}),
+          .next({
+            response,
+            options,
+          }),
         );
       }),
       catchError((response: HttpErrorResponse) => {
         this.interceptors?.forEach(interceptor => interceptor
-          .next({response, options}),
+          .next({
+            response,
+            options,
+          }),
         );
         return throwError(response);
       }),

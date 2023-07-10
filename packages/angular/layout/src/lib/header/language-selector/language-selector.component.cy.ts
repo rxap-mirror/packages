@@ -5,7 +5,8 @@ describe(LanguageSelectorComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(LanguageSelectorComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

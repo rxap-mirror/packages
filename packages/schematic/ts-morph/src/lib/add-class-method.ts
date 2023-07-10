@@ -18,7 +18,8 @@ export function AddClassMethod(
     if (overwrite) {
       methodDeclaration.remove();
     } else {
-      throw new Error('Can not add class method - a method with the same name already exists. Set the overwrite parameter to true or use CoerceClassMethod');
+      throw new Error(
+        'Can not add class method - a method with the same name already exists. Set the overwrite parameter to true or use CoerceClassMethod');
     }
 
   }

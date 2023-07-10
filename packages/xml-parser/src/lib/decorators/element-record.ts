@@ -39,7 +39,7 @@ export function AssertElementRecordOptions(options: any): asserts options is Ele
 
 export interface ElementRecordParser<T extends ParsedElement, Value>
   extends TextContentElementParserMixin<Value>,
-    TagElementParserMixin {
+          TagElementParserMixin {
 }
 
 @Mixin(TextContentElementParserMixin, TagElementParserMixin)
@@ -71,11 +71,16 @@ export class ElementRecordParser<T extends ParsedElement, Value>
           throw new Error('Parsed Element has no index signature!');
         }
 
-        parsedElement[this.propertyKey][child.has('propertyKey') ? child.get('propertyKey') : this.convertTagToPropertyKey(child.name)]
+        parsedElement[this.propertyKey][child.has('propertyKey') ?
+          child.get('propertyKey') :
+          this.convertTagToPropertyKey(child.name)]
           = child.getTextContent();
       }
     } else if (this.required) {
-      throw new RxapXmlParserValidateRequiredError(`Element <${element.name}> child <${this.tag}> text content is required!`, parsedElement.__tag!);
+      throw new RxapXmlParserValidateRequiredError(
+        `Element <${ element.name }> child <${ this.tag }> text content is required!`,
+        parsedElement.__tag!,
+      );
     }
 
     return parsedElement;
@@ -93,8 +98,8 @@ export class ElementRecordParser<T extends ParsedElement, Value>
 export function ElementRecord<Value>(optionsOrString?: Partial<ElementRecordOptions<Value>> | string) {
   return function (target: any, propertyKey: string) {
     let options = optionsOrString === undefined ?
-      {tag: dasherize(propertyKey)} :
-      typeof optionsOrString === 'string' ? {tag: optionsOrString} : optionsOrString;
+      { tag: dasherize(propertyKey) } :
+      typeof optionsOrString === 'string' ? { tag: optionsOrString } : optionsOrString;
     options = deepMerge(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {});
     if (!options.tag) {
       options.tag = dasherize(propertyKey);

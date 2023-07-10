@@ -20,7 +20,10 @@ export interface IAuthenticationService {
 
 }
 
-export function TimeoutPromise<T>(callback: (resolve: (value: T) => void, reject: (error: any) => void) => void, ms: number): Promise<T> {
+export function TimeoutPromise<T>(
+  callback: (resolve: (value: T) => void, reject: (error: any) => void) => void,
+  ms: number,
+): Promise<T> {
   return new Promise<T>((resolve, reject) => {
 
     setTimeout(() => {
@@ -50,7 +53,7 @@ export interface AuthenticationEvent extends Record<string, any> {
   type: AuthenticationEventType;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 /* ignore coverage */
 export class RxapAuthenticationService implements IAuthenticationService {
 
@@ -59,22 +62,26 @@ export class RxapAuthenticationService implements IAuthenticationService {
   public readonly events$ = new ReplaySubject<AuthenticationEvent>();
 
   constructor() {
-    console.warn('The default RxapAuthenticationService implementation should only be used in a development environment!');
+    console.warn(
+      'The default RxapAuthenticationService implementation should only be used in a development environment!');
     this.isAuthenticated().then(isAuthenticated => this.isAuthenticated$.next(isAuthenticated));
   }
 
   public requestPasswordReset(email: string): Promise<boolean> {
-    console.warn('The default RxapAuthenticationService implementation should only be used in a development environment!');
+    console.warn(
+      'The default RxapAuthenticationService implementation should only be used in a development environment!');
     return TimeoutResolve(email !== 'fail@fail', 2500);
   }
 
   public sendPasswordReset(password: string, token: string): Promise<boolean> {
-    console.warn('The default RxapAuthenticationService implementation should only be used in a development environment!');
+    console.warn(
+      'The default RxapAuthenticationService implementation should only be used in a development environment!');
     return TimeoutResolve(password !== 'fail', 2500);
   }
 
   public async signInWithEmailAndPassword(email: string, password: string, remember: boolean): Promise<boolean> {
-    console.warn('The default RxapAuthenticationService implementation should only be used in a development environment!');
+    console.warn(
+      'The default RxapAuthenticationService implementation should only be used in a development environment!');
     return TimeoutPromise((resolve, reject) => {
 
       const login = password !== 'fail';
@@ -84,11 +91,11 @@ export class RxapAuthenticationService implements IAuthenticationService {
           localStorage.setItem(RXAP_AUTHENTICATION_LOCAL_STORAGE_KEY, 'true');
         }
         resolve(login);
-        this.events$.next({type: AuthenticationEventType.OnAuthSuccess});
+        this.events$.next({ type: AuthenticationEventType.OnAuthSuccess });
       } else {
         localStorage.removeItem(RXAP_AUTHENTICATION_LOCAL_STORAGE_KEY);
         reject(new Error('Login credentials are invalid'));
-        this.events$.next({type: AuthenticationEventType.OnAuthError});
+        this.events$.next({ type: AuthenticationEventType.OnAuthError });
       }
 
     }, 2500);
@@ -96,14 +103,16 @@ export class RxapAuthenticationService implements IAuthenticationService {
   }
 
   public async signOut(): Promise<void> {
-    console.warn('The default RxapAuthenticationService implementation should only be used in a development environment!');
+    console.warn(
+      'The default RxapAuthenticationService implementation should only be used in a development environment!');
     this.isAuthenticated$.next(false);
     localStorage.removeItem(RXAP_AUTHENTICATION_LOCAL_STORAGE_KEY);
-    this.events$.next({type: AuthenticationEventType.OnLogout});
+    this.events$.next({ type: AuthenticationEventType.OnLogout });
   }
 
   public signInWithProvider(provider: string): Promise<boolean> {
-    console.warn('The default RxapAuthenticationService implementation should only be used in a development environment!');
+    console.warn(
+      'The default RxapAuthenticationService implementation should only be used in a development environment!');
     return Promise.resolve(false);
   }
 

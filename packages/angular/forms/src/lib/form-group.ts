@@ -108,7 +108,7 @@ export class RxapFormGroup<
         if (parent === this.root) {
           return this.controlId;
         } else {
-          return [parent.controlPath, this.controlId].join('.');
+          return [ parent.controlPath, this.controlId ].join('.');
         }
       }
     }
@@ -119,7 +119,7 @@ export class RxapFormGroup<
     const parent: any = this.parent;
     if (parent) {
       if (parent.fullControlPath) {
-        return [parent.fullControlPath, this.controlId].join('.');
+        return [ parent.fullControlPath, this.controlId ].join('.');
       }
     }
     return this.controlId;
@@ -141,15 +141,15 @@ export class RxapFormGroup<
     return super.getRawValue();
   }
 
-  public override get<K1 extends keyof T>(path: [K1]): AbstractControl<T[K1]>;
+  public override get<K1 extends keyof T>(path: [ K1 ]): AbstractControl<T[K1]>;
   public override get<K1 extends keyof T, K2 extends keyof T[K1]>(
-    path: [K1, K2],
+    path: [ K1, K2 ],
   ): AbstractControl<T[K1][K2]>;
   public override get<
     K1 extends keyof T,
     K2 extends keyof T[K1],
     K3 extends keyof T[K1][K2]
-  >(path: [K1, K2, K3]): AbstractControl<T[K1][K2][K3]>;
+  >(path: [ K1, K2, K3 ]): AbstractControl<T[K1][K2][K3]>;
   public override get(path: string): AbstractControl;
   public override get(path: any): AbstractControl | null {
     return super.get(path);
@@ -223,13 +223,20 @@ export class RxapFormGroup<
     // `patchValue` can be called recursively and inner data structures might have these values, so
     // we just ignore such cases when a field containing FormGroup instance receives `null` or
     // `undefined` as a value.
-    if (value == null /* both `null` and `undefined` */)
+    if (value == null /* both `null` and `undefined` */) {
       return;
+    }
     Object.keys(value).forEach(name => {
       // TODO : resolve type issue
       const controls = this.controls as any;
       if (controls[name]) {
-        controls[name].patchValue((value as any)[name], {...(options ?? {}), onlySelf: true});
+        controls[name].patchValue(
+          (value as any)[name],
+          {
+            ...(options ?? {}),
+            onlySelf: true,
+          },
+        );
       }
     });
     this.updateValueAndValidity(options);
@@ -345,17 +352,17 @@ export class RxapFormGroup<
 
   public override hasError<K1 extends keyof T>(
     errorCode: ExtractStrings<E>,
-    path?: [K1],
+    path?: [ K1 ],
   ): boolean;
   public override hasError<K1 extends keyof T, K2 extends keyof T[K1]>(
     errorCode: ExtractStrings<E>,
-    path?: [K1, K2],
+    path?: [ K1, K2 ],
   ): boolean;
   public override hasError<
     K1 extends keyof T,
     K2 extends keyof T[K1],
     K3 extends keyof T[K1][K2]
-  >(errorCode: ExtractStrings<E>, path?: [K1, K2, K3]): boolean;
+  >(errorCode: ExtractStrings<E>, path?: [ K1, K2, K3 ]): boolean;
   public override hasError(errorCode: ExtractStrings<E>, path?: string): boolean;
   public override hasError(errorCode: ExtractStrings<E>, path?: any): boolean {
     return super.hasError(errorCode, path);
@@ -367,19 +374,19 @@ export class RxapFormGroup<
 
   public override getError<K extends keyof E, K1 extends keyof T>(
     errorCode: K,
-    path?: [K1],
+    path?: [ K1 ],
   ): E[K] | null;
   public override getError<
     K extends keyof E,
     K1 extends keyof T,
     K2 extends keyof T[K1]
-  >(errorCode: K, path?: [K1, K2]): E[K] | null;
+  >(errorCode: K, path?: [ K1, K2 ]): E[K] | null;
   public override getError<
     K extends keyof E,
     K1 extends keyof T,
     K2 extends keyof T[K1],
     K3 extends keyof T[K1][K2]
-  >(errorCode: K, path?: [K1, K2, K3]): E[K] | null;
+  >(errorCode: K, path?: [ K1, K2, K3 ]): E[K] | null;
   public override getError<K extends keyof E>(errorCode: K, path?: string): E[K] | null;
   public override getError<K extends keyof E>(errorCode: K, path?: any): E[K] | null {
     return super.getError(errorCode as any, path) as E[K] | null;

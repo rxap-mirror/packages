@@ -21,7 +21,10 @@ export function* VisitTree(tree: Tree, dir: string = tree.root): Generator<Visit
   for (const name of tree.children(dir)) {
     const path = join(dir, name);
     if (tree.isFile(path)) {
-      yield { path, isFile: true };
+      yield {
+        path,
+        isFile: true,
+      };
     } else {
       yield* VisitTree(tree, path);
     }

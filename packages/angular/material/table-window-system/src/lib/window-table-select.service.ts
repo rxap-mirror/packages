@@ -42,7 +42,7 @@ export interface WindowTableSelectOptions<RowData> {
 
 declare const $localize: LocalizeFn;
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class WindowTableSelectService {
   constructor(
     @Inject(WindowService)
@@ -108,32 +108,32 @@ export class WindowTableSelectService {
     });
 
     windowRef.attachedRef$
-      .pipe(
-        take(1),
-        tap((attachedRef) => {
-          if (attachedRef instanceof ComponentRef) {
-            windowRef.setFooterPortal(
-              new ComponentPortal(
-                TableSelectControlsComponent,
-                options.viewContainerRef,
-                attachedRef.injector,
-              ),
-            );
-          } else {
-            throw new Error(
-              'FATAL: the attached ref was not an instance of Component ref',
-            );
-          }
-        }),
-      )
-      .subscribe();
+             .pipe(
+               take(1),
+               tap((attachedRef) => {
+                 if (attachedRef instanceof ComponentRef) {
+                   windowRef.setFooterPortal(
+                     new ComponentPortal(
+                       TableSelectControlsComponent,
+                       options.viewContainerRef,
+                       attachedRef.injector,
+                     ),
+                   );
+                 } else {
+                   throw new Error(
+                     'FATAL: the attached ref was not an instance of Component ref',
+                   );
+                 }
+               }),
+             )
+             .subscribe();
 
     const promise: Promise<RowData[]> & { windowRef?: WindowRef } = windowRef.closed$
-      .pipe(
-        take(1),
-        map((selected) => selected ?? []),
-      )
-      .toPromise();
+                                                                             .pipe(
+                                                                               take(1),
+                                                                               map((selected) => selected ?? []),
+                                                                             )
+                                                                             .toPromise();
 
     // add the windowRef to the promise instance
     // The windowRef instance can be used to cancel the window

@@ -9,7 +9,7 @@ import {
 })
 export class PreventDefaultDirective {
 
-  @HostListener('click', ['$event'])
+  @HostListener('click', [ '$event' ])
   public onClick($event: Event): void {
     $event.preventDefault();
   }

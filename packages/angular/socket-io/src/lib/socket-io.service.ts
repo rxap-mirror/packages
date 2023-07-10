@@ -41,19 +41,19 @@ export class WrappedSocket {
   }
 
   disconnect(_close?: any) {
-    return this.ioSocket.disconnect.apply(this.ioSocket, [_close]);
+    return this.ioSocket.disconnect.apply(this.ioSocket, [ _close ]);
   }
 
   emit(_eventName: string, ..._args: any[]) {
-    return this.ioSocket.emit.apply(this.ioSocket, [_eventName, ..._args]);
+    return this.ioSocket.emit.apply(this.ioSocket, [ _eventName, ..._args ]);
   }
 
   removeListener(_eventName: string, _callback?: () => void) {
-    return this.ioSocket.removeListener.apply(this.ioSocket, [_eventName, _callback]);
+    return this.ioSocket.removeListener.apply(this.ioSocket, [ _eventName, _callback ]);
   }
 
   removeAllListeners(_eventName?: string) {
-    return this.ioSocket.removeAllListeners.apply(this.ioSocket, [_eventName]);
+    return this.ioSocket.removeAllListeners.apply(this.ioSocket, [ _eventName ]);
   }
 
   fromEvent<T>(eventName: string): Observable<T> {

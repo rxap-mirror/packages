@@ -66,7 +66,7 @@ export class IfTruthyDirective<Data, Parameters = any> implements OnChanges {
       this.viewContainerRef.clear();
 
       if (result) {
-        this.viewContainerRef.createEmbeddedView(this.templateRef, {$implicit: result});
+        this.viewContainerRef.createEmbeddedView(this.templateRef, { $implicit: result });
       }
 
     }

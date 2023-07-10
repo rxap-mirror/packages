@@ -15,7 +15,7 @@ import { NgIf } from '@angular/common';
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: { class: 'rxap-boolean-cell' },
   standalone: true,
-  imports: [NgIf, MatIconModule],
+  imports: [ NgIf, MatIconModule ],
 })
 export class BooleanCellComponent {
 

@@ -45,22 +45,25 @@ export class MethodElement implements ParsedElement<string>, IMethodElement {
   @ElementChild(TypeElement)
   public parameterType?: TypeElement;
 
-  public toValue({sourceFile, project}: { sourceFile: SourceFile } & ToValueContext): string {
+  public toValue({
+                   sourceFile,
+                   project,
+                 }: { sourceFile: SourceFile } & ToValueContext): string {
     if (this.from) {
       CoerceImports(sourceFile, {
-        namedImports: [this.name],
+        namedImports: [ this.name ],
         moduleSpecifier: this.from,
       });
       return this.name;
     } else {
       const methodName = CoerceSuffix(classify(this.name), 'Method');
-      const methodFilePath = join('/methods', `${dasherize(this.name.replace(/[-_\s]?[m|M]ethod$/, ''))}.method.ts`);
+      const methodFilePath = join('/methods', `${ dasherize(this.name.replace(/[-_\s]?[m|M]ethod$/, '')) }.method.ts`);
       const methodSourceFile = CoerceSourceFile(project, methodFilePath);
       const methodOptions: AddMethodClassOptions = {
-        statements: [`console.log('${dasherize(methodName)}', parameters);`],
+        statements: [ `console.log('${ dasherize(methodName) }', parameters);` ],
       };
       if (this.parameterType) {
-        methodOptions.parameterType = this.parameterType.toValue({sourceFile: methodSourceFile});
+        methodOptions.parameterType = this.parameterType.toValue({ sourceFile: methodSourceFile });
       }
       CoerceMethodClassLegacy(methodSourceFile, methodName, methodOptions);
       return methodName;

@@ -28,9 +28,9 @@ export class ToPaginationPipe implements PipeTransform {
   ): PaginationDataSource<Data> {
     let dataSource: BaseDataSource<Data[]>;
     if (Array.isArray(value)) {
-      dataSource = staticDataSource(value, {id: 'auto-to-pagination'});
+      dataSource = staticDataSource(value, { id: 'auto-to-pagination' });
     } else if (isObservable(value)) {
-      dataSource = observableDataSource(value, {id: 'auto-to-pagination'});
+      dataSource = observableDataSource(value, { id: 'auto-to-pagination' });
     } else {
       dataSource = value;
     }

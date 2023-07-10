@@ -10,7 +10,10 @@ import {
 } from './const';
 import { OpenApiSchema } from './schema';
 
-const { dasherize, classify } = strings;
+const {
+  dasherize,
+  classify,
+} = strings;
 
 export function GenerateOpenapiProvider(project: Project, operatorIdList: string[], options: OpenApiSchema) {
 
@@ -19,7 +22,8 @@ export function GenerateOpenapiProvider(project: Project, operatorIdList: string
   const providerList: string[] = [];
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: '@angular/core', namedImports: [ 'Provider' ],
+    moduleSpecifier: '@angular/core',
+    namedImports: [ 'Provider' ],
   });
 
   for (const operationId of operatorIdList) {
@@ -30,7 +34,8 @@ export function GenerateOpenapiProvider(project: Project, operatorIdList: string
       const className = classify(name.replace(/\./g, '-'));
 
       sourceFile.addImportDeclaration({
-        moduleSpecifier, namedImports: [ className ],
+        moduleSpecifier,
+        namedImports: [ className ],
       });
 
       providerList.push(className);
@@ -39,9 +44,13 @@ export function GenerateOpenapiProvider(project: Project, operatorIdList: string
   }
 
   sourceFile.addVariableStatement({
-    declarationKind: VariableDeclarationKind.Const, isExported: true, declarations: [
+    declarationKind: VariableDeclarationKind.Const,
+    isExported: true,
+    declarations: [
       {
-        name: 'OPEN_API_PROVIDERS', type: 'Provider[]', initializer: `[${ providerList.join(', ') }]`,
+        name: 'OPEN_API_PROVIDERS',
+        type: 'Provider[]',
+        initializer: `[${ providerList.join(', ') }]`,
       },
     ],
   });

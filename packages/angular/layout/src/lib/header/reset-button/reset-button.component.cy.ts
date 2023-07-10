@@ -5,7 +5,8 @@ describe(ResetButtonComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(ResetButtonComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

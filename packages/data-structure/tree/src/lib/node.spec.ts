@@ -13,8 +13,8 @@ describe('@rxap/table-system', () => {
         {
           id: 'node',
           children: [
-            {id: 'child_0'},
-            {id: 'child_1'},
+            { id: 'child_0' },
+            { id: 'child_1' },
           ],
         },
         0,
@@ -43,8 +43,8 @@ describe('@rxap/table-system', () => {
         {
           id: 'node',
           children: [
-            {id: 'child_0'},
-            {id: 'child_1'},
+            { id: 'child_0' },
+            { id: 'child_1' },
           ],
         },
         0,
@@ -55,7 +55,10 @@ describe('@rxap/table-system', () => {
       const onExpand_Child = jest.fn();
       const onCollapse_Child = jest.fn();
 
-      const child = Node.ToNode({id: 'new child', children: [] as any}, 0, onExpand_Child, onCollapse_Child);
+      const child = Node.ToNode({
+        id: 'new child',
+        children: [] as any,
+      }, 0, onExpand_Child, onCollapse_Child);
 
       node.addChild(child);
 

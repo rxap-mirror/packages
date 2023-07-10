@@ -183,12 +183,12 @@ export class BaseDataSource<
       }
     } else {
       console.warn(
-        `Connection with viewer id '${viewerId}' is not connected to the data source '${this.id}'`,
+        `Connection with viewer id '${ viewerId }' is not connected to the data source '${ this.id }'`,
       );
     }
     // TODO : find better cleanup solution
     if (typeof viewerOrId === 'string') {
-      for (const [viewer, id] of this._viewerIds.entries()) {
+      for (const [ viewer, id ] of this._viewerIds.entries()) {
         if (viewerOrId === id) {
           this._viewerIds.delete(viewer);
         }
@@ -206,7 +206,7 @@ export class BaseDataSource<
    */
   public toPromise(viewer: Viewer): Promise<Data> {
     return firstValueFrom(this.connect(viewer)
-      .pipe(take(1)))
+                              .pipe(take(1)))
       .then((result) => {
         this.disconnect(viewer);
         return result;
@@ -265,13 +265,13 @@ export class BaseDataSource<
 
   protected handelError(error: any) {
     if (isDevMode()) {
-      console.log(`DataSource '${this.id}' has an error:`, error);
+      console.log(`DataSource '${ this.id }' has an error:`, error);
     }
   }
 
   protected _connect(
     viewer: BaseDataSourceViewer,
-  ): [Observable<Data>, TeardownLogic] | Observable<Data> {
+  ): [ Observable<Data>, TeardownLogic ] | Observable<Data> {
     this.init();
     return this._data$;
   }

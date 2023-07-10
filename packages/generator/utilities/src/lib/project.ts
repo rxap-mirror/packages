@@ -15,7 +15,7 @@ export function HasProject(tree: Tree, projectName: string) {
 export function GetProjectRoot(tree: Tree, projectName: string) {
   const project = GetProject(tree, projectName);
   if (!project) {
-    throw new Error(`Project ${projectName} not found!`);
+    throw new Error(`Project ${ projectName } not found!`);
   }
   return project.root;
 }
@@ -23,7 +23,7 @@ export function GetProjectRoot(tree: Tree, projectName: string) {
 export function GetProjectSourceRoot(tree: Tree, projectName: string) {
   const project = GetProject(tree, projectName);
   if (!project) {
-    throw new Error(`Project ${projectName} not found!`);
+    throw new Error(`Project ${ projectName } not found!`);
   }
   return project.sourceRoot;
 }

@@ -14,9 +14,20 @@ describe('@rxap/xml-parser', () => {
       it('should use parseValue function', () => {
 
 
-        const parser = new ElementChildTextContentParser('property', {tag: 'tag', parseValue: Boolean});
+        const parser = new ElementChildTextContentParser('property',
+          {
+            tag: 'tag',
+            parseValue: Boolean,
+          },
+        );
 
-        expect(parser.parse({} as any, {hasChild: () => true, getChildTextContent: () => 'true'} as any, {} as any))
+        expect(parser.parse({} as any,
+          {
+            hasChild: () => true,
+            getChildTextContent: () => 'true',
+          } as any,
+          {} as any,
+        ))
           .toHaveProperty('property', true);
 
       });
@@ -29,7 +40,7 @@ describe('@rxap/xml-parser', () => {
 
         class MyElement {
 
-          @ElementChildTextContent({tag: 'my-child'})
+          @ElementChildTextContent({ tag: 'my-child' })
           public name!: string;
 
         }

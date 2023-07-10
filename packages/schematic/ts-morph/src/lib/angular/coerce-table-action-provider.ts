@@ -21,7 +21,10 @@ export interface CoerceTableActionProviderOptions {
 }
 
 export function CoerceTableActionProviderRule(options: CoerceTableActionProviderOptions) {
-  const {actionType, tableName} = options;
+  const {
+    actionType,
+    tableName,
+  } = options;
 
   return TsMorphAngularProjectTransform(options, project => {
 
@@ -58,12 +61,12 @@ export function CoerceTableActionProviderRule(options: CoerceTableActionProvider
     });
 
     CoerceImports(sourceFile, {
-      moduleSpecifier: `./${CoerceSuffix(actionType, '-table-row-action')}.method`,
-      namedImports: [className],
+      moduleSpecifier: `./${ CoerceSuffix(actionType, '-table-row-action') }.method`,
+      namedImports: [ className ],
     });
     CoerceImports(sourceFile, {
       moduleSpecifier: '@rxap/material-table-system',
-      namedImports: ['RXAP_TABLE_ROW_ACTION_METHOD'],
+      namedImports: [ 'RXAP_TABLE_ROW_ACTION_METHOD' ],
     });
 
   });

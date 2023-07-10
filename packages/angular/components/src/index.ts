@@ -32,7 +32,7 @@ export * from './lib/copy-to-clipboard-button/copy-to-clipboard-button.component
 
 // region dark-mode-toggle-button
 
-export * from './lib/dark-mode-toggle-button/dark-mode-toggle-button.component'
+export * from './lib/dark-mode-toggle-button/dark-mode-toggle-button.component';
 
 
 // endregion

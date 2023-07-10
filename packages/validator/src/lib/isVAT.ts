@@ -12,5 +12,5 @@ export function isVAT(str: unknown, countryCode: unknown) {
   if (countryCode in vatMatchers) {
     return vatMatchers[countryCode].test(str);
   }
-  throw new Error(`Invalid country code: '${countryCode}'`);
+  throw new Error(`Invalid country code: '${ countryCode }'`);
 }

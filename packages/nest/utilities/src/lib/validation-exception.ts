@@ -18,8 +18,10 @@ export function ValidationErrorListToString(errors: ReadonlyArray<ValidationErro
   let message = 'Validation Errors:\n';
 
   for (const group of Object.keys(groups)) {
-    message += `An instance of '${group}' has failed the validation:\n`;
-    message += groups[group].map(error => `\t- property '${error.property}' has failed the following constraints: ${Object.keys(error.constraints ?? {}).join(', ')}`).join('\n');
+    message += `An instance of '${ group }' has failed the validation:\n`;
+    message +=
+      groups[group].map(error => `\t- property '${ error.property }' has failed the following constraints: ${ Object.keys(
+        error.constraints ?? {}).join(', ') }`).join('\n');
   }
 
   return message;
@@ -35,7 +37,10 @@ export class ValidationException extends Error {
 
 export class ValidationHttpException extends HttpException {
 
-  constructor(public readonly validationErrorList: ReadonlyArray<ValidationError>, statusCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR) {
+  constructor(
+    public readonly validationErrorList: ReadonlyArray<ValidationError>,
+    statusCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR,
+  ) {
     super({
       statusCode,
       message: ValidationErrorListToString(validationErrorList),

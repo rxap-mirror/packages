@@ -12,7 +12,9 @@ describe(LoginComponent.name, () => {
         <rxap-authentication-container>
             <rxap-login></rxap-login>
         </rxap-authentication-container>
-    `, standalone: true, imports: [
+    `,
+    standalone: true,
+    imports: [
       AuthenticationContainerComponent, LoginComponent,
     ],
   })
@@ -21,7 +23,8 @@ describe(LoginComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(TestComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
     cy.viewport(720, 720);
@@ -29,9 +32,11 @@ describe(LoginComponent.name, () => {
 
   it('renders', () => {
     cy.mount(TestComponent, {
-      imports: [ NoopAnimationsModule ], providers: [
+      imports: [ NoopAnimationsModule ],
+      providers: [
         {
-          provide: RXAP_CONFIG, useValue: {},
+          provide: RXAP_CONFIG,
+          useValue: {},
         },
       ],
     });
@@ -39,12 +44,15 @@ describe(LoginComponent.name, () => {
 
   it('should use default credentials if provided', () => {
     cy.mount(TestComponent, {
-      imports: [ NoopAnimationsModule ], providers: [
+      imports: [ NoopAnimationsModule ],
+      providers: [
         {
-          provide: RXAP_CONFIG, useValue: {
+          provide: RXAP_CONFIG,
+          useValue: {
             authentication: {
               default: {
-                email: 'default@domain.de', password: 'default-password',
+                email: 'default@domain.de',
+                password: 'default-password',
               },
             },
           },
@@ -57,9 +65,11 @@ describe(LoginComponent.name, () => {
 
   it('should only enable password forgotten button if email is provided', () => {
     cy.mount(TestComponent, {
-      imports: [ NoopAnimationsModule ], providers: [
+      imports: [ NoopAnimationsModule ],
+      providers: [
         {
-          provide: RXAP_CONFIG, useValue: {},
+          provide: RXAP_CONFIG,
+          useValue: {},
         },
       ],
     });
@@ -70,9 +80,11 @@ describe(LoginComponent.name, () => {
 
   it('should show error message if email is invalid', () => {
     cy.mount(TestComponent, {
-      imports: [ NoopAnimationsModule ], providers: [
+      imports: [ NoopAnimationsModule ],
+      providers: [
         {
-          provide: RXAP_CONFIG, useValue: {},
+          provide: RXAP_CONFIG,
+          useValue: {},
         },
       ],
     });
@@ -84,9 +96,11 @@ describe(LoginComponent.name, () => {
 
   it('should show error message if email or password is empty', () => {
     cy.mount(TestComponent, {
-      imports: [ NoopAnimationsModule ], providers: [
+      imports: [ NoopAnimationsModule ],
+      providers: [
         {
-          provide: RXAP_CONFIG, useValue: {},
+          provide: RXAP_CONFIG,
+          useValue: {},
         },
       ],
     });
@@ -98,9 +112,11 @@ describe(LoginComponent.name, () => {
 
   it('should show error message if login failed', () => {
     cy.mount(TestComponent, {
-      imports: [ NoopAnimationsModule ], providers: [
+      imports: [ NoopAnimationsModule ],
+      providers: [
         {
-          provide: RXAP_CONFIG, useValue: {},
+          provide: RXAP_CONFIG,
+          useValue: {},
         },
       ],
     });

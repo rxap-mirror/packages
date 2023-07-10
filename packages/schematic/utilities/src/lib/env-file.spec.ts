@@ -13,32 +13,37 @@ describe('@rxap/schematics-utilities', () => {
 
         expect(StringToEnvMap(`string=string
 number=42
-boolean=true`)).toEqual({string: 'string', number: 42, boolean: true});
+boolean=true`))
+          .toEqual({
+            string: 'string',
+            number: 42,
+            boolean: true,
+          });
 
       });
 
       it('should parse string in quotes', () => {
 
-        expect(StringToEnvMap(`key="value"`)).toEqual({key: 'value'});
+        expect(StringToEnvMap(`key="value"`)).toEqual({ key: 'value' });
 
       });
 
       it('should parse number in quotes as string', () => {
 
-        expect(StringToEnvMap(`key="42"`)).toEqual({key: '42'});
+        expect(StringToEnvMap(`key="42"`)).toEqual({ key: '42' });
 
       });
 
       it('should parse boolean in quotes as string', () => {
 
-        expect(StringToEnvMap(`key="false"`)).toEqual({key: 'false'});
-        expect(StringToEnvMap(`key="true"`)).toEqual({key: 'true'});
+        expect(StringToEnvMap(`key="false"`)).toEqual({ key: 'false' });
+        expect(StringToEnvMap(`key="true"`)).toEqual({ key: 'true' });
 
       });
 
       it('should parse string with spaces', () => {
 
-        expect(StringToEnvMap(`key="value value"`)).toEqual({key: 'value value'});
+        expect(StringToEnvMap(`key="value value"`)).toEqual({ key: 'value value' });
 
       });
 
@@ -48,14 +53,19 @@ boolean=true`)).toEqual({string: 'string', number: 42, boolean: true});
 # comment
 number=42
 # comment
-boolean=true`)).toEqual({string: 'string', number: 42, boolean: true});
+boolean=true`))
+          .toEqual({
+            string: 'string',
+            number: 42,
+            boolean: true,
+          });
 
       });
 
       it('should parse boolean', () => {
 
-        expect(StringToEnvMap(`key=false`)).toEqual({key: false});
-        expect(StringToEnvMap(`key=true`)).toEqual({key: true});
+        expect(StringToEnvMap(`key=false`)).toEqual({ key: false });
+        expect(StringToEnvMap(`key=true`)).toEqual({ key: true });
 
       });
 
@@ -66,7 +76,11 @@ boolean=true`)).toEqual({string: 'string', number: 42, boolean: true});
       it('should create map', () => {
 
         expect(EnvMapToString({})).toEqual('\n');
-        expect(EnvMapToString({string: 'string', number: 42, boolean: true})).toEqual(`string=string
+        expect(EnvMapToString({
+          string: 'string',
+          number: 42,
+          boolean: true,
+        })).toEqual(`string=string
 number=42
 boolean=true
 `);
@@ -75,33 +89,33 @@ boolean=true
 
       it('should convert boolean', () => {
 
-        expect(EnvMapToString({key: false})).toEqual(`key=false\n`);
-        expect(EnvMapToString({key: true})).toEqual(`key=true\n`);
+        expect(EnvMapToString({ key: false })).toEqual(`key=false\n`);
+        expect(EnvMapToString({ key: true })).toEqual(`key=true\n`);
 
       });
 
       it('should convert string in quotes', () => {
 
-        expect(EnvMapToString({key: 'value'})).toEqual(`key=value\n`);
+        expect(EnvMapToString({ key: 'value' })).toEqual(`key=value\n`);
 
       });
 
       it('should convert number in quotes as string', () => {
 
-        expect(EnvMapToString({key: '42'})).toEqual(`key="42"\n`);
+        expect(EnvMapToString({ key: '42' })).toEqual(`key="42"\n`);
 
       });
 
       it('should convert boolean in quotes as string', () => {
 
-        expect(EnvMapToString({key: 'false'})).toEqual(`key="false"\n`);
-        expect(EnvMapToString({key: 'true'})).toEqual(`key="true"\n`);
+        expect(EnvMapToString({ key: 'false' })).toEqual(`key="false"\n`);
+        expect(EnvMapToString({ key: 'true' })).toEqual(`key="true"\n`);
 
       });
 
       it('should convert string with spaces', () => {
 
-        expect(EnvMapToString({key: 'value value'})).toEqual(`key="value value"\n`);
+        expect(EnvMapToString({ key: 'value value' })).toEqual(`key="value value"\n`);
 
       });
 

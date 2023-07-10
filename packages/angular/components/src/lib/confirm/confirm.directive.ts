@@ -58,20 +58,20 @@ export class ConfirmDirective<T = any> implements OnDestroy {
     private readonly elementRef: ElementRef,
   ) {
     this.positionStrategy = this.overlay
-      .position()
-      .flexibleConnectedTo(this.elementRef.nativeElement)
-      .withPositions([
-        {
-          originX: 'start',
-          originY: 'bottom',
-          overlayX: 'start',
-          overlayY: 'top',
-        },
-      ])
-      .withDefaultOffsetY(10);
+                                .position()
+                                .flexibleConnectedTo(this.elementRef.nativeElement)
+                                .withPositions([
+                                  {
+                                    originX: 'start',
+                                    originY: 'bottom',
+                                    overlayX: 'start',
+                                    overlayY: 'top',
+                                  },
+                                ])
+                                .withDefaultOffsetY(10);
   }
 
-  @HostListener('click', ['$event'])
+  @HostListener('click', [ '$event' ])
   public onClick($event?: Event) {
     this.openConfirmOverly();
   }
@@ -98,40 +98,40 @@ export class ConfirmDirective<T = any> implements OnDestroy {
 
     this.subscription.add(
       componentRef.instance.confirmed
-        .pipe(
-          take(1),
-          tap(() => this.onConfirmed(this._eventValue)),
-          tap(() => this.overlayRef?.dispose()),
-          tap(() => this.isOverlyOpen = false),
-          tap(() => (this.subscription = null)),
-          tap(() => this.subscription?.unsubscribe()),
-        )
-        .subscribe(),
+                  .pipe(
+                    take(1),
+                    tap(() => this.onConfirmed(this._eventValue)),
+                    tap(() => this.overlayRef?.dispose()),
+                    tap(() => this.isOverlyOpen = false),
+                    tap(() => (this.subscription = null)),
+                    tap(() => this.subscription?.unsubscribe()),
+                  )
+                  .subscribe(),
     );
 
     this.subscription.add(
       componentRef.instance.unconfirmed
-        .pipe(
-          take(1),
-          tap(() => this.onUnconfirmed(this._eventValue)),
-          tap(() => this.overlayRef?.dispose()),
-          tap(() => this.isOverlyOpen = false),
-          tap(() => (this.subscription = null)),
-          tap(() => this.subscription?.unsubscribe()),
-        )
-        .subscribe(),
+                  .pipe(
+                    take(1),
+                    tap(() => this.onUnconfirmed(this._eventValue)),
+                    tap(() => this.overlayRef?.dispose()),
+                    tap(() => this.isOverlyOpen = false),
+                    tap(() => (this.subscription = null)),
+                    tap(() => this.subscription?.unsubscribe()),
+                  )
+                  .subscribe(),
     );
 
     this.subscription.add(
       this.overlayRef
-        .detachments()
-        .pipe(
-          take(1),
-          tap(() => this.isOverlyOpen = false),
-          tap(() => (this.subscription = null)),
-          tap(() => this.subscription?.unsubscribe()),
-        )
-        .subscribe(),
+          .detachments()
+          .pipe(
+            take(1),
+            tap(() => this.isOverlyOpen = false),
+            tap(() => (this.subscription = null)),
+            tap(() => this.subscription?.unsubscribe()),
+          )
+          .subscribe(),
     );
   }
 

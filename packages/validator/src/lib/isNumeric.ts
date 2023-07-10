@@ -13,5 +13,5 @@ export function isNumeric(str: unknown, options?: IsNumericOptions): str is numb
   if (options && options.no_symbols) {
     return numericNoSymbols.test(str);
   }
-  return (new RegExp(`^[+-]?([0-9]*[${options?.locale ? decimal[options.locale] : '.'}])?[0-9]+$`)).test(str);
+  return (new RegExp(`^[+-]?([0-9]*[${ options?.locale ? decimal[options.locale] : '.' }])?[0-9]+$`)).test(str);
 }

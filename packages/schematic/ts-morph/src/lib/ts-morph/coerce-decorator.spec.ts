@@ -18,17 +18,17 @@ describe('CoerceDecorator', () => {
 
     CoerceDecorator(decoratableNode, 'MyDecorator');
 
-    expect(decoratableNode.getDecorators().map(decorator => decorator.getText())).toEqual(['@MyDecorator']);
+    expect(decoratableNode.getDecorators().map(decorator => decorator.getText())).toEqual([ '@MyDecorator' ]);
 
   });
 
   it('should not add the decorator if exists', () => {
 
-    decoratableNode.addDecorator({name: 'MyDecorator'});
+    decoratableNode.addDecorator({ name: 'MyDecorator' });
 
     CoerceDecorator(decoratableNode, 'MyDecorator');
 
-    expect(decoratableNode.getDecorators().map(decorator => decorator.getText())).toEqual(['@MyDecorator']);
+    expect(decoratableNode.getDecorators().map(decorator => decorator.getText())).toEqual([ '@MyDecorator' ]);
 
   });
 

@@ -5,7 +5,8 @@ describe(NavigationProgressBarComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(NavigationProgressBarComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

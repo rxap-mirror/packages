@@ -21,21 +21,27 @@ export function CoerceTableParametersFromRouteRule(options: CoerceTableParameter
   } = options;
   return TsMorphAngularProjectTransform(options, (project) => {
 
-    const sourceFile = project.getSourceFileOrThrow(`${tableName}.component.ts`);
-    const classDeclaration = sourceFile.getClassOrThrow(`${classify(tableName)}Component`);
+    const sourceFile = project.getSourceFileOrThrow(`${ tableName }.component.ts`);
+    const classDeclaration = sourceFile.getClassOrThrow(`${ classify(tableName) }Component`);
 
-    const [constructorDeclaration] = CoerceClassConstructor(classDeclaration);
-    CoerceParameterDeclaration(constructorDeclaration,
+    const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
+    CoerceParameterDeclaration(
+      constructorDeclaration,
       'route',
-      {type: 'ActivatedRoute', isReadonly: true, scope: Scope.Private});
+      {
+        type: 'ActivatedRoute',
+        isReadonly: true,
+        scope: Scope.Private,
+      },
+    );
     CoerceImports(sourceFile, {
-      namedImports: ['ActivatedRoute'],
+      namedImports: [ 'ActivatedRoute' ],
       moduleSpecifier: '@angular/router',
     });
     CoercePropertyDeclaration(classDeclaration, 'parameters').set({
       type: 'Observable<Record<string, string>>',
-      initializer: `this.route.params.map(params => ({${parameterList.map(parameter => `${parameter}: params.${parameter}`)
-        .join(', ')}}))`,
+      initializer: `this.route.params.map(params => ({${ parameterList.map(parameter => `${ parameter }: params.${ parameter }`)
+                                                                      .join(', ') }}))`,
       decorators: [
         {
           name: 'Input',
@@ -44,15 +50,15 @@ export function CoerceTableParametersFromRouteRule(options: CoerceTableParameter
       ],
     });
     CoerceImports(sourceFile, {
-      namedImports: ['Observable'],
+      namedImports: [ 'Observable' ],
       moduleSpecifier: 'rxjs',
     });
     CoerceImports(sourceFile, {
-      namedImports: ['map'],
+      namedImports: [ 'map' ],
       moduleSpecifier: 'rxjs/operators',
     });
     CoerceImports(sourceFile, {
-      namedImports: ['Input'],
+      namedImports: [ 'Input' ],
       moduleSpecifier: '@angular/core',
     });
   });

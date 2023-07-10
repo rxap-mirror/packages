@@ -64,11 +64,11 @@ export class OpenApiConfigService {
       config = await response.json();
     } catch (error: any) {
       console.debug(
-        `Could not load the open api config from '${openApiUrl}'!`,
+        `Could not load the open api config from '${ openApiUrl }'!`,
         error,
       );
       console.error(
-        `Could not load the open api config from '${openApiUrl}'!`,
+        `Could not load the open api config from '${ openApiUrl }'!`,
         error.message,
       );
     }
@@ -94,7 +94,7 @@ export class OpenApiConfigService {
     }
     if (!this._operations!.has(operationId)) {
       throw new Error(
-        `The operation '${operationId}' is not defined in the openapi-json`,
+        `The operation '${ operationId }' is not defined in the openapi-json`,
       );
     }
     return this._operations!.get(operationId)!;
@@ -104,43 +104,43 @@ export class OpenApiConfigService {
     const operations = new Map<string, OperationObjectWithMetadata>();
 
     Object.entries(config.paths)
-      .filter(
-        (item): item is [string, OpenAPIV3.PathItemObject] =>
-          item[0] !== undefined,
-      )
-      .filter(
-        ([_, methods]: [string, OpenAPIV3.PathItemObject]) =>
-          methods &&
-          Object.keys(methods).some((method) =>
-            ['get', 'put', 'post', 'delete', 'patch'].includes(method),
-          ),
-      )
-      .forEach(([path, methods]: [string, OpenAPIV3.PathItemObject]) =>
-        Object.entries(methods)
           .filter(
-            (item): item is [string, OpenAPIV3.OperationObject] =>
+            (item): item is [ string, OpenAPIV3.PathItemObject ] =>
               item[0] !== undefined,
           )
-          .forEach(
-            ([method, operation]: [string, OpenAPIV3.OperationObject]) => {
-              if (!operation.operationId) {
-                throw new Error('The OpenApu OperationId is not defined');
-              }
+          .filter(
+            ([ _, methods ]: [ string, OpenAPIV3.PathItemObject ]) =>
+              methods &&
+              Object.keys(methods).some((method) =>
+                [ 'get', 'put', 'post', 'delete', 'patch' ].includes(method),
+              ),
+          )
+          .forEach(([ path, methods ]: [ string, OpenAPIV3.PathItemObject ]) =>
+            Object.entries(methods)
+                  .filter(
+                    (item): item is [ string, OpenAPIV3.OperationObject ] =>
+                      item[0] !== undefined,
+                  )
+                  .forEach(
+                    ([ method, operation ]: [ string, OpenAPIV3.OperationObject ]) => {
+                      if (!operation.operationId) {
+                        throw new Error('The OpenApu OperationId is not defined');
+                      }
 
-              if (operations!.has(operation.operationId)) {
-                throw new Error(
-                  `The OpenApi Operation '${operation.operationId}' is already defined.`,
-                );
-              }
+                      if (operations!.has(operation.operationId)) {
+                        throw new Error(
+                          `The OpenApi Operation '${ operation.operationId }' is already defined.`,
+                        );
+                      }
 
-              operations!.set(operation.operationId, {
-                ...operation,
-                path: path,
-                method: method.toUpperCase(),
-              });
-            },
-          ),
-      );
+                      operations!.set(operation.operationId, {
+                        ...operation,
+                        path: path,
+                        method: method.toUpperCase(),
+                      });
+                    },
+                  ),
+          );
 
     return operations;
   }
@@ -153,11 +153,11 @@ export class OpenApiConfigService {
 
     if (!server) {
       console.debug(
-        `Could not extract the server config with the index '${serverIndex}' from the open api config`,
+        `Could not extract the server config with the index '${ serverIndex }' from the open api config`,
         config,
       );
       throw new Error(
-        `Could not extract the server config with the index '${serverIndex}' from the open api config`,
+        `Could not extract the server config with the index '${ serverIndex }' from the open api config`,
       );
     }
 
@@ -185,11 +185,11 @@ export class OpenApiConfigService {
     }
     if (!this._operations.has(operationId)) {
       console.debug(
-        `The operation '${operationId}' is not defined in the openapi-json`,
+        `The operation '${ operationId }' is not defined in the openapi-json`,
         this.config,
       );
       throw new Error(
-        `The operation '${operationId}' is not defined in the openapi-json`,
+        `The operation '${ operationId }' is not defined in the openapi-json`,
       );
     }
     return this._operations.get(operationId)!;
@@ -204,7 +204,7 @@ export class OpenApiConfigService {
       serverConfig = this.serverConfigMap.get(serverId)![serverIndex];
     }
     if (!serverConfig) {
-      throw new Error(`Could not determine the base url with the index: ${serverIndex} and the serverId: ${serverId}`);
+      throw new Error(`Could not determine the base url with the index: ${ serverIndex } and the serverId: ${ serverId }`);
     }
     return serverConfig.url;
   }

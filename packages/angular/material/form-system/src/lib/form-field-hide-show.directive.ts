@@ -45,7 +45,10 @@ export class ExtractHideShowMixin {
     formDefinition: FormDefinition = this.formDefinition,
     controlId: string = this.control?.controlId ?? this.controlId,
   ): ControlHideShowOptions {
-    const map = getMetadata<Map<string, ControlHideShowOptions>>(RXAP_FORM_SYSTEM_HIDE_SHOW_OPTIONS, Object.getPrototypeOf(formDefinition)) ?? null;
+    const map = getMetadata<Map<string, ControlHideShowOptions>>(
+      RXAP_FORM_SYSTEM_HIDE_SHOW_OPTIONS,
+      Object.getPrototypeOf(formDefinition),
+    ) ?? null;
 
     if (!map || !map.has(controlId)) {
       return {};
@@ -59,7 +62,10 @@ export class ExtractHideShowMixin {
     formDefinition: FormDefinition = this.formDefinition,
     controlId: string = this.control?.controlId ?? this.controlId,
   ): ControlHideShowFunction | null {
-    const map = getMetadata<Map<string, ControlHideShowFunction>>(RXAP_FORM_SYSTEM_HIDE_METADATA, Object.getPrototypeOf(formDefinition)) ?? null;
+    const map = getMetadata<Map<string, ControlHideShowFunction>>(
+      RXAP_FORM_SYSTEM_HIDE_METADATA,
+      Object.getPrototypeOf(formDefinition),
+    ) ?? null;
 
     if (!map || !map.has(controlId)) {
       return null;
@@ -73,7 +79,10 @@ export class ExtractHideShowMixin {
     formDefinition: FormDefinition = this.formDefinition,
     controlId: string = this.control?.controlId ?? this.controlId,
   ): ControlHideShowFunction | null {
-    const map = getMetadata<Map<string, ControlHideShowFunction>>(RXAP_FORM_SYSTEM_SHOW_METADATA, Object.getPrototypeOf(formDefinition)) ?? null;
+    const map = getMetadata<Map<string, ControlHideShowFunction>>(
+      RXAP_FORM_SYSTEM_SHOW_METADATA,
+      Object.getPrototypeOf(formDefinition),
+    ) ?? null;
 
     if (!map || !map.has(controlId)) {
       return null;
@@ -85,7 +94,8 @@ export class ExtractHideShowMixin {
 
 }
 
-export interface FormFieldHideShowDirective extends ExtractHideShowMixin, ExtractFormDefinitionMixin, OnInit, OnDestroy {
+export interface FormFieldHideShowDirective extends ExtractHideShowMixin, ExtractFormDefinitionMixin, OnInit,
+                                                    OnDestroy {
 }
 
 // TODO : create mixin for hide and show logic (this class and ControlHideShowDirective in @rxap/form-system)

@@ -9,7 +9,8 @@ export interface AttributeOptions<T> {
 
 export function Attribute<T>(options: Partial<Without<AttributeOptions<T>, 'propertyKey'>>) {
   return function (target: any, propertyKey: string) {
-    addToMetadata(ElementParserMetaData.ATTRIBUTE,
+    addToMetadata(
+      ElementParserMetaData.ATTRIBUTE,
       {
         propertyKey,
         elementName: propertyKey, ...options,

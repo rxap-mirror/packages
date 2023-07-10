@@ -69,7 +69,7 @@ function buildMethodQueryParameters(
         return query;
       }
       importStructures.push({
-        namedImports: ['DefaultValuePipe'],
+        namedImports: [ 'DefaultValuePipe' ],
         moduleSpecifier: '@nestjs/common',
       });
       const pipeList = query.pipeList?.slice() ?? [];
@@ -84,7 +84,10 @@ function buildMethodQueryParameters(
         }
         w.write(')');
       });
-      return {...query, pipeList};
+      return {
+        ...query,
+        pipeList,
+      };
     }).map(query => ({
       name: query.alias ??
         query.name,
@@ -92,12 +95,16 @@ function buildMethodQueryParameters(
       hasQuestionToken: !query.required &&
         query.defaultValue ===
         undefined,
-      decorators: [{
-        name: 'Query',
-        arguments: [w => w.quote(query.name),
-          ...(query.pipeList ??
-            [])],
-      }],
+      decorators: [
+        {
+          name: 'Query',
+          arguments: [
+            w => w.quote(query.name),
+            ...(query.pipeList ??
+              []),
+          ],
+        },
+      ],
     }));
   }
   return [];
@@ -109,10 +116,12 @@ function buildMethodParamParameters(paramList: OperationParameter[]): Array<Opti
       name: param.alias ??
         param.name,
       type: param.type,
-      decorators: [{
-        name: 'Param',
-        arguments: [w => w.quote(param.name)],
-      }],
+      decorators: [
+        {
+          name: 'Param',
+          arguments: [ w => w.quote(param.name) ],
+        },
+      ],
     }));
   }
   return [];
@@ -120,14 +129,18 @@ function buildMethodParamParameters(paramList: OperationParameter[]): Array<Opti
 
 function buildMethodBodyParameters(body: string | WriterFunction | undefined): Array<OptionalKind<ParameterDeclarationStructure>> {
   if (body) {
-    return [{
-      name: 'body',
-      type: body,
-      decorators: [{
-        name: 'Body',
-        arguments: [],
-      }],
-    }];
+    return [
+      {
+        name: 'body',
+        type: body,
+        decorators: [
+          {
+            name: 'Body',
+            arguments: [],
+          },
+        ],
+      },
+    ];
   }
   return [];
 }
@@ -135,7 +148,17 @@ function buildMethodBodyParameters(body: string | WriterFunction | undefined): A
 export function AddOperationToController(
   classDeclaration: ClassDeclaration,
   name: string,
-  {method, path, returnType, isAsync, paramList, queryList, body, statements, decorators}: OperationOptions,
+  {
+    method,
+    path,
+    returnType,
+    isAsync,
+    paramList,
+    queryList,
+    body,
+    statements,
+    decorators,
+  }: OperationOptions,
 ): Array<OptionalKind<ImportDeclarationStructure>> {
 
   queryList ??= [];
@@ -161,39 +184,39 @@ export function AddOperationToController(
 
   const importStructures: Array<OptionalKind<ImportDeclarationStructure>> = [
     {
-      namedImports: [method, 'NotImplementedException'],
+      namedImports: [ method, 'NotImplementedException' ],
       moduleSpecifier: '@nestjs/common',
     },
   ];
 
   if (queryList.length) {
     importStructures.push({
-      namedImports: ['Query'],
+      namedImports: [ 'Query' ],
       moduleSpecifier: '@nestjs/common',
     });
     importStructures.push({
-      namedImports: ['ApiQuery'],
+      namedImports: [ 'ApiQuery' ],
       moduleSpecifier: '@nestjs/swagger',
     });
   }
 
   if (paramList.length) {
     importStructures.push({
-      namedImports: ['Param'],
+      namedImports: [ 'Param' ],
       moduleSpecifier: '@nestjs/common',
     });
   }
 
   if (body) {
     importStructures.push({
-      namedImports: ['Body'],
+      namedImports: [ 'Body' ],
       moduleSpecifier: '@nestjs/common',
     });
   }
 
   if (!path) {
     if (paramList.filter(param => !param.fromParent).length) {
-      path = paramList.filter(param => !param.fromParent).map(param => `:${param.name}`).join('/');
+      path = paramList.filter(param => !param.fromParent).map(param => `:${ param.name }`).join('/');
     }
   }
 
@@ -235,11 +258,13 @@ export function AddOperationToController(
     CoerceDecorator(methodDeclaration, decorator.name, decorator);
   });
 
-  CoerceDecorator(methodDeclaration, method, {arguments: path ? [w => w.quote(path!)] : []});
+  CoerceDecorator(methodDeclaration, method, { arguments: path ? [ w => w.quote(path!) ] : [] });
   coerceApiQueryDecorators(queryList, methodDeclaration);
-  CoerceStatements(methodDeclaration,
+  CoerceStatements(
+    methodDeclaration,
     statements ??
-    ['throw new NotImplementedException();']);
+    [ 'throw new NotImplementedException();' ],
+  );
 
   return importStructures;
 
@@ -253,15 +278,17 @@ function coerceApiQueryDecorators(queryList: OperationParameter[], methodDeclara
       methodDeclaration,
       'ApiQuery',
       {
-        arguments: [Writers.object({
-          name: w => w.quote(query.name),
-          required: query.required ? 'true' : 'false',
-          isArray: query.isArray ? 'true' : 'false',
-        })],
+        arguments: [
+          Writers.object({
+            name: w => w.quote(query.name),
+            required: query.required ? 'true' : 'false',
+            isArray: query.isArray ? 'true' : 'false',
+          }),
+        ],
       },
       () => decorator => {
         if (decorator.getArguments().length) {
-          const [objectLiteralExpression] = decorator.getArguments();
+          const [ objectLiteralExpression ] = decorator.getArguments();
           if (objectLiteralExpression instanceof ObjectLiteralExpression) {
             const namePropertyElement = objectLiteralExpression.getProperty('name');
             if (namePropertyElement instanceof PropertyAssignment) {

@@ -17,7 +17,9 @@ export class OAuthExtractGuard {
 
   public canActivate(route: ActivatedRouteSnapshot): UrlTree {
 
-    if (route.queryParamMap.has('accessToken') && route.queryParamMap.has('refreshToken') && route.queryParamMap.has('expiresIn')) {
+    if (route.queryParamMap.has('accessToken') &&
+      route.queryParamMap.has('refreshToken') &&
+      route.queryParamMap.has('expiresIn')) {
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const accessToken = route.queryParamMap.get('accessToken')!;
@@ -50,13 +52,13 @@ export class OAuthExtractGuard {
         }
       }
 
-      return this.router.createUrlTree([redirectUrl]);
+      return this.router.createUrlTree([ redirectUrl ]);
 
     } else {
       console.warn('Not every query parameter is defined!');
     }
 
-    return this.router.createUrlTree([...route.url.map(url => url.path), 'redirect']);
+    return this.router.createUrlTree([ ...route.url.map(url => url.path), 'redirect' ]);
   }
 
 

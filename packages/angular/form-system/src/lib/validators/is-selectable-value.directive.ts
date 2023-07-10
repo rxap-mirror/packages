@@ -40,7 +40,7 @@ export interface IsSelectableValueDirective extends ExtractOptionsDataSourceMixi
 export class IsSelectableValueDirective implements Validator {
 
   @Input()
-  public viewer: BaseDataSourceViewer = {id: '[rxapIsSelectableValue]'};
+  public viewer: BaseDataSourceViewer = { id: '[rxapIsSelectableValue]' };
 
   constructor(
     @Inject(DataSourceLoader)
@@ -59,7 +59,11 @@ export class IsSelectableValueDirective implements Validator {
         if (Array.isArray(data)) {
           options = data;
         } else {
-          options = Object.entries(data).map(([value, display]) => ({value, display}));
+          options = Object.entries(data)
+                          .map(([ value, display ]) => ({
+                            value,
+                            display,
+                          }));
         }
         if (!options.some(option => option.value === control.value)) {
           return {

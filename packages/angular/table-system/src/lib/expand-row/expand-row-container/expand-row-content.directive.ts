@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 export interface ExpandCellContentDirectiveContext<Data extends Record<string, any>> {
-  $implicit: Data
+  $implicit: Data;
 }
 
 @Directive({

@@ -1,25 +1,25 @@
 <mat-toolbar class="header" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="15px">
-    <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-        <ng-template [ngIfElse]="titleFromSettings" [ngIf]="windowRef.titlePortal$ | async" let-titlePortal>
-            <ng-template [cdkPortalOutlet]="titlePortal"></ng-template>
-        </ng-template>
-        <ng-template #titleFromSettings>
-            <ng-template [ngIf]="windowRef.settings$ | async" let-settings>
-                <mat-icon *ngIf="settings.icon" [rxapIcon]="settings.icon" fxFlex="40px"></mat-icon>
-                <h3 *ngIf="settings.title" fxFlex="nogrow">{{settings.title}}</h3>
-            </ng-template>
-        </ng-template>
-    </div>
-    <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start center">
-        <button (click)="windowRef.minimize()" *ngIf="windowRef.settings.minimizable !== false" fxFlex="40px"
-                mat-icon-button type="button">
-            <mat-icon>minimize</mat-icon>
-        </button>
-        <button (click)="windowRef.fullScreen()" fxFlex="40px" mat-icon-button type="button">
-            <mat-icon>fullscreen</mat-icon>
-        </button>
-        <button (click)="windowRef.complete()" fxFlex="40px" mat-icon-button type="button">
-            <mat-icon>close</mat-icon>
-        </button>
-    </div>
+  <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <ng-template [ngIfElse]="titleFromSettings" [ngIf]="windowRef.titlePortal$ | async" let-titlePortal>
+      <ng-template [cdkPortalOutlet]="titlePortal"></ng-template>
+    </ng-template>
+    <ng-template #titleFromSettings>
+      <ng-template [ngIf]="windowRef.settings$ | async" let-settings>
+        <mat-icon *ngIf="settings.icon" [rxapIcon]="settings.icon" fxFlex="40px"></mat-icon>
+        <h3 *ngIf="settings.title" fxFlex="nogrow">{{settings.title}}</h3>
+      </ng-template>
+    </ng-template>
+  </div>
+  <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="start center">
+    <button (click)="windowRef.minimize()" *ngIf="windowRef.settings.minimizable !== false" fxFlex="40px"
+            mat-icon-button type="button">
+      <mat-icon>minimize</mat-icon>
+    </button>
+    <button (click)="windowRef.fullScreen()" fxFlex="40px" mat-icon-button type="button">
+      <mat-icon>fullscreen</mat-icon>
+    </button>
+    <button (click)="windowRef.complete()" fxFlex="40px" mat-icon-button type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>

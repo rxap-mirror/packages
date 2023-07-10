@@ -7,15 +7,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* remove deprecated pack target
-  concept ([39f1869](https://gitlab.com/rxap/schematics/commit/39f18698795cc6f5d8db81b43581c7d75244021f))
+* remove deprecated pack targetconcept ([39f1869](https://gitlab.com/rxap/schematics/commit/39f18698795cc6f5d8db81b43581c7d75244021f))
 
 # [16.0.0-dev.2](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-build-info@16.0.0-dev.1...@rxap/plugin-build-info@16.0.0-dev.2) (2023-05-18)
 
 ### Bug Fixes
 
-* **deps:** update rxap packages to
-  16.x.x ([bd63f0b](https://gitlab.com/rxap/schematics/commit/bd63f0bfe3356eb1d00bb136253789f2e481e04b))
+* **deps:** update rxap packages to16.x.x ([bd63f0b](https://gitlab.com/rxap/schematics/commit/bd63f0bfe3356eb1d00bb136253789f2e481e04b))
 
 # [16.0.0-dev.1](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-build-info@16.0.0-dev.0...@rxap/plugin-build-info@16.0.0-dev.1) (2023-05-17)
 
@@ -55,15 +53,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* remove static build target option
-  definition ([494fb58](https://gitlab.com/rxap/schematics/commit/494fb58e8e283c7a8cd253a91f8e296349dbf6ef))
+* remove static build target optiondefinition ([494fb58](https://gitlab.com/rxap/schematics/commit/494fb58e8e283c7a8cd253a91f8e296349dbf6ef))
 
 ## [14.0.1](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-build-info@14.0.0...@rxap/plugin-build-info@14.0.1) (2022-10-06)
 
 ### Bug Fixes
 
-* update rxap packages to
-  14.x.x ([eda3337](https://gitlab.com/rxap/schematics/commit/eda3337af2c477126a3d83715cdc7a955c239cb6))
+* update rxap packages to14.x.x ([eda3337](https://gitlab.com/rxap/schematics/commit/eda3337af2c477126a3d83715cdc7a955c239cb6))
 
 # [14.0.0](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-build-info@13.0.1...@rxap/plugin-build-info@14.0.0) (2022-09-08)
 
@@ -87,25 +83,21 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* add missing
-  dependencies ([3df7d68](https://gitlab.com/rxap/schematics/commit/3df7d68fe641315331217c25b5400c339580b802))
-* generate configuration for ci
-  target ([896a94b](https://gitlab.com/rxap/schematics/commit/896a94bdf020cd8cf33f9cb16cff64bd57a13f55))
+* add missingdependencies ([3df7d68](https://gitlab.com/rxap/schematics/commit/3df7d68fe641315331217c25b5400c339580b802))
+* generate configuration for citarget ([896a94b](https://gitlab.com/rxap/schematics/commit/896a94bdf020cd8cf33f9cb16cff64bd57a13f55))
 
 # [13.0.0-next.2](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-build-info@13.0.0-next.1...@rxap/plugin-build-info@13.0.0-next.2) (2022-04-20)
 
 ### Bug Fixes
 
-* extend build information
-  object ([b0f46c4](https://gitlab.com/rxap/schematics/commit/b0f46c460f2a7225fc6c2d768d04d2513a9a4636))
+* extend build informationobject ([b0f46c4](https://gitlab.com/rxap/schematics/commit/b0f46c460f2a7225fc6c2d768d04d2513a9a4636))
 
 # [13.0.0-next.1](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-build-info@12.0.20...@rxap/plugin-build-info@13.0.0-next.1) (2022-03-24)
 
 ### Bug Fixes
 
 * add logging ([dff90d2](https://gitlab.com/rxap/schematics/commit/dff90d25fb07b6ac76818e045a809ce146a78b24))
-* change target name to
-  ci ([a968966](https://gitlab.com/rxap/schematics/commit/a968966c0f8c744133047de6fc4aac798c764e7f))
+* change target name toci ([a968966](https://gitlab.com/rxap/schematics/commit/a968966c0f8c744133047de6fc4aac798c764e7f))
 
 ### Build System
 
@@ -149,15 +141,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* add nrwl package to peer
-  dependencies ([e15f848](https://gitlab.com/rxap/schematics/commit/e15f848369366bad60b63b32c7e71710b1ded826))
+* add nrwl package to peerdependencies ([e15f848](https://gitlab.com/rxap/schematics/commit/e15f848369366bad60b63b32c7e71710b1ded826))
 
 ## [12.0.17](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-build-info@12.0.16...@rxap/plugin-build-info@12.0.17) (2021-07-27)
 
 ### Bug Fixes
 
-* replace deprecated schema id
-  property ([cb8dedb](https://gitlab.com/rxap/schematics/commit/cb8dedb0c15c774f6c101df150f0d98242bc511a))
+* replace deprecated schema idproperty ([cb8dedb](https://gitlab.com/rxap/schematics/commit/cb8dedb0c15c774f6c101df150f0d98242bc511a))
 
 ## [12.0.16](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-build-info@12.0.15...@rxap/plugin-build-info@12.0.16) (2021-07-09)
 
@@ -171,15 +161,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* mv peerDependencies to
-  dependencies ([97be8bf](https://gitlab.com/rxap/schematics/commit/97be8bf8395ede8e5a50804b9ad7f72fde12bc81))
+* mv peerDependencies todependencies ([97be8bf](https://gitlab.com/rxap/schematics/commit/97be8bf8395ede8e5a50804b9ad7f72fde12bc81))
 
 ## [12.0.13](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-build-info@12.0.12...@rxap/plugin-build-info@12.0.13) (2021-06-23)
 
 ### Bug Fixes
 
-* set ng-add save target to
-  devDependencies ([c213f21](https://gitlab.com/rxap/schematics/commit/c213f21067e8bb280a48ae726840bfe0f5c4ff11))
+* set ng-add save target todevDependencies ([c213f21](https://gitlab.com/rxap/schematics/commit/c213f21067e8bb280a48ae726840bfe0f5c4ff11))
 
 ## [12.0.12](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-build-info@12.0.11...@rxap/plugin-build-info@12.0.12) (2021-06-23)
 
@@ -209,8 +197,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* streamline the interaction of all
-  plugins ([1a561b4](https://gitlab.com/rxap/packages/commit/1a561b4509478d840be687a6c78d1cc1fba68deb))
+* streamline the interaction of allplugins ([1a561b4](https://gitlab.com/rxap/packages/commit/1a561b4509478d840be687a6c78d1cc1fba68deb))
 
 ## [12.0.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-build-info@12.0.4...@rxap/plugin-build-info@12.0.5) (2021-06-10)
 
@@ -243,8 +230,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **builder:** extract unset build info from
-  env ([c117285](https://gitlab.com/rxap/packages/commit/c11728534206b1f74a2cabbd1b26ff3948392997))
+* **builder:** extract unset build info fromenv ([c117285](https://gitlab.com/rxap/packages/commit/c11728534206b1f74a2cabbd1b26ff3948392997))
 
 ## [11.2.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-build-info@11.2.2...@rxap/plugin-build-info@11.2.3) (2021-05-05)
 
@@ -260,8 +246,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **build:** only warn that the build.json already
-  exists ([029a647](https://gitlab.com/rxap/packages/commit/029a647af14e6d3c635af3ce75b72912be07bace))
+* **build:** only warn that the build.json alreadyexists ([029a647](https://gitlab.com/rxap/packages/commit/029a647af14e6d3c635af3ce75b72912be07bace))
 
 # 11.2.0 (2021-04-20)
 

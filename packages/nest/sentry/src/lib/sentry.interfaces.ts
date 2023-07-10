@@ -33,7 +33,7 @@ export interface SentryModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'
 }
 
 export interface SentryFilterFunction {
-  (exception: any): boolean
+  (exception: any): boolean;
 }
 
 export interface SentryInterceptorOptionsFilter {

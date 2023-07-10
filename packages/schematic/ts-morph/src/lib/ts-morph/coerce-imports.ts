@@ -9,7 +9,7 @@ export function CoerceImports(
   structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> | OptionalKind<ImportDeclarationStructure>,
 ) {
 
-  for (const structure of Array.isArray(structures) ? structures : [structures]) {
+  for (const structure of Array.isArray(structures) ? structures : [ structures ]) {
 
     const moduleSpecifier = structure.moduleSpecifier;
     const namedImports = structure.namedImports;

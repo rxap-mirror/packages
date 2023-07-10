@@ -12,12 +12,12 @@ function isValidFormat(format: string) {
     format);
 }
 
-function zip<D, F>(date: D[], format: F[]): Array<[D, F]> {
-  const zippedArr: Array<[D, F]> = [],
+function zip<D, F>(date: D[], format: F[]): Array<[ D, F ]> {
+  const zippedArr: Array<[ D, F ]> = [],
     len = Math.min(date.length, format.length);
 
   for (let i = 0; i < len; i++) {
-    zippedArr.push([date[i], format[i]]);
+    zippedArr.push([ date[i], format[i] ]);
   }
 
   return zippedArr;
@@ -31,14 +31,14 @@ export interface IsDateOptions {
 
 export function isDate(input: unknown, options: string | IsDateOptions = {}) {
   if (typeof options === 'string') { // Allow backward compatbility for old format isDate(input [, format])
-    options = merge({format: options}, default_date_options);
+    options = merge({ format: options }, default_date_options);
   } else {
     options = merge(options, default_date_options);
   }
   const _options: Required<IsDateOptions> = options as any;
   if (typeof input === 'string' && isValidFormat(_options.format)) {
     const formatDelimiter = _options.delimiters
-      .find(delimiter => _options.format.indexOf(delimiter) !== -1);
+                                    .find(delimiter => _options.format.indexOf(delimiter) !== -1);
     const dateDelimiter = _options.strictMode
       ? formatDelimiter
       : _options.delimiters.find(delimiter => input.indexOf(delimiter) !== -1);
@@ -48,7 +48,7 @@ export function isDate(input: unknown, options: string | IsDateOptions = {}) {
     );
     const dateObj: Record<string, unknown> = {};
 
-    for (const [dateWord, formatWord] of dateAndFormat) {
+    for (const [ dateWord, formatWord ] of dateAndFormat) {
       if (dateWord.length !== formatWord.length) {
         return false;
       }
@@ -56,7 +56,7 @@ export function isDate(input: unknown, options: string | IsDateOptions = {}) {
       dateObj[formatWord.charAt(0)] = dateWord;
     }
 
-    return new Date(`${dateObj['m']}/${dateObj['d']}/${dateObj['y']}`).getDate() === Number(dateObj['d']);
+    return new Date(`${ dateObj['m'] }/${ dateObj['d'] }/${ dateObj['y'] }`).getDate() === Number(dateObj['d']);
   }
 
   if (!options.strictMode) {

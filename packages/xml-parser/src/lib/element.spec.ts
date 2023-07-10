@@ -73,7 +73,9 @@ describe('XML Parser', () => {
 
     it('should return all child nodes', () => {
 
-      const element = new RxapElement(new DOMParser().parseFromString('<root><child-1/><child-2/></root>', 'text/xml').childNodes.item(0) as any);
+      const element = new RxapElement(new DOMParser().parseFromString('<root><child-1/><child-2/></root>', 'text/xml')
+                                                     .childNodes
+                                                     .item(0) as any);
 
       const children = element.getAllChildNodes();
 
@@ -141,7 +143,7 @@ describe('XML Parser', () => {
 
       child.textContent = '  { "username": "username-e" }  ';
 
-      expect(element.getChildTextContent('child-2')).toEqual({'username': 'username-e'});
+      expect(element.getChildTextContent('child-2')).toEqual({ 'username': 'username-e' });
 
     });
 
@@ -158,21 +160,23 @@ describe('XML Parser', () => {
       element.element.appendChild(child);
       element.element.appendChild(document.createElement('child-1'));
 
-      expect(element.getChildrenTextContent('child-1')).toEqual([undefined, undefined, undefined]);
-      expect(element.getChildrenTextContent('child-1', 'my-content')).toEqual(['my-content', 'my-content', 'my-content']);
+      expect(element.getChildrenTextContent('child-1')).toEqual([ undefined, undefined, undefined ]);
+      expect(element.getChildrenTextContent('child-1', 'my-content'))
+        .toEqual([ 'my-content', 'my-content', 'my-content' ]);
 
       child.textContent = 'content';
 
-      expect(element.getChildrenTextContent('child-1')).toEqual([undefined, 'content', undefined]);
-      expect(element.getChildrenTextContent('child-1', 'my-content')).toEqual(['my-content', 'content', 'my-content']);
+      expect(element.getChildrenTextContent('child-1')).toEqual([ undefined, 'content', undefined ]);
+      expect(element.getChildrenTextContent('child-1', 'my-content'))
+        .toEqual([ 'my-content', 'content', 'my-content' ]);
 
       child.textContent = '  spaced content';
 
-      expect(element.getChildrenTextContent('child-1')).toEqual([undefined, 'spaced content', undefined]);
+      expect(element.getChildrenTextContent('child-1')).toEqual([ undefined, 'spaced content', undefined ]);
 
       child.textContent = '  { "username": "username-e" }  ';
 
-      expect(element.getChildrenTextContent('child-1')).toEqual([undefined, {'username': 'username-e'}, undefined]);
+      expect(element.getChildrenTextContent('child-1')).toEqual([ undefined, { 'username': 'username-e' }, undefined ]);
 
     });
 
@@ -281,7 +285,7 @@ describe('XML Parser', () => {
       expect(element.get('username')).toEqual('{ "username": true }');
 
       element.element.setAttribute('username', '{ "username": true }');
-      expect(element.get('username')).toEqual({'username': true});
+      expect(element.get('username')).toEqual({ 'username': true });
 
       element.element.setAttribute('username', '0');
       expect(element.get('username')).toEqual(0);

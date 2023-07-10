@@ -124,7 +124,7 @@ export class TableRowActionDirective<Data extends Record<string, any>> extends C
     return this.execute();
   }
 
-  @HostListener('click', ['$event'])
+  @HostListener('click', [ '$event' ])
   public override onClick($event: Event) {
     $event.stopPropagation();
     if (!this._hasConfirmDirective && !this.options?.confirm) {
@@ -150,7 +150,10 @@ export class TableRowActionDirective<Data extends Record<string, any>> extends C
           return Promise.all([
             Promise.all(
               this.findUntypedActionMethod().map((am) =>
-                am.call({element, type: this.type}),
+                am.call({
+                  element,
+                  type: this.type,
+                }),
               ),
             ),
             Promise.all(
@@ -161,13 +164,13 @@ export class TableRowActionDirective<Data extends Record<string, any>> extends C
       );
       this.setStatus(TableRowActionStatus.SUCCESS);
     } catch (e: any) {
-      console.error(`Failed to execute row action: ${e.message}`);
+      console.error(`Failed to execute row action: ${ e.message }`);
       this.setStatus(TableRowActionStatus.ERROR);
     }
   }
 
   protected getElementList(): Data[] {
-    return [this.element];
+    return [ this.element ];
   }
 
   /**
@@ -226,14 +229,14 @@ export class TableRowActionDirective<Data extends Record<string, any>> extends C
           this.tableDataSourceDirective.refresh();
         }
         if (this.successMessage) {
-          this.snackBar.open(this.successMessage, 'ok', {duration: 2560});
+          this.snackBar.open(this.successMessage, 'ok', { duration: 2560 });
         }
         this.setStatus(TableRowActionStatus.DONE);
         break;
       case TableRowActionStatus.ERROR:
         this.setStatus(TableRowActionStatus.DONE);
         if (this.errorMessage) {
-          this.snackBar.open(this.errorMessage, 'ok', {duration: 5120});
+          this.snackBar.open(this.errorMessage, 'ok', { duration: 5120 });
         }
         break;
       case TableRowActionStatus.DONE:
@@ -249,7 +252,8 @@ export class TableRowActionDirective<Data extends Record<string, any>> extends C
     if (metadataList.length === 0) {
       return null;
     }
-    return metadataList.filter(metadata => metadata.type === this.type).sort((a, b) => (a.priority ?? 0) - (b.priority ?? 0))[0];
+    return metadataList.filter(metadata => metadata.type === this.type)
+                       .sort((a, b) => (a.priority ?? 0) - (b.priority ?? 0))[0];
   }
 
 }

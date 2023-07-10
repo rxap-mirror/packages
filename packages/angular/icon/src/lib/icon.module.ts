@@ -18,7 +18,7 @@ export const RXAP_ICON_ASSET_PATH = new InjectionToken('rxap/icon/asset-path', {
 });
 
 @NgModule({
-  imports: [HttpClientModule],
+  imports: [ HttpClientModule ],
 })
 export class IconModule {
 

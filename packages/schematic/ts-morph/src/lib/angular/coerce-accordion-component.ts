@@ -19,7 +19,7 @@ export function CoerceAccordionComponent(options: CoerceAccordionComponentOption
   } = options;
   return tree => {
     if (!HasAccordionComponent(tree, options)) {
-      console.log(`The accordion component '${accordionName}' does not exists in the feature '${feature}' of the project '${project}'. Accordion component will now be created ...`);
+      console.log(`The accordion component '${ accordionName }' does not exists in the feature '${ feature }' of the project '${ project }'. Accordion component will now be created ...`);
       return schematic(
         'accordion-component',
         {

@@ -20,7 +20,7 @@ export const RXAP_SELECTED_LANGUAGE_LOCAL_STORAGE_KEY =
 export const RXAP_SELECTED_LANGUAGE_CHANGE_LOCAL_STORAGE_KEY =
   'rxap__selected_language_last_change';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class LanguageSelectorService {
   public readonly languages: any;
   public readonly defaultLanguage: string;
@@ -58,8 +58,8 @@ export class LanguageSelectorService {
     const currentUrl = location.origin + location.pathname + location.search;
     const redirectUrl =
       location.origin +
-      `/${language}` +
-      location.pathname.replace(new RegExp(`^/${this.selectedLanguage}`), '') +
+      `/${ language }` +
+      location.pathname.replace(new RegExp(`^/${ this.selectedLanguage }`), '') +
       location.search;
     this.selectedLanguage = language;
     localStorage.setItem(RXAP_SELECTED_LANGUAGE_LOCAL_STORAGE_KEY, language);
@@ -92,7 +92,7 @@ export class LanguageSelectorService {
 @Component({
   selector: 'rxap-language-selector',
   templateUrl: './language-selector.component.html',
-  styleUrls: ['./language-selector.component.scss'],
+  styleUrls: [ './language-selector.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [

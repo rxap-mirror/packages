@@ -17,14 +17,15 @@ export interface OperationObjectWithMetadata extends OpenAPIV3.OperationObject {
 }
 
 export function GenerateParameterToOperationObjectWithMetadata(parameter: GenerateParameter): OperationObjectWithMetadata {
-  const whitelist = ['method', 'path', 'operationId', 'parameters', 'responses', 'requestBody'];
+  const whitelist = [ 'method', 'path', 'operationId', 'parameters', 'responses', 'requestBody' ];
   const copy: any = {};
   for (const key of Object.keys(parameter).filter(k => whitelist.includes(k))) {
     copy[key] = (parameter as any)[key];
   }
   if (parameter.responses) {
     copy.responses = {};
-    for (const status of Object.keys(parameter.responses).filter(status => Number(status) >= 200 && Number(status) < 300)) {
+    for (const status of
+      Object.keys(parameter.responses).filter(status => Number(status) >= 200 && Number(status) < 300)) {
       copy.responses[status] = parameter.responses[status];
     }
   }
@@ -38,8 +39,8 @@ export function GenerateParameterToOperationObjectWithMetadata(parameter: Genera
       return obj;
     }
     const clean: any = {};
-    const blacklist = ['description', 'example', 'summary'];
-    for (const [key, value] of Object.entries(obj)) {
+    const blacklist = [ 'description', 'example', 'summary' ];
+    for (const [ key, value ] of Object.entries(obj)) {
       if (!blacklist.includes(key)) {
         clean[key] = removeHumanProperties(value);
       }

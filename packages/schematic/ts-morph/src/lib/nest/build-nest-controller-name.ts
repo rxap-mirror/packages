@@ -11,7 +11,14 @@ export interface BuildNestControllerNameOptions {
 }
 
 export function BuildNestControllerName(options: BuildNestControllerNameOptions): string {
-  let {name, controllerName, controllerNameSuffix, nestController, module, nestModule} = options;
+  let {
+    name,
+    controllerName,
+    controllerNameSuffix,
+    nestController,
+    module,
+    nestModule,
+  } = options;
 
   nestModule ??= module;
   controllerName ??= nestController;
@@ -22,7 +29,7 @@ export function BuildNestControllerName(options: BuildNestControllerNameOptions)
   }
 
   if (nestModule && nestModule !== controllerName) {
-    controllerName = [nestModule, controllerName].join('-');
+    controllerName = [ nestModule, controllerName ].join('-');
   }
 
   if (controllerNameSuffix) {

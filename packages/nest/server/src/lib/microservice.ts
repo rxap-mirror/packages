@@ -23,9 +23,14 @@ export class Microservice<O extends object = MicroserviceOptions>
     const logger = app.get(Logger);
     const config: ConfigService<unknown> = app.get(ConfigService);
 
-    logger.log('environment: ' + JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
+    logger.log('environment: ' +
+      JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
 
-    logger.debug('Server Config: ' + JSON.stringify((config as any).internalConfig, undefined, this.environment.production ? undefined : 2), 'Bootstrap');
+    logger.debug(
+      'Server Config: ' +
+      JSON.stringify((config as any).internalConfig, undefined, this.environment.production ? undefined : 2),
+      'Bootstrap',
+    );
 
     return {
       version: DetermineVersion(this.environment),

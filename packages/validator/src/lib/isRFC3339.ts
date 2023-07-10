@@ -11,15 +11,15 @@ const timeMinute = /[0-5][0-9]/;
 const timeSecond = /([0-5][0-9]|60)/;
 
 const timeSecFrac = /(\.[0-9]+)?/;
-const timeNumOffset = new RegExp(`[-+]${timeHour.source}:${timeMinute.source}`);
-const timeOffset = new RegExp(`([zZ]|${timeNumOffset.source})`);
+const timeNumOffset = new RegExp(`[-+]${ timeHour.source }:${ timeMinute.source }`);
+const timeOffset = new RegExp(`([zZ]|${ timeNumOffset.source })`);
 
-const partialTime = new RegExp(`${timeHour.source}:${timeMinute.source}:${timeSecond.source}${timeSecFrac.source}`);
+const partialTime = new RegExp(`${ timeHour.source }:${ timeMinute.source }:${ timeSecond.source }${ timeSecFrac.source }`);
 
-const fullDate = new RegExp(`${dateFullYear.source}-${dateMonth.source}-${dateMDay.source}`);
-const fullTime = new RegExp(`${partialTime.source}${timeOffset.source}`);
+const fullDate = new RegExp(`${ dateFullYear.source }-${ dateMonth.source }-${ dateMDay.source }`);
+const fullTime = new RegExp(`${ partialTime.source }${ timeOffset.source }`);
 
-const rfc3339 = new RegExp(`^${fullDate.source}[ tT]${fullTime.source}$`);
+const rfc3339 = new RegExp(`^${ fullDate.source }[ tT]${ fullTime.source }$`);
 
 export function isRFC3339(str: unknown) {
   assertString(str);

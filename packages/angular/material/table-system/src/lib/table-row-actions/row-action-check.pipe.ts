@@ -17,7 +17,8 @@ import {
   name: 'rxapRowActionCheck',
   standalone: true,
 })
-export class RowActionCheckPipe<RowType extends Record<string, unknown> = Record<string, unknown>> implements PipeTransform {
+export class RowActionCheckPipe<RowType extends Record<string, unknown> = Record<string, unknown>>
+  implements PipeTransform {
 
   private readonly actionMethodList: Array<TableRowActionTypeMethod<RowType>>;
 
@@ -32,17 +33,17 @@ export class RowActionCheckPipe<RowType extends Record<string, unknown> = Record
   transform(value: RowType | RowType[], type: string): boolean {
 
     if (!type) {
-      throw new Error(`The provided type is empty '${type}'`);
+      throw new Error(`The provided type is empty '${ type }'`);
     }
 
     const actionMethodList = this.actionMethodList.filter(IsTableRowActionTypeMethod(type));
 
     if (actionMethodList.length > 1) {
-      throw new Error(`Multiple (${actionMethodList.length}) action method with the same type '${type}' found`);
+      throw new Error(`Multiple (${ actionMethodList.length }) action method with the same type '${ type }' found`);
     }
 
     if (actionMethodList.length === 0) {
-      throw new Error(`Could not find a action method with the type '${type}'`);
+      throw new Error(`Could not find a action method with the type '${ type }'`);
     }
 
     const actionMethod = actionMethodList[0];

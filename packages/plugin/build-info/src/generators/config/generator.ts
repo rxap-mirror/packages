@@ -30,7 +30,7 @@ export async function configGenerator(
 
   nxJson.targetDefaults ??= {};
   nxJson.targetDefaults['serialize-environment'] ??= {
-    dependsOn: ['^build'],
+    dependsOn: [ '^build' ],
   };
 
   updateNxJson(tree, nxJson);

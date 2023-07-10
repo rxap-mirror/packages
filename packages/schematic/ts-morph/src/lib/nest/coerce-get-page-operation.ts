@@ -68,20 +68,20 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
 
       CoerceImports(sourceFile, [
         {
-          namedImports: ['FilterQuery', 'FilterQueryPipe'],
+          namedImports: [ 'FilterQuery', 'FilterQueryPipe' ],
           moduleSpecifier: '@eurogard/service-nest-utilities',
         },
         {
-          namedImports: ['plainToInstance'],
+          namedImports: [ 'plainToInstance' ],
           moduleSpecifier: 'class-transformer',
         },
         {
-          namedImports: ['classTransformOptions'],
+          namedImports: [ 'classTransformOptions' ],
           moduleSpecifier: '@rxap/nest/class-transformer/options',
         },
         {
-          namedImports: [pageClassName],
-          moduleSpecifier: `..${pageFilePath}`,
+          namedImports: [ pageClassName ],
+          moduleSpecifier: `..${ pageFilePath }`,
         },
       ]);
 
@@ -110,7 +110,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
           {
             name: 'filter',
             type: 'FilterQuery[]',
-            pipeList: ['new FilterQueryPipe()'],
+            pipeList: [ 'new FilterQueryPipe()' ],
           },
         ],
         returnType: pageClassName,
@@ -125,7 +125,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       },
     });`,
           `return plainToInstance(
-      ${pageClassName},
+      ${ pageClassName },
       {
         total: response.maxCount ?? 0,
         pageIndex,
@@ -138,8 +138,8 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
             __rowId: item.uuid,
             __archived: item.__archived,
             __removedAt: item.__removedAt,
-            ${columnList.map(column => `${camelize(column.name)}: item.${camelize(column.name)}`)
-            .join(',\n            ')}
+            ${ columnList.map(column => `${ camelize(column.name) }: item.${ camelize(column.name) }`)
+                         .join(',\n            ') }
           })) ?? [],
       },
       classTransformOptions,

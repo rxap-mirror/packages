@@ -187,7 +187,7 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
       // TODO(vicb): use a log service once there is a public one available
       if (<any>console && <any>console.warn) {
         console.warn(
-          `trackBy must be a function, but received ${JSON.stringify(fn)}. ` +
+          `trackBy must be a function, but received ${ JSON.stringify(fn) }. ` +
           `See https://angular.io/api/common/NgForOf#change-propagation for more information.`);
       }
     }
@@ -246,16 +246,16 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
       tap(() => {
         this.zone.run(() => {
           this.remoteMethodLoader
-            .call$(this._remoteMethodOrIdOrToken, parameters, undefined, this.injector)
-            .then(response => {
-              this._empty = response.length === 0;
-              this._data = response;
-              this.cdr.detectChanges();
-            })
-            .catch(error => {
-              this._error = error;
-              this.cdr.detectChanges();
-            });
+              .call$(this._remoteMethodOrIdOrToken, parameters, undefined, this.injector)
+              .then(response => {
+                this._empty = response.length === 0;
+                this._data = response;
+                this.cdr.detectChanges();
+              })
+              .catch(error => {
+                this._error = error;
+                this.cdr.detectChanges();
+              });
         });
       }),
     ).subscribe();
@@ -312,8 +312,8 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
           try {
             this._differ = this.differs.find(value).create(this.trackBy);
           } catch {
-            throw new Error(`Cannot find a differ supporting object '${value}' of type '${
-              getTypeName(value)}'. NgFor only supports binding to Iterables such as Arrays.`);
+            throw new Error(`Cannot find a differ supporting object '${ value }' of type '${
+              getTypeName(value) }'. NgFor only supports binding to Iterables such as Arrays.`);
           }
         }
       }
@@ -353,7 +353,10 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
 
           const view = this.viewContainerRef.get(adjustedPreviousIndex)!;
           this.viewContainerRef.move(view, currentIndex);
-          const tuple = new RecordViewTuple(item, <EmbeddedViewRef<RemoteMethodTemplateCollectionDirectiveContext<ReturnType>>>view);
+          const tuple = new RecordViewTuple(
+            item,
+            <EmbeddedViewRef<RemoteMethodTemplateCollectionDirectiveContext<ReturnType>>>view,
+          );
           insertTuples.push(tuple);
 
         }
@@ -364,8 +367,10 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
       this.perViewChange(insertTuples[i].view, insertTuples[i].record);
     }
 
-    for (let i = 0, ilen = this.viewContainerRef.length; i < ilen; i++) {
-      const viewRef = <EmbeddedViewRef<RemoteMethodTemplateCollectionDirectiveContext<ReturnType>>>this.viewContainerRef.get(i);
+    for (let i = 0,
+           ilen = this.viewContainerRef.length; i < ilen; i++) {
+      const viewRef = <EmbeddedViewRef<RemoteMethodTemplateCollectionDirectiveContext<ReturnType>>>this.viewContainerRef.get(
+        i);
       viewRef.context.index = i;
       viewRef.context.count = ilen;
     }
@@ -379,7 +384,9 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
   }
 
   private perViewChange(
-    view: EmbeddedViewRef<RemoteMethodTemplateCollectionDirectiveContext<ReturnType>>, record: IterableChangeRecord<any>) {
+    view: EmbeddedViewRef<RemoteMethodTemplateCollectionDirectiveContext<ReturnType>>,
+    record: IterableChangeRecord<any>,
+  ) {
     view.context.$implicit = record.item;
   }
 

@@ -118,9 +118,22 @@ describe('XML Parser', () => {
         __parent: null,
         username: 'my-username',
         projects: [
-          {__parent: userElement, __tag: 'project', name: 'my-project-1'},
-          {__parent: userElement, __tag: 'project', name: 'my-project-2'},
-          {__parent: userElement, __tag: 'software-project', name: 'my-project-3', git: true},
+          {
+            __parent: userElement,
+            __tag: 'project',
+            name: 'my-project-1',
+          },
+          {
+            __parent: userElement,
+            __tag: 'project',
+            name: 'my-project-2',
+          },
+          {
+            __parent: userElement,
+            __tag: 'software-project',
+            name: 'my-project-3',
+            git: true,
+          },
         ],
       });
 

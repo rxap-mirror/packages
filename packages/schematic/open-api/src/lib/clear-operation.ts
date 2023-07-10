@@ -12,7 +12,7 @@ export function ClearOperation(
       if (tree.exists(fullPath)) {
         tree.delete(fullPath);
       } else {
-        console.debug(`Path '${fullPath}' does not exists.`);
+        console.debug(`Path '${ fullPath }' does not exists.`);
       }
     }
   };

@@ -6,7 +6,7 @@ export function CoercePropertyKey(key: string, drop = false): string {
     if (drop) {
       return key.replace(/(^[0-9]+|-|#|\.|@|\/|:|\*)/g, '');
     } else {
-      return `'${key}'`;
+      return `'${ key }'`;
     }
   }
   return key;

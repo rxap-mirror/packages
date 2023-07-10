@@ -37,8 +37,10 @@ export class ValidatorInterceptor implements NestInterceptor {
         if (body) {
           const resultList = validateSync(body);
           if (resultList.length) {
-            this.logger.error(`Response for ${request.url}: ${ValidationErrorListToString(resultList)}`,
-              classType.name);
+            this.logger.error(
+              `Response for ${ request.url }: ${ ValidationErrorListToString(resultList) }`,
+              classType.name,
+            );
             this.logger.verbose(JSON.stringify(body), classType.name);
             throw new ValidationHttpException(resultList, HttpStatus.INTERNAL_SERVER_ERROR);
           }

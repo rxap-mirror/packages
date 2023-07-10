@@ -7,7 +7,7 @@ export function CoerceFile(tree: Tree, filePath: string, content = '', overwrite
     }
     const buffer = tree.read(filePath);
     if (!buffer) {
-      throw new Error(`Can't read file: ${filePath}`);
+      throw new Error(`Can't read file: ${ filePath }`);
     }
     return buffer.toString('utf-8');
   }

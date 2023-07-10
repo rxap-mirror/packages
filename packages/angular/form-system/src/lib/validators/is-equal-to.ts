@@ -42,7 +42,12 @@ export class IsEqualToDirective implements Validator {
     if (this._equalTo === null || this._equalTo === control.value) {
       return null;
     }
-    return {isEqualTo: {value: this._equalTo, actualValue: control.value}};
+    return {
+      isEqualTo: {
+        value: this._equalTo,
+        actualValue: control.value,
+      },
+    };
   }
 
   /**

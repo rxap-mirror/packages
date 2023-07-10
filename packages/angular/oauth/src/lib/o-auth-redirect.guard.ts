@@ -22,7 +22,7 @@ export class OAuthRedirectGuard {
 
     const isAuthenticated = await this.oAuthService.isAuthenticated();
 
-    console.log(`isAuthenticated: ${isAuthenticated}`);
+    console.log(`isAuthenticated: ${ isAuthenticated }`);
 
     if (isAuthenticated) {
       return true;

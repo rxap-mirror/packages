@@ -72,21 +72,21 @@ export class RowControlsCellComponent<Data extends Record<string, any> & { uuid:
 
   public async archive() {
     if (this.archiveRemoteMethod) {
-      await this.archiveRemoteMethod.call({parameters: {uuid: this.element.uuid}});
+      await this.archiveRemoteMethod.call({ parameters: { uuid: this.element.uuid } });
       this.tableDataSource.refresh();
     }
   }
 
   public async unarchive() {
     if (this.unarchiveRemoteMethod) {
-      await this.unarchiveRemoteMethod.call({parameters: {uuid: this.element.uuid}});
+      await this.unarchiveRemoteMethod.call({ parameters: { uuid: this.element.uuid } });
       this.tableDataSource.refresh();
     }
   }
 
   public async remove() {
     if (this.deleteRemoteMethod) {
-      await this.deleteRemoteMethod.call({parameters: {uuid: this.element.uuid}});
+      await this.deleteRemoteMethod.call({ parameters: { uuid: this.element.uuid } });
       this.tableDataSource.refresh();
     }
   }
@@ -109,7 +109,7 @@ export class RowControlsCellComponent<Data extends Record<string, any> & { uuid:
       if (this.editLoaderMethod) {
         initial = await this.editLoaderMethod.call(initial);
       }
-      const result = await this.editRemoteMethod.call(initial, {context: this.element});
+      const result = await this.editRemoteMethod.call(initial, { context: this.element });
       if (isObservable(result)) {
         await result.toPromise();
       }

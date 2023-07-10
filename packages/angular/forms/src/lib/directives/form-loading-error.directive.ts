@@ -30,7 +30,7 @@ export class FormLoadingErrorDirective implements AfterViewInit, OnDestroy {
       tap(error => {
         this.viewContainerRef.clear();
         if (error !== null) {
-          this.viewContainerRef.createEmbeddedView(this.template, {$implicit: error});
+          this.viewContainerRef.createEmbeddedView(this.template, { $implicit: error });
         }
       }),
     ).subscribe();

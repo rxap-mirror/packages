@@ -22,7 +22,7 @@ export interface CoerceFormProvidersFileOptions {
 export function CoerceFormProvidersFile(options: Readonly<CoerceFormProvidersFileOptions>) {
   const { name } = options;
   const className = CoerceSuffix(classify(name), 'Form');
-  const interfaceName = `I${className}`;
+  const interfaceName = `I${ className }`;
 
   return TsMorphAngularProjectTransform(options, (project) => {
 
@@ -32,12 +32,12 @@ export function CoerceFormProvidersFile(options: Readonly<CoerceFormProvidersFil
     CoerceFormComponentProvider(sourceFile, {
       provide: 'RXAP_FORM_DEFINITION',
       useFactory: 'FormFactory',
-      deps: ['INJECTOR', '[ new Optional(), RXAP_FORM_INITIAL_STATE ]'],
+      deps: [ 'INJECTOR', '[ new Optional(), RXAP_FORM_INITIAL_STATE ]' ],
     });
     CoerceFormBuilderProvider(sourceFile, {
       provide: 'RXAP_FORM_DEFINITION_BUILDER',
       useFactory: 'FormBuilderFactory',
-      deps: ['INJECTOR'],
+      deps: [ 'INJECTOR' ],
     });
     const formFactoryFunctionDeclaration = CoerceFunction(sourceFile, 'FormFactory', {
       parameters: [
@@ -54,7 +54,7 @@ export function CoerceFormProvidersFile(options: Readonly<CoerceFormProvidersFil
       isExported: true,
     });
     CoerceStatements(formFactoryFunctionDeclaration, [
-      `return new RxapFormBuilder<${interfaceName}>(${className}, injector).build(state ?? {});`,
+      `return new RxapFormBuilder<${ interfaceName }>(${ className }, injector).build(state ?? {});`,
     ]);
     const formBuilderFactoryDeclaration = CoerceFunction(sourceFile, 'FormBuilderFactory', {
       parameters: [
@@ -63,14 +63,14 @@ export function CoerceFormProvidersFile(options: Readonly<CoerceFormProvidersFil
           type: 'Injector',
         },
       ],
-      returnType: `RxapFormBuilder<${className}>`,
+      returnType: `RxapFormBuilder<${ className }>`,
     });
     CoerceStatements(formBuilderFactoryDeclaration, [
-      `return new RxapFormBuilder<${interfaceName}>(${className}, injector);`,
+      `return new RxapFormBuilder<${ interfaceName }>(${ className }, injector);`,
     ]);
     CoerceImports(sourceFile, {
-      namedImports: [className, interfaceName],
-      moduleSpecifier: `./${name}.form`,
+      namedImports: [ className, interfaceName ],
+      moduleSpecifier: `./${ name }.form`,
     });
     CoerceImports(sourceFile, {
       namedImports: [

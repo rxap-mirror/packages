@@ -19,7 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
     class: 'rxap-toggle-window-sidenav-button',
   },
   standalone: true,
-  imports: [MatButtonModule, NgIf, MatIconModule],
+  imports: [ MatButtonModule, NgIf, MatIconModule ],
 })
 export class ToggleWindowSidenavButtonComponent {
 

@@ -36,17 +36,23 @@ import { AsyncPipe } from '@angular/common';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'td[rxap-expand-row]',
   templateUrl: './expand-row-container.component.html',
-  styleUrls: ['./expand-row-container.component.scss'],
+  styleUrls: [ './expand-row-container.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state(
+        'collapsed',
+        style({
+          height: '0px',
+          minHeight: '0',
+        }),
+      ),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
   standalone: true,
-  imports: [PortalModule, AsyncPipe],
+  imports: [ PortalModule, AsyncPipe ],
 })
 export class ExpandRowContainerComponent<Data extends Record<string, any>> implements AfterContentInit, OnDestroy {
 
@@ -79,7 +85,8 @@ export class ExpandRowContainerComponent<Data extends Record<string, any>> imple
         filter(Boolean),
         tap(() => {
           if (!this.portal) {
-            this.portal = new TemplatePortal(this.expandCellContent!.template, this.viewContainerRef, {$implicit: this.element});
+            this.portal =
+              new TemplatePortal(this.expandCellContent!.template, this.viewContainerRef, { $implicit: this.element });
           }
         }),
       ).subscribe();

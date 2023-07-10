@@ -12,4 +12,5 @@ export const ROW_DELETE_METHOD = new InjectionToken<OpenApiRemoteMethod<any, { u
 export const ROW_EDIT_METHOD = new InjectionToken<BaseRemoteMethod<any, Record<string, any>>>('edit-remote-method');
 export const ROW_VIEW_METHOD = new InjectionToken<BaseRemoteMethod<any, Record<string, any>>>('view-remote-method');
 export const ROW_LINK_METHOD = new InjectionToken<BaseRemoteMethod<any, Record<string, any>>>('link-remote-method');
-export const ROW_EDIT_LOADER_METHOD = new InjectionToken<BaseRemoteMethod<Record<string, any>, Record<string, any>>>('edit-loader-method');
+export const ROW_EDIT_LOADER_METHOD = new InjectionToken<BaseRemoteMethod<Record<string, any>, Record<string, any>>>(
+  'edit-loader-method');

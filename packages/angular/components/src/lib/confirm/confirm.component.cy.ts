@@ -8,13 +8,15 @@ import { NgIf } from '@angular/common';
 describe(ConfirmComponent.name, () => {
 
   @Component({
-    standalone: true, template: `
+    standalone: true,
+    template: `
           <button (confirmed)="confirm = true" (unconfirmed)="decline = true" mat-raised-button rxapConfirm>Confirm
               Button
           </button>
           <span *ngIf="confirm">confirm</span>
           <span *ngIf="decline">decline</span>
-    `, imports: [ NgIf, ConfirmDirective, ConfirmComponent, MatButtonModule ],
+    `,
+    imports: [ NgIf, ConfirmDirective, ConfirmComponent, MatButtonModule ],
   })
   class TestComponent {
 
@@ -26,7 +28,8 @@ describe(ConfirmComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(TestComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

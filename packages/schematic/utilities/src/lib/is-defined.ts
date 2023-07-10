@@ -25,7 +25,11 @@ export function AssertDefined<T>(value: T | undefined, code: string, className?:
   }
 }
 
-export function AssertDefinedAndNotNull<T>(value: T | undefined | null, code: string, className?: string): asserts value is T {
+export function AssertDefinedAndNotNull<T>(
+  value: T | undefined | null,
+  code: string,
+  className?: string,
+): asserts value is T {
   if (!IsDefined(value)) {
     throw new Error('Value is not defined or not null' + className);
   }

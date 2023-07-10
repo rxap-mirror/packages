@@ -1,4 +1,7 @@
-export function TryAndLogOnError<T, A extends any[]>(fnc: (...args: A) => T, defaultResult: T | null = null): (...args: A) => T | null {
+export function TryAndLogOnError<T, A extends any[]>(
+  fnc: (...args: A) => T,
+  defaultResult: T | null = null,
+): (...args: A) => T | null {
   return (...args: A) => {
 
     let result = defaultResult;

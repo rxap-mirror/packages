@@ -1,26 +1,26 @@
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
-    <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="32px" style="width: 100%">
-        <button (click)="reset()"
-                [disabled]="submitting$ | async"
-                fxFlex="nogrow"
-                mat-stroked-button
-                type="button">
-            <ng-container i18n>Reset</ng-container>
-        </button>
-        <button (click)="cancel()"
-                [disabled]="submitting$ | async"
-                color="warn"
-                fxFlex="nogrow" mat-stroked-button
-                type="button">
-            <ng-container i18n>Cancel</ng-container>
-        </button>
-        <button (click)="submit(!allowResubmit)"
-                [disabled]="submitting$ | async"
-                [ngClass]="{ invalid: invalid }"
-                color="primary"
-                fxFlex="nogrow"
-                mat-raised-button
-                type="button">
+  <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="32px" style="width: 100%">
+    <button (click)="reset()"
+            [disabled]="submitting$ | async"
+            fxFlex="nogrow"
+            mat-stroked-button
+            type="button">
+      <ng-container i18n>Reset</ng-container>
+    </button>
+    <button (click)="cancel()"
+            [disabled]="submitting$ | async"
+            color="warn"
+            fxFlex="nogrow" mat-stroked-button
+            type="button">
+      <ng-container i18n>Cancel</ng-container>
+    </button>
+    <button (click)="submit(!allowResubmit)"
+            [disabled]="submitting$ | async"
+            [ngClass]="{ invalid: invalid }"
+            color="primary"
+            fxFlex="nogrow"
+            mat-raised-button
+            type="button">
       <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
         <span fxFlex="nogrow">
           <ng-container i18n>Submit</ng-container>
@@ -28,14 +28,14 @@
         <mat-spinner [diameter]="15" [fxShow]="submitting$ | async" color="accent" fxFlex="nogrow"
                      mode="indeterminate"></mat-spinner>
       </span>
-        </button>
-        <button (click)="submit(true)" *ngIf="allowResubmit"
-                [disabled]="submitting$ | async"
-                [ngClass]="{ invalid: invalid }"
-                color="primary"
-                fxFlex="nogrow"
-                mat-raised-button
-                type="button">
+    </button>
+    <button (click)="submit(true)" *ngIf="allowResubmit"
+            [disabled]="submitting$ | async"
+            [ngClass]="{ invalid: invalid }"
+            color="primary"
+            fxFlex="nogrow"
+            mat-raised-button
+            type="button">
       <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
         <span fxFlex="nogrow">
           <ng-container i18n>Submit and Close</ng-container>
@@ -43,9 +43,9 @@
         <mat-spinner [diameter]="15" [fxShow]="submitting$ | async" color="accent" fxFlex="nogrow"
                      mode="indeterminate"></mat-spinner>
       </span>
-        </button>
-        <button (click)="logCurrentFormState()" *ngIf="isDevMode" fxFlex="nogrow" mat-button type="button">Current Form
-            State
-        </button>
-    </div>
+    </button>
+    <button (click)="logCurrentFormState()" *ngIf="isDevMode" fxFlex="nogrow" mat-button type="button">Current Form
+      State
+    </button>
+  </div>
 </div>

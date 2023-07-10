@@ -33,48 +33,120 @@ export class ThemeService {
 
   public setBaseFontSize(value: number) {
     localStorage.setItem('rxap-base-font-size', value.toFixed(3));
-    document.documentElement.style.fontSize = `${value}%`;
+    document.documentElement.style.fontSize = `${ value }%`;
     this.baseFontSize = value;
 
     switch (value) {
 
       case 40:
-        document.body.classList.remove('size-xxs', 'size-xs', 'size-s', 'size-m', 'size-l', 'size-xl', 'size-xxl', 'size-xxxl');
+        document.body.classList.remove(
+          'size-xxs',
+          'size-xs',
+          'size-s',
+          'size-m',
+          'size-l',
+          'size-xl',
+          'size-xxl',
+          'size-xxxl',
+        );
         document.body.classList.add('size-xxs');
         break;
 
       case 45:
-        document.body.classList.remove('size-xxs', 'size-xs', 'size-s', 'size-m', 'size-l', 'size-xl', 'size-xxl', 'size-xxxl');
+        document.body.classList.remove(
+          'size-xxs',
+          'size-xs',
+          'size-s',
+          'size-m',
+          'size-l',
+          'size-xl',
+          'size-xxl',
+          'size-xxxl',
+        );
         document.body.classList.add('size-xs');
         break;
 
       case 55:
-        document.body.classList.remove('size-xxs', 'size-xs', 'size-s', 'size-m', 'size-l', 'size-xl', 'size-xxl', 'size-xxxl');
+        document.body.classList.remove(
+          'size-xxs',
+          'size-xs',
+          'size-s',
+          'size-m',
+          'size-l',
+          'size-xl',
+          'size-xxl',
+          'size-xxxl',
+        );
         document.body.classList.add('size-s');
         break;
 
       case 62.5:
-        document.body.classList.remove('size-xxs', 'size-xs', 'size-s', 'size-m', 'size-l', 'size-xl', 'size-xxl', 'size-xxxl');
+        document.body.classList.remove(
+          'size-xxs',
+          'size-xs',
+          'size-s',
+          'size-m',
+          'size-l',
+          'size-xl',
+          'size-xxl',
+          'size-xxxl',
+        );
         document.body.classList.add('size-m');
         break;
 
       case 70:
-        document.body.classList.remove('size-xxs', 'size-xs', 'size-s', 'size-m', 'size-l', 'size-xl', 'size-xxl', 'size-xxxl');
+        document.body.classList.remove(
+          'size-xxs',
+          'size-xs',
+          'size-s',
+          'size-m',
+          'size-l',
+          'size-xl',
+          'size-xxl',
+          'size-xxxl',
+        );
         document.body.classList.add('size-l');
         break;
 
       case 80:
-        document.body.classList.remove('size-xxs', 'size-xs', 'size-s', 'size-m', 'size-l', 'size-xl', 'size-xxl', 'size-xxxl');
+        document.body.classList.remove(
+          'size-xxs',
+          'size-xs',
+          'size-s',
+          'size-m',
+          'size-l',
+          'size-xl',
+          'size-xxl',
+          'size-xxxl',
+        );
         document.body.classList.add('size-xl');
         break;
 
       case 90:
-        document.body.classList.remove('size-xxs', 'size-xs', 'size-s', 'size-m', 'size-l', 'size-xl', 'size-xxl', 'size-xxxl');
+        document.body.classList.remove(
+          'size-xxs',
+          'size-xs',
+          'size-s',
+          'size-m',
+          'size-l',
+          'size-xl',
+          'size-xxl',
+          'size-xxxl',
+        );
         document.body.classList.add('size-xxl');
         break;
 
       case 100:
-        document.body.classList.remove('size-xxs', 'size-xs', 'size-s', 'size-m', 'size-l', 'size-xl', 'size-xxl', 'size-xxxl');
+        document.body.classList.remove(
+          'size-xxs',
+          'size-xs',
+          'size-s',
+          'size-m',
+          'size-l',
+          'size-xl',
+          'size-xxl',
+          'size-xxxl',
+        );
         document.body.classList.add('size-xxxl');
         break;
 

@@ -50,7 +50,11 @@ export class ElementAttributeParser<T extends ParsedElement = ParsedElement, Val
 
     if (value === undefined) {
       if (this.required) {
-        throw new RxapXmlParserValidateRequiredError(`The attribute '${this.attribute}' is required for <${parsedElement.__tag}>`, parsedElement.__tag!, this.attribute);
+        throw new RxapXmlParserValidateRequiredError(
+          `The attribute '${ this.attribute }' is required for <${ parsedElement.__tag }>`,
+          parsedElement.__tag!,
+          this.attribute,
+        );
       }
     } else {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -67,14 +71,20 @@ export class ElementAttributeParser<T extends ParsedElement = ParsedElement, Val
 
 export function ElementAttribute<Value>(): (target: any, propertyKey: string) => void;
 export function ElementAttribute<Value>(attribute: string): (target: any, propertyKey: string) => void;
-export function ElementAttribute<Value>(options: Partial<ElementAttributeOptions<Value>>): (target: any, propertyKey: string) => void;
-export function ElementAttribute<Value>(optionsOrString?: Partial<ElementAttributeOptions<Value>> | string): (target: any, propertyKey: string) => void {
+export function ElementAttribute<Value>(options: Partial<ElementAttributeOptions<Value>>): (
+  target: any,
+  propertyKey: string,
+) => void;
+export function ElementAttribute<Value>(optionsOrString?: Partial<ElementAttributeOptions<Value>> | string): (
+  target: any,
+  propertyKey: string,
+) => void {
   return function (target: any, propertyKey: string) {
     let options: Partial<ElementAttributeOptions<Value>> = optionsOrString === undefined ?
-      {attribute: propertyKey} :
-      typeof optionsOrString === 'string' ? {attribute: optionsOrString} : optionsOrString;
+      { attribute: propertyKey } :
+      typeof optionsOrString === 'string' ? { attribute: optionsOrString } : optionsOrString;
     options = deepMerge(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) ?? {});
-    const optionsWithDefaults: ElementAttributeOptions<Value> = Object.assign({attribute: propertyKey}, options);
+    const optionsWithDefaults: ElementAttributeOptions<Value> = Object.assign({ attribute: propertyKey }, options);
     const parser = new ElementAttributeParser(propertyKey, optionsWithDefaults);
     AddParserToMetadata(parser, target);
     if (optionsWithDefaults.required) {

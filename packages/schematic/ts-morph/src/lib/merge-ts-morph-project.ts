@@ -17,7 +17,7 @@ export function MergeTsMorphProject(target: Project, source: Project, relPath: s
     target.createSourceFile(
       join(relPath, sourceFile.getFilePath()),
       sourceFile.getFullText(),
-      {overwrite: true},
+      { overwrite: true },
     );
   }
 

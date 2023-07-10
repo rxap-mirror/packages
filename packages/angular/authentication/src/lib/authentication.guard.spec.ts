@@ -28,7 +28,7 @@ describe('Authentication', () => {
         component: ɵEmptyOutletComponent,
         children: [
           {
-            canActivate: [RxapAuthenticationGuard],
+            canActivate: [ RxapAuthenticationGuard ],
             path: 'login',
             component: ɵEmptyOutletComponent,
           },
@@ -48,8 +48,8 @@ describe('Authentication', () => {
       },
       {
         path: '',
-        canActivate: [RxapAuthenticationGuard],
-        canActivateChild: [RxapAuthenticationGuard],
+        canActivate: [ RxapAuthenticationGuard ],
+        canActivateChild: [ RxapAuthenticationGuard ],
         component: ɵEmptyOutletComponent,
         children: [
           {
@@ -93,45 +93,45 @@ describe('Authentication', () => {
       expect(location.path()).toBe('/authentication/login');
       expect(guard.lastUrl).toBe('/');
 
-      router.navigate(['']);
+      router.navigate([ '' ]);
       tick();
       expect(location.path()).toBe('/authentication/login');
       expect(guard.lastUrl).toBe('/');
 
-      router.navigate(['/child-1']);
+      router.navigate([ '/child-1' ]);
       tick();
       expect(location.path()).toBe('/authentication/login');
       expect(guard.lastUrl).toBe('/child-1');
 
       auth.isAuthenticated$.next(true);
 
-      router.navigate(['']);
+      router.navigate([ '' ]);
       tick();
       expect(location.path()).toBe('/child-1');
       expect(guard.lastUrl).toBeNull();
 
-      router.navigate(['']);
+      router.navigate([ '' ]);
       tick();
       expect(location.path()).toBe('/');
       expect(guard.lastUrl).toBeNull();
 
       auth.isAuthenticated$.next(false);
 
-      router.navigate(['/child-3']);
+      router.navigate([ '/child-3' ]);
       tick();
       expect(location.path()).toBe('/authentication/login');
       expect(guard.lastUrl).toBe('/child-3');
 
       auth.isAuthenticated$.next(true);
 
-      router.navigate(['/child-1']);
+      router.navigate([ '/child-1' ]);
       tick();
       expect(location.path()).toBe('/child-1');
       expect(guard.lastUrl).toBeNull();
 
       auth.isAuthenticated$.next(false);
 
-      router.navigate(['/child-2']);
+      router.navigate([ '/child-2' ]);
       tick();
       expect(location.path()).toBe('/authentication/login');
       expect(guard.lastUrl).toBe('/child-2');
@@ -147,28 +147,31 @@ describe('Authentication', () => {
 
       guard.lastUrl = '/child-2';
 
-      router.navigate(['/authentication/login']);
+      router.navigate([ '/authentication/login' ]);
       tick();
       expect(location.path()).toBe('/child-2');
       expect(guard.lastUrl).toBeNull();
 
     }));
 
-    it('should redirect from any authentication path to the last url with query params if authenticated', fakeAsync(() => {
-      auth.isAuthenticated$.next(true);
-      router.initialNavigation();
-      tick();
+    it(
+      'should redirect from any authentication path to the last url with query params if authenticated',
+      fakeAsync(() => {
+        auth.isAuthenticated$.next(true);
+        router.initialNavigation();
+        tick();
 
-      expect(location.path()).toBe('/');
+        expect(location.path()).toBe('/');
 
-      guard.lastUrl = '/child-2?key1=value1&key2=value2';
+        guard.lastUrl = '/child-2?key1=value1&key2=value2';
 
-      router.navigate(['/authentication/login']);
-      tick();
-      expect(location.path()).toBe('/child-2?key1=value1&key2=value2');
-      expect(guard.lastUrl).toBeNull();
+        router.navigate([ '/authentication/login' ]);
+        tick();
+        expect(location.path()).toBe('/child-2?key1=value1&key2=value2');
+        expect(guard.lastUrl).toBeNull();
 
-    }));
+      }),
+    );
 
     it('should redirect from any authentication path to the last url with fragments if authenticated', fakeAsync(() => {
       auth.isAuthenticated$.next(true);
@@ -179,28 +182,31 @@ describe('Authentication', () => {
 
       guard.lastUrl = '/child-2#key1=value1&key2=value2';
 
-      router.navigate(['/authentication/login']);
+      router.navigate([ '/authentication/login' ]);
       tick();
       expect(location.path()).toBe('/child-2#key1=value1&key2=value2');
       expect(guard.lastUrl).toBeNull();
 
     }));
 
-    it('should redirect from any authentication path to the last url with fragments and query params if authenticated', fakeAsync(() => {
-      auth.isAuthenticated$.next(true);
-      router.initialNavigation();
-      tick();
+    it(
+      'should redirect from any authentication path to the last url with fragments and query params if authenticated',
+      fakeAsync(() => {
+        auth.isAuthenticated$.next(true);
+        router.initialNavigation();
+        tick();
 
-      expect(location.path()).toBe('/');
+        expect(location.path()).toBe('/');
 
-      guard.lastUrl = '/child-2?key1=value1&key2=value2#key1=value1&key2=value2';
+        guard.lastUrl = '/child-2?key1=value1&key2=value2#key1=value1&key2=value2';
 
-      router.navigate(['/authentication/login']);
-      tick();
-      expect(location.path()).toBe('/child-2?key1=value1&key2=value2#key1=value1&key2=value2');
-      expect(guard.lastUrl).toBeNull();
+        router.navigate([ '/authentication/login' ]);
+        tick();
+        expect(location.path()).toBe('/child-2?key1=value1&key2=value2#key1=value1&key2=value2');
+        expect(guard.lastUrl).toBeNull();
 
-    }));
+      }),
+    );
 
     it('should not redirect away from password reset path if not authenticated', fakeAsync(() => {
 
@@ -211,11 +217,11 @@ describe('Authentication', () => {
 
       expect(location.path()).toBe('/authentication/login');
 
-      router.navigate(['/authentication/reset-password/token']);
+      router.navigate([ '/authentication/reset-password/token' ]);
       tick();
       expect(location.path()).toBe('/authentication/reset-password/token');
 
-      router.navigate(['/authentication/login']);
+      router.navigate([ '/authentication/login' ]);
       tick();
       expect(location.path()).toBe('/authentication/login');
 
@@ -229,14 +235,14 @@ describe('Authentication', () => {
       router.initialNavigation();
       tick();
 
-      router.navigate(['/authentication/reset-password/token']);
+      router.navigate([ '/authentication/reset-password/token' ]);
       tick();
       expect(location.path()).toBe('/authentication/reset-password/token');
 
-      router.navigate(['/authentication/login']);
+      router.navigate([ '/authentication/login' ]);
       tick();
 
-      router.navigate(['/authentication/reset-password/token']);
+      router.navigate([ '/authentication/reset-password/token' ]);
       tick();
       expect(location.path()).toBe('/authentication/reset-password/token');
 

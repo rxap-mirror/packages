@@ -1,6 +1,6 @@
 import { Environment } from './environment';
 
-export const RXAP_GLOBAL_STATE: { environment: Environment | null } = {environment: null};
+export const RXAP_GLOBAL_STATE: { environment: Environment | null } = { environment: null };
 
 /**
  * Used to check if the application is in dev mode.

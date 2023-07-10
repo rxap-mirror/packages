@@ -33,24 +33,45 @@ export default async function runExecutor(
 
   if (!tagList?.length) {
     console.log('create registry tag');
-    destinationList.push(getGitlabRegistryDestination(options, fallbackImageName, undefined, context.configurationName, buildTargetOptions.imageName as string, buildTargetOptions.imageSuffix as string));
+    destinationList.push(getGitlabRegistryDestination(
+      options,
+      fallbackImageName,
+      undefined,
+      context.configurationName,
+      buildTargetOptions.imageName as string,
+      buildTargetOptions.imageSuffix as string,
+    ));
   } else {
     for (const tag of tagList) {
-      destinationList.push(getGitlabRegistryDestination(options, fallbackImageName, tag, context.configurationName, buildTargetOptions.imageName as string, buildTargetOptions.imageSuffix as string));
+      destinationList.push(getGitlabRegistryDestination(
+        options,
+        fallbackImageName,
+        tag,
+        context.configurationName,
+        buildTargetOptions.imageName as string,
+        buildTargetOptions.imageSuffix as string,
+      ));
     }
   }
 
   if (process.env.LATEST || buildTargetOptions.latest) {
-    destinationList.push(getGitlabRegistryDestination(options, fallbackImageName, 'latest', undefined, buildTargetOptions.imageName as string, buildTargetOptions.imageSuffix as string));
+    destinationList.push(getGitlabRegistryDestination(
+      options,
+      fallbackImageName,
+      'latest',
+      undefined,
+      buildTargetOptions.imageName as string,
+      buildTargetOptions.imageSuffix as string,
+    ));
   }
 
-  console.log(`start docker save for ${destinationList.join(', ')}`);
+  console.log(`start docker save for ${ destinationList.join(', ') }`);
 
   const result = await dockerSave(
     destinationList,
     getOutputName(options, context),
   );
 
-  return {success: !Number(result)};
+  return { success: !Number(result) };
 
 }

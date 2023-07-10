@@ -8,7 +8,7 @@ export function CoerceFunction(
   name: string,
   structure: Omit<Partial<FunctionDeclarationStructure>, 'name'> = {},
 ) {
-  const functionDeclaration = sourceFile.getFunction(name) || sourceFile.addFunction({name});
+  const functionDeclaration = sourceFile.getFunction(name) || sourceFile.addFunction({ name });
   functionDeclaration.set(structure);
   return functionDeclaration;
 }

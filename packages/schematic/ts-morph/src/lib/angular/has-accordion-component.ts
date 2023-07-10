@@ -22,7 +22,7 @@ export function HasAccordionComponent(
     throw new SchematicsException(`The accordion component '${ accordionName }' does not exists. The project '${ project }' does not exists.`);
   }
   if (!HasProjectFeature(host, options)) {
-    throw new SchematicsException(`The accordion component '${accordionName}' does not exists. The project '${project}' has not the feature does not exists.`);
+    throw new SchematicsException(`The accordion component '${ accordionName }' does not exists. The project '${ project }' has not the feature does not exists.`);
   }
   const projectSourceRoot = GetProjectSourceRoot(host, options.project);
   return host.exists(join(projectSourceRoot, 'feature', feature, accordionName, accordionName + '.component.ts'));

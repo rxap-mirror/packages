@@ -4,10 +4,10 @@ export * from './lib/xml-parser.service';
 export * from './lib/decorators/required-property';
 export * from './lib/decorators/metadata-keys';
 export * from './lib/decorators/attribute';
-export {ParsedElement} from './lib/elements/parsed-element';
-export {ElementParser} from './lib/decorators/element-parser';
-export {ElementName} from './lib/element-name';
-export {XmlElementParserFunction} from './lib/xml-element-parser-function';
+export { ParsedElement } from './lib/elements/parsed-element';
+export { ElementParser } from './lib/decorators/element-parser';
+export { ElementName } from './lib/element-name';
+export { XmlElementParserFunction } from './lib/xml-element-parser-function';
 export * from './lib/error';
 export * from './lib/element-factory';
 
@@ -38,10 +38,10 @@ export {
   ElementTextContent,
   ElementTextContentOptions,
 } from './lib/decorators/element-text-content';
-export {ElementRequired} from './lib/decorators/mixins/required-element.parser.mixin';
-export {ElementDef} from './lib/decorators/element-def';
-export {ElementExtends} from './lib/decorators/element-extends';
-export {ElementClearParser} from './lib/decorators/element-clear-parser';
+export { ElementRequired } from './lib/decorators/mixins/required-element.parser.mixin';
+export { ElementDef } from './lib/decorators/element-def';
+export { ElementExtends } from './lib/decorators/element-extends';
+export { ElementClearParser } from './lib/decorators/element-clear-parser';
 export {
   ElementRecord,
   ElementRecordOptions,

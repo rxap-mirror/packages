@@ -5,7 +5,8 @@ describe(SignOutComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(SignOutComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

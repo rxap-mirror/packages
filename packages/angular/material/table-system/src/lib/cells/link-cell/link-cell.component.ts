@@ -17,10 +17,10 @@ import {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'td[rxap-link-cell]',
   templateUrl: './link-cell.component.html',
-  styleUrls: ['./link-cell.component.scss'],
+  styleUrls: [ './link-cell.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgIf, MatTooltipModule, FlexModule, NgSwitch, NgSwitchCase, MatIconModule, NgSwitchDefault],
+  imports: [ NgIf, MatTooltipModule, FlexModule, NgSwitch, NgSwitchCase, MatIconModule, NgSwitchDefault ],
 })
 export class LinkCellComponent {
 
@@ -29,7 +29,7 @@ export class LinkCellComponent {
 
   public get href(): string {
     if (this.protocol) {
-      return [this.protocol, this.value].join(':');
+      return [ this.protocol, this.value ].join(':');
     }
     return this.value;
   }

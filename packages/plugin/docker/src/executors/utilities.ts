@@ -11,10 +11,10 @@ export async function dockerLogin(command: string, registry: string, username: s
   args.push(registry);
 
   return new Promise((resolve, reject) => {
-    const s = spawn(command, ['login', ...args], {stdio: [0, 1, 2]});
+    const s = spawn(command, [ 'login', ...args ], { stdio: [ 0, 1, 2 ] });
     s.on('error', (err: Error & { code?: string }) => {
       if (err.code === 'ENOENT') {
-        console.error(`Could not find ${command}`);
+        console.error(`Could not find ${ command }`);
       } else {
         reject(err);
       }
@@ -31,11 +31,11 @@ export async function dockerPush(command: string, tags: string[]) {
   }
 
   return Promise.all(tags.map(tag => new Promise((resolve, reject) => {
-    console.log(`${command} push ${tags.join(' ')}`);
-    const s = spawn(command, ['push', ...tags], {stdio: [0, 1, 2]});
+    console.log(`${ command } push ${ tags.join(' ') }`);
+    const s = spawn(command, [ 'push', ...tags ], { stdio: [ 0, 1, 2 ] });
     s.on('error', (err: Error & { code?: string }) => {
       if (err.code === 'ENOENT') {
-        console.error(`Could not find ${command}`);
+        console.error(`Could not find ${ command }`);
       } else {
         reject(err);
       }
@@ -50,7 +50,7 @@ export async function dockerBuild(command: string, context: string, destinationL
   const args: string[] = [];
 
   if (dockerfile) {
-    args.push(`--file="${dockerfile}"`);
+    args.push(`--file="${ dockerfile }"`);
   }
 
   if (!destinationList.length) {
@@ -58,17 +58,17 @@ export async function dockerBuild(command: string, context: string, destinationL
   }
 
   for (const destination of destinationList) {
-    args.push(`--tag=${destination}`);
+    args.push(`--tag=${ destination }`);
   }
 
   args.push(context);
 
   return new Promise((resolve, reject) => {
-    console.log(`${command} build ${args.join(' ')}`);
-    const s = spawn(command, ['build', ...args], {stdio: [0, 1, 2]});
+    console.log(`${ command } build ${ args.join(' ') }`);
+    const s = spawn(command, [ 'build', ...args ], { stdio: [ 0, 1, 2 ] });
     s.on('error', (err: Error & { code?: string }) => {
       if (err.code === 'ENOENT') {
-        console.error(`Could not find ${command}`);
+        console.error(`Could not find ${ command }`);
       } else {
         reject(err);
       }
@@ -91,9 +91,22 @@ export function getGitlabRegistryDestination(options: {
   imageName?: string,
   imageSuffix?: string
 }, fallbackImageName?: string, imageTag?: string, fallbackImageTag?: string, imageName?: string, imageSuffix?: string) {
-  const registryImage = process.env.REGISTRY_IMAGE ?? process.env.CI_REGISTRY_IMAGE ?? options.imageName ?? imageName ?? fallbackImageName;
-  const registryImageTag = imageTag ?? process.env.REGISTRY_IMAGE_TAG ?? process.env.VERSION ?? process.env.CI_COMMIT_TAG ?? process.env.CI_COMMIT_BRANCH ?? fallbackImageTag ?? 'latest';
-  return `${registryImage}${process.env.REGISTRY_IMAGE_SUFFIX ?? options.imageSuffix ?? imageSuffix ?? ''}:${registryImageTag}`;
+  const registryImage = process.env.REGISTRY_IMAGE ??
+    process.env.CI_REGISTRY_IMAGE ??
+    options.imageName ??
+    imageName ??
+    fallbackImageName;
+  const registryImageTag = imageTag ??
+    process.env.REGISTRY_IMAGE_TAG ??
+    process.env.VERSION ??
+    process.env.CI_COMMIT_TAG ??
+    process.env.CI_COMMIT_BRANCH ??
+    fallbackImageTag ??
+    'latest';
+  return `${ registryImage }${ process.env.REGISTRY_IMAGE_SUFFIX ??
+  options.imageSuffix ??
+  imageSuffix ??
+  '' }:${ registryImageTag }`;
 }
 
 export async function dockerSave(destinationList: string[], outputName: string) {
@@ -105,16 +118,16 @@ export async function dockerSave(destinationList: string[], outputName: string) 
     '|',
     'gzip',
     '>',
-    `${outputName}.tar.gz`,
+    `${ outputName }.tar.gz`,
   ];
 
   const command = args.join(' ');
 
   return new Promise((resolve, reject) => {
-    const s = spawn('sh', ['-c', command], {stdio: [0, 1, 2]});
+    const s = spawn('sh', [ '-c', command ], { stdio: [ 0, 1, 2 ] });
     s.on('error', (err: Error & { code?: string }) => {
       if (err.code === 'ENOENT') {
-        console.error(`Could not execute command: ${command}`);
+        console.error(`Could not execute command: ${ command }`);
       } else {
         reject(err);
       }

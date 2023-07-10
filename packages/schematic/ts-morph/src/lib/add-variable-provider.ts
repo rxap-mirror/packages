@@ -29,14 +29,14 @@ export function AddVariableProvider(
   );
 
   CoerceImports(sourceFile, {
-    namedImports: ['Provider'],
+    namedImports: [ 'Provider' ],
     moduleSpecifier: '@angular/core',
   });
 
   const providerArray = variableDeclaration.getInitializer();
 
   if (!(providerArray instanceof ArrayLiteralExpression)) {
-    throw new Error(`The variable '${variableName}' initializer is not an array literal expression`);
+    throw new Error(`The variable '${ variableName }' initializer is not an array literal expression`);
   }
 
   AddProviderToArray(providerObject, providerArray, overwrite);

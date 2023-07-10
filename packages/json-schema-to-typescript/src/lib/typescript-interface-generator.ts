@@ -59,7 +59,7 @@ export class TypescriptInterfaceGenerator {
       key.match(/(^[0-9]+|-|#|\.|@|\/|:|\*)/) &&
       !key.match(/\[\w+:\s?\w+\]/)
     ) {
-      return `'${key}'`;
+      return `'${ key }'`;
     }
     return key;
   }
@@ -127,7 +127,7 @@ export class TypescriptInterfaceGenerator {
   private addTypeAlias(schema: JSONSchema, name: string): SourceFile {
     const filePath = joinPath(
       this.options.basePath,
-      `${this.getFileName(name)}.ts`,
+      `${ this.getFileName(name) }.ts`,
     );
 
     let sourceFile = this.project.getSourceFile(filePath);
@@ -159,7 +159,7 @@ export class TypescriptInterfaceGenerator {
   private addInterface(schema: JSONSchema, name: string): SourceFile {
     const filePath = joinPath(
       this.options.basePath,
-      `${this.getFileName(name)}.ts`,
+      `${ this.getFileName(name) }.ts`,
     );
 
     let sourceFile = this.project.getSourceFile(filePath);
@@ -181,7 +181,7 @@ export class TypescriptInterfaceGenerator {
       throw new Error('The provided schema has not a properties declaration!');
     }
 
-    for (const [key, property] of Object.entries(
+    for (const [ key, property ] of Object.entries(
       schema.properties as Record<string, JSONSchema>,
     )) {
       interfaceStructure.properties?.push(
@@ -212,7 +212,7 @@ export class TypescriptInterfaceGenerator {
     };
 
     if (property.description) {
-      propertyStructure.docs = [property.description];
+      propertyStructure.docs = [ property.description ];
     }
 
     return propertyStructure;
@@ -304,7 +304,7 @@ export class TypescriptInterfaceGenerator {
           };
 
           if (schema.properties) {
-            for (const [key, property] of Object.entries(
+            for (const [ key, property ] of Object.entries(
               schema.properties as Record<string, JSONSchema>,
             )) {
               objectTypeStructure.properties?.push(
@@ -323,7 +323,7 @@ export class TypescriptInterfaceGenerator {
             Object.keys(schema.patternProperties).length
           ) {
             const typeList: Array<string | WriterFunction> = [];
-            for (const [key, property] of Object.entries(
+            for (const [ key, property ] of Object.entries(
               schema.patternProperties as Record<string, JSONSchema>,
             )) {
               typeList.push(
@@ -373,8 +373,8 @@ export class TypescriptInterfaceGenerator {
           ) {
             currentFile.addImportDeclaration({
               isTypeOnly: true,
-              namedImports: [{name: this.buildName(name)}],
-              moduleSpecifier: `./${this.getFileName(name)}`,
+              namedImports: [ { name: this.buildName(name) } ],
+              moduleSpecifier: `./${ this.getFileName(name) }`,
             });
           }
 
@@ -416,9 +416,9 @@ export class TypescriptInterfaceGenerator {
         }
 
         console.warn(
-          `The property type is undefined and a ref is not defined! found: ${Object.keys(
+          `The property type is undefined and a ref is not defined! found: ${ Object.keys(
             schema,
-          )}`,
+          ) }`,
         );
 
         return (writer) => writer.write('unknown');
@@ -429,7 +429,7 @@ export class TypescriptInterfaceGenerator {
       default:
         if (Array.isArray(schema.type)) {
           const primitiveTypeList = schema.type.filter((type: string) =>
-            ['string', 'integer', 'number', 'boolean', 'null', 'any', 'unknown'].includes(
+            [ 'string', 'integer', 'number', 'boolean', 'null', 'any', 'unknown' ].includes(
               type,
             ),
           );
@@ -450,27 +450,32 @@ export class TypescriptInterfaceGenerator {
 
           for (const type of complexTypeList) {
             typeList.push(
-              this.propertyTypeWriteFunction(currentFile, {...schema, type: type as any}),
+              this.propertyTypeWriteFunction(currentFile,
+                {
+                  ...schema,
+                  type: type as any,
+                },
+              ),
             );
           }
 
           return TypescriptInterfaceGenerator.unionType(typeList);
         }
 
-        throw new Error(`The property type '${schema.type}' is not supported!`);
+        throw new Error(`The property type '${ schema.type }' is not supported!`);
     }
   }
 
   private getFileName(name: string): string {
     if (this.options.suffix) {
-      return [dasherize(name), dasherize(this.options.suffix)].join('.');
+      return [ dasherize(name), dasherize(this.options.suffix) ].join('.');
     }
     return dasherize(name);
   }
 
   private buildName(name: string): string {
     if (this.options.suffix) {
-      return classify([name, this.options.suffix].join('-'));
+      return classify([ name, this.options.suffix ].join('-'));
     }
     return classify(name);
   }
@@ -479,7 +484,7 @@ export class TypescriptInterfaceGenerator {
     const nameMatch = ref.match(/\/([^/]+)$/);
 
     if (!nameMatch) {
-      throw new Error(`Could not resolve ref name '${ref}'`);
+      throw new Error(`Could not resolve ref name '${ ref }'`);
     }
 
     return nameMatch[1];
@@ -497,7 +502,7 @@ export class TypescriptInterfaceGenerator {
     );
 
     if (!schema) {
-      throw new Error(`Could not resolve $ref '${ref}'.`);
+      throw new Error(`Could not resolve $ref '${ ref }'.`);
     }
 
     return schema;

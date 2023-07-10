@@ -37,7 +37,7 @@ export class PersistentExpansionPanelDirective implements OnInit, OnDestroy {
   }
 
   public get key(): string {
-    return [PersistentExpansionPanelDirective.BASE_KEY, this.group, this.uuid, this.id, 'isExpanded'].join('/');
+    return [ PersistentExpansionPanelDirective.BASE_KEY, this.group, this.uuid, this.id, 'isExpanded' ].join('/');
   }
 
   public get isExpanded(): boolean {

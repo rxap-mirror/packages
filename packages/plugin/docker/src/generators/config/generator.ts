@@ -81,12 +81,12 @@ export async function configGenerator(
 
   nxJson.targetDefaults ??= {};
   nxJson.targetDefaults['docker'] ??= {
-    dependsOn: ['^build'],
+    dependsOn: [ '^build' ],
   };
 
   if (options.save) {
     nxJson.targetDefaults['save'] ??= {
-      dependsOn: ['docker'],
+      dependsOn: [ 'docker' ],
     };
   }
 

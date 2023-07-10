@@ -24,9 +24,9 @@ export function ElementFactory<Element extends ParsedElement>(
   const requiredProperties = getMetadata<object>(ElementParserMetaData.REQUIRED_ELEMENT_PROPERTIES, element);
 
   if (requiredProperties && hasIndexSignature(element)) {
-    for (const [propertyKey, message] of Object.entries(requiredProperties)) {
+    for (const [ propertyKey, message ] of Object.entries(requiredProperties)) {
       if (element[propertyKey] === undefined) {
-        throw new RxapXmlParserError(`[${ElementConstructor.TAG}] ${message}`, '', element.constructor.name);
+        throw new RxapXmlParserError(`[${ ElementConstructor.TAG }] ${ message }`, '', element.constructor.name);
       }
     }
   }
@@ -36,7 +36,7 @@ export function ElementFactory<Element extends ParsedElement>(
   }
   if (element.validate) {
     if (!element.validate()) {
-      throw new Error(`The element '${ElementConstructor.TAG}' created with the element factory is not valid!`);
+      throw new Error(`The element '${ ElementConstructor.TAG }' created with the element factory is not valid!`);
     }
   }
   if (element.postValidate) {

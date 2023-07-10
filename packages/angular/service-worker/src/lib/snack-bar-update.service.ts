@@ -32,17 +32,17 @@ export class SnackBarUpdateService {
   public start(): void {
     console.debug('start prompt update');
     this.updates.available
-      .pipe(
-        concatMap((event) => this.openSnackBar(event)),
-        tap(() => console.log('start app update')),
-        tap(() =>
-          this.updates.activateUpdate().then(() => {
-            console.log('app update completed. Reload app.');
-            document.location.reload();
-          }),
-        ),
-      )
-      .subscribe();
+        .pipe(
+          concatMap((event) => this.openSnackBar(event)),
+          tap(() => console.log('start app update')),
+          tap(() =>
+            this.updates.activateUpdate().then(() => {
+              console.log('app update completed. Reload app.');
+              document.location.reload();
+            }),
+          ),
+        )
+        .subscribe();
   }
 
   private openSnackBar(event: UpdateAvailableEvent): Observable<void> {
@@ -56,7 +56,7 @@ export class SnackBarUpdateService {
 }
 
 @NgModule({
-  exports: [MatSnackBarModule],
+  exports: [ MatSnackBarModule ],
 })
 export class SnackBarUpdateServiceModule {
   constructor(

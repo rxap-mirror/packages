@@ -5,7 +5,8 @@ describe(OptionsCellComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(OptionsCellComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });
@@ -13,7 +14,8 @@ describe(OptionsCellComponent.name, () => {
   it('renders', () => {
     cy.mount(OptionsCellComponent, {
       componentProperties: {
-        defaultViewValue: '', emptyViewValue: '',
+        defaultViewValue: '',
+        emptyViewValue: '',
       },
     });
   });

@@ -48,7 +48,7 @@ export class PaginationDataSource<Data> extends AbstractPaginationDataSource<Dat
     this.dataSource.refresh();
   }
 
-  protected override _connect(viewer: BaseDataSourceViewer): [Observable<Data[]>, TeardownLogic] {
+  protected override _connect(viewer: BaseDataSourceViewer): [ Observable<Data[]>, TeardownLogic ] {
 
     this.assertPaginator();
 

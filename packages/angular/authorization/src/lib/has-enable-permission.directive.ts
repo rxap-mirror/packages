@@ -47,7 +47,8 @@ export abstract class HasEnablePermission implements OnInit, OnDestroy {
 
   // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   public ngOnInit() {
-    this._subscription = this.authorization
+    this._subscription = this
+      .authorization
       .hasPermission(this.identifier, this.scope || null)
       .pipe(
         tap((hasPermission) => {

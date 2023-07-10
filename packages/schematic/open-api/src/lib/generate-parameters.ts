@@ -38,11 +38,11 @@ export async function GenerateParameters(
           throw new Error('Could not parse ref: ' + ref);
         }
         if (!group || !(components as any)[group]) {
-          throw new Error(`Group '${group}' does not exist in the components object with ref: ${ref}`);
+          throw new Error(`Group '${ group }' does not exist in the components object with ref: ${ ref }`);
         }
         const component = (components as any)[group];
         if (!name || !component[name]) {
-          throw new Error(`Could not find '${name}' in group '${group} with ref: ${ref}`);
+          throw new Error(`Could not find '${ name }' in group '${ group } with ref: ${ ref }`);
         }
         parameters.push(component[name]);
       }
@@ -58,7 +58,7 @@ export async function GenerateParameters(
         throw new Error('FATAL: Reference object are not supported in the parameter definition!');
       }
 
-      properties[parameter.name] = parameter.schema ?? {type: 'any'};
+      properties[parameter.name] = parameter.schema ?? { type: 'any' };
 
       if (parameter.required) {
         required.push(parameter.name);
@@ -73,19 +73,26 @@ export async function GenerateParameters(
     };
 
     const generator = new TypescriptInterfaceGenerator(
-      {...parametersSchema, components},
-      {suffix: PARAMETER_FILE_SUFFIX, basePath: PARAMETER_BASE_PATH, addImports: true},
+      {
+        ...parametersSchema,
+        components,
+      },
+      {
+        suffix: PARAMETER_FILE_SUFFIX,
+        basePath: PARAMETER_BASE_PATH,
+        addImports: true,
+      },
       project,
     );
 
-    console.debug(`Generate parameter interface for: ${operationId}`);
+    console.debug(`Generate parameter interface for: ${ operationId }`);
 
     try {
 
       await generator.build(operationId);
 
     } catch (error: any) {
-      console.error(`Failed to generate parameter interface for: ${operationId}`, error.message);
+      console.error(`Failed to generate parameter interface for: ${ operationId }`, error.message);
     }
 
   }

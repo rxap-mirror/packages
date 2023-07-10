@@ -87,14 +87,14 @@ export class FormWindowService {
         {
           provide: RXAP_FORM_DEFINITION_BUILDER,
           useFactory: FormDefinitionBuilderFactory,
-          deps: [INJECTOR],
+          deps: [ INJECTOR ],
         },
         {
           provide: RXAP_FORM_DEFINITION,
           useFactory: FormDefinitionFactory,
           deps: [
             RXAP_FORM_DEFINITION_BUILDER,
-            [new Optional(), RXAP_FORM_INITIAL_STATE],
+            [ new Optional(), RXAP_FORM_INITIAL_STATE ],
           ],
         },
       );

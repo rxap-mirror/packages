@@ -5,7 +5,8 @@ describe(WindowTaskBarContainerComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(WindowTaskBarContainerComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

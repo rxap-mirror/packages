@@ -36,7 +36,7 @@ describe('FirebaseAuthGuard', () => {
   }
 
   @Module({
-    controllers: [TestAppController],
+    controllers: [ TestAppController ],
   })
   class TestAppModule {
   }
@@ -51,7 +51,7 @@ describe('FirebaseAuthGuard', () => {
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      imports: [TestAppModule],
+      imports: [ TestAppModule ],
       providers: [
         FirebaseAuthGuard,
         {
@@ -83,15 +83,15 @@ describe('FirebaseAuthGuard', () => {
 
   it('should pass the FirebaseUser to the request object', async () => {
 
-    validateIdTokenSpy.mockResolvedValue({FirebaseUser: 'value'});
+    validateIdTokenSpy.mockResolvedValue({ FirebaseUser: 'value' });
 
     await request(app.getHttpServer())
       .get('/app')
-      .set({'idToken': 'token'});
+      .set({ 'idToken': 'token' });
 
     expect(validateIdTokenSpy).toBeCalledTimes(1);
     expect(logUser).toBeCalledTimes(1);
-    expect(logUser).toBeCalledWith({FirebaseUser: 'value'});
+    expect(logUser).toBeCalledWith({ FirebaseUser: 'value' });
 
   });
 

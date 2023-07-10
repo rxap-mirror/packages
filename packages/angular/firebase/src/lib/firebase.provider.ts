@@ -170,12 +170,12 @@ export const FIREBASE_APP_PROVIDERS: Provider[] = [
   {
     provide: FIREBASE_OPTIONS,
     useFactory: FirebaseOptionsTokenFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: FIREBASE_APP_NAME,
     useFactory: FirebaseNameOrConfigTokenFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: FirebaseApp,
@@ -183,7 +183,7 @@ export const FIREBASE_APP_PROVIDERS: Provider[] = [
     deps: [
       FIREBASE_OPTIONS,
       NgZone,
-      [new Optional(), FIREBASE_APP_NAME],
+      [ new Optional(), FIREBASE_APP_NAME ],
     ],
   },
 ];
@@ -192,22 +192,22 @@ export const FIREBASE_FIRESTORE_PROVIDERS: Provider[] = [
   {
     provide: ENABLE_PERSISTENCE,
     useFactory: EnablePersistenceTokenFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: PERSISTENCE_SETTINGS,
     useFactory: PersistenceSettingsTokenFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: FIRESTORE_SETTINGS,
     useFactory: FirestoreSettingsTokenFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: USE_FIRESTORE_EMULATOR,
     useFactory: UseFirestoreEmulatorFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
 ];
 
@@ -215,17 +215,17 @@ export const FIREBASE_FUNCTIONS_PROVIDERS: Provider[] = [
   {
     provide: REGION,
     useFactory: FunctionsRegionFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: ORIGIN,
     useFactory: FunctionsOriginFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: USE_FUNCTIONS_EMULATOR,
     useFactory: UseFunctionsEmulatorFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
 ];
 
@@ -233,7 +233,7 @@ export const FIREBASE_MESSAGING_PROVIDERS: Provider[] = [
   {
     provide: VAPID_KEY,
     useFactory: VapidKeyFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: SERVICE_WORKER,
@@ -246,12 +246,12 @@ export const FIREBASE_PERFORMANCE_PROVIDERS: Provider[] = [
   {
     provide: INSTRUMENTATION_ENABLED,
     useFactory: InstrumentationEnabledFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: DATA_COLLECTION_ENABLED,
     useFactory: DataCollectionEnabledFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
 ];
 
@@ -259,12 +259,12 @@ export const FIREBASE_ANALYTICS_PROVIDERS: Provider[] = [
   {
     provide: COLLECTION_ENABLED,
     useFactory: AnalyticsEnabledFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: APP_NAME,
     useFactory: GetAnalyticsAppName,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
 ];
 
@@ -272,32 +272,32 @@ export const FIREBASE_AUTH_PROVIDERS: Provider[] = [
   {
     provide: USE_AUTH_EMULATOR,
     useFactory: UseAuthEmulatorFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: TENANT_ID,
     useFactory: AuthTenantIdFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: LANGUAGE_CODE,
     useFactory: AuthLanguageCodeFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: USE_DEVICE_LANGUAGE,
     useFactory: AuthUseDeviceLanguageFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: PERSISTENCE,
     useFactory: AuthPersistenceFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: AUTH_SETTINGS,
     useFactory: AuthSettingsFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
 ];
 
@@ -305,17 +305,17 @@ export const FIREBASE_APP_CHECK_PROVIDERS: Provider[] = [
   {
     provide: APP_CHECK_ENABLED,
     useFactory: AppCheckEnabledFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED,
     useFactory: AppIsTokenAutoRefreshEnabledFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: APP_CHECK_SITE_KEY,
     useFactory: AppCheckSiteKeyFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   AppCheckService,
 ];
@@ -324,17 +324,17 @@ export const FIREBASE_STORAGE_PROVIDERS: Provider[] = [
   {
     provide: BUCKET,
     useFactory: StorageBucketFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: MAX_UPLOAD_RETRY_TIME,
     useFactory: StorageMaxUploadRetryTimeFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
   {
     provide: MAX_OPERATION_RETRY_TIME,
     useFactory: StorageMaxOperationRetryTimeFactory,
-    deps: [ConfigService],
+    deps: [ ConfigService ],
   },
 ];
 

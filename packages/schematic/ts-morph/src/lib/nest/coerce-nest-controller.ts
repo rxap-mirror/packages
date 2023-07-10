@@ -21,7 +21,11 @@ export interface CoerceNestControllerOptions {
 }
 
 export function CoerceNestController(options: CoerceNestControllerOptions): Rule {
-  let {name, module, nestModule} = options;
+  let {
+    name,
+    module,
+    nestModule,
+  } = options;
   nestModule ??= module;
   if (!nestModule) {
     throw new SchematicsException('The property "nestModule" option is required for the CoerceNestController rule');
@@ -34,7 +38,7 @@ export function CoerceNestController(options: CoerceNestControllerOptions): Rule
     }),
     tree => {
       if (!HasNestController(tree, options)) {
-        console.log(`The project ${buildNestProjectName(options)} has not the controller '${name}'. The controller will now be created ...`);
+        console.log(`The project ${ buildNestProjectName(options) } has not the controller '${ name }'. The controller will now be created ...`);
         return externalSchematic(
           '@nrwl/nest',
           'controller',

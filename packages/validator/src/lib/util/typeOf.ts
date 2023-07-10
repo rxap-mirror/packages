@@ -7,7 +7,7 @@ export function typeOf(input: unknown) {
   const typeOfRegex = /\[object (.*)]/g;
   const match = typeOfRegex.exec(rawObject);
   if (!match) {
-    throw new Error(`Could not determine type of ${input}`);
+    throw new Error(`Could not determine type of ${ input }`);
   }
   return match[1];
 }

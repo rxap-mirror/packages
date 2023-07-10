@@ -18,7 +18,7 @@ describe('@rxap/xml-parser', () => {
 
           function ElementDummy() {
             return function (target: any, propertyKey: string) {
-              addToMetadata(XmlElementMetadata.PARSER_INSTANCE, {propertyKey}, target);
+              addToMetadata(XmlElementMetadata.PARSER_INSTANCE, { propertyKey }, target);
             };
           }
 
@@ -46,7 +46,7 @@ describe('@rxap/xml-parser', () => {
           }
 
           expect(getMetadataKeys(MyElement.prototype, 'name')).toContain(XmlElementMetadata.OPTIONS);
-          expect(getMetadata(XmlElementMetadata.OPTIONS, MyElement.prototype, 'name')).toEqual({required: true});
+          expect(getMetadata(XmlElementMetadata.OPTIONS, MyElement.prototype, 'name')).toEqual({ required: true });
 
         });
 

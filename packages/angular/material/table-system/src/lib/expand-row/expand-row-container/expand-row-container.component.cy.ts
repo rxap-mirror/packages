@@ -5,7 +5,8 @@ describe(ExpandRowContainerComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(ExpandRowContainerComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

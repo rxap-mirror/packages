@@ -20,7 +20,10 @@ export class PaginatorFake {
   }
 
   public next(): void {
-    this.page.next({pageIndex: this.pageIndex + 1, pageSize: this.pageSize});
+    this.page.next({
+      pageIndex: this.pageIndex + 1,
+      pageSize: this.pageSize,
+    });
   }
 
 }

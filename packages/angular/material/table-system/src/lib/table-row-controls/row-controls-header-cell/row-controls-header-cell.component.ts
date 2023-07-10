@@ -125,7 +125,7 @@ export class RowControlsHeaderCellComponent<Data extends Record<string, any>> {
       await Promise.all(
         selectedRows.map((selectedRow) =>
           this.archiveRemoteMethod?.call({
-            parameters: {uuid: selectedRow['uuid']},
+            parameters: { uuid: selectedRow['uuid'] },
           }),
         ),
       );
@@ -138,7 +138,7 @@ export class RowControlsHeaderCellComponent<Data extends Record<string, any>> {
       await Promise.all(
         selectedRows.map((selectedRow) =>
           this.unarchiveRemoteMethod?.call({
-            parameters: {uuid: selectedRow['uuid']},
+            parameters: { uuid: selectedRow['uuid'] },
           }),
         ),
       );
@@ -151,7 +151,7 @@ export class RowControlsHeaderCellComponent<Data extends Record<string, any>> {
       await Promise.all(
         selectedRows.map((selectedRow) =>
           this.deleteRemoteMethod?.call({
-            parameters: {uuid: selectedRow['uuid']},
+            parameters: { uuid: selectedRow['uuid'] },
           }),
         ),
       );

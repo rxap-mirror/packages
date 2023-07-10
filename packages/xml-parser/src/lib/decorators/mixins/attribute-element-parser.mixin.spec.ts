@@ -26,7 +26,7 @@ describe('@rxap/xml-parser', () => {
       it('should use defined value parser', () => {
 
         const parseValue = jest.fn();
-        const parser = new AttributeElementParserMixin({parseValue});
+        const parser = new AttributeElementParserMixin({ parseValue });
 
         parser.parseValue('my-value');
 

@@ -27,7 +27,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
   styleUrls: [ './version.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [FlexModule, NgFor, KeyValuePipe],
+  imports: [ FlexModule, NgFor, KeyValuePipe ],
 })
 export class VersionComponent implements OnInit, OnDestroy {
 

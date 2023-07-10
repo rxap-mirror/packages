@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@15.0.0...@rxap/directives@16.0.0-dev.0) (2023-05-18)
 
@@ -54,22 +53,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* render error template on method
-  error ([23a12e1](https://gitlab.com/rxap/packages/commit/23a12e11af23dc930f28fc01a3f28738e693ce4a))
+* render error template on methoderror ([23a12e1](https://gitlab.com/rxap/packages/commit/23a12e11af23dc930f28fc01a3f28738e693ce4a))
 
 # [13.0.0-next.2](https://gitlab.com/rxap/packages/compare/@rxap/directives@13.0.0-next.1...@rxap/directives@13.0.0-next.2) (2022-03-29)
 
 ### Features
 
-* add method template
-  directive ([2bad7ea](https://gitlab.com/rxap/packages/commit/2bad7ea0e33a7bba38cc12901f40be7840a2ced2))
+* add method templatedirective ([2bad7ea](https://gitlab.com/rxap/packages/commit/2bad7ea0e33a7bba38cc12901f40be7840a2ced2))
 
 # [13.0.0-next.1](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.3.1...@rxap/directives@13.0.0-next.1) (2022-03-17)
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -81,15 +77,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* reduce log population in production
-  mode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
+* reduce log population in productionmode ([2d7186b](https://gitlab.com/rxap/packages/commit/2d7186bc32ae12f0df31d0293ade60ec25645355))
 
 # [13.0.0-next.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.3.0...@rxap/directives@13.0.0-next.0) (2022-02-19)
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -101,8 +95,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* add rxapIfTruthy
-  directive ([a59860c](https://gitlab.com/rxap/packages/commit/a59860cef9fbdbca179a911df2808572dfafc26e))
+* add rxapIfTruthydirective ([a59860c](https://gitlab.com/rxap/packages/commit/a59860cef9fbdbca179a911df2808572dfafc26e))
 
 # [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.2.0-next.0...@rxap/directives@12.2.0) (2021-11-25)
 
@@ -140,8 +133,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* split into rxjs and reflect-metadata sub
-  packages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
+* split into rxjs and reflect-metadata subpackages ([ab6e325](https://gitlab.com/rxap/packages/commit/ab6e32562dbed73752165f3568624f8d3417d7ee))
 
 # [12.1.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@12.1.0-next.0...@rxap/directives@12.1.0) (2021-07-09)
 
@@ -199,10 +191,8 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 ## [11.2.2](https://gitlab.com/rxap/packages/compare/@rxap/directives@11.2.1...@rxap/directives@11.2.2) (2021-03-19)
 
@@ -225,15 +215,13 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* mv the material directives to the package
-  rxap/material-directives ([0cd7bc2](https://gitlab.com/rxap/packages/commit/0cd7bc2102784085ba2c58702628984c1cfbb092))
+* mv the material directives to the packagerxap/material-directives ([0cd7bc2](https://gitlab.com/rxap/packages/commit/0cd7bc2102784085ba2c58702628984c1cfbb092))
 
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/directives@11.0.5...@rxap/directives@11.1.0) (2021-02-10)
 
 ### Features
 
-* add contenteditable
-  directives ([48ccf78](https://gitlab.com/rxap/packages/commit/48ccf78970720b89ec2b67fe87da06ee668ce838))
+* add contenteditabledirectives ([48ccf78](https://gitlab.com/rxap/packages/commit/48ccf78970720b89ec2b67fe87da06ee668ce838))
 
 ## [11.0.5](https://gitlab.com/rxap/packages/compare/@rxap/directives@11.0.4...@rxap/directives@11.0.5) (2021-02-04)
 
@@ -247,8 +235,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **IconDirective:** update to new MatIcon
-  API ([40af574](https://gitlab.com/rxap/packages/commit/40af57492d4def10e7215e8d9d17fdb7f0700538))
+* **IconDirective:** update to new MatIconAPI ([40af574](https://gitlab.com/rxap/packages/commit/40af57492d4def10e7215e8d9d17fdb7f0700538))
 
 ## [11.0.2](https://gitlab.com/rxap/packages/compare/@rxap/directives@11.0.1...@rxap/directives@11.0.2) (2021-01-12)
 
@@ -262,14 +249,12 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **IconDirective:** update to new MatIcon
-  API ([40af574](https://gitlab.com/rxap/packages/commit/40af57492d4def10e7215e8d9d17fdb7f0700538))
+* **IconDirective:** update to new MatIconAPI ([40af574](https://gitlab.com/rxap/packages/commit/40af57492d4def10e7215e8d9d17fdb7f0700538))
 
 # 10.0.0 (2021-01-03)
 
 ### Bug Fixes
 
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
 * replace all rxjs operators first() with take(
-  1) ([e2ae457](https://gitlab.com/rxap/packages/commit/e2ae45771c8b01f30fc1a00f962e067d610296b7))
+    1) ([e2ae457](https://gitlab.com/rxap/packages/commit/e2ae45771c8b01f30fc1a00f962e067d610296b7))

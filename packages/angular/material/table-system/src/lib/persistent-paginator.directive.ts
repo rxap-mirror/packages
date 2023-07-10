@@ -44,7 +44,7 @@ export class PersistentPaginatorDirective implements OnInit, OnDestroy {
 
   public storeConfig() {
     const pageSize = this.matPaginator.pageSize;
-    localStorage.setItem(this.getKey(), JSON.stringify({pageSize}));
+    localStorage.setItem(this.getKey(), JSON.stringify({ pageSize }));
   }
 
   public restoreConfig(): { pageSize: number } | null {
@@ -53,7 +53,7 @@ export class PersistentPaginatorDirective implements OnInit, OnDestroy {
       try {
         return JSON.parse(configStorage);
       } catch (e: any) {
-        console.warn(`Could not parse mat paginator persistent config: ${e.message}`);
+        console.warn(`Could not parse mat paginator persistent config: ${ e.message }`);
       }
     }
     return null;

@@ -210,27 +210,30 @@ export class DataSourceDirective<Data = any>
       ).subscribe();
       this.connection$ = this.dataSource.connect(this.viewer);
       this.zone.onStable
-        .pipe(
-          take(1),
-          tap(() => {
-            this.zone.run(() => {
-              this._dataSourceConnectionSubscription?.unsubscribe();
-              this._dataSourceConnectionSubscription = this.connection$
-                .pipe(
-                  tap({
-                    next: (response) => this.embedTemplate(response),
-                    error: (error) => {
-                      this.error.emit(error);
-                      console.error(`Connection failure in ${this.dataSource!.constructor.name}: ${error.message}`, error);
-                      this.embedErrorTemplate(error);
-                    },
-                  }),
-                )
-                .subscribe();
-            });
-          }),
-        )
-        .subscribe();
+          .pipe(
+            take(1),
+            tap(() => {
+              this.zone.run(() => {
+                this._dataSourceConnectionSubscription?.unsubscribe();
+                this._dataSourceConnectionSubscription = this.connection$
+                                                             .pipe(
+                                                               tap({
+                                                                 next: (response) => this.embedTemplate(response),
+                                                                 error: (error) => {
+                                                                   this.error.emit(error);
+                                                                   console.error(
+                                                                     `Connection failure in ${ this.dataSource!.constructor.name }: ${ error.message }`,
+                                                                     error,
+                                                                   );
+                                                                   this.embedErrorTemplate(error);
+                                                                 },
+                                                               }),
+                                                             )
+                                                             .subscribe();
+              });
+            }),
+          )
+          .subscribe();
     }
   }
 

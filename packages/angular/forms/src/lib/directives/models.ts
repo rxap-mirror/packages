@@ -25,7 +25,7 @@ export interface FormSubmitSuccessfulMethod<T = any> extends Method {
 }
 
 export function ToFormMethod<T, FormMethod extends Method<R, P>, R, P>(call: (value: P) => R | Promise<R>): Method<R, P> {
-  return {call};
+  return { call };
 }
 
 /**

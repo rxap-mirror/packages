@@ -20,17 +20,24 @@ describe('@rxap/xml-parser', () => {
         'should not set parsed element property if attribute is not present and if not required and no default value is defined',
         () => {
 
-        const parser = new ElementAttributeParser('property', {attribute: 'attribute'});
+          const parser = new ElementAttributeParser('property', { attribute: 'attribute' });
 
-        expect(parser.parse(xmlParser, {has: () => false} as any, {} as any)).not.toHaveProperty('property');
+          expect(parser.parse(xmlParser, { has: () => false } as any, {} as any)).not.toHaveProperty('property');
 
-      });
+        },
+      );
 
       it('should throw if element attribute is not present and if required', () => {
 
-        const parser = new ElementAttributeParser('property', {attribute: 'attribute', required: true});
+        const parser = new ElementAttributeParser(
+          'property',
+          {
+            attribute: 'attribute',
+            required: true,
+          },
+        );
 
-        expect(() => parser.parse(xmlParser, {has: () => false} as any, {} as any)).toThrowError();
+        expect(() => parser.parse(xmlParser, { has: () => false } as any, {} as any)).toThrowError();
 
       });
 
@@ -41,29 +48,37 @@ describe('@rxap/xml-parser', () => {
           defaultValue: 'my-default-value',
         });
 
-        expect(parser.parse(xmlParser, {has: () => false} as any, {} as any)).toHaveProperty('property', 'my-default-value');
+        expect(parser.parse(xmlParser, { has: () => false } as any, {} as any))
+          .toHaveProperty('property', 'my-default-value');
 
       });
 
-      it('should not throw if element attribute is not present and if required had have defined default property', () => {
+      it(
+        'should not throw if element attribute is not present and if required had have defined default property',
+        () => {
 
-        const parser = new ElementAttributeParser('property', {
-          attribute: 'attribute',
-          required: true,
-          defaultValue: 'my-default-value',
-        });
+          const parser = new ElementAttributeParser('property', {
+            attribute: 'attribute',
+            required: true,
+            defaultValue: 'my-default-value',
+          });
 
-        expect(() => parser.parse(xmlParser, {has: () => false} as any, {} as any)).not.toThrowError();
+          expect(() => parser.parse(xmlParser, { has: () => false } as any, {} as any)).not.toThrowError();
 
-        expect(parser.parse(xmlParser, {has: () => false} as any, {} as any)).toHaveProperty('property', 'my-default-value');
+          expect(parser.parse(xmlParser, { has: () => false } as any, {} as any))
+            .toHaveProperty('property', 'my-default-value');
 
-      });
+        },
+      );
 
       it('should use default value parse if attribute is present and no value parse is defined', () => {
 
-        const parser = new ElementAttributeParser('property', {attribute: 'attribute'});
+        const parser = new ElementAttributeParser('property', { attribute: 'attribute' });
 
-        const element: RxapElement = {has: () => true, get: () => 'value'} as any;
+        const element: RxapElement = {
+          has: () => true,
+          get: () => 'value',
+        } as any;
 
         const elementGetSpy = jest.spyOn(element, 'get');
 
@@ -104,9 +119,18 @@ describe('@rxap/xml-parser', () => {
 
       it('should use Number() as parser', () => {
 
-        const parser = new ElementAttributeParser('property', {attribute: 'attribute', parseValue: Number});
+        const parser = new ElementAttributeParser(
+          'property',
+          {
+            attribute: 'attribute',
+            parseValue: Number,
+          },
+        );
 
-        const element: RxapElement = {has: () => true, get: () => 'value'} as any;
+        const element: RxapElement = {
+          has: () => true,
+          get: () => 'value',
+        } as any;
 
         const elementGetSpy = jest.spyOn(element, 'get');
 
@@ -141,9 +165,18 @@ describe('@rxap/xml-parser', () => {
 
       it('should use String() as parser', () => {
 
-        const parser = new ElementAttributeParser('property', {attribute: 'attribute', parseValue: String});
+        const parser = new ElementAttributeParser(
+          'property',
+          {
+            attribute: 'attribute',
+            parseValue: String,
+          },
+        );
 
-        const element: RxapElement = {has: () => true, get: () => 'value'} as any;
+        const element: RxapElement = {
+          has: () => true,
+          get: () => 'value',
+        } as any;
 
         const elementGetSpy = jest.spyOn(element, 'get');
 
@@ -178,9 +211,18 @@ describe('@rxap/xml-parser', () => {
 
       it('should use Boolean() as parser', () => {
 
-        const parser = new ElementAttributeParser('property', {attribute: 'attribute', parseValue: Boolean});
+        const parser = new ElementAttributeParser(
+          'property',
+          {
+            attribute: 'attribute',
+            parseValue: Boolean,
+          },
+        );
 
-        const element: RxapElement = {has: () => true, get: () => 'value'} as any;
+        const element: RxapElement = {
+          has: () => true,
+          get: () => 'value',
+        } as any;
 
         const elementGetSpy = jest.spyOn(element, 'get');
 
@@ -215,46 +257,64 @@ describe('@rxap/xml-parser', () => {
 
       it('should use Array() as parser', () => {
 
-        const parser = new ElementAttributeParser('property', {attribute: 'attribute', parseValue: Array});
+        const parser = new ElementAttributeParser(
+          'property',
+          {
+            attribute: 'attribute',
+            parseValue: Array,
+          },
+        );
 
-        const element: RxapElement = {has: () => true, get: () => 'value'} as any;
+        const element: RxapElement = {
+          has: () => true,
+          get: () => 'value',
+        } as any;
 
         const elementGetSpy = jest.spyOn(element, 'get');
 
         elementGetSpy.mockReturnValue('my-value');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['my-value']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ 'my-value' ]);
 
         elementGetSpy.mockReturnValue('true');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['true']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ 'true' ]);
 
         elementGetSpy.mockReturnValue('false');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['false']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ 'false' ]);
 
         elementGetSpy.mockReturnValue('[]');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['[]']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ '[]' ]);
 
         elementGetSpy.mockReturnValue('{}');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['{}']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ '{}' ]);
 
         elementGetSpy.mockReturnValue('0');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['0']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ '0' ]);
 
         elementGetSpy.mockReturnValue('1');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['1']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ '1' ]);
 
         elementGetSpy.mockReturnValue('-1');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['-1']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ '-1' ]);
 
         elementGetSpy.mockReturnValue('');
-        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', ['']);
+        expect(parser.parse(xmlParser, element, {} as any)).toHaveProperty('property', [ '' ]);
 
       });
 
       it('should use Array() as parser', () => {
 
-        const parser = new ElementAttributeParser('property', {attribute: 'attribute', parseValue: JSON.parse});
+        const parser = new ElementAttributeParser(
+          'property',
+          {
+            attribute: 'attribute',
+            parseValue: JSON.parse,
+          },
+        );
 
-        const element: RxapElement = {has: () => true, get: () => 'value'} as any;
+        const element: RxapElement = {
+          has: () => true,
+          get: () => 'value',
+        } as any;
 
         const elementGetSpy = jest.spyOn(element, 'get');
 
@@ -289,9 +349,18 @@ describe('@rxap/xml-parser', () => {
 
       it('should use Handlebars.compile as parser', () => {
 
-        const parser = new ElementAttributeParser('property', {attribute: 'attribute', parseValue: compile});
+        const parser = new ElementAttributeParser(
+          'property',
+          {
+            attribute: 'attribute',
+            parseValue: compile,
+          },
+        );
 
-        const element: RxapElement = {has: () => true, get: () => 'value'} as any;
+        const element: RxapElement = {
+          has: () => true,
+          get: () => 'value',
+        } as any;
 
         const elementGetSpy = jest.spyOn(element, 'get');
         elementGetSpy.mockReturnValue('my-value');
@@ -309,7 +378,7 @@ describe('@rxap/xml-parser', () => {
 
         class MyElement {
 
-          @ElementAttribute({attribute: 'name'})
+          @ElementAttribute({ attribute: 'name' })
           public name!: string;
 
         }

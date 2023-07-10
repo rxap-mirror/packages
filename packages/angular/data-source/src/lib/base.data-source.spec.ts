@@ -21,7 +21,7 @@ describe('@rxap/data-source', () => {
 
     it('connect and disconnect', () => {
 
-      const viewer: BaseDataSourceViewer = {id: 'test'};
+      const viewer: BaseDataSourceViewer = { id: 'test' };
 
       const connection = dataSource.connect(viewer);
 
@@ -41,12 +41,18 @@ describe('@rxap/data-source', () => {
     let dataSource: StaticDataSource<string>;
 
     beforeEach(() => {
-      dataSource = new StaticDataSource<string>(staticData, {id: 'test', deps: []});
+      dataSource = new StaticDataSource<string>(
+        staticData,
+        {
+          id: 'test',
+          deps: [],
+        },
+      );
     });
 
     it('should emit static data on subscribe', fakeAsync(() => {
 
-      const connection = dataSource.connect({id: 'test'});
+      const connection = dataSource.connect({ id: 'test' });
 
       const nextSpy = jest.fn();
       const errorSpy = jest.fn();
@@ -59,13 +65,13 @@ describe('@rxap/data-source', () => {
       expect(errorSpy).not.toBeCalled();
       expect(completeSpy).not.toBeCalled();
 
-      dataSource.disconnect({id: 'test'});
+      dataSource.disconnect({ id: 'test' });
 
     }));
 
     it('should emit data if changed', fakeAsync(() => {
 
-      const connection = dataSource.connect({id: 'test'});
+      const connection = dataSource.connect({ id: 'test' });
 
       const nextSpy = jest.fn();
       const errorSpy = jest.fn();
@@ -90,7 +96,7 @@ describe('@rxap/data-source', () => {
       expect(errorSpy).not.toBeCalled();
       expect(completeSpy).not.toBeCalled();
 
-      dataSource.disconnect({id: 'test'});
+      dataSource.disconnect({ id: 'test' });
 
     }));
 

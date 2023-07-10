@@ -47,13 +47,22 @@ export interface TableActionMethodOptions<Data extends Record<string, unknown> =
 }
 
 export function TableActionMethod<Data extends Record<string, unknown> = Record<string, unknown>>(options: TableActionMethodOptions): ClassDecorator;
-export function TableActionMethod<Data extends Record<string, unknown> = Record<string, unknown>>(type: string, checkFunction?: RowActionCheckFunction<Data>): ClassDecorator;
-export function TableActionMethod<Data extends Record<string, unknown> = Record<string, unknown>>(typeOrOptions: string | TableActionMethodOptions, checkFunction?: RowActionCheckFunction<Data>): ClassDecorator {
+export function TableActionMethod<Data extends Record<string, unknown> = Record<string, unknown>>(
+  type: string,
+  checkFunction?: RowActionCheckFunction<Data>,
+): ClassDecorator;
+export function TableActionMethod<Data extends Record<string, unknown> = Record<string, unknown>>(
+  typeOrOptions: string | TableActionMethodOptions,
+  checkFunction?: RowActionCheckFunction<Data>,
+): ClassDecorator {
   let type: string | undefined;
   let options: TableActionMethodOptions<Data>;
   if (typeof typeOrOptions === 'string') {
     type = typeOrOptions;
-    options = {type, checkFunction};
+    options = {
+      type,
+      checkFunction,
+    };
   } else {
     options = typeOrOptions;
     type = options.type;

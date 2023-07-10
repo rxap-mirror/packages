@@ -26,7 +26,7 @@ export const RXAP_O_AUTH_SINGLE_SIGN_ON_ROUTES: Routes = [
       },
       {
         path: '',
-        canActivate: [OAuthSingleSignOnGuard],
+        canActivate: [ OAuthSingleSignOnGuard ],
         component: LoadingComponent,
       },
       {

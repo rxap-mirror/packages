@@ -42,7 +42,7 @@ import '@angular/localize/init';
 @Component({
   selector: 'rxap-form-controls',
   templateUrl: './form-controls.component.html',
-  styleUrls: ['./form-controls.component.scss'],
+  styleUrls: [ './form-controls.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -100,22 +100,22 @@ export class FormControlsComponent<FormData> implements OnInit {
   public ngOnInit() {
     this.submitting$ = this.formDirective.submitting$;
     this.close
-      .pipe(
-        take(1),
-        tap(() => {
-          if (this.navigateAfterSubmit) {
-            if (this.router) {
-              return this.router.navigate(this.navigateAfterSubmit);
-            } else {
-              console.warn(
-                'The Router is not available. Ensure that tha RouterModule is imported',
-              );
+        .pipe(
+          take(1),
+          tap(() => {
+            if (this.navigateAfterSubmit) {
+              if (this.router) {
+                return this.router.navigate(this.navigateAfterSubmit);
+              } else {
+                console.warn(
+                  'The Router is not available. Ensure that tha RouterModule is imported',
+                );
+              }
             }
-          }
-          return Promise.resolve();
-        }),
-      )
-      .subscribe();
+            return Promise.resolve();
+          }),
+        )
+        .subscribe();
   }
 
   public reset() {
@@ -136,47 +136,47 @@ export class FormControlsComponent<FormData> implements OnInit {
 
     const invalidSubmitSubscription: Subscription =
       this.formDirective.invalidSubmit
-        .pipe(
-          take(1),
-          tap(() => submitSubscription?.unsubscribe()),
-          tap(() => (this.invalid = true)),
-          tap(() => this.cdr.detectChanges()),
-          tap(() =>
-            this.snackBar.open(
-              $localize`:@@rxap-material.form-system.form-controls.form-is-invalid:Form is not valid`,
-              'ok',
-              {duration: 5000},
+          .pipe(
+            take(1),
+            tap(() => submitSubscription?.unsubscribe()),
+            tap(() => (this.invalid = true)),
+            tap(() => this.cdr.detectChanges()),
+            tap(() =>
+              this.snackBar.open(
+                $localize`:@@rxap-material.form-system.form-controls.form-is-invalid:Form is not valid`,
+                'ok',
+                { duration: 5000 },
+              ),
             ),
-          ),
-        )
-        .subscribe();
+          )
+          .subscribe();
 
     submitSubscription = this.formDirective.rxapSubmit
-      .pipe(
-        take(1),
-        tap((value) => {
-          const clonedValue = clone(value);
-          this._submitted.push(clonedValue);
-          this.submitted.emit(clonedValue);
+                             .pipe(
+                               take(1),
+                               tap((value) => {
+                                 const clonedValue = clone(value);
+                                 this._submitted.push(clonedValue);
+                                 this.submitted.emit(clonedValue);
 
-          if (closeAfterSubmit) {
-            this.close.emit(
-              this._submitted.length > 1 ? this._submitted : this._submitted[0],
-            );
-          } else {
-            if (
-              typeof this.formDirective.formDefinition.rxapReuse === 'function'
-            ) {
-              this.formDirective.formDefinition.rxapReuse();
-            }
-          }
+                                 if (closeAfterSubmit) {
+                                   this.close.emit(
+                                     this._submitted.length > 1 ? this._submitted : this._submitted[0],
+                                   );
+                                 } else {
+                                   if (
+                                     typeof this.formDirective.formDefinition.rxapReuse === 'function'
+                                   ) {
+                                     this.formDirective.formDefinition.rxapReuse();
+                                   }
+                                 }
 
-          invalidSubmitSubscription.unsubscribe();
-          this.invalid = false;
-          this.cdr.detectChanges();
-        }),
-      )
-      .subscribe();
+                                 invalidSubmitSubscription.unsubscribe();
+                                 this.invalid = false;
+                                 this.cdr.detectChanges();
+                               }),
+                             )
+                             .subscribe();
 
     this.formDirective.onSubmit(new Event('submit'));
   }

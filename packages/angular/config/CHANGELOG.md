@@ -11,8 +11,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* update rxap package
-  dependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
+* update rxap packagedependencies ([6e12567](https://gitlab.com/rxap/packages/commit/6e12567c05ee3c504da5079cb393660f2ab4cd30))
 
 # [16.0.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/config@15.0.0...@rxap/config@16.0.0-dev.0) (2023-05-18)
 
@@ -42,10 +41,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* show error in overlay box instead of
-  alert ([af37e19](https://gitlab.com/rxap/packages/commit/af37e19e8caba07e9cc21485a9582585e544879d))
-* show error in overlay box instead of
-  alert ([c4c78ab](https://gitlab.com/rxap/packages/commit/c4c78ab49a57e159d86730f90cc5448edaaa1dc7))
+* show error in overlay box instead ofalert ([af37e19](https://gitlab.com/rxap/packages/commit/af37e19e8caba07e9cc21485a9582585e544879d))
+* show error in overlay box instead ofalert ([c4c78ab](https://gitlab.com/rxap/packages/commit/c4c78ab49a57e159d86730f90cc5448edaaa1dc7))
 
 ## [14.1.3](https://gitlab.com/rxap/packages/compare/@rxap/config@14.1.2...@rxap/config@14.1.3) (2022-12-14)
 
@@ -59,23 +56,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* check if partial config is not
-  null ([fef5c5e](https://gitlab.com/rxap/packages/commit/fef5c5e8dc7cc2507b31f2c4424020386b118f21))
+* check if partial config is notnull ([fef5c5e](https://gitlab.com/rxap/packages/commit/fef5c5e8dc7cc2507b31f2c4424020386b118f21))
 
 # [14.1.0](https://gitlab.com/rxap/packages/compare/@rxap/config@14.0.1...@rxap/config@14.1.0) (2022-10-31)
 
 ### Bug Fixes
 
-* change to async
-  validation ([8363721](https://gitlab.com/rxap/packages/commit/83637213fa134046da9c6fc6dd6a4ee034a6c106))
+* change to asyncvalidation ([8363721](https://gitlab.com/rxap/packages/commit/83637213fa134046da9c6fc6dd6a4ee034a6c106))
 * resolve config promise ([e193e38](https://gitlab.com/rxap/packages/commit/e193e38c03598b33d1d1b976b2f76f2acbeaf8cf))
-* use AnySchema instead of ObjectSchama as schema
-  type ([85a2dd5](https://gitlab.com/rxap/packages/commit/85a2dd52f1561948640576f1c42198afd9b4a14c))
+* use AnySchema instead of ObjectSchama as schematype ([85a2dd5](https://gitlab.com/rxap/packages/commit/85a2dd52f1561948640576f1c42198afd9b4a14c))
 
 ### Features
 
-* support joi config
-  validation ([eafea07](https://gitlab.com/rxap/packages/commit/eafea07385967a0b7051632e59e4ef6362af333b))
+* support joi configvalidation ([eafea07](https://gitlab.com/rxap/packages/commit/eafea07385967a0b7051632e59e4ef6362af333b))
 
 ## [14.0.1](https://gitlab.com/rxap/packages/compare/@rxap/config@13.0.0...@rxap/config@14.0.1) (2022-09-17)
 
@@ -93,8 +86,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl/angular
-  13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
+* upgrade to nrwl/angular13.x.x ([f8920e7](https://gitlab.com/rxap/packages/commit/f8920e7dde7bd2d4b4efac2b7097543d51482f81))
 
 ### BREAKING CHANGES
 
@@ -110,8 +102,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* **schematics:** add side-load
-  schematic ([1579bfd](https://gitlab.com/rxap/packages/commit/1579bfd3cd1238fefaf7562a69d05f9c1129222e))
+* **schematics:** add side-loadschematic ([1579bfd](https://gitlab.com/rxap/packages/commit/1579bfd3cd1238fefaf7562a69d05f9c1129222e))
 
 # [12.2.0](https://gitlab.com/rxap/packages/compare/@rxap/config@12.2.0-next.2...@rxap/config@12.2.0) (2021-07-22)
 
@@ -147,8 +138,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Features
 
-* add ng-add logic to update project
-  files ([68641ec](https://gitlab.com/rxap/packages/commit/68641ec726e2f12c4e9481f0943801b5d901845e))
+* add ng-add logic to update projectfiles ([68641ec](https://gitlab.com/rxap/packages/commit/68641ec726e2f12c4e9481f0943801b5d901845e))
 
 ## [12.0.7](https://gitlab.com/rxap/packages/compare/@rxap/config@12.0.6...@rxap/config@12.0.7) (2021-06-24)
 
@@ -192,24 +182,20 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* **schematics:** update module to
-  esnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
-* **schematics:** update to general schematics
-  tsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
+* **schematics:** update module toesnext ([d1e2cd2](https://gitlab.com/rxap/packages/commit/d1e2cd252f3866471935131187b3acaefe2cca82))
+* **schematics:** update to general schematicstsconfig ([83e5f9a](https://gitlab.com/rxap/packages/commit/83e5f9a0cf1810686a503425d87a5e4ae30b8c84))
 
 # [11.1.0](https://gitlab.com/rxap/packages/compare/@rxap/config@11.0.10...@rxap/config@11.1.0) (2021-04-22)
 
 ### Features
 
-* **config-service:** add method
-  getOrThrow ([e7ca009](https://gitlab.com/rxap/packages/commit/e7ca00931d9d5017f54d3d5482864b180fccafd4))
+* **config-service:** add methodgetOrThrow ([e7ca009](https://gitlab.com/rxap/packages/commit/e7ca00931d9d5017f54d3d5482864b180fccafd4))
 
 ## [11.0.10](https://gitlab.com/rxap/packages/compare/@rxap/config@11.0.9...@rxap/config@11.0.10) (2021-04-21)
 
 ### Bug Fixes
 
-* update default config file
-  path ([ca53d05](https://gitlab.com/rxap/packages/commit/ca53d05eb9605d35bda1fac41ee3c3c09683f0b0))
+* update default config filepath ([ca53d05](https://gitlab.com/rxap/packages/commit/ca53d05eb9605d35bda1fac41ee3c3c09683f0b0))
 
 ## [11.0.9](https://gitlab.com/rxap/packages/compare/@rxap/config@11.0.8...@rxap/config@11.0.9) (2021-03-19)
 
@@ -240,8 +226,7 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* soft fail if the config path is not
-  defined ([6eeed25](https://gitlab.com/rxap/packages/commit/6eeed2545e0603c6e8b852351fec52fe03d916c0))
+* soft fail if the config path is notdefined ([6eeed25](https://gitlab.com/rxap/packages/commit/6eeed2545e0603c6e8b852351fec52fe03d916c0))
 
 ## [11.0.4](https://gitlab.com/rxap/packages/compare/@rxap/config@11.0.3...@rxap/config@11.0.4) (2021-02-04)
 
@@ -267,5 +252,4 @@ Signed-off-by: Merzough Münker <mmuenker@digitaix.com>
 
 ### Bug Fixes
 
-* custom property key
-  generation ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))
+* custom property keygeneration ([b6e6d23](https://gitlab.com/rxap/packages/commit/b6e6d23215f0b35e0de2d35003b186a3d435b8e4))

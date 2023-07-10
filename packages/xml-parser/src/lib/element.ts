@@ -60,8 +60,8 @@ export class RxapElement {
 
   public getAllChildNodes(): RxapElement[] {
     return Array.from(this.element.childNodes)
-      .filter(n => !!n.nodeName && n.nodeType === 1)
-      .map((child: ChildNode) => new RxapElement(child as any));
+                .filter(n => !!n.nodeName && n.nodeType === 1)
+                .map((child: ChildNode) => new RxapElement(child as any));
   }
 
   public getCountChildren(): number {
@@ -77,7 +77,9 @@ export class RxapElement {
   }
 
   public getTextContent<T = string>(defaultValue?: any, raw = false): T {
-    const textContent = this.element.textContent === null || this.element.textContent === '' ? defaultValue : this.element.textContent;
+    const textContent = this.element.textContent === null || this.element.textContent === '' ?
+      defaultValue :
+      this.element.textContent;
     return textContent !== undefined ? raw ? textContent.trim() : parseValue(textContent.trim()) : undefined as any;
   }
 

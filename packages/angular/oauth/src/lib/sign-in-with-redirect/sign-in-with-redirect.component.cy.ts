@@ -5,7 +5,8 @@ describe(SignInWithRedirectComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(SignInWithRedirectComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

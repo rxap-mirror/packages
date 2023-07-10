@@ -39,24 +39,28 @@ export async function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiS
 
   const importStructures: Array<OptionalKind<ImportDeclarationStructure>> = [
     {
-      moduleSpecifier: '@rxap/open-api/remote-method', namedImports: [
+      moduleSpecifier: '@rxap/open-api/remote-method',
+      namedImports: [
         { name: 'RxapOpenApiRemoteMethod' }, { name: 'OpenApiRemoteMethodParameter' },
       ],
     }, {
-      moduleSpecifier: '@angular/core', namedImports: [ { name: 'Injectable' } ],
+      moduleSpecifier: '@angular/core',
+      namedImports: [ { name: 'Injectable' } ],
     },
   ];
 
   switch (parameter.options.transport) {
     case 'amplify':
       importStructures.push({
-        moduleSpecifier: '@rxap/amplify-open-api', namedImports: [ { name: 'AmplifyOpenApiRemoteMethod' } ],
+        moduleSpecifier: '@rxap/amplify-open-api',
+        namedImports: [ { name: 'AmplifyOpenApiRemoteMethod' } ],
       });
       break;
 
     default:
       importStructures.push({
-        moduleSpecifier: '@rxap/open-api/remote-method', namedImports: [ { name: 'OpenApiRemoteMethod' } ],
+        moduleSpecifier: '@rxap/open-api/remote-method',
+        namedImports: [ { name: 'OpenApiRemoteMethod' } ],
       });
       break;
   }
@@ -92,25 +96,30 @@ export async function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiS
 
   if (!withoutParametersAndRequestBody) {
     callMethodParameters.push({
-      name: 'parameters', type: `OpenApiRemoteMethodParameter<${ parameterType }, ${ requestBodyType }>`,
+      name: 'parameters',
+      type: `OpenApiRemoteMethodParameter<${ parameterType }, ${ requestBodyType }>`,
     });
   }
 
   const classStructure: OptionalKind<ClassDeclarationStructure> = {
-    name: classify(name.replace(/\./g, '-')), decorators: [
+    name: classify(name.replace(/\./g, '-')),
+    decorators: [
       {
-        name: 'Injectable', arguments: Writers.object({
+        name: 'Injectable',
+        arguments: Writers.object({
           providedIn: (writer) => writer.quote('root'),
         }),
       }, {
-        name: 'RxapOpenApiRemoteMethod', arguments: parameter.options.inline ? (writer) => Writers.object({
+        name: 'RxapOpenApiRemoteMethod',
+        arguments: parameter.options.inline ? (writer) => Writers.object({
           serverId: parameter.options.serverId ? w => w.quote(parameter.options.serverId!) : 'undefined',
           operationId: w => w.quote(parameter.operationId),
           operation: w => w.quote(JSON.stringify(GenerateParameterToOperationObjectWithMetadata(parameter))
-            .replace(/[\n\r\\]+/g, '')),
+                                      .replace(/[\n\r\\]+/g, '')),
         })(writer) : w => w.quote(operationId),
       },
-    ], methods: [
+    ],
+    methods: [
       {
         name: 'call',
         parameters: callMethodParameters,
@@ -121,7 +130,8 @@ export async function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiS
           `return super.call(${ withoutParametersAndRequestBody ? '' : 'parameters' });`,
         ],
       },
-    ], extends: (writer) => {
+    ],
+    extends: (writer) => {
       switch (parameter.options.transport) {
         case 'amplify':
           writer.write('AmplifyOpenApiRemoteMethod');
@@ -138,7 +148,8 @@ export async function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiS
       writer.write(', ');
       writer.write(requestBodyType);
       writer.write('>');
-    }, isExported: true,
+    },
+    isExported: true,
   };
 
   sourceFile.addClass(classStructure);
@@ -149,7 +160,8 @@ export async function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiS
 
     if (IsCollectionResponse(parameter)) {
       importStructures.push({
-        moduleSpecifier: '@rxap/utilities', namedImports: [ { name: 'ArrayElement' } ],
+        moduleSpecifier: '@rxap/utilities',
+        namedImports: [ { name: 'ArrayElement' } ],
       });
       CreateDirective({
         filePath: fileName,

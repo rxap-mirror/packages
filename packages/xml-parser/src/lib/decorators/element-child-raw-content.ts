@@ -37,7 +37,7 @@ export function AssertElementChildRawContentOptions(options: any): asserts optio
 
 export interface ElementChildRawContentParser<T extends ParsedElement>
   extends TextContentElementParserMixin<string>,
-    TagElementParserMixin {
+          TagElementParserMixin {
 }
 
 @Mixin(TextContentElementParserMixin, TagElementParserMixin)
@@ -66,7 +66,10 @@ export class ElementChildRawContentParser<T extends ParsedElement>
         parsedElement[this.propertyKey] = this.parseValue(rawValue);
       }
     } else if (this.required) {
-      throw new RxapXmlParserValidateRequiredError(`Element <${element.name}> child <${this.tag}> raw content is required!`, parsedElement.__tag!);
+      throw new RxapXmlParserValidateRequiredError(
+        `Element <${ element.name }> child <${ this.tag }> raw content is required!`,
+        parsedElement.__tag!,
+      );
     }
 
     return parsedElement;
@@ -77,8 +80,8 @@ export class ElementChildRawContentParser<T extends ParsedElement>
 export function ElementChildRawContent<Value>(optionsOrString?: Partial<ElementChildRawContentOptions<Value>> | string) {
   return function (target: any, propertyKey: string) {
     let options = optionsOrString === undefined ?
-      {tag: dasherize(propertyKey)} :
-      typeof optionsOrString === 'string' ? {tag: optionsOrString} : optionsOrString;
+      { tag: dasherize(propertyKey) } :
+      typeof optionsOrString === 'string' ? { tag: optionsOrString } : optionsOrString;
     options = deepMerge(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {});
     if (!options.tag) {
       options.tag = dasherize(propertyKey);

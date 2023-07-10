@@ -51,7 +51,9 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
     if (parameters === undefined) {
       // TODO : find concept to definition witch parameter should not be checked if required
       // header parameters are never required if changes the semantic release manager breaks
-      const requiredParameters = operationParameters.filter(parameter => parameter.required && parameter.in !== 'header');
+      const requiredParameters = operationParameters.filter(parameter => parameter.required &&
+        parameter.in !==
+        'header');
       if (requiredParameters.length) {
         if (isDevMode()) {
           console.debug('Some operation parameters are required!', requiredParameters.map(p => p.name));
@@ -67,7 +69,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
           // header parameters are never required if changes the semantic release manager breaks
           if (parameter.in !== 'header') {
             if (!parameters.hasOwnProperty(parameter.name)) {
-              this.validationError(`The operation parameter '${parameter.name}' is required!`, strict);
+              this.validationError(`The operation parameter '${ parameter.name }' is required!`, strict);
             }
           }
         }
@@ -79,7 +81,12 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
             const value = parameters[parameter.name];
 
             if (!this.validate(parameter.schema, value)) {
-              this.validationError(`The parameter '${parameter.name}' is not valid against the schema!`, strict, parameter.schema, value);
+              this.validationError(
+                `The parameter '${ parameter.name }' is not valid against the schema!`,
+                strict,
+                parameter.schema,
+                value,
+              );
             }
 
           }
@@ -90,7 +97,10 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
     } else {
       if (operationParameters.length === 0 || operationParameters.every(op => !op.required)) {
         if (isDevMode()) {
-          console.warn(`The operation ${operation.operationId} does not expect any parameters. But a parameter is provided.`, parameters);
+          console.warn(
+            `The operation ${ operation.operationId } does not expect any parameters. But a parameter is provided.`,
+            parameters,
+          );
         }
       } else {
         throw new Error('The parameters object is not a record');
@@ -107,7 +117,11 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
    * @param strict
    * @protected
    */
-  public validateResponse(operation: OperationObjectWithMetadata, response: SchemaValidationResponse<Response>, strict = false): void {
+  public validateResponse(
+    operation: OperationObjectWithMetadata,
+    response: SchemaValidationResponse<Response>,
+    strict = false,
+  ): void {
 
     // region only validate the response if the content type is undefined or application/json
 
@@ -147,7 +161,9 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
         // TODO : create schema that validates all parameters at once
 
-        if (responseObject.content && responseObject.content['application/json'] && responseObject.content['application/json'].schema) {
+        if (responseObject.content &&
+          responseObject.content['application/json'] &&
+          responseObject.content['application/json'].schema) {
 
           const schema = responseObject.content['application/json'].schema;
 
@@ -201,10 +217,21 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
   }
 
-  public validationError(message: string, strict: boolean, schema?: OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject, value?: any) {
+  public validationError(
+    message: string,
+    strict: boolean,
+    schema?: OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject,
+    value?: any,
+  ) {
     if (isDevMode() && schema !== undefined) {
       // tslint:disable-next-line:no-console
-      console.debug(message, {schema, value});
+      console.debug(
+        message,
+        {
+          schema,
+          value,
+        },
+      );
     }
     if (strict || SchemaValidationMixin.STRICT) {
       throw new RxapOpenApiError(message, '', 'SchemaValidationMixin');
@@ -213,7 +240,11 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
     }
   }
 
-  public buildHttpParams(operationParameters: OpenAPIV3.ParameterObject[], parameters?: Parameters, ignoreUndefined = true): HttpParams {
+  public buildHttpParams(
+    operationParameters: OpenAPIV3.ParameterObject[],
+    parameters?: Parameters,
+    ignoreUndefined = true,
+  ): HttpParams {
 
     let params = new HttpParams();
 
@@ -298,7 +329,10 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
   }
 
-  public buildHttpPathParams(operationParameters: OpenAPIV3.ParameterObject[], parameters?: Parameters): Record<string, string> {
+  public buildHttpPathParams(
+    operationParameters: OpenAPIV3.ParameterObject[],
+    parameters?: Parameters,
+  ): Record<string, string> {
 
     const pathParams: Record<string, any> = {};
 
@@ -307,7 +341,9 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
       for (const parameter of operationParameters.filter(p => p.in === 'path')) {
 
         if (parameters.hasOwnProperty(parameter.name)) {
-          pathParams[parameter.name] = encodeURIComponent(typeof parameters[parameter.name] === 'object' ? JSON.stringify(parameters[parameter.name]) : parameters[parameter.name]);
+          pathParams[parameter.name] = encodeURIComponent(typeof parameters[parameter.name] === 'object' ?
+            JSON.stringify(parameters[parameter.name]) :
+            parameters[parameter.name]);
         }
 
       }
@@ -327,7 +363,12 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
    * @param requestBody
    * @param ignoreUndefined
    */
-  public buildHttpOptions(operation: OperationObjectWithMetadata, parameters?: Parameters, requestBody?: RequestBody, ignoreUndefined = true): HttpRemoteMethodParameter {
+  public buildHttpOptions(
+    operation: OperationObjectWithMetadata,
+    parameters?: Parameters,
+    requestBody?: RequestBody,
+    ignoreUndefined = true,
+  ): HttpRemoteMethodParameter {
 
     const options: HttpRemoteMethodParameter = {};
 
@@ -377,7 +418,8 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
     }
 
     if (isPromiseLike(result)) {
-      throw new Error('Async schema validation is not yet supported. Ensure the all refs in the openapi schema are internal!');
+      throw new Error(
+        'Async schema validation is not yet supported. Ensure the all refs in the openapi schema are internal!');
     }
 
     return result;

@@ -29,13 +29,18 @@ function buildDynamicRoute(route: string): string {
     return route;
   }
   for (const property of properties) {
-    route = route.replace(`{{${property}}}`, `\${${property}}`);
+    route = route.replace(`{{${ property }}}`, `\${${ property }}`);
   }
   return route;
 }
 
 export function CoerceNavigationTableActionRule(options: CoerceLinkTableActionRuleOptions) {
-  let {tsMorphTransform, tableName, actionType, route} = options;
+  let {
+    tsMorphTransform,
+    tableName,
+    actionType,
+    route,
+  } = options;
   tsMorphTransform ??= () => ({});
   route ??= '{{uuid}}';
 
@@ -44,10 +49,10 @@ export function CoerceNavigationTableActionRule(options: CoerceLinkTableActionRu
     tsMorphTransform: (project, sourceFile, classDeclaration) => {
 
       CoerceImports(sourceFile, {
-        namedImports: ['Router', 'ActivatedRoute'],
+        namedImports: [ 'Router', 'ActivatedRoute' ],
         moduleSpecifier: '@angular/router',
       });
-      const [constructorDeclaration] = CoerceClassConstructor(classDeclaration);
+      const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
       CoerceParameterDeclaration(constructorDeclaration, 'router').set({
         name: 'router',
         type: 'Router',
@@ -63,15 +68,15 @@ export function CoerceNavigationTableActionRule(options: CoerceLinkTableActionRu
       const properties = extractAllProperties(route!);
 
       const statements: (string | WriterFunction | StatementStructures)[] = [];
-      statements.push(`console.log(\`action row type: ${actionType}\`, parameters);`);
+      statements.push(`console.log(\`action row type: ${ actionType }\`, parameters);`);
       if (properties.length) {
-        statements.push(`const { ${properties.join(', ')} } = parameters;`);
+        statements.push(`const { ${ properties.join(', ') } } = parameters;`);
         for (const property of properties) {
-          statements.push(`if (!${property}) { throw new Error('The table action ${actionType} is called with a row object that does not have the property ${property}.'); }`);
+          statements.push(`if (!${ property }) { throw new Error('The table action ${ actionType } is called with a row object that does not have the property ${ property }.'); }`);
         }
-        statements.push(`return this.router.navigate([ \`${buildDynamicRoute(route!)}\` ], { relativeTo: this.route } );`);
+        statements.push(`return this.router.navigate([ \`${ buildDynamicRoute(route!) }\` ], { relativeTo: this.route } );`);
       } else {
-        statements.push(`return this.router.navigate([ '${route}' ], { relativeTo: this.route } );`);
+        statements.push(`return this.router.navigate([ '${ route }' ], { relativeTo: this.route } );`);
       }
 
       return {

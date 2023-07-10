@@ -5,7 +5,8 @@ describe(CheckboxCellComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(CheckboxCellComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

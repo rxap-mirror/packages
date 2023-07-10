@@ -158,7 +158,12 @@ export function isEmail(str: unknown, options: IsEmailOptions = {}) {
     const username = user.split('+')[0];
 
     // Dots are not included in gmail length restriction
-    if (!isByteLength(username.replace('.', ''), {min: 6, max: 30})) {
+    if (!isByteLength(username.replace('.', ''),
+      {
+        min: 6,
+        max: 30,
+      },
+    )) {
       return false;
     }
 
@@ -171,13 +176,13 @@ export function isEmail(str: unknown, options: IsEmailOptions = {}) {
   }
 
   if (options.ignore_max_length === false && (
-    !isByteLength(user, {max: 64}) ||
-    !isByteLength(domain, {max: 254}))
+    !isByteLength(user, { max: 64 }) ||
+    !isByteLength(domain, { max: 254 }))
   ) {
     return false;
   }
 
-  if (!isFQDN(domain, {require_tld: options.require_tld})) {
+  if (!isFQDN(domain, { require_tld: options.require_tld })) {
     if (!options.allow_ip_domain) {
       return false;
     }
@@ -212,7 +217,7 @@ export function isEmail(str: unknown, options: IsEmailOptions = {}) {
     }
   }
   if (options.blacklisted_chars) {
-    if (user.search(new RegExp(`[${options.blacklisted_chars}]+`, 'g')) !== -1) {
+    if (user.search(new RegExp(`[${ options.blacklisted_chars }]+`, 'g')) !== -1) {
       return false;
     }
   }

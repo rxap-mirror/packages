@@ -17,18 +17,18 @@ describe('@rxap/utilities', () => {
     it('should return defaultValue if passed path is not in the object', () => {
 
       expect(getFromObject({}, 'test.path', 'default')).toEqual('default');
-      expect(getFromObject({test: {}}, 'test', 'default')).toEqual({});
-      expect(getFromObject({test: {}}, 'test.path', 'default')).toEqual('default');
-      expect(getFromObject({use: {}}, 'test.path', 'default')).toEqual('default');
-      expect(getFromObject({test: {use: {}}}, 'test.path', 'default')).toEqual('default');
+      expect(getFromObject({ test: {} }, 'test', 'default')).toEqual({});
+      expect(getFromObject({ test: {} }, 'test.path', 'default')).toEqual('default');
+      expect(getFromObject({ use: {} }, 'test.path', 'default')).toEqual('default');
+      expect(getFromObject({ test: { use: {} } }, 'test.path', 'default')).toEqual('default');
 
     });
 
     it('should return value if passed path is in the object', () => {
 
-      expect(getFromObject({test: 'value'}, 'test', 'default')).toEqual('value');
-      expect(getFromObject({test: {path: 'value'}}, 'test.path', 'default')).toEqual('value');
-      expect(getFromObject({test: 'value'}, '', 'default')).toEqual({test: 'value'});
+      expect(getFromObject({ test: 'value' }, 'test', 'default')).toEqual('value');
+      expect(getFromObject({ test: { path: 'value' } }, 'test.path', 'default')).toEqual('value');
+      expect(getFromObject({ test: 'value' }, '', 'default')).toEqual({ test: 'value' });
 
     });
 

@@ -5,7 +5,8 @@ describe(TableShowArchivedSlideComponent.name, () => {
   beforeEach(() => {
     TestBed.overrideComponent(TableShowArchivedSlideComponent, {
       add: {
-        imports: [], providers: [],
+        imports: [],
+        providers: [],
       },
     });
   });

@@ -30,7 +30,11 @@ export function FixMissingImports(basePath?: string): Rule {
     function AddFiles(dir: DirEntry) {
       for (const file of dir.subfiles) {
         if (file.match(/\.ts$/) && !file.match(/\.spec\.ts$/)) {
-          project.createSourceFile(join(dir.path, file), dir.file(file)!.content.toString('utf-8'), {overwrite: true});
+          project.createSourceFile(
+            join(dir.path, file),
+            dir.file(file)!.content.toString('utf-8'),
+            { overwrite: true },
+          );
         }
       }
       for (const subDir of dir.subdirs) {
@@ -44,7 +48,7 @@ export function FixMissingImports(basePath?: string): Rule {
         case 'c':
         case 'o':
           if (action.path.match(/\.ts$/)) {
-            project.createSourceFile(action.path, action.content.toString('utf-8'), {overwrite: true});
+            project.createSourceFile(action.path, action.content.toString('utf-8'), { overwrite: true });
           }
           break;
 
@@ -65,7 +69,7 @@ export function FixMissingImports(basePath?: string): Rule {
                 sourceFile.fixMissingImports();
                 tree.overwrite(action.path, sourceFile.getFullText());
               } else {
-                console.warn(`Could not find the changed/created file '${action.path}'.`);
+                console.warn(`Could not find the changed/created file '${ action.path }'.`);
               }
             }
             break;

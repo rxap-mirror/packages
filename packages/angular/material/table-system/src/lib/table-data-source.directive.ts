@@ -173,7 +173,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
           this.matSort,
           tableFilter,
           this.parameters,
-          this.method.metadata ?? {id: this.id},
+          this.method.metadata ?? { id: this.id },
         );
       }
       if (!this.dataSource) {
@@ -210,34 +210,34 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
     // to create the TableEvent objects
     Reflect.set(this.matTable, 'id', this.id);
     this.matTable.dataSource = pipeDataSource(this.dataSource, tap(rowList => rowList.forEach((element: any) => {
-      element.__metadata__ = {loading$: new ToggleSubject()};
+      element.__metadata__ = { loading$: new ToggleSubject() };
     })));
     // TODO : remove hack to trigger change detection after data source refresh (machine-definition -> physical unit)
     this._subscription.add(
       this.loading$
-        .pipe(
-          filter((loading) => !loading),
-          debounceTime(2000),
-          tap(() => this.cdr.detectChanges()),
-          tap(() => this.cdr.markForCheck()),
-          delay(500),
-          tap(() => this.cdr.detectChanges()),
-          tap(() => this.cdr.markForCheck()),
-          delay(500),
-          tap(() => this.cdr.detectChanges()),
-          tap(() => this.cdr.markForCheck()),
-          delay(500),
-          tap(() => this.cdr.detectChanges()),
-          tap(() => this.cdr.markForCheck()),
-          delay(500),
-          tap(() => this.cdr.detectChanges()),
-          tap(() => this.cdr.markForCheck()),
-          delay(500),
-          tap(() => this.cdr.detectChanges()),
-          tap(() => this.cdr.markForCheck()),
-          delay(500),
-        )
-        .subscribe(),
+          .pipe(
+            filter((loading) => !loading),
+            debounceTime(2000),
+            tap(() => this.cdr.detectChanges()),
+            tap(() => this.cdr.markForCheck()),
+            delay(500),
+            tap(() => this.cdr.detectChanges()),
+            tap(() => this.cdr.markForCheck()),
+            delay(500),
+            tap(() => this.cdr.detectChanges()),
+            tap(() => this.cdr.markForCheck()),
+            delay(500),
+            tap(() => this.cdr.detectChanges()),
+            tap(() => this.cdr.markForCheck()),
+            delay(500),
+            tap(() => this.cdr.detectChanges()),
+            tap(() => this.cdr.markForCheck()),
+            delay(500),
+            tap(() => this.cdr.detectChanges()),
+            tap(() => this.cdr.markForCheck()),
+            delay(500),
+          )
+          .subscribe(),
     );
   }
 

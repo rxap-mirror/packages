@@ -75,7 +75,14 @@ export class FileUploadMethod implements Method<File | null, { accept: string }>
     const reader = new FileReader();
 
     const loadFile$ = fromEvent<any>(reader, 'load').pipe(
-      map(event => new File([event.target.result], file.name, {type: file.type, lastModified: file.lastModified})),
+      map(event => new File(
+        [ event.target.result ],
+        file.name,
+        {
+          type: file.type,
+          lastModified: file.lastModified,
+        },
+      )),
       take(1),
     );
 

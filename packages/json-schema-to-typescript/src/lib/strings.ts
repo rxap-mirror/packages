@@ -151,7 +151,7 @@ export function levenshtein(a: string, b: string): number {
 
   // increment along the first column of each row
   for (let i = 0; i <= b.length; i++) {
-    matrix[i] = [i];
+    matrix[i] = [ i ];
   }
 
   // increment each column in the first row

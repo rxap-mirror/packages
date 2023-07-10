@@ -96,10 +96,10 @@ export class AuthorizationService {
         .filter(
           (permission) =>
             !permission.match(/\//) ||
-            permission.match(new RegExp(`^${scope.replace('.', '\\.')}/`)),
+            permission.match(new RegExp(`^${ scope.replace('.', '\\.') }/`)),
         ).map((permission) =>
           permission.replace(
-            new RegExp(`^${scope.replace('.', '\\.')}/`),
+            new RegExp(`^${ scope.replace('.', '\\.') }/`),
             '',
           ),
         ).sort((a, b) => a.length - b.length);
@@ -118,11 +118,11 @@ export class AuthorizationService {
       if (permission[0] === '*' && permission[permission.length - 1] === '*') {
         return new RegExp(permissionRegex);
       } else if (permission[0] === '*') {
-        return new RegExp(`${permissionRegex}$`);
+        return new RegExp(`${ permissionRegex }$`);
       } else if (permission[permission.length - 1] === '*') {
-        return new RegExp(`^${permissionRegex}`);
+        return new RegExp(`^${ permissionRegex }`);
       } else {
-        return new RegExp(`^${permissionRegex}$`);
+        return new RegExp(`^${ permissionRegex }$`);
       }
 
     });
@@ -139,8 +139,8 @@ export class AuthorizationService {
   ): Observable<boolean> {
     return this.permissions$.pipe(
       map((permissions) => ignorePermissionList ?
-                           permissions.filter((permission) => !ignorePermissionList.includes(permission)) :
-                           permissions.slice()),
+        permissions.filter((permission) => !ignorePermissionList.includes(permission)) :
+        permissions.slice()),
       map((permissions) =>
         this.checkPermission(identifier, permissions, scope),
       ),

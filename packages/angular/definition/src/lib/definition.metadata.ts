@@ -17,9 +17,17 @@ export enum DefinitionMetadataKeys {
   CLASS_NAME = 'rxap/definition/class-name',
 }
 
-export function DefinitionMetadata(metadataOrId: BaseDefinitionMetadata | string, className: string, packageName: string) {
+export function DefinitionMetadata(
+  metadataOrId: BaseDefinitionMetadata | string,
+  className: string,
+  packageName: string,
+) {
   return function (target: Constructor<BaseDefinition>) {
-    setMetadata(DefinitionMetadataKeys.META_DATA, typeof metadataOrId === 'string' ? {id: metadataOrId} : metadataOrId, target);
+    setMetadata(
+      DefinitionMetadataKeys.META_DATA,
+      typeof metadataOrId === 'string' ? { id: metadataOrId } : metadataOrId,
+      target,
+    );
     setMetadata(DefinitionMetadataKeys.PACKAGE_NAME, packageName, target);
     setMetadata(DefinitionMetadataKeys.CLASS_NAME, className, target);
   };

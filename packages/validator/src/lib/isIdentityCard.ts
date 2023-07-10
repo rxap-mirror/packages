@@ -35,28 +35,28 @@ const validators: Record<string, (str: string) => boolean> = {
 
     // multiplication table
     const d = [
-      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-      [1, 2, 3, 4, 0, 6, 7, 8, 9, 5],
-      [2, 3, 4, 0, 1, 7, 8, 9, 5, 6],
-      [3, 4, 0, 1, 2, 8, 9, 5, 6, 7],
-      [4, 0, 1, 2, 3, 9, 5, 6, 7, 8],
-      [5, 9, 8, 7, 6, 0, 4, 3, 2, 1],
-      [6, 5, 9, 8, 7, 1, 0, 4, 3, 2],
-      [7, 6, 5, 9, 8, 2, 1, 0, 4, 3],
-      [8, 7, 6, 5, 9, 3, 2, 1, 0, 4],
-      [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+      [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+      [ 1, 2, 3, 4, 0, 6, 7, 8, 9, 5 ],
+      [ 2, 3, 4, 0, 1, 7, 8, 9, 5, 6 ],
+      [ 3, 4, 0, 1, 2, 8, 9, 5, 6, 7 ],
+      [ 4, 0, 1, 2, 3, 9, 5, 6, 7, 8 ],
+      [ 5, 9, 8, 7, 6, 0, 4, 3, 2, 1 ],
+      [ 6, 5, 9, 8, 7, 1, 0, 4, 3, 2 ],
+      [ 7, 6, 5, 9, 8, 2, 1, 0, 4, 3 ],
+      [ 8, 7, 6, 5, 9, 3, 2, 1, 0, 4 ],
+      [ 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 ],
     ];
 
     // permutation table
     const p = [
-      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-      [1, 5, 7, 6, 2, 8, 3, 0, 9, 4],
-      [5, 8, 0, 3, 7, 9, 6, 1, 4, 2],
-      [8, 9, 1, 6, 0, 4, 3, 5, 2, 7],
-      [9, 4, 5, 3, 1, 2, 6, 8, 7, 0],
-      [4, 2, 8, 6, 5, 7, 3, 9, 0, 1],
-      [2, 7, 9, 3, 8, 0, 6, 4, 1, 5],
-      [7, 0, 4, 6, 9, 1, 3, 2, 5, 8],
+      [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+      [ 1, 5, 7, 6, 2, 8, 3, 0, 9, 4 ],
+      [ 5, 8, 0, 3, 7, 9, 6, 1, 4, 2 ],
+      [ 8, 9, 1, 6, 0, 4, 3, 5, 2, 7 ],
+      [ 9, 4, 5, 3, 1, 2, 6, 8, 7, 0 ],
+      [ 4, 2, 8, 6, 5, 7, 3, 9, 0, 1 ],
+      [ 2, 7, 9, 3, 8, 0, 6, 4, 1, 5 ],
+      [ 7, 0, 4, 6, 9, 1, 3, 2, 5, 8 ],
     ];
 
     // sanitize user input
@@ -79,7 +79,7 @@ const validators: Record<string, (str: string) => boolean> = {
     if (!str.match(/^\d{10}$/)) {
       return false;
     }
-    str = (`0000${str}`).substr(str.length - 6);
+    str = (`0000${ str }`).substr(str.length - 6);
 
     if (parseInt(str.substr(3, 6), 10) === 0) {
       return false;
@@ -230,9 +230,9 @@ const validators: Record<string, (str: string) => boolean> = {
       '91', // 国外
     ];
 
-    const powers = ['7', '9', '10', '5', '8', '4', '2', '1', '6', '3', '7', '9', '10', '5', '8', '4', '2'];
+    const powers = [ '7', '9', '10', '5', '8', '4', '2', '1', '6', '3', '7', '9', '10', '5', '8', '4', '2' ];
 
-    const parityBit = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+    const parityBit = [ '1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2' ];
 
     const checkAddressCode = (addressCode: string) => provincesAndCities.includes(addressCode);
 
@@ -275,7 +275,7 @@ const validators: Record<string, (str: string) => boolean> = {
       if (!check) {
         return false;
       }
-      const birDayCode = `19${idCardNo.substring(6, 12)}`;
+      const birDayCode = `19${ idCardNo.substring(6, 12) }`;
       check = checkBirthDayCode(birDayCode);
       if (!check) {
         return false;
@@ -383,5 +383,5 @@ export function isIdentityCard(str: unknown, locale: string) {
     }
     return false;
   }
-  throw new Error(`Invalid locale '${locale}'`);
+  throw new Error(`Invalid locale '${ locale }'`);
 }

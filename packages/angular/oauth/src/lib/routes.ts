@@ -14,7 +14,7 @@ export const RXAP_O_AUTH_ROUTES: Routes = [
         component: SignInWithRedirectComponent,
       },
       {
-        canActivate: [OAuthExtractGuard],
+        canActivate: [ OAuthExtractGuard ],
         path: '',
         component: LoadingComponent,
       },

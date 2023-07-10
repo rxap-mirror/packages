@@ -24,7 +24,7 @@ interface BuildInfo {
     name?: string;
     branch?: string;
     tag?: string;
-  }
+  };
 }
 
 function createBuildInfo(options: GenerateExecutorSchema) {
@@ -100,7 +100,7 @@ export default async function runExecutor(
 
   const outputPath = GuessOutputPath(context);
 
-  console.log(`Using output path: ${outputPath}`);
+  console.log(`Using output path: ${ outputPath }`);
 
   const buildInfo = createBuildInfo(options);
 
@@ -109,7 +109,7 @@ export default async function runExecutor(
   const buildInfoFilePath = join(context.root, outputPath, 'build.json');
 
   if (existsSync(buildInfoFilePath)) {
-    console.warn(`The build.json file already exists in the location: '${buildInfoFilePath}'`);
+    console.warn(`The build.json file already exists in the location: '${ buildInfoFilePath }'`);
   }
 
   console.log(buildInfoFilePath + ' : ', buildJsonFile);

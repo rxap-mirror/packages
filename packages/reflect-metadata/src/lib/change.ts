@@ -34,7 +34,11 @@ export const handler = {
       if ((getMetadata<Array<string | number | symbol>>(RXAP_DETECT_CHANGES, instance) || []).includes(propertyKey)) {
         if (!equals(instance[propertyKey], value)) {
           if (hasOnChangeMethod(instance)) {
-            instance.rxapOnPropertyChange({propertyKey, currentValue: value, previousValue: instance[propertyKey]});
+            instance.rxapOnPropertyChange({
+              propertyKey,
+              currentValue: value,
+              previousValue: instance[propertyKey],
+            });
           }
         }
       }

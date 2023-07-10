@@ -31,7 +31,7 @@ export class TestingXmlParserService extends XmlParserService {
     }
 
     if (root.name !== elementName) {
-      throw new Error(`The root node must be an <${elementName}> element. Found a <${root.name}>`);
+      throw new Error(`The root node must be an <${ elementName }> element. Found a <${ root.name }>`);
     }
 
     return this.parse<D>(root, root.name, null, []);

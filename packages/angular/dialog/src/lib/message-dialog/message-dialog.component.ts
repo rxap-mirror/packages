@@ -15,10 +15,10 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'rxap-message-dialog',
   templateUrl: './message-dialog.component.html',
-  styleUrls: ['./message-dialog.component.scss'],
+  styleUrls: [ './message-dialog.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule, NgFor, SantizationPipe],
+  imports: [ MatDialogModule, MatButtonModule, NgFor, SantizationPipe ],
 })
 export class MessageDialogComponent {
 

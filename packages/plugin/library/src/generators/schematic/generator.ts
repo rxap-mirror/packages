@@ -28,7 +28,10 @@ type NormalizedSchema = SchematicGeneratorSchema & ReturnType<typeof names> & {
 function normalizeOptions(host: Tree, options: SchematicGeneratorSchema): NormalizedSchema {
   const { npmScope } = getWorkspaceLayout(host);
 
-  const { root: projectRoot, sourceRoot: projectSourceRoot } = readProjectConfiguration(host, options.project);
+  const {
+    root: projectRoot,
+    sourceRoot: projectSourceRoot,
+  } = readProjectConfiguration(host, options.project);
 
   const npmPackageName = readJson<{ name: string }>(host, path.join(projectRoot, 'package.json')).name;
 
@@ -40,13 +43,19 @@ function normalizeOptions(host: Tree, options: SchematicGeneratorSchema): Normal
   }
 
   return {
-    ...options, ...names(options.name), description, projectRoot, projectSourceRoot, npmScope, npmPackageName,
+    ...options, ...names(options.name),
+    description,
+    projectRoot,
+    projectSourceRoot,
+    npmScope,
+    npmPackageName,
   };
 }
 
 function addFiles(host: Tree, options: NormalizedSchema) {
   generateFiles(host, path.join(__dirname, './files/schematic'), `${ options.projectSourceRoot }/schematics`, {
-    ...options, schematicFnName: `${ options.propertyName }Schematic`,
+    ...options,
+    schematicFnName: `${ options.propertyName }Schematic`,
     schemaInterfaceName: `${ options.className }SchematicSchema`,
   });
 }
@@ -78,7 +87,8 @@ async function updateCollectionJson(host: Tree, options: NormalizedSchema) {
     schematics ??= {};
     schematics[options.name] = {
       factory: `./src/schematics/${ options.fileName }/index`,
-      schema: `./src/schematics/${ options.fileName }/schema.json`, description: options.description,
+      schema: `./src/schematics/${ options.fileName }/schema.json`,
+      description: options.description,
     };
     json.schematics = schematics;
     return json;
@@ -98,7 +108,13 @@ export function hasSchematic(tree: Tree, projectName: string, schematicName: str
   );
 }
 
-function coerceBuildTarget(tree: Tree, { projectRoot, project }: NormalizedSchema) {
+function coerceBuildTarget(
+  tree: Tree,
+  {
+    projectRoot,
+    project,
+  }: NormalizedSchema,
+) {
 
   const projectConfiguration = readProjectConfiguration(tree, project);
 
@@ -116,11 +132,17 @@ function coerceBuildTarget(tree: Tree, { projectRoot, project }: NormalizedSchem
 
   const assets = [
     `${ projectRoot }/*.md`, {
-      'input': `./${ projectRoot }/src`, 'glob': '**/!(*.ts)', 'output': './src',
+      'input': `./${ projectRoot }/src`,
+      'glob': '**/!(*.ts)',
+      'output': './src',
     }, {
-      'input': `./${ projectRoot }/src`, 'glob': '**/*.d.ts', 'output': './src',
+      'input': `./${ projectRoot }/src`,
+      'glob': '**/*.d.ts',
+      'output': './src',
     }, {
-      'input': `./${ projectRoot }`, 'glob': 'collection.json', 'output': '.',
+      'input': `./${ projectRoot }`,
+      'glob': 'collection.json',
+      'output': '.',
     },
   ];
 
@@ -140,6 +162,7 @@ function coerceBuildTarget(tree: Tree, { projectRoot, project }: NormalizedSchem
 
   updateProjectConfiguration(tree, project, projectConfiguration);
 }
+
 export async function schematicGenerator(host: Tree, _options: SchematicGeneratorSchema) {
   const options = normalizeOptions(host, _options);
   if (hasSchematic(host, options.project, options.name)) {

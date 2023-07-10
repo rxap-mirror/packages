@@ -58,7 +58,10 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
       parsedElement[this.propertyKey] =
         xmlParser.parse(element.getChild(this.tag)!, elementType, parsedElement);
     } else if (this.required) {
-      throw new RxapXmlParserValidateRequiredError(`Element child <${this.tag}> is required in <${parsedElement.__tag}>!`, parsedElement.__tag!);
+      throw new RxapXmlParserValidateRequiredError(
+        `Element child <${ this.tag }> is required in <${ parsedElement.__tag }>!`,
+        parsedElement.__tag!,
+      );
     }
 
     return parsedElement;
@@ -83,7 +86,7 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
   private getExtendedTypes(type: ParsedElementType<Child>): Array<ParsedElementType<Child>> {
     const extendedTypes = getOwnMetadata<Array<ParsedElementType<Child>>>(XmlElementMetadata.EXTENDS, type) ?? [];
 
-    for (const extendedType of [...extendedTypes]) {
+    for (const extendedType of [ ...extendedTypes ]) {
       extendedTypes.push(...this.getExtendedTypes(extendedType));
     }
 
@@ -92,7 +95,10 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
 
 }
 
-export function ElementChild<Child extends ParsedElement>(elementType: ParsedElementType<Child>, options: ElementChildOptions = {}) {
+export function ElementChild<Child extends ParsedElement>(
+  elementType: ParsedElementType<Child>,
+  options: ElementChildOptions = {},
+) {
   return function (target: any, propertyKey: string) {
     options = deepMerge(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {});
     const parser = new ElementChildParser(propertyKey, elementType, options);
