@@ -14,6 +14,8 @@ yarn lerna version
 
 **prepublishOnly(root)**: The target `build` with the configuration `production` is run for each project 
 
+**version(root)**: The target `readme` for the root project `packages` is run
+
 **version(package)**: The target `update-dependencies` and `update-package-group` is run for the project
 
 **perversion(package)**: The generator `@rxap/plugin-library:fix-dependencies` with the strict option is run for the project
