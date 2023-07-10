@@ -1,0 +1,14 @@
+{
+  "executors": {
+    "build": {
+      "implementation": "./src/executors/build/executor",
+      "schema": "./src/executors/build/schema.json",
+      "description": "Executes the docker build command with the context set to the build output folder"
+    },
+    "save": {
+      "implementation": "./src/executors/save/executor",
+      "schema": "./src/executors/save/schema.json",
+      "description": "Executes the docker save command for the latest image created with the build command"
+    }
+  }
+}

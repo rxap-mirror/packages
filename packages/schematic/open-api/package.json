@@ -1,0 +1,45 @@
+{
+  "name": "@rxap/schematics-open-api",
+  "version": "16.0.0-dev.3",
+  "type": "commonjs",
+  "dependencies": {
+    "openapi-types": "10.0.0",
+    "tslib": "2.5.3"
+  },
+  "peerDependencies": {
+    "@angular-devkit/core": "^16.0.0",
+    "@angular-devkit/schematics": "^16.0.0",
+    "@rxap/json-schema-to-typescript": "^16.0.0-dev.2",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.2",
+    "@rxap/schematics-utilities": "^16.0.0-dev.2",
+    "@rxap/utilities": "^16.0.0-dev.1",
+    "ts-morph": "^18.0.0"
+  },
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=schematic-open-api",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project schematic-open-api"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/schematic/open-api"
+  },
+  "keywords": [
+    "rxap"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/open-api",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/schematic/open-api"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "schematics": "./collection.json"
+}

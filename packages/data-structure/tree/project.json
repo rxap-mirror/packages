@@ -1,0 +1,65 @@
+{
+  "name": "data-structure-tree",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/data-structure/tree/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/data-structure/tree",
+        "main": "packages/data-structure/tree/src/index.ts",
+        "tsConfig": "packages/data-structure/tree/tsconfig.lib.json",
+        "assets": [
+          "packages/data-structure/tree/*.md"
+        ]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs data-structure-tree {args.ver} {args.tag}",
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/data-structure/tree/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/data-structure/tree/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    }
+  },
+  "tags": []
+}

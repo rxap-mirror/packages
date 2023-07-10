@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "IndexExport",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The target project where the index exports should be generated.",
+      "x-prompt": "To which project should the index export be generated?"
+    }
+  },
+  "required": [
+    "project"
+  ]
+}

@@ -1,0 +1,52 @@
+.info-container {
+  padding: 64px;
+}
+
+.rxap-data-grid {
+  table.data-grid {
+
+    border: 0;
+
+    thead {
+      padding-bottom: 16px;
+
+      tr {
+        th {
+          border-spacing: 32px 16px;
+        }
+      }
+    }
+
+    tfoot {
+      .control-button {
+        margin-top: 24px;
+        min-width: 128px;
+      }
+    }
+
+    th {
+      text-align: right;
+      padding-right: 24px;
+    }
+
+    tbody {
+      tr > th.sub-header {
+        padding-bottom: 12px;
+        padding-right: 24px;
+        text-align: right;
+      }
+
+      tr > th:first-child {
+        text-align: right;
+        font-weight: bolder;
+        padding-right: 24px;
+      }
+
+      td.divider {
+        padding: 4px 0;
+      }
+
+    }
+
+  }
+}

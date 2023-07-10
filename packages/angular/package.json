@@ -1,0 +1,12 @@
+{
+  "name": "angular",
+  "private": true,
+  "dependencies": {
+    "@angular/fire": "7.5.0",
+    "firebase": "^9.6.7"
+  },
+  "workspaces": [
+    "material/*",
+    "./*"
+  ]
+}

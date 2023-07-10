@@ -1,141 +1,114 @@
 {
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
-    ".eslintrc.json": "*"
-  },
-  "affected": {
-    "defaultBase": "master"
-  },
-  "npmScope": "rxap",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "nx-cloud",
       "options": {
+        "parallel": 32,
         "cacheableOperations": [
           "build",
-          "test",
           "lint",
+          "test",
           "e2e",
-          "build-storybook",
-          "build-migrations",
-          "build-schematics",
-          "readme",
-          "update-package-group",
-          "update-peer-dependencies"
+          "compodoc",
+          "typedoc",
+          "component-test"
         ],
-        "parallel": 32,
-        "accessToken": "NWQxMzM4ODktNzk2Zi00M2IyLWFiYTktOTU2ZWFhNjNkNjU0fHJlYWQtd3JpdGU="
+        "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
     }
   },
   "targetDefaults": {
-    "build-schematics": {
-      "dependsOn": [
-        {
-          "target": "build",
-          "projects": "self"
-        }
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore"
       ]
     },
-    "build-migrations": {
-      "dependsOn": [
-        {
-          "target": "build",
-          "projects": "self"
-        }
-      ]
-    },
-    "scss-bundle": {
-      "dependsOn": [
-        {
-          "target": "scss-bundle",
-          "projects": "self"
-        }
-      ]
-    },
-    "version": {
-      "dependsOn": [
-        {
-          "target": "build",
-          "projects": "self"
-        },
-        {
-          "target": "build-migrations",
-          "projects": "self"
-        },
-        {
-          "target": "build-schematics",
-          "projects": "self"
-        },
-        {
-          "target": "scss-bundle",
-          "projects": "self"
-        }
+    "test": {
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
       ]
     },
     "build": {
       "dependsOn": [
-        {
-          "target": "build",
-          "projects": "dependencies"
-        },
+        "^build",
         {
           "target": "readme",
           "projects": "self"
         },
         {
-          "target": "update-package-group",
+          "target": "scss-bundle",
           "projects": "self"
         },
         {
-          "target": "update-peer-dependencies",
+          "target": "index-export",
           "projects": "self"
         }
       ]
     },
-    "update-peer-dependencies": {
-      "dependsOn": [
-        {
-          "target": "update-package-group",
-          "projects": "self"
-        }
+    "readme": {
+      "inputs": [
+        "{projectRoot}/README.md.handlebars",
+        "{projectRoot}/GETSTARTED.md",
+        "{projectRoot}/GUIDES.md",
+        "{projectRoot}/package.json",
+        "{projectRoot}/collection.json",
+        "{projectRoot}/generators.json",
+        "{projectRoot}/executors.json",
+        "{projectRoot}/builders.json"
+      ],
+      "outputs": [
+        "{projectRoot}/README.md"
       ]
-    },
-    "test": {
-      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
-    },
-    "lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
-    },
-    "build-storybook": {
-      "inputs": ["default", "^default", "{workspaceRoot}/.storybook/**/*"]
     }
   },
-  "cli": {
-    "warnings": {
-      "typescriptMismatch": false,
-      "versionMismatch": false
-    },
-    "packageManager": "yarn",
-    "defaultCollection": "@rxap/schematics"
+  "affected": {
+    "defaultBase": "development"
   },
   "generators": {
     "@nx/angular:application": {
       "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "e2eTestRunner": "none",
+      "tags": "angular,ngx",
+      "prefix": "rxap"
     },
     "@nx/angular:library": {
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "publishable": true,
+      "addTailwind": true,
+      "changeDetection": "OnPush",
+      "standalone": true,
+      "style": "scss",
+      "directory": "angular",
+      "tags": "angular,ngx",
+      "prefix": "rxap"
+    },
+    "@nx/plugin:plugin": {
+      "directory": "plugin",
+      "publishable": true,
+      "tags": "plugin,nx,nx-plugin"
+    },
+    "@nx/js:library": {
+      "unitTestRunner": "jest",
+      "publishable": true
     },
     "@nx/angular:component": {
       "style": "scss"
+    },
+    "@nx/nest:library": {
+      "directory": "nest",
+      "tags": "nest",
+      "publishable": true
     }
+  },
+  "workspaceLayout": {
+    "appsDir": "demos",
+    "libsDir": "packages"
   }
 }

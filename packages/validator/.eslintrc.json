@@ -1,0 +1,36 @@
+{
+  "extends": [
+    "../../.eslintrc.json"
+  ],
+  "ignorePatterns": [
+    "!**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        "no-useless-escape": "warn",
+        "no-prototype-builtins": "warn"
+      }
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {}
+    }
+  ]
+}

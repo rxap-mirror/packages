@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "FixDependencies",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "projects": {
+      "alias": "project",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reset": {
+      "type": "boolean"
+    },
+    "resolve": {
+      "type": "boolean"
+    },
+    "resetAll": {
+      "alias": "resetAll",
+      "type": "boolean"
+    },
+    "strict": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true, will fail if any dependency is not found"
+    }
+  },
+  "required": []
+}

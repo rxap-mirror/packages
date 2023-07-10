@@ -1,0 +1,25 @@
+@import "./lib/sidenav/sidenav.component.theme";
+@import "./lib/navigation/navigation-item/navigation-item.component.theme";
+@import "./lib/toggle-window-sidenav-button/toggle-window-sidenav-button.component.theme";
+@import "./lib/navigation/navigation.component.theme";
+@import "./lib/header/apps-button/apps-button.component.theme";
+
+
+@mixin rxap-layout-theme($theme) {
+
+  @include rxap-sidenav-theme($theme);
+  @include rxap-navigation-theme($theme);
+  @include rxap-navigation-item-theme($theme);
+  @include rxap-toggle-window-sidenav-button-theme($theme);
+  @include rxap-apps-button-theme($theme);
+
+}
+
+@mixin rxap-layout-typography($config) {
+
+  @include rxap-sidenav-typography($config);
+  @include rxap-navigation-typography($config);
+  @include rxap-navigation-item-typography($config);
+  @include rxap-apps-button-typography($config);
+
+}

@@ -1,0 +1,71 @@
+{
+  "name": "angular-firebase",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/angular/firebase/src",
+  "prefix": "rxap",
+  "tags": [
+    "angular",
+    "ngx"
+  ],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "project": "packages/angular/firebase/ng-package.json",
+        "tailwindConfig": "packages/angular/firebase/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/angular/firebase/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/angular/firebase/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/angular/firebase/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/angular/firebase/**/*.ts",
+          "packages/angular/firebase/**/*.html",
+          "packages/angular/firebase/auth/**/*.ts",
+          "packages/angular/firebase/auth/**/*.html"
+        ]
+      }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    }
+  }
+}

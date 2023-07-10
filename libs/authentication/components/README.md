@@ -1,3 +1,0 @@
-# @rxap/authentication/components
-
-## Test

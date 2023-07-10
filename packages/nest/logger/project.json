@@ -1,0 +1,68 @@
+{
+  "name": "nest-logger",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nest/logger/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/nest/logger",
+        "tsConfig": "packages/nest/logger/tsconfig.lib.json",
+        "packageJson": "packages/nest/logger/package.json",
+        "main": "packages/nest/logger/src/index.ts",
+        "assets": [
+          "packages/nest/logger/*.md"
+        ]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs nest-logger {args.ver} {args.tag}",
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/nest/logger/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/nest/logger/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    }
+  },
+  "tags": [
+    "nest"
+  ]
+}

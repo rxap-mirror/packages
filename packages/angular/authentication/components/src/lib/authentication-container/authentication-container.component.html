@@ -1,0 +1,8 @@
+<div [@routeAnimations]="prepareRoute(outlet)" class="content">
+
+    <div class="split mat-elevation-z3"></div>
+
+    <router-outlet #outlet="outlet"></router-outlet>
+    <ng-content></ng-content>
+
+</div>

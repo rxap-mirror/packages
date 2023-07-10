@@ -1,0 +1,8 @@
+/packages/package.json
+/packages/angular/package.json
+/packages/angular/material/package.json
+/packages/browser/package.json
+/packages/generator/package.json
+/packages/node/package.json
+/packages/nest/package.json
+/packages/plugin/package.json

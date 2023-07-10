@@ -1,0 +1,10 @@
+{
+  "name": "plugin",
+  "private": true,
+  "workspaces": [
+    "./*"
+  ],
+  "devDependencies": {
+    "@nx/plugin": "^16.3.2"
+  }
+}

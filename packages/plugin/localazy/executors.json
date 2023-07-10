@@ -1,0 +1,14 @@
+{
+  "executors": {
+    "download": {
+      "implementation": "./src/executors/download/executor",
+      "schema": "./src/executors/download/schema.json",
+      "description": "Downloads i18n files from localazy"
+    },
+    "upload": {
+      "implementation": "./src/executors/upload/executor",
+      "schema": "./src/executors/upload/schema.json",
+      "description": "Uploadss i18n files from localazy"
+    }
+  }
+}

@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="plugins" pattern="file[rxap]:libs/plugins//*||file:angular.json||file:nx.json||file:package.json||file:tsconfig.json||file:tslint.json||file[rxap]:apps/plugin-app-engine-e2e//*" />
-</component>

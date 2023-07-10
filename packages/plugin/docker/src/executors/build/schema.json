@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Build executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "context": {
+      "type": "string",
+      "description": "The docker build context path"
+    },
+    "dockerfile": {
+      "type": "string",
+      "description": "The path to the dockerfile"
+    },
+    "tag": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of docker image tags"
+    },
+    "buildTarget": {
+      "type": "string",
+      "description": "The target from witch the output path can be extract."
+    },
+    "imageSuffix": {
+      "type": "string",
+      "description": "A suffix added to the base image name"
+    },
+    "imageName": {
+      "type": "string",
+      "description": "The base image name"
+    },
+    "imageRegistry": {
+      "type": "string",
+      "description": "The image registry"
+    },
+    "command": {
+      "type": "string",
+      "description": "The command to start docker",
+      "default": "docker"
+    },
+    "latest": {
+      "type": "boolean",
+      "description": "If true a destination with a latest tag is added",
+      "default": false
+    },
+    "push": {
+      "type": "boolean",
+      "description": "If true all created images are pushed",
+      "default": false
+    }
+  },
+  "required": []
+}

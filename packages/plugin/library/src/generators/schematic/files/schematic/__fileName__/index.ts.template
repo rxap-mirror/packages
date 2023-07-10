@@ -1,0 +1,8 @@
+import {Tree} from "@angular-devkit/schematics";
+import { <%= className %>SchematicSchema } from './schema';
+
+export default function(options: <%= schemaInterfaceName %>) {
+  return (host: Tree) => {
+    return host;
+  }
+}

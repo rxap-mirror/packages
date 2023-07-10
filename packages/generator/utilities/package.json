@@ -1,0 +1,37 @@
+{
+  "name": "@rxap/generator-utilities",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=generator-utilities",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project generator-utilities"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/generator/utilities"
+  },
+  "keywords": [
+    "rxap"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/generator/utilities",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/generator/utilities"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "peerDependencies": {
+    "@nx/devkit": "^16.3.2"
+  },
+  "dependencies": {
+    "tslib": "2.5.3"
+  }
+}

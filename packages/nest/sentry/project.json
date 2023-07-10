@@ -1,0 +1,68 @@
+{
+  "name": "nest-sentry",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nest/sentry/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/nest/sentry",
+        "tsConfig": "packages/nest/sentry/tsconfig.lib.json",
+        "packageJson": "packages/nest/sentry/package.json",
+        "main": "packages/nest/sentry/src/index.ts",
+        "assets": [
+          "packages/nest/sentry/*.md"
+        ]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs nest-sentry {args.ver} {args.tag}",
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/nest/sentry/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/nest/sentry/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    }
+  },
+  "tags": [
+    "nest"
+  ]
+}

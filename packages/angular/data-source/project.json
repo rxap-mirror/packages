@@ -1,0 +1,87 @@
+{
+  "name": "angular-data-source",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/angular/data-source/src",
+  "prefix": "rxap",
+  "tags": [
+    "angular",
+    "ngx"
+  ],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "project": "packages/angular/data-source/ng-package.json",
+        "tailwindConfig": "packages/angular/data-source/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/angular/data-source/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/angular/data-source/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/angular/data-source/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/angular/data-source/**/*.ts",
+          "packages/angular/data-source/**/*.html",
+          "packages/angular/data-source/table/**/*.ts",
+          "packages/angular/data-source/table/**/*.html",
+          "packages/angular/data-source/table/directives/**/*.ts",
+          "packages/angular/data-source/table/directives/**/*.html",
+          "packages/angular/data-source/pagination/**/*.ts",
+          "packages/angular/data-source/pagination/**/*.html",
+          "packages/angular/data-source/pagination/directives/**/*.ts",
+          "packages/angular/data-source/pagination/directives/**/*.html",
+          "packages/angular/data-source/http/**/*.ts",
+          "packages/angular/data-source/http/**/*.html",
+          "packages/angular/data-source/http/pagination/**/*.ts",
+          "packages/angular/data-source/http/pagination/**/*.html",
+          "packages/angular/data-source/http/table/**/*.ts",
+          "packages/angular/data-source/http/table/**/*.html",
+          "packages/angular/data-source/directive/**/*.ts",
+          "packages/angular/data-source/directive/**/*.html",
+          "packages/angular/data-source/testing/**/*.ts",
+          "packages/angular/data-source/testing/**/*.html"
+        ]
+      }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    }
+  }
+}

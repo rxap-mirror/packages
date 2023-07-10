@@ -1,0 +1,77 @@
+{
+  "name": "angular-remote-method",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/angular/remote-method/src",
+  "prefix": "rxap",
+  "tags": [
+    "angular",
+    "ngx"
+  ],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "project": "packages/angular/remote-method/ng-package.json",
+        "tailwindConfig": "packages/angular/remote-method/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/angular/remote-method/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/angular/remote-method/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/angular/remote-method/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/angular/remote-method/**/*.ts",
+          "packages/angular/remote-method/**/*.html",
+          "packages/angular/remote-method/testing/**/*.ts",
+          "packages/angular/remote-method/testing/**/*.html",
+          "packages/angular/remote-method/directive/**/*.ts",
+          "packages/angular/remote-method/directive/**/*.html",
+          "packages/angular/remote-method/http/**/*.ts",
+          "packages/angular/remote-method/http/**/*.html",
+          "packages/angular/remote-method/http/directive/**/*.ts",
+          "packages/angular/remote-method/http/directive/**/*.html"
+        ]
+      }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    }
+  }
+}

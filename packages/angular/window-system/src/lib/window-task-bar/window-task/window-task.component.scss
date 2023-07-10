@@ -1,0 +1,9 @@
+.container {
+  padding: 5px;
+  cursor: pointer;
+
+  &.minimized {
+    opacity: 0.5;
+  }
+
+}

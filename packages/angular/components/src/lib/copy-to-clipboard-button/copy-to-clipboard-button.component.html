@@ -1,0 +1,9 @@
+<button
+        (cdkCopyToClipboardCopied)="copied()"
+        (click)="$event.stopPropagation()"
+        [cdkCopyToClipboard]="value"
+        mat-icon-button
+        type="button"
+>
+    <mat-icon>content_copy</mat-icon>
+</button>

@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content>
+
+    <div [innerHtml]="data.message | santization:'html'" class="content"></div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button [mat-dialog-close]="false" i18n mat-button>Cancel</button>
+    <button *ngFor="let action of data.actions" [color]="action.color" [mat-dialog-close]="action.type"
+            mat-raised-button>{{ action.label }}</button>
+</mat-dialog-actions>

@@ -1,0 +1,12 @@
+{
+  "name": "schematic",
+  "private": true,
+  "devDependencies": {
+    "@angular-devkit/core": "~16.0.0",
+    "@angular-devkit/schematics": "~16.0.0",
+    "@schematics/angular": "~16.0.0"
+  },
+  "workspaces": [
+    "./*"
+  ]
+}

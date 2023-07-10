@@ -1,0 +1,34 @@
+{
+  "name": "@rxap/validator",
+  "version": "3.0.0-dev.1",
+  "type": "commonjs",
+  "dependencies": {
+    "tslib": "2.5.3"
+  },
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=validator",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project validator"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/validator"
+  },
+  "keywords": [
+    "rxap"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/validator",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/validator"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

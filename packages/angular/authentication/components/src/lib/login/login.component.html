@@ -1,0 +1,96 @@
+<form #form="rxapForm" [@fadeAnimation]="'in'" class="inner mat-elevation-z5" fxLayout="column" fxLayoutAlign="center center"
+      fxLayoutGap="32px" novalidate
+      rxapForm>
+
+  <div class="header" fxFlex="nogrow" fxLayout="column" fxLayoutAlign="center center">
+
+    <mat-icon class="avatar-icon" color="primary" fxFlex="nogrow">account_circle</mat-icon>
+
+  </div>
+
+  <div class="content" fxLayout="column" fxLayoutGap="32px">
+
+    <div fxLayout="column">
+
+      <mat-form-field class="email-input">
+        <mat-icon inline matPrefix>email</mat-icon>
+        <mat-label i18n>Email</mat-label>
+        <input formControlName="email"
+               fxFlex="nogrow"
+               i18n-placeholder
+               matInput
+               placeholder="Enter your email address"
+               type="email">
+        <mat-error *rxapFormControlError="let error from 'email'; if: 'required'">
+          Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *rxapFormControlError="let error from 'email'; if: 'email'">
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="password-input">
+        <mat-icon inline matPrefix>vpn_key</mat-icon>
+        <mat-label i18n>Password</mat-label>
+        <input #passwordInput
+               formControlName="password"
+               fxFlex="nogrow"
+               i18n-placeholder
+               matInput
+               placeholder="Enter your password"
+               type="password">
+        <mat-error *rxapFormControlError="let error from 'password'; if: 'required'">
+          Password is <strong>required</strong>
+        </mat-error>
+        <button (click)="passwordInput.type = 'test'" *ngIf="passwordInput.type === 'password'" mat-icon-button matSuffix tabIndex="-1"
+                type="button">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button (click)="passwordInput.type = 'password'" *ngIf="passwordInput.type === 'text'" mat-icon-button matSuffix tabIndex="-1"
+                type="button">
+          <mat-icon>visibility_off</mat-icon>
+        </button>
+      </mat-form-field>
+
+    </div>
+
+    <div class="sub-controls" fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+
+      <mat-checkbox class="remember-input" formControlName="remember" fxFlex="nogrow">Remember me</mat-checkbox>
+
+      <div [matTooltipDisabled]="form.control.controls['email'].valid"
+           fxFlex="nogrow"
+           matTooltip="Please enter a valid email address"
+           matTooltipPosition="above">
+        <button (click)="requestPasswordReset(form.value.email)"
+                [disabled]="!form.value.email || form.control.controls['email'].hasError('email')"
+                color="accent"
+                mat-button
+                type="button">
+            <span fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+              <mat-progress-spinner *ngIf="requestingPasswordReset$ | async" [diameter]="15"
+                                    mode="indeterminate"></mat-progress-spinner>
+              <span fxFlex="nogrow">Password forgotten</span>
+            </span>
+        </button>
+      </div>
+
+    </div>
+
+    <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="center center">
+
+      <div fxFlex="nogrow">
+        <button color="primary" mat-raised-button rxapFormControlMarkDirty type="submit">Login</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div *rxapFormSubmitFailed="let error" fxLayout="row" fxLayoutAlign="center center">
+    <mat-error>{{ error.message }}</mat-error>
+  </div>
+
+  <mat-progress-bar *rxapFormSubmitting class="loading-bar" mode="indeterminate"></mat-progress-bar>
+
+</form>

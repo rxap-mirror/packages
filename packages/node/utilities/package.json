@@ -1,0 +1,35 @@
+{
+  "name": "@rxap/node-utilities",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=node-utilities",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project node-utilities"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/node/utilities"
+  },
+  "keywords": [
+    "rxap",
+    "node"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/node/utilities",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/node/utilities"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "dependencies": {
+    "tslib": "2.5.3"
+  }
+}

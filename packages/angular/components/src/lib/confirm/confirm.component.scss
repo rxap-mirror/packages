@@ -1,0 +1,13 @@
+.container {
+  border-radius: 8px;
+  padding: 4px;
+  background-color: var(--background-color, white);
+
+  .accept {
+    color: var(--accept-color, rgb(115, 190, 105));
+  }
+
+  .decline {
+    color: var(--decline-color, rgb(204, 73, 51));
+  }
+}

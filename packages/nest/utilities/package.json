@@ -1,0 +1,42 @@
+{
+  "name": "@rxap/nest-utilities",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "dependencies": {
+    "tslib": "2.5.3"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^9.1.1",
+    "@nestjs/core": "^9.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "rxjs": "^7.8.0"
+  },
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=nest-utilities",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project nest-utilities"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/utilities"
+  },
+  "keywords": [
+    "rxap",
+    "nest"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/utilities",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/utilities"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

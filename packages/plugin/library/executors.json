@@ -1,0 +1,24 @@
+{
+  "executors": {
+    "update-dependencies": {
+      "implementation": "./src/executors/update-dependencies/executor",
+      "schema": "./src/executors/update-dependencies/schema.json",
+      "description": "Update the local dependencies in the dist package.json. Replaces the atarix with the current package version of local dependency"
+    },
+    "update-package-group": {
+      "implementation": "./src/executors/update-package-group/executor",
+      "schema": "./src/executors/update-package-group/schema.json",
+      "description": "Update the packageGroup array with all direct depedent projects"
+    },
+    "readme": {
+      "implementation": "./src/executors/readme/executor",
+      "schema": "./src/executors/readme/schema.json",
+      "description": "Readme generator for libraries."
+    },
+    "run-generator": {
+      "implementation": "./src/executors/run-generator/executor",
+      "schema": "./src/executors/run-generator/schema.json",
+      "description": "Executes a generator for the project"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "generators": {
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Create and update configurations to use rxap package publish concept"
+    },
+    "fix-dependencies": {
+      "factory": "./src/generators/fix-dependencies/generator",
+      "schema": "./src/generators/fix-dependencies/schema.json",
+      "description": "Adds missing dependencies and removes redudant dependencies of a project"
+    },
+    "index-export": {
+      "factory": "./src/generators/index-export/generator",
+      "schema": "./src/generators/index-export/schema.json",
+      "description": "Generate index exports for each directory and in the src root"
+    },
+    "schematic": {
+      "factory": "./src/generators/schematic/generator",
+      "schema": "./src/generators/schematic/schema.json",
+      "description": "Create a Schematic for a project."
+    }
+  }
+}

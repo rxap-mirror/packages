@@ -1,0 +1,44 @@
+{
+  "name": "@rxap/xml-parser",
+  "version": "16.0.0-dev.2",
+  "type": "commonjs",
+  "dependencies": {
+    "tslib": "2.5.3",
+    "xmldom": "^0.6.0"
+  },
+  "peerDependencies": {
+    "@rxap/mixin": "^16.0.0-dev.2",
+    "@rxap/reflect-metadata": "^1.0.0",
+    "@rxap/utilities": "^16.0.0-dev.1"
+  },
+  "devDependencies": {
+    "@types/xmldom": "^0.1.31"
+  },
+  "description": "A utility packages to convert xml files into class instances.",
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=xml-parser",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project xml-parser"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/xml-parser"
+  },
+  "keywords": [
+    "rxap"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/xml-parser",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/xml-parser"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

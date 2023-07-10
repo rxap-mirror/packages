@@ -1,0 +1,14 @@
+@import "./lib/cells/boolean-cell/boolean-cell.component.theme";
+/* IMPORT */
+
+@mixin rxap-material-table-system-theme($theme) {
+  @include rxap-boolean-cell-theme($theme);
+  /* THEME_INCLUDE */
+
+}
+
+@mixin rxap-material-table-system-typography($config) {
+  @include rxap-boolean-cell-typography($config);
+  /* TYPOGRAPHY_INCLUDE */
+
+}

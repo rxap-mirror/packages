@@ -1,0 +1,262 @@
+import {EMPTY, firstValueFrom, Observable, Subject, TeardownLogic} from 'rxjs';
+import {BaseDefinition, BaseDefinitionMetadata, DefinitionMetadata, RXAP_DEFINITION_METADATA} from '@rxap/definition';
+import {clone, Constructor, deepMerge, GenerateRandomString} from '@rxap/utilities';
+import {finalize, take, takeUntil, tap} from 'rxjs/operators';
+import {Inject, Injectable, isDevMode, Optional} from '@angular/core';
+import {ToggleSubject} from '@rxap/rxjs';
+
+export type DataSourceViewerId = string;
+
+export interface BaseDataSourceViewer<View = any> {
+  id?: DataSourceViewerId;
+  viewChange?: Observable<View>;
+
+  [key: string]: any;
+}
+
+// tslint:disable-next-line:no-empty-interface
+export type BaseDataSourceMetadata = BaseDefinitionMetadata
+
+@Injectable()
+export class BaseDataSource<
+  Data = any,
+  Metadata extends BaseDataSourceMetadata = BaseDataSourceMetadata,
+  Viewer extends BaseDataSourceViewer = BaseDataSourceViewer
+> extends BaseDefinition<Metadata> {
+  public readonly change$ = new Subject<Data>();
+  /**
+   * Indicates weather the data source is currently loading new data
+   */
+  public loading$: Observable<boolean> = EMPTY;
+  public readonly hasError$ = new ToggleSubject();
+  public readonly error$ = new Subject<Error>();
+  protected _connectedViewer = new Map<DataSourceViewerId, Observable<Data>>();
+  protected _connectedViewerTeardown = new Map<
+    DataSourceViewerId,
+    TeardownLogic
+  >();
+  protected _data$: Observable<Data> = EMPTY;
+  /**
+   * a map of viewer to view id.
+   * Allows to create a view id from the viewer object reference
+   * @protected
+   */
+  protected _viewerIds = new Map<Viewer, string>();
+  protected _retry$ = new Subject<void>();
+
+  constructor(
+    @Optional()
+    @Inject(RXAP_DEFINITION_METADATA)
+      metadata: Metadata | null = null,
+  ) {
+    super(metadata);
+    this.genericRetryFunction = this.genericRetryFunction.bind(this);
+  }
+
+  protected _data?: Data;
+
+  public get data() {
+    return clone(this._data);
+  }
+
+  public get hasConnections(): boolean {
+    return this._connectedViewer.size > 0;
+  }
+
+  public getViewerId(viewer: Viewer): string {
+    if (viewer.id) {
+      return viewer.id;
+    }
+    if (!this._viewerIds.has(viewer)) {
+      this._viewerIds.set(viewer, GenerateRandomString());
+    }
+    return this._viewerIds.get(viewer)!;
+  }
+
+  public connect(viewer: Viewer): Observable<Data> {
+    if (!viewer.id) {
+      viewer.id = this.getViewerId(viewer);
+    }
+    if (this.isConnected(viewer)) {
+      return this._connectedViewer.get(viewer.id)!;
+    }
+    if (!viewer.viewChange) {
+      viewer.viewChange = EMPTY;
+    }
+    const _connection = this._connect(viewer);
+    let connection: Observable<Data>;
+    let teardownLogic: TeardownLogic | null = null;
+    if (Array.isArray(_connection)) {
+      if (_connection.length !== 2) {
+        throw new Error(
+          'if this._connect returns an array. The array should have two items',
+        );
+      }
+      connection = _connection[0];
+      teardownLogic = _connection[1];
+    } else {
+      connection = _connection;
+    }
+
+    const destroy$ = new Subject<void>();
+
+    connection = connection.pipe(
+      tap((data) => (this._data = data)),
+      tap((data) => this.change$.next(data)),
+      finalize(() => this.disconnect(viewer)),
+      takeUntil(destroy$),
+    );
+
+    this._connectedViewer.set(viewer.id, connection);
+
+    if (teardownLogic) {
+      const tl = teardownLogic;
+      teardownLogic = () => {
+        destroy$.next();
+        if (typeof tl === 'function') {
+          tl();
+        } else {
+          tl.unsubscribe();
+        }
+      };
+    } else {
+      teardownLogic = () => {
+        destroy$.next();
+      };
+    }
+
+    this._connectedViewerTeardown.set(viewer.id, teardownLogic);
+    return connection;
+  }
+
+  public isConnected(viewerOrId: Viewer | DataSourceViewerId): boolean {
+    const viewerId =
+      typeof viewerOrId === 'string'
+        ? viewerOrId
+        : viewerOrId.id ?? this.getViewerId(viewerOrId);
+    return this._connectedViewer.has(viewerId);
+  }
+
+  public disconnect(viewerOrId: Viewer | DataSourceViewerId) {
+    const viewerId =
+      typeof viewerOrId === 'string'
+        ? viewerOrId
+        : viewerOrId.id ?? this.getViewerId(viewerOrId);
+    if (this.isConnected(viewerId)) {
+      this._disconnect(viewerId);
+      this._connectedViewer.delete(viewerId);
+      if (this._connectedViewerTeardown.has(viewerId)) {
+        const teardownLogic = this._connectedViewerTeardown.get(viewerId)!;
+        if (teardownLogic) {
+          if (typeof teardownLogic === 'function') {
+            teardownLogic();
+          } else {
+            teardownLogic.unsubscribe();
+          }
+        }
+      }
+    } else {
+      console.warn(
+        `Connection with viewer id '${viewerId}' is not connected to the data source '${this.id}'`,
+      );
+    }
+    // TODO : find better cleanup solution
+    if (typeof viewerOrId === 'string') {
+      for (const [viewer, id] of this._viewerIds.entries()) {
+        if (viewerOrId === id) {
+          this._viewerIds.delete(viewer);
+        }
+      }
+    } else {
+      this._viewerIds.delete(viewerOrId);
+    }
+  }
+
+  /**
+   * Creates a connection to tha data source and converts the Observable into a
+   * promise.
+   *
+   * @param viewer
+   */
+  public toPromise(viewer: Viewer): Promise<Data> {
+    return firstValueFrom(this.connect(viewer)
+      .pipe(take(1)))
+      .then((result) => {
+        this.disconnect(viewer);
+        return result;
+      });
+  }
+
+  public derive(
+    id: string,
+    metadata: Partial<BaseDataSourceMetadata> = this.metadata,
+  ): BaseDataSource<any> {
+    return new BaseDataSource<any>({
+      ...deepMerge(this.metadata, metadata),
+      id,
+    });
+  }
+
+  public toJSON(): object {
+    return {
+      id: this.id,
+      metadata: this.metadata,
+      connected: this._connectedViewer.keys(),
+      data: this._data,
+    };
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  public refresh(): any {
+  }
+
+  public retry(): any {
+    this._retry$.next();
+  }
+
+  public reset(): any {
+    for (const viewerId of this._connectedViewer.keys()) {
+      this.disconnect(viewerId);
+    }
+    // eslint-disable-next-line no-prototype-builtins
+    if (this.metadata.hasOwnProperty('context')) {
+      delete this.metadata['context'];
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  protected _disconnect(viewerId: DataSourceViewerId): void {
+  }
+
+  protected genericRetryFunction(error: any): Observable<any> {
+    this.hasError$.enable();
+    this.error$.next(error);
+    this.handelError(error);
+    return this._retry$.asObservable().pipe(
+      tap(() => this.hasError$.disable()),
+    );
+  }
+
+  protected handelError(error: any) {
+    if (isDevMode()) {
+      console.log(`DataSource '${this.id}' has an error:`, error);
+    }
+  }
+
+  protected _connect(
+    viewer: BaseDataSourceViewer,
+  ): [Observable<Data>, TeardownLogic] | Observable<Data> {
+    this.init();
+    return this._data$;
+  }
+}
+
+export function RxapDataSource<Metadata extends BaseDataSourceMetadata>(
+  dataSourceIdOrMetadata: string | Metadata,
+  className = 'BaseDataSource',
+  packageName = '@rxap/data-source',
+) {
+  return function (target: Constructor<BaseDataSource>) {
+    DefinitionMetadata(dataSourceIdOrMetadata, className, packageName)(target);
+  };
+}

@@ -1,0 +1,30 @@
+<div [ngClass]="{ 'collapsed': sidenav.collapsed$ | async }" class="container">
+    <div class="inner"
+         fxLayout="column"
+         fxLayoutAlign="space-between stretch">
+        <ng-template [ngIf]="sidenavHeaderDirective?.template">
+            <div [fxHide]="sidenav.collapsed$ | async" class="header" fxFlex="nogrow">
+                <ng-container *ngTemplateOutlet="sidenavHeaderDirective?.template ?? null"></ng-container>
+            </div>
+            <mat-divider [fxHide]="sidenav.collapsed$ | async" fxFlex="nogrow"></mat-divider>
+        </ng-template>
+        <div class="nav-container" fxFlex="grow">
+            <ul fxLayout="column" root rxap-navigation></ul>
+        </div>
+        <mat-divider fxFlex="nogrow"></mat-divider>
+        <button (click)="sidenav.toggleNavigationCollapse()" [ngClass]="{ 'collapsed': sidenav.collapsed$ | async }" class="sidebar-toggle"
+                fxFlex="nogrow"
+                mat-button>
+      <span class="sidebar-toggle-inner" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+        <mat-icon class="arrow" fxFlex="nogrow">double_arrow</mat-icon>
+        <span [fxHide]="sidenav.collapsed$ | async" class="label" fxFlex="grow" i18n>Collapse sidebar</span>
+      </span>
+        </button>
+        <ng-template [ngIf]="sidenavFooterDirective?.template ?? null">
+            <mat-divider [fxHide]="sidenav.collapsed$ | async" fxFlex="nogrow"></mat-divider>
+            <div [fxHide]="sidenav.collapsed$ | async" class="footer" fxFlex="nogrow">
+                <ng-container *ngTemplateOutlet="sidenavFooterDirective?.template ?? null"></ng-container>
+            </div>
+        </ng-template>
+    </div>
+</div>

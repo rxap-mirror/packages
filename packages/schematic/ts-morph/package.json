@@ -1,0 +1,41 @@
+{
+  "name": "@rxap/schematics-ts-morph",
+  "version": "16.0.0-dev.2",
+  "type": "commonjs",
+  "peerDependencies": {
+    "@angular-devkit/core": "^16.0.0",
+    "@angular-devkit/schematics": "^16.0.0",
+    "@rxap/schematics-utilities": "^16.0.0-dev.2",
+    "ts-morph": "^18.0.0"
+  },
+  "dependencies": {
+    "tslib": "2.5.3"
+  },
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=schematic-ts-morph",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project schematic-ts-morph"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/schematic/ts-morph"
+  },
+  "keywords": [
+    "rxap",
+    "schematic"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/ts-morph",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/schematic/ts-morph"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

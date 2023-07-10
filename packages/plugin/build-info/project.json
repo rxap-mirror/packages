@@ -1,0 +1,92 @@
+{
+  "name": "plugin-build-info",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/plugin/build-info/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/plugin/build-info",
+        "main": "packages/plugin/build-info/src/index.ts",
+        "tsConfig": "packages/plugin/build-info/tsconfig.lib.json",
+        "assets": [
+          "packages/plugin/build-info/*.md",
+          {
+            "input": "./packages/plugin/build-info/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/build-info/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/build-info",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/plugin/build-info",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs plugin-build-info {args.ver} {args.tag}",
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/plugin/build-info/**/*.ts",
+          "packages/plugin/build-info/package.json",
+          "packages/plugin/build-info/executors.json",
+          "packages/plugin/build-info/generators.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/plugin/build-info/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    }
+  },
+  "tags": [
+    "plugin",
+    "nx",
+    "nx-plugin"
+  ]
+}

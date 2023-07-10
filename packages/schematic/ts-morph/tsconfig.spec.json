@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "module": "commonjs",
+    "types": [
+      "jest",
+      "node"
+    ],
+    /**
+     * required for the test exception, bc the package @rxap/schematics-utilities needs this
+     * in the file package-json-file.ts
+     * TODO : refactor package-json-file.ts to not require esModuleInterop = true
+     */
+    "esModuleInterop": true
+  },
+  "include": [
+    "jest.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
+  ]
+}

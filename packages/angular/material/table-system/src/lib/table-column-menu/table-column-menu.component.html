@@ -1,0 +1,20 @@
+<button [matMenuTriggerFor]="columnMenu" mat-icon-button type="button">
+    <mat-icon>tune</mat-icon>
+</button>
+
+<mat-menu #columnMenu="matMenu">
+  <span
+          *ngFor="let column of columns"
+          [disableRipple]="true"
+          [fxHide]="column.hidden"
+          mat-menu-item
+          rxapStopPropagation
+  >
+    <mat-checkbox
+            (change)="column.toggle(); updateDisplayColumns()"
+            [checked]="column.active">
+      {{ column.display }}
+    </mat-checkbox>
+  </span>
+    <ng-content select="[mat-menu-item],mat-divider"></ng-content>
+</mat-menu>

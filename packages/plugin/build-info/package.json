@@ -1,0 +1,44 @@
+{
+  "name": "@rxap/plugin-build-info",
+  "version": "16.0.0-dev.3",
+  "type": "commonjs",
+  "executors": "./executors.json",
+  "scripts": {
+    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=plugin-build-info",
+    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project plugin-build-info"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/build-info"
+  },
+  "keywords": [
+    "rxap",
+    "plugin",
+    "nx",
+    "nx-plugin"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/build-info",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/build-info"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "dependencies": {
+    "tslib": "2.5.3"
+  },
+  "peerDependencies": {
+    "@nx/devkit": "^16.3.2",
+    "@rxap/plugin-utilities": "^1.0.0",
+    "nx": "^16.3.0"
+  },
+  "generators": "./generators.json"
+}

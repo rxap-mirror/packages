@@ -1,0 +1,83 @@
+{
+  "name": "angular-layout",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/angular/layout/src",
+  "prefix": "rxap",
+  "tags": [
+    "angular",
+    "ngx"
+  ],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "project": "packages/angular/layout/ng-package.json",
+        "tailwindConfig": "packages/angular/layout/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/angular/layout/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/angular/layout/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/angular/layout/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/angular/layout/**/*.ts",
+          "packages/angular/layout/**/*.html"
+        ]
+      }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    },
+    "component-test": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "packages/angular/layout/cypress.config.ts",
+        "testingType": "component",
+        "skipServe": true,
+        "devServerTarget": "angular:build:development"
+      },
+      "configurations": {
+        "open": {
+          "watch": true
+        }
+      }
+    }
+  }
+}
