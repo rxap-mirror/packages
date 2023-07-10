@@ -58,7 +58,7 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
    * name = "notification"
    * module = "report-details"
    */
-  const isFirstBornSibling = !nestModule || nestModule === controllerName
+  const isFirstBornSibling = !nestModule || nestModule === controllerName;
 
   if (isFirstBornSibling && !propertyList.some(param => param.name === 'uuid')) {
     propertyList.unshift({name: 'uuid', type: 'string'});

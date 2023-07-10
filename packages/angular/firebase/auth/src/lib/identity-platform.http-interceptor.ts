@@ -83,4 +83,4 @@ export const IDENTITY_PLATFORM_HTTP_INTERCEPTOR: Provider = {
   provide: HTTP_INTERCEPTORS,
   useClass: IdentityPlatformHttpInterceptor,
   multi: true,
-}
+};

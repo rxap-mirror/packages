@@ -88,7 +88,7 @@ export function GetProjectType(host: Tree, projectName: string): 'library' | 'ap
   }
 
   if (projectType !== 'library' && projectType !== 'application') {
-    throw new SchematicsException(`The project '${projectName}' has unknown type '${projectType}'`)
+    throw new SchematicsException(`The project '${projectName}' has unknown type '${projectType}'`);
   }
 
   return projectType;
@@ -156,5 +156,5 @@ export function UpdateProjectPackageJson(updater: (packageJson: PackageJson) => 
       basePath: projectRoot,
     });
 
-  }
+  };
 }

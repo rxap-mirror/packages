@@ -40,7 +40,7 @@ export class WindowTaskBarContainerComponent {
   ) {
     if (settings) {
       if (settings.expand !== undefined) {
-        this.expand = settings.expand
+        this.expand = settings.expand;
       }
     }
   }

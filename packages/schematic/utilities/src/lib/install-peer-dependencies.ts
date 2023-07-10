@@ -57,13 +57,13 @@ export function InstallPeerDependencies(): Rule {
             if (tree.exists(peerCollectionJsonFilePath)) {
               const collectionJson = GetJsonFile<CollectionJson>(tree, peerCollectionJsonFilePath);
               if (collectionJson.schematics['ng-add']) {
-                context.addTask(new RunSchematicTask(name, 'ng-add', {}), [installTaskId])
+                context.addTask(new RunSchematicTask(name, 'ng-add', {}), [installTaskId]);
               }
             }
           }
           return noop();
-        })
+        });
       },
     ]);
-  }
+  };
 }

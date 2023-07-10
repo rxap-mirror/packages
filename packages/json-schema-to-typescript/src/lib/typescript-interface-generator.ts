@@ -412,7 +412,7 @@ export class TypescriptInterfaceGenerator {
         } else if (schema.const) {
           return (writer) => writer.quote(schema.const);
         } else if (schema.type === 'object') {
-          return w => w.write('Record<string, unknown>')
+          return w => w.write('Record<string, unknown>');
         }
 
         console.warn(

@@ -108,7 +108,7 @@ export class TableRowActionDirective<Data extends Record<string, any>> extends C
   }
 
   ngOnInit() {
-    this.options = this.getTableActionOptions()
+    this.options = this.getTableActionOptions();
     if (this.options) {
       this.refresh ??= this.options.refresh ?? false;
       this.errorMessage ??= this.options.errorMessage ?? undefined;

@@ -181,7 +181,7 @@ describe('Mixin', () => {
         return function (target: any) {
           setMetadata('metadata', data, target);
           setMetadata('metadata', data, target.prototype);
-        }
+        };
       }
 
       class WithMetadata {

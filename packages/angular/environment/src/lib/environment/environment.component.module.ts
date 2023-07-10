@@ -24,7 +24,7 @@ export class EnvironmentComponentModule {
           useValue: environment,
         },
       ],
-    }
+    };
   }
 
 }

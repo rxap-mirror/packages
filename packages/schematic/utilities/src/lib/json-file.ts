@@ -70,5 +70,5 @@ export function UpdateJsonFile<T extends Record<string, any> = Record<string, an
       CoerceFile(tree, filePath, JSON.stringify(jsonFile, undefined, options?.space ?? 2));
     }
 
-  }
+  };
 }

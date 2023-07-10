@@ -28,7 +28,7 @@ export function AddNestController(
 
   const sourceFile = options.sourceFile ?? CoerceSourceFile(project, `${dasherize(name)}.controller.ts`);
 
-  const controllerClass = CoerceSuffix(classify(name), 'Controller')
+  const controllerClass = CoerceSuffix(classify(name), 'Controller');
 
   CoerceClass(
     sourceFile,

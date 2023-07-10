@@ -67,8 +67,8 @@ describe('@rxap/schematics-ts-morph', () => {
         });
 
         AddNestModuleImport(sourceFile, 'TestModule', [], w => {
-          w.write('TestModule')
-          w.write('.forRoot()')
+          w.write('TestModule');
+          w.write('.forRoot()');
         });
 
         const metadata = GetNestModuleMetadata(sourceFile);
@@ -166,8 +166,8 @@ describe('@rxap/schematics-ts-morph', () => {
         });
 
         AddNestModuleImport(sourceFile, 'TestModule', [], w => {
-          w.write('TestModule')
-          w.write('.forRoot({ test: true })')
+          w.write('TestModule');
+          w.write('.forRoot({ test: true })');
         });
 
         const metadata = GetNestModuleMetadata(sourceFile);
@@ -203,8 +203,8 @@ describe('@rxap/schematics-ts-morph', () => {
         });
 
         AddNestModuleImport(sourceFile, 'TestModule', [], w => {
-          w.write('TestModule')
-          w.write('.forRoot({ test: true })')
+          w.write('TestModule');
+          w.write('.forRoot({ test: true })');
         }, true);
 
         const metadata = GetNestModuleMetadata(sourceFile);

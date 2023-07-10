@@ -118,7 +118,7 @@ export function ParseTemplate<T extends ParsedElement>(
       filename = filenameMatch[1];
     }
 
-    const templateFileBuffer = host.read(templateFilePath)
+    const templateFileBuffer = host.read(templateFilePath);
 
     if (!templateFileBuffer) {
       throw new Error(`Could not read the file at path '${templateFilePath}'`);

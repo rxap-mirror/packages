@@ -10,7 +10,7 @@ export function CoerceClassMethod(
   structure: Omit<OptionalKind<MethodDeclarationStructure>, 'name'> = {},
 ) {
 
-  let methodDeclaration = classDeclaration.getMethod(name)
+  let methodDeclaration = classDeclaration.getMethod(name);
 
   if (!methodDeclaration) {
 

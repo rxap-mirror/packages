@@ -140,7 +140,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     let response: any;
 
     try {
-      response = await fetch(url)
+      response = await fetch(url);
     } catch (error: any) {
       const message = `Could not fetch config from '${url}': ${error.message}`;
       if (required) {
@@ -153,7 +153,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     }
 
     try {
-      config = await response.json()
+      config = await response.json();
     } catch (error: any) {
       const message = `Could not parse config from '${url}' to a json object: ${error.message}`;
       if (required) {

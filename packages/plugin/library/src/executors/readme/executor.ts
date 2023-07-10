@@ -131,7 +131,7 @@ Handlebars.registerHelper('hasProperties', function (record: Record<string, unkn
   if (Object.keys(record).length > 0) {
     options.fn(this);
   }
-})
+});
 
 export default async function runExecutor(
   options: ReadmeExecutorSchema,

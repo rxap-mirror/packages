@@ -34,7 +34,7 @@ export class FormSubmitDirective extends ConfirmClick implements OnDestroy {
 
   @HostBinding('type')
   @Input()
-  public type = 'button'
+  public type = 'button';
 
   @Input()
   public set resetAfterSubmit(value: boolean | '') {
@@ -57,7 +57,7 @@ export class FormSubmitDirective extends ConfirmClick implements OnDestroy {
     @Inject(Router)
     private readonly router: Router | null = null,
   ) {
-    super()
+    super();
   }
 
   protected execute() {

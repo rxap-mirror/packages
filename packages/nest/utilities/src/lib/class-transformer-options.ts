@@ -22,4 +22,4 @@ export function ClassTransformOptionsFactory(additionalOptions: ClassTransformOp
 /**
  * @deprecated use ClassTransformOptions instead
  */
-export const TransformOptions = ClassTransformOptionsFactory
+export const TransformOptions = ClassTransformOptionsFactory;

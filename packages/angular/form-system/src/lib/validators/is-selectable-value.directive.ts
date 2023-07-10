@@ -66,7 +66,7 @@ export class IsSelectableValueDirective implements Validator {
             isSelectableValue: {
               expected: 'Value should be from the list of provided options',
             },
-          }
+          };
         }
       } else if (isDevMode()) {
         console.warn('The last value from the OptionsDataSource is empty', this);

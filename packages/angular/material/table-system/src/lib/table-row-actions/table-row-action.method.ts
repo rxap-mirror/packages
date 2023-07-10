@@ -56,7 +56,7 @@ export function HasTableRowActionMetadata(method: TableRowActionMethod): boolean
   return hasMetadata(
     RXAP_TABLE_ACTION_METHOD_METADATA,
     method.constructor,
-  )
+  );
 }
 
 export function GetTableRowActionMetadata(method: TableRowActionMethod): TableActionMethodOptions {

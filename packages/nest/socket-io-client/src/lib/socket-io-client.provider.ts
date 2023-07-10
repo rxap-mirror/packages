@@ -85,7 +85,7 @@ export class SocketIoClientProvider {
     });
     this.socket.on('connect_error', () => {
       this.logger.error('Connection error', 'SocketIoClientProvider');
-    })
+    });
     return this.socket;
   }
 }

@@ -5,7 +5,7 @@ export class RxapXmlParserError extends RxapError {
   constructor(message: string, code: string, scope?: string) {
     super('@rxap/xml-parser', message, code, scope);
     if ((Error as any)['captureStackTrace']) {
-      (Error as any)['captureStackTrace'](this, RxapXmlParserError)
+      (Error as any)['captureStackTrace'](this, RxapXmlParserError);
     }
     this.name = 'RxapXmlParserError';
   }
@@ -18,10 +18,10 @@ export class RxapXmlParserValidateError extends RxapXmlParserError {
     super(message, '0000');
 
     if ((Error as any)['captureStackTrace']) {
-      (Error as any)['captureStackTrace'](this, RxapXmlParserValidateError)
+      (Error as any)['captureStackTrace'](this, RxapXmlParserValidateError);
     }
 
-    this.name = 'XmlParserValidateError'
+    this.name = 'XmlParserValidateError';
   }
 
   public override toJSON(): object {
@@ -40,10 +40,10 @@ export class RxapXmlParserValidateRequiredError extends RxapXmlParserValidateErr
     super(message, '0000');
 
     if ((Error as any)['captureStackTrace']) {
-      (Error as any)['captureStackTrace'](this, RxapXmlParserValidateError)
+      (Error as any)['captureStackTrace'](this, RxapXmlParserValidateError);
     }
 
-    this.name = 'RxapXmlParserValidateRequiredError'
+    this.name = 'RxapXmlParserValidateRequiredError';
   }
 
   public override toJSON(): object {

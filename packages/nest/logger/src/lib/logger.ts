@@ -50,7 +50,7 @@ export class RxapLogger extends ConsoleLogger {
         return {msg, params: optionalParams};
       }
     }
-    return {msg: message, params: optionalParams}
+    return {msg: message, params: optionalParams};
   }
 
   protected stringifyCircular(obj: any) {

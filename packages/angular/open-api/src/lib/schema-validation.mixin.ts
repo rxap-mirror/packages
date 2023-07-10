@@ -30,7 +30,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
   public static STRICT = false;
 
-  protected disableSchemaValidation?: boolean
+  protected disableSchemaValidation?: boolean;
 
   /**
    * Validates the parameters against the schema specified in the operation object

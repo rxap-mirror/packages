@@ -218,7 +218,7 @@ export class DataSourceCollectionDirective<Data = any>
     console.log('ngOnChanges');
     const dataSourceOrIdOrTokenChange = changes['dataSourceOrIdOrToken'];
     if (dataSourceOrIdOrTokenChange) {
-      console.log('load data source')
+      console.log('load data source');
       this.dataSource = this.loadDataSource();
       // Dont connect to the data source on the first change.
       // Else the parent/sibling components are not initialized

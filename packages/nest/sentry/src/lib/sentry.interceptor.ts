@@ -31,7 +31,7 @@ export class SentryInterceptor implements NestInterceptor {
 
   @Optional()
   @Inject(SENTRY_INTERCEPTOR_OPTIONS)
-  protected readonly options?: SentryInterceptorOptions
+  protected readonly options?: SentryInterceptorOptions;
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     if (this.client.hasInstance) {

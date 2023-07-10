@@ -42,6 +42,6 @@ export function UpdateProjectTsConfigJson(
     return UpdateTsConfigJson(updater, {
       ...options,
       basePath: projectRoot,
-    })
+    });
   };
 }

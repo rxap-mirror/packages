@@ -202,7 +202,7 @@ export class DataSourceDirective<Data = any>
         filter(Boolean),
         tap(hasError => {
           if (hasError) {
-            this.embedErrorTemplate(null)
+            this.embedErrorTemplate(null);
           } else {
             this.embeddedErrorViewRef?.destroy();
           }

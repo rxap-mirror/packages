@@ -4,6 +4,6 @@ export function CoerceFile(tree: Tree, filePath: string, content: string | Buffe
   if (tree.exists(filePath)) {
     tree.overwrite(filePath, content);
   } else {
-    tree.create(filePath, content)
+    tree.create(filePath, content);
   }
 }

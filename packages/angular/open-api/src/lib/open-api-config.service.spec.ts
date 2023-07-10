@@ -19,7 +19,7 @@ describe('@rxap/open-api', () => {
           },
         ],
         paths: {},
-      })
+      });
     });
 
     it('should insert server config', () => {
@@ -42,7 +42,7 @@ describe('@rxap/open-api', () => {
         {
           url: 'http://server.de',
         },
-      ])
+      ]);
 
     });
 

@@ -51,12 +51,12 @@ export function GenerateParameterToOperationObjectWithMetadata(parameter: Genera
 }
 
 export function HasOperationId(operation: OpenAPIV3.OperationObject): operation is OperationObject {
-  return !!operation.operationId
+  return !!operation.operationId;
 }
 
 export function AssertWithOperationId(operation: OpenAPIV3.OperationObject): asserts operation is OperationObject {
   if (!HasOperationId(operation)) {
-    throw new Error('Ensure all operation have a operation id.')
+    throw new Error('Ensure all operation have a operation id.');
   }
 }
 

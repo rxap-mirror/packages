@@ -254,7 +254,7 @@ function fixDevDependenciesWithTsMorphProject(
     changedPackageList,
     removedPackageList,
     unknownPackageList,
-  }
+  };
 
 }
 
@@ -352,7 +352,7 @@ function skipProject(tree: Tree, project: string, projectRoot: string, projects:
     return true;
   }
   if (!tree.exists(`${projectRoot}/package.json`)) {
-    console.debug(`No package.json file found in ${projectRoot}`)
+    console.debug(`No package.json file found in ${projectRoot}`);
     return true;
   }
   return false;

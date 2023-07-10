@@ -67,7 +67,7 @@ export class SocketIoClientProxyService extends ClientProxy {
     this.client.getSocket().emit(packet.pattern, {data: packet.data, event});
 
     return () => socket.off(event, () => {
-      this.logger.log('socket off', 'SocketIoClientProxyService')
+      this.logger.log('socket off', 'SocketIoClientProxyService');
     });
   }
 }

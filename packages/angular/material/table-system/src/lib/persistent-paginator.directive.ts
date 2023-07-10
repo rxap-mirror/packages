@@ -31,7 +31,7 @@ export class PersistentPaginatorDirective implements OnInit, OnDestroy {
     }
     this._subscription = this.matPaginator.page.pipe(
       tap(() => this.storeConfig()),
-    ).subscribe()
+    ).subscribe();
   }
 
   public ngOnDestroy() {
