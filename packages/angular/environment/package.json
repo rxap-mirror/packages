@@ -11,7 +11,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-environment",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-environment"
+    "preversion": "yarn run --top-level nx run angular-environment:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

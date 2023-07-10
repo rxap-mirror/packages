@@ -17,7 +17,7 @@
   "description": "Provides the DataSource concept for RxAP.",
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-data-source",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-data-source"
+    "preversion": "yarn run --top-level nx run angular-data-source:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

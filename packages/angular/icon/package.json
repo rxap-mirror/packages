@@ -13,7 +13,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-icon",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-icon"
+    "preversion": "yarn run --top-level nx run angular-icon:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

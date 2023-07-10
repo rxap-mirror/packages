@@ -4,7 +4,7 @@
   "type": "commonjs",
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=generator-utilities",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project generator-utilities"
+    "preversion": "yarn run --top-level nx run generator-utilities:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

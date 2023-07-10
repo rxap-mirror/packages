@@ -11,7 +11,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=json-schema-to-typescript",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project json-schema-to-typescript"
+    "preversion": "yarn run --top-level nx run json-schema-to-typescript:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

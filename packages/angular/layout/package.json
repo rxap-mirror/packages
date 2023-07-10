@@ -25,7 +25,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-layout",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-layout"
+    "preversion": "yarn run --top-level nx run angular-layout:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

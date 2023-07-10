@@ -14,7 +14,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=plugin-docker",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project plugin-docker"
+    "preversion": "yarn run --top-level nx run plugin-docker:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

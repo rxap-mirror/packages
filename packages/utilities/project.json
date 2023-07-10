@@ -68,6 +68,18 @@
     },
     "readme": {
       "executor": "@rxap/plugin-library:readme"
+    },
+    "fix-dependencies": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "outputs": [
+        "{workspaceRoot}/{projectRoot}/package.json"
+      ],
+      "options": {
+        "generator": "@rxap/plugin-library:fix-dependencies",
+        "options": {
+          "strict": true
+        }
+      }
     }
   },
   "tags": []

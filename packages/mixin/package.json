@@ -12,7 +12,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=mixin",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project mixin"
+    "preversion": "yarn run --top-level nx run mixin:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

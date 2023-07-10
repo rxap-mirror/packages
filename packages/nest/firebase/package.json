@@ -11,7 +11,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=nest-firebase",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project nest-firebase"
+    "preversion": "yarn run --top-level nx run nest-firebase:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

@@ -14,7 +14,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-material-directives",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project angular-material-directives"
+    "preversion": "yarn run --top-level nx run angular-material-directives:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",

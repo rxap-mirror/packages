@@ -15,7 +15,7 @@
   },
   "scripts": {
     "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=schematic-xml-parser",
-    "preversion": "nx g @rxap/plugin-library:fix-dependencies --strict --project schematic-xml-parser"
+    "preversion": "yarn run --top-level nx run schematic-xml-parser:fix-dependencies"
   },
   "publishConfig": {
     "access": "public",
