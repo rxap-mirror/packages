@@ -1,13 +1,13 @@
 {
   "name": "@rxap/firebase",
-  "version": "16.0.0-dev.1",
+  "version": "16.0.0-dev.2",
   "peerDependencies": {
-    "@angular/common": "^16.0.4",
-    "@angular/core": "^16.0.4",
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0",
     "@angular/fire": "^7.5.0",
-    "@rxap/config": "^16.0.0-dev.2",
-    "@rxap/rxjs": "^1.0.0",
-    "@rxap/utilities": "^16.0.0-dev.1",
+    "@rxap/config": "^16.0.0-dev.3",
+    "@rxap/rxjs": "^1.0.1-dev.0",
+    "@rxap/utilities": "^16.0.0-dev.2",
     "firebase": "^9.6.7",
     "rxjs": "^7.8.0"
   },
@@ -39,5 +39,21 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.2"
+      },
+      {
+        "package": "@rxap/rxjs",
+        "version": "1.0.1-dev.0"
+      },
+      {
+        "package": "@rxap/config",
+        "version": "16.0.0-dev.3"
+      }
+    ]
   }
 }

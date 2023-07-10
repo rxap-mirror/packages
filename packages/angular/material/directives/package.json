@@ -1,11 +1,11 @@
 {
   "name": "@rxap/material-directives",
-  "version": "16.0.0-dev.2",
+  "version": "16.0.0-dev.3",
   "peerDependencies": {
-    "@angular/core": "^16.0.4",
-    "@angular/material": "^16.0.4",
-    "@rxap/services": "^16.0.0-dev.2",
-    "@rxap/utilities": "^16.0.0-dev.1",
+    "@angular/core": "^16.0.0",
+    "@angular/material": "^16.0.0",
+    "@rxap/services": "^16.0.0-dev.3",
+    "@rxap/utilities": "^16.0.0-dev.2",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -35,5 +35,17 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/services",
+        "version": "16.0.0-dev.3"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.2"
+      }
+    ]
   }
 }

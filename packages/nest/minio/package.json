@@ -1,13 +1,13 @@
 {
   "name": "@rxap/nest-minio",
-  "version": "9.0.1-dev.0",
+  "version": "9.0.1-dev.1",
   "type": "commonjs",
   "dependencies": {
     "minio": "^7.0.32",
     "tslib": "2.5.3"
   },
   "peerDependencies": {
-    "@nestjs/common": "^9.1.1"
+    "@nestjs/common": "^9.2.1"
   },
   "publishConfig": {
     "access": "public",
@@ -31,5 +31,8 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": []
   }
 }

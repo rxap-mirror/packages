@@ -1,16 +1,16 @@
 {
   "name": "@rxap/nest-server",
-  "version": "1.0.0",
+  "version": "1.0.1-dev.0",
   "type": "commonjs",
   "dependencies": {
     "tslib": "2.5.3"
   },
   "peerDependencies": {
-    "@nestjs/common": "^9.1.1",
+    "@nestjs/common": "^9.2.1",
     "@nestjs/config": "^2.2.0",
-    "@nestjs/core": "^9.1.1",
+    "@nestjs/core": "^9.2.1",
     "@nestjs/microservices": "^9.2.1",
-    "@rxap/nest-utilities": "^1.0.0"
+    "@rxap/nest-utilities": "^1.0.1-dev.0"
   },
   "publishConfig": {
     "access": "public",
@@ -34,5 +34,13 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/nest-utilities",
+        "version": "1.0.1-dev.0"
+      }
+    ]
   }
 }

@@ -1,15 +1,15 @@
 {
   "name": "@rxap/config",
-  "version": "16.0.0-dev.2",
+  "version": "16.0.0-dev.3",
   "dependencies": {
     "joi": "^17.6.3",
     "tslib": "2.5.3"
   },
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": "^16.0.4",
-    "@angular/core": "^16.0.4",
-    "@rxap/utilities": "^16.0.0-dev.1",
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0",
+    "@rxap/utilities": "^16.0.0-dev.2",
     "rxjs": "^7.8.0"
   },
   "description": "Simple config file manager for angular applications.",
@@ -36,5 +36,13 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.2"
+      }
+    ]
   }
 }

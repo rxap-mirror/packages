@@ -1,6 +1,6 @@
 {
   "name": "@rxap/generator-utilities",
-  "version": "1.0.0",
+  "version": "1.0.1-dev.0",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -29,5 +29,8 @@
   },
   "dependencies": {
     "tslib": "2.5.3"
+  },
+  "nx-migrations": {
+    "packageGroup": []
   }
 }

@@ -3,17 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.0.0-dev.4 (2023-07-10)
+
+### Bug Fixes
+
+- restructure and merge mono repos packages, schematics, plugins and nest ([653b4cd](https://gitlab.com/rxap/packages/commit/653b4cd39fc92d322df9b3959651fea0aa6079da))
+
 # [16.0.0-dev.3](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@16.0.0-dev.2...@rxap/plugin-docker@16.0.0-dev.3) (2023-05-18)
 
 ### Bug Fixes
 
-* remove deprecated pack targetconcept ([39f1869](https://gitlab.com/rxap/schematics/commit/39f18698795cc6f5d8db81b43581c7d75244021f))
+- remove deprecated pack targetconcept ([39f1869](https://gitlab.com/rxap/schematics/commit/39f18698795cc6f5d8db81b43581c7d75244021f))
 
 # [16.0.0-dev.2](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@16.0.0-dev.1...@rxap/plugin-docker@16.0.0-dev.2) (2023-05-18)
 
 ### Bug Fixes
 
-* **deps:** update rxap packages to16.x.x ([bd63f0b](https://gitlab.com/rxap/schematics/commit/bd63f0bfe3356eb1d00bb136253789f2e481e04b))
+- **deps:** update rxap packages to16.x.x ([bd63f0b](https://gitlab.com/rxap/schematics/commit/bd63f0bfe3356eb1d00bb136253789f2e481e04b))
 
 # [16.0.0-dev.1](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@16.0.0-dev.0...@rxap/plugin-docker@16.0.0-dev.1) (2023-05-17)
 
@@ -23,79 +29,79 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Build System
 
-* upgrade to nrwl 16.x.x ([de73759](https://gitlab.com/rxap/schematics/commit/de737599e984ce6e0dd19776ffbd04ab2c4085f3))
+- upgrade to nrwl 16.x.x ([de73759](https://gitlab.com/rxap/schematics/commit/de737599e984ce6e0dd19776ffbd04ab2c4085f3))
 
 ### BREAKING CHANGES
 
-* upgrade nrwl 16.x.x
+- upgrade nrwl 16.x.x
 
 ## [15.1.1](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@15.1.0...@rxap/plugin-docker@15.1.1) (2023-05-11)
 
 ### Bug Fixes
 
-* update to nrwl 15.9.4 ([c9ab045](https://gitlab.com/rxap/schematics/commit/c9ab0454484162e633b789a6274d77793179df23))
+- update to nrwl 15.9.4 ([c9ab045](https://gitlab.com/rxap/schematics/commit/c9ab0454484162e633b789a6274d77793179df23))
 
 # [15.1.0](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@15.0.0...@rxap/plugin-docker@15.1.0) (2023-01-30)
 
 ### Bug Fixes
 
-* **docker:** set default output path prefix todist ([fc9e9db](https://gitlab.com/rxap/schematics/commit/fc9e9db2a330d57aca0ef702dae0ee3d55718505))
+- **docker:** set default output path prefix todist ([fc9e9db](https://gitlab.com/rxap/schematics/commit/fc9e9db2a330d57aca0ef702dae0ee3d55718505))
 
 ### Features
 
-* **docker:** add imageRegistryoption ([a4c3f8e](https://gitlab.com/rxap/schematics/commit/a4c3f8ee1612470cdedc1702c521f8e1cafe9f07))
-* **docker:** add savebuilder ([6b8f7df](https://gitlab.com/rxap/schematics/commit/6b8f7dfee83f218a7a7153f5e4d892eaf0744a7b))
-* **docker:** update config schematics to new builderoptions ([4a376a8](https://gitlab.com/rxap/schematics/commit/4a376a895d283763d088b11111d1a82d82bc9d8f))
+- **docker:** add imageRegistryoption ([a4c3f8e](https://gitlab.com/rxap/schematics/commit/a4c3f8ee1612470cdedc1702c521f8e1cafe9f07))
+- **docker:** add savebuilder ([6b8f7df](https://gitlab.com/rxap/schematics/commit/6b8f7dfee83f218a7a7153f5e4d892eaf0744a7b))
+- **docker:** update config schematics to new builderoptions ([4a376a8](https://gitlab.com/rxap/schematics/commit/4a376a895d283763d088b11111d1a82d82bc9d8f))
 
 # [15.0.0](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@14.1.2...@rxap/plugin-docker@15.0.0) (2022-12-14)
 
 ### chore
 
-* upgrade to nrwl 15.x.x ([b0694b6](https://gitlab.com/rxap/schematics/commit/b0694b6550730b80fb7356f6c225787fda1ff6be))
+- upgrade to nrwl 15.x.x ([b0694b6](https://gitlab.com/rxap/schematics/commit/b0694b6550730b80fb7356f6c225787fda1ff6be))
 
 ### BREAKING CHANGES
 
-* upgrade nrwl 15.x.x
+- upgrade nrwl 15.x.x
 
 ## [14.1.2](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@14.1.1...@rxap/plugin-docker@14.1.2) (2022-12-14)
 
 ### Bug Fixes
 
-* **docker:** create destinations for each providedtag ([308c9b0](https://gitlab.com/rxap/schematics/commit/308c9b0275e771a701d23e232c9499d293fe0ca5))
+- **docker:** create destinations for each providedtag ([308c9b0](https://gitlab.com/rxap/schematics/commit/308c9b0275e771a701d23e232c9499d293fe0ca5))
 
 ## [14.1.1](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@14.1.0...@rxap/plugin-docker@14.1.1) (2022-11-30)
 
 ### Bug Fixes
 
-* remove dependency to
+- remove dependency to
   @schematics/angular ([79808ff](https://gitlab.com/rxap/schematics/commit/79808ff002b5e7cb26e163a697a829b2e6c62282))
-* remove static build target optiondefinition ([494fb58](https://gitlab.com/rxap/schematics/commit/494fb58e8e283c7a8cd253a91f8e296349dbf6ef))
+- remove static build target optiondefinition ([494fb58](https://gitlab.com/rxap/schematics/commit/494fb58e8e283c7a8cd253a91f8e296349dbf6ef))
 
 # [14.1.0](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@14.0.1...@rxap/plugin-docker@14.1.0) (2022-10-11)
 
 ### Bug Fixes
 
-* use correct image tag ([0bbe9ba](https://gitlab.com/rxap/schematics/commit/0bbe9bafbbfaf2fd26aabd04a9f28e30091af201))
+- use correct image tag ([0bbe9ba](https://gitlab.com/rxap/schematics/commit/0bbe9bafbbfaf2fd26aabd04a9f28e30091af201))
 
 ### Features
 
-* add push option ([8ba1f1b](https://gitlab.com/rxap/schematics/commit/8ba1f1b3c8c1cc1d4ab4bc58fa6369398ca6dc0e))
+- add push option ([8ba1f1b](https://gitlab.com/rxap/schematics/commit/8ba1f1b3c8c1cc1d4ab4bc58fa6369398ca6dc0e))
 
 ## [14.0.1](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@14.0.0...@rxap/plugin-docker@14.0.1) (2022-10-06)
 
 ### Bug Fixes
 
-* update rxap packages to14.x.x ([eda3337](https://gitlab.com/rxap/schematics/commit/eda3337af2c477126a3d83715cdc7a955c239cb6))
+- update rxap packages to14.x.x ([eda3337](https://gitlab.com/rxap/schematics/commit/eda3337af2c477126a3d83715cdc7a955c239cb6))
 
 # [14.0.0](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@13.0.1...@rxap/plugin-docker@14.0.0) (2022-09-08)
 
 ### chore
 
-* upgrade to 14.x.x ([52cccdb](https://gitlab.com/rxap/schematics/commit/52cccdb066599a3c333117107a06169e5d42c604))
+- upgrade to 14.x.x ([52cccdb](https://gitlab.com/rxap/schematics/commit/52cccdb066599a3c333117107a06169e5d42c604))
 
 ### BREAKING CHANGES
 
-* upgrade to 14.x.x
+- upgrade to 14.x.x
 
 ## [13.0.1](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@13.0.0...@rxap/plugin-docker@13.0.1) (2022-09-08)
 
@@ -109,13 +115,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* add imageName buildoption ([75426e8](https://gitlab.com/rxap/schematics/commit/75426e838db8a38045ebc320641b5e0230e0984a))
+- add imageName buildoption ([75426e8](https://gitlab.com/rxap/schematics/commit/75426e838db8a38045ebc320641b5e0230e0984a))
 
 # [13.0.0-next.2](https://gitlab.com/rxap/schematics/compare/@rxap/plugin-docker@13.0.0-next.1...@rxap/plugin-docker@13.0.0-next.2) (2022-04-24)
 
 ### Features
 
-* add imageSuffix buildoption ([9df4d13](https://gitlab.com/rxap/schematics/commit/9df4d13856d42bf097e9439ec2ca316915f594a6))
+- add imageSuffix buildoption ([9df4d13](https://gitlab.com/rxap/schematics/commit/9df4d13856d42bf097e9439ec2ca316915f594a6))
 
 # 13.0.0-next.1 (2022-04-24)
 

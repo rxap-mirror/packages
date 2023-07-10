@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-utilities",
-  "version": "1.0.0",
+  "version": "1.0.1-dev.0",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -26,10 +26,18 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.3.2",
-    "@rxap/node-utilities": "^1.0.0",
+    "@rxap/node-utilities": "^1.0.1-dev.0",
     "nx": "^16.3.0"
   },
   "dependencies": {
     "tslib": "2.5.3"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/node-utilities",
+        "version": "1.0.1-dev.0"
+      }
+    ]
   }
 }
