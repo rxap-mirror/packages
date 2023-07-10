@@ -72,7 +72,16 @@ function getPackageListFromSourceFiles(project: Project): string[] {
       regexOrString.test(packageName)));
 }
 
-const TESTING_FILE_EXTENSIONS = [ '.spec.ts', '.e2e-spec.ts', '.stories.ts', 'test-setup.ts', '.cy.ts' ];
+const TESTING_FILE_EXTENSIONS = [
+  'cypress.config.ts',
+  '.spec.ts',
+  '.e2e-spec.ts',
+  '.stories.ts',
+  'test-setup.ts',
+  '.cy.ts',
+];
+
+const TESTING_FOLDERS = [ 'cypress', '.storybook' ];
 
 const PACKAGE_REMOVE_BLACK_LIST = [ 'tslib' ];
 const PACKAGE_ADD_BLACK_LIST = [
@@ -233,6 +242,7 @@ function fixPeerDependenciesWithTsMorphProject(
     project,
     (fileName, path) => !path.includes('node_modules') &&
       fileName.endsWith('.ts') &&
+      !TESTING_FOLDERS.map(folder => join(projectRoot, folder)).some(folder => path.includes(folder)) &&
       !TESTING_FILE_EXTENSIONS.some(ext => fileName.endsWith(ext)),
   );
 
@@ -315,6 +325,7 @@ function fixDevDependenciesWithTsMorphProject(
     project,
     (fileName, path) => !path.includes('node_modules') &&
       fileName.endsWith('.ts') &&
+      !TESTING_FOLDERS.map(folder => join(projectRoot, folder)).some(folder => path.includes(folder)) &&
       TESTING_FILE_EXTENSIONS.some(ext => fileName.endsWith(ext)),
   );
 
