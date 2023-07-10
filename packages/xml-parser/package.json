@@ -15,10 +15,6 @@
     "@types/xmldom": "^0.1.31"
   },
   "description": "A utility packages to convert xml files into class instances.",
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=xml-parser",
-    "preversion": "yarn run --top-level nx run xml-parser:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../dist/packages/xml-parser"

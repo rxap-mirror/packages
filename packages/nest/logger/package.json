@@ -8,10 +8,6 @@
   "peerDependencies": {
     "@nestjs/common": "^9.1.1"
   },
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=nest-logger",
-    "preversion": "yarn run --top-level nx run nest-logger:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/nest/logger"

@@ -12,10 +12,6 @@
     "@nestjs/microservices": "^9.2.1",
     "@rxap/nest-utilities": "^1.0.0"
   },
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=nest-server",
-    "preversion": "yarn run --top-level nx run nest-server:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/nest/server"

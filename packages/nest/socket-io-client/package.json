@@ -12,10 +12,6 @@
     "@nestjs/microservices": "^9.2.1",
     "rxjs": "^7.8.0"
   },
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=nest-socket-io-client",
-    "preversion": "yarn run --top-level nx run nest-socket-io-client:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/nest/socket-io-client"

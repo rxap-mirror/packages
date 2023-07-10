@@ -5,10 +5,6 @@
   "dependencies": {
     "tslib": "2.5.3"
   },
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=validator",
-    "preversion": "yarn run --top-level nx run validator:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../dist/packages/validator"

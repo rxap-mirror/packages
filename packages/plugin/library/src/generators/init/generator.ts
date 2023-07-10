@@ -82,11 +82,17 @@ function updateProjectPackageJson(
 ) {
   const packageJson: ProjectPackageJson = readJson(tree, join(project.root, 'package.json'));
   packageJson.scripts ??= {};
-  packageJson.scripts.version
-    = `yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=${ projectName }`;
-  packageJson.scripts.preversion = `yarn run --top-level nx run ${ projectName }:fix-dependencies`;
   if (packageJson.scripts.prepublishOnly) {
     delete packageJson.scripts.prepublishOnly;
+  }
+  if (packageJson.scripts.preversion) {
+    delete packageJson.scripts.preversion;
+  }
+  if (packageJson.scripts.version) {
+    delete packageJson.scripts.version;
+  }
+  if (Object.keys(packageJson.scripts).length === 0) {
+    delete packageJson.scripts;
   }
   packageJson.publishConfig ??= {};
   packageJson.publishConfig.access = 'public';

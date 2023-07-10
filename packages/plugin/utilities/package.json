@@ -2,10 +2,6 @@
   "name": "@rxap/plugin-utilities",
   "version": "1.0.0",
   "type": "commonjs",
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=plugin-utilities",
-    "preversion": "yarn run --top-level nx run plugin-utilities:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/plugin/utilities"

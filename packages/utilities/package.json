@@ -6,10 +6,6 @@
     "tslib": "2.5.3"
   },
   "description": "A collection of utility functions, types and interfaces.",
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=utilities",
-    "preversion": "yarn run --top-level nx run utilities:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../dist/packages/utilities"

@@ -14,10 +14,6 @@
     "tslib": "2.5.3"
   },
   "description": "A collection of utility angular directives used in RxAP.",
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-directives",
-    "preversion": "yarn run --top-level nx run angular-directives:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/angular/directives"

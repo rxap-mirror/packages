@@ -12,10 +12,6 @@
     "tslib": "2.5.3"
   },
   "description": "Provides the Definition concept for RxAP.",
-  "scripts": {
-    "version": "yarn run --top-level nx run-many --targets=update-dependencies,update-package-group --projects=angular-definition",
-    "preversion": "yarn run --top-level nx run angular-definition:fix-dependencies"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/angular/definition"
