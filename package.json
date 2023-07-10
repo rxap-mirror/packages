@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "husky install",
     "preversion": "nx run-many --target build,test,lint",
-    "prepublishOnly": "nx run-many --target scss-bundle,build --configuration production"
+    "prepublishOnly": "nx run-many --target build --configuration production"
   },
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
