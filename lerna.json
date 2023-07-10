@@ -5,16 +5,22 @@
   "npmClient": "yarn",
   "command": {
     "version": {
-      "message": "chore(release): publish",
+      "message": "chore(release): version",
       "conventionalCommits": true,
       "allowBranch": [
         "development",
         "latest",
-        "next"
+        "next",
+        "+(1|2|3|4|5|6|7|8|9|0).x.x",
+        "+(1|2|3|4|5|6|7|8|9|0).+(1|2|3|4|5|6|7|8|9|0).x",
+        "+(1|2|3|4|5|6|7|8|9|0).x.x-dev",
+        "+(1|2|3|4|5|6|7|8|9|0).+(1|2|3|4|5|6|7|8|9|0).x-dev"
       ],
       "ignoreChanges": [
         "**/*.md",
         "**/*.spec.ts",
+        "**/*.stories.ts",
+        "**/*.cy.ts",
         "**/*.js",
         "**/*.json",
         "**/*.yaml"
