@@ -55,17 +55,6 @@ function setGeneralTargetDefaults(nxJson: NxJsonConfiguration) {
                                     projects: 'self',
                                   });
   }
-  if (!nxJson.targetDefaults['build'].dependsOn
-                                     .find(dependsOn => typeof dependsOn ===
-                                       'object' &&
-                                       dependsOn.target ===
-                                       'scss-bundle')) {
-    nxJson.targetDefaults['build'].dependsOn
-                                  .push({
-                                    target: 'scss-bundle',
-                                    projects: 'self',
-                                  });
-  }
   // endregion
 
   // region readme
@@ -165,20 +154,33 @@ function updateProjectNgPackageConfiguration(tree: Tree, project: ProjectConfigu
     'README.md', 'CHANGELOG.md',
   ];
 
+  const assetThemes = {
+    input: '.',
+    glob: '**/*.theme.scss',
+    output: '.',
+  };
+  const assetIndex = {
+    input: '.',
+    glob: '_index.scss',
+    output: '.',
+  };
+
   if (hasIndexScss(tree, project)) {
-    const assetThemes = {
-      input: '.',
-      glob: '**/*.theme.scss',
-      output: '.',
-    };
-    const assetIndex = {
-      input: '.',
-      glob: '_index.scss',
-      output: '.',
-    };
     for (const asset of [ assetThemes, assetIndex ]) {
       if (!ngPackageJson.assets.some(a => typeof a === 'object' && a.input === asset.input && a.glob === asset.glob)) {
         ngPackageJson.assets.push(asset);
+      }
+    }
+  } else {
+    for (const asset of [ assetThemes, assetIndex ]) {
+      const index = ngPackageJson.assets.findIndex(a => typeof a ===
+        'object' &&
+        a.input ===
+        asset.input &&
+        a.glob ===
+        asset.glob);
+      if (index !== -1) {
+        ngPackageJson.assets.splice(index, 1);
       }
     }
   }
