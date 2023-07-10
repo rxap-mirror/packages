@@ -40,10 +40,6 @@
           "projects": "self"
         },
         {
-          "target": "scss-bundle",
-          "projects": "self"
-        },
-        {
           "target": "index-export",
           "projects": "self"
         }
