@@ -162,6 +162,10 @@ function loadProjectToPackageMapping(tree: Tree, projectGraph: ProjectGraph) {
   const projectNames = Object.keys(projectGraph.nodes);
   for (const projectName of projectNames) {
     const project = projectGraph.nodes[projectName];
+    if (project.type !== 'lib') {
+      console.log(`Skip project ${ projectName }. Not a library`);
+      continue;
+    }
     const projectRoot = project.data.root;
     const packageJSON = JSON.parse(tree.read(`${ projectRoot }/package.json`)!.toString('utf-8'));
     PACKAGE_NAME_TO_PROJECT_NAME_CACHE[packageJSON.name] = projectName;
@@ -255,7 +259,7 @@ function fixPeerDependenciesWithTsMorphProject(
   for (const packageName of packageList) {
     if (hasProjectWithPackageName(packageName)) {
       if (!dependencies[packageName]) {
-        peerDependencies[packageName] = '*';
+        peerDependencies[packageName] = peerDependencies[packageName] ?? '*';
       }
     } else {
       if (!dependencies[packageName]) {
