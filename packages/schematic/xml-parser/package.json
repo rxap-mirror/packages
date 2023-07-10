@@ -1,12 +1,12 @@
 {
   "name": "@rxap/schematics-xml-parser",
-  "version": "16.0.0-dev.4",
+  "version": "16.0.0-dev.5",
   "type": "commonjs",
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
     "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.3",
-    "@rxap/schematics-utilities": "^16.0.0-dev.3",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.4",
+    "@rxap/schematics-utilities": "^16.0.0-dev.4",
     "@rxap/xml-parser": "^16.0.0-dev.3",
     "ts-morph": "^18.0.0"
   },
@@ -39,11 +39,11 @@
     "packageGroup": [
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/xml-parser",

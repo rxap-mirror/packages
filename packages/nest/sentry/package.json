@@ -1,13 +1,13 @@
 {
   "name": "@rxap/nest-sentry",
-  "version": "9.1.0-dev.1",
+  "version": "9.1.0-dev.2",
   "type": "commonjs",
   "dependencies": {
     "tslib": "2.5.3"
   },
   "peerDependencies": {
     "@nestjs/common": "^10.0.5",
-    "@rxap/nest-logger": "^1.0.1-dev.0",
+    "@rxap/nest-logger": "^1.0.1-dev.1",
     "@sentry/core": "^7.28.1",
     "@sentry/node": "^7.28.1",
     "@sentry/types": "^7.28.1",
@@ -40,7 +40,7 @@
     "packageGroup": [
       {
         "package": "@rxap/nest-logger",
-        "version": "1.0.1-dev.0"
+        "version": "1.0.1-dev.1"
       }
     ]
   }

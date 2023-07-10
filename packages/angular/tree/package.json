@@ -1,16 +1,16 @@
 {
   "name": "@rxap/tree",
-  "version": "16.0.0-dev.3",
+  "version": "16.0.0-dev.4",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/material": "^16.1.4",
-    "@rxap/contenteditable": "^16.0.0-dev.3",
-    "@rxap/data-source": "^16.0.0-dev.4",
+    "@rxap/contenteditable": "^16.0.0-dev.4",
+    "@rxap/data-source": "^16.0.0-dev.5",
     "@rxap/data-structure-tree": "^1.0.1-dev.0",
-    "@rxap/material-directives": "^16.0.0-dev.3",
+    "@rxap/material-directives": "^16.0.0-dev.4",
     "@rxap/pattern": "^1.0.1-dev.0",
     "@rxap/rxjs": "^1.0.1-dev.0",
     "@rxap/utilities": "^16.0.0-dev.2",
@@ -49,11 +49,11 @@
     "packageGroup": [
       {
         "package": "@rxap/contenteditable",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.4"
+        "version": "16.0.0-dev.5"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -61,7 +61,7 @@
       },
       {
         "package": "@rxap/material-directives",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/pattern",
@@ -77,7 +77,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       }
     ]
   }

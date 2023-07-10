@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-table-system",
-  "version": "16.0.0-dev.3",
+  "version": "16.0.0-dev.4",
   "peerDependencies": {
     "@angular/animations": "^16.1.4",
     "@angular/cdk": "^16.1.4",
@@ -10,18 +10,18 @@
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/components": "^16.0.0-dev.3",
-    "@rxap/data-source": "^16.0.0-dev.4",
-    "@rxap/directives": "^16.0.0-dev.3",
-    "@rxap/forms": "^16.0.0-dev.3",
-    "@rxap/material-directives": "^16.0.0-dev.3",
-    "@rxap/open-api": "^16.0.0-dev.4",
+    "@rxap/components": "^16.0.0-dev.4",
+    "@rxap/data-source": "^16.0.0-dev.5",
+    "@rxap/directives": "^16.0.0-dev.4",
+    "@rxap/forms": "^16.0.0-dev.4",
+    "@rxap/material-directives": "^16.0.0-dev.4",
+    "@rxap/open-api": "^16.0.0-dev.5",
     "@rxap/pattern": "^1.0.1-dev.0",
     "@rxap/reflect-metadata": "^1.0.1-dev.0",
-    "@rxap/remote-method": "^16.0.0-dev.3",
+    "@rxap/remote-method": "^16.0.0-dev.4",
     "@rxap/rxjs": "^1.0.1-dev.0",
     "@rxap/utilities": "^16.0.0-dev.2",
-    "@rxap/window-system": "^16.0.0-dev.3",
+    "@rxap/window-system": "^16.0.0-dev.4",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -56,27 +56,27 @@
     "packageGroup": [
       {
         "package": "@rxap/components",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.4"
+        "version": "16.0.0-dev.5"
       },
       {
         "package": "@rxap/directives",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/open-api",
-        "version": "16.0.0-dev.4"
+        "version": "16.0.0-dev.5"
       },
       {
         "package": "@rxap/pattern",
@@ -88,7 +88,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/rxjs",
@@ -100,7 +100,7 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       }
     ]
   }

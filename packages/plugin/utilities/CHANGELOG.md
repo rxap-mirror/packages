@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@1.0.1-dev.0...@rxap/plugin-utilities@1.0.1-dev.1) (2023-07-10)
+
+### Bug Fixes
+
+- update package dependency versions ([8479f5c](https://gitlab.com/rxap/packages/commit/8479f5c405a885cc0f300cec6156584e4c65d59c))
+
 ## 1.0.1-dev.0 (2023-07-10)
 
 ### Bug Fixes

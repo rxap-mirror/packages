@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/mixin@16.0.0-dev.3...@rxap/mixin@16.0.0-dev.4) (2023-07-10)
+
+### Bug Fixes
+
+- update to nx 16.5.0 ([73f7575](https://gitlab.com/rxap/packages/commit/73f7575ba378b8b03d2a2646f1761c01b16a6e09))
+
 # [16.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/mixin@16.0.0-dev.2...@rxap/mixin@16.0.0-dev.3) (2023-07-10)
 
 ### Bug Fixes

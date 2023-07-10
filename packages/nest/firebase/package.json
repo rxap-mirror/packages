@@ -1,6 +1,6 @@
 {
   "name": "@rxap/nest-firebase",
-  "version": "9.0.2-dev.0",
+  "version": "9.0.2-dev.1",
   "type": "commonjs",
   "dependencies": {
     "firebase-admin": "10.3.0",

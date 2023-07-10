@@ -1,6 +1,6 @@
 {
   "name": "@rxap/authorization",
-  "version": "16.0.0-dev.3",
+  "version": "16.0.0-dev.4",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
@@ -8,7 +8,7 @@
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@rxap/pattern": "^1.0.1-dev.0",
-    "@rxap/remote-method": "^16.0.0-dev.3",
+    "@rxap/remote-method": "^16.0.0-dev.4",
     "@rxap/utilities": "^16.0.0-dev.2",
     "ng-mocks": "^14.11.0",
     "rxjs": "^7.8.0"
@@ -49,7 +49,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       },
       {
         "package": "@rxap/utilities",
