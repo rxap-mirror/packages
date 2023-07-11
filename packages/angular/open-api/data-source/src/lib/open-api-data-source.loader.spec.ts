@@ -39,7 +39,7 @@ describe('Data Source', () => {
             get: { operationId: 'getUserCarById' },
           },
         },
-      };
+      } as any;
     });
 
     afterAll(() => {
