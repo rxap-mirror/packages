@@ -31,6 +31,9 @@ import {
 } from '@angular/common';
 import { FlexModule } from '@angular/flex-layout/flex';
 
+/**
+ * @deprecated removed
+ */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'th[rxap-row-controls-header-cell]',
