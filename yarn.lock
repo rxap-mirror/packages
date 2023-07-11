@@ -7812,10 +7812,10 @@ __metadata:
   peerDependencies:
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
-    "@rxap/data-source": "*"
+    "@rxap/data-source": ^16.0.0-dev.5
     "@rxap/mixin": ^16.0.0-dev.4
     "@rxap/remote-method": ^16.0.0-dev.4
-    "@rxap/rxjs": "*"
+    "@rxap/rxjs": ^1.0.1-dev.0
     "@rxap/utilities": ^16.0.0-dev.2
     rxjs: ^7.8.0
   languageName: unknown
