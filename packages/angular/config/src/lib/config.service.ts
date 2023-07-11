@@ -4,6 +4,7 @@ import {
   Optional,
 } from '@angular/core';
 import {
+  coerceArray,
   deepMerge,
   SetObjectValue,
 } from '@rxap/utilities';
@@ -15,6 +16,7 @@ export interface ConfigLoadOptions {
   fromUrlParam?: string | boolean;
   fromLocalStorage?: boolean;
   schema?: AnySchema;
+  url?: string | string[];
 }
 
 @Injectable({
@@ -39,6 +41,9 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   public static LocalStorageKey = 'rxap/config/local-config';
 
+  /**
+   * @deprecated instead use the url property of the ConfigLoadOptions
+   */
   public static Urls = [ 'config.json' ];
   public readonly config!: Config;
 
@@ -52,25 +57,6 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     }
   }
 
-  public static async SideLoad(
-    url: string,
-    propertyPath: string,
-    required?: boolean,
-    schema?: AnySchema,
-  ): Promise<void> {
-
-    if (!this.Config) {
-      throw new Error('Config side load is only possible after the initial config load.');
-    }
-
-    const config = await this.loadConfig(url, required, schema);
-
-    SetObjectValue(this.Config, propertyPath, config);
-
-    console.debug(`Side loaded config for '${ propertyPath }' successful`, this.Config);
-
-  }
-
   /**
    * Used to load the app config from a remote resource.
    *
@@ -81,7 +67,8 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
    */
   public static async Load(options?: ConfigLoadOptions): Promise<void> {
     let config = this.Defaults;
-    for (const url of ConfigService.Urls) {
+    const urls = options?.url ? coerceArray(options.url) : ConfigService.Urls;
+    for (const url of urls) {
       config = await this.loadConfig(url, true, options?.schema);
     }
 
@@ -109,38 +96,6 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     console.debug('app config', config);
 
     this.Config = config;
-  }
-
-  public static Get<T = any, K extends Record<string, any> = Record<string, any>>(
-    path: string,
-    defaultValue: T | undefined,
-    config: Record<string, any>,
-  ): T
-
-  public static Get<T = any, K extends Record<string, any> = Record<string, any>>(
-    path: string,
-    defaultValue: NoInferType<T>,
-    config: Record<string, any> = this.Config,
-  ): T {
-    if (!config) {
-      throw new Error('config not loaded');
-    }
-    let configValue: any = config;
-    if (typeof path !== 'string') {
-      throw new Error('The config property path is not a string');
-    }
-    for (const fragment of (path as any).split('.')) {
-      if (configValue && configValue[fragment]) {
-        configValue = configValue[fragment];
-      } else {
-        if (defaultValue !== undefined) {
-          return defaultValue;
-        }
-        console.warn(`Config with path '${ path }' not found`);
-        return undefined as any;
-      }
-    }
-    return configValue;
   }
 
   private static async loadConfig<T = any>(url: string, required?: boolean, schema?: AnySchema): Promise<T | null> {
@@ -193,25 +148,6 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
   }
 
-  private static showError(message: string) {
-    const hasUl = document.getElementById('rxap-config-error') !== null;
-    const ul = document.getElementById('rxap-config-error') ?? document.createElement('ul');
-    ul.id = 'rxap-config-error';
-    ul.style.position = 'fixed';
-    ul.style.bottom = '16px';
-    ul.style.right = '16px';
-    ul.style.backgroundColor = 'white';
-    ul.style.padding = '32px';
-    ul.style.zIndex = '99999999';
-    ul.style.color = 'black';
-    const li = document.createElement('li');
-    li.innerText = message;
-    ul.appendChild(li);
-    if (!hasUl) {
-      document.body.appendChild(ul);
-    }
-  }
-
   private static LoadConfigDefaultFromUrlParam(param = 'config') {
 
     const queryString = window.location.search;
@@ -236,6 +172,77 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
     return configFromParams;
 
+  }
+
+  public static async SideLoad(
+    url: string,
+    propertyPath: string,
+    required?: boolean,
+    schema?: AnySchema,
+  ): Promise<void> {
+
+    if (!this.Config) {
+      throw new Error('Config side load is only possible after the initial config load.');
+    }
+
+    const config = await this.loadConfig(url, required, schema);
+
+    SetObjectValue(this.Config, propertyPath, config);
+
+    console.debug(`Side loaded config for '${ propertyPath }' successful`, this.Config);
+
+  }
+
+  public static Get<T = any, K extends Record<string, any> = Record<string, any>>(
+    path: string,
+    defaultValue: T | undefined,
+    config: Record<string, any>,
+  ): T
+
+  public static Get<T = any, K extends Record<string, any> = Record<string, any>>(
+    path: string,
+    defaultValue: NoInferType<T>,
+    config: Record<string, any> = this.Config,
+  ): T {
+    if (!config) {
+      throw new Error('config not loaded');
+    }
+    let configValue: any = config;
+    if (typeof path !== 'string') {
+      throw new Error('The config property path is not a string');
+    }
+    for (const fragment of (path as any).split('.')) {
+      // eslint-disable-next-line no-prototype-builtins
+      if (configValue.hasOwnProperty(fragment)) {
+        configValue = configValue[fragment];
+      } else {
+        if (defaultValue !== undefined) {
+          return defaultValue;
+        }
+        console.warn(`Config with path '${ path }' not found`);
+        return undefined as any;
+      }
+    }
+    return configValue;
+  }
+
+  private static showError(message: string) {
+    const hasUl = document.getElementById('rxap-config-error') !== null;
+    const ul = document.getElementById('rxap-config-error') ?? document.createElement('ul');
+    ul.id = 'rxap-config-error';
+    ul.style.position = 'fixed';
+    ul.style.bottom = '16px';
+    ul.style.right = '16px';
+    ul.style.backgroundColor = 'white';
+    ul.style.padding = '32px';
+    ul.style.zIndex = '99999999';
+    ul.style.color = 'black';
+    const li = document.createElement('li');
+    li.innerText = message;
+    ul.appendChild(li);
+    if (!hasUl) {
+      document.body.appendChild(ul);
+    }
   }
 
   public setLocalConfig(config: Config): void {
