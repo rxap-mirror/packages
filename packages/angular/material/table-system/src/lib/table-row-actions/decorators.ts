@@ -12,7 +12,7 @@ export const RXAP_TABLE_ACTION_METHOD_METADATA = 'rxap-table-action-method-metad
  */
 export const RXAP_TABLE_ACTION_METHOD_CHECK_FUNCTION_METADATA = 'rxap-table-action-method-check-function-metadata';
 
-export interface TableActionMethodOptions<Data extends Record<string, unknown> = Record<string, unknown>> {
+export interface TableActionMethodOptions<Data = any> {
   type?: string;
   checkFunction?: RowActionCheckFunction<Data>;
   /**
@@ -46,12 +46,12 @@ export interface TableActionMethodOptions<Data extends Record<string, unknown> =
   priority?: number;
 }
 
-export function TableActionMethod<Data extends Record<string, unknown> = Record<string, unknown>>(options: TableActionMethodOptions): ClassDecorator;
-export function TableActionMethod<Data extends Record<string, unknown> = Record<string, unknown>>(
+export function TableActionMethod<Data = any>(options: TableActionMethodOptions): ClassDecorator;
+export function TableActionMethod<Data = any>(
   type: string,
   checkFunction?: RowActionCheckFunction<Data>,
 ): ClassDecorator;
-export function TableActionMethod<Data extends Record<string, unknown> = Record<string, unknown>>(
+export function TableActionMethod<Data = any>(
   typeOrOptions: string | TableActionMethodOptions,
   checkFunction?: RowActionCheckFunction<Data>,
 ): ClassDecorator {
