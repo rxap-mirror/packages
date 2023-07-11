@@ -7641,7 +7641,7 @@ __metadata:
     "@rxap/directives": ^16.0.0-dev.4
     "@rxap/forms": ^16.0.0-dev.4
     "@rxap/material-directives": ^16.0.0-dev.5
-    "@rxap/open-api": ^16.0.0-dev.5
+    "@rxap/open-api": ^16.0.0-dev.6
     "@rxap/pattern": ^1.0.1-dev.0
     "@rxap/reflect-metadata": ^1.0.1-dev.0
     "@rxap/remote-method": ^16.0.0-dev.4
