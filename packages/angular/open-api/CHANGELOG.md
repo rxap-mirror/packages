@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.5...@rxap/open-api@16.0.0-dev.6) (2023-07-11)
+
+### Bug Fixes
+
+- restore OpenApiDataSource classes ([cbd86a2](https://gitlab.com/rxap/packages/commit/cbd86a2631b7ac837cb62e898b97d2cb0d2b5738))
+
 # [16.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.4...@rxap/open-api@16.0.0-dev.5) (2023-07-10)
 
 ### Bug Fixes
