@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/config@16.0.0-dev.4...@rxap/config@16.0.0-dev.5) (2023-07-11)
+
+### Bug Fixes
+
+- support url option for config loading method ([c651346](https://gitlab.com/rxap/packages/commit/c651346853911bd63a011d352978d725aa149a66))
+
 # [16.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/config@16.0.0-dev.3...@rxap/config@16.0.0-dev.4) (2023-07-10)
 
 ### Bug Fixes
