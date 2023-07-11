@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.6...@rxap/material-table-system@16.0.0-dev.7) (2023-07-11)
+
+### Bug Fixes
+
+- simplify types ([f87edee](https://gitlab.com/rxap/packages/commit/f87edee170bdc1ee2017bb15ac2816b70acee759))
+
 # [16.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.5...@rxap/material-table-system@16.0.0-dev.6) (2023-07-11)
 
 ### Bug Fixes

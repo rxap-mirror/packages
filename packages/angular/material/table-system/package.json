@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-table-system",
-  "version": "16.0.0-dev.6",
+  "version": "16.0.0-dev.7",
   "peerDependencies": {
     "@angular/animations": "^16.1.4",
     "@angular/cdk": "^16.1.4",
@@ -20,7 +20,7 @@
     "@rxap/reflect-metadata": "^1.0.1-dev.0",
     "@rxap/remote-method": "^16.0.0-dev.4",
     "@rxap/rxjs": "^1.0.1-dev.0",
-    "@rxap/utilities": "^16.0.0-dev.2",
+    "@rxap/utilities": "^16.0.0-dev.3",
     "@rxap/window-system": "^16.0.0-dev.5",
     "rxjs": "^7.8.0"
   },
@@ -96,7 +96,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.2"
+        "version": "16.0.0-dev.3"
       },
       {
         "package": "@rxap/window-system",
