@@ -15,6 +15,7 @@ export * from './lib/select-row/checkbox-header-cell/checkbox-header-cell.compon
 export * from './lib/select-row/select-row.service';
 export * from './lib/select-row/selected-rows.directive';
 export * from './lib/select-row/tokens';
+export * from './lib/select-row/select-row.module';
 export * from './lib/row-animation';
 export * from './lib/table-data-source.directive';
 export * from './lib/table-row-metadata';
@@ -24,7 +25,7 @@ export * from './lib/persistent-paginator.directive';
 // region table filter
 
 export * from './lib/table-filter/filter-header-row.directive';
-
+export * from './lib/table-filter/table-filter.module';
 export * from './lib/table-filter/table-filter.service';
 export * from './lib/table-filter/to-filter-column-names.pipe';
 export * from './lib/table-filter/tokens';
@@ -56,6 +57,7 @@ export * from './lib/table-row-controls/row-controls-cell/row-controls-cell.comp
 export * from './lib/table-row-controls/row-controls-header-cell/row-controls-header-cell.component';
 
 export * from './lib/table-row-controls/tokens';
+export * from './lib/table-row-controls/table-row-controls.module';
 
 // endregion
 
@@ -124,7 +126,7 @@ export * from './lib/table-row-actions/table-row-action.directive';
 export * from './lib/table-row-actions/table-row-action.method';
 export * from './lib/table-row-actions/table-row-action-executing.directive';
 export * from './lib/table-row-actions/table-row-action-status';
-
+export * from './lib/table-row-actions/table-row-actions.module';
 export * from './lib/table-row-actions/table-row-header-action.directive';
 export * from './lib/table-row-actions/tokens';
 export * from './lib/table-row-actions/types';
