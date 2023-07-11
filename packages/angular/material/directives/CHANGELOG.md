@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@16.0.0-dev.4...@rxap/material-directives@16.0.0-dev.5) (2023-07-11)
+
+### Bug Fixes
+
+- add missing utility modules ([105b095](https://gitlab.com/rxap/packages/commit/105b0952f4d90f6d6263b6ed07411cfdd8e4764c))
+
 # [16.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@16.0.0-dev.3...@rxap/material-directives@16.0.0-dev.4) (2023-07-10)
 
 ### Bug Fixes
