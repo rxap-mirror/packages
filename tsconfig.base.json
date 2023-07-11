@@ -189,6 +189,12 @@
       "@rxap/open-api/remote-method": [
         "packages/angular/open-api/remote-method/src/index.ts"
       ],
+      "@rxap/open-api/data-source": [
+        "packages/angular/open-api/data-source/src/index.ts"
+      ],
+      "@rxap/open-api/data-source/table": [
+        "packages/angular/open-api/data-source/table/src/index.ts"
+      ],
       "@rxap/pattern": [
         "packages/pattern/src/index.ts"
       ],
