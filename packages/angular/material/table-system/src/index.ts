@@ -35,9 +35,8 @@ export * from './lib/table-filter/tokens';
 // region table column menu
 
 export * from './lib/table-column-menu/table-column-menu.component';
-
+export * from './lib/table-column-menu/table-column-menu.module';
 export * from './lib/table-column-menu/table-show-archived-slide/table-show-archived-slide.component';
-
 export * from './lib/table-column-menu/table-column-option/table-column-option.component';
 
 // endregion
