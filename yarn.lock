@@ -7646,7 +7646,7 @@ __metadata:
     "@rxap/reflect-metadata": ^1.0.1-dev.0
     "@rxap/remote-method": ^16.0.0-dev.4
     "@rxap/rxjs": ^1.0.1-dev.0
-    "@rxap/utilities": ^16.0.0-dev.2
+    "@rxap/utilities": ^16.0.0-dev.3
     "@rxap/window-system": ^16.0.0-dev.5
     rxjs: ^7.8.0
   languageName: unknown
