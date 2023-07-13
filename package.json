@@ -5,9 +5,9 @@
   "packageManager": "yarn@3.6.0",
   "scripts": {
     "prepare": "husky install",
-    "version": "nx affected --base=\"$(git branch --show-current)~$(git rev-list $(git describe --tags --abbrev=0)..HEAD --count)\" --head=$(git branch --show-current) --target update-dependencies,update-package-group && nx run packages:readme",
-    "preversion": "nx affected --base=\"$(git branch --show-current)~$(git rev-list $(git describe --tags --abbrev=0)..HEAD --count)\" --head=$(git branch --show-current) --target fix-dependencies && nx affected --base=\"$(git branch --show-current)~$(git rev-list $(git describe --tags --abbrev=0)..HEAD --count)\" --head=$(git branch --show-current) --target build,test,lint",
-    "prepublishOnly": "nx affected --base=\"$(git branch --show-current)~$(git rev-list $(git describe --tags --abbrev=0)..HEAD --count)\" --head=$(git branch --show-current) --target build --configuration production",
+    "version": "env-cmd bash tools/scripts/lerna/hooks/version.sh",
+    "preversion": "env-cmd bash tools/scripts/lerna/hooks/preversion.sh",
+    "prepublishOnly": "env-cmd bash tools/scripts/lerna/hooks/prepublishOnly.sh",
     "lerna:publish": "env-cmd bash tools/scripts/lerna/publish.sh",
     "lerna:version": "env-cmd bash tools/scripts/lerna/version.sh"
   },

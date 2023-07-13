@@ -9,10 +9,10 @@ import {
   UpdateJsonFile,
   UpdateJsonFileOptions,
 } from './json-file';
-import { exec } from 'child_process';
 import gt from 'semver/functions/gt';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { CoerceProperty } from './object/coerce-property';
+import { GetLatestPackageVersion } from '@rxap/node-utilities';
 
 export function GetPackageJson(host: Tree, basePath = ''): PackageJson {
   return GetJsonFile(host, join(basePath, 'package.json'));
@@ -42,18 +42,6 @@ export function AddPackageJsonScript(
     },
     options,
   );
-}
-
-export function GetLatestPackageVersion(packageName: string): Promise<string> {
-  return new Promise<string>((resolve, reject) => {
-    exec(`npm view ${ packageName } version`, (err, stdout, stderr) => {
-      if (err) {
-        reject(stderr);
-      } else {
-        resolve(stdout.trim());
-      }
-    });
-  });
 }
 
 export interface AddPackageJsonDependencyOptions extends UpdatePackageJsonOptions {
