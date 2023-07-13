@@ -7,7 +7,8 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
-changed_projects=$(bash tools/scripts/lerna/get-changed-nx-projects.sh)
+source "${BASE_DIR}/tools/scripts/lerna/get-changed-nx-projects.sh"
+changed_projects=$(getChangedNxProjects)
 
 # Convert commas to space
 project_list=${changed_projects//,/ }

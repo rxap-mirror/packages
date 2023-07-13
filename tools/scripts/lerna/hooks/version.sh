@@ -7,7 +7,8 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
-changed_projects=$(bash tools/scripts/lerna/get-changed-nx-projects.sh)
+source "${BASE_DIR}/tools/scripts/lerna/get-changed-nx-projects.sh"
+changed_projects=$(getChangedNxProjects)
 
 if [[ ! -f "${BASE_DIR}/dist/changed-projects.txt" ]]; then
   echo "The list of changed projects has not been cached. Ensure the perversion hook has been run."
