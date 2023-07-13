@@ -13,7 +13,7 @@ import { AddDir } from '@rxap/generator-ts-morph';
 import { join } from 'path';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import { ProjectGraph } from 'nx/src/config/project-graph';
-import { GetLatestPackageVersion } from '@rxap/schematics-utilities';
+import { GetLatestPackageVersion } from '@rxap/node-utilities';
 import { GetProjectRoot } from '@rxap/generator-utilities';
 
 function resolveProjectDependencies(
