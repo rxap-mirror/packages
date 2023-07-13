@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.7...@rxap/material-table-system@16.0.0-dev.8) (2023-07-13)
+
+### Bug Fixes
+
+- **table-column-manu:** add missing utility module ([8ae7add](https://gitlab.com/rxap/packages/commit/8ae7add36eaf8261b867ebb65aab44384f08a9e2))
+
 # [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.6...@rxap/material-table-system@16.0.0-dev.7) (2023-07-11)
 
 ### Bug Fixes
