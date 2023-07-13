@@ -7877,8 +7877,8 @@ __metadata:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-ts-morph": ^1.0.1-dev.1
     "@rxap/generator-utilities": ^1.0.1-dev.1
+    "@rxap/node-utilities": ^1.0.1-dev.1
     "@rxap/plugin-utilities": ^1.0.1-dev.1
-    "@rxap/schematics-utilities": ^16.0.0-dev.4
     nx: ^16.5.0
     ts-morph: ^18.0.0
   languageName: unknown
@@ -7984,6 +7984,7 @@ __metadata:
     tslib: 2.5.3
   peerDependencies:
     "@angular-devkit/schematics": ^16.1.4
+    "@rxap/node-utilities": ^1.0.1-dev.1
   languageName: unknown
   linkType: soft
 

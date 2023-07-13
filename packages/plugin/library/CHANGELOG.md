@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.5...@rxap/plugin-library@16.0.0-dev.6) (2023-07-13)
+
+### Bug Fixes
+
+- move GetLatestPackageVersion to @rxap/node-utilities ([56bc441](https://gitlab.com/rxap/packages/commit/56bc441d3af89c5c2a99cd3d300e2f4b55dbb624))
+
 # [16.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.4...@rxap/plugin-library@16.0.0-dev.5) (2023-07-10)
 
 ### Bug Fixes
