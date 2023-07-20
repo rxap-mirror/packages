@@ -162,6 +162,8 @@ const PACKAGE_ADD_BLACK_LIST = [
   'v8',
   'vm',
   'zlib',
+  'glob',
+  'fs-extra',
 ];
 
 const PACKAGE_NAME_TO_PROJECT_NAME_CACHE: Record<string, string> = {};
