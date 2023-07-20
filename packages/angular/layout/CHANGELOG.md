@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.4...@rxap/layout@16.0.0-dev.5) (2023-07-20)
+
+### Bug Fixes
+
+- resolve circular dependency between NavigationItemComponent and NavigationComponent ([3e97a5d](https://gitlab.com/rxap/packages/commit/3e97a5d18c34286198fedb9024d6e91fa1910da3))
+
 # [16.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.3...@rxap/layout@16.0.0-dev.4) (2023-07-10)
 
 ### Bug Fixes
