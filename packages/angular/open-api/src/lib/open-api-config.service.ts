@@ -22,7 +22,11 @@ export class OpenApiConfigService {
   private static _operations: OperationMap | null = null;
   public defaultServerIndex: number = OpenApiConfigService.DefaultServerIndex;
   private _operations: OperationMap | null = null;
-  private serverConfigMap = new Map<string | undefined, OpenAPIV3.ServerObject[]>();
+  private static serverConfigMap = new Map<string | undefined, OpenAPIV3.ServerObject[]>();
+
+  private get serverConfigMap(): Map<string | undefined, OpenAPIV3.ServerObject[]> {
+    return OpenApiConfigService.serverConfigMap;
+  }
 
   constructor(
     @Optional()
@@ -34,6 +38,7 @@ export class OpenApiConfigService {
       this._config = config;
       this._operations = OpenApiConfigService.LoadOperations(config);
     }
+    OpenApiConfigService.Config ??= config;
   }
 
   private _config: OpenAPIV3.Document | null = null;
@@ -209,16 +214,17 @@ export class OpenApiConfigService {
     return serverConfig.url;
   }
 
-  public insertServer(
+  public static InsertServer(
     serverConfig: OpenAPIV3.ServerObject,
-    index: number = this.defaultServerIndex,
+    index: number,
     serverId?: string,
+    config: OpenAPIV3.Document = this.Config!,
   ): void {
-    if (!serverId && this._config) {
-      if (!this.config.servers) {
-        this.config.servers = [];
+    if (!serverId && config) {
+      if (!config.servers) {
+        config.servers = [];
       }
-      this.config.servers.splice(index, 1, serverConfig);
+      config.servers.splice(index, 1, serverConfig);
     }
     if (!this.serverConfigMap.has(serverId)) {
       this.serverConfigMap.set(serverId, []);
@@ -227,4 +233,13 @@ export class OpenApiConfigService {
     list[index] = serverConfig;
     this.serverConfigMap.set(serverId, list);
   }
+
+  public insertServer(
+    serverConfig: OpenAPIV3.ServerObject,
+    index: number = this.defaultServerIndex,
+    serverId?: string,
+  ): void {
+    OpenApiConfigService.InsertServer(serverConfig, index, serverId, this.config);
+  }
+
 }
