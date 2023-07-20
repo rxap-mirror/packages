@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.6...@rxap/open-api@16.0.0-dev.7) (2023-07-20)
+
+### Features
+
+- add static InsertServer method ([a5b6b09](https://gitlab.com/rxap/packages/commit/a5b6b090bb39f3bc1bcf611d70ea7e2c7b86c3ca))
+
 # [16.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.5...@rxap/open-api@16.0.0-dev.6) (2023-07-11)
 
 ### Bug Fixes
