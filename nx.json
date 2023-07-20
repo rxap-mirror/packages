@@ -87,6 +87,7 @@
       ],
       "inputs": [
         "production",
+        "{projectRoot}/package.json",
         "^production"
       ]
     },
