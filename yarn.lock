@@ -7842,15 +7842,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/plugin-build-info@workspace:packages/plugin/build-info":
+"@rxap/plugin-application@workspace:packages/plugin/application":
   version: 0.0.0-use.local
-  resolution: "@rxap/plugin-build-info@workspace:packages/plugin/build-info"
-  dependencies:
-    tslib: 2.5.3
-  peerDependencies:
-    "@nx/devkit": ^16.5.0
-    "@rxap/plugin-utilities": ^1.0.1-dev.1
-    nx: ^16.5.0
+  resolution: "@rxap/plugin-application@workspace:packages/plugin/application"
   languageName: unknown
   linkType: soft
 
