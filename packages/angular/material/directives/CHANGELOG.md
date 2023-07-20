@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@16.0.0-dev.5...@rxap/material-directives@16.0.0-dev.6) (2023-07-20)
+
+### Bug Fixes
+
+- remove material legacy imports ([a6e871b](https://gitlab.com/rxap/packages/commit/a6e871bed7251aedeb51a557489c908ef343f023))
+
 # [16.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@16.0.0-dev.4...@rxap/material-directives@16.0.0-dev.5) (2023-07-11)
 
 ### Bug Fixes
