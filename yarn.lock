@@ -7845,6 +7845,12 @@ __metadata:
 "@rxap/plugin-application@workspace:packages/plugin/application":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-application@workspace:packages/plugin/application"
+  dependencies:
+    tslib: 2.6.0
+  peerDependencies:
+    "@nx/devkit": ^16.5.0
+    "@rxap/plugin-utilities": "*"
+    handlebars: ^4.7.7
   languageName: unknown
   linkType: soft
 
@@ -7872,7 +7878,7 @@ __metadata:
     "@rxap/generator-ts-morph": ^1.0.1-dev.1
     "@rxap/generator-utilities": ^1.0.1-dev.1
     "@rxap/node-utilities": ^1.0.1-dev.1
-    "@rxap/plugin-utilities": ^1.0.1-dev.1
+    "@rxap/plugin-utilities": ^1.1.0-dev.0
     nx: ^16.5.0
     ts-morph: ^18.0.0
   languageName: unknown
@@ -7898,7 +7904,7 @@ __metadata:
     tslib: 2.5.3
   peerDependencies:
     "@nx/devkit": ^16.5.0
-    "@rxap/node-utilities": ^1.0.1-dev.0
+    "@rxap/node-utilities": ^1.0.1-dev.1
     nx: ^16.5.0
   languageName: unknown
   linkType: soft
