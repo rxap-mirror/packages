@@ -1,4 +1,4 @@
-export interface GenerateExecutorSchema {
+export interface BuildInfoExecutorSchema {
   builder?: string;
   tag?: string;
   release?: string;

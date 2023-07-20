@@ -1,0 +1,19 @@
+{
+  "executors": {
+    "build-info": {
+      "implementation": "./src/executors/build-info/executor",
+      "schema": "./src/executors/build-info/schema.json",
+      "description": "build-info executor"
+    },
+    "i18n": {
+      "implementation": "./src/executors/i18n/executor",
+      "schema": "./src/executors/i18n/schema.json",
+      "description": "i18n executor"
+    },
+    "config": {
+      "implementation": "./src/executors/config/executor",
+      "schema": "./src/executors/config/schema.json",
+      "description": "config executor"
+    }
+  }
+}

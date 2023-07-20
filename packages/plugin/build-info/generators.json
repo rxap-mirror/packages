@@ -1,9 +1,0 @@
-{
-  "generators": {
-    "config": {
-      "factory": "./src/generators/config/generator",
-      "schema": "./src/generators/config/schema.json",
-      "description": "Add the executor 'generate' to the selected project and add generic depend on rules to nx.json"
-    }
-  }
-}

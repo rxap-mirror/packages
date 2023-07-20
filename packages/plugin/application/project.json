@@ -1,7 +1,7 @@
 {
-  "name": "plugin-build-info",
+  "name": "plugin-application",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/plugin/build-info/src",
+  "sourceRoot": "packages/plugin/application/src",
   "projectType": "library",
   "targets": {
     "build": {
@@ -10,28 +10,28 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/packages/plugin/build-info",
-        "main": "packages/plugin/build-info/src/index.ts",
-        "tsConfig": "packages/plugin/build-info/tsconfig.lib.json",
+        "outputPath": "dist/packages/plugin/application",
+        "main": "packages/plugin/application/src/index.ts",
+        "tsConfig": "packages/plugin/application/tsconfig.lib.json",
         "assets": [
-          "packages/plugin/build-info/*.md",
+          "packages/plugin/application/*.md",
           {
-            "input": "./packages/plugin/build-info/src",
+            "input": "./packages/plugin/application/src",
             "glob": "**/!(*.ts)",
             "output": "./src"
           },
           {
-            "input": "./packages/plugin/build-info/src",
+            "input": "./packages/plugin/application/src",
             "glob": "**/*.d.ts",
             "output": "./src"
           },
           {
-            "input": "./packages/plugin/build-info",
+            "input": "./packages/plugin/application",
             "glob": "generators.json",
             "output": "."
           },
           {
-            "input": "./packages/plugin/build-info",
+            "input": "./packages/plugin/application",
             "glob": "executors.json",
             "output": "."
           }
@@ -39,7 +39,7 @@
       }
     },
     "publish": {
-      "command": "node tools/scripts/publish.mjs plugin-build-info {args.ver} {args.tag}",
+      "command": "node tools/scripts/publish.mjs plugin-application {args.ver} {args.tag}",
       "dependsOn": [
         "build"
       ]
@@ -51,10 +51,9 @@
       ],
       "options": {
         "lintFilePatterns": [
-          "packages/plugin/build-info/**/*.ts",
-          "packages/plugin/build-info/package.json",
-          "packages/plugin/build-info/executors.json",
-          "packages/plugin/build-info/generators.json"
+          "packages/plugin/application/**/*.ts",
+          "packages/plugin/application/package.json",
+          "packages/plugin/application/executors.json"
         ]
       }
     },
@@ -64,7 +63,7 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "packages/plugin/build-info/jest.config.ts",
+        "jestConfig": "packages/plugin/application/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {

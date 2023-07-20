@@ -1,4 +1,4 @@
-import { GenerateExecutorSchema } from './schema';
+import { BuildInfoExecutorSchema } from './schema';
 import { ExecutorContext } from '@nx/devkit';
 import { GuessOutputPath } from '@rxap/plugin-utilities';
 import { join } from 'path';
@@ -27,7 +27,7 @@ interface BuildInfo {
   };
 }
 
-function createBuildInfo(options: GenerateExecutorSchema) {
+function createBuildInfo(options: BuildInfoExecutorSchema) {
   const buildInfo: BuildInfo = options;
 
   if (!buildInfo.timestamp) {
@@ -94,7 +94,7 @@ function createBuildInfo(options: GenerateExecutorSchema) {
 }
 
 export default async function runExecutor(
-  options: GenerateExecutorSchema,
+  options: BuildInfoExecutorSchema,
   context: ExecutorContext,
 ) {
 
