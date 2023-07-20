@@ -13,9 +13,9 @@ import {
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import {
-  MatLegacyTabGroup as MatTabGroup,
-  MatLegacyTabsModule as MatTabsModule,
-} from '@angular/material/legacy-tabs';
+  MatTabGroup,
+  MatTabsModule,
+} from '@angular/material/tabs';
 import { PersistentTabGroupDirective } from './persistent-tab-group.directive';
 
 describe('@rxap/directives/material/expansion', () => {
@@ -157,7 +157,7 @@ describe('@rxap/directives/material/expansion', () => {
 
       it('should store expansion state to local storage', fakeAsync(() => {
 
-        const tabLabels = componentFixture.debugElement.query(By.css('.mat-tab-labels'));
+        const tabLabels = componentFixture.debugElement.query(By.css('.mat-mdc-tab-labels'));
 
         expect(tabLabels).not.toBeNull();
         expect(tabLabels.children.length).toEqual(3);
