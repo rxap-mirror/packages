@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.6...@rxap/plugin-library@16.0.0-dev.7) (2023-07-20)
+
+### Bug Fixes
+
+- add glob and fx-extra to package blacklist ([5f3a7d7](https://gitlab.com/rxap/packages/commit/5f3a7d7e0bcf4cc6ae2fee0210a458f59a103e36))
+
 # [16.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.5...@rxap/plugin-library@16.0.0-dev.6) (2023-07-13)
 
 ### Bug Fixes
