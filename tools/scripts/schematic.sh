@@ -81,6 +81,6 @@ dir=$(cat /tmp/dir.txt)
 if [ -z "$dir" ]; then
     echo "No output dir for package found with name $package"
     exit 1
-ff
+fi
 
 yarn nx g "./$dir:$schematic" "$@"
