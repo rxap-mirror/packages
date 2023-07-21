@@ -57,6 +57,8 @@ fi
 
 yarn nx run "$name:build"
 
+bash tools/scripts/dist-node-modules-linking.sh
+
 # Search for package.json files in the current directory and its subdirectories
 find dist/packages -name "package.json" -type f | while read -r file; do
     # Check if the name property equals to $package
@@ -79,6 +81,6 @@ dir=$(cat /tmp/dir.txt)
 if [ -z "$dir" ]; then
     echo "No output dir for package found with name $package"
     exit 1
-fi
+ff
 
 yarn nx g "./$dir:$schematic" "$@"
