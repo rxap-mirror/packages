@@ -9,13 +9,13 @@ import {
   SourceFile,
 } from 'ts-morph';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceClassConstructor } from '@rxap/schematics-ts-morph';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
-} from '../utilities';
+} from '../operation-id-utilities';
 
 export interface CoerceTableDataSourceOptions extends CoerceDataSourceClassOptions {
   /**

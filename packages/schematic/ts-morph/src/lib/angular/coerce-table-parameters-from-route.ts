@@ -3,7 +3,7 @@ import {
   TsMorphAngularProjectTransformOptions,
 } from '../ts-morph-transform';
 import { classify } from '@rxap/schematics-utilities';
-import { CoerceClassConstructor } from '@rxap/schematics-ts-morph';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
 import { Scope } from 'ts-morph';

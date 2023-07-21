@@ -13,12 +13,10 @@ import {
   TsMorphAngularProjectTransform,
   TsMorphAngularProjectTransformOptions,
 } from '../ts-morph-transform';
-import {
-  CoerceClass,
-  CoerceSourceFile,
-} from '@rxap/schematics-ts-morph';
 import { CoerceClassMethod } from '../nest/coerce-class-method';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { CoerceClass } from '../coerce-class';
 
 export interface CoerceMethodClassOptions extends TsMorphAngularProjectTransformOptions {
   name: string;
@@ -60,7 +58,7 @@ export function CoerceMethodClass(options: CoerceMethodClassOptions) {
       moduleSpecifier: '@angular/core',
       namedImports: [ 'Injectable' ],
     });
-    const methodStructure = tsMorphTransform(project, sourceFile, classDeclaration);
+    const methodStructure = tsMorphTransform!(project, sourceFile, classDeclaration);
     methodStructure.parameters ??= [
       {
         name: 'parameters',

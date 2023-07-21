@@ -64,7 +64,7 @@ export interface OperationOptions {
     classDeclaration: ClassDeclaration,
     methodDeclaration: MethodDeclaration,
     options: OperationOptions,
-  ) => {},
+  ) => void,
 }
 
 function buildMethodQueryParameters(
@@ -177,7 +177,8 @@ export function AddOperationToController(
   queryList ??= [];
   paramList ??= [];
   decorators ??= [];
-  tsMorphTransform ??= () => ({});
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  tsMorphTransform ??= () => {};
   method ??= 'get';
   method = capitalize(method.toLowerCase());
 

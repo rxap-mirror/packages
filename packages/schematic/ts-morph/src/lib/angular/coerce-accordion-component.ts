@@ -29,5 +29,6 @@ export function CoerceAccordionComponent(options: CoerceAccordionComponentOption
         },
       );
     }
+    return undefined;
   };
 }

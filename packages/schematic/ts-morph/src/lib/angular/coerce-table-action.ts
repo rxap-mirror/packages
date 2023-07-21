@@ -66,23 +66,23 @@ export function CoerceTableActionRule(options: CoerceTableActionOptions) {
           type: w => w.quote(type),
           refresh: refresh ? 'true' : 'false',
           confirm: confirm ? 'true' : 'false',
-          priority: priority.toFixed(0),
+          priority: priority?.toFixed(0) ?? '0',
         };
 
         if (tooltip) {
-          optionsObj.tooltip = `$localize\`${ tooltip }\``;
+          optionsObj['tooltip'] = `$localize\`${ tooltip }\``;
         }
         if (errorMessage) {
-          optionsObj.errorMessage = w => w.quote(errorMessage);
+          optionsObj['errorMessage'] = w => w.quote(errorMessage!);
         }
         if (successMessage) {
-          optionsObj.successMessage = w => w.quote(successMessage);
+          optionsObj['successMessage'] = w => w.quote(successMessage!);
         }
         if (checkFunction) {
           if (checkFunction.match(/^\([^)]+\)\s*=>/)) {
-            optionsObj.checkFunction = checkFunction;
+            optionsObj['checkFunction'] = checkFunction;
           } else {
-            optionsObj.checkFunction =
+            optionsObj['checkFunction'] =
               `(element: ${ tableInterfaceName }, index: number, array: ${ tableInterfaceName }[]) => ${ checkFunction }`;
           }
         }
@@ -115,7 +115,7 @@ export function CoerceTableActionRule(options: CoerceTableActionOptions) {
             },
           ],
           returnType: `Promise<unknown>`,
-          ...tsMorphTransform(project, sourceFile, classDeclaration),
+          ...tsMorphTransform!(project, sourceFile, classDeclaration),
         };
       },
     }),

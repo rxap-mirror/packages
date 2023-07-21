@@ -7,7 +7,7 @@ import {
   OperationIdToClassName,
   OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
-} from '../utilities';
+} from '../operation-id-utilities';
 import {
   ClassDeclaration,
   Project,
@@ -49,7 +49,7 @@ export function CoerceTreeTableRootProxyRemoteMethodClass(options: CoerceTreeTab
         namedImports: [ OperationIdToParameterClassName(getRootOperationId) ],
         moduleSpecifier: OperationIdToParameterClassImportPath(getRootOperationId),
       });
-      return tsMorphTransform(project, sourceFile, classDeclaration);
+      return tsMorphTransform!(project, sourceFile, classDeclaration);
     },
   });
 }

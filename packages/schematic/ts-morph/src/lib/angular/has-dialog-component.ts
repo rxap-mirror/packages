@@ -5,9 +5,8 @@ import {
   HasComponentOptions,
 } from './has-component';
 
-export interface HasDialogComponentOptions extends Omit<HasComponentOptions, 'name'> {
-  dialogName?: string;
-  name?: string;
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface HasDialogComponentOptions extends HasComponentOptions {
 }
 
 export function HasDialogComponent(
@@ -15,17 +14,16 @@ export function HasDialogComponent(
   options: HasDialogComponentOptions,
 ): boolean {
   let {
-    dialogName,
     name,
     project,
     feature,
     directory,
   } = options;
-  dialogName ??= CoerceSuffix(name, '-dialog');
+  name ??= CoerceSuffix(name, '-dialog');
   return HasComponent(host, {
     project,
     feature,
-    name: dialogName,
+    name: name,
     directory,
   });
 }

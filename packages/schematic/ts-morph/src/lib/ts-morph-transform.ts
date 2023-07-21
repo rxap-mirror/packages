@@ -108,7 +108,7 @@ export function TsMorphTransform(
       }
     }
 
-    cb(project, sourceFile as any);
+    (cb as any)(project, sourceFile);
 
     return ApplyTsMorphProject(project, sourceRoot, false);
   };
@@ -145,7 +145,7 @@ export function TsMorphNestProjectTransform(
       const basePath = BuildNestBasePath(tree, options);
       return TsMorphTransform(
         basePath,
-        cb,
+        cb as any,
         options.projectOptions,
         filePath as any,
       );
@@ -182,7 +182,7 @@ export function TsMorphAngularProjectTransform(
       const basePath = BuildAngularBasePath(tree, options);
       return TsMorphTransform(
         basePath,
-        cb,
+        cb as any,
         options.projectOptions,
         filePath as any,
       );

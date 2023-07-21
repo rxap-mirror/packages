@@ -13,12 +13,10 @@ import {
   TsMorphAngularProjectTransform,
   TsMorphAngularProjectTransformOptions,
 } from '../ts-morph-transform';
-import {
-  CoerceClass,
-  CoerceSourceFile,
-} from '@rxap/schematics-ts-morph';
 import { CoerceClassMethod } from '../nest/coerce-class-method';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { CoerceClass } from '../coerce-class';
 
 export interface CoerceProxyRemoteMethodClassOptions extends TsMorphAngularProjectTransformOptions {
   name: string;
@@ -105,7 +103,7 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
       moduleSpecifier: '@rxap/remote-method',
       namedImports: [ 'RxapRemoteMethod', 'ProxyRemoteMethod' ],
     });
-    const methodStructure = tsMorphTransform(project, sourceFile, classDeclaration);
+    const methodStructure = tsMorphTransform!(project, sourceFile, classDeclaration);
     methodStructure.parameters ??= [
       {
         name: 'source',

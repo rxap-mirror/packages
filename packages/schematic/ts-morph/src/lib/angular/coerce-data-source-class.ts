@@ -11,16 +11,13 @@ import {
   TsMorphAngularProjectTransform,
   TsMorphAngularProjectTransformOptions,
 } from '../ts-morph-transform';
-import {
-  CoerceClass,
-  CoerceSourceFile,
-} from '@rxap/schematics-ts-morph';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { CoerceClass } from '../coerce-class';
 
 export interface CoerceDataSourceClassOptions extends TsMorphAngularProjectTransformOptions {
   name: string;
-  shared: boolean;
   providedInRoot?: boolean;
   tsMorphTransform?: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => void;
   coerceDecorator?: (
@@ -71,6 +68,7 @@ export function CoerceDataSourceClass(options: CoerceDataSourceClassOptions) {
     providedInRoot,
     coerceExtends,
   } = options;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   tsMorphTransform ??= () => {
   };
   coerceDecorator ??= CoerceRxapDataSourceDecorator;
@@ -98,13 +96,13 @@ export function CoerceDataSourceClass(options: CoerceDataSourceClassOptions) {
         },
       ],
     });
-    coerceDecorator(sourceFile, classDeclaration, options);
-    coerceExtends(sourceFile, classDeclaration, options);
+    coerceDecorator!(sourceFile, classDeclaration, options);
+    coerceExtends!(sourceFile, classDeclaration, options);
     CoerceImports(sourceFile, {
       moduleSpecifier: '@angular/core',
       namedImports: [ 'Injectable' ],
     });
-    tsMorphTransform(project, sourceFile, classDeclaration);
+    tsMorphTransform!(project, sourceFile, classDeclaration);
 
   });
 }

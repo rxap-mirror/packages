@@ -2,14 +2,14 @@ import {
   CoerceMethodClass,
   CoerceMethodClassOptions,
 } from './coerce-method-class';
-import { CoerceClassConstructor } from '@rxap/schematics-ts-morph';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { Scope } from 'ts-morph';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
-} from '../utilities';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { Scope } from 'ts-morph';
+} from '../operation-id-utilities';
 
 export interface CoerceTableSelectResolveValueMethodOptions extends CoerceMethodClassOptions {
   operationId: string;

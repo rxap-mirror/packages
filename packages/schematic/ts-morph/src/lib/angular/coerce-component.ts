@@ -135,7 +135,7 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
               },
             ]);
 
-            tsMorphTransform(
+            tsMorphTransform!(
               project,
               [ componentSourceFile, moduleSourceFile ],
               [ componentClass, moduleClass ],
@@ -167,7 +167,7 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
         (project, [ componentSourceFile, moduleSourceFile ]) => {
           const componentClass = componentSourceFile.getClassOrThrow(`${ classify(name) }Component`);
           const moduleClass = moduleSourceFile.getClassOrThrow(`${ classify(name) }ComponentModule`);
-          tsMorphTransform(
+          tsMorphTransform!(
             project,
             [ componentSourceFile, moduleSourceFile ],
             [ componentClass, moduleClass ],
@@ -184,7 +184,7 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
     if (template && (overwrite || !HasComponent(tree, options))) {
       template.url ??= './files/component';
       rules.push(
-        () => console.log(`Template '${ template.url }' will be used to modify the component.`),
+        () => console.log(`Template '${ template!.url }' will be used to modify the component.`),
         mergeWith(apply(url(template.url), [
           applyTemplates({
             ...strings,

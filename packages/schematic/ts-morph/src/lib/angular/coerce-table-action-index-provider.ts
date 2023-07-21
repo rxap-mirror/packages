@@ -2,11 +2,9 @@ import {
   TsMorphAngularProjectTransform,
   TsMorphAngularProjectTransformOptions,
 } from '../ts-morph-transform';
-import {
-  AddComponentProvider,
-  CoerceSourceFile,
-} from '@rxap/schematics-ts-morph';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { AddComponentProvider } from '../add-component-provider';
 
 export interface CoerceTableActionIndexProviderOptions extends TsMorphAngularProjectTransformOptions {
   tableName: string;

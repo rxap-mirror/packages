@@ -1,4 +1,3 @@
-import { FormDefinitionControl } from '../../generators/form-definition/schema';
 import { Rule } from '@angular-devkit/schematics';
 import {
   classify,
@@ -8,10 +7,6 @@ import {
   TsMorphAngularProjectTransform,
   TsMorphAngularProjectTransformOptions,
 } from '../ts-morph-transform';
-import {
-  CoerceClass,
-  CoerceSourceFile,
-} from '@rxap/schematics-ts-morph';
 import { CoerceInterface } from '../ts-morph/coerce-interface';
 import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
 import {
@@ -25,6 +20,9 @@ import {
   CoerceFormControl,
   CoerceInterfaceFormTypeControl,
 } from './coerce-form-definition-control';
+import { FormDefinitionControl } from '../types';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { CoerceClass } from '../coerce-class';
 
 export interface CoerceFormDefinitionOptions extends TsMorphAngularProjectTransformOptions {
   controlList: Array<Required<FormDefinitionControl>>;
@@ -87,6 +85,7 @@ export function CoerceFormDefinition(options: Readonly<CoerceFormDefinitionOptio
     coerceFormType,
   } = options;
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   tsMorphTransform ??= () => {
   };
   coerceFormType ??= CoerceInterfaceFormType;
@@ -101,7 +100,7 @@ export function CoerceFormDefinition(options: Readonly<CoerceFormDefinitionOptio
 
     // region add controls to interface
     const interfaceName = `I${ className }`;
-    coerceFormType(sourceFile, classDeclaration, interfaceName, options);
+    coerceFormType!(sourceFile, classDeclaration, interfaceName, options);
     if (!classDeclaration.getImplements().some(implement => implement.getText().startsWith('FormType'))) {
       classDeclaration.addImplements(`FormType<${ interfaceName }>`);
     }
@@ -122,7 +121,7 @@ export function CoerceFormDefinition(options: Readonly<CoerceFormDefinitionOptio
       moduleSpecifier: '@rxap/forms',
     });
 
-    coerceFormControls(sourceFile, classDeclaration, options);
+    coerceFormControls!(sourceFile, classDeclaration, options);
 
     // region add class decorators
     CoerceDecorator(classDeclaration, 'RxapForm').set({ arguments: [ w => w.quote(name) ] });
@@ -138,7 +137,7 @@ export function CoerceFormDefinition(options: Readonly<CoerceFormDefinitionOptio
     });
     // endregion
 
-    tsMorphTransform(sourceFile, classDeclaration);
+    tsMorphTransform!(sourceFile, classDeclaration);
 
   });
 

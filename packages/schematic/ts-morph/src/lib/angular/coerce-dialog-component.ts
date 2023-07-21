@@ -6,10 +6,6 @@ import {
   CoerceComponentRule,
   TemplateOptions,
 } from './coerce-component';
-import {
-  AddNgModuleImport,
-  CoerceClassConstructor,
-} from '@rxap/schematics-ts-morph';
 import { AddNgModuleExport } from './add-ng-module-export';
 import { CoerceClassProperty } from '../ts-morph/coerce-class-property';
 import { CoerceImports } from '../ts-morph/coerce-imports';
@@ -20,6 +16,8 @@ import {
   Project,
   SourceFile,
 } from 'ts-morph';
+import { AddNgModuleImport } from '../add-ng-module-import';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
 
 export interface CoerceDialogComponentOptions {
   dialogName: string;
@@ -60,6 +58,7 @@ export function CoerceDialogComponentRule(options: CoerceDialogComponentOptions)
     project,
     feature,
   } = options;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   tsMorphTransform ??= () => {
   };
   coerceSubmitMethod ??= DefaultDialogSubmitMethod;
@@ -117,8 +116,8 @@ export function CoerceDialogComponentRule(options: CoerceDialogComponentOptions)
             },
           ],
         });
-        tsMorphTransform(_, [ componentSourceFile, moduleSourceFile ], [ componentClass, moduleClass ], options);
-        coerceSubmitMethod(componentClass, options);
+        tsMorphTransform!(_, [ componentSourceFile, moduleSourceFile ], [ componentClass, moduleClass ], options);
+        coerceSubmitMethod!(componentClass, options);
       },
     }),
   ]);

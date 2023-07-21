@@ -1,4 +1,3 @@
-import { FormDefinitionControl } from '../../generators/form-definition/schema';
 import { Rule } from '@angular-devkit/schematics';
 import {
   camelize,
@@ -6,10 +5,6 @@ import {
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
 import { TsMorphAngularProjectTransform } from '../ts-morph-transform';
-import {
-  CoerceClass,
-  CoerceSourceFile,
-} from '@rxap/schematics-ts-morph';
 import { CoerceInterface } from '../ts-morph/coerce-interface';
 import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
 import {
@@ -24,6 +19,9 @@ import {
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { WriteType } from '../ts-morph/write-type';
+import { FormDefinitionControl } from '../types/form-definition-control';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { CoerceClass } from '../coerce-class';
 
 export interface CoerceFormDefinitionControlOptions extends Required<FormDefinitionControl> {
   project: string;
@@ -93,7 +91,7 @@ export function CoerceFormControl(
       w => {
         const items: Record<string, string | WriterFunction> = {};
         if (control.validatorList?.length || control.isRequired) {
-          items.validators = w => {
+          items['validators'] = w => {
             w.write('[');
             if (control.validatorList.length > 1 || (control.validatorList.length && control.isRequired)) {
               w.newLine();
@@ -123,15 +121,17 @@ export function CoerceFormControl(
           };
         }
         if (control.state) {
-          items.state = w => {
+          items['state'] = w => {
             if (typeof control.state === 'string') {
               w.write(control.state);
-            } else {
+            } else if (typeof control.state === 'function') {
               control.state(w);
+            } else {
+              throw new Error('Invalid state type');
             }
           };
         } else if (control.isArray) {
-          items.state = '[]';
+          items['state'] = '[]';
         }
         if (Object.keys(items).length) {
           Writers.object(items)(w);
@@ -161,6 +161,7 @@ export function CoerceFormDefinitionControl(options: Readonly<CoerceFormDefiniti
     formName,
   } = options;
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   tsMorphTransform ??= () => {
   };
   coerceFormTypeControl ??= CoerceInterfaceFormTypeControl;
@@ -175,12 +176,12 @@ export function CoerceFormDefinitionControl(options: Readonly<CoerceFormDefiniti
 
     // region add control to interface
     const interfaceName = `I${ className }`;
-    coerceFormTypeControl(sourceFile, classDeclaration, interfaceName, options);
+    coerceFormTypeControl!(sourceFile, classDeclaration, interfaceName, options);
     // endregion
 
-    coerceFormControl(sourceFile, classDeclaration, options);
+    coerceFormControl!(sourceFile, classDeclaration, options);
 
-    tsMorphTransform(sourceFile, classDeclaration);
+    tsMorphTransform!(sourceFile, classDeclaration);
 
   });
 

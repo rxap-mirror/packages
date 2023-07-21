@@ -4,18 +4,16 @@ import {
   OptionalKind,
   SourceFile,
 } from 'ts-morph';
-import { ProviderObject } from '@rxap/schematics-ts-morph/src/lib/provider-object';
-import {
-  AddProviderToArray,
-  CoerceSourceFile,
-  CoerceVariableDeclaration,
-} from '@rxap/schematics-ts-morph';
 import { Rule } from '@angular-devkit/schematics';
 import {
   TsMorphAngularProjectTransform,
   TsMorphAngularProjectTransformOptions,
 } from '../ts-morph-transform';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
+import { AddProviderToArray } from '../add-provider-to-array';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { ProviderObject } from '../provider-object';
 
 export function CoerceFormComponentProvider(sourceFile: SourceFile, providerObject: ProviderObject | string) {
   const variableDeclaration = CoerceVariableDeclaration(sourceFile, 'FormComponentProviders', {
@@ -52,7 +50,7 @@ export function CoerceFormComponentProviderRule(
   const fileName = 'form.providers.ts';
   return TsMorphAngularProjectTransform(options, project => {
     const sourceFile = CoerceSourceFile(project, fileName);
-    CoerceImports(sourceFile, importStructures);
+    CoerceImports(sourceFile, importStructures!);
     CoerceFormComponentProvider(sourceFile, providerObject);
   });
 }

@@ -2,12 +2,7 @@ import {
   CoerceTableActionOptions,
   CoerceTableActionRule,
 } from './coerce-table-action';
-import {
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
-} from '../utilities';
 import { classify } from '@rxap/schematics-utilities';
-import { CoerceClassConstructor } from '@rxap/schematics-ts-morph';
 import {
   Scope,
   StatementStructures,
@@ -15,6 +10,11 @@ import {
 } from 'ts-morph';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import {
+  OperationIdToClassImportPath,
+  OperationIdToClassName,
+} from '../operation-id-utilities';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
 
 export interface CoerceFormTableActionOptions extends CoerceTableActionOptions {
   loadOperationId?: string;
@@ -105,7 +105,7 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
         isAsync: true,
         scope: Scope.Public,
         returnType: 'Promise<any>',
-        ...tsMorphTransform(project, sourceFile, classDeclaration),
+        ...tsMorphTransform!(project, sourceFile, classDeclaration),
       };
     },
   });

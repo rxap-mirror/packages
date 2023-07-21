@@ -7,20 +7,18 @@ import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
-import {
-  AddNgModuleImport,
-  CoerceClassConstructor,
-} from '@rxap/schematics-ts-morph';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceClassMethod } from '../nest/coerce-class-method';
+import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
+import { AddNgModuleImport } from '../add-ng-module-import';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
   OperationIdToRequestBodyClassImportPath,
   OperationIdToRequestBodyClassName,
-} from '../utilities';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceClassMethod } from '../nest/coerce-class-method';
-import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
+} from '../operation-id-utilities';
 
 export interface CoerceDialogTableActionComponentOptions extends CoerceDialogComponentOptions,
                                                                  TsMorphAngularProjectTransformOptions {
@@ -41,8 +39,8 @@ export function CoerceDialogTableActionComponentRule(options: CoerceDialogTableA
   } = options;
   dialogName =
     CoerceSuffix(dialogName, '-dialog');
-  if (!directory.includes(tableName)) {
-    if (directory.endsWith(dialogName)) {
+  if (!directory?.includes(tableName)) {
+    if (directory?.endsWith(dialogName)) {
       throw new Error(`The directory must include the table name: ${ tableName } if directory ends with the dialog name: ${ dialogName }`);
     }
     directory = `${ directory }/${ tableName }`;

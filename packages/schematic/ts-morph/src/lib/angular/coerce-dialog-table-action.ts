@@ -2,7 +2,7 @@ import {
   CoerceTableActionOptions,
   CoerceTableActionRule,
 } from './coerce-table-action';
-import { CoerceClassConstructor } from '@rxap/schematics-ts-morph';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
 import { Scope } from 'ts-morph';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import { CoerceImports } from '../ts-morph/coerce-imports';
@@ -54,7 +54,7 @@ export function CoerceDialogTableActionRule(options: CoerceDialogTableActionRule
           'return firstValueFrom(ref.afterClosed());',
         ],
         returnType: `Promise<void>`,
-        ...tsMorphTransform(project, sourceFile, classDeclaration),
+        ...tsMorphTransform!(project, sourceFile, classDeclaration),
       };
     },
   });

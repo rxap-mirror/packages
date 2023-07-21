@@ -1,9 +1,8 @@
 import { SourceFile } from 'ts-morph';
-import {
-  GetCoerceArrayLiteralFromObjectLiteral,
-  GetNgModuleOptionsObject,
-} from '@rxap/schematics-ts-morph';
+
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { GetNgModuleOptionsObject } from '../get-ng-module-options-object';
+import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-literal-form-object-literal';
 
 export function AddNgModuleExport(sourceFile: SourceFile, namedImport: string, moduleSpecifier?: string) {
 

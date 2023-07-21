@@ -7,7 +7,6 @@ import { Writers } from 'ts-morph';
 import { dasherize } from '@rxap/schematics-utilities';
 
 export interface CoerceOptionsDataSourceRuleOptions extends TsMorphAngularProjectTransformOptions {
-  shared?: boolean;
   name: string;
 }
 

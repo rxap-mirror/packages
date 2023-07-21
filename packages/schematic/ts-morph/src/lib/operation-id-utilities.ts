@@ -31,6 +31,11 @@ export function OperationIdToClassImportPath(operationId: string) {
   return `@eurogard/open-api-${ dasherize(serverId) }/remote-methods/${ dasherize(id) }.remote-method`;
 }
 
+export function OperationIdToRequestBodyClassName(operationId: string) {
+  const [ id ] = operationId.split('@');
+  return classify(id) + 'RequestBody';
+}
+
 export function ServiceOperationIdToClassImportPath(operationId: string) {
   let [ id, serverId ] = operationId.split('@');
   serverId ??= 'legacy';

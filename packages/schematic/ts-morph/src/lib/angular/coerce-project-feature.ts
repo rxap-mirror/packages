@@ -25,5 +25,6 @@ export function CoerceProjectFeature(options: CoerceProjectFeatureOptions): Rule
         },
       );
     }
+    return undefined;
   };
 }
