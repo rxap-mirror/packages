@@ -18,9 +18,10 @@ export const joinPath = JoinPath;
 export interface JoinWithOptions {
   strict?: boolean;
   removeDuplicated?: boolean;
+  removeEmpty?: boolean;
 }
 
-export function joinWith(items: string[], separator = '-', options: JoinWithOptions = {}) {
+export function joinWith(items: Array<string | undefined | null>, separator = '-', options: JoinWithOptions = {}) {
   if (options.strict) {
     if (items.some(item => item === null || item === undefined || item === '')) {
       throw new Error('Invalid join items');
@@ -29,9 +30,12 @@ export function joinWith(items: string[], separator = '-', options: JoinWithOpti
   if (options.removeDuplicated) {
     items = [ ...Array.from(new Set(items).values()) ];
   }
+  if (options.removeEmpty) {
+    items = items.filter(item => item !== null && item !== undefined && item !== '');
+  }
   return items.filter(item => item !== null && item !== undefined && item !== '').join(separator);
 }
 
-export function joinWithDash(items: string[], options: JoinWithOptions = {}) {
+export function joinWithDash(items: Array<string | undefined | null>, options: JoinWithOptions = {}) {
   return joinWith(items, '-', options);
 }
