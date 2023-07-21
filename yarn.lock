@@ -7946,6 +7946,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/schematic-angular@workspace:packages/schematic/angular":
+  version: 0.0.0-use.local
+  resolution: "@rxap/schematic-angular@workspace:packages/schematic/angular"
+  languageName: unknown
+  linkType: soft
+
 "@rxap/schematics-open-api@workspace:packages/schematic/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/schematics-open-api@workspace:packages/schematic/open-api"

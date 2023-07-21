@@ -1,0 +1,6 @@
+{
+  "name": "@rxap/schematic-angular",
+  "version": "16.0.0",
+  "type": "commonjs",
+  "schematics": "./collection.json"
+}

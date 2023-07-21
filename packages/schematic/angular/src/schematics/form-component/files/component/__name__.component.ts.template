@@ -1,0 +1,52 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+<% if (window) { %>
+import { RXAP_WINDOW_SETTINGS } from '@rxap/window-system';
+<% } %>
+import { FormComponentProviders, FormProviders } from './form.providers';
+import { FormControlsComponentModule, MaterialFormSystemModule } from '@rxap/material-form-system';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RxapFormsModule } from '@rxap/forms';
+import { CommonModule } from '@angular/common';
+<% if (window) { %>
+import { FormWindowFooterDirectiveModule } from '@rxap/form-window-system';
+<% } %>
+
+@Component({
+  selector: 'eurogard-<%= name %>',
+  templateUrl: './<%= name %>.component.html',
+  styleUrls: [ './<%= name %>.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    MaterialFormSystemModule,
+    FormControlsComponentModule,
+    RxapFormsModule,
+    <% if (window) { %>
+    FormWindowFooterDirectiveModule,
+    <% } %>
+  ],
+  providers: [
+    FormProviders,
+    FormComponentProviders,
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: {
+        appearance: 'fill',
+      },
+    },
+    <% if (window) { %>
+    {
+      provide: RXAP_WINDOW_SETTINGS,
+      useValue: {
+        title: $localize`<%= classify(name) %>`,
+      },
+    },
+    <% } %>
+  ],
+})
+export class <%= classify(name) %>Component {}

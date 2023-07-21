@@ -65,3 +65,7 @@ yarn nx g @nx/nest:library --importPath @rxap/nest-<project-name>
 ### Node Library
 
 ### Schematic Library
+
+```shell
+yarn nx g @nx/js:library --name=angular --directory=schematic --importPath=@rxap/schematic-angular
+```

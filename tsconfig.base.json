@@ -160,6 +160,7 @@
         "packages/angular/remote-method/testing/src/index.ts"
       ],
       "@rxap/rxjs": ["packages/rxjs/src/index.ts"],
+      "@rxap/schematic-angular": ["packages/schematic/angular/src/index.ts"],
       "@rxap/schematics-open-api": ["packages/schematic/open-api/src/index.ts"],
       "@rxap/schematics-ts-morph": ["packages/schematic/ts-morph/src/index.ts"],
       "@rxap/schematics-utilities": [

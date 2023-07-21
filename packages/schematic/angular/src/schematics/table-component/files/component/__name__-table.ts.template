@@ -1,0 +1,16 @@
+import { TableRowMetadata } from '@rxap/material-table-system';
+
+<% if (!operationId) { %>
+export interface I<%= classify(name) %>Table
+  extends Record<string, unknown>, TableRowMetadata {
+  uuid: string;
+  <% for (const column of columnList) { %>
+  <%= column %>: unknown;
+  <% } %>
+}
+<% } else { %>
+import { <%= OperationIdToResponseClassName(operationId) %> } from '<%= OperationIdToResponseClassImportPath(operationId) %>'
+
+export type I<%= classify(name) %>Table
+  = TableRowMetadata & <%= OperationIdToResponseClassName(operationId) %>['rows'][number];
+<% } %>

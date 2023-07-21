@@ -1,0 +1,24 @@
+{
+  "schematics": {
+    "table-component": {
+      "factory": "./src/schematics/table-component/index",
+      "schema": "./src/schematics/table-component/schema.json",
+      "description": "Generates a table component."
+    },
+    "form-component": {
+      "factory": "./src/schematics/form-component/index",
+      "schema": "./src/schematics/form-component/schema.json",
+      "description": "Generates a form component."
+    },
+    "form-definition": {
+      "factory": "./src/schematics/form-definition/index",
+      "schema": "./src/schematics/form-definition/schema.json",
+      "description": "Generates a form definition."
+    },
+    "table-action": {
+      "factory": "./src/schematics/table-action/index",
+      "schema": "./src/schematics/table-action/schema.json",
+      "description": "Generates a table action."
+    }
+  }
+}

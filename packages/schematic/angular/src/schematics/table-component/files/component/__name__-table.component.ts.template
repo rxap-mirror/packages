@@ -1,0 +1,167 @@
+import { ChangeDetectionStrategy, Component, Input, OnInit, INJECTOR, Injector, Inject } from '@angular/core';
+import { Observable, from } from 'rxjs';
+import { RowAnimation,
+<% if (selectColumn) { %>
+SelectRowService,
+RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS,
+<% } %>
+RXAP_TABLE_METHOD, TableFilterService, RXAP_TABLE_FILTER_FORM_DEFINITION } from '@rxap/material-table-system';
+import { map, switchMap } from 'rxjs/operators';
+import { GetPageAdapterFactory } from '@digitaix/eurogard-table-system';
+import { TABLE_REMOTE_METHOD_ADAPTER_FACTORY } from '@rxap/material-table-system';
+import { <%= OperationIdToClassName(operationId) %> } from '<%= OperationIdToClassImportPath(operationId) %>';
+<% if (headerButton && headerButton.role === 'form') { %>
+import { OpenCreateFormWindowMethod } from './create-form/open-create-form-window.method';
+import { TABLE_CREATE_REMOTE_METHOD } from '@rxap/material-table-system';
+<% } %>
+import { FormFactory, FormProviders } from './form.providers';
+import { GetFromObjectPipeModule } from '@rxap/pipes';
+import {
+  BooleanCellComponentModule,
+  CopyToClipboardCellComponentModule, DateCellComponentModule,
+  IconCellComponentModule,
+  LinkCellComponentModule, PersistentPaginatorDirectiveModule,
+  <% if (selectColumn) { %>
+  SelectRowModule,
+  <% } %>
+  TableColumnMenuComponentModule, TableCreateButtonDirectiveModule,
+  TableDataSourceModule,
+  TableFilterModule, TableRowActionsModule,
+  TableRowControlsModule,
+} from '@rxap/material-table-system';
+import { OpenCodeEditorComponentModule } from '@eurogard/dynamic-ui';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CardProgressBarModule } from '@rxap/material-directives/card';
+import { MatTableModule } from '@angular/material/table';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { RxapFormsModule } from '@rxap/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { MatDividerModule } from '@angular/material/divider';
+<% if (hasNavigationBackHeader) { %>
+import { NavigateBackButtonComponentModule } from '@rxap/components';
+<% } %>
+import { ConfirmComponentModule } from '@rxap/components';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { InputClearButtonDirectiveModule } from '@rxap/material-form-system';
+import { FormFieldNoPaddingModule } from '@rxap/material-directives/form-field';
+import { TableShowArchivedSlideComponentModule } from '@digitaix/eurogard-table-system';
+import { HasPermissionModule } from '@rxap/authorization';
+import { CommonModule } from '@angular/common';
+import { DataSourceErrorComponentModule } from '@de/shared/data-source-error';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+<% for (const action of actionList.filter(a => a.role === 'form')) { %>
+import { Open<%= classify(action.type) %>FormWindowMethodDirectiveModule } from './<%= action.type %>-form/open-<%= action.type %>-form-window.directive';
+<% } %>
+<% for (const action of actionList.filter(a => a.role === 'dialog')) { %>
+import { <%= classify(action.type) %>DialogComponentModule } from './<%= action.type %>-dialog/<%= action.type %>-dialog.component.module';
+<% } %>
+<% if (headerButton && headerButton.role === 'form') { %>
+import { OpenCreateFormWindowMethodDirectiveModule } from './create-form/open-create-form-window.directive';
+<% } %>
+
+@Component({
+  selector:        'eurogard-<%= name %>-table',
+  templateUrl:     './<%= name %>-table.component.html',
+  styleUrls:       [ './<%= name %>-table.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [ RowAnimation ],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatProgressBarModule,
+    CardProgressBarModule,
+    MatTableModule,
+    FlexLayoutModule,
+    TableDataSourceModule,
+    TableFilterModule,
+    RxapFormsModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    RouterModule,
+    <% if (selectColumn) { %>
+    SelectRowModule,
+    <% } %>
+    MatDividerModule,
+    <% if (hasNavigationBackHeader) { %>
+    NavigateBackButtonComponentModule,
+    <% } %>
+    TableRowControlsModule,
+    TableColumnMenuComponentModule,
+    DateCellComponentModule,
+
+    MatPaginatorModule,
+    MatSortModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    InputClearButtonDirectiveModule,
+    FormFieldNoPaddingModule,
+    TableCreateButtonDirectiveModule,
+    TableShowArchivedSlideComponentModule,
+    PersistentPaginatorDirectiveModule,
+    ConfirmComponentModule,
+    HasPermissionModule,
+    TableRowActionsModule,
+    GetFromObjectPipeModule,
+    CopyToClipboardCellComponentModule,
+    LinkCellComponentModule,
+    IconCellComponentModule,
+    BooleanCellComponentModule,
+    OpenCodeEditorComponentModule,
+    DataSourceErrorComponentModule,
+    <% for (const action of actionList.filter(a => a.role === 'form')) { %>
+    Open<%= classify(action.type) %>FormWindowMethodDirectiveModule,
+    <% } %>
+    <% for (const action of actionList.filter(a => a.role === 'dialog')) { %>
+    <%= classify(action.type) %>DialogComponentModule,
+    <% } %>
+    <% if (headerButton && headerButton.role === 'form') { %>
+    OpenCreateFormWindowMethodDirectiveModule,
+    <% } %>
+  ],
+  providers: [
+    FormProviders,
+    {
+      provide: RXAP_TABLE_FILTER_FORM_DEFINITION,
+      useFactory: FormFactory,
+      deps: [ INJECTOR ],
+    },
+    TableFilterService,
+    <% if (selectColumn) { %>
+    SelectRowService,
+    {
+      provide: RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS,
+      useValue: {
+        multiple: true,
+      },
+    },
+    <% } %>
+    {
+      provide: TABLE_REMOTE_METHOD_ADAPTER_FACTORY,
+      useValue: GetPageAdapterFactory,
+    },
+    {
+      provide: RXAP_TABLE_METHOD,
+      useClass: <%= OperationIdToClassName(operationId) %>
+    },
+    <% if (headerButton && headerButton.role === 'form') { %>
+    {
+      provide: TABLE_CREATE_REMOTE_METHOD,
+      useClass: OpenCreateFormWindowMethod,
+    },
+    <% } %>
+  ]
+})
+export class <%= classify(name) %>TableComponent {
+
+  @Input()
+  public parameters?: Observable<Record<string, unknown>>;
+
+}

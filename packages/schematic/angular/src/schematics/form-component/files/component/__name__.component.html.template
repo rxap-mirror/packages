@@ -1,0 +1,12 @@
+<form rxapForm>
+  <% if (window) { %>
+  <ng-template rxapFormWindowFooter let-windowRef>
+    <rxap-form-controls
+      (close)="windowRef.complete()"
+      (submitted)="windowRef.next($event)"
+    ></rxap-form-controls>
+  </ng-template>
+  <% } else { %>
+  <rxap-form-controls></rxap-form-controls>
+  <% } %>
+</form>

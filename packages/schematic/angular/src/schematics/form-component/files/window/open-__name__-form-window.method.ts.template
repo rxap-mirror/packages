@@ -1,0 +1,29 @@
+import { Inject, Injectable, Injector, INJECTOR, Optional } from '@angular/core';
+import {
+  FormWindowOptions,
+  FormWindowService,
+  OpenFormWindowMethod,
+  RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS,
+} from '@rxap/form-window-system';
+import { <%= classify(name) %>FormComponent } from './<%= name %>-form.component';
+import { <%= classify(name) %>Form, I<%= classify(name) %>Form } from './<%= name %>.form';
+
+@Injectable()
+export class Open<%= classify(name) %>FormWindowMethod extends OpenFormWindowMethod<I<%= classify(name) %>Form> {
+  constructor(
+    @Inject(FormWindowService) formWindowService: FormWindowService,
+    @Inject(INJECTOR)
+      injector: Injector,
+    @Optional()
+    @Inject(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS)
+      defaultOptions: FormWindowOptions<I<%= classify(name) %>Form> | null = null,
+  ) {
+    super(
+      formWindowService,
+      <%= classify(name) %>Form,
+      injector,
+      <%= classify(name) %>FormComponent,
+      defaultOptions,
+    );
+  }
+}
