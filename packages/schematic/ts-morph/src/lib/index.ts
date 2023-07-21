@@ -47,3 +47,4 @@ export * from './provider-object';
 export * from './to-value-context';
 export * from './ts-morph-transform';
 export * from './add-component-import';
+export * from './types';

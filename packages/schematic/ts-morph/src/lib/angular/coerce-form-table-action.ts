@@ -2,7 +2,12 @@ import {
   CoerceTableActionOptions,
   CoerceTableActionRule,
 } from './coerce-table-action';
+import {
+  OperationIdToClassImportPath,
+  OperationIdToClassName,
+} from '../utilities';
 import { classify } from '@rxap/schematics-utilities';
+import { CoerceClassConstructor } from '@rxap/schematics-ts-morph';
 import {
   Scope,
   StatementStructures,
@@ -10,11 +15,6 @@ import {
 } from 'ts-morph';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
-import {
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
-} from '../operation-id-utilities';
 
 export interface CoerceFormTableActionOptions extends CoerceTableActionOptions {
   loadOperationId?: string;
@@ -22,7 +22,7 @@ export interface CoerceFormTableActionOptions extends CoerceTableActionOptions {
 
 export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions) {
   let {
-    actionType,
+    type,
     loadOperationId,
     tsMorphTransform,
   } = options;
@@ -36,9 +36,9 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
         moduleSpecifier: '@angular/core',
         namedImports: [ 'ChangeDetectorRef', 'Inject', 'INJECTOR', 'Injector' ],
       });
-      const openFormWindowMethod = `Open${ classify(actionType) }FormWindowMethod`;
+      const openFormWindowMethod = `Open${ classify(type) }FormWindowMethod`;
       CoerceImports(sourceFile, {
-        moduleSpecifier: `../../${ actionType }-form/open-${ actionType }-form-window.method`,
+        moduleSpecifier: `../../${ type }-form/open-${ type }-form-window.method`,
         namedImports: [ openFormWindowMethod ],
       });
       CoerceImports(sourceFile, {
@@ -89,23 +89,23 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
         });
       }
       const statements: (string | WriterFunction | StatementStructures)[] = [];
-      statements.push(`console.log(\`action row type: ${ actionType }\`, parameters);`);
+      statements.push(`console.log(\`action row type: ${ type }\`, parameters);`);
       if (loadOperationId) {
         statements.push(`const { __rowId: rowId } = parameters;`);
-        statements.push(`if (!rowId) { throw new Error('The table action ${ actionType } is called with a row object that does not have the property __rowId.'); }`);
+        statements.push(`if (!rowId) { throw new Error('The table action ${ type } is called with a row object that does not have the property __rowId.'); }`);
         statements.push(`const initial = await this.getInitial.call({parameters: { rowId }});`);
       } else {
         statements.push(`const initial = parameters;`);
       }
       statements.push(`this.cdr.markForCheck();`);
-      statements.push(`return firstValueFrom(this.openFormWindow.call(initial, {injector: this.injector}));`);
+      statements.push(`return firstValueFrom(this.openFormWindow.call(initial, {injector: this.injector, context: { rowId }}));`);
 
       return {
         statements,
         isAsync: true,
         scope: Scope.Public,
         returnType: 'Promise<any>',
-        ...tsMorphTransform!(project, sourceFile, classDeclaration),
+        ...tsMorphTransform(project, sourceFile, classDeclaration),
       };
     },
   });

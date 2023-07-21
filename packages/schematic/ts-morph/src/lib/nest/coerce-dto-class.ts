@@ -11,6 +11,8 @@ import {
   TypeElementMemberedNode,
   Writers,
 } from 'ts-morph';
+import { DtoClassProperty } from '../create-dto-class';
+import { CoerceSourceFile } from '../coerce-source-file';
 import { join } from 'path';
 import {
   camelize,
@@ -20,8 +22,7 @@ import {
 } from '@rxap/schematics-utilities';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { DtoClassProperty } from '../create-dto-class';
-import { CoerceSourceFile } from '../coerce-source-file';
+import { WriteType } from '../ts-morph/write-type';
 import { CoerceClass } from '../coerce-class';
 
 export interface CoerceDtoClassOutput {
@@ -83,24 +84,11 @@ export function CoerceDtoClass(
     const propertyDeclaration: PropertyDeclaration = CoercePropertyDeclaration(
       classDeclaration,
       propertyName,
-      {
-        type: !property.isArray ? property.type : w => {
-          w.write('Array<');
-          if (typeof property.type === 'string') {
-            if (property.type === 'date') {
-              w.write('Date');
-            } else {
-              w.write(property.type);
-            }
-          } else {
-            property.type(w);
-          }
-          w.write('>');
-        },
-        hasQuestionToken: property.isOptional,
-        hasExclamationToken: !property.isOptional,
-      },
-    );
+    ).set({
+      type: WriteType(property),
+      hasQuestionToken: property.isOptional,
+      hasExclamationToken: !property.isOptional,
+    });
 
     CoerceDecorator(
       propertyDeclaration,
@@ -134,11 +122,7 @@ export function CoerceDtoClass(
           w => {
             w.write('() => ');
             if (typeof property.type === 'string') {
-              if (property.type === 'date') {
-                w.write('Date');
-              } else {
-                w.write(property.type);
-              }
+              w.write(property.type);
             } else {
               property.type(w);
             }
@@ -154,11 +138,7 @@ export function CoerceDtoClass(
         arguments: [
           w => {
             if (typeof property.type === 'string') {
-              if (property.type === 'date') {
-                w.write('Date');
-              } else {
-                w.write(property.type);
-              }
+              w.write(property.type);
             } else {
               property.type(w);
             }
@@ -188,12 +168,61 @@ export function CoerceDtoClass(
         moduleSpecifier: 'class-validator',
       });
     }
-    if (property.type === 'string') {
-      if (property.name === 'uuid') {
+    switch (property.type) {
+      case 'date':
+        CoerceDecorator(
+          propertyDeclaration,
+          {
+            name: 'IsDate',
+            arguments: [],
+          },
+        );
         importStructureList.push({
-          namedImports: [ 'IsUUID' ],
+          namedImports: [ 'IsDate' ],
           moduleSpecifier: 'class-validator',
         });
+        break;
+      case 'number':
+        CoerceDecorator(
+          propertyDeclaration,
+          {
+            name: 'IsNumber',
+            arguments: [],
+          },
+        );
+        importStructureList.push({
+          namedImports: [ 'IsNumber' ],
+          moduleSpecifier: 'class-validator',
+        });
+        break;
+      case 'string':
+        if (property.name === 'uuid') {
+          importStructureList.push({
+            namedImports: [ 'IsUUID' ],
+            moduleSpecifier: 'class-validator',
+          });
+          CoerceDecorator(
+            propertyDeclaration,
+            {
+              name: 'IsUUID',
+              arguments: [],
+            },
+          );
+        } else {
+          importStructureList.push({
+            namedImports: [ 'IsString' ],
+            moduleSpecifier: 'class-validator',
+          });
+          CoerceDecorator(
+            propertyDeclaration,
+            {
+              name: 'IsString',
+              arguments: [],
+            },
+          );
+        }
+        break;
+      case 'uuid':
         CoerceDecorator(
           propertyDeclaration,
           {
@@ -201,45 +230,24 @@ export function CoerceDtoClass(
             arguments: [],
           },
         );
-      } else {
         importStructureList.push({
-          namedImports: [ 'IsString' ],
+          namedImports: [ 'IsUUID' ],
           moduleSpecifier: 'class-validator',
         });
+        break;
+      case 'boolean':
         CoerceDecorator(
           propertyDeclaration,
           {
-            name: 'IsString',
+            name: 'IsBoolean',
             arguments: [],
           },
         );
-      }
-    }
-    if (property.type === 'boolean') {
-      importStructureList.push({
-        namedImports: [ 'IsBoolean' ],
-        moduleSpecifier: 'class-validator',
-      });
-      CoerceDecorator(
-        propertyDeclaration,
-        {
-          name: 'IsBoolean',
-          arguments: [],
-        },
-      );
-    }
-    if (property.type === 'number') {
-      importStructureList.push({
-        namedImports: [ 'IsBoolean' ],
-        moduleSpecifier: 'class-validator',
-      });
-      CoerceDecorator(
-        propertyDeclaration,
-        {
-          name: 'IsBoolean',
-          arguments: [],
-        },
-      );
+        importStructureList.push({
+          namedImports: [ 'IsBoolean' ],
+          moduleSpecifier: 'class-validator',
+        });
+        break;
     }
 
   }

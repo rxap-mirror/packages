@@ -1,5 +1,4 @@
 import {
-  noop,
   Rule,
   schematic,
 } from '@angular-devkit/schematics';
@@ -30,6 +29,5 @@ export function CoerceAccordionComponent(options: CoerceAccordionComponentOption
         },
       );
     }
-    return noop();
   };
 }

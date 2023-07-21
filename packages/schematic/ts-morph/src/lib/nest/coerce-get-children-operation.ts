@@ -8,27 +8,16 @@ import {
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { SchematicsException } from '@angular-devkit/schematics';
 
 export type CoerceGetChildrenOperationOptions = Omit<CoerceOperationOptions, 'operationName'>
 
 export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOperationOptions>) {
   let {
     tsMorphTransform,
-    name,
     controllerName,
-    nestController,
     paramList,
   } = options;
   tsMorphTransform ??= () => ({});
-  controllerName ??= nestController;
-  controllerName ??= name;
-  if (!controllerName) {
-    throw new SchematicsException('No controller name provided!');
-  }
-  if (!name) {
-    throw new SchematicsException('No name provided!');
-  }
   controllerName = CoerceSuffix(controllerName, '-tree-table');
   paramList ??= [];
   paramList.push({
@@ -38,8 +27,6 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
   return CoerceOperation({
     ...options,
     // TODO : remove after migration to controllerName
-    name: controllerName,
-    nestController: controllerName,
     controllerName,
     operationName: 'get-children',
     paramList,
@@ -55,7 +42,7 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
         filePath,
       } = CoerceDtoClass(
         project,
-        CoerceSuffix(name!, '-item'),
+        CoerceSuffix(controllerName, '-item'),
         [
           {
             name: 'uuid',
@@ -67,7 +54,7 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
           },
           {
             name: 'children',
-            type: classify(CoerceSuffix(name!, '-item-dto')),
+            type: classify(CoerceSuffix(controllerName, '-item-dto')),
             isArray: true,
             isOptional: true,
             isType: true,

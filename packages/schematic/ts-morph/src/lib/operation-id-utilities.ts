@@ -54,6 +54,12 @@ export function OperationIdToParameterClassImportPath(operationId: string) {
   return `@eurogard/open-api-${ dasherize(serverId) }/parameters/${ dasherize(id) }.parameter`;
 }
 
+export function OperationIdToRequestBodyClassImportPath(operationId: string) {
+  let [ id, serverId ] = operationId.split('@');
+  serverId ??= 'legacy';
+  return `@eurogard/open-api-${ dasherize(serverId) }/request-bodies/${ dasherize(id) }.request-body`;
+}
+
 export function buildOperationId(options: {
   project: string,
   feature: string,

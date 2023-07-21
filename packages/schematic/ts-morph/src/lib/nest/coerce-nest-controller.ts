@@ -1,7 +1,6 @@
 import {
   chain,
   externalSchematic,
-  noop,
   Rule,
   SchematicsException,
 } from '@angular-devkit/schematics';
@@ -10,49 +9,75 @@ import { CoerceNestServiceProject } from './coerce-nest-service-project';
 import { HasNestController } from './has-nest-controller';
 import { buildNestProjectName } from './project-utilities';
 
-
 export interface CoerceNestControllerOptions {
   project: string;
   feature?: string;
   shared?: boolean;
   name: string;
-  module?: string;
-  nestModule?: string;
+  nestModule: string;
 }
 
-export function CoerceNestController(options: CoerceNestControllerOptions): Rule {
-  let {
+export function CoerceNestController(
+  options: CoerceNestControllerOptions,
+): Rule {
+  const {
     name,
-    module,
     nestModule,
+    project,
+    feature,
+    shared,
   } = options;
-  nestModule ??= module;
   if (!nestModule) {
-    throw new SchematicsException('The property "nestModule" option is required for the CoerceNestController rule');
+    throw new SchematicsException(
+      'The property "nestModule" option is required for the CoerceNestController rule',
+    );
   }
   return chain([
-    CoerceNestServiceProject(options),
+    CoerceNestServiceProject({
+      project,
+      feature,
+      shared,
+    }),
     CoerceNestModule({
-      ...options,
+      project,
+      feature,
+      shared,
       name: nestModule,
     }),
-    tree => {
-      if (!HasNestController(tree, options)) {
-        console.log(`The project ${ buildNestProjectName(options) } has not the controller '${ name }'. The controller will now be created ...`);
-        return externalSchematic(
-          '@nrwl/nest',
-          'controller',
+    (tree) => {
+      if (
+        !HasNestController(
+          tree,
           {
+            project,
+            feature,
+            shared,
             name,
-            project: buildNestProjectName(options),
-            unitTestRunner: 'none',
-            flat: true,
-            directory: module,
-            module,
+            nestModule,
           },
+        )
+      ) {
+        console.log(
+          `The project ${ buildNestProjectName({
+            project,
+            feature,
+            shared,
+          }) } has not the controller '${ name }'. The controller will now be created ...`,
         );
+        return externalSchematic('@nx/nest', 'controller', {
+          name,
+          project: buildNestProjectName({
+            project,
+            feature,
+            shared,
+          }),
+          unitTestRunner: 'none',
+          flat: true,
+          directory: nestModule,
+          module: nestModule,
+        });
       }
-      return noop();
+      return undefined;
     },
   ]);
 }

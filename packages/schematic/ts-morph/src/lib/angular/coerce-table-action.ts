@@ -22,7 +22,7 @@ import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 
 export interface CoerceTableActionOptions extends Omit<CoerceMethodClassOptions, 'name'> {
-  actionType: string;
+  type: string;
   tableName: string;
   refresh?: boolean;
   confirm?: boolean;
@@ -36,7 +36,7 @@ export interface CoerceTableActionOptions extends Omit<CoerceMethodClassOptions,
 export function CoerceTableActionRule(options: CoerceTableActionOptions) {
   let {
     tableName,
-    actionType,
+    type,
     refresh,
     confirm,
     tooltip,
@@ -57,37 +57,37 @@ export function CoerceTableActionRule(options: CoerceTableActionOptions) {
     CoerceTableActionProviderRule(options),
     CoerceMethodClass({
       ...options,
-      name: CoerceSuffix(actionType, '-table-row-action'),
+      name: CoerceSuffix(type, '-table-row-action'),
       tsMorphTransform: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => {
 
         const tableInterfaceName = `I${ classify(tableName) }`;
 
         const optionsObj: Record<string, WriterFunctionOrValue> = {
-          type: w => w.quote(actionType),
+          type: w => w.quote(type),
           refresh: refresh ? 'true' : 'false',
           confirm: confirm ? 'true' : 'false',
-          priority: priority!.toFixed(0),
+          priority: priority.toFixed(0),
         };
 
         if (tooltip) {
-          optionsObj['tooltip'] = w => w.quote(tooltip!);
+          optionsObj.tooltip = `$localize\`${ tooltip }\``;
         }
         if (errorMessage) {
-          optionsObj['errorMessage'] = w => w.quote(errorMessage!);
+          optionsObj.errorMessage = w => w.quote(errorMessage);
         }
         if (successMessage) {
-          optionsObj['successMessage'] = w => w.quote(successMessage!);
+          optionsObj.successMessage = w => w.quote(successMessage);
         }
         if (checkFunction) {
           if (checkFunction.match(/^\([^)]+\)\s*=>/)) {
-            optionsObj['checkFunction'] = checkFunction;
+            optionsObj.checkFunction = checkFunction;
           } else {
-            optionsObj['checkFunction'] =
+            optionsObj.checkFunction =
               `(element: ${ tableInterfaceName }, index: number, array: ${ tableInterfaceName }[]) => ${ checkFunction }`;
           }
         }
 
-        CoerceDecorator(classDeclaration, 'TableActionMethod', {
+        CoerceDecorator(classDeclaration, 'TableActionMethod').set({
           arguments: [ Writers.object(optionsObj) ],
         });
         CoerceImports(sourceFile, {
@@ -103,7 +103,7 @@ export function CoerceTableActionRule(options: CoerceTableActionOptions) {
 
         return {
           statements: [
-            `console.log(\`action row type: ${ actionType }\`, parameters);`,
+            `console.log(\`action row type: ${ type }\`, parameters);`,
             `return parameters;`,
           ],
           isAsync: true,
@@ -115,7 +115,7 @@ export function CoerceTableActionRule(options: CoerceTableActionOptions) {
             },
           ],
           returnType: `Promise<unknown>`,
-          ...tsMorphTransform!(project, sourceFile, classDeclaration),
+          ...tsMorphTransform(project, sourceFile, classDeclaration),
         };
       },
     }),

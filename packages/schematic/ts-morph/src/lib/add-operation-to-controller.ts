@@ -8,6 +8,7 @@ import {
   ParameterDeclarationStructure,
   PropertyAssignment,
   Scope,
+  SourceFile,
   StatementStructures,
   WriterFunction,
   Writers,
@@ -16,11 +17,10 @@ import {
   camelize,
   capitalize,
 } from '@rxap/schematics-utilities';
-import { CoerceClassMethod } from './coerce-class-method';
-import {
-  CoerceDecorator,
-  CoerceStatements,
-} from './ts-morph/index';
+import { CoerceClassMethod } from './nest/coerce-class-method';
+import { CoerceStatements } from './ts-morph/coerce-statements';
+import { CoerceDecorator } from './ts-morph/coerce-decorator';
+import { CoerceImports } from './ts-morph/coerce-imports';
 
 export interface OperationParameter {
   name: string;
@@ -30,6 +30,9 @@ export interface OperationParameter {
   required?: boolean;
   isArray?: boolean;
 
+  /**
+   * (optional) the method parameter name. If not defined the name property will be used
+   */
   alias?: string;
 
   /**
@@ -56,6 +59,12 @@ export interface OperationOptions {
   body?: string | WriterFunction,
   statements?: (string | WriterFunction | StatementStructures)[] | string | WriterFunction;
   decorators?: OptionalKind<DecoratorStructure>[];
+  tsMorphTransform?: (
+    sourceFile: SourceFile,
+    classDeclaration: ClassDeclaration,
+    methodDeclaration: MethodDeclaration,
+    options: OperationOptions,
+  ) => {},
 }
 
 function buildMethodQueryParameters(
@@ -146,9 +155,13 @@ function buildMethodBodyParameters(body: string | WriterFunction | undefined): A
 }
 
 export function AddOperationToController(
+  sourceFile: SourceFile,
   classDeclaration: ClassDeclaration,
   name: string,
-  {
+  options: OperationOptions,
+): void {
+
+  let {
     method,
     path,
     returnType,
@@ -158,12 +171,13 @@ export function AddOperationToController(
     body,
     statements,
     decorators,
-  }: OperationOptions,
-): Array<OptionalKind<ImportDeclarationStructure>> {
+    tsMorphTransform,
+  } = options;
 
   queryList ??= [];
   paramList ??= [];
   decorators ??= [];
+  tsMorphTransform ??= () => ({});
   method ??= 'get';
   method = capitalize(method.toLowerCase());
 
@@ -218,6 +232,16 @@ export function AddOperationToController(
     if (paramList.filter(param => !param.fromParent).length) {
       path = paramList.filter(param => !param.fromParent).map(param => `:${ param.name }`).join('/');
     }
+  } else {
+    const match = path.match(/:(\w+)/g);
+    for (const param of match ?? []) {
+      if (!paramList.find(p => p.name === param.substr(1))) {
+        paramList.push({
+          name: param.substr(1),
+          type: 'string',
+        });
+      }
+    }
   }
 
   // TODO : check that all defined param in the paramList are present in the path
@@ -266,7 +290,9 @@ export function AddOperationToController(
     [ 'throw new NotImplementedException();' ],
   );
 
-  return importStructures;
+  CoerceImports(sourceFile, importStructures);
+
+  tsMorphTransform(sourceFile, classDeclaration, methodDeclaration, options);
 
 }
 
@@ -292,7 +318,8 @@ function coerceApiQueryDecorators(queryList: OperationParameter[], methodDeclara
           if (objectLiteralExpression instanceof ObjectLiteralExpression) {
             const namePropertyElement = objectLiteralExpression.getProperty('name');
             if (namePropertyElement instanceof PropertyAssignment) {
-              return namePropertyElement.getIndentationText() === query.name;
+              const name = namePropertyElement.getInitializer()?.getText().trim().replace(/^'/, '').replace(/'$/, '');
+              return name === query.name;
             }
           }
         }

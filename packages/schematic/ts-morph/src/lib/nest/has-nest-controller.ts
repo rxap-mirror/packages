@@ -13,17 +13,14 @@ export interface HasNestControllerOptions {
   feature?: string;
   shared?: boolean;
   name: string;
-  module?: string;
-  nestModule?: string;
+  nestModule: string;
 }
 
 export function HasNestController(host: Tree, options: HasNestControllerOptions) {
-  let {
+  const {
     name,
-    module,
     nestModule,
   } = options;
-  nestModule ??= module;
   if (!HasProject(host, buildNestProjectName(options))) {
     throw new SchematicsException(`The nest controller ${ name } does not exists. The project ${ buildNestProjectName(
       options) } does not exist.`);

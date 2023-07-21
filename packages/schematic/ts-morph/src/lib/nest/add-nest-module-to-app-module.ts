@@ -1,7 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import { classify } from '@rxap/schematics-utilities';
-import { TsMorphNestProjectTransform } from '../ts-morph-transform';
 import { AddNestModuleImport } from './add-nest-module-import';
+import { TsMorphNestProjectTransform } from '../ts-morph-transform';
 
 export interface AddNestModuleToAppModuleOptions {
   project: string;

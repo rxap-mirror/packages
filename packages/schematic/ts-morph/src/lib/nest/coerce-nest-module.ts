@@ -1,7 +1,6 @@
 import {
   chain,
   externalSchematic,
-  noop,
   Rule,
 } from '@angular-devkit/schematics';
 import { CoerceNestServiceProject } from './coerce-nest-service-project';
@@ -17,25 +16,53 @@ export interface CoerceNestModuleOptions {
 }
 
 export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
-  const { name } = options;
+  const {
+    name,
+    project,
+    feature,
+    shared,
+  } = options;
   return chain([
-    CoerceNestServiceProject(options),
-    tree => {
-      if (!HasNestModule(tree, options)) {
-        console.log(`The project '${ buildNestProjectName(options) }' has not the module '${ name }'. The module will now be created ...`);
+    CoerceNestServiceProject({
+      project,
+      feature,
+      shared,
+    }),
+    (tree) => {
+      if (!HasNestModule(
+        tree,
+        {
+          project,
+          feature,
+          shared,
+          name,
+        },
+      )) {
+        console.log(
+          `The project '${ buildNestProjectName({
+            project,
+            feature,
+            shared,
+          }) }' has not the module '${ name }'. The module will now be created ...`,
+        );
         return chain([
-          externalSchematic(
-            '@nrwl/nest',
-            'module',
-            {
-              name,
-              project: buildNestProjectName(options),
-            },
-          ),
-          AddNestModuleToAppModule(options),
+          externalSchematic('@nx/nest', 'module', {
+            name,
+            project: buildNestProjectName({
+              project,
+              feature,
+              shared,
+            }),
+          }),
+          AddNestModuleToAppModule({
+            project,
+            feature,
+            shared,
+            name,
+          }),
         ]);
       }
-      return noop();
+      return undefined;
     },
   ]);
 }

@@ -8,16 +8,25 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import { CoerceSuffix } from '@rxap/schematics-utilities';
-import { CoerceImports } from './ts-morph/index';
 import { CoerceClass } from './coerce-class';
+import { CoerceSuffix } from '@rxap/schematics-utilities';
+import { CoerceImports } from './ts-morph/coerce-imports';
 
 export interface DtoClassProperty {
   name: string,
+  /**
+   * The type of the property
+   *
+   * if type = '<self>' the type will be the name of the class
+   */
   type: string | WriterFunction,
   isArray?: boolean,
   isType?: boolean,
   isOptional?: boolean,
+  /**
+   * Use to import the type
+   */
+  moduleSpecifier?: string,
 }
 
 export function CreateDtoClass(
@@ -58,6 +67,10 @@ export function CreateDtoClass(
           moduleSpecifier: 'class-validator',
         },
       );
+    }
+    if (property.type === '<self>') {
+      property.type = className;
+      property.isType = true;
     }
     if (property.isType) {
       decorators.push({

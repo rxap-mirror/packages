@@ -3,22 +3,19 @@ import {
   CoerceTableActionRule,
 } from './coerce-table-action';
 import { CoerceClassConstructor } from '@rxap/schematics-ts-morph';
-import {
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
-} from '../utilities';
 import { Scope } from 'ts-morph';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import {
+  classify,
+  dasherize,
+} from '@rxap/schematics-utilities';
 
-export interface CoerceOperationTableActionRuleOptions extends CoerceTableActionOptions {
-  operationId: string;
-}
+export type CoerceDialogTableActionRuleOptions = CoerceTableActionOptions
 
-export function CoerceOperationTableActionRule(options: CoerceOperationTableActionRuleOptions) {
+export function CoerceDialogTableActionRule(options: CoerceDialogTableActionRuleOptions) {
   let {
     tsMorphTransform,
-    operationId,
     tableName,
     type,
   } = options;
@@ -31,23 +28,30 @@ export function CoerceOperationTableActionRule(options: CoerceOperationTableActi
 
       const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
 
-      CoerceParameterDeclaration(constructorDeclaration, 'method').set({
-        type: OperationIdToClassName(operationId),
+      CoerceParameterDeclaration(constructorDeclaration, 'dialog').set({
+        type: 'MatDialog',
         isReadonly: true,
         scope: Scope.Private,
       });
 
       CoerceImports(sourceFile, {
-        namedImports: [ OperationIdToClassName(operationId) ],
-        moduleSpecifier: OperationIdToClassImportPath(operationId),
+        namedImports: [ 'MatDialog' ],
+        moduleSpecifier: '@angular/material/dialog',
+      });
+
+      CoerceImports(sourceFile, {
+        namedImports: [ `${ classify(type) }DialogComponent` ],
+        moduleSpecifier: `../../${ dasherize(type) }-dialog/${ dasherize(type) }-dialog.component`,
       });
 
       return {
         statements: [
           `console.log(\`action row type: ${ type }\`, parameters);`,
-          `const { __rowId: rowId } = parameters;`,
-          `if (!rowId) { throw new Error('The table action ${ type } is called with a row object that does not have the property rowId.'); }`,
-          `return this.method.call({ parameters: { rowId } });`,
+          `const ref = this.dialog.open(`,
+          `  ${ classify(type) }DialogComponent,`,
+          `  { data: parameters }`,
+          ');',
+          'return firstValueFrom(ref.afterClosed());',
         ],
         returnType: `Promise<void>`,
         ...tsMorphTransform(project, sourceFile, classDeclaration),

@@ -3,17 +3,17 @@ import {
   CoerceProxyRemoteMethodClassOptions,
 } from './coerce-proxy-remote-method-class';
 import {
+  OperationIdToClassImportPath,
+  OperationIdToClassName,
+  OperationIdToParameterClassImportPath,
+  OperationIdToParameterClassName,
+} from '../utilities';
+import {
   ClassDeclaration,
   Project,
   SourceFile,
 } from 'ts-morph';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import {
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
-  OperationIdToParameterClassImportPath,
-  OperationIdToParameterClassName,
-} from '../operation-id-utilities';
 
 export interface CoerceTreeTableRootProxyRemoteMethodClassOptions
   extends Omit<Omit<Omit<Omit<CoerceProxyRemoteMethodClassOptions, 'name'>, 'sourceType'>, 'targetType'>, 'proxyMethod'> {
@@ -39,7 +39,7 @@ export function CoerceTreeTableRootProxyRemoteMethodClass(options: CoerceTreeTab
       });
       CoerceImports(sourceFile, {
         namedImports: [ 'Node' ],
-        moduleSpecifier: '@rxap/rxjs',
+        moduleSpecifier: '@rxap/utilities/rxjs',
       });
       CoerceImports(sourceFile, {
         namedImports: [ 'OpenApiRemoteMethodParameter' ],
@@ -49,7 +49,7 @@ export function CoerceTreeTableRootProxyRemoteMethodClass(options: CoerceTreeTab
         namedImports: [ OperationIdToParameterClassName(getRootOperationId) ],
         moduleSpecifier: OperationIdToParameterClassImportPath(getRootOperationId),
       });
-      return tsMorphTransform!(project, sourceFile, classDeclaration);
+      return tsMorphTransform(project, sourceFile, classDeclaration);
     },
   });
 }

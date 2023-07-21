@@ -1,10 +1,9 @@
+import { OperationParameter } from '../add-operation-to-controller';
+import { DtoClassProperty } from '../create-dto-class';
 import { CoerceDtoClass } from './coerce-dto-class';
 import { CoerceOperation } from './coerce-operation';
 import { CoerceSuffix } from '@rxap/schematics-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { OperationParameter } from '../add-operation-to-controller';
-import { DtoClassProperty } from '../create-dto-class';
-import { SchematicsException } from '@angular-devkit/schematics';
 
 export interface CoerceGetByIdControllerOptions {
   name?: string;
@@ -26,11 +25,14 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
     name,
     controllerName,
     nestController,
+    project,
     isArray,
     module,
     nestModule,
     paramList,
     propertyList,
+    feature,
+    shared,
   } = options;
 
   nestModule ??= module;
@@ -72,24 +74,18 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
   }
 
   if (!paramList.some(param => param.name === 'uuid')) {
-    if (!nestModule) {
-      throw new SchematicsException('Could not determine the nest module name');
-    }
     paramList.push({
       name: 'uuid',
       type: 'string',
-      alias: isFirstBornSibling ? undefined : CoerceSuffix(nestModule, '-uuid'),
+      alias: isFirstBornSibling ? undefined : CoerceSuffix(nestModule!, '-uuid'),
       fromParent: !isFirstBornSibling,
     });
   }
 
   return CoerceOperation({
     ...options,
-    module: nestModule,
     nestModule,
-    name: controllerName,
-    nestController: controllerName,
-    controllerName,
+    controllerName: controllerName!,
     paramList,
     operationName: 'getById',
     tsMorphTransform: (

@@ -2,8 +2,10 @@ import {
   TsMorphAngularProjectTransform,
   TsMorphAngularProjectTransformOptions,
 } from '../ts-morph-transform';
-import { CoerceSourceFile } from '../coerce-source-file';
-import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
+import {
+  CoerceSourceFile,
+  CoerceVariableDeclaration,
+} from '@rxap/schematics-ts-morph';
 
 export type CoerceTableActionIndexOptions = TsMorphAngularProjectTransformOptions
 

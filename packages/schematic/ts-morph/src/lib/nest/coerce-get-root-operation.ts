@@ -8,29 +8,18 @@ import {
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { SchematicsException } from '@angular-devkit/schematics';
 
 export type CoerceGetRootOperationOptions = Omit<CoerceOperationOptions, 'operationName'>
 
 export function CoerceGetRootOperation(options: Readonly<CoerceGetRootOperationOptions>) {
   let {
     tsMorphTransform,
-    name,
     controllerName,
-    nestController,
   } = options;
   tsMorphTransform ??= () => ({});
-  controllerName ??= nestController;
-  controllerName ??= name;
-  if (!controllerName) {
-    throw new SchematicsException('No controller name provided!');
-  }
   controllerName = CoerceSuffix(controllerName, '-tree-table');
   return CoerceOperation({
     ...options,
-    // TODO : remove after migration to controllerName
-    name: controllerName,
-    nestController: controllerName,
     controllerName,
     operationName: 'get-root',
     tsMorphTransform: (

@@ -2,11 +2,18 @@ import {
   chain,
   noop,
   Rule,
-  SchematicsException,
 } from '@angular-devkit/schematics';
+import {
+  AddOperationToController,
+  OperationOptions,
+  OperationParameter,
+} from '../add-operation-to-controller';
 import { CoerceNestModule } from './coerce-nest-module';
 import { CoerceNestController } from './coerce-nest-controller';
-import { TsMorphNestProjectTransform } from '../ts-morph-transform';
+import {
+  TsMorphNestProjectTransform,
+  TsMorphNestProjectTransformOptions,
+} from '../ts-morph-transform';
 import { classify } from '@rxap/schematics-utilities';
 import {
   ClassDeclaration,
@@ -14,27 +21,10 @@ import {
   SourceFile,
 } from 'ts-morph';
 import { BuildNestControllerName } from './build-nest-controller-name';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import {
-  AddOperationToController,
-  OperationOptions,
-  OperationParameter,
-} from '../add-operation-to-controller';
 
-export interface CoerceOperationOptions {
-  /**
-   * @deprecated use controllerName instead
-   */
-  name?: string;
-  controllerName?: string;
-  nestController?: string;
-  project: string;
-  feature?: string;
+export interface CoerceOperationOptions extends TsMorphNestProjectTransformOptions {
+  controllerName: string;
   shared?: boolean;
-  /**
-   * @deprecated use nestModule instead
-   */
-  module?: string;
   nestModule?: string;
   skipCoerce?: boolean;
   paramList?: OperationParameter[],
@@ -48,16 +38,31 @@ export interface CoerceOperationOptions {
   operationName: string,
   path?: string,
   controllerPath?: string,
+  /**
+   * true - the control path is overwritten with
+   */
+  overwriteControllerPath?: boolean;
+  context?: string;
+  bodyDtoName?: string;
+  responseDtoName?: string;
+}
+
+export function CoerceOperationParamList(paramList: OperationParameter[], classDeclaration: ClassDeclaration) {
+  const currentControllerPath = classDeclaration.getDecoratorOrThrow('Controller').getArguments()[0].getText();
+  const fragments = currentControllerPath.split('/');
+  const parameters = fragments.filter(fragment => fragment.startsWith(':'));
+  for (const parameter of parameters) {
+    if (!paramList.some(param => param.name === parameter.substr(1))) {
+      paramList.push({ name: parameter.substr(1) });
+    }
+  }
 }
 
 export function CoerceOperation(options: CoerceOperationOptions): Rule {
   let {
     nestModule,
-    nestController,
     controllerName,
-    name,
     project,
-    module,
     paramList,
     feature,
     shared,
@@ -67,12 +72,10 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
     controllerPath,
     queryList,
     path,
+    overwriteControllerPath,
   } = options;
 
-  nestModule ??= module;
   tsMorphTransform ??= () => ({});
-  controllerName ??= name;
-  controllerName ??= nestController;
   paramList ??= [];
   queryList ??= [];
 
@@ -97,41 +100,36 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
    */
   const isFirstBornSibling = !nestModule || nestModule === controllerName;
 
-  controllerName = BuildNestControllerName({
+  const nestController = BuildNestControllerName({
     controllerName,
     nestModule,
   });
 
   if (isFirstBornSibling) {
-    nestModule = controllerName;
-  }
-
-  console.log(`Coerce Operation '${ operationName }' with path '${ path }' in the controller '${ controllerName }' in the module '${ nestModule }'`);
-
-  if (!nestModule) {
-    throw new SchematicsException('FATAL: the nestModule property is not defined');
+    nestModule = nestController;
   }
 
   return chain([
+    () => console.log(`Coerce Operation '${ operationName }' with path '${ path }' in the controller '${ nestController }' in the module '${ nestModule }'`),
     skipCoerce ? noop() : chain([
       CoerceNestModule({
         project,
         feature,
         shared,
-        name: nestModule,
+        name: nestModule!,
       }),
       CoerceNestController({
         ...options,
-        name: controllerName,
-        module: nestModule,
+        name: nestController,
+        nestModule: nestModule!,
       }),
     ]),
     TsMorphNestProjectTransform(options, project => {
 
-      const sourceFile = project.getSourceFileOrThrow(`/${ nestModule }/${ controllerName }.controller.ts`);
-      const classDeclaration = sourceFile.getClassOrThrow(`${ classify(controllerName!) }Controller`);
+      const sourceFile = project.getSourceFileOrThrow(`/${ nestModule }/${ nestController }.controller.ts`);
+      const classDeclaration = sourceFile.getClassOrThrow(`${ classify(nestController) }Controller`);
 
-      const operationOptions = tsMorphTransform!(project, sourceFile, classDeclaration, controllerName!);
+      const operationOptions = tsMorphTransform!(project, sourceFile, classDeclaration, nestController);
 
       if (controllerPath) {
         classDeclaration.getDecoratorOrThrow('Controller').set({
@@ -148,7 +146,10 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
         });
       }
 
-      CoerceImports(sourceFile, AddOperationToController(
+      CoerceOperationParamList(paramList!, classDeclaration);
+
+      AddOperationToController(
+        sourceFile,
         classDeclaration,
         operationName,
         {
@@ -158,7 +159,7 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
           path,
           ...operationOptions,
         },
-      ));
+      );
 
     }),
   ]);

@@ -10,11 +10,13 @@ import {
   SourceFile,
   Writers,
 } from 'ts-morph';
+import {
+  CoerceClass,
+  CoerceSourceFile,
+} from '@rxap/schematics-ts-morph';
 import { classify } from '@rxap/schematics-utilities';
 import { SchematicsException } from '@angular-devkit/schematics';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
-import { CoerceSourceFile } from '../coerce-source-file';
-import { CoerceClass } from '../coerce-class';
 
 export interface CoerceComponentClassRuleOptions extends TsMorphAngularProjectTransformOptions {
   componentName: string;
@@ -34,9 +36,10 @@ export function CoerceComponentClassRule(options: Readonly<CoerceComponentClassR
     selector,
     tsMorphTransform,
   } = options;
-  tsMorphTransform ??= () => undefined;
+  tsMorphTransform ??= () => {
+  };
 
-  return TsMorphAngularProjectTransform(options, (project: Project) => {
+  return TsMorphAngularProjectTransform(options, (project) => {
 
     const sourceFile = CoerceSourceFile(project, `/${ componentName }.component.ts`);
     const classDeclaration = CoerceClass(

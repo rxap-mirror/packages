@@ -9,21 +9,20 @@ import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
-import { CoerceClassMethod } from '../coerce-class-method';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceSourceFile } from '../coerce-source-file';
-import { CoerceClass } from '../coerce-class';
-import { TsMorphAngularProjectTransform } from '../ts-morph-transform';
 import {
-  AddMethodClass,
-  AddMethodClassOptions,
-} from '../add-method-class';
+  TsMorphAngularProjectTransform,
+  TsMorphAngularProjectTransformOptions,
+} from '../ts-morph-transform';
+import {
+  CoerceClass,
+  CoerceSourceFile,
+} from '@rxap/schematics-ts-morph';
+import { CoerceClassMethod } from '../nest/coerce-class-method';
+import { CoerceImports } from '../ts-morph/coerce-imports';
 
-export interface CoerceMethodClassOptions {
+export interface CoerceMethodClassOptions extends TsMorphAngularProjectTransformOptions {
   name: string;
-  project: string;
-  feature: string;
-  directory?: string;
+  override?: boolean;
   tsMorphTransform?: (
     project: Project,
     sourceFile: SourceFile,
@@ -31,24 +30,9 @@ export interface CoerceMethodClassOptions {
   ) => Partial<Omit<OptionalKind<MethodDeclarationStructure>, 'name'>>;
 }
 
-export function CoerceMethodClassLegacy(
-  sourceFile: SourceFile,
-  name: string,
-  options: AddMethodClassOptions = {},
-) {
-
-  name = CoerceSuffix(name, 'Method');
-
-  const hasClass = !!sourceFile.getClass(name);
-
-  if (!hasClass) {
-    AddMethodClass(sourceFile, name, options);
-  }
-
-}
-
 export function CoerceMethodClass(options: CoerceMethodClassOptions) {
   let {
+    override,
     name,
     tsMorphTransform,
   } = options;
@@ -69,14 +53,14 @@ export function CoerceMethodClass(options: CoerceMethodClassOptions) {
       implements: [ 'Method' ],
     });
     CoerceImports(sourceFile, {
-      moduleSpecifier: '@rxap/rxjs',
+      moduleSpecifier: '@rxap/utilities/rxjs',
       namedImports: [ 'Method' ],
     });
     CoerceImports(sourceFile, {
       moduleSpecifier: '@angular/core',
       namedImports: [ 'Injectable' ],
     });
-    const methodStructure = tsMorphTransform!(project, sourceFile, classDeclaration);
+    const methodStructure = tsMorphTransform(project, sourceFile, classDeclaration);
     methodStructure.parameters ??= [
       {
         name: 'parameters',
@@ -85,6 +69,9 @@ export function CoerceMethodClass(options: CoerceMethodClassOptions) {
       },
     ];
     methodStructure.returnType ??= 'any';
-    CoerceClassMethod(classDeclaration, 'call', methodStructure);
+    const methodDeclaration = CoerceClassMethod(classDeclaration, 'call', methodStructure);
+    if (override) {
+      methodDeclaration.set(methodStructure);
+    }
   });
 }

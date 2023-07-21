@@ -2,6 +2,7 @@ import {
   CoerceTableActionOptions,
   CoerceTableActionRule,
 } from './coerce-table-action';
+import { CoerceClassConstructor } from '@rxap/schematics-ts-morph';
 import {
   Scope,
   StatementStructures,
@@ -9,7 +10,6 @@ import {
 } from 'ts-morph';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
 
 export interface CoerceLinkTableActionRuleOptions extends CoerceTableActionOptions {
   route?: string;
@@ -38,7 +38,7 @@ export function CoerceNavigationTableActionRule(options: CoerceLinkTableActionRu
   let {
     tsMorphTransform,
     tableName,
-    actionType,
+    type,
     route,
   } = options;
   tsMorphTransform ??= () => ({});
@@ -65,16 +65,16 @@ export function CoerceNavigationTableActionRule(options: CoerceLinkTableActionRu
         scope: Scope.Private,
       });
 
-      const properties = extractAllProperties(route!);
+      const properties = extractAllProperties(route);
 
       const statements: (string | WriterFunction | StatementStructures)[] = [];
-      statements.push(`console.log(\`action row type: ${ actionType }\`, parameters);`);
+      statements.push(`console.log(\`action row type: ${ type }\`, parameters);`);
       if (properties.length) {
         statements.push(`const { ${ properties.join(', ') } } = parameters;`);
         for (const property of properties) {
-          statements.push(`if (!${ property }) { throw new Error('The table action ${ actionType } is called with a row object that does not have the property ${ property }.'); }`);
+          statements.push(`if (!${ property }) { throw new Error('The table action ${ type } is called with a row object that does not have the property ${ property }.'); }`);
         }
-        statements.push(`return this.router.navigate([ \`${ buildDynamicRoute(route!) }\` ], { relativeTo: this.route } );`);
+        statements.push(`return this.router.navigate([ \`${ buildDynamicRoute(route) }\` ], { relativeTo: this.route } );`);
       } else {
         statements.push(`return this.router.navigate([ '${ route }' ], { relativeTo: this.route } );`);
       }
@@ -83,7 +83,7 @@ export function CoerceNavigationTableActionRule(options: CoerceLinkTableActionRu
         statements,
         scope: Scope.Public,
         returnType: 'Promise<any>',
-        ...tsMorphTransform!(project, sourceFile, classDeclaration),
+        ...tsMorphTransform(project, sourceFile, classDeclaration),
       };
     },
   });

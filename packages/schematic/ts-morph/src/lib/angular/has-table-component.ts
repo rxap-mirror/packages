@@ -3,14 +3,14 @@ import { HasComponent } from './has-component';
 import { BuildAngularBasePath } from './build-angular-base-path';
 import { join } from 'path';
 
-export interface HasTableComponentOptions {
+export interface HasComponentOptions {
   project: string;
   feature: string;
   name: string;
   directory?: string;
 }
 
-export function HasTableComponent(host: Tree, options: HasTableComponentOptions) {
+export function HasTableComponent(host: Tree, options: HasComponentOptions) {
   const { name } = options;
   if (!HasComponent(host, options)) {
     return false;

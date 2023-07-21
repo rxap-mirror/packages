@@ -1,5 +1,4 @@
 import {
-  noop,
   Rule,
   schematic,
 } from '@angular-devkit/schematics';
@@ -26,6 +25,5 @@ export function CoerceProjectFeature(options: CoerceProjectFeatureOptions): Rule
         },
       );
     }
-    return noop();
   };
 }

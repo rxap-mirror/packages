@@ -1,5 +1,4 @@
 import {
-  noop,
   Rule,
   schematic,
 } from '@angular-devkit/schematics';
@@ -49,6 +48,6 @@ export function CoerceNestServiceProject(options: CoerceNestServiceProjectOption
         );
       }
     }
-    return noop();
+    return undefined;
   };
 }

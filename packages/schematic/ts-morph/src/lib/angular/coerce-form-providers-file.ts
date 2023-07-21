@@ -3,6 +3,7 @@ import {
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
 import { TsMorphAngularProjectTransform } from '../ts-morph-transform';
+import { CoerceSourceFile } from '@rxap/schematics-ts-morph';
 import { CoerceFunction } from '../ts-morph/coerce-function';
 import { Writers } from 'ts-morph';
 import { CoerceFormBuilderProvider } from './coerce-form-builder-provider';
@@ -10,7 +11,6 @@ import { CoerceFormProvider } from './coerce-form-provider';
 import { CoerceFormComponentProvider } from './coerce-form-component-provider';
 import { CoerceStatements } from '../ts-morph/coerce-statements';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceSourceFile } from '../coerce-source-file';
 
 export interface CoerceFormProvidersFileOptions {
   project: string;

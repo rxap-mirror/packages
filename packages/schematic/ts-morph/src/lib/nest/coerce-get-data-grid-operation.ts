@@ -2,11 +2,10 @@ import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
+import { DtoClassProperty } from '../create-dto-class';
 import { CoerceDtoClass } from './coerce-dto-class';
 import { CoerceSuffix } from '@rxap/schematics-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { DtoClassProperty } from '../create-dto-class';
-import { SchematicsException } from '@angular-devkit/schematics';
 
 export interface CoerceGetDataGridOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
   collection?: boolean;
@@ -19,25 +18,15 @@ export function CoerceGetDataGridOperation(options: Readonly<CoerceGetDataGridOp
     collection,
     propertyList,
     controllerName,
-    nestController,
-    name,
   } = options;
   collection ??= false;
   tsMorphTransform ??= () => ({});
   propertyList ??= [];
-  controllerName ??= nestController;
-  controllerName ??= name;
-  if (!controllerName) {
-    throw new SchematicsException('No controller name provided!');
-  }
   controllerName =
     CoerceSuffix(controllerName, '-data-grid');
 
   return CoerceOperation({
     ...options,
-    // TODO : remove after migration to controllerName
-    name: controllerName,
-    nestController: controllerName,
     controllerName,
     operationName: 'get',
     tsMorphTransform: (

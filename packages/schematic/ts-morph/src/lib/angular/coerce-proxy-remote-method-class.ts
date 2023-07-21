@@ -9,18 +9,20 @@ import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
-import { TsMorphAngularProjectTransform } from '../ts-morph-transform';
+import {
+  TsMorphAngularProjectTransform,
+  TsMorphAngularProjectTransformOptions,
+} from '../ts-morph-transform';
+import {
+  CoerceClass,
+  CoerceSourceFile,
+} from '@rxap/schematics-ts-morph';
+import { CoerceClassMethod } from '../nest/coerce-class-method';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceClassMethod } from '../coerce-class-method';
-import { CoerceSourceFile } from '../coerce-source-file';
-import { CoerceClass } from '../coerce-class';
 
-export interface CoerceProxyRemoteMethodClassOptions {
+export interface CoerceProxyRemoteMethodClassOptions extends TsMorphAngularProjectTransformOptions {
   name: string;
-  project: string;
-  feature: string;
-  shared: boolean;
-  directory: string;
+  override?: boolean;
   tsMorphTransform?: (
     project: Project,
     sourceFile: SourceFile,
@@ -33,6 +35,7 @@ export interface CoerceProxyRemoteMethodClassOptions {
 
 export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodClassOptions) {
   let {
+    override,
     name,
     tsMorphTransform,
     sourceType,
@@ -91,7 +94,7 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
       },
     });
     CoerceImports(sourceFile, {
-      moduleSpecifier: '@rxap/rxjs',
+      moduleSpecifier: '@rxap/utilities/rxjs',
       namedImports: [ 'Method' ],
     });
     CoerceImports(sourceFile, {
@@ -102,7 +105,7 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
       moduleSpecifier: '@rxap/remote-method',
       namedImports: [ 'RxapRemoteMethod', 'ProxyRemoteMethod' ],
     });
-    const methodStructure = tsMorphTransform!(project, sourceFile, classDeclaration);
+    const methodStructure = tsMorphTransform(project, sourceFile, classDeclaration);
     methodStructure.parameters ??= [
       {
         name: 'source',
@@ -121,6 +124,9 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
       w.write('>');
     };
     methodStructure.isAsync ??= true;
-    CoerceClassMethod(classDeclaration, 'transformParameters', methodStructure);
+    const methodDeclaration = CoerceClassMethod(classDeclaration, 'transformParameters', methodStructure);
+    if (override) {
+      methodDeclaration.set(methodStructure);
+    }
   });
 }
