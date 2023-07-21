@@ -5,7 +5,9 @@
   "prefix": "rxap",
   "tags": [
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "data-source"
   ],
   "projectType": "library",
   "targets": {
@@ -70,7 +72,9 @@
           "packages/angular/data-source/directive/**/*.ts",
           "packages/angular/data-source/directive/**/*.html",
           "packages/angular/data-source/testing/**/*.ts",
-          "packages/angular/data-source/testing/**/*.html"
+          "packages/angular/data-source/testing/**/*.html",
+          "packages/angular/data-source/accordion/**/*.ts",
+          "packages/angular/data-source/accordion/**/*.html"
         ]
       }
     },
@@ -92,6 +96,20 @@
         "generator": "@rxap/plugin-library:fix-dependencies",
         "options": {
           "strict": true
+        }
+      }
+    },
+    "component-test": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "packages/angular/data-source/cypress.config.ts",
+        "testingType": "component",
+        "skipServe": true,
+        "devServerTarget": "angular:build:development"
+      },
+      "configurations": {
+        "open": {
+          "watch": true
         }
       }
     }

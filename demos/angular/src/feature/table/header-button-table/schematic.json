@@ -1,0 +1,53 @@
+[
+  {
+    "package": "@rxap/schematic-angular",
+    "name": "table-component",
+    "options": {
+      "name": "header-button",
+      "tableMethod": {
+        "className": "DummyTableMethod",
+        "importPath": "../dummy-table.method"
+      },
+      "headerButton": {
+        "role": "form",
+        "icon": "add"
+      },
+      "columnList": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "age",
+          "type": "number"
+        },
+        {
+          "name": "isActive",
+          "type": "boolean"
+        },
+        {
+          "name": "email"
+        },
+        {
+          "name": "rating",
+          "type": "number"
+        },
+        {
+          "name": "accountStatus"
+        }
+      ]
+    }
+  },
+  {
+    "package": "@rxap/schematic-angular",
+    "name": "form-component",
+    "options": {
+      "name": "table-header-button",
+      "directory": "header-button-table",
+      "controlList": [
+        {
+          "name": "name"
+        }
+      ]
+    }
+  }
+]

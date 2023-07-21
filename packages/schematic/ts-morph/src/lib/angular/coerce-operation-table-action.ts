@@ -1,18 +1,19 @@
+import { Scope } from 'ts-morph';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
+import {
+  OperationIdToClassImportPath,
+  OperationIdToClassName,
+} from '../nest/operation-id-utilities';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import {
   CoerceTableActionOptions,
   CoerceTableActionRule,
 } from './coerce-table-action';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
-import { Scope } from 'ts-morph';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import {
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
-} from '../operation-id-utilities';
 
 export interface CoerceOperationTableActionRuleOptions extends CoerceTableActionOptions {
   operationId: string;
+  scope: string;
 }
 
 export function CoerceOperationTableActionRule(options: CoerceOperationTableActionRuleOptions) {
@@ -21,6 +22,7 @@ export function CoerceOperationTableActionRule(options: CoerceOperationTableActi
     operationId,
     tableName,
     type,
+    scope,
   } = options;
   tsMorphTransform ??= () => ({});
 
@@ -39,7 +41,7 @@ export function CoerceOperationTableActionRule(options: CoerceOperationTableActi
 
       CoerceImports(sourceFile, {
         namedImports: [ OperationIdToClassName(operationId) ],
-        moduleSpecifier: OperationIdToClassImportPath(operationId),
+        moduleSpecifier: OperationIdToClassImportPath(operationId, scope),
       });
 
       return {

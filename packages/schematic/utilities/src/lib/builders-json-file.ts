@@ -3,16 +3,16 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
+import { BuildersJson } from '@rxap/workspace-utilities';
 import { join } from 'path';
-import { BuildersJson } from './builders-json';
 import {
   GetProjectPackageJson,
   GetProjectRoot,
 } from './get-project';
 import {
   GetJsonFile,
-  UpdateJsonFile,
   UpdateJsonFileOptions,
+  UpdateJsonFileRule,
 } from './json-file';
 
 export enum BuildersJsonType {
@@ -90,7 +90,7 @@ export function UpdateBuildersJson(
       options.create,
     );
 
-    return UpdateJsonFile(updater, buildersJsonFilePath, options);
+    return UpdateJsonFileRule(updater, buildersJsonFilePath, options);
 
   };
 }

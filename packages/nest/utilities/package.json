@@ -18,7 +18,9 @@
   },
   "keywords": [
     "rxap",
-    "nest"
+    "nest",
+    "packages",
+    "utilities"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/utilities",
   "bugs": {

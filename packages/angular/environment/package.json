@@ -16,7 +16,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "environment"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/environment",
   "bugs": {

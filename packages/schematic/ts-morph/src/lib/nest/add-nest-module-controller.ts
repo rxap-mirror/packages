@@ -6,7 +6,7 @@ import {
 import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-literal-form-object-literal';
 import { GetNestModuleMetadata } from './get-nest-module-metadata';
 import { AddNestProviderToArray } from './add-nest-provider-to-array';
-import { CoerceImports } from '../ts-morph/index';
+import { CoerceImports } from '../ts-morph/coerce-imports';
 
 export function AddNestModuleController(
   sourceFile: SourceFile,

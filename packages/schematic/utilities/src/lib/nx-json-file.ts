@@ -1,9 +1,9 @@
 import { Tree } from '@angular-devkit/schematics';
-import { NxJson } from './nx-json';
+import { NxJson } from '@rxap/workspace-utilities';
 import {
   GetJsonFile,
-  UpdateJsonFile,
   UpdateJsonFileOptions,
+  UpdateJsonFileRule,
 } from './json-file';
 
 export function GetNxJson(host: Tree): NxJson {
@@ -12,9 +12,9 @@ export function GetNxJson(host: Tree): NxJson {
 
 export type UpdateNxJsonOptions = UpdateJsonFileOptions
 
-export function UpdateNxJson(
+export function UpdateNxJsonRule(
   updaterOrJsonFile: NxJson | ((nxJson: NxJson) => void | PromiseLike<void>),
   options?: UpdateNxJsonOptions,
 ) {
-  return UpdateJsonFile(updaterOrJsonFile, 'nx.json', options);
+  return UpdateJsonFileRule(updaterOrJsonFile, 'nx.json', options);
 }

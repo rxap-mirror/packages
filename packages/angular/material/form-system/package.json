@@ -28,7 +28,10 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "material",
+    "form-system"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/material/form-system",
   "bugs": {

@@ -1,0 +1,54 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { <%= classify(name) %>DataSource } from './<%= name %>.data-source';
+import { ACCORDION_DATA_SOURCE } from '@rxap/data-source/accordion';
+import { CommonModule } from '@angular/common';
+<% for (const item of itemList) { %>
+import { <%= classify(item.name) %>PanelComponent } from './<%= item.name %>-panel/<%= item.name %>-panel.component';
+<% } %>
+import { DataSourceDirective } from '@rxap/data-source/directive';
+import { NavigateBackButtonComponent } from '@rxap/components';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { PersistentAccordionDirective } from '@rxap/material-directives/expansion';
+import { DataSourceErrorComponent } from '@rxap/data-source';
+import { AccordionHeaderComponent } from './accordion-header/accordion-header.component';
+
+
+@Component({
+  selector: '<%= prefix %>-<%= componentName %>',
+  templateUrl: './<%= componentName %>.component.html',
+  styleUrls: [ './<%= componentName %>.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    <% for (const item of itemList) { %>
+    <%= classify(item.name) %>PanelComponent,
+    <% } %>
+    DataSourceErrorComponent,
+    DataSourceDirective,
+    NavigateBackButtonComponent,
+    MatProgressBarModule,
+    MatDividerModule,
+    MatExpansionModule,
+    PersistentAccordionDirective,
+    CommonModule,
+    AccordionHeaderComponent,
+  ],
+  providers: [
+    <%= classify(name) %>DataSource,
+    {
+      provide: ACCORDION_DATA_SOURCE,
+      useExisting: <%= classify(name) %>DataSource
+    },
+  ],
+})
+export class <%= classify(componentName) %>Component {
+
+  constructor(
+    public readonly accordionDataSource: <%= classify(name) %>DataSource,
+  ) {}
+
+}
+
+export default <%= classify(componentName) %>Component

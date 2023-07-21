@@ -30,7 +30,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "layout"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/layout",
   "bugs": {

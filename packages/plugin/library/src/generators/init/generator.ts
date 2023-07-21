@@ -1,59 +1,47 @@
 import {
   generateFiles,
   getProjects,
-  NxJsonConfiguration,
   ProjectConfiguration,
   readJson,
   readNxJson,
-  readProjectConfiguration,
   Tree,
   updateNxJson,
   updateProjectConfiguration,
   writeJson,
 } from '@nx/devkit';
-import { InitGeneratorSchema } from './schema';
+import {
+  CoerceFile,
+  CoerceIgnorePattern,
+  CoerceProjectTags,
+  GetBuildOutputForProject,
+  SkipNonLibraryProject,
+} from '@rxap/generator-utilities';
+import { AngularInitGenerator } from '@rxap/plugin-angular';
+import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
   join,
   relative,
 } from 'path';
-import {
-  CoerceFile,
-  CoerceIgnorePattern,
-  VisitTree,
-} from '@rxap/generator-utilities';
-import { ProjectPackageJson } from '@rxap/plugin-utilities';
-import { cypressComponentConfiguration } from '@nx/angular/generators';
+import { InitGeneratorSchema } from './schema';
 
-function getBuildOutputForProject(project: ProjectConfiguration, workspaceRoot: string) {
-  if (!project.targets.build) {
-    throw new Error(`The project ${ project.name } has no build target. Can not determine the build output path.`);
-  }
-  const outputs = project.targets.build.outputs;
-  if (!outputs || !outputs.length) {
-    throw new Error(`The project ${ project.name } has no build outputs. Can not determine the build output path.`);
-  }
-  const [ output ] = outputs;
-  return output
-    .replace('{workspaceRoot}', workspaceRoot)
-    .replace('{projectRoot}', project.root)
-    .replace(/\{options\.(.+)}/, (_, option) => project.targets.build.options[option]);
-}
 
-function setGeneralTargetDefaults(nxJson: NxJsonConfiguration) {
+function setGeneralTargetDefaults(tree: Tree) {
+  const nxJson = readNxJson(tree);
   nxJson.targetDefaults ??= {};
 
   // region build
   nxJson.targetDefaults['build'] ??= { dependsOn: [ '^build' ] };
-  if (!nxJson.targetDefaults['build'].dependsOn
-                                     .find(dependsOn => typeof dependsOn ===
-                                       'object' &&
-                                       dependsOn.target ===
-                                       'readme')) {
-    nxJson.targetDefaults['build'].dependsOn
-                                  .push({
-                                    target: 'readme',
-                                    projects: 'self',
-                                  });
+  if (
+    !nxJson.targetDefaults['build']
+      .dependsOn
+      .find(dependsOn => typeof dependsOn === 'object' && dependsOn.target === 'readme')
+  ) {
+    nxJson.targetDefaults['build']
+      .dependsOn
+      .push({
+        target: 'readme',
+        projects: 'self',
+      });
   }
   // endregion
 
@@ -71,6 +59,8 @@ function setGeneralTargetDefaults(nxJson: NxJsonConfiguration) {
   ];
   nxJson.targetDefaults['readme'].outputs = [ '{projectRoot}/README.md' ];
   // endregion
+
+  updateNxJson(tree, nxJson);
 
 }
 
@@ -96,21 +86,15 @@ function updateProjectPackageJson(
   }
   packageJson.publishConfig ??= {};
   packageJson.publishConfig.access = 'public';
-  const output = getBuildOutputForProject(project, tree.root);
+  const output = GetBuildOutputForProject(project, tree.root);
   packageJson.publishConfig.directory = relative(join(tree.root, project.root), output);
 
   // add common properties
   packageJson.keywords = [
     ...new Set([
-      ...(
-        packageJson.keywords ?? []
-      ),
-      ...(
-        rootPackageJson.keywords ?? []
-      ),
-      ...(
-        project.tags ?? []
-      ),
+      ...(packageJson.keywords ?? []),
+      ...(rootPackageJson.keywords ?? []),
+      ...(project.tags ?? []),
     ]),
   ];
   packageJson.homepage = join(rootPackageJson.homepage, project.root);
@@ -126,86 +110,35 @@ function updateProjectPackageJson(
   writeJson(tree, join(project.root, 'package.json'), packageJson);
 }
 
-function hasIndexScss(tree: Tree, project: ProjectConfiguration) {
-  return tree.exists(join(project.sourceRoot, '_index.scss'));
-}
-
-function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
-  if (project.projectType === 'library') {
-    project.targets ??= {};
-    project.targets['update-dependencies'] ??= { executor: '@rxap/plugin-library:update-dependencies' };
-    project.targets['update-package-group'] ??= { executor: '@rxap/plugin-library:update-package-group' };
-    project.targets['readme'] ??= { executor: '@rxap/plugin-library:readme' };
-    project.targets['fix-dependencies'] ??= {
-      executor: '@rxap/plugin-library:run-generator',
-      outputs: [
-        '{workspaceRoot}/{projectRoot}/package.json',
-      ],
+function updateProjectTargets(project: ProjectConfiguration) {
+  project.targets ??= {};
+  project.targets['update-dependencies'] ??= { executor: '@rxap/plugin-library:update-dependencies' };
+  project.targets['update-package-group'] ??= { executor: '@rxap/plugin-library:update-package-group' };
+  project.targets['readme'] ??= { executor: '@rxap/plugin-library:readme' };
+  project.targets['fix-dependencies'] ??= {
+    executor: '@rxap/plugin-library:run-generator',
+    outputs: [
+      '{workspaceRoot}/{projectRoot}/package.json',
+    ],
+    options: {
+      generator: '@rxap/plugin-library:fix-dependencies',
       options: {
-        generator: '@rxap/plugin-library:fix-dependencies',
-        options: {
-          strict: true,
-        },
+        strict: true,
       },
-    };
-    updateProjectConfiguration(tree, project.name, project);
-  }
-}
-
-interface NgPackageJson {
-  assets: Array<string | { input: string, glob: string, output: string }>;
-}
-
-function readNgPackageJson(tree: Tree, project: ProjectConfiguration): NgPackageJson {
-  if (!tree.exists(join(project.root, 'ng-package.json'))) {
-    throw new Error(`The project ${ project.name } has no ng-package.json file.`);
-  }
-  return readJson(tree, join(project.root, 'ng-package.json'));
-}
-
-function writeNgPackageJson(tree: Tree, project: ProjectConfiguration, ngPackageJson: NgPackageJson) {
-  writeJson(tree, join(project.root, 'ng-package.json'), ngPackageJson);
-}
-
-function updateProjectNgPackageConfiguration(tree: Tree, project: ProjectConfiguration) {
-  const ngPackageJson = readNgPackageJson(tree, project);
-
-  ngPackageJson.assets = [
-    'README.md', 'CHANGELOG.md',
-  ];
-
-  const assetThemes = {
-    input: '.',
-    glob: '**/*.theme.scss',
-    output: '.',
+    },
   };
-  const assetIndex = {
-    input: '.',
-    glob: '_index.scss',
-    output: '.',
-  };
+}
 
-  if (hasIndexScss(tree, project)) {
-    for (const asset of [ assetThemes, assetIndex ]) {
-      if (!ngPackageJson.assets.some(a => typeof a === 'object' && a.input === asset.input && a.glob === asset.glob)) {
-        ngPackageJson.assets.push(asset);
-      }
-    }
-  } else {
-    for (const asset of [ assetThemes, assetIndex ]) {
-      const index = ngPackageJson.assets.findIndex(a => typeof a ===
-        'object' &&
-        a.input ===
-        asset.input &&
-        a.glob ===
-        asset.glob);
-      if (index !== -1) {
-        ngPackageJson.assets.splice(index, 1);
-      }
-    }
+function updateProjectTags(project: ProjectConfiguration) {
+  const tags: string[] = project.root.split('/').filter(Boolean);
+  tags.unshift(); // remove the first element this is libs or packages, etc.
+  if (tags[0] === 'angular') {
+    tags.push('ngx');
   }
-
-  writeNgPackageJson(tree, project, ngPackageJson);
+  if (tags[0] === 'nest') {
+    tags.push('nestjs');
+  }
+  CoerceProjectTags(project, tags);
 }
 
 function skipProject(
@@ -214,121 +147,46 @@ function skipProject(
   project: ProjectConfiguration,
   projectName: string,
 ): boolean {
-  if (options.projects?.length && !options.projects?.includes(projectName)) {
+
+  if (SkipNonLibraryProject(tree, options, project, projectName)) {
     return true;
   }
-  if (project.projectType !== 'library') {
-    return true;
-  }
-  if (project.tags?.includes('internal')) {
-    return true;
-  }
-  if (!tree.exists(join(project.root, 'project.json'))) {
-    console.warn(`The project ${ projectName } has no project.json file.`);
-    return true;
-  }
-  if (!tree.exists(join(project.root, 'package.json'))) {
-    console.warn(`The project ${ projectName } has no package.json file.`);
-    return true;
-  }
+
   return false;
-}
-
-function hasComponents(tree: Tree, projectRoot: string) {
-  for (const {
-    path,
-    isFile
-  } of VisitTree(tree, projectRoot)) {
-    if (isFile && path.endsWith('.component.ts')) {
-      return true;
-    }
-  }
-  return false;
-}
-
-async function coerceCypressComponentTesting(tree: Tree, project: ProjectConfiguration, projectName: string) {
-
-  if (!project.targets['component-test']) {
-    await cypressComponentConfiguration(tree, {
-      project: projectName,
-      generateTests: true,
-      skipFormat: false,
-      buildTarget: 'angular:build:development',
-    });
-    const _project = readProjectConfiguration(tree, projectName);
-    _project.targets['component-test'].configurations ??= {};
-    _project.targets['component-test'].configurations.open ??= {};
-    _project.targets['component-test'].configurations.open.watch = true;
-    updateProjectConfiguration(
-      tree,
-      projectName,
-      _project,
-    );
-    tree.write(
-      join(
-        project.root,
-        'cypress.config.ts',
-      ),
-      `import { componentTestingPreset } from 'workspace';
-import { defineConfig } from 'cypress';
-
-export default defineConfig({
-  component: componentTestingPreset(__filename),
-});`,
-    );
-  }
-
-  const _project = readProjectConfiguration(
-    tree,
-    projectName,
-  );
-  const cypressProjectName = _project.targets['component-test'].options.devServerTarget.split(':').shift();
-  const cypressProject = readProjectConfiguration(
-    tree,
-    cypressProjectName,
-  );
-  cypressProject.implicitDependencies ??= [];
-  if (!cypressProject.implicitDependencies.includes(projectName)) {
-    cypressProject.implicitDependencies.push(projectName);
-    updateProjectConfiguration(
-      tree,
-      cypressProjectName,
-      cypressProject,
-    );
-  }
 
 }
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
+  console.log('library init generator:', options);
 
   const rootPackageJson: ProjectPackageJson = readJson(tree, 'package.json');
-  const nxJson = readNxJson(tree);
-  const promiseList: Array<Promise<void>> = [];
 
-  setGeneralTargetDefaults(nxJson);
+  setGeneralTargetDefaults(tree);
 
-  getProjects(tree).forEach((project, projectName) => {
+  for (const [ projectName, project ] of getProjects(tree).entries()) {
+
     if (skipProject(tree, options, project, projectName)) {
-      return;
+      continue;
     }
-    updateProjectTargets(tree, project);
+
+    console.log(`init project: ${ projectName }`);
+
+    updateProjectTargets(project);
     updateProjectPackageJson(tree, project, projectName, rootPackageJson);
-    if (project.tags?.includes('angular')) {
-      updateProjectNgPackageConfiguration(tree, project);
-    }
     generateFiles(tree, join(__dirname, 'files'), project.root, options);
     CoerceFile(tree, join(project.root, 'CHANGELOG.md'));
     CoerceFile(tree, join(project.root, 'GETSTARTED.md'));
     CoerceFile(tree, join(project.root, 'GUIDES.md'));
     CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'README.md' ]);
-    if (hasComponents(tree, project.root)) {
-      promiseList.push(coerceCypressComponentTesting(tree, project, projectName));
+    updateProjectTags(project);
+
+    updateProjectConfiguration(tree, project.name, project);
+
+    if (project.tags?.includes('angular')) {
+      await AngularInitGenerator(tree, { ...options, projects: [ projectName ] });
     }
-  });
 
-  updateNxJson(tree, nxJson);
-
-  await Promise.all(promiseList);
+  }
 
 }
 

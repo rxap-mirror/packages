@@ -2,92 +2,74 @@ import {
   ChangeDetectionStrategy,
   Component,
   Inject,
+  OnDestroy,
+  OnInit,
   Optional,
+  signal,
 } from '@angular/core';
 import { RXAP_LAYOUT_APPS_GRID } from '../../tokens';
-import { ConfigService } from '@rxap/config';
-import { FlexModule } from '@angular/flex-layout/flex';
-import { ExtendedModule } from '@angular/flex-layout/extended';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  CdkConnectedOverlay,
-  CdkOverlayOrigin,
-} from '@angular/cdk/overlay';
 import { MatButtonModule } from '@angular/material/button';
+import { FlexModule } from '@angular/flex-layout/flex';
 import {
-  NgClass,
   NgFor,
   NgIf,
-  NgStyle,
+  NgOptimizedImage,
 } from '@angular/common';
-
-export interface AppsButtonGridItem {
-  image: string;
-  label: string;
-  href: string;
-  empty?: false;
-}
-
-export interface EmptyAppsButtonGridItem {
-  empty: true;
-  href?: undefined;
-  label?: undefined;
-  image?: undefined;
-}
+import {
+  AppUrlService,
+  ExternalApps,
+} from '../../app-url.service';
+import { RxapAuthenticationService } from '@rxap/authentication';
+import {
+  Subscription,
+  switchMap,
+} from 'rxjs';
+import {
+  filter,
+  tap,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'rxap-apps-button',
   templateUrl: './apps-button.component.html',
   styleUrls: [ './apps-button.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: { class: 'rxap-apps-button' },
   standalone: true,
   imports: [
     NgIf,
-    MatButtonModule,
-    CdkOverlayOrigin,
-    MatIconModule,
-    CdkConnectedOverlay,
-    ExtendedModule,
-    NgStyle,
-    NgFor,
-    NgClass,
     FlexModule,
+    NgFor,
+    MatButtonModule,
+    MatIconModule,
+    NgOptimizedImage,
   ],
 })
-export class AppsButtonComponent {
-  public get gridWithPadding(): Array<
-    AppsButtonGridItem | EmptyAppsButtonGridItem
-  > {
-    const gridWithPadding: Array<AppsButtonGridItem | EmptyAppsButtonGridItem> =
-      this.grid.slice();
-    while (gridWithPadding.length % this.columns !== 0) {
-      gridWithPadding.push({ empty: true });
-    }
-    return gridWithPadding;
-  }
-
-  public get columns() {
-    if (this.grid.length < 4) {
-      return 1;
-    }
-    if (this.grid.length < 6) {
-      return 2;
-    }
-    return 3;
-  }
-
+export class AppsButtonComponent implements OnInit, OnDestroy {
   public isOpen = false;
-  public grid: Array<AppsButtonGridItem> = [];
+
+  public readonly appList = signal<Array<ExternalApps>>([]);
+
+  private _subscription?: Subscription;
 
   constructor(
     @Optional()
     @Inject(RXAP_LAYOUT_APPS_GRID)
       grid: any,
-    @Inject(ConfigService)
-    private readonly config: ConfigService,
-  ) {
-    this.grid = grid ?? this.config.get('navigation.apps') ?? [];
+    private readonly appUrlService: AppUrlService,
+    private readonly authenticationService: RxapAuthenticationService,
+  ) {}
+
+  ngOnInit() {
+    this._subscription = this.authenticationService.isAuthenticated$.pipe(
+      filter(Boolean),
+      switchMap(() => this.appUrlService.getAppList()),
+      tap((apps) => this.appList.set(apps)),
+    ).subscribe();
   }
+
+  ngOnDestroy() {
+    this._subscription?.unsubscribe();
+  }
+
 }

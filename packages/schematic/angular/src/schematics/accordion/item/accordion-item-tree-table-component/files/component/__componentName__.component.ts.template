@@ -1,0 +1,34 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { throwIfEmpty } from '@rxap/rxjs';
+<% if (hasSharedModifier) { %>
+import { <%= classify(name) %>TableComponent } from '<%= scope %>/shared/feature/<%= feature %>/<%= name %>-table/<%= name %>-table.component';
+<% } else { %>
+import { <%= classify(name) %>TableComponent } from './<%= name %>-table/<%= name %>-table.component';
+<% } %>
+
+@Component({
+  selector: '<%= prefix %>-<%= componentName %>',
+  templateUrl: './<%= componentName %>.component.html',
+  styleUrls: [ './<%= componentName %>.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    <%= classify(name) %>TableComponent,
+  ],
+})
+export class <%= classify(componentName) %>Component {
+
+  public readonly parameters$: Observable<{ uuid: string }>;
+
+  constructor(private readonly route: ActivatedRoute) {
+    this.parameters$ = this.route.params.pipe(
+      map(({ uuid }) => uuid),
+      throwIfEmpty('Could not extract the uuid from route'),
+      map((uuid) => ({ uuid })),
+    );
+  }
+
+}

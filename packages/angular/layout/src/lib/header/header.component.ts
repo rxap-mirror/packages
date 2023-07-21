@@ -3,46 +3,43 @@ import {
   Component,
   Inject,
   Input,
+  isDevMode,
   OnDestroy,
   OnInit,
   Optional,
 } from '@angular/core';
 import { Constructor } from '@rxap/utilities';
-import {
-  Observable,
-  Subscription,
-} from 'rxjs';
-import {
-  map,
-  tap,
-} from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
-import { UserService } from '@rxap/authentication';
-import { RXAP_HEADER_COMPONENT } from '../tokens';
-import { HeaderService } from '@rxap/services';
 import {
-  MatMenuModule,
-  MatMenuPanel,
-} from '@angular/material/menu';
-import { ThemePalette } from '@angular/material/core';
-import { NavigationProgressBarComponent } from './navigation-progress-bar/navigation-progress-bar.component';
-import { SignOutComponent } from './sign-out/sign-out.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.component';
-import { AppsButtonComponent } from './apps-button/apps-button.component';
+  HeaderService,
+  ThemeService,
+} from '@rxap/services';
+import {
+  MatOptionModule,
+  ThemePalette,
+} from '@angular/material/core';
+import { RXAP_HEADER_COMPONENT } from '../tokens';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
+import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { StopPropagationDirective } from '@rxap/directives';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { LanguageSelectorComponent } from './language-selector/language-selector.component';
-import { SidenavToggleButtonComponent } from './sidenav-toggle-button/sidenav-toggle-button.component';
-import { FlexModule } from '@angular/flex-layout/flex';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 import {
   AsyncPipe,
   NgClass,
-  NgComponentOutlet,
-  NgFor,
   NgIf,
 } from '@angular/common';
-import { ExtendedModule } from '@angular/flex-layout/extended';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { NavigationProgressBarComponent } from './navigation-progress-bar/navigation-progress-bar.component';
+import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.component';
+import { AppsButtonComponent } from './apps-button/apps-button.component';
 
 @Component({
   selector: 'rxap-header',
@@ -52,22 +49,23 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   standalone: true,
   imports: [
     MatToolbarModule,
-    ExtendedModule,
     NgClass,
-    NgFor,
-    NgComponentOutlet,
-    FlexModule,
     NgIf,
-    SidenavToggleButtonComponent,
-    LanguageSelectorComponent,
-    AppsButtonComponent,
-    UserProfileIconComponent,
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
-    SignOutComponent,
-    NavigationProgressBarComponent,
+    LanguageSelectorComponent,
+    MatFormFieldModule,
+    StopPropagationDirective,
+    MatSelectModule,
+    FormsModule,
+    MatOptionModule,
+    DataSourceCollectionDirective,
+    MatSlideToggleModule,
     AsyncPipe,
+    NavigationProgressBarComponent,
+    UserProfileIconComponent,
+    AppsButtonComponent,
   ],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
@@ -78,22 +76,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public subscriptions = new Subscription();
 
-  public hasUser$: Observable<boolean>;
-
   @Input()
   public color: ThemePalette = 'primary';
 
-  @Input()
-  public settingsMenuPanel?: MatMenuPanel;
+  public isDevMode = isDevMode();
 
   constructor(
     @Inject(HeaderService)
     public readonly headerComponentService: HeaderService,
-    @Inject(UserService)
-    private readonly userService: UserService<any>,
     @Optional() @Inject(RXAP_HEADER_COMPONENT) public headerComponent: any,
+    public readonly theme: ThemeService,
   ) {
-    this.hasUser$ = this.userService.user$.pipe(map(Boolean));
   }
 
   public ngOnInit() {
@@ -112,4 +105,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
+
 }

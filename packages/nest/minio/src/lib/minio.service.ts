@@ -1,7 +1,6 @@
 import {
   Inject,
   Injectable,
-  OnApplicationBootstrap,
 } from '@nestjs/common';
 import {
   Client,
@@ -11,13 +10,17 @@ import {
 import { MODULE_OPTIONS_TOKEN } from './configurable-module-builder';
 
 @Injectable()
-export class MinioService implements OnApplicationBootstrap {
+export class MinioService {
 
-  private minioSdk!: Client;
-  private copyConditionsImplementation!: CopyConditions;
+  private readonly minioSdk: Client;
+  private readonly copyConditionsImplementation: CopyConditions;
 
-  @Inject(MODULE_OPTIONS_TOKEN)
-  private options!: ClientOptions;
+  constructor(
+    @Inject(MODULE_OPTIONS_TOKEN) private options: ClientOptions,
+  ) {
+    this.minioSdk = new Client(this.options);
+    this.copyConditionsImplementation = new CopyConditions();
+  }
 
   public get client(): Client {
     return this.minioSdk;
@@ -25,11 +28,6 @@ export class MinioService implements OnApplicationBootstrap {
 
   public get copyConditions(): CopyConditions {
     return this.copyConditionsImplementation;
-  }
-
-  onApplicationBootstrap() {
-    this.minioSdk = new Client(this.options);
-    this.copyConditionsImplementation = new CopyConditions();
   }
 
 }

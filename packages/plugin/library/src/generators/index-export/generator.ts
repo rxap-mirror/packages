@@ -1,15 +1,19 @@
-import { Tree } from '@nx/devkit';
-import { IndexExportGeneratorSchema } from './schema';
+import {
+  getProjects,
+  Tree,
+} from '@nx/devkit';
 import {
   CoerceFile,
   GetProjectSourceRoot,
+  SkipNonLibraryProject,
   VisitTree,
 } from '@rxap/generator-utilities';
 import { join } from 'path';
+import { IndexExportGeneratorSchema } from './schema';
 
-export async function indexExportGenerator(tree: Tree, options: IndexExportGeneratorSchema) {
+function generateIndexFile(tree: Tree, projectName: string) {
 
-  const sourceRoot = GetProjectSourceRoot(tree, options.project);
+  const sourceRoot = GetProjectSourceRoot(tree, projectName);
 
   const libRoot = join(sourceRoot, 'lib');
 
@@ -61,8 +65,36 @@ export async function indexExportGenerator(tree: Tree, options: IndexExportGener
     rootIndexFile += `// endregion\n`;
   }
 
+  if (!rootIndexFile) {
+    rootIndexFile = 'export {};';
+  }
+
 
   CoerceFile(tree, join(sourceRoot, 'index.ts'), rootIndexFile, true);
+
+}
+
+function skipProject(tree: Tree, options: IndexExportGeneratorSchema, project: any, projectName: string) {
+
+  if (SkipNonLibraryProject(tree, options, project, projectName)) {
+    return true;
+  }
+
+  return false;
+}
+
+export async function indexExportGenerator(tree: Tree, options: IndexExportGeneratorSchema) {
+  console.log('index export generator: ', options);
+
+  for (const [ projectName, project ] of getProjects(tree).entries()) {
+    if (skipProject(tree, options, project, projectName)) {
+      continue;
+    }
+
+    console.log('generate index file for project: ', projectName);
+
+    generateIndexFile(tree, projectName);
+  }
 
 }
 

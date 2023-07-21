@@ -6,3 +6,4 @@ export * from './lib/prompt-update/prompt-update.component';
 export * from './lib/prompt-update/prompt-update.service';
 export * from './lib/snack-bar-update.service';
 export * from './lib/service-worker-snack-bar-update.module';
+export * from './lib/unregister-service-worker';

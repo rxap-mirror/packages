@@ -1,0 +1,32 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { <%= classify(name) %>DataGridDataSource } from './<%= name %>-data-grid/<%= name %>-data-grid.data-source';
+import { CommonModule } from '@angular/common';
+import { <%= classify(name) %>DataGridComponent } from './<%= name %>-data-grid/<%= name %>-data-grid.component';
+import { DataSourceDirective } from '@rxap/data-source/directive';
+import { DataSourceErrorComponent } from '@rxap/data-source';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+@Component({
+  selector: '<%= prefix %>-<%= componentName %>',
+  templateUrl: './<%= componentName %>.component.html',
+  styleUrls: [ './<%= componentName %>.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    <%= classify(name) %>DataGridComponent,
+    DataSourceDirective,
+    CommonModule,
+    DataSourceErrorComponent,
+    MatProgressBarModule,
+  ],
+  providers: [
+    <%= classify(name) %>DataGridDataSource,
+  ],
+})
+export class <%= classify(componentName) %>Component {
+
+  constructor(
+    public readonly dataGridDataSource: <%= classify(name) %>DataGridDataSource,
+  ) {}
+
+}

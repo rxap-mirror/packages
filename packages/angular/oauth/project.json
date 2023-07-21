@@ -5,7 +5,9 @@
   "prefix": "rxap",
   "tags": [
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "oauth"
   ],
   "projectType": "library",
   "targets": {

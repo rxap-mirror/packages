@@ -1,3 +1,3 @@
 export interface IndexExportGeneratorSchema {
-  project: string;
+  projects?: string[];
 }

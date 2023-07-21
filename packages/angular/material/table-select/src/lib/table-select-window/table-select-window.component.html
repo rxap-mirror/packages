@@ -1,0 +1,178 @@
+<mat-progress-bar *ngIf="tableDataSourceDirective.loading$ | async" mode="indeterminate"></mat-progress-bar>
+<table #tableDataSourceDirective="rxapTableDataSource"
+       [id]="id ?? 'table-select'"
+       [paginator]="paginator"
+       [parameters]="data.parameters"
+       mat-table
+       matSort
+       rxap-filter-header-row
+       rxapTableDataSource>
+
+  <ng-container *ngIf="data.multiple" matColumnDef="select" sticky>
+    <th *matHeaderCellDef mat-header-cell rxap-checkbox-header-cell></th>
+    <td
+      *matCellDef="let element"
+      [element]="element"
+      mat-cell
+      rxap-checkbox-cell
+    ></td>
+  </ng-container>
+
+  <ng-container *ngIf="hasSomeFilterColumn">
+
+    <ng-container *ngIf="data.multiple" [matColumnDef]="'filter__select'">
+      <th *matHeaderCellDef mat-header-cell></th>
+    </ng-container>
+
+    <ng-container *ngFor="let item of data.columns | keyvalue">
+
+      <ng-container *ngIf="item.value.filter">
+
+        <ng-container [ngSwitch]="item.value.type">
+
+          <ng-container *ngSwitchCase="'date'">
+
+            <ng-container [matColumnDef]="'filter__' + item.key">
+              <th *matHeaderCellDef mat-header-cell>
+
+              </th>
+            </ng-container>
+
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'boolean'">
+
+            <ng-container [matColumnDef]="'filter__' + item.key">
+              <th *matHeaderCellDef mat-header-cell>
+
+              </th>
+            </ng-container>
+
+          </ng-container>
+
+          <ng-container *ngSwitchDefault>
+
+            <ng-container [matColumnDef]="'filter__' + item.key">
+              <th *matHeaderCellDef mat-header-cell>
+                <mat-form-field rxapNoPadding>
+                  <mat-label i18n>{{item.value.label}}</mat-label>
+                  <input
+                    [formControlName]="item.key"
+                    [placeholder]="'Enter the ' + item.value.label + ' filter'"
+                    i18n-placeholder
+                    matInput
+                    parentControlContainer
+                  />
+                  <button mat-icon-button matSuffix rxapInputClearButton>
+                    <mat-icon>clear</mat-icon>
+                  </button>
+                </mat-form-field>
+              </th>
+            </ng-container>
+
+          </ng-container>
+
+        </ng-container>
+
+      </ng-container>
+
+      <ng-container *ngIf="!item.value.filter">
+        <ng-container [matColumnDef]="'filter__' + item.key">
+          <th *matHeaderCellDef mat-header-cell>{{data.showHeader ? '' : item.value.label}}</th>
+        </ng-container>
+      </ng-container>
+
+    </ng-container>
+
+  </ng-container>
+
+  <ng-container *ngFor="let item of data.columns | keyvalue">
+
+    <ng-container [ngSwitch]="item.value.type">
+
+      <ng-container *ngSwitchCase="'date'">
+
+        <ng-container [matColumnDef]="item.key">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>{{item.value.label}}</th>
+          <td
+            *matCellDef="let element"
+            [format]="item.value.format"
+            [rxap-date-cell]="element | getFromObject:item.key"
+            mat-cell
+          ></td>
+        </ng-container>
+
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'boolean'">
+
+        <ng-container [matColumnDef]="item.key">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>{{item.value.label}}</th>
+          <td
+            *matCellDef="let element"
+            [rxap-boolean-cell]="element | getFromObject:item.key"
+            mat-cell
+          ></td>
+        </ng-container>
+
+      </ng-container>
+
+      <ng-container *ngSwitchDefault>
+
+        <ng-container [matColumnDef]="item.key">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>
+            {{item.value.label}}
+          </th>
+          <td *matCellDef="let element" mat-cell>
+            {{ element | getFromObject:item.key }}
+          </td>
+        </ng-container>
+
+      </ng-container>
+
+    </ng-container>
+
+  </ng-container>
+
+  <ng-container *ngIf="hasSomeFilterColumn">
+    <tr
+      *matHeaderRowDef="filterDisplayColumns"
+      class="filter-header"
+      mat-header-row
+    ></tr>
+  </ng-container>
+
+  <ng-template [ngIf]="data.showHeader">
+    <tr
+      *matHeaderRowDef="displayColumns"
+      mat-header-row
+    ></tr>
+  </ng-template>
+
+  <tr
+    (click)="selectRow(element)"
+    *matRowDef="let element; columns: displayColumns"
+    [@rowsAnimation]
+    mat-row
+  ></tr>
+
+</table>
+
+<mat-paginator
+  #paginator="matPaginator"
+  [pageSizeOptions]="[5, 10, 25, 50, 75, 100, 150, 200]"
+  [pageSize]="10"
+></mat-paginator>
+
+<ng-template rxapWindowFooter>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <button (click)="close()" fxFlex="nogrow" mat-stroked-button type="button">
+      <ng-container i18n>Cancel</ng-container>
+    </button>
+    <button (click)="select()" *ngIf="data.multiple" [disabled]="hasNotSelected$ | async" fxFlex="nogrow" mat-raised-button
+            type="button">
+      <ng-container i18n>Select</ng-container>
+    </button>
+    <span *ngIf="!data.multiple" class="hint" i18n>Click on a row to select an entry.</span>
+  </div>
+</ng-template>

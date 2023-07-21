@@ -1,0 +1,74 @@
+{
+  "schematics": {
+    "microservice": {
+      "factory": "./src/schematics/microservice/index",
+      "schema": "./src/schematics/microservice/schema.json",
+      "description": "microservice schematic"
+    },
+    "feature-microservice": {
+      "factory": "./src/schematics/feature-microservice/index",
+      "schema": "./src/schematics/feature-microservice/schema.json",
+      "description": "feature-microservice schematic"
+    },
+    "frontend-microservice": {
+      "factory": "./src/schematics/frontend-microservice/index",
+      "schema": "./src/schematics/frontend-microservice/schema.json",
+      "description": "frontend-microservice schematic"
+    },
+    "crud": {
+      "schema": "./src/schematics/crud/schema.json",
+      "factory": "./src/schematics/crud/index",
+      "description": "The crud schematic"
+    },
+    "crud-init": {
+      "schema": "./src/schematics/crud-init/schema.json",
+      "factory": "./src/schematics/crud-init/index",
+      "description": "The crud-init schematic"
+    },
+    "crud-service": {
+      "schema": "./src/schematics/crud-service/schema.json",
+      "factory": "./src/schematics/crud-service/index",
+      "description": "The crud-service schematic"
+    },
+    "health-indicator": {
+      "schema": "./src/schematics/health-indicator/schema.json",
+      "factory": "./src/schematics/health-indicator/index",
+      "description": "The health-indicator schematic"
+    },
+    "health-indicator-init": {
+      "schema": "./src/schematics/health-indicator-init/schema.json",
+      "factory": "./src/schematics/health-indicator-init/index",
+      "description": "The health-indicator-init schematic"
+    },
+    "init": {
+      "schema": "./src/schematics/init/schema.json",
+      "factory": "./src/schematics/init/index",
+      "description": "The init schematic"
+    },
+    "sentry": {
+      "schema": "./src/schematics/sentry/schema.json",
+      "factory": "./src/schematics/sentry/index",
+      "description": "The sentry schematic"
+    },
+    "swagger": {
+      "schema": "./src/schematics/swagger/schema.json",
+      "factory": "./src/schematics/swagger/index",
+      "description": "The swagger schematic"
+    },
+    "validator": {
+      "schema": "./src/schematics/validator/schema.json",
+      "factory": "./src/schematics/validator/index",
+      "description": "The validator schematic"
+    },
+    "open-api": {
+      "factory": "./src/schematics/open-api/index",
+      "schema": "./src/schematics/open-api/schema.json",
+      "description": "open-api schematic"
+    },
+    "jwt": {
+      "factory": "./src/schematics/jwt/index",
+      "schema": "./src/schematics/jwt/schema.json",
+      "description": "jwt schematic"
+    }
+  }
+}

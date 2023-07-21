@@ -1,18 +1,29 @@
 import {
   chain,
-  externalSchematic,
+  noop,
   Rule,
 } from '@angular-devkit/schematics';
-import { CoerceNestServiceProject } from './coerce-nest-service-project';
-import { HasNestModule } from './has-nest-module';
+import {
+  classify,
+  dasherize,
+} from '@rxap/utilities';
+import {
+  ClassDeclaration,
+  Project,
+  SourceFile,
+} from 'ts-morph';
+import { CoerceClass } from '../coerce-class';
+import {
+  TsMorphNestProjectTransformOptions,
+  TsMorphNestProjectTransformRule,
+} from '../ts-morph-transform';
+import { CoerceImports } from '../ts-morph/coerce-imports';
 import { AddNestModuleToAppModule } from './add-nest-module-to-app-module';
-import { buildNestProjectName } from './project-utilities';
+import { AssertNestProject } from './assert-nest-project';
 
-export interface CoerceNestModuleOptions {
-  project: string;
-  feature?: string;
-  shared?: boolean;
+export interface CoerceNestModuleOptions extends TsMorphNestProjectTransformOptions {
   name: string;
+  tsMorphTransform?: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => void;
 }
 
 export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
@@ -21,48 +32,51 @@ export function CoerceNestModule(options: CoerceNestModuleOptions): Rule {
     project,
     feature,
     shared,
+    directory,
   } = options;
+  let { tsMorphTransform } = options;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  tsMorphTransform ??= () => {};
   return chain([
-    CoerceNestServiceProject({
+    AssertNestProject({
       project,
       feature,
       shared,
     }),
-    (tree) => {
-      if (!HasNestModule(
-        tree,
-        {
-          project,
-          feature,
-          shared,
-          name,
-        },
-      )) {
-        console.log(
-          `The project '${ buildNestProjectName({
-            project,
-            feature,
-            shared,
-          }) }' has not the module '${ name }'. The module will now be created ...`,
-        );
-        return chain([
-          externalSchematic('@nx/nest', 'module', {
-            name,
-            project: buildNestProjectName({
-              project,
-              feature,
-              shared,
-            }),
-          }),
-          AddNestModuleToAppModule({
-            project,
-            feature,
-            shared,
-            name,
-          }),
+    TsMorphNestProjectTransformRule(
+      {
+        project,
+        feature,
+        shared,
+        directory,
+      },
+      (project, [ sourceFile ]) => {
+        const classDeclaration = CoerceClass(sourceFile, classify(name) + 'Module', {
+          isExported: true,
+          decorators: [
+            {
+              name: 'Module',
+              arguments: [ '{}' ],
+            },
+          ],
+        });
+        CoerceImports(sourceFile, [
+          {
+            namedImports: [ 'Module' ],
+            moduleSpecifier: '@nestjs/common',
+          },
         ]);
-      }
-      return undefined;
-    },
+
+        tsMorphTransform!(project, sourceFile, classDeclaration);
+      },
+      [ `${ dasherize(name) }.module.ts?` ],
+    ),
+    name !== 'app' ? AddNestModuleToAppModule({
+      project,
+      feature,
+      shared,
+      name,
+      directory,
+    }) : noop(),
   ]);
 }

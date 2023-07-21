@@ -18,7 +18,10 @@
     "directory": "../../../dist/packages/schematic/xml-parser"
   },
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "schematic",
+    "xml-parser"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/xml-parser",
   "bugs": {

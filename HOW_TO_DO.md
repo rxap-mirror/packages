@@ -34,6 +34,14 @@ To create a new nx plugin package, run the command:
 yarn nx g @nx/plugin:plugin
 ```
 
+#### Generator
+
+To create a new generator package, run the command:
+
+```shell
+yarn nx g @nx/plugin:generator
+```
+
 ### Angular Library
 
 To create a new angular library package, run the command:
@@ -66,6 +74,26 @@ yarn nx g @nx/nest:library --importPath @rxap/nest-<project-name>
 
 ### Schematic Library
 
+To create new schematic library package, run the command:
+
 ```shell
 yarn nx g @nx/js:library --name=angular --directory=schematic --importPath=@rxap/schematic-angular
+```
+
+To add a schematic to the library run the command:
+
+```shell
+yarn nx g @rxap/plugin-library:schematic --project=schematic-angular --name=<schematic-name>
+```
+
+# Angular Application
+
+## Bundle size analyzer
+
+```shell
+yarn nx run angular:build --stats-json
+```
+
+```shell
+npx webpack-bundle-analyzer dist/demos/angular/stats.json
 ```

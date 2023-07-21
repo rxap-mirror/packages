@@ -2,7 +2,13 @@ import { HasProject } from '@rxap/schematics-utilities';
 import { Tree } from '@angular-devkit/schematics';
 
 
-export function buildNestProjectName(options: { project: string, feature?: string, shared?: boolean }) {
+export interface BuildNestProjectNameOptions {
+  project: string;
+  feature?: string | null;
+  shared?: boolean;
+}
+
+export function buildNestProjectName(options: BuildNestProjectNameOptions) {
   if (options.feature) {
     if (options.shared) {
       return `service-feature-${ options.feature }`;
@@ -14,8 +20,13 @@ export function buildNestProjectName(options: { project: string, feature?: strin
   }
 }
 
+export interface HasNestServiceProjectOptions {
+  project: string;
+  feature?: string | null;
+  shared?: boolean;
+}
 
-export function HasNestServiceProject(tree: Tree, options: { project: string, feature?: string, shared?: boolean }) {
+export function HasNestServiceProject(tree: Tree, options: HasNestServiceProjectOptions) {
   const projectName = buildNestProjectName(options);
   return HasProject(tree, projectName);
 }

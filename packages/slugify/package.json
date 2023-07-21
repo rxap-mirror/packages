@@ -11,7 +11,9 @@
   },
   "description": "A utility to slugify a string.",
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "slugify"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/slugify",
   "bugs": {

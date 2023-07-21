@@ -84,6 +84,8 @@
     }
   },
   "tags": [
-    "node"
+    "node",
+    "packages",
+    "utilities"
   ]
 }

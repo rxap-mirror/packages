@@ -1,11 +1,11 @@
-import { BuildInfoExecutorSchema } from './schema';
 import { ExecutorContext } from '@nx/devkit';
-import { GuessOutputPath } from '@rxap/plugin-utilities';
-import { join } from 'path';
+import { GetProjectConfiguration } from '@rxap/plugin-utilities';
 import {
   existsSync,
   writeFileSync,
 } from 'fs';
+import { join } from 'path';
+import { BuildInfoExecutorSchema } from './schema';
 
 interface BuildInfo {
   release?: string;
@@ -98,26 +98,22 @@ export default async function runExecutor(
   context: ExecutorContext,
 ) {
 
-  const outputPath = GuessOutputPath(context);
-
-  console.log(`Using output path: ${ outputPath }`);
+  const project = GetProjectConfiguration(context);
 
   const buildInfo = createBuildInfo(options);
 
   const buildJsonFile = JSON.stringify(buildInfo, undefined, 2);
 
-  const buildInfoFilePath = join(context.root, outputPath, 'build.json');
+  const buildInfoFilePath = join(context.root, project.sourceRoot, 'build.json');
 
   if (existsSync(buildInfoFilePath)) {
     console.warn(`The build.json file already exists in the location: '${ buildInfoFilePath }'`);
   }
 
-  console.log(buildInfoFilePath + ' : ', buildJsonFile);
+  console.log(`Write build.json to '${ buildInfoFilePath }' with content:`);
+  console.log(JSON.stringify(buildJsonFile, undefined, 2));
 
   writeFileSync(buildInfoFilePath, buildJsonFile);
-
-  console.log('Successfully created the build.json file.');
-  console.log('build.json: ' + buildInfoFilePath);
 
   return {
     success: true,

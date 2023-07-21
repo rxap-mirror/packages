@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "accordion-module",
+  "type": "object",
+  "properties": {
+    "name": {
+      "alias": "accordionName",
+      "type": "string",
+      "description": "The name of the accordion",
+      "x-prompt": "Which name should the accordion module have?"
+    },
+    "project": {
+      "type": "string",
+      "description": "The target project where the accordion module should be added.",
+      "x-prompt": "To which project should the accordion module be added?"
+    },
+    "feature": {
+      "type": "string",
+      "description": "The feature name where the accordion module should be added.",
+      "x-prompt": "To which feature should the accordion module be added?"
+    },
+    "multiple": {
+      "type": "boolean",
+      "description": "Whether the accordion should allow multiple panels to be expanded at the same time",
+      "default": false,
+      "alias": "multi"
+    },
+    "backend": {
+      "type": "string",
+      "description": "The backend that should be used to handel data",
+      "enum": [
+        "none",
+        "local",
+        "nestjs"
+      ],
+      "default": "none"
+    },
+    "itemList": {
+      "alias": "item",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "panel",
+                  "table",
+                  "data-grid",
+                  "data-grid-collection",
+                  "tree-table"
+                ]
+              },
+              "modifiers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": true,
+            "required": [
+              "name"
+            ]
+          }
+        ],
+        "description": "The name of the accordion expansion panel"
+      },
+      "description": "The list of accordion expansion panels"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
+    }
+  },
+  "required": [
+    "name",
+    "project",
+    "feature"
+  ]
+}

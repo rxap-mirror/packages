@@ -1,4 +1,3 @@
-import { CoerceDtoClass } from './coerce-dto-class';
 import { CoerceSuffix } from '@rxap/schematics-utilities';
 import { basename } from 'path';
 import {
@@ -7,7 +6,8 @@ import {
   OptionalKind,
   Project,
 } from 'ts-morph';
-import { DtoClassProperty } from '../create-dto-class';
+import { CoerceDtoClass } from './coerce-dto-class';
+import { DtoClassProperty } from './create-dto-class';
 
 export interface CoercePageDtoClassOptions {
   project: Project,
@@ -33,7 +33,7 @@ export function CoercePageDtoClass(options: CoercePageDtoClassOptions) {
   importStructureList.push(
     {
       namedImports: [ 'PageDto' ],
-      moduleSpecifier: '@eurogard/service-nest-utilities',
+      moduleSpecifier: '@rxap/nest-utilities',
     },
     {
       namedImports: [ rowClassName ],
@@ -51,11 +51,11 @@ export function CoercePageDtoClass(options: CoercePageDtoClassOptions) {
     },
   ];
   propertyList.push();
-  return CoerceDtoClass(
+  return CoerceDtoClass({
     project,
-    CoerceSuffix(name, '-page'),
+    name: CoerceSuffix(name, '-page'),
     propertyList,
     classStructure,
     importStructureList,
-  );
+  });
 }

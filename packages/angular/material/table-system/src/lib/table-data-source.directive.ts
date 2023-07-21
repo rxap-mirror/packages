@@ -178,7 +178,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
       }
       if (!this.dataSource) {
         throw new Error(
-          'The TABLE_DATA_SOURCE and TABLE_METHOD token are not defined!',
+          'The TABLE_DATA_SOURCE and RXAP_TABLE_METHOD token are not defined!',
         );
       }
     }

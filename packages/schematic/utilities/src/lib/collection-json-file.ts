@@ -3,17 +3,17 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
+import { CollectionJson } from '@rxap/workspace-utilities';
 import { join } from 'path';
-import { CollectionJson } from './collection-json';
-import {
-  GetJsonFile,
-  UpdateJsonFile,
-  UpdateJsonFileOptions,
-} from './json-file';
 import {
   GetProjectPackageJson,
   GetProjectRoot,
 } from './get-project';
+import {
+  GetJsonFile,
+  UpdateJsonFileOptions,
+  UpdateJsonFileRule,
+} from './json-file';
 
 export enum CollectionJsonType {
   SCHEMATICS = 'schematics',
@@ -122,7 +122,7 @@ export function UpdateCollectionJson(
       options.create,
     );
 
-    return UpdateJsonFile(updater, collectionJsonFilePath, options);
+    return UpdateJsonFileRule(updater, collectionJsonFilePath, options);
 
   };
 }

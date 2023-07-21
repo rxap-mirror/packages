@@ -1,0 +1,99 @@
+<ng-template #errorTemplate let-error let-refresh="refresh">
+  <rxap-data-source-error [error]="error" [refresh]="refresh"></rxap-data-source-error>
+</ng-template>
+<div *rxapDataSource="let accordion from accordionDataSource; errorTemplate: errorTemplate"
+     class="flex flex-col gap-y-6">
+  <rxap-accordion-header [data]="accordion"></rxap-accordion-header>
+  <ng-template #divider>
+    <mat-divider></mat-divider>
+  </ng-template>
+  <mat-progress-bar *ngIf="accordionDataSource.loading$ | async; else divider" mode="indeterminate"></mat-progress-bar>
+  <mat-accordion [rxapPersistentAccordion]="accordionDataSource.lastUuid" multi>
+
+
+    <mat-expansion-panel>
+
+      <mat-expansion-panel-header>
+        <mat-panel-title i18n>DataGridDemo</mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <ng-template matExpansionPanelContent>
+        <rxap-data-grid-demo-panel></rxap-data-grid-demo-panel>
+      </ng-template>
+
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel>
+
+      <mat-expansion-panel-header>
+        <mat-panel-title i18n>DataGridCollectionDemo</mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <ng-template matExpansionPanelContent>
+        <rxap-data-grid-collection-demo-panel></rxap-data-grid-collection-demo-panel>
+      </ng-template>
+
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel>
+
+      <mat-expansion-panel-header>
+        <mat-panel-title i18n>EditDataGridDemo</mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <ng-template matExpansionPanelContent>
+        <rxap-edit-data-grid-demo-panel></rxap-edit-data-grid-demo-panel>
+      </ng-template>
+
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel>
+
+      <mat-expansion-panel-header>
+        <mat-panel-title i18n>EditDataGridCollectionDemo</mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <ng-template matExpansionPanelContent>
+        <rxap-edit-data-grid-collection-demo-panel></rxap-edit-data-grid-collection-demo-panel>
+      </ng-template>
+
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel>
+
+      <mat-expansion-panel-header>
+        <mat-panel-title i18n>TableDemo</mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <ng-template matExpansionPanelContent>
+        <rxap-table-demo-panel></rxap-table-demo-panel>
+      </ng-template>
+
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel>
+
+      <mat-expansion-panel-header>
+        <mat-panel-title i18n>TreeTableDemo</mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <ng-template matExpansionPanelContent>
+        <rxap-tree-table-demo-panel></rxap-tree-table-demo-panel>
+      </ng-template>
+
+    </mat-expansion-panel>
+
+    <!-- NEXT_INDEX[6] -->
+  </mat-accordion>
+</div>

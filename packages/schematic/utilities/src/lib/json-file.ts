@@ -3,9 +3,7 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
-import { CoerceFile } from './coerce-file';
-import { IsFunction } from './function/is-function';
-import { equals } from './equals';
+import { UpdateJsonFile } from '@rxap/workspace-utilities';
 
 export function HasJsonFile(host: Tree, filePath: string): boolean {
   if (host.exists(filePath)) {
@@ -46,29 +44,10 @@ export interface UpdateJsonFileOptions {
   create?: boolean;
 }
 
-export function UpdateJsonFile<T extends Record<string, any> = Record<string, any>>(
+export function UpdateJsonFileRule<T extends Record<string, any> = Record<string, any>>(
   updaterOrJsonFile: T | ((jsonFile: T) => void | PromiseLike<void>),
   filePath: string,
   options?: UpdateJsonFileOptions,
 ): Rule {
-  return async tree => {
-
-    let jsonFile: T;
-
-    if (IsFunction(updaterOrJsonFile)) {
-      jsonFile = GetJsonFile<T>(tree, filePath, options?.create);
-      await updaterOrJsonFile(jsonFile);
-    } else if (typeof updaterOrJsonFile === 'function') {
-      throw new Error('FATAL: the update function was not a function');
-    } else {
-      jsonFile = updaterOrJsonFile;
-    }
-
-    const currentJsonFile = GetJsonFile<T>(tree, filePath, options?.create);
-
-    if (!equals(jsonFile, currentJsonFile)) {
-      CoerceFile(tree, filePath, JSON.stringify(jsonFile, undefined, options?.space ?? 2));
-    }
-
-  };
+  return tree => UpdateJsonFile(tree, updaterOrJsonFile, filePath, options);
 }

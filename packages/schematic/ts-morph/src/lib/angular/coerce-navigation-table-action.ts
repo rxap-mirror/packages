@@ -12,7 +12,7 @@ import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declara
 import { CoerceImports } from '../ts-morph/coerce-imports';
 
 export interface CoerceLinkTableActionRuleOptions extends CoerceTableActionOptions {
-  route?: string;
+  route?: string | null;
 }
 
 function extractAllProperties(route: string): string[] {

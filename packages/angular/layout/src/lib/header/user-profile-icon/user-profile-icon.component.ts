@@ -1,18 +1,27 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Inject,
+  OnDestroy,
+  OnInit,
+  signal,
 } from '@angular/core';
-import { Observable } from 'rxjs';
-import { UserService } from '@rxap/authentication';
-import { map } from 'rxjs/operators';
-import { isDefined } from '@rxap/rxjs';
-import { MatIconModule } from '@angular/material/icon';
+import {
+  RxapAuthenticationService,
+  RxapUserProfileService,
+} from '@rxap/authentication';
+import {
+  filter,
+  Subscription,
+} from 'rxjs';
+import {
+  switchMap,
+  tap,
+} from 'rxjs/operators';
 import {
   AsyncPipe,
   NgIf,
 } from '@angular/common';
-import { AvatarBackgroundImageDirective } from '@rxap/directives';
+import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { FlexModule } from '@angular/flex-layout/flex';
 
@@ -25,34 +34,38 @@ import { FlexModule } from '@angular/flex-layout/flex';
   imports: [
     FlexModule,
     MatMenuModule,
-    AvatarBackgroundImageDirective,
-    NgIf,
     MatIconModule,
+    NgIf,
     AsyncPipe,
   ],
 })
-export class UserProfileIconComponent {
-  public userProfileUrl$: Observable<string | undefined>;
-  public userName$: Observable<string>;
+export class UserProfileIconComponent implements OnInit, OnDestroy {
+
+  public username = signal<null | string>(null);
+
+  private _subscription?: Subscription;
 
   constructor(
-    @Inject(UserService)
-    public userService: UserService,
-  ) {
-    this.userProfileUrl$ = this.userService.user$.pipe(
-      isDefined(),
-      map((user) => user.photoURL ?? user.avatarUrl),
-    );
-    this.userName$ = this.userService.user$.pipe(
-      isDefined(),
-      map(
-        (user) =>
-          user.name ??
-          (user.firstname || user.lastname
-            ? [ user.firstname, user.lastname ].join(' ').trim()
-            : null) ??
-          user.username,
-      ),
-    );
+    private readonly userProfileService: RxapUserProfileService,
+    private readonly authenticationService: RxapAuthenticationService,
+  ) {}
+
+  ngOnInit() {
+    this._subscription = this.authenticationService.isAuthenticated$.pipe(
+      filter(Boolean),
+      switchMap(() => this.userProfileService.getProfile()),
+      filter(Boolean),
+      tap((user) => this.username.set(user.username ?? null)),
+    ).subscribe();
   }
+
+  ngOnDestroy() {
+    this._subscription?.unsubscribe();
+  }
+
+  public async logout() {
+    await this.authenticationService.signOut();
+  }
+
+
 }

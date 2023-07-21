@@ -1,0 +1,72 @@
+<mat-card>
+
+  <mat-card-content>
+    <div class="p-4">
+      <form #form="rxapForm" rxapForm>
+
+        <rxap-data-grid [data]="data" mode="form">
+
+
+          <ng-container rxapDataGridRowDef="name">
+
+            <ng-template rxapDataGridEditCellDef>
+
+              <!-- TODO: name -->
+
+            </ng-template>
+          </ng-container>
+
+          <ng-container rxapDataGridRowDef="age">
+
+            <ng-template rxapDataGridEditCellDef>
+
+              <mat-form-field class="w-full">
+                <input formControlName="age" matInput type="number">
+              </mat-form-field>
+
+            </ng-template>
+          </ng-container>
+
+          <ng-container rxapDataGridRowDef="isActive">
+
+            <ng-template rxapDataGridEditCellDef>
+
+              <mat-slide-toggle formControlName="isActive"></mat-slide-toggle>
+
+            </ng-template>
+          </ng-container>
+
+          <ng-container rxapDataGridRowDef="email">
+
+            <ng-template rxapDataGridEditCellDef>
+
+              <!-- TODO: email -->
+
+            </ng-template>
+          </ng-container>
+
+          <ng-container rxapDataGridRowDef="rating">
+
+            <ng-template rxapDataGridEditCellDef>
+
+              <mat-form-field class="w-full">
+                <input formControlName="rating" matInput type="number">
+              </mat-form-field>
+
+            </ng-template>
+          </ng-container>
+
+          <ng-container rxapDataGridRowDef="accountStatus">
+
+            <ng-template rxapDataGridEditCellDef>
+
+              <!-- TODO: accountStatus -->
+
+            </ng-template>
+          </ng-container>
+
+        </rxap-data-grid>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -15,6 +15,11 @@ import {
   PageEvent,
   PaginatorLike,
 } from '@rxap/data-source/pagination';
+import { Method } from '@rxap/pattern';
+import {
+  clone,
+  equals,
+} from '@rxap/utilities';
 import {
   BehaviorSubject,
   combineLatest,
@@ -45,11 +50,6 @@ import {
   RXAP_TABLE_DATA_SOURCE_SORT,
   RXAP_TABLE_METHOD,
 } from './tokens';
-import {
-  clone,
-  equals,
-} from '@rxap/utilities';
-import { Method } from '@rxap/pattern';
 
 /**
  * @deprecated removed use RXAP_TABLE_METHOD instead
@@ -218,7 +218,15 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
   }
 
   protected async loadPage(tableEvent: TableEvent): Promise<Data[]> {
-    return this.method.call(tableEvent);
+    try {
+      return await this.method.call(tableEvent);
+    } catch (e: any) {
+      console.error(`Failed to load page: ${ e.message }`);
+      this.handelError(e);
+      this.hasError$.enable();
+      this.error$.next(e);
+    }
+    return [];
   }
 
   protected override handelError(error: any) {
@@ -255,6 +263,7 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
       filterLike?.change?.pipe(tap(() => paginatorLike?.firstPage && paginatorLike?.firstPage())) ?? of(undefined),
       parametersLike ?? of(undefined),
       this._refresh$,
+      this._retry$.pipe(startWith(null)),
     ]).pipe(
       debounceTime(100),
       map(([ page, sort, filter, parameters, refresh ]) => {

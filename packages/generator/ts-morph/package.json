@@ -14,7 +14,10 @@
     "directory": "../../../dist/packages/generator/ts-morph"
   },
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "generator",
+    "ts-morph"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/generator/ts-morph",
   "bugs": {

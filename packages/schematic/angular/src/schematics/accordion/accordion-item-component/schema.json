@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "accordion-item-component",
+  "type": "object",
+  "properties": {
+    "itemName": {
+      "alias": "name",
+      "type": "string",
+      "description": "The name of the accordion item",
+      "x-prompt": "Which name should the accordion item module have?"
+    },
+    "project": {
+      "type": "string",
+      "description": "The target project where the accordion item module should be added.",
+      "x-prompt": "To which project should the accordion item module be added?"
+    },
+    "feature": {
+      "type": "string",
+      "description": "The feature name where the accordion item module should be added.",
+      "x-prompt": "To which feature should the accordion item module be added?"
+    },
+    "backend": {
+      "type": "string",
+      "description": "The backend that should be used to handel data",
+      "enum": [
+        "none",
+        "local",
+        "nestjs"
+      ],
+      "default": "none"
+    },
+    "accordionName": {
+      "type": "string",
+      "description": "The name of the accordion module where the item should be added."
+    },
+    "shared": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the item is based of a shared component"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "panel",
+        "table",
+        "tree-table",
+        "data-grid"
+      ],
+      "description": "The type of the accordion item",
+      "x-prompt": "Select the type of the accordion item",
+      "default": "panel"
+    },
+    "modifiers": {
+      "alias": "modifier",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The modifiers to apply to the accordion item type"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
+    }
+  },
+  "additionalProperties": true,
+  "required": [
+    "itemName",
+    "project",
+    "feature"
+  ]
+}

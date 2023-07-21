@@ -5,7 +5,9 @@
   "prefix": "rxap",
   "tags": [
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "remote-method"
   ],
   "projectType": "library",
   "targets": {

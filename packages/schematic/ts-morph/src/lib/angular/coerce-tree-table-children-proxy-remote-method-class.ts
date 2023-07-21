@@ -1,29 +1,31 @@
 import {
-  CoerceProxyRemoteMethodClass,
-  CoerceProxyRemoteMethodClassOptions,
-} from './coerce-proxy-remote-method-class';
+  ClassDeclaration,
+  Project,
+  SourceFile,
+} from 'ts-morph';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
   OperationIdToParameterClassImportPath,
   OperationIdToParameterClassName,
-} from '../operation-id-utilities';
-import {
-  ClassDeclaration,
-  Project,
-  SourceFile,
-} from 'ts-morph';
+} from '../nest/operation-id-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import {
+  CoerceProxyRemoteMethodClass,
+  CoerceProxyRemoteMethodClassOptions,
+} from './coerce-proxy-remote-method-class';
 
 export interface CoerceTreeTableChildrenProxyRemoteMethodClassOptions
   extends Omit<Omit<Omit<Omit<CoerceProxyRemoteMethodClassOptions, 'name'>, 'sourceType'>, 'targetType'>, 'proxyMethod'> {
   getChildrenOperationId: string;
+  scope: string;
 }
 
 export function CoerceTreeTableChildrenProxyRemoteMethodClass(options: CoerceTreeTableChildrenProxyRemoteMethodClassOptions) {
   let {
     tsMorphTransform,
     getChildrenOperationId,
+    scope,
   } = options;
   tsMorphTransform ??= () => ({});
   return CoerceProxyRemoteMethodClass({
@@ -35,11 +37,11 @@ export function CoerceTreeTableChildrenProxyRemoteMethodClass(options: CoerceTre
     tsMorphTransform: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => {
       CoerceImports(sourceFile, {
         namedImports: [ OperationIdToClassName(getChildrenOperationId) ],
-        moduleSpecifier: OperationIdToClassImportPath(getChildrenOperationId),
+        moduleSpecifier: OperationIdToClassImportPath(getChildrenOperationId, scope),
       });
       CoerceImports(sourceFile, {
         namedImports: [ 'Node' ],
-        moduleSpecifier: '@rxap/utilities/rxjs',
+        moduleSpecifier: '@rxap/data-structure-tree',
       });
       CoerceImports(sourceFile, {
         namedImports: [ 'OpenApiRemoteMethodParameter' ],
@@ -47,7 +49,7 @@ export function CoerceTreeTableChildrenProxyRemoteMethodClass(options: CoerceTre
       });
       CoerceImports(sourceFile, {
         namedImports: [ OperationIdToParameterClassName(getChildrenOperationId) ],
-        moduleSpecifier: OperationIdToParameterClassImportPath(getChildrenOperationId),
+        moduleSpecifier: OperationIdToParameterClassImportPath(getChildrenOperationId, scope),
       });
       return tsMorphTransform!(project, sourceFile, classDeclaration);
     },

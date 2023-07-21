@@ -1,0 +1,10 @@
+<nav [tabPanel]="tabPanel" mat-tab-nav-bar>
+  <a [routerLink]="['action']" mat-tab-link>Action</a>
+  <a [routerLink]="['filter']" mat-tab-link>Filter</a>
+  <a [routerLink]="['header-button']" mat-tab-link>Header Button</a>
+  <a [routerLink]="['maximum-tree']" mat-tab-link>Maximum Tree</a>
+  <a [routerLink]="['minimum']" mat-tab-link>Minimum</a>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>

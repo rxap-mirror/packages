@@ -28,7 +28,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "tree"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/tree",
   "bugs": {

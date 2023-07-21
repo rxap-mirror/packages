@@ -69,6 +69,8 @@ export * from './lib/table-select-controls/table-select-controls.component';
 
 // region cells
 
+export * from './lib/cells/tree-control-cell/tree-control-cell.component';
+
 // region image
 
 export * from './lib/cells/image-cell/image-cell.component';

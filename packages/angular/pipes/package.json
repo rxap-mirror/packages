@@ -19,7 +19,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "pipes"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/pipes",
   "bugs": {

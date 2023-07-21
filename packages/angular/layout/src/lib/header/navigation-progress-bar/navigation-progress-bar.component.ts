@@ -26,7 +26,11 @@ import {
   styleUrls: [ './navigation-progress-bar.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ NgIf, MatProgressBarModule, AsyncPipe ],
+  imports: [
+    NgIf,
+    MatProgressBarModule,
+    AsyncPipe,
+  ],
 })
 export class NavigationProgressBarComponent {
 

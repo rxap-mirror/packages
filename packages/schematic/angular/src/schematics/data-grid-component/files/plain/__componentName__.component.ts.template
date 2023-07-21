@@ -1,0 +1,36 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+<% if (collection) { %>
+import { Input } from '@angular/core';
+<% } else { %>
+import { <%= classify(name) %>DataGridDataSource } from './<%= name %>-data-grid.data-source';
+<% } %>
+import { DataGridModule } from '@rxap/data-grid';
+import { MatCardModule } from '@angular/material/card';
+
+@Component({
+  selector: '<%= prefix %>-<%= componentName %>',
+  templateUrl: './<%= componentName %>.component.html',
+  styleUrls: [ './<%= componentName %>.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    DataGridModule,
+    MatCardModule,
+  ],
+  providers: [
+    <% if (!collection) { %>
+    <%= classify(name) %>DataGridDataSource,
+    <% } %>
+  ],
+})
+export class <%= classify(componentName) %>Component {
+
+  <% if (collection) { %>
+  @Input() data!: any;
+  <% } else { %>
+  constructor(
+    public readonly dataGridDataSource: <%= classify(name) %>DataGridDataSource,
+  ) {}
+  <% } %>
+
+}

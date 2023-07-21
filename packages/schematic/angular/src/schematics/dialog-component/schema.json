@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "dialog-module",
+  "type": "object",
+  "properties": {
+    "dialogName": {
+      "alias": "name",
+      "type": "string",
+      "description": "The name of the dialog",
+      "x-prompt": "Which name should the dialog module have?"
+    },
+    "project": {
+      "type": "string",
+      "description": "The target project where the dialog module should be added.",
+      "x-prompt": "To which project should the dialog module be added?"
+    },
+    "directory": {
+      "type": "string",
+      "description": "The directory where the dialog module should be added."
+    },
+    "feature": {
+      "type": "string",
+      "description": "The feature name where the dialog module should be added.",
+      "x-prompt": "To which feature should the dialog module be added?"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the dialog"
+    },
+    "actionList": {
+      "alias": "action",
+      "type": "array",
+      "description": "The list of actions to be added to the dialog",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "submit",
+                  "close"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "dialogName",
+    "project",
+    "feature"
+  ]
+}

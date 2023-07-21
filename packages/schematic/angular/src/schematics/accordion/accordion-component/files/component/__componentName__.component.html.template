@@ -1,0 +1,30 @@
+<ng-template #errorTemplate let-error let-refresh="refresh">
+  <rxap-data-source-error [error]="error" [refresh]="refresh"></rxap-data-source-error>
+</ng-template>
+<div *rxapDataSource="let accordion from accordionDataSource; errorTemplate: errorTemplate" class="flex flex-col gap-y-6">
+  <<%= prefix %>-accordion-header [data]="accordion"></<%= prefix %>-accordion-header>
+  <ng-template #divider>
+    <mat-divider></mat-divider>
+  </ng-template>
+  <mat-progress-bar *ngIf="accordionDataSource.loading$ | async; else divider" mode="indeterminate"></mat-progress-bar>
+  <mat-accordion [rxapPersistentAccordion]="accordionDataSource.lastUuid" <% if (multiple) { %>multi<% } %>>
+    <% for (let index = 0; index < itemList.length; index++) { %>
+    <% item = itemList[index] %>
+    <mat-expansion-panel>
+
+      <mat-expansion-panel-header>
+        <mat-panel-title i18n><%= classify(item.name) %></mat-panel-title>
+        <% if (item.description) { %>
+        <mat-panel-description i18n><%= item.description %></mat-panel-description>
+        <% } %>
+      </mat-expansion-panel-header>
+
+      <ng-template matExpansionPanelContent>
+        <<%= prefix %>-<%= item.name %>-panel></<%= prefix %>-<%= item.name %>-panel>
+      </ng-template>
+
+    </mat-expansion-panel>
+    <% } %>
+    <!-- NEXT_INDEX[<%= itemList.length %>] -->
+  </mat-accordion>
+</div>

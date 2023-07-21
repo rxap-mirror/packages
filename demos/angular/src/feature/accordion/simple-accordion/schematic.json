@@ -1,0 +1,21 @@
+[
+  {
+    "package": "@rxap/schematic-angular",
+    "name": "accordion-component",
+    "options": {
+      "name": "simple",
+      "backend": "local",
+      "itemList": [
+        {
+          "name": "first"
+        },
+        {
+          "name": "second"
+        },
+        {
+          "name": "third"
+        }
+      ]
+    }
+  }
+]

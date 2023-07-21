@@ -14,11 +14,6 @@
       "factory": "./src/generators/index-export/generator",
       "schema": "./src/generators/index-export/schema.json",
       "description": "Generate index exports for each directory and in the src root"
-    },
-    "schematic": {
-      "factory": "./src/generators/schematic/generator",
-      "schema": "./src/generators/schematic/schema.json",
-      "description": "Create a Schematic for a project."
     }
   }
 }

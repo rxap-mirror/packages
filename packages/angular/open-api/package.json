@@ -25,7 +25,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "open-api"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/open-api",
   "bugs": {

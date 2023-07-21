@@ -1,0 +1,239 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "tree-table-component",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the table",
+      "x-prompt": "Which name should the table module have?"
+    },
+    "project": {
+      "type": "string",
+      "description": "The target project where the table module should be added."
+    },
+    "feature": {
+      "type": "string",
+      "description": "The feature name where the table module should be added.",
+      "x-prompt": "To which feature should the table module be added?"
+    },
+    "shared": {
+      "type": "boolean",
+      "description": "Whether the table is shared across applications",
+      "default": false
+    },
+    "backend": {
+      "type": "string",
+      "description": "The backend that should be used to handel data",
+      "enum": [
+        "none",
+        "local",
+        "nestjs"
+      ],
+      "default": "none"
+    },
+    "directory": {
+      "type": "string",
+      "description": "A directory name or absolute path for the table module. relative to the feature base path"
+    },
+    "nestModule": {
+      "type": "string",
+      "description": "The module name for the table nest operations"
+    },
+    "modifiers": {
+      "alias": "modifier",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "navigation-back-header",
+          "without-title"
+        ]
+      },
+      "description": "The table modifiers"
+    },
+    "headerButton": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "role": {
+              "type": "string"
+            },
+            "permission": {
+              "type": "string"
+            },
+            "icon": {
+              "type": "string"
+            },
+            "svgIcon": {
+              "type": "string"
+            }
+          }
+        }
+      ],
+      "description": "The header button configuration"
+    },
+    "columnList": {
+      "alias": "column",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "modifiers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "hasFilter": {
+                "type": "boolean"
+              },
+              "title": {
+                "type": "string"
+              },
+              "propertyPath": {
+                "type": "string"
+              },
+              "hidden": {
+                "type": "boolean"
+              },
+              "active": {
+                "type": "boolean"
+              },
+              "inactive": {
+                "type": "boolean"
+              },
+              "show": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        ],
+        "description": "table column name"
+      },
+      "description": "List of table column names"
+    },
+    "actionList": {
+      "alias": "action",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "refresh": {
+                "type": "boolean"
+              },
+              "confirm": {
+                "type": "boolean"
+              },
+              "tooltip": {
+                "type": "string"
+              },
+              "errorMessage": {
+                "type": "string"
+              },
+              "successMessage": {
+                "type": "string"
+              },
+              "priority": {
+                "type": "number"
+              },
+              "checkFunction": {
+                "type": "string"
+              },
+              "inHeader": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "form",
+                  "link",
+                  "method",
+                  "custom"
+                ]
+              },
+              "icon": {
+                "type": "string"
+              },
+              "svgIcon": {
+                "type": "string"
+              },
+              "permission": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "role"
+            ]
+          }
+        ]
+      }
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "Overwrite existing files",
+      "default": false
+    },
+    "context": {
+      "type": "string",
+      "description": "The context use to generate proper names for class, files, etc"
+    },
+    "tableRootMethod": {
+      "type": "object",
+      "properties": {
+        "className": {
+          "type": "string",
+          "description": "The name of the table method class"
+        },
+        "importPath": {
+          "type": "string",
+          "description": "The import path for the table method class"
+        }
+      }
+    },
+    "tableChildMethod": {
+      "type": "object",
+      "properties": {
+        "className": {
+          "type": "string",
+          "description": "The name of the table method class"
+        },
+        "importPath": {
+          "type": "string",
+          "description": "The import path for the table method class"
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "feature"
+  ]
+}

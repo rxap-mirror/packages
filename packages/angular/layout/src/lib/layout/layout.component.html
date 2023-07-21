@@ -1,42 +1,50 @@
-<rxap-header [sidenav]="sidenav" class="header"></rxap-header>
-<mat-sidenav-container autosize class="container">
-  <mat-sidenav
-    [fixedBottomGap]="layoutComponentService.fixedBottomGap$ | async"
-    [fixedInViewport]="true"
-    [fixedTopGap]="layoutComponentService.fixedTopGap$ | async"
-    [mode]="(layoutComponentService.mode$ | async) ?? 'side'"
-    [opened]="(layoutComponentService.opened$ | async) ?? true"
-    class="sidenav"
-  >
-    <rxap-sidenav>
-      <ng-template rxapSidenavHeader>
+<div class="flex flex-col h-screen justify-between">
+  <rxap-header [sidenav]="sidenav" class="z-10 w-full fixed top-0"></rxap-header>
+  <mat-sidenav-container class="grow mt-16 mb-16">
+    <mat-sidenav
+      #matSidenav="matSidenav"
+      (mouseenter)="sidenavMode === 'over' && matSidenav.open()"
+      (mouseleave)="sidenavMode === 'over' && matSidenav.close()"
+      [fixedBottomGap]="64"
+      [fixedInViewport]="true"
+      [fixedTopGap]="64"
+      [mode]="sidenavMode"
+      [opened]="false"
+      class="sidenav"
+    >
+      <div class="h-full py-2 flex flex-col items-center gap-y-5 justify-items-stretch">
+
+        <div (click)="toggleSidenavMode()"
+             class="pl-2 pr-1 self-stretch grow-0 flex flex-row justify-between items-center">
+          <span class="text-lg" i18n>Navigation</span>
+          <button mat-icon-button>
+            <mat-icon *ngIf="sidenavMode === 'over'">radio_button_unchecked</mat-icon>
+            <mat-icon *ngIf="sidenavMode === 'side'">radio_button_checked</mat-icon>
+          </button>
+        </div>
+
+        <ul class="grow self-stretch" root rxap-navigation></ul>
+
         <img
+          [height]="layoutComponentService.logo.height ?? 128"
+          [ngSrc]="layoutComponentService.logo.src ?? 'https://via.placeholder.com/256x128px'"
           [routerLink]="['/']"
-          [src]="layoutComponentService.logo.src"
-          [width]="layoutComponentService.logo.width"
+          [width]="layoutComponentService.logo.width ?? 256"
           alt="logo"
-          class="logo"
+          class="grow-0"
         />
-      </ng-template>
-    </rxap-sidenav>
-  </mat-sidenav>
-  <mat-sidenav-content class="content">
-    <rxap-sidenav-content [sidenav]="sidenav">
-      <ng-content></ng-content>
-      <rxap-toggle-window-sidenav-button
-        [(openWindowSidenav)]="openWindowSidenav"></rxap-toggle-window-sidenav-button>
-    </rxap-sidenav-content>
-  </mat-sidenav-content>
-  <mat-sidenav
-    [fixedBottomGap]="layoutComponentService.fixedBottomGap$ | async"
-    [fixedInViewport]="true"
-    [fixedTopGap]="layoutComponentService.fixedTopGap$ | async"
-    [opened]="openWindowSidenav"
-    class="window-container-sidenav"
-    mode="side"
-    position="end"
-  >
-    <rxap-window-container-sidenav></rxap-window-container-sidenav>
-  </mat-sidenav>
-</mat-sidenav-container>
-<rxap-footer class="footer"></rxap-footer>
+        <div class="grow-0">
+          <span>{{release}}</span>
+        </div>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content
+      [ngClass]="{ opened: matSidenav.opened, side: sidenavMode === 'side' }"
+      class="ml-14 p-4"
+    >
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <rxap-footer class="z-10 w-full fixed bottom-0"></rxap-footer>
+</div>
+<!--<rxap-window-task-bar-container></rxap-window-task-bar-container>-->

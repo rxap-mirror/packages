@@ -2,5 +2,30 @@
   "name": "@rxap/schematic-angular",
   "version": "16.0.0",
   "type": "commonjs",
-  "schematics": "./collection.json"
+  "schematics": "./collection.json",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/schematic/angular"
+  },
+  "keywords": [
+    "rxap",
+    "packages",
+    "schematic",
+    "angular"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/angular",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/schematic/angular"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
 }

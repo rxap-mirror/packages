@@ -1,0 +1,27 @@
+{
+  "description": "Adds Modules, Services and Packages to integrate sentry",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "sentry",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      },
+      "x-prompt": "Which project should be extend with sentry support?"
+    },
+    "dsn": {
+      "type": "string",
+      "description": "Default sentry dsn"
+    },
+    "required": {
+      "type": "boolean",
+      "description": "Whether or not the sentry dsn should be required to start the application"
+    }
+  },
+  "required": [
+    "project"
+  ]
+}

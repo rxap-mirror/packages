@@ -4,12 +4,14 @@ import {
   VariableDeclaration,
   VariableDeclarationKind,
   VariableDeclarationStructure,
+  VariableStatementStructure,
 } from 'ts-morph';
 
 export function CoerceVariableDeclaration(
   sourceFile: SourceFile,
   name: string,
-  defaultDeclaration: Omit<OptionalKind<VariableDeclarationStructure>, 'name'>,
+  defaultDeclaration: Omit<OptionalKind<VariableDeclarationStructure>, 'name'> = {},
+  variableStatementStructure?: Partial<Omit<OptionalKind<VariableStatementStructure>, 'declarations'>>,
 ): VariableDeclaration {
 
   const declaration = {
@@ -19,9 +21,14 @@ export function CoerceVariableDeclaration(
 
   let variableStatement = sourceFile.getVariableStatement(name);
   if (!variableStatement) {
-    variableStatement = sourceFile.addVariableStatement({
+    variableStatementStructure ??= {
       isExported: true,
       declarationKind: VariableDeclarationKind.Const,
+    };
+    variableStatementStructure.isExported ??= true;
+    variableStatementStructure.declarationKind ??= VariableDeclarationKind.Const;
+    variableStatement = sourceFile.addVariableStatement({
+      ...variableStatementStructure,
       declarations: [ declaration ],
     });
   }

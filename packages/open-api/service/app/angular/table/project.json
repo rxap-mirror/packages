@@ -1,0 +1,42 @@
+{
+  "name": "open-api-service-app-angular-table",
+  "$schema": "../../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/open-api/service/app/angular/table/src",
+  "prefix": "rxap",
+  "tags": [
+    "internal",
+    "angular",
+    "ngx"
+  ],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/open-api/service/app/angular/table/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/open-api/service/app/angular/table/**/*.ts",
+          "packages/open-api/service/app/angular/table/**/*.html"
+        ]
+      }
+    }
+  }
+}

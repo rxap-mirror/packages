@@ -1,12 +1,12 @@
-import { UploadExecutorSchema } from './schema';
+import { ExecutorContext } from '@nx/devkit';
 import {
   GetProjectConfiguration,
   GetTarget,
   GetTargetOptions,
   YarnRun,
 } from '@rxap/plugin-utilities';
-import { ExecutorContext } from '@nx/devkit';
 import { DownloadExecutorSchema } from '../download/schema';
+import { UploadExecutorSchema } from './schema';
 
 export default async function runExecutor(options: UploadExecutorSchema, context: ExecutorContext) {
 
@@ -18,12 +18,14 @@ export default async function runExecutor(options: UploadExecutorSchema, context
     options.readKey = process.env.LOCALAZY_READ_KEY;
   }
 
-  if (!options.readKey) {
-    const projectConfiguration = GetProjectConfiguration(context);
-    const downloadTarget = GetTarget(projectConfiguration, 'localazy-download');
-    const downloadTargetOptions = GetTargetOptions<DownloadExecutorSchema>(downloadTarget, context.configurationName);
-    options.readKey = downloadTargetOptions.readKey;
-  }
+  const projectConfiguration = GetProjectConfiguration(context);
+  const downloadTarget = GetTarget(projectConfiguration, 'localazy-download');
+  const downloadTargetOptions = GetTargetOptions<DownloadExecutorSchema>(downloadTarget, context.configurationName);
+  options.readKey ??= downloadTargetOptions.readKey;
+  options.writeKey ??= downloadTargetOptions.writeKey;
+  options.configJson ??= downloadTargetOptions.configJson;
+  options.workingDirectory ??= downloadTargetOptions.workingDirectory;
+  options.keysJson ??= downloadTargetOptions.keysJson;
 
   const args: string[] = [ 'localazy', 'upload' ];
 

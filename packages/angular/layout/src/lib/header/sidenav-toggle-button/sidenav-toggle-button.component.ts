@@ -15,7 +15,11 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: [ './sidenav-toggle-button.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ MatButtonModule, NgIf, MatIconModule ],
+  imports: [
+    MatButtonModule,
+    NgIf,
+    MatIconModule,
+  ],
 })
 export class SidenavToggleButtonComponent {
 

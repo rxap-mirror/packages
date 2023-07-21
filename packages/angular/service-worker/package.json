@@ -19,7 +19,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "service-worker"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/service-worker",
   "bugs": {

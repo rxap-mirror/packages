@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Compose",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string"
+    },
+    "feature": {
+      "type": "string"
+    },
+    "overwrite": {
+      "description": "Overwrite the existing file if it exists",
+      "type": "boolean"
+    },
+    "replace": {
+      "description": "Replace the existing file if it exists",
+      "type": "boolean"
+    },
+    "filter": {
+      "description": "Filter by the folder name of the schematic file",
+      "type": "string"
+    }
+  },
+  "required": []
+}

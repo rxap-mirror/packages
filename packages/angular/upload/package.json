@@ -23,7 +23,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "upload"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/upload",
   "bugs": {

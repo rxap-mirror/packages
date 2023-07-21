@@ -1,36 +1,38 @@
-<a [matTooltipDisabled]="(sidenav.collapsed$ | async) === false"
-   [matTooltip]="item.label"
-   [routerLink]="item.routerLink"
-   class="navigation-link mat-body-2 mat-body-strong navigation-level-{{level}}"
-   matRipple routerLinkActive="link-active">
-  <mat-icon *ngIf="item.icon" [rxapIcon]="item.icon" class="icon"></mat-icon>
-  <ng-template [ngIf]="(sidenav.collapsed$ | async) === false">
-    <span class="label">{{ item.label }}</span>
-  </ng-template>
-</a>
+<div [ngClass]="{
+     'border-l-4 text-accent-400 border-accent-600': active(),
+     }">
+  <a [routerLink]="item.routerLink"
+     class="h-12 px-4 flex flex-row justify-between items-center gap-x-4"
+     matRipple
+     routerLinkActive
 
-<ul *ngIf="routerLinkActive.isActive && (sidenav.collapsed$ | async) === false && children"
-    [@sub-nav]
-    [items]="children"
-    [level]="level + 1"
-    class="sub-items"
-    fxFlex="nogrow"
-    rxap-navigation
->
-</ul>
+  >
+    <span
+      [ngClass]="{
+        'pl-0': level === 0,
+        'pl-4': level === 1,
+        'pl-8': level === 2,
+        'pl-12': level === 3
+      }"
+      class="grow whitespace-nowrap"
+    >
+      {{ item.label }}
+    </span>
+    <mat-icon *ngIf="item.icon" [rxapIcon]="item.icon"></mat-icon>
+  </a>
 
-<ng-template #navigationOverlay>
-  <div (mouseenter)="lockeOverlay = true"
-       (mouseleave)="lockeOverlay = false; onMouseleave()" class="navigation-overlay-container mat-elevation-z1">
-    <ul>
-      <li *ngFor="let child of children">
-        <a *ngIf="isNavigationItem(child)" [routerLink]="asNavigationItem(child).routerLink"
-           class="navigation-link mat-subtitle-2 mat-body-strong" matRipple>
-          <mat-icon *ngIf="asNavigationItem(child).icon" [rxapIcon]="asNavigationItem(child).icon"
-                    class="icon"></mat-icon>
-          <span class="label">{{ asNavigationItem(child).label }}</span>
-        </a>
-      </li>
+  <ng-container *ngIf="item.children?.length && active()">
+
+    <mat-divider></mat-divider>
+
+    <ul [@sub-nav]
+        [items]="children ?? []"
+        [level]="level + 1"
+        rxap-navigation
+    >
     </ul>
-  </div>
-</ng-template>
+
+    <mat-divider></mat-divider>
+
+  </ng-container>
+</div>

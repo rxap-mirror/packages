@@ -15,7 +15,9 @@
   },
   "keywords": [
     "rxap",
-    "nest"
+    "nest",
+    "packages",
+    "firebase"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/firebase",
   "bugs": {

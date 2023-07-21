@@ -25,7 +25,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "dialog"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/dialog",
   "bugs": {

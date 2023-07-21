@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "tree-component",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the tree",
+      "x-prompt": "Which name should the tree component have?"
+    },
+    "project": {
+      "type": "string",
+      "description": "The target project where the tree component should be added."
+    },
+    "feature": {
+      "type": "string",
+      "description": "The feature name where the tree component should be added.",
+      "x-prompt": "To which feature should the tree component be added?"
+    },
+    "backend": {
+      "type": "string",
+      "description": "The backend that should be used to handel data",
+      "enum": [
+        "none",
+        "local",
+        "nestjs"
+      ],
+      "default": "none"
+    },
+    "shared": {
+      "type": "boolean",
+      "description": "Whether the tree is shared across applications",
+      "default": false
+    },
+    "modifiers": {
+      "alias": "modifier",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "navigation-back-header",
+          "without-title"
+        ]
+      },
+      "description": "The tree modifiers"
+    },
+    "directory": {
+      "type": "string",
+      "description": "A directory name or absolute path for the tree component. relative to the feature base path"
+    },
+    "nestModule": {
+      "type": "string",
+      "description": "The module name for the tree nest operations"
+    },
+    "controllerName": {
+      "type": "string",
+      "description": "The controller name for the tree nest operations"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "Overwrite existing files",
+      "default": false
+    },
+    "fullTree": {
+      "type": "boolean",
+      "description": "Whether the tree should be a full tree",
+      "default": true
+    }
+  },
+  "required": [
+    "name",
+    "feature",
+    "project"
+  ]
+}

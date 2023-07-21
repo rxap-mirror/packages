@@ -1,0 +1,188 @@
+<div class="flex flex-col gap-y-4 m-4">
+
+
+  <div class="table-card-container flex flex-col">
+    <mat-card>
+      <mat-progress-bar
+        rxapCardProgressBar
+        [loading$]="tableDataSourceDirective.loading$"
+      ></mat-progress-bar>
+      <mat-card-header class="min-h-full h-12">
+
+      <mat-card-title i18n>Minimum</mat-card-title>
+
+
+        <rxap-table-column-menu #rxapTableColumns="rxapTableColumns" [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }" matCard>
+
+
+          <rxap-table-column-option
+          name="name">
+          <ng-container i18n>Name</ng-container>
+        </rxap-table-column-option>
+
+        <rxap-table-column-option
+          name="age">
+          <ng-container i18n>Age</ng-container>
+        </rxap-table-column-option>
+
+        <rxap-table-column-option
+          name="isActive">
+          <ng-container i18n>Is Active</ng-container>
+        </rxap-table-column-option>
+
+        <rxap-table-column-option
+          name="email">
+          <ng-container i18n>Email</ng-container>
+        </rxap-table-column-option>
+
+        <rxap-table-column-option
+          name="rating">
+          <ng-container i18n>Rating</ng-container>
+        </rxap-table-column-option>
+
+        <rxap-table-column-option
+          name="accountStatus">
+          <ng-container i18n>Account Status</ng-container>
+        </rxap-table-column-option>
+
+
+          <mat-divider></mat-divider>
+        <span mat-menu-item>
+          <rxap-table-show-archived-slide
+            [paginator]="paginator"
+          ></rxap-table-show-archived-slide>
+        </span>
+      </rxap-table-column-menu>
+       </mat-card-header>
+
+      <mat-card-content>
+        <rxap-data-source-error
+          [error]="tableDataSourceDirective.dataSource?.error$"
+          [loading]="tableDataSourceDirective.loading$"
+          *ngIf="tableDataSourceDirective.hasError$ | async"
+          [refresh]="tableDataSourceDirective.retry">
+        </rxap-data-source-error>
+        <div class="table-scroll-container mt-4 overflow-x-auto overscroll-contain">
+        <table
+          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          [paginator]="paginator"
+          matSort
+          mat-table
+          #tableDataSourceDirective="rxapTableDataSource"
+          rxapTableDataSource
+          [parameters]="parameters"
+          id="minimum"
+
+        >
+          <!-- region columns -->
+
+
+          <ng-container matColumnDef="removedAt">
+            <th mat-header-cell *matHeaderCellDef>
+              <ng-container i18n>Removed at</ng-container>
+            </th>
+            <td
+              mat-cell
+              [rxap-date-cell]="element.__removedAt"
+              *matCellDef="let element"
+            ></td>
+          </ng-container>
+          <ng-container matColumnDef="uuid">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n>UUID</ng-container>
+            </th>
+
+            <td mat-cell *matCellDef="let element">{{ element?.uuid }}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n>Name</ng-container>
+            </th>
+
+            <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n>Age</ng-container>
+            </th>
+
+            <td mat-cell *matCellDef="let element">{{ element?.age }}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="isActive">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n>Is Active</ng-container>
+            </th>
+
+            <td *matCellDef="let element" mat-cell [rxap-boolean-cell]="element?.isActive"></td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n>Email</ng-container>
+            </th>
+
+            <td mat-cell *matCellDef="let element">{{ element?.email }}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="rating">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n>Rating</ng-container>
+            </th>
+
+            <td mat-cell *matCellDef="let element">{{ element?.rating }}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="accountStatus">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n>Account Status</ng-container>
+            </th>
+
+            <td mat-cell *matCellDef="let element">{{ element?.accountStatus }}</td>
+          </ng-container>
+
+
+          <!-- endregion -->
+
+
+          <tr
+            mat-header-row
+            *matHeaderRowDef="rxapTableColumns.displayColumns"
+          ></tr>
+
+          <tr
+            [@rowsAnimation]=""
+            mat-row
+            [ngClass]="{ 'rxap-row-odd !bg-neutral-200 dark:!bg-neutral-600': odd, 'rxap-row-even': even }"
+                        class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
+            *matRowDef="
+              let element;
+              columns: rxapTableColumns.displayColumns;
+              let odd = odd;
+              let even = even
+            "
+          ></tr>
+        </table>
+        </div>
+      </mat-card-content>
+
+      <mat-card-footer
+      ><mat-paginator
+        [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+        rxapPersistent
+        [pageSizeOptions]="[5,10,25,50,100]"
+        [pageSize]="10"
+        #paginator="matPaginator"
+      ></mat-paginator
+      ></mat-card-footer>
+    </mat-card>
+  </div>
+</div>

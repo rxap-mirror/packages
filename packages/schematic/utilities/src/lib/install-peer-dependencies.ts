@@ -4,19 +4,21 @@ import {
   Rule,
 } from '@angular-devkit/schematics';
 import {
-  dirname,
-  join,
-} from 'path';
-import {
   NodePackageInstallTask,
   RunSchematicTask,
 } from '@angular-devkit/schematics/tasks';
-import { PackageJson } from './package-json';
-import { GetJsonFile } from './json-file';
-import { CollectionJson } from './collection-json';
 import {
-  AddPackageJsonDependency,
-  AddPackageJsonDevDependency,
+  CollectionJson,
+  PackageJson,
+} from '@rxap/workspace-utilities';
+import {
+  dirname,
+  join,
+} from 'path';
+import { GetJsonFile } from './json-file';
+import {
+  AddPackageJsonDependencyRule,
+  AddPackageJsonDevDependencyRule,
 } from './package-json-file';
 
 export function InstallPeerDependencies(): Rule {
@@ -35,9 +37,9 @@ export function InstallPeerDependencies(): Rule {
     return chain([
       chain(Object.entries(peerDependencies as Record<string, string>).map(([ name, version ]: [ string, string ]) => {
         if (packageJson['ng-add']?.save === 'devDependency') {
-          return AddPackageJsonDevDependency(name, version);
+          return AddPackageJsonDevDependencyRule(name, version);
         } else {
-          return AddPackageJsonDependency(name, version);
+          return AddPackageJsonDependencyRule(name, version);
         }
       })),
       (tree, context) => {

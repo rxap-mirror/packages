@@ -1,28 +1,21 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  EmbeddedViewRef,
   forwardRef,
   HostBinding,
-  HostListener,
   Inject,
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
   Renderer2,
+  signal,
   SimpleChanges,
-  TemplateRef,
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  DebounceCall,
-  Required,
-} from '@rxap/utilities';
+import { Required } from '@rxap/utilities';
 import {
   animate,
   style,
@@ -30,42 +23,36 @@ import {
   trigger,
 } from '@angular/animations';
 import {
-  Navigation,
-  NavigationDividerItem,
-  NavigationItem,
-} from '../navigation-item';
-import {
   NavigationEnd,
   Router,
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
-import { Subscription } from 'rxjs';
 import {
-  delay,
-  distinctUntilChanged,
+  debounceTime,
+  Subscription,
+} from 'rxjs';
+import {
   filter,
-  skip,
   startWith,
   tap,
 } from 'rxjs/operators';
+import { Overlay } from '@angular/cdk/overlay';
 import { SidenavComponentService } from '../../sidenav/sidenav.component.service';
-import {
-  Overlay,
-  OverlayRef,
-} from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
-import { FlexModule } from '@angular/flex-layout/flex';
 import { NavigationComponent } from '../navigation.component';
+import { MatDividerModule } from '@angular/material/divider';
 import { IconDirective } from '@rxap/material-directives/icon';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRippleModule } from '@angular/material/core';
 import {
-  AsyncPipe,
-  NgFor,
+  NgClass,
   NgIf,
 } from '@angular/common';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatRippleModule } from '@angular/material/core';
+import {
+  Navigation,
+  NavigationDividerItem,
+  NavigationItem,
+} from '../navigation-item';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -74,10 +61,6 @@ import { MatRippleModule } from '@angular/material/core';
   styleUrls: [ './navigation-item.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    class: 'rxap-navigation-item',
-  },
   animations: [
     trigger('sub-nav', [
       transition(':enter', [
@@ -98,20 +81,24 @@ import { MatRippleModule } from '@angular/material/core';
   standalone: true,
   imports: [
     RouterLinkActive,
-    MatRippleModule,
     RouterLink,
-    MatTooltipModule,
     NgIf,
+    MatRippleModule,
     MatIconModule,
     IconDirective,
+    MatDividerModule,
     forwardRef(() => NavigationComponent),
-    FlexModule,
-    NgFor,
-    AsyncPipe,
+    NgClass,
   ],
 })
 export class NavigationItemComponent
-  implements OnChanges, AfterViewInit, OnDestroy, OnInit {
+  implements OnChanges, OnDestroy {
+
+  @Input()
+  public level = 0;
+
+  private _isActive = false;
+
   public children: Navigation | null = null;
 
   @ViewChild(RouterLinkActive, { static: true })
@@ -121,24 +108,19 @@ export class NavigationItemComponent
   @Required
   public item!: NavigationItem;
 
-  @Input()
-  public level = 0;
+  public active = signal(false);
 
   @HostBinding('class.active')
-  public isActive = false;
+  get isActive(): boolean {
+    return this._isActive;
+  }
 
-  @ViewChild('navigationOverlay')
-  private _navigationOverlay!: TemplateRef<any>;
+  set isActive(value: boolean) {
+    this._isActive = value;
+    this.active.set(value);
+  }
 
   private readonly _subscription = new Subscription();
-
-  private _overlayRef?: OverlayRef;
-  private _embeddedViewRef?: EmbeddedViewRef<any>;
-
-  /**
-   * indicates the mouse is over the
-   */
-  public lockeOverlay = false;
 
   constructor(
     @Inject(Router)
@@ -169,20 +151,25 @@ export class NavigationItemComponent
       this.router.events
           .pipe(
             filter((event) => event instanceof NavigationEnd),
+            debounceTime(100),
             startWith(true),
-            delay(100),
             tap(() => {
-              if (this.routerLinkActive.isActive) {
-                if (!this.sidenav.collapsed$.value) {
-                  // only close the overlay if sidenav collapsed
-                  this._overlayRef?.detach();
+              let isActive = true;
+              const urlParts = this.router.url.split('/');
+              if (urlParts[0] === '') {
+                urlParts[0] = '/';
+              }
+              for (let i = 0; i < this.item.routerLink.length; i++) {
+                if (urlParts[i] !== this.item.routerLink[i]) {
+                  isActive = false;
+                  break;
                 }
+              }
+              this.isActive = isActive;
+              if (isActive) {
                 this.renderer.addClass(this.elementRef.nativeElement, 'active');
               } else {
-                this.renderer.removeClass(
-                  this.elementRef.nativeElement,
-                  'active',
-                );
+                this.renderer.removeClass(this.elementRef.nativeElement, 'active');
               }
             }),
           )
@@ -190,59 +177,8 @@ export class NavigationItemComponent
     );
   }
 
-  public ngOnInit() {
-    // detach the navigation overlay if the sidenav collapsed
-    // state is changed
-    this._subscription.add(
-      this.sidenav.collapsed$
-          .pipe(
-            skip(1),
-            distinctUntilChanged(),
-            tap(() => this._overlayRef?.detach()),
-          )
-          .subscribe(),
-    );
-  }
-
   public ngOnDestroy() {
     this._subscription?.unsubscribe();
-    this._overlayRef?.dispose();
-  }
-
-  @HostListener('mouseenter')
-  public onMouseenter() {
-    if (this.children) {
-      if (!this.routerLinkActive.isActive || this.sidenav.collapsed$.value) {
-        if (!this._overlayRef) {
-          this._overlayRef = this.overlay.create({
-            positionStrategy: this.overlay
-                                  .position()
-                                  .flexibleConnectedTo(this.elementRef)
-                                  .withPositions([
-                                    {
-                                      originY: 'top',
-                                      originX: 'end',
-                                      overlayY: 'top',
-                                      overlayX: 'start',
-                                    },
-                                  ]),
-          });
-        }
-        if (!this._overlayRef.hasAttached()) {
-          this._embeddedViewRef = this._overlayRef.attach(
-            new TemplatePortal(this._navigationOverlay, this.viewContainerRef),
-          );
-        }
-      }
-    }
-  }
-
-  @HostListener('mouseleave')
-  @DebounceCall(100)
-  public onMouseleave() {
-    if (!this.lockeOverlay) {
-      this._overlayRef?.detach();
-    }
   }
 
   // region type save item property

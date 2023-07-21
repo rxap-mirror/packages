@@ -1,28 +1,18 @@
 <button [matMenuTriggerFor]="menu"
-        [name]="(userName$ | async) ?? ''"
-        [rxapAvatarBackgroundImage]="userProfileUrl$ | async"
+        [disabled]="!username()"
         class="profile-icon"
         fxLayout="row"
         fxLayoutAlign="center center">
+  <mat-icon class="avatar-icon">account_circle</mat-icon>
 </button>
 
 <mat-menu #menu="matMenu" [yPosition]="'below'">
-  <ng-template [ngIf]="userService.user$ | async" let-user>
-    <button *ngIf="user.firstname && user.lastname" mat-menu-item>
-      <mat-icon>person</mat-icon>
-      <span>{{user.firstname}} {{user.lastname}}</span>
-    </button>
-    <button *ngIf="user.name" mat-menu-item>
-      <mat-icon>person</mat-icon>
-      <span>{{user.name}}</span>
-    </button>
-    <button *ngIf="user.username" mat-menu-item>
-      <mat-icon>account_circle</mat-icon>
-      <span>{{user.username}}</span>
-    </button>
-    <button *ngIf="user.email" mat-menu-item>
-      <mat-icon>email</mat-icon>
-      <span>{{user.email}}</span>
-    </button>
-  </ng-template>
+  <button mat-menu-item>
+    <mat-icon>account_circle</mat-icon>
+    <span>{{username()}}</span>
+  </button>
+  <button (click)="logout()" mat-menu-item>
+    <mat-icon>login</mat-icon>
+    <span i18n>Logout</span>
+  </button>
 </mat-menu>

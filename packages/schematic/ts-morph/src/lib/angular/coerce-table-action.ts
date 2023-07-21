@@ -26,11 +26,11 @@ export interface CoerceTableActionOptions extends Omit<CoerceMethodClassOptions,
   tableName: string;
   refresh?: boolean;
   confirm?: boolean;
-  tooltip?: string;
-  errorMessage?: string;
-  successMessage?: string;
-  priority?: number;
-  checkFunction?: string;
+  tooltip?: string | null;
+  errorMessage?: string | null;
+  successMessage?: string | null;
+  priority?: number | null;
+  checkFunction?: string | null;
 }
 
 export function CoerceTableActionRule(options: CoerceTableActionOptions) {

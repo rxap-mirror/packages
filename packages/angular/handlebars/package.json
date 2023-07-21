@@ -16,7 +16,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "handlebars"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/handlebars",
   "bugs": {

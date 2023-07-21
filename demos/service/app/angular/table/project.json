@@ -1,0 +1,150 @@
+{
+  "name": "service-app-angular-table",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "demos/service/app/angular/table/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/demos/service/app/angular/table",
+        "main": "demos/service/app/angular/table/src/main.ts",
+        "tsConfig": "demos/service/app/angular/table/tsconfig.app.json",
+        "assets": [
+          "demos/service/app/angular/table/src/assets",
+          "demos/service/app/angular/table/src/Dockerfile",
+          "demos/service/app/angular/table/src/healthcheck.js"
+        ],
+        "isolatedConfig": true,
+        "webpackConfig": "demos/service/app/angular/table/webpack.config.js",
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "service-app-angular-table:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "service-app-angular-table:build:development"
+        },
+        "production": {
+          "buildTarget": "service-app-angular-table:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "demos/service/app/angular/table/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "demos/service/app/angular/table/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "build-info": {
+      "executor": "@rxap/plugin-application:build-info",
+      "options": {},
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "docker": {
+      "executor": "@rxap/plugin-docker:build",
+      "options": {
+        "imageName": "rxap/packages",
+        "imageSuffix": "/service/app/angular/table",
+        "imageRegistry": "registry.gitlab.com"
+      },
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "save": {
+      "executor": "@rxap/plugin-docker:save",
+      "options": {},
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "swagger-build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/demos/service/app/angular/table",
+        "main": "demos/service/app/angular/table/src/swagger.ts",
+        "target": "node",
+        "compiler": "tsc",
+        "webpackConfig": "demos/service/app/angular/table/webpack.config.js",
+        "transformers": [
+          "@nestjs/swagger/plugin"
+        ],
+        "tsConfig": "demos/service/app/angular/table/tsconfig.app.json",
+        "fileReplacements": [
+          {
+            "replace": "demos/service/app/angular/table/src/environments/environment.ts",
+            "with": "demos/service/app/angular/table/src/environments/environment.swagger.ts"
+          }
+        ]
+      }
+    },
+    "swagger-generate": {
+      "executor": "@nx/js:node",
+      "outputs": [
+        "{options.outputPath}/open-api.json"
+      ],
+      "options": {
+        "buildTarget": "service-app-angular-table:swagger-build",
+        "watch": false
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "echo ok"
+      }
+    }
+  },
+  "tags": [
+    "service",
+    "nest",
+    "sentry",
+    "open-api"
+  ]
+}

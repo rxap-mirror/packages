@@ -1,22 +1,23 @@
+import { Scope } from 'ts-morph';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
+import {
+  OperationIdToClassImportPath,
+  OperationIdToClassName,
+} from '../nest/operation-id-utilities';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import {
   CoerceMethodClass,
   CoerceMethodClassOptions,
 } from './coerce-method-class';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { Scope } from 'ts-morph';
-import {
-  OperationIdToClassImportPath,
-  OperationIdToClassName,
-} from '../operation-id-utilities';
 
 export interface CoerceTableSelectResolveValueMethodOptions extends CoerceMethodClassOptions {
   operationId: string;
+  scope: string;
 }
 
 export function CoerceTableSelectResolveValueMethodRule(options: CoerceTableSelectResolveValueMethodOptions) {
-  const { operationId } = options;
+  const { operationId, scope } = options;
 
   return CoerceMethodClass({
     ...options,
@@ -30,7 +31,7 @@ export function CoerceTableSelectResolveValueMethodRule(options: CoerceTableSele
       });
       CoerceImports(sourceFile, {
         namedImports: [ OperationIdToClassName(operationId) ],
-        moduleSpecifier: OperationIdToClassImportPath(operationId),
+        moduleSpecifier: OperationIdToClassImportPath(operationId, scope),
       });
 
       return {

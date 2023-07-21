@@ -1,8 +1,8 @@
 import { SourceFile } from 'ts-morph';
+import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-literal-form-object-literal';
 
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { GetNgModuleOptionsObject } from '../get-ng-module-options-object';
-import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-literal-form-object-literal';
+import { GetNgModuleOptionsObject } from './get-ng-module-options-object';
 
 export function AddNgModuleExport(sourceFile: SourceFile, namedImport: string, moduleSpecifier?: string) {
 

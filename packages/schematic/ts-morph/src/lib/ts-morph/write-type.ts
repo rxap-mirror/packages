@@ -20,8 +20,10 @@ export function WriteType(property: { type: string | WriterFunction, isArray?: b
           w.write(property.type);
           break;
       }
-    } else {
+    } else if (typeof property.type === 'function') {
       property.type(w);
+    } else {
+      throw new Error('Invalid type');
     }
     if (property.isArray) {
       w.write('>');

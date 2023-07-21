@@ -11,7 +11,9 @@
     "directory": "../../dist/packages/utilities"
   },
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "utilities"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/utilities",
   "bugs": {

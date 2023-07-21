@@ -1,5 +1,5 @@
 <ng-template [ngIf]="footerService.portals$ | async" let-portals>
-  <mat-toolbar *ngIf="portals.length" class="footer mat-elevation-z1">
+  <mat-toolbar class="footer mat-elevation-z1">
     <mat-toolbar-row *ngFor="let portal of portals">
       <ng-template [cdkPortalOutlet]="portal"></ng-template>
     </mat-toolbar-row>

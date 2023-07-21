@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  forwardRef,
   HostBinding,
   Inject,
   Input,
@@ -9,27 +10,26 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  Navigation,
-  NavigationDividerItem,
-  NavigationItem,
-} from './navigation-item';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import {
   coerceBoolean,
   Required,
 } from '@rxap/utilities';
-import { NavigationService } from './navigation.service';
-import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { SidenavComponentService } from '../sidenav/sidenav.component.service';
 import { NavigationItemComponent } from './navigation-item/navigation-item.component';
-import { FlexModule } from '@angular/flex-layout/flex';
 import { MatDividerModule } from '@angular/material/divider';
 import {
   AsyncPipe,
   NgFor,
   NgIf,
 } from '@angular/common';
+import {
+  Navigation,
+  NavigationDividerItem,
+  NavigationItem,
+} from './navigation-item';
+import { NavigationService } from './navigation.service';
+import { SidenavComponentService } from '../sidenav/sidenav.component.service';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -38,33 +38,24 @@ import {
   styleUrls: [ './navigation.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: { class: 'rxap-navigation' },
   standalone: true,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+  host: {
+    class: 'list-none dark:text-neutral-400 text-neutral-700',
+  },
   imports: [
     NgFor,
     NgIf,
     MatDividerModule,
-    FlexModule,
-    NavigationItemComponent,
+    forwardRef(() => NavigationItemComponent),
     AsyncPipe,
   ],
 })
 export class NavigationComponent implements OnInit, OnDestroy {
-  @HostBinding('class.rxap-root-navigation')
-  public _root = false;
-
-  @Input()
-  public set root(value: boolean | '') {
-    this._root = coerceBoolean(value);
-  }
-
   @Input()
   @Required
   public items!: Navigation;
-
   public subscription?: Subscription;
-
   @Input()
   public level = 0;
 
@@ -76,6 +67,14 @@ export class NavigationComponent implements OnInit, OnDestroy {
     @Inject(SidenavComponentService)
     public readonly sidenav: SidenavComponentService,
   ) {
+  }
+
+  @HostBinding('class.rxap-root-navigation')
+  public _root = false;
+
+  @Input()
+  public set root(value: boolean | '') {
+    this._root = coerceBoolean(value);
   }
 
   public ngOnInit(): void {

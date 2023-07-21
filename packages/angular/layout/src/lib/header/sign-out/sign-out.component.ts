@@ -1,11 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Inject,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { RxapAuthenticationService } from '@rxap/authentication';
 import { MatIconModule } from '@angular/material/icon';
-import { SignOutDirective } from '@rxap/authentication';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -14,18 +12,17 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: [ './sign-out.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ MatButtonModule, SignOutDirective, MatIconModule ],
+  imports: [ MatButtonModule, MatIconModule ],
 })
 export class SignOutComponent {
 
   constructor(
-    @Inject(Router)
-    private readonly router: Router,
+    private readonly authenticationService: RxapAuthenticationService,
   ) {
   }
 
-  public redirectToRoot() {
-    this.router.navigate([ '/' ]);
+  public async logout() {
+    await this.authenticationService.signOut();
   }
 
 }

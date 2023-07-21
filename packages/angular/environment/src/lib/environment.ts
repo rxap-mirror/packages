@@ -38,5 +38,19 @@ export interface Environment {
     name?: string;
   };
 
+  sentry?: {
+    enabled?: boolean,
+    debug?: boolean,
+    dsn?: string,
+    integrations?: {
+      httpClient?: {
+        failedRequestTargets?: string[];
+      };
+      BrowserTracing?: {
+        tracePropagationTargets?: string[];
+      }
+    }
+  },
+
   [key: string]: any;
 }

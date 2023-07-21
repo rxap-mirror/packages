@@ -20,7 +20,6 @@ import {
   CdkDrag,
   CdkDragEnd,
   CdkDragHandle,
-  DragRef,
 } from '@angular/cdk/drag-drop';
 import { WindowResizerComponent } from '../window-resizer/window-resizer.component';
 import { WindowRef } from '../window-ref';
@@ -110,24 +109,6 @@ export class WindowContainerComponent<D> implements OnInit {
     const pos = nativeElement.getBoundingClientRect();
     $event.source.reset();
     this.windowRef.setPos(pos.left + 'px', pos.top + 'px');
-  }
-
-  public dragConstrainPosition(point: Point, dragRef: DragRef): Point {
-    const height = document.body.offsetHeight;
-    const width = document.body.offsetWidth;
-    if (point.y <= 0) {
-      point.y = 0;
-    }
-    if (point.x <= 0) {
-      point.x = 0;
-    }
-    if (point.y > height - 64) {
-      point.y = height - 64;
-    }
-    if (point.x > width - 100) {
-      point.x = width - 100;
-    }
-    return point;
   }
 
 }

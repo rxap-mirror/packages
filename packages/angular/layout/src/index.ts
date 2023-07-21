@@ -29,7 +29,6 @@ export * from './lib/header/apps-button/apps-button.component';
 
 // region layout
 
-export * from './lib/layout/layout.component.module';
 export * from './lib/layout/layout.component';
 export * from './lib/layout/layout.component.service';
 
@@ -58,14 +57,6 @@ export * from './lib/sidenav/version/version.component';
 
 // endregion
 
-// region sidenav content
-
-export * from './lib/sidenav-content/sidenav-content.component.service';
-
-export * from './lib/sidenav-content/sidenav-content.component';
-
-// endregion
-
 // region toggle window sidenav button
 
 
@@ -82,3 +73,7 @@ export * from './lib/window-container-sidenav/window-container-sidenav.component
 
 export * from './lib/footer.directive';
 export * from './lib/types';
+export * from './lib/i18n-check.guard';
+export * from './lib/i18n.service';
+export * from './lib/language-selector.service';
+export * from './lib/app-url.service';

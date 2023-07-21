@@ -10,7 +10,9 @@
     "directory": "../../dist/packages/pattern"
   },
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "pattern"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/pattern",
   "bugs": {

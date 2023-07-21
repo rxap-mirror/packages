@@ -14,7 +14,9 @@
     "directory": "../../dist/packages/reflect-metadata"
   },
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "reflect-metadata"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/reflect-metadata",
   "bugs": {

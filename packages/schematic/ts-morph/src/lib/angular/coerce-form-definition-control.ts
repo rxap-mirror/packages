@@ -4,9 +4,6 @@ import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
-import { TsMorphAngularProjectTransform } from '../ts-morph-transform';
-import { CoerceInterface } from '../ts-morph/coerce-interface';
-import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
 import {
   ClassDeclaration,
   Decorator,
@@ -16,17 +13,21 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
+import { CoerceClass } from '../coerce-class';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
+import {
+  TsMorphAngularProjectTransformOptions,
+  TsMorphAngularProjectTransformRule,
+} from '../ts-morph-transform';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceInterface } from '../ts-morph/coerce-interface';
 import { WriteType } from '../ts-morph/write-type';
 import { FormDefinitionControl } from '../types/form-definition-control';
-import { CoerceSourceFile } from '../coerce-source-file';
-import { CoerceClass } from '../coerce-class';
 
-export interface CoerceFormDefinitionControlOptions extends Required<FormDefinitionControl> {
-  project: string;
-  feature: string;
-  directory?: string;
+export interface CoerceFormDefinitionControlOptions extends Required<FormDefinitionControl>,
+                                                            TsMorphAngularProjectTransformOptions {
   tsMorphTransform?: (sourceFile: SourceFile, classDeclaration: ClassDeclaration) => void;
   formName: string;
   coerceFormTypeControl?: (
@@ -169,7 +170,7 @@ export function CoerceFormDefinitionControl(options: Readonly<CoerceFormDefiniti
 
   const className = CoerceSuffix(classify(formName), 'Form');
 
-  return TsMorphAngularProjectTransform(options, (project) => {
+  return TsMorphAngularProjectTransformRule(options, (project) => {
 
     const sourceFile = CoerceSourceFile(project, '/' + CoerceSuffix(formName, '.form.ts'));
     const classDeclaration = CoerceClass(sourceFile, className, { isExported: true });

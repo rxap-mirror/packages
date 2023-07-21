@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "InitApplication",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "projects": {
+      "alias": "project",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sentry": {
+      "type": "boolean"
+    },
+    "openApi": {
+      "type": "boolean"
+    },
+    "config": {
+      "type": "boolean"
+    },
+    "localazy": {
+      "type": "boolean"
+    },
+    "i18n": {
+      "type": "boolean"
+    },
+    "serviceWorker": {
+      "type": "boolean"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "material": {
+      "type": "boolean"
+    }
+  },
+  "required": []
+}

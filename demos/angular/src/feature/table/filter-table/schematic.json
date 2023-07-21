@@ -1,0 +1,38 @@
+[
+  {
+    "package": "@rxap/schematic-angular",
+    "name": "table-component",
+    "options": {
+      "name": "filter",
+      "tableMethod": {
+        "className": "DummyTableMethod",
+        "importPath": "../dummy-table.method"
+      },
+      "columnList": [
+        {
+          "name": "name",
+          "hasFilter": true
+        },
+        {
+          "name": "age",
+          "type": "number",
+          "hasFilter": true
+        },
+        {
+          "name": "isActive",
+          "type": "boolean",
+          "hasFilter": true
+        },
+        {
+          "name": "email",
+          "hasFilter": true
+        },
+        {
+          "name": "rating",
+          "type": "number",
+          "hasFilter": true
+        }
+      ]
+    }
+  }
+]

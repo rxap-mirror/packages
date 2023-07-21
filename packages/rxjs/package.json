@@ -14,7 +14,9 @@
     "directory": "../../dist/packages/rxjs"
   },
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "rxjs"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/rxjs",
   "bugs": {

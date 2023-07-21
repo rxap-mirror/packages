@@ -1,0 +1,9 @@
+{
+  "schematics": {
+    "compose": {
+      "factory": "./src/schematics/compose/index",
+      "schema": "./src/schematics/compose/schema.json",
+      "description": "compose schematic"
+    }
+  }
+}

@@ -1,11 +1,11 @@
 import {
-  TsMorphAngularProjectTransform,
-  TsMorphAngularProjectTransformOptions,
-} from '../ts-morph-transform';
-import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
+import {
+  TsMorphAngularProjectTransformOptions,
+  TsMorphAngularProjectTransformRule,
+} from '../ts-morph-transform';
 
 export interface EnforceUseFormControlOrderRuleOptions extends TsMorphAngularProjectTransformOptions {
   formName: string;
@@ -15,7 +15,7 @@ export function EnforceUseFormControlOrderRule(options: EnforceUseFormControlOrd
   const { formName } = options;
   const className = CoerceSuffix(classify(formName), 'Form');
 
-  return TsMorphAngularProjectTransform(options, (project) => {
+  return TsMorphAngularProjectTransformRule(options, (project) => {
 
     const sourceFile = project.getSourceFileOrThrow('/' + CoerceSuffix(formName, '.form.ts'));
     const classDeclaration = sourceFile.getClassOrThrow(className);

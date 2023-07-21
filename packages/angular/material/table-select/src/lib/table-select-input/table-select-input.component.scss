@@ -1,0 +1,28 @@
+:host {
+  display: inline-block;
+  width: 100%;
+  outline: none;
+}
+
+.container {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 24px;
+}
+
+.disabled {
+  color: rgba(255, 255, 255, 0.5);
+  cursor: initial;
+}
+
+.mat-select-trigger {
+  overflow: hidden;
+
+  span {
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,57 @@
+<mat-progress-bar *ngIf="accordionDataSource.loading$ | async" mode="indeterminate"></mat-progress-bar>
+<ng-template #errorTemplate let-error let-refresh="refresh">
+  <rxap-data-source-error [error]="error" [refresh]="refresh"></rxap-data-source-error>
+</ng-template>
+<div *rxapDataSource="let accordion from accordionDataSource; errorTemplate: errorTemplate"
+     class="container flex flex-col gap-y-8">
+  <rxap-accordion-header [data]="accordion"></rxap-accordion-header>
+  <mat-divider></mat-divider>
+  <div>
+    <mat-accordion [rxapPersistentAccordion]="accordionDataSource.lastUuid">
+
+
+      <mat-expansion-panel>
+
+        <mat-expansion-panel-header>
+          <mat-panel-title i18n>First</mat-panel-title>
+
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+          <rxap-first-panel></rxap-first-panel>
+        </ng-template>
+
+      </mat-expansion-panel>
+
+
+      <mat-expansion-panel>
+
+        <mat-expansion-panel-header>
+          <mat-panel-title i18n>Second</mat-panel-title>
+
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+          <rxap-second-panel></rxap-second-panel>
+        </ng-template>
+
+      </mat-expansion-panel>
+
+
+      <mat-expansion-panel>
+
+        <mat-expansion-panel-header>
+          <mat-panel-title i18n>Third</mat-panel-title>
+
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+          <rxap-third-panel></rxap-third-panel>
+        </ng-template>
+
+      </mat-expansion-panel>
+
+      <!-- NEXT_INDEX[3] -->
+    </mat-accordion>
+  </div>
+</div>

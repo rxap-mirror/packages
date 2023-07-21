@@ -33,13 +33,13 @@ export function GetTarget(projectConfiguration: ProjectConfiguration, targetName
 }
 
 export function GetTargetOptions<T = Record<string, unknown>>(
-  buildTarget: TargetConfiguration,
+  projectTarget: TargetConfiguration,
   configurationName?: string,
 ): T {
-  const options = buildTarget.options ?? {};
+  const options = projectTarget.options ?? {};
   if (configurationName) {
-    if (buildTarget.configurations && buildTarget.configurations[configurationName]) {
-      Object.assign(options, buildTarget.configurations[configurationName]);
+    if (projectTarget.configurations && projectTarget.configurations[configurationName]) {
+      Object.assign(options, projectTarget.configurations[configurationName]);
     }
   }
   return options;

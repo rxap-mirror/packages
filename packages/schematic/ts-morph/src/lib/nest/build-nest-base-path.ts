@@ -5,8 +5,8 @@ import { buildNestProjectName } from './project-utilities';
 
 export interface BuildNestBasePathOptions {
   project: string;
-  feature?: string;
-  directory?: string;
+  feature?: string | null;
+  directory?: string | null;
   shared?: boolean;
 }
 

@@ -1,26 +1,28 @@
 import {
+  classify,
+  CoerceSuffix,
+} from '@rxap/schematics-utilities';
+import {
   ClassDeclaration,
   MethodDeclarationStructure,
   OptionalKind,
   Project,
   SourceFile,
+  Writers,
 } from 'ts-morph';
-import {
-  classify,
-  CoerceSuffix,
-} from '@rxap/schematics-utilities';
-import {
-  TsMorphAngularProjectTransform,
-  TsMorphAngularProjectTransformOptions,
-} from '../ts-morph-transform';
-import { CoerceClassMethod } from '../nest/coerce-class-method';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceSourceFile } from '../coerce-source-file';
 import { CoerceClass } from '../coerce-class';
+import { CoerceClassMethod } from '../coerce-class-method';
+import { CoerceSourceFile } from '../coerce-source-file';
+import {
+  TsMorphAngularProjectTransformOptions,
+  TsMorphAngularProjectTransformRule,
+} from '../ts-morph-transform';
+import { CoerceImports } from '../ts-morph/coerce-imports';
 
 export interface CoerceMethodClassOptions extends TsMorphAngularProjectTransformOptions {
   name: string;
-  override?: boolean;
+  overwrite?: boolean;
+  providedIn?: string;
   tsMorphTransform?: (
     project: Project,
     sourceFile: SourceFile,
@@ -30,14 +32,15 @@ export interface CoerceMethodClassOptions extends TsMorphAngularProjectTransform
 
 export function CoerceMethodClass(options: CoerceMethodClassOptions) {
   let {
-    override,
+    overwrite,
     name,
     tsMorphTransform,
+    providedIn,
   } = options;
   tsMorphTransform ??= () => ({});
   const className = classify(CoerceSuffix(name, 'Method'));
   const fileName = CoerceSuffix(name, '.method.ts');
-  return TsMorphAngularProjectTransform(options, (project) => {
+  return TsMorphAngularProjectTransformRule(options, (project) => {
 
     const sourceFile = CoerceSourceFile(project, fileName);
     const classDeclaration = CoerceClass(sourceFile, className, {
@@ -45,13 +48,13 @@ export function CoerceMethodClass(options: CoerceMethodClassOptions) {
       decorators: [
         {
           name: 'Injectable',
-          arguments: [],
+          arguments: providedIn ? [ Writers.object({ providedIn }) ] : [],
         },
       ],
       implements: [ 'Method' ],
     });
     CoerceImports(sourceFile, {
-      moduleSpecifier: '@rxap/utilities/rxjs',
+      moduleSpecifier: '@rxap/pattern',
       namedImports: [ 'Method' ],
     });
     CoerceImports(sourceFile, {
@@ -68,7 +71,7 @@ export function CoerceMethodClass(options: CoerceMethodClassOptions) {
     ];
     methodStructure.returnType ??= 'any';
     const methodDeclaration = CoerceClassMethod(classDeclaration, 'call', methodStructure);
-    if (override) {
+    if (overwrite) {
       methodDeclaration.set(methodStructure);
     }
   });

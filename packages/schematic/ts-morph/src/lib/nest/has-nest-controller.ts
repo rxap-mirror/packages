@@ -10,7 +10,7 @@ import { buildNestProjectName } from './project-utilities';
 
 export interface HasNestControllerOptions {
   project: string;
-  feature?: string;
+  feature?: string | null;
   shared?: boolean;
   name: string;
   nestModule: string;

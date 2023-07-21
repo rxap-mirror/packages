@@ -17,7 +17,9 @@
   },
   "keywords": [
     "rxap",
-    "schematic"
+    "schematic",
+    "packages",
+    "ts-morph"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/ts-morph",
   "bugs": {

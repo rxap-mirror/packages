@@ -1,0 +1,25 @@
+.filter-header {
+  ::ng-deep .mat-form-field {
+    .mat-form-field-wrapper {
+      padding-bottom: initial;
+
+      .mat-form-field-underline {
+        bottom: 0;
+      }
+    }
+  }
+}
+
+.hint {
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+tr.mat-row {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+}

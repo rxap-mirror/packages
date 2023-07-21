@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "accordion-item-data-grid-component",
+  "type": "object",
+  "properties": {
+    "itemName": {
+      "alias": "name",
+      "type": "string",
+      "description": "The name of the accordion item",
+      "x-prompt": "Which name should the accordion item module have?"
+    },
+    "project": {
+      "type": "string",
+      "description": "The target project where the accordion item module should be added.",
+      "x-prompt": "To which project should the accordion item module be added?"
+    },
+    "feature": {
+      "type": "string",
+      "description": "The feature name where the accordion item module should be added.",
+      "x-prompt": "To which feature should the accordion item module be added?"
+    },
+    "accordionName": {
+      "type": "string",
+      "description": "The name of the accordion module where the item should be added.",
+      "x-prompt": "To which accordion module should the accordion item module be added?"
+    },
+    "shared": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the item is based of a shared component"
+    },
+    "backend": {
+      "type": "string",
+      "description": "The backend that should be used to handel data",
+      "enum": [
+        "none",
+        "local",
+        "nestjs"
+      ],
+      "default": "none"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
+    },
+    "dataGrid": {
+      "alias": "data-grid",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of the data grid card component"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "The subtitle of the data grid card component"
+        },
+        "itemList": {
+          "alias": "item",
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the control"
+                  },
+                  "header": {
+                    "type": "string",
+                    "description": "The name of the control"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "The type of the control",
+                    "enum": [
+                      "string",
+                      "number",
+                      "boolean"
+                    ]
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "array"
+            }
+          ]
+        },
+        "mode": {
+          "type": "string",
+          "description": "The mode of the form",
+          "enum": [
+            "form",
+            "plain"
+          ]
+        },
+        "collection": {
+          "type": "boolean",
+          "description": "Whether the data grid is used as collection."
+        }
+      }
+    }
+  },
+  "required": [
+    "itemName",
+    "project",
+    "feature",
+    "accordionName"
+  ]
+}

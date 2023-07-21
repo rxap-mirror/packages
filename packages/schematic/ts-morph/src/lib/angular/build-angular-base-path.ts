@@ -7,9 +7,9 @@ import { join } from 'path';
 
 export interface BuildAngularBasePathOptions {
   project: string;
-  feature: string;
+  feature?: string | null;
   shared?: boolean;
-  directory?: string;
+  directory?: string | null;
 }
 
 export function BuildAngularBasePath(host: Tree, options: Readonly<BuildAngularBasePathOptions>): string {
@@ -23,5 +23,9 @@ export function BuildAngularBasePath(host: Tree, options: Readonly<BuildAngularB
   project = shared ? 'shared' : project;
   const projectSourceRoot = GetProjectSourceRoot(host, project);
   const type = GetProjectType(host, project);
-  return join(projectSourceRoot, type === 'library' ? 'lib' : '', 'feature', feature, directory);
+  if (feature) {
+    return join(projectSourceRoot, type === 'library' ? 'lib' : '', 'feature', feature, directory);
+  } else {
+    return join(projectSourceRoot, type === 'library' ? 'lib' : '', 'app', directory);
+  }
 }

@@ -1,4 +1,5 @@
 import { ExecutorContext } from '@nx/devkit';
+import { GetTargetOptions } from './get-target-configuration-name-list';
 import { GetProjectConfiguration } from './project';
 
 export function GetProjectTarget(context: ExecutorContext, projectName: string, targetName: string) {
@@ -13,7 +14,12 @@ export function GetProjectTarget(context: ExecutorContext, projectName: string, 
   return targetConfiguration;
 }
 
-export function GetProjectTargetOptions(context: ExecutorContext, projectName: string, targetName: string) {
+export function GetProjectTargetOptions(
+  context: ExecutorContext,
+  projectName: string,
+  targetName: string,
+  configurationName = context.configurationName,
+) {
   const target = GetProjectTarget(context, projectName, targetName);
-  return target.options ?? {};
+  return GetTargetOptions(target, configurationName);
 }

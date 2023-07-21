@@ -13,9 +13,9 @@ import {
 function getOutputName(options: SaveExecutorSchema, context: ExecutorContext): string {
   const project = context.projectName;
   if (!options.outputPath) {
-    options.outputPath = `dist`;
+    options.outputPath = `${ context.root }/dist/docker`;
   }
-  return `${ options.outputPath }/${ project }`;
+  return `${ options.outputPath }/${ project }.tar.gz`;
 }
 
 export default async function runExecutor(
@@ -26,8 +26,17 @@ export default async function runExecutor(
   const destinationList: string[] = [];
   const fallbackImageName = 'docker';
   const projectConfiguration = GetProjectConfiguration(context);
-  const buildTarget = GetTarget(projectConfiguration, 'build');
+  const buildTarget = GetTarget(projectConfiguration, 'docker');
   const buildTargetOptions = GetTargetOptions(buildTarget, context.configurationName);
+
+  if (buildTargetOptions.imageRegistry) {
+    if (buildTargetOptions.imageName) {
+      buildTargetOptions.imageName = [
+        buildTargetOptions.imageRegistry,
+        buildTargetOptions.imageName,
+      ].join('/');
+    }
+  }
 
   const tagList = buildTargetOptions.tag as string[];
 

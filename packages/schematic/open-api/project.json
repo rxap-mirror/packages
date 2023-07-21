@@ -88,5 +88,9 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    "packages",
+    "schematic",
+    "open-api"
+  ]
 }

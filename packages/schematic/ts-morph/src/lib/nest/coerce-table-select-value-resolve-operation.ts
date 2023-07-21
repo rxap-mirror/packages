@@ -1,10 +1,10 @@
+import { CoerceImports } from '../ts-morph/coerce-imports';
 import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceRowDtoClass } from './coerce-row-dto-class';
 import { CoercePageDtoClass } from './coerce-page-dto-class';
+import { CoerceRowDtoClass } from './coerce-row-dto-class';
 
 export interface CoerceTableSelectValueResolveOperationOptions
   extends Omit<CoerceOperationOptions, 'tsMorphTransform'> {
@@ -44,7 +44,7 @@ export function CoerceTableSelectValueResolveOperationRule(options: CoerceTableS
       });
 
       CoerceImports(sourceFile, {
-        moduleSpecifier: `..${ rowFilePath }`,
+        moduleSpecifier: rowFilePath,
         namedImports: [ rowClassName ],
       });
 

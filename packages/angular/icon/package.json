@@ -18,7 +18,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "icon"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/icon",
   "bugs": {

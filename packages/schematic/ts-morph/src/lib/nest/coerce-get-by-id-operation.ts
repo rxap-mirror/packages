@@ -1,45 +1,28 @@
-import { OperationParameter } from '../add-operation-to-controller';
-import { DtoClassProperty } from '../create-dto-class';
-import { CoerceDtoClass } from './coerce-dto-class';
-import { CoerceOperation } from './coerce-operation';
 import { CoerceSuffix } from '@rxap/schematics-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceDtoClass } from './coerce-dto-class';
+import {
+  CoerceOperation,
+  CoerceOperationOptions,
+} from './coerce-operation';
+import { DtoClassProperty } from './create-dto-class';
 
-export interface CoerceGetByIdControllerOptions {
-  name?: string;
-  controllerName?: string;
-  nestController?: string;
-  project: string;
-  feature: string;
-  shared: boolean;
-  module?: string;
-  nestModule?: string;
-  paramList?: OperationParameter[],
+export interface CoerceGetByIdControllerOptions extends Omit<CoerceOperationOptions, 'operationName'> {
   propertyList?: DtoClassProperty[],
-  skipCoerce?: boolean,
   isArray?: boolean,
 }
 
 export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) {
   let {
-    name,
     controllerName,
-    nestController,
-    project,
     isArray,
-    module,
     nestModule,
     paramList,
     propertyList,
-    feature,
-    shared,
   } = options;
 
-  nestModule ??= module;
   propertyList ??= [];
   paramList ??= [];
-  controllerName ??= name;
-  controllerName ??= nestController;
 
   /**
    * If the module is not specified. This controller has an own module. Else the
@@ -98,15 +81,15 @@ export function CoerceGetByIdOperation(options: CoerceGetByIdControllerOptions) 
       const {
         className: dtoClassName,
         filePath: dtoFilePath,
-      } = CoerceDtoClass(
+      } = CoerceDtoClass({
         project,
-        controllerName,
-        propertyList!,
-      );
+        name: controllerName,
+        propertyList,
+      });
 
       CoerceImports(sourceFile, {
         namedImports: [ dtoClassName ],
-        moduleSpecifier: `..${ dtoFilePath }`,
+        moduleSpecifier: dtoFilePath,
       });
 
       return {

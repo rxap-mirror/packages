@@ -1,0 +1,5 @@
+{
+  "service-app-angular-table": {
+    "baseUrl": "/api/app/angular/table"
+  }
+}

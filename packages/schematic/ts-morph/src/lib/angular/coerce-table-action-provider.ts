@@ -1,21 +1,21 @@
-import { TsMorphAngularProjectTransform } from '../ts-morph-transform';
-import {
-  ArrayLiteralExpression,
-  PropertyAssignment,
-} from 'ts-morph';
 import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
-import { CoerceImports } from '../ts-morph/coerce-imports';
+import {
+  ArrayLiteralExpression,
+  PropertyAssignment,
+} from 'ts-morph';
+import { AddProviderToArray } from '../add-provider-to-array';
 import { CoerceSourceFile } from '../coerce-source-file';
 import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
-import { AddProviderToArray } from '../add-provider-to-array';
+import { TsMorphAngularProjectTransformRule } from '../ts-morph-transform';
+import { CoerceImports } from '../ts-morph/coerce-imports';
 
 export interface CoerceTableActionProviderOptions {
   project: string;
-  feature: string;
-  directory?: string;
+  feature?: string | null;
+  directory?: string | null;
   type: string;
   tableName: string;
 }
@@ -26,7 +26,7 @@ export function CoerceTableActionProviderRule(options: CoerceTableActionProvider
     tableName,
   } = options;
 
-  return TsMorphAngularProjectTransform(options, project => {
+  return TsMorphAngularProjectTransformRule(options, project => {
 
     const sourceFile = CoerceSourceFile(project, 'index.ts');
 

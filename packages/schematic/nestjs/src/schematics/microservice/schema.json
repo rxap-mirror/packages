@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "microservice",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of microservice",
+      "x-prompt": "Enter the name of the microservice?"
+    },
+    "dsn": {
+      "type": "string",
+      "description": "Default sentry dsn"
+    },
+    "directory": {
+      "type": "string",
+      "description": "The directory to create the microservice in"
+    },
+    "imageRegistry": {
+      "type": "string",
+      "description": "The image registry to use",
+      "default": "registry.gitlab.com"
+    },
+    "imageName": {
+      "type": "string",
+      "description": "The image name to use",
+      "default": "service"
+    },
+    "imageSuffix": {
+      "type": "string",
+      "description": "The image suffix to use"
+    },
+    "apiPrefix": {
+      "type": "string",
+      "description": "The api prefix to use"
+    },
+    "port": {
+      "type": "number",
+      "description": "The port to use"
+    },
+    "randomPort": {
+      "type": "boolean",
+      "description": "Use a random port between 3000 and 4000"
+    },
+    "apiConfigurationFile": {
+      "type": "string",
+      "description": "The api configuration file to use"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
+    },
+    "jwt": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the application should use jwt"
+    },
+    "openApi": {
+      "alias": "open-api",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the application should use openApi as client"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

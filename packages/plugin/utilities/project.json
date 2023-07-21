@@ -83,5 +83,9 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    "packages",
+    "plugin",
+    "utilities"
+  ]
 }

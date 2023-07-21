@@ -11,7 +11,9 @@
           "e2e",
           "compodoc",
           "typedoc",
-          "component-test"
+          "component-test",
+          "swagger-build",
+          "swagger-generate"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
@@ -38,7 +40,10 @@
       "!{projectRoot}/**/*.{spec,stories,cy}.ts",
       "!{projectRoot}/jest.config.ts",
       "!{projectRoot}/src/test-setup.[jt]s",
-      "!{projectRoot}/tsconfig.spec.json"
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/cypress/**/*",
+      "!{projectRoot}/**/*.cy.[jt]s?(x)",
+      "!{projectRoot}/cypress.config.[jt]s"
     ]
   },
   "targetDefaults": {
@@ -108,6 +113,23 @@
       "outputs": [
         "{projectRoot}/README.md"
       ]
+    },
+    "docker": {
+      "dependsOn": [
+        "build",
+        "build-info"
+      ]
+    },
+    "save": {
+      "dependsOn": [
+        "docker"
+      ]
+    },
+    "component-test": {
+      "inputs": [
+        "default",
+        "^production"
+      ]
     }
   },
   "affected": {
@@ -132,7 +154,8 @@
       "style": "scss",
       "directory": "angular",
       "tags": "angular,ngx",
-      "prefix": "rxap"
+      "prefix": "rxap",
+      "skipModule": true
     },
     "@nx/plugin:plugin": {
       "directory": "plugin",
@@ -150,6 +173,25 @@
       "directory": "nest",
       "tags": "nest",
       "publishable": true
+    },
+    "@nx/angular:directive": {
+      "standalone": true,
+      "skipTests": true
+    },
+    "@nx/nest:application": {
+      "e2eTestRunner": "none"
+    },
+    "@rxap/schematic-nestjs:frontend-microservice": {
+      "imageName": "rxap/packages",
+      "apiConfigurationFile": "applications/service/configuration/src/assets/latest/config.api.json"
+    },
+    "@rxap/schematic-nestjs:feature-microservice": {
+      "imageName": "rxap/packages",
+      "apiConfigurationFile": "applications/service/configuration/src/assets/latest/config.api.json"
+    },
+    "@rxap/schematic-nestjs:microservice": {
+      "imageName": "rxap/packages",
+      "apiConfigurationFile": "applications/service/configuration/src/assets/latest/config.api.json"
     }
   },
   "workspaceLayout": {

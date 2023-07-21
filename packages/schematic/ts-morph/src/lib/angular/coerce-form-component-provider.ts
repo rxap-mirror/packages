@@ -1,19 +1,19 @@
+import { Rule } from '@angular-devkit/schematics';
 import {
   ArrayLiteralExpression,
   ImportDeclarationStructure,
   OptionalKind,
   SourceFile,
 } from 'ts-morph';
-import { Rule } from '@angular-devkit/schematics';
-import {
-  TsMorphAngularProjectTransform,
-  TsMorphAngularProjectTransformOptions,
-} from '../ts-morph-transform';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
 import { AddProviderToArray } from '../add-provider-to-array';
 import { CoerceSourceFile } from '../coerce-source-file';
+import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
 import { ProviderObject } from '../provider-object';
+import {
+  TsMorphAngularProjectTransformOptions,
+  TsMorphAngularProjectTransformRule,
+} from '../ts-morph-transform';
+import { CoerceImports } from '../ts-morph/coerce-imports';
 
 export function CoerceFormComponentProvider(sourceFile: SourceFile, providerObject: ProviderObject | string) {
   const variableDeclaration = CoerceVariableDeclaration(sourceFile, 'FormComponentProviders', {
@@ -48,7 +48,7 @@ export function CoerceFormComponentProviderRule(
   } = options;
   importStructures ??= [];
   const fileName = 'form.providers.ts';
-  return TsMorphAngularProjectTransform(options, project => {
+  return TsMorphAngularProjectTransformRule(options, project => {
     const sourceFile = CoerceSourceFile(project, fileName);
     CoerceImports(sourceFile, importStructures!);
     CoerceFormComponentProvider(sourceFile, providerObject);

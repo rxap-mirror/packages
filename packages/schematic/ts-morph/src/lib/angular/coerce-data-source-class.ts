@@ -1,25 +1,35 @@
 import {
-  ClassDeclaration,
-  Project,
-  SourceFile,
-} from 'ts-morph';
-import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
 import {
-  TsMorphAngularProjectTransform,
-  TsMorphAngularProjectTransformOptions,
-} from '../ts-morph-transform';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceDecorator } from '../ts-morph/coerce-decorator';
-import { CoerceSourceFile } from '../coerce-source-file';
+  ClassDeclaration,
+  Project,
+  SourceFile,
+  WriterFunction,
+} from 'ts-morph';
 import { CoerceClass } from '../coerce-class';
+import { CoerceSourceFile } from '../coerce-source-file';
+import {
+  TsMorphAngularProjectTransformOptions,
+  TsMorphAngularProjectTransformRule,
+} from '../ts-morph-transform';
+import { CoerceDecorator } from '../ts-morph/coerce-decorator';
+import { CoerceImports } from '../ts-morph/coerce-imports';
 
 export interface CoerceDataSourceClassOptions extends TsMorphAngularProjectTransformOptions {
   name: string;
   providedInRoot?: boolean;
   tsMorphTransform?: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => void;
+  decorator?: {
+    name: string;
+    moduleSpecifier: string;
+    argument?: string | WriterFunction;
+  };
+  extends?: {
+    name: string;
+    moduleSpecifier: string;
+  };
   coerceDecorator?: (
     sourceFile: SourceFile,
     classDeclaration: ClassDeclaration,
@@ -37,10 +47,10 @@ export function CoerceRxapDataSourceDecorator(
   classDeclaration: ClassDeclaration,
   options: CoerceDataSourceClassOptions,
 ) {
-  CoerceDecorator(classDeclaration, 'RxapDataSource', { arguments: [ w => w.quote(options.name) ] });
+  CoerceDecorator(classDeclaration, options.decorator!.name, { arguments: [ options.decorator!.argument! ] });
   CoerceImports(sourceFile, {
-    moduleSpecifier: '@rxap/data-source',
-    namedImports: [ 'RxapDataSource' ],
+    moduleSpecifier: options.decorator!.moduleSpecifier,
+    namedImports: [ options.decorator!.name ],
   });
 }
 
@@ -50,11 +60,11 @@ export function CoerceExtendsBaseDataSource(
   options: CoerceDataSourceClassOptions,
 ) {
   if (!classDeclaration.getExtends()) {
-    classDeclaration.setExtends('BaseDataSource');
+    classDeclaration.setExtends(options.extends!.name);
     CoerceImports(sourceFile, [
       {
-        moduleSpecifier: '@rxap/data-source',
-        namedImports: [ 'BaseDataSource' ],
+        moduleSpecifier: options.extends!.moduleSpecifier,
+        namedImports: [ options.extends!.name ],
       },
     ]);
   }
@@ -73,12 +83,21 @@ export function CoerceDataSourceClass(options: CoerceDataSourceClassOptions) {
   };
   coerceDecorator ??= CoerceRxapDataSourceDecorator;
   coerceExtends ??= CoerceExtendsBaseDataSource;
+  options.decorator ??= {
+    name: 'RxapDataSource',
+    moduleSpecifier: '@rxap/data-source',
+  };
+  options.extends ??= {
+    name: 'BaseDataSource',
+    moduleSpecifier: '@rxap/data-source',
+  };
+  options.decorator.argument ??= w => w.quote(options.name);
   const className = classify(CoerceSuffix(
     name,
     'DataSource',
   ));
   const fileName = CoerceSuffix(name, '.data-source.ts');
-  return TsMorphAngularProjectTransform(options, (project) => {
+  return TsMorphAngularProjectTransformRule(options, (project) => {
 
     const sourceFile = CoerceSourceFile(project, fileName);
     const classDeclaration = CoerceClass(sourceFile, className, {

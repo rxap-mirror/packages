@@ -1,3 +1,23 @@
+/**
+ * Creates a new RegExp object that is a clone of an existing RegExp object.
+ *
+ * @param {any} pattern - The RegExp object to be cloned. This parameter should be a valid RegExp object.
+ *
+ * @returns {RegExp} A new RegExp object that has the same pattern and flags as the input RegExp object.
+ * The flags are determined by the properties of the input RegExp object:
+ * - global: If true, the 'g' flag is included.
+ * - ignoreCase: If true, the 'i' flag is included.
+ * - multiline: If true, the 'm' flag is included.
+ * - sticky: If true, the 'y' flag is included.
+ * - unicode: If true, the 'u' flag is included.
+ *
+ * @example
+ * let regex = /abc/gi;
+ * let clonedRegex = cloneRegExp(regex);
+ * // clonedRegex is now a new RegExp object with the same pattern and flags as regex
+ *
+ * @throws {TypeError} If the input is not a valid RegExp object, a TypeError will be thrown.
+ */
 function cloneRegExp(pattern: any) {
   return new RegExp(
     pattern.source,

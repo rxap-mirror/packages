@@ -1,20 +1,18 @@
-import { GetProjectConfiguration } from './project';
 import { ExecutorContext } from '@nx/devkit';
 import { GetTargetOptions } from './get-target-configuration-name-list';
+import { GetProjectTarget } from './project-target';
 
 
-export function GuessOutputPath(context: ExecutorContext) {
+export function GuessOutputPath(context: ExecutorContext, projectName = context.projectName) {
 
-  const project = GetProjectConfiguration(context);
-
-  if (!project.targets) {
-    throw new Error(`Could not guess the output path. The project ${ project.name } does not have any targets`);
+  if (!projectName) {
+    throw new Error('The projectName is undefined. Ensure the projectName is passed into the executor context.');
   }
 
-  const buildTarget = project.targets['build'];
+  const buildTarget = GetProjectTarget(context, projectName, 'build');
 
   if (!buildTarget) {
-    throw new Error(`Could not find target 'build' for project '${ project.name }'`);
+    throw new Error(`Could not find target 'build' for project '${ projectName }'`);
   }
 
   let outputPath = GetTargetOptions(buildTarget, context.configurationName)['outputPath'];

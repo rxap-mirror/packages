@@ -1,5 +1,8 @@
 export * from './lib/error';
 export * from './lib/control-data-source';
+export * from './lib/form-context-from-activated-route.factory';
+export * from './lib/submit-context-form-adapter.factory';
+export * from './lib/directives/options-from-remote-method.directive';
 
 // region mixin
 

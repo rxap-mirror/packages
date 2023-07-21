@@ -1,29 +1,30 @@
 import {
-  CoerceDialogComponentOptions,
-  CoerceDialogComponentRule,
-} from './coerce-dialog-component';
-import { TsMorphAngularProjectTransformOptions } from '../ts-morph-transform';
-import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceClassMethod } from '../nest/coerce-class-method';
-import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
-import { AddNgModuleImport } from '../add-ng-module-import';
 import { CoerceClassConstructor } from '../coerce-class-constructor';
+import { CoerceClassMethod } from '../coerce-class-method';
+import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
   OperationIdToRequestBodyClassImportPath,
   OperationIdToRequestBodyClassName,
-} from '../operation-id-utilities';
+} from '../nest/operation-id-utilities';
+import { TsMorphAngularProjectTransformOptions } from '../ts-morph-transform';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
+import { AddComponentImport } from './add-component-import';
+import {
+  CoerceDialogComponentOptions,
+  CoerceDialogComponentRule,
+} from './coerce-dialog-component';
 
 export interface CoerceDialogTableActionComponentOptions extends CoerceDialogComponentOptions,
                                                                  TsMorphAngularProjectTransformOptions {
   operationId: string;
   tableName: string;
+  scope: string;
 }
 
 export function CoerceDialogTableActionComponentRule(options: CoerceDialogTableActionComponentOptions) {
@@ -36,6 +37,7 @@ export function CoerceDialogTableActionComponentRule(options: CoerceDialogTableA
     directory,
     dialogName,
     operationId,
+    scope,
   } = options;
   dialogName =
     CoerceSuffix(dialogName, '-dialog');
@@ -72,8 +74,8 @@ export function CoerceDialogTableActionComponentRule(options: CoerceDialogTableA
         ],
       });
     },
-    tsMorphTransform: (project, [ componentSourceFile, moduleSourceFile ], [ componentClass, moduleClass ]) => {
-      AddNgModuleImport(moduleSourceFile, 'MatSnackBarModule', '@angular/material/snack-bar');
+    tsMorphTransform: (project, [ componentSourceFile ], [ componentClass ]) => {
+      AddComponentImport(componentSourceFile, 'MatSnackBarModule', '@angular/material/snack-bar');
 
       const [ constructorDeclaration ] = CoerceClassConstructor(componentClass);
 
@@ -83,7 +85,7 @@ export function CoerceDialogTableActionComponentRule(options: CoerceDialogTableA
       });
 
       CoerceImports(componentSourceFile, {
-        moduleSpecifier: OperationIdToClassImportPath(operationId),
+        moduleSpecifier: OperationIdToClassImportPath(operationId, scope),
         namedImports: [ OperationIdToClassName(operationId) ],
       });
 
@@ -128,7 +130,7 @@ export function CoerceDialogTableActionComponentRule(options: CoerceDialogTableA
 
       CoerceImports(componentSourceFile, [
         {
-          moduleSpecifier: OperationIdToRequestBodyClassImportPath(operationId),
+          moduleSpecifier: OperationIdToRequestBodyClassImportPath(operationId, scope),
           namedImports: [ OperationIdToRequestBodyClassName(operationId) ],
         },
       ]);

@@ -1,0 +1,43 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormProviders, FormComponentProviders } from './form.providers';
+<% if (collection) { %>
+import { Input } from '@angular/core';
+<% } else { %>
+import { <%= classify(name) %>DataGridDataSource } from './<%= name %>-data-grid.data-source';
+<% } %>
+import { DataGridModule } from '@rxap/data-grid';
+import { RxapFormsModule } from '@rxap/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+
+@Component({
+  selector: '<%= prefix %>-<%= componentName %>',
+  templateUrl: './<%= componentName %>.component.html',
+  styleUrls: [ './<%= componentName %>.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    DataGridModule,
+    RxapFormsModule,
+    ReactiveFormsModule,
+    MatCardModule,
+  ],
+  providers: [
+    <% if (!collection) { %>
+    <%= classify(name) %>DataGridDataSource,
+    <% } %>
+    FormProviders,
+    FormComponentProviders,
+  ],
+})
+export class <%= classify(componentName) %>Component {
+
+  <% if (collection) { %>
+  @Input() data!: any;
+  <% } else { %>
+  constructor(
+    public readonly dataGridDataSource: <%= classify(name) %>DataGridDataSource,
+  ) {}
+  <% } %>
+
+}

@@ -21,5 +21,6 @@ export function HasTableComponent(host: Tree, options: HasTableComponentOptions)
   if (!basePath.endsWith(name)) {
     basePath = join(basePath, name);
   }
-  return host.exists(join(basePath, name + '.ts'));
+  const fullPath = join(basePath, name + '.ts');
+  return host.exists(fullPath);
 }

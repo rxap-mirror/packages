@@ -1,10 +1,9 @@
 import {
-  TsMorphAngularProjectTransform,
   TsMorphAngularProjectTransformOptions,
+  TsMorphAngularProjectTransformRule,
 } from '../ts-morph-transform';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceSourceFile } from '../coerce-source-file';
-import { AddComponentProvider } from '../add-component-provider';
+import { AddComponentProvider } from './add-component-provider';
 
 export interface CoerceTableActionIndexProviderOptions extends TsMorphAngularProjectTransformOptions {
   tableName: string;
@@ -20,13 +19,11 @@ export function CoerceTableActionIndexProviderRule(options: Readonly<CoerceTable
   if (directory?.endsWith('/methods/action')) {
     directory = directory.replace('/methods/action', '');
   }
-  return TsMorphAngularProjectTransform({
+  return TsMorphAngularProjectTransformRule({
     project,
     feature,
     directory,
-  }, (project) => {
-
-    const sourceFile = CoerceSourceFile(project, `${ tableName }.component.ts`);
+  }, (project, [ sourceFile ]) => {
 
     AddComponentProvider(sourceFile, 'TABLE_ROW_ACTION_METHODS');
     CoerceImports(sourceFile, {
@@ -34,6 +31,6 @@ export function CoerceTableActionIndexProviderRule(options: Readonly<CoerceTable
       moduleSpecifier: './methods/action',
     });
 
-  });
+  }, [ `${ tableName }.component.ts` ]);
 
 }

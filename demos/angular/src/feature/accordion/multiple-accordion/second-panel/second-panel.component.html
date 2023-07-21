@@ -1,0 +1,8 @@
+<mat-progress-bar *ngIf="panelDataSource.loading$ | async" mode="indeterminate"></mat-progress-bar>
+<ng-template #errorTemplate let-error let-refresh="refresh">
+  <rxap-data-source-error [error]="error" [refresh]="refresh"></rxap-data-source-error>
+</ng-template>
+<div *rxapDataSource="let panel from panelDataSource; errorTemplate: errorTemplate" class="container" fxLayout="column"
+     fxLayoutGap="16px">
+  <pre fxFlex="nogrow">{{ panel | json }}</pre>
+</div>

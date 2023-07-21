@@ -53,7 +53,8 @@
         "lintFilePatterns": [
           "packages/plugin/application/**/*.ts",
           "packages/plugin/application/package.json",
-          "packages/plugin/application/executors.json"
+          "packages/plugin/application/executors.json",
+          "packages/plugin/application/generators.json"
         ]
       }
     },
@@ -98,6 +99,8 @@
   "tags": [
     "plugin",
     "nx",
-    "nx-plugin"
+    "nx-plugin",
+    "packages",
+    "application"
   ]
 }

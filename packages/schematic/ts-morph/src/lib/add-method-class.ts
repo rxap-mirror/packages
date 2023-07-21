@@ -10,7 +10,7 @@ import {
   WriterFunction,
 } from 'ts-morph';
 import { CoerceSuffix } from '@rxap/schematics-utilities';
-import { CoerceImports } from './ts-morph/index';
+import { CoerceImports } from './ts-morph/coerce-imports';
 
 export interface AddMethodClassOptions extends TypeParameteredNodeStructure {
   structures?: ReadonlyArray<OptionalKind<ImportDeclarationStructure>>;
@@ -34,6 +34,22 @@ export const DEFAULT_ADD_METHOD_CLASS_OPTIONS: Required<AddMethodClassOptions> =
   decorators: [],
   ctors: [],
 };
+
+export function CoerceMethodClassLegacy(
+  sourceFile: SourceFile,
+  name: string,
+  options: AddMethodClassOptions = {},
+) {
+
+  name = CoerceSuffix(name, 'Method');
+
+  const hasClass = !!sourceFile.getClass(name);
+
+  if (!hasClass) {
+    AddMethodClass(sourceFile, name, options);
+  }
+
+}
 
 export function AddMethodClass(
   sourceFile: SourceFile,

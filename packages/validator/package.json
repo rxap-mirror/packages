@@ -10,7 +10,9 @@
     "directory": "../../dist/packages/validator"
   },
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "validator"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/validator",
   "bugs": {

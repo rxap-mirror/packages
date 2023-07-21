@@ -13,7 +13,6 @@ import {
   AsyncPipe,
   NgIf,
 } from '@angular/common';
-import { FlexModule } from '@angular/flex-layout/flex';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
@@ -24,7 +23,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   standalone: true,
   imports: [
     MatToolbarModule,
-    FlexModule,
     NgIf,
     PortalModule,
     MatIconModule,

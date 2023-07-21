@@ -1,0 +1,201 @@
+<div class="flex flex-col gap-y-4 m-4">
+  <% if (hasNavigationBackHeader) { %>
+  <rxap-navigate-back-button>
+    <h1 i18n><%= name %></h1>
+  </rxap-navigate-back-button>
+  <mat-divider></mat-divider>
+  <% } %>
+
+  <div class="table-card-container flex flex-col">
+    <mat-card>
+      <mat-progress-bar
+        rxapCardProgressBar
+        [loading$]="tableDataSourceDirective.loading$"
+      ></mat-progress-bar>
+      <mat-card-header class="min-h-full h-12">
+      <% if (!hasNavigationBackHeader && !hasWithoutTitle) { %>
+      <mat-card-title i18n><%= name %></mat-card-title>
+      <% } %>
+      <% if (headerButton) { %>
+        <button
+          mat-card-avatar
+          mat-mini-fab
+          color="primary"
+          matTooltip="<%= headerButton.label %>"
+          i18n-matTooltip
+          [disabled]="tableDataSourceDirective.hasError$ | async"
+          <% if (headerButton.role === 'form') { %>[rxapTableCreate]="tableDataSourceDirective"<% } %>
+          <% if (headerButton.permission) { %>rxapHasEnablePermission="<%= headerButton.permission %>"<% } %>
+        >
+          <% if (headerButton.icon) { %><mat-icon><%= headerButton.icon %></mat-icon><% } else if (headerButton.svgIcon) { %><mat-icon svgIcon="<%= headerButton.svgIcon %>"></mat-icon><% } else { %><mat-icon>add</mat-icon><% } %>
+        </button>
+        <mat-card-subtitle i18n><%= headerButton.label %></mat-card-subtitle>
+        <% } %>
+      <rxap-table-column-menu matCard #rxapTableColumns="rxapTableColumns" [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }">
+        <rxap-table-column-option hidden name="tree"></rxap-table-column-option>
+        <% for (const column of columnList) { %>
+        <rxap-table-column-option name="<%= column.name %>">
+          <ng-container i18n><%= column.title %></ng-container>
+        </rxap-table-column-option>
+        <% } %>
+        <% if (actionList.length) { %>
+        <rxap-table-column-option hidden name="actions">
+          <ng-container i18n>Actions</ng-container>
+        </rxap-table-column-option>
+        <% } %>
+        <mat-divider></mat-divider>
+        <span mat-menu-item>
+          <rxap-table-show-archived-slide></rxap-table-show-archived-slide>
+        </span>
+      </rxap-table-column-menu>
+      </mat-card-header>
+
+      <mat-card-content>
+        <rxap-data-source-error
+          [loading]="tableDataSourceDirective.loading$"
+          [error]="tableDataSourceDirective.dataSource?.error$"
+          *ngIf="tableDataSourceDirective.hasError$ | async"
+          [refresh]="tableDataSourceDirective.retry">
+        </rxap-data-source-error>
+        <div class="table-scroll-container mt-4 overflow-x-auto overscroll-contain">
+        <table
+          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          matSort
+          mat-table
+          #tableDataSourceDirective="rxapTableDataSource"
+          rxapTableDataSource
+          [parameters]="parameters"
+          id="<%= name %>"
+        >
+          <!-- region columns -->
+
+          <ng-container matColumnDef="uuid">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n>UUID</ng-container>
+            </th>
+
+            <td mat-cell *matCellDef="let element">{{ element?.uuid }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="tree" sticky>
+            <th *matHeaderCellDef mat-header-cell></th>
+            <td
+              *matCellDef="let element"
+              [rxap-tree-control-cell]="element"
+              mat-cell
+            ></td>
+          </ng-container>
+
+          <% for (const column of columnList) { %>
+          <% if (column.type === 'copy-to-clipboard') { %>
+          <ng-container matColumnDef="<%= column.name %>">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n><%= column.title %></ng-container>
+            </th>
+
+            <td mat-cell *matCellDef="let element">{{ element?.<%= column.propertyPath %> }}</td>
+          </ng-container>
+          <% } else if (column.type === 'link') { %>
+          <ng-container matColumnDef="<%= column.name %>">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n><%= column.title %></ng-container>
+            </th>
+
+            <td *matCellDef="let element" [rxap-link-cell]="element?.<%= column.propertyPath %>"></td>
+          </ng-container>
+          <% } else if (column.type === 'date') { %>
+          <ng-container matColumnDef="<%= column.name %>">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n><%= column.title %></ng-container>
+            </th>
+
+            <td *matCellDef="let element" [rxap-date-cell]="element?.<%= column.propertyPath %>"></td>
+          </ng-container>
+          <% } else if (column.type === 'boolean') { %>
+          <ng-container matColumnDef="<%= column.name %>">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n><%= column.title %></ng-container>
+            </th>
+
+            <td *matCellDef="let element" [rxap-boolean-cell]="element?.<%= column.propertyPath %>"></td>
+          </ng-container>
+          <% } else if (column.type === 'icon') { %>
+          <ng-container matColumnDef="<%= column.name %>">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n><%= column.title %></ng-container>
+            </th>
+
+            <td *matCellDef="let element" [rxap-icon-cell]="element?.<%= column.propertyPath %>"></td>
+          </ng-container>
+          <% } else if (column.type === 'component') { %>
+          <ng-container matColumnDef="<%= column.name %>">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n><%= column.title %></ng-container>
+            </th>
+
+            <td *matCellDef="let element" rxap-<%= column.name %>-cell [element]="element" [value]="element?.<%= column.propertyPath %>"></td>
+          </ng-container>
+          <% } else { %>
+          <ng-container matColumnDef="<%= column.name %>">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n><%= column.title %></ng-container>
+            </th>
+
+            <td mat-cell *matCellDef="let element">{{ element?.<%= column.propertyPath %> }}</td>
+          </ng-container>
+          <% } %>
+          <% } %>
+
+          <% if (actionList.length) { %>
+            <ng-container matColumnDef="actions" stickyEnd>
+              <th mat-header-cell *matHeaderCellDef></th>
+
+              <td mat-cell *matCellDef="let element">
+                <div class="flex flex-row">
+                  <% for (const action of actionList) { %>
+                  <button
+                    rxapTableRowAction="<%= action.type %>"
+                    [element]="element"
+                    mat-icon-button
+                    *ngIf="element | rxapRowActionCheck:'<%= action.type %>'"
+                    <% if (action.permission) { %>rxapHasEnablePermission="<%= action.permission %>"<% } %>
+                    matTooltip="<%= action.type %>"
+                    i18n-matTooltip
+                  >
+                    <% if (action.icon) { %><mat-icon><%= action.icon %></mat-icon><% } else if (action.svgIcon) { %><mat-icon svgIcon="<%= action.svgIcon %>"></mat-icon><% } else { %><mat-icon><%= action.type %></mat-icon><% } %>
+                    <mat-progress-bar
+                      *rxapTableRowActionExecuting
+                      mode="indeterminate"
+                    ></mat-progress-bar>
+                  </button>
+                  <% } %>
+                </div>
+              </td>
+            </ng-container>
+            <% } %>
+
+          <!-- endregion -->
+
+          <tr
+            mat-header-row
+            *matHeaderRowDef="rxapTableColumns.displayColumns"
+          ></tr>
+
+          <tr
+            [@rowsAnimation]
+            mat-row
+            [ngClass]="{ 'rxap-row-odd !bg-neutral-200 dark:!bg-neutral-600': odd, 'rxap-row-even': even }"
+                                    class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
+            *matRowDef="
+              let element;
+              columns: rxapTableColumns.displayColumns;
+              let odd = odd;
+              let even = even
+            "
+          ></tr>
+        </table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

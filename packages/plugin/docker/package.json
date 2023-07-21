@@ -20,7 +20,9 @@
     "rxap",
     "plugin",
     "nx",
-    "nx-plugin"
+    "nx-plugin",
+    "packages",
+    "docker"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/docker",
   "bugs": {

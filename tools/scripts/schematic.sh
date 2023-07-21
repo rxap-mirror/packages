@@ -4,6 +4,11 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
+rm /tmp/name.txt || false
+
+# This script will exit on the first error
+set -e
+
 externalSchematic=$1
 
 echo "externalSchematic: $externalSchematic"
@@ -47,6 +52,12 @@ find packages -name "package.json" -type f | while read -r file; do
     fi
 done
 
+# test if /tmp/name.txt exists
+if [ ! -f /tmp/name.txt ]; then
+    echo "No package found with name $package"
+    exit 1
+fi
+
 # Read the name from the file
 name=$(cat /tmp/name.txt)
 
@@ -55,9 +66,11 @@ if [ -z "$name" ]; then
     exit 1
 fi
 
+echo "Build project $name"
+
 yarn nx run "$name:build"
 
-bash tools/scripts/dist-node-modules-linking.sh
+# bash tools/scripts/dist-node-modules-linking.sh
 
 # Search for package.json files in the current directory and its subdirectories
 find dist/packages -name "package.json" -type f | while read -r file; do
@@ -74,6 +87,8 @@ find dist/packages -name "package.json" -type f | while read -r file; do
         echo "$dir" > /tmp/dir.txt
     fi
 done
+
+echo "detect $package in $dir"
 
 # Read the dir from the file
 dir=$(cat /tmp/dir.txt)

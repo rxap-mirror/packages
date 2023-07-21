@@ -3,48 +3,85 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
-import { relative } from 'path';
+import { ProjectConfiguration } from '@nx/devkit';
+import {
+  PackageJson,
+  PROJECT_LOCATION_CACHE,
+  UpdateProjectConfiguration,
+  UpdateProjectPackageJson,
+} from '@rxap/workspace-utilities';
+import {
+  dirname,
+  relative,
+} from 'path';
 import {
   Angular,
   AngularProject,
   GetAngularJson,
 } from './angular-json-file';
-import { PackageJson } from './package-json';
+import { UpdateJsonFileOptions } from './json-file';
 import {
   GetPackageJson,
-  UpdatePackageJson,
   UpdatePackageJsonOptions,
 } from './package-json-file';
+import { SearchFile } from './search-file';
 
-export function GetProject(host: Tree, projectName: string): AngularProject {
+interface ProjectJson extends ProjectConfiguration, Record<string, any> {
+  prefix?: string;
+}
 
-  const angularJson = new Angular(GetAngularJson(host));
+export function FindProject(host: Tree, projectName: string): ProjectJson | null {
+  if (PROJECT_LOCATION_CACHE.has(projectName)) {
+    const path = PROJECT_LOCATION_CACHE.get(projectName)!;
+    return JSON.parse(host.read(path)!.toString('utf-8')) as ProjectJson;
+  }
+  for (const fileEntry of SearchFile(host.root)) {
+    if (!fileEntry.path.endsWith('project.json')) {
+      continue;
+    }
+    const project = JSON.parse(fileEntry.content.toString('utf-8')) as ProjectJson;
+    if (project.name === projectName) {
+      project.root ??= dirname(fileEntry.path).replace(/^\//, '');
+      PROJECT_LOCATION_CACHE.set(projectName, fileEntry.path);
+      return project;
+    }
+  }
+  return null;
+}
 
-  if (!angularJson.projects.has(projectName)) {
-    throw new SchematicsException(`The project '${ projectName }' does not exists.`);
+export function GetProject(host: Tree, projectName: string): ProjectJson {
+  const projectConfiguration: ProjectJson | null = FindProject(host, projectName);
+
+  if (!projectConfiguration) {
+    throw new SchematicsException(`The project '${ projectName }' does not exists`);
   }
 
-  return angularJson.projects.get(projectName)!;
+  return projectConfiguration;
 }
 
 export function HasProject(host: Tree, projectName: string): boolean {
-  const angularJson = new Angular(GetAngularJson(host));
-  return angularJson.projects.has(projectName);
+  return FindProject(host, projectName) !== null;
 }
 
-export function GetProjectPrefix(host: Tree, projectName: string): string {
+export function GetProjectPrefix(host: Tree, projectName: string, defaultPrefix?: string): string {
 
   const project = GetProject(host, projectName);
-  const prefix = project.prefix;
+  let prefix = project.prefix;
 
   if (!prefix) {
-    throw new SchematicsException(`The project '${ projectName }' does not have a prefix`);
+    if (!defaultPrefix) {
+      throw new SchematicsException(`The project '${ projectName }' does not have a prefix`);
+    }
+    prefix = defaultPrefix;
   }
 
   return prefix;
 
 }
 
+/**
+ * @deprecated only work in workspace with an angular.json file
+ */
 export function GetDefaultProjectName(host: Tree): string | null {
 
   const angularJson = new Angular(GetAngularJson(host));
@@ -53,6 +90,9 @@ export function GetDefaultProjectName(host: Tree): string | null {
 
 }
 
+/**
+ * @deprecated only work in workspace with an angular.json file
+ */
 export function GetDefaultProject(host: Tree): AngularProject | null {
 
   const angularJson = new Angular(GetAngularJson(host));
@@ -61,6 +101,9 @@ export function GetDefaultProject(host: Tree): AngularProject | null {
 
 }
 
+/**
+ * @deprecated only work in workspace with an angular.json file
+ */
 export function GetDefaultPrefix(host: Tree): string | null {
   return GetDefaultProject(host)?.prefix ?? null;
 }
@@ -142,22 +185,24 @@ export function GetProjectPeerDependencies(host: Tree, projectName: string): Rec
 
 }
 
+export interface UpdateProjectOptions extends Omit<UpdateJsonFileOptions, 'basePath'> {
+  projectName: string;
+}
+
+export function UpdateProjectConfigurationRule(
+  updater: (project: ProjectConfiguration, tree: Tree) => void | PromiseLike<void>,
+  options: UpdateProjectOptions,
+): Rule {
+  return tree => UpdateProjectConfiguration(tree, updater, options);
+}
+
 export interface UpdateProjectPackageJsonOptions extends Omit<UpdatePackageJsonOptions, 'basePath'> {
   projectName: string;
 }
 
-export function UpdateProjectPackageJson(
+export function UpdateProjectPackageJsonRule(
   updater: (packageJson: PackageJson) => void | PromiseLike<void>,
   options: UpdateProjectPackageJsonOptions,
 ): Rule {
-  return tree => {
-
-    const projectRoot = GetProjectRoot(tree, options.projectName);
-
-    return UpdatePackageJson(updater, {
-      ...options,
-      basePath: projectRoot,
-    });
-
-  };
+  return tree => UpdateProjectPackageJson(tree, updater, options);
 }

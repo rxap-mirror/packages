@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "operation-table-action",
+  "type": "object",
+  "properties": {
+    "tableName": {
+      "alias": "table",
+      "type": "string",
+      "description": "The name of the table action"
+    },
+    "type": {
+      "alias": "actionType",
+      "type": "string",
+      "description": "The table action type string",
+      "x-prompt": "Enter the table action type string?"
+    },
+    "project": {
+      "type": "string",
+      "description": "The target project where the table action should be added."
+    },
+    "feature": {
+      "type": "string",
+      "description": "The feature name where the table action should be added.",
+      "x-prompt": "To which feature should the table action be added?"
+    },
+    "backend": {
+      "type": "string",
+      "description": "The backend that should be used to handel data",
+      "enum": [
+        "none",
+        "local",
+        "nestjs"
+      ],
+      "default": "none"
+    },
+    "shared": {
+      "type": "boolean",
+      "description": "Whether the table action is shared across applications",
+      "default": false
+    },
+    "refresh": {
+      "type": "boolean",
+      "description": "Whether the table action should refresh the table after execution",
+      "default": false
+    },
+    "confirm": {
+      "type": "boolean",
+      "description": "Whether the table action should confirm before execution",
+      "default": false
+    },
+    "tooltip": {
+      "type": "string",
+      "description": "The tooltip for the table action"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "The error message for the table action"
+    },
+    "successMessage": {
+      "type": "string",
+      "description": "The success message for the table action"
+    },
+    "checkFunction": {
+      "type": "string",
+      "description": "The check function for the table action"
+    },
+    "priority": {
+      "type": "number",
+      "description": "The priority of the table action"
+    },
+    "directory": {
+      "type": "string",
+      "description": "A directory name or absolute path for the table action. relative to the feature base path"
+    },
+    "nestModule": {
+      "type": "string",
+      "description": "The module name for the table nest operations"
+    },
+    "controllerName": {
+      "type": "string",
+      "description": "The controller name for the table nest operations"
+    },
+    "context": {
+      "type": "string",
+      "description": "The context use to generate proper names for class, files, etc"
+    }
+  },
+  "required": [
+    "type",
+    "project",
+    "feature"
+  ]
+}

@@ -33,7 +33,10 @@
     ]
   },
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "plugin",
+    "library"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/library",
   "bugs": {

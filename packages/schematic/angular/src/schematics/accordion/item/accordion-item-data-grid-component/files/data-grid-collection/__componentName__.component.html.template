@@ -1,0 +1,10 @@
+<mat-progress-bar
+  *ngIf="dataGridDataSource.loading$ | async"
+  mode="indeterminate"
+></mat-progress-bar>
+<ng-template #errorTemplate let-error let-refresh="refresh">
+  <<%= prefix %>-data-source-error [error]="error" [refresh]="refresh"></<%= prefix %>-data-source-error>
+</ng-template>
+<div *rxapDataSource="let collection; from: dataGridDataSource; errorTemplate: errorTemplate" class="flex flex-wrap justify-start gap-8">
+  <<%= prefix %>-<%= name %>-data-grid class="grow" [data]="item" *ngFor="let item of collection"></<%= prefix %>-<%= name %>-data-grid>
+</div>

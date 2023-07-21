@@ -1,0 +1,30 @@
+{
+  "name": "@rxap/browser-utilities",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/browser/utilities"
+  },
+  "keywords": [
+    "rxap",
+    "packages",
+    "browser",
+    "utilities"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/browser/utilities",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/browser/utilities"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

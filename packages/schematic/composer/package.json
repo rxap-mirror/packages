@@ -1,0 +1,31 @@
+{
+  "name": "@rxap/schematic-composer",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "schematics": "./collection.json",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/schematic/composer"
+  },
+  "keywords": [
+    "rxap",
+    "packages",
+    "schematic",
+    "composer"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/composer",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/schematic/composer"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

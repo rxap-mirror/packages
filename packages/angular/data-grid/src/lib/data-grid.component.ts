@@ -56,10 +56,10 @@ import {
 } from '@rxap/pipes';
 import { DataGridValuePipe } from './data-grid-value.pipe';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDividerModule } from '@angular/material/divider';
 import {
   AsyncPipe,
+  NgClass,
   NgFor,
   NgIf,
   NgTemplateOutlet,
@@ -86,7 +86,6 @@ function IsDataGridMode(value: string): value is DataGridMode {
   templateUrl: './data-grid.component.html',
   styleUrls: [ './data-grid.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
   standalone: true,
   imports: [
     AsyncPipe,
@@ -100,10 +99,10 @@ function IsDataGridMode(value: string): value is DataGridMode {
     RxapFormsModule,
     DataGridValuePipe,
     MatProgressSpinnerModule,
-    FlexLayoutModule,
     MatDividerModule,
     NgTemplateOutlet,
     MatFormFieldModule,
+    NgClass,
   ],
 })
 export class DataGridComponent<T extends Record<string, any>> implements OnInit, OnDestroy, AfterContentInit {

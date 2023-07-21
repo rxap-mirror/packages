@@ -6,3 +6,4 @@ export * from './lib/schema-validation.mixin';
 export * from './lib/tokens';
 export * from './lib/open-api-http-response.error';
 export * from './lib/open-api.meta-data';
+export * from './lib/open-api-init';

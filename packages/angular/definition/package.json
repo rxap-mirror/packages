@@ -19,7 +19,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "definition"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/definition",
   "bugs": {

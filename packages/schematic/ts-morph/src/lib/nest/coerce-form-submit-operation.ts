@@ -1,14 +1,15 @@
-import { DtoClassProperty } from '../create-dto-class';
+import { joinWithDash } from '@rxap/utilities';
+import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceDtoClass } from './coerce-dto-class';
 import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { joinWithDash } from '@rxap/utilities';
+import { DtoClassProperty } from './create-dto-class';
 
 export interface CoerceFormSubmitOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
   propertyList?: DtoClassProperty[] | null,
+  bodyDtoName?: string;
 }
 
 export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOptions) {
@@ -37,15 +38,15 @@ export function CoerceFormSubmitOperation(options: CoerceFormSubmitOperationOpti
       const {
         className: dtoClassName,
         filePath: dtoFilePath,
-      } = CoerceDtoClass(
+      } = CoerceDtoClass({
         project,
-        bodyDtoName!,
-        propertyList!,
-      );
+        name: bodyDtoName!,
+        propertyList,
+      });
 
       CoerceImports(sourceFile, {
         namedImports: [ dtoClassName ],
-        moduleSpecifier: `..${ dtoFilePath }`,
+        moduleSpecifier: dtoFilePath,
       });
 
       return {

@@ -14,7 +14,9 @@
   },
   "keywords": [
     "rxap",
-    "nest"
+    "nest",
+    "packages",
+    "logger"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/logger",
   "bugs": {

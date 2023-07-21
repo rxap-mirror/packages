@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "crud-service",
+  "type": "object",
+  "description": "",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the service.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the service?"
+    },
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "The path to create the service."
+    },
+    "language": {
+      "type": "string",
+      "description": "Nest service language (ts/js)."
+    },
+    "sourceRoot": {
+      "type": "string",
+      "description": "Nest service source root directory."
+    },
+    "project": {
+      "type": "string",
+      "description": "",
+      "default": "crud"
+    },
+    "flat": {
+      "type": "boolean",
+      "default": false,
+      "description": "Flag to indicate if a directory is created."
+    },
+    "spec": {
+      "type": "boolean",
+      "default": true,
+      "description": "Specifies if a spec file is generated."
+    },
+    "collection2": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "overwrite": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

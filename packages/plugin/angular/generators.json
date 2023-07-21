@@ -1,0 +1,29 @@
+{
+  "generators": {
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "init generator"
+    },
+    "init-application": {
+      "factory": "./src/generators/init-application/generator",
+      "schema": "./src/generators/init-application/schema.json",
+      "description": "init-application generator"
+    },
+    "init-library": {
+      "factory": "./src/generators/init-library/generator",
+      "schema": "./src/generators/init-library/schema.json",
+      "description": "init-library generator"
+    },
+    "fix-schematic": {
+      "factory": "./src/generators/fix-schematic/generator",
+      "schema": "./src/generators/fix-schematic/schema.json",
+      "description": "fix-schematic generator"
+    },
+    "schematic": {
+      "factory": "./src/generators/schematic/generator",
+      "schema": "./src/generators/schematic/schema.json",
+      "description": "Create a Schematic for a project."
+    }
+  }
+}

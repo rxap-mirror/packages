@@ -13,8 +13,8 @@ import { clone } from './clone';
 import {
   GetJsonFile,
   HasJsonFile,
-  UpdateJsonFile,
   UpdateJsonFileOptions,
+  UpdateJsonFileRule,
 } from './json-file';
 
 export function IsAngularJson(angularJson: AngularJson | FragmentedAngularJson): angularJson is AngularJson {
@@ -52,7 +52,7 @@ export function GetAngularJson(host: Tree): AngularJson {
 
   let filePath = 'angular.json';
 
-  if (HasJsonFile(host, 'workspace.json')) {
+  if (HasJsonFile(host, filePath)) {
     console.warn('use workspace.json instead of angular.json');
     filePath = 'workspace.json';
   } else if (!HasJsonFile(host, filePath)) {
@@ -322,7 +322,7 @@ export function UpdateAngularJson(
   updater: (angular: Angular) => void | PromiseLike<void>,
   options?: UpdateAngularJsonFileOptions,
 ): Rule {
-  return UpdateJsonFile(
+  return UpdateJsonFileRule(
     async (angularJson: AngularJson) => {
       try {
         await updater(new Angular(angularJson));

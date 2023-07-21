@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "crud-init",
+  "type": "object",
+  "description": "",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "",
+      "default": "crud"
+    },
+    "importPath": {
+      "description": "The library name used to import it, like @myorg/my-awesome-lib. Must be a valid npm name.",
+      "type": "string"
+    }
+  },
+  "required": []
+}

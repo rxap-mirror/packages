@@ -2,17 +2,19 @@ import {
   Rule,
   Tree,
 } from '@angular-devkit/schematics';
-import { PackageJson } from './package-json';
+import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
+import {
+  AddPackageJsonDependency,
+  AddPackageJsonDevDependency,
+  AddPackageJsonScript,
+  PackageJson,
+  UpdatePackageJson,
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
   GetJsonFile,
-  UpdateJsonFile,
   UpdateJsonFileOptions,
 } from './json-file';
-import gt from 'semver/functions/gt';
-import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-import { CoerceProperty } from './object/coerce-property';
-import { GetLatestPackageVersion } from '@rxap/node-utilities';
 
 export function GetPackageJson(host: Tree, basePath = ''): PackageJson {
   return GetJsonFile(host, join(basePath, 'package.json'));
@@ -23,91 +25,46 @@ export interface UpdatePackageJsonOptions extends UpdateJsonFileOptions {
 }
 
 
-export function UpdatePackageJson(
+export function UpdatePackageJsonRule(
   updaterOrJsonFile: PackageJson | ((packageJson: PackageJson) => void | PromiseLike<void>),
   options?: UpdatePackageJsonOptions,
 ): Rule {
-  return UpdateJsonFile(updaterOrJsonFile, join(options?.basePath ?? '', 'package.json'), options);
+  return tree => UpdatePackageJson(tree, updaterOrJsonFile, options);
 }
 
-export function AddPackageJsonScript(
+export function AddPackageJsonScriptRule(
   scriptName: string,
   script: string,
   options?: UpdatePackageJsonOptions,
 ): Rule {
-  return UpdatePackageJson(
-    packageJson => {
-      CoerceProperty(packageJson, 'scripts', {});
-      packageJson.scripts![scriptName] = script;
-    },
-    options,
-  );
+  return tree => AddPackageJsonScript(tree, scriptName, script, options);
 }
 
 export interface AddPackageJsonDependencyOptions extends UpdatePackageJsonOptions {
   /**
-   * true - only update the dependency if not already exists or greater then the current version
+   * true - only update the version if the current version is lower than the new version and the anticipated version is not set to latest
    */
   soft?: boolean;
 }
 
-export function AddPackageJsonDependency(
+export function AddPackageJsonDependencyRule(
+  packageName: string,
+  packageVersion: string | 'latest' = 'latest',
+  options?: AddPackageJsonDependencyOptions,
+  propertyPath = 'dependencies',
+): Rule {
+  return tree => AddPackageJsonDependency(tree, packageName, packageVersion, options, propertyPath);
+}
+
+export function AddPackageJsonDevDependencyRule(
   packageName: string,
   packageVersion: string | 'latest' = 'latest',
   options?: AddPackageJsonDependencyOptions,
 ): Rule {
-  return async () => {
-    if (packageVersion === 'latest') {
-      packageVersion = await GetLatestPackageVersion(packageName);
-    }
-
-    return UpdatePackageJson(
-      packageJson => {
-        CoerceProperty(packageJson, 'dependencies', {});
-        if (options?.soft && packageVersion !== 'latest') {
-          if (packageJson.dependencies![packageName]) {
-            if (gt(packageJson.dependencies![packageName].replace(/^(~|\^|>|<|<=|>=)/, ''), packageVersion)) {
-              return;
-            }
-          }
-        }
-        packageJson.dependencies![packageName] = packageVersion;
-      },
-      options,
-    );
-  };
+  return tree => AddPackageJsonDevDependency(tree, packageName, packageVersion, options);
 }
 
-export function AddPackageJsonDevDependency(
-  packageName: string,
-  packageVersion: string | 'latest' = 'latest',
-  options?: AddPackageJsonDependencyOptions,
-): Rule {
-  return async () => {
-
-    if (packageVersion === 'latest') {
-      packageVersion = await GetLatestPackageVersion(packageName);
-    }
-
-    return UpdatePackageJson(
-      packageJson => {
-        CoerceProperty(packageJson, 'devDependencies', {});
-        if (options?.soft && packageVersion !== 'latest') {
-          if (packageJson.dependencies![packageName]) {
-            if (gt(packageJson.dependencies![packageName].replace(/^(~|^|>|<|<=|>=)/, ''), packageVersion)) {
-              return;
-            }
-          }
-        }
-        packageJson.devDependencies![packageName] = packageVersion;
-      },
-      options,
-    );
-
-  };
-}
-
-export function InstallPackageIfNotExists(
+export function InstallPackageIfNotExistsRule(
   packageName: string,
   packageVersion: string | 'latest' = 'latest',
   dev = false,
@@ -122,9 +79,9 @@ export function InstallPackageIfNotExists(
     }
     if (!hasPackage) {
       if (dev) {
-        AddPackageJsonDevDependency(packageName, packageVersion)(tree, context);
+        AddPackageJsonDevDependencyRule(packageName, packageVersion)(tree, context);
       } else {
-        AddPackageJsonDependency(packageName, packageVersion)(tree, context);
+        AddPackageJsonDependencyRule(packageName, packageVersion)(tree, context);
       }
       context.addTask(new NodePackageInstallTask());
     }

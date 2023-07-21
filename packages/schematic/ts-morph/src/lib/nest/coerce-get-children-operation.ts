@@ -1,13 +1,13 @@
 import {
-  CoerceOperation,
-  CoerceOperationOptions,
-} from './coerce-operation';
-import { CoerceDtoClass } from './coerce-dto-class';
-import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceDtoClass } from './coerce-dto-class';
+import {
+  CoerceOperation,
+  CoerceOperationOptions,
+} from './coerce-operation';
 
 export type CoerceGetChildrenOperationOptions = Omit<CoerceOperationOptions, 'operationName'>
 
@@ -40,10 +40,10 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
       const {
         className,
         filePath,
-      } = CoerceDtoClass(
+      } = CoerceDtoClass({
         project,
-        CoerceSuffix(controllerName, '-item'),
-        [
+        name: CoerceSuffix(controllerName, '-item'),
+        propertyList: [
           {
             name: 'uuid',
             type: 'string',
@@ -60,7 +60,7 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
             isType: true,
           },
         ],
-      );
+      });
 
       CoerceImports(sourceFile, [
         {
@@ -69,11 +69,11 @@ export function CoerceGetChildrenOperation(options: Readonly<CoerceGetChildrenOp
         },
         {
           namedImports: [ 'classTransformOptions' ],
-          moduleSpecifier: '@rxap/nest/class-transformer/options',
+          moduleSpecifier: '@rxap/nest-utilities',
         },
         {
           namedImports: [ className ],
-          moduleSpecifier: `..${ filePath }`,
+          moduleSpecifier: filePath,
         },
       ]);
 

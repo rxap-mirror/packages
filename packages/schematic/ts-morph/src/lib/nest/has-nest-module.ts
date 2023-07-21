@@ -12,7 +12,7 @@ import { buildNestProjectName } from './project-utilities';
 
 export interface HasNestModuleOptions {
   project: string;
-  feature?: string;
+  feature?: string | null;
   shared?: boolean;
   name: string;
 }

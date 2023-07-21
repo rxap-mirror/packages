@@ -1,9 +1,9 @@
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceDtoClass } from './coerce-dto-class';
 import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
-import { CoerceDtoClass } from './coerce-dto-class';
-import { CoerceImports } from '../ts-morph/coerce-imports';
 
 export interface CoerceTreeOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
   operationName?: string;
@@ -35,7 +35,10 @@ export function CoerceTreeOperationRule(options: CoerceTreeOperationOptions) {
       const {
         className,
         filePath,
-      } = CoerceDtoClass(project, 'TreeNode', [
+      } = CoerceDtoClass({
+        project,
+        name: 'TreeNode',
+        propertyList: [
         {
           name: 'id',
           type: 'string',
@@ -60,13 +63,14 @@ export function CoerceTreeOperationRule(options: CoerceTreeOperationOptions) {
           isType: true,
           type: '<self>',
         },
-      ]);
+        ]
+      });
 
       CoerceImports(
         sourceFile,
         {
           namedImports: [ className ],
-          moduleSpecifier: '..' + filePath,
+          moduleSpecifier: filePath,
         },
       );
 

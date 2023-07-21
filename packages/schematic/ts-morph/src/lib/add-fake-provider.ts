@@ -4,7 +4,7 @@ import { AssertArrayLiteralExpression } from './is-array-literal-expression';
 import { SourceFile } from 'ts-morph';
 import { CoerceVariableDeclaration } from './coerce-variable-declaration';
 import { AddProviderToArray } from './add-provider-to-array';
-import { CoerceImports } from './ts-morph/index';
+import { CoerceImports } from './ts-morph/coerce-imports';
 
 export function AddFakeProvider(
   sourceFile: SourceFile,

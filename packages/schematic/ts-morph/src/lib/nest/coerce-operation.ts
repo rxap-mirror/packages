@@ -1,31 +1,30 @@
 import {
   chain,
-  noop,
   Rule,
 } from '@angular-devkit/schematics';
-import {
-  AddOperationToController,
-  OperationOptions,
-  OperationParameter,
-} from '../add-operation-to-controller';
-import { CoerceNestModule } from './coerce-nest-module';
-import { CoerceNestController } from './coerce-nest-controller';
-import {
-  TsMorphNestProjectTransform,
-  TsMorphNestProjectTransformOptions,
-} from '../ts-morph-transform';
 import { classify } from '@rxap/schematics-utilities';
+import { join } from 'path';
 import {
   ClassDeclaration,
   Project,
   SourceFile,
 } from 'ts-morph';
+import {
+  TsMorphNestProjectTransformOptions,
+  TsMorphNestProjectTransformRule,
+} from '../ts-morph-transform';
+import {
+  AddOperationToController,
+  OperationOptions,
+  OperationParameter,
+} from './add-operation-to-controller';
 import { BuildNestControllerName } from './build-nest-controller-name';
+import { CoerceNestController } from './coerce-nest-controller';
 
 export interface CoerceOperationOptions extends TsMorphNestProjectTransformOptions {
   controllerName: string;
   shared?: boolean;
-  nestModule?: string;
+  nestModule?: string | null;
   skipCoerce?: boolean;
   paramList?: OperationParameter[],
   queryList?: OperationParameter[],
@@ -42,13 +41,13 @@ export interface CoerceOperationOptions extends TsMorphNestProjectTransformOptio
    * true - the control path is overwritten with
    */
   overwriteControllerPath?: boolean;
-  context?: string;
-  bodyDtoName?: string;
-  responseDtoName?: string;
+  context?: string | null;
+  // bodyDtoName?: string;
+  // responseDtoName?: string;
 }
 
 export function CoerceOperationParamList(paramList: OperationParameter[], classDeclaration: ClassDeclaration) {
-  const currentControllerPath = classDeclaration.getDecoratorOrThrow('Controller').getArguments()[0].getText();
+  const currentControllerPath = classDeclaration.getDecoratorOrThrow('Controller').getArguments()[0]?.getText() ?? '';
   const fragments = currentControllerPath.split('/');
   const parameters = fragments.filter(fragment => fragment.startsWith(':'));
   for (const parameter of parameters) {
@@ -73,6 +72,7 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
     queryList,
     path,
     overwriteControllerPath,
+    directory,
   } = options;
 
   tsMorphTransform ??= () => ({});
@@ -105,28 +105,34 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
     nestModule,
   });
 
-  if (isFirstBornSibling) {
+  if (!nestModule || isFirstBornSibling) {
     nestModule = nestController;
   }
 
+  directory = join(directory ?? '', nestModule!);
+
   return chain([
     () => console.log(`Coerce Operation '${ operationName }' with path '${ path }' in the controller '${ nestController }' in the module '${ nestModule }'`),
-    skipCoerce ? noop() : chain([
-      CoerceNestModule({
-        project,
-        feature,
-        shared,
-        name: nestModule!,
-      }),
-      CoerceNestController({
-        ...options,
-        name: nestController,
-        nestModule: nestModule!,
-      }),
-    ]),
-    TsMorphNestProjectTransform(options, project => {
+    CoerceNestController({
+      project,
+      feature,
+      shared,
+      directory,
+      coerceModule: !skipCoerce,
+      name: nestController,
+      nestModule,
+    }),
+    // IMPORTANT: the use of the filePath parameter for the narrow loading of the source file CAN NOT BE USED here
+    //            because sub functions may need to load other source files that are then not loaded into the
+    //            project instance!
+    TsMorphNestProjectTransformRule({
+      project,
+      feature,
+      shared,
+      directory,
+    }, project => {
 
-      const sourceFile = project.getSourceFileOrThrow(`/${ nestModule }/${ nestController }.controller.ts`);
+      const sourceFile = project.getSourceFileOrThrow(`${ nestController }.controller.ts`);
       const classDeclaration = sourceFile.getClassOrThrow(`${ classify(nestController) }Controller`);
 
       const operationOptions = tsMorphTransform!(project, sourceFile, classDeclaration, nestController);

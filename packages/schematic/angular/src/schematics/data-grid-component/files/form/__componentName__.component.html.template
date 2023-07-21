@@ -1,0 +1,42 @@
+<mat-card>
+  <% if (title) { %>
+  <mat-card-header>
+    <mat-card-title></mat-card-title>
+    <% if (subtitle) { %><mat-card-subtitle></mat-card-subtitle><% } %>
+  </mat-card-header>
+  <% } %>
+  <mat-card-content>
+    <div class="p-4">
+      <form #form="rxapForm" rxapForm>
+        <% if (collection) { %>
+        <rxap-data-grid [data]="data" mode="form">
+        <% } else { %>
+        <rxap-data-grid [dataSource]="dataGridDataSource" mode="form">
+        <% } %>
+        <% for (const item of itemList) { %>
+          <ng-container rxapDataGridRowDef="<%= item.name %>">
+            <% if (item.header) { %>
+            <th *rxapDataGridHeaderCellDef i18n><%= header %></th>
+            <% } %>
+            <ng-template rxapDataGridEditCellDef>
+              <% if (item.type === 'string') { %>
+              <mat-form-field class="w-full">
+                <input matInput formControlName="<%= item.name %>">
+              </mat-form-field>
+              <% } else if (item.type === 'number') { %>
+              <mat-form-field class="w-full">
+                <input matInput formControlName="<%= item.name %>" type="number">
+              </mat-form-field>
+              <% } else if (item.type === 'boolean') { %>
+              <mat-slide-toggle formControlName="<%= item.name %>"></mat-slide-toggle>
+              <% } else {%>
+              <!-- TODO: <%= item.name %> -->
+              <% } %>
+            </ng-template>
+          </ng-container>
+        <% } %>
+        </rxap-data-grid>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

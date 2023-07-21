@@ -1,11 +1,11 @@
+import { CoerceSuffix } from '@rxap/schematics-utilities';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceDtoClass } from './coerce-dto-class';
 import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
-import { DtoClassProperty } from '../create-dto-class';
-import { CoerceDtoClass } from './coerce-dto-class';
-import { CoerceSuffix } from '@rxap/schematics-utilities';
-import { CoerceImports } from '../ts-morph/coerce-imports';
+import { DtoClassProperty } from './create-dto-class';
 
 export interface CoerceGetDataGridOperationOptions extends Omit<CoerceOperationOptions, 'operationName'> {
   collection?: boolean;
@@ -39,15 +39,15 @@ export function CoerceGetDataGridOperation(options: Readonly<CoerceGetDataGridOp
       const {
         className: dtoClassName,
         filePath: dtoFilePath,
-      } = CoerceDtoClass(
+      } = CoerceDtoClass({
         project,
-        controllerName,
-        propertyList!,
-      );
+        name: controllerName,
+        propertyList,
+      });
 
       CoerceImports(sourceFile, {
         namedImports: [ dtoClassName ],
-        moduleSpecifier: `..${ dtoFilePath }`,
+        moduleSpecifier: dtoFilePath,
       });
 
       return {

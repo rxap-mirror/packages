@@ -20,6 +20,7 @@
         "packages/angular/authentication/components/src/index.ts"
       ],
       "@rxap/authorization": ["packages/angular/authorization/src/index.ts"],
+      "@rxap/browser-utilities": ["packages/browser/utilities/src/index.ts"],
       "@rxap/components": ["packages/angular/components/src/index.ts"],
       "@rxap/config": ["packages/angular/config/src/index.ts"],
       "@rxap/contenteditable": [
@@ -27,6 +28,9 @@
       ],
       "@rxap/data-grid": ["packages/angular/data-grid/src/index.ts"],
       "@rxap/data-source": ["packages/angular/data-source/src/index.ts"],
+      "@rxap/data-source/accordion": [
+        "packages/angular/data-source/accordion/src/index.ts"
+      ],
       "@rxap/data-source/directive": [
         "packages/angular/data-source/directive/src/index.ts"
       ],
@@ -50,6 +54,9 @@
       ],
       "@rxap/data-source/table/directives": [
         "packages/angular/data-source/table/directives/src/index.ts"
+      ],
+      "@rxap/data-source/table/tree": [
+        "packages/angular/data-source/table/tree/src/index.ts"
       ],
       "@rxap/data-source/testing": [
         "packages/angular/data-source/testing/src/index.ts"
@@ -109,14 +116,20 @@
       ],
       "@rxap/mixin": ["packages/mixin/src/index.ts"],
       "@rxap/nest-firebase": ["packages/nest/firebase/src/index.ts"],
+      "@rxap/nest-jwt": ["packages/nest/jwt/src/index.ts"],
       "@rxap/nest-logger": ["packages/nest/logger/src/index.ts"],
       "@rxap/nest-minio": ["packages/nest/minio/src/index.ts"],
+      "@rxap/nest-open-api": ["packages/nest/open-api/src/index.ts"],
       "@rxap/nest-sentry": ["packages/nest/sentry/src/index.ts"],
       "@rxap/nest-server": ["packages/nest/server/src/index.ts"],
       "@rxap/nest-socket-io-client": [
         "packages/nest/socket-io-client/src/index.ts"
       ],
       "@rxap/nest-utilities": ["packages/nest/utilities/src/index.ts"],
+      "@rxap/ngx-material-table-select": [
+        "packages/angular/material/table-select/src/index.ts"
+      ],
+      "@rxap/ngx-sentry": ["packages/angular/sentry/src/index.ts"],
       "@rxap/node-utilities": ["packages/node/utilities/src/index.ts"],
       "@rxap/oauth": ["packages/angular/oauth/src/index.ts"],
       "@rxap/oauth/single-sign-on": [
@@ -137,8 +150,10 @@
       "@rxap/pipes/santization": [
         "packages/angular/pipes/santization/src/index.ts"
       ],
+      "@rxap/plugin-angular": ["packages/plugin/angular/src/index.ts"],
       "@rxap/plugin-application": ["packages/plugin/application/src/index.ts"],
       "@rxap/plugin-docker": ["packages/plugin/docker/src/index.ts"],
+      "@rxap/plugin-gpt": ["packages/plugin/gpt/src/index.ts"],
       "@rxap/plugin-library": ["packages/plugin/library/src/index.ts"],
       "@rxap/plugin-localazy": ["packages/plugin/localazy/src/index.ts"],
       "@rxap/plugin-readme-generator": [
@@ -161,6 +176,8 @@
       ],
       "@rxap/rxjs": ["packages/rxjs/src/index.ts"],
       "@rxap/schematic-angular": ["packages/schematic/angular/src/index.ts"],
+      "@rxap/schematic-composer": ["packages/schematic/composer/src/index.ts"],
+      "@rxap/schematic-nestjs": ["packages/schematic/nestjs/src/index.ts"],
       "@rxap/schematics-open-api": ["packages/schematic/open-api/src/index.ts"],
       "@rxap/schematics-ts-morph": ["packages/schematic/ts-morph/src/index.ts"],
       "@rxap/schematics-utilities": [
@@ -182,7 +199,17 @@
       "@rxap/utilities": ["packages/utilities/src/index.ts"],
       "@rxap/validator": ["packages/validator/src/index.ts"],
       "@rxap/window-system": ["packages/angular/window-system/src/index.ts"],
+      "@rxap/workspace-ts-morph": ["packages/workspace/ts-morph/src/index.ts"],
+      "@rxap/workspace-utilities": [
+        "packages/workspace/utilities/src/index.ts"
+      ],
       "@rxap/xml-parser": ["packages/xml-parser/src/index.ts"],
+      "open-api/service/app/angular/table": [
+        "packages/open-api/service/app/angular/table/src/index.ts"
+      ],
+      "open-api/service/app/angular/table/*": [
+              "packages/open-api/service/app/angular/table/src/lib/*"
+            ],
       "workspace": ["tools/workspace/src/index.ts"],
       "workspace/commands": ["tools/workspace/src/cypress/commands.ts"]
     }

@@ -75,6 +75,8 @@
     }
   },
   "tags": [
-    "nest"
+    "nest",
+    "packages",
+    "minio"
   ]
 }

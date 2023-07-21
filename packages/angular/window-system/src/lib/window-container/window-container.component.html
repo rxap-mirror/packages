@@ -1,6 +1,5 @@
 <div #container
      (cdkDragEnded)="onDragEnded($event)"
-     [cdkDragConstrainPosition]="dragConstrainPosition"
      [cdkDragDisabled]="windowRef.settings.draggable === false"
      [ngStyle]="{
      'width': width$ | async,
@@ -11,6 +10,7 @@
      'maxHeight': windowRef.settings.maxHeight
      }"
      cdkDrag
+     cdkDragBoundary=".cdk-overlay-container"
      class="container mat-elevation-z4"
      fxLayout="column">
 

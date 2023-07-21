@@ -1,4 +1,12 @@
 import {
+  camelize,
+  classify,
+  CoerceSuffix,
+  dasherize,
+} from '@rxap/schematics-utilities';
+import { join } from 'path';
+import {
+  ClassDeclaration,
   ClassDeclarationStructure,
   ClassLikeDeclarationBase,
   ImportDeclarationStructure,
@@ -8,22 +16,16 @@ import {
   PropertyDeclarationStructure,
   PropertySignature,
   PropertySignatureStructure,
+  SourceFile,
   TypeElementMemberedNode,
   Writers,
 } from 'ts-morph';
-import { DtoClassProperty } from '../create-dto-class';
+import { CoerceClass } from '../coerce-class';
 import { CoerceSourceFile } from '../coerce-source-file';
-import { join } from 'path';
-import {
-  camelize,
-  classify,
-  CoerceSuffix,
-  dasherize,
-} from '@rxap/schematics-utilities';
 import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { WriteType } from '../ts-morph/write-type';
-import { CoerceClass } from '../coerce-class';
+import { DtoClassProperty } from './create-dto-class';
 
 export interface CoerceDtoClassOutput {
   className: string;
@@ -53,23 +55,47 @@ export function CoercePropertyDeclaration(
   return property;
 }
 
-export function CoerceDtoClass(
-  project: Project,
-  name: string,
-  propertyList: DtoClassProperty[],
-  classStructure?: Omit<OptionalKind<ClassDeclarationStructure>, 'name'>,
-  importStructureList?: Array<OptionalKind<ImportDeclarationStructure>>,
-): CoerceDtoClassOutput {
+export interface CoerceDtoClassOptions {
+  project: Project;
+  name: string;
+  propertyList?: DtoClassProperty[] | null;
+  /**
+   * @deprecated use the tsMorphTransform to adapt the class
+   */
+  classStructure?: Omit<OptionalKind<ClassDeclarationStructure>, 'name'>;
+  /**
+   * @deprecated use the tsMorphTransform to add imports
+   */
+  importStructureList?: Array<OptionalKind<ImportDeclarationStructure>>;
+  tsMorphTransform?: (project: Project, sourceFile: SourceFile, classDeclaration: ClassDeclaration) => void;
+}
 
+export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOutput {
+  const {
+    project,
+  } = options;
+  let {
+    propertyList,
+    tsMorphTransform,
+    classStructure,
+    importStructureList,
+    name,
+  } = options;
+
+  propertyList ??= [];
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  tsMorphTransform ??= () => {};
+  classStructure ??= {};
+  importStructureList ??= [];
   name = dasherize(name);
+
   const className = CoerceSuffix(classify(name), 'Dto');
   const fileName = CoerceSuffix(name, '.dto');
 
   const sourceFile = CoerceSourceFile(project, join('dtos', fileName + '.ts'));
   const classDeclaration = CoerceClass(sourceFile, className);
   classDeclaration.setIsExported(true);
-  classDeclaration.set(classStructure ?? {});
-  importStructureList ??= [];
+  classDeclaration.set(classStructure);
 
   for (const property of propertyList) {
 
@@ -92,8 +118,8 @@ export function CoerceDtoClass(
 
     CoerceDecorator(
       propertyDeclaration,
+      'Expose',
       {
-        name: 'Expose',
         arguments: [],
       },
     );
@@ -105,8 +131,8 @@ export function CoerceDtoClass(
     if (property.isArray) {
       CoerceDecorator(
         propertyDeclaration,
+        'IsArray',
         {
-          name: 'IsArray',
           arguments: [],
         },
       );
@@ -116,8 +142,7 @@ export function CoerceDtoClass(
       });
     }
     if (property.isType) {
-      CoerceDecorator(propertyDeclaration, {
-        name: 'Type',
+      CoerceDecorator(propertyDeclaration, 'Type', {
         arguments: [
           w => {
             w.write('() => ');
@@ -133,8 +158,7 @@ export function CoerceDtoClass(
         namedImports: [ 'Type' ],
         moduleSpecifier: 'class-transformer',
       });
-      CoerceDecorator(propertyDeclaration, {
-        name: 'IsInstance',
+      CoerceDecorator(propertyDeclaration, 'IsInstance', {
         arguments: [
           w => {
             if (typeof property.type === 'string') {
@@ -158,8 +182,8 @@ export function CoerceDtoClass(
     if (property.isOptional) {
       CoerceDecorator(
         propertyDeclaration,
+        'IsInstance',
         {
-          name: 'IsOptional',
           arguments: [],
         },
       );
@@ -172,8 +196,8 @@ export function CoerceDtoClass(
       case 'date':
         CoerceDecorator(
           propertyDeclaration,
+          'IsDate',
           {
-            name: 'IsDate',
             arguments: [],
           },
         );
@@ -185,8 +209,8 @@ export function CoerceDtoClass(
       case 'number':
         CoerceDecorator(
           propertyDeclaration,
+          'IsNumber',
           {
-            name: 'IsNumber',
             arguments: [],
           },
         );
@@ -203,8 +227,8 @@ export function CoerceDtoClass(
           });
           CoerceDecorator(
             propertyDeclaration,
+            'IsNumber',
             {
-              name: 'IsUUID',
               arguments: [],
             },
           );
@@ -215,8 +239,8 @@ export function CoerceDtoClass(
           });
           CoerceDecorator(
             propertyDeclaration,
+            'IsNumber',
             {
-              name: 'IsString',
               arguments: [],
             },
           );
@@ -225,8 +249,8 @@ export function CoerceDtoClass(
       case 'uuid':
         CoerceDecorator(
           propertyDeclaration,
+          'IsNumber',
           {
-            name: 'IsUUID',
             arguments: [],
           },
         );
@@ -238,8 +262,8 @@ export function CoerceDtoClass(
       case 'boolean':
         CoerceDecorator(
           propertyDeclaration,
+          'IsNumber',
           {
-            name: 'IsBoolean',
             arguments: [],
           },
         );
@@ -254,9 +278,11 @@ export function CoerceDtoClass(
 
   CoerceImports(sourceFile, importStructureList);
 
+  tsMorphTransform(project, sourceFile, classDeclaration);
+
   return {
     className,
-    filePath: join(sourceFile.getDirectoryPath(), sourceFile.getBaseNameWithoutExtension()),
+    filePath: '.' + join(sourceFile.getDirectoryPath(), sourceFile.getBaseNameWithoutExtension()),
   };
 
 }

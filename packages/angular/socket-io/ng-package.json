@@ -9,6 +9,7 @@
   ],
   "assets": [
     "README.md",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "LICENSE"
   ]
 }

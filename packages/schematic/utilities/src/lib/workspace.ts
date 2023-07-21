@@ -2,9 +2,12 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
-import { GetJsonFile } from './json-file';
 import { Angular } from './angular-json-file';
+import { GetJsonFile } from './json-file';
 
+/**
+ * @deprecated removed
+ */
 export function GetWorkspace(host: Tree) {
 
   if (host.exists('.angular.json')) {

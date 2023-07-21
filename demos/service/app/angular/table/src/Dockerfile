@@ -1,0 +1,24 @@
+FROM node:18.17-alpine
+# FROM node:18.17 # use if the mongo memory server is used
+
+RUN apk add --no-cache git g++ make python3
+
+RUN mkdir /app
+
+WORKDIR /app
+
+COPY package.json /app
+
+RUN yarn && yarn cache clean
+
+COPY . /app
+
+ENV PORT=3000
+
+ENV GLOBAL_API_PREFIX="api/app/angular/table"
+
+EXPOSE 3000
+
+HEALTHCHECK CMD node healthcheck.js > /dev/null || exit 1
+
+CMD [ "node", "/app/main.js" ]

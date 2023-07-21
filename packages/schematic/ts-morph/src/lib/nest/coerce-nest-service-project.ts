@@ -1,18 +1,19 @@
-import {
-  Rule,
-  schematic,
-} from '@angular-devkit/schematics';
+import { Rule } from '@angular-devkit/schematics';
 import {
   buildNestProjectName,
   HasNestServiceProject,
 } from './project-utilities';
+import { ExecuteSchematic } from '@rxap/schematics-utilities';
 
 export interface CoerceNestServiceProjectOptions {
   project: string;
-  feature?: string;
+  feature?: string | null;
   shared?: boolean;
 }
 
+/**
+ * @deprecated removed use the AssertNestProject function Rule
+ */
 export function CoerceNestServiceProject(options: CoerceNestServiceProjectOptions): Rule {
   const {
     project,
@@ -24,14 +25,14 @@ export function CoerceNestServiceProject(options: CoerceNestServiceProjectOption
       console.log(`The nest service project '${ buildNestProjectName(options) }' does not exists. Project will now be created ...`);
       if (feature) {
         if (shared) {
-          return schematic(
+          return ExecuteSchematic(
             'feature-microservice',
             {
               feature,
             },
           );
         } else {
-          return schematic(
+          return ExecuteSchematic(
             'frontend-microservice',
             {
               frontend: project,
@@ -40,7 +41,7 @@ export function CoerceNestServiceProject(options: CoerceNestServiceProjectOption
           );
         }
       } else {
-        return schematic(
+        return ExecuteSchematic(
           'microservice',
           {
             project,

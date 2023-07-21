@@ -1,0 +1,14 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { <%= classify(name) %>DataGridComponent } from './<%= name %>-data-grid/<%= name %>-data-grid.component';
+
+@Component({
+  selector: '<%= prefix %>-<%= componentName %>',
+  templateUrl: './<%= componentName %>.component.html',
+  styleUrls: [ './<%= componentName %>.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    <%= classify(name) %>DataGridComponent,
+  ],
+})
+export class <%= classify(componentName) %>Component { }

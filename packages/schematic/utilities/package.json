@@ -7,7 +7,10 @@
     "directory": "../../../dist/packages/schematic/utilities"
   },
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "schematic",
+    "utilities"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/utilities",
   "bugs": {

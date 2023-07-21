@@ -2,7 +2,7 @@ import {
   Rule,
   SchematicsException,
 } from '@angular-devkit/schematics';
-import { UpdatePackageJson } from './package-json-file';
+import { UpdatePackageJsonRule } from './package-json-file';
 
 /**
  * Checks if all provided packages are installed and listed as dependencies
@@ -14,7 +14,7 @@ import { UpdatePackageJson } from './package-json-file';
  * @param packageList a list of npm package names
  */
 export function CheckIfPackagesAreInstalled(packageList: string[]): Rule {
-  return UpdatePackageJson(packageJson => {
+  return UpdatePackageJsonRule(packageJson => {
     // check if packages are listed in the root package json
     const notReferenced = [].filter(packageName => !(packageJson.dependencies ?? {})[packageName] &&
       !(packageJson.devDependencies ?? {})[packageName]);

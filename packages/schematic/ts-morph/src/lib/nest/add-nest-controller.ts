@@ -11,7 +11,7 @@ import {
 import { CoerceSourceFile } from '../coerce-source-file';
 import { FindNestModuleSourceFile } from './find-nest-module-source-file';
 import { AddNestModuleController } from './add-nest-module-controller';
-import { CoerceImports } from '../ts-morph/index';
+import { CoerceImports } from '../ts-morph/coerce-imports';
 
 export interface AddNestControllerOptions {
   prefix?: string;

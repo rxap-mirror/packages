@@ -1,33 +1,35 @@
-import {
-  CoerceDataSourceClass,
-  CoerceDataSourceClassOptions,
-} from './coerce-data-source-class';
 import { CoerceSuffix } from '@rxap/schematics-utilities';
 import {
   ClassDeclaration,
   Project,
   SourceFile,
 } from 'ts-morph';
-import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceClassConstructor } from '../coerce-class-constructor';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
-import { CoerceDecorator } from '../ts-morph/coerce-decorator';
 import {
   OperationIdToClassImportPath,
   OperationIdToClassName,
-} from '../operation-id-utilities';
+} from '../nest/operation-id-utilities';
+import { CoerceDecorator } from '../ts-morph/coerce-decorator';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
+import {
+  CoerceDataSourceClass,
+  CoerceDataSourceClassOptions,
+} from './coerce-data-source-class';
 
 export interface CoerceTableDataSourceOptions extends CoerceDataSourceClassOptions {
   /**
    * The operation id to request a table page
    */
   operationId: string;
+  scope: string;
 }
 
 export function CoerceTableDataSourceRule(options: Readonly<CoerceTableDataSourceOptions>) {
   let {
     name,
     operationId,
+    scope,
   } = options;
   name = CoerceSuffix(name, '-table');
 
@@ -67,11 +69,11 @@ export function CoerceTableDataSourceRule(options: Readonly<CoerceTableDataSourc
           namedImports: [ 'Inject' ],
         },
         {
-          moduleSpecifier: OperationIdToClassImportPath(operationId),
+          moduleSpecifier: OperationIdToClassImportPath(operationId, scope),
           namedImports: [ OperationIdToClassName(operationId) ],
         },
         {
-          moduleSpecifier: '@digitaix/eurogard-table-system',
+          moduleSpecifier: '@rxap/open-api/remote-method',
           namedImports: [ 'GetPageAdapterRemoteMethod' ],
         },
       ]);

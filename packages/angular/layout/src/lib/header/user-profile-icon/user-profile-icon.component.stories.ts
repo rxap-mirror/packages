@@ -2,11 +2,13 @@ import {
   addDecorator,
   moduleMetadata,
 } from '@storybook/angular';
-
+import { UserProfileIconComponentModule } from './user-profile-icon.component.module';
 import { UserProfileIconComponent } from './user-profile-icon.component';
 
 addDecorator(moduleMetadata({
-  imports: [],
+  imports: [
+    UserProfileIconComponentModule,
+  ],
 }));
 
 export default {

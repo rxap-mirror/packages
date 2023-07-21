@@ -19,11 +19,15 @@
     "angular-upload",
     "angular-window-system",
     "angular-material-form-system",
-    "angular-material-table-system"
+    "angular-material-table-system",
+    "angular-data-source",
+    "angular",
+    "angular-material-table-select"
   ],
   "tags": [
     "angular",
-    "ngx"
+    "ngx",
+    "frontend"
   ],
   "targets": {
     "build": {
@@ -42,12 +46,24 @@
         "tsConfig": "demos/angular/tsconfig.app.json",
         "assets": [
           "demos/angular/src/favicon.ico",
-          "demos/angular/src/assets"
+          "demos/angular/src/assets",
+          {
+            "glob": "*.json",
+            "input": "config/",
+            "output": "/"
+          },
+          {
+            "glob": "*",
+            "input": "shared/assets/",
+            "output": "/"
+          },
+          "demos/angular/src/manifest.webmanifest"
         ],
         "styles": [
           "demos/angular/src/styles.scss"
         ],
-        "scripts": []
+        "scripts": [],
+        "sourceMap": true
       },
       "configurations": {
         "production": {
@@ -55,7 +71,7 @@
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumError": "10mb"
             },
             {
               "type": "anyComponentStyle",
@@ -63,7 +79,9 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "serviceWorker": true,
+          "ngswConfigPath": "shared/ngsw-config.json"
         },
         "development": {
           "buildOptimizer": false,
@@ -91,7 +109,9 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "angular:build"
+        "browserTarget": "angular:build",
+        "format": "xliff2",
+        "outputPath": "demos/angular/src/i18n"
       }
     },
     "lint": {
@@ -120,6 +140,28 @@
           "ci": true,
           "codeCoverage": true
         }
+      }
+    },
+    "component-test": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "demos/angular/cypress.config.ts",
+        "testingType": "component",
+        "skipServe": true,
+        "devServerTarget": "angular:build:development"
+      },
+      "configurations": {
+        "open": {
+          "watch": true
+        }
+      }
+    },
+    "config": {
+      "executor": "@rxap/plugin-application:config",
+      "options": {},
+      "configurations": {
+        "production": {},
+        "development": {}
       }
     }
   }

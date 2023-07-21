@@ -17,7 +17,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "contenteditable"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/contenteditable",
   "bugs": {

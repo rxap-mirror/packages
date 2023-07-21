@@ -40,7 +40,7 @@ export interface StaticDataSourceMetadata<Data = any>
 }
 
 @Injectable()
-export class StaticDataSource<Data>
+export class StaticDataSource<Data = any>
   extends BaseDataSource<Data, StaticDataSourceMetadata<Data>>
   implements OnDestroy {
   protected override _data$ = new ReplaySubject<Data>(1);

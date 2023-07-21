@@ -1,24 +1,24 @@
 import {
-  CoerceOperation,
-  CoerceOperationOptions,
-} from './coerce-operation';
-import {
   camelize,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
-import { CoercePageDtoClass } from './coerce-page-dto-class';
-import { CoerceRowDtoClass } from './coerce-row-dto-class';
-import { CoerceImports } from '../ts-morph/coerce-imports';
+import { joinWithDash } from '@rxap/utilities';
 import {
   ClassDeclaration,
   Project,
   Scope,
   SourceFile,
 } from 'ts-morph';
-import { OperationOptions } from '../add-operation-to-controller';
-import { DtoClassProperty } from '../create-dto-class';
-import { joinWithDash } from '@rxap/utilities';
-import { CoerceClassMethod } from './coerce-class-method';
+import { CoerceClassMethod } from '../coerce-class-method';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { OperationOptions } from './add-operation-to-controller';
+import {
+  CoerceOperation,
+  CoerceOperationOptions,
+} from './coerce-operation';
+import { CoercePageDtoClass } from './coerce-page-dto-class';
+import { CoerceRowDtoClass } from './coerce-row-dto-class';
+import { DtoClassProperty } from './create-dto-class';
 
 export interface GetPageOperationColumn {
   name: string;
@@ -241,7 +241,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       CoerceImports(sourceFile, [
         {
           namedImports: [ 'FilterQuery', 'FilterQueryPipe' ],
-          moduleSpecifier: '@eurogard/service-nest-utilities',
+          moduleSpecifier: '@rxap/nest-utilities',
         },
         {
           namedImports: [ 'plainToInstance' ],
@@ -249,15 +249,15 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
         },
         {
           namedImports: [ 'classTransformOptions' ],
-          moduleSpecifier: '@rxap/nest/class-transformer/options',
+          moduleSpecifier: '@rxap/nest-utilities',
         },
         {
           namedImports: [ pageClassName ],
-          moduleSpecifier: `..${ pageFilePath }`,
+          moduleSpecifier: pageFilePath,
         },
         {
           namedImports: [ rowClassName ],
-          moduleSpecifier: `..${ rowFilePath }`,
+          moduleSpecifier: rowFilePath,
         },
       ]);
 

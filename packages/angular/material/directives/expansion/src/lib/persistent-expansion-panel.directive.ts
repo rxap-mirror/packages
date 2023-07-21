@@ -11,6 +11,9 @@ import { tap } from 'rxjs/operators';
 import { LocalStorageService } from '@rxap/services';
 import { Subscription } from 'rxjs';
 
+/**
+ * @deprecated use the PersistentAccordionDirective instead
+ */
 @Directive({
   selector: 'mat-expansion-panel[rxapPersistentExpansionPanel]',
   standalone: true,

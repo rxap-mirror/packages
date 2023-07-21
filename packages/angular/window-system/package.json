@@ -25,7 +25,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "window-system"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/window-system",
   "bugs": {

@@ -7,7 +7,10 @@
     "directory": "../../../dist/packages/generator/utilities"
   },
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "generator",
+    "utilities"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/generator/utilities",
   "bugs": {

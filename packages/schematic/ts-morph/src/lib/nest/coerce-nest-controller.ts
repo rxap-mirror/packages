@@ -1,83 +1,118 @@
 import {
   chain,
-  externalSchematic,
+  noop,
   Rule,
-  SchematicsException,
 } from '@angular-devkit/schematics';
+import {
+  classify,
+  dasherize,
+} from '@rxap/utilities';
+import {
+  ClassDeclaration,
+  Project,
+  SourceFile,
+  WriterFunction,
+} from 'ts-morph';
+import { CoerceClass } from '../coerce-class';
+import {
+  TsMorphNestProjectTransformOptions,
+  TsMorphNestProjectTransformRule,
+} from '../ts-morph-transform';
+import { CoerceDecorator } from '../ts-morph/coerce-decorator';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { AddNestModuleController } from './add-nest-module-controller';
+import { AssertNestProject } from './assert-nest-project';
 import { CoerceNestModule } from './coerce-nest-module';
-import { CoerceNestServiceProject } from './coerce-nest-service-project';
-import { HasNestController } from './has-nest-controller';
-import { buildNestProjectName } from './project-utilities';
 
-export interface CoerceNestControllerOptions {
-  project: string;
-  feature?: string;
-  shared?: boolean;
+export interface CoerceNestControllerOptions extends TsMorphNestProjectTransformOptions {
   name: string;
-  nestModule: string;
+  nestModule?: string;
+  controllerPrefix?: string;
+  coerceModule?: boolean;
+  tsMorphTransform?: (
+    project: Project,
+    sourceFile: SourceFile,
+    classDeclaration: ClassDeclaration,
+    options: CoerceNestControllerOptions,
+  ) => void;
+  skipModuleImport?: boolean;
+  overwrite?: boolean;
 }
 
 export function CoerceNestController(
   options: CoerceNestControllerOptions,
 ): Rule {
   const {
-    name,
-    nestModule,
     project,
     feature,
     shared,
+    controllerPrefix,
+    directory,
+    coerceModule,
+    skipModuleImport,
+    overwrite,
   } = options;
-  if (!nestModule) {
-    throw new SchematicsException(
-      'The property "nestModule" option is required for the CoerceNestController rule',
-    );
-  }
+  let { name, tsMorphTransform, nestModule } = options;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  tsMorphTransform ??= () => {};
+  name = dasherize(name);
+  nestModule ??= name;
   return chain([
-    CoerceNestServiceProject({
+    AssertNestProject({ project, feature, shared }),
+    coerceModule ? CoerceNestModule({
       project,
       feature,
       shared,
-    }),
-    CoerceNestModule({
-      project,
-      feature,
-      shared,
-      name: nestModule,
-    }),
-    (tree) => {
-      if (
-        !HasNestController(
-          tree,
-          {
-            project,
-            feature,
-            shared,
-            name,
-            nestModule,
-          },
-        )
-      ) {
-        console.log(
-          `The project ${ buildNestProjectName({
-            project,
-            feature,
-            shared,
-          }) } has not the controller '${ name }'. The controller will now be created ...`,
-        );
-        return externalSchematic('@nx/nest', 'controller', {
-          name,
-          project: buildNestProjectName({
-            project,
-            feature,
-            shared,
-          }),
-          unitTestRunner: 'none',
-          flat: true,
-          directory: nestModule,
-          module: nestModule,
+      name: nestModule!,
+      directory,
+    }) : noop(),
+    TsMorphNestProjectTransformRule(
+      {
+        project,
+        feature,
+        shared,
+        directory,
+      },
+      (project, [ controllerSourceFile, moduleSourceFile ]) => {
+        const controllerDecoratorArguments: WriterFunction[] = controllerPrefix ?
+          [ w => w.quote(controllerPrefix) ] :
+          [];
+        const classDeclaration = CoerceClass(controllerSourceFile, classify(name) + 'Controller', {
+          isExported: true,
+          decorators: [
+            {
+              name: 'Controller',
+              arguments: controllerDecoratorArguments,
+            },
+          ],
         });
-      }
-      return undefined;
-    },
+        if (overwrite) {
+          CoerceDecorator(classDeclaration, 'Controller').set({
+            arguments: controllerDecoratorArguments,
+          });
+        }
+        CoerceImports(controllerSourceFile, [
+          {
+            namedImports: [ 'Controller' ],
+            moduleSpecifier: '@nestjs/common',
+          },
+        ]);
+        if (!skipModuleImport) {
+          if (moduleSourceFile.getClass(classify(nestModule!) + 'Module')) {
+            AddNestModuleController(moduleSourceFile, classify(name) + 'Controller', [
+              {
+                namedImports: [ classify(name) + 'Controller' ],
+                moduleSpecifier: './' + dasherize(name) + '.controller',
+              },
+            ]);
+          }
+        }
+        tsMorphTransform!(project, controllerSourceFile, classDeclaration, options);
+      },
+      [
+        `${ dasherize(name) }.controller.ts?`,
+        `${ dasherize(nestModule!) }.module.ts?`,
+      ],
+    ),
   ]);
 }

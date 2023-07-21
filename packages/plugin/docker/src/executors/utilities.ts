@@ -1,5 +1,7 @@
 import { spawn } from 'child_process';
 import { BuildExecutorSchema } from './build/schema';
+import { mkdirSync } from 'fs';
+import { dirname } from 'path';
 
 export async function dockerLogin(command: string, registry: string, username: string, password: string) {
 
@@ -109,7 +111,9 @@ export function getGitlabRegistryDestination(options: {
   '' }:${ registryImageTag }`;
 }
 
-export async function dockerSave(destinationList: string[], outputName: string) {
+export async function dockerSave(destinationList: string[], outputFile: string) {
+
+  mkdirSync(dirname(outputFile), { recursive: true });
 
   const args: string[] = [
     'docker',
@@ -118,12 +122,12 @@ export async function dockerSave(destinationList: string[], outputName: string) 
     '|',
     'gzip',
     '>',
-    `${ outputName }.tar.gz`,
+    outputFile,
   ];
 
   const command = args.join(' ');
 
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     const s = spawn('sh', [ '-c', command ], { stdio: [ 0, 1, 2 ] });
     s.on('error', (err: Error & { code?: string }) => {
       if (err.code === 'ENOENT') {
@@ -132,7 +136,10 @@ export async function dockerSave(destinationList: string[], outputName: string) 
         reject(err);
       }
     });
-    s.on('close', resolve);
+    s.on('close', () => {
+      console.log(`docker image archive saved to '${ outputFile }'`);
+      resolve();
+    });
   });
 
 }

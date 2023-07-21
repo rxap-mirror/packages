@@ -1,0 +1,99 @@
+{
+  "name": "schematic-composer",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/schematic/composer/src",
+  "projectType": "library",
+  "implicitDependencies": [
+    "schematic-angular"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/schematic/composer",
+        "main": "packages/schematic/composer/src/index.ts",
+        "tsConfig": "packages/schematic/composer/tsconfig.lib.json",
+        "assets": [
+          "packages/schematic/composer/*.md",
+          {
+            "input": "./packages/schematic/composer/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/schematic/composer/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/schematic/composer",
+            "glob": "collection.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs schematic-composer {args.ver} {args.tag}",
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/schematic/composer/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/schematic/composer/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    },
+    "fix-dependencies": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "outputs": [
+        "{workspaceRoot}/{projectRoot}/package.json"
+      ],
+      "options": {
+        "generator": "@rxap/plugin-library:fix-dependencies",
+        "options": {
+          "strict": true
+        }
+      }
+    }
+  },
+  "tags": [
+    "packages",
+    "schematic",
+    "composer"
+  ]
+}

@@ -8,7 +8,9 @@
   },
   "keywords": [
     "rxap",
-    "node"
+    "node",
+    "packages",
+    "utilities"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/node/utilities",
   "bugs": {

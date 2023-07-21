@@ -22,7 +22,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "data-source"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/data-source",
   "bugs": {

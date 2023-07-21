@@ -73,5 +73,9 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    "packages",
+    "schematic",
+    "utilities"
+  ]
 }

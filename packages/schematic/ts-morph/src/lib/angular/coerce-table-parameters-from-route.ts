@@ -1,13 +1,13 @@
-import {
-  TsMorphAngularProjectTransform,
-  TsMorphAngularProjectTransformOptions,
-} from '../ts-morph-transform';
 import { classify } from '@rxap/schematics-utilities';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
-import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
 import { Scope } from 'ts-morph';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
+import { CoercePropertyDeclaration } from '../nest/coerce-dto-class';
+import {
+  TsMorphAngularProjectTransformOptions,
+  TsMorphAngularProjectTransformRule,
+} from '../ts-morph-transform';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 
 export interface CoerceTableParametersFromRouteRuleOptions extends TsMorphAngularProjectTransformOptions {
   parameterList: string[];
@@ -19,7 +19,7 @@ export function CoerceTableParametersFromRouteRule(options: CoerceTableParameter
     parameterList,
     tableName,
   } = options;
-  return TsMorphAngularProjectTransform(options, (project) => {
+  return TsMorphAngularProjectTransformRule(options, (project) => {
 
     const sourceFile = project.getSourceFileOrThrow(`${ tableName }.component.ts`);
     const classDeclaration = sourceFile.getClassOrThrow(`${ classify(tableName) }Component`);

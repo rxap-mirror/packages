@@ -1,16 +1,16 @@
 import {
-  EMPTY,
-  firstValueFrom,
-  Observable,
-  Subject,
-  TeardownLogic,
-} from 'rxjs';
+  Inject,
+  Injectable,
+  isDevMode,
+  Optional,
+} from '@angular/core';
 import {
   BaseDefinition,
   BaseDefinitionMetadata,
   DefinitionMetadata,
   RXAP_DEFINITION_METADATA,
 } from '@rxap/definition';
+import { ToggleSubject } from '@rxap/rxjs';
 import {
   clone,
   Constructor,
@@ -18,18 +18,19 @@ import {
   GenerateRandomString,
 } from '@rxap/utilities';
 import {
+  EMPTY,
+  firstValueFrom,
+  Observable,
+  ReplaySubject,
+  Subject,
+  TeardownLogic,
+} from 'rxjs';
+import {
   finalize,
   take,
   takeUntil,
   tap,
 } from 'rxjs/operators';
-import {
-  Inject,
-  Injectable,
-  isDevMode,
-  Optional,
-} from '@angular/core';
-import { ToggleSubject } from '@rxap/rxjs';
 
 export type DataSourceViewerId = string;
 
@@ -55,7 +56,7 @@ export class BaseDataSource<
    */
   public loading$: Observable<boolean> = EMPTY;
   public readonly hasError$ = new ToggleSubject();
-  public readonly error$ = new Subject<Error>();
+  public readonly error$ = new ReplaySubject<Error>(1);
   protected _connectedViewer = new Map<DataSourceViewerId, Observable<Data>>();
   protected _connectedViewerTeardown = new Map<
     DataSourceViewerId,

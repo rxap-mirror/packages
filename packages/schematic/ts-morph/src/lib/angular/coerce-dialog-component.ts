@@ -3,34 +3,31 @@ import {
   Rule,
 } from '@angular-devkit/schematics';
 import {
-  CoerceComponentRule,
-  TemplateOptions,
-} from './coerce-component';
-import { AddNgModuleExport } from './add-ng-module-export';
-import { CoerceClassProperty } from '../ts-morph/coerce-class-property';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
-import { CoerceClassMethod } from '../nest/coerce-class-method';
-import {
   ClassDeclaration,
   Project,
   SourceFile,
 } from 'ts-morph';
-import { AddNgModuleImport } from '../add-ng-module-import';
 import { CoerceClassConstructor } from '../coerce-class-constructor';
+import { CoerceClassMethod } from '../coerce-class-method';
+import { TsMorphAngularProjectTransformOptions } from '../ts-morph-transform';
+import { CoerceClassProperty } from '../ts-morph/coerce-class-property';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
+import { AddComponentImport } from './add-component-import';
+import {
+  CoerceComponentRule,
+  TemplateOptions,
+} from './coerce-component';
 
-export interface CoerceDialogComponentOptions {
+export interface CoerceDialogComponentOptions extends TsMorphAngularProjectTransformOptions {
   dialogName: string;
-  project: string;
-  feature: string;
   title?: string;
   overwrite?: boolean;
-  directory?: string;
   template?: TemplateOptions;
   tsMorphTransform?: (
     project: Project,
-    [ componentSourceFile, moduleSourceFile ]: [ SourceFile, SourceFile ],
-    [ componentClass, moduleClass ]: [ ClassDeclaration, ClassDeclaration ],
+    [ componentSourceFile ]: [ SourceFile ],
+    [ componentClass ]: [ ClassDeclaration ],
     options: CoerceDialogComponentOptions,
   ) => void;
   coerceSubmitMethod?: (classDeclaration: ClassDeclaration, options: CoerceDialogComponentOptions) => void;
@@ -71,13 +68,12 @@ export function CoerceDialogComponentRule(options: CoerceDialogComponentOptions)
       directory,
       overwrite,
       template,
-      tsMorphTransform: (_, [ componentSourceFile, moduleSourceFile ], [ componentClass, moduleClass ]) => {
-        AddNgModuleImport(moduleSourceFile, 'FlexLayoutModule', '@angular/flex-layout');
-        AddNgModuleImport(moduleSourceFile, 'MatDialogModule', '@angular/material/dialog');
-        AddNgModuleImport(moduleSourceFile, 'MatButtonModule', '@angular/material/button');
-        AddNgModuleImport(moduleSourceFile, 'MatProgressBarModule', '@angular/material/progress-bar');
-        AddNgModuleImport(moduleSourceFile, 'CommonModule', '@angular/common');
-        AddNgModuleExport(moduleSourceFile, 'MatDialogModule', '@angular/material/dialog');
+      tsMorphTransform: (_, [ componentSourceFile ], [ componentClass ]) => {
+        AddComponentImport(componentSourceFile, 'FlexLayoutModule', '@angular/flex-layout');
+        AddComponentImport(componentSourceFile, 'MatDialogModule', '@angular/material/dialog');
+        AddComponentImport(componentSourceFile, 'MatButtonModule', '@angular/material/button');
+        AddComponentImport(componentSourceFile, 'MatProgressBarModule', '@angular/material/progress-bar');
+        AddComponentImport(componentSourceFile, 'CommonModule', '@angular/common');
 
         CoerceClassProperty(componentClass, 'loading$', {
           initializer: `new ToggleSubject(true)`,
@@ -90,7 +86,7 @@ export function CoerceDialogComponentRule(options: CoerceDialogComponentOptions)
         CoerceImports(componentSourceFile, [
           {
             namedImports: [ 'ToggleSubject' ],
-            moduleSpecifier: '@rxap/utilities/rxjs',
+            moduleSpecifier: '@rxap/rxjs',
           },
           {
             namedImports: [ 'MatDialogRef', 'MAT_DIALOG_DATA' ],
@@ -116,7 +112,7 @@ export function CoerceDialogComponentRule(options: CoerceDialogComponentOptions)
             },
           ],
         });
-        tsMorphTransform!(_, [ componentSourceFile, moduleSourceFile ], [ componentClass, moduleClass ], options);
+        tsMorphTransform!(_, [ componentSourceFile ], [ componentClass ], options);
         coerceSubmitMethod!(componentClass, options);
       },
     }),

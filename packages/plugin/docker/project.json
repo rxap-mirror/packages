@@ -99,6 +99,8 @@
   "tags": [
     "plugin",
     "nx",
-    "nx-plugin"
+    "nx-plugin",
+    "packages",
+    "docker"
   ]
 }

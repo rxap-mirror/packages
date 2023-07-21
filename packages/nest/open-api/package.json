@@ -1,0 +1,30 @@
+{
+  "name": "@rxap/nest-open-api",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/open-api"
+  },
+  "keywords": [
+    "rxap",
+    "nest",
+    "open-api",
+    "packages"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/open-api",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/open-api"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

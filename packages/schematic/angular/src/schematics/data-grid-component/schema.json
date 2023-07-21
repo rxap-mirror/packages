@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "data-grid-component",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the form definition",
+      "x-prompt": "Which name should the form definition have?"
+    },
+    "project": {
+      "type": "string",
+      "description": "The target project where the accordion module should be added.",
+      "x-prompt": "To which project should the accordion module be added?"
+    },
+    "directory": {
+      "type": "string",
+      "description": "Relative path to the directory where the form definition should be created."
+    },
+    "feature": {
+      "type": "string",
+      "description": "The feature name where the accordion module should be added.",
+      "x-prompt": "To which feature should the accordion module be added?"
+    },
+    "backend": {
+      "type": "string",
+      "description": "The backend that should be used to handel data",
+      "enum": [
+        "none",
+        "local",
+        "nestjs"
+      ],
+      "default": "none"
+    },
+    "mode": {
+      "type": "string",
+      "description": "The mode of the form",
+      "enum": [
+        "form",
+        "plain"
+      ]
+    },
+    "collection": {
+      "type": "boolean",
+      "description": "Whether the data grid is used as collection."
+    },
+    "nestModule": {
+      "type": "string",
+      "description": "The name of the nest module where the form definition should be created."
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the data grid card component"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "The subtitle of the data grid card component"
+    },
+    "itemList": {
+      "alias": "item",
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the control"
+              },
+              "header": {
+                "type": "string",
+                "description": "The name of the control"
+              },
+              "type": {
+                "type": "string",
+                "description": "The type of the control",
+                "enum": [
+                  "string",
+                  "number",
+                  "boolean"
+                ]
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "array"
+        }
+      ]
+    }
+  },
+  "required": [
+    "project",
+    "feature",
+    "name"
+  ]
+}

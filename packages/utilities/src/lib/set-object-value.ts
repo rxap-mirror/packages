@@ -1,4 +1,4 @@
-import { SetToObject } from './get-from-object';
+import { SetToObject } from './object/set-to-object';
 
 /**
  * @deprecated Use SetToObject instead

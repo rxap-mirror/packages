@@ -15,7 +15,9 @@
     "directory": "../../dist/packages/mixin"
   },
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "mixin"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/mixin",
   "bugs": {

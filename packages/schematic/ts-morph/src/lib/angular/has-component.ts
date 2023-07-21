@@ -12,9 +12,9 @@ import { BuildAngularBasePath } from './build-angular-base-path';
 
 export interface HasComponentOptions {
   project: string;
-  feature: string;
+  feature?: string | null;
   name: string;
-  directory?: string;
+  directory?: string | null;
 }
 
 export function HasComponent(host: Tree, options: Readonly<HasComponentOptions>): boolean {
@@ -35,10 +35,7 @@ export function HasComponent(host: Tree, options: Readonly<HasComponentOptions>)
   if (!basePath.endsWith(name)) {
     basePath = join(basePath, name);
   }
-  return host.exists(join(
-    basePath,
-    name +
-    '.component.ts',
-  ));
+  const fullPath = join(basePath, name + '.component.ts');
+  return host.exists(fullPath);
 
 }

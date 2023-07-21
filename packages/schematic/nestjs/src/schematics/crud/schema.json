@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "crud",
+  "type": "object",
+  "description": "",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "",
+      "default": "crud"
+    },
+    "overwrite": {
+      "type": "boolean"
+    }
+  },
+  "required": []
+}

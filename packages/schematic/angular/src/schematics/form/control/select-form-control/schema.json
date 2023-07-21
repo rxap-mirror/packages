@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "select-form-control",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of form control",
+      "x-prompt": "Enter the name of the form control?"
+    },
+    "formName": {
+      "alias": "form",
+      "type": "string",
+      "description": "The name of the form where the form control should be added",
+      "x-prompt": "Enter the name of the form where the form control should be added"
+    },
+    "project": {
+      "type": "string",
+      "description": "The project where the form control should be added",
+      "x-prompt": "Enter project name where the form control should be added"
+    },
+    "backend": {
+      "type": "string",
+      "description": "The backend that should be used to handel data",
+      "enum": [
+        "none",
+        "local",
+        "nestjs"
+      ],
+      "default": "none"
+    },
+    "feature": {
+      "type": "string",
+      "description": "The feature where the form control should be added",
+      "x-prompt": "Enter feature name where the form control should be added"
+    },
+    "shared": {
+      "type": "boolean",
+      "description": "Whether the form is shared across applications",
+      "default": false
+    },
+    "directory": {
+      "type": "string",
+      "description": "A path suffix added to the base path"
+    },
+    "nestModule": {
+      "type": "string",
+      "description": "Name of the nest module where the controller is created"
+    },
+    "controllerName": {
+      "type": "string",
+      "description": "Name of the nest controller"
+    },
+    "type": {
+      "type": "string",
+      "description": "The data type of the form control"
+    },
+    "validatorList": {
+      "alias": "validator",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of validators to be added to the form control"
+    },
+    "isRequired": {
+      "alias": "required",
+      "type": "boolean",
+      "description": "Whether the form control value is required"
+    },
+    "state": {
+      "type": "string",
+      "description": "The initial state of the form control"
+    },
+    "isArray": {
+      "alias": "array",
+      "type": "boolean",
+      "description": "Whether the form control is an array"
+    },
+    "staticDataSource": {
+      "alias": "static",
+      "type": "boolean",
+      "description": "Whether the options data source is static"
+    },
+    "multiple": {
+      "alias": "multi",
+      "type": "boolean",
+      "description": "Whether the select form control is multiple mode"
+    },
+    "context": {
+      "type": "string",
+      "description": "The context use to generate proper names for class, files, etc"
+    }
+  },
+  "required": [
+    "name",
+    "formName",
+    "project",
+    "feature"
+  ]
+}

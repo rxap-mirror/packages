@@ -1,0 +1,31 @@
+{
+  "name": "@rxap/schematic-nestjs",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "schematics": "./collection.json",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/schematic/nestjs"
+  },
+  "keywords": [
+    "rxap",
+    "packages",
+    "schematic",
+    "nestjs"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/nestjs",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/schematic/nestjs"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

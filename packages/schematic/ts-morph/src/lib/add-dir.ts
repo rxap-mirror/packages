@@ -1,6 +1,6 @@
 import { DirEntry } from '@angular-devkit/schematics';
-import { Project } from 'ts-morph';
 import { join } from 'path';
+import { Project } from 'ts-morph';
 
 /**
  * Adds all files recursively from a specify DirEntry to the project.

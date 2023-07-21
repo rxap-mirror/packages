@@ -1,0 +1,116 @@
+{
+  "name": "service-configuration",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "applications/service/configuration/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/applications/service/configuration",
+        "main": "applications/service/configuration/src/main.ts",
+        "tsConfig": "applications/service/configuration/tsconfig.app.json",
+        "assets": [
+          "applications/service/configuration/src/assets",
+          "applications/service/configuration/src/Dockerfile",
+          "applications/service/configuration/src/healthcheck.js"
+        ],
+        "generatePackageJson": true,
+        "target": "node",
+        "compiler": "tsc"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "applications/service/configuration/src/environments/environment.ts",
+              "with": "applications/service/configuration/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "service-configuration:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "applications/service/configuration/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/applications/service/configuration"
+      ],
+      "options": {
+        "jestConfig": "applications/service/configuration/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "echo ok"
+      }
+    },
+    "ci": {
+      "executor": "@rxap/plugin-application:build-info",
+      "configurations": {
+        "production": {}
+      }
+    },
+    "docker": {
+      "executor": "@rxap/plugin-docker:build",
+      "options": {
+        "imageRegistry": "dev-dockerhub.eurogard.cloud",
+        "imageName": "m2v-frontends",
+        "imageSuffix": "/service/configuration"
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "swagger-build": {
+      "executor": "@nx/webpack:webpack",
+      "options": {
+        "outputPath": "dist/swagger/service/configuration",
+        "main": "applications/service/configuration/src/swagger.ts",
+        "transformers": [
+          "@nestjs/swagger/plugin"
+        ],
+        "tsConfig": "applications/service/configuration/tsconfig.app.json",
+        "fileReplacements": [
+          {
+            "replace": "applications/service/configuration/src/environments/environment.ts",
+            "with": "applications/service/configuration/src/environments/environment.swagger.ts"
+          }
+        ],
+        "compiler": "tsc",
+        "target": "node"
+      }
+    }
+  },
+  "tags": [
+    "service",
+    "nest",
+    "sentry",
+    "open-api"
+  ]
+}

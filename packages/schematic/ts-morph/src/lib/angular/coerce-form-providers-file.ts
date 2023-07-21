@@ -2,20 +2,20 @@ import {
   classify,
   CoerceSuffix,
 } from '@rxap/schematics-utilities';
-import { TsMorphAngularProjectTransform } from '../ts-morph-transform';
-import { CoerceSourceFile } from '../coerce-source-file';
-import { CoerceFunction } from '../ts-morph/coerce-function';
 import { Writers } from 'ts-morph';
-import { CoerceFormBuilderProvider } from './coerce-form-builder-provider';
-import { CoerceFormProvider } from './coerce-form-provider';
-import { CoerceFormComponentProvider } from './coerce-form-component-provider';
-import { CoerceStatements } from '../ts-morph/coerce-statements';
+import { CoerceSourceFile } from '../coerce-source-file';
+import { TsMorphAngularProjectTransformRule } from '../ts-morph-transform';
+import { CoerceFunction } from '../ts-morph/coerce-function';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceStatements } from '../ts-morph/coerce-statements';
+import { CoerceFormBuilderProvider } from './coerce-form-builder-provider';
+import { CoerceFormComponentProvider } from './coerce-form-component-provider';
+import { CoerceFormProvider } from './coerce-form-provider';
 
 export interface CoerceFormProvidersFileOptions {
   project: string;
-  feature: string;
-  directory?: string;
+  feature?: string | null;
+  directory?: string | null;
   name: string;
 }
 
@@ -24,7 +24,7 @@ export function CoerceFormProvidersFile(options: Readonly<CoerceFormProvidersFil
   const className = CoerceSuffix(classify(name), 'Form');
   const interfaceName = `I${ className }`;
 
-  return TsMorphAngularProjectTransform(options, (project) => {
+  return TsMorphAngularProjectTransformRule(options, (project) => {
 
     const sourceFile = CoerceSourceFile(project, '/form.providers.ts');
 
@@ -63,7 +63,7 @@ export function CoerceFormProvidersFile(options: Readonly<CoerceFormProvidersFil
           type: 'Injector',
         },
       ],
-      returnType: `RxapFormBuilder<${ className }>`,
+      returnType: `RxapFormBuilder<I${ className }>`,
     });
     CoerceStatements(formBuilderFactoryDeclaration, [
       `return new RxapFormBuilder<${ interfaceName }>(${ className }, injector);`,

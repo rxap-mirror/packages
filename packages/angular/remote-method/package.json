@@ -21,7 +21,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "remote-method"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/remote-method",
   "bugs": {

@@ -1,0 +1,30 @@
+{
+  "name": "@rxap/workspace-utilities",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/workspace/utilities"
+  },
+  "keywords": [
+    "rxap",
+    "packages",
+    "workspace",
+    "utilities"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/workspace/utilities",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/workspace/utilities"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

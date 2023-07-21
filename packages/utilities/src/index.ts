@@ -13,10 +13,14 @@ export * from './lib/options/to-options';
 // endregion
 
 // region object
-export * from './lib/object/cleanup';
 export * from './lib/object/coerce-property';
+export * from './lib/object/delete-empty-properties';
+export * from './lib/object/delete-null-properties';
 export * from './lib/object/delete-properties';
+export * from './lib/object/delete-undefined-properties';
+export * from './lib/object/each-property';
 export * from './lib/object/is-object';
+export * from './lib/object/set-to-object';
 // endregion
 
 // region function

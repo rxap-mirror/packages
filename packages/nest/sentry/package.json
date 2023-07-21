@@ -19,7 +19,9 @@
   },
   "keywords": [
     "rxap",
-    "nest"
+    "nest",
+    "packages",
+    "sentry"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/sentry",
   "bugs": {

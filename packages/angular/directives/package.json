@@ -21,7 +21,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "directives"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/directives",
   "bugs": {

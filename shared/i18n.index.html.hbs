@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>Multi language redirect</title>
+</head>
+<body>
+<script>
+
+  const availableLanguages = [
+    {{#each availableLanguages}}
+      '{{this}}',
+    {{/each}}
+  ];
+  const preferredLanguages = (navigator && navigator.languages) || [];
+  let redirectLanguage = '{{defaultLanguage}}';
+
+  for (const preferredLanguage of preferredLanguages) {
+    if (availableLanguages.includes(preferredLanguage)) {
+      redirectLanguage = preferredLanguage;
+      break;
+    }
+  }
+
+  let pathname = location.pathname ?? '';
+
+  const langRegex = new RegExp(`^\/(${availableLanguages.join('|')})`);
+  while (pathname.match(langRegex)) {
+    pathname = pathname.replace(langRegex, '');
+  }
+
+  const redirectUrl = location.origin + '/' + redirectLanguage + pathname + (location.search ?? '');
+
+  alert('redirect to ' + redirectUrl);
+
+  location.replace(redirectUrl);
+
+</script>
+</body>
+</html>

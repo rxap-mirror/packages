@@ -1,0 +1,25 @@
+<mat-card>
+  <% if (title) { %>
+  <mat-card-header>
+    <mat-card-title></mat-card-title>
+    <% if (subtitle) { %><mat-card-subtitle></mat-card-subtitle><% } %>
+  </mat-card-header>
+  <% } %>
+  <mat-card-content>
+    <div class="p-4">
+      <% if (collection) { %>
+      <rxap-data-grid [data]="data">
+      <% } else { %>
+      <rxap-data-grid [dataSource]="dataGridDataSource">
+      <% } %>
+        <% for (const item of itemList) { %>
+        <ng-container rxapDataGridRowDef="<%= item.name %>">
+          <% if (item.header) { %>
+          <th *rxapDataGridHeaderCellDef i18n><%= header %></th>
+          <% } %>
+        </ng-container>
+        <% } %>
+      </rxap-data-grid>
+    </div>
+  </mat-card-content>
+</mat-card>

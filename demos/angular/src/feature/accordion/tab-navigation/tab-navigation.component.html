@@ -1,0 +1,10 @@
+<div class="flex flex-col gap-y-2">
+  <nav [tabPanel]="tabPanel" mat-tab-nav-bar>
+    <a [routerLink]="['simple']" mat-tab-link>Simple</a>
+    <a [routerLink]="['multiple']" mat-tab-link>Multiple</a>
+    <a [routerLink]="['complex']" mat-tab-link>Complex</a>
+  </nav>
+  <mat-tab-nav-panel #tabPanel>
+    <router-outlet></router-outlet>
+  </mat-tab-nav-panel>
+</div>

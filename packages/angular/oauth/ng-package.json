@@ -16,6 +16,7 @@
       "input": ".",
       "glob": "_index.scss",
       "output": "."
-    }
+    },
+    "LICENSE"
   ]
 }

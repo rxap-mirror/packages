@@ -19,7 +19,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "life-cycle"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/life-cycle",
   "bugs": {

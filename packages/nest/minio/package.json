@@ -15,7 +15,9 @@
   },
   "keywords": [
     "rxap",
-    "nest"
+    "nest",
+    "packages",
+    "minio"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/minio",
   "bugs": {

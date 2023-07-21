@@ -1,24 +1,109 @@
 {
   "schematics": {
     "table-component": {
-      "factory": "./src/schematics/table-component/index",
-      "schema": "./src/schematics/table-component/schema.json",
+      "factory": "./src/schematics/table/table-component/index",
+      "schema": "./src/schematics/table/table-component/schema.json",
       "description": "Generates a table component."
     },
+    "tree-table-component": {
+      "factory": "./src/schematics/table/tree-table-component/index",
+      "schema": "./src/schematics/table/tree-table-component/schema.json",
+      "description": "Generates a tree table component."
+    },
     "form-component": {
-      "factory": "./src/schematics/form-component/index",
-      "schema": "./src/schematics/form-component/schema.json",
+      "factory": "./src/schematics/form/form-component/index",
+      "schema": "./src/schematics/form/form-component/schema.json",
       "description": "Generates a form component."
     },
     "form-definition": {
-      "factory": "./src/schematics/form-definition/index",
-      "schema": "./src/schematics/form-definition/schema.json",
+      "factory": "./src/schematics/form/form-definition/index",
+      "schema": "./src/schematics/form/form-definition/schema.json",
       "description": "Generates a form definition."
     },
     "table-action": {
-      "factory": "./src/schematics/table-action/index",
-      "schema": "./src/schematics/table-action/schema.json",
+      "factory": "./src/schematics/table/table-action/index",
+      "schema": "./src/schematics/table/table-action/schema.json",
       "description": "Generates a table action."
+    },
+    "accordion-component": {
+      "schema": "./src/schematics/accordion/accordion-component/schema.json",
+      "factory": "./src/schematics/accordion/accordion-component/index",
+      "description": "The accordion-component schematic"
+    },
+    "accordion-item-component": {
+      "schema": "./src/schematics/accordion/accordion-item-component/schema.json",
+      "factory": "./src/schematics/accordion/accordion-item-component/index",
+      "description": "The accordion-item-component schematic"
+    },
+    "accordion-item-table-component": {
+      "schema": "./src/schematics/accordion/item/accordion-item-table-component/schema.json",
+      "factory": "./src/schematics/accordion/item/accordion-item-table-component/index",
+      "description": "The accordion-item-table-component schematic"
+    },
+    "data-grid-component": {
+      "schema": "./src/schematics/data-grid-component/schema.json",
+      "factory": "./src/schematics/data-grid-component/index",
+      "description": "The data-grid-component schematic"
+    },
+    "dialog-component": {
+      "schema": "./src/schematics/dialog-component/schema.json",
+      "factory": "./src/schematics/dialog-component/index",
+      "description": "The dialog-component schematic"
+    },
+    "input-form-control": {
+      "schema": "./src/schematics/form/control/input-form-control/schema.json",
+      "factory": "./src/schematics/form/control/input-form-control/index",
+      "description": "The input-form-control schematic"
+    },
+    "select-form-control": {
+      "schema": "./src/schematics/form/control/select-form-control/schema.json",
+      "factory": "./src/schematics/form/control/select-form-control/index",
+      "description": "The select-form-control schematic"
+    },
+    "table-select-form-control": {
+      "schema": "./src/schematics/form/control/table-select-form-control/schema.json",
+      "factory": "./src/schematics/form/control/table-select-form-control/index",
+      "description": "The table-select-form-control schematic"
+    },
+    "form-control": {
+      "schema": "./src/schematics/form/form-control/schema.json",
+      "factory": "./src/schematics/form/form-control/index",
+      "description": "The form-control schematic"
+    },
+    "dialog-table-action": {
+      "schema": "./src/schematics/table/action/dialog-table-action/schema.json",
+      "factory": "./src/schematics/table/action/dialog-table-action/index",
+      "description": "The dialog-table-action schematic"
+    },
+    "form-table-action": {
+      "schema": "./src/schematics/table/action/form-table-action/schema.json",
+      "factory": "./src/schematics/table/action/form-table-action/index",
+      "description": "The form-table-action schematic"
+    },
+    "navigation-table-action": {
+      "schema": "./src/schematics/table/action/navigation-table-action/schema.json",
+      "factory": "./src/schematics/table/action/navigation-table-action/index",
+      "description": "The navigation-table-action schematic"
+    },
+    "operation-table-action": {
+      "schema": "./src/schematics/table/action/operation-table-action/schema.json",
+      "factory": "./src/schematics/table/action/operation-table-action/index",
+      "description": "The operation-table-action schematic"
+    },
+    "tree-component": {
+      "schema": "./src/schematics/tree-component/schema.json",
+      "factory": "./src/schematics/tree-component/index",
+      "description": "The tree-component schematic"
+    },
+    "accordion-item-data-grid-component": {
+      "schema": "./src/schematics/accordion/item/accordion-item-data-grid-component/schema.json",
+      "factory": "./src/schematics/accordion/item/accordion-item-data-grid-component/index",
+      "description": "The accordion-item-data-grid-component schematic"
+    },
+    "accordion-item-tree-table-component": {
+      "schema": "./src/schematics/accordion/item/accordion-item-tree-table-component/schema.json",
+      "factory": "./src/schematics/accordion/item/accordion-item-tree-table-component/index",
+      "description": "The accordion-item-tree-table-component schematic"
     }
   }
 }

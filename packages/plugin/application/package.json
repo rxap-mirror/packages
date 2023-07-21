@@ -11,7 +11,9 @@
     "rxap",
     "plugin",
     "nx",
-    "nx-plugin"
+    "nx-plugin",
+    "packages",
+    "application"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/application",
   "bugs": {
@@ -43,5 +45,6 @@
         "version": "1.1.0-dev.0"
       }
     ]
-  }
+  },
+  "generators": "./generators.json"
 }

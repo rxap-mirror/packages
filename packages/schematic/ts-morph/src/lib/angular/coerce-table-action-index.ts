@@ -1,15 +1,15 @@
-import {
-  TsMorphAngularProjectTransform,
-  TsMorphAngularProjectTransformOptions,
-} from '../ts-morph-transform';
 import { CoerceSourceFile } from '../coerce-source-file';
 import { CoerceVariableDeclaration } from '../coerce-variable-declaration';
+import {
+  TsMorphAngularProjectTransformOptions,
+  TsMorphAngularProjectTransformRule,
+} from '../ts-morph-transform';
 
 export type CoerceTableActionIndexOptions = TsMorphAngularProjectTransformOptions
 
 export function CoerceTableActionIndexRule(options: CoerceTableActionIndexOptions) {
 
-  return TsMorphAngularProjectTransform(options, (project) => {
+  return TsMorphAngularProjectTransformRule(options, (project) => {
 
     const sourceFile = CoerceSourceFile(project, 'index.ts');
 

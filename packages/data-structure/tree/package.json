@@ -14,7 +14,10 @@
     "directory": "../../../dist/packages/data-structure/tree"
   },
   "keywords": [
-    "rxap"
+    "rxap",
+    "packages",
+    "data-structure",
+    "tree"
   ],
   "description": "Proves class, types and functions to work with tree data structures",
   "homepage": "https:/gitlab.com/rxap/packages/packages/data-structure/tree",

@@ -5,7 +5,10 @@
   "prefix": "rxap",
   "tags": [
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "material",
+    "table-window-system"
   ],
   "projectType": "library",
   "targets": {

@@ -1,0 +1,13 @@
+<div class="flex flex-row justify-start items-center">
+  <div [fxFlexOffset]="offset">
+    <button (click)="toggleExpand()" mat-icon-button>
+      <mat-icon>{{expandIcon}}</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="icon">
+    <mat-icon [rxapIcon]="icon"></mat-icon>
+  </div>
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -3,7 +3,7 @@ import {
   SourceFile,
 } from 'ts-morph';
 import { AddToArray } from './add-to-array';
-import { CoerceImports } from './ts-morph/index';
+import { CoerceImports } from './ts-morph/coerce-imports';
 
 export function GetFormProvidersFile(project: Project): SourceFile {
   const formProviderSourceFilePath = 'form.providers';

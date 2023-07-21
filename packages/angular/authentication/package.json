@@ -26,7 +26,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "authentication"
   ],
   "description": "A collection of components and services to simplify the authentication process implementation.",
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/authentication",

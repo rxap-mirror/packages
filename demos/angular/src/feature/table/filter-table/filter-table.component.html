@@ -1,0 +1,299 @@
+<div class="flex flex-col gap-y-4 m-4">
+
+
+  <div class="table-card-container flex flex-col">
+    <mat-card>
+      <mat-progress-bar
+        rxapCardProgressBar
+        [loading$]="tableDataSourceDirective.loading$"
+      ></mat-progress-bar>
+      <mat-card-header class="min-h-full h-12">
+
+        <mat-card-title i18n>Filter</mat-card-title>
+
+
+        <rxap-table-column-menu #rxapTableColumns="rxapTableColumns" [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+                                matCard>
+
+
+          <rxap-table-column-option
+            name="name">
+            <ng-container i18n>Name</ng-container>
+          </rxap-table-column-option>
+
+          <rxap-table-column-option
+            name="age">
+            <ng-container i18n>Age</ng-container>
+          </rxap-table-column-option>
+
+          <rxap-table-column-option
+            name="isActive">
+            <ng-container i18n>Is Active</ng-container>
+          </rxap-table-column-option>
+
+          <rxap-table-column-option
+            name="email">
+            <ng-container i18n>Email</ng-container>
+          </rxap-table-column-option>
+
+          <rxap-table-column-option
+            name="rating">
+            <ng-container i18n>Rating</ng-container>
+          </rxap-table-column-option>
+
+
+          <mat-divider></mat-divider>
+          <span mat-menu-item>
+          <rxap-table-show-archived-slide
+            [paginator]="paginator"
+          ></rxap-table-show-archived-slide>
+        </span>
+        </rxap-table-column-menu>
+      </mat-card-header>
+
+      <mat-card-content>
+        <rxap-data-source-error
+          *ngIf="tableDataSourceDirective.hasError$ | async"
+          [refresh]="tableDataSourceDirective.retry">
+        </rxap-data-source-error>
+        <div class="table-scroll-container mt-4 overflow-x-auto overscroll-contain">
+          <table
+            [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+            [paginator]="paginator"
+            #tableDataSourceDirective="rxapTableDataSource"
+            mat-table
+            matSort
+            rxapTableDataSource
+            [parameters]="parameters"
+            id="filter"
+            rxap-filter-header-row
+          >
+            <!-- region columns -->
+
+
+            <ng-container matColumnDef="removedAt">
+              <th *matHeaderCellDef mat-header-cell>
+                <ng-container i18n>Removed at</ng-container>
+              </th>
+              <td
+                *matCellDef="let element"
+                [rxap-date-cell]="element.__removedAt"
+                mat-cell
+              ></td>
+            </ng-container>
+            <ng-container matColumnDef="uuid">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>
+                <ng-container i18n>UUID</ng-container>
+              </th>
+
+              <td *matCellDef="let element" mat-cell>{{ element?.uuid }}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="name">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>
+                <ng-container i18n>Name</ng-container>
+              </th>
+
+              <td *matCellDef="let element" mat-cell>{{ element?.name }}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="age">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>
+                <ng-container i18n>Age</ng-container>
+              </th>
+
+              <td *matCellDef="let element" mat-cell>{{ element?.age }}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="isActive">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>
+                <ng-container i18n>Is Active</ng-container>
+              </th>
+
+              <td *matCellDef="let element" [rxap-boolean-cell]="element?.isActive" mat-cell></td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="email">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>
+                <ng-container i18n>Email</ng-container>
+              </th>
+
+              <td *matCellDef="let element" mat-cell>{{ element?.email }}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="rating">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>
+                <ng-container i18n>Rating</ng-container>
+              </th>
+
+              <td *matCellDef="let element" mat-cell>{{ element?.rating }}</td>
+            </ng-container>
+
+
+            <!-- endregion -->
+
+            <!-- region filter columns -->
+
+            <ng-container matColumnDef="filter_removedAt">
+              <th *matHeaderCellDef mat-header-cell></th>
+            </ng-container>
+            <ng-container matColumnDef="filter_uuid">
+              <th *matHeaderCellDef mat-header-cell></th>
+            </ng-container>
+
+
+            <ng-container matColumnDef="filter_name">
+              <th *matHeaderCellDef mat-header-cell>
+
+
+                <mat-form-field class="w-100 pt-3">
+                  <mat-label i18n>Name</mat-label>
+                  <input
+                    matInput
+                    formControlName="name"
+                    placeholder="Enter Filter"
+                    i18n-placeholder
+                    parentControlContainer
+                  />
+                  <button mat-icon-button matSuffix rxapInputClearButton>
+                    <mat-icon>clear</mat-icon>
+                  </button>
+                </mat-form-field>
+
+
+              </th>
+            </ng-container>
+
+            <ng-container matColumnDef="filter_age">
+              <th *matHeaderCellDef mat-header-cell>
+
+
+                <mat-form-field class="w-100 pt-3">
+                  <mat-label i18n>Age</mat-label>
+                  <input
+                    matInput
+                    formControlName="age"
+                    placeholder="Enter Filter"
+                    i18n-placeholder
+                    parentControlContainer
+                  />
+                  <button mat-icon-button matSuffix rxapInputClearButton>
+                    <mat-icon>clear</mat-icon>
+                  </button>
+                </mat-form-field>
+
+
+              </th>
+            </ng-container>
+
+            <ng-container matColumnDef="filter_isActive">
+              <th *matHeaderCellDef mat-header-cell>
+
+
+                <mat-checkbox
+                  indeterminate
+                  parentControlContainer
+                  formControlName="isActive"
+                >
+                  <ng-container i18n>Is Active</ng-container>
+                </mat-checkbox>
+
+
+              </th>
+            </ng-container>
+
+            <ng-container matColumnDef="filter_email">
+              <th *matHeaderCellDef mat-header-cell>
+
+
+                <mat-form-field class="w-100 pt-3">
+                  <mat-label i18n>Email</mat-label>
+                  <input
+                    matInput
+                    formControlName="email"
+                    placeholder="Enter Filter"
+                    i18n-placeholder
+                    parentControlContainer
+                  />
+                  <button mat-icon-button matSuffix rxapInputClearButton>
+                    <mat-icon>clear</mat-icon>
+                  </button>
+                </mat-form-field>
+
+
+              </th>
+            </ng-container>
+
+            <ng-container matColumnDef="filter_rating">
+              <th *matHeaderCellDef mat-header-cell>
+
+
+                <mat-form-field class="w-100 pt-3">
+                  <mat-label i18n>Rating</mat-label>
+                  <input
+                    matInput
+                    formControlName="rating"
+                    placeholder="Enter Filter"
+                    i18n-placeholder
+                    parentControlContainer
+                  />
+                  <button mat-icon-button matSuffix rxapInputClearButton>
+                    <mat-icon>clear</mat-icon>
+                  </button>
+                </mat-form-field>
+
+
+              </th>
+            </ng-container>
+
+
+            <!-- endregion -->
+            <tr
+              class="rxap-filter-header"
+              mat-header-row
+              *matHeaderRowDef="
+              rxapTableColumns.displayColumns | toFilterColumnNames
+            "
+            ></tr>
+
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="rxapTableColumns.displayColumns"
+            ></tr>
+
+            <tr
+              [@rowsAnimation]=""
+              [ngClass]="{ 'rxap-row-odd !bg-neutral-200 dark:!bg-neutral-600': odd, 'rxap-row-even': even }"
+              class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
+              mat-row
+              *matRowDef="
+              let element;
+              columns: rxapTableColumns.displayColumns;
+              let odd = odd;
+              let even = even
+            "
+            ></tr>
+          </table>
+        </div>
+      </mat-card-content>
+
+      <mat-card-footer
+      >
+        <mat-paginator
+          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          #paginator="matPaginator"
+          [pageSizeOptions]="[5,10,25,50,100]"
+          [pageSize]="10"
+          rxapPersistent
+        ></mat-paginator
+        >
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

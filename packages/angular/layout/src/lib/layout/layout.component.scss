@@ -1,19 +1,13 @@
-.container {
-  height: 100%;
-}
-
-.content {
-  height: 100%;
-}
-
 .sidenav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: auto;
 
-  .logo {
-    padding: 16px;
+  &:not(.mat-drawer-opened) {
+    transform: translateX(calc(-100% + 56px)) !important;
+    visibility: visible !important;
+    box-shadow: inherit !important;
+    transition-property: transform;
+    transition-delay: 250ms;
+    display: flex;
+    border-right: solid 1px rgba(0, 0, 0, .12);
   }
 
 }
@@ -31,5 +25,13 @@
   top: 0;
   left: 0;
   right: 0;
+  z-index: 100;
+}
+
+.task-bar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
   z-index: 100;
 }

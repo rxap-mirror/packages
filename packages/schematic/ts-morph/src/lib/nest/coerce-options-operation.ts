@@ -1,16 +1,17 @@
 import { Rule } from '@angular-devkit/schematics';
+import { joinWithDash } from '@rxap/utilities';
+import { CoerceImports } from '../ts-morph/coerce-imports';
+import { WriteType } from '../ts-morph/write-type';
+import { FormDefinitionControl } from '../types/form-definition-control';
+import { CoerceDtoClass } from './coerce-dto-class';
 import {
   CoerceOperation,
   CoerceOperationOptions,
 } from './coerce-operation';
-import { CoerceDtoClass } from './coerce-dto-class';
-import { WriteType } from '../ts-morph/write-type';
-import { CoerceImports } from '../ts-morph/coerce-imports';
-import { joinWithDash } from '@rxap/utilities';
-import { FormDefinitionControl } from '../types/form-definition-control';
 
 export interface CoerceOptionsOperationRuleOptions extends CoerceOperationOptions {
   control: Required<FormDefinitionControl>;
+  responseDtoName?: string;
 }
 
 export function CoerceOptionsOperationRule(options: Readonly<CoerceOptionsOperationRuleOptions>): Rule {
@@ -27,20 +28,24 @@ export function CoerceOptionsOperationRule(options: Readonly<CoerceOptionsOperat
       const {
         className,
         filePath,
-      } = CoerceDtoClass(project, responseDtoName!, [
-        {
-          name: 'display',
-          type: 'string',
-        },
-        {
-          name: 'value',
-          type: WriteType(control),
-        },
-      ]);
+      } = CoerceDtoClass({
+        project,
+        name: responseDtoName!,
+        propertyList: [
+          {
+            name: 'display',
+            type: 'string',
+          },
+          {
+            name: 'value',
+            type: WriteType(control),
+          },
+        ],
+      });
 
       CoerceImports(sourceFile, {
         namedImports: [ className ],
-        moduleSpecifier: `..${ filePath }`,
+        moduleSpecifier: filePath,
       });
       CoerceImports(sourceFile, {
         namedImports: [ 'plainToInstance' ],
@@ -48,7 +53,7 @@ export function CoerceOptionsOperationRule(options: Readonly<CoerceOptionsOperat
       });
       CoerceImports(sourceFile, {
         namedImports: [ 'classTransformOptions' ],
-        moduleSpecifier: '@rxap/nest/class-transformer/options',
+        moduleSpecifier: '@rxap/nest-utilities',
       });
 
       return {

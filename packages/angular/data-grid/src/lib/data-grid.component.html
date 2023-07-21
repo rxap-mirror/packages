@@ -1,17 +1,15 @@
-<div *ngIf="(hasError$ | async)" class="info-container" fxLayout="column" fxLayoutAlign="center center"
-     fxLayoutGap="32px">
+<div *ngIf="(hasError$ | async)" class="flex flex-col items-center justify-center gap-y-8">
   <span i18n>Something has gone wrong!</span>
   <button (click)="retry()" i18n mat-stroked-button>Retry</button>
 </div>
-<div *ngIf="(dataLoading$ | async)" class="info-container" fxLayout="column" fxLayoutAlign="center center"
-     fxLayoutGap="32px">
+<div *ngIf="(dataLoading$ | async)" class="flex flex-col items-center justify-center gap-y-8">
   <mat-spinner></mat-spinner>
 </div>
 <!-- if the dataSource input is used. It is possible the the hasError$ or loading$ property is === EMPTY. this would
 results in an null as output. If the === false check is used this can result into the behavior that the data grid is
 never shown. -->
 <!-- eslint-disable-next-line @angular-eslint/template/no-negated-async -->
-<table *ngIf="!(hasError$ | async) && !(dataLoading$ | async)" class="data-grid">
+<table *ngIf="!(hasError$ | async) && !(dataLoading$ | async)" class="w-full table-auto">
   <thead *ngIf="header">
   <tr>
     <th i18n>Label</th>
@@ -21,88 +19,56 @@ never shown. -->
   <tbody>
   <ng-template [ngForOf]="rows$ | async" let-first="first" let-row ngFor>
     <ng-template [ngIf]="!displayProperties || row.isSubHeader || (row.name && displayProperties.includes(row.name))">
+      <!-- region horizontal view -->
       <ng-template [ngIfElse]="normal" [ngIf]="row.flip">
         <tr>
-          <td class="divider" colspan="2">
+          <td colspan="2">
             <mat-divider></mat-divider>
           </td>
         </tr>
         <tr [attr.data-name]="row.name + '-header'">
           <ng-container
-            *ngTemplateOutlet="
-          row.headerCell?.template ?? defaultHeaderCell;
-          context: { $implicit: row.name }
-        "
-          >
-          </ng-container>
+            *ngTemplateOutlet="row.headerCell?.template ?? defaultHeaderCell; context: { $implicit: row.name }"></ng-container>
         </tr>
         <tr [attr.data-name]="row.name + '-value'">
           <ng-template [ngIfThen]="content" [ngIf]="row.name"></ng-template>
         </tr>
         <tr>
-          <td class="divider" colspan="2">
+          <td colspan="2">
             <mat-divider></mat-divider>
           </td>
         </tr>
       </ng-template>
+      <!-- endregion -->
+      <!-- region normal view -->
       <ng-template #normal>
         <tr *ngIf="!first && row.isSubHeader">
-          <td class="divider" colspan="2">
+          <td colspan="2">
             <mat-divider></mat-divider>
           </td>
         </tr>
         <tr [attr.data-name]="row.name" [ngClass]="{ 'sub-header': row.isSubHeader }">
           <ng-container
-            *ngTemplateOutlet="
-          row.headerCell?.template ?? defaultHeaderCell;
-          context: { $implicit: row.name }
-        "
-          >
-          </ng-container>
+            *ngTemplateOutlet="row.headerCell?.template ?? defaultHeaderCell; context: { $implicit: row.name }"></ng-container>
           <ng-template [ngIfThen]="content" [ngIf]="row.name"></ng-template>
         </tr>
       </ng-template>
+      <!-- endregion -->
     </ng-template>
     <ng-template #content>
-      <ng-template [ngIfElse]="readonlyCell" [ngIfThen]="writeCell" [ngIf]="row.editCell?.template"></ng-template>
-      <ng-template #writeCell>
-        <ng-template #viewMode>
-          <td [attr.colspan]="row.flip ? 2 : 1" class="value">
-            <div>
-              <ng-container
-                *ngTemplateOutlet="
-              row.cell?.template ?? defaultCell;
-              context: { $implicit: data$ | dataGridValue: row.name | async, data: data$ | async }
-            "
-              ></ng-container>
-            </div>
-          </td>
-        </ng-template>
-        <ng-template #editMode>
-          <td [attr.colspan]="row.flip ? 2 : 1" class="edit">
-            <div>
-              <ng-container
-                *ngTemplateOutlet="
-              row.editCell?.template ?? row.cell?.template ?? defaultCell;
-              context: { $implicit: data$ | dataGridValue: row.name | async, data: data$ | async }
-            "
-              ></ng-container>
-            </div>
-          </td>
-        </ng-template>
-        <ng-template [ngIfElse]="viewMode" [ngIfThen]="editMode" [ngIf]="isEditMode || isFormMode"></ng-template>
+      <td [attr.colspan]="row.flip ? 2 : 1" [ngClass]="{
+      'h-20': row.editCell?.template && (isEditMode || isFormMode),
+      }" class="pl-8 pr-4 w-full">
+        <ng-template [ngIfThen]="editMode" [ngIf]="row.editCell?.template && (isEditMode || isFormMode)"></ng-template>
+        <ng-template [ngIfThen]="viewMode" [ngIf]="!row.editCell?.template || !isEditMode || !isFormMode"></ng-template>
+      </td>
+      <ng-template #viewMode>
+        <ng-container
+          *ngTemplateOutlet="row.cell?.template ?? defaultCell;context: { $implicit: data$ | dataGridValue: row.name | async, data: data$ | async }"></ng-container>
       </ng-template>
-      <ng-template #readonlyCell>
-        <td [attr.colspan]="row.flip ? 2 : 1" class="value">
-          <div>
-            <ng-container
-              *ngTemplateOutlet="
-            row.cell?.template ?? defaultCell;
-            context: { $implicit: data$ | dataGridValue: row.name | async, data: data$ | async }
-          "
-            ></ng-container>
-          </div>
-        </td>
+      <ng-template #editMode>
+        <ng-container
+          *ngTemplateOutlet="row.editCell?.template ?? row.cell?.template ?? defaultCell;context: { $implicit: data$ | dataGridValue: row.name | async, data: data$ | async }"></ng-container>
       </ng-template>
     </ng-template>
   </ng-template>
@@ -111,27 +77,25 @@ never shown. -->
   <tr>
     <td colspan="2">
       <ng-template [ngIfElse]="viewModeButton" [ngIf]="isEditMode">
-        <div fxLayout="column" fxLayoutGap="24px">
-          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
-            <button (click)="submit()" [disabled]="loading$ | async" class="control-button" color="primary"
-                    mat-raised-button type="button">
-              <span fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="24px">
+        <div class="pt-8 flex flex-col gap-y-6">
+          <div class="flex flex-row gap-x-6 items-center justify-start">
+            <button (click)="submit()" [disabled]="loading$ | async" color="primary" mat-raised-button type="button">
+              <span class="flex flex-row gap-x-6 items-center justify-center">
                 <span i18n>Save</span>
                 <mat-spinner *ngIf="loading$ | async" color="accent" diameter="15"></mat-spinner>
               </span>
             </button>
-            <button (click)="reset()" [disabled]="loading$ | async" class="control-button" mat-stroked-button
-                    type="button">
+            <button (click)="reset()" [disabled]="loading$ | async" mat-stroked-button type="button">
               <ng-container i18n>Reset</ng-container>
             </button>
-            <button (click)="cancel()" [disabled]="loading$ | async" class="control-button" color="warn"
-                    mat-stroked-button type="button">
+            <button (click)="cancel()" [disabled]="loading$ | async" color="warn" mat-stroked-button type="button">
               <ng-container i18n>Cancel</ng-container>
             </button>
-            <button (click)="logCurrentFormState()" *ngIf="isDevMode" class="control-button" mat-button
-                    type="button">Current Form State
+            <button (click)="logCurrentFormState()" *ngIf="isDevMode" mat-button type="button">
+              <ng-container i18n>Current Form State</ng-container>
             </button>
           </div>
+
           <ng-template rxapFormSubmitInvalid>
             <mat-error i18n>Ensure all formula fields are valid.</mat-error>
           </ng-template>
@@ -143,15 +107,18 @@ never shown. -->
           <ng-template rxapFormSubmitSuccessful>
             <span i18n>Submit successfully.</span>
           </ng-template>
+
         </div>
       </ng-template>
       <ng-template #viewModeButton>
-        <button (click)="enableEditMode()" class="control-button" color="primary" mat-raised-button type="button">
-          <span fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="24px">
-            <span i18n>Edit</span>
-            <mat-spinner *ngIf="loading$ | async" color="accent" diameter="15"></mat-spinner>
-          </span>
-        </button>
+        <div class="pt-8">
+          <button (click)="enableEditMode()" color="primary" mat-raised-button type="button">
+            <span class="flex flex-row gap-x-6 items-center justify-center">
+              <span i18n>Edit</span>
+              <mat-spinner *ngIf="loading$ | async" color="accent" diameter="15"></mat-spinner>
+            </span>
+          </button>
+        </div>
       </ng-template>
     </td>
   </tr>

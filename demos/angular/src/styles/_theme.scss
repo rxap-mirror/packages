@@ -3,6 +3,8 @@
 @use '@angular/material' as mat;
 @use 'palette' as palette;
 
+@import "table";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -25,7 +27,10 @@ $light-theme: mat.define-light-theme((
   ),
   // Only include `typography` and `density` in the default theme.
   typography: $theme-typography,
-  // density: 0,
+  // https://m2.material.io/design/layout/applying-density.html#usage
+  // between -3 and 0
+  // density < -1 -> form field label not visible
+  density: 0,
 ));
 
 $dark-theme: mat.define-dark-theme((
@@ -43,6 +48,7 @@ $dark-theme: mat.define-dark-theme((
 // passed to `define-light-theme` omits typography, `button-theme` will not
 // emit any typography styles.
 @include mat.all-component-themes($light-theme);
+@include table-theme($light-theme);
 
 @mixin define-utility-variables($theme) {
   $foreground: map-get($theme, foreground);
@@ -72,5 +78,6 @@ $dark-theme: mat.define-dark-theme((
 body.dark {
   @include mat.core-color($dark-theme);
   @include mat.all-component-colors($dark-theme);
+  @include table-theme($dark-theme);
   @include define-utility-variables($dark-theme);
 }

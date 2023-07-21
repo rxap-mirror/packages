@@ -2,11 +2,13 @@ import {
   addDecorator,
   moduleMetadata,
 } from '@storybook/angular';
-
+import { SidenavToggleButtonComponentModule } from './sidenav-toggle-button.component.module';
 import { SidenavToggleButtonComponent } from './sidenav-toggle-button.component';
 
 addDecorator(moduleMetadata({
-  imports: [],
+  imports: [
+    SidenavToggleButtonComponentModule,
+  ],
 }));
 
 export default {

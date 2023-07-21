@@ -1,0 +1,23 @@
+<h2 mat-dialog-title i18n><%= title %></h2>
+<mat-dialog-content>
+
+  <div fxLayout="column">
+
+    <mat-progress-bar *ngIf="loading$ | async" class="progress-bar" mode="indeterminate"></mat-progress-bar>
+
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <% for (const action of actionList) { %>
+  <% if (action.role === 'close') { %>
+  <button mat-button mat-dialog-close>
+    <ng-container i18n><%= action.label %></ng-container>
+  </button>
+  <% } else { %>
+  <button mat-raised-button color="<% if (action.color) { %><%= action.color %><% } else { %>primary<% } %>" [disabled]="(invalid$ | async) || (loading$ | async)" (click)="submit()">
+    <ng-container i18n><%= action.label %></ng-container>
+  </button>
+  <% } %>
+  <% } %>
+</mat-dialog-actions>

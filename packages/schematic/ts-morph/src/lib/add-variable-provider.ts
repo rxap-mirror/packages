@@ -7,7 +7,7 @@ import {
 import { AddProviderToArray } from './add-provider-to-array';
 import { ProviderObject } from './provider-object';
 import { CoerceVariableDeclaration } from './coerce-variable-declaration';
-import { CoerceImports } from './ts-morph/index';
+import { CoerceImports } from './ts-morph/coerce-imports';
 
 export function AddVariableProvider(
   sourceFile: SourceFile,

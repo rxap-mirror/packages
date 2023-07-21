@@ -22,7 +22,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "services"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/services",
   "bugs": {
