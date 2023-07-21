@@ -9,7 +9,8 @@
     "preversion": "env-cmd bash tools/scripts/lerna/hooks/preversion.sh",
     "prepublishOnly": "env-cmd bash tools/scripts/lerna/hooks/prepublishOnly.sh",
     "lerna:publish": "env-cmd bash tools/scripts/lerna/publish.sh",
-    "lerna:version": "env-cmd bash tools/scripts/lerna/version.sh"
+    "lerna:version": "env-cmd bash tools/scripts/lerna/version.sh",
+    "schematic": "bash tools/scripts/schematic.sh"
   },
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
