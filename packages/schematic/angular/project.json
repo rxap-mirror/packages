@@ -16,17 +16,17 @@
         "assets": [
           "packages/schematic/angular/*.md",
           {
-            "input": "./packages/schematic/open-api/src",
+            "input": "./packages/schematic/angular/src",
             "glob": "**/!(*.ts)",
             "output": "./src"
           },
           {
-            "input": "./packages/schematic/open-api/src",
+            "input": "./packages/schematic/angular/src",
             "glob": "**/*.d.ts",
             "output": "./src"
           },
           {
-            "input": "./packages/schematic/open-api",
+            "input": "./packages/schematic/angular",
             "glob": "collection.json",
             "output": "."
           }

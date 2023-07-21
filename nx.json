@@ -88,6 +88,9 @@
       "inputs": [
         "production",
         "{projectRoot}/package.json",
+        "{projectRoot}/collection.json",
+        "{projectRoot}/generators.json",
+        "{projectRoot}/executors.json",
         "^production"
       ]
     },
