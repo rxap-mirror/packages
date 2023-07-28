@@ -1,14 +1,17 @@
-import { ReadmeExecutorSchema } from './schema';
 import {
   ExecutorContext,
   ProjectConfiguration,
   readJsonFile,
 } from '@nx/devkit';
 import { readFile } from '@nx/plugin/testing';
-import { join } from 'path';
-import * as Handlebars from 'handlebars';
 import { readPackageJsonForProject } from '@rxap/plugin-utilities';
-import { writeFileSync } from 'fs';
+import {
+  existsSync,
+  writeFileSync,
+} from 'fs';
+import * as Handlebars from 'handlebars';
+import { join } from 'path';
+import { ReadmeExecutorSchema } from './schema';
 
 function getTemplate(context: ExecutorContext) {
   const readmeTemplateFile = readFile(join(context.root, 'README.md.handlebars'));
@@ -59,7 +62,16 @@ function getProjects(context: ExecutorContext) {
     if (config.projectType !== 'library') {
       continue;
     }
+    if (config.tags?.includes('internal')) {
+      continue;
+    }
+    if (!existsSync(join(config.root, 'package.json'))) {
+      continue;
+    }
     const packageJson = readPackageJsonForProject(context, project);
+    if (packageJson.private) {
+      continue;
+    }
     if (packageJson.name.startsWith('@rxap/')) {
       const group = getGroupKeyForProject(config);
       if (!groupedProjectList[group]) {
