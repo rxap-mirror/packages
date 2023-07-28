@@ -46,6 +46,12 @@ function getGroupKeyForProject(project: ProjectConfiguration): string {
     case project.tags?.includes('utilities'):
       return 'Utilities';
 
+    case project.tags?.includes('workspace'):
+      return 'Workspace';
+
+    case project.tags?.includes('data-structure'):
+      return 'Data Structure';
+
     default:
       return '';
 
@@ -83,7 +89,15 @@ function getProjects(context: ExecutorContext) {
       });
     }
   }
-  return groupedProjectList;
+  return Object.entries(groupedProjectList).sort(([ a ], [ b ]) => a.localeCompare(b))
+               .map(([ group, list ]) => [
+                 group,
+                 list.sort((a, b) => a.name.localeCompare(b.name)),
+               ] as [ string, any ])
+               .reduce((acc, [ group, projects ]) => ({
+                 ...acc,
+                 [group]: projects,
+               }), {});
 }
 
 export default async function runExecutor(
