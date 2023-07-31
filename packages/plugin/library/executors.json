@@ -19,6 +19,11 @@
       "implementation": "./src/executors/run-generator/executor",
       "schema": "./src/executors/run-generator/schema.json",
       "description": "Executes a generator for the project"
+    },
+    "check-version": {
+      "implementation": "./src/executors/check-version/executor",
+      "schema": "./src/executors/check-version/schema.json",
+      "description": "check-version executor"
     }
   }
 }
