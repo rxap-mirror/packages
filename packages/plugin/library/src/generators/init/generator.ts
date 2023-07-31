@@ -22,6 +22,7 @@ import {
   join,
   relative,
 } from 'path';
+import initPluginGenerator from '../init-plugin/generator';
 import { InitGeneratorSchema } from './schema';
 
 
@@ -184,6 +185,16 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
     if (project.tags?.includes('angular')) {
       await AngularInitGenerator(tree, { ...options, projects: [ projectName ] });
+    }
+
+    if (project.tags?.includes('plugin')) {
+      await initPluginGenerator(
+        tree,
+        {
+          ...options,
+          projects: [ projectName ],
+        },
+      );
     }
 
   }
