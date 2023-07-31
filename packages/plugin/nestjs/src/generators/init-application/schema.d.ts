@@ -1,11 +1,11 @@
 export interface InitApplicationGeneratorSchema {
   projects?: string[];
-  google: boolean;
-  sentry: boolean;
-  swagger: boolean;
-  healthIndicator: boolean;
-  platform: 'express' | 'fastify';
-  validator: boolean;
+  google?: boolean;
+  sentry?: boolean;
+  swagger?: boolean;
+  healthIndicator?: boolean;
+  platform?: 'express' | 'fastify';
+  validator?: boolean;
   healthIndicatorList?: string[];
   pluginBuildInfoOptions?: Record<string, unknown>;
   pluginDockerOptions?: {
@@ -14,10 +14,10 @@ export interface InitApplicationGeneratorSchema {
     imageRegistry?: string;
     save?: boolean;
   } & Record<string, unknown>;
-  port: number;
+  port?: number;
   apiPrefix?: string;
   sentryDsn?: string;
-  overwrite: boolean;
-  openApi: boolean;
-  jwt: boolean;
+  overwrite?: boolean;
+  openApi?: boolean;
+  jwt?: boolean;
 }
