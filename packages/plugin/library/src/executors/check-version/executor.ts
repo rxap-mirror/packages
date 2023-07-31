@@ -32,8 +32,10 @@ export default async function runExecutor(
 
   const versionRange = `>=${ version.major }`;
 
-  if (!satisfies(projectJson.version, versionRange)) {
-    console.error(`The project version ${ projectJson.version } is not compatible with the '${ options.packageName }' version ${ targetVersion }`);
+  const normalizedVersion = projectJson.version.replace(/-.*$/, '');
+
+  if (!satisfies(normalizedVersion, versionRange)) {
+    console.error(`The project version '${ projectJson.version }' normalized '${ normalizedVersion }' is not compatible with the '${ options.packageName }' version '${ targetVersion }' with the range '${ versionRange }'`);
     return {
       success: false,
     };
