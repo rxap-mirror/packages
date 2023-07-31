@@ -17,6 +17,7 @@ import {
   SkipNonLibraryProject,
 } from '@rxap/generator-utilities';
 import { AngularInitGenerator } from '@rxap/plugin-angular';
+import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
   join,
@@ -189,6 +190,16 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
     if (project.tags?.includes('plugin')) {
       await initPluginGenerator(
+        tree,
+        {
+          ...options,
+          projects: [ projectName ],
+        },
+      );
+    }
+
+    if (project.tags?.includes('nest')) {
+      await nestJsInitGenerator(
         tree,
         {
           ...options,
