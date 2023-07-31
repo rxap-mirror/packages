@@ -8092,6 +8092,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/plugin-nestjs@workspace:packages/plugin/nestjs":
+  version: 0.0.0-use.local
+  resolution: "@rxap/plugin-nestjs@workspace:packages/plugin/nestjs"
+  languageName: unknown
+  linkType: soft
+
 "@rxap/plugin-utilities@workspace:packages/plugin/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-utilities@workspace:packages/plugin/utilities"

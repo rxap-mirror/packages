@@ -156,6 +156,7 @@
       "@rxap/plugin-gpt": ["packages/plugin/gpt/src/index.ts"],
       "@rxap/plugin-library": ["packages/plugin/library/src/index.ts"],
       "@rxap/plugin-localazy": ["packages/plugin/localazy/src/index.ts"],
+      "@rxap/plugin-nestjs": ["packages/plugin/nestjs/src/index.ts"],
       "@rxap/plugin-readme-generator": [
         "packages/plugin/readme-generator/src/index.ts"
       ],
@@ -208,8 +209,8 @@
         "packages/open-api/service/app/angular/table/src/index.ts"
       ],
       "open-api/service/app/angular/table/*": [
-              "packages/open-api/service/app/angular/table/src/lib/*"
-            ],
+        "packages/open-api/service/app/angular/table/src/lib/*"
+      ],
       "workspace": ["tools/workspace/src/index.ts"],
       "workspace/commands": ["tools/workspace/src/cypress/commands.ts"]
     }
