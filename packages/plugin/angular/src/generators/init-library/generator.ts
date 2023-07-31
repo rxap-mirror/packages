@@ -2,7 +2,10 @@ import {
   getProjects,
   ProjectConfiguration,
   readJson,
+  readNxJson,
   Tree,
+  updateNxJson,
+  updateProjectConfiguration,
   writeJson,
 } from '@nx/devkit';
 import {
@@ -106,11 +109,39 @@ function extendAngularSpecificEslint(tree: Tree, project: ProjectConfiguration) 
 
 }
 
+function updateProjectTargets(project: ProjectConfiguration) {
+
+  project.targets ??= {};
+
+  project.targets['check-version'] = {
+    executor: '@rxap/plugin-library:check-version',
+    options: {
+      packageName: '@angular/core',
+    },
+  };
+
+}
+
+function setGeneralTargetDefaults(tree: Tree) {
+  const nxJson = readNxJson(tree);
+  nxJson.targetDefaults ??= {};
+
+  nxJson.targetDefaults['build'] ??= { dependsOn: [ '^build' ] };
+
+  if (!nxJson.targetDefaults['build']?.dependsOn?.includes('check-version')) {
+    nxJson.targetDefaults['build'].dependsOn.push('check-version');
+  }
+
+  updateNxJson(tree, nxJson);
+}
+
 export async function initLibraryGenerator(
   tree: Tree,
   options: InitLibraryGeneratorSchema,
 ) {
   console.log('angular library init generator:', options);
+
+  setGeneralTargetDefaults(tree);
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 
@@ -122,6 +153,9 @@ export async function initLibraryGenerator(
 
     updateProjectNgPackageConfiguration(tree, project);
     extendAngularSpecificEslint(tree, project);
+    updateProjectTargets(project);
+
+    updateProjectConfiguration(tree, project.name, project);
 
   }
 
