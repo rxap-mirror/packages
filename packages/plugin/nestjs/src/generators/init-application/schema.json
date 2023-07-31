@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "InitApplication",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "projects": {
+      "alias": "project",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "google": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this service will be deployed on google resources",
+      "x-prompt": "Is this service deployed on google resources?"
+    },
+    "sentry": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this service should use sentry",
+      "x-prompt": "Should this service use sentry?"
+    },
+    "swagger": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this service should use swagger",
+      "x-prompt": "Should this service expose a swagger endpoint?"
+    },
+    "healthIndicator": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this service should use a health indicator",
+      "x-prompt": "Should this service have a health indicator endpoint?"
+    },
+    "healthIndicatorList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of health indicators"
+    },
+    "validator": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this service use the ValidationPipe",
+      "x-prompt": "Should this service use the ValidationPipe?"
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "express",
+        "fastify"
+      ],
+      "default": "express",
+      "x-prompt": "Whichever platform should be used?"
+    },
+    "port": {
+      "type": "number",
+      "default": 3000,
+      "description": "The default port where the server is listens",
+      "x-prompt": "Enter the default port?"
+    },
+    "apiPrefix": {
+      "type": "string",
+      "description": "The default global api prefix"
+    },
+    "pluginBuildInfoOptions": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "pluginDockerOptions": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "sentryDsn": {
+      "type": "string",
+      "description": "Default sentry dsn"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
+    },
+    "jwt": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the application should use jwt"
+    },
+    "openApi": {
+      "alias": "open-api",
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the application should use openApi as client"
+    }
+  },
+  "required": []
+}
