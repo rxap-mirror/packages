@@ -14,6 +14,11 @@
       "factory": "./src/generators/index-export/generator",
       "schema": "./src/generators/index-export/schema.json",
       "description": "Generate index exports for each directory and in the src root"
+    },
+    "init-plugin": {
+      "factory": "./src/generators/init-plugin/generator",
+      "schema": "./src/generators/init-plugin/schema.json",
+      "description": "init-plugin generator"
     }
   }
 }
