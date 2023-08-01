@@ -11,7 +11,9 @@
     "rxap",
     "plugin",
     "nx",
-    "nx-plugin"
+    "nx-plugin",
+    "packages",
+    "nestjs"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/nestjs",
   "bugs": {
