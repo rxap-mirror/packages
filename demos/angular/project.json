@@ -57,7 +57,8 @@
             "input": "shared/assets/",
             "output": "/"
           },
-          "demos/angular/src/manifest.webmanifest"
+          "demos/angular/src/manifest.webmanifest",
+          "demos/angular/src/build.json"
         ],
         "styles": [
           "demos/angular/src/styles.scss"
@@ -158,6 +159,30 @@
     },
     "config": {
       "executor": "@rxap/plugin-application:config",
+      "options": {},
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "build-info": {
+      "executor": "@rxap/plugin-application:build-info",
+      "options": {},
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "docker": {
+      "executor": "@rxap/plugin-docker:build",
+      "options": {},
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "docker-save": {
+      "executor": "@rxap/plugin-docker:save",
       "options": {},
       "configurations": {
         "production": {},

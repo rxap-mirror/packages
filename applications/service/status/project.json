@@ -24,7 +24,8 @@
         "assets": [
           "applications/service/status/src/assets",
           "applications/service/status/src/Dockerfile",
-          "applications/service/status/src/healthcheck.js"
+          "applications/service/status/src/healthcheck.js",
+          "applications/service/status/src/build.json"
         ],
         "generatePackageJson": true,
         "target": "node",
@@ -116,6 +117,22 @@
         ],
         "compiler": "tsc",
         "target": "node"
+      }
+    },
+    "build-info": {
+      "executor": "@rxap/plugin-application:build-info",
+      "options": {},
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "docker-save": {
+      "executor": "@rxap/plugin-docker:save",
+      "options": {},
+      "configurations": {
+        "production": {},
+        "development": {}
       }
     }
   },
