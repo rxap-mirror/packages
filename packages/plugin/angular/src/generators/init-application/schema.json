@@ -37,6 +37,9 @@
     },
     "material": {
       "type": "boolean"
+    },
+    "generateMain": {
+      "type": "boolean"
     }
   },
   "required": []

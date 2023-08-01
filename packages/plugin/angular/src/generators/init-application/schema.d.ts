@@ -8,4 +8,5 @@ export interface InitApplicationGeneratorSchema {
   serviceWorker?: boolean;
   languages?: string[];
   material?: boolean;
+  generateMain?: boolean;
 }

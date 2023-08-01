@@ -303,7 +303,9 @@ export async function initApplicationGenerator(
     updateTags(project, options);
     updateTargetDefaults(tree, options);
     updateGitIgnore(project, tree, options);
-    updateMainFile(tree, project, options);
+    if (options.generateMain) {
+      updateMainFile(tree, project, options);
+    }
 
     // apply changes to the project configuration
     updateProjectConfiguration(tree, projectName, project);
