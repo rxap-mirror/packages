@@ -1,6 +1,31 @@
 {
   "name": "@rxap/plugin-nestjs",
-  "version": "0.0.1",
+  "version": "16.0.0",
   "type": "commonjs",
-  "generators": "./generators.json"
+  "generators": "./generators.json",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/nestjs"
+  },
+  "keywords": [
+    "rxap",
+    "plugin",
+    "nx",
+    "nx-plugin"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/nestjs",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/nestjs"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
 }

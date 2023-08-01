@@ -89,6 +89,12 @@
           "strict": true
         }
       }
+    },
+    "check-version": {
+      "executor": "@rxap/plugin-library:check-version",
+      "options": {
+        "packageName": "@angular/core"
+      }
     }
   }
 }

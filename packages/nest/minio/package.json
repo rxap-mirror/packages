@@ -1,6 +1,6 @@
 {
   "name": "@rxap/nest-minio",
-  "version": "9.0.1-dev.2",
+  "version": "10.0.0",
   "type": "commonjs",
   "dependencies": {
     "minio": "^7.0.32",

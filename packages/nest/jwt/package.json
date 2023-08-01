@@ -1,6 +1,6 @@
 {
   "name": "@rxap/nest-jwt",
-  "version": "0.0.1",
+  "version": "10.0.0",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",

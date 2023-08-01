@@ -1,6 +1,6 @@
 {
   "name": "@rxap/nest-sentry",
-  "version": "9.1.0-dev.2",
+  "version": "10.0.0",
   "type": "commonjs",
   "dependencies": {
     "tslib": "2.5.3"
