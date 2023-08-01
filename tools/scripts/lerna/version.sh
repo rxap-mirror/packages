@@ -4,8 +4,8 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
-GIT_BRANCH=$(git branch --show-current)
-GIT_DEFAULT_BRANCH=$(git remote show origin | grep 'HEAD' | cut -d':' -f2 | sed -e 's/^ *//g' -e 's/ *$//g')
+GIT_BRANCH=${GIT_BRANCH:-$(git branch --show-current)}
+GIT_DEFAULT_BRANCH=${GIT_DEFAULT_BRANCH:-$(git remote show origin | grep 'HEAD' | cut -d':' -f2 | sed -e 's/^ *//g' -e 's/ *$//g')}
 
 LERNA_DIST_TAG=""
 LERNA_PRE_ID=""
