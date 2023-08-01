@@ -47,7 +47,7 @@ export * from './lib/builders-json/index';
 export * from './lib/builders-json/interface';
 // endregion
 
-// region 
+// region
 export * from './lib/build-angular-base-path';
 export * from './lib/build-nest-base-path';
 export * from './lib/build-nest-controller-name';
@@ -62,3 +62,5 @@ export * from './lib/search-file';
 export * from './lib/tree';
 export * from './lib/ts-config-file';
 // endregion
+
+export * from './lib/coerce/coerce-target-defaults-dependency';
