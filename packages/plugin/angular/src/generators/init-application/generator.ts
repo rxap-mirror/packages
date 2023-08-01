@@ -177,7 +177,13 @@ function updateTags(project: ProjectConfiguration, options: InitApplicationGener
   CoerceProjectTags(project, tags);
 }
 
-function assertStatements(statements: string[], sourceFile: SourceFile) {
+const MAIN_BOOTSTRAP_STATEMENT = `application.bootstrap().catch((err) => console.error(err));`;
+
+function assertMainStatements(sourceFile: SourceFile) {
+  const statements: string[] = [];
+
+  statements.push('const application = new StandaloneApplication(');
+  statements.push('application.importProvidersFrom(LoggerModule.forRoot({');
   const existingStatements = sourceFile.getStatements().map(s => s.getText()) ?? [];
   for (const statement of statements) {
     if (!existingStatements.includes(statement)) {
@@ -194,7 +200,7 @@ function assertStatements(statements: string[], sourceFile: SourceFile) {
   level: NgxLoggerLevel.DEBUG,
   serverLogLevel: NgxLoggerLevel.ERROR
 }));`,
-          'application.bootstrap().catch((err) => console.error(err));',
+          MAIN_BOOTSTRAP_STATEMENT,
         ],
       });
       CoerceImports(sourceFile, [
@@ -230,14 +236,10 @@ function updateMainFile(tree: Tree, project: ProjectConfiguration, options: Init
     // directory: '..' // to move from the apps/demo/src/app folder into the apps/demo/src folder
   }, (project, [ sourceFile ]) => {
 
+    assertMainStatements(sourceFile);
+
     const importDeclarations = [];
-
     const statements: string[] = [];
-
-    statements.push('const application = new StandaloneApplication(');
-    statements.push('application.importProvidersFrom(LoggerModule.forRoot({');
-
-    assertStatements(statements, sourceFile);
 
     if (options.serviceWorker) {
       importDeclarations.push({ moduleSpecifier: '@rxap/service-worker', namedImports: [ 'UnregisterServiceWorker' ] });
@@ -254,25 +256,21 @@ function updateMainFile(tree: Tree, project: ProjectConfiguration, options: Init
       statements.push('application.before(() => SentryInit(environment));');
     }
 
-    statements.push('application.bootstrap().catch((err) => console.error(err));');
-
     CoerceImports(sourceFile, importDeclarations);
 
     for (let i = 0; i < statements.length; i++) {
       const statement = statements[i];
       const lastStatement = i > 0 ? statements[i - 1] : null;
+      const nestStatement = i < statements.length - 1 ? statements[i + 1] : null;
       const existingStatements = sourceFile.getStatements().map(s => s.getText()) ?? [];
       if (!existingStatements.includes(statement)) {
         let index: number;
         if (lastStatement) {
-          index = existingStatements.findIndex(s => s.includes(statement)) + 1;
+          index = existingStatements.findIndex(s => s.includes(lastStatement)) + 1;
+        } else if (nestStatement) {
+          index = existingStatements.findIndex(s => s.includes(nestStatement));
         } else {
-          const importDeclarations = sourceFile.getImportDeclarations();
-          if (importDeclarations.length) {
-            index = importDeclarations[importDeclarations.length - 1].getChildIndex() + 1;
-          } else {
-            index = 0;
-          }
+          index = existingStatements.findIndex(s => s.includes(MAIN_BOOTSTRAP_STATEMENT));
         }
         console.log(`insert statement: ${ statement } at index ${ index }`);
         sourceFile.insertStatements(index, statement);
