@@ -126,6 +126,7 @@
         "packages/nest/socket-io-client/src/index.ts"
       ],
       "@rxap/nest-utilities": ["packages/nest/utilities/src/index.ts"],
+      "@rxap/ngx-bootstrap": ["packages/angular/bootstrap/src/index.ts"],
       "@rxap/ngx-material-table-select": [
         "packages/angular/material/table-select/src/index.ts"
       ],
