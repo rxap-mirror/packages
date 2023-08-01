@@ -3,5 +3,10 @@
   "dest": "../../../dist/packages/angular/bootstrap",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "assets": [
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ]
 }
