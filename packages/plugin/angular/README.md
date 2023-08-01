@@ -9,6 +9,7 @@
 
 - [Installation](#installation)
 - [Generators](#generators)
+- [Executors](#executors)
 
 # Installation
 
@@ -18,7 +19,7 @@ yarn add @rxap/plugin-angular
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @nx/devkit@^16.5.0 @rxap/generator-utilities@^1.0.1-dev.2 @rxap/schematics-ts-morph@^16.0.0-dev.5 @rxap/workspace-ts-morph@^0.0.2-dev.0 @rxap/workspace-utilities@^0.1.0-dev.0 nx@^16.5.0 ts-morph@^18.0.0 
+yarn add @nx/devkit@^16.5.0 @rxap/generator-utilities@^1.0.1-dev.3 @rxap/schematics-ts-morph@^16.0.0-dev.5 @rxap/workspace-ts-morph@^0.0.2-dev.0 @rxap/workspace-utilities@^0.1.0-dev.0 nx@^16.5.0 ts-morph@^18.0.0 @rxap/plugin-utilities@* 
 ```
 **Execute the init generator:**
 ```bash
@@ -60,3 +61,19 @@ yarn nx g @rxap/plugin-angular:fix-schematic
 ```bash
 yarn nx g @rxap/plugin-angular:schematic
 ```
+# Executors
+
+## tailwind
+> tailwind executor
+
+**project.json**
+```json
+{
+  "targets": {
+    "tailwind": {
+      "executor": "@rxap/plugin-angular:tailwind"
+    }
+  }
+}
+```
+

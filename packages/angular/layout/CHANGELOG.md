@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.6...@rxap/layout@16.0.0-dev.7) (2023-08-01)
+
+### Bug Fixes
+
+- generate readme with peer dependencies to install ([e7039bb](https://gitlab.com/rxap/packages/commit/e7039bb5e86ffeadfe7cc92d5fc71d32f8efb4fb))
+- use tailwind to create a bundled theme.css ([bfda0dc](https://gitlab.com/rxap/packages/commit/bfda0dc14c6d46f374e81871ab18307dc9f6d9b4))
+
 # 16.0.0-dev.6 (2023-08-01)
 
 ### Bug Fixes
