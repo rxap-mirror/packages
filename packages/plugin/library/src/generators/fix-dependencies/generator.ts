@@ -3,18 +3,18 @@ import {
   getProjects,
   Tree,
 } from '@nx/devkit';
-import { FixDependenciesGeneratorSchema } from './schema';
+import { AddDir } from '@rxap/generator-ts-morph';
+import { GetProjectRoot } from '@rxap/generator-utilities';
+import { GetLatestPackageVersion } from '@rxap/node-utilities';
+import { ProjectPackageJson } from '@rxap/plugin-utilities';
+import { ProjectGraph } from 'nx/src/config/project-graph';
+import { join } from 'path';
 import {
   IndentationText,
   Project,
   QuoteKind,
 } from 'ts-morph';
-import { AddDir } from '@rxap/generator-ts-morph';
-import { join } from 'path';
-import { ProjectPackageJson } from '@rxap/plugin-utilities';
-import { ProjectGraph } from 'nx/src/config/project-graph';
-import { GetLatestPackageVersion } from '@rxap/node-utilities';
-import { GetProjectRoot } from '@rxap/generator-utilities';
+import { FixDependenciesGeneratorSchema } from './schema';
 
 function resolveProjectDependencies(
   projectGraph: ProjectGraph,
@@ -174,10 +174,12 @@ function loadProjectToPackageMapping(tree: Tree, projectGraph: ProjectGraph) {
   for (const projectName of projectNames) {
     const project = projectGraph.nodes[projectName];
     if (project.type !== 'lib') {
-      console.log(`Skip project ${ projectName }. Not a library`);
       continue;
     }
     const projectRoot = project.data.root;
+    if (!tree.exists(`${ projectRoot }/package.json`)) {
+      continue;
+    }
     const packageJSON = JSON.parse(tree.read(`${ projectRoot }/package.json`)!.toString('utf-8'));
     PACKAGE_NAME_TO_PROJECT_NAME_CACHE[packageJSON.name] = projectName;
     PROJECT_NAME_TO_PACKAGE_NAME_CACHE[projectName] = packageJSON.name;
