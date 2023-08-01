@@ -18,7 +18,7 @@ yarn add @rxap/plugin-angular
 ```
 **Install peer dependencies:**
 ```bash
-yarn add 
+yarn add @nx/devkit@^16.5.0 @rxap/generator-utilities@^1.0.1-dev.2 @rxap/schematics-ts-morph@^16.0.0-dev.5 @rxap/workspace-ts-morph@^0.0.2-dev.0 @rxap/workspace-utilities@^0.1.0-dev.0 nx@^16.5.0 ts-morph@^18.0.0 
 ```
 **Execute the init generator:**
 ```bash

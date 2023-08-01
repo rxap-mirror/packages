@@ -17,5 +17,5 @@ yarn add @rxap/workspace-ts-morph
 ```
 **Install peer dependencies:**
 ```bash
-yarn add 
+yarn add @rxap/utilities@^16.0.0-dev.4 @rxap/workspace-utilities@^0.1.0-dev.0 ts-morph@^18.0.0 
 ```

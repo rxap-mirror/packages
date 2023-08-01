@@ -17,5 +17,5 @@ yarn add @rxap/workspace-utilities
 ```
 **Install peer dependencies:**
 ```bash
-yarn add 
+yarn add @nx/devkit@^16.5.0 @rxap/node-utilities@^1.0.1-dev.2 @rxap/utilities@^16.0.0-dev.4 semver@^7.3.5 
 ```

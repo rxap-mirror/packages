@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.0.1-dev.2...@rxap/generator-utilities@1.0.1-dev.3) (2023-08-01)
+
+### Bug Fixes
+
+- ensure the output path is a relative path ([8054b8c](https://gitlab.com/rxap/packages/commit/8054b8c1c0ea46ebcf4a85c207643a2720caf254))
+- generate readme with peer dependencies to install ([e7039bb](https://gitlab.com/rxap/packages/commit/e7039bb5e86ffeadfe7cc92d5fc71d32f8efb4fb))
+
 ## 1.0.1-dev.2 (2023-08-01)
 
 ### Bug Fixes

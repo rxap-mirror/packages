@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.8...@rxap/plugin-library@16.0.0-dev.9) (2023-08-01)
+
+### Bug Fixes
+
+- create publish directory with relative output path ([55f5755](https://gitlab.com/rxap/packages/commit/55f575535c58436f8625c148da9d9ec3c25f451d))
+- generate readme with peer dependencies to install ([e7039bb](https://gitlab.com/rxap/packages/commit/e7039bb5e86ffeadfe7cc92d5fc71d32f8efb4fb))
+
 # 16.0.0-dev.8 (2023-08-01)
 
 ### Bug Fixes
