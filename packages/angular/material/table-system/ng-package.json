@@ -17,6 +17,7 @@
       "glob": "_index.scss",
       "output": "."
     },
-    "LICENSE"
+    "LICENSE",
+    "theme.css"
   ]
 }

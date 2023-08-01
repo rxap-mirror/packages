@@ -11,6 +11,7 @@
   "assets": [
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "theme.css"
   ]
 }

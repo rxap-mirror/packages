@@ -100,6 +100,15 @@
       "options": {
         "packageName": "@angular/core"
       }
+    },
+    "build-tailwind": {
+      "executor": "@rxap/plugin-angular:tailwind",
+      "configurations": {
+        "production": {
+          "minify": true
+        },
+        "development": {}
+      }
     }
   }
 }
