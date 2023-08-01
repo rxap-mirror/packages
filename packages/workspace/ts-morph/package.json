@@ -26,5 +26,13 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "dependencies": {
+    "tslib": "2.6.1"
+  },
+  "peerDependencies": {
+    "@rxap/workspace-utilities": "*",
+    "ts-morph": "^18.0.0",
+    "@rxap/utilities": "*"
   }
 }

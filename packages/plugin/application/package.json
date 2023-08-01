@@ -36,7 +36,10 @@
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
     "@rxap/plugin-utilities": "*",
-    "handlebars": "^4.7.7"
+    "handlebars": "^4.7.7",
+    "@rxap/generator-utilities": "*",
+    "@rxap/plugin-angular": "*",
+    "@rxap/workspace-utilities": "*"
   },
   "nx-migrations": {
     "packageGroup": [

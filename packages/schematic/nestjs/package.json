@@ -29,6 +29,15 @@
     "email": "mmuenker@digitaix.com"
   },
   "dependencies": {
-    "yaml": "2.3.1"
+    "yaml": "2.3.1",
+    "tslib": "2.6.1"
+  },
+  "peerDependencies": {
+    "@angular-devkit/schematics": "^16.1.4",
+    "@rxap/schematics-utilities": "*",
+    "@angular-devkit/core": "^16.1.4",
+    "@rxap/schematics-ts-morph": "*",
+    "ts-morph": "^18.0.0",
+    "@rxap/utilities": "*"
   }
 }

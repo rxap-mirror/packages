@@ -7,7 +7,9 @@
     "tslib": "2.5.3"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.5"
+    "@nestjs/common": "^10.0.5",
+    "@nestjs/terminus": "^10.0.1",
+    "@nestjs/config": "^3.0.0"
   },
   "publishConfig": {
     "access": "public",

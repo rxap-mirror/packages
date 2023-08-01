@@ -29,7 +29,9 @@
   },
   "peerDependencies": {
     "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/node-utilities": "^1.0.1-dev.1"
+    "@rxap/workspace-utilities": "*",
+    "@rxap/utilities": "*",
+    "@nx/devkit": "^16.5.0"
   },
   "dependencies": {
     "tslib": "2.5.3"

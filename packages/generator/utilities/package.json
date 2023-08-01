@@ -28,7 +28,8 @@
     "email": "mmuenker@digitaix.com"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.5.0"
+    "@nx/devkit": "^16.5.0",
+    "@nx/angular": "^16.5.0"
   },
   "dependencies": {
     "tslib": "2.5.3"

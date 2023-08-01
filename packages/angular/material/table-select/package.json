@@ -2,8 +2,26 @@
   "name": "@rxap/ngx-material-table-select",
   "version": "16.0.0",
   "peerDependencies": {
-    "@angular/common": "^16.1.0",
-    "@angular/core": "^16.1.0"
+    "@angular/common": "^16.1.4",
+    "@angular/core": "^16.1.4",
+    "@rxap/data-source": "*",
+    "@rxap/form-system": "*",
+    "@rxap/reflect-metadata": "*",
+    "@rxap/utilities": "*",
+    "@angular/material": "^16.1.4",
+    "rxjs": "^7.8.0",
+    "@rxap/forms": "*",
+    "@rxap/material-table-system": "*",
+    "@rxap/pattern": "*",
+    "@rxap/rxjs": "*",
+    "@rxap/window-system": "*",
+    "@angular/forms": "^16.1.4",
+    "@rxap/material-table-window-system": "*",
+    "@rxap/mixin": "*",
+    "@angular/cdk": "^16.1.4",
+    "@angular/flex-layout": "^15.0.0-beta.42",
+    "@rxap/material-form-system": "*",
+    "@rxap/pipes": "*"
   },
   "dependencies": {
     "tslib": "^2.3.0"

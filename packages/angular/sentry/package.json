@@ -2,8 +2,11 @@
   "name": "@rxap/ngx-sentry",
   "version": "16.0.0",
   "peerDependencies": {
-    "@angular/common": "^16.1.0",
-    "@angular/core": "^16.1.0"
+    "@rxap/environment": "*",
+    "@rxap/config": "*",
+    "@sentry/angular-ivy": "^7.60.1",
+    "@sentry/browser": "^7.60.1",
+    "@sentry/integrations": "^7.60.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"

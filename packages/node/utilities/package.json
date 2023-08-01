@@ -32,5 +32,8 @@
   },
   "nx-migrations": {
     "packageGroup": []
+  },
+  "peerDependencies": {
+    "ignore": "^5.2.4"
   }
 }

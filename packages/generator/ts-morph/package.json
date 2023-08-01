@@ -3,8 +3,7 @@
   "version": "1.0.1-dev.1",
   "type": "commonjs",
   "peerDependencies": {
-    "@nx/devkit": "^16.5.0",
-    "ts-morph": "^18.0.0"
+    "@rxap/workspace-ts-morph": "*"
   },
   "dependencies": {
     "tslib": "2.5.3"

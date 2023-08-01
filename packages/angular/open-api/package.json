@@ -9,7 +9,8 @@
     "@rxap/remote-method": "^16.0.0-dev.4",
     "@rxap/rxjs": "^1.0.1-dev.0",
     "@rxap/utilities": "^16.0.0-dev.3",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "@rxap/config": "*"
   },
   "dependencies": {
     "ajv": "8.12.0",
