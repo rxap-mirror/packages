@@ -6,7 +6,7 @@
   },
   "allowedNonPeerDependencies": [
     "openapi-types",
-    "ajv-oai"
+    "ajv"
   ],
   "assets": [
     "README.md",
