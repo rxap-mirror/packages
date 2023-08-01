@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "tailwind": {
+      "implementation": "./src/executors/tailwind/executor",
+      "schema": "./src/executors/tailwind/schema.json",
+      "description": "tailwind executor"
+    }
+  }
+}

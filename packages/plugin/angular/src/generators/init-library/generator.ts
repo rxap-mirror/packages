@@ -12,9 +12,11 @@ import {
   Assets,
   CoerceAssets,
   CoerceFile,
+  CoerceIgnorePattern,
   RemoveAssets,
   SkipNonLibraryProject,
 } from '@rxap/generator-utilities';
+import { CoerceTargetDefaultsDependency } from '@rxap/workspace-utilities';
 import {
   join,
   relative,
@@ -42,6 +44,10 @@ function writeNgPackageJson(tree: Tree, project: ProjectConfiguration, ngPackage
   writeJson(tree, join(project.root, 'ng-package.json'), ngPackageJson);
 }
 
+function hasTailwindConfig(tree: Tree, project: ProjectConfiguration) {
+  return tree.exists(join(project.root, 'tailwind.config.js'));
+}
+
 function updateProjectNgPackageConfiguration(tree: Tree, project: ProjectConfiguration) {
   const ngPackageJson = readNgPackageJson(tree, project);
 
@@ -60,15 +66,36 @@ function updateProjectNgPackageConfiguration(tree: Tree, project: ProjectConfigu
     output: '.',
   };
 
+  const assetStyles = 'theme.css';
+
   if (hasIndexScss(tree, project)) {
     CoerceAssets(ngPackageJson.assets, [ assetThemes, assetIndex ]);
   } else {
     RemoveAssets(ngPackageJson.assets, [ assetThemes, assetIndex ]);
   }
 
+  if (hasTailwindConfig(tree, project)) {
+    CoerceAssets(ngPackageJson.assets, [ assetStyles ]);
+  } else {
+    RemoveAssets(ngPackageJson.assets, [ assetStyles ]);
+  }
+
   writeNgPackageJson(tree, project, ngPackageJson);
 }
 
+function coerceTailwindThemeScss(tree: Tree, project: ProjectConfiguration) {
+  const themeScssPath = join(project.sourceRoot, 'styles/theme.scss');
+  if (hasTailwindConfig(tree, project)) {
+    if (!tree.exists(themeScssPath)) {
+      tree.write(themeScssPath, '@tailwind components;\n@tailwind utilities;');
+    }
+    CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'theme.css' ]);
+  } else {
+    if (tree.exists(themeScssPath)) {
+      tree.delete(themeScssPath);
+    }
+  }
+}
 
 function skipProject(tree: Tree, options: InitGeneratorSchema, project: ProjectConfiguration, projectName: string) {
 
@@ -89,8 +116,6 @@ function extendAngularSpecificEslint(tree: Tree, project: ProjectConfiguration) 
 
   const relativeToAngularRoot = relative(projectRoot, 'packages/angular');
 
-  console.log('relativeToAngularRoot', relativeToAngularRoot);
-
   const extendsPath = relativeToAngularRoot + '/.eslintrc.json';
 
   const eslintConfigFilaPath = `${ projectRoot }/.eslintrc.json`;
@@ -109,7 +134,7 @@ function extendAngularSpecificEslint(tree: Tree, project: ProjectConfiguration) 
 
 }
 
-function updateProjectTargets(project: ProjectConfiguration) {
+function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
 
   project.targets ??= {};
 
@@ -120,17 +145,30 @@ function updateProjectTargets(project: ProjectConfiguration) {
     },
   };
 
+  if (hasTailwindConfig(tree, project)) {
+    project.targets['build-tailwind'] ??= {
+      executor: '@rxap/plugin-angular:tailwind',
+      configurations: {
+        production: {
+          minify: true,
+        },
+        development: {},
+      },
+    };
+  } else {
+    if (project.targets['build-tailwind']) {
+      delete project.targets['build-tailwind'];
+    }
+  }
+
 }
 
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
-  nxJson.targetDefaults ??= {};
 
-  nxJson.targetDefaults['build'] ??= { dependsOn: [ '^build' ] };
-
-  if (!nxJson.targetDefaults['build']?.dependsOn?.includes('check-version')) {
-    nxJson.targetDefaults['build'].dependsOn.push('check-version');
-  }
+  CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version');
+  CoerceTargetDefaultsDependency(nxJson, 'build', '^build');
+  CoerceTargetDefaultsDependency(nxJson, 'build', 'build-tailwind');
 
   updateNxJson(tree, nxJson);
 }
@@ -153,7 +191,8 @@ export async function initLibraryGenerator(
 
     updateProjectNgPackageConfiguration(tree, project);
     extendAngularSpecificEslint(tree, project);
-    updateProjectTargets(project);
+    coerceTailwindThemeScss(tree, project);
+    updateProjectTargets(tree, project);
 
     updateProjectConfiguration(tree, project.name, project);
 

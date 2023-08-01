@@ -53,7 +53,8 @@
         "lintFilePatterns": [
           "packages/plugin/angular/**/*.ts",
           "packages/plugin/angular/package.json",
-          "packages/plugin/angular/generators.json"
+          "packages/plugin/angular/generators.json",
+          "packages/plugin/angular/executors.json"
         ]
       }
     },

@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "Tailwind executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "config": {
+      "type": "string",
+      "default": "tailwind.config.js"
+    },
+    "input": {
+      "type": "string",
+      "default": "src/styles/theme.scss"
+    },
+    "output": {
+      "type": "string",
+      "default": "theme.css"
+    },
+    "minify": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": []
+}
