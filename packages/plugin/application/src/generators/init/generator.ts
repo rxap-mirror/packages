@@ -8,9 +8,11 @@ import {
 } from '@nx/devkit';
 import {
   CoerceAssets,
+  CoerceIgnorePattern,
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
 import { AngularInitGenerator } from '@rxap/plugin-angular';
+import { join } from 'path';
 import { InitGeneratorSchema } from './schema';
 
 function skipProject(
@@ -76,9 +78,6 @@ function updateTargetDefaults(tree: Tree) {
   if (!nxJson.targetDefaults['docker'].dependsOn.includes('build')) {
     nxJson.targetDefaults['docker'].dependsOn.push('build');
   }
-  if (!nxJson.targetDefaults['docker'].dependsOn.includes('build-info')) {
-    nxJson.targetDefaults['docker'].dependsOn.push('build-info');
-  }
   if (nxJson.targetDefaults['save']) {
     delete nxJson.targetDefaults['save'];
   }
@@ -94,7 +93,22 @@ function updateTargetDefaults(tree: Tree) {
     nxJson.targetDefaults['build'].dependsOn.push('build-info');
   }
 
+  nxJson.targetDefaults['serve'] ??= {};
+  nxJson.targetDefaults['serve'].dependsOn ??= [];
+  if (!nxJson.targetDefaults['serve'].dependsOn.includes('build-info')) {
+    nxJson.targetDefaults['serve'].dependsOn.push('build-info');
+  }
+
   updateNxJson(tree, nxJson);
+}
+
+function updateGitIgnore(project: ProjectConfiguration, tree: Tree) {
+
+  const gitIgnorePath = join(project.sourceRoot, '.gitignore');
+  CoerceIgnorePattern(tree, gitIgnorePath, [
+    '/build.json',
+  ]);
+
 }
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
@@ -111,6 +125,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     updateProjectTargets(project, options);
 
     updateTargetDefaults(tree);
+    updateGitIgnore(project, tree);
 
     // apply changes to the project configuration
     updateProjectConfiguration(tree, projectName, project);
