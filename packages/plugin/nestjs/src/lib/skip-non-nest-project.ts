@@ -23,5 +23,8 @@ export function SkipNonNestProject(
   if (!project.tags?.includes('nest') && !project.tags?.includes('nestjs')) {
     return true;
   }
+  if (project.tags?.includes('plugin') || project.tags?.includes('schematic')) {
+    return true;
+  }
   return false;
 }
