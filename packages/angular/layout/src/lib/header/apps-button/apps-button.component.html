@@ -1,12 +1,12 @@
-<div *ngIf="appList()?.length" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="32px">
+<div *ngIf="appList()?.length" class="flex flex-row items-center gap-8">
 
-  <div *ngIf="isOpen" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+  <div *ngIf="isOpen" class="flex flex-row items-center gap-6">
 
-    <div *ngFor="let app of appList()" class="app">
+    <div *ngFor="let app of appList()" class="h-10">
       <a [href]="app.href" mat-stroked-button>
-        <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+        <span class="flex flex-row items-center gap-4">
           <img *ngIf="app.image" [alt]="app.label" [ngSrc]="app.image" height="40" width="40">
-          <span class="label" fxFlex="nogrow">{{app.label}}</span>
+          <span class="label grow-0">{{app.label}}</span>
         </span>
       </a>
     </div>

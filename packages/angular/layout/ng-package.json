@@ -7,16 +7,7 @@
   "assets": [
     "README.md",
     "CHANGELOG.md",
-    {
-      "input": ".",
-      "glob": "**/*.theme.scss",
-      "output": "."
-    },
-    {
-      "input": ".",
-      "glob": "_index.scss",
-      "output": "."
-    },
-    "LICENSE"
+    "LICENSE",
+    "theme.css"
   ]
 }

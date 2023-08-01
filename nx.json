@@ -95,7 +95,8 @@
           "projects": "self"
         },
         "check-version",
-        "build-info"
+        "build-info",
+        "build-tailwind"
       ],
       "inputs": [
         "production",
