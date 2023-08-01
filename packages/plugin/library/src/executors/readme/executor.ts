@@ -1,4 +1,3 @@
-import * as Handlebars from 'handlebars';
 import {
   ExecutorContext,
   readJsonFile,
@@ -9,6 +8,7 @@ import {
   readPackageJsonForProject,
   writeFileToProjectRoot,
 } from '@rxap/plugin-utilities';
+import * as Handlebars from 'handlebars';
 import { join } from 'path';
 import { ReadmeExecutorSchema } from './schema';
 
@@ -120,12 +120,10 @@ function getPeerDependencyList(context: ExecutorContext): Array<{ name: string, 
   for (const [ packageName, version ] of Object.entries(
     packageJson.peerDependencies ?? {},
   )) {
-    if (packageName.match(/^@rxap\//)) {
-      peerDependencyList.push({
-        name: packageName,
-        version,
-      });
-    }
+    peerDependencyList.push({
+      name: packageName,
+      version,
+    });
   }
   return peerDependencyList;
 }

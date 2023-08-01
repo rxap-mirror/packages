@@ -34,7 +34,7 @@ yarn add {{packageJson.name}}
 
 **Install peer dependencies:**
 ```bash
-yarn add {{#each rxapDependencies}} {{this.name}}@{{this.version}}{{/each}}
+yarn add {{#each peerDependencyList}}{{this.name}}@{{this.version}} {{/each}}
 ```
 {{/if}}
 {{#if hasInitGenerator ~}}

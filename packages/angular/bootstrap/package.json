@@ -16,7 +16,9 @@
   "keywords": [
     "rxap",
     "angular",
-    "ngx"
+    "ngx",
+    "packages",
+    "bootstrap"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/bootstrap",
   "bugs": {
