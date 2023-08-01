@@ -78,6 +78,11 @@
         "{workspaceRoot}/jest.preset.ts"
       ]
     },
+    "serve": {
+      "dependsOn": [
+        "build-info"
+      ]
+    },
     "build": {
       "dependsOn": [
         "^build",
@@ -89,7 +94,8 @@
           "target": "index-export",
           "projects": "self"
         },
-        "check-version"
+        "check-version",
+        "build-info"
       ],
       "inputs": [
         "production",
@@ -117,8 +123,7 @@
     },
     "docker": {
       "dependsOn": [
-        "build",
-        "build-info"
+        "build"
       ]
     },
     "save": {
