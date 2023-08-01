@@ -3,18 +3,25 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { join } from 'path';
-import {
-  existsSync,
-  readFileSync,
-} from 'fs';
 import {
   Environment,
   RXAP_GLOBAL_STATE,
 } from '@rxap/nest-utilities';
+import {
+  existsSync,
+  readFileSync,
+} from 'fs';
+import { join } from 'path';
 
+/**
+ * @template O The options object passed to the server create function
+ */
 export type MainBeforeFunction<O extends object> = (options: O) => any | Promise<any>;
 
+/**
+ * @template T The instance of the nest application
+ * @template B The options object build by the Server bootstrap logic
+ */
 export type MainAfterFunction<T extends INestApplicationContext, B extends object> = (
   app: T,
   config: ConfigService<unknown>,
