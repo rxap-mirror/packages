@@ -1,23 +1,22 @@
 import {
-  clone,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
+import { isDevMode } from '@angular/core';
+import { HttpRemoteMethodParameter } from '@rxap/remote-method/http';
+import {
   coerceArray,
   isPromiseLike,
   IsRecord,
 } from '@rxap/utilities';
-import { isDevMode } from '@angular/core';
-import * as Ajv from 'ajv-oai';
-import {
-  HttpHeaders,
-  HttpParams,
-} from '@angular/common/http';
+import Ajv from 'ajv';
+import { OpenAPIV3 } from 'openapi-types';
+import { RxapOpenApiError } from './error';
+import { OperationObjectWithMetadata } from './open-api';
 import {
   IsReferenceObject,
   NotContainsReferenceObjects,
 } from './utilities';
-import { OperationObjectWithMetadata } from './open-api';
-import { RxapOpenApiError } from './error';
-import { OpenAPIV3 } from 'openapi-types';
-import { HttpRemoteMethodParameter } from '@rxap/remote-method/http';
 
 export interface SchemaValidationResponse<Data> {
   headers: HttpHeaders;
@@ -408,10 +407,21 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
       return true;
     }
 
+    if (typeof schema !== 'object') {
+      throw new Error('The schema must be an object!');
+    }
+
+    if (!schema) {
+      throw new Error('The schema must not be null or undefined!');
+    }
+
     let result: boolean | PromiseLike<any>;
 
+    const ajv = new Ajv();
+    const validate = ajv.compile(schema);
+
     try {
-      result = new Ajv().validate(schema, clone(value));
+      result = validate(value);
     } catch (e: any) {
       console.error(e.message);
       return false;

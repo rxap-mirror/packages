@@ -8000,7 +8000,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/open-api@workspace:packages/angular/open-api"
   dependencies:
-    ajv-oai: ^1.2.1
+    ajv: 8.12.0
     openapi-types: 10.0.0
     tslib: 2.5.3
   peerDependencies:
@@ -11330,17 +11330,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv-oai@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "ajv-oai@npm:1.2.1"
-  dependencies:
-    decimal.js: ^10.2.0
-  peerDependencies:
-    ajv: 6.x
-  checksum: c14024cdd0593f39957251a448fed582b8ee6be56aa1d442b2f3b01ac078a81c9cfcf3732bab29a0cd67ad9a047f523ed99c6a22f836f603bdccd1cbb7b9b73c
-  languageName: node
-  linkType: hard
-
 "ajv@npm:8.11.2":
   version: 8.11.2
   resolution: "ajv@npm:8.11.2"
@@ -14406,7 +14395,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"decimal.js@npm:^10.2.0, decimal.js@npm:^10.4.2":
+"decimal.js@npm:^10.4.2":
   version: 10.4.3
   resolution: "decimal.js@npm:10.4.3"
   checksum: 796404dcfa9d1dbfdc48870229d57f788b48c21c603c3f6554a1c17c10195fc1024de338b0cf9e1efe0c7c167eeb18f04548979bcc5fdfabebb7cc0ae3287bae
