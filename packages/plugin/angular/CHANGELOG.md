@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.2...@rxap/plugin-angular@16.1.0-dev.3) (2023-08-01)
+
+### Bug Fixes
+
+- add browser-tailwind as imp dep if project has tailwind configuration ([6ea13c5](https://gitlab.com/rxap/packages/commit/6ea13c5f9b4e652436bf1da879b564d1ed7b8061))
+
 # [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.1...@rxap/plugin-angular@16.1.0-dev.2) (2023-08-01)
 
 ### Features

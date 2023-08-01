@@ -1,6 +1,6 @@
 {
   "name": "@rxap/browser-tailwind",
-  "version": "0.0.1",
+  "version": "0.0.2-dev.0",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -23,5 +23,14 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "dependencies": {
+    "tslib": "2.6.1"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^3.0.2"
+  },
+  "nx-migrations": {
+    "packageGroup": []
   }
 }

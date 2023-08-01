@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@16.0.0-dev.5...@rxap/form-window-system@16.0.0-dev.6) (2023-08-01)
+
+### Bug Fixes
+
+- add browser-tailwind as imp dep if project has tailwind configuration ([6ea13c5](https://gitlab.com/rxap/packages/commit/6ea13c5f9b4e652436bf1da879b564d1ed7b8061))
+- add tailwind bundle build target and configurations ([bec6b96](https://gitlab.com/rxap/packages/commit/bec6b96be15bbc11ad072ccefdcaf7df9e8fea52))
+- generate readme with peer dependencies to install ([e7039bb](https://gitlab.com/rxap/packages/commit/e7039bb5e86ffeadfe7cc92d5fc71d32f8efb4fb))
+
 # 16.0.0-dev.5 (2023-08-01)
 
 ### Bug Fixes

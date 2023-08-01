@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-angular",
-  "version": "16.1.0-dev.2",
+  "version": "16.1.0-dev.3",
   "type": "commonjs",
   "generators": "./generators.json",
   "publishConfig": {

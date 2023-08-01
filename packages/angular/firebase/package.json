@@ -1,11 +1,11 @@
 {
   "name": "@rxap/firebase",
-  "version": "16.0.0-dev.4",
+  "version": "16.0.0-dev.5",
   "peerDependencies": {
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/fire": "^7.5.0",
-    "@rxap/config": "^16.0.0-dev.6",
+    "@rxap/config": "^16.0.0-dev.7",
     "@rxap/rxjs": "^1.0.1-dev.1",
     "@rxap/utilities": "^16.0.0-dev.4",
     "firebase": "^9.6.7",
@@ -54,7 +54,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.6"
+        "version": "16.0.0-dev.7"
       }
     ]
   }
