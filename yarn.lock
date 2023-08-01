@@ -7936,6 +7936,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/ngx-bootstrap@workspace:packages/angular/bootstrap":
+  version: 0.0.0-use.local
+  resolution: "@rxap/ngx-bootstrap@workspace:packages/angular/bootstrap"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/common": ^16.1.0
+    "@angular/core": ^16.1.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/ngx-material-table-select@workspace:packages/angular/material/table-select":
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-material-table-select@workspace:packages/angular/material/table-select"
@@ -21868,6 +21879,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ngx-logger@npm:^5.0.12":
+  version: 5.0.12
+  resolution: "ngx-logger@npm:5.0.12"
+  dependencies:
+    tslib: ^2.3.0
+    vlq: ^1.0.0
+  peerDependencies:
+    rxjs: ">6.0.0"
+  checksum: dc3285a0f038e67070db1e621ec27b06764fba41bcd71617eeaefe2ee53ecdc49d003ecfaa42c725a657b74115e7577c21102dd5c263218a15b78fb6dea4c264
+  languageName: node
+  linkType: hard
+
 "nice-napi@npm:^1.0.2":
   version: 1.0.2
   resolution: "nice-napi@npm:1.0.2"
@@ -25872,6 +25895,7 @@ __metadata:
     lerna: ^6.6.2
     ng-mocks: ^14.11.0
     ng-packagr: 16.1.0
+    ngx-logger: ^5.0.12
     nx: 16.5.0
     nx-cloud: 16.0.5
     openai: ^3.3.0
@@ -28916,6 +28940,13 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 8c45a516278d1e0425fac00c0877336790f71484a851a318346a70e0d2aef9f3b9651deb2f9f002c791ceb920eda7d6a3cda753bdefd657321c99f448b02dd25
+  languageName: node
+  linkType: hard
+
+"vlq@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "vlq@npm:1.0.1"
+  checksum: 67ab6dd35c787eaa02c0ff1a869dd07a230db08722fb6014adaaf432634808ddb070765f70958b47997e438c331790cfcf20902411b0d6453f1a2a5923522f55
   languageName: node
   linkType: hard
 
