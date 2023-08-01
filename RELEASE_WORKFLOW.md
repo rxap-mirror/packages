@@ -1,5 +1,9 @@
 # Release Workflow
 
+#### Prerequisites
+
+Ensure the `.env` file exists with the `GL_TOKEN=<your-gitlab-token>` variable set.
+
 ## Bump version of packages
 
 To bump the version of packages, run the command:
