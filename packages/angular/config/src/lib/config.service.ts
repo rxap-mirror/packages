@@ -3,20 +3,25 @@ import {
   Injectable,
   Optional,
 } from '@angular/core';
+import { Environment } from '@rxap/environment';
 import {
   coerceArray,
   deepMerge,
   SetObjectValue,
 } from '@rxap/utilities';
+import { AnySchema } from 'joi';
 import { RXAP_CONFIG } from './tokens';
 import { NoInferType } from './types';
-import { AnySchema } from 'joi';
 
 export interface ConfigLoadOptions {
   fromUrlParam?: string | boolean;
   fromLocalStorage?: boolean;
   schema?: AnySchema;
-  url?: string | string[];
+  url?: string | string[] | ((environment: Environment) => string | string[]);
+  /**
+   * static config values
+   */
+  static?: Record<string, any>;
 }
 
 @Injectable({
@@ -44,7 +49,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
   /**
    * @deprecated instead use the url property of the ConfigLoadOptions
    */
-  public static Urls = [ 'config.json' ];
+  public static Urls = [];
   public readonly config!: Config;
 
   constructor(@Optional() @Inject(RXAP_CONFIG) config: any | null = null) {
@@ -65,11 +70,21 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
    * .catch(err => console.error(err))
    *
    */
-  public static async Load(options?: ConfigLoadOptions): Promise<void> {
-    let config = this.Defaults;
-    const urls = options?.url ? coerceArray(options.url) : ConfigService.Urls;
+  public static async Load(options?: ConfigLoadOptions, environment?: Environment): Promise<void> {
+    let config = deepMerge(this.Defaults, options?.static ?? {});
+
+    const urls = (options?.url ? coerceArray(options.url) : ConfigService.Urls).map(url => {
+      if (typeof url === 'function') {
+        if (!environment) {
+          throw new Error('environment is required when url is a function');
+        }
+        return coerceArray(url(environment));
+      }
+      return coerceArray(url);
+    }).flat();
+
     for (const url of urls) {
-      config = await this.loadConfig(url, true, options?.schema);
+      config = deepMerge(config, await this.loadConfig(url, true, options?.schema));
     }
 
     config = deepMerge(config, this.Overwrites);
