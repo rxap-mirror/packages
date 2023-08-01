@@ -88,8 +88,8 @@ function updateProjectPackageJson(
   }
   packageJson.publishConfig ??= {};
   packageJson.publishConfig.access = 'public';
-  const output = GetBuildOutputForProject(project, tree.root);
-  packageJson.publishConfig.directory = relative(join(tree.root, project.root), output);
+  const output = GetBuildOutputForProject(project);
+  packageJson.publishConfig.directory = relative(project.root, output);
 
   // add common properties
   packageJson.keywords = [
