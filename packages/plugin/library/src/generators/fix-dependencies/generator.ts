@@ -164,6 +164,8 @@ const PACKAGE_ADD_BLACK_LIST = [
   'zlib',
   'glob',
   'fs-extra',
+  'express',
+  'axios',
 ];
 
 const PACKAGE_NAME_TO_PROJECT_NAME_CACHE: Record<string, string> = {};
