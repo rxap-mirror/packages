@@ -163,14 +163,36 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
 
 }
 
+function isRxapPackagesProject(tree: Tree) {
+  const rootPackageJson = readJson(tree, 'package.json');
+  return rootPackageJson.name === 'rxap';
+}
+
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
   CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version');
   CoerceTargetDefaultsDependency(nxJson, 'build', '^build');
   CoerceTargetDefaultsDependency(nxJson, 'build', 'build-tailwind');
+  CoerceTargetDefaultsDependency(nxJson, 'build-tailwind', {
+    target: 'build',
+    projects: [
+      'browser-tailwind',
+    ],
+  });
 
   updateNxJson(tree, nxJson);
+}
+
+function addImplicitDependency(tree: Tree, project: ProjectConfiguration) {
+  project.implicitDependencies ??= [];
+  if (project.implicitDependencies.includes('browser-tailwind')) {
+    project.implicitDependencies =
+      project.implicitDependencies.filter((dependency) => dependency !== 'browser-tailwind');
+  }
+  if (!project.implicitDependencies.length) {
+    delete project.implicitDependencies;
+  }
 }
 
 export async function initLibraryGenerator(
@@ -193,6 +215,10 @@ export async function initLibraryGenerator(
     extendAngularSpecificEslint(tree, project);
     coerceTailwindThemeScss(tree, project);
     updateProjectTargets(tree, project);
+
+    if (isRxapPackagesProject(tree)) {
+      addImplicitDependency(tree, project);
+    }
 
     updateProjectConfiguration(tree, project.name, project);
 

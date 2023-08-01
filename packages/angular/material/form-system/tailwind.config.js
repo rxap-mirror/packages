@@ -1,4 +1,5 @@
 const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
+const { RXAP_TAILWIND_CONFIG } = require('../../../../dist/packages/browser/tailwind');
 const { join } = require('path');
 
 /** @type {import('tailwindcss').Config} */
@@ -14,4 +15,5 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  presets: [ RXAP_TAILWIND_CONFIG ],
 };

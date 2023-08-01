@@ -107,6 +107,16 @@
         "^production"
       ]
     },
+    "build-tailwind": {
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": [
+            "browser-tailwind"
+          ]
+        }
+      ]
+    },
     "readme": {
       "inputs": [
         "{projectRoot}/README.md.handlebars",
