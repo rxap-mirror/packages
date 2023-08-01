@@ -1,6 +1,6 @@
 {
   "name": "@rxap/nest-socket-io-client",
-  "version": "10.0.0",
+  "version": "10.0.1-dev.0",
   "type": "commonjs",
   "dependencies": {
     "socket.io-client": "^4.2.0",

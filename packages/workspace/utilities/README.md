@@ -15,3 +15,7 @@
 ```bash
 yarn add @rxap/workspace-utilities
 ```
+**Install peer dependencies:**
+```bash
+yarn add 
+```

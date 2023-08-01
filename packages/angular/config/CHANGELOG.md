@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.0.0-dev.6 (2023-08-01)
+
+### Bug Fixes
+
+- restructure and merge mono repos packages, schematics, plugins and nest ([a057d77](https://gitlab.com/rxap/packages/commit/a057d77ca2acf9426a03a497da8532f8a2fe2c86))
+- support url option for config loading method ([cffef12](https://gitlab.com/rxap/packages/commit/cffef12f248fc059dd9e89c62cb91acd33e0485d))
+- update package dependency versions ([45bd022](https://gitlab.com/rxap/packages/commit/45bd022d755c0c11f7d0bcc76d26b39928007941))
+
+### Features
+
+- support url functions ([b5b1160](https://gitlab.com/rxap/packages/commit/b5b1160887f664c36db434273f1215fb2d545de8))
+
 # [16.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/config@16.0.0-dev.4...@rxap/config@16.0.0-dev.5) (2023-07-11)
 
 ### Bug Fixes

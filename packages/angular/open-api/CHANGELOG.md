@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.0.0-dev.8 (2023-08-01)
+
+### Bug Fixes
+
+- restore OpenApiDataSource classes ([91b14c8](https://gitlab.com/rxap/packages/commit/91b14c84c0e8e82cd64ade84513826655f62cda4))
+- restructure and merge mono repos packages, schematics, plugins and nest ([a057d77](https://gitlab.com/rxap/packages/commit/a057d77ca2acf9426a03a497da8532f8a2fe2c86))
+- update package dependency versions ([45bd022](https://gitlab.com/rxap/packages/commit/45bd022d755c0c11f7d0bcc76d26b39928007941))
+
+### Features
+
+- add static InsertServer method ([d3d4d21](https://gitlab.com/rxap/packages/commit/d3d4d21a336101c680e20e77330b160ddaf80d4d))
+- use the ajv package instead of ajv-oai ([475603c](https://gitlab.com/rxap/packages/commit/475603c453f6d19009213cb36b6c68dd7f041d79))
+
 # [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.6...@rxap/open-api@16.0.0-dev.7) (2023-07-20)
 
 ### Features

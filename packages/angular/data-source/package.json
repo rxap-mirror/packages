@@ -1,21 +1,21 @@
 {
   "name": "@rxap/data-source",
-  "version": "16.0.0-dev.5",
+  "version": "16.0.0-dev.6",
   "peerDependencies": {
+    "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
-    "@rxap/definition": "^16.0.0-dev.4",
-    "@rxap/pattern": "^1.0.1-dev.0",
-    "@rxap/rxjs": "^1.0.1-dev.0",
-    "@rxap/utilities": "^16.0.0-dev.2",
-    "rxjs": "^7.8.0",
-    "@angular/router": "^16.1.4",
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/material": "^16.1.4",
-    "@rxap/environment": "*",
-    "@rxap/data-structure-tree": "*",
-    "@angular/cdk": "^16.1.4",
-    "@rxap/remote-method": "*"
+    "@angular/router": "^16.1.4",
+    "@rxap/data-structure-tree": "^1.0.1-dev.2",
+    "@rxap/definition": "^16.0.0-dev.5",
+    "@rxap/environment": "^16.0.0-dev.5",
+    "@rxap/pattern": "^1.0.1-dev.1",
+    "@rxap/remote-method": "^16.0.0-dev.5",
+    "@rxap/rxjs": "^1.0.1-dev.1",
+    "@rxap/utilities": "^16.0.0-dev.4",
+    "rxjs": "^7.8.0"
   },
   "sideEffects": false,
   "dependencies": {
@@ -51,20 +51,32 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.2"
+        "package": "@rxap/rxjs",
+        "version": "1.0.1-dev.1"
       },
       {
-        "package": "@rxap/definition",
+        "package": "@rxap/utilities",
         "version": "16.0.0-dev.4"
       },
       {
-        "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.0"
+        "package": "@rxap/pattern",
+        "version": "1.0.1-dev.1"
       },
       {
-        "package": "@rxap/pattern",
-        "version": "1.0.1-dev.0"
+        "package": "@rxap/definition",
+        "version": "16.0.0-dev.5"
+      },
+      {
+        "package": "@rxap/data-structure-tree",
+        "version": "1.0.1-dev.2"
+      },
+      {
+        "package": "@rxap/environment",
+        "version": "16.0.0-dev.5"
+      },
+      {
+        "package": "@rxap/remote-method",
+        "version": "16.0.0-dev.5"
       }
     ]
   }

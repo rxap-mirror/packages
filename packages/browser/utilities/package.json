@@ -1,6 +1,6 @@
 {
   "name": "@rxap/browser-utilities",
-  "version": "0.0.1",
+  "version": "0.0.2-dev.0",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -29,5 +29,8 @@
   },
   "dependencies": {
     "tslib": "2.6.1"
+  },
+  "nx-migrations": {
+    "packageGroup": []
   }
 }

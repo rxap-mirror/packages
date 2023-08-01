@@ -1,6 +1,6 @@
 {
   "name": "@rxap/generator-utilities",
-  "version": "1.0.1-dev.1",
+  "version": "1.0.1-dev.2",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -28,8 +28,8 @@
     "email": "mmuenker@digitaix.com"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.5.0",
-    "@nx/angular": "^16.5.0"
+    "@nx/angular": "^16.5.0",
+    "@nx/devkit": "^16.5.0"
   },
   "dependencies": {
     "tslib": "2.5.3"

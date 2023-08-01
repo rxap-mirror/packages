@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.0.0-dev.4 (2023-08-01)
+
+### Bug Fixes
+
+- restructure and merge mono repos packages, schematics, plugins and nest ([a057d77](https://gitlab.com/rxap/packages/commit/a057d77ca2acf9426a03a497da8532f8a2fe2c86))
+- support array with string, null or undefined ([eacf70c](https://gitlab.com/rxap/packages/commit/eacf70c02ab86601722e8cc65b705f4349773f25))
+
+### Features
+
+- add joinWith and joinWithDash utilities ([fcbbe14](https://gitlab.com/rxap/packages/commit/fcbbe1497bfb0f307501c2835d5d5bb88b4db258))
+
 # [16.0.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.2...@rxap/utilities@16.0.0-dev.3) (2023-07-11)
 
 **Note:** Version bump only for package @rxap/utilities

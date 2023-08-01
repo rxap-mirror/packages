@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematic-nestjs",
-  "version": "0.0.1",
+  "version": "0.0.2-dev.0",
   "type": "commonjs",
   "schematics": "./collection.json",
   "publishConfig": {
@@ -29,15 +29,31 @@
     "email": "mmuenker@digitaix.com"
   },
   "dependencies": {
-    "yaml": "2.3.1",
-    "tslib": "2.6.1"
+    "tslib": "2.6.1",
+    "yaml": "2.3.1"
   },
   "peerDependencies": {
-    "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-utilities": "*",
     "@angular-devkit/core": "^16.1.4",
-    "@rxap/schematics-ts-morph": "*",
-    "ts-morph": "^18.0.0",
-    "@rxap/utilities": "*"
+    "@angular-devkit/schematics": "^16.1.4",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.5",
+    "@rxap/schematics-utilities": "^16.0.0-dev.6",
+    "@rxap/utilities": "^16.0.0-dev.4",
+    "ts-morph": "^18.0.0"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/schematics-ts-morph",
+        "version": "16.0.0-dev.5"
+      },
+      {
+        "package": "@rxap/schematics-utilities",
+        "version": "16.0.0-dev.6"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.4"
+      }
+    ]
   }
 }

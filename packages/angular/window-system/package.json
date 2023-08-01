@@ -1,17 +1,17 @@
 {
   "name": "@rxap/window-system",
-  "version": "16.0.0-dev.5",
+  "version": "16.0.0-dev.6",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/material": "^16.1.4",
-    "@rxap/directives": "^16.0.0-dev.4",
-    "@rxap/material-directives": "^16.0.0-dev.5",
-    "@rxap/rxjs": "^1.0.1-dev.0",
-    "@rxap/services": "^16.0.0-dev.4",
-    "@rxap/utilities": "^16.0.0-dev.2",
+    "@rxap/directives": "^16.0.0-dev.5",
+    "@rxap/material-directives": "^16.0.0-dev.7",
+    "@rxap/rxjs": "^1.0.1-dev.1",
+    "@rxap/services": "^16.0.0-dev.5",
+    "@rxap/utilities": "^16.0.0-dev.4",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -48,23 +48,23 @@
     "packageGroup": [
       {
         "package": "@rxap/directives",
-        "version": "16.0.0-dev.4"
-      },
-      {
-        "package": "@rxap/material-directives",
         "version": "16.0.0-dev.5"
       },
       {
+        "package": "@rxap/material-directives",
+        "version": "16.0.0-dev.7"
+      },
+      {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.0"
+        "version": "1.0.1-dev.1"
       },
       {
         "package": "@rxap/services",
-        "version": "16.0.0-dev.4"
+        "version": "16.0.0-dev.5"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.2"
+        "version": "16.0.0-dev.4"
       }
     ]
   }

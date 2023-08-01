@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.0.0-dev.8 (2023-08-01)
+
+### Bug Fixes
+
+- add glob and fx-extra to package blacklist ([ac94d83](https://gitlab.com/rxap/packages/commit/ac94d83a52efd694fff36afafaadd824df54c525))
+- **check-version:** exclude pre release suffix in comparison ([4dce004](https://gitlab.com/rxap/packages/commit/4dce0048bc2985d8d04f4653a41669591dc54b68))
+- **fix-dependencies:** reuse existing project dependency version ([288768c](https://gitlab.com/rxap/packages/commit/288768cb2680560313da862b0c2aabc3e8f3207c))
+- ignore express and axios packages ([f9234c8](https://gitlab.com/rxap/packages/commit/f9234c88bdec7ffaeb93d5a3a5e1de1d35bbb587))
+- ignore projects that have no package.json ([0299bfc](https://gitlab.com/rxap/packages/commit/0299bfc45553853b1c6c9e3e88e4c8ce2b4ac6b4))
+- **init:** add the fix-dependencies target and update the preversion script ([05cfb76](https://gitlab.com/rxap/packages/commit/05cfb7626a3329b3c419016525d4ad1d1f1212ef))
+- **init:** use init plugin generator for plugin projects ([602f623](https://gitlab.com/rxap/packages/commit/602f62361ac6e10502cfe775d7ec50527e6afec3))
+- move GetLatestPackageVersion to @rxap/node-utilities ([72cfdb8](https://gitlab.com/rxap/packages/commit/72cfdb8863b9e6ca567f87d90b8851eca930a2e1))
+- remove scss assets copies if \_index.scss does not exist ([22aa410](https://gitlab.com/rxap/packages/commit/22aa41063fa0d24cdcfaee4a85e042390b3d44de))
+- restructure and merge mono repos packages, schematics, plugins and nest ([a057d77](https://gitlab.com/rxap/packages/commit/a057d77ca2acf9426a03a497da8532f8a2fe2c86))
+- **run-generator:** support dry-run and without-project-argument flags ([19e3fa5](https://gitlab.com/rxap/packages/commit/19e3fa514af26044191a147a77c877e14c701b97))
+- update package dependency versions ([45bd022](https://gitlab.com/rxap/packages/commit/45bd022d755c0c11f7d0bcc76d26b39928007941))
+- **update-package-group:** only include @rxap/\* packages ([20e6c72](https://gitlab.com/rxap/packages/commit/20e6c72f1f69c0569bfe2655443b4f7533b31c79))
+- **update-package-group:** use pined version instead of range ([a18c421](https://gitlab.com/rxap/packages/commit/a18c421093a98b84a3041052a4739df418f970f4))
+
+### Features
+
+- **executor:** add check version ([16b9f21](https://gitlab.com/rxap/packages/commit/16b9f21e4ad29fabe08fea6e095d3f9a469b03b7))
+- **generator:** add init-plugin ([fa4d996](https://gitlab.com/rxap/packages/commit/fa4d9967229918b96c8976881705ab7726c1e96c))
+- **init:** execute nest init generator if project is for nestjs ([94b2a18](https://gitlab.com/rxap/packages/commit/94b2a1841a0c6c65bed4ececefa2fed033be8c14))
+
 # [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.6...@rxap/plugin-library@16.0.0-dev.7) (2023-07-20)
 
 ### Bug Fixes

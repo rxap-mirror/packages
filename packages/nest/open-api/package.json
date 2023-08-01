@@ -1,6 +1,6 @@
 {
   "name": "@rxap/nest-open-api",
-  "version": "10.0.0",
+  "version": "10.0.1-dev.0",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -32,16 +32,28 @@
     "email": "mmuenker@digitaix.com"
   },
   "peerDependencies": {
+    "@nestjs/axios": "^3.0.0",
     "@nestjs/common": "^10.0.5",
     "@nestjs/core": "^10.0.5",
-    "rxjs": "^7.8.0",
+    "@nestjs/swagger": "^7.1.2",
+    "@nestjs/terminus": "^10.0.1",
+    "@rxap/nest-utilities": "^10.0.1-dev.0",
+    "@rxap/utilities": "^16.0.0-dev.4",
+    "@sentry/core": "^7.28.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
-    "@nestjs/swagger": "^7.1.2",
-    "@rxap/nest-utilities": "*",
-    "@nestjs/terminus": "^10.0.1",
-    "@rxap/utilities": "*",
-    "@sentry/core": "^7.28.1",
-    "@nestjs/axios": "^3.0.0"
+    "rxjs": "^7.8.0"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/nest-utilities",
+        "version": "10.0.1-dev.0"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.4"
+      }
+    ]
   }
 }

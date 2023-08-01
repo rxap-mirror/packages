@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.0.0-dev.10 (2023-08-01)
+
+### Bug Fixes
+
+- add missing utility modules ([782ea5d](https://gitlab.com/rxap/packages/commit/782ea5d41816f476700a1e88918af83303f26fc9))
+- remove material legacy imports ([e6f95c4](https://gitlab.com/rxap/packages/commit/e6f95c49554cfd93f415fd49f1bf8c089df177fa))
+- restructure and merge mono repos packages, schematics, plugins and nest ([a057d77](https://gitlab.com/rxap/packages/commit/a057d77ca2acf9426a03a497da8532f8a2fe2c86))
+- simplify types ([522d05e](https://gitlab.com/rxap/packages/commit/522d05eb4dd454a2afe778ede355bfd75321c443))
+- simplify types ([707d284](https://gitlab.com/rxap/packages/commit/707d284891b72a8aa9afd1dbd6902d80eef28ea8))
+- **table-column-manu:** add missing utility module ([ee43748](https://gitlab.com/rxap/packages/commit/ee43748cd0bdef0f00bd6ae9b5553eba1dbb38b7))
+- update package dependency versions ([45bd022](https://gitlab.com/rxap/packages/commit/45bd022d755c0c11f7d0bcc76d26b39928007941))
+
 # [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.8...@rxap/material-table-system@16.0.0-dev.9) (2023-07-20)
 
 ### Bug Fixes

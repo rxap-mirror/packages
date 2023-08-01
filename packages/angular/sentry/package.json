@@ -1,9 +1,9 @@
 {
   "name": "@rxap/ngx-sentry",
-  "version": "16.0.0",
+  "version": "16.0.1-dev.0",
   "peerDependencies": {
-    "@rxap/environment": "*",
-    "@rxap/config": "*",
+    "@rxap/config": "^16.0.0-dev.6",
+    "@rxap/environment": "^16.0.0-dev.5",
     "@sentry/angular-ivy": "^7.60.1",
     "@sentry/browser": "^7.60.1",
     "@sentry/integrations": "^7.60.1"
@@ -37,5 +37,17 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/config",
+        "version": "16.0.0-dev.6"
+      },
+      {
+        "package": "@rxap/environment",
+        "version": "16.0.0-dev.5"
+      }
+    ]
   }
 }

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.0.0-dev.5 (2023-08-01)
+
+### Bug Fixes
+
+- restructure and merge mono repos packages, schematics, plugins and nest ([a057d77](https://gitlab.com/rxap/packages/commit/a057d77ca2acf9426a03a497da8532f8a2fe2c86))
+- update package dependency versions ([45bd022](https://gitlab.com/rxap/packages/commit/45bd022d755c0c11f7d0bcc76d26b39928007941))
+
+### Features
+
+- add AddComponentImport function ([54938f3](https://gitlab.com/rxap/packages/commit/54938f3ff213f115c18e02fd2310340bf986da59))
+- merge external changes ([ba061b6](https://gitlab.com/rxap/packages/commit/ba061b6231b87f0c3f3cf99173e6d369ca8c5c0b))
+
 # [16.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.3...@rxap/schematics-ts-morph@16.0.0-dev.4) (2023-07-10)
 
 ### Bug Fixes

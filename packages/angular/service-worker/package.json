@@ -1,13 +1,13 @@
 {
   "name": "@rxap/service-worker",
-  "version": "16.0.0-dev.5",
+  "version": "16.0.0-dev.6",
   "peerDependencies": {
     "@angular/core": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/service-worker": "^16.1.4",
-    "@rxap/life-cycle": "^16.0.0-dev.3",
-    "rxjs": "^7.8.0",
-    "@rxap/environment": "*"
+    "@rxap/environment": "^16.0.0-dev.5",
+    "@rxap/life-cycle": "^16.0.0-dev.4",
+    "rxjs": "^7.8.0"
   },
   "sideEffects": false,
   "dependencies": {
@@ -42,8 +42,12 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@rxap/environment",
+        "version": "16.0.0-dev.5"
+      },
+      {
         "package": "@rxap/life-cycle",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       }
     ]
   }

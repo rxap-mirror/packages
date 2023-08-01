@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-utilities",
-  "version": "16.0.0",
+  "version": "16.1.0-dev.0",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -29,7 +29,7 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/node-utilities": "^1.0.1-dev.1",
+    "@rxap/node-utilities": "^1.0.1-dev.2",
     "nx": "^16.5.0"
   },
   "dependencies": {
@@ -39,7 +39,7 @@
     "packageGroup": [
       {
         "package": "@rxap/node-utilities",
-        "version": "1.0.1-dev.1"
+        "version": "1.0.1-dev.2"
       }
     ]
   }

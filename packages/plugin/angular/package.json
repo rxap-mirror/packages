@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-angular",
-  "version": "16.0.0",
+  "version": "16.1.0-dev.0",
   "type": "commonjs",
   "generators": "./generators.json",
   "publishConfig": {
@@ -34,12 +34,32 @@
     "tslib": "2.6.1"
   },
   "peerDependencies": {
-    "@rxap/generator-utilities": "*",
     "@nx/devkit": "^16.5.0",
-    "@rxap/schematics-ts-morph": "*",
-    "@rxap/workspace-ts-morph": "*",
-    "@rxap/workspace-utilities": "*",
-    "ts-morph": "^18.0.0",
-    "nx": "^16.5.0"
+    "@rxap/generator-utilities": "^1.0.1-dev.2",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.5",
+    "@rxap/workspace-ts-morph": "^0.0.2-dev.0",
+    "@rxap/workspace-utilities": "^0.1.0-dev.0",
+    "nx": "^16.5.0",
+    "ts-morph": "^18.0.0"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/generator-utilities",
+        "version": "1.0.1-dev.2"
+      },
+      {
+        "package": "@rxap/schematics-ts-morph",
+        "version": "16.0.0-dev.5"
+      },
+      {
+        "package": "@rxap/workspace-ts-morph",
+        "version": "0.0.2-dev.0"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "0.1.0-dev.0"
+      }
+    ]
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematics-utilities",
-  "version": "16.0.0-dev.5",
+  "version": "16.0.0-dev.6",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -29,15 +29,23 @@
   },
   "peerDependencies": {
     "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/workspace-utilities": "*",
-    "@rxap/utilities": "*",
-    "@nx/devkit": "^16.5.0"
+    "@nx/devkit": "^16.5.0",
+    "@rxap/utilities": "^16.0.0-dev.4",
+    "@rxap/workspace-utilities": "^0.1.0-dev.0"
   },
   "dependencies": {
     "tslib": "2.5.3"
   },
   "nx-migrations": {
     "packageGroup": [
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.4"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "0.1.0-dev.0"
+      },
       {
         "package": "@rxap/node-utilities",
         "version": "1.0.1-dev.1"

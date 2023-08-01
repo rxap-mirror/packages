@@ -1,15 +1,15 @@
 {
   "name": "@rxap/xml-parser",
-  "version": "16.0.0-dev.4",
+  "version": "16.0.0-dev.5",
   "type": "commonjs",
   "dependencies": {
     "tslib": "2.5.3",
     "xmldom": "^0.6.0"
   },
   "peerDependencies": {
-    "@rxap/mixin": "^16.0.0-dev.4",
-    "@rxap/reflect-metadata": "^1.0.1-dev.0",
-    "@rxap/utilities": "^16.0.0-dev.2"
+    "@rxap/mixin": "^16.0.0-dev.5",
+    "@rxap/reflect-metadata": "^1.0.1-dev.1",
+    "@rxap/utilities": "^16.0.0-dev.4"
   },
   "devDependencies": {
     "@types/xmldom": "^0.1.31"
@@ -43,15 +43,15 @@
     "packageGroup": [
       {
         "package": "@rxap/mixin",
-        "version": "16.0.0-dev.4"
+        "version": "16.0.0-dev.5"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.1-dev.0"
+        "version": "1.0.1-dev.1"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.2"
+        "version": "16.0.0-dev.4"
       }
     ]
   }

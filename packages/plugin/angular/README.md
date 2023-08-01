@@ -16,6 +16,10 @@
 ```bash
 yarn add @rxap/plugin-angular
 ```
+**Install peer dependencies:**
+```bash
+yarn add 
+```
 **Execute the init generator:**
 ```bash
 yarn nx g @rxap/plugin-angular:init

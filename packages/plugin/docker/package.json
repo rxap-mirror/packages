@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-docker",
-  "version": "16.0.0-dev.5",
+  "version": "16.0.0-dev.6",
   "type": "commonjs",
   "generators": "./generators.json",
   "executors": "./executors.json",
@@ -9,8 +9,8 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.0.1-dev.1",
-    "@rxap/plugin-utilities": "^1.0.1-dev.1"
+    "@rxap/generator-utilities": "^1.0.1-dev.2",
+    "@rxap/plugin-utilities": "^16.1.0-dev.0"
   },
   "publishConfig": {
     "access": "public",
@@ -43,11 +43,11 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.0.1-dev.1"
+        "version": "1.0.1-dev.2"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "1.0.1-dev.1"
+        "version": "16.1.0-dev.0"
       }
     ]
   }

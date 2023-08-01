@@ -1,11 +1,11 @@
 {
   "name": "@rxap/material-directives",
-  "version": "16.0.0-dev.6",
+  "version": "16.0.0-dev.7",
   "peerDependencies": {
     "@angular/core": "^16.1.4",
     "@angular/material": "^16.1.4",
-    "@rxap/services": "^16.0.0-dev.4",
-    "@rxap/utilities": "^16.0.0-dev.3",
+    "@rxap/services": "^16.0.0-dev.5",
+    "@rxap/utilities": "^16.0.0-dev.4",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -43,11 +43,11 @@
     "packageGroup": [
       {
         "package": "@rxap/services",
-        "version": "16.0.0-dev.4"
+        "version": "16.0.0-dev.5"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.3"
+        "version": "16.0.0-dev.4"
       }
     ]
   }

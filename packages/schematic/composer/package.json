@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematic-composer",
-  "version": "0.0.1",
+  "version": "0.0.2-dev.0",
   "type": "commonjs",
   "schematics": "./collection.json",
   "publishConfig": {
@@ -33,8 +33,8 @@
   },
   "peerDependencies": {
     "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-utilities": "*",
-    "@rxap/utilities": "*",
-    "@rxap/schematics-ts-morph": "*"
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.5",
+    "@rxap/schematics-utilities": "^16.0.0-dev.6",
+    "@rxap/utilities": "^16.0.0-dev.4"
   }
 }
