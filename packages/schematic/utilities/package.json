@@ -32,7 +32,6 @@
     "@rxap/node-utilities": "^1.0.1-dev.1"
   },
   "dependencies": {
-    "semver": "^7.3.5",
     "tslib": "2.5.3"
   },
   "nx-migrations": {
