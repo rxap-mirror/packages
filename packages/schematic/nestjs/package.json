@@ -27,5 +27,8 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "dependencies": {
+    "yaml": "2.3.1"
   }
 }

@@ -23,6 +23,9 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/nest/open-api"
   },
+  "dependencies": {
+    "openapi-types": "10.0.0"
+  },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
