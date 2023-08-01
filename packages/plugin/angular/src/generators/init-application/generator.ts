@@ -16,6 +16,7 @@ import {
 import { CoerceImports } from '@rxap/schematics-ts-morph';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import { join } from 'path';
+import { SourceFile } from 'ts-morph';
 import { SkipNonAngularProject } from '../../lib/skip-project';
 import { InitGeneratorSchema } from '../init/schema';
 import { InitApplicationGeneratorSchema } from './schema';
@@ -170,7 +171,6 @@ function updateGitIgnore(project: ProjectConfiguration, tree: Tree, options: Ini
     const gitIgnorePath = join(project.sourceRoot, '.gitignore');
     CoerceIgnorePattern(tree, gitIgnorePath, [
       '/i18n',
-      '/build.json',
     ]);
   }
 
@@ -190,46 +190,84 @@ function updateTags(project: ProjectConfiguration, options: InitApplicationGener
   CoerceProjectTags(project, tags);
 }
 
+function assertStatements(statements: string[], sourceFile: SourceFile) {
+  const existingStatements = sourceFile.getStatements().map(s => s.getText()) ?? [];
+  for (const statement of statements) {
+    if (!existingStatements.includes(statement)) {
+      console.error(`Missing statement from main.ts:  ${ statement }`);
+      sourceFile.set({
+        statements: [
+          `const application = new StandaloneApplication(
+  environment,
+  AppComponent,
+  appConfig,
+);`,
+          `application.importProvidersFrom(LoggerModule.forRoot({
+  serverLoggingUrl: '/api/logs',
+  level: NgxLoggerLevel.DEBUG,
+  serverLogLevel: NgxLoggerLevel.ERROR
+}));`,
+          'application.bootstrap().catch((err) => console.error(err));',
+        ],
+      });
+      CoerceImports(sourceFile, [
+        {
+          moduleSpecifier: './app/app.component',
+          namedImports: [ 'AppComponent' ],
+        },
+        {
+          moduleSpecifier: './app/app.config',
+          namedImports: [ 'appConfig' ],
+        },
+        {
+          moduleSpecifier: './environment',
+          namedImports: [ 'environment' ],
+        },
+        {
+          moduleSpecifier: 'ngx-logger',
+          namedImports: [ 'NgxLoggerLevel', 'LoggerModule' ],
+        },
+        {
+          moduleSpecifier: '@rxap/ngx-bootstrap',
+          namedImports: [ 'StandaloneApplication' ],
+        },
+      ]);
+      return;
+    }
+  }
+}
+
 function updateMainFile(tree: Tree, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
   TsMorphAngularProjectTransform(tree, {
     project: project.name,
     // directory: '..' // to move from the apps/demo/src/app folder into the apps/demo/src folder
   }, (project, [ sourceFile ]) => {
 
-    const importDeclarations = [
-      { moduleSpecifier: '@angular/platform-browser', namedImports: [ 'bootstrapApplication' ] },
-      { moduleSpecifier: './app/app.component', namedImports: [ 'AppComponent' ] },
-      { moduleSpecifier: './app/app.config', namedImports: [ 'appConfig' ] },
-      { moduleSpecifier: './environment', namedImports: [ 'environment' ] },
-    ];
+    const importDeclarations = [];
 
     const statements: string[] = [];
 
-    // importDeclarations.push({ moduleSpecifier: '@rxap/environment', namedImports: [ 'UpdateEnvironment' ] });
-    // statements.push('await UpdateEnvironment(environment);');
+    statements.push('const application = new StandaloneApplication(');
+    statements.push('application.importProvidersFrom(LoggerModule.forRoot({');
+
+    assertStatements(statements, sourceFile);
 
     if (options.serviceWorker) {
       importDeclarations.push({ moduleSpecifier: '@rxap/service-worker', namedImports: [ 'UnregisterServiceWorker' ] });
-      statements.push('UnregisterServiceWorker(environment);');
-    }
-
-    if (options.config) {
-      importDeclarations.push({ moduleSpecifier: '@rxap/config', namedImports: [ 'ConfigService' ] });
-      // statements.push('await ConfigService.Load({ url: `/api/configuration/${ environment.tag ?? \'latest\' }/${ environment.name }` });');
-      statements.push('ConfigService.Config = {};');
+      statements.push('application.before(() => UnregisterServiceWorker(environment));');
     }
 
     if (options.openApi) {
       importDeclarations.push({ moduleSpecifier: '@rxap/open-api', namedImports: [ 'OpenApiInit' ] });
-      statements.push('OpenApiInit();');
+      statements.push('application.before(() => OpenApiInit());');
     }
 
     if (options.sentry) {
       importDeclarations.push({ moduleSpecifier: '@rxap/ngx-sentry', namedImports: [ 'SentryInit' ] });
-      statements.push('SentryInit(environment);');
+      statements.push('application.before(() => SentryInit(environment));');
     }
 
-    statements.push('bootstrapApplication(AppComponent, appConfig).catch((err) => console.error(err));');
+    statements.push('application.bootstrap().catch((err) => console.error(err));');
 
     CoerceImports(sourceFile, importDeclarations);
 
@@ -240,7 +278,7 @@ function updateMainFile(tree: Tree, project: ProjectConfiguration, options: Init
       if (!existingStatements.includes(statement)) {
         let index: number;
         if (lastStatement) {
-          index = existingStatements.indexOf(lastStatement) + 1;
+          index = existingStatements.findIndex(s => s.includes(statement)) + 1;
         } else {
           const importDeclarations = sourceFile.getImportDeclarations();
           if (importDeclarations.length) {
