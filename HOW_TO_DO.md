@@ -62,6 +62,34 @@ To add a secondary entry point to the library run the command:
 nx generate @nx/angular:library-secondary-entry-point --skipModule --library=angular-<project-name> --name=<entry-point>
 ```
 
+### Angular Application
+
+To create a new angular application package, run the command:
+
+```shell
+yarn nx g @nx/angular:application --importPath @rxap/<project-name>
+```
+
+Ensure the project `browser-tailwind` is added as implicitDependencies to the project. The ensures that the `browser-tailwind`
+project is build before the application is build. This is required to allow the import of `RXAP_TAILWIND_CONFIG` in the
+tailwind.config.js to work.
+Ensure the preset `RXAP_TAILWIND_CONFIG` from the `browser-tailwind` project is added to the `tailwind.config.js` file.
+
+```js
+const {createGlobPatternsForDependencies} = require('@nx/angular/tailwind');
+const {join} = require('path');
+const { RXAP_TAILWIND_CONFIG } = require('../../dist/packages/browser/tailwind');
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
+    ...createGlobPatternsForDependencies(__dirname),
+  ],
+  presets: [ RXAP_TAILWIND_CONFIG ],
+};
+```
+
 ### Nest Library
 
 To create a new nest library package, run the command:

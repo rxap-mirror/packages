@@ -22,7 +22,8 @@
     "angular-material-table-system",
     "angular-data-source",
     "angular",
-    "angular-material-table-select"
+    "angular-material-table-select",
+    "browser-tailwind"
   ],
   "tags": [
     "angular",

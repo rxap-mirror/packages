@@ -7392,6 +7392,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/browser-tailwind@workspace:packages/browser/tailwind":
+  version: 0.0.0-use.local
+  resolution: "@rxap/browser-tailwind@workspace:packages/browser/tailwind"
+  languageName: unknown
+  linkType: soft
+
 "@rxap/browser-utilities@workspace:packages/browser/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/browser-utilities@workspace:packages/browser/utilities"
