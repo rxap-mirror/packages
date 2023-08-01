@@ -12,6 +12,7 @@ import {
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
 import { AngularInitGenerator } from '@rxap/plugin-angular';
+import { CoerceTargetDefaultsDependency } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { InitGeneratorSchema } from './schema';
 
@@ -37,7 +38,7 @@ function updateProjectTargets(project: ProjectConfiguration, options: InitGenera
 
   project.targets['build'].options ??= {};
   project.targets['build'].options.assets ??= [];
-  CoerceAssets(project.targets['build'].options.assets, [ 'build.json' ]);
+  CoerceAssets(project.targets['build'].options.assets, [ join(project.sourceRoot, 'build.json') ]);
 
   project.targets['build-info'] ??= {
     executor: '@rxap/plugin-application:build-info',
@@ -72,32 +73,10 @@ function updateProjectTargets(project: ProjectConfiguration, options: InitGenera
 function updateTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
-  nxJson.targetDefaults ??= {};
-  nxJson.targetDefaults['docker'] ??= {};
-  nxJson.targetDefaults['docker'].dependsOn ??= [];
-  if (!nxJson.targetDefaults['docker'].dependsOn.includes('build')) {
-    nxJson.targetDefaults['docker'].dependsOn.push('build');
-  }
-  if (nxJson.targetDefaults['save']) {
-    delete nxJson.targetDefaults['save'];
-  }
-  nxJson.targetDefaults['docker-save'] ??= {};
-  nxJson.targetDefaults['docker-save'].dependsOn ??= [];
-  if (!nxJson.targetDefaults['docker-save'].dependsOn.includes('docker')) {
-    nxJson.targetDefaults['save'].dependsOn.push('docker');
-  }
-
-  nxJson.targetDefaults['build'] ??= {};
-  nxJson.targetDefaults['build'].dependsOn ??= [];
-  if (!nxJson.targetDefaults['build'].dependsOn.includes('build-info')) {
-    nxJson.targetDefaults['build'].dependsOn.push('build-info');
-  }
-
-  nxJson.targetDefaults['serve'] ??= {};
-  nxJson.targetDefaults['serve'].dependsOn ??= [];
-  if (!nxJson.targetDefaults['serve'].dependsOn.includes('build-info')) {
-    nxJson.targetDefaults['serve'].dependsOn.push('build-info');
-  }
+  CoerceTargetDefaultsDependency(nxJson, 'docker', 'build');
+  CoerceTargetDefaultsDependency(nxJson, 'docker-save', 'docker');
+  CoerceTargetDefaultsDependency(nxJson, 'build', 'build-info');
+  CoerceTargetDefaultsDependency(nxJson, 'serve', 'build-info');
 
   updateNxJson(tree, nxJson);
 }

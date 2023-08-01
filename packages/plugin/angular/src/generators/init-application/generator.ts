@@ -15,6 +15,7 @@ import {
 } from '@rxap/generator-utilities';
 import { CoerceImports } from '@rxap/schematics-ts-morph';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
+import { CoerceTargetDefaultsDependency } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { SourceFile } from 'ts-morph';
 import { SkipNonAngularProject } from '../../lib/skip-project';
@@ -139,27 +140,13 @@ function updateProjectTargets(
 function updateTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchema) {
   const nxJson = readNxJson(tree);
 
-  nxJson.targetDefaults ??= {};
-
   if (options.i18n) {
-    nxJson.targetDefaults['i18n'] ??= {};
-    nxJson.targetDefaults['i18n'].dependsOn ??= [];
-    if (!nxJson.targetDefaults['i18n'].dependsOn.includes('build')) {
-      nxJson.targetDefaults['i18n'].dependsOn.push('build');
-    }
+    CoerceTargetDefaultsDependency(nxJson, 'i18n', 'build');
   }
 
   if (options.localazy) {
-    nxJson.targetDefaults['build'] ??= {};
-    nxJson.targetDefaults['build'].dependsOn ??= [];
-    if (!nxJson.targetDefaults['build'].dependsOn.includes('localazy-download')) {
-      nxJson.targetDefaults['build'].dependsOn.push('localazy-download');
-    }
-    nxJson.targetDefaults['localazy-upload'] ??= {};
-    nxJson.targetDefaults['localazy-upload'].dependsOn ??= [];
-    if (!nxJson.targetDefaults['localazy-upload'].dependsOn.includes('extract-i18n')) {
-      nxJson.targetDefaults['localazy-upload'].dependsOn.push('extract-i18n');
-    }
+    CoerceTargetDefaultsDependency(nxJson, 'build', 'localazy-download');
+    CoerceTargetDefaultsDependency(nxJson, 'localazy-upload', 'extract-i18n');
   }
 
   updateNxJson(tree, nxJson);
