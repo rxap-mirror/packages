@@ -18,7 +18,7 @@ import {
 
 export interface CoerceFormTableActionOptions extends CoerceTableActionOptions {
   loadOperationId?: string;
-  scope: string;
+  scope?: string;
 }
 
 export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions) {

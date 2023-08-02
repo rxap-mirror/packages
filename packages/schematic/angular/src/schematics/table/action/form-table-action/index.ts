@@ -68,7 +68,7 @@ interface UseOperationResponseAsFormTypeRuleOptions
   extends TsMorphAngularProjectTransformOptions {
   name: string;
   operationId: string;
-  scope: string;
+  scope?: string;
 }
 
 function UseOperationResponseAsFormTypeRule(

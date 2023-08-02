@@ -63,8 +63,17 @@ export function NormalizeTableComponentOptions(
 ): NormalizedTableComponentOptions {
   const normalizedMinimumTableComponentOptions = NormalizeMinimumTableComponentOptions(options);
   AssertAngularOptionsNameProperty(normalizedMinimumTableComponentOptions);
-  const { name } = normalizedMinimumTableComponentOptions;
+  const {
+    name,
+    backend,
+  } = normalizedMinimumTableComponentOptions;
   const normalizedTableOptions = NormalizeTableOptions(options, name);
+  const { openApi } = normalizedTableOptions;
+  if (backend === BackendTypes.OPEN_API) {
+    if (!openApi) {
+      throw new Error('openApi options must be provided. If backend is open-api');
+    }
+  }
   return Object.seal({
     ...normalizedMinimumTableComponentOptions,
     ...normalizedTableOptions,
@@ -252,6 +261,77 @@ function filterColumnRule(normalizedOptions: NormalizedTableComponentOptions): R
   return noop();
 }
 
+function openApiBackendRule(normalizedOptions: NormalizedTableComponentOptions): Rule {
+
+  const {
+    project,
+    feature,
+    shared,
+    columnList,
+    context,
+    nestModule,
+    componentName,
+    directory,
+    overwrite,
+    scope,
+    openApi,
+  } = normalizedOptions;
+
+  return chain([
+    () => console.log('Add the open api methods to the table component providers'),
+    CoerceComponentRule({
+      project,
+      feature,
+      shared,
+      name: componentName,
+      directory,
+      overwrite,
+      tsMorphTransform: (
+        project: Project,
+        [ sourceFile ]: [ SourceFile ],
+      ) => {
+        if (openApi.adapter) {
+          AddComponentProvider(
+            sourceFile,
+            {
+              provide: 'TABLE_REMOTE_METHOD_ADAPTER_FACTORY',
+              useValue: openApi.adapter.className,
+            },
+            [
+              {
+                moduleSpecifier: '@rxap/material-table-system',
+                namedImports: [ 'TABLE_REMOTE_METHOD_ADAPTER_FACTORY' ],
+              },
+              {
+                moduleSpecifier: openApi.adapter.importPath,
+                namedImports: [ openApi.adapter.className ],
+              },
+            ],
+          );
+        }
+        AddComponentProvider(
+          sourceFile,
+          {
+            provide: 'RXAP_TABLE_METHOD',
+            useClass: OperationIdToClassName(openApi.operationId),
+          },
+          [
+            {
+              moduleSpecifier: '@rxap/material-table-system',
+              namedImports: [ 'RXAP_TABLE_METHOD' ],
+            },
+            {
+              moduleSpecifier: OperationIdToClassImportPath(openApi.operationId, scope),
+              namedImports: [ OperationIdToClassName(openApi.operationId) ],
+            },
+          ],
+        );
+      },
+    }),
+  ]);
+
+}
+
 function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): Rule {
 
   const {
@@ -428,6 +508,8 @@ function backendRule(normalizedOptions: NormalizedTableComponentOptions): Rule {
       return nestjsBackendRule(normalizedOptions);
     case BackendTypes.LOCAL:
       return localBackendRule(normalizedOptions);
+    case BackendTypes.OPEN_API:
+      return openApiBackendRule(normalizedOptions);
   }
   return noop();
 }

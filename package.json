@@ -11,8 +11,15 @@
     "prepack": "env-cmd bash tools/scripts/lerna/hooks/prepack.sh",
     "lerna:publish": "env-cmd bash tools/scripts/lerna/publish.sh",
     "lerna:version": "env-cmd bash tools/scripts/lerna/version.sh",
-    "schematic": "bash tools/scripts/schematic.sh"
+    "schematic": "bash tools/scripts/schematic.sh",
+    "server": "bash tools/start-local-dev-services.sh",
+    "generate:tls": "env-cmd bash ./docker/traefik/tls/generate.sh",
+    "setup:local-deploy": "env-cmd bash ./docker/traefik/setup.sh",
+    "webpack-bundle-analyzer": "webpack-bundle-analyzer"
   },
+  "os": [
+    "!win32"
+  ],
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"

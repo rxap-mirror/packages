@@ -13,7 +13,7 @@ import {
 
 export interface CoerceOperationTableActionRuleOptions extends CoerceTableActionOptions {
   operationId: string;
-  scope: string;
+  scope?: string;
 }
 
 export function CoerceOperationTableActionRule(options: CoerceOperationTableActionRuleOptions) {

@@ -25,13 +25,14 @@ export function OperationIdToParameterClassName(operationId: string) {
   return classify(id) + 'Parameter';
 }
 
-export function OperationIdToClassImportPath(operationId: string, scope: string) {
-  if (!scope) {
-    throw new Error('scope is required');
-  }
+export function OperationIdToClassImportPath(operationId: string, scope?: string) {
   let [ id, serverId ] = operationId.split('@');
   serverId ??= 'legacy';
-  return `${ scope }/open-api-${ dasherize(serverId) }/remote-methods/${ dasherize(id) }.remote-method`;
+  if (scope) {
+    return `${ scope }/open-api-${ dasherize(serverId) }/remote-methods/${ dasherize(id) }.remote-method`;
+  } else {
+    return `open-api-${ dasherize(serverId) }/remote-methods/${ dasherize(id) }.remote-method`;
+  }
 }
 
 export function OperationIdToRequestBodyClassName(operationId: string) {
@@ -39,48 +40,57 @@ export function OperationIdToRequestBodyClassName(operationId: string) {
   return classify(id) + 'RequestBody';
 }
 
-export function ServiceOperationIdToClassImportPath(operationId: string, scope: string) {
+export function ServiceOperationIdToClassImportPath(operationId: string, scope?: string) {
+  let [ id, serverId ] = operationId.split('@');
+  serverId ??= 'legacy';
+  if (scope) {
+    return `${ scope }/service-open-api-${ dasherize(serverId) }/commands/${ dasherize(id) }.command`;
+  } else {
+    return `service-open-api-${ dasherize(serverId) }/commands/${ dasherize(id) }.command`;
+  }
+}
+
+export function OpenApiResponseClassImportPath(response: string, serverId: string, scope?: string) {
+  if (scope) {
+    return `${ scope }/open-api-${ dasherize(serverId) }/responses/${ dasherize(response)
+      .replace('-response', '') }.response`;
+  } else {
+    return `open-api-${ dasherize(serverId) }/responses/${ dasherize(response)
+      .replace('-response', '') }.response`;
+  }
+}
+
+export function OperationIdToResponseClassImportPath(operationId: string, scope?: string) {
+  let [ id, serverId ] = operationId.split('@');
+  serverId ??= 'legacy';
+  if (scope) {
+    return `${ scope }/open-api-${ dasherize(serverId) }/responses/${ dasherize(id) }.response`;
+  } else {
+    return `open-api-${ dasherize(serverId) }/responses/${ dasherize(id) }.response`;
+  }
+}
+
+export function OperationIdToParameterClassImportPath(operationId: string, scope?: string) {
   if (!scope) {
     throw new Error('scope is required');
   }
   let [ id, serverId ] = operationId.split('@');
   serverId ??= 'legacy';
-  return `${ scope }/service-open-api-${ dasherize(serverId) }/commands/${ dasherize(id) }.command`;
+  if (scope) {
+    return `${ scope }/open-api-${ dasherize(serverId) }/parameters/${ dasherize(id) }.parameter`;
+  } else {
+    return `open-api-${ dasherize(serverId) }/parameters/${ dasherize(id) }.parameter`;
+  }
 }
 
-export function OpenApiResponseClassImportPath(response: string, serverId: string, scope: string) {
-  if (!scope) {
-    throw new Error('scope is required');
-  }
-  return `${ scope }/open-api-${ dasherize(serverId) }/responses/${ dasherize(response)
-    .replace('-response', '') }.response`;
-}
-
-export function OperationIdToResponseClassImportPath(operationId: string, scope: string) {
-  if (!scope) {
-    throw new Error('scope is required');
-  }
+export function OperationIdToRequestBodyClassImportPath(operationId: string, scope?: string) {
   let [ id, serverId ] = operationId.split('@');
   serverId ??= 'legacy';
-  return `${ scope }/open-api-${ dasherize(serverId) }/responses/${ dasherize(id) }.response`;
-}
-
-export function OperationIdToParameterClassImportPath(operationId: string, scope: string) {
-  if (!scope) {
-    throw new Error('scope is required');
+  if (scope) {
+    return `${ scope }/open-api-${ dasherize(serverId) }/request-bodies/${ dasherize(id) }.request-body`;
+  } else {
+    return `open-api-${ dasherize(serverId) }/request-bodies/${ dasherize(id) }.request-body`;
   }
-  let [ id, serverId ] = operationId.split('@');
-  serverId ??= 'legacy';
-  return `${ scope }/open-api-${ dasherize(serverId) }/parameters/${ dasherize(id) }.parameter`;
-}
-
-export function OperationIdToRequestBodyClassImportPath(operationId: string, scope: string) {
-  if (!scope) {
-    throw new Error('scope is required');
-  }
-  let [ id, serverId ] = operationId.split('@');
-  serverId ??= 'legacy';
-  return `${ scope }/open-api-${ dasherize(serverId) }/request-bodies/${ dasherize(id) }.request-body`;
 }
 
 export function buildOperationId(options: {

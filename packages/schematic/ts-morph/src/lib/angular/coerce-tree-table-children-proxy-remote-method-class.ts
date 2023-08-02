@@ -18,7 +18,7 @@ import {
 export interface CoerceTreeTableChildrenProxyRemoteMethodClassOptions
   extends Omit<Omit<Omit<Omit<CoerceProxyRemoteMethodClassOptions, 'name'>, 'sourceType'>, 'targetType'>, 'proxyMethod'> {
   getChildrenOperationId: string;
-  scope: string;
+  scope?: string;
 }
 
 export function CoerceTreeTableChildrenProxyRemoteMethodClass(options: CoerceTreeTableChildrenProxyRemoteMethodClassOptions) {

@@ -28,7 +28,8 @@
       "enum": [
         "none",
         "local",
-        "nestjs"
+        "nestjs",
+        "open-api"
       ],
       "default": "none"
     },

@@ -8,7 +8,6 @@ import {
   NonNullableSelected,
   Normalized,
 } from '@rxap/utilities';
-import { GetWorkspaceScope } from '@rxap/workspace-utilities';
 import { BackendTypes } from './backend-types';
 
 export interface AngularOptions extends GlobalOptions {
@@ -22,9 +21,10 @@ export interface AngularOptions extends GlobalOptions {
   shared?: boolean;
   scope?: string;
   prefix?: string;
+  openApi?: any;
 }
 
-export type NormalizedAngularOptions = Readonly<NonNullableSelected<Normalized<AngularOptions>, 'backend' | 'scope'>>;
+export type NormalizedAngularOptions = Readonly<NonNullableSelected<Normalized<AngularOptions>, 'backend'>>;
 
 export function NormalizeAngularOptions(options: AngularOptions): NormalizedAngularOptions {
   let shared = options.shared ?? false;
@@ -47,7 +47,8 @@ export function NormalizeAngularOptions(options: AngularOptions): NormalizedAngu
     directory: options.directory ?? null,
     shared,
     prefix: options.prefix ?? null,
-    scope: options.scope ?? GetWorkspaceScope(),
+    scope: options.scope ?? null,
+    openApi: options.openApi ?? null,
   });
 }
 

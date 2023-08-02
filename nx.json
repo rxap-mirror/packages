@@ -217,7 +217,7 @@
     }
   },
   "workspaceLayout": {
-    "appsDir": "demos",
+    "appsDir": "applications",
     "libsDir": "packages"
   }
 }

@@ -1,0 +1,6 @@
+*.crt
+*.key
+*.srl
+*.csr
+ext.cnf
+ext.cnf.template

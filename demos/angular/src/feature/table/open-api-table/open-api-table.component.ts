@@ -49,9 +49,9 @@ import { MinimumTableControllerGetPageRemoteMethod } from 'open-api-service-app-
 import { Observable } from 'rxjs';
 
 @Component({
-  selector:        'rxap-minimum-table',
-  templateUrl:     './minimum-table.component.html',
-  styleUrls:       [ './minimum-table.component.scss' ],
+  selector: 'rxap-open-api-table',
+  templateUrl: './open-api-table.component.html',
+  styleUrls: [ './open-api-table.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [ RowAnimation ],
   standalone: true,
@@ -94,21 +94,22 @@ import { Observable } from 'rxjs';
     DataSourceErrorComponent,
     MatSnackBarModule,
   ],
-  providers: [{
+  providers: [
+    {
       provide: TABLE_REMOTE_METHOD_ADAPTER_FACTORY,
-    useValue: GetPageAdapterFactory,
+      useValue: GetPageAdapterFactory,
     },
     {
       provide: RXAP_TABLE_METHOD,
-      useClass: MinimumTableControllerGetPageRemoteMethod
-    }
-  ]
+      useClass: MinimumTableControllerGetPageRemoteMethod,
+    },
+  ],
 })
-export class MinimumTableComponent {
+export class OpenApiTableComponent {
 
   @Input()
   public parameters?: Observable<Record<string, unknown>>;
 
 }
 
-export default MinimumTableComponent;
+export default OpenApiTableComponent;

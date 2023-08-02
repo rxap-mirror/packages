@@ -1,0 +1,40 @@
+[
+  {
+    "package": "@rxap/schematic-angular",
+    "name": "table-component",
+    "options": {
+      "name": "open-api",
+      "backend": "open-api",
+      "openApi": {
+        "operationId": "MinimumTableController_getPage@service-app-angular-table",
+        "adapter": {
+          "className": "GetPageAdapterFactory",
+          "importPath": "@rxap/table-system"
+        }
+      },
+      "columnList": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "age",
+          "type": "number"
+        },
+        {
+          "name": "isActive",
+          "type": "boolean"
+        },
+        {
+          "name": "email"
+        },
+        {
+          "name": "rating",
+          "type": "number"
+        },
+        {
+          "name": "accountStatus"
+        }
+      ]
+    }
+  }
+]

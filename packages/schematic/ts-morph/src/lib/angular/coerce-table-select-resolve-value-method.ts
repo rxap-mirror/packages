@@ -13,7 +13,7 @@ import {
 
 export interface CoerceTableSelectResolveValueMethodOptions extends CoerceMethodClassOptions {
   operationId: string;
-  scope: string;
+  scope?: string;
 }
 
 export function CoerceTableSelectResolveValueMethodRule(options: CoerceTableSelectResolveValueMethodOptions) {
