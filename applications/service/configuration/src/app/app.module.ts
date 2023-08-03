@@ -16,21 +16,21 @@ import {
   ThrottlerModule,
 } from '@nestjs/throttler';
 import {
-  ENVIRONMENT,
-  GetLogLevels,
-  SentryOptionsFactory,
-} from '@rxap/nest-utilities';
-import {
   SENTRY_INTERCEPTOR_OPTIONS,
   SentryInterceptor,
   SentryModule,
 } from '@rxap/nest-sentry';
+import {
+  ENVIRONMENT,
+  GetLogLevels,
+  SentryOptionsFactory,
+} from '@rxap/nest-utilities';
 import * as Joi from 'joi';
+import { join } from 'path';
+import { ConfigurationModule } from '../configuration/configuration.module';
 import { environment } from '../environments/environment';
 import { AppController } from './app.controller';
 import { HealthModule } from './health/health.module';
-import { ConfigurationModule } from '../configuration/configuration.module';
-import { join } from 'path';
 
 @Module({
   imports: [
@@ -43,7 +43,7 @@ import { join } from 'path';
       validationSchema: Joi.object({
         PORT: Joi.number().default(3309),
         GLOBAL_API_PREFIX: Joi.string().default('api/configuration'),
-        SENTRY_DSN: Joi.string().required(),
+        SENTRY_DSN: Joi.string(),
         SENTRY_ENABLED: Joi.string().default(environment.sentry?.enabled ?? false),
         SENTRY_ENVIRONMENT: Joi.string(),
         SENTRY_RELEASE: Joi.string(),

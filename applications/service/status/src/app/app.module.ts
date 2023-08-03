@@ -25,9 +25,9 @@ import {
 } from '@rxap/nest-utilities';
 import * as Joi from 'joi';
 import { environment } from '../environments/environment';
+import { StatusModule } from '../status/status.module';
 import { AppController } from './app.controller';
 import { HealthModule } from './health/health.module';
-import { StatusModule } from '../status/status.module';
 
 @Module({
   imports: [
@@ -40,7 +40,7 @@ import { StatusModule } from '../status/status.module';
       validationSchema: Joi.object({
         PORT: Joi.number().default(3131),
         GLOBAL_API_PREFIX: Joi.string().default('api/status'),
-        SENTRY_DSN: Joi.string().required(),
+        SENTRY_DSN: Joi.string(),
         SENTRY_ENABLED: Joi.boolean().default(environment.sentry?.enabled ?? false),
         SENTRY_ENVIRONMENT: Joi.string(),
         SENTRY_RELEASE: Joi.string(),
