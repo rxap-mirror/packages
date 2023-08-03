@@ -1,13 +1,14 @@
-import { BuildExecutorSchema } from './schema';
-import { join } from 'path';
 import { ExecutorContext } from '@nx/devkit';
 import { GuessOutputPath } from '@rxap/plugin-utilities';
+import { join } from 'path';
 import {
   dockerBuild,
   dockerPush,
+  getFallBackImageTag,
   getGitlabRegistryDestination,
   loginToRegistry,
 } from '../utilities';
+import { BuildExecutorSchema } from './schema';
 
 
 export default async function runExecutor(
@@ -37,7 +38,8 @@ export default async function runExecutor(
   await loginToRegistry(options);
 
   const destinationList: string[] = [];
-  const fallbackImageName = 'docker';
+  const fallbackImageName = context.projectName;
+  const fallbackImageTag = await getFallBackImageTag(context);
 
   if (options.tag && !Array.isArray(options.tag)) {
     options.tag = [ options.tag ];
@@ -49,16 +51,25 @@ export default async function runExecutor(
       options,
       fallbackImageName,
       undefined,
-      context.configurationName,
+      fallbackImageTag,
     ));
   } else {
     for (const tag of options.tag) {
-      destinationList.push(getGitlabRegistryDestination(options, fallbackImageName, tag, context.configurationName));
+      destinationList.push(getGitlabRegistryDestination(
+        options,
+        fallbackImageName,
+        tag,
+        fallbackImageTag,
+      ));
     }
   }
 
   if (process.env.LATEST || options.latest) {
-    destinationList.push(getGitlabRegistryDestination(options, fallbackImageName, 'latest'));
+    destinationList.push(getGitlabRegistryDestination(
+      options,
+      fallbackImageName,
+      'latest',
+    ));
   }
 
   console.log(`start docker build for ${ options.dockerfile }`);

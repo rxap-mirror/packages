@@ -1,4 +1,3 @@
-import { SaveExecutorSchema } from './schema';
 import { ExecutorContext } from '@nx/devkit';
 import {
   GetProjectConfiguration,
@@ -7,8 +6,10 @@ import {
 } from '@rxap/plugin-utilities';
 import {
   dockerSave,
+  getFallBackImageTag,
   getGitlabRegistryDestination,
 } from '../utilities';
+import { SaveExecutorSchema } from './schema';
 
 function getOutputName(options: SaveExecutorSchema, context: ExecutorContext): string {
   const project = context.projectName;
@@ -24,7 +25,8 @@ export default async function runExecutor(
 ) {
 
   const destinationList: string[] = [];
-  const fallbackImageName = 'docker';
+  const fallbackImageName = context.projectName;
+  const fallbackImageTag = await getFallBackImageTag(context);
   const projectConfiguration = GetProjectConfiguration(context);
   const buildTarget = GetTarget(projectConfiguration, 'docker');
   const buildTargetOptions = GetTargetOptions(buildTarget, context.configurationName);
@@ -46,7 +48,7 @@ export default async function runExecutor(
       options,
       fallbackImageName,
       undefined,
-      context.configurationName,
+      fallbackImageTag,
       buildTargetOptions.imageName as string,
       buildTargetOptions.imageSuffix as string,
     ));
@@ -56,7 +58,7 @@ export default async function runExecutor(
         options,
         fallbackImageName,
         tag,
-        context.configurationName,
+        fallbackImageTag,
         buildTargetOptions.imageName as string,
         buildTargetOptions.imageSuffix as string,
       ));

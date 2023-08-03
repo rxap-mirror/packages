@@ -1,7 +1,9 @@
+import { ExecutorContext } from '@nx/devkit';
+import { GetCurrentBranch } from '@rxap/node-utilities';
 import { spawn } from 'child_process';
-import { BuildExecutorSchema } from './build/schema';
 import { mkdirSync } from 'fs';
 import { dirname } from 'path';
+import { BuildExecutorSchema } from './build/schema';
 
 export async function dockerLogin(command: string, registry: string, username: string, password: string) {
 
@@ -89,10 +91,30 @@ export async function loginToRegistry(options: BuildExecutorSchema) {
   }
 }
 
-export function getGitlabRegistryDestination(options: {
-  imageName?: string,
-  imageSuffix?: string
-}, fallbackImageName?: string, imageTag?: string, fallbackImageTag?: string, imageName?: string, imageSuffix?: string) {
+export async function getFallBackImageTag(context: ExecutorContext): Promise<string> {
+  let imageTag = 'latest';
+  try {
+    imageTag = await GetCurrentBranch();
+  } catch (e: any) {
+    console.log('Could not get current branch:', e.message);
+  }
+  if (context.configurationName !== 'production') {
+    imageTag = `${ imageTag }-${ context.configurationName ?? 'local' }`;
+  }
+  return imageTag;
+}
+
+export function getGitlabRegistryDestination(
+  options: {
+    imageName?: string,
+    imageSuffix?: string
+  },
+  fallbackImageName: string,
+  imageTag?: string,
+  fallbackImageTag?: string,
+  imageName: string | undefined = options.imageName,
+  imageSuffix: string | undefined = options.imageSuffix,
+) {
   const registryImage = process.env.REGISTRY_IMAGE ??
     process.env.CI_REGISTRY_IMAGE ??
     options.imageName ??
