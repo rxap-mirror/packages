@@ -38,6 +38,7 @@ function setGeneralTargetDefaults(tree: Tree) {
 
   CoerceTargetDefaultsDependency(nxJson, 'build', '^build');
   CoerceTargetDefaultsDependency(nxJson, 'build', 'readme');
+  CoerceTargetDefaultsDependency(nxJson, 'fix-dependencies', '^fix-dependencies');
 
   CoerceTargetDefaultsInput(
     nxJson,

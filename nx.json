@@ -57,6 +57,9 @@
     "fix-dependencies": {
       "inputs": [
         "typescript"
+      ],
+      "dependsOn": [
+        "^fix-dependencies"
       ]
     },
     "update-package-group": {
