@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "DockerCompose",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "tags": {
+      "alias": "tag",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The tags a project needs to be used to generate docker compose service"
+    },
+    "ignoreProjects": {
+      "alias": "ignoreProject",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The projects to ignore when generating docker compose service"
+    }
+  },
+  "required": []
+}

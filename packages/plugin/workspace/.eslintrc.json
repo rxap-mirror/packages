@@ -31,7 +31,8 @@
     },
     {
       "files": [
-        "./package.json"
+        "./package.json",
+        "./generators.json"
       ],
       "parser": "jsonc-eslint-parser",
       "rules": {

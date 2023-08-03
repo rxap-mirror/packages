@@ -26,5 +26,6 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
-  }
+  },
+  "generators": "./generators.json"
 }
