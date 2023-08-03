@@ -11,6 +11,7 @@ export interface TargetConfiguration {
   dependsOn?: NxJsonTargetDependsOn[];
   inputs?: TargetInputs;
   outputs?: string[];
+  configurations?: Record<string, Record<string, any>>;
 }
 
 export interface ProjectConfigurationWithTarget {
