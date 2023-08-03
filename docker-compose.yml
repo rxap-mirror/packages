@@ -35,6 +35,40 @@ services:
     restart: unless-stopped
     volumes:
       - "./not-found-nginx.conf:/etc/nginx/nginx.conf"
+  configuration:
+    image: registry.gitlab.com/rxap/packages/service/configuration:${CHANNEL:-development}
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.rxap-configuration.loadbalancer.server.port=3333
+      - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.path=/api/configuration/health
+      - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.interval=10s
+      - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.timeout=3s
+    volumes:
+      - ./shared/configuration:/app/assets
+    environment:
+      - ROOT_DOMAIN
+      - SENTRY_ENABLED=false
+      - LOG_LEVEL=verbose
+      - ROOT_DOMAIN_PORT
+    depends_on:
+      - traefik
+      - catch-all-api
+  service-status:
+    image: registry.gitlab.com/rxap/packages/service/status:${CHANNEL:-development}
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.rxap-status.loadbalancer.server.port=3333
+      - traefik.http.services.rxap-status.loadbalancer.healthCheck.path=/api/status/health
+      - traefik.http.services.rxap-status.loadbalancer.healthCheck.interval=10s
+      - traefik.http.services.rxap-status.loadbalancer.healthCheck.timeout=3s
+    environment:
+      - ROOT_DOMAIN
+      - SENTRY_ENABLED=false
+      - LOG_LEVEL=verbose
+      - ROOT_DOMAIN_PORT
+    depends_on:
+      - traefik
+      - catch-all-api
   cors-options:
     labels:
       - "traefik.enable=true"

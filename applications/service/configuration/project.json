@@ -14,10 +14,10 @@
         "main": "applications/service/configuration/src/main.ts",
         "tsConfig": "applications/service/configuration/tsconfig.app.json",
         "assets": [
-          "applications/service/configuration/src/assets",
           "applications/service/configuration/src/Dockerfile",
           "applications/service/configuration/src/healthcheck.js",
-          "applications/service/configuration/src/build.json"
+          "applications/service/configuration/src/build.json",
+          "applications/service/configuration/src/assets/.gitkeep"
         ],
         "generatePackageJson": true,
         "target": "node",
@@ -34,13 +34,19 @@
               "with": "applications/service/configuration/src/environments/environment.prod.ts"
             }
           ]
+        },
+        "development": {
+          "assets": [
+            "applications/service/configuration/src/build.json",
+            "applications/service/configuration/src/assets"
+          ]
         }
       }
     },
     "serve": {
       "executor": "@nx/js:node",
       "options": {
-        "buildTarget": "service-configuration:build"
+        "buildTarget": "service-configuration:build:development"
       }
     },
     "lint": {
