@@ -45,13 +45,17 @@ function getSchematics(context: ExecutorContext): Generator[] {
     return [];
   }
   const projectRoot = GetProjectRoot(context);
-  const collectionJson = readJsonFile<{ schematics: Record<string, Generator<string>> }>(join(projectRoot, schematics));
+  const collectionJson = readJsonFile<{ schematics: Record<string, Generator<string>> }>(join(
+    context.root,
+    projectRoot,
+    schematics,
+  ));
   const schematicList: Generator[] = [];
   for (const [ schematic, config ] of Object.entries(collectionJson.schematics ?? {})) {
     schematicList.push({
       name: schematic,
       description: config.description,
-      schema: readJsonFile(join(projectRoot, config.schema)),
+      schema: readJsonFile(join(context.root, projectRoot, config.schema)),
     });
   }
   return schematicList;
@@ -63,13 +67,17 @@ function getGenerators(context: ExecutorContext) {
     return [];
   }
   const projectRoot = GetProjectRoot(context);
-  const collectionJson = readJsonFile<{ generators: Record<string, Generator<string>> }>(join(projectRoot, generators));
+  const collectionJson = readJsonFile<{ generators: Record<string, Generator<string>> }>(join(
+    context.root,
+    projectRoot,
+    generators,
+  ));
   const generatorList: Generator[] = [];
   for (const [ generator, config ] of Object.entries(collectionJson.generators ?? {})) {
     generatorList.push({
       name: generator,
       description: config.description,
-      schema: readJsonFile(join(projectRoot, config.schema)),
+      schema: readJsonFile(join(context.root, projectRoot, config.schema)),
     });
   }
   const schematicList = getSchematics(context);
@@ -82,13 +90,17 @@ function getBuilders(context: ExecutorContext): Executor[] {
     return [];
   }
   const projectRoot = GetProjectRoot(context);
-  const buildersJson = readJsonFile<{ builders: Record<string, Generator<string>> }>(join(projectRoot, builders));
+  const buildersJson = readJsonFile<{ builders: Record<string, Generator<string>> }>(join(
+    context.root,
+    projectRoot,
+    builders,
+  ));
   const builderList: Executor[] = [];
   for (const [ builder, config ] of Object.entries(buildersJson.builders ?? {})) {
     builderList.push({
       name: builder,
       description: config.description,
-      schema: readJsonFile(join(projectRoot, config.schema)),
+      schema: readJsonFile(join(context.root, projectRoot, config.schema)),
     });
   }
   return builderList;
@@ -100,13 +112,17 @@ function getExecutors(context: ExecutorContext) {
     return [];
   }
   const projectRoot = GetProjectRoot(context);
-  const executorsJson = readJsonFile<{ executors: Record<string, Generator<string>> }>(join(projectRoot, executors));
+  const executorsJson = readJsonFile<{ executors: Record<string, Generator<string>> }>(join(
+    context.root,
+    projectRoot,
+    executors,
+  ));
   const executorList: Executor[] = [];
   for (const [ executor, config ] of Object.entries(executorsJson.executors ?? {})) {
     executorList.push({
       name: executor,
       description: config.description,
-      schema: readJsonFile(join(projectRoot, config.schema)),
+      schema: readJsonFile(join(context.root, projectRoot, config.schema)),
     });
   }
   const builderList = getBuilders(context);
