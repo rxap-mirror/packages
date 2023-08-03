@@ -17,6 +17,9 @@
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
+  "dependencies": {
+    "yaml": "2.3.1"
+  },
   "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
