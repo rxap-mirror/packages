@@ -4,9 +4,6 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "allowedNonPeerDependencies": [
-    "uuid"
-  ],
   "assets": [
     "README.md",
     "CHANGELOG.md",
