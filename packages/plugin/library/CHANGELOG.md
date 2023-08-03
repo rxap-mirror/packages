@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.10...@rxap/plugin-library@16.0.0-dev.11) (2023-08-03)
+
+### Bug Fixes
+
+- ensure fix-dependencies for dependencies is run first ([c01d930](https://gitlab.com/rxap/packages/commit/c01d93095a05877094e701ac385ec7521335a6a4))
+- use absolute path to access files ([32323ab](https://gitlab.com/rxap/packages/commit/32323ab900da408dcd6ae05dc12e562feff798f9))
+- use utility function to set targets and target defaults ([5914d7e](https://gitlab.com/rxap/packages/commit/5914d7efae28b891044da79f02f077d7b2398d2b))
+
 # [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.9...@rxap/plugin-library@16.0.0-dev.10) (2023-08-03)
 
 ### Features

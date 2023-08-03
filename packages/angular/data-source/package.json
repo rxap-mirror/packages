@@ -1,6 +1,6 @@
 {
   "name": "@rxap/data-source",
-  "version": "16.0.0-dev.7",
+  "version": "16.0.0-dev.8",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
@@ -9,12 +9,12 @@
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
     "@rxap/data-structure-tree": "^1.0.1-dev.2",
-    "@rxap/definition": "^16.0.0-dev.6",
-    "@rxap/environment": "^16.0.0-dev.6",
+    "@rxap/definition": "^16.0.0-dev.7",
+    "@rxap/environment": "^16.0.0-dev.7",
     "@rxap/pattern": "^1.0.1-dev.1",
-    "@rxap/remote-method": "^16.0.0-dev.6",
+    "@rxap/remote-method": "^16.0.0-dev.7",
     "@rxap/rxjs": "^1.0.1-dev.1",
-    "@rxap/utilities": "^16.0.0-dev.4",
+    "@rxap/utilities": "^16.0.0-dev.5",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -56,7 +56,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.4"
+        "version": "16.0.0-dev.5"
       },
       {
         "package": "@rxap/pattern",
@@ -64,7 +64,7 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "16.0.0-dev.6"
+        "version": "16.0.0-dev.7"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -72,11 +72,11 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.6"
+        "version": "16.0.0-dev.7"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "16.0.0-dev.6"
+        "version": "16.0.0-dev.7"
       }
     ]
   }

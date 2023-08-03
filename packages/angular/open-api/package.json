@@ -1,15 +1,15 @@
 {
   "name": "@rxap/open-api",
-  "version": "16.0.0-dev.9",
+  "version": "16.0.0-dev.10",
   "peerDependencies": {
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
-    "@rxap/config": "^16.0.0-dev.7",
-    "@rxap/data-source": "^16.0.0-dev.7",
+    "@rxap/config": "^16.0.0-dev.8",
+    "@rxap/data-source": "^16.0.0-dev.8",
     "@rxap/mixin": "^16.0.0-dev.5",
-    "@rxap/remote-method": "^16.0.0-dev.6",
+    "@rxap/remote-method": "^16.0.0-dev.7",
     "@rxap/rxjs": "^1.0.1-dev.1",
-    "@rxap/utilities": "^16.0.0-dev.4",
+    "@rxap/utilities": "^16.0.0-dev.5",
     "rxjs": "^7.8.0"
   },
   "dependencies": {
@@ -49,11 +49,11 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.7"
+        "version": "16.0.0-dev.8"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.4"
+        "version": "16.0.0-dev.5"
       },
       {
         "package": "@rxap/mixin",
@@ -65,11 +65,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.7"
+        "version": "16.0.0-dev.8"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "16.0.0-dev.6"
+        "version": "16.0.0-dev.7"
       }
     ]
   }

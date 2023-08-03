@@ -1,6 +1,6 @@
 {
   "name": "@rxap/browser-tailwind",
-  "version": "0.0.2-dev.0",
+  "version": "0.0.2-dev.1",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",

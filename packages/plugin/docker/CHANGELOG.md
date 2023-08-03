@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.6...@rxap/plugin-docker@16.0.0-dev.7) (2023-08-03)
+
+### Bug Fixes
+
+- generate readme with peer dependencies to install ([e7039bb](https://gitlab.com/rxap/packages/commit/e7039bb5e86ffeadfe7cc92d5fc71d32f8efb4fb))
+- use current branch name as fallback docker tag ([f1807e6](https://gitlab.com/rxap/packages/commit/f1807e6bca9180b4cc64fffe02f0610d4653d219))
+
 # 16.0.0-dev.6 (2023-08-01)
 
 ### Bug Fixes

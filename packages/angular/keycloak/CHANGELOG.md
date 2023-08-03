@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/keycloak@16.0.0-dev.5...@rxap/keycloak@16.0.0-dev.6) (2023-08-03)
+
+**Note:** Version bump only for package @rxap/keycloak
+
 # [16.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/keycloak@16.0.0-dev.4...@rxap/keycloak@16.0.0-dev.5) (2023-08-01)
 
 ### Bug Fixes

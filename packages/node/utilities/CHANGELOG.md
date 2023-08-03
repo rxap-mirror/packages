@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.0.1-dev.2...@rxap/node-utilities@1.1.0-dev.0) (2023-08-03)
+
+### Bug Fixes
+
+- generate readme with peer dependencies to install ([e7039bb](https://gitlab.com/rxap/packages/commit/e7039bb5e86ffeadfe7cc92d5fc71d32f8efb4fb))
+
+### Features
+
+- add function GetCurrentBranch ([89e2431](https://gitlab.com/rxap/packages/commit/89e2431c55b440e44f12f9fc14290fe246e9bc8d))
+
 ## 1.0.1-dev.2 (2023-08-01)
 
 ### Bug Fixes

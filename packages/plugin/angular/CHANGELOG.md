@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.3...@rxap/plugin-angular@16.1.0-dev.4) (2023-08-03)
+
+### Bug Fixes
+
+- add build tailwind default inputs and outputs ([07b5e8f](https://gitlab.com/rxap/packages/commit/07b5e8f7a3db4b3fbc6d5e742785144de58971e1))
+- create default application configuration folder ([eae2d9d](https://gitlab.com/rxap/packages/commit/eae2d9d009cd94487a0edb55b0100f1d32c1eea7))
+
+### Features
+
+- add new executor check-ng-package ([871a3e5](https://gitlab.com/rxap/packages/commit/871a3e5a3bae51009046f915c5db36e9f7062f0d))
+
 # [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.2...@rxap/plugin-angular@16.1.0-dev.3) (2023-08-01)
 
 ### Bug Fixes

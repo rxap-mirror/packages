@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-workspace",
-  "version": "16.0.0",
+  "version": "16.1.0-dev.0",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -20,6 +20,7 @@
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "dependencies": {
+    "tslib": "2.6.1",
     "yaml": "2.3.1"
   },
   "license": "GPL-3.0-or-later",
@@ -32,5 +33,10 @@
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "generators": "./generators.json"
+  "generators": "./generators.json",
+  "peerDependencies": {
+    "@nx/devkit": "^16.5.0",
+    "@rxap/generator-utilities": "^1.1.0-dev.0",
+    "@rxap/utilities": "^16.0.0-dev.5"
+  }
 }
