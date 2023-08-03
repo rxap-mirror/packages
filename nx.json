@@ -91,7 +91,8 @@
         "check-version",
         "build-info",
         "build-tailwind",
-        "generate-package-json"
+        "generate-package-json",
+        "check-ng-package"
       ],
       "inputs": [
         "production",
@@ -154,6 +155,12 @@
     "docker-save": {
       "dependsOn": [
         "docker"
+      ]
+    },
+    "check-ng-package": {
+      "inputs": [
+        "{projectRoot}/ng-package.json",
+        "{projectRoot}/package.json"
       ]
     }
   },

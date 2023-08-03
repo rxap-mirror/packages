@@ -4,6 +4,11 @@
       "implementation": "./src/executors/tailwind/executor",
       "schema": "./src/executors/tailwind/schema.json",
       "description": "tailwind executor"
+    },
+    "check-ng-package": {
+      "implementation": "./src/executors/check-ng-package/executor",
+      "schema": "./src/executors/check-ng-package/schema.json",
+      "description": "check-ng-package executor"
     }
   }
 }

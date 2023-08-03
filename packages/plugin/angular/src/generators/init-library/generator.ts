@@ -17,6 +17,7 @@ import {
   SkipNonLibraryProject,
 } from '@rxap/generator-utilities';
 import {
+  CoerceTarget,
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
@@ -140,17 +141,15 @@ function extendAngularSpecificEslint(tree: Tree, project: ProjectConfiguration) 
 
 function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
 
-  project.targets ??= {};
-
-  project.targets['check-version'] = {
+  CoerceTarget(project, 'check-version', {
     executor: '@rxap/plugin-library:check-version',
     options: {
       packageName: '@angular/core',
     },
-  };
+  });
 
   if (hasTailwindConfig(tree, project)) {
-    project.targets['build-tailwind'] ??= {
+    CoerceTarget(project, 'build-tailwind', {
       executor: '@rxap/plugin-angular:tailwind',
       configurations: {
         production: {
@@ -158,11 +157,15 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
         },
         development: {},
       },
-    };
+    });
   } else {
     if (project.targets['build-tailwind']) {
       delete project.targets['build-tailwind'];
     }
+  }
+
+  if (isNgPackagrProject(tree, project)) {
+    CoerceTarget(project, 'check-ng-package', { executor: '@rxap/plugin-angular:check-ng-package' });
   }
 
 }
@@ -178,6 +181,7 @@ function setGeneralTargetDefaults(tree: Tree) {
   CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version');
   CoerceTargetDefaultsDependency(nxJson, 'build', '^build');
   CoerceTargetDefaultsDependency(nxJson, 'build', 'build-tailwind');
+  CoerceTargetDefaultsDependency(nxJson, 'build', 'check-ng-package');
   CoerceTargetDefaultsDependency(nxJson, 'build-tailwind', {
     target: 'build',
     projects: [
@@ -192,6 +196,12 @@ function setGeneralTargetDefaults(tree: Tree) {
       '{projectRoot}/**/*.scss',
       '{projectRoot}/**/*.css',
   );
+  CoerceTargetDefaultsInput(
+    nxJson,
+    'check-ng-package',
+    '{projectRoot}/ng-package.json',
+    '{projectRoot}/package.json',
+  );
 
   updateNxJson(tree, nxJson);
 }
@@ -205,6 +215,10 @@ function addImplicitDependency(tree: Tree, project: ProjectConfiguration) {
   if (!project.implicitDependencies.length) {
     delete project.implicitDependencies;
   }
+}
+
+function isNgPackagrProject(tree: Tree, project: ProjectConfiguration) {
+  return tree.exists(join(project.root, 'ng-package.json'));
 }
 
 export async function initLibraryGenerator(
