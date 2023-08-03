@@ -110,6 +110,14 @@
             "browser-tailwind"
           ]
         }
+      ],
+      "inputs": [
+        "{projectRoot}/**/*.html",
+        "{projectRoot}/**/*.scss",
+        "{projectRoot}/**/*.css"
+      ],
+      "outputs": [
+        "{projectRoot}/theme.css"
       ]
     },
     "readme": {

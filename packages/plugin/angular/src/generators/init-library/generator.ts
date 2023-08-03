@@ -16,7 +16,11 @@ import {
   RemoveAssets,
   SkipNonLibraryProject,
 } from '@rxap/generator-utilities';
-import { CoerceTargetDefaultsDependency } from '@rxap/workspace-utilities';
+import {
+  CoerceTargetDefaultsDependency,
+  CoerceTargetDefaultsInput,
+  CoerceTargetDefaultsOutput,
+} from '@rxap/workspace-utilities';
 import {
   join,
   relative,
@@ -180,6 +184,14 @@ function setGeneralTargetDefaults(tree: Tree) {
       'browser-tailwind',
     ],
   });
+  CoerceTargetDefaultsOutput(nxJson, 'build-tailwind', '{projectRoot}/theme.css');
+  CoerceTargetDefaultsInput(
+      nxJson,
+      'build-tailwind',
+      '{projectRoot}/**/*.html',
+      '{projectRoot}/**/*.scss',
+      '{projectRoot}/**/*.css',
+  );
 
   updateNxJson(tree, nxJson);
 }
