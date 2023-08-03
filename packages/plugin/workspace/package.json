@@ -10,7 +10,9 @@
     "rxap",
     "plugin",
     "nx",
-    "nx-plugin"
+    "nx-plugin",
+    "packages",
+    "workspace"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/workspace",
   "bugs": {
