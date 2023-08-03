@@ -6,20 +6,20 @@ import {
   OnApplicationShutdown,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import {
-  Observable,
-  Subscription,
-} from 'rxjs';
+import { EachDirSync } from '@rxap/node-utilities';
+import { deepMerge } from '@rxap/utilities';
+import { watch } from 'chokidar';
 import {
   existsSync,
   mkdirSync,
   readFileSync,
 } from 'fs';
-import { EachDirSync } from '@rxap/node-utilities';
-import { watch } from 'chokidar';
-import { valid } from 'semver';
 import { relative } from 'path';
-import { deepMerge } from '@rxap/utilities';
+import {
+  Observable,
+  Subscription,
+} from 'rxjs';
+import { valid } from 'semver';
 
 @Injectable()
 export class LoadConfigurationService implements OnApplicationBootstrap, OnApplicationShutdown {
@@ -101,13 +101,13 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
     const fragments = relativePath.split('/');
     if (fragments.length !== 2 && fragments.length !== 3) {
       this.logger.error(
-        'invalid configuration file path: ' + relativePath + ' nested corrugation is not supported',
+        'invalid configuration file path: ' + relativePath + ' nested configuration is not supported',
         'ConfigurationService',
       );
       return false;
     }
     const version = fragments.shift();
-    if (!valid(version)) {
+    if (!valid(version) && version !== 'latest') {
       this.logger.error(
         `invalid version: '${ version }' for loaded file path ${ relativePath }`,
         'ConfigurationService',

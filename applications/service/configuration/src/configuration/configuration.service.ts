@@ -4,12 +4,12 @@ import {
   InternalServerErrorException,
   Logger,
 } from '@nestjs/common';
+import { deepMerge } from '@rxap/utilities';
 import {
   lte,
   sort,
   valid,
 } from 'semver';
-import { deepMerge } from '@rxap/utilities';
 import { LoadConfigurationService } from './load-configuration.service';
 
 @Injectable()
@@ -76,7 +76,11 @@ export class ConfigurationService {
   }
 
   private getLatestConfiguration(map: Map<string, Record<string, unknown>>) {
-    const versions = sort(Array.from(map.keys()));
+    const availableVersions = Array.from(map.keys());
+    if (availableVersions.includes('latest')) {
+      return map.get('latest')!;
+    }
+    const versions = sort(availableVersions.filter(v => v !== 'latest'));
     const latestVersion = versions.pop();
     if (!latestVersion) {
       throw new InternalServerErrorException('No configuration found');
