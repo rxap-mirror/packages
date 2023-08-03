@@ -4,7 +4,13 @@ import {
   Tree,
 } from '@nx/devkit';
 import { AddDir } from '@rxap/generator-ts-morph';
-import { GetProjectRoot } from '@rxap/generator-utilities';
+import {
+  GetProjectRoot,
+  HasProjectWithPackageName,
+  LoadProjectToPackageMapping,
+  PackageNameToProjectName,
+  ProjectNameToPackageName,
+} from '@rxap/generator-utilities';
 import { GetLatestPackageVersion } from '@rxap/node-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import { ProjectGraph } from 'nx/src/config/project-graph';
@@ -168,43 +174,7 @@ const PACKAGE_ADD_BLACK_LIST = [
   'axios',
 ];
 
-const PACKAGE_NAME_TO_PROJECT_NAME_CACHE: Record<string, string> = {};
-const PROJECT_NAME_TO_PACKAGE_NAME_CACHE: Record<string, string> = {};
 
-function loadProjectToPackageMapping(tree: Tree, projectGraph: ProjectGraph) {
-  const projectNames = Object.keys(projectGraph.nodes);
-  for (const projectName of projectNames) {
-    const project = projectGraph.nodes[projectName];
-    if (project.type !== 'lib') {
-      continue;
-    }
-    const projectRoot = project.data.root;
-    if (!tree.exists(`${ projectRoot }/package.json`)) {
-      continue;
-    }
-    const packageJSON = JSON.parse(tree.read(`${ projectRoot }/package.json`)!.toString('utf-8'));
-    PACKAGE_NAME_TO_PROJECT_NAME_CACHE[packageJSON.name] = projectName;
-    PROJECT_NAME_TO_PACKAGE_NAME_CACHE[projectName] = packageJSON.name;
-  }
-}
-
-function packageNameToProjectName(packageName: string): string {
-  if (PACKAGE_NAME_TO_PROJECT_NAME_CACHE[packageName]) {
-    return PACKAGE_NAME_TO_PROJECT_NAME_CACHE[packageName];
-  }
-  throw new Error(`Could not find project for package '${ packageName }'`);
-}
-
-function projectNameToPackageName(projectName: string): string {
-  if (PROJECT_NAME_TO_PACKAGE_NAME_CACHE[projectName]) {
-    return PROJECT_NAME_TO_PACKAGE_NAME_CACHE[projectName];
-  }
-  throw new Error(`Could not find package for project '${ projectName }'`);
-}
-
-function hasProjectWithPackageName(packageName: string) {
-  return PACKAGE_NAME_TO_PROJECT_NAME_CACHE[packageName] !== undefined;
-}
 
 function addDependedProjects(
   projectGraph: ProjectGraph,
@@ -213,10 +183,10 @@ function addDependedProjects(
   projectRoot: string,
   dependencies: Record<string, string>,
 ) {
-  const projectName = packageNameToProjectName(packageName);
+  const projectName = PackageNameToProjectName(packageName);
   const dependedProjectList = resolveProjectDependencies(projectGraph, projectName);
   for (const dependedProject of dependedProjectList) {
-    const dependedPackageName = projectNameToPackageName(dependedProject);
+    const dependedPackageName = ProjectNameToPackageName(dependedProject);
     if (!dependencies[dependedPackageName]) {
       dependencies[dependedPackageName] = findBasePackageVersion(tree, dependedPackageName, projectRoot);
     }
@@ -273,7 +243,7 @@ function fixPeerDependenciesWithTsMorphProject(
   }
 
   for (const packageName of packageList) {
-    if (hasProjectWithPackageName(packageName)) {
+    if (HasProjectWithPackageName(packageName)) {
       if (!dependencies[packageName]) {
         peerDependencies[packageName] = peerDependencies[packageName] ?? '*';
       }
@@ -352,7 +322,7 @@ function fixDevDependenciesWithTsMorphProject(
   }
 
   for (const packageName of packageList) {
-    if (hasProjectWithPackageName(packageName)) {
+    if (HasProjectWithPackageName(packageName)) {
       if (!peerDependencies[packageName] && !dependencies[packageName]) {
         devDependencies[packageName] = '*';
       }
@@ -392,7 +362,7 @@ function loadAvailablePackageVersion(tree: Tree, projectRoot: string) {
 
   function updateMap(dependencies: Record<string, string> | undefined): void {
     for (const [ packageName, version ] of Object.entries(dependencies ?? {})) {
-      if (version !== '*' && !hasProjectWithPackageName(packageName)) {
+      if (version !== '*' && !HasProjectWithPackageName(packageName)) {
         if (!PACKAGE_VERSION_MAP[packageName]) {
           PACKAGE_VERSION_MAP[projectRoot][packageName] = version;
         }
@@ -536,7 +506,7 @@ export function removeSelfReferenceFromDependencies(projectName: string, {
   devDependencies,
   optionalDependencies,
 }: ProjectPackageJson) {
-  const packageName = projectNameToPackageName(projectName);
+  const packageName = ProjectNameToPackageName(projectName);
   removePackageFromDependencies(packageName, dependencies);
   removePackageFromDependencies(packageName, peerDependencies);
   removePackageFromDependencies(packageName, devDependencies);
@@ -590,7 +560,7 @@ export async function fixDependenciesGenerator(
   }
 
   const projectGraph = await createProjectGraphAsync();
-  loadProjectToPackageMapping(tree, projectGraph);
+  LoadProjectToPackageMapping(tree, projectGraph);
 
   const unknownPackageMap: Record<string, string[]> = {};
   const latestTsLibVersion = await resolveLatestPackageVersion('tslib');

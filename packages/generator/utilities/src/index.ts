@@ -8,3 +8,4 @@ export * from './lib/get-build-output-for-project';
 export * from './lib/skip-project';
 export * from './lib/coerce-project-tags';
 export * from './lib/coerce-assets';
+export * from './lib/project-package-name-mapping';
