@@ -9,19 +9,21 @@ export interface NxJsonWithTargetDefaults {
 export function CoerceTargetDefaultsDependency(
   nxJson: NxJsonWithTargetDefaults,
   target: string,
-  dependsOn: NxJsonTargetDependsOn,
+  ...dependsOnList: NxJsonTargetDependsOn[]
 ) {
   nxJson.targetDefaults ??= {};
   nxJson.targetDefaults[target] ??= {};
   nxJson.targetDefaults[target].dependsOn ??= [];
   const targetDependsOn = nxJson.targetDefaults[target].dependsOn as Array<NxJsonTargetDependsOn>;
-  if (typeof dependsOn === 'string') {
-    if (!targetDependsOn.includes(dependsOn)) {
-      targetDependsOn.push(dependsOn);
-    }
-  } else {
-    if (!targetDependsOn.some(d => equals(d, dependsOn))) {
-      targetDependsOn.push(dependsOn);
+  for (const dependsOn of dependsOnList) {
+    if (typeof dependsOn === 'string') {
+      if (!targetDependsOn.includes(dependsOn)) {
+        targetDependsOn.push(dependsOn);
+      }
+    } else {
+      if (!targetDependsOn.some(d => equals(d, dependsOn))) {
+        targetDependsOn.push(dependsOn);
+      }
     }
   }
 }
