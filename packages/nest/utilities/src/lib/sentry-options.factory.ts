@@ -1,13 +1,13 @@
 import { ConfigService } from '@nestjs/config';
 import { SentryModuleOptions } from '@rxap/nest-sentry';
-import { Environment } from './environment';
 import { DetermineEnvironment } from './determine-environment';
 import { DetermineRelease } from './determine-release';
+import { Environment } from './environment';
 
 export function SentryOptionsFactory(environment: Environment): (config: ConfigService) => SentryModuleOptions {
   return (config: ConfigService) => {
     const options: SentryModuleOptions = {
-      dsn: config.getOrThrow('SENTRY_DSN'),
+      dsn: config.get('SENTRY_DSN'),
       enabled: config.get('SENTRY_ENABLED', false),
       environment: config.get('SENTRY_ENVIRONMENT', DetermineEnvironment(environment)),
       release: config.get('SENTRY_RELEASE', DetermineRelease(environment)),
