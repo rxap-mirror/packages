@@ -134,6 +134,12 @@
         "production": {},
         "development": {}
       }
+    },
+    "generate-package-json": {
+      "executor": "@rxap/plugin-nestjs:package-json",
+      "configurations": {
+        "production": {}
+      }
     }
   },
   "tags": [
