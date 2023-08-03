@@ -20,6 +20,12 @@ import { AngularInitGenerator } from '@rxap/plugin-angular';
 import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
+  CoerceTarget,
+  CoerceTargetDefaultsDependency,
+  CoerceTargetDefaultsInput,
+  CoerceTargetDefaultsOutput,
+} from '@rxap/workspace-utilities';
+import {
   join,
   relative,
 } from 'path';
@@ -29,27 +35,13 @@ import { InitGeneratorSchema } from './schema';
 
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
-  nxJson.targetDefaults ??= {};
 
-  // region build
-  nxJson.targetDefaults['build'] ??= { dependsOn: [ '^build' ] };
-  if (
-    !nxJson.targetDefaults['build']
-      .dependsOn
-      .find(dependsOn => typeof dependsOn === 'object' && dependsOn.target === 'readme')
-  ) {
-    nxJson.targetDefaults['build']
-      .dependsOn
-      .push({
-        target: 'readme',
-        projects: 'self',
-      });
-  }
-  // endregion
+  CoerceTargetDefaultsDependency(nxJson, 'build', '^build');
+  CoerceTargetDefaultsDependency(nxJson, 'build', 'readme');
 
-  // region readme
-  nxJson.targetDefaults['readme'] ??= {};
-  nxJson.targetDefaults['readme'].inputs = [
+  CoerceTargetDefaultsInput(
+    nxJson,
+    'readme',
     '{projectRoot}/README.md.handlebars',
     '{projectRoot}/GETSTARTED.md',
     '{projectRoot}/GUIDES.md',
@@ -58,9 +50,8 @@ function setGeneralTargetDefaults(tree: Tree) {
     '{projectRoot}/generators.json',
     '{projectRoot}/executors.json',
     '{projectRoot}/builders.json',
-  ];
-  nxJson.targetDefaults['readme'].outputs = [ '{projectRoot}/README.md' ];
-  // endregion
+  );
+  CoerceTargetDefaultsOutput(nxJson, 'readme', '{projectRoot}/README.md');
 
   updateNxJson(tree, nxJson);
 
@@ -74,15 +65,6 @@ function updateProjectPackageJson(
 ) {
   const packageJson: ProjectPackageJson = readJson(tree, join(project.root, 'package.json'));
   packageJson.scripts ??= {};
-  if (packageJson.scripts.prepublishOnly) {
-    delete packageJson.scripts.prepublishOnly;
-  }
-  if (packageJson.scripts.preversion) {
-    delete packageJson.scripts.preversion;
-  }
-  if (packageJson.scripts.version) {
-    delete packageJson.scripts.version;
-  }
   if (Object.keys(packageJson.scripts).length === 0) {
     delete packageJson.scripts;
   }
@@ -113,11 +95,10 @@ function updateProjectPackageJson(
 }
 
 function updateProjectTargets(project: ProjectConfiguration) {
-  project.targets ??= {};
-  project.targets['update-dependencies'] ??= { executor: '@rxap/plugin-library:update-dependencies' };
-  project.targets['update-package-group'] ??= { executor: '@rxap/plugin-library:update-package-group' };
-  project.targets['readme'] ??= { executor: '@rxap/plugin-library:readme' };
-  project.targets['fix-dependencies'] ??= {
+  CoerceTarget(project, 'update-dependencies', { executor: '@rxap/plugin-library:update-dependencies' });
+  CoerceTarget(project, 'update-package-group', { executor: '@rxap/plugin-library:update-package-group' });
+  CoerceTarget(project, 'readme', { executor: '@rxap/plugin-library:readme' });
+  CoerceTarget(project, 'fix-dependencies', {
     executor: '@rxap/plugin-library:run-generator',
     outputs: [
       '{workspaceRoot}/{projectRoot}/package.json',
@@ -128,7 +109,7 @@ function updateProjectTargets(project: ProjectConfiguration) {
         strict: true,
       },
     },
-  };
+  });
 }
 
 function updateProjectTags(project: ProjectConfiguration) {

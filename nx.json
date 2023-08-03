@@ -86,14 +86,8 @@
     "build": {
       "dependsOn": [
         "^build",
-        {
-          "target": "readme",
-          "projects": "self"
-        },
-        {
-          "target": "index-export",
-          "projects": "self"
-        },
+        "readme",
+        "index-export",
         "check-version",
         "build-info",
         "build-tailwind",
