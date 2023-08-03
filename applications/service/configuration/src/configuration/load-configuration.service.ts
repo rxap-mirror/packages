@@ -137,8 +137,11 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
   }
 
   private loadFile(filePath: string) {
-    this.logger.debug('load template: ' + filePath, 'TemplateService');
     const relativePath = relative(this.dataDir, filePath);
+    if (relativePath.includes('.gitkeep')) {
+      return false;
+    }
+    this.logger.debug('load configuration: ' + relativePath, 'ConfigurationService');
     if (!this.validatedConfigurationFilePath(relativePath)) {
       return;
     }
