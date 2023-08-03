@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.1...@rxap/plugin-nestjs@16.1.0-dev.2) (2023-08-03)
+
+### Features
+
+- add project json generator executor ([c92ea78](https://gitlab.com/rxap/packages/commit/c92ea7800271b611894c33d243e7de0dc9031f32))
+
 # [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.0...@rxap/plugin-nestjs@16.1.0-dev.1) (2023-08-01)
 
 ### Bug Fixes

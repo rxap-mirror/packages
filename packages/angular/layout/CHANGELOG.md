@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.7...@rxap/layout@16.0.0-dev.8) (2023-08-03)
+
+### Bug Fixes
+
+- add browser-tailwind as imp dep if project has tailwind configuration ([6ea13c5](https://gitlab.com/rxap/packages/commit/6ea13c5f9b4e652436bf1da879b564d1ed7b8061))
+- ensure min padding for navigation items ([2667fd7](https://gitlab.com/rxap/packages/commit/2667fd785e891e6145acd9c68918a9deb270aaf1))
+
 # [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.6...@rxap/layout@16.0.0-dev.7) (2023-08-01)
 
 ### Bug Fixes

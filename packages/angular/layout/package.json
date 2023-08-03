@@ -1,6 +1,6 @@
 {
   "name": "@rxap/layout",
-  "version": "16.0.0-dev.7",
+  "version": "16.0.0-dev.8",
   "peerDependencies": {
     "@angular/animations": "^16.1.4",
     "@angular/cdk": "^16.1.4",
@@ -10,14 +10,14 @@
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/authentication": "^16.0.0-dev.5",
+    "@rxap/authentication": "^16.0.0-dev.6",
     "@rxap/browser-utilities": "^0.0.2-dev.0",
-    "@rxap/config": "^16.0.0-dev.6",
-    "@rxap/data-source": "^16.0.0-dev.6",
-    "@rxap/directives": "^16.0.0-dev.5",
-    "@rxap/environment": "^16.0.0-dev.5",
-    "@rxap/material-directives": "^16.0.0-dev.7",
-    "@rxap/services": "^16.0.0-dev.5",
+    "@rxap/config": "^16.0.0-dev.7",
+    "@rxap/data-source": "^16.0.0-dev.7",
+    "@rxap/directives": "^16.0.0-dev.6",
+    "@rxap/environment": "^16.0.0-dev.6",
+    "@rxap/material-directives": "^16.0.0-dev.8",
+    "@rxap/services": "^16.0.0-dev.6",
     "@rxap/utilities": "^16.0.0-dev.4",
     "rxjs": "^7.8.0"
   },
@@ -55,7 +55,7 @@
     "packageGroup": [
       {
         "package": "@rxap/authentication",
-        "version": "16.0.0-dev.5"
+        "version": "16.0.0-dev.6"
       },
       {
         "package": "@rxap/browser-utilities",
@@ -63,27 +63,27 @@
       },
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.6"
-      },
-      {
-        "package": "@rxap/data-source",
-        "version": "16.0.0-dev.6"
-      },
-      {
-        "package": "@rxap/directives",
-        "version": "16.0.0-dev.5"
-      },
-      {
-        "package": "@rxap/environment",
-        "version": "16.0.0-dev.5"
-      },
-      {
-        "package": "@rxap/material-directives",
         "version": "16.0.0-dev.7"
       },
       {
+        "package": "@rxap/data-source",
+        "version": "16.0.0-dev.7"
+      },
+      {
+        "package": "@rxap/directives",
+        "version": "16.0.0-dev.6"
+      },
+      {
+        "package": "@rxap/environment",
+        "version": "16.0.0-dev.6"
+      },
+      {
+        "package": "@rxap/material-directives",
+        "version": "16.0.0-dev.8"
+      },
+      {
         "package": "@rxap/services",
-        "version": "16.0.0-dev.5"
+        "version": "16.0.0-dev.6"
       },
       {
         "package": "@rxap/utilities",

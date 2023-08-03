@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.9...@rxap/plugin-library@16.0.0-dev.10) (2023-08-03)
+
+### Features
+
+- add project to package name mapping utilities ([86ce9ab](https://gitlab.com/rxap/packages/commit/86ce9abfff3cba758c1f12667002953e5f5f4464))
+
 # [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.8...@rxap/plugin-library@16.0.0-dev.9) (2023-08-01)
 
 ### Bug Fixes

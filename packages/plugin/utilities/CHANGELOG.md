@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.0...@rxap/plugin-utilities@16.1.0-dev.1) (2023-08-03)
+
+### Bug Fixes
+
+- generate readme with peer dependencies to install ([e7039bb](https://gitlab.com/rxap/packages/commit/e7039bb5e86ffeadfe7cc92d5fc71d32f8efb4fb))
+- throw error if project does not exists in project graph ([f65d512](https://gitlab.com/rxap/packages/commit/f65d512be43869e6f09515d9a6ec7c339da0c824))
+
+### Features
+
+- add GetAllPackageDependenciesForProject function ([12e742b](https://gitlab.com/rxap/packages/commit/12e742bb2eb5f0211b20f8ccf23db22fe37ec86d))
+- add project to package name mapping utilities ([424cb4a](https://gitlab.com/rxap/packages/commit/424cb4ac676b46a277fdb051cb11038199c6ecee))
+
 # 16.1.0-dev.0 (2023-08-01)
 
 ### Bug Fixes

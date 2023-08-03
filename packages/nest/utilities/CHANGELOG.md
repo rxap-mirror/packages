@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.0.1-dev.0...@rxap/nest-utilities@10.0.1-dev.1) (2023-08-03)
+
+### Bug Fixes
+
+- allow undefined SENTRY_DSN environment variable ([e6b10a9](https://gitlab.com/rxap/packages/commit/e6b10a91f619f2debe658c4b94a4be4d8cb77ef5))
+- generate readme with peer dependencies to install ([e7039bb](https://gitlab.com/rxap/packages/commit/e7039bb5e86ffeadfe7cc92d5fc71d32f8efb4fb))
+
 ## 10.0.1-dev.0 (2023-08-01)
 
 ### Bug Fixes

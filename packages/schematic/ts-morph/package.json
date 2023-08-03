@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematics-ts-morph",
-  "version": "16.0.0-dev.5",
+  "version": "16.0.0-dev.6",
   "type": "commonjs",
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",

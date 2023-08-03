@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-nestjs",
-  "version": "16.1.0-dev.1",
+  "version": "16.1.0-dev.2",
   "type": "commonjs",
   "generators": "./generators.json",
   "publishConfig": {
@@ -35,14 +35,24 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.0.1-dev.3",
+    "@rxap/generator-utilities": "^1.1.0-dev.0",
+    "@rxap/plugin-utilities": "^16.1.0-dev.1",
+    "@rxap/workspace-utilities": "^0.1.0-dev.0",
     "nx": "^16.5.0"
   },
   "nx-migrations": {
     "packageGroup": [
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.0.1-dev.3"
+        "version": "1.1.0-dev.0"
+      },
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "16.1.0-dev.1"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "0.1.0-dev.0"
       }
     ]
   },
