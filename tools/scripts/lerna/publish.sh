@@ -77,7 +77,8 @@ if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
   --conventional-prerelease \
   --dist-tag "$LERNA_DIST_TAG" \
   --registry "$PUBLISH_REGISTRY" \
-  --preid "$LERNA_PRE_ID" "$@"
+  --preid "$LERNA_PRE_ID" \
+  --no-push "$@"
 
 fi
 
@@ -91,6 +92,7 @@ if [[ "$LERNA_PRE_RELEASE" == "false" ]]; then
   --create-release gitlab \
   --conventional-graduate \
   --registry "$PUBLISH_REGISTRY" \
-  --dist-tag "$LERNA_DIST_TAG" "$@"
+  --dist-tag "$LERNA_DIST_TAG" \
+  --no-push "$@"
 
 fi

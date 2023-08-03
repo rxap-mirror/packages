@@ -67,7 +67,8 @@ if [[ "$LERNA_PRE_RELEASE" == "true" ]]; then
   yarn lerna version \
   --create-release gitlab \
   --conventional-prerelease \
-  --preid "$LERNA_PRE_ID" "$@"
+  --preid "$LERNA_PRE_ID" \
+  --no-push "$@"
 
 fi
 
@@ -79,6 +80,7 @@ if [[ "$LERNA_PRE_RELEASE" == "false" ]]; then
 
   yarn lerna version \
   --create-release gitlab \
-  --conventional-graduate "$@"
+  --conventional-graduate \
+  --no-push "$@"
 
 fi
