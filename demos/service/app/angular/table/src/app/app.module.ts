@@ -22,9 +22,9 @@ import {
   SentryModule,
 } from '@rxap/nest-sentry';
 import {
-  DetermineEnvironment,
-  DetermineRelease,
   ENVIRONMENT,
+  GetLogLevels,
+  SentryOptionsFactory,
 } from '@rxap/nest-utilities';
 import * as Joi from 'joi';
 import { environment } from '../environments/environment';
@@ -56,25 +56,14 @@ import { HealthModule } from './health/health.module';
       }),
     }),
     HealthModule,
-    SentryModule.forRootAsync({
-      imports: [ ConfigModule ],
-      inject: [ ConfigService ],
-      useFactory: async (config: ConfigService) => ({
-        dsn: config.get('SENTRY_DSN'),
-        enabled:
-          config.get('SENTRY_DSN') && config.get('SENTRY_ENABLED', false),
-        environment: config.get(
-          'SENTRY_ENVIRONMENT',
-          DetermineEnvironment(environment),
-        ),
-        release: config.get('SENTRY_RELEASE', DetermineRelease(environment)),
-        serverName: config.get('SENTRY_SERVER_NAME'),
-        debug: config.get('SENTRY_DEBUG', false),
-        tracesSampleRate: 1.0,
-        logLevels: [ 'error', 'warn' ],
-        maxValueLength: Number.MAX_SAFE_INTEGER,
-      }),
-    }),
+    SentryModule.forRootAsync(
+      {
+        imports: [ ConfigModule ],
+        inject: [ ConfigService ],
+        useFactory: SentryOptionsFactory(environment),
+      },
+      { logLevels: GetLogLevels() },
+    ),
     MinimumTableModule
   ],
   controllers: [ AppController ],

@@ -54,7 +54,7 @@ function CoerceSentryModule(sourceFile: SourceFile, options: SentrySchema) {
         moduleSpecifier: '../environments/environment',
       },
       {
-        namedImports: [ 'DetermineEnvironment', 'DetermineRelease' ],
+        namedImports: [ 'GetLogLevels', 'SentryOptionsFactory' ],
         moduleSpecifier: '@rxap/nest-utilities',
       },
     ],
@@ -63,24 +63,12 @@ function CoerceSentryModule(sourceFile: SourceFile, options: SentrySchema) {
       Writers.object({
         imports: '[ ConfigModule ]',
         inject: '[ ConfigService ]',
-        useFactory: w1 => {
-          w1.write('async (config: ConfigService) => (');
-          Writers.object({
-            dsn: options.required ? `config.getOrThrow('SENTRY_DSN')` : `config.get('SENTRY_DSN')`,
-            enabled: options.required ?
-              `config.get('SENTRY_ENABLED', false)` :
-              `config.get('SENTRY_DSN') && config.get('SENTRY_ENABLED', false)`,
-            environment: `config.get('SENTRY_ENVIRONMENT', DetermineEnvironment(environment))`,
-            release: `config.get('SENTRY_RELEASE', DetermineRelease(environment))`,
-            serverName: `config.get('SENTRY_SERVER_NAME')`,
-            debug: `config.get('SENTRY_DEBUG', false)`,
-            tracesSampleRate: `1.0`,
-            logLevels: `[ 'error', 'warn' ]`,
-            maxValueLength: 'Number.MAX_SAFE_INTEGER',
-          })(w1);
-          w1.write(')');
-        },
+        useFactory: 'SentryOptionsFactory(environment)',
       })(w);
+      w.writeLine(',');
+      Writers.object({
+        logLevels: 'GetLogLevels()',
+      });
       w.write(')');
     },
   );
