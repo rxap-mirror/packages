@@ -22,7 +22,7 @@ export interface CoerceTableDataSourceOptions extends CoerceDataSourceClassOptio
    * The operation id to request a table page
    */
   operationId: string;
-  scope?: string;
+  scope?: string | null;
 }
 
 export function CoerceTableDataSourceRule(options: Readonly<CoerceTableDataSourceOptions>) {

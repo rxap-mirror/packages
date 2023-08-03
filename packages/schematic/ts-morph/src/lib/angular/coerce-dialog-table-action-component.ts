@@ -24,7 +24,7 @@ export interface CoerceDialogTableActionComponentOptions extends CoerceDialogCom
                                                                  TsMorphAngularProjectTransformOptions {
   operationId: string;
   tableName: string;
-  scope?: string;
+  scope?: string | null;
 }
 
 export function CoerceDialogTableActionComponentRule(options: CoerceDialogTableActionComponentOptions) {

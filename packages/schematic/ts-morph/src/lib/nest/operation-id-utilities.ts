@@ -25,7 +25,7 @@ export function OperationIdToParameterClassName(operationId: string) {
   return classify(id) + 'Parameter';
 }
 
-export function OperationIdToClassImportPath(operationId: string, scope?: string) {
+export function OperationIdToClassImportPath(operationId: string, scope?: string | null) {
   let [ id, serverId ] = operationId.split('@');
   serverId ??= 'legacy';
   if (scope) {
@@ -40,7 +40,7 @@ export function OperationIdToRequestBodyClassName(operationId: string) {
   return classify(id) + 'RequestBody';
 }
 
-export function ServiceOperationIdToClassImportPath(operationId: string, scope?: string) {
+export function ServiceOperationIdToClassImportPath(operationId: string, scope?: string | null) {
   let [ id, serverId ] = operationId.split('@');
   serverId ??= 'legacy';
   if (scope) {
@@ -50,7 +50,7 @@ export function ServiceOperationIdToClassImportPath(operationId: string, scope?:
   }
 }
 
-export function OpenApiResponseClassImportPath(response: string, serverId: string, scope?: string) {
+export function OpenApiResponseClassImportPath(response: string, serverId: string, scope?: string | null) {
   if (scope) {
     return `${ scope }/open-api-${ dasherize(serverId) }/responses/${ dasherize(response)
       .replace('-response', '') }.response`;
@@ -60,7 +60,7 @@ export function OpenApiResponseClassImportPath(response: string, serverId: strin
   }
 }
 
-export function OperationIdToResponseClassImportPath(operationId: string, scope?: string) {
+export function OperationIdToResponseClassImportPath(operationId: string, scope?: string | null) {
   let [ id, serverId ] = operationId.split('@');
   serverId ??= 'legacy';
   if (scope) {
@@ -70,7 +70,7 @@ export function OperationIdToResponseClassImportPath(operationId: string, scope?
   }
 }
 
-export function OperationIdToParameterClassImportPath(operationId: string, scope?: string) {
+export function OperationIdToParameterClassImportPath(operationId: string, scope?: string | null) {
   if (!scope) {
     throw new Error('scope is required');
   }
@@ -83,7 +83,7 @@ export function OperationIdToParameterClassImportPath(operationId: string, scope
   }
 }
 
-export function OperationIdToRequestBodyClassImportPath(operationId: string, scope?: string) {
+export function OperationIdToRequestBodyClassImportPath(operationId: string, scope?: string | null) {
   let [ id, serverId ] = operationId.split('@');
   serverId ??= 'legacy';
   if (scope) {
