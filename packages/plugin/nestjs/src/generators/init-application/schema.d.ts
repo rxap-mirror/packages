@@ -20,4 +20,5 @@ export interface InitApplicationGeneratorSchema {
   overwrite?: boolean;
   openApi?: boolean;
   jwt?: boolean;
+  legacy?: boolean;
 }

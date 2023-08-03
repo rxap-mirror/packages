@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "package-json": {
+      "implementation": "./src/executors/package-json/executor",
+      "schema": "./src/executors/package-json/schema.json",
+      "description": "package-json executor"
+    }
+  }
+}

@@ -17,6 +17,12 @@
       "description": "Whether this service will be deployed on google resources",
       "x-prompt": "Is this service deployed on google resources?"
     },
+    "legacy": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the legacy schematic should be executed",
+      "x-prompt": "Should the legacy schematic be executed?"
+    },
     "sentry": {
       "type": "boolean",
       "default": false,

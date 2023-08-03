@@ -96,7 +96,8 @@
         },
         "check-version",
         "build-info",
-        "build-tailwind"
+        "build-tailwind",
+        "generate-package-json"
       ],
       "inputs": [
         "production",
@@ -214,6 +215,12 @@
     "@rxap/schematic-nestjs:microservice": {
       "imageName": "rxap/packages",
       "apiConfigurationFile": "applications/service/configuration/src/assets/latest/config.api.json"
+    },
+    "@nx/plugin:executor": {
+      "unitTestRunner": "none"
+    },
+    "@nx/plugin:generator": {
+      "unitTestRunner": "none"
     }
   },
   "workspaceLayout": {

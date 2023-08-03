@@ -80,8 +80,8 @@
     "docker": {
       "executor": "@rxap/plugin-docker:build",
       "options": {
-        "imageRegistry": "dev-dockerhub.eurogard.cloud",
-        "imageName": "m2v-frontends",
+        "imageRegistry": "registry.gitlab.com",
+        "imageName": "rxap/packages",
         "imageSuffix": "/service/configuration"
       },
       "configurations": {
@@ -121,6 +121,12 @@
       "configurations": {
         "production": {},
         "development": {}
+      }
+    },
+    "generate-package-json": {
+      "executor": "@rxap/plugin-nestjs:package-json",
+      "configurations": {
+        "production": {}
       }
     }
   },

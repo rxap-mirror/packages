@@ -53,7 +53,8 @@
         "lintFilePatterns": [
           "packages/plugin/nestjs/**/*.ts",
           "packages/plugin/nestjs/package.json",
-          "packages/plugin/nestjs/generators.json"
+          "packages/plugin/nestjs/generators.json",
+          "packages/plugin/nestjs/executors.json"
         ]
       }
     },
