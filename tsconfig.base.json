@@ -163,6 +163,7 @@
         "packages/plugin/readme-generator/src/index.ts"
       ],
       "@rxap/plugin-utilities": ["packages/plugin/utilities/src/index.ts"],
+      "@rxap/plugin-workspace": ["packages/plugin/workspace/src/index.ts"],
       "@rxap/reflect-metadata": ["packages/reflect-metadata/src/index.ts"],
       "@rxap/remote-method": ["packages/angular/remote-method/src/index.ts"],
       "@rxap/remote-method/directive": [

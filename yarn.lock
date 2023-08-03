@@ -8235,6 +8235,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/plugin-workspace@workspace:packages/plugin/workspace":
+  version: 0.0.0-use.local
+  resolution: "@rxap/plugin-workspace@workspace:packages/plugin/workspace"
+  languageName: unknown
+  linkType: soft
+
 "@rxap/reflect-metadata@workspace:packages/reflect-metadata":
   version: 0.0.0-use.local
   resolution: "@rxap/reflect-metadata@workspace:packages/reflect-metadata"
