@@ -1,4 +1,7 @@
-import { deepMerge } from './deep-merge';
+import {
+  deepMerge,
+  MergeDeepLeft,
+} from './deep-merge';
 
 describe('Utilities', () => {
 
@@ -100,6 +103,109 @@ describe('Utilities', () => {
         runners: [
           {
             name: 'name',
+          },
+        ],
+      });
+
+    });
+
+    it('should deep merge with child array', () => {
+
+      const a = {
+        concurrent: 10,
+        runners: [
+          {
+            name: 'old',
+          },
+          {
+            name: 'old2',
+          },
+          {
+            name: 'old3',
+          },
+        ],
+      };
+      const b = {
+        concurrent: 15,
+        runners: [
+          {
+            name: 'name',
+            active: true,
+          },
+          {
+            name: 'name2',
+          },
+        ],
+      };
+
+      expect(deepMerge(a, b)).toEqual({
+        concurrent: 15,
+        runners: [
+          {
+            name: 'name',
+            active: true,
+          },
+          {
+            name: 'name2',
+          },
+          {
+            name: 'old3',
+          },
+        ],
+      });
+
+    });
+
+    it('should deep merge with left priority merge strategy', () => {
+
+      const a = {
+        concurrent: 10,
+        runners: [
+          {
+            name: 'old',
+          },
+          {
+            name: 'old2',
+          },
+          {
+            name: 'old3',
+          },
+        ],
+      };
+      const b = {
+        concurrent: 15,
+        runners: [
+          {
+            name: 'new',
+            active: true,
+          },
+          {
+            name: 'new2',
+          },
+          {
+            name: 'new3',
+          },
+          {
+            name: 'new4',
+          },
+        ],
+      };
+
+      expect(deepMerge(a, b, MergeDeepLeft)).toEqual({
+        concurrent: 10,
+        runners: [
+          {
+            name: 'old',
+            active: true,
+          },
+          {
+            name: 'old2',
+          },
+          {
+            name: 'old3',
+          },
+          {
+            name: 'new4',
           },
         ],
       });

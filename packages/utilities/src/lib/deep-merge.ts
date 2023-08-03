@@ -3,6 +3,8 @@ import {
   RecursivePartial,
 } from './helpers';
 
+export type MergeFunction = (lVal: any, rVal: any) => any;
+
 /**
  * Checks if the provided object has a specific property.
  *
@@ -51,9 +53,9 @@ function _has(prop: string, obj: any) {
  */
 function mergeWithKey(
   fn: (K: string, lk: string, rk: string) => any,
-  l: string[],
-  r: string[],
-) {
+  l: Record<string, any>,
+  r: Record<string, any>,
+): Record<string, any> {
   const result: Record<any, any> = {};
   let k;
 
@@ -96,10 +98,10 @@ function mergeWithKey(
  * mergeDeepWithKey((k, l, r) => l + r, { a: 1, b: { c: 2 } }, { a: 0, b: { c: 1, d: 4 } });
  */
 function mergeDeepWithKey(
-  fn: (K: string, lk: string, rk: string) => any,
-  lObj: any,
-  rObj: any,
-): any {
+  fn: (K: string, lk: any, rk: any) => any,
+  lObj: Record<string, any>,
+  rObj: Record<string, any>,
+): Record<string, any> {
   return mergeWithKey(
     function (k, lVal, rVal) {
       if (isObject(lVal) && isObject(rVal)) {
@@ -125,16 +127,64 @@ function mergeDeepWithKey(
  * // returns { a: 1, b: 2, c: 3 }
  * mergeDeepRight({ a: 1, b: 2 }, { b: 3, c: 3 });
  *
- * @function mergeDeepRight
+ * @function MergeDeepRight
  */
-function mergeDeepRight(lObj: any, rObj: any) {
+export function MergeDeepRight(lObj: any, rObj: any) {
   return mergeDeepWithKey(
     function (k, lVal, rVal) {
-      return rVal;
+      if (Array.isArray(rVal)) {
+        if (Array.isArray(lVal)) {
+          return mergeArray(lVal, rVal, MergeDeepRight);
+        }
+      }
+      return rVal === undefined ? lVal : rVal;
     },
     lObj,
     rObj,
   );
+}
+
+/**
+ * Merges two objects deeply, giving priority to the properties of the first object (`lObj`) in case of a conflict.
+ *
+ * @param {any} lObj - The first object to be merged. This object's properties will override `rObj`'s properties in case of a conflict.
+ * @param {any} rObj - The second object to be merged. This object's properties will be overridden by `lObj`'s properties in case of a conflict.
+ *
+ * @returns {any} A new object that is the result of a deep merge of `lObj` and `rObj`. In case of a conflict, the properties of `lObj` will take precedence.
+ *
+ * @example
+ * // returns { a: 1, b: 2, c: 3 }
+ * mergeDeepLeft({ a: 1, b: 2 }, { b: 3, c: 3 });
+ *
+ * @function MergeDeepLeft
+ */
+export function MergeDeepLeft(lObj: any, rObj: any) {
+  return mergeDeepWithKey(
+    function (k, lVal, rVal) {
+      if (Array.isArray(lVal)) {
+        if (Array.isArray(rVal)) {
+          return mergeArray(lVal, rVal, MergeDeepLeft);
+        }
+      }
+      return lVal === undefined ? rVal : lVal;
+    },
+    lObj,
+    rObj,
+  );
+}
+
+function mergeArray(a: any[], b: any[], mergeDeepFunction: MergeFunction) {
+  const clone: any[] = a.slice();
+  for (let i = 0; i < Math.max(a.length, b.length); i++) {
+    if (b[i] !== undefined) {
+      if (a[i] === undefined) {
+        clone[i] = b[i];
+      } else {
+        clone[i] = deepMerge(clone[i], b[i], mergeDeepFunction);
+      }
+    }
+  }
+  return clone as any;
 }
 
 /**
@@ -146,6 +196,7 @@ function mergeDeepRight(lObj: any, rObj: any) {
  *
  * @param {T} a The first object or array to merge. This will not be modified.
  * @param {Partial<T> | RecursivePartial<T> | T} b The second object or array to merge. This will not be modified.
+ * @param {Function} mergeDeepFunction The function to use to merge nested objects or arrays.
  *
  * @returns {T} A new object or array that contains the combined contents of `a` and `b`.
  *
@@ -164,22 +215,25 @@ function mergeDeepRight(lObj: any, rObj: any) {
  * - This function uses recursion to merge objects and arrays deeply. Therefore, it may not be suitable for very large or deeply nested objects or arrays due to the risk of a stack overflow.
  *
  */
-export function deepMerge<T>(a: T, b: Partial<T> | RecursivePartial<T> | T): T {
+export function deepMerge<T>(
+  a: T,
+  b: Partial<T> | RecursivePartial<T> | T,
+  mergeDeepFunction: MergeFunction = MergeDeepRight,
+): T {
   if (Array.isArray(a as any) || Array.isArray(b as any)) {
     if (Array.isArray(a as any) && Array.isArray(b as any)) {
-      const clone: any[] = (a as any).slice();
-      for (let i = 0; i < (b as any).length; i++) {
-        if ((b as any)[i] !== undefined) {
-          clone[i] = deepMerge(clone[i], (b as any)[i]);
-        }
-      }
-      return clone as any;
+      return mergeArray(a as any, b as any, mergeDeepFunction) as any;
     }
   }
 
   if (!isObject(a) || !isObject(b)) {
+    if (mergeDeepFunction === MergeDeepRight) {
+      return b as any;
+    } else if (mergeDeepFunction === MergeDeepLeft) {
+      return a as any;
+    }
     return b as any;
   }
 
-  return mergeDeepRight(a, b) as any;
+  return mergeDeepFunction(a, b) as any;
 }
