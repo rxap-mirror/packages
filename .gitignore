@@ -2,6 +2,8 @@
 
 # nx
 migrations.json
+docker-compose.frontends.yml
+docker-compose.services.yml
 
 # compiled output
 dist

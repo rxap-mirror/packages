@@ -34,12 +34,12 @@ services:
       - "traefik.http.routers.catch-all-api.priority=5"
     restart: unless-stopped
     volumes:
-      - "./not-found-nginx.conf:/etc/nginx/nginx.conf"
-  configuration:
+      - "./docker/not-found-nginx.conf:/etc/nginx/nginx.conf"
+  rxap-configuration-service:
     image: registry.gitlab.com/rxap/packages/service/configuration:${CHANNEL:-development}
     labels:
       - traefik.enable=true
-      - traefik.http.services.rxap-configuration.loadbalancer.server.port=3333
+      - traefik.http.services.rxap-configuration.loadbalancer.server.port=3000
       - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.path=/api/configuration/health
       - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.timeout=3s
@@ -53,11 +53,11 @@ services:
     depends_on:
       - traefik
       - catch-all-api
-  service-status:
+  rxap-status-service:
     image: registry.gitlab.com/rxap/packages/service/status:${CHANNEL:-development}
     labels:
       - traefik.enable=true
-      - traefik.http.services.rxap-status.loadbalancer.server.port=3333
+      - traefik.http.services.rxap-status.loadbalancer.server.port=3000
       - traefik.http.services.rxap-status.loadbalancer.healthCheck.path=/api/status/health
       - traefik.http.services.rxap-status.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-status.loadbalancer.healthCheck.timeout=3s
