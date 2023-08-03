@@ -192,9 +192,6 @@
     "packages/data-structure/*",
     "packages/node/*",
     "packages/nest/*",
-    "packages/workspace/*",
-    "demos/*",
-    "applications/*",
-    "applications/service/*"
+    "packages/workspace/*"
   ]
 }

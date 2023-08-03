@@ -7885,7 +7885,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/nest-logger@10.0.1-dev.0, @rxap/nest-logger@workspace:packages/nest/logger":
+"@rxap/nest-logger@workspace:packages/nest/logger":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-logger@workspace:packages/nest/logger"
   dependencies:
@@ -7929,7 +7929,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/nest-sentry@10.0.1-dev.0, @rxap/nest-sentry@workspace:packages/nest/sentry":
+"@rxap/nest-sentry@workspace:packages/nest/sentry":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-sentry@workspace:packages/nest/sentry"
   dependencies:
@@ -7944,7 +7944,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/nest-server@10.0.1-dev.0, @rxap/nest-server@workspace:packages/nest/server":
+"@rxap/nest-server@workspace:packages/nest/server":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-server@workspace:packages/nest/server"
   dependencies:
@@ -7971,28 +7971,6 @@ __metadata:
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
-
-"@rxap/nest-utilities@npm:10.0.1-dev.0":
-  version: 10.0.1-dev.0
-  resolution: "@rxap/nest-utilities@npm:10.0.1-dev.0"
-  dependencies:
-    "@sentry/core": ^7.28.1
-    "@sentry/node": ^7.28.1
-    "@sentry/types": ^7.28.1
-    tslib: 2.5.3
-  peerDependencies:
-    "@nestjs/common": ^10.0.5
-    "@nestjs/config": ^3.0.0
-    "@nestjs/core": ^10.0.5
-    "@rxap/nest-logger": 10.0.1-dev.0
-    "@rxap/nest-sentry": ^10.0.1-dev.0
-    "@rxap/utilities": ^16.0.0-dev.4
-    class-transformer: ^0.5.1
-    class-validator: ^0.14.0
-    rxjs: ^7.8.0
-  checksum: f71dd0f9ef7738e9c41e56b15468f85bdcbae7b5bf413a5ad96d61dc3b99e3fbffc209228e66122dc6874f46c0d3817c4e5beb6e285e66f748ffab9bd5bdb2c9
-  languageName: node
-  linkType: hard
 
 "@rxap/nest-utilities@workspace:packages/nest/utilities":
   version: 0.0.0-use.local
@@ -8069,7 +8047,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/node-utilities@1.0.1-dev.2, @rxap/node-utilities@workspace:packages/node/utilities":
+"@rxap/node-utilities@workspace:packages/node/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/node-utilities@workspace:packages/node/utilities"
   dependencies:
@@ -8510,7 +8488,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rxap/utilities@16.0.0-dev.4, @rxap/utilities@workspace:packages/utilities":
+"@rxap/utilities@workspace:packages/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/utilities@workspace:packages/utilities"
   dependencies:
@@ -26502,19 +26480,6 @@ __metadata:
   checksum: af57fc13be40d90a12562e98c0b7855cf6e8bd4c107fe9a45c212bf023058d54a1871b1c89511c3958f70626fff47faeb795f5d83f8cf88514dbaeb2b724464d
   languageName: node
   linkType: hard
-
-"service-configuration@workspace:applications/service/configuration":
-  version: 0.0.0-use.local
-  resolution: "service-configuration@workspace:applications/service/configuration"
-  dependencies:
-    "@rxap/nest-logger": 10.0.1-dev.0
-    "@rxap/nest-sentry": 10.0.1-dev.0
-    "@rxap/nest-server": 10.0.1-dev.0
-    "@rxap/nest-utilities": 10.0.1-dev.0
-    "@rxap/node-utilities": 1.0.1-dev.2
-    "@rxap/utilities": 16.0.0-dev.4
-  languageName: unknown
-  linkType: soft
 
 "set-blocking@npm:^2.0.0":
   version: 2.0.0
