@@ -33,7 +33,6 @@ variables:
 
 include:
 
-  - local: .gitlab/ci/utilities/yarn.yaml
   - local: .gitlab/ci/utilities/run-all.yaml
   - local: .gitlab/ci/utilities/run.yaml
 

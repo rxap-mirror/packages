@@ -4,7 +4,10 @@
   variables:
     TARGET: "$CI_JOB_NAME"
   before_script:
-    - *yarn
+    - apk add --no-cache git g++ make python3
+    - corepack enable
+    - corepack prepare yarn@stable --activate
+    - yarn "$(if [[ $CI_COMMIT_REF_NAME =~ ^renovate//* ]]; then echo ''; else echo '--frozen-lockfile'; fi)"
   script:
     - yarn nx run-many --target ${TARGET} --parallel $NX_PARALLEL ${ADDITIONAL_TARGET_OPTIONS}
   rules:
