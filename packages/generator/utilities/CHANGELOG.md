@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.2...@rxap/generator-utilities@1.1.0-dev.3) (2023-08-04)
+
+### Bug Fixes
+
+- projects without build target are not applications ([2d61f35](https://gitlab.com/rxap/packages/commit/2d61f359ab1bf0f2c9d64905baae24d263444552))
+- replace with dynamic project name ([973da98](https://gitlab.com/rxap/packages/commit/973da9886416a6eabffd3d2c1abb3775fcbfd1a9))
+
 # [1.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.1...@rxap/generator-utilities@1.1.0-dev.2) (2023-08-04)
 
 ### Bug Fixes
