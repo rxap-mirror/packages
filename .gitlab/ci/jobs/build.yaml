@@ -11,5 +11,3 @@
     name: "${CI_COMMIT_REF_SLUG}_run-all_${TARGET}"
     paths:
       - dist
-    reports:
-      dotenv: deploy.env
