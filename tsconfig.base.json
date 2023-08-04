@@ -208,6 +208,15 @@
         "packages/workspace/utilities/src/index.ts"
       ],
       "@rxap/xml-parser": ["packages/xml-parser/src/index.ts"],
+      "open-api-service-app-angular-table/*": [
+        "packages/open-api/service/app/angular/table/src/lib/*"
+      ],
+      "open-api-service-configuration/*": [
+        "packages/open-api/service/configuration/src/lib/*"
+      ],
+      "open-api-service-status/*": [
+        "packages/open-api/service/status/src/lib/*"
+      ],
       "workspace": ["tools/workspace/src/index.ts"],
       "workspace/commands": ["tools/workspace/src/cypress/commands.ts"]
     }

@@ -1,0 +1,22 @@
+{
+  "name": "open-api-service-configuration",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/open-api/service/configuration/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/open-api/service/configuration/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "open-api"
+  ]
+}
