@@ -13,6 +13,8 @@ import {
   CoerceAssets,
   CoerceFile,
   CoerceIgnorePattern,
+  IsBuildable,
+  IsPublishable,
   RemoveAssets,
   SkipNonLibraryProject,
 } from '@rxap/generator-utilities';
@@ -141,45 +143,43 @@ function extendAngularSpecificEslint(tree: Tree, project: ProjectConfiguration) 
 
 function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
 
-  CoerceTarget(project, 'check-version', {
-    executor: '@rxap/plugin-library:check-version',
-    options: {
-      packageName: '@angular/core',
-    },
-  });
+  if (IsPublishable(tree, project)) {
 
-  if (hasTailwindConfig(tree, project)) {
-    CoerceTarget(project, 'build-tailwind', {
-      executor: '@rxap/plugin-angular:tailwind',
-      configurations: {
-        production: {
-          minify: true,
-        },
-        development: {},
+    CoerceTarget(project, 'check-version', {
+      executor: '@rxap/plugin-library:check-version',
+      options: {
+        packageName: '@angular/core',
       },
     });
-  } else {
-    if (project.targets['build-tailwind']) {
-      delete project.targets['build-tailwind'];
+
+    if (hasTailwindConfig(tree, project)) {
+      CoerceTarget(project, 'build-tailwind', {
+        executor: '@rxap/plugin-angular:tailwind',
+        configurations: {
+          production: {
+            minify: true,
+          },
+          development: {},
+        },
+      });
+    } else {
+      if (project.targets['build-tailwind']) {
+        delete project.targets['build-tailwind'];
+      }
     }
+
+    if (isNgPackagrProject(tree, project)) {
+      CoerceTarget(project, 'check-ng-package', { executor: '@rxap/plugin-angular:check-ng-package' });
+    }
+
   }
 
-  if (isNgPackagrProject(tree, project)) {
-    CoerceTarget(project, 'check-ng-package', { executor: '@rxap/plugin-angular:check-ng-package' });
-  }
-
-}
-
-function isRxapPackagesProject(tree: Tree) {
-  const rootPackageJson = readJson(tree, 'package.json');
-  return rootPackageJson.name === 'rxap';
 }
 
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
   CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version');
-  CoerceTargetDefaultsDependency(nxJson, 'build', '^build');
   CoerceTargetDefaultsDependency(nxJson, 'build', 'build-tailwind');
   CoerceTargetDefaultsDependency(nxJson, 'build', 'check-ng-package');
   CoerceTargetDefaultsDependency(nxJson, 'build-tailwind', {
@@ -190,11 +190,11 @@ function setGeneralTargetDefaults(tree: Tree) {
   });
   CoerceTargetDefaultsOutput(nxJson, 'build-tailwind', '{projectRoot}/theme.css');
   CoerceTargetDefaultsInput(
-      nxJson,
-      'build-tailwind',
-      '{projectRoot}/**/*.html',
-      '{projectRoot}/**/*.scss',
-      '{projectRoot}/**/*.css',
+    nxJson,
+    'build-tailwind',
+    '{projectRoot}/**/*.html',
+    '{projectRoot}/**/*.scss',
+    '{projectRoot}/**/*.css',
   );
   CoerceTargetDefaultsInput(
     nxJson,
@@ -204,17 +204,6 @@ function setGeneralTargetDefaults(tree: Tree) {
   );
 
   updateNxJson(tree, nxJson);
-}
-
-function addImplicitDependency(tree: Tree, project: ProjectConfiguration) {
-  project.implicitDependencies ??= [];
-  if (project.implicitDependencies.includes('browser-tailwind')) {
-    project.implicitDependencies =
-      project.implicitDependencies.filter((dependency) => dependency !== 'browser-tailwind');
-  }
-  if (!project.implicitDependencies.length) {
-    delete project.implicitDependencies;
-  }
 }
 
 function isNgPackagrProject(tree: Tree, project: ProjectConfiguration) {
@@ -237,14 +226,12 @@ export async function initLibraryGenerator(
 
     console.log(`init project: ${ projectName }`);
 
-    updateProjectNgPackageConfiguration(tree, project);
-    extendAngularSpecificEslint(tree, project);
-    coerceTailwindThemeScss(tree, project);
-    updateProjectTargets(tree, project);
-
-    if (isRxapPackagesProject(tree)) {
-      addImplicitDependency(tree, project);
+    if (IsBuildable(project)) {
+      updateProjectNgPackageConfiguration(tree, project);
+      coerceTailwindThemeScss(tree, project);
     }
+    extendAngularSpecificEslint(tree, project);
+    updateProjectTargets(tree, project);
 
     updateProjectConfiguration(tree, project.name, project);
 

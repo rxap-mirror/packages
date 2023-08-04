@@ -6,7 +6,14 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { SkipNonLibraryProject } from '@rxap/generator-utilities';
+import {
+  IsPublishable,
+  SkipNonLibraryProject,
+} from '@rxap/generator-utilities';
+import {
+  CoerceTarget,
+  CoerceTargetDefaultsDependency,
+} from '@rxap/workspace-utilities';
 import { SkipNonNestProject } from '../../lib/skip-non-nest-project';
 import { InitApplicationGeneratorSchema } from '../init-application/schema';
 
@@ -31,27 +38,22 @@ function skipProject(
 
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
-  nxJson.targetDefaults ??= {};
 
-  nxJson.targetDefaults['build'] ??= { dependsOn: [ '^build' ] };
-
-  if (!nxJson.targetDefaults['build']?.dependsOn?.includes('check-version')) {
-    nxJson.targetDefaults['build'].dependsOn.push('check-version');
-  }
+  CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version');
 
   updateNxJson(tree, nxJson);
 }
 
-function updateProjectTargets(project: ProjectConfiguration) {
+function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
 
-  project.targets ??= {};
-
-  project.targets['check-version'] = {
-    executor: '@rxap/plugin-library:check-version',
-    options: {
-      packageName: '@nestjs/core',
-    },
-  };
+  if (IsPublishable(tree, project)) {
+    CoerceTarget(project, 'check-version', {
+      executor: '@rxap/plugin-library:check-version',
+      options: {
+        packageName: '@nestjs/core',
+      },
+    });
+  }
 
 }
 
@@ -71,7 +73,7 @@ export async function initLibraryGenerator(
 
     console.log(`init project: ${ projectName }`);
 
-    updateProjectTargets(project);
+    updateProjectTargets(tree, project);
 
 
     // apply changes to the project configuration
