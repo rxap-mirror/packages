@@ -70,7 +70,13 @@ const prettierIgnore = [
 ];
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
-  generateFiles(tree, join(__dirname, 'files'), tree.root, { tmpl: '' });
+  generateFiles(tree, join(__dirname, 'files/general'), tree.root, { tmpl: '' });
+  if (options.applications) {
+    generateFiles(tree, join(__dirname, 'files/applications'), tree.root, { tmpl: '' });
+  }
+  if (options.packages) {
+    generateFiles(tree, join(__dirname, 'files/packages'), tree.root, { tmpl: '' });
+  }
 
   CoerceIgnorePattern(tree, '.gitignore', gitIgnore);
   CoerceIgnorePattern(tree, '.prettierignore', prettierIgnore);

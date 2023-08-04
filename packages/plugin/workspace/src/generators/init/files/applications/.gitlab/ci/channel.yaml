@@ -1,0 +1,9 @@
+include:
+  - local: .gitlab/ci/jobs/localazy.yaml
+    rules:
+      - if: '$CI_COMMIT_BRANCH == "preview" || $LOCALAZY_UPLOAD == "true"'
+  - local: .gitlab/ci/jobs/release.yaml
+
+stages:
+  - localazy
+  - release

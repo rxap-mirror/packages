@@ -1,3 +1,4 @@
 export interface InitGeneratorSchema {
-  name: string;
+  applications: boolean;
+  packages: boolean;
 }

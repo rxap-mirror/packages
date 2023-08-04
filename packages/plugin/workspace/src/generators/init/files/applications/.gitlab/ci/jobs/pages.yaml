@@ -1,0 +1,24 @@
+pages:
+  image: registry.gitlab.com/rxap/gitlab-ci/apindex:$RXAP_CI_CONFIG_REF
+  stage: deploy
+  needs:
+    - build
+    - build-storybook
+  script:
+    - mkdir -p "public/${CI_COMMIT_REF_SLUG}"
+    - cp -r dist/* "public/${CI_COMMIT_REF_SLUG}/"
+    - apindex public
+  environment:
+    name: "pages/$CI_COMMIT_REF_NAME"
+    deployment_tier: other
+    url: $CI_PAGES_URL/$CI_COMMIT_REF_SLUG
+  allow_failure: true
+  cache:
+    # storage all page contents into one global cache
+    # only one page can exist per project
+    key: pages_$CI_PROJECT_ID
+    paths:
+      - public
+  artifacts:
+    paths:
+      - public
