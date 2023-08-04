@@ -1,14 +1,11 @@
-import { RunGeneratorExecutorSchema } from './schema';
-import run from 'nx/src/executors/run-commands/run-commands.impl';
 import { ExecutorContext } from '@nx/devkit';
+import { IsRxapRepository } from '@rxap/workspace-utilities';
+import run from 'nx/src/executors/run-commands/run-commands.impl';
+import { RunGeneratorExecutorSchema } from './schema';
 
 function buildParameters(options: Record<string, unknown> = {}): string {
   const params = [];
   for (const [ key, value ] of Object.entries(options)) {
-    if (key === 'project') {
-      console.log('skip project option');
-      continue;
-    }
     if (Array.isArray(value)) {
       for (const item of value) {
         params.push(`--${ key }=${ item }`);
@@ -27,8 +24,16 @@ export default async function runExecutor(options: RunGeneratorExecutorSchema, c
 
   let command = `nx g ${ options.generator }`;
 
+  if (IsRxapRepository(context.root)) {
+    if (options.generator.match(/@rxap\/schematic/)) {
+      command = `yarn schematic ${ options.generator }`;
+    }
+  }
+
+  options.options ??= {};
+
   if (!options.withoutProjectArgument) {
-    command += ` --project ${ context.projectName }`;
+    options.options['project'] ??= context.projectName;
   }
 
   command += ` ${ buildParameters(options.options) }`;
