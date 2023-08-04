@@ -178,7 +178,7 @@
       "executor": "@rxap/plugin-docker:build",
       "options": {
         "imageName": "rxap/packages",
-        "imageSuffix": "/frontend/angular",
+        "imageSuffix": "/user-interface/angular",
         "imageRegistry": "registry.gitlab.com"
       },
       "configurations": {

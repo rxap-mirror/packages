@@ -81,12 +81,13 @@
     "docker": {
       "executor": "@rxap/plugin-docker:build",
       "options": {
-        "imageRegistry": "registry.gitlab.com",
         "imageName": "rxap/packages",
-        "imageSuffix": "/service/status"
+        "imageSuffix": "/service/status",
+        "imageRegistry": "registry.gitlab.com"
       },
       "configurations": {
-        "production": {}
+        "production": {},
+        "development": {}
       }
     },
     "swagger-build": {

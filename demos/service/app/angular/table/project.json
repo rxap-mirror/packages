@@ -85,7 +85,7 @@
       "executor": "@rxap/plugin-docker:build",
       "options": {
         "imageName": "rxap/packages",
-        "imageSuffix": "/service/app/angular/table",
+        "imageSuffix": "/service/app-angular-table",
         "imageRegistry": "registry.gitlab.com"
       },
       "configurations": {

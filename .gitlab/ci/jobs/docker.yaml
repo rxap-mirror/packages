@@ -20,7 +20,7 @@ docker:angular:
   variables:
     DOCKER_CONTEXT: dist/demos/angular
     IMAGE_NAME: rxap/packages
-    IMAGE_SUFFIX: /frontend/angular
+    IMAGE_SUFFIX: /user-interface/angular
   environment:
     name: $ENVIRONMENT_NAME
 docker:service-configuration:
@@ -44,6 +44,6 @@ docker:service-app-angular-table:
   variables:
     DOCKER_CONTEXT: dist/demos/service/app/angular/table
     IMAGE_NAME: rxap/packages
-    IMAGE_SUFFIX: /service/app/angular/table
+    IMAGE_SUFFIX: /service/app-angular-table
   environment:
     name: $ENVIRONMENT_NAME

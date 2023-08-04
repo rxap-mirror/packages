@@ -16,6 +16,7 @@ import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
 import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  Strategy,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import * as process from 'process';
@@ -32,6 +33,23 @@ function skipProject(
   }
 
   return false;
+}
+
+function buildDockerImageSuffix(project: ProjectConfiguration) {
+  let imageSuffix = `/`;
+  if (project.targets?.['build']?.executor?.includes('angular') ||
+    project.name.startsWith('frontend') ||
+    project.name.startsWith('ui') ||
+    project.name.startsWith('user-interface') ||
+    project.name.startsWith('application')) {
+    imageSuffix +=
+      [ 'user-interface', project.name.replace(/^(application|user-interface|ui|frontend)-/, '') ].join('/');
+  } else if (project.name.startsWith('service') || project.name.startsWith('backend')) {
+    imageSuffix += [ 'service', project.name.replace(/^(service|backend)-/, '') ].join('/');
+  } else {
+    imageSuffix += project.name;
+  }
+  return imageSuffix;
 }
 
 function updateProjectTargets(project: ProjectConfiguration, options: InitGeneratorSchema) {
@@ -57,14 +75,14 @@ function updateProjectTargets(project: ProjectConfiguration, options: InitGenera
     executor: '@rxap/plugin-docker:build',
     options: {
       imageName: options.dockerImageName ?? process.env.IMAGE_NAME,
-      imageSuffix: options.dockerImageSuffix,
+      imageSuffix: options.dockerImageSuffix ?? buildDockerImageSuffix(project),
       imageRegistry: options.dockerImageRegistry ?? process.env.REGISTRY,
     },
     configurations: {
       production: {},
       development: {},
     },
-  });
+  }, Strategy.REPLACE);
   CoerceTarget(project, 'docker-save', {
     executor: '@rxap/plugin-docker:save',
     options: {},
