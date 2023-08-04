@@ -134,13 +134,6 @@
         "watch": false
       }
     },
-    "deploy": {
-      "executor": "nx:run-commands",
-      "outputs": [],
-      "options": {
-        "command": "echo ok"
-      }
-    },
     "docker-save": {
       "executor": "@rxap/plugin-docker:save",
       "options": {},

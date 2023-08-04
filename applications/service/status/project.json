@@ -72,17 +72,6 @@
         "passWithNoTests": true
       }
     },
-    "deploy": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "echo ok"
-        ]
-      },
-      "configurations": {
-        "production": {}
-      }
-    },
     "ci": {
       "executor": "@rxap/plugin-application:build-info",
       "configurations": {

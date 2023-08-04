@@ -70,13 +70,6 @@
         "passWithNoTests": true
       }
     },
-    "deploy": {
-      "executor": "nx:run-commands",
-      "outputs": [],
-      "options": {
-        "command": "echo ok"
-      }
-    },
     "ci": {
       "executor": "@rxap/plugin-application:build-info",
       "configurations": {
