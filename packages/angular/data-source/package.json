@@ -1,6 +1,6 @@
 {
   "name": "@rxap/data-source",
-  "version": "16.0.0-dev.8",
+  "version": "16.0.0-dev.9",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
@@ -8,13 +8,13 @@
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/data-structure-tree": "^1.0.1-dev.2",
-    "@rxap/definition": "^16.0.0-dev.7",
-    "@rxap/environment": "^16.0.0-dev.7",
-    "@rxap/pattern": "^1.0.1-dev.1",
-    "@rxap/remote-method": "^16.0.0-dev.7",
-    "@rxap/rxjs": "^1.0.1-dev.1",
-    "@rxap/utilities": "^16.0.0-dev.5",
+    "@rxap/data-structure-tree": "^1.0.1-dev.3",
+    "@rxap/definition": "^16.0.0-dev.8",
+    "@rxap/environment": "^16.0.0-dev.8",
+    "@rxap/pattern": "^1.0.1-dev.2",
+    "@rxap/remote-method": "^16.0.0-dev.8",
+    "@rxap/rxjs": "^1.0.1-dev.2",
+    "@rxap/utilities": "^16.0.0-dev.6",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -52,31 +52,31 @@
     "packageGroup": [
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.1"
-      },
-      {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.5"
-      },
-      {
-        "package": "@rxap/pattern",
-        "version": "1.0.1-dev.1"
-      },
-      {
-        "package": "@rxap/definition",
-        "version": "16.0.0-dev.7"
-      },
-      {
-        "package": "@rxap/data-structure-tree",
         "version": "1.0.1-dev.2"
       },
       {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.6"
+      },
+      {
+        "package": "@rxap/pattern",
+        "version": "1.0.1-dev.2"
+      },
+      {
+        "package": "@rxap/definition",
+        "version": "16.0.0-dev.8"
+      },
+      {
+        "package": "@rxap/data-structure-tree",
+        "version": "1.0.1-dev.3"
+      },
+      {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.7"
+        "version": "16.0.0-dev.8"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "16.0.0-dev.7"
+        "version": "16.0.0-dev.8"
       }
     ]
   }

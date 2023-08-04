@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.1...@rxap/workspace-utilities@0.1.0-dev.2) (2023-08-04)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([ca6d4d5](https://gitlab.com/rxap/packages/commit/ca6d4d509a743b89bad5ed7ae935d3007231705a))
+- enforce that the production configuration is the default configuration ([6e9c3b7](https://gitlab.com/rxap/packages/commit/6e9c3b7a58e92bcb5a1b9b772a34153b44acc8f9))
+
+### Features
+
+- add IsRxapRepository function ([4f3a8dd](https://gitlab.com/rxap/packages/commit/4f3a8dd9752c65139111494d2671d911290a816c))
+
 # [0.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.0...@rxap/workspace-utilities@0.1.0-dev.1) (2023-08-03)
 
 ### Bug Fixes

@@ -1,12 +1,12 @@
 {
   "name": "@rxap/directives",
-  "version": "16.0.0-dev.7",
+  "version": "16.0.0-dev.8",
   "peerDependencies": {
     "@angular/core": "^16.1.4",
-    "@rxap/pattern": "^1.0.1-dev.1",
-    "@rxap/rxjs": "^1.0.1-dev.1",
-    "@rxap/services": "^16.0.0-dev.7",
-    "@rxap/utilities": "^16.0.0-dev.5",
+    "@rxap/pattern": "^1.0.1-dev.2",
+    "@rxap/rxjs": "^1.0.1-dev.2",
+    "@rxap/services": "^16.0.0-dev.8",
+    "@rxap/utilities": "^16.0.0-dev.6",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -44,19 +44,19 @@
     "packageGroup": [
       {
         "package": "@rxap/pattern",
-        "version": "1.0.1-dev.1"
+        "version": "1.0.1-dev.2"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.1"
+        "version": "1.0.1-dev.2"
       },
       {
         "package": "@rxap/services",
-        "version": "16.0.0-dev.7"
+        "version": "16.0.0-dev.8"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.5"
+        "version": "16.0.0-dev.6"
       }
     ]
   }

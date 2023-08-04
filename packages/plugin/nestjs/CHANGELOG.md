@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.3...@rxap/plugin-nestjs@16.1.0-dev.4) (2023-08-04)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([ca6d4d5](https://gitlab.com/rxap/packages/commit/ca6d4d509a743b89bad5ed7ae935d3007231705a))
+
+### Features
+
+- add generate-open-api target to nestjs application projects ([bcb4e9e](https://gitlab.com/rxap/packages/commit/bcb4e9e6104e1fba63a1026da8e50dda6ff172b1))
+- mv swagger generator to plugin-nestjs ([cf2ecbb](https://gitlab.com/rxap/packages/commit/cf2ecbb16b681cb04d392d17bb987b24e8c9224b))
+
 # [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.2...@rxap/plugin-nestjs@16.1.0-dev.3) (2023-08-04)
 
 ### Bug Fixes

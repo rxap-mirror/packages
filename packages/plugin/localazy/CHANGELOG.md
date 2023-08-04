@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.0...@rxap/plugin-localazy@16.1.0-dev.1) (2023-08-04)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([ca6d4d5](https://gitlab.com/rxap/packages/commit/ca6d4d509a743b89bad5ed7ae935d3007231705a))
+- remove unnecessary deployment tier ([53b4790](https://gitlab.com/rxap/packages/commit/53b4790aad58644e40b65d6ef2967fcc73c94462))
+
 # [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.0.1-dev.0...@rxap/plugin-localazy@16.1.0-dev.0) (2023-08-04)
 
 ### Bug Fixes

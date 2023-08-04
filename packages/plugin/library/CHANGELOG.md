@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.12...@rxap/plugin-library@16.0.0-dev.13) (2023-08-04)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([ca6d4d5](https://gitlab.com/rxap/packages/commit/ca6d4d509a743b89bad5ed7ae935d3007231705a))
+- call the schematic utility script if rxap repository ([6497a76](https://gitlab.com/rxap/packages/commit/6497a7680503cf0aab38e5de7db813c0733d191c))
+- enforce that the production configuration is the default configuration ([6e9c3b7](https://gitlab.com/rxap/packages/commit/6e9c3b7a58e92bcb5a1b9b772a34153b44acc8f9))
+
 # [16.0.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.11...@rxap/plugin-library@16.0.0-dev.12) (2023-08-04)
 
 ### Bug Fixes

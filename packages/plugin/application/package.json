@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-application",
-  "version": "16.1.0-dev.1",
+  "version": "16.1.0-dev.2",
   "type": "commonjs",
   "executors": "./executors.json",
   "publishConfig": {
@@ -35,34 +35,34 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.1.0-dev.1",
-    "@rxap/plugin-angular": "^16.1.0-dev.5",
-    "@rxap/plugin-docker": "^16.0.0-dev.8",
-    "@rxap/plugin-utilities": "^16.1.0-dev.3",
-    "@rxap/workspace-utilities": "^0.1.0-dev.1",
+    "@rxap/generator-utilities": "^1.1.0-dev.2",
+    "@rxap/plugin-angular": "^16.1.0-dev.6",
+    "@rxap/plugin-docker": "^16.0.0-dev.9",
+    "@rxap/plugin-utilities": "^16.1.0-dev.4",
+    "@rxap/workspace-utilities": "^0.1.0-dev.2",
     "handlebars": "^4.7.7"
   },
   "nx-migrations": {
     "packageGroup": [
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.1"
+        "version": "1.1.0-dev.2"
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "16.1.0-dev.5"
+        "version": "16.1.0-dev.6"
       },
       {
         "package": "@rxap/plugin-docker",
-        "version": "16.0.0-dev.8"
+        "version": "16.0.0-dev.9"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.1.0-dev.3"
+        "version": "16.1.0-dev.4"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.1"
+        "version": "0.1.0-dev.2"
       }
     ]
   },

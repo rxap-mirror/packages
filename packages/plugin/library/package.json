@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-library",
-  "version": "16.0.0-dev.12",
+  "version": "16.0.0-dev.13",
   "type": "commonjs",
   "executors": "./executors.json",
   "generators": "./generators.json",
@@ -12,31 +12,31 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.1-dev.2"
+        "version": "1.0.1-dev.3"
       },
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.1"
+        "version": "1.1.0-dev.2"
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.1.0-dev.0"
+        "version": "1.1.0-dev.1"
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "16.1.0-dev.5"
+        "version": "16.1.0-dev.6"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "16.1.0-dev.3"
+        "version": "16.1.0-dev.4"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.1.0-dev.3"
+        "version": "16.1.0-dev.4"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.1"
+        "version": "0.1.0-dev.2"
       },
       {
         "package": "@rxap/schematics-utilities",
@@ -71,13 +71,13 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-ts-morph": "^1.0.1-dev.2",
-    "@rxap/generator-utilities": "^1.1.0-dev.1",
-    "@rxap/node-utilities": "^1.1.0-dev.0",
-    "@rxap/plugin-angular": "^16.1.0-dev.5",
-    "@rxap/plugin-nestjs": "^16.1.0-dev.3",
-    "@rxap/plugin-utilities": "^16.1.0-dev.3",
-    "@rxap/workspace-utilities": "^0.1.0-dev.1",
+    "@rxap/generator-ts-morph": "^1.0.1-dev.3",
+    "@rxap/generator-utilities": "^1.1.0-dev.2",
+    "@rxap/node-utilities": "^1.1.0-dev.1",
+    "@rxap/plugin-angular": "^16.1.0-dev.6",
+    "@rxap/plugin-nestjs": "^16.1.0-dev.4",
+    "@rxap/plugin-utilities": "^16.1.0-dev.4",
+    "@rxap/workspace-utilities": "^0.1.0-dev.2",
     "nx": "^16.5.0",
     "semver": "^7.3.5",
     "ts-morph": "^18.0.0"

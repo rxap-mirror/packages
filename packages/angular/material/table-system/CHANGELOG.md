@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.12...@rxap/material-table-system@16.0.0-dev.13) (2023-08-04)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([ca6d4d5](https://gitlab.com/rxap/packages/commit/ca6d4d509a743b89bad5ed7ae935d3007231705a))
+
 # [16.0.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.11...@rxap/material-table-system@16.0.0-dev.12) (2023-08-03)
 
 **Note:** Version bump only for package @rxap/material-table-system

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.8...@rxap/plugin-docker@16.0.0-dev.9) (2023-08-04)
+
+### Bug Fixes
+
+- add default stage for docker build job ([cbec919](https://gitlab.com/rxap/packages/commit/cbec91945b6c209a04fba970787808e46b5da63d))
+- add licence file to publishable packages ([ca6d4d5](https://gitlab.com/rxap/packages/commit/ca6d4d509a743b89bad5ed7ae935d3007231705a))
+- add missing echo -e ([8f3733a](https://gitlab.com/rxap/packages/commit/8f3733aeb519ed30078e00d843179ef206bf1458))
+- remove unnecessary deployment tier ([53b4790](https://gitlab.com/rxap/packages/commit/53b4790aad58644e40b65d6ef2967fcc73c94462))
+
 # [16.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.7...@rxap/plugin-docker@16.0.0-dev.8) (2023-08-04)
 
 ### Bug Fixes

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.1...@rxap/generator-utilities@1.1.0-dev.2) (2023-08-04)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([ca6d4d5](https://gitlab.com/rxap/packages/commit/ca6d4d509a743b89bad5ed7ae935d3007231705a))
+- support buffer as default content ([38ccae0](https://gitlab.com/rxap/packages/commit/38ccae071f0c71aee698d5efba73333ed582381f))
+
 # [1.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.0...@rxap/generator-utilities@1.1.0-dev.1) (2023-08-04)
 
 ### Features

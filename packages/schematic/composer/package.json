@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematic-composer",
-  "version": "0.0.2-dev.0",
+  "version": "0.0.2-dev.1",
   "type": "commonjs",
   "schematics": "./collection.json",
   "publishConfig": {
@@ -33,8 +33,28 @@
   },
   "peerDependencies": {
     "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.5",
-    "@rxap/schematics-utilities": "^16.0.0-dev.6",
-    "@rxap/utilities": "^16.0.0-dev.4"
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.7",
+    "@rxap/schematics-utilities": "^16.0.0-dev.7",
+    "@rxap/utilities": "^16.0.0-dev.6"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/schematic-angular",
+        "version": "16.1.0-dev.1"
+      },
+      {
+        "package": "@rxap/schematics-ts-morph",
+        "version": "16.0.0-dev.7"
+      },
+      {
+        "package": "@rxap/schematics-utilities",
+        "version": "16.0.0-dev.7"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.6"
+      }
+    ]
   }
 }
