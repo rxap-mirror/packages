@@ -60,7 +60,7 @@ export * from './lib/angular-json/target';
 export * from './lib/angular-json/tslint';
 // endregion
 
-// region 
+// region
 export * from './lib/angular-json-file';
 export * from './lib/builders-json-file';
 export * from './lib/check-if-packages-are-installed';
@@ -92,3 +92,4 @@ export * from './lib/search-file';
 export * from './lib/ts-config-file';
 export * from './lib/workspace';
 // endregion
+export * from './lib/delete-directory';
