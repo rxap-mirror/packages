@@ -16,7 +16,6 @@ import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
 import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
-  Strategy,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import * as process from 'process';
@@ -82,7 +81,7 @@ function updateProjectTargets(project: ProjectConfiguration, options: InitGenera
       production: {},
       development: {},
     },
-  }, Strategy.REPLACE);
+  });
   CoerceTarget(project, 'docker-save', {
     executor: '@rxap/plugin-docker:save',
     options: {},
