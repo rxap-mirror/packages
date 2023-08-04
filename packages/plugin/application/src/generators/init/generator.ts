@@ -13,6 +13,7 @@ import {
 } from '@rxap/generator-utilities';
 import { AngularInitGenerator } from '@rxap/plugin-angular';
 import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
+import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
 import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
@@ -140,6 +141,16 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
     if (project.tags?.includes('angular')) {
       await AngularInitGenerator(tree, { ...options, projects: [ projectName ] });
+    }
+
+    if (project.tags?.includes('nest')) {
+      await nestJsInitGenerator(
+        tree,
+        {
+          ...options,
+          projects: [ projectName ],
+        },
+      );
     }
 
   }
