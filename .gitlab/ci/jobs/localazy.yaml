@@ -1,34 +1,10 @@
-generate:localazy-upload:
-  stage: generate
-  tags:
-    - e2-standard-1
-  image: node:${NODE_VERSION}-alpine
+.localazy:
+  extends: .run
+  stage: localazy
+  rules:
+    - if: $LOCALAZY_WRITE_KEY == null
+      when: never
+    - when: on_success
   needs:
-    - job: setup
-      optional: true
+    - job: build
       artifacts: false
-  before_script:
-    - cd ./.gitlab/ci/generator/localazy-upload
-    - apk add --no-cache git g++ make python3 jq
-    - yarn --frozen-lockfile
-  artifacts:
-    paths:
-      - localazy-upload.gitlab-ci.yml
-    expire_in: 1h
-  script:
-    - node ./index.js
-  variables:
-    ENVIRONMENT_NAME: channel/$CI_COMMIT_REF_NAME
-    DEPLOYMENT_TIER: staging
-
-trigger:localazy-upload:
-  stage: trigger
-  allow_failure: true
-  needs:
-    - generate:localazy-upload
-  variables:
-    PARENT_PIPELINE_ID: $CI_PIPELINE_ID
-  trigger:
-    include:
-      - artifact: localazy-upload.gitlab-ci.yml
-        job: generate:localazy-upload
