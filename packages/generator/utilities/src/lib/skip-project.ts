@@ -106,6 +106,10 @@ export function SkipNonApplicationProject(
     return true;
   }
 
+  if (!project.targets?.['build']) {
+    return true;
+  }
+
   return false;
 
 }
