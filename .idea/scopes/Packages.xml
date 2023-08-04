@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Packages" pattern="file[rxap]:packages//*&amp;&amp;!file[rxap]:*.md" />
+</component>
