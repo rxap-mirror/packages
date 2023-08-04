@@ -1,19 +1,19 @@
 import {
   generateFiles,
   readNxJson,
+  readProjectConfiguration,
   Tree,
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import * as path from 'path';
-import { join } from 'path';
-import { ConfigGeneratorSchema } from './schema';
 import {
   CoerceIgnorePattern,
   GetProjectSourceRoot,
 } from '@rxap/generator-utilities';
-import { readProjectConfiguration } from 'nx/src/generators/utils/project-configuration';
+import * as path from 'path';
+import { join } from 'path';
 import { UploadExecutorSchema } from '../../executors/upload/schema';
+import { ConfigGeneratorSchema } from './schema';
 
 export async function configGenerator(tree: Tree, options: ConfigGeneratorSchema) {
   const projectSourceRoot = GetProjectSourceRoot(tree, options.project);

@@ -12,7 +12,7 @@ import {
   updateProjectConfiguration,
   writeJson,
 } from '@nx/devkit';
-import { PackageJson } from 'nx/src/utils/package-json';
+import { PackageJson } from '@rxap/workspace-utilities';
 import * as path from 'path';
 import { SchematicGeneratorSchema } from './schema';
 

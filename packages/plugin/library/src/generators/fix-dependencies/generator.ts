@@ -1,6 +1,7 @@
 import {
   createProjectGraphAsync,
   getProjects,
+  ProjectGraph,
   Tree,
 } from '@nx/devkit';
 import { AddDir } from '@rxap/generator-ts-morph';
@@ -13,7 +14,6 @@ import {
 } from '@rxap/generator-utilities';
 import { GetLatestPackageVersion } from '@rxap/node-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
-import { ProjectGraph } from 'nx/src/config/project-graph';
 import { join } from 'path';
 import {
   IndentationText,
