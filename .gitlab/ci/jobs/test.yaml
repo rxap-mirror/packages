@@ -1,0 +1,20 @@
+.test:
+  stage: test
+  extends: .run_all
+  variables:
+    TARGET: "test"
+    ADDITIONAL_TARGET_OPTIONS: "--configuration ci"
+  script:
+    - yarn nx run-many --target ${TARGET} ${ADDITIONAL_TARGET_OPTIONS}
+    - yarn junit-merge
+    - yarn cobertura-merge
+    - yarn print-total-coverage
+  environment:
+    action: prepare
+  coverage: '/total sum code coverage: \d+\.\d+/'
+  artifacts:
+    reports:
+      junit: junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: cobertura-coverage.xml

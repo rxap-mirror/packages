@@ -1,0 +1,50 @@
+.docker:
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint:
+      - ""
+  script: /bin/sh tools/scripts/build-and-push-docker-image.sh
+  environment:
+    action: prepare
+  rules:
+    - if: $DISABLE_DOCKER_BUILD
+      when: never
+    - when: on_success
+  needs:
+    - build
+docker:angular:
+  extends: .docker
+  variables:
+    DOCKER_CONTEXT: dist/demos/angular
+    IMAGE_NAME: rxap/packages
+    IMAGE_SUFFIX: /frontend/angular
+  environment:
+    name: $ENVIRONMENT_NAME
+    deployment_tier: $DEPLOYMENT_TIER
+docker:service-configuration:
+  extends: .docker
+  variables:
+    DOCKER_CONTEXT: dist/applications/service/configuration
+    IMAGE_NAME: rxap/packages
+    IMAGE_SUFFIX: /service/configuration
+  environment:
+    name: $ENVIRONMENT_NAME
+    deployment_tier: $DEPLOYMENT_TIER
+docker:service-status:
+  extends: .docker
+  variables:
+    DOCKER_CONTEXT: dist/applications/service/status
+    IMAGE_NAME: rxap/packages
+    IMAGE_SUFFIX: /service/status
+  environment:
+    name: $ENVIRONMENT_NAME
+    deployment_tier: $DEPLOYMENT_TIER
+docker:service-app-angular-table:
+  extends: .docker
+  variables:
+    DOCKER_CONTEXT: dist/demos/service/app/angular/table
+    IMAGE_NAME: rxap/packages
+    IMAGE_SUFFIX: /service/app/angular/table
+  environment:
+    name: $ENVIRONMENT_NAME
+    deployment_tier: $DEPLOYMENT_TIER

@@ -1,0 +1,21 @@
+include:
+  - local: .gitlab/ci/jobs/build.yaml
+  - local: .gitlab/ci/jobs/docker.yaml
+
+stages:
+  - build
+  - docker
+
+variables:
+  ENVIRONMENT_NAME: branch/$CI_COMMIT_REF_NAME
+  DEPLOYMENT_TIER: testing
+
+build:
+  extends: .build
+  environment:
+    name: branch/$CI_COMMIT_REF_NAME
+    deployment_tier: testing
+
+generate:docker:
+  extends: .generate:docker
+

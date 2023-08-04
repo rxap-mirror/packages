@@ -1,0 +1,7 @@
+.lint:
+  stage: test
+  extends: .run_all
+  variables:
+    TARGET: "lint"
+  environment:
+    action: prepare

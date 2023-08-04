@@ -1,0 +1,71 @@
+workflow:
+  rules:
+    # don't run a pipeline for a issue branch that does not have a merge request
+    - if: '$CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE != "merge_request_event" && $CI_COMMIT_REF_NAME =~ /^[0-9]+-/'
+      when: never
+    # skip branch pipeline if the commit starts with release
+    # the release job will create a commit for each new release. This commit should not be handled by the ci!
+    - if: '$CI_COMMIT_BRANCH && $CI_COMMIT_MESSAGE =~ /^release:/'
+      when: never
+    # if the current branch is not protected or renovate branch and a merge request for this branch exists
+    # skip the pipeline
+    - if: '$CI_COMMIT_REF_PROTECTED != "true" && $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_COMMIT_BRANCH !~ /^renovate\//'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^release|release-candidate|preview|[0-9]+\.[0-9]+\.x|[0-9]+\.x$/'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == $CI_DEFAULT_BRANCH && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^release|release-candidate|preview|[0-9]+\.[0-9]+\.x|[0-9]+\.x$/'
+      when: never
+    - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME =~ /^release|release-candidate|preview|[0-9]+\.[0-9]+\.x|[0-9]+\.x$/'
+      when: never
+    # ensures that the release build for docker containers have the latest tag if the version is not a digest version
+    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/'
+      variables:
+        LATEST: "true"
+    - when: always
+
+# CI_MERGE_REQUEST_EVENT_TYPE = detached | merged_result | merge_train
+# CI_PIPELINE_SOURCE = merge_request_event
+
+variables:
+  NODE_VERSION: "18.17"
+  HUSKY: "0"
+
+include:
+
+  - local: .gitlab/ci/utilities/run-all.yaml
+  - local: .gitlab/ci/utilities/run.yaml
+
+  # the review pipeline to check if tests and builds are successful and deploy a review environment
+  - local: .gitlab/ci/review.yaml
+    rules:
+      # run the review pipeline for merge request that do not have a channel branch as source branch
+      - if: '$CI_MERGE_REQUEST_EVENT_TYPE != "merge_train" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME !~ /^release|release-candidate|preview|[0-9]+\.[0-9]+\.x|[0-9]+\.x$/ && $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME !~ /^renovate\//'
+        # run the review pipeline for merged results merge requests if the source branch is a channel branch
+      - if: '$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^release|release-candidate|preview|[0-9]+\.[0-9]+\.x|[0-9]+\.x$/ && $CI_MERGE_REQUEST_EVENT_TYPE == "merged_result" && $CI_PIPELINE_SOURCE == "merge_request_event"'
+
+  - local: .gitlab/ci/merge-train.yaml
+    rules:
+      - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train"'
+
+  - local: .gitlab/ci/renovate.yaml
+    rules:
+      - if: '$CI_COMMIT_BRANCH =~ /^renovate\//'
+
+  # the branch pipeline to check if tests and builds are successful
+  - local: .gitlab/ci/branch.yaml
+    rules:
+      - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH && $CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH !~ /^release|release-candidate|preview|[0-9]+\.[0-9]+\.x|[0-9]+\.x$/ && $CI_PIPELINE_SOURCE =~ /push|web|api/ && $CI_COMMIT_BRANCH !~ /^renovate\//'
+
+  - local: .gitlab/ci/default.yaml
+    rules:
+      - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+  # the release pipeline to deploy new releases
+  - local: .gitlab/ci/release.yaml
+    rules:
+      - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+/'
+
+  # the pipeline to validate the channel branch and create a new tag if necessary
+  - local: .gitlab/ci/channel.yaml
+    rules:
+      - if: '$CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH =~ /^release|release-candidate|preview|[0-9]+\.[0-9]+\.x|[0-9]+\.x$/ && $CI_PIPELINE_SOURCE =~ /push|web|api/'

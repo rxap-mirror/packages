@@ -1,0 +1,27 @@
+include:
+  - local: .gitlab/ci/utilities/run.yaml
+
+.localazy:
+  stage: build
+  tags:
+    - e2-standard-4
+  extends: .run
+  rules:
+    - if: '$LOCALAZY_WRITE_KEY == null'
+      when: never
+    - exists:
+        - nx.json
+      when: on_success
+  before_script:
+    - apk add --no-cache git g++ make python3 jq
+    - yarn --prefer-offline --frozen-lockfile
+
+{{#each projectList}}
+
+{{this.name}}:localazy-upload:
+  extends: .localazy
+  environment:
+    name: {{this.environmentName}}/{{this.name}}
+    deployment_tier: {{this.deploymentTier}}
+
+{{/each}}

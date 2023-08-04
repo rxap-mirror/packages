@@ -1,0 +1,15 @@
+include:
+  - local: .gitlab/ci/jobs/build.yaml
+
+stages:
+  - build
+
+variables:
+  ENVIRONMENT_NAME: $CI_COMMIT_REF_NAME
+  DEPLOYMENT_TIER: other
+
+build:
+  extends: .build
+  environment:
+    name: $CI_COMMIT_REF_NAME
+    deployment_tier: other
