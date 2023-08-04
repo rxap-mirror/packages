@@ -12,6 +12,7 @@ import {
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
 import { AngularInitGenerator } from '@rxap/plugin-angular';
+import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
 import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
@@ -119,6 +120,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     }
 
   }
+
+  await DockerGitlabCiGenerator(tree, options as any);
 
 }
 

@@ -13,6 +13,7 @@ import {
   CoerceProjectTags,
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
+import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
 import { CoerceImports } from '@rxap/schematics-ts-morph';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import { CoerceTargetDefaultsDependency } from '@rxap/workspace-utilities';
@@ -310,6 +311,8 @@ export async function initApplicationGenerator(
     // apply changes to the project configuration
     updateProjectConfiguration(tree, projectName, project);
   }
+
+  await LocalazyGitlabCiGenerator(tree, options);
 
 }
 
