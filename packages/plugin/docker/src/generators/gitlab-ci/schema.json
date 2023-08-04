@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "GitlabCi",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "gcp": {
+      "type": "boolean",
+      "description": "Generate docker build with push target to GCP registry"
+    },
+    "gitlab": {
+      "type": "boolean",
+      "description": "Generate docker build with push target to gitlab registry"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "Overwrite existing files"
+    }
+  },
+  "required": []
+}

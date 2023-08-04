@@ -4,6 +4,11 @@
       "factory": "./src/generators/config/generator",
       "schema": "./src/generators/config/schema.json",
       "description": "Add the executor 'docker' to the selected project and add generic depend on rules to nx.json"
+    },
+    "gitlab-ci": {
+      "factory": "./src/generators/gitlab-ci/generator",
+      "schema": "./src/generators/gitlab-ci/schema.json",
+      "description": "gitlab-ci generator"
     }
   }
 }
