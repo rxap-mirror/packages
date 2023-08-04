@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.2...@rxap/plugin-application@16.1.0-dev.3) (2023-08-04)
+
+### Bug Fixes
+
+- call the nest init generator for nest projects ([bf08bb0](https://gitlab.com/rxap/packages/commit/bf08bb022dc064c7c5d84c890b5e422a196cea7d))
+
 # [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.1...@rxap/plugin-application@16.1.0-dev.2) (2023-08-04)
 
 ### Bug Fixes
