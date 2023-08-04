@@ -9,6 +9,7 @@ import { GitlabCiGeneratorSchema } from './schema';
 
 const dotLocalazy = {
   extends: '.run',
+  tags: [ 'e2-standard-4' ],
   stage: 'localazy',
   rules: [
     {
