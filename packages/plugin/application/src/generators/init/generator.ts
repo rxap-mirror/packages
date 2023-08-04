@@ -12,8 +12,12 @@ import {
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
 import { AngularInitGenerator } from '@rxap/plugin-angular';
-import { CoerceTargetDefaultsDependency } from '@rxap/workspace-utilities';
+import {
+  CoerceTarget,
+  CoerceTargetDefaultsDependency,
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
+import * as process from 'process';
 import { InitGeneratorSchema } from './schema';
 
 function skipProject(
@@ -40,34 +44,35 @@ function updateProjectTargets(project: ProjectConfiguration, options: InitGenera
   project.targets['build'].options.assets ??= [];
   CoerceAssets(project.targets['build'].options.assets, [ join(project.sourceRoot, 'build.json') ]);
 
-  project.targets['build-info'] ??= {
+  CoerceTarget(project, 'build-info', {
     executor: '@rxap/plugin-application:build-info',
     options: {},
     configurations: {
       production: {},
       development: {},
     },
-  };
-  project.targets['docker'] ??= {
+  });
+  CoerceTarget(project, 'docker', {
     executor: '@rxap/plugin-docker:build',
     options: {
-      imageName: options.dockerImageName,
+      imageName: options.dockerImageName ?? process.env.IMAGE_NAME,
       imageSuffix: options.dockerImageSuffix,
-      imageRegistry: options.dockerImageRegistry,
+      imageRegistry: options.dockerImageRegistry ?? process.env.REGISTRY,
     },
     configurations: {
       production: {},
       development: {},
     },
-  };
-  project.targets['docker-save'] ??= {
+  });
+  CoerceTarget(project, 'docker-save', {
     executor: '@rxap/plugin-docker:save',
     options: {},
     configurations: {
       production: {},
       development: {},
     },
-  };
+  });
+
 }
 
 function updateTargetDefaults(tree: Tree) {
