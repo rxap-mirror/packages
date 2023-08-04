@@ -15,7 +15,7 @@ variables:
 build:
   extends: .build
   variables:
-    ADDITIONAL_TARGET_OPTIONS: "--configuration production --channel $CI_ENVIRONMENT_SLUG --parallel $NX_PARALLEL --skip-nx-cache"
+    ADDITIONAL_TARGET_OPTIONS: "--configuration production --channel $CI_ENVIRONMENT_SLUG"
   environment:
     name: release/$CI_COMMIT_TAG
     deployment_tier: production

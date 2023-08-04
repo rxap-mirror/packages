@@ -7,8 +7,8 @@
 .angular
 
 # rxap
-docker-compose.frontends.yml
-docker-compose.services.yml
+/docker-compose.frontends.yml
+/docker-compose.services.yml
 
 # compiled output
 dist

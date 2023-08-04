@@ -5,7 +5,7 @@
   extends: .run_all
   variables:
     TARGET: "build"
-    ADDITIONAL_TARGET_OPTIONS: "--configuration production --channel $CI_ENVIRONMENT_SLUG --parallel $NX_PARALLEL"
+    ADDITIONAL_TARGET_OPTIONS: "--configuration production --channel $CI_ENVIRONMENT_SLUG"
   after_script:
     - ls ./dist/deploy-urls.json || exit 0
     - export DYNAMIC_ENVIRONMENT_URL=$(jq -r '.links' ./dist/deploy-urls.json)

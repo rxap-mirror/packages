@@ -1,5 +1,7 @@
 .localazy:
   extends: .run
+  tags:
+    - e2-standard-4
   stage: localazy
   rules:
     - if: $LOCALAZY_WRITE_KEY == null
