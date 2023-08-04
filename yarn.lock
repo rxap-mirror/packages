@@ -8154,6 +8154,7 @@ __metadata:
   resolution: "@rxap/plugin-docker@workspace:packages/plugin/docker"
   dependencies:
     tslib: 2.5.3
+    yaml: 2.3.1
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.0
@@ -8203,6 +8204,7 @@ __metadata:
   resolution: "@rxap/plugin-localazy@workspace:packages/plugin/localazy"
   dependencies:
     tslib: 2.5.3
+    yaml: 2.3.1
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.0.1-dev.2
