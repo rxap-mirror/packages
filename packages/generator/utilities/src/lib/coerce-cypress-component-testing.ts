@@ -1,10 +1,10 @@
+import { cypressComponentConfiguration } from '@nx/angular/generators';
 import {
   ProjectConfiguration,
   readProjectConfiguration,
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import { cypressComponentConfiguration } from '@nx/angular/generators';
 import { join } from 'path';
 
 export async function CoerceCypressComponentTesting(tree: Tree, project: ProjectConfiguration, projectName: string) {
@@ -16,7 +16,7 @@ export async function CoerceCypressComponentTesting(tree: Tree, project: Project
       project: projectName,
       generateTests: true,
       skipFormat: false,
-      buildTarget: 'angular:build:development',
+      buildTarget: `${ projectName }:build:development`,
     });
     const _project = readProjectConfiguration(tree, projectName);
     _project.targets ??= {};
