@@ -5,7 +5,6 @@
   extends: .run_all
   variables:
     TARGET: "build"
-    ADDITIONAL_TARGET_OPTIONS: "--configuration production --channel $CI_ENVIRONMENT_SLUG"
   environment:
     action: prepare
   artifacts:
