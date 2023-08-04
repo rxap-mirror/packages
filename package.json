@@ -54,6 +54,7 @@
     ],
     "pro": true
   },
+  "description": "Reactive Application Platform, or RxAP for short, is a collection of software modules and tools. With the help of RxAP, the development effort of web and cloud applications can be significantly reduced.",
   "dependencies": {
     "@angular/animations": "16.1.4",
     "@angular/cdk": "16.1.4",
