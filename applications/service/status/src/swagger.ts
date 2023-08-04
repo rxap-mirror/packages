@@ -1,11 +1,11 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app/app.module';
 import {
   DocumentBuilder,
   SwaggerModule,
 } from '@nestjs/swagger';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
+import { AppModule } from './app/app.module';
 
 NestFactory.create(AppModule).then(app => {
   const options = new DocumentBuilder().build();

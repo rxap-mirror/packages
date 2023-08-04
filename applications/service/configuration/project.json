@@ -91,7 +91,7 @@
     "swagger-build": {
       "executor": "@nx/webpack:webpack",
       "options": {
-        "outputPath": "dist/swagger/service/configuration",
+        "outputPath": "dist/swagger/applications/service/configuration",
         "main": "applications/service/configuration/src/swagger.ts",
         "transformers": [
           "@nestjs/swagger/plugin"
@@ -138,6 +138,16 @@
           "path": "dist/swagger/applications/service/configuration/openapi.json",
           "serverId": "service-configuration"
         }
+      }
+    },
+    "swagger-generate": {
+      "executor": "@nx/js:node",
+      "outputs": [
+        "dist/swagger/applications/service/configuration/open-api.json"
+      ],
+      "options": {
+        "buildTarget": "service-configuration:swagger-build",
+        "watch": false
       }
     }
   },
