@@ -1,4 +1,14 @@
 import {
+  PortalModule,
+  TemplatePortal,
+} from '@angular/cdk/portal';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import {
+  AsyncPipe,
+  NgIf,
+  NgStyle,
+} from '@angular/common';
+import {
   AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -17,25 +27,16 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import {
-  DebounceCall,
-  Required,
-  WithChildren,
-  WithIdentifier,
-} from '@rxap/utilities';
-import { FlatTreeControl } from '@angular/cdk/tree';
-import {
-  map,
-  startWith,
-  tap,
-} from 'rxjs/operators';
-import { TreeContentDirective } from './tree-content.directive';
-import {
-  PortalModule,
-  TemplatePortal,
-} from '@angular/cdk/portal';
-import { RXAP_TREE_CONTENT_EDITABLE_METHOD } from './tokens';
-import { TreeDataSource } from './tree.data-source';
+import { ExtendedModule } from '@angular/flex-layout/extended';
+import { FlexModule } from '@angular/flex-layout/flex';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTreeModule } from '@angular/material/tree';
+import { ContenteditableDirective } from '@rxap/contenteditable';
 import {
   Node,
   NodeGetIconFunction,
@@ -43,26 +44,24 @@ import {
   NodeHasDetailsFunction,
   NodeToDisplayFunction,
 } from '@rxap/data-structure-tree';
-import { Method } from '@rxap/pattern';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ContenteditableDirective } from '@rxap/contenteditable';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { IconDirective } from '@rxap/material-directives/icon';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTreeModule } from '@angular/material/tree';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { ExtendedModule } from '@angular/flex-layout/extended';
+import { Method } from '@rxap/pattern';
 import {
-  AsyncPipe,
-  NgIf,
-  NgStyle,
-} from '@angular/common';
-import { FlexModule } from '@angular/flex-layout/flex';
+  DebounceCall,
+  Required,
+  WithChildren,
+  WithIdentifier,
+} from '@rxap/utilities';
+import {
+  map,
+  startWith,
+  tap,
+} from 'rxjs/operators';
+import { RXAP_TREE_CONTENT_EDITABLE_METHOD } from './tokens';
+import { TreeContentDirective } from './tree-content.directive';
+import { TreeDataSource } from './tree.data-source';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'rxap-tree',
   templateUrl: './tree.component.html',
   styleUrls: [ './tree.component.scss' ],

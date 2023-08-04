@@ -1,23 +1,23 @@
 import {
-  AbstractControlOptions,
-  AsyncValidatorFn,
-  ValidatorFn,
-} from '@angular/forms';
-import { Constructor } from '@rxap/utilities';
-import type { RxapFormGroup } from './form-group';
-import {
   AbstractType,
   InjectionToken,
   StaticProvider,
   Type,
 } from '@angular/core';
+import {
+  AbstractControlOptions,
+  AsyncValidatorFn,
+  ValidatorFn,
+} from '@angular/forms';
+import { BaseDefinitionMetadata } from '@rxap/definition';
+import { Constructor } from '@rxap/utilities';
+import { RxapFormArray } from './form-array';
 import { RxapFormControl } from './form-control';
+import type { RxapFormGroup } from './form-group';
 import {
   AbstractControl,
   ControlOptions,
 } from './types';
-import { BaseDefinitionMetadata } from '@rxap/definition';
-import { RxapFormArray } from './form-array';
 
 export interface InjectableValidator {
   validate?: ValidatorFn;
@@ -27,7 +27,6 @@ export interface InjectableValidator {
 /**
  * @internal
  */
-// tslint:disable-next-line:class-name
 export interface _RxapAbstractControlOptions extends AbstractControlOptions {
   state?: any | (() => any);
   injectValidators?: Array<

@@ -3,20 +3,20 @@ import {
   OverlayRef,
   OverlaySizeConfig,
 } from '@angular/cdk/overlay';
-import { WindowSettings } from './window-config';
-import {
-  BehaviorSubject,
-  ReplaySubject,
-  Subject,
-} from 'rxjs';
-import { GetWindowStartPos } from './utilities';
 import { Portal } from '@angular/cdk/portal';
 import {
   ComponentRef,
   EmbeddedViewRef,
   InjectFlags,
 } from '@angular/core';
+import {
+  BehaviorSubject,
+  ReplaySubject,
+  Subject,
+} from 'rxjs';
 import { RXAP_WINDOW_SETTINGS } from './tokens';
+import { GetWindowStartPos } from './utilities';
+import { WindowSettings } from './window-config';
 
 export class WindowRef<D = any, R = any> extends Subject<R> {
 
@@ -112,13 +112,11 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
   }
 
   public getWidth(): string {
-    // tslint:disable-next-line:no-non-null-assertion
     return this.getSizeConfig().width! + '';
     // return this.overlayRef.overlayElement.offsetWidth + 'px'
   }
 
   public getHeight(): string {
-    // tslint:disable-next-line:no-non-null-assertion
     return this.getSizeConfig().height! + '';
     // return this.overlayRef.overlayElement.offsetHeight + 'px';
   }

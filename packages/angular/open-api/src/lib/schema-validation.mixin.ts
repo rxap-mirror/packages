@@ -223,7 +223,6 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
     value?: any,
   ) {
     if (isDevMode() && schema !== undefined) {
-      // tslint:disable-next-line:no-console
       console.debug(
         message,
         {

@@ -41,7 +41,6 @@ export interface BaseDataSourceViewer<View = any> {
   [key: string]: any;
 }
 
-// tslint:disable-next-line:no-empty-interface
 export type BaseDataSourceMetadata = BaseDefinitionMetadata
 
 @Injectable()

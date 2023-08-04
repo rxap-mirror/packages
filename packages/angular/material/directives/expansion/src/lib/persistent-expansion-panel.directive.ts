@@ -5,11 +5,11 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { Required } from '@rxap/utilities';
 import { MatExpansionPanel } from '@angular/material/expansion';
-import { tap } from 'rxjs/operators';
 import { LocalStorageService } from '@rxap/services';
+import { Required } from '@rxap/utilities';
 import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 /**
  * @deprecated use the PersistentAccordionDirective instead
@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs';
 export class PersistentExpansionPanelDirective implements OnInit, OnDestroy {
 
   public static BASE_KEY = 'mat-expansion-panel';
-  // tslint:disable-next-line:no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('rxapPersistentExpansionPanel')
   @Required
   public id!: string;

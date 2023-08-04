@@ -1,4 +1,9 @@
 import {
+  Overlay,
+  OverlayConfig,
+} from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import {
   ComponentFactoryResolver,
   Inject,
   Injectable,
@@ -7,17 +12,15 @@ import {
   Optional,
   ViewContainerRef,
 } from '@angular/core';
+import { LoadingIndicatorService } from '@rxap/services';
+import { GenerateRandomString } from '@rxap/utilities';
+import { Subject } from 'rxjs';
 import {
-  DEFAULT_WINDOW_CONFIG,
-  WindowConfig,
-  WindowSettings,
-} from './window-config';
-import {
-  Overlay,
-  OverlayConfig,
-} from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
-import { WindowRef } from './window-ref';
+  finalize,
+  take,
+  tap,
+} from 'rxjs/operators';
+import { DefaultWindowComponent } from './default-window/default-window.component';
 import {
   RXAP_WINDOW_CONTAINER_CONTEXT,
   RXAP_WINDOW_CONTEXT,
@@ -25,20 +28,17 @@ import {
   RXAP_WINDOW_DEFAULT_SETTINGS,
   RXAP_WINDOW_REF,
 } from './tokens';
+import { GetWindowStartPos } from './utilities';
+import {
+  DEFAULT_WINDOW_CONFIG,
+  WindowConfig,
+  WindowSettings,
+} from './window-config';
 import {
   WindowContainerContext,
   WindowContext,
 } from './window-context';
-import {
-  finalize,
-  take,
-  tap,
-} from 'rxjs/operators';
-import { DefaultWindowComponent } from './default-window/default-window.component';
-import { GetWindowStartPos } from './utilities';
-import { Subject } from 'rxjs';
-import { LoadingIndicatorService } from '@rxap/services';
-import { GenerateRandomString } from '@rxap/utilities';
+import { WindowRef } from './window-ref';
 
 @Injectable({ providedIn: 'root' })
 export class WindowService {
@@ -72,7 +72,6 @@ export class WindowService {
     if (!this.has(id)) {
       throw new Error(`Active Window with id '${ id }' not found`);
     }
-    // tslint:disable-next-line:no-non-null-assertion
     return this.active.get(id)!;
   }
 

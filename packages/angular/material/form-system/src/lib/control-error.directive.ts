@@ -9,17 +9,17 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import {
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
+import {
   MAT_FORM_FIELD,
   MatFormField,
 } from '@angular/material/form-field';
 import { controlErrorChanges$ } from '@rxap/forms';
-import { Subscription } from 'rxjs';
-import {
-  AbstractControl,
-  ValidationErrors,
-} from '@angular/forms';
-import { tap } from 'rxjs/operators';
 import { Required } from '@rxap/utilities';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 export interface ControlErrorDirectiveContext {
   $implicit: any;
@@ -27,7 +27,6 @@ export interface ControlErrorDirectiveContext {
 }
 
 @Directive({
-  // tslint:disable-next-line:directive-selector
   selector: '[rxapControlError]',
   standalone: true,
 })

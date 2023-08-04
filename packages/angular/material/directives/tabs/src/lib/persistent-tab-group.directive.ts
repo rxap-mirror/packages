@@ -18,7 +18,7 @@ import { tap } from 'rxjs/operators';
 export class PersistentTabGroupDirective implements OnInit, OnDestroy {
 
   public static BASE_KEY = 'mat-expansion-panel';
-  // tslint:disable-next-line:no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('rxapPersistentTabGroup')
   @Required
   public id!: string;

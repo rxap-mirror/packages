@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 
 @Directive({
-  // tslint:disable-next-line:directive-selector
   selector: 'ng-template[rxapTreeContent]',
   standalone: true,
 })

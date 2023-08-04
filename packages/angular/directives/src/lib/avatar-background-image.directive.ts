@@ -6,17 +6,16 @@ import {
   Renderer2,
 } from '@angular/core';
 import {
+  AvatarImageService,
+  ImageLoaderService,
+} from '@rxap/services';
+import {
   BackgroundImageDirective,
   BackgroundRepeatOptions,
   BackgroundSizeOptions,
 } from './background-image.directive';
-import {
-  AvatarImageService,
-  ImageLoaderService,
-} from '@rxap/services';
 
 @Directive({
-  // tslint:disable-next-line:directive-selector
   selector: '[rxapAvatarBackgroundImage]',
   standalone: true,
 })
