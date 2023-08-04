@@ -2,6 +2,11 @@
 
 # nx
 migrations.json
+
+# angular
+.angular
+
+# rxap
 docker-compose.frontends.yml
 docker-compose.services.yml
 
@@ -11,7 +16,6 @@ tmp
 tmp.*
 /out-tsc
 .env
-*.patch
 
 # dependencies
 node_modules
@@ -36,20 +40,16 @@ node_modules
 /.sass-cache
 /connect.lock
 /coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
+*.log
+*.lock
+*.patch
 /typings
 
 # System Files
 .DS_Store
 Thumbs.db
 
-.angular
-
-lerna-debug.log
-
+# yarn
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
@@ -62,7 +62,3 @@ lerna-debug.log
 !.yarn/cache
 #.pnp.*
 
-#Project Docs
-docs/packages/generator/utilities
-docs/packages/node/utilities
-docs/packages/plugin/utilities
