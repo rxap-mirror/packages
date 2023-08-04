@@ -14,6 +14,11 @@
       "factory": "./src/generators/init-application/generator",
       "schema": "./src/generators/init-application/schema.json",
       "description": "init-application generator"
+    },
+    "swagger": {
+      "factory": "./src/generators/swagger/generator",
+      "schema": "./src/generators/swagger/schema.json",
+      "description": "swagger generator"
     }
   }
 }

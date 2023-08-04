@@ -6,6 +6,7 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
+import libraryGenerator from '@nx/js/src/generators/library/library';
 import {
   CoerceIgnorePattern,
   SkipNonApplicationProject,
@@ -17,6 +18,7 @@ import {
 import { wrapAngularDevkitSchematic } from 'nx/src/adapter/ngcli-adapter';
 import { join } from 'path';
 import { SkipNonNestProject } from '../../lib/skip-non-nest-project';
+import swaggerGenerator from '../swagger/generator';
 import { InitApplicationGeneratorSchema } from './schema';
 
 function skipProject(
@@ -80,6 +82,59 @@ function updateGitIgnore(tree: Tree, project: ProjectConfiguration) {
   CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'package.json' ]);
 }
 
+async function createOpenApiClientSdkLibrary(
+  tree: Tree,
+  project: ProjectConfiguration,
+  projects: Map<string, ProjectConfiguration>,
+) {
+
+  const openApiProjectName = `open-api-${ project.name }`;
+
+  if (projects.has(openApiProjectName)) {
+    return;
+  }
+
+  const projectRoot = project.root;
+  const fragments = projectRoot.split('/');
+  const name = fragments.pop();
+  fragments.shift(); // remove the root folder
+  const directory = `open-api/${ fragments.join('/') }`;
+
+  await libraryGenerator(tree, {
+    name,
+    directory,
+    unitTestRunner: 'none',
+    tags: 'open-api',
+    buildable: false,
+    bundler: 'none',
+  });
+
+  let tsConfig: any;
+
+  try {
+    tsConfig = JSON.parse(tree.read('tsconfig.base.json').toString('utf-8'));
+  } catch (e: any) {
+    throw new Error(`Can't parse tsconfig.base.json: ${ e.message }`);
+  }
+
+  projects = getProjects(tree);
+
+  if (!projects.has(openApiProjectName)) {
+    throw new Error(`Can't find project ${ openApiProjectName }`);
+  }
+
+  const openApiProjectRoot = projects.get(openApiProjectName)!.root;
+
+  delete tsConfig.compilerOptions.paths[`${ directory }/${ name }`];
+  tsConfig.compilerOptions.paths[`${ openApiProjectName }/*`] = [ `${ openApiProjectRoot }/src/lib/*` ];
+  tree.write('tsconfig.base.json', JSON.stringify(tsConfig, null, 2));
+
+  tree.write(`${ openApiProjectRoot }/src/index.ts`, 'export {};');
+  tree.delete(`${ openApiProjectRoot }/src/lib/${ openApiProjectName }.ts`);
+  tree.delete(`${ openApiProjectRoot }/README.md`);
+
+}
+
 export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
@@ -88,7 +143,9 @@ export async function initApplicationGenerator(
 
   setGeneralTargetDefaults(tree);
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  const projects = getProjects(tree);
+
+  for (const [ projectName, project ] of projects.entries()) {
 
     if (skipProject(tree, options, project, projectName)) {
       continue;
@@ -98,9 +155,14 @@ export async function initApplicationGenerator(
 
     updateProjectTargets(project);
     updateGitIgnore(tree, project);
+    await createOpenApiClientSdkLibrary(tree, project, projects);
 
     // apply changes to the project configuration
     updateProjectConfiguration(tree, projectName, project);
+
+    if (options.swagger) {
+      await swaggerGenerator(tree, { project: projectName });
+    }
 
     if (options.legacy) {
       await wrapAngularDevkitSchematic(
@@ -108,6 +170,7 @@ export async function initApplicationGenerator(
         'init',
       )(tree, {
         ...options,
+        swagger: false,
         project: projectName,
       });
     }

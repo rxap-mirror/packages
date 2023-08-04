@@ -31,7 +31,7 @@
     },
     "swagger": {
       "type": "boolean",
-      "default": false,
+      "default": true,
       "description": "Whether this service should use swagger",
       "x-prompt": "Should this service expose a swagger endpoint?"
     },

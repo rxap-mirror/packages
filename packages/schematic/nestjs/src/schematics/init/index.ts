@@ -553,7 +553,6 @@ export default function (options: InitSchema): Rule {
       } : noop(),
       options.sentry ? ExecuteSchematic('sentry', { project: options.project, required: !!options.sentryDsn }) : noop(),
       options.validator ? ExecuteSchematic('validator', { project: options.project }) : noop(),
-      options.swagger ? ExecuteSchematic('swagger', { project: options.project }) : noop(),
       options.openApi ? ExecuteSchematic('open-api', { project: options.project }) : noop(),
       options.jwt ? ExecuteSchematic('jwt', { project: options.project }) : noop(),
       ExecuteExternalSchematic(
@@ -566,6 +565,13 @@ export default function (options: InitSchema): Rule {
           dockerImageRegistry: options.pluginDockerOptions.imageRegistry,
         },
       ),
+      options.swagger ? ExecuteExternalSchematic(
+        '@rxap/plugin-nestjs',
+        'swagger',
+        {
+          project: options.project,
+        },
+      ) : noop(),
     ]);
 
   };
