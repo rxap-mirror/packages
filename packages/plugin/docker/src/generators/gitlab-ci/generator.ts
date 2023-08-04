@@ -38,7 +38,6 @@ const docker = {
   variables: {},
   environment: {
     name: '$ENVIRONMENT_NAME',
-    deployment_tier: '$DEPLOYMENT_TIER',
   },
 };
 

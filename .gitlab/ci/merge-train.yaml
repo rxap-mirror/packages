@@ -6,10 +6,8 @@ stages:
 
 variables:
   ENVIRONMENT_NAME: merge-train/$CI_COMMIT_REF_NAME
-  DEPLOYMENT_TIER: other
 
 build:
   extends: .build
   environment:
-    name: merge-train/$CI_COMMIT_REF_NAME
-    deployment_tier: other
+    name: $ENVIRONMENT_NAME

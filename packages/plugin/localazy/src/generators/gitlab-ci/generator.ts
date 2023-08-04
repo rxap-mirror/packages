@@ -20,6 +20,9 @@ const dotLocalazy = {
       when: 'on_success',
     },
   ],
+  environment: {
+    action: 'prepare',
+  },
   needs: [
     {
       job: 'build',
@@ -32,7 +35,6 @@ const localazy = {
   extends: '.localazy',
   environment: {
     name: '$ENVIRONMENT_NAME',
-    deployment_tier: '$DEPLOYMENT_TIER',
   },
 };
 

@@ -23,7 +23,6 @@ docker:angular:
     IMAGE_SUFFIX: /frontend/angular
   environment:
     name: $ENVIRONMENT_NAME
-    deployment_tier: $DEPLOYMENT_TIER
 docker:service-configuration:
   extends: .docker
   variables:
@@ -32,7 +31,6 @@ docker:service-configuration:
     IMAGE_SUFFIX: /service/configuration
   environment:
     name: $ENVIRONMENT_NAME
-    deployment_tier: $DEPLOYMENT_TIER
 docker:service-status:
   extends: .docker
   variables:
@@ -41,7 +39,6 @@ docker:service-status:
     IMAGE_SUFFIX: /service/status
   environment:
     name: $ENVIRONMENT_NAME
-    deployment_tier: $DEPLOYMENT_TIER
 docker:service-app-angular-table:
   extends: .docker
   variables:
@@ -50,4 +47,3 @@ docker:service-app-angular-table:
     IMAGE_SUFFIX: /service/app/angular/table
   environment:
     name: $ENVIRONMENT_NAME
-    deployment_tier: $DEPLOYMENT_TIER

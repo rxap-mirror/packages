@@ -8,10 +8,8 @@ stages:
 
 variables:
   ENVIRONMENT_NAME: review/$CI_MERGE_REQUEST_IID
-  DEPLOYMENT_TIER: development
 
 build:
   extends: .build
   environment:
-    name: review/$CI_MERGE_REQUEST_IID
-    deployment_tier: development
+    name: $ENVIRONMENT_NAME

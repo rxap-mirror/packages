@@ -6,10 +6,8 @@ stages:
 
 variables:
   ENVIRONMENT_NAME: $CI_COMMIT_REF_NAME
-  DEPLOYMENT_TIER: other
 
 build:
   extends: .build
   environment:
-    name: $CI_COMMIT_REF_NAME
-    deployment_tier: other
+    name: $ENVIRONMENT_NAME

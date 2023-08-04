@@ -7,6 +7,8 @@
     - if: $LOCALAZY_WRITE_KEY == null
       when: never
     - when: on_success
+  environment:
+    action: prepare
   needs:
     - job: build
       artifacts: false

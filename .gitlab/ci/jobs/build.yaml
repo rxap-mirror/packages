@@ -6,13 +6,8 @@
   variables:
     TARGET: "build"
     ADDITIONAL_TARGET_OPTIONS: "--configuration production --channel $CI_ENVIRONMENT_SLUG"
-  after_script:
-    - ls ./dist/deploy-urls.json || exit 0
-    - export DYNAMIC_ENVIRONMENT_URL=$(jq -r '.links' ./dist/deploy-urls.json)
-    - echo "DYNAMIC_ENVIRONMENT_URL=${DYNAMIC_ENVIRONMENT_URL}"
-    - echo "DYNAMIC_ENVIRONMENT_URL=${DYNAMIC_ENVIRONMENT_URL}" > deploy.env
   environment:
-    url: $DYNAMIC_ENVIRONMENT_URL
+    action: prepare
   artifacts:
     name: "${CI_COMMIT_REF_SLUG}_run-all_${TARGET}"
     paths:

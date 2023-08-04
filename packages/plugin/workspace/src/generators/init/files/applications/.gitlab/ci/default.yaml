@@ -7,11 +7,9 @@ stages:
   - docker
 
 variables:
-  ENVIRONMENT_NAME: default/$CI_COMMIT_REF_NAME
-  DEPLOYMENT_TIER: development
+  ENVIRONMENT_NAME: branch/$CI_COMMIT_REF_NAME
 
 build:
   extends: .build
   environment:
-    name: default/$CI_COMMIT_REF_NAME
-    deployment_tier: development
+    name: $ENVIRONMENT_NAME

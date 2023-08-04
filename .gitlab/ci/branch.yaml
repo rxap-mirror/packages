@@ -8,14 +8,10 @@ stages:
 
 variables:
   ENVIRONMENT_NAME: branch/$CI_COMMIT_REF_NAME
-  DEPLOYMENT_TIER: testing
 
 build:
   extends: .build
   environment:
-    name: branch/$CI_COMMIT_REF_NAME
-    deployment_tier: testing
+    name: $ENVIRONMENT_NAME
 
-generate:docker:
-  extends: .generate:docker
 
