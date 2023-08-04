@@ -1,6 +1,12 @@
 import { Tree } from '@nx/devkit';
 
-export function CoerceFile(tree: Tree, filePath: string, content = '', overwrite = false): string {
+export function CoerceFile(
+  tree: Tree,
+  filePath: string,
+  content: string | Buffer = '',
+  overwrite = false,
+  encoding: BufferEncoding = 'utf-8',
+): string {
   if (tree.exists(filePath)) {
     if (overwrite) {
       tree.write(filePath, content);
@@ -12,5 +18,8 @@ export function CoerceFile(tree: Tree, filePath: string, content = '', overwrite
     return buffer.toString('utf-8');
   }
   tree.write(filePath, content);
-  return content;
+  if (typeof content === 'string') {
+    return content;
+  }
+  return content.toString(encoding);
 }
