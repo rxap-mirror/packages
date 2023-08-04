@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.0...@rxap/generator-utilities@1.1.0-dev.1) (2023-08-04)
+
+### Features
+
+- add SkipNonBuildableProject and SkipNonPublishableProject function ([1abf9c3](https://gitlab.com/rxap/packages/commit/1abf9c38c3d90f14ed8f0b3f9d9ab7e0c4a6d7c1))
+
 # [1.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.0.1-dev.3...@rxap/generator-utilities@1.1.0-dev.0) (2023-08-03)
 
 ### Features

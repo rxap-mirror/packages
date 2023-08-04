@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.11...@rxap/plugin-library@16.0.0-dev.12) (2023-08-04)
+
+### Bug Fixes
+
+- remove nx dependency ([5cc2200](https://gitlab.com/rxap/packages/commit/5cc2200ca3f12ef39bb959f98730975978b5194e))
+
+### Features
+
+- add init-buildable and init-publishable generator ([b4ca2ba](https://gitlab.com/rxap/packages/commit/b4ca2ba9ff370be4e9c6d0948f8c62635c8ffac3))
+
 # [16.0.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.10...@rxap/plugin-library@16.0.0-dev.11) (2023-08-03)
 
 ### Bug Fixes

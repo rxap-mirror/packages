@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.4...@rxap/plugin-angular@16.1.0-dev.5) (2023-08-04)
+
+### Bug Fixes
+
+- ensure projects are buildable or publishable ([781a8b7](https://gitlab.com/rxap/packages/commit/781a8b77d9e7f74493347516b5e678a42e1e32df))
+- remove nx dependency ([5cc2200](https://gitlab.com/rxap/packages/commit/5cc2200ca3f12ef39bb959f98730975978b5194e))
+- run gitlab ci generators on application init ([9a15981](https://gitlab.com/rxap/packages/commit/9a15981fd5b573db47259014b2582373867179f2))
+
 # [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.3...@rxap/plugin-angular@16.1.0-dev.4) (2023-08-03)
 
 ### Bug Fixes

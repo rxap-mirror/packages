@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.0...@rxap/plugin-workspace@16.1.0-dev.1) (2023-08-04)
+
+### Bug Fixes
+
+- move nx parallel parameter to run all utility ([38334ca](https://gitlab.com/rxap/packages/commit/38334ca40ef7c54674905adc035fe8bde2128248))
+- relative path issue and spelling ([29fa19c](https://gitlab.com/rxap/packages/commit/29fa19cb47f21264aa94f989a08182ab9f8f2f9a))
+
+### Features
+
+- **init:** add generator ([cc49b7d](https://gitlab.com/rxap/packages/commit/cc49b7d4732092e83335c9809e3458cf29c731be))
+- **init:** create workspace specific files ([8fd0dce](https://gitlab.com/rxap/packages/commit/8fd0dce224dc6c834bee48301ed86ce064158bf2))
+
 # 16.1.0-dev.0 (2023-08-03)
 
 ### Features

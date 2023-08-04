@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.0.1-dev.0...@rxap/plugin-localazy@16.1.0-dev.0) (2023-08-04)
+
+### Bug Fixes
+
+- add missing job tags ([3f6790b](https://gitlab.com/rxap/packages/commit/3f6790be7da03e1f73247419e3336bdfb93613d5))
+- generate readme with peer dependencies to install ([e7039bb](https://gitlab.com/rxap/packages/commit/e7039bb5e86ffeadfe7cc92d5fc71d32f8efb4fb))
+- remove nx dependency ([5cc2200](https://gitlab.com/rxap/packages/commit/5cc2200ca3f12ef39bb959f98730975978b5194e))
+- run gitlab ci generators on application init ([9a15981](https://gitlab.com/rxap/packages/commit/9a15981fd5b573db47259014b2582373867179f2))
+
+### Features
+
+- **gitlab-ci:** add generator ([43d2208](https://gitlab.com/rxap/packages/commit/43d220863c73eed488f044a1aab72587aa2fc905))
+
 ## 16.0.1-dev.0 (2023-08-01)
 
 ### Bug Fixes

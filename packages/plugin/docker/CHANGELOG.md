@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.7...@rxap/plugin-docker@16.0.0-dev.8) (2023-08-04)
+
+### Bug Fixes
+
+- add missing job tags ([3f6790b](https://gitlab.com/rxap/packages/commit/3f6790be7da03e1f73247419e3336bdfb93613d5))
+- run gitlab ci generators on application init ([9a15981](https://gitlab.com/rxap/packages/commit/9a15981fd5b573db47259014b2582373867179f2))
+
+### Features
+
+- **gitlab-ci:** add generator ([8ea4982](https://gitlab.com/rxap/packages/commit/8ea498238ad2c6a35d3bf1d76202bc998bfbd86a))
+
 # [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.6...@rxap/plugin-docker@16.0.0-dev.7) (2023-08-03)
 
 ### Bug Fixes

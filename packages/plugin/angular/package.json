@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-angular",
-  "version": "16.1.0-dev.4",
+  "version": "16.1.0-dev.5",
   "type": "commonjs",
   "generators": "./generators.json",
   "publishConfig": {
@@ -35,8 +35,9 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.1.0-dev.0",
-    "@rxap/plugin-utilities": "^16.1.0-dev.2",
+    "@rxap/generator-utilities": "^1.1.0-dev.1",
+    "@rxap/plugin-localazy": "^16.1.0-dev.0",
+    "@rxap/plugin-utilities": "^16.1.0-dev.3",
     "@rxap/schematics-ts-morph": "^16.0.0-dev.6",
     "@rxap/workspace-ts-morph": "^0.0.2-dev.0",
     "@rxap/workspace-utilities": "^0.1.0-dev.1",
@@ -47,11 +48,15 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.0"
+        "version": "1.1.0-dev.1"
+      },
+      {
+        "package": "@rxap/plugin-localazy",
+        "version": "16.1.0-dev.0"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.1.0-dev.2"
+        "version": "16.1.0-dev.3"
       },
       {
         "package": "@rxap/schematics-ts-morph",
