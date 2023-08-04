@@ -39,8 +39,8 @@
     "url": "https://gitlab.com/rxap/packages.git"
   },
   "engines": {
-    "yarn": ">=3.6.0",
-    "node": ">=18.6.0"
+    "yarn": ">=3.6.0 <4",
+    "node": ">=18.17.0 <19"
   },
   "quokka": {
     "ts": {
