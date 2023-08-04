@@ -1,3 +1,8 @@
+import type {
+  JSONSchema,
+  Options,
+} from '@apidevtools/json-schema-ref-parser';
+import * as $RefParser from '@apidevtools/json-schema-ref-parser';
 import {
   IndentationText,
   InterfaceDeclarationStructure,
@@ -11,17 +16,12 @@ import {
   WriterFunction,
   Writers,
 } from 'ts-morph';
-import type {
-  JSONSchema,
-  Options,
-} from '@apidevtools/json-schema-ref-parser';
-import * as $RefParser from '@apidevtools/json-schema-ref-parser';
+import { getFromObject } from './get-from-object';
 import { joinPath } from './join';
 import {
   classify,
   dasherize,
 } from './strings';
-import { getFromObject } from './get-from-object';
 
 export interface TypescriptInterfaceGeneratorOptions extends Options {
   suffix?: string;
@@ -31,20 +31,7 @@ export interface TypescriptInterfaceGeneratorOptions extends Options {
 
 export class TypescriptInterfaceGenerator {
 
-  constructor(
-    private readonly schema: JSONSchema,
-    private readonly options: TypescriptInterfaceGeneratorOptions = {},
-    project: Project | null = null,
-  ) {
-    this.project =
-      project ??
-      new Project({
-        manipulationSettings: {
-          indentationText: IndentationText.TwoSpaces,
-          quoteKind: QuoteKind.Single,
-        },
-      });
-  }
+  private readonly project: Project;
 
   public static isRequired(schema: JSONSchema, key: string): boolean {
     return (
@@ -90,15 +77,42 @@ export class TypescriptInterfaceGenerator {
     return Writers.intersectionType(first, second, ...array);
   }
 
+  constructor(
+    private readonly schema: JSONSchema,
+    private readonly options: TypescriptInterfaceGeneratorOptions = {},
+    project: Project | null = null,
+  ) {
+    this.project =
+      project ??
+      new Project({
+        manipulationSettings: {
+          indentationText: IndentationText.TwoSpaces,
+          quoteKind: QuoteKind.Single,
+        },
+      });
+  }
+
   private bundledSchema: JSONSchema | null = null;
 
-  private readonly project: Project;
+  public static bundleSchema<T extends JSONSchema>(schema: T, options: TypescriptInterfaceGeneratorOptions = {}) {
+    return $RefParser.bundle(schema, options) as Promise<T>;
+  }
 
   public async build(name: string): Promise<SourceFile> {
     await this.bundleSchema();
 
     if (!this.bundledSchema) {
-      throw new Error('Could not bundle schema!');
+      throw new Error('FATAL: bundleSchema was called but bundledSchema member is still empty!');
+    }
+
+    return this.addType(this.bundledSchema, name);
+  }
+
+  public buildSync(name: string, bundledSchema: JSONSchema | null = this.bundledSchema ?? this.schema): SourceFile {
+    this.bundledSchema = bundledSchema;
+
+    if (!this.bundledSchema) {
+      throw new Error('If buildSync is called, bundledSchema must be provided!');
     }
 
     return this.addType(this.bundledSchema, name);
@@ -510,7 +524,7 @@ export class TypescriptInterfaceGenerator {
 
   private async bundleSchema(): Promise<void> {
     if (!this.bundledSchema) {
-      this.bundledSchema = await $RefParser.bundle(this.schema, this.options);
+      this.bundledSchema = TypescriptInterfaceGenerator.bundleSchema(this.schema, this.options);
     }
   }
 }
