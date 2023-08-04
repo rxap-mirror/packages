@@ -165,6 +165,11 @@
         "{projectRoot}/ng-package.json",
         "{projectRoot}/package.json"
       ]
+    },
+    "generate-open-api": {
+      "dependsOn": [
+        "swagger-generate"
+      ]
     }
   },
   "affected": {

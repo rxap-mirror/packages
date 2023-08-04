@@ -107,7 +107,7 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/demos/service/app/angular/table",
+        "outputPath": "dist/swagger/demos/service/app/angular/table",
         "main": "demos/service/app/angular/table/src/swagger.ts",
         "target": "node",
         "compiler": "tsc",
@@ -127,7 +127,7 @@
     "swagger-generate": {
       "executor": "@nx/js:node",
       "outputs": [
-        "{options.outputPath}/open-api.json"
+        "dist/swagger/demos/service/app/angular/table/open-api.json"
       ],
       "options": {
         "buildTarget": "service-app-angular-table:swagger-build",
@@ -146,6 +146,17 @@
       "executor": "@rxap/plugin-nestjs:package-json",
       "configurations": {
         "production": {}
+      }
+    },
+    "generate-open-api": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/schematics-open-api:generate",
+        "options": {
+          "project": "open-api-service-app-angular-table",
+          "path": "dist/swagger/demos/service/app/angular/table/openapi.json",
+          "serverId": "service-app-angular-table"
+        }
       }
     }
   },

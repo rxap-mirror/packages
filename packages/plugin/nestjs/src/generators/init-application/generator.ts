@@ -10,7 +10,10 @@ import {
   CoerceIgnorePattern,
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
-import { CoerceTargetDefaultsDependency } from '@rxap/workspace-utilities';
+import {
+  CoerceTarget,
+  CoerceTargetDefaultsDependency,
+} from '@rxap/workspace-utilities';
 import { wrapAngularDevkitSchematic } from 'nx/src/adapter/ngcli-adapter';
 import { join } from 'path';
 import { SkipNonNestProject } from '../../lib/skip-non-nest-project';
@@ -39,20 +42,37 @@ function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
   CoerceTargetDefaultsDependency(nxJson, 'build', 'generate-package-json');
+  CoerceTargetDefaultsDependency(nxJson, 'generate-open-api', 'swagger-generate');
 
   updateNxJson(tree, nxJson);
 }
 
 function updateProjectTargets(project: ProjectConfiguration) {
 
-  project.targets ??= {};
-
-  project.targets['generate-package-json'] = {
+  CoerceTarget(project, 'generate-package-json', {
     executor: '@rxap/plugin-nestjs:package-json',
     configurations: {
       production: {},
     },
-  };
+  });
+
+  const outputPath = project.targets?.build?.options?.outputPath;
+
+  if (!outputPath) {
+    throw new Error(`No outputPath found for project ${ project.name }`);
+  }
+
+  CoerceTarget(project, 'generate-open-api', {
+    executor: '@rxap/plugin-library:run-generator',
+    options: {
+      generator: '@rxap/schematics-open-api:generate',
+      options: {
+        project: `open-api-${ project.name }`,
+        path: `${ outputPath.replace('dist/', 'dist/swagger/') }/openapi.json`,
+        serverId: project.name,
+      },
+    },
+  });
 
 }
 
