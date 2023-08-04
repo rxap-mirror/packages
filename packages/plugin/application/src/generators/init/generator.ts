@@ -74,6 +74,12 @@ function updateProjectTargets(project: ProjectConfiguration, options: InitGenera
     },
   });
 
+  if (project.targets?.['build']?.configurations?.['production']) {
+    CoerceTarget(project, 'build', {
+      defaultConfiguration: 'production',
+    });
+  }
+
 }
 
 function updateTargetDefaults(tree: Tree) {

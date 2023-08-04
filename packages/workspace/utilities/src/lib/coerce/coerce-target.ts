@@ -12,6 +12,7 @@ export interface TargetConfiguration {
   inputs?: TargetInputs;
   outputs?: string[];
   configurations?: Record<string, Record<string, any>>;
+  defaultConfiguration?: string;
 }
 
 export interface ProjectConfigurationWithTarget {

@@ -7,7 +7,10 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import { SkipNonBuildableProject } from '@rxap/generator-utilities';
-import { CoerceTargetDefaultsDependency } from '@rxap/workspace-utilities';
+import {
+  CoerceTarget,
+  CoerceTargetDefaultsDependency,
+} from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from '../init/schema';
 import { InitBuildableGeneratorSchema } from './schema';
 
@@ -18,6 +21,14 @@ function setGeneralTargetDefaults(tree: Tree) {
 
   updateNxJson(tree, nxJson);
 
+}
+
+function updateProjectTargets(project: ProjectConfiguration) {
+  if (project.targets?.['build']?.configurations?.['production']) {
+    CoerceTarget(project, 'build', {
+      defaultConfiguration: 'production',
+    });
+  }
 }
 
 function skipProject(
@@ -50,6 +61,7 @@ export async function initBuildableGenerator(
     }
 
     console.log(`init project: ${ projectName }`);
+    updateProjectTargets(project);
 
     updateProjectConfiguration(tree, project.name, project);
 
