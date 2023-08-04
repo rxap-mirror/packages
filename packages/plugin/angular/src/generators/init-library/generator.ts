@@ -60,7 +60,7 @@ function updateProjectNgPackageConfiguration(tree: Tree, project: ProjectConfigu
 
   ngPackageJson.assets ??= [];
 
-  CoerceAssets(ngPackageJson.assets, [ 'README.md', 'CHANGELOG.md', 'LICENSE' ]);
+  CoerceAssets(ngPackageJson.assets, [ 'README.md', 'CHANGELOG.md', 'LICENSE', 'LICENSE.md' ]);
 
   const assetThemes = {
     input: '.',

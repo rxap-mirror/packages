@@ -18,6 +18,7 @@
       "output": "."
     },
     "LICENSE",
-    "theme.css"
+    "theme.css",
+    "LICENSE.md"
   ]
 }

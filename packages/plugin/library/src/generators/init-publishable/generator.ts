@@ -147,6 +147,8 @@ export async function initPublishableGenerator(
     CoerceFile(tree, join(project.root, 'CHANGELOG.md'));
     CoerceFile(tree, join(project.root, 'GETSTARTED.md'));
     CoerceFile(tree, join(project.root, 'GUIDES.md'));
+    CoerceFile(tree, join(project.root, 'LICENSE.md'), tree.read('LICENSE'));
+    CoerceFile(tree, join(project.root, 'LICENSE'), tree.read('LICENSE'));
     CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'README.md' ]);
 
     updateProjectConfiguration(tree, project.name, project);
