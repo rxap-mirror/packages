@@ -16,7 +16,7 @@ if [ "$CI" = "true" ]; then
   chmod +x /usr/local/bin/jq
   # endregion
 else
-  echo "${RED}This script is only intended to be run in GitLab CI${NC}"
+  echo -e "${RED}This script is only intended to be run in GitLab CI${NC}"
   DOCKER_CONFIG_PATH="/tmp/.docker/config.json"
   DRY_RUN="true"
 fi
@@ -51,7 +51,7 @@ PUSH_TO_GITLAB=${PUSH_TO_GITLAB:-false}
 # region check gcp variables
 if [ "$PUSH_TO_GCP" = "true" ]; then
 
-  echo "${BLUE}Test if all variables are set for pushing to GCP${NC}"
+  echo -e "${BLUE}Test if all variables are set for pushing to GCP${NC}"
 
   if [ -z  $GCP_PROJECT ]; then
     echo "GCP_PROJECT is not set"
@@ -64,9 +64,9 @@ if [ "$PUSH_TO_GCP" = "true" ]; then
   fi
 
   if [ "$PUSH_TO_GCP" = "true" ]; then
-    echo "${GREEN}All variables are set for pushing to GCP${NC}"
+    echo -e "${GREEN}All variables are set for pushing to GCP${NC}"
   else
-    echo "${RED}Not all variables are set for pushing to GCP${NC}"
+    echo -e "${RED}Not all variables are set for pushing to GCP${NC}"
   fi
 
 fi
@@ -75,7 +75,7 @@ fi
 # region check gitlab variables
 if [ "$PUSH_TO_GITLAB" = "true" ]; then
 
-  echo "${BLUE}Test if all variables are set for pushing to gitlab${NC}"
+  echo -e "${BLUE}Test if all variables are set for pushing to gitlab${NC}"
 
   if [ -z  $CI_REGISTRY_USER ]; then
     echo "CI_REGISTRY_USER is not set"
@@ -98,9 +98,9 @@ if [ "$PUSH_TO_GITLAB" = "true" ]; then
   fi
 
   if [ "$PUSH_TO_GITLAB" = "true" ]; then
-    echo "${GREEN}All variables are set for pushing to gitlab${NC}"
+    echo -e "${GREEN}All variables are set for pushing to gitlab${NC}"
   else
-    echo "${RED}Not all variables are set for pushing to gitlab${NC}"
+    echo -e "${RED}Not all variables are set for pushing to gitlab${NC}"
   fi
 
 fi
@@ -109,7 +109,7 @@ fi
 # region check custom registry variables
 if [ "$PUSH_TO_CUSTOM" = "true" ]; then
 
-  echo "${BLUE}Test if all variables are set for pushing to custom registry${NC}"
+  echo -e "${BLUE}Test if all variables are set for pushing to custom registry${NC}"
 
   if [ -z  $REGISTRY_USER ]; then
     echo "REGISTRY_USER is not set"
@@ -132,9 +132,9 @@ if [ "$PUSH_TO_CUSTOM" = "true" ]; then
   fi
 
   if [ "$PUSH_TO_CUSTOM" = "true" ]; then
-    echo "${GREEN}All variables are set for pushing to custom registry${NC}"
+    echo -e "${GREEN}All variables are set for pushing to custom registry${NC}"
   else
-    echo "${RED}Not all variables are set for pushing to custom registry${NC}"
+    echo -e "${RED}Not all variables are set for pushing to custom registry${NC}"
   fi
 
 fi
@@ -142,7 +142,7 @@ fi
 
 # if no registry is set to push to, exit
 if [ "$PUSH_TO_GCP" = "false" ] && [ "$PUSH_TO_GITLAB" = "false" ] && [ "$PUSH_TO_CUSTOM" = "false" ]; then
-  echo "${RED}No registry is set to push to${NC}"
+  echo -e "${RED}No registry is set to push to${NC}"
   exit 1
 fi
 
