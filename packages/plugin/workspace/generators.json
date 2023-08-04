@@ -4,6 +4,11 @@
       "factory": "./src/generators/docker-compose/generator",
       "schema": "./src/generators/docker-compose/schema.json",
       "description": "docker-compose generator"
+    },
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "init generator"
     }
   }
 }
