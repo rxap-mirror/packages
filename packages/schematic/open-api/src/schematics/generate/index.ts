@@ -6,7 +6,6 @@ import {
 import { ApplyTsMorphProjectRule } from '@rxap/schematics-ts-morph';
 import {
   dasherize,
-  GetProjectPrefix,
   GetProjectSourceRoot,
 } from '@rxap/schematics-utilities';
 import { OpenAPIV3 } from 'openapi-types';
@@ -80,8 +79,6 @@ export default function (options: OpenApiSchema): Rule {
 
     const projectSourceRoot = GetProjectSourceRoot(host, projectName);
     const basePath = join(projectSourceRoot, 'lib');
-
-    options.prefix = options.prefix ?? GetProjectPrefix(host, projectName);
 
     // if (!options.debug) {
     //   // TODO : reset the hack after the schematic execution is finished

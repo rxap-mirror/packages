@@ -1,5 +1,4 @@
 export * from './lib/clear-operation';
-export * from './lib/coerce-open-api-project';
 export * from './lib/config';
 export * from './lib/generate-components';
 export * from './lib/generate-index-exports';

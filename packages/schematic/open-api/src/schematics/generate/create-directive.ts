@@ -156,7 +156,7 @@ export function CreateDirective({
       hasQuestionToken: true,
       scope: Scope.Public,
       type: parametersType,
-      leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
+      // leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
       hasOverrideKeyword: true,
       decorators: [
         {
@@ -216,7 +216,7 @@ export function CreateDirective({
         name: 'errorTemplate',
         hasQuestionToken: true,
         hasOverrideKeyword: true,
-        leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
+        // leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
         scope: Scope.Public,
         type: `TemplateRef<RemoteMethodTemplateCollectionDirectiveErrorContext>`,
         decorators: [
@@ -230,7 +230,7 @@ export function CreateDirective({
       }, {
         name: 'emptyTemplate',
         hasOverrideKeyword: true,
-        leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
+        // leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
         hasQuestionToken: true,
         scope: Scope.Public,
         type: 'TemplateRef<void>',
@@ -272,7 +272,7 @@ export function CreateDirective({
         hasQuestionToken: true,
         hasOverrideKeyword: true,
         type: `TemplateRef<RemoteMethodTemplateDirectiveErrorContext>`,
-        leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
+        // leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
         scope: Scope.Public,
         decorators: [
           {
