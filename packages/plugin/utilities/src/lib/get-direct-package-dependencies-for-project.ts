@@ -30,13 +30,14 @@ export function getDirectPackageDependenciesForProject(
   return projectGraph.dependencies[projectName]
     .filter(dependency => !dependency.target.startsWith('npm:'))
     .map(dependency => dependency.target)
-    .map(projectName => readPackageJsonForProject(context, projectName))
+    .map(projectName => readPackageJsonForProject(context, projectName) as any)
+    .filter(packageJson => !!packageJson.name && packageJson.version)
     .reduce((
       acc,
       {
         name,
         version,
-      },
+      }: { name: string, version: string },
     ) => ({
       ...acc,
       [name]: version,
