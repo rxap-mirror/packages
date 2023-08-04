@@ -6,7 +6,6 @@ export function GetResponse(operation: OpenAPIV3.OperationObject): OpenAPIV3.Sch
 
   if (operation.responses) {
 
-    // tslint:disable:no-unnecessary-initializer
     let response: OpenAPIV3.ReferenceObject | OpenAPIV3.ResponseObject | undefined = undefined;
 
     if (operation.responses['default']) {

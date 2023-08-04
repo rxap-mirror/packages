@@ -15,7 +15,7 @@ import { IgnoreOperation } from './utilities/ignore-operation';
 import { IsHttpMethod } from './utilities/is-http-method';
 import { IsOperationObject } from './utilities/is-operation-object';
 
-async function executeGenerator<Options extends OpenApiSchemaBase>(
+function executeGenerator<Options extends OpenApiSchemaBase>(
   project: Project,
   options: Options,
   path: string,
@@ -33,7 +33,7 @@ async function executeGenerator<Options extends OpenApiSchemaBase>(
       project,
       options,
     };
-    await generatorFunction(parameters);
+    generatorFunction(parameters);
   } catch (e) {
     console.error(`Failed to generate [${ generatorFunction?.name }] for operation: ${ operation.operationId }`);
   }
@@ -44,12 +44,10 @@ export function GenerateOperation<Options extends OpenApiSchemaBase = OpenApiSch
   project: Project,
   options: Options,
   generatorFunctionList: GeneratorFunction<Options>[],
-): Promise<any> {
+): void {
   const components: OpenAPIV3.ComponentsObject = (openapi as any).components ?? (openapi as any).definitions ?? {};
 
-  const promiseList: Array<Promise<void>> = [];
-
-  promiseList.push(...GenerateComponents(components, project));
+  GenerateComponents(components, project);
 
   for (const [ path, methods ] of Object.entries(openapi.paths)) {
 
@@ -69,13 +67,13 @@ export function GenerateOperation<Options extends OpenApiSchemaBase = OpenApiSch
 
             if (HasOperationId(operation)) {
 
-              promiseList.push(GenerateParameters(operation, project, components));
-              promiseList.push(GenerateRequestBody(operation, project, components));
-              promiseList.push(GenerateResponse(operation, project, components));
+              GenerateParameters(operation, project, components);
+              GenerateRequestBody(operation, project, components);
+              GenerateResponse(operation, project, components);
 
               for (const generatorFunction of generatorFunctionList) {
 
-                promiseList.push(executeGenerator(
+                executeGenerator(
                   project,
                   options,
                   path,
@@ -83,7 +81,7 @@ export function GenerateOperation<Options extends OpenApiSchemaBase = OpenApiSch
                   generatorFunction,
                   components,
                   operation,
-                ));
+                );
 
               }
 
@@ -100,7 +98,5 @@ export function GenerateOperation<Options extends OpenApiSchemaBase = OpenApiSch
     }
 
   }
-
-  return Promise.all(promiseList);
 
 }

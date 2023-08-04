@@ -1,3 +1,4 @@
+import { strings } from '@angular-devkit/core';
 import {
   ClassDeclaration,
   ClassDeclarationStructure,
@@ -10,7 +11,6 @@ import {
   SetAccessorDeclarationStructure,
   Writers,
 } from 'ts-morph';
-import { strings } from '@angular-devkit/core';
 import { CreateDirectiveOptions } from './options';
 
 function AssertImportSpecifierStructureArray(obj: any): asserts obj is Array<OptionalKind<ImportSpecifierStructure>> {
@@ -156,7 +156,7 @@ export function CreateDirective({
       hasQuestionToken: true,
       scope: Scope.Public,
       type: parametersType,
-      leadingTrivia: '// tslint:disable-next-line:no-input-rename',
+      leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
       hasOverrideKeyword: true,
       decorators: [
         {
@@ -216,7 +216,7 @@ export function CreateDirective({
         name: 'errorTemplate',
         hasQuestionToken: true,
         hasOverrideKeyword: true,
-        leadingTrivia: '// tslint:disable-next-line:no-input-rename',
+        leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
         scope: Scope.Public,
         type: `TemplateRef<RemoteMethodTemplateCollectionDirectiveErrorContext>`,
         decorators: [
@@ -229,7 +229,8 @@ export function CreateDirective({
         ],
       }, {
         name: 'emptyTemplate',
-        leadingTrivia: '// tslint:disable-next-line:no-input-rename',
+        hasOverrideKeyword: true,
+        leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
         hasQuestionToken: true,
         scope: Scope.Public,
         type: 'TemplateRef<void>',
@@ -271,7 +272,7 @@ export function CreateDirective({
         hasQuestionToken: true,
         hasOverrideKeyword: true,
         type: `TemplateRef<RemoteMethodTemplateDirectiveErrorContext>`,
-        leadingTrivia: '// tslint:disable-next-line:no-input-rename',
+        leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
         scope: Scope.Public,
         decorators: [
           {

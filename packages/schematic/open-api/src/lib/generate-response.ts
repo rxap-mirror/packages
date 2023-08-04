@@ -8,11 +8,11 @@ import {
 import { IsAnySchemaObject } from './utilities/any-schema-object';
 import { GetResponse } from './utilities/get-response';
 
-export async function GenerateResponse(
+export function GenerateResponse(
   operation: OpenAPIV3.OperationObject,
   project: Project,
   components: OpenAPIV3.ComponentsObject,
-): Promise<void> {
+): void {
 
   const response = GetResponse(operation);
 
@@ -36,7 +36,7 @@ export async function GenerateResponse(
 
     try {
 
-      await generator.build(operationId);
+      generator.buildSync(operationId);
 
     } catch (error: any) {
       console.error(`Failed to generate response interface for: ${ operationId }`, error.message);

@@ -8,11 +8,11 @@ import {
 import { AnySchemaObject } from './utilities/any-schema-object';
 import { IsReferenceObject } from './utilities/is-reference-object';
 
-export async function GenerateParameters(
+export function GenerateParameters(
   operation: OpenAPIV3.OperationObject,
   project: Project,
   components: OpenAPIV3.ComponentsObject,
-): Promise<void> {
+): void {
 
   if (operation.parameters && operation.parameters.length && operation.operationId) {
 
@@ -89,7 +89,7 @@ export async function GenerateParameters(
 
     try {
 
-      await generator.build(operationId);
+      generator.buildSync(operationId);
 
     } catch (error: any) {
       console.error(`Failed to generate parameter interface for: ${ operationId }`, error.message);

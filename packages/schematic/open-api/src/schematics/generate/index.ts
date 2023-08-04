@@ -1,15 +1,10 @@
 import {
   chain,
-  noop,
   Rule,
   Tree,
 } from '@angular-devkit/schematics';
+import { ApplyTsMorphProjectRule } from '@rxap/schematics-ts-morph';
 import {
-  ApplyTsMorphProjectRule,
-  FixMissingImports,
-} from '@rxap/schematics-ts-morph';
-import {
-  CoerceFile,
   dasherize,
   GetProjectPrefix,
   GetProjectSourceRoot,
@@ -28,63 +23,41 @@ import {
   REQUEST_BODY_BASE_PATH,
   RESPONSE_BASE_PATH,
 } from '../../lib/config';
-import { GenerateIndexExports } from '../../lib/generate-index-exports';
 import { GenerateOperation } from '../../lib/generate-operation';
 import { LoadOpenApiConfig } from '../../lib/load-open-api-config';
+import { GeneratorFunction } from '../../lib/types';
 import {
-  GeneratorFunction,
-  HasOperationId,
-} from '../../lib/types';
-import {
-  IgnoreOperation,
-  IsHttpMethod,
-  IsOperationObject,
-} from '../../lib/utilities';
-import { REMOTE_METHOD_BASE_PATH } from './const';
-import { GenerateOpenapiProvider } from './generate-openapi-provider';
+  COMMAND_BASE_PATH,
+  REMOTE_METHOD_BASE_PATH,
+} from './const';
+import { GenerateOperationCommand } from './generate-operation-command';
 import { GenerateRemoteMethod } from './generate-remote-method';
 import { OpenApiSchema } from './schema';
 
-function GetOperationIdList(openapi: OpenAPIV3.Document): string[] {
-
-  const operationIdList: string[] = [];
-
-  for (const [ _, methods ] of Object.entries(openapi.paths)) {
-
-    if (methods) {
-
-      for (const method of Object.keys(methods).filter(IsHttpMethod)) {
-
-        const operation = methods[method];
-
-        if (IsOperationObject(operation)) {
-
-          if (IgnoreOperation([ 'hidden' ])(operation)) {
-
-            console.log(`Ignore operation '${ operation.operationId }'`);
-
-          } else {
-
-            if (HasOperationId(operation)) {
-              operationIdList.push(operation.operationId);
-            }
-
-          }
-        }
-
-      }
-
-    }
-
+function resolveRef(openApiSpec: OpenAPIV3.Document, node: any, parent?: any, key?: string) {
+  if (typeof node !== 'object' || node === null) {
+    return;
   }
-
-  return operationIdList;
-
+  if (node['$ref']) {
+    if (node.$ref.startsWith('#/components/schemas')) {
+      const name = node.$ref.replace('#/components/schemas/', '');
+      if (parent && key && openApiSpec.components?.schemas) {
+        parent[key] = openApiSpec.components.schemas[name];
+      }
+    }
+  } else {
+    for (const [ k, v ] of Object.entries(node)) {
+      resolveRef(openApiSpec, v, node, k);
+    }
+  }
 }
 
 export default function (options: OpenApiSchema): Rule {
   return async (host: Tree) => {
+    console.log('loading openapi config');
     const openapi = await LoadOpenApiConfig(host, options);
+    console.log('resolve all schema refs');
+    resolveRef(openapi, openapi.paths);
 
     const project = new Project({
       manipulationSettings: {
@@ -110,11 +83,11 @@ export default function (options: OpenApiSchema): Rule {
 
     options.prefix = options.prefix ?? GetProjectPrefix(host, projectName);
 
-    if (!options.debug) {
-      // TODO : reset the hack after the schematic execution is finished
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      console.debug = function () {};
-    }
+    // if (!options.debug) {
+    //   // TODO : reset the hack after the schematic execution is finished
+    //   // eslint-disable-next-line @typescript-eslint/no-empty-function
+    //   console.debug = function () {};
+    // }
 
     const generatorFunctionList: GeneratorFunction<OpenApiSchema>[] = [];
     const clearPathList: string[] = [];
@@ -124,7 +97,19 @@ export default function (options: OpenApiSchema): Rule {
       clearPathList.push(REMOTE_METHOD_BASE_PATH);
     }
 
+    if (!options.skipCommand) {
+      generatorFunctionList.push(GenerateOperationCommand);
+      clearPathList.push(COMMAND_BASE_PATH);
+    }
+
+    let start = Date.now();
+
     return chain([
+      () => {
+        console.log(`+${ Date.now() - start }ms`);
+        console.log(`remove old files`);
+        start = Date.now();
+      },
       ClearOperation([
         COMPONENTS_BASE_PATH,
         PARAMETER_BASE_PATH,
@@ -132,17 +117,21 @@ export default function (options: OpenApiSchema): Rule {
         REQUEST_BODY_BASE_PATH,
         ...clearPathList,
       ], basePath),
-      async () => { await GenerateOperation(openapi, project, options, generatorFunctionList); },
-      () => options.skipProvider ? noop() : GenerateOpenapiProvider(project, GetOperationIdList(openapi), options),
-      ApplyTsMorphProjectRule(project, basePath),
-      FixMissingImports(),
-      (tree) => {
-        const indexFile = join(projectSourceRoot, 'index.ts');
-        if (options.export) {
-          CoerceFile(tree, indexFile, GenerateIndexExports(project));
-        } else {
-          CoerceFile(tree, indexFile, 'export {};');
-        }
+      () => {
+        console.log(`+${ Date.now() - start }ms`);
+        console.log(`generate code for operations`);
+        start = Date.now();
+      },
+      () => GenerateOperation(openapi, project, options, generatorFunctionList),
+      () => {
+        console.log(`+${ Date.now() - start }ms`);
+        console.log('apply changed to tree');
+        start = Date.now();
+      },
+      ApplyTsMorphProjectRule(project, basePath, true, true),
+      () => {
+        console.log(`+${ Date.now() - start }ms`);
+        console.log('DONE');
       },
     ]);
   };

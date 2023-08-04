@@ -8,6 +8,7 @@ export interface OpenApiSchemaBase {
   inline: boolean;
   directory?: string;
   skipRemoteMethod: boolean;
+  skipCommand: boolean;
   skipProvider: boolean;
   skipDirectives: boolean;
 }

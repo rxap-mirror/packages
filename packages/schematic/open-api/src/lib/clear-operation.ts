@@ -1,4 +1,5 @@
 import { Rule } from '@angular-devkit/schematics';
+import { DeleteDirectory } from '@rxap/schematics-utilities';
 import { join } from 'path';
 
 export function ClearOperation(
@@ -9,11 +10,7 @@ export function ClearOperation(
     console.debug(`clear operation for base path '${ basePath }' with pathList '${ pathList }'`);
     for (const path of pathList) {
       const fullPath = join(basePath, path);
-      if (tree.exists(fullPath)) {
-        tree.delete(fullPath);
-      } else {
-        console.debug(`Path '${ fullPath }' does not exists.`);
-      }
+      DeleteDirectory(tree, tree.getDir(fullPath));
     }
   };
 }

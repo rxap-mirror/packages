@@ -4,12 +4,12 @@ import { Project } from 'ts-morph';
 
 import { COMPONENTS_BASE_PATH } from './config';
 
-async function executeInterfaceBuild(
+function executeInterfaceBuild(
   components: OpenAPIV3.ComponentsObject,
   project: Project,
   schema: any,
   name: string,
-) {
+): void {
 
   const generator = new TypescriptInterfaceGenerator(
     {
@@ -27,7 +27,7 @@ async function executeInterfaceBuild(
 
   try {
 
-    await generator.build(name);
+    generator.buildSync(name);
 
   } catch (error: any) {
     console.error(`Failed to generate response interface for: ${ name }`, error.message);
@@ -37,16 +37,12 @@ async function executeInterfaceBuild(
 export function GenerateComponents(
   components: OpenAPIV3.ComponentsObject,
   project: Project,
-): Array<Promise<void>> {
-
-  const promiseList: Array<Promise<void>> = [];
+): void {
 
   if (components.schemas) {
     for (const [ name, schema ] of Object.entries(components.schemas)) {
-      promiseList.push(executeInterfaceBuild(components, project, schema, name));
+      executeInterfaceBuild(components, project, schema, name);
     }
   }
-
-  return promiseList;
 
 }

@@ -8,11 +8,11 @@ import {
 import { IsAnySchemaObject } from './utilities/any-schema-object';
 import { GetRequestBody } from './utilities/get-reqeust-body';
 
-export async function GenerateRequestBody(
+export function GenerateRequestBody(
   operation: OpenAPIV3.OperationObject,
   project: Project,
   components: OpenAPIV3.ComponentsObject,
-): Promise<void> {
+): void {
 
   const requestBodySchema = GetRequestBody(operation);
 
@@ -36,7 +36,7 @@ export async function GenerateRequestBody(
 
     try {
 
-      await generator.build(operationId);
+      generator.buildSync(operationId);
 
     } catch (error: any) {
       console.error(`Failed to generate request body interface for: ${ operationId }`, error.message);

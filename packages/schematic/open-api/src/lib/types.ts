@@ -61,7 +61,7 @@ export function AssertWithOperationId(operation: OpenAPIV3.OperationObject): ass
   }
 }
 
-export type GeneratorFunction<Options extends OpenApiSchemaBase = OpenApiSchemaBase> = (parameters: GenerateParameter<Options>) => Promise<void>;
+export type GeneratorFunction<Options extends OpenApiSchemaBase = OpenApiSchemaBase> = (parameters: GenerateParameter<Options>) => void;
 
 export interface OpenApiSchemaBase {
   debug?: boolean;

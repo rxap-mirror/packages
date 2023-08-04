@@ -1,4 +1,4 @@
-import { OpenApiSchemaBase } from './schema';
+import { strings } from '@angular-devkit/core';
 import { join } from 'path';
 import {
   ClassDeclarationStructure,
@@ -8,28 +8,28 @@ import {
   Scope,
   Writers,
 } from 'ts-morph';
-import { strings } from '@angular-devkit/core';
-import { CreateDirective } from './create-directive';
-import {
-  REMOTE_METHOD_BASE_PATH,
-  REMOTE_METHOD_FILE_SUFFIX,
-} from './const';
 import {
   GenerateParameter,
   GenerateParameterToOperationObjectWithMetadata,
 } from '../../lib/types';
-import { GetResponseType } from '../../lib/utilities/get-response-type';
-import { GetRequestBodyType } from '../../lib/utilities/get-request-body-type';
 import { GetParameterType } from '../../lib/utilities/get-parameter-type';
+import { GetRequestBodyType } from '../../lib/utilities/get-request-body-type';
+import { GetResponseType } from '../../lib/utilities/get-response-type';
 import { IsCollectionResponse } from '../../lib/utilities/is-collection-response';
 import { IsWithoutParameters } from '../../lib/utilities/is-without-parameters';
+import {
+  REMOTE_METHOD_BASE_PATH,
+  REMOTE_METHOD_FILE_SUFFIX,
+} from './const';
+import { CreateDirective } from './create-directive';
+import { OpenApiSchemaBase } from './schema';
 
 const {
   dasherize,
   classify,
 } = strings;
 
-export async function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiSchemaBase>): Promise<void> {
+export function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiSchemaBase>): void {
   const operationId = parameter.operationId;
 
   const name = [ operationId, REMOTE_METHOD_FILE_SUFFIX ].join('.');
