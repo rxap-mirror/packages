@@ -19,6 +19,16 @@
       "factory": "./src/generators/init-plugin/generator",
       "schema": "./src/generators/init-plugin/schema.json",
       "description": "init-plugin generator"
+    },
+    "init-buildable": {
+      "factory": "./src/generators/init-buildable/generator",
+      "schema": "./src/generators/init-buildable/schema.json",
+      "description": "init-buildable generator"
+    },
+    "init-publishable": {
+      "factory": "./src/generators/init-publishable/generator",
+      "schema": "./src/generators/init-publishable/schema.json",
+      "description": "init-publishable generator"
     }
   }
 }
