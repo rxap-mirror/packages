@@ -15,6 +15,7 @@ const dotDocker = {
     name: 'gcr.io/kaniko-project/executor:debug',
     entrypoint: [ '' ],
   },
+  stage: 'docker',
   tags: [ 'e2-standard-2' ],
   script: '/bin/sh tools/scripts/build-and-push-docker-image.sh',
   environment: {
