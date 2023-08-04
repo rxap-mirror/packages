@@ -3,6 +3,8 @@ import {
   Tree,
 } from '@nx/devkit';
 import { join } from 'path';
+import { IsBuildable } from './is-buildable';
+import { IsPublishable } from './is-publishable';
 
 export interface SkipProjectOptions {
   projects?: string[];
@@ -47,8 +49,41 @@ export function SkipNonLibraryProject(
     return true;
   }
 
-  if (!tree.exists(join(project.root, 'package.json'))) {
-    console.warn(`The project ${ projectName } has no package.json file.`);
+  return false;
+
+}
+
+export function SkipNonBuildableProject(
+  tree: Tree,
+  options: SkipProjectOptions,
+  project: ProjectConfiguration,
+  projectName: string,
+) {
+
+  if (SkipNonLibraryProject(tree, options, project, projectName)) {
+    return true;
+  }
+
+  if (!IsBuildable(project)) {
+    return true;
+  }
+
+  return false;
+
+}
+
+export function SkipNonPublishableProject(
+  tree: Tree,
+  options: SkipProjectOptions,
+  project: ProjectConfiguration,
+  projectName: string,
+) {
+
+  if (SkipNonBuildableProject(tree, options, project, projectName)) {
+    return true;
+  }
+
+  if (!IsPublishable(tree, project)) {
     return true;
   }
 
