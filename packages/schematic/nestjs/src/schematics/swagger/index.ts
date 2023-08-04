@@ -56,7 +56,7 @@ export default function (options: SwaggerSchema): Rule {
           executor: '@nx/webpack:webpack',
           outputs: [ '{options.outputPath}' ],
           options: {
-            outputPath: (build.options['outputPath'] as string).replace('dist/apps/', 'dist/swagger/'),
+            outputPath: (build.options['outputPath'] as string).replace('dist/', 'dist/swagger/'),
             main: `${ project.sourceRoot }/swagger.ts`,
             target: `node`,
             compiler: `tsc`,
@@ -71,10 +71,11 @@ export default function (options: SwaggerSchema): Rule {
             ],
           },
         };
+        const outputPath = project.targets['swagger-build'].options.outputPath;
         project.targets['swagger-generate'] = {
           executor: '@nx/js:node',
           outputs: [
-            `{options.outputPath}/open-api.json`,
+            `${ outputPath }/open-api.json`,
           ],
           options: {
             buildTarget: `${ options.project }:swagger-build`,
