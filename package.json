@@ -4,6 +4,7 @@
   "license": "GPL-3.0-or-later",
   "packageManager": "yarn@3.6.0",
   "scripts": {
+    "nx": "env-cmd nx",
     "prepare": "husky install",
     "version": "env-cmd bash tools/scripts/lerna/hooks/version.sh",
     "preversion": "env-cmd bash tools/scripts/lerna/hooks/preversion.sh",
