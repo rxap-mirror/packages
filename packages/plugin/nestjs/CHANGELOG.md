@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.4...@rxap/plugin-nestjs@16.1.0-dev.5) (2023-08-05)
+
+### Bug Fixes
+
+- only skip swagger configuration if explicit disabled ([97435db](https://gitlab.com/rxap/packages/commit/97435db71cba7c38f9821335d33e93689105b836))
+
 # [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.3...@rxap/plugin-nestjs@16.1.0-dev.4) (2023-08-04)
 
 ### Bug Fixes

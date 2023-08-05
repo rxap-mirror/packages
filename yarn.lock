@@ -8191,10 +8191,10 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-ts-morph": ^1.0.1-dev.3
-    "@rxap/generator-utilities": ^1.1.0-dev.2
+    "@rxap/generator-utilities": ^1.1.0-dev.4
     "@rxap/node-utilities": ^1.1.0-dev.1
     "@rxap/plugin-angular": ^16.1.0-dev.6
-    "@rxap/plugin-nestjs": ^16.1.0-dev.4
+    "@rxap/plugin-nestjs": ^16.1.0-dev.5
     "@rxap/plugin-utilities": ^16.1.0-dev.4
     "@rxap/workspace-utilities": ^0.1.0-dev.2
     nx: ^16.5.0
@@ -8225,7 +8225,7 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@nx/js": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.2
+    "@rxap/generator-utilities": ^1.1.0-dev.4
     "@rxap/plugin-utilities": ^16.1.0-dev.4
     "@rxap/workspace-utilities": ^0.1.0-dev.2
     nx: ^16.5.0

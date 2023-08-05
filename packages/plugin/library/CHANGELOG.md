@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.13...@rxap/plugin-library@16.0.0-dev.14) (2023-08-05)
+
+### Bug Fixes
+
+- check if homepage is set prevent ref by null ([6e86439](https://gitlab.com/rxap/packages/commit/6e8643966ff79d3f329a9a2e73b39a7e27c55849))
+
 # [16.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.12...@rxap/plugin-library@16.0.0-dev.13) (2023-08-04)
 
 ### Bug Fixes
