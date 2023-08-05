@@ -77,7 +77,9 @@ function updateProjectPackageJson(
       ...(project.tags ?? []),
     ]),
   ];
-  packageJson.homepage = join(rootPackageJson.homepage, project.root);
+  if (rootPackageJson.homepage) {
+    packageJson.homepage = join(rootPackageJson.homepage, project.root);
+  }
   packageJson.bugs = rootPackageJson.bugs;
   packageJson.license = rootPackageJson.license;
   packageJson.contributors = rootPackageJson.contributors;
