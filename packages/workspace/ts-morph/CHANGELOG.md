@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/workspace-ts-morph@0.0.2-dev.1...@rxap/workspace-ts-morph@0.1.0-dev.0) (2023-08-05)
+
+### Features
+
+- support replace option ([50f2ac4](https://gitlab.com/rxap/packages/commit/50f2ac4d89017027c51a51223cd58a466edef1d0))
+
 ## [0.0.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/workspace-ts-morph@0.0.2-dev.0...@rxap/workspace-ts-morph@0.0.2-dev.1) (2023-08-04)
 
 ### Bug Fixes
