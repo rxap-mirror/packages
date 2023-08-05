@@ -1,9 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import {
   OpenApiOperationCommand,
   OpenApiOperationCommandParameters,
   OperationCommand,
-} from '@eurogard/service-open-api';
-import { Injectable } from '@nestjs/common';
+} from '@rxap/nest-open-api';
 import { MinimumTableControllerGetPageParameter } from '../parameters/minimum-table-controller-get-page.parameter';
 import { MinimumTableControllerGetPageResponse } from '../responses/minimum-table-controller-get-page.response';
 

@@ -1,9 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import {
   OpenApiOperationCommand,
   OpenApiOperationCommandParameters,
   OperationCommand,
-} from '@eurogard/service-open-api';
-import { Injectable } from '@nestjs/common';
+} from '@rxap/nest-open-api';
 import { StatusControllerHealthCheckServiceParameter } from '../parameters/status-controller-health-check-service.parameter';
 import { StatusControllerHealthCheckServiceResponse } from '../responses/status-controller-health-check-service.response';
 

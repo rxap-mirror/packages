@@ -1,9 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import {
   OpenApiOperationCommand,
   OpenApiOperationCommandParameters,
   OperationCommand,
-} from '@eurogard/service-open-api';
-import { Injectable } from '@nestjs/common';
+} from '@rxap/nest-open-api';
 import { ConfigurationControllerGetLatestParameter } from '../parameters/configuration-controller-get-latest.parameter';
 import { ConfigurationControllerGetLatestResponse } from '../responses/configuration-controller-get-latest.response';
 

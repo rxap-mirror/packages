@@ -34,7 +34,7 @@ export async function GenerateOperationCommand(
 
   const importStructures: Array<OptionalKind<ImportDeclarationStructure>> = [
     {
-      moduleSpecifier: '@eurogard/service-open-api',
+      moduleSpecifier: '@rxap/nest-open-api',
       namedImports: [
         { name: 'OpenApiOperationCommand' },
         { name: 'OperationCommand' },
@@ -89,7 +89,7 @@ export async function GenerateOperationCommand(
       type: `OpenApiOperationCommandParameters<${ parameterType }, ${ requestBodyType }>`,
     });
     importStructures.push({
-      moduleSpecifier: '@eurogard/service-open-api',
+      moduleSpecifier: '@rxap/nest-open-api',
       namedImports: [ { name: 'OpenApiOperationCommandParameters' } ],
     });
   } else {
@@ -99,7 +99,7 @@ export async function GenerateOperationCommand(
       initializer: '{}',
     });
     importStructures.push({
-      moduleSpecifier: '@eurogard/service-open-api',
+      moduleSpecifier: '@rxap/nest-open-api',
       namedImports: [ { name: 'OpenApiOperationCommandWithoutParameters' } ],
     });
   }
