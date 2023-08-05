@@ -37,7 +37,7 @@
         },
         "inline": {
           "type": "boolean",
-          "default": false
+          "default": true
         },
         "skipRemoteMethod": {
           "type": "boolean",
@@ -106,7 +106,7 @@
         },
         "inline": {
           "type": "boolean",
-          "default": false
+          "default": true
         },
         "skipRemoteMethod": {
           "type": "boolean",
