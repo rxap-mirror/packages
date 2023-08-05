@@ -1,4 +1,7 @@
 import { ExecutorContext } from '@nx/devkit';
+import { existsSync } from 'fs';
+import { join } from 'path';
+import { GetProjectRoot } from './project';
 import { readPackageJsonForProject } from './project-package-json';
 
 /**
@@ -30,6 +33,7 @@ export function getDirectPackageDependenciesForProject(
   return projectGraph.dependencies[projectName]
     .filter(dependency => !dependency.target.startsWith('npm:'))
     .map(dependency => dependency.target)
+    .filter(name => existsSync(join(context.root, GetProjectRoot(context, name), 'package.json')))
     .map(projectName => readPackageJsonForProject(context, projectName) as any)
     .filter(packageJson => !!packageJson.name && packageJson.version)
     .reduce((
