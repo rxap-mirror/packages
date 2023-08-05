@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@16.0.0-dev.7...@rxap/schematics-open-api@16.0.0-dev.8) (2023-08-05)
+
+### Bug Fixes
+
+- use correct import paths ([086877f](https://gitlab.com/rxap/packages/commit/086877f36f906603a90446061b2c3327a0b2d964))
+
 # [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@16.0.0-dev.6...@rxap/schematics-open-api@16.0.0-dev.7) (2023-08-04)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematics-open-api",
-  "version": "16.0.0-dev.7",
+  "version": "16.0.0-dev.8",
   "type": "commonjs",
   "dependencies": {
     "openapi-types": "10.0.0",
