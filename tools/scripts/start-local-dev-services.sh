@@ -46,6 +46,7 @@ else
 
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     channel=development
+    CHANNEL=$channel
   else
     echo "exiting"
     exit 1
