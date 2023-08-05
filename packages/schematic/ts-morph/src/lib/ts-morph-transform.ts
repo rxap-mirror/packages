@@ -6,6 +6,7 @@ import {
   TsMorphNestProjectTransformOptions as _TsMorphNestProjectTransformOptions,
   TsMorphTransform,
   TsMorphTransformCallback as _TsMorphTransformCallback,
+  TsMorphTransformOptions,
 } from '@rxap/workspace-ts-morph';
 import {
   Project,
@@ -21,28 +22,32 @@ export type TsMorphTransformCallback = _TsMorphTransformCallback;
 export function TsMorphTransformRule(
   sourceRoot: string,
   cb: (project: Project, sourceFile: SourceFile[]) => void,
-  options?: Partial<ProjectOptions>,
+  options?: TsMorphTransformOptions,
+  projectOptions?: Partial<ProjectOptions>,
   filePath?: string[],
 ): Rule
 export function TsMorphTransformRule(
   sourceRoot: string,
   cb: (project: Project, sourceFile: SourceFile) => void,
-  options?: Partial<ProjectOptions>,
+  options?: TsMorphTransformOptions,
+  projectOptions?: Partial<ProjectOptions>,
   filePath?: string,
 ): Rule
 export function TsMorphTransformRule(
   sourceRoot: string,
   cb: (project: Project, sourceFile: undefined) => void,
-  options?: Partial<ProjectOptions>,
+  options?: TsMorphTransformOptions,
+  projectOptions?: Partial<ProjectOptions>,
   filePath?: undefined,
 ): Rule
 export function TsMorphTransformRule(
   sourceRoot: string,
   cb: TsMorphTransformCallback,
-  options: Partial<ProjectOptions> = {},
+  options: TsMorphTransformOptions = {},
+  projectOptions: Partial<ProjectOptions> = {},
   filePathFilter?: undefined | string | string[],
 ): Rule {
-  return tree => TsMorphTransform(tree, sourceRoot, cb as any, options, filePathFilter as any);
+  return tree => TsMorphTransform(tree, sourceRoot, cb as any, options, projectOptions, filePathFilter as any);
 }
 
 /**

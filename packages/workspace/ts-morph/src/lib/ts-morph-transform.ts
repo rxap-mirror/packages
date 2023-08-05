@@ -20,32 +20,40 @@ export type TsMorphTransformCallback = ((project: Project, sourceFile: undefined
   ((project: Project, sourceFile: SourceFile) => void) |
   ((project: Project, sourceFile: SourceFile[]) => void);
 
+export interface TsMorphTransformOptions {
+  replace?: boolean;
+}
+
 export function TsMorphTransform(
   tree: TreeLike,
   sourceRoot: string,
   cb: (project: Project, sourceFile: SourceFile[]) => void,
-  options?: Partial<ProjectOptions>,
+  options?: TsMorphTransformOptions,
+  projectOptions?: Partial<ProjectOptions>,
   filePath?: string[],
 ): void
 export function TsMorphTransform(
   tree: TreeLike,
   sourceRoot: string,
   cb: (project: Project, sourceFile: SourceFile) => void,
-  options?: Partial<ProjectOptions>,
+  options?: TsMorphTransformOptions,
+  projectOptions?: Partial<ProjectOptions>,
   filePath?: string,
 ): void
 export function TsMorphTransform(
   tree: TreeLike,
   sourceRoot: string,
   cb: (project: Project, sourceFile: undefined) => void,
-  options?: Partial<ProjectOptions>,
+  options?: TsMorphTransformOptions,
+  projectOptions?: Partial<ProjectOptions>,
   filePath?: undefined,
 ): void
 export function TsMorphTransform(
   tree: TreeLike,
   sourceRoot: string,
   cb: TsMorphTransformCallback,
-  options: Partial<ProjectOptions> = {},
+  options: TsMorphTransformOptions = {},
+  projectOptions: Partial<ProjectOptions> = {},
   filePathFilter?: undefined | string | string[],
 ): void {
   const filePath = filePathFilter ?
@@ -60,17 +68,19 @@ export function TsMorphTransform(
       quoteKind: QuoteKind.Single,
     },
     useInMemoryFileSystem: true,
-  }, options));
+  }, projectOptions));
 
-  AddDir(tree, sourceRoot, project, filePath ?
-    (fileName: string, dirPath: string) => {
-      const fullPath = join(dirPath, fileName);
-      if (dirPath.endsWith(fileName)) {
-        throw new Error(`The dirPath '${ dirPath }' ends with the fileName '${ fileName }'`);
-      }
-      return filePath.some(f => fullPath.endsWith(f));
-    } :
-    undefined);
+  if (!options.replace) {
+    AddDir(tree, sourceRoot, project, filePath ?
+      (fileName: string, dirPath: string) => {
+        const fullPath = join(dirPath, fileName);
+        if (dirPath.endsWith(fileName)) {
+          throw new Error(`The dirPath '${ dirPath }' ends with the fileName '${ fileName }'`);
+        }
+        return filePath.some(f => fullPath.endsWith(f));
+      } :
+      undefined);
+  }
 
   let sourceFile: SourceFile | SourceFile[] | undefined = undefined;
 
@@ -80,7 +90,7 @@ export function TsMorphTransform(
         let sf = project.getSourceFile(f);
         if (!sf) {
           if (Array.isArray(filePathFilter)) {
-            if (filePathFilter[index]?.endsWith('?')) {
+            if (options.replace || filePathFilter[index]?.endsWith('?')) {
               sf = project.createSourceFile(f, '');
             } else {
               console.log(project.getSourceFiles().map(f => f.getFilePath()));
@@ -90,7 +100,7 @@ export function TsMorphTransform(
             if (index !== 0) {
               throw new Error('FATAL: The filePathFilter is not an array and the index is not 0');
             }
-            if (filePathFilter?.endsWith('?')) {
+            if (options.replace || filePathFilter?.endsWith('?')) {
               sf = project.createSourceFile(f, '');
             } else {
               throw new Error(`The file ${ f } does not exists with the source root ${ sourceRoot }`);
@@ -107,10 +117,11 @@ export function TsMorphTransform(
 
   (cb as any)(project, sourceFile);
 
+
   ApplyTsMorphProject(tree, project, sourceRoot, false);
 }
 
-export interface TsMorphNestProjectTransformOptions {
+export interface TsMorphNestProjectTransformOptions extends TsMorphTransformOptions {
   project: string;
   feature?: string | null;
   shared?: boolean;
@@ -150,12 +161,13 @@ export function TsMorphNestProjectTransform(
     tree,
     basePath,
     cb as any,
+    { replace: options.replace },
     options.projectOptions,
     filePath as any,
   );
 }
 
-export interface TsMorphAngularProjectTransformOptions extends BuildAngularBasePathOptions {
+export interface TsMorphAngularProjectTransformOptions extends BuildAngularBasePathOptions, TsMorphTransformOptions {
   projectOptions?: Partial<ProjectOptions>;
 }
 
@@ -188,6 +200,7 @@ export function TsMorphAngularProjectTransform(
     tree,
     basePath,
     cb as any,
+    { replace: options.replace },
     options.projectOptions,
     filePath as any,
   );
