@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@16.0.0-dev.8...@rxap/schematics-open-api@16.0.0-dev.9) (2023-08-05)
+
+### Features
+
+- add data source generator ([b8fe938](https://gitlab.com/rxap/packages/commit/b8fe93845c23bf37fa6fe92194105fc97c0c6710))
+
 # [16.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@16.0.0-dev.7...@rxap/schematics-open-api@16.0.0-dev.8) (2023-08-05)
 
 ### Bug Fixes
