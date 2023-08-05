@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@16.0.0-dev.9...@rxap/schematics-open-api@16.0.0-dev.10) (2023-08-05)
+
+### Bug Fixes
+
+- support es2022 ([c36ea81](https://gitlab.com/rxap/packages/commit/c36ea8187c725723094543e0d91f7ed1be16c232))
+
 # [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@16.0.0-dev.8...@rxap/schematics-open-api@16.0.0-dev.9) (2023-08-05)
 
 ### Features
