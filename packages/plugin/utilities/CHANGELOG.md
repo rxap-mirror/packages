@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.4...@rxap/plugin-utilities@16.1.0-dev.5) (2023-08-05)
+
+### Bug Fixes
+
+- only include project with package.json file ([e9e330f](https://gitlab.com/rxap/packages/commit/e9e330f432581beb996fd8aadadad89fd087f18a))
+
 # [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.3...@rxap/plugin-utilities@16.1.0-dev.4) (2023-08-04)
 
 ### Bug Fixes
