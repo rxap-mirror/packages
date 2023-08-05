@@ -43,6 +43,10 @@
           "type": "boolean",
           "default": false
         },
+        "skipDataSource": {
+          "type": "boolean",
+          "default": false
+        },
         "skipProvider": {
           "type": "boolean",
           "default": false
@@ -93,6 +97,10 @@
           "default": false
         },
         "skipCommand": {
+          "type": "boolean",
+          "default": false
+        },
+        "skipDataSource": {
           "type": "boolean",
           "default": false
         },

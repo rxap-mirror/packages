@@ -27,8 +27,10 @@ import { LoadOpenApiConfig } from '../../lib/load-open-api-config';
 import { GeneratorFunction } from '../../lib/types';
 import {
   COMMAND_BASE_PATH,
+  DATA_SOURCE_BASE_PATH,
   REMOTE_METHOD_BASE_PATH,
 } from './const';
+import { GenerateDataSource } from './generate-data-source';
 import { GenerateOperationCommand } from './generate-operation-command';
 import { GenerateRemoteMethod } from './generate-remote-method';
 import { OpenApiSchema } from './schema';
@@ -92,6 +94,11 @@ export default function (options: OpenApiSchema): Rule {
     if (!options.skipRemoteMethod) {
       generatorFunctionList.push(GenerateRemoteMethod);
       clearPathList.push(REMOTE_METHOD_BASE_PATH);
+    }
+
+    if (!options.skipDataSource) {
+      generatorFunctionList.push(GenerateDataSource);
+      clearPathList.push(DATA_SOURCE_BASE_PATH);
     }
 
     if (!options.skipCommand) {

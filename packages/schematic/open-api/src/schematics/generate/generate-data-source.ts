@@ -1,0 +1,94 @@
+import { strings } from '@angular-devkit/core';
+import { join } from 'path';
+import {
+  ClassDeclarationStructure,
+  ImportDeclarationStructure,
+  OptionalKind,
+  Writers,
+} from 'ts-morph';
+import { GenerateParameter } from '../../lib/types';
+import { GetParameterType } from '../../lib/utilities/get-parameter-type';
+import { GetResponseType } from '../../lib/utilities/get-response-type';
+import {
+  DATA_SOURCE_BASE_PATH,
+  DATA_SOURCE_FILE_SUFFIX,
+} from './const';
+
+const {
+  dasherize,
+  classify,
+} = strings;
+
+export function GenerateDataSource(
+  parameter: GenerateParameter,
+): void {
+  if (parameter.method.toUpperCase() !== 'GET') {
+    return;
+  }
+
+  const operationId = parameter.operationId;
+
+  const name = [ operationId, DATA_SOURCE_FILE_SUFFIX ].join('.');
+  const fileName = join(DATA_SOURCE_BASE_PATH, dasherize(name) + '.ts');
+
+  const sourceFile = parameter.project.createSourceFile(fileName);
+
+  const importStructures: Array<OptionalKind<ImportDeclarationStructure>> = [
+    {
+      moduleSpecifier: '@rxap/open-api/data-source',
+      namedImports: [
+        { name: 'RxapOpenApiDataSource' },
+        { name: 'OpenApiDataSource' },
+      ],
+    },
+    {
+      moduleSpecifier: '@angular/core',
+      namedImports: [ { name: 'Injectable' } ],
+    },
+  ];
+
+  const responseType: string = GetResponseType(parameter);
+  const parameterType: string = GetParameterType(parameter);
+
+  if (![ 'void', 'any' ].includes(responseType)) {
+    importStructures.push({
+      moduleSpecifier: `../responses/${ dasherize(responseType.replace(/Response$/, '')) }.response`,
+      namedImports: [ { name: responseType } ],
+    });
+  }
+
+  if (![ 'void', 'any' ].includes(parameterType)) {
+    importStructures.push({
+      moduleSpecifier: `../parameters/${ dasherize(parameterType.replace(/Parameter$/, '')) }.parameter`,
+      namedImports: [ { name: parameterType } ],
+    });
+  }
+
+  const classStructure: OptionalKind<ClassDeclarationStructure> = {
+    name: classify(name.replace(/\./g, '-')),
+    decorators: [
+      {
+        name: 'Injectable',
+        arguments: Writers.object({
+          providedIn: (writer) => writer.quote('root'),
+        }),
+      },
+      {
+        name: 'RxapOpenApiDataSource',
+        arguments: (writer) => writer.quote(operationId),
+      },
+    ],
+    extends: (writer) => {
+      writer.write('OpenApiDataSource');
+      writer.write('<');
+      writer.write(responseType);
+      writer.write(', ');
+      writer.write(parameterType);
+      writer.write('>');
+    },
+    isExported: true,
+  };
+
+  sourceFile.addImportDeclarations(importStructures);
+  sourceFile.addClass(classStructure);
+}

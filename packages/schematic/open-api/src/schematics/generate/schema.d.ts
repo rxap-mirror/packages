@@ -11,6 +11,7 @@ export interface OpenApiSchemaBase {
   skipCommand: boolean;
   skipProvider: boolean;
   skipDirectives: boolean;
+  skipDataSource: boolean;
 }
 
 export interface OpenApiSchemaFromPath extends OpenApiSchemaBase {
