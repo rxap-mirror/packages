@@ -160,7 +160,7 @@ export async function initApplicationGenerator(
     // apply changes to the project configuration
     updateProjectConfiguration(tree, projectName, project);
 
-    if (options.swagger) {
+    if (options.swagger !== false) {
       await swaggerGenerator(tree, { project: projectName });
     }
 
