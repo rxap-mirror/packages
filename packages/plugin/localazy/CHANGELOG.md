@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.1...@rxap/plugin-localazy@16.1.0-dev.2) (2023-08-05)
+
+### Bug Fixes
+
+- remove this access ([9aeb654](https://gitlab.com/rxap/packages/commit/9aeb654939de369efb0945c43cb9bc1255f665a3))
+
 # [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.0...@rxap/plugin-localazy@16.1.0-dev.1) (2023-08-04)
 
 ### Bug Fixes
