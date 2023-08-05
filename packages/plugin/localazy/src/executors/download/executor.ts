@@ -1,5 +1,5 @@
-import { DownloadExecutorSchema } from './schema';
 import { YarnRun } from '@rxap/plugin-utilities';
+import { DownloadExecutorSchema } from './schema';
 
 export default async function runExecutor(options: DownloadExecutorSchema) {
 
@@ -13,39 +13,39 @@ export default async function runExecutor(options: DownloadExecutorSchema) {
 
   const args: string[] = [ 'localazy', 'download' ];
 
-  if (this.options.readKey) {
-    args.push('-r ' + this.options.readKey);
+  if (options.readKey) {
+    args.push('-r ' + options.readKey);
   }
 
-  if (this.options.writeKey) {
-    args.push('-w ' + this.options.writeKey);
+  if (options.writeKey) {
+    args.push('-w ' + options.writeKey);
   }
 
-  if (this.options.configJson) {
-    args.push('-c "' + this.options.configJson + '"');
+  if (options.configJson) {
+    args.push('-c "' + options.configJson + '"');
   }
 
-  if (this.options.workingDirectory) {
-    args.push('-d "' + this.options.workingDirectory + '"');
+  if (options.workingDirectory) {
+    args.push('-d "' + options.workingDirectory + '"');
   }
 
-  if (this.options.keysJson) {
-    args.push('-k "' + this.options.keysJson + '"');
+  if (options.keysJson) {
+    args.push('-k "' + options.keysJson + '"');
   }
 
-  if (this.options.tag) {
-    args.push('-t ' + this.options.tag);
+  if (options.tag) {
+    args.push('-t ' + options.tag);
   }
 
-  if (this.options.dryRun) {
+  if (options.dryRun) {
     args.push('-s');
   }
 
-  if (this.options.quite) {
+  if (options.quite) {
     args.push('-q');
   }
 
-  if (this.options.force) {
+  if (options.force) {
     args.push('-f');
   }
 

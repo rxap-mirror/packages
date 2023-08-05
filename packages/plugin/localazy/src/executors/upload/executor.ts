@@ -29,39 +29,39 @@ export default async function runExecutor(options: UploadExecutorSchema, context
 
   const args: string[] = [ 'localazy', 'upload' ];
 
-  if (this.options.readKey) {
-    args.push('-r ' + this.options.readKey);
+  if (options.readKey) {
+    args.push('-r ' + options.readKey);
   }
 
-  if (this.options.writeKey) {
-    args.push('-w ' + this.options.writeKey);
+  if (options.writeKey) {
+    args.push('-w ' + options.writeKey);
   }
 
-  if (this.options.configJson) {
-    args.push('-c "' + this.options.configJson + '"');
+  if (options.configJson) {
+    args.push('-c "' + options.configJson + '"');
   }
 
-  if (this.options.workingDirectory) {
-    args.push('-d "' + this.options.workingDirectory + '"');
+  if (options.workingDirectory) {
+    args.push('-d "' + options.workingDirectory + '"');
   }
 
-  if (this.options.keysJson) {
-    args.push('-k "' + this.options.keysJson + '"');
+  if (options.keysJson) {
+    args.push('-k "' + options.keysJson + '"');
   }
 
-  if (this.options.version) {
-    args.push('-v ' + this.options.version);
+  if (options.version) {
+    args.push('-v ' + options.version);
   }
 
-  if (this.options.dryRun) {
+  if (options.dryRun) {
     args.push('-s');
   }
 
-  if (this.options.quite) {
+  if (options.quite) {
     args.push('-q');
   }
 
-  if (this.options.force) {
+  if (options.force) {
     args.push('-f');
   }
 
