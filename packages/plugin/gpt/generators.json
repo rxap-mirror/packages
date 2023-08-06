@@ -5,5 +5,12 @@
       "schema": "./src/generators/documentation/schema.json",
       "description": "documentation generator"
     }
+  },
+  "schematics": {
+    "documentation": {
+      "factory": "./src/generators/documentation/index",
+      "schema": "./src/generators/documentation/schema.json",
+      "description": "documentation generator"
+    }
   }
 }

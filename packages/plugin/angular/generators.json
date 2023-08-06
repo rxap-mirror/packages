@@ -25,5 +25,32 @@
       "schema": "./src/generators/schematic/schema.json",
       "description": "Create a Schematic for a project."
     }
+  },
+  "schematics": {
+    "init": {
+      "factory": "./src/generators/init/index",
+      "schema": "./src/generators/init/schema.json",
+      "description": "init generator"
+    },
+    "init-application": {
+      "factory": "./src/generators/init-application/index",
+      "schema": "./src/generators/init-application/schema.json",
+      "description": "init-application generator"
+    },
+    "init-library": {
+      "factory": "./src/generators/init-library/index",
+      "schema": "./src/generators/init-library/schema.json",
+      "description": "init-library generator"
+    },
+    "fix-schematic": {
+      "factory": "./src/generators/fix-schematic/index",
+      "schema": "./src/generators/fix-schematic/schema.json",
+      "description": "fix-schematic generator"
+    },
+    "schematic": {
+      "factory": "./src/generators/schematic/index",
+      "schema": "./src/generators/schematic/schema.json",
+      "description": "Create a Schematic for a project."
+    }
   }
 }

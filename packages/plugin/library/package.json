@@ -81,5 +81,6 @@
     "nx": "^16.5.0",
     "semver": "^7.3.5",
     "ts-morph": "^18.0.0"
-  }
+  },
+  "schematics": "./generators.json"
 }

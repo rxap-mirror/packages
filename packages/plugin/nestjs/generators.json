@@ -20,5 +20,27 @@
       "schema": "./src/generators/swagger/schema.json",
       "description": "swagger generator"
     }
+  },
+  "schematics": {
+    "init": {
+      "factory": "./src/generators/init/index",
+      "schema": "./src/generators/init/schema.json",
+      "description": "init generator"
+    },
+    "init-library": {
+      "factory": "./src/generators/init-library/index",
+      "schema": "./src/generators/init-library/schema.json",
+      "description": "init-library generator"
+    },
+    "init-application": {
+      "factory": "./src/generators/init-application/index",
+      "schema": "./src/generators/init-application/schema.json",
+      "description": "init-application generator"
+    },
+    "swagger": {
+      "factory": "./src/generators/swagger/index",
+      "schema": "./src/generators/swagger/schema.json",
+      "description": "swagger generator"
+    }
   }
 }

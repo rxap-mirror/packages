@@ -29,6 +29,48 @@
       "factory": "./src/generators/init-publishable/generator",
       "schema": "./src/generators/init-publishable/schema.json",
       "description": "init-publishable generator"
+    },
+    "expose-as-schematic": {
+      "factory": "./src/generators/expose-as-schematic/generator",
+      "schema": "./src/generators/expose-as-schematic/schema.json",
+      "description": "expose-as-schematic generator"
+    }
+  },
+  "schematics": {
+    "init": {
+      "factory": "./src/generators/init/index",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Create and update configurations to use rxap package publish concept"
+    },
+    "fix-dependencies": {
+      "factory": "./src/generators/fix-dependencies/index",
+      "schema": "./src/generators/fix-dependencies/schema.json",
+      "description": "Adds missing dependencies and removes redudant dependencies of a project"
+    },
+    "index-export": {
+      "factory": "./src/generators/index-export/index",
+      "schema": "./src/generators/index-export/schema.json",
+      "description": "Generate index exports for each directory and in the src root"
+    },
+    "init-plugin": {
+      "factory": "./src/generators/init-plugin/index",
+      "schema": "./src/generators/init-plugin/schema.json",
+      "description": "init-plugin generator"
+    },
+    "init-buildable": {
+      "factory": "./src/generators/init-buildable/index",
+      "schema": "./src/generators/init-buildable/schema.json",
+      "description": "init-buildable generator"
+    },
+    "init-publishable": {
+      "factory": "./src/generators/init-publishable/index",
+      "schema": "./src/generators/init-publishable/schema.json",
+      "description": "init-publishable generator"
+    },
+    "expose-as-schematic": {
+      "factory": "./src/generators/expose-as-schematic/index",
+      "schema": "./src/generators/expose-as-schematic/schema.json",
+      "description": "expose-as-schematic generator"
     }
   }
 }

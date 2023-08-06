@@ -5,5 +5,12 @@
       "schema": "./src/generators/init/schema.json",
       "description": "init generator"
     }
+  },
+  "schematics": {
+    "init": {
+      "factory": "./src/generators/init/index",
+      "schema": "./src/generators/init/schema.json",
+      "description": "init generator"
+    }
   }
 }

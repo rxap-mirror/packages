@@ -71,5 +71,6 @@
       }
     ]
   },
-  "generators": "./generators.json"
+  "generators": "./generators.json",
+  "schematics": "./generators.json"
 }
