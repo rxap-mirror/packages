@@ -1,4 +1,9 @@
 import {
+  AsyncPipe,
+  NgClass,
+  NgIf,
+} from '@angular/common';
+import {
   ChangeDetectionStrategy,
   Component,
   Inject,
@@ -8,38 +13,33 @@ import {
   OnInit,
   Optional,
 } from '@angular/core';
-import { Constructor } from '@rxap/utilities';
-import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { MatSidenav } from '@angular/material/sidenav';
-import {
-  HeaderService,
-  ThemeService,
-} from '@rxap/services';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import {
   MatOptionModule,
   ThemePalette,
 } from '@angular/material/core';
-import { RXAP_HEADER_COMPONENT } from '../tokens';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
-import { FormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
-import { StopPropagationDirective } from '@rxap/directives';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
-import {
-  AsyncPipe,
-  NgClass,
-  NgIf,
-} from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenav } from '@angular/material/sidenav';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
+import { StopPropagationDirective } from '@rxap/directives';
+import {
+  HeaderService,
+  ThemeService,
+} from '@rxap/services';
+import { Constructor } from '@rxap/utilities';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { RXAP_HEADER_COMPONENT } from '../tokens';
+import { AppsButtonComponent } from './apps-button/apps-button.component';
+import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 import { NavigationProgressBarComponent } from './navigation-progress-bar/navigation-progress-bar.component';
 import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.component';
-import { AppsButtonComponent } from './apps-button/apps-button.component';
 
 @Component({
   selector: 'rxap-header',
@@ -77,7 +77,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public subscriptions = new Subscription();
 
   @Input()
-  public color: ThemePalette = 'primary';
+  public color: ThemePalette = undefined;
 
   public isDevMode = isDevMode();
 
