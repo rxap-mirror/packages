@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematics-open-api",
-  "version": "16.0.0-dev.11",
+  "version": "16.0.0-dev.12",
   "type": "commonjs",
   "dependencies": {
     "openapi-types": "10.0.0",
@@ -10,7 +10,7 @@
     "@angular-devkit/core": "^16.1.4",
     "@angular-devkit/schematics": "^16.1.4",
     "@rxap/json-schema-to-typescript": "^16.0.0-dev.5",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.7",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.8",
     "@rxap/schematics-utilities": "^16.0.0-dev.7",
     "@rxap/utilities": "^16.0.0-dev.6",
     "ts-morph": "^18.0.0"
@@ -49,7 +49,7 @@
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "16.0.0-dev.7"
+        "version": "16.0.0-dev.8"
       },
       {
         "package": "@rxap/schematics-utilities",

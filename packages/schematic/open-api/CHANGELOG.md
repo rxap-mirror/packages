@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@16.0.0-dev.11...@rxap/schematics-open-api@16.0.0-dev.12) (2023-08-06)
+
+### Bug Fixes
+
+- set inline option to true if not defined ([b5b5614](https://gitlab.com/rxap/packages/commit/b5b5614f7ff89ceabab4f0e30f3ca173cbd4665c))
+
 # [16.0.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@16.0.0-dev.10...@rxap/schematics-open-api@16.0.0-dev.11) (2023-08-05)
 
 ### Bug Fixes
