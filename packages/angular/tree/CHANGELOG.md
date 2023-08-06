@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/tree@16.0.0-dev.9...@rxap/tree@16.0.0-dev.10) (2023-08-06)
+
+### Bug Fixes
+
+- remove declare statement ([f043ff9](https://gitlab.com/rxap/packages/commit/f043ff96305ced9b217df98d4bd3ab048925d37b))
+
 # [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/tree@16.0.0-dev.8...@rxap/tree@16.0.0-dev.9) (2023-08-06)
 
 ### Bug Fixes
