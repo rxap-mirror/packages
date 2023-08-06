@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/icon@16.0.0-dev.7...@rxap/icon@16.0.0-dev.8) (2023-08-06)
+
+### Features
+
+- support list of icon set paths ([817e698](https://gitlab.com/rxap/packages/commit/817e69846f269f38a6adaefc332f20fc55a975e7))
+
 # [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/icon@16.0.0-dev.6...@rxap/icon@16.0.0-dev.7) (2023-08-04)
 
 ### Bug Fixes
