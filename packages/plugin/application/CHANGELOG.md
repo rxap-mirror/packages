@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.3...@rxap/plugin-application@16.1.0-dev.4) (2023-08-06)
+
+### Bug Fixes
+
+- expose generators as schematics ([679ca36](https://gitlab.com/rxap/packages/commit/679ca36d3712a11e4dc838762bca2f7c471e1e04))
+
 # [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.2...@rxap/plugin-application@16.1.0-dev.3) (2023-08-04)
 
 ### Bug Fixes

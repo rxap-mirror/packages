@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gpt@16.0.1-dev.1...@rxap/plugin-gpt@16.0.1-dev.2) (2023-08-06)
+
+### Bug Fixes
+
+- expose generators as schematics ([679ca36](https://gitlab.com/rxap/packages/commit/679ca36d3712a11e4dc838762bca2f7c471e1e04))
+
 ## [16.0.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gpt@16.0.1-dev.0...@rxap/plugin-gpt@16.0.1-dev.1) (2023-08-04)
 
 ### Bug Fixes

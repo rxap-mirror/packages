@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.6...@rxap/plugin-angular@16.1.0-dev.7) (2023-08-06)
+
+### Bug Fixes
+
+- expose generators as schematics ([679ca36](https://gitlab.com/rxap/packages/commit/679ca36d3712a11e4dc838762bca2f7c471e1e04))
+
 # [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.5...@rxap/plugin-angular@16.1.0-dev.6) (2023-08-04)
 
 ### Bug Fixes

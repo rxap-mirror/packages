@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.14...@rxap/plugin-library@16.0.0-dev.15) (2023-08-06)
+
+### Bug Fixes
+
+- add expose-as-schematic to plugin projects with generators ([6c9fac8](https://gitlab.com/rxap/packages/commit/6c9fac892950e2942e7994673c35987b9b1b6fe7))
+- ensure new line ([2db00f1](https://gitlab.com/rxap/packages/commit/2db00f115cf59e0e89fa53c70426b3e7cb829461))
+- expose generators as schematics ([679ca36](https://gitlab.com/rxap/packages/commit/679ca36d3712a11e4dc838762bca2f7c471e1e04))
+
 # [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.13...@rxap/plugin-library@16.0.0-dev.14) (2023-08-05)
 
 ### Bug Fixes
