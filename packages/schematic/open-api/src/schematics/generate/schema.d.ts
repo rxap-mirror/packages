@@ -3,9 +3,9 @@ export interface OpenApiSchemaBase {
   transport?: 'amplify';
   debug?: boolean;
   prefix: string;
-  export: boolean;
+  export?: boolean;
   serverId?: string;
-  inline: boolean;
+  inline?: boolean;
   directory?: string;
   skipRemoteMethod: boolean;
   skipCommand: boolean;

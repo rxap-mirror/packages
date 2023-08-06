@@ -69,6 +69,10 @@ export default function (options: OpenApiSchema): Rule {
       useInMemoryFileSystem: true,
     });
 
+    if (options.inline !== false) {
+      options.inline = true;
+    }
+
     if (!options.project) {
       options.project = 'open-api';
     }
