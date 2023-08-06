@@ -51,10 +51,13 @@ export abstract class KeycloakAuthGuard {
     // eslint-disable-next-line no-async-promise-executor
     return new Promise(async (resolve, reject) => {
       try {
+        await this.keycloakAngular.isReady;
         this.authenticated = await this.keycloakAngular.isLoggedIn();
-        this.roles = await this.keycloakAngular.getUserRoles(true);
 
         const result = await this.isAccessAllowed(route, state);
+        if (result) {
+          this.roles = this.keycloakAngular.getUserRoles(true);
+        }
         resolve(result);
       } catch (error: any) {
         reject('An error happened during access validation. Details:' + error);
