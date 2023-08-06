@@ -72,6 +72,6 @@ export async function UpdateJsonFile<T extends Record<string, any> = Record<stri
   const currentJsonFile = GetJsonFile<T>(tree, filePath, options?.create);
 
   if (!equals(jsonFile, currentJsonFile)) {
-    CoerceFile(tree, filePath, JSON.stringify(jsonFile, undefined, options?.space ?? 2));
+    CoerceFile(tree, filePath, JSON.stringify(jsonFile, undefined, options?.space ?? 2) + '\n');
   }
 }
