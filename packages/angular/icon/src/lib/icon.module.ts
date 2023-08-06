@@ -1,12 +1,13 @@
+import { HttpClientModule } from '@angular/common/http';
 import {
   Inject,
   InjectionToken,
   ModuleWithProviders,
   NgModule,
 } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { coerceArray } from '@rxap/utilities';
 
 export function DefaultIconSvgFilePath() {
   return '/assets/mdi.svg';
@@ -25,12 +26,14 @@ export class IconModule {
   constructor(
     @Inject(MatIconRegistry) matIconRegistry: MatIconRegistry,
     @Inject(DomSanitizer) domSanitizer: DomSanitizer,
-    @Inject(RXAP_ICON_ASSET_PATH) path: string,
+    @Inject(RXAP_ICON_ASSET_PATH) pathList: string | string[],
   ) {
-    matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl(path));
+    for (const path of coerceArray(pathList)) {
+      matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl(path));
+    }
   }
 
-  public static forRoot(path: string = DefaultIconSvgFilePath()): ModuleWithProviders<IconModule> {
+  public static forRoot(path: string | string[] = DefaultIconSvgFilePath()): ModuleWithProviders<IconModule> {
     return {
       ngModule: IconModule,
       providers: [
