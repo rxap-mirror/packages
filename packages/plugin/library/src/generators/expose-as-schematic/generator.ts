@@ -50,7 +50,7 @@ export async function exposeAsSchematicGenerator(
       for (const [ name, generator ] of Object.entries(generators.generators)) {
         tree.write(
           join(project.root, dirname(generator.schema), 'index.ts'),
-          `import { convertNxGenerator } from '@nx/devkit';\nimport generator from './generator';\nconst schematic = convertNxGenerator(generator);\nexport default schematic;\n`,
+          `import { convertNxGenerator } from '@nx/devkit';\nimport generator from './generator';\n\nconst schematic = convertNxGenerator(generator);\nexport default schematic;\n`,
         );
         generators.schematics[name] = {
           factory: `${ dirname(generator.schema) }/index`,
