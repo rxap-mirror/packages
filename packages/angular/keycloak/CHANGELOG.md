@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/keycloak@16.0.0-dev.7...@rxap/keycloak@16.0.0-dev.8) (2023-08-06)
+
+### Bug Fixes
+
+- ensure keycloak is ready before checking authentication status ([437eaae](https://gitlab.com/rxap/packages/commit/437eaae055f02653a9fd72ac470b5cbad67ef2b5))
+
 # [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/keycloak@16.0.0-dev.6...@rxap/keycloak@16.0.0-dev.7) (2023-08-04)
 
 ### Bug Fixes
