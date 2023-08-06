@@ -95,7 +95,8 @@
         "build-info",
         "build-tailwind",
         "generate-package-json",
-        "check-ng-package"
+        "check-ng-package",
+        "expose-as-schematic"
       ],
       "inputs": [
         "production",
