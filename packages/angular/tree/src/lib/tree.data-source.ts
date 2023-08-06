@@ -1,40 +1,20 @@
 import {
-  BehaviorSubject,
-  from,
-  merge,
-  Observable,
-  Subject,
-  Subscription,
-} from 'rxjs';
-import { FlatTreeControl } from '@angular/cdk/tree';
-import {
   SelectionChange,
   SelectionModel,
 } from '@angular/cdk/collections';
-import {
-  map,
-  startWith,
-  switchMap,
-  tap,
-} from 'rxjs/operators';
-import {
-  BaseDataSource,
-  BaseDataSourceMetadata,
-  BaseDataSourceViewer,
-  RXAP_DATA_SOURCE_METADATA,
-} from '@rxap/data-source';
-import {
-  joinPath,
-  Required,
-  WithChildren,
-  WithIdentifier,
-} from '@rxap/utilities';
+import { FlatTreeControl } from '@angular/cdk/tree';
 import {
   Inject,
   Injectable,
   InjectionToken,
   isDevMode,
 } from '@angular/core';
+import {
+  BaseDataSource,
+  BaseDataSourceMetadata,
+  BaseDataSourceViewer,
+  RXAP_DATA_SOURCE_METADATA,
+} from '@rxap/data-source';
 import {
   ExpandNodeFunction,
   Node,
@@ -45,6 +25,26 @@ import {
 } from '@rxap/data-structure-tree';
 import { Method } from '@rxap/pattern';
 import { ToggleSubject } from '@rxap/rxjs';
+import {
+  joinPath,
+  Required,
+  WithChildren,
+  WithIdentifier,
+} from '@rxap/utilities';
+import {
+  BehaviorSubject,
+  from,
+  merge,
+  Observable,
+  Subject,
+  Subscription,
+} from 'rxjs';
+import {
+  map,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
 
 export function isSelectionChange<T>(obj: any): obj is SelectionChange<T> {
   return !!obj && !!obj['added'] && !!obj['removed'];
@@ -67,12 +67,11 @@ export class TreeDataSource<
   Data extends WithIdentifier & WithChildren = any,
   RootParameters = any,
   NodeParameters = any,
-> extends BaseDataSource<Array<Node<Data>>> {
+> extends BaseDataSource<Array<Node<Data>>, TreeDataSourceMetadata> {
   public tree$ = new BehaviorSubject<Array<Node<Data>>>([]);
   public treeControl!: FlatTreeControl<Node<Data>>;
   public selected!: SelectionModel<Node<Data>>;
   public expanded!: SelectionModel<string>;
-  public override metadata!: TreeDataSourceMetadata;
   public override loading$ = new ToggleSubject(true);
 
   // TODO : änlich problem wie bei der redundaten expand SelectionModel.
