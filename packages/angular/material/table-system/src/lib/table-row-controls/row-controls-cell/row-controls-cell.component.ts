@@ -43,8 +43,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
 })
 export class RowControlsCellComponent<Data extends Record<string, any> & { uuid: string }> {
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public element!: Data;
 
   constructor(

@@ -82,8 +82,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
 
   public readonly loading$ = new ToggleSubject(true);
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public id!: string;
   @Input()
   public parameters?: Observable<Record<string, any>>;

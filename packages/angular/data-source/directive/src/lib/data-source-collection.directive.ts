@@ -90,8 +90,10 @@ export interface DataSourceCollectionErrorTemplateContext {
 export class DataSourceCollectionDirective<Data = any>
   implements OnChanges, OnDestroy, AfterViewInit, DoCheck {
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapDataSourceCollectionFrom')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapDataSourceCollectionFrom',
+  })
   public dataSourceOrIdOrToken!: IdOrInstanceOrToken<BaseDataSource<Data[]>>;
   @Input('rxapDataSourceCollectionViewer')
   public viewer: BaseDataSourceViewer = { id: '[rxapDataSourceCollection]' };

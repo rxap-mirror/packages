@@ -19,16 +19,16 @@ export class ContenteditableDirective {
   @HostBinding('attr.contenteditable')
   public contenteditable = true;
 
-  @Input('rxapContenteditable')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapContenteditable',
+  })
   public remoteMethodId!: string;
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public property!: string;
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public uuid!: string;
 
   constructor(

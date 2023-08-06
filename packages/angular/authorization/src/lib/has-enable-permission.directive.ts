@@ -26,7 +26,6 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
 @Injectable()
 export abstract class HasEnablePermission implements OnInit, OnDestroy {
-  @Required
   public identifier!: string;
 
   private _subscription?: Subscription;

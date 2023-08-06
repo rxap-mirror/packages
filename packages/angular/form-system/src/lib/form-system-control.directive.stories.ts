@@ -50,11 +50,9 @@ import { FormsModule } from '@angular/forms';
 })
 class SelectControlComponent extends ControlValueAccessor implements ControlWithDataSource {
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public label!: string;
 
-  @Required
   public optionsDataSource!: BaseDataSource;
 
   public value: any;

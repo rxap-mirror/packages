@@ -21,12 +21,10 @@ import { tap } from 'rxjs/operators';
 })
 export class MovableDividerDirective implements OnDestroy, OnInit {
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public containerElement!: HTMLDivElement;
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public fixedElement!: HTMLDivElement;
 
   @Input()

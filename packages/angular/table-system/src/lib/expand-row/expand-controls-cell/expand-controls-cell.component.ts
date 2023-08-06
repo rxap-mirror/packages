@@ -24,8 +24,10 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ExpandControlsCellComponent<Data extends Record<string, any>> {
 
-  @Input('rxap-expand-controls-cell')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxap-expand-controls-cell',
+  })
   public element!: Data;
 
   constructor(

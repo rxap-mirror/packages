@@ -39,7 +39,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class WindowResizerComponent implements OnInit, OnDestroy {
 
-  @Input() @Required public containerRef!: ElementRef<any>;
+  @Input({ required: true }) public containerRef!: ElementRef<any>;
 
   public windowRef: WindowRef<any>;
 

@@ -194,7 +194,6 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
     this._trackByFn = fn;
   }
 
-  @Required
   protected _remoteMethodOrIdOrToken!: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType[], Parameters, Metadata>>;
 
   // eslint-disable-next-line @angular-eslint/no-input-rename

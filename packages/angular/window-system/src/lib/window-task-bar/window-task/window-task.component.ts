@@ -37,7 +37,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
 })
 export class WindowTaskComponent {
 
-  @Input() @Required public window!: WindowRef<any>;
+  @Input({ required: true }) public window!: WindowRef<any>;
 
   public close() {
     this.window.complete();

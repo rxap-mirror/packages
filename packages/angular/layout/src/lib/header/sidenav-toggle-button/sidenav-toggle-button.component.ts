@@ -23,8 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class SidenavToggleButtonComponent {
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public sidenav!: MatSidenav;
 
 }

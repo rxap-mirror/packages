@@ -104,10 +104,8 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
   protected readonly subscription = new Subscription();
 
-  @Required
   protected control!: RxapFormControl;
 
-  @Required
   protected dataSource!: BaseDataSource<ControlOptions | Record<string, any>>;
 
   protected options: ControlOptions | Record<string, any> | null = null;

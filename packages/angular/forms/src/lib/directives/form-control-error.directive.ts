@@ -28,13 +28,17 @@ import {
 export class FormControlErrorDirective implements OnInit, OnDestroy {
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapFormControlErrorFrom')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapFormControlErrorFrom',
+  })
   public name!: string;
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapFormControlErrorIf')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapFormControlErrorIf',
+  })
   public errorKey!: string;
 
   private subscription?: Subscription;

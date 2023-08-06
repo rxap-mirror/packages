@@ -19,8 +19,10 @@ export class PersistentTabGroupDirective implements OnInit, OnDestroy {
 
   public static BASE_KEY = 'mat-expansion-panel';
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapPersistentTabGroup')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapPersistentTabGroup',
+  })
   public id!: string;
   @Input()
   public uuid?: string;

@@ -88,8 +88,7 @@ import { TreeDataSource } from './tree.data-source';
 export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   implements OnInit, AfterContentInit {
   public treeControl: FlatTreeControl<Node<Data>>;
-  @Input()
-  @Required
+  @Input({ required: true })
   public dataSource!: TreeDataSource<Data>;
   @Input()
   public contentEditableMethod?: Method<any, string | null> | null;

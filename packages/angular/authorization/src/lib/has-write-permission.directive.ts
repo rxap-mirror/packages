@@ -19,8 +19,10 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
   standalone: true,
 })
 export class HasWritePermissionDirective implements OnInit, OnDestroy {
-  @Input('rxapHasWritePermission')
-  @Required
+  @Input({
+    alias: 'rxapHasWritePermission',
+    required: true,
+  })
   public identifier!: string;
   @HostBinding('readonly')
   public readonly = false;

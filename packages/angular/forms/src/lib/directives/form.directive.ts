@@ -178,7 +178,6 @@ export class FormDirective<T = any>
   public readonly loaded$ = new ToggleSubject();
   public readonly loadingError$ = new BehaviorSubject<Error | null>(null);
 
-  @Required
   protected _formDefinition!: FormDefinition<T>;
 
   @Input()

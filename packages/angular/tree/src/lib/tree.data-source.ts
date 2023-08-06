@@ -69,7 +69,7 @@ export class TreeDataSource<
   NodeParameters = any,
 > extends BaseDataSource<Array<Node<Data>>> {
   public tree$ = new BehaviorSubject<Array<Node<Data>>>([]);
-  @Required public treeControl!: FlatTreeControl<Node<Data>>;
+  public treeControl!: FlatTreeControl<Node<Data>>;
   public selected!: SelectionModel<Node<Data>>;
   public expanded!: SelectionModel<string>;
   public override metadata!: TreeDataSourceMetadata;

@@ -104,8 +104,7 @@ export class NavigationItemComponent
   @ViewChild(RouterLinkActive, { static: true })
   public routerLinkActive!: RouterLinkActive;
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public item!: NavigationItem;
 
   public active = signal(false);

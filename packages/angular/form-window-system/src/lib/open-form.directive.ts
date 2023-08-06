@@ -86,7 +86,6 @@ export class OpenFormDirective<Data, Result = Data>
     }
   }
 
-  @Required
   private _formDefinitionConstructor!: Constructor<FormType<any>>;
 
   @Input('rxapOpenForm')

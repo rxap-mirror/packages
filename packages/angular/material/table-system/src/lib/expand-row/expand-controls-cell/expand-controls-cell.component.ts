@@ -24,8 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ExpandControlsCellComponent<Data extends Record<string, any>> {
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public element!: Data;
 
   constructor(

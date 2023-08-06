@@ -20,6 +20,6 @@ export class CopyToClipboardComponent {
 
   @Input() public active = true;
   @Input() public disabled = false;
-  @Input() @Required public value!: string;
+  @Input({ required: true }) public value!: string;
 
 }

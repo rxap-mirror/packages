@@ -31,7 +31,6 @@ import { FlexModule } from '@angular/flex-layout/flex';
 })
 export class VersionComponent implements OnInit, OnDestroy {
 
-  @Required
   public modules!: KeyValue<Version>;
 
   private subscription?: Subscription;

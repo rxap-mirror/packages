@@ -18,8 +18,10 @@ export class ExpandRowDirective<Data extends Record<string, any>> {
     return this.expandCell.isExpanded(this.element);
   }
 
-  @Input('rxapExpandRow')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapExpandRow',
+  })
   public element!: Data;
 
   constructor(

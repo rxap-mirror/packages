@@ -21,8 +21,10 @@ export class PaginationDataSourceDirective<Data> extends DataSourceCollectionDir
   public paginator!: PaginatorLike;
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapPaginationDataSourceFrom')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapPaginationDataSourceFrom',
+  })
   public override dataSourceOrIdOrToken!: IdOrInstanceOrToken<AbstractPaginationDataSource<Data>>;
 
   public override loadDataSource(): AbstractPaginationDataSource<Data> | null {

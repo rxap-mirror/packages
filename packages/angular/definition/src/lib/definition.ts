@@ -40,7 +40,7 @@ export abstract class BaseDefinition<
    */
   public static readonly destroyed$: Subject<BaseDefinition> =
     new Subject<BaseDefinition>();
-  @Required
+
   public metadata!: Metadata;
   /**
    * Emits if the data source is destroyed

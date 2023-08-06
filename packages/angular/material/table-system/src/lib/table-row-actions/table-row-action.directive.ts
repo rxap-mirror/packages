@@ -50,11 +50,12 @@ export class TableRowActionDirective<Data extends Record<string, any>> extends C
     this._hasConfirmDirective = coerceBoolean(value);
   }
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public element!: Data;
-  @Input('rxapTableRowAction')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapTableRowAction',
+  })
   public type!: string;
 
   @Input()

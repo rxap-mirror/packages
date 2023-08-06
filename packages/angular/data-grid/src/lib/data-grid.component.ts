@@ -127,7 +127,6 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   public displayProperties: string[] | null = null;
 
   @ContentChildren(DataGridRowDefDirective)
-  @Required
   public rows!: QueryList<DataGridRowDefDirective<T>>;
   @Output()
   public editModeChange = new EventEmitter<{ mode: boolean, data?: T, done: () => void }>();

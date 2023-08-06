@@ -102,7 +102,9 @@ export class TableRowHeaderActionDirective<Data extends Record<string, any>>
     return this.selectRowService?.selectedRows ?? [];
   }
 
-  @Input('rxapTableRowHeaderAction')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapTableRowHeaderAction',
+  })
   public override type!: string;
 }

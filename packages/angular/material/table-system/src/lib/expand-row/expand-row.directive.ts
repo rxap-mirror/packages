@@ -18,8 +18,7 @@ export class ExpandRowDirective<Data extends Record<string, any>> {
     return this.expandCell.isExpanded(this.element);
   }
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public element!: Data;
 
   constructor(

@@ -69,7 +69,6 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
     }
   }
 
-  @Required
   protected _remoteMethodOrIdOrToken!: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>;
 
   @Input('rxapRemoteMethod')

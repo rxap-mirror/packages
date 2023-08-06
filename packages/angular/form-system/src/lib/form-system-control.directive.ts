@@ -46,14 +46,11 @@ export class FormSystemControlDirective<T> implements ControlValueAccessor, OnIn
   /**
    * Defines the form control id
    */
-  @Input()
-  @Required
+  @Input({ required: true })
   public controlId!: string;
 
-  @Required
   protected control!: RxapFormControl;
 
-  @Required
   protected componentRef!: ComponentRef<ControlValueAccessor & Partial<ControlWithDataSource>>;
 
   constructor(

@@ -31,8 +31,10 @@ export interface ControlErrorDirectiveContext {
   standalone: true,
 })
 export class ControlErrorDirective implements AfterContentInit, OnDestroy {
-  @Input('rxapControlErrorKey')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapControlErrorKey',
+  })
   public key!: string;
   private _subscription?: Subscription;
   private _control?: AbstractControl;

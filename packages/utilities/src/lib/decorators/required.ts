@@ -16,6 +16,8 @@ import { RxapUtilitiesError } from '../error';
  * The redefined property is writable, configurable, and enumerable.
  *
  * The property defined by the `required` function is also configurable and enumerable.
+ *
+ * @deprecated removed
  */
 function required(target: any, propertyKey: string) {
   Object.defineProperty(target, propertyKey, {
@@ -68,6 +70,7 @@ function required(target: any, propertyKey: string) {
  * The getter throws an error if the property is accessed before it has been set.
  * The setter allows the property to be set and makes it writable, configurable, and enumerable.
  *
+ * @deprecated removed
  */
 export function Required<T>(stackOrTarget: ((this: T) => string) | any, pk?: string): any {
   if (typeof pk === 'string') {
@@ -142,6 +145,8 @@ export function Required<T>(stackOrTarget: ((this: T) => string) | any, pk?: str
  * @note This function is particularly useful when working with decorators like @Required in TypeScript.
  * It is used to check if a FormControl instance is already assigned to the component.
  * The check is done using property descriptor because the @Required decorator is used on the control property.
+ *
+ * @deprecated removed
  */
 export function IsRequiredPropertyDefined<T extends object>(obj: T, propertyKey: keyof T): boolean {
   // check if the component has already a FormControl instance assigned

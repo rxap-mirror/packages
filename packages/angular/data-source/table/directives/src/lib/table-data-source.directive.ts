@@ -34,8 +34,10 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
   @Input('rxapTableDataSourceFilter')
   public filter!: FilterLike;
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapTableDataSourceFrom')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapTableDataSourceFrom',
+  })
   public override dataSourceOrIdOrToken!: IdOrInstanceOrToken<AbstractTableDataSource<Data>>;
   @Input('rxapTableDataSourceViewer')
   public override viewer: BaseDataSourceViewer = { id: '[rxapDataSourceCollection]' };

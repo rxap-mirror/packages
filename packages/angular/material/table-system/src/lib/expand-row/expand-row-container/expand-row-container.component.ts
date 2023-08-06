@@ -56,8 +56,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class ExpandRowContainerComponent<Data extends Record<string, any>> implements AfterContentInit, OnDestroy {
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public element!: Data;
 
   @ContentChild(ExpandRowContentDirective)

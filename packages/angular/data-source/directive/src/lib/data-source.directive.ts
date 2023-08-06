@@ -53,8 +53,10 @@ export class DataSourceDirective<Data = any>
   implements OnDestroy, OnChanges, AfterViewInit {
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapDataSourceFrom')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapDataSourceFrom',
+  })
   public dataSourceOrIdOrToken!: IdOrInstanceOrToken<BaseDataSource<Data>>;
   @Input('rxapDataSourceViewer')
   public viewer!: BaseDataSourceViewer;

@@ -24,8 +24,10 @@ import { Required } from '@rxap/utilities';
 })
 export class IsEqualToDirective implements Validator {
 
-  @Input('rxapIsEqualTo')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapIsEqualTo',
+  })
   public set equalTo(value: any) {
     this._equalTo = value;
     if (this._onChange) {

@@ -18,8 +18,7 @@ import {
   standalone: true,
 })
 export class TableColumnOptionComponent implements OnInit {
-  @Input()
-  @Required
+  @Input({ required: true })
   public name!: string;
 
   @Input()

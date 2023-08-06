@@ -100,7 +100,6 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
     }
   }
 
-  @Required
   protected _remoteMethodOrIdOrToken!: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>;
 
   // eslint-disable-next-line @angular-eslint/no-input-rename

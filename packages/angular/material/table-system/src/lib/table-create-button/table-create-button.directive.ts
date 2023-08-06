@@ -24,8 +24,10 @@ import { Method } from '@rxap/pattern';
 })
 export class TableCreateButtonDirective<Data extends Record<string, any>>
   implements OnInit, OnDestroy {
-  @Input('rxapTableCreate')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapTableCreate',
+  })
   public dataSource!: TableDataSourceDirective<Data>;
 
   private _createObservable?: Observable<any>;

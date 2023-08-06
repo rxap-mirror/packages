@@ -22,8 +22,10 @@ export class PersistentExpansionPanelDirective implements OnInit, OnDestroy {
 
   public static BASE_KEY = 'mat-expansion-panel';
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapPersistentExpansionPanel')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxapPersistentExpansionPanel',
+  })
   public id!: string;
   @Input()
   public uuid?: string;

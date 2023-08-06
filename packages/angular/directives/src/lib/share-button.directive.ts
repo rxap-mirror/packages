@@ -46,8 +46,7 @@ export class ShareButtonDirective {
   @Input()
   public text!: string;
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public title!: string;
 
   @Input()

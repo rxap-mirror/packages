@@ -19,8 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 })
 export class CheckboxCellComponent<Data extends Record<string, any>> {
 
-  @Input()
-  @Required
+  @Input({ required: true })
   public element!: Data;
 
   constructor(

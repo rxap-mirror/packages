@@ -1,4 +1,9 @@
 import {
+  AsyncPipe,
+  NgFor,
+  NgIf,
+} from '@angular/common';
+import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -10,26 +15,18 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { coerceBoolean } from '@rxap/utilities';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import {
-  coerceBoolean,
-  Required,
-} from '@rxap/utilities';
-import { NavigationItemComponent } from './navigation-item/navigation-item.component';
-import { MatDividerModule } from '@angular/material/divider';
-import {
-  AsyncPipe,
-  NgFor,
-  NgIf,
-} from '@angular/common';
+import { SidenavComponentService } from '../sidenav/sidenav.component.service';
 import {
   Navigation,
   NavigationDividerItem,
   NavigationItem,
 } from './navigation-item';
+import { NavigationItemComponent } from './navigation-item/navigation-item.component';
 import { NavigationService } from './navigation.service';
-import { SidenavComponentService } from '../sidenav/sidenav.component.service';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -53,7 +50,6 @@ import { SidenavComponentService } from '../sidenav/sidenav.component.service';
 })
 export class NavigationComponent implements OnInit, OnDestroy {
   @Input()
-  @Required
   public items!: Navigation;
   public subscription?: Subscription;
   @Input()
@@ -87,6 +83,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
                               )
                               .subscribe();
     }
+    this.items ??= [];
   }
 
   public ngOnDestroy() {

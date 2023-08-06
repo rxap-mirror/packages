@@ -56,8 +56,10 @@ import { AsyncPipe } from '@angular/common';
 })
 export class ExpandRowContainerComponent<Data extends Record<string, any>> implements AfterContentInit, OnDestroy {
 
-  @Input('rxap-expand-row')
-  @Required
+  @Input({
+    required: true,
+    alias: 'rxap-expand-row',
+  })
   public element!: Data;
 
   @ContentChild(ExpandRowContentDirective)
