@@ -1,3 +1,4 @@
+import { Overlay } from '@angular/cdk/overlay';
 import {
   ChangeDetectorRef,
   Directive,
@@ -11,27 +12,25 @@ import {
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Required } from '@rxap/utilities';
+import { MatTooltip } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
 import {
   map,
   startWith,
   tap,
 } from 'rxjs/operators';
-import { TableRowActionDirective } from './table-row-action.directive';
-import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
-import { TableDataSourceDirective } from '../table-data-source.directive';
 import { SelectRowService } from '../select-row/select-row.service';
+import { TableDataSourceDirective } from '../table-data-source.directive';
+import { AbstractTableRowAction } from './abstract-table-row-action';
+import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
 import { TableRowActionMethod } from './types';
-import { Overlay } from '@angular/cdk/overlay';
-import { MatTooltip } from '@angular/material/tooltip';
 
 @Directive({
   selector: 'button[rxapTableRowHeaderAction]',
   standalone: true,
 })
 export class TableRowHeaderActionDirective<Data extends Record<string, any>>
-  extends TableRowActionDirective<Data>
+  extends AbstractTableRowAction<Data>
   implements OnInit, OnDestroy {
   private _subscription?: Subscription;
 
