@@ -116,7 +116,7 @@ export function UpdateGenerators(
 
   const generators = GetGeneratorFile(tree, projectRoot, packageJson);
 
-  tree.write(GetGeneratorFilePath(projectRoot, packageJson), JSON.stringify(update(generators), null, 2));
+  tree.write(GetGeneratorFilePath(projectRoot, packageJson), JSON.stringify(update(generators), null, 2) + '\n');
 
 }
 
