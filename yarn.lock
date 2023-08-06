@@ -7385,8 +7385,8 @@ __metadata:
     "@angular/forms": ^16.1.4
     "@angular/material": ^16.1.4
     "@rxap/pattern": ^1.0.1-dev.2
-    "@rxap/remote-method": ^16.0.0-dev.8
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/remote-method": ^16.0.0-dev.9
+    "@rxap/utilities": ^16.0.0-dev.7
     ng-mocks: ^14.11.0
     rxjs: ^7.8.0
   languageName: unknown
@@ -7422,10 +7422,10 @@ __metadata:
     "@angular/flex-layout": ^15.0.0-beta.42
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/directives": ^16.0.0-dev.8
+    "@rxap/directives": ^16.0.0-dev.9
     "@rxap/rxjs": ^1.0.1-dev.2
     "@rxap/services": ^16.0.0-dev.8
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.7
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -7467,11 +7467,11 @@ __metadata:
     "@angular/core": ^16.1.4
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/data-source": ^16.0.0-dev.9
-    "@rxap/forms": ^16.0.0-dev.8
+    "@rxap/data-source": ^16.0.0-dev.10
+    "@rxap/forms": ^16.0.0-dev.9
     "@rxap/pipes": ^16.0.0-dev.8
     "@rxap/rxjs": ^1.0.1-dev.2
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.7
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -7489,12 +7489,12 @@ __metadata:
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
     "@rxap/data-structure-tree": ^1.0.1-dev.3
-    "@rxap/definition": ^16.0.0-dev.8
+    "@rxap/definition": ^16.0.0-dev.9
     "@rxap/environment": ^16.0.0-dev.8
     "@rxap/pattern": ^1.0.1-dev.2
-    "@rxap/remote-method": ^16.0.0-dev.8
+    "@rxap/remote-method": ^16.0.0-dev.9
     "@rxap/rxjs": ^1.0.1-dev.2
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.7
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -7518,7 +7518,7 @@ __metadata:
   peerDependencies:
     "@angular/core": ^16.1.4
     "@rxap/reflect-metadata": ^1.0.1-dev.2
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.7
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -7595,14 +7595,14 @@ __metadata:
     "@angular/forms": ^16.1.4
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/data-source": ^16.0.0-dev.9
-    "@rxap/definition": ^16.0.0-dev.8
-    "@rxap/forms": ^16.0.0-dev.8
+    "@rxap/data-source": ^16.0.0-dev.10
+    "@rxap/definition": ^16.0.0-dev.9
+    "@rxap/forms": ^16.0.0-dev.9
     "@rxap/mixin": ^16.0.0-dev.6
     "@rxap/open-api": ^16.0.0-dev.11
     "@rxap/reflect-metadata": ^1.0.1-dev.2
-    "@rxap/remote-method": ^16.0.0-dev.8
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/remote-method": ^16.0.0-dev.9
+    "@rxap/utilities": ^16.0.0-dev.7
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -7615,14 +7615,14 @@ __metadata:
   peerDependencies:
     "@angular/cdk": ^16.1.4
     "@angular/core": ^16.1.4
-    "@rxap/directives": ^16.0.0-dev.8
-    "@rxap/form-system": ^16.0.0-dev.9
-    "@rxap/forms": ^16.0.0-dev.8
+    "@rxap/directives": ^16.0.0-dev.9
+    "@rxap/form-system": ^16.0.0-dev.10
+    "@rxap/forms": ^16.0.0-dev.9
     "@rxap/pattern": ^1.0.1-dev.2
     "@rxap/reflect-metadata": ^1.0.1-dev.2
     "@rxap/rxjs": ^1.0.1-dev.2
-    "@rxap/utilities": ^16.0.0-dev.6
-    "@rxap/window-system": ^16.0.0-dev.9
+    "@rxap/utilities": ^16.0.0-dev.7
+    "@rxap/window-system": ^16.0.0-dev.10
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -7636,13 +7636,13 @@ __metadata:
     "@angular/core": ^16.1.4
     "@angular/forms": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/definition": ^16.0.0-dev.8
-    "@rxap/directives": ^16.0.0-dev.8
+    "@rxap/definition": ^16.0.0-dev.9
+    "@rxap/directives": ^16.0.0-dev.9
     "@rxap/pattern": ^1.0.1-dev.2
     "@rxap/reflect-metadata": ^1.0.1-dev.2
     "@rxap/rxjs": ^1.0.1-dev.2
     "@rxap/services": ^16.0.0-dev.8
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.7
     "@rxap/validator": ^3.0.0-dev.4
     rxjs: ^7.8.0
   languageName: unknown
@@ -7735,12 +7735,12 @@ __metadata:
     "@rxap/authentication": ^16.0.0-dev.8
     "@rxap/browser-utilities": ^0.0.2-dev.1
     "@rxap/config": ^16.0.0-dev.9
-    "@rxap/data-source": ^16.0.0-dev.9
-    "@rxap/directives": ^16.0.0-dev.8
+    "@rxap/data-source": ^16.0.0-dev.10
+    "@rxap/directives": ^16.0.0-dev.9
     "@rxap/environment": ^16.0.0-dev.8
-    "@rxap/material-directives": ^16.0.0-dev.10
+    "@rxap/material-directives": ^16.0.0-dev.11
     "@rxap/services": ^16.0.0-dev.8
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.7
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -7767,7 +7767,7 @@ __metadata:
     "@angular/core": ^16.1.4
     "@angular/material": ^16.1.4
     "@rxap/services": ^16.0.0-dev.8
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.7
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -7786,11 +7786,11 @@ __metadata:
     "@angular/localize": ^16.1.4
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/form-system": ^16.0.0-dev.9
-    "@rxap/forms": ^16.0.0-dev.8
+    "@rxap/form-system": ^16.0.0-dev.10
+    "@rxap/forms": ^16.0.0-dev.9
     "@rxap/mixin": ^16.0.0-dev.6
     "@rxap/reflect-metadata": ^1.0.1-dev.2
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.7
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -7809,18 +7809,18 @@ __metadata:
     "@angular/forms": ^16.1.4
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/components": ^16.0.0-dev.8
-    "@rxap/data-source": ^16.0.0-dev.9
-    "@rxap/directives": ^16.0.0-dev.8
-    "@rxap/forms": ^16.0.0-dev.8
-    "@rxap/material-directives": ^16.0.0-dev.10
+    "@rxap/components": ^16.0.0-dev.9
+    "@rxap/data-source": ^16.0.0-dev.10
+    "@rxap/directives": ^16.0.0-dev.9
+    "@rxap/forms": ^16.0.0-dev.9
+    "@rxap/material-directives": ^16.0.0-dev.11
     "@rxap/open-api": ^16.0.0-dev.11
     "@rxap/pattern": ^1.0.1-dev.2
     "@rxap/reflect-metadata": ^1.0.1-dev.2
-    "@rxap/remote-method": ^16.0.0-dev.8
+    "@rxap/remote-method": ^16.0.0-dev.9
     "@rxap/rxjs": ^1.0.1-dev.2
-    "@rxap/utilities": ^16.0.0-dev.6
-    "@rxap/window-system": ^16.0.0-dev.9
+    "@rxap/utilities": ^16.0.0-dev.7
+    "@rxap/window-system": ^16.0.0-dev.10
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -8279,9 +8279,9 @@ __metadata:
   peerDependencies:
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
-    "@rxap/definition": ^16.0.0-dev.8
+    "@rxap/definition": ^16.0.0-dev.9
     "@rxap/rxjs": ^1.0.1-dev.2
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.7
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -8464,11 +8464,11 @@ __metadata:
     "@angular/core": ^16.1.4
     "@angular/forms": ^16.1.4
     "@angular/material": ^16.1.4
-    "@rxap/data-source": ^16.0.0-dev.9
-    "@rxap/material-table-system": ^16.0.0-dev.13
+    "@rxap/data-source": ^16.0.0-dev.10
+    "@rxap/material-table-system": ^16.0.0-dev.14
     "@rxap/open-api": ^16.0.0-dev.11
-    "@rxap/remote-method": ^16.0.0-dev.8
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/remote-method": ^16.0.0-dev.9
+    "@rxap/utilities": ^16.0.0-dev.7
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -8485,12 +8485,12 @@ __metadata:
     "@angular/flex-layout": ^15.0.0-beta.42
     "@angular/material": ^16.1.4
     "@rxap/contenteditable": ^16.0.0-dev.8
-    "@rxap/data-source": ^16.0.0-dev.9
+    "@rxap/data-source": ^16.0.0-dev.10
     "@rxap/data-structure-tree": ^1.0.1-dev.3
-    "@rxap/material-directives": ^16.0.0-dev.10
+    "@rxap/material-directives": ^16.0.0-dev.11
     "@rxap/pattern": ^1.0.1-dev.2
     "@rxap/rxjs": ^1.0.1-dev.2
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.7
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -8540,11 +8540,11 @@ __metadata:
     "@angular/core": ^16.1.4
     "@angular/flex-layout": ^15.0.0-beta.42
     "@angular/material": ^16.1.4
-    "@rxap/directives": ^16.0.0-dev.8
-    "@rxap/material-directives": ^16.0.0-dev.10
+    "@rxap/directives": ^16.0.0-dev.9
+    "@rxap/material-directives": ^16.0.0-dev.11
     "@rxap/rxjs": ^1.0.1-dev.2
     "@rxap/services": ^16.0.0-dev.8
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.7
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft

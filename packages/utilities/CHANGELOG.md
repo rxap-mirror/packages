@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.6...@rxap/utilities@16.0.0-dev.7) (2023-08-06)
+
+### Bug Fixes
+
+- remove @Required decorator ([8df4bf3](https://gitlab.com/rxap/packages/commit/8df4bf33d4a9929f5bc65f8973963fbe1d7ce193))
+
 # [16.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.5...@rxap/utilities@16.0.0-dev.6) (2023-08-04)
 
 ### Bug Fixes

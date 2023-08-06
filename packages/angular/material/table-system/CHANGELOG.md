@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.13...@rxap/material-table-system@16.0.0-dev.14) (2023-08-06)
+
+### Bug Fixes
+
+- remove @Required decorator ([8df4bf3](https://gitlab.com/rxap/packages/commit/8df4bf33d4a9929f5bc65f8973963fbe1d7ce193))
+- split table row action directives ([a8c121e](https://gitlab.com/rxap/packages/commit/a8c121e9bf29009d0bbc6b144422d68eae1d9142))
+
 # [16.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.12...@rxap/material-table-system@16.0.0-dev.13) (2023-08-04)
 
 ### Bug Fixes
