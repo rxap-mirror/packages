@@ -85,6 +85,10 @@
     "context": {
       "type": "string",
       "description": "The context use to generate proper names for class, files, etc"
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": true
     }
   },
   "required": [

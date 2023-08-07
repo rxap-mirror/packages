@@ -1,6 +1,6 @@
 import { dasherize } from '@rxap/schematics-utilities';
-import { ToTitle } from './to-title';
 import { Normalized } from '@rxap/utilities';
+import { ToTitle } from './to-title';
 
 export interface TableRowAction {
   type: string;
@@ -12,6 +12,7 @@ export interface TableRowAction {
   priority?: number;
   checkFunction?: string;
   inHeader?: boolean;
+  options?: Record<string, any>;
 }
 
 export type NormalizedTableRowAction = Readonly<Normalized<TableRowAction>>;
@@ -29,5 +30,6 @@ export function NormalizeTableRowAction(
     confirm: tableAction.confirm ?? false,
     priority: tableAction.priority ?? 0,
     inHeader: tableAction.inHeader ?? false,
+    options: tableAction.options ?? null,
   });
 }

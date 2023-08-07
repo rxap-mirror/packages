@@ -127,6 +127,7 @@ export default function (options: FormTableActionOptions) {
     controllerName,
     overwrite,
     scope,
+    options: formOptions,
   } = normalizedOptions;
   console.log(
     `===== Generating form table action for type '${ type }' for project '${ project }' in feature '${ feature }' in directory '${ directory }' with context '${ context }' and the nest module '${ nestModule }' and controller '${ controllerName }' ...`,
@@ -206,7 +207,8 @@ export default function (options: FormTableActionOptions) {
           };
         },
       }),
-      ExecuteSchematic('form-module', {
+      ExecuteSchematic('form-component', {
+        ...formOptions ?? {},
         project,
         name: type,
         feature,

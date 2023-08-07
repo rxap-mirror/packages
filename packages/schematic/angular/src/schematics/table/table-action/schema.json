@@ -72,6 +72,10 @@
     "directory": {
       "type": "string",
       "description": "A directory name or absolute path for the table action. relative to the feature base path"
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": true
     }
   },
   "required": [

@@ -76,6 +76,10 @@
     "route": {
       "type": "string",
       "description": "The route for the table action"
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": true
     }
   },
   "required": [
