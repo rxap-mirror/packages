@@ -213,13 +213,7 @@
                 "type": "boolean"
               },
               "role": {
-                "type": "string",
-                "enum": [
-                  "form",
-                  "link",
-                  "method",
-                  "custom"
-                ]
+                "type": "string"
               },
               "icon": {
                 "type": "string"
