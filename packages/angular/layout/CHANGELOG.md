@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.12...@rxap/layout@16.0.0-dev.13) (2023-08-07)
+
+### Bug Fixes
+
+- set default layout header color to undefined ([21b6199](https://gitlab.com/rxap/packages/commit/21b6199f047f2345de3e716a038306b2303e6dc6))
+
 # [16.0.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.11...@rxap/layout@16.0.0-dev.12) (2023-08-06)
 
 ### Bug Fixes

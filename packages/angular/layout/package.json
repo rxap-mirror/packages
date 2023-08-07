@@ -1,6 +1,6 @@
 {
   "name": "@rxap/layout",
-  "version": "16.0.0-dev.12",
+  "version": "16.0.0-dev.13",
   "peerDependencies": {
     "@angular/animations": "^16.1.4",
     "@angular/cdk": "^16.1.4",
