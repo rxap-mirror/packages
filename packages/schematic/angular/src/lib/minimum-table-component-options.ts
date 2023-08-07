@@ -171,7 +171,10 @@ function operationActionRule(
   normalizedOptions: NormalizedMinimumTableComponentOptions,
 ): Rule {
 
-  const { type } = action;
+  const {
+    type,
+    role,
+  } = action;
   const {
     overwrite,
     project,
@@ -185,8 +188,8 @@ function operationActionRule(
     context,
   } = normalizedOptions;
 
-  if (type !== 'operation') {
-    throw new SchematicsException(`Invalid action type: ${ action.type } - expected operation`);
+  if (role !== 'operation') {
+    throw new SchematicsException(`Invalid action role: ${ role } - expected operation`);
   }
 
   return chain([
@@ -214,7 +217,10 @@ function formActionRule(
   normalizedOptions: NormalizedMinimumTableComponentOptions,
 ): Rule {
 
-  const { type } = action;
+  const {
+    type,
+    role,
+  } = action;
   const {
     overwrite,
     project,
@@ -228,8 +234,8 @@ function formActionRule(
     context,
   } = normalizedOptions;
 
-  if (type !== 'form') {
-    throw new SchematicsException(`Invalid action type: ${ action.type } - expected form`);
+  if (role !== 'form') {
+    throw new SchematicsException(`Invalid action role: ${ role } - expected form`);
   }
 
   return chain([
@@ -256,7 +262,10 @@ function navigateActionRule(
   normalizedOptions: NormalizedMinimumTableComponentOptions,
 ): Rule {
 
-  const { type } = action;
+  const {
+    type,
+    role,
+  } = action;
   const {
     overwrite,
     project,
@@ -267,8 +276,8 @@ function navigateActionRule(
     directory,
   } = normalizedOptions;
 
-  if (![ 'link', 'navigate' ].includes(type)) {
-    throw new SchematicsException(`Invalid action type: ${ action.type } - expected navigate`);
+  if (![ 'link', 'navigate' ].includes(role)) {
+    throw new SchematicsException(`Invalid action role: ${ role } - expected navigate`);
   }
 
   return chain([
@@ -293,7 +302,10 @@ function dialogActionRule(
   normalizedOptions: NormalizedMinimumTableComponentOptions,
 ): Rule {
 
-  const { type } = action;
+  const {
+    type,
+    role,
+  } = action;
   const {
     overwrite,
     project,
@@ -307,8 +319,8 @@ function dialogActionRule(
     context,
   } = normalizedOptions;
 
-  if (type !== 'dialog') {
-    throw new SchematicsException(`Invalid action type: ${ action.type } - expected dialog`);
+  if (role !== 'dialog') {
+    throw new SchematicsException(`Invalid action role: ${ role } - expected dialog`);
   }
 
   return chain([
