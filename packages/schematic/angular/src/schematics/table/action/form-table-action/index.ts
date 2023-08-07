@@ -1,7 +1,7 @@
 import {
   chain,
+  noop,
   Rule,
-  SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
 import {
@@ -13,7 +13,6 @@ import {
   CoerceImports,
   CoerceOperation,
   CoerceSourceFile,
-  HasTableComponent,
   OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
   TsMorphAngularProjectTransformOptions,
@@ -32,6 +31,9 @@ import {
   SourceFile,
   TypeAliasDeclarationStructure,
 } from 'ts-morph';
+import { PrintAngularOptions } from '../../../../lib/angular-options';
+import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
+import { BackendTypes } from '../../../../lib/backend-types';
 import {
   NormalizedOperationTableActionOptions,
   NormalizeOperationTableActionOptions,
@@ -106,6 +108,111 @@ function UseOperationResponseAsFormTypeRule(
   });
 }
 
+function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions): Rule {
+
+  const {
+    project,
+    feature,
+    shared,
+    directory,
+    nestModule,
+    type,
+    context,
+    controllerName,
+    scope,
+  } = normalizedOptions;
+
+  return chain([
+    CoerceOperation({
+      controllerName,
+      nestModule,
+      project,
+      feature,
+      shared,
+      operationName: `get`,
+      controllerPath: `action/:rowId/${ type }`,
+      overwriteControllerPath: true,
+      tsMorphTransform: (
+        project,
+        sourceFile,
+      ) => {
+        const {
+          className,
+          filePath,
+        } = CoerceDtoClass({
+          project,
+          name: joinWithDash([ context, type, 'action', type, 'form' ]),
+        });
+
+        CoerceImports(sourceFile, {
+          namedImports: [ className ],
+          moduleSpecifier: filePath,
+        });
+
+        return {
+          returnType: className,
+          paramList: [
+            {
+              name: 'rowId',
+              fromParent: true,
+            },
+          ],
+        };
+      },
+    }),
+    CoerceFormSubmitOperation({
+      controllerName,
+      project,
+      feature,
+      shared,
+      nestModule,
+      paramList: [
+        {
+          name: 'rowId',
+          fromParent: true,
+        },
+      ],
+      bodyDtoName: joinWithDash([ context, type, 'action', type, 'form' ]),
+    }),
+    UseOperationResponseAsFormTypeRule({
+      scope,
+      project,
+      feature,
+      directory: join(directory ?? '', CoerceSuffix(type, '-form')),
+      name: type,
+      operationId: buildOperationId(
+        normalizedOptions,
+        `get`,
+        BuildNestControllerName({
+          controllerName,
+          nestModule,
+        }),
+      ),
+    }),
+  ]);
+
+}
+
+function backendRule(normalizedOptions: NormalizedFormTableActionOptions) {
+
+  const { backend } = normalizedOptions;
+
+  switch (backend) {
+
+    case BackendTypes.NESTJS:
+      return nestjsBackendRule(normalizedOptions);
+      break;
+
+  }
+
+  return noop();
+
+}
+
+function printOptions(options: NormalizedFormTableActionOptions) {
+  PrintAngularOptions('form-table-action', options);
+}
+
 export default function (options: FormTableActionOptions) {
   const normalizedOptions = NormalizeFormTableActionOptions(options);
   const {
@@ -128,36 +235,28 @@ export default function (options: FormTableActionOptions) {
     overwrite,
     scope,
     options: formOptions,
+    backend,
   } = normalizedOptions;
-  console.log(
-    `===== Generating form table action for type '${ type }' for project '${ project }' in feature '${ feature }' in directory '${ directory }' with context '${ context }' and the nest module '${ nestModule }' and controller '${ controllerName }' ...`,
-  );
+
+  printOptions(normalizedOptions);
+
   return (host: Tree) => {
-    if (
-      !HasTableComponent(host, {
-        project,
-        feature,
-        directory,
-        name: tableName,
-      })
-    ) {
-      throw new SchematicsException(
-        `Could not find the table component '${ tableName }' in the project '${ project }' and feature '${ feature }' and directory '${ directory }'.`,
-      );
-    }
+
+    AssertTableComponentExists(host, normalizedOptions);
 
     return chain([
+      () => console.info(`Generating form table action rule...`),
       CoerceFormTableActionRule({
         scope,
         directory: join(directory ?? '', 'methods', 'action'),
-        loadOperationId: buildOperationId(
+        loadOperationId: backend === BackendTypes.NESTJS ? buildOperationId(
           normalizedOptions,
           `get`,
           BuildNestControllerName({
             controllerName,
             nestModule,
           }),
-        ),
+        ) : undefined,
         type,
         tableName,
         refresh,
@@ -170,43 +269,7 @@ export default function (options: FormTableActionOptions) {
         project,
         feature,
       }),
-      CoerceOperation({
-        controllerName,
-        nestModule,
-        project,
-        feature,
-        shared,
-        operationName: `get`,
-        controllerPath: `action/:rowId/${ type }`,
-        overwriteControllerPath: true,
-        tsMorphTransform: (
-          project,
-          sourceFile,
-        ) => {
-          const {
-            className,
-            filePath,
-          } = CoerceDtoClass({
-            project,
-            name: joinWithDash([ context, type, 'action', type, 'form' ]),
-          });
-
-          CoerceImports(sourceFile, {
-            namedImports: [ className ],
-            moduleSpecifier: filePath,
-          });
-
-          return {
-            returnType: className,
-            paramList: [
-              {
-                name: 'rowId',
-                fromParent: true,
-              },
-            ],
-          };
-        },
-      }),
+      () => console.info(`Generating form component...`),
       ExecuteSchematic('form-component', {
         ...formOptions ?? {},
         project,
@@ -221,35 +284,8 @@ export default function (options: FormTableActionOptions) {
         overwrite,
         context: joinWithDash([ context, type, 'action' ]),
       }),
-      CoerceFormSubmitOperation({
-        controllerName,
-        project,
-        feature,
-        shared,
-        nestModule,
-        paramList: [
-          {
-            name: 'rowId',
-            fromParent: true,
-          },
-        ],
-        bodyDtoName: joinWithDash([ context, type, 'action', type, 'form' ]),
-      }),
-      UseOperationResponseAsFormTypeRule({
-        scope,
-        project,
-        feature,
-        directory: join(directory ?? '', CoerceSuffix(type, '-form')),
-        name: type,
-        operationId: buildOperationId(
-          normalizedOptions,
-          `get`,
-          BuildNestControllerName({
-            controllerName,
-            nestModule,
-          }),
-        ),
-      }),
+      () => console.info(`Generating backend...`),
+      backendRule(normalizedOptions),
     ]);
   };
 }

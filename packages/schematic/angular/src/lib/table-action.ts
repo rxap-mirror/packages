@@ -5,7 +5,7 @@ import {
 } from './table-row-action';
 
 export interface TableAction extends TableRowAction {
-  role: string;
+  role?: string;
   icon?: string | null;
   svgIcon?: string | null;
   permission?: string | null;
@@ -24,7 +24,7 @@ export function NormalizeTableAction(
   let refresh = false;
   let confirm = false;
   let priority: number | undefined = undefined;
-  let role: string;
+  let role: string | null = null;
   let icon: string | null = null;
   let svgIcon: string | null = null;
   let permission: string | null = null;
@@ -75,7 +75,7 @@ export function NormalizeTableAction(
     refresh = tableAction.refresh ?? refresh;
     confirm = tableAction.confirm ?? confirm;
     priority = tableAction.priority ?? priority;
-    role = tableAction.role;
+    role = tableAction.role ?? role;
     inHeader = tableAction.inHeader ?? inHeader;
     icon = tableAction.icon ?? icon;
     svgIcon = tableAction.svgIcon ?? svgIcon;

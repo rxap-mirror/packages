@@ -230,8 +230,7 @@
               }
             },
             "required": [
-              "type",
-              "role"
+              "type"
             ]
           }
         ]

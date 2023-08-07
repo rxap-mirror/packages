@@ -129,14 +129,14 @@ function backendRule(normalizedOptions: NormalizedOperationTableActionOptions) {
 
 }
 
-function printOperationTableActionOptions(options: NormalizedOperationTableActionOptions) {
+function printOptions(options: NormalizedOperationTableActionOptions) {
   PrintAngularOptions('operation-table-action', options);
 }
 
 export default function (options: OperationTableActionOptions) {
   const normalizedOptions = NormalizeOperationTableActionOptions(options);
 
-  printOperationTableActionOptions(normalizedOptions);
+  printOptions(normalizedOptions);
 
   return (host: Tree) => {
 

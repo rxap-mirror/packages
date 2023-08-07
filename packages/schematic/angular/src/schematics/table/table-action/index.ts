@@ -1,22 +1,22 @@
-import { TableActionOptions } from './schema';
-import {
-  CoerceSuffix,
-  dasherize,
-} from '@rxap/schematics-utilities';
 import {
   chain,
   Tree,
 } from '@angular-devkit/schematics';
 import { CoerceTableActionRule } from '@rxap/schematics-ts-morph';
-import { join } from 'path';
+import {
+  CoerceSuffix,
+  dasherize,
+} from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
+import { join } from 'path';
 import {
   NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../lib/angular-options';
-import { NormalizeTableRowAction } from '../../../lib/table-row-action';
 import { AssertTableComponentExists } from '../../../lib/assert-table-component-exists';
+import { NormalizeTableRowAction } from '../../../lib/table-row-action';
+import { TableActionOptions } from './schema';
 
 export type NormalizedTableActionOptions = Readonly<Normalized<TableActionOptions>> & NormalizedAngularOptions;
 
@@ -33,7 +33,7 @@ export function NormalizeTableActionOptions(
   });
 }
 
-function printTableActionOptions(options: NormalizedTableActionOptions) {
+function printOptions(options: NormalizedTableActionOptions) {
   PrintAngularOptions('table-action', options);
 }
 
@@ -54,9 +54,10 @@ export default function (options: TableActionOptions) {
     type,
   } = normalizedOptions;
 
-  printTableActionOptions(normalizedOptions);
+  printOptions(normalizedOptions);
 
   return (host: Tree) => {
+
     AssertTableComponentExists(host, normalizedOptions);
 
     return chain([

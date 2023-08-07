@@ -276,7 +276,7 @@ function navigateActionRule(
     directory,
   } = normalizedOptions;
 
-  if (![ 'link', 'navigate' ].includes(role)) {
+  if (![ 'link', 'navigate' ].includes(role ?? '')) {
     throw new SchematicsException(`Invalid action role: ${ role } - expected navigate`);
   }
 
@@ -376,32 +376,36 @@ function defaultActionRule(
 
 function actionRule(action: NormalizedTableAction, normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
 
+  const rules: Rule[] = [
+    defaultActionRule(action, normalizedOptions),
+  ];
+
   switch (action.role) {
 
     case 'operation':
-      return operationActionRule(action, normalizedOptions);
+      rules.push(operationActionRule(action, normalizedOptions));
+      break;
 
     case 'form':
-      return formActionRule(action, normalizedOptions);
+      rules.push(formActionRule(action, normalizedOptions));
+      break;
 
     case 'link':
       console.warn('Deprecated action type: link - use navigate instead');
-      return navigateActionRule(action, normalizedOptions);
+      rules.push(navigateActionRule(action, normalizedOptions));
+      break;
 
     case 'navigate':
-      return navigateActionRule(action, normalizedOptions);
+      rules.push(navigateActionRule(action, normalizedOptions));
+      break;
 
     case 'dialog':
-      return dialogActionRule(action, normalizedOptions);
-
-    case 'method':
-      console.warn('Deprecated action type: method - leaf empty instead');
-      return defaultActionRule(action, normalizedOptions);
-
-    default:
-      return defaultActionRule(action, normalizedOptions);
+      rules.push(dialogActionRule(action, normalizedOptions));
+      break;
 
   }
+
+  return chain(rules);
 
 }
 

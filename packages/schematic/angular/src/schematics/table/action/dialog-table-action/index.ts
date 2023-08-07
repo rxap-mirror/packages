@@ -1,4 +1,7 @@
-import { chain } from '@angular-devkit/schematics';
+import {
+  chain,
+  Tree,
+} from '@angular-devkit/schematics';
 import {
   BuildNestControllerName,
   buildOperationId,
@@ -14,6 +17,7 @@ import {
 } from '@rxap/utilities';
 import { join } from 'path';
 import { PrintAngularOptions } from '../../../../lib/angular-options';
+import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
 import { NormalizeDialogActionList } from '../../../../lib/dialog-action';
 import { ToTitle } from '../../../../lib/to-title';
 import {
@@ -75,8 +79,13 @@ export default function (options: DialogTableActionOptions) {
     controllerName,
     scope,
   } = normalizedOptions;
+
   printOptions(normalizedOptions);
-  return () => {
+
+  return (host: Tree) => {
+
+    AssertTableComponentExists(host, normalizedOptions);
+
     return chain([
       () => console.log('Coerce table action method class ...'),
       CoerceDialogTableActionRule({
