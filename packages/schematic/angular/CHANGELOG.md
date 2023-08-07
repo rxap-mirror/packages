@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.3...@rxap/schematic-angular@16.1.0-dev.4) (2023-08-07)
+
+### Bug Fixes
+
+- use role for sub schematic decision ([bd6b135](https://gitlab.com/rxap/packages/commit/bd6b13584d17be6e2aec0d29e9e83b05bfa29d95))
+
 # [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.2...@rxap/schematic-angular@16.1.0-dev.3) (2023-08-07)
 
 ### Bug Fixes
