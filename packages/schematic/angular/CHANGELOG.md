@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.2...@rxap/schematic-angular@16.1.0-dev.3) (2023-08-07)
+
+### Bug Fixes
+
+- allow new role types ([5703642](https://gitlab.com/rxap/packages/commit/5703642f5f33659b7fe6d955ce46445090dbe1fd))
+
 # [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.1...@rxap/schematic-angular@16.1.0-dev.2) (2023-08-07)
 
 ### Features
