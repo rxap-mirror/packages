@@ -364,7 +364,7 @@ function defaultActionRule(
 
 function actionRule(action: NormalizedTableAction, normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
 
-  switch (action.type) {
+  switch (action.role) {
 
     case 'operation':
       return operationActionRule(action, normalizedOptions);
