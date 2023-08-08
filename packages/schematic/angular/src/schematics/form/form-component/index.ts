@@ -1,9 +1,17 @@
+import { strings } from '@angular-devkit/core';
 import {
+  apply,
+  applyTemplates,
   chain,
+  MergeStrategy,
+  mergeWith,
+  move,
   noop,
   Rule,
+  url,
 } from '@angular-devkit/schematics';
 import {
+  BuildAngularBasePath,
   BuildNestControllerName,
   buildOperationId,
   CoerceComponentRule,
@@ -18,6 +26,7 @@ import {
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
 import {
+  dasherize,
   joinWithDash,
   Normalized,
 } from '@rxap/utilities';
@@ -239,6 +248,36 @@ function formSubmitRule(normalizedOptions: NormalizedFormComponentOptions): Rule
 
 }
 
+function windowRule(normalizedOptions: NormalizedFormComponentOptions): Rule {
+
+  const {
+    window,
+    directory,
+    componentName,
+  } = normalizedOptions;
+
+  if (window) {
+    return tree => {
+      const basePath = BuildAngularBasePath(tree, normalizedOptions);
+      const flat = !!directory?.endsWith(componentName);
+      return chain([
+        () => console.log(`Apply window specific templates.`),
+        mergeWith(apply(url('./files/window'), [
+          applyTemplates({
+            componentName,
+            name: dasherize(componentName).replace(/-form$/, ''),
+            ...strings,
+          }),
+          move(flat ? basePath : join(basePath, componentName)),
+        ]), MergeStrategy.Overwrite),
+      ]);
+    };
+  }
+
+  return noop();
+
+}
+
 function printFormComponentOptions(options: NormalizedFormComponentOptions) {
   PrintAngularOptions('form-component', options);
   console.log(`=== controls: ${ options.controlList.map((c) => c.name).join(', ') }`);
@@ -250,6 +289,7 @@ export default function (options: FormComponentOptions) {
   return function () {
     return chain([
       componentRule(normalizedOptions),
+      windowRule(normalizedOptions),
       formDefinitionRule(normalizedOptions),
       formSubmitRule(normalizedOptions),
     ]);
