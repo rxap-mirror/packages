@@ -56,6 +56,7 @@ export interface NormalizedMinimumTableComponentOptions
   columnList: NormalizedTableColumn[];
   actionList: NormalizedTableAction[];
   componentName: string;
+  controllerName: string;
 }
 
 export function NormalizeMinimumTableComponentOptions(
@@ -65,11 +66,16 @@ export function NormalizeMinimumTableComponentOptions(
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
   const { name } = normalizedAngularOptions;
   const normalizedTableOptions = NormalizeMinimumTableOptions(options, name);
-  const componentName = CoerceSuffix(name, '-table');
+  const { componentName } = normalizedTableOptions;
+  const nestModule = options.nestModule ?? null;
   return Object.seal({
     ...normalizedAngularOptions,
     ...normalizedTableOptions,
-    componentName,
+    nestModule,
+    controllerName: BuildNestControllerName({
+      controllerName: componentName,
+      nestModule,
+    }),
     directory: join(options.directory ?? '', componentName),
   });
 }
@@ -376,9 +382,7 @@ function defaultActionRule(
 
 function actionRule(action: NormalizedTableAction, normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
 
-  const rules: Rule[] = [
-    defaultActionRule(action, normalizedOptions),
-  ];
+  const rules: Rule[] = [];
 
   switch (action.role) {
 
@@ -402,6 +406,9 @@ function actionRule(action: NormalizedTableAction, normalizedOptions: Normalized
     case 'dialog':
       rules.push(dialogActionRule(action, normalizedOptions));
       break;
+
+    default:
+      rules.push(defaultActionRule(action, normalizedOptions));
 
   }
 
