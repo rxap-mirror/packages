@@ -6,7 +6,6 @@ import {
 import {
   AddComponentImport,
   AddComponentProvider,
-  BuildNestControllerName,
   buildOperationId,
   CoerceComponentRule,
   CoerceGetPageOperation,
@@ -54,6 +53,7 @@ import { TableComponentOptions } from './schema';
 export interface NormalizedTableComponentOptions
   extends Readonly<Normalized<TableComponentOptions> & NormalizedTableOptions & NormalizedAngularOptions> {
   name: string;
+  controllerName: string;
   columnList: NormalizedTableColumn[];
   actionList: NormalizedTableAction[];
 }
@@ -345,11 +345,9 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
     directory,
     overwrite,
     scope,
+    controllerName,
   } = normalizedOptions;
-  const controllerName = BuildNestControllerName({
-    controllerName: componentName,
-    nestModule,
-  });
+
   const operationId = buildOperationId(
     normalizedOptions,
     'get-page',

@@ -112,7 +112,7 @@ export default function (options: DialogTableActionOptions) {
           normalizedOptions,
           `${ type }-action`,
           BuildNestControllerName({
-            controllerName: tableName,
+            controllerName,
             nestModule,
           }),
         ),

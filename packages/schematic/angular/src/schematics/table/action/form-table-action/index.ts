@@ -35,19 +35,42 @@ import { PrintAngularOptions } from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
 import { BackendTypes } from '../../../../lib/backend-types';
 import {
+  NormalizedFormComponentControl,
+  NormalizeFormComponentControlList,
+} from '../../../../lib/form-component-control';
+import { FormComponentControlToDtoClassProperty } from '../../../form/form-component/index';
+import {
   NormalizedOperationTableActionOptions,
   NormalizeOperationTableActionOptions,
 } from '../operation-table-action';
 import { FormTableActionOptions } from './schema';
 
-export type NormalizedFormTableActionOptions = Readonly<Normalized<FormTableActionOptions>>
-  & NormalizedOperationTableActionOptions;
+export interface NormalizedFormTableActionOptions
+  extends Readonly<Normalized<FormTableActionOptions> & NormalizedOperationTableActionOptions> {
+  options: Record<string, any> & {
+    controlList: NormalizedFormComponentControl[];
+  };
+}
 
 export function NormalizeFormTableActionOptions(
   options: Readonly<FormTableActionOptions>,
 ): NormalizedFormTableActionOptions {
+  const normalizedOptions = NormalizeOperationTableActionOptions(options);
+  const {
+    controllerName,
+    type,
+    nestModule,
+  } = normalizedOptions;
   return {
-    ...NormalizeOperationTableActionOptions(options),
+    ...normalizedOptions,
+    controllerName: BuildNestControllerName({
+      nestModule,
+      controllerName: [ type, 'action' ].join('-'),
+    }),
+    options: {
+      ...normalizedOptions.options ?? {},
+      controlList: NormalizeFormComponentControlList(normalizedOptions.options?.['controlList'] ?? []),
+    },
   };
 }
 
@@ -122,13 +145,17 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
     scope,
   } = normalizedOptions;
 
+  const dtoName = joinWithDash([ context, type, 'action', 'form' ]);
+
   return chain([
+    () => console.log('Coerce form get table action operation'),
     CoerceOperation({
       controllerName,
       nestModule,
       project,
       feature,
       shared,
+      context,
       operationName: `get`,
       controllerPath: `action/:rowId/${ type }`,
       overwriteControllerPath: true,
@@ -141,7 +168,9 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
           filePath,
         } = CoerceDtoClass({
           project,
-          name: joinWithDash([ context, type, 'action', type, 'form' ]),
+          name: dtoName,
+          propertyList: normalizedOptions.options.controlList.map(control => FormComponentControlToDtoClassProperty(
+            control)),
         });
 
         CoerceImports(sourceFile, {
@@ -160,34 +189,30 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
         };
       },
     }),
+    () => console.log('Coerce form submit table action operation'),
     CoerceFormSubmitOperation({
       controllerName,
       project,
       feature,
       shared,
       nestModule,
+      context,
       paramList: [
         {
           name: 'rowId',
           fromParent: true,
         },
       ],
-      bodyDtoName: joinWithDash([ context, type, 'action', type, 'form' ]),
+      bodyDtoName: dtoName,
     }),
+    () => console.log('Update form type alias'),
     UseOperationResponseAsFormTypeRule({
       scope,
       project,
       feature,
       directory: join(directory ?? '', CoerceSuffix(type, '-form')),
       name: type,
-      operationId: buildOperationId(
-        normalizedOptions,
-        `get`,
-        BuildNestControllerName({
-          controllerName,
-          nestModule,
-        }),
-      ),
+      operationId: buildGetOperationId(normalizedOptions),
     }),
   ]);
 
@@ -201,7 +226,6 @@ function backendRule(normalizedOptions: NormalizedFormTableActionOptions) {
 
     case BackendTypes.NESTJS:
       return nestjsBackendRule(normalizedOptions);
-      break;
 
   }
 
@@ -211,6 +235,17 @@ function backendRule(normalizedOptions: NormalizedFormTableActionOptions) {
 
 function printOptions(options: NormalizedFormTableActionOptions) {
   PrintAngularOptions('form-table-action', options);
+}
+
+function buildGetOperationId(normalizedOptions: NormalizedFormTableActionOptions) {
+  const {
+    controllerName,
+  } = normalizedOptions;
+  return buildOperationId(
+    normalizedOptions,
+    `get`,
+    controllerName,
+  );
 }
 
 export default function (options: FormTableActionOptions) {
@@ -244,19 +279,16 @@ export default function (options: FormTableActionOptions) {
 
     AssertTableComponentExists(host, normalizedOptions);
 
+    const loadOperationId = backend === BackendTypes.NESTJS ? buildGetOperationId(normalizedOptions) : undefined;
+
+    console.log('loadOperationId', loadOperationId);
+
     return chain([
       () => console.info(`Generating form table action rule...`),
       CoerceFormTableActionRule({
         scope,
         directory: join(directory ?? '', 'methods', 'action'),
-        loadOperationId: backend === BackendTypes.NESTJS ? buildOperationId(
-          normalizedOptions,
-          `get`,
-          BuildNestControllerName({
-            controllerName,
-            nestModule,
-          }),
-        ) : undefined,
+        loadOperationId,
         type,
         tableName,
         refresh,
@@ -282,7 +314,7 @@ export default function (options: FormTableActionOptions) {
         nestModule,
         controllerName,
         overwrite,
-        context: joinWithDash([ context, type, 'action' ]),
+        context,
       }),
       () => console.info(`Generating backend...`),
       backendRule(normalizedOptions),

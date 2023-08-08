@@ -88,6 +88,41 @@
     },
     "options": {
       "type": "object",
+      "properties": {
+        "controlList": {
+          "alias": "control",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string",
+                "description": "The initial state of the control"
+              },
+              "isRequired": {
+                "type": "boolean",
+                "description": "Whether the control value is required",
+                "default": false
+              },
+              "validatorList": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        }
+      },
       "additionalProperties": true
     }
   },

@@ -23,9 +23,8 @@ import { BackendTypes } from '../../../../lib/backend-types';
 import { NormalizeTableActionOptions } from '../../table-action';
 import { OperationTableActionOptions } from './schema';
 
-type tmp = Readonly<Normalized<OperationTableActionOptions>> & NormalizedAngularOptions
-
-export interface NormalizedOperationTableActionOptions extends tmp {
+export interface NormalizedOperationTableActionOptions
+  extends Readonly<Normalized<OperationTableActionOptions> & NormalizedAngularOptions> {
   controllerName: string;
 }
 
@@ -37,12 +36,15 @@ export function NormalizeOperationTableActionOptions(
   const controllerName = normalizedOptions.tableName;
   const context = options.context ??
     joinWithDash([ nestModule, controllerName ], { removeDuplicated: true });
-  return {
+  return Object.seal({
     ...normalizedOptions,
     nestModule,
-    controllerName,
+    controllerName: BuildNestControllerName({
+      controllerName: context,
+      nestModule,
+    }),
     context,
-  };
+  });
 }
 
 function openApiOperationRule(normalizedOptions: NormalizedOperationTableActionOptions) {
@@ -74,10 +76,7 @@ function openApiOperationRule(normalizedOptions: NormalizedOperationTableActionO
       operationId: buildOperationId(
         normalizedOptions,
         `${ type }-action`,
-        BuildNestControllerName({
-          controllerName,
-          nestModule,
-        }),
+        controllerName,
       ),
       type,
       tableName,

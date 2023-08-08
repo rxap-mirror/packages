@@ -4,7 +4,6 @@ import {
 } from '@angular-devkit/schematics';
 import {
   AddComponentProvider,
-  BuildNestControllerName,
   buildOperationId,
   CoerceComponentRule,
   CoerceGetChildrenOperation,
@@ -44,6 +43,7 @@ import { TreeTableComponentOptions } from './schema';
 export interface NormalizedTreeTableComponentOptions
   extends Readonly<Normalized<TreeTableComponentOptions> & NormalizedTreeTableOptions & NormalizedAngularOptions> {
   name: string;
+  controllerName: string;
 }
 
 export function NormalizedTreeTableComponentOptions(
@@ -140,12 +140,8 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
     directory,
     overwrite,
     scope,
+    controllerName,
   } = normalizedOptions;
-
-  const controllerName = BuildNestControllerName({
-    controllerName: componentName,
-    nestModule,
-  });
 
   const getRootOperationId = buildOperationId(
     normalizedOptions,
