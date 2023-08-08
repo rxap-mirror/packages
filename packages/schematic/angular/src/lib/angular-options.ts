@@ -84,10 +84,13 @@ export function PrintAngularOptions(schematicName: string, options: NormalizedAn
   }
   if (context) {
     console.log(`\x1b[34m===== Context: ${ context }\x1b[0m`);
+  } else {
+    console.log(`\x1b[34m===== Context: \x1b[31mNONE\x1b[0m`);
   }
   switch (backend) {
 
     case BackendTypes.NESTJS:
+      console.log(`\x1b[31m===== Backend: NESTJS\x1b[0m`);
       if (nestModule) {
         console.log(`\x1b[36m===== Nest Module: ${ nestModule }\x1b[0m`);
       }
@@ -96,10 +99,20 @@ export function PrintAngularOptions(schematicName: string, options: NormalizedAn
       }
       break;
 
+    case BackendTypes.OPEN_API:
+      console.log(`\x1b[31m===== Backend: OPENAPI\x1b[0m`);
+      break;
+
+    case BackendTypes.LOCAL:
+      console.log(`\x1b[31m===== Backend: LOCAL\x1b[0m`);
+      break;
+
     case BackendTypes.NONE:
-    default:
       console.log(`\x1b[31m===== Backend: NONE\x1b[0m`);
       break;
+
+    default:
+      throw new Error(`Unknown backend type: ${ backend }`);
 
   }
 
