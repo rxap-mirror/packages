@@ -182,7 +182,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
     if (property.isOptional) {
       CoerceDecorator(
         propertyDeclaration,
-        'IsInstance',
+        'IsOptional',
         {
           arguments: [],
         },
@@ -227,7 +227,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
           });
           CoerceDecorator(
             propertyDeclaration,
-            'IsNumber',
+            'IsUUID',
             {
               arguments: [],
             },
@@ -239,7 +239,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
           });
           CoerceDecorator(
             propertyDeclaration,
-            'IsNumber',
+            'IsString',
             {
               arguments: [],
             },
@@ -249,7 +249,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
       case 'uuid':
         CoerceDecorator(
           propertyDeclaration,
-          'IsNumber',
+          'IsUUID',
           {
             arguments: [],
           },
@@ -262,7 +262,7 @@ export function CoerceDtoClass(options: CoerceDtoClassOptions): CoerceDtoClassOu
       case 'boolean':
         CoerceDecorator(
           propertyDeclaration,
-          'IsNumber',
+          'IsBoolean',
           {
             arguments: [],
           },
