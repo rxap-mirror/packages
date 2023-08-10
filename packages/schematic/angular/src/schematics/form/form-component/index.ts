@@ -27,7 +27,6 @@ import {
 } from '@rxap/schematics-utilities';
 import {
   dasherize,
-  joinWithDash,
   Normalized,
 } from '@rxap/utilities';
 import { join } from 'path';
@@ -49,7 +48,6 @@ interface NormalizedFormComponentOptions
   componentName: string;
   controllerName: string;
   controlList: Array<NormalizedFormComponentControl>;
-  context: string;
 }
 
 
@@ -61,12 +59,9 @@ export function NormalizeFormComponentOptions(
   AssertAngularOptionsNameProperty(normalizedAngularOptions);
   const {
     name,
-    nestModule,
   } = normalizedAngularOptions;
   const componentName = CoerceSuffix(name, '-form');
   const controllerName = options.controllerName ?? componentName;
-  const context = options.context ??
-    joinWithDash([ nestModule, controllerName ], { removeDuplicated: true });
   return Object.seal({
     ...normalizedAngularOptions,
     window: options.window ?? false,
@@ -75,7 +70,7 @@ export function NormalizeFormComponentOptions(
     componentName,
     controllerName,
     controlList: NormalizeFormComponentControlList(options.controlList),
-    context,
+    context: options.context ? dasherize(options.context) : null,
   });
 }
 
@@ -211,7 +206,7 @@ function formSubmitBackendRule(normalizedOptions: NormalizedFormComponentOptions
           shared,
           nestModule,
           propertyList: controlList.map(FormComponentControlToDtoClassProperty),
-          bodyDtoName: CoerceSuffix(context, '-' + componentName),
+          bodyDtoName: controllerName,
         }),
       ]);
   }

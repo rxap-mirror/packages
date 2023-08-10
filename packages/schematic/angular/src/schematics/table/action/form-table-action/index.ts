@@ -22,7 +22,6 @@ import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import {
   classify,
   CoerceSuffix,
-  joinWithDash,
   Normalized,
 } from '@rxap/utilities';
 import { join } from 'path';
@@ -145,8 +144,6 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
     scope,
   } = normalizedOptions;
 
-  const dtoName = joinWithDash([ context, type, 'action', 'form' ]);
-
   return chain([
     () => console.log('Coerce form get table action operation'),
     CoerceOperation({
@@ -168,7 +165,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
           filePath,
         } = CoerceDtoClass({
           project,
-          name: dtoName,
+          name: controllerName,
           propertyList: normalizedOptions.options.controlList.map(control => FormComponentControlToDtoClassProperty(
             control)),
         });
@@ -203,7 +200,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
           fromParent: true,
         },
       ],
-      bodyDtoName: dtoName,
+      bodyDtoName: controllerName,
     }),
     () => console.log('Update form type alias'),
     UseOperationResponseAsFormTypeRule({

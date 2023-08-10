@@ -1,20 +1,17 @@
-import { FormControlOptions } from './schema';
-import { dasherize } from '@rxap/schematics-utilities';
 import { chain } from '@angular-devkit/schematics';
-import {
-  joinWithDash,
-  Normalized,
-} from '@rxap/utilities';
 import { CoerceFormDefinitionControl } from '@rxap/schematics-ts-morph';
-import {
-  NormalizedFormDefinitionControl,
-  NormalizeFormDefinitionControl,
-} from '../../../lib/form-definition-control';
+import { dasherize } from '@rxap/schematics-utilities';
+import { Normalized } from '@rxap/utilities';
 import {
   NormalizeAngularOptions,
   NormalizedAngularOptions,
   PrintAngularOptions,
 } from '../../../lib/angular-options';
+import {
+  NormalizedFormDefinitionControl,
+  NormalizeFormDefinitionControl,
+} from '../../../lib/form-definition-control';
+import { FormControlOptions } from './schema';
 
 export interface NormalizedFormControlOptions
   extends Readonly<Normalized<FormControlOptions> & NormalizedAngularOptions & NormalizedFormDefinitionControl> {
@@ -33,15 +30,14 @@ export function NormalizeFormControlOptions(
     directory += '/' + formName + '-form';
   }
   const controllerName = options.controllerName ?? formName;
-  const context = options.context ?? joinWithDash([ nestModule, controllerName ], { removeDuplicated: true });
-  return {
+  return Object.seal({
     ...normalizedAngularOptions,
     ...normalizedFormDefinitionControl,
     formName,
     directory,
     controllerName,
-    context,
-  };
+    context: options.context ? dasherize(options.context) : null,
+  });
 }
 
 function printOptions(options: NormalizedFormControlOptions) {

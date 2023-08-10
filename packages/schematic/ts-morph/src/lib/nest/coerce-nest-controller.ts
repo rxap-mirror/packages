@@ -46,17 +46,22 @@ export function CoerceNestController(
     project,
     feature,
     shared,
-    controllerPrefix,
     directory,
     coerceModule,
     skipModuleImport,
     overwrite,
   } = options;
-  let { name, tsMorphTransform, nestModule } = options;
+  let {
+    name,
+    tsMorphTransform,
+    nestModule,
+    controllerPrefix,
+  } = options;
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   tsMorphTransform ??= () => {};
   name = dasherize(name);
   nestModule ??= name;
+  controllerPrefix ??= name;
   return chain([
     AssertNestProject({ project, feature, shared }),
     coerceModule ? CoerceNestModule({
@@ -75,7 +80,7 @@ export function CoerceNestController(
       },
       (project, [ controllerSourceFile, moduleSourceFile ]) => {
         const controllerDecoratorArguments: WriterFunction[] = controllerPrefix ?
-          [ w => w.quote(controllerPrefix) ] :
+          [ w => w.quote(controllerPrefix!) ] :
           [];
         const classDeclaration = CoerceClass(controllerSourceFile, classify(name) + 'Controller', {
           isExported: true,

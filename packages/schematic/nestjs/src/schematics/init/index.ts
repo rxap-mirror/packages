@@ -332,6 +332,7 @@ function CoerceAppController(options: { project: string }) {
       project: options.project,
       name: 'app',
       nestModule: 'app',
+      controllerPrefix: '',
       tsMorphTransform: (_, sourceFile, classDeclaration) => {
         CoerceDecorator(classDeclaration, 'Public', { arguments: [] });
         CoerceImports(sourceFile, {

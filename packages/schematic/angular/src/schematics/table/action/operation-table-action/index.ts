@@ -10,7 +10,7 @@ import {
   CoerceOperationTableActionRule,
 } from '@rxap/schematics-ts-morph';
 import {
-  joinWithDash,
+  dasherize,
   Normalized,
 } from '@rxap/utilities';
 import { join } from 'path';
@@ -33,9 +33,7 @@ export function NormalizeOperationTableActionOptions(
 ): NormalizedOperationTableActionOptions {
   const normalizedOptions = NormalizeTableActionOptions(options);
   const nestModule = options.nestModule ?? normalizedOptions.tableName;
-  const controllerName = normalizedOptions.tableName;
-  const context = options.context ??
-    joinWithDash([ nestModule, controllerName ], { removeDuplicated: true });
+  const context = options.context ? dasherize(options.context) : null;
   return Object.seal({
     ...normalizedOptions,
     nestModule,

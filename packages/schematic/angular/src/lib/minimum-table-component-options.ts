@@ -26,7 +26,6 @@ import {
 import {
   classify,
   dasherize,
-  joinWithDash,
   Normalized,
 } from '@rxap/utilities';
 import { join } from 'path';
@@ -212,7 +211,7 @@ function operationActionRule(
       directory,
       nestModule:
         (shared ? undefined : nestModule) ?? controllerName,
-      context: joinWithDash([ context, controllerName ]),
+      context,
     }),
   ]);
 
@@ -257,7 +256,7 @@ function formActionRule(
       directory,
       nestModule:
         (shared ? undefined : nestModule) ?? controllerName,
-      context: joinWithDash([ context, controllerName ]),
+      context,
     }),
   ]);
 
@@ -343,7 +342,7 @@ function dialogActionRule(
       directory,
       nestModule:
         (shared ? undefined : nestModule) ?? controllerName,
-      context: joinWithDash([ context, controllerName ]),
+      context,
     }),
   ]);
 
@@ -493,7 +492,7 @@ export function headerButtonRule(normalizedOptions: NormalizedMinimumTableCompon
             window: true,
             controlList: [],
             nestModule: (shared ? undefined : nestModule) ?? controllerName,
-            context: joinWithDash([ context, controllerName ]),
+            context,
             backend,
             overwrite,
           }),

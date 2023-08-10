@@ -15,7 +15,13 @@ export function BuildNestControllerName(options: BuildNestControllerNameOptions)
   } = options;
 
   if (nestModule && nestModule !== controllerName) {
-    controllerName = [ nestModule, controllerName ].join('-');
+    if (controllerName) {
+      if (!controllerName.startsWith(nestModule)) {
+        controllerName = [ nestModule, controllerName ].join('-');
+      }
+    } else {
+      controllerName = nestModule;
+    }
   }
 
   if (controllerNameSuffix) {
