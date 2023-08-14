@@ -26,6 +26,7 @@ function generateIndexFile(tree: Tree, projectName: string) {
     if (isFile &&
       path.endsWith('.ts') &&
       !path.endsWith('.spec.ts') &&
+      !path.endsWith('.cy.ts') &&
       !path.endsWith('.stories.ts') &&
       !path.endsWith('.d.ts')) {
       filePathList.push(path);
