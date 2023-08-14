@@ -5,10 +5,10 @@ const ROUTES: Route[] = [
     path: '',
     loadComponent: () => import('./tab-navigation/tab-navigation.component'),
     children: [
-      {
-        path: 'testing',
-        loadComponent: () => import('./company-table/company-table.component'),
-      },
+      // {
+      //   path: 'testing',
+      //   loadComponent: () => import('./company-table/company-table.component'),
+      // },
       {
         path: 'minimum',
         loadComponent: () => import('./minimum-table/minimum-table.component'),
