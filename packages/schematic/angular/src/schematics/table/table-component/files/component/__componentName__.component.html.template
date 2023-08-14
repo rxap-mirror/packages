@@ -117,8 +117,7 @@
                   mat-icon-button
                   *ngIf="selected | rxapRowActionCheck:'<%= action.type %>'"
                   <% if (action.permission) { %>rxapHasEnablePermission="<%= action.permission %>"<% } %>
-                  matTooltip="<%= action.type %>"
-                  i18n-matTooltip
+                  matTooltip
                 >
                   <% if (action.icon) { %><mat-icon><%= action.icon %></mat-icon><% } else if (action.svgIcon) { %><mat-icon svgIcon="<%= action.svgIcon %>"></mat-icon><% } else { %><mat-icon><%= action.type %></mat-icon><% } %>
                   <mat-progress-bar
@@ -141,8 +140,7 @@
                   mat-icon-button
                   *ngIf="element | rxapRowActionCheck:'<%= action.type %>'"
                   <% if (action.permission) { %>rxapHasEnablePermission="<%= action.permission %>"<% } %>
-                  matTooltip="<%= action.type %>"
-                  i18n-matTooltip
+                  matTooltip
                 >
                   <% if (action.icon) { %><mat-icon><%= action.icon %></mat-icon><% } else if (action.svgIcon) { %><mat-icon svgIcon="<%= action.svgIcon %>"></mat-icon><% } else { %><mat-icon><%= action.type %></mat-icon><% } %>
                   <mat-progress-bar
