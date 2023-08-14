@@ -10,7 +10,10 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { BaseDefinitionMetadata } from '@rxap/definition';
-import { Constructor } from '@rxap/utilities';
+import {
+  Constructor,
+  NonEmpty,
+} from '@rxap/utilities';
 import { RxapFormArray } from './form-array';
 import { RxapFormControl } from './form-control';
 import type { RxapFormGroup } from './form-group';
@@ -88,7 +91,7 @@ export type FormType<T> = Partial<
     ? FormDefinitionArray<FormType<U>> | FormDefinitionArray<RxapFormControl<U>> | RxapFormControl<T[K]> | RxapFormArray<U>
     : T[K] extends Record<string, any>
       ? (FormType<T[K]> & Partial<FormDefinition<T[K]>>) | RxapFormControl<T[K]>
-      : RxapFormControl<T[K]>;
+      : RxapFormControl<NonEmpty<T[K]>>;
   };
 
 export interface FormOptions extends RxapAbstractControlOptions {
