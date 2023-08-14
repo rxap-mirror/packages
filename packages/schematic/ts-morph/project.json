@@ -18,6 +18,7 @@
         ]
       }
     },
+    "index-export": {},
     "publish": {
       "command": "node tools/scripts/publish.mjs schematic-ts-morph {args.ver} {args.tag}",
       "dependsOn": [
