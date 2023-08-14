@@ -21,18 +21,37 @@ cd "${GIT_ROOT}/docker/traefik/tls"
 
 echo -n "subjectAltName=DNS:127-0-0-1.nip.io," > ext.cnf.template
 
-echo -n "$(grep -oP 'Host\(`([^`]+)`\)' "$GIT_ROOT/docker-compose.services.yml" | sed -E 's/Host\(`([^`]+)`\)/\1/' | sort | uniq | awk '{print "DNS:" $0}' | paste -s -d,)" \
-  >> ext.cnf.template
+# Fetch the desired data using grep
+MATCHED_LINES=$(grep -oP 'Host\(`([^`]+)`\)' "$GIT_ROOT/docker-compose.services.yml")
 
-echo -n "," >> ext.cnf.template
+# Check if there are any results
+if [[ -n "$MATCHED_LINES" ]]; then
+    PROCESSED_DATA=$(echo "$MATCHED_LINES" | sed -E 's/Host\(`([^`]+)`\)/\1/' | sort | uniq | awk '{print "DNS:" $0}' | paste -s -d,)
+    # Append to ext.cnf.template
+    echo -n "$PROCESSED_DATA" >> ext.cnf.template
+    echo -n "," >> ext.cnf.template
+fi
 
-echo -n "$(grep -oP 'Host\(`([^`]+)`\)' "$GIT_ROOT/docker-compose.yml" | sed -E 's/Host\(`([^`]+)`\)/\1/' | sort | uniq | awk '{print "DNS:" $0}' | paste -s -d,)" \
-  >> ext.cnf.template
+# Fetch the desired data using grep
+MATCHED_LINES=$(grep -oP 'Host\(`([^`]+)`\)' "$GIT_ROOT/docker-compose.yml")
 
-echo -n "," >> ext.cnf.template
+# Check if there are any results
+if [[ -n "$MATCHED_LINES" ]]; then
+    PROCESSED_DATA=$(echo "$MATCHED_LINES" | sed -E 's/Host\(`([^`]+)`\)/\1/' | sort | uniq | awk '{print "DNS:" $0}' | paste -s -d,)
+    # Append to ext.cnf.template
+    echo -n "$PROCESSED_DATA" >> ext.cnf.template
+    echo -n "," >> ext.cnf.template
+fi
 
-echo -n "$(grep -oP 'Host\(`([^`]+)`\)' "$GIT_ROOT/docker-compose.frontends.yml" | sed -E 's/Host\(`([^`]+)`\)/\1/' | sort | uniq | awk '{print "DNS:" $0}' | paste -s -d,)" \
-  >> ext.cnf.template
+# Fetch the desired data using grep
+MATCHED_LINES=$(grep -oP 'Host\(`([^`]+)`\)' "$GIT_ROOT/docker-compose.frontends.yml")
+
+# Check if there are any results
+if [[ -n "$MATCHED_LINES" ]]; then
+    PROCESSED_DATA=$(echo "$MATCHED_LINES" | sed -E 's/Host\(`([^`]+)`\)/\1/' | sort | uniq | awk '{print "DNS:" $0}' | paste -s -d,)
+    # Append to ext.cnf.template
+    echo -n "$PROCESSED_DATA" >> ext.cnf.template
+fi
 
 if [ ! -f ca.crt ]; then
 
