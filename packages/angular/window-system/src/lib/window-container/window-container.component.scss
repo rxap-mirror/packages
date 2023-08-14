@@ -1,10 +1,9 @@
-.container {
+.window-container {
   cursor: move;
   position: relative;
   z-index: 1;
   max-height: 100vh;
   max-width: 100vw;
-  background-color: white;
 
   &:active {
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
