@@ -100,14 +100,19 @@ async function createOpenApiClientSdkLibrary(
   fragments.shift(); // remove the root folder
   const directory = `open-api/${ fragments.join('/') }`;
 
-  await libraryGenerator(tree, {
-    name,
-    directory,
-    unitTestRunner: 'none',
-    tags: 'open-api',
-    buildable: false,
-    bundler: 'none',
-  });
+  try {
+    await libraryGenerator(tree, {
+      name,
+      directory,
+      unitTestRunner: 'none',
+      tags: 'open-api',
+      buildable: false,
+      bundler: 'none',
+    });
+  } catch (e: any) {
+    console.warn(`Can't create open api client sdk library: ${ e.message }`);
+    return;
+  }
 
   let tsConfig: any;
 
