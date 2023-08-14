@@ -3,16 +3,19 @@ import {
   EventEmitter,
   HostBinding,
   HostListener,
-  Inject,
   Injector,
   Input,
   isDevMode,
   OnChanges,
   OnInit,
-  Optional,
   Output,
 } from '@angular/core';
-import { MatButton } from '@angular/material/button';
+import {
+  MatButton,
+  MatFabButton,
+  MatIconButton,
+  MatMiniFabButton,
+} from '@angular/material/button';
 import { BaseDataSource } from '@rxap/data-source';
 import { AbstractTableDataSource } from '@rxap/data-source/table';
 import { GenerateRandomString } from '@rxap/utilities';
@@ -49,12 +52,11 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
   protected _hasOpenWindow = false;
   private invalidInputs = false;
 
+  private matButton: MatButton | null = null;
+
   constructor(
     private readonly openMethod: OpenTableSelectWindowMethod<Data>,
     private readonly injector: Injector,
-    @Optional()
-    @Inject(MatButton)
-    private readonly matButton: MatButton | null,
   ) {
   }
 
@@ -73,6 +75,10 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
   }
 
   public ngOnInit() {
+    this.matButton = this.injector.get<MatButton>(
+      MatButton,
+      this.injector.get(MatIconButton, this.injector.get(MatMiniFabButton, this.injector.get(MatFabButton, null))),
+    );
     this.checkInputs();
   }
 
