@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.10...@rxap/plugin-docker@16.0.0-dev.11) (2023-08-14)
+
+### Bug Fixes
+
+- use shared Dockerfile for angular projects ([a56a7be](https://gitlab.com/rxap/packages/commit/a56a7be4541068363201ca4f6bdc348ed9208b76))
+
 # [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.9...@rxap/plugin-docker@16.0.0-dev.10) (2023-08-06)
 
 ### Bug Fixes

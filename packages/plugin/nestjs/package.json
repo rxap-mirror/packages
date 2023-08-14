@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-nestjs",
-  "version": "16.1.0-dev.6",
+  "version": "16.1.0-dev.7",
   "type": "commonjs",
   "generators": "./generators.json",
   "publishConfig": {

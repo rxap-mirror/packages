@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-application",
-  "version": "16.1.0-dev.4",
+  "version": "16.1.0-dev.5",
   "type": "commonjs",
   "executors": "./executors.json",
   "publishConfig": {
@@ -36,9 +36,9 @@
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
     "@rxap/generator-utilities": "^1.1.0-dev.4",
-    "@rxap/plugin-angular": "^16.1.0-dev.7",
-    "@rxap/plugin-docker": "^16.0.0-dev.10",
-    "@rxap/plugin-nestjs": "^16.1.0-dev.6",
+    "@rxap/plugin-angular": "^16.1.0-dev.8",
+    "@rxap/plugin-docker": "^16.0.0-dev.11",
+    "@rxap/plugin-nestjs": "^16.1.0-dev.7",
     "@rxap/plugin-utilities": "^16.1.0-dev.6",
     "@rxap/workspace-utilities": "^0.1.0-dev.3",
     "handlebars": "^4.7.7"
@@ -51,15 +51,15 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "16.1.0-dev.7"
+        "version": "16.1.0-dev.8"
       },
       {
         "package": "@rxap/plugin-docker",
-        "version": "16.0.0-dev.10"
+        "version": "16.0.0-dev.11"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "16.1.0-dev.6"
+        "version": "16.1.0-dev.7"
       },
       {
         "package": "@rxap/plugin-utilities",

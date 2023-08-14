@@ -7642,7 +7642,7 @@ __metadata:
     "@rxap/reflect-metadata": ^1.0.1-dev.2
     "@rxap/rxjs": ^1.0.1-dev.2
     "@rxap/services": ^16.0.0-dev.8
-    "@rxap/utilities": ^16.0.0-dev.7
+    "@rxap/utilities": ^16.0.0-dev.8
     "@rxap/validator": ^3.0.0-dev.4
     rxjs: ^7.8.0
   languageName: unknown
@@ -8128,7 +8128,7 @@ __metadata:
     "@rxap/generator-utilities": ^1.1.0-dev.4
     "@rxap/plugin-localazy": ^16.1.0-dev.3
     "@rxap/plugin-utilities": ^16.1.0-dev.6
-    "@rxap/schematics-ts-morph": ^16.0.0-dev.8
+    "@rxap/schematics-ts-morph": ^16.0.0-dev.9
     "@rxap/workspace-ts-morph": ^0.1.0-dev.0
     "@rxap/workspace-utilities": ^0.1.0-dev.3
     nx: ^16.5.0
@@ -8144,9 +8144,9 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.4
-    "@rxap/plugin-angular": ^16.1.0-dev.7
-    "@rxap/plugin-docker": ^16.0.0-dev.10
-    "@rxap/plugin-nestjs": ^16.1.0-dev.6
+    "@rxap/plugin-angular": ^16.1.0-dev.8
+    "@rxap/plugin-docker": ^16.0.0-dev.11
+    "@rxap/plugin-nestjs": ^16.1.0-dev.7
     "@rxap/plugin-utilities": ^16.1.0-dev.6
     "@rxap/workspace-utilities": ^0.1.0-dev.3
     handlebars: ^4.7.7
@@ -8164,7 +8164,7 @@ __metadata:
     "@rxap/generator-utilities": ^1.1.0-dev.4
     "@rxap/node-utilities": ^1.1.0-dev.1
     "@rxap/plugin-utilities": ^16.1.0-dev.6
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.8
   languageName: unknown
   linkType: soft
 
@@ -8306,9 +8306,9 @@ __metadata:
   peerDependencies:
     "@angular-devkit/core": ^16.1.4
     "@angular-devkit/schematics": ^16.1.4
-    "@rxap/schematics-ts-morph": ^16.0.0-dev.8
+    "@rxap/schematics-ts-morph": ^16.0.0-dev.9
     "@rxap/schematics-utilities": ^16.0.0-dev.7
-    "@rxap/utilities": ^16.0.0-dev.7
+    "@rxap/utilities": ^16.0.0-dev.8
     ts-morph: ^18.0.0
   languageName: unknown
   linkType: soft
@@ -8335,9 +8335,9 @@ __metadata:
   peerDependencies:
     "@angular-devkit/core": ^16.1.4
     "@angular-devkit/schematics": ^16.1.4
-    "@rxap/schematics-ts-morph": ^16.0.0-dev.7
+    "@rxap/schematics-ts-morph": ^16.0.0-dev.9
     "@rxap/schematics-utilities": ^16.0.0-dev.7
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.8
     ts-morph: ^18.0.0
   languageName: unknown
   linkType: soft
@@ -8368,7 +8368,7 @@ __metadata:
     "@angular-devkit/core": ^16.1.4
     "@angular-devkit/schematics": ^16.1.4
     "@rxap/schematics-utilities": ^16.0.0-dev.7
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.8
     "@rxap/workspace-ts-morph": ^0.1.0-dev.0
     ts-morph: ^18.0.0
   languageName: unknown

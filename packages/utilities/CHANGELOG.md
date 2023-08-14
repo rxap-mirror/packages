@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.7...@rxap/utilities@16.0.0-dev.8) (2023-08-14)
+
+### Features
+
+- add NonUndefined and NonEmpty type utilities ([68dc8f4](https://gitlab.com/rxap/packages/commit/68dc8f4fb7b1abfd2935f60bac9750a28e824b43))
+
 # [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.6...@rxap/utilities@16.0.0-dev.7) (2023-08-06)
 
 ### Bug Fixes

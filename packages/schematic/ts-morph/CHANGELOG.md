@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.8...@rxap/schematics-ts-morph@16.0.0-dev.9) (2023-08-14)
+
+### Bug Fixes
+
+- controller naming and route ([6004d02](https://gitlab.com/rxap/packages/commit/6004d02890eb4d9b4d8369a9fa9b7726f7af28e2))
+- use correct decorators ([4323cce](https://gitlab.com/rxap/packages/commit/4323cce7c78896b946b043e9ef2a885ae8b1e254))
+
 # [16.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.7...@rxap/schematics-ts-morph@16.0.0-dev.8) (2023-08-05)
 
 ### Features

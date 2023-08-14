@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.4...@rxap/schematic-angular@16.1.0-dev.5) (2023-08-14)
+
+### Bug Fixes
+
+- add missing import ([04df10c](https://gitlab.com/rxap/packages/commit/04df10c4fe7cac05a00793d565fdf5107fac91c8))
+- build controller name for tables ([ce4c728](https://gitlab.com/rxap/packages/commit/ce4c728b941f9808d6d4dd7b1245ce4259acf823))
+- check with role ([d9bacb2](https://gitlab.com/rxap/packages/commit/d9bacb27e94276a5e1860d89a201a02a9ee12634))
+- controller naming and route ([6004d02](https://gitlab.com/rxap/packages/commit/6004d02890eb4d9b4d8369a9fa9b7726f7af28e2))
+- ensure table action respect then backend type ([f49c961](https://gitlab.com/rxap/packages/commit/f49c96109a1c290945bb2d69ac06cf020cfc02d8))
+- extend debug output ([a3f71c6](https://gitlab.com/rxap/packages/commit/a3f71c6a0380037642e72cd03a095d9127c9ee96))
+- generate window specific methods ([b73445f](https://gitlab.com/rxap/packages/commit/b73445fce4f3d29b5942866461436b4c19ddefdb))
+- update table action generator to new concept ([e08a27f](https://gitlab.com/rxap/packages/commit/e08a27fc9755eb25d695991234f8ec1d0770b176))
+- use table type as base for the form filter type ([d05a200](https://gitlab.com/rxap/packages/commit/d05a200bf4c6e6734eecd7029139c3939dc67576))
+
+### Performance Improvements
+
+- improve ts-morph transform performance ([ec059e6](https://gitlab.com/rxap/packages/commit/ec059e68dd50aa89391d71cbcd453a45b2596439))
+
 # [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.3...@rxap/schematic-angular@16.1.0-dev.4) (2023-08-07)
 
 ### Bug Fixes

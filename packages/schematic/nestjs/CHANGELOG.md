@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@0.1.0-dev.0...@rxap/schematic-nestjs@0.1.0-dev.1) (2023-08-14)
+
+### Bug Fixes
+
+- controller naming and route ([6004d02](https://gitlab.com/rxap/packages/commit/6004d02890eb4d9b4d8369a9fa9b7726f7af28e2))
+- prevent undefined access error ([9c249a3](https://gitlab.com/rxap/packages/commit/9c249a3f1edf494e50e765700f3d62dcdfe9bcf0))
+
 # [0.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@0.0.2-dev.1...@rxap/schematic-nestjs@0.1.0-dev.0) (2023-08-04)
 
 ### Bug Fixes

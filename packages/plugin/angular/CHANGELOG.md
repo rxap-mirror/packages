@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.7...@rxap/plugin-angular@16.1.0-dev.8) (2023-08-14)
+
+### Bug Fixes
+
+- use utility docker image for frontend containers ([bb1ca18](https://gitlab.com/rxap/packages/commit/bb1ca18661b4624de822bf5468ee4d090fc6112c))
+
 # [16.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.6...@rxap/plugin-angular@16.1.0-dev.7) (2023-08-06)
 
 ### Bug Fixes
