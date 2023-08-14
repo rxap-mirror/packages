@@ -1,23 +1,30 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit,
-  INJECTOR,
-  Injector,
-  Inject,
 } from '@angular/core';
-import {
-  Observable,
-  from,
-} from 'rxjs';
-import {
-  RowAnimation,
-  TableShowArchivedSlideComponent,
-  RXAP_TABLE_METHOD,
-  TABLE_CREATE_REMOTE_METHOD,
-} from '@rxap/material-table-system';
-import { GetFromObjectPipe } from '@rxap/pipes';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { RouterModule } from '@angular/router';
+import { HasPermissionModule } from '@rxap/authorization';
+
+import { ConfirmModule } from '@rxap/components';
+import { DataSourceErrorComponent } from '@rxap/data-source';
+import { RxapFormsModule } from '@rxap/forms';
+import { CardProgressBarDirective } from '@rxap/material-directives/card';
+import { InputClearButtonDirective } from '@rxap/material-form-system';
 import {
   BooleanCellComponent,
   CopyToClipboardCellComponent,
@@ -25,37 +32,21 @@ import {
   IconCellComponent,
   LinkCellComponent,
   PersistentPaginatorDirective,
+  RowAnimation,
+  RXAP_TABLE_METHOD,
+  TABLE_HEADER_BUTTON_METHOD,
   TableColumnMenuModule,
-  TableCreateButtonDirective,
   TableDataSourceDirective,
   TableFilterModule,
+  TableHeaderButtonDirective,
   TableRowActionsModule,
   TableRowControlsModule,
+  TableShowArchivedSlideComponent,
 } from '@rxap/material-table-system';
-import { MatCardModule } from '@angular/material/card';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { CardProgressBarDirective } from '@rxap/material-directives/card';
-import { MatTableModule } from '@angular/material/table';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { RxapFormsModule } from '@rxap/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { MatDividerModule } from '@angular/material/divider';
-
-import { ConfirmModule } from '@rxap/components';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { InputClearButtonDirective } from '@rxap/material-form-system';
-import { HasPermissionModule } from '@rxap/authorization';
-import { CommonModule } from '@angular/common';
-import { DataSourceErrorComponent } from '@rxap/data-source';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { GetFromObjectPipe } from '@rxap/pipes';
+import { Observable } from 'rxjs';
 import { DummyTableMethod } from '../dummy-table.method';
-import { TableHeaderButtonMethod } from './methods/table-header-button.method';
+import { WindowTableHeaderButtonMethod } from './methods/table-header-button.method';
 
 @Component({
   selector: 'rxap-header-button-table',
@@ -89,7 +80,6 @@ import { TableHeaderButtonMethod } from './methods/table-header-button.method';
     MatInputModule,
     MatButtonModule,
     InputClearButtonDirective,
-    TableCreateButtonDirective,
     TableShowArchivedSlideComponent,
     PersistentPaginatorDirective,
     ConfirmModule,
@@ -102,6 +92,7 @@ import { TableHeaderButtonMethod } from './methods/table-header-button.method';
     BooleanCellComponent,
     DataSourceErrorComponent,
     MatSnackBarModule,
+    TableHeaderButtonDirective,
   ],
   providers: [
     {
@@ -109,8 +100,8 @@ import { TableHeaderButtonMethod } from './methods/table-header-button.method';
       useClass: DummyTableMethod,
     },
     {
-      provide: TABLE_CREATE_REMOTE_METHOD,
-      useClass: TableHeaderButtonMethod,
+      provide: TABLE_HEADER_BUTTON_METHOD,
+      useClass: WindowTableHeaderButtonMethod,
     },
   ],
 })

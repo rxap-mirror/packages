@@ -1,5 +1,10 @@
 <form rxapForm>
 
-  <rxap-form-controls></rxap-form-controls>
+  <ng-template let-windowRef rxapFormWindowFooter>
+    <rxap-form-controls
+      (close)="windowRef.complete()"
+      (submitted)="windowRef.next($event)"
+    ></rxap-form-controls>
+  </ng-template>
 
 </form>

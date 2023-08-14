@@ -1,21 +1,22 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { FormWindowFooterDirective } from '@rxap/form-window-system';
+import { RxapFormsModule } from '@rxap/forms';
+import {
+  FormControlsComponent,
+  MaterialFormSystemModule,
+} from '@rxap/material-form-system';
 
 import {
   FormComponentProviders,
   FormProviders,
 } from './form.providers';
-import {
-  FormControlsComponent,
-  MaterialFormSystemModule,
-} from '@rxap/material-form-system';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RxapFormsModule } from '@rxap/forms';
-import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -31,6 +32,7 @@ import { CommonModule } from '@angular/common';
     MaterialFormSystemModule,
     FormControlsComponent,
     RxapFormsModule,
+    FormWindowFooterDirective,
 
   ],
   providers: [

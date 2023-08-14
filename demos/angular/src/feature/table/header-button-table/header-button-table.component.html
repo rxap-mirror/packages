@@ -14,13 +14,12 @@
 
         <button
           [disabled]="tableDataSourceDirective.hasError$ | async"
-          [rxapTableCreate]="tableDataSourceDirective"
+          [rxapTableHeaderButton]="tableDataSourceDirective"
           color="primary"
           i18n-matTooltip
           mat-card-avatar
           mat-mini-fab
-          matTooltip="Create Header-button"
-
+          matTooltip
         >
           <mat-icon>add</mat-icon>
         </button>
