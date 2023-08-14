@@ -8,6 +8,62 @@
         "navigation-back-header"
       ],
       "backend": "nestjs",
+      "headerButton": {
+        "role": "form",
+        "icon": "add",
+        "options": {
+          "controlList": [
+            {
+              "window": true,
+              "isRequired": true,
+              "name": "Name",
+              "type": "string"
+            },
+            {
+              "window": true,
+              "isRequired": true,
+              "name": "Is Company",
+              "type": "string"
+            },
+            {
+              "window": true,
+              "isRequired": true,
+              "name": "Parent",
+              "type": "uuid"
+            },
+            {
+              "window": true,
+              "isRequired": false,
+              "name": "Contact",
+              "type": "uuid"
+            },
+            {
+              "window": true,
+              "isRequired": false,
+              "name": "Street",
+              "type": "string"
+            },
+            {
+              "window": true,
+              "isRequired": false,
+              "name": "City",
+              "type": "string"
+            },
+            {
+              "window": true,
+              "isRequired": false,
+              "name": "Country",
+              "type": "string"
+            },
+            {
+              "window": true,
+              "isRequired": false,
+              "name": "Zip",
+              "type": "string"
+            }
+          ]
+        }
+      },
       "actionList": [
         {
           "name": "Archive Row",
