@@ -12,7 +12,6 @@ import {
 } from '@angular-devkit/schematics';
 import {
   BuildAngularBasePath,
-  BuildNestControllerName,
   buildOperationId,
   CoerceComponentRule,
   CoerceFormComponentProviderRule,
@@ -136,13 +135,14 @@ function formDefinitionRule(normalizedOptions: NormalizedFormComponentOptions): 
   ]);
 }
 
-function formSubmitProviderRule(normalizedOptions: NormalizedFormComponentOptions, submitOperationId: string): Rule {
+function formSubmitProviderRule(normalizedOptions: NormalizedFormComponentOptions): Rule {
   const {
     project,
     feature,
     directory,
     scope,
   } = normalizedOptions;
+  const submitOperationId = getSubmitOperationId(normalizedOptions);
   return chain([
     () => console.log(`Coerce form submit method`),
     CoerceFormComponentProviderRule({
@@ -177,7 +177,6 @@ function formSubmitProviderRule(normalizedOptions: NormalizedFormComponentOption
       ],
     }),
   ]);
-
 }
 
 function formSubmitBackendRule(normalizedOptions: NormalizedFormComponentOptions): Rule {
@@ -187,8 +186,6 @@ function formSubmitBackendRule(normalizedOptions: NormalizedFormComponentOptions
     project,
     feature,
     controlList,
-    context,
-    componentName,
     controllerName,
     nestModule,
     shared,
@@ -224,17 +221,9 @@ function formSubmitRule(normalizedOptions: NormalizedFormComponentOptions): Rule
   } = normalizedOptions;
 
   if ([ BackendTypes.NESTJS ].includes(backend)) {
-    const submitOperationId = buildOperationId(
-      normalizedOptions,
-      'submit',
-      BuildNestControllerName({
-        controllerName,
-        nestModule,
-      }),
-    );
     return chain([
       formSubmitBackendRule(normalizedOptions),
-      formSubmitProviderRule(normalizedOptions, submitOperationId),
+      formSubmitProviderRule(normalizedOptions),
     ]);
   }
 
@@ -271,6 +260,24 @@ function windowRule(normalizedOptions: NormalizedFormComponentOptions): Rule {
 
   return noop();
 
+}
+
+function getSubmitOperationId(normalizedOptions: NormalizedFormComponentOptions): string {
+  const {
+    project,
+    feature,
+    shared,
+    controllerName,
+  } = normalizedOptions;
+  return buildOperationId(
+    {
+      project,
+      feature,
+      shared,
+    },
+    'submit',
+    controllerName,
+  );
 }
 
 function printFormComponentOptions(options: NormalizedFormComponentOptions) {
