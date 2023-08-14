@@ -140,7 +140,9 @@ export default function (options: OperationTableActionOptions) {
     AssertTableComponentExists(host, normalizedOptions);
 
     return chain([
+      () => console.group('\x1b[32m[@rxap/schematics-angular:operation-table-action]\x1b[0m'),
       backendRule(normalizedOptions),
+      () => console.groupEnd(),
     ]);
 
   };

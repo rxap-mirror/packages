@@ -635,6 +635,7 @@ export default function (options: TableComponentOptions) {
 
   return function () {
     return chain([
+      () => console.group('\x1b[32m[@rxap/schematics-angular:table-component]\x1b[0m'),
       tableInterfaceRule(normalizedOptions),
       componentRule(normalizedOptions),
       headerButtonRule(normalizedOptions),
@@ -643,6 +644,7 @@ export default function (options: TableComponentOptions) {
       cellComponentRule(normalizedOptions),
       actionListRule(normalizedOptions),
       selectColumnRule(normalizedOptions),
+      () => console.groupEnd(),
     ]);
   };
 }

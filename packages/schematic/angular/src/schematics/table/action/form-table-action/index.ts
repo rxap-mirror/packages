@@ -279,6 +279,7 @@ export default function (options: FormTableActionOptions) {
     AssertTableComponentExists(host, normalizedOptions);
 
     return chain([
+      () => console.group('\x1b[32m[@rxap/schematics-angular:form-table-action]\x1b[0m'),
       () => console.info(`Generating form table action rule...`),
       CoerceFormTableActionRule({
         scope,
@@ -313,6 +314,7 @@ export default function (options: FormTableActionOptions) {
       }),
       () => console.info(`Generating backend...`),
       backendRule(normalizedOptions),
+      () => console.groupEnd(),
     ]);
   };
 }

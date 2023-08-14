@@ -46,7 +46,8 @@ import {
 import { GetFromObjectPipe } from '@rxap/pipes';
 import { Observable } from 'rxjs';
 import { DummyTableMethod } from '../dummy-table.method';
-import { WindowTableHeaderButtonMethod } from './methods/table-header-button.method';
+import { TableHeaderButtonFormMethod } from './methods/table-header-button-form.method';
+import { OpenTableHeaderButtonFormWindowMethod } from './table-header-button-form/open-table-header-button-form-window.method';
 
 @Component({
   selector: 'rxap-header-button-table',
@@ -80,6 +81,7 @@ import { WindowTableHeaderButtonMethod } from './methods/table-header-button.met
     MatInputModule,
     MatButtonModule,
     InputClearButtonDirective,
+    TableHeaderButtonDirective,
     TableShowArchivedSlideComponent,
     PersistentPaginatorDirective,
     ConfirmModule,
@@ -92,7 +94,6 @@ import { WindowTableHeaderButtonMethod } from './methods/table-header-button.met
     BooleanCellComponent,
     DataSourceErrorComponent,
     MatSnackBarModule,
-    TableHeaderButtonDirective,
   ],
   providers: [
     {
@@ -101,9 +102,10 @@ import { WindowTableHeaderButtonMethod } from './methods/table-header-button.met
     },
     {
       provide: TABLE_HEADER_BUTTON_METHOD,
-      useClass: WindowTableHeaderButtonMethod,
+      useClass: TableHeaderButtonFormMethod,
     },
-  ],
+    OpenTableHeaderButtonFormWindowMethod,
+  ]
 })
 export class HeaderButtonTableComponent {
 

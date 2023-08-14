@@ -62,6 +62,7 @@ export default function (options: FormControlOptions) {
 
   return () => {
     return chain([
+      () => console.group('\x1b[32m[@rxap/schematics-angular:form-control]\x1b[0m'),
       () => console.log('Coerce control in form definition class ...'),
       CoerceFormDefinitionControl({
         project,
@@ -75,6 +76,7 @@ export default function (options: FormControlOptions) {
         isRequired,
         validatorList,
       }),
+      () => console.groupEnd(),
     ]);
   };
 }

@@ -13,13 +13,13 @@
 
 
         <button
-          [disabled]="tableDataSourceDirective.hasError$ | async"
-          [rxapTableHeaderButton]="tableDataSourceDirective"
-          color="primary"
-          i18n-matTooltip
           mat-card-avatar
           mat-mini-fab
+          [disabled]="tableDataSourceDirective.hasError$ | async"
           matTooltip
+          [rxapTableHeaderButton]="tableDataSourceDirective"
+          color="primary"
+
         >
           <mat-icon>add</mat-icon>
         </button>
@@ -71,6 +71,8 @@
 
       <mat-card-content>
         <rxap-data-source-error
+          [error]="tableDataSourceDirective.dataSource?.error$"
+          [loading]="tableDataSourceDirective.loading$"
           *ngIf="tableDataSourceDirective.hasError$ | async"
           [refresh]="tableDataSourceDirective.retry">
         </rxap-data-source-error>
@@ -78,9 +80,9 @@
           <table
             [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
             [paginator]="paginator"
+            matSort
             #tableDataSourceDirective="rxapTableDataSource"
             mat-table
-            matSort
             rxapTableDataSource
             [parameters]="parameters"
             id="header-button"
@@ -94,9 +96,9 @@
                 <ng-container i18n>Removed at</ng-container>
               </th>
               <td
+                mat-cell
                 *matCellDef="let element"
                 [rxap-date-cell]="element.__removedAt"
-                mat-cell
               ></td>
             </ng-container>
             <ng-container matColumnDef="uuid">
@@ -172,9 +174,9 @@
 
             <tr
               [@rowsAnimation]=""
+              mat-row
               [ngClass]="{ 'rxap-row-odd !bg-neutral-200 dark:!bg-neutral-600': odd, 'rxap-row-even': even }"
               class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
-              mat-row
               *matRowDef="
               let element;
               columns: rxapTableColumns.displayColumns;

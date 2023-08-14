@@ -6,12 +6,15 @@ import {
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+
 import { FormWindowFooterDirective } from '@rxap/form-window-system';
 import { RxapFormsModule } from '@rxap/forms';
 import {
   FormControlsComponent,
   MaterialFormSystemModule,
 } from '@rxap/material-form-system';
+
+import { RXAP_WINDOW_SETTINGS } from '@rxap/window-system';
 
 import {
   FormComponentProviders,
@@ -32,6 +35,7 @@ import {
     MaterialFormSystemModule,
     FormControlsComponent,
     RxapFormsModule,
+
     FormWindowFooterDirective,
 
   ],
@@ -42,6 +46,13 @@ import {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {
         appearance: 'fill',
+      },
+    },
+
+    {
+      provide: RXAP_WINDOW_SETTINGS,
+      useValue: {
+        title: $localize`TableHeaderButton`,
       },
     },
 

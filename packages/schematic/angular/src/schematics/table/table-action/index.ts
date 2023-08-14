@@ -61,6 +61,7 @@ export default function (options: TableActionOptions) {
     AssertTableComponentExists(host, normalizedOptions);
 
     return chain([
+      () => console.group('\x1b[32m[@rxap/schematics-angular:table-action]\x1b[0m'),
       CoerceTableActionRule({
         directory: join(directory ?? '', 'methods', 'action'),
         type,
@@ -75,6 +76,7 @@ export default function (options: TableActionOptions) {
         project,
         feature,
       }),
+      () => console.groupEnd(),
     ]);
   };
 }

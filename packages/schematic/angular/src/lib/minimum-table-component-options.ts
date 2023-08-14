@@ -10,11 +10,11 @@ import {
   buildOperationId,
   CoerceClassConstructor,
   CoerceComponentRule,
+  CoerceDecorator,
   CoerceImports,
   CoerceInterface,
   CoerceMethodClass,
   CoerceParameterDeclaration,
-  CoerceStatements,
   CoerceTypeAlias,
   OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
@@ -32,7 +32,9 @@ import {
 import { join } from 'path';
 import {
   Project,
+  Scope,
   SourceFile,
+  Writers,
 } from 'ts-morph';
 import {
   AngularOptions,
@@ -489,13 +491,13 @@ export function headerButtonRule(normalizedOptions: NormalizedMinimumTableCompon
         return chain([
           () => console.log(`Coerce the form for the create button`),
           ExecuteSchematic('form-component', {
+            ...headerButton.options,
             project,
             name: `table-header-button`,
             feature,
             directory,
             shared,
             window: true,
-            controlList: [],
             nestModule: (shared ? undefined : nestModule) ?? controllerName,
             context,
             backend,
@@ -506,72 +508,30 @@ export function headerButtonRule(normalizedOptions: NormalizedMinimumTableCompon
             feature,
             shared,
             directory: join(directory ?? '', 'methods'),
-            name: 'table-header-button',
+            name: 'table-header-button-form',
             overwrite,
             tsMorphTransform: (project, sourceFile, classDeclaration) => {
               const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
-              CoerceParameterDeclaration(constructorDeclaration, 'formWindowService', {
-                type: 'FormWindowService',
-              });
-              CoerceParameterDeclaration(constructorDeclaration, 'injector', {
-                type: 'Injector',
-                decorators: [
-                  {
-                    name: 'Inject',
-                    arguments: [ 'INJECTOR' ],
-                  },
-                ],
-              });
-              CoerceParameterDeclaration(constructorDeclaration, 'defaultOptions', {
-                type: 'FormWindowOptions<ITableHeaderButtonForm> | null',
-                initializer: 'null',
-                decorators: [
-                  {
-                    name: 'Inject',
-                    arguments: [ 'RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS' ],
-                  },
-                  {
-                    name: 'Optional',
-                    arguments: [],
-                  },
-                ],
+              CoerceParameterDeclaration(constructorDeclaration, 'openWindowMethod', {
+                isReadonly: true,
+                scope: Scope.Private,
+                type: 'OpenTableHeaderButtonFormWindowMethod',
               });
               CoerceImports(sourceFile, [
                 {
-                  moduleSpecifier: '@angular/core',
-                  namedImports: [ 'Injector', 'INJECTOR', 'Inject', 'Optional' ],
+                  moduleSpecifier: '../table-header-button-form/open-table-header-button-form-window.method',
+                  namedImports: [ 'OpenTableHeaderButtonFormWindowMethod' ],
                 },
                 {
-                  moduleSpecifier: '@rxap/form-window-system',
-                  namedImports: [
-                    'FormWindowOptions',
-                    'FormWindowService',
-                    'OpenFormWindowMethod',
-                    'RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS',
-                  ],
-                },
-                {
-                  moduleSpecifier: '../table-header-button-form/table-header-button.form',
-                  namedImports: [ 'ITableHeaderButtonForm', 'TableHeaderButtonForm' ],
-                },
-                {
-                  moduleSpecifier: '../table-header-button-form/table-header-button-form.component',
-                  namedImports: [ 'TableHeaderButtonFormComponent' ],
-                },
+                  moduleSpecifier: '@rxap/material-table-system',
+                  namedImports: [ 'TableHeaderButtonMethod' ],
+                }
               ]);
-              CoerceStatements(constructorDeclaration, [
-                'super(',
-                'formWindowService,',
-                'TableHeaderButtonForm,',
-                'injector,',
-                'TableHeaderButtonFormComponent,',
-                'defaultOptions,',
-                ');',
-              ]);
-              classDeclaration.setExtends('OpenFormWindowMethod<ITableHeaderButtonForm>');
+              CoerceDecorator(classDeclaration, 'TableHeaderButtonMethod', {
+                arguments: [ Writers.object({ refresh: 'true' }) ],
+              });
               return {
-                hasOverrideKeyword: true,
-                statements: [ 'super.call(parameters);' ],
+                statements: [ 'return this.openWindowMethod.call(parameters).toPromise();' ],
               };
             },
           }),
@@ -589,17 +549,27 @@ export function headerButtonRule(normalizedOptions: NormalizedMinimumTableCompon
               AddComponentProvider(
                 sourceFile,
                 {
-                  provide: 'TABLE_CREATE_REMOTE_METHOD',
-                  useClass: 'TableHeaderButtonMethod',
+                  provide: 'TABLE_HEADER_BUTTON_METHOD',
+                  useClass: 'TableHeaderButtonFormMethod',
                 },
                 [
                   {
                     moduleSpecifier: '@rxap/material-table-system',
-                    namedImports: [ 'TABLE_CREATE_REMOTE_METHOD' ],
+                    namedImports: [ 'TABLE_HEADER_BUTTON_METHOD' ],
                   },
                   {
-                    moduleSpecifier: './methods/table-header-button.method',
-                    namedImports: [ 'TableHeaderButtonMethod' ],
+                    moduleSpecifier: './methods/table-header-button-form.method',
+                    namedImports: [ 'TableHeaderButtonFormMethod' ],
+                  },
+                ],
+              );
+              AddComponentProvider(
+                sourceFile,
+                'OpenTableHeaderButtonFormWindowMethod',
+                [
+                  {
+                    moduleSpecifier: './table-header-button-form/open-table-header-button-form-window.method',
+                    namedImports: [ 'OpenTableHeaderButtonFormWindowMethod' ],
                   },
                 ],
               );

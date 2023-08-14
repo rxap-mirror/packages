@@ -21,10 +21,9 @@
         mat-card-avatar
         mat-mini-fab
         color="primary"
-        matTooltip="<%= headerButton.label %>"
-        i18n-matTooltip
+        matTooltip
         [disabled]="tableDataSourceDirective.hasError$ | async"
-        <% if (headerButton.role === 'form') { %>[rxapTableCreate]="tableDataSourceDirective"<% } %>
+        [rxapTableHeaderButton]="tableDataSourceDirective"
         <% if (headerButton.permission) { %>rxapHasEnablePermission="<%= headerButton.permission %>"<% } %>
       >
         <% if (headerButton.icon) { %><mat-icon><%= headerButton.icon %></mat-icon><% } else if (headerButton.svgIcon) { %><mat-icon svgIcon="<%= headerButton.svgIcon %>"></mat-icon><% } else { %><mat-icon>add</mat-icon><% } %>

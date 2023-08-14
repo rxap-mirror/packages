@@ -11,16 +11,14 @@ import {
   OpenFormWindowMethod,
   RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS,
 } from '@rxap/form-window-system';
-import { TableHeaderButtonMethod } from '@rxap/material-table-system';
-import { TableHeaderButtonFormComponent } from '../table-header-button-form/table-header-button-form.component';
+import { TableHeaderButtonFormComponent } from './table-header-button-form.component';
 import {
   ITableHeaderButtonForm,
   TableHeaderButtonForm,
-} from '../table-header-button-form/table-header-button.form';
+} from './table-header-button.form';
 
-@TableHeaderButtonMethod()
 @Injectable()
-export class WindowTableHeaderButtonMethod extends OpenFormWindowMethod<ITableHeaderButtonForm> {
+export class OpenTableHeaderButtonFormWindowMethod extends OpenFormWindowMethod<ITableHeaderButtonForm> {
   constructor(
     @Inject(FormWindowService) formWindowService: FormWindowService,
     @Inject(INJECTOR)
@@ -36,9 +34,5 @@ export class WindowTableHeaderButtonMethod extends OpenFormWindowMethod<ITableHe
       TableHeaderButtonFormComponent,
       defaultOptions,
     );
-  }
-
-  override call(parameters?: any): any {
-    return super.call(parameters);
   }
 }

@@ -282,7 +282,12 @@ function getSubmitOperationId(normalizedOptions: NormalizedFormComponentOptions)
 
 function printFormComponentOptions(options: NormalizedFormComponentOptions) {
   PrintAngularOptions('form-component', options);
-  console.log(`=== controls: ${ options.controlList.map((c) => c.name).join(', ') }`);
+  if (options.controlList.length) {
+    console.log(`=== controls: ${ options.controlList.map((c) => c.name).join(', ') }`);
+  } else {
+    console.log(`=== controls: NONE`);
+  }
+  console.log(`\x1b[34m===== WINDOW: \x1b[36m${ options.window }\x1b[0m`);
 }
 
 export default function (options: FormComponentOptions) {
@@ -290,10 +295,12 @@ export default function (options: FormComponentOptions) {
   printFormComponentOptions(normalizedOptions);
   return function () {
     return chain([
+      () => console.group('\x1b[32m[@rxap/schematics-angular:form-component]\x1b[0m'),
       componentRule(normalizedOptions),
       windowRule(normalizedOptions),
       formDefinitionRule(normalizedOptions),
       formSubmitRule(normalizedOptions),
+      () => console.groupEnd(),
     ]);
   };
 }

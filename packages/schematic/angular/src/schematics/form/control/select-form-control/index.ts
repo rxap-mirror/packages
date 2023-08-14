@@ -95,6 +95,7 @@ export default function (options: SelectFormControlOptions) {
 
   return () => {
     return chain([
+      () => console.group('\x1b[32m[@rxap/schematics-angular:select-form-control]\x1b[0m'),
       ExecuteSchematic('form-control', normalizedOptions),
       () =>
         staticDataSource
@@ -186,6 +187,7 @@ export default function (options: SelectFormControlOptions) {
         },
       }),
       EnforceUseFormControlOrderRule(normalizedOptions),
+      () => console.groupEnd(),
     ]);
   };
 }

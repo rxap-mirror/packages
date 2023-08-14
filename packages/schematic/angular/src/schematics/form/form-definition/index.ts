@@ -1,9 +1,9 @@
-import { FormDefinitionOptions } from './schema';
 import { chain } from '@angular-devkit/schematics';
 import {
   CoerceFormDefinition,
   CoerceFormProvidersFile,
 } from '@rxap/schematics-ts-morph';
+import { Normalized } from '@rxap/utilities';
 import {
   AssertAngularOptionsNameProperty,
   NormalizeAngularOptions,
@@ -14,7 +14,7 @@ import {
   NormalizedFormDefinitionControl,
   NormalizeFormDefinitionControlList,
 } from '../../../lib/form-definition-control';
-import { Normalized } from '@rxap/utilities';
+import { FormDefinitionOptions } from './schema';
 
 export interface NormalizedFormDefinitionOptions
   extends Readonly<Normalized<FormDefinitionOptions> & NormalizedAngularOptions> {
@@ -35,7 +35,11 @@ export function NormalizeFormDefinitionOptions(
 
 function printFormDefinitionOptions(options: NormalizedFormDefinitionOptions) {
   PrintAngularOptions('form-definition', options);
-  console.log(`=== controls: ${ options.controlList.map((c) => c.name).join(', ') }`);
+  if (options.controlList.length) {
+    console.log(`=== controls: ${ options.controlList.map((c) => c.name).join(', ') }`);
+  } else {
+    console.log(`=== controls: NONE`);
+  }
 }
 
 export default function (options: FormDefinitionOptions) {
@@ -50,6 +54,7 @@ export default function (options: FormDefinitionOptions) {
   printFormDefinitionOptions(normalizedOptions);
   return () => {
     return chain([
+      () => console.group('\x1b[32m[@rxap/schematics-angular:form-definition]\x1b[0m'),
       () => console.log('Coerce form definition class ...'),
       CoerceFormDefinition({
         project,
@@ -65,6 +70,7 @@ export default function (options: FormDefinitionOptions) {
         directory,
         name,
       }),
+      () => console.groupEnd(),
     ]);
   };
 }

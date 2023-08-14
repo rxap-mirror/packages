@@ -1,5 +1,5 @@
-import { Normalized } from '@rxap/utilities';
 import { capitalize } from '@rxap/schematics-utilities';
+import { Normalized } from '@rxap/utilities';
 
 export interface TableHeaderButton {
   role?: string;
@@ -7,6 +7,7 @@ export interface TableHeaderButton {
   icon?: string;
   svgIcon?: string;
   label?: string;
+  options?: Record<string, any>;
 }
 
 export function NormalizeTableHeaderButton(
@@ -21,6 +22,7 @@ export function NormalizeTableHeaderButton(
   let svgIcon: string | null = null;
   let permission: string | null = null;
   let label: string | null = null;
+  let options: Record<string, any> | null = null;
   if (typeof tableHeaderButton === 'string') {
     // role:modifier1,modifier2
     // create:icon(add),permission(create)
@@ -53,12 +55,15 @@ export function NormalizeTableHeaderButton(
     svgIcon = tableHeaderButton.svgIcon ?? svgIcon;
     permission = tableHeaderButton.permission ?? permission;
     label = tableHeaderButton.label ?? label;
+    options = tableHeaderButton.options ?? options;
   }
+  options ??= {};
   return {
     role,
     icon,
     svgIcon,
     permission,
+    options,
     label: label || ((role === 'form' ? 'Create ' : '') + capitalize(name)),
   };
 }

@@ -10,7 +10,14 @@
       },
       "headerButton": {
         "role": "form",
-        "icon": "add"
+        "icon": "add",
+        "options": {
+          "controlList": [
+            {
+              "name": "name"
+            }
+          ]
+        }
       },
       "columnList": [
         {
@@ -33,19 +40,6 @@
         },
         {
           "name": "accountStatus"
-        }
-      ]
-    }
-  },
-  {
-    "package": "@rxap/schematic-angular",
-    "name": "form-component",
-    "options": {
-      "name": "table-header-button",
-      "directory": "header-button-table",
-      "controlList": [
-        {
-          "name": "name"
         }
       ]
     }

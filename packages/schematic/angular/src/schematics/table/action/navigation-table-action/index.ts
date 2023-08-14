@@ -53,6 +53,7 @@ export default function (options: NavigationTableActionOptions) {
     AssertTableComponentExists(host, normalizedOptions);
 
     return chain([
+      () => console.group('\x1b[32m[@rxap/schematics-angular:navigation-table-action]\x1b[0m'),
       CoerceNavigationTableActionRule({
         directory: join(directory ?? '', 'methods', 'action'),
         type,
@@ -68,6 +69,7 @@ export default function (options: NavigationTableActionOptions) {
         feature,
         route,
       }),
+      () => console.groupEnd(),
     ]);
   };
 }

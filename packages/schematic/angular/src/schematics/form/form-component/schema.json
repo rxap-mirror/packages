@@ -31,13 +31,11 @@
     },
     "shared": {
       "type": "boolean",
-      "description": "Whether the form is shared across applications",
-      "default": false
+      "description": "Whether the form is shared across applications"
     },
     "window": {
       "type": "boolean",
-      "description": "Whether the form can be opened in a window",
-      "default": false
+      "description": "Whether the form can be opened in a window"
     },
     "directory": {
       "type": "string",
@@ -78,8 +76,7 @@
               },
               "isRequired": {
                 "type": "boolean",
-                "description": "Whether the control value is required",
-                "default": false
+                "description": "Whether the control value is required"
               },
               "validatorList": {
                 "type": "array",

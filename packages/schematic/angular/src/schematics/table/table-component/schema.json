@@ -106,6 +106,10 @@
             },
             "svgIcon": {
               "type": "string"
+            },
+            "options": {
+              "type": "object",
+              "additionalProperties": true
             }
           }
         }

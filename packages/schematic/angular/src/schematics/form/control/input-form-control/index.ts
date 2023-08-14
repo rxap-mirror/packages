@@ -1,12 +1,12 @@
-import { InputFormControlOptions } from './schema';
 import { chain } from '@angular-devkit/schematics';
+import { ExecuteSchematic } from '@rxap/schematics-utilities';
+import { Normalized } from '@rxap/utilities';
+import { PrintAngularOptions } from '../../../../lib/angular-options';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,
 } from '../../form-control';
-import { Normalized } from '@rxap/utilities';
-import { PrintAngularOptions } from '../../../../lib/angular-options';
-import { ExecuteSchematic } from '@rxap/schematics-utilities';
+import { InputFormControlOptions } from './schema';
 
 export function GuessInputType(type: string): string {
   switch (type) {
@@ -45,6 +45,10 @@ export default function (options: InputFormControlOptions) {
   const normalizedOptions = NormalizeInputFormControlOptions(options);
   printOptions(normalizedOptions);
   return () => {
-    return chain([ ExecuteSchematic('form-control', normalizedOptions) ]);
+    return chain([
+      () => console.group('\x1b[32m[@rxap/schematics-angular:input-form-control]\x1b[0m'),
+      ExecuteSchematic('form-control', normalizedOptions),
+      () => console.groupEnd(),
+    ]);
   };
 }
