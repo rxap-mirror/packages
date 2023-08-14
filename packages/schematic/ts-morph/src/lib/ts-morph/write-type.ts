@@ -3,7 +3,12 @@ import {
   WriterFunction,
 } from 'ts-morph';
 
-export function WriteType(property: { type: string | WriterFunction, isArray?: boolean }) {
+export interface WriteTypeOptions {
+  isArray?: boolean;
+  type: string | WriterFunction;
+}
+
+export function WriteType(property: WriteTypeOptions) {
   return (w: CodeBlockWriter) => {
     if (property.isArray) {
       w.write('Array<');
