@@ -89,6 +89,10 @@ export type NotOnlyString<T> = [ T ] extends [ string | null ] ? T : NonString<T
 
 export type NonNull<T> = Diff<T, null>;
 
+export type NonUndefined<T> = Diff<T, undefined>;
+
+export type NonEmpty<T> = NonNull<T> & NonUndefined<T>;
+
 export type RemoveStringInUnions<T> = {
   [K in keyof T]: T[K] extends Array<infer U>
     ? Array<NotOnlyString<U>>
