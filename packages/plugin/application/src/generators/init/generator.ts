@@ -35,28 +35,32 @@ function skipProject(
   return false;
 }
 
-function buildDockerImageSuffix(project: ProjectConfiguration) {
+function buildDockerImageSuffix(project: ProjectConfiguration, projectName: string) {
   let imageSuffix = `/`;
   if (project.targets?.['build']?.executor?.includes('angular') ||
-    project.name.startsWith('frontend') ||
-    project.name.startsWith('ui') ||
-    project.name.startsWith('user-interface') ||
-    project.name.startsWith('application')) {
+    projectName.startsWith('frontend') ||
+    projectName.startsWith('ui') ||
+    projectName.startsWith('user-interface') ||
+    projectName.startsWith('application')) {
     imageSuffix +=
-      [ 'user-interface', project.name.replace(/^(application|user-interface|ui|frontend)-/, '') ].join('/');
-  } else if (project.name.startsWith('service') || project.name.startsWith('backend')) {
-    imageSuffix += [ 'service', project.name.replace(/^(service|backend)-/, '') ].join('/');
+      [ 'user-interface', projectName.replace(/^(application|user-interface|ui|frontend)-/, '') ].join('/');
+  } else if (projectName.startsWith('service') || projectName.startsWith('backend')) {
+    imageSuffix += [ 'service', projectName.replace(/^(service|backend)-/, '') ].join('/');
   } else {
-    imageSuffix += project.name;
+    imageSuffix += projectName;
   }
   return imageSuffix;
 }
 
-function updateProjectTargets(project: ProjectConfiguration, options: InitGeneratorSchema) {
+function updateProjectTargets(project: ProjectConfiguration, projectName: string, options: InitGeneratorSchema) {
   project.targets ??= {};
 
   if (!project.targets['build']) {
     throw new Error(`The project '${ project.name }' has no build target`);
+  }
+
+  if (!project.sourceRoot) {
+    throw new Error(`The project '${ project.name }' has no source root`);
   }
 
   project.targets['build'].options ??= {};
@@ -75,7 +79,7 @@ function updateProjectTargets(project: ProjectConfiguration, options: InitGenera
     executor: '@rxap/plugin-docker:build',
     options: {
       imageName: options.dockerImageName ?? process.env.IMAGE_NAME,
-      imageSuffix: options.dockerImageSuffix ?? buildDockerImageSuffix(project),
+      imageSuffix: options.dockerImageSuffix ?? buildDockerImageSuffix(project, projectName),
       imageRegistry: options.dockerImageRegistry ?? process.env.REGISTRY,
     },
     configurations: {
@@ -103,6 +107,10 @@ function updateProjectTargets(project: ProjectConfiguration, options: InitGenera
 function updateTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
+  if (!nxJson) {
+    throw new Error('No nx.json found');
+  }
+
   CoerceTargetDefaultsDependency(nxJson, 'docker', 'build');
   CoerceTargetDefaultsDependency(nxJson, 'docker-save', 'docker');
   CoerceTargetDefaultsDependency(nxJson, 'build', 'build-info');
@@ -112,6 +120,10 @@ function updateTargetDefaults(tree: Tree) {
 }
 
 function updateGitIgnore(project: ProjectConfiguration, tree: Tree) {
+
+  if (!project.sourceRoot) {
+    throw new Error(`The project '${ project.name }' has no source root`);
+  }
 
   const gitIgnorePath = join(project.sourceRoot, '.gitignore');
   CoerceIgnorePattern(tree, gitIgnorePath, [
@@ -131,7 +143,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
     console.log(`init project: ${ projectName }`);
 
-    updateProjectTargets(project, options);
+    updateProjectTargets(project, projectName, options);
 
     updateTargetDefaults(tree);
     updateGitIgnore(project, tree);

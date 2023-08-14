@@ -104,6 +104,10 @@ export default async function runExecutor(
 
   const buildJsonFile = JSON.stringify(buildInfo, undefined, 2);
 
+  if (!project.sourceRoot) {
+    throw new Error(`The project '${ project.name }' has no source root`);
+  }
+
   const buildInfoFilePath = join(context.root, project.sourceRoot, 'build.json');
 
   if (existsSync(buildInfoFilePath)) {

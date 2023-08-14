@@ -1,22 +1,22 @@
-import { I18nExecutorSchema } from './schema';
+import { ExecutorContext } from '@nx/devkit';
+import {
+  GetProjectTargetOptions,
+  GuessOutputPath,
+} from '@rxap/plugin-utilities';
 import {
   existsSync,
   readFileSync,
   writeFileSync,
 } from 'fs';
+import { copy } from 'fs-extra';
+import glob from 'glob';
+import { compile } from 'handlebars';
 import {
   basename,
   join,
   relative,
 } from 'path';
-import { compile } from 'handlebars';
-import { ExecutorContext } from '@nx/devkit';
-import { copy } from 'fs-extra';
-import glob from 'glob';
-import {
-  GetProjectTargetOptions,
-  GuessOutputPath,
-} from '@rxap/plugin-utilities';
+import { I18nExecutorSchema } from './schema';
 
 async function createIndexHtml(
   options: I18nExecutorSchema,
@@ -40,6 +40,10 @@ async function createIndexHtml(
 
   const indexHtml = indexHtmlTemplate(options);
 
+  if (!options.outputPath) {
+    throw new Error('The i18n output path is not defined');
+  }
+
   const indexHtmlFilePath = join(context.root, options.outputPath, 'index.html');
 
   if (existsSync(indexHtmlFilePath)) {
@@ -55,6 +59,9 @@ async function copyFiles(
 ) {
   await Promise.all(pathList.map(async assetPath => {
     if (typeof assetPath === 'string') {
+      if (!outputPath) {
+        throw new Error('The i18n output path is not defined');
+      }
       const assetOutputPath = join(outputPath, basename(assetPath));
       try {
         await copy(assetPath, assetOutputPath);
@@ -62,6 +69,9 @@ async function copyFiles(
         throw new Error(`Could not copy assets '${ assetPath }' to '${ outputPath }': ${ e.message }`);
       }
     } else {
+      if (!outputPath) {
+        throw new Error('The i18n output path is not defined');
+      }
       const assetOutputPath = join(outputPath, assetPath.output);
       try {
         await new Promise((resolve, reject) => glob(assetPath.input + assetPath.glob, (err: any, files: string[]) => {
@@ -91,6 +101,10 @@ async function copyAssets(
 
     if (!context.target) {
       throw new Error('The current builder target is not defined in the context');
+    }
+
+    if (!context.projectName) {
+      throw new Error('The current project name is not defined in the context');
     }
 
     const buildOptions = GetProjectTargetOptions(context, context.projectName, 'build');

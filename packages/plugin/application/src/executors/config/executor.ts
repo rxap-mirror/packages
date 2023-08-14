@@ -1,11 +1,11 @@
-import { ConfigExecutorSchema } from './schema';
+import { ExecutorContext } from '@nx/devkit';
+import { GuessOutputPath } from '@rxap/plugin-utilities';
 import {
   readFileSync,
   writeFileSync,
 } from 'fs';
 import { join } from 'path';
-import { GuessOutputPath } from '@rxap/plugin-utilities';
-import { ExecutorContext } from '@nx/devkit';
+import { ConfigExecutorSchema } from './schema';
 
 function createFileName(key: string): string {
   const match = key.match(/^RXAP_CONFIG_(.*)/);
@@ -33,9 +33,8 @@ function createConfigContent(key: string) {
       }
       return content;
     }
-  } else {
-    throw new Error(`Can not create config from '${ key }'. Env name does not start with 'RXAP_CONFIG'`);
   }
+  throw new Error(`Can not create config from '${ key }'. Env name does not start with 'RXAP_CONFIG'`);
 }
 
 export default async function runExecutor(
@@ -52,7 +51,7 @@ export default async function runExecutor(
         const content = createConfigContent(key);
         console.info(`Add config '${ key }'`);
         writeFileSync(join(outputPath, createFileName(key)), content);
-      } catch (e) {
+      } catch (e: any) {
         console.error(e.message);
         return {
           success: false,
