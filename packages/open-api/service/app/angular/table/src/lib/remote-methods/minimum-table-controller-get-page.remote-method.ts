@@ -28,7 +28,11 @@ import { MinimumTableControllerGetPageResponse } from '../responses/minimum-tabl
 @Injectable({
   providedIn: 'root',
 })
-@RxapOpenApiRemoteMethod('MinimumTableController_getPage')
+@RxapOpenApiRemoteMethod({
+  serverId: 'service-app-angular-table',
+  operationId: 'MinimumTableController_getPage',
+  operation: '{"operationId":"MinimumTableController_getPage","parameters":[{"name":"sortBy","required":false,"in":"query","schema":{"type":"string"}},{"name":"sortDirection","required":false,"in":"query","schema":{"type":"string"}},{"name":"pageSize","required":false,"in":"query","schema":{"type":"number"}},{"name":"pageIndex","required":false,"in":"query","schema":{"type":"number"}},{"name":"filter","required":false,"in":"query","schema":{"type":"array","items":{"type":"string"}}}],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"rows":{"type":"array","items":{"$ref":"#/components/schemas/MinimumTableRowDto"}}},"required":["rows"]}}}}},"method":"get","path":"/minimum-table"}',
+})
 export class MinimumTableControllerGetPageRemoteMethod
   extends OpenApiRemoteMethod<MinimumTableControllerGetPageResponse, MinimumTableControllerGetPageParameter, void> {
   public override call(parameters: OpenApiRemoteMethodParameter<MinimumTableControllerGetPageParameter, void>): Promise<MinimumTableControllerGetPageResponse> {
@@ -43,9 +47,9 @@ export class MinimumTableControllerGetPageRemoteMethod
 export class MinimumTableControllerGetPageRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<MinimumTableControllerGetPageResponse, OpenApiRemoteMethodParameter<MinimumTableControllerGetPageParameter, void>> {
   @Input('minimumTableControllerGetPageRemoteMethodParameters')
-  public override parameters?: OpenApiRemoteMethodParameter<MinimumTableControllerGetPageParameter, void>;
+  declare public parameters?: OpenApiRemoteMethodParameter<MinimumTableControllerGetPageParameter, void>;
   @Input('minimumTableControllerGetPageRemoteMethodError')
-  public override errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
+  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
