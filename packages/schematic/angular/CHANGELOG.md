@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.5...@rxap/schematic-angular@16.1.0-dev.6) (2023-08-14)
+
+### Bug Fixes
+
+- controller name composition ([d7c89a4](https://gitlab.com/rxap/packages/commit/d7c89a41dd3bfa6ab599e1eded3a1f2be92828e7))
+- remove custom controller name generation ([525554b](https://gitlab.com/rxap/packages/commit/525554b252be90339cec8a7d25845b08ae9a7b32))
+- remove old mat tooltip i18n ([fbffc23](https://gitlab.com/rxap/packages/commit/fbffc23fc346b5f5b6636f2b2735e088763c437f))
+- table button component generation ([da7da39](https://gitlab.com/rxap/packages/commit/da7da39788dda48d23d7befcdc8395201e5caafe))
+
+### Features
+
+- add navigation header button schematic ([5293374](https://gitlab.com/rxap/packages/commit/5293374546ce02201abe987dc1f1901c753d55ca))
+
 # [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.4...@rxap/schematic-angular@16.1.0-dev.5) (2023-08-14)
 
 ### Bug Fixes

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.9...@rxap/schematics-ts-morph@16.0.0-dev.10) (2023-08-14)
+
+### Bug Fixes
+
+- coerce getPageData method ([d20dd58](https://gitlab.com/rxap/packages/commit/d20dd58ad4493f6736ee54834c6efb463a2bc95c))
+- controller name composition ([d7c89a4](https://gitlab.com/rxap/packages/commit/d7c89a41dd3bfa6ab599e1eded3a1f2be92828e7))
+
+### Features
+
+- add CoerceTableHeaderButtonMethod function ([49a95a5](https://gitlab.com/rxap/packages/commit/49a95a5a9effeea49dbc94f75f1fd94e3353870d))
+
 # [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.8...@rxap/schematics-ts-morph@16.0.0-dev.9) (2023-08-14)
 
 ### Bug Fixes

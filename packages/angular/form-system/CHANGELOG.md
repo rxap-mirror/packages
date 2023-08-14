@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/form-system@16.0.0-dev.10...@rxap/form-system@16.0.0-dev.11) (2023-08-14)
+
+### Bug Fixes
+
+- convert null context to empty object ([a8b2376](https://gitlab.com/rxap/packages/commit/a8b237678a19e03769e65387ce54830bb8b7fb5a))
+
 # [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/form-system@16.0.0-dev.9...@rxap/form-system@16.0.0-dev.10) (2023-08-06)
 
 ### Bug Fixes

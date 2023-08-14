@@ -1,6 +1,6 @@
 {
   "name": "@rxap/window-system",
-  "version": "16.0.0-dev.10",
+  "version": "16.0.0-dev.11",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
@@ -11,7 +11,7 @@
     "@rxap/material-directives": "^16.0.0-dev.11",
     "@rxap/rxjs": "^1.0.1-dev.2",
     "@rxap/services": "^16.0.0-dev.8",
-    "@rxap/utilities": "^16.0.0-dev.7",
+    "@rxap/utilities": "^16.0.0-dev.9",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -64,7 +64,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.7"
+        "version": "16.0.0-dev.9"
       }
     ]
   }

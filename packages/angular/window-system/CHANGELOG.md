@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/window-system@16.0.0-dev.10...@rxap/window-system@16.0.0-dev.11) (2023-08-14)
+
+### Bug Fixes
+
+- remove old theming concept ([3daa5ca](https://gitlab.com/rxap/packages/commit/3daa5ca9c9a0bf7267f54fc2ab95d8132f4c52ce))
+
 # [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/window-system@16.0.0-dev.9...@rxap/window-system@16.0.0-dev.10) (2023-08-06)
 
 ### Bug Fixes

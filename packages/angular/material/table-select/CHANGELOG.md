@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@16.0.1-dev.3...@rxap/ngx-material-table-select@16.0.1-dev.4) (2023-08-14)
+
+### Bug Fixes
+
+- inject any button type instance ([6f1965a](https://gitlab.com/rxap/packages/commit/6f1965a1478e50ad6d24d637d496b4dea5478055))
+
 ## [16.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@16.0.1-dev.2...@rxap/ngx-material-table-select@16.0.1-dev.3) (2023-08-04)
 
 ### Bug Fixes

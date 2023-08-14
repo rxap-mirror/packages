@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/authorization@16.0.0-dev.10...@rxap/authorization@16.0.0-dev.11) (2023-08-14)
+
+### Bug Fixes
+
+- inject any button type instance ([a2b4b1d](https://gitlab.com/rxap/packages/commit/a2b4b1dfdf1511076d7657dafb4dfd4bd81c8dd2))
+
 # [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/authorization@16.0.0-dev.9...@rxap/authorization@16.0.0-dev.10) (2023-08-06)
 
 ### Bug Fixes

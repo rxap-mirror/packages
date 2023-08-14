@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.14...@rxap/material-table-system@16.0.0-dev.15) (2023-08-14)
+
+### Bug Fixes
+
+- inject correct button type ([812d198](https://gitlab.com/rxap/packages/commit/812d19821eac6769037c800f41d150fda263fa45))
+
+### Features
+
+- add TableHeaderButton directive ([da9bf32](https://gitlab.com/rxap/packages/commit/da9bf3256cad7bc5a7cc3a1d83765876141f926a))
+- support button color input ([b3a41d1](https://gitlab.com/rxap/packages/commit/b3a41d16134488df51c5da02775dd65467f983cc))
+
 # [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.13...@rxap/material-table-system@16.0.0-dev.14) (2023-08-06)
 
 ### Bug Fixes
