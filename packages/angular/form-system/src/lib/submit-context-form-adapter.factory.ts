@@ -1,14 +1,14 @@
-import type {
-  OpenApiRemoteMethod,
-  OpenApiRemoteMethodParameter,
-} from '@rxap/open-api/remote-method';
-import { ProxyRemoteMethod } from '@rxap/remote-method';
 import {
   Inject,
   Injectable,
   InjectionToken,
 } from '@angular/core';
 import { RXAP_FORM_CONTEXT } from '@rxap/forms';
+import type {
+  OpenApiRemoteMethod,
+  OpenApiRemoteMethodParameter,
+} from '@rxap/open-api/remote-method';
+import { ProxyRemoteMethod } from '@rxap/remote-method';
 
 export const SUBMIT_CONTEXT_FORM_ADAPTER_METHOD = new InjectionToken('submit-context-form-adapter-method');
 
@@ -26,11 +26,8 @@ export class SubmitContextFormAdapter
   }
 
   public transformParameters(value: Record<string, unknown>): OpenApiRemoteMethodParameter {
-    if (!this.context) {
-      throw new Error('The provided context is null');
-    }
     return {
-      parameters: this.context,
+      parameters: this.context ?? {},
       requestBody: value,
     };
   }
