@@ -239,6 +239,7 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
     if (metadataList.length === 0) {
       return null;
     }
+    // TODO : handle multiple metadata or not exist metadata
     return metadataList.filter(metadata => metadata.type === this.type)
                        .sort((a, b) => (a.priority ?? 0) - (b.priority ?? 0))[0];
   }
