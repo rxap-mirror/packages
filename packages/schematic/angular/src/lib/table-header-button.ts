@@ -8,12 +8,21 @@ export interface TableHeaderButton {
   svgIcon?: string;
   label?: string;
   options?: Record<string, any>;
+  refresh?: boolean;
+  confirm?: boolean;
+  tooltip?: string;
+  errorMessage?: string;
+  successMessage?: string;
+}
+
+export interface NormalizedTableHeaderButton extends Readonly<Normalized<TableHeaderButton>> {
+  options: Record<string, any>;
 }
 
 export function NormalizeTableHeaderButton(
   tableHeaderButton: Readonly<TableHeaderButton> | string | undefined,
   name: string,
-): Readonly<Normalized<TableHeaderButton>> | null {
+): NormalizedTableHeaderButton | null {
   if (!tableHeaderButton) {
     return null;
   }
@@ -23,6 +32,11 @@ export function NormalizeTableHeaderButton(
   let permission: string | null = null;
   let label: string | null = null;
   let options: Record<string, any> | null = null;
+  let refresh = false;
+  let confirm = false;
+  let tooltip: string | null = null;
+  let errorMessage: string | null = null;
+  let successMessage: string | null = null;
   if (typeof tableHeaderButton === 'string') {
     // role:modifier1,modifier2
     // create:icon(add),permission(create)
@@ -56,6 +70,11 @@ export function NormalizeTableHeaderButton(
     permission = tableHeaderButton.permission ?? permission;
     label = tableHeaderButton.label ?? label;
     options = tableHeaderButton.options ?? options;
+    refresh = tableHeaderButton.refresh ?? refresh;
+    confirm = tableHeaderButton.confirm ?? confirm;
+    tooltip = tableHeaderButton.tooltip ?? tooltip;
+    errorMessage = tableHeaderButton.errorMessage ?? errorMessage;
+    successMessage = tableHeaderButton.successMessage ?? successMessage;
   }
   options ??= {};
   return {
@@ -64,6 +83,11 @@ export function NormalizeTableHeaderButton(
     svgIcon,
     permission,
     options,
+    refresh,
+    confirm,
+    tooltip,
+    errorMessage,
+    successMessage,
     label: label || ((role === 'form' ? 'Create ' : '') + capitalize(name)),
   };
 }

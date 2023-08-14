@@ -93,9 +93,13 @@ export function PrintAngularOptions(schematicName: string, options: NormalizedAn
       console.log(`\x1b[31m===== Backend: NESTJS\x1b[0m`);
       if (nestModule) {
         console.log(`\x1b[36m===== Nest Module: ${ nestModule }\x1b[0m`);
+      } else {
+        console.log(`\x1b[36m===== Nest Module: \x1b[31mNONE\x1b[0m`);
       }
       if (controllerName) {
         console.log(`\x1b[36m===== Controller Name: ${ controllerName }\x1b[0m`);
+      } else {
+        console.log(`\x1b[36m===== Controller Name: \x1b[31mNONE\x1b[0m`);
       }
       break;
 

@@ -13,7 +13,7 @@
         [loading$]="tableDataSourceDirective.loading$"
       ></mat-progress-bar>
       <mat-card-header class="min-h-full h-12">
-      <% if (!hasNavigationBackHeader && !hasWithoutTitle) { %>
+      <% if (!hasWithoutTitle) { %>
       <mat-card-title i18n><%= title %></mat-card-title>
       <% } %>
       <% if (headerButton) { %>

@@ -5,8 +5,10 @@ import {
   Tree,
 } from '@angular-devkit/schematics';
 import {
+  AddComponentProvider,
   BuildNestControllerName,
   buildOperationId,
+  CoerceComponentRule,
   CoerceDtoClass,
   CoerceFormSubmitOperation,
   CoerceFormTableActionRule,
@@ -27,6 +29,7 @@ import {
 import { join } from 'path';
 import {
   OptionalKind,
+  Project,
   SourceFile,
   TypeAliasDeclarationStructure,
 } from 'ts-morph';
@@ -297,6 +300,30 @@ export default function (options: FormTableActionOptions) {
         project,
         feature,
       }),
+      () => console.log('Coerce open form window method to table component ...'),
+      CoerceComponentRule({
+        project,
+        feature,
+        shared,
+        name: tableName,
+        directory,
+        overwrite,
+        tsMorphTransform: (
+          project: Project,
+          [ sourceFile ]: [ SourceFile ],
+        ) => {
+          AddComponentProvider(
+            sourceFile,
+            `Open${ classify(type) }FormWindowMethod`,
+            [
+              {
+                moduleSpecifier: `./${ type }-form/open-${ type }-form-window.method`,
+                namedImports: [ `Open${ classify(type) }FormWindowMethod` ],
+              },
+            ],
+          );
+        },
+      }),
       () => console.info(`Generating form component...`),
       ExecuteSchematic('form-component', {
         ...formOptions ?? {},
@@ -311,6 +338,7 @@ export default function (options: FormTableActionOptions) {
         controllerName,
         overwrite,
         context,
+        backend,
       }),
       () => console.info(`Generating backend...`),
       backendRule(normalizedOptions),

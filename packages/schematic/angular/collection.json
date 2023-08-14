@@ -25,6 +25,16 @@
       "schema": "./src/schematics/table/table-action/schema.json",
       "description": "Generates a table action."
     },
+    "table-header-button": {
+      "factory": "./src/schematics/table/table-header-button/index",
+      "schema": "./src/schematics/table/table-header-button/schema.json",
+      "description": "Generates a table header-button."
+    },
+    "form-table-header-button": {
+      "factory": "./src/schematics/table/header-button/form-table-header-button/index",
+      "schema": "./src/schematics/table/header-button/form-table-header-button/schema.json",
+      "description": "Generates a table form header-button."
+    },
     "accordion-component": {
       "schema": "./src/schematics/accordion/accordion-component/schema.json",
       "factory": "./src/schematics/accordion/accordion-component/index",

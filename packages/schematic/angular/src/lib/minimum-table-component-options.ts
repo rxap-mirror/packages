@@ -5,16 +5,11 @@ import {
   SchematicsException,
 } from '@angular-devkit/schematics';
 import {
-  AddComponentProvider,
   BuildNestControllerName,
   buildOperationId,
-  CoerceClassConstructor,
   CoerceComponentRule,
-  CoerceDecorator,
   CoerceImports,
   CoerceInterface,
-  CoerceMethodClass,
-  CoerceParameterDeclaration,
   CoerceTypeAlias,
   OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
@@ -30,12 +25,6 @@ import {
   Normalized,
 } from '@rxap/utilities';
 import { join } from 'path';
-import {
-  Project,
-  Scope,
-  SourceFile,
-  Writers,
-} from 'ts-morph';
 import {
   AngularOptions,
   AssertAngularOptionsNameProperty,
@@ -474,111 +463,37 @@ export function cellComponentRule(normalizedOptions: NormalizedMinimumTableCompo
 export function headerButtonRule(normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
   const {
     headerButton,
+    name,
     project,
     feature,
-    directory,
+    backend,
     shared,
+    directory,
+    context,
     nestModule,
     controllerName,
-    context,
-    backend,
-    overwrite,
-    componentName,
   } = normalizedOptions;
   if (headerButton) {
+    const options = {
+      tableName: name,
+      project,
+      feature,
+      backend,
+      shared,
+      directory,
+      ...headerButton,
+    };
     switch (headerButton.role) {
       case 'form':
-        return chain([
-          () => console.log(`Coerce the form for the create button`),
-          ExecuteSchematic('form-component', {
-            ...headerButton.options,
-            project,
-            name: `table-header-button`,
-            feature,
-            directory,
-            shared,
-            window: true,
-            nestModule: (shared ? undefined : nestModule) ?? controllerName,
-            context,
-            backend,
-            overwrite,
-          }),
-          CoerceMethodClass({
-            project,
-            feature,
-            shared,
-            directory: join(directory ?? '', 'methods'),
-            name: 'table-header-button-form',
-            overwrite,
-            tsMorphTransform: (project, sourceFile, classDeclaration) => {
-              const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
-              CoerceParameterDeclaration(constructorDeclaration, 'openWindowMethod', {
-                isReadonly: true,
-                scope: Scope.Private,
-                type: 'OpenTableHeaderButtonFormWindowMethod',
-              });
-              CoerceImports(sourceFile, [
-                {
-                  moduleSpecifier: '../table-header-button-form/open-table-header-button-form-window.method',
-                  namedImports: [ 'OpenTableHeaderButtonFormWindowMethod' ],
-                },
-                {
-                  moduleSpecifier: '@rxap/material-table-system',
-                  namedImports: [ 'TableHeaderButtonMethod' ],
-                }
-              ]);
-              CoerceDecorator(classDeclaration, 'TableHeaderButtonMethod', {
-                arguments: [ Writers.object({ refresh: 'true' }) ],
-              });
-              return {
-                statements: [ 'return this.openWindowMethod.call(parameters).toPromise();' ],
-              };
-            },
-          }),
-          CoerceComponentRule({
-            project,
-            feature,
-            shared,
-            name: componentName,
-            directory,
-            overwrite,
-            tsMorphTransform: (
-              project: Project,
-              [ sourceFile ]: [ SourceFile ],
-            ) => {
-              AddComponentProvider(
-                sourceFile,
-                {
-                  provide: 'TABLE_HEADER_BUTTON_METHOD',
-                  useClass: 'TableHeaderButtonFormMethod',
-                },
-                [
-                  {
-                    moduleSpecifier: '@rxap/material-table-system',
-                    namedImports: [ 'TABLE_HEADER_BUTTON_METHOD' ],
-                  },
-                  {
-                    moduleSpecifier: './methods/table-header-button-form.method',
-                    namedImports: [ 'TableHeaderButtonFormMethod' ],
-                  },
-                ],
-              );
-              AddComponentProvider(
-                sourceFile,
-                'OpenTableHeaderButtonFormWindowMethod',
-                [
-                  {
-                    moduleSpecifier: './table-header-button-form/open-table-header-button-form-window.method',
-                    namedImports: [ 'OpenTableHeaderButtonFormWindowMethod' ],
-                  },
-                ],
-              );
-            },
-          }),
-        ]);
+        return ExecuteSchematic('form-table-header-button', {
+          ...options,
+          context,
+          // if the nest module is not defined, then use the controller name as the nest module name
+          nestModule: nestModule ?? controllerName,
+        });
 
       default:
-        throw new SchematicsException(`Unknown header button role ${ headerButton.role }`);
+        return ExecuteSchematic('table-header-button', options);
     }
   }
   return noop();
