@@ -16,6 +16,7 @@ import {
   CoerceParameterDeclaration,
   CoerceStatements,
   CoerceTypeAlias,
+  OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
   TsMorphAngularProjectTransformRule,
 } from '@rxap/schematics-ts-morph';
@@ -117,6 +118,10 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
       CoerceImports(sourceFile, {
         moduleSpecifier: '@rxap/material-table-system',
         namedImports: [ 'TableRowMetadata' ],
+      });
+      CoerceImports(sourceFile, {
+        moduleSpecifier: OperationIdToResponseClassImportPath(operationId),
+        namedImports: [ OperationIdToResponseClassName(operationId) ],
       });
     }, [ `${ dasherize(componentName) }.ts?` ]),
   ]);
