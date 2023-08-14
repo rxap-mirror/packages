@@ -3,25 +3,32 @@ import {
   Directive,
   Inject,
   Injectable,
+  INJECTOR,
+  Injector,
   Input,
   OnDestroy,
   OnInit,
   Optional,
 } from '@angular/core';
-import { AuthorizationService } from './authorization.service';
-import { Required } from '@rxap/utilities';
-import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { MatButton } from '@angular/material/button';
-import { MatInput } from '@angular/material/input';
-import { MatSelect } from '@angular/material/select';
-import { MatCheckbox } from '@angular/material/checkbox';
-import { MatSlideToggle } from '@angular/material/slide-toggle';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   NgControl,
 } from '@angular/forms';
+import {
+  MatButton,
+  MatFabButton,
+  MatIconButton,
+  MatMiniFabButton,
+} from '@angular/material/button';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { CanDisable } from '@angular/material/core';
+import { MatInput } from '@angular/material/input';
+import { MatSelect } from '@angular/material/select';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { AuthorizationService } from './authorization.service';
 import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
 @Injectable()
@@ -77,17 +84,19 @@ export abstract class HasEnablePermission implements OnInit, OnDestroy {
   selector: 'button[rxapHasEnablePermission],[mat-button][rxapHasEnablePermission],[mat-raised-button][rxapHasEnablePermission],[mat-stroked-button][rxapHasEnablePermission],[mat-flat-button][rxapHasEnablePermission],[mat-icon-button][rxapHasEnablePermission],[mat-fab][rxapHasEnablePermission],[mat-mini-fab][rxapHasEnablePermission]',
   standalone: true,
 })
-export class MatButtonHasEnablePermissionDirective extends HasEnablePermission {
+export class MatButtonHasEnablePermissionDirective extends HasEnablePermission implements OnInit {
   @Input('rxapHasEnablePermission')
   public override identifier!: string;
+
+  private _button!: CanDisable;
 
   constructor(
     @Inject(AuthorizationService)
       authorization: AuthorizationService,
     @Inject(ChangeDetectorRef)
       cdr: ChangeDetectorRef,
-    @Inject(MatButton)
-    private readonly matButton: MatButton,
+    @Inject(INJECTOR)
+    private readonly injector: Injector,
     @Optional()
     @Inject(RXAP_AUTHORIZATION_SCOPE)
       scope: string,
@@ -96,8 +105,20 @@ export class MatButtonHasEnablePermissionDirective extends HasEnablePermission {
   }
 
   public setDisabled(disabled: boolean): void {
-    this.matButton.disabled = disabled;
+    this._button.disabled = disabled;
   }
+
+  override ngOnInit() {
+    super.ngOnInit();
+    this._button = this.injector.get<CanDisable>(
+      MatButton,
+      this.injector.get(MatIconButton, this.injector.get(MatMiniFabButton, this.injector.get(MatFabButton, null))),
+    );
+    if (!this._button) {
+      throw new Error('Could not inject the mat button instance!');
+    }
+  }
+
 }
 
 @Directive({
