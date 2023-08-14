@@ -12,7 +12,6 @@ import {
   CoerceFormTableActionRule,
   CoerceImports,
   CoerceOperation,
-  CoerceSourceFile,
   OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
   TsMorphAngularProjectTransformOptions,
@@ -107,11 +106,7 @@ function UseOperationResponseAsFormTypeRule(
   const className = CoerceSuffix(classify(name), 'Form');
   const interfaceName = `I${ className }`;
 
-  return TsMorphAngularProjectTransformRule(options, (project) => {
-    const sourceFile = CoerceSourceFile(
-      project,
-      '/' + CoerceSuffix(name, '.form.ts'),
-    );
+  return TsMorphAngularProjectTransformRule(options, (project, [ sourceFile ]) => {
 
     const interfaceDeclaration = sourceFile.getInterface(interfaceName);
     if (interfaceDeclaration) {
@@ -127,7 +122,7 @@ function UseOperationResponseAsFormTypeRule(
       namedImports: [ OperationIdToResponseClassName(operationId) ],
       moduleSpecifier: OperationIdToResponseClassImportPath(operationId, scope),
     });
-  });
+  }, [ '/' + CoerceSuffix(name, '.form.ts') ]);
 }
 
 function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions): Rule {
