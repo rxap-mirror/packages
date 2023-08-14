@@ -15,7 +15,7 @@ import { plainToInstance } from 'class-transformer';
 import { MinimumTablePageDto } from './dtos/minimum-table-page.dto';
 import { MinimumTableRowDto } from './dtos/minimum-table-row.dto';
 
-@Controller()
+@Controller('minimum-table')
 export class MinimumTableController {
   private toMinimumTableRowDto(item: any, index = 0, pageIndex = 0, pageSize = 1, list = [item]): MinimumTableRowDto {
     return {

@@ -1,8 +1,8 @@
+import { faker } from '@faker-js/faker';
 import {
   NavigationWithInserts,
   RXAP_NAVIGATION_CONFIG,
 } from '@rxap/layout';
-import { faker } from '@faker-js/faker';
 import { dasherize } from '@rxap/utilities';
 
 export const APP_NAVIGATION: () => NavigationWithInserts = () => [
@@ -14,6 +14,11 @@ export const APP_NAVIGATION: () => NavigationWithInserts = () => [
       {
         routerLink: [ '/', 'table', 'action' ],
         label: $localize`Action`,
+        icon: { icon: 'task_alt' },
+      },
+      {
+        routerLink: [ '/', 'table', 'testing' ],
+        label: $localize`Testing`,
         icon: { icon: 'task_alt' },
       },
       {

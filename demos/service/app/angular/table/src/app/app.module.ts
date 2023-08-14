@@ -27,6 +27,7 @@ import {
   SentryOptionsFactory,
 } from '@rxap/nest-utilities';
 import * as Joi from 'joi';
+import { CompanyTableModule } from '../company-table/company-table.module';
 import { environment } from '../environments/environment';
 import { MinimumTableModule } from '../minimum-table/minimum-table.module';
 import { AppController } from './app.controller';
@@ -64,7 +65,8 @@ import { HealthModule } from './health/health.module';
       },
       { logLevels: GetLogLevels() },
     ),
-    MinimumTableModule
+    MinimumTableModule,
+    CompanyTableModule,
   ],
   controllers: [ AppController ],
   providers: [

@@ -1,0 +1,161 @@
+[
+  {
+    "package": "@rxap/schematic-angular",
+    "name": "table-component",
+    "options": {
+      "name": "Company",
+      "modifiers": [
+        "navigation-back-header"
+      ],
+      "backend": "nestjs",
+      "actionList": [
+        {
+          "name": "Archive Row",
+          "type": "archive",
+          "role": "operation",
+          "refresh": true,
+          "confirm": true,
+          "modifiers": [
+            "permission(*.archive)"
+          ]
+        },
+        {
+          "name": "Restore Row",
+          "type": "restore",
+          "role": "operation",
+          "refresh": true,
+          "confirm": true,
+          "modifiers": [
+            "permission(*.archive)"
+          ]
+        },
+        {
+          "name": "Delete Row",
+          "type": "delete",
+          "role": "operation",
+          "refresh": true,
+          "confirm": true,
+          "modifiers": [
+            "permission(*.delete)"
+          ]
+        },
+        {
+          "name": "Company Edit",
+          "type": "edit",
+          "role": "form",
+          "refresh": true,
+          "confirm": false,
+          "modifiers": [
+            "permission(company.update)"
+          ],
+          "options": {
+            "window": true,
+            "name": "Company Edit",
+            "controlList": [
+              {
+                "window": true,
+                "isRequired": true,
+                "name": "Name",
+                "type": "string"
+              },
+              {
+                "window": true,
+                "isRequired": true,
+                "name": "Is Company",
+                "type": "string"
+              },
+              {
+                "window": true,
+                "isRequired": true,
+                "name": "Parent",
+                "type": "uuid"
+              },
+              {
+                "window": true,
+                "isRequired": false,
+                "name": "Contact",
+                "type": "uuid"
+              },
+              {
+                "window": true,
+                "isRequired": false,
+                "name": "Street",
+                "type": "string"
+              },
+              {
+                "window": true,
+                "isRequired": false,
+                "name": "City",
+                "type": "string"
+              },
+              {
+                "window": true,
+                "isRequired": false,
+                "name": "Country",
+                "type": "string"
+              },
+              {
+                "window": true,
+                "isRequired": false,
+                "name": "Zip",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      ],
+      "columnList": [
+        {
+          "name": "Name",
+          "type": "string",
+          "modifiers": [],
+          "hasFilter": true,
+          "propertyPath": "name"
+        },
+        {
+          "name": "Username",
+          "type": "string",
+          "modifiers": [],
+          "hasFilter": true,
+          "propertyPath": "username"
+        },
+        {
+          "name": "Company",
+          "type": "string",
+          "modifiers": [],
+          "hasFilter": false,
+          "propertyPath": "company"
+        },
+        {
+          "name": "Street",
+          "type": "string",
+          "modifiers": [],
+          "hasFilter": true,
+          "propertyPath": "street"
+        },
+        {
+          "name": "Zip",
+          "type": "string",
+          "modifiers": [],
+          "hasFilter": true,
+          "propertyPath": "zip"
+        },
+        {
+          "name": "City",
+          "type": "string",
+          "modifiers": [],
+          "hasFilter": true,
+          "propertyPath": "city"
+        },
+        {
+          "name": "Country",
+          "type": "string",
+          "modifiers": [],
+          "hasFilter": true,
+          "propertyPath": "country"
+        }
+      ],
+      "selectColumn": true
+    }
+  }
+]
