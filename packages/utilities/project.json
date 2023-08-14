@@ -4,15 +4,7 @@
   "sourceRoot": "packages/utilities/src",
   "projectType": "library",
   "targets": {
-    "index-export": {
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": [
-        "{workspaceRoot}/{projectRoot}/src/index.ts"
-      ],
-      "options": {
-        "generator": "@rxap/plugin-library:index-export"
-      }
-    },
+    "index-export": {},
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": [

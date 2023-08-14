@@ -111,6 +111,7 @@
     },
     "check-ng-package": {
       "executor": "@rxap/plugin-angular:check-ng-package"
-    }
+    },
+    "index-export": {}
   }
 }
