@@ -49,7 +49,7 @@ export function NormalizeFormTableHeaderButtonOptions(
 }
 
 function printOptions(options: NormalizedFormTableHeaderButtonOptions) {
-  PrintAngularOptions('table-header-button', options);
+  PrintAngularOptions('form-table-header-button', options);
 }
 
 export default function (options: FormTableHeaderButtonOptions) {

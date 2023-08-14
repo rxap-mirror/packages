@@ -492,6 +492,10 @@ export function headerButtonRule(normalizedOptions: NormalizedMinimumTableCompon
           nestModule: nestModule ?? controllerName,
         });
 
+      case 'navigation':
+      case 'link':
+        return ExecuteSchematic('navigation-table-header-button', options);
+
       default:
         return ExecuteSchematic('table-header-button', options);
     }

@@ -35,6 +35,11 @@
       "schema": "./src/schematics/table/header-button/form-table-header-button/schema.json",
       "description": "Generates a table form header-button."
     },
+    "navigation-table-header-button": {
+      "factory": "./src/schematics/table/header-button/navigation-table-header-button/index",
+      "schema": "./src/schematics/table/header-button/navigation-table-header-button/schema.json",
+      "description": "Generates a table navigation header-button."
+    },
     "accordion-component": {
       "schema": "./src/schematics/accordion/accordion-component/schema.json",
       "factory": "./src/schematics/accordion/accordion-component/index",
