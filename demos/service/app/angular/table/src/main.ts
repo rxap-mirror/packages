@@ -1,22 +1,65 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
-import { Logger } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-
+import {
+  HttpStatus,
+  NestApplicationOptions,
+  ValidationPipe,
+} from '@nestjs/common';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { SentryLogger } from '@rxap/nest-sentry';
+import { Monolithic } from '@rxap/nest-server';
+import {
+  classTransformOptions,
+  ValidationHttpException,
+  validatorOptions,
+} from '@rxap/nest-utilities';
+import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
 import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const globalPrefix = 'api';
-  app.setGlobalPrefix(globalPrefix);
-  const port = process.env.PORT || 3000;
-  await app.listen(port);
-  Logger.log(
-    `🚀 Application is running on: http://localhost:${ port }/${ globalPrefix }`,
-  );
-}
+const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(
+  AppModule,
+  environment,
+  { bufferLogs: true },
+);
 
-bootstrap();
+server.after((app, config) => {
+  if (config.get('SENTRY_ENABLED')) {
+    app.useLogger(app.get(SentryLogger));
+  }
+});
+
+server.after((app) =>
+  app.enableCors({
+    credentials: true,
+    origin: true,
+  }),
+);
+
+server.after((app, config) =>
+  app.use(cookieParser(config.get('cookieSecret'))),
+);
+
+/**
+ * Note that applying helmet as global or registering it must come before other calls to app.use() or setup functions
+ * that may call app.use(). This is due to the way the underlying platform (i.e., Express or Fastify) works, where the
+ * order that middleware/routes are defined matters. If you use middleware like helmet or cors after you define a route,
+ * then that middleware will not apply to that route, it will only apply to routes defined after the middleware.
+ */
+server.after((app) => app.use(helmet()));
+
+server.after((app) =>
+  app.useGlobalPipes(
+    new ValidationPipe({
+      ...validatorOptions,
+      transform: true,
+      transformOptions: classTransformOptions,
+      enableDebugMessages: !environment.production,
+      exceptionFactory: (errors) =>
+        new ValidationHttpException(errors, HttpStatus.BAD_REQUEST),
+    }),
+  ),
+);
+
+server
+  .bootstrap()
+  .catch((e) => console.error('Server bootstrap failed: ' + e.message));
