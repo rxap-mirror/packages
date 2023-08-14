@@ -341,9 +341,11 @@ function CoerceAppController(options: { project: string }) {
         });
         classDeclaration.getMethod('getData')?.remove();
         const [ constructorDeclaration ] = classDeclaration.getConstructors();
-        constructorDeclaration.getParameter('appService')?.remove();
-        if (constructorDeclaration.getParameters().length === 0) {
-          constructorDeclaration.remove();
+        if (constructorDeclaration) {
+          constructorDeclaration.getParameter('appService')?.remove();
+          if (constructorDeclaration.getParameters().length === 0) {
+            constructorDeclaration.remove();
+          }
         }
         sourceFile.getImportDeclaration('./app.service')?.remove();
       },
