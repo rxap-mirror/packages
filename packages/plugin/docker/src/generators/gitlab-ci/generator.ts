@@ -99,6 +99,10 @@ export async function gitlabCiGenerator(
       dockerYaml[`docker:${ projectName }`].variables.IMAGE_SUFFIX = imageSuffix;
     }
 
+    if (project.tags?.includes('angular')) {
+      dockerYaml[`docker:${ projectName }`].variables.DOCKERFILE = 'shared/angular.Dockerfile';
+    }
+
   }
 
   const gitlabCiYaml = stringify(dockerYaml);

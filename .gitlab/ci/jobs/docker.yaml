@@ -21,6 +21,7 @@ docker:angular:
     DOCKER_CONTEXT: dist/demos/angular
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /user-interface/angular
+    DOCKERFILE: shared/angular.Dockerfile
   environment:
     name: $ENVIRONMENT_NAME
 docker:service-configuration:

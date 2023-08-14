@@ -19,6 +19,13 @@
         "generator": "@rxap/plugin-library:init",
         "withoutProjectArgument": true
       }
+    },
+    "docker-gitlab-ci": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-docker:gitlab-ci",
+        "withoutProjectArgument": true
+      }
     }
   }
 }
