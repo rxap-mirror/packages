@@ -3,6 +3,10 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/schematic/nestjs/src",
   "projectType": "library",
+  "implicitDependencies": [
+    "plugin-nestjs",
+    "plugin-application"
+  ],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
