@@ -109,7 +109,6 @@ export class MatButtonHasEnablePermissionDirective extends HasEnablePermission i
   }
 
   override ngOnInit() {
-    super.ngOnInit();
     this._button = this.injector.get<CanDisable>(
       MatButton,
       this.injector.get(MatIconButton, this.injector.get(MatMiniFabButton, this.injector.get(MatFabButton, null))),
@@ -117,6 +116,9 @@ export class MatButtonHasEnablePermissionDirective extends HasEnablePermission i
     if (!this._button) {
       throw new Error('Could not inject the mat button instance!');
     }
+    // must be called after the button is injected
+    // the setDisabled method is called in the super.ngOnInit method
+    super.ngOnInit();
   }
 
 }
