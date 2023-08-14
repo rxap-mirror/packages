@@ -1,6 +1,6 @@
 {
   "name": "@rxap/authorization",
-  "version": "16.0.0-dev.11",
+  "version": "16.0.0-dev.12",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
