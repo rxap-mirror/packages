@@ -15,12 +15,15 @@ import {
   GetPageOperationColumn,
   OperationIdToClassImportPath,
   OperationIdToClassName,
+  TsMorphAngularProjectTransformOptions,
+  TsMorphAngularProjectTransformRule,
 } from '@rxap/schematics-ts-morph';
 import {
   CoerceSuffix,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
 import {
+  camelize,
   classify,
   Normalized,
 } from '@rxap/utilities';
@@ -48,6 +51,7 @@ import {
   NormalizedTableOptions,
   NormalizeTableOptions,
 } from '../../../lib/table-options';
+import { CoerceTypeAlias } from '../action/form-table-action/index';
 import { TableComponentOptions } from './schema';
 
 export interface NormalizedTableComponentOptions
@@ -174,6 +178,49 @@ function componentRule(normalizedOptions: NormalizedTableComponentOptions): Rule
   ]);
 }
 
+interface UsePickFromTableInterfaceAsFormTypeRuleOptions
+  extends TsMorphAngularProjectTransformOptions {
+  name: string;
+  formName: string;
+  columnList: NormalizedTableColumn[];
+}
+
+function UsePickFromTableInterfaceAsFormTypeRule(
+  options: UsePickFromTableInterfaceAsFormTypeRuleOptions,
+): Rule {
+  const {
+    name,
+    columnList,
+    formName,
+  } = options;
+
+  const className = CoerceSuffix(classify(formName), 'Form');
+  const interfaceName = `I${ className }`;
+  const tableInterfaceName = `I${ classify(name) }Table`;
+
+  return TsMorphAngularProjectTransformRule(options, (project, [ sourceFile ]) => {
+
+    const interfaceDeclaration = sourceFile.getInterface(interfaceName);
+    if (interfaceDeclaration) {
+      interfaceDeclaration.remove();
+    }
+
+    const type = `Pick<${ tableInterfaceName }, ${ columnList.filter(c => c.hasFilter)
+                                                             .map(c => `'${ camelize(c.name) }'`)
+                                                             .join(' | ') }>`;
+
+    CoerceTypeAlias(sourceFile, interfaceName, {
+      type,
+      isExported: true,
+    }).set({ type });
+
+    CoerceImports(sourceFile, {
+      namedImports: [ tableInterfaceName ],
+      moduleSpecifier: `./${ name }-table`,
+    });
+  }, [ '/' + CoerceSuffix(formName, '.form.ts') ]);
+}
+
 function filterColumnRule(normalizedOptions: NormalizedTableComponentOptions): Rule {
   const {
     columnList,
@@ -184,6 +231,7 @@ function filterColumnRule(normalizedOptions: NormalizedTableComponentOptions): R
     backend,
     overwrite,
     componentName,
+    name,
   } = normalizedOptions;
   if (columnList.some((c) => c.hasFilter)) {
     return chain([
@@ -254,6 +302,15 @@ function filterColumnRule(normalizedOptions: NormalizedTableComponentOptions): R
             ],
           );
         },
+      }),
+      UsePickFromTableInterfaceAsFormTypeRule({
+        name,
+        columnList,
+        feature,
+        project,
+        shared,
+        directory,
+        formName: CoerceSuffix(componentName, '-filter'),
       }),
     ]);
   }
