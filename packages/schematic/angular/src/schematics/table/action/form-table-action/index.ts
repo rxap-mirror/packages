@@ -21,6 +21,7 @@ import { ExecuteSchematic } from '@rxap/schematics-utilities';
 import {
   classify,
   CoerceSuffix,
+  dasherize,
   Normalized,
 } from '@rxap/utilities';
 import { join } from 'path';
@@ -139,6 +140,12 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
     scope,
   } = normalizedOptions;
 
+  if (!nestModule) {
+    throw new Error('The nest module is required');
+  }
+
+  const controllerPath = `${ dasherize(nestModule) }/action/:rowId/${ type }`;
+
   return chain([
     () => console.log('Coerce form get table action operation'),
     CoerceOperation({
@@ -149,8 +156,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
       shared,
       context,
       operationName: `get`,
-      controllerPath: `action/:rowId/${ type }`,
-      overwriteControllerPath: true,
+      controllerPath,
       tsMorphTransform: (
         project,
         sourceFile,
@@ -189,6 +195,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
       shared,
       nestModule,
       context,
+      controllerPath,
       paramList: [
         {
           name: 'rowId',
@@ -271,16 +278,12 @@ export default function (options: FormTableActionOptions) {
 
     AssertTableComponentExists(host, normalizedOptions);
 
-    const loadOperationId = backend === BackendTypes.NESTJS ? buildGetOperationId(normalizedOptions) : undefined;
-
-    console.log('loadOperationId', loadOperationId);
-
     return chain([
       () => console.info(`Generating form table action rule...`),
       CoerceFormTableActionRule({
         scope,
         directory: join(directory ?? '', 'methods', 'action'),
-        loadOperationId,
+        loadOperationId: backend === BackendTypes.NESTJS ? buildGetOperationId(normalizedOptions) : undefined,
         type,
         tableName,
         refresh,

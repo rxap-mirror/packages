@@ -139,7 +139,7 @@ export function CoerceOperation(options: CoerceOperationOptions): Rule {
 
       if (controllerPath) {
         classDeclaration.getDecoratorOrThrow('Controller').set({
-          arguments: [ w => w.quote(`${ nestModule }/${ controllerPath }`) ],
+          arguments: [ w => w.quote(controllerPath!) ],
         });
       } else if (!isFirstBornSibling) {
         const parentParamList = paramList!.filter(p => p.fromParent);
