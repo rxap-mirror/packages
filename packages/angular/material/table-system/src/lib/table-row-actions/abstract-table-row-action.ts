@@ -6,13 +6,16 @@ import {
   HostListener,
   Inject,
   Injectable,
+  INJECTOR,
+  Injector,
   Input,
   isDevMode,
   OnInit,
   Optional,
   ViewContainerRef,
 } from '@angular/core';
-import { MatButton } from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
+import { ThemePalette } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltip } from '@angular/material/tooltip';
 import { ConfirmDirective } from '@rxap/components';
@@ -49,6 +52,10 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
    */
   @Input()
   public refresh?: boolean;
+
+  @Input()
+  public color?: ThemePalette;
+
   protected options: TableActionMethodOptions | null = null;
   @ContentChild(TableRowActionExecutingDirective)
   private readonly executingDirective?: TableRowActionExecutingDirective;
@@ -74,11 +81,13 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
     @Inject(MatSnackBar)
     private readonly snackBar: MatSnackBar,
     @Optional()
-    @Inject(MatButton)
-    private readonly matButton: MatButton | null,
+    @Inject(MatIconButton)
+    private matButton: MatIconButton | null,
     @Optional()
     @Inject(MatTooltip)
-    private readonly matTooltip: MatTooltip | null,
+    private matTooltip: MatTooltip | null,
+    @Inject(INJECTOR)
+    private readonly injector: Injector,
   ) {
     super(overlay, elementRef);
     this.actionMethodList = coerceArray(actionMethodList);
@@ -101,6 +110,12 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
       this.successMessage ??= this.options.successMessage ?? undefined;
       if (this.matTooltip && this.options.tooltip) {
         this.matTooltip.message = this.options.tooltip;
+      }
+      this.color ??= this.options.color ?? undefined;
+    }
+    if (this.matButton) {
+      if (this.color) {
+        this.matButton.color = this.color;
       }
     }
   }

@@ -1,3 +1,4 @@
+import { ThemePalette } from '@angular/material/core';
 import { setMetadata } from '@rxap/reflect-metadata';
 import { RowActionCheckFunction } from './types';
 
@@ -44,6 +45,11 @@ export interface TableActionMethodOptions<Data = any> {
    * the directive.
    */
   priority?: number;
+
+  /**
+   * The color of the action button.
+   */
+  color?: ThemePalette;
 }
 
 export function TableActionMethod<Data = any>(options: TableActionMethodOptions): ClassDecorator;

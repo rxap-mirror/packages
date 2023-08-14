@@ -4,6 +4,8 @@ import {
   Directive,
   ElementRef,
   Inject,
+  INJECTOR,
+  Injector,
   Input,
   OnDestroy,
   OnInit,
@@ -55,6 +57,8 @@ export class TableRowHeaderActionDirective<Data extends Record<string, any>>
     @Optional()
     @Inject(MatTooltip)
       matTooltip: MatTooltip | null,
+    @Inject(INJECTOR)
+      injector: Injector,
     @Optional()
     @Inject(SelectRowService)
     private readonly selectRowService: SelectRowService<Data> | null,
@@ -69,6 +73,7 @@ export class TableRowHeaderActionDirective<Data extends Record<string, any>>
       snackBar,
       matButton,
       matTooltip,
+      injector,
     );
   }
 
