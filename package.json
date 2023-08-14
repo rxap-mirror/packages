@@ -14,6 +14,7 @@
     "schematic": "bash tools/scripts/schematic.sh",
     "server": "bash tools/scripts/start-local-dev-services.sh",
     "server:status": "bash tools/scripts/get-local-dev-services-status.sh",
+    "server:stop": "bash tools/scripts/stop-local-dev-services.sh",
     "generate:tls": "env-cmd bash ./docker/traefik/tls/generate.sh",
     "setup:local-deploy": "env-cmd bash ./docker/traefik/setup.sh",
     "webpack-bundle-analyzer": "webpack-bundle-analyzer"
