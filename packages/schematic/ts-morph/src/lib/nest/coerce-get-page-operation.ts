@@ -11,6 +11,7 @@ import {
 } from 'ts-morph';
 import { CoerceClassMethod } from '../coerce-class-method';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceTypeAlias } from '../ts-morph/coerce-type-alias';
 import { OperationOptions } from './add-operation-to-controller';
 import {
   CoerceOperation,
@@ -67,6 +68,11 @@ export interface CoerceGetPageOperationOptions
     rowClassName: string,
     options: CoerceGetPageOperationOptions,
   ) => void;
+  coerceGetPageDataMethod?: (
+    sourceFile: SourceFile,
+    classDeclaration: ClassDeclaration,
+    options: CoerceGetPageOperationOptions,
+  ) => void;
 }
 
 export function GetPageOperationColumnToDtoClassProperty(column: GetPageOperationColumn): DtoClassProperty {
@@ -96,39 +102,39 @@ export function CoerceToRowDtoMethod(
   rowClassName: string,
   options: CoerceGetPageOperationOptions,
 ) {
-  CoerceClassMethod(classDeclaration, 'to' + rowClassName, {
+  CoerceClassMethod(classDeclaration, 'toRowDto', {
     scope: Scope.Private,
     returnType: rowClassName,
     parameters: [
       {
         name: 'item',
-        type: 'any',
+        type: 'RawRowData',
       },
       {
         name: 'index',
-        initializer: '0',
+        type: 'number',
       },
       {
         name: 'pageIndex',
-        initializer: '0',
+        type: 'number',
       },
       {
         name: 'pageSize',
-        initializer: '1',
+        type: 'number',
       },
       {
         name: 'list',
-        initializer: '[item]',
+        type: 'RawRowData[]',
       },
     ],
     statements: [
       'return {',
-      '__rowId: ' +
+      '  __rowId: ' +
       (options.rowIdProperty === null ?
         '(pageIndex * pageSize + index).toFixed(0)' :
-        `item.${ options.rowIdProperty ?? 'uuid' }`) + ',\n',
-      options.columnList.map(GetPageOperationColumnToCodeText).join(',\n'),
-      '}',
+        `item.${ options.rowIdProperty ?? 'uuid' }`) + ',\n  ',
+      options.columnList.map(GetPageOperationColumnToCodeText).join(',\n  '),
+      '};',
     ],
   });
 }
@@ -140,47 +146,93 @@ export function CoerceToPageDtoMethod(
   rowClassName: string,
   options: CoerceGetPageOperationOptions,
 ) {
-  CoerceClassMethod(classDeclaration, 'to' + pageClassName, {
+  CoerceClassMethod(classDeclaration, 'toPageDto', {
     scope: Scope.Private,
     returnType: pageClassName,
     parameters: [
       {
         name: 'list',
-        type: 'any[]',
+        type: 'RawRowData[]',
       },
       {
         name: 'total',
         type: 'number',
-        initializer: 'list.length',
       },
       {
         name: 'pageIndex',
-        initializer: '0',
+        type: 'number',
       },
       {
         name: 'pageSize',
         type: 'number',
-        initializer: 'list.length',
       },
       {
         name: 'sortBy',
-        initializer: `''`,
+        type: 'string',
       },
       {
         name: 'sortDirection',
-        initializer: `''`,
+        type: 'string',
       },
       {
         name: 'filter',
         type: 'FilterQuery[]',
-        initializer: '[]',
       },
     ],
     statements: [
       'return {',
-      'total, pageIndex, pageSize, sortBy, sortDirection, filter,',
-      `rows: list.map((item, index) => this.to${ rowClassName }(item, index, pageIndex, pageSize, list))`,
-      '}',
+      '  total, pageIndex, pageSize, sortBy, sortDirection, filter,',
+      `  rows: list.map((item, index) => this.toRowDto(item, index, pageIndex, pageSize, list))`,
+      '};',
+    ],
+  });
+}
+
+export function CoerceGetPageDataMethod(
+  sourceFile: SourceFile,
+  classDeclaration: ClassDeclaration,
+  options: CoerceGetPageOperationOptions,
+) {
+  CoerceClassMethod(classDeclaration, 'getPageData', {
+    scope: Scope.Public,
+    returnType: 'Promise<{ list: RawRowData[], total: number }>',
+    isAsync: true,
+    parameters: [
+      {
+        name: 'sortBy',
+        type: 'string',
+      },
+      {
+        name: 'sortDirection',
+        type: 'string',
+      },
+      {
+        name: 'pageSize',
+        type: 'number',
+      },
+      {
+        name: 'pageIndex',
+        type: 'number',
+      },
+      {
+        name: 'filter',
+        type: 'FilterQuery[]',
+      },
+    ],
+    statements: [
+      `const response = await ((() => { throw new NotImplementedException() })() as any).execute({
+      parameters: {
+        page: pageIndex,
+        size: pageSize,
+        sort: sortBy,
+        order: sortDirection,
+        filter: filter.map((item) => \`\${ item.column }:\${ item.filter }\`).join(';'),
+      },
+    });`,
+      'return {',
+      '  list: response.entities ?? [],',
+      '  total: response.maxCount ?? 0,',
+      '};',
     ],
   });
 }
@@ -197,6 +249,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
     context,
     coerceToRowDtoMethod,
     coerceToPageDtoMethod,
+    coerceGetPageDataMethod,
   } = options;
   tsMorphTransform ??= () => ({});
   controllerName = skipCoerceTableSuffix ? controllerName : CoerceSuffix(controllerName, '-table');
@@ -204,6 +257,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
   responseDtoName ??= joinWithDash([ context, controllerName ]);
   coerceToRowDtoMethod ??= CoerceToRowDtoMethod;
   coerceToPageDtoMethod ??= CoerceToPageDtoMethod;
+  coerceGetPageDataMethod ??= CoerceGetPageDataMethod;
   return CoerceOperation({
     ...options,
     controllerName,
@@ -235,6 +289,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
         rowFilePath,
       });
 
+      coerceGetPageDataMethod!(sourceFile, classDeclaration, options);
       coerceToRowDtoMethod!(sourceFile, classDeclaration, rowClassName, options);
       coerceToPageDtoMethod!(sourceFile, classDeclaration, pageClassName, rowClassName, options);
 
@@ -260,6 +315,11 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
           moduleSpecifier: rowFilePath,
         },
       ]);
+
+      CoerceTypeAlias(sourceFile, 'RawRowData', {
+        isExported: false,
+        type: 'any',
+      });
 
       return {
         queryList: [
@@ -291,19 +351,11 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
         ],
         returnType: pageClassName,
         statements: [
-          `const response = await ((() => { throw new NotImplementedException() })() as any).execute({
-      parameters: {
-        page: pageIndex,
-        size: pageSize,
-        sort: sortBy,
-        order: sortDirection,
-        filter: filter.map((item) => \`\${ item.column }:\${ item.filter }\`).join(';'),
-      },
-    });`,
+          'const data = await this.getPageData(sortBy, sortDirection, pageSize, pageIndex, filter);',
           'return plainToInstance(',
-          pageClassName + ',',
-          `this.to${ pageClassName }(response.entities ?? [], response.maxCount ?? 0, pageIndex, pageSize, sortBy, sortDirection, filter),`,
-          'classTransformOptions',
+          '  ' + pageClassName + ',',
+          `  this.toPageDto(data.list, data.total, pageIndex, pageSize, sortBy, sortDirection, filter),`,
+          '  classTransformOptions',
           ');',
         ],
         ...tsMorphTransform!(project, sourceFile, classDeclaration, controllerName, pageClassName, rowClassName),
