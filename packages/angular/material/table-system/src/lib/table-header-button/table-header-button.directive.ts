@@ -10,7 +10,7 @@ import {
   OnInit,
   Optional,
 } from '@angular/core';
-import { MatButton } from '@angular/material/button';
+import { MatMiniFabButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltip } from '@angular/material/tooltip';
 import { ConfirmDirective } from '@rxap/components';
@@ -25,7 +25,7 @@ import { TableHeaderButtonActionStatus } from './table-header-button-action-stat
 import { TABLE_HEADER_BUTTON_METHOD } from './tokens';
 
 @Directive({
-  selector: 'button[rxapTableHeaderButton]',
+  selector: 'button[mat-mini-fab][rxapTableHeaderButton]',
   standalone: true,
 })
 export class TableHeaderButtonDirective<Data extends Record<string, any>> extends ConfirmDirective
@@ -64,8 +64,8 @@ export class TableHeaderButtonDirective<Data extends Record<string, any>> extend
     @Inject(MatTooltip)
     private readonly matTooltip: MatTooltip | null,
     @Optional()
-    @Inject(MatButton)
-    private readonly matButton: MatButton | null,
+    @Inject(MatMiniFabButton)
+    private readonly matButton: MatMiniFabButton | null,
     @Inject(ChangeDetectorRef)
     protected readonly cdr: ChangeDetectorRef,
   ) {
