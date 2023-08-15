@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.5...@rxap/plugin-application@16.1.0-dev.6) (2023-08-15)
+
+### Bug Fixes
+
+- merge default configuration property with existing target ([807f1ae](https://gitlab.com/rxap/packages/commit/807f1aea4167d5a1ae11d60b7daaea1771ffc3bb))
+
 # [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.4...@rxap/plugin-application@16.1.0-dev.5) (2023-08-14)
 
 **Note:** Version bump only for package @rxap/plugin-application
