@@ -30,6 +30,8 @@ import { TableRowActionMethod } from './types';
 @Directive({
   selector: 'button[rxapTableRowHeaderAction]',
   standalone: true,
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [ 'errorMessage', 'successMessage', 'refresh', 'color' ],
 })
 export class TableRowHeaderActionDirective<Data extends Record<string, any>>
   extends AbstractTableRowAction<Data>
