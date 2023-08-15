@@ -33,6 +33,12 @@ export default async function runExecutor(
     }
   }
 
+  if (options.dockerfile) {
+    if (!options.dockerfile.startsWith('/')) {
+      options.dockerfile = join(context.root, options.dockerfile);
+    }
+  }
+
   console.log('login to registry');
 
   await loginToRegistry(options);
