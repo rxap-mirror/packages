@@ -82,7 +82,8 @@ export async function gitlabCiGenerator(
     const buildTargetOptions = GetTargetOptions(project.targets['build'], 'production');
 
     const imageName = dockerTargetOptions.imageName ?? rootPackageJson.name;
-    const imageSuffix = dockerTargetOptions.imageSuffix ?? '';
+    const imageSuffix = dockerTargetOptions.imageSuffix;
+    const dockerfile = dockerTargetOptions.dockerfile;
     const outputPath = buildTargetOptions.outputPath;
 
     if (!outputPath) {
@@ -99,8 +100,8 @@ export async function gitlabCiGenerator(
       dockerYaml[`docker:${ projectName }`].variables.IMAGE_SUFFIX = imageSuffix;
     }
 
-    if (project.tags?.includes('angular')) {
-      dockerYaml[`docker:${ projectName }`].variables.DOCKERFILE = 'shared/angular.Dockerfile';
+    if (dockerfile) {
+      dockerYaml[`docker:${ projectName }`].variables.DOCKERFILE = dockerfile;
     }
 
   }
