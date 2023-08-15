@@ -52,6 +52,11 @@ function updateProjectTargets(
     throw new Error(`The project '${ project.name }' has no build target`);
   }
 
+  if (project.targets['docker']) {
+    project.targets['docker'].options ??= {};
+    project.targets['docker'].options.dockerfile ??= 'shared/angular.Dockerfile';
+  }
+
   project.targets['config'] ??= {
     executor: '@rxap/plugin-application:config',
     options: {},
