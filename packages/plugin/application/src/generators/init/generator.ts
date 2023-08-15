@@ -17,6 +17,7 @@ import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
 import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  Strategy,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import * as process from 'process';
@@ -99,7 +100,7 @@ function updateProjectTargets(project: ProjectConfiguration, projectName: string
   if (project.targets?.['build']?.configurations?.['production']) {
     CoerceTarget(project, 'build', {
       defaultConfiguration: 'production',
-    });
+    }, Strategy.MERGE);
   }
 
 }
