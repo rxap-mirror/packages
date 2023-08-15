@@ -101,7 +101,7 @@ export async function getFallBackImageTag(context: ExecutorContext): Promise<str
   if (context.configurationName !== 'production') {
     imageTag = `${ imageTag }-${ context.configurationName ?? 'local' }`;
   }
-  return imageTag;
+  return imageTag.replace(/\//g, '-');
 }
 
 export function getGitlabRegistryDestination(
