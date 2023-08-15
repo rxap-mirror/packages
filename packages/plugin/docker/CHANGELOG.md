@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.13...@rxap/plugin-docker@16.0.0-dev.14) (2023-08-15)
+
+### Bug Fixes
+
+- copy docker options to gitlab ci configuration ([0f6aee0](https://gitlab.com/rxap/packages/commit/0f6aee04927ece66c554878f1bbf8ea160abbc43))
+
 # [16.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.12...@rxap/plugin-docker@16.0.0-dev.13) (2023-08-15)
 
 ### Bug Fixes

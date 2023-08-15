@@ -8128,7 +8128,7 @@ __metadata:
     "@rxap/generator-utilities": ^1.1.0-dev.4
     "@rxap/plugin-localazy": ^16.1.0-dev.3
     "@rxap/plugin-utilities": ^16.1.0-dev.6
-    "@rxap/schematics-ts-morph": ^16.0.0-dev.9
+    "@rxap/schematics-ts-morph": ^16.0.0-dev.10
     "@rxap/workspace-ts-morph": ^0.1.0-dev.0
     "@rxap/workspace-utilities": ^0.1.0-dev.3
     nx: ^16.5.0

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.8...@rxap/plugin-angular@16.1.0-dev.9) (2023-08-15)
+
+### Bug Fixes
+
+- add docker file option to angular docker targets ([d3abdfa](https://gitlab.com/rxap/packages/commit/d3abdfa312c549ee7a43bba741360b4e7d943268))
+
 # [16.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.7...@rxap/plugin-angular@16.1.0-dev.8) (2023-08-14)
 
 ### Bug Fixes
