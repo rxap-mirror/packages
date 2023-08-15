@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.15...@rxap/material-table-system@16.0.0-dev.16) (2023-08-15)
+
+### Bug Fixes
+
+- expose inharated inputs ([a76266d](https://gitlab.com/rxap/packages/commit/a76266da7e348b08f59ff6ddccbd61d40db2183b))
+
 # [16.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.14...@rxap/material-table-system@16.0.0-dev.15) (2023-08-14)
 
 ### Bug Fixes
