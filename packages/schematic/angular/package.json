@@ -1,7 +1,7 @@
 {
   "name": "@rxap/schematic-angular",
   "version": "16.1.0-dev.6",
-  "type": "commonjs",
+  "type": "module",
   "schematics": "./collection.json",
   "publishConfig": {
     "access": "public",

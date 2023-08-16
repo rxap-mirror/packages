@@ -1,7 +1,7 @@
 {
   "name": "@rxap/nest-server",
   "version": "10.0.1-dev.1",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "tslib": "2.5.3"
   },

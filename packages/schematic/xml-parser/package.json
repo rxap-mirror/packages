@@ -1,7 +1,7 @@
 {
   "name": "@rxap/schematics-xml-parser",
   "version": "16.0.0-dev.7",
-  "type": "commonjs",
+  "type": "module",
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
     "@angular-devkit/schematics": "^16.1.4",

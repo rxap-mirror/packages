@@ -1,7 +1,7 @@
 {
   "name": "@rxap/schematics-utilities",
   "version": "16.0.0-dev.7",
-  "type": "commonjs",
+  "type": "module",
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/schematic/utilities"

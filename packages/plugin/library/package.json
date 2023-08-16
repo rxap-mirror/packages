@@ -1,7 +1,7 @@
 {
   "name": "@rxap/plugin-library",
   "version": "16.0.0-dev.16",
-  "type": "commonjs",
+  "type": "module",
   "executors": "./executors.json",
   "generators": "./generators.json",
   "publishConfig": {

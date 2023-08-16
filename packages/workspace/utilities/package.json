@@ -1,7 +1,7 @@
 {
   "name": "@rxap/workspace-utilities",
   "version": "0.1.0-dev.3",
-  "type": "commonjs",
+  "type": "module",
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/workspace/utilities"
