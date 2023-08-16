@@ -1,7 +1,7 @@
 {
   "name": "@rxap/reflect-metadata",
   "version": "1.0.1-dev.2",
-  "type": "commonjs",
+  "type": "module",
   "peerDependencies": {
     "@rxap/utilities": "^16.0.0-dev.6",
     "reflect-metadata": "^0.1.13"

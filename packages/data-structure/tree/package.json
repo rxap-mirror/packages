@@ -1,7 +1,7 @@
 {
   "name": "@rxap/data-structure-tree",
   "version": "1.0.1-dev.3",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "tslib": "2.5.3"
   },
