@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.6...@rxap/xml-parser@16.0.0-dev.7) (2023-08-16)
+
+### Bug Fixes
+
+- change from commonjs to esnext ([4eb2fa8](https://gitlab.com/rxap/packages/commit/4eb2fa86423e851da9741ed4a0a79aa1feb0764f))
+
 # [16.0.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.5...@rxap/xml-parser@16.0.0-dev.6) (2023-08-04)
 
 ### Bug Fixes
