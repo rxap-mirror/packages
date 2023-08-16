@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.9...@rxap/utilities@16.0.0-dev.10) (2023-08-16)
+
+### Bug Fixes
+
+- change from commonjs to es2022 ([a69aa25](https://gitlab.com/rxap/packages/commit/a69aa25b9824b94613392b3ea42fba18e5eb1168))
+
 # [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.8...@rxap/utilities@16.0.0-dev.9) (2023-08-14)
 
 **Note:** Version bump only for package @rxap/utilities

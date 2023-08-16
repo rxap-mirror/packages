@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/browser-utilities@0.0.2-dev.1...@rxap/browser-utilities@0.0.2-dev.2) (2023-08-16)
+
+### Bug Fixes
+
+- change from commonjs to es2022 ([a69aa25](https://gitlab.com/rxap/packages/commit/a69aa25b9824b94613392b3ea42fba18e5eb1168))
+
 ## [0.0.2-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/browser-utilities@0.0.2-dev.0...@rxap/browser-utilities@0.0.2-dev.1) (2023-08-04)
 
 ### Bug Fixes

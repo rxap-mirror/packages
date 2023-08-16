@@ -1,6 +1,6 @@
 {
   "name": "@rxap/utilities",
-  "version": "16.0.0-dev.9",
+  "version": "16.0.0-dev.10",
   "type": "module",
   "dependencies": {
     "tslib": "2.5.3"

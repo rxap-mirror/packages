@@ -7505,8 +7505,8 @@ __metadata:
   dependencies:
     tslib: 2.5.3
   peerDependencies:
-    "@rxap/rxjs": ^1.0.1-dev.2
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/rxjs": ^1.0.1-dev.3
+    "@rxap/utilities": ^16.0.0-dev.10
   languageName: unknown
   linkType: soft
 
@@ -7854,8 +7854,8 @@ __metadata:
   dependencies:
     tslib: 2.5.3
   peerDependencies:
-    "@rxap/reflect-metadata": ^1.0.1-dev.2
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/reflect-metadata": ^1.0.1-dev.3
+    "@rxap/utilities": ^16.0.0-dev.10
     reflect-metadata: ^0.1.13
   languageName: unknown
   linkType: soft
@@ -8267,7 +8267,7 @@ __metadata:
   dependencies:
     tslib: 2.5.3
   peerDependencies:
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.10
     reflect-metadata: ^0.1.13
   languageName: unknown
   linkType: soft
@@ -8293,7 +8293,7 @@ __metadata:
   dependencies:
     tslib: 2.5.3
   peerDependencies:
-    "@rxap/utilities": ^16.0.0-dev.6
+    "@rxap/utilities": ^16.0.0-dev.10
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft

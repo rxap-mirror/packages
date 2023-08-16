@@ -1,6 +1,6 @@
 {
   "name": "@rxap/pattern",
-  "version": "1.0.1-dev.2",
+  "version": "1.0.1-dev.3",
   "type": "module",
   "dependencies": {
     "tslib": "2.5.3"

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/slugify@16.0.0-dev.4...@rxap/slugify@16.0.0-dev.5) (2023-08-16)
+
+### Bug Fixes
+
+- change from commonjs to es2022 ([a69aa25](https://gitlab.com/rxap/packages/commit/a69aa25b9824b94613392b3ea42fba18e5eb1168))
+
 # [16.0.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/slugify@16.0.0-dev.3...@rxap/slugify@16.0.0-dev.4) (2023-08-04)
 
 ### Bug Fixes

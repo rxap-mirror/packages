@@ -1,6 +1,6 @@
 {
   "name": "@rxap/slugify",
-  "version": "16.0.0-dev.4",
+  "version": "16.0.0-dev.5",
   "type": "module",
   "dependencies": {
     "tslib": "2.5.3"
