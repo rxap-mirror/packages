@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.16...@rxap/plugin-library@16.0.0-dev.17) (2023-08-16)
+
+### Bug Fixes
+
+- change from commonjs to es2022 ([fd0f2ba](https://gitlab.com/rxap/packages/commit/fd0f2bae24eae7c854e96f630076cd5598c30be6))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.15...@rxap/plugin-library@16.0.0-dev.16) (2023-08-14)
 
 ### Bug Fixes

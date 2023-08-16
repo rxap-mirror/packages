@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.14...@rxap/plugin-docker@16.0.0-dev.15) (2023-08-16)
+
+### Bug Fixes
+
+- change from commonjs to es2022 ([fd0f2ba](https://gitlab.com/rxap/packages/commit/fd0f2bae24eae7c854e96f630076cd5598c30be6))
+
 # [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.13...@rxap/plugin-docker@16.0.0-dev.14) (2023-08-15)
 
 ### Bug Fixes

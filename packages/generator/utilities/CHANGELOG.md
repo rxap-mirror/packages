@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.4...@rxap/generator-utilities@1.1.0-dev.5) (2023-08-16)
+
+### Bug Fixes
+
+- change from commonjs to es2022 ([fd0f2ba](https://gitlab.com/rxap/packages/commit/fd0f2bae24eae7c854e96f630076cd5598c30be6))
+
 # [1.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.3...@rxap/generator-utilities@1.1.0-dev.4) (2023-08-04)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.3...@rxap/plugin-workspace@16.1.0-dev.4) (2023-08-16)
+
+### Bug Fixes
+
+- change from commonjs to es2022 ([fd0f2ba](https://gitlab.com/rxap/packages/commit/fd0f2bae24eae7c854e96f630076cd5598c30be6))
+
 # [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.2...@rxap/plugin-workspace@16.1.0-dev.3) (2023-08-06)
 
 ### Bug Fixes

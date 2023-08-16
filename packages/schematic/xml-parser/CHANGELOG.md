@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/schematics-xml-parser@16.0.0-dev.7...@rxap/schematics-xml-parser@16.0.0-dev.8) (2023-08-16)
+
+### Bug Fixes
+
+- change from commonjs to es2022 ([fd0f2ba](https://gitlab.com/rxap/packages/commit/fd0f2bae24eae7c854e96f630076cd5598c30be6))
+
 # [16.0.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/schematics-xml-parser@16.0.0-dev.6...@rxap/schematics-xml-parser@16.0.0-dev.7) (2023-08-04)
 
 ### Bug Fixes

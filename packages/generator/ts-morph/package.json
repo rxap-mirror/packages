@@ -1,9 +1,9 @@
 {
   "name": "@rxap/generator-ts-morph",
-  "version": "1.0.1-dev.3",
+  "version": "1.0.1-dev.4",
   "type": "module",
   "peerDependencies": {
-    "@rxap/workspace-ts-morph": "^0.0.2-dev.1"
+    "@rxap/workspace-ts-morph": "^0.1.0-dev.1"
   },
   "dependencies": {
     "tslib": "2.5.3"
@@ -37,7 +37,7 @@
     "packageGroup": [
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "0.0.2-dev.1"
+        "version": "0.1.0-dev.1"
       }
     ]
   }

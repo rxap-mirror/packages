@@ -1,6 +1,6 @@
 {
   "name": "@rxap/json-schema-to-typescript",
-  "version": "16.0.0-dev.5",
+  "version": "16.0.0-dev.6",
   "type": "module",
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "9.0.9",

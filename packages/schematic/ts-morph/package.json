@@ -1,13 +1,13 @@
 {
   "name": "@rxap/schematics-ts-morph",
-  "version": "16.0.0-dev.10",
+  "version": "16.0.0-dev.11",
   "type": "module",
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
     "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-utilities": "^16.0.0-dev.7",
-    "@rxap/utilities": "^16.0.0-dev.9",
-    "@rxap/workspace-ts-morph": "^0.1.0-dev.0",
+    "@rxap/schematics-utilities": "^16.0.0-dev.8",
+    "@rxap/utilities": "^16.0.0-dev.10",
+    "@rxap/workspace-ts-morph": "^0.1.0-dev.1",
     "ts-morph": "^18.0.0"
   },
   "dependencies": {

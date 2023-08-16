@@ -1,6 +1,6 @@
 {
   "name": "@rxap/nest-jwt",
-  "version": "10.0.1-dev.1",
+  "version": "10.0.1-dev.2",
   "type": "module",
   "publishConfig": {
     "access": "public",
@@ -34,19 +34,19 @@
     "@nestjs/common": "^10.0.5",
     "@nestjs/core": "^10.0.5",
     "@nestjs/jwt": "^10.1.0",
-    "@rxap/nest-utilities": "^10.0.1-dev.2",
-    "@rxap/pattern": "^1.0.1-dev.2",
+    "@rxap/nest-utilities": "^10.0.1-dev.3",
+    "@rxap/pattern": "^1.0.1-dev.3",
     "rxjs": "^7.8.0"
   },
   "nx-migrations": {
     "packageGroup": [
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.0.1-dev.2"
+        "version": "10.0.1-dev.3"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.0.1-dev.2"
+        "version": "1.0.1-dev.3"
       }
     ]
   }

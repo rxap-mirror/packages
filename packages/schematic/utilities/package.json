@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematics-utilities",
-  "version": "16.0.0-dev.7",
+  "version": "16.0.0-dev.8",
   "type": "module",
   "publishConfig": {
     "access": "public",
@@ -30,8 +30,8 @@
   "peerDependencies": {
     "@angular-devkit/schematics": "^16.1.4",
     "@nx/devkit": "^16.5.0",
-    "@rxap/utilities": "^16.0.0-dev.6",
-    "@rxap/workspace-utilities": "^0.1.0-dev.2"
+    "@rxap/utilities": "^16.0.0-dev.10",
+    "@rxap/workspace-utilities": "^0.1.0-dev.4"
   },
   "dependencies": {
     "tslib": "2.5.3"
@@ -40,11 +40,11 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.6"
+        "version": "16.0.0-dev.10"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.2"
+        "version": "0.1.0-dev.4"
       },
       {
         "package": "@rxap/node-utilities",
