@@ -1,7 +1,7 @@
 {
   "name": "workspace",
   "version": "1.0.0",
-  "type": "module",
+  "type": "commonjs",
   "executors": "./executors.json",
   "dependencies": {
     "tslib": "2.5.3"

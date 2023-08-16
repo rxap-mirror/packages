@@ -1,7 +1,7 @@
 {
   "name": "@rxap/workspace-ts-morph",
   "version": "0.1.0-dev.1",
-  "type": "module",
+  "type": "commonjs",
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/workspace/ts-morph"

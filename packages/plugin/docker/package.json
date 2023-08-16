@@ -1,7 +1,7 @@
 {
   "name": "@rxap/plugin-docker",
   "version": "16.0.0-dev.15",
-  "type": "module",
+  "type": "commonjs",
   "generators": "./generators.json",
   "executors": "./executors.json",
   "dependencies": {

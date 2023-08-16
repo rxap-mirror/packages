@@ -1,7 +1,7 @@
 {
   "name": "@rxap/plugin-application",
   "version": "16.1.0-dev.7",
-  "type": "module",
+  "type": "commonjs",
   "executors": "./executors.json",
   "publishConfig": {
     "access": "public",

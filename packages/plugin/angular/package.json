@@ -1,7 +1,7 @@
 {
   "name": "@rxap/plugin-angular",
   "version": "16.1.0-dev.10",
-  "type": "module",
+  "type": "commonjs",
   "generators": "./generators.json",
   "publishConfig": {
     "access": "public",

@@ -1,7 +1,7 @@
 {
   "name": "@rxap/generator-ts-morph",
   "version": "1.0.1-dev.4",
-  "type": "module",
+  "type": "commonjs",
   "peerDependencies": {
     "@rxap/workspace-ts-morph": "^0.1.0-dev.1"
   },
