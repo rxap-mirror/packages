@@ -6,6 +6,7 @@
         "parallel": 32,
         "cacheableOperations": [
           "build",
+          "esbuild",
           "lint",
           "test",
           "e2e",
@@ -89,6 +90,7 @@
     "build": {
       "dependsOn": [
         "^build",
+        "esbuild",
         "readme",
         "index-export",
         "check-version",

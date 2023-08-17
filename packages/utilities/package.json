@@ -32,5 +32,6 @@
   },
   "nx-migrations": {
     "packageGroup": []
-  }
+  },
+  "module": "./index.js"
 }
