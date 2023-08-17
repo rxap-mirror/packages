@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.10...@rxap/utilities@16.0.0-dev.11) (2023-08-17)
+
+### Bug Fixes
+
+- expose esm files ([43b062d](https://gitlab.com/rxap/packages/commit/43b062d7388ec4de89ae2b4497282359020c0f99))
+
+### Reverts
+
+- change from commonjs to es2022 ([747a381](https://gitlab.com/rxap/packages/commit/747a381a090f0a276cf363da61bb19ed0c9cb5b7))
+
 # [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.9...@rxap/utilities@16.0.0-dev.10) (2023-08-16)
 
 ### Bug Fixes

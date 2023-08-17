@@ -1,9 +1,9 @@
 {
   "name": "@rxap/reflect-metadata",
-  "version": "1.0.1-dev.3",
+  "version": "1.0.1-dev.4",
   "type": "commonjs",
   "peerDependencies": {
-    "@rxap/utilities": "^16.0.0-dev.10",
+    "@rxap/utilities": "^16.0.0-dev.11",
     "reflect-metadata": "^0.1.13"
   },
   "dependencies": {
@@ -37,7 +37,7 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.10"
+        "version": "16.0.0-dev.11"
       }
     ]
   }

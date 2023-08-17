@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.11...@rxap/schematics-ts-morph@16.0.0-dev.12) (2023-08-17)
+
+### Reverts
+
+- change from commonjs to es2022 ([747a381](https://gitlab.com/rxap/packages/commit/747a381a090f0a276cf363da61bb19ed0c9cb5b7))
+
 # [16.0.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.10...@rxap/schematics-ts-morph@16.0.0-dev.11) (2023-08-16)
 
 ### Bug Fixes

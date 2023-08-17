@@ -1,6 +1,6 @@
 {
   "name": "@rxap/generator-utilities",
-  "version": "1.1.0-dev.5",
+  "version": "1.1.0-dev.6",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/reflect-metadata@1.0.1-dev.3...@rxap/reflect-metadata@1.0.1-dev.4) (2023-08-17)
+
+### Reverts
+
+- change from commonjs to es2022 ([747a381](https://gitlab.com/rxap/packages/commit/747a381a090f0a276cf363da61bb19ed0c9cb5b7))
+
 ## [1.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/reflect-metadata@1.0.1-dev.2...@rxap/reflect-metadata@1.0.1-dev.3) (2023-08-16)
 
 ### Bug Fixes
