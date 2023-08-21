@@ -1,7 +1,6 @@
 {
   "name": "@rxap/xml-parser",
   "version": "16.0.0-dev.9",
-  "type": "commonjs",
   "dependencies": {
     "tslib": "2.5.3",
     "xmldom": "^0.6.0"
