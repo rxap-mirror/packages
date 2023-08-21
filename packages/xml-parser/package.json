@@ -1,6 +1,6 @@
 {
   "name": "@rxap/xml-parser",
-  "version": "16.0.0-dev.8",
+  "version": "16.0.0-dev.9",
   "type": "commonjs",
   "dependencies": {
     "tslib": "2.5.3",
@@ -9,7 +9,7 @@
   "peerDependencies": {
     "@rxap/mixin": "^16.0.0-dev.8",
     "@rxap/reflect-metadata": "^1.0.1-dev.4",
-    "@rxap/utilities": "^16.0.0-dev.11"
+    "@rxap/utilities": "^16.0.0-dev.12"
   },
   "devDependencies": {
     "@types/xmldom": "^0.1.31"
