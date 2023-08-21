@@ -6356,15 +6356,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nrwl/esbuild@npm:16.5.0":
-  version: 16.5.0
-  resolution: "@nrwl/esbuild@npm:16.5.0"
-  dependencies:
-    "@nx/esbuild": 16.5.0
-  checksum: 6858c88ffd234fa4a5009142654e3f4066ec2d2382ee9ef8c304178841a303c85782ce3d615d6faa7d2971bccb0a06829759924ea9c6e05e020577f9a139a696
-  languageName: node
-  linkType: hard
-
 "@nrwl/eslint-plugin-nx@npm:16.5.0":
   version: 16.5.0
   resolution: "@nrwl/eslint-plugin-nx@npm:16.5.0"
@@ -6655,28 +6646,6 @@ __metadata:
   peerDependencies:
     nx: ">= 15 <= 17"
   checksum: 6bfb23824f0ac23f814f787c90c7df7e34376ec12f13a19df82c4c2629dc11668079b37fdbb5cf16436be31e666cc5a0ec9143012955045dac3e5ab80e2b04a6
-  languageName: node
-  linkType: hard
-
-"@nx/esbuild@npm:16.5.0":
-  version: 16.5.0
-  resolution: "@nx/esbuild@npm:16.5.0"
-  dependencies:
-    "@nrwl/esbuild": 16.5.0
-    "@nx/devkit": 16.5.0
-    "@nx/js": 16.5.0
-    chalk: ^4.1.0
-    dotenv: ~10.0.0
-    fast-glob: 3.2.7
-    fs-extra: ^11.1.0
-    tsconfig-paths: ^4.1.2
-    tslib: ^2.3.0
-  peerDependencies:
-    esbuild: ~0.17.5
-  peerDependenciesMeta:
-    esbuild:
-      optional: true
-  checksum: 7208e86df535552018d680c03c302ef445239b5170a2f8addda9d4a7f26b2e636889f4d3309c5686fd82e4cb0de1344956a9a8b81048792af4d7ae993e43b0a0
   languageName: node
   linkType: hard
 
@@ -26063,7 +26032,6 @@ __metadata:
     "@nx/angular": 16.5.0
     "@nx/cypress": 16.5.0
     "@nx/devkit": 16.5.0
-    "@nx/esbuild": 16.5.0
     "@nx/eslint-plugin": 16.5.0
     "@nx/jest": 16.5.0
     "@nx/js": 16.5.0
