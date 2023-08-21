@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.11...@rxap/utilities@16.0.0-dev.12) (2023-08-21)
+
+### Reverts
+
+- "fix: expose esm files" ([a6bcf29](https://gitlab.com/rxap/packages/commit/a6bcf296a3806624661ee9c970397f36a066526f))
+
 # [16.0.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.10...@rxap/utilities@16.0.0-dev.11) (2023-08-17)
 
 ### Bug Fixes

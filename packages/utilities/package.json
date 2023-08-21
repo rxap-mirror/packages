@@ -1,6 +1,6 @@
 {
   "name": "@rxap/utilities",
-  "version": "16.0.0-dev.11",
+  "version": "16.0.0-dev.12",
   "type": "commonjs",
   "dependencies": {
     "tslib": "2.5.3"
