@@ -5,18 +5,22 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/angular:package",
       "outputs": [
-        "{options.outputPath}"
+        "{workspaceRoot}/dist/{projectRoot}"
       ],
       "options": {
-        "outputPath": "dist/packages/xml-parser",
-        "main": "packages/xml-parser/src/index.ts",
-        "tsConfig": "packages/xml-parser/tsconfig.lib.json",
-        "assets": [
-          "packages/xml-parser/*.md"
-        ]
-      }
+        "project": "packages/xml-parser/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/xml-parser/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/xml-parser/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs xml-parser {args.ver} {args.tag}",
