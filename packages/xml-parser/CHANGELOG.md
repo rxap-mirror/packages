@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.9...@rxap/xml-parser@16.0.0-dev.10) (2023-08-21)
+
+### Bug Fixes
+
+- ensure esm file output ([6299af5](https://gitlab.com/rxap/packages/commit/6299af5389bf3cfe3a71da945bb6225817c1202a))
+
 # [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.8...@rxap/xml-parser@16.0.0-dev.9) (2023-08-21)
 
 ### Bug Fixes
