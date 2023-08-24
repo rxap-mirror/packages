@@ -17,7 +17,6 @@ import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
 import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
-  Strategy,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import * as process from 'process';
@@ -97,10 +96,20 @@ function updateProjectTargets(project: ProjectConfiguration, projectName: string
     },
   });
 
+  // if the build target has a configuration for production
   if (project.targets?.['build']?.configurations?.['production']) {
-    CoerceTarget(project, 'build', {
-      defaultConfiguration: 'production',
-    }, Strategy.MERGE);
+    // set the default configuration to production
+    project.targets['build'].defaultConfiguration = 'production';
+    // ensure the build target has a configuration for development
+    project.targets['build'].configurations['development'] ??= {};
+    // if the project has a serve target with a buildTarget option
+    if (project.targets?.['serve'].options?.buildTarget) {
+      // ensure that the target configuration is explicitly set
+      if (project.targets['serve'].options.buildTarget.match(new RegExp(`^${projectName}:build$`))) {
+        // if not the set the build configuration to development
+        project.targets['serve'].options.buildTarget += ':development';
+      }
+    }
   }
 
 }
