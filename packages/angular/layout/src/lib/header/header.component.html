@@ -4,21 +4,9 @@
       <ng-content></ng-content>
     </div>
     <rxap-apps-button class="grow-0"></rxap-apps-button>
-    <div class="grow-0">
-      <button [matMenuTriggerFor]="menu" mat-icon-button>
-        <mat-icon>settings</mat-icon>
-      </button>
-    </div>
+    <rxap-settings-button class="grow-0"></rxap-settings-button>
     <rxap-user-profile-icon class="grow-0"></rxap-user-profile-icon>
   </div>
 </mat-toolbar>
 
 <rxap-navigation-progress-bar></rxap-navigation-progress-bar>
-<mat-menu #menu="matMenu">
-  <button (click)="theme.toggleDarkTheme()" mat-menu-item>
-    <mat-icon *ngIf="theme.darkMode">brightness_2</mat-icon>
-    <mat-icon *ngIf="!theme.darkMode">brightness_5</mat-icon>
-    <span i18n>Mode</span>
-  </button>
-  <rxap-language-selector *ngIf="!isDevMode"></rxap-language-selector>
-</mat-menu>

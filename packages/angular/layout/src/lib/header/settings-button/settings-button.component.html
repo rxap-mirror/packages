@@ -1,0 +1,15 @@
+<button [matMenuTriggerFor]="menu" mat-icon-button>
+  <mat-icon>settings</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu">
+  <button (click)="theme.toggleDarkTheme()" mat-menu-item>
+    <mat-icon *ngIf="theme.darkMode">brightness_2</mat-icon>
+    <mat-icon *ngIf="!theme.darkMode">brightness_5</mat-icon>
+    <span i18n>Mode</span>
+  </button>
+  <rxap-language-selector *ngIf="!isDevMode"></rxap-language-selector>
+  <ng-container *ngFor="let item of items()">
+    <ng-template [cdkPortalOutlet]="item"></ng-template>
+  </ng-container>
+</mat-menu>

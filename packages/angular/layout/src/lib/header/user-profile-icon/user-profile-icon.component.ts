@@ -1,10 +1,16 @@
 import {
+  AsyncPipe,
+  NgIf,
+} from '@angular/common';
+import {
   ChangeDetectionStrategy,
   Component,
   OnDestroy,
   OnInit,
   signal,
 } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import {
   RxapAuthenticationService,
   RxapUserProfileService,
@@ -17,13 +23,6 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
-import {
-  AsyncPipe,
-  NgIf,
-} from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { FlexModule } from '@angular/flex-layout/flex';
 
 @Component({
   selector: 'rxap-user-profile-icon',
@@ -32,7 +31,6 @@ import { FlexModule } from '@angular/flex-layout/flex';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    FlexModule,
     MatMenuModule,
     MatIconModule,
     NgIf,

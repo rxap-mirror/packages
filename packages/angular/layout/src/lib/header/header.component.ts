@@ -8,7 +8,6 @@ import {
   Component,
   Inject,
   Input,
-  isDevMode,
   OnDestroy,
   OnInit,
   Optional,
@@ -28,10 +27,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
 import { StopPropagationDirective } from '@rxap/directives';
-import {
-  HeaderService,
-  ThemeService,
-} from '@rxap/services';
+import { HeaderService } from '@rxap/services';
 import { Constructor } from '@rxap/utilities';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -39,6 +35,7 @@ import { RXAP_HEADER_COMPONENT } from '../tokens';
 import { AppsButtonComponent } from './apps-button/apps-button.component';
 import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 import { NavigationProgressBarComponent } from './navigation-progress-bar/navigation-progress-bar.component';
+import { SettingsButtonComponent } from './settings-button/settings-button.component';
 import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.component';
 
 @Component({
@@ -66,6 +63,7 @@ import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.
     NavigationProgressBarComponent,
     UserProfileIconComponent,
     AppsButtonComponent,
+    SettingsButtonComponent,
   ],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
@@ -79,13 +77,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Input()
   public color: ThemePalette = undefined;
 
-  public isDevMode = isDevMode();
-
   constructor(
     @Inject(HeaderService)
     public readonly headerComponentService: HeaderService,
     @Optional() @Inject(RXAP_HEADER_COMPONENT) public headerComponent: any,
-    public readonly theme: ThemeService,
   ) {
   }
 

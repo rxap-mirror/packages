@@ -217,7 +217,8 @@
       "publishable": true
     },
     "@nx/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "standalone": true
     },
     "@nx/nest:library": {
       "directory": "nest",

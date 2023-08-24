@@ -1,11 +1,21 @@
 import { Route } from '@angular/router';
-import { LayoutComponent } from '@rxap/layout';
 import { EmptyRouterOutletComponent } from '@rxap/components';
+import { LayoutComponent } from '@rxap/layout';
+import { CustomMenuItemComponent } from './layout/custom-menu-item/custom-menu-item.component';
 
 export const appRoutes: Route[] = [
   {
     path: '',
     component: LayoutComponent,
+    data: {
+      layout: {
+        header: {
+          menu: {
+            items: [ CustomMenuItemComponent ],
+          },
+        },
+      },
+    },
     children: [
       {
         path: 'table',
