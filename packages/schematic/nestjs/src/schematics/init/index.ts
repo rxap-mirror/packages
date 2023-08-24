@@ -53,10 +53,24 @@ function AddThrottlerModuleImport(sourceFile: SourceFile) {
           moduleSpecifier: '@nestjs/throttler',
           namedImports: [ 'ThrottlerModule' ],
         },
+        {
+          moduleSpecifier: '@nestjs/config',
+          namedImports: [ 'ConfigModule', 'ConfigService' ],
+        },
       ],
       w => {
-        w.writeLine('ThrottlerModule.forRoot(');
+        w.writeLine('ThrottlerModule.forRootAsync(');
         Writers.object({
+          imports: '[ ConfigModule ]',
+          inject: '[ ConfigService ]',
+          useFactory: w => {
+            w.write('(config: ConfigService) => (');
+            Writers.object({
+              ttl: 'config.getOrThrow(\'THROTTLER_TTL\')',
+              limit: 'config.getOrThrow(\'THROTTLER_LIMIT\')',
+            })(w);
+            w.write(')');
+          },
           ttl: '1',
           limit: '10',
         })(w);
@@ -96,6 +110,8 @@ function AddConfigModuleImport(sourceFile: SourceFile, options: InitSchema) {
               GLOBAL_API_PREFIX: `Joi.string()${ options.apiPrefix ?
                 `.default('${ options.apiPrefix }')` :
                 '.optional()' }`,
+              THROTTLER_TTL: 'Joi.number().default(1)',
+              THROTTLER_LIMIT: 'Joi.number().default(10)',
             };
             if (options.sentry) {
               obj['SENTRY_DSN'] =
