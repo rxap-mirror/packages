@@ -13,7 +13,8 @@
     "nx-plugin",
     "gpt",
     "openai",
-    "packages"
+    "packages",
+    "plugin-gpt"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/gpt",
   "bugs": {

@@ -29,7 +29,8 @@
     "angular",
     "ngx",
     "packages",
-    "form-system"
+    "form-system",
+    "angular-form-system"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/form-system",
   "bugs": {

@@ -6,8 +6,7 @@
   "tags": [
     "angular",
     "ngx",
-    "packages",
-    "firebase"
+    "packages"
   ],
   "projectType": "library",
   "targets": {

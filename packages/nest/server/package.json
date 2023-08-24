@@ -20,7 +20,8 @@
     "rxap",
     "nest",
     "packages",
-    "server"
+    "server",
+    "nest-server"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/server",
   "bugs": {

@@ -28,7 +28,8 @@
     "angular",
     "ngx",
     "packages",
-    "open-api"
+    "open-api",
+    "angular-open-api"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/open-api",
   "bugs": {

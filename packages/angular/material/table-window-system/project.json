@@ -7,8 +7,7 @@
     "angular",
     "ngx",
     "packages",
-    "material",
-    "table-window-system"
+    "material"
   ],
   "projectType": "library",
   "targets": {

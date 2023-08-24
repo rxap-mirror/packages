@@ -31,7 +31,8 @@
     "ngx",
     "packages",
     "material",
-    "form-system"
+    "form-system",
+    "angular-material-form-system"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/material/form-system",
   "bugs": {

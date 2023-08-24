@@ -74,7 +74,6 @@
     }
   },
   "tags": [
-    "packages",
-    "reflect-metadata"
+    "packages"
   ]
 }

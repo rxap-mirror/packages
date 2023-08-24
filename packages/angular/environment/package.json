@@ -18,7 +18,8 @@
     "angular",
     "ngx",
     "packages",
-    "environment"
+    "environment",
+    "angular-environment"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/environment",
   "bugs": {

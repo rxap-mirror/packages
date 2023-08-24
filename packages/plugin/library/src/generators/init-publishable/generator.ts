@@ -75,6 +75,7 @@ function updateProjectPackageJson(
       ...(packageJson.keywords ?? []),
       ...(rootPackageJson.keywords ?? []),
       ...(project.tags ?? []),
+      projectName,
     ]),
   ];
   if (rootPackageJson.homepage) {

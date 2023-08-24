@@ -20,7 +20,8 @@
     "rxap",
     "nest",
     "packages",
-    "socket-io-client"
+    "socket-io-client",
+    "nest-socket-io-client"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/socket-io-client",
   "bugs": {

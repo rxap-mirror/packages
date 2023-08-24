@@ -82,7 +82,6 @@
   },
   "tags": [
     "nest",
-    "packages",
-    "jwt"
+    "packages"
   ]
 }

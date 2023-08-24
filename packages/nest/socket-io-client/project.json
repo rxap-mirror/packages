@@ -82,7 +82,6 @@
   },
   "tags": [
     "nest",
-    "packages",
-    "socket-io-client"
+    "packages"
   ]
 }

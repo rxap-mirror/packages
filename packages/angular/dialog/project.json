@@ -6,8 +6,7 @@
   "tags": [
     "angular",
     "ngx",
-    "packages",
-    "dialog"
+    "packages"
   ],
   "projectType": "library",
   "targets": {

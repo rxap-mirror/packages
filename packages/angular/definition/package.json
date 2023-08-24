@@ -21,7 +21,8 @@
     "angular",
     "ngx",
     "packages",
-    "definition"
+    "definition",
+    "angular-definition"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/definition",
   "bugs": {

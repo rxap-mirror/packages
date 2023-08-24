@@ -24,7 +24,8 @@
     "angular",
     "ngx",
     "packages",
-    "services"
+    "services",
+    "angular-services"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/services",
   "bugs": {

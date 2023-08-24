@@ -28,7 +28,8 @@
     "angular",
     "ngx",
     "packages",
-    "table-system"
+    "table-system",
+    "angular-table-system"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/table-system",
   "bugs": {

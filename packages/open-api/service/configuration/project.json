@@ -17,6 +17,8 @@
     }
   },
   "tags": [
-    "open-api"
+    "open-api",
+    "packages",
+    "service"
   ]
 }

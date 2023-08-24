@@ -21,7 +21,8 @@
     "angular",
     "ngx",
     "packages",
-    "icon"
+    "icon",
+    "angular-icon"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/icon",
   "bugs": {

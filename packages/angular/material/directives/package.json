@@ -22,7 +22,8 @@
     "ngx",
     "packages",
     "material",
-    "directives"
+    "directives",
+    "angular-material-directives"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/material/directives",
   "bugs": {

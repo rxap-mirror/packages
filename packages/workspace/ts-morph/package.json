@@ -10,7 +10,8 @@
     "rxap",
     "packages",
     "workspace",
-    "ts-morph"
+    "ts-morph",
+    "workspace-ts-morph"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/workspace/ts-morph",
   "bugs": {

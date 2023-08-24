@@ -30,7 +30,8 @@
     "ngx",
     "packages",
     "material",
-    "table-window-system"
+    "table-window-system",
+    "angular-material-table-window-system"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/material/table-window-system",
   "bugs": {

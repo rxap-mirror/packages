@@ -10,7 +10,8 @@
     "rxap",
     "packages",
     "schematic",
-    "utilities"
+    "utilities",
+    "schematic-utilities"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/utilities",
   "bugs": {

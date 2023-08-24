@@ -23,7 +23,8 @@
     "rxap",
     "nest",
     "packages",
-    "utilities"
+    "utilities",
+    "nest-utilities"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/utilities",
   "bugs": {

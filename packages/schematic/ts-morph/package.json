@@ -21,7 +21,8 @@
     "rxap",
     "schematic",
     "packages",
-    "ts-morph"
+    "ts-morph",
+    "schematic-ts-morph"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/ts-morph",
   "bugs": {

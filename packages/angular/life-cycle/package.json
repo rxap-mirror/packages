@@ -21,7 +21,8 @@
     "angular",
     "ngx",
     "packages",
-    "life-cycle"
+    "life-cycle",
+    "angular-life-cycle"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/life-cycle",
   "bugs": {

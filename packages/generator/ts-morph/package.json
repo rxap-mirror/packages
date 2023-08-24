@@ -16,7 +16,8 @@
     "rxap",
     "packages",
     "generator",
-    "ts-morph"
+    "ts-morph",
+    "generator-ts-morph"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/generator/ts-morph",
   "bugs": {

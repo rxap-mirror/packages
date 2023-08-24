@@ -28,7 +28,8 @@
     "angular",
     "ngx",
     "packages",
-    "form-window-system"
+    "form-window-system",
+    "angular-form-window-system"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/form-window-system",
   "bugs": {

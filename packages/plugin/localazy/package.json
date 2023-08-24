@@ -14,7 +14,8 @@
     "nx",
     "nx-plugin",
     "packages",
-    "localazy"
+    "localazy",
+    "plugin-localazy"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/localazy",
   "bugs": {

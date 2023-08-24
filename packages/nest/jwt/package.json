@@ -10,7 +10,8 @@
     "rxap",
     "nest",
     "packages",
-    "jwt"
+    "jwt",
+    "nest-jwt"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/jwt",
   "bugs": {

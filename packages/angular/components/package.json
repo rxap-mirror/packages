@@ -28,7 +28,8 @@
     "angular",
     "ngx",
     "packages",
-    "components"
+    "components",
+    "angular-components"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/components",
   "bugs": {

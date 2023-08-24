@@ -21,7 +21,8 @@
     "angular",
     "ngx",
     "packages",
-    "keycloak"
+    "keycloak",
+    "angular-keycloak"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/keycloak",
   "bugs": {

@@ -6,8 +6,7 @@
   "tags": [
     "angular",
     "ngx",
-    "packages",
-    "handlebars"
+    "packages"
   ],
   "projectType": "library",
   "targets": {

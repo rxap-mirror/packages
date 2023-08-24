@@ -10,7 +10,8 @@
     "rxap",
     "packages",
     "generator",
-    "utilities"
+    "utilities",
+    "generator-utilities"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/generator/utilities",
   "bugs": {

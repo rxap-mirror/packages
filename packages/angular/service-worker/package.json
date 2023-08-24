@@ -22,7 +22,8 @@
     "angular",
     "ngx",
     "packages",
-    "service-worker"
+    "service-worker",
+    "angular-service-worker"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/service-worker",
   "bugs": {

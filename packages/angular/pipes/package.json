@@ -21,7 +21,8 @@
     "angular",
     "ngx",
     "packages",
-    "pipes"
+    "pipes",
+    "angular-pipes"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/pipes",
   "bugs": {

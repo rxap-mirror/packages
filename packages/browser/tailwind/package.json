@@ -10,7 +10,8 @@
     "rxap",
     "packages",
     "browser",
-    "tailwind"
+    "tailwind",
+    "browser-tailwind"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/browser/tailwind",
   "bugs": {

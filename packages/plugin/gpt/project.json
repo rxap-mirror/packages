@@ -111,7 +111,6 @@
     "plugin",
     "nx",
     "nx-plugin",
-    "gpt",
     "openai",
     "packages"
   ]

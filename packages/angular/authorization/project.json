@@ -6,8 +6,7 @@
   "tags": [
     "angular",
     "ngx",
-    "packages",
-    "authorization"
+    "packages"
   ],
   "projectType": "library",
   "targets": {

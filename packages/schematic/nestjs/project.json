@@ -94,7 +94,6 @@
   },
   "tags": [
     "packages",
-    "schematic",
-    "nestjs"
+    "schematic"
   ]
 }

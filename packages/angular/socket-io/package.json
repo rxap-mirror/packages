@@ -19,7 +19,8 @@
     "angular",
     "ngx",
     "packages",
-    "socket-io"
+    "socket-io",
+    "angular-socket-io"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/socket-io",
   "bugs": {

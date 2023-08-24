@@ -18,7 +18,8 @@
     "angular",
     "ngx",
     "packages",
-    "handlebars"
+    "handlebars",
+    "angular-handlebars"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/handlebars",
   "bugs": {

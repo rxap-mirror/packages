@@ -20,7 +20,7 @@ import { InitGeneratorSchema } from './schema';
 
 function updateProjectTags(project: ProjectConfiguration) {
   const tags: string[] = project.root.split('/').filter(Boolean);
-  tags.unshift(); // remove the first element this is libs or packages, etc.
+  const projectName = tags.pop(); // remove the last element this is the project name
   if (tags[0] === 'angular') {
     tags.push('ngx');
   }
@@ -28,6 +28,11 @@ function updateProjectTags(project: ProjectConfiguration) {
     tags.push('nestjs');
   }
   CoerceProjectTags(project, tags);
+  // if the tag list does not include the project name
+  if (!tags.includes(projectName)) {
+    // then remove the project name from the tags if it is included
+    project.tags = project.tags.filter(tag => tag !== projectName);
+  }
 }
 
 function skipProject(

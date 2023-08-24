@@ -21,7 +21,8 @@
     "angular",
     "ngx",
     "packages",
-    "sentry"
+    "sentry",
+    "angular-sentry"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/sentry",
   "bugs": {

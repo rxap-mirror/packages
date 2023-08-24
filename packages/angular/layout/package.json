@@ -34,7 +34,8 @@
     "angular",
     "ngx",
     "packages",
-    "layout"
+    "layout",
+    "angular-layout"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/layout",
   "bugs": {

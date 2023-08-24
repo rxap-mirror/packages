@@ -13,7 +13,8 @@
     "nx",
     "nx-plugin",
     "packages",
-    "application"
+    "application",
+    "plugin-application"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/application",
   "bugs": {

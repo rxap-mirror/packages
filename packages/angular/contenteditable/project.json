@@ -6,8 +6,7 @@
   "tags": [
     "angular",
     "ngx",
-    "packages",
-    "contenteditable"
+    "packages"
   ],
   "projectType": "library",
   "targets": {

@@ -27,7 +27,8 @@
     "angular",
     "ngx",
     "packages",
-    "window-system"
+    "window-system",
+    "angular-window-system"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/window-system",
   "bugs": {

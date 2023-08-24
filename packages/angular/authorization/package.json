@@ -26,7 +26,8 @@
     "angular",
     "ngx",
     "packages",
-    "authorization"
+    "authorization",
+    "angular-authorization"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/authorization",
   "bugs": {

@@ -23,7 +23,8 @@
     "angular",
     "ngx",
     "packages",
-    "config"
+    "config",
+    "angular-config"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/config",
   "bugs": {

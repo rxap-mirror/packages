@@ -11,7 +11,8 @@
     "rxap",
     "packages",
     "schematic",
-    "nestjs"
+    "nestjs",
+    "schematic-nestjs"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/nestjs",
   "bugs": {

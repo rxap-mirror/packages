@@ -28,7 +28,8 @@
     "angular",
     "ngx",
     "packages",
-    "forms"
+    "forms",
+    "angular-forms"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/forms",
   "bugs": {

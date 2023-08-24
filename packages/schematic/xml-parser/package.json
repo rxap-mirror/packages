@@ -21,7 +21,8 @@
     "rxap",
     "packages",
     "schematic",
-    "xml-parser"
+    "xml-parser",
+    "schematic-xml-parser"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/xml-parser",
   "bugs": {

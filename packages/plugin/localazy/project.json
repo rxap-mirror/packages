@@ -112,7 +112,6 @@
     "plugin",
     "nx",
     "nx-plugin",
-    "packages",
-    "localazy"
+    "packages"
   ]
 }

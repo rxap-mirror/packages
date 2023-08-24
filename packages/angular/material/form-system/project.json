@@ -7,8 +7,7 @@
     "angular",
     "ngx",
     "packages",
-    "material",
-    "form-system"
+    "material"
   ],
   "projectType": "library",
   "targets": {

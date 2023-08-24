@@ -48,7 +48,8 @@
     "rxap",
     "packages",
     "plugin",
-    "library"
+    "library",
+    "plugin-library"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/library",
   "bugs": {

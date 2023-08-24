@@ -22,7 +22,8 @@
     "angular",
     "ngx",
     "packages",
-    "bootstrap"
+    "bootstrap",
+    "angular-bootstrap"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/bootstrap",
   "bugs": {

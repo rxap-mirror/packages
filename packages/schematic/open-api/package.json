@@ -23,7 +23,8 @@
     "rxap",
     "packages",
     "schematic",
-    "open-api"
+    "open-api",
+    "schematic-open-api"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/open-api",
   "bugs": {

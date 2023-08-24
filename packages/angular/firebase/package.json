@@ -25,7 +25,8 @@
     "angular",
     "ngx",
     "packages",
-    "firebase"
+    "firebase",
+    "angular-firebase"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/firebase",
   "bugs": {

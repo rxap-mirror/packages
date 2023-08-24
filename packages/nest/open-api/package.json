@@ -10,7 +10,8 @@
     "rxap",
     "nest",
     "open-api",
-    "packages"
+    "packages",
+    "nest-open-api"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/open-api",
   "bugs": {

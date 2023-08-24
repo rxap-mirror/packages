@@ -30,7 +30,8 @@
     "angular",
     "ngx",
     "packages",
-    "tree"
+    "tree",
+    "angular-tree"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/tree",
   "bugs": {

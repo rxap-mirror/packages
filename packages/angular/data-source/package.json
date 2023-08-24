@@ -31,7 +31,8 @@
     "angular",
     "ngx",
     "packages",
-    "data-source"
+    "data-source",
+    "angular-data-source"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/data-source",
   "bugs": {

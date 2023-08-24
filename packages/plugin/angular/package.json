@@ -13,7 +13,8 @@
     "nx",
     "nx-plugin",
     "packages",
-    "angular"
+    "angular",
+    "plugin-angular"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/angular",
   "bugs": {

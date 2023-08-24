@@ -26,7 +26,8 @@
     "angular",
     "ngx",
     "packages",
-    "data-grid"
+    "data-grid",
+    "angular-data-grid"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/data-grid",
   "bugs": {

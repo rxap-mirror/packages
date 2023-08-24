@@ -16,7 +16,8 @@
     "rxap",
     "nest",
     "packages",
-    "logger"
+    "logger",
+    "nest-logger"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/logger",
   "bugs": {

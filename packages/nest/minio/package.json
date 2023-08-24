@@ -19,7 +19,8 @@
     "rxap",
     "nest",
     "packages",
-    "minio"
+    "minio",
+    "nest-minio"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/nest/minio",
   "bugs": {

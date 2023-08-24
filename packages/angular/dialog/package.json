@@ -27,7 +27,8 @@
     "angular",
     "ngx",
     "packages",
-    "dialog"
+    "dialog",
+    "angular-dialog"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/dialog",
   "bugs": {

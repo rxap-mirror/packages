@@ -37,7 +37,8 @@
     "ngx",
     "packages",
     "material",
-    "table-select"
+    "table-select",
+    "angular-material-table-select"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/material/table-select",
   "bugs": {

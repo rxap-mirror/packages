@@ -23,7 +23,8 @@
     "angular",
     "ngx",
     "packages",
-    "remote-method"
+    "remote-method",
+    "angular-remote-method"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/remote-method",
   "bugs": {

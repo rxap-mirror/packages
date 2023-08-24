@@ -25,7 +25,8 @@
     "angular",
     "ngx",
     "packages",
-    "upload"
+    "upload",
+    "angular-upload"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/upload",
   "bugs": {

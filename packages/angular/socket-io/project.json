@@ -6,8 +6,7 @@
   "tags": [
     "angular",
     "ngx",
-    "packages",
-    "socket-io"
+    "packages"
   ],
   "projectType": "library",
   "targets": {

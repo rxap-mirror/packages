@@ -76,7 +76,6 @@
   },
   "tags": [
     "schematic",
-    "packages",
-    "ts-morph"
+    "packages"
   ]
 }

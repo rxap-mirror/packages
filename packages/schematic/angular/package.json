@@ -11,7 +11,8 @@
     "rxap",
     "packages",
     "schematic",
-    "angular"
+    "angular",
+    "schematic-angular"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/angular",
   "bugs": {

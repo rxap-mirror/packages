@@ -10,7 +10,8 @@
     "rxap",
     "packages",
     "workspace",
-    "utilities"
+    "utilities",
+    "workspace-utilities"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/workspace/utilities",
   "bugs": {

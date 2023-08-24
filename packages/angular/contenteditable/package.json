@@ -19,7 +19,8 @@
     "angular",
     "ngx",
     "packages",
-    "contenteditable"
+    "contenteditable",
+    "angular-contenteditable"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/contenteditable",
   "bugs": {

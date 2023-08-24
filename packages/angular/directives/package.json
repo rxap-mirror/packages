@@ -23,7 +23,8 @@
     "angular",
     "ngx",
     "packages",
-    "directives"
+    "directives",
+    "angular-directives"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/angular/directives",
   "bugs": {

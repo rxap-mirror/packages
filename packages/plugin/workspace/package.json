@@ -12,7 +12,8 @@
     "nx",
     "nx-plugin",
     "packages",
-    "workspace"
+    "workspace",
+    "plugin-workspace"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/workspace",
   "bugs": {

@@ -10,7 +10,8 @@
     "rxap",
     "packages",
     "browser",
-    "utilities"
+    "utilities",
+    "browser-utilities"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/browser/utilities",
   "bugs": {

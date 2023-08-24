@@ -10,7 +10,8 @@
     "rxap",
     "node",
     "packages",
-    "utilities"
+    "utilities",
+    "node-utilities"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/node/utilities",
   "bugs": {
