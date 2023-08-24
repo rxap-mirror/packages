@@ -29,6 +29,11 @@
       "factory": "./src/generators/validator/generator",
       "schema": "./src/generators/validator/schema.json",
       "description": "validator generator"
+    },
+    "open-api": {
+      "factory": "./src/generators/open-api/generator",
+      "schema": "./src/generators/open-api/schema.json",
+      "description": "open-api generator"
     }
   },
   "schematics": {
