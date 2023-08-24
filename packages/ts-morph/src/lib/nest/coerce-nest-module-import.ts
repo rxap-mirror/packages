@@ -4,22 +4,29 @@ import {
   SourceFile,
   WriterFunction,
 } from 'ts-morph';
+import { CoerceImports } from '../coerce-imports';
 import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-literal-form-object-literal';
-import { CoerceImports } from '../ts-morph/coerce-imports';
 import { GetNestModuleMetadata } from './get-nest-module-metadata';
 
-/**
- * @deprecated import from @rxap/ts-morph as CoerceNestModuleImport
- */
-export function AddNestModuleImport(
-  sourceFile: SourceFile,
-  moduleName: string,
-  structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = [],
-  importWriter?: WriterFunction,
-  overwrite = false,
-) {
+export interface CoerceNestModuleImportOptions {
+  moduleName: string;
+  structures?: ReadonlyArray<OptionalKind<ImportDeclarationStructure>>;
+  importWriter?: WriterFunction;
+  overwrite?: boolean;
+}
 
-  CoerceImports(sourceFile, structures);
+export function CoerceNestModuleImport(
+  sourceFile: SourceFile,
+  options: CoerceNestModuleImportOptions,
+) {
+  const {
+    moduleName,
+    structures,
+    importWriter,
+    overwrite,
+  } = options;
+
+  CoerceImports(sourceFile, structures ?? []);
 
   const metadata = GetNestModuleMetadata(sourceFile);
 

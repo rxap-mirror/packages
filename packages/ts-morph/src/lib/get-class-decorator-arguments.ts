@@ -4,9 +4,6 @@ import {
   Node,
 } from 'ts-morph';
 
-/**
- * @deprecated import from @rxap/ts-morph
- */
 export function GetClassDecoratorArguments(
   classDeclaration: ClassDeclaration,
   findFunction: (declaration: Decorator) => boolean,

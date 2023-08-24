@@ -4,9 +4,6 @@ import {
   SourceFile,
 } from 'ts-morph';
 
-/**
- * @deprecated import from @rxap/ts-morph
- */
 export function CoerceImports(
   sourceFile: SourceFile,
   structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> | OptionalKind<ImportDeclarationStructure>,

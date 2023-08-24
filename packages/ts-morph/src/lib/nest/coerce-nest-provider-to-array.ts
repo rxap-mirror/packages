@@ -1,4 +1,4 @@
-import { DeleteUndefinedProperties } from '@rxap/schematics-utilities';
+import { DeleteUndefinedProperties } from '@rxap/utilities';
 import {
   ArrayLiteralExpression,
   ObjectLiteralExpression,
@@ -7,10 +7,7 @@ import {
 } from 'ts-morph';
 import { NestProviderObject } from './nest-provider-object';
 
-/**
- * @deprecated import from @rxap/ts-morph as CoerceNestProviderToArray
- */
-export function AddNestProviderToArray(
+export function CoerceNestProviderToArray(
   providerObject: NestProviderObject | string,
   providerArray: ArrayLiteralExpression,
   overwrite = false,

@@ -14,7 +14,7 @@ import {
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
 import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
-import { CoerceImports } from '@rxap/schematics-ts-morph';
+import { CoerceImports } from '@rxap/ts-morph';
 import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import { CoerceTargetDefaultsDependency } from '@rxap/workspace-utilities';
 import { join } from 'path';

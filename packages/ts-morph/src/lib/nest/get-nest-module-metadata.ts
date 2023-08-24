@@ -5,9 +5,6 @@ import {
 import { GetClassDecoratorArguments } from '../get-class-decorator-arguments';
 import { IsNestModuleClass } from './is-nest-module-class';
 
-/**
- * @deprecated import from @rxap/schematics-ts-morph
- */
 export function GetNestModuleMetadata(sourceFile: SourceFile): ObjectLiteralExpression {
 
   const classDeclaration = sourceFile.getClass(IsNestModuleClass);

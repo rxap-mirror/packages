@@ -26,6 +26,50 @@
                 "onlyDependOnLibsWithTags": [
                   "*"
                 ]
+              },
+              {
+                "sourceTag": "schematic",
+                "notDependOnLibsWithTags": [
+                  "generator"
+                ]
+              },
+              {
+                "sourceTag": "generator",
+                "notDependOnLibsWithTags": [
+                  "schematic"
+                ]
+              },
+              {
+                "sourceTag": "browser",
+                "notDependOnLibsWithTags": [
+                  "node",
+                  "angular"
+                ]
+              },
+              {
+                "sourceTag": "workspace",
+                "notDependOnLibsWithTags": [
+                  "schematic",
+                  "generator"
+                ]
+              },
+              {
+                "sourceTag": "plugin",
+                "notDependOnLibsWithTags": [
+                  "schematic"
+                ]
+              },
+              {
+                "sourceTag": "standalone",
+                "notDependOnLibsWithTags": [
+                  "schematic",
+                  "generator",
+                  "workspace",
+                  "angular",
+                  "node",
+                  "nest",
+                  "browser"
+                ]
               }
             ]
           }

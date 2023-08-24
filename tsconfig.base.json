@@ -199,6 +199,7 @@
       "@rxap/socket-io": ["packages/angular/socket-io/src/index.ts"],
       "@rxap/table-system": ["packages/angular/table-system/src/index.ts"],
       "@rxap/tree": ["packages/angular/tree/src/index.ts"],
+      "@rxap/ts-morph": ["packages/ts-morph/src/index.ts"],
       "@rxap/upload": ["packages/angular/upload/src/index.ts"],
       "@rxap/utilities": ["packages/utilities/src/index.ts"],
       "@rxap/validator": ["packages/validator/src/index.ts"],

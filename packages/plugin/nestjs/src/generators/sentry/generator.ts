@@ -1,8 +1,8 @@
 import { Tree } from '@nx/devkit';
 import {
-  AddNestModuleImport,
-  AddNestModuleProvider,
-} from '@rxap/schematics-ts-morph';
+  CoerceNestModuleImport,
+  CoerceNestModuleProvider,
+} from '@rxap/ts-morph';
 import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
 import { AddPackageJsonDependency } from '@rxap/workspace-utilities';
 import {
@@ -13,90 +13,96 @@ import { SentryGeneratorSchema } from './schema';
 
 function CoerceSentryModule(sourceFile: SourceFile, options: SentryGeneratorSchema) {
 
-  AddNestModuleImport(
+  CoerceNestModuleImport(
     sourceFile,
-    'SentryModule',
-    [
-      {
-        moduleSpecifier: '@rxap/nest-sentry',
-        namedImports: [ 'SentryModule' ],
+    {
+      moduleName: 'SentryModule',
+      structures: [
+        {
+          moduleSpecifier: '@rxap/nest-sentry',
+          namedImports: [ 'SentryModule' ],
+        },
+        {
+          moduleSpecifier: '@nestjs/config',
+          namedImports: [ 'ConfigService', 'ConfigModule' ],
+        },
+        {
+          namedImports: [ 'environment' ],
+          moduleSpecifier: '../environments/environment',
+        },
+        {
+          namedImports: [ 'GetLogLevels', 'SentryOptionsFactory' ],
+          moduleSpecifier: '@rxap/nest-utilities',
+        },
+      ],
+      importWriter: w => {
+        w.writeLine('SentryModule.forRootAsync(');
+        Writers.object({
+          imports: '[ ConfigModule ]',
+          inject: '[ ConfigService ]',
+          useFactory: 'SentryOptionsFactory(environment)',
+        })(w);
+        w.writeLine(',');
+        Writers.object({
+          logLevels: 'GetLogLevels()',
+        });
+        w.write(')');
       },
-      {
-        moduleSpecifier: '@nestjs/config',
-        namedImports: [ 'ConfigService', 'ConfigModule' ],
-      },
-      {
-        namedImports: [ 'environment' ],
-        moduleSpecifier: '../environments/environment',
-      },
-      {
-        namedImports: [ 'GetLogLevels', 'SentryOptionsFactory' ],
-        moduleSpecifier: '@rxap/nest-utilities',
-      },
-    ],
-    w => {
-      w.writeLine('SentryModule.forRootAsync(');
-      Writers.object({
-        imports: '[ ConfigModule ]',
-        inject: '[ ConfigService ]',
-        useFactory: 'SentryOptionsFactory(environment)',
-      })(w);
-      w.writeLine(',');
-      Writers.object({
-        logLevels: 'GetLogLevels()',
-      });
-      w.write(')');
     },
   );
 
 }
 
 function CoerceSentryInterceptorOptionsProvider(sourceFile: SourceFile) {
-  AddNestModuleProvider(
+  CoerceNestModuleProvider(
     sourceFile,
     {
-      provide: 'SENTRY_INTERCEPTOR_OPTIONS',
-      useValue: Writers.object({
-        filters: w1 => {
-          w1.write('[');
-          Writers.object({
-            type: 'HttpException',
-            filter: '(exception: HttpException) => 500 > exception.getStatus()',
-          })(w1);
-          w1.write(']');
+      providerObject: {
+        provide: 'SENTRY_INTERCEPTOR_OPTIONS',
+        useValue: Writers.object({
+          filters: w1 => {
+            w1.write('[');
+            Writers.object({
+              type: 'HttpException',
+              filter: '(exception: HttpException) => 500 > exception.getStatus()',
+            })(w1);
+            w1.write(']');
+          },
+        }),
+      },
+      structures: [
+        {
+          namedImports: [ 'SENTRY_INTERCEPTOR_OPTIONS' ],
+          moduleSpecifier: '@rxap/nest-sentry',
         },
-      }),
-    },
-    [
-      {
-        namedImports: [ 'SENTRY_INTERCEPTOR_OPTIONS' ],
-        moduleSpecifier: '@rxap/nest-sentry',
-      },
-      {
-        namedImports: [ 'HttpException' ],
-        moduleSpecifier: '@nestjs/common',
-      },
-    ],
+        {
+          namedImports: [ 'HttpException' ],
+          moduleSpecifier: '@nestjs/common',
+        },
+      ],
+    }
   );
 }
 
 function CoerceAppInterceptorProvider(sourceFile: SourceFile) {
-  AddNestModuleProvider(
+  CoerceNestModuleProvider(
     sourceFile,
     {
-      provide: 'APP_INTERCEPTOR',
-      useClass: 'SentryInterceptor',
-    },
-    [
-      {
-        namedImports: [ 'APP_INTERCEPTOR' ],
-        moduleSpecifier: '@nestjs/core',
+      providerObject: {
+        provide: 'APP_INTERCEPTOR',
+        useClass: 'SentryInterceptor',
       },
-      {
-        namedImports: [ 'SentryInterceptor' ],
-        moduleSpecifier: '@rxap/nest-sentry',
-      },
-    ],
+      structures: [
+        {
+          namedImports: [ 'APP_INTERCEPTOR' ],
+          moduleSpecifier: '@nestjs/core',
+        },
+        {
+          namedImports: [ 'SentryInterceptor' ],
+          moduleSpecifier: '@rxap/nest-sentry',
+        },
+      ],
+    }
   );
 }
 

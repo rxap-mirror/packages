@@ -4,9 +4,6 @@ import {
   PropertyAssignment,
 } from 'ts-morph';
 
-/**
- * @deprecated import from @rxap/ts-morph
- */
 export function GetCoerceArrayLiteralFromObjectLiteral(
   objectLiteral: ObjectLiteralExpression,
   propertyKey: string,

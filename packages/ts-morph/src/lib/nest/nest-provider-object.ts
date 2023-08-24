@@ -1,8 +1,5 @@
 import { WriterFunction } from 'ts-morph';
 
-/**
- * @deprecated import from @rxap/ts-morph
- */
 export interface NestProviderObject {
   provide: string | WriterFunction;
   useClass?: string | WriterFunction;

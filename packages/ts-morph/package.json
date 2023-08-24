@@ -1,0 +1,37 @@
+{
+  "name": "@rxap/ts-morph",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/ts-morph"
+  },
+  "keywords": [
+    "rxap",
+    "packages",
+    "ts-morph"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/ts-morph",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/ts-morph"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.12"
+      }
+    ]
+  }
+}
