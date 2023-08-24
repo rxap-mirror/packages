@@ -19,6 +19,11 @@
       "factory": "./src/generators/swagger/generator",
       "schema": "./src/generators/swagger/schema.json",
       "description": "swagger generator"
+    },
+    "sentry": {
+      "factory": "./src/generators/sentry/generator",
+      "schema": "./src/generators/sentry/schema.json",
+      "description": "sentry generator"
     }
   },
   "schematics": {

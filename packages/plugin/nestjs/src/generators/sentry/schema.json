@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Sentry",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      },
+      "x-prompt": "Which project should be extend with sentry support?"
+    },
+    "dsn": {
+      "type": "string",
+      "description": "Default sentry dsn"
+    },
+    "required": {
+      "type": "boolean",
+      "description": "Whether or not the sentry dsn should be required to start the application"
+    }
+  },
+  "required": [
+    "project"
+  ]
+}
