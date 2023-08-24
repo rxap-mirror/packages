@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@10.0.1-dev.3...@rxap/nest-jwt@10.0.1-dev.4) (2023-08-24)
+
+### Bug Fixes
+
+- check if the jwt property is set or throw internal server execution ([5ae4a66](https://gitlab.com/rxap/packages/commit/5ae4a663404b5319da3b7340839fbacce9985fe3))
+
 ## [10.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@10.0.1-dev.2...@rxap/nest-jwt@10.0.1-dev.3) (2023-08-17)
 
 ### Reverts

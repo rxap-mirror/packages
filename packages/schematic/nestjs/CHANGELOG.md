@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@0.1.0-dev.3...@rxap/schematic-nestjs@0.1.0-dev.4) (2023-08-24)
+
+### Bug Fixes
+
+- use async factory for ThrottlerModule ([57f9732](https://gitlab.com/rxap/packages/commit/57f97329b9508c47903438fb5718d403a9b21ec5))
+
 # [0.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@0.1.0-dev.2...@rxap/schematic-nestjs@0.1.0-dev.3) (2023-08-17)
 
 ### Reverts

@@ -8337,7 +8337,7 @@ __metadata:
     "@angular-devkit/schematics": ^16.1.4
     "@rxap/schematics-ts-morph": ^16.0.0-dev.12
     "@rxap/schematics-utilities": ^16.0.0-dev.9
-    "@rxap/utilities": ^16.0.0-dev.11
+    "@rxap/utilities": ^16.0.0-dev.12
     ts-morph: ^18.0.0
   languageName: unknown
   linkType: soft
