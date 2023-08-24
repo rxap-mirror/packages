@@ -24,6 +24,11 @@
       "factory": "./src/generators/sentry/generator",
       "schema": "./src/generators/sentry/schema.json",
       "description": "sentry generator"
+    },
+    "validator": {
+      "factory": "./src/generators/validator/generator",
+      "schema": "./src/generators/validator/schema.json",
+      "description": "validator generator"
     }
   },
   "schematics": {
