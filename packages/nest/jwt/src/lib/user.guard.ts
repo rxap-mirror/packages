@@ -3,14 +3,15 @@ import {
   ExecutionContext,
   Inject,
   Injectable,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { IS_PUBLIC_KEY } from '@rxap/nest-utilities';
+import { Command } from '@rxap/pattern';
 import {
   DefaultUser,
   RequestWithJwtAndUser,
 } from './types';
-import { IS_PUBLIC_KEY } from '@rxap/nest-utilities';
-import { Command } from '@rxap/pattern';
 
 export const GET_USER_COMMAND = Symbol('GET_USER_COMMAND');
 
@@ -37,6 +38,10 @@ export class UserGuard<User = DefaultUser> implements CanActivate {
       return true;
     }
     const request = context.switchToHttp().getRequest<RequestWithJwtAndUser<User>>();
+
+    if (!request.jwt) {
+      throw new InternalServerErrorException('Missing jwt in request');
+    }
 
     if (!this._userCache.has(request.jwt.sub)) {
       this._userCache.set(request.jwt.sub, await this.getUserCommand.execute());
