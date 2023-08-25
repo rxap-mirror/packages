@@ -39,6 +39,16 @@
       "factory": "./src/generators/jwt/generator",
       "schema": "./src/generators/jwt/schema.json",
       "description": "jwt generator"
+    },
+    "health-indicator": {
+      "factory": "./src/generators/health-indicator/generator",
+      "schema": "./src/generators/health-indicator/schema.json",
+      "description": "health-indicator generator"
+    },
+    "health-indicator-init": {
+      "factory": "./src/generators/health-indicator-init/generator",
+      "schema": "./src/generators/health-indicator-init/schema.json",
+      "description": "health-indicator-init generator"
     }
   },
   "schematics": {
