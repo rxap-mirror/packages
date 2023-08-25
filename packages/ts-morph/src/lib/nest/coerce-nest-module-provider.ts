@@ -11,7 +11,8 @@ import { NestProviderObject } from './nest-provider-object';
 
 export interface CoerceNestModuleProviderOptions {
   providerObject: NestProviderObject | string,
-  structures?: ReadonlyArray<OptionalKind<ImportDeclarationStructure>>,
+  moduleSpecifier?: string,
+  structures?: Array<OptionalKind<ImportDeclarationStructure>>,
   overwrite?: boolean,
 }
 
@@ -22,11 +23,21 @@ export function CoerceNestModuleProvider(
 
   const {
     providerObject,
-    structures,
     overwrite,
+    moduleSpecifier,
   } = options;
 
-  CoerceImports(sourceFile, structures ?? []);
+  let { structures } = options;
+
+  structures ??= [];
+  if (moduleSpecifier && typeof providerObject === 'string') {
+    structures.push({
+      moduleSpecifier,
+      namedImports: [ providerObject ],
+    });
+  }
+
+  CoerceImports(sourceFile, structures);
 
   const metadata = GetNestModuleMetadata(sourceFile);
 

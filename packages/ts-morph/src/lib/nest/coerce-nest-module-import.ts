@@ -10,9 +10,10 @@ import { GetNestModuleMetadata } from './get-nest-module-metadata';
 
 export interface CoerceNestModuleImportOptions {
   moduleName: string;
-  structures?: ReadonlyArray<OptionalKind<ImportDeclarationStructure>>;
+  structures?: Array<OptionalKind<ImportDeclarationStructure>>;
   importWriter?: WriterFunction;
   overwrite?: boolean;
+  moduleSpecifier?: string;
 }
 
 export function CoerceNestModuleImport(
@@ -21,10 +22,21 @@ export function CoerceNestModuleImport(
 ) {
   const {
     moduleName,
-    structures,
     importWriter,
     overwrite,
+    moduleSpecifier,
   } = options;
+
+  let { structures } = options;
+
+  structures ??= [];
+
+  if (moduleSpecifier) {
+    structures.push({
+      moduleSpecifier,
+      namedImports: [ moduleName ],
+    });
+  }
 
   CoerceImports(sourceFile, structures ?? []);
 

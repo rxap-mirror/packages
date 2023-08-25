@@ -38,4 +38,6 @@ export function CoerceNestModule(
 
   tsMorphTransform!(sourceFile, classDeclaration);
 
+  return classDeclaration;
+
 }
