@@ -1,10 +1,13 @@
-import { NestProviderObject } from './nest-provider-object';
 import {
   ArrayLiteralExpression,
   ObjectLiteralExpression,
   PropertyAssignment,
 } from 'ts-morph';
+import { NestProviderObject } from './nest-provider-object';
 
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export function RemoveNestProviderToArray(
   providerObject: NestProviderObject | string,
   providerArray: ArrayLiteralExpression,

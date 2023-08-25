@@ -7,6 +7,9 @@ import {
   VariableStatementStructure,
 } from 'ts-morph';
 
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export function CoerceVariableDeclaration(
   sourceFile: SourceFile,
   name: string,

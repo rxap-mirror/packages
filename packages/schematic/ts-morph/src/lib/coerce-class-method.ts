@@ -4,6 +4,9 @@ import {
   OptionalKind,
 } from 'ts-morph';
 
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export function CoerceClassMethod(
   classDeclaration: ClassDeclaration,
   name: string,

@@ -1,9 +1,12 @@
 import { SourceFile } from 'ts-morph';
-import { NestProviderObject } from './nest-provider-object';
-import { GetNestModuleMetadata } from './get-nest-module-metadata';
 import { GetCoerceArrayLiteralFromObjectLiteral } from '../get-coerce-array-literal-form-object-literal';
+import { GetNestModuleMetadata } from './get-nest-module-metadata';
+import { NestProviderObject } from './nest-provider-object';
 import { RemoveNestProviderToArray } from './remove-nest-provider-to-array';
 
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export function RemoveNestModuleProvider(
   sourceFile: SourceFile,
   providerObject: NestProviderObject | string,

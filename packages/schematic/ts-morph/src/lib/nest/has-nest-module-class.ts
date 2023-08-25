@@ -1,6 +1,9 @@
 import { SourceFile } from 'ts-morph';
 import { IsNestModuleClass } from './is-nest-module-class';
 
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export function HasNestModuleClass(file: SourceFile): boolean {
   return !!file.getClass(IsNestModuleClass) &&
     !!file.getImportDeclaration(importDeclaration =>

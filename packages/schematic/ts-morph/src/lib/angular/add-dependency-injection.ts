@@ -9,11 +9,17 @@ import {
 import { CoerceClassConstructor } from '../coerce-class-constructor';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export enum Module {
   ANGULAR = '@angular/core',
   NEST = '@nestjs/common'
 }
 
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export interface InjectionDefinition {
   injectionToken: string;
   parameterName: string;
@@ -23,6 +29,9 @@ export interface InjectionDefinition {
   module?: Module;
 }
 
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export function AddDependencyInjection(
   sourceFile: SourceFile,
   definition: InjectionDefinition,

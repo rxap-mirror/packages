@@ -9,6 +9,9 @@ import {
   FindFunctionFactory,
 } from './find-function';
 
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export function CoerceDecorator(
   decoratableNode: DecoratableNode,
   name: string,
@@ -22,6 +25,9 @@ export function CoerceDecorator(
   decoratableNode: DecoratableNode,
   structure: Partial<OptionalKind<DecoratorStructure>> & { name: string },
 ): Decorator;
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export function CoerceDecorator(
   decoratableNode: DecoratableNode,
   structureOrName: OptionalKind<DecoratorStructure> | string,

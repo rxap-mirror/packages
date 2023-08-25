@@ -46,6 +46,9 @@ export interface CoerceOperationOptions extends TsMorphNestProjectTransformOptio
   // responseDtoName?: string;
 }
 
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export function CoerceOperationParamList(paramList: OperationParameter[], classDeclaration: ClassDeclaration) {
   const currentControllerPath = classDeclaration.getDecoratorOrThrow('Controller').getArguments()[0]?.getText() ?? '';
   const fragments = currentControllerPath.split('/');

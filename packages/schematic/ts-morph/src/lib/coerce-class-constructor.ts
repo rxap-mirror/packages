@@ -1,5 +1,8 @@
 import { ClassDeclaration } from 'ts-morph';
 
+/**
+ * @deprecated import from @rxap/sts-morph
+ */
 export function CoerceClassConstructor(classDeclaration: ClassDeclaration) {
   const constructorDeclarations = classDeclaration.getConstructors();
   if (constructorDeclarations.length === 0) {
