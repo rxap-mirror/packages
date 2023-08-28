@@ -71,6 +71,36 @@
       "factory": "./src/generators/swagger/index",
       "schema": "./src/generators/swagger/schema.json",
       "description": "swagger generator"
+    },
+    "sentry": {
+      "factory": "./src/generators/sentry/index",
+      "schema": "./src/generators/sentry/schema.json",
+      "description": "sentry generator"
+    },
+    "validator": {
+      "factory": "./src/generators/validator/index",
+      "schema": "./src/generators/validator/schema.json",
+      "description": "validator generator"
+    },
+    "open-api": {
+      "factory": "./src/generators/open-api/index",
+      "schema": "./src/generators/open-api/schema.json",
+      "description": "open-api generator"
+    },
+    "jwt": {
+      "factory": "./src/generators/jwt/index",
+      "schema": "./src/generators/jwt/schema.json",
+      "description": "jwt generator"
+    },
+    "health-indicator": {
+      "factory": "./src/generators/health-indicator/index",
+      "schema": "./src/generators/health-indicator/schema.json",
+      "description": "health-indicator generator"
+    },
+    "health-indicator-init": {
+      "factory": "./src/generators/health-indicator-init/index",
+      "schema": "./src/generators/health-indicator-init/schema.json",
+      "description": "health-indicator-init generator"
     }
   }
 }
