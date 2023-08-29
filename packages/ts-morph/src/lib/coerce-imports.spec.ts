@@ -175,4 +175,69 @@ describe('CoerceImports', () => {
     expect(sourceFile.getFullText()).toEqual(`import { type Component } from '@angular/core';\n`);
   });
 
+  it('should handle the case that a named import exists an a namespace import is added', () => {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier: '@angular/core',
+      namedImports: [ 'Inject' ],
+    });
+    expect(() => CoerceImports(sourceFile, {
+      moduleSpecifier: '@angular/core',
+      namespaceImport: 'ng',
+    })).not.toThrow();
+    expect(sourceFile.getFullText())
+      .toEqual(`import { Inject } from '@angular/core';\nimport * as ng from '@angular/core';\n`);
+  });
+
+  it('should handle the case that a named import exists an a default import is added', () => {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier: '@angular/core',
+      namedImports: [ 'Inject' ],
+    });
+    expect(() => CoerceImports(sourceFile, {
+      moduleSpecifier: '@angular/core',
+      defaultImport: 'ng',
+    })).not.toThrow();
+    expect(sourceFile.getFullText()).toEqual(`import ng, { Inject } from '@angular/core';\n`);
+  });
+
+  it('should handle the case that a default import exists and a namespace import is added', () => {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier: '@angular/core',
+      defaultImport: 'core',
+    });
+    expect(() => CoerceImports(sourceFile, {
+      moduleSpecifier: '@angular/core',
+      namespaceImport: 'ng',
+    })).not.toThrow();
+    expect(sourceFile.getFullText())
+      .toEqual(`import core from '@angular/core';\nimport * as ng from '@angular/core';\n`);
+  });
+
+  it('should handle the case that a default import exists and a type import is added', () => {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier: '@angular/core',
+      defaultImport: 'core',
+    });
+    expect(() => CoerceImports(sourceFile, {
+      moduleSpecifier: '@angular/core',
+      namedImports: [ 'Component' ],
+      isTypeOnly: true,
+    })).not.toThrow();
+    expect(sourceFile.getFullText())
+      .toEqual(`import core from '@angular/core';\nimport { type Component } from '@angular/core';\n`);
+  });
+
+  it('should handle the case that a namespace import exists and a named imported is added', () => {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier: '@angular/core',
+      namespaceImport: 'ng',
+    });
+    expect(() => CoerceImports(sourceFile, {
+      moduleSpecifier: '@angular/core',
+      namedImports: [ 'Inject' ],
+    })).not.toThrow();
+    expect(sourceFile.getFullText())
+      .toEqual(`import * as ng from '@angular/core';\nimport { Inject } from '@angular/core';\n`);
+  });
+
 });

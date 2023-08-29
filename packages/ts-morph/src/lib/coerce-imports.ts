@@ -105,9 +105,11 @@ function coerceDefaultImport(sourceFile: SourceFile, moduleSpecifier: string, de
  */
 function coerceNamespaceImport(sourceFile: SourceFile, moduleSpecifier: string, namespaceImport: string): void {
 
-  const importDeclaration = sourceFile.getImportDeclaration(moduleSpecifier);
+  const importDeclarations = sourceFile.getImportDeclarations()
+                                       .filter(id => id.getModuleSpecifier().getLiteralText() === moduleSpecifier)
+                                       .filter(id => id.getNamespaceImport() !== undefined);
 
-  if (importDeclaration) {
+  for (const importDeclaration of importDeclarations) {
     const existingNamespaceImport = importDeclaration.getNamespaceImport();
     if (!existingNamespaceImport) {
       importDeclaration.setNamespaceImport(namespaceImport);
@@ -115,12 +117,15 @@ function coerceNamespaceImport(sourceFile: SourceFile, moduleSpecifier: string, 
       importDeclaration.removeNamespaceImport();
       importDeclaration.setNamespaceImport(namespaceImport);
     }
-  } else {
+  }
+
+  if (importDeclarations.length === 0) {
     sourceFile.addImportDeclaration({
       moduleSpecifier,
       namespaceImport,
     });
   }
+
 }
 
 /**
@@ -204,7 +209,8 @@ function coerceNamedImports(
 ): void {
 
   const importDeclarations = sourceFile.getImportDeclarations()
-                                       .filter(id => id.getModuleSpecifier().getLiteralText() === moduleSpecifier);
+                                       .filter(id => id.getModuleSpecifier().getLiteralText() === moduleSpecifier)
+                                       .filter(id => id.getNamespaceImport() === undefined);
 
   if (!isSupportedNamedImports(namedImports)) {
     if (!importDeclarations.length) {
