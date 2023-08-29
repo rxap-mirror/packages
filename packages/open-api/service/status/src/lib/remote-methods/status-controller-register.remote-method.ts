@@ -27,7 +27,11 @@ import { StatusControllerRegisterRequestBody } from '../request-bodies/status-co
 @Injectable({
   providedIn: 'root',
 })
-@RxapOpenApiRemoteMethod('StatusController_register')
+@RxapOpenApiRemoteMethod({
+  serverId: 'service-status',
+  operationId: 'StatusController_register',
+  operation: '{"operationId":"StatusController_register","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string"},"url":{"type":"string"},"port":{"type":"number"}},"required":["name"]}}}},"responses":{"201":{}},"method":"post","path":"/register"}',
+})
 export class StatusControllerRegisterRemoteMethod
   extends OpenApiRemoteMethod<void, void, StatusControllerRegisterRequestBody> {
   public override call(parameters: OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>): Promise<void> {
@@ -42,9 +46,9 @@ export class StatusControllerRegisterRemoteMethod
 export class StatusControllerRegisterRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>> {
   @Input('statusControllerRegisterRemoteMethodParameters')
-  public override parameters?: OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>;
+  declare public parameters?: OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>;
   @Input('statusControllerRegisterRemoteMethodError')
-  public override errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
+  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,

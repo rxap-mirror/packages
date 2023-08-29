@@ -1,4 +1,5 @@
 export interface RegisterDto {
   name: string;
-  url: string;
+  url?: string;
+  port?: number;
 }

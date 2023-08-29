@@ -1,4 +1,5 @@
 export interface StatusControllerRegisterRequestBody {
   name: string;
-  url: string;
+  url?: string;
+  port?: number;
 }

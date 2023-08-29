@@ -27,7 +27,11 @@ import { StatusControllerHealthCheckResponse } from '../responses/status-control
 @Injectable({
   providedIn: 'root',
 })
-@RxapOpenApiRemoteMethod('StatusController_healthCheck')
+@RxapOpenApiRemoteMethod({
+  serverId: 'service-status',
+  operationId: 'StatusController_healthCheck',
+  operation: '{"operationId":"StatusController_healthCheck","parameters":[],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"info":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}},"nullable":true},"error":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}},"nullable":true},"details":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}}}}}}}}},"method":"get","path":"/all"}',
+})
 export class StatusControllerHealthCheckRemoteMethod
   extends OpenApiRemoteMethod<StatusControllerHealthCheckResponse, void, void> {
   public override call(): Promise<StatusControllerHealthCheckResponse> {
@@ -42,9 +46,9 @@ export class StatusControllerHealthCheckRemoteMethod
 export class StatusControllerHealthCheckRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<StatusControllerHealthCheckResponse, OpenApiRemoteMethodParameter<void, void>> {
   @Input('statusControllerHealthCheckRemoteMethodParameters')
-  public override parameters?: OpenApiRemoteMethodParameter<void, void>;
+  declare public parameters?: OpenApiRemoteMethodParameter<void, void>;
   @Input('statusControllerHealthCheckRemoteMethodError')
-  public override errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
+  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,

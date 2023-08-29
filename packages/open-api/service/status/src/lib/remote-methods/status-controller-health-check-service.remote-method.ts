@@ -28,7 +28,11 @@ import { StatusControllerHealthCheckServiceResponse } from '../responses/status-
 @Injectable({
   providedIn: 'root',
 })
-@RxapOpenApiRemoteMethod('StatusController_healthCheckService')
+@RxapOpenApiRemoteMethod({
+  serverId: 'service-status',
+  operationId: 'StatusController_healthCheckService',
+  operation: '{"operationId":"StatusController_healthCheckService","parameters":[{"name":"name","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"info":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}},"nullable":true},"error":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}},"nullable":true},"details":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}}}}}}}}},"method":"get","path":"/{name}"}',
+})
 export class StatusControllerHealthCheckServiceRemoteMethod
   extends OpenApiRemoteMethod<StatusControllerHealthCheckServiceResponse, StatusControllerHealthCheckServiceParameter, void> {
   public override call(parameters: OpenApiRemoteMethodParameter<StatusControllerHealthCheckServiceParameter, void>): Promise<StatusControllerHealthCheckServiceResponse> {
@@ -43,9 +47,9 @@ export class StatusControllerHealthCheckServiceRemoteMethod
 export class StatusControllerHealthCheckServiceRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<StatusControllerHealthCheckServiceResponse, OpenApiRemoteMethodParameter<StatusControllerHealthCheckServiceParameter, void>> {
   @Input('statusControllerHealthCheckServiceRemoteMethodParameters')
-  public override parameters?: OpenApiRemoteMethodParameter<StatusControllerHealthCheckServiceParameter, void>;
+  declare public parameters?: OpenApiRemoteMethodParameter<StatusControllerHealthCheckServiceParameter, void>;
   @Input('statusControllerHealthCheckServiceRemoteMethodError')
-  public override errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
+  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,

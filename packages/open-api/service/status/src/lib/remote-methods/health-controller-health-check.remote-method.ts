@@ -27,7 +27,11 @@ import { HealthControllerHealthCheckResponse } from '../responses/health-control
 @Injectable({
   providedIn: 'root',
 })
-@RxapOpenApiRemoteMethod('HealthController_healthCheck')
+@RxapOpenApiRemoteMethod({
+  serverId: 'service-status',
+  operationId: 'HealthController_healthCheck',
+  operation: '{"operationId":"HealthController_healthCheck","parameters":[],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"info":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}},"nullable":true},"error":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}},"nullable":true},"details":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}}}}}}}}},"method":"get","path":"/health"}',
+})
 export class HealthControllerHealthCheckRemoteMethod
   extends OpenApiRemoteMethod<HealthControllerHealthCheckResponse, void, void> {
   public override call(): Promise<HealthControllerHealthCheckResponse> {
@@ -42,9 +46,9 @@ export class HealthControllerHealthCheckRemoteMethod
 export class HealthControllerHealthCheckRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<HealthControllerHealthCheckResponse, OpenApiRemoteMethodParameter<void, void>> {
   @Input('healthControllerHealthCheckRemoteMethodParameters')
-  public override parameters?: OpenApiRemoteMethodParameter<void, void>;
+  declare public parameters?: OpenApiRemoteMethodParameter<void, void>;
   @Input('healthControllerHealthCheckRemoteMethodError')
-  public override errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
+  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,

@@ -27,7 +27,11 @@ import { AppControllerEnvironmentResponse } from '../responses/app-controller-en
 @Injectable({
   providedIn: 'root',
 })
-@RxapOpenApiRemoteMethod('AppController_environment')
+@RxapOpenApiRemoteMethod({
+  serverId: 'service-status',
+  operationId: 'AppController_environment',
+  operation: '{"operationId":"AppController_environment","parameters":[],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object"}}}}},"method":"get","path":"/"}',
+})
 export class AppControllerEnvironmentRemoteMethod
   extends OpenApiRemoteMethod<AppControllerEnvironmentResponse, void, void> {
   public override call(): Promise<AppControllerEnvironmentResponse> {
@@ -42,9 +46,9 @@ export class AppControllerEnvironmentRemoteMethod
 export class AppControllerEnvironmentRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<AppControllerEnvironmentResponse, OpenApiRemoteMethodParameter<void, void>> {
   @Input('appControllerEnvironmentRemoteMethodParameters')
-  public override parameters?: OpenApiRemoteMethodParameter<void, void>;
+  declare public parameters?: OpenApiRemoteMethodParameter<void, void>;
   @Input('appControllerEnvironmentRemoteMethodError')
-  public override errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
+  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
