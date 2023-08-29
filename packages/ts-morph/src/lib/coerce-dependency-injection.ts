@@ -26,7 +26,7 @@ export interface InjectionDefinition {
 export function CoerceDependencyInjection(
   sourceFile: SourceFile,
   definition: InjectionDefinition,
-  structures: ReadonlyArray<OptionalKind<ImportDeclarationStructure>> = [],
+  structures: Array<OptionalKind<ImportDeclarationStructure>> = [],
 ) {
 
   if (!definition.module) {
