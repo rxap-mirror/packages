@@ -92,7 +92,15 @@ export async function swaggerGenerator(
   options: SwaggerGeneratorSchema,
 ) {
   const projectRoot = GetProjectRoot(tree, options.project);
-  generateFiles(tree, path.join(__dirname, 'files'), join(projectRoot, 'src'), { tmpl: '' });
+  generateFiles(
+    tree,
+    path.join(__dirname, 'files'),
+    join(projectRoot, 'src'),
+    {
+      tmpl: '',
+      projectName: options.project,
+    },
+  );
 
   const project = readProjectConfiguration(tree, options.project);
 

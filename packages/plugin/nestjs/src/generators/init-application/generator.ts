@@ -53,7 +53,7 @@ import swaggerGenerator from '../swagger/generator';
 import validatorGenerator from '../validator/generator';
 import { InitApplicationGeneratorSchema } from './schema';
 
-function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: boolean }) {
+function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: boolean, overwrite: boolean }) {
 
   TsMorphNestProjectTransform(
     tree,
@@ -74,6 +74,7 @@ function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: 
       const baseEnvironment: Record<string, WriterFunction | string> = {
         name: w => w.quote('development'),
         production: 'false',
+        app: w => w.quote(options.project),
       };
 
       if (options.sentry) {
@@ -83,10 +84,14 @@ function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: 
         });
       }
 
-      CoerceVariableDeclaration(sourceFile, 'environment', {
+      const normal = CoerceVariableDeclaration(sourceFile, 'environment', {
         type: 'Environment',
         initializer: Writers.object(baseEnvironment),
       });
+
+      if (options.overwrite) {
+        normal.set({ initializer: Writers.object(baseEnvironment) });
+      }
 
       baseEnvironment['name'] = w => w.quote('production');
       baseEnvironment['production'] = 'true';
@@ -98,10 +103,14 @@ function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: 
         });
       }
 
-      CoerceVariableDeclaration(prodSourceFile, 'environment', {
+      const prod = CoerceVariableDeclaration(prodSourceFile, 'environment', {
         type: 'Environment',
         initializer: Writers.object(baseEnvironment),
       });
+
+      if (options.overwrite) {
+        prod.set({ initializer: Writers.object(baseEnvironment) });
+      }
 
     },
     [
@@ -421,6 +430,7 @@ export async function initApplicationGenerator(
       {
         project: projectName,
         sentry: options.sentry,
+        overwrite: options.overwrite,
       },
     );
     TsMorphNestProjectTransform(

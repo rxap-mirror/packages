@@ -33,6 +33,7 @@ function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
             w.writeLine('OpenApiModule.registerAsync(');
             Writers.object({
               inject: '[ ConfigService ]',
+              imports: '[ ConfigModule ]',
               useFactory: '(config: ConfigService) => ({})',
             })(w);
             w.write(')');
