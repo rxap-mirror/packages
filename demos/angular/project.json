@@ -182,7 +182,8 @@
       "options": {
         "imageName": "rxap/packages",
         "imageSuffix": "/user-interface/angular",
-        "imageRegistry": "registry.gitlab.com"
+        "imageRegistry": "registry.gitlab.com",
+        "dockerfile": "shared/angular.Dockerfile"
       },
       "configurations": {
         "production": {},
