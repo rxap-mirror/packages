@@ -7,7 +7,7 @@ import { CoerceNestModuleProvider } from './coerce-nest-module-provider';
 export function CoerceHealthModule(sourceFile: SourceFile) {
 
   CoerceNestModule(sourceFile, {
-    name: 'HealthModule',
+    name: 'Health',
   });
 
   CoerceNestModuleImport(sourceFile, {

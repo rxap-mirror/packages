@@ -213,11 +213,14 @@ export function CoerceNestOperation(sourceFile: SourceFile, options: CoerceOpera
     returnType = 'void',
     isAsync,
     body,
-    statements,
     decorators = [],
   } = options;
 
-  let { method = 'get', path } = options;
+  let {
+    method = 'get',
+    path,
+    statements,
+  } = options;
 
   const classDeclaration = GetControllerClass(sourceFile);
 
@@ -242,10 +245,18 @@ export function CoerceNestOperation(sourceFile: SourceFile, options: CoerceOpera
 
   const importStructures: Array<OptionalKind<ImportDeclarationStructure>> = [
     {
-      namedImports: [ method, 'NotImplementedException' ],
+      namedImports: [ method ],
       moduleSpecifier: '@nestjs/common',
     },
   ];
+
+  if (!statements) {
+    statements = [ 'throw new NotImplementedException();' ];
+    importStructures.push({
+      namedImports: [ 'NotImplementedException' ],
+      moduleSpecifier: '@nestjs/common',
+    });
+  }
 
   if (queryList.length) {
     importStructures.push({
@@ -305,7 +316,12 @@ export function CoerceNestOperation(sourceFile: SourceFile, options: CoerceOpera
         }
         return a.hasQuestionToken ? 1 : -1;
       }),
-      returnType: !isAsync ? returnType : returnType ? (w: any) => {
+    },
+  );
+
+  if (returnType) {
+    if (isAsync) {
+      methodDeclaration.setReturnType(w => {
         w.write('Promise<');
         if (typeof returnType === 'string') {
           w.write(returnType);
@@ -315,9 +331,11 @@ export function CoerceNestOperation(sourceFile: SourceFile, options: CoerceOpera
           throw new Error('Invalid return type. Must be a string or a function');
         }
         w.write('>');
-      } : undefined,
-    },
-  );
+      });
+    } else {
+      methodDeclaration.setReturnType(returnType);
+    }
+  }
 
   decorators.forEach(decorator => {
     CoerceDecorator(methodDeclaration, decorator.name, decorator);
@@ -327,8 +345,7 @@ export function CoerceNestOperation(sourceFile: SourceFile, options: CoerceOpera
   coerceApiQueryDecorators(queryList, methodDeclaration);
   CoerceStatements(
     methodDeclaration,
-    statements ??
-    [ 'throw new NotImplementedException();' ],
+    statements,
   );
 
   CoerceImports(sourceFile, importStructures);

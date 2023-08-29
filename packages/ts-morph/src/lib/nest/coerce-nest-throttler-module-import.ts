@@ -4,7 +4,7 @@ import {
 } from 'ts-morph';
 import { CoerceNestModuleImport } from './coerce-nest-module-import';
 
-export function CoerceThrottlerModuleImport(sourceFile: SourceFile) {
+export function CoerceNestThrottlerModuleImport(sourceFile: SourceFile) {
   CoerceNestModuleImport(
     sourceFile, {
       moduleName: 'ThrottlerModule',

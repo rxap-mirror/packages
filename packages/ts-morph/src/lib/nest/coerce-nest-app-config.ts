@@ -83,9 +83,15 @@ function writeValidationSchemaExpression(item: CoerceNestAppConfigOptionsItem): 
 
 function buildValidationSchemaExpressionValue(item: Omit<CoerceNestAppConfigOptionsItem, 'builder'>): WriterFunction {
   return w => {
-    w.write(`Joi.${ item.type }()`);
+    w.write(`Joi.${ item.type ?? 'string' }()`);
     if (item.defaultValue) {
-      w.write(`.default(${ item.defaultValue })`);
+      if (typeof item.defaultValue === 'string') {
+        w.write(`.default(${ item.defaultValue })`);
+      } else {
+        w.write('.default(');
+        item.defaultValue(w);
+        w.write(')');
+      }
     }
     w.write(';');
   };
