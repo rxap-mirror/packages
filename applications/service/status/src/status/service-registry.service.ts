@@ -1,17 +1,16 @@
+import { HttpService } from '@nestjs/axios';
 import {
   Inject,
   Injectable,
   Logger,
   NotFoundException,
 } from '@nestjs/common';
-import { RegisterDto } from './register.dto';
-import { HttpService } from '@nestjs/axios';
-import { firstValueFrom } from 'rxjs';
-import { AxiosError } from 'axios';
 import {
   HealthIndicator,
   HealthIndicatorResult,
 } from '@nestjs/terminus';
+import { AxiosError } from 'axios';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class ServiceRegistryService extends HealthIndicator {
@@ -24,8 +23,8 @@ export class ServiceRegistryService extends HealthIndicator {
   @Inject(Logger)
   private readonly logger!: Logger;
 
-  register(body: RegisterDto) {
-    this.services.set(body.name, body.url);
+  register(name: string, url: string) {
+    this.services.set(name, url);
   }
 
   has(name: string) {
@@ -47,7 +46,11 @@ export class ServiceRegistryService extends HealthIndicator {
       return this.getStatus(name, true, { message: response.statusText });
     } catch (e: any) {
       if (e instanceof AxiosError) {
-        this.logger.error(`Service: ${ name } at url: ${ url } is not available`, e.message, 'ServiceRegistryService');
+        this.logger.error(
+          `Service: ${ name } at url: ${ url } is not available: ${ e.message }`,
+          undefined,
+          'ServiceRegistryService',
+        );
         if (e.status === 509) {
           return this.getStatus(name, false, { message: 'Bandwidth Limit Exceeded' });
         }

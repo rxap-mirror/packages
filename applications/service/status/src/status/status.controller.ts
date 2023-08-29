@@ -1,7 +1,6 @@
 import {
   BadRequestException,
   Body,
-  ConflictException,
   Controller,
   Get,
   Inject,
@@ -10,6 +9,7 @@ import {
   NotFoundException,
   Param,
   Post,
+  Req,
 } from '@nestjs/common';
 import {
   HealthCheck,
@@ -20,6 +20,7 @@ import {
   Internal,
   Public,
 } from '@rxap/nest-utilities';
+import type { Request } from 'express';
 import { RegisterDto } from './register.dto';
 import { ServiceRegistryService } from './service-registry.service';
 
@@ -51,13 +52,18 @@ export class StatusController {
 
   @Post('register')
   @Internal()
-  public async register(@Body() body: RegisterDto) {
-    this.logger.log(`Register service: ${ body.name } at url: ${ body.url }`, 'StatusController');
-
-    if (this.serviceRegistryService.has(body.name)) {
-      throw new ConflictException(`Service with name: ${ body.name } already registered`);
+  public async register(
+    @Body() body: RegisterDto,
+    @Req() req: Request,
+  ) {
+    let url = body.url;
+    if (!url) {
+      const port = body.port ?? 3000;
+      url = `http://${ req.ip }:${ port }`;
     }
-    this.serviceRegistryService.register(body);
+    this.logger.log(`Register service: ${ body.name } at url: ${ url }`, 'StatusController');
+
+    this.serviceRegistryService.register(body.name, url);
 
     const status = await this.serviceRegistryService.check(body.name);
 
@@ -71,7 +77,7 @@ export class StatusController {
 
     if (!isHealthy) {
       this.serviceRegistryService.unregister(body.name);
-      throw new BadRequestException(`Service with name: ${ body.name } is not unhealthy`);
+      throw new BadRequestException(`Service with name: ${ body.name } is unhealthy`);
     }
 
   }
