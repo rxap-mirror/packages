@@ -40,8 +40,6 @@ export function CoerceNestThrottlerModuleImport(
             })(w);
             w.write(')');
           },
-          ttl: '1',
-          limit: '10',
         })(w);
         w.write(')');
       },

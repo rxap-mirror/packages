@@ -44,12 +44,12 @@ export function CoerceNestModuleImport(
 
   const importsArray = GetCoerceArrayLiteralFromObjectLiteral(metadata, 'imports');
 
-  const hasModule = importsArray.getElements().find(element => element.getFullText().trim().startsWith(moduleName));
+  const index = importsArray.getElements().findIndex(element => element.getFullText().trim().startsWith(moduleName));
 
-  if (!hasModule || overwrite) {
+  if (index === -1 || overwrite) {
 
-    if (hasModule) {
-      importsArray.removeElement(hasModule.getChildIndex());
+    if (index !== -1) {
+      importsArray.removeElement(index);
     }
 
     importsArray.addElement(importWriter ?? moduleName);
