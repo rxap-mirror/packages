@@ -42,6 +42,12 @@
       "description": "Whether this service use the ValidationPipe",
       "x-prompt": "Should this service use the ValidationPipe?"
     },
+    "statusRegister": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the application should register to status service",
+      "x-prompt": "Should this service register to status service?"
+    },
     "platform": {
       "type": "string",
       "enum": [

@@ -387,6 +387,7 @@ export async function initApplicationGenerator(
   options.overwrite ??= false;
   options.openApi ??= false;
   options.jwt ??= false;
+  options.statusRegister ??= true;
   console.log('nestjs application init generator:', options);
 
   setGeneralTargetDefaults(tree);
@@ -417,6 +418,7 @@ export async function initApplicationGenerator(
       tmpl: '',
       port,
       globalApiPrefix,
+      statusRegister: projectName === 'service-status' ? false : options.statusRegister,
     });
 
     updateProjectTargets(project);
@@ -444,30 +446,41 @@ export async function initApplicationGenerator(
         CoerceAppGuardProvider(moduleSourceFile);
         CoerceNestEnvironmentProvider(moduleSourceFile);
         CoerceNestLoggerProvider(moduleSourceFile);
+        const itemList = [
+          {
+            name: 'PORT',
+            type: 'number',
+            defaultValue: port.toFixed(0),
+          },
+          {
+            name: 'GLOBAL_API_PREFIX',
+            defaultValue: w => w.quote(globalApiPrefix),
+          },
+          {
+            name: 'THROTTLER_TTL',
+            defaultValue: '60',
+          },
+          {
+            name: 'THROTTLER_LIMIT',
+            defaultValue: '10',
+          },
+          {
+            name: 'COOKIE_SECRET',
+            defaultValue: 'GenerateRandomString()',
+          },
+        ];
+        if (options.statusRegister && projectName !== 'service-status') {
+          itemList.push({
+            name: 'STATUS_SERVICE_BASE_URL',
+            defaultValue: 'Joi.string().default(environment.production ? \'http://status-service:3000\' : `https://${process.env.ROOT_DOMAIN ?? \'localhost\'}:8443`)',
+          });
+          CoerceImports(configSourceFile, {
+            namespaceImport: 'process',
+            moduleSpecifier: 'process',
+          });
+        }
         CoerceNestAppConfig(configSourceFile, {
-          itemList: [
-            {
-              name: 'PORT',
-              type: 'number',
-              defaultValue: port.toFixed(0),
-            },
-            {
-              name: 'GLOBAL_API_PREFIX',
-              defaultValue: w => w.quote(globalApiPrefix),
-            },
-            {
-              name: 'THROTTLER_TTL',
-              defaultValue: '60',
-            },
-            {
-              name: 'THROTTLER_LIMIT',
-              defaultValue: '10',
-            },
-            {
-              name: 'COOKIE_SECRET',
-              defaultValue: 'GenerateRandomString()',
-            },
-          ],
+          itemList,
         });
         CoerceImports(configSourceFile, {
           namedImports: [ 'GenerateRandomString' ],
