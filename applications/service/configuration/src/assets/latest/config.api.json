@@ -1,5 +1,11 @@
 {
   "service-app-angular-table": {
     "baseUrl": "/api/app/angular/table"
+  },
+  "service-status": {
+    "baseUrl": "/api/status"
+  },
+  "service-configuration": {
+    "baseUrl": "/api/configuration"
   }
 }
