@@ -6,6 +6,7 @@ import {
   Get,
   Inject,
   InternalServerErrorException,
+  Logger,
   NotFoundException,
   Param,
   Post,
@@ -15,12 +16,12 @@ import {
   HealthCheckResult,
   HealthCheckService,
 } from '@nestjs/terminus';
-import { RegisterDto } from './register.dto';
-import { ServiceRegistryService } from './service-registry.service';
 import {
   Internal,
   Public,
 } from '@rxap/nest-utilities';
+import { RegisterDto } from './register.dto';
+import { ServiceRegistryService } from './service-registry.service';
 
 @Controller()
 @Public()
@@ -29,6 +30,7 @@ export class StatusController {
   constructor(
     @Inject(HealthCheckService) private readonly health: HealthCheckService,
     private readonly serviceRegistryService: ServiceRegistryService,
+    private readonly logger: Logger,
   ) {
   }
 
@@ -50,6 +52,8 @@ export class StatusController {
   @Post('register')
   @Internal()
   public async register(@Body() body: RegisterDto) {
+    this.logger.log(`Register service: ${ body.name } at url: ${ body.url }`, 'StatusController');
+
     if (this.serviceRegistryService.has(body.name)) {
       throw new ConflictException(`Service with name: ${ body.name } already registered`);
     }
