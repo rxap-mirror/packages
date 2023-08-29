@@ -2,11 +2,20 @@ import {
   SourceFile,
   Writers,
 } from 'ts-morph';
-import { CoerceNestModuleImport } from './coerce-nest-module-import';
+import {
+  CoerceNestModuleImport,
+  CoerceNestModuleImportOptions,
+} from './coerce-nest-module-import';
 
-export function CoerceNestThrottlerModuleImport(sourceFile: SourceFile) {
+export type CoerceNestThrottlerModuleImportOptions = Omit<CoerceNestModuleImportOptions, 'moduleName'>;
+
+export function CoerceNestThrottlerModuleImport(
+  sourceFile: SourceFile,
+  options: CoerceNestThrottlerModuleImportOptions,
+) {
   CoerceNestModuleImport(
     sourceFile, {
+      ...options,
       moduleName: 'ThrottlerModule',
       structures: [
         {

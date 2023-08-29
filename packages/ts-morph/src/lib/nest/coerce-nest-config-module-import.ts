@@ -2,11 +2,17 @@ import {
   SourceFile,
   Writers,
 } from 'ts-morph';
-import { CoerceNestModuleImport } from './coerce-nest-module-import';
+import {
+  CoerceNestModuleImport,
+  CoerceNestModuleImportOptions,
+} from './coerce-nest-module-import';
 
-export function CoerceNestConfigModuleImport(sourceFile: SourceFile) {
+export type CoerceNestConfigModuleImportOptions = Omit<CoerceNestModuleImportOptions, 'moduleName'>;
+
+export function CoerceNestConfigModuleImport(sourceFile: SourceFile, options: CoerceNestConfigModuleImportOptions) {
   CoerceNestModuleImport(
     sourceFile, {
+      ...options,
       moduleName: 'ConfigModule',
       structures: [
         {
