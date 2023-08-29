@@ -1,5 +1,5 @@
-FROM node:18.16-alpine
-# FROM node:16.14 # use if the mongo memory server is used
+FROM node:18.17-alpine
+# FROM node:18.17 # use if the mongo memory server is used
 
 RUN apk add --no-cache git g++ make python3
 
@@ -15,9 +15,8 @@ COPY . /app
 
 ENV PORT=3000
 ENV GLOBAL_API_PREFIX="api/status"
+EXPOSE 3000
 
 HEALTHCHECK CMD node healthcheck.js > /dev/null || exit 1
-
-EXPOSE 3000
 
 CMD [ "node", "/app/main.js" ]

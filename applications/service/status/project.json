@@ -42,13 +42,15 @@
               "with": "applications/service/status/src/environments/environment.prod.ts"
             }
           ]
-        }
-      }
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "production"
     },
     "serve": {
       "executor": "@nx/js:node",
       "options": {
-        "buildTarget": "service-status:build"
+        "buildTarget": "service-status:build:development"
       }
     },
     "lint": {

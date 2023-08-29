@@ -1,4 +1,5 @@
 import {
+  HttpException,
   Logger,
   Module,
 } from '@nestjs/common';
@@ -15,6 +16,7 @@ import {
   ThrottlerModule,
 } from '@nestjs/throttler';
 import {
+  SENTRY_INTERCEPTOR_OPTIONS,
   SentryInterceptor,
   SentryModule,
 } from '@rxap/nest-sentry';
@@ -23,32 +25,14 @@ import {
   GetLogLevels,
   SentryOptionsFactory,
 } from '@rxap/nest-utilities';
-import * as Joi from 'joi';
 import { environment } from '../environments/environment';
 import { StatusModule } from '../status/status.module';
+import { VALIDATION_SCHEMA } from './app.config';
 import { AppController } from './app.controller';
 import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
-    ThrottlerModule.forRoot({
-      ttl: 1,
-      limit: 10,
-    }),
-    ConfigModule.forRoot({
-      isGlobal: true,
-      validationSchema: Joi.object({
-        PORT: Joi.number().default(3131),
-        GLOBAL_API_PREFIX: Joi.string().default('api/status'),
-        SENTRY_DSN: Joi.string(),
-        SENTRY_ENABLED: Joi.boolean().default(environment.sentry?.enabled ?? false),
-        SENTRY_ENVIRONMENT: Joi.string(),
-        SENTRY_RELEASE: Joi.string(),
-        SENTRY_SERVER_NAME: Joi.string().default(process.env.ROOT_DOMAIN ?? 'service-status'),
-        SENTRY_DEBUG: Joi.boolean().default(environment.sentry?.debug ?? false),
-
-      }),
-    }),
     SentryModule.forRootAsync({
       imports: [ ConfigModule ],
       inject: [ ConfigService ],
@@ -56,6 +40,20 @@ import { HealthModule } from './health/health.module';
     }, { logLevels: GetLogLevels() }),
     HealthModule,
     StatusModule,
+    ThrottlerModule.forRootAsync(
+      {
+        imports: [ ConfigModule ],
+        inject: [ ConfigService ],
+        useFactory: (config: ConfigService) => ({
+          ttl: config.getOrThrow('THROTTLER_TTL'),
+          limit: config.getOrThrow('THROTTLER_LIMIT'),
+        }),
+      }),
+    ConfigModule.forRoot(
+      {
+        isGlobal: true,
+        validationSchema: VALIDATION_SCHEMA,
+      }),
   ],
   controllers: [ AppController ],
   providers: [
@@ -72,6 +70,17 @@ import { HealthModule } from './health/health.module';
       useValue: environment,
     },
     Logger,
+    {
+      provide: SENTRY_INTERCEPTOR_OPTIONS,
+      useValue: {
+        filters: [
+          {
+            type: HttpException,
+            filter: (exception: HttpException) => 500 > exception.getStatus(),
+          },
+        ],
+      },
+    },
   ],
 })
 export class AppModule {}
