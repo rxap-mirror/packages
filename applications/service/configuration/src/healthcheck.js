@@ -13,7 +13,7 @@ if (process.env.HEALTHCHECK_PATH) {
 
 const options = {
   host: '127.0.0.1',
-  port: process.env.PORT ?? 3309,
+  port: process.env.PORT,
   path,
   timeout: 30000,
 };

@@ -1,6 +1,5 @@
 export interface InitApplicationGeneratorSchema {
   projects?: string[];
-  google?: boolean;
   sentry?: boolean;
   swagger?: boolean;
   healthIndicator?: boolean;

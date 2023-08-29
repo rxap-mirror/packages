@@ -2,14 +2,17 @@ import {
   Controller,
   Get,
 } from '@nestjs/common';
+import {
+  Environment,
+  Public,
+} from '@rxap/nest-utilities';
 import { environment } from '../environments/environment';
-import { Public } from '@rxap/nest-utilities';
 
 @Controller()
 @Public()
 export class AppController {
   @Get()
-  environment() {
+  environment(): Environment {
     return environment;
   }
 }

@@ -15,11 +15,12 @@ import {
 import {
   CoerceAppGuardProvider,
   CoerceImports,
+  CoerceNestAppConfig,
   CoerceNestAppController,
   CoerceNestAppModule,
   CoerceNestEnvironmentProvider,
   CoerceNestLoggerProvider,
-  CoerceThrottlerModuleImport,
+  CoerceNestThrottlerModuleImport,
   CoerceVariableDeclaration,
 } from '@rxap/ts-morph';
 import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
@@ -318,9 +319,17 @@ export async function initApplicationGenerator(
       continue;
     }
 
+    const port = options.port;
+    const globalApiPrefix = options.apiPrefix;
+
     console.log(`init project: ${ projectName }`);
 
-    generateFiles(tree, join(__dirname, 'files'), project.sourceRoot, { tmpl: '' });
+    generateFiles(tree, join(__dirname, 'files'), project.sourceRoot, {
+      ...options,
+      tmpl: '',
+      port,
+      globalApiPrefix,
+    });
 
     updateProjectTargets(project);
     updateGitIgnore(tree, project);
@@ -338,17 +347,47 @@ export async function initApplicationGenerator(
     TsMorphNestProjectTransform(
       tree,
       { project: projectName },
-      (project: Project, [ moduleSourceFile, controllerSourceFile ]) => {
+      (project: Project, [ moduleSourceFile, controllerSourceFile, configSourceFile ]) => {
         CoerceNestAppModule(moduleSourceFile);
         CoerceNestAppController(controllerSourceFile);
-        CoerceThrottlerModuleImport(moduleSourceFile);
+        CoerceNestThrottlerModuleImport(moduleSourceFile);
         CoerceAppGuardProvider(moduleSourceFile);
         CoerceNestEnvironmentProvider(moduleSourceFile);
         CoerceNestLoggerProvider(moduleSourceFile);
+        CoerceNestAppConfig(configSourceFile, {
+          itemList: [
+            {
+              name: 'PORT',
+              type: 'number',
+              defaultValue: port.toFixed(0),
+            },
+            {
+              name: 'GLOBAL_API_PREFIX',
+              defaultValue: w => w.quote(globalApiPrefix),
+            },
+            {
+              name: 'THROTTLER_TTL',
+              defaultValue: '60',
+            },
+            {
+              name: 'THROTTLER_LIMIT',
+              defaultValue: '10',
+            },
+            {
+              name: 'COOKIE_SECRET',
+              defaultValue: 'GenerateRandomString()',
+            },
+          ],
+        });
+        CoerceImports(configSourceFile, {
+          namedImports: [ 'GenerateRandomString' ],
+          moduleSpecifier: '@rxap/utilities',
+        });
       },
       [
         '/app/app.module.ts',
         '/app/app.controller.ts',
+        '/app/app.config.ts?',
       ],
     );
 

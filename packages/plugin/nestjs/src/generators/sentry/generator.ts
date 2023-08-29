@@ -1,5 +1,7 @@
 import { Tree } from '@nx/devkit';
 import {
+  CoerceImports,
+  CoerceNestAppConfig,
   CoerceNestModuleImport,
   CoerceNestModuleProvider,
 } from '@rxap/ts-morph';
@@ -125,11 +127,60 @@ function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
 
 }
 
+
+function UpdateAppConfig(tree: Tree, options: SentryGeneratorSchema, projectName: string) {
+
+  TsMorphNestProjectTransform(
+    tree,
+    {
+      project: options.project,
+    },
+    (project, [ sourceFile ]) => {
+
+      CoerceNestAppConfig(sourceFile, {
+        itemList: [
+          {
+            name: 'SENTRY_DSN',
+            defaultValue: options.dsn,
+          },
+          {
+            name: 'SENTRY_ENABLED',
+            defaultValue: 'environment.sentry?.enabled ?? false',
+          },
+          {
+            name: 'SENTRY_ENVIRONMENT',
+          },
+          {
+            name: 'SENTRY_RELEASE',
+          },
+          {
+            name: 'SENTRY_SERVER_NAME',
+            defaultValue: `process.env.ROOT_DOMAIN ?? '${ projectName }'`,
+          },
+          {
+            name: 'SENTRY_DEBUG',
+            defaultValue: 'environment.sentry?.debug ?? false',
+          },
+        ],
+      });
+
+      CoerceImports(sourceFile, {
+        namedImports: [ 'environment' ],
+        moduleSpecifier: '../environments/environment',
+      });
+
+    },
+    [ '/app/app.config.ts?' ],
+  );
+
+}
+
 export async function sentryGenerator(
   tree: Tree,
   options: SentryGeneratorSchema,
 ) {
   UpdateAppModule(tree, options);
+  UpdateAppConfig(tree, options, options.project);
   await AddPackageJsonDependency(tree, '@sentry/node', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@sentry/hub', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/nest-sentry', 'latest', { soft: true });

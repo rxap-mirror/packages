@@ -1,55 +1,54 @@
-<% if (validator) { %>
+<% if (validator) { -%>
 import { ValidationPipe, HttpStatus } from '@nestjs/common';
 import { ValidationHttpException, validatorOptions, classTransformOptions } from '@rxap/nest-utilities';
-<% } %>
+<% } -%>
 import { Monolithic } from '@rxap/nest-server';
 import * as cookieParser from 'cookie-parser';
-<% if (google) { %>
-import { WinstonModule } from 'nest-winston';
-import { WinstonFactory } from '@rxap/nest-google';
-<% } %>
-<% if (sentry) { %>
+<% if (sentry) { -%>
 import { SentryLogger } from '@rxap/nest-sentry';
-<% } %>
+<% } -%>
 import { environment } from './environments/environment';
 import { AppModule } from './app/app.module';
-<% if (platform === "express") { %>
+<% if (platform === "express") { -%>
 import { NestExpressApplication } from '@nestjs/platform-express';
 import helmet from 'helmet';
-<% } else if (platform === "fastify") { %>
+<% } else if (platform === "fastify") { -%>
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import helmet from '@fastify/helmet'
-<% } %>
+<% } -%>
 import { NestApplicationOptions } from '@nestjs/common';
+import { RxapLogger } from '@rxap/nest-logger';
 
-<% if (platform === "express") { %>
+<% if (platform === "express") { -%>
 const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(AppModule, environment, { bufferLogs: true });
-<% } else if (platform === "fastify") { %>
+<% } else if (platform === "fastify") { -%>
 const server = new Monolithic<NestApplicationOptions, NestFastifyApplication>(AppModule, environment, { bufferLogs: true });
-<% } %>
-<% if (google) { %>
-server.before(options => options.logger = WinstonModule.createLogger(WinstonFactory()));
-<% } %>
-<% if (sentry) { %>
+<% } -%>
+
+<% if (sentry) { -%>
 server.after((app, config) => {
   if (config.get('SENTRY_ENABLED')) {
-    app.useLogger(app.get(SentryLogger))
+    app.useLogger(app.get(SentryLogger));
   } else {
     app.useLogger(new RxapLogger());
   }
-})
-<% } else { %>
+});
+<% } else { -%>
 server.after(app => app.useLogger(new RxapLogger()));
-<% } %>
+<% } -%>
 
-server.after(app => app.enableCors({
-  credentials: true,
-  origin: true,
-}));
+server.after((app) =>
+  app.enableCors({
+    credentials: true,
+    origin: true,
+  }),
+);
 
-server.after((app, config) => app.use(cookieParser(config.get('cookieSecret'))));
+server.after((app, config) =>
+  app.use(cookieParser(config.get('COOKIE_SECRET'))),
+);
 
-<% if (platform === "express") { %>
+<% if (platform === "express") { -%>
 /**
  * Note that applying helmet as global or registering it must come before other calls to app.use() or setup functions
  * that may call app.use(). This is due to the way the underlying platform (i.e., Express or Fastify) works, where the
@@ -57,21 +56,30 @@ server.after((app, config) => app.use(cookieParser(config.get('cookieSecret'))))
  * then that middleware will not apply to that route, it will only apply to routes defined after the middleware.
  */
 server.after(app => app.use(helmet()));
-<% } else if (platform === "fastify") { %>
+<% } else if (platform === "fastify") { -%>
 /**
  * If you are getting the This expression is not callable error while trying to import Helmet, you very likely have the
  * allowSyntheticDefaultImports and esModuleInterop options set to true in your project's tsconfig.json file. If that's
  * the case, change the import statement to: import helmet from 'helmet' instead.
  */
 server.after(app => app.register(helmet));
-<% } %>
-<% if (validator) { %>
-server.after(app => app.useGlobalPipes(new ValidationPipe({
-  ...validatorOptions,
-  transform: true,
-  transformOptions: classTransformOptions,
-  enableDebugMessages: !environment.production,
-  exceptionFactory: errors => new ValidationHttpException(errors, HttpStatus.BAD_REQUEST)
-})));
-<% } %>
-server.bootstrap().catch(e => console.error('Server bootstrap failed: ' + e.message));
+<% } -%>
+
+<% if (validator) { -%>
+server.after((app) =>
+  app.useGlobalPipes(
+    new ValidationPipe({
+      ...validatorOptions,
+      transform: true,
+      transformOptions: classTransformOptions,
+      enableDebugMessages: !environment.production,
+      exceptionFactory: (errors) =>
+        new ValidationHttpException(errors, HttpStatus.BAD_REQUEST),
+    }),
+  ),
+);
+<% } -%>
+
+server
+  .bootstrap()
+  .catch((e) => console.error('Server bootstrap failed: ' + e.message));
