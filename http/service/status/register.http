@@ -1,0 +1,9 @@
+POST http://localhost:3999/register
+Content-Type: application/json
+
+{
+  "name": "test",
+  "port": 3333
+}
+
+###
