@@ -311,10 +311,73 @@ async function createOpenApiClientSdkLibrary(
 
 }
 
+function getPort(tree: Tree, options: InitApplicationGeneratorSchema, projectSourceRoot: string) {
+  if (options.port && options.projects.length === 1) {
+    return options.port;
+  }
+  if (tree.exists(join(projectSourceRoot, 'app', 'app.config.ts'))) {
+    const match = tree.read(join(projectSourceRoot, 'app', 'app.config.ts'))
+                      .toString()
+                      .match(/validationSchema\['PORT'\] = Joi.number\(\).default\((\d+)\);/);
+    if (match) {
+      return parseInt(match[1]);
+    }
+  }
+  if (tree.exists(join(projectSourceRoot, 'app', 'app.module.ts'))) {
+    const match = tree.read(join(projectSourceRoot, 'app', 'app.module.ts'))
+                      .toString()
+                      .match(/PORT: Joi.number\(\).default\((\d+)\)/);
+    if (match) {
+      return parseInt(match[1]);
+    }
+  }
+  return Math.floor(Math.random() * 1000) + 3000;
+}
+
+function getApiPrefix(
+  tree: Tree,
+  options: InitApplicationGeneratorSchema,
+  projectSourceRoot: string,
+  projectName: string,
+) {
+  if (options.apiPrefix && options.projects.length === 1) {
+    return options.apiPrefix;
+  }
+  if (tree.exists(join(projectSourceRoot, 'app', 'app.config.ts'))) {
+    const match = tree.read(join(projectSourceRoot, 'app', 'app.config.ts'))
+                      .toString()
+                      .match(/validationSchema\['GLOBAL_API_PREFIX'\] = Joi.string\(\).default\('(.+)'\);/);
+    if (match) {
+      return match[1];
+    }
+  }
+  if (tree.exists(join(projectSourceRoot, 'app', 'app.module.ts'))) {
+    const match = tree.read(join(projectSourceRoot, 'app', 'app.module.ts'))
+                      .toString()
+                      .match(/GLOBAL_API_PREFIX: Joi.string\(\).default\('(.+)'\)/);
+    if (match) {
+      return match[1];
+    }
+  }
+  return join('api', projectName.replace(/^service-/, ''));
+}
+
 export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
 ) {
+  options.sentry ??= true;
+  options.swagger ??= true;
+  options.healthIndicator ??= true;
+  options.platform ??= 'express';
+  options.validator ??= true;
+  options.healthIndicatorList ??= [];
+  options.port ??= undefined;
+  options.apiPrefix ??= undefined;
+  options.sentryDsn ??= undefined;
+  options.overwrite ??= false;
+  options.openApi ??= false;
+  options.jwt ??= false;
   console.log('nestjs application init generator:', options);
 
   setGeneralTargetDefaults(tree);
@@ -329,8 +392,14 @@ export async function initApplicationGenerator(
       continue;
     }
 
-    const port = options.port;
-    const globalApiPrefix = options.apiPrefix;
+    const projectSourceRoot = project.sourceRoot;
+
+    if (!projectSourceRoot) {
+      throw new Error(`Can't find project source root for project ${ projectName }`);
+    }
+
+    const port = getPort(tree, options, projectSourceRoot);
+    const globalApiPrefix = getApiPrefix(tree, options, projectSourceRoot, projectName);
 
     console.log(`init project: ${ projectName }`);
 
@@ -401,12 +470,6 @@ export async function initApplicationGenerator(
         '/app/app.config.ts?',
       ],
     );
-
-    const projectSourceRoot = project.sourceRoot;
-
-    if (!projectSourceRoot) {
-      throw new Error(`Can't find project source root for project ${ projectName }`);
-    }
 
     removeAppServiceFile(tree, projectSourceRoot);
     removeAppControllerSpecFile(tree, projectSourceRoot);

@@ -12,22 +12,28 @@
       }
     },
     "sentry": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     },
     "openApi": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "config": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     },
     "localazy": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "i18n": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "serviceWorker": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "languages": {
       "type": "array",
@@ -36,10 +42,17 @@
       }
     },
     "material": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     },
     "generateMain": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
     }
   },
   "required": []

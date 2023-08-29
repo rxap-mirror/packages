@@ -53,15 +53,11 @@
     },
     "port": {
       "type": "number",
-      "default": 3000,
-      "description": "The default port where the server is listens",
-      "x-prompt": "Enter the default port?"
+      "description": "The default port where the server is listens"
     },
     "apiPrefix": {
       "type": "string",
-      "description": "The default global api prefix",
-      "x-prompt": "What is the default api prefix?",
-      "default": "api"
+      "description": "The default global api prefix"
     },
     "pluginBuildInfoOptions": {
       "type": "object",

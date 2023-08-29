@@ -290,6 +290,16 @@ export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
 ) {
+  options.sentry ??= true;
+  options.openApi ??= false;
+  options.config ??= true;
+  options.localazy ??= false;
+  options.i18n ??= false;
+  options.serviceWorker ??= false;
+  options.languages ??= options.i18n ? [ 'en' ] : [];
+  options.material ??= true;
+  options.generateMain ??= false;
+  options.overwrite ??= false;
   console.log('angular application init generator:', options);
 
   // only add the shared folder if it does not exist

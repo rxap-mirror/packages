@@ -9,4 +9,5 @@ export interface InitApplicationGeneratorSchema {
   languages?: string[];
   material?: boolean;
   generateMain?: boolean;
+  overwrite?: boolean;
 }

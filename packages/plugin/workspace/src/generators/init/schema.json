@@ -11,6 +11,11 @@
     "packages": {
       "type": "boolean",
       "description": "If true, the workspace will be initialized for package development"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
     }
   },
   "required": []

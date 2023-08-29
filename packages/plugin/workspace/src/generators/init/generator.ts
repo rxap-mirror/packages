@@ -81,8 +81,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   CoerceIgnorePattern(tree, '.gitignore', gitIgnore);
   CoerceIgnorePattern(tree, '.prettierignore', prettierIgnore);
 
-  await LibraryInitGenerator(tree, {});
-  await ApplicationInitGenerator(tree, {});
+  await LibraryInitGenerator(tree, { overwrite: options.overwrite });
+  await ApplicationInitGenerator(tree, { overwrite: options.overwrite });
 }
 
 export default initGenerator;
