@@ -56,8 +56,9 @@ export class ServiceRegistryService extends HealthIndicator {
         }
         return this.getStatus(name, false, { message: e.message });
       }
+      return this.getStatus(name, false, { message: e.message });
     }
-    return this.getStatus(name, false, { message: 'Unknown Error' });
+    return this.getStatus(name, false, { message: 'FATAL: Unknown Error' });
   }
 
   unregister(name: string) {

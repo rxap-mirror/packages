@@ -59,7 +59,12 @@ export class StatusController {
     let url = body.url;
     if (!url) {
       const port = body.port ?? 3000;
-      url = `http://${ req.ip }:${ port }`;
+      const match = req.ip.match(/(\d+\.\d+\.\d+\.\d+)$/);
+      if (match && match[1]) {
+        url = `http://${ match[1] }:${ port }/health`;
+      } else {
+        throw new InternalServerErrorException(`Can't determine ip address from request: ${ req.ip }`);
+      }
     }
     this.logger.log(`Register service: ${ body.name } at url: ${ url }`, 'StatusController');
 
@@ -76,8 +81,11 @@ export class StatusController {
     const isHealthy = indicator.status === 'up';
 
     if (!isHealthy) {
+      this.logger.warn(`Service: ${ body.name } is unhealthy: ${ JSON.stringify(status) }`, 'StatusController');
       this.serviceRegistryService.unregister(body.name);
       throw new BadRequestException(`Service with name: ${ body.name } is unhealthy`);
+    } else {
+      this.logger.debug(`Service: ${ body.name } is healthy`, 'StatusController');
     }
 
   }
