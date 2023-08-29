@@ -3,7 +3,19 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { DocumentationGeneratorSchema } from './schema';
+import { AddDir } from '@rxap/generator-ts-morph';
+import { GetProjectSourceRoot } from '@rxap/generator-utilities';
+import {
+  existsSync,
+  readFileSync,
+} from 'fs';
+import {
+  Configuration,
+  ConfigurationParameters,
+  OpenAIApi,
+} from 'openai';
+import { join } from 'path';
+import * as process from 'process';
 import {
   ClassDeclaration,
   FunctionDeclaration,
@@ -14,23 +26,14 @@ import {
   QuoteKind,
   SourceFile,
 } from 'ts-morph';
-import { AddDir } from '@rxap/generator-ts-morph';
-import { GetProjectSourceRoot } from '@rxap/generator-utilities';
-import * as process from 'process';
-import {
-  Configuration,
-  ConfigurationParameters,
-  OpenAIApi,
-} from 'openai';
+import { DocumentationGeneratorSchema } from './schema';
 import { SimplePrompt } from './simple-prompt';
-import { join } from 'path';
-import {
-  existsSync,
-  readFileSync,
-} from 'fs';
 
 function getOpenAi(param: Omit<ConfigurationParameters, 'apiKey'> = {}) {
 
+  if (!process.env.OPENAI_API_KEY) {
+    throw new Error('Can not find OPENAI_API_KEY environment variable');
+  }
 
   const configuration = new Configuration({
     ...param,
@@ -208,7 +211,7 @@ async function processSourceFile(options: DocumentationGeneratorSchema, project:
 
 }
 
-function skipSourceFile(sourceFile: SourceFile) {
+function skipSourceFile(sourceFile: SourceFile, filter?: string) {
   if (sourceFile.getBaseName() === 'index.ts') {
     // console.log(`\x1b[33mSkip index file: \x1b[0m${ sourceFile.getFilePath() }`);
     return true;
@@ -224,6 +227,12 @@ function skipSourceFile(sourceFile: SourceFile) {
   if (sourceFile.getBaseName().endsWith('.cy.ts')) {
     // console.log(`\x1b[33mSkip cypress file: \x1b[0m${ sourceFile.getFilePath() }`);
     return true;
+  }
+  if (filter) {
+    if (!sourceFile.getFilePath().includes(filter)) {
+      // console.log(`\x1b[33mSkip file: \x1b[0m${ sourceFile.getFilePath() }`);
+      return true;
+    }
   }
   return false;
 }
@@ -245,13 +254,13 @@ async function processProject(options: DocumentationGeneratorSchema, projectName
   const start = Date.now();
 
   for (const sourceFile of project.getSourceFiles()) {
-    if (skipSourceFile(sourceFile)) {
+    if (skipSourceFile(sourceFile, options.filter)) {
       continue;
     }
     try {
       const changed = await processSourceFile(options, project, sourceFile);
       if (changed) {
-        tree.write(sourceFile.getFilePath(), sourceFile.getFullText());
+        tree.write(join(projectSourceRoot, sourceFile.getFilePath()), sourceFile.getFullText());
       }
     } catch (e: any) {
       console.error(`\x1b[31mError processing file: \x1b[0m${ sourceFile.getFilePath() }`);
@@ -283,6 +292,16 @@ export async function documentationGenerator(
   tree: Tree,
   options: DocumentationGeneratorSchema,
 ) {
+
+  if (options.openaiApiKey) {
+    process.env.OPENAI_API_KEY = options.openaiApiKey;
+  }
+
+  if (!process.env.OPENAI_API_KEY) {
+    throw new Error('Can not find OPENAI_API_KEY environment variable');
+  }
+
+  console.log(`\x1b[33mOpenAI API key: \x1b[0m${ process.env.OPENAI_API_KEY }`);
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 

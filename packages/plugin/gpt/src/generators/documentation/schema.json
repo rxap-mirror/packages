@@ -15,6 +15,14 @@
     "offline": {
       "type": "boolean",
       "description": "If true, the openai api is not used"
+    },
+    "filter": {
+      "type": "string",
+      "description": "A filter to select the files to be processed"
+    },
+    "openaiApiKey": {
+      "type": "string",
+      "description": "The openai api key"
     }
   }
 }
