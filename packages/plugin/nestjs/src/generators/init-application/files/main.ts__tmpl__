@@ -20,9 +20,17 @@ import { NestApplicationOptions } from '@nestjs/common';
 import { RxapLogger } from '@rxap/nest-logger';
 
 <% if (platform === "express") { -%>
-const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(AppModule, environment, { bufferLogs: true });
+const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(
+  AppModule,
+  environment,
+  { bufferLogs: true },
+);
 <% } else if (platform === "fastify") { -%>
-const server = new Monolithic<NestApplicationOptions, NestFastifyApplication>(AppModule, environment, { bufferLogs: true });
+const server = new Monolithic<NestApplicationOptions, NestFastifyApplication>(
+  AppModule,
+  environment,
+  { bufferLogs: true },
+);
 <% } -%>
 
 <% if (sentry) { -%>
