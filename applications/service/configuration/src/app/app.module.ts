@@ -33,14 +33,6 @@ import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
-    ThrottlerModule.forRoot({
-      ttl: 1,
-      limit: 10,
-    }),
-    ConfigModule.forRoot({
-      isGlobal: true,
-      validationSchema: VALIDATION_SCHEMA,
-    }),
     HealthModule,
     SentryModule.forRootAsync(
       {
@@ -51,6 +43,20 @@ import { HealthModule } from './health/health.module';
       { logLevels: GetLogLevels() },
     ),
     ConfigurationModule,
+    ThrottlerModule.forRootAsync(
+      {
+        imports: [ ConfigModule ],
+        inject: [ ConfigService ],
+        useFactory: (config: ConfigService) => ({
+          ttl: config.getOrThrow('THROTTLER_TTL'),
+          limit: config.getOrThrow('THROTTLER_LIMIT'),
+        }),
+      }),
+    ConfigModule.forRoot(
+      {
+        isGlobal: true,
+        validationSchema: VALIDATION_SCHEMA,
+      }),
   ],
   controllers: [ AppController ],
   providers: [

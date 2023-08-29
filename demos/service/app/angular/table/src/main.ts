@@ -4,6 +4,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { RxapLogger } from '@rxap/nest-logger';
 import { SentryLogger } from '@rxap/nest-sentry';
 import { Monolithic } from '@rxap/nest-server';
 import {
@@ -11,7 +12,7 @@ import {
   ValidationHttpException,
   validatorOptions,
 } from '@rxap/nest-utilities';
-import cookieParser from 'cookie-parser';
+import * as cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
@@ -25,6 +26,8 @@ const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(
 server.after((app, config) => {
   if (config.get('SENTRY_ENABLED')) {
     app.useLogger(app.get(SentryLogger));
+  } else {
+    app.useLogger(new RxapLogger());
   }
 });
 
@@ -36,7 +39,7 @@ server.after((app) =>
 );
 
 server.after((app, config) =>
-  app.use(cookieParser(config.get('cookieSecret'))),
+  app.use(cookieParser(config.get('COOKIE_SECRET'))),
 );
 
 /**
@@ -45,7 +48,7 @@ server.after((app, config) =>
  * order that middleware/routes are defined matters. If you use middleware like helmet or cors after you define a route,
  * then that middleware will not apply to that route, it will only apply to routes defined after the middleware.
  */
-server.after((app) => app.use(helmet()));
+server.after(app => app.use(helmet()));
 
 server.after((app) =>
   app.useGlobalPipes(

@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 @Public()
 export class AppController {
   @Get()
-  public async environment(): Promise<Environment> {
+  public environment(): Environment {
     return environment;
   }
 }

@@ -53,7 +53,7 @@ import { HealthModule } from './health/health.module';
       {
         isGlobal: true,
         validationSchema: VALIDATION_SCHEMA,
-      }),
+      })
   ],
   controllers: [ AppController ],
   providers: [

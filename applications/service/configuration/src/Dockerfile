@@ -14,7 +14,6 @@ RUN yarn && yarn cache clean
 COPY . /app
 
 ENV PORT=3000
-ENV GLOBAL_API_PREFIX="api/configuration"
 EXPOSE 3000
 
 HEALTHCHECK CMD node healthcheck.js > /dev/null || exit 1
