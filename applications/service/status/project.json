@@ -94,6 +94,9 @@
     },
     "swagger-build": {
       "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/swagger/applications/service/status",
         "main": "applications/service/status/src/swagger.ts",
