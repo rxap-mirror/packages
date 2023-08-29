@@ -1,6 +1,7 @@
 import { GenerateRandomString } from '@rxap/utilities';
 import * as Joi from 'joi';
 import { SchemaMap } from 'joi';
+import * as process from 'process';
 import { environment } from '../environments/environment';
 
 const validationSchema: SchemaMap = {};
@@ -15,4 +16,10 @@ validationSchema['SENTRY_RELEASE'] = Joi.string();
 validationSchema['SENTRY_ENVIRONMENT'] = Joi.string();
 validationSchema['SENTRY_ENABLED'] = Joi.string().default(environment.sentry?.enabled ?? false);
 validationSchema['SENTRY_DSN'] = Joi.string();
+validationSchema['STATUS_SERVICE_BASE_URL'] = Joi.string()
+                                                 .default(Joi.string()
+                                                             .default(environment.production ?
+                                                               'http://status-service:3000' :
+                                                               `https://${ process.env.ROOT_DOMAIN ??
+                                                               'localhost' }:8443`));
 export const VALIDATION_SCHEMA = Joi.object(validationSchema);

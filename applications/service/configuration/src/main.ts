@@ -6,7 +6,10 @@ import {
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { RxapLogger } from '@rxap/nest-logger';
 import { SentryLogger } from '@rxap/nest-sentry';
-import { Monolithic } from '@rxap/nest-server';
+import {
+  Monolithic,
+  RegisterToStatusService,
+} from '@rxap/nest-server';
 import {
   classTransformOptions,
   ValidationHttpException,
@@ -62,6 +65,8 @@ server.after((app) =>
     }),
   ),
 );
+
+server.ready(RegisterToStatusService);
 
 server
   .bootstrap()
