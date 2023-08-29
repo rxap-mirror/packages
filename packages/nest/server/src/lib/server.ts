@@ -38,6 +38,7 @@ export abstract class Server<O extends object, T extends INestApplicationContext
   public config: ConfigService | null = null;
   private _beforeList: MainBeforeFunction<O>[] = [];
   private _afterList: MainAfterFunction<T, B>[] = [];
+  private _readyList: MainAfterFunction<T, B>[] = [];
 
   constructor(
     public readonly module: any,
@@ -75,6 +76,8 @@ export abstract class Server<O extends object, T extends INestApplicationContext
 
     await this.listen(this.app, this.logger, options);
 
+    await this.handleReady(this.app, this.logger, this.config, options);
+
     if (module && module.hot) {
       module.hot.accept();
       module.hot.dispose(() => this.app?.close());
@@ -88,6 +91,10 @@ export abstract class Server<O extends object, T extends INestApplicationContext
 
   public after(fnc: MainAfterFunction<T, B>) {
     this._afterList.push(fnc);
+  }
+
+  public ready(fnc: MainAfterFunction<T, B>) {
+    this._readyList.push(fnc);
   }
 
   protected abstract create(): Promise<T>;
@@ -111,6 +118,12 @@ export abstract class Server<O extends object, T extends INestApplicationContext
   protected async handleAfter(app: T, logger: Logger, config: ConfigService, options: B) {
     for (const after of this._afterList) {
       await after(app, config, logger, options);
+    }
+  }
+
+  protected async handleReady(app: T, logger: Logger, config: ConfigService, options: B) {
+    for (const ready of this._readyList) {
+      await ready(app, config, logger, options);
     }
   }
 
