@@ -25,10 +25,9 @@ import {
   GetLogLevels,
   SentryOptionsFactory,
 } from '@rxap/nest-utilities';
-import * as Joi from 'joi';
-import { join } from 'path';
 import { ConfigurationModule } from '../configuration/configuration.module';
 import { environment } from '../environments/environment';
+import { VALIDATION_SCHEMA } from './app.config';
 import { AppController } from './app.controller';
 import { HealthModule } from './health/health.module';
 
@@ -40,18 +39,7 @@ import { HealthModule } from './health/health.module';
     }),
     ConfigModule.forRoot({
       isGlobal: true,
-      validationSchema: Joi.object({
-        PORT: Joi.number().default(3309),
-        GLOBAL_API_PREFIX: Joi.string().default('api/configuration'),
-        SENTRY_DSN: Joi.string(),
-        SENTRY_ENABLED: Joi.string().default(environment.sentry?.enabled ?? false),
-        SENTRY_ENVIRONMENT: Joi.string(),
-        SENTRY_RELEASE: Joi.string(),
-        SENTRY_SERVER_NAME: Joi.string().default(process.env.ROOT_DOMAIN ?? 'service-configuration'),
-        SENTRY_DEBUG: Joi.string().default(environment.sentry?.debug ?? false),
-
-        DATA_DIR: Joi.string().default(environment.production ? '/app/assets' : join(__dirname, 'assets')),
-      }),
+      validationSchema: VALIDATION_SCHEMA,
     }),
     HealthModule,
     SentryModule.forRootAsync(
