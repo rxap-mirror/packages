@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
     <configuration default="false" name="Test" type="wallaby" factoryName="wallaby" configType="Automatic"
-                   configFolder="$PROJECT_DIR$" wsl="No" SmartStart="No">
+                   configFolder="$PROJECT_DIR$" wsl="No" SmartStart="Yes">
         <method v="2"/>
     </configuration>
 </component>
