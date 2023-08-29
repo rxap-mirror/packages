@@ -16,13 +16,14 @@ import { join } from 'path';
 /**
  * @template O The options object passed to the server create function
  */
-export type MainBeforeFunction<O extends object> = (options: O) => any | Promise<any>;
+export type MainBeforeFunction<O extends object> = (this: Server<O, any, any>, options: O) => any | Promise<any>;
 
 /**
  * @template T The instance of the nest application
  * @template B The options object build by the Server bootstrap logic
  */
 export type MainAfterFunction<T extends INestApplicationContext, B extends object> = (
+  this: Server<any, T, B>,
   app: T,
   config: ConfigService<unknown>,
   logger: Logger,
@@ -44,6 +45,7 @@ export abstract class Server<O extends object, T extends INestApplicationContext
     public readonly module: any,
     public readonly environment: Environment,
     public readonly options: O = {} as any,
+    public readonly bootstrapOptions: Partial<B> = {},
   ) {
   }
 
@@ -111,19 +113,19 @@ export abstract class Server<O extends object, T extends INestApplicationContext
 
   protected async handleBefore() {
     for (const before of this._beforeList) {
-      await before(this.options);
+      await before.call(this, this.options);
     }
   }
 
   protected async handleAfter(app: T, logger: Logger, config: ConfigService, options: B) {
     for (const after of this._afterList) {
-      await after(app, config, logger, options);
+      await after.call(this, app, config, logger, options);
     }
   }
 
   protected async handleReady(app: T, logger: Logger, config: ConfigService, options: B) {
     for (const ready of this._readyList) {
-      await ready(app, config, logger, options);
+      await ready.call(this, app, config, logger, options);
     }
   }
 
