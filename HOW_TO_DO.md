@@ -47,7 +47,7 @@ yarn nx g @nx/plugin:generator
 To create a new angular library package, run the command:
 
 ```shell
-yarn nx g @nx/angular:library --importPath @rxap/<project-name>
+yarn nx g @nx/angular:library --importPath @rxap/ngx-<project-name>
 ```
 
 To add the executor to generate the compodoc documentation for the library run the command:
@@ -67,7 +67,7 @@ nx generate @nx/angular:library-secondary-entry-point --skipModule --library=ang
 To create a new angular application package, run the command:
 
 ```shell
-yarn nx g @nx/angular:application --importPath @rxap/<project-name>
+yarn nx g @nx/angular:application
 ```
 
 Ensure the project `browser-tailwind` is added as implicitDependencies to the project. The ensures that the `browser-tailwind`
