@@ -1,0 +1,34 @@
+{
+  "name": "@rxap/ngx-status-check",
+  "version": "16.0.0",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/status-check"
+  },
+  "keywords": [
+    "rxap",
+    "angular",
+    "ngx",
+    "packages",
+    "angular-status-check"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/status-check",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/status-check"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

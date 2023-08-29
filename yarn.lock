@@ -8048,6 +8048,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/ngx-status-check@workspace:packages/angular/status-check":
+  version: 0.0.0-use.local
+  resolution: "@rxap/ngx-status-check@workspace:packages/angular/status-check"
+  dependencies:
+    tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/node-utilities@workspace:packages/node/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/node-utilities@workspace:packages/node/utilities"
