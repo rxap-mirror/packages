@@ -115,7 +115,7 @@ export default async function runExecutor(
   }
 
   console.log(`Write build.json to '${ buildInfoFilePath }' with content:`);
-  console.log(JSON.stringify(buildJsonFile, undefined, 2));
+  console.log(JSON.stringify(buildJsonFile));
 
   writeFileSync(buildInfoFilePath, buildJsonFile);
 
