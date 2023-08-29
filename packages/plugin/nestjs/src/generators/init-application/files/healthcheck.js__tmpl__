@@ -5,15 +5,12 @@ let path = '/';
 if (process.env.HEALTHCHECK_PATH) {
   path = process.env.HEALTHCHECK_PATH;
 } else {
-  if (process.env.GLOBAL_API_PREFIX) {
-    path = '/' + process.env.GLOBAL_API_PREFIX + '/';
-  }
-  path += 'health';
+  path = '/health';
 }
 
 const options = {
   host: '127.0.0.1',
-  port: process.env.PORT,
+  port: process.env.PORT || 3000,
   path,
   timeout: 30000,
 };

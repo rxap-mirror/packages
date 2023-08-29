@@ -14,9 +14,6 @@ RUN yarn && yarn cache clean
 COPY . /app
 
 ENV PORT=3000
-<% if (globalApiPrefix) { -%>
-ENV GLOBAL_API_PREFIX="<%= globalApiPrefix %>"
-<% } -%>
 EXPOSE 3000
 
 HEALTHCHECK CMD node healthcheck.js > /dev/null || exit 1

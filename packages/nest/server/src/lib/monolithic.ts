@@ -43,12 +43,13 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
     const port = config.get('PORT') ?? config.get('port') ?? 3333;
 
     return {
-      globalApiPrefix,
       globalPrefixOptions: {},
+      ...this.bootstrapOptions,
+      globalApiPrefix,
       publicUrl: (config.get('PUBLIC_URL') ?? 'http://localhost:' + port) +
         (globalApiPrefix ? '/' + globalApiPrefix + '/' : '/'),
-      port,
       version: DetermineVersion(this.environment),
+      port,
     } as B;
   }
 
@@ -57,7 +58,7 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
       // TODO : create issue in @nest github project - if options is an empty object the server does not start
       app.setGlobalPrefix(
         options.globalApiPrefix,
-        !options.globalPrefixOptions?.exclude?.length ? undefined : options.globalPrefixOptions,
+        !options.globalPrefixOptions?.exclude?.length ? { exclude: [ '/health(.*)' ] } : options.globalPrefixOptions,
       );
     }
     return app.listen(options.port, () => {

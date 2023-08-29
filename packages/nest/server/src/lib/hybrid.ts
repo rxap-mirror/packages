@@ -25,9 +25,12 @@ export class Hybrid<
     module: any,
     environment: Environment,
     options: O,
+    bootstrapOptions: Partial<HybridBootstrapOptions> = {},
     protected readonly microserviceOptions: MO,
     protected readonly hybridOptions?: MHO,
-  ) {super(module, environment, options);}
+  ) {
+    super(module, environment, options, bootstrapOptions);
+  }
 
   protected override async listen(app: T, logger: Logger, options: HybridBootstrapOptions): Promise<any> {
     app.connectMicroservice(this.microserviceOptions, this.hybridOptions);
