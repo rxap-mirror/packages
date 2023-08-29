@@ -1,13 +1,13 @@
-import { Server } from './server';
 import {
   INestApplication,
   Logger,
   NestApplicationOptions,
 } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import { ConfigService } from '@nestjs/config';
 import { GlobalPrefixOptions } from '@nestjs/common/interfaces';
+import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
 import { DetermineVersion } from '@rxap/nest-utilities';
+import { Server } from './server';
 
 export interface MonolithicBootstrapOptions {
   publicUrl: string;
@@ -17,14 +17,14 @@ export interface MonolithicBootstrapOptions {
   globalPrefixOptions: GlobalPrefixOptions;
 }
 
-export class Monolithic<O extends NestApplicationOptions, T extends INestApplication = INestApplication>
-  extends Server<O, T, MonolithicBootstrapOptions> {
+export class Monolithic<O extends NestApplicationOptions, T extends INestApplication = INestApplication, B extends MonolithicBootstrapOptions = MonolithicBootstrapOptions>
+  extends Server<O, T, B> {
 
   protected override create(): Promise<T> {
     return NestFactory.create<T>(this.module, this.options);
   }
 
-  protected override prepareOptions(app: T): MonolithicBootstrapOptions {
+  protected override prepareOptions(app: T): B {
 
     const logger = app.get(Logger);
     const config: ConfigService<unknown> = app.get(ConfigService);
@@ -49,10 +49,10 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
         (globalApiPrefix ? '/' + globalApiPrefix + '/' : '/'),
       port,
       version: DetermineVersion(this.environment),
-    };
+    } as B;
   }
 
-  protected override listen(app: T, logger: Logger, options: MonolithicBootstrapOptions): Promise<any> {
+  protected override listen(app: T, logger: Logger, options: B): Promise<any> {
     if (options.globalApiPrefix) {
       // TODO : create issue in @nest github project - if options is an empty object the server does not start
       app.setGlobalPrefix(
