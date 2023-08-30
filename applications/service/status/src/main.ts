@@ -21,6 +21,14 @@ const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(
   AppModule,
   environment,
   { bufferLogs: true },
+  {
+    globalPrefixOptions: {
+      exclude: [
+        '/health(.*)',
+        '/register',
+      ],
+    },
+  },
 );
 
 server.after((app, config) => {

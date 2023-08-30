@@ -1,16 +1,17 @@
+import { HttpService } from '@nestjs/axios';
 import {
   Injectable,
   Logger,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import {
   HealthCheckError,
   HealthIndicator,
   HealthIndicatorResult,
 } from '@nestjs/terminus';
-import { HttpService } from '@nestjs/axios';
-import { firstValueFrom } from 'rxjs';
-import { ConfigService } from '@nestjs/config';
 import { AxiosError } from 'axios';
+import { firstValueFrom } from 'rxjs';
+import { ServiceRegistryService } from './service-registry.service';
 
 @Injectable()
 export abstract class ServiceHealthIndicator extends HealthIndicator {
@@ -18,46 +19,48 @@ export abstract class ServiceHealthIndicator extends HealthIndicator {
     protected readonly http: HttpService,
     protected readonly config: ConfigService,
     protected readonly logger: Logger,
-    protected readonly baseUrl: string,
-    protected readonly key: string,
-    protected readonly healthPath: string = '/health',
-    protected readonly infoPath: string = '',
+    protected readonly serviceRegistryService: ServiceRegistryService,
   ) {
     super();
   }
 
-  public async isHealthy(): Promise<HealthIndicatorResult> {
+  public async isHealthy(serviceName: string): Promise<HealthIndicatorResult> {
 
-    this.logger.verbose(`Check health for : '${ this.baseUrl }'`, 'ServiceHealthIndicator');
+    const baseUrl = this.serviceRegistryService.get(serviceName);
+
+    this.logger.verbose(
+      `Check health for service '${ serviceName }' with url '${ baseUrl }'`,
+      'ServiceHealthIndicator',
+    );
 
     try {
-      await firstValueFrom(this.http.get(`${ this.baseUrl }${ this.healthPath }`, { timeout: 30 * 1000 }));
+      await firstValueFrom(this.http.get(`${ baseUrl }/health`, { timeout: 30 * 1000 }));
     } catch (e: any) {
       if (e instanceof AxiosError) {
-        this.handleAxiosError(e);
+        this.handleAxiosError(e, serviceName);
       }
       throw new HealthCheckError(
-        `${ this.key } is in an unknown state`,
-        this.getStatus(this.key, false, { message: e.message }),
+        `${ serviceName } is in an unknown state`,
+        this.getStatus(serviceName, false, { message: e.message }),
       );
     }
 
-    return this.getServiceInfo();
+    return this.getServiceInfo(serviceName);
 
   }
 
-  protected handleAxiosError(e: AxiosError) {
+  protected handleAxiosError(e: AxiosError, serviceName: string) {
     if (e.response) {
       if (e.response.status === 503) {
         throw new HealthCheckError(
-          `${ this.key } is unhealthy`,
-          this.getStatus(this.key, false, { code: e.code, data: e.response.data, message: e.message }),
+          `is unhealthy`,
+          this.getStatus(serviceName, false, { code: e.code, data: e.response.data, message: e.message }),
         );
       } else {
         throw new HealthCheckError(
-          `${ this.key } is in an unknown state`,
+          `is in an unknown state`,
           this.getStatus(
-            this.key,
+            serviceName,
             false,
             { code: e.code, status: e.response.status, statusText: e.response.statusText, message: e.message, data: e.response.data },
           ),
@@ -65,20 +68,23 @@ export abstract class ServiceHealthIndicator extends HealthIndicator {
       }
     } else {
       throw new HealthCheckError(
-        `${ this.key } is not reachable`,
-        this.getStatus(this.key, false, { code: e.code, message: e.message }),
+        `is not reachable`,
+        this.getStatus(serviceName, false, { code: e.code, message: e.message }),
       );
     }
   }
 
-  protected async getServiceInfo(): Promise<HealthIndicatorResult> {
+  protected async getServiceInfo(serviceName: string): Promise<HealthIndicatorResult> {
+
+    const baseUrl = this.serviceRegistryService.get(serviceName);
+
     try {
-      const response = await firstValueFrom(this.http.get(`${ this.baseUrl }${ this.infoPath }`));
-      return this.getStatus(this.key, true, { data: response.data });
+      const response = await firstValueFrom(this.http.get(`${ baseUrl }/info`));
+      return this.getStatus(serviceName, true, { data: response.data });
     } catch (e: any) {
       throw new HealthCheckError(
-        `${ this.key } is in an unknown state`,
-        this.getStatus(this.key, false, { message: e.message }),
+        `could not get service info`,
+        this.getStatus(serviceName, false, { message: e.message }),
       );
     }
   }

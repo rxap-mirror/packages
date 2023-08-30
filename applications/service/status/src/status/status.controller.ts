@@ -3,16 +3,17 @@ import {
   Body,
   Controller,
   Get,
-  Inject,
   InternalServerErrorException,
   Logger,
-  NotFoundException,
   Param,
   Post,
+  Query,
   Req,
 } from '@nestjs/common';
+import { ApiQuery } from '@nestjs/swagger';
 import {
   HealthCheck,
+  HealthCheckError,
   HealthCheckResult,
   HealthCheckService,
 } from '@nestjs/terminus';
@@ -23,34 +24,47 @@ import {
 import type { Request } from 'express';
 import { RegisterDto } from './register.dto';
 import { ServiceRegistryService } from './service-registry.service';
+import { ServiceHealthIndicator } from './service.health-indicator';
 
 @Controller()
 @Public()
 export class StatusController {
 
   constructor(
-    @Inject(HealthCheckService) private readonly health: HealthCheckService,
+    private readonly health: HealthCheckService,
+    private readonly serviceHealthIndicator: ServiceHealthIndicator,
     private readonly serviceRegistryService: ServiceRegistryService,
     private readonly logger: Logger,
   ) {
   }
 
-  @Get('all')
+  @ApiQuery({
+    name: 'service',
+    type: [ String ],
+  })
+  @Get()
   @HealthCheck()
-  public healthCheck(): Promise<HealthCheckResult> {
-    return this.health.check(this.serviceRegistryService.checkAll());
+  public healthCheck(@Query('service') serviceList: string[]): Promise<HealthCheckResult> {
+    if (serviceList?.length) {
+      const services = serviceList.map((name) => {
+        if (!this.serviceRegistryService.has(name)) {
+          throw new HealthCheckError(`Service '${ name }' is not registered`, {});
+        }
+        return () => this.serviceHealthIndicator.isHealthy(name);
+      });
+      return this.health.check(services);
+    }
+    throw new BadRequestException('No service provided');
   }
 
   @Get(':name')
   @HealthCheck()
   public healthCheckService(@Param('name') name: string): Promise<HealthCheckResult> {
-    if (!this.serviceRegistryService.has(name)) {
-      throw new NotFoundException(`Service with name: ${ name } not found`);
-    }
-    return this.health.check([ () => this.serviceRegistryService.check(name) ]);
+    return this.health.check([ () => this.serviceHealthIndicator.isHealthy(name) ]);
   }
 
   @Post('register')
+  @HealthCheck()
   @Internal()
   public async register(
     @Body() body: RegisterDto,
@@ -61,7 +75,7 @@ export class StatusController {
       const port = body.port ?? 3000;
       const match = req.ip.match(/(\d+\.\d+\.\d+\.\d+)$/);
       if (match && match[1]) {
-        url = `http://${ match[1] }:${ port }/health`;
+        url = `http://${ match[1] }:${ port }`;
       } else {
         throw new InternalServerErrorException(`Can't determine ip address from request: ${ req.ip }`);
       }
@@ -70,23 +84,7 @@ export class StatusController {
 
     this.serviceRegistryService.register(body.name, url);
 
-    const status = await this.serviceRegistryService.check(body.name);
-
-    const indicator = status[body.name];
-
-    if (!indicator) {
-      throw new InternalServerErrorException(`Indicator for service: ${ body.name } not found`);
-    }
-
-    const isHealthy = indicator.status === 'up';
-
-    if (!isHealthy) {
-      this.logger.warn(`Service: ${ body.name } is unhealthy: ${ JSON.stringify(status) }`, 'StatusController');
-      this.serviceRegistryService.unregister(body.name);
-      throw new BadRequestException(`Service with name: ${ body.name } is unhealthy`);
-    } else {
-      this.logger.debug(`Service: ${ body.name } is healthy`, 'StatusController');
-    }
+    return this.health.check([ () => this.serviceHealthIndicator.isHealthy(body.name) ]);
 
   }
 
