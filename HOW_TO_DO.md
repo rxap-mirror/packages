@@ -62,6 +62,12 @@ To add a secondary entry point to the library run the command:
 nx generate @nx/angular:library-secondary-entry-point --skipModule --library=angular-<project-name> --name=<entry-point>
 ```
 
+To add cypress component test to the library run the command:
+
+```shell
+nx g @nx/angular:cypress-component-configuration --buildTarget=angular:build:development --project=angular-status-check
+```
+
 ### Angular Application
 
 To create a new angular application package, run the command:
