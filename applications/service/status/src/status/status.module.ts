@@ -1,11 +1,12 @@
+import { HttpModule } from '@nestjs/axios';
 import {
   Logger,
   Module,
 } from '@nestjs/common';
 import { TerminusModule } from '@nestjs/terminus';
-import { StatusController } from './status.controller';
-import { HttpModule } from '@nestjs/axios';
 import { ServiceRegistryService } from './service-registry.service';
+import { ServiceHealthIndicator } from './service.health-indicator';
+import { StatusController } from './status.controller';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ServiceRegistryService } from './service-registry.service';
   providers: [
     Logger,
     ServiceRegistryService,
+    ServiceHealthIndicator,
   ],
   controllers: [
     StatusController,

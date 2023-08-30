@@ -14,7 +14,7 @@ import { firstValueFrom } from 'rxjs';
 import { ServiceRegistryService } from './service-registry.service';
 
 @Injectable()
-export abstract class ServiceHealthIndicator extends HealthIndicator {
+export class ServiceHealthIndicator extends HealthIndicator {
   constructor(
     protected readonly http: HttpService,
     protected readonly config: ConfigService,
@@ -25,6 +25,13 @@ export abstract class ServiceHealthIndicator extends HealthIndicator {
   }
 
   public async isHealthy(serviceName: string): Promise<HealthIndicatorResult> {
+
+    if (!this.serviceRegistryService.has(serviceName)) {
+      throw new HealthCheckError(
+        `Service is not registered`,
+        this.getStatus(serviceName, false, { message: `Service is not registered` }),
+      );
+    }
 
     const baseUrl = this.serviceRegistryService.get(serviceName);
 

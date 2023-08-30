@@ -13,7 +13,6 @@ import {
 import { ApiQuery } from '@nestjs/swagger';
 import {
   HealthCheck,
-  HealthCheckError,
   HealthCheckResult,
   HealthCheckService,
 } from '@nestjs/terminus';
@@ -42,14 +41,11 @@ export class StatusController {
     name: 'service',
     type: [ String ],
   })
-  @Get()
+  @Get('many')
   @HealthCheck()
   public healthCheck(@Query('service') serviceList: string[]): Promise<HealthCheckResult> {
     if (serviceList?.length) {
       const services = serviceList.map((name) => {
-        if (!this.serviceRegistryService.has(name)) {
-          throw new HealthCheckError(`Service '${ name }' is not registered`, {});
-        }
         return () => this.serviceHealthIndicator.isHealthy(name);
       });
       return this.health.check(services);
