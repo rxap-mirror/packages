@@ -58,7 +58,9 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
       // TODO : create issue in @nest github project - if options is an empty object the server does not start
       app.setGlobalPrefix(
         options.globalApiPrefix,
-        !options.globalPrefixOptions?.exclude?.length ? { exclude: [ '/health(.*)' ] } : options.globalPrefixOptions,
+        !options.globalPrefixOptions?.exclude?.length ?
+          { exclude: [ '/health(.*)', '/info' ] } :
+          options.globalPrefixOptions,
       );
     }
     return app.listen(options.port, () => {
