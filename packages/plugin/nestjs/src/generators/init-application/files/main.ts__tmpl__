@@ -27,6 +27,17 @@ const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(
   AppModule,
   environment,
   { bufferLogs: true },
+  <% if (projectName === "service-status" -%>
+  {
+    globalPrefixOptions: {
+      exclude: [
+        '/health(.*)',
+        '/info'
+        '/register',
+      ]
+    }
+  }
+  <% -%>
 );
 
 <% } else if (platform === "fastify") { -%>

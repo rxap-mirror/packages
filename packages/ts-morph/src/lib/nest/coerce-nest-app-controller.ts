@@ -38,9 +38,16 @@ export function CoerceNestAppController(sourceFile: SourceFile, options: CoerceN
   // endregion
 
   CoerceNestOperation(sourceFile, {
+    operationName: 'name',
+    returnType: 'string',
+    statements: [ 'return environment.app;' ],
+  });
+
+  CoerceNestOperation(sourceFile, {
     operationName: 'environment',
-    returnType: 'Environment',
-    statements: [ 'return environment;' ],
+    returnType: 'string',
+    statements: [ 'return environment' ],
+    path: 'info',
   });
 
   CoerceImports(sourceFile, [
