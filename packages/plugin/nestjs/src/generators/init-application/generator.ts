@@ -415,6 +415,7 @@ export async function initApplicationGenerator(
 
     generateFiles(tree, join(__dirname, 'files'), project.sourceRoot, {
       ...options,
+      projectName,
       tmpl: '',
       port,
       globalApiPrefix,
