@@ -12,10 +12,14 @@ import { environment } from '../environments/environment';
 @Public()
 export class AppController {
 
-  @Get()
+  @Get('info')
   environment(): Environment {
     return environment;
   }
 
+  @Get()
+  public name(): string {
+    return environment.app;
+  }
 }
 

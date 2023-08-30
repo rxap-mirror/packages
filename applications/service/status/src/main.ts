@@ -25,10 +25,11 @@ const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(
     globalPrefixOptions: {
       exclude: [
         '/health(.*)',
+        '/info',
         '/register',
-      ],
-    },
-  },
+      ]
+    }
+  }
 );
 
 server.after((app, config) => {

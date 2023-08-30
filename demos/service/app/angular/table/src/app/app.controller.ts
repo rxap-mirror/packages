@@ -11,8 +11,13 @@ import { environment } from '../environments/environment';
 @Controller()
 @Public()
 export class AppController {
-  @Get()
+  @Get('info')
   public environment(): Environment {
     return environment;
+  }
+
+  @Get()
+  public name(): string {
+    return environment.app;
   }
 }
