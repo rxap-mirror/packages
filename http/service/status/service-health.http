@@ -8,6 +8,11 @@ Accept: application/json
 
 ###
 
+GET http://localhost:3999/api/status/many?service=service-not-exists&service=service-configuration
+Accept: application/json
+
+###
+
 GET http://localhost:3999/api/status/all
 Accept: application/json
 
