@@ -341,7 +341,8 @@ export function CoerceNestOperation(sourceFile: SourceFile, options: CoerceOpera
     CoerceDecorator(methodDeclaration, decorator.name, decorator);
   });
 
-  CoerceDecorator(methodDeclaration, method, { arguments: path ? [ w => w.quote(path!) ] : [] });
+  CoerceDecorator(methodDeclaration, method, { arguments: path ? [ w => w.quote(path!) ] : [] })
+    .set({ arguments: path ? [ w => w.quote(path!) ] : [] });
   coerceApiQueryDecorators(queryList, methodDeclaration);
   CoerceStatements(
     methodDeclaration,
