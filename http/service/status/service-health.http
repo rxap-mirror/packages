@@ -3,6 +3,11 @@ Accept: application/json
 
 ###
 
+GET http://localhost:3999/api/status/service-not-exists
+Accept: application/json
+
+###
+
 GET http://localhost:3999/api/status/all
 Accept: application/json
 
