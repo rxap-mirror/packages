@@ -1,0 +1,42 @@
+<div class="flex flex-col items-center justify-center min-h-screen mx-auto bg-gray-100">
+
+  <div class="bg-white rounded-lg shadow-lg p-8 w-full md:w-1/2">
+    <h2 class="text-2xl font-semibold mb-4">API Status Check</h2>
+
+    <hr class="mb-4">
+
+    <div *ngIf="services()">
+      <h3 class="text-xl font-semibold mb-2">Services</h3>
+      <div>
+        <table class="min-w-full bg-white border border-gray-300">
+          <tbody>
+          <tr *ngFor="let service of services()" [ngClass]="{
+            'bg-green-100': service.status === 'up',
+            'bg-red-100': service.status === 'down',
+            'bg-yellow-100': service.status === 'loading',
+          }" class="border-b border-gray-300">
+            <th class="p-2 text-left">{{ service.name }}</th>
+            <td class="p-2 text-right">{{ service.status }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="flex justify-center items-center">
+      <p class="text-lg font-medium">Next try in <span class="font-bold text-blue-500">{{ countdown() }}</span>s</p>
+    </div>
+
+    <hr class="my-4">
+
+    <div *ngIf="url() as url">
+      <h4 class="text-lg font-semibold mb-2">Previous Route</h4>
+      <p class="mb-2">To return to the previous page, click the link below:</p>
+      <a [routerLink]="url" class="text-blue-500 hover:underline" i18n>Go Back to <i>{{ url }}</i></a>
+    </div>
+
+  </div>
+
+</div>

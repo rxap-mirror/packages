@@ -5,23 +5,13 @@ import {
 } from '@angular/core';
 import { OpenApiHttpResponseError } from '@rxap/open-api';
 import { Method } from '@rxap/pattern';
-import { ToggleSubject } from '@rxap/rxjs';
+import { log } from '@rxap/rxjs';
 import * as Sentry from '@sentry/angular-ivy';
 import {
-  combineLatest,
-  defer,
-  interval,
+  from,
   Observable,
-  shareReplay,
   startWith,
-  Subject,
-  switchMap,
-  throttleTime,
 } from 'rxjs';
-import {
-  map,
-  tap,
-} from 'rxjs/operators';
 
 export interface ApiStatus {
   status?: string;
@@ -36,61 +26,42 @@ export interface ApiStatus {
   } & Record<string, string>>;
 }
 
-export const STATUS_CHECK_ALL_METHOD = new InjectionToken<Method<ApiStatus>>('STATUS_CHECK_ALL_METHOD');
-export const STATUS_CHECK_SERVICE_METHOD = new InjectionToken<Method<ApiStatus, string>>('STATUS_CHECK_SERVICE_METHOD');
+export const SERVICE_STATUS_CHECK_METHOD = new InjectionToken<Method<ApiStatus, string[]>>('SERVICE_STATUS_CHECK_METHOD');
 
 @Injectable({ providedIn: 'root' })
 export class StatusCheckService {
 
-  public readonly isChecking$ = new ToggleSubject(false);
-  public readonly isHealthy$: Observable<boolean>;
-  private readonly recheck$ = new Subject<void>();
-  status$: Observable<ApiStatus> = defer(() => combineLatest(
-    [
-      interval(60 * 1000),
-      this.recheck$,
-    ]).pipe(
-    tap(() => this.isChecking$.enable()),
-    throttleTime(1000 * 10),
-    startWith(0),
-    switchMap(() => this.getStatus()),
-    shareReplay(1),
-  ));
-
   constructor(
-    @Inject(STATUS_CHECK_ALL_METHOD)
-    private readonly getAllStatusMethod: Method<ApiStatus>,
-    @Inject(STATUS_CHECK_SERVICE_METHOD)
-    private readonly getServiceStatusMethod: Method<ApiStatus, string>,
-  ) {
-    this.isHealthy$ = this.status$.pipe(map(status => status.status === 'ok'));
+    @Inject(SERVICE_STATUS_CHECK_METHOD)
+    private readonly getServiceStatusMethod: Method<ApiStatus, string[]>,
+  ) {}
+
+  public getStatus(serviceNames: string[]): Observable<ApiStatus> {
+    console.log('getStatus', serviceNames);
+    return from(this.requestStatus(serviceNames)).pipe(
+      startWith({
+        status: 'loading',
+        info: serviceNames.reduce((acc, serviceName) => ({
+          ...acc,
+          [serviceName]: { status: 'loading' },
+        }), {}),
+      }),
+      log('status'),
+    );
   }
 
-  public recheck() {
-    console.log('recheck');
-    this.recheck$.next();
-  }
-
-  public async isHealthy(serviceName?: string): Promise<boolean> {
-    return Promise.resolve(true);
-  }
-
-  private async getStatus(serviceName?: string): Promise<ApiStatus> {
-    let status: ApiStatus = { status: 'panic' };
+  private async requestStatus(serviceNames: string[]): Promise<ApiStatus> {
+    let status: ApiStatus = { status: 'fatal' };
     try {
-      if (serviceName) {
-        status = await this.getServiceStatusMethod.call(serviceName);
-      } else {
-        status = await this.getAllStatusMethod.call();
-      }
+      status = await this.getServiceStatusMethod.call(serviceNames);
     } catch (error) {
-      this.handleStatusCheckError(error, status);
+      return this.handleStatusCheckError(error, status);
     }
-    this.isChecking$.disable();
     return status;
   }
 
   private handleStatusCheckError(error: any, status: ApiStatus, serviceName?: string) {
+    console.log('handleStatusCheckError', error, status, serviceName);
     if (error instanceof OpenApiHttpResponseError) {
       if (error.status === 503) {
         Sentry.captureMessage(`API${ serviceName ?

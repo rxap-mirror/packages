@@ -1,9 +1,14 @@
 import { Route } from '@angular/router';
 import { EmptyRouterOutletComponent } from '@rxap/components';
 import { LayoutComponent } from '@rxap/layout';
+import {
+  STATUS_CHECK_ROUTE,
+  StatusCheckGuard,
+} from '@rxap/ngx-status-check';
 import { CustomMenuItemComponent } from './layout/custom-menu-item/custom-menu-item.component';
 
 export const appRoutes: Route[] = [
+  STATUS_CHECK_ROUTE,
   {
     path: '',
     component: LayoutComponent,
@@ -16,9 +21,15 @@ export const appRoutes: Route[] = [
         },
       },
     },
+    canActivateChild: [ StatusCheckGuard ],
     children: [
       {
         path: 'table',
+        data: {
+          statusCheck: {
+            services: [ 'service-app-angular-table' ],
+          },
+        },
         loadChildren: () => import('../feature/table/routes'),
       },
       {

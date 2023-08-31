@@ -96,6 +96,20 @@
     },
     "check-ng-package": {
       "executor": "@rxap/plugin-angular:check-ng-package"
+    },
+    "component-test": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "packages/angular/status-check/cypress.config.ts",
+        "testingType": "component",
+        "skipServe": true,
+        "devServerTarget": "angular:build:development"
+      },
+      "configurations": {
+        "open": {
+          "watch": true
+        }
+      }
     }
   }
 }
