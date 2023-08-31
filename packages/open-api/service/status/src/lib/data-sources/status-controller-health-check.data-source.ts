@@ -3,6 +3,7 @@ import {
   OpenApiDataSource,
   RxapOpenApiDataSource,
 } from '@rxap/open-api/data-source';
+import { StatusControllerHealthCheckParameter } from '../parameters/status-controller-health-check.parameter';
 import { StatusControllerHealthCheckResponse } from '../responses/status-controller-health-check.response';
 
 @Injectable({
@@ -10,5 +11,5 @@ import { StatusControllerHealthCheckResponse } from '../responses/status-control
 })
 @RxapOpenApiDataSource('StatusController_healthCheck')
 export class StatusControllerHealthCheckDataSource
-  extends OpenApiDataSource<StatusControllerHealthCheckResponse, void> {
+  extends OpenApiDataSource<StatusControllerHealthCheckResponse, StatusControllerHealthCheckParameter> {
 }

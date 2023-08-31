@@ -23,6 +23,7 @@ import {
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
 import { StatusControllerRegisterRequestBody } from '../request-bodies/status-controller-register.request-body';
+import { StatusControllerRegisterResponse } from '../responses/status-controller-register.response';
 
 @Injectable({
   providedIn: 'root',
@@ -30,11 +31,11 @@ import { StatusControllerRegisterRequestBody } from '../request-bodies/status-co
 @RxapOpenApiRemoteMethod({
   serverId: 'service-status',
   operationId: 'StatusController_register',
-  operation: '{"operationId":"StatusController_register","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string"},"url":{"type":"string"},"port":{"type":"number"}},"required":["name"]}}}},"responses":{"201":{}},"method":"post","path":"/register"}',
+  operation: '{"operationId":"StatusController_register","parameters":[],"requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"name":{"type":"string"},"url":{"type":"string"},"port":{"type":"number"}},"required":["name"]}}}},"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"info":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}},"nullable":true},"error":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}},"nullable":true},"details":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}}}}}}}},"201":{"content":{"application/json":{"schema":{"type":"object"}}}}},"method":"post","path":"/register"}',
 })
 export class StatusControllerRegisterRemoteMethod
-  extends OpenApiRemoteMethod<void, void, StatusControllerRegisterRequestBody> {
-  public override call(parameters: OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>): Promise<void> {
+  extends OpenApiRemoteMethod<StatusControllerRegisterResponse, void, StatusControllerRegisterRequestBody> {
+  public override call(parameters: OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>): Promise<StatusControllerRegisterResponse> {
     return super.call(parameters);
   }
 }
@@ -44,7 +45,7 @@ export class StatusControllerRegisterRemoteMethod
   exportAs: 'statusControllerRegisterRemoteMethod',
 })
 export class StatusControllerRegisterRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>> {
+  extends RemoteMethodTemplateDirective<StatusControllerRegisterResponse, OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>> {
   @Input('statusControllerRegisterRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>;
   @Input('statusControllerRegisterRemoteMethodError')
@@ -54,7 +55,7 @@ export class StatusControllerRegisterRemoteMethodTemplateDirective
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
     @Inject(StatusControllerRegisterRemoteMethod) remoteMethod: StatusControllerRegisterRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
+    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<StatusControllerRegisterResponse>>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
@@ -76,7 +77,7 @@ export class StatusControllerRegisterRemoteMethodTemplateDirectiveModule {
   exportAs: 'statusControllerRegisterRemoteMethod',
 })
 export class StatusControllerRegisterRemoteMethodDirective
-  extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>> {
+  extends RemoteMethodDirective<StatusControllerRegisterResponse, OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,

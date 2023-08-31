@@ -22,6 +22,7 @@ import {
   RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
+import { StatusControllerHealthCheckParameter } from '../parameters/status-controller-health-check.parameter';
 import { StatusControllerHealthCheckResponse } from '../responses/status-controller-health-check.response';
 
 @Injectable({
@@ -30,12 +31,12 @@ import { StatusControllerHealthCheckResponse } from '../responses/status-control
 @RxapOpenApiRemoteMethod({
   serverId: 'service-status',
   operationId: 'StatusController_healthCheck',
-  operation: '{"operationId":"StatusController_healthCheck","parameters":[],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"info":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}},"nullable":true},"error":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}},"nullable":true},"details":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}}}}}}}}},"method":"get","path":"/all"}',
+  operation: '{"operationId":"StatusController_healthCheck","parameters":[{"name":"service","required":true,"in":"query","schema":{"type":"array","items":{"type":"string"}}}],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string"},"info":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}},"nullable":true},"error":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}},"nullable":true},"details":{"type":"object","additionalProperties":{"type":"object","properties":{"status":{"type":"string"}},"additionalProperties":{"type":"string"}}}}}}}}},"method":"get","path":"/many"}',
 })
 export class StatusControllerHealthCheckRemoteMethod
-  extends OpenApiRemoteMethod<StatusControllerHealthCheckResponse, void, void> {
-  public override call(): Promise<StatusControllerHealthCheckResponse> {
-    return super.call();
+  extends OpenApiRemoteMethod<StatusControllerHealthCheckResponse, StatusControllerHealthCheckParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<StatusControllerHealthCheckParameter, void>): Promise<StatusControllerHealthCheckResponse> {
+    return super.call(parameters);
   }
 }
 
@@ -44,9 +45,9 @@ export class StatusControllerHealthCheckRemoteMethod
   exportAs: 'statusControllerHealthCheckRemoteMethod',
 })
 export class StatusControllerHealthCheckRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<StatusControllerHealthCheckResponse, OpenApiRemoteMethodParameter<void, void>> {
+  extends RemoteMethodTemplateDirective<StatusControllerHealthCheckResponse, OpenApiRemoteMethodParameter<StatusControllerHealthCheckParameter, void>> {
   @Input('statusControllerHealthCheckRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<void, void>;
+  declare public parameters?: OpenApiRemoteMethodParameter<StatusControllerHealthCheckParameter, void>;
   @Input('statusControllerHealthCheckRemoteMethodError')
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
@@ -60,7 +61,6 @@ export class StatusControllerHealthCheckRemoteMethodTemplateDirective
   ) {
     super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
     this.remoteMethodOrIdOrToken = remoteMethod;
-    this.withoutParameters = true;
   }
 }
 
@@ -76,7 +76,7 @@ export class StatusControllerHealthCheckRemoteMethodTemplateDirectiveModule {
   exportAs: 'statusControllerHealthCheckRemoteMethod',
 })
 export class StatusControllerHealthCheckRemoteMethodDirective
-  extends RemoteMethodDirective<StatusControllerHealthCheckResponse, OpenApiRemoteMethodParameter<void, void>> {
+  extends RemoteMethodDirective<StatusControllerHealthCheckResponse, OpenApiRemoteMethodParameter<StatusControllerHealthCheckParameter, void>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
