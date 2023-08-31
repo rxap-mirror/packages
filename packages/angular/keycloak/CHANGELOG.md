@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/keycloak@16.0.0-dev.9...@rxap/keycloak@16.0.0-dev.10) (2023-08-31)
+
+### Bug Fixes
+
+- mv keycloak-js deps to peer dependency ([5bcd598](https://gitlab.com/rxap/packages/commit/5bcd598ec993bb3992e7cac649de7eaf16bdc1df))
+
 # [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/keycloak@16.0.0-dev.8...@rxap/keycloak@16.0.0-dev.9) (2023-08-31)
 
 ### Bug Fixes
