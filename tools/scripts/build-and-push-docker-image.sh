@@ -7,6 +7,19 @@ NC='\033[0m' # No Color
 
 DOCKER_CONFIG_PATH=${DOCKER_CONFIG_PATH:-/kaniko/.docker/config.json}
 
+make_temp_file() {
+  # ensure the temporary directory exists
+  # in the kaniko container the folder /tmp does not exists
+  mkdir -p /tmp
+  if command -v mktemp > /dev/null 2>&1; then
+      echo "$(mktemp)"
+  else
+      local tmp_file="/tmp/tmpfile_$RANDOM"
+      touch "$tmp_file"
+      echo "$tmp_file"
+  fi
+}
+
 if [ "$CI" = "true" ]; then
   # region install utilities
   mkdir -p /usr/local/bin
@@ -163,10 +176,20 @@ if [ "$PUSH_TO_GCP" = "true" ]; then
   GCP_REGION=${GCP_REGION:-europe-west1}
   GCP_REGISTRY=${GCP_REGISTRY:-"${GCP_REGION}-docker.pkg.dev"}
 
+  echo -e "${BLUE}Add gcp auth to docker config: ${DOCKER_CONFIG_PATH}${NC}"
+
+  # Using an intermediate temporary file to avoid truncation when reading and writing
+  # to the same file concurrently. When you redirect output to a file, the shell
+  # starts by truncating that file. If that file is also the input (as is the case
+  # when we read and write to the same file), we risk reading an already truncated
+  # (empty) file. To prevent this, we first write the output to a temporary file
+  # and then move (replace) the original file with this temporary one.
+  tmp_file=$(make_temp_file)
   cat "${DOCKER_CONFIG_PATH}" | jq \
   --arg auth "$AUTH" \
   --arg registry "$GCP_REGISTRY" \
-  '.auths["$registry"] = { "auth": $auth }' > "${DOCKER_CONFIG_PATH}"
+  '.auths[$registry] = { "auth": $auth }' > "$tmp_file"
+  mv "$tmp_file" "${DOCKER_CONFIG_PATH}"
 
   GCP_REGISTRY_IMAGE=${GCP_REGISTRY}/${GCP_PROJECT}/${IMAGE_NAME}
   GCP_DESTINATION="${GCP_REGISTRY_IMAGE}${IMAGE_SUFFIX}"
@@ -182,11 +205,21 @@ fi
 # region prepare gitlab push
 if [ "$PUSH_TO_GITLAB" = "true" ]; then
 
+  echo -e "${BLUE}Add gitlab auth to docker config: ${DOCKER_CONFIG_PATH}${NC}"
+
+  # Using an intermediate temporary file to avoid truncation when reading and writing
+  # to the same file concurrently. When you redirect output to a file, the shell
+  # starts by truncating that file. If that file is also the input (as is the case
+  # when we read and write to the same file), we risk reading an already truncated
+  # (empty) file. To prevent this, we first write the output to a temporary file
+  # and then move (replace) the original file with this temporary one.
+  tmp_file=$(make_temp_file)
   cat "${DOCKER_CONFIG_PATH}" | jq \
   --arg username "$CI_REGISTRY_USER" \
   --arg password "$CI_REGISTRY_PASSWORD" \
   --arg registry "$CI_REGISTRY" \
-  '.auths["$registry"] = { "username": $username, "password": $password }' > "${DOCKER_CONFIG_PATH}"
+  '.auths[$registry] = { "username": $username, "password": $password }' > "$tmp_file"
+  mv "$tmp_file" "${DOCKER_CONFIG_PATH}"
 
   CI_DESTINATION="${CI_REGISTRY_IMAGE}${IMAGE_SUFFIX}"
 
@@ -201,11 +234,21 @@ fi
 # region prepare custom registry push
 if [ "$PUSH_TO_CUSTOM" = "true" ]; then
 
+  echo -e "${BLUE}Add custom auth to docker config: ${DOCKER_CONFIG_PATH}${NC}"
+
+  # Using an intermediate temporary file to avoid truncation when reading and writing
+  # to the same file concurrently. When you redirect output to a file, the shell
+  # starts by truncating that file. If that file is also the input (as is the case
+  # when we read and write to the same file), we risk reading an already truncated
+  # (empty) file. To prevent this, we first write the output to a temporary file
+  # and then move (replace) the original file with this temporary one.
+  tmp_file=$(make_temp_file)
   cat "${DOCKER_CONFIG_PATH}" | jq \
   --arg username "$REGISTRY_USER" \
   --arg password "$REGISTRY_PASSWORD" \
   --arg registry "$REGISTRY" \
-  '.auths["$registry"] = { "username": $username, "password": $password }' > "${DOCKER_CONFIG_PATH}"
+  '.auths[$registry] = { "username": $username, "password": $password }' > "$tmp_file"
+  mv "$tmp_file" "${DOCKER_CONFIG_PATH}"
 
   REGISTRY_IMAGE=${REGISTRY}/${IMAGE_NAME}
 
@@ -218,10 +261,18 @@ if [ "$PUSH_TO_CUSTOM" = "true" ]; then
 fi
 # endregion
 
-if [ "$DRY_RUN" = "true" ]; then
-  # Run the executor with the defined parameters
-  echo "/kaniko/executor $COMMON_EXEC_PARAMS $DESTINATION_PARAMS"
-else
+if [ "$DOCKER_BUILD_AND_PUSH_DEBUG" = "true" ]; then
+  echo "DESTINATION_PARAMS: ${DESTINATION_PARAMS}"
+  echo "COMMON_EXEC_PARAMS: ${COMMON_EXEC_PARAMS}"
+  echo "DRY_RUN: ${DRY_RUN}"
+  echo "DOCKER_CONFIG_PATH: ${DOCKER_CONFIG_PATH}"
+  echo "DOCKER_CONFIG: $(cat ${DOCKER_CONFIG_PATH})"
+fi
+
+# Run the executor with the defined parameters
+echo "/kaniko/executor $COMMON_EXEC_PARAMS $DESTINATION_PARAMS"
+
+if [ ! "$DRY_RUN" = "true" ]; then
   if [ -f "/kaniko/executor" ]; then
     # Run the executor with the defined parameters
     /kaniko/executor $COMMON_EXEC_PARAMS $DESTINATION_PARAMS
@@ -230,3 +281,5 @@ else
     exit 1
   fi
 fi
+
+

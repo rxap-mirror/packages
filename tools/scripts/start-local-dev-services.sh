@@ -9,7 +9,7 @@ NC='\033[0m' # No Color
 
 cd "${GIT_ROOT}" || exit 1
 
-yarn nx g @rxap/plugin-workspace:docker-compose --ignore-project service-configuration --ignore-project service-status
+yarn nx g @rxap/plugin-workspace:docker-compose --ignore-project service-configuration --ignore-project service-status --verbose
 
 # Get the current branch name or the commit hash if in detached HEAD state
 current_branch=$(git symbolic-ref --short -q HEAD || git rev-parse --short HEAD)
@@ -26,6 +26,7 @@ echo "CHANNEL=$CHANNEL"
 echo "HOST_IP=$HOST_IP"
 echo "REGISTRY=$REGISTRY"
 echo "ROOT_DOMAIN_PORT=$ROOT_DOMAIN_PORT"
+echo "SKIP_PULL=$SKIP_PULL"
 
 read -p "Does everything look good (y/N)? "
 
@@ -35,41 +36,45 @@ fi
 
 export CHANNEL
 
-docker compose -f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml pull && VALID=true || VALID=false
+if [[ $SKIP_PULL != "true" ]]; then
 
-if [[ $VALID == true ]]; then
-  echo -e "${GREEN}channel $channel is valid${NC}"
-else
-  echo -e "${RED}channel $channel is not valid${NC}"
+  docker compose -f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml pull && VALID=true || VALID=false
 
-  read -p "Do you want to use the 'development' channel (y/N)? "
-
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    channel=development
-    CHANNEL=$channel
+  if [[ $VALID == true ]]; then
+    echo -e "${GREEN}channel $channel is valid${NC}"
   else
-    echo "exiting"
-    exit 1
+    echo -e "${RED}channel $channel is not valid${NC}"
+
+    read -p "Do you want to use the 'development' channel (y/N)? "
+
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      channel=development
+      CHANNEL=$channel
+    else
+      echo "exiting"
+      exit 1
+    fi
   fi
-fi
 
-export CHANNEL
+  export CHANNEL
 
-docker compose -f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml pull && VALID=true || VALID=false
+  docker compose -f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml pull && VALID=true || VALID=false
 
-if [[ $VALID == true ]]; then
-  echo -e "${GREEN}channel $channel is valid${NC}"
-else
-  echo -e "${RED}channel $channel is not valid${NC}"
-
-  read -p "Do you want to try to build the images locally (y/N)? "
-
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    yarn nx run-many --target docker --configuration production --imageRegistry "$REGISTRY"
+  if [[ $VALID == true ]]; then
+    echo -e "${GREEN}channel $channel is valid${NC}"
   else
-    echo "exiting"
-    exit 1
+    echo -e "${RED}channel $channel is not valid${NC}"
+
+    read -p "Do you want to try to build the images locally (y/N)? "
+
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      yarn nx run-many --target docker --configuration production --imageRegistry "$REGISTRY"
+    else
+      echo "exiting"
+      exit 1
+    fi
   fi
+
 fi
 
 docker compose stop traefik || true
