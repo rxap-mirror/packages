@@ -11,13 +11,52 @@ import { join } from 'path';
 import { stringify } from 'yaml';
 import { DockerComposeGeneratorSchema } from './schema';
 
-function getServiceApiPrefix(name: string, host: Tree) {
+function getServiceApiPrefixFromDockerFile(name: string, host: Tree): string | null {
   const projectSourceRoot = GetProjectSourceRoot(host, name);
+  if (!projectSourceRoot) {
+    throw new Error(`The project ${ name } has no source root!`);
+  }
   const DockerFilePath = join(projectSourceRoot, 'Dockerfile');
-  const dockerFile = host.read(DockerFilePath)?.toString('utf-8');
+  if (!host.exists(DockerFilePath)) {
+    return null;
+  }
+  const dockerFile = host.read(DockerFilePath)!.toString('utf-8');
   const match = dockerFile.match(/ENV GLOBAL_API_PREFIX[\s=]"([^"]+)"/);
+  if (!match) {
+    return null;
+  }
   const globalApiPrefix = match[1];
   return '/' + globalApiPrefix;
+}
+
+function getServiceApiPrefixFromAppConfig(name: string, host: Tree): string | null {
+  const projectSourceRoot = GetProjectSourceRoot(host, name);
+  if (!projectSourceRoot) {
+    throw new Error(`The project ${ name } has no source root!`);
+  }
+  const appConfigFilePath = join(projectSourceRoot, 'app/app.config.ts');
+  if (!host.exists(appConfigFilePath)) {
+    return null;
+  }
+  const appConfig = host.read(appConfigFilePath)!.toString('utf-8');
+  const match = appConfig.match(/validationSchema\['GLOBAL_API_PREFIX'] = Joi.string\(\).default\('([^']+)'\);/);
+  if (!match) {
+    return null;
+  }
+  const globalApiPrefix = match[1];
+  return '/' + globalApiPrefix;
+}
+
+function getServiceApiPrefix(name: string, host: Tree) {
+  let globalApiPrefix = getServiceApiPrefixFromDockerFile(name, host);
+  if (!globalApiPrefix) {
+    console.warn(`The service ${ name } has no Dockerfile or the Dockerfile has no GLOBAL_API_PREFIX environment variable!`);
+  }
+  globalApiPrefix = getServiceApiPrefixFromAppConfig(name, host);
+  if (!globalApiPrefix) {
+    console.warn(`The service ${ name } has no app.config.ts or the app.config.ts has no GLOBAL_API_PREFIX validation schema!`);
+  }
+  return globalApiPrefix ?? '/api/' + name;
 }
 
 function buildImageName(docker: Record<string, string>): string {
@@ -71,7 +110,7 @@ function createServiceDockerCompose(
         ],
       };
       return services;
-    }, {}),
+    }, {} as Record<string, any>),
   });
 }
 
@@ -104,7 +143,7 @@ function createFrontendDockerCompose(
         ],
       };
       return services;
-    }, {}),
+    }, {} as Record<string, any>),
   });
 }
 
@@ -122,14 +161,24 @@ function createDevServiceTraefikConfig(
           entryPoints: 'https',
         };
         return routers;
-      }, {}),
+      }, {} as Record<string, any>),
       services: services.reduce((services, { name }) => {
         const sourceRoot = GetProjectSourceRoot(host, name);
-        const appModuleFilePath = join(sourceRoot, 'app', 'app.module.ts');
-        const appModule = host.read(appModuleFilePath)?.toString('utf-8');
-        const port = appModule.match(
-          /PORT: Joi\.number\(\).default\((\d+)\)/,
-        )[1];
+        if (!sourceRoot) {
+          throw new Error(`The project ${ name } has no source root!`);
+        }
+        const appModuleFilePath = join(sourceRoot, 'app', 'app.config.ts');
+        if (!host.exists(appModuleFilePath)) {
+          throw new Error(`The project ${ name } has no app.module.ts!`);
+        }
+        const appModule = host.read(appModuleFilePath)!.toString('utf-8');
+        const portMatch = appModule.match(
+          /validationSchema\['PORT'] = Joi.number\(\).default\((\d+)\)/,
+        );
+        if (!portMatch) {
+          throw new Error(`The service ${ name } has no PORT environment variable!`);
+        }
+        const port = portMatch[1];
         services[name] = {
           failover: {
             service: name + '-local',
@@ -151,7 +200,7 @@ function createDevServiceTraefikConfig(
           },
         };
         return services;
-      }, {}),
+      }, {} as Record<string, any>),
     },
   });
 }
