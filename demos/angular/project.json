@@ -23,7 +23,8 @@
     "angular-data-source",
     "angular",
     "angular-material-table-select",
-    "browser-tailwind"
+    "browser-tailwind",
+    "angular-status-check"
   ],
   "tags": [
     "angular",
@@ -83,7 +84,13 @@
           ],
           "outputHashing": "all",
           "serviceWorker": true,
-          "ngswConfigPath": "shared/ngsw-config.json"
+          "ngswConfigPath": "shared/ngsw-config.json",
+          "fileReplacements": [
+            {
+              "replace": "demos/angular/src/environments/environment.ts",
+              "with": "demos/angular/src/environments/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "buildOptimizer": false,
