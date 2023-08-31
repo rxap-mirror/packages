@@ -1,5 +1,9 @@
 export interface Environment {
   /**
+   * The name of the app
+   */
+  app: string;
+  /**
    * The name of the environment
    */
   name?: string;
