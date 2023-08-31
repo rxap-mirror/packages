@@ -14,7 +14,7 @@ services:
       - ./docker/traefik:/etc/traefik:ro
     ports:
       - "8443:443"
-      - "8080:8080"
+      - "8888:8080"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=https"
@@ -42,7 +42,7 @@ services:
       - traefik.http.routers.rxap-configuration.entrypoints=https
       - traefik.http.routers.rxap-configuration.rule=PathPrefix(`/api/configuration`)
       - traefik.http.services.rxap-configuration.loadbalancer.server.port=3000
-      - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.path=/api/configuration/health
+      - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.path=/health
       - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.timeout=3s
     volumes:
@@ -55,6 +55,7 @@ services:
     depends_on:
       - traefik
       - catch-all-api
+      - rxap-status-service
   rxap-status-service:
     image: registry.gitlab.com/rxap/packages/service/status:${CHANNEL:-development}
     labels:
@@ -62,7 +63,7 @@ services:
       - traefik.http.routers.rxap-status.entrypoints=https
       - traefik.http.routers.rxap-status.rule=PathPrefix(`/api/status`)
       - traefik.http.services.rxap-status.loadbalancer.server.port=3000
-      - traefik.http.services.rxap-status.loadbalancer.healthCheck.path=/api/status/health
+      - traefik.http.services.rxap-status.loadbalancer.healthCheck.path=/health
       - traefik.http.services.rxap-status.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-status.loadbalancer.healthCheck.timeout=3s
     environment:
