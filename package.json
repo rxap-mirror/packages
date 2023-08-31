@@ -98,6 +98,7 @@
     "helmet": "^7.0.0",
     "ignore": "^5.2.4",
     "joi": "^17.9.2",
+    "keycloak-js": "^21.1.2",
     "ngx-logger": "^5.0.12",
     "openai": "^3.3.0",
     "reflect-metadata": "^0.1.13",

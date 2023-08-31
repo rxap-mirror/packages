@@ -4,9 +4,6 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "allowedNonPeerDependencies": [
-    "keycloak-js"
-  ],
   "assets": [
     "README.md",
     "CHANGELOG.md",

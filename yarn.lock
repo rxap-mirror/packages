@@ -7709,12 +7709,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/keycloak@workspace:packages/angular/keycloak"
   dependencies:
-    keycloak-js: ^17.0.0
     tslib: 2.5.3
   peerDependencies:
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
     "@angular/router": ^16.1.4
+    keycloak-js: ^21.1.2
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -20310,13 +20310,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keycloak-js@npm:^17.0.0":
-  version: 17.0.1
-  resolution: "keycloak-js@npm:17.0.1"
+"keycloak-js@npm:^21.1.2":
+  version: 21.1.2
+  resolution: "keycloak-js@npm:21.1.2"
   dependencies:
     base64-js: ^1.5.1
     js-sha256: ^0.9.0
-  checksum: e80b16d8b9dadf2f1772043654b83673580bd162b1842667e2d3ffa5f286d000f3f4acee52b9cc046656c2964707df0288a724c99a9c1ac29fbcd00b3466f0e7
+  checksum: 518dcdeda38fb111c8382bc033503d24fe1a2aaa0fee1e6a3120187bab4b9a0009bad7e1366db66ca1aaeb15997132316d58c675d61f09c96b4043c43f3516c9
   languageName: node
   linkType: hard
 
@@ -26117,6 +26117,7 @@ __metadata:
     jest-preset-angular: ~13.1.0
     joi: ^17.9.2
     jsonc-eslint-parser: ^2.1.0
+    keycloak-js: ^21.1.2
     lerna: ^6.6.2
     ng-mocks: ^14.11.0
     ng-packagr: 16.1.0
