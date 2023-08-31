@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.9...@rxap/plugin-nestjs@16.1.0-dev.10) (2023-08-31)
+
+### Bug Fixes
+
+- add missing template property ([11daed1](https://gitlab.com/rxap/packages/commit/11daed1cb52709ee436014f571642644dbb77fe9))
+- add project ts-morph ([f17725d](https://gitlab.com/rxap/packages/commit/f17725dccf31d3f5fab9087e103e19ad5df43246))
+- create an info path for the default app controller ([8d3ab19](https://gitlab.com/rxap/packages/commit/8d3ab197ba35ece19345e3eea78e938a512586e5))
+- ensure overwrite option is passed to sub schematics ([8472aab](https://gitlab.com/rxap/packages/commit/8472aab8814227c851fab9ae4c1b9ec3019d6f4e))
+- ensure the project name is not included in the project tag list ([b131ac3](https://gitlab.com/rxap/packages/commit/b131ac3bd92b3b8799d62f15bbd30a1997d7c753))
+- pass overwrite option to utility function ([7bf4f62](https://gitlab.com/rxap/packages/commit/7bf4f62249879ec13cb476844cac143033d4a8b4))
+- resolve issues ([07edb75](https://gitlab.com/rxap/packages/commit/07edb75b3ed6bedc2b831145d6ac5b57e342c6fd))
+- streamline the nestjs application initialization ([4fcdde5](https://gitlab.com/rxap/packages/commit/4fcdde539d462efaaf6fe24000187c87bbad8c19))
+
+### Features
+
+- add the health indicator generator ([3153e97](https://gitlab.com/rxap/packages/commit/3153e97c034d3f8856a68cf507ac88b5fb8c53bc))
+- add the jwt generator ([b9d22b1](https://gitlab.com/rxap/packages/commit/b9d22b1fc6c7b7bfa960012f92a1a9f74fd20a32))
+- add the mandatory app property to the environment object ([2655e0d](https://gitlab.com/rxap/packages/commit/2655e0d5449949a67b38044d34e6180f22ffc9c1))
+- add the open-api generator ([6ecf74d](https://gitlab.com/rxap/packages/commit/6ecf74d83dfb7092523fdeb6dc7e925f8aece46e))
+- add the sentry generator ([567eb83](https://gitlab.com/rxap/packages/commit/567eb83f2932643f359eb844db9b104e0b6c223d))
+- add the validator generator ([810ff12](https://gitlab.com/rxap/packages/commit/810ff12308a98446c37f03ae2523b1d7d7a8b7d5))
+- exclude health path from global api prefix ([15a5dbe](https://gitlab.com/rxap/packages/commit/15a5dbe4581e943bd7d0775fd87f8c2b0322cc02))
+- generate status registry feature ([aff8ff8](https://gitlab.com/rxap/packages/commit/aff8ff8f0e67e6181383beb93ee1f7c898c9a2ea))
+
 # [16.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.8...@rxap/plugin-nestjs@16.1.0-dev.9) (2023-08-17)
 
 ### Reverts

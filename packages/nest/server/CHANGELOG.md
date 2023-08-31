@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.0.1-dev.3...@rxap/nest-server@10.1.0-dev.0) (2023-08-31)
+
+### Bug Fixes
+
+- ensure the project name is not included in the project tag list ([b131ac3](https://gitlab.com/rxap/packages/commit/b131ac3bd92b3b8799d62f15bbd30a1997d7c753))
+- include the /info path to default global api prefix ignore rules ([0043782](https://gitlab.com/rxap/packages/commit/0043782c27d6aa158314ef7cacd57bf110b07922))
+
+### Features
+
+- add RegisterToStatusService utility function ([53fd276](https://gitlab.com/rxap/packages/commit/53fd276c237dffd48a0793d99858456a9d8c5f05))
+- add support for hybrid server bootstrap ([02ff956](https://gitlab.com/rxap/packages/commit/02ff956b10a508b5d0af3903d5f81cdd858c5da1))
+- add support for on ready hooks ([50bf887](https://gitlab.com/rxap/packages/commit/50bf887c444951f4daf3871a3a30115e66aee0df))
+- exclude health path from global api prefix ([15a5dbe](https://gitlab.com/rxap/packages/commit/15a5dbe4581e943bd7d0775fd87f8c2b0322cc02))
+
 ## [10.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.0.1-dev.2...@rxap/nest-server@10.0.1-dev.3) (2023-08-17)
 
 ### Reverts

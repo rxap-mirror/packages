@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.0.1-dev.4...@rxap/nest-utilities@10.1.0-dev.0) (2023-08-31)
+
+### Bug Fixes
+
+- ensure the project name is not included in the project tag list ([b131ac3](https://gitlab.com/rxap/packages/commit/b131ac3bd92b3b8799d62f15bbd30a1997d7c753))
+
+### Features
+
+- add the mandatory app property to the environment object ([2655e0d](https://gitlab.com/rxap/packages/commit/2655e0d5449949a67b38044d34e6180f22ffc9c1))
+
 ## [10.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.0.1-dev.3...@rxap/nest-utilities@10.0.1-dev.4) (2023-08-17)
 
 ### Reverts

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/nest-open-api",
-  "version": "10.0.1-dev.3",
+  "version": "10.0.1-dev.4",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -38,8 +38,8 @@
     "@nestjs/core": "^10.0.5",
     "@nestjs/swagger": "^7.1.2",
     "@nestjs/terminus": "^10.0.1",
-    "@rxap/nest-utilities": "^10.0.1-dev.4",
-    "@rxap/utilities": "^16.0.0-dev.11",
+    "@rxap/nest-utilities": "^10.1.0-dev.0",
+    "@rxap/utilities": "^16.0.0-dev.13",
     "@sentry/core": "^7.28.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
@@ -49,11 +49,11 @@
     "packageGroup": [
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.0.1-dev.4"
+        "version": "10.1.0-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.11"
+        "version": "16.0.0-dev.13"
       }
     ]
   }

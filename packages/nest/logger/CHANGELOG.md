@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@10.0.1-dev.3...@rxap/nest-logger@10.1.0-dev.0) (2023-08-31)
+
+### Bug Fixes
+
+- ensure the project name is not included in the project tag list ([b131ac3](https://gitlab.com/rxap/packages/commit/b131ac3bd92b3b8799d62f15bbd30a1997d7c753))
+
+### Features
+
+- add a LoggerModule that expose the Logger service globally ([de5d1b4](https://gitlab.com/rxap/packages/commit/de5d1b4c44e2094161ff8bfd47610ff54083a997))
+
 ## [10.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@10.0.1-dev.2...@rxap/nest-logger@10.0.1-dev.3) (2023-08-17)
 
 ### Reverts

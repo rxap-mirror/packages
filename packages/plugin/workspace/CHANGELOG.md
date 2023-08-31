@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.5...@rxap/plugin-workspace@16.1.0-dev.6) (2023-08-31)
+
+### Bug Fixes
+
+- ensure overwrite option is passed to sub schematics ([8472aab](https://gitlab.com/rxap/packages/commit/8472aab8814227c851fab9ae4c1b9ec3019d6f4e))
+- ensure the project name is not included in the project tag list ([b131ac3](https://gitlab.com/rxap/packages/commit/b131ac3bd92b3b8799d62f15bbd30a1997d7c753))
+- support new nest application structure ([1131c06](https://gitlab.com/rxap/packages/commit/1131c068e5967708283d0d9c79b81ea63af7d51c))
+
 # [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.4...@rxap/plugin-workspace@16.1.0-dev.5) (2023-08-17)
 
 ### Reverts

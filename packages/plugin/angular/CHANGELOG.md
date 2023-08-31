@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.11...@rxap/plugin-angular@16.1.0-dev.12) (2023-08-31)
+
+### Bug Fixes
+
+- add project ts-morph ([f17725d](https://gitlab.com/rxap/packages/commit/f17725dccf31d3f5fab9087e103e19ad5df43246))
+- ensure overwrite option is passed to sub schematics ([8472aab](https://gitlab.com/rxap/packages/commit/8472aab8814227c851fab9ae4c1b9ec3019d6f4e))
+- ensure the project name is not included in the project tag list ([b131ac3](https://gitlab.com/rxap/packages/commit/b131ac3bd92b3b8799d62f15bbd30a1997d7c753))
+
+### Features
+
+- coerce default application environments ([6608a7e](https://gitlab.com/rxap/packages/commit/6608a7e8e074ce207a1a405906cc07d0f1e4a8d8))
+
 # [16.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.10...@rxap/plugin-angular@16.1.0-dev.11) (2023-08-17)
 
 ### Reverts

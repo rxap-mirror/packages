@@ -1,6 +1,6 @@
 {
   "name": "@rxap/schematics-open-api",
-  "version": "16.0.0-dev.14",
+  "version": "16.0.0-dev.15",
   "type": "commonjs",
   "dependencies": {
     "openapi-types": "10.0.0",
@@ -9,10 +9,10 @@
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
     "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/json-schema-to-typescript": "^16.0.0-dev.7",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.12",
-    "@rxap/schematics-utilities": "^16.0.0-dev.9",
-    "@rxap/utilities": "^16.0.0-dev.11",
+    "@rxap/json-schema-to-typescript": "^16.0.0-dev.8",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.13",
+    "@rxap/schematics-utilities": "^16.0.0-dev.10",
+    "@rxap/utilities": "^16.0.0-dev.13",
     "ts-morph": "^18.0.0"
   },
   "publishConfig": {
@@ -46,19 +46,19 @@
     "packageGroup": [
       {
         "package": "@rxap/json-schema-to-typescript",
-        "version": "16.0.0-dev.7"
+        "version": "16.0.0-dev.8"
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "16.0.0-dev.9"
+        "version": "16.0.0-dev.10"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.11"
+        "version": "16.0.0-dev.13"
       }
     ]
   }

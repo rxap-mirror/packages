@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@0.1.0-dev.4...@rxap/schematic-nestjs@0.1.0-dev.5) (2023-08-31)
+
+### Bug Fixes
+
+- ensure the project name is not included in the project tag list ([b131ac3](https://gitlab.com/rxap/packages/commit/b131ac3bd92b3b8799d62f15bbd30a1997d7c753))
+
 # [0.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@0.1.0-dev.3...@rxap/schematic-nestjs@0.1.0-dev.4) (2023-08-24)
 
 ### Bug Fixes

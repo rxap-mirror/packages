@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/table-system@16.0.0-dev.9...@rxap/table-system@16.0.0-dev.10) (2023-08-31)
+
+### Bug Fixes
+
+- ensure the project name is not included in the project tag list ([b131ac3](https://gitlab.com/rxap/packages/commit/b131ac3bd92b3b8799d62f15bbd30a1997d7c753))
+
 # [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/table-system@16.0.0-dev.8...@rxap/table-system@16.0.0-dev.9) (2023-08-06)
 
 ### Bug Fixes

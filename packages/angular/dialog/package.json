@@ -1,16 +1,16 @@
 {
   "name": "@rxap/dialog",
-  "version": "16.0.0-dev.8",
+  "version": "16.0.0-dev.9",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/material": "^16.1.4",
-    "@rxap/components": "^16.0.0-dev.8",
-    "@rxap/data-grid": "^16.0.0-dev.8",
-    "@rxap/pipes": "^16.0.0-dev.8",
-    "@rxap/utilities": "^16.0.0-dev.6",
+    "@rxap/components": "^16.0.0-dev.10",
+    "@rxap/data-grid": "^16.0.0-dev.10",
+    "@rxap/pipes": "^16.0.0-dev.9",
+    "@rxap/utilities": "^16.0.0-dev.13",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -49,19 +49,19 @@
     "packageGroup": [
       {
         "package": "@rxap/components",
-        "version": "16.0.0-dev.8"
+        "version": "16.0.0-dev.10"
       },
       {
         "package": "@rxap/data-grid",
-        "version": "16.0.0-dev.8"
+        "version": "16.0.0-dev.10"
       },
       {
         "package": "@rxap/pipes",
-        "version": "16.0.0-dev.8"
+        "version": "16.0.0-dev.9"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.6"
+        "version": "16.0.0-dev.13"
       }
     ]
   }

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/material-table-system",
-  "version": "16.0.0-dev.16",
+  "version": "16.0.0-dev.17",
   "peerDependencies": {
     "@angular/animations": "^16.1.4",
     "@angular/cdk": "^16.1.4",
@@ -10,18 +10,18 @@
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/components": "^16.0.0-dev.9",
-    "@rxap/data-source": "^16.0.0-dev.10",
-    "@rxap/directives": "^16.0.0-dev.9",
-    "@rxap/forms": "^16.0.0-dev.10",
-    "@rxap/material-directives": "^16.0.0-dev.11",
-    "@rxap/open-api": "^16.0.0-dev.11",
-    "@rxap/pattern": "^1.0.1-dev.2",
-    "@rxap/reflect-metadata": "^1.0.1-dev.2",
-    "@rxap/remote-method": "^16.0.0-dev.9",
-    "@rxap/rxjs": "^1.0.1-dev.2",
-    "@rxap/utilities": "^16.0.0-dev.9",
-    "@rxap/window-system": "^16.0.0-dev.11",
+    "@rxap/components": "^16.0.0-dev.10",
+    "@rxap/data-source": "^16.0.0-dev.11",
+    "@rxap/directives": "^16.0.0-dev.10",
+    "@rxap/forms": "^16.0.0-dev.11",
+    "@rxap/material-directives": "^16.0.0-dev.12",
+    "@rxap/open-api": "^16.0.0-dev.12",
+    "@rxap/pattern": "^1.0.1-dev.5",
+    "@rxap/reflect-metadata": "^1.0.1-dev.5",
+    "@rxap/remote-method": "^16.0.0-dev.10",
+    "@rxap/rxjs": "^1.0.1-dev.5",
+    "@rxap/utilities": "^16.0.0-dev.13",
+    "@rxap/window-system": "^16.0.0-dev.12",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -60,51 +60,51 @@
     "packageGroup": [
       {
         "package": "@rxap/components",
-        "version": "16.0.0-dev.9"
+        "version": "16.0.0-dev.10"
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.10"
+        "version": "16.0.0-dev.11"
       },
       {
         "package": "@rxap/directives",
-        "version": "16.0.0-dev.9"
-      },
-      {
-        "package": "@rxap/forms",
         "version": "16.0.0-dev.10"
       },
       {
-        "package": "@rxap/material-directives",
+        "package": "@rxap/forms",
         "version": "16.0.0-dev.11"
+      },
+      {
+        "package": "@rxap/material-directives",
+        "version": "16.0.0-dev.12"
       },
       {
         "package": "@rxap/open-api",
-        "version": "16.0.0-dev.11"
+        "version": "16.0.0-dev.12"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.0.1-dev.2"
+        "version": "1.0.1-dev.5"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.1-dev.2"
+        "version": "1.0.1-dev.5"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "16.0.0-dev.9"
+        "version": "16.0.0-dev.10"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.2"
+        "version": "1.0.1-dev.5"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.9"
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/window-system",
-        "version": "16.0.0-dev.11"
+        "version": "16.0.0-dev.12"
       }
     ]
   }

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.18...@rxap/plugin-library@16.0.0-dev.19) (2023-08-31)
+
+### Bug Fixes
+
+- ensure overwrite option is passed to sub schematics ([8472aab](https://gitlab.com/rxap/packages/commit/8472aab8814227c851fab9ae4c1b9ec3019d6f4e))
+- ensure the project name is not included in the project tag list ([b131ac3](https://gitlab.com/rxap/packages/commit/b131ac3bd92b3b8799d62f15bbd30a1997d7c753))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.17...@rxap/plugin-library@16.0.0-dev.18) (2023-08-17)
 
 ### Reverts

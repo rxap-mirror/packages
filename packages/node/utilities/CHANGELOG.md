@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.1.0-dev.3...@rxap/node-utilities@1.1.0-dev.4) (2023-08-31)
+
+### Bug Fixes
+
+- add package version cache ([59444f0](https://gitlab.com/rxap/packages/commit/59444f0a111071d7fc9990afb9fecae051e0c2e3))
+- ensure the project name is not included in the project tag list ([b131ac3](https://gitlab.com/rxap/packages/commit/b131ac3bd92b3b8799d62f15bbd30a1997d7c753))
+
 # [1.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.1.0-dev.2...@rxap/node-utilities@1.1.0-dev.3) (2023-08-17)
 
 ### Reverts

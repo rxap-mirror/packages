@@ -1,6 +1,6 @@
 {
   "name": "@rxap/ngx-material-table-select",
-  "version": "16.0.1-dev.4",
+  "version": "16.0.1-dev.5",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
@@ -8,19 +8,19 @@
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.10",
-    "@rxap/form-system": "^16.0.0-dev.11",
-    "@rxap/forms": "^16.0.0-dev.10",
-    "@rxap/material-form-system": "^16.0.0-dev.10",
-    "@rxap/material-table-system": "^16.0.0-dev.15",
-    "@rxap/material-table-window-system": "^16.0.0-dev.8",
-    "@rxap/mixin": "^16.0.0-dev.6",
-    "@rxap/pattern": "^1.0.1-dev.2",
-    "@rxap/pipes": "^16.0.0-dev.8",
-    "@rxap/reflect-metadata": "^1.0.1-dev.2",
-    "@rxap/rxjs": "^1.0.1-dev.2",
-    "@rxap/utilities": "^16.0.0-dev.9",
-    "@rxap/window-system": "^16.0.0-dev.11",
+    "@rxap/data-source": "^16.0.0-dev.11",
+    "@rxap/form-system": "^16.0.0-dev.12",
+    "@rxap/forms": "^16.0.0-dev.11",
+    "@rxap/material-form-system": "^16.0.0-dev.11",
+    "@rxap/material-table-system": "^16.0.0-dev.17",
+    "@rxap/material-table-window-system": "^16.0.0-dev.9",
+    "@rxap/mixin": "^16.0.0-dev.9",
+    "@rxap/pattern": "^1.0.1-dev.5",
+    "@rxap/pipes": "^16.0.0-dev.9",
+    "@rxap/reflect-metadata": "^1.0.1-dev.5",
+    "@rxap/rxjs": "^1.0.1-dev.5",
+    "@rxap/utilities": "^16.0.0-dev.13",
+    "@rxap/window-system": "^16.0.0-dev.12",
     "rxjs": "^7.8.0"
   },
   "dependencies": {
@@ -59,55 +59,55 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.10"
+        "version": "16.0.0-dev.11"
       },
       {
         "package": "@rxap/form-system",
-        "version": "16.0.0-dev.11"
+        "version": "16.0.0-dev.12"
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.0-dev.10"
+        "version": "16.0.0-dev.11"
       },
       {
         "package": "@rxap/material-form-system",
-        "version": "16.0.0-dev.10"
+        "version": "16.0.0-dev.11"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/material-table-window-system",
-        "version": "16.0.0-dev.8"
-      },
-      {
-        "package": "@rxap/mixin",
-        "version": "16.0.0-dev.6"
-      },
-      {
-        "package": "@rxap/pattern",
-        "version": "1.0.1-dev.2"
-      },
-      {
-        "package": "@rxap/pipes",
-        "version": "16.0.0-dev.8"
-      },
-      {
-        "package": "@rxap/reflect-metadata",
-        "version": "1.0.1-dev.2"
-      },
-      {
-        "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.2"
-      },
-      {
-        "package": "@rxap/utilities",
         "version": "16.0.0-dev.9"
       },
       {
+        "package": "@rxap/mixin",
+        "version": "16.0.0-dev.9"
+      },
+      {
+        "package": "@rxap/pattern",
+        "version": "1.0.1-dev.5"
+      },
+      {
+        "package": "@rxap/pipes",
+        "version": "16.0.0-dev.9"
+      },
+      {
+        "package": "@rxap/reflect-metadata",
+        "version": "1.0.1-dev.5"
+      },
+      {
+        "package": "@rxap/rxjs",
+        "version": "1.0.1-dev.5"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.13"
+      },
+      {
         "package": "@rxap/window-system",
-        "version": "16.0.0-dev.11"
+        "version": "16.0.0-dev.12"
       }
     ]
   }
