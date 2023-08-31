@@ -8,21 +8,12 @@ import {
 } from 'ngx-logger';
 import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
-import { environment } from './environment';
-
-const staticConfig = {
-  api: {
-    'service-app-angular-table': {
-      baseUrl: '/api/app/angular/table',
-    },
-  },
-};
+import { environment } from './environments/environment';
 
 const application = new StandaloneApplication(
   environment,
   AppComponent,
   appConfig,
-  { static: staticConfig },
 );
 application.importProvidersFrom(LoggerModule.forRoot({
   serverLoggingUrl: '/api/logs',

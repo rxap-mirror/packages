@@ -1,10 +1,12 @@
 import { Environment } from '@rxap/environment';
 
 export const environment: Environment = {
-  production: false,
-  serviceWorker: false,
+  name: 'production',
+  production: true,
+  app: 'angular',
+  serviceWorker: true,
   sentry: {
-    enabled: false,
+    enabled: true,
     debug: false,
   },
 };

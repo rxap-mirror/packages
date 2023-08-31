@@ -14,11 +14,25 @@ import {
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
 import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
-import { CoerceImports } from '@rxap/ts-morph';
-import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
-import { CoerceTargetDefaultsDependency } from '@rxap/workspace-utilities';
+import {
+  CoerceImports,
+  CoerceVariableDeclaration,
+} from '@rxap/ts-morph';
+import {
+  TsMorphAngularProjectTransform,
+  TsMorphNestProjectTransform,
+} from '@rxap/workspace-ts-morph';
+import {
+  CoerceTarget,
+  CoerceTargetDefaultsDependency,
+  Strategy,
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
-import { SourceFile } from 'ts-morph';
+import {
+  SourceFile,
+  WriterFunction,
+  Writers,
+} from 'ts-morph';
 import { SkipNonAngularProject } from '../../lib/skip-project';
 import { InitGeneratorSchema } from '../init/schema';
 import { InitApplicationGeneratorSchema } from './schema';
@@ -117,6 +131,21 @@ function updateProjectTargets(
       };
     }
   }
+  CoerceTarget(project, 'build', {
+    options: {
+      sourceMap: true,
+    },
+    configurations: {
+      production: {
+        fileReplacements: [
+          {
+            replace: `${ project.sourceRoot }/environments/environment.ts`,
+            with: `${ project.sourceRoot }/environments/environment.prod.ts`,
+          },
+        ],
+      },
+    },
+  }, Strategy.OVERWRITE);
   project.targets['build'].options ??= {};
   project.targets['build'].options.sourceMap = true;
   project.targets['build'].options.assets ??= [];
@@ -184,6 +213,16 @@ function updateTags(project: ProjectConfiguration, options: InitApplicationGener
 }
 
 const MAIN_BOOTSTRAP_STATEMENT = `application.bootstrap().catch((err) => console.error(err));`;
+const MAIN_LOGGER_STATEMENT = `application.importProvidersFrom(LoggerModule.forRoot({
+  serverLoggingUrl: '/api/logs',
+  level: NgxLoggerLevel.DEBUG,
+  serverLogLevel: NgxLoggerLevel.ERROR
+}));`;
+const MAIN_APP_CREATION_STATEMENT = `const application = new StandaloneApplication(
+  environment,
+  AppComponent,
+  appConfig,
+);`;
 
 function assertMainStatements(sourceFile: SourceFile) {
   const statements: string[] = [];
@@ -196,16 +235,8 @@ function assertMainStatements(sourceFile: SourceFile) {
       console.error(`Missing statement from main.ts:  ${ statement }`);
       sourceFile.set({
         statements: [
-          `const application = new StandaloneApplication(
-  environment,
-  AppComponent,
-  appConfig,
-);`,
-          `application.importProvidersFrom(LoggerModule.forRoot({
-  serverLoggingUrl: '/api/logs',
-  level: NgxLoggerLevel.DEBUG,
-  serverLogLevel: NgxLoggerLevel.ERROR
-}));`,
+          MAIN_APP_CREATION_STATEMENT,
+          MAIN_LOGGER_STATEMENT,
           MAIN_BOOTSTRAP_STATEMENT,
         ],
       });
@@ -286,6 +317,76 @@ function updateMainFile(tree: Tree, project: ProjectConfiguration, options: Init
   }, [ 'main.ts' ]);
 }
 
+function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: boolean, overwrite: boolean }) {
+
+  TsMorphNestProjectTransform(
+    tree,
+    {
+      project: options.project,
+    },
+    (project, [ sourceFile, prodSourceFile ]) => {
+
+      CoerceImports(sourceFile, {
+        moduleSpecifier: '@rxap/environment',
+        namedImports: [ 'Environment' ],
+      });
+      CoerceImports(prodSourceFile, {
+        moduleSpecifier: '@rxap/environment',
+        namedImports: [ 'Environment' ],
+      });
+
+      const baseEnvironment: Record<string, WriterFunction | string> = {
+        name: w => w.quote('development'),
+        production: 'false',
+        app: w => w.quote(options.project),
+        serviceWorker: 'false',
+      };
+
+      if (options.sentry) {
+        baseEnvironment['sentry'] = Writers.object({
+          enabled: 'false',
+          debug: 'false',
+        });
+      }
+
+      const normal = CoerceVariableDeclaration(sourceFile, 'environment', {
+        type: 'Environment',
+        initializer: Writers.object(baseEnvironment),
+      });
+
+      if (options.overwrite) {
+        normal.set({ initializer: Writers.object(baseEnvironment) });
+      }
+
+      baseEnvironment['name'] = w => w.quote('production');
+      baseEnvironment['production'] = 'true';
+      baseEnvironment['serviceWorker'] = 'true';
+
+      if (options.sentry) {
+        baseEnvironment['sentry'] = Writers.object({
+          enabled: 'true',
+          debug: 'false',
+        });
+      }
+
+      const prod = CoerceVariableDeclaration(prodSourceFile, 'environment', {
+        type: 'Environment',
+        initializer: Writers.object(baseEnvironment),
+      });
+
+      if (options.overwrite) {
+        prod.set({ initializer: Writers.object(baseEnvironment) });
+      }
+
+    },
+    [
+      '/environments/environment.ts?',
+      '/environments/environment.prod.ts?',
+    ],
+  );
+
+}
+
 export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
@@ -319,6 +420,14 @@ export async function initApplicationGenerator(
     updateTags(project, options);
     updateTargetDefaults(tree, options);
     updateGitIgnore(project, tree, options);
+    coerceEnvironmentFiles(
+      tree,
+      {
+        project: projectName,
+        sentry: options.sentry,
+        overwrite: options.overwrite,
+      },
+    );
     if (options.generateMain) {
       updateMainFile(tree, project, options);
     }
