@@ -44,6 +44,13 @@
       "!{projectRoot}/cypress/**/*",
       "!{projectRoot}/**/*.cy.[jt]s?(x)",
       "!{projectRoot}/cypress.config.[jt]s"
+    ],
+    "build": [
+      "production",
+      "{projectRoot}/package.json",
+      "{projectRoot}/collection.json",
+      "{projectRoot}/generators.json",
+      "{projectRoot}/executors.json"
     ]
   },
   "targetDefaults": {
@@ -99,12 +106,8 @@
         "expose-as-schematic"
       ],
       "inputs": [
-        "production",
-        "{projectRoot}/package.json",
-        "{projectRoot}/collection.json",
-        "{projectRoot}/generators.json",
-        "{projectRoot}/executors.json",
-        "^production"
+        "build",
+        "^build"
       ]
     },
     "build-tailwind": {
