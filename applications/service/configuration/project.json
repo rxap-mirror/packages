@@ -17,7 +17,7 @@
           "applications/service/configuration/src/Dockerfile",
           "applications/service/configuration/src/healthcheck.js",
           "applications/service/configuration/src/build.json",
-          "applications/service/configuration/src/assets/.gitkeep"
+          "applications/service/configuration/src/assets"
         ],
         "generatePackageJson": true,
         "target": "node",

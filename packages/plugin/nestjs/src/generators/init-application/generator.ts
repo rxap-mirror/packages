@@ -473,7 +473,7 @@ export async function initApplicationGenerator(
         if (options.statusRegister && projectName !== 'service-status') {
           itemList.push({
             name: 'STATUS_SERVICE_BASE_URL',
-            defaultValue: 'environment.production ? \'http://status-service:3000\' : `https://${process.env.ROOT_DOMAIN ?? \'localhost\'}:8443`',
+            defaultValue: 'environment.production ? \'http://rxap-status-service:3000\' : `https://${process.env.ROOT_DOMAIN ?? \'localhost\'}:8443`',
           });
           CoerceImports(configSourceFile, {
             namespaceImport: 'process',

@@ -21,7 +21,7 @@ validationSchema['THROTTLER_TTL'] = Joi.string().default(60);
 validationSchema['COOKIE_SECRET'] = Joi.string().default(GenerateRandomString());
 validationSchema['STATUS_SERVICE_BASE_URL'] = Joi.string()
                                                  .default(environment.production ?
-                                                   'http://status-service:3000' :
+                                                   'http://rxap-status-service:3000' :
                                                    `https://${ process.env.ROOT_DOMAIN ?? 'localhost' }:8443`);
 
 export const VALIDATION_SCHEMA = Joi.object(validationSchema);
