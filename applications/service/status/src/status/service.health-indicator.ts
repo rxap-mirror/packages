@@ -28,7 +28,7 @@ export class ServiceHealthIndicator extends HealthIndicator {
   public async isHealthy(serviceName: string): Promise<HealthIndicatorResult> {
 
     if (serviceName === environment.app) {
-      return this.getStatus(serviceName, true, { message: 'Service is healthy' });
+      return this.getStatus(serviceName, true, environment);
     }
 
     if (!this.serviceRegistryService.has(serviceName)) {
