@@ -11,6 +11,7 @@ import {
 } from '@nestjs/terminus';
 import { AxiosError } from 'axios';
 import { firstValueFrom } from 'rxjs';
+import { environment } from '../environments/environment';
 import { ServiceRegistryService } from './service-registry.service';
 
 @Injectable()
@@ -25,6 +26,10 @@ export class ServiceHealthIndicator extends HealthIndicator {
   }
 
   public async isHealthy(serviceName: string): Promise<HealthIndicatorResult> {
+
+    if (serviceName === environment.app) {
+      return this.getStatus(serviceName, true, { message: 'Service is healthy' });
+    }
 
     if (!this.serviceRegistryService.has(serviceName)) {
       throw new HealthCheckError(
