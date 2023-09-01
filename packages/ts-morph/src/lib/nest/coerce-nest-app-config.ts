@@ -15,11 +15,12 @@ export interface CoerceNestAppConfigOptionsItem {
 
 export interface CoerceNestAppConfigOptions {
   itemList: Array<CoerceNestAppConfigOptionsItem>;
+  overwrite?: boolean;
 }
 
 export function CoerceNestAppConfig(sourceFile: SourceFile, options: CoerceNestAppConfigOptions): void {
 
-  const { itemList } = options;
+  const { itemList, overwrite } = options;
 
   const objVariableDeclaration = CoerceVariableDeclaration(sourceFile, 'validationSchema', {
     type: 'SchemaMap',
@@ -60,7 +61,9 @@ export function CoerceNestAppConfig(sourceFile: SourceFile, options: CoerceNestA
     const existing = validationSchemaExpressions.find(node => node.getText()
                                                                   .startsWith(`validationSchema['${ item.name }']`));
     if (existing) {
-      existing.replaceWithText(writeValidationSchemaExpression(item));
+      if (overwrite) {
+        existing.replaceWithText(writeValidationSchemaExpression(item));
+      }
     } else {
       sourceFile.insertStatements(schemaIndex, writeValidationSchemaExpression(item));
     }

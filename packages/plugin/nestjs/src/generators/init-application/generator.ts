@@ -482,6 +482,7 @@ export async function initApplicationGenerator(
         }
         CoerceNestAppConfig(configSourceFile, {
           itemList,
+          overwrite: options.overwrite,
         });
         CoerceImports(configSourceFile, {
           namedImports: [ 'GenerateRandomString' ],
@@ -519,6 +520,7 @@ export async function initApplicationGenerator(
           project: projectName,
           dsn: options.sentryDsn,
           required: !!options.sentryDsn,
+          overwrite: options.overwrite,
         },
       );
     }

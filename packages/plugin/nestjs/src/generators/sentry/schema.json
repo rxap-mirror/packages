@@ -19,6 +19,11 @@
     "required": {
       "type": "boolean",
       "description": "Whether or not the sentry dsn should be required to start the application"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing files"
     }
   },
   "required": [

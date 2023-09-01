@@ -162,6 +162,7 @@ function UpdateAppConfig(tree: Tree, options: SentryGeneratorSchema, projectName
             defaultValue: 'environment.sentry?.debug ?? false',
           },
         ],
+        overwrite: options.overwrite,
       });
 
       CoerceImports(sourceFile, {
