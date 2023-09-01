@@ -8,6 +8,7 @@
     'bg-red-500': status() === 'error',
     'bg-green-500': status() === 'ok',
     'bg-yellow-500': status() === 'loading',
+    'bg-black': !['error', 'ok', 'loading'].includes(status()),
     }" class="indicator w-3 h-3 rounded-full"></span>
     <span class="text-sm">{{ status() }}</span>
   </span>
