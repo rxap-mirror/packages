@@ -6,6 +6,7 @@ import {
   InternalServerErrorException,
   Logger,
   Param,
+  ParseArrayPipe,
   Post,
   Query,
   Req,
@@ -43,7 +44,7 @@ export class StatusController {
   })
   @Get('many')
   @HealthCheck()
-  public healthCheck(@Query('service') serviceList: string[]): Promise<HealthCheckResult> {
+  public healthCheck(@Query('service', ParseArrayPipe) serviceList: string[]): Promise<HealthCheckResult> {
     if (serviceList?.length) {
       const services = serviceList.map((name) => {
         return () => this.serviceHealthIndicator.isHealthy(name);
