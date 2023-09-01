@@ -1,5 +1,12 @@
 #!/bin/bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}Running preversion.sh${NC}"
+
 # This script will exit on the first error
 set -e
 
@@ -29,10 +36,14 @@ fi
 
 echo "${changed_projects}" > "${BASE_DIR}/dist/changed-projects.txt"
 
+echo -e "${BLUE}Run the fix-dependencies target${NC}"
 yarn nx run-many \
   --projects="$(bash tools/scripts/lerna/get-changed-nx-projects.sh)" \
   --target="fix-dependencies"
 
+echo -e "${BLUE}Run build, test and lint targets${NC}"
 yarn nx run-many \
   --projects="$(bash tools/scripts/lerna/get-changed-nx-projects.sh)" \
   --target="build,test,lint"
+
+echo -e "${GREEN}DONE! preversion.sh${NC}"

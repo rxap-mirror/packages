@@ -1,5 +1,12 @@
 #!/bin/bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}Running version.sh${NC}"
+
 # This script will exit on the first error
 set -e
 
@@ -24,14 +31,18 @@ if [[ "$changed_projects" != "$cached_changed_projects" ]]; then
   exit 1
 fi
 
+echo -e "${BLUE}Run the update-dependencies and update-package-group targets${NC}"
 yarn nx run-many \
   --projects="${changed_projects}" \
   --target="update-dependencies,update-package-group"
 
+echo -e "${BLUE}Run the packages:readme${NC}"
 yarn nx run packages:readme
 
-# ensure the yarn workspace is updated and the lock file is updated
+echo -e "${BLUE}ensure the yarn workspace is updated and the lock file is updated${NC}"
 yarn
 
-# add changes to git
+echo -e "${BLUE}add changes to git${NC}"
 git add .
+
+echo -e "${GREEN}DONE! version.sh${NC}"

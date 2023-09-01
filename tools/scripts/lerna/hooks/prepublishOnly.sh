@@ -1,5 +1,12 @@
 #!/bin/bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}Running prepublishOnly.sh${NC}"
+
 # This script will exit on the first error
 set -e
 
@@ -31,5 +38,7 @@ do
 done
 
 if [ "$hasError" = true ] ; then
+    echo -e "${RED}ERROR! prepublishOnly.sh${NC}"
     exit 1
 fi
+echo -e "${GREEN}DONE! prepublishOnly.sh${NC}"
