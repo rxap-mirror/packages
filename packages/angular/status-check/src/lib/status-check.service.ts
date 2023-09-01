@@ -13,7 +13,7 @@ import {
 } from 'rxjs';
 
 export interface ApiStatus {
-  status?: string;
+  status: string;
   info?: Record<string, {
     status?: string;
   } & Record<string, string>>;
@@ -56,10 +56,11 @@ export class StatusCheckService {
     }
     let status: ApiStatus = { status: 'fatal' };
     try {
-      status = await this.getServiceStatusMethod.call({ parameters: { service: serviceNames } });
+      status = await this.getServiceStatusMethod.call({ parameters: { service: serviceNames.slice() } });
     } catch (error) {
-      return this.handleStatusCheckError(error, status, serviceNames);
+      status = this.handleStatusCheckError(error, status, serviceNames);
     }
+    status.status ??= 'unknown';
     return status;
   }
 

@@ -58,10 +58,11 @@
     <div *ngIf="url() as url">
       <h4 class="text-lg font-semibold mb-2" i18n>Previous Route</h4>
       <p class="mb-2" i18n>To return to the previous page, click the link below:</p>
-      <a *ngIf="!statusIsError(); else statusNoOk" [routerLink]="url" class="text-blue-500 hover:underline">
+      <a *ngIf="!statusIsError(); else statusNoOk" [routerLink]="url"
+         class="cursor-pointer text-blue-500 hover:underline">
         <ng-container i18n>Go Back to</ng-container>&nbsp;<i>{{ url }}</i></a>
       <ng-template #statusNoOk>
-        <a (click)="openWarningDialog()" class="text-blue-500 hover:underline">
+        <a (click)="openWarningDialog()" class="cursor-pointer text-blue-500 hover:underline">
           <ng-container i18n>Go Back to</ng-container>&nbsp;<i>{{ url }}</i></a>
       </ng-template>
     </div>
@@ -70,7 +71,7 @@
 
 </div>
 
-<div *ngIf="showRedirectWarning()" class="fixed inset-0 flex items-center justify-center z-50">
+<div *ngIf="showRedirectWarning()" class="fixed inset-0 flex items-center justify-center z-50 shadow-lg">
   <div class="bg-white p-6 rounded shadow-lg">
     <h1 class="text-xl font-semibold mb-4" i18n>Warning</h1>
     <p class="w-96" i18n><b>Caution</b>: Some services are currently <b

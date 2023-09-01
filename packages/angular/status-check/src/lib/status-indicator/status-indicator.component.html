@@ -1,0 +1,14 @@
+<button [ngClass]="{
+    'border-red-300': status() === 'error',
+    'border-green-300': status() === 'up',
+    'border-yellow-300': status() === 'loading',
+    }" [queryParams]="queryParams()" [routerLink]="['/', 'status-check']" class="border px-4 py-2 rounded">
+  <span class="flex flex-row gap-4 items-center">
+    <span [ngClass]="{
+    'bg-red-500': status() === 'error',
+    'bg-green-500': status() === 'ok',
+    'bg-yellow-500': status() === 'loading',
+    }" class="indicator w-3 h-3 rounded-full"></span>
+    <span class="text-sm">{{ status() }}</span>
+  </span>
+</button>

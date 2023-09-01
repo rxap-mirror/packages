@@ -1,3 +1,7 @@
+// region status-indicator
+export * from './lib/status-indicator/status-indicator.component';
+// endregion
+
 // region status-check
 export * from './lib/status-check/status-check.component';
 // endregion
