@@ -26,14 +26,16 @@ export interface ApiStatus {
   } & Record<string, string>>;
 }
 
-export const SERVICE_STATUS_CHECK_METHOD = new InjectionToken<Method<ApiStatus, string[]>>('SERVICE_STATUS_CHECK_METHOD');
+export type ServiceStatusCheckMethod = Method<ApiStatus, { parameters: { service: string[] } }>;
+
+export const SERVICE_STATUS_CHECK_METHOD = new InjectionToken<ServiceStatusCheckMethod>('SERVICE_STATUS_CHECK_METHOD');
 
 @Injectable({ providedIn: 'root' })
 export class StatusCheckService {
 
   constructor(
     @Inject(SERVICE_STATUS_CHECK_METHOD)
-    private readonly getServiceStatusMethod: Method<ApiStatus, string[]>,
+    private readonly getServiceStatusMethod: ServiceStatusCheckMethod,
   ) {}
 
   public getStatus(serviceNames: string[]): Observable<ApiStatus> {
@@ -56,7 +58,7 @@ export class StatusCheckService {
     }
     let status: ApiStatus = { status: 'fatal' };
     try {
-      status = await this.getServiceStatusMethod.call(serviceNames);
+      status = await this.getServiceStatusMethod.call({ parameters: { service: serviceNames } });
     } catch (error) {
       return this.handleStatusCheckError(error, status);
     }
