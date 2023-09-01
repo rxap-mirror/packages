@@ -17,7 +17,7 @@ validationSchema['SENTRY_SERVER_NAME'] = Joi.string().default(process.env.ROOT_D
 validationSchema['SENTRY_DEBUG'] = Joi.string().default(environment.sentry?.debug ?? false);
 validationSchema['DATA_DIR'] = Joi.string().default(environment.production ? '/app/assets' : join(__dirname, 'assets'));
 validationSchema['THROTTLER_LIMIT'] = Joi.string().default(10);
-validationSchema['THROTTLER_TTL'] = Joi.string().default(60);
+validationSchema['THROTTLER_TTL'] = Joi.string().default(1);
 validationSchema['COOKIE_SECRET'] = Joi.string().default(GenerateRandomString());
 validationSchema['STATUS_SERVICE_BASE_URL'] = Joi.string()
                                                  .default(environment.production ?

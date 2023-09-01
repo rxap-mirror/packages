@@ -6,7 +6,7 @@ import { environment } from '../environments/environment';
 const validationSchema: SchemaMap = {};
 validationSchema['COOKIE_SECRET'] = Joi.string().default(GenerateRandomString());
 validationSchema['THROTTLER_LIMIT'] = Joi.string().default(10);
-validationSchema['THROTTLER_TTL'] = Joi.string().default(60);
+validationSchema['THROTTLER_TTL'] = Joi.string().default(1);
 validationSchema['GLOBAL_API_PREFIX'] = Joi.string().default('api/status');
 validationSchema['PORT'] = Joi.number().default(3999);
 validationSchema['SENTRY_DEBUG'] = Joi.string().default(environment.sentry?.debug ?? false);

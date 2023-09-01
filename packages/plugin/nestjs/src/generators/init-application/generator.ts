@@ -459,7 +459,7 @@ export async function initApplicationGenerator(
           },
           {
             name: 'THROTTLER_TTL',
-            defaultValue: '60',
+            defaultValue: '1',
           },
           {
             name: 'THROTTLER_LIMIT',
