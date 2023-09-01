@@ -1,8 +1,8 @@
+import { faker } from '@faker-js/faker';
 import {
   Controller,
   DefaultValuePipe,
   Get,
-  NotImplementedException,
   Query,
 } from '@nestjs/common';
 import { ApiQuery } from '@nestjs/swagger';
@@ -17,65 +17,100 @@ import { MinimumTableRowDto } from './dtos/minimum-table-row.dto';
 
 @Controller('minimum-table')
 export class MinimumTableController {
-  private toMinimumTableRowDto(item: any, index = 0, pageIndex = 0, pageSize = 1, list = [item]): MinimumTableRowDto {
+  public async getPageData(
+    sortBy: string,
+    sortDirection: string,
+    pageSize: number,
+    pageIndex: number,
+    filter: FilterQuery[],
+  ): Promise<{ list: RawRowData[], total: number }> {
     return {
-    __rowId: item.uuid,
-    name: item.name,
-    age: item.age,
-    isActive: item.isActive,
-    email: item.email,
-    rating: item.rating,
-    accountStatus: item.accountStatus
-    };
-  }
-
-  private toMinimumTablePageDto(list: any[], total: number = list.length, pageIndex = 0, pageSize: number = list.length, sortBy = '', sortDirection = '', filter: FilterQuery[] = []): MinimumTablePageDto {
-    return {
-    total, pageIndex, pageSize, sortBy, sortDirection, filter,
-    rows: list.map((item, index) => this.toMinimumTableRowDto(item, index, pageIndex, pageSize, list))
+      list: Array.from({ length: pageSize }, () => ({
+        name: faker.person.fullName(),
+        age: faker.number.int(),
+        isActive: faker.datatype.boolean(),
+        email: faker.internet.email(),
+        rating: parseFloat(faker.finance.amount(0, 5, 1)),
+        accountStatus: faker.helpers.arrayElement([ 'active', 'inactive', 'pending' ]),
+      })),
+      total: pageSize * 10,
     };
   }
 
   @Get()
   @ApiQuery({
-        name: 'pageIndex',
-        required: false,
-        isArray: false
-      })
+    name: 'pageIndex',
+    required: false,
+    isArray: false,
+  })
   @ApiQuery({
-        name: 'pageSize',
-        required: false,
-        isArray: false
-      })
+    name: 'pageSize',
+    required: false,
+    isArray: false,
+  })
   @ApiQuery({
-        name: 'sortDirection',
-        required: false,
-        isArray: false
-      })
+    name: 'sortDirection',
+    required: false,
+    isArray: false,
+  })
   @ApiQuery({
-        name: 'sortBy',
-        required: false,
-        isArray: false
-      })
+    name: 'sortBy',
+    required: false,
+    isArray: false,
+  })
   @ApiQuery({
-        name: 'filter',
-        required: false,
-        isArray: false
-      })
-  public async getPage(@Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string, @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string, @Query('pageSize', new DefaultValuePipe(5)) pageSize: number, @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number, @Query('filter', new FilterQueryPipe()) filter?: FilterQuery[]): Promise<MinimumTablePageDto> {
-    const response = await ((() => { throw new NotImplementedException(); })() as any).execute({
-          parameters: {
-            page: pageIndex,
-            size: pageSize,
-            sort: sortBy,
-            order: sortDirection,
-            filter: filter.map((item) => `${ item.column }:${ item.filter }`).join(';'),
-          },
-        });
+    name: 'filter',
+    required: false,
+    isArray: false,
+  })
+  public async getPage(
+    @Query('sortBy', new DefaultValuePipe('__updatedAt')) sortBy: string,
+    @Query('sortDirection', new DefaultValuePipe('desc')) sortDirection: string,
+    @Query('pageSize', new DefaultValuePipe(5)) pageSize: number,
+    @Query('pageIndex', new DefaultValuePipe(0)) pageIndex: number,
+    @Query('filter', new FilterQueryPipe()) filter?: FilterQuery[],
+  ): Promise<MinimumTablePageDto> {
+    const data = await this.getPageData(sortBy, sortDirection, pageSize, pageIndex, filter);
     return plainToInstance(
-    MinimumTablePageDto,
-    this.toMinimumTablePageDto(response.entities ?? [], response.maxCount ?? 0, pageIndex, pageSize, sortBy, sortDirection, filter),
-    classTransformOptions
+      MinimumTablePageDto,
+      this.toPageDto(data.list, data.total, pageIndex, pageSize, sortBy, sortDirection, filter),
+      classTransformOptions,
     );
   }
+
+  private toRowDto(
+    item: RawRowData,
+    index: number,
+    pageIndex: number,
+    pageSize: number,
+    list: RawRowData[],
+  ): MinimumTableRowDto {
+    return {
+      __rowId: item.uuid,
+
+      name: item.name,
+      age: item.age,
+      isActive: item.isActive,
+      email: item.email,
+      rating: item.rating,
+      accountStatus: item.accountStatus,
+    };
+  }
+
+  private toPageDto(
+    list: RawRowData[],
+    total: number,
+    pageIndex: number,
+    pageSize: number,
+    sortBy: string,
+    sortDirection: string,
+    filter: FilterQuery[],
+  ): MinimumTablePageDto {
+    return {
+      total, pageIndex, pageSize, sortBy, sortDirection, filter,
+      rows: list.map((item, index) => this.toRowDto(item, index, pageIndex, pageSize, list)),
+    };
+  }
 }
+
+type RawRowData = any;

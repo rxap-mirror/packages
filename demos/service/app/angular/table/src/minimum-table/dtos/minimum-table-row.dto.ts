@@ -1,9 +1,13 @@
 import { Expose } from 'class-transformer';
-import { IsString, IsNumber, IsBoolean } from 'class-validator';
+import {
+  IsBoolean,
+  IsNumber,
+  IsString,
+} from 'class-validator';
 
 export class MinimumTableRowDto {
   @Expose()
-  @IsNumber()
+  @IsString()
   __rowId!: string;
   @Expose()
   name!: unknown;
@@ -11,7 +15,7 @@ export class MinimumTableRowDto {
   @IsNumber()
   age!: number;
   @Expose()
-  @IsNumber()
+  @IsBoolean()
   isActive!: boolean;
   @Expose()
   email!: unknown;
