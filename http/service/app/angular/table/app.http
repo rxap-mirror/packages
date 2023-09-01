@@ -1,0 +1,4 @@
+GET https://127-0-0-1.nip.io:8443/api/app/angular/table
+Accept: application/json
+
+###
