@@ -122,6 +122,24 @@ yarn nx g @rxap/plugin-library:schematic --project=schematic-angular --name=<sch
 
 # Angular Application
 
+To create a new angular application run the command:
+
+```shell
+yarn nx g @nx/angular:application --name <application-name>
+```
+
+To initialize the application run the command:
+
+```shell
+yarn nx g @rxap/plugin-application:init --project <application-name>
+```
+
+To test if the application is working run the command:
+
+```shell
+yarn nx run <application-name>:docker
+```
+
 ## Bundle size analyzer
 
 ```shell
