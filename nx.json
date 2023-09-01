@@ -195,7 +195,10 @@
       "unitTestRunner": "jest",
       "e2eTestRunner": "none",
       "tags": "angular,ngx",
-      "prefix": "rxap"
+      "prefix": "rxap",
+      "standalone": true,
+      "addTailwind": true,
+      "routing": true
     },
     "@nx/angular:library": {
       "linter": "eslint",
