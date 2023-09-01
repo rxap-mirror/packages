@@ -71,6 +71,12 @@ function updateProjectTargets(
     project.targets['docker'].options.dockerfile ??= 'shared/angular.Dockerfile';
   }
 
+  CoerceTarget(project, 'serve', {
+    options: {
+      proxyConfig: 'shared/proxy.conf.json',
+    },
+  }, Strategy.OVERWRITE);
+
   project.targets['config'] ??= {
     executor: '@rxap/plugin-application:config',
     options: {},
@@ -250,7 +256,7 @@ function assertMainStatements(sourceFile: SourceFile) {
           namedImports: [ 'appConfig' ],
         },
         {
-          moduleSpecifier: './environment',
+          moduleSpecifier: './environments/environment',
           namedImports: [ 'environment' ],
         },
         {
@@ -265,6 +271,32 @@ function assertMainStatements(sourceFile: SourceFile) {
       return;
     }
   }
+}
+
+function cleanup(tree: Tree, projectSourceRoot: string) {
+
+  const deleteFiles = [
+    'app/app.component.spec.ts',
+    'app/nx-welcome.component.ts',
+    'app/nx-welcome.component.cy.ts',
+  ];
+
+  for (const file of deleteFiles) {
+    if (tree.exists(join(projectSourceRoot, file))) {
+      tree.delete(join(projectSourceRoot, file));
+    }
+  }
+
+  let content = tree.read(join(projectSourceRoot, 'app/app.component.ts'), 'utf-8')
+                    .replace('title = \'domain-product\';', '')
+                    .replace('import { NxWelcomeComponent } from \'./nx-welcome.component\';', '')
+                    .replace('NxWelcomeComponent, ', '');
+  tree.write(join(projectSourceRoot, 'app/app.component.ts'), content);
+
+  content = tree.read(join(projectSourceRoot, 'app/app.component.html'), 'utf-8')
+                .replace(/<.+-nx-welcome><\/.+-nx-welcome> /, '');
+  tree.write(join(projectSourceRoot, 'app/app.component.html'), content);
+
 }
 
 function updateMainFile(tree: Tree, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
@@ -430,6 +462,9 @@ export async function initApplicationGenerator(
     );
     if (options.generateMain) {
       updateMainFile(tree, project, options);
+    }
+    if (options.cleanup) {
+      cleanup(tree, project.sourceRoot);
     }
 
     // apply changes to the project configuration

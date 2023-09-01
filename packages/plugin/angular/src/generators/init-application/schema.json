@@ -53,6 +53,11 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to overwrite existing files"
+    },
+    "cleanup": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to cleanup files"
     }
   },
   "required": []
