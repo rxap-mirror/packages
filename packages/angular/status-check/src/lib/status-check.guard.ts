@@ -21,27 +21,27 @@ export const StatusCheckGuard = async (route: ActivatedRouteSnapshot) => {
 
   const url = '/' + route.url.join('/');
 
-  if (!statusCheck || !statusCheck.services) {
+  if (!statusCheck || !statusCheck.services?.length) {
     if (isDevMode()) {
-      console.log(`No status check services defined in route data: ${ url }`);
+      console.log(`No status check services defined in route data: '${ url }'`);
     }
     return true;
   }
 
   if (isDevMode()) {
-    console.log(`Status check: ${ url } for services: ${ statusCheck.services.join(', ') }`);
+    console.log(`Status check: ${ url } for services: [ ${ statusCheck.services.join(', ') } ]`);
   }
 
   const status = await firstValueFrom(statusCheckService.getStatus(statusCheck.services).pipe(skip(1)));
 
   if (status.status === 'ok') {
     if (isDevMode()) {
-      console.log(`Status check OK: ${ url } for services: ${ statusCheck.services.join(', ') }`);
+      console.log(`Status check OK: ${ url } for services: [ ${ statusCheck.services.join(', ') } ]`);
     }
     return true;
   }
 
-  console.error(`Status check failed: ${ url } for services: ${ statusCheck.services.join(', ') }`);
+  console.error(`Status check failed: ${ url } for services: [ ${ statusCheck.services.join(', ') } ]`);
 
   return router.createUrlTree(
     [ '/', 'status-check' ],
