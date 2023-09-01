@@ -27,6 +27,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
 import { StopPropagationDirective } from '@rxap/directives';
+import { StatusIndicatorComponent } from '@rxap/ngx-status-check';
 import { HeaderService } from '@rxap/services';
 import { Constructor } from '@rxap/utilities';
 import { Subscription } from 'rxjs';
@@ -64,6 +65,7 @@ import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.
     UserProfileIconComponent,
     AppsButtonComponent,
     SettingsButtonComponent,
+    StatusIndicatorComponent,
   ],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
