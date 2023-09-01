@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.6...@rxap/plugin-workspace@16.1.0-dev.7) (2023-09-01)
+
+### Bug Fixes
+
+- remove redundant traefik labels ([02d572d](https://gitlab.com/rxap/packages/commit/02d572d73eb5c9a9db8ba50b5a7fe7e04429e369))
+
 # [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.5...@rxap/plugin-workspace@16.1.0-dev.6) (2023-08-31)
 
 ### Bug Fixes

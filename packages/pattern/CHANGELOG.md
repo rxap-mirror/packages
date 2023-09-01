@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/pattern@1.0.1-dev.5...@rxap/pattern@1.0.1-dev.6) (2023-09-01)
+
+### Bug Fixes
+
+- ensure the metadata object is set ([8359471](https://gitlab.com/rxap/packages/commit/8359471a69e0a68055fe95f115d030050d67e393))
+- ensure the metadata object is set ([ae75e1e](https://gitlab.com/rxap/packages/commit/ae75e1e42a35db14e59dcfcc1b700a35ac73e47c))
+
 ## [1.0.1-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/pattern@1.0.1-dev.4...@rxap/pattern@1.0.1-dev.5) (2023-08-31)
 
 ### Bug Fixes

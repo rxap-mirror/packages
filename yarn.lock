@@ -7740,6 +7740,7 @@ __metadata:
     "@rxap/directives": ^16.0.0-dev.10
     "@rxap/environment": ^16.0.0-dev.9
     "@rxap/material-directives": ^16.0.0-dev.12
+    "@rxap/ngx-status-check": ^16.1.0-dev.0
     "@rxap/services": ^16.0.0-dev.9
     "@rxap/utilities": ^16.0.0-dev.13
     rxjs: ^7.8.0
@@ -8057,9 +8058,9 @@ __metadata:
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
     "@angular/router": ^16.1.4
+    "@rxap/config": ^16.0.0-dev.10
     "@rxap/open-api": ^16.0.0-dev.12
-    "@rxap/pattern": ^1.0.1-dev.5
-    "@rxap/rxjs": ^1.0.1-dev.5
+    "@rxap/pattern": ^1.0.1-dev.6
     "@sentry/angular-ivy": ^7.60.1
     rxjs: ^7.8.0
   languageName: unknown
@@ -8245,7 +8246,7 @@ __metadata:
     "@nx/js": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.7
     "@rxap/plugin-utilities": ^16.1.0-dev.9
-    "@rxap/ts-morph": ^0.1.0-dev.0
+    "@rxap/ts-morph": ^0.1.0-dev.1
     "@rxap/utilities": ^16.0.0-dev.13
     "@rxap/workspace-ts-morph": ^0.1.0-dev.3
     "@rxap/workspace-utilities": ^0.1.0-dev.6

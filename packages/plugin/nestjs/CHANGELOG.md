@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.10...@rxap/plugin-nestjs@16.1.0-dev.11) (2023-09-01)
+
+### Bug Fixes
+
+- default status service base url var generation ([9509086](https://gitlab.com/rxap/packages/commit/95090864e8eda444fa2a849dbf2fb4b608afcc7c))
+- ensure the env replacement for nest application is defined ([692dda5](https://gitlab.com/rxap/packages/commit/692dda5e52a20ac3158cf2d07e96e44de4f1fe77))
+- set default throttler ttl to 1 ([dcd9f60](https://gitlab.com/rxap/packages/commit/dcd9f609bd75245f0cf7e889f4eab2cc66cf995d))
+- support config validation overwrite ([bd01600](https://gitlab.com/rxap/packages/commit/bd01600ba9e0159b4e338a902314436d45c7d782))
+- use the new status service hostname ([c2655b6](https://gitlab.com/rxap/packages/commit/c2655b6c8f499755cc788da991ac9cebca05a49c))
+
 # [16.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.9...@rxap/plugin-nestjs@16.1.0-dev.10) (2023-08-31)
 
 ### Bug Fixes

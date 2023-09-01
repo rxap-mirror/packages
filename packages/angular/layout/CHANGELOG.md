@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.15...@rxap/layout@16.0.0-dev.16) (2023-09-01)
+
+### Features
+
+- use status indicator component ([a95c8ad](https://gitlab.com/rxap/packages/commit/a95c8add48196bbec87904e41b26b664c7e14b1c))
+
 # [16.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.14...@rxap/layout@16.0.0-dev.15) (2023-08-31)
 
 ### Bug Fixes

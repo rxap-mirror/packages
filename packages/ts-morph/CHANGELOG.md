@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.0...@rxap/ts-morph@0.1.0-dev.1) (2023-09-01)
+
+### Bug Fixes
+
+- support config validation overwrite ([bd01600](https://gitlab.com/rxap/packages/commit/bd01600ba9e0159b4e338a902314436d45c7d782))
+
 # 0.1.0-dev.0 (2023-08-31)
 
 ### Bug Fixes
