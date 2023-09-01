@@ -87,11 +87,8 @@ function createServiceDockerCompose(
         image: buildImageName(docker),
         labels: [
           'traefik.enable=true',
-          `traefik.http.services.${ name }.loadbalancer.server.port=3333`,
-          `traefik.http.services.${ name }.loadbalancer.healthCheck.path=${ getServiceApiPrefix(
-            name,
-            host,
-          ) }/health`,
+          // `traefik.http.services.${ name }.loadbalancer.server.port=3333`,
+          `traefik.http.services.${ name }.loadbalancer.healthCheck.path=/health`,
           `traefik.http.services.${ name }.loadbalancer.healthCheck.interval=10s`,
           `traefik.http.services.${ name }.loadbalancer.healthCheck.timeout=3s`,
         ],
@@ -130,9 +127,9 @@ function createFrontendDockerCompose(
         image: buildImageName(docker),
         labels: [
           'traefik.enable=true',
-          `traefik.http.routers.${ name }.entrypoints=https`,
+          // `traefik.http.routers.${ name }.entrypoints=https`,
           `traefik.http.routers.${ name }.rule=Host(\`${ name }.\${ROOT_DOMAIN}\`)`,
-          `traefik.http.services.${ name }.loadbalancer.server.port=80`,
+          // `traefik.http.services.${ name }.loadbalancer.server.port=80`,
           `traefik.http.routers.${ name }.priority=10`,
         ],
         depends_on: [
