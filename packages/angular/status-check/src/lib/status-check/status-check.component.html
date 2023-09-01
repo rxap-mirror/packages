@@ -5,37 +5,36 @@
 
     <hr class="mb-4">
 
-    <ng-container *ngIf="statusIsAvailable()">
 
-      <div *ngIf="services() as services">
-        <h3 class="text-xl font-semibold mb-2" i18n>Services</h3>
-        <div *ngIf="services.length; else empty">
+    <div *ngIf="statusIsAvailable()">
+      <h3 class="text-xl font-semibold mb-2" i18n>Services</h3>
+      <div>
         <table class="min-w-full bg-white border border-gray-300">
           <tbody>
-          <tr *ngFor="let service of services" [ngClass]="{
-            'bg-green-100': service.status === 'up',
-            'bg-red-100': service.status === 'down',
-            'bg-yellow-100': service.status === 'loading',
-          }" class="border-b border-gray-300">
+          <tr *ngFor="let service of services(); trackBy: trackBy" [ngClass]="{
+              'bg-green-100': service.status === 'up',
+              'bg-red-100': service.status === 'down',
+              'bg-yellow-100': service.status === 'loading',
+            }" class="border-b border-gray-300">
             <th class="p-2 text-left">{{ service.name }}</th>
-            <td class="p-2 text-right">{{ service.status }}</td>
+            <td class="p-2 text-center">{{ service.message }}</td>
+            <td [ngClass]="{
+              'text-green-700': service.status === 'up',
+              'text-red-700': service.status === 'down',
+              'text-yellow-700': service.status === 'loading',
+            }" class="p-2 text-right font-bold">{{ service.status }}</td>
           </tr>
           </tbody>
         </table>
       </div>
-        <ng-template #empty>
-          <p class="text-center" i18n>No services selected.</p>
-        </ng-template>
     </div>
-
-    </ng-container>
 
     <div *ngIf="statusIsEmpty()">
       <p class="text-center" i18n>No services are currently selected.</p>
     </div>
 
     <div *ngIf="statusIsUnavailable()">
-      <p class="text-center" i18n>Failed to retrieve status for selected services.</p>
+      <p class="text-center" i18n>Failed to retrieve status for selected services: <b>{{ status()?.status }}</b></p>
     </div>
 
     <div *ngIf="statusIsFatal()">
@@ -48,7 +47,7 @@
     <ng-container *ngIf="services().length">
     <div class="flex justify-center items-center">
       <p class="text-lg font-medium">
-        <ng-container i18n>Next try in</ng-container>
+        <ng-container i18n>Next try in</ng-container>&nbsp;
         <span class="font-bold text-blue-500">{{ countdown() }}</span>s
       </p>
     </div>

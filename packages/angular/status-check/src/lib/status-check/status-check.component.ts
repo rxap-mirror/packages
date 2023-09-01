@@ -14,8 +14,8 @@ import {
   ActivatedRoute,
   RouterLink,
 } from '@angular/router';
-import { log } from '@rxap/rxjs';
 import {
+  debounceTime,
   interval,
   merge,
   Subject,
@@ -32,6 +32,12 @@ import {
 
 export const STATUS_CHECK_INTERVAL = isDevMode() ? 5 : 60;
 
+export interface ServiceStatus {
+  name: string,
+  status: string | undefined,
+  message?: string
+}
+
 @Component({
   selector: 'rxap-status-check',
   standalone: true,
@@ -41,7 +47,7 @@ export const STATUS_CHECK_INTERVAL = isDevMode() ? 5 : 60;
 })
 export class StatusCheckComponent implements OnInit, OnDestroy {
 
-  services: Signal<Array<{ name: string, status: string | undefined }>>;
+  services: Signal<Array<ServiceStatus>>;
 
   status: Signal<ApiStatus>;
 
@@ -53,7 +59,6 @@ export class StatusCheckComponent implements OnInit, OnDestroy {
    * indicates if the status check is ok and all services are up
    */
   statusIsOk: Signal<boolean>;
-
   statusIsError: Signal<boolean>;
 
   countdown = signal(STATUS_CHECK_INTERVAL);
@@ -61,9 +66,7 @@ export class StatusCheckComponent implements OnInit, OnDestroy {
   statusIsFatal: Signal<boolean>;
 
   statusIsUnavailable: Signal<boolean>;
-
   statusIsAvailable: Signal<boolean>;
-
   statusIsEmpty: Signal<boolean>;
 
   /**
@@ -76,7 +79,6 @@ export class StatusCheckComponent implements OnInit, OnDestroy {
   private subscription?: Subscription;
 
   private readonly statusCheckService = inject(StatusCheckService);
-
   constructor(
     private readonly route: ActivatedRoute,
   ) {
@@ -89,8 +91,8 @@ export class StatusCheckComponent implements OnInit, OnDestroy {
 
     const status$ = this.route.queryParamMap.pipe(
       map(map => map.getAll('service')),
-      log('send'),
       switchMap(services => this.statusCheckService.getStatus(services)),
+      debounceTime(100),
     );
     const manualRetry$ = this.retry$.pipe(switchMap(() => status$));
     this.status = toSignal(merge(status$, manualRetry$), { initialValue: { status: 'initial' } });
@@ -101,11 +103,13 @@ export class StatusCheckComponent implements OnInit, OnDestroy {
                  .map(([ name, status ]) => ({
                    name,
                    status: status.status,
+                   message: status['message'],
                  })),
         ...Object.entries(status.error ?? {})
                  .map(([ name, status ]) => ({
                    name,
                    status: status.status,
+                   message: status['message'],
                  })),
       ].sort((a, b) => a.name.localeCompare(b.name));
     });
@@ -113,9 +117,10 @@ export class StatusCheckComponent implements OnInit, OnDestroy {
     this.statusIsError = computed(() => this.status().status === 'error');
     this.statusIsEmpty = computed(() => this.status().status === 'empty');
     this.statusIsFatal = computed(() => this.status().status === 'fatal');
-    this.statusIsUnavailable = computed(() => this.status().status === 'unavailable');
     this.statusIsAvailable =
       computed(() => [ 'ok', 'error', 'loading' ].includes(this.status().status ?? 'unavailable'));
+    this.statusIsUnavailable = computed(() => !this.statusIsAvailable() &&
+      ![ 'empty', 'fatal' ].includes(this.status().status ?? 'unavailable'));
   }
 
   ngOnInit() {
@@ -155,4 +160,9 @@ export class StatusCheckComponent implements OnInit, OnDestroy {
   openWarningDialog() {
     this.showRedirectWarning.set(true);
   }
+
+  trackBy(index: number, item: ServiceStatus) {
+    return item.name;
+  }
+
 }

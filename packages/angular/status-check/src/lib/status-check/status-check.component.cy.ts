@@ -109,26 +109,28 @@ describe(StatusCheckComponent.name, () => {
 
     cy.get('tr').should('have.length', serviceNames.length);
     cy.get('tr').should('have.class', 'bg-yellow-100');
-    cy.get('tr td').each(($el) => {
+    cy.get('tr td.font-bold').each(($el) => {
       expect($el).to.have.text('loading');
     }).then(() => {
 
       status$.next(mockStatus(serviceNames, 3));
 
-      cy.get('tr td', { timeout: STATUS_CHECK_INTERVAL })
+      cy.get('tr td.font-bold', { timeout: STATUS_CHECK_INTERVAL })
         .filter(':contains("up")')
         .should('have.length', serviceNames.length - 3);
-      cy.get('tr td').filter(':contains("down")').should('have.length', 3).then(() => {
+      cy.get('tr td.font-bold').filter(':contains("down")').should('have.length', 3).then(() => {
 
         status$.next(mockStatus(serviceNames, serviceNames.length));
-        cy.get('tr td', { timeout: STATUS_CHECK_INTERVAL }).filter(':contains("up")').should('have.length', 0);
-        cy.get('tr td').filter(':contains("down")').should('have.length', serviceNames.length).then(() => {
+        cy.get('tr td.font-bold', { timeout: STATUS_CHECK_INTERVAL })
+          .filter(':contains("up")')
+          .should('have.length', 0);
+        cy.get('tr td.font-bold').filter(':contains("down")').should('have.length', serviceNames.length).then(() => {
 
           status$.next(mockStatus(serviceNames));
-          cy.get('tr td', { timeout: STATUS_CHECK_INTERVAL })
+          cy.get('tr td.font-bold', { timeout: STATUS_CHECK_INTERVAL })
             .filter(':contains("up")')
             .should('have.length', serviceNames.length);
-          cy.get('tr td').filter(':contains("down")').should('have.length', 0);
+          cy.get('tr td.font-bold').filter(':contains("down")').should('have.length', 0);
 
         });
 
@@ -168,7 +170,7 @@ describe(StatusCheckComponent.name, () => {
   it('should handle the case that a unavailable error occurred', () => {
     status$.next({ status: 'unavailable' });
     cy.mount(StatusCheckComponent);
-    cy.get('p').should('contain.text', 'Failed to retrieve status for selected services.');
+    cy.get('p').should('contain.text', 'Failed to retrieve status for selected services:');
     cy.get('a').click();
     cy.get('h1').should('not.exist');
   });

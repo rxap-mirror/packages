@@ -19,7 +19,7 @@ export const StatusCheckGuard = async (route: ActivatedRouteSnapshot) => {
 
   const statusCheck: { services?: string[] } = route.data['statusCheck'];
 
-  const url = route.url.join('/');
+  const url = '/' + route.url.join('/');
 
   if (!statusCheck || !statusCheck.services) {
     if (isDevMode()) {
