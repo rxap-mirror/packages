@@ -1,16 +1,18 @@
 <div class="flex flex-col items-center justify-center min-h-screen mx-auto bg-gray-100">
 
   <div class="bg-white rounded-lg shadow-lg p-8 w-full md:w-1/2">
-    <h2 class="text-2xl font-semibold mb-4">API Status Check</h2>
+    <h2 class="text-2xl font-semibold mb-4" i18n>API Status Check</h2>
 
     <hr class="mb-4">
 
-    <div *ngIf="services()">
-      <h3 class="text-xl font-semibold mb-2">Services</h3>
-      <div>
+    <ng-container *ngIf="statusIsAvailable()">
+
+      <div *ngIf="services() as services">
+        <h3 class="text-xl font-semibold mb-2" i18n>Services</h3>
+        <div *ngIf="services.length; else empty">
         <table class="min-w-full bg-white border border-gray-300">
           <tbody>
-          <tr *ngFor="let service of services()" [ngClass]="{
+          <tr *ngFor="let service of services" [ngClass]="{
             'bg-green-100': service.status === 'up',
             'bg-red-100': service.status === 'down',
             'bg-yellow-100': service.status === 'loading',
@@ -21,22 +23,63 @@
           </tbody>
         </table>
       </div>
+        <ng-template #empty>
+          <p class="text-center" i18n>No services selected.</p>
+        </ng-template>
+    </div>
+
+    </ng-container>
+
+    <div *ngIf="statusIsEmpty()">
+      <p class="text-center" i18n>No services are currently selected.</p>
+    </div>
+
+    <div *ngIf="statusIsUnavailable()">
+      <p class="text-center" i18n>Failed to retrieve status for selected services.</p>
+    </div>
+
+    <div *ngIf="statusIsFatal()">
+      <p class="text-center"
+         i18n>Something went unexpectedly wrong. Try reloading the page or contact an administrator.</p>
     </div>
 
     <hr class="my-4">
 
+    <ng-container *ngIf="services().length">
     <div class="flex justify-center items-center">
-      <p class="text-lg font-medium">Next try in <span class="font-bold text-blue-500">{{ countdown() }}</span>s</p>
+      <p class="text-lg font-medium">
+        <ng-container i18n>Next try in</ng-container>
+        <span class="font-bold text-blue-500">{{ countdown() }}</span>s
+      </p>
     </div>
 
     <hr class="my-4">
+    </ng-container>
 
     <div *ngIf="url() as url">
-      <h4 class="text-lg font-semibold mb-2">Previous Route</h4>
-      <p class="mb-2">To return to the previous page, click the link below:</p>
-      <a [routerLink]="url" class="text-blue-500 hover:underline" i18n>Go Back to <i>{{ url }}</i></a>
+      <h4 class="text-lg font-semibold mb-2" i18n>Previous Route</h4>
+      <p class="mb-2" i18n>To return to the previous page, click the link below:</p>
+      <a *ngIf="!statusIsError(); else statusNoOk" [routerLink]="url" class="text-blue-500 hover:underline">
+        <ng-container i18n>Go Back to</ng-container>&nbsp;<i>{{ url }}</i></a>
+      <ng-template #statusNoOk>
+        <a (click)="openWarningDialog()" class="text-blue-500 hover:underline">
+          <ng-container i18n>Go Back to</ng-container>&nbsp;<i>{{ url }}</i></a>
+      </ng-template>
     </div>
 
   </div>
 
+</div>
+
+<div *ngIf="showRedirectWarning()" class="fixed inset-0 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded shadow-lg">
+    <h1 class="text-xl font-semibold mb-4" i18n>Warning</h1>
+    <p class="w-96" i18n><b>Caution</b>: Some services are currently <b
+      class="text-red-500">down</b>. If you proceed, you will be redirected to the application's home page.
+      <b>Are you sure you wish to continue?</b></p>
+    <div class="flex justify-end mt-4">
+      <button [routerLink]="['/']" class="text-white bg-red-500 px-4 py-2 rounded" i18n>Confirm</button>
+      <button (click)="onCancel()" class="text-gray-600 ml-2 px-4 py-2 rounded" i18n>Cancel</button>
+    </div>
+  </div>
 </div>

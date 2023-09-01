@@ -51,6 +51,9 @@ export class StatusCheckService {
   }
 
   private async requestStatus(serviceNames: string[]): Promise<ApiStatus> {
+    if (serviceNames.length === 0) {
+      return { status: 'empty' };
+    }
     let status: ApiStatus = { status: 'fatal' };
     try {
       status = await this.getServiceStatusMethod.call(serviceNames);
