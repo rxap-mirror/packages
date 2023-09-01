@@ -28,7 +28,14 @@
       },
       "configurations": {
         "development": {},
-        "production": {}
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "demos/service/app/angular/table/src/environments/environment.ts",
+              "with": "demos/service/app/angular/table/src/environments/environment.prod.ts"
+            }
+          ]
+        }
       }
     },
     "serve": {
