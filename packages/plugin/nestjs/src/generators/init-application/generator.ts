@@ -216,6 +216,16 @@ function updateProjectTargets(project: ProjectConfiguration) {
     options: {
       generatePackageJson: true,
     },
+    configurations: {
+      production: {
+        fileReplacements: [
+          {
+            replace: `${ project.sourceRoot }/environments/environment.ts`,
+            with: `${ project.sourceRoot }/environments/environment.prod.ts`,
+          },
+        ],
+      },
+    },
   }, Strategy.OVERWRITE);
 
   const buildTargetOptions = GetTargetOptions(GetTarget(project, 'build'));
