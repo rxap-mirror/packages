@@ -54,7 +54,7 @@ export async function dockerBuild(command: string, context: string, destinationL
   const args: string[] = [];
 
   if (dockerfile) {
-    args.push(`--file="${ dockerfile }"`);
+    args.push(`--file=${ dockerfile }`);
   }
 
   if (!destinationList.length) {
@@ -72,7 +72,7 @@ export async function dockerBuild(command: string, context: string, destinationL
     const s = spawn(command, [ 'build', ...args ], { stdio: [ 0, 1, 2 ] });
     s.on('error', (err: Error & { code?: string }) => {
       if (err.code === 'ENOENT') {
-        console.error(`Could not find ${ command }`);
+        console.error(`Could not find command: '${ command }'`);
       } else {
         reject(err);
       }
