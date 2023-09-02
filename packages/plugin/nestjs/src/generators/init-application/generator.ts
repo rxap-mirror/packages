@@ -1,7 +1,3 @@
-import angularLibrarySecondaryEntryPointGenerator
-  from '@nx/angular/src/generators/library-secondary-entry-point/library-secondary-entry-point';
-import angularLibraryGenerator from '@nx/angular/src/generators/library/library';
-import { UnitTestRunner } from '@nx/angular/src/utils/test-runners';
 import {
   generateFiles,
   getProjects,
@@ -299,36 +295,39 @@ async function createOpenApiClientSdkLibrary(
   try {
     if (IsRxapRepository(tree.root) && projectRoot.startsWith('applications')) {
       console.log('Detected rxap repository and public nest project');
-      await angularLibraryGenerator(tree, {
-        name,
-        directory,
-        addTailwind: false,
-        publishable: true,
-        importPath: `@rxap/${ openApiProjectName }`,
-        spec: false,
-        commonModule: false,
-        addModuleSpec: false,
-        prefix: 'rxap',
-        routing: false,
-        lazy: false,
-        tags: 'angular,ngx,open-api',
-        strict: true,
-        unitTestRunner: UnitTestRunner.None,
-        skipModule: true,
-        skipTests: true,
-      });
-      await angularLibrarySecondaryEntryPointGenerator(tree, {
-        library: openApiProjectName,
-        name: 'angular',
-      });
-      await angularLibrarySecondaryEntryPointGenerator(tree, {
-        library: openApiProjectName,
-        name: 'nest',
-      });
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      await (require('@rxap/plugin-library')).LibraryInitGenerator(tree, {
-        projects: [ openApiProjectName ],
-      });
+      // // eslint-disable-next-line @typescript-eslint/no-var-requires
+      // await require('@nx/angular/src/generators/library/library')(tree, {
+      //   name,
+      //   directory,
+      //   addTailwind: false,
+      //   publishable: true,
+      //   importPath: `@rxap/${ openApiProjectName }`,
+      //   spec: false,
+      //   commonModule: false,
+      //   addModuleSpec: false,
+      //   prefix: 'rxap',
+      //   routing: false,
+      //   lazy: false,
+      //   tags: 'angular,ngx,open-api',
+      //   strict: true,
+      //   unitTestRunner: UnitTestRunner.None,
+      //   skipModule: true,
+      //   skipTests: true,
+      // });
+      // // eslint-disable-next-line @typescript-eslint/no-var-requires
+      // await require('@nx/angular/src/generators/library-secondary-entry-point/library-secondary-entry-point')(tree, {
+      //   library: openApiProjectName,
+      //   name: 'angular',
+      // });
+      // // eslint-disable-next-line @typescript-eslint/no-var-requires
+      // await require('@nx/angular/src/generators/library-secondary-entry-point/library-secondary-entry-point')(tree, {
+      //   library: openApiProjectName,
+      //   name: 'nest',
+      // });
+      // // eslint-disable-next-line @typescript-eslint/no-var-requires
+      // await (require('@rxap/plugin-library')).LibraryInitGenerator(tree, {
+      //   projects: [ openApiProjectName ],
+      // });
     } else {
       await jsLibraryGenerator(tree, {
         name,
