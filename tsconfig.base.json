@@ -205,6 +205,7 @@
       "@rxap/utilities": ["packages/utilities/src/index.ts"],
       "@rxap/validator": ["packages/validator/src/index.ts"],
       "@rxap/window-system": ["packages/angular/window-system/src/index.ts"],
+      "@rxap/workspace-open-api": ["packages/workspace/open-api/src/index.ts"],
       "@rxap/workspace-ts-morph": ["packages/workspace/ts-morph/src/index.ts"],
       "@rxap/workspace-utilities": [
         "packages/workspace/utilities/src/index.ts"
