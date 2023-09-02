@@ -30,6 +30,7 @@ export * from './lib/nest/remove-nest-provider-to-array';
 // endregion
 
 // region 
+export * from './lib/coerce-array-element';
 export * from './lib/coerce-class-constructor';
 export * from './lib/coerce-class-method';
 export * from './lib/coerce-class';
