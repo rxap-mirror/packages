@@ -31,7 +31,9 @@ export function FindProject<Tree extends TreeLike>(tree: Tree, projectName: stri
   if (PROJECT_LOCATION_CACHE.has(projectName)) {
     const path = PROJECT_LOCATION_CACHE.get(projectName)!;
     const treeAdapter = new TreeAdapter(tree);
-    return JSON.parse(treeAdapter.read(path)!.toString('utf-8')) as ProjectJson;
+    const project = JSON.parse(treeAdapter.read(path)!.toString('utf-8')) as ProjectJson;
+    project.root ??= dirname(path).replace(/^\//, '');
+    return project;
   }
   for (const fileEntry of SearchFile(tree)) {
     if (!fileEntry.path.endsWith('project.json')) {
