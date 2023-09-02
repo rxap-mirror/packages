@@ -15,6 +15,7 @@
     "angular",
     "ngx",
     "packages",
+    "client-sdk",
     "open-api-service-configuration"
   ],
   "homepage": "https:/gitlab.com/rxap/packages/packages/open-api/service/configuration",
