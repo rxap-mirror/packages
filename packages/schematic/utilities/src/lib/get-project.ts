@@ -12,6 +12,7 @@ import {
 } from '@rxap/workspace-utilities';
 import {
   dirname,
+  join,
   relative,
 } from 'path';
 import {
@@ -111,7 +112,7 @@ export function GetDefaultPrefix(host: Tree): string | null {
 export function GetProjectRoot(host: Tree, projectName: string): string {
 
   const project = GetProject(host, projectName);
-  const root = project.root;
+  const root = project.root ?? join(GetProjectSourceRoot(host, projectName), '..');
 
   if (!root) {
     throw new SchematicsException(`The project '${ projectName }' does not have a root path`);
