@@ -23,15 +23,15 @@ import {
 import { ConfigurationControllerGetLatestRemoteMethod } from '../remote-methods/configuration-controller-get-latest.remote-method';
 
 @Directive({
-  selector: '[configurationControllerGetLatestRemoteMethod]',
-  exportAs: 'configurationControllerGetLatestRemoteMethod',
+  selector: '[rxapConfigurationControllerGetLatestRemoteMethod]',
+  exportAs: 'rxapConfigurationControllerGetLatestRemoteMethod',
   standalone: true,
 })
 export class ConfigurationControllerGetLatestRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<ConfigurationControllerGetLatestResponse, OpenApiRemoteMethodParameter<ConfigurationControllerGetLatestParameter, void>> {
-  @Input('configurationControllerGetLatestRemoteMethodParameters')
+  @Input('rxapConfigurationControllerGetLatestRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<ConfigurationControllerGetLatestParameter, void>;
-  @Input('configurationControllerGetLatestRemoteMethodError')
+  @Input('rxapConfigurationControllerGetLatestRemoteMethodError')
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
@@ -48,8 +48,8 @@ export class ConfigurationControllerGetLatestRemoteMethodTemplateDirective
 }
 
 @Directive({
-  selector: '[configurationControllerGetLatestRemoteMethod]',
-  exportAs: 'configurationControllerGetLatestRemoteMethod',
+  selector: '[rxapConfigurationControllerGetLatestRemoteMethod]',
+  exportAs: 'rxapConfigurationControllerGetLatestRemoteMethod',
   standalone: true,
 })
 export class ConfigurationControllerGetLatestRemoteMethodDirective

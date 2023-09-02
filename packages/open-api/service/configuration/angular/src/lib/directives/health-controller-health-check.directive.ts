@@ -20,15 +20,15 @@ import {
 import { HealthControllerHealthCheckRemoteMethod } from '../remote-methods/health-controller-health-check.remote-method';
 
 @Directive({
-  selector: '[healthControllerHealthCheckRemoteMethod]',
-  exportAs: 'healthControllerHealthCheckRemoteMethod',
+  selector: '[rxapHealthControllerHealthCheckRemoteMethod]',
+  exportAs: 'rxapHealthControllerHealthCheckRemoteMethod',
   standalone: true,
 })
 export class HealthControllerHealthCheckRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<HealthControllerHealthCheckResponse, OpenApiRemoteMethodParameter<void, void>> {
-  @Input('healthControllerHealthCheckRemoteMethodParameters')
+  @Input('rxapHealthControllerHealthCheckRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<void, void>;
-  @Input('healthControllerHealthCheckRemoteMethodError')
+  @Input('rxapHealthControllerHealthCheckRemoteMethodError')
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
@@ -46,8 +46,8 @@ export class HealthControllerHealthCheckRemoteMethodTemplateDirective
 }
 
 @Directive({
-  selector: '[healthControllerHealthCheckRemoteMethod]',
-  exportAs: 'healthControllerHealthCheckRemoteMethod',
+  selector: '[rxapHealthControllerHealthCheckRemoteMethod]',
+  exportAs: 'rxapHealthControllerHealthCheckRemoteMethod',
   standalone: true,
 })
 export class HealthControllerHealthCheckRemoteMethodDirective

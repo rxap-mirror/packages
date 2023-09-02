@@ -23,15 +23,15 @@ import {
 import { StatusControllerRegisterRemoteMethod } from '../remote-methods/status-controller-register.remote-method';
 
 @Directive({
-  selector: '[statusControllerRegisterRemoteMethod]',
-  exportAs: 'statusControllerRegisterRemoteMethod',
+  selector: '[rxapStatusControllerRegisterRemoteMethod]',
+  exportAs: 'rxapStatusControllerRegisterRemoteMethod',
   standalone: true,
 })
 export class StatusControllerRegisterRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<StatusControllerRegisterResponse, OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>> {
-  @Input('statusControllerRegisterRemoteMethodParameters')
+  @Input('rxapStatusControllerRegisterRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<void, StatusControllerRegisterRequestBody>;
-  @Input('statusControllerRegisterRemoteMethodError')
+  @Input('rxapStatusControllerRegisterRemoteMethodError')
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
@@ -49,8 +49,8 @@ export class StatusControllerRegisterRemoteMethodTemplateDirective
 }
 
 @Directive({
-  selector: '[statusControllerRegisterRemoteMethod]',
-  exportAs: 'statusControllerRegisterRemoteMethod',
+  selector: '[rxapStatusControllerRegisterRemoteMethod]',
+  exportAs: 'rxapStatusControllerRegisterRemoteMethod',
   standalone: true,
 })
 export class StatusControllerRegisterRemoteMethodDirective

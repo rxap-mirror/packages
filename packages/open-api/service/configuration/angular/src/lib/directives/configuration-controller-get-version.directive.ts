@@ -23,15 +23,15 @@ import {
 import { ConfigurationControllerGetVersionRemoteMethod } from '../remote-methods/configuration-controller-get-version.remote-method';
 
 @Directive({
-  selector: '[configurationControllerGetVersionRemoteMethod]',
-  exportAs: 'configurationControllerGetVersionRemoteMethod',
+  selector: '[rxapConfigurationControllerGetVersionRemoteMethod]',
+  exportAs: 'rxapConfigurationControllerGetVersionRemoteMethod',
   standalone: true,
 })
 export class ConfigurationControllerGetVersionRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<ConfigurationControllerGetVersionResponse, OpenApiRemoteMethodParameter<ConfigurationControllerGetVersionParameter, void>> {
-  @Input('configurationControllerGetVersionRemoteMethodParameters')
+  @Input('rxapConfigurationControllerGetVersionRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<ConfigurationControllerGetVersionParameter, void>;
-  @Input('configurationControllerGetVersionRemoteMethodError')
+  @Input('rxapConfigurationControllerGetVersionRemoteMethodError')
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
@@ -48,8 +48,8 @@ export class ConfigurationControllerGetVersionRemoteMethodTemplateDirective
 }
 
 @Directive({
-  selector: '[configurationControllerGetVersionRemoteMethod]',
-  exportAs: 'configurationControllerGetVersionRemoteMethod',
+  selector: '[rxapConfigurationControllerGetVersionRemoteMethod]',
+  exportAs: 'rxapConfigurationControllerGetVersionRemoteMethod',
   standalone: true,
 })
 export class ConfigurationControllerGetVersionRemoteMethodDirective

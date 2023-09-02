@@ -20,15 +20,15 @@ import {
 import { AppControllerNameRemoteMethod } from '../remote-methods/app-controller-name.remote-method';
 
 @Directive({
-  selector: '[appControllerNameRemoteMethod]',
-  exportAs: 'appControllerNameRemoteMethod',
+  selector: '[rxapAppControllerNameRemoteMethod]',
+  exportAs: 'rxapAppControllerNameRemoteMethod',
   standalone: true,
 })
 export class AppControllerNameRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<AppControllerNameResponse, OpenApiRemoteMethodParameter<void, void>> {
-  @Input('appControllerNameRemoteMethodParameters')
+  @Input('rxapAppControllerNameRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<void, void>;
-  @Input('appControllerNameRemoteMethodError')
+  @Input('rxapAppControllerNameRemoteMethodError')
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
@@ -46,8 +46,8 @@ export class AppControllerNameRemoteMethodTemplateDirective
 }
 
 @Directive({
-  selector: '[appControllerNameRemoteMethod]',
-  exportAs: 'appControllerNameRemoteMethod',
+  selector: '[rxapAppControllerNameRemoteMethod]',
+  exportAs: 'rxapAppControllerNameRemoteMethod',
   standalone: true,
 })
 export class AppControllerNameRemoteMethodDirective
