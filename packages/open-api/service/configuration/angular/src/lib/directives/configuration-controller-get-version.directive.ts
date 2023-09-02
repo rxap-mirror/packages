@@ -20,6 +20,7 @@ import {
   RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
+import { ConfigurationControllerGetVersionRemoteMethod } from '../remote-methods/configuration-controller-get-version.remote-method';
 
 @Directive({
   selector: '[configurationControllerGetVersionRemoteMethod]',

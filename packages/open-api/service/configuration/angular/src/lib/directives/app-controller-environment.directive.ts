@@ -17,6 +17,7 @@ import {
   RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
+import { AppControllerEnvironmentRemoteMethod } from '../remote-methods/app-controller-environment.remote-method';
 
 @Directive({
   selector: '[appControllerEnvironmentRemoteMethod]',

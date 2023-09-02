@@ -20,6 +20,7 @@ import {
   RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
+import { StatusControllerRegisterRemoteMethod } from '../remote-methods/status-controller-register.remote-method';
 
 @Directive({
   selector: '[statusControllerRegisterRemoteMethod]',

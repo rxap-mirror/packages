@@ -17,6 +17,7 @@ import {
   RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
+import { HealthControllerHealthCheckRemoteMethod } from '../remote-methods/health-controller-health-check.remote-method';
 
 @Directive({
   selector: '[healthControllerHealthCheckRemoteMethod]',

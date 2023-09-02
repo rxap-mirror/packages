@@ -20,6 +20,7 @@ import {
   RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
+import { ConfigurationControllerGetLatestRemoteMethod } from '../remote-methods/configuration-controller-get-latest.remote-method';
 
 @Directive({
   selector: '[configurationControllerGetLatestRemoteMethod]',
