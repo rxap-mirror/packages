@@ -5,6 +5,7 @@ import {
 import {
   CoerceFile,
   GetProjectRoot,
+  GetProjectSourceRoot,
   SkipNonLibraryProject,
   VisitTree,
 } from '@rxap/generator-utilities';
@@ -100,6 +101,8 @@ export async function indexExportGenerator(tree: Tree, options: IndexExportGener
         generateIndexFile(tree, join(dirname(path), 'src'));
       }
     }
+
+    generateIndexFile(tree, GetProjectSourceRoot(tree, projectName));
 
   }
 
