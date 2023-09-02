@@ -466,6 +466,9 @@ export async function initApplicationGenerator(
     if (options.cleanup) {
       cleanup(tree, project.sourceRoot);
     }
+    if (options.monolithic && options.overwrite) {
+      generateFiles(tree, join(__dirname, 'files', 'app'), join(project.sourceRoot, 'app'), options);
+    }
 
     // apply changes to the project configuration
     updateProjectConfiguration(tree, projectName, project);

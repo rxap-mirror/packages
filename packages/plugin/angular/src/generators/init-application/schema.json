@@ -58,6 +58,11 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to cleanup files"
+    },
+    "monolithic": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to generate a monolithic application"
     }
   },
   "required": []

@@ -11,4 +11,5 @@ export interface InitApplicationGeneratorSchema {
   generateMain?: boolean;
   overwrite?: boolean;
   cleanup?: boolean;
+  monolithic?: boolean;
 }
