@@ -1,6 +1,7 @@
 {
   "name": "@rxap/open-api-service-status",
   "version": "16.0.0",
+  "type": "module",
   "dependencies": {
     "tslib": "^2.3.0"
   },
