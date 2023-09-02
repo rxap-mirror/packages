@@ -139,7 +139,7 @@
     "generate-open-api": {
       "executor": "@rxap/plugin-library:run-generator",
       "options": {
-        "generator": "@rxap/schematics-open-api:generate",
+        "generator": "@rxap/plugin-open-api:generate",
         "options": {
           "project": "open-api-service-status",
           "path": "dist/swagger/applications/service/status/openapi.json",
