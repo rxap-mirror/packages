@@ -134,10 +134,10 @@ To initialize the application run the command:
 yarn nx g @rxap/plugin-application:init --project <application-name>
 ```
 
-To initialize the angular app run the command:
+To initialize the **monolithic** angular app run the command:
 
 ```shell
-yarn nx g @rxap/plugin-angular:init-application --project <application-name> --generate-main --cleanup
+yarn nx g @rxap/plugin-angular:init-application --generate-main --cleanup --monolithic --overwrite --project <application-name>
 ```
 
 To test if the application is working run the command:
