@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-open-api",
-  "version": "16.0.1-dev.0",
+  "version": "16.0.1-dev.1",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/open-api-service-status",
-  "version": "16.0.0",
+  "version": "16.0.1-dev.0",
   "type": "module",
   "dependencies": {
     "tslib": "^2.3.0"
@@ -36,11 +36,24 @@
   "peerDependencies": {
     "@angular/core": "^16.1.4",
     "@nestjs/common": "^10.0.5",
-    "@rxap/nest-open-api": "*",
-    "@rxap/open-api": "*",
-    "@rxap/remote-method": "*"
+    "@rxap/nest-open-api": "^10.0.1-dev.4",
+    "@rxap/open-api": "^16.0.0-dev.12",
+    "@rxap/remote-method": "^16.0.0-dev.10"
   },
   "nx-migrations": {
-    "packageGroup": []
+    "packageGroup": [
+      {
+        "package": "@rxap/open-api",
+        "version": "16.0.0-dev.12"
+      },
+      {
+        "package": "@rxap/remote-method",
+        "version": "16.0.0-dev.10"
+      },
+      {
+        "package": "@rxap/nest-open-api",
+        "version": "10.0.1-dev.4"
+      }
+    ]
   }
 }
