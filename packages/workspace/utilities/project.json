@@ -4,6 +4,7 @@
   "sourceRoot": "packages/workspace/utilities/src",
   "projectType": "library",
   "targets": {
+    "index-export": {},
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": [

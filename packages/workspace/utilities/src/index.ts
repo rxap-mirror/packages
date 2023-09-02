@@ -54,13 +54,15 @@ export * from './lib/builders-json/index';
 export * from './lib/builders-json/interface';
 // endregion
 
-// region
+// region 
 export * from './lib/build-angular-base-path';
 export * from './lib/build-nest-base-path';
 export * from './lib/build-nest-controller-name';
 export * from './lib/coerce-file';
+export * from './lib/delete-recursive';
 export * from './lib/get-project';
 export * from './lib/get-workspace-scope';
+export * from './lib/is-rxap-repository';
 export * from './lib/json-file';
 export * from './lib/nx-json-file';
 export * from './lib/package-json-file';
@@ -69,4 +71,3 @@ export * from './lib/search-file';
 export * from './lib/tree';
 export * from './lib/ts-config-file';
 // endregion
-export * from './lib/is-rxap-repository';
