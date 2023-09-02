@@ -42,9 +42,8 @@ export function GenerateDirectives(parameter: GenerateParameter<OpenApiSchemaBas
       namedImports: [ { name: 'Injectable' } ],
     },
     {
-      moduleSpecifier: parameter.options.packageName ??
-        `../remote-methods/${ dasherize(name) }.${ REMOTE_METHOD_FILE_SUFFIX }`,
-      namedImports: [ classify([ name, REMOTE_METHOD_FILE_SUFFIX ].join('-')) ],
+      moduleSpecifier: `../remote-methods/${ dasherize(operationId) }.${ REMOTE_METHOD_FILE_SUFFIX }`,
+      namedImports: [ classify([ operationId, REMOTE_METHOD_FILE_SUFFIX ].join('-')) ],
     },
   ];
 
