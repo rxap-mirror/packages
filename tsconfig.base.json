@@ -139,6 +139,24 @@
         "packages/angular/oauth/single-sign-on/src/index.ts"
       ],
       "@rxap/open-api": ["packages/angular/open-api/src/index.ts"],
+      "@rxap/open-api-service-status": [
+        "packages/open-api/service/status/src/index.ts"
+      ],
+      "@rxap/open-api-service-status/angular": [
+        "packages/open-api/service/status/angular/src/index.ts"
+      ],
+      "@rxap/open-api-service-status/nest": [
+        "packages/open-api/service/status/nest/src/index.ts"
+      ],
+      "@rxap/open-api-service-configuration": [
+        "packages/open-api/service/configuration/src/index.ts"
+      ],
+      "@rxap/open-api-service-configuration/angular": [
+        "packages/open-api/service/configuration/angular/src/index.ts"
+      ],
+      "@rxap/open-api-service-configuration/nest": [
+        "packages/open-api/service/configuration/nest/src/index.ts"
+      ],
       "@rxap/open-api/data-source": [
         "packages/angular/open-api/data-source/src/index.ts"
       ],
@@ -211,14 +229,9 @@
         "packages/workspace/utilities/src/index.ts"
       ],
       "@rxap/xml-parser": ["packages/xml-parser/src/index.ts"],
+      "@rxap/plugin-open-api": ["packages/plugin/open-api/src/index.ts"],
       "open-api-service-app-angular-table/*": [
         "packages/open-api/service/app/angular/table/src/lib/*"
-      ],
-      "open-api-service-configuration/*": [
-        "packages/open-api/service/configuration/src/lib/*"
-      ],
-      "open-api-service-status/*": [
-        "packages/open-api/service/status/src/lib/*"
       ],
       "workspace": ["tools/workspace/src/index.ts"],
       "workspace/commands": ["tools/workspace/src/cypress/commands.ts"]
