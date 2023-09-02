@@ -37,11 +37,6 @@ export function CreateDirective({
                                 }: CreateDirectiveOptions): void {
   const remoteMethodName = classify([ name, 'remote-method' ].join('-'));
 
-  if (!sourceFile.getClass(remoteMethodName)) {
-    console.warn(`A remote method class with the name '${ remoteMethodName }' is not declared in the file '${ filePath }'.`);
-    return;
-  }
-
   const directiveNameParts = [ remoteMethodName ];
 
   if (template) {
@@ -121,7 +116,7 @@ export function CreateDirective({
 
   const angularCoreImportStructure: OptionalKind<ImportDeclarationStructure> = {
     namedImports: [
-      { name: 'Inject' }, { name: 'Directive' }, { name: 'NgModule' }, { name: 'INJECTOR' }, { name: 'Injector' },
+      { name: 'Inject' }, { name: 'Directive' }, { name: 'INJECTOR' }, { name: 'Injector' },
     ],
     moduleSpecifier: '@angular/core',
   };
@@ -325,6 +320,7 @@ export function CreateDirective({
         arguments: Writers.object({
           selector: (writer) => writer.quote(`[${ selector }]`),
           exportAs: (writer) => writer.quote(selector),
+          standalone: 'true',
         }),
       },
     ],
@@ -342,23 +338,6 @@ export function CreateDirective({
     isExported: true,
   };
 
-  const directiveModuleClassStructure: OptionalKind<ClassDeclarationStructure> = {
-    name: directiveName + 'Module',
-    decorators: [
-      {
-        name: 'NgModule',
-        arguments: [
-          Writers.object({
-            declarations: `[ ${ directiveName } ]`,
-            exports: `[ ${ directiveName } ]`,
-          }),
-        ],
-      },
-    ],
-    isExported: true,
-  };
-
   sourceFile.addClass(directiveClassStructure);
-  sourceFile.addClass(directiveModuleClassStructure);
   sourceFile.addImportDeclarations(importStructure);
 }

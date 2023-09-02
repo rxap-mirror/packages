@@ -15,13 +15,10 @@ import {
 import { GetParameterType } from '../../lib/utilities/get-parameter-type';
 import { GetRequestBodyType } from '../../lib/utilities/get-request-body-type';
 import { GetResponseType } from '../../lib/utilities/get-response-type';
-import { IsCollectionResponse } from '../../lib/utilities/is-collection-response';
-import { IsWithoutParameters } from '../../lib/utilities/is-without-parameters';
 import {
   REMOTE_METHOD_BASE_PATH,
   REMOTE_METHOD_FILE_SUFFIX,
 } from './const';
-import { CreateDirective } from './create-directive';
 import { OpenApiSchemaBase } from './schema';
 
 const {
@@ -153,54 +150,6 @@ export function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiSchemaB
   };
 
   sourceFile.addClass(classStructure);
-
-  const withoutParameters = IsWithoutParameters(parameter);
-
-  if (!parameter.options.skipDirectives) {
-
-    if (IsCollectionResponse(parameter)) {
-      importStructures.push({
-        moduleSpecifier: '@rxap/utilities',
-        namedImports: [ { name: 'ArrayElement' } ],
-      });
-      CreateDirective({
-        filePath: fileName,
-        name: operationId,
-        prefix: parameter.options.prefix,
-        parametersType: `OpenApiRemoteMethodParameter<${ parameterType }, ${ requestBodyType }>`,
-        returnType: `ArrayElement<${ responseType }>`,
-        template: true,
-        collection: true,
-        sourceFile,
-        withoutParameters,
-      });
-    }
-
-    CreateDirective({
-      filePath: fileName,
-      name: operationId,
-      prefix: parameter.options.prefix,
-      parametersType: `OpenApiRemoteMethodParameter<${ parameterType }, ${ requestBodyType }>`,
-      returnType: responseType,
-      template: true,
-      collection: false,
-      sourceFile,
-      withoutParameters,
-    });
-
-    CreateDirective({
-      filePath: fileName,
-      name: operationId,
-      prefix: parameter.options.prefix,
-      parametersType: `OpenApiRemoteMethodParameter<${ parameterType }, ${ requestBodyType }>`,
-      returnType: responseType,
-      template: false,
-      collection: false,
-      sourceFile,
-      withoutParameters,
-    });
-
-  }
 
   sourceFile.addImportDeclarations(importStructures);
 

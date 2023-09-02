@@ -28,9 +28,11 @@ import { GeneratorFunction } from '../../lib/types';
 import {
   COMMAND_BASE_PATH,
   DATA_SOURCE_BASE_PATH,
+  DIRECTIVE_BASE_PATH,
   REMOTE_METHOD_BASE_PATH,
 } from './const';
 import { GenerateDataSource } from './generate-data-source';
+import { GenerateDirectives } from './generate-directives';
 import { GenerateOperationCommand } from './generate-operation-command';
 import { GenerateRemoteMethod } from './generate-remote-method';
 import { OpenApiSchema } from './schema';
@@ -108,6 +110,11 @@ export default function (options: OpenApiSchema): Rule {
     if (!options.skipCommand) {
       generatorFunctionList.push(GenerateOperationCommand);
       clearPathList.push(COMMAND_BASE_PATH);
+    }
+
+    if (!options.skipDirectives) {
+      generatorFunctionList.push(GenerateDirectives);
+      clearPathList.push(DIRECTIVE_BASE_PATH);
     }
 
     let start = Date.now();
