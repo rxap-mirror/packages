@@ -17,6 +17,7 @@ import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   DeleteRecursive,
   GetProjectPackageJson,
+  GetProjectPrefix,
   GetProjectRoot,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
@@ -42,6 +43,10 @@ export async function generateGenerator(
 
   if (options.directory) {
     options.directory = options.directory.split('/').map(item => dasherize(item)).join('/');
+  }
+
+  if (!options.prefix) {
+    options.prefix = GetProjectPrefix(tree, options.project);
   }
 
   const projectName = options.project;
