@@ -197,6 +197,7 @@
     "packages/data-structure/*",
     "packages/node/*",
     "packages/nest/*",
-    "packages/workspace/*"
+    "packages/workspace/*",
+    "packages/open-api/**/*"
   ]
 }

@@ -8095,6 +8095,34 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/open-api-service-configuration@workspace:packages/open-api/service/configuration":
+  version: 0.0.0-use.local
+  resolution: "@rxap/open-api-service-configuration@workspace:packages/open-api/service/configuration"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/core": ^16.1.4
+    "@nestjs/common": ^10.0.5
+    "@rxap/nest-open-api": "*"
+    "@rxap/open-api": "*"
+    "@rxap/remote-method": "*"
+  languageName: unknown
+  linkType: soft
+
+"@rxap/open-api-service-status@workspace:packages/open-api/service/status":
+  version: 0.0.0-use.local
+  resolution: "@rxap/open-api-service-status@workspace:packages/open-api/service/status"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/core": ^16.1.4
+    "@nestjs/common": ^10.0.5
+    "@rxap/nest-open-api": "*"
+    "@rxap/open-api": "*"
+    "@rxap/remote-method": "*"
+  languageName: unknown
+  linkType: soft
+
 "@rxap/open-api@workspace:packages/angular/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/open-api@workspace:packages/angular/open-api"

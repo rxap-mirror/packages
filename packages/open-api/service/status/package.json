@@ -35,10 +35,10 @@
   },
   "peerDependencies": {
     "@angular/core": "^16.1.4",
-    "@rxap/open-api": "*",
-    "@rxap/remote-method": "*",
     "@nestjs/common": "^10.0.5",
-    "@rxap/nest-open-api": "*"
+    "@rxap/nest-open-api": "*",
+    "@rxap/open-api": "*",
+    "@rxap/remote-method": "*"
   },
   "nx-migrations": {
     "packageGroup": []
