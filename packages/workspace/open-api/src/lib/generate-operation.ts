@@ -31,7 +31,7 @@ function executeGenerator<Options extends OpenApiSchemaBase>(
     };
     generatorFunction(parameters);
   } catch (e) {
-    console.error(`Failed to generate [${ generatorFunction?.name }] for operation: ${ operation.operationId }`);
+    console.error(`Failed to generate [${ generatorFunction?.name }] for operation: ${ operation.operationId }: ${ e.message }`);
   }
 }
 
