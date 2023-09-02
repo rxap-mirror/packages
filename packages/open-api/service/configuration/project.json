@@ -3,6 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/open-api/service/configuration/src",
   "projectType": "library",
+  "prefix": "rxap",
   "targets": {
     "lint": {
       "executor": "@nx/linter:eslint",
