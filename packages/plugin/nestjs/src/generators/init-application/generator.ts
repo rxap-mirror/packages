@@ -203,7 +203,7 @@ function updateProjectTargets(project: ProjectConfiguration) {
   CoerceTarget(project, 'generate-open-api', {
     executor: '@rxap/plugin-library:run-generator',
     options: {
-      generator: '@rxap/schematics-open-api:generate',
+      generator: '@rxap/plugin-open-api:generate',
       options: {
         project: `open-api-${ project.name }`,
         path: `${ outputPath.replace('dist/', 'dist/swagger/') }/openapi.json`,
