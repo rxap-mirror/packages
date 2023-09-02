@@ -4,16 +4,18 @@ import {
 } from '@nx/devkit';
 import {
   CoerceFile,
-  GetProjectSourceRoot,
+  GetProjectRoot,
   SkipNonLibraryProject,
   VisitTree,
 } from '@rxap/generator-utilities';
-import { join } from 'path';
+import { SearchFile } from '@rxap/workspace-utilities';
+import {
+  dirname,
+  join,
+} from 'path';
 import { IndexExportGeneratorSchema } from './schema';
 
-function generateIndexFile(tree: Tree, projectName: string) {
-
-  const sourceRoot = GetProjectSourceRoot(tree, projectName);
+function generateIndexFile(tree: Tree, sourceRoot: string) {
 
   const libRoot = join(sourceRoot, 'lib');
 
@@ -93,8 +95,12 @@ export async function indexExportGenerator(tree: Tree, options: IndexExportGener
     }
 
     console.log('generate index file for project: ', projectName);
+    for (const { path } of SearchFile(tree, GetProjectRoot(tree, projectName))) {
+      if (path.endsWith('ng-package.json')) {
+        generateIndexFile(tree, join(dirname(path), 'src'));
+      }
+    }
 
-    generateIndexFile(tree, projectName);
   }
 
 }
