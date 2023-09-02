@@ -2,6 +2,10 @@
   "name": "@rxap/workspace-open-api",
   "version": "0.0.1",
   "type": "commonjs",
+  "dependencies": {
+    "openapi-types": "10.0.0",
+    "tslib": "2.6.0"
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/workspace/open-api"

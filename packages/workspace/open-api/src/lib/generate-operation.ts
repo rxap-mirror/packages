@@ -30,7 +30,7 @@ function executeGenerator<Options extends OpenApiSchemaBase>(
       options,
     };
     generatorFunction(parameters);
-  } catch (e) {
+  } catch (e: any) {
     console.error(`Failed to generate [${ generatorFunction?.name }] for operation: ${ operation.operationId }: ${ e.message }`);
   }
 }
