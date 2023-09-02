@@ -89,7 +89,6 @@
       "x-prompt": "Should this service use jwt?"
     },
     "openApi": {
-      "alias": "open-api",
       "type": "boolean",
       "default": false,
       "description": "Whether the application should use openApi as client",
