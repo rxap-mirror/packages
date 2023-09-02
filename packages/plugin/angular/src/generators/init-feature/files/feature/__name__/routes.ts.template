@@ -1,0 +1,10 @@
+import { Route } from '@angular/router';
+
+const ROUTES: Route[] = [
+  {
+    path: '**',
+    redirectTo: '',
+  },
+];
+
+export default ROUTES;
