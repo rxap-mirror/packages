@@ -8591,6 +8591,9 @@ __metadata:
 "@rxap/workspace-open-api@workspace:packages/workspace/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-open-api@workspace:packages/workspace/open-api"
+  dependencies:
+    openapi-types: 10.0.0
+    tslib: 2.6.0
   languageName: unknown
   linkType: soft
 
