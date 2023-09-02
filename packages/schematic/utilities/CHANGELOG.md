@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.0-dev.10...@rxap/schematics-utilities@16.0.0-dev.11) (2023-09-02)
+
+### Bug Fixes
+
+- ensure the project root is always defined ([bba8a7a](https://gitlab.com/rxap/packages/commit/bba8a7ac77fd9c9ac7adca9be899a68d2e062efd))
+
 # [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.0-dev.9...@rxap/schematics-utilities@16.0.0-dev.10) (2023-08-31)
 
 ### Bug Fixes

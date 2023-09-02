@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.17...@rxap/plugin-docker@16.0.0-dev.18) (2023-09-02)
+
+### Bug Fixes
+
+- remove quotes around command parameters ([1ca71b9](https://gitlab.com/rxap/packages/commit/1ca71b9ee758b041f19df54d0a5e1eb19e8661cc))
+
 # [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.16...@rxap/plugin-docker@16.0.0-dev.17) (2023-08-31)
 
 ### Bug Fixes

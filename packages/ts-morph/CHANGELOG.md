@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.1...@rxap/ts-morph@0.1.0-dev.2) (2023-09-02)
+
+### Features
+
+- add CoerceArrayElement function ([4239d30](https://gitlab.com/rxap/packages/commit/4239d3046b94d61a476f97e446b30849ed999a64))
+
 # [0.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.0...@rxap/ts-morph@0.1.0-dev.1) (2023-09-01)
 
 ### Bug Fixes

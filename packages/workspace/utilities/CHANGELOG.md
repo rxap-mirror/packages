@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.6...@rxap/workspace-utilities@0.1.0-dev.7) (2023-09-02)
+
+### Bug Fixes
+
+- ensure the project root is always defined ([22c56fa](https://gitlab.com/rxap/packages/commit/22c56faf7157806170d2757636bd0d9d231ea7a3))
+
+### Features
+
+- add the DeleteRecursive function ([69c01e9](https://gitlab.com/rxap/packages/commit/69c01e90ba223be40ce178d226af2391550b8024))
+- support angular library entrypoints ([af9fd2f](https://gitlab.com/rxap/packages/commit/af9fd2f9e03393b0f38b63f2c94a90b3f04802b9))
+
 # [0.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.5...@rxap/workspace-utilities@0.1.0-dev.6) (2023-08-31)
 
 ### Bug Fixes

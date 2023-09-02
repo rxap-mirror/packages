@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.19...@rxap/plugin-library@16.0.0-dev.20) (2023-09-02)
+
+### Bug Fixes
+
+- generate index file for non angular projects ([5d88306](https://gitlab.com/rxap/packages/commit/5d8830611d751c3f17eb18a2e5db9aa80e3d2312))
+
+### Features
+
+- support angular library entrypoints ([7718326](https://gitlab.com/rxap/packages/commit/7718326464e1971d6b9463a6ae611a279ba4c1a7))
+
 # [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.18...@rxap/plugin-library@16.0.0-dev.19) (2023-08-31)
 
 ### Bug Fixes

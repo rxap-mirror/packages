@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.12...@rxap/plugin-angular@16.1.0-dev.13) (2023-09-02)
+
+### Features
+
+- add cleanup generator ([844d050](https://gitlab.com/rxap/packages/commit/844d0504ea65e41d22f4cd90b2b9c266ee93f489))
+- add init-feature generator ([8925c31](https://gitlab.com/rxap/packages/commit/8925c31b1a2f396b5b5e753a71786b10d45afe57))
+- add support for monolithic angular init ([270e1e2](https://gitlab.com/rxap/packages/commit/270e1e2ce27b427615ee97f5bb72fb5dad1fe095))
+
 # [16.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.11...@rxap/plugin-angular@16.1.0-dev.12) (2023-08-31)
 
 ### Bug Fixes

@@ -1,0 +1,10 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## 0.0.2-dev.0 (2023-09-02)
+
+### Bug Fixes
+
+- use correct import path for remote methods ([704dc70](https://gitlab.com/rxap/packages/commit/704dc7054c6083e6c450a2988010d8c7651b701e))

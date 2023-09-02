@@ -32,7 +32,13 @@
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@angular/core": "^16.1.4",
+    "@rxap/open-api": "*",
+    "@rxap/remote-method": "*",
+    "@nestjs/common": "^10.0.5",
+    "@rxap/nest-open-api": "*"
+  },
   "nx-migrations": {
     "packageGroup": []
   }

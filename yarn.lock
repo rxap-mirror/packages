@@ -8146,9 +8146,9 @@ __metadata:
     "@rxap/generator-utilities": ^1.1.0-dev.7
     "@rxap/plugin-localazy": ^16.1.0-dev.6
     "@rxap/plugin-utilities": ^16.1.0-dev.9
-    "@rxap/ts-morph": ^0.1.0-dev.0
+    "@rxap/ts-morph": ^0.1.0-dev.2
     "@rxap/workspace-ts-morph": ^0.1.0-dev.3
-    "@rxap/workspace-utilities": ^0.1.0-dev.6
+    "@rxap/workspace-utilities": ^0.1.0-dev.7
     nx: ^16.5.0
     ts-morph: ^18.0.0
   languageName: unknown
@@ -8212,10 +8212,10 @@ __metadata:
     "@rxap/generator-ts-morph": ^1.0.1-dev.6
     "@rxap/generator-utilities": ^1.1.0-dev.7
     "@rxap/node-utilities": ^1.1.0-dev.4
-    "@rxap/plugin-angular": ^16.1.0-dev.12
-    "@rxap/plugin-nestjs": ^16.1.0-dev.10
+    "@rxap/plugin-angular": ^16.1.0-dev.13
+    "@rxap/plugin-nestjs": ^16.1.0-dev.12
     "@rxap/plugin-utilities": ^16.1.0-dev.9
-    "@rxap/workspace-utilities": ^0.1.0-dev.6
+    "@rxap/workspace-utilities": ^0.1.0-dev.7
     nx: ^16.5.0
     semver: ^7.3.5
     ts-morph: ^18.0.0
@@ -8246,10 +8246,10 @@ __metadata:
     "@nx/js": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.7
     "@rxap/plugin-utilities": ^16.1.0-dev.9
-    "@rxap/ts-morph": ^0.1.0-dev.1
+    "@rxap/ts-morph": ^0.1.0-dev.2
     "@rxap/utilities": ^16.0.0-dev.13
     "@rxap/workspace-ts-morph": ^0.1.0-dev.3
-    "@rxap/workspace-utilities": ^0.1.0-dev.6
+    "@rxap/workspace-utilities": ^0.1.0-dev.7
     ts-morph: ^18.0.0
   languageName: unknown
   linkType: soft
@@ -8257,6 +8257,15 @@ __metadata:
 "@rxap/plugin-open-api@workspace:packages/plugin/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-open-api@workspace:packages/plugin/open-api"
+  dependencies:
+    tslib: 2.6.2
+  peerDependencies:
+    "@nx/devkit": ^16.5.0
+    "@rxap/plugin-library": ^16.0.0-dev.20
+    "@rxap/utilities": ^16.0.0-dev.13
+    "@rxap/workspace-open-api": ^0.0.2-dev.0
+    "@rxap/workspace-ts-morph": ^0.1.0-dev.3
+    "@rxap/workspace-utilities": ^0.1.0-dev.7
   languageName: unknown
   linkType: soft
 
@@ -8380,7 +8389,7 @@ __metadata:
     "@angular-devkit/schematics": ^16.1.4
     "@rxap/json-schema-to-typescript": ^16.0.0-dev.8
     "@rxap/schematics-ts-morph": ^16.0.0-dev.13
-    "@rxap/schematics-utilities": ^16.0.0-dev.10
+    "@rxap/schematics-utilities": ^16.0.0-dev.11
     "@rxap/utilities": ^16.0.0-dev.13
     ts-morph: ^18.0.0
   languageName: unknown
@@ -8410,7 +8419,7 @@ __metadata:
     "@angular-devkit/schematics": ^16.1.4
     "@nx/devkit": ^16.5.0
     "@rxap/utilities": ^16.0.0-dev.13
-    "@rxap/workspace-utilities": ^0.1.0-dev.6
+    "@rxap/workspace-utilities": ^0.1.0-dev.7
   languageName: unknown
   linkType: soft
 
@@ -8594,6 +8603,12 @@ __metadata:
   dependencies:
     openapi-types: 10.0.0
     tslib: 2.6.0
+  peerDependencies:
+    "@angular-devkit/core": ^16.1.4
+    "@rxap/json-schema-to-typescript": ^16.0.0-dev.8
+    "@rxap/utilities": ^16.0.0-dev.13
+    "@rxap/workspace-utilities": ^0.1.0-dev.7
+    ts-morph: ^18.0.0
   languageName: unknown
   linkType: soft
 
