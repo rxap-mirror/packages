@@ -72,11 +72,11 @@ export async function generateGenerator(
   }
 
   DeleteRecursive(tree, join(projectRoot, 'src'));
-  if (tree.exists(join(projectRoot, 'angular'))) {
-    DeleteRecursive(tree, join(projectRoot, 'angular'));
+  if (tree.exists(join(projectRoot, 'angular', 'src'))) {
+    DeleteRecursive(tree, join(projectRoot, 'angular', 'src'));
   }
-  if (tree.exists(join(projectRoot, 'nest'))) {
-    DeleteRecursive(tree, join(projectRoot, 'nest'));
+  if (tree.exists(join(projectRoot, 'nest', 'src'))) {
+    DeleteRecursive(tree, join(projectRoot, 'nest', 'src'));
   }
 
   TsMorphAngularProjectTransform(tree, {
