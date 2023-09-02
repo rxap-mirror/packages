@@ -128,22 +128,32 @@ To create a new angular application run the command:
 yarn nx g @nx/angular:application --name <application-name>
 ```
 
+```shell
+PROJECT=<directory>-<application-name>
+```
+
 To initialize the application run the command:
 
 ```shell
-yarn nx g @rxap/plugin-application:init --project <application-name>
+yarn nx g @rxap/plugin-application:init --project $PROJECT
 ```
 
 To initialize the **monolithic** angular app run the command:
 
 ```shell
-yarn nx g @rxap/plugin-angular:init-application --generate-main --cleanup --monolithic --overwrite --project <application-name>
+yarn nx g @rxap/plugin-angular:init-application --generate-main --cleanup --monolithic --overwrite --project $PROJECT
 ```
 
 To test if the application is working run the command:
 
 ```shell
-yarn nx run <application-name>:docker
+yarn nx run $PROJECT:docker
+```
+
+Add a feature to the **monolithic** angular app
+
+```shell
+yarn nx g @rxap/plugin-angular:init-feature --project $PROJECT --name <feature-name>
 ```
 
 ## Bundle size analyzer
