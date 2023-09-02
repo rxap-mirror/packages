@@ -34,6 +34,7 @@ fi
 echo -e "${BLUE}Run the update-dependencies and update-package-group targets${NC}"
 yarn nx run-many \
   --projects="${changed_projects}" \
+  --parallel 8 \
   --target="update-dependencies,update-package-group"
 
 echo -e "${BLUE}Run the packages:readme${NC}"

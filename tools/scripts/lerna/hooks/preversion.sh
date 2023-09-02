@@ -39,6 +39,7 @@ echo "${changed_projects}" > "${BASE_DIR}/dist/changed-projects.txt"
 echo -e "${BLUE}Run the fix-dependencies target${NC}"
 yarn nx run-many \
   --projects="$(bash tools/scripts/lerna/get-changed-nx-projects.sh)" \
+  --parallel 8 \
   --target="fix-dependencies"
 
 echo -e "${BLUE}Run build, test and lint targets${NC}"
