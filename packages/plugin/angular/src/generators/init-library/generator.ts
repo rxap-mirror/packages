@@ -240,10 +240,10 @@ function checkIfSecondaryEntrypointIncludeInTheTsConfig(tree: Tree, project: Pro
     }
   }
   if (libTsConfig) {
-    tree.write(libTsConfigPath, JSON.stringify(libTsConfig, null, 2));
+    tree.write(libTsConfigPath, JSON.stringify(libTsConfig, null, 2) + '\n');
   }
   if (specTsConfig) {
-    tree.write(specTsConfigPath, JSON.stringify(specTsConfig, null, 2));
+    tree.write(specTsConfigPath, JSON.stringify(specTsConfig, null, 2) + '\n');
   }
 }
 
