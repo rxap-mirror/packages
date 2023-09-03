@@ -61,6 +61,7 @@ export * from './lib/build-nest-controller-name';
 export * from './lib/coerce-file';
 export * from './lib/delete-recursive';
 export * from './lib/get-project';
+export * from './lib/get-root-docker-options';
 export * from './lib/get-workspace-scope';
 export * from './lib/is-rxap-repository';
 export * from './lib/json-file';
