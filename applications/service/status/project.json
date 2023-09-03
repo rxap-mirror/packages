@@ -48,15 +48,7 @@
       }
     },
     "docker-save": {},
-    "generate-open-api": {
-      "options": {
-        "options": {
-          "project": "open-api-service-status",
-          "path": "dist/swagger/applications/service/status/openapi.json",
-          "serverId": "service-status"
-        }
-      }
-    },
+    "generate-open-api": {},
     "generate-package-json": {},
     "lint": {
       "options": {
@@ -94,7 +86,7 @@
     },
     "test": {
       "outputs": [
-        "{workspaceRoot}/coverage/applications/service/status"
+        "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
         "jestConfig": "applications/service/status/jest.config.ts"

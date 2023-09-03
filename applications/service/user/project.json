@@ -44,15 +44,7 @@
       }
     },
     "docker-save": {},
-    "generate-open-api": {
-      "options": {
-        "options": {
-          "project": "open-api-service-user",
-          "path": "dist/swagger/applications/service/user/openapi.json",
-          "serverId": "service-user"
-        }
-      }
-    },
+    "generate-open-api": {},
     "generate-package-json": {},
     "lint": {
       "options": {

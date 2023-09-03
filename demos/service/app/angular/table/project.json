@@ -44,15 +44,7 @@
       }
     },
     "docker-save": {},
-    "generate-open-api": {
-      "options": {
-        "options": {
-          "project": "open-api-service-app-angular-table",
-          "path": "dist/swagger/demos/service/app/angular/table/openapi.json",
-          "serverId": "service-app-angular-table"
-        }
-      }
-    },
+    "generate-open-api": {},
     "generate-package-json": {},
     "lint": {
       "options": {
