@@ -37,6 +37,33 @@
         }
       }
     },
+    "build-info": {},
+    "docker": {
+      "options": {
+        "imageSuffix": "/service/app-angular-table"
+      }
+    },
+    "docker-save": {},
+    "generate-open-api": {
+      "options": {
+        "options": {
+          "project": "open-api-service-app-angular-table",
+          "path": "dist/swagger/demos/service/app/angular/table/openapi.json",
+          "serverId": "service-app-angular-table"
+        }
+      }
+    },
+    "generate-package-json": {},
+    "lint": {
+      "options": {
+        "lintFilePatterns": [
+          "demos/service/app/angular/table/**/*.ts"
+        ]
+      }
+    },
+    "save": {
+      "executor": "@rxap/plugin-docker:save"
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
@@ -51,33 +78,6 @@
           "buildTarget": "service-app-angular-table:build:production"
         }
       }
-    },
-    "lint": {
-      "options": {
-        "lintFilePatterns": [
-          "demos/service/app/angular/table/**/*.ts"
-        ]
-      }
-    },
-    "test": {
-      "options": {
-        "jestConfig": "demos/service/app/angular/table/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
-    "build-info": {},
-    "docker": {
-      "options": {
-        "imageSuffix": "/service/app-angular-table"
-      }
-    },
-    "save": {
-      "executor": "@rxap/plugin-docker:save"
     },
     "swagger-build": {
       "options": {
@@ -104,14 +104,14 @@
         "buildTarget": "service-app-angular-table:swagger-build"
       }
     },
-    "docker-save": {},
-    "generate-package-json": {},
-    "generate-open-api": {
+    "test": {
       "options": {
-        "options": {
-          "project": "open-api-service-app-angular-table",
-          "path": "dist/swagger/demos/service/app/angular/table/openapi.json",
-          "serverId": "service-app-angular-table"
+        "jestConfig": "demos/service/app/angular/table/jest.config.ts"
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
         }
       }
     }

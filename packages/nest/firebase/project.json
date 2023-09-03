@@ -19,11 +19,23 @@
         ]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs nest-firebase {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
+    "check-version": {
+      "executor": "@rxap/plugin-library:check-version",
+      "options": {
+        "packageName": "@nestjs/core"
+      }
+    },
+    "fix-dependencies": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "outputs": [
+        "{workspaceRoot}/{projectRoot}/package.json"
+      ],
+      "options": {
+        "generator": "@rxap/plugin-library:fix-dependencies",
+        "options": {
+          "strict": true
+        }
+      }
     },
     "lint": {
       "options": {
@@ -31,6 +43,15 @@
           "packages/nest/firebase/**/*.ts"
         ]
       }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs nest-firebase {args.ver} {args.tag}",
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
     },
     "test": {
       "options": {
@@ -48,27 +69,6 @@
     },
     "update-package-group": {
       "executor": "@rxap/plugin-library:update-package-group"
-    },
-    "readme": {
-      "executor": "@rxap/plugin-library:readme"
-    },
-    "fix-dependencies": {
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": [
-        "{workspaceRoot}/{projectRoot}/package.json"
-      ],
-      "options": {
-        "generator": "@rxap/plugin-library:fix-dependencies",
-        "options": {
-          "strict": true
-        }
-      }
-    },
-    "check-version": {
-      "executor": "@rxap/plugin-library:check-version",
-      "options": {
-        "packageName": "@nestjs/core"
-      }
     }
   },
   "tags": [

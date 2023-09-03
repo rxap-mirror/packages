@@ -43,12 +43,26 @@
         }
       }
     },
-    "serve": {
-      "executor": "@nx/js:node",
+    "build-info": {},
+    "ci": {
+      "executor": "@rxap/plugin-application:build-info"
+    },
+    "docker": {
       "options": {
-        "buildTarget": "service-configuration:build:development"
+        "imageSuffix": "/service/configuration"
       }
     },
+    "docker-save": {},
+    "generate-open-api": {
+      "options": {
+        "options": {
+          "project": "open-api-service-configuration",
+          "path": "dist/swagger/applications/service/configuration/openapi.json",
+          "serverId": "service-configuration"
+        }
+      }
+    },
+    "generate-package-json": {},
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -56,20 +70,10 @@
         ]
       }
     },
-    "test": {
-      "outputs": [
-        "{workspaceRoot}/coverage/applications/service/configuration"
-      ],
+    "serve": {
+      "executor": "@nx/js:node",
       "options": {
-        "jestConfig": "applications/service/configuration/jest.config.ts"
-      }
-    },
-    "ci": {
-      "executor": "@rxap/plugin-application:build-info"
-    },
-    "docker": {
-      "options": {
-        "imageSuffix": "/service/configuration"
+        "buildTarget": "service-configuration:build:development"
       }
     },
     "swagger-build": {
@@ -88,24 +92,20 @@
         ]
       }
     },
-    "build-info": {},
-    "docker-save": {},
-    "generate-package-json": {},
-    "generate-open-api": {
-      "options": {
-        "options": {
-          "project": "open-api-service-configuration",
-          "path": "dist/swagger/applications/service/configuration/openapi.json",
-          "serverId": "service-configuration"
-        }
-      }
-    },
     "swagger-generate": {
       "outputs": [
         "dist/swagger/applications/service/configuration/open-api.json"
       ],
       "options": {
         "buildTarget": "service-configuration:swagger-build"
+      }
+    },
+    "test": {
+      "outputs": [
+        "{workspaceRoot}/coverage/applications/service/configuration"
+      ],
+      "options": {
+        "jestConfig": "applications/service/configuration/jest.config.ts"
       }
     }
   },

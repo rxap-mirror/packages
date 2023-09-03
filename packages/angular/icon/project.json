@@ -10,7 +10,6 @@
   ],
   "projectType": "library",
   "targets": {
-    "index-export": {},
     "build": {
       "executor": "@nx/angular:package",
       "outputs": [
@@ -30,33 +29,22 @@
       },
       "defaultConfiguration": "production"
     },
-    "test": {
-      "options": {
-        "jestConfig": "packages/angular/icon/jest.config.ts"
-      },
+    "build-tailwind": {
+      "executor": "@rxap/plugin-angular:tailwind",
       "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
+        "production": {
+          "minify": true
         }
       }
     },
-    "lint": {
+    "check-ng-package": {
+      "executor": "@rxap/plugin-angular:check-ng-package"
+    },
+    "check-version": {
+      "executor": "@rxap/plugin-library:check-version",
       "options": {
-        "lintFilePatterns": [
-          "packages/angular/icon/**/*.ts",
-          "packages/angular/icon/**/*.html"
-        ]
+        "packageName": "@angular/core"
       }
-    },
-    "update-dependencies": {
-      "executor": "@rxap/plugin-library:update-dependencies"
-    },
-    "update-package-group": {
-      "executor": "@rxap/plugin-library:update-package-group"
-    },
-    "readme": {
-      "executor": "@rxap/plugin-library:readme"
     },
     "fix-dependencies": {
       "executor": "@rxap/plugin-library:run-generator",
@@ -70,22 +58,34 @@
         }
       }
     },
-    "check-version": {
-      "executor": "@rxap/plugin-library:check-version",
+    "index-export": {},
+    "lint": {
       "options": {
-        "packageName": "@angular/core"
+        "lintFilePatterns": [
+          "packages/angular/icon/**/*.ts",
+          "packages/angular/icon/**/*.html"
+        ]
       }
     },
-    "build-tailwind": {
-      "executor": "@rxap/plugin-angular:tailwind",
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    },
+    "test": {
+      "options": {
+        "jestConfig": "packages/angular/icon/jest.config.ts"
+      },
       "configurations": {
-        "production": {
-          "minify": true
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
         }
       }
     },
-    "check-ng-package": {
-      "executor": "@rxap/plugin-angular:check-ng-package"
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
     }
   }
 }

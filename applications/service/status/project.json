@@ -4,9 +4,6 @@
   "sourceRoot": "applications/service/status/src",
   "projectType": "application",
   "targets": {
-    "save": {
-      "executor": "@rxap/plugin-docker:save"
-    },
     "build": {
       "executor": "@nx/webpack:webpack",
       "outputs": [
@@ -41,12 +38,26 @@
       },
       "defaultConfiguration": "production"
     },
-    "serve": {
-      "executor": "@nx/js:node",
+    "build-info": {},
+    "ci": {
+      "executor": "@rxap/plugin-application:build-info"
+    },
+    "docker": {
       "options": {
-        "buildTarget": "service-status:build:development"
+        "imageSuffix": "/service/status"
       }
     },
+    "docker-save": {},
+    "generate-open-api": {
+      "options": {
+        "options": {
+          "project": "open-api-service-status",
+          "path": "dist/swagger/applications/service/status/openapi.json",
+          "serverId": "service-status"
+        }
+      }
+    },
+    "generate-package-json": {},
     "lint": {
       "options": {
         "lintFilePatterns": [
@@ -54,20 +65,13 @@
         ]
       }
     },
-    "test": {
-      "outputs": [
-        "{workspaceRoot}/coverage/applications/service/status"
-      ],
-      "options": {
-        "jestConfig": "applications/service/status/jest.config.ts"
-      }
+    "save": {
+      "executor": "@rxap/plugin-docker:save"
     },
-    "ci": {
-      "executor": "@rxap/plugin-application:build-info"
-    },
-    "docker": {
+    "serve": {
+      "executor": "@nx/js:node",
       "options": {
-        "imageSuffix": "/service/status"
+        "buildTarget": "service-status:build:development"
       }
     },
     "swagger-build": {
@@ -83,21 +87,17 @@
         ]
       }
     },
-    "build-info": {},
-    "docker-save": {},
-    "generate-package-json": {},
-    "generate-open-api": {
-      "options": {
-        "options": {
-          "project": "open-api-service-status",
-          "path": "dist/swagger/applications/service/status/openapi.json",
-          "serverId": "service-status"
-        }
-      }
-    },
     "swagger-generate": {
       "options": {
         "buildTarget": "service-status:swagger-build"
+      }
+    },
+    "test": {
+      "outputs": [
+        "{workspaceRoot}/coverage/applications/service/status"
+      ],
+      "options": {
+        "jestConfig": "applications/service/status/jest.config.ts"
       }
     }
   },

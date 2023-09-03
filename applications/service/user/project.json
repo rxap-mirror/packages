@@ -37,6 +37,30 @@
         }
       }
     },
+    "build-info": {},
+    "docker": {
+      "options": {
+        "imageSuffix": "/service/user"
+      }
+    },
+    "docker-save": {},
+    "generate-open-api": {
+      "options": {
+        "options": {
+          "project": "open-api-service-user",
+          "path": "dist/swagger/applications/service/user/openapi.json",
+          "serverId": "service-user"
+        }
+      }
+    },
+    "generate-package-json": {},
+    "lint": {
+      "options": {
+        "lintFilePatterns": [
+          "applications/service/user/**/*.ts"
+        ]
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
@@ -49,41 +73,6 @@
         },
         "production": {
           "buildTarget": "service-user:build:production"
-        }
-      }
-    },
-    "lint": {
-      "options": {
-        "lintFilePatterns": [
-          "applications/service/user/**/*.ts"
-        ]
-      }
-    },
-    "test": {
-      "options": {
-        "jestConfig": "applications/service/user/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
-    "build-info": {},
-    "docker": {
-      "options": {
-        "imageSuffix": "/service/user"
-      }
-    },
-    "docker-save": {},
-    "generate-package-json": {},
-    "generate-open-api": {
-      "options": {
-        "options": {
-          "project": "open-api-service-user",
-          "path": "dist/swagger/applications/service/user/openapi.json",
-          "serverId": "service-user"
         }
       }
     },
@@ -110,6 +99,17 @@
       ],
       "options": {
         "buildTarget": "service-user:swagger-build"
+      }
+    },
+    "test": {
+      "options": {
+        "jestConfig": "applications/service/user/jest.config.ts"
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     }
   },

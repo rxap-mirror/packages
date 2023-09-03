@@ -18,46 +18,10 @@
         ]
       }
     },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs plugin-utilities {args.ver} {args.tag}",
-      "dependsOn": [
-        "build"
-      ]
-    },
-    "lint": {
+    "check-version": {
+      "executor": "@rxap/plugin-library:check-version",
       "options": {
-        "lintFilePatterns": [
-          "packages/plugin/utilities/**/*.ts"
-        ]
-      }
-    },
-    "test": {
-      "options": {
-        "jestConfig": "packages/plugin/utilities/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
-    "update-dependencies": {
-      "executor": "@rxap/plugin-library:update-dependencies"
-    },
-    "update-package-group": {
-      "executor": "@rxap/plugin-library:update-package-group"
-    },
-    "readme": {
-      "executor": "@rxap/plugin-library:readme"
-    },
-    "typedoc": {
-      "executor": "@enio.ai/typedoc:typedoc",
-      "outputs": [
-        "docs/packages/plugin/utilities"
-      ],
-      "options": {
-        "options": "typedoc.json"
+        "packageName": "nx"
       }
     },
     "fix-dependencies": {
@@ -72,11 +36,47 @@
         }
       }
     },
-    "check-version": {
-      "executor": "@rxap/plugin-library:check-version",
+    "lint": {
       "options": {
-        "packageName": "nx"
+        "lintFilePatterns": [
+          "packages/plugin/utilities/**/*.ts"
+        ]
       }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs plugin-utilities {args.ver} {args.tag}",
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    },
+    "test": {
+      "options": {
+        "jestConfig": "packages/plugin/utilities/jest.config.ts"
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "typedoc": {
+      "executor": "@enio.ai/typedoc:typedoc",
+      "outputs": [
+        "docs/packages/plugin/utilities"
+      ],
+      "options": {
+        "options": "typedoc.json"
+      }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
     }
   },
   "tags": [

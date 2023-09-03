@@ -2,6 +2,20 @@
   "name": "packages",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "targets": {
+    "docker-gitlab-ci": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-docker:gitlab-ci",
+        "withoutProjectArgument": true
+      }
+    },
+    "init": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-library:init",
+        "withoutProjectArgument": true
+      }
+    },
     "local-registry": {
       "executor": "@nx/js:verdaccio",
       "options": {
@@ -12,20 +26,6 @@
     },
     "readme": {
       "executor": "workspace:readme"
-    },
-    "init": {
-      "executor": "@rxap/plugin-library:run-generator",
-      "options": {
-        "generator": "@rxap/plugin-library:init",
-        "withoutProjectArgument": true
-      }
-    },
-    "docker-gitlab-ci": {
-      "executor": "@rxap/plugin-library:run-generator",
-      "options": {
-        "generator": "@rxap/plugin-docker:gitlab-ci",
-        "withoutProjectArgument": true
-      }
     }
   }
 }

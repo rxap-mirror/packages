@@ -4,12 +4,6 @@
   "sourceRoot": "packages/plugin/library/src",
   "projectType": "library",
   "targets": {
-    "update-dependencies": {
-      "executor": "@rxap/plugin-library:update-dependencies"
-    },
-    "update-package-group": {
-      "executor": "@rxap/plugin-library:update-package-group"
-    },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": [
@@ -44,29 +38,17 @@
         ]
       }
     },
-    "lint": {
+    "check-version": {
+      "executor": "@rxap/plugin-library:check-version",
       "options": {
-        "lintFilePatterns": [
-          "packages/plugin/library/**/*.ts",
-          "packages/plugin/library/package.json",
-          "packages/plugin/library/executors.json",
-          "packages/plugin/library/generators.json"
-        ]
+        "packageName": "nx"
       }
     },
-    "test": {
+    "expose-as-schematic": {
+      "executor": "@rxap/plugin-library:run-generator",
       "options": {
-        "jestConfig": "packages/plugin/library/jest.config.ts"
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "generator": "@rxap/plugin-library:expose-as-schematic"
       }
-    },
-    "readme": {
-      "executor": "@rxap/plugin-library:readme"
     },
     "fix-dependencies": {
       "executor": "@rxap/plugin-library:run-generator",
@@ -80,17 +62,35 @@
         }
       }
     },
-    "check-version": {
-      "executor": "@rxap/plugin-library:check-version",
+    "lint": {
       "options": {
-        "packageName": "nx"
+        "lintFilePatterns": [
+          "packages/plugin/library/**/*.ts",
+          "packages/plugin/library/package.json",
+          "packages/plugin/library/executors.json",
+          "packages/plugin/library/generators.json"
+        ]
       }
     },
-    "expose-as-schematic": {
-      "executor": "@rxap/plugin-library:run-generator",
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    },
+    "test": {
       "options": {
-        "generator": "@rxap/plugin-library:expose-as-schematic"
+        "jestConfig": "packages/plugin/library/jest.config.ts"
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
     }
   },
   "tags": [

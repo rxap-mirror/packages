@@ -118,21 +118,29 @@
       },
       "defaultConfiguration": "production"
     },
-    "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+    "build-info": {},
+    "component-test": {
+      "executor": "@nx/cypress:cypress",
       "options": {
-        "proxyConfig": "shared/proxy.conf.json"
+        "cypressConfig": "demos/angular/cypress.config.ts",
+        "testingType": "component",
+        "skipServe": true,
+        "devServerTarget": "angular:build:development"
       },
       "configurations": {
-        "production": {
-          "browserTarget": "angular:build:production"
-        },
-        "development": {
-          "browserTarget": "angular:build:development"
+        "open": {
+          "watch": true
         }
-      },
-      "defaultConfiguration": "development"
+      }
     },
+    "config": {},
+    "docker": {
+      "options": {
+        "imageSuffix": "/user-interface/angular",
+        "dockerfile": "shared/angular.Dockerfile"
+      }
+    },
+    "docker-save": {},
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
@@ -149,6 +157,21 @@
         ]
       }
     },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "proxyConfig": "shared/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "angular:build:production"
+        },
+        "development": {
+          "browserTarget": "angular:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
     "test": {
       "options": {
         "jestConfig": "demos/angular/jest.config.ts"
@@ -159,29 +182,6 @@
           "codeCoverage": true
         }
       }
-    },
-    "component-test": {
-      "executor": "@nx/cypress:cypress",
-      "options": {
-        "cypressConfig": "demos/angular/cypress.config.ts",
-        "testingType": "component",
-        "skipServe": true,
-        "devServerTarget": "angular:build:development"
-      },
-      "configurations": {
-        "open": {
-          "watch": true
-        }
-      }
-    },
-    "config": {},
-    "build-info": {},
-    "docker": {
-      "options": {
-        "imageSuffix": "/user-interface/angular",
-        "dockerfile": "shared/angular.Dockerfile"
-      }
-    },
-    "docker-save": {}
+    }
   }
 }
