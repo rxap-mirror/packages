@@ -2,6 +2,7 @@ import {
   Inject,
   Injectable,
   InjectionToken,
+  isDevMode,
 } from '@angular/core';
 import { OpenApiHttpResponseError } from '@rxap/open-api';
 import { Method } from '@rxap/pattern';
@@ -102,6 +103,9 @@ export class StatusCheckService {
               },
             },
           });
+          if (isDevMode()) {
+            console.error(`Internal Server Error while requesting api status`, error);
+          }
           status = { status: 'internal-server-error' };
           break;
 
@@ -120,6 +124,9 @@ export class StatusCheckService {
               },
             },
           });
+          if (isDevMode()) {
+            console.error(`Bad gateway while requesting api status`, error);
+          }
           status = { status: 'bad-gateway' };
           break;
 
@@ -138,6 +145,9 @@ export class StatusCheckService {
               },
             },
           });
+          if (isDevMode()) {
+            console.error(`Gateway timeout while requesting api status`, error);
+          }
           status = { status: 'gateway-timeout' };
           break;
 
@@ -156,6 +166,9 @@ export class StatusCheckService {
               },
             },
           });
+          if (isDevMode()) {
+            console.error(`Method not found while requesting api status`, error);
+          }
           status = { status: 'method-not-found' };
           break;
 
@@ -174,6 +187,9 @@ export class StatusCheckService {
               },
             },
           });
+          if (isDevMode()) {
+            console.error(`Unauthorized while requesting api status`, error);
+          }
           status = { status: 'unauthorized' };
           break;
 
@@ -192,6 +208,9 @@ export class StatusCheckService {
               },
             },
           });
+          if (isDevMode()) {
+            console.error(`Rate limiting while requesting api status`, error);
+          }
           status = { status: 'rate-limiting' };
           break;
 
@@ -210,6 +229,9 @@ export class StatusCheckService {
               },
             },
           });
+          if (isDevMode()) {
+            console.error(`An unexpected HTTP Status code while requesting api status`, error);
+          }
           status = { status: 'unknown' };
           break;
 
@@ -228,6 +250,9 @@ export class StatusCheckService {
           },
         },
       });
+      if (isDevMode()) {
+        console.error(`API status request failed`, error);
+      }
     }
     return status;
   }

@@ -1,14 +1,15 @@
 import {
   Inject,
   Injectable,
+  isDevMode,
   Optional,
 } from '@angular/core';
-import { OperationObjectWithMetadata } from './open-api';
-import { RXAP_OPEN_API_CONFIG } from './tokens';
 import {
   OpenAPI,
   OpenAPIV3,
 } from 'openapi-types';
+import { OperationObjectWithMetadata } from './open-api';
+import { RXAP_OPEN_API_CONFIG } from './tokens';
 import { AssertOpenApiV3 } from './utilities';
 
 export type OperationMap = Map<string, OperationObjectWithMetadata>;
@@ -189,9 +190,9 @@ export class OpenApiConfigService {
       this._operations = OpenApiConfigService.LoadOperations(this._config);
     }
     if (!this._operations.has(operationId)) {
-      console.debug(
+      console.error(
         `The operation '${ operationId }' is not defined in the openapi-json`,
-        this.config,
+        isDevMode() ? this.config : undefined,
       );
       throw new Error(
         `The operation '${ operationId }' is not defined in the openapi-json`,
@@ -202,14 +203,19 @@ export class OpenApiConfigService {
 
   public getBaseUrl(serverIndex: number = this.defaultServerIndex, serverId?: string): string {
     let serverConfig: OpenAPIV3.ServerObject | undefined;
-    if (!serverId && this._config?.servers) {
-      serverConfig = this._config.servers[serverIndex];
+    const servers = this._config?.servers ?? [];
+    if (!serverId && servers) {
+      serverConfig = servers[serverIndex];
     }
     if (this.serverConfigMap.has(serverId)) {
       serverConfig = this.serverConfigMap.get(serverId)![serverIndex];
     }
     if (!serverConfig) {
-      throw new Error(`Could not determine the base url with the index: ${ serverIndex } and the serverId: ${ serverId }`);
+      console.error(
+        `Could not determine the base url with the index '${ serverIndex }' and the serverId '${ serverId }'`,
+        isDevMode() ? servers : undefined,
+      );
+      throw new Error(`Could not determine the base url with the index '${ serverIndex }' and the serverId '${ serverId }'`);
     }
     return serverConfig.url;
   }
