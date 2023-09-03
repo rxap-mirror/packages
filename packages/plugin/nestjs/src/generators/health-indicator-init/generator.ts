@@ -17,19 +17,21 @@ export async function healthIndicatorInitGenerator(
     project: options.project,
   }, (project, [ appModuleSourceFile, moduleSourceFile, controllerSourceFile ]) => {
     CoerceHealthModule(moduleSourceFile);
+    // import HealthModule into AppModule
     CoerceNestModuleImport(appModuleSourceFile, {
       moduleName: 'HealthModule',
       moduleSpecifier: './health/health.module',
     });
     CoerceHealthController(controllerSourceFile);
+    // import HealthController into HealthModule
     CoerceNestModuleController(moduleSourceFile, {
       name: 'HealthController',
       moduleSpecifier: './health.controller',
     });
   }, [
     '/app/app.module.ts',
-    '/app/health/health.module.ts',
-    '/app/health/health.controller.ts',
+    '/app/health/health.module.ts?',
+    '/app/health/health.controller.ts?',
   ]);
   await AddPackageJsonDependency(tree, '@nestjs/terminus', 'latest', { soft: true });
 }
