@@ -62,7 +62,10 @@ export class StatusIndicatorComponent implements OnInit, OnDestroy {
     this.services = Object.keys(this.config.get('api', {}));
     this.queryParams = toSignal(this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map(event => ({ url: event.url, service: this.services })),
+      map(event => ({
+        url: event.urlAfterRedirects,
+        service: this.services,
+      })),
     ));
     const status$ = this.statusCheckService.getStatus(this.services).pipe(
       map(status => status.status),
