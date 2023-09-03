@@ -23,6 +23,7 @@ import {
   TsMorphNestProjectTransform,
 } from '@rxap/workspace-ts-morph';
 import {
+  AddPackageJsonDependency,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   Strategy,
@@ -159,12 +160,17 @@ function updateProjectTargets(
     {
       glob: '*.json',
       input: 'config/',
-      output: '/',
+      output: '.',
     },
     {
       glob: '*',
       input: 'shared/assets/',
-      output: '/',
+      output: '.',
+    },
+    {
+      glob: 'mdi.svg',
+      input: './node_modules/@mdi/angular-material',
+      output: '.',
     },
   ]);
   // ensure the property polyfills are defined
@@ -441,6 +447,8 @@ export async function initApplicationGenerator(
   options.generateMain ??= false;
   options.overwrite ??= false;
   console.log('angular application init generator:', options);
+
+  await AddPackageJsonDependency(tree, '@mdi/angular-material', 'latest', { soft: true });
 
   // only add the shared folder if it does not exist
   if (!tree.exists('shared')) {

@@ -5695,6 +5695,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mdi/angular-material@npm:^7.2.96":
+  version: 7.2.96
+  resolution: "@mdi/angular-material@npm:7.2.96"
+  checksum: 6598846b744298c695c3f5088e99a45c9d8cd98eb713c228ffebb171738b5e0c0497dac3964a5195cfc25d24b8feaef6d6e548e5444ffcda79474ba9fd2ee21c
+  languageName: node
+  linkType: hard
+
 "@mole-inc/bin-wrapper@npm:^8.0.1":
   version: 8.0.1
   resolution: "@mole-inc/bin-wrapper@npm:8.0.1"
@@ -26079,6 +26086,7 @@ __metadata:
     "@cypress/webpack-dev-server": ^2.0.0
     "@enio.ai/typedoc": ^1.0.8
     "@faker-js/faker": ^8.0.2
+    "@mdi/angular-material": ^7.2.96
     "@nestjs/axios": ^3.0.0
     "@nestjs/common": 10.0.5
     "@nestjs/config": 3.0.0
