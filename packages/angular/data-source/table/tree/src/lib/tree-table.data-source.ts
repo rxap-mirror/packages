@@ -1,5 +1,13 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import {
+  Inject,
+  Injectable,
+  InjectionToken,
+  isDevMode,
+  OnDestroy,
+  Optional,
+} from '@angular/core';
+import {
   BaseDataSourceViewer,
   RXAP_DATA_SOURCE_METADATA,
 } from '@rxap/data-source';
@@ -14,22 +22,18 @@ import {
   SortLike,
   TableDataSourceMetadata,
 } from '@rxap/data-source/table';
-import { BaseRemoteMethod } from '@rxap/remote-method';
 import {
-  Inject,
-  Injectable,
-  InjectionToken,
-  isDevMode,
-  OnDestroy,
-  Optional,
-} from '@angular/core';
+  ExpandNodeFunction,
+  Node,
+} from '@rxap/data-structure-tree';
+import { Method } from '@rxap/pattern';
+import '@rxap/rxjs';
 import {
   equals,
   joinPath,
   WithChildren,
   WithIdentifier,
 } from '@rxap/utilities';
-import '@rxap/rxjs';
 import {
   BehaviorSubject,
   combineLatest,
@@ -48,15 +52,11 @@ import {
   tap,
 } from 'rxjs/operators';
 import { RowDataWithNode } from './row-data-with-node';
-import {
-  ExpandNodeFunction,
-  Node,
-} from '@rxap/data-structure-tree';
 
-export const RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD =
-  new InjectionToken('rxap/tree/data-source/root-remote-method');
-export const RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD =
-  new InjectionToken('rxap/tree/data-source/children-remote-method');
+export const RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD =
+  new InjectionToken('rxap/tree/data-source/root-method');
+export const RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD =
+  new InjectionToken('rxap/tree/data-source/children-method');
 
 @Injectable()
 export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
@@ -71,11 +71,11 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
   private _subscription?: Subscription;
 
   constructor(
-    @Inject(RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD)
-    public readonly rootRemoteMethod: BaseRemoteMethod<RowData | RowData[],
+    @Inject(RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD)
+    public readonly rootMethod: Method<RowData | RowData[],
       void>,
-    @Inject(RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD)
-    public readonly childrenRemoteMethod: BaseRemoteMethod<RowData[],
+    @Inject(RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD)
+    public readonly childrenMethod: Method<RowData[],
       Node<RowData>>,
     @Optional()
     @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR)
@@ -91,14 +91,14 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
       parameters: Observable<Parameters> | null = null,
     @Optional()
     @Inject(RXAP_DATA_SOURCE_METADATA)
-      metadata: TableDataSourceMetadata | null = rootRemoteMethod.metadata,
+      metadata: TableDataSourceMetadata | null = rootMethod.metadata,
   ) {
     super(
       paginator,
       sort,
       filter,
       parameters,
-      metadata ?? rootRemoteMethod.metadata ?? { id: 'tree-table-data-source' },
+      metadata ?? rootMethod.metadata ?? { id: 'tree-table-data-source' },
     );
     this.tree$
         .pipe(
@@ -165,11 +165,11 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
   }
 
   public async getChildren(node: Node<RowData>): Promise<RowData[]> {
-    return this.childrenRemoteMethod.call(node);
+    return this.childrenMethod.call(node);
   }
 
   public async getRoot(): Promise<RowData | RowData[]> {
-    return this.rootRemoteMethod.call();
+    return this.rootMethod.call();
   }
 
   public collapseNode(node: Node<RowData>): Promise<void> {

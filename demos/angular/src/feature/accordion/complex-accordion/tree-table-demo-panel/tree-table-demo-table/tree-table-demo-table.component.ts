@@ -1,20 +1,35 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit,
 } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { RouterModule } from '@angular/router';
+import { HasPermissionModule } from '@rxap/authorization';
+
+import { ConfirmModule } from '@rxap/components';
+import { DataSourceErrorComponent } from '@rxap/data-source';
 import {
-  Observable,
-  from,
-} from 'rxjs';
-import {
-  RowAnimation,
-  TableShowArchivedSlideComponent,
-  TreeControlCellComponent,
-  TABLE_DATA_SOURCE,
-} from '@rxap/material-table-system';
-import { GetFromObjectPipe } from '@rxap/pipes';
+  RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD,
+  RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD,
+  TreeTableDataSource,
+} from '@rxap/data-source/table/tree';
+import { RxapFormsModule } from '@rxap/forms';
+import { CardProgressBarDirective } from '@rxap/material-directives/card';
+import { InputClearButtonDirective } from '@rxap/material-form-system';
 import {
   BooleanCellComponent,
   CopyToClipboardCellComponent,
@@ -22,42 +37,21 @@ import {
   IconCellComponent,
   LinkCellComponent,
   PersistentPaginatorDirective,
+  RowAnimation,
+  TABLE_DATA_SOURCE,
   TableColumnMenuModule,
   TableCreateButtonDirective,
   TableDataSourceDirective,
   TableFilterModule,
   TableRowActionsModule,
   TableRowControlsModule,
+  TableShowArchivedSlideComponent,
+  TreeControlCellComponent,
 } from '@rxap/material-table-system';
-import { MatCardModule } from '@angular/material/card';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { CardProgressBarDirective } from '@rxap/material-directives/card';
-import { MatTableModule } from '@angular/material/table';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { RxapFormsModule } from '@rxap/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { MatDividerModule } from '@angular/material/divider';
-
-import { ConfirmModule } from '@rxap/components';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { InputClearButtonDirective } from '@rxap/material-form-system';
-import { HasPermissionModule } from '@rxap/authorization';
-import { CommonModule } from '@angular/common';
-import { DataSourceErrorComponent } from '@rxap/data-source';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {
-  TreeTableDataSource,
-  RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD,
-  RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD,
-} from '@rxap/data-source/table/tree';
-import { TreeTableDemoRootTableMethod } from './tree-table-demo-root-table.method';
+import { GetFromObjectPipe } from '@rxap/pipes';
+import { Observable } from 'rxjs';
 import { TreeTableDemoChildTableMethod } from './tree-table-demo-child-table.method';
+import { TreeTableDemoRootTableMethod } from './tree-table-demo-root-table.method';
 
 @Component({
   selector: 'rxap-tree-table-demo-table',
@@ -112,11 +106,11 @@ import { TreeTableDemoChildTableMethod } from './tree-table-demo-child-table.met
       useClass: TreeTableDataSource,
     },
     {
-      provide: RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD,
+      provide: RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD,
       useClass: TreeTableDemoRootTableMethod,
     },
     {
-      provide: RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD,
+      provide: RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD,
       useClass: TreeTableDemoChildTableMethod,
     },
   ],

@@ -205,13 +205,13 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
         AddComponentProvider(
           sourceFile,
           {
-            provide: 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD',
+            provide: 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD',
             useClass: 'TreeTableRootProxyMethod',
           },
           [
             {
               moduleSpecifier: '@rxap/data-source/table/tree',
-              namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD' ],
+              namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD' ],
             },
             {
               moduleSpecifier: './tree-table-root-proxy.method',
@@ -222,13 +222,13 @@ function nestjsBackendRule(normalizedOptions: NormalizedTreeTableComponentOption
         AddComponentProvider(
           sourceFile,
           {
-            provide: 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD',
+            provide: 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD',
             useClass: 'TreeTableChildrenProxyMethod',
           },
           [
             {
               moduleSpecifier: '@rxap/data-source/table/tree',
-              namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD' ],
+              namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD' ],
             },
             {
               moduleSpecifier: './tree-table-children-proxy.method',
@@ -268,13 +268,13 @@ function localBackendRule(normalizedOptions: NormalizedTreeTableComponentOptions
         AddComponentProvider(
           sourceFile,
           {
-            provide: 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD',
+            provide: 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD',
             useClass: `${ classify(name) }RootTableMethod`,
           },
           [
             {
               moduleSpecifier: '@rxap/data-source/table/tree',
-              namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD' ],
+              namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD' ],
             },
             {
               moduleSpecifier: `./${ name }-root-table.method`,
@@ -285,13 +285,13 @@ function localBackendRule(normalizedOptions: NormalizedTreeTableComponentOptions
         AddComponentProvider(
           sourceFile,
           {
-            provide: 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD',
+            provide: 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD',
             useClass: `${ classify(name) }ChildTableMethod`,
           },
           [
             {
               moduleSpecifier: '@rxap/data-source/table/tree',
-              namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD' ],
+              namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD' ],
             },
             {
               moduleSpecifier: `./${ name }-child-table.method`,
@@ -411,13 +411,13 @@ function treeTableMethodRule(normalizedOptions: NormalizedTreeTableComponentOpti
           AddComponentProvider(
             sourceFile,
             {
-              provide: 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD',
+              provide: 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD',
               useClass: tableRootMethod.className,
             },
             [
               {
                 moduleSpecifier: '@rxap/data-source/table/tree',
-                namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_REMOTE_METHOD' ],
+                namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD' ],
               },
               {
                 moduleSpecifier: tableRootMethod.importPath,
@@ -428,13 +428,13 @@ function treeTableMethodRule(normalizedOptions: NormalizedTreeTableComponentOpti
           AddComponentProvider(
             sourceFile,
             {
-              provide: 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD',
+              provide: 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD',
               useClass: tableChildMethod.className,
             },
             [
               {
                 moduleSpecifier: '@rxap/data-source/table/tree',
-                namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_REMOTE_METHOD' ],
+                namedImports: [ 'RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD' ],
               },
               {
                 moduleSpecifier: tableChildMethod.importPath,
