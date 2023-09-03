@@ -2,11 +2,11 @@
   "name": "@rxap/handlebars",
   "version": "16.0.0-dev.10",
   "peerDependencies": {
-    "@angular/core": "^16.1.4",
-    "handlebars": "^4.7.7"
+    "@angular/core": "^16.1.4"
   },
   "dependencies": {
-    "tslib": "2.6.2"
+    "tslib": "2.6.2",
+    "handlebars": "^4.7.7"
   },
   "sideEffects": false,
   "publishConfig": {
