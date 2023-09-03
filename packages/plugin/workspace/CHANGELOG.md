@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.7...@rxap/plugin-workspace@16.1.0-dev.8) (2023-09-03)
+
+### Bug Fixes
+
+- support docker options from nx.json file ([adb9c0e](https://gitlab.com/rxap/packages/commit/adb9c0e9a3cc082e35dffd10b39458ac29c32c44))
+
 # [16.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.6...@rxap/plugin-workspace@16.1.0-dev.7) (2023-09-01)
 
 ### Bug Fixes

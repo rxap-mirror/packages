@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.12...@rxap/plugin-nestjs@16.1.0-dev.13) (2023-09-03)
+
+### Bug Fixes
+
+- create health files if not exist ([ea81a96](https://gitlab.com/rxap/packages/commit/ea81a964686256ea0c7d1a52cb09d6481a47cc98))
+- remove support for open-api client sdk packages ([ace153f](https://gitlab.com/rxap/packages/commit/ace153f977690e7714c3c4110600e2a8916a0d52))
+- respect the overwrite flag ([3234759](https://gitlab.com/rxap/packages/commit/32347594f4e3f27eb639647d6db0ec61a8537d04))
+- use es module import style ([f844c22](https://gitlab.com/rxap/packages/commit/f844c22eac4a4e5ef288eb1039879faa207c9889))
+
 # [16.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.11...@rxap/plugin-nestjs@16.1.0-dev.12) (2023-09-02)
 
 ### Bug Fixes

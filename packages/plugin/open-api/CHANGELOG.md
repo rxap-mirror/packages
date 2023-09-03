@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@16.0.1-dev.1...@rxap/plugin-open-api@16.0.1-dev.2) (2023-09-03)
+
+### Bug Fixes
+
+- remove support for open-api client sdk packages ([ace153f](https://gitlab.com/rxap/packages/commit/ace153f977690e7714c3c4110600e2a8916a0d52))
+
 ## [16.0.1-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@16.0.1-dev.0...@rxap/plugin-open-api@16.0.1-dev.1) (2023-09-02)
 
 ### Bug Fixes

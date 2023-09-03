@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.18...@rxap/plugin-docker@16.0.0-dev.19) (2023-09-03)
+
+### Bug Fixes
+
+- support docker options from nx.json file ([adb9c0e](https://gitlab.com/rxap/packages/commit/adb9c0e9a3cc082e35dffd10b39458ac29c32c44))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.17...@rxap/plugin-docker@16.0.0-dev.18) (2023-09-02)
 
 ### Bug Fixes

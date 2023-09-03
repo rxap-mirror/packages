@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.13...@rxap/plugin-angular@16.1.0-dev.14) (2023-09-03)
+
+### Bug Fixes
+
+- adapt to new layout routing concept ([f068b7e](https://gitlab.com/rxap/packages/commit/f068b7ed9261c92082913e5ecd87084633b434a6))
+- add logo.png to application assets if not exists ([c0e7a73](https://gitlab.com/rxap/packages/commit/c0e7a73046bf1af007fa7d24da83d9917451bb35))
+- animation loading issue ([5e241ed](https://gitlab.com/rxap/packages/commit/5e241ed4b9e83575b881f06214255c6f1d2937ce))
+- ensure the localize init polyfill is added ([ee44428](https://gitlab.com/rxap/packages/commit/ee44428279261e6068979f8d6a669ad83cb545ff))
+- if the application is monolithic then open-api is required ([dc2227f](https://gitlab.com/rxap/packages/commit/dc2227f460df2bb27c4e58dd27f70d5ba7eccef1))
+- remove support for open-api client sdk packages ([ace153f](https://gitlab.com/rxap/packages/commit/ace153f977690e7714c3c4110600e2a8916a0d52))
+- split app and layout routes ([1e7c540](https://gitlab.com/rxap/packages/commit/1e7c54055ed8f7fc4fb4dc710097783cab761813))
+
+### Features
+
+- add the mdi asset ([4e973c2](https://gitlab.com/rxap/packages/commit/4e973c23866ca1771d428f0382085614da29a801))
+- init application styles ([5963c4d](https://gitlab.com/rxap/packages/commit/5963c4df5f41d023f234abcde444183972e2157f))
+
 # [16.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.12...@rxap/plugin-angular@16.1.0-dev.13) (2023-09-02)
 
 ### Features

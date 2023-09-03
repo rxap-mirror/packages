@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-docker",
-  "version": "16.0.0-dev.18",
+  "version": "16.0.0-dev.19",
   "type": "commonjs",
   "generators": "./generators.json",
   "executors": "./executors.json",
@@ -13,7 +13,8 @@
     "@rxap/generator-utilities": "^1.1.0-dev.7",
     "@rxap/node-utilities": "^1.1.0-dev.4",
     "@rxap/plugin-utilities": "^16.1.0-dev.9",
-    "@rxap/utilities": "^16.0.0-dev.13"
+    "@rxap/utilities": "^16.0.0-dev.13",
+    "@rxap/workspace-utilities": "^0.1.0-dev.8"
   },
   "publishConfig": {
     "access": "public",
@@ -60,6 +61,10 @@
       {
         "package": "@rxap/utilities",
         "version": "16.0.0-dev.13"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "0.1.0-dev.8"
       }
     ]
   },

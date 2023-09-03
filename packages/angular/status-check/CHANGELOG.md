@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.1.0-dev.0...@rxap/ngx-status-check@16.1.0-dev.1) (2023-09-03)
+
+### Bug Fixes
+
+- add debounceTime to prevent state flickering ([62b0df2](https://gitlab.com/rxap/packages/commit/62b0df2e78d5a7c0f62fc680395e61d0be4106cb))
+- add proper debug output ([1c4e2a2](https://gitlab.com/rxap/packages/commit/1c4e2a2fca02f01509a30d8727489d418bde2ed9))
+- remove CommonModule import ([351993d](https://gitlab.com/rxap/packages/commit/351993d4edc288a1492b9304f08a6faad8f96769))
+- remove status text ([2d784dc](https://gitlab.com/rxap/packages/commit/2d784dc82897762fa835706c71b948cdc223bd3a))
+- remove unnecessary null check ([e4e0e2d](https://gitlab.com/rxap/packages/commit/e4e0e2dfdf845b0e4e9eea83a84fbc0d6c0f166e))
+- use the urlAfterRedirects property ([7de0088](https://gitlab.com/rxap/packages/commit/7de0088b505c0484075cb91117d820de88bd018a))
+
 # [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.0.1-dev.0...@rxap/ngx-status-check@16.1.0-dev.0) (2023-09-01)
 
 ### Bug Fixes

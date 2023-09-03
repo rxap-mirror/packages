@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.7...@rxap/workspace-utilities@0.1.0-dev.8) (2023-09-03)
+
+### Features
+
+- add GetRootDockerOptions function ([994ca21](https://gitlab.com/rxap/packages/commit/994ca2163e8b2e072cda55d9c86e0ebd539868c3))
+
 # [0.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.6...@rxap/workspace-utilities@0.1.0-dev.7) (2023-09-02)
 
 ### Bug Fixes

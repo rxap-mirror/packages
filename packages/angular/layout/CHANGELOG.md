@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.16...@rxap/layout@16.0.0-dev.17) (2023-09-03)
+
+### Bug Fixes
+
+- use mdi icons ([abc10a1](https://gitlab.com/rxap/packages/commit/abc10a146c502bebda62568a9627ca2771142d2c))
+
+### Features
+
+- load icons on layout component creation ([0143fc3](https://gitlab.com/rxap/packages/commit/0143fc37d5eb9da95e87cd28edfcd1cb4734dc1a))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.15...@rxap/layout@16.0.0-dev.16) (2023-09-01)
 
 ### Features

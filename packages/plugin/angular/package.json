@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-angular",
-  "version": "16.1.0-dev.13",
+  "version": "16.1.0-dev.14",
   "type": "commonjs",
   "generators": "./generators.json",
   "publishConfig": {
@@ -39,9 +39,9 @@
     "@rxap/generator-utilities": "^1.1.0-dev.7",
     "@rxap/plugin-localazy": "^16.1.0-dev.6",
     "@rxap/plugin-utilities": "^16.1.0-dev.9",
-    "@rxap/ts-morph": "^0.1.0-dev.2",
+    "@rxap/ts-morph": "^0.1.0-dev.3",
     "@rxap/workspace-ts-morph": "^0.1.0-dev.3",
-    "@rxap/workspace-utilities": "^0.1.0-dev.7",
+    "@rxap/workspace-utilities": "^0.1.0-dev.8",
     "nx": "^16.5.0",
     "ts-morph": "^18.0.0"
   },
@@ -61,7 +61,7 @@
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "0.1.0-dev.2"
+        "version": "0.1.0-dev.3"
       },
       {
         "package": "@rxap/workspace-ts-morph",
@@ -69,7 +69,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.7"
+        "version": "0.1.0-dev.8"
       },
       {
         "package": "@rxap/schematics-ts-morph",

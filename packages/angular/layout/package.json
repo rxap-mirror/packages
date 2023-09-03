@@ -1,6 +1,6 @@
 {
   "name": "@rxap/layout",
-  "version": "16.0.0-dev.16",
+  "version": "16.0.0-dev.17",
   "peerDependencies": {
     "@angular/animations": "^16.1.4",
     "@angular/cdk": "^16.1.4",
@@ -16,8 +16,9 @@
     "@rxap/data-source": "^16.0.0-dev.11",
     "@rxap/directives": "^16.0.0-dev.10",
     "@rxap/environment": "^16.0.0-dev.9",
+    "@rxap/icon": "^16.0.0-dev.10",
     "@rxap/material-directives": "^16.0.0-dev.12",
-    "@rxap/ngx-status-check": "^16.1.0-dev.0",
+    "@rxap/ngx-status-check": "^16.1.0-dev.1",
     "@rxap/services": "^16.0.0-dev.9",
     "@rxap/utilities": "^16.0.0-dev.13",
     "rxjs": "^7.8.0"
@@ -80,12 +81,16 @@
         "version": "16.0.0-dev.9"
       },
       {
+        "package": "@rxap/icon",
+        "version": "16.0.0-dev.10"
+      },
+      {
         "package": "@rxap/material-directives",
         "version": "16.0.0-dev.12"
       },
       {
         "package": "@rxap/ngx-status-check",
-        "version": "16.1.0-dev.0"
+        "version": "16.1.0-dev.1"
       },
       {
         "package": "@rxap/services",

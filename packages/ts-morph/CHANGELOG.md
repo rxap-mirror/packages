@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.2...@rxap/ts-morph@0.1.0-dev.3) (2023-09-03)
+
+### Bug Fixes
+
+- add missing semicolon ([6d6dedc](https://gitlab.com/rxap/packages/commit/6d6dedcac6cfbc07ddd40a55635d46971b130a70))
+- ensure a basic health controller exists ([200f949](https://gitlab.com/rxap/packages/commit/200f94924856435b27b6f63760c3fdf9af7366e0))
+
 # [0.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.1...@rxap/ts-morph@0.1.0-dev.2) (2023-09-02)
 
 ### Features

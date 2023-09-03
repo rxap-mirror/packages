@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/icon@16.0.0-dev.9...@rxap/icon@16.0.0-dev.10) (2023-09-03)
+
+### Features
+
+- add the IconLoaderService ([22bef6e](https://gitlab.com/rxap/packages/commit/22bef6e21fdde2dac2b0838131aea1ea6a80615e))
+
 # [16.0.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/icon@16.0.0-dev.8...@rxap/icon@16.0.0-dev.9) (2023-08-31)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.0-dev.0...@rxap/nest-utilities@10.1.0-dev.1) (2023-09-03)
+
+### Features
+
+- add HealthCheckStatusSchema ([92bd8b0](https://gitlab.com/rxap/packages/commit/92bd8b0b0a1df31bf031b56efc6fa37d10fcc970))
+
 # [10.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.0.1-dev.4...@rxap/nest-utilities@10.1.0-dev.0) (2023-08-31)
 
 ### Bug Fixes
