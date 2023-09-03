@@ -3,7 +3,7 @@ import { ValidationPipe, HttpStatus } from '@nestjs/common';
 import { ValidationHttpException, validatorOptions, classTransformOptions } from '@rxap/nest-utilities';
 <% } -%>
 import { Monolithic } from '@rxap/nest-server';
-import * as cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';
 <% if (sentry) { -%>
 import { SentryLogger } from '@rxap/nest-sentry';
 <% } -%>
