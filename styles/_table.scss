@@ -1,0 +1,45 @@
+@use '@angular/material' as mat;
+
+@mixin table-theme($theme) {
+  $background: map-get($theme, background);
+  $accent: map-get($theme, accent);
+  $isDark: map-get($theme, is-dark);
+
+  .table-scroll-container {
+    // region scrollbar
+
+    &::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: mat.get-color-from-palette($accent, 100);
+
+      &:hover {
+        background: mat.get-color-from-palette($accent, 300);
+      }
+    }
+
+    // endregion
+  }
+
+  .dark {
+
+    .table-scroll-container {
+      &::-webkit-scrollbar-thumb {
+        background: mat.get-color-from-palette($accent, 900) !important;
+
+        &:hover {
+          background: mat.get-color-from-palette($accent, 700) !important;
+        }
+      }
+    }
+
+  }
+
+}

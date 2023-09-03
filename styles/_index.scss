@@ -1,0 +1,10 @@
+@use "./theme";
+
+html, body {
+  @apply h-full;
+}
+
+body {
+  @apply m-0;
+  @apply font-sans;
+}
