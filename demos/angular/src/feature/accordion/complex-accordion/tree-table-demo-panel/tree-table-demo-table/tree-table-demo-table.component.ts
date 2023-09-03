@@ -44,7 +44,6 @@ import {
   TableDataSourceDirective,
   TableFilterModule,
   TableRowActionsModule,
-  TableRowControlsModule,
   TableShowArchivedSlideComponent,
   TreeControlCellComponent,
 } from '@rxap/material-table-system';
@@ -75,7 +74,7 @@ import { TreeTableDemoRootTableMethod } from './tree-table-demo-root-table.metho
     RouterModule,
     MatDividerModule,
 
-    TableRowControlsModule,
+
     TableColumnMenuModule,
     DateCellComponent,
 

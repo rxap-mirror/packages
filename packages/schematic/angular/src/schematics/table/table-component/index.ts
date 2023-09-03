@@ -446,7 +446,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
               namedImports: [ 'TABLE_REMOTE_METHOD_ADAPTER_FACTORY' ],
             },
             {
-              moduleSpecifier: '@rxap/table-system',
+              moduleSpecifier: '@rxap/open-api/remote-method',
               namedImports: [ 'GetPageAdapterFactory' ],
             },
           ],

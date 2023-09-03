@@ -40,11 +40,10 @@ import {
   TableDataSourceDirective,
   TableFilterModule,
   TableRowActionsModule,
-  TableRowControlsModule,
   TableShowArchivedSlideComponent,
 } from '@rxap/material-table-system';
+import { GetPageAdapterFactory } from '@rxap/open-api/remote-method';
 import { GetFromObjectPipe } from '@rxap/pipes';
-import { GetPageAdapterFactory } from '@rxap/table-system';
 import { MinimumTableControllerGetPageRemoteMethod } from 'open-api-service-app-angular-table/remote-methods/minimum-table-controller-get-page.remote-method';
 import { Observable } from 'rxjs';
 
@@ -70,7 +69,7 @@ import { Observable } from 'rxjs';
     RouterModule,
     MatDividerModule,
 
-    TableRowControlsModule,
+
     TableColumnMenuModule,
     DateCellComponent,
 

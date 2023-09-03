@@ -40,7 +40,6 @@ import {
   TableFilterModule,
   TableHeaderButtonDirective,
   TableRowActionsModule,
-  TableRowControlsModule,
   TableShowArchivedSlideComponent,
 } from '@rxap/material-table-system';
 import { GetFromObjectPipe } from '@rxap/pipes';
@@ -71,7 +70,7 @@ import { OpenTableHeaderButtonFormWindowMethod } from './table-header-button-for
     RouterModule,
     MatDividerModule,
 
-    TableRowControlsModule,
+
     TableColumnMenuModule,
     DateCellComponent,
 

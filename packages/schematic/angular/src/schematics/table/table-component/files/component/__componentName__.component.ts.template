@@ -14,7 +14,6 @@ import {
   TableColumnMenuModule, TableHeaderButtonDirective,
   TableDataSourceDirective,
   TableFilterModule, TableRowActionsModule,
-  TableRowControlsModule,
 } from '@rxap/material-table-system';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -65,7 +64,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     <% if (hasNavigationBackHeader) { %>
     NavigateBackButtonComponent,
     <% } %>
-    TableRowControlsModule,
     TableColumnMenuModule,
     DateCellComponent,
 
