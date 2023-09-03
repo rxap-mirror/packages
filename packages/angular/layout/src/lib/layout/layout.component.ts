@@ -1,36 +1,37 @@
 import {
+  AsyncPipe,
+  NgIf,
+  NgOptimizedImage,
+} from '@angular/common';
+import {
   ChangeDetectionStrategy,
   Component,
   Inject,
   ViewChild,
 } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import {
   MatDrawerMode,
   MatSidenav,
   MatSidenavModule,
 } from '@angular/material/sidenav';
 import {
+  RouterLink,
+  RouterOutlet,
+} from '@angular/router';
+import {
   DetermineReleaseName,
   Environment,
   RXAP_ENVIRONMENT,
 } from '@rxap/environment';
-import { HeaderComponent } from '../header/header.component';
-import {
-  AsyncPipe,
-  NgIf,
-  NgOptimizedImage,
-} from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import {
-  RouterLink,
-  RouterOutlet,
-} from '@angular/router';
-import { MatMenuModule } from '@angular/material/menu';
+import { IconLoaderService } from '@rxap/icon';
 import { FooterComponent } from '../footer/footer.component';
-import { LayoutComponentService } from './layout.component.service';
+import { HeaderComponent } from '../header/header.component';
 import { NavigationComponent } from '../navigation/navigation.component';
+import { LayoutComponentService } from './layout.component.service';
 
 
 @Component({
@@ -65,7 +66,10 @@ export class LayoutComponent {
     public readonly layoutComponentService: LayoutComponentService,
     @Inject(RXAP_ENVIRONMENT)
     private readonly environment: Environment,
-  ) {}
+    iconLoaderService: IconLoaderService,
+  ) {
+    iconLoaderService.load();
+  }
 
   public get release() {
     return DetermineReleaseName(this.environment);
