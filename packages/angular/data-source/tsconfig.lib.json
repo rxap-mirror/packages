@@ -19,5 +19,18 @@
     "**/*.cy.tsx",
     "**/*.cy.jsx"
   ],
-  "include": ["src/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "accordion/**/*.ts",
+    "directive/**/*.ts",
+    "http/**/*.ts",
+    "http/pagination/**/*.ts",
+    "http/table/**/*.ts",
+    "pagination/directives/**/*.ts",
+    "pagination/**/*.ts",
+    "table/directives/**/*.ts",
+    "table/**/*.ts",
+    "table/tree/**/*.ts",
+    "testing/**/*.ts"
+  ]
 }

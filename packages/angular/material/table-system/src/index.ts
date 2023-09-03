@@ -2,19 +2,6 @@
 export * from './lib/table-select-controls/table-select-controls.component';
 // endregion
 
-// region table-row-controls row-controls-header-cell
-export * from './lib/table-row-controls/row-controls-header-cell/row-controls-header-cell.component';
-// endregion
-
-// region table-row-controls row-controls-cell
-export * from './lib/table-row-controls/row-controls-cell/row-controls-cell.component';
-// endregion
-
-// region table-row-controls
-export * from './lib/table-row-controls/table-row-controls.module';
-export * from './lib/table-row-controls/tokens';
-// endregion
-
 // region table-row-actions
 export * from './lib/table-row-actions/abstract-table-row-action';
 export * from './lib/table-row-actions/decorators';

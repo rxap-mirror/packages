@@ -16,6 +16,9 @@
     "jest.config.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "data-source/**/*.spec.ts",
+    "data-source/table/**/*.spec.ts",
+    "remote-method/**/*.spec.ts"
   ]
 }

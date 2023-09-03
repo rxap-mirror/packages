@@ -20,6 +20,7 @@
     "**/*.cy.jsx"
   ],
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "single-sign-on/**/*.ts"
   ]
 }

@@ -14,6 +14,10 @@
     "src/**/*.test.ts"
   ],
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "directive/**/*.ts",
+    "http/directive/**/*.ts",
+    "http/**/*.ts",
+    "testing/**/*.ts"
   ]
 }

@@ -16,6 +16,12 @@
     "jest.config.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "button/**/*.spec.ts",
+    "card/**/*.spec.ts",
+    "expansion/**/*.spec.ts",
+    "form-field/**/*.spec.ts",
+    "icon/**/*.spec.ts",
+    "tabs/**/*.spec.ts"
   ]
 }

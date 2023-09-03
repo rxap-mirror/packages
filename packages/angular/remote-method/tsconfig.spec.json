@@ -16,6 +16,10 @@
     "jest.config.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "directive/**/*.spec.ts",
+    "http/directive/**/*.spec.ts",
+    "http/**/*.spec.ts",
+    "testing/**/*.spec.ts"
   ]
 }

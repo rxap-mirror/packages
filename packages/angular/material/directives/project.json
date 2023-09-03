@@ -11,6 +11,7 @@
   ],
   "projectType": "library",
   "targets": {
+    "index-export": {},
     "build": {
       "executor": "@nx/angular:package",
       "outputs": [
@@ -64,7 +65,9 @@
           "packages/angular/material/directives/icon/**/*.ts",
           "packages/angular/material/directives/icon/**/*.html",
           "packages/angular/material/directives/tabs/**/*.ts",
-          "packages/angular/material/directives/tabs/**/*.html"
+          "packages/angular/material/directives/tabs/**/*.html",
+          "packages/angular/material/directives/button/**/*.ts",
+          "packages/angular/material/directives/button/**/*.html"
         ]
       }
     },

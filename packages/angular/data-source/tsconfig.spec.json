@@ -16,6 +16,17 @@
     "jest.config.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "accordion/**/*.spec.ts",
+    "directive/**/*.spec.ts",
+    "http/**/*.spec.ts",
+    "http/pagination/**/*.spec.ts",
+    "http/table/**/*.spec.ts",
+    "pagination/directives/**/*.spec.ts",
+    "pagination/**/*.spec.ts",
+    "table/directives/**/*.spec.ts",
+    "table/**/*.spec.ts",
+    "table/tree/**/*.spec.ts",
+    "testing/**/*.spec.ts"
   ]
 }

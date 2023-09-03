@@ -1,46 +1,44 @@
-export * from './lib/error';
-export * from './lib/control-data-source';
-export * from './lib/form-context-from-activated-route.factory';
-export * from './lib/submit-context-form-adapter.factory';
-export * from './lib/directives/options-from-remote-method.directive';
-
-// region mixin
-
-export * from './lib/mixins/extract-data-sources.mixin';
-export * from './lib/mixins/extract-control-from-parent.mixin';
-export * from './lib/mixins/extract-form-definition.mixin';
-export * from './lib/mixins/extract-options-data-source.mixin';
-export * from './lib/mixins/extract-control.mixin';
-
+// region validators
+export * from './lib/validators/is-equal-to';
+export * from './lib/validators/is-selectable-value.directive';
 // endregion
 
-// region components
+// region mixins
+export * from './lib/mixins/extract-control-from-parent.mixin';
+export * from './lib/mixins/extract-control.mixin';
+export * from './lib/mixins/extract-data-sources.mixin';
+export * from './lib/mixins/extract-form-definition.mixin';
+export * from './lib/mixins/extract-options-data-source.mixin';
+// endregion
 
-export * from './lib/form-system-control.directive';
+// region directives array
+export * from './lib/directives/array/for-form-array-items.directive';
+export * from './lib/directives/array/form-array-add-item-button.directive';
+export * from './lib/directives/array/form-array-item-button';
+export * from './lib/directives/array/form-array-item-remove-button.directive';
+export * from './lib/directives/array/form-array-item-restore-button.directive';
+export * from './lib/directives/array/form-array-removable.directive';
+// endregion
 
-
+// region directives
+export * from './lib/directives/control-hide-show.directive';
+export * from './lib/directives/form-directives.module';
+export * from './lib/directives/input-select-options.directive';
+export * from './lib/directives/options-from-remote-method.directive';
 // endregion
 
 // region decorators
-
 export * from './lib/decorators/metadata-keys';
 export * from './lib/decorators/use-component';
 export * from './lib/decorators/use-data-source';
 export * from './lib/decorators/use-form-component';
-
 // endregion
 
-// region directives
-
-export * from './lib/directives/control-hide-show.directive';
-export * from './lib/directives/form-directives.module';
-export * from './lib/directives/input-select-options.directive';
-
-// endregion
-
-// region validators
-
-export * from './lib/validators/is-equal-to';
-export * from './lib/validators/is-selectable-value.directive';
-
+// region 
+export * from './lib/control-data-source';
+export * from './lib/control-with-data-source';
+export * from './lib/error';
+export * from './lib/form-context-from-activated-route.factory';
+export * from './lib/form-system-control.directive';
+export * from './lib/submit-context-form-adapter.factory';
 // endregion

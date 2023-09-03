@@ -14,6 +14,12 @@
     "src/**/*.test.ts"
   ],
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "button/**/*.ts",
+    "card/**/*.ts",
+    "expansion/**/*.ts",
+    "form-field/**/*.ts",
+    "icon/**/*.ts",
+    "tabs/**/*.ts"
   ]
 }

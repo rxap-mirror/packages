@@ -14,6 +14,9 @@
     "src/**/*.test.ts"
   ],
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "data-source/**/*.ts",
+    "data-source/table/**/*.ts",
+    "remote-method/**/*.ts"
   ]
 }
