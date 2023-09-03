@@ -7,6 +7,10 @@ import {
   GetProjectSourceRoot,
 } from '@rxap/generator-utilities';
 import { IsRecord } from '@rxap/utilities';
+import {
+  GetRootDockerOptions,
+  RootDockerOptions,
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { stringify } from 'yaml';
 import { DockerComposeGeneratorSchema } from './schema';
@@ -59,12 +63,9 @@ function getServiceApiPrefix(name: string, host: Tree) {
   return globalApiPrefix ?? '/api/' + name;
 }
 
-function buildImageName(docker: Record<string, string>): string {
-  const imageRegistry = `\${REGISTRY:-${ docker.imageRegistry }}`;
-  if (!docker.imageName) {
-    throw new Error('The docker image name is required!');
-  }
-  const imageName = `${ docker.imageName }${ docker.imageSuffix ?? '' }`;
+function buildImageName(docker: Record<string, string>, rootDocker: RootDockerOptions): string {
+  const imageRegistry = `\${REGISTRY:-${ docker.imageRegistry ?? rootDocker.imageRegistry }}`;
+  const imageName = `${ docker.imageName ?? rootDocker.imageName }${ docker.imageSuffix ?? '' }`;
   const imageTag = `\${CHANNEL:-development}`;
 
   return `${ imageRegistry }/${ imageName }:${ imageTag }`;
@@ -72,7 +73,7 @@ function buildImageName(docker: Record<string, string>): string {
 
 function createServiceDockerCompose(
   services: Array<{ name: string; docker: Record<string, string> }>,
-  host: Tree,
+  rootDocker: RootDockerOptions,
 ): string {
   return stringify({
     version: '3.8',
@@ -84,7 +85,7 @@ function createServiceDockerCompose(
       },
     ) => {
       services[name] = {
-        image: buildImageName(docker),
+        image: buildImageName(docker, rootDocker),
         labels: [
           'traefik.enable=true',
           // `traefik.http.services.${ name }.loadbalancer.server.port=3333`,
@@ -113,6 +114,7 @@ function createServiceDockerCompose(
 
 function createFrontendDockerCompose(
   services: Array<{ name: string; docker: Record<string, string> }>,
+  rootDocker: RootDockerOptions,
 ): string {
   return stringify({
     version: '3.8',
@@ -124,7 +126,7 @@ function createFrontendDockerCompose(
       },
     ) => {
       services[name] = {
-        image: buildImageName(docker),
+        image: buildImageName(docker, rootDocker),
         labels: [
           'traefik.enable=true',
           // `traefik.http.routers.${ name }.entrypoints=https`,
@@ -245,8 +247,9 @@ export async function dockerComposeGenerator(
   const serviceApplications = getServiceApplications(applications, options);
   const frontendApplications = getFrontendApplications(applications, options);
 
-  const serviceDockerCompose = createServiceDockerCompose(serviceApplications, tree);
-  const frontendDockerCompose = createFrontendDockerCompose(frontendApplications);
+  const rootDocker = GetRootDockerOptions(tree);
+  const serviceDockerCompose = createServiceDockerCompose(serviceApplications, rootDocker);
+  const frontendDockerCompose = createFrontendDockerCompose(frontendApplications, rootDocker);
   const traefikConfig = createDevServiceTraefikConfig(serviceApplications, tree);
 
   CoerceFile(tree, 'docker-compose.services.yml', serviceDockerCompose, true);

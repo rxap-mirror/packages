@@ -6,6 +6,7 @@ import {
 } from '@nx/devkit';
 import { GetTargetOptions } from '@rxap/plugin-utilities';
 import { clone } from '@rxap/utilities';
+import { GetRootDockerOptions } from '@rxap/workspace-utilities';
 import * as path from 'path';
 import { stringify } from 'yaml';
 import { GitlabCiGeneratorSchema } from './schema';
@@ -64,7 +65,7 @@ export async function gitlabCiGenerator(
     generateFiles(tree, path.join(__dirname, 'files'), 'tools/scripts', options);
   }
 
-  const rootPackageJson = JSON.parse(tree.read('package.json')!.toString('utf-8'));
+  const rootDocker = GetRootDockerOptions(tree);
 
   const dockerYaml: any = {
     '.docker': dotDocker,
@@ -81,7 +82,7 @@ export async function gitlabCiGenerator(
     const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
     const buildTargetOptions = GetTargetOptions(project.targets['build'], 'production');
 
-    const imageName = dockerTargetOptions.imageName ?? rootPackageJson.name;
+    const imageName = dockerTargetOptions.imageName ?? rootDocker.imageName;
     const imageSuffix = dockerTargetOptions.imageSuffix;
     const dockerfile = dockerTargetOptions.dockerfile;
     const outputPath = buildTargetOptions.outputPath;
