@@ -34,7 +34,7 @@
     </div>
 
     <div *ngIf="statusIsUnavailable()">
-      <p class="text-center" i18n>Failed to retrieve status for selected services: <b>{{ status()?.status }}</b></p>
+      <p class="text-center" i18n>Failed to retrieve status for selected services: <b>{{ status().status }}</b></p>
     </div>
 
     <div *ngIf="statusIsFatal()">
