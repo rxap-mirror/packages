@@ -9,6 +9,11 @@
       "factory": "./src/generators/init/generator",
       "schema": "./src/generators/init/schema.json",
       "description": "init generator"
+    },
+    "project-target": {
+      "factory": "./src/generators/project-target/generator",
+      "schema": "./src/generators/project-target/schema.json",
+      "description": "project-target generator"
     }
   },
   "schematics": {
@@ -21,6 +26,11 @@
       "factory": "./src/generators/init/index",
       "schema": "./src/generators/init/schema.json",
       "description": "init generator"
+    },
+    "project-target": {
+      "factory": "./src/generators/project-target/index",
+      "schema": "./src/generators/project-target/schema.json",
+      "description": "project-target generator"
     }
   }
 }
