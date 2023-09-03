@@ -60,7 +60,22 @@
             "output": "/"
           },
           "demos/angular/src/manifest.webmanifest",
-          "demos/angular/src/build.json"
+          "demos/angular/src/build.json",
+          {
+            "glob": "*.json",
+            "input": "config/",
+            "output": "."
+          },
+          {
+            "glob": "*",
+            "input": "shared/assets/",
+            "output": "."
+          },
+          {
+            "glob": "mdi.svg",
+            "input": "./node_modules/@mdi/angular-material",
+            "output": "."
+          }
         ],
         "styles": [
           "demos/angular/src/styles.scss"
