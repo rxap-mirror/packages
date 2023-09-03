@@ -1,6 +1,6 @@
 {
   "name": "@rxap/table-system",
-  "version": "16.0.0-dev.10",
+  "version": "16.0.0-dev.11",
   "peerDependencies": {
     "@angular/animations": "^16.1.4",
     "@angular/cdk": "^16.1.4",
@@ -8,11 +8,9 @@
     "@angular/core": "^16.1.4",
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.11",
-    "@rxap/material-table-system": "^16.0.0-dev.17",
-    "@rxap/open-api": "^16.0.0-dev.12",
-    "@rxap/remote-method": "^16.0.0-dev.10",
-    "@rxap/utilities": "^16.0.0-dev.13",
+    "@rxap/data-source": "^16.0.0-dev.12",
+    "@rxap/material-table-system": "^16.0.0-dev.18",
+    "@rxap/utilities": "^16.0.0-dev.14",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -50,11 +48,15 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.11"
+        "version": "16.0.0-dev.12"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/open-api",
@@ -63,10 +65,6 @@
       {
         "package": "@rxap/remote-method",
         "version": "16.0.0-dev.10"
-      },
-      {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.13"
       }
     ]
   }

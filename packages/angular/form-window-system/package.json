@@ -1,17 +1,17 @@
 {
   "name": "@rxap/form-window-system",
-  "version": "16.0.0-dev.10",
+  "version": "16.0.0-dev.11",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/core": "^16.1.4",
-    "@rxap/directives": "^16.0.0-dev.10",
-    "@rxap/form-system": "^16.0.0-dev.12",
-    "@rxap/forms": "^16.0.0-dev.11",
-    "@rxap/pattern": "^1.0.1-dev.5",
-    "@rxap/reflect-metadata": "^1.0.1-dev.5",
-    "@rxap/rxjs": "^1.0.1-dev.5",
-    "@rxap/utilities": "^16.0.0-dev.13",
-    "@rxap/window-system": "^16.0.0-dev.12",
+    "@rxap/directives": "^16.0.0-dev.11",
+    "@rxap/form-system": "^16.0.0-dev.13",
+    "@rxap/forms": "^16.0.0-dev.12",
+    "@rxap/pattern": "^1.0.1-dev.7",
+    "@rxap/reflect-metadata": "^1.0.1-dev.6",
+    "@rxap/rxjs": "^1.0.1-dev.6",
+    "@rxap/utilities": "^16.0.0-dev.14",
+    "@rxap/window-system": "^16.0.0-dev.13",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -50,35 +50,35 @@
     "packageGroup": [
       {
         "package": "@rxap/directives",
-        "version": "16.0.0-dev.10"
-      },
-      {
-        "package": "@rxap/form-system",
-        "version": "16.0.0-dev.12"
-      },
-      {
-        "package": "@rxap/forms",
         "version": "16.0.0-dev.11"
       },
       {
-        "package": "@rxap/pattern",
-        "version": "1.0.1-dev.5"
-      },
-      {
-        "package": "@rxap/reflect-metadata",
-        "version": "1.0.1-dev.5"
-      },
-      {
-        "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.5"
-      },
-      {
-        "package": "@rxap/utilities",
+        "package": "@rxap/form-system",
         "version": "16.0.0-dev.13"
       },
       {
-        "package": "@rxap/window-system",
+        "package": "@rxap/forms",
         "version": "16.0.0-dev.12"
+      },
+      {
+        "package": "@rxap/pattern",
+        "version": "1.0.1-dev.7"
+      },
+      {
+        "package": "@rxap/reflect-metadata",
+        "version": "1.0.1-dev.6"
+      },
+      {
+        "package": "@rxap/rxjs",
+        "version": "1.0.1-dev.6"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.14"
+      },
+      {
+        "package": "@rxap/window-system",
+        "version": "16.0.0-dev.13"
       }
     ]
   }

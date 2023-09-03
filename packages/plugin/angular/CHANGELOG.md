@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.14...@rxap/plugin-angular@16.1.0-dev.15) (2023-09-03)
+
+### Bug Fixes
+
+- add newline after file content ([0d05f70](https://gitlab.com/rxap/packages/commit/0d05f70f8f41208ec25bb0dba570d0f6cb763ac6))
+
+### Features
+
+- enforce that every sec entrypoint is include in the tsconfig ([f1e84da](https://gitlab.com/rxap/packages/commit/f1e84da6ceecea92fdca19b69d8a308e1d07dfd7))
+
 # [16.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.13...@rxap/plugin-angular@16.1.0-dev.14) (2023-09-03)
 
 ### Bug Fixes

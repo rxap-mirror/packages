@@ -1,13 +1,13 @@
 {
   "name": "@rxap/services",
-  "version": "16.0.0-dev.9",
+  "version": "16.0.0-dev.10",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/rxjs": "^1.0.1-dev.5",
-    "@rxap/utilities": "^16.0.0-dev.13",
+    "@rxap/rxjs": "^1.0.1-dev.6",
+    "@rxap/utilities": "^16.0.0-dev.14",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -46,11 +46,11 @@
     "packageGroup": [
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.5"
+        "version": "1.0.1-dev.6"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
       }
     ]
   }

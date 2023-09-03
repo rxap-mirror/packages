@@ -1,6 +1,6 @@
 {
   "name": "@rxap/ngx-status-check",
-  "version": "16.1.0-dev.1",
+  "version": "16.1.0-dev.2",
   "dependencies": {
     "tslib": "^2.3.0"
   },
@@ -35,9 +35,9 @@
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/config": "^16.0.0-dev.10",
-    "@rxap/open-api": "^16.0.0-dev.13",
-    "@rxap/pattern": "^1.0.1-dev.6",
+    "@rxap/config": "^16.0.0-dev.11",
+    "@rxap/open-api": "^16.0.0-dev.14",
+    "@rxap/pattern": "^1.0.1-dev.7",
     "@sentry/angular-ivy": "^7.60.1",
     "rxjs": "^7.8.0"
   },
@@ -45,15 +45,15 @@
     "packageGroup": [
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.10"
+        "version": "16.0.0-dev.11"
       },
       {
         "package": "@rxap/open-api",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.0.1-dev.6"
+        "version": "1.0.1-dev.7"
       },
       {
         "package": "@rxap/rxjs",

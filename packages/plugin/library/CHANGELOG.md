@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.20...@rxap/plugin-library@16.0.0-dev.21) (2023-09-03)
+
+### Features
+
+- support string interpolation ([dfcdc79](https://gitlab.com/rxap/packages/commit/dfcdc798f8856dae07b2b7704c60dd145d44a65a))
+
 # [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.19...@rxap/plugin-library@16.0.0-dev.20) (2023-09-02)
 
 ### Bug Fixes

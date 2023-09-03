@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-gpt",
-  "version": "16.0.1-dev.5",
+  "version": "16.0.1-dev.6",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -37,8 +37,8 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-ts-morph": "^1.0.1-dev.6",
-    "@rxap/generator-utilities": "^1.1.0-dev.7",
+    "@rxap/generator-ts-morph": "^1.0.1-dev.7",
+    "@rxap/generator-utilities": "^1.1.0-dev.8",
     "gpt-3-encoder": "^1.1.4",
     "openai": "^3.3.0",
     "ts-morph": "^18.0.0"
@@ -47,11 +47,11 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.1-dev.5"
+        "version": "1.0.1-dev.7"
       },
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.6"
+        "version": "1.1.0-dev.8"
       }
     ]
   },

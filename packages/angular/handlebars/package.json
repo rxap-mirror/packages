@@ -1,6 +1,6 @@
 {
   "name": "@rxap/handlebars",
-  "version": "16.0.0-dev.9",
+  "version": "16.0.0-dev.10",
   "peerDependencies": {
     "@angular/core": "^16.1.4"
   },

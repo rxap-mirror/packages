@@ -1,6 +1,6 @@
 {
   "name": "@rxap/ts-morph",
-  "version": "0.1.0-dev.3",
+  "version": "0.1.0-dev.4",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -30,7 +30,7 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
       }
     ]
   },
@@ -38,7 +38,7 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/utilities": "^16.0.0-dev.13",
+    "@rxap/utilities": "^16.0.0-dev.14",
     "ts-morph": "^18.0.0"
   }
 }

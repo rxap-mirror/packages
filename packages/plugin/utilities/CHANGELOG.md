@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.9...@rxap/plugin-utilities@16.1.0-dev.10) (2023-09-03)
+
+**Note:** Version bump only for package @rxap/plugin-utilities
+
 # [16.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.8...@rxap/plugin-utilities@16.1.0-dev.9) (2023-08-31)
 
 ### Bug Fixes

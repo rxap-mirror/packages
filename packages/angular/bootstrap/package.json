@@ -1,12 +1,12 @@
 {
   "name": "@rxap/ngx-bootstrap",
-  "version": "16.1.0-dev.0",
+  "version": "16.1.0-dev.1",
   "peerDependencies": {
     "@angular/core": "^16.1.4",
     "@angular/platform-browser": "^16.1.4",
     "@angular/platform-browser-dynamic": "^16.1.4",
-    "@rxap/config": "^16.0.0-dev.10",
-    "@rxap/environment": "^16.0.0-dev.9",
+    "@rxap/config": "^16.0.0-dev.11",
+    "@rxap/environment": "^16.0.0-dev.10",
     "ngx-logger": "^5.0.12"
   },
   "dependencies": {
@@ -44,11 +44,11 @@
     "packageGroup": [
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.10"
+        "version": "16.0.0-dev.11"
       },
       {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.9"
+        "version": "16.0.0-dev.10"
       }
     ]
   }
