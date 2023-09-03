@@ -167,6 +167,13 @@ function updateProjectTargets(
       output: '/',
     },
   ]);
+  // ensure the property polyfills are defined
+  project.targets['build'].options.polyfills ??= [];
+  if (Array.isArray(project.targets['build'].options.polyfills)) {
+    // ensure the property is an array
+    project.targets['build'].options.polyfills = [];
+  }
+  CoerceAssets(project.targets['build'].options.polyfills, [ 'zone.js', '@angular/localize/init' ]);
   if (options.serviceWorker) {
     CoerceAssets(project.targets['build'].options.assets, [
       join(project.sourceRoot, 'manifest.webmanifest'),
