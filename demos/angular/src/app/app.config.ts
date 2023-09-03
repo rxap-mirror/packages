@@ -12,7 +12,6 @@ import { RXAP_ENVIRONMENT } from '@rxap/environment';
 import { SERVICE_STATUS_CHECK_METHOD } from '@rxap/ngx-status-check';
 import { StatusControllerHealthCheckRemoteMethod } from 'open-api-service-status/remote-methods/status-controller-health-check.remote-method';
 import { environment } from '../environments/environment';
-import { APP_NAVIGATION_PROVIDER } from './app.navigation';
 import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -20,7 +19,6 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(HttpClientModule),
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     provideAnimations(),
-    APP_NAVIGATION_PROVIDER,
     {
       provide: RXAP_ENVIRONMENT,
       useValue: environment,
