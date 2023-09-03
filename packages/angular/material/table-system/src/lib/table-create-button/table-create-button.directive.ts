@@ -33,7 +33,7 @@ export class TableCreateButtonDirective<Data extends Record<string, any>>
 
   constructor(
     @Inject(TABLE_CREATE_REMOTE_METHOD)
-    private readonly remoteMethod: Method<any, Data | Observable<Data>>,
+    private readonly method: Method<any, Data | Observable<Data>>,
     @Inject(ElementRef)
     private readonly elementRef: ElementRef,
     @Inject(Renderer2)
@@ -57,7 +57,7 @@ export class TableCreateButtonDirective<Data extends Record<string, any>>
 
   @HostListener('click')
   public async onClick() {
-    const result = this._createObservable = await this.remoteMethod.call();
+    const result = this._createObservable = await this.method.call();
     if (isObservable(result)) {
       await result.toPromise();
     }
