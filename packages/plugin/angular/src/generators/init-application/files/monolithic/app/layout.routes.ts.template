@@ -19,7 +19,6 @@ const ROUTES: Route[] = [
       },
     ],
     providers: [
-      provideAnimations(),
       APP_NAVIGATION_PROVIDER,
       NavigationService,
     ]
