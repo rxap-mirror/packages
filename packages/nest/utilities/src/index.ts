@@ -21,6 +21,7 @@ export * from './lib/filter-query.dto';
 export * from './lib/filter-query.pipe';
 export * from './lib/get-log-levels';
 export * from './lib/has-index-signature';
+export * from './lib/health-check-status-schema';
 export * from './lib/http-exception-filter';
 export * from './lib/is-dev-mode';
 export * from './lib/is-internal';
