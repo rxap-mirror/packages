@@ -120,6 +120,36 @@ To add a schematic to the library run the command:
 yarn nx g @rxap/plugin-library:schematic --project=schematic-angular --name=<schematic-name>
 ```
 
+# Nest Application
+
+To create a new nest application run the command:
+
+```shell
+yarn nx g @nx/nest:application --name <application-name>
+```
+
+```shell
+PROJECT=<directory>-<application-name>
+```
+
+To initialize the application run the command:
+
+```shell
+yarn nx g @rxap/plugin-application:init --project $PROJECT
+```
+
+To initialize the **monolithic** nest app run the command:
+
+```shell
+yarn nx g @rxap/plugin-nestjs:init-application --overwrite --project $PROJECT
+```
+
+To test if the application is working run the command:
+
+```shell
+yarn nx run $PROJECT:docker
+```
+
 # Angular Application
 
 To create a new angular application run the command:
