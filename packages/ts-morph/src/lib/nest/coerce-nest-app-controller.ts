@@ -46,7 +46,7 @@ export function CoerceNestAppController(sourceFile: SourceFile, options: CoerceN
   CoerceNestOperation(sourceFile, {
     operationName: 'environment',
     returnType: 'Environment',
-    statements: [ 'return environment' ],
+    statements: [ 'return environment;' ],
     path: 'info',
   });
 
