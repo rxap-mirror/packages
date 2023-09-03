@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-nestjs",
-  "version": "16.1.0-dev.14",
+  "version": "16.1.0-dev.15",
   "type": "commonjs",
   "generators": "./generators.json",
   "publishConfig": {
@@ -36,40 +36,40 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.1.0-dev.8",
-    "@rxap/plugin-utilities": "^16.1.0-dev.10",
-    "@rxap/ts-morph": "^0.1.0-dev.4",
-    "@rxap/utilities": "^16.0.0-dev.14",
-    "@rxap/workspace-ts-morph": "^0.1.0-dev.4",
-    "@rxap/workspace-utilities": "^0.1.0-dev.9",
     "@nx/js": "^16.5.0",
+    "@rxap/generator-utilities": "^1.1.0-dev.9",
+    "@rxap/plugin-utilities": "^16.1.0-dev.11",
+    "@rxap/ts-morph": "^0.1.0-dev.5",
+    "@rxap/utilities": "^16.0.0-dev.15",
+    "@rxap/workspace-ts-morph": "^0.1.0-dev.5",
+    "@rxap/workspace-utilities": "^0.1.0-dev.10",
     "ts-morph": "^18.0.0"
   },
   "nx-migrations": {
     "packageGroup": [
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.8"
+        "version": "1.1.0-dev.9"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.1.0-dev.10"
+        "version": "16.1.0-dev.11"
       },
       {
         "package": "@rxap/ts-morph",
-        "version": "0.1.0-dev.4"
+        "version": "0.1.0-dev.5"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "0.1.0-dev.4"
+        "version": "0.1.0-dev.5"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.9"
+        "version": "0.1.0-dev.10"
       }
     ]
   },

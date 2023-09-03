@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@0.0.2-dev.5...@rxap/schematic-composer@0.0.2-dev.6) (2023-09-03)
+
+**Note:** Version bump only for package @rxap/schematic-composer
+
 ## [0.0.2-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@0.0.2-dev.4...@rxap/schematic-composer@0.0.2-dev.5) (2023-09-03)
 
 **Note:** Version bump only for package @rxap/schematic-composer

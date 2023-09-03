@@ -1,20 +1,20 @@
 {
   "name": "@rxap/plugin-docker",
-  "version": "16.0.0-dev.20",
+  "version": "16.0.0-dev.21",
   "type": "commonjs",
   "generators": "./generators.json",
   "executors": "./executors.json",
   "dependencies": {
-    "yaml": "2.3.1",
-    "tslib": "2.6.2"
+    "tslib": "2.6.2",
+    "yaml": "2.3.1"
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/node-utilities": "^1.1.0-dev.5",
-    "@rxap/plugin-utilities": "^16.1.0-dev.10",
-    "@rxap/generator-utilities": "^1.1.0-dev.8",
-    "@rxap/utilities": "^16.0.0-dev.14",
-    "@rxap/workspace-utilities": "^0.1.0-dev.9"
+    "@rxap/generator-utilities": "^1.1.0-dev.9",
+    "@rxap/node-utilities": "^1.1.0-dev.6",
+    "@rxap/plugin-utilities": "^16.1.0-dev.11",
+    "@rxap/utilities": "^16.0.0-dev.15",
+    "@rxap/workspace-utilities": "^0.1.0-dev.10"
   },
   "publishConfig": {
     "access": "public",
@@ -47,24 +47,24 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@rxap/generator-utilities",
+        "version": "1.1.0-dev.9"
+      },
+      {
         "package": "@rxap/node-utilities",
-        "version": "1.1.0-dev.5"
+        "version": "1.1.0-dev.6"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.1.0-dev.10"
-      },
-      {
-        "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.8"
+        "version": "16.1.0-dev.11"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.9"
+        "version": "0.1.0-dev.10"
       }
     ]
   },

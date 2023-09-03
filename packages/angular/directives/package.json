@@ -1,12 +1,12 @@
 {
   "name": "@rxap/directives",
-  "version": "16.0.0-dev.11",
+  "version": "16.0.0-dev.12",
   "peerDependencies": {
     "@angular/core": "^16.1.4",
-    "@rxap/services": "^16.0.0-dev.10",
-    "@rxap/utilities": "^16.0.0-dev.14",
-    "@rxap/pattern": "^1.0.1-dev.7",
-    "@rxap/rxjs": "^1.0.1-dev.6",
+    "@rxap/pattern": "^1.0.1-dev.8",
+    "@rxap/rxjs": "^1.0.1-dev.7",
+    "@rxap/services": "^16.0.0-dev.11",
+    "@rxap/utilities": "^16.0.0-dev.15",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -44,20 +44,20 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/services",
-        "version": "16.0.0-dev.10"
-      },
-      {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.14"
-      },
-      {
         "package": "@rxap/pattern",
-        "version": "1.0.1-dev.7"
+        "version": "1.0.1-dev.8"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.6"
+        "version": "1.0.1-dev.7"
+      },
+      {
+        "package": "@rxap/services",
+        "version": "16.0.0-dev.11"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.15"
       }
     ]
   }

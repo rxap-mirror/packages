@@ -1,6 +1,6 @@
 {
   "name": "@rxap/plugin-workspace",
-  "version": "16.1.0-dev.9",
+  "version": "16.1.0-dev.10",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -37,33 +37,33 @@
   "generators": "./generators.json",
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.1.0-dev.8",
-    "@rxap/utilities": "^16.0.0-dev.14",
-    "@rxap/workspace-utilities": "^0.1.0-dev.9",
-    "@rxap/plugin-application": "^16.1.0-dev.11",
-    "@rxap/plugin-library": "^16.0.0-dev.21"
+    "@rxap/generator-utilities": "^1.1.0-dev.9",
+    "@rxap/plugin-application": "^16.1.0-dev.12",
+    "@rxap/plugin-library": "^16.0.0-dev.22",
+    "@rxap/utilities": "^16.0.0-dev.15",
+    "@rxap/workspace-utilities": "^0.1.0-dev.10"
   },
   "nx-migrations": {
     "packageGroup": [
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.8"
-      },
-      {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.14"
-      },
-      {
-        "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.9"
+        "version": "1.1.0-dev.9"
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "16.1.0-dev.11"
+        "version": "16.1.0-dev.12"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "16.0.0-dev.21"
+        "version": "16.0.0-dev.22"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.15"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "0.1.0-dev.10"
       }
     ]
   },

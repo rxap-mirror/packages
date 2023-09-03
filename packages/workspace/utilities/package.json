@@ -1,6 +1,6 @@
 {
   "name": "@rxap/workspace-utilities",
-  "version": "0.1.0-dev.9",
+  "version": "0.1.0-dev.10",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -32,20 +32,20 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/utilities": "^16.0.0-dev.14",
     "@nx/devkit": "^16.5.0",
-    "@rxap/node-utilities": "^1.1.0-dev.5",
+    "@rxap/node-utilities": "^1.1.0-dev.6",
+    "@rxap/utilities": "^16.0.0-dev.15",
     "semver": "^7.3.5"
   },
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.14"
+        "package": "@rxap/node-utilities",
+        "version": "1.1.0-dev.6"
       },
       {
-        "package": "@rxap/node-utilities",
-        "version": "1.1.0-dev.5"
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.15"
       }
     ]
   }

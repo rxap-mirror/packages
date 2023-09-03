@@ -1,26 +1,26 @@
 {
   "name": "@rxap/material-table-system",
-  "version": "16.0.0-dev.18",
+  "version": "16.0.0-dev.19",
   "peerDependencies": {
-    "@angular/core": "^16.1.4",
-    "@angular/material": "^16.1.4",
-    "rxjs": "^7.8.0",
     "@angular/animations": "^16.1.4",
     "@angular/cdk": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.12",
-    "@rxap/pattern": "^1.0.1-dev.7",
-    "@rxap/rxjs": "^1.0.1-dev.6",
-    "@rxap/utilities": "^16.0.0-dev.14",
-    "@angular/flex-layout": "^15.0.0-beta.42",
-    "@rxap/directives": "^16.0.0-dev.11",
     "@angular/common": "^16.1.4",
-    "@rxap/forms": "^16.0.0-dev.12",
+    "@angular/core": "^16.1.4",
+    "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/forms": "^16.1.4",
-    "@rxap/reflect-metadata": "^1.0.1-dev.6",
-    "@rxap/components": "^16.0.0-dev.11",
-    "@rxap/window-system": "^16.0.0-dev.13",
-    "@rxap/material-directives": "^16.0.0-dev.13",
-    "@angular/router": "^16.1.4"
+    "@angular/material": "^16.1.4",
+    "@angular/router": "^16.1.4",
+    "@rxap/components": "^16.0.0-dev.12",
+    "@rxap/data-source": "^16.0.0-dev.13",
+    "@rxap/directives": "^16.0.0-dev.12",
+    "@rxap/forms": "^16.0.0-dev.13",
+    "@rxap/material-directives": "^16.0.0-dev.14",
+    "@rxap/pattern": "^1.0.1-dev.8",
+    "@rxap/reflect-metadata": "^1.0.1-dev.7",
+    "@rxap/rxjs": "^1.0.1-dev.7",
+    "@rxap/utilities": "^16.0.0-dev.15",
+    "@rxap/window-system": "^16.0.0-dev.14",
+    "rxjs": "^7.8.0"
   },
   "sideEffects": false,
   "dependencies": {
@@ -57,44 +57,44 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/data-source",
+        "package": "@rxap/components",
         "version": "16.0.0-dev.12"
       },
       {
-        "package": "@rxap/pattern",
-        "version": "1.0.1-dev.7"
-      },
-      {
-        "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.6"
-      },
-      {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.14"
+        "package": "@rxap/data-source",
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/directives",
-        "version": "16.0.0-dev.11"
-      },
-      {
-        "package": "@rxap/forms",
         "version": "16.0.0-dev.12"
       },
       {
-        "package": "@rxap/reflect-metadata",
-        "version": "1.0.1-dev.6"
-      },
-      {
-        "package": "@rxap/components",
-        "version": "16.0.0-dev.11"
-      },
-      {
-        "package": "@rxap/window-system",
+        "package": "@rxap/forms",
         "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
+      },
+      {
+        "package": "@rxap/pattern",
+        "version": "1.0.1-dev.8"
+      },
+      {
+        "package": "@rxap/reflect-metadata",
+        "version": "1.0.1-dev.7"
+      },
+      {
+        "package": "@rxap/rxjs",
+        "version": "1.0.1-dev.7"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.15"
+      },
+      {
+        "package": "@rxap/window-system",
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/open-api",

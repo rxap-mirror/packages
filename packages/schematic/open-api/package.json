@@ -1,19 +1,19 @@
 {
   "name": "@rxap/schematics-open-api",
-  "version": "16.0.0-dev.17",
+  "version": "16.0.0-dev.18",
   "type": "commonjs",
   "dependencies": {
     "openapi-types": "10.0.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-utilities": "^16.0.0-dev.12",
-    "@rxap/json-schema-to-typescript": "^16.0.0-dev.9",
-    "ts-morph": "^18.0.0",
-    "@rxap/utilities": "^16.0.0-dev.14",
     "@angular-devkit/core": "^16.1.4",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.14"
+    "@angular-devkit/schematics": "^16.1.4",
+    "@rxap/json-schema-to-typescript": "^16.0.0-dev.10",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.15",
+    "@rxap/schematics-utilities": "^16.0.0-dev.13",
+    "@rxap/utilities": "^16.0.0-dev.15",
+    "ts-morph": "^18.0.0"
   },
   "publishConfig": {
     "access": "public",
@@ -45,20 +45,20 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/schematics-utilities",
-        "version": "16.0.0-dev.12"
-      },
-      {
         "package": "@rxap/json-schema-to-typescript",
-        "version": "16.0.0-dev.9"
-      },
-      {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.10"
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
+      },
+      {
+        "package": "@rxap/schematics-utilities",
+        "version": "16.0.0-dev.13"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.15"
       }
     ]
   }

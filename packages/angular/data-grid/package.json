@@ -1,17 +1,17 @@
 {
   "name": "@rxap/data-grid",
-  "version": "16.0.0-dev.11",
+  "version": "16.0.0-dev.12",
   "peerDependencies": {
+    "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
-    "@rxap/utilities": "^16.0.0-dev.14",
-    "rxjs": "^7.8.0",
-    "@angular/router": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.12",
-    "@rxap/forms": "^16.0.0-dev.12",
-    "@rxap/rxjs": "^1.0.1-dev.6",
     "@angular/material": "^16.1.4",
-    "@rxap/pipes": "^16.0.0-dev.10",
-    "@angular/common": "^16.1.4"
+    "@angular/router": "^16.1.4",
+    "@rxap/data-source": "^16.0.0-dev.13",
+    "@rxap/forms": "^16.0.0-dev.13",
+    "@rxap/pipes": "^16.0.0-dev.11",
+    "@rxap/rxjs": "^1.0.1-dev.7",
+    "@rxap/utilities": "^16.0.0-dev.15",
+    "rxjs": "^7.8.0"
   },
   "sideEffects": false,
   "dependencies": {
@@ -47,28 +47,28 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.14"
-      },
-      {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.0-dev.12"
-      },
-      {
-        "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.6"
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/pipes",
-        "version": "16.0.0-dev.10"
+        "version": "16.0.0-dev.11"
+      },
+      {
+        "package": "@rxap/rxjs",
+        "version": "1.0.1-dev.7"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/material-form-system",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       }
     ]
   }

@@ -1,9 +1,9 @@
 {
   "name": "@rxap/environment",
-  "version": "16.0.0-dev.10",
+  "version": "16.0.0-dev.11",
   "peerDependencies": {
-    "@angular/core": "^16.1.4",
-    "@angular/common": "^16.1.4"
+    "@angular/common": "^16.1.4",
+    "@angular/core": "^16.1.4"
   },
   "sideEffects": false,
   "dependencies": {

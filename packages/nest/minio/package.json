@@ -1,15 +1,15 @@
 {
   "name": "@rxap/nest-minio",
-  "version": "10.0.1-dev.6",
+  "version": "10.0.1-dev.7",
   "type": "commonjs",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@nestjs/common": "^10.0.5",
-    "minio": "^7.0.32",
+    "@nestjs/config": "^3.0.0",
     "@nestjs/terminus": "^10.0.1",
-    "@nestjs/config": "^3.0.0"
+    "minio": "^7.0.32"
   },
   "publishConfig": {
     "access": "public",
