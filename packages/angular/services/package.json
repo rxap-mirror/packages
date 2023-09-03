@@ -2,17 +2,17 @@
   "name": "@rxap/services",
   "version": "16.0.0-dev.10",
   "peerDependencies": {
-    "@angular/cdk": "^16.1.4",
-    "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
-    "@angular/router": "^16.1.4",
-    "@rxap/rxjs": "^1.0.1-dev.6",
+    "@angular/common": "^16.1.4",
     "@rxap/utilities": "^16.0.0-dev.14",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "@angular/cdk": "^16.1.4",
+    "@angular/router": "^16.1.4",
+    "@rxap/rxjs": "^1.0.1-dev.6"
   },
   "sideEffects": false,
   "dependencies": {
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "description": "A collection of utility angular services used in RxAP.",
   "publishConfig": {
@@ -45,12 +45,12 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.6"
-      },
-      {
         "package": "@rxap/utilities",
         "version": "16.0.0-dev.14"
+      },
+      {
+        "package": "@rxap/rxjs",
+        "version": "1.0.1-dev.6"
       }
     ]
   }

@@ -4,7 +4,7 @@
   "type": "commonjs",
   "dependencies": {
     "openapi-types": "10.0.0",
-    "tslib": "2.6.0"
+    "tslib": "2.6.2"
   },
   "publishConfig": {
     "access": "public",
@@ -33,10 +33,10 @@
   },
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
+    "ts-morph": "^18.0.0",
     "@rxap/json-schema-to-typescript": "^16.0.0-dev.9",
     "@rxap/utilities": "^16.0.0-dev.14",
-    "@rxap/workspace-utilities": "^0.1.0-dev.9",
-    "ts-morph": "^18.0.0"
+    "@rxap/workspace-utilities": "^0.1.0-dev.9"
   },
   "nx-migrations": {
     "packageGroup": [

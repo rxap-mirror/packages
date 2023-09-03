@@ -30,26 +30,26 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.1.0-dev.8",
+    "@rxap/workspace-utilities": "^0.1.0-dev.9",
     "@rxap/node-utilities": "^1.1.0-dev.5",
-    "@rxap/workspace-utilities": "^0.1.0-dev.9"
+    "@rxap/generator-utilities": "^1.1.0-dev.8"
   },
   "dependencies": {
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.8"
+        "package": "@rxap/workspace-utilities",
+        "version": "0.1.0-dev.9"
       },
       {
         "package": "@rxap/node-utilities",
         "version": "1.1.0-dev.5"
       },
       {
-        "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.9"
+        "package": "@rxap/generator-utilities",
+        "version": "1.1.0-dev.8"
       }
     ]
   }

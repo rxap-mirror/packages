@@ -3,15 +3,15 @@
   "version": "16.0.0-dev.14",
   "type": "commonjs",
   "peerDependencies": {
-    "@angular-devkit/core": "^16.1.4",
+    "ts-morph": "^18.0.0",
     "@angular-devkit/schematics": "^16.1.4",
     "@rxap/schematics-utilities": "^16.0.0-dev.12",
-    "@rxap/utilities": "^16.0.0-dev.14",
     "@rxap/workspace-ts-morph": "^0.1.0-dev.4",
-    "ts-morph": "^18.0.0"
+    "@angular-devkit/core": "^16.1.4",
+    "@rxap/utilities": "^16.0.0-dev.14"
   },
   "dependencies": {
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "publishConfig": {
     "access": "public",
@@ -46,12 +46,12 @@
         "version": "16.0.0-dev.12"
       },
       {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.14"
-      },
-      {
         "package": "@rxap/workspace-ts-morph",
         "version": "0.1.0-dev.4"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.14"
       }
     ]
   }

@@ -29,15 +29,15 @@
     "email": "mmuenker@digitaix.com"
   },
   "dependencies": {
-    "tslib": "2.6.1"
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@nestjs/common": "^10.0.5",
+    "rxjs": "^7.8.0",
     "@nestjs/core": "^10.0.5",
     "@nestjs/jwt": "^10.1.0",
     "@rxap/nest-utilities": "^10.1.0-dev.2",
-    "@rxap/pattern": "^1.0.1-dev.7",
-    "rxjs": "^7.8.0"
+    "@rxap/pattern": "^1.0.1-dev.7"
   },
   "nx-migrations": {
     "packageGroup": [

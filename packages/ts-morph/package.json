@@ -38,7 +38,7 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/utilities": "^16.0.0-dev.14",
-    "ts-morph": "^18.0.0"
+    "ts-morph": "^18.0.0",
+    "@rxap/utilities": "^16.0.0-dev.14"
   }
 }

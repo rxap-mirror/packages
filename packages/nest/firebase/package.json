@@ -3,11 +3,11 @@
   "version": "10.0.1-dev.5",
   "type": "commonjs",
   "dependencies": {
-    "firebase-admin": "10.3.0",
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.5"
+    "@nestjs/common": "^10.0.5",
+    "firebase-admin": "^10.3.0"
   },
   "publishConfig": {
     "access": "public",

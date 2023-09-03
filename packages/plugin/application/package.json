@@ -32,20 +32,24 @@
     "email": "mmuenker@digitaix.com"
   },
   "dependencies": {
-    "tslib": "2.6.0"
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
+    "@rxap/plugin-utilities": "^16.1.0-dev.10",
+    "handlebars": "^4.7.7",
     "@rxap/generator-utilities": "^1.1.0-dev.8",
     "@rxap/plugin-angular": "^16.1.0-dev.15",
     "@rxap/plugin-docker": "^16.0.0-dev.20",
     "@rxap/plugin-nestjs": "^16.1.0-dev.14",
-    "@rxap/plugin-utilities": "^16.1.0-dev.10",
-    "@rxap/workspace-utilities": "^0.1.0-dev.9",
-    "handlebars": "^4.7.7"
+    "@rxap/workspace-utilities": "^0.1.0-dev.9"
   },
   "nx-migrations": {
     "packageGroup": [
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "16.1.0-dev.10"
+      },
       {
         "package": "@rxap/generator-utilities",
         "version": "1.1.0-dev.8"
@@ -61,10 +65,6 @@
       {
         "package": "@rxap/plugin-nestjs",
         "version": "16.1.0-dev.14"
-      },
-      {
-        "package": "@rxap/plugin-utilities",
-        "version": "16.1.0-dev.10"
       },
       {
         "package": "@rxap/workspace-utilities",

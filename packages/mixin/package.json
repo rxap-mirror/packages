@@ -4,11 +4,11 @@
   "type": "commonjs",
   "peerDependencies": {
     "@rxap/reflect-metadata": "^1.0.1-dev.6",
-    "@rxap/utilities": "^16.0.0-dev.14",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "@rxap/utilities": "^16.0.0-dev.14"
   },
   "dependencies": {
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "publishConfig": {
     "access": "public",

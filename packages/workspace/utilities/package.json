@@ -29,23 +29,23 @@
     "email": "mmuenker@digitaix.com"
   },
   "dependencies": {
-    "tslib": "2.6.1"
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@rxap/utilities": "^16.0.0-dev.14",
     "@nx/devkit": "^16.5.0",
     "@rxap/node-utilities": "^1.1.0-dev.5",
-    "@rxap/utilities": "^16.0.0-dev.14",
     "semver": "^7.3.5"
   },
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/node-utilities",
-        "version": "1.1.0-dev.5"
-      },
-      {
         "package": "@rxap/utilities",
         "version": "16.0.0-dev.14"
+      },
+      {
+        "package": "@rxap/node-utilities",
+        "version": "1.1.0-dev.5"
       }
     ]
   }

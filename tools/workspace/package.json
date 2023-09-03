@@ -4,12 +4,14 @@
   "type": "commonjs",
   "executors": "./executors.json",
   "dependencies": {
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.3.2",
-    "@nx/plugin": "^16.3.2",
-    "handlebars": "4.7.7",
-    "@rxap/plugin-utilities": "*"
+    "@nx/angular": "^16.5.0",
+    "@nx/cypress": "^16.5.0",
+    "@nx/devkit": "^16.5.0",
+    "@nx/plugin": "^16.5.0",
+    "@rxap/plugin-utilities": "*",
+    "handlebars": "^4.7.7"
   }
 }

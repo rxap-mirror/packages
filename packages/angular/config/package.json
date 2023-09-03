@@ -2,16 +2,16 @@
   "name": "@rxap/config",
   "version": "16.0.0-dev.11",
   "dependencies": {
-    "joi": "^17.6.3",
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
+    "rxjs": "^7.8.0",
+    "@angular/common": "^16.1.4",
     "@rxap/environment": "^16.0.0-dev.10",
     "@rxap/utilities": "^16.0.0-dev.14",
-    "rxjs": "^7.8.0"
+    "joi": "^17.9.2"
   },
   "description": "Simple config file manager for angular applications.",
   "publishConfig": {

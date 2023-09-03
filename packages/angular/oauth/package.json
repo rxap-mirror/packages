@@ -2,20 +2,20 @@
   "name": "@rxap/oauth",
   "version": "16.0.0-dev.10",
   "peerDependencies": {
-    "@angular/animations": "^16.1.4",
-    "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
-    "@angular/flex-layout": "^15.0.0-beta.42",
-    "@angular/material": "^16.1.4",
+    "@angular/common": "^16.1.4",
+    "@rxap/pattern": "^1.0.1-dev.7",
+    "rxjs": "^7.8.0",
     "@angular/router": "^16.1.4",
     "@rxap/authentication": "^16.0.0-dev.10",
-    "@rxap/directives": "^16.0.0-dev.11",
-    "@rxap/pattern": "^1.0.1-dev.7",
-    "rxjs": "^7.8.0"
+    "@angular/animations": "^16.1.4",
+    "@angular/material": "^16.1.4",
+    "@angular/flex-layout": "^15.0.0-beta.42",
+    "@rxap/directives": "^16.0.0-dev.11"
   },
   "sideEffects": false,
   "dependencies": {
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "publishConfig": {
     "access": "public",
@@ -47,16 +47,16 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@rxap/pattern",
+        "version": "1.0.1-dev.7"
+      },
+      {
         "package": "@rxap/authentication",
         "version": "16.0.0-dev.10"
       },
       {
         "package": "@rxap/directives",
         "version": "16.0.0-dev.11"
-      },
-      {
-        "package": "@rxap/pattern",
-        "version": "1.0.1-dev.7"
       }
     ]
   }

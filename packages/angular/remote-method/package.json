@@ -2,16 +2,16 @@
   "name": "@rxap/remote-method",
   "version": "16.0.0-dev.11",
   "peerDependencies": {
-    "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@rxap/definition": "^16.0.0-dev.11",
-    "@rxap/rxjs": "^1.0.1-dev.6",
+    "rxjs": "^7.8.0",
     "@rxap/utilities": "^16.0.0-dev.14",
-    "rxjs": "^7.8.0"
+    "@rxap/rxjs": "^1.0.1-dev.6",
+    "@angular/common": "^16.1.4"
   },
   "sideEffects": false,
   "dependencies": {
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "description": "Provides the RemoteMethod concept for RxAP.",
   "publishConfig": {

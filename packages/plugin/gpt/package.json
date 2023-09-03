@@ -33,15 +33,15 @@
   },
   "generators": "./generators.json",
   "dependencies": {
-    "tslib": "2.6.1"
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
     "@rxap/generator-ts-morph": "^1.0.1-dev.7",
     "@rxap/generator-utilities": "^1.1.0-dev.8",
-    "gpt-3-encoder": "^1.1.4",
     "openai": "^3.3.0",
-    "ts-morph": "^18.0.0"
+    "ts-morph": "^18.0.0",
+    "gpt-3-encoder": "^1.1.4"
   },
   "nx-migrations": {
     "packageGroup": [

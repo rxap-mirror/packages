@@ -3,14 +3,14 @@
   "version": "10.0.1-dev.5",
   "type": "commonjs",
   "dependencies": {
-    "socket.io-client": "^4.2.0",
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@nestjs/common": "^10.0.5",
-    "@nestjs/config": "^3.0.0",
     "@nestjs/microservices": "^10.0.5",
-    "rxjs": "^7.8.0"
+    "@nestjs/config": "^3.0.0",
+    "rxjs": "^7.8.0",
+    "socket.io-client": "^4.6.2"
   },
   "publishConfig": {
     "access": "public",

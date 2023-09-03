@@ -3,17 +3,17 @@
   "version": "10.1.0-dev.2",
   "type": "commonjs",
   "dependencies": {
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.5",
-    "@nestjs/config": "^3.0.0",
-    "@nestjs/core": "^10.0.5",
-    "@rxap/nest-sentry": "^10.0.1-dev.5",
-    "@rxap/utilities": "^16.0.0-dev.14",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
-    "rxjs": "^7.8.0"
+    "@nestjs/common": "^10.0.5",
+    "@rxap/utilities": "^16.0.0-dev.14",
+    "@nestjs/core": "^10.0.5",
+    "rxjs": "^7.8.0",
+    "@nestjs/config": "^3.0.0",
+    "@rxap/nest-sentry": "^10.0.1-dev.5"
   },
   "publishConfig": {
     "access": "public",
@@ -44,12 +44,12 @@
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/nest-sentry",
-        "version": "10.0.1-dev.5"
-      },
-      {
         "package": "@rxap/utilities",
         "version": "16.0.0-dev.14"
+      },
+      {
+        "package": "@rxap/nest-sentry",
+        "version": "10.0.1-dev.5"
       }
     ]
   }

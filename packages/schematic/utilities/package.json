@@ -30,22 +30,22 @@
   },
   "peerDependencies": {
     "@angular-devkit/schematics": "^16.1.4",
-    "@nx/devkit": "^16.5.0",
+    "@rxap/workspace-utilities": "^0.1.0-dev.9",
     "@rxap/utilities": "^16.0.0-dev.14",
-    "@rxap/workspace-utilities": "^0.1.0-dev.9"
+    "@nx/devkit": "^16.5.0"
   },
   "dependencies": {
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.14"
-      },
-      {
         "package": "@rxap/workspace-utilities",
         "version": "0.1.0-dev.9"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/node-utilities",

@@ -2,24 +2,24 @@
   "name": "@rxap/tree",
   "version": "16.0.0-dev.12",
   "peerDependencies": {
+    "@angular/core": "^16.1.4",
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
-    "@angular/core": "^16.1.4",
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/material": "^16.1.4",
     "@rxap/contenteditable": "^16.0.0-dev.10",
-    "@rxap/data-source": "^16.0.0-dev.12",
     "@rxap/data-structure-tree": "^1.0.1-dev.7",
     "@rxap/material-directives": "^16.0.0-dev.13",
     "@rxap/pattern": "^1.0.1-dev.7",
-    "@rxap/rxjs": "^1.0.1-dev.6",
     "@rxap/utilities": "^16.0.0-dev.14",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "@rxap/data-source": "^16.0.0-dev.12",
+    "@rxap/rxjs": "^1.0.1-dev.6"
   },
   "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
   "sideEffects": false,
   "dependencies": {
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "publishConfig": {
     "access": "public",
@@ -55,10 +55,6 @@
         "version": "16.0.0-dev.10"
       },
       {
-        "package": "@rxap/data-source",
-        "version": "16.0.0-dev.12"
-      },
-      {
         "package": "@rxap/data-structure-tree",
         "version": "1.0.1-dev.7"
       },
@@ -71,12 +67,16 @@
         "version": "1.0.1-dev.7"
       },
       {
-        "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.6"
-      },
-      {
         "package": "@rxap/utilities",
         "version": "16.0.0-dev.14"
+      },
+      {
+        "package": "@rxap/data-source",
+        "version": "16.0.0-dev.12"
+      },
+      {
+        "package": "@rxap/rxjs",
+        "version": "1.0.1-dev.6"
       },
       {
         "package": "@rxap/config",

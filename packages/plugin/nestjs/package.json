@@ -32,17 +32,17 @@
     "email": "mmuenker@digitaix.com"
   },
   "dependencies": {
-    "tslib": "2.6.1"
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@nx/js": "^16.5.0",
     "@rxap/generator-utilities": "^1.1.0-dev.8",
     "@rxap/plugin-utilities": "^16.1.0-dev.10",
     "@rxap/ts-morph": "^0.1.0-dev.4",
     "@rxap/utilities": "^16.0.0-dev.14",
     "@rxap/workspace-ts-morph": "^0.1.0-dev.4",
     "@rxap/workspace-utilities": "^0.1.0-dev.9",
+    "@nx/js": "^16.5.0",
     "ts-morph": "^18.0.0"
   },
   "nx-migrations": {

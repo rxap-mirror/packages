@@ -11,6 +11,14 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@rxap/plugin-utilities",
+        "version": "16.1.0-dev.10"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "0.1.0-dev.9"
+      },
+      {
         "package": "@rxap/generator-ts-morph",
         "version": "1.0.1-dev.7"
       },
@@ -29,14 +37,6 @@
       {
         "package": "@rxap/plugin-nestjs",
         "version": "16.1.0-dev.14"
-      },
-      {
-        "package": "@rxap/plugin-utilities",
-        "version": "16.1.0-dev.10"
-      },
-      {
-        "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.9"
       },
       {
         "package": "@rxap/schematics-utilities",
@@ -67,21 +67,21 @@
     "email": "mmuenker@digitaix.com"
   },
   "dependencies": {
-    "handlebars": "4.7.7",
-    "tslib": "2.5.3"
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
+    "@rxap/plugin-utilities": "^16.1.0-dev.10",
+    "semver": "^7.3.5",
+    "handlebars": "^4.7.7",
+    "@rxap/workspace-utilities": "^0.1.0-dev.9",
+    "nx": "^16.5.0",
     "@rxap/generator-ts-morph": "^1.0.1-dev.7",
     "@rxap/generator-utilities": "^1.1.0-dev.8",
     "@rxap/node-utilities": "^1.1.0-dev.5",
+    "ts-morph": "^18.0.0",
     "@rxap/plugin-angular": "^16.1.0-dev.15",
-    "@rxap/plugin-nestjs": "^16.1.0-dev.14",
-    "@rxap/plugin-utilities": "^16.1.0-dev.10",
-    "@rxap/workspace-utilities": "^0.1.0-dev.9",
-    "nx": "^16.5.0",
-    "semver": "^7.3.5",
-    "ts-morph": "^18.0.0"
+    "@rxap/plugin-nestjs": "^16.1.0-dev.14"
   },
   "schematics": "./generators.json"
 }

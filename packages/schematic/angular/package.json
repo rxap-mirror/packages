@@ -30,20 +30,20 @@
     "email": "mmuenker@digitaix.com"
   },
   "dependencies": {
-    "tslib": "2.6.1"
+    "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular-devkit/core": "^16.1.4",
-    "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.14",
-    "@rxap/schematics-utilities": "^16.0.0-dev.12",
     "@rxap/utilities": "^16.0.0-dev.14",
+    "@angular-devkit/schematics": "^16.1.4",
+    "@rxap/schematics-utilities": "^16.0.0-dev.12",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.14",
+    "@angular-devkit/core": "^16.1.4",
     "ts-morph": "^18.0.0"
   },
   "nx-migrations": {
     "packageGroup": [
       {
-        "package": "@rxap/schematics-ts-morph",
+        "package": "@rxap/utilities",
         "version": "16.0.0-dev.14"
       },
       {
@@ -51,7 +51,7 @@
         "version": "16.0.0-dev.12"
       },
       {
-        "package": "@rxap/utilities",
+        "package": "@rxap/schematics-ts-morph",
         "version": "16.0.0-dev.14"
       },
       {
