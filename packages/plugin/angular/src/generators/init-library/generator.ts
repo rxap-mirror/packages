@@ -23,8 +23,10 @@ import {
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
+  SearchFile,
 } from '@rxap/workspace-utilities';
 import {
+  dirname,
   join,
   relative,
 } from 'path';
@@ -210,6 +212,33 @@ function isNgPackagrProject(tree: Tree, project: ProjectConfiguration) {
   return tree.exists(join(project.root, 'ng-package.json'));
 }
 
+function checkIfSecondaryEntrypointIncludeInTheTsConfig(tree: Tree, project: ProjectConfiguration) {
+  const projectRoot = project.root;
+  const libTsConfigPath = join(projectRoot, 'tsconfig.lib.json');
+  const specTsConfigPath = join(projectRoot, 'tsconfig.spec.json');
+  const libTsConfig = JSON.parse(tree.read(libTsConfigPath).toString('utf-8'));
+  const specTsConfig = JSON.parse(tree.read(specTsConfigPath).toString('utf-8'));
+  for (const { path } of SearchFile(tree, projectRoot)) {
+    if (!path.endsWith('ng-package.json')) {
+      continue;
+    }
+    const folder = dirname(path);
+    const entryPoint = relative(projectRoot, folder);
+    if (entryPoint) {
+      libTsConfig.include ??= [];
+      if (!libTsConfig.include.includes(`${ entryPoint }/**/*.ts`)) {
+        libTsConfig.include.push(`${ entryPoint }/**/*.ts`);
+      }
+      specTsConfig.include ??= [];
+      if (!specTsConfig.include.includes(`${ entryPoint }/**/*.spec.ts`)) {
+        specTsConfig.include.push(`${ entryPoint }/**/*.spec.ts`);
+      }
+    }
+  }
+  tree.write(libTsConfigPath, JSON.stringify(libTsConfig, null, 2));
+  tree.write(specTsConfigPath, JSON.stringify(specTsConfig, null, 2));
+}
+
 export async function initLibraryGenerator(
   tree: Tree,
   options: InitLibraryGeneratorSchema,
@@ -225,6 +254,8 @@ export async function initLibraryGenerator(
     }
 
     console.log(`init project: ${ projectName }`);
+
+    checkIfSecondaryEntrypointIncludeInTheTsConfig(tree, project);
 
     if (IsBuildable(project)) {
       updateProjectNgPackageConfiguration(tree, project);
