@@ -3,7 +3,6 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/open-api/service/status/src",
   "projectType": "library",
-  "prefix": "rxap",
   "targets": {
     "lint": {
       "executor": "@nx/linter:eslint",
@@ -12,70 +11,14 @@
       ],
       "options": {
         "lintFilePatterns": [
-          "packages/open-api/service/status/**/*.ts",
-          "packages/open-api/service/status/angular/**/*.ts",
-          "packages/open-api/service/status/angular/**/*.html",
-          "packages/open-api/service/status/nest/**/*.ts",
-          "packages/open-api/service/status/nest/**/*.html"
+          "packages/open-api/service/status/**/*.ts"
         ]
       }
-    },
-    "index-export": {},
-    "build": {
-      "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
-      ],
-      "options": {
-        "project": "packages/open-api/service/status/ng-package.json",
-        "tailwindConfig": "packages/open-api/service/status/tailwind.config.js"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "packages/open-api/service/status/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "packages/open-api/service/status/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "update-dependencies": {
-      "executor": "@rxap/plugin-library:update-dependencies"
-    },
-    "update-package-group": {
-      "executor": "@rxap/plugin-library:update-package-group"
-    },
-    "readme": {
-      "executor": "@rxap/plugin-library:readme"
-    },
-    "fix-dependencies": {
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": [
-        "{workspaceRoot}/{projectRoot}/package.json"
-      ],
-      "options": {
-        "generator": "@rxap/plugin-library:fix-dependencies",
-        "options": {
-          "strict": true
-        }
-      }
-    },
-    "check-version": {
-      "executor": "@rxap/plugin-library:check-version",
-      "options": {
-        "packageName": "@angular/core"
-      }
-    },
-    "check-ng-package": {
-      "executor": "@rxap/plugin-angular:check-ng-package"
     }
   },
   "tags": [
     "open-api",
     "packages",
-    "service",
-    "angular",
-    "ngx"
+    "service"
   ]
 }

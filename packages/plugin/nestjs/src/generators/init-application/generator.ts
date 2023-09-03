@@ -35,7 +35,6 @@ import {
   AddPackageJsonDevDependency,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
-  IsRxapRepository,
   Strategy,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
@@ -293,51 +292,14 @@ async function createOpenApiClientSdkLibrary(
   const directory = `open-api/${ fragments.join('/') }`;
 
   try {
-    if (IsRxapRepository(tree.root) && projectRoot.startsWith('applications')) {
-      console.log('Detected rxap repository and public nest project');
-      // // eslint-disable-next-line @typescript-eslint/no-var-requires
-      // await require('@nx/angular/src/generators/library/library')(tree, {
-      //   name,
-      //   directory,
-      //   addTailwind: false,
-      //   publishable: true,
-      //   importPath: `@rxap/${ openApiProjectName }`,
-      //   spec: false,
-      //   commonModule: false,
-      //   addModuleSpec: false,
-      //   prefix: 'rxap',
-      //   routing: false,
-      //   lazy: false,
-      //   tags: 'angular,ngx,open-api',
-      //   strict: true,
-      //   unitTestRunner: UnitTestRunner.None,
-      //   skipModule: true,
-      //   skipTests: true,
-      // });
-      // // eslint-disable-next-line @typescript-eslint/no-var-requires
-      // await require('@nx/angular/src/generators/library-secondary-entry-point/library-secondary-entry-point')(tree, {
-      //   library: openApiProjectName,
-      //   name: 'angular',
-      // });
-      // // eslint-disable-next-line @typescript-eslint/no-var-requires
-      // await require('@nx/angular/src/generators/library-secondary-entry-point/library-secondary-entry-point')(tree, {
-      //   library: openApiProjectName,
-      //   name: 'nest',
-      // });
-      // // eslint-disable-next-line @typescript-eslint/no-var-requires
-      // await (require('@rxap/plugin-library')).LibraryInitGenerator(tree, {
-      //   projects: [ openApiProjectName ],
-      // });
-    } else {
-      await jsLibraryGenerator(tree, {
-        name,
-        directory,
-        unitTestRunner: 'none',
-        tags: 'open-api',
-        buildable: false,
-        bundler: 'none',
-      });
-    }
+    await jsLibraryGenerator(tree, {
+      name,
+      directory,
+      unitTestRunner: 'none',
+      tags: 'open-api',
+      buildable: false,
+      bundler: 'none',
+    });
   } catch (e: any) {
     console.warn(`Can't create open api client sdk library: ${ e.message }`);
     return;
@@ -359,13 +321,8 @@ async function createOpenApiClientSdkLibrary(
 
   const openApiProjectRoot = projects.get(openApiProjectName)!.root;
 
-  if (IsRxapRepository(tree.root) && projectRoot.startsWith('applications')) {
-    tree.write(`${ openApiProjectRoot }/angular/src/index.ts`, 'export {};');
-    tree.write(`${ openApiProjectRoot }/nest/src/index.ts`, 'export {};');
-  } else {
-    delete tsConfig.compilerOptions.paths[`${ directory }/${ name }`];
-    tsConfig.compilerOptions.paths[`${ openApiProjectName }/*`] = [ `${ openApiProjectRoot }/src/lib/*` ];
-  }
+  delete tsConfig.compilerOptions.paths[`${ directory }/${ name }`];
+  tsConfig.compilerOptions.paths[`${ openApiProjectName }/*`] = [ `${ openApiProjectRoot }/src/lib/*` ];
 
   tree.write('tsconfig.base.json', JSON.stringify(tsConfig, null, 2));
   tree.write(`${ openApiProjectRoot }/src/index.ts`, 'export {};');

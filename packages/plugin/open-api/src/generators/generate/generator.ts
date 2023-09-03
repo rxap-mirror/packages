@@ -1,4 +1,5 @@
 import { Tree } from '@nx/devkit';
+import { GetProject } from '@rxap/generator-utilities';
 import { LibraryIndexExportGenerator } from '@rxap/plugin-library';
 import { dasherize } from '@rxap/utilities';
 import {
@@ -17,7 +18,6 @@ import { TsMorphAngularProjectTransform } from '@rxap/workspace-ts-morph';
 import {
   DeleteRecursive,
   GetProjectPackageJson,
-  GetProjectPrefix,
   GetProjectRoot,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
@@ -46,7 +46,7 @@ export async function generateGenerator(
   }
 
   if (!options.prefix) {
-    options.prefix = GetProjectPrefix(tree, options.project);
+    options.prefix = GetProject(tree, options.project)['prefix'];
   }
 
   const projectName = options.project;

@@ -10,7 +10,7 @@ import {
 } from '@angular/router';
 import { RXAP_ENVIRONMENT } from '@rxap/environment';
 import { SERVICE_STATUS_CHECK_METHOD } from '@rxap/ngx-status-check';
-import { StatusControllerHealthCheckRemoteMethod } from '@rxap/open-api-service-status/angular';
+import { StatusControllerHealthCheckRemoteMethod } from 'open-api-service-status/remote-methods/status-controller-health-check.remote-method';
 import { environment } from '../environments/environment';
 import { APP_NAVIGATION_PROVIDER } from './app.navigation';
 import { appRoutes } from './app.routes';

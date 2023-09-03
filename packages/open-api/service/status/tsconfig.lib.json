@@ -3,25 +3,8 @@
   "compilerOptions": {
     "outDir": "../../../../dist/out-tsc",
     "declaration": true,
-    "declarationMap": true,
-    "inlineSources": true,
-    "types": []
+    "types": ["node"]
   },
-  "exclude": [
-    "src/**/*.spec.ts",
-    "src/test-setup.ts",
-    "jest.config.ts",
-    "src/**/*.test.ts",
-    "cypress/**/*",
-    "cypress.config.ts",
-    "**/*.cy.ts",
-    "**/*.cy.js",
-    "**/*.cy.tsx",
-    "**/*.cy.jsx"
-  ],
-  "include": [
-  "src/**/*.ts",
-  "nest/src/**/*.ts",
-  "angular/src/**/*.ts",
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }
