@@ -449,6 +449,8 @@ export async function initApplicationGenerator(
   options.material ??= true;
   options.generateMain ??= false;
   options.overwrite ??= false;
+  options.monolithic ??= false;
+  options.openApi = options.openApi || options.monolithic;
   console.log('angular application init generator:', options);
 
   await AddPackageJsonDependency(tree, '@mdi/angular-material', 'latest', { soft: true });
