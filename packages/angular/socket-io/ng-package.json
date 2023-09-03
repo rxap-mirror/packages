@@ -4,9 +4,6 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "allowedNonPeerDependencies": [
-    "socket.io-client"
-  ],
   "assets": [
     "README.md",
     "CHANGELOG.md",
