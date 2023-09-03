@@ -14,7 +14,7 @@ import { AppControllerEnvironmentResponse } from '../responses/app-controller-en
   operation: '{"operationId":"AppController_environment","parameters":[],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object"}}}}},"method":"get","path":"/info"}',
 })
 export class AppControllerEnvironmentRemoteMethod
-  extends OpenApiRemoteMethod<AppControllerEnvironmentResponse, void, void> {
+    extends OpenApiRemoteMethod<AppControllerEnvironmentResponse, void, void> {
   public override call(): Promise<AppControllerEnvironmentResponse> {
     return super.call();
   }

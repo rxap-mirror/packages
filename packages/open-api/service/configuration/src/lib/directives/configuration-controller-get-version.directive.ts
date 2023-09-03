@@ -26,19 +26,19 @@ import { ConfigurationControllerGetVersionResponse } from '../responses/configur
   standalone: true,
 })
 export class ConfigurationControllerGetVersionRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<ConfigurationControllerGetVersionResponse, OpenApiRemoteMethodParameter<ConfigurationControllerGetVersionParameter, void>> {
+    extends RemoteMethodTemplateDirective<ConfigurationControllerGetVersionResponse, OpenApiRemoteMethodParameter<ConfigurationControllerGetVersionParameter, void>> {
   @Input('configurationControllerGetVersionRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<ConfigurationControllerGetVersionParameter, void>;
   @Input('configurationControllerGetVersionRemoteMethodError')
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(ConfigurationControllerGetVersionRemoteMethod) remoteMethod: ConfigurationControllerGetVersionRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<ConfigurationControllerGetVersionResponse>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
+      @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
+      @Inject(INJECTOR) injector: Injector,
+      @Inject(ConfigurationControllerGetVersionRemoteMethod) remoteMethod: ConfigurationControllerGetVersionRemoteMethod,
+      @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<ConfigurationControllerGetVersionResponse>>,
+      @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
+      @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
     super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
     this.remoteMethodOrIdOrToken = remoteMethod;
@@ -51,11 +51,11 @@ export class ConfigurationControllerGetVersionRemoteMethodTemplateDirective
   standalone: true,
 })
 export class ConfigurationControllerGetVersionRemoteMethodDirective
-  extends RemoteMethodDirective<ConfigurationControllerGetVersionResponse, OpenApiRemoteMethodParameter<ConfigurationControllerGetVersionParameter, void>> {
+    extends RemoteMethodDirective<ConfigurationControllerGetVersionResponse, OpenApiRemoteMethodParameter<ConfigurationControllerGetVersionParameter, void>> {
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(ConfigurationControllerGetVersionRemoteMethod) remoteMethod: ConfigurationControllerGetVersionRemoteMethod,
+      @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
+      @Inject(INJECTOR) injector: Injector,
+      @Inject(ConfigurationControllerGetVersionRemoteMethod) remoteMethod: ConfigurationControllerGetVersionRemoteMethod,
   ) {
     super(remoteMethodLoader, injector);
     this.remoteMethodOrIdOrToken = remoteMethod;

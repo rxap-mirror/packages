@@ -26,19 +26,19 @@ import { ConfigurationControllerGetLatestResponse } from '../responses/configura
   standalone: true,
 })
 export class ConfigurationControllerGetLatestRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<ConfigurationControllerGetLatestResponse, OpenApiRemoteMethodParameter<ConfigurationControllerGetLatestParameter, void>> {
+    extends RemoteMethodTemplateDirective<ConfigurationControllerGetLatestResponse, OpenApiRemoteMethodParameter<ConfigurationControllerGetLatestParameter, void>> {
   @Input('configurationControllerGetLatestRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<ConfigurationControllerGetLatestParameter, void>;
   @Input('configurationControllerGetLatestRemoteMethodError')
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(ConfigurationControllerGetLatestRemoteMethod) remoteMethod: ConfigurationControllerGetLatestRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<ConfigurationControllerGetLatestResponse>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
+      @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
+      @Inject(INJECTOR) injector: Injector,
+      @Inject(ConfigurationControllerGetLatestRemoteMethod) remoteMethod: ConfigurationControllerGetLatestRemoteMethod,
+      @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<ConfigurationControllerGetLatestResponse>>,
+      @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
+      @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
     super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
     this.remoteMethodOrIdOrToken = remoteMethod;
@@ -51,11 +51,11 @@ export class ConfigurationControllerGetLatestRemoteMethodTemplateDirective
   standalone: true,
 })
 export class ConfigurationControllerGetLatestRemoteMethodDirective
-  extends RemoteMethodDirective<ConfigurationControllerGetLatestResponse, OpenApiRemoteMethodParameter<ConfigurationControllerGetLatestParameter, void>> {
+    extends RemoteMethodDirective<ConfigurationControllerGetLatestResponse, OpenApiRemoteMethodParameter<ConfigurationControllerGetLatestParameter, void>> {
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(ConfigurationControllerGetLatestRemoteMethod) remoteMethod: ConfigurationControllerGetLatestRemoteMethod,
+      @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
+      @Inject(INJECTOR) injector: Injector,
+      @Inject(ConfigurationControllerGetLatestRemoteMethod) remoteMethod: ConfigurationControllerGetLatestRemoteMethod,
   ) {
     super(remoteMethodLoader, injector);
     this.remoteMethodOrIdOrToken = remoteMethod;

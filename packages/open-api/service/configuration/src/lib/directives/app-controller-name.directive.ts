@@ -25,19 +25,19 @@ import { AppControllerNameResponse } from '../responses/app-controller-name.resp
   standalone: true,
 })
 export class AppControllerNameRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<AppControllerNameResponse, OpenApiRemoteMethodParameter<void, void>> {
+    extends RemoteMethodTemplateDirective<AppControllerNameResponse, OpenApiRemoteMethodParameter<void, void>> {
   @Input('appControllerNameRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<void, void>;
   @Input('appControllerNameRemoteMethodError')
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(AppControllerNameRemoteMethod) remoteMethod: AppControllerNameRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<AppControllerNameResponse>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
+      @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
+      @Inject(INJECTOR) injector: Injector,
+      @Inject(AppControllerNameRemoteMethod) remoteMethod: AppControllerNameRemoteMethod,
+      @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<AppControllerNameResponse>>,
+      @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
+      @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
     super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
     this.remoteMethodOrIdOrToken = remoteMethod;
@@ -51,11 +51,11 @@ export class AppControllerNameRemoteMethodTemplateDirective
   standalone: true,
 })
 export class AppControllerNameRemoteMethodDirective
-  extends RemoteMethodDirective<AppControllerNameResponse, OpenApiRemoteMethodParameter<void, void>> {
+    extends RemoteMethodDirective<AppControllerNameResponse, OpenApiRemoteMethodParameter<void, void>> {
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(AppControllerNameRemoteMethod) remoteMethod: AppControllerNameRemoteMethod,
+      @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
+      @Inject(INJECTOR) injector: Injector,
+      @Inject(AppControllerNameRemoteMethod) remoteMethod: AppControllerNameRemoteMethod,
   ) {
     super(remoteMethodLoader, injector);
     this.remoteMethodOrIdOrToken = remoteMethod;

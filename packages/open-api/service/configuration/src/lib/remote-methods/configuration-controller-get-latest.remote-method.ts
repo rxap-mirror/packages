@@ -16,7 +16,7 @@ import { ConfigurationControllerGetLatestResponse } from '../responses/configura
   operation: '{"operationId":"ConfigurationController_getLatest","parameters":[{"name":"application","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object"}}}}},"method":"get","path":"/latest/{application}"}',
 })
 export class ConfigurationControllerGetLatestRemoteMethod
-  extends OpenApiRemoteMethod<ConfigurationControllerGetLatestResponse, ConfigurationControllerGetLatestParameter, void> {
+    extends OpenApiRemoteMethod<ConfigurationControllerGetLatestResponse, ConfigurationControllerGetLatestParameter, void> {
   public override call(parameters: OpenApiRemoteMethodParameter<ConfigurationControllerGetLatestParameter, void>): Promise<ConfigurationControllerGetLatestResponse> {
     return super.call(parameters);
   }
