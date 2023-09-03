@@ -9,9 +9,10 @@ import {
   deepMerge,
   SetObjectValue,
 } from '@rxap/utilities';
-import { AnySchema } from 'joi';
 import { RXAP_CONFIG } from './tokens';
 import { NoInferType } from './types';
+
+export type AnySchema = { validateAsync: (...args: any[]) => any };
 
 export interface ConfigLoadOptions {
   fromUrlParam?: string | boolean;

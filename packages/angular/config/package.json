@@ -10,8 +10,7 @@
     "rxjs": "^7.8.0",
     "@angular/common": "^16.1.4",
     "@rxap/environment": "^16.0.0-dev.10",
-    "@rxap/utilities": "^16.0.0-dev.14",
-    "joi": "^17.9.2"
+    "@rxap/utilities": "^16.0.0-dev.14"
   },
   "description": "Simple config file manager for angular applications.",
   "publishConfig": {
