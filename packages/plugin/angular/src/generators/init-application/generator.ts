@@ -489,11 +489,18 @@ export async function initApplicationGenerator(
     if (options.cleanup) {
       cleanup(tree, project.sourceRoot);
     }
-    if (options.monolithic && options.overwrite) {
-      generateFiles(tree, join(__dirname, 'files', 'monolithic'), project.sourceRoot, {
-        ...options,
-        relativePathToWorkspaceRoot: relative(project.sourceRoot, ''),
-      });
+    if (options.monolithic) {
+      if (!tree.exists(join(project.sourceRoot, 'assets', 'logo.png'))) {
+        if (tree.exists('logo.png')) {
+          tree.write(join(project.sourceRoot, 'assets', 'logo.png'), tree.read('logo.png')!);
+        }
+      }
+      if (options.overwrite) {
+        generateFiles(tree, join(__dirname, 'files', 'monolithic'), project.sourceRoot, {
+          ...options,
+          relativePathToWorkspaceRoot: relative(project.sourceRoot, ''),
+        });
+      }
     }
 
     // apply changes to the project configuration
