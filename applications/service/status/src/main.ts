@@ -12,7 +12,7 @@ import {
   ValidationHttpException,
   validatorOptions,
 } from '@rxap/nest-utilities';
-import * as cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
