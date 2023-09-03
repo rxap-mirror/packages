@@ -40,10 +40,7 @@
         </div>
       </div>
     </mat-sidenav>
-    <mat-sidenav-content
-      [ngClass]="{ opened: matSidenav.opened, side: sidenavMode === 'side' }"
-      class="ml-16 p-4"
-    >
+    <mat-sidenav-content class="ml-16 p-4">
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
