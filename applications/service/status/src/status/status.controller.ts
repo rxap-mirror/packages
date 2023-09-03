@@ -11,7 +11,10 @@ import {
   Query,
   Req,
 } from '@nestjs/common';
-import { ApiQuery } from '@nestjs/swagger';
+import {
+  ApiQuery,
+  ApiResponse,
+} from '@nestjs/swagger';
 import {
   HealthCheck,
   HealthCheckResult,
@@ -38,6 +41,66 @@ export class StatusController {
   ) {
   }
 
+  @ApiResponse({
+    schema: {
+      type: 'object',
+      properties: {
+        status: {
+          type: 'string',
+          enum: [ 'error', 'ok', 'shutting_down' ],
+        },
+        info: {
+          type: 'object',
+          additionalProperties: {
+            type: 'object',
+            properties: {
+              status: {
+                type: 'string',
+                enum: [ 'up', 'down' ],
+              },
+            },
+            additionalProperties: {
+              type: 'string',
+            },
+            required: [ 'status' ],
+          },
+        },
+        error: {
+          type: 'object',
+          additionalProperties: {
+            type: 'object',
+            properties: {
+              status: {
+                type: 'string',
+                enum: [ 'up', 'down' ],
+              },
+            },
+            additionalProperties: {
+              type: 'string',
+            },
+            required: [ 'status' ],
+          },
+        },
+        details: {
+          type: 'object',
+          additionalProperties: {
+            type: 'object',
+            properties: {
+              status: {
+                type: 'string',
+                enum: [ 'up', 'down' ],
+              },
+            },
+            additionalProperties: {
+              type: 'string',
+            },
+            required: [ 'status' ],
+          },
+        },
+      },
+      required: [ 'status', 'details' ],
+    },
+  })
   @ApiQuery({
     name: 'service',
     type: [ String ],
