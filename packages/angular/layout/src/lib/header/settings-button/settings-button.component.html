@@ -1,11 +1,11 @@
 <button [matMenuTriggerFor]="menu" mat-icon-button>
-  <mat-icon>settings</mat-icon>
+  <mat-icon svgIcon="cog"></mat-icon>
 </button>
 
 <mat-menu #menu="matMenu">
   <button (click)="theme.toggleDarkTheme()" mat-menu-item>
-    <mat-icon *ngIf="theme.darkMode">brightness_2</mat-icon>
-    <mat-icon *ngIf="!theme.darkMode">brightness_5</mat-icon>
+    <mat-icon *ngIf="theme.darkMode" svgIcon="brightness-2"></mat-icon>
+    <mat-icon *ngIf="!theme.darkMode" svgIcon="brightness-5"></mat-icon>
     <span i18n>Mode</span>
   </button>
   <rxap-language-selector *ngIf="!isDevMode"></rxap-language-selector>

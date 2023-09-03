@@ -51,10 +51,8 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._subscription = this.route.data.pipe(
-      tap(data => console.log('data', data)),
       map(data => this.getCustomMenuItems(data)),
       map(items => items.map(item => new ComponentPortal(item, undefined, this.injector))),
-      tap(items => console.log('items', items)),
       tap(items => this.items.set(items)),
     ).subscribe();
   }

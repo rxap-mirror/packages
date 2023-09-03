@@ -3,10 +3,10 @@ import {
   Injectable,
   LOCALE_ID,
 } from '@angular/core';
+import { RxapUserProfileService } from '@rxap/authentication';
+import { ClickOnLink } from '@rxap/browser-utilities';
 import { ConfigService } from '@rxap/config';
 import { JoinPath } from '@rxap/utilities';
-import { ClickOnLink } from '@rxap/browser-utilities';
-import { RxapUserProfileService } from '@rxap/authentication';
 
 export interface ExternalApps {
   image?: string;
@@ -29,7 +29,7 @@ export class AppUrlService {
     private readonly localeId: string,
     private readonly userProfileService: RxapUserProfileService,
   ) {
-    this._apps = this.config.get('navigation.apps') ?? [];
+    this._apps = this.config.get('navigation.apps', []);
   }
 
   public getApp(appId: string): ExternalApps | null {
