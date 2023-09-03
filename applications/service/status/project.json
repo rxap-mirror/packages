@@ -5,12 +5,7 @@
   "projectType": "application",
   "targets": {
     "save": {
-      "executor": "@rxap/plugin-docker:save",
-      "options": {},
-      "configurations": {
-        "development": {},
-        "production": {}
-      }
+      "executor": "@rxap/plugin-docker:save"
     },
     "build": {
       "executor": "@nx/webpack:webpack",
@@ -42,8 +37,7 @@
               "with": "applications/service/status/src/environments/environment.prod.ts"
             }
           ]
-        },
-        "development": {}
+        }
       },
       "defaultConfiguration": "production"
     },
@@ -54,10 +48,6 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
       "options": {
         "lintFilePatterns": [
           "applications/service/status/**/*.ts"
@@ -65,31 +55,19 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
       "outputs": [
         "{workspaceRoot}/coverage/applications/service/status"
       ],
       "options": {
-        "jestConfig": "applications/service/status/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "applications/service/status/jest.config.ts"
       }
     },
     "ci": {
-      "executor": "@rxap/plugin-application:build-info",
-      "configurations": {
-        "production": {}
-      }
+      "executor": "@rxap/plugin-application:build-info"
     },
     "docker": {
-      "executor": "@rxap/plugin-docker:build",
       "options": {
-        "imageName": "rxap/packages",
-        "imageSuffix": "/service/status",
-        "imageRegistry": "registry.gitlab.com"
-      },
-      "configurations": {
-        "production": {},
-        "development": {}
+        "imageSuffix": "/service/status"
       }
     },
     "swagger-build": {
@@ -109,9 +87,7 @@
     "docker-save": {},
     "generate-package-json": {},
     "generate-open-api": {
-      "executor": "@rxap/plugin-library:run-generator",
       "options": {
-        "generator": "@rxap/plugin-open-api:generate",
         "options": {
           "project": "open-api-service-status",
           "path": "dist/swagger/applications/service/status/openapi.json",

@@ -27,7 +27,6 @@
         "generatePackageJson": true
       },
       "configurations": {
-        "development": {},
         "production": {
           "fileReplacements": [
             {
@@ -54,10 +53,6 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
       "options": {
         "lintFilePatterns": [
           "applications/service/user/**/*.ts"
@@ -65,13 +60,8 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
       "options": {
-        "jestConfig": "applications/service/user/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "applications/service/user/jest.config.ts"
       },
       "configurations": {
         "ci": {
@@ -80,42 +70,16 @@
         }
       }
     },
-    "build-info": {
-      "executor": "@rxap/plugin-application:build-info",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    },
+    "build-info": {},
     "docker": {
-      "executor": "@rxap/plugin-docker:build",
       "options": {
         "imageSuffix": "/service/user"
-      },
-      "configurations": {
-        "production": {},
-        "development": {}
       }
     },
-    "docker-save": {
-      "executor": "@rxap/plugin-docker:save",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    },
-    "generate-package-json": {
-      "executor": "@rxap/plugin-nestjs:package-json",
-      "configurations": {
-        "production": {}
-      }
-    },
+    "docker-save": {},
+    "generate-package-json": {},
     "generate-open-api": {
-      "executor": "@rxap/plugin-library:run-generator",
       "options": {
-        "generator": "@rxap/plugin-open-api:generate",
         "options": {
           "project": "open-api-service-user",
           "path": "dist/swagger/applications/service/user/openapi.json",
@@ -124,15 +88,9 @@
       }
     },
     "swagger-build": {
-      "executor": "@nx/webpack:webpack",
-      "outputs": [
-        "{options.outputPath}"
-      ],
       "options": {
         "outputPath": "dist/swagger/applications/service/user",
         "main": "applications/service/user/src/swagger.ts",
-        "target": "node",
-        "compiler": "tsc",
         "webpackConfig": "applications/service/user/webpack.config.js",
         "transformers": [
           "@nestjs/swagger/plugin"
@@ -147,13 +105,11 @@
       }
     },
     "swagger-generate": {
-      "executor": "@nx/js:node",
       "outputs": [
         "dist/swagger/applications/service/user/open-api.json"
       ],
       "options": {
-        "buildTarget": "service-user:swagger-build",
-        "watch": false
+        "buildTarget": "service-user:swagger-build"
       }
     }
   },

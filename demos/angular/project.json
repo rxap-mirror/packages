@@ -142,10 +142,6 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
       "options": {
         "lintFilePatterns": [
           "demos/angular/**/*.ts",
@@ -154,13 +150,8 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
       "options": {
-        "jestConfig": "demos/angular/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "demos/angular/jest.config.ts"
       },
       "configurations": {
         "ci": {
@@ -183,42 +174,14 @@
         }
       }
     },
-    "config": {
-      "executor": "@rxap/plugin-application:config",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    },
-    "build-info": {
-      "executor": "@rxap/plugin-application:build-info",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    },
+    "config": {},
+    "build-info": {},
     "docker": {
-      "executor": "@rxap/plugin-docker:build",
       "options": {
-        "imageName": "rxap/packages",
         "imageSuffix": "/user-interface/angular",
-        "imageRegistry": "registry.gitlab.com",
         "dockerfile": "shared/angular.Dockerfile"
-      },
-      "configurations": {
-        "production": {},
-        "development": {}
       }
     },
-    "docker-save": {
-      "executor": "@rxap/plugin-docker:save",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    }
+    "docker-save": {}
   }
 }

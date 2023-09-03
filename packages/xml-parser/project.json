@@ -29,10 +29,6 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
       "options": {
         "lintFilePatterns": [
           "packages/xml-parser/**/*.ts"
@@ -40,13 +36,8 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
       "options": {
-        "jestConfig": "packages/xml-parser/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/xml-parser/jest.config.ts"
       },
       "configurations": {
         "ci": {

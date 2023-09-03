@@ -32,13 +32,8 @@
       "defaultConfiguration": "production"
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
       "options": {
-        "jestConfig": "packages/angular/material/directives/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/angular/material/directives/jest.config.ts"
       },
       "configurations": {
         "ci": {
@@ -48,10 +43,6 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
       "options": {
         "lintFilePatterns": [
           "packages/angular/material/directives/**/*.ts",
@@ -103,8 +94,7 @@
       "configurations": {
         "production": {
           "minify": true
-        },
-        "development": {}
+        }
       }
     },
     "check-ng-package": {

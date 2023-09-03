@@ -27,7 +27,6 @@
         "generatePackageJson": true
       },
       "configurations": {
-        "development": {},
         "production": {
           "fileReplacements": [
             {
@@ -54,10 +53,6 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
       "options": {
         "lintFilePatterns": [
           "demos/service/app/angular/table/**/*.ts"
@@ -65,13 +60,8 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
       "options": {
-        "jestConfig": "demos/service/app/angular/table/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "demos/service/app/angular/table/jest.config.ts"
       },
       "configurations": {
         "ci": {
@@ -80,44 +70,19 @@
         }
       }
     },
-    "build-info": {
-      "executor": "@rxap/plugin-application:build-info",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    },
+    "build-info": {},
     "docker": {
-      "executor": "@rxap/plugin-docker:build",
       "options": {
-        "imageName": "rxap/packages",
-        "imageSuffix": "/service/app-angular-table",
-        "imageRegistry": "registry.gitlab.com"
-      },
-      "configurations": {
-        "production": {},
-        "development": {}
+        "imageSuffix": "/service/app-angular-table"
       }
     },
     "save": {
-      "executor": "@rxap/plugin-docker:save",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
+      "executor": "@rxap/plugin-docker:save"
     },
     "swagger-build": {
-      "executor": "@nx/webpack:webpack",
-      "outputs": [
-        "{options.outputPath}"
-      ],
       "options": {
         "outputPath": "dist/swagger/demos/service/app/angular/table",
         "main": "demos/service/app/angular/table/src/swagger.ts",
-        "target": "node",
-        "compiler": "tsc",
         "webpackConfig": "demos/service/app/angular/table/webpack.config.js",
         "transformers": [
           "@nestjs/swagger/plugin"
@@ -132,33 +97,17 @@
       }
     },
     "swagger-generate": {
-      "executor": "@nx/js:node",
       "outputs": [
         "dist/swagger/demos/service/app/angular/table/open-api.json"
       ],
       "options": {
-        "buildTarget": "service-app-angular-table:swagger-build",
-        "watch": false
+        "buildTarget": "service-app-angular-table:swagger-build"
       }
     },
-    "docker-save": {
-      "executor": "@rxap/plugin-docker:save",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    },
-    "generate-package-json": {
-      "executor": "@rxap/plugin-nestjs:package-json",
-      "configurations": {
-        "production": {}
-      }
-    },
+    "docker-save": {},
+    "generate-package-json": {},
     "generate-open-api": {
-      "executor": "@rxap/plugin-library:run-generator",
       "options": {
-        "generator": "@rxap/plugin-open-api:generate",
         "options": {
           "project": "open-api-service-app-angular-table",
           "path": "dist/swagger/demos/service/app/angular/table/openapi.json",

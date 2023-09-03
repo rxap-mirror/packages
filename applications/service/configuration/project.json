@@ -50,10 +50,6 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
       "options": {
         "lintFilePatterns": [
           "applications/service/configuration/**/*.ts"
@@ -61,35 +57,22 @@
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
       "outputs": [
         "{workspaceRoot}/coverage/applications/service/configuration"
       ],
       "options": {
-        "jestConfig": "applications/service/configuration/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "applications/service/configuration/jest.config.ts"
       }
     },
     "ci": {
-      "executor": "@rxap/plugin-application:build-info",
-      "configurations": {
-        "production": {}
-      }
+      "executor": "@rxap/plugin-application:build-info"
     },
     "docker": {
-      "executor": "@rxap/plugin-docker:build",
       "options": {
-        "imageName": "rxap/packages",
-        "imageSuffix": "/service/configuration",
-        "imageRegistry": "registry.gitlab.com"
-      },
-      "configurations": {
-        "production": {},
-        "development": {}
+        "imageSuffix": "/service/configuration"
       }
     },
     "swagger-build": {
-      "executor": "@nx/webpack:webpack",
       "options": {
         "outputPath": "dist/swagger/applications/service/configuration",
         "main": "applications/service/configuration/src/swagger.ts",
@@ -102,37 +85,14 @@
             "replace": "applications/service/configuration/src/environments/environment.ts",
             "with": "applications/service/configuration/src/environments/environment.swagger.ts"
           }
-        ],
-        "compiler": "tsc",
-        "target": "node"
+        ]
       }
     },
-    "build-info": {
-      "executor": "@rxap/plugin-application:build-info",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    },
-    "docker-save": {
-      "executor": "@rxap/plugin-docker:save",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    },
-    "generate-package-json": {
-      "executor": "@rxap/plugin-nestjs:package-json",
-      "configurations": {
-        "production": {}
-      }
-    },
+    "build-info": {},
+    "docker-save": {},
+    "generate-package-json": {},
     "generate-open-api": {
-      "executor": "@rxap/plugin-library:run-generator",
       "options": {
-        "generator": "@rxap/plugin-open-api:generate",
         "options": {
           "project": "open-api-service-configuration",
           "path": "dist/swagger/applications/service/configuration/openapi.json",
@@ -141,13 +101,11 @@
       }
     },
     "swagger-generate": {
-      "executor": "@nx/js:node",
       "outputs": [
         "dist/swagger/applications/service/configuration/open-api.json"
       ],
       "options": {
-        "buildTarget": "service-configuration:swagger-build",
-        "watch": false
+        "buildTarget": "service-configuration:swagger-build"
       }
     }
   },

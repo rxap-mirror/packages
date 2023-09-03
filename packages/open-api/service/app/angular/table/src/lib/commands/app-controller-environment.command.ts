@@ -10,7 +10,7 @@ import { AppControllerEnvironmentResponse } from '../responses/app-controller-en
 @OperationCommand({
   serverId: 'service-app-angular-table',
   operationId: 'AppController_environment',
-  operation: '{"operationId":"AppController_environment","parameters":[],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object"}}}}},"method":"get","path":"/"}',
+  operation: '{"operationId":"AppController_environment","parameters":[],"responses":{"200":{"content":{"application/json":{"schema":{"type":"object"}}}}},"method":"get","path":"/info"}',
 })
 export class AppControllerEnvironmentCommand
   extends OpenApiOperationCommand<AppControllerEnvironmentResponse, void, void> {
