@@ -1,0 +1,14 @@
+import { Route } from '@angular/router';
+import { STATUS_CHECK_ROUTE } from '@rxap/ngx-status-check';
+
+export const appRoutes: Route[] = [
+  STATUS_CHECK_ROUTE,
+  {
+    path: '',
+    loadChildren: () => import('./layout.routes')
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
+];

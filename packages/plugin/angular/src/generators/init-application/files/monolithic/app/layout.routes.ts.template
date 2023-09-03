@@ -1,0 +1,33 @@
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { Route } from '@angular/router';
+import {
+  LayoutComponent,
+  NavigationService,
+} from '@rxap/layout';
+import { StatusCheckGuard } from '@rxap/ngx-status-check';
+import { APP_NAVIGATION_PROVIDER } from './app.navigation';
+
+const ROUTES: Route[] = [
+  {
+    path: '',
+    component: LayoutComponent,
+    canActivateChild: [ StatusCheckGuard ],
+    children: [
+      {
+        path: '**',
+        redirectTo: '',
+      },
+    ],
+    providers: [
+      provideAnimations(),
+      APP_NAVIGATION_PROVIDER,
+      NavigationService,
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
+];
+
+export default ROUTES;

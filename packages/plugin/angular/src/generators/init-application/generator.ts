@@ -28,7 +28,10 @@ import {
   CoerceTargetDefaultsDependency,
   Strategy,
 } from '@rxap/workspace-utilities';
-import { join } from 'path';
+import {
+  join,
+  relative,
+} from 'path';
 import {
   SourceFile,
   WriterFunction,
@@ -455,6 +458,11 @@ export async function initApplicationGenerator(
     generateFiles(tree, join(__dirname, 'files', 'shared'), 'shared', options);
   }
 
+  // only add the shared folder if it does not exist
+  if (!tree.exists('styles')) {
+    generateFiles(tree, join(__dirname, 'files', 'styles'), 'styles', options);
+  }
+
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 
     if (skipProject(tree, options, project, projectName)) {
@@ -482,7 +490,10 @@ export async function initApplicationGenerator(
       cleanup(tree, project.sourceRoot);
     }
     if (options.monolithic && options.overwrite) {
-      generateFiles(tree, join(__dirname, 'files', 'app'), join(project.sourceRoot, 'app'), options);
+      generateFiles(tree, join(__dirname, 'files', 'monolithic'), project.sourceRoot, {
+        ...options,
+        relativePathToWorkspaceRoot: relative(project.sourceRoot, ''),
+      });
     }
 
     // apply changes to the project configuration
