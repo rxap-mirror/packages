@@ -93,49 +93,21 @@
       }
     },
     "swagger-build": {
-      "executor": "@nx/webpack:webpack",
-      "outputs": [
-        "{options.outputPath}"
-      ],
       "options": {
         "outputPath": "dist/swagger/applications/service/status",
         "main": "applications/service/status/src/swagger.ts",
-        "transformers": [
-          "@nestjs/swagger/plugin"
-        ],
         "tsConfig": "applications/service/status/tsconfig.app.json",
         "fileReplacements": [
           {
             "replace": "applications/service/status/src/environments/environment.ts",
             "with": "applications/service/status/src/environments/environment.swagger.ts"
           }
-        ],
-        "compiler": "tsc",
-        "target": "node"
+        ]
       }
     },
-    "build-info": {
-      "executor": "@rxap/plugin-application:build-info",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    },
-    "docker-save": {
-      "executor": "@rxap/plugin-docker:save",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    },
-    "generate-package-json": {
-      "executor": "@rxap/plugin-nestjs:package-json",
-      "configurations": {
-        "production": {}
-      }
-    },
+    "build-info": {},
+    "docker-save": {},
+    "generate-package-json": {},
     "generate-open-api": {
       "executor": "@rxap/plugin-library:run-generator",
       "options": {
@@ -148,13 +120,8 @@
       }
     },
     "swagger-generate": {
-      "executor": "@nx/js:node",
-      "outputs": [
-        "dist/swagger/applications/service/status/open-api.json"
-      ],
       "options": {
-        "buildTarget": "service-status:swagger-build",
-        "watch": false
+        "buildTarget": "service-status:swagger-build"
       }
     }
   },

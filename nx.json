@@ -54,7 +54,14 @@
     ]
   },
   "targetDefaults": {
+    "build-info": {
+      "executor": "@rxap/plugin-application:build-info"
+    },
     "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "inputs": [
         "default",
         "{workspaceRoot}/.eslintrc.json",
@@ -81,17 +88,37 @@
       ]
     },
     "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "inputs": [
         "test",
         "^test",
         "{workspaceRoot}/jest.preset.js",
         "{workspaceRoot}/jest.preset.ts"
-      ]
+      ],
+      "options": {
+        "passWithNoTests": true
+      }
     },
     "serve": {
       "dependsOn": [
         "build-info"
       ]
+    },
+    "swagger-build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "transformers": [
+          "@nestjs/swagger/plugin"
+        ],
+        "compiler": "tsc",
+        "target": "node"
+      }
     },
     "build": {
       "dependsOn": [
@@ -144,11 +171,22 @@
       ]
     },
     "docker": {
+      "executor": "@rxap/plugin-docker:build",
       "dependsOn": [
         "build"
       ],
       "options": {
-        "imageName": "rxap/packages"
+        "imageName": "rxap/packages",
+        "imageRegistry": "registry.gitlab.com"
+      }
+    },
+    "swagger-generate": {
+      "executor": "@nx/js:node",
+      "outputs": [
+        "dist/swagger/{projectRoot}/open-api.json"
+      ],
+      "options": {
+        "watch": false
       }
     },
     "save": {
@@ -165,7 +203,8 @@
     "docker-save": {
       "dependsOn": [
         "docker"
-      ]
+      ],
+      "executor": "@rxap/plugin-docker:save"
     },
     "check-ng-package": {
       "inputs": [
@@ -173,10 +212,25 @@
         "{projectRoot}/package.json"
       ]
     },
+    "config": {
+      "executor": "@rxap/plugin-application:config"
+    },
+    "generate-package-json": {
+      "executor": "@rxap/plugin-nestjs:package-json"
+    },
     "generate-open-api": {
       "dependsOn": [
         "swagger-generate"
-      ]
+      ],
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-open-api:generate",
+        "options": {
+          "project": "open-api-{projectName}",
+          "path": "dist/swagger/{projectRoot}/openapi.json",
+          "serverId": "{projectName}"
+        }
+      }
     },
     "index-export": {
       "executor": "@rxap/plugin-library:run-generator",
