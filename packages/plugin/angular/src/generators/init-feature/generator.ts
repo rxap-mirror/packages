@@ -83,7 +83,7 @@ function findParentRoute(ale: ArrayLiteralExpression, path: string[]): ArrayLite
 }
 
 export function AddRoute(sourceFile: SourceFile, route: AngularRoute, path?: string[]) {
-  const routes = sourceFile.getVariableDeclaration('appRoutes');
+  const routes = sourceFile.getVariableDeclaration('ROUTES');
   if (routes) {
     let initializer = routes.getInitializerIfKindOrThrow(SyntaxKind.ArrayLiteralExpression);
     if (path?.length) {
@@ -112,7 +112,7 @@ export async function initFeatureGenerator(
       path: options.name,
       loadChildren: '../feature/' + options.name + '/routes',
     }, [ '' ]);
-  }, [ 'app/app.routes.ts' ]);
+  }, [ 'app/layout.routes.ts' ]);
 }
 
 export default initFeatureGenerator;
