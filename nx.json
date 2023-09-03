@@ -239,7 +239,9 @@
       "skipTests": true
     },
     "@nx/nest:application": {
-      "e2eTestRunner": "none"
+      "e2eTestRunner": "none",
+      "tags": "nest",
+      "strict": true
     },
     "@rxap/schematic-nestjs:frontend-microservice": {
       "imageName": "rxap/packages",
