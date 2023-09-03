@@ -1,36 +1,26 @@
 import { HttpClientModule } from '@angular/common/http';
 import {
-  Inject,
-  InjectionToken,
   ModuleWithProviders,
   NgModule,
 } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
-import { coerceArray } from '@rxap/utilities';
+import { IconLoaderService } from './icon-loader.service';
+import {
+  DefaultIconSvgFilePath,
+  RXAP_ICON_ASSET_PATH,
+} from './tokens';
 
-export function DefaultIconSvgFilePath() {
-  return '/assets/mdi.svg';
-}
-
-export const RXAP_ICON_ASSET_PATH = new InjectionToken('rxap/icon/asset-path', {
-  providedIn: 'root',
-  factory: DefaultIconSvgFilePath,
-});
-
+/**
+ * @deprecated instead use the IconLoaderService - the service is automatically loaded in the LayoutComponent
+ */
 @NgModule({
   imports: [ HttpClientModule ],
 })
 export class IconModule {
 
   constructor(
-    @Inject(MatIconRegistry) matIconRegistry: MatIconRegistry,
-    @Inject(DomSanitizer) domSanitizer: DomSanitizer,
-    @Inject(RXAP_ICON_ASSET_PATH) pathList: string | string[],
+    iconLoaderService: IconLoaderService,
   ) {
-    for (const path of coerceArray(pathList)) {
-      matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl(path));
-    }
+    iconLoaderService.load();
   }
 
   public static forRoot(path: string | string[] = DefaultIconSvgFilePath()): ModuleWithProviders<IconModule> {
