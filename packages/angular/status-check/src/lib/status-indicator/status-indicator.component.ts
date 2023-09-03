@@ -16,6 +16,7 @@ import {
 } from '@angular/router';
 import { ConfigService } from '@rxap/config';
 import {
+  debounceTime,
   interval,
   merge,
   Subject,
@@ -63,9 +64,17 @@ export class StatusIndicatorComponent implements OnInit, OnDestroy {
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
       map(event => ({ url: event.url, service: this.services })),
     ));
-    const status$ = this.statusCheckService.getStatus(this.services).pipe(map(status => status.status));
-    const manualRetry$ = this.retry$.pipe(switchMap(() => this.statusCheckService.getStatus(this.services)
-                                                              .pipe(map(status => status.status))));
+    const status$ = this.statusCheckService.getStatus(this.services).pipe(
+      map(status => status.status),
+    );
+    const manualRetry$ = this.retry$.pipe(
+      switchMap(() => this.statusCheckService
+                          .getStatus(this.services)
+                          .pipe(
+                            map(status => status.status),
+                            debounceTime(500),
+                          ),
+      ));
     this.status = toSignal(merge(status$, manualRetry$), { initialValue: 'loading' });
   }
 
