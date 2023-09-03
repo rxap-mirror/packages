@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   Component,
   inject,
@@ -35,7 +35,7 @@ export const STATUS_INDICATOR_INTERVAL = isDevMode() ? 5 : 60 * 5;
 @Component({
   selector: 'rxap-status-indicator',
   standalone: true,
-  imports: [ CommonModule, RouterLink ],
+  imports: [ RouterLink, NgClass ],
   templateUrl: './status-indicator.component.html',
   styleUrls: [ './status-indicator.component.scss' ],
 })

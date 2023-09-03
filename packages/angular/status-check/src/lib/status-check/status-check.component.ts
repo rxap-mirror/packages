@@ -1,4 +1,8 @@
-import { CommonModule } from '@angular/common';
+import {
+  NgClass,
+  NgForOf,
+  NgIf,
+} from '@angular/common';
 import {
   Component,
   computed,
@@ -41,7 +45,7 @@ export interface ServiceStatus {
 @Component({
   selector: 'rxap-status-check',
   standalone: true,
-  imports: [ CommonModule, RouterLink ],
+  imports: [ RouterLink, NgIf, NgClass, NgForOf ],
   templateUrl: './status-check.component.html',
   styleUrls: [ './status-check.component.scss' ],
 })
