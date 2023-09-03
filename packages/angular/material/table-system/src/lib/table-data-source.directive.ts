@@ -1,3 +1,4 @@
+import { CdkTable } from '@angular/cdk/table';
 import {
   ChangeDetectorRef,
   Directive,
@@ -9,9 +10,9 @@ import {
   Optional,
 } from '@angular/core';
 import type { MatPaginator } from '@angular/material/paginator';
-import type { Observable } from 'rxjs';
-import { Subscription } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
+import { pipeDataSource } from '@rxap/data-source';
+import { PaginatorLike } from '@rxap/data-source/pagination';
 import type {
   AbstractTableDataSource,
   FilterLike,
@@ -22,20 +23,17 @@ import {
   SortLike,
   TableEvent,
 } from '@rxap/data-source/table';
-import { BaseRemoteMethod } from '@rxap/remote-method';
-import { PaginatorLike } from '@rxap/data-source/pagination';
-import { CdkTable } from '@angular/cdk/table';
-import { TableFilterService } from './table-filter/table-filter.service';
+import { Method } from '@rxap/pattern';
+import { ToggleSubject } from '@rxap/rxjs';
+import type { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import {
   debounceTime,
   delay,
   filter,
   tap,
 } from 'rxjs/operators';
-import { Required } from '@rxap/utilities';
-import { ToggleSubject } from '@rxap/rxjs';
-import { Method } from '@rxap/pattern';
-import { pipeDataSource } from '@rxap/data-source';
+import { TableFilterService } from './table-filter/table-filter.service';
 
 export { RXAP_TABLE_METHOD } from '@rxap/data-source/table';
 
@@ -57,7 +55,7 @@ export type TableRemoteMethodAdapterFactory<
   sort?: SortLike | null,
   filter?: FilterLike | null,
   parameters?: Observable<Record<string, any>>,
-) => BaseRemoteMethod<Data[], TableEvent>;
+) => Method<Data[], TableEvent>;
 
 @Directive({
   selector: 'table[mat-table][rxapTableDataSource],mat-table[rxapTableDataSource]',
