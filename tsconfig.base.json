@@ -10,25 +10,44 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rxap/authentication": ["packages/angular/authentication/src/index.ts"],
+      "@rxap/authentication": [
+        "packages/angular/authentication/src/index.ts"
+      ],
       "@rxap/authentication/components": [
         "packages/angular/authentication/components/src/index.ts"
       ],
-      "@rxap/authorization": ["packages/angular/authorization/src/index.ts"],
-      "@rxap/browser-tailwind": ["packages/browser/tailwind/src/index.ts"],
-      "@rxap/browser-utilities": ["packages/browser/utilities/src/index.ts"],
-      "@rxap/components": ["packages/angular/components/src/index.ts"],
-      "@rxap/config": ["packages/angular/config/src/index.ts"],
+      "@rxap/authorization": [
+        "packages/angular/authorization/src/index.ts"
+      ],
+      "@rxap/browser-tailwind": [
+        "packages/browser/tailwind/src/index.ts"
+      ],
+      "@rxap/browser-utilities": [
+        "packages/browser/utilities/src/index.ts"
+      ],
+      "@rxap/components": [
+        "packages/angular/components/src/index.ts"
+      ],
+      "@rxap/config": [
+        "packages/angular/config/src/index.ts"
+      ],
       "@rxap/contenteditable": [
         "packages/angular/contenteditable/src/index.ts"
       ],
-      "@rxap/data-grid": ["packages/angular/data-grid/src/index.ts"],
-      "@rxap/data-source": ["packages/angular/data-source/src/index.ts"],
+      "@rxap/data-grid": [
+        "packages/angular/data-grid/src/index.ts"
+      ],
+      "@rxap/data-source": [
+        "packages/angular/data-source/src/index.ts"
+      ],
       "@rxap/data-source/accordion": [
         "packages/angular/data-source/accordion/src/index.ts"
       ],
@@ -65,29 +84,57 @@
       "@rxap/data-structure-tree": [
         "packages/data-structure/tree/src/index.ts"
       ],
-      "@rxap/definition": ["packages/angular/definition/src/index.ts"],
-      "@rxap/dialog": ["packages/angular/dialog/src/index.ts"],
-      "@rxap/directives": ["packages/angular/directives/src/index.ts"],
-      "@rxap/environment": ["packages/angular/environment/src/index.ts"],
-      "@rxap/firebase": ["packages/angular/firebase/src/index.ts"],
-      "@rxap/firebase/auth": ["packages/angular/firebase/auth/src/index.ts"],
-      "@rxap/form-system": ["packages/angular/form-system/src/index.ts"],
+      "@rxap/definition": [
+        "packages/angular/definition/src/index.ts"
+      ],
+      "@rxap/dialog": [
+        "packages/angular/dialog/src/index.ts"
+      ],
+      "@rxap/directives": [
+        "packages/angular/directives/src/index.ts"
+      ],
+      "@rxap/environment": [
+        "packages/angular/environment/src/index.ts"
+      ],
+      "@rxap/firebase": [
+        "packages/angular/firebase/src/index.ts"
+      ],
+      "@rxap/firebase/auth": [
+        "packages/angular/firebase/auth/src/index.ts"
+      ],
+      "@rxap/form-system": [
+        "packages/angular/form-system/src/index.ts"
+      ],
       "@rxap/form-window-system": [
         "packages/angular/form-window-system/src/index.ts"
       ],
-      "@rxap/forms": ["packages/angular/forms/src/index.ts"],
-      "@rxap/generator-ts-morph": ["packages/generator/ts-morph/src/index.ts"],
+      "@rxap/forms": [
+        "packages/angular/forms/src/index.ts"
+      ],
+      "@rxap/generator-ts-morph": [
+        "packages/generator/ts-morph/src/index.ts"
+      ],
       "@rxap/generator-utilities": [
         "packages/generator/utilities/src/index.ts"
       ],
-      "@rxap/handlebars": ["packages/angular/handlebars/src/index.ts"],
-      "@rxap/icon": ["packages/angular/icon/src/index.ts"],
+      "@rxap/handlebars": [
+        "packages/angular/handlebars/src/index.ts"
+      ],
+      "@rxap/icon": [
+        "packages/angular/icon/src/index.ts"
+      ],
       "@rxap/json-schema-to-typescript": [
         "packages/json-schema-to-typescript/src/index.ts"
       ],
-      "@rxap/keycloak": ["packages/angular/keycloak/src/index.ts"],
-      "@rxap/layout": ["packages/angular/layout/src/index.ts"],
-      "@rxap/life-cycle": ["packages/angular/life-cycle/src/index.ts"],
+      "@rxap/keycloak": [
+        "packages/angular/keycloak/src/index.ts"
+      ],
+      "@rxap/layout": [
+        "packages/angular/layout/src/index.ts"
+      ],
+      "@rxap/life-cycle": [
+        "packages/angular/life-cycle/src/index.ts"
+      ],
       "@rxap/material-directives": [
         "packages/angular/material/directives/src/index.ts"
       ],
@@ -115,30 +162,60 @@
       "@rxap/material-table-window-system": [
         "packages/angular/material/table-window-system/src/index.ts"
       ],
-      "@rxap/mixin": ["packages/mixin/src/index.ts"],
-      "@rxap/nest-firebase": ["packages/nest/firebase/src/index.ts"],
-      "@rxap/nest-jwt": ["packages/nest/jwt/src/index.ts"],
-      "@rxap/nest-logger": ["packages/nest/logger/src/index.ts"],
-      "@rxap/nest-minio": ["packages/nest/minio/src/index.ts"],
-      "@rxap/nest-open-api": ["packages/nest/open-api/src/index.ts"],
-      "@rxap/nest-sentry": ["packages/nest/sentry/src/index.ts"],
-      "@rxap/nest-server": ["packages/nest/server/src/index.ts"],
+      "@rxap/mixin": [
+        "packages/mixin/src/index.ts"
+      ],
+      "@rxap/nest-firebase": [
+        "packages/nest/firebase/src/index.ts"
+      ],
+      "@rxap/nest-jwt": [
+        "packages/nest/jwt/src/index.ts"
+      ],
+      "@rxap/nest-logger": [
+        "packages/nest/logger/src/index.ts"
+      ],
+      "@rxap/nest-minio": [
+        "packages/nest/minio/src/index.ts"
+      ],
+      "@rxap/nest-open-api": [
+        "packages/nest/open-api/src/index.ts"
+      ],
+      "@rxap/nest-sentry": [
+        "packages/nest/sentry/src/index.ts"
+      ],
+      "@rxap/nest-server": [
+        "packages/nest/server/src/index.ts"
+      ],
       "@rxap/nest-socket-io-client": [
         "packages/nest/socket-io-client/src/index.ts"
       ],
-      "@rxap/nest-utilities": ["packages/nest/utilities/src/index.ts"],
-      "@rxap/ngx-bootstrap": ["packages/angular/bootstrap/src/index.ts"],
+      "@rxap/nest-utilities": [
+        "packages/nest/utilities/src/index.ts"
+      ],
+      "@rxap/ngx-bootstrap": [
+        "packages/angular/bootstrap/src/index.ts"
+      ],
       "@rxap/ngx-material-table-select": [
         "packages/angular/material/table-select/src/index.ts"
       ],
-      "@rxap/ngx-sentry": ["packages/angular/sentry/src/index.ts"],
-      "@rxap/ngx-status-check": ["packages/angular/status-check/src/index.ts"],
-      "@rxap/node-utilities": ["packages/node/utilities/src/index.ts"],
-      "@rxap/oauth": ["packages/angular/oauth/src/index.ts"],
+      "@rxap/ngx-sentry": [
+        "packages/angular/sentry/src/index.ts"
+      ],
+      "@rxap/ngx-status-check": [
+        "packages/angular/status-check/src/index.ts"
+      ],
+      "@rxap/node-utilities": [
+        "packages/node/utilities/src/index.ts"
+      ],
+      "@rxap/oauth": [
+        "packages/angular/oauth/src/index.ts"
+      ],
       "@rxap/oauth/single-sign-on": [
         "packages/angular/oauth/single-sign-on/src/index.ts"
       ],
-      "@rxap/open-api": ["packages/angular/open-api/src/index.ts"],
+      "@rxap/open-api": [
+        "packages/angular/open-api/src/index.ts"
+      ],
       "@rxap/open-api/data-source": [
         "packages/angular/open-api/data-source/src/index.ts"
       ],
@@ -148,25 +225,54 @@
       "@rxap/open-api/remote-method": [
         "packages/angular/open-api/remote-method/src/index.ts"
       ],
-      "@rxap/pattern": ["packages/pattern/src/index.ts"],
-      "@rxap/pipes": ["packages/angular/pipes/src/index.ts"],
+      "@rxap/pattern": [
+        "packages/pattern/src/index.ts"
+      ],
+      "@rxap/pipes": [
+        "packages/angular/pipes/src/index.ts"
+      ],
       "@rxap/pipes/santization": [
         "packages/angular/pipes/santization/src/index.ts"
       ],
-      "@rxap/plugin-angular": ["packages/plugin/angular/src/index.ts"],
-      "@rxap/plugin-application": ["packages/plugin/application/src/index.ts"],
-      "@rxap/plugin-docker": ["packages/plugin/docker/src/index.ts"],
-      "@rxap/plugin-gpt": ["packages/plugin/gpt/src/index.ts"],
-      "@rxap/plugin-library": ["packages/plugin/library/src/index.ts"],
-      "@rxap/plugin-localazy": ["packages/plugin/localazy/src/index.ts"],
-      "@rxap/plugin-nestjs": ["packages/plugin/nestjs/src/index.ts"],
+      "@rxap/plugin-angular": [
+        "packages/plugin/angular/src/index.ts"
+      ],
+      "@rxap/plugin-application": [
+        "packages/plugin/application/src/index.ts"
+      ],
+      "@rxap/plugin-docker": [
+        "packages/plugin/docker/src/index.ts"
+      ],
+      "@rxap/plugin-gpt": [
+        "packages/plugin/gpt/src/index.ts"
+      ],
+      "@rxap/plugin-library": [
+        "packages/plugin/library/src/index.ts"
+      ],
+      "@rxap/plugin-localazy": [
+        "packages/plugin/localazy/src/index.ts"
+      ],
+      "@rxap/plugin-nestjs": [
+        "packages/plugin/nestjs/src/index.ts"
+      ],
+      "@rxap/plugin-open-api": [
+        "packages/plugin/open-api/src/index.ts"
+      ],
       "@rxap/plugin-readme-generator": [
         "packages/plugin/readme-generator/src/index.ts"
       ],
-      "@rxap/plugin-utilities": ["packages/plugin/utilities/src/index.ts"],
-      "@rxap/plugin-workspace": ["packages/plugin/workspace/src/index.ts"],
-      "@rxap/reflect-metadata": ["packages/reflect-metadata/src/index.ts"],
-      "@rxap/remote-method": ["packages/angular/remote-method/src/index.ts"],
+      "@rxap/plugin-utilities": [
+        "packages/plugin/utilities/src/index.ts"
+      ],
+      "@rxap/plugin-workspace": [
+        "packages/plugin/workspace/src/index.ts"
+      ],
+      "@rxap/reflect-metadata": [
+        "packages/reflect-metadata/src/index.ts"
+      ],
+      "@rxap/remote-method": [
+        "packages/angular/remote-method/src/index.ts"
+      ],
       "@rxap/remote-method/directive": [
         "packages/angular/remote-method/directive/src/index.ts"
       ],
@@ -179,51 +285,100 @@
       "@rxap/remote-method/testing": [
         "packages/angular/remote-method/testing/src/index.ts"
       ],
-      "@rxap/rxjs": ["packages/rxjs/src/index.ts"],
-      "@rxap/schematic-angular": ["packages/schematic/angular/src/index.ts"],
-      "@rxap/schematic-composer": ["packages/schematic/composer/src/index.ts"],
-      "@rxap/schematic-nestjs": ["packages/schematic/nestjs/src/index.ts"],
-      "@rxap/schematics-open-api": ["packages/schematic/open-api/src/index.ts"],
-      "@rxap/schematics-ts-morph": ["packages/schematic/ts-morph/src/index.ts"],
+      "@rxap/rxjs": [
+        "packages/rxjs/src/index.ts"
+      ],
+      "@rxap/schematic-angular": [
+        "packages/schematic/angular/src/index.ts"
+      ],
+      "@rxap/schematic-composer": [
+        "packages/schematic/composer/src/index.ts"
+      ],
+      "@rxap/schematic-nestjs": [
+        "packages/schematic/nestjs/src/index.ts"
+      ],
+      "@rxap/schematics-open-api": [
+        "packages/schematic/open-api/src/index.ts"
+      ],
+      "@rxap/schematics-ts-morph": [
+        "packages/schematic/ts-morph/src/index.ts"
+      ],
       "@rxap/schematics-utilities": [
         "packages/schematic/utilities/src/index.ts"
       ],
       "@rxap/schematics-xml-parser": [
         "packages/schematic/xml-parser/src/index.ts"
       ],
-      "@rxap/service-worker": ["packages/angular/service-worker/src/index.ts"],
-      "@rxap/services": ["packages/angular/services/src/index.ts"],
+      "@rxap/service-worker": [
+        "packages/angular/service-worker/src/index.ts"
+      ],
+      "@rxap/services": [
+        "packages/angular/services/src/index.ts"
+      ],
       "@rxap/services/testing": [
         "packages/angular/services/testing/src/index.ts"
       ],
-      "@rxap/slugify": ["packages/slugify/src/index.ts"],
-      "@rxap/socket-io": ["packages/angular/socket-io/src/index.ts"],
-      "@rxap/table-system": ["packages/angular/table-system/src/index.ts"],
-      "@rxap/tree": ["packages/angular/tree/src/index.ts"],
-      "@rxap/ts-morph": ["packages/ts-morph/src/index.ts"],
-      "@rxap/upload": ["packages/angular/upload/src/index.ts"],
-      "@rxap/utilities": ["packages/utilities/src/index.ts"],
-      "@rxap/validator": ["packages/validator/src/index.ts"],
-      "@rxap/window-system": ["packages/angular/window-system/src/index.ts"],
-      "@rxap/workspace-open-api": ["packages/workspace/open-api/src/index.ts"],
-      "@rxap/workspace-ts-morph": ["packages/workspace/ts-morph/src/index.ts"],
+      "@rxap/slugify": [
+        "packages/slugify/src/index.ts"
+      ],
+      "@rxap/socket-io": [
+        "packages/angular/socket-io/src/index.ts"
+      ],
+      "@rxap/table-system": [
+        "packages/angular/table-system/src/index.ts"
+      ],
+      "@rxap/tree": [
+        "packages/angular/tree/src/index.ts"
+      ],
+      "@rxap/ts-morph": [
+        "packages/ts-morph/src/index.ts"
+      ],
+      "@rxap/upload": [
+        "packages/angular/upload/src/index.ts"
+      ],
+      "@rxap/utilities": [
+        "packages/utilities/src/index.ts"
+      ],
+      "@rxap/validator": [
+        "packages/validator/src/index.ts"
+      ],
+      "@rxap/window-system": [
+        "packages/angular/window-system/src/index.ts"
+      ],
+      "@rxap/workspace-open-api": [
+        "packages/workspace/open-api/src/index.ts"
+      ],
+      "@rxap/workspace-ts-morph": [
+        "packages/workspace/ts-morph/src/index.ts"
+      ],
       "@rxap/workspace-utilities": [
         "packages/workspace/utilities/src/index.ts"
       ],
-      "@rxap/xml-parser": ["packages/xml-parser/src/index.ts"],
-      "@rxap/plugin-open-api": ["packages/plugin/open-api/src/index.ts"],
+      "@rxap/xml-parser": [
+        "packages/xml-parser/src/index.ts"
+      ],
       "open-api-service-app-angular-table/*": [
         "packages/open-api/service/app/angular/table/src/lib/*"
-      ],
-      "open-api-service-status/*": [
-        "packages/open-api/service/status/src/lib/*"
       ],
       "open-api-service-configuration/*": [
         "packages/open-api/service/configuration/src/lib/*"
       ],
-      "workspace": ["tools/workspace/src/index.ts"],
-      "workspace/commands": ["tools/workspace/src/cypress/commands.ts"]
+      "open-api-service-status/*": [
+        "packages/open-api/service/status/src/lib/*"
+      ],
+      "workspace": [
+        "tools/workspace/src/index.ts"
+      ],
+      "workspace/commands": [
+        "tools/workspace/src/cypress/commands.ts"
+      ],
+      "open-api-service-user/*": [
+        "packages/open-api/service/user/src/lib/*"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

@@ -3,8 +3,8 @@ export * from './lib/responses/app-controller-environment.response';
 export * from './lib/responses/app-controller-name.response';
 export * from './lib/responses/health-controller-health-check.response';
 export * from './lib/responses/status-controller-health-check-service.response';
-export * from './lib/responses/status-controller-register.response';
 export * from './lib/responses/status-controller-health-check.response';
+export * from './lib/responses/status-controller-register.response';
 // endregion
 
 // region request-bodies

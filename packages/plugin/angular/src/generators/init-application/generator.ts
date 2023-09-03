@@ -81,14 +81,7 @@ function updateProjectTargets(
     },
   }, Strategy.OVERWRITE);
 
-  project.targets['config'] ??= {
-    executor: '@rxap/plugin-application:config',
-    options: {},
-    configurations: {
-      production: {},
-      development: {},
-    },
-  };
+  CoerceTarget(project, 'config', {});
   if (project.targets['extract-i18n']) {
     if (options.i18n) {
       options.languages ??= [];

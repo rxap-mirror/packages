@@ -40,6 +40,14 @@ docker:service-status:
     IMAGE_SUFFIX: /service/status
   environment:
     name: $ENVIRONMENT_NAME
+docker:service-user:
+  extends: .docker
+  variables:
+    DOCKER_CONTEXT: dist/applications/service/user
+    IMAGE_NAME: rxap/packages
+    IMAGE_SUFFIX: /service/user
+  environment:
+    name: $ENVIRONMENT_NAME
 docker:service-app-angular-table:
   extends: .docker
   variables:

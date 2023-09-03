@@ -1,0 +1,163 @@
+{
+  "name": "service-user",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "applications/service/user/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/applications/service/user",
+        "main": "applications/service/user/src/main.ts",
+        "tsConfig": "applications/service/user/tsconfig.app.json",
+        "assets": [
+          "applications/service/user/src/assets",
+          "applications/service/user/src/build.json",
+          "applications/service/user/src/Dockerfile",
+          "applications/service/user/src/healthcheck.js"
+        ],
+        "isolatedConfig": true,
+        "webpackConfig": "applications/service/user/webpack.config.js",
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "applications/service/user/src/environments/environment.ts",
+              "with": "applications/service/user/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "service-user:build:development"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "service-user:build:development"
+        },
+        "production": {
+          "buildTarget": "service-user:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "applications/service/user/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "applications/service/user/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "build-info": {
+      "executor": "@rxap/plugin-application:build-info",
+      "options": {},
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "docker": {
+      "executor": "@rxap/plugin-docker:build",
+      "options": {
+        "imageSuffix": "/service/user"
+      },
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "docker-save": {
+      "executor": "@rxap/plugin-docker:save",
+      "options": {},
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "generate-package-json": {
+      "executor": "@rxap/plugin-nestjs:package-json",
+      "configurations": {
+        "production": {}
+      }
+    },
+    "generate-open-api": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-open-api:generate",
+        "options": {
+          "project": "open-api-service-user",
+          "path": "dist/swagger/applications/service/user/openapi.json",
+          "serverId": "service-user"
+        }
+      }
+    },
+    "swagger-build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/swagger/applications/service/user",
+        "main": "applications/service/user/src/swagger.ts",
+        "target": "node",
+        "compiler": "tsc",
+        "webpackConfig": "applications/service/user/webpack.config.js",
+        "transformers": [
+          "@nestjs/swagger/plugin"
+        ],
+        "tsConfig": "applications/service/user/tsconfig.app.json",
+        "fileReplacements": [
+          {
+            "replace": "applications/service/user/src/environments/environment.ts",
+            "with": "applications/service/user/src/environments/environment.swagger.ts"
+          }
+        ]
+      }
+    },
+    "swagger-generate": {
+      "executor": "@nx/js:node",
+      "outputs": [
+        "dist/swagger/applications/service/user/open-api.json"
+      ],
+      "options": {
+        "buildTarget": "service-user:swagger-build",
+        "watch": false
+      }
+    }
+  },
+  "tags": [
+    "nest"
+  ]
+}
