@@ -18,6 +18,7 @@ function CoerceSentryModule(sourceFile: SourceFile, options: SentryGeneratorSche
   CoerceNestModuleImport(
     sourceFile,
     {
+      overwrite: options.overwrite,
       moduleName: 'SentryModule',
       structures: [
         {
@@ -44,10 +45,10 @@ function CoerceSentryModule(sourceFile: SourceFile, options: SentryGeneratorSche
           inject: '[ ConfigService ]',
           useFactory: 'SentryOptionsFactory(environment)',
         })(w);
-        w.writeLine(',');
+        w.write(',');
         Writers.object({
           logLevels: 'GetLogLevels()',
-        });
+        })(w);
         w.write(')');
       },
     },
