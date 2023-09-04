@@ -1,7 +1,7 @@
-import * as process from 'process';
-import { SchemaMap } from 'joi';
-import * as Joi from 'joi';
 import { GenerateRandomString } from '@rxap/utilities';
+import * as Joi from 'joi';
+import { SchemaMap } from 'joi';
+import * as process from 'process';
 import { environment } from '../environments/environment';
 
 const validationSchema: SchemaMap = {};
@@ -20,4 +20,8 @@ validationSchema['SENTRY_RELEASE'] = Joi.string();
 validationSchema['SENTRY_ENVIRONMENT'] = Joi.string();
 validationSchema['SENTRY_ENABLED'] = Joi.string().default(environment.sentry?.enabled ?? false);
 validationSchema['SENTRY_DSN'] = Joi.string();
+validationSchema['STORE_FILE_PATH'] =
+  Joi.string().default(environment.production ? '/data' : '/tmp/data/user-settings');
+validationSchema['SETTINGS_DEFAULT_FILE_PATH'] =
+  Joi.string().default(environment.production ? '/default/user-settings.json' : '/tmp/default/user-settings.json');
 export const VALIDATION_SCHEMA = Joi.object(validationSchema);
