@@ -120,17 +120,8 @@
     },
     "build-info": {},
     "component-test": {
-      "executor": "@nx/cypress:cypress",
       "options": {
-        "cypressConfig": "demos/angular/cypress.config.ts",
-        "testingType": "component",
-        "skipServe": true,
-        "devServerTarget": "angular:build:development"
-      },
-      "configurations": {
-        "open": {
-          "watch": true
-        }
+        "cypressConfig": "demos/angular/cypress.config.ts"
       }
     },
     "config": {},

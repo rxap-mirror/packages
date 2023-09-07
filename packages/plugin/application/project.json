@@ -39,7 +39,6 @@
       }
     },
     "check-version": {
-      "executor": "@rxap/plugin-library:check-version",
       "options": {
         "packageName": "nx"
       }
@@ -51,12 +50,7 @@
       }
     },
     "fix-dependencies": {
-      "executor": "@rxap/plugin-library:run-generator",
-      "outputs": [
-        "{workspaceRoot}/{projectRoot}/package.json"
-      ],
       "options": {
-        "generator": "@rxap/plugin-library:fix-dependencies",
         "options": {
           "strict": true
         }
@@ -78,9 +72,7 @@
         "build"
       ]
     },
-    "readme": {
-      "executor": "@rxap/plugin-library:readme"
-    },
+    "readme": {},
     "test": {
       "options": {
         "jestConfig": "packages/plugin/application/jest.config.ts"
@@ -92,12 +84,8 @@
         }
       }
     },
-    "update-dependencies": {
-      "executor": "@rxap/plugin-library:update-dependencies"
-    },
-    "update-package-group": {
-      "executor": "@rxap/plugin-library:update-package-group"
-    }
+    "update-dependencies": {},
+    "update-package-group": {}
   },
   "tags": [
     "plugin",
