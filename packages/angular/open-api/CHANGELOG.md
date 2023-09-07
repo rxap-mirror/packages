@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.16...@rxap/open-api@16.0.0-dev.17) (2023-09-07)
+
+### Bug Fixes
+
+- support legacy open api configuration loading ([d1d06d2](https://gitlab.com/rxap/packages/commit/d1d06d255850456ba8707469c0e4bd62d82e6fbd))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.15...@rxap/open-api@16.0.0-dev.16) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/open-api
