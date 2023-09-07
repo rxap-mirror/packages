@@ -10668,6 +10668,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/xmldom@npm:^0.1.32":
+  version: 0.1.32
+  resolution: "@types/xmldom@npm:0.1.32"
+  checksum: ad16d25dbfe1b604322bf0c92dede16b237b16a2fb0e30704d6c27d15e76a94ae90c653edba2dc1f18fb9d84d17d809c2a026b5f8a10341ae568e178271b6335
+  languageName: node
+  linkType: hard
+
 "@types/yargs-parser@npm:*":
   version: 21.0.0
   resolution: "@types/yargs-parser@npm:21.0.0"
@@ -26147,6 +26154,7 @@ __metadata:
     "@types/jest": ^29.4.0
     "@types/node": 18.7.1
     "@types/supertest": 2.0.11
+    "@types/xmldom": ^0.1.32
     "@typescript-eslint/eslint-plugin": 5.61.0
     "@typescript-eslint/parser": 5.61.0
     alias-quokka-plugin: ^0.1.0
