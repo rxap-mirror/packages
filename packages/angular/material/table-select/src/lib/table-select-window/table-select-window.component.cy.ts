@@ -12,13 +12,18 @@ import {
   RXAP_WINDOW_DATA,
   RXAP_WINDOW_REF,
 } from '@rxap/window-system';
-import { BehaviorSubject } from 'rxjs';
+import {
+  BehaviorSubject,
+  Subject,
+} from 'rxjs';
 import { CreateFilterFormProvider } from '../create-filter-form-provider';
 import { TableSelectWindowComponent } from './table-select-window.component';
 
 describe(TableSelectWindowComponent.name, () => {
 
   let windowRef = {};
+  let windowData: any = {};
+  let rowList = [];
   const selectRowService = {
     selectedRows$: new BehaviorSubject([]),
     selectionModel: new SelectionModel(),
@@ -34,25 +39,7 @@ describe(TableSelectWindowComponent.name, () => {
       next: cy.spy(),
       setFooterPortal: cy.spy(),
     };
-    TestBed.configureTestingModule({
-      imports: [
-        NoopAnimationsModule,
-      ],
-      providers: [
-        {
-          provide: RXAP_WINDOW_REF,
-          useValue: windowRef,
-        },
-        {
-          provide: SelectRowService,
-          useValue: selectRowService,
-        },
-      ],
-    });
-  });
-
-  it('renders', () => {
-    const windowData = {
+    windowData = {
       id: 'test',
       columns: new Map([
         [ 'name',
@@ -70,12 +57,23 @@ describe(TableSelectWindowComponent.name, () => {
       ]),
       title: 'test',
     };
-    const rowList = Array.from({ length: 100 }, () => ({
+    rowList = Array.from({ length: 100 }, () => ({
       name: faker.company.name(),
       location: faker.location.streetAddress(),
     }));
-    cy.mount(TableSelectWindowComponent, {
+    TestBed.configureTestingModule({
+      imports: [
+        NoopAnimationsModule,
+      ],
       providers: [
+        {
+          provide: RXAP_WINDOW_REF,
+          useValue: windowRef,
+        },
+        {
+          provide: SelectRowService,
+          useValue: selectRowService,
+        },
         {
           provide: RXAP_WINDOW_DATA,
           useValue: windowData,
@@ -87,7 +85,33 @@ describe(TableSelectWindowComponent.name, () => {
         CreateFilterFormProvider(windowData.columns),
       ],
     });
+  });
+
+  it('renders', () => {
+    cy.mount(TableSelectWindowComponent);
     cy.get('table tbody tr').should('have.length', 10);
+  });
+
+  it('should show table loading animation', () => {
+    const data = new Subject<any>();
+    cy.mount(TableSelectWindowComponent, {
+      providers: [
+        {
+          provide: TABLE_DATA_SOURCE,
+          useValue: new TableDataSource(staticDataSource(data)),
+        },
+      ],
+    }).then(response => {
+      response.fixture.whenStable().then(() => {
+        cy.get('mat-progress-bar').should('be.visible').then(() => {
+          data.next([]);
+          response.fixture.detectChanges();
+          response.fixture.whenRenderingDone().then(() => {
+            cy.get('mat-progress-bar', { timeout: 5000 }).should('not.exist');
+          });
+        });
+      });
+    });
   });
 
 });
