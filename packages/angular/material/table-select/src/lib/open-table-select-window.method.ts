@@ -15,13 +15,8 @@ import {
   TableDataSource,
 } from '@rxap/data-source/table';
 import {
-  RxapFormControl,
-  RxapFormGroup,
-} from '@rxap/forms';
-import {
   RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS,
   RXAP_TABLE_FILTER,
-  RXAP_TABLE_FILTER_FORM_DEFINITION,
   RXAP_TABLE_METHOD,
   TABLE_DATA_SOURCE,
   TABLE_REMOTE_METHOD_ADAPTER_FACTORY,
@@ -38,6 +33,7 @@ import {
   map,
   take,
 } from 'rxjs/operators';
+import { CreateFilterFormProvider } from './create-filter-form-provider';
 import { TableSelectWindowComponent } from './table-select-window/table-select-window.component';
 
 export interface SelectColumn {
@@ -146,7 +142,7 @@ export class OpenTableSelectWindowMethod<Data extends Record<string, any> = Reco
       useValue: null,
     });
 
-    providers.push(this.createFilterForm(parameters.columns));
+    providers.push(CreateFilterFormProvider(parameters.columns));
 
     const windowRef = this.windowService.open({
       ...parameters.windowConfig,
@@ -161,33 +157,6 @@ export class OpenTableSelectWindowMethod<Data extends Record<string, any> = Reco
     });
 
     return windowRef.pipe(take(1), map(selected => selected ?? [])).toPromise();
-
-  }
-
-  private createFilterForm(columns: TableSelectColumnMap): StaticProvider {
-
-    const columnNameList: string[] = Array.from(columns.entries())
-                                          .filter(([ key, column ]) => column.filter)
-                                          .map(([ key, column ]) => key);
-
-    const controls: Record<string, RxapFormControl> = {};
-
-    for (const column of columnNameList) {
-      controls[column] = new RxapFormControl(null, { controlId: column });
-    }
-
-    const form = {
-      ...controls,
-      rxapFormGroup: new RxapFormGroup(controls, { controlId: 'filter' }),
-      rxapMetadata: { controlId: 'filter' },
-    };
-
-    Reflect.set(form.rxapFormGroup, '_rxapFormDefinition', form);
-
-    return {
-      provide: RXAP_TABLE_FILTER_FORM_DEFINITION,
-      useValue: form,
-    };
 
   }
 

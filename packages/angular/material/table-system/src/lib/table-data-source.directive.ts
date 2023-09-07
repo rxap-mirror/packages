@@ -13,20 +13,20 @@ import type { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { pipeDataSource } from '@rxap/data-source';
 import { PaginatorLike } from '@rxap/data-source/pagination';
-import type {
-  AbstractTableDataSource,
-  FilterLike,
-} from '@rxap/data-source/table';
 import {
+  AbstractTableDataSource,
   DynamicTableDataSource,
+  FilterLike,
   RXAP_TABLE_METHOD,
   SortLike,
   TableEvent,
 } from '@rxap/data-source/table';
 import { Method } from '@rxap/pattern';
 import { ToggleSubject } from '@rxap/rxjs';
-import type { Observable } from 'rxjs';
-import { Subscription } from 'rxjs';
+import {
+  Observable,
+  Subscription,
+} from 'rxjs';
 import {
   debounceTime,
   delay,
