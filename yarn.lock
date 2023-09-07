@@ -8054,7 +8054,7 @@ __metadata:
     "@rxap/form-system": ^16.0.0-dev.15
     "@rxap/forms": ^16.0.0-dev.14
     "@rxap/material-form-system": ^16.0.0-dev.14
-    "@rxap/material-table-system": ^16.0.0-dev.20
+    "@rxap/material-table-system": ^16.0.0-dev.21
     "@rxap/material-table-window-system": ^16.0.0-dev.12
     "@rxap/mixin": ^16.0.0-dev.12
     "@rxap/pattern": ^1.0.1-dev.9

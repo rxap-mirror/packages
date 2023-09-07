@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.20...@rxap/layout@16.0.0-dev.21) (2023-09-07)
+
+### Bug Fixes
+
+- ensure the username is always fully visible ([48fc3f5](https://gitlab.com/rxap/packages/commit/48fc3f5f4906485961351b7e13d44a77b6aa37b8))
+
 # [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.19...@rxap/layout@16.0.0-dev.20) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/layout
