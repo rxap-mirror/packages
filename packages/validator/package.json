@@ -1,6 +1,6 @@
 {
   "name": "@rxap/validator",
-  "version": "3.0.0-dev.9",
+  "version": "3.0.0-dev.10",
   "type": "commonjs",
   "dependencies": {
     "tslib": "2.6.2"

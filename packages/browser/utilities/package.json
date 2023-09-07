@@ -1,6 +1,6 @@
 {
   "name": "@rxap/browser-utilities",
-  "version": "0.0.2-dev.6",
+  "version": "0.0.2-dev.7",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",

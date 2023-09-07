@@ -1,6 +1,6 @@
 {
   "name": "@rxap/layout",
-  "version": "16.0.0-dev.19",
+  "version": "16.0.0-dev.20",
   "peerDependencies": {
     "@angular/animations": "^16.1.4",
     "@angular/cdk": "^16.1.4",
@@ -10,17 +10,17 @@
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/authentication": "^16.0.0-dev.11",
-    "@rxap/browser-utilities": "^0.0.2-dev.6",
-    "@rxap/config": "^16.0.0-dev.12",
-    "@rxap/data-source": "^16.0.0-dev.13",
-    "@rxap/directives": "^16.0.0-dev.12",
-    "@rxap/environment": "^16.0.0-dev.11",
-    "@rxap/icon": "^16.0.0-dev.12",
-    "@rxap/material-directives": "^16.0.0-dev.14",
-    "@rxap/ngx-status-check": "^16.1.0-dev.3",
-    "@rxap/services": "^16.0.0-dev.11",
-    "@rxap/utilities": "^16.0.0-dev.15",
+    "@rxap/authentication": "^16.0.0-dev.12",
+    "@rxap/browser-utilities": "^0.0.2-dev.7",
+    "@rxap/config": "^16.0.0-dev.13",
+    "@rxap/data-source": "^16.0.0-dev.14",
+    "@rxap/directives": "^16.0.0-dev.13",
+    "@rxap/environment": "^16.0.0-dev.12",
+    "@rxap/icon": "^16.0.0-dev.13",
+    "@rxap/material-directives": "^16.0.0-dev.15",
+    "@rxap/ngx-status-check": "^16.1.0-dev.4",
+    "@rxap/services": "^16.0.0-dev.12",
+    "@rxap/utilities": "^16.0.0-dev.16",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -58,47 +58,47 @@
     "packageGroup": [
       {
         "package": "@rxap/authentication",
-        "version": "16.0.0-dev.11"
+        "version": "16.0.0-dev.12"
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "0.0.2-dev.6"
+        "version": "0.0.2-dev.7"
       },
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.12"
-      },
-      {
-        "package": "@rxap/data-source",
         "version": "16.0.0-dev.13"
       },
       {
-        "package": "@rxap/directives",
-        "version": "16.0.0-dev.12"
-      },
-      {
-        "package": "@rxap/environment",
-        "version": "16.0.0-dev.11"
-      },
-      {
-        "package": "@rxap/icon",
-        "version": "16.0.0-dev.12"
-      },
-      {
-        "package": "@rxap/material-directives",
+        "package": "@rxap/data-source",
         "version": "16.0.0-dev.14"
       },
       {
+        "package": "@rxap/directives",
+        "version": "16.0.0-dev.13"
+      },
+      {
+        "package": "@rxap/environment",
+        "version": "16.0.0-dev.12"
+      },
+      {
+        "package": "@rxap/icon",
+        "version": "16.0.0-dev.13"
+      },
+      {
+        "package": "@rxap/material-directives",
+        "version": "16.0.0-dev.15"
+      },
+      {
         "package": "@rxap/ngx-status-check",
-        "version": "16.1.0-dev.3"
+        "version": "16.1.0-dev.4"
       },
       {
         "package": "@rxap/services",
-        "version": "16.0.0-dev.11"
+        "version": "16.0.0-dev.12"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/rxjs",

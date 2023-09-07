@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.15...@rxap/utilities@16.0.0-dev.16) (2023-09-07)
+
+### Features
+
+- add RemoveFromObject function ([f6a694b](https://gitlab.com/rxap/packages/commit/f6a694ba4cf0e8c443d8558a54d2ed635c3914cd))
+
 # [16.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.14...@rxap/utilities@16.0.0-dev.15) (2023-09-03)
 
 **Note:** Version bump only for package @rxap/utilities

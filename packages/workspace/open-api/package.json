@@ -1,6 +1,6 @@
 {
   "name": "@rxap/workspace-open-api",
-  "version": "0.0.2-dev.2",
+  "version": "0.0.2-dev.3",
   "type": "commonjs",
   "dependencies": {
     "openapi-types": "10.0.0",
@@ -33,24 +33,24 @@
   },
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
-    "@rxap/json-schema-to-typescript": "^16.0.0-dev.10",
-    "@rxap/utilities": "^16.0.0-dev.15",
-    "@rxap/workspace-utilities": "^0.1.0-dev.10",
+    "@rxap/json-schema-to-typescript": "^16.0.0-dev.11",
+    "@rxap/utilities": "^16.0.0-dev.16",
+    "@rxap/workspace-utilities": "^0.1.0-dev.11",
     "ts-morph": "^18.0.0"
   },
   "nx-migrations": {
     "packageGroup": [
       {
         "package": "@rxap/json-schema-to-typescript",
-        "version": "16.0.0-dev.10"
+        "version": "16.0.0-dev.11"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.10"
+        "version": "0.1.0-dev.11"
       }
     ]
   }

@@ -1,12 +1,12 @@
 {
   "name": "@rxap/icon",
-  "version": "16.0.0-dev.12",
+  "version": "16.0.0-dev.13",
   "peerDependencies": {
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/platform-browser": "^16.1.4",
-    "@rxap/utilities": "^16.0.0-dev.15"
+    "@rxap/utilities": "^16.0.0-dev.16"
   },
   "sideEffects": false,
   "dependencies": {
@@ -43,7 +43,7 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       }
     ]
   }

@@ -1,6 +1,6 @@
 {
   "name": "@rxap/socket-io",
-  "version": "16.0.0-dev.10",
+  "version": "16.0.0-dev.11",
   "peerDependencies": {
     "@angular/core": "^16.1.4",
     "rxjs": "^7.8.0",

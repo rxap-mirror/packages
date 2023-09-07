@@ -1,6 +1,6 @@
 {
   "name": "@rxap/workspace-ts-morph",
-  "version": "0.1.0-dev.5",
+  "version": "0.1.0-dev.6",
   "type": "commonjs",
   "publishConfig": {
     "access": "public",
@@ -32,19 +32,19 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/utilities": "^16.0.0-dev.15",
-    "@rxap/workspace-utilities": "^0.1.0-dev.10",
+    "@rxap/utilities": "^16.0.0-dev.16",
+    "@rxap/workspace-utilities": "^0.1.0-dev.11",
     "ts-morph": "^18.0.0"
   },
   "nx-migrations": {
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.10"
+        "version": "0.1.0-dev.11"
       }
     ]
   }

@@ -1,12 +1,12 @@
 {
   "name": "@rxap/remote-method",
-  "version": "16.0.0-dev.12",
+  "version": "16.0.0-dev.13",
   "peerDependencies": {
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
-    "@rxap/definition": "^16.0.0-dev.12",
-    "@rxap/rxjs": "^1.0.1-dev.7",
-    "@rxap/utilities": "^16.0.0-dev.15",
+    "@rxap/definition": "^16.0.0-dev.13",
+    "@rxap/rxjs": "^1.0.1-dev.8",
+    "@rxap/utilities": "^16.0.0-dev.16",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -45,15 +45,15 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/definition",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.7"
+        "version": "1.0.1-dev.8"
       }
     ]
   }

@@ -1,13 +1,13 @@
 {
   "name": "@rxap/firebase",
-  "version": "16.0.0-dev.10",
+  "version": "16.0.0-dev.11",
   "peerDependencies": {
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/fire": "^7.5.0",
-    "@rxap/config": "^16.0.0-dev.12",
-    "@rxap/rxjs": "^1.0.1-dev.7",
-    "@rxap/utilities": "^16.0.0-dev.15",
+    "@rxap/config": "^16.0.0-dev.13",
+    "@rxap/rxjs": "^1.0.1-dev.8",
+    "@rxap/utilities": "^16.0.0-dev.16",
     "firebase": "^9.6.7",
     "rxjs": "^7.8.0"
   },
@@ -47,15 +47,15 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.7"
+        "version": "1.0.1-dev.8"
       },
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       }
     ]
   }

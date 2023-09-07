@@ -1,9 +1,9 @@
 {
   "name": "@rxap/ngx-sentry",
-  "version": "16.0.1-dev.6",
+  "version": "16.0.1-dev.7",
   "peerDependencies": {
-    "@rxap/config": "^16.0.0-dev.12",
-    "@rxap/environment": "^16.0.0-dev.11",
+    "@rxap/config": "^16.0.0-dev.13",
+    "@rxap/environment": "^16.0.0-dev.12",
     "@sentry/angular-ivy": "^7.60.1",
     "@sentry/browser": "^7.60.1",
     "@sentry/integrations": "^7.60.1"
@@ -43,11 +43,11 @@
     "packageGroup": [
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.11"
+        "version": "16.0.0-dev.12"
       }
     ]
   }

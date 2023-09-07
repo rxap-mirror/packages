@@ -1,19 +1,19 @@
 {
   "name": "@rxap/material-table-window-system",
-  "version": "16.0.0-dev.11",
+  "version": "16.0.0-dev.12",
   "peerDependencies": {
     "@angular/cdk": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/localize": "^16.1.4",
     "@angular/material": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.13",
-    "@rxap/form-system": "^16.0.0-dev.14",
-    "@rxap/forms": "^16.0.0-dev.13",
-    "@rxap/material-table-system": "^16.0.0-dev.19",
-    "@rxap/mixin": "^16.0.0-dev.11",
-    "@rxap/pattern": "^1.0.1-dev.8",
-    "@rxap/utilities": "^16.0.0-dev.15",
-    "@rxap/window-system": "^16.0.0-dev.14",
+    "@rxap/data-source": "^16.0.0-dev.14",
+    "@rxap/form-system": "^16.0.0-dev.15",
+    "@rxap/forms": "^16.0.0-dev.14",
+    "@rxap/material-table-system": "^16.0.0-dev.20",
+    "@rxap/mixin": "^16.0.0-dev.12",
+    "@rxap/pattern": "^1.0.1-dev.9",
+    "@rxap/utilities": "^16.0.0-dev.16",
+    "@rxap/window-system": "^16.0.0-dev.15",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -52,35 +52,35 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/form-system",
-        "version": "16.0.0-dev.14"
-      },
-      {
-        "package": "@rxap/forms",
-        "version": "16.0.0-dev.13"
-      },
-      {
-        "package": "@rxap/material-table-system",
-        "version": "16.0.0-dev.19"
-      },
-      {
-        "package": "@rxap/mixin",
-        "version": "16.0.0-dev.11"
-      },
-      {
-        "package": "@rxap/pattern",
-        "version": "1.0.1-dev.8"
-      },
-      {
-        "package": "@rxap/utilities",
         "version": "16.0.0-dev.15"
       },
       {
-        "package": "@rxap/window-system",
+        "package": "@rxap/forms",
         "version": "16.0.0-dev.14"
+      },
+      {
+        "package": "@rxap/material-table-system",
+        "version": "16.0.0-dev.20"
+      },
+      {
+        "package": "@rxap/mixin",
+        "version": "16.0.0-dev.12"
+      },
+      {
+        "package": "@rxap/pattern",
+        "version": "1.0.1-dev.9"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.16"
+      },
+      {
+        "package": "@rxap/window-system",
+        "version": "16.0.0-dev.15"
       }
     ]
   }

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.0-dev.3...@rxap/nest-utilities@10.1.0-dev.4) (2023-09-07)
+
+**Note:** Version bump only for package @rxap/nest-utilities
+
 # [10.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.0-dev.2...@rxap/nest-utilities@10.1.0-dev.3) (2023-09-03)
 
 **Note:** Version bump only for package @rxap/nest-utilities
