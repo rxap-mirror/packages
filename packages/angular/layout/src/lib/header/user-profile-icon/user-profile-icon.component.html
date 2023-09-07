@@ -4,13 +4,17 @@
   <mat-icon class="avatar-icon" svgIcon="account-circle"></mat-icon>
 </button>
 
-<mat-menu #menu="matMenu" [yPosition]="'below'">
+<mat-menu #menu="matMenu" [yPosition]="'below'" class="!max-w-none">
   <button mat-menu-item>
-    <mat-icon svgIcon="account"></mat-icon>
-    <span>{{username()}}</span>
+    <span class="flex flex-row gap-2">
+      <mat-icon svgIcon="account"></mat-icon>
+      <span>{{username()}}</span>
+    </span>
   </button>
   <button (click)="logout()" mat-menu-item>
-    <mat-icon svgIcon="logout"></mat-icon>
-    <span i18n>Logout</span>
+    <span class="flex flex-row gap-2">
+      <mat-icon svgIcon="logout"></mat-icon>
+      <span i18n>Logout</span>
+    </span>
   </button>
 </mat-menu>
