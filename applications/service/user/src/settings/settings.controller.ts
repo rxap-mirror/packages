@@ -43,7 +43,7 @@ export class SettingsController {
     @Body() settings: UserSettings,
   ): Promise<UserSettings> {
     await this.userSettings.set(userId, settings);
-    return settings;
+    return await this.userSettings.get(userId);
   }
 
   @Put(':propertyPath/toggle')
@@ -58,10 +58,19 @@ export class SettingsController {
     }
     SetToObject(settings, propertyPath, !value);
     await this.userSettings.set(userId, settings);
-    return settings;
+    return await this.userSettings.get(userId);
   }
 
-  @Post(':propertyPath')
+  @Get(':propertyPath')
+  public async getProperty(
+    @UserSub() userId: string,
+    @Param('propertyPath') propertyPath: string,
+  ) {
+    const settings = await this.userSettings.get(userId);
+    return GetFromObjectFactory(propertyPath, propertyPath)(settings);
+  }
+
+  @Put(':propertyPath')
   public async setProperty(
     @UserSub() userId: string,
     @Body() value: any,
@@ -70,7 +79,7 @@ export class SettingsController {
     const settings = await this.userSettings.get(userId);
     SetToObject(settings, propertyPath, value);
     await this.userSettings.set(userId, settings);
-    return settings;
+    return await this.userSettings.get(userId);
   }
 
   @Delete(':propertyPath')
@@ -81,7 +90,7 @@ export class SettingsController {
     const settings = await this.userSettings.get(userId);
     RemoveFromObject(settings, propertyPath);
     await this.userSettings.set(userId, settings);
-    return settings;
+    return await this.userSettings.get(userId);
   }
 
   @Put(':propertyPath/push')
@@ -91,13 +100,17 @@ export class SettingsController {
     @Body() value: any,
   ) {
     const settings = await this.userSettings.get(userId);
-    const array = GetFromObjectFactory(propertyPath, [])(settings);
+    let array = GetFromObjectFactory(propertyPath)(settings);
+    if (array === undefined) {
+      array = [];
+      SetToObject(settings, propertyPath, array);
+    }
     if (!Array.isArray(array)) {
       throw new BadRequestException(`The user settings property '${ propertyPath }' is not an array`);
     }
     array.push(value);
     await this.userSettings.set(userId, settings);
-    return settings;
+    return await this.userSettings.get(userId);
   }
 
   @Delete(':propertyPath/pop')
@@ -128,7 +141,7 @@ export class SettingsController {
     }
     array.unshift(value);
     await this.userSettings.set(userId, settings);
-    return settings;
+    return await this.userSettings.get(userId);
   }
 
   @Delete(':propertyPath/shift')
@@ -162,7 +175,7 @@ export class SettingsController {
     }
     SetToObject(settings, propertyPath, array.splice(index, 1));
     await this.userSettings.set(userId, settings);
-    return settings;
+    return await this.userSettings.get(userId);
   }
 
   @Delete(':propertyPath/remove')
@@ -180,13 +193,13 @@ export class SettingsController {
     const index = array.findIndex(item => equals(item, value));
     if (array[index] === undefined) {
       if (optional) {
-        return settings;
+        return await this.userSettings.get(userId);
       }
       throw new BadRequestException(`The user settings property '${ propertyPath }' has no matching value`);
     }
     SetToObject(settings, propertyPath, array.splice(index, 1));
     await this.userSettings.set(userId, settings);
-    return settings;
+    return await this.userSettings.get(userId);
   }
 
   @Put(':propertyPath/increment')
@@ -202,7 +215,7 @@ export class SettingsController {
     }
     SetToObject(settings, propertyPath, currentValue + value);
     await this.userSettings.set(userId, settings);
-    return settings;
+    return await this.userSettings.get(userId);
   }
 
   @Put(':propertyPath/decrement')
@@ -218,7 +231,7 @@ export class SettingsController {
     }
     SetToObject(settings, propertyPath, currentValue - value);
     await this.userSettings.set(userId, settings);
-    return settings;
+    return await this.userSettings.get(userId);
   }
 
 }

@@ -36,10 +36,14 @@ export class SettingsService implements OnApplicationBootstrap {
   @Inject(Logger)
   private readonly logger: Logger;
 
-  private defaultSettings: UserSettings = {
+  private static defaultSettings: UserSettings = {
     darkMode: true,
     language: 'en',
   };
+
+  public static get DefaultSettings(): UserSettings {
+    return clone(SettingsService.defaultSettings);
+  }
 
   async onApplicationBootstrap(): Promise<void> {
     this.storage = await kvsLocalStorage({
@@ -51,7 +55,7 @@ export class SettingsService implements OnApplicationBootstrap {
     if (existsSync(defaultSettingsFilePath)) {
       try {
         const defaultSettings = JSON.parse(readFileSync(defaultSettingsFilePath, 'utf-8'));
-        this.defaultSettings = deepMerge(this.defaultSettings, defaultSettings);
+        SettingsService.defaultSettings = deepMerge(SettingsService.DefaultSettings, defaultSettings);
       } catch (e: any) {
         this.logger.error(
           `Failed to load default settings from file: ${ defaultSettingsFilePath }: ${ e.message }`,
@@ -63,16 +67,12 @@ export class SettingsService implements OnApplicationBootstrap {
   }
 
   async get(userId: string): Promise<UserSettings> {
-    return deepMerge(this.default(), (await this.storage.get(userId)) ?? {});
+    return deepMerge(SettingsService.DefaultSettings, (await this.storage.get(userId)) ?? {});
   }
 
   async set(userId: string, settings: UserSettings) {
     this.validate(settings);
-    await this.storage.set(userId, settings);
-  }
-
-  default(): UserSettings {
-    return clone(this.defaultSettings);
+    await this.storage.set(userId, clone(settings));
   }
 
   private validate(settings: UserSettings) {
