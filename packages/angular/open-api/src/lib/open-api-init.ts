@@ -1,7 +1,13 @@
 import { ConfigService } from '@rxap/config';
 import { OpenApiConfigService } from './open-api-config.service';
 
-export function OpenApiInit() {
+export interface OpenApiInitOptions {
+  load?: {
+    openApiUrl?: string;
+  };
+}
+
+export function OpenApiInit(options: OpenApiInitOptions = {}) {
   const api = ConfigService.Get<Record<string, { baseUrl?: string }> & { baseUrl: string }>(
     'api',
     {} as any,
@@ -24,4 +30,8 @@ export function OpenApiInit() {
       }
     }
   }
+  if (options.load) {
+    return OpenApiConfigService.Load(options.load.openApiUrl);
+  }
+  return undefined;
 }
