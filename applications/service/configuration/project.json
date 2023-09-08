@@ -41,7 +41,8 @@
             "applications/service/configuration/src/assets"
           ]
         }
-      }
+      },
+      "defaultConfiguration": "production"
     },
     "build-info": {},
     "ci": {
