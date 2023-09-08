@@ -4,7 +4,7 @@ import { OpenApiConfigService } from './open-api-config.service';
 export interface OpenApiInitOptions {
   load?: {
     openApiUrl?: string;
-  };
+  } | boolean;
 }
 
 export function OpenApiInit(options: OpenApiInitOptions = {}) {
@@ -31,7 +31,7 @@ export function OpenApiInit(options: OpenApiInitOptions = {}) {
     }
   }
   if (options.load) {
-    return OpenApiConfigService.Load(options.load.openApiUrl);
+    return OpenApiConfigService.Load(typeof options.load === 'object' ? options.load.openApiUrl : undefined);
   }
   return undefined;
 }
