@@ -59,6 +59,10 @@ const ROUTES: Route[] = [
         ],
       },
       {
+        path: 'error',
+        loadChildren: () => import('../feature/error/routes'),
+      },
+      {
         path: '**',
         redirectTo: 'table',
       },

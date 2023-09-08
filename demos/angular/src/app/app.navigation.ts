@@ -75,6 +75,23 @@ export const APP_NAVIGATION: () => NavigationWithInserts = () => [
     icon: { icon: 'toggle_off' },
     label: $localize`Form Controls`,
   },
+  {
+    routerLink: [ '/', 'error' ],
+    icon: { icon: 'error' },
+    label: $localize`Error`,
+    children: [
+      {
+        routerLink: [ '/', 'error', 'http' ],
+        icon: { icon: 'http' },
+        label: $localize`Http`,
+      },
+      {
+        routerLink: [ '/', 'error', 'angular' ],
+        icon: { icon: 'angular' },
+        label: $localize`Angular`,
+      },
+    ],
+  },
   ...Array.from({ length: 10 }).map(() => {
     const name = faker.company.name();
     return {
