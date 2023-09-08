@@ -50,6 +50,12 @@ To create a new angular library package, run the command:
 yarn nx g @nx/angular:library --importPath @rxap/ngx-<project-name>
 ```
 
+To init the library run the command:
+
+```shell
+yarn nx g @rxap/plugin-library:init --project angular-<project-name>
+```
+
 To add the executor to generate the compodoc documentation for the library run the command:
 
 ```shell
