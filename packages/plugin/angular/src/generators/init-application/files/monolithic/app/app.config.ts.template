@@ -17,6 +17,7 @@ import { SERVICE_STATUS_CHECK_METHOD } from '@rxap/ngx-status-check';
 import { StatusControllerHealthCheckRemoteMethod } from 'open-api-service-status/remote-methods/status-controller-health-check.remote-method';
 import { environment } from '../environments/environment';
 import { appRoutes } from './app.routes';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
