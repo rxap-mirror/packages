@@ -1,6 +1,6 @@
 {
   "name": "@rxap/ngx-timeago",
-  "version": "0.0.1",
+  "version": "16.0.0",
   "peerDependencies": {
     "@angular/common": "^16.1.0",
     "@angular/core": "^16.1.0"
