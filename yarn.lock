@@ -8109,6 +8109,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/ngx-timeago@workspace:packages/angular/timeago":
+  version: 0.0.0-use.local
+  resolution: "@rxap/ngx-timeago@workspace:packages/angular/timeago"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/common": ^16.1.0
+    "@angular/core": ^16.1.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/node-utilities@workspace:packages/node/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/node-utilities@workspace:packages/node/utilities"

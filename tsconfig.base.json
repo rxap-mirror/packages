@@ -137,6 +137,7 @@
       ],
       "@rxap/ngx-sentry": ["packages/angular/sentry/src/index.ts"],
       "@rxap/ngx-status-check": ["packages/angular/status-check/src/index.ts"],
+      "@rxap/ngx-timeago": ["packages/angular/timeago/src/index.ts"],
       "@rxap/node-utilities": ["packages/node/utilities/src/index.ts"],
       "@rxap/oauth": ["packages/angular/oauth/src/index.ts"],
       "@rxap/oauth/single-sign-on": [
