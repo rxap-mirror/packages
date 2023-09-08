@@ -10,17 +10,12 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rxap/authentication": [
-        "packages/angular/authentication/src/index.ts"
-      ],
+      "@rxap/authentication": ["packages/angular/authentication/src/index.ts"],
       "@rxap/authentication/components": [
         "packages/angular/authentication/components/src/index.ts"
       ],
@@ -136,6 +131,7 @@
       ],
       "@rxap/nest-utilities": ["packages/nest/utilities/src/index.ts"],
       "@rxap/ngx-bootstrap": ["packages/angular/bootstrap/src/index.ts"],
+      "@rxap/ngx-error": ["packages/angular/error/src/index.ts"],
       "@rxap/ngx-material-table-select": [
         "packages/angular/material/table-select/src/index.ts"
       ],

@@ -1,0 +1,90 @@
+{
+  "name": "angular-error",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/angular/error/src",
+  "prefix": "rxap",
+  "tags": [
+    "angular",
+    "ngx",
+    "packages"
+  ],
+  "projectType": "library",
+  "targets": {
+    "index-export": {},
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "project": "packages/angular/error/ng-package.json",
+        "tailwindConfig": "packages/angular/error/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/angular/error/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/angular/error/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "outputs": [],
+      "options": {
+        "jestConfig": "packages/angular/error/jest.config.ts"
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "outputs": [],
+      "options": {
+        "lintFilePatterns": [
+          "packages/angular/error/**/*.ts",
+          "packages/angular/error/**/*.html"
+        ]
+      }
+    },
+    "update-dependencies": {},
+    "update-package-group": {},
+    "readme": {},
+    "fix-dependencies": {
+      "outputs": [],
+      "options": {
+        "options": {
+          "strict": true
+        }
+      }
+    },
+    "component-test": {
+      "options": {
+        "cypressConfig": "packages/angular/error/cypress.config.ts",
+        "devServerTarget": "angular-error:build:development"
+      },
+      "configurations": {
+        "open": {}
+      }
+    },
+    "check-version": {
+      "options": {
+        "packageName": "@angular/core"
+      }
+    },
+    "build-tailwind": {
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "check-ng-package": {}
+  },
+  "implicitDependencies": [
+    "angular-error"
+  ]
+}

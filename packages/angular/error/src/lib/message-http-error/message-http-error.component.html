@@ -1,0 +1,13 @@
+<div class="flex flex-col gap-2">
+  <p class="text-xl">Http Error Message:</p>
+  <p>{{ error.error.message }}</p>
+  <ng-container *ngIf="!isProduction">
+    <hr>
+    <button (click)="showMore.set(true)"
+            *ngIf="!showMore()"
+            class="px-4 py-2 rounded bg-accent-500">
+      <ng-container i18n>Show more details</ng-container>
+    </button>
+    <rxap-any-http-error *ngIf="showMore()"></rxap-any-http-error>
+  </ng-container>
+</div>

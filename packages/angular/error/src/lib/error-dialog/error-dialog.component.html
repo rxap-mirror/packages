@@ -1,0 +1,24 @@
+<dialog #dialog
+        class="max-w-6xl rounded overflow-auto drop-shadow-2xl dark:bg-black dark:text-white flex flex-col gap-3">
+  <div *ngIf="data().length > 1" class="controls flex justify-center space-x-2 mt-4">
+    <button
+      (click)="activeIndex.set(activeIndex() - 1)"
+      *ngIf="activeIndex() > 0" class="px-4 py-2 bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 hover:bg-gray-300 transition-colors duration-150 rounded">Previous
+    </button>
+    <button (click)="activeIndex.set(item)"
+            *ngFor="let item of displayedButtons()"
+            [ngClass]="{
+            'bg-primary-500': item === activeIndex(),
+            'bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 hover:bg-gray-300 transition-colors duration-150': item !== activeIndex()
+            }"
+            class="px-4 py-2 rounded">
+      {{ item + 1 }}
+    </button>
+    <button
+      (click)="activeIndex.set(activeIndex() + 1)"
+      *ngIf="activeIndex() < data().length - 1" class="px-4 py-2 bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 hover:bg-gray-300 transition-colors duration-150 rounded">Next
+    </button>
+  </div>
+  <ng-template [cdkPortalOutlet]="componentPortal()"></ng-template>
+  <button (click)="close()" class="px-4 py-2 rounded bg-primary-500" i18n>close</button>
+</dialog>
