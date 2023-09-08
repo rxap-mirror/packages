@@ -9,6 +9,10 @@ import {
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
 import { RXAP_ENVIRONMENT } from '@rxap/environment';
+import {
+  HttpErrorInterceptor,
+  ProvideErrorHandler,
+} from '@rxap/ngx-error';
 import { SERVICE_STATUS_CHECK_METHOD } from '@rxap/ngx-status-check';
 import { StatusControllerHealthCheckRemoteMethod } from 'open-api-service-status/remote-methods/status-controller-health-check.remote-method';
 import { environment } from '../environments/environment';
@@ -17,11 +21,12 @@ import { appRoutes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     // required to be imported so that the http client is available in the application for the status check method
-    importProvidersFrom(HttpClientModule),
+    provideHttpClient(withInterceptors([HttpErrorInterceptor])),
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     // it is required to provide the animations provider in the app config.
     // If provided in a lazy loaded module the animations will not work
     provideAnimations(),
+    ProvideErrorHandler(),
     {
       provide: RXAP_ENVIRONMENT,
       useValue: environment,
