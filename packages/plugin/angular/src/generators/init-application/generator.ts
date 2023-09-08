@@ -326,7 +326,11 @@ function updateMainFile(tree: Tree, project: ProjectConfiguration, options: Init
 
     if (options.openApi) {
       importDeclarations.push({ moduleSpecifier: '@rxap/open-api', namedImports: [ 'OpenApiInit' ] });
-      statements.push('application.before(() => OpenApiInit());');
+      if (options.openApiLegacy) {
+        statements.push('application.before(() => OpenApiInit({ load: true }));');
+      } else {
+        statements.push('application.before(() => OpenApiInit());');
+      }
     }
 
     if (options.sentry) {
