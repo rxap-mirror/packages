@@ -5,8 +5,8 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { IconConfig } from '@rxap/utilities';
 import { ButtonDefinition } from '@rxap/rxjs';
+import { IconConfig } from '@rxap/utilities';
 
 export interface WindowActions<A> {
   position?: 'start' | 'end';
@@ -47,6 +47,7 @@ export const DEFAULT_WINDOW_CONFIG: WindowConfig<any, any> = {
   componentFactoryResolver: null,
   minWidth: '384px',
   minHeight: '192px',
-  maxWidth: '100vw',
-  maxHeight: '100vw',
+  maxWidth: '90vw',
+  maxHeight: '90vh',
+  minimizable: false,
 };
