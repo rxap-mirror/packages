@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/dialog@16.0.0-dev.12...@rxap/dialog@16.0.0-dev.13) (2023-09-08)
+
+### Bug Fixes
+
+- remove unused code ([b5c7da9](https://gitlab.com/rxap/packages/commit/b5c7da9f6a5793e2b27413ff28b4d89c8bd0e5e3))
+
 # [16.0.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/dialog@16.0.0-dev.11...@rxap/dialog@16.0.0-dev.12) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/dialog

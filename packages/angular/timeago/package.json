@@ -1,9 +1,11 @@
 {
   "name": "@rxap/ngx-timeago",
-  "version": "16.0.0",
+  "version": "16.0.1-dev.0",
   "peerDependencies": {
-    "@angular/common": "^16.1.0",
-    "@angular/core": "^16.1.0"
+    "@angular/core": "^16.1.4",
+    "@angular/localize": "^16.1.4",
+    "@rxap/utilities": "^16.0.0-dev.16",
+    "rxjs": "^7.8.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
@@ -34,5 +36,13 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.16"
+      }
+    ]
   }
 }

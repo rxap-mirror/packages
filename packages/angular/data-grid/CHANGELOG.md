@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.0-dev.13...@rxap/data-grid@16.0.0-dev.14) (2023-09-08)
+
+### Bug Fixes
+
+- prevent data grid label wrap ([3c4f395](https://gitlab.com/rxap/packages/commit/3c4f395e3bcc9c5789794628df9a53479f49bb3c))
+
 # [16.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.0-dev.12...@rxap/data-grid@16.0.0-dev.13) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/data-grid
