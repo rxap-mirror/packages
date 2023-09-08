@@ -231,7 +231,7 @@ const MAIN_BOOTSTRAP_STATEMENT = `application.bootstrap().catch((err) => console
 const MAIN_LOGGER_STATEMENT = `application.importProvidersFrom(LoggerModule.forRoot({
   serverLoggingUrl: '/api/logs',
   level: NgxLoggerLevel.DEBUG,
-  serverLogLevel: NgxLoggerLevel.ERROR
+  serverLogLevel: NgxLoggerLevel.ERROR,
 }));`;
 const MAIN_APP_CREATION_STATEMENT = `const application = new StandaloneApplication(
   environment,
@@ -270,7 +270,7 @@ function assertMainStatements(sourceFile: SourceFile) {
         },
         {
           moduleSpecifier: 'ngx-logger',
-          namedImports: [ 'NgxLoggerLevel', 'LoggerModule' ],
+          namedImports: [ 'LoggerModule', 'NgxLoggerLevel' ],
         },
         {
           moduleSpecifier: '@rxap/ngx-bootstrap',
