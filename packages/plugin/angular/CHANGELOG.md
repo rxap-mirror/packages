@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.18...@rxap/plugin-angular@16.1.0-dev.19) (2023-09-08)
+
+### Bug Fixes
+
+- add missing imports ([a325205](https://gitlab.com/rxap/packages/commit/a325205c43a8936ba37587a991f3b74071cd942a))
+- support open api legacy init ([caea342](https://gitlab.com/rxap/packages/commit/caea3426d68b25e28f2dd85465553fd8af664088))
+
 # [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.17...@rxap/plugin-angular@16.1.0-dev.18) (2023-09-08)
 
 ### Bug Fixes

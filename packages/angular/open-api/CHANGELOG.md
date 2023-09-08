@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.18...@rxap/open-api@16.0.0-dev.19) (2023-09-08)
+
+### Bug Fixes
+
+- simplify init options ([03b9bb6](https://gitlab.com/rxap/packages/commit/03b9bb66dd0f20694646e812b006db356a1b0a57))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.17...@rxap/open-api@16.0.0-dev.18) (2023-09-08)
 
 ### Bug Fixes
