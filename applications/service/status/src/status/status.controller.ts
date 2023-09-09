@@ -3,7 +3,6 @@ import {
   Body,
   Controller,
   Get,
-  InternalServerErrorException,
   Logger,
   Param,
   ParseArrayPipe,
@@ -130,19 +129,25 @@ export class StatusController {
     @Body() body: RegisterDto,
     @Req() req: Request,
   ) {
-    let url = body.url;
-    if (!url) {
-      const port = body.port ?? 3000;
-      const match = req.ip.match(/(\d+\.\d+\.\d+\.\d+)$/);
-      if (match && match[1]) {
-        url = `http://${ match[1] }:${ port }`;
-      } else {
-        throw new InternalServerErrorException(`Can't determine ip address from request: ${ req.ip }`);
-      }
-    }
-    this.logger.log(`Register service: ${ body.name } at url: ${ url }`, 'StatusController');
+    const {
+      name,
+      url,
+      port = 3000,
+      domain,
+      healthCheckPath = '/health',
+      infoPath = '/info',
+      ip = req.ip.match(/(\d+\.\d+\.\d+\.\d+)$/)?.[1],
+    } = body;
+    this.logger.log(
+      `Register service '${ name }' with ::: url='${ url }' port='${ port }' domain='${ domain }' healthCheckPath='${ healthCheckPath }' infoPath='${ infoPath }' ip='${ ip }'`,
+      'StatusController',
+    );
 
-    this.serviceRegistryService.register(body.name, url);
+    if (!url && !domain && !ip) {
+      throw new BadRequestException('No url or domain provided and could not determine ip address');
+    }
+
+    await this.serviceRegistryService.register(name, url, port, domain, healthCheckPath, infoPath, ip);
 
     return this.health.check([ () => this.serviceHealthIndicator.isHealthy(body.name) ]);
 

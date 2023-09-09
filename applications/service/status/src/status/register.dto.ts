@@ -24,4 +24,24 @@ export class RegisterDto {
   @IsNumber()
   port?: number;
 
+  @Expose()
+  @IsOptional()
+  @IsString()
+  healthCheckPath?: string;
+
+  @Expose()
+  @IsOptional()
+  @IsString()
+  domain?: string;
+
+  @Expose()
+  @IsOptional()
+  @IsString()
+  ip?: string;
+
+  @Expose()
+  @IsOptional()
+  @IsString()
+  infoPath?: string;
+
 }

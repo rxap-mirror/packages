@@ -31,22 +31,22 @@ export class ServiceHealthIndicator extends HealthIndicator {
       return this.getStatus(serviceName, true, environment);
     }
 
-    if (!this.serviceRegistryService.has(serviceName)) {
+    if (!await this.serviceRegistryService.has(serviceName)) {
       throw new HealthCheckError(
         `Service is not registered`,
         this.getStatus(serviceName, false, { message: `Service is not registered` }),
       );
     }
 
-    const baseUrl = this.serviceRegistryService.get(serviceName);
+    const healthCheckUrl = await this.serviceRegistryService.getHealthCheckUrl(serviceName);
 
     this.logger.verbose(
-      `Check health for service '${ serviceName }' with url '${ baseUrl }'`,
+      `Check health for service '${ serviceName }' with url '${ healthCheckUrl }'`,
       'ServiceHealthIndicator',
     );
 
     try {
-      await firstValueFrom(this.http.get(`${ baseUrl }/health`, { timeout: 30 * 1000 }));
+      await firstValueFrom(this.http.get(healthCheckUrl, { timeout: 30 * 1000 }));
     } catch (e: any) {
       if (e instanceof AxiosError) {
         this.handleAxiosError(e, serviceName);
@@ -88,10 +88,10 @@ export class ServiceHealthIndicator extends HealthIndicator {
 
   protected async getServiceInfo(serviceName: string): Promise<HealthIndicatorResult> {
 
-    const baseUrl = this.serviceRegistryService.get(serviceName);
+    const infoUrl = await this.serviceRegistryService.getInfoUrl(serviceName);
 
     try {
-      const response = await firstValueFrom(this.http.get(`${ baseUrl }/info`));
+      const response = await firstValueFrom(this.http.get(infoUrl));
       return this.getStatus(serviceName, true, { data: response.data });
     } catch (e: any) {
       throw new HealthCheckError(

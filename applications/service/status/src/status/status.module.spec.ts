@@ -1,4 +1,5 @@
 import { INestApplication } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
 import { ServiceHealthIndicator } from './service.health-indicator';
@@ -17,7 +18,16 @@ describe('StatusModule', () => {
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-                                  imports: [ StatusModule ],
+                                  imports: [
+                                    StatusModule, ConfigModule.forRoot({
+                                      isGlobal: true,
+                                      load: [
+                                        () => ({
+                                          STORE_FILE_PATH: '/tmp/packages/applications/service/status',
+                                        }),
+                                      ],
+                                    }),
+                                  ],
                                 })
                                 .overrideProvider(ServiceHealthIndicator)
                                 .useValue(serviceHealthIndicator)
