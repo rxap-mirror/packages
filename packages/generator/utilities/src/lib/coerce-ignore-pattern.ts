@@ -18,6 +18,10 @@ export function CoerceIgnorePattern(tree: Tree, filePath: string, patternList: s
     }
   }
 
-  tree.write(filePath, content + '\n');
+  if (!content.endsWith('\n')) {
+    content += '\n';
+  }
+
+  tree.write(filePath, content);
 
 }
