@@ -4,6 +4,7 @@
   "sourceRoot": "packages/nest/open-api/src",
   "projectType": "library",
   "targets": {
+    "index-export": {},
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": [

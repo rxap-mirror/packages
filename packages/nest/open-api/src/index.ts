@@ -17,6 +17,7 @@ export * from './lib/health-indicators/types';
 
 // region 
 export * from './lib/default.upstream-interceptor';
+export * from './lib/get-openapi-json';
 export * from './lib/logging.interceptor';
 export * from './lib/open-api.module';
 export * from './lib/options.dto';
