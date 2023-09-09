@@ -1,0 +1,14 @@
+{
+  "upload": {
+    "type": "xliff",
+    "deprecate": "file",
+    "features": [
+      "use_defined_lang_for_source",
+      "dont_parse_target"
+    ],
+    "files": "src/i18n/messages.xlf"
+  },
+  "download": {
+    "files": "src/i18n/${lang}.xlf"
+  }
+}

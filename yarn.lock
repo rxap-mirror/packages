@@ -4913,6 +4913,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@localazy/cli@npm:1.7.3":
+  version: 1.7.3
+  resolution: "@localazy/cli@npm:1.7.3"
+  dependencies:
+    abort-controller: 3.0.0
+    node-fetch: 2.6.7
+    text-encoding: 0.7.0
+    ws: 6.2.2
+  bin:
+    localazy: index.js
+  checksum: dd8466e7ee1eff978a414a2af27845d4de9d412dd932132d8e3b1b804be7e06a2a77397f0fd0af90d0b7ada63f8e182b3273ab4c6b4486dcee38aa17ba92ed85
+  languageName: node
+  linkType: hard
+
 "@lukeed/csprng@npm:^1.0.0":
   version: 1.1.0
   resolution: "@lukeed/csprng@npm:1.1.0"
@@ -11482,7 +11496,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"abort-controller@npm:^3.0.0":
+"abort-controller@npm:3.0.0, abort-controller@npm:^3.0.0":
   version: 3.0.0
   resolution: "abort-controller@npm:3.0.0"
   dependencies:
@@ -26147,6 +26161,7 @@ __metadata:
     "@enio.ai/typedoc": ^1.0.8
     "@faker-js/faker": ^8.0.2
     "@kvs/node-localstorage": ^2.1.5
+    "@localazy/cli": 1.7.3
     "@mdi/angular-material": ^7.2.96
     "@nestjs/axios": ^3.0.0
     "@nestjs/common": 10.0.5
@@ -28000,6 +28015,13 @@ __metadata:
   version: 1.0.0
   resolution: "text-decoding@npm:1.0.0"
   checksum: 4b2359d8efdabea72ac470304e991913e9b82a55b1c33ab5204f115d11305ac5900add80aee5f7d22b2bcf0faebaf35b193d28a10b74adf175d9ac9d63604445
+  languageName: node
+  linkType: hard
+
+"text-encoding@npm:0.7.0":
+  version: 0.7.0
+  resolution: "text-encoding@npm:0.7.0"
+  checksum: b6109a843fb1b8748b32e1ecd6df74d370f46c13ac136bcb6ca15db70209bb0b8ec1f296ebb4b0dd9961150e205dcc044b89f8cf7657f6faef78c7569a2a81bc
   languageName: node
   linkType: hard
 
@@ -29978,7 +30000,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^6.1.0":
+"ws@npm:6.2.2, ws@npm:^6.1.0":
   version: 6.2.2
   resolution: "ws@npm:6.2.2"
   dependencies:

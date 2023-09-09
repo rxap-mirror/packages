@@ -144,7 +144,8 @@
         "generate-package-json",
         "check-ng-package",
         "expose-as-schematic",
-        "copy-open-api-json"
+        "copy-open-api-json",
+        "localazy-download"
       ],
       "inputs": [
         "build",
@@ -286,6 +287,16 @@
       "options": {
         "generator": "@rxap/plugin-library:index-export"
       }
+    },
+    "i18n": {
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "localazy-upload": {
+      "dependsOn": [
+        "extract-i18n"
+      ]
     }
   },
   "affected": {

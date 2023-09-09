@@ -12,3 +12,7 @@
   needs:
     - job: build
       artifacts: false
+angular:localazy-upload:
+  extends: .localazy
+  environment:
+    name: $ENVIRONMENT_NAME/angular

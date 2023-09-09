@@ -29,7 +29,9 @@
   "tags": [
     "angular",
     "ngx",
-    "frontend"
+    "frontend",
+    "i18n",
+    "localazy"
   ],
   "targets": {
     "build": {
@@ -105,6 +107,11 @@
               "replace": "demos/angular/src/environments/environment.ts",
               "with": "demos/angular/src/environments/environment.prod.ts"
             }
+          ],
+          "localize": [
+            "en",
+            "de",
+            "it"
           ]
         },
         "development": {
@@ -172,6 +179,57 @@
           "ci": true,
           "codeCoverage": true
         }
+      }
+    },
+    "i18n": {
+      "executor": "@rxap/plugin-application:i18n",
+      "options": {
+        "availableLanguages": [
+          "en",
+          "de",
+          "it"
+        ],
+        "defaultLanguage": "en",
+        "indexHtmlTemplate": "shared/i18n.index.html.hbs",
+        "assets": true
+      },
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "localazy-download": {
+      "executor": "@rxap/plugin-localazy:download",
+      "options": {
+        "workingDirectory": "demos/angular",
+        "readKey": "a7660611872834350666-2ab45baa738ef411f7a3d5e57ffbe6787f7842d8c9e5144c34abae5ef1f4adf0"
+      },
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "localazy-upload": {
+      "executor": "@rxap/plugin-localazy:upload",
+      "options": {
+        "extractTarget": "angular:extract-i18n"
+      }
+    }
+  },
+  "i18n": {
+    "sourceLocale": "en-US",
+    "locales": {
+      "en": {
+        "translation": "demos/angular/src/i18n/en.xlf",
+        "baseHref": "en/"
+      },
+      "de": {
+        "translation": "demos/angular/src/i18n/de.xlf",
+        "baseHref": "de/"
+      },
+      "it": {
+        "translation": "demos/angular/src/i18n/it.xlf",
+        "baseHref": "it/"
       }
     }
   }
