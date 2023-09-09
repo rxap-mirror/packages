@@ -24,6 +24,7 @@ import {
 } from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
+  AddPackageJsonDevDependency,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   Strategy,
@@ -432,6 +433,27 @@ function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: 
 
 }
 
+function coerceLocalazyConfigFile(tree: Tree, project: ProjectConfiguration) {
+  const projectRoot = project.root;
+  const localazyConfigPath = join(projectRoot, 'localazy.json');
+  if (!tree.exists(localazyConfigPath)) {
+    tree.write(localazyConfigPath, JSON.stringify({
+      upload: {
+        type: 'xliff',
+        deprecate: 'file',
+        features: [
+          'use_defined_lang_for_source',
+          'dont_parse_target',
+        ],
+        files: 'src/i18n/messages.xlf',
+      },
+      download: {
+        files: 'src/i18n/${lang}.xlf',
+      },
+    }, null, 2));
+  }
+}
+
 export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
@@ -451,6 +473,10 @@ export async function initApplicationGenerator(
   console.log('angular application init generator:', options);
 
   await AddPackageJsonDependency(tree, '@mdi/angular-material', 'latest', { soft: true });
+
+  if (options.localazy) {
+    await AddPackageJsonDevDependency(tree, '@localazy/cli', 'latest', { soft: true });
+  }
 
   // only add the shared folder if it does not exist
   if (!tree.exists('shared')) {
@@ -487,6 +513,9 @@ export async function initApplicationGenerator(
     }
     if (options.cleanup) {
       cleanup(tree, project.sourceRoot);
+    }
+    if (options.localazy) {
+      coerceLocalazyConfigFile(tree, project);
     }
     if (options.monolithic) {
       if (!tree.exists(join(project.sourceRoot, 'assets', 'logo.png'))) {
