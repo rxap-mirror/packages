@@ -18,6 +18,6 @@ export function CoerceIgnorePattern(tree: Tree, filePath: string, patternList: s
     }
   }
 
-  tree.write(filePath, content);
+  tree.write(filePath, content + '\n');
 
 }
