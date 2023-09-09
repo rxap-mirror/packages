@@ -33,6 +33,7 @@ const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(
       exclude: [
         '/health(.*)',
         '/info',
+        '/openapi',
         '/register',
       ]
     }

@@ -13,7 +13,8 @@
           "typedoc",
           "component-test",
           "swagger-build",
-          "swagger-generate"
+          "swagger-generate",
+          "copy-open-api-json"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
@@ -142,11 +143,18 @@
         "build-tailwind",
         "generate-package-json",
         "check-ng-package",
-        "expose-as-schematic"
+        "expose-as-schematic",
+        "copy-open-api-json"
       ],
       "inputs": [
         "build",
         "^build"
+      ]
+    },
+    "copy-open-api-json": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "swagger-generate"
       ]
     },
     "build-tailwind": {
@@ -202,7 +210,7 @@
     "swagger-generate": {
       "executor": "@nx/js:node",
       "outputs": [
-        "dist/swagger/{projectRoot}/open-api.json"
+        "dist/swagger/{projectRoot}/openapi.json"
       ],
       "options": {
         "watch": false
