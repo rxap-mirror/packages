@@ -87,7 +87,7 @@
     },
     "swagger-generate": {
       "outputs": [
-        "dist/swagger/applications/service/configuration/open-api.json"
+        "dist/swagger/applications/service/configuration/openapi.json"
       ],
       "options": {
         "buildTarget": "service-configuration:swagger-build"

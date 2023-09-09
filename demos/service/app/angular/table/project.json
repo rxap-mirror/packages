@@ -90,7 +90,7 @@
     },
     "swagger-generate": {
       "outputs": [
-        "dist/swagger/demos/service/app/angular/table/open-api.json"
+        "dist/swagger/demos/service/app/angular/table/openapi.json"
       ],
       "options": {
         "buildTarget": "service-app-angular-table:swagger-build"
