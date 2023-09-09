@@ -132,6 +132,9 @@
       "@rxap/nest-utilities": ["packages/nest/utilities/src/index.ts"],
       "@rxap/ngx-bootstrap": ["packages/angular/bootstrap/src/index.ts"],
       "@rxap/ngx-error": ["packages/angular/error/src/index.ts"],
+      "@rxap/ngx-material-localize": [
+        "packages/angular/material/localize/src/index.ts"
+      ],
       "@rxap/ngx-material-table-select": [
         "packages/angular/material/table-select/src/index.ts"
       ],

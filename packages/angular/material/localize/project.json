@@ -1,0 +1,102 @@
+{
+  "name": "angular-material-localize",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/angular/material/localize/src",
+  "prefix": "rxap",
+  "tags": [
+    "angular",
+    "ngx",
+    "packages",
+    "material"
+  ],
+  "projectType": "library",
+  "targets": {
+    "index-export": {},
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "project": "packages/angular/material/localize/ng-package.json",
+        "tailwindConfig": "packages/angular/material/localize/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/angular/material/localize/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "packages/angular/material/localize/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/angular/material/localize/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/angular/material/localize/**/*.ts",
+          "packages/angular/material/localize/**/*.html"
+        ]
+      }
+    },
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    },
+    "fix-dependencies": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "outputs": [
+        "{workspaceRoot}/{projectRoot}/package.json"
+      ],
+      "options": {
+        "generator": "@rxap/plugin-library:fix-dependencies",
+        "options": {
+          "strict": true
+        }
+      }
+    },
+    "check-version": {
+      "executor": "@rxap/plugin-library:check-version",
+      "options": {
+        "packageName": "@angular/core"
+      }
+    },
+    "build-tailwind": {
+      "executor": "@rxap/plugin-angular:tailwind",
+      "configurations": {
+        "production": {
+          "minify": true
+        },
+        "development": {}
+      }
+    },
+    "check-ng-package": {
+      "executor": "@rxap/plugin-angular:check-ng-package"
+    }
+  }
+}
