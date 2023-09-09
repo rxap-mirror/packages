@@ -1,17 +1,15 @@
 import {
   ClassDeclaration,
   OptionalKind,
+  PropertyDeclaration,
   PropertyDeclarationStructure,
 } from 'ts-morph';
 
-/**
- * @deprecated import from @rxap/ts-morph
- */
 export function CoerceClassProperty(
   classDeclaration: ClassDeclaration,
   propertyName: string,
   propertyStructure: Omit<OptionalKind<PropertyDeclarationStructure>, 'name'>,
-) {
+): PropertyDeclaration {
 
   let propertyDeclaration = classDeclaration.getProperty(propertyName);
 
