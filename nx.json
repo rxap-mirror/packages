@@ -89,6 +89,9 @@
     },
     "update-package-group": {
       "executor": "@rxap/plugin-library:update-package-group",
+      "dependsOn": [
+        "update-dependencies"
+      ],
       "inputs": [
         "production"
       ]
