@@ -59,7 +59,7 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
       app.setGlobalPrefix(
         options.globalApiPrefix,
         !options.globalPrefixOptions?.exclude?.length ?
-          { exclude: [ '/health(.*)', '/info' ] } :
+          { exclude: [ '/health(.*)', '/info', '/openapi' ] } :
           options.globalPrefixOptions,
       );
     }
