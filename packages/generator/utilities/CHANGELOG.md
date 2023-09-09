@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.10...@rxap/generator-utilities@1.1.0-dev.11) (2023-09-09)
+
+### Bug Fixes
+
+- ensure the new line is added at the end of file ([3999117](https://gitlab.com/rxap/packages/commit/39991173ddbf1357739770477458b2e30cd59bc8))
+- only add new line if not already exists ([6d257b4](https://gitlab.com/rxap/packages/commit/6d257b44786060f43b67172ff12e1e925dbf8aff))
+
 # [1.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.9...@rxap/generator-utilities@1.1.0-dev.10) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/generator-utilities

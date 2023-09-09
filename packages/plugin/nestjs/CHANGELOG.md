@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.16...@rxap/plugin-nestjs@16.1.0-dev.17) (2023-09-09)
+
+### Features
+
+- add openapi utility operation generation ([9e67895](https://gitlab.com/rxap/packages/commit/9e678950b7f47bb39768f2d41c3a64b3af7a3c10))
+
 # [16.1.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.15...@rxap/plugin-nestjs@16.1.0-dev.16) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/plugin-nestjs

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.4...@rxap/nest-server@10.1.0-dev.5) (2023-09-09)
+
+### Bug Fixes
+
+- add /openapi path global prefix exclude pattern ([eb58912](https://gitlab.com/rxap/packages/commit/eb5891270943b29273142ae5dde51ebe03e61f38))
+
 # [10.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.3...@rxap/nest-server@10.1.0-dev.4) (2023-09-09)
 
 ### Bug Fixes

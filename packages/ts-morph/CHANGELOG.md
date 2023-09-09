@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.6...@rxap/ts-morph@0.1.0-dev.7) (2023-09-09)
+
+### Bug Fixes
+
+- ensure new class property is inserted at the top ([03cac18](https://gitlab.com/rxap/packages/commit/03cac18365db8759c666e58d6992186a7c37d6ab))
+
 # [0.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.5...@rxap/ts-morph@0.1.0-dev.6) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/ts-morph

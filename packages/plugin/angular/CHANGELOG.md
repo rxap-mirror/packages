@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.19...@rxap/plugin-angular@16.1.0-dev.20) (2023-09-09)
+
+### Bug Fixes
+
+- add missing files for localazy if not exists ([d49ffd4](https://gitlab.com/rxap/packages/commit/d49ffd4a90552d9b4b801d86e243be984fbdfb5d))
+
 # [16.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.18...@rxap/plugin-angular@16.1.0-dev.19) (2023-09-08)
 
 ### Bug Fixes

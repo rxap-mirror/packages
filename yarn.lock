@@ -8228,10 +8228,10 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@nx/devkit": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.10
+    "@rxap/generator-utilities": ^1.1.0-dev.11
     "@rxap/plugin-localazy": ^16.1.0-dev.9
     "@rxap/plugin-utilities": ^16.1.0-dev.12
-    "@rxap/ts-morph": ^0.1.0-dev.6
+    "@rxap/ts-morph": ^0.1.0-dev.7
     "@rxap/workspace-ts-morph": ^0.1.0-dev.6
     "@rxap/workspace-utilities": ^0.1.0-dev.11
     nx: ^16.5.0
@@ -8330,9 +8330,9 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@nx/js": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.10
+    "@rxap/generator-utilities": ^1.1.0-dev.11
     "@rxap/plugin-utilities": ^16.1.0-dev.12
-    "@rxap/ts-morph": ^0.1.0-dev.6
+    "@rxap/ts-morph": ^0.1.0-dev.7
     "@rxap/utilities": ^16.0.0-dev.16
     "@rxap/workspace-ts-morph": ^0.1.0-dev.6
     "@rxap/workspace-utilities": ^0.1.0-dev.11
