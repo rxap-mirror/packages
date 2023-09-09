@@ -36,7 +36,7 @@ import {
  * This class should be injected in the application bootstrap, so the same instance will be used
  * along the web application.
  */
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class KeycloakService {
 
   public isReady: Promise<boolean>;
