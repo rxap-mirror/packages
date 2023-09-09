@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/keycloak@16.0.0-dev.13...@rxap/keycloak@16.0.0-dev.14) (2023-09-09)
+
+### Bug Fixes
+
+- drop the module based approach ([0089216](https://gitlab.com/rxap/packages/commit/0089216a6e1f77f180bdc1861950ee4e79fcf2dd))
+
 # [16.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/keycloak@16.0.0-dev.12...@rxap/keycloak@16.0.0-dev.13) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/keycloak
