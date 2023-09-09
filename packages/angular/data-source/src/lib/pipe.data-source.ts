@@ -1,8 +1,10 @@
 import {
-  BaseDataSource,
-  BaseDataSourceMetadata,
-  BaseDataSourceViewer,
-} from './base.data-source';
+  Inject,
+  Injectable,
+  OnDestroy,
+  Optional,
+} from '@angular/core';
+import { Constructor } from '@rxap/utilities';
 import {
   Observable,
   OperatorFunction,
@@ -10,24 +12,38 @@ import {
   TeardownLogic,
 } from 'rxjs';
 import {
-  Inject,
-  Injectable,
-  OnDestroy,
-  Optional,
-} from '@angular/core';
-import {
-  RXAP_DATA_SOURCE,
-  RXAP_PIPE_DATA_SOURCE_OPERATOR,
-} from './tokens';
-import { RxapDataSourceError } from './error';
-import {
   map,
   startWith,
   switchMap,
 } from 'rxjs/operators';
+import {
+  BaseDataSource,
+  BaseDataSourceMetadata,
+  BaseDataSourceViewer,
+  RxapDataSource,
+} from './base.data-source';
+import { RxapDataSourceError } from './error';
+import {
+  RXAP_DATA_SOURCE,
+  RXAP_PIPE_DATA_SOURCE_OPERATOR,
+} from './tokens';
 
 export interface PipeDataSourceMetadata extends BaseDataSourceMetadata {
+  /**
+   * If true the parent data source will be refreshed when the pipe data source is refreshed
+   * @default false
+   */
   refreshParent?: boolean;
+}
+
+export function RxapPipeDataSource(
+  metadata: PipeDataSourceMetadata,
+  className = 'PipeDataSource',
+  packageName = '@rxap/data-source',
+) {
+  return function (target: Constructor<PipeDataSource>) {
+    RxapDataSource(metadata, className, packageName)(target);
+  };
 }
 
 @Injectable()
