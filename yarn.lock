@@ -8151,6 +8151,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/ngx-user@workspace:packages/angular/user":
+  version: 0.0.0-use.local
+  resolution: "@rxap/ngx-user@workspace:packages/angular/user"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/common": ^16.1.0
+    "@angular/core": ^16.1.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/node-utilities@workspace:packages/node/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/node-utilities@workspace:packages/node/utilities"
