@@ -9,4 +9,4 @@ NC='\033[0m' # No Color
 
 cd "${GIT_ROOT}" || exit 1
 
-docker compose -f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml down
+docker compose -f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml -f docker-compose.authentik.yml down

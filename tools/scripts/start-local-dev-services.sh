@@ -36,9 +36,11 @@ fi
 
 export CHANNEL
 
+DOCKER_COMPOSE_FILES="-f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml -f docker-compose.authentik.yml"
+
 if [[ $SKIP_PULL != "true" ]]; then
 
-  docker compose -f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml pull && VALID=true || VALID=false
+  docker compose $DOCKER_COMPOSE_FILES pull && VALID=true || VALID=false
 
   if [[ $VALID == true ]]; then
     echo -e "${GREEN}channel $channel is valid${NC}"
@@ -58,7 +60,7 @@ if [[ $SKIP_PULL != "true" ]]; then
 
   export CHANNEL
 
-  docker compose -f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml pull && VALID=true || VALID=false
+  docker compose $DOCKER_COMPOSE_FILES pull && VALID=true || VALID=false
 
   if [[ $VALID == true ]]; then
     echo -e "${GREEN}channel $channel is valid${NC}"
@@ -78,4 +80,4 @@ if [[ $SKIP_PULL != "true" ]]; then
 fi
 
 docker compose stop traefik || true
-docker compose -f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml up -d
+docker compose $DOCKER_COMPOSE_FILES up -d
