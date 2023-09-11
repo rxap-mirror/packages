@@ -14,7 +14,16 @@
           "component-test",
           "swagger-build",
           "swagger-generate",
-          "copy-open-api-json"
+          "copy-open-api-json",
+          "generate-package-json",
+          "index-export",
+          "update-dependencies",
+          "update-package-group",
+          "fix-dependencies",
+          "check-version",
+          "component-test",
+          "check-ng-package",
+          "generate-open-api"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
@@ -71,14 +80,16 @@
     },
     "fix-dependencies": {
       "inputs": [
-        "typescript"
+        "production",
+        "^production",
+        "{projectRoot}/package.json"
       ],
       "dependsOn": [
         "^fix-dependencies"
       ],
       "executor": "@rxap/plugin-library:run-generator",
       "outputs": [
-        "{workspaceRoot}/{projectRoot}/package.json"
+        "{projectRoot}/package.json"
       ],
       "options": {
         "generator": "@rxap/plugin-library:fix-dependencies",
@@ -93,11 +104,18 @@
         "update-dependencies"
       ],
       "inputs": [
-        "production"
+        "production",
+        "{projectRoot}/package.json"
+      ],
+      "outputs": [
+        "{projectRoot}/package.json"
       ]
     },
     "update-dependencies": {
       "executor": "@rxap/plugin-library:update-dependencies",
+      "outputs": [
+        "{projectRoot}/package.json"
+      ],
       "inputs": [
         "{workspaceRoot}/package.json",
         "{projectRoot}/package.json"
@@ -134,7 +152,11 @@
         ],
         "compiler": "tsc",
         "target": "node"
-      }
+      },
+      "inputs": [
+        "build",
+        "^build"
+      ]
     },
     "build": {
       "dependsOn": [
@@ -159,6 +181,12 @@
       "executor": "nx:run-commands",
       "dependsOn": [
         "swagger-generate"
+      ],
+      "inputs": [
+        "{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json"
+      ],
+      "outputs": [
+        "{projectRoot}/src/openapi.json"
       ]
     },
     "build-tailwind": {
@@ -203,6 +231,11 @@
     },
     "docker": {
       "executor": "@rxap/plugin-docker:build",
+      "inputs": [
+        "production",
+        "^production",
+        "{projectRoot}/package.json"
+      ],
       "dependsOn": [
         "build"
       ],
@@ -218,11 +251,10 @@
       ],
       "options": {
         "watch": false
-      }
-    },
-    "save": {
-      "dependsOn": [
-        "docker"
+      },
+      "inputs": [
+        "production",
+        "^production"
       ]
     },
     "check-version": {
@@ -266,7 +298,13 @@
       "executor": "@rxap/plugin-application:config"
     },
     "generate-package-json": {
-      "executor": "@rxap/plugin-nestjs:package-json"
+      "executor": "@rxap/plugin-nestjs:package-json",
+      "outputs": [
+        "{projectRoot}/package.json"
+      ],
+      "inputs": [
+        "production"
+      ]
     },
     "generate-open-api": {
       "dependsOn": [
@@ -280,7 +318,13 @@
           "path": "dist/swagger/{projectRoot}/openapi.json",
           "serverId": "{projectName}"
         }
-      }
+      },
+      "inputs": [
+        "{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json"
+      ],
+      "outputs": [
+        "{workspaceRoot}/packages/open-api/{projectRoot}/src"
+      ]
     },
     "index-export": {
       "executor": "@rxap/plugin-library:run-generator",
@@ -289,11 +333,9 @@
       ],
       "options": {
         "generator": "@rxap/plugin-library:index-export"
-      }
-    },
-    "i18n": {
-      "dependsOn": [
-        "build"
+      },
+      "inputs": [
+        "production"
       ]
     },
     "localazy-upload": {
