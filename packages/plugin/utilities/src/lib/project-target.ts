@@ -8,7 +8,7 @@ export function GetProjectTarget(context: ExecutorContext, projectName: string, 
   const targetConfiguration = projectConfiguration.targets ? projectConfiguration.targets[targetName] : undefined;
 
   if (!targetConfiguration) {
-    throw new Error(`The target configuration for target '${ targetName }' not found!`);
+    throw new Error(`The target configuration for target '${ targetName }' in project '${ projectName }' not found!`);
   }
 
   return targetConfiguration;
