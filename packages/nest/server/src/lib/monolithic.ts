@@ -21,6 +21,8 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
   extends Server<O, T, B> {
 
   protected override create(): Promise<T> {
+    this.options.bufferLogs ??= true;
+    this.options.autoFlushLogs ??= true;
     return NestFactory.create<T>(this.module, this.options);
   }
 
