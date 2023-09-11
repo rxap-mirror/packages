@@ -19,11 +19,17 @@ export function CoerceNestAppController(sourceFile: SourceFile, options: CoerceN
   });
 
   CoerceDecorator(classDeclaration, 'Public', { arguments: [] });
+  CoerceDecorator(classDeclaration, 'ApiExcludeController', { arguments: [] });
 
-  CoerceImports(sourceFile, {
+  CoerceImports(sourceFile, [
+    {
     moduleSpecifier: '@rxap/nest-utilities',
     namedImports: [ 'Public' ],
-  });
+    }, {
+      moduleSpecifier: '@nestjs/swagger',
+      namedImports: [ 'ApiExcludeController' ],
+    },
+  ]);
 
   // region remove the default implementation from the nest generator
   classDeclaration.getMethod('getData')?.remove();

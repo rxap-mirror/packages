@@ -13,7 +13,20 @@ import { CoerceNestOperation } from './coerce-nest-operation';
 
 export function CoerceHealthController(sourceFile: SourceFile): SourceFile {
 
-  CoerceNestController(sourceFile, { name: 'health', path: 'health' });
+  const classDeclaration = CoerceNestController(sourceFile, { name: 'health', path: 'health' });
+
+  CoerceDecorator(classDeclaration, 'Public', { arguments: [] });
+  CoerceDecorator(classDeclaration, 'ApiExcludeController', { arguments: [] });
+
+  CoerceImports(sourceFile, [
+    {
+      moduleSpecifier: '@rxap/nest-utilities',
+      namedImports: [ 'Public' ],
+    }, {
+      moduleSpecifier: '@nestjs/swagger',
+      namedImports: [ 'ApiExcludeController' ],
+    },
+  ]);
 
   CoerceDependencyInjection(sourceFile, {
     injectionToken: 'HealthCheckService',
