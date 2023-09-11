@@ -16,7 +16,11 @@ import { join } from 'path';
 /**
  * @template O The options object passed to the server create function
  */
-export type MainBeforeFunction<O extends object> = (this: Server<O, any, any>, options: O) => any | Promise<any>;
+export type MainBeforeFunction<O extends object> = (
+  this: Server<O, any, any>,
+  options: O,
+  environment: Environment,
+) => any | Promise<any>;
 
 /**
  * @template T The instance of the nest application
@@ -28,6 +32,7 @@ export type MainAfterFunction<T extends INestApplicationContext, B extends objec
   config: ConfigService<unknown>,
   logger: Logger,
   options: B,
+  environment: Environment,
 ) => any | Promise<any>;
 
 declare const module: { hot?: { accept: () => any, dispose: (cb: () => any) => any } };
@@ -113,19 +118,19 @@ export abstract class Server<O extends object, T extends INestApplicationContext
 
   protected async handleBefore() {
     for (const before of this._beforeList) {
-      await before.call(this, this.options);
+      await before.call(this, this.options, this.environment);
     }
   }
 
   protected async handleAfter(app: T, logger: Logger, config: ConfigService, options: B) {
     for (const after of this._afterList) {
-      await after.call(this, app, config, logger, options);
+      await after.call(this, app, config, logger, options, this.environment);
     }
   }
 
   protected async handleReady(app: T, logger: Logger, config: ConfigService, options: B) {
     for (const ready of this._readyList) {
-      await ready.call(this, app, config, logger, options);
+      await ready.call(this, app, config, logger, options, this.environment);
     }
   }
 
