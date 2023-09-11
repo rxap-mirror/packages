@@ -11,7 +11,7 @@
     "@rxap/reflect-metadata": "^1.0.1-dev.8",
     "@rxap/rxjs": "^1.0.1-dev.8",
     "@rxap/utilities": "^16.0.0-dev.16",
-    "@rxap/window-system": "^16.0.0-dev.15",
+    "@rxap/window-system": "^16.0.0-dev.16",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -78,7 +78,7 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       }
     ]
   }

@@ -6,11 +6,11 @@
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.14",
+    "@rxap/data-source": "^16.0.0-dev.15",
     "@rxap/definition": "^16.0.0-dev.13",
     "@rxap/forms": "^16.0.0-dev.14",
     "@rxap/mixin": "^16.0.0-dev.12",
-    "@rxap/open-api": "^16.0.0-dev.16",
+    "@rxap/open-api": "^16.0.0-dev.19",
     "@rxap/reflect-metadata": "^1.0.1-dev.8",
     "@rxap/remote-method": "^16.0.0-dev.13",
     "@rxap/utilities": "^16.0.0-dev.16",
@@ -51,7 +51,7 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/definition",
@@ -67,7 +67,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.19"
       },
       {
         "package": "@rxap/reflect-metadata",

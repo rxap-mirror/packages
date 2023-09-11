@@ -11,7 +11,7 @@
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
     "@rxap/components": "^16.0.0-dev.13",
-    "@rxap/data-source": "^16.0.0-dev.14",
+    "@rxap/data-source": "^16.0.0-dev.15",
     "@rxap/directives": "^16.0.0-dev.13",
     "@rxap/forms": "^16.0.0-dev.14",
     "@rxap/material-directives": "^16.0.0-dev.15",
@@ -19,7 +19,7 @@
     "@rxap/reflect-metadata": "^1.0.1-dev.8",
     "@rxap/rxjs": "^1.0.1-dev.8",
     "@rxap/utilities": "^16.0.0-dev.16",
-    "@rxap/window-system": "^16.0.0-dev.15",
+    "@rxap/window-system": "^16.0.0-dev.16",
     "rxjs": "^7.8.0"
   },
   "sideEffects": false,
@@ -62,7 +62,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/directives",
@@ -94,7 +94,7 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/open-api",

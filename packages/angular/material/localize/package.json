@@ -36,5 +36,8 @@
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
+  },
+  "nx-migrations": {
+    "packageGroup": []
   }
 }

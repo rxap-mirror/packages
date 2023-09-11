@@ -38,7 +38,7 @@
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
     "@rxap/generator-ts-morph": "^1.0.1-dev.9",
-    "@rxap/generator-utilities": "^1.1.0-dev.10",
+    "@rxap/generator-utilities": "^1.1.0-dev.11",
     "gpt-3-encoder": "^1.1.4",
     "openai": "^3.3.0",
     "ts-morph": "^18.0.0"
@@ -51,7 +51,7 @@
       },
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.10"
+        "version": "1.1.0-dev.11"
       }
     ]
   },

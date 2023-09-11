@@ -13,7 +13,7 @@
     "@rxap/authentication": "^16.0.0-dev.12",
     "@rxap/browser-utilities": "^0.0.2-dev.7",
     "@rxap/config": "^16.0.0-dev.13",
-    "@rxap/data-source": "^16.0.0-dev.14",
+    "@rxap/data-source": "^16.0.0-dev.15",
     "@rxap/directives": "^16.0.0-dev.13",
     "@rxap/environment": "^16.0.0-dev.12",
     "@rxap/icon": "^16.0.0-dev.13",
@@ -70,7 +70,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/directives",

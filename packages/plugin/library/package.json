@@ -16,7 +16,7 @@
       },
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.10"
+        "version": "1.1.0-dev.11"
       },
       {
         "package": "@rxap/node-utilities",
@@ -24,11 +24,11 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "16.1.0-dev.17"
+        "version": "16.1.0-dev.20"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "16.1.0-dev.16"
+        "version": "16.1.0-dev.17"
       },
       {
         "package": "@rxap/plugin-utilities",
@@ -72,10 +72,10 @@
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
     "@rxap/generator-ts-morph": "^1.0.1-dev.9",
-    "@rxap/generator-utilities": "^1.1.0-dev.10",
+    "@rxap/generator-utilities": "^1.1.0-dev.11",
     "@rxap/node-utilities": "^1.1.0-dev.7",
-    "@rxap/plugin-angular": "^16.1.0-dev.17",
-    "@rxap/plugin-nestjs": "^16.1.0-dev.16",
+    "@rxap/plugin-angular": "^16.1.0-dev.20",
+    "@rxap/plugin-nestjs": "^16.1.0-dev.17",
     "@rxap/plugin-utilities": "^16.1.0-dev.12",
     "@rxap/workspace-utilities": "^0.1.0-dev.11",
     "handlebars": "^4.7.7",

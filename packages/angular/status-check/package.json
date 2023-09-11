@@ -36,7 +36,7 @@
     "@angular/core": "^16.1.4",
     "@angular/router": "^16.1.4",
     "@rxap/config": "^16.0.0-dev.13",
-    "@rxap/open-api": "^16.0.0-dev.16",
+    "@rxap/open-api": "^16.0.0-dev.19",
     "@rxap/pattern": "^1.0.1-dev.9",
     "@sentry/angular-ivy": "^7.60.1",
     "rxjs": "^7.8.0"
@@ -49,7 +49,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.19"
       },
       {
         "package": "@rxap/pattern",

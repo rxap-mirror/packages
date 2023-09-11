@@ -5,7 +5,7 @@
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@rxap/config": "^16.0.0-dev.13",
-    "@rxap/data-source": "^16.0.0-dev.14",
+    "@rxap/data-source": "^16.0.0-dev.15",
     "@rxap/mixin": "^16.0.0-dev.12",
     "@rxap/remote-method": "^16.0.0-dev.13",
     "@rxap/rxjs": "^1.0.1-dev.8",
@@ -50,7 +50,7 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/utilities",

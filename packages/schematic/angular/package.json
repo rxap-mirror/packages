@@ -35,7 +35,7 @@
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
     "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.16",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.17",
     "@rxap/schematics-utilities": "^16.0.0-dev.14",
     "@rxap/utilities": "^16.0.0-dev.16",
     "ts-morph": "^18.0.0"
@@ -44,7 +44,7 @@
     "packageGroup": [
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/schematics-utilities",
