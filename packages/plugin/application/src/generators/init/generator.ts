@@ -6,11 +6,7 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import {
-  CoerceAssets,
-  CoerceIgnorePattern,
-  SkipNonApplicationProject,
-} from '@rxap/generator-utilities';
+import { SkipNonApplicationProject } from '@rxap/generator-utilities';
 import { AngularInitGenerator } from '@rxap/plugin-angular';
 import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
 import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
@@ -18,7 +14,6 @@ import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
 } from '@rxap/workspace-utilities';
-import { join } from 'path';
 import * as process from 'process';
 import { InitGeneratorSchema } from './schema';
 
@@ -62,10 +57,6 @@ function updateProjectTargets(project: ProjectConfiguration, projectName: string
   if (!project.sourceRoot) {
     throw new Error(`The project '${ project.name }' has no source root`);
   }
-
-  project.targets['build'].options ??= {};
-  project.targets['build'].options.assets ??= [];
-  CoerceAssets(project.targets['build'].options.assets, [ join(project.sourceRoot, 'build.json') ]);
 
   CoerceTarget(project, 'build-info', {
     executor: '@rxap/plugin-application:build-info',
@@ -134,11 +125,6 @@ function updateGitIgnore(project: ProjectConfiguration, tree: Tree) {
   if (!project.sourceRoot) {
     throw new Error(`The project '${ project.name }' has no source root`);
   }
-
-  const gitIgnorePath = join(project.sourceRoot, '.gitignore');
-  CoerceIgnorePattern(tree, gitIgnorePath, [
-    '/build.json',
-  ]);
 
 }
 

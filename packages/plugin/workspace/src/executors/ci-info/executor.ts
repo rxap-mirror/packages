@@ -129,7 +129,7 @@ export default async function runExecutor(
 
     const outputPath = GuessOutputPath(context, projectName);
 
-    const outputPathList: string[] = [];
+    const outputPathList: string[] = [ outputPath ];
 
     if (containsOnlyDirectories(outputPath)) {
       const items = readdirSync(outputPath);
@@ -139,8 +139,6 @@ export default async function runExecutor(
           outputPathList.push(join(outputPath, item));
         }
       }
-    } else {
-      outputPathList.push(outputPath);
     }
 
     for (const outputPath of outputPathList) {

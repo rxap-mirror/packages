@@ -17,7 +17,6 @@
           "applications/service/status/src/assets",
           "applications/service/status/src/Dockerfile",
           "applications/service/status/src/healthcheck.js",
-          "applications/service/status/src/build.json",
           "applications/service/status/src/openapi.json"
         ],
         "generatePackageJson": true,

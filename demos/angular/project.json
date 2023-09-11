@@ -62,7 +62,6 @@
             "output": "/"
           },
           "demos/angular/src/manifest.webmanifest",
-          "demos/angular/src/build.json",
           {
             "glob": "*.json",
             "input": "config/",

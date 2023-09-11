@@ -18,7 +18,6 @@
         "tsConfig": "applications/service/user/tsconfig.app.json",
         "assets": [
           "applications/service/user/src/assets",
-          "applications/service/user/src/build.json",
           "applications/service/user/src/Dockerfile",
           "applications/service/user/src/healthcheck.js"
         ],

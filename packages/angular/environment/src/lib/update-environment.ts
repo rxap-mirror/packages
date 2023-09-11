@@ -3,7 +3,7 @@ import { Environment } from './environment';
 /**
  * Loads the build.json and adds all keys to the environment object
  */
-export async function UpdateEnvironment(environment: Environment, url = '/build.json') {
+export async function UpdateEnvironment(environment: Environment, url = 'build.json') {
   await fetch(url)
     .then((response) => {
       if (!response.ok) {

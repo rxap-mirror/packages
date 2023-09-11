@@ -19,8 +19,7 @@
         "assets": [
           "demos/service/app/angular/table/src/assets",
           "demos/service/app/angular/table/src/Dockerfile",
-          "demos/service/app/angular/table/src/healthcheck.js",
-          "demos/service/app/angular/table/src/build.json"
+          "demos/service/app/angular/table/src/healthcheck.js"
         ],
         "isolatedConfig": true,
         "webpackConfig": "demos/service/app/angular/table/webpack.config.js",

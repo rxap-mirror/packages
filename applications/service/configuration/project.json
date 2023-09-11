@@ -14,7 +14,8 @@
         "main": "applications/service/configuration/src/main.ts",
         "tsConfig": "applications/service/configuration/tsconfig.app.json",
         "assets": [
-          "applications/service/configuration/src/build.json",
+          "applications/service/configuration/src/Dockerfile",
+          "applications/service/configuration/src/healthcheck.js",
           "applications/service/configuration/src/assets",
           "applications/service/configuration/src/openapi.json"
         ],
@@ -36,7 +37,6 @@
         },
         "development": {
           "assets": [
-            "applications/service/configuration/src/build.json",
             "applications/service/configuration/src/assets",
             "applications/service/configuration/src/openapi.json"
           ]
