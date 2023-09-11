@@ -88,8 +88,11 @@
       }
     },
     "swagger-generate": {
+      "outputs": [
+        "dist/swagger/demos/service/app/angular/table/openapi.json"
+      ],
       "options": {
-        "command": "node dist/swagger/demos/service/app/angular/table/main.js"
+        "buildTarget": "service-app-angular-table:swagger-build"
       }
     },
     "test": {

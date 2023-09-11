@@ -19,8 +19,7 @@
         "assets": [
           "applications/service/user/src/assets",
           "applications/service/user/src/Dockerfile",
-          "applications/service/user/src/healthcheck.js",
-          "applications/service/user/src/openapi.json"
+          "applications/service/user/src/healthcheck.js"
         ],
         "isolatedConfig": true,
         "webpackConfig": "applications/service/user/webpack.config.js",
@@ -28,20 +27,11 @@
       },
       "configurations": {
         "production": {
-          "optimization": true,
-          "extractLicenses": true,
-          "inspect": false,
           "fileReplacements": [
             {
               "replace": "applications/service/user/src/environments/environment.ts",
               "with": "applications/service/user/src/environments/environment.prod.ts"
             }
-          ]
-        },
-        "development": {
-          "assets": [
-            "applications/service/user/src/assets",
-            "applications/service/user/src/openapi.json"
           ]
         }
       }
@@ -95,8 +85,11 @@
       }
     },
     "swagger-generate": {
+      "outputs": [
+        "dist/swagger/applications/service/user/openapi.json"
+      ],
       "options": {
-        "command": "node dist/swagger/applications/service/user/main.js"
+        "buildTarget": "service-user:swagger-build"
       }
     },
     "test": {
@@ -108,18 +101,6 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
-    },
-    "copy-open-api-json": {
-      "executor": "nx:run-commands",
-      "outputs": [
-        "{projectRoot}/src/openapi.json"
-      ],
-      "inputs": [
-        "{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json"
-      ],
-      "options": {
-        "command": "cp dist/swagger/applications/service/user/openapi.json applications/service/user/src/openapi.json"
       }
     }
   },
