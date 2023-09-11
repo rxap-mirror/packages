@@ -15,4 +15,6 @@ validationSchema['SENTRY_RELEASE'] = Joi.string();
 validationSchema['SENTRY_ENVIRONMENT'] = Joi.string();
 validationSchema['SENTRY_ENABLED'] = Joi.string().default(environment.sentry?.enabled ?? false);
 validationSchema['SENTRY_DSN'] = Joi.string();
+validationSchema['STORE_FILE_PATH'] =
+  Joi.string().default(environment.production ? '/data' : '/tmp/rxap/packages/service/status');
 export const VALIDATION_SCHEMA = Joi.object(validationSchema);
