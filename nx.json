@@ -28,7 +28,8 @@
           "readme",
           "build-tailwind",
           "localazy-upload",
-          "extract-i18n"
+          "extract-i18n",
+          "expose-as-schematic"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
