@@ -115,7 +115,7 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
       return false;
     }
     const name = fragments.pop();
-    if (!name.match(/config\..*\.json/) && name !== 'config.json') {
+    if (!name?.match(/config\..*\.json/) && name !== 'config.json') {
       this.logger.error('invalid configuration file path: ' +
         relativePath +
         ' file name does not match the expected pattern', 'ConfigurationService');
@@ -129,6 +129,22 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
     const version = fragments.shift();
     const name = fragments.pop();
     const application = fragments.shift();
+    if (!version) {
+      this.logger.error(
+        'Invalid configuration file could not extract version from path: ' + relativePath,
+        undefined,
+        'ConfigurationService',
+      );
+      throw new InternalServerErrorException(`Invalid configuration file could not extract version from path`);
+    }
+    if (!name) {
+      this.logger.error(
+        'Invalid configuration file could not extract name from path: ' + relativePath,
+        undefined,
+        'ConfigurationService',
+      );
+      throw new InternalServerErrorException(`Invalid configuration file could not extract name from path`);
+    }
     return {
       version,
       name,

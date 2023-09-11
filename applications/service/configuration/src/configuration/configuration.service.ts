@@ -16,10 +16,10 @@ import { LoadConfigurationService } from './load-configuration.service';
 export class ConfigurationService {
 
   @Inject(Logger)
-  private readonly logger: Logger;
+  private readonly logger!: Logger;
 
   @Inject(LoadConfigurationService)
-  private readonly config: LoadConfigurationService;
+  private readonly config!: LoadConfigurationService;
 
   getLatest(application?: string) {
     this.logger.log(`Get latest configuration`, 'ConfigurationService');
@@ -88,7 +88,7 @@ export class ConfigurationService {
     return map.get(latestVersion)!;
   }
 
-  private getLatestCompatibleVersion(versions, version): string | null {
+  private getLatestCompatibleVersion(versions: string[], version: string): string | null {
     this.logger.debug(`Get latest compatible version for ${ version }`, 'ConfigurationService');
     let possibleVersion: string | null = null;
     for (const v of versions) {

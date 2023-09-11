@@ -5,16 +5,16 @@ import {
   Inject,
   Param,
 } from '@nestjs/common';
-import { ConfigurationService } from './configuration.service';
-import { valid } from 'semver';
 import { Public } from '@rxap/nest-utilities';
+import { valid } from 'semver';
+import { ConfigurationService } from './configuration.service';
 
 @Controller()
 @Public()
 export class ConfigurationController {
 
   @Inject(ConfigurationService)
-  private readonly configurationService: ConfigurationService;
+  private readonly configurationService!: ConfigurationService;
 
   @Get('latest/:application')
   getLatest(@Param('application') application: string) {
