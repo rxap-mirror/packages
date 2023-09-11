@@ -2,6 +2,11 @@ export function DefaultSortPropertiesCompareFn(a: string, b: string) {
   return a.localeCompare(b);
 }
 
+/**
+ * Sort the properties of an object in place
+ * @param obj
+ * @param compareFn
+ */
 export function SortProperties<T>(
   obj: T,
   compareFn: (a: string, b: string) => number = DefaultSortPropertiesCompareFn,
@@ -12,10 +17,10 @@ export function SortProperties<T>(
   if (typeof obj !== 'object') {
     throw new Error('Input is not an object');
   }
-  return Object.keys(obj)
+  const shallowClone = { ...obj };
+  Object.keys(shallowClone).forEach((key) => delete (obj as any)[key]);
+  Object.keys(shallowClone)
                .sort(compareFn)
-               .reduce((result, key) => {
-                 result[key] = (obj as any)[key];
-                 return result;
-               }, {} as Record<string, any>) as any;
+        .forEach((key) => (obj as any)[key] = (shallowClone as any)[key]);
+  return obj;
 }
