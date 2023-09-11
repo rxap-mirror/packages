@@ -1,13 +1,8 @@
 include:
-  - local: .gitlab/ci/jobs/build.yaml
+  - local: .gitlab/ci/jobs/run.yaml
 
 stages:
-  - build
+  - run
 
 variables:
   ENVIRONMENT_NAME: $CI_COMMIT_REF_NAME
-
-build:
-  extends: .build
-  environment:
-    name: $ENVIRONMENT_NAME

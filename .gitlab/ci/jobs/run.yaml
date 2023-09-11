@@ -1,10 +1,10 @@
-.build:
+run:
   extends: .run-many-dte
-  stage: build
+  stage: run
   tags:
     - e2-standard-2
   variables:
-    TARGET: "build"
+    TARGET: "build,lint,test"
   environment:
     action: prepare
     name: $ENVIRONMENT_NAME
@@ -15,7 +15,7 @@
 
 agent:
   extends: .dte-agent
-  stage: build
+  stage: run
   tags:
     - e2-standard-8
   environment:

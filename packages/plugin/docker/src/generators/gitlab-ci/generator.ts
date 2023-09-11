@@ -31,7 +31,7 @@ const dotDocker = {
       when: 'on_success',
     },
   ],
-  needs: [ 'build' ],
+  needs: [ 'run' ],
 };
 
 const docker = {

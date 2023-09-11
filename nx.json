@@ -27,7 +27,8 @@
           "build-tailwind",
           "localazy-upload",
           "extract-i18n",
-          "expose-as-schematic"
+          "expose-as-schematic",
+          "localazy-download"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
@@ -176,6 +177,29 @@
       "inputs": [
         "build",
         "^build"
+      ]
+    },
+    "localazy-download": {
+      "executor": "@rxap/plugin-localazy:download",
+      "inputs": [
+        {
+          "runtime": "date"
+        },
+        {
+          "env": "CI_COMMIT_TIMESTAMP"
+        },
+        {
+          "env": "CI_COMMIT_SHA"
+        },
+        {
+          "env": "CI_JOB_ID"
+        },
+        {
+          "env": "CI_PIPELINE_ID"
+        }
+      ],
+      "outputs": [
+        "{projectRoot}/src/i18n"
       ]
     },
     "expose-as-schematic": {

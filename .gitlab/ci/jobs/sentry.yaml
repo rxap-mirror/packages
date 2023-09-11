@@ -12,3 +12,4 @@
   script: /bin/bash ./tools/sentry-release.sh
   environment:
     action: prepare
+    name: $ENVIRONMENT_NAME
