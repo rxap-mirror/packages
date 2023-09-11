@@ -14,6 +14,7 @@ import {
 } from '@rxap/generator-utilities';
 import { GetLatestPackageVersion } from '@rxap/node-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
+import { UpdatePackageJson } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
   IndentationText,
@@ -571,43 +572,31 @@ export async function fixDependenciesGenerator(
       return;
     }
 
-    const packageJson = JSON.parse(tree.read(`${ projectRoot }/package.json`)!.toString('utf-8'));
-    packageJson.dependencies ??= {};
-    packageJson.peerDependencies ??= {};
-    packageJson.devDependencies ??= {};
-    packageJson.optionalDependencies ??= {};
+    UpdatePackageJson(tree, packageJson => {
 
-    if (!packageJson.dependencies['tslib']) {
-      packageJson.dependencies['tslib'] = latestTsLibVersion;
-    }
+      packageJson.dependencies ??= {};
+      packageJson.peerDependencies ??= {};
+      packageJson.devDependencies ??= {};
+      packageJson.optionalDependencies ??= {};
 
-    loadAvailablePackageVersion(tree, projectRoot);
+      if (!packageJson.dependencies['tslib']) {
+        packageJson.dependencies['tslib'] = latestTsLibVersion;
+      }
 
-    const peerReport = fixPeerDependenciesWithTsMorphProject(projectGraph, tree, projectRoot, packageJson);
+      loadAvailablePackageVersion(tree, projectRoot);
 
-    removeSelfReferenceFromDependencies(projectName, packageJson);
+      const peerReport = fixPeerDependenciesWithTsMorphProject(projectGraph, tree, projectRoot, packageJson);
 
-    console.log(`====================  Report for project ${ projectName }`);
-    console.log('========== Peer dependencies:');
-    printReport(peerReport);
+      removeSelfReferenceFromDependencies(projectName, packageJson);
 
-    unknownPackageMap[projectName] = peerReport.unknownPackageList.filter((packageName, index, self) => self.indexOf(
-      packageName) === index);
+      console.log(`====================  Report for project ${ projectName }`);
+      console.log('========== Peer dependencies:');
+      printReport(peerReport);
 
-    if (Object.keys(packageJson.dependencies).length === 0) {
-      delete packageJson.dependencies;
-    }
-    if (Object.keys(packageJson.peerDependencies).length === 0) {
-      delete packageJson.peerDependencies;
-    }
-    if (Object.keys(packageJson.devDependencies).length === 0) {
-      delete packageJson.devDependencies;
-    }
-    if (Object.keys(packageJson.optionalDependencies).length === 0) {
-      delete packageJson.optionalDependencies;
-    }
+      unknownPackageMap[projectName] = peerReport.unknownPackageList.filter((packageName, index, self) => self.indexOf(
+        packageName) === index);
 
-    tree.write(`${ projectRoot }/package.json`, JSON.stringify(packageJson, null, 2) + '\n');
+    }, { basePath: projectRoot });
 
   });
 
