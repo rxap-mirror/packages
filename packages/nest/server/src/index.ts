@@ -4,4 +4,5 @@ export * from './lib/microservice';
 export * from './lib/monolithic';
 export * from './lib/register-to-status-service';
 export * from './lib/server';
+export * from './lib/setup-swagger';
 // endregion
