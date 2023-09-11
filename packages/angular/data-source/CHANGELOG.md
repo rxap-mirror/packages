@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.14...@rxap/data-source@16.0.0-dev.15) (2023-09-11)
+
+### Features
+
+- add MethodDataSource class ([f37aba0](https://gitlab.com/rxap/packages/commit/f37aba0bcea913b1c1fc6fe4b6ec44f32f63184e))
+- add RxapPipeDataSource decorator ([d49a45c](https://gitlab.com/rxap/packages/commit/d49a45c9e1af5511a2f099e3f9f4dde857389c4f))
+
 # [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.13...@rxap/data-source@16.0.0-dev.14) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/data-source
