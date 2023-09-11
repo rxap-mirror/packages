@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "CiInfo executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "branch": {
+      "type": "string"
+    },
+    "tag": {
+      "type": "string"
+    },
+    "release": {
+      "type": "string"
+    },
+    "commit": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    }
+  },
+  "required": []
+}

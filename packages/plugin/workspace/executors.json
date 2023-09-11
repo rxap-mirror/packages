@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "ci-info": {
+      "implementation": "./src/executors/ci-info/executor",
+      "schema": "./src/executors/ci-info/schema.json",
+      "description": "ci-info executor"
+    }
+  }
+}

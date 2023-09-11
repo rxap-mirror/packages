@@ -23,7 +23,8 @@
           "check-version",
           "component-test",
           "check-ng-package",
-          "generate-open-api"
+          "generate-open-api",
+          "ci-info"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
@@ -164,7 +165,6 @@
         "readme",
         "index-export",
         "check-version",
-        "build-info",
         "build-tailwind",
         "generate-package-json",
         "check-ng-package",

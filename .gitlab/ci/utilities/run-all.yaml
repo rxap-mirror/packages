@@ -10,6 +10,7 @@
     - yarn "$(if [[ $CI_COMMIT_REF_NAME =~ ^renovate//* ]]; then echo ''; else echo '--frozen-lockfile'; fi)"
   script:
     - yarn nx run-many --target ${TARGET} --parallel $NX_PARALLEL ${ADDITIONAL_TARGET_OPTIONS}
+    - yarn nx run packages:ci-info
   rules:
     - exists:
         - nx.json

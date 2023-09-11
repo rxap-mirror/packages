@@ -67,5 +67,6 @@
       }
     ]
   },
-  "schematics": "./generators.json"
+  "schematics": "./generators.json",
+  "executors": "./executors.json"
 }
