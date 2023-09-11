@@ -16,8 +16,7 @@
         "assets": [
           "applications/service/configuration/src/Dockerfile",
           "applications/service/configuration/src/healthcheck.js",
-          "applications/service/configuration/src/assets",
-          "applications/service/configuration/src/openapi.json"
+          "applications/service/configuration/src/assets"
         ],
         "generatePackageJson": true,
         "target": "node",
@@ -37,8 +36,7 @@
         },
         "development": {
           "assets": [
-            "applications/service/configuration/src/assets",
-            "applications/service/configuration/src/openapi.json"
+            "applications/service/configuration/src/assets"
           ]
         }
       },
@@ -87,7 +85,7 @@
     },
     "swagger-generate": {
       "outputs": [
-        "dist/swagger/applications/service/configuration/openapi.json"
+        "dist/swagger/{projectRoot}/openapi.json"
       ],
       "options": {
         "buildTarget": "service-configuration:swagger-build"
@@ -96,18 +94,6 @@
     "test": {
       "options": {
         "jestConfig": "applications/service/configuration/jest.config.ts"
-      }
-    },
-    "copy-open-api-json": {
-      "executor": "nx:run-commands",
-      "outputs": [
-        "{projectRoot}/src/openapi.json"
-      ],
-      "inputs": [
-        "{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json"
-      ],
-      "options": {
-        "command": "cp dist/swagger/applications/service/configuration/openapi.json applications/service/configuration/src/openapi.json"
       }
     }
   },

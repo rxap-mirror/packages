@@ -14,7 +14,6 @@
           "component-test",
           "swagger-build",
           "swagger-generate",
-          "copy-open-api-json",
           "generate-package-json",
           "index-export",
           "update-dependencies",
@@ -172,7 +171,6 @@
         "build-tailwind",
         "generate-package-json",
         "check-ng-package",
-        "copy-open-api-json",
         "localazy-download"
       ],
       "inputs": [
@@ -205,18 +203,6 @@
       "input": [
         "production",
         "^production"
-      ]
-    },
-    "copy-open-api-json": {
-      "executor": "nx:run-commands",
-      "dependsOn": [
-        "swagger-generate"
-      ],
-      "inputs": [
-        "{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json"
-      ],
-      "outputs": [
-        "{projectRoot}/src/openapi.json"
       ]
     },
     "build-tailwind": {

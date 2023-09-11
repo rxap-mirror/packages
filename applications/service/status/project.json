@@ -16,8 +16,7 @@
         "assets": [
           "applications/service/status/src/assets",
           "applications/service/status/src/Dockerfile",
-          "applications/service/status/src/healthcheck.js",
-          "applications/service/status/src/openapi.json"
+          "applications/service/status/src/healthcheck.js"
         ],
         "generatePackageJson": true,
         "target": "node",
@@ -87,18 +86,6 @@
     "test": {
       "options": {
         "jestConfig": "applications/service/status/jest.config.ts"
-      }
-    },
-    "copy-open-api-json": {
-      "executor": "nx:run-commands",
-      "outputs": [
-        "{projectRoot}/src/openapi.json"
-      ],
-      "inputs": [
-        "{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json"
-      ],
-      "options": {
-        "command": "cp dist/swagger/applications/service/status/openapi.json applications/service/status/src/openapi.json"
       }
     }
   },
