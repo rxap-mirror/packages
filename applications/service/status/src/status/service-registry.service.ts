@@ -45,6 +45,7 @@ export class ServiceRegistryService implements OnApplicationBootstrap {
     healthCheckPath: string,
     infoPath: string,
     ip: string | undefined,
+    protocol: string,
   ) {
     return this.storage.set(
       name,
@@ -55,6 +56,7 @@ export class ServiceRegistryService implements OnApplicationBootstrap {
         healthCheckPath,
         infoPath,
         ip,
+        protocol,
       },
     );
   }
@@ -88,6 +90,7 @@ export class ServiceRegistryService implements OnApplicationBootstrap {
       port,
       domain,
       ip,
+      protocol,
     } = config;
 
     if (url) {
@@ -95,11 +98,11 @@ export class ServiceRegistryService implements OnApplicationBootstrap {
     }
 
     if (domain) {
-      return `https://${ domain }:${ port }`;
+      return `${ protocol }://${ domain }:${ port }`;
     }
 
     if (ip) {
-      return `https://${ ip }:${ port }`;
+      return `${ protocol }://${ ip }:${ port }`;
     }
 
     throw new InternalServerErrorException(`Service '${ serviceName }' has no url, domain or ip`);

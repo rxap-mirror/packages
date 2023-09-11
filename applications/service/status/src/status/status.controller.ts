@@ -137,6 +137,7 @@ export class StatusController {
       healthCheckPath = '/health',
       infoPath = '/info',
       ip = req.ip.match(/(\d+\.\d+\.\d+\.\d+)$/)?.[1],
+      protocol = 'http',
     } = body;
     this.logger.log(
       `Register service '${ name }' with ::: url='${ url }' port='${ port }' domain='${ domain }' healthCheckPath='${ healthCheckPath }' infoPath='${ infoPath }' ip='${ ip }'`,
@@ -147,7 +148,11 @@ export class StatusController {
       throw new BadRequestException('No url or domain provided and could not determine ip address');
     }
 
-    await this.serviceRegistryService.register(name, url, port, domain, healthCheckPath, infoPath, ip);
+    if ([ 'http', 'https' ].includes(protocol)) {
+      throw new BadRequestException(`Invalid protocol '${ protocol }'`);
+    }
+
+    await this.serviceRegistryService.register(name, url, port, domain, healthCheckPath, infoPath, ip, protocol);
 
     return this.health.check([ () => this.serviceHealthIndicator.isHealthy(body.name) ]);
 

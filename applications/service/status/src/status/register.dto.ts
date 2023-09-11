@@ -44,4 +44,9 @@ export class RegisterDto {
   @IsString()
   infoPath?: string;
 
+  @Expose()
+  @IsOptional()
+  @IsString()
+  protocol?: string;
+
 }
