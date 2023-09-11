@@ -24,7 +24,11 @@
           "component-test",
           "check-ng-package",
           "generate-open-api",
-          "ci-info"
+          "ci-info",
+          "readme",
+          "build-tailwind",
+          "localazy-upload",
+          "extract-i18n"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
@@ -177,6 +181,33 @@
         "^build"
       ]
     },
+    "expose-as-schematic": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-library:expose-as-schematic"
+      },
+      "outputs": [
+        "{projectRoot}/generators.json",
+        "{projectRoot}/src/generators/**/index.ts"
+      ],
+      "inputs": [
+        "{projectRoot}/generators.json",
+        "{projectRoot}/src/generators/**/schema.json"
+      ]
+    },
+    "extract-i18n": {
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "format": "xliff2"
+      },
+      "input": [
+        "production",
+        "^production"
+      ]
+    },
     "copy-open-api-json": {
       "executor": "nx:run-commands",
       "dependsOn": [
@@ -227,6 +258,13 @@
       ],
       "outputs": [
         "{projectRoot}/README.md"
+      ],
+      "dependsOn": [
+        "expose-as-schematic",
+        "generate-package-json",
+        "update-package-group",
+        "update-dependencies",
+        "fix-dependencies"
       ]
     },
     "docker": {
@@ -341,6 +379,9 @@
     "localazy-upload": {
       "dependsOn": [
         "extract-i18n"
+      ],
+      "inputs": [
+        "{projectRoot}/src/i18n/messages.xlf"
       ]
     }
   },
