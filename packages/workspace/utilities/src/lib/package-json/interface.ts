@@ -180,5 +180,7 @@ export interface PackageJson {
     nohoist?: Array<string>;
   };
 
+  'nx-migrations'?: { packageGroup?: Array<{ package: string, version: string }> };
+
   [key: string]: any;
 }

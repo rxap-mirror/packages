@@ -1,4 +1,5 @@
 import { GetLatestPackageVersion } from '@rxap/node-utilities';
+import { SortProperties } from '@rxap/utilities';
 import { join } from 'path';
 import gt from 'semver/functions/gt';
 import {
@@ -17,13 +18,15 @@ export interface UpdatePackageJsonOptions extends UpdateJsonFileOptions {
   basePath?: string;
 }
 
-
 export function UpdatePackageJson<Tree extends TreeLike>(
   tree: Tree,
-  updaterOrJsonFile: PackageJson | ((packageJson: PackageJson) => void | PromiseLike<void>),
+  updaterOrJsonFile: ((packageJson: PackageJson) => void | PromiseLike<void>),
   options?: UpdatePackageJsonOptions,
 ) {
-  return UpdateJsonFile(tree, updaterOrJsonFile, join(options?.basePath ?? '', 'package.json'), options);
+  return UpdateJsonFile(tree, async (packageJson) => {
+    await updaterOrJsonFile(packageJson);
+    CleanupPackageJsonFile(packageJson);
+  }, join(options?.basePath ?? '', 'package.json'), options);
 }
 
 export function AddPackageJsonScript<Tree extends TreeLike>(
@@ -109,3 +112,84 @@ export async function AddPackageJsonDevDependency<Tree extends TreeLike>(
   return AddPackageJsonDependency(tree, packageName, packageVersion, options, 'devDependencies');
 }
 
+/**
+ * Cleanup the packageJson object in place
+ * @param content
+ */
+export function CleanupPackageJsonFile<T extends PackageJson = PackageJson>(content: PackageJson): T {
+
+  content.dependencies ??= {};
+  content.devDependencies ??= {};
+  content.peerDependencies ??= {};
+  content['nx-migrations'] ??= {};
+  content['nx-migrations'].packageGroup ??= [];
+  content.keywords ??= [];
+
+  content.dependencies = SortProperties(content.dependencies);
+  content.devDependencies = SortProperties(content.devDependencies);
+  content.peerDependencies = SortProperties(content.dependencies);
+  content['nx-migrations'].packageGroup.sort((a, b) => a.package.localeCompare(b.package));
+  content.keywords.sort();
+
+  if (Object.keys(content.dependencies).length === 0) {
+    delete content.dependencies;
+  }
+  if (Object.keys(content.devDependencies).length === 0) {
+    delete content.devDependencies;
+  }
+  if (Object.keys(content.peerDependencies).length === 0) {
+    delete content.peerDependencies;
+  }
+  if (content['nx-migrations'].packageGroup.length === 0) {
+    delete content['nx-migrations'].packageGroup;
+  }
+  if (Object.keys(content['nx-migrations']).length === 0) {
+    delete content['nx-migrations'];
+  }
+  if (Object.keys(content.keywords).length === 0) {
+    delete content.keywords;
+  }
+
+  SortProperties<T>(content as T, (a, b) => {
+    if (a === 'version') {
+      return -1;
+    }
+    if (b === 'version') {
+      return 1;
+    }
+    if (a === 'name') {
+      return -1;
+    }
+    if (b === 'name') {
+      return 1;
+    }
+    if (a === 'description') {
+      return -1;
+    }
+    if (b === 'description') {
+      return 1;
+    }
+    if (a === 'license') {
+      return -1;
+    }
+    if (b === 'license') {
+      return 1;
+    }
+    if (a === 'dependencies') {
+      return -1;
+    }
+    if (b === 'dependencies') {
+      return 1;
+    }
+    if (a === 'peerDependencies') {
+      return -1;
+    }
+    if (b === 'peerDependencies') {
+      return 1;
+    }
+    return a.localeCompare(b);
+  });
+
+  return content as T;
+
+}
