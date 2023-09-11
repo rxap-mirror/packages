@@ -9,6 +9,6 @@
     "files": "src/i18n/messages.xlf"
   },
   "download": {
-    "files": "src/i18n/${lang}.xlf"
+    "files": "src/i18n/${languageCode}.xlf"
   }
 }

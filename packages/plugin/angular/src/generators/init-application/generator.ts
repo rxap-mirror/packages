@@ -448,7 +448,7 @@ function coerceLocalazyConfigFile(tree: Tree, project: ProjectConfiguration) {
         files: 'src/i18n/messages.xlf',
       },
       download: {
-        files: 'src/i18n/${lang}.xlf',
+        files: 'src/i18n/${languageCode}.xlf',
       },
     }, null, 2));
   }
