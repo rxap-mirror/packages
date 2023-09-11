@@ -1,39 +1,27 @@
 {
-  "name": "@rxap/mixin",
   "version": "16.0.0-dev.12",
-  "type": "commonjs",
-  "peerDependencies": {
-    "@rxap/reflect-metadata": "^1.0.1-dev.8",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "reflect-metadata": "^0.1.13"
-  },
+  "name": "@rxap/mixin",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/mixin"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "mixin"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/mixin",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/mixin"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/mixin",
+  "keywords": [
+    "mixin",
+    "packages",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -45,5 +33,15 @@
         "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/mixin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/mixin"
+  },
+  "type": "commonjs"
 }

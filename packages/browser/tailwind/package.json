@@ -1,40 +1,37 @@
 {
-  "name": "@rxap/browser-tailwind",
   "version": "0.0.2-dev.8",
-  "type": "commonjs",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/browser/tailwind"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "browser",
-    "tailwind",
-    "browser-tailwind"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/browser/tailwind",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
+  "name": "@rxap/browser-tailwind",
   "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/browser/tailwind"
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "dependencies": {
-    "tslib": "2.6.2"
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "peerDependencies": {
-    "tailwindcss": "^3.0.2"
+  "homepage": "https:/gitlab.com/rxap/packages/packages/browser/tailwind",
+  "keywords": [
+    "browser",
+    "browser-tailwind",
+    "packages",
+    "rxap",
+    "tailwind"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/browser/tailwind"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/browser/tailwind"
+  },
+  "type": "commonjs"
 }

@@ -1,44 +1,37 @@
 {
-  "name": "@rxap/nest-socket-io-client",
   "version": "10.0.1-dev.7",
-  "type": "commonjs",
+  "name": "@rxap/nest-socket-io-client",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.5",
-    "@nestjs/config": "^3.0.0",
-    "@nestjs/microservices": "^10.0.5",
-    "rxjs": "^7.8.0",
-    "socket.io-client": "^4.6.2"
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/socket-io-client"
-  },
-  "keywords": [
-    "rxap",
-    "nest",
-    "packages",
-    "socket-io-client",
-    "nest-socket-io-client"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/socket-io-client",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/nest/socket-io-client"
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/socket-io-client",
+  "keywords": [
+    "nest",
+    "nest-socket-io-client",
+    "packages",
+    "rxap",
+    "socket-io-client"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/socket-io-client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/socket-io-client"
+  },
+  "type": "commonjs"
 }

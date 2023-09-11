@@ -1,44 +1,29 @@
 {
-  "name": "@rxap/nest-sentry",
   "version": "10.0.1-dev.7",
-  "type": "commonjs",
+  "name": "@rxap/nest-sentry",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.5",
-    "@rxap/nest-logger": "^10.1.0-dev.3",
-    "@sentry/core": "^7.28.1",
-    "@sentry/node": "^7.28.1",
-    "@sentry/types": "^7.28.1",
-    "rxjs": "^7.8.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/sentry"
-  },
-  "keywords": [
-    "rxap",
-    "nest",
-    "packages",
-    "sentry",
-    "nest-sentry"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/sentry",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/nest/sentry"
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/sentry",
+  "keywords": [
+    "nest",
+    "nest-sentry",
+    "packages",
+    "rxap",
+    "sentry"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -46,5 +31,15 @@
         "version": "10.1.0-dev.3"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/sentry"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/sentry"
+  },
+  "type": "commonjs"
 }

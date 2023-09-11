@@ -1,44 +1,30 @@
 {
-  "name": "@rxap/ngx-sentry",
   "version": "16.0.1-dev.7",
-  "peerDependencies": {
-    "@rxap/config": "^16.0.0-dev.13",
-    "@rxap/environment": "^16.0.0-dev.12",
-    "@sentry/angular-ivy": "^7.60.1",
-    "@sentry/browser": "^7.60.1",
-    "@sentry/integrations": "^7.60.1"
-  },
+  "name": "@rxap/ngx-sentry",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/sentry"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "sentry",
-    "angular-sentry"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/sentry",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/sentry"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/sentry",
+  "keywords": [
+    "angular",
+    "angular-sentry",
+    "ngx",
+    "packages",
+    "rxap",
+    "sentry"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -50,5 +36,15 @@
         "version": "16.0.0-dev.12"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/sentry"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/sentry"
+  },
+  "sideEffects": false
 }

@@ -1,38 +1,27 @@
 {
-  "name": "@rxap/rxjs",
   "version": "1.0.1-dev.8",
-  "type": "commonjs",
-  "peerDependencies": {
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "rxjs": "^7.8.0"
-  },
+  "name": "@rxap/rxjs",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/rxjs"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "rxjs"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/rxjs",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/rxjs"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/rxjs",
+  "keywords": [
+    "packages",
+    "rxap",
+    "rxjs"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -40,5 +29,15 @@
         "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/rxjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/rxjs"
+  },
+  "type": "commonjs"
 }

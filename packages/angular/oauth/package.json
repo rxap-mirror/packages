@@ -1,49 +1,30 @@
 {
-  "name": "@rxap/oauth",
   "version": "16.0.0-dev.12",
-  "peerDependencies": {
-    "@angular/animations": "^16.1.4",
-    "@angular/common": "^16.1.4",
-    "@angular/core": "^16.1.4",
-    "@angular/flex-layout": "^15.0.0-beta.42",
-    "@angular/material": "^16.1.4",
-    "@angular/router": "^16.1.4",
-    "@rxap/authentication": "^16.0.0-dev.12",
-    "@rxap/directives": "^16.0.0-dev.13",
-    "@rxap/pattern": "^1.0.1-dev.9",
-    "rxjs": "^7.8.0"
-  },
-  "sideEffects": false,
+  "name": "@rxap/oauth",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/oauth"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "oauth",
-    "angular-oauth"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/oauth",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/oauth"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/oauth",
+  "keywords": [
+    "angular",
+    "angular-oauth",
+    "ngx",
+    "oauth",
+    "packages",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -59,5 +40,15 @@
         "version": "1.0.1-dev.9"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/oauth"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/oauth"
+  },
+  "sideEffects": false
 }

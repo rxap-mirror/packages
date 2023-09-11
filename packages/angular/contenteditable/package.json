@@ -1,42 +1,30 @@
 {
-  "name": "@rxap/contenteditable",
   "version": "16.0.0-dev.12",
-  "peerDependencies": {
-    "@angular/core": "^16.1.4",
-    "@rxap/pattern": "^1.0.1-dev.9",
-    "@rxap/utilities": "^16.0.0-dev.16"
-  },
-  "sideEffects": false,
+  "name": "@rxap/contenteditable",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/contenteditable"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "contenteditable",
-    "angular-contenteditable"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/contenteditable",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/contenteditable"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/contenteditable",
+  "keywords": [
+    "angular",
+    "angular-contenteditable",
+    "contenteditable",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -48,5 +36,15 @@
         "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/contenteditable"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/contenteditable"
+  },
+  "sideEffects": false
 }

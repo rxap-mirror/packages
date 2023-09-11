@@ -1,51 +1,31 @@
 {
-  "name": "@rxap/form-window-system",
   "version": "16.0.0-dev.13",
-  "peerDependencies": {
-    "@angular/cdk": "^16.1.4",
-    "@angular/core": "^16.1.4",
-    "@rxap/directives": "^16.0.0-dev.13",
-    "@rxap/form-system": "^16.0.0-dev.15",
-    "@rxap/forms": "^16.0.0-dev.14",
-    "@rxap/pattern": "^1.0.1-dev.9",
-    "@rxap/reflect-metadata": "^1.0.1-dev.8",
-    "@rxap/rxjs": "^1.0.1-dev.8",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "@rxap/window-system": "^16.0.0-dev.16",
-    "rxjs": "^7.8.0"
-  },
-  "sideEffects": false,
+  "name": "@rxap/form-window-system",
+  "description": "Provides the FormSystem concept for RxAP.",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "description": "Provides the FormSystem concept for RxAP.",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/form-window-system"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "form-window-system",
-    "angular-form-window-system"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/form-window-system",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/form-window-system"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/form-window-system",
+  "keywords": [
+    "angular",
+    "angular-form-window-system",
+    "form-window-system",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -81,5 +61,15 @@
         "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/form-window-system"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/form-window-system"
+  },
+  "sideEffects": false
 }

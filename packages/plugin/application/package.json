@@ -1,49 +1,33 @@
 {
-  "name": "@rxap/plugin-application",
   "version": "16.1.0-dev.13",
-  "type": "commonjs",
-  "executors": "./executors.json",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/application"
-  },
-  "keywords": [
-    "rxap",
-    "plugin",
-    "nx",
-    "nx-plugin",
-    "packages",
-    "application",
-    "plugin-application"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/application",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
+  "name": "@rxap/plugin-application",
   "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/plugin/application"
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "dependencies": {
-    "tslib": "2.6.2"
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "peerDependencies": {
-    "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.1.0-dev.11",
-    "@rxap/plugin-angular": "^16.1.0-dev.20",
-    "@rxap/plugin-docker": "^16.0.0-dev.22",
-    "@rxap/plugin-nestjs": "^16.1.0-dev.17",
-    "@rxap/plugin-utilities": "^16.1.0-dev.12",
-    "@rxap/workspace-utilities": "^0.1.0-dev.11",
-    "handlebars": "^4.7.7"
-  },
+  "executors": "./executors.json",
+  "generators": "./generators.json",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/application",
+  "keywords": [
+    "application",
+    "nx",
+    "nx-plugin",
+    "packages",
+    "plugin",
+    "plugin-application",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -72,6 +56,15 @@
       }
     ]
   },
-  "generators": "./generators.json",
-  "schematics": "./generators.json"
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/application"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/application"
+  },
+  "schematics": "./generators.json",
+  "type": "commonjs"
 }

@@ -1,48 +1,30 @@
 {
-  "name": "@rxap/upload",
   "version": "16.0.0-dev.12",
-  "peerDependencies": {
-    "@angular/cdk": "^16.1.4",
-    "@angular/common": "^16.1.4",
-    "@angular/core": "^16.1.4",
-    "@angular/flex-layout": "^15.0.0-beta.42",
-    "@angular/forms": "^16.1.4",
-    "@angular/material": "^16.1.4",
-    "@rxap/directives": "^16.0.0-dev.13",
-    "@rxap/pattern": "^1.0.1-dev.9",
-    "rxjs": "^7.8.0"
-  },
-  "sideEffects": false,
+  "name": "@rxap/upload",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/upload"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "upload",
-    "angular-upload"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/upload",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/upload"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/upload",
+  "keywords": [
+    "angular",
+    "angular-upload",
+    "ngx",
+    "packages",
+    "rxap",
+    "upload"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -54,5 +36,15 @@
         "version": "1.0.1-dev.9"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/upload"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/upload"
+  },
+  "sideEffects": false
 }

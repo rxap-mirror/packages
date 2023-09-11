@@ -1,52 +1,30 @@
 {
-  "name": "@rxap/form-system",
   "version": "16.0.0-dev.15",
-  "peerDependencies": {
-    "@angular/core": "^16.1.4",
-    "@angular/forms": "^16.1.4",
-    "@angular/material": "^16.1.4",
-    "@angular/router": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.15",
-    "@rxap/definition": "^16.0.0-dev.13",
-    "@rxap/forms": "^16.0.0-dev.14",
-    "@rxap/mixin": "^16.0.0-dev.12",
-    "@rxap/open-api": "^16.0.0-dev.19",
-    "@rxap/reflect-metadata": "^1.0.1-dev.8",
-    "@rxap/remote-method": "^16.0.0-dev.13",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "rxjs": "^7.8.0"
-  },
-  "sideEffects": false,
+  "name": "@rxap/form-system",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/form-system"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "form-system",
-    "angular-form-system"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/form-system",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/form-system"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/form-system",
+  "keywords": [
+    "angular",
+    "angular-form-system",
+    "form-system",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -82,5 +60,15 @@
         "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/form-system"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/form-system"
+  },
+  "sideEffects": false
 }

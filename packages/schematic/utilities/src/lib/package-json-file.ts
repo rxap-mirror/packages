@@ -26,7 +26,7 @@ export interface UpdatePackageJsonOptions extends UpdateJsonFileOptions {
 
 
 export function UpdatePackageJsonRule(
-  updaterOrJsonFile: PackageJson | ((packageJson: PackageJson) => void | PromiseLike<void>),
+  updaterOrJsonFile: ((packageJson: PackageJson) => void | PromiseLike<void>),
   options?: UpdatePackageJsonOptions,
 ): Rule {
   return tree => UpdatePackageJson(tree, updaterOrJsonFile, options);

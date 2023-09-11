@@ -1,43 +1,29 @@
 {
-  "name": "@rxap/schematic-composer",
   "version": "0.0.2-dev.7",
-  "type": "commonjs",
-  "schematics": "./collection.json",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/schematic/composer"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "schematic",
-    "composer",
-    "schematic-composer"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/composer",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
+  "name": "@rxap/schematic-composer",
   "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/schematic/composer"
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "dependencies": {
-    "tslib": "2.6.2"
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "peerDependencies": {
-    "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.17",
-    "@rxap/schematics-utilities": "^16.0.0-dev.14",
-    "@rxap/utilities": "^16.0.0-dev.16"
-  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/composer",
+  "keywords": [
+    "composer",
+    "packages",
+    "rxap",
+    "schematic",
+    "schematic-composer"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -57,5 +43,16 @@
         "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/schematic/composer"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/schematic/composer"
+  },
+  "schematics": "./collection.json",
+  "type": "commonjs"
 }

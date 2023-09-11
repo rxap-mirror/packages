@@ -1,40 +1,38 @@
 {
-  "name": "@rxap/json-schema-to-typescript",
   "version": "16.0.0-dev.11",
-  "type": "commonjs",
+  "name": "@rxap/json-schema-to-typescript",
+  "description": "Generates typescript interfaces from json schema definition.",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "9.0.9",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "ts-morph": "^18.0.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/json-schema-to-typescript"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "json-schema-to-typescript"
-  ],
-  "description": "Generates typescript interfaces from json schema definition.",
-  "homepage": "https:/gitlab.com/rxap/packages/packages/json-schema-to-typescript",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/json-schema-to-typescript"
+    "@apidevtools/json-schema-ref-parser": "9.0.9",
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/json-schema-to-typescript",
+  "keywords": [
+    "json-schema-to-typescript",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/json-schema-to-typescript"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/json-schema-to-typescript"
+  },
+  "type": "commonjs"
 }

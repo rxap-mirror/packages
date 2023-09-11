@@ -1,44 +1,31 @@
 {
-  "name": "@rxap/life-cycle",
   "version": "16.0.0-dev.11",
-  "peerDependencies": {
-    "@angular/core": "^16.1.4",
-    "@angular/router": "^16.1.4",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "rxjs": "^7.8.0"
-  },
-  "sideEffects": false,
+  "name": "@rxap/life-cycle",
+  "description": "A utility package to execute logic after the angular app is ready",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "description": "A utility package to execute logic after the angular app is ready",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/life-cycle"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "life-cycle",
-    "angular-life-cycle"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/life-cycle",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/life-cycle"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/life-cycle",
+  "keywords": [
+    "angular",
+    "angular-life-cycle",
+    "life-cycle",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -46,5 +33,15 @@
         "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/life-cycle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/life-cycle"
+  },
+  "sideEffects": false
 }

@@ -1,51 +1,31 @@
 {
-  "name": "@rxap/components",
   "version": "16.0.0-dev.13",
-  "peerDependencies": {
-    "@angular/cdk": "^16.1.4",
-    "@angular/common": "^16.1.4",
-    "@angular/core": "^16.1.4",
-    "@angular/flex-layout": "^15.0.0-beta.42",
-    "@angular/material": "^16.1.4",
-    "@angular/router": "^16.1.4",
-    "@rxap/directives": "^16.0.0-dev.13",
-    "@rxap/rxjs": "^1.0.1-dev.8",
-    "@rxap/services": "^16.0.0-dev.12",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "rxjs": "^7.8.0"
-  },
+  "name": "@rxap/components",
   "description": "A collection of utility angular components used in RxAP.",
-  "sideEffects": false,
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/components"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "components",
-    "angular-components"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/components",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/components"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/components",
+  "keywords": [
+    "angular",
+    "angular-components",
+    "components",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -65,5 +45,15 @@
         "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/components"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/components"
+  },
+  "sideEffects": false
 }

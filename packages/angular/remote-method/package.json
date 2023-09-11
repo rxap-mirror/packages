@@ -1,52 +1,33 @@
 {
-  "name": "@rxap/remote-method",
   "version": "16.0.0-dev.13",
-  "peerDependencies": {
-    "@angular/common": "^16.1.4",
-    "@angular/core": "^16.1.4",
-    "@rxap/definition": "^16.0.0-dev.13",
-    "@rxap/rxjs": "^1.0.1-dev.8",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "rxjs": "^7.8.0"
-  },
-  "sideEffects": false,
+  "name": "@rxap/remote-method",
+  "description": "Provides the RemoteMethod concept for RxAP.",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "description": "Provides the RemoteMethod concept for RxAP.",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/remote-method"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "remote-method",
-    "angular-remote-method"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/remote-method",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/remote-method"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/remote-method",
+  "keywords": [
+    "angular",
+    "angular-remote-method",
+    "ngx",
+    "packages",
+    "remote-method",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
-      {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
-      },
       {
         "package": "@rxap/definition",
         "version": "16.0.0-dev.13"
@@ -54,7 +35,21 @@
       {
         "package": "@rxap/rxjs",
         "version": "1.0.1-dev.8"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/remote-method"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/remote-method"
+  },
+  "sideEffects": false
 }

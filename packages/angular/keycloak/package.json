@@ -1,45 +1,38 @@
 {
-  "name": "@rxap/keycloak",
   "version": "16.0.0-dev.14",
-  "peerDependencies": {
-    "@angular/common": "^16.1.4",
-    "@angular/core": "^16.1.4",
-    "@angular/router": "^16.1.4",
-    "keycloak-js": "^21.1.2",
-    "rxjs": "^7.8.0"
-  },
+  "name": "@rxap/keycloak",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/keycloak"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "keycloak",
-    "angular-keycloak"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/keycloak",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/keycloak"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/keycloak",
+  "keywords": [
+    "angular",
+    "angular-keycloak",
+    "keycloak",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/keycloak"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/keycloak"
+  },
+  "sideEffects": false
 }

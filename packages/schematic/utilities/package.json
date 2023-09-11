@@ -1,44 +1,35 @@
 {
-  "name": "@rxap/schematics-utilities",
   "version": "16.0.0-dev.14",
-  "type": "commonjs",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/schematic/utilities"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "schematic",
-    "utilities",
-    "schematic-utilities"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/utilities",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
+  "name": "@rxap/schematics-utilities",
   "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/schematic/utilities"
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "peerDependencies": {
-    "@angular-devkit/schematics": "^16.1.4",
-    "@nx/devkit": "^16.5.0",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "@rxap/workspace-utilities": "^0.1.0-dev.11"
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "dependencies": {
-    "tslib": "2.6.2"
-  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/utilities",
+  "keywords": [
+    "packages",
+    "rxap",
+    "schematic",
+    "schematic-utilities",
+    "utilities"
+  ],
   "nx-migrations": {
     "packageGroup": [
+      {
+        "package": "@rxap/node-utilities",
+        "version": "1.0.1-dev.1"
+      },
       {
         "package": "@rxap/utilities",
         "version": "16.0.0-dev.16"
@@ -46,11 +37,17 @@
       {
         "package": "@rxap/workspace-utilities",
         "version": "0.1.0-dev.11"
-      },
-      {
-        "package": "@rxap/node-utilities",
-        "version": "1.0.1-dev.1"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/schematic/utilities"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/schematic/utilities"
+  },
+  "type": "commonjs"
 }

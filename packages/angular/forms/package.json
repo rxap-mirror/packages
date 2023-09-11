@@ -1,51 +1,30 @@
 {
-  "name": "@rxap/forms",
   "version": "16.0.0-dev.14",
-  "peerDependencies": {
-    "@angular/core": "^16.1.4",
-    "@angular/forms": "^16.1.4",
-    "@angular/router": "^16.1.4",
-    "@rxap/definition": "^16.0.0-dev.13",
-    "@rxap/directives": "^16.0.0-dev.13",
-    "@rxap/pattern": "^1.0.1-dev.9",
-    "@rxap/reflect-metadata": "^1.0.1-dev.8",
-    "@rxap/rxjs": "^1.0.1-dev.8",
-    "@rxap/services": "^16.0.0-dev.12",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "@rxap/validator": "^3.0.0-dev.10",
-    "rxjs": "^7.8.0"
-  },
-  "sideEffects": false,
+  "name": "@rxap/forms",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/forms"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "forms",
-    "angular-forms"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/forms",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/forms"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/forms",
+  "keywords": [
+    "angular",
+    "angular-forms",
+    "forms",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -81,5 +60,15 @@
         "version": "3.0.0-dev.10"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/forms"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/forms"
+  },
+  "sideEffects": false
 }

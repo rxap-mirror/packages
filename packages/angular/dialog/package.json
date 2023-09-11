@@ -1,52 +1,33 @@
 {
-  "name": "@rxap/dialog",
   "version": "16.0.0-dev.13",
-  "peerDependencies": {
-    "@angular/cdk": "^16.1.4",
-    "@angular/common": "^16.1.4",
-    "@angular/core": "^16.1.4",
-    "@angular/material": "^16.1.4",
-    "@rxap/pipes": "^16.0.0-dev.12",
-    "rxjs": "^7.8.0"
-  },
-  "sideEffects": false,
+  "name": "@rxap/dialog",
+  "description": "A collection of angular material dialog components",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "description": "A collection of angular material dialog components",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/dialog"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "dialog",
-    "angular-dialog"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/dialog",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/dialog"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/dialog",
+  "keywords": [
+    "angular",
+    "angular-dialog",
+    "dialog",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
-      {
-        "package": "@rxap/pipes",
-        "version": "16.0.0-dev.12"
-      },
       {
         "package": "@rxap/components",
         "version": "16.0.0-dev.13"
@@ -56,9 +37,23 @@
         "version": "16.0.0-dev.13"
       },
       {
+        "package": "@rxap/pipes",
+        "version": "16.0.0-dev.12"
+      },
+      {
         "package": "@rxap/utilities",
         "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/dialog"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/dialog"
+  },
+  "sideEffects": false
 }

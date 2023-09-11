@@ -1,43 +1,37 @@
 {
-  "name": "@rxap/nest-minio",
   "version": "10.0.1-dev.8",
-  "type": "commonjs",
+  "name": "@rxap/nest-minio",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.5",
-    "@nestjs/config": "^3.0.0",
-    "@nestjs/terminus": "^10.0.1",
-    "minio": "^7.0.32"
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/minio"
-  },
-  "keywords": [
-    "rxap",
-    "nest",
-    "packages",
-    "minio",
-    "nest-minio"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/minio",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/nest/minio"
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/minio",
+  "keywords": [
+    "minio",
+    "nest",
+    "nest-minio",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/minio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/minio"
+  },
+  "type": "commonjs"
 }

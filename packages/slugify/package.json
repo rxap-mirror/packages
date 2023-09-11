@@ -1,36 +1,36 @@
 {
-  "name": "@rxap/slugify",
   "version": "16.0.0-dev.10",
-  "type": "commonjs",
+  "name": "@rxap/slugify",
+  "description": "A utility to slugify a string.",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/slugify"
-  },
-  "description": "A utility to slugify a string.",
-  "keywords": [
-    "rxap",
-    "packages",
-    "slugify"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/slugify",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/slugify"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/slugify",
+  "keywords": [
+    "packages",
+    "rxap",
+    "slugify"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/slugify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/slugify"
+  },
+  "type": "commonjs"
 }

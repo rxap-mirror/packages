@@ -1,48 +1,33 @@
 {
-  "name": "@rxap/plugin-gpt",
   "version": "16.0.1-dev.8",
-  "type": "commonjs",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/gpt"
-  },
-  "keywords": [
-    "rxap",
-    "plugin",
-    "nx",
-    "nx-plugin",
-    "gpt",
-    "openai",
-    "packages",
-    "plugin-gpt"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/gpt",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
+  "name": "@rxap/plugin-gpt",
   "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/plugin/gpt"
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
   "generators": "./generators.json",
-  "dependencies": {
-    "tslib": "2.6.2"
-  },
-  "peerDependencies": {
-    "@nx/devkit": "^16.5.0",
-    "@rxap/generator-ts-morph": "^1.0.1-dev.9",
-    "@rxap/generator-utilities": "^1.1.0-dev.11",
-    "gpt-3-encoder": "^1.1.4",
-    "openai": "^3.3.0",
-    "ts-morph": "^18.0.0"
-  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/gpt",
+  "keywords": [
+    "gpt",
+    "nx",
+    "nx-plugin",
+    "openai",
+    "packages",
+    "plugin",
+    "plugin-gpt",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -55,5 +40,15 @@
       }
     ]
   },
-  "schematics": "./generators.json"
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/gpt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/gpt"
+  },
+  "schematics": "./generators.json",
+  "type": "commonjs"
 }

@@ -1,59 +1,31 @@
 {
-  "name": "@rxap/material-table-system",
   "version": "16.0.0-dev.21",
-  "peerDependencies": {
-    "@angular/animations": "^16.1.4",
-    "@angular/cdk": "^16.1.4",
-    "@angular/common": "^16.1.4",
-    "@angular/core": "^16.1.4",
-    "@angular/flex-layout": "^15.0.0-beta.42",
-    "@angular/forms": "^16.1.4",
-    "@angular/material": "^16.1.4",
-    "@angular/router": "^16.1.4",
-    "@rxap/components": "^16.0.0-dev.13",
-    "@rxap/data-source": "^16.0.0-dev.15",
-    "@rxap/directives": "^16.0.0-dev.13",
-    "@rxap/forms": "^16.0.0-dev.14",
-    "@rxap/material-directives": "^16.0.0-dev.15",
-    "@rxap/pattern": "^1.0.1-dev.9",
-    "@rxap/reflect-metadata": "^1.0.1-dev.8",
-    "@rxap/rxjs": "^1.0.1-dev.8",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "@rxap/window-system": "^16.0.0-dev.16",
-    "rxjs": "^7.8.0"
-  },
-  "sideEffects": false,
+  "name": "@rxap/material-table-system",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/angular/material/table-system"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "material",
-    "table-system",
-    "angular-material-table-system"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/material/table-system",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/material/table-system"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/material/table-system",
+  "keywords": [
+    "angular",
+    "angular-material-table-system",
+    "material",
+    "ngx",
+    "packages",
+    "rxap",
+    "table-system"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -77,12 +49,20 @@
         "version": "16.0.0-dev.15"
       },
       {
+        "package": "@rxap/open-api",
+        "version": "16.0.0-dev.12"
+      },
+      {
         "package": "@rxap/pattern",
         "version": "1.0.1-dev.9"
       },
       {
         "package": "@rxap/reflect-metadata",
         "version": "1.0.1-dev.8"
+      },
+      {
+        "package": "@rxap/remote-method",
+        "version": "16.0.0-dev.10"
       },
       {
         "package": "@rxap/rxjs",
@@ -95,15 +75,17 @@
       {
         "package": "@rxap/window-system",
         "version": "16.0.0-dev.16"
-      },
-      {
-        "package": "@rxap/open-api",
-        "version": "16.0.0-dev.12"
-      },
-      {
-        "package": "@rxap/remote-method",
-        "version": "16.0.0-dev.10"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../../dist/packages/angular/material/table-system"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/material/table-system"
+  },
+  "sideEffects": false
 }

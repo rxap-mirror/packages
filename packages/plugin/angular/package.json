@@ -1,50 +1,33 @@
 {
-  "name": "@rxap/plugin-angular",
   "version": "16.1.0-dev.20",
-  "type": "commonjs",
-  "generators": "./generators.json",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/angular"
-  },
-  "keywords": [
-    "rxap",
-    "plugin",
-    "nx",
-    "nx-plugin",
-    "packages",
-    "angular",
-    "plugin-angular"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/angular",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
+  "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/plugin/angular"
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "dependencies": {
-    "tslib": "2.6.2"
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "peerDependencies": {
-    "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.1.0-dev.11",
-    "@rxap/plugin-localazy": "^16.1.0-dev.9",
-    "@rxap/plugin-utilities": "^16.1.0-dev.12",
-    "@rxap/ts-morph": "^0.1.0-dev.7",
-    "@rxap/workspace-ts-morph": "^0.1.0-dev.6",
-    "@rxap/workspace-utilities": "^0.1.0-dev.11",
-    "nx": "^16.5.0",
-    "ts-morph": "^18.0.0"
-  },
+  "executors": "./executors.json",
+  "generators": "./generators.json",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/angular",
+  "keywords": [
+    "angular",
+    "nx",
+    "nx-plugin",
+    "packages",
+    "plugin",
+    "plugin-angular",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -60,6 +43,10 @@
         "version": "16.1.0-dev.12"
       },
       {
+        "package": "@rxap/schematics-ts-morph",
+        "version": "16.0.0-dev.12"
+      },
+      {
         "package": "@rxap/ts-morph",
         "version": "0.1.0-dev.7"
       },
@@ -70,13 +57,18 @@
       {
         "package": "@rxap/workspace-utilities",
         "version": "0.1.0-dev.11"
-      },
-      {
-        "package": "@rxap/schematics-ts-morph",
-        "version": "16.0.0-dev.12"
       }
     ]
   },
-  "executors": "./executors.json",
-  "schematics": "./generators.json"
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/angular"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/angular"
+  },
+  "schematics": "./generators.json",
+  "type": "commonjs"
 }

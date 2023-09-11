@@ -1,43 +1,38 @@
 {
-  "name": "@rxap/ngx-material-localize",
   "version": "16.0.1-dev.0",
-  "peerDependencies": {
-    "@angular/core": "^16.1.4",
-    "@angular/material": "^16.1.4",
-    "rxjs": "^7.8.0"
-  },
+  "name": "@rxap/ngx-material-localize",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/angular/material/localize"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "material",
-    "angular-material-localize"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/material/localize",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/material/localize"
+  "peerDependencies": {
+    "tslib": "^2.3.0"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/material/localize",
+  "keywords": [
+    "angular",
+    "angular-material-localize",
+    "material",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../../dist/packages/angular/material/localize"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/material/localize"
+  },
+  "sideEffects": false
 }

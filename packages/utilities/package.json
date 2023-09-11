@@ -1,36 +1,36 @@
 {
-  "name": "@rxap/utilities",
   "version": "16.0.0-dev.16",
-  "type": "commonjs",
+  "name": "@rxap/utilities",
+  "description": "A collection of utility functions, types and interfaces.",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "description": "A collection of utility functions, types and interfaces.",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/utilities"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "utilities"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/utilities",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/utilities"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/utilities",
+  "keywords": [
+    "packages",
+    "rxap",
+    "utilities"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/utilities"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/utilities"
+  },
+  "type": "commonjs"
 }

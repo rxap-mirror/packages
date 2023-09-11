@@ -1,35 +1,35 @@
 {
-  "name": "@rxap/validator",
   "version": "3.0.0-dev.10",
-  "type": "commonjs",
+  "name": "@rxap/validator",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/validator"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "validator"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/validator",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/validator"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/validator",
+  "keywords": [
+    "packages",
+    "rxap",
+    "validator"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/validator"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/validator"
+  },
+  "type": "commonjs"
 }

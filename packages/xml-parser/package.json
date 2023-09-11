@@ -1,40 +1,30 @@
 {
-  "name": "@rxap/xml-parser",
   "version": "16.0.0-dev.14",
+  "name": "@rxap/xml-parser",
+  "description": "A utility packages to convert xml files into class instances.",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2",
     "xmldom": "^0.6.0"
   },
   "peerDependencies": {
-    "@rxap/mixin": "^16.0.0-dev.12",
-    "@rxap/reflect-metadata": "^1.0.1-dev.8",
-    "@rxap/utilities": "^16.0.0-dev.16"
-  },
-  "description": "A utility packages to convert xml files into class instances.",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/xml-parser"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "xml-parser"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/xml-parser",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/xml-parser"
+    "tslib": "2.6.2",
+    "xmldom": "^0.6.0"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/xml-parser",
+  "keywords": [
+    "packages",
+    "rxap",
+    "xml-parser"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -50,5 +40,14 @@
         "version": "16.0.0-dev.16"
       }
     ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/xml-parser"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/xml-parser"
   }
 }

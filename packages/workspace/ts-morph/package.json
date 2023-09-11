@@ -1,41 +1,29 @@
 {
-  "name": "@rxap/workspace-ts-morph",
   "version": "0.1.0-dev.6",
-  "type": "commonjs",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/workspace/ts-morph"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "workspace",
-    "ts-morph",
-    "workspace-ts-morph"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/workspace/ts-morph",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
+  "name": "@rxap/workspace-ts-morph",
   "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/workspace/ts-morph"
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "dependencies": {
-    "tslib": "2.6.2"
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "peerDependencies": {
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "@rxap/workspace-utilities": "^0.1.0-dev.11",
-    "ts-morph": "^18.0.0"
-  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/workspace/ts-morph",
+  "keywords": [
+    "packages",
+    "rxap",
+    "ts-morph",
+    "workspace",
+    "workspace-ts-morph"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -47,5 +35,15 @@
         "version": "0.1.0-dev.11"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/workspace/ts-morph"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/workspace/ts-morph"
+  },
+  "type": "commonjs"
 }

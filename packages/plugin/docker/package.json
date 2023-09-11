@@ -1,49 +1,35 @@
 {
-  "name": "@rxap/plugin-docker",
   "version": "16.0.0-dev.22",
-  "type": "commonjs",
-  "generators": "./generators.json",
-  "executors": "./executors.json",
+  "name": "@rxap/plugin-docker",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2",
     "yaml": "2.3.1"
   },
   "peerDependencies": {
-    "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.1.0-dev.11",
-    "@rxap/node-utilities": "^1.1.0-dev.7",
-    "@rxap/plugin-utilities": "^16.1.0-dev.12",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "@rxap/workspace-utilities": "^0.1.0-dev.11"
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/docker"
-  },
-  "keywords": [
-    "rxap",
-    "plugin",
-    "nx",
-    "nx-plugin",
-    "packages",
-    "docker",
-    "plugin-docker"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/docker",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/plugin/docker"
+    "tslib": "2.6.2",
+    "yaml": "2.3.1"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "executors": "./executors.json",
+  "generators": "./generators.json",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/docker",
+  "keywords": [
+    "docker",
+    "nx",
+    "nx-plugin",
+    "packages",
+    "plugin",
+    "plugin-docker",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -68,5 +54,15 @@
       }
     ]
   },
-  "schematics": "./generators.json"
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/docker"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/docker"
+  },
+  "schematics": "./generators.json",
+  "type": "commonjs"
 }

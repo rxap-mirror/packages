@@ -1,42 +1,29 @@
 {
-  "name": "@rxap/ngx-timeago",
   "version": "16.0.1-dev.1",
-  "peerDependencies": {
-    "@angular/core": "^16.1.4",
-    "@angular/localize": "^16.1.4",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "rxjs": "^7.8.0"
-  },
+  "name": "@rxap/ngx-timeago",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/timeago"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "angular-timeago"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/timeago",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/timeago"
+  "peerDependencies": {
+    "tslib": "^2.3.0"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/timeago",
+  "keywords": [
+    "angular",
+    "angular-timeago",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -44,5 +31,15 @@
         "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/timeago"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/timeago"
+  },
+  "sideEffects": false
 }

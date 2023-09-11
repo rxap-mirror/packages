@@ -1,41 +1,30 @@
 {
-  "name": "@rxap/data-structure-tree",
   "version": "1.0.1-dev.9",
-  "type": "commonjs",
+  "name": "@rxap/data-structure-tree",
+  "description": "Proves class, types and functions to work with tree data structures",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/rxjs": "^1.0.1-dev.8",
-    "@rxap/utilities": "^16.0.0-dev.16"
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/data-structure/tree"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "data-structure",
-    "tree",
-    "data-structure-tree"
-  ],
-  "description": "Proves class, types and functions to work with tree data structures",
-  "homepage": "https:/gitlab.com/rxap/packages/packages/data-structure/tree",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/data-structure/tree"
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/data-structure/tree",
+  "keywords": [
+    "data-structure",
+    "data-structure-tree",
+    "packages",
+    "rxap",
+    "tree"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -47,5 +36,15 @@
         "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/data-structure/tree"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/data-structure/tree"
+  },
+  "type": "commonjs"
 }

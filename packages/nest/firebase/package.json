@@ -1,41 +1,37 @@
 {
-  "name": "@rxap/nest-firebase",
   "version": "10.0.1-dev.7",
-  "type": "commonjs",
+  "name": "@rxap/nest-firebase",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.5",
-    "firebase-admin": "^10.3.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/firebase"
-  },
-  "keywords": [
-    "rxap",
-    "nest",
-    "packages",
-    "firebase",
-    "nest-firebase"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/firebase",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/nest/firebase"
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/firebase",
+  "keywords": [
+    "firebase",
+    "nest",
+    "nest-firebase",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/firebase"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/firebase"
+  },
+  "type": "commonjs"
 }

@@ -1,49 +1,30 @@
 {
-  "name": "@rxap/table-system",
   "version": "16.0.0-dev.13",
-  "peerDependencies": {
-    "@angular/animations": "^16.1.4",
-    "@angular/cdk": "^16.1.4",
-    "@angular/common": "^16.1.4",
-    "@angular/core": "^16.1.4",
-    "@angular/forms": "^16.1.4",
-    "@angular/material": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.15",
-    "@rxap/material-table-system": "^16.0.0-dev.21",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "rxjs": "^7.8.0"
-  },
-  "sideEffects": false,
+  "name": "@rxap/table-system",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/table-system"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "table-system",
-    "angular-table-system"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/table-system",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/table-system"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/table-system",
+  "keywords": [
+    "angular",
+    "angular-table-system",
+    "ngx",
+    "packages",
+    "rxap",
+    "table-system"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -55,17 +36,27 @@
         "version": "16.0.0-dev.21"
       },
       {
-        "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
-      },
-      {
         "package": "@rxap/open-api",
         "version": "16.0.0-dev.12"
       },
       {
         "package": "@rxap/remote-method",
         "version": "16.0.0-dev.10"
+      },
+      {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.16"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/table-system"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/table-system"
+  },
+  "sideEffects": false
 }

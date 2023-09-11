@@ -1,40 +1,37 @@
 {
-  "name": "@rxap/nest-logger",
   "version": "10.1.0-dev.3",
-  "type": "commonjs",
+  "name": "@rxap/nest-logger",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^10.0.5"
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/logger"
-  },
-  "keywords": [
-    "rxap",
-    "nest",
-    "packages",
-    "logger",
-    "nest-logger"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/logger",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/nest/logger"
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/logger",
+  "keywords": [
+    "logger",
+    "nest",
+    "nest-logger",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/logger"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/logger"
+  },
+  "type": "commonjs"
 }

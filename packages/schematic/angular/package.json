@@ -1,45 +1,29 @@
 {
-  "name": "@rxap/schematic-angular",
   "version": "16.1.0-dev.12",
-  "type": "commonjs",
-  "schematics": "./collection.json",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/schematic/angular"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "schematic",
-    "angular",
-    "schematic-angular"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/angular",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
+  "name": "@rxap/schematic-angular",
   "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/schematic/angular"
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "dependencies": {
-    "tslib": "2.6.2"
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "peerDependencies": {
-    "@angular-devkit/core": "^16.1.4",
-    "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.17",
-    "@rxap/schematics-utilities": "^16.0.0-dev.14",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "ts-morph": "^18.0.0"
-  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/angular",
+  "keywords": [
+    "angular",
+    "packages",
+    "rxap",
+    "schematic",
+    "schematic-angular"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -59,5 +43,16 @@
         "version": "0.1.0-dev.0"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/schematic/angular"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/schematic/angular"
+  },
+  "schematics": "./collection.json",
+  "type": "commonjs"
 }

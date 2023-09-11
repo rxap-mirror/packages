@@ -1,13 +1,31 @@
 {
-  "name": "@rxap/plugin-library",
   "version": "16.0.0-dev.23",
-  "type": "commonjs",
+  "name": "@rxap/plugin-library",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "tslib": "2.6.2"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
   "executors": "./executors.json",
   "generators": "./generators.json",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/library"
-  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/library",
+  "keywords": [
+    "library",
+    "packages",
+    "plugin",
+    "plugin-library",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -35,53 +53,24 @@
         "version": "16.1.0-dev.12"
       },
       {
-        "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.11"
-      },
-      {
         "package": "@rxap/schematics-utilities",
         "version": "16.0.0-dev.4"
+      },
+      {
+        "package": "@rxap/workspace-utilities",
+        "version": "0.1.0-dev.11"
       }
     ]
   },
-  "keywords": [
-    "rxap",
-    "packages",
-    "plugin",
-    "library",
-    "plugin-library"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/library",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/library"
   },
-  "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/plugin/library"
   },
-  "author": {
-    "name": "Merzough Münker",
-    "email": "mmuenker@digitaix.com"
-  },
-  "dependencies": {
-    "tslib": "2.6.2"
-  },
-  "peerDependencies": {
-    "@nx/devkit": "^16.5.0",
-    "@rxap/generator-ts-morph": "^1.0.1-dev.9",
-    "@rxap/generator-utilities": "^1.1.0-dev.11",
-    "@rxap/node-utilities": "^1.1.0-dev.7",
-    "@rxap/plugin-angular": "^16.1.0-dev.20",
-    "@rxap/plugin-nestjs": "^16.1.0-dev.17",
-    "@rxap/plugin-utilities": "^16.1.0-dev.12",
-    "@rxap/workspace-utilities": "^0.1.0-dev.11",
-    "handlebars": "^4.7.7",
-    "nx": "^16.5.0",
-    "semver": "^7.3.5",
-    "ts-morph": "^18.0.0"
-  },
-  "schematics": "./generators.json"
+  "schematics": "./generators.json",
+  "type": "commonjs"
 }

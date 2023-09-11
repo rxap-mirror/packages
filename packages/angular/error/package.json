@@ -1,47 +1,29 @@
 {
-  "name": "@rxap/ngx-error",
   "version": "16.0.1-dev.0",
-  "peerDependencies": {
-    "@angular/cdk": "^16.1.4",
-    "@angular/common": "^16.1.4",
-    "@angular/core": "^16.1.4",
-    "@rxap/components": "^16.0.0-dev.13",
-    "@rxap/config": "^16.0.0-dev.13",
-    "@rxap/data-grid": "^16.0.0-dev.14",
-    "@rxap/environment": "^16.0.0-dev.12",
-    "@sentry/angular-ivy": "^7.60.1",
-    "rxjs": "^7.8.0"
-  },
+  "name": "@rxap/ngx-error",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/error"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "angular-error"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/error",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/error"
+  "peerDependencies": {
+    "tslib": "^2.3.0"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/error",
+  "keywords": [
+    "angular",
+    "angular-error",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -61,5 +43,15 @@
         "version": "16.0.0-dev.12"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/error"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/error"
+  },
+  "sideEffects": false
 }

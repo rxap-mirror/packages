@@ -19,7 +19,6 @@
           "index-export",
           "update-dependencies",
           "update-package-group",
-          "fix-dependencies",
           "check-version",
           "component-test",
           "check-ng-package",
@@ -173,7 +172,6 @@
         "build-tailwind",
         "generate-package-json",
         "check-ng-package",
-        "expose-as-schematic",
         "copy-open-api-json",
         "localazy-download"
       ],
@@ -259,13 +257,6 @@
       ],
       "outputs": [
         "{projectRoot}/README.md"
-      ],
-      "dependsOn": [
-        "expose-as-schematic",
-        "generate-package-json",
-        "update-package-group",
-        "update-dependencies",
-        "fix-dependencies"
       ]
     },
     "docker": {

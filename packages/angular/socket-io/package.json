@@ -1,43 +1,38 @@
 {
-  "name": "@rxap/socket-io",
   "version": "16.0.0-dev.11",
-  "peerDependencies": {
-    "@angular/core": "^16.1.4",
-    "rxjs": "^7.8.0",
-    "socket.io-client": "^4.6.2"
-  },
+  "name": "@rxap/socket-io",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/socket-io"
-  },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "socket-io",
-    "angular-socket-io"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/socket-io",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/angular/socket-io"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/socket-io",
+  "keywords": [
+    "angular",
+    "angular-socket-io",
+    "ngx",
+    "packages",
+    "rxap",
+    "socket-io"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/socket-io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/socket-io"
+  },
+  "sideEffects": false
 }

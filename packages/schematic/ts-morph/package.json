@@ -1,44 +1,29 @@
 {
-  "name": "@rxap/schematics-ts-morph",
   "version": "16.0.0-dev.17",
-  "type": "commonjs",
-  "peerDependencies": {
-    "@angular-devkit/core": "^16.1.4",
-    "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-utilities": "^16.0.0-dev.14",
-    "@rxap/utilities": "^16.0.0-dev.16",
-    "@rxap/workspace-ts-morph": "^0.1.0-dev.6",
-    "ts-morph": "^18.0.0"
-  },
+  "name": "@rxap/schematics-ts-morph",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/schematic/ts-morph"
-  },
-  "keywords": [
-    "rxap",
-    "schematic",
-    "packages",
-    "ts-morph",
-    "schematic-ts-morph"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/ts-morph",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/schematic/ts-morph"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/ts-morph",
+  "keywords": [
+    "packages",
+    "rxap",
+    "schematic",
+    "schematic-ts-morph",
+    "ts-morph"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -54,5 +39,15 @@
         "version": "0.1.0-dev.6"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/schematic/ts-morph"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/schematic/ts-morph"
+  },
+  "type": "commonjs"
 }

@@ -1,44 +1,29 @@
 {
-  "name": "@rxap/schematics-xml-parser",
   "version": "16.0.0-dev.13",
-  "type": "commonjs",
-  "peerDependencies": {
-    "@angular-devkit/core": "^16.1.4",
-    "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.17",
-    "@rxap/schematics-utilities": "^16.0.0-dev.14",
-    "@rxap/xml-parser": "^16.0.0-dev.14",
-    "ts-morph": "^18.0.0"
-  },
+  "name": "@rxap/schematics-xml-parser",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/schematic/xml-parser"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "schematic",
-    "xml-parser",
-    "schematic-xml-parser"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/xml-parser",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/schematic/xml-parser"
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/schematic/xml-parser",
+  "keywords": [
+    "packages",
+    "rxap",
+    "schematic",
+    "schematic-xml-parser",
+    "xml-parser"
+  ],
   "nx-migrations": {
     "packageGroup": [
       {
@@ -54,5 +39,15 @@
         "version": "16.0.0-dev.14"
       }
     ]
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/schematic/xml-parser"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/schematic/xml-parser"
+  },
+  "type": "commonjs"
 }

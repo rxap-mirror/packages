@@ -1,37 +1,37 @@
 {
-  "name": "@rxap/browser-utilities",
   "version": "0.0.2-dev.7",
-  "type": "commonjs",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/browser/utilities"
-  },
-  "keywords": [
-    "rxap",
-    "packages",
-    "browser",
-    "utilities",
-    "browser-utilities"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/browser/utilities",
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
+  "name": "@rxap/browser-utilities",
   "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git",
-    "directory": "packages/browser/utilities"
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "tslib": "2.6.2"
   },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
   },
-  "dependencies": {
-    "tslib": "2.6.2"
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "nx-migrations": {
-    "packageGroup": []
-  }
+  "homepage": "https:/gitlab.com/rxap/packages/packages/browser/utilities",
+  "keywords": [
+    "browser",
+    "browser-utilities",
+    "packages",
+    "rxap",
+    "utilities"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/browser/utilities"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/browser/utilities"
+  },
+  "type": "commonjs"
 }
