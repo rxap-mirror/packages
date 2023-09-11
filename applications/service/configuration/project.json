@@ -86,11 +86,8 @@
       }
     },
     "swagger-generate": {
-      "outputs": [
-        "dist/swagger/applications/service/configuration/openapi.json"
-      ],
       "options": {
-        "buildTarget": "service-configuration:swagger-build"
+        "command": "node dist/swagger/applications/service/configuration/main.js"
       }
     },
     "test": {

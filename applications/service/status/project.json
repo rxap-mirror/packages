@@ -81,7 +81,7 @@
     },
     "swagger-generate": {
       "options": {
-        "buildTarget": "service-status:swagger-build"
+        "command": "node dist/swagger/applications/service/status/main.js"
       }
     },
     "test": {

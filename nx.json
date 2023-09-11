@@ -275,13 +275,13 @@
       }
     },
     "swagger-generate": {
-      "executor": "@nx/js:node",
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "swagger-build"
+      ],
       "outputs": [
         "dist/swagger/{projectRoot}/openapi.json"
       ],
-      "options": {
-        "watch": false
-      },
       "inputs": [
         "production",
         "^production"

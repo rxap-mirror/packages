@@ -67,13 +67,12 @@ function updateProjectTargets(project: ProjectConfiguration) {
   });
 
   CoerceTarget(project, 'swagger-generate', {
-    executor: '@nx/js:node',
+    executor: 'nx:run-commands',
     outputs: [
-      `${ outputPath }/openapi.json`,
+      `dist/swagger/{projectRoot}/openapi.json`,
     ],
     options: {
-      buildTarget: `${ project.name }:swagger-build`,
-      watch: false,
+      command: `node ${ outputPath }/main.js`,
     },
   });
 
