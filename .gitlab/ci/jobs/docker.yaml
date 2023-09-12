@@ -21,7 +21,7 @@ docker:angular:
     DOCKER_CONTEXT: dist/demos/angular
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /user-interface/angular
-    DOCKERFILE: shared/angular.Dockerfile
+    DOCKERFILE: shared/angular/Dockerfile
   environment:
     name: $ENVIRONMENT_NAME
 docker:service-configuration:
@@ -30,6 +30,7 @@ docker:service-configuration:
     DOCKER_CONTEXT: dist/applications/service/configuration
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /service/configuration
+    DOCKERFILE: shared/nestjs/Dockerfile
   environment:
     name: $ENVIRONMENT_NAME
 docker:service-status:
@@ -38,6 +39,7 @@ docker:service-status:
     DOCKER_CONTEXT: dist/applications/service/status
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /service/status
+    DOCKERFILE: shared/nestjs/Dockerfile
   environment:
     name: $ENVIRONMENT_NAME
 docker:service-user:
@@ -46,6 +48,7 @@ docker:service-user:
     DOCKER_CONTEXT: dist/applications/service/user
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /service/user
+    DOCKERFILE: shared/nestjs/Dockerfile
   environment:
     name: $ENVIRONMENT_NAME
 docker:service-app-angular-table:
@@ -54,5 +57,6 @@ docker:service-app-angular-table:
     DOCKER_CONTEXT: dist/demos/service/app/angular/table
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /service/app-angular-table
+    DOCKERFILE: shared/nestjs/Dockerfile
   environment:
     name: $ENVIRONMENT_NAME
