@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.13",
+  "version": "16.0.0-dev.14",
   "name": "@rxap/material-table-window-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,14 +10,14 @@
     "@angular/core": "^16.1.4",
     "@angular/localize": "^16.1.4",
     "@angular/material": "^16.1.4",
-    "@rxap/data-source": "*",
-    "@rxap/form-system": "*",
-    "@rxap/forms": "*",
-    "@rxap/material-table-system": "*",
-    "@rxap/mixin": "*",
-    "@rxap/pattern": "*",
-    "@rxap/utilities": "*",
-    "@rxap/window-system": "*",
+    "@rxap/data-source": "^16.0.0-dev.17",
+    "@rxap/form-system": "^16.0.0-dev.17",
+    "@rxap/forms": "^16.0.0-dev.16",
+    "@rxap/material-table-system": "^16.0.0-dev.23",
+    "@rxap/mixin": "^16.0.0-dev.14",
+    "@rxap/pattern": "^1.0.1-dev.10",
+    "@rxap/utilities": "^16.0.0-dev.17",
+    "@rxap/window-system": "^16.0.0-dev.18",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
@@ -43,23 +43,23 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/form-system",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "16.0.0-dev.22"
+        "version": "16.0.0-dev.23"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/pattern",
@@ -71,7 +71,7 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       }
     ]
   },

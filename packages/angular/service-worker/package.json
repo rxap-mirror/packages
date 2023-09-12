@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.14",
+  "version": "16.0.0-dev.15",
   "name": "@rxap/service-worker",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,8 +9,8 @@
     "@angular/core": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/service-worker": "^16.1.4",
-    "@rxap/environment": "*",
-    "@rxap/life-cycle": "*",
+    "@rxap/environment": "^16.0.0-dev.14",
+    "@rxap/life-cycle": "^16.0.0-dev.13",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
@@ -35,11 +35,11 @@
     "packageGroup": [
       {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/life-cycle",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       }
     ]
   },

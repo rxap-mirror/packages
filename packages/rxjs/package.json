@@ -1,12 +1,12 @@
 {
-  "version": "1.0.1-dev.9",
+  "version": "1.0.1-dev.10",
   "name": "@rxap/rxjs",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/utilities": "*",
+    "@rxap/utilities": "^16.0.0-dev.17",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },

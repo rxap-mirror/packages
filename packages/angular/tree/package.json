@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.15",
+  "version": "16.0.0-dev.16",
   "name": "@rxap/tree",
   "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
   "license": "GPL-3.0-or-later",
@@ -12,13 +12,13 @@
     "@angular/core": "^16.1.4",
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/material": "^16.1.4",
-    "@rxap/contenteditable": "*",
-    "@rxap/data-source": "*",
-    "@rxap/data-structure-tree": "*",
-    "@rxap/material-directives": "*",
-    "@rxap/pattern": "*",
-    "@rxap/rxjs": "*",
-    "@rxap/utilities": "*",
+    "@rxap/contenteditable": "^16.0.0-dev.14",
+    "@rxap/data-source": "^16.0.0-dev.17",
+    "@rxap/data-structure-tree": "^1.0.1-dev.11",
+    "@rxap/material-directives": "^16.0.0-dev.17",
+    "@rxap/pattern": "^1.0.1-dev.10",
+    "@rxap/rxjs": "^1.0.1-dev.10",
+    "@rxap/utilities": "^16.0.0-dev.17",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
@@ -43,23 +43,23 @@
     "packageGroup": [
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/contenteditable",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.0.1-dev.10"
+        "version": "1.0.1-dev.11"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/pattern",
@@ -67,7 +67,7 @@
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.9"
+        "version": "1.0.1-dev.10"
       },
       {
         "package": "@rxap/utilities",

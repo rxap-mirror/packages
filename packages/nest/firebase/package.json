@@ -1,5 +1,5 @@
 {
-  "version": "10.0.1-dev.8",
+  "version": "10.0.1-dev.9",
   "name": "@rxap/nest-firebase",
   "license": "GPL-3.0-or-later",
   "dependencies": {

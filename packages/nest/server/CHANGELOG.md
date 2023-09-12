@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.7...@rxap/nest-server@10.1.0-dev.8) (2023-09-12)
+
+### Bug Fixes
+
+- peer dependency issue ([e67e2b8](https://gitlab.com/rxap/packages/commit/e67e2b8eb884b598536d16c2c544a9ad9be5b53e))
+
 # [10.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.6...@rxap/nest-server@10.1.0-dev.7) (2023-09-12)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/rxjs@1.0.1-dev.9...@rxap/rxjs@1.0.1-dev.10) (2023-09-12)
+
+### Bug Fixes
+
+- peer dependency issue ([e67e2b8](https://gitlab.com/rxap/packages/commit/e67e2b8eb884b598536d16c2c544a9ad9be5b53e))
+
 ## [1.0.1-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/rxjs@1.0.1-dev.8...@rxap/rxjs@1.0.1-dev.9) (2023-09-12)
 
 **Note:** Version bump only for package @rxap/rxjs

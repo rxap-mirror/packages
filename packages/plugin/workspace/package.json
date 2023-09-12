@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.12",
+  "version": "16.1.0-dev.13",
   "name": "@rxap/plugin-workspace",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,12 +8,12 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "*",
-    "@rxap/plugin-application": "*",
-    "@rxap/plugin-library": "*",
-    "@rxap/plugin-utilities": "*",
-    "@rxap/utilities": "*",
-    "@rxap/workspace-utilities": "*",
+    "@rxap/generator-utilities": "^1.1.0-dev.13",
+    "@rxap/plugin-application": "^16.1.0-dev.15",
+    "@rxap/plugin-library": "^16.0.0-dev.25",
+    "@rxap/plugin-utilities": "^16.1.0-dev.14",
+    "@rxap/utilities": "^16.0.0-dev.17",
+    "@rxap/workspace-utilities": "^0.1.0-dev.13",
     "tslib": "2.6.2",
     "yaml": "2.3.1"
   },
@@ -41,19 +41,19 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.12"
+        "version": "1.1.0-dev.13"
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "16.1.0-dev.14"
+        "version": "16.1.0-dev.15"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "16.0.0-dev.24"
+        "version": "16.0.0-dev.25"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.1.0-dev.13"
+        "version": "16.1.0-dev.14"
       },
       {
         "package": "@rxap/utilities",
@@ -61,7 +61,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.12"
+        "version": "0.1.0-dev.13"
       }
     ]
   },

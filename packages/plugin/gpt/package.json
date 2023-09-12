@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.9",
+  "version": "16.0.1-dev.10",
   "name": "@rxap/plugin-gpt",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,8 +7,8 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-ts-morph": "*",
-    "@rxap/generator-utilities": "*",
+    "@rxap/generator-ts-morph": "^1.0.1-dev.11",
+    "@rxap/generator-utilities": "^1.1.0-dev.13",
     "gpt-3-encoder": "^1.1.4",
     "openai": "^3.3.0",
     "ts-morph": "^18.0.0",
@@ -38,11 +38,11 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.1-dev.10"
+        "version": "1.0.1-dev.11"
       },
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.12"
+        "version": "1.1.0-dev.13"
       }
     ]
   },

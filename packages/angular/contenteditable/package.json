@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.13",
+  "version": "16.0.0-dev.14",
   "name": "@rxap/contenteditable",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,8 +7,8 @@
   },
   "peerDependencies": {
     "@angular/core": "^16.1.4",
-    "@rxap/pattern": "*",
-    "@rxap/utilities": "*",
+    "@rxap/pattern": "^1.0.1-dev.10",
+    "@rxap/utilities": "^16.0.0-dev.17",
     "tslib": "2.6.2"
   },
   "author": {

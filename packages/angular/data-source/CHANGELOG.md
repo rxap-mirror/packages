@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.16...@rxap/data-source@16.0.0-dev.17) (2023-09-12)
+
+### Bug Fixes
+
+- peer dependency issue ([e67e2b8](https://gitlab.com/rxap/packages/commit/e67e2b8eb884b598536d16c2c544a9ad9be5b53e))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.15...@rxap/data-source@16.0.0-dev.16) (2023-09-12)
 
 **Note:** Version bump only for package @rxap/data-source

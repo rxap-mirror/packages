@@ -1,5 +1,5 @@
 {
-  "version": "10.1.0-dev.0",
+  "version": "10.1.0-dev.1",
   "name": "@rxap/nest-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,7 +8,7 @@
   "peerDependencies": {
     "@nestjs/common": "^10.0.5",
     "@nestjs/config": "^3.0.0",
-    "@rxap/nest-logger": "*",
+    "@rxap/nest-logger": "^10.1.0-dev.5",
     "@sentry/core": "^7.28.1",
     "@sentry/node": "^7.28.1",
     "@sentry/types": "^7.28.1",
@@ -35,7 +35,7 @@
     "packageGroup": [
       {
         "package": "@rxap/nest-logger",
-        "version": "10.1.0-dev.4"
+        "version": "10.1.0-dev.5"
       }
     ]
   },
