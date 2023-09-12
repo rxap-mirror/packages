@@ -11,7 +11,7 @@ const ROUTES: Route[] = [
   },
   {
     path: '**',
-    redirectTo: 'http-error',
+    redirectTo: 'http',
   },
 ];
 
