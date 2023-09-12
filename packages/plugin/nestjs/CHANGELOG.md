@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.21...@rxap/plugin-nestjs@16.1.0-dev.22) (2023-09-12)
+
+### Bug Fixes
+
+- remove generate file call ([dc7d904](https://gitlab.com/rxap/packages/commit/dc7d9042abb02dbad0b006aee71c508300a5fa17))
+
 # [16.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.20...@rxap/plugin-nestjs@16.1.0-dev.21) (2023-09-12)
 
 ### Bug Fixes
