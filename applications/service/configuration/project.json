@@ -33,7 +33,7 @@
           ]
         },
         "development": {
-          "generatePackageJson": false
+          "progress": true
         }
       },
       "defaultConfiguration": "production"

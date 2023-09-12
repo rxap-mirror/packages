@@ -31,6 +31,9 @@
               "with": "applications/service/status/src/environments/environment.prod.ts"
             }
           ]
+        },
+        "development": {
+          "progress": true
         }
       },
       "defaultConfiguration": "production"

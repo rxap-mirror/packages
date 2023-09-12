@@ -31,6 +31,9 @@
               "with": "demos/service/app/angular/table/src/environments/environment.prod.ts"
             }
           ]
+        },
+        "development": {
+          "progress": true
         }
       }
     },

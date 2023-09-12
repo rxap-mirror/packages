@@ -225,6 +225,9 @@ function updateProjectTargets(project: ProjectConfiguration) {
           },
         ],
       },
+      development: {
+        progress: true,
+      },
     },
   }, Strategy.OVERWRITE);
 

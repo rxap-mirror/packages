@@ -31,6 +31,9 @@
               "with": "applications/service/user/src/environments/environment.prod.ts"
             }
           ]
+        },
+        "development": {
+          "progress": true
         }
       }
     },
