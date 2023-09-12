@@ -6,6 +6,8 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@rxap/utilities": "*",
+    "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
   "author": {

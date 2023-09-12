@@ -8,6 +8,9 @@
     "xmldom": "^0.6.0"
   },
   "peerDependencies": {
+    "@rxap/mixin": "*",
+    "@rxap/reflect-metadata": "*",
+    "@rxap/utilities": "*",
     "tslib": "2.6.2",
     "xmldom": "^0.6.0"
   },

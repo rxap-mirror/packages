@@ -9,8 +9,17 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@angular/common": "^16.1.4",
+    "@angular/core": "^16.1.4",
+    "@rxap/config": "*",
+    "@rxap/data-source": "*",
+    "@rxap/mixin": "*",
+    "@rxap/remote-method": "*",
+    "@rxap/rxjs": "*",
+    "@rxap/utilities": "*",
     "ajv": "8.12.0",
     "openapi-types": "10.0.0",
+    "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
   "author": {

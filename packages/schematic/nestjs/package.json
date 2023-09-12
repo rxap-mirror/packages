@@ -7,6 +7,12 @@
     "yaml": "2.3.1"
   },
   "peerDependencies": {
+    "@angular-devkit/core": "^16.1.4",
+    "@angular-devkit/schematics": "^16.1.4",
+    "@rxap/schematics-ts-morph": "*",
+    "@rxap/schematics-utilities": "*",
+    "@rxap/utilities": "*",
+    "ts-morph": "^18.0.0",
     "tslib": "2.6.2",
     "yaml": "2.3.1"
   },

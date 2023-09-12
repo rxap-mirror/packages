@@ -7,7 +7,14 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@angular-devkit/core": "^16.1.4",
+    "@angular-devkit/schematics": "^16.1.4",
+    "@rxap/json-schema-to-typescript": "*",
+    "@rxap/schematics-ts-morph": "*",
+    "@rxap/schematics-utilities": "*",
+    "@rxap/utilities": "*",
     "openapi-types": "10.0.0",
+    "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
   "author": {

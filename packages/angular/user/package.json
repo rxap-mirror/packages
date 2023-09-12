@@ -6,6 +6,10 @@
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
+    "@angular/core": "^16.1.4",
+    "@rxap/data-source": "*",
+    "@rxap/pattern": "*",
+    "rxjs": "^7.8.0",
     "tslib": "^2.3.0"
   },
   "author": {

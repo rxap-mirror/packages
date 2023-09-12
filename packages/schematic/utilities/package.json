@@ -6,6 +6,10 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@angular-devkit/schematics": "^16.1.4",
+    "@nx/devkit": "^16.5.0",
+    "@rxap/utilities": "*",
+    "@rxap/workspace-utilities": "*",
     "tslib": "2.6.2"
   },
   "author": {

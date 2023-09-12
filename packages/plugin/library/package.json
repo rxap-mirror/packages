@@ -6,6 +6,18 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@nx/devkit": "^16.5.0",
+    "@rxap/generator-ts-morph": "*",
+    "@rxap/generator-utilities": "*",
+    "@rxap/node-utilities": "*",
+    "@rxap/plugin-angular": "*",
+    "@rxap/plugin-nestjs": "*",
+    "@rxap/plugin-utilities": "*",
+    "@rxap/workspace-utilities": "*",
+    "handlebars": "^4.7.7",
+    "nx": "^16.5.0",
+    "semver": "^7.3.5",
+    "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
   "author": {

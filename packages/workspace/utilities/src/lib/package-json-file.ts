@@ -24,7 +24,9 @@ export function UpdatePackageJson<Tree extends TreeLike>(
   options?: UpdatePackageJsonOptions,
 ) {
   return UpdateJsonFile(tree, async (packageJson) => {
+    console.log(`Update package.json`);
     await updaterOrJsonFile(packageJson);
+    console.log(`Sort package.json properties`);
     CleanupPackageJsonFile(packageJson);
   }, join(options?.basePath ?? '', 'package.json'), options);
 }
@@ -121,13 +123,15 @@ export function CleanupPackageJsonFile<T extends PackageJson = PackageJson>(cont
   content.dependencies ??= {};
   content.devDependencies ??= {};
   content.peerDependencies ??= {};
+  content.optionalDependencies ??= {};
   content['nx-migrations'] ??= {};
   content['nx-migrations'].packageGroup ??= [];
   content.keywords ??= [];
 
   content.dependencies = SortProperties(content.dependencies);
   content.devDependencies = SortProperties(content.devDependencies);
-  content.peerDependencies = SortProperties(content.dependencies);
+  content.peerDependencies = SortProperties(content.peerDependencies);
+  content.optionalDependencies = SortProperties(content.optionalDependencies);
   content['nx-migrations'].packageGroup.sort((a, b) => a.package.localeCompare(b.package));
   content.keywords.sort();
 
@@ -139,6 +143,9 @@ export function CleanupPackageJsonFile<T extends PackageJson = PackageJson>(cont
   }
   if (Object.keys(content.peerDependencies).length === 0) {
     delete content.peerDependencies;
+  }
+  if (Object.keys(content.optionalDependencies).length === 0) {
+    delete content.optionalDependencies;
   }
   if (content['nx-migrations'].packageGroup.length === 0) {
     delete content['nx-migrations'].packageGroup;

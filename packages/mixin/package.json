@@ -6,6 +6,9 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@rxap/reflect-metadata": "*",
+    "@rxap/utilities": "*",
+    "reflect-metadata": "^0.1.13",
     "tslib": "2.6.2"
   },
   "author": {

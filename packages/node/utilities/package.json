@@ -6,6 +6,7 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "ignore": "^5.2.4",
     "tslib": "2.6.2"
   },
   "author": {

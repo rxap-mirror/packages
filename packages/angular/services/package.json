@@ -7,6 +7,13 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@angular/cdk": "^16.1.4",
+    "@angular/common": "^16.1.4",
+    "@angular/core": "^16.1.4",
+    "@angular/router": "^16.1.4",
+    "@rxap/rxjs": "*",
+    "@rxap/utilities": "*",
+    "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
   "author": {

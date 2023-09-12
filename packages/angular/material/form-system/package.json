@@ -6,6 +6,20 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@angular/cdk": "^16.1.4",
+    "@angular/common": "^16.1.4",
+    "@angular/core": "^16.1.4",
+    "@angular/flex-layout": "^15.0.0-beta.42",
+    "@angular/forms": "^16.1.4",
+    "@angular/localize": "^16.1.4",
+    "@angular/material": "^16.1.4",
+    "@angular/router": "^16.1.4",
+    "@rxap/form-system": "*",
+    "@rxap/forms": "*",
+    "@rxap/mixin": "*",
+    "@rxap/reflect-metadata": "*",
+    "@rxap/utilities": "*",
+    "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
   "author": {

@@ -6,6 +6,12 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@nx/devkit": "^16.5.0",
+    "@rxap/generator-ts-morph": "*",
+    "@rxap/generator-utilities": "*",
+    "gpt-3-encoder": "^1.1.4",
+    "openai": "^3.3.0",
+    "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
   "author": {

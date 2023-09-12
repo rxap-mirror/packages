@@ -6,6 +6,13 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@nx/devkit": "^16.5.0",
+    "@rxap/generator-utilities": "*",
+    "@rxap/plugin-library": "*",
+    "@rxap/utilities": "*",
+    "@rxap/workspace-open-api": "*",
+    "@rxap/workspace-ts-morph": "*",
+    "@rxap/workspace-utilities": "*",
     "tslib": "2.6.2"
   },
   "author": {

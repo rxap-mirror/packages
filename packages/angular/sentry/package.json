@@ -6,6 +6,11 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@rxap/config": "*",
+    "@rxap/environment": "*",
+    "@sentry/angular-ivy": "^7.60.1",
+    "@sentry/browser": "^7.60.1",
+    "@sentry/integrations": "^7.60.1",
     "tslib": "2.6.2"
   },
   "author": {

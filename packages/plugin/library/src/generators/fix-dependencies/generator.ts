@@ -1,6 +1,7 @@
 import {
   createProjectGraphAsync,
   getProjects,
+  ProjectConfiguration,
   ProjectGraph,
   Tree,
 } from '@nx/devkit';
@@ -11,6 +12,8 @@ import {
   LoadProjectToPackageMapping,
   PackageNameToProjectName,
   ProjectNameToPackageName,
+  SkipNonPublishableProject,
+  SkipProjectOptions,
 } from '@rxap/generator-utilities';
 import { GetLatestPackageVersion } from '@rxap/node-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
@@ -441,19 +444,11 @@ function printReport(
   }
 }
 
-function skipProject(tree: Tree, project: string, projectRoot: string, projects: string[] = []) {
-  if (projects.length && !projects.includes(project)) {
-    console.debug(`Skip project ${ project } because it is not in the list of projects`);
+function skipProject(tree: Tree, options: SkipProjectOptions, project: ProjectConfiguration, projectName: string) {
+  if (SkipNonPublishableProject(tree, options, project, projectName)) {
     return true;
   }
-  if (projectRoot === '.') {
-    console.debug('skip root project');
-    return true;
-  }
-  if (!tree.exists(`${ projectRoot }/package.json`)) {
-    console.debug(`No package.json file found in ${ projectRoot }`);
-    return true;
-  }
+
   return false;
 }
 
@@ -544,10 +539,10 @@ export async function fixDependenciesGenerator(
   }
 
   if (options.reset || options.resetAll) {
-    getProjects(tree).forEach((project, projectName) => {
+    for (const [ projectName, project ] of getProjects(tree).entries()) {
       const projectRoot = project.root;
-      if (skipProject(tree, projectName, projectRoot, options.projects)) {
-        return;
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
       }
       const packageJson = JSON.parse(tree.read(`${ projectRoot }/package.json`)!.toString('utf-8'));
       if (options.resetAll) {
@@ -557,7 +552,7 @@ export async function fixDependenciesGenerator(
       packageJson.devDependencies = {};
       packageJson.optionalDependencies = {};
       tree.write(`${ projectRoot }/package.json`, JSON.stringify(packageJson, null, 2) + '\n');
-    });
+    }
   }
 
   const projectGraph = await createProjectGraphAsync();
@@ -566,13 +561,16 @@ export async function fixDependenciesGenerator(
   const unknownPackageMap: Record<string, string[]> = {};
   const latestTsLibVersion = await resolveLatestPackageVersion('tslib');
 
-  getProjects(tree).forEach((project, projectName) => {
+  for (const [ projectName, project ] of getProjects(tree).entries()) {
+
     const projectRoot = project.root;
-    if (skipProject(tree, projectName, projectRoot, options.projects) || project.projectType !== 'library') {
-      return;
+    if (skipProject(tree, options, project, projectName)) {
+      continue;
     }
 
-    UpdatePackageJson(tree, packageJson => {
+    console.log(`Fix dependencies for project ${ projectName }`);
+
+    await UpdatePackageJson(tree, packageJson => {
 
       packageJson.dependencies ??= {};
       packageJson.peerDependencies ??= {};
@@ -598,7 +596,7 @@ export async function fixDependenciesGenerator(
 
     }, { basePath: projectRoot });
 
-  });
+  }
 
   const unknownPackageMapToProject: Record<string, string[]> = {};
 

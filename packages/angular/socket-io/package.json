@@ -6,6 +6,9 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@angular/core": "^16.1.4",
+    "rxjs": "^7.8.0",
+    "socket.io-client": "^4.6.2",
     "tslib": "2.6.2"
   },
   "author": {

@@ -6,6 +6,10 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@nx/devkit": "^16.5.0",
+    "@rxap/generator-utilities": "*",
+    "@rxap/node-utilities": "*",
+    "@rxap/workspace-utilities": "*",
     "tslib": "2.6.2"
   },
   "author": {

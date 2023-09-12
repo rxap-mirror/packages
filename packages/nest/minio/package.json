@@ -6,6 +6,10 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
+    "@nestjs/common": "^10.0.5",
+    "@nestjs/config": "^3.0.0",
+    "@nestjs/terminus": "^10.0.1",
+    "minio": "^7.0.32",
     "tslib": "2.6.2"
   },
   "author": {
