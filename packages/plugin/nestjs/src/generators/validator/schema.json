@@ -11,6 +11,9 @@
         "$source": "projectName"
       },
       "x-prompt": "Which project should be extend with sentry support?"
+    },
+    "overwrite": {
+      "type": "boolean"
     }
   },
   "required": [

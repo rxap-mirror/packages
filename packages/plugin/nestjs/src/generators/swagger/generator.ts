@@ -7,29 +7,17 @@ import {
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import {
-  CoerceAssets,
-  CoerceIgnorePattern,
-  GetProjectRoot,
-} from '@rxap/generator-utilities';
+import { GetProjectRoot } from '@rxap/generator-utilities';
 import {
   GetTarget,
   GetTargetOptions,
 } from '@rxap/plugin-utilities';
 import {
-  CoerceClassProperty,
-  CoerceImports,
-  CoerceNestOperation,
-} from '@rxap/ts-morph';
-import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
-import {
   AddPackageJsonDependency,
   CoerceTarget,
-  Strategy,
 } from '@rxap/workspace-utilities';
 import * as path from 'path';
 import { join } from 'path';
-import { Scope } from 'ts-morph';
 import { SwaggerGeneratorSchema } from './schema';
 
 function updateProjectTargets(project: ProjectConfiguration) {
@@ -77,32 +65,6 @@ function updateProjectTargets(project: ProjectConfiguration) {
     },
   });
 
-  const projectSourceRoot = project.sourceRoot;
-
-  if (!projectSourceRoot) {
-    throw new Error('The selected project has no sourceRoot');
-  }
-
-  CoerceTarget(project, 'copy-open-api-json', {
-    executor: 'nx:run-commands',
-    outputs: [
-      `{projectRoot}/src/openapi.json`,
-    ],
-    inputs: [
-      `{workspaceRoot}/dist/swagger/{projectRoot}/openapi.json`,
-    ],
-    options: {
-      command: `cp ${ outputPath }/openapi.json ${ projectSourceRoot }/openapi.json`,
-    },
-  }, Strategy.OVERWRITE);
-
-  buildTargetOptions.assets ??= [];
-
-  CoerceAssets(buildTargetOptions.assets as string[], [ `${ projectSourceRoot }/openapi.json` ]);
-  const developmentBuildOptions = GetTargetOptions(buildTarget, 'development');
-  developmentBuildOptions.assets ??= [];
-  CoerceAssets(developmentBuildOptions.assets as string[], [ `${ projectSourceRoot }/openapi.json` ]);
-
 }
 
 function updateNxDefaults(tree: Tree) {
@@ -120,9 +82,6 @@ function updateNxDefaults(tree: Tree) {
   }
   if (!nxJson.tasksRunnerOptions['default'].options['cacheableOperations'].includes('swagger-generate')) {
     nxJson.tasksRunnerOptions['default'].options['cacheableOperations'].push('swagger-generate');
-  }
-  if (!nxJson.tasksRunnerOptions['default'].options['cacheableOperations'].includes('copy-open-api-json')) {
-    nxJson.tasksRunnerOptions['default'].options['cacheableOperations'].push('copy-open-api-json');
   }
 
   updateNxJson(tree, nxJson);
@@ -151,45 +110,7 @@ export async function swaggerGenerator(
   if (!projectSourceRoot) {
     throw new Error('The selected project has no sourceRoot');
   }
-  CoerceIgnorePattern(tree, join(projectSourceRoot, '.gitignore'), [ '/openapi.json' ]);
-
   updateProjectConfiguration(tree, options.project, project);
-
-  TsMorphNestProjectTransform(tree, { project: options.project }, (_, [ sourceFile ]) => {
-    console.log('sourceFile', sourceFile);
-
-    CoerceNestOperation(sourceFile, {
-      operationName: 'openapi',
-      path: 'openapi',
-      statements: [
-        'return GetOpenapiJson(__dirname, this.logger);',
-      ],
-    });
-    const classDeclaration = sourceFile.getClass('AppController');
-    CoerceClassProperty(classDeclaration, 'logger', {
-      scope: Scope.Private,
-      isReadonly: true,
-      hasExclamationToken: true,
-      type: 'Logger',
-      decorators: [
-        {
-          name: 'Inject',
-          arguments: [ 'Logger' ],
-        },
-      ],
-    });
-    CoerceImports(sourceFile, [
-      {
-        namedImports: [ 'Logger', 'Inject' ],
-        moduleSpecifier: '@nestjs/common',
-      },
-      {
-        namedImports: [ 'GetOpenapiJson' ],
-        moduleSpecifier: '@rxap/nest-open-api',
-      },
-    ]);
-
-  }, [ 'app/app.controller.ts' ]);
 
   await AddPackageJsonDependency(tree, 'swagger-ui-express', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/swagger', 'latest', { soft: true });

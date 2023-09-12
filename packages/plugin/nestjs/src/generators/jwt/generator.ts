@@ -1,5 +1,7 @@
 import { Tree } from '@nx/devkit';
 import {
+  CoerceImports,
+  CoerceNestAppConfig,
   CoerceNestModuleImport,
   CoerceNestModuleProvider,
 } from '@rxap/ts-morph';
@@ -31,6 +33,7 @@ function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
       CoerceNestModuleImport(
         sourceFile,
         {
+          overwrite: options.overwrite,
           moduleName: 'JwtModule',
           structures: [
             {
@@ -45,8 +48,11 @@ function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
           importWriter: w => {
             w.writeLine('JwtModule.registerAsync(');
             Writers.object({
+              global: 'true',
               inject: '[ ConfigService ]',
-              useFactory: '(config: ConfigService) => ({})',
+              useFactory: `(config: ConfigService) => ({ 
+  secret: config.getOrThrow('JWT_SECRET') 
+})`,
             })(w);
             w.write(')');
           },
@@ -59,8 +65,40 @@ function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
 
 }
 
+function UpdateAppConfig(tree: Tree, options: JwtGeneratorSchema, projectName: string) {
+
+  TsMorphNestProjectTransform(
+    tree,
+    {
+      project: options.project,
+    },
+    (project, [ sourceFile ]) => {
+
+      CoerceNestAppConfig(sourceFile, {
+        itemList: [
+          {
+            name: 'JWT_SECRET',
+            defaultValue: 'GenerateRandomString()',
+          },
+        ],
+        overwrite: options.overwrite,
+      });
+
+      CoerceImports(sourceFile, {
+        namedImports: [ 'GenerateRandomString' ],
+        moduleSpecifier: '@rxap/utilities',
+      });
+
+    },
+    [ '/app/app.config.ts?' ],
+  );
+
+}
+
 export async function jwtGenerator(tree: Tree, options: JwtGeneratorSchema) {
+  console.log('nestjs application jwt generator:', options);
   UpdateAppModule(tree, options);
+  UpdateAppConfig(tree, options, options.project);
   await AddPackageJsonDependency(tree, '@rxap/nest-jwt', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@nestjs/jwt', 'latest', { soft: true });
 }

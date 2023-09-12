@@ -11,6 +11,9 @@
         "$source": "projectName"
       },
       "x-prompt": "Which project should be initialized?"
+    },
+    "overwrite": {
+      "type": "boolean"
     }
   },
   "required": [

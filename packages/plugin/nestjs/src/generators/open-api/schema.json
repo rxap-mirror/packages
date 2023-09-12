@@ -7,6 +7,9 @@
     "project": {
       "type": "string",
       "description": ""
+    },
+    "overwrite": {
+      "type": "boolean"
     }
   },
   "required": [

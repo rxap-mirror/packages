@@ -1,61 +1,8 @@
 {
-  "name": "rxap",
   "version": "0.0.0",
-  "license": "GPL-3.0-or-later",
-  "packageManager": "yarn@3.6.0",
-  "scripts": {
-    "prepare": "husky install",
-    "version": "env-cmd bash tools/scripts/lerna/hooks/version.sh",
-    "preversion": "env-cmd bash tools/scripts/lerna/hooks/preversion.sh",
-    "prepublishOnly": "env-cmd bash tools/scripts/lerna/hooks/prepublishOnly.sh",
-    "prepack": "env-cmd bash tools/scripts/lerna/hooks/prepack.sh",
-    "lerna:publish": "env-cmd bash tools/scripts/lerna/publish.sh",
-    "lerna:version": "env-cmd bash tools/scripts/lerna/version.sh",
-    "schematic": "bash tools/scripts/schematic.sh",
-    "server": "bash tools/scripts/start-local-dev-services.sh",
-    "server:status": "bash tools/scripts/get-local-dev-services-status.sh",
-    "server:stop": "bash tools/scripts/stop-local-dev-services.sh",
-    "generate:tls": "env-cmd bash ./docker/traefik/tls/generate.sh",
-    "setup:local-deploy": "env-cmd bash ./docker/traefik/setup.sh",
-    "webpack-bundle-analyzer": "webpack-bundle-analyzer"
-  },
-  "os": [
-    "!win32"
-  ],
-  "bugs": {
-    "url": "https://gitlab.com/rxap/packages/-/issues",
-    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
-  },
-  "homepage": "https://gitlab.com/rxap/packages",
-  "private": true,
-  "keywords": [
-    "rxap"
-  ],
-  "author": {
-    "name": "Merzough Münker",
-    "email": "mmuenker@digitaix.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/rxap/packages.git"
-  },
-  "engines": {
-    "yarn": ">=3.6.0 <4",
-    "node": ">=18.17.0 <19"
-  },
-  "quokka": {
-    "ts": {
-      "compilerOptions": {
-        "target": "es6"
-      }
-    },
-    "plugins": [
-      "angular-quokka-plugin",
-      "alias-quokka-plugin"
-    ],
-    "pro": true
-  },
+  "name": "rxap",
   "description": "Reactive Application Platform, or RxAP for short, is a collection of software modules and tools. With the help of RxAP, the development effort of web and cloud applications can be significantly reduced.",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "@angular/animations": "16.1.4",
     "@angular/cdk": "16.1.4",
@@ -112,6 +59,71 @@
     "swagger-ui-express": "5.0.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
+  },
+  "peerDependencies": {
+    "@angular/animations": "16.1.4",
+    "@angular/cdk": "16.1.4",
+    "@angular/common": "16.1.4",
+    "@angular/compiler": "16.1.4",
+    "@angular/core": "16.1.4",
+    "@angular/fire": "7.5.0",
+    "@angular/flex-layout": "^15.0.0-beta.42",
+    "@angular/forms": "16.1.4",
+    "@angular/localize": "16.1.4",
+    "@angular/material": "16.1.4",
+    "@angular/platform-browser": "16.1.4",
+    "@angular/platform-browser-dynamic": "16.1.4",
+    "@angular/router": "16.1.4",
+    "@angular/service-worker": "16.1.4",
+    "@faker-js/faker": "^8.0.2",
+    "@kvs/node-localstorage": "^2.1.5",
+    "@mdi/angular-material": "^7.2.96",
+    "@nestjs/axios": "^3.0.0",
+    "@nestjs/common": "10.0.5",
+    "@nestjs/config": "3.0.0",
+    "@nestjs/core": "10.0.5",
+    "@nestjs/jwt": "^10.1.0",
+    "@nestjs/microservices": "10.0.5",
+    "@nestjs/platform-express": "10.0.5",
+    "@nestjs/swagger": "^7.1.2",
+    "@nestjs/terminus": "^10.0.1",
+    "@nestjs/throttler": "^4.2.1",
+    "@sentry/angular-ivy": "^7.60.1",
+    "@sentry/browser": "^7.60.1",
+    "@sentry/core": "^7.28.1",
+    "@sentry/hub": "^7.60.0",
+    "@sentry/integrations": "^7.60.1",
+    "@sentry/node": "^7.28.1",
+    "@sentry/tracing": "^7.60.1",
+    "@sentry/types": "^7.28.1",
+    "class-transformer": "0.5.1",
+    "class-validator": "0.14.0",
+    "cookie-parser": "^1.4.6",
+    "firebase": "^9.6.7",
+    "firebase-admin": "10.3.0",
+    "gpt-3-encoder": "^1.1.4",
+    "helmet": "^7.0.0",
+    "ignore": "^5.2.4",
+    "joi": "^17.9.2",
+    "keycloak-js": "^21.1.2",
+    "minio": "^7.0.32",
+    "ngx-logger": "^5.0.12",
+    "openai": "^3.3.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "~7.8.0",
+    "semver": "^7.3.5",
+    "socket.io-client": "4.6.2",
+    "swagger-ui-express": "5.0.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.13.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "16.1.4",
@@ -192,6 +204,51 @@
     "typedoc-theme-hierarchy": "^3.0.0",
     "typescript": "5.1.6",
     "verdaccio": "~5.21.0"
+  },
+  "engines": {
+    "yarn": ">=3.6.0 <4",
+    "node": ">=18.17.0 <19"
+  },
+  "homepage": "https://gitlab.com/rxap/packages",
+  "keywords": [
+    "rxap"
+  ],
+  "os": [
+    "!win32"
+  ],
+  "packageManager": "yarn@3.6.0",
+  "private": true,
+  "quokka": {
+    "ts": {
+      "compilerOptions": {
+        "target": "es6"
+      }
+    },
+    "plugins": [
+      "angular-quokka-plugin",
+      "alias-quokka-plugin"
+    ],
+    "pro": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "version": "env-cmd bash tools/scripts/lerna/hooks/version.sh",
+    "preversion": "env-cmd bash tools/scripts/lerna/hooks/preversion.sh",
+    "prepublishOnly": "env-cmd bash tools/scripts/lerna/hooks/prepublishOnly.sh",
+    "prepack": "env-cmd bash tools/scripts/lerna/hooks/prepack.sh",
+    "lerna:publish": "env-cmd bash tools/scripts/lerna/publish.sh",
+    "lerna:version": "env-cmd bash tools/scripts/lerna/version.sh",
+    "schematic": "bash tools/scripts/schematic.sh",
+    "server": "bash tools/scripts/start-local-dev-services.sh",
+    "server:status": "bash tools/scripts/get-local-dev-services-status.sh",
+    "server:stop": "bash tools/scripts/stop-local-dev-services.sh",
+    "generate:tls": "env-cmd bash ./docker/traefik/tls/generate.sh",
+    "setup:local-deploy": "env-cmd bash ./docker/traefik/setup.sh",
+    "webpack-bundle-analyzer": "webpack-bundle-analyzer"
   },
   "workspaces": [
     "packages/*",

@@ -29,7 +29,10 @@ import {
   CoerceNestThrottlerModuleImport,
   CoerceVariableDeclaration,
 } from '@rxap/ts-morph';
-import { TsMorphNestProjectTransform } from '@rxap/workspace-ts-morph';
+import {
+  TsMorphAngularProjectTransform,
+  TsMorphNestProjectTransform,
+} from '@rxap/workspace-ts-morph';
 import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
@@ -40,6 +43,8 @@ import {
 import { join } from 'path';
 import {
   Project,
+  SourceFile,
+  SyntaxKind,
   WriterFunction,
   Writers,
 } from 'ts-morph';
@@ -382,6 +387,174 @@ function getApiPrefix(
   return join('api', projectName.replace(/^service-/, ''));
 }
 
+const MAIN_NEST_APP_OPTIONS_STATEMENT = 'const options: NestApplicationOptions = {};';
+const MAIN_BOOTSTRAP_OPTIONS_STATEMENT = 'const bootstrapOptions: Partial<MonolithicBootstrapOptions> = {};';
+const MAIN_SERVER_STATEMENT = 'const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(AppModule, environment, options, bootstrapOptions);';
+const MAIN_BOOTSTRAP_STATEMENT = 'server.bootstrap().catch((e) => console.error(\'Server bootstrap failed: \' + e.message));';
+const MAIN_SETUP_HELMET_STATEMENT = 'server.after(SetupHelmet());';
+const MAIN_SETUP_COOKIE_STATEMENT = 'server.after(SetupCookieParser());';
+const MAIN_SETUP_CORS_STATEMENT = 'server.after(SetupCors());';
+
+function assertMainStatements(sourceFile: SourceFile) {
+  const statements: string[] = [];
+
+  statements.push('const options: NestApplicationOptions = {');
+  statements.push('const bootstrapOptions: Partial<MonolithicBootstrapOptions> = {');
+  statements.push(
+    'const server = new Monolithic<NestApplicationOptions, NestExpressApplication>(AppModule, environment, options, bootstrapOptions);');
+
+  const existingStatements = sourceFile.getStatements().map(s => s.getText()) ?? [];
+  for (const statement of statements) {
+    if (!existingStatements.includes(statement)) {
+      console.error(`Missing statement from main.ts:  ${ statement }`);
+      sourceFile.set({
+        statements: [
+          MAIN_NEST_APP_OPTIONS_STATEMENT,
+          MAIN_BOOTSTRAP_OPTIONS_STATEMENT,
+          MAIN_SERVER_STATEMENT,
+          MAIN_SETUP_HELMET_STATEMENT,
+          MAIN_SETUP_COOKIE_STATEMENT,
+          MAIN_SETUP_CORS_STATEMENT,
+          MAIN_BOOTSTRAP_STATEMENT,
+        ],
+      });
+      CoerceImports(sourceFile, [
+        {
+          moduleSpecifier: '@nestjs/common',
+          namedImports: [ 'NestApplicationOptions' ],
+        },
+        {
+          moduleSpecifier: '@nestjs/platform-express',
+          namedImports: [ 'NestExpressApplication' ],
+        },
+        {
+          moduleSpecifier: '@rxap/nest-server',
+          namedImports: [
+            'MonolithicBootstrapOptions',
+            'Monolithic',
+            'SetupHelmet',
+            'SetupCookieParser',
+            'SetupCors',
+          ],
+        },
+        {
+          moduleSpecifier: './app/app.module',
+          namedImports: [ 'AppModule' ],
+        },
+        {
+          moduleSpecifier: './environments/environment',
+          namedImports: [ 'environment' ],
+        },
+      ]);
+      return;
+    }
+  }
+
+
+}
+
+function updateMainFile(
+  tree: Tree,
+  project: ProjectConfiguration,
+  projectName: string,
+  options: InitApplicationGeneratorSchema,
+) {
+
+  TsMorphAngularProjectTransform(tree, {
+    project: project.name,
+    // directory: '..' // to move from the apps/demo/src/app folder into the apps/demo/src folder
+  }, (project, [ sourceFile ]) => {
+
+    assertMainStatements(sourceFile);
+
+    const importDeclarations = [];
+    const statements: string[] = [];
+
+    if (options.sentry) {
+      importDeclarations.push({
+        moduleSpecifier: '@rxap/nest-sentry',
+        namedImports: [ 'SetupSentryLogger' ],
+      });
+      statements.push('server.after(SetupSentryLogger());');
+    } else {
+      importDeclarations.push({
+        moduleSpecifier: '@rxap/nest-logger',
+        namedImports: [ 'RxapLogger' ],
+      });
+      statements.push('server.after(app => app.useLogger(new RxapLogger()));');
+    }
+
+    if (options.validator) {
+      importDeclarations.push({
+        moduleSpecifier: '@rxap/nest-server',
+        namedImports: [ 'ValidationPipeSetup' ],
+      });
+      statements.push('server.after(ValidationPipeSetup());');
+    }
+
+    if (options.swaggerLive) {
+      importDeclarations.push({
+        moduleSpecifier: '@rxap/nest-server',
+        namedImports: [ 'SetupSwagger' ],
+      });
+      statements.push('server.after(SetupSwagger());');
+    }
+
+    if (options.statusRegister) {
+      importDeclarations.push({
+        moduleSpecifier: '@rxap/nest-server',
+        namedImports: [ 'RegisterToStatusService' ],
+      });
+      statements.push('server.after(RegisterToStatusService());');
+    }
+
+    CoerceImports(sourceFile, importDeclarations);
+
+    for (let i = 0; i < statements.length; i++) {
+      const statement = statements[i];
+      const lastStatement = i > 0 ? statements[i - 1] : null;
+      const nestStatement = i < statements.length - 1 ? statements[i + 1] : null;
+      const existingStatements = sourceFile.getStatements().map(s => s.getText()) ?? [];
+      if (!existingStatements.includes(statement)) {
+        let index: number;
+        if (lastStatement) {
+          index = existingStatements.findIndex(s => s.includes(lastStatement)) + 1;
+        } else if (nestStatement) {
+          index = existingStatements.findIndex(s => s.includes(nestStatement));
+        } else {
+          index = existingStatements.findIndex(s => s.includes(MAIN_BOOTSTRAP_STATEMENT));
+        }
+        console.log(`insert statement: ${ statement } at index ${ index }`);
+        sourceFile.insertStatements(index, statement);
+      }
+    }
+
+    if (projectName === 'service-status') {
+      const variableDeclaration = CoerceVariableDeclaration(sourceFile, 'bootstrapOptions', { initializer: '{}' });
+      const objectLiteralExpression = variableDeclaration.getInitializerIfKindOrThrow(SyntaxKind.ObjectLiteralExpression);
+      let objectLiteralElementLike = objectLiteralExpression.getProperty('globalPrefixOptions');
+      if (!objectLiteralElementLike) {
+        objectLiteralElementLike = objectLiteralExpression.addPropertyAssignment({
+          name: 'globalPrefixOptions',
+          initializer: '{}',
+        });
+      }
+      const gpoPropertyAssigment = objectLiteralElementLike.asKindOrThrow(SyntaxKind.PropertyAssignment);
+      const gpoObjectLiteralExpression = gpoPropertyAssigment.getInitializerIfKindOrThrow(SyntaxKind.ObjectLiteralExpression);
+      let gpoElementLike = gpoObjectLiteralExpression.getProperty('exclude');
+      if (!gpoElementLike) {
+        gpoElementLike = gpoObjectLiteralExpression.addPropertyAssignment({
+          name: 'exclude',
+          initializer: `[ '/health(.*)', '/info', '/openapi', '/register' ]`,
+        });
+      }
+    }
+
+
+  }, [ 'main.ts' ]);
+
+}
+
 export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
@@ -510,6 +683,10 @@ export async function initApplicationGenerator(
     removeAppServiceFile(tree, projectSourceRoot);
     removeAppControllerSpecFile(tree, projectSourceRoot);
 
+    if (options.generateMain) {
+      updateMainFile(tree, project, projectName, options);
+    }
+
     if (options.healthIndicator || options.healthIndicatorList?.length) {
       if (options.healthIndicatorList?.length) {
         for (const healthIndicator of options.healthIndicatorList) {
@@ -517,11 +694,18 @@ export async function initApplicationGenerator(
             {
               name: healthIndicator,
               project: projectName,
+              overwrite: options.overwrite,
             },
           );
         }
       } else {
-        await healthIndicatorInitGenerator(tree, { project: projectName });
+        await healthIndicatorInitGenerator(
+          tree,
+          {
+            project: projectName,
+            overwrite: options.overwrite,
+          },
+        );
       }
     }
 
@@ -537,19 +721,43 @@ export async function initApplicationGenerator(
     }
 
     if (options.validator) {
-      await validatorGenerator(tree, { project: projectName });
+      await validatorGenerator(
+        tree,
+        {
+          project: projectName,
+          overwrite: options.overwrite,
+        },
+      );
     }
 
     if (options.openApi) {
-      await openApiGenerator(tree, { project: projectName });
+      await openApiGenerator(
+        tree,
+        {
+          project: projectName,
+          overwrite: options.overwrite,
+        },
+      );
     }
 
     if (options.jwt) {
-      await jwtGenerator(tree, { project: projectName });
+      await jwtGenerator(
+        tree,
+        {
+          project: projectName,
+          overwrite: options.overwrite,
+        },
+      );
     }
 
     if (options.swagger !== false) {
-      await swaggerGenerator(tree, { project: projectName });
+      await swaggerGenerator(
+        tree,
+        {
+          project: projectName,
+          overwrite: options.overwrite,
+        },
+      );
     }
 
   }

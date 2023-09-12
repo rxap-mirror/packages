@@ -23,6 +23,18 @@
       "description": "Whether this service should use swagger",
       "x-prompt": "Should this service support open-api config generation?"
     },
+    "swaggerLive": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this service should start a swagger live server",
+      "x-prompt": "Should this service start a swagger live server?"
+    },
+    "generateMain": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the main file should be generated",
+      "x-prompt": "Should the main file be generated?"
+    },
     "healthIndicator": {
       "type": "boolean",
       "default": true,

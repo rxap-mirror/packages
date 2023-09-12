@@ -11,6 +11,9 @@
         "$source": "projectName"
       },
       "x-prompt": "For which project should the health indicator module be initialized?"
+    },
+    "overwrite": {
+      "type": "boolean"
     }
   },
   "required": [
