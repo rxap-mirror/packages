@@ -3,6 +3,7 @@ import {
   Get,
   Inject,
 } from '@nestjs/common';
+import { ApiExcludeController } from '@nestjs/swagger';
 import {
   HealthCheck,
   HealthCheckResult,
@@ -13,6 +14,7 @@ import { ConfigurationHealthIndicator } from './configuration-health-indicator.s
 
 @Controller('health')
 @Public()
+@ApiExcludeController()
 export class HealthController {
   constructor(
     @Inject(HealthCheckService) private readonly health: HealthCheckService,

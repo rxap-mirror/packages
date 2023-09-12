@@ -34,14 +34,6 @@ import { HealthModule } from './health/health.module';
 @Module({
   imports: [
     HealthModule,
-    SentryModule.forRootAsync(
-      {
-        imports: [ ConfigModule ],
-        inject: [ ConfigService ],
-        useFactory: SentryOptionsFactory(environment),
-      },
-      { logLevels: GetLogLevels() },
-    ),
     ConfigurationModule,
     ThrottlerModule.forRootAsync(
       {
@@ -56,7 +48,15 @@ import { HealthModule } from './health/health.module';
       {
         isGlobal: true,
         validationSchema: VALIDATION_SCHEMA,
-      })
+      }),
+    SentryModule.forRootAsync(
+      {
+        imports: [ ConfigModule ],
+        inject: [ ConfigService ],
+        useFactory: SentryOptionsFactory(environment),
+      }, {
+        logLevels: GetLogLevels(),
+      }),
   ],
   controllers: [ AppController ],
   providers: [

@@ -24,4 +24,5 @@ validationSchema['STORE_FILE_PATH'] =
   Joi.string().default(environment.production ? '/data' : '/tmp/data/user-settings');
 validationSchema['SETTINGS_DEFAULT_FILE_PATH'] =
   Joi.string().default(environment.production ? '/default/user-settings.json' : '/tmp/default/user-settings.json');
+validationSchema['JWT_SECRET'] = Joi.string().default(GenerateRandomString());
 export const VALIDATION_SCHEMA = Joi.object(validationSchema);

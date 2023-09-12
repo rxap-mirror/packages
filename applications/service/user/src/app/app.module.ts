@@ -1,40 +1,47 @@
 import {
-  Module,
   HttpException,
+  Module,
 } from '@nestjs/common';
-
-import { AppController } from './app.controller';
-import {
-  ThrottlerModule,
-  ThrottlerGuard,
-} from '@nestjs/throttler';
 import {
   ConfigModule,
   ConfigService,
 } from '@nestjs/config';
-import { VALIDATION_SCHEMA } from './app.config';
 import {
   APP_GUARD,
   APP_INTERCEPTOR,
 } from '@nestjs/core';
+import { JwtModule } from '@nestjs/jwt';
+import {
+  ThrottlerGuard,
+  ThrottlerModule,
+} from '@nestjs/throttler';
+import { JwtGuardProvider } from '@rxap/nest-jwt';
+import { OpenApiModule } from '@rxap/nest-open-api';
+import {
+  SENTRY_INTERCEPTOR_OPTIONS,
+  SentryInterceptor,
+  SentryModule,
+} from '@rxap/nest-sentry';
 import {
   ENVIRONMENT,
   GetLogLevels,
   SentryOptionsFactory,
 } from '@rxap/nest-utilities';
 import { environment } from '../environments/environment';
+import { VALIDATION_SCHEMA } from './app.config';
+
+import { AppController } from './app.controller';
 import { HealthModule } from './health/health.module';
-import {
-  SentryModule,
-  SENTRY_INTERCEPTOR_OPTIONS,
-  SentryInterceptor,
-} from '@rxap/nest-sentry';
-import { JwtGuardProvider } from '@rxap/nest-jwt';
-import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
     HealthModule,
+    OpenApiModule.registerAsync(
+      {
+        inject: [ ConfigService ],
+        imports: [ ConfigModule ],
+        useFactory: (config: ConfigService) => ({}),
+      }),
     ThrottlerModule.forRootAsync(
       {
         imports: [ ConfigModule ],
@@ -59,9 +66,12 @@ import { JwtModule } from '@nestjs/jwt';
       }),
     JwtModule.registerAsync(
       {
+        global: true,
         inject: [ ConfigService ],
-        useFactory: (config: ConfigService) => ({}),
-      }),
+        useFactory: (config: ConfigService) => ({
+          secret: config.getOrThrow('JWT_SECRET'),
+        }),
+      })
   ],
   controllers: [ AppController ],
   providers: [
