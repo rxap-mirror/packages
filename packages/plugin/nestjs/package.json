@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.20",
+  "version": "16.1.0-dev.21",
   "name": "@rxap/plugin-nestjs",
   "license": "GPL-3.0-or-later",
   "dependencies": {
