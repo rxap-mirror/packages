@@ -1,12 +1,18 @@
-import {
-  Project,
-  SourceFile,
-} from 'ts-morph';
+import { Project } from 'ts-morph';
 import { ExtractExistingConfigValidation } from './extract-existing-config-validation';
 
 describe('ExtractExistingConfigValidation', () => {
 
-  const content = `import { HttpException, Logger, Module } from '@nestjs/common';
+
+
+  let project: Project;
+
+  beforeEach(() => {
+    project = new Project({ useInMemoryFileSystem: true });
+  });
+
+  it('should extract the existing config validation', () => {
+    const content = `import { HttpException, Logger, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
@@ -101,17 +107,7 @@ import { ServerConfig } from 'nest-open-api';
 export class AppModule {
 }
 `;
-
-  let sourceFile: SourceFile;
-  let project: Project;
-
-  beforeEach(() => {
-    project = new Project({ useInMemoryFileSystem: true });
-    sourceFile = project.createSourceFile('app.module.ts', content);
-  });
-
-  it('should extract the existing config validation', () => {
-
+    const sourceFile = project.createSourceFile('app.module.ts', content);
     expect(JSON.stringify(ExtractExistingConfigValidation(sourceFile))).toEqual(JSON.stringify([
       {
         'builder': () => {},
@@ -175,6 +171,101 @@ export class AppModule {
       },
     ]));
 
+  });
+
+  it('should not fail on external schema map for config module', () => {
+    const content = `import {
+  HttpException,
+  Logger,
+  Module,
+} from '@nestjs/common';
+import {
+  ConfigModule,
+  ConfigService,
+} from '@nestjs/config';
+import {
+  APP_GUARD,
+  APP_INTERCEPTOR,
+} from '@nestjs/core';
+import {
+  ThrottlerGuard,
+  ThrottlerModule,
+} from '@nestjs/throttler';
+import {
+  SENTRY_INTERCEPTOR_OPTIONS,
+  SentryInterceptor,
+  SentryModule,
+} from '@rxap/nest-sentry';
+import {
+  ENVIRONMENT,
+  GetLogLevels,
+  SentryOptionsFactory,
+} from '@rxap/nest-utilities';
+import { environment } from '../environments/environment';
+import { StatusModule } from '../status/status.module';
+import { VALIDATION_SCHEMA } from './app.config';
+import { AppController } from './app.controller';
+import { HealthModule } from './health/health.module';
+
+@Module({
+  imports: [
+    HealthModule,
+    StatusModule,
+    ThrottlerModule.forRootAsync(
+      {
+        imports: [ ConfigModule ],
+        inject: [ ConfigService ],
+        useFactory: (config: ConfigService) => ({
+          ttl: config.getOrThrow('THROTTLER_TTL'),
+          limit: config.getOrThrow('THROTTLER_LIMIT'),
+        }),
+      }),
+    ConfigModule.forRoot(
+      {
+        isGlobal: true,
+        validationSchema: VALIDATION_SCHEMA,
+      }),
+    SentryModule.forRootAsync(
+      {
+        imports: [ ConfigModule ],
+        inject: [ ConfigService ],
+        useFactory: SentryOptionsFactory(environment),
+      }, {
+        logLevels: GetLogLevels(),
+      }),
+  ],
+  controllers: [ AppController ],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: SentryInterceptor,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+    {
+      provide: ENVIRONMENT,
+      useValue: environment,
+    },
+    Logger,
+    {
+      provide: SENTRY_INTERCEPTOR_OPTIONS,
+      useValue: {
+        filters: [
+          {
+            type: HttpException,
+            filter: (exception: HttpException) => 500 > exception.getStatus(),
+          },
+        ],
+      },
+    },
+  ],
+})
+export class AppModule {}
+`;
+    const sourceFile = project.createSourceFile('app.module.ts', content);
+    expect(JSON.stringify(ExtractExistingConfigValidation(sourceFile))).toEqual(JSON.stringify([]));
   });
 
 });

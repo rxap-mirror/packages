@@ -25,22 +25,24 @@ export function ExtractExistingConfigValidation(sourceFile: SourceFile): CoerceN
         const objectLiteralExpression = configModuleArgument.asKindOrThrow(SyntaxKind.ObjectLiteralExpression);
         const validateLiteralElement = objectLiteralExpression.getProperty('validationSchema')
                                                               .asKindOrThrow(SyntaxKind.PropertyAssignment);
-        const joiObject = validateLiteralElement?.getInitializerIfKind(SyntaxKind.CallExpression);
-        const joiObjectArgument = joiObject?.getArguments()[0];
-        const objectLiteralExpression2 = joiObjectArgument?.asKindOrThrow(SyntaxKind.ObjectLiteralExpression);
-        const items: CoerceNestAppConfigOptionsItem[] = [];
-        for (const property of objectLiteralExpression2.getProperties()) {
-          const propertyAssignment = property.asKindOrThrow(SyntaxKind.PropertyAssignment);
-          const initializer = propertyAssignment.getInitializer();
-          const text = initializer.getText();
-          const item: CoerceNestAppConfigOptionsItem = {
-            name: propertyAssignment.getName(),
-            builder: () => text,
-            text,
-          } as any;
-          items.push(item);
+        const joiObject = validateLiteralElement?.getInitializer();
+        if (joiObject?.getKind() === SyntaxKind.CallExpression) {
+          const joiObjectArgument = joiObject.asKindOrThrow(SyntaxKind.CallExpression).getArguments()[0];
+          const objectLiteralExpression2 = joiObjectArgument?.asKindOrThrow(SyntaxKind.ObjectLiteralExpression);
+          const items: CoerceNestAppConfigOptionsItem[] = [];
+          for (const property of objectLiteralExpression2.getProperties()) {
+            const propertyAssignment = property.asKindOrThrow(SyntaxKind.PropertyAssignment);
+            const initializer = propertyAssignment.getInitializer();
+            const text = initializer.getText();
+            const item: CoerceNestAppConfigOptionsItem = {
+              name: propertyAssignment.getName(),
+              builder: () => text,
+              text,
+            } as any;
+            items.push(item);
+          }
+          return items;
         }
-        return items;
       }
     }
   }
