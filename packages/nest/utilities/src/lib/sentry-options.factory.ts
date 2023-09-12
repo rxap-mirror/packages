@@ -19,7 +19,7 @@ export function SentryOptionsFactory(environment: Environment): (config: ConfigS
       maxValueLength: config.get('SENTRY_MAX_VALUE_LENGTH', Number.MAX_SAFE_INTEGER),
       normalizeDepth: config.get('SENTRY_NORMALIZE_DEPTH', 5),
     };
-    console.debug('SentryOptions: ', JSON.stringify(options));
+    console.debug('SentryOptions:', JSON.stringify(options));
     return options;
   };
 }
