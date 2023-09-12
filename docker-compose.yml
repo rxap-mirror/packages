@@ -70,6 +70,8 @@ services:
     depends_on:
       - traefik
       - catch-all-api
+    ports:
+      - "5300:3000"
   cors-options:
     labels:
       - "traefik.enable=true"

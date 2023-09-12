@@ -19,5 +19,5 @@ validationSchema['SENTRY_DSN'] = Joi.string();
 validationSchema['STATUS_SERVICE_BASE_URL'] = Joi.string()
                                                  .default(environment.production ?
                                                    'http://rxap-status-service:3000' :
-                                                   `https://${ process.env.ROOT_DOMAIN ?? 'localhost' }:8443`);
+                                                   'http://localhost:5300');
 export const VALIDATION_SCHEMA = Joi.object(validationSchema);
