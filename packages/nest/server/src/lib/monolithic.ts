@@ -26,10 +26,7 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
     return NestFactory.create<T>(this.module, this.options);
   }
 
-  protected override prepareOptions(app: T): B {
-
-    const logger = app.get(Logger);
-    const config: ConfigService<unknown> = app.get(ConfigService);
+  protected override prepareOptions(app: T, logger: Logger, config: ConfigService): B {
 
     logger.log('environment: ' +
       JSON.stringify(this.environment, undefined, this.environment.production ? undefined : 2), 'Bootstrap');

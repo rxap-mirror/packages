@@ -56,9 +56,16 @@ export abstract class Server<O extends object, T extends INestApplicationContext
 
   public async bootstrap() {
 
+    console.log('Server bootstrap started');
+    console.log('Initial environment', JSON.stringify(this.environment));
+
     this.prepareEnvironment(this.environment);
 
+    console.log('Handle before bootstrap hooks');
+
     await this.handleBefore();
+
+    console.log('Create application');
 
     this.app = await this.create();
 
@@ -66,24 +73,35 @@ export abstract class Server<O extends object, T extends INestApplicationContext
       throw new Error('Nest app creation failed');
     }
 
-    const options = this.prepareOptions(this.app);
-
     this.logger = this.app.get(Logger);
-    this.config = this.app.get(ConfigService);
 
     if (!this.logger) {
       throw new Error('Could not inject a Logger instance');
     }
 
+    this.config = this.app.get(ConfigService);
+
     if (!this.config) {
       throw new Error('Could not inject a ConfigService instance');
     }
 
+    this.logger.log('Prepare options', 'Bootstrap');
+
+    const options = this.prepareOptions(this.app, this.logger, this.config);
+
+    this.logger.log('Handle after bootstrap hooks', 'Bootstrap');
+
     await this.handleAfter(this.app, this.logger, this.config, options);
+
+    this.logger.log('Listen', 'Bootstrap');
 
     await this.listen(this.app, this.logger, options);
 
+    this.logger.log('Handle read bootstrap hooks', 'Bootstrap');
+
     await this.handleReady(this.app, this.logger, this.config, options);
+
+    this.logger.log('Server bootstrap completed', 'Bootstrap');
 
     if (module && module.hot) {
       module.hot.accept();
@@ -112,7 +130,7 @@ export abstract class Server<O extends object, T extends INestApplicationContext
     RXAP_GLOBAL_STATE.environment = environment;
   }
 
-  protected abstract prepareOptions(app: T): B;
+  protected abstract prepareOptions(app: T, logger: Logger, config: ConfigService): B;
 
   protected abstract listen(app: T, logger: Logger, options: B): Promise<any>;
 
