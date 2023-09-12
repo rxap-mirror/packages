@@ -33,7 +33,7 @@ export class ConfigurationHealthIndicator extends HealthIndicator {
     if (!existsSync(this.dataDir)) {
       this.logger.error(
         `The given data directory '${ this.dataDir }' does not exists`,
-        null,
+        undefined,
         'ConfigurationHealthIndicator',
       );
       throw new HealthCheckError(
@@ -45,7 +45,11 @@ export class ConfigurationHealthIndicator extends HealthIndicator {
     const rootDirContent = readdirSync(this.dataDir);
 
     if (rootDirContent.length === 0) {
-      this.logger.error(`The given data directory '${ this.dataDir }' is empty`, null, 'ConfigurationHealthIndicator');
+      this.logger.error(
+        `The given data directory '${ this.dataDir }' is empty`,
+        undefined,
+        'ConfigurationHealthIndicator',
+      );
       throw new HealthCheckError(
         `The given data directory is empty`,
         this.getStatus('configuration', false),
@@ -57,7 +61,7 @@ export class ConfigurationHealthIndicator extends HealthIndicator {
     if (semverVersions.length === 0 && !rootDirContent.includes('latest')) {
       this.logger.error(
         `The given data directory '${ this.dataDir }' does not contain any folder with a valid semver version or latest version code`,
-        null,
+        undefined,
         'ConfigurationHealthIndicator',
       );
       throw new HealthCheckError(
@@ -73,7 +77,7 @@ export class ConfigurationHealthIndicator extends HealthIndicator {
     ) {
       this.logger.error(
         `Some of the version in the given data directory '${ this.dataDir }' does not contain any configuration files`,
-        null,
+        undefined,
         'ConfigurationHealthIndicator',
       );
       throw new HealthCheckError(
