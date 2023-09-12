@@ -28,5 +28,5 @@ server.after(SetupCors());
 server.after(SetupSentryLogger());
 server.after(ValidationPipeSetup());
 server.after(SetupSwagger());
-server.after(RegisterToStatusService());
+server.ready(RegisterToStatusService());
 server.bootstrap().catch((e) => console.error('Server bootstrap failed: ' + e.message));

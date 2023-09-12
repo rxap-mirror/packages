@@ -31,6 +31,9 @@
               "with": "applications/service/configuration/src/environments/environment.prod.ts"
             }
           ]
+        },
+        "development": {
+          "generatePackageJson": false
         }
       },
       "defaultConfiguration": "production"

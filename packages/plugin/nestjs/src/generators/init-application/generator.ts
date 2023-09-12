@@ -496,7 +496,7 @@ function updateMainFile(
         moduleSpecifier: '@rxap/nest-server',
         namedImports: [ 'RegisterToStatusService' ],
       });
-      statements.push('server.after(RegisterToStatusService());');
+      statements.push('server.ready(RegisterToStatusService());');
     }
 
     CoerceImports(sourceFile, importDeclarations);
