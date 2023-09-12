@@ -51,6 +51,7 @@ import openApiGenerator from '../open-api/generator';
 import sentryGenerator from '../sentry/generator';
 import swaggerGenerator from '../swagger/generator';
 import validatorGenerator from '../validator/generator';
+import { ExtractExistingConfigValidation } from './extract-existing-config-validation';
 import { InitApplicationGeneratorSchema } from './schema';
 
 function coerceEnvironmentFiles(tree: Tree, options: { project: string, sentry: boolean, overwrite: boolean }) {
@@ -549,6 +550,7 @@ function updateMainFile(
 
 }
 
+
 export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
@@ -630,7 +632,8 @@ export async function initApplicationGenerator(
         CoerceAppGuardProvider(moduleSourceFile);
         CoerceNestEnvironmentProvider(moduleSourceFile);
         CoerceNestLoggerProvider(moduleSourceFile);
-        const itemList = [
+        const itemList = ExtractExistingConfigValidation(moduleSourceFile);
+        for (const item of [
           {
             name: 'PORT',
             type: 'number',
@@ -652,12 +655,18 @@ export async function initApplicationGenerator(
             name: 'COOKIE_SECRET',
             defaultValue: 'GenerateRandomString()',
           },
-        ];
+        ]) {
+          if (!itemList.find(i => i.name === item.name)) {
+            itemList.push(item);
+          }
+        }
         if (options.statusRegister && projectName !== 'service-status') {
-          itemList.push({
-            name: 'STATUS_SERVICE_BASE_URL',
-            defaultValue: `environment.production ? 'http://rxap-status-service:3000' : 'http://localhost:5300'`,
-          });
+          if (!itemList.find(i => i.name === 'STATUS_SERVICE_BASE_URL')) {
+            itemList.push({
+              name: 'STATUS_SERVICE_BASE_URL',
+              defaultValue: `environment.production ? 'http://rxap-status-service:3000' : 'http://localhost:5300'`,
+            });
+          }
           CoerceImports(configSourceFile, {
             namespaceImport: 'process',
             moduleSpecifier: 'process',
