@@ -148,7 +148,7 @@ export class StatusController {
       throw new BadRequestException('No url or domain provided and could not determine ip address');
     }
 
-    if ([ 'http', 'https' ].includes(protocol)) {
+    if (![ 'http', 'https' ].includes(protocol)) {
       throw new BadRequestException(`Invalid protocol '${ protocol }'`);
     }
 
