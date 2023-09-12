@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.22...@rxap/plugin-nestjs@16.1.0-dev.23) (2023-09-12)
+
+### Bug Fixes
+
+- ensure extraction works in new module structure ([bc421d7](https://gitlab.com/rxap/packages/commit/bc421d74643e15d55b2b74c930ddc32e3a601d03))
+
 # [16.1.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.21...@rxap/plugin-nestjs@16.1.0-dev.22) (2023-09-12)
 
 ### Bug Fixes
