@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.17...@rxap/plugin-nestjs@16.1.0-dev.18) (2023-09-12)
+
+### Bug Fixes
+
+- improve nest application init generator execution ([30adde1](https://gitlab.com/rxap/packages/commit/30adde1b164884137890e4c604ed86a7a75261d9))
+- use unified Dockerfile ([913898d](https://gitlab.com/rxap/packages/commit/913898d976a56873caabd2140cf2e6e0fef15214))
+
+### Reverts
+
+- "build: use nx run commands to build openapi.json" ([b294956](https://gitlab.com/rxap/packages/commit/b294956b25d42350a1e0907635c88776a39b7708))
+
 # [16.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.16...@rxap/plugin-nestjs@16.1.0-dev.17) (2023-09-09)
 
 ### Features

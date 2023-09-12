@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.12",
+  "version": "16.0.0-dev.13",
   "name": "@rxap/mixin",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -26,11 +26,11 @@
     "packageGroup": [
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.1-dev.8"
+        "version": "1.0.1-dev.9"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       }
     ]
   },

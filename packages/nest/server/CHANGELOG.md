@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.5...@rxap/nest-server@10.1.0-dev.6) (2023-09-12)
+
+### Bug Fixes
+
+- add application options ([31f490d](https://gitlab.com/rxap/packages/commit/31f490de262555b69367e72872620c9d1594e329))
+- provide environment ([62683ec](https://gitlab.com/rxap/packages/commit/62683eca0824fc42a6545b05a2d56bd5b1922faf))
+- use factory function ([657a9f9](https://gitlab.com/rxap/packages/commit/657a9f91150883aac098320aa421a8eb1f73f784))
+
+### Features
+
+- add SetupCookieParser function ([7d0d577](https://gitlab.com/rxap/packages/commit/7d0d577c926cda3ac586571ab2c659de1d6652bb))
+- add SetupCors function ([693b53a](https://gitlab.com/rxap/packages/commit/693b53aef3bf402b2d8e11ff688ef154a4c7f93d))
+- add SetupHelmet function ([71e22cf](https://gitlab.com/rxap/packages/commit/71e22cf52c2d4a68b75f40e9008d93b8246fedfe))
+- add SetupSwagger function ([3a73d63](https://gitlab.com/rxap/packages/commit/3a73d63b8f53b5c20ad1735a9db83ba0a2d84d90))
+- add ValidationPipeSetup function ([ec7dabd](https://gitlab.com/rxap/packages/commit/ec7dabd901a1ea208e2f8d3dff189ce6ee726398))
+
 # [10.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.4...@rxap/nest-server@10.1.0-dev.5) (2023-09-09)
 
 ### Bug Fixes

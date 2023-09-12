@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.12",
+  "version": "16.0.0-dev.13",
   "name": "@rxap/pipes",
   "description": "A collection of utility angular pipes used in RxAP.",
   "license": "GPL-3.0-or-later",
@@ -30,7 +30,7 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       }
     ]
   },

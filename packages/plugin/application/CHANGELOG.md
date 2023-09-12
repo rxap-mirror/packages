@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.13...@rxap/plugin-application@16.1.0-dev.14) (2023-09-12)
+
+### Bug Fixes
+
+- refactor the build.json concept ([7193cef](https://gitlab.com/rxap/packages/commit/7193cef9ffe76efdfedcd6e6d82e947c1be9c15b))
+
 # [16.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.12...@rxap/plugin-application@16.1.0-dev.13) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/plugin-application

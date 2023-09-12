@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.11",
+  "version": "16.0.0-dev.12",
   "name": "@rxap/socket-io",
   "license": "GPL-3.0-or-later",
   "dependencies": {

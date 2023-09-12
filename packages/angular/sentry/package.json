@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.7",
+  "version": "16.0.1-dev.8",
   "name": "@rxap/ngx-sentry",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -29,11 +29,11 @@
     "packageGroup": [
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       }
     ]
   },

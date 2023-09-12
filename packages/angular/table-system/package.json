@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.13",
+  "version": "16.0.0-dev.14",
   "name": "@rxap/table-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -29,11 +29,11 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "16.0.0-dev.21"
+        "version": "16.0.0-dev.22"
       },
       {
         "package": "@rxap/open-api",
@@ -45,7 +45,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       }
     ]
   },

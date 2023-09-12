@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.17",
+  "version": "16.0.0-dev.18",
   "name": "@rxap/schematics-ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -28,15 +28,15 @@
     "packageGroup": [
       {
         "package": "@rxap/schematics-utilities",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "0.1.0-dev.6"
+        "version": "0.1.0-dev.7"
       }
     ]
   },

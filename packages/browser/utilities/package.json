@@ -1,5 +1,5 @@
 {
-  "version": "0.0.2-dev.7",
+  "version": "0.0.2-dev.8",
   "name": "@rxap/browser-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {

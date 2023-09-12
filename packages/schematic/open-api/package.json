@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.19",
+  "version": "16.0.0-dev.20",
   "name": "@rxap/schematics-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -30,19 +30,19 @@
     "packageGroup": [
       {
         "package": "@rxap/json-schema-to-typescript",
-        "version": "16.0.0-dev.11"
+        "version": "16.0.0-dev.12"
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       }
     ]
   },

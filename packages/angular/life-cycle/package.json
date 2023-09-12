@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.11",
+  "version": "16.0.0-dev.12",
   "name": "@rxap/life-cycle",
   "description": "A utility package to execute logic after the angular app is ready",
   "license": "GPL-3.0-or-later",
@@ -30,7 +30,7 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       }
     ]
   },

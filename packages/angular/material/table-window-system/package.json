@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.12",
+  "version": "16.0.0-dev.13",
   "name": "@rxap/material-table-window-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -30,35 +30,35 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/form-system",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "16.0.0-dev.21"
+        "version": "16.0.0-dev.22"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.0.1-dev.9"
+        "version": "1.0.1-dev.10"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/window-system",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       }
     ]
   },

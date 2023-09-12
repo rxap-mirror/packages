@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.16...@rxap/utilities@16.0.0-dev.17) (2023-09-12)
+
+### Bug Fixes
+
+- ensure sort properties is in-place ([2393b25](https://gitlab.com/rxap/packages/commit/2393b25a6a15d387da115eabe6ce34046680372f))
+
+### Features
+
+- add SortProperties function ([bc66416](https://gitlab.com/rxap/packages/commit/bc6641609188c725750fad217dfff180b35a8cfd))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.15...@rxap/utilities@16.0.0-dev.16) (2023-09-07)
 
 ### Features

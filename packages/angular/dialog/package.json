@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.13",
+  "version": "16.0.0-dev.14",
   "name": "@rxap/dialog",
   "description": "A collection of angular material dialog components",
   "license": "GPL-3.0-or-later",
@@ -38,7 +38,7 @@
       },
       {
         "package": "@rxap/pipes",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/utilities",

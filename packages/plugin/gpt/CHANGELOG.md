@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gpt@16.0.1-dev.8...@rxap/plugin-gpt@16.0.1-dev.9) (2023-09-12)
+
+**Note:** Version bump only for package @rxap/plugin-gpt
+
 ## [16.0.1-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/plugin-gpt@16.0.1-dev.7...@rxap/plugin-gpt@16.0.1-dev.8) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/plugin-gpt

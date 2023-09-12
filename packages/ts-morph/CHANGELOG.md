@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.7...@rxap/ts-morph@0.1.0-dev.8) (2023-09-12)
+
+### Bug Fixes
+
+- add ApiExcludeController decorator ([24f13a4](https://gitlab.com/rxap/packages/commit/24f13a41fc2e0bd49d069ca6825f32982e11f63e))
+
 # [0.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.6...@rxap/ts-morph@0.1.0-dev.7) (2023-09-09)
 
 ### Bug Fixes

@@ -1,5 +1,5 @@
 {
-  "version": "10.1.0-dev.3",
+  "version": "10.1.0-dev.4",
   "name": "@rxap/nest-logger",
   "license": "GPL-3.0-or-later",
   "dependencies": {

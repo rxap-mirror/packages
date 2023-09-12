@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.21",
+  "version": "16.0.0-dev.22",
   "name": "@rxap/layout",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -29,39 +29,39 @@
     "packageGroup": [
       {
         "package": "@rxap/authentication",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "0.0.2-dev.7"
+        "version": "0.0.2-dev.8"
       },
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/directives",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.12"
-      },
-      {
-        "package": "@rxap/icon",
         "version": "16.0.0-dev.13"
       },
       {
+        "package": "@rxap/icon",
+        "version": "16.0.0-dev.14"
+      },
+      {
         "package": "@rxap/material-directives",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/ngx-status-check",
-        "version": "16.1.0-dev.4"
+        "version": "16.1.0-dev.5"
       },
       {
         "package": "@rxap/rxjs",
@@ -69,11 +69,11 @@
       },
       {
         "package": "@rxap/services",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       }
     ]
   },

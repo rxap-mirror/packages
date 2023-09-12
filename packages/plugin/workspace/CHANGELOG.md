@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.11...@rxap/plugin-workspace@16.1.0-dev.12) (2023-09-12)
+
+### Bug Fixes
+
+- refactor the build.json concept ([7193cef](https://gitlab.com/rxap/packages/commit/7193cef9ffe76efdfedcd6e6d82e947c1be9c15b))
+
+### Features
+
+- add ci info executor ([b6f6496](https://gitlab.com/rxap/packages/commit/b6f6496e1399b63656ecc794f31728e20f853f20))
+
 # [16.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.10...@rxap/plugin-workspace@16.1.0-dev.11) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/plugin-workspace

@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.15",
+  "version": "16.0.0-dev.16",
   "name": "@rxap/data-source",
   "description": "Provides the DataSource concept for RxAP.",
   "license": "GPL-3.0-or-later",
@@ -30,19 +30,19 @@
     "packageGroup": [
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.0.1-dev.9"
+        "version": "1.0.1-dev.10"
       },
       {
         "package": "@rxap/definition",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.0.1-dev.9"
+        "version": "1.0.1-dev.10"
       },
       {
         "package": "@rxap/remote-method",
@@ -50,11 +50,11 @@
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.8"
+        "version": "1.0.1-dev.9"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       }
     ]
   },

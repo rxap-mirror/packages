@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1-dev.9",
+  "version": "1.0.1-dev.10",
   "name": "@rxap/data-structure-tree",
   "description": "Proves class, types and functions to work with tree data structures",
   "license": "GPL-3.0-or-later",
@@ -29,11 +29,11 @@
     "packageGroup": [
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.8"
+        "version": "1.0.1-dev.9"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       }
     ]
   },

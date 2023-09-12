@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.13",
+  "version": "16.0.0-dev.14",
   "name": "@rxap/service-worker",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -29,11 +29,11 @@
     "packageGroup": [
       {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.12"
+        "version": "16.0.0-dev.13"
       },
       {
         "package": "@rxap/life-cycle",
-        "version": "16.0.0-dev.11"
+        "version": "16.0.0-dev.12"
       }
     ]
   },

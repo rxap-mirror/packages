@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.0.1-dev.7...@rxap/nest-sentry@10.1.0-dev.0) (2023-09-12)
+
+### Features
+
+- add SetupSentryLogger function ([154601f](https://gitlab.com/rxap/packages/commit/154601f7fe806afc72e1e602d1d4744a7b5cc065))
+
 ## [10.0.1-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/nest-sentry@10.0.1-dev.6...@rxap/nest-sentry@10.0.1-dev.7) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/nest-sentry

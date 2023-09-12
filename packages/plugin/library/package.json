@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.23",
+  "version": "16.0.0-dev.24",
   "name": "@rxap/plugin-library",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -30,27 +30,27 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-ts-morph",
-        "version": "1.0.1-dev.9"
+        "version": "1.0.1-dev.10"
       },
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.11"
+        "version": "1.1.0-dev.12"
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.1.0-dev.7"
+        "version": "1.1.0-dev.8"
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "16.1.0-dev.20"
+        "version": "16.1.0-dev.21"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "16.1.0-dev.17"
+        "version": "16.1.0-dev.18"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.1.0-dev.12"
+        "version": "16.1.0-dev.13"
       },
       {
         "package": "@rxap/schematics-utilities",
@@ -58,7 +58,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.11"
+        "version": "0.1.0-dev.12"
       }
     ]
   },

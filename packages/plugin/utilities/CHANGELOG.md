@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.12...@rxap/plugin-utilities@16.1.0-dev.13) (2023-09-12)
+
+### Bug Fixes
+
+- ensure deterministic package json file ([c1a9971](https://gitlab.com/rxap/packages/commit/c1a9971349bf01630b709bb8c46bd0397088f871))
+- support output path guess from project root ([1757fdf](https://gitlab.com/rxap/packages/commit/1757fdf6e3f00fafa90d17e3ca24bf3cc711b33e))
+
+### Features
+
+- add CleanupPackageJson function ([0b5c0ce](https://gitlab.com/rxap/packages/commit/0b5c0cee7d080b9948953dc856af20e2516cf024))
+
 # [16.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.11...@rxap/plugin-utilities@16.1.0-dev.12) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/plugin-utilities

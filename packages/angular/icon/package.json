@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.13",
+  "version": "16.0.0-dev.14",
   "name": "@rxap/icon",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -29,7 +29,7 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       }
     ]
   },

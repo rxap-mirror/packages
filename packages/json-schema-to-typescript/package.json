@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.11",
+  "version": "16.0.0-dev.12",
   "name": "@rxap/json-schema-to-typescript",
   "description": "Generates typescript interfaces from json schema definition.",
   "license": "GPL-3.0-or-later",

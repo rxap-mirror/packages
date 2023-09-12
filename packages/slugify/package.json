@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.10",
+  "version": "16.0.0-dev.11",
   "name": "@rxap/slugify",
   "description": "A utility to slugify a string.",
   "license": "GPL-3.0-or-later",

@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.13",
+  "version": "16.0.0-dev.14",
   "name": "@rxap/schematics-xml-parser",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -28,15 +28,15 @@
     "packageGroup": [
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/xml-parser",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       }
     ]
   },

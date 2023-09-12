@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.4",
+  "version": "16.1.0-dev.5",
   "name": "@rxap/ngx-status-check",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -28,15 +28,15 @@
     "packageGroup": [
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.13"
+        "version": "16.0.0-dev.14"
       },
       {
         "package": "@rxap/open-api",
-        "version": "16.0.0-dev.19"
+        "version": "16.0.0-dev.20"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.0.1-dev.9"
+        "version": "1.0.1-dev.10"
       },
       {
         "package": "@rxap/rxjs",

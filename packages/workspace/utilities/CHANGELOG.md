@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.11...@rxap/workspace-utilities@0.1.0-dev.12) (2023-09-12)
+
+### Bug Fixes
+
+- ensure script are ordered to the top ([9911a67](https://gitlab.com/rxap/packages/commit/9911a67967e87fe3aec5509d8df0ef174b2c9d30))
+
+### Features
+
+- add CleanupPackageJson function ([0b5c0ce](https://gitlab.com/rxap/packages/commit/0b5c0cee7d080b9948953dc856af20e2516cf024))
+
 # [0.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.10...@rxap/workspace-utilities@0.1.0-dev.11) (2023-09-07)
 
 **Note:** Version bump only for package @rxap/workspace-utilities

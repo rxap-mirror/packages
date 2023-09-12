@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.20...@rxap/plugin-angular@16.1.0-dev.21) (2023-09-12)
+
+### Bug Fixes
+
+- restructure angular shared files ([20cfdb2](https://gitlab.com/rxap/packages/commit/20cfdb268ce02ad10ceafb56ce031e330563c3c2))
+- use language code instead of lang ([d31d77f](https://gitlab.com/rxap/packages/commit/d31d77f3f82680c5ebaf2784061eec9437bc4f3f))
+
 # [16.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.19...@rxap/plugin-angular@16.1.0-dev.20) (2023-09-09)
 
 ### Bug Fixes

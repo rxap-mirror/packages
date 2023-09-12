@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.4",
+  "version": "16.0.1-dev.5",
   "name": "@rxap/plugin-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -30,27 +30,27 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.11"
+        "version": "1.1.0-dev.12"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "16.0.0-dev.23"
+        "version": "16.0.0-dev.24"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/workspace-open-api",
-        "version": "0.0.2-dev.3"
+        "version": "0.0.2-dev.4"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "0.1.0-dev.6"
+        "version": "0.1.0-dev.7"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.11"
+        "version": "0.1.0-dev.12"
       }
     ]
   },
