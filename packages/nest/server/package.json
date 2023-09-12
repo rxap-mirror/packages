@@ -1,5 +1,5 @@
 {
-  "version": "10.1.0-dev.6",
+  "version": "10.1.0-dev.7",
   "name": "@rxap/nest-server",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -28,7 +28,7 @@
     "packageGroup": [
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.1.0-dev.5"
+        "version": "10.1.0-dev.6"
       }
     ]
   },

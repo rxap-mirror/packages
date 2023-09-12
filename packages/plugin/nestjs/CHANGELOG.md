@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.18...@rxap/plugin-nestjs@16.1.0-dev.19) (2023-09-12)
+
+### Bug Fixes
+
+- add development configuration to build target ([393a03a](https://gitlab.com/rxap/packages/commit/393a03aa54366fd1a037aac9ef42a57a23258f1f))
+- use local status server if possible ([d9b48fa](https://gitlab.com/rxap/packages/commit/d9b48fa8f862d769e7c2675226a900eca3b8fde5))
+- use ready hook for RegisterToStatusService ([b0b1cd5](https://gitlab.com/rxap/packages/commit/b0b1cd5273343ae09ab1b3c3dd2d0fae951d7cbd))
+
 # [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.17...@rxap/plugin-nestjs@16.1.0-dev.18) (2023-09-12)
 
 ### Bug Fixes
