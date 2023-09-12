@@ -85,7 +85,7 @@
           ],
           "outputHashing": "all",
           "serviceWorker": true,
-          "ngswConfigPath": "shared/ngsw-config.json",
+          "ngswConfigPath": "shared/angular/ngsw-config.json",
           "fileReplacements": [
             {
               "replace": "demos/angular/src/environments/environment.ts",
@@ -119,7 +119,7 @@
     "docker": {
       "options": {
         "imageSuffix": "/user-interface/angular",
-        "dockerfile": "shared/angular.Dockerfile"
+        "dockerfile": "shared/angular/Dockerfile"
       }
     },
     "docker-save": {},
@@ -163,23 +163,6 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
-    },
-    "i18n": {
-      "executor": "@rxap/plugin-application:i18n",
-      "options": {
-        "availableLanguages": [
-          "en",
-          "de",
-          "it"
-        ],
-        "defaultLanguage": "en",
-        "indexHtmlTemplate": "shared/i18n.index.html.hbs",
-        "assets": true
-      },
-      "configurations": {
-        "production": {},
-        "development": {}
       }
     },
     "localazy-download": {

@@ -319,7 +319,8 @@
         "{projectRoot}/package.json"
       ],
       "inputs": [
-        "production"
+        "production",
+        "^production"
       ]
     },
     "generate-open-api": {

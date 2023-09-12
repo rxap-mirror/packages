@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Environment } from '@rxap/environment';
+import { Environment } from '@rxap/nest-utilities';
 import axios from 'axios';
 
 export interface RegisterToStatusServiceOptions {

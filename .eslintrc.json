@@ -60,6 +60,24 @@
                 ]
               },
               {
+                "allSourceTags": [
+                  "nest",
+                  "packages"
+                ],
+                "notDependOnLibsWithTags": [
+                  "angular"
+                ]
+              },
+              {
+                "allSourceTags": [
+                  "angular",
+                  "packages"
+                ],
+                "notDependOnLibsWithTags": [
+                  "nest"
+                ]
+              },
+              {
                 "sourceTag": "standalone",
                 "notDependOnLibsWithTags": [
                   "schematic",
