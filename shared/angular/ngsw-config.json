@@ -26,18 +26,6 @@
   ],
   "dataGroups": [
     {
-      "name": "config",
-      "urls": [
-        "/*.json"
-      ],
-      "cacheConfig": {
-        "strategy": "freshness",
-        "maxSize": 10,
-        "maxAge": "1d",
-        "timeout": "30s"
-      }
-    },
-    {
       "name": "api",
       "urls": [
         "/api/**"

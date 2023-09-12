@@ -51,25 +51,10 @@
         "assets": [
           "demos/angular/src/favicon.ico",
           "demos/angular/src/assets",
-          {
-            "glob": "*.json",
-            "input": "config/",
-            "output": "/"
-          },
-          {
-            "glob": "*",
-            "input": "shared/assets/",
-            "output": "/"
-          },
           "demos/angular/src/manifest.webmanifest",
           {
-            "glob": "*.json",
-            "input": "config/",
-            "output": "."
-          },
-          {
             "glob": "*",
-            "input": "shared/assets/",
+            "input": "shared/angular/assets/",
             "output": "."
           },
           {
@@ -157,7 +142,7 @@
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "options": {
-        "proxyConfig": "shared/proxy.conf.json"
+        "proxyConfig": "shared/angular/proxy.conf.json"
       },
       "configurations": {
         "production": {

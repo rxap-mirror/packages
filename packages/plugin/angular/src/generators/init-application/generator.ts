@@ -73,12 +73,12 @@ function updateProjectTargets(
 
   if (project.targets['docker']) {
     project.targets['docker'].options ??= {};
-    project.targets['docker'].options.dockerfile ??= 'shared/angular.Dockerfile';
+    project.targets['docker'].options.dockerfile ??= 'shared/angular/Dockerfile';
   }
 
   CoerceTarget(project, 'serve', {
     options: {
-      proxyConfig: 'shared/proxy.conf.json',
+      proxyConfig: 'shared/angular/proxy.conf.json',
     },
   }, Strategy.OVERWRITE);
 
@@ -89,19 +89,6 @@ function updateProjectTargets(
       if (options.languages.length === 0) {
         options.languages.push('en');
       }
-      project.targets['i18n'] ??= {
-        executor: '@rxap/plugin-application:i18n',
-        options: {
-          availableLanguages: options.languages,
-          defaultLanguage: options.languages[0],
-          indexHtmlTemplate: 'shared/i18n.index.html.hbs',
-          assets: true,
-        },
-        configurations: {
-          production: {},
-          development: {},
-        },
-      };
       project.targets['build'].configurations.production.localize = options.languages;
       project.i18n ??= {};
       project.i18n.sourceLocale ??= 'en-US';
@@ -155,13 +142,8 @@ function updateProjectTargets(
   project.targets['build'].options.assets ??= [];
   CoerceAssets(project.targets['build'].options.assets, [
     {
-      glob: '*.json',
-      input: 'config/',
-      output: '.',
-    },
-    {
       glob: '*',
-      input: 'shared/assets/',
+      input: 'shared/angular/assets/',
       output: '.',
     },
     {
@@ -184,7 +166,7 @@ function updateProjectTargets(
     project.targets['build'].configurations ??= {};
     project.targets['build'].configurations.production ??= {};
     project.targets['build'].configurations.production.serviceWorker = true;
-    project.targets['build'].configurations.production.ngswConfigPath ??= 'shared/ngsw-config.json';
+    project.targets['build'].configurations.production.ngswConfigPath ??= 'shared/angular/ngsw-config.json';
   }
 }
 
@@ -479,13 +461,13 @@ export async function initApplicationGenerator(
   }
 
   // only add the shared folder if it does not exist
-  if (!tree.exists('shared')) {
-    generateFiles(tree, join(__dirname, 'files', 'shared'), 'shared', options);
+  if (!tree.exists('shared/angular')) {
+    generateFiles(tree, join(__dirname, 'files', 'shared'), 'shared/angular', options);
   }
 
-  // only add the shared folder if it does not exist
-  if (!tree.exists('styles')) {
-    generateFiles(tree, join(__dirname, 'files', 'styles'), 'styles', options);
+  // only add the styles folder if it does not exist
+  if (!tree.exists('shared/angular/styles')) {
+    generateFiles(tree, join(__dirname, 'files', 'styles'), 'shared/angular/styles', options);
   }
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
