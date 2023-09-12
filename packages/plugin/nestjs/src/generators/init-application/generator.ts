@@ -571,7 +571,7 @@ export async function initApplicationGenerator(
   console.log('nestjs application init generator:', options);
 
   // only add the shared folder if it does not exist
-  if (!tree.exists('shared/nestjs')) {
+  if (!tree.exists('shared/nestjs/Dockerfile')) {
     generateFiles(tree, join(__dirname, 'files', 'shared'), 'shared/nestjs', options);
   }
 
@@ -597,15 +597,6 @@ export async function initApplicationGenerator(
     const globalApiPrefix = getApiPrefix(tree, options, projectSourceRoot, projectName);
 
     console.log(`init project: ${ projectName }`);
-
-    generateFiles(tree, join(__dirname, 'files'), project.sourceRoot, {
-      ...options,
-      projectName,
-      tmpl: '',
-      port,
-      globalApiPrefix,
-      statusRegister: projectName === 'service-status' ? false : options.statusRegister,
-    });
 
     updateProjectTargets(project);
     updateGitIgnore(tree, project);
