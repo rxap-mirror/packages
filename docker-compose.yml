@@ -44,7 +44,7 @@ services:
       - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.timeout=3s
     volumes:
-      - ./shared/configuration:/app/assets
+      - ./shared/angular/configuration:/app/assets
     environment:
       - ROOT_DOMAIN
       - SENTRY_ENABLED=false
