@@ -175,6 +175,12 @@ export function CleanupPackageJsonFile<T extends PackageJson = PackageJson>(cont
     if (b === 'license') {
       return 1;
     }
+    if (a === 'scripts') {
+      return -1;
+    }
+    if (b === 'scripts') {
+      return 1;
+    }
     if (a === 'dependencies') {
       return -1;
     }
