@@ -14,9 +14,7 @@
         "main": "applications/service/status/src/main.ts",
         "tsConfig": "applications/service/status/tsconfig.app.json",
         "assets": [
-          "applications/service/status/src/assets",
-          "applications/service/status/src/Dockerfile",
-          "applications/service/status/src/healthcheck.js"
+          "applications/service/status/src/assets"
         ],
         "generatePackageJson": true,
         "target": "node",
@@ -43,7 +41,8 @@
     },
     "docker": {
       "options": {
-        "imageSuffix": "/service/status"
+        "imageSuffix": "/service/status",
+        "dockerfile": "shared/nestjs/Dockerfile"
       }
     },
     "docker-save": {},

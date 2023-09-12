@@ -9,14 +9,9 @@ import {
 } from '@nx/devkit';
 import jsLibraryGenerator from '@nx/js/src/generators/library/library';
 import {
-  CoerceAssets,
   CoerceIgnorePattern,
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
-import {
-  GetTarget,
-  GetTargetOptions,
-} from '@rxap/plugin-utilities';
 import {
   CoerceAppGuardProvider,
   CoerceImports,
@@ -233,14 +228,10 @@ function updateProjectTargets(project: ProjectConfiguration) {
     },
   }, Strategy.OVERWRITE);
 
-  const buildTargetOptions = GetTargetOptions(GetTarget(project, 'build'));
-
-  buildTargetOptions.assets ??= [];
-
-  CoerceAssets(buildTargetOptions.assets as string[], [
-    join(project.sourceRoot!, 'Dockerfile'),
-    join(project.sourceRoot!, 'healthcheck.js'),
-  ]);
+  if (project.targets['docker']) {
+    project.targets['docker'].options ??= {};
+    project.targets['docker'].options.dockerfile ??= 'shared/nestjs/Dockerfile';
+  }
 
 }
 
@@ -573,6 +564,11 @@ export async function initApplicationGenerator(
   options.jwt ??= false;
   options.statusRegister ??= true;
   console.log('nestjs application init generator:', options);
+
+  // only add the shared folder if it does not exist
+  if (!tree.exists('shared/nestjs')) {
+    generateFiles(tree, join(__dirname, 'files', 'shared'), 'shared/nestjs', options);
+  }
 
   setGeneralTargetDefaults(tree);
 

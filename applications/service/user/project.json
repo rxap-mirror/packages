@@ -17,9 +17,7 @@
         "main": "applications/service/user/src/main.ts",
         "tsConfig": "applications/service/user/tsconfig.app.json",
         "assets": [
-          "applications/service/user/src/assets",
-          "applications/service/user/src/Dockerfile",
-          "applications/service/user/src/healthcheck.js"
+          "applications/service/user/src/assets"
         ],
         "isolatedConfig": true,
         "webpackConfig": "applications/service/user/webpack.config.js",
@@ -39,7 +37,8 @@
     "build-info": {},
     "docker": {
       "options": {
-        "imageSuffix": "/service/user"
+        "imageSuffix": "/service/user",
+        "dockerfile": "shared/nestjs/Dockerfile"
       }
     },
     "docker-save": {},

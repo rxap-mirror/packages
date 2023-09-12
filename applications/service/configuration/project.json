@@ -14,8 +14,6 @@
         "main": "applications/service/configuration/src/main.ts",
         "tsConfig": "applications/service/configuration/tsconfig.app.json",
         "assets": [
-          "applications/service/configuration/src/Dockerfile",
-          "applications/service/configuration/src/healthcheck.js",
           "applications/service/configuration/src/assets"
         ],
         "generatePackageJson": true,
@@ -33,11 +31,6 @@
               "with": "applications/service/configuration/src/environments/environment.prod.ts"
             }
           ]
-        },
-        "development": {
-          "assets": [
-            "applications/service/configuration/src/assets"
-          ]
         }
       },
       "defaultConfiguration": "production"
@@ -48,7 +41,8 @@
     },
     "docker": {
       "options": {
-        "imageSuffix": "/service/configuration"
+        "imageSuffix": "/service/configuration",
+        "dockerfile": "shared/nestjs/Dockerfile"
       }
     },
     "docker-save": {},
