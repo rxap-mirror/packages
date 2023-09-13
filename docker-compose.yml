@@ -36,7 +36,7 @@ services:
     volumes:
       - "./docker/not-found-nginx.conf:/etc/nginx/nginx.conf"
   rxap-configuration-service:
-    image: registry.gitlab.com/rxap/packages/service/configuration:${CHANNEL:-development}
+    image: registry.gitlab.com/rxap/packages/service/configuration:${RXAP_CHANNEL:-development}
     labels:
       - traefik.enable=true
       - traefik.http.routers.rxap-configuration.rule=PathPrefix(`/api/configuration`)
@@ -55,7 +55,7 @@ services:
       - catch-all-api
       - rxap-status-service
   rxap-status-service:
-    image: registry.gitlab.com/rxap/packages/service/status:${CHANNEL:-development}
+    image: registry.gitlab.com/rxap/packages/service/status:${RXAP_CHANNEL:-development}
     labels:
       - traefik.enable=true
       - traefik.http.routers.rxap-status.rule=PathPrefix(`/api/status`)
