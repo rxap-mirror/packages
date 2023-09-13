@@ -53,11 +53,7 @@ function getServiceApiPrefixFromAppConfig(name: string, host: Tree): string | nu
 }
 
 function getServiceApiPrefix(name: string, host: Tree) {
-  let globalApiPrefix = getServiceApiPrefixFromDockerFile(name, host);
-  if (!globalApiPrefix) {
-    console.warn(`The service ${ name } has no Dockerfile or the Dockerfile has no GLOBAL_API_PREFIX environment variable!`);
-  }
-  globalApiPrefix = getServiceApiPrefixFromAppConfig(name, host);
+  const globalApiPrefix = getServiceApiPrefixFromAppConfig(name, host) ?? getServiceApiPrefixFromDockerFile(name, host);
   if (!globalApiPrefix) {
     console.warn(`The service ${ name } has no app.config.ts or the app.config.ts has no GLOBAL_API_PREFIX validation schema!`);
   }
