@@ -21,6 +21,10 @@
       "alias": "dry-run",
       "type": "boolean",
       "description": "If true, the generator will be executed in dry run mode"
+    },
+    "verbose": {
+      "type": "boolean",
+      "description": "If true, the generator will be executed in verbose mode"
     }
   },
   "required": []

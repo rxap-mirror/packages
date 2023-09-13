@@ -12,12 +12,16 @@ function buildParameters(options: Record<string, unknown> = {}): string {
   for (const [ key, value ] of Object.entries(options)) {
     if (Array.isArray(value)) {
       for (const item of value) {
-        params.push(`--${ key }=${ item }`);
+        if (typeof item === 'object') {
+          params.push(`--${ key }='${ JSON.stringify(item) }'`);
+        } else {
+          params.push(`--${ key }='${ item }'`);
+        }
       }
     } else if (typeof value === 'object') {
-      params.push(`--${ key }=${ JSON.stringify(value) }`);
+      params.push(`--${ key }='${ JSON.stringify(value) }'`);
     } else {
-      params.push(`--${ key }=${ value }`);
+      params.push(`--${ key }='${ value }'`);
     }
   }
   return params.join(' ');
@@ -71,6 +75,10 @@ export default async function runExecutor(options: RunGeneratorExecutorSchema, c
 
   if (options.dryRun) {
     command += ' --dry-run';
+  }
+
+  if (options.verbose) {
+    command += ' --verbose';
   }
 
   console.log('command: ', command);
