@@ -73,6 +73,19 @@
       "outputs": [
         "dist/**/build.json"
       ]
+    },
+    "docker-compose": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-workspace:docker-compose",
+        "withoutProjectArgument": true,
+        "options": {
+          "ignoreProjects": [
+            "service-configuration",
+            "service-status"
+          ]
+        }
+      }
     }
   }
 }
