@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.13...@rxap/plugin-workspace@16.1.0-dev.14) (2023-09-13)
+
+### Bug Fixes
+
+- remove m2v dependency ([73f0203](https://gitlab.com/rxap/packages/commit/73f0203a21aeaa3a0405f8ce3baa6b1b2a1a755f))
+
 # [16.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.12...@rxap/plugin-workspace@16.1.0-dev.13) (2023-09-12)
 
 ### Bug Fixes
