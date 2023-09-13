@@ -19,6 +19,14 @@
         "type": "string"
       },
       "description": "The projects to ignore when generating docker compose service"
+    },
+    "serviceEnvironments": {
+      "alias": "serviceEnvironment",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The environment variables to be used in docker compose service"
     }
   },
   "required": []

@@ -43,7 +43,8 @@ function getServiceApiPrefixFromAppConfig(name: string, host: Tree): string | nu
     return null;
   }
   const appConfig = host.read(appConfigFilePath)!.toString('utf-8');
-  const match = appConfig.match(/validationSchema\['GLOBAL_API_PREFIX'] = Joi.string\(\).default\('([^']+)'\);/);
+  const match = appConfig.match(
+    /validationSchema\['GLOBAL_API_PREFIX']\s*=\s*Joi.string\(\).default\(\s*'([^']+)',?\s*\);/);
   if (!match) {
     return null;
   }
@@ -74,6 +75,7 @@ function buildImageName(docker: Record<string, string>, rootDocker: RootDockerOp
 function createServiceDockerCompose(
   services: Array<{ name: string; docker: Record<string, string> }>,
   rootDocker: RootDockerOptions,
+  options: DockerComposeGeneratorSchema,
 ): string {
   return stringify({
     version: '3.8',
@@ -94,8 +96,8 @@ function createServiceDockerCompose(
           `traefik.http.services.${ name }.loadbalancer.healthCheck.timeout=3s`,
         ],
         environment: [
-          `LEGACY_BASE_URL=https://\${REMOTE_DOMAIN}/backend`,
-          `SERVICE_SERVER_BASE_URL=https://\${REMOTE_DOMAIN}/vpn`,
+          ...options.serviceEnvironments ?? [],
+          'STATUS_SERVICE_BASE_URL=http://rxap-status-service:3000',
           'ROOT_DOMAIN',
           'SENTRY_ENABLED=false',
           'LOG_LEVEL=verbose',
@@ -172,7 +174,7 @@ function createDevServiceTraefikConfig(
         }
         const appModule = host.read(appModuleFilePath)!.toString('utf-8');
         const portMatch = appModule.match(
-          /validationSchema\['PORT'] = Joi.number\(\).default\((\d+)\)/,
+          /validationSchema\['PORT']\s*=\s*Joi.number\(\).default\((\d+)\)/,
         );
         if (!portMatch) {
           throw new Error(`The service ${ name } has no PORT environment variable!`);
@@ -248,7 +250,7 @@ export async function dockerComposeGenerator(
   const frontendApplications = getFrontendApplications(applications, options);
 
   const rootDocker = GetRootDockerOptions(tree);
-  const serviceDockerCompose = createServiceDockerCompose(serviceApplications, rootDocker);
+  const serviceDockerCompose = createServiceDockerCompose(serviceApplications, rootDocker, options);
   const frontendDockerCompose = createFrontendDockerCompose(frontendApplications, rootDocker);
   const traefikConfig = createDevServiceTraefikConfig(serviceApplications, tree);
 

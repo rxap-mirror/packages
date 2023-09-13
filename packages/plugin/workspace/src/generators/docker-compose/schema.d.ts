@@ -2,4 +2,5 @@
 export interface DockerComposeGeneratorSchema {
   tags: string[];
   ignoreProjects: string[];
+  serviceEnvironments?: string[];
 }
