@@ -38,6 +38,7 @@ export interface _RxapAbstractControlOptions extends AbstractControlOptions {
     | AbstractType<InjectableValidator>
   >;
   controlType?: Constructor<RxapFormControl>;
+  disabled?: boolean;
 }
 
 export type RxapAbstractControlOptions<

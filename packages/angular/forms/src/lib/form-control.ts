@@ -1,4 +1,12 @@
 import { UntypedFormControl } from '@angular/forms';
+import { coerceArray } from '@rxap/utilities';
+import {
+  isObservable,
+  Observable,
+  Subject,
+  Subscription,
+} from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 import {
   controlDisabled$,
   controlDisabledWhile,
@@ -16,6 +24,12 @@ import {
   validateControlOn,
 } from './control-actions';
 import {
+  FormDefinition,
+  FormType,
+  RxapAbstractControlOptions,
+  SetValueFn,
+} from './model';
+import {
   AsyncValidator,
   ControlEventOptions,
   ControlOptions,
@@ -26,20 +40,6 @@ import {
   OrBoxedValue,
   Validator,
 } from './types';
-import { distinctUntilChanged } from 'rxjs/operators';
-import {
-  isObservable,
-  Observable,
-  Subject,
-  Subscription,
-} from 'rxjs';
-import { coerceArray } from '@rxap/utilities';
-import {
-  FormDefinition,
-  FormType,
-  RxapAbstractControlOptions,
-  SetValueFn,
-} from './model';
 
 export class RxapFormControl<
   T = any,
@@ -128,6 +128,9 @@ export class RxapFormControl<
   ) {
     super(formState, options);
     this.controlId = options.controlId;
+    if (options.disabled) {
+      this.disable({ emitEvent: false });
+    }
     this.initialState = formState;
   }
 

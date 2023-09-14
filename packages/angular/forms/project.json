@@ -64,6 +64,15 @@
       }
     },
     "update-dependencies": {},
-    "update-package-group": {}
+    "update-package-group": {},
+    "component-test": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "packages/angular/forms/cypress.config.ts",
+        "testingType": "component",
+        "skipServe": true,
+        "devServerTarget": "angular:build:development"
+      }
+    }
   }
 }

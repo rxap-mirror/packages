@@ -1,11 +1,41 @@
+import { Validators } from '@angular/forms';
 import {
   of,
   Subject,
 } from 'rxjs';
-import { Validators } from '@angular/forms';
+import { RxapForm } from './decorators/form';
+import { UseFormControl } from './decorators/use-form-control';
+import { RxapFormBuilder } from './form-builder';
 import { RxapFormControl } from './form-control';
+import { FormType } from './model';
 
 describe('@rxap/forms', () => {
+
+  describe('Form Definition', () => {
+
+    interface ITestForm {
+      username: string;
+    }
+
+    it('should be disabled if the disabled option is set', () => {
+
+      @RxapForm('test')
+      class TestForm implements FormType<ITestForm> {
+
+        @UseFormControl({ disabled: true })
+        username!: RxapFormControl<string>;
+
+      }
+
+      const builder = new RxapFormBuilder<ITestForm>(TestForm);
+
+      const form = builder.build() as FormType<ITestForm>;
+
+      expect(form.username.disabled).toBeTruthy();
+
+    });
+
+  });
 
   describe('FormControl', () => {
 
