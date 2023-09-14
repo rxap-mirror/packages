@@ -1,0 +1,11 @@
+<dialog #dialog
+        class="max-w-6xl rounded overflow-auto drop-shadow-2xl dark:bg-black dark:text-white flex flex-col gap-3 p-6">
+  <rxap-changelog></rxap-changelog>
+  <div class="flex flex-row justify-end gap-6">
+    <div class="flex flex-row gap-3 items-center">
+      <input [(ngModel)]="remember" id="rxap-changelog-remember" type="checkbox">
+      <label for="rxap-changelog-remember" i18n>Don't show again until next new version</label>
+    </div>
+    <button (click)="close()" class="px-4 py-2 rounded bg-primary-500" i18n>close</button>
+  </div>
+</dialog>

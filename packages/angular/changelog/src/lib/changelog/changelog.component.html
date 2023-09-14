@@ -1,0 +1,40 @@
+<div class="flex flex-col gap-3">
+  <div *ngIf="availableVersions().length" class="controls flex justify-center space-x-2 my-4">
+    <button
+      (click)="activeIndex.set(selectedIndex() - 1)"
+      [disabled]="selectedIndex() <= 0"
+      [ngClass]="{
+      'bg-gray-100 dark:bg-gray-900': selectedIndex() <= 0,
+      'hover:bg-gray-300': selectedIndex() > 0,
+      }"
+      class="px-4 py-2 bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 transition-colors duration-150 rounded">Previous
+    </button>
+    <button (click)="activeIndex.set(item.index)"
+            *ngFor="let item of displayedButtons()"
+            [ngClass]="{
+            'bg-primary-500': item.index === selectedIndex(),
+            'bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 hover:bg-gray-300 transition-colors duration-150': item.index !== selectedIndex()
+            }"
+            class="px-4 py-2 rounded">
+      {{ item.version }}
+    </button>
+    <button
+      (click)="activeIndex.set(selectedIndex() + 1)"
+      [disabled]="selectedIndex() >= availableVersions().length - 1"
+      [ngClass]="{
+      'bg-gray-100 dark:bg-gray-900': selectedIndex() >= availableVersions().length - 1,
+      'hover:bg-gray-300': selectedIndex() < availableVersions().length - 1,
+      }"
+      class="px-4 py-2 bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-900 hover:bg-gray-300 transition-colors duration-150 rounded">Next
+    </button>
+  </div>
+  <hr>
+  <div class="flex flex-col gap-6 p-8 overflow-auto" style="max-height: 60vh">
+    <ng-container *rxapMethod="let changelog call getChangelogMethod; parameters: getChangelogMethodParameters()">
+      <markdown *ngFor="let general of changelog.general" [data]="general" class="prose dark:prose-invert">
+      </markdown>
+      <markdown *ngFor="let application of changelog.application" [data]="application" class="prose dark:prose-invert">
+      </markdown>
+    </ng-container>
+  </div>
+</div>

@@ -85,7 +85,7 @@
         "cypressConfig": "packages/angular/changelog/cypress.config.ts",
         "testingType": "component",
         "skipServe": true,
-        "devServerTarget": "angular-changelog:build:development"
+        "devServerTarget": "angular:build:development"
       },
       "configurations": {
         "open": {
