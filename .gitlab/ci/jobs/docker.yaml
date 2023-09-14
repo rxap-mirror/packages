@@ -9,8 +9,6 @@
   script: /bin/sh tools/scripts/build-and-push-docker-image.sh
   environment:
     action: prepare
-  variables:
-    GIT_LFS_SKIP_SMUDGE: "1"
   rules:
     - if: $DISABLE_DOCKER_BUILD
       when: never
@@ -24,6 +22,15 @@ docker:angular:
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /user-interface/angular
     DOCKERFILE: shared/angular/Dockerfile
+  environment:
+    name: $ENVIRONMENT_NAME
+docker:service-changelog:
+  extends: .docker
+  variables:
+    DOCKER_CONTEXT: dist/applications/service/changelog
+    IMAGE_NAME: rxap/packages
+    IMAGE_SUFFIX: /service/changelog
+    DOCKERFILE: shared/nestjs/Dockerfile
   environment:
     name: $ENVIRONMENT_NAME
 docker:service-configuration:

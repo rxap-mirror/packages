@@ -1,0 +1,163 @@
+{
+  "name": "service-changelog",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "applications/service/changelog/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/applications/service/changelog",
+        "main": "applications/service/changelog/src/main.ts",
+        "tsConfig": "applications/service/changelog/tsconfig.app.json",
+        "assets": [
+          "applications/service/changelog/src/assets"
+        ],
+        "isolatedConfig": true,
+        "webpackConfig": "applications/service/changelog/webpack.config.js",
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "development": {
+          "progress": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "applications/service/changelog/src/environments/environment.ts",
+              "with": "applications/service/changelog/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "service-changelog:build:development"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "service-changelog:build:development"
+        },
+        "production": {
+          "buildTarget": "service-changelog:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "applications/service/changelog/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "applications/service/changelog/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "build-info": {
+      "executor": "@rxap/plugin-application:build-info",
+      "options": {},
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "docker": {
+      "executor": "@rxap/plugin-docker:build",
+      "options": {
+        "imageSuffix": "/service/changelog",
+        "dockerfile": "shared/nestjs/Dockerfile"
+      },
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "docker-save": {
+      "executor": "@rxap/plugin-docker:save",
+      "options": {},
+      "configurations": {
+        "production": {},
+        "development": {}
+      }
+    },
+    "generate-package-json": {
+      "executor": "@rxap/plugin-nestjs:package-json",
+      "configurations": {
+        "production": {}
+      }
+    },
+    "generate-open-api": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/plugin-open-api:generate",
+        "options": {
+          "project": "open-api-service-changelog",
+          "path": "dist/swagger/applications/service/changelog/openapi.json",
+          "serverId": "service-changelog"
+        }
+      }
+    },
+    "swagger-build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/swagger/applications/service/changelog",
+        "main": "applications/service/changelog/src/swagger.ts",
+        "target": "node",
+        "compiler": "tsc",
+        "webpackConfig": "applications/service/changelog/webpack.config.js",
+        "transformers": [
+          "@nestjs/swagger/plugin"
+        ],
+        "tsConfig": "applications/service/changelog/tsconfig.app.json",
+        "fileReplacements": [
+          {
+            "replace": "applications/service/changelog/src/environments/environment.ts",
+            "with": "applications/service/changelog/src/environments/environment.swagger.ts"
+          }
+        ]
+      }
+    },
+    "swagger-generate": {
+      "executor": "@nx/js:node",
+      "outputs": [
+        "dist/swagger/applications/service/changelog/openapi.json"
+      ],
+      "options": {
+        "buildTarget": "service-changelog:swagger-build",
+        "watch": false
+      }
+    }
+  },
+  "tags": [
+    "nest"
+  ]
+}

@@ -19,7 +19,6 @@
           "update-dependencies",
           "update-package-group",
           "check-version",
-          "component-test",
           "check-ng-package",
           "generate-open-api",
           "ci-info",
@@ -172,7 +171,8 @@
         "build-tailwind",
         "generate-package-json",
         "check-ng-package",
-        "localazy-download"
+        "localazy-download",
+        "build-info"
       ],
       "inputs": [
         "build",

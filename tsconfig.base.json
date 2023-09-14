@@ -131,6 +131,7 @@
       ],
       "@rxap/nest-utilities": ["packages/nest/utilities/src/index.ts"],
       "@rxap/ngx-bootstrap": ["packages/angular/bootstrap/src/index.ts"],
+      "@rxap/ngx-changelog": ["packages/angular/changelog/src/index.ts"],
       "@rxap/ngx-error": ["packages/angular/error/src/index.ts"],
       "@rxap/ngx-material-localize": [
         "packages/angular/material/localize/src/index.ts"
@@ -223,6 +224,9 @@
       "@rxap/xml-parser": ["packages/xml-parser/src/index.ts"],
       "open-api-service-app-angular-table/*": [
         "packages/open-api/service/app/angular/table/src/lib/*"
+      ],
+      "open-api-service-changelog/*": [
+        "packages/open-api/service/changelog/src/lib/*"
       ],
       "open-api-service-configuration/*": [
         "packages/open-api/service/configuration/src/lib/*"

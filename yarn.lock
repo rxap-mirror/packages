@@ -8097,6 +8097,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/ngx-changelog@workspace:packages/angular/changelog":
+  version: 0.0.0-use.local
+  resolution: "@rxap/ngx-changelog@workspace:packages/angular/changelog"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/common": ^16.1.0
+    "@angular/core": ^16.1.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/ngx-error@workspace:packages/angular/error":
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-error@workspace:packages/angular/error"
