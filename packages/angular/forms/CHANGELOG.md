@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/forms@16.0.0-dev.16...@rxap/forms@16.0.0-dev.17) (2023-09-14)
+
+### Bug Fixes
+
+- support the control initial option disabled ([c0fef20](https://gitlab.com/rxap/packages/commit/c0fef20f4aa60a8d9ffb4e3538afc15c3c3756a0))
+- support the control initial option readonly ([e313a99](https://gitlab.com/rxap/packages/commit/e313a9965e19f746ea482a98f585be41b3a61c39))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/forms@16.0.0-dev.15...@rxap/forms@16.0.0-dev.16) (2023-09-12)
 
 ### Bug Fixes
