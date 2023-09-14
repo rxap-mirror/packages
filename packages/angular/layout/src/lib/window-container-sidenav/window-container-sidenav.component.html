@@ -1,6 +1,6 @@
-<div class="container" fxLayout="column" fxLayoutGap="16px">
+<div class="flex flex-col gap-4 p-2">
 
-  <div *ngFor="let portalId of portals.keys(); trackBy: trackBy" fxFlex="nogrow">
+  <div *ngFor="let portalId of portals.keys(); trackBy: trackBy" class="grow-0">
     <ng-template [cdkPortalOutlet]="portals.get(portalId)"></ng-template>
   </div>
 

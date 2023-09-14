@@ -1,4 +1,4 @@
-<div class="container" fxLayout="row">
+<div class="rxap-container" fxLayout="row">
   <div #treeContainer [ngStyle]="{ maxWidth: dividerOffset, minWidth: dividerOffset, flexBasis: dividerOffset }"
        class="tree-container" fxFlex="nogrow">
     <mat-progress-bar *ngIf="!dataSource || (dataSource.loading$ | async)" mode="indeterminate"></mat-progress-bar>

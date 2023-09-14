@@ -12,7 +12,7 @@ import { WindowService } from './window.service';
 @Component({
   template:
     `
-        <div class="container">
+      <div>
             <button mat-raised-button (click)="openWindow(windowContent)">Open</button>
         </div>
         <ng-template #windowContent>

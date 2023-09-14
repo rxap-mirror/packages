@@ -2,6 +2,6 @@
 <ng-template #errorTemplate let-error let-refresh="refresh">
   <<%= prefix %>-data-source-error [error]="error" [refresh]="refresh"></<%= prefix %>-data-source-error>
 </ng-template>
-<div *rxapDataSource="let panel from panelDataSource; errorTemplate: errorTemplate" class="container" fxLayout="column" fxLayoutGap="16px">
+<div *rxapDataSource="let panel from panelDataSource; errorTemplate: errorTemplate" fxLayout="column" fxLayoutGap="16px">
   <pre fxFlex="nogrow">{{ panel | json }}</pre>
 </div>

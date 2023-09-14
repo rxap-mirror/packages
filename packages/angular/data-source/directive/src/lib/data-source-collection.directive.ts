@@ -23,12 +23,12 @@ import {
   TrackByFunction,
   ViewContainerRef,
 } from '@angular/core';
-import { Required } from '@rxap/utilities';
 import {
   BaseDataSource,
   BaseDataSourceViewer,
   DataSourceLoader,
 } from '@rxap/data-source';
+import { IdOrInstanceOrToken } from '@rxap/definition';
 import {
   Observable,
   Subscription,
@@ -38,7 +38,6 @@ import {
   take,
   tap,
 } from 'rxjs/operators';
-import { IdOrInstanceOrToken } from '@rxap/definition';
 
 export class DataSourceCollectionTemplateContext<Data> {
   constructor(
@@ -217,10 +216,8 @@ export class DataSourceCollectionDirective<Data = any>
 
   // TODO : handel that case: a new data source instance is provided and an open connection to the old data source exists.
   public ngOnChanges(changes: SimpleChanges) {
-    console.log('ngOnChanges');
     const dataSourceOrIdOrTokenChange = changes['dataSourceOrIdOrToken'];
     if (dataSourceOrIdOrTokenChange) {
-      console.log('load data source');
       this.dataSource = this.loadDataSource();
       // Dont connect to the data source on the first change.
       // Else the parent/sibling components are not initialized
@@ -236,7 +233,6 @@ export class DataSourceCollectionDirective<Data = any>
   }
 
   public ngAfterViewInit() {
-    console.log('ngAfterViewInit');
     this.connect();
   }
 

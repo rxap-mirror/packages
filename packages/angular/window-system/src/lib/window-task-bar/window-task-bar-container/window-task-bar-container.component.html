@@ -1,4 +1,4 @@
-<div *ngIf="windowService.hasActiveWindows" class="container" fxLayout="column">
+<div *ngIf="windowService.hasActiveWindows" class="rxap-container" fxLayout="column">
   <div fxFlex="nogrow" fxLayout="row" fxLayoutAlign="end end">
     <button (click)="expand = !expand"
             [matBadgeHidden]="!windowService.hasActiveWindows"
