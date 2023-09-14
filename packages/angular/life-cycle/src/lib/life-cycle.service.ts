@@ -3,19 +3,20 @@ import {
   Inject,
   Injectable,
 } from '@angular/core';
+import { isPromiseLike } from '@rxap/utilities';
+import {
+  BehaviorSubject,
+  firstValueFrom,
+  isObservable,
+  Observable,
+  of,
+} from 'rxjs';
 import {
   filter,
   switchMap,
   take,
   tap,
 } from 'rxjs/operators';
-import {
-  BehaviorSubject,
-  isObservable,
-  Observable,
-  of,
-} from 'rxjs';
-import { isPromiseLike } from '@rxap/utilities';
 
 export interface LifeCycleHook {
   promise: PromiseLike<any>;
@@ -31,12 +32,12 @@ export class LifeCycleService {
 
   constructor(@Inject(ApplicationRef) public readonly appRef: ApplicationRef) {
 
-    LifeCycleService.AddHook('stable', appRef.isStable.pipe(
-      tap(() => console.log('is app stable')),
+    LifeCycleService.AddHook('stable', firstValueFrom(appRef.isStable.pipe(
+      tap(isStable => console.log('app state:', isStable ? 'stable' : 'unstable')),
       filter(Boolean),
       take(1),
       tap(() => console.log('app is ready')),
-    ).toPromise());
+    )));
 
     Promise.all(Array.from(LifeCycleService.hooks.values()).map(hook => hook.promise))
            .then(() => this.isReady$.next(true));
