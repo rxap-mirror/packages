@@ -79,14 +79,6 @@
         }
       }
     },
-    "build-info": {
-      "executor": "@rxap/plugin-application:build-info",
-      "options": {},
-      "configurations": {
-        "production": {},
-        "development": {}
-      }
-    },
     "docker": {
       "executor": "@rxap/plugin-docker:build",
       "options": {

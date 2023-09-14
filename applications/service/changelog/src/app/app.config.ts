@@ -1,6 +1,7 @@
 import { GenerateRandomString } from '@rxap/utilities';
 import * as Joi from 'joi';
 import { SchemaMap } from 'joi';
+import { join } from 'path';
 import * as process from 'process';
 import { environment } from '../environments/environment';
 
@@ -18,4 +19,5 @@ validationSchema['SENTRY_RELEASE'] = Joi.string();
 validationSchema['SENTRY_ENVIRONMENT'] = Joi.string();
 validationSchema['SENTRY_ENABLED'] = Joi.string().default(environment.sentry?.enabled ?? false);
 validationSchema['SENTRY_DSN'] = Joi.string();
+validationSchema['DATA_DIR'] = Joi.string().default(environment.production ? '/app/assets' : join(__dirname, 'assets'));
 export const VALIDATION_SCHEMA = Joi.object(validationSchema);

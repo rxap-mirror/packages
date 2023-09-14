@@ -1,3 +1,4 @@
+import { CacheModule } from '@nestjs/cache-manager';
 import {
   HttpException,
   Module,
@@ -24,6 +25,7 @@ import {
   GetLogLevels,
   SentryOptionsFactory,
 } from '@rxap/nest-utilities';
+import { ChangelogModule } from '../changelog/changelog.module';
 import { environment } from '../environments/environment';
 import { VALIDATION_SCHEMA } from './app.config';
 
@@ -33,6 +35,9 @@ import { HealthModule } from './health/health.module';
 @Module({
   imports: [
     HealthModule,
+    CacheModule.register({
+      isGlobal: true,
+    }),
     ThrottlerModule.forRootAsync(
       {
         imports: [ ConfigModule ],
@@ -55,6 +60,7 @@ import { HealthModule } from './health/health.module';
       }, {
         logLevels: GetLogLevels(),
       }),
+    ChangelogModule,
   ],
   controllers: [ AppController ],
   providers: [
