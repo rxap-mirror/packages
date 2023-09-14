@@ -1,6 +1,6 @@
-<div class="flex flex-col items-center justify-center min-h-screen mx-auto bg-gray-100">
+<div class="flex flex-col items-center justify-center min-h-screen mx-auto">
 
-  <div class="bg-white rounded-lg shadow-lg p-8 w-full md:w-1/2">
+  <div class="bg-white dark:bg-black rounded-lg shadow-lg p-8 w-full md:w-1/2 m-8">
     <h2 class="text-2xl font-semibold mb-4" i18n>API Status Check</h2>
 
     <hr class="mb-4">
@@ -9,19 +9,19 @@
     <div *ngIf="statusIsAvailable()">
       <h3 class="text-xl font-semibold mb-2" i18n>Services</h3>
       <div>
-        <table class="min-w-full bg-white border border-gray-300">
+        <table class="min-w-full border border-gray-300">
           <tbody>
           <tr *ngFor="let service of services(); trackBy: trackBy" [ngClass]="{
-              'bg-green-100': service.status === 'up',
-              'bg-red-100': service.status === 'down',
-              'bg-yellow-100': service.status === 'loading',
+              'bg-green-100 dark:bg-green-900': service.status === 'up',
+              'bg-red-100 dark:bg-red-900': service.status === 'down',
+              'bg-yellow-100 dark:bg-yellow-900': service.status === 'loading',
             }" class="border-b border-gray-300">
             <th class="p-2 text-left">{{ service.name }}</th>
             <td class="p-2 text-center">{{ service.message }}</td>
             <td [ngClass]="{
-              'text-green-700': service.status === 'up',
-              'text-red-700': service.status === 'down',
-              'text-yellow-700': service.status === 'loading',
+              'text-green-700 dark:text-green-300': service.status === 'up',
+              'text-red-700 dark:text-red-300': service.status === 'down',
+              'text-yellow-700 dark:text-yellow-300': service.status === 'loading',
             }" class="p-2 text-right font-bold">{{ service.status }}</td>
           </tr>
           </tbody>
@@ -72,7 +72,7 @@
 </div>
 
 <div *ngIf="showRedirectWarning()" class="fixed inset-0 flex items-center justify-center z-50 shadow-lg">
-  <div class="bg-white p-6 rounded shadow-lg">
+  <div class="bg-white dark:bg-black p-6 rounded shadow-lg">
     <h1 class="text-xl font-semibold mb-4" i18n>Warning</h1>
     <p class="w-96" i18n><b>Caution</b>: Some services are currently <b
       class="text-red-500">down</b>. If you proceed, you will be redirected to the application's home page.
