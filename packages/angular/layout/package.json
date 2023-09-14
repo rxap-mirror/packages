@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.23",
+  "version": "16.0.0-dev.24",
   "name": "@rxap/layout",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -17,7 +17,7 @@
     "@rxap/authentication": "^16.0.0-dev.14",
     "@rxap/browser-utilities": "^0.0.2-dev.8",
     "@rxap/config": "^16.0.0-dev.15",
-    "@rxap/data-source": "^16.0.0-dev.17",
+    "@rxap/data-source": "^16.0.0-dev.18",
     "@rxap/directives": "^16.0.0-dev.15",
     "@rxap/environment": "^16.0.0-dev.14",
     "@rxap/icon": "^16.0.0-dev.15",
@@ -61,7 +61,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/directives",

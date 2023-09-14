@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.16",
+  "version": "16.0.0-dev.17",
   "name": "@rxap/tree",
   "description": "A collection of components, data-sources and remote methods the simplify the usage of tree like components",
   "license": "GPL-3.0-or-later",
@@ -13,7 +13,7 @@
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/material": "^16.1.4",
     "@rxap/contenteditable": "^16.0.0-dev.14",
-    "@rxap/data-source": "^16.0.0-dev.17",
+    "@rxap/data-source": "^16.0.0-dev.18",
     "@rxap/data-structure-tree": "^1.0.1-dev.11",
     "@rxap/material-directives": "^16.0.0-dev.17",
     "@rxap/pattern": "^1.0.1-dev.10",
@@ -51,7 +51,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/data-structure-tree",

@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.15",
+  "version": "16.0.0-dev.16",
   "name": "@rxap/components",
   "description": "A collection of utility angular components used in RxAP.",
   "license": "GPL-3.0-or-later",

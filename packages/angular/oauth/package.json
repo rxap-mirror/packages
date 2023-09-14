@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.14",
+  "version": "16.0.0-dev.15",
   "name": "@rxap/oauth",
   "license": "GPL-3.0-or-later",
   "dependencies": {

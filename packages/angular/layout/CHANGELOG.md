@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.23...@rxap/layout@16.0.0-dev.24) (2023-09-14)
+
+### Bug Fixes
+
+- remove css class usage of container ([9a1969f](https://gitlab.com/rxap/packages/commit/9a1969f8748a08d6d948f9e7d4f4b511c1349352))
+
 # [16.0.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.22...@rxap/layout@16.0.0-dev.23) (2023-09-12)
 
 ### Bug Fixes
