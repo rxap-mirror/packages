@@ -59,7 +59,10 @@ export class StatusIndicatorComponent implements OnInit, OnDestroy {
   private subscription?: Subscription;
 
   constructor() {
-    this.services = Object.keys(this.config.get('api', {}));
+    this.services = Object
+      .entries(this.config.get('api', {}))
+      .filter(([ _, value ]: [ string, any ]) => typeof value === 'object' && value && !!value['statusCheck'])
+      .map(([ key ]) => key);
     this.queryParams = toSignal(this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
       map(event => ({
