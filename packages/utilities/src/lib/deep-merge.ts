@@ -3,7 +3,8 @@ import {
   RecursivePartial,
 } from './helpers';
 
-export type MergeFunction = (lVal: any, rVal: any) => any;
+export type MergeFunction = (lVal: any, rVal: any, mergeArrayFunction: MergeArrayFunction) => any;
+export type MergeArrayFunction = (lVal: any[], rVal: any[], mergeDeepFunction: MergeFunction) => any[];
 
 /**
  * Checks if the provided object has a specific property.
@@ -120,6 +121,7 @@ function mergeDeepWithKey(
  *
  * @param {any} lObj - The first object to be merged. This object's properties will be overridden by `rObj`'s properties in case of a conflict.
  * @param {any} rObj - The second object to be merged. This object's properties will override `lObj`'s properties in case of a conflict.
+ * @param {MergeArrayFunction} mergeArrayFunction - The function used to merge arrays
  *
  * @returns {any} A new object that is the result of a deep merge of `lObj` and `rObj`. In case of a conflict, the properties of `rObj` will take precedence.
  *
@@ -129,12 +131,12 @@ function mergeDeepWithKey(
  *
  * @function MergeDeepRight
  */
-export function MergeDeepRight(lObj: any, rObj: any) {
+export function MergeDeepRight(lObj: any, rObj: any, mergeArrayFunction: MergeArrayFunction) {
   return mergeDeepWithKey(
     function (k, lVal, rVal) {
       if (Array.isArray(rVal)) {
         if (Array.isArray(lVal)) {
-          return mergeArray(lVal, rVal, MergeDeepRight);
+          return mergeArrayFunction(lVal, rVal, MergeDeepRight);
         }
       }
       return rVal === undefined ? lVal : rVal;
@@ -149,6 +151,7 @@ export function MergeDeepRight(lObj: any, rObj: any) {
  *
  * @param {any} lObj - The first object to be merged. This object's properties will override `rObj`'s properties in case of a conflict.
  * @param {any} rObj - The second object to be merged. This object's properties will be overridden by `lObj`'s properties in case of a conflict.
+ * @param {MergeArrayFunction} mergeArrayFunction - The function used to merge arrays
  *
  * @returns {any} A new object that is the result of a deep merge of `lObj` and `rObj`. In case of a conflict, the properties of `lObj` will take precedence.
  *
@@ -158,12 +161,12 @@ export function MergeDeepRight(lObj: any, rObj: any) {
  *
  * @function MergeDeepLeft
  */
-export function MergeDeepLeft(lObj: any, rObj: any) {
+export function MergeDeepLeft(lObj: any, rObj: any, mergeArrayFunction: MergeArrayFunction) {
   return mergeDeepWithKey(
     function (k, lVal, rVal) {
       if (Array.isArray(lVal)) {
         if (Array.isArray(rVal)) {
-          return mergeArray(lVal, rVal, MergeDeepLeft);
+          return mergeArrayFunction(lVal, rVal, MergeDeepLeft);
         }
       }
       return lVal === undefined ? rVal : lVal;
@@ -173,7 +176,7 @@ export function MergeDeepLeft(lObj: any, rObj: any) {
   );
 }
 
-function mergeArray(a: any[], b: any[], mergeDeepFunction: MergeFunction) {
+export function MergeArrayDeep(a: any[], b: any[], mergeDeepFunction: MergeFunction) {
   const clone: any[] = a.slice();
   for (let i = 0; i < Math.max(a.length, b.length); i++) {
     if (b[i] !== undefined) {
@@ -185,6 +188,14 @@ function mergeArray(a: any[], b: any[], mergeDeepFunction: MergeFunction) {
     }
   }
   return clone as any;
+}
+
+export function UseLeftArray(a: any[], b: any[], mergeDeepFunction: MergeFunction) {
+  return a.slice();
+}
+
+export function UseRightArray(a: any[], b: any[], mergeDeepFunction: MergeFunction) {
+  return b.slice();
 }
 
 /**
@@ -219,10 +230,14 @@ export function deepMerge<T>(
   a: T,
   b: Partial<T> | RecursivePartial<T> | T,
   mergeDeepFunction: MergeFunction = MergeDeepRight,
+  mergeArrayFunction?: MergeArrayFunction,
 ): T {
+  if (!mergeArrayFunction) {
+    mergeArrayFunction = mergeDeepFunction === MergeDeepRight ? UseRightArray : UseLeftArray;
+  }
   if (Array.isArray(a as any) || Array.isArray(b as any)) {
     if (Array.isArray(a as any) && Array.isArray(b as any)) {
-      return mergeArray(a as any, b as any, mergeDeepFunction) as any;
+      return mergeArrayFunction(a as any, b as any, mergeDeepFunction) as any;
     }
   }
 
@@ -235,5 +250,5 @@ export function deepMerge<T>(
     return b as any;
   }
 
-  return mergeDeepFunction(a, b) as any;
+  return mergeDeepFunction(a, b, mergeArrayFunction) as any;
 }

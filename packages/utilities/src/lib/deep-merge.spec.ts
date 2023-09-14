@@ -1,5 +1,6 @@
 import {
   deepMerge,
+  MergeArrayDeep,
   MergeDeepLeft,
 } from './deep-merge';
 
@@ -46,7 +47,8 @@ describe('Utilities', () => {
     it('merge array values', () => {
 
       expect(deepMerge([], [])).toEqual([]);
-      expect(deepMerge([ 'a' ], [])).toEqual([ 'a' ]);
+      expect(deepMerge([ 'a' ], [])).toEqual([]);
+      expect(deepMerge([ 'a' ], [], undefined, MergeArrayDeep)).toEqual([ 'a' ]);
       expect(deepMerge([ 'a' ], [ 'b' ])).toEqual([ 'b' ]);
 
     });
@@ -69,12 +71,14 @@ describe('Utilities', () => {
 
       a[0] = 'test';
 
-      expect(deepMerge(a, b)).toEqual([ 'test' ]);
+      expect(deepMerge(a, b)).toEqual([]);
+      expect(deepMerge(a, b, undefined, MergeArrayDeep)).toEqual([ 'test' ]);
 
       b[1] = 'b';
       b[2] = 'b';
 
-      expect(deepMerge(a, b)).toEqual([ 'test', 'b', 'b' ]);
+      expect(deepMerge(a, b)).toEqual([ undefined, 'b', 'b' ]);
+      expect(deepMerge(a, b, undefined, MergeArrayDeep)).toEqual([ 'test', 'b', 'b' ]);
 
 
     });
@@ -148,6 +152,18 @@ describe('Utilities', () => {
           {
             name: 'name2',
           },
+        ],
+      });
+      expect(deepMerge(a, b, undefined, MergeArrayDeep)).toEqual({
+        concurrent: 15,
+        runners: [
+          {
+            name: 'name',
+            active: true,
+          },
+          {
+            name: 'name2',
+          },
           {
             name: 'old3',
           },
@@ -192,6 +208,20 @@ describe('Utilities', () => {
       };
 
       expect(deepMerge(a, b, MergeDeepLeft)).toEqual({
+        concurrent: 10,
+        runners: [
+          {
+            name: 'old',
+          },
+          {
+            name: 'old2',
+          },
+          {
+            name: 'old3',
+          },
+        ],
+      });
+      expect(deepMerge(a, b, MergeDeepLeft, MergeArrayDeep)).toEqual({
         concurrent: 10,
         runners: [
           {
