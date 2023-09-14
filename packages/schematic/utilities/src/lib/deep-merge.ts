@@ -58,6 +58,9 @@ function mergeDeepRight(lObj: any, rObj: any) {
   );
 }
 
+/**
+ * @deprecated import from @rxap/utilities instead
+ */
 export function deepMerge<T>(a: T, b: Partial<T> | RecursivePartial<T> | T): T {
   if (Array.isArray(a as any) || Array.isArray(b as any)) {
     if (Array.isArray(a as any) && Array.isArray(b as any)) {

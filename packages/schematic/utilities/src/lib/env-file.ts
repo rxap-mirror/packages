@@ -3,8 +3,8 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
+import { deepMerge } from '@rxap/utilities';
 import { CoerceFile } from './coerce-file';
-import { deepMerge } from './deep-merge';
 
 export type EnvFile = Record<string, string | number | boolean>
 
