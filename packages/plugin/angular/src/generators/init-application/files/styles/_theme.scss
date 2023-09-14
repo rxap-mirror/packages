@@ -75,7 +75,8 @@ $dark-theme: mat.define-dark-theme((
 @mixin body-theme($theme) {
 
   $background: mat.get-color-from-palette(map-get($theme, background), background);
-
+  background-color: $background;
+  color: mat.get-color-from-palette(map-get($theme, foreground), text);
   @include loadingAnimation($background);
 
 }
