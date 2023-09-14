@@ -39,6 +39,9 @@ export class StatusCheckService {
   ) {}
 
   public getStatus(serviceNames: string[]): Observable<ApiStatus> {
+    if (serviceNames.length === 0) {
+      return from(Promise.resolve({ status: 'empty' }));
+    }
     const loading = {
       status: 'loading',
       info: serviceNames.reduce((acc, serviceName) => ({
