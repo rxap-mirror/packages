@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.17...@rxap/utilities@16.0.0-dev.18) (2023-09-14)
+
+### Bug Fixes
+
+- support custom deep merge function ([f51a655](https://gitlab.com/rxap/packages/commit/f51a65555b5afb1e3db22d28735a44a5e17f8832))
+
 # [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.16...@rxap/utilities@16.0.0-dev.17) (2023-09-12)
 
 ### Bug Fixes

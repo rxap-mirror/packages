@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.0-dev.16...@rxap/schematics-utilities@16.0.0-dev.17) (2023-09-14)
+
+### Bug Fixes
+
+- mark deepMerge as deprecated ([22c27f5](https://gitlab.com/rxap/packages/commit/22c27f5d3c8b54130656cc99d690e76d4fadf70f))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.0-dev.15...@rxap/schematics-utilities@16.0.0-dev.16) (2023-09-12)
 
 ### Bug Fixes

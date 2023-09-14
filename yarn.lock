@@ -8607,7 +8607,7 @@ __metadata:
   peerDependencies:
     "@angular-devkit/schematics": ^16.1.4
     "@nx/devkit": ^16.5.0
-    "@rxap/utilities": ^16.0.0-dev.17
+    "@rxap/utilities": ^16.0.0-dev.18
     "@rxap/workspace-utilities": ^0.1.0-dev.13
     tslib: 2.6.2
   languageName: unknown
