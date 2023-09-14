@@ -1,9 +1,11 @@
+import { CacheInterceptor } from '@nestjs/cache-manager';
 import {
   BadRequestException,
   Controller,
   Get,
   Inject,
   Param,
+  UseInterceptors,
 } from '@nestjs/common';
 import { Public } from '@rxap/nest-utilities';
 import { valid } from 'semver';
@@ -11,6 +13,7 @@ import { ConfigurationService } from './configuration.service';
 
 @Controller()
 @Public()
+@UseInterceptors(CacheInterceptor)
 export class ConfigurationController {
 
   @Inject(ConfigurationService)

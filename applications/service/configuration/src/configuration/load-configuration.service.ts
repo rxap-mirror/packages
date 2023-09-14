@@ -37,7 +37,7 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
   }
 
   load() {
-    this.logger.log('Load configurations from: ' + this.dataDir, 'ConfigurationService');
+    this.logger.log('Load configurations from: ' + this.dataDir, 'LoadConfigurationService');
     if (!existsSync(this.dataDir)) {
       mkdirSync(this.dataDir, { recursive: true });
     }
@@ -49,20 +49,20 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
   }
 
   print() {
-    this.logger.verbose('==== GENERAL CONFIGURATION ====', 'ConfigurationService');
+    this.logger.verbose('==== GENERAL CONFIGURATION ====', 'LoadConfigurationService');
     for (const [ version, configuration ] of this.generalConfiguration.entries()) {
-      this.logger.verbose('version: ' + version, 'ConfigurationService');
-      this.logger.verbose(JSON.stringify(configuration, null, 2), 'ConfigurationService');
+      this.logger.verbose('version: ' + version, 'LoadConfigurationService');
+      this.logger.verbose(JSON.stringify(configuration, null, 2), 'LoadConfigurationService');
     }
-    this.logger.verbose('==== APPLICATION CONFIGURATION ====', 'ConfigurationService');
+    this.logger.verbose('==== APPLICATION CONFIGURATION ====', 'LoadConfigurationService');
     for (const [ application, map ] of this.applicationConfiguration.entries()) {
-      this.logger.verbose('==== ' + application + ' ====', 'ConfigurationService');
+      this.logger.verbose('==== ' + application + ' ====', 'LoadConfigurationService');
       for (const [ version, configuration ] of map.entries()) {
-        this.logger.verbose('version: ' + version, 'ConfigurationService');
-        this.logger.verbose(JSON.stringify(configuration, null, 2), 'ConfigurationService');
+        this.logger.verbose('version: ' + version, 'LoadConfigurationService');
+        this.logger.verbose(JSON.stringify(configuration, null, 2), 'LoadConfigurationService');
       }
     }
-    this.logger.verbose('Configuration Loaded', 'ConfigurationService');
+    this.logger.verbose('Configuration Loaded', 'LoadConfigurationService');
   }
 
   onApplicationBootstrap(): void {
@@ -88,7 +88,7 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
       const watcher = watch(this.dataDir).on(
         'change',
         (filename: string) => {
-          this.logger.verbose('file change event for: ' + filename, 'ConfigurationService');
+          this.logger.verbose('file change event for: ' + filename, 'LoadConfigurationService');
           this.loadFile(filename);
           subscriber.next(filename);
         },
@@ -102,7 +102,7 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
     if (fragments.length !== 2 && fragments.length !== 3) {
       this.logger.error(
         'invalid configuration file path: ' + relativePath + ' nested configuration is not supported',
-        'ConfigurationService',
+        'LoadConfigurationService',
       );
       return false;
     }
@@ -110,7 +110,7 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
     if (!valid(version) && version !== 'latest') {
       this.logger.error(
         `invalid version: '${ version }' for loaded file path ${ relativePath }`,
-        'ConfigurationService',
+        'LoadConfigurationService',
       );
       return false;
     }
@@ -118,7 +118,7 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
     if (!name?.match(/config\..*\.json/) && name !== 'config.json') {
       this.logger.error('invalid configuration file path: ' +
         relativePath +
-        ' file name does not match the expected pattern', 'ConfigurationService');
+        ' file name does not match the expected pattern', 'LoadConfigurationService');
       return false;
     }
     return true;
@@ -133,7 +133,7 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
       this.logger.error(
         'Invalid configuration file could not extract version from path: ' + relativePath,
         undefined,
-        'ConfigurationService',
+        'LoadConfigurationService',
       );
       throw new InternalServerErrorException(`Invalid configuration file could not extract version from path`);
     }
@@ -141,7 +141,7 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
       this.logger.error(
         'Invalid configuration file could not extract name from path: ' + relativePath,
         undefined,
-        'ConfigurationService',
+        'LoadConfigurationService',
       );
       throw new InternalServerErrorException(`Invalid configuration file could not extract name from path`);
     }
@@ -157,7 +157,7 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
     if (relativePath.includes('.gitkeep')) {
       return false;
     }
-    this.logger.debug('load configuration: ' + relativePath, 'ConfigurationService');
+    this.logger.debug('load configuration: ' + relativePath, 'LoadConfigurationService');
     if (!this.validatedConfigurationFilePath(relativePath)) {
       return;
     }
@@ -176,7 +176,7 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
       if (!match) {
         this.logger.error('invalid configuration file path: ' +
           relativePath +
-          ' file name does not match the expected pattern', 'ConfigurationService');
+          ' file name does not match the expected pattern', 'LoadConfigurationService');
         return;
       }
       this.applyConfiguration(configuration, partialConfiguration, match[1]);
@@ -230,7 +230,7 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
       let value = process.env[variableName];
       if (value === undefined || value === null) {
         if (optional) {
-          this.logger.debug('optional environment variable not found: ' + p1, 'ConfigurationService');
+          this.logger.debug('optional environment variable not found: ' + p1, 'LoadConfigurationService');
           value = '';
         } else {
           throw new InternalServerErrorException('environment variable not found: ' + p1);

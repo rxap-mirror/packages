@@ -1,3 +1,4 @@
+import { CacheModule } from '@nestjs/cache-manager';
 import {
   HttpException,
   Logger,
@@ -34,6 +35,7 @@ import { HealthModule } from './health/health.module';
 @Module({
   imports: [
     HealthModule,
+    CacheModule.register(),
     ConfigurationModule,
     ThrottlerModule.forRootAsync(
       {
