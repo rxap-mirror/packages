@@ -1,5 +1,5 @@
 <dialog #dialog
-        class="max-w-6xl rounded overflow-auto drop-shadow-2xl dark:bg-black dark:text-white flex flex-col gap-3">
+        class="max-w-6xl rounded overflow-auto drop-shadow-2xl dark:bg-black dark:text-white flex flex-col gap-3 p-6">
   <div *ngIf="data().length > 1" class="controls flex justify-center space-x-2 mt-4">
     <button
       (click)="activeIndex.set(activeIndex() - 1)"
