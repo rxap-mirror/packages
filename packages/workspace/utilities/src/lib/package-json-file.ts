@@ -24,9 +24,7 @@ export function UpdatePackageJson<Tree extends TreeLike>(
   options?: UpdatePackageJsonOptions,
 ) {
   return UpdateJsonFile(tree, async (packageJson) => {
-    console.log(`Update package.json`);
     await updaterOrJsonFile(packageJson);
-    console.log(`Sort package.json properties`);
     CleanupPackageJsonFile(packageJson);
   }, join(options?.basePath ?? '', 'package.json'), options);
 }
