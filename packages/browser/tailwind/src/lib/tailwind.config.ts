@@ -1,3 +1,4 @@
+import * as typography from '@tailwindcss/typography';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
 export const RXAP_TAILWIND_CONFIG = {
@@ -76,5 +77,7 @@ export const RXAP_TAILWIND_CONFIG = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    typography,
+  ],
 };

@@ -82,7 +82,8 @@
         "options": {
           "ignoreProjects": [
             "service-configuration",
-            "service-status"
+            "service-status",
+            "service-changelog"
           ]
         }
       }
