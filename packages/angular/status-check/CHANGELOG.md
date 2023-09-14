@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.1.0-dev.6...@rxap/ngx-status-check@16.1.0-dev.7) (2023-09-14)
+
+### Bug Fixes
+
+- only included marked services ([a6b5d93](https://gitlab.com/rxap/packages/commit/a6b5d9312d3c5701ff3ac9b0770fcee4919fbb16))
+- return empty status on empty service name list ([e50930d](https://gitlab.com/rxap/packages/commit/e50930db79b70665997bcf5de2b3087d19864d1e))
+- support dark mode ([9794279](https://gitlab.com/rxap/packages/commit/9794279c80a304fe7ff176034addb5fd60a0eb47))
+
 # [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.1.0-dev.5...@rxap/ngx-status-check@16.1.0-dev.6) (2023-09-12)
 
 ### Bug Fixes

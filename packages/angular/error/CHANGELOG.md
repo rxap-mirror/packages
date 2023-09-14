@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@16.0.1-dev.2...@rxap/ngx-error@16.0.1-dev.3) (2023-09-14)
+
+### Bug Fixes
+
+- add missing padding ([30dd513](https://gitlab.com/rxap/packages/commit/30dd51326d1b8f938d0ff543c3cd2b4191b8d556))
+
 ## [16.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@16.0.1-dev.1...@rxap/ngx-error@16.0.1-dev.2) (2023-09-12)
 
 ### Bug Fixes

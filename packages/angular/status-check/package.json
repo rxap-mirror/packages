@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.6",
+  "version": "16.1.0-dev.7",
   "name": "@rxap/ngx-status-check",
   "license": "GPL-3.0-or-later",
   "dependencies": {
