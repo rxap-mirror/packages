@@ -39,6 +39,7 @@ export interface _RxapAbstractControlOptions extends AbstractControlOptions {
   >;
   controlType?: Constructor<RxapFormControl>;
   disabled?: boolean;
+  readonly?: boolean;
 }
 
 export type RxapAbstractControlOptions<

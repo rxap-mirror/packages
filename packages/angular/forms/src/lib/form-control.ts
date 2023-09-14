@@ -131,6 +131,9 @@ export class RxapFormControl<
     if (options.disabled) {
       this.disable({ emitEvent: false });
     }
+    if (options.readonly) {
+      this.readonly = true;
+    }
     this.initialState = formState;
   }
 
