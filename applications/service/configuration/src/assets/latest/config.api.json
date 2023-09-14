@@ -4,5 +4,8 @@
   },
   "service-configuration": {
     "baseUrl": "/api/configuration"
+  },
+  "service-changelog": {
+    "baseUrl": "/api/changelog"
   }
 }
