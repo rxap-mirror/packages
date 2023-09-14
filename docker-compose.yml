@@ -46,6 +46,7 @@ services:
     volumes:
       - ./shared/angular/configuration:/app/assets
     environment:
+      - STATUS_SERVICE_BASE_URL=http://rxap-status-service:3000
       - ROOT_DOMAIN
       - SENTRY_ENABLED=false
       - LOG_LEVEL=verbose
@@ -72,6 +73,26 @@ services:
       - catch-all-api
     ports:
       - "5300:3000"
+  rxap-service-changelog:
+    image: ${REGISTRY:-registry.gitlab.com}/rxap/packages/service/changelog:${CHANNEL:-development}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.rxap-service-changelog.rule=PathPrefix(`/api/changelog`)
+      - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.path=/health
+      - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.interval=10s
+      - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.timeout=3s
+    environment:
+      - STATUS_SERVICE_BASE_URL=http://rxap-status-service:3000
+      - ROOT_DOMAIN
+      - SENTRY_ENABLED=false
+      - LOG_LEVEL=verbose
+      - ROOT_DOMAIN_PORT
+    volumes:
+      - ./shared/angular/changelog:/app/assets
+    depends_on:
+      - traefik
+      - catch-all-api
+      - rxap-status-service
   cors-options:
     labels:
       - "traefik.enable=true"
