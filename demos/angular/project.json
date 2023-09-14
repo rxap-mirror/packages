@@ -24,7 +24,8 @@
     "angular",
     "angular-material-table-select",
     "browser-tailwind",
-    "angular-status-check"
+    "angular-status-check",
+    "angular-changelog"
   ],
   "tags": [
     "angular",
@@ -66,7 +67,9 @@
         "styles": [
           "demos/angular/src/styles.scss"
         ],
-        "scripts": [],
+        "scripts": [
+          "node_modules/marked/marked.min.js"
+        ],
         "sourceMap": true
       },
       "configurations": {
