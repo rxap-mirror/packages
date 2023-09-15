@@ -44,7 +44,10 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
         'PUBLIC_DOMAIN',
         this.environment.production ? config.getOrThrow('ROOT_DOMAIN') : 'localhost',
       );
-      const publicPort = config.get('PUBLIC_PORT', this.environment.production ? 443 : port);
+      const publicPort = config.get(
+        'PUBLIC_PORT',
+        this.environment.production ? config.get<string | number>('ROOT_DOMAIN_PORT', 443) : port,
+      );
       publicUrl = `${ publicProtocol }://${ publicDomain }:${ publicPort }`;
     }
 
