@@ -8,7 +8,7 @@ import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
-import { RXAP_ENVIRONMENT } from '@rxap/environment';
+import { ProvideEnvironment } from '@rxap/environment';
 import {
   HttpErrorInterceptor,
   ProvideErrorHandler,
@@ -28,10 +28,7 @@ export const appConfig: ApplicationConfig = {
     // If provided in a lazy loaded module the animations will not work
     provideAnimations(),
     ProvideErrorHandler(),
-    {
-      provide: RXAP_ENVIRONMENT,
-      useValue: environment,
-    },
+    ProvideEnvironment(environment),
     {
       provide: SERVICE_STATUS_CHECK_METHOD,
       useClass: StatusControllerHealthCheckRemoteMethod,

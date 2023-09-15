@@ -11,7 +11,7 @@ import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
-import { RXAP_ENVIRONMENT } from '@rxap/environment';
+import { ProvideEnvironment } from '@rxap/environment';
 import { ProvideChangelog } from '@rxap/ngx-changelog';
 import {
   HttpErrorInterceptor,
@@ -31,10 +31,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     ProvideErrorHandler(),
     ProvideChangelog(),
-    {
-      provide: RXAP_ENVIRONMENT,
-      useValue: environment,
-    },
+    ProvideEnvironment(environment),
     {
       provide: SERVICE_STATUS_CHECK_METHOD,
       useClass: StatusControllerHealthCheckRemoteMethod,
