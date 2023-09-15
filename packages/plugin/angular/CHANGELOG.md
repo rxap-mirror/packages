@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.23...@rxap/plugin-angular@16.1.0-dev.24) (2023-09-15)
+
+### Features
+
+- add ProvideEnvironment function ([4574202](https://gitlab.com/rxap/packages/commit/45742021f40ac859408619b796eaaab7ab3c6e49))
+
 # [16.1.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.22...@rxap/plugin-angular@16.1.0-dev.23) (2023-09-14)
 
 ### Bug Fixes

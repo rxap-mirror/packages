@@ -8371,7 +8371,7 @@ __metadata:
     "@rxap/plugin-utilities": ^16.1.0-dev.14
     "@rxap/ts-morph": ^0.1.0-dev.9
     "@rxap/workspace-ts-morph": ^0.1.0-dev.8
-    "@rxap/workspace-utilities": ^0.1.0-dev.13
+    "@rxap/workspace-utilities": ^0.1.0-dev.14
     nx: ^16.5.0
     ts-morph: ^18.0.0
     tslib: 2.6.2

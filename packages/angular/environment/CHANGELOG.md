@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/environment@16.0.0-dev.14...@rxap/environment@16.0.0-dev.15) (2023-09-15)
+
+### Features
+
+- add ProvideEnvironment function ([4574202](https://gitlab.com/rxap/packages/commit/45742021f40ac859408619b796eaaab7ab3c6e49))
+
 # [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/environment@16.0.0-dev.13...@rxap/environment@16.0.0-dev.14) (2023-09-12)
 
 ### Bug Fixes
