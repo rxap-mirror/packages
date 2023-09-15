@@ -2,9 +2,6 @@ version: "3.7"
 networks:
   default:
     name: traefik
-volumes:
-  ui-editor-templates:
-  settings-templates:
 services:
   traefik:
     image: traefik:latest
