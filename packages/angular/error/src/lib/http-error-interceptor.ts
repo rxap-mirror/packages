@@ -62,7 +62,7 @@ export function HttpErrorInterceptor(req: HttpRequest<unknown>, next: HttpHandle
             timestamp: Date.now(),
           };
 
-          if (typeof error === 'object') {
+          if (error && typeof error === 'object') {
             const errorCode = options.extractErrorCode!(error);
             if (errorCode) {
               Sentry.captureMessage(`Error Code ${ errorCode }`, {
