@@ -13,7 +13,11 @@ import {
   mkdirSync,
   readFileSync,
 } from 'fs';
-import { relative } from 'path';
+import {
+  dirname,
+  join,
+  relative,
+} from 'path';
 import {
   Observable,
   Subscription,
@@ -44,24 +48,6 @@ export class LoadChangelogService implements OnApplicationBootstrap, OnApplicati
     for (const filePath of EachDirSync(this.dataDir)) {
       this.loadFile(filePath);
     }
-    this.print();
-  }
-
-  print() {
-    this.logger.verbose('==== GENERAL CONFIGURATION ====', 'LoadChangelogService');
-    for (const [ version, changelog ] of this.generalChangelog.entries()) {
-      this.logger.verbose('version: ' + version, 'LoadChangelogService');
-      this.logger.verbose(JSON.stringify(changelog, null, 2), 'LoadChangelogService');
-    }
-    this.logger.verbose('==== APPLICATION CONFIGURATION ====', 'LoadChangelogService');
-    for (const [ application, map ] of this.applicationChangelog.entries()) {
-      this.logger.verbose('==== ' + application + ' ====', 'LoadChangelogService');
-      for (const [ version, changelog ] of map.entries()) {
-        this.logger.verbose('version: ' + version, 'LoadChangelogService');
-        this.logger.verbose(JSON.stringify(changelog, null, 2), 'LoadChangelogService');
-      }
-    }
-    this.logger.verbose('Changelog Loaded', 'LoadChangelogService');
   }
 
   onApplicationBootstrap(): void {
@@ -151,13 +137,17 @@ export class LoadChangelogService implements OnApplicationBootstrap, OnApplicati
     };
   }
 
-  private loadFile(filePath: string) {
+  public loadFile(filePath: string) {
     const relativePath = relative(this.dataDir, filePath);
     if (relativePath.includes('.gitkeep')) {
       return false;
     }
+    if (!relativePath.endsWith('changelog.md')) {
+      return false;
+    }
     this.logger.debug('load changelog: ' + relativePath, 'LoadChangelogService');
     if (!this.validatedChangelogFilePath(relativePath)) {
+      throw new InternalServerErrorException('Invalid changelog file path: ' + relativePath);
       return;
     }
     const {
@@ -178,18 +168,19 @@ export class LoadChangelogService implements OnApplicationBootstrap, OnApplicati
     }
     let content = readFileSync(filePath, 'utf-8');
     content = this.replaceEnvironmentVariablesInString(content);
+    content = this.replaceRelativeLinksInString(content, relative(this.dataDir, dirname(filePath)));
     return content;
   }
 
-  private replaceEnvironmentVariablesInString(value: string) {
-    return value.replace(/\$\{(.*?)}/g, (match: string, p1: string) => {
+  private replaceEnvironmentVariablesInString(content: string) {
+    return content.replace(/\$\{(.*?)}/g, (match: string, p1: string) => {
       let variableName = p1;
       let optional = false;
       if (p1.endsWith('?')) {
         variableName = p1.substring(0, p1.length - 1);
         optional = true;
       }
-      let value = process.env[variableName];
+      let value = this.config.get(variableName, process.env[variableName]);
       if (value === undefined || value === null) {
         if (optional) {
           this.logger.debug('optional environment variable not found: ' + p1, 'LoadChangelogService');
@@ -199,6 +190,29 @@ export class LoadChangelogService implements OnApplicationBootstrap, OnApplicati
         }
       }
       return value;
+    });
+  }
+
+  private replaceRelativeLinksInString(content: string, relativeToDataRoot: string) {
+    return content.replace(/!\[(.*?)]\((.*?)\)/g, (match: string, alt: string, path: string): string => {
+      if (path.startsWith('http')) {
+        return match;
+      }
+      let fullPath: string;
+      if (path.startsWith('/')) {
+        fullPath = path.substring(1);
+      } else {
+        fullPath = join(relativeToDataRoot, path);
+        if (fullPath.startsWith('..')) {
+          throw new InternalServerErrorException('asset path points outside of the allowed asset folder: ' + path);
+        }
+      }
+      let publicUrl = this.config.getOrThrow('PUBLIC_URL');
+      if (!publicUrl.endsWith('/')) {
+        publicUrl += '/';
+      }
+      const url = publicUrl + 'data/' + fullPath;
+      return `![${ alt }](${ url })`;
     });
   }
 

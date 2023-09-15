@@ -11,6 +11,7 @@ import {
   APP_GUARD,
   APP_INTERCEPTOR,
 } from '@nestjs/core';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import {
   ThrottlerGuard,
   ThrottlerModule,
@@ -25,6 +26,7 @@ import {
   GetLogLevels,
   SentryOptionsFactory,
 } from '@rxap/nest-utilities';
+import { join } from 'path';
 import { ChangelogModule } from '../changelog/changelog.module';
 import { environment } from '../environments/environment';
 import { VALIDATION_SCHEMA } from './app.config';
@@ -35,6 +37,16 @@ import { HealthModule } from './health/health.module';
 @Module({
   imports: [
     HealthModule,
+    ServeStaticModule.forRootAsync({
+      imports: [ ConfigModule ],
+      inject: [ ConfigService ],
+      useFactory: (config: ConfigService) => [
+        {
+          rootPath: config.getOrThrow('DATA_DIR'),
+          serveRoot: '/' + join(config.getOrThrow('GLOBAL_API_PREFIX'), 'data'),
+        },
+      ],
+    }),
     CacheModule.register({
       isGlobal: true,
     }),
