@@ -4,7 +4,10 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { GetTargetOptions } from '@rxap/plugin-utilities';
+import {
+  GetTarget,
+  GetTargetOptions,
+} from '@rxap/plugin-utilities';
 import { clone } from '@rxap/utilities';
 import { GetRootDockerOptions } from '@rxap/workspace-utilities';
 import * as path from 'path';
@@ -56,6 +59,19 @@ function skipProject(tree: Tree, options: GitlabCiGeneratorSchema, project: Proj
 
 }
 
+export function getOutputPathFromTarget(
+  project: ProjectConfiguration,
+  targetName = 'build',
+  configurationName = 'production',
+) {
+  const target = GetTarget(project, targetName);
+  if (!target) {
+    return null;
+  }
+  const options = GetTargetOptions(target, configurationName);
+  return options.outputPath ?? null;
+}
+
 export async function gitlabCiGenerator(
   tree: Tree,
   options: GitlabCiGeneratorSchema,
@@ -80,22 +96,23 @@ export async function gitlabCiGenerator(
     console.log(`add project: ${ projectName }`);
 
     const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
-    const buildTargetOptions = GetTargetOptions(project.targets['build'], 'production');
 
     const imageName = dockerTargetOptions.imageName ?? rootDocker.imageName;
     const imageSuffix = dockerTargetOptions.imageSuffix;
     const dockerfile = dockerTargetOptions.dockerfile;
-    const outputPath = buildTargetOptions.outputPath;
-
-    if (!outputPath) {
-      throw new Error(`The outputPath is required for the project ${ projectName }`);
-    }
+    const context = dockerTargetOptions.context ??
+      getOutputPathFromTarget(project) ??
+      project.sourceRoot ??
+      project.root;
 
     dockerYaml[`docker:${ projectName }`] = clone(docker);
     dockerYaml[`docker:${ projectName }`].variables = {
-      DOCKER_CONTEXT: outputPath,
       IMAGE_NAME: imageName,
     };
+
+    if (context) {
+      dockerYaml[`docker:${ projectName }`].variables.DOCKER_CONTEXT = context;
+    }
 
     if (imageSuffix) {
       dockerYaml[`docker:${ projectName }`].variables.IMAGE_SUFFIX = imageSuffix;
