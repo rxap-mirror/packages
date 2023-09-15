@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.25...@rxap/plugin-docker@16.0.0-dev.26) (2023-09-15)
+
+### Bug Fixes
+
+- support custom docker context ([43704f5](https://gitlab.com/rxap/packages/commit/43704f5daec5023e722df62732fd14e7de8ea52e))
+
 # [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.24...@rxap/plugin-docker@16.0.0-dev.25) (2023-09-12)
 
 ### Bug Fixes
