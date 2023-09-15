@@ -7,14 +7,12 @@ import {
   Component,
   computed,
   inject,
+  OnInit,
   signal,
-  Signal,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { MethodTemplateDirective } from '@rxap/directives';
 import { RXAP_ENVIRONMENT } from '@rxap/environment';
 import { MarkdownModule } from 'ngx-markdown';
-import { from } from 'rxjs';
 import { ChangelogControllerGetVersionRemoteMethod } from '../remote-methods/changelog-controller-get-version.remote-method';
 import { ChangelogControllerListRemoteMethod } from '../remote-methods/changelog-controller-list.remote-method';
 
@@ -31,11 +29,10 @@ import { ChangelogControllerListRemoteMethod } from '../remote-methods/changelog
   templateUrl: './changelog.component.html',
   styleUrls: [ './changelog.component.scss' ],
 })
-export class ChangelogComponent {
+export class ChangelogComponent implements OnInit {
 
-  // eslint-disable-next-line no-async-promise-executor
-  public readonly availableVersions: Signal<string[]> = toSignal(from(new Promise<string[]>(async resolve => resolve(
-    await inject(ChangelogControllerListRemoteMethod).call()))), { initialValue: [] });
+  public readonly availableVersions = signal<string[]>([]);
+  public readonly error = signal<string | null>(null);
   public readonly activeIndex = signal(-1);
   public readonly selectedVersion = computed(() => {
     const activeIndex = this.activeIndex();
@@ -44,10 +41,6 @@ export class ChangelogComponent {
       return availableVersions[activeIndex] ?? 'latest';
     }
     return availableVersions[availableVersions.length - 1] ?? 'latest';
-  });
-  public readonly selectedIndex = computed(() => {
-    const activeIndex = this.activeIndex();
-    return activeIndex === -1 ? this.availableVersions().length - 1 : activeIndex;
   });
 
   public readonly displayedButtons = computed(() => {
@@ -85,5 +78,21 @@ export class ChangelogComponent {
       application: this.application,
     },
   }));
+
+  private readonly getAvailableVersionsMethod = inject(ChangelogControllerListRemoteMethod);
+
+  ngOnInit() {
+    this.loadAvailableVersions();
+  }
+
+  private async loadAvailableVersions() {
+    try {
+      const availableVersions = await this.getAvailableVersionsMethod.call();
+      this.availableVersions.set(availableVersions);
+      this.activeIndex.set(availableVersions.length - 1);
+    } catch (e: any) {
+      this.error.set(e.message);
+    }
+  }
 
 }

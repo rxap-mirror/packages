@@ -46,7 +46,6 @@ export class ChangelogService {
   }
 
   public showChangelogDialogIfNewVersion() {
-    console.log('showChangelogDialogIfNewVersion');
 
     const lastVersion = localStorage.getItem(RXAP_CHANGELOG_LAST_VERSION);
 
