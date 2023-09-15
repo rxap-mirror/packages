@@ -44,6 +44,11 @@ import { HealthModule } from './health/health.module';
         {
           rootPath: config.getOrThrow('DATA_DIR'),
           serveRoot: '/' + join(config.getOrThrow('GLOBAL_API_PREFIX'), 'data'),
+          serveStaticOptions: {
+            setHeaders: (res) => {
+              res.set('Cross-Origin-Resource-Policy', 'cross-origin');
+            },
+          },
         },
       ],
     }),
