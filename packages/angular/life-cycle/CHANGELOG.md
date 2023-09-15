@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/life-cycle@16.0.0-dev.13...@rxap/life-cycle@16.0.0-dev.14) (2023-09-15)
+
+### Bug Fixes
+
+- only show isStable if app is stable ([e4b05b5](https://gitlab.com/rxap/packages/commit/e4b05b53752221354accda21d7b14e0840013dd0))
+
 # [16.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/life-cycle@16.0.0-dev.12...@rxap/life-cycle@16.0.0-dev.13) (2023-09-12)
 
 ### Bug Fixes

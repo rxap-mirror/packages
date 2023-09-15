@@ -7490,6 +7490,7 @@ __metadata:
   dependencies:
     tslib: 2.6.2
   peerDependencies:
+    "@tailwindcss/typography": ^0.5.10
     tailwindcss: ^3.0.2
     tslib: 2.6.2
   languageName: unknown
@@ -7868,7 +7869,7 @@ __metadata:
   peerDependencies:
     "@angular/core": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/utilities": ^16.0.0-dev.17
+    "@rxap/utilities": ^16.0.0-dev.18
     rxjs: ^7.8.0
     tslib: 2.6.2
   languageName: unknown
@@ -8145,8 +8146,15 @@ __metadata:
   dependencies:
     tslib: ^2.3.0
   peerDependencies:
-    "@angular/common": ^16.1.0
-    "@angular/core": ^16.1.0
+    "@angular/common": ^16.1.4
+    "@angular/core": ^16.1.4
+    "@angular/forms": ^16.1.4
+    "@rxap/directives": ^16.0.0-dev.15
+    "@rxap/environment": ^16.0.0-dev.14
+    "@rxap/open-api": ^16.0.0-dev.21
+    ng-mocks: ^14.11.0
+    ngx-markdown: ^16.0.0
+    rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
 
@@ -8891,7 +8899,7 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/node-utilities": ^1.1.0-dev.9
-    "@rxap/utilities": ^16.0.0-dev.17
+    "@rxap/utilities": ^16.0.0-dev.18
     semver: ^7.3.5
     tslib: 2.6.2
   languageName: unknown

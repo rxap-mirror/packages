@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/browser-tailwind@0.0.2-dev.10...@rxap/browser-tailwind@0.1.0-dev.0) (2023-09-15)
+
+### Features
+
+- add tailwind plugin for markdown ([0ee05f4](https://gitlab.com/rxap/packages/commit/0ee05f47a00f879c0abdd9009b96c539a2b9b76f))
+
 ## [0.0.2-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/browser-tailwind@0.0.2-dev.9...@rxap/browser-tailwind@0.0.2-dev.10) (2023-09-12)
 
 ### Bug Fixes

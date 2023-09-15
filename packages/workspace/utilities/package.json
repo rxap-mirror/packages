@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-dev.13",
+  "version": "0.1.0-dev.14",
   "name": "@rxap/workspace-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,7 +8,7 @@
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
     "@rxap/node-utilities": "^1.1.0-dev.9",
-    "@rxap/utilities": "^16.0.0-dev.17",
+    "@rxap/utilities": "^16.0.0-dev.18",
     "semver": "^7.3.5",
     "tslib": "2.6.2"
   },
@@ -36,7 +36,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       }
     ]
   },
