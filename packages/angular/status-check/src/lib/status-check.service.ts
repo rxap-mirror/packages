@@ -1,17 +1,16 @@
 import {
-  Inject,
+  inject,
   Injectable,
-  InjectionToken,
   isDevMode,
 } from '@angular/core';
 import { OpenApiHttpResponseError } from '@rxap/open-api';
-import { Method } from '@rxap/pattern';
 import * as Sentry from '@sentry/angular-ivy';
 import {
   from,
   Observable,
   startWith,
 } from 'rxjs';
+import { StatusControllerHealthCheckRemoteMethod } from './status-controller-health-check.remote-method';
 
 export interface ApiStatus {
   status: string;
@@ -26,17 +25,10 @@ export interface ApiStatus {
   } & Record<string, string>>;
 }
 
-export type ServiceStatusCheckMethod = Method<ApiStatus, { parameters: { service: string[] } }>;
-
-export const SERVICE_STATUS_CHECK_METHOD = new InjectionToken<ServiceStatusCheckMethod>('SERVICE_STATUS_CHECK_METHOD');
-
 @Injectable({ providedIn: 'root' })
 export class StatusCheckService {
 
-  constructor(
-    @Inject(SERVICE_STATUS_CHECK_METHOD)
-    private readonly getServiceStatusMethod: ServiceStatusCheckMethod,
-  ) {}
+  private readonly getServiceStatusMethod = inject(StatusControllerHealthCheckRemoteMethod);
 
   public getStatus(serviceNames: string[]): Observable<ApiStatus> {
     if (serviceNames.length === 0) {

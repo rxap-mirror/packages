@@ -17,9 +17,7 @@ import {
   HttpErrorInterceptor,
   ProvideErrorHandler,
 } from '@rxap/ngx-error';
-import { SERVICE_STATUS_CHECK_METHOD } from '@rxap/ngx-status-check';
 import { MarkdownModule } from 'ngx-markdown';
-import { StatusControllerHealthCheckRemoteMethod } from 'open-api-service-status/remote-methods/status-controller-health-check.remote-method';
 import { environment } from '../environments/environment';
 import { appRoutes } from './app.routes';
 
@@ -32,9 +30,5 @@ export const appConfig: ApplicationConfig = {
     ProvideErrorHandler(),
     ProvideChangelog(),
     ProvideEnvironment(environment),
-    {
-      provide: SERVICE_STATUS_CHECK_METHOD,
-      useClass: StatusControllerHealthCheckRemoteMethod,
-    },
   ],
 };

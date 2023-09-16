@@ -6,7 +6,7 @@ export * from './lib/status-indicator/status-indicator.component';
 export * from './lib/status-check/status-check.component';
 // endregion
 
-// region 
+// region
 export * from './lib/status-check.guard';
 export * from './lib/status-check.routes';
 export * from './lib/status-check.service';
