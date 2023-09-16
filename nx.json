@@ -460,6 +460,9 @@
     },
     "@nx/plugin:generator": {
       "unitTestRunner": "none"
+    },
+    "@nx/angular:library-secondary-entry-point": {
+      "skipModule": true
     }
   },
   "workspaceLayout": {
