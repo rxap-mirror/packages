@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@0.0.2-dev.5...@rxap/workspace-open-api@0.0.2-dev.6) (2023-09-16)
+
+### Bug Fixes
+
+- write operation data with multi line ([c3c59b6](https://gitlab.com/rxap/packages/commit/c3c59b61ea4880db2442bae0d0d11b7eb94e5d22))
+
 ## [0.0.2-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@0.0.2-dev.4...@rxap/workspace-open-api@0.0.2-dev.5) (2023-09-12)
 
 ### Bug Fixes

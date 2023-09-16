@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.1.0-dev.7...@rxap/ngx-status-check@16.1.0-dev.8) (2023-09-16)
+
+### Bug Fixes
+
+- use local open api method ([e2694b7](https://gitlab.com/rxap/packages/commit/e2694b7189a083e774be2f7dd3f70b316518f166))
+
 # [16.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.1.0-dev.6...@rxap/ngx-status-check@16.1.0-dev.7) (2023-09-14)
 
 ### Bug Fixes
