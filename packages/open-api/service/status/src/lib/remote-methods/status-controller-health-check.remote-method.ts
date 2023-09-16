@@ -90,7 +90,7 @@ import { StatusControllerHealthCheckResponse } from '../responses/status-control
   },
   "method": "get",
   "path": "/many"
-}`,
+}`
 })
 export class StatusControllerHealthCheckRemoteMethod
   extends OpenApiRemoteMethod<StatusControllerHealthCheckResponse, StatusControllerHealthCheckParameter, void> {

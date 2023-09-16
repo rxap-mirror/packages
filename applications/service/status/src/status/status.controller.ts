@@ -11,6 +11,7 @@ import {
   Req,
 } from '@nestjs/common';
 import {
+  ApiExcludeEndpoint,
   ApiQuery,
   ApiResponse,
 } from '@nestjs/swagger';
@@ -125,6 +126,7 @@ export class StatusController {
   @Post('register')
   @HealthCheck()
   @Internal()
+  @ApiExcludeEndpoint()
   public async register(
     @Body() body: RegisterDto,
     @Req() req: Request,
