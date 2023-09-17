@@ -1,5 +1,5 @@
 import { ExecutorContext } from '@nx/devkit';
-import { GuessOutputPath } from '@rxap/plugin-utilities';
+import { GuessOutputPathFromContext } from '@rxap/plugin-utilities';
 import {
   readFileSync,
   writeFileSync,
@@ -43,7 +43,7 @@ export default async function runExecutor(
 ) {
   console.log('Executor ran for Config', options);
 
-  const outputPath = GuessOutputPath(context);
+  const outputPath = GuessOutputPathFromContext(context);
 
   for (const key of Object.keys(process.env)) {
     if (key.match(/^RXAP_CONFIG/)) {

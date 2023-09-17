@@ -1,5 +1,5 @@
 import { ExecutorContext } from '@nx/devkit';
-import { GuessOutputPath } from '@rxap/plugin-utilities';
+import { GuessOutputPathFromContext } from '@rxap/plugin-utilities';
 import {
   readdirSync,
   statSync,
@@ -127,7 +127,7 @@ export default async function runExecutor(
       continue;
     }
 
-    const outputPath = GuessOutputPath(context, projectName);
+    const outputPath = GuessOutputPathFromContext(context, projectName);
 
     const outputPathList: string[] = [ outputPath ];
 

@@ -1,7 +1,7 @@
 import { ExecutorContext } from '@nx/devkit';
 import {
   GetProjectTargetOptions,
-  GuessOutputPath,
+  GuessOutputPathFromContext,
 } from '@rxap/plugin-utilities';
 import {
   existsSync,
@@ -127,7 +127,7 @@ export default async function runExecutor(
 ) {
   console.log('Executor ran for I18n', options);
 
-  options.outputPath ??= GuessOutputPath(context);
+  options.outputPath ??= GuessOutputPathFromContext(context);
 
   try {
     await createIndexHtml(options, context);

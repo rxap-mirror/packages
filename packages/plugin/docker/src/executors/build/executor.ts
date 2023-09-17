@@ -1,5 +1,5 @@
 import { ExecutorContext } from '@nx/devkit';
-import { GuessOutputPath } from '@rxap/plugin-utilities';
+import { GuessOutputPathFromContext } from '@rxap/plugin-utilities';
 import { join } from 'path';
 import {
   dockerBuild,
@@ -17,7 +17,7 @@ export default async function runExecutor(
 ) {
 
   if (!options.context) {
-    const outputPath = GuessOutputPath(context);
+    const outputPath = GuessOutputPathFromContext(context);
 
     console.log(`Using output path: ${ outputPath }`);
 

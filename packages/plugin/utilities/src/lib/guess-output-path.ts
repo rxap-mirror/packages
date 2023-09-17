@@ -1,4 +1,7 @@
-import { ExecutorContext } from '@nx/devkit';
+import {
+  ExecutorContext,
+  TargetConfiguration,
+} from '@nx/devkit';
 import {
   dirname,
   join,
@@ -8,7 +11,11 @@ import { GetProjectRoot } from './project';
 import { GetProjectTarget } from './project-target';
 
 
-export function GuessOutputPath(context: ExecutorContext, projectName = context.projectName): string {
+export function GuessOutputPathFromContext(
+  context: ExecutorContext,
+  projectName = context.projectName,
+  configurationName = context.configurationName,
+): string {
 
   if (!projectName) {
     throw new Error('The projectName is undefined. Ensure the projectName is passed into the executor context.');
@@ -22,7 +29,13 @@ export function GuessOutputPath(context: ExecutorContext, projectName = context.
 
   const projectRoot = GetProjectRoot(context, projectName);
 
-  let outputPath = GetTargetOptions(buildTarget, context.configurationName)['outputPath'];
+  return GuessOutputPath(projectRoot, buildTarget, configurationName);
+
+}
+
+export function GuessOutputPath(projectRoot: string, buildTarget: TargetConfiguration, configurationName?: string) {
+
+  let outputPath = GetTargetOptions(buildTarget, configurationName)['outputPath'];
 
   if (!outputPath) {
     if (buildTarget.outputs && buildTarget.outputs.length) {

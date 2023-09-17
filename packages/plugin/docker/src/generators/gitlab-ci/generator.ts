@@ -7,6 +7,7 @@ import {
 import {
   GetTarget,
   GetTargetOptions,
+  GuessOutputPath,
 } from '@rxap/plugin-utilities';
 import { clone } from '@rxap/utilities';
 import { GetRootDockerOptions } from '@rxap/workspace-utilities';
@@ -101,7 +102,7 @@ export async function gitlabCiGenerator(
     const imageSuffix = dockerTargetOptions.imageSuffix;
     const dockerfile = dockerTargetOptions.dockerfile;
     const context = dockerTargetOptions.context ??
-      getOutputPathFromTarget(project) ??
+      (project.targets['build'] ? GuessOutputPath(project.root, project.targets['build'], 'production') : null) ??
       project.sourceRoot ??
       project.root;
 
