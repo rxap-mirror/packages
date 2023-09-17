@@ -9,6 +9,10 @@
     <span i18n>Mode</span>
   </button>
   <rxap-language-selector *ngIf="!isDevMode"></rxap-language-selector>
+  <button (click)="openChangelogDialog()" mat-menu-item>
+    <mat-icon svgIcon="format-list-numbered"></mat-icon>
+    <span i18n>What's new</span>
+  </button>
   <ng-container *ngFor="let item of items()">
     <ng-template [cdkPortalOutlet]="item"></ng-template>
   </ng-container>

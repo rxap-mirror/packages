@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute } from '@angular/router';
+import { ChangelogService } from '@rxap/ngx-changelog';
 import { ThemeService } from '@rxap/services';
 import { Subscription } from 'rxjs';
 import {
@@ -41,6 +42,7 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
     public readonly theme: ThemeService,
     private readonly route: ActivatedRoute,
     private readonly injector: Injector,
+    private readonly changelogService: ChangelogService,
   ) {
 
   }
@@ -62,6 +64,10 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
       return data.layout.header.menu.items;
     }
     return [];
+  }
+
+  openChangelogDialog() {
+    this.changelogService.showChangelogDialog();
   }
 
 }
