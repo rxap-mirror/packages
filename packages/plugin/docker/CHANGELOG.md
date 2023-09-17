@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.26...@rxap/plugin-docker@16.0.0-dev.27) (2023-09-17)
+
+### Bug Fixes
+
+- split GuessOutputPath function ([5fc44e1](https://gitlab.com/rxap/packages/commit/5fc44e1470ca16b542e0b45049bfd9a83b8baab8))
+
 # [16.0.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.25...@rxap/plugin-docker@16.0.0-dev.26) (2023-09-15)
 
 ### Bug Fixes

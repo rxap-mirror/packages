@@ -7850,12 +7850,13 @@ __metadata:
     "@rxap/config": ^16.0.0-dev.15
     "@rxap/data-source": ^16.0.0-dev.18
     "@rxap/directives": ^16.0.0-dev.15
-    "@rxap/environment": ^16.0.0-dev.14
+    "@rxap/environment": ^16.0.0-dev.15
     "@rxap/icon": ^16.0.0-dev.15
     "@rxap/material-directives": ^16.0.0-dev.17
-    "@rxap/ngx-status-check": ^16.1.0-dev.6
+    "@rxap/ngx-changelog": ^16.1.0-dev.0
+    "@rxap/ngx-status-check": ^16.1.0-dev.8
     "@rxap/services": ^16.0.0-dev.14
-    "@rxap/utilities": ^16.0.0-dev.17
+    "@rxap/utilities": ^16.0.0-dev.18
     rxjs: ^7.8.0
     tslib: 2.6.2
   languageName: unknown
@@ -8385,11 +8386,11 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.13
-    "@rxap/plugin-angular": ^16.1.0-dev.22
-    "@rxap/plugin-docker": ^16.0.0-dev.25
-    "@rxap/plugin-nestjs": ^16.1.0-dev.20
-    "@rxap/plugin-utilities": ^16.1.0-dev.14
-    "@rxap/workspace-utilities": ^0.1.0-dev.13
+    "@rxap/plugin-angular": ^16.1.0-dev.24
+    "@rxap/plugin-docker": ^16.0.0-dev.27
+    "@rxap/plugin-nestjs": ^16.1.0-dev.23
+    "@rxap/plugin-utilities": ^16.1.0-dev.15
+    "@rxap/workspace-utilities": ^0.1.0-dev.14
     handlebars: ^4.7.7
     tslib: 2.6.2
   languageName: unknown
@@ -8405,7 +8406,7 @@ __metadata:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.13
     "@rxap/node-utilities": ^1.1.0-dev.9
-    "@rxap/plugin-utilities": ^16.1.0-dev.14
+    "@rxap/plugin-utilities": ^16.1.0-dev.15
     "@rxap/utilities": ^16.0.0-dev.18
     "@rxap/workspace-utilities": ^0.1.0-dev.14
     tslib: 2.6.2
@@ -8512,7 +8513,7 @@ __metadata:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.13
     "@rxap/node-utilities": ^1.1.0-dev.9
-    "@rxap/workspace-utilities": ^0.1.0-dev.13
+    "@rxap/workspace-utilities": ^0.1.0-dev.14
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -8526,11 +8527,11 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.13
-    "@rxap/plugin-application": ^16.1.0-dev.15
+    "@rxap/plugin-application": ^16.1.0-dev.16
     "@rxap/plugin-library": ^16.0.0-dev.26
-    "@rxap/plugin-utilities": ^16.1.0-dev.14
-    "@rxap/utilities": ^16.0.0-dev.17
-    "@rxap/workspace-utilities": ^0.1.0-dev.13
+    "@rxap/plugin-utilities": ^16.1.0-dev.15
+    "@rxap/utilities": ^16.0.0-dev.18
+    "@rxap/workspace-utilities": ^0.1.0-dev.14
     tslib: 2.6.2
     yaml: 2.3.1
   languageName: unknown

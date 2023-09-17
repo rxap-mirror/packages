@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.15",
+  "version": "16.1.0-dev.16",
   "name": "@rxap/plugin-application",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,11 +8,11 @@
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
     "@rxap/generator-utilities": "^1.1.0-dev.13",
-    "@rxap/plugin-angular": "^16.1.0-dev.22",
-    "@rxap/plugin-docker": "^16.0.0-dev.25",
-    "@rxap/plugin-nestjs": "^16.1.0-dev.20",
-    "@rxap/plugin-utilities": "^16.1.0-dev.14",
-    "@rxap/workspace-utilities": "^0.1.0-dev.13",
+    "@rxap/plugin-angular": "^16.1.0-dev.24",
+    "@rxap/plugin-docker": "^16.0.0-dev.27",
+    "@rxap/plugin-nestjs": "^16.1.0-dev.23",
+    "@rxap/plugin-utilities": "^16.1.0-dev.15",
+    "@rxap/workspace-utilities": "^0.1.0-dev.14",
     "handlebars": "^4.7.7",
     "tslib": "2.6.2"
   },
@@ -44,23 +44,23 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "16.1.0-dev.22"
+        "version": "16.1.0-dev.24"
       },
       {
         "package": "@rxap/plugin-docker",
-        "version": "16.0.0-dev.25"
+        "version": "16.0.0-dev.27"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "16.1.0-dev.20"
+        "version": "16.1.0-dev.23"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.1.0-dev.14"
+        "version": "16.1.0-dev.15"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.13"
+        "version": "0.1.0-dev.14"
       }
     ]
   },

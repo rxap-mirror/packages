@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.24...@rxap/layout@16.0.0-dev.25) (2023-09-17)
+
+### Features
+
+- add changelog button ([ccd3b2b](https://gitlab.com/rxap/packages/commit/ccd3b2b4467ed82cc1a5efdcdf948ef83537de06))
+
 # [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.23...@rxap/layout@16.0.0-dev.24) (2023-09-14)
 
 ### Bug Fixes
