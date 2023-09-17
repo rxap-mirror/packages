@@ -8151,7 +8151,7 @@ __metadata:
     "@angular/core": ^16.1.4
     "@angular/forms": ^16.1.4
     "@rxap/directives": ^16.0.0-dev.15
-    "@rxap/environment": ^16.0.0-dev.14
+    "@rxap/environment": ^16.0.0-dev.15
     "@rxap/open-api": ^16.0.0-dev.21
     ng-mocks: ^14.11.0
     ngx-markdown: ^16.0.0
@@ -8717,7 +8717,7 @@ __metadata:
     "@angular/core": ^16.1.4
     "@angular/router": ^16.1.4
     "@rxap/rxjs": ^1.0.1-dev.10
-    "@rxap/utilities": ^16.0.0-dev.17
+    "@rxap/utilities": ^16.0.0-dev.18
     rxjs: ^7.8.0
     tslib: 2.6.2
   languageName: unknown

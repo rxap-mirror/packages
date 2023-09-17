@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.0",
+  "version": "16.1.0-dev.1",
   "name": "@rxap/ngx-changelog",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,7 +10,7 @@
     "@angular/core": "^16.1.4",
     "@angular/forms": "^16.1.4",
     "@rxap/directives": "^16.0.0-dev.15",
-    "@rxap/environment": "^16.0.0-dev.14",
+    "@rxap/environment": "^16.0.0-dev.15",
     "@rxap/open-api": "^16.0.0-dev.21",
     "ng-mocks": "^14.11.0",
     "ngx-markdown": "^16.0.0",
@@ -40,7 +40,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/open-api",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-changelog@16.1.0-dev.0...@rxap/ngx-changelog@16.1.0-dev.1) (2023-09-17)
+
+### Bug Fixes
+
+- move remember check to hook function ([9185ea0](https://gitlab.com/rxap/packages/commit/9185ea021ec2a6be2f812fd548b290635bfb4be4))
+
 # 16.1.0-dev.0 (2023-09-15)
 
 ### Bug Fixes
