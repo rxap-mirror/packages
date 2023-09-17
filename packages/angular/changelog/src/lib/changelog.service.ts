@@ -21,9 +21,6 @@ export class ChangelogService {
   private readonly applicationRef = inject(ApplicationRef);
 
   public showChangelogDialog() {
-    if (localStorage.getItem(RXAP_CHANGELOG_LAST_VERSION) === this.version) {
-      return;
-    }
     const body = document.getElementsByTagName('body')[0];
     const div = document.createElement('div');
     body.appendChild(div);
@@ -51,6 +48,10 @@ export class ChangelogService {
 
     if (this.version && lastVersion && this.version !== lastVersion) {
       localStorage.removeItem(RXAP_CHANGELOG_LAST_VERSION);
+    }
+
+    if (localStorage.getItem(RXAP_CHANGELOG_LAST_VERSION) === this.version) {
+      return;
     }
 
     this.showChangelogDialog();
