@@ -112,7 +112,6 @@
       },
       "defaultConfiguration": "production"
     },
-    "build-info": {},
     "component-test": {
       "options": {
         "cypressConfig": "demos/angular/cypress.config.ts"

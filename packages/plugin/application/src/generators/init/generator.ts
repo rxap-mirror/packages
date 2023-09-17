@@ -58,14 +58,6 @@ function updateProjectTargets(project: ProjectConfiguration, projectName: string
     throw new Error(`The project '${ project.name }' has no source root`);
   }
 
-  CoerceTarget(project, 'build-info', {
-    executor: '@rxap/plugin-application:build-info',
-    options: {},
-    configurations: {
-      production: {},
-      development: {},
-    },
-  });
   CoerceTarget(project, 'docker', {
     executor: '@rxap/plugin-docker:build',
     options: {
@@ -114,8 +106,6 @@ function updateTargetDefaults(tree: Tree) {
 
   CoerceTargetDefaultsDependency(nxJson, 'docker', 'build');
   CoerceTargetDefaultsDependency(nxJson, 'docker-save', 'docker');
-  CoerceTargetDefaultsDependency(nxJson, 'build', 'build-info');
-  CoerceTargetDefaultsDependency(nxJson, 'serve', 'build-info');
 
   updateNxJson(tree, nxJson);
 }
