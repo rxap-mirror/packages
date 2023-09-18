@@ -143,6 +143,10 @@ function updateProjectTargets(
   project.targets['build'].options ??= {};
   project.targets['build'].options.sourceMap = true;
   project.targets['build'].options.assets ??= [];
+  project.targets['build'].options.scripts ??= [];
+  if (!project.targets['build'].options.scripts.includes('node_modules/marked/marked.min.js')) {
+    project.targets['build'].options.scripts.push('node_modules/marked/marked.min.js');
+  }
   CoerceAssets(project.targets['build'].options.assets, [
     {
       glob: '*',
