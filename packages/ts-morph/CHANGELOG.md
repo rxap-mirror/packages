@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.9...@rxap/ts-morph@0.1.0-dev.10) (2023-09-18)
+
+### Bug Fixes
+
+- update to new throttler version ([b592216](https://gitlab.com/rxap/packages/commit/b592216da7d353ae13b67afc906c5bb3176cbcba))
+
 # [0.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.8...@rxap/ts-morph@0.1.0-dev.9) (2023-09-12)
 
 ### Bug Fixes
