@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.17...@rxap/plugin-workspace@16.1.0-dev.18) (2023-09-18)
+
+### Bug Fixes
+
+- update initial workspace files ([7978009](https://gitlab.com/rxap/packages/commit/7978009bdf2185d5776efe780c162a13c8ecd72c))
+
+### Features
+
+- generate project traefik file ([3ccb370](https://gitlab.com/rxap/packages/commit/3ccb37099cb3416bc39bac4511e35366a368eea6))
+
 # [16.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.16...@rxap/plugin-workspace@16.1.0-dev.17) (2023-09-18)
 
 ### Bug Fixes

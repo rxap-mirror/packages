@@ -8534,6 +8534,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-workspace@workspace:packages/plugin/workspace"
   dependencies:
+    colors: ^1.4.0
     tslib: 2.6.2
     yaml: 2.3.1
   peerDependencies:
@@ -8545,7 +8546,6 @@ __metadata:
     "@rxap/utilities": ^16.0.0-dev.18
     "@rxap/workspace-utilities": ^0.1.0-dev.14
     tslib: 2.6.2
-    yaml: 2.3.1
   languageName: unknown
   linkType: soft
 
