@@ -133,6 +133,7 @@
       "@rxap/ngx-bootstrap": ["packages/angular/bootstrap/src/index.ts"],
       "@rxap/ngx-changelog": ["packages/angular/changelog/src/index.ts"],
       "@rxap/ngx-error": ["packages/angular/error/src/index.ts"],
+      "@rxap/ngx-localize": ["packages/angular/localize/src/index.ts"],
       "@rxap/ngx-material-localize": [
         "packages/angular/material/localize/src/index.ts"
       ],

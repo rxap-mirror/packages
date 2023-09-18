@@ -8178,6 +8178,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/ngx-localize@workspace:packages/angular/localize":
+  version: 0.0.0-use.local
+  resolution: "@rxap/ngx-localize@workspace:packages/angular/localize"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/common": ^16.1.0
+    "@angular/core": ^16.1.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/ngx-material-localize@workspace:packages/angular/material/localize":
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-material-localize@workspace:packages/angular/material/localize"
