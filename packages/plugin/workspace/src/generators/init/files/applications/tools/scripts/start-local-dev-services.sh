@@ -36,7 +36,11 @@ fi
 
 export CHANNEL
 
-DOCKER_COMPOSE_FILES="-f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml -f docker-compose.authentik.yml"
+LOCAL_DOCKER_COMPOSE_FILES="-f docker-compose.services.yml -f docker-compose.frontends.yml"
+REMOTE_DOCKER_COMPOSE_FILES="-f docker-compose.yml -f docker-compose.authentik.yml"
+DOCKER_COMPOSE_FILES="${REMOTE_DOCKER_COMPOSE_FILES} ${LOCAL_DOCKER_COMPOSE_FILES}"
+
+docker compose $REMOTE_DOCKER_COMPOSE_FILES pull || exit 1
 
 if [[ $SKIP_PULL != "true" ]]; then
 
