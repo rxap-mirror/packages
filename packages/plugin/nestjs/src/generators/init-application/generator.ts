@@ -570,6 +570,29 @@ export async function initApplicationGenerator(
   options.statusRegister ??= true;
   console.log('nestjs application init generator:', options);
 
+  await AddPackageJsonDependency(tree, '@rxap/nest-server', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/nest-utilities', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/nest-logger', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@nestjs/terminus', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@nestjs/config', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, 'joi', 'latest', { soft: true });
+
+  if (options.sentry) {
+    await AddPackageJsonDependency(tree, '@rxap/nest-sentry', 'latest', { soft: true });
+  }
+
+  if (options.swagger) {
+    await AddPackageJsonDependency(tree, '@nestjs/swagger', 'latest', { soft: true });
+  }
+
+  if (options.jwt) {
+    await AddPackageJsonDependency(tree, '@rxap/nest-jwt', 'latest', { soft: true });
+  }
+
+  if (options.openApi) {
+    await AddPackageJsonDependency(tree, '@rxap/nest-open-api', 'latest', { soft: true });
+  }
+
   // only add the shared folder if it does not exist
   if (!tree.exists('shared/nestjs/Dockerfile')) {
     generateFiles(tree, join(__dirname, 'files', 'shared'), 'shared/nestjs', options);
