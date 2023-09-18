@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.11...@rxap/nest-server@10.1.0-dev.12) (2023-09-18)
+
+### Bug Fixes
+
+- use the local ip address ([cf656ed](https://gitlab.com/rxap/packages/commit/cf656ed0d7d52c2047de609e1731438302777f98))
+
 # [10.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.10...@rxap/nest-server@10.1.0-dev.11) (2023-09-18)
 
 ### Bug Fixes
