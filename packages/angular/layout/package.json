@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.25",
+  "version": "16.0.0-dev.26",
   "name": "@rxap/layout",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -16,15 +16,15 @@
     "@angular/router": "^16.1.4",
     "@rxap/authentication": "^16.0.0-dev.14",
     "@rxap/browser-utilities": "^0.0.2-dev.8",
-    "@rxap/config": "^16.0.0-dev.15",
+    "@rxap/config": "^16.0.0-dev.16",
     "@rxap/data-source": "^16.0.0-dev.18",
     "@rxap/directives": "^16.0.0-dev.15",
     "@rxap/environment": "^16.0.0-dev.15",
     "@rxap/icon": "^16.0.0-dev.15",
     "@rxap/material-directives": "^16.0.0-dev.17",
-    "@rxap/ngx-changelog": "^16.1.0-dev.0",
+    "@rxap/ngx-changelog": "^16.1.0-dev.1",
     "@rxap/ngx-status-check": "^16.1.0-dev.8",
-    "@rxap/services": "^16.0.0-dev.14",
+    "@rxap/services": "^16.0.0-dev.15",
     "@rxap/utilities": "^16.0.0-dev.18",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
@@ -58,7 +58,7 @@
       },
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/data-source",
@@ -82,7 +82,7 @@
       },
       {
         "package": "@rxap/ngx-changelog",
-        "version": "16.1.0-dev.0"
+        "version": "16.1.0-dev.1"
       },
       {
         "package": "@rxap/ngx-status-check",
@@ -94,7 +94,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/utilities",

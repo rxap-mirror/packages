@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.25...@rxap/layout@16.0.0-dev.26) (2023-09-18)
+
+### Bug Fixes
+
+- use relative path as default ([42f1a8e](https://gitlab.com/rxap/packages/commit/42f1a8e68794926635c33371dabded7a1bcc8682))
+
 # [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.24...@rxap/layout@16.0.0-dev.25) (2023-09-17)
 
 ### Features
