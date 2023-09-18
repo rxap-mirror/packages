@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.24...@rxap/plugin-workspace@16.1.0-dev.25) (2023-09-18)
+
+### Bug Fixes
+
+- set explicit root domain ([f1566a7](https://gitlab.com/rxap/packages/commit/f1566a79d2bc21dc2bbb3a58f2a4df9367b7612b))
+- split local and remote pull ([76bec5a](https://gitlab.com/rxap/packages/commit/76bec5abb3ece8b9fbd500eee20bb371c6d0b690))
+
 # [16.1.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.23...@rxap/plugin-workspace@16.1.0-dev.24) (2023-09-18)
 
 ### Bug Fixes

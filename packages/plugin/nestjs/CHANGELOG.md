@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.27...@rxap/plugin-nestjs@16.1.0-dev.28) (2023-09-18)
+
+### Bug Fixes
+
+- install required dependencies ([2ec480a](https://gitlab.com/rxap/packages/commit/2ec480a2080d2be7aeb18b27dc9efb2ddc87835f))
+
 # [16.1.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.26...@rxap/plugin-nestjs@16.1.0-dev.27) (2023-09-18)
 
 ### Bug Fixes
