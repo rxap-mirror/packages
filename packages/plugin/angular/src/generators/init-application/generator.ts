@@ -511,7 +511,7 @@ export async function initApplicationGenerator(
   }
 
   // only add the shared folder if it does not exist
-  if (!tree.exists('shared/angular')) {
+  if (!tree.exists('shared/angular/Dockerfile')) {
     generateFiles(tree, join(__dirname, 'files', 'shared'), 'shared/angular', options);
   }
 
