@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.13...@rxap/generator-utilities@1.1.0-dev.14) (2023-09-18)
+
+### Bug Fixes
+
+- only add to implicitDependencies if not same project ([7b20a57](https://gitlab.com/rxap/packages/commit/7b20a5787dbdeda85aa0bee7f1af0fa6a298e770))
+
 # [1.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.12...@rxap/generator-utilities@1.1.0-dev.13) (2023-09-12)
 
 ### Bug Fixes

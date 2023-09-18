@@ -8378,7 +8378,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@nx/devkit": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.13
+    "@rxap/generator-utilities": ^1.1.0-dev.14
     "@rxap/plugin-localazy": ^16.1.0-dev.11
     "@rxap/plugin-utilities": ^16.1.0-dev.15
     "@rxap/ts-morph": ^0.1.0-dev.9
