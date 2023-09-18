@@ -1,0 +1,43 @@
+<svg height="522" viewBox="0 0 522 522" width="522" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>.a {
+            fill: #73be90;
+        }
+
+        .b {
+            fill: #61d596;
+        }
+
+        .c {
+            fill: #e8a646;
+        }
+
+        .d {
+            fill: #01149f;
+        }
+
+        .e {
+            fill: #d3244d;
+        }
+
+        </style>
+    </defs>
+    <!-- -23.929 -23.35 -->
+    <g class="container" transform="translate(116 116)">
+        <g id="top-left" transform="translate(0 0)">
+            <path class="a" d="M0,38.975,145.245,184.22l42.782-42.783L42.782-3.808Z" transform="translate(0 3.808)"/>
+        </g>
+        <g id="bottom-right" transform="translate(102 102)">
+            <path class="b" d="M0,38.975,145.245,184.22l42.782-42.783L42.782-3.808Z" transform="translate(0 3.808)"/>
+        </g>
+        <g id="top-right" transform="translate(145 0)">
+            <path class="c" d="M93.342,0-9.12,102.462l42.782,42.783L136.125,42.783Z" transform="translate(9.12)"/>
+        </g>
+        <g id="center" transform="translate(102 102)">
+            <path class="d" d="M38.985,0-3.809,42.794,38.985,85.576,81.767,42.783Z" transform="translate(3.809)"/>
+        </g>
+        <g id="bottom-left" transform="translate(0 145)">
+            <path class="e" d="M93.342,0-9.12,102.462l42.782,42.783L136.125,42.783Z" transform="translate(9.12)"/>
+        </g>
+    </g>
+</svg>

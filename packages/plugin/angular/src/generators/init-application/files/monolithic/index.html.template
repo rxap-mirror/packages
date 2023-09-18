@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="true" name="HandheldFriendly"/>
     <link href="favicon.ico" rel="icon" type="image/x-icon"/>
-    <link href="manifest.webmanifest" rel="manifest"/>
+    <% if (serviceWorker) { %><link href="manifest.webmanifest" rel="manifest"/><% } %>
     <meta content="#1976d2" name="theme-color"/>
 
     <link href="assets/icons/icon-57x57.png" rel="apple-touch-icon" sizes="57x57">
