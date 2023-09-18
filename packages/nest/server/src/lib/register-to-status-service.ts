@@ -2,6 +2,8 @@ import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Environment } from '@rxap/nest-utilities';
 import axios, { AxiosError } from 'axios';
+import { networkInterfaces } from 'os';
+import * as process from 'process';
 
 export interface RegisterToStatusServiceOptions {
   registerPath?: string;
@@ -23,10 +25,36 @@ export function RegisterToStatusService({ registerPath = '/register' }: Register
     let counter = 0;
     do {
       try {
-        await axios.post(requestUrl, {
+        const data: any = {
           name: environment.app,
           port,
-        });
+        };
+        if (!environment.production) {
+          if (process.env['HOST_IP']) {
+            data.ip = process.env['HOST_IP'];
+          } else {
+            const interfaces = networkInterfaces();
+            const addresses = [];
+
+            for (const ifaceName in interfaces) {
+              const iface = interfaces[ifaceName];
+              if (iface) {
+                for (let i = 0; i < iface.length; i++) {
+                  const alias = iface[i];
+                  if ('IPv4' === alias.family && !alias.internal) {
+                    addresses.push(alias.address);
+                  }
+                }
+              }
+            }
+
+            if (addresses.length) {
+              data.ip = addresses[0];
+            }
+
+          }
+        }
+        await axios.post(requestUrl, data);
         ready = true;
         logger.log('Service registered', 'Bootstrap');
       } catch (e: any) {
