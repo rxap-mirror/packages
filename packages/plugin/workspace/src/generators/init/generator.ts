@@ -292,6 +292,7 @@ function coerceNxJson(tree: Tree) {
     'standalone': true,
     'addTailwind': true,
     'routing': true,
+    'directory': `user-interface`,
   });
   CoerceNxJsonGenerators(nxJson, '@nx/angular:component', {
     'style': 'scss',
@@ -332,6 +333,7 @@ function coerceNxJson(tree: Tree) {
     'e2eTestRunner': 'none',
     'tags': 'nest',
     'strict': true,
+    'directory': 'service',
   });
   CoerceNxJsonGenerators(nxJson, '@nx/plugin:executor', {
     'unitTestRunner': 'none',
