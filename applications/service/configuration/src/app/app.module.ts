@@ -35,7 +35,9 @@ import { HealthModule } from './health/health.module';
 @Module({
   imports: [
     HealthModule,
-    CacheModule.register(),
+    CacheModule.register({
+      isGlobal: true,
+    }),
     ConfigurationModule,
     ThrottlerModule.forRootAsync(
       {
