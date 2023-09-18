@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.21...@rxap/plugin-workspace@16.1.0-dev.22) (2023-09-18)
+
+### Bug Fixes
+
+- init nx json configurations ([9b4b023](https://gitlab.com/rxap/packages/commit/9b4b023e849d1c0bf21b14a9e219a0e9cd6ab2f6))
+
 # [16.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.20...@rxap/plugin-workspace@16.1.0-dev.21) (2023-09-18)
 
 ### Bug Fixes

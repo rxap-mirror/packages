@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@0.1.0-dev.10...@rxap/schematic-nestjs@0.1.0-dev.11) (2023-09-18)
+
+### Bug Fixes
+
+- init nx json configurations ([9b4b023](https://gitlab.com/rxap/packages/commit/9b4b023e849d1c0bf21b14a9e219a0e9cd6ab2f6))
+
 # [0.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@0.1.0-dev.9...@rxap/schematic-nestjs@0.1.0-dev.10) (2023-09-12)
 
 ### Bug Fixes
