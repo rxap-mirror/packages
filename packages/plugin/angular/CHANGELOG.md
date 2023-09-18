@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.29...@rxap/plugin-angular@16.1.0-dev.30) (2023-09-18)
+
+### Bug Fixes
+
+- set initial budget to 2mb ([bbb7bb0](https://gitlab.com/rxap/packages/commit/bbb7bb044319f0c46964cc6322328b9222161080))
+
 # [16.1.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.28...@rxap/plugin-angular@16.1.0-dev.29) (2023-09-18)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.23...@rxap/plugin-workspace@16.1.0-dev.24) (2023-09-18)
+
+### Bug Fixes
+
+- set default nest and angular directory ([c24219c](https://gitlab.com/rxap/packages/commit/c24219c7e143decb81c1cec8805970bdfee815c0))
+
 # [16.1.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.22...@rxap/plugin-workspace@16.1.0-dev.23) (2023-09-18)
 
 ### Bug Fixes
