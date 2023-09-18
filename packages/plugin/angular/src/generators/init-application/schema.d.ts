@@ -13,4 +13,5 @@ export interface InitApplicationGeneratorSchema {
   cleanup?: boolean;
   monolithic?: boolean;
   openApiLegacy?: boolean;
+  localazyReadKey?: string;
 }

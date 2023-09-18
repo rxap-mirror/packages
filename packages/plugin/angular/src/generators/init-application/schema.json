@@ -67,6 +67,10 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to generate a monolithic application"
+    },
+    "localazyReadKey": {
+      "type": "string",
+      "description": "Localazy read key"
     }
   },
   "required": []

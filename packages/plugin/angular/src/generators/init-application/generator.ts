@@ -21,6 +21,7 @@ import {
 import {
   classify,
   dasherize,
+  DeleteEmptyProperties,
 } from '@rxap/utilities';
 import {
   TsMorphAngularProjectTransform,
@@ -111,13 +112,10 @@ function updateProjectTargets(
     if (options.localazy) {
       project.targets['localazy-download'] ??= {
         executor: '@rxap/plugin-localazy:download',
-        options: {
+        options: DeleteEmptyProperties({
+          readKey: options.localazyReadKey,
           workingDirectory: project.root,
-        },
-        configurations: {
-          production: {},
-          development: {},
-        },
+        }),
       };
       project.targets['localazy-upload'] ??= {
         executor: '@rxap/plugin-localazy:upload',
