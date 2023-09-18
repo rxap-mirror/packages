@@ -34,6 +34,24 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
     return config.get('GLOBAL_API_PREFIX') ?? config.get('globalPrefix') ?? '';
   }
 
+  public getPublicPort(config: ConfigService): number {
+
+    const port = this.getPort(config);
+    let publicPort = config.get(
+      'PUBLIC_PORT',
+      this.environment.production ? config.get<string | number>('ROOT_DOMAIN_PORT', 443) : port,
+    );
+
+    if (typeof publicPort === 'string') {
+      if (publicPort.startsWith(':')) {
+        publicPort = publicPort.substring(1);
+      }
+      publicPort = Number(publicPort);
+    }
+
+    return publicPort;
+  }
+
   protected buildPublicUrl(config: ConfigService, port: number, globalApiPrefix: string): string {
 
     let publicUrl = config.get('PUBLIC_URL');
@@ -44,10 +62,7 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
         'PUBLIC_DOMAIN',
         this.environment.production ? config.getOrThrow('ROOT_DOMAIN') : 'localhost',
       );
-      const publicPort = config.get(
-        'PUBLIC_PORT',
-        this.environment.production ? config.get<string | number>('ROOT_DOMAIN_PORT', 443) : port,
-      );
+      const publicPort = this.getPublicPort(config);
       publicUrl = `${ publicProtocol }://${ publicDomain }:${ publicPort }`;
     }
 
