@@ -18,6 +18,7 @@ import {
   CoerceImports,
   CoerceVariableDeclaration,
 } from '@rxap/ts-morph';
+import { classify } from '@rxap/utilities';
 import {
   TsMorphAngularProjectTransform,
   TsMorphNestProjectTransform,
@@ -27,6 +28,7 @@ import {
   AddPackageJsonDevDependency,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  GetProjectPrefix,
   Strategy,
 } from '@rxap/workspace-utilities';
 import {
@@ -574,6 +576,9 @@ export async function initApplicationGenerator(
         generateFiles(tree, join(__dirname, 'files', 'monolithic'), project.sourceRoot, {
           ...options,
           relativePathToWorkspaceRoot: relative(project.sourceRoot, ''),
+          name: projectName.replace(/^user-interface-/, ''),
+          classify,
+          prefix: GetProjectPrefix(tree, projectName, 'rxap'),
         });
       }
     }

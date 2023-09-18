@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title><%= classify(name) %></title>
+    <base href="/"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta content="true" name="HandheldFriendly"/>
+    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="manifest.webmanifest" rel="manifest"/>
+    <meta content="#1976d2" name="theme-color"/>
+
+    <link href="assets/icons/icon-57x57.png" rel="apple-touch-icon" sizes="57x57">
+    <link href="assets/icons/icon-60x60.png" rel="apple-touch-icon" sizes="60x60">
+    <link href="assets/icons/icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+    <link href="assets/icons/icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+    <link href="assets/icons/icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    <link href="assets/icons/icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+    <link href="assets/icons/icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
+    <link href="assets/icons/icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+    <link href="assets/icons/icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
+    <link href="assets/icons/icon-192x192.png" rel="icon" sizes="192x192" type="image/png">
+    <link href="assets/icons/icon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+    <link href="assets/icons/icon-96x96.png" rel="icon" sizes="96x96" type="image/png">
+    <link href="assets/icons/icon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+
+    <meta content="<%= classify(name) %>" name="application-name"/>
+    <meta content="#1976d2" name="msapplication-TileColor"/>
+    <meta content="assets/icons/icon-144x144.png" name="msapplication-TileImage"/>
+    <meta content="#ffffff" name="theme-color">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="#ffffff" name="msapplication-navbutton-color">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <style>
+
+      html {
+        -webkit-font-smoothing: antialiased;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      *:before, *:after {
+        box-sizing: border-box;
+      }
+
+      .loading-container {
+        max-height: 100vh;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: 'var(--primary-50)',
+                100: 'var(--primary-100)',
+                200: 'var(--primary-200)',
+                300: 'var(--primary-300)',
+                400: 'var(--primary-400)',
+                500: 'var(--primary-500)',
+                600: 'var(--primary-600)',
+                700: 'var(--primary-700)',
+                800: 'var(--primary-800)',
+                900: 'var(--primary-900)',
+                a100: 'var(--primary-a100)',
+                a200: 'var(--primary-a200)',
+                a400: 'var(--primary-a400)',
+                a700: 'var(--primary-a700)',
+              },
+              accent: {
+                50: 'var(--accent-50)',
+                100: 'var(--accent-100)',
+                200: 'var(--accent-200)',
+                300: 'var(--accent-300)',
+                400: 'var(--accent-400)',
+                500: 'var(--accent-500)',
+                600: 'var(--accent-600)',
+                700: 'var(--accent-700)',
+                800: 'var(--accent-800)',
+                900: 'var(--accent-900)',
+                a100: 'var(--accent-a100)',
+                a200: 'var(--accent-a200)',
+                a400: 'var(--accent-a400)',
+                a700: 'var(--accent-a700)',
+              },
+              warn: {
+                50: 'var(--warn-50)',
+                100: 'var(--warn-100)',
+                200: 'var(--warn-200)',
+                300: 'var(--warn-300)',
+                400: 'var(--warn-400)',
+                500: 'var(--warn-500)',
+                600: 'var(--warn-600)',
+                700: 'var(--warn-700)',
+                800: 'var(--warn-800)',
+                900: 'var(--warn-900)',
+                a100: 'var(--warn-a100)',
+                a200: 'var(--warn-a200)',
+                a400: 'var(--warn-a400)',
+                a700: 'var(--warn-a700)',
+              },
+              contrast: {
+                50: 'var(--contrast-50)',
+                100: 'var(--contrast-100)',
+                200: 'var(--contrast-200)',
+                300: 'var(--contrast-300)',
+                400: 'var(--contrast-400)',
+                500: 'var(--contrast-500)',
+                600: 'var(--contrast-600)',
+                700: 'var(--contrast-700)',
+                800: 'var(--contrast-800)',
+                900: 'var(--contrast-900)',
+                a100: 'var(--contrast-a100)',
+                a200: 'var(--contrast-a200)',
+                a400: 'var(--contrast-a400)',
+                a700: 'var(--contrast-a700)',
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="mat-typography">
+  <<%= prefix %>-root>
+    <div class="loading-container">
+      <div class="e-loadholder">
+        <div class="m-loader">
+          <span class="e-text">Loading</span>
+        </div>
+      </div>
+      <div id="particleCanvas-Blue"></div>
+      <div id="particleCanvas-White"></div>
+    </div>
+  </<%= prefix %>-root>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <script>
+    if (
+      localStorage.getItem('rxap-dark-mode') === 'true' ||
+      (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.body.classList.add('dark-theme', 'dark', 'dark-mode');
+    }
+  </script>
+  </body>
+</html>
