@@ -3,6 +3,12 @@ import {
   Injectable,
   Optional,
 } from '@angular/core';
+import { MatDrawerMode } from '@angular/material/sidenav';
+import { ConfigService } from '@rxap/config';
+import {
+  FooterService,
+  HeaderService,
+} from '@rxap/services';
 import {
   BehaviorSubject,
   Observable,
@@ -11,14 +17,8 @@ import {
   map,
   tap,
 } from 'rxjs/operators';
-import {
-  FooterService,
-  HeaderService,
-} from '@rxap/services';
 import { RXAP_LOGO_CONFIG } from '../tokens';
 import { LogoConfig } from '../types';
-import { ConfigService } from '@rxap/config';
-import { MatDrawerMode } from '@angular/material/sidenav';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutComponentService {
@@ -44,7 +44,7 @@ export class LayoutComponentService {
       tap(() => this.fixedTopGap$.next(this.headerComponentService.countComponent * 64)),
     ).subscribe();
     this.logo = logoConfig ?? {
-      src: '/assets/logo.png',
+      src: 'assets/logo.png',
       width: 192,
     };
   }
