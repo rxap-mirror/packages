@@ -174,7 +174,6 @@ async function coerceRootPackageJsonScripts(tree: Tree) {
     json.scripts['server:status'] ??= 'bash tools/scripts/get-local-dev-services-status.sh';
     json.scripts['server:stop'] ??= 'bash tools/scripts/stop-local-dev-services.sh';
     json.scripts['init:env'] ??= 'bash tools/scripts/setup-env-file.sh';
-    json.scripts['generate:tls'] ??= 'env-cmd bash ./docker/traefik/tls/generate.sh';
   });
 }
 

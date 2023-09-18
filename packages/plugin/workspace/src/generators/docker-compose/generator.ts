@@ -11,7 +11,9 @@ import {
   GetRootDockerOptions,
   RootDockerOptions,
 } from '@rxap/workspace-utilities';
+import { execSync } from 'child_process';
 import 'colors';
+import { writeFileSync } from 'fs';
 import { join } from 'path';
 import * as process from 'process';
 import { stringify } from 'yaml';
@@ -308,6 +310,95 @@ function printEtcHostsConfig(
   console.log(`sudo sed -i 's/^127\\.0\\.0\\.1.*/${ config }/' /etc/hosts`.yellow);
 }
 
+function createExtCnf(
+  rootDomain: string,
+  services: Array<{ name: string; docker: Record<string, string> }>,
+) {
+  let config = `subjectAltName=DNS:${ rootDomain },DNS:traefik.${ rootDomain }`;
+  if (services.length) {
+    config += ',';
+    config += services.map(({ name }) => 'DNS:' + name + '.' + rootDomain).join(',');
+  }
+  return config;
+}
+
+function createCaCrtSubj(rootDomain: string) {
+  return `/C=DE/ST=NRW/L=Aachen/O=DigitAIX/OU=rxap/CN=${ rootDomain }`;
+}
+
+function createCertSubj(rootDomain: string) {
+  return `/C=DE/ST=NRW/L=Aachen/O=DigitAIX/OU=rxap/CN=*.${ rootDomain }`;
+}
+
+function runOpensslCommand(tree: Tree, ...args: string[]) {
+  const command = 'openssl ' + args.join(' ');
+  console.log('RUN:', command);
+  return execSync(command, {
+    cwd: join(tree.root, 'docker/traefik/tls'),
+  }).toString();
+}
+
+function coerceCaCert(rootDomain: string, tree: Tree) {
+  if (tree.exists('docker/traefik/tls/ca.crt')) {
+    return 'ca.crt already exists';
+  }
+  const subj = createCaCrtSubj(rootDomain);
+  return runOpensslCommand(
+    tree,
+    'req',
+    '-x509',
+    '-nodes',
+    '-newkey rsa:4096',
+    '-days 3650',
+    '-keyout ca.key',
+    '-out ca.crt',
+    `-subj "${ subj }"`,
+  );
+}
+
+function createDefaultCerts(rootDomain: string, tree: Tree) {
+  const subj = createCertSubj(rootDomain);
+  return runOpensslCommand(
+    tree,
+    'req',
+    '-new',
+    '-newkey rsa:4096',
+    '-nodes',
+    '-keyout default.key',
+    '-out default.csr',
+    `-subj "${ subj }"`,
+  );
+}
+
+function signDefaultCerts(
+  rootDomain: string,
+  services: Array<{ name: string; docker: Record<string, string> }>,
+  tree: Tree,
+) {
+  const extCnf = createExtCnf(rootDomain, services);
+  writeFileSync(join(tree.root, 'docker', 'traefik', 'tls', 'ext.cnf'), extCnf);
+  return runOpensslCommand(
+    tree,
+    'x509',
+    '-req',
+    '-in default.csr',
+    '-days 365',
+    '-CA ca.crt',
+    '-CAkey ca.key',
+    '-CAcreateserial',
+    '-out default.crt',
+    '-extfile ext.cnf',
+  );
+}
+
+function printSingedCert(tree: Tree) {
+  console.log(runOpensslCommand(tree, 'x509', '-in default.crt', '-noout', '-text'));
+}
+
+function verifyCert(tree: Tree) {
+  console.log(runOpensslCommand(tree, 'verify', '-CAfile ca.crt', 'default.crt'));
+}
+
 export async function dockerComposeGenerator(
   tree: Tree,
   options: DockerComposeGeneratorSchema,
@@ -328,6 +419,12 @@ export async function dockerComposeGenerator(
   CoerceFile(tree, 'docker-compose.frontends.yml', frontendDockerCompose, true);
   CoerceFile(tree, 'docker/traefik/dynamic/local-services.yml', localServiceTraefikConfig, true);
   CoerceFile(tree, 'docker/traefik/traefik.yml', traefikConfig, true);
+
+  coerceCaCert(rootDomain, tree);
+  createDefaultCerts(rootDomain, tree);
+  signDefaultCerts(rootDomain, frontendApplications, tree);
+  verifyCert(tree);
+  printSingedCert(tree);
 
   printEtcHostsConfig(rootDomain, frontendApplications);
 
