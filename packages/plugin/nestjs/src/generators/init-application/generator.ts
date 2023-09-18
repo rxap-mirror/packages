@@ -616,6 +616,7 @@ export async function initApplicationGenerator(
 
   if (options.swagger) {
     await AddPackageJsonDependency(tree, '@nestjs/swagger', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/workspace-open-api', 'latest', { soft: true });
   }
 
   if (options.jwt) {
