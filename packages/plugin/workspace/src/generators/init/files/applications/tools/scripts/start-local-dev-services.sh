@@ -9,7 +9,7 @@ NC='\033[0m' # No Color
 
 cd "${GIT_ROOT}" || exit 1
 
-yarn nx run packages:docker-compose
+yarn nx run workspace:docker-compose
 
 # Get the current branch name or the commit hash if in detached HEAD state
 current_branch=$(git symbolic-ref --short -q HEAD || git rev-parse --short HEAD)
