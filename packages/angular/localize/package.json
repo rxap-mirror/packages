@@ -1,38 +1,39 @@
 {
+  "version": "16.0.1-dev.0",
   "name": "@rxap/ngx-localize",
-  "version": "16.0.0",
-  "peerDependencies": {
-    "@angular/common": "^16.1.0",
-    "@angular/core": "^16.1.0"
-  },
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/localize"
+  "peerDependencies": {
+    "@angular/common": "^16.1.4",
+    "@angular/core": "^16.1.4",
+    "rxjs": "^7.8.0"
   },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "angular-localize"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/localize",
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "license": "GPL-3.0-or-later",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/localize",
+  "keywords": [
+    "angular",
+    "angular-localize",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/localize"
+  },
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/localize"
   },
-  "author": {
-    "name": "Merzough Münker",
-    "email": "mmuenker@digitaix.com"
-  }
+  "sideEffects": false
 }

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.10...@rxap/nest-server@10.1.0-dev.11) (2023-09-18)
+
+### Bug Fixes
+
+- parse public port ([0e8d348](https://gitlab.com/rxap/packages/commit/0e8d348cfdcd6e9d9ec3e62aedefcb348323991f))
+
 # [10.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.9...@rxap/nest-server@10.1.0-dev.10) (2023-09-15)
 
 ### Bug Fixes

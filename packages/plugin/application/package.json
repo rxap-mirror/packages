@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.16",
+  "version": "16.1.0-dev.17",
   "name": "@rxap/plugin-application",
   "license": "GPL-3.0-or-later",
   "dependencies": {
