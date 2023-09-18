@@ -490,7 +490,6 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@rxap/ngx-changelog', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, 'ngx-markdown', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, 'marked', '4.3.0', { soft: true });
-  await AddPackageJsonDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/config', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/directives', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/components', 'latest', { soft: true });

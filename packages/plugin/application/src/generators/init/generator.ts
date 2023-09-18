@@ -18,6 +18,7 @@ import {
   MergeDeepLeft,
 } from '@rxap/utilities';
 import {
+  AddPackageJsonDependency,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   GetPackageJson,
@@ -182,6 +183,8 @@ function updateGitIgnore(project: ProjectConfiguration, tree: Tree) {
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   console.log('application init generator:', options);
+
+  await AddPackageJsonDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 
