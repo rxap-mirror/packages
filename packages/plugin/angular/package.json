@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.26",
+  "version": "16.1.0-dev.27",
   "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
