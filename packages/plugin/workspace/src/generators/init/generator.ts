@@ -7,7 +7,10 @@ import {
 import { CoerceIgnorePattern } from '@rxap/generator-utilities';
 import { ApplicationInitGenerator } from '@rxap/plugin-application';
 import { LibraryInitGenerator } from '@rxap/plugin-library';
-import { CoerceTarget } from '@rxap/workspace-utilities';
+import {
+  CoerceTarget,
+  UpdatePackageJson,
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { InitGeneratorSchema } from './schema';
 
@@ -159,6 +162,19 @@ function coerceWorkspaceProject(tree: Tree) {
 
 }
 
+async function coerceRootPackageJsonScripts(tree: Tree) {
+  await UpdatePackageJson(tree, (json) => {
+    json.scripts ??= {};
+    json.scripts['prepare'] ??= 'husky install';
+    json.scripts['schematic'] ??= 'bash tools/scripts/schematic.sh';
+    json.scripts['server'] ??= 'bash tools/scripts/start-local-dev-services.sh';
+    json.scripts['server:status'] ??= 'bash tools/scripts/get-local-dev-services-status.sh';
+    json.scripts['server:stop'] ??= 'bash tools/scripts/stop-local-dev-services.sh';
+    json.scripts['init:env'] ??= 'bash tools/scripts/setup-env-file.sh';
+    json.scripts['generate:tls'] ??= 'env-cmd bash ./docker/traefik/tls/generate.sh';
+  });
+}
+
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   generateFiles(tree, join(__dirname, 'files/general'), '', { tmpl: '' });
   if (options.applications) {
@@ -172,6 +188,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   CoerceIgnorePattern(tree, '.prettierignore', prettierIgnore);
 
   coerceWorkspaceProject(tree);
+  await coerceRootPackageJsonScripts(tree);
 
   await LibraryInitGenerator(tree, { overwrite: options.overwrite });
   await ApplicationInitGenerator(tree, { overwrite: options.overwrite });
