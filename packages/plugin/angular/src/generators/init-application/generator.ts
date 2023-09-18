@@ -158,7 +158,9 @@ function updateProjectTargets(
     // ensure the property is an array
     project.targets['build'].options.polyfills = [];
   }
-  CoerceAssets(project.targets['build'].options.polyfills, [ 'zone.js', '@angular/localize/init' ]);
+  if (options.i18n) {
+    CoerceAssets(project.targets['build'].options.polyfills, [ 'zone.js', '@angular/localize/init' ]);
+  }
   if (options.serviceWorker) {
     CoerceAssets(project.targets['build'].options.assets, [
       join(project.sourceRoot, 'manifest.webmanifest'),
@@ -167,6 +169,19 @@ function updateProjectTargets(
     project.targets['build'].configurations.production ??= {};
     project.targets['build'].configurations.production.serviceWorker = true;
     project.targets['build'].configurations.production.ngswConfigPath ??= 'shared/angular/ngsw-config.json';
+  }
+  project.targets['build'].configurations.production ??= {};
+  project.targets['build'].configurations.production.budgets ??= [];
+  const budget = project.targets['build'].configurations.production.budgets.find(b => b.type === 'initial');
+  if (!budget) {
+    project.targets['build'].configurations.production.budgets.push({
+      type: 'initial',
+      maximumWarning: '2mb',
+      maximumError: '5mb',
+    });
+  } else {
+    budget.maximumWarning = '2mb';
+    budget.maximumError = '5mb';
   }
 }
 
