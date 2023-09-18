@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.16...@rxap/plugin-workspace@16.1.0-dev.17) (2023-09-18)
+
+### Bug Fixes
+
+- add missing initial workspace files ([a2938ca](https://gitlab.com/rxap/packages/commit/a2938ca405718d0dee72d4c9dbc6437fb9621289))
+- coerce workspace project ([5510394](https://gitlab.com/rxap/packages/commit/5510394d5b4e09df28083bfabc8852063264c640))
+
 # [16.1.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.15...@rxap/plugin-workspace@16.1.0-dev.16) (2023-09-17)
 
 ### Bug Fixes

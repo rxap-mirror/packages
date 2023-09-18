@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.16",
+  "version": "16.1.0-dev.17",
   "name": "@rxap/plugin-workspace",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,7 +9,7 @@
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
     "@rxap/generator-utilities": "^1.1.0-dev.13",
-    "@rxap/plugin-application": "^16.1.0-dev.16",
+    "@rxap/plugin-application": "^16.1.0-dev.17",
     "@rxap/plugin-library": "^16.0.0-dev.26",
     "@rxap/plugin-utilities": "^16.1.0-dev.15",
     "@rxap/utilities": "^16.0.0-dev.18",
@@ -45,7 +45,7 @@
       },
       {
         "package": "@rxap/plugin-application",
-        "version": "16.1.0-dev.16"
+        "version": "16.1.0-dev.17"
       },
       {
         "package": "@rxap/plugin-library",
