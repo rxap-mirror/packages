@@ -464,7 +464,11 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@rxap/config', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/directives', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/components', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/rxjs', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/data-grid', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/forms', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/validator', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/pipes', 'latest', { soft: true });
 
   if (options.material) {
     await AddPackageJsonDependency(tree, '@angular/material', 'latest', { soft: true });
@@ -475,6 +479,8 @@ export async function initApplicationGenerator(
     await AddPackageJsonDependency(tree, '@rxap/layout', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/services', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/data-source', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/pattern', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/definition', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/authentication', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/icon', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/material-directives', 'latest', { soft: true });
@@ -485,6 +491,7 @@ export async function initApplicationGenerator(
   if (options.openApi) {
     await AddPackageJsonDependency(tree, '@rxap/open-api', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/remote-method', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/definition', 'latest', { soft: true });
   }
 
   if (options.sentry) {
