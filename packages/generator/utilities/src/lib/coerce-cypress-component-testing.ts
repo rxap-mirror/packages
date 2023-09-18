@@ -48,18 +48,19 @@ export default defineConfig({
   );
   _project.targets ??= {};
   const cypressProjectName = _project.targets['component-test'].options.devServerTarget.split(':').shift();
-  const cypressProject = readProjectConfiguration(
-    tree,
-    cypressProjectName,
-  );
-  cypressProject.implicitDependencies ??= [];
-  if (!cypressProject.implicitDependencies.includes(projectName)) {
-    cypressProject.implicitDependencies.push(projectName);
-    updateProjectConfiguration(
+  if (cypressProjectName !== projectName) {
+    const cypressProject = readProjectConfiguration(
       tree,
       cypressProjectName,
-      cypressProject,
     );
+    cypressProject.implicitDependencies ??= [];
+    if (!cypressProject.implicitDependencies.includes(projectName)) {
+      cypressProject.implicitDependencies.push(projectName);
+      updateProjectConfiguration(
+        tree,
+        cypressProjectName,
+        cypressProject,
+      );
+    }
   }
-
 }
