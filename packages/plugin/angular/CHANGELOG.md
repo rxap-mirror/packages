@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.30...@rxap/plugin-angular@16.1.0-dev.31) (2023-09-18)
+
+### Bug Fixes
+
+- add service worker files ([073e1a3](https://gitlab.com/rxap/packages/commit/073e1a3a95aa1a56e75b6950ebfe56c8599eb0f0))
+- init index html file ([3bdefa9](https://gitlab.com/rxap/packages/commit/3bdefa98115cc3fc3bbd069227780a8887b6e518))
+
 # [16.1.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.29...@rxap/plugin-angular@16.1.0-dev.30) (2023-09-18)
 
 ### Bug Fixes
