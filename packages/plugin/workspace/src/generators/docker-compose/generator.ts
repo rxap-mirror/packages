@@ -138,7 +138,7 @@ function createFrontendDockerCompose(
         ],
         depends_on: [
           'traefik',
-          'rxap-configuration-service',
+          'rxap-service-configuration',
           'rxap-status-service',
           'catch-all-api',
         ],

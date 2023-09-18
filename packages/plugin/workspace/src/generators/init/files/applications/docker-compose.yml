@@ -31,7 +31,7 @@ services:
       - "traefik.http.routers.catch-all-api.priority=5"
     volumes:
       - "./docker/not-found-nginx.conf:/etc/nginx/nginx.conf"
-  rxap-configuration-service:
+  rxap-service-configuration:
     image: registry.gitlab.com/rxap/packages/service/configuration:${RXAP_CHANNEL:-development}
     labels:
       - traefik.enable=true
