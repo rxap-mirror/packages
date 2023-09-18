@@ -27,6 +27,10 @@
         "type": "string"
       },
       "description": "The environment variables to be used in docker compose service"
+    },
+    "rootDomain": {
+      "type": "string",
+      "description": "The root domain to be used in docker compose service"
     }
   },
   "required": []

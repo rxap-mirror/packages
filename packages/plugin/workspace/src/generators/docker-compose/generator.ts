@@ -11,7 +11,9 @@ import {
   GetRootDockerOptions,
   RootDockerOptions,
 } from '@rxap/workspace-utilities';
+import 'colors';
 import { join } from 'path';
+import * as process from 'process';
 import { stringify } from 'yaml';
 import { DockerComposeGeneratorSchema } from './schema';
 
@@ -236,6 +238,76 @@ function getServiceApplications(applications: Application[], options: DockerComp
     (options.tags ?? []).every(tag => application.tags.includes(tag)));
 }
 
+function createTraefikConfig(
+  rootDomain: string,
+  services: Array<{ name: string; docker: Record<string, string> }>,
+  host: Tree,
+) {
+  return stringify({
+    api: {
+      dashboard: true,
+      debug: true,
+      insecure: true,
+    },
+    entryPoints: {
+      http: {
+        address: ':80',
+        http: {
+          redirections: {
+            entrypoint: {
+              to: 'https',
+              scheme: 'https',
+            },
+          },
+        },
+      },
+      https: {
+        address: ':443',
+        http: {
+          tls: {
+            domain: [
+              {
+                main: rootDomain,
+                sans: services.map(({ name }) => name + '.' + rootDomain),
+              },
+            ],
+          },
+        },
+      },
+    },
+    providers: {
+      docker: {
+        endpoint: 'unix:///var/run/docker.sock',
+        exposedByDefault: false,
+        network: 'traefik',
+      },
+      file: {
+        directory: '/etc/traefik/dynamic',
+      },
+    },
+    experimental: {
+      plugins: {
+        rewrite: {
+          moduleName: 'github.com/traefik/plugin-rewritebody',
+          version: 'v0.3.1',
+        },
+      },
+    },
+  });
+}
+
+function printEtcHostsConfig(
+  rootDomain: string,
+  services: Array<{ name: string; docker: Record<string, string> }>,
+) {
+  const config = [ '127.0.0.1', 'localhost', rootDomain, ...services.map(({ name }) => name + '.' + rootDomain) ].join(
+    ' ');
+  console.log('Add the following line to your /etc/hosts file:'.blue);
+  console.log(config);
+  console.log('You can do this by running the following command:'.blue);
+  console.log(`sudo sed -i 's/^127\\.0\\.0\\.1.*/${ config }/' /etc/hosts`.yellow);
+}
+
 export async function dockerComposeGenerator(
   tree: Tree,
   options: DockerComposeGeneratorSchema,
@@ -244,15 +316,20 @@ export async function dockerComposeGenerator(
   const applications = getApplications(tree, options);
   const serviceApplications = getServiceApplications(applications, options);
   const frontendApplications = getFrontendApplications(applications, options);
+  const rootDomain = options.rootDomain ?? process.env.ROOT_DOMAIN ?? '127-0-0-1.nip.io';
 
   const rootDocker = GetRootDockerOptions(tree);
   const serviceDockerCompose = createServiceDockerCompose(serviceApplications, rootDocker, options);
   const frontendDockerCompose = createFrontendDockerCompose(frontendApplications, rootDocker);
-  const traefikConfig = createDevServiceTraefikConfig(serviceApplications, tree);
+  const localServiceTraefikConfig = createDevServiceTraefikConfig(serviceApplications, tree);
+  const traefikConfig = createTraefikConfig(rootDomain, frontendApplications, tree);
 
   CoerceFile(tree, 'docker-compose.services.yml', serviceDockerCompose, true);
   CoerceFile(tree, 'docker-compose.frontends.yml', frontendDockerCompose, true);
-  CoerceFile(tree, 'docker/traefik/dynamic/local-services.yml', traefikConfig, true);
+  CoerceFile(tree, 'docker/traefik/dynamic/local-services.yml', localServiceTraefikConfig, true);
+  CoerceFile(tree, 'docker/traefik/traefik.yml', traefikConfig, true);
+
+  printEtcHostsConfig(rootDomain, frontendApplications);
 
 }
 
