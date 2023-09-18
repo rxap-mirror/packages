@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.22...@rxap/plugin-workspace@16.1.0-dev.23) (2023-09-18)
+
+### Bug Fixes
+
+- use registry.gitlab.com as default registry ([49015c8](https://gitlab.com/rxap/packages/commit/49015c8d45779992ae9ee861073e6bb500c0ed4a))
+
 # [16.1.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.21...@rxap/plugin-workspace@16.1.0-dev.22) (2023-09-18)
 
 ### Bug Fixes

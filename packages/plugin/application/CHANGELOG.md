@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.17...@rxap/plugin-application@16.1.0-dev.18) (2023-09-18)
+
+### Bug Fixes
+
+- set default target options for docker and docker-save ([b22c5aa](https://gitlab.com/rxap/packages/commit/b22c5aadc95241baffd988ed6457f4899350567d))
+
 # [16.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.16...@rxap/plugin-application@16.1.0-dev.17) (2023-09-18)
 
 ### Bug Fixes

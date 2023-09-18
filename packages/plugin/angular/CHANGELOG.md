@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.28...@rxap/plugin-angular@16.1.0-dev.29) (2023-09-18)
+
+### Bug Fixes
+
+- create shared folder structure if Dockerfile does not exist ([42f5ab9](https://gitlab.com/rxap/packages/commit/42f5ab9f612ca8f3b6dab49171e551d827816918))
+
 # [16.1.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.27...@rxap/plugin-angular@16.1.0-dev.28) (2023-09-18)
 
 ### Bug Fixes

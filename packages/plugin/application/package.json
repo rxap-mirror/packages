@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.17",
+  "version": "16.1.0-dev.18",
   "name": "@rxap/plugin-application",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,12 +7,13 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.1.0-dev.13",
-    "@rxap/plugin-angular": "^16.1.0-dev.24",
+    "@rxap/generator-utilities": "^1.1.0-dev.14",
+    "@rxap/plugin-angular": "^16.1.0-dev.29",
     "@rxap/plugin-docker": "^16.0.0-dev.27",
-    "@rxap/plugin-nestjs": "^16.1.0-dev.23",
+    "@rxap/plugin-nestjs": "^16.1.0-dev.24",
     "@rxap/plugin-utilities": "^16.1.0-dev.15",
-    "@rxap/workspace-utilities": "^0.1.0-dev.14",
+    "@rxap/utilities": "^16.0.0-dev.18",
+    "@rxap/workspace-utilities": "^0.1.0-dev.15",
     "handlebars": "^4.7.7",
     "tslib": "2.6.2"
   },
@@ -40,11 +41,11 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.13"
+        "version": "1.1.0-dev.14"
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "16.1.0-dev.24"
+        "version": "16.1.0-dev.29"
       },
       {
         "package": "@rxap/plugin-docker",
@@ -52,15 +53,19 @@
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "16.1.0-dev.23"
+        "version": "16.1.0-dev.24"
       },
       {
         "package": "@rxap/plugin-utilities",
         "version": "16.1.0-dev.15"
       },
       {
+        "package": "@rxap/utilities",
+        "version": "16.0.0-dev.18"
+      },
+      {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.14"
+        "version": "0.1.0-dev.15"
       }
     ]
   },

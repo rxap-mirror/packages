@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.14...@rxap/workspace-utilities@0.1.0-dev.15) (2023-09-18)
+
+### Bug Fixes
+
+- set default target value ([a5e3e58](https://gitlab.com/rxap/packages/commit/a5e3e580411a504c4932f03a9d3bb398687a0ecf))
+
 # [0.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.13...@rxap/workspace-utilities@0.1.0-dev.14) (2023-09-15)
 
 ### Bug Fixes
