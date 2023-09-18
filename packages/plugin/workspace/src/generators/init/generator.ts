@@ -3,6 +3,7 @@ import {
   generateFiles,
   getProjects,
   Tree,
+  updateProjectConfiguration,
 } from '@nx/devkit';
 import { CoerceIgnorePattern } from '@rxap/generator-utilities';
 import { ApplicationInitGenerator } from '@rxap/plugin-application';
@@ -159,6 +160,8 @@ function coerceWorkspaceProject(tree: Tree) {
       },
     },
   });
+
+  updateProjectConfiguration(tree, 'workspace', workspaceProject);
 
 }
 
