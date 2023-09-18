@@ -213,7 +213,7 @@ function updateGitIgnore(project: ProjectConfiguration, tree: Tree, options: Ini
 }
 
 function updateTags(project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
-  const tags = [ 'frontend' ];
+  const tags = [ 'frontend', 'user-interface' ];
 
   if (options.i18n) {
     tags.push('i18n');
@@ -221,6 +221,14 @@ function updateTags(project: ProjectConfiguration, options: InitApplicationGener
 
   if (options.localazy) {
     tags.push('localazy');
+  }
+
+  if (options.serviceWorker) {
+    tags.push('service-worker');
+  }
+
+  if (options.sentry) {
+    tags.push('sentry');
   }
 
   CoerceProjectTags(project, tags);

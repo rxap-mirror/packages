@@ -10,6 +10,7 @@ import {
 import jsLibraryGenerator from '@nx/js/src/generators/library/library';
 import {
   CoerceIgnorePattern,
+  CoerceProjectTags,
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
 import {
@@ -550,6 +551,35 @@ function updateMainFile(
 
 }
 
+function updateTags(project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+  const tags = [ 'backend', 'nest', 'service' ];
+
+  if (options.sentry) {
+    tags.push('sentry');
+  }
+
+  if (options.swagger) {
+    tags.push('swagger');
+  }
+
+  if (options.jwt) {
+    tags.push('jwt');
+  }
+
+  if (options.healthIndicator) {
+    tags.push('health-indicator');
+  }
+
+  if (options.openApi) {
+    tags.push('openapi');
+  }
+
+  if (options.platform) {
+    tags.push(options.platform);
+  }
+
+  CoerceProjectTags(project, tags);
+}
 
 export async function initApplicationGenerator(
   tree: Tree,
@@ -623,6 +653,7 @@ export async function initApplicationGenerator(
 
     updateProjectTargets(project);
     updateGitIgnore(tree, project);
+    updateTags(project, options);
     await createOpenApiClientSdkLibrary(tree, project, projects);
 
     // apply changes to the project configuration
