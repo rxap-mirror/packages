@@ -4,7 +4,6 @@ version: "3.4"
 services:
   postgresql:
     image: docker.io/library/postgres:12-alpine
-    restart: unless-stopped
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
       start_period: 20s
@@ -22,7 +21,6 @@ services:
   redis:
     image: docker.io/library/redis:alpine
     command: --save 60 1 --loglevel warning
-    restart: unless-stopped
     healthcheck:
       test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
       start_period: 20s
@@ -39,7 +37,6 @@ services:
       - "traefik.http.services.authentik.loadbalancer.server.port=9000"
       - "traefik.http.routers.authentik.middlewares=authentik-headers@file"
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2023.8.2}
-    restart: unless-stopped
     command: server
     environment:
       AUTHENTIK_REDIS__HOST: redis
@@ -60,7 +57,6 @@ services:
       - redis
   worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2023.8.2}
-    restart: unless-stopped
     command: worker
     environment:
       AUTHENTIK_REDIS__HOST: redis

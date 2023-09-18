@@ -29,7 +29,6 @@ services:
       - "traefik.http.routers.catch-all-api.rule=Host(`${ROOT_DOMAIN}`) && (PathPrefix(`/api`))"
       - "traefik.http.services.catch-all-api.loadbalancer.server.port=80"
       - "traefik.http.routers.catch-all-api.priority=5"
-    restart: unless-stopped
     volumes:
       - "./docker/not-found-nginx.conf:/etc/nginx/nginx.conf"
   rxap-configuration-service:
@@ -103,4 +102,3 @@ services:
       - "traefik.http.middlewares.cors-options.headers.accessControlAllowMethods=GET,POST,PUT,DELETE,OPTIONS"
       - "traefik.http.routers.cors-options.middlewares=cors-options"
     image: nginx:alpine
-    restart: unless-stopped
