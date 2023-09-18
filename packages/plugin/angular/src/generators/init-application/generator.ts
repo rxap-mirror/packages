@@ -461,17 +461,41 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, 'ngx-markdown', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, 'marked', '4.3.0', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/config', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/directives', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/components', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/data-grid', 'latest', { soft: true });
+
+  if (options.material) {
+    await AddPackageJsonDependency(tree, '@angular/material', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@angular/cdk', 'latest', { soft: true });
+  }
 
   if (options.monolithic) {
     await AddPackageJsonDependency(tree, '@rxap/layout', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/services', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/data-source', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/authentication', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/icon', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/material-directives', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/browser-utilities', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@angular/flex-layout', 'latest', { soft: true });
   }
 
   if (options.openApi) {
     await AddPackageJsonDependency(tree, '@rxap/open-api', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/remote-method', 'latest', { soft: true });
   }
 
   if (options.sentry) {
     await AddPackageJsonDependency(tree, '@rxap/ngx-sentry', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@sentry/angular-ivy', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@sentry/browser', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@sentry/integrations', 'latest', { soft: true });
+  }
+
+  if (options.i18n) {
+    await AddPackageJsonDependency(tree, '@angular/localize', 'latest', { soft: true });
   }
 
   if (options.localazy) {
