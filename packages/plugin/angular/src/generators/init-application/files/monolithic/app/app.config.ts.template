@@ -18,20 +18,21 @@ import { StatusControllerHealthCheckRemoteMethod } from 'open-api-service-status
 import { environment } from '../environments/environment';
 import { appRoutes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { LanguageInterceptor } from '@rxap/ngx-localize';
+import { ProvideChangelog } from '@rxap/ngx-changelog';
+import { MarkdownModule } from 'ngx-markdown';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    importProvidersFrom(MarkdownModule.forRoot()),
     // required to be imported so that the http client is available in the application for the status check method
-    provideHttpClient(withInterceptors([HttpErrorInterceptor])),
+    provideHttpClient(withInterceptors([HttpErrorInterceptor, LanguageInterceptor])),
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     // it is required to provide the animations provider in the app config.
     // If provided in a lazy loaded module the animations will not work
     provideAnimations(),
     ProvideErrorHandler(),
     ProvideEnvironment(environment),
-    {
-      provide: SERVICE_STATUS_CHECK_METHOD,
-      useClass: StatusControllerHealthCheckRemoteMethod,
-    },
+    ProvideChangelog(),
   ],
 };
