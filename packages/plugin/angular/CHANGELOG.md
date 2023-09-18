@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.31...@rxap/plugin-angular@16.1.0-dev.32) (2023-09-18)
+
+### Bug Fixes
+
+- ensure project tags ([f644ed7](https://gitlab.com/rxap/packages/commit/f644ed7191bb89fa6d45ae53ed61c7ff0f36ab8a))
+
+### Features
+
+- add localazyReadKey option ([912b428](https://gitlab.com/rxap/packages/commit/912b4288b37adafb1fae7ffe01dc2934baa4fd26))
+
 # [16.1.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.30...@rxap/plugin-angular@16.1.0-dev.31) (2023-09-18)
 
 ### Bug Fixes
