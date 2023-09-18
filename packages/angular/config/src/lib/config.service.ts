@@ -132,6 +132,25 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
       }
     }
 
+    if (!response.ok) {
+      let message = `Config request results in non ok response for '${ url }': (${ response.status }) ${ response.statusText }`;
+      switch (response.status) {
+        case 404:
+          message = `Config not found at '${ url }'`;
+          break;
+        case 405:
+          message = `Config service is not started yet. Wait 30s and try again.`;
+          break;
+      }
+      if (required) {
+        this.showError(message);
+        throw new Error(message);
+      } else {
+        console.warn(message);
+        return null;
+      }
+    }
+
     try {
       config = await response.json();
     } catch (error: any) {
