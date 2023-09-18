@@ -18,7 +18,10 @@ import {
   CoerceImports,
   CoerceVariableDeclaration,
 } from '@rxap/ts-morph';
-import { classify } from '@rxap/utilities';
+import {
+  classify,
+  dasherize,
+} from '@rxap/utilities';
 import {
   TsMorphAngularProjectTransform,
   TsMorphNestProjectTransform,
@@ -579,6 +582,16 @@ export async function initApplicationGenerator(
           name: projectName.replace(/^user-interface-/, ''),
           classify,
           prefix: GetProjectPrefix(tree, projectName, 'rxap'),
+        });
+      }
+    }
+    if (options.serviceWorker) {
+      if (options.overwrite) {
+        generateFiles(tree, join(__dirname, 'files', 'service-worker'), project.sourceRoot, {
+          ...options,
+          name: projectName.replace(/^user-interface-/, ''),
+          classify,
+          dasherize,
         });
       }
     }
