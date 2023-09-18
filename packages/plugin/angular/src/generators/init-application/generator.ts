@@ -173,10 +173,6 @@ function updateProjectTargets(
 function updateTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchema) {
   const nxJson = readNxJson(tree);
 
-  if (options.i18n) {
-    CoerceTargetDefaultsDependency(nxJson, 'i18n', 'build');
-  }
-
   if (options.localazy) {
     CoerceTargetDefaultsDependency(nxJson, 'build', 'localazy-download');
     CoerceTargetDefaultsDependency(nxJson, 'localazy-upload', 'extract-i18n');
@@ -455,9 +451,32 @@ export async function initApplicationGenerator(
   console.log('angular application init generator:', options);
 
   await AddPackageJsonDependency(tree, '@mdi/angular-material', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/ngx-bootstrap', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, 'ngx-logger', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/environment', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/ngx-status-check', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/ngx-error', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/ngx-localize', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/ngx-changelog', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, 'ngx-markdown', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, 'marked', '4.3.0', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
+
+  if (options.monolithic) {
+    await AddPackageJsonDependency(tree, '@rxap/layout', 'latest', { soft: true });
+  }
+
+  if (options.openApi) {
+    await AddPackageJsonDependency(tree, '@rxap/open-api', 'latest', { soft: true });
+  }
+
+  if (options.sentry) {
+    await AddPackageJsonDependency(tree, '@rxap/ngx-sentry', 'latest', { soft: true });
+  }
 
   if (options.localazy) {
     await AddPackageJsonDevDependency(tree, '@localazy/cli', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/plugin-localazy', 'latest', { soft: true });
   }
 
   // only add the shared folder if it does not exist
