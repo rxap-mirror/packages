@@ -29,7 +29,7 @@ export enum Strategy {
 export function CoerceTarget(
   projectConfiguration: ProjectConfigurationWithTarget,
   name: string,
-  target: TargetConfiguration,
+  target: TargetConfiguration = {},
   strategy = Strategy.DEFAULT,
 ) {
 
