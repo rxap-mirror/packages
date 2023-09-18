@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  minio:
+    image: quay.io/minio/minio
+    command: server /data --console-address ":9001"
+    container_name: minio
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.minio.entrypoints=https"
+      - "traefik.http.routers.minio.rule=Host(`minio.${ROOT_DOMAIN}`)"
+      - "traefik.http.services.minio.loadbalancer.server.port=9001"
+  minio-mc:
+    depends_on:
+      - minio
+    image: minio/mc
+    entrypoint: >
+      /bin/sh -c '
+      sleep 2 &&
+      echo set alias &&
+      mc alias set minio http://minio:9000 minioadmin minioadmin &&
+      echo create bucket &&
+      mc mb --ignore-existing minio/development &&
+      echo create demo file &&
+      echo It works! > demo.txt &&
+      echo copy demo file &&
+      mc cp ./demo.txt minio/development/ &&
+      exit 0;
+      '

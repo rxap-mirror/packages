@@ -19,7 +19,9 @@ fi
 
 cd "${GIT_ROOT}/docker/traefik/tls"
 
-echo -n "subjectAltName=DNS:127-0-0-1.nip.io," > ext.cnf.template
+echo -n "subjectAltName=DNS:127-0-0-1.nip.io" > ext.cnf.template
+
+echo -n "," >> ext.cnf.template
 
 echo -n "$(grep -oP 'Host\(`([^`]+)`\)' "$GIT_ROOT/docker-compose.services.yml" | sed -E 's/Host\(`([^`]+)`\)/\1/' | sort | uniq | awk '{print "DNS:" $0}' | paste -s -d,)" \
   >> ext.cnf.template
@@ -33,6 +35,8 @@ echo -n "," >> ext.cnf.template
 
 echo -n "$(grep -oP 'Host\(`([^`]+)`\)' "$GIT_ROOT/docker-compose.frontends.yml" | sed -E 's/Host\(`([^`]+)`\)/\1/' | sort | uniq | awk '{print "DNS:" $0}' | paste -s -d,)" \
   >> ext.cnf.template
+
+sed -i 's/,,/,/g' ext.cnf.template
 
 if [ ! -f ca.crt ]; then
 

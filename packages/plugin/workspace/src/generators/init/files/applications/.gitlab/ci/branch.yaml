@@ -1,17 +1,10 @@
 include:
-  - local: .gitlab/ci/jobs/build.yaml
+  - local: .gitlab/ci/jobs/run.yaml
   - local: .gitlab/ci/jobs/docker.yaml
 
 stages:
-  - build
+  - run
   - docker
 
 variables:
   ENVIRONMENT_NAME: branch/$CI_COMMIT_REF_NAME
-
-build:
-  extends: .build
-  environment:
-    name: $ENVIRONMENT_NAME
-
-

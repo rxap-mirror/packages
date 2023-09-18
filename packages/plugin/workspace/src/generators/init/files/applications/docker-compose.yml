@@ -1,0 +1,104 @@
+version: "3.7"
+networks:
+  default:
+    name: traefik
+services:
+  traefik:
+    image: traefik:latest
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - "$XDG_RUNTIME_DIR/docker.sock:/var/run/docker.sock:ro"
+      - ./docker/traefik:/etc/traefik:ro
+    ports:
+      - "8443:443"
+      - "8888:8080"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=https"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.${ROOT_DOMAIN}`)"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+    environment:
+      - REMOTE_DOMAIN
+      - ROOT_DOMAIN
+      - HOST_IP
+  catch-all-api:
+    image: nginx:alpine
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.catch-all-api.entrypoints=https"
+      - "traefik.http.routers.catch-all-api.rule=Host(`${ROOT_DOMAIN}`) && (PathPrefix(`/api`))"
+      - "traefik.http.services.catch-all-api.loadbalancer.server.port=80"
+      - "traefik.http.routers.catch-all-api.priority=5"
+    volumes:
+      - "./docker/not-found-nginx.conf:/etc/nginx/nginx.conf"
+  rxap-configuration-service:
+    image: registry.gitlab.com/rxap/packages/service/configuration:${RXAP_CHANNEL:-development}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.rxap-configuration.rule=PathPrefix(`/api/configuration`)
+      - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.path=/health
+      - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.interval=10s
+      - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.timeout=3s
+    volumes:
+      - ./shared/angular/configuration:/app/assets
+    environment:
+      - STATUS_SERVICE_BASE_URL=http://rxap-status-service:3000
+      - ROOT_DOMAIN
+      - SENTRY_ENABLED=false
+      - LOG_LEVEL=verbose
+      - ROOT_DOMAIN_PORT
+    depends_on:
+      - traefik
+      - catch-all-api
+      - rxap-status-service
+  rxap-status-service:
+    image: registry.gitlab.com/rxap/packages/service/status:${RXAP_CHANNEL:-development}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.rxap-status.rule=PathPrefix(`/api/status`)
+      - traefik.http.services.rxap-status.loadbalancer.healthCheck.path=/health
+      - traefik.http.services.rxap-status.loadbalancer.healthCheck.interval=10s
+      - traefik.http.services.rxap-status.loadbalancer.healthCheck.timeout=3s
+    environment:
+      - ROOT_DOMAIN
+      - SENTRY_ENABLED=false
+      - LOG_LEVEL=verbose
+      - ROOT_DOMAIN_PORT
+    depends_on:
+      - traefik
+      - catch-all-api
+    ports:
+      - "5300:3000"
+  rxap-service-changelog:
+    image: registry.gitlab.com/rxap/packages/service/changelog:${RXAP_CHANNEL:-development}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.rxap-service-changelog.rule=PathPrefix(`/api/changelog`)
+      - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.path=/health
+      - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.interval=10s
+      - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.timeout=3s
+    environment:
+      - STATUS_SERVICE_BASE_URL=http://rxap-status-service:3000
+      - ROOT_DOMAIN
+      - SENTRY_ENABLED=false
+      - LOG_LEVEL=verbose
+      - ROOT_DOMAIN_PORT
+    volumes:
+      - ./shared/angular/changelog:/app/assets
+    depends_on:
+      - traefik
+      - catch-all-api
+      - rxap-status-service
+  cors-options:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.cors-options.entrypoints=https"
+      - "traefik.http.routers.cors-options.rule=Method(`OPTIONS`)"
+      - "traefik.http.routers.cors-options.priority=9999"
+      - "traefik.http.services.cors-options.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.cors-options.headers.accessControlAllowOriginList=*"
+      - "traefik.http.middlewares.cors-options.headers.accessControlAllowCredentials=true"
+      - "traefik.http.middlewares.cors-options.headers.accessControlAllowHeaders=x-api-key,sentry-trace,baggage,Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Requested-With"
+      - "traefik.http.middlewares.cors-options.headers.accessControlAllowMethods=GET,POST,PUT,DELETE,OPTIONS"
+      - "traefik.http.routers.cors-options.middlewares=cors-options"
+    image: nginx:alpine

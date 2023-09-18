@@ -1,0 +1,52 @@
+.setup: &setup |
+  apk add --no-cache git g++ make python3 curl git-lfs
+  git lfs install
+  git lfs pull
+  corepack enable
+  corepack prepare yarn@stable --activate
+  yarn "$(if [[ $CI_COMMIT_REF_NAME =~ ^renovate//* ]]; then echo ''; else echo '--frozen-lockfile'; fi)"
+
+.dte-coordinator-setup: &dte-coordinator-setup |
+  yarn exec nx-cloud start-ci-run --stop-agents-after="${STOP_TARGET:-${TARGET}}"
+
+.nx-base:
+  image: node:${NODE_VERSION}-alpine
+  needs:
+    - job: setup
+      optional: true
+      artifacts: false
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules/
+    policy: pull
+  before_script:
+    - *setup
+
+# Creating template for DTE agents
+.dte-agent:
+  interruptible: true
+  extends: .nx-base
+  script:
+    - yarn exec nx-cloud start-agent
+
+.run:
+  extends: .nx-base
+  variables:
+    TARGET: "$CI_JOB_NAME"
+  script:
+    - yarn nx run ${TARGET} ${ADDITIONAL_TARGET_OPTIONS}
+
+.run-many:
+  extends: .run
+  script:
+    - yarn nx run-many --target ${TARGET} --parallel ${NX_PARALLEL:-3} ${ADDITIONAL_TARGET_OPTIONS}
+    - NX_CLOUD_DISTRIBUTED_EXECUTION=false yarn nx run packages:ci-info
+
+.run-many-dte:
+  extends: .run-many
+  before_script:
+    - *setup
+    - *dte-coordinator-setup

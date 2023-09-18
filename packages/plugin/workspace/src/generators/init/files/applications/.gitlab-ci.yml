@@ -30,11 +30,11 @@ variables:
   NODE_VERSION: "18.17"
   HUSKY: "0"
   GIT_STRATEGY: "fetch"
+  GIT_DEPTH: "3"
 
 include:
 
-  - local: .gitlab/ci/utilities/run-all.yaml
-  - local: .gitlab/ci/utilities/run.yaml
+  - local: .gitlab/ci/utilities/nx.yaml
 
   # the review pipeline to check if tests and builds are successful and deploy a review environment
   - local: .gitlab/ci/review.yaml

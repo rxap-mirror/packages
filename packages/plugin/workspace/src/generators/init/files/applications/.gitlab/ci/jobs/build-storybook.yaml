@@ -1,6 +1,6 @@
 .build-storybook:
   stage: build
-  extends: .run_all
+  extends: .run-many
   variables:
     TARGET: "build-storybook"
     ADDITIONAL_TARGET_OPTIONS: "--configuration ci"

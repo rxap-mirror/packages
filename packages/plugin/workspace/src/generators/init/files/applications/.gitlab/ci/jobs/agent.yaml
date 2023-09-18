@@ -1,0 +1,8 @@
+.agent:
+  environment:
+    action: prepare
+    name: $ENVIRONMENT_NAME
+  tags:
+    - e2-standard-8
+  extends: .dte-agent
+  parallel: 3

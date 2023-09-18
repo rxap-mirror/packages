@@ -1,6 +1,6 @@
 .test:
   stage: test
-  extends: .run_all
+  extends: .run-many
   variables:
     TARGET: "test"
     ADDITIONAL_TARGET_OPTIONS: "--configuration ci"

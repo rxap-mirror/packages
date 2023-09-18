@@ -1,24 +1,19 @@
 include:
-  - local: .gitlab/ci/jobs/build.yaml
+  - local: .gitlab/ci/jobs/run.yaml
   - local: .gitlab/ci/jobs/docker.yaml
   - local: .gitlab/ci/jobs/sentry.yaml
 
 stages:
-  - build
+  - run
   - docker
   - sentry
 
 variables:
   ENVIRONMENT_NAME: release/$CI_COMMIT_TAG
 
-build:
-  extends: .build
+run:
   variables:
-    ADDITIONAL_TARGET_OPTIONS: "--configuration production --channel $CI_ENVIRONMENT_SLUG"
-  environment:
-    name: $ENVIRONMENT_NAME
+    ADDITIONAL_TARGET_OPTIONS: "--channel $CI_ENVIRONMENT_SLUG"
 
 sentry:
   extends: .sentry
-  environment:
-    name: $ENVIRONMENT_NAME
