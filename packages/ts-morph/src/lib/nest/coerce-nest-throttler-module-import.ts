@@ -35,8 +35,14 @@ export function CoerceNestThrottlerModuleImport(
           useFactory: w => {
             w.write('(config: ConfigService) => (');
             Writers.object({
-              ttl: 'config.getOrThrow(\'THROTTLER_TTL\')',
-              limit: 'config.getOrThrow(\'THROTTLER_LIMIT\')',
+              throttlers: w => {
+                w.write('[');
+                Writers.object({
+                  ttl: 'config.getOrThrow(\'THROTTLER_TTL\')',
+                  limit: 'config.getOrThrow(\'THROTTLER_LIMIT\')',
+                });
+                w.write(']');
+              },
             })(w);
             w.write(')');
           },
