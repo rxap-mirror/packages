@@ -65,8 +65,8 @@ function getServiceApiPrefix(name: string, host: Tree) {
 }
 
 function buildImageName(docker: Record<string, string>, rootDocker: RootDockerOptions): string {
-  const imageRegistry = `\${REGISTRY:-${ docker.imageRegistry ?? rootDocker.imageRegistry }}`;
-  const imageName = `${ docker.imageName ?? rootDocker.imageName }${ docker.imageSuffix ?? '' }`;
+  const imageRegistry = `\${REGISTRY:-${ docker.imageRegistry ?? rootDocker.imageRegistry ?? 'registry.gitlab.com' }}`;
+  const imageName = `${ docker.imageName ?? rootDocker.imageName ?? 'unknown' }${ docker.imageSuffix ?? '' }`;
   const imageTag = `\${CHANNEL:-development}`;
 
   return `${ imageRegistry }/${ imageName }:${ imageTag }`;
