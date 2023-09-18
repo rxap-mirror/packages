@@ -267,7 +267,7 @@ function createTraefikConfig(
         address: ':443',
         http: {
           tls: {
-            domain: [
+            domains: [
               {
                 main: rootDomain,
                 sans: services.map(({ name }) => name + '.' + rootDomain),
@@ -302,7 +302,15 @@ function printEtcHostsConfig(
   rootDomain: string,
   services: Array<{ name: string; docker: Record<string, string> }>,
 ) {
-  const config = [ '127.0.0.1', 'localhost', rootDomain, ...services.map(({ name }) => name + '.' + rootDomain) ].join(
+  const config = [
+    '127.0.0.1',
+    'localhost',
+    rootDomain,
+    `traefik.${ rootDomain }`,
+    `minio.${ rootDomain }`,
+    `auth.${ rootDomain }`,
+    ...services.map(({ name }) => name + '.' + rootDomain),
+  ].join(
     ' ');
   console.log('Add the following line to your /etc/hosts file:'.blue);
   console.log(config);
@@ -314,7 +322,7 @@ function createExtCnf(
   rootDomain: string,
   services: Array<{ name: string; docker: Record<string, string> }>,
 ) {
-  let config = `subjectAltName=DNS:${ rootDomain },DNS:traefik.${ rootDomain }`;
+  let config = `subjectAltName=DNS:${ rootDomain },DNS:traefik.${ rootDomain },DNS:minio.${ rootDomain },DNS:auth.${ rootDomain }`;
   if (services.length) {
     config += ',';
     config += services.map(({ name }) => 'DNS:' + name + '.' + rootDomain).join(',');
@@ -417,7 +425,11 @@ export async function dockerComposeGenerator(
 
   CoerceFile(tree, 'docker-compose.services.yml', serviceDockerCompose, true);
   CoerceFile(tree, 'docker-compose.frontends.yml', frontendDockerCompose, true);
-  CoerceFile(tree, 'docker/traefik/dynamic/local-services.yml', localServiceTraefikConfig, true);
+  if (serviceApplications.length) {
+    CoerceFile(tree, 'docker/traefik/dynamic/local-services.yml', localServiceTraefikConfig, true);
+  } else if (tree.exists('docker/traefik/dynamic/local-services.yml')) {
+    tree.delete('docker/traefik/dynamic/local-services.yml');
+  }
   CoerceFile(tree, 'docker/traefik/traefik.yml', traefikConfig, true);
 
   coerceCaCert(rootDomain, tree);
