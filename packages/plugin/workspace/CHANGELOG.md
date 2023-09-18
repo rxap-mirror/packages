@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.20...@rxap/plugin-workspace@16.1.0-dev.21) (2023-09-18)
+
+### Bug Fixes
+
+- include missing domains ([ae2c306](https://gitlab.com/rxap/packages/commit/ae2c306212777735f3a5570218abef651088ec20))
+- update initial workspace files ([5b732f3](https://gitlab.com/rxap/packages/commit/5b732f355267ce5ef77f8f474595a09e58b4ae82))
+- update service configuration name ([2686a78](https://gitlab.com/rxap/packages/commit/2686a7821685c0206eb7d390bfa1943c44795662))
+- update service status name ([238353c](https://gitlab.com/rxap/packages/commit/238353c821f25268af93599756406e73431fca21))
+
 # [16.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.19...@rxap/plugin-workspace@16.1.0-dev.20) (2023-09-18)
 
 ### Bug Fixes
