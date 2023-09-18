@@ -27,7 +27,8 @@
           "localazy-upload",
           "extract-i18n",
           "expose-as-schematic",
-          "localazy-download"
+          "localazy-download",
+          "fix-dependencies"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
