@@ -89,6 +89,24 @@ services:
       - traefik
       - catch-all-api
       - rxap-status-service
+  rxap-service-user:
+    image: registry.gitlab.com/rxap/packages/service/user:${RXAP_CHANNEL:-development}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.rxap-service-user.rule=PathPrefix(`/api/user`)
+      - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.path=/health
+      - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.interval=10s
+      - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.timeout=3s
+    environment:
+      - STATUS_SERVICE_BASE_URL=http://rxap-status-service:3000
+      - ROOT_DOMAIN
+      - SENTRY_ENABLED=false
+      - LOG_LEVEL=verbose
+      - ROOT_DOMAIN_PORT
+    depends_on:
+      - traefik
+      - catch-all-api
+      - rxap-status-service
   cors-options:
     labels:
       - "traefik.enable=true"
