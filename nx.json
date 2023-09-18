@@ -444,18 +444,6 @@
       "tags": "nest",
       "strict": true
     },
-    "@rxap/schematic-nestjs:frontend-microservice": {
-      "imageName": "rxap/packages",
-      "apiConfigurationFile": "applications/service/configuration/src/assets/latest/config.api.json"
-    },
-    "@rxap/schematic-nestjs:feature-microservice": {
-      "imageName": "rxap/packages",
-      "apiConfigurationFile": "applications/service/configuration/src/assets/latest/config.api.json"
-    },
-    "@rxap/schematic-nestjs:microservice": {
-      "imageName": "rxap/packages",
-      "apiConfigurationFile": "applications/service/configuration/src/assets/latest/config.api.json"
-    },
     "@nx/plugin:executor": {
       "unitTestRunner": "none"
     },

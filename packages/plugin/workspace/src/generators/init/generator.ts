@@ -2,14 +2,22 @@ import {
   addProjectConfiguration,
   generateFiles,
   getProjects,
+  NxJsonConfiguration,
+  readNxJson,
   Tree,
+  updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
 import { CoerceIgnorePattern } from '@rxap/generator-utilities';
 import { ApplicationInitGenerator } from '@rxap/plugin-application';
 import { LibraryInitGenerator } from '@rxap/plugin-library';
 import {
+  deepMerge,
+  MergeDeepLeft,
+} from '@rxap/utilities';
+import {
   CoerceTarget,
+  Strategy,
   UpdatePackageJson,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
@@ -177,6 +185,177 @@ async function coerceRootPackageJsonScripts(tree: Tree) {
   });
 }
 
+function CoerceNxJsonNamedInputs(
+  nxJson: NxJsonConfiguration,
+  name: string,
+  pattern: string[],
+  strategy: Strategy = Strategy.DEFAULT,
+) {
+  nxJson.namedInputs ??= {};
+  switch (strategy) {
+    case Strategy.DEFAULT:
+      nxJson.namedInputs[name] ??= pattern;
+      break;
+    case Strategy.OVERWRITE:
+      nxJson.namedInputs[name] = pattern;
+      break;
+    case Strategy.MERGE:
+      nxJson.namedInputs[name] = pattern;
+      break;
+    case Strategy.REPLACE:
+      nxJson.namedInputs[name] = pattern;
+      break;
+  }
+}
+
+function CoerceNxJsonGenerators(
+  nxJson: NxJsonConfiguration,
+  name: string,
+  options: Record<string, unknown>,
+  strategy: Strategy = Strategy.DEFAULT,
+) {
+
+  nxJson.generators ??= {};
+
+  switch (strategy) {
+    case Strategy.DEFAULT:
+      nxJson.generators[name] ??= options;
+      break;
+    case Strategy.OVERWRITE:
+      nxJson.generators[name] ??= options;
+      nxJson.generators[name] = deepMerge(nxJson.generators[name], options);
+      break;
+    case Strategy.MERGE:
+      nxJson.generators[name] ??= options;
+      nxJson.generators[name] = deepMerge(nxJson.generators[name], options, MergeDeepLeft);
+      break;
+    case Strategy.REPLACE:
+      nxJson.generators[name] = options;
+      break;
+  }
+
+}
+
+function CoerceNxJsonCacheableOperations(nxJson: NxJsonConfiguration, name: string) {
+  if (nxJson.tasksRunnerOptions?.default?.runner === 'nx-cloud') {
+    nxJson.tasksRunnerOptions.default.options ??= {};
+    nxJson.tasksRunnerOptions.default.options = {
+      ...nxJson.tasksRunnerOptions.default.options,
+      cacheableOperations: [
+        ...nxJson.tasksRunnerOptions.default.options.cacheableOperations ?? [],
+        name,
+      ].filter((value, index, array) => array.indexOf(value) === index),
+    };
+  }
+}
+
+function coerceNxJson(tree: Tree) {
+  const nxJson = readNxJson(tree)!;
+
+  CoerceNxJsonNamedInputs(nxJson, 'default', [ '{projectRoot}/**/*' ]);
+  CoerceNxJsonNamedInputs(nxJson, 'build', [
+    'production',
+    '{projectRoot}/package.json',
+    '{projectRoot}/collection.json',
+    '{projectRoot}/generators.json',
+    '{projectRoot}/executors.json',
+  ]);
+  CoerceNxJsonNamedInputs(nxJson, 'production', [
+    'typescript',
+    '{projectRoot}/src/**/*',
+    '!{projectRoot}/**/*.{spec,stories,cy}.ts',
+    '!{projectRoot}/jest.config.ts',
+    '!{projectRoot}/src/test-setup.[jt]s',
+    '!{projectRoot}/tsconfig.spec.json',
+    '!{projectRoot}/cypress/**/*',
+    '!{projectRoot}/**/*.cy.[jt]s?(x)',
+    '!{projectRoot}/cypress.config.[jt]s',
+  ], Strategy.REPLACE);
+  CoerceNxJsonNamedInputs(nxJson, 'test', [
+    'typescript',
+    '{projectRoot}/src/**/*',
+    '!{projectRoot}/tsconfig.lib.json',
+    '!{projectRoot}/tsconfig.lib.prod.json',
+  ]);
+  CoerceNxJsonNamedInputs(nxJson, 'typescript', [
+    '{projectRoot}/**/*.ts',
+    '{projectRoot}/tsconfig.json',
+    '{projectRoot}/tsconfig.*.json',
+  ]);
+  CoerceNxJsonGenerators(nxJson, '@nx/angular:application', {
+    'style': 'scss',
+    'linter': 'eslint',
+    'unitTestRunner': 'jest',
+    'e2eTestRunner': 'none',
+    'tags': 'angular,ngx',
+    'prefix': 'rxap',
+    'standalone': true,
+    'addTailwind': true,
+    'routing': true,
+  });
+  CoerceNxJsonGenerators(nxJson, '@nx/angular:component', {
+    'style': 'scss',
+    'standalone': true,
+  });
+  CoerceNxJsonGenerators(nxJson, '@nx/angular:library', {
+    'linter': 'eslint',
+    'unitTestRunner': 'jest',
+    'publishable': false,
+    'addTailwind': true,
+    'changeDetection': 'OnPush',
+    'standalone': true,
+    'style': 'scss',
+    'directory': 'angular',
+    'tags': 'angular,ngx',
+    'prefix': 'rxap',
+    'skipModule': true,
+  });
+  CoerceNxJsonGenerators(nxJson, '@nx/plugin:plugin', {
+    'directory': 'plugin',
+    'publishable': false,
+    'tags': 'plugin,nx,nx-plugin',
+  });
+  CoerceNxJsonGenerators(nxJson, '@nx/js:library', {
+    'unitTestRunner': 'jest',
+    'publishable': false,
+  });
+  CoerceNxJsonGenerators(nxJson, '@nx/nest:library', {
+    'directory': 'nest',
+    'tags': 'nest',
+    'publishable': true,
+  });
+  CoerceNxJsonGenerators(nxJson, '@nx/angular:directive', {
+    'standalone': true,
+    'skipTests': true,
+  });
+  CoerceNxJsonGenerators(nxJson, '@nx/nest:application', {
+    'e2eTestRunner': 'none',
+    'tags': 'nest',
+    'strict': true,
+  });
+  CoerceNxJsonGenerators(nxJson, '@nx/plugin:executor', {
+    'unitTestRunner': 'none',
+  });
+  CoerceNxJsonGenerators(nxJson, '@nx/plugin:generator', {
+    'unitTestRunner': 'none',
+  });
+  CoerceNxJsonGenerators(nxJson, '@nx/angular:library-secondary-entry-point', {
+    'skipModule': true,
+  });
+  CoerceNxJsonCacheableOperations(nxJson, 'ci-info');
+  CoerceNxJsonCacheableOperations(nxJson, 'localazy-upload');
+  CoerceNxJsonCacheableOperations(nxJson, 'extract-i18n');
+  CoerceNxJsonCacheableOperations(nxJson, 'localazy-download');
+  CoerceNxJsonCacheableOperations(nxJson, 'index-export');
+  CoerceNxJsonCacheableOperations(nxJson, 'swagger-build');
+  CoerceNxJsonCacheableOperations(nxJson, 'swagger-generate');
+  CoerceNxJsonCacheableOperations(nxJson, 'generate-package-json');
+  CoerceNxJsonCacheableOperations(nxJson, 'component-test');
+  CoerceNxJsonCacheableOperations(nxJson, 'generate-open-api');
+
+  updateNxJson(tree, nxJson);
+}
+
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   generateFiles(tree, join(__dirname, 'files/general'), '', { tmpl: '' });
   if (options.applications) {
@@ -201,6 +380,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   }
 
   coerceWorkspaceProject(tree);
+  coerceNxJson(tree);
   await coerceRootPackageJsonScripts(tree);
 
   await LibraryInitGenerator(tree, { overwrite: options.overwrite });
