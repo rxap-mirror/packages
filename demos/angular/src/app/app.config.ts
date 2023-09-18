@@ -17,6 +17,7 @@ import {
   HttpErrorInterceptor,
   ProvideErrorHandler,
 } from '@rxap/ngx-error';
+import { LanguageInterceptor } from '@rxap/ngx-localize';
 import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../environments/environment';
 import { appRoutes } from './app.routes';
@@ -24,7 +25,7 @@ import { appRoutes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     importProvidersFrom(MarkdownModule.forRoot()),
-    provideHttpClient(withInterceptors([ HttpErrorInterceptor ])),
+    provideHttpClient(withInterceptors([ HttpErrorInterceptor, LanguageInterceptor ])),
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     provideAnimations(),
     ProvideErrorHandler(),
