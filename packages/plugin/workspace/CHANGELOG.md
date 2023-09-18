@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.19...@rxap/plugin-workspace@16.1.0-dev.20) (2023-09-18)
+
+### Bug Fixes
+
+- generate traefik default certs ([c3b23ff](https://gitlab.com/rxap/packages/commit/c3b23ff1c050b34462111490aec9d4b5f6636640))
+
 # [16.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.18...@rxap/plugin-workspace@16.1.0-dev.19) (2023-09-18)
 
 ### Bug Fixes
