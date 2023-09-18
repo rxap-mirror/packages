@@ -1,7 +1,9 @@
 import {
   getProjects,
+  NxJsonConfiguration,
   ProjectConfiguration,
   readNxJson,
+  TargetConfiguration,
   Tree,
   updateNxJson,
   updateProjectConfiguration,
@@ -11,8 +13,15 @@ import { AngularInitGenerator } from '@rxap/plugin-angular';
 import { DockerGitlabCiGenerator } from '@rxap/plugin-docker';
 import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
 import {
+  deepMerge,
+  DeleteEmptyProperties,
+  MergeDeepLeft,
+} from '@rxap/utilities';
+import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  GetPackageJson,
+  Strategy,
 } from '@rxap/workspace-utilities';
 import * as process from 'process';
 import { InitGeneratorSchema } from './schema';
@@ -59,25 +68,13 @@ function updateProjectTargets(project: ProjectConfiguration, projectName: string
   }
 
   CoerceTarget(project, 'docker', {
-    executor: '@rxap/plugin-docker:build',
-    options: {
-      imageName: options.dockerImageName ?? process.env.IMAGE_NAME,
+    options: DeleteEmptyProperties({
+      imageName: options.dockerImageName,
       imageSuffix: options.dockerImageSuffix ?? buildDockerImageSuffix(project, projectName),
-      imageRegistry: options.dockerImageRegistry ?? process.env.REGISTRY,
-    },
-    configurations: {
-      production: {},
-      development: {},
-    },
+      imageRegistry: options.dockerImageRegistry,
+    }),
   });
-  CoerceTarget(project, 'docker-save', {
-    executor: '@rxap/plugin-docker:save',
-    options: {},
-    configurations: {
-      production: {},
-      development: {},
-    },
-  });
+  CoerceTarget(project, 'docker-save');
 
   // if the build target has a configuration for production
   if (project.targets?.['build']?.configurations?.['production']) {
@@ -97,6 +94,60 @@ function updateProjectTargets(project: ProjectConfiguration, projectName: string
 
 }
 
+function guessImageName(tree: Tree) {
+  const rootPackageJson = GetPackageJson(tree);
+  if (rootPackageJson.repository) {
+    const repo = typeof rootPackageJson.repository === 'string' ?
+      rootPackageJson.repository :
+      rootPackageJson.repository.url;
+    if (repo) {
+      const match = repo.match(/https:\/\/([^/]+)\/(.+)\.git$/);
+      if (match) {
+        if (match[1] === 'gitlab.com') {
+          return match[2];
+        }
+      }
+    }
+  }
+  const name = rootPackageJson.name;
+  const match = name?.match(/@([^/]+)\/(.+)$/);
+  if (match) {
+    if (match[2] === 'source') {
+      return match[1];
+    }
+    return match[2];
+  }
+  return 'unknown';
+}
+
+function CoerceTargetDefaults(
+  nxJson: NxJsonConfiguration,
+  name: string,
+  target: Partial<TargetConfiguration>,
+  strategy = Strategy.DEFAULT,
+) {
+
+  nxJson.targetDefaults ??= {};
+  if (!nxJson.targetDefaults[name]) {
+    nxJson.targetDefaults[name] = target;
+  } else {
+    switch (strategy) {
+      case Strategy.DEFAULT:
+        break;
+      case Strategy.OVERWRITE:
+        nxJson.targetDefaults[name] = deepMerge(nxJson.targetDefaults[name], target);
+        break;
+      case Strategy.MERGE:
+        nxJson.targetDefaults[name] = deepMerge(nxJson.targetDefaults[name], target, MergeDeepLeft);
+        break;
+      case Strategy.REPLACE:
+        nxJson.targetDefaults[name] = target;
+        break;
+    }
+  }
+
+}
+
 function updateTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
@@ -106,6 +157,17 @@ function updateTargetDefaults(tree: Tree) {
 
   CoerceTargetDefaultsDependency(nxJson, 'docker', 'build');
   CoerceTargetDefaultsDependency(nxJson, 'docker-save', 'docker');
+
+  CoerceTargetDefaults(nxJson, 'docker-save', {
+    executor: '@rxap/plugin-docker:save',
+  });
+  CoerceTargetDefaults(nxJson, 'docker', {
+    executor: '@rxap/plugin-docker:build',
+    options: {
+      imageRegistry: process.env.REGISTRY ?? 'registry.gitlab.com',
+      imageName: process.env.IMAGE_NAME ?? guessImageName(tree),
+    },
+  }, Strategy.MERGE);
 
   updateNxJson(tree, nxJson);
 }
