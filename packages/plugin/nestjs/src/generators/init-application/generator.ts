@@ -655,7 +655,7 @@ export async function initApplicationGenerator(
           if (!itemList.find(i => i.name === 'STATUS_SERVICE_BASE_URL')) {
             itemList.push({
               name: 'STATUS_SERVICE_BASE_URL',
-              defaultValue: `environment.production ? 'http://rxap-status-service:3000' : 'http://localhost:5300'`,
+              defaultValue: `environment.production ? 'http://rxap-service-status:3000' : 'http://localhost:5300'`,
             });
           }
           CoerceImports(configSourceFile, {

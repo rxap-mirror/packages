@@ -18,6 +18,6 @@ validationSchema['SENTRY_ENABLED'] = Joi.string().default(environment.sentry?.en
 validationSchema['SENTRY_DSN'] = Joi.string();
 validationSchema['STATUS_SERVICE_BASE_URL'] = Joi.string()
                                                  .default(environment.production ?
-                                                   'http://rxap-status-service:3000' :
+                                                   'http://rxap-service-status:3000' :
                                                    'http://localhost:5300');
 export const VALIDATION_SCHEMA = Joi.object(validationSchema);

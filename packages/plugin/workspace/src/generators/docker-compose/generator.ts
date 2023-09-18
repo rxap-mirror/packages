@@ -97,7 +97,7 @@ function createServiceDockerCompose(
         ],
         environment: [
           ...options.serviceEnvironments ?? [],
-          'STATUS_SERVICE_BASE_URL=http://rxap-status-service:3000',
+          'STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000',
           'ROOT_DOMAIN',
           'SENTRY_ENABLED=false',
           'LOG_LEVEL=verbose',
@@ -106,7 +106,7 @@ function createServiceDockerCompose(
         depends_on: [
           'traefik',
           'catch-all-api',
-          'rxap-status-service',
+          'rxap-service-status',
         ],
       };
       return services;
@@ -139,7 +139,7 @@ function createFrontendDockerCompose(
         depends_on: [
           'traefik',
           'rxap-service-configuration',
-          'rxap-status-service',
+          'rxap-service-status',
           'catch-all-api',
         ],
       };

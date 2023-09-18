@@ -42,7 +42,7 @@ services:
     volumes:
       - ./shared/angular/configuration:/app/assets
     environment:
-      - STATUS_SERVICE_BASE_URL=http://rxap-status-service:3000
+      - STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000
       - ROOT_DOMAIN
       - SENTRY_ENABLED=false
       - LOG_LEVEL=verbose
@@ -50,8 +50,8 @@ services:
     depends_on:
       - traefik
       - catch-all-api
-      - rxap-status-service
-  rxap-status-service:
+      - rxap-service-status
+  rxap-service-status:
     image: registry.gitlab.com/rxap/packages/service/status:${RXAP_CHANNEL:-development}
     labels:
       - traefik.enable=true
@@ -78,7 +78,7 @@ services:
       - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.timeout=3s
     environment:
-      - STATUS_SERVICE_BASE_URL=http://rxap-status-service:3000
+      - STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000
       - ROOT_DOMAIN
       - SENTRY_ENABLED=false
       - LOG_LEVEL=verbose
@@ -88,7 +88,7 @@ services:
     depends_on:
       - traefik
       - catch-all-api
-      - rxap-status-service
+      - rxap-service-status
   rxap-service-user:
     image: registry.gitlab.com/rxap/packages/service/user:${RXAP_CHANNEL:-development}
     labels:
@@ -98,7 +98,7 @@ services:
       - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.timeout=3s
     environment:
-      - STATUS_SERVICE_BASE_URL=http://rxap-status-service:3000
+      - STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000
       - ROOT_DOMAIN
       - SENTRY_ENABLED=false
       - LOG_LEVEL=verbose
@@ -106,7 +106,7 @@ services:
     depends_on:
       - traefik
       - catch-all-api
-      - rxap-status-service
+      - rxap-service-status
   cors-options:
     labels:
       - "traefik.enable=true"

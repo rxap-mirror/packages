@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
 
 const validationSchema: SchemaMap = {};
 validationSchema['STATUS_SERVICE_BASE_URL'] =
-  Joi.string().default(environment.production ? 'http://rxap-status-service:3000' : 'http://localhost:5300');
+  Joi.string().default(environment.production ? 'http://rxap-service-status:3000' : 'http://localhost:5300');
 validationSchema['COOKIE_SECRET'] = Joi.string().default(GenerateRandomString());
 validationSchema['THROTTLER_LIMIT'] = Joi.string().default(10);
 validationSchema['THROTTLER_TTL'] = Joi.string().default(1);
