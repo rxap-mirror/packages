@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/config@16.0.0-dev.15...@rxap/config@16.0.0-dev.16) (2023-09-18)
+
+### Bug Fixes
+
+- improve error codes for config loading ([ecee2c6](https://gitlab.com/rxap/packages/commit/ecee2c651a04309b8a3ee00ebd8629b26f59e4df))
+
 # [16.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/config@16.0.0-dev.14...@rxap/config@16.0.0-dev.15) (2023-09-12)
 
 ### Bug Fixes
