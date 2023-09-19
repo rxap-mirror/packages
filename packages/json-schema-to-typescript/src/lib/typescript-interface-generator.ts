@@ -5,7 +5,6 @@ import type {
 import * as $RefParser from '@apidevtools/json-schema-ref-parser';
 import {
   IndentationText,
-  InterfaceDeclarationStructure,
   OptionalKind,
   Project,
   PropertySignatureStructure,
@@ -184,21 +183,17 @@ export class TypescriptInterfaceGenerator {
 
     sourceFile = this.project.createSourceFile(filePath);
 
-    const interfaceStructure: OptionalKind<InterfaceDeclarationStructure> = {
-      name: this.buildName(name),
-      properties: [],
-      isExported: true,
-    };
-
     if (!schema.properties) {
       console.debug(schema.$ref, schema.type, Object.keys(schema));
       throw new Error('The provided schema has not a properties declaration!');
     }
 
+    const properties: OptionalKind<PropertySignatureStructure>[] = [];
+
     for (const [ key, property ] of Object.entries(
       schema.properties as Record<string, JSONSchema>,
     )) {
-      interfaceStructure.properties?.push(
+      properties.push(
         this.buildPropertySignatureStructure(
           sourceFile,
           key,
@@ -208,7 +203,33 @@ export class TypescriptInterfaceGenerator {
       );
     }
 
-    sourceFile.addInterface(interfaceStructure);
+    const typeName = this.buildName(name);
+
+    if (schema.additionalProperties === true) {
+      sourceFile.addTypeAlias({
+        name: typeName,
+        isExported: true,
+        type: w => {
+          Writers.objectType({
+            properties,
+          })(w);
+          w.write(' & ');
+          w.write('T');
+        },
+        typeParameters: [
+          {
+            name: 'T',
+            default: 'unknown',
+          },
+        ],
+      });
+    } else {
+      sourceFile.addInterface({
+        name: typeName,
+        properties,
+        isExported: true,
+      });
+    }
 
     return sourceFile;
   }

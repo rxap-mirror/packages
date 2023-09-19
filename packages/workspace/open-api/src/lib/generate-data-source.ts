@@ -47,14 +47,17 @@ export function GenerateDataSource(
     },
   ];
 
-  const responseType: string = GetResponseType(parameter);
+  const {
+    type: responseType,
+    name: responseName,
+  } = GetResponseType(parameter);
   const parameterType: string = GetParameterType(parameter);
 
-  if (![ 'void', 'any' ].includes(responseType)) {
+  if (responseName) {
     importStructures.push({
       moduleSpecifier: parameter.options.packageName ??
-        `../responses/${ dasherize(responseType.replace(/Response$/, '')) }.response`,
-      namedImports: [ { name: responseType } ],
+        `../responses/${ dasherize(responseName.replace(/Response$/, '')) }.response`,
+      namedImports: [ { name: responseName } ],
     });
   }
 

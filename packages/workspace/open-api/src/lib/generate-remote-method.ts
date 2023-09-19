@@ -20,6 +20,7 @@ import {
 import { GetParameterType } from './utilities/get-parameter-type';
 import { GetRequestBodyType } from './utilities/get-request-body-type';
 import { GetResponseType } from './utilities/get-response-type';
+import { GetTypeParameters } from './utilities/get-type-parameters';
 
 const {
   dasherize,
@@ -51,15 +52,21 @@ export function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiSchemaB
     namedImports: [ { name: 'OpenApiRemoteMethod' } ],
   });
 
-  const responseType: string = GetResponseType(parameter);
+  const {
+    type: responseType,
+    name: responseName,
+  } = GetResponseType(parameter);
   const parameterType: string = GetParameterType(parameter);
-  const requestBodyType: string = GetRequestBodyType(parameter);
+  const {
+    type: requestBodyType,
+    name: requestBodyName,
+  } = GetRequestBodyType(parameter);
 
-  if (![ 'void', 'any' ].includes(responseType)) {
+  if (responseName) {
     importStructures.push({
       moduleSpecifier: parameter.options.packageName ??
-        `../responses/${ dasherize(responseType.replace(/Response$/, '')) }.response`,
-      namedImports: [ { name: responseType } ],
+        `../responses/${ dasherize(responseName.replace(/Response$/, '')) }.response`,
+      namedImports: [ { name: responseName } ],
     });
   }
 
@@ -71,11 +78,11 @@ export function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiSchemaB
     });
   }
 
-  if (![ 'void', 'any' ].includes(requestBodyType)) {
+  if (requestBodyName) {
     importStructures.push({
       moduleSpecifier: parameter.options.packageName ??
-        `../request-bodies/${ dasherize(requestBodyType.replace(/RequestBody$/, '')) }.request-body`,
-      namedImports: [ { name: requestBodyType } ],
+        `../request-bodies/${ dasherize(requestBodyName.replace(/RequestBody$/, '')) }.request-body`,
+      namedImports: [ { name: requestBodyName } ],
     });
   }
 
@@ -92,6 +99,7 @@ export function GenerateRemoteMethod(parameter: GenerateParameter<OpenApiSchemaB
 
   const classStructure: OptionalKind<ClassDeclarationStructure> = {
     name: classify(name.replace(/\./g, '-')),
+    typeParameters: GetTypeParameters(parameter),
     decorators: [
       {
         name: 'Injectable',

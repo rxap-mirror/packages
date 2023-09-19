@@ -5,6 +5,7 @@ export * from './lib/utilities/get-reqeust-body';
 export * from './lib/utilities/get-request-body-type';
 export * from './lib/utilities/get-response-type';
 export * from './lib/utilities/get-response';
+export * from './lib/utilities/get-type-parameters';
 export * from './lib/utilities/has-operation-paramters';
 export * from './lib/utilities/has-operation-request-body';
 export * from './lib/utilities/http-request';

@@ -49,16 +49,22 @@ export async function GenerateOperationCommand(
     },
   ];
 
-  const responseType: string = GetResponseType(parameter);
+  const {
+    type: responseType,
+    name: responseName,
+  } = GetResponseType(parameter);
   const parameterType: string = GetParameterType(parameter);
-  const requestBodyType: string = GetRequestBodyType(parameter);
+  const {
+    type: requestBodyType,
+    name: requestBodyName,
+  } = GetRequestBodyType(parameter);
 
-  if (![ 'void', 'any' ].includes(responseType)) {
+  if (responseName) {
     importStructures.push({
       moduleSpecifier: parameter.options.packageName ?? `../responses/${ dasherize(
-        responseType.replace(/Response$/, ''),
+        responseName.replace(/Response$/, ''),
       ) }.response`,
-      namedImports: [ { name: responseType } ],
+      namedImports: [ { name: responseName } ],
     });
   }
 
@@ -71,12 +77,12 @@ export async function GenerateOperationCommand(
     });
   }
 
-  if (![ 'void', 'any' ].includes(requestBodyType)) {
+  if (requestBodyName) {
     importStructures.push({
       moduleSpecifier: parameter.options.packageName ?? `../request-bodies/${ dasherize(
-        requestBodyType.replace(/RequestBody$/, ''),
+        requestBodyName.replace(/RequestBody$/, ''),
       ) }.request-body`,
-      namedImports: [ { name: requestBodyType } ],
+      namedImports: [ { name: requestBodyName } ],
     });
   }
 
