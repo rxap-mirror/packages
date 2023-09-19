@@ -3,7 +3,7 @@ import {
   Injectable,
   LOCALE_ID,
 } from '@angular/core';
-import { RxapUserProfileService } from '@rxap/authentication';
+import { UserSettingsLanguageService } from '@rxap/ngx-user';
 
 @Injectable({ providedIn: 'root' })
 export class I18nService {
@@ -13,13 +13,13 @@ export class I18nService {
   constructor(
     @Inject(LOCALE_ID)
     private readonly localId: string,
-    private readonly userProfileService: RxapUserProfileService,
+    private readonly userSettingsLanguageService: UserSettingsLanguageService,
   ) {
     this.currentLanguage = this.localId.replace(/-[A-Z]+$/, '');
   }
 
   public async setLanguage(language: string) {
-    await this.userProfileService.setLanguage(language);
+    await this.userSettingsLanguageService.setLanguage(language);
     this.redirect(language);
   }
 

@@ -1,8 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  LOCALE_ID,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ConfigService } from '@rxap/config';
 import { I18nService } from './i18n.service';
 
@@ -14,8 +10,6 @@ export class LanguageSelectorService {
 
   constructor(
     private readonly config: ConfigService,
-    @Inject(LOCALE_ID)
-    private readonly localId: string,
     private readonly i18nService: I18nService,
   ) {
     this.languages = this.config.get<any>('i18n.languages') ?? {};
