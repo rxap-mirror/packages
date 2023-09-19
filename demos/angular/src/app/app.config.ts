@@ -11,6 +11,7 @@ import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
+import { provideServiceWorker } from '@angular/service-worker';
 import { BearerTokenInterceptor } from '@rxap/authentication';
 import { ProvideEnvironment } from '@rxap/environment';
 import { ProvideChangelog } from '@rxap/ngx-changelog';
@@ -20,6 +21,7 @@ import {
 } from '@rxap/ngx-error';
 import { LanguageInterceptor } from '@rxap/ngx-localize';
 import { ProvideAuth } from '@rxap/oauth';
+import { ProvideServiceWorkerUpdateDialog } from '@rxap/service-worker';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../environments/environment';
@@ -40,5 +42,10 @@ export const appConfig: ApplicationConfig = {
     ProvideEnvironment(environment),
     provideOAuthClient(),
     ProvideAuth(),
+    provideServiceWorker(
+      'ngsw-worker.js',
+      { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' },
+    ),
+    ProvideServiceWorkerUpdateDialog(),
   ],
 };

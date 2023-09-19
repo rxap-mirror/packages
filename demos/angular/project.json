@@ -32,7 +32,10 @@
     "ngx",
     "frontend",
     "i18n",
-    "localazy"
+    "localazy",
+    "user-interface",
+    "sentry",
+    "service-worker"
   ],
   "targets": {
     "build": {
@@ -77,8 +80,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "10mb"
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",
@@ -96,9 +99,7 @@
             }
           ],
           "localize": [
-            "en",
-            "de",
-            "it"
+            "en"
           ]
         },
         "development": {
