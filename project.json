@@ -1,5 +1,5 @@
 {
-  "name": "packages",
+  "name": "workspace",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "targets": {
     "docker-gitlab-ci": {

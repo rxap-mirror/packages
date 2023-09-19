@@ -9,7 +9,7 @@ NC='\033[0m' # No Color
 
 cd "${GIT_ROOT}" || exit 1
 
-yarn nx run packages:docker-compose
+yarn nx run workspace:docker-compose
 
 # Get the current branch name or the commit hash if in detached HEAD state
 current_branch=$(git symbolic-ref --short -q HEAD || git rev-parse --short HEAD)
@@ -36,7 +36,11 @@ fi
 
 export CHANNEL
 
-DOCKER_COMPOSE_FILES="-f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml -f docker-compose.authentik.yml"
+LOCAL_DOCKER_COMPOSE_FILES="-f docker-compose.services.yml -f docker-compose.frontends.yml"
+REMOTE_DOCKER_COMPOSE_FILES="-f docker-compose.yml -f docker-compose.authentik.yml -f docker-compose.minio.yml"
+DOCKER_COMPOSE_FILES="${REMOTE_DOCKER_COMPOSE_FILES} ${LOCAL_DOCKER_COMPOSE_FILES}"
+
+docker compose $REMOTE_DOCKER_COMPOSE_FILES pull || exit 1
 
 if [[ $SKIP_PULL != "true" ]]; then
 

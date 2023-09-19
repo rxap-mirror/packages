@@ -26,7 +26,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.catch-all-api.entrypoints=https"
-      - "traefik.http.routers.catch-all-api.rule=Host(`${ROOT_DOMAIN}`) && (PathPrefix(`/api`))"
+      - "traefik.http.routers.catch-all-api.rule=PathPrefix(`/api`)"
       - "traefik.http.services.catch-all-api.loadbalancer.server.port=80"
       - "traefik.http.routers.catch-all-api.priority=5"
     volumes:
@@ -35,9 +35,9 @@ services:
     image: registry.gitlab.com/rxap/packages/service/configuration:${RXAP_CHANNEL:-development}
     labels:
       - traefik.enable=true
-      - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.path=/health
-      - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.interval=10s
-      - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.timeout=3s
+      - traefik.http.services.rxap-service-configuration.loadbalancer.healthCheck.path=/health
+      - traefik.http.services.rxap-service-configuration.loadbalancer.healthCheck.interval=10s
+      - traefik.http.services.rxap-service-configuration.loadbalancer.healthCheck.timeout=3s
     volumes:
       - ./shared/angular/configuration:/app/assets
     environment:
@@ -54,9 +54,9 @@ services:
     image: registry.gitlab.com/rxap/packages/service/status:${RXAP_CHANNEL:-development}
     labels:
       - traefik.enable=true
-      - traefik.http.services.rxap-status.loadbalancer.healthCheck.path=/health
-      - traefik.http.services.rxap-status.loadbalancer.healthCheck.interval=10s
-      - traefik.http.services.rxap-status.loadbalancer.healthCheck.timeout=3s
+      - traefik.http.services.rxap-service-status.loadbalancer.healthCheck.path=/health
+      - traefik.http.services.rxap-service-status.loadbalancer.healthCheck.interval=10s
+      - traefik.http.services.rxap-service-status.loadbalancer.healthCheck.timeout=3s
     environment:
       - ROOT_DOMAIN
       - SENTRY_ENABLED=false

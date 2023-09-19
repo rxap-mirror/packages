@@ -1,14 +1,31 @@
 version: "3.7"
+volumes:
+  minio_data:
 services:
   minio:
     image: quay.io/minio/minio
     command: server /data --console-address ":9001"
     container_name: minio
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     labels:
       - "traefik.enable=true"
+      - "traefik.http.routers.minio-console.entrypoints=https"
+      - "traefik.http.routers.minio-console.rule=Host(`minio.${ROOT_DOMAIN}`)"
+      - "traefik.http.routers.minio-console.service=minio-console"
+      - "traefik.http.services.minio-console.loadbalancer.server.port=9001"
+      - "traefik.http.services.minio.loadbalancer.server.port=9000"
       - "traefik.http.routers.minio.entrypoints=https"
-      - "traefik.http.routers.minio.rule=Host(`minio.${ROOT_DOMAIN}`)"
-      - "traefik.http.services.minio.loadbalancer.server.port=9001"
+      - "traefik.http.routers.minio.rule=Host(`storage.${ROOT_DOMAIN}`)"
+      - "traefik.http.routers.minio.service=minio"
+      - "traefik.http.services.minio.loadbalancer.healthcheck.path=/minio/health/live"
+      - "traefik.http.services.minio.loadbalancer.healthcheck.interval=30s"
+      - "traefik.http.services.minio.loadbalancer.healthcheck.timeout=10s"
   minio-mc:
     depends_on:
       - minio
