@@ -10,5 +10,9 @@
   },
   "service-changelog": {
     "baseUrl": "/api/changelog"
+  },
+  "service-user": {
+    "baseUrl": "/api/user",
+    "statusCheck": true
   }
 }
