@@ -43,7 +43,7 @@ import { SettingsControllerSetRequestBody } from '../request-bodies/settings-con
   },
   "method": "post",
   "path": "/settings"
-}`,
+}`
 })
 export class SettingsControllerSetRemoteMethod<TRequestBody = unknown>
   extends OpenApiRemoteMethod<void, void, SettingsControllerSetRequestBody<TRequestBody>> {

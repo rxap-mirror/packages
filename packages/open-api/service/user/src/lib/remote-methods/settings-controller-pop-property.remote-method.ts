@@ -38,9 +38,9 @@ import { SettingsControllerPopPropertyResponse } from '../responses/settings-con
   "path": "/settings/{propertyPath}/pop"
 }`
 })
-export class SettingsControllerPopPropertyRemoteMethod
-  extends OpenApiRemoteMethod<SettingsControllerPopPropertyResponse, SettingsControllerPopPropertyParameter, void> {
-  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerPopPropertyParameter, void>): Promise<SettingsControllerPopPropertyResponse> {
+export class SettingsControllerPopPropertyRemoteMethod<TResponse = unknown>
+  extends OpenApiRemoteMethod<SettingsControllerPopPropertyResponse<TResponse>, SettingsControllerPopPropertyParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerPopPropertyParameter, void>): Promise<SettingsControllerPopPropertyResponse<TResponse>> {
     return super.call(parameters);
   }
 }

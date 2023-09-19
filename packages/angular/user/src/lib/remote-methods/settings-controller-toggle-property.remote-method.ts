@@ -29,7 +29,7 @@ import { SettingsControllerTogglePropertyParameter } from '../parameters/setting
   },
   "method": "put",
   "path": "/settings/{propertyPath}/toggle"
-}`,
+}`
 })
 export class SettingsControllerTogglePropertyRemoteMethod
   extends OpenApiRemoteMethod<void, SettingsControllerTogglePropertyParameter, void> {

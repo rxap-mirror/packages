@@ -29,7 +29,7 @@ import { SettingsControllerPushPropertyParameter } from '../parameters/settings-
   },
   "method": "put",
   "path": "/settings/{propertyPath}/push"
-}`,
+}`
 })
 export class SettingsControllerPushPropertyRemoteMethod
   extends OpenApiRemoteMethod<void, SettingsControllerPushPropertyParameter, void> {

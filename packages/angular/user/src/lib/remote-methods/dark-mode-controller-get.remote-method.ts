@@ -27,7 +27,7 @@ import { DarkModeControllerGetResponse } from '../responses/dark-mode-controller
   },
   "method": "get",
   "path": "/settings/dark-mode"
-}`,
+}`
 })
 export class DarkModeControllerGetRemoteMethod extends OpenApiRemoteMethod<DarkModeControllerGetResponse, void, void> {
   public override call(): Promise<DarkModeControllerGetResponse> {

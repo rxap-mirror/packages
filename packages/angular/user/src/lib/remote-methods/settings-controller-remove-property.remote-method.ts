@@ -29,7 +29,7 @@ import { SettingsControllerRemovePropertyParameter } from '../parameters/setting
   },
   "method": "delete",
   "path": "/settings/{propertyPath}/remove"
-}`,
+}`
 })
 export class SettingsControllerRemovePropertyRemoteMethod
   extends OpenApiRemoteMethod<void, SettingsControllerRemovePropertyParameter, void> {

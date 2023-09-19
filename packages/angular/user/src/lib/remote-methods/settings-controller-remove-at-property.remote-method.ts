@@ -37,7 +37,7 @@ import { SettingsControllerRemoveAtPropertyParameter } from '../parameters/setti
   },
   "method": "delete",
   "path": "/settings/{propertyPath}/removeAt/{index}"
-}`,
+}`
 })
 export class SettingsControllerRemoveAtPropertyRemoteMethod
   extends OpenApiRemoteMethod<void, SettingsControllerRemoveAtPropertyParameter, void> {

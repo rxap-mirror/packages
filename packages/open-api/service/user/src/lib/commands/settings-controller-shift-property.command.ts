@@ -14,8 +14,8 @@ import { SettingsControllerShiftPropertyResponse } from '../responses/settings-c
   operation: '{"operationId":"SettingsController_shiftProperty","parameters":[{"name":"propertyPath","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"schema":{}}}}},"method":"delete","path":"/settings/{propertyPath}/shift"}',
 })
 export class SettingsControllerShiftPropertyCommand
-  extends OpenApiOperationCommand<SettingsControllerShiftPropertyResponse, SettingsControllerShiftPropertyParameter, void> {
-  public override execute(parameters: OpenApiOperationCommandParameters<SettingsControllerShiftPropertyParameter, void>): Promise<SettingsControllerShiftPropertyResponse> {
+  extends OpenApiOperationCommand<SettingsControllerShiftPropertyResponse<TResponse>, SettingsControllerShiftPropertyParameter, void> {
+  public override execute(parameters: OpenApiOperationCommandParameters<SettingsControllerShiftPropertyParameter, void>): Promise<SettingsControllerShiftPropertyResponse<TResponse>> {
     return super.execute(parameters);
   }
 }

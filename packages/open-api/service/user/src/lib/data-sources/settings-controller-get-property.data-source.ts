@@ -11,5 +11,5 @@ import { SettingsControllerGetPropertyResponse } from '../responses/settings-con
 })
 @RxapOpenApiDataSource('SettingsController_getProperty')
 export class SettingsControllerGetPropertyDataSource
-  extends OpenApiDataSource<SettingsControllerGetPropertyResponse, SettingsControllerGetPropertyParameter> {
+  extends OpenApiDataSource<SettingsControllerGetPropertyResponse<TResponse>, SettingsControllerGetPropertyParameter> {
 }

@@ -12,7 +12,8 @@ import { UserSettingsDataSource } from './user-settings.data-source';
   id: 'user-settings-language',
   refreshParent: true,
 })
-export class UserSettingsLanguageDataSource<T> extends PipeDataSource<SettingsControllerGetResponse<T>, string> {
+export class UserSettingsLanguageDataSource<T = unknown>
+  extends PipeDataSource<SettingsControllerGetResponse<T>, string> {
 
   constructor(
     dataSource: UserSettingsDataSource<T>,

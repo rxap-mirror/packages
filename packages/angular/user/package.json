@@ -8,7 +8,7 @@
   "peerDependencies": {
     "@angular/core": "^16.1.4",
     "@rxap/data-source": "^16.0.0-dev.17",
-    "@rxap/pattern": "^1.0.1-dev.10",
+    "@rxap/open-api": "*",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0"
   },

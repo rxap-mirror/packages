@@ -38,7 +38,7 @@ import { SettingsControllerUnshiftPropertyResponse } from '../responses/settings
   },
   "method": "put",
   "path": "/settings/{propertyPath}/unshift"
-}`,
+}`
 })
 export class SettingsControllerUnshiftPropertyRemoteMethod
   extends OpenApiRemoteMethod<SettingsControllerUnshiftPropertyResponse, SettingsControllerUnshiftPropertyParameter, void> {

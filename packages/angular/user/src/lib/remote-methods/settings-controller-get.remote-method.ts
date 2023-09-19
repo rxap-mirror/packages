@@ -40,7 +40,7 @@ import { SettingsControllerGetResponse } from '../responses/settings-controller-
   },
   "method": "get",
   "path": "/settings"
-}`,
+}`
 })
 export class SettingsControllerGetRemoteMethod<TResponse = unknown>
   extends OpenApiRemoteMethod<SettingsControllerGetResponse<TResponse>, void, void> {

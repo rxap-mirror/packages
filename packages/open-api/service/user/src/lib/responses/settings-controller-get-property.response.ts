@@ -1,1 +1,1 @@
-export type SettingsControllerGetPropertyResponse = unknown;
+export type SettingsControllerGetPropertyResponse<T = unknown> = T;

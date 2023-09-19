@@ -29,7 +29,7 @@ import { LanguageControllerSetParameter } from '../parameters/language-controlle
   },
   "method": "put",
   "path": "/settings/language/{language}"
-}`,
+}`
 })
 export class LanguageControllerSetRemoteMethod extends OpenApiRemoteMethod<void, LanguageControllerSetParameter, void> {
   public override call(parameters: OpenApiRemoteMethodParameter<LanguageControllerSetParameter, void>): Promise<void> {

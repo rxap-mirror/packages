@@ -26,7 +26,7 @@ import { SettingsControllerGetPropertyResponse } from '../responses/settings-con
   standalone: true,
 })
 export class SettingsControllerGetPropertyRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<SettingsControllerGetPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerGetPropertyParameter, void>> {
+  extends RemoteMethodTemplateDirective<SettingsControllerGetPropertyResponse<TResponse>, OpenApiRemoteMethodParameter<SettingsControllerGetPropertyParameter, void>> {
   @Input('settingsControllerGetPropertyRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<SettingsControllerGetPropertyParameter, void>;
   @Input('settingsControllerGetPropertyRemoteMethodError')
@@ -36,7 +36,7 @@ export class SettingsControllerGetPropertyRemoteMethodTemplateDirective
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerGetPropertyRemoteMethod) remoteMethod: SettingsControllerGetPropertyRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerGetPropertyResponse>>,
+    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerGetPropertyResponse<TResponse>>>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
@@ -51,7 +51,7 @@ export class SettingsControllerGetPropertyRemoteMethodTemplateDirective
   standalone: true,
 })
 export class SettingsControllerGetPropertyRemoteMethodDirective
-  extends RemoteMethodDirective<SettingsControllerGetPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerGetPropertyParameter, void>> {
+  extends RemoteMethodDirective<SettingsControllerGetPropertyResponse<TResponse>, OpenApiRemoteMethodParameter<SettingsControllerGetPropertyParameter, void>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,

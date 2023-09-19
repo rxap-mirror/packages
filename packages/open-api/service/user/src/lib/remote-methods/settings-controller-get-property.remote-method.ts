@@ -38,9 +38,9 @@ import { SettingsControllerGetPropertyResponse } from '../responses/settings-con
   "path": "/settings/{propertyPath}"
 }`
 })
-export class SettingsControllerGetPropertyRemoteMethod
-  extends OpenApiRemoteMethod<SettingsControllerGetPropertyResponse, SettingsControllerGetPropertyParameter, void> {
-  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerGetPropertyParameter, void>): Promise<SettingsControllerGetPropertyResponse> {
+export class SettingsControllerGetPropertyRemoteMethod<TResponse = unknown>
+  extends OpenApiRemoteMethod<SettingsControllerGetPropertyResponse<TResponse>, SettingsControllerGetPropertyParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerGetPropertyParameter, void>): Promise<SettingsControllerGetPropertyResponse<TResponse>> {
     return super.call(parameters);
   }
 }

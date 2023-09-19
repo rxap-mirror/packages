@@ -1,1 +1,1 @@
-export type SettingsControllerShiftPropertyResponse = unknown;
+export type SettingsControllerShiftPropertyResponse<T = unknown> = T;

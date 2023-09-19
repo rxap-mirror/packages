@@ -38,9 +38,9 @@ import { SettingsControllerShiftPropertyResponse } from '../responses/settings-c
   "path": "/settings/{propertyPath}/shift"
 }`
 })
-export class SettingsControllerShiftPropertyRemoteMethod
-  extends OpenApiRemoteMethod<SettingsControllerShiftPropertyResponse, SettingsControllerShiftPropertyParameter, void> {
-  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerShiftPropertyParameter, void>): Promise<SettingsControllerShiftPropertyResponse> {
+export class SettingsControllerShiftPropertyRemoteMethod<TResponse = unknown>
+  extends OpenApiRemoteMethod<SettingsControllerShiftPropertyResponse<TResponse>, SettingsControllerShiftPropertyParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerShiftPropertyParameter, void>): Promise<SettingsControllerShiftPropertyResponse<TResponse>> {
     return super.call(parameters);
   }
 }

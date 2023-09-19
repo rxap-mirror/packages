@@ -26,7 +26,7 @@ import { SettingsControllerShiftPropertyResponse } from '../responses/settings-c
   standalone: true,
 })
 export class SettingsControllerShiftPropertyRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<SettingsControllerShiftPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerShiftPropertyParameter, void>> {
+  extends RemoteMethodTemplateDirective<SettingsControllerShiftPropertyResponse<TResponse>, OpenApiRemoteMethodParameter<SettingsControllerShiftPropertyParameter, void>> {
   @Input('settingsControllerShiftPropertyRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<SettingsControllerShiftPropertyParameter, void>;
   @Input('settingsControllerShiftPropertyRemoteMethodError')
@@ -36,7 +36,7 @@ export class SettingsControllerShiftPropertyRemoteMethodTemplateDirective
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerShiftPropertyRemoteMethod) remoteMethod: SettingsControllerShiftPropertyRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerShiftPropertyResponse>>,
+    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerShiftPropertyResponse<TResponse>>>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
@@ -51,7 +51,7 @@ export class SettingsControllerShiftPropertyRemoteMethodTemplateDirective
   standalone: true,
 })
 export class SettingsControllerShiftPropertyRemoteMethodDirective
-  extends RemoteMethodDirective<SettingsControllerShiftPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerShiftPropertyParameter, void>> {
+  extends RemoteMethodDirective<SettingsControllerShiftPropertyResponse<TResponse>, OpenApiRemoteMethodParameter<SettingsControllerShiftPropertyParameter, void>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,

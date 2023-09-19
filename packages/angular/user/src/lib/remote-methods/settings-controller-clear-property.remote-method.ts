@@ -29,7 +29,7 @@ import { SettingsControllerClearPropertyParameter } from '../parameters/settings
   },
   "method": "delete",
   "path": "/settings/{propertyPath}"
-}`,
+}`
 })
 export class SettingsControllerClearPropertyRemoteMethod
   extends OpenApiRemoteMethod<void, SettingsControllerClearPropertyParameter, void> {

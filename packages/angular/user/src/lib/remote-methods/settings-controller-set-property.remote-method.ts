@@ -29,7 +29,7 @@ import { SettingsControllerSetPropertyParameter } from '../parameters/settings-c
   },
   "method": "put",
   "path": "/settings/{propertyPath}"
-}`,
+}`
 })
 export class SettingsControllerSetPropertyRemoteMethod
   extends OpenApiRemoteMethod<void, SettingsControllerSetPropertyParameter, void> {

@@ -29,7 +29,7 @@ import { SettingsControllerDecrementPropertyParameter } from '../parameters/sett
   },
   "method": "put",
   "path": "/settings/{propertyPath}/decrement"
-}`,
+}`
 })
 export class SettingsControllerDecrementPropertyRemoteMethod
   extends OpenApiRemoteMethod<void, SettingsControllerDecrementPropertyParameter, void> {

@@ -14,8 +14,8 @@ import { SettingsControllerGetPropertyResponse } from '../responses/settings-con
   operation: '{"operationId":"SettingsController_getProperty","parameters":[{"name":"propertyPath","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"schema":{}}}}},"method":"get","path":"/settings/{propertyPath}"}',
 })
 export class SettingsControllerGetPropertyCommand
-  extends OpenApiOperationCommand<SettingsControllerGetPropertyResponse, SettingsControllerGetPropertyParameter, void> {
-  public override execute(parameters: OpenApiOperationCommandParameters<SettingsControllerGetPropertyParameter, void>): Promise<SettingsControllerGetPropertyResponse> {
+  extends OpenApiOperationCommand<SettingsControllerGetPropertyResponse<TResponse>, SettingsControllerGetPropertyParameter, void> {
+  public override execute(parameters: OpenApiOperationCommandParameters<SettingsControllerGetPropertyParameter, void>): Promise<SettingsControllerGetPropertyResponse<TResponse>> {
     return super.execute(parameters);
   }
 }

@@ -14,8 +14,8 @@ import { SettingsControllerPopPropertyResponse } from '../responses/settings-con
   operation: '{"operationId":"SettingsController_popProperty","parameters":[{"name":"propertyPath","required":true,"in":"path","schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"schema":{}}}}},"method":"delete","path":"/settings/{propertyPath}/pop"}',
 })
 export class SettingsControllerPopPropertyCommand
-  extends OpenApiOperationCommand<SettingsControllerPopPropertyResponse, SettingsControllerPopPropertyParameter, void> {
-  public override execute(parameters: OpenApiOperationCommandParameters<SettingsControllerPopPropertyParameter, void>): Promise<SettingsControllerPopPropertyResponse> {
+  extends OpenApiOperationCommand<SettingsControllerPopPropertyResponse<TResponse>, SettingsControllerPopPropertyParameter, void> {
+  public override execute(parameters: OpenApiOperationCommandParameters<SettingsControllerPopPropertyParameter, void>): Promise<SettingsControllerPopPropertyResponse<TResponse>> {
     return super.execute(parameters);
   }
 }

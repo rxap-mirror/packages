@@ -1,1 +1,1 @@
-export type SettingsControllerPopPropertyResponse = unknown;
+export type SettingsControllerPopPropertyResponse<T = unknown> = T;
