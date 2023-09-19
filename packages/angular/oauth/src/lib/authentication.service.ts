@@ -107,8 +107,8 @@ export class AuthenticationService implements IAuthenticationService {
     });
   }
 
-  signOut(): Promise<void> {
-    return Promise.resolve(undefined);
+  async signOut(): Promise<void> {
+    this.oauthService.logOut();
   }
 
   signIn() {
