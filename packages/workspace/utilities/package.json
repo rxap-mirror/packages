@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-dev.15",
+  "version": "0.1.0-dev.16",
   "name": "@rxap/workspace-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {

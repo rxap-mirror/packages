@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-dev.10",
+  "version": "0.1.0-dev.11",
   "name": "@rxap/ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {

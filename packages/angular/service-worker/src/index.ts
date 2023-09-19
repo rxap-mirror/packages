@@ -13,7 +13,7 @@ export * from './lib/dialog/dialog-update.service';
 export * from './lib/dialog/provide-service-worker-update-dialog';
 // endregion
 
-// region
+// region 
 export * from './lib/check-for-update.service';
 export * from './lib/log-update.service';
 export * from './lib/service-worker-prompt-update.module';

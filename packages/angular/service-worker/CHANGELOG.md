@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@16.0.0-dev.15...@rxap/service-worker@16.0.0-dev.16) (2023-09-19)
+
+### Features
+
+- add dialog update service ([c92d9c8](https://gitlab.com/rxap/packages/commit/c92d9c803eb705516db057b183e8577ba355f6fd))
+
 # [16.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@16.0.0-dev.14...@rxap/service-worker@16.0.0-dev.15) (2023-09-12)
 
 ### Bug Fixes

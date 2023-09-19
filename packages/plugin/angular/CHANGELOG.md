@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.34...@rxap/plugin-angular@16.1.0-dev.35) (2023-09-19)
+
+### Bug Fixes
+
+- add dialog update service ([984ad4b](https://gitlab.com/rxap/packages/commit/984ad4bd1907ef80f60f0af5ae709baeebd9628b))
+
+### Features
+
+- support dynamic app config generation ([06616ad](https://gitlab.com/rxap/packages/commit/06616ad816961b5fc3724992dd2b6b0d7aafc716))
+
 # [16.1.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.33...@rxap/plugin-angular@16.1.0-dev.34) (2023-09-19)
 
 ### Bug Fixes
