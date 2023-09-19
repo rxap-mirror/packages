@@ -1,7 +1,0 @@
-http:
-  middlewares:
-    authentik-headers:
-      headers:
-        customrequestheaders:
-          Connection: Upgrade
-          Upgrade: WebSocket

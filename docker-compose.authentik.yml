@@ -35,15 +35,18 @@ services:
       - "traefik.http.routers.authentik.entrypoints=https"
       - "traefik.http.routers.authentik.rule=Host(`auth.${ROOT_DOMAIN}`)"
       - "traefik.http.services.authentik.loadbalancer.server.port=9000"
-      - "traefik.http.routers.authentik.middlewares=authentik-headers@file"
+      - "traefik.http.routers.authentik.middlewares=cors-options"
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2023.8.2}
     command: server
     environment:
-      AUTHENTIK_REDIS__HOST: redis
-      AUTHENTIK_POSTGRESQL__HOST: postgresql
-      AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
-      AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
-      AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
+      - AUTHENTIK_REDIS__HOST=redis
+      - AUTHENTIK_POSTGRESQL__HOST=postgresql
+      - AUTHENTIK_POSTGRESQL__USER=${PG_USER:-authentik}
+      - AUTHENTIK_POSTGRESQL__NAME=${PG_DB:-authentik}
+      - AUTHENTIK_POSTGRESQL__PASSWORD=${PG_PASS}
+      - AUTHENTIK_BOOTSTRAP_PASSWORD
+      - AUTHENTIK_SECRET_KEY
+      - AUTHENTIK_ERROR_REPORTING__ENABLED
     volumes:
       - ./docker/authentik/media:/media
       - ./docker/authentik/custom-templates:/templates
