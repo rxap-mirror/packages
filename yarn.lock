@@ -7846,6 +7846,7 @@ __metadata:
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
     "@rxap/authentication": ^16.0.0-dev.14
+    "@rxap/authorization": "*"
     "@rxap/browser-utilities": ^0.0.2-dev.8
     "@rxap/config": ^16.0.0-dev.16
     "@rxap/data-source": ^16.0.0-dev.18
@@ -7854,7 +7855,9 @@ __metadata:
     "@rxap/icon": ^16.0.0-dev.15
     "@rxap/material-directives": ^16.0.0-dev.17
     "@rxap/ngx-changelog": ^16.1.0-dev.1
+    "@rxap/ngx-localize": "*"
     "@rxap/ngx-status-check": ^16.1.0-dev.8
+    "@rxap/ngx-user": "*"
     "@rxap/services": ^16.0.0-dev.15
     "@rxap/utilities": ^16.0.0-dev.18
     rxjs: ^7.8.0
@@ -8186,6 +8189,11 @@ __metadata:
   peerDependencies:
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
+    "@angular/forms": ^16.1.4
+    "@angular/material": ^16.1.4
+    "@rxap/config": "*"
+    "@rxap/directives": "*"
+    "@rxap/ngx-user": "*"
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -8287,7 +8295,7 @@ __metadata:
   peerDependencies:
     "@angular/core": ^16.1.4
     "@rxap/data-source": ^16.0.0-dev.17
-    "@rxap/pattern": ^1.0.1-dev.10
+    "@rxap/open-api": "*"
     rxjs: ^7.8.0
     tslib: ^2.3.0
   languageName: unknown
