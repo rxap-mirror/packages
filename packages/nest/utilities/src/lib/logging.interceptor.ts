@@ -24,6 +24,10 @@ export class LoggingInterceptor implements NestInterceptor {
       return next.handle();
     }
 
+    if (classType.name === 'AppController') {
+      return next.handle();
+    }
+
     const request = context.switchToHttp().getRequest<Request>();
 
     this.logger.debug(`${ request.method.toUpperCase() } ${ request.url }`, classType.name);

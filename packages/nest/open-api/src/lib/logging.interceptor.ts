@@ -7,13 +7,13 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import {
-  Observable,
-  tap,
-} from 'rxjs';
-import {
   Request,
   Response,
 } from 'express';
+import {
+  Observable,
+  tap,
+} from 'rxjs';
 
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {
@@ -25,6 +25,10 @@ export class LoggingInterceptor implements NestInterceptor {
     const classType = context.getClass();
 
     if (classType.name === 'HealthController') {
+      return next.handle();
+    }
+
+    if (classType.name === 'AppController') {
       return next.handle();
     }
 
