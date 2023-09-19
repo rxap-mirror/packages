@@ -10,6 +10,7 @@
   ],
   "projectType": "library",
   "targets": {
+    "index-export": {},
     "build": {
       "executor": "@nx/angular:package",
       "outputs": [
