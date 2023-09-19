@@ -1,4 +1,3 @@
-import { ReplaySubject } from 'rxjs';
 import { AuthorizationService } from './authorization.service';
 
 describe('@rxap/authorization', () => {
@@ -20,8 +19,7 @@ describe('@rxap/authorization', () => {
 
       beforeEach(() => {
 
-        const method = { call: () => Promise.resolve({}) } as any;
-        authorization = new AuthorizationService(method);
+        authorization = new AuthorizationService();
 
       });
 
@@ -150,42 +148,6 @@ describe('@rxap/authorization', () => {
         expect(authorization.checkPermission(identifiers[2], permissions, scope)).toBe(false);
         expect(authorization.checkPermission(identifiers[3], permissions)).toBe(false);
         expect(authorization.checkPermission(identifiers[3], permissions, scope)).toBe(false);
-
-      });
-
-    });
-
-    describe('setUserRoles', () => {
-
-      let authorization: AuthorizationService;
-      const roles = new ReplaySubject(1);
-
-      beforeEach(() => {
-
-        const method = {
-          call: () => Promise.resolve({
-            admin: [ '*' ],
-            manager: [ 'feature.machine/*' ],
-            default: [ 'feature.machine/table.*' ],
-          }),
-        } as any;
-        authorization = new AuthorizationService(method);
-
-      });
-
-      it('set one role', async () => {
-
-        const permissions = await authorization.setUserRoles([ 'admin' ]);
-
-        expect(permissions).toEqual([ '*' ]);
-
-      });
-
-      it('set multiple role', async () => {
-
-        const permissions = await authorization.setUserRoles([ 'admin', 'manager' ]);
-
-        expect(permissions).toEqual([ '*', 'feature.machine/*' ]);
 
       });
 
