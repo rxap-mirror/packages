@@ -16,7 +16,10 @@ import {
   ThrottlerModule,
 } from '@nestjs/throttler';
 import { JwtGuardProvider } from '@rxap/nest-jwt';
-import { OpenApiModule } from '@rxap/nest-open-api';
+import {
+  OpenApiModule,
+  OpenApiModuleOptionsLoader,
+} from '@rxap/nest-open-api';
 import {
   SENTRY_INTERCEPTOR_OPTIONS,
   SentryInterceptor,
@@ -40,13 +43,11 @@ import { HealthModule } from './health/health.module';
     HealthModule,
     OpenApiModule.registerAsync(
       {
-        inject: [ ConfigService ],
-        imports: [ ConfigModule ],
-        useFactory: (config: ConfigService) => ({}),
+        isGlobal: true,
+        useClass: OpenApiModuleOptionsLoader,
       }),
     ThrottlerModule.forRootAsync(
       {
-        imports: [ ConfigModule ],
         inject: [ ConfigService ],
         useFactory: (config: ConfigService) => ({
           ttl: config.getOrThrow('THROTTLER_TTL'),
@@ -60,7 +61,6 @@ import { HealthModule } from './health/health.module';
       }),
     SentryModule.forRootAsync(
       {
-        imports: [ ConfigModule ],
         inject: [ ConfigService ],
         useFactory: SentryOptionsFactory(environment),
       }, {

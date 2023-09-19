@@ -26,6 +26,13 @@ validationSchema['STORE_FILE_PATH'] =
 validationSchema['SETTINGS_DEFAULT_FILE_PATH'] =
   Joi.string().default(environment.production ? '/default/user-settings.json' : '/tmp/default/user-settings.json');
 validationSchema['JWT_SECRET'] = Joi.string().default(GenerateRandomString());
+validationSchema['OPEN_API_SERVER_CONFIG_FILE_PATH'] = Joi.string()
+                                                          .default(environment.production ?
+                                                            '/app/assets/open-api-server-config.json' :
+                                                            join(
+                                                              __dirname,
+                                                              'assets/open-api-server-config.json',
+                                                            ));
 validationSchema['GET_USER_PROFILE_OPERATION_FILE_PATH'] = Joi.string()
                                                               .default(environment.production ?
                                                                 '/app/assets/get-user-profile.json' :

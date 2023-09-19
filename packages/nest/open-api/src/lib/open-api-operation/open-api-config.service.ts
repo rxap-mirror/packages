@@ -4,16 +4,16 @@ import {
   InternalServerErrorException,
   Logger,
 } from '@nestjs/common';
-import {
-  OpenApiServerConfig,
-  OpenApiUpstreamInterceptor,
-} from './types';
+import { coerceArray } from '@rxap/utilities';
 import {
   OPEN_API_SERVER_CONFIG,
   OPEN_API_SERVER_ID_META_DATA_KEY,
   OPEN_API_UPSTREAM_INTERCEPTOR,
 } from './tokens';
-import { coerceArray } from '@rxap/utilities';
+import {
+  OpenApiServerConfig,
+  OpenApiUpstreamInterceptor,
+} from './types';
 
 @Injectable()
 export class OpenApiConfigService {
@@ -29,6 +29,11 @@ export class OpenApiConfigService {
     protected readonly logger: Logger,
   ) {
     this.serverConfig = coerceArray(serverConfig);
+    if (this.serverConfig.length) {
+      this.logger.debug(`Server config: ${ JSON.stringify(this.serverConfig) }`, 'OpenApiConfigService');
+    } else {
+      this.logger.debug('No server config provided', 'OpenApiConfigService');
+    }
     this.upstreamInterceptor = this.createUpstreamInterceptorMap(coerceArray(upstreamInterceptor));
   }
 
