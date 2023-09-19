@@ -81,6 +81,9 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
             return;
           }
           const currentVersion = packageJson[propertyPath][packageName].replace(/^(~|\^|>|<|<=|>=)/, '');
+          if (currentVersion === mewPackageVersion) {
+            return;
+          }
           if (gt(currentVersion, mewPackageVersion!)) {
             console.log(`The package \x1b[34m${ packageName }\x1b[0m version \x1b[31m${ currentVersion }\x1b[0m is greater than the anticipated version \x1b[32m${ mewPackageVersion }\x1b[0m`);
             // if soft and the current version is greater than the new version do nothing
