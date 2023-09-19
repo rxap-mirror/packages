@@ -1,10 +1,10 @@
-import {
-  RxapOpenApiDataSource,
-  OpenApiDataSource,
-} from '@rxap/open-api/data-source';
 import { Injectable } from '@angular/core';
-import { SettingsControllerGetPropertyResponse } from '../responses/settings-controller-get-property.response';
+import {
+  OpenApiDataSource,
+  RxapOpenApiDataSource,
+} from '@rxap/open-api/data-source';
 import { SettingsControllerGetPropertyParameter } from '../parameters/settings-controller-get-property.parameter';
+import { SettingsControllerGetPropertyResponse } from '../responses/settings-controller-get-property.response';
 
 @Injectable({
   providedIn: 'root',

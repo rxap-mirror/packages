@@ -29,16 +29,14 @@ import { SettingsControllerPopPropertyResponse } from '../responses/settings-con
     "200": {
       "content": {
         "application/json": {
-          "schema": {
-            "type": "object"
-          }
+          "schema": {}
         }
       }
     }
   },
   "method": "delete",
   "path": "/settings/{propertyPath}/pop"
-}`,
+}`
 })
 export class SettingsControllerPopPropertyRemoteMethod
   extends OpenApiRemoteMethod<SettingsControllerPopPropertyResponse, SettingsControllerPopPropertyParameter, void> {

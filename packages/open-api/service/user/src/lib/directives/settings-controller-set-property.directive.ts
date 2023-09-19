@@ -1,8 +1,8 @@
 import {
   ChangeDetectorRef,
   Directive,
-  INJECTOR,
   Inject,
+  INJECTOR,
   Injector,
   Input,
   TemplateRef,
@@ -18,7 +18,6 @@ import {
 } from '@rxap/remote-method/directive';
 import { SettingsControllerSetPropertyParameter } from '../parameters/settings-controller-set-property.parameter';
 import { SettingsControllerSetPropertyRemoteMethod } from '../remote-methods/settings-controller-set-property.remote-method';
-import { SettingsControllerSetPropertyResponse } from '../responses/settings-controller-set-property.response';
 
 @Directive({
   selector: '[settingsControllerSetPropertyRemoteMethod]',
@@ -26,7 +25,7 @@ import { SettingsControllerSetPropertyResponse } from '../responses/settings-con
   standalone: true,
 })
 export class SettingsControllerSetPropertyRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<SettingsControllerSetPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerSetPropertyParameter, void>> {
+  extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<SettingsControllerSetPropertyParameter, void>> {
   @Input('settingsControllerSetPropertyRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<SettingsControllerSetPropertyParameter, void>;
   @Input('settingsControllerSetPropertyRemoteMethodError')
@@ -36,7 +35,7 @@ export class SettingsControllerSetPropertyRemoteMethodTemplateDirective
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerSetPropertyRemoteMethod) remoteMethod: SettingsControllerSetPropertyRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerSetPropertyResponse>>,
+    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
@@ -51,7 +50,7 @@ export class SettingsControllerSetPropertyRemoteMethodTemplateDirective
   standalone: true,
 })
 export class SettingsControllerSetPropertyRemoteMethodDirective
-  extends RemoteMethodDirective<SettingsControllerSetPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerSetPropertyParameter, void>> {
+  extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<SettingsControllerSetPropertyParameter, void>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,

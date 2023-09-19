@@ -1,0 +1,1 @@
+export type DarkModeControllerEnableResponse = boolean;

@@ -1,22 +1,17 @@
-import {
-  Inject,
-  Injectable,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   MethodDataSource,
   RxapDataSource,
 } from '@rxap/data-source';
-import { Method } from '@rxap/pattern';
-import { RXAP_GET_USER_SETTINGS_METHOD } from './tokens';
-import { UserSettings } from './user-settings';
+import { SettingsControllerGetRemoteMethod } from './remote-methods/settings-controller-get.remote-method';
+import { SettingsControllerGetResponse } from './responses/settings-controller-get.response';
 
 @Injectable({ providedIn: 'root' })
 @RxapDataSource('user-settings')
-export class UserSettingsDataSource<US extends UserSettings = UserSettings> extends MethodDataSource<US> {
+export class UserSettingsDataSource<T> extends MethodDataSource<SettingsControllerGetResponse<T>> {
 
   constructor(
-    @Inject(RXAP_GET_USER_SETTINGS_METHOD)
-      method: Method<US>,
+    method: SettingsControllerGetRemoteMethod<T>,
   ) {
     super(method, true);
   }

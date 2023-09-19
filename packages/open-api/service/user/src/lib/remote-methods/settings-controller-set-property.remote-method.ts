@@ -5,7 +5,6 @@ import {
   RxapOpenApiRemoteMethod,
 } from '@rxap/open-api/remote-method';
 import { SettingsControllerSetPropertyParameter } from '../parameters/settings-controller-set-property.parameter';
-import { SettingsControllerSetPropertyResponse } from '../responses/settings-controller-set-property.response';
 
 @Injectable({
   providedIn: 'root',
@@ -26,23 +25,15 @@ import { SettingsControllerSetPropertyResponse } from '../responses/settings-con
     }
   ],
   "responses": {
-    "200": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "object"
-          }
-        }
-      }
-    }
+    "200": {}
   },
   "method": "put",
   "path": "/settings/{propertyPath}"
-}`,
+}`
 })
 export class SettingsControllerSetPropertyRemoteMethod
-  extends OpenApiRemoteMethod<SettingsControllerSetPropertyResponse, SettingsControllerSetPropertyParameter, void> {
-  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerSetPropertyParameter, void>): Promise<SettingsControllerSetPropertyResponse> {
+  extends OpenApiRemoteMethod<void, SettingsControllerSetPropertyParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerSetPropertyParameter, void>): Promise<void> {
     return super.call(parameters);
   }
 }

@@ -5,7 +5,6 @@ import {
   RxapOpenApiRemoteMethod,
 } from '@rxap/open-api/remote-method';
 import { SettingsControllerIncrementPropertyParameter } from '../parameters/settings-controller-increment-property.parameter';
-import { SettingsControllerIncrementPropertyResponse } from '../responses/settings-controller-increment-property.response';
 
 @Injectable({
   providedIn: 'root',
@@ -26,23 +25,15 @@ import { SettingsControllerIncrementPropertyResponse } from '../responses/settin
     }
   ],
   "responses": {
-    "200": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "object"
-          }
-        }
-      }
-    }
+    "200": {}
   },
   "method": "put",
   "path": "/settings/{propertyPath}/increment"
-}`,
+}`
 })
 export class SettingsControllerIncrementPropertyRemoteMethod
-  extends OpenApiRemoteMethod<SettingsControllerIncrementPropertyResponse, SettingsControllerIncrementPropertyParameter, void> {
-  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerIncrementPropertyParameter, void>): Promise<SettingsControllerIncrementPropertyResponse> {
+  extends OpenApiRemoteMethod<void, SettingsControllerIncrementPropertyParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerIncrementPropertyParameter, void>): Promise<void> {
     return super.call(parameters);
   }
 }

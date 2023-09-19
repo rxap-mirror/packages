@@ -5,7 +5,6 @@ import {
   RxapOpenApiRemoteMethod,
 } from '@rxap/open-api/remote-method';
 import { SettingsControllerTogglePropertyParameter } from '../parameters/settings-controller-toggle-property.parameter';
-import { SettingsControllerTogglePropertyResponse } from '../responses/settings-controller-toggle-property.response';
 
 @Injectable({
   providedIn: 'root',
@@ -26,23 +25,15 @@ import { SettingsControllerTogglePropertyResponse } from '../responses/settings-
     }
   ],
   "responses": {
-    "200": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "object"
-          }
-        }
-      }
-    }
+    "200": {}
   },
   "method": "put",
   "path": "/settings/{propertyPath}/toggle"
-}`,
+}`
 })
 export class SettingsControllerTogglePropertyRemoteMethod
-  extends OpenApiRemoteMethod<SettingsControllerTogglePropertyResponse, SettingsControllerTogglePropertyParameter, void> {
-  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerTogglePropertyParameter, void>): Promise<SettingsControllerTogglePropertyResponse> {
+  extends OpenApiRemoteMethod<void, SettingsControllerTogglePropertyParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerTogglePropertyParameter, void>): Promise<void> {
     return super.call(parameters);
   }
 }

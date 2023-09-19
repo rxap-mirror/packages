@@ -1,8 +1,8 @@
 import {
   ChangeDetectorRef,
   Directive,
-  INJECTOR,
   Inject,
+  INJECTOR,
   Injector,
   Input,
   TemplateRef,
@@ -18,7 +18,6 @@ import {
 } from '@rxap/remote-method/directive';
 import { SettingsControllerDecrementPropertyParameter } from '../parameters/settings-controller-decrement-property.parameter';
 import { SettingsControllerDecrementPropertyRemoteMethod } from '../remote-methods/settings-controller-decrement-property.remote-method';
-import { SettingsControllerDecrementPropertyResponse } from '../responses/settings-controller-decrement-property.response';
 
 @Directive({
   selector: '[settingsControllerDecrementPropertyRemoteMethod]',
@@ -26,7 +25,7 @@ import { SettingsControllerDecrementPropertyResponse } from '../responses/settin
   standalone: true,
 })
 export class SettingsControllerDecrementPropertyRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<SettingsControllerDecrementPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerDecrementPropertyParameter, void>> {
+  extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<SettingsControllerDecrementPropertyParameter, void>> {
   @Input('settingsControllerDecrementPropertyRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<SettingsControllerDecrementPropertyParameter, void>;
   @Input('settingsControllerDecrementPropertyRemoteMethodError')
@@ -36,7 +35,7 @@ export class SettingsControllerDecrementPropertyRemoteMethodTemplateDirective
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerDecrementPropertyRemoteMethod) remoteMethod: SettingsControllerDecrementPropertyRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerDecrementPropertyResponse>>,
+    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
@@ -51,7 +50,7 @@ export class SettingsControllerDecrementPropertyRemoteMethodTemplateDirective
   standalone: true,
 })
 export class SettingsControllerDecrementPropertyRemoteMethodDirective
-  extends RemoteMethodDirective<SettingsControllerDecrementPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerDecrementPropertyParameter, void>> {
+  extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<SettingsControllerDecrementPropertyParameter, void>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,

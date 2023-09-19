@@ -5,7 +5,6 @@ import {
   RxapOpenApiRemoteMethod,
 } from '@rxap/open-api/remote-method';
 import { LanguageControllerSetParameter } from '../parameters/language-controller-set.parameter';
-import { LanguageControllerSetResponse } from '../responses/language-controller-set.response';
 
 @Injectable({
   providedIn: 'root',
@@ -26,23 +25,14 @@ import { LanguageControllerSetResponse } from '../responses/language-controller-
     }
   ],
   "responses": {
-    "200": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "object"
-          }
-        }
-      }
-    }
+    "200": {}
   },
   "method": "put",
   "path": "/settings/language/{language}"
-}`,
+}`
 })
-export class LanguageControllerSetRemoteMethod
-  extends OpenApiRemoteMethod<LanguageControllerSetResponse, LanguageControllerSetParameter, void> {
-  public override call(parameters: OpenApiRemoteMethodParameter<LanguageControllerSetParameter, void>): Promise<LanguageControllerSetResponse> {
+export class LanguageControllerSetRemoteMethod extends OpenApiRemoteMethod<void, LanguageControllerSetParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<LanguageControllerSetParameter, void>): Promise<void> {
     return super.call(parameters);
   }
 }

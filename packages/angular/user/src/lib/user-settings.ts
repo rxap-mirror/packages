@@ -1,4 +1,3 @@
-export interface UserSettings extends Record<string, unknown> {
-  darkMode: boolean;
-  language: string;
-}
+import { SettingsControllerGetResponse } from './responses/settings-controller-get.response';
+
+export type UserSettings<T> = SettingsControllerGetResponse<T>;

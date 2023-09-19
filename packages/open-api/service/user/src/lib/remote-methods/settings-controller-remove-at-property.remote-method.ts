@@ -5,7 +5,6 @@ import {
   RxapOpenApiRemoteMethod,
 } from '@rxap/open-api/remote-method';
 import { SettingsControllerRemoveAtPropertyParameter } from '../parameters/settings-controller-remove-at-property.parameter';
-import { SettingsControllerRemoveAtPropertyResponse } from '../responses/settings-controller-remove-at-property.response';
 
 @Injectable({
   providedIn: 'root',
@@ -34,23 +33,15 @@ import { SettingsControllerRemoveAtPropertyResponse } from '../responses/setting
     }
   ],
   "responses": {
-    "200": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "object"
-          }
-        }
-      }
-    }
+    "200": {}
   },
   "method": "delete",
   "path": "/settings/{propertyPath}/removeAt/{index}"
-}`,
+}`
 })
 export class SettingsControllerRemoveAtPropertyRemoteMethod
-  extends OpenApiRemoteMethod<SettingsControllerRemoveAtPropertyResponse, SettingsControllerRemoveAtPropertyParameter, void> {
-  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerRemoveAtPropertyParameter, void>): Promise<SettingsControllerRemoveAtPropertyResponse> {
+  extends OpenApiRemoteMethod<void, SettingsControllerRemoveAtPropertyParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerRemoveAtPropertyParameter, void>): Promise<void> {
     return super.call(parameters);
   }
 }

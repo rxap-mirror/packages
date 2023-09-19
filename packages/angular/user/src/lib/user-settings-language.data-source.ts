@@ -4,7 +4,7 @@ import {
   RxapPipeDataSource,
 } from '@rxap/data-source';
 import { map } from 'rxjs';
-import { UserSettings } from './user-settings';
+import { SettingsControllerGetResponse } from './responses/settings-controller-get.response';
 import { UserSettingsDataSource } from './user-settings.data-source';
 
 @Injectable({ providedIn: 'root' })
@@ -12,10 +12,10 @@ import { UserSettingsDataSource } from './user-settings.data-source';
   id: 'user-settings-language',
   refreshParent: true,
 })
-export class UserSettingsLanguageDataSource extends PipeDataSource<UserSettings, string> {
+export class UserSettingsLanguageDataSource<T> extends PipeDataSource<SettingsControllerGetResponse<T>, string> {
 
   constructor(
-    dataSource: UserSettingsDataSource,
+    dataSource: UserSettingsDataSource<T>,
   ) {
     super(
       dataSource,

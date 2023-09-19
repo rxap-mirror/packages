@@ -1,8 +1,8 @@
 import {
   ChangeDetectorRef,
   Directive,
-  INJECTOR,
   Inject,
+  INJECTOR,
   Injector,
   Input,
   TemplateRef,
@@ -18,7 +18,6 @@ import {
 } from '@rxap/remote-method/directive';
 import { LanguageControllerSetParameter } from '../parameters/language-controller-set.parameter';
 import { LanguageControllerSetRemoteMethod } from '../remote-methods/language-controller-set.remote-method';
-import { LanguageControllerSetResponse } from '../responses/language-controller-set.response';
 
 @Directive({
   selector: '[languageControllerSetRemoteMethod]',
@@ -26,7 +25,7 @@ import { LanguageControllerSetResponse } from '../responses/language-controller-
   standalone: true,
 })
 export class LanguageControllerSetRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<LanguageControllerSetResponse, OpenApiRemoteMethodParameter<LanguageControllerSetParameter, void>> {
+  extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<LanguageControllerSetParameter, void>> {
   @Input('languageControllerSetRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<LanguageControllerSetParameter, void>;
   @Input('languageControllerSetRemoteMethodError')
@@ -36,7 +35,7 @@ export class LanguageControllerSetRemoteMethodTemplateDirective
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
     @Inject(LanguageControllerSetRemoteMethod) remoteMethod: LanguageControllerSetRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<LanguageControllerSetResponse>>,
+    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
@@ -51,7 +50,7 @@ export class LanguageControllerSetRemoteMethodTemplateDirective
   standalone: true,
 })
 export class LanguageControllerSetRemoteMethodDirective
-  extends RemoteMethodDirective<LanguageControllerSetResponse, OpenApiRemoteMethodParameter<LanguageControllerSetParameter, void>> {
+  extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<LanguageControllerSetParameter, void>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,

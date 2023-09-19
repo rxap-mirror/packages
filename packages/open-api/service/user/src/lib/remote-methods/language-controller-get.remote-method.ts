@@ -27,7 +27,7 @@ import { LanguageControllerGetResponse } from '../responses/language-controller-
   },
   "method": "get",
   "path": "/settings/language"
-}`,
+}`
 })
 export class LanguageControllerGetRemoteMethod extends OpenApiRemoteMethod<LanguageControllerGetResponse, void, void> {
   public override call(): Promise<LanguageControllerGetResponse> {

@@ -4,21 +4,15 @@ export * from './lib/responses/dark-mode-controller-enable.response';
 export * from './lib/responses/dark-mode-controller-get.response';
 export * from './lib/responses/dark-mode-controller-toggle.response';
 export * from './lib/responses/language-controller-get.response';
-export * from './lib/responses/language-controller-set.response';
-export * from './lib/responses/settings-controller-clear-property.response';
-export * from './lib/responses/settings-controller-decrement-property.response';
 export * from './lib/responses/settings-controller-get-property.response';
 export * from './lib/responses/settings-controller-get.response';
-export * from './lib/responses/settings-controller-increment-property.response';
 export * from './lib/responses/settings-controller-pop-property.response';
-export * from './lib/responses/settings-controller-push-property.response';
-export * from './lib/responses/settings-controller-remove-at-property.response';
-export * from './lib/responses/settings-controller-remove-property.response';
-export * from './lib/responses/settings-controller-set-property.response';
-export * from './lib/responses/settings-controller-set.response';
 export * from './lib/responses/settings-controller-shift-property.response';
-export * from './lib/responses/settings-controller-toggle-property.response';
 export * from './lib/responses/settings-controller-unshift-property.response';
+// endregion
+
+// region request-bodies
+export * from './lib/request-bodies/settings-controller-set.request-body';
 // endregion
 
 // region remote-methods

@@ -2,39 +2,37 @@ import {
   inject,
   Injectable,
 } from '@angular/core';
-import { Method } from '@rxap/pattern';
-import {
-  RXAP_DISABLE_USER_SETTINGS_DARK_MODE_METHOD,
-  RXAP_ENABLE_USER_SETTINGS_DARK_MODE_METHOD,
-  RXAP_GET_USER_SETTINGS_DARK_MODE_METHOD,
-  RXAP_GET_USER_SETTINGS_LANGUAGE_METHOD,
-  RXAP_SET_USER_SETTINGS_LANGUAGE_METHOD,
-  RXAP_SET_USER_SETTINGS_METHOD,
-  RXAP_TOGGLE_USER_SETTINGS_DARK_MODE_METHOD,
-} from './tokens';
-import { UserSettings } from './user-settings';
+import { DarkModeControllerDisableRemoteMethod } from './remote-methods/dark-mode-controller-disable.remote-method';
+import { DarkModeControllerEnableRemoteMethod } from './remote-methods/dark-mode-controller-enable.remote-method';
+import { DarkModeControllerGetRemoteMethod } from './remote-methods/dark-mode-controller-get.remote-method';
+import { DarkModeControllerToggleRemoteMethod } from './remote-methods/dark-mode-controller-toggle.remote-method';
+import { LanguageControllerGetRemoteMethod } from './remote-methods/language-controller-get.remote-method';
+import { LanguageControllerSetRemoteMethod } from './remote-methods/language-controller-set.remote-method';
+import { SettingsControllerGetRemoteMethod } from './remote-methods/settings-controller-get.remote-method';
+import { SettingsControllerSetRemoteMethod } from './remote-methods/settings-controller-set.remote-method';
+import { SettingsControllerSetRequestBody } from './request-bodies/settings-controller-set.request-body';
+import { SettingsControllerGetResponse } from './responses/settings-controller-get.response';
 import { UserSettingsDataSource } from './user-settings.data-source';
 
 @Injectable({ providedIn: 'root' })
-export class UserSettingsService<US extends UserSettings = UserSettings> {
+export class UserSettingsService<US> {
 
   protected readonly userSettingsDataSource = inject(UserSettingsDataSource);
-  protected readonly setUserSettingsMethod = inject<Method<US, { requestBody: US }>>(RXAP_SET_USER_SETTINGS_METHOD);
-  protected readonly getUserSettingsMethod = inject<Method<US>>(RXAP_SET_USER_SETTINGS_METHOD);
-  protected readonly getUserSettingsLanguageMethod = inject(RXAP_GET_USER_SETTINGS_LANGUAGE_METHOD);
-  protected readonly setUserSettingsLanguageMethod = inject(RXAP_SET_USER_SETTINGS_LANGUAGE_METHOD);
-  protected readonly getUserSettingsDarkModeMethod = inject(RXAP_GET_USER_SETTINGS_DARK_MODE_METHOD);
-  protected readonly toggleUserSettingsDarkModeMethod = inject(RXAP_TOGGLE_USER_SETTINGS_DARK_MODE_METHOD);
-  protected readonly disableUserSettingsDarkModeMethod = inject(RXAP_DISABLE_USER_SETTINGS_DARK_MODE_METHOD);
-  protected readonly enableUserSettingsDarkModeMethod = inject(RXAP_ENABLE_USER_SETTINGS_DARK_MODE_METHOD);
+  protected readonly setUserSettingsMethod = inject(SettingsControllerSetRemoteMethod);
+  protected readonly getUserSettingsMethod = inject(SettingsControllerGetRemoteMethod);
+  protected readonly getUserSettingsLanguageMethod = inject(LanguageControllerGetRemoteMethod);
+  protected readonly setUserSettingsLanguageMethod = inject(LanguageControllerSetRemoteMethod);
+  protected readonly getUserSettingsDarkModeMethod = inject(DarkModeControllerGetRemoteMethod);
+  protected readonly toggleUserSettingsDarkModeMethod = inject(DarkModeControllerToggleRemoteMethod);
+  protected readonly disableUserSettingsDarkModeMethod = inject(DarkModeControllerDisableRemoteMethod);
+  protected readonly enableUserSettingsDarkModeMethod = inject(DarkModeControllerEnableRemoteMethod);
 
-  async set(settings: US): Promise<US> {
-    const result = await this.setUserSettingsMethod.call({ requestBody: settings });
+  async set(settings: SettingsControllerSetRequestBody<US>): Promise<void> {
+    await this.setUserSettingsMethod.call({ requestBody: settings });
     this.userSettingsDataSource.refresh();
-    return result;
   }
 
-  async get(): Promise<US> {
+  async get(): Promise<SettingsControllerGetResponse<US>> {
     return this.getUserSettingsMethod.call();
   }
 
@@ -42,10 +40,9 @@ export class UserSettingsService<US extends UserSettings = UserSettings> {
     return this.getUserSettingsLanguageMethod.call();
   }
 
-  async setLanguage(language: string): Promise<string> {
-    const result = await this.setUserSettingsLanguageMethod.call({ parameters: { language } });
+  async setLanguage(language: string): Promise<void> {
+    await this.setUserSettingsLanguageMethod.call({ parameters: { language } });
     this.userSettingsDataSource.refresh();
-    return result;
   }
 
   async getDarkMode(): Promise<boolean> {

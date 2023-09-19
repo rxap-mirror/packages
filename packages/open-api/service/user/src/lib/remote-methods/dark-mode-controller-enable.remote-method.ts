@@ -27,7 +27,7 @@ import { DarkModeControllerEnableResponse } from '../responses/dark-mode-control
   },
   "method": "put",
   "path": "/settings/dark-mode/enable"
-}`,
+}`
 })
 export class DarkModeControllerEnableRemoteMethod
   extends OpenApiRemoteMethod<DarkModeControllerEnableResponse, void, void> {

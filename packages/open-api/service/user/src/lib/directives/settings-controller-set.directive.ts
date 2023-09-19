@@ -1,8 +1,8 @@
 import {
   ChangeDetectorRef,
   Directive,
-  INJECTOR,
   Inject,
+  INJECTOR,
   Injector,
   Input,
   TemplateRef,
@@ -17,7 +17,7 @@ import {
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
 import { SettingsControllerSetRemoteMethod } from '../remote-methods/settings-controller-set.remote-method';
-import { SettingsControllerSetResponse } from '../responses/settings-controller-set.response';
+import { SettingsControllerSetRequestBody } from '../request-bodies/settings-controller-set.request-body';
 
 @Directive({
   selector: '[settingsControllerSetRemoteMethod]',
@@ -25,9 +25,9 @@ import { SettingsControllerSetResponse } from '../responses/settings-controller-
   standalone: true,
 })
 export class SettingsControllerSetRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<SettingsControllerSetResponse, OpenApiRemoteMethodParameter<void, void>> {
+  extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<void, SettingsControllerSetRequestBody<TRequestBody>>> {
   @Input('settingsControllerSetRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<void, void>;
+  declare public parameters?: OpenApiRemoteMethodParameter<void, SettingsControllerSetRequestBody<TRequestBody>>;
   @Input('settingsControllerSetRemoteMethodError')
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
@@ -35,7 +35,7 @@ export class SettingsControllerSetRemoteMethodTemplateDirective
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerSetRemoteMethod) remoteMethod: SettingsControllerSetRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerSetResponse>>,
+    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
@@ -51,7 +51,7 @@ export class SettingsControllerSetRemoteMethodTemplateDirective
   standalone: true,
 })
 export class SettingsControllerSetRemoteMethodDirective
-  extends RemoteMethodDirective<SettingsControllerSetResponse, OpenApiRemoteMethodParameter<void, void>> {
+  extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<void, SettingsControllerSetRequestBody<TRequestBody>>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,

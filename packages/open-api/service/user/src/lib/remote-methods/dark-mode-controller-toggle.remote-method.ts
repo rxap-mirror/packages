@@ -27,7 +27,7 @@ import { DarkModeControllerToggleResponse } from '../responses/dark-mode-control
   },
   "method": "put",
   "path": "/settings/dark-mode/toggle"
-}`,
+}`
 })
 export class DarkModeControllerToggleRemoteMethod
   extends OpenApiRemoteMethod<DarkModeControllerToggleResponse, void, void> {

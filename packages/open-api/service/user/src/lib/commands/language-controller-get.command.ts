@@ -1,10 +1,10 @@
+import { Injectable } from '@nestjs/common';
 import {
   OpenApiOperationCommand,
+  OpenApiOperationCommandWithoutParameters,
   OperationCommand,
 } from '@rxap/nest-open-api';
-import { Injectable } from '@nestjs/common';
 import { LanguageControllerGetResponse } from '../responses/language-controller-get.response';
-import { OpenApiOperationCommandWithoutParameters } from '@rxap/nest-open-api';
 
 @Injectable()
 @OperationCommand({

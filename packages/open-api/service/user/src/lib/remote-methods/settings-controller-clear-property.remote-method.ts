@@ -5,7 +5,6 @@ import {
   RxapOpenApiRemoteMethod,
 } from '@rxap/open-api/remote-method';
 import { SettingsControllerClearPropertyParameter } from '../parameters/settings-controller-clear-property.parameter';
-import { SettingsControllerClearPropertyResponse } from '../responses/settings-controller-clear-property.response';
 
 @Injectable({
   providedIn: 'root',
@@ -26,23 +25,15 @@ import { SettingsControllerClearPropertyResponse } from '../responses/settings-c
     }
   ],
   "responses": {
-    "200": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "object"
-          }
-        }
-      }
-    }
+    "200": {}
   },
   "method": "delete",
   "path": "/settings/{propertyPath}"
-}`,
+}`
 })
 export class SettingsControllerClearPropertyRemoteMethod
-  extends OpenApiRemoteMethod<SettingsControllerClearPropertyResponse, SettingsControllerClearPropertyParameter, void> {
-  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerClearPropertyParameter, void>): Promise<SettingsControllerClearPropertyResponse> {
+  extends OpenApiRemoteMethod<void, SettingsControllerClearPropertyParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerClearPropertyParameter, void>): Promise<void> {
     return super.call(parameters);
   }
 }

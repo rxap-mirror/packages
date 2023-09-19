@@ -14,6 +14,10 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
+import {
+  ApiBody,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 import { UserSub } from '@rxap/nest-jwt';
 import {
   equals,
@@ -30,6 +34,21 @@ export class SettingsController {
   @Inject(SettingsService)
   private readonly userSettings: SettingsService;
 
+  @ApiOkResponse({
+    schema: {
+      type: 'object',
+      properties: {
+        darkMode: {
+          type: 'boolean',
+        },
+        language: {
+          type: 'string',
+        },
+      },
+      additionalProperties: true,
+      required: [ 'darkMode', 'language' ],
+    },
+  })
   @Get()
   public get(
     @UserSub() userId: string,
@@ -37,20 +56,34 @@ export class SettingsController {
     return this.userSettings.get(userId);
   }
 
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        darkMode: {
+          type: 'boolean',
+        },
+        language: {
+          type: 'string',
+        },
+      },
+      additionalProperties: true,
+      required: [ 'darkMode', 'language' ],
+    },
+  })
   @Post()
   public async set(
     @UserSub() userId: string,
     @Body() settings: UserSettings,
-  ): Promise<UserSettings> {
+  ): Promise<void> {
     await this.userSettings.set(userId, settings);
-    return await this.userSettings.get(userId);
   }
 
   @Put(':propertyPath/toggle')
   public async toggleProperty(
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
-  ): Promise<UserSettings> {
+  ): Promise<void> {
     const settings = await this.userSettings.get(userId);
     const value = GetFromObjectFactory(propertyPath, false)(settings);
     if (typeof value !== 'boolean') {
@@ -58,14 +91,16 @@ export class SettingsController {
     }
     SetToObject(settings, propertyPath, !value);
     await this.userSettings.set(userId, settings);
-    return await this.userSettings.get(userId);
   }
 
+  @ApiOkResponse({
+    schema: {},
+  })
   @Get(':propertyPath')
   public async getProperty(
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
-  ) {
+  ): Promise<unknown> {
     const settings = await this.userSettings.get(userId);
     return GetFromObjectFactory(propertyPath, propertyPath)(settings);
   }
@@ -75,22 +110,20 @@ export class SettingsController {
     @UserSub() userId: string,
     @Body() value: any,
     @Param('propertyPath') propertyPath: string,
-  ) {
+  ): Promise<void> {
     const settings = await this.userSettings.get(userId);
     SetToObject(settings, propertyPath, value);
     await this.userSettings.set(userId, settings);
-    return await this.userSettings.get(userId);
   }
 
   @Delete(':propertyPath')
   public async clearProperty(
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
-  ) {
+  ): Promise<void> {
     const settings = await this.userSettings.get(userId);
     RemoveFromObject(settings, propertyPath);
     await this.userSettings.set(userId, settings);
-    return await this.userSettings.get(userId);
   }
 
   @Put(':propertyPath/push')
@@ -98,7 +131,7 @@ export class SettingsController {
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
     @Body() value: any,
-  ) {
+  ): Promise<void> {
     const settings = await this.userSettings.get(userId);
     let array = GetFromObjectFactory(propertyPath)(settings);
     if (array === undefined) {
@@ -110,14 +143,16 @@ export class SettingsController {
     }
     array.push(value);
     await this.userSettings.set(userId, settings);
-    return await this.userSettings.get(userId);
   }
 
+  @ApiOkResponse({
+    schema: {},
+  })
   @Delete(':propertyPath/pop')
   public async popProperty(
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
-  ) {
+  ): Promise<unknown> {
     const settings = await this.userSettings.get(userId);
     const array = GetFromObjectFactory(propertyPath, [])(settings);
     if (!Array.isArray(array)) {
@@ -133,22 +168,25 @@ export class SettingsController {
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
     @Body() value: any,
-  ) {
+  ): Promise<number> {
     const settings = await this.userSettings.get(userId);
     const array = GetFromObjectFactory(propertyPath, [])(settings);
     if (!Array.isArray(array)) {
       throw new BadRequestException(`The user settings property '${ propertyPath }' is not an array`);
     }
-    array.unshift(value);
+    const index = array.unshift(value);
     await this.userSettings.set(userId, settings);
-    return await this.userSettings.get(userId);
+    return index;
   }
 
+  @ApiOkResponse({
+    schema: {},
+  })
   @Delete(':propertyPath/shift')
   public async shiftProperty(
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
-  ) {
+  ): Promise<unknown> {
     const settings = await this.userSettings.get(userId);
     const array = GetFromObjectFactory(propertyPath, [])(settings);
     if (!Array.isArray(array)) {
@@ -164,7 +202,7 @@ export class SettingsController {
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
     @Param('index', ParseIntPipe) index: number,
-  ) {
+  ): Promise<void> {
     const settings = await this.userSettings.get(userId);
     const array = GetFromObjectFactory(propertyPath, [])(settings);
     if (!Array.isArray(array)) {
@@ -175,7 +213,6 @@ export class SettingsController {
     }
     SetToObject(settings, propertyPath, array.splice(index, 1));
     await this.userSettings.set(userId, settings);
-    return await this.userSettings.get(userId);
   }
 
   @Delete(':propertyPath/remove')
@@ -184,7 +221,7 @@ export class SettingsController {
     @Param('propertyPath') propertyPath: string,
     @Body() value: any,
     @Query('optional', new DefaultValuePipe(false), ParseBoolPipe) optional = false,
-  ) {
+  ): Promise<void> {
     const settings = await this.userSettings.get(userId);
     const array = GetFromObjectFactory(propertyPath, [])(settings);
     if (!Array.isArray(array)) {
@@ -192,14 +229,12 @@ export class SettingsController {
     }
     const index = array.findIndex(item => equals(item, value));
     if (array[index] === undefined) {
-      if (optional) {
-        return await this.userSettings.get(userId);
+      if (!optional) {
+        throw new BadRequestException(`The user settings property '${ propertyPath }' has no matching value`);
       }
-      throw new BadRequestException(`The user settings property '${ propertyPath }' has no matching value`);
     }
     SetToObject(settings, propertyPath, array.splice(index, 1));
     await this.userSettings.set(userId, settings);
-    return await this.userSettings.get(userId);
   }
 
   @Put(':propertyPath/increment')
@@ -207,7 +242,7 @@ export class SettingsController {
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
     @Query('value', new DefaultValuePipe(1), ParseFloatPipe) value = 1,
-  ) {
+  ): Promise<void> {
     const settings = await this.userSettings.get(userId);
     const currentValue = GetFromObjectFactory(propertyPath, 0)(settings);
     if (typeof currentValue !== 'number') {
@@ -215,7 +250,6 @@ export class SettingsController {
     }
     SetToObject(settings, propertyPath, currentValue + value);
     await this.userSettings.set(userId, settings);
-    return await this.userSettings.get(userId);
   }
 
   @Put(':propertyPath/decrement')
@@ -223,7 +257,7 @@ export class SettingsController {
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
     @Query('value', new DefaultValuePipe(1), ParseFloatPipe) value = 1,
-  ) {
+  ): Promise<void> {
     const settings = await this.userSettings.get(userId);
     const currentValue = GetFromObjectFactory(propertyPath, 0)(settings);
     if (typeof currentValue !== 'number') {
@@ -231,7 +265,6 @@ export class SettingsController {
     }
     SetToObject(settings, propertyPath, currentValue - value);
     await this.userSettings.set(userId, settings);
-    return await this.userSettings.get(userId);
   }
 
 }

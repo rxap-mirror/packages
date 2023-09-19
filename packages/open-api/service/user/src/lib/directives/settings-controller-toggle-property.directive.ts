@@ -1,8 +1,8 @@
 import {
   ChangeDetectorRef,
   Directive,
-  INJECTOR,
   Inject,
+  INJECTOR,
   Injector,
   Input,
   TemplateRef,
@@ -18,7 +18,6 @@ import {
 } from '@rxap/remote-method/directive';
 import { SettingsControllerTogglePropertyParameter } from '../parameters/settings-controller-toggle-property.parameter';
 import { SettingsControllerTogglePropertyRemoteMethod } from '../remote-methods/settings-controller-toggle-property.remote-method';
-import { SettingsControllerTogglePropertyResponse } from '../responses/settings-controller-toggle-property.response';
 
 @Directive({
   selector: '[settingsControllerTogglePropertyRemoteMethod]',
@@ -26,7 +25,7 @@ import { SettingsControllerTogglePropertyResponse } from '../responses/settings-
   standalone: true,
 })
 export class SettingsControllerTogglePropertyRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<SettingsControllerTogglePropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerTogglePropertyParameter, void>> {
+  extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<SettingsControllerTogglePropertyParameter, void>> {
   @Input('settingsControllerTogglePropertyRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<SettingsControllerTogglePropertyParameter, void>;
   @Input('settingsControllerTogglePropertyRemoteMethodError')
@@ -36,7 +35,7 @@ export class SettingsControllerTogglePropertyRemoteMethodTemplateDirective
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerTogglePropertyRemoteMethod) remoteMethod: SettingsControllerTogglePropertyRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerTogglePropertyResponse>>,
+    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
@@ -51,7 +50,7 @@ export class SettingsControllerTogglePropertyRemoteMethodTemplateDirective
   standalone: true,
 })
 export class SettingsControllerTogglePropertyRemoteMethodDirective
-  extends RemoteMethodDirective<SettingsControllerTogglePropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerTogglePropertyParameter, void>> {
+  extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<SettingsControllerTogglePropertyParameter, void>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,

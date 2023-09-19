@@ -5,7 +5,6 @@ import {
   RxapOpenApiRemoteMethod,
 } from '@rxap/open-api/remote-method';
 import { SettingsControllerPushPropertyParameter } from '../parameters/settings-controller-push-property.parameter';
-import { SettingsControllerPushPropertyResponse } from '../responses/settings-controller-push-property.response';
 
 @Injectable({
   providedIn: 'root',
@@ -26,23 +25,15 @@ import { SettingsControllerPushPropertyResponse } from '../responses/settings-co
     }
   ],
   "responses": {
-    "200": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "object"
-          }
-        }
-      }
-    }
+    "200": {}
   },
   "method": "put",
   "path": "/settings/{propertyPath}/push"
-}`,
+}`
 })
 export class SettingsControllerPushPropertyRemoteMethod
-  extends OpenApiRemoteMethod<SettingsControllerPushPropertyResponse, SettingsControllerPushPropertyParameter, void> {
-  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerPushPropertyParameter, void>): Promise<SettingsControllerPushPropertyResponse> {
+  extends OpenApiRemoteMethod<void, SettingsControllerPushPropertyParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerPushPropertyParameter, void>): Promise<void> {
     return super.call(parameters);
   }
 }

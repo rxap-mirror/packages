@@ -29,16 +29,14 @@ import { SettingsControllerShiftPropertyResponse } from '../responses/settings-c
     "200": {
       "content": {
         "application/json": {
-          "schema": {
-            "type": "object"
-          }
+          "schema": {}
         }
       }
     }
   },
   "method": "delete",
   "path": "/settings/{propertyPath}/shift"
-}`,
+}`
 })
 export class SettingsControllerShiftPropertyRemoteMethod
   extends OpenApiRemoteMethod<SettingsControllerShiftPropertyResponse, SettingsControllerShiftPropertyParameter, void> {

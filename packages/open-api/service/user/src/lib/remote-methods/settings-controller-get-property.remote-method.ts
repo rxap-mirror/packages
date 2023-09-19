@@ -29,16 +29,14 @@ import { SettingsControllerGetPropertyResponse } from '../responses/settings-con
     "200": {
       "content": {
         "application/json": {
-          "schema": {
-            "type": "object"
-          }
+          "schema": {}
         }
       }
     }
   },
   "method": "get",
   "path": "/settings/{propertyPath}"
-}`,
+}`
 })
 export class SettingsControllerGetPropertyRemoteMethod
   extends OpenApiRemoteMethod<SettingsControllerGetPropertyResponse, SettingsControllerGetPropertyParameter, void> {

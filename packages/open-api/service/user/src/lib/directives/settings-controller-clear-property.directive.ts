@@ -1,8 +1,8 @@
 import {
   ChangeDetectorRef,
   Directive,
-  INJECTOR,
   Inject,
+  INJECTOR,
   Injector,
   Input,
   TemplateRef,
@@ -18,7 +18,6 @@ import {
 } from '@rxap/remote-method/directive';
 import { SettingsControllerClearPropertyParameter } from '../parameters/settings-controller-clear-property.parameter';
 import { SettingsControllerClearPropertyRemoteMethod } from '../remote-methods/settings-controller-clear-property.remote-method';
-import { SettingsControllerClearPropertyResponse } from '../responses/settings-controller-clear-property.response';
 
 @Directive({
   selector: '[settingsControllerClearPropertyRemoteMethod]',
@@ -26,7 +25,7 @@ import { SettingsControllerClearPropertyResponse } from '../responses/settings-c
   standalone: true,
 })
 export class SettingsControllerClearPropertyRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<SettingsControllerClearPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerClearPropertyParameter, void>> {
+  extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<SettingsControllerClearPropertyParameter, void>> {
   @Input('settingsControllerClearPropertyRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<SettingsControllerClearPropertyParameter, void>;
   @Input('settingsControllerClearPropertyRemoteMethodError')
@@ -36,7 +35,7 @@ export class SettingsControllerClearPropertyRemoteMethodTemplateDirective
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerClearPropertyRemoteMethod) remoteMethod: SettingsControllerClearPropertyRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerClearPropertyResponse>>,
+    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
@@ -51,7 +50,7 @@ export class SettingsControllerClearPropertyRemoteMethodTemplateDirective
   standalone: true,
 })
 export class SettingsControllerClearPropertyRemoteMethodDirective
-  extends RemoteMethodDirective<SettingsControllerClearPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerClearPropertyParameter, void>> {
+  extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<SettingsControllerClearPropertyParameter, void>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,

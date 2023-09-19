@@ -5,7 +5,6 @@ import {
   RxapOpenApiRemoteMethod,
 } from '@rxap/open-api/remote-method';
 import { SettingsControllerDecrementPropertyParameter } from '../parameters/settings-controller-decrement-property.parameter';
-import { SettingsControllerDecrementPropertyResponse } from '../responses/settings-controller-decrement-property.response';
 
 @Injectable({
   providedIn: 'root',
@@ -26,23 +25,15 @@ import { SettingsControllerDecrementPropertyResponse } from '../responses/settin
     }
   ],
   "responses": {
-    "200": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "object"
-          }
-        }
-      }
-    }
+    "200": {}
   },
   "method": "put",
   "path": "/settings/{propertyPath}/decrement"
-}`,
+}`
 })
 export class SettingsControllerDecrementPropertyRemoteMethod
-  extends OpenApiRemoteMethod<SettingsControllerDecrementPropertyResponse, SettingsControllerDecrementPropertyParameter, void> {
-  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerDecrementPropertyParameter, void>): Promise<SettingsControllerDecrementPropertyResponse> {
+  extends OpenApiRemoteMethod<void, SettingsControllerDecrementPropertyParameter, void> {
+  public override call(parameters: OpenApiRemoteMethodParameter<SettingsControllerDecrementPropertyParameter, void>): Promise<void> {
     return super.call(parameters);
   }
 }

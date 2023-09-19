@@ -1,10 +1,10 @@
+import { Injectable } from '@nestjs/common';
 import {
   OpenApiOperationCommand,
+  OpenApiOperationCommandWithoutParameters,
   OperationCommand,
 } from '@rxap/nest-open-api';
-import { Injectable } from '@nestjs/common';
 import { DarkModeControllerGetResponse } from '../responses/dark-mode-controller-get.response';
-import { OpenApiOperationCommandWithoutParameters } from '@rxap/nest-open-api';
 
 @Injectable()
 @OperationCommand({

@@ -59,35 +59,34 @@ describe('SettingsModule', () => {
     settingsService.map.clear();
   });
 
-  it('GET /settings', () => {
-    return request(app.getHttpServer())
+  it('GET /settings', async () => {
+    await request(app.getHttpServer())
       .get('/settings')
       .set('Authorization', `Bearer ${ token }`)
       .expect(200)
       .expect(SettingsService.DefaultSettings);
   });
 
-  it('POST /settings', () => {
-    return request(app.getHttpServer())
+  it('POST /settings', async () => {
+    await request(app.getHttpServer())
       .post('/settings')
       .send({ hideRouter: true })
       .set('Authorization', `Bearer ${ token }`)
-      .expect(201)
-      .expect({
-        ...SettingsService.DefaultSettings,
-        hideRouter: true,
-      });
+      .expect(201);
+    expect(settingsService.map.get('test')).toEqual({
+      hideRouter: true,
+    });
   });
 
-  it('PUT /settings/darkMode/toggle', () => {
-    return request(app.getHttpServer())
+  it('PUT /settings/darkMode/toggle', async () => {
+    await request(app.getHttpServer())
       .put('/settings/darkMode/toggle')
       .set('Authorization', `Bearer ${ token }`)
-      .expect(200)
-      .expect({
-        ...SettingsService.DefaultSettings,
-        darkMode: false,
-      });
+      .expect(200);
+    expect(settingsService.map.get('test')).toEqual({
+      ...SettingsService.DefaultSettings,
+      darkMode: false,
+    });
   });
 
   for (const propertyPath of propertyPathList) {
@@ -114,24 +113,23 @@ describe('SettingsModule', () => {
 
     describe(`PUT /settings/${ propertyPath }`, () => {
 
-      it('should set the value of the property path that not exists', () => {
+      it('should set the value of the property path that not exists', async () => {
         const result = SettingsService.DefaultSettings;
         const value = { test: true };
         SetToObject(result, propertyPath, value);
-        return request(app.getHttpServer())
+        await request(app.getHttpServer())
           .put(`/settings/${ propertyPath }`)
           .send({ test: true })
           .set('Authorization', `Bearer ${ token }`)
-          .expect(200)
-          .expect(result);
-
+          .expect(200);
+        expect(settingsService.map.get('test')).toEqual(result);
       });
 
     });
 
     describe(`DELETE /settings/${ propertyPath }`, () => {
 
-      it('should delete the value of the property path that exists', () => {
+      it('should delete the value of the property path that exists', async () => {
         const existingValue = { test: true };
         const existingSettings = SettingsService.DefaultSettings;
         SetToObject(existingSettings, propertyPath, existingValue);
@@ -141,27 +139,27 @@ describe('SettingsModule', () => {
           'test',
           existingSettings,
         );
-        return request(app.getHttpServer())
+        await request(app.getHttpServer())
           .delete(`/settings/${ propertyPath }`)
           .set('Authorization', `Bearer ${ token }`)
-          .expect(200)
-          .expect(result);
+          .expect(200);
+        expect(settingsService.map.get('test')).toEqual(result);
       });
 
     });
 
     describe(`PUT /settings/${ propertyPath }/push`, () => {
 
-      it('should push the value to the property path that not exists', () => {
+      it('should push the value to the property path that not exists', async () => {
         const result = SettingsService.DefaultSettings;
         const value = { test: true };
         SetToObject(result, propertyPath, [ value ]);
-        return request(app.getHttpServer())
+        await request(app.getHttpServer())
           .put(`/settings/${ propertyPath }/push`)
           .send(value)
           .set('Authorization', `Bearer ${ token }`)
-          .expect(200)
-          .expect(result);
+          .expect(200);
+        expect(settingsService.map.get('test')).toEqual(result);
       });
 
     });

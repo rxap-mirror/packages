@@ -1,8 +1,8 @@
 import {
   ChangeDetectorRef,
   Directive,
-  INJECTOR,
   Inject,
+  INJECTOR,
   Injector,
   Input,
   TemplateRef,
@@ -18,7 +18,6 @@ import {
 } from '@rxap/remote-method/directive';
 import { SettingsControllerIncrementPropertyParameter } from '../parameters/settings-controller-increment-property.parameter';
 import { SettingsControllerIncrementPropertyRemoteMethod } from '../remote-methods/settings-controller-increment-property.remote-method';
-import { SettingsControllerIncrementPropertyResponse } from '../responses/settings-controller-increment-property.response';
 
 @Directive({
   selector: '[settingsControllerIncrementPropertyRemoteMethod]',
@@ -26,7 +25,7 @@ import { SettingsControllerIncrementPropertyResponse } from '../responses/settin
   standalone: true,
 })
 export class SettingsControllerIncrementPropertyRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<SettingsControllerIncrementPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerIncrementPropertyParameter, void>> {
+  extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<SettingsControllerIncrementPropertyParameter, void>> {
   @Input('settingsControllerIncrementPropertyRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<SettingsControllerIncrementPropertyParameter, void>;
   @Input('settingsControllerIncrementPropertyRemoteMethodError')
@@ -36,7 +35,7 @@ export class SettingsControllerIncrementPropertyRemoteMethodTemplateDirective
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerIncrementPropertyRemoteMethod) remoteMethod: SettingsControllerIncrementPropertyRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerIncrementPropertyResponse>>,
+    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
@@ -51,7 +50,7 @@ export class SettingsControllerIncrementPropertyRemoteMethodTemplateDirective
   standalone: true,
 })
 export class SettingsControllerIncrementPropertyRemoteMethodDirective
-  extends RemoteMethodDirective<SettingsControllerIncrementPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerIncrementPropertyParameter, void>> {
+  extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<SettingsControllerIncrementPropertyParameter, void>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,

@@ -19,7 +19,20 @@ import { SettingsControllerGetResponse } from '../responses/settings-controller-
       "content": {
         "application/json": {
           "schema": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "darkMode": {
+                "type": "boolean"
+              },
+              "language": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true,
+            "required": [
+              "darkMode",
+              "language"
+            ]
           }
         }
       }
@@ -27,10 +40,11 @@ import { SettingsControllerGetResponse } from '../responses/settings-controller-
   },
   "method": "get",
   "path": "/settings"
-}`,
+}`
 })
-export class SettingsControllerGetRemoteMethod extends OpenApiRemoteMethod<SettingsControllerGetResponse, void, void> {
-  public override call(): Promise<SettingsControllerGetResponse> {
+export class SettingsControllerGetRemoteMethod<TResponse = unknown>
+  extends OpenApiRemoteMethod<SettingsControllerGetResponse<TResponse>, void, void> {
+  public override call(): Promise<SettingsControllerGetResponse<TResponse>> {
     return super.call();
   }
 }

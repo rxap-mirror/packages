@@ -1,8 +1,8 @@
 import {
   ChangeDetectorRef,
   Directive,
-  INJECTOR,
   Inject,
+  INJECTOR,
   Injector,
   Input,
   TemplateRef,
@@ -25,7 +25,7 @@ import { SettingsControllerGetResponse } from '../responses/settings-controller-
   standalone: true,
 })
 export class SettingsControllerGetRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<SettingsControllerGetResponse, OpenApiRemoteMethodParameter<void, void>> {
+  extends RemoteMethodTemplateDirective<SettingsControllerGetResponse<TResponse>, OpenApiRemoteMethodParameter<void, void>> {
   @Input('settingsControllerGetRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<void, void>;
   @Input('settingsControllerGetRemoteMethodError')
@@ -35,7 +35,7 @@ export class SettingsControllerGetRemoteMethodTemplateDirective
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerGetRemoteMethod) remoteMethod: SettingsControllerGetRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerGetResponse>>,
+    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerGetResponse<TResponse>>>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
@@ -51,7 +51,7 @@ export class SettingsControllerGetRemoteMethodTemplateDirective
   standalone: true,
 })
 export class SettingsControllerGetRemoteMethodDirective
-  extends RemoteMethodDirective<SettingsControllerGetResponse, OpenApiRemoteMethodParameter<void, void>> {
+  extends RemoteMethodDirective<SettingsControllerGetResponse<TResponse>, OpenApiRemoteMethodParameter<void, void>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,

@@ -1,8 +1,8 @@
 import {
   ChangeDetectorRef,
   Directive,
-  INJECTOR,
   Inject,
+  INJECTOR,
   Injector,
   Input,
   TemplateRef,
@@ -18,7 +18,6 @@ import {
 } from '@rxap/remote-method/directive';
 import { SettingsControllerRemoveAtPropertyParameter } from '../parameters/settings-controller-remove-at-property.parameter';
 import { SettingsControllerRemoveAtPropertyRemoteMethod } from '../remote-methods/settings-controller-remove-at-property.remote-method';
-import { SettingsControllerRemoveAtPropertyResponse } from '../responses/settings-controller-remove-at-property.response';
 
 @Directive({
   selector: '[settingsControllerRemoveAtPropertyRemoteMethod]',
@@ -26,7 +25,7 @@ import { SettingsControllerRemoveAtPropertyResponse } from '../responses/setting
   standalone: true,
 })
 export class SettingsControllerRemoveAtPropertyRemoteMethodTemplateDirective
-  extends RemoteMethodTemplateDirective<SettingsControllerRemoveAtPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerRemoveAtPropertyParameter, void>> {
+  extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<SettingsControllerRemoveAtPropertyParameter, void>> {
   @Input('settingsControllerRemoveAtPropertyRemoteMethodParameters')
   declare public parameters?: OpenApiRemoteMethodParameter<SettingsControllerRemoveAtPropertyParameter, void>;
   @Input('settingsControllerRemoveAtPropertyRemoteMethodError')
@@ -36,7 +35,7 @@ export class SettingsControllerRemoveAtPropertyRemoteMethodTemplateDirective
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerRemoveAtPropertyRemoteMethod) remoteMethod: SettingsControllerRemoveAtPropertyRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerRemoveAtPropertyResponse>>,
+    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
     @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
@@ -51,7 +50,7 @@ export class SettingsControllerRemoveAtPropertyRemoteMethodTemplateDirective
   standalone: true,
 })
 export class SettingsControllerRemoveAtPropertyRemoteMethodDirective
-  extends RemoteMethodDirective<SettingsControllerRemoveAtPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerRemoveAtPropertyParameter, void>> {
+  extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<SettingsControllerRemoveAtPropertyParameter, void>> {
   constructor(
     @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
     @Inject(INJECTOR) injector: Injector,
