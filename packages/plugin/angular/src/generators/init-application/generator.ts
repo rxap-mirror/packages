@@ -532,6 +532,8 @@ export async function initApplicationGenerator(
     await AddPackageJsonDependency(tree, '@rxap/material-directives', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/browser-utilities', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@angular/flex-layout', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/authorization', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/ngx-user', 'latest', { soft: true });
   }
 
   if (options.openApi) {
@@ -549,6 +551,8 @@ export async function initApplicationGenerator(
 
   if (options.i18n) {
     await AddPackageJsonDependency(tree, '@angular/localize', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/localize', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/ngx-user', 'latest', { soft: true });
   }
 
   if (options.localazy) {
