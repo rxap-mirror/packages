@@ -13,12 +13,11 @@ export * from './lib/dialog/dialog-update.service';
 export * from './lib/dialog/provide-service-worker-update-dialog';
 // endregion
 
-// region 
+// region
 export * from './lib/check-for-update.service';
 export * from './lib/log-update.service';
 export * from './lib/service-worker-prompt-update.module';
 export * from './lib/service-worker-snack-bar-update.module';
-export * from './lib/service-worker.module';
 export * from './lib/snack-bar-update.service';
 export * from './lib/unregister-service-worker';
 // endregion
