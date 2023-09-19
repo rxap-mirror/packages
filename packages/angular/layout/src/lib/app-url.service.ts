@@ -7,6 +7,7 @@ import { AuthorizationService } from '@rxap/authorization';
 import { ClickOnLink } from '@rxap/browser-utilities';
 import { ConfigService } from '@rxap/config';
 import { JoinPath } from '@rxap/utilities';
+import { firstValueFrom } from 'rxjs';
 
 export interface ExternalApps {
   image?: string;
@@ -60,29 +61,28 @@ export class AppUrlService {
   }
 
   public async getAppList(): Promise<Array<ExternalApps>> {
-    return this._apps.filter(app => !app.hidden)
-               .map(app => ({
-                 ...app,
-                 href: JoinPath(app.href, this.getPathPrefix()),
-               }))
-               .filter(app => !app.permissions ||
-                 !app.permissions.length ||
-                 app.permissions.every(permission => this.authorizationService.hasPermission(permission)));
+    const appList = this
+      ._apps
+      .filter(app => !app.hidden)
+      .map(app => ({
+        ...app,
+        href: JoinPath(app.href, this.getPathPrefix()),
+      }));
+
+    const filteredAppList: Array<ExternalApps> = [];
+    for (const app of appList) {
+      if (await firstValueFrom(this.authorizationService.hasPermission$(app.permissions))) {
+        filteredAppList.push(app);
+      }
+    }
+    return filteredAppList;
   }
 
   private getPathPrefix(): string {
-    switch (this.localeId) {
-
-      case 'de-DE':
-        return 'de';
-
-      case 'en-US':
-        return 'en';
-
-      default:
-        return 'de';
-
+    if (this.localeId) {
+      return this.localeId.replace(/-.+$/, '');
     }
+    return '';
   }
 
 }
