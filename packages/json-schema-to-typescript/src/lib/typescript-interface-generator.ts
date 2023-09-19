@@ -20,6 +20,7 @@ import { joinPath } from './join';
 import {
   classify,
   dasherize,
+  underscore,
 } from './strings';
 
 export interface TypescriptInterfaceGeneratorOptions extends Options {
@@ -151,7 +152,7 @@ export class TypescriptInterfaceGenerator {
 
     sourceFile = this.project.createSourceFile(filePath);
 
-    const type = this.propertyTypeWriteFunction(sourceFile, schema);
+    const type = this.propertyTypeWriteFunction(sourceFile, schema, name);
 
     if (!type) {
       throw new Error('Could not create a write function for the type!');
@@ -242,7 +243,7 @@ export class TypescriptInterfaceGenerator {
   ): OptionalKind<PropertySignatureStructure> {
     const propertyStructure: OptionalKind<PropertySignatureStructure> = {
       name: TypescriptInterfaceGenerator.coercePropertyKey(key),
-      type: this.propertyTypeWriteFunction(currentFile, property),
+      type: this.propertyTypeWriteFunction(currentFile, property, key),
       hasQuestionToken: !required,
     };
 
@@ -273,11 +274,36 @@ export class TypescriptInterfaceGenerator {
   private propertyTypeWriteFunction(
     currentFile: SourceFile,
     schema: JSONSchema,
+    propertyName: string,
   ): WriterFunction | string {
     // convert to any to support non-standard types like int, unknown, file, etc.
     switch (schema.type as any) {
       case 'string':
         if (schema.enum) {
+          const isStringArray = (array: any[]): array is string[] => {
+            return array.every((item) => typeof item === 'string');
+          };
+          const isNumberArray = (array: any[]): array is number[] => {
+            return array.every((item) => typeof item === 'number');
+          };
+          if (isStringArray(schema.enum)) {
+            if (schema.enum.every(item => item.match(/\d+/))) {
+              return TypescriptInterfaceGenerator.unionType(schema.enum);
+            } else {
+              currentFile.addEnum({
+                name: classify(propertyName) + 'Enum',
+                isExported: true,
+                members: schema.enum.map(item => ({
+                  name: underscore(item).toUpperCase(),
+                  value: item,
+                })),
+              });
+              return classify(propertyName) + 'Enum';
+            }
+          }
+          if (isNumberArray(schema.enum)) {
+            return TypescriptInterfaceGenerator.unionType(schema.enum.map(item => item.toFixed(0)));
+          }
           return TypescriptInterfaceGenerator.unionType(
             (schema.enum as string[]).map(
               (item) => (writer) => writer.quote(item),
@@ -311,7 +337,7 @@ export class TypescriptInterfaceGenerator {
           if (!Array.isArray(items) && items !== true) {
             return (writer) => {
               writer.write('Array<');
-              const type = this.propertyTypeWriteFunction(currentFile, items);
+              const type = this.propertyTypeWriteFunction(currentFile, items, propertyName);
 
               if (typeof type === 'string') {
                 writer.write(type);
@@ -362,7 +388,7 @@ export class TypescriptInterfaceGenerator {
               schema.patternProperties as Record<string, JSONSchema>,
             )) {
               typeList.push(
-                this.propertyTypeWriteFunction(currentFile, property),
+                this.propertyTypeWriteFunction(currentFile, property, propertyName),
               );
             }
             if (schema.properties && Object.keys(schema.properties).length) {
@@ -384,6 +410,7 @@ export class TypescriptInterfaceGenerator {
               type = this.propertyTypeWriteFunction(
                 currentFile,
                 schema.additionalProperties,
+                propertyName,
               );
             }
             if (schema.properties && Object.keys(schema.properties).length) {
@@ -419,7 +446,7 @@ export class TypescriptInterfaceGenerator {
 
           for (const oneOf of schema.oneOf) {
             if (typeof oneOf !== 'boolean') {
-              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf));
+              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName));
             }
           }
 
@@ -429,7 +456,7 @@ export class TypescriptInterfaceGenerator {
 
           for (const oneOf of schema.anyOf) {
             if (typeof oneOf !== 'boolean') {
-              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf));
+              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName));
             }
           }
 
@@ -439,7 +466,7 @@ export class TypescriptInterfaceGenerator {
 
           for (const oneOf of schema.allOf) {
             if (typeof oneOf !== 'boolean') {
-              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf));
+              typeList.push(this.propertyTypeWriteFunction(currentFile, oneOf, propertyName));
             }
           }
 
@@ -456,10 +483,10 @@ export class TypescriptInterfaceGenerator {
           ) }`,
         );
 
-        return (writer) => writer.write('unknown');
+        return 'unknown';
 
       case 'file':
-        return w => w.write('Buffer');
+        return 'Buffer';
 
       default:
         if (Array.isArray(schema.type)) {
@@ -490,6 +517,7 @@ export class TypescriptInterfaceGenerator {
                   ...schema,
                   type: type as any,
                 },
+                propertyName,
               ),
             );
           }
