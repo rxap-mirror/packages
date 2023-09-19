@@ -26,6 +26,9 @@ const dotDocker = {
   environment: {
     action: 'prepare',
   },
+  variables: [
+    'GIT_LFS_SKIP_SMUDGE=1',
+  ],
   rules: [
     {
       if: '$DISABLE_DOCKER_BUILD',
