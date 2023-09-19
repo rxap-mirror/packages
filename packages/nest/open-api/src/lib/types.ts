@@ -6,7 +6,7 @@ export interface OperationObjectWithMetadata extends OpenAPIV3.OperationObject {
 }
 
 export interface OperationCommandOptions {
-  operation: string;
+  operation: string | Record<string, unknown>;
   // TODO : remove
   operationId: string;
   /**

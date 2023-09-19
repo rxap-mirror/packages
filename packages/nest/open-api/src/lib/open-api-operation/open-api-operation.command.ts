@@ -1,11 +1,11 @@
+import { HttpService } from '@nestjs/axios';
 import {
   Inject,
   Injectable,
   InternalServerErrorException,
   Logger,
 } from '@nestjs/common';
-import { HttpService } from '@nestjs/axios';
-import { OpenAPIV3 } from 'openapi-types';
+import { coerceArray } from '@rxap/utilities';
 import {
   AxiosError,
   AxiosRequestConfig,
@@ -13,20 +13,20 @@ import {
   RawAxiosRequestHeaders,
   ResponseType,
 } from 'axios';
+import { OpenAPIV3 } from 'openapi-types';
 import {
   firstValueFrom,
   tap,
 } from 'rxjs';
-import { OPERATION_COMMAND_META_DATA_KEY } from './tokens';
-import { OpenApiOperationCommandParameters } from './types';
-import { HttpParams } from './http.params';
-import { coerceArray } from '@rxap/utilities';
-import { OpenApiConfigService } from './open-api-config.service';
-import { OpenApiOperationCommandException } from './open-api-operation-command-exception';
 import {
   OperationCommandOptions,
   OperationObjectWithMetadata,
 } from '../types';
+import { HttpParams } from './http.params';
+import { OpenApiConfigService } from './open-api-config.service';
+import { OpenApiOperationCommandException } from './open-api-operation-command-exception';
+import { OPERATION_COMMAND_META_DATA_KEY } from './tokens';
+import { OpenApiOperationCommandParameters } from './types';
 
 @Injectable()
 export abstract class OpenApiOperationCommand<Response = any, Parameters extends Record<string, any> | void = any, Body = any> {
@@ -41,16 +41,18 @@ export abstract class OpenApiOperationCommand<Response = any, Parameters extends
    * Request timeout in ms (default: 60000ms)
    */
   public timeout = 60000;
-  @Inject(HttpService)
-  protected readonly http!: HttpService;
-  @Inject(OpenApiConfigService)
-  protected readonly openApiConfigService!: OpenApiConfigService;
-  @Inject(Logger)
-  protected readonly logger!: Logger;
 
-  constructor() {
+
+  constructor(
+    @Inject(HttpService)
+    protected readonly http: HttpService,
+    @Inject(OpenApiConfigService)
+    protected readonly openApiConfigService: OpenApiConfigService,
+    @Inject(Logger)
+    protected readonly logger: Logger,
+  ) {
     const metadata = this.getOperationFromMetaData();
-    this.operation = JSON.parse(metadata.operation);
+    this.operation = typeof metadata.operation === 'string' ? JSON.parse(metadata.operation) : metadata.operation;
     this.serverId = metadata.serverId;
   }
 
