@@ -11964,6 +11964,28 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"angular-oauth2-oidc-jwks@npm:^15.0.1":
+  version: 15.0.1
+  resolution: "angular-oauth2-oidc-jwks@npm:15.0.1"
+  dependencies:
+    jsrsasign: ^10.3.0
+    tslib: ^2.0.0
+  checksum: 8fd674e4e9ce0a84fca6dafed9e8ee03d94c8c96de0ffd76da0b7f12154e56dc68a06dc2f8389321d8c8105ef0406814eb53337a12ccfecc3f691cd4e3e270f1
+  languageName: node
+  linkType: hard
+
+"angular-oauth2-oidc@npm:^15.0.1":
+  version: 15.0.1
+  resolution: "angular-oauth2-oidc@npm:15.0.1"
+  dependencies:
+    tslib: ^2.0.0
+  peerDependencies:
+    "@angular/common": ">=14.0.0"
+    "@angular/core": ">=14.0.0"
+  checksum: c9e3820c6f53acc114f76caaed760813a285451955f69436977edf3e17b45ed2beb502583c10b353ae9d2a5c6e03a912f5a6f6c1ffa5c7678a105a53a2b49b23
+  languageName: node
+  linkType: hard
+
 "angular-quokka-plugin@npm:^1.0.1":
   version: 1.0.1
   resolution: "angular-quokka-plugin@npm:1.0.1"
@@ -21027,6 +21049,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jsrsasign@npm:^10.3.0":
+  version: 10.8.6
+  resolution: "jsrsasign@npm:10.8.6"
+  checksum: 726e6a46af802a17845348962261924b6b2c1138858cfd1a56c5e2918c8c7ebc50e7ae794bfabe12e47edec661a794fd0631ad8c78b83de4fb4d6aea53c144cf
+  languageName: node
+  linkType: hard
+
 "just-diff-apply@npm:^5.2.0":
   version: 5.5.0
   resolution: "just-diff-apply@npm:5.5.0"
@@ -27050,6 +27079,8 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 5.61.0
     "@typescript-eslint/parser": 5.61.0
     alias-quokka-plugin: ^0.1.0
+    angular-oauth2-oidc: ^15.0.1
+    angular-oauth2-oidc-jwks: ^15.0.1
     angular-quokka-plugin: ^1.0.1
     autoprefixer: ^10.4.0
     cache-manager: ^5.2.3
