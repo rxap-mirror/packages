@@ -156,7 +156,7 @@ function createDevServiceTraefikConfig(
     http: {
       routers: services.reduce((routers, { name }) => {
         routers[name] = {
-          rule: `Host(\`{{env "ROOT_DOMAIN" }}\`) && PathPrefix(\`${ getServiceApiPrefix(name, host) }\`)`,
+          rule: `PathPrefix(\`${ getServiceApiPrefix(name, host) }\`)`,
           priority: 100,
           service: name,
           entryPoints: 'https',
