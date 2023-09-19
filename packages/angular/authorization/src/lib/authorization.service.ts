@@ -1,88 +1,41 @@
 import {
-  Inject,
   Injectable,
   isDevMode,
 } from '@angular/core';
+import { coerceArray } from '@rxap/utilities';
 import {
   BehaviorSubject,
-  defer,
-  firstValueFrom,
-  from,
   Observable,
-  of,
 } from 'rxjs';
 import {
   distinctUntilChanged,
   map,
-  shareReplay,
 } from 'rxjs/operators';
-import { RXAP_GET_SYSTEM_ROLES_METHOD } from './tokens';
-import { Method } from '@rxap/pattern';
-import { isPromiseLike } from '@rxap/utilities';
 
-type Item = [ string, number, Item[] ];
-
-/**
- * A map of roles and permissions
- * @example
- * {
- *  'admin': ['permission1', 'permission2'],
- *  'user': ['permission1']
- *  'guest': []
- * }
- */
-export type PermissionMap = Record<string, string[]>;
-
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthorizationService {
+
   protected readonly permissions$ = new BehaviorSubject<string[]>([]);
 
-  protected readonly systemRoles$: Observable<PermissionMap>;
-
-  constructor(
-    @Inject(RXAP_GET_SYSTEM_ROLES_METHOD)
-    private readonly getSystemRoles: Method<PermissionMap>,
-  ) {
-    this.systemRoles$ = defer(
-      () => {
-        const systemRoles = this.getSystemRoles.call();
-        if (isPromiseLike(systemRoles)) {
-          return from(systemRoles);
-        } else {
-          return of(systemRoles);
-        }
-      },
-    ).pipe(shareReplay(1));
-  }
-
-  public async setUserRoles(userRoles: string[]) {
-    const systemRoles = await firstValueFrom(this.systemRoles$);
-
-    let permissions: string[] = [];
-
-    for (const userRole of userRoles) {
-      if (systemRoles && systemRoles[userRole]) {
-        permissions.push(...systemRoles[userRole]);
-      }
-    }
-
-    permissions = permissions.filter(
-      (permission, index, self) => self.indexOf(permission) === index,
-    );
-
+  public setPermissions(permissions: string[]): void {
     this.permissions$.next(permissions);
-
-    return permissions;
   }
 
   public checkPermission(
-    identifier: string,
+    identifier: string | string[],
     permissions: string[],
     scope?: string | null,
   ): boolean {
+
+    identifier = coerceArray(identifier);
+
+    if (!identifier.length) {
+      return true;
+    }
+
     if (isDevMode()) {
       console.log(
-        `check permission for '${ identifier }'${ scope ? ` with scope '${ scope }': ` : ' :' }`,
+        `check permission for [${ identifier.join(', ') }]${ scope ? ` with scope '${ scope }': ` : ' :' }`,
         permissions,
       );
     }
@@ -105,7 +58,7 @@ export class AuthorizationService {
         ).sort((a, b) => a.length - b.length);
     }
 
-    if (permissionSubset.includes(identifier)) {
+    if (identifier.every(id => permissionSubset.includes(id))) {
       return true;
     }
 
@@ -127,13 +80,13 @@ export class AuthorizationService {
 
     });
 
-    return permissionRegexList.some((permissionRegex) =>
-      identifier.match(permissionRegex),
-    );
+    return identifier.every(id => permissionRegexList.some((permissionRegex) =>
+      id.match(permissionRegex),
+    ));
   }
 
-  public hasPermission(
-    identifier: string,
+  public hasPermission$(
+    identifier: string | string[],
     scope?: string | null,
     ignorePermissionList?: string[],
   ): Observable<boolean> {
@@ -148,12 +101,25 @@ export class AuthorizationService {
     );
   }
 
-  public getPermissions(): Observable<string[]> {
+  public hasPermission(
+    identifier: string | string[],
+    scope?: string | null,
+    ignorePermissionList?: string[],
+  ): boolean {
+    const allPermissions = this.getPermissions();
+    const permissions = ignorePermissionList ?
+      allPermissions.filter((permission) => !ignorePermissionList.includes(permission)) :
+      allPermissions;
+
+    return this.checkPermission(identifier, permissions, scope);
+  }
+
+  public getPermissions$(): Observable<string[]> {
     return this.permissions$.asObservable().pipe(map(permissions => permissions.slice()));
   }
 
-  public getRoles(): Observable<string[]> {
-    return this.systemRoles$.pipe(map(roles => Object.keys(roles)));
+  public getPermissions(): string[] {
+    return this.permissions$.value.slice();
   }
 
 }

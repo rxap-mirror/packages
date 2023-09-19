@@ -55,7 +55,7 @@ export abstract class HasEnablePermission implements OnInit, OnDestroy {
   public ngOnInit() {
     this._subscription = this
       .authorization
-      .hasPermission(this.identifier, this.scope || null)
+      .hasPermission$(this.identifier, this.scope || null)
       .pipe(
         tap((hasPermission) => {
           this.setDisabled(!hasPermission);

@@ -8,10 +8,9 @@ import {
   OnInit,
   Optional,
 } from '@angular/core';
-import { AuthorizationService } from './authorization.service';
-import { Required } from '@rxap/utilities';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { AuthorizationService } from './authorization.service';
 import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
 @Directive({
@@ -41,7 +40,7 @@ export class HasWritePermissionDirective implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this._subscription = this.authorization
-                             .hasPermission(this.identifier, this.scope || null)
+                             .hasPermission$(this.identifier, this.scope || null)
                              .pipe(
                                tap((hasPermission) => {
                                  this.readonly = !hasPermission;
