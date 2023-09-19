@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
 
 const validationSchema: SchemaMap = {};
 
-validationSchema['PORT'] = Joi.number().default(3888);
+validationSchema['PORT'] = Joi.number().default(6220);
 validationSchema['GLOBAL_API_PREFIX'] = Joi.string().default('api/configuration');
 validationSchema['SENTRY_DSN'] = Joi.string();
 validationSchema['SENTRY_ENABLED'] = Joi.string().default(environment.sentry?.enabled ?? false);

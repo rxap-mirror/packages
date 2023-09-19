@@ -1,0 +1,71 @@
+http:
+  routers:
+    rxap-service-configuration:
+      rule: PathPrefix(`/api/configuration`)
+      priority: 100
+      service: rxap-service-configuration
+      entryPoints: https
+    rxap-service-status:
+      rule: PathPrefix(`/api/status`)
+      priority: 100
+      service: rxap-service-status
+      entryPoints: https
+    rxap-service-changelog:
+      rule: PathPrefix(`/api/changelog`)
+      priority: 100
+      service: rxap-service-changelog
+      entryPoints: https
+    rxap-service-user:
+      rule: PathPrefix(`/api/user`)
+      priority: 100
+      service: rxap-service-user
+      entryPoints: https
+  services:
+    rxap-service-configuration:
+      failover:
+        service: rxap-service-configuration-local
+        fallback: rxap-service-configuration@docker
+    rxap-service-configuration-local:
+      loadBalancer:
+        healthCheck:
+          path: /health
+          interval: 10s
+          timeout: 3s
+        servers:
+          - url: http://{{env "HOST_IP" }}:6220
+    rxap-service-status:
+      failover:
+        service: rxap-service-status-local
+        fallback: rxap-service-status@docker
+    rxap-service-status-local:
+      loadBalancer:
+        healthCheck:
+          path: /health
+          interval: 10s
+          timeout: 3s
+        servers:
+          - url: http://{{env "HOST_IP" }}:6230
+    rxap-service-changelog:
+      failover:
+        service: rxap-service-changelog-local
+        fallback: rxap-service-changelog@docker
+    rxap-service-changelog-local:
+      loadBalancer:
+        healthCheck:
+          path: /health
+          interval: 10s
+          timeout: 3s
+        servers:
+          - url: http://{{env "HOST_IP" }}:6210
+    rxap-service-user:
+      failover:
+        service: rxap-service-user-local
+        fallback: rxap-service-user@docker
+    rxap-service-user-local:
+      loadBalancer:
+        healthCheck:
+          path: /health
+          interval: 10s
+          timeout: 3s
+        servers:
+          - url: http://{{env "HOST_IP" }}:6240

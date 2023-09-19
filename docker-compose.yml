@@ -35,7 +35,6 @@ services:
     image: registry.gitlab.com/rxap/packages/service/configuration:${RXAP_CHANNEL:-development}
     labels:
       - traefik.enable=true
-      - traefik.http.routers.rxap-configuration.rule=PathPrefix(`/api/configuration`)
       - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.path=/health
       - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-configuration.loadbalancer.healthCheck.timeout=3s
@@ -55,7 +54,6 @@ services:
     image: registry.gitlab.com/rxap/packages/service/status:${RXAP_CHANNEL:-development}
     labels:
       - traefik.enable=true
-      - traefik.http.routers.rxap-status.rule=PathPrefix(`/api/status`)
       - traefik.http.services.rxap-status.loadbalancer.healthCheck.path=/health
       - traefik.http.services.rxap-status.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-status.loadbalancer.healthCheck.timeout=3s
@@ -73,7 +71,6 @@ services:
     image: registry.gitlab.com/rxap/packages/service/changelog:${RXAP_CHANNEL:-development}
     labels:
       - traefik.enable=true
-      - traefik.http.routers.rxap-service-changelog.rule=PathPrefix(`/api/changelog`)
       - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.path=/health
       - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-service-changelog.loadbalancer.healthCheck.timeout=3s
@@ -93,7 +90,6 @@ services:
     image: registry.gitlab.com/rxap/packages/service/user:${RXAP_CHANNEL:-development}
     labels:
       - traefik.enable=true
-      - traefik.http.routers.rxap-service-user.rule=PathPrefix(`/api/user`)
       - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.path=/health
       - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-service-user.loadbalancer.healthCheck.timeout=3s
