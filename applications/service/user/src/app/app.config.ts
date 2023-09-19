@@ -31,6 +31,6 @@ validationSchema['GET_USER_PROFILE_OPERATION_FILE_PATH'] = Joi.string()
                                                                 '/app/assets/get-user-profile.json' :
                                                                 join(
                                                                   __dirname,
-                                                                  'assets/get-user-profile.operation.json',
+                                                                  'assets/get-user-profile.json',
                                                                 ));
 export const VALIDATION_SCHEMA = Joi.object(validationSchema);

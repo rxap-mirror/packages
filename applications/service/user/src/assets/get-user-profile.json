@@ -6,6 +6,6 @@
     "parameters": [],
     "responses": {},
     "method": "get",
-    "path": "/me"
+    "path": "/application/o/userinfo"
   }
 }
