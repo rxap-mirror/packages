@@ -1,5 +1,8 @@
 import { WriterFunction } from 'ts-morph';
 
+/**
+ * @deprecated import from @rxap/ts-morph
+ */
 export interface ProviderObject {
   provide: string | WriterFunction;
   useClass?: string | WriterFunction;
