@@ -1,14 +1,12 @@
+import '@angular/localize/init';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ConfigService } from '@rxap/config';
 import {
   addDecorator,
   moduleMetadata,
 } from '@storybook/angular';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
 import { LayoutComponent } from './layout.component';
-import { of } from 'rxjs';
-import { UserService } from '@rxap/authentication';
-import { ConfigService } from '@rxap/config';
-import '@angular/localize/init';
 
 ConfigService.Config = {
   navigation: {
@@ -116,19 +114,6 @@ addDecorator(moduleMetadata({
     ]),
     BrowserAnimationsModule,
     RouterTestingModule,
-  ],
-  providers: [
-    {
-      provide: UserService,
-      useValue: {
-        user$: of({
-          firstname: 'Merzough',
-          lastname: 'Münker',
-          username: 'mmuenker',
-          email: 'mmuenker@rxap.dev',
-        }),
-      },
-    },
   ],
 }));
 

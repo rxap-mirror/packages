@@ -5,24 +5,34 @@ import {
 import {
   ChangeDetectionStrategy,
   Component,
-  OnDestroy,
-  OnInit,
-  signal,
+  Inject,
+  InjectionToken,
+  Signal,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { RxapAuthenticationService } from '@rxap/authentication';
+import { UserProfileDataSource } from '@rxap/ngx-user';
 import {
-  RxapAuthenticationService,
-  RxapUserProfileService,
-} from '@rxap/authentication';
-import {
+  distinctUntilChanged,
   filter,
-  Subscription,
+  skip,
 } from 'rxjs';
 import {
+  map,
   switchMap,
-  tap,
 } from 'rxjs/operators';
+
+export type ExtractUsernameFromProfileFn<T = unknown> = (profile: T) => string | null;
+
+export const EXTRACT_USERNAME_FROM_PROFILE = new InjectionToken<ExtractUsernameFromProfileFn>(
+  'extract-username-from-profile',
+  {
+    providedIn: 'root',
+    factory: () => (profile: any) => (profile ? profile.username ?? profile.email ?? profile.name : null) ?? null,
+  },
+);
 
 @Component({
   selector: 'rxap-user-profile-icon',
@@ -37,28 +47,28 @@ import {
     AsyncPipe,
   ],
 })
-export class UserProfileIconComponent implements OnInit, OnDestroy {
+export class UserProfileIconComponent<T = unknown> {
 
-  public username = signal<null | string>(null);
-
-  private _subscription?: Subscription;
+  public username: Signal<string | null>;
 
   constructor(
-    private readonly userProfileService: RxapUserProfileService,
+    private readonly userProfileService: UserProfileDataSource<T>,
     private readonly authenticationService: RxapAuthenticationService,
-  ) {}
-
-  ngOnInit() {
-    this._subscription = this.authenticationService.isAuthenticated$.pipe(
+    @Inject(EXTRACT_USERNAME_FROM_PROFILE)
+      extractUsernameFromProfile: ExtractUsernameFromProfileFn<T>,
+  ) {
+    this.username = toSignal(this.authenticationService.isAuthenticated$.pipe(
       filter(Boolean),
-      switchMap(() => this.userProfileService.getProfile()),
+      switchMap(() => this.userProfileService.connect({
+        viewChange: this.authenticationService.isAuthenticated$.pipe(
+          skip(1),
+          filter(Boolean),
+          distinctUntilChanged(),
+        ),
+      })),
       filter(Boolean),
-      tap((user) => this.username.set(user.username ?? null)),
-    ).subscribe();
-  }
-
-  ngOnDestroy() {
-    this._subscription?.unsubscribe();
+      map(extractUsernameFromProfile),
+    ), { initialValue: null });
   }
 
   public async logout() {

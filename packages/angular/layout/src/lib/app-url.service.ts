@@ -3,7 +3,7 @@ import {
   Injectable,
   LOCALE_ID,
 } from '@angular/core';
-import { RxapUserProfileService } from '@rxap/authentication';
+import { AuthorizationService } from '@rxap/authorization';
 import { ClickOnLink } from '@rxap/browser-utilities';
 import { ConfigService } from '@rxap/config';
 import { JoinPath } from '@rxap/utilities';
@@ -27,7 +27,7 @@ export class AppUrlService {
     private readonly config: ConfigService,
     @Inject(LOCALE_ID)
     private readonly localeId: string,
-    private readonly userProfileService: RxapUserProfileService,
+    private readonly authorizationService: AuthorizationService,
   ) {
     this._apps = this.config.get('navigation.apps', []);
   }
@@ -60,7 +60,6 @@ export class AppUrlService {
   }
 
   public async getAppList(): Promise<Array<ExternalApps>> {
-    const roles = await this.userProfileService.getRoleList();
     return this._apps.filter(app => !app.hidden)
                .map(app => ({
                  ...app,
@@ -68,7 +67,7 @@ export class AppUrlService {
                }))
                .filter(app => !app.permissions ||
                  !app.permissions.length ||
-                 app.permissions.every(permission => roles.includes(permission)));
+                 app.permissions.every(permission => this.authorizationService.hasPermission(permission)));
   }
 
   private getPathPrefix(): string {

@@ -1,10 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { faker } from '@faker-js/faker';
-import {
-  RxapAuthenticationService,
-  RxapUserProfileService,
-} from '@rxap/authentication';
+import { RxapAuthenticationService } from '@rxap/authentication';
 import { IconModule } from '@rxap/icon';
 import { BehaviorSubject } from 'rxjs';
 import { UserProfileIconComponent } from './user-profile-icon.component';
@@ -33,10 +30,6 @@ describe(UserProfileIconComponent.name, () => {
         NoopAnimationsModule,
       ],
       providers: [
-        {
-          provide: RxapUserProfileService,
-          useValue: userProfileService,
-        },
         {
           provide: RxapAuthenticationService,
           useValue: authenticationService,

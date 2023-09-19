@@ -34,7 +34,6 @@ import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { RXAP_HEADER_COMPONENT } from '../tokens';
 import { AppsButtonComponent } from './apps-button/apps-button.component';
-import { LanguageSelectorComponent } from './language-selector/language-selector.component';
 import { NavigationProgressBarComponent } from './navigation-progress-bar/navigation-progress-bar.component';
 import { SettingsButtonComponent } from './settings-button/settings-button.component';
 import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.component';
@@ -52,7 +51,6 @@ import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
-    LanguageSelectorComponent,
     MatFormFieldModule,
     StopPropagationDirective,
     MatSelectModule,
