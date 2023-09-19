@@ -64,7 +64,7 @@ const ROUTES: Route[] = [
       },
       {
         path: '**',
-        redirectTo: 'table',
+        redirectTo: 'error',
       },
     ],
     providers: [
