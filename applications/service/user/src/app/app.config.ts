@@ -1,6 +1,7 @@
 import { GenerateRandomString } from '@rxap/utilities';
 import * as Joi from 'joi';
 import { SchemaMap } from 'joi';
+import { join } from 'path';
 import * as process from 'process';
 import { environment } from '../environments/environment';
 
@@ -25,4 +26,11 @@ validationSchema['STORE_FILE_PATH'] =
 validationSchema['SETTINGS_DEFAULT_FILE_PATH'] =
   Joi.string().default(environment.production ? '/default/user-settings.json' : '/tmp/default/user-settings.json');
 validationSchema['JWT_SECRET'] = Joi.string().default(GenerateRandomString());
+validationSchema['GET_USER_PROFILE_OPERATION_FILE_PATH'] = Joi.string()
+                                                              .default(environment.production ?
+                                                                '/app/assets/get-user-profile.json' :
+                                                                join(
+                                                                  __dirname,
+                                                                  'assets/get-user-profile.operation.json',
+                                                                ));
 export const VALIDATION_SCHEMA = Joi.object(validationSchema);

@@ -28,6 +28,7 @@ import {
   SentryOptionsFactory,
 } from '@rxap/nest-utilities';
 import { environment } from '../environments/environment';
+import { ProfileModule } from '../profile/profile.module';
 import { SettingsModule } from '../settings/settings.module';
 import { VALIDATION_SCHEMA } from './app.config';
 
@@ -74,6 +75,7 @@ import { HealthModule } from './health/health.module';
         }),
       }),
     SettingsModule,
+    ProfileModule,
   ],
   controllers: [ AppController ],
   providers: [
