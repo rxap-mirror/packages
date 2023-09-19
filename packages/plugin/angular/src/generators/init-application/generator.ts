@@ -517,6 +517,10 @@ export async function initApplicationGenerator(
     await AddPackageJsonDependency(tree, '@angular/cdk', 'latest', { soft: true });
   }
 
+  if (options.serviceWorker) {
+    await AddPackageJsonDependency(tree, '@rxap/service-worker', 'latest', { soft: true });
+  }
+
   if (options.monolithic) {
     await AddPackageJsonDependency(tree, '@rxap/layout', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/services', 'latest', { soft: true });
@@ -669,10 +673,15 @@ export async function initApplicationGenerator(
       }
       if (options.serviceWorker) {
         providers.push(`provideServiceWorker('ngsw-worker.js', { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' })`);
+        providers.push('ProvideServiceWorkerUpdateDialog()');
         CoerceImports(sourceFile, [
           {
             moduleSpecifier: '@angular/service-worker',
             namedImports: [ 'provideServiceWorker' ],
+          },
+          {
+            moduleSpecifier: '@rxap/service-worker',
+            namedImports: [ 'ProvideServiceWorkerUpdateDialog' ],
           },
         ]);
       }
