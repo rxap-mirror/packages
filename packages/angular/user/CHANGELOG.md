@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.0.1-dev.2...@rxap/ngx-user@16.1.0-dev.0) (2023-09-19)
+
+### Bug Fixes
+
+- remove token base concept ([d4e66bb](https://gitlab.com/rxap/packages/commit/d4e66bb1b342269c6efab5e9056f7e05afb38e7f))
+
+### Features
+
+- add user profile controller support ([239dc24](https://gitlab.com/rxap/packages/commit/239dc2430093f7386d44d7295dfd3382d75ae2ef))
+
 ## [16.0.1-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.0.1-dev.1...@rxap/ngx-user@16.0.1-dev.2) (2023-09-12)
 
 ### Bug Fixes

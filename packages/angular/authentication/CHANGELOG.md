@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/authentication@16.0.0-dev.14...@rxap/authentication@16.0.0-dev.15) (2023-09-19)
+
+### Bug Fixes
+
+- remove unused services ([42e11d6](https://gitlab.com/rxap/packages/commit/42e11d6423a0a26c9074183fb2948441ef78bff2))
+- support oauth ([a5c1d0d](https://gitlab.com/rxap/packages/commit/a5c1d0d32a6e874c5ad505e46c6803f451664585))
+
 # [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/authentication@16.0.0-dev.13...@rxap/authentication@16.0.0-dev.14) (2023-09-12)
 
 ### Bug Fixes

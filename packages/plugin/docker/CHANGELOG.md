@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.27...@rxap/plugin-docker@16.0.0-dev.28) (2023-09-19)
+
+### Bug Fixes
+
+- add GIT_LFS_SKIP_SMUDGE env to docker builds ([10ca99d](https://gitlab.com/rxap/packages/commit/10ca99d5906d0e22283b6791d996498789d6c77e))
+
 # [16.0.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.26...@rxap/plugin-docker@16.0.0-dev.27) (2023-09-17)
 
 ### Bug Fixes

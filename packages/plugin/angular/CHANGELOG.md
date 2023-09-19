@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.33...@rxap/plugin-angular@16.1.0-dev.34) (2023-09-19)
+
+### Bug Fixes
+
+- support oauth ([a5c1d0d](https://gitlab.com/rxap/packages/commit/a5c1d0d32a6e874c5ad505e46c6803f451664585))
+
 # [16.1.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.32...@rxap/plugin-angular@16.1.0-dev.33) (2023-09-18)
 
 ### Bug Fixes

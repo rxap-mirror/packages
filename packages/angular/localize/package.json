@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.0",
+  "version": "16.1.0-dev.0",
   "name": "@rxap/ngx-localize",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,11 +8,8 @@
   "peerDependencies": {
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
-    "@angular/forms": "^16.1.4",
-    "@angular/material": "^16.1.4",
-    "@rxap/config": "*",
-    "@rxap/directives": "*",
-    "@rxap/ngx-user": "*",
+    "@rxap/config": "^16.0.0-dev.16",
+    "@rxap/ngx-user": "^16.1.0-dev.0",
     "rxjs": "^7.8.0"
   },
   "author": {
@@ -31,6 +28,18 @@
     "packages",
     "rxap"
   ],
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/config",
+        "version": "16.0.0-dev.16"
+      },
+      {
+        "package": "@rxap/ngx-user",
+        "version": "16.1.0-dev.0"
+      }
+    ]
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/angular/localize"

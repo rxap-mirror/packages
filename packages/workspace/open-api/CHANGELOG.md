@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@0.0.2-dev.6...@rxap/workspace-open-api@0.0.2-dev.7) (2023-09-19)
+
+### Bug Fixes
+
+- generate correct type for additionallyProperties set to true ([a2976ce](https://gitlab.com/rxap/packages/commit/a2976ce37c224db87d5fdbbd39d0afcd9652c36d))
+- generate generic unknown type ([cad13a4](https://gitlab.com/rxap/packages/commit/cad13a4c32ae120adea3c31329f5d10d97f6b1cb))
+
 ## [0.0.2-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@0.0.2-dev.5...@rxap/workspace-open-api@0.0.2-dev.6) (2023-09-16)
 
 ### Bug Fixes

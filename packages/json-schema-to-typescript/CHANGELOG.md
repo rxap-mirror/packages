@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.0-dev.13...@rxap/json-schema-to-typescript@16.0.0-dev.14) (2023-09-19)
+
+### Bug Fixes
+
+- generate correct type for additionallyProperties set to true ([a2976ce](https://gitlab.com/rxap/packages/commit/a2976ce37c224db87d5fdbbd39d0afcd9652c36d))
+- generate generic unknown type ([cad13a4](https://gitlab.com/rxap/packages/commit/cad13a4c32ae120adea3c31329f5d10d97f6b1cb))
+- support proper enum types ([d29f678](https://gitlab.com/rxap/packages/commit/d29f6781fbf1d29446caccd5da5d761a76830058))
+
 # [16.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/json-schema-to-typescript@16.0.0-dev.12...@rxap/json-schema-to-typescript@16.0.0-dev.13) (2023-09-12)
 
 ### Bug Fixes

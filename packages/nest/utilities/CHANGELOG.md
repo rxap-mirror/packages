@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.0-dev.7...@rxap/nest-utilities@10.1.0-dev.8) (2023-09-19)
+
+### Bug Fixes
+
+- ignore AppController for request/response interceptor ([b05b972](https://gitlab.com/rxap/packages/commit/b05b972584773e8452128503e9fa71bbfedca85a))
+
 # [10.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.0-dev.6...@rxap/nest-utilities@10.1.0-dev.7) (2023-09-12)
 
 ### Bug Fixes

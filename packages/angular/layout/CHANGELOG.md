@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.26...@rxap/layout@16.0.0-dev.27) (2023-09-19)
+
+### Bug Fixes
+
+- refactor user service use ([cf553c9](https://gitlab.com/rxap/packages/commit/cf553c96765bfbc0ded49c6611e4d57903e55647))
+- use authorization service directly ([35ec333](https://gitlab.com/rxap/packages/commit/35ec333dc0f2959302f9fa74160de8a8d1437a7f))
+
+### Features
+
+- add language utility services ([96e6785](https://gitlab.com/rxap/packages/commit/96e67855bfcb27f274393526d1ab81f6d7c2f24a))
+
 # [16.0.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.25...@rxap/layout@16.0.0-dev.26) (2023-09-18)
 
 ### Bug Fixes

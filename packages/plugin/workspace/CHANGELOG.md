@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.25...@rxap/plugin-workspace@16.1.0-dev.26) (2023-09-19)
+
+### Bug Fixes
+
+- add yarn rc file ([59f5588](https://gitlab.com/rxap/packages/commit/59f5588c8b5d59b64d1fd2db695ef8260eaff45e))
+- remove explicit domain ([b287242](https://gitlab.com/rxap/packages/commit/b287242cf4b8ab73895c40e989eb9d8e3a292d9c))
+- support local service execution ([67fb93f](https://gitlab.com/rxap/packages/commit/67fb93f79ec98ea03ad2d2624384649517c0bce3))
+- update authentik service init ([4049928](https://gitlab.com/rxap/packages/commit/4049928a2b076f94503f97d0c21370710925c3b7))
+- use correct project name ([0dd02ec](https://gitlab.com/rxap/packages/commit/0dd02ec8f6c4874b700a48746904f206694c5dcf))
+
 # [16.1.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.24...@rxap/plugin-workspace@16.1.0-dev.25) (2023-09-18)
 
 ### Bug Fixes

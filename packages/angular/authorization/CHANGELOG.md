@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/authorization@16.0.0-dev.19...@rxap/authorization@16.0.0-dev.20) (2023-09-19)
+
+### Bug Fixes
+
+- refactor the authorization package ([74ce4d0](https://gitlab.com/rxap/packages/commit/74ce4d02ef6aa680f60cc3ee0cdfe7f97daba447))
+
 # [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/authorization@16.0.0-dev.18...@rxap/authorization@16.0.0-dev.19) (2023-09-14)
 
 ### Bug Fixes
