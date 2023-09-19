@@ -13,7 +13,7 @@ export default async function runExecutor(
   console.log('Executor ran for CheckVersion', options);
 
   const projectJson = readPackageJsonForProject(context);
-  const rootPackageJson = readPackageJsonForProject(context, 'packages');
+  const rootPackageJson = readPackageJsonForProject(context, 'workspace');
 
   const targetVersion = rootPackageJson.devDependencies[options.packageName] ??
     rootPackageJson.dependencies[options.packageName];

@@ -43,7 +43,7 @@
   extends: .run
   script:
     - yarn nx run-many --target ${TARGET} --parallel ${NX_PARALLEL:-3} ${ADDITIONAL_TARGET_OPTIONS}
-    - NX_CLOUD_DISTRIBUTED_EXECUTION=false yarn nx run packages:ci-info
+    - NX_CLOUD_DISTRIBUTED_EXECUTION=false yarn nx run workspace:ci-info
 
 .run-many-dte:
   extends: .run-many

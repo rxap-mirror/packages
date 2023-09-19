@@ -37,8 +37,8 @@ yarn nx run-many \
   --parallel 8 \
   --target="update-dependencies,update-package-group"
 
-echo -e "${BLUE}Run the packages:readme${NC}"
-yarn nx run packages:readme
+echo -e "${BLUE}Run the workspace:readme${NC}"
+yarn nx run workspace:readme
 
 echo -e "${BLUE}ensure the yarn workspace is updated and the lock file is updated${NC}"
 yarn
