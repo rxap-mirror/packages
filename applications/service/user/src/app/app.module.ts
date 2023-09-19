@@ -28,6 +28,7 @@ import {
   SentryOptionsFactory,
 } from '@rxap/nest-utilities';
 import { environment } from '../environments/environment';
+import { SettingsModule } from '../settings/settings.module';
 import { VALIDATION_SCHEMA } from './app.config';
 
 import { AppController } from './app.controller';
@@ -71,7 +72,8 @@ import { HealthModule } from './health/health.module';
         useFactory: (config: ConfigService) => ({
           secret: config.getOrThrow('JWT_SECRET'),
         }),
-      })
+      }),
+    SettingsModule,
   ],
   controllers: [ AppController ],
   providers: [
