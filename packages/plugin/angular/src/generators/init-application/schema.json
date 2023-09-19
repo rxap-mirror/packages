@@ -71,6 +71,16 @@
     "localazyReadKey": {
       "type": "string",
       "description": "Localazy read key"
+    },
+    "authentik": {
+      "type": "boolean",
+      "default": false,
+      "description": "Use authentik for authentication"
+    },
+    "oauth": {
+      "type": "boolean",
+      "default": false,
+      "description": "Use OAuth for authentication"
     }
   },
   "required": []

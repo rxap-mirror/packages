@@ -14,4 +14,6 @@ export interface InitApplicationGeneratorSchema {
   monolithic?: boolean;
   openApiLegacy?: boolean;
   localazyReadKey?: string;
+  authentik?: boolean;
+  oauth?: boolean;
 }

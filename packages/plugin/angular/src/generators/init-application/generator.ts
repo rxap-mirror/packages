@@ -13,10 +13,13 @@ import {
   CoerceProjectTags,
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
+import { EachDirSync } from '@rxap/node-utilities';
 import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
 import {
+  CoerceAppConfigProvider,
   CoerceImports,
   CoerceVariableDeclaration,
+  ProviderObject,
 } from '@rxap/ts-morph';
 import {
   classify,
@@ -35,6 +38,7 @@ import {
   GetProjectPrefix,
   Strategy,
 } from '@rxap/workspace-utilities';
+import { readFileSync } from 'fs';
 import {
   join,
   relative,
@@ -478,6 +482,9 @@ export async function initApplicationGenerator(
   options.overwrite ??= false;
   options.monolithic ??= false;
   options.openApi = options.openApi || options.monolithic;
+  options.authentik ??= false;
+  options.oauth ??= false;
+  options.oauth = options.oauth || options.authentik;
   console.log('angular application init generator:', options);
 
   await AddPackageJsonDependency(tree, '@mdi/angular-material', 'latest', { soft: true });
@@ -498,6 +505,12 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@rxap/forms', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/validator', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/pipes', 'latest', { soft: true });
+
+  if (options.oauth) {
+    await AddPackageJsonDependency(tree, 'angular-oauth2-oidc', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, 'angular-oauth2-oidc-jwks', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/oauth', 'latest', { soft: true });
+  }
 
   if (options.material) {
     await AddPackageJsonDependency(tree, '@angular/material', 'latest', { soft: true });
@@ -549,6 +562,10 @@ export async function initApplicationGenerator(
     generateFiles(tree, join(__dirname, 'files', 'styles'), 'shared/angular/styles', options);
   }
 
+  if (!tree.exists('shared/angular/assets/silent-refresh.html')) {
+    generateFiles(tree, join(__dirname, 'files', 'oauth'), 'shared/angular/assets', options);
+  }
+
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 
     if (skipProject(tree, options, project, projectName)) {
@@ -569,6 +586,104 @@ export async function initApplicationGenerator(
         overwrite: options.overwrite,
       },
     );
+    TsMorphNestProjectTransform(tree, {
+      project: projectName,
+    }, (_, [ sourceFile ]) => {
+      const providers: Array<string | ProviderObject> = [
+        'provideRouter(appRoutes, withEnabledBlockingInitialNavigation())',
+        'provideAnimations()',
+        'ProvideErrorHandler()',
+        'ProvideEnvironment(environment)',
+      ];
+      const httpInterceptors = [
+        'HttpErrorInterceptor',
+      ];
+      const importProvidersFrom: string[] = [];
+      CoerceImports(sourceFile, [
+        {
+          moduleSpecifier: '@angular/platform-browser/animations',
+          namedImports: [ 'provideAnimations' ],
+        },
+        {
+          moduleSpecifier: '@angular/router',
+          namedImports: [ 'provideRouter', 'withEnabledBlockingInitialNavigation' ],
+        },
+        {
+          moduleSpecifier: './app.routes',
+          namedImports: [ 'appRoutes' ],
+        },
+        {
+          moduleSpecifier: '@rxap/ngx-error',
+          namedImports: [ 'ProvideErrorHandler', 'HttpErrorInterceptor' ],
+        },
+        {
+          moduleSpecifier: '@rxap/environment',
+          namedImports: [ 'ProvideEnvironment' ],
+        },
+        {
+          moduleSpecifier: '../environments/environment',
+          namedImports: [ 'environment' ],
+        },
+      ]);
+      if (options.monolithic) {
+        providers.push('ProvideChangelog()');
+        importProvidersFrom.push('MarkdownModule.forRoot()');
+        CoerceImports(sourceFile, [
+          {
+            moduleSpecifier: '@rxap/ngx-changelog',
+            namedImports: [ 'ProvideChangelog' ],
+          },
+          {
+            moduleSpecifier: 'ngx-markdown',
+            namedImports: [ 'MarkdownModule' ],
+          },
+        ]);
+      }
+      if (options.oauth) {
+        providers.push('provideOAuthClient()');
+        providers.push('ProvideAuth()');
+        httpInterceptors.push('BearerTokenInterceptor');
+        CoerceImports(sourceFile, [
+          {
+            moduleSpecifier: 'angular-oauth2-oidc',
+            namedImports: [ 'provideOAuthClient' ],
+          },
+          {
+            moduleSpecifier: '@rxap/oauth',
+            namedImports: [ 'ProvideAuth' ],
+          },
+          {
+            moduleSpecifier: '@rxap/authentication',
+            namedImports: [ 'BearerTokenInterceptor' ],
+          },
+        ]);
+      }
+      if (options.i18n) {
+        httpInterceptors.push('LanguageInterceptor');
+        CoerceImports(sourceFile, [
+          {
+            moduleSpecifier: '@rxap/ngx-localize',
+            namedImports: [ 'LanguageInterceptor' ],
+          },
+        ]);
+      }
+      if (options.serviceWorker) {
+        providers.push(`provideServiceWorker('ngsw-worker.js', { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' })`);
+        CoerceImports(sourceFile, [
+          {
+            moduleSpecifier: '@angular/service-worker',
+            namedImports: [ 'provideServiceWorker' ],
+          },
+        ]);
+      }
+      CoerceAppConfigProvider(sourceFile, {
+        overwrite: options.overwrite,
+        providers,
+        httpInterceptors,
+        importProvidersFrom,
+      });
+    }, [ '/app/app.config.ts' ]);
+
     if (options.generateMain) {
       updateMainFile(tree, project, options);
     }
@@ -595,13 +710,19 @@ export async function initApplicationGenerator(
       }
     }
     if (options.serviceWorker) {
-      if (options.overwrite) {
+      if (options.overwrite || !tree.exists(join(project.sourceRoot, 'manifest.webmanifest'))) {
         generateFiles(tree, join(__dirname, 'files', 'service-worker'), project.sourceRoot, {
           ...options,
           name: projectName.replace(/^user-interface-/, ''),
           classify,
           dasherize,
         });
+      }
+    }
+    for (const file of EachDirSync(join(__dirname, 'files', 'assets'))) {
+      const filePath = relative(join(__dirname, 'files', 'assets'), file);
+      if (!tree.exists(join(project.sourceRoot, 'assets', filePath))) {
+        tree.write(join(project.sourceRoot, 'assets', filePath), readFileSync(file));
       }
     }
 
