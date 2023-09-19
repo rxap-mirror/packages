@@ -29,7 +29,12 @@ export * from './lib/nest/remove-nest-module-provider';
 export * from './lib/nest/remove-nest-provider-to-array';
 // endregion
 
+// region angular
+export * from './lib/angular/coerce-app-config-provider';
+// endregion
+
 // region 
+export * from './lib/add-provider-to-array';
 export * from './lib/coerce-array-element';
 export * from './lib/coerce-class-constructor';
 export * from './lib/coerce-class-method';
@@ -45,4 +50,5 @@ export * from './lib/find-function';
 export * from './lib/get-class-decorator-arguments';
 export * from './lib/get-class';
 export * from './lib/get-coerce-array-literal-form-object-literal';
+export * from './lib/provider-object';
 // endregion
