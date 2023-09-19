@@ -294,8 +294,8 @@
         "watch": false
       },
       "inputs": [
-        "production",
-        "^production"
+        "{workspaceRoot}/dist/swagger/{projectRoot}/main.js",
+        "{workspaceRoot}/dist/swagger/{projectRoot}/main.js.map"
       ]
     },
     "check-version": {
