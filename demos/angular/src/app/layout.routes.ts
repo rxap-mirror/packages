@@ -5,6 +5,7 @@ import {
   NavigationService,
 } from '@rxap/layout';
 import { StatusCheckGuard } from '@rxap/ngx-status-check';
+import { AuthenticationGuard } from '@rxap/oauth';
 import { APP_NAVIGATION_PROVIDER } from './app.navigation';
 import { CustomMenuItemComponent } from './layout/custom-menu-item/custom-menu-item.component';
 
@@ -21,6 +22,7 @@ const ROUTES: Route[] = [
         },
       },
     },
+    canActivate: [ AuthenticationGuard ],
     canActivateChild: [ StatusCheckGuard ],
     children: [
       {

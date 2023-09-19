@@ -9,6 +9,8 @@ export interface IAuthenticationService {
   isAuthenticated$: Observable<boolean | null>;
   events$: Observable<AuthenticationEvent>;
   signOut(): Promise<void>;
+
+  isAuthenticated(): Promise<boolean>;
 }
 
 export enum AuthenticationEventType {
