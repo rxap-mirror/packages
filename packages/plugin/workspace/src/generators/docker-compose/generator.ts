@@ -90,7 +90,6 @@ function createServiceDockerCompose(
         image: buildImageName(docker, rootDocker),
         labels: [
           'traefik.enable=true',
-          // `traefik.http.services.${ name }.loadbalancer.server.port=3333`,
           `traefik.http.services.${ name }.loadbalancer.healthCheck.path=/health`,
           `traefik.http.services.${ name }.loadbalancer.healthCheck.interval=10s`,
           `traefik.http.services.${ name }.loadbalancer.healthCheck.timeout=3s`,
@@ -189,7 +188,7 @@ function createDevServiceTraefikConfig(
         services[name + '-local'] = {
           loadBalancer: {
             healthCheck: {
-              path: getServiceApiPrefix(name, host) + '/health',
+              path: '/health',
               interval: '10s',
               timeout: '3s',
             },
@@ -270,7 +269,12 @@ function createTraefikConfig(
             domains: [
               {
                 main: rootDomain,
-                sans: services.map(({ name }) => name + '.' + rootDomain),
+                sans: [
+                  `auth.${ rootDomain }`,
+                  `traefik.${ rootDomain }`,
+                  `minio.${ rootDomain }`,
+                  ...services.map(({ name }) => name + '.' + rootDomain),
+                ],
               },
             ],
           },
