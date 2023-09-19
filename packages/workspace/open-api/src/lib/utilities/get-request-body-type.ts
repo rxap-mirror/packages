@@ -18,8 +18,10 @@ export function GetRequestBodyType(operation: GenerateParameter<any>): { type: s
       requestBodyType = 'void';
     } else if (!IsAnySchemaObject(requestBody)) {
       name = requestBodyType = classify([ operation.operationId, REQUEST_BODY_FILE_SUFFIX ].join('-'));
-      if (!IsReferenceObject(requestBody) && requestBody.additionalProperties === true) {
-        requestBodyType += `<TRequestBody>`;
+      if (!IsReferenceObject(requestBody)) {
+        if (requestBody.additionalProperties === true || requestBody.type === undefined) {
+          requestBodyType += `<TRequestBody>`;
+        }
       }
     } else {
       requestBodyType = 'any';

@@ -18,7 +18,7 @@ export function GetTypeParameters(operation: OpenAPIV3.OperationObject): Array<O
     const requestBody = GetRequestBody(operation);
 
     if (response && !IsAnySchemaObject(response) && !IsReferenceObject(response)) {
-      if (response.additionalProperties === true) {
+      if (response.additionalProperties === true || response.type === undefined) {
         typeParameters.push({
           name: 'TResponse',
           default: 'unknown',
@@ -27,7 +27,7 @@ export function GetTypeParameters(operation: OpenAPIV3.OperationObject): Array<O
     }
 
     if (requestBody && !IsAnySchemaObject(requestBody) && !IsReferenceObject(requestBody)) {
-      if (requestBody.additionalProperties === true) {
+      if (requestBody.additionalProperties === true || requestBody.type === undefined) {
         typeParameters.push({
           name: 'TRequestBody',
           default: 'unknown',

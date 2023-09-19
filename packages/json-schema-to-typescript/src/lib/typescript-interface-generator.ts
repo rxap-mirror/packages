@@ -161,8 +161,16 @@ export class TypescriptInterfaceGenerator {
     const typeAliasDeclarationStructure: OptionalKind<TypeAliasDeclarationStructure> =
       {
         name: this.buildName(name),
-        type,
+        type: type === 'unknown' ? 'T' : type,
         isExported: true,
+        typeParameters: type === 'unknown' ?
+          [
+            {
+              name: 'T',
+              default: 'unknown',
+            },
+          ] :
+          undefined,
       };
 
     sourceFile.addTypeAlias(typeAliasDeclarationStructure);
