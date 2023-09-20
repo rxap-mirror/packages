@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/oauth@16.0.0-dev.18...@rxap/oauth@16.0.0-dev.19) (2023-09-20)
+
+### Bug Fixes
+
+- extract auth status from events ([da99ea0](https://gitlab.com/rxap/packages/commit/da99ea0bac33261cd322b7de407b60bd1ca4a030))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/oauth@16.0.0-dev.17...@rxap/oauth@16.0.0-dev.18) (2023-09-20)
 
 ### Bug Fixes
