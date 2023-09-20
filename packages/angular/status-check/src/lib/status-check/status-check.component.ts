@@ -7,7 +7,6 @@ import {
   Component,
   computed,
   inject,
-  isDevMode,
   OnDestroy,
   OnInit,
   signal,
@@ -33,8 +32,7 @@ import {
   ApiStatus,
   StatusCheckService,
 } from '../status-check.service';
-
-export const STATUS_CHECK_INTERVAL = isDevMode() ? 5 : 60;
+import { STATUS_CHECK_INTERVAL } from '../tokens';
 
 export interface ServiceStatus {
   name: string,
@@ -65,7 +63,8 @@ export class StatusCheckComponent implements OnInit, OnDestroy {
   statusIsOk: Signal<boolean>;
   statusIsError: Signal<boolean>;
 
-  countdown = signal(STATUS_CHECK_INTERVAL);
+  countdown = signal(inject(STATUS_CHECK_INTERVAL));
+  private readonly statusCheckInterval = inject(STATUS_CHECK_INTERVAL);
 
   statusIsFatal: Signal<boolean>;
 
@@ -140,16 +139,16 @@ export class StatusCheckComponent implements OnInit, OnDestroy {
   initiateCountdown() {
     this.subscription = interval(1000)
       .pipe(
-        take(STATUS_CHECK_INTERVAL),
+        take(this.statusCheckInterval),
         takeUntil(this.destroy$),
       )
       .subscribe({
-        next: val => this.countdown.set(STATUS_CHECK_INTERVAL - val),
+        next: val => this.countdown.set(this.statusCheckInterval - val),
           // eslint-disable-next-line @typescript-eslint/no-empty-function
           error: () => {},
           complete: () => {
             this.retry$.next();
-            this.countdown.set(STATUS_CHECK_INTERVAL);
+            this.countdown.set(this.statusCheckInterval);
             // Your API check logic here
             this.initiateCountdown();
           },

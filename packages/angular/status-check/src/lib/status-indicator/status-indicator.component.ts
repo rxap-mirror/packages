@@ -2,7 +2,6 @@ import { NgClass } from '@angular/common';
 import {
   Component,
   inject,
-  isDevMode,
   OnDestroy,
   OnInit,
   signal,
@@ -30,8 +29,7 @@ import {
   map,
 } from 'rxjs/operators';
 import { StatusCheckService } from '../status-check.service';
-
-export const STATUS_INDICATOR_INTERVAL = isDevMode() ? 5 : 60 * 5;
+import { STATUS_INDICATOR_INTERVAL } from '../tokens';
 
 @Component({
   selector: 'rxap-status-indicator',
@@ -45,7 +43,8 @@ export class StatusIndicatorComponent implements OnInit, OnDestroy {
   public readonly services: string[] = [];
   public status: Signal<string>;
   queryParams: Signal<Record<string, any> | undefined>;
-  countdown = signal(STATUS_INDICATOR_INTERVAL);
+  countdown = signal(inject(STATUS_INDICATOR_INTERVAL));
+  private readonly statusIndicatorInterval = inject(STATUS_INDICATOR_INTERVAL);
   private readonly config = inject(ConfigService);
   private readonly statusCheckService = inject(StatusCheckService);
   private readonly router = inject(Router);
@@ -87,16 +86,16 @@ export class StatusIndicatorComponent implements OnInit, OnDestroy {
   initiateCountdown() {
     this.subscription = interval(1000)
       .pipe(
-        take(STATUS_INDICATOR_INTERVAL),
+        take(this.statusIndicatorInterval),
         takeUntil(this.destroy$),
       )
       .subscribe({
-          next: val => this.countdown.set(STATUS_INDICATOR_INTERVAL - val),
+        next: val => this.countdown.set(this.statusIndicatorInterval - val),
           // eslint-disable-next-line @typescript-eslint/no-empty-function
           error: () => {},
           complete: () => {
             this.retry$.next();
-            this.countdown.set(STATUS_INDICATOR_INTERVAL);
+            this.countdown.set(this.statusIndicatorInterval);
             // Your API check logic here
             this.initiateCountdown();
           },
