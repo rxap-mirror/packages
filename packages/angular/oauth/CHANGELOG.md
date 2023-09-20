@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/oauth@16.0.0-dev.16...@rxap/oauth@16.0.0-dev.17) (2023-09-20)
+
+### Bug Fixes
+
+- remove specific configurations ([2d8a548](https://gitlab.com/rxap/packages/commit/2d8a548b7a93be90397e55042173ad8fbfa827b9))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/oauth@16.0.0-dev.15...@rxap/oauth@16.0.0-dev.16) (2023-09-19)
 
 ### Bug Fixes

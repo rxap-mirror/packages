@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.27...@rxap/plugin-workspace@16.1.0-dev.28) (2023-09-20)
+
+### Bug Fixes
+
+- remove minio container name ([9eaf12a](https://gitlab.com/rxap/packages/commit/9eaf12a607bc3b72f3ab34c06660687d141b4809))
+
 # [16.1.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.26...@rxap/plugin-workspace@16.1.0-dev.27) (2023-09-19)
 
 ### Bug Fixes
