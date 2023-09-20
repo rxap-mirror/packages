@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.28",
+  "version": "16.1.0-dev.29",
   "name": "@rxap/plugin-workspace",
   "license": "GPL-3.0-or-later",
   "dependencies": {
