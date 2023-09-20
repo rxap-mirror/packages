@@ -28,6 +28,7 @@ import {
   RXAP_ENVIRONMENT,
 } from '@rxap/environment';
 import { IconLoaderService } from '@rxap/icon';
+import { StatusIndicatorComponent } from '@rxap/ngx-status-check';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { NavigationComponent } from '../navigation/navigation.component';
@@ -54,6 +55,7 @@ import { LayoutComponentService } from './layout.component.service';
     NgOptimizedImage,
     NavigationComponent,
     RouterOutlet,
+    StatusIndicatorComponent,
   ],
 })
 export class LayoutComponent {
