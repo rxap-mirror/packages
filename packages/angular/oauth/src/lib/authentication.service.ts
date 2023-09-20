@@ -1,6 +1,7 @@
 import {
   Inject,
   Injectable,
+  Optional,
 } from '@angular/core';
 import {
   AuthenticationAccessToken,
@@ -13,7 +14,11 @@ import {
   isDefined,
   log,
 } from '@rxap/rxjs';
-import { OAuthService } from 'angular-oauth2-oidc';
+import {
+  AUTH_CONFIG,
+  AuthConfig,
+  OAuthService,
+} from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import {
   BehaviorSubject,
@@ -31,9 +36,15 @@ export class AuthenticationService implements IAuthenticationService {
 
   constructor(
     private readonly oauthService: OAuthService,
+    @Optional()
+    @Inject(AUTH_CONFIG)
+      authConfig: AuthConfig,
     @Inject(RXAP_AUTHENTICATION_ACCESS_TOKEN)
     private readonly authenticationAccessToken: BehaviorSubject<AuthenticationAccessToken | null>,
   ) {
+    if (authConfig) {
+      this.oauthService.configure(authConfig);
+    }
     this.events$ = this.oauthService.events.pipe(
       map(event => {
         console.log('event', event);

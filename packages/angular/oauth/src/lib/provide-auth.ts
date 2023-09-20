@@ -1,7 +1,9 @@
 import { Provider } from '@angular/core';
 import { RxapAuthenticationService } from '@rxap/authentication';
-import { AUTH_CONFIG } from 'angular-oauth2-oidc';
-import { AuthConfig } from 'angular-oauth2-oidc/auth.config';
+import {
+  AUTH_CONFIG,
+  AuthConfig,
+} from 'angular-oauth2-oidc';
 import { AuthenticationService } from './authentication.service';
 
 export function ProvideAuth(...withConfigs: Array<Provider | Provider[]>): Provider[] {
