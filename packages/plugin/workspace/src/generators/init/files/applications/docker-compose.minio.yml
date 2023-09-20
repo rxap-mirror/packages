@@ -5,7 +5,6 @@ services:
   minio:
     image: quay.io/minio/minio
     command: server /data --console-address ":9001"
-    container_name: minio
     volumes:
       - minio_data:/data
     healthcheck:
