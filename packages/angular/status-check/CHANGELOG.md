@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.1.0-dev.8...@rxap/ngx-status-check@16.1.0-dev.9) (2023-09-20)
+
+### Features
+
+- add support for custom status check intervals ([876ad40](https://gitlab.com/rxap/packages/commit/876ad40b715deb45413c2fcc5975f98754f1594c))
+
 # [16.1.0-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.1.0-dev.7...@rxap/ngx-status-check@16.1.0-dev.8) (2023-09-16)
 
 ### Bug Fixes

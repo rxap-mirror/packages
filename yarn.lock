@@ -8254,7 +8254,7 @@ __metadata:
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/config": ^16.0.0-dev.15
+    "@rxap/config": ^16.0.0-dev.16
     "@rxap/open-api": ^16.0.0-dev.21
     "@sentry/angular-ivy": ^7.60.1
     rxjs: ^7.8.0
