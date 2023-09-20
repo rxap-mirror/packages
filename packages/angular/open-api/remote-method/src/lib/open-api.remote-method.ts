@@ -1,16 +1,17 @@
 import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpEventType,
+  HttpResponse,
+} from '@angular/common/http';
+import {
   Inject,
   Injectable,
   Injector,
   isDevMode,
   Optional,
 } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpEventType,
-  HttpResponse,
-} from '@angular/common/http';
+import { Mixin } from '@rxap/mixin';
 import {
   DEFAULT_OPEN_API_REMOTE_METHOD_META_DATA,
   DISABLE_SCHEMA_VALIDATION,
@@ -22,8 +23,9 @@ import {
   RXAP_OPEN_API_STRICT_VALIDATOR,
   SchemaValidationMixin,
 } from '@rxap/open-api';
-import { BaseHttpRemoteMethod } from '@rxap/remote-method/http';
 import { RxapRemoteMethod } from '@rxap/remote-method';
+import { BaseHttpRemoteMethod } from '@rxap/remote-method/http';
+import { firstValueFrom } from 'rxjs';
 import {
   filter,
   retry,
@@ -31,8 +33,6 @@ import {
   tap,
   timeout,
 } from 'rxjs/operators';
-import { Mixin } from '@rxap/mixin';
-import { firstValueFrom } from 'rxjs';
 
 export interface OperationForMetadata {
   operation: OperationObjectWithMetadata;
@@ -194,7 +194,7 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
       }),
       filter((event: any) => event.type === HttpEventType.Response),
       tap((response: HttpResponse<Response>) => {
-        if (this.disableValidation) {
+        if (!this.disableValidation) {
           this.validateResponse(this.operation, response, this.strict);
         }
       }),
