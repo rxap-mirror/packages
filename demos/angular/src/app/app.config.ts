@@ -20,7 +20,10 @@ import {
   ProvideErrorHandler,
 } from '@rxap/ngx-error';
 import { LanguageInterceptor } from '@rxap/ngx-localize';
-import { ProvideAuth } from '@rxap/oauth';
+import {
+  ProvideAuth,
+  withAuthConfig,
+} from '@rxap/oauth';
 import { ProvideServiceWorkerUpdateDialog } from '@rxap/service-worker';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { MarkdownModule } from 'ngx-markdown';
@@ -41,7 +44,16 @@ export const appConfig: ApplicationConfig = {
     ProvideChangelog(),
     ProvideEnvironment(environment),
     provideOAuthClient(),
-    ProvideAuth(),
+    ProvideAuth(withAuthConfig({
+      clientId: 'qXfsteM2BCmrBu42xG3SdmsANrX2FTZbSJIor5JA',
+      scope: 'openid profile email',
+      issuer: 'https://auth.127-0-0-1.nip.io:8443/application/o/angular/',
+      skipIssuerCheck: true,
+      strictDiscoveryDocumentValidation: false,
+      dummyClientSecret: 'geheim',
+      redirectUri: window.location.origin + '/index.html',
+      silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
+    })),
     provideServiceWorker(
       'ngsw-worker.js',
       { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' },
