@@ -9,4 +9,12 @@ NC='\033[0m' # No Color
 
 cd "${GIT_ROOT}" || exit 1
 
-docker compose -f docker-compose.yml -f docker-compose.services.yml -f docker-compose.frontends.yml -f docker-compose.authentik.yml ps
+# Start with the base file
+params="-f docker-compose.yml"
+
+# Append all matching override files
+for file in docker-compose.*.yml; do
+    params="$params -f $file"
+done
+
+docker compose $params ps

@@ -37,7 +37,15 @@ fi
 export CHANNEL
 
 LOCAL_DOCKER_COMPOSE_FILES="-f docker-compose.services.yml -f docker-compose.frontends.yml"
-REMOTE_DOCKER_COMPOSE_FILES="-f docker-compose.yml -f docker-compose.authentik.yml -f docker-compose.minio.yml"
+REMOTE_DOCKER_COMPOSE_FILES="-f docker-compose.yml"
+
+# Append all matching override files
+for file in docker-compose.*.yml; do
+  if [ $file != "docker-compose.services.yml" ] && [ $file != "docker-compose.frontends.yml" ]; then
+    REMOTE_DOCKER_COMPOSE_FILES="$REMOTE_DOCKER_COMPOSE_FILES -f $file"
+  fi
+done
+
 DOCKER_COMPOSE_FILES="${REMOTE_DOCKER_COMPOSE_FILES} ${LOCAL_DOCKER_COMPOSE_FILES}"
 
 docker compose $REMOTE_DOCKER_COMPOSE_FILES pull || exit 1
