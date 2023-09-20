@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
 import {
   Component,
+  computed,
   inject,
   OnDestroy,
   OnInit,
@@ -8,6 +9,8 @@ import {
   Signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { $localize } from '@angular/localize/init';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {
   NavigationEnd,
   Router,
@@ -34,14 +37,15 @@ import { STATUS_INDICATOR_INTERVAL } from '../tokens';
 @Component({
   selector: 'rxap-status-indicator',
   standalone: true,
-  imports: [ RouterLink, NgClass ],
+  imports: [ RouterLink, NgClass, MatTooltipModule ],
   templateUrl: './status-indicator.component.html',
   styleUrls: [ './status-indicator.component.scss' ],
 })
 export class StatusIndicatorComponent implements OnInit, OnDestroy {
 
   public readonly services: string[] = [];
-  public status: Signal<string>;
+  public readonly status: Signal<string>;
+  public readonly tooltip: Signal<string>;
   queryParams: Signal<Record<string, any> | undefined>;
   countdown = signal(inject(STATUS_INDICATOR_INTERVAL));
   private readonly statusIndicatorInterval = inject(STATUS_INDICATOR_INTERVAL);
@@ -81,6 +85,10 @@ export class StatusIndicatorComponent implements OnInit, OnDestroy {
                           ),
       ));
     this.status = toSignal(merge(status$, manualRetry$), { initialValue: 'loading' });
+    this.tooltip = computed(() => {
+      const status = this.status();
+      return $localize`:@@status-check-tooltip:app status` + `: ${ status }`;
+    });
   }
 
   initiateCountdown() {

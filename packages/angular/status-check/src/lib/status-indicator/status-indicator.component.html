@@ -1,4 +1,4 @@
-<button [queryParams]="queryParams()" [routerLink]="['/', 'status-check']" class="border px-3 py-3 rounded">
+<button [matTooltip]="tooltip()" [queryParams]="queryParams()" [routerLink]="['/', 'status-check']" class="px-3 py-3">
   <span class="flex flex-row gap-4 items-center">
     <span [ngClass]="{
     'bg-red-500': status() === 'error',
