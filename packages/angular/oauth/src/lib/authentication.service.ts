@@ -10,10 +10,7 @@ import {
   IAuthenticationService,
   RXAP_AUTHENTICATION_ACCESS_TOKEN,
 } from '@rxap/authentication';
-import {
-  isDefined,
-  log,
-} from '@rxap/rxjs';
+import { isDefined } from '@rxap/rxjs';
 import {
   AUTH_CONFIG,
   AuthConfig,
@@ -47,7 +44,6 @@ export class AuthenticationService implements IAuthenticationService {
     }
     this.events$ = this.oauthService.events.pipe(
       map(event => {
-        console.log('event', event);
         switch (true) {
           case [ 'token_received', 'token_refreshed', 'silently_refreshed' ].includes(event.type):
             this.authenticationAccessToken.next({
@@ -79,8 +75,7 @@ export class AuthenticationService implements IAuthenticationService {
       isDefined(),
     );
     this.events$.pipe(
-      log('event'),
-      map(() => this.oauthService.hasValidAccessToken()),
+      map(event => event ? event.type === AuthenticationEventType.OnAuthSuccess : null),
       distinctUntilChanged(),
       startWith(null),
     ).subscribe(this.isAuthenticated$);
