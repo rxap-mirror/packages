@@ -48,7 +48,7 @@ export class LayoutComponentService {
     const collapsable = initialCollapsable && !mobile;
     const pinned = this.config.get('navigation.pinned', false);
     const mode = this.config.get('navigation.mode', (collapsable && pinned) || !collapsable ? 'side' : 'over');
-    const opened = this.config.get('navigation.open', !collapsable || pinned);
+    const opened = this.config.get('navigation.opened', !collapsable || pinned);
     this.mode$ = new BehaviorSubject<MatDrawerMode>(mode);
     this.opened$ = new BehaviorSubject<boolean>(opened);
     this.pinned$ = new BehaviorSubject<boolean>(pinned);

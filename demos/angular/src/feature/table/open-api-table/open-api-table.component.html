@@ -63,7 +63,7 @@
           [loading]="tableDataSourceDirective.loading$"
           [refresh]="tableDataSourceDirective.retry">
         </rxap-data-source-error>
-        <div class="table-scroll-container mt-4 overflow-x-auto overscroll-contain">
+        <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
           <table
             #tableDataSourceDirective="rxapTableDataSource"
             [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
