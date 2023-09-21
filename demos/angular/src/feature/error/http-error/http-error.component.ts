@@ -7,6 +7,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import {
   interval,
+  startWith,
   take,
   tap,
 } from 'rxjs';
@@ -28,6 +29,7 @@ export class HttpErrorComponent {
 
   triggerMultiple404HttpError() {
     interval(1000).pipe(
+      startWith(0),
       take(10),
       tap(() => this.trigger404HttpError()),
     ).subscribe();

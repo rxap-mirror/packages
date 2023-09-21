@@ -2,12 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>angular</title>
+    <title>Angular Demo</title>
     <base href="/"/>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta content="true" name="HandheldFriendly"/>
     <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="manifest.webmanifest" rel="manifest"/>
+    <meta content="#1976d2" name="theme-color"/>
+
+    <link href="assets/icons/icon-57x57.png" rel="apple-touch-icon" sizes="57x57">
+    <link href="assets/icons/icon-60x60.png" rel="apple-touch-icon" sizes="60x60">
+    <link href="assets/icons/icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+    <link href="assets/icons/icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+    <link href="assets/icons/icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    <link href="assets/icons/icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+    <link href="assets/icons/icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
+    <link href="assets/icons/icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+    <link href="assets/icons/icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
+    <link href="assets/icons/icon-192x192.png" rel="icon" sizes="192x192" type="image/png">
+    <link href="assets/icons/icon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+    <link href="assets/icons/icon-96x96.png" rel="icon" sizes="96x96" type="image/png">
+    <link href="assets/icons/icon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+
+    <meta content="Angular Demo" name="application-name"/>
+    <meta content="#1976d2" name="msapplication-TileColor"/>
+    <meta content="assets/icons/icon-144x144.png" name="msapplication-TileImage"/>
+    <meta content="#ffffff" name="theme-color">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="#ffffff" name="msapplication-navbutton-color">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <style>
+
+        html {
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        .loading-container {
+            max-height: 100vh;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 <body class="mat-typography">
-<rxap-root></rxap-root>
+<rxap-root>
+    <div class="loading-container">
+        <div class="e-loadholder">
+            <div class="m-loader">
+                <span class="e-text">Loading</span>
+            </div>
+        </div>
+        <div id="particleCanvas-Blue"></div>
+        <div id="particleCanvas-White"></div>
+    </div>
+</rxap-root>
+<noscript>Please enable JavaScript to continue using this application.</noscript>
+<script>
+    if (
+      localStorage.getItem('rxap-dark-mode') === 'true' ||
+      (
+        window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      )
+    ) {
+        document.body.classList.add(
+          'dark-theme',
+          'dark',
+          'dark-mode',
+        );
+    }
+</script>
 </body>
 </html>
