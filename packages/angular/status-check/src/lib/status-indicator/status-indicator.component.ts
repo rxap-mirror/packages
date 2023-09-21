@@ -87,7 +87,11 @@ export class StatusIndicatorComponent implements OnInit, OnDestroy {
     this.status = toSignal(merge(status$, manualRetry$), { initialValue: 'loading' });
     this.tooltip = computed(() => {
       const status = this.status();
-      return $localize`:@@status-check-tooltip:app status` + `: ${ status }`;
+      if ($localize && typeof $localize === 'function') {
+        return $localize`:@@status-check-tooltip:app status` + `: ${ status }`;
+      } else {
+        return `app status: ${ status }`;
+      }
     });
   }
 
