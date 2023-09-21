@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.21",
+  "version": "16.0.0-dev.22",
   "name": "@rxap/open-api",
   "description": "Provides the functionality to create DataSource and RemoteMethod instances from an OpenAPI config.",
   "license": "GPL-3.0-or-later",
@@ -11,12 +11,12 @@
   "peerDependencies": {
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
-    "@rxap/config": "^16.0.0-dev.15",
-    "@rxap/data-source": "^16.0.0-dev.17",
+    "@rxap/config": "^16.0.0-dev.16",
+    "@rxap/data-source": "^16.0.0-dev.18",
     "@rxap/mixin": "^16.0.0-dev.14",
     "@rxap/remote-method": "^16.0.0-dev.15",
     "@rxap/rxjs": "^1.0.1-dev.10",
-    "@rxap/utilities": "^16.0.0-dev.17",
+    "@rxap/utilities": "^16.0.0-dev.18",
     "ajv": "8.12.0",
     "openapi-types": "10.0.0",
     "rxjs": "^7.8.0",
@@ -43,11 +43,11 @@
     "packageGroup": [
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/mixin",
@@ -63,7 +63,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       }
     ]
   },

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.21...@rxap/open-api@16.0.0-dev.22) (2023-09-21)
+
+### Bug Fixes
+
+- skip response validation if disabled ([861b0c3](https://gitlab.com/rxap/packages/commit/861b0c30b59554b99200fc639486ef72f7d1c6b7))
+
 # [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.20...@rxap/open-api@16.0.0-dev.21) (2023-09-12)
 
 ### Bug Fixes

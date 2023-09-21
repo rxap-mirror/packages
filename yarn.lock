@@ -7847,8 +7847,8 @@ __metadata:
     "@rxap/material-directives": ^16.0.0-dev.17
     "@rxap/ngx-changelog": ^16.1.0-dev.1
     "@rxap/ngx-localize": ^16.1.0-dev.0
-    "@rxap/ngx-status-check": ^16.1.0-dev.8
-    "@rxap/ngx-user": ^16.1.0-dev.0
+    "@rxap/ngx-status-check": ^16.1.0-dev.10
+    "@rxap/ngx-user": ^16.1.0-dev.1
     "@rxap/services": ^16.0.0-dev.15
     "@rxap/utilities": ^16.0.0-dev.18
     rxjs: ^7.8.0
@@ -8253,9 +8253,11 @@ __metadata:
   peerDependencies:
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
+    "@angular/localize": ^16.1.4
+    "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
     "@rxap/config": ^16.0.0-dev.16
-    "@rxap/open-api": ^16.0.0-dev.21
+    "@rxap/open-api": ^16.0.0-dev.22
     "@sentry/angular-ivy": ^7.60.1
     rxjs: ^7.8.0
     tslib: 2.6.2
@@ -8284,7 +8286,7 @@ __metadata:
   peerDependencies:
     "@angular/core": ^16.1.4
     "@rxap/data-source": ^16.0.0-dev.18
-    "@rxap/open-api": ^16.0.0-dev.21
+    "@rxap/open-api": ^16.0.0-dev.22
     rxjs: ^7.8.0
     tslib: ^2.3.0
   languageName: unknown
@@ -8328,12 +8330,12 @@ __metadata:
   peerDependencies:
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
-    "@rxap/config": ^16.0.0-dev.15
-    "@rxap/data-source": ^16.0.0-dev.17
+    "@rxap/config": ^16.0.0-dev.16
+    "@rxap/data-source": ^16.0.0-dev.18
     "@rxap/mixin": ^16.0.0-dev.14
     "@rxap/remote-method": ^16.0.0-dev.15
     "@rxap/rxjs": ^1.0.1-dev.10
-    "@rxap/utilities": ^16.0.0-dev.17
+    "@rxap/utilities": ^16.0.0-dev.18
     ajv: 8.12.0
     openapi-types: 10.0.0
     rxjs: ^7.8.0

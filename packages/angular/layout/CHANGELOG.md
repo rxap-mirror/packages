@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.27...@rxap/layout@16.0.0-dev.28) (2023-09-21)
+
+### Bug Fixes
+
+- move status infiltrator to layout component ([1d1f69b](https://gitlab.com/rxap/packages/commit/1d1f69b22ae171a9d69b7d6d9e3f4e9f2e0849ee))
+- support advanced settings for layout sidenav ([65ff765](https://gitlab.com/rxap/packages/commit/65ff765b66f799de5089c954d34532bc9b4a7e77))
+
 # [16.0.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.26...@rxap/layout@16.0.0-dev.27) (2023-09-19)
 
 ### Bug Fixes

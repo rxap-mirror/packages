@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.29...@rxap/plugin-workspace@16.1.0-dev.30) (2023-09-21)
+
+### Bug Fixes
+
+- support any docker compose file name ([cd44128](https://gitlab.com/rxap/packages/commit/cd44128797bbc42105d673934b398b37d5bd809b))
+
 # [16.1.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.28...@rxap/plugin-workspace@16.1.0-dev.29) (2023-09-20)
 
 ### Bug Fixes

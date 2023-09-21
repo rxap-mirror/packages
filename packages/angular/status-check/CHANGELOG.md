@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.1.0-dev.9...@rxap/ngx-status-check@16.1.0-dev.10) (2023-09-21)
+
+### Bug Fixes
+
+- simplify and add tooltips ([e1ac9cd](https://gitlab.com/rxap/packages/commit/e1ac9cdc5cbfdab0b5c30382e4a2af85dca6f34a))
+
 # [16.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.1.0-dev.8...@rxap/ngx-status-check@16.1.0-dev.9) (2023-09-20)
 
 ### Features

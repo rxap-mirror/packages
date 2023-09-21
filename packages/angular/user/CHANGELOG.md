@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.1.0-dev.0...@rxap/ngx-user@16.1.0-dev.1) (2023-09-21)
+
+### Bug Fixes
+
+- set sensible default type ([e2c54dc](https://gitlab.com/rxap/packages/commit/e2c54dce525a97a047ed5efe1690c69d729f44e5))
+
 # [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.0.1-dev.2...@rxap/ngx-user@16.1.0-dev.0) (2023-09-19)
 
 ### Bug Fixes
