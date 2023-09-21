@@ -65,6 +65,11 @@ export class LayoutComponentService {
     mobileQuery.addEventListener('change', (event) => {
       if (initialCollapsable) {
         this.collapsable$.next(!event.matches);
+        if (this.collapsable$.value) {
+          if (!this.pinned$.value) {
+            this.opened$.next(false);
+          }
+        }
       }
     });
     this.pinned$.pipe(
