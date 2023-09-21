@@ -52,7 +52,7 @@ export const appConfig: ApplicationConfig = {
       strictDiscoveryDocumentValidation: false,
       dummyClientSecret: 'geheim',
       redirectUri: window.location.origin + '/index.html',
-      silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
+      // silentRefreshRedirectUri: window.location.origin + '/silent-refresh.html',
     })),
     provideServiceWorker(
       'ngsw-worker.js',
