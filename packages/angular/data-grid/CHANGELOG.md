@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.0-dev.16...@rxap/data-grid@16.0.0-dev.17) (2023-09-21)
+
+### Bug Fixes
+
+- add styles for divider and sub headers ([a746d4d](https://gitlab.com/rxap/packages/commit/a746d4d0bad4dc323599a7e3fbc0c6548a869c7d))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.0-dev.15...@rxap/data-grid@16.0.0-dev.16) (2023-09-12)
 
 ### Bug Fixes

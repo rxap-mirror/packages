@@ -20,6 +20,12 @@ export * from './lib/any-http-error/any-http-error.component';
 export * from './lib/any-http-error/any-http-error.service';
 // endregion
 
+// region angular-error
+export * from './lib/angular-error/angular-error-dialog-data';
+export * from './lib/angular-error/angular-error.component';
+export * from './lib/angular-error/angular-error.service';
+// endregion
+
 // region 
 export * from './lib/error-capture.service';
 export * from './lib/error-handler';

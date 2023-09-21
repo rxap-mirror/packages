@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@16.0.1-dev.4...@rxap/ngx-error@16.1.0-dev.0) (2023-09-21)
+
+### Features
+
+- add angular error dialog ([f7d3a36](https://gitlab.com/rxap/packages/commit/f7d3a369bfbd74f7a02d1ad46bfface528a035c4))
+
 ## [16.0.1-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@16.0.1-dev.3...@rxap/ngx-error@16.0.1-dev.4) (2023-09-15)
 
 ### Bug Fixes

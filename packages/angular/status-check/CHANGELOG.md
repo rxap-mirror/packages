@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.1.0-dev.10...@rxap/ngx-status-check@16.1.0-dev.11) (2023-09-21)
+
+### Bug Fixes
+
+- fallback to static text if localize is not available ([4cfe80b](https://gitlab.com/rxap/packages/commit/4cfe80bd1fe890a28b9c901cedee69e5c220071e))
+
 # [16.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.1.0-dev.9...@rxap/ngx-status-check@16.1.0-dev.10) (2023-09-21)
 
 ### Bug Fixes

@@ -7556,11 +7556,11 @@ __metadata:
     "@angular/core": ^16.1.4
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/data-source": ^16.0.0-dev.17
-    "@rxap/forms": ^16.0.0-dev.16
+    "@rxap/data-source": ^16.0.0-dev.18
+    "@rxap/forms": ^16.0.0-dev.17
     "@rxap/pipes": ^16.0.0-dev.14
     "@rxap/rxjs": ^1.0.1-dev.10
-    "@rxap/utilities": ^16.0.0-dev.17
+    "@rxap/utilities": ^16.0.0-dev.18
     rxjs: ^7.8.0
     tslib: 2.6.2
   languageName: unknown
@@ -8164,9 +8164,9 @@ __metadata:
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
     "@rxap/components": ^16.0.0-dev.16
-    "@rxap/config": ^16.0.0-dev.15
-    "@rxap/data-grid": ^16.0.0-dev.16
-    "@rxap/environment": ^16.0.0-dev.14
+    "@rxap/config": ^16.0.0-dev.16
+    "@rxap/data-grid": ^16.0.0-dev.17
+    "@rxap/environment": ^16.0.0-dev.15
     "@sentry/angular-ivy": ^7.60.1
     rxjs: ^7.8.0
     tslib: ^2.3.0
