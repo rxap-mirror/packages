@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.29...@rxap/layout@16.0.0-dev.30) (2023-09-21)
+
+### Bug Fixes
+
+- change overscroll-contain to overscroll-auto ([0a8db9f](https://gitlab.com/rxap/packages/commit/0a8db9ff3d131b98d207ad40aef411927ebdc837))
+
 # [16.0.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.28...@rxap/layout@16.0.0-dev.29) (2023-09-21)
 
 ### Bug Fixes

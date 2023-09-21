@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.11",
+  "version": "16.0.1-dev.12",
   "name": "@rxap/ngx-material-table-select",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -12,9 +12,9 @@
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.17",
+    "@rxap/data-source": "^16.0.0-dev.18",
     "@rxap/form-system": "^16.0.0-dev.17",
-    "@rxap/forms": "^16.0.0-dev.16",
+    "@rxap/forms": "^16.0.0-dev.17",
     "@rxap/material-form-system": "^16.0.0-dev.16",
     "@rxap/material-table-system": "^16.0.0-dev.23",
     "@rxap/material-table-window-system": "^16.0.0-dev.14",
@@ -23,8 +23,8 @@
     "@rxap/pipes": "^16.0.0-dev.14",
     "@rxap/reflect-metadata": "^1.0.1-dev.10",
     "@rxap/rxjs": "^1.0.1-dev.10",
-    "@rxap/utilities": "^16.0.0-dev.17",
-    "@rxap/window-system": "^16.0.0-dev.18",
+    "@rxap/utilities": "^16.0.0-dev.18",
+    "@rxap/window-system": "^16.0.0-dev.19",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
@@ -50,7 +50,7 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/form-system",
@@ -58,7 +58,7 @@
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/material-form-system",
@@ -94,11 +94,11 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/window-system",
-        "version": "16.0.0-dev.18"
+        "version": "16.0.0-dev.19"
       }
     ]
   },

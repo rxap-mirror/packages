@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@16.0.1-dev.11...@rxap/ngx-material-table-select@16.0.1-dev.12) (2023-09-21)
+
+### Bug Fixes
+
+- destroy window instance if directive is destroyed ([908fa43](https://gitlab.com/rxap/packages/commit/908fa437aaa035f324551f866304939124bec2f7))
+
 ## [16.0.1-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@16.0.1-dev.10...@rxap/ngx-material-table-select@16.0.1-dev.11) (2023-09-12)
 
 ### Bug Fixes

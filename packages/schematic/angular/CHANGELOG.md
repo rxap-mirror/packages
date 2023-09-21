@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.15...@rxap/schematic-angular@16.1.0-dev.16) (2023-09-21)
+
+### Bug Fixes
+
+- change overscroll-contain to overscroll-auto ([0a8db9f](https://gitlab.com/rxap/packages/commit/0a8db9ff3d131b98d207ad40aef411927ebdc837))
+
 # [16.1.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.14...@rxap/schematic-angular@16.1.0-dev.15) (2023-09-14)
 
 ### Bug Fixes
