@@ -15,7 +15,7 @@ import { SettingsControllerGetResponse } from './responses/settings-controller-g
 import { UserSettingsDataSource } from './user-settings.data-source';
 
 @Injectable({ providedIn: 'root' })
-export class UserSettingsService<US> {
+export class UserSettingsService<US = unknown> {
 
   protected readonly userSettingsDataSource = inject(UserSettingsDataSource);
   protected readonly setUserSettingsMethod = inject(SettingsControllerSetRemoteMethod);
