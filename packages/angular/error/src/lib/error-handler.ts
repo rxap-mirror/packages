@@ -4,11 +4,19 @@ import {
   inject,
   Injectable,
   InjectionToken,
+  INJECTOR,
   isDevMode,
+  runInInjectionContext,
   StaticProvider,
 } from '@angular/core';
 import { ConfigService } from '@rxap/config';
+import {
+  IsNotReleaseVersion,
+  RXAP_ENVIRONMENT,
+} from '@rxap/environment';
 import * as Sentry from '@sentry/angular-ivy';
+import { AngularErrorDialogData } from './angular-error/angular-error-dialog-data';
+import { AngularErrorService } from './angular-error/angular-error.service';
 import {
   ExtractContextFromError,
   ExtractError,
@@ -20,7 +28,10 @@ import {
 export interface ErrorHandlerOptions {
   logErrors?: boolean;
   showDialog?: boolean;
-  dialogOptions?: Sentry.ReportDialogOptions;
+  sentry?: {
+    showDialog?: boolean;
+    dialogOptions?: Sentry.ReportDialogOptions;
+  };
 }
 
 export const RXAP_ERROR_HANDLER_OPTIONS = new InjectionToken<ErrorHandlerOptions>('rxap-error-handler-options', {
@@ -33,15 +44,20 @@ export class RxapErrorHandler implements ErrorHandler {
 
   protected readonly options: ErrorHandlerOptions = (() => {
     const options = inject(RXAP_ERROR_HANDLER_OPTIONS);
+    const environment = inject(RXAP_ENVIRONMENT);
     const config = inject(ConfigService);
     options.logErrors ??= true;
-    options.showDialog ??= config.get('sentry.showDialog', false);
-    // enforce showDialog to false in dev mode
-    options.showDialog = !isDevMode() && options.showDialog;
-    options.dialogOptions ??= config.get('sentry.dialogOptions', {});
-    options.dialogOptions.user ??= {};
+    options.sentry ??= {};
+    options.sentry.showDialog ??= config.get('sentry.showDialog', false);
+    // enforce sentry showDialog to false in dev mode
+    options.sentry.showDialog = !isDevMode() && options.sentry.showDialog;
+    options.showDialog ??= IsNotReleaseVersion(environment);
+    options.sentry.dialogOptions ??= config.get('sentry.dialogOptions', {});
+    options.sentry.dialogOptions.user ??= {};
     return options;
   })();
+
+  protected readonly injector = inject(INJECTOR);
 
   /**
    * Method called for every value captured through the ErrorHandler
@@ -85,15 +101,42 @@ export class RxapErrorHandler implements ErrorHandler {
       PrintError(error);
     }
 
-    if (this.options.showDialog) {
+    if (this.options.sentry?.showDialog) {
       if (!(error instanceof HttpErrorResponse)) {
         Sentry.showReportDialog({
-          ...(this.options.dialogOptions ?? {}),
+          ...(this.options.sentry.dialogOptions ?? {}),
           eventId,
         });
       }
+    } else if (this.options.showDialog) {
+      const nonMessage = 'unsupported error type for angular error dialog';
+      const data: AngularErrorDialogData = {
+        message: nonMessage,
+        contexts,
+        extra,
+        tags,
+      };
+      if (typeof extractedError === 'string') {
+        data.message = extractedError;
+      } else if (!(extractedError instanceof HttpErrorResponse)) {
+        data.message = extractedError.message;
+        data.stack = extractedError.stack;
+        data.name = extractedError.name;
+      }
+
+      if (data.message !== nonMessage) {
+        this.showAngularErrorDialog(data);
+      }
+
     }
 
+  }
+
+  protected showAngularErrorDialog(data: AngularErrorDialogData): void {
+    runInInjectionContext(this.injector, () => {
+      console.log('showAngularErrorDialog', data);
+      inject(AngularErrorService).push(data);
+    });
   }
 
 

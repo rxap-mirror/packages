@@ -1,0 +1,29 @@
+<rxap-data-grid [data]="error">
+  <ng-container *ngIf="error.name" rxapDataGridRowDef="name"></ng-container>
+  <ng-container rxapDataGridRowDef="message"></ng-container>
+  <ng-container *ngIf="hasExtra || hasTags || hasContexts || error.stack" rxapDataGridRowDef>
+    <th *rxapDataGridHeaderCellDef>
+      <span i18n>Details</span>
+    </th>
+  </ng-container>
+  <ng-container *ngIf="error.stack" rxapDataGridRowDef="stack">
+    <td *rxapDataGridCellDef="let value">
+      <pre>{{ value }}</pre>
+    </td>
+  </ng-container>
+  <ng-container *ngIf="hasTags" rxapDataGridRowDef="tags">
+    <td *rxapDataGridCellDef="let value">
+      <rxap-data-grid [data]="value" auto></rxap-data-grid>
+    </td>
+  </ng-container>
+  <ng-container *ngIf="hasExtra" rxapDataGridRowDef="extra">
+    <td *rxapDataGridCellDef="let value">
+      <rxap-data-grid [data]="value" auto></rxap-data-grid>
+    </td>
+  </ng-container>
+  <ng-container *ngIf="hasContexts" rxapDataGridRowDef="contexts">
+    <td *rxapDataGridCellDef="let value">
+      <rxap-data-grid [data]="value" auto></rxap-data-grid>
+    </td>
+  </ng-container>
+</rxap-data-grid>
