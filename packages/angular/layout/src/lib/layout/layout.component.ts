@@ -7,8 +7,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   Inject,
+  Signal,
   ViewChild,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -60,7 +62,15 @@ import { LayoutComponentService } from './layout.component.service';
 })
 export class LayoutComponent {
 
-  public sidenavMode: MatDrawerMode = 'over';
+  public readonly sidenavMode: Signal<MatDrawerMode>;
+  public readonly fixedBottomGap: Signal<number>;
+  public readonly fixedTopGap: Signal<number>;
+  public readonly pinned: Signal<boolean>;
+  public readonly collapsable: Signal<boolean>;
+  public readonly logoSrc: string;
+  public readonly logoWidth: number;
+  public readonly release: string;
+  public readonly opened: Signal<boolean>;
 
   @ViewChild(MatSidenav, { static: true }) public sidenav!: MatSidenav;
 
@@ -71,18 +81,17 @@ export class LayoutComponent {
     iconLoaderService: IconLoaderService,
   ) {
     iconLoaderService.load();
+    this.fixedBottomGap = toSignal(layoutComponentService.fixedBottomGap$, { initialValue: 0 });
+    this.fixedTopGap =
+      toSignal(layoutComponentService.fixedTopGap$, { initialValue: layoutComponentService.fixedTopGap$.value });
+    this.sidenavMode = toSignal(layoutComponentService.mode$, { initialValue: layoutComponentService.mode$.value });
+    this.pinned = toSignal(layoutComponentService.pinned$, { initialValue: layoutComponentService.pinned$.value });
+    this.collapsable =
+      toSignal(layoutComponentService.collapsable$, { initialValue: layoutComponentService.collapsable$.value });
+    this.opened = toSignal(layoutComponentService.opened$, { initialValue: layoutComponentService.opened$.value });
+    this.logoSrc = this.layoutComponentService.logo.src ?? 'https://via.placeholder.com/256x128px';
+    this.logoWidth = this.layoutComponentService.logo.width ?? 256;
+    this.release = DetermineReleaseName(this.environment);
   }
 
-  public get release() {
-    return DetermineReleaseName(this.environment);
-  }
-
-  public toggleSidenavMode() {
-    if (this.sidenavMode === 'over') {
-      this.sidenavMode = 'side';
-      this.sidenav.open();
-    } else {
-      this.sidenavMode = 'over';
-    }
-  }
 }

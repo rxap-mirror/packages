@@ -1,13 +1,13 @@
+import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  Signal,
 } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
-import { Required } from '@rxap/utilities';
-import { MatIconModule } from '@angular/material/icon';
-import { NgIf } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { LayoutComponentService } from '../../layout/layout.component.service';
 
 @Component({
   selector: 'rxap-sidenav-toggle-button',
@@ -23,7 +23,10 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class SidenavToggleButtonComponent {
 
-  @Input({ required: true })
-  public sidenav!: MatSidenav;
+  public readonly opened: Signal<boolean>;
+
+  constructor(public readonly layoutComponentService: LayoutComponentService) {
+    this.opened = toSignal(layoutComponentService.opened$, { initialValue: layoutComponentService.opened$.value });
+  }
 
 }

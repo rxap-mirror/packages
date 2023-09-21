@@ -1,38 +1,43 @@
 <rxap-status-indicator class="fixed bottom-0 right-0 z-10"></rxap-status-indicator>
 <div class="flex flex-col h-screen justify-between">
-  <rxap-header [sidenav]="sidenav" class="z-10 w-full fixed top-0"></rxap-header>
+  <rxap-header class="z-10 w-full fixed top-0"></rxap-header>
   <mat-sidenav-container [ngClass]="{
-    'mb-16': (layoutComponentService.fixedBottomGap$ | async) === 64,
-    'mb-32': (layoutComponentService.fixedBottomGap$ | async) === 128,
+    'mb-16': fixedBottomGap() === 64,
+    'mb-32': fixedBottomGap() === 128,
   }" class="grow mt-16">
     <mat-sidenav
       #matSidenav="matSidenav"
-      (mouseenter)="sidenavMode === 'over' && matSidenav.open()"
-      (mouseleave)="sidenavMode === 'over' && matSidenav.close()"
-      [fixedBottomGap]="layoutComponentService.fixedBottomGap$ | async"
+      [fixedBottomGap]="fixedBottomGap()"
       [fixedInViewport]="true"
-      [fixedTopGap]="layoutComponentService.fixedTopGap$ | async"
-      [mode]="sidenavMode"
-      [opened]="false"
+      [fixedTopGap]="fixedTopGap()"
+      [mode]="sidenavMode()"
+      [ngClass]="{ collapsable: collapsable() }"
       class="sidenav"
+      [opened]="opened()"
     >
       <div class="h-full py-2 flex flex-col items-center gap-y-5 justify-items-stretch">
 
-        <div (click)="toggleSidenavMode()"
+        <div (click)="layoutComponentService.togglePinned()" *ngIf="collapsable()"
              class="pl-2 pr-2 self-stretch grow-0 flex flex-row justify-between items-center">
           <span class="text-lg" i18n>Navigation</span>
           <button mat-icon-button>
-            <mat-icon *ngIf="sidenavMode === 'over'">radio_button_unchecked</mat-icon>
-            <mat-icon *ngIf="sidenavMode === 'side'">radio_button_checked</mat-icon>
+            <mat-icon *ngIf="!pinned()">radio_button_unchecked</mat-icon>
+            <mat-icon *ngIf="pinned()">radio_button_checked</mat-icon>
           </button>
         </div>
 
-        <ul class="grow self-stretch" root rxap-navigation></ul>
+        <ul
+          (mouseenter)="collapsable() && !pinned() && matSidenav.open()"
+          (mouseleave)="collapsable() && !pinned() && matSidenav.close()" class="grow self-stretch"
+          root
+          rxap-navigation
+        >
+        </ul>
 
         <img
-          [src]="layoutComponentService.logo.src ?? 'https://via.placeholder.com/256x128px'"
+          [src]="logoSrc"
           [routerLink]="['/']"
-          [width]="layoutComponentService.logo.width ?? 256"
+          [width]="logoWidth"
           alt="logo"
           class="grow-0 mx-16"
         />

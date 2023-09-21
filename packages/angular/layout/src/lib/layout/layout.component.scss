@@ -1,5 +1,5 @@
 :host {
-  .sidenav {
+  .sidenav.collapsable {
 
     &:not(.mat-drawer-opened) {
       transform: translateX(calc(-100% + 64px)) !important;

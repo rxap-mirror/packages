@@ -1,3 +1,4 @@
+import { MediaMatcher } from '@angular/cdk/layout';
 import {
   Inject,
   Injectable,
@@ -12,6 +13,7 @@ import {
 import {
   BehaviorSubject,
   Observable,
+  skip,
 } from 'rxjs';
 import {
   map,
@@ -23,11 +25,14 @@ import { LogoConfig } from '../types';
 @Injectable({ providedIn: 'root' })
 export class LayoutComponentService {
 
-  public opened$ = new BehaviorSubject<boolean>(true);
-  public mode$ = new BehaviorSubject<MatDrawerMode>('side');
+  public opened$: BehaviorSubject<boolean>;
+  public mode$: BehaviorSubject<MatDrawerMode>;
+  public pinned$: BehaviorSubject<boolean>;
   public fixedBottomGap$: Observable<number>;
   public fixedTopGap$ = new BehaviorSubject<number>(64);
   public logo: LogoConfig;
+  public collapsable$: BehaviorSubject<boolean>;
+
 
   public constructor(
     public readonly footerComponentService: FooterService,
@@ -35,9 +40,19 @@ export class LayoutComponentService {
     @Optional() @Inject(RXAP_LOGO_CONFIG) logoConfig: LogoConfig | null = null,
     @Inject(ConfigService)
     private readonly config: ConfigService,
+    mediaMatcher: MediaMatcher,
   ) {
-    this.mode$.next(this.config.get('navigation.mode', this.mode$.value));
-    this.opened$.next(this.config.get('navigation.open', this.opened$.value));
+    const mobileQuery = mediaMatcher.matchMedia('(max-width: 959px)');
+    const mobile = mobileQuery.matches;
+    const initialCollapsable = this.config.get('navigation.collapsable', true);
+    const collapsable = initialCollapsable && !mobile;
+    const pinned = this.config.get('navigation.pinned', false);
+    const mode = this.config.get('navigation.mode', (collapsable && pinned) || !collapsable ? 'side' : 'over');
+    const opened = this.config.get('navigation.open', !collapsable || pinned);
+    this.mode$ = new BehaviorSubject<MatDrawerMode>(mode);
+    this.opened$ = new BehaviorSubject<boolean>(opened);
+    this.pinned$ = new BehaviorSubject<boolean>(pinned);
+    this.collapsable$ = new BehaviorSubject<boolean>(collapsable);
     this.fixedBottomGap$ = this.footerComponentService.portalCount$.pipe(map(count => count * 64));
     this.fixedTopGap$.next(this.headerComponentService.countComponent * 64);
     this.headerComponentService.update$.pipe(
@@ -47,6 +62,31 @@ export class LayoutComponentService {
       src: 'assets/logo.png',
       width: 192,
     };
+    mobileQuery.addEventListener('change', (event) => {
+      if (initialCollapsable) {
+        this.collapsable$.next(!event.matches);
+      }
+    });
+    this.pinned$.pipe(
+      skip(1),
+      tap(pinned => {
+        if (pinned) {
+          this.mode$.next('side');
+          this.opened$.next(true);
+        } else {
+          this.mode$.next('over');
+          this.opened$.next(false);
+        }
+      }),
+    ).subscribe();
+  }
+
+  public toggleOpend() {
+    this.opened$.next(!this.opened$.value);
+  }
+
+  public togglePinned() {
+    this.pinned$.next(!this.pinned$.value);
   }
 
 }

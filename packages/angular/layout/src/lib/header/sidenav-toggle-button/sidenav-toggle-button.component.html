@@ -1,4 +1,4 @@
-<button (click)="sidenav.toggle()" mat-icon-button>
-  <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
-  <mat-icon *ngIf="sidenav.opened">menu_open</mat-icon>
+<button (click)="layoutComponentService.toggleOpend()" mat-icon-button>
+  <mat-icon *ngIf="!opened()">menu</mat-icon>
+  <mat-icon *ngIf="opened()">menu_open</mat-icon>
 </button>
