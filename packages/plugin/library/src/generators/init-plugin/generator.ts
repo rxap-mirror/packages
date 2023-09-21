@@ -70,17 +70,21 @@ export async function initPluginGenerator(
 
   setGeneralTargetDefaults(tree);
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  if (!options.skipProjects) {
 
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
+    for (const [ projectName, project ] of getProjects(tree).entries()) {
+
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
+      }
+
+      console.log(`init project: ${ projectName }`);
+
+      updateProjectTargets(tree, project);
+
+      updateProjectConfiguration(tree, project.name, project);
+
     }
-
-    console.log(`init project: ${ projectName }`);
-
-    updateProjectTargets(tree, project);
-
-    updateProjectConfiguration(tree, project.name, project);
 
   }
 

@@ -16,6 +16,11 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to overwrite existing files"
+    },
+    "skipProjects": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to skip executing project specific initialization"
     }
   },
   "required": []

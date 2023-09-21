@@ -27,13 +27,18 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       continue;
     }
 
-    console.log(`init project: ${ projectName }`);
+    if (!options.skipProjects) {
+
+      console.log(`init project: ${ projectName }`);
+
+    }
 
     if (project.projectType === 'library') {
       await initLibraryGenerator(tree,
         {
           ...options,
           projects: [ projectName ],
+          skipProjects: options.skipProjects,
         },
       );
     }
@@ -43,6 +48,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
         {
           ...options,
           projects: [ projectName ],
+          skipProjects: options.skipProjects,
         },
       );
     }

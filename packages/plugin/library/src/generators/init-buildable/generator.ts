@@ -54,17 +54,19 @@ export async function initBuildableGenerator(
 
   setGeneralTargetDefaults(tree);
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  if (!options.skipProjects) {
+    for (const [ projectName, project ] of getProjects(tree).entries()) {
 
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
+      }
+
+      console.log(`init project: ${ projectName }`);
+      updateProjectTargets(project);
+
+      updateProjectConfiguration(tree, project.name, project);
+
     }
-
-    console.log(`init project: ${ projectName }`);
-    updateProjectTargets(project);
-
-    updateProjectConfiguration(tree, project.name, project);
-
   }
 }
 

@@ -59,11 +59,13 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       continue;
     }
 
-    console.log(`init project: ${ projectName }`);
+    if (!options.skipProjects) {
+      console.log(`init project: ${ projectName }`);
 
-    updateProjectTags(project);
+      updateProjectTags(project);
 
-    updateProjectConfiguration(tree, project.name, project);
+      updateProjectConfiguration(tree, project.name, project);
+    }
 
     if (IsBuildable(project)) {
       await initBuildableGenerator(tree, options);
@@ -74,7 +76,13 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     }
 
     if (project.tags?.includes('angular')) {
-      await AngularInitGenerator(tree, { ...options, projects: [ projectName ] });
+      await AngularInitGenerator(tree,
+        {
+          ...options,
+          projects: [ projectName ],
+          skipProjects: options.skipProjects,
+        },
+      );
     }
 
     if (project.tags?.includes('plugin')) {
@@ -83,6 +91,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
         {
           ...options,
           projects: [ projectName ],
+          skipProjects: options.skipProjects,
         },
       );
     }
@@ -93,6 +102,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
         {
           ...options,
           projects: [ projectName ],
+          skipProjects: options.skipProjects,
         },
       );
     }

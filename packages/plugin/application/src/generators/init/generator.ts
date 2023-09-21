@@ -192,18 +192,26 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       continue;
     }
 
-    console.log(`init project: ${ projectName }`);
+    if (!options.skipProjects) {
+      console.log(`init project: ${ projectName }`);
 
-    updateProjectTargets(project, projectName, options);
+      updateProjectTargets(project, projectName, options);
 
-    updateTargetDefaults(tree);
-    updateGitIgnore(project, tree);
+      updateTargetDefaults(tree);
+      updateGitIgnore(project, tree);
 
-    // apply changes to the project configuration
-    updateProjectConfiguration(tree, projectName, project);
+      // apply changes to the project configuration
+      updateProjectConfiguration(tree, projectName, project);
+    }
 
     if (project.tags?.includes('angular')) {
-      await AngularInitGenerator(tree, { ...options, projects: [ projectName ] });
+      await AngularInitGenerator(tree,
+        {
+          ...options,
+          projects: [ projectName ],
+          skipProjects: options.skipProjects,
+        },
+      );
     }
 
     if (project.tags?.includes('nest')) {
@@ -212,6 +220,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
         {
           ...options,
           projects: [ projectName ],
+          skipProjects: options.skipProjects,
         },
       );
     }

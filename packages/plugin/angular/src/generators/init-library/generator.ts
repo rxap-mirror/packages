@@ -255,24 +255,28 @@ export async function initLibraryGenerator(
 
   setGeneralTargetDefaults(tree);
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  if (!options.skipProjects) {
 
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
+    for (const [ projectName, project ] of getProjects(tree).entries()) {
+
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
+      }
+
+      console.log(`init project: ${ projectName }`);
+
+      checkIfSecondaryEntrypointIncludeInTheTsConfig(tree, project);
+
+      if (IsBuildable(project)) {
+        updateProjectNgPackageConfiguration(tree, project);
+        coerceTailwindThemeScss(tree, project);
+      }
+      extendAngularSpecificEslint(tree, project);
+      updateProjectTargets(tree, project);
+
+      updateProjectConfiguration(tree, project.name, project);
+
     }
-
-    console.log(`init project: ${ projectName }`);
-
-    checkIfSecondaryEntrypointIncludeInTheTsConfig(tree, project);
-
-    if (IsBuildable(project)) {
-      updateProjectNgPackageConfiguration(tree, project);
-      coerceTailwindThemeScss(tree, project);
-    }
-    extendAngularSpecificEslint(tree, project);
-    updateProjectTargets(tree, project);
-
-    updateProjectConfiguration(tree, project.name, project);
 
   }
 

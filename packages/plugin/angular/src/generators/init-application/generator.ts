@@ -574,173 +574,175 @@ export async function initApplicationGenerator(
     generateFiles(tree, join(__dirname, 'files', 'oauth'), 'shared/angular/assets', options);
   }
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  if (!options.skipProjects) {
+    for (const [ projectName, project ] of getProjects(tree).entries()) {
 
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
-    }
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
+      }
 
-    console.log(`init project: ${ projectName }`);
+      console.log(`init project: ${ projectName }`);
 
-    updateProjectTargets(project, options);
-    updateTags(project, options);
-    updateTargetDefaults(tree, options);
-    updateGitIgnore(project, tree, options);
-    coerceEnvironmentFiles(
-      tree,
-      {
+      updateProjectTargets(project, options);
+      updateTags(project, options);
+      updateTargetDefaults(tree, options);
+      updateGitIgnore(project, tree, options);
+      coerceEnvironmentFiles(
+        tree,
+        {
+          project: projectName,
+          sentry: options.sentry,
+          overwrite: options.overwrite,
+        },
+      );
+      TsMorphNestProjectTransform(tree, {
         project: projectName,
-        sentry: options.sentry,
-        overwrite: options.overwrite,
-      },
-    );
-    TsMorphNestProjectTransform(tree, {
-      project: projectName,
-    }, (_, [ sourceFile ]) => {
-      const providers: Array<string | ProviderObject> = [
-        'provideRouter(appRoutes, withEnabledBlockingInitialNavigation())',
-        'provideAnimations()',
-        'ProvideErrorHandler()',
-        'ProvideEnvironment(environment)',
-      ];
-      const httpInterceptors = [
-        'HttpErrorInterceptor',
-      ];
-      const importProvidersFrom: string[] = [];
-      CoerceImports(sourceFile, [
-        {
-          moduleSpecifier: '@angular/platform-browser/animations',
-          namedImports: [ 'provideAnimations' ],
-        },
-        {
-          moduleSpecifier: '@angular/router',
-          namedImports: [ 'provideRouter', 'withEnabledBlockingInitialNavigation' ],
-        },
-        {
-          moduleSpecifier: './app.routes',
-          namedImports: [ 'appRoutes' ],
-        },
-        {
-          moduleSpecifier: '@rxap/ngx-error',
-          namedImports: [ 'ProvideErrorHandler', 'HttpErrorInterceptor' ],
-        },
-        {
-          moduleSpecifier: '@rxap/environment',
-          namedImports: [ 'ProvideEnvironment' ],
-        },
-        {
-          moduleSpecifier: '../environments/environment',
-          namedImports: [ 'environment' ],
-        },
-      ]);
-      if (options.monolithic) {
-        providers.push('ProvideChangelog()');
-        importProvidersFrom.push('MarkdownModule.forRoot()');
+      }, (_, [ sourceFile ]) => {
+        const providers: Array<string | ProviderObject> = [
+          'provideRouter(appRoutes, withEnabledBlockingInitialNavigation())',
+          'provideAnimations()',
+          'ProvideErrorHandler()',
+          'ProvideEnvironment(environment)',
+        ];
+        const httpInterceptors = [
+          'HttpErrorInterceptor',
+        ];
+        const importProvidersFrom: string[] = [];
         CoerceImports(sourceFile, [
           {
-            moduleSpecifier: '@rxap/ngx-changelog',
-            namedImports: [ 'ProvideChangelog' ],
+            moduleSpecifier: '@angular/platform-browser/animations',
+            namedImports: [ 'provideAnimations' ],
           },
           {
-            moduleSpecifier: 'ngx-markdown',
-            namedImports: [ 'MarkdownModule' ],
+            moduleSpecifier: '@angular/router',
+            namedImports: [ 'provideRouter', 'withEnabledBlockingInitialNavigation' ],
+          },
+          {
+            moduleSpecifier: './app.routes',
+            namedImports: [ 'appRoutes' ],
+          },
+          {
+            moduleSpecifier: '@rxap/ngx-error',
+            namedImports: [ 'ProvideErrorHandler', 'HttpErrorInterceptor' ],
+          },
+          {
+            moduleSpecifier: '@rxap/environment',
+            namedImports: [ 'ProvideEnvironment' ],
+          },
+          {
+            moduleSpecifier: '../environments/environment',
+            namedImports: [ 'environment' ],
           },
         ]);
-      }
-      if (options.oauth) {
-        providers.push('provideOAuthClient()');
-        providers.push('ProvideAuth()');
-        httpInterceptors.push('BearerTokenInterceptor');
-        CoerceImports(sourceFile, [
-          {
-            moduleSpecifier: 'angular-oauth2-oidc',
-            namedImports: [ 'provideOAuthClient' ],
-          },
-          {
-            moduleSpecifier: '@rxap/oauth',
-            namedImports: [ 'ProvideAuth' ],
-          },
-          {
-            moduleSpecifier: '@rxap/authentication',
-            namedImports: [ 'BearerTokenInterceptor' ],
-          },
-        ]);
-      }
-      if (options.i18n) {
-        httpInterceptors.push('LanguageInterceptor');
-        CoerceImports(sourceFile, [
-          {
-            moduleSpecifier: '@rxap/ngx-localize',
-            namedImports: [ 'LanguageInterceptor' ],
-          },
-        ]);
-      }
-      if (options.serviceWorker) {
-        providers.push(`provideServiceWorker('ngsw-worker.js', { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' })`);
-        providers.push('ProvideServiceWorkerUpdateDialog()');
-        CoerceImports(sourceFile, [
-          {
-            moduleSpecifier: '@angular/service-worker',
-            namedImports: [ 'provideServiceWorker' ],
-          },
-          {
-            moduleSpecifier: '@rxap/service-worker',
-            namedImports: [ 'ProvideServiceWorkerUpdateDialog' ],
-          },
-        ]);
-      }
-      CoerceAppConfigProvider(sourceFile, {
-        overwrite: options.overwrite,
-        providers,
-        httpInterceptors,
-        importProvidersFrom,
-      });
-    }, [ '/app/app.config.ts' ]);
+        if (options.monolithic) {
+          providers.push('ProvideChangelog()');
+          importProvidersFrom.push('MarkdownModule.forRoot()');
+          CoerceImports(sourceFile, [
+            {
+              moduleSpecifier: '@rxap/ngx-changelog',
+              namedImports: [ 'ProvideChangelog' ],
+            },
+            {
+              moduleSpecifier: 'ngx-markdown',
+              namedImports: [ 'MarkdownModule' ],
+            },
+          ]);
+        }
+        if (options.oauth) {
+          providers.push('provideOAuthClient()');
+          providers.push('ProvideAuth()');
+          httpInterceptors.push('BearerTokenInterceptor');
+          CoerceImports(sourceFile, [
+            {
+              moduleSpecifier: 'angular-oauth2-oidc',
+              namedImports: [ 'provideOAuthClient' ],
+            },
+            {
+              moduleSpecifier: '@rxap/oauth',
+              namedImports: [ 'ProvideAuth' ],
+            },
+            {
+              moduleSpecifier: '@rxap/authentication',
+              namedImports: [ 'BearerTokenInterceptor' ],
+            },
+          ]);
+        }
+        if (options.i18n) {
+          httpInterceptors.push('LanguageInterceptor');
+          CoerceImports(sourceFile, [
+            {
+              moduleSpecifier: '@rxap/ngx-localize',
+              namedImports: [ 'LanguageInterceptor' ],
+            },
+          ]);
+        }
+        if (options.serviceWorker) {
+          providers.push(`provideServiceWorker('ngsw-worker.js', { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' })`);
+          providers.push('ProvideServiceWorkerUpdateDialog()');
+          CoerceImports(sourceFile, [
+            {
+              moduleSpecifier: '@angular/service-worker',
+              namedImports: [ 'provideServiceWorker' ],
+            },
+            {
+              moduleSpecifier: '@rxap/service-worker',
+              namedImports: [ 'ProvideServiceWorkerUpdateDialog' ],
+            },
+          ]);
+        }
+        CoerceAppConfigProvider(sourceFile, {
+          overwrite: options.overwrite,
+          providers,
+          httpInterceptors,
+          importProvidersFrom,
+        });
+      }, [ '/app/app.config.ts' ]);
 
-    if (options.generateMain) {
-      updateMainFile(tree, project, options);
-    }
-    if (options.cleanup) {
-      cleanup(tree, project.sourceRoot);
-    }
-    if (options.localazy) {
-      coerceLocalazyConfigFile(tree, project);
-    }
-    if (options.monolithic) {
-      if (!tree.exists(join(project.sourceRoot, 'assets', 'logo.png'))) {
-        if (tree.exists('logo.png')) {
-          tree.write(join(project.sourceRoot, 'assets', 'logo.png'), tree.read('logo.png')!);
+      if (options.generateMain) {
+        updateMainFile(tree, project, options);
+      }
+      if (options.cleanup) {
+        cleanup(tree, project.sourceRoot);
+      }
+      if (options.localazy) {
+        coerceLocalazyConfigFile(tree, project);
+      }
+      if (options.monolithic) {
+        if (!tree.exists(join(project.sourceRoot, 'assets', 'logo.png'))) {
+          if (tree.exists('logo.png')) {
+            tree.write(join(project.sourceRoot, 'assets', 'logo.png'), tree.read('logo.png')!);
+          }
+        }
+        if (options.overwrite) {
+          generateFiles(tree, join(__dirname, 'files', 'monolithic'), project.sourceRoot, {
+            ...options,
+            relativePathToWorkspaceRoot: relative(project.sourceRoot, ''),
+            name: projectName.replace(/^user-interface-/, ''),
+            classify,
+            prefix: GetProjectPrefix(tree, projectName, 'rxap'),
+          });
         }
       }
-      if (options.overwrite) {
-        generateFiles(tree, join(__dirname, 'files', 'monolithic'), project.sourceRoot, {
-          ...options,
-          relativePathToWorkspaceRoot: relative(project.sourceRoot, ''),
-          name: projectName.replace(/^user-interface-/, ''),
-          classify,
-          prefix: GetProjectPrefix(tree, projectName, 'rxap'),
-        });
+      if (options.serviceWorker) {
+        if (options.overwrite || !tree.exists(join(project.sourceRoot, 'manifest.webmanifest'))) {
+          generateFiles(tree, join(__dirname, 'files', 'service-worker'), project.sourceRoot, {
+            ...options,
+            name: projectName.replace(/^user-interface-/, ''),
+            classify,
+            dasherize,
+          });
+        }
       }
-    }
-    if (options.serviceWorker) {
-      if (options.overwrite || !tree.exists(join(project.sourceRoot, 'manifest.webmanifest'))) {
-        generateFiles(tree, join(__dirname, 'files', 'service-worker'), project.sourceRoot, {
-          ...options,
-          name: projectName.replace(/^user-interface-/, ''),
-          classify,
-          dasherize,
-        });
+      for (const file of EachDirSync(join(__dirname, 'files', 'assets'))) {
+        const filePath = relative(join(__dirname, 'files', 'assets'), file);
+        if (!tree.exists(join(project.sourceRoot, 'assets', filePath))) {
+          tree.write(join(project.sourceRoot, 'assets', filePath), readFileSync(file));
+        }
       }
-    }
-    for (const file of EachDirSync(join(__dirname, 'files', 'assets'))) {
-      const filePath = relative(join(__dirname, 'files', 'assets'), file);
-      if (!tree.exists(join(project.sourceRoot, 'assets', filePath))) {
-        tree.write(join(project.sourceRoot, 'assets', filePath), readFileSync(file));
-      }
-    }
 
-    // apply changes to the project configuration
-    updateProjectConfiguration(tree, projectName, project);
+      // apply changes to the project configuration
+      updateProjectConfiguration(tree, projectName, project);
+    }
   }
 
   await LocalazyGitlabCiGenerator(tree, options);

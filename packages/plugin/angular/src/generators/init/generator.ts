@@ -31,18 +31,34 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       continue;
     }
 
-    console.log(`init project: ${ projectName }`);
+    if (!options.skipProjects) {
 
-    if (HasComponents(tree, project.root)) {
-      await CoerceCypressComponentTesting(tree, project, projectName);
+      console.log(`init project: ${ projectName }`);
+
+      if (HasComponents(tree, project.root)) {
+        await CoerceCypressComponentTesting(tree, project, projectName);
+      }
+
     }
 
     if (project.projectType === 'library') {
-      await initLibraryGenerator(tree, { ...options, projects: [ projectName ] });
+      await initLibraryGenerator(tree,
+        {
+          ...options,
+          projects: [ projectName ],
+          skipProjects: options.skipProjects,
+        },
+      );
     }
 
     if (project.projectType === 'application') {
-      await initApplicationGenerator(tree, { ...options, projects: [ projectName ] });
+      await initApplicationGenerator(tree,
+        {
+          ...options,
+          projects: [ projectName ],
+          skipProjects: options.skipProjects,
+        },
+      );
     }
 
   }

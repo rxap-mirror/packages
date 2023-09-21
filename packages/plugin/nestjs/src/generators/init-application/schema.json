@@ -105,6 +105,11 @@
       "default": false,
       "description": "Whether the application should use openApi as client",
       "x-prompt": "Should this service use an open api client?"
+    },
+    "skipProjects": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to skip executing project specific initialization"
     }
   },
   "required": []

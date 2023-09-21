@@ -4,4 +4,5 @@ export interface InitGeneratorSchema {
   dockerImageName?: string;
   projects?: string[];
   overwrite?: boolean;
+  skipProjects?: boolean;
 }

@@ -16,4 +16,5 @@ export interface InitApplicationGeneratorSchema {
   localazyReadKey?: string;
   authentik?: boolean;
   oauth?: boolean;
+  skipProjects?: boolean;
 }

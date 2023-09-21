@@ -65,19 +65,23 @@ export async function initLibraryGenerator(
 
   setGeneralTargetDefaults(tree);
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  if (!options.skipProjects) {
 
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
+    for (const [ projectName, project ] of getProjects(tree).entries()) {
+
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
+      }
+
+      console.log(`init project: ${ projectName }`);
+
+      updateProjectTargets(tree, project);
+
+
+      // apply changes to the project configuration
+      updateProjectConfiguration(tree, projectName, project);
     }
 
-    console.log(`init project: ${ projectName }`);
-
-    updateProjectTargets(tree, project);
-
-
-    // apply changes to the project configuration
-    updateProjectConfiguration(tree, projectName, project);
   }
 }
 

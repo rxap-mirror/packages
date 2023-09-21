@@ -136,27 +136,32 @@ export async function initPublishableGenerator(
 
   setGeneralTargetDefaults(tree);
 
-  for (const [ projectName, project ] of getProjects(tree).entries()) {
+  if (!options.skipProjects) {
 
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
+    for (const [ projectName, project ] of getProjects(tree).entries()) {
+
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
+      }
+
+      console.log(`init project: ${ projectName }`);
+
+      updateProjectTargets(project);
+      updateProjectPackageJson(tree, project, projectName, rootPackageJson);
+      generateFiles(tree, join(__dirname, 'files'), project.root, options);
+      CoerceFile(tree, join(project.root, 'CHANGELOG.md'));
+      CoerceFile(tree, join(project.root, 'GETSTARTED.md'));
+      CoerceFile(tree, join(project.root, 'GUIDES.md'));
+      CoerceFile(tree, join(project.root, 'LICENSE.md'), tree.read('LICENSE'));
+      CoerceFile(tree, join(project.root, 'LICENSE'), tree.read('LICENSE'));
+      CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'README.md' ]);
+
+      updateProjectConfiguration(tree, project.name, project);
+
     }
 
-    console.log(`init project: ${ projectName }`);
-
-    updateProjectTargets(project);
-    updateProjectPackageJson(tree, project, projectName, rootPackageJson);
-    generateFiles(tree, join(__dirname, 'files'), project.root, options);
-    CoerceFile(tree, join(project.root, 'CHANGELOG.md'));
-    CoerceFile(tree, join(project.root, 'GETSTARTED.md'));
-    CoerceFile(tree, join(project.root, 'GUIDES.md'));
-    CoerceFile(tree, join(project.root, 'LICENSE.md'), tree.read('LICENSE'));
-    CoerceFile(tree, join(project.root, 'LICENSE'), tree.read('LICENSE'));
-    CoerceIgnorePattern(tree, join(project.root, '.gitignore'), [ 'README.md' ]);
-
-    updateProjectConfiguration(tree, project.name, project);
-
   }
+
 }
 
 export default initPublishableGenerator;

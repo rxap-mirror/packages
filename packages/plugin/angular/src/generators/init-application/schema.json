@@ -81,6 +81,11 @@
       "type": "boolean",
       "default": false,
       "description": "Use OAuth for authentication"
+    },
+    "skipProjects": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to skip executing project specific initialization"
     }
   },
   "required": []

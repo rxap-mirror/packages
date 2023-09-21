@@ -22,4 +22,5 @@ export interface InitApplicationGeneratorSchema {
   openApi?: boolean;
   jwt?: boolean;
   statusRegister?: boolean;
+  skipProjects?: boolean;
 }

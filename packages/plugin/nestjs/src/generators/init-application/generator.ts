@@ -636,127 +636,154 @@ export async function initApplicationGenerator(
 
   await addDependencies(tree, options);
 
-  const projects = getProjects(tree);
+  if (!options.skipProjects) {
 
-  for (const [ projectName, project ] of projects.entries()) {
+    const projects = getProjects(tree);
 
-    if (skipProject(tree, options, project, projectName)) {
-      continue;
-    }
+    for (const [ projectName, project ] of projects.entries()) {
 
-    const projectSourceRoot = project.sourceRoot;
+      if (skipProject(tree, options, project, projectName)) {
+        continue;
+      }
 
-    if (!projectSourceRoot) {
-      throw new Error(`Can't find project source root for project ${ projectName }`);
-    }
+      const projectSourceRoot = project.sourceRoot;
 
-    const port = getPort(tree, options, projectSourceRoot);
-    const globalApiPrefix = getApiPrefix(tree, options, projectSourceRoot, projectName);
+      if (!projectSourceRoot) {
+        throw new Error(`Can't find project source root for project ${ projectName }`);
+      }
 
-    console.log(`init project: ${ projectName }`);
+      const port = getPort(tree, options, projectSourceRoot);
+      const globalApiPrefix = getApiPrefix(tree, options, projectSourceRoot, projectName);
 
-    updateProjectTargets(project);
-    updateGitIgnore(tree, project);
-    updateTags(project, options);
-    await createOpenApiClientSdkLibrary(tree, project, projects);
+      console.log(`init project: ${ projectName }`);
 
-    // apply changes to the project configuration
-    updateProjectConfiguration(tree, projectName, project);
+      updateProjectTargets(project);
+      updateGitIgnore(tree, project);
+      updateTags(project, options);
+      await createOpenApiClientSdkLibrary(tree, project, projects);
 
-    coerceEnvironmentFiles(tree,
-      {
-        project: projectName,
-        sentry: options.sentry,
-        overwrite: options.overwrite,
-      },
-    );
-    TsMorphNestProjectTransform(
-      tree,
-      { project: projectName },
-      (project: Project, [ moduleSourceFile, controllerSourceFile, configSourceFile ]) => {
-        CoerceNestAppModule(moduleSourceFile);
-        CoerceNestAppController(controllerSourceFile);
-        CoerceNestThrottlerModuleImport(moduleSourceFile, { overwrite: options.overwrite });
-        CoerceNestConfigModuleImport(moduleSourceFile, { overwrite: options.overwrite });
-        CoerceAppGuardProvider(moduleSourceFile);
-        CoerceNestEnvironmentProvider(moduleSourceFile);
-        CoerceNestLoggerProvider(moduleSourceFile);
-        const itemList = ExtractExistingConfigValidation(moduleSourceFile);
-        for (const item of [
-          {
-            name: 'PORT',
-            type: 'number',
-            defaultValue: port.toFixed(0),
-          },
-          {
-            name: 'GLOBAL_API_PREFIX',
-            defaultValue: w => w.quote(globalApiPrefix),
-          },
-          {
-            name: 'THROTTLER_TTL',
-            defaultValue: '1',
-          },
-          {
-            name: 'THROTTLER_LIMIT',
-            defaultValue: '10',
-          },
-          {
-            name: 'COOKIE_SECRET',
-            defaultValue: 'GenerateRandomString()',
-          },
-        ]) {
-          if (!itemList.find(i => i.name === item.name)) {
-            itemList.push(item);
+      // apply changes to the project configuration
+      updateProjectConfiguration(tree, projectName, project);
+
+      coerceEnvironmentFiles(
+        tree,
+        {
+          project: projectName,
+          sentry: options.sentry,
+          overwrite: options.overwrite,
+        },
+      );
+      TsMorphNestProjectTransform(
+        tree,
+        { project: projectName },
+        (project: Project, [ moduleSourceFile, controllerSourceFile, configSourceFile ]) => {
+          CoerceNestAppModule(moduleSourceFile);
+          CoerceNestAppController(controllerSourceFile);
+          CoerceNestThrottlerModuleImport(moduleSourceFile, { overwrite: options.overwrite });
+          CoerceNestConfigModuleImport(moduleSourceFile, { overwrite: options.overwrite });
+          CoerceAppGuardProvider(moduleSourceFile);
+          CoerceNestEnvironmentProvider(moduleSourceFile);
+          CoerceNestLoggerProvider(moduleSourceFile);
+          const itemList = ExtractExistingConfigValidation(moduleSourceFile);
+          for (const item of [
+            {
+              name: 'PORT',
+              type: 'number',
+              defaultValue: port.toFixed(0),
+            },
+            {
+              name: 'GLOBAL_API_PREFIX',
+              defaultValue: w => w.quote(globalApiPrefix),
+            },
+            {
+              name: 'THROTTLER_TTL',
+              defaultValue: '1',
+            },
+            {
+              name: 'THROTTLER_LIMIT',
+              defaultValue: '10',
+            },
+            {
+              name: 'COOKIE_SECRET',
+              defaultValue: 'GenerateRandomString()',
+            },
+          ]) {
+            if (!itemList.find(i => i.name === item.name)) {
+              itemList.push(item);
+            }
           }
-        }
-        if (options.statusRegister && projectName !== 'service-status') {
-          if (!itemList.find(i => i.name === 'STATUS_SERVICE_BASE_URL')) {
-            itemList.push({
-              name: 'STATUS_SERVICE_BASE_URL',
-              defaultValue: `environment.production ? 'http://rxap-service-status:3000' : 'http://localhost:5300'`,
+          if (options.statusRegister && projectName !== 'service-status') {
+            if (!itemList.find(i => i.name === 'STATUS_SERVICE_BASE_URL')) {
+              itemList.push({
+                name: 'STATUS_SERVICE_BASE_URL',
+                defaultValue: `environment.production ? 'http://rxap-service-status:3000' : 'http://localhost:5300'`,
+              });
+            }
+            CoerceImports(configSourceFile, {
+              namespaceImport: 'process',
+              moduleSpecifier: 'process',
             });
           }
-          CoerceImports(configSourceFile, {
-            namespaceImport: 'process',
-            moduleSpecifier: 'process',
+          CoerceNestAppConfig(configSourceFile, {
+            itemList,
+            overwrite: options.overwrite,
           });
-        }
-        CoerceNestAppConfig(configSourceFile, {
-          itemList,
-          overwrite: options.overwrite,
-        });
-        CoerceImports(configSourceFile, {
-          namedImports: [ 'GenerateRandomString' ],
-          moduleSpecifier: '@rxap/utilities',
-        });
-      },
-      [
-        '/app/app.module.ts',
-        '/app/app.controller.ts',
-        '/app/app.config.ts?',
-      ],
-    );
+          CoerceImports(configSourceFile, {
+            namedImports: [ 'GenerateRandomString' ],
+            moduleSpecifier: '@rxap/utilities',
+          });
+        },
+        [
+          '/app/app.module.ts',
+          '/app/app.controller.ts',
+          '/app/app.config.ts?',
+        ],
+      );
 
-    removeAppServiceFile(tree, projectSourceRoot);
-    removeAppControllerSpecFile(tree, projectSourceRoot);
+      removeAppServiceFile(tree, projectSourceRoot);
+      removeAppControllerSpecFile(tree, projectSourceRoot);
 
-    if (options.generateMain) {
-      updateMainFile(tree, project, projectName, options);
-    }
+      if (options.generateMain) {
+        updateMainFile(tree, project, projectName, options);
+      }
 
-    if (options.healthIndicator || options.healthIndicatorList?.length) {
-      if (options.healthIndicatorList?.length) {
-        for (const healthIndicator of options.healthIndicatorList) {
-          await healthIndicatorGenerator(tree,
+      if (options.healthIndicator || options.healthIndicatorList?.length) {
+        if (options.healthIndicatorList?.length) {
+          for (const healthIndicator of options.healthIndicatorList) {
+            await healthIndicatorGenerator(
+              tree,
+              {
+                name: healthIndicator,
+                project: projectName,
+                overwrite: options.overwrite,
+              },
+            );
+          }
+        } else {
+          await healthIndicatorInitGenerator(
+            tree,
             {
-              name: healthIndicator,
               project: projectName,
               overwrite: options.overwrite,
             },
           );
         }
-      } else {
-        await healthIndicatorInitGenerator(
+      }
+
+      if (options.sentry) {
+        await sentryGenerator(
+          tree,
+          {
+            project: projectName,
+            dsn: options.sentryDsn,
+            required: !!options.sentryDsn,
+            overwrite: options.overwrite,
+          },
+        );
+      }
+
+      if (options.validator) {
+        await validatorGenerator(
           tree,
           {
             project: projectName,
@@ -764,57 +791,37 @@ export async function initApplicationGenerator(
           },
         );
       }
-    }
 
-    if (options.sentry) {
-      await sentryGenerator(tree,
-        {
-          project: projectName,
-          dsn: options.sentryDsn,
-          required: !!options.sentryDsn,
-          overwrite: options.overwrite,
-        },
-      );
-    }
+      if (options.openApi) {
+        await openApiGenerator(
+          tree,
+          {
+            project: projectName,
+            overwrite: options.overwrite,
+          },
+        );
+      }
 
-    if (options.validator) {
-      await validatorGenerator(
-        tree,
-        {
-          project: projectName,
-          overwrite: options.overwrite,
-        },
-      );
-    }
+      if (options.jwt) {
+        await jwtGenerator(
+          tree,
+          {
+            project: projectName,
+            overwrite: options.overwrite,
+          },
+        );
+      }
 
-    if (options.openApi) {
-      await openApiGenerator(
-        tree,
-        {
-          project: projectName,
-          overwrite: options.overwrite,
-        },
-      );
-    }
+      if (options.swagger !== false) {
+        await swaggerGenerator(
+          tree,
+          {
+            project: projectName,
+            overwrite: options.overwrite,
+          },
+        );
+      }
 
-    if (options.jwt) {
-      await jwtGenerator(
-        tree,
-        {
-          project: projectName,
-          overwrite: options.overwrite,
-        },
-      );
-    }
-
-    if (options.swagger !== false) {
-      await swaggerGenerator(
-        tree,
-        {
-          project: projectName,
-          overwrite: options.overwrite,
-        },
-      );
     }
 
   }

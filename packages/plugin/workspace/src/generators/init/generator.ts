@@ -385,8 +385,18 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   coerceNxJson(tree);
   await coerceRootPackageJsonScripts(tree);
 
-  await LibraryInitGenerator(tree, { overwrite: options.overwrite });
-  await ApplicationInitGenerator(tree, { overwrite: options.overwrite });
+  await LibraryInitGenerator(tree,
+    {
+      overwrite: options.overwrite,
+      skipProjects: options.skipProjects,
+    },
+  );
+  await ApplicationInitGenerator(tree,
+    {
+      overwrite: options.overwrite,
+      skipProjects: options.skipProjects,
+    },
+  );
 }
 
 export default initGenerator;
