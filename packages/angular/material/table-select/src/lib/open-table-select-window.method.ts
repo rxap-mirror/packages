@@ -28,11 +28,11 @@ import {
   WindowConfig,
   WindowService,
 } from '@rxap/window-system';
-import { Observable } from 'rxjs';
 import {
-  map,
-  take,
-} from 'rxjs/operators';
+  firstValueFrom,
+  Observable,
+} from 'rxjs';
+import { map } from 'rxjs/operators';
 import { CreateFilterFormProvider } from './create-filter-form-provider';
 import { TableSelectWindowComponent } from './table-select-window/table-select-window.component';
 
@@ -156,7 +156,7 @@ export class OpenTableSelectWindowMethod<Data extends Record<string, any> = Reco
       component: TableSelectWindowComponent,
     });
 
-    return windowRef.pipe(take(1), map(selected => selected ?? [])).toPromise();
+    return firstValueFrom(windowRef.pipe(map(selected => selected ?? [])));
 
   }
 

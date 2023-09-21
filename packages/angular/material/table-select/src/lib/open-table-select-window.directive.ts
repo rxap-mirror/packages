@@ -7,6 +7,7 @@ import {
   Input,
   isDevMode,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
@@ -19,6 +20,7 @@ import {
 import { BaseDataSource } from '@rxap/data-source';
 import { AbstractTableDataSource } from '@rxap/data-source/table';
 import { GenerateRandomString } from '@rxap/utilities';
+import { WindowService } from '@rxap/window-system';
 import { Observable } from 'rxjs';
 import {
   OpenTableSelectWindowMethod,
@@ -30,7 +32,7 @@ import {
   standalone: true,
 })
 export class OpenTableSelectWindowDirective<Data extends Record<string, any> = Record<string, any>>
-  implements OnChanges, OnInit {
+  implements OnChanges, OnInit, OnDestroy {
   @Input()
   public data?: Data[] | BaseDataSource<Data[]> | AbstractTableDataSource<Data>;
   @Input()
@@ -54,8 +56,11 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
 
   private matButton: MatButton | null = null;
 
+  public _internalId = GenerateRandomString();
+
   constructor(
     private readonly openMethod: OpenTableSelectWindowMethod<Data>,
+    private readonly windowService: WindowService,
     private readonly injector: Injector,
   ) {
   }
@@ -82,6 +87,12 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
     this.checkInputs();
   }
 
+  ngOnDestroy() {
+    if (this.windowService.has(this._internalId)) {
+      this.windowService.close(this._internalId);
+    }
+  }
+
   @HostListener('click', [ '$event' ])
   public async onClick($event: Event) {
     if (this.disabled || this._hasOpenWindow) {
@@ -92,6 +103,9 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
       throw new Error('FATAL: The data or columns input is not set');
     }
     const selected = await this.openMethod.call({
+      windowConfig: {
+        id: this._internalId,
+      },
       injector: this.injector,
       data: this.data,
       columns: this.columns instanceof Map ? this.columns : new Map(Object.entries(this.columns)),
