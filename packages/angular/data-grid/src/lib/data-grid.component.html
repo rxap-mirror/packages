@@ -22,7 +22,7 @@ never shown. -->
       <!-- region horizontal view -->
       <ng-template [ngIfElse]="normal" [ngIf]="row.flip">
         <tr>
-          <td colspan="2">
+          <td class="py-4" colspan="2">
             <mat-divider></mat-divider>
           </td>
         </tr>
@@ -34,7 +34,7 @@ never shown. -->
           <ng-template [ngIfThen]="content" [ngIf]="row.name"></ng-template>
         </tr>
         <tr>
-          <td colspan="2">
+          <td class="py-4" colspan="2">
             <mat-divider></mat-divider>
           </td>
         </tr>
@@ -43,11 +43,11 @@ never shown. -->
       <!-- region normal view -->
       <ng-template #normal>
         <tr *ngIf="!first && row.isSubHeader">
-          <td colspan="2">
+          <td class="py-4" colspan="2">
             <mat-divider></mat-divider>
           </td>
         </tr>
-        <tr [attr.data-name]="row.name" [ngClass]="{ 'sub-header': row.isSubHeader }">
+        <tr [attr.data-name]="row.name" [ngClass]="{ 'sub-header text-2xl': row.isSubHeader }">
           <ng-container
             *ngTemplateOutlet="row.headerCell?.template ?? defaultHeaderCell; context: { $implicit: row.name }"></ng-container>
           <ng-template [ngIfThen]="content" [ngIf]="row.name"></ng-template>
