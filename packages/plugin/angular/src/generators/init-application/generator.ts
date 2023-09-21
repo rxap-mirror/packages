@@ -570,8 +570,10 @@ export async function initApplicationGenerator(
     generateFiles(tree, join(__dirname, 'files', 'styles'), 'shared/angular/styles', options);
   }
 
-  if (!tree.exists('shared/angular/assets/silent-refresh.html')) {
-    generateFiles(tree, join(__dirname, 'files', 'oauth'), 'shared/angular/assets', options);
+  if (options.oauth) {
+    if (!tree.exists('shared/angular/assets/silent-refresh.html')) {
+      generateFiles(tree, join(__dirname, 'files', 'oauth'), 'shared/angular/assets', options);
+    }
   }
 
   if (!options.skipProjects) {
