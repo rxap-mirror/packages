@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.28...@rxap/layout@16.0.0-dev.29) (2023-09-21)
+
+### Bug Fixes
+
+- close sidenav if change to collapsed mode ([7a35660](https://gitlab.com/rxap/packages/commit/7a356602e2228360f85bae8cb9346e3228e0fe29))
+- only add margin to sidenav content if in collapsed mode ([c72febe](https://gitlab.com/rxap/packages/commit/c72febe141f8c11f126f99b3ef23b753599a5a47))
+
 # [16.0.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.27...@rxap/layout@16.0.0-dev.28) (2023-09-21)
 
 ### Bug Fixes
