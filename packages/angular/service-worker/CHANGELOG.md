@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@16.0.0-dev.18...@rxap/service-worker@16.0.0-dev.19) (2023-09-22)
+
+### Bug Fixes
+
+- add debug messages ([2c80a84](https://gitlab.com/rxap/packages/commit/2c80a8439998ee7b28f648a62c9467c616e8fc4f))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@16.0.0-dev.17...@rxap/service-worker@16.0.0-dev.18) (2023-09-22)
 
 **Note:** Version bump only for package @rxap/service-worker
