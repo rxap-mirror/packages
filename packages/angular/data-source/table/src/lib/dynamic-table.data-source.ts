@@ -292,9 +292,6 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
       tap({
         next: () => this.loading$.disable(),
         error: error => {
-          if (isDevMode()) {
-            console.error(`[${ this.constructor.name }]`, error);
-          }
           this.hasError$.enable();
           this.error$.next(error);
           this.handelError(error);
