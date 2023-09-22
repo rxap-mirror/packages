@@ -24,7 +24,11 @@ import {
   ProvideAuth,
   withAuthConfig,
 } from '@rxap/oauth';
-import { ProvideServiceWorkerUpdateDialog } from '@rxap/service-worker';
+import {
+  ProvideServiceWorkerUpdater,
+  withDialogUpdater,
+  withLogUpdater,
+} from '@rxap/service-worker';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../environments/environment';
@@ -58,6 +62,6 @@ export const appConfig: ApplicationConfig = {
       'ngsw-worker.js',
       { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' },
     ),
-    ProvideServiceWorkerUpdateDialog(),
+    ProvideServiceWorkerUpdater(withLogUpdater(), withDialogUpdater()),
   ],
 };

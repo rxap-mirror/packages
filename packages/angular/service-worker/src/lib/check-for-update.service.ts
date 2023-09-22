@@ -1,20 +1,21 @@
 import {
   Inject,
   Injectable,
-  NgModule,
 } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
+import { LifeCycleService } from '@rxap/life-cycle';
+import { interval } from 'rxjs';
 import {
   startWith,
   tap,
 } from 'rxjs/operators';
-import { interval } from 'rxjs';
-import { LifeCycleService } from '@rxap/life-cycle';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CheckForUpdateService {
+
+  private _started = false;
 
   constructor(
     @Inject(LifeCycleService) private readonly lifeCycle: LifeCycleService,
@@ -23,6 +24,10 @@ export class CheckForUpdateService {
   }
 
   public start(): void {
+    if (this._started) {
+      return;
+    }
+    this._started = true;
     if (this.updates.isEnabled) {
 
       console.debug('start check for update');
@@ -41,15 +46,6 @@ export class CheckForUpdateService {
         .subscribe();
 
     }
-  }
-
-}
-
-@NgModule({})
-export class CheckForUpdateModule {
-
-  constructor(@Inject(CheckForUpdateService) checkForUpdate: CheckForUpdateService) {
-    checkForUpdate.start();
   }
 
 }
