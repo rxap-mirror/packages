@@ -33,7 +33,7 @@ export class DialogUpdateService {
     console.debug('start dialog update service');
     this.updates.available
         .pipe(
-          concatMap((event) => this.openSnackBar(event)),
+          concatMap((event) => this.openUpdateDialog(event)),
           tap(() => console.log('start app update')),
           tap(() =>
             this.updates.activateUpdate().then(() => {
@@ -45,7 +45,8 @@ export class DialogUpdateService {
         .subscribe();
   }
 
-  private openSnackBar(event: UpdateAvailableEvent): Observable<void> {
+  private openUpdateDialog(event: UpdateAvailableEvent): Observable<void> {
+    console.debug('open update dialog');
     const body = document.getElementsByTagName('body')[0];
     const div = document.createElement('div');
     body.appendChild(div);
