@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@16.0.0-dev.19...@rxap/service-worker@16.0.0-dev.20) (2023-09-22)
+
+### Bug Fixes
+
+- use the correct dialog component ([a7e3d2a](https://gitlab.com/rxap/packages/commit/a7e3d2a1413653e9cd316618af92e136ff6b45c6))
+
 # [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@16.0.0-dev.18...@rxap/service-worker@16.0.0-dev.19) (2023-09-22)
 
 ### Bug Fixes
