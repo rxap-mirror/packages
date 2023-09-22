@@ -76,7 +76,6 @@ export class BaseDataSource<
       metadata: Metadata | null = null,
   ) {
     super(metadata);
-    this.genericRetryFunction = this.genericRetryFunction.bind(this);
   }
 
   protected _data?: Data;
@@ -254,10 +253,7 @@ export class BaseDataSource<
   protected _disconnect(viewerId: DataSourceViewerId): void {
   }
 
-  protected genericRetryFunction(error: any): Observable<any> {
-    this.hasError$.enable();
-    this.error$.next(error);
-    this.handelError(error);
+  protected genericRetryFunction(error: any, retryCount: number): Observable<any> {
     return this._retry$.asObservable().pipe(
       tap(() => this.hasError$.disable()),
     );

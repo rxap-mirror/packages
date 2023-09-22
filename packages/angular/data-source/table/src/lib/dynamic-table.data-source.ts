@@ -31,7 +31,7 @@ import {
   debounceTime,
   distinctUntilChanged,
   map,
-  retryWhen,
+  retry,
   startWith,
   switchMap,
   tap,
@@ -187,9 +187,9 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
     }
   }
 
-  protected override genericRetryFunction(error: any): Observable<any> {
+  protected override genericRetryFunction(error: any, retryCount: number): Observable<any> {
     this.loading$.disable();
-    return super.genericRetryFunction(error);
+    return super.genericRetryFunction(error, retryCount);
   }
 
   protected override _connect(viewer: BaseDataSourceViewer): [ Observable<Data[]>, TeardownLogic ] | Observable<Data[]> {
@@ -282,10 +282,27 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
         };
       }),
       distinctUntilChanged((a, b) => equals(a, b)),
-      tap(() => this.loading$.enable()),
+      tap(() => {
+        this.loading$.enable();
+        if (this.hasError$.value) {
+          this.hasError$.disable();
+        }
+      }),
       switchMap(tableEvent => this.loadPage(tableEvent)),
-      tap(() => this.loading$.disable()),
-      retryWhen(this.genericRetryFunction),
+      tap({
+        next: () => this.loading$.disable(),
+        error: error => {
+          if (isDevMode()) {
+            console.error(`[${ this.constructor.name }]`, error);
+          }
+          this.hasError$.enable();
+          this.error$.next(error);
+          this.handelError(error);
+        },
+      }),
+      retry({
+        delay: (error, retryCount) => this.genericRetryFunction(error, retryCount),
+      }),
     );
   }
 
