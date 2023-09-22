@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.18...@rxap/data-source@16.0.0-dev.19) (2023-09-22)
+
+### Bug Fixes
+
+- refactor the generic retry function and error handling ([c2b6915](https://gitlab.com/rxap/packages/commit/c2b691591a86e49288f17548f315522b92564c25))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.17...@rxap/data-source@16.0.0-dev.18) (2023-09-14)
 
 ### Bug Fixes
