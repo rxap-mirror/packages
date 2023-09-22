@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.19",
+  "version": "16.0.0-dev.20",
   "name": "@rxap/data-source",
   "description": "Provides the DataSource concept for RxAP.",
   "license": "GPL-3.0-or-later",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.19...@rxap/data-source@16.0.0-dev.20) (2023-09-22)
+
+### Bug Fixes
+
+- remove error logs ([f06c789](https://gitlab.com/rxap/packages/commit/f06c789074d77d60665ce4a8b11ae1a81db94683))
+
 # [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.18...@rxap/data-source@16.0.0-dev.19) (2023-09-22)
 
 ### Bug Fixes
