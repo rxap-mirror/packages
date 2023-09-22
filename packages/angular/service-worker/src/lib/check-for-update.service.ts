@@ -25,6 +25,7 @@ export class CheckForUpdateService {
 
   public start(): void {
     if (this._started) {
+      console.warn('check for update already started');
       return;
     }
     this._started = true;
@@ -45,6 +46,8 @@ export class CheckForUpdateService {
         )
         .subscribe();
 
+    } else {
+      console.warn('service worker updates are not enabled');
     }
   }
 
