@@ -134,7 +134,6 @@ export class RxapErrorHandler implements ErrorHandler {
 
   protected showAngularErrorDialog(data: AngularErrorDialogData): void {
     runInInjectionContext(this.injector, () => {
-      console.log('showAngularErrorDialog', data);
       inject(AngularErrorService).push(data);
     });
   }
