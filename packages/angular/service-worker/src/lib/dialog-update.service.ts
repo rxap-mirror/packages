@@ -9,13 +9,15 @@ import {
   SwUpdate,
   UpdateAvailableEvent,
 } from '@angular/service-worker';
-import { ErrorDialogComponent } from '@rxap/ngx-error';
 import { Observable } from 'rxjs';
 import {
   concatMap,
   tap,
 } from 'rxjs/operators';
-import { UPDATE_AVAILABLE_EVENT } from './service-worker-update-dialog/service-worker-update-dialog.component';
+import {
+  ServiceWorkerUpdateDialogComponent,
+  UPDATE_AVAILABLE_EVENT,
+} from './service-worker-update-dialog/service-worker-update-dialog.component';
 
 @Injectable({
   providedIn: 'root',
@@ -50,7 +52,7 @@ export class DialogUpdateService {
     const body = document.getElementsByTagName('body')[0];
     const div = document.createElement('div');
     body.appendChild(div);
-    const componentRef = createComponent(ErrorDialogComponent, {
+    const componentRef = createComponent(ServiceWorkerUpdateDialogComponent, {
       hostElement: div,
       environmentInjector: this.applicationRef.injector,
       elementInjector: Injector.create({
