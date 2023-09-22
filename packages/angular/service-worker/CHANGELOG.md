@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@16.0.0-dev.16...@rxap/service-worker@16.0.0-dev.17) (2023-09-22)
+
+### Bug Fixes
+
+- add debug messages ([cb516ec](https://gitlab.com/rxap/packages/commit/cb516ec639338709feaa390de4499dcab35d5d00))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/service-worker@16.0.0-dev.15...@rxap/service-worker@16.0.0-dev.16) (2023-09-19)
 
 ### Features
