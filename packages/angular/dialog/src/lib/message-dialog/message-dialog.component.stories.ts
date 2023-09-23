@@ -1,22 +1,14 @@
-import {
-  addDecorator,
-  moduleMetadata,
-} from '@storybook/angular';
-import { MessageDialogComponentModule } from './message-dialog.component.module';
+import { Meta } from '@storybook/angular';
 import { MessageDialogComponent } from './message-dialog.component';
-
-addDecorator(moduleMetadata({
-  imports: [
-    MessageDialogComponentModule,
-  ],
-}));
 
 export default {
   title: 'MessageDialogComponent',
   component: MessageDialogComponent,
-};
+} as Meta<MessageDialogComponent>;
 
-export const basic = () => ({
-  component: MessageDialogComponent,
-  props: {},
-});
+export const Primary = {
+  render: (args: MessageDialogComponent) => ({
+    props: args,
+  }),
+  args: {},
+};

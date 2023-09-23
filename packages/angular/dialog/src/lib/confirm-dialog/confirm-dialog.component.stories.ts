@@ -1,22 +1,14 @@
-import {
-  addDecorator,
-  moduleMetadata,
-} from '@storybook/angular';
-import { ConfirmDialogComponentModule } from './confirm-dialog.component.module';
+import { Meta } from '@storybook/angular';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
-
-addDecorator(moduleMetadata({
-  imports: [
-    ConfirmDialogComponentModule,
-  ],
-}));
 
 export default {
   title: 'ConfirmDialogComponent',
   component: ConfirmDialogComponent,
-};
+} as Meta<ConfirmDialogComponent>;
 
-export const basic = () => ({
-  component: ConfirmDialogComponent,
-  props: {},
-});
+export const Primary = {
+  render: (args: ConfirmDialogComponent) => ({
+    props: args,
+  }),
+  args: {},
+};

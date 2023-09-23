@@ -70,6 +70,37 @@
       }
     },
     "update-dependencies": {},
-    "update-package-group": {}
+    "update-package-group": {},
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "packages/angular/dialog/.storybook",
+        "browserTarget": "angular-dialog:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": [
+        "{options.outputDir}"
+      ],
+      "options": {
+        "outputDir": "dist/storybook/angular-dialog",
+        "configDir": "packages/angular/dialog/.storybook",
+        "browserTarget": "angular-dialog:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
   }
 }
