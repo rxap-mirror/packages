@@ -44,9 +44,10 @@ for key in $keys; do
     imageName=$(jq -r --arg project "$key" '.graph.nodes[$project].data.targets.docker.options.imageName' "$json_file")
     imageSuffix=$(jq -r --arg project "$key" '.graph.nodes[$project].data.targets.docker.options.imageSuffix' "$json_file")
     dockerContext=$(jq -r --arg project "$key" '.graph.nodes[$project].data.targets.build.options.outputPath' "$json_file")
+    dockerfile=$(jq -r --arg project "$key" '.graph.nodes[$project].data.targets.build.options.dockerfile' "$json_file")
     isAngular=$(jq -r 'select(.graph.nodes.dashboard.data.tags? // empty | .[] == "angular")' "$json_file")
-    if [[ -z "$contains_angular" ]]; then
-      echo "The array does not contain the string 'angular'."
+    if [[ -z "$dockerfile" ]]; then
+      echo -e "${RED}The target options does not have the dockerfile option.${NC}"
       PUSH_TO_CUSTOM=true \
       IMAGE_NAME="$imageName" \
       IMAGE_SUFFIX="$imageSuffix" \
@@ -56,15 +57,15 @@ for key in $keys; do
       DOCKER_BUILD_AND_PUSH_DEBUG=true \
       ./tools/scripts/build-and-push-docker-image.sh
     else
-      echo "The array contains the string 'angular'."
+      echo -e "${GREEN}The target options does have the dockerfile option.${NC}"
       PUSH_TO_CUSTOM=true \
-      IMAGE_NAME="$imageName" \
-      IMAGE_SUFFIX="$imageSuffix" \
-      DOCKER_CONTEXT="$dockerContext" \
-      IMAGE_TAG="$IMAGE_TAG" \
-      DOCKERFILE="shared/angular.Dockerfile" \
-      DRY_RUN=true \
-      DOCKER_BUILD_AND_PUSH_DEBUG=true \
-      ./tools/scripts/build-and-push-docker-image.sh
+  IMAGE_NAME="$imageName" \
+  IMAGE_SUFFIX="$imageSuffix" \
+  DOCKER_CONTEXT="$dockerContext" \
+  IMAGE_TAG="$IMAGE_TAG" \
+  DOCKERFILE="$dockerfile" \
+  DRY_RUN=true \
+  DOCKER_BUILD_AND_PUSH_DEBUG=true \
+  ./tools/scripts/build-and-push-docker-image.sh
     fi
 done

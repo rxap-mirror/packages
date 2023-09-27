@@ -1,2 +1,6 @@
 traefik.yml
 dynamic/local-services.yml
+tls/*.crt
+tls/*.key
+tls/*.csr
+tls/*.cnf
