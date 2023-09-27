@@ -1,5 +1,5 @@
 {
-  "version": "10.0.1-dev.10",
+  "version": "10.0.1-dev.11",
   "name": "@rxap/nest-minio",
   "license": "GPL-3.0-or-later",
   "dependencies": {

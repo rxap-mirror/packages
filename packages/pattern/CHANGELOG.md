@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/pattern@1.0.1-dev.10...@rxap/pattern@1.1.0-dev.0) (2023-09-27)
+
+### Bug Fixes
+
+- add minimal signature ([31a448c](https://gitlab.com/rxap/packages/commit/31a448cc6ac5559eb826fd8ff8a120d955a2f7fd))
+- DataSourceViewer viewChange property should be optional ([b592ec6](https://gitlab.com/rxap/packages/commit/b592ec6b85f918f0abf1dcd52ecd59100e1f9096))
+
+### Features
+
+- add DataSource interface ([c317866](https://gitlab.com/rxap/packages/commit/c317866f365280dbff731939b52867051312453d))
+
 ## [1.0.1-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/pattern@1.0.1-dev.9...@rxap/pattern@1.0.1-dev.10) (2023-09-12)
 
 **Note:** Version bump only for package @rxap/pattern

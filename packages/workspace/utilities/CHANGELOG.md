@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.16...@rxap/workspace-utilities@0.1.0-dev.17) (2023-09-27)
+
+### Features
+
+- add CoerceFilesStructure function ([feaaa06](https://gitlab.com/rxap/packages/commit/feaaa06b94509802f5c19f91546df41626d2b4dc))
+- add CoerceLernaJson function ([2d41629](https://gitlab.com/rxap/packages/commit/2d41629e8424507a32f1984b0aec6c635f4fc72d))
+
 # [0.1.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.15...@rxap/workspace-utilities@0.1.0-dev.16) (2023-09-19)
 
 ### Bug Fixes

@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.16",
+  "version": "16.0.0-dev.17",
   "name": "@rxap/config",
   "description": "Simple config file manager for angular applications.",
   "license": "GPL-3.0-or-later",
@@ -9,8 +9,8 @@
   "peerDependencies": {
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
-    "@rxap/environment": "^16.0.0-dev.15",
-    "@rxap/utilities": "^16.0.0-dev.18",
+    "@rxap/environment": "^16.0.0-dev.16",
+    "@rxap/utilities": "^16.0.0-dev.19",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
@@ -35,11 +35,11 @@
     "packageGroup": [
       {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.18"
+        "version": "16.0.0-dev.19"
       }
     ]
   },

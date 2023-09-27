@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.3",
+  "version": "16.0.1-dev.4",
   "name": "@rxap/ngx-timeago",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,7 +8,7 @@
   "peerDependencies": {
     "@angular/core": "^16.1.4",
     "@angular/localize": "^16.1.4",
-    "@rxap/utilities": "^16.0.0-dev.17",
+    "@rxap/utilities": "^16.0.0-dev.19",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0"
   },
@@ -32,7 +32,7 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.19"
       }
     ]
   },

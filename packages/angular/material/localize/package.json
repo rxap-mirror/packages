@@ -1,5 +1,5 @@
 {
-  "version": "16.0.1-dev.2",
+  "version": "16.0.1-dev.3",
   "name": "@rxap/ngx-material-localize",
   "license": "GPL-3.0-or-later",
   "dependencies": {

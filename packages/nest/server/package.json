@@ -1,5 +1,5 @@
 {
-  "version": "10.1.0-dev.12",
+  "version": "10.1.0-dev.13",
   "name": "@rxap/nest-server",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,7 +11,7 @@
     "@nestjs/core": "^10.0.5",
     "@nestjs/microservices": "^10.0.5",
     "@nestjs/swagger": "^7.1.2",
-    "@rxap/nest-utilities": "^10.1.0-dev.7",
+    "@rxap/nest-utilities": "^10.1.0-dev.9",
     "cookie-parser": "^1.4.6",
     "helmet": "^7.0.0",
     "tslib": "2.6.2"
@@ -36,7 +36,7 @@
     "packageGroup": [
       {
         "package": "@rxap/nest-utilities",
-        "version": "10.1.0-dev.7"
+        "version": "10.1.0-dev.9"
       }
     ]
   },

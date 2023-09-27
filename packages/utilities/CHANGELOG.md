@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.18...@rxap/utilities@16.0.0-dev.19) (2023-09-27)
+
+### Features
+
+- add CoerceArrayItems function ([7a60008](https://gitlab.com/rxap/packages/commit/7a600083d0ba7f37c3f6c66e37888b40f22c091e))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.17...@rxap/utilities@16.0.0-dev.18) (2023-09-14)
 
 ### Bug Fixes

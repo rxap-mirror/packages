@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.14",
+  "version": "16.0.0-dev.15",
   "name": "@rxap/upload",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -12,8 +12,8 @@
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
-    "@rxap/directives": "^16.0.0-dev.15",
-    "@rxap/pattern": "^1.0.1-dev.10",
+    "@rxap/directives": "^16.0.0-dev.16",
+    "@rxap/pattern": "^1.1.0-dev.0",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
@@ -38,11 +38,11 @@
     "packageGroup": [
       {
         "package": "@rxap/directives",
-        "version": "16.0.0-dev.15"
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.0.1-dev.10"
+        "version": "1.1.0-dev.0"
       }
     ]
   },

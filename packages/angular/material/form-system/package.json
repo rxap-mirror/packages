@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.16",
+  "version": "16.0.0-dev.17",
   "name": "@rxap/material-form-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -14,11 +14,11 @@
     "@angular/localize": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/form-system": "^16.0.0-dev.17",
-    "@rxap/forms": "^16.0.0-dev.16",
-    "@rxap/mixin": "^16.0.0-dev.14",
-    "@rxap/reflect-metadata": "^1.0.1-dev.10",
-    "@rxap/utilities": "^16.0.0-dev.17",
+    "@rxap/form-system": "^16.0.0-dev.18",
+    "@rxap/forms": "^16.0.0-dev.18",
+    "@rxap/mixin": "^16.0.0-dev.15",
+    "@rxap/reflect-metadata": "^1.0.1-dev.11",
+    "@rxap/utilities": "^16.0.0-dev.19",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
@@ -44,23 +44,23 @@
     "packageGroup": [
       {
         "package": "@rxap/form-system",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.1-dev.10"
+        "version": "1.0.1-dev.11"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.19"
       }
     ]
   },

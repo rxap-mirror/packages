@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.20...@rxap/plugin-application@16.1.0-dev.21) (2023-09-27)
+
+### Bug Fixes
+
+- update utility scripts ([f09799a](https://gitlab.com/rxap/packages/commit/f09799a5f2d944193d1a39a095cd81405bf31de6))
+- use the dep glob explicitly ([47ac6b7](https://gitlab.com/rxap/packages/commit/47ac6b79e390eaffadae3b13bf439f466b608f64))
+
+### Features
+
+- add docker compose generator files ([b2994bf](https://gitlab.com/rxap/packages/commit/b2994bf52dae8395f114a7a1fd45c8dc6e912fc3))
+
 # [16.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.19...@rxap/plugin-application@16.1.0-dev.20) (2023-09-21)
 
 ### Bug Fixes

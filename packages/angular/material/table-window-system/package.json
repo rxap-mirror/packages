@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.14",
+  "version": "16.0.0-dev.15",
   "name": "@rxap/material-table-window-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,14 +10,14 @@
     "@angular/core": "^16.1.4",
     "@angular/localize": "^16.1.4",
     "@angular/material": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.17",
-    "@rxap/form-system": "^16.0.0-dev.17",
-    "@rxap/forms": "^16.0.0-dev.16",
-    "@rxap/material-table-system": "^16.0.0-dev.23",
-    "@rxap/mixin": "^16.0.0-dev.14",
-    "@rxap/pattern": "^1.0.1-dev.10",
-    "@rxap/utilities": "^16.0.0-dev.17",
-    "@rxap/window-system": "^16.0.0-dev.18",
+    "@rxap/data-source": "^16.0.0-dev.21",
+    "@rxap/form-system": "^16.0.0-dev.18",
+    "@rxap/forms": "^16.0.0-dev.18",
+    "@rxap/material-table-system": "^16.0.0-dev.24",
+    "@rxap/mixin": "^16.0.0-dev.15",
+    "@rxap/pattern": "^1.1.0-dev.0",
+    "@rxap/utilities": "^16.0.0-dev.19",
+    "@rxap/window-system": "^16.0.0-dev.20",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
@@ -43,35 +43,35 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.21"
       },
       {
         "package": "@rxap/form-system",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "16.0.0-dev.23"
+        "version": "16.0.0-dev.24"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.0-dev.14"
+        "version": "16.0.0-dev.15"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.0.1-dev.10"
+        "version": "1.1.0-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.19"
       },
       {
         "package": "@rxap/window-system",
-        "version": "16.0.0-dev.18"
+        "version": "16.0.0-dev.20"
       }
     ]
   },

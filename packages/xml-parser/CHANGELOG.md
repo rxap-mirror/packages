@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.16...@rxap/xml-parser@16.0.0-dev.17) (2023-09-27)
+
+**Note:** Version bump only for package @rxap/xml-parser
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.15...@rxap/xml-parser@16.0.0-dev.16) (2023-09-12)
 
 ### Bug Fixes

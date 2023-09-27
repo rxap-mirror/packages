@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.0-dev.17...@rxap/data-grid@16.0.0-dev.18) (2023-09-27)
+
+### Bug Fixes
+
+- use DataSource interface directly ([04e867e](https://gitlab.com/rxap/packages/commit/04e867e54c6c998ad52709bcc0ee0b3ff11016ff))
+
 # [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.0-dev.16...@rxap/data-grid@16.0.0-dev.17) (2023-09-21)
 
 ### Bug Fixes

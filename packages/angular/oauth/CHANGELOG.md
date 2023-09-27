@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/oauth@16.0.0-dev.19...@rxap/oauth@16.0.0-dev.20) (2023-09-27)
+
+**Note:** Version bump only for package @rxap/oauth
+
 # [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/oauth@16.0.0-dev.18...@rxap/oauth@16.0.0-dev.19) (2023-09-20)
 
 ### Bug Fixes

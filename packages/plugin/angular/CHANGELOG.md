@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.40](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.39...@rxap/plugin-angular@16.1.0-dev.40) (2023-09-27)
+
+### Bug Fixes
+
+- use CoerceFilesStructure function ([4bc088e](https://gitlab.com/rxap/packages/commit/4bc088eefdc1d2cf8444c395c7d8e648330b7f6f))
+
 # [16.1.0-dev.39](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.38...@rxap/plugin-angular@16.1.0-dev.39) (2023-09-22)
 
 **Note:** Version bump only for package @rxap/plugin-angular

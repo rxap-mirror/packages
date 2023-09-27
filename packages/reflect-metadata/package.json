@@ -1,12 +1,12 @@
 {
-  "version": "1.0.1-dev.10",
+  "version": "1.0.1-dev.11",
   "name": "@rxap/reflect-metadata",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/utilities": "^16.0.0-dev.17",
+    "@rxap/utilities": "^16.0.0-dev.19",
     "reflect-metadata": "^0.1.13",
     "tslib": "2.6.2"
   },
@@ -28,7 +28,7 @@
     "packageGroup": [
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.19"
       }
     ]
   },

@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.15",
+  "version": "16.0.0-dev.16",
   "name": "@rxap/authentication",
   "description": "A collection of components and services to simplify the authentication process implementation.",
   "license": "GPL-3.0-or-later",

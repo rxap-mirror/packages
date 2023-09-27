@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.31...@rxap/plugin-workspace@16.1.0-dev.32) (2023-09-27)
+
+### Bug Fixes
+
+- mount custom service settings from detected folder ([ec8e511](https://gitlab.com/rxap/packages/commit/ec8e511da580abf02686a89be660c7624fbae13e))
+- remove application specific generator steps ([2a026e0](https://gitlab.com/rxap/packages/commit/2a026e0755d3736caa3daffb83b49368de5b3b6b))
+- use CoerceFilesStructure function ([4bc088e](https://gitlab.com/rxap/packages/commit/4bc088eefdc1d2cf8444c395c7d8e648330b7f6f))
+
+### Features
+
+- add docker compose generator files ([b2994bf](https://gitlab.com/rxap/packages/commit/b2994bf52dae8395f114a7a1fd45c8dc6e912fc3))
+- coerce the lerna.json file ([6554b3c](https://gitlab.com/rxap/packages/commit/6554b3c223241c7155ee45063a60e787c0037c32))
+
 # [16.1.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.30...@rxap/plugin-workspace@16.1.0-dev.31) (2023-09-21)
 
 ### Bug Fixes

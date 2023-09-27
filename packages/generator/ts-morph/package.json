@@ -1,12 +1,12 @@
 {
-  "version": "1.0.1-dev.11",
+  "version": "1.0.1-dev.12",
   "name": "@rxap/generator-ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/workspace-ts-morph": "^0.1.0-dev.8",
+    "@rxap/workspace-ts-morph": "^0.1.0-dev.9",
     "tslib": "2.6.2"
   },
   "author": {
@@ -29,7 +29,7 @@
     "packageGroup": [
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "0.1.0-dev.8"
+        "version": "0.1.0-dev.9"
       }
     ]
   },
