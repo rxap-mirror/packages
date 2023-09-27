@@ -16,8 +16,8 @@ describe('ExtractExistingConfigValidation', () => {
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
-import { ENVIRONMENT, GetLogLevels, SentryOptionsFactory } from '@rxap/nest-utilities';
-import { SENTRY_INTERCEPTOR_OPTIONS, SentryInterceptor, SentryModule } from '@rxap/nest-sentry';
+import { ENVIRONMENT, GetLogLevels } from '@rxap/nest-utilities';
+import { SENTRY_INTERCEPTOR_OPTIONS, SentryInterceptor, SentryModule, SentryOptionsFactory } from '@rxap/nest-sentry';
 import * as Joi from 'joi';
 import { environment } from '../environments/environment';
 import { JobExecutionTableModule } from '../job-execution-table/job-execution-table.module';
@@ -195,11 +195,11 @@ import {
   SENTRY_INTERCEPTOR_OPTIONS,
   SentryInterceptor,
   SentryModule,
+  SentryOptionsFactory,
 } from '@rxap/nest-sentry';
 import {
   ENVIRONMENT,
   GetLogLevels,
-  SentryOptionsFactory,
 } from '@rxap/nest-utilities';
 import { environment } from '../environments/environment';
 import { StatusModule } from '../status/status.module';

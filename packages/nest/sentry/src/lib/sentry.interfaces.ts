@@ -21,14 +21,14 @@ export type SentryModuleOptions = Omit<NodeOptions, 'integrations'> & {
   close?: SentryCloseOptions
 } & ConsoleLoggerOptions;
 
-export interface SentryOptionsFactory {
+export interface ISentryOptionsFactory {
   createSentryModuleOptions(): Promise<SentryModuleOptions> | SentryModuleOptions;
 }
 
 export interface SentryModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
   inject?: any[];
-  useClass?: Type<SentryOptionsFactory>;
-  useExisting?: Type<SentryOptionsFactory>;
+  useClass?: Type<ISentryOptionsFactory>;
+  useExisting?: Type<ISentryOptionsFactory>;
   useFactory?: (...args: any[]) => Promise<SentryModuleOptions> | SentryModuleOptions;
 }
 

@@ -5,18 +5,18 @@ import {
   Provider,
   Type,
 } from '@nestjs/common';
+import { ConsoleLoggerOptions } from '@nestjs/common/services/console-logger.service';
+import {
+  ISentryOptionsFactory,
+  SentryModuleAsyncOptions,
+  SentryModuleOptions,
+} from './sentry.interfaces';
+import { SentryLogger } from './sentry.logger';
+import { SentryService } from './sentry.service';
 import {
   CONSOLE_LOGGER_OPTIONS,
   SENTRY_MODULE_OPTIONS,
 } from './tokens';
-import {
-  SentryModuleAsyncOptions,
-  SentryModuleOptions,
-  SentryOptionsFactory,
-} from './sentry.interfaces';
-import { SentryLogger } from './sentry.logger';
-import { SentryService } from './sentry.service';
-import { ConsoleLoggerOptions } from '@nestjs/common/services/console-logger.service';
 
 @Global()
 @Module({
@@ -80,7 +80,7 @@ export class SentryModule {
     if (options.useExisting || options.useFactory) {
       return [ this.createAsyncOptionsProvider(options) ];
     }
-    const useClass = options.useClass as Type<SentryOptionsFactory>;
+    const useClass = options.useClass as Type<ISentryOptionsFactory>;
     return [
       this.createAsyncOptionsProvider(options),
       {
@@ -101,11 +101,11 @@ export class SentryModule {
       };
     }
     const inject = [
-      (options.useClass || options.useExisting) as Type<SentryOptionsFactory>,
+      (options.useClass || options.useExisting) as Type<ISentryOptionsFactory>,
     ];
     return {
       provide: SENTRY_MODULE_OPTIONS,
-      useFactory: async (optionsFactory: SentryOptionsFactory) =>
+      useFactory: async (optionsFactory: ISentryOptionsFactory) =>
         await optionsFactory.createSentryModuleOptions(),
       inject,
     };

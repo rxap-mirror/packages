@@ -1,8 +1,10 @@
 import { ConfigService } from '@nestjs/config';
-import { SentryModuleOptions } from '@rxap/nest-sentry';
-import { DetermineEnvironment } from './determine-environment';
-import { DetermineRelease } from './determine-release';
-import { Environment } from './environment';
+import {
+  DetermineEnvironment,
+  DetermineRelease,
+  Environment,
+} from '@rxap/nest-utilities';
+import { SentryModuleOptions } from './sentry.interfaces';
 
 export function SentryOptionsFactory(environment: Environment): (config: ConfigService) => SentryModuleOptions {
   return (config: ConfigService) => {

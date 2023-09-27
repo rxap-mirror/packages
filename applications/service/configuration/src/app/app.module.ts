@@ -20,11 +20,11 @@ import {
   SENTRY_INTERCEPTOR_OPTIONS,
   SentryInterceptor,
   SentryModule,
+  SentryOptionsFactory,
 } from '@rxap/nest-sentry';
 import {
   ENVIRONMENT,
   GetLogLevels,
-  SentryOptionsFactory,
 } from '@rxap/nest-utilities';
 import { ConfigurationModule } from '../configuration/configuration.module';
 import { environment } from '../environments/environment';
