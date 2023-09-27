@@ -13,7 +13,6 @@ import {
   CoerceProjectTags,
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
-import { EachDirSync } from '@rxap/node-utilities';
 import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
 import {
   CoerceAppConfigProvider,
@@ -33,12 +32,12 @@ import {
 import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
+  CoerceFilesStructure,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   GetProjectPrefix,
   Strategy,
 } from '@rxap/workspace-utilities';
-import { readFileSync } from 'fs';
 import {
   join,
   relative,
@@ -735,12 +734,11 @@ export async function initApplicationGenerator(
           });
         }
       }
-      for (const file of EachDirSync(join(__dirname, 'files', 'assets'))) {
-        const filePath = relative(join(__dirname, 'files', 'assets'), file);
-        if (!tree.exists(join(project.sourceRoot, 'assets', filePath))) {
-          tree.write(join(project.sourceRoot, 'assets', filePath), readFileSync(file));
-        }
-      }
+      CoerceFilesStructure(tree, {
+        srcFolder: join(__dirname, 'files', 'assets'),
+        target: join(project.sourceRoot, 'assets'),
+        overwrite: options.overwrite,
+      });
 
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);

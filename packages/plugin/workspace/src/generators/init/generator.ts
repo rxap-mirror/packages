@@ -1,6 +1,5 @@
 import {
   addProjectConfiguration,
-  generateFiles,
   getProjects,
   NxJsonConfiguration,
   readNxJson,
@@ -16,6 +15,7 @@ import {
   MergeDeepLeft,
 } from '@rxap/utilities';
 import {
+  CoerceFilesStructure,
   CoerceLernaJson,
   CoerceTarget,
   Strategy,
@@ -360,10 +360,11 @@ function coerceNxJson(tree: Tree) {
 }
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
-  generateFiles(tree, join(__dirname, 'files/general'), '', { tmpl: '' });
-  if (options.applications) {
-    generateFiles(tree, join(__dirname, 'files/applications'), '', { tmpl: '' });
-  }
+  CoerceFilesStructure(tree, {
+    srcFolder: join(__dirname, 'files', 'general'),
+    target: '',
+    overwrite: options.overwrite,
+  });
   if (options.packages) {
     CoerceLernaJson(tree);
   }
