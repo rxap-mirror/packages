@@ -9158,7 +9158,8 @@ __metadata:
     "@nestjs/core": ^10.0.5
     "@nestjs/swagger": ^7.1.2
     "@nestjs/terminus": ^10.0.1
-    "@rxap/nest-utilities": ^10.1.0-dev.9
+    "@rxap/nest-utilities": ^10.1.0-dev.10
+    "@rxap/node-utilities": ^1.1.0-dev.11
     "@rxap/utilities": ^16.0.0-dev.19
     "@sentry/core": ^7.28.1
     class-transformer: ^0.5.1

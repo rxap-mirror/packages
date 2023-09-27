@@ -1,5 +1,5 @@
 {
-  "version": "10.1.0-dev.9",
+  "version": "10.1.0-dev.10",
   "name": "@rxap/nest-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.0-dev.9...@rxap/nest-utilities@10.1.0-dev.10) (2023-09-27)
+
+### Features
+
+- add EnvironmentModule ([f0f4de2](https://gitlab.com/rxap/packages/commit/f0f4de22c1cb6beb5d4f0f804dbcccf8bbdce1d6))
+
 # [10.1.0-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.0-dev.8...@rxap/nest-utilities@10.1.0-dev.9) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/nest-utilities
