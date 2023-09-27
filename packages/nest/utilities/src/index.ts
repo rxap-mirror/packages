@@ -16,6 +16,7 @@ export * from './lib/determine-production-environment-name';
 export * from './lib/determine-release-name';
 export * from './lib/determine-release';
 export * from './lib/determine-version';
+export * from './lib/environment.module';
 export * from './lib/environment';
 export * from './lib/filter-query.dto';
 export * from './lib/filter-query.pipe';
