@@ -8,6 +8,8 @@ export interface DataSourceViewer {
 }
 
 export interface DataSource<Data = unknown, Viewer extends DataSourceViewer = DataSourceViewer> {
+  loading$?: Observable<boolean>;
+  hasError$?: Observable<boolean>;
 
   connect(viewer: Viewer): Observable<Data>;
 
@@ -15,4 +17,5 @@ export interface DataSource<Data = unknown, Viewer extends DataSourceViewer = Da
 
   disconnect(viewerId: string): void;
 
+  refresh(): void;
 }
