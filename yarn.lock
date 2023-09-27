@@ -9231,7 +9231,6 @@ __metadata:
     "@nestjs/common": ^10.0.5
     "@nestjs/config": ^3.0.0
     "@nestjs/core": ^10.0.5
-    "@rxap/nest-sentry": ^10.1.0-dev.1
     "@rxap/utilities": ^16.0.0-dev.18
     class-transformer: ^0.5.1
     class-validator: ^0.14.0
@@ -19926,6 +19925,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"glob@npm:^10.3.10":
+  version: 10.3.10
+  resolution: "glob@npm:10.3.10"
+  dependencies:
+    foreground-child: ^3.1.0
+    jackspeak: ^2.3.5
+    minimatch: ^9.0.1
+    minipass: ^5.0.0 || ^6.0.2 || ^7.0.0
+    path-scurry: ^1.10.1
+  bin:
+    glob: dist/esm/bin.mjs
+  checksum: 4f2fe2511e157b5a3f525a54092169a5f92405f24d2aed3142f4411df328baca13059f4182f1db1bf933e2c69c0bd89e57ae87edd8950cba8c7ccbe84f721cf3
+  languageName: node
+  linkType: hard
+
 "glob@npm:^6.0.1":
   version: 6.0.4
   resolution: "glob@npm:6.0.4"
@@ -21739,6 +21753,19 @@ __metadata:
     "@pkgjs/parseargs":
       optional: true
   checksum: e29291c0d0f280a063fa18fbd1e891ab8c2d7519fd34052c0ebde38538a15c603140d60c2c7f432375ff7ee4c5f1c10daa8b2ae19a97c3d4affe308c8360c1df
+  languageName: node
+  linkType: hard
+
+"jackspeak@npm:^2.3.5":
+  version: 2.3.5
+  resolution: "jackspeak@npm:2.3.5"
+  dependencies:
+    "@isaacs/cliui": ^8.0.2
+    "@pkgjs/parseargs": ^0.11.0
+  dependenciesMeta:
+    "@pkgjs/parseargs":
+      optional: true
+  checksum: c2c211f13ceffa05f6c2a2fe82667303c81af6f9f53619b9e4fd403207ffe666428a017f61cd43b3478759188917eda14a81f8823b6dd40a8627e46d973a37df
   languageName: node
   linkType: hard
 
@@ -28888,6 +28915,7 @@ __metadata:
     eslint-plugin-cypress: ^2.10.3
     firebase: ^9.6.7
     firebase-admin: 10.3.0
+    glob: ^10.3.10
     gpt-3-encoder: ^1.1.4
     helmet: ^7.0.0
     html-webpack-plugin: ^5.5.0

@@ -9,7 +9,7 @@ import {
   writeFileSync,
 } from 'fs';
 import { copy } from 'fs-extra';
-import glob from 'glob';
+import { glob } from 'glob';
 import { compile } from 'handlebars';
 import {
   basename,
@@ -74,15 +74,8 @@ async function copyFiles(
       }
       const assetOutputPath = join(outputPath, assetPath.output);
       try {
-        await new Promise((resolve, reject) => glob(assetPath.input + assetPath.glob, (err: any, files: string[]) => {
-          if (err) {
-            reject(err);
-            return;
-          }
-          Promise.all(files.map(file => copy(file, join(assetOutputPath, relative(assetPath.input, file)))))
-                 .then(resolve)
-                 .catch(reject);
-        }));
+        const files = await glob(assetPath.input + assetPath.glob);
+        await Promise.all(files.map(file => copy(file, join(assetOutputPath, relative(assetPath.input, file)))));
       } catch (e: any) {
         throw new Error(`Could not copy assets '${ JSON.stringify(assetPath) }' to '${ outputPath }': ${ e.message }`);
       }
