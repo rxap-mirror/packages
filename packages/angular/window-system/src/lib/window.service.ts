@@ -177,7 +177,7 @@ export class WindowService {
   }
 
   public add(windowRef: WindowRef<any>): void {
-    this.active.set(windowRef.settings.id!, windowRef);
+    this.active.set(windowRef.id!, windowRef);
     this.activeCount$.next(this.active.size);
   }
 

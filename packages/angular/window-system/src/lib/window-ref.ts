@@ -45,11 +45,39 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
   private oldSizes: { width: string, height: string, pos: { x: string, y: string } } | null = null;
 
   constructor(
-    public readonly overlayRef: OverlayRef,
-    private readonly overlay: Overlay,
-    public settings: WindowSettings<D>,
+    protected readonly overlayRef: OverlayRef,
+    protected readonly overlay: Overlay,
+    protected readonly settings: WindowSettings<D>,
   ) {
     super();
+  }
+
+  public get id(): string | undefined {
+    return this.settings.id;
+  }
+
+  public get minimizable(): boolean | undefined {
+    return this.settings.minimizable;
+  }
+
+  public get draggable(): boolean | undefined {
+    return this.settings.draggable;
+  }
+
+  public get minWidth(): string | undefined {
+    return this.settings.minWidth;
+  }
+
+  public get minHeight(): string | undefined {
+    return this.settings.minHeight;
+  }
+
+  public get maxWidth(): string | undefined {
+    return this.settings.maxWidth;
+  }
+
+  public get maxHeight(): string | undefined {
+    return this.settings.maxHeight;
   }
 
   public get isMinimized(): boolean {

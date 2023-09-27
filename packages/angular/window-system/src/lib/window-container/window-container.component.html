@@ -1,13 +1,13 @@
 <div #container
      (cdkDragEnded)="onDragEnded($event)"
-     [cdkDragDisabled]="windowRef.settings.draggable === false"
+     [cdkDragDisabled]="windowRef.draggable === false"
      [ngStyle]="{
      'width': width$ | async,
      'height': height$ | async,
-     'minWidth': windowRef.settings.minWidth,
-     'minHeight': windowRef.settings.minHeight,
-     'maxWidth': windowRef.settings.maxWidth,
-     'maxHeight': windowRef.settings.maxHeight
+     'minWidth': windowRef.minWidth,
+     'minHeight': windowRef.minHeight,
+     'maxWidth': windowRef.maxWidth,
+     'maxHeight': windowRef.maxHeight
      }"
      cdkDrag
      cdkDragBoundary=".cdk-overlay-container"
