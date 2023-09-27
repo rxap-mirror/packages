@@ -24,11 +24,16 @@ import {
 } from 'rxjs';
 import { valid } from 'semver';
 
+export type Version = string;
+export type Changelog = string;
+export type Language = string | undefined;
+export type Application = string;
+
 @Injectable()
 export class LoadChangelogService implements OnApplicationBootstrap, OnApplicationShutdown {
 
-  public readonly generalChangelog = new Map<string, string>();
-  public readonly applicationChangelog = new Map<string, Map<string, string>>();
+  public readonly generalChangelog = new Map<Version, Map<Language, Changelog>>();
+  public readonly applicationChangelog = new Map<Application, Map<Version, Map<Language, Changelog>>>();
   private _changeSubscription?: Subscription;
   private readonly dataDir: string;
 
@@ -58,14 +63,38 @@ export class LoadChangelogService implements OnApplicationBootstrap, OnApplicati
     this._changeSubscription?.unsubscribe();
   }
 
-  private getChangelogMap(application?: string): Map<string, string> {
-    if (application) {
-      if (!this.applicationChangelog.has(application)) {
-        this.applicationChangelog.set(application, new Map<string, string>());
-      }
-      return this.applicationChangelog.get(application)!;
+  public loadFile(filePath: string) {
+    const relativePath = relative(this.dataDir, filePath);
+    if (relativePath.includes('.gitkeep')) {
+      return false;
     }
-    return this.generalChangelog;
+    if (!relativePath.endsWith('changelog.md') && !relativePath.match(/changelog\.([a-zA-Z-_]+)\.md$/)) {
+      return false;
+    }
+    this.logger.debug('load changelog: ' + relativePath, 'LoadChangelogService');
+    if (!this.validatedChangelogFilePath(relativePath)) {
+      throw new InternalServerErrorException('Invalid changelog file path: ' + relativePath);
+      return;
+    }
+    const {
+      version,
+      name,
+      application,
+    } = this.extractChangelogLoadingProperties(relativePath);
+    const changelogMap = this.getChangelogMap(application);
+    const match = name.match(/^changelog\.([a-zA-Z-_]+)\.md$/);
+    if (name !== 'changelog.md' && !match) {
+      throw new InternalServerErrorException('Currently only changelog.md is supported');
+    }
+    let language: Language = undefined;
+    if (match) {
+      language = match[1];
+    }
+    if (!changelogMap.get(version)) {
+      changelogMap.set(version, new Map<Language, Changelog>());
+    }
+    const map = changelogMap.get(version)!;
+    map.set(language, this.loadChangelogFromFileSystem(filePath));
   }
 
   private watchForFileSystemChanges() {
@@ -82,31 +111,14 @@ export class LoadChangelogService implements OnApplicationBootstrap, OnApplicati
     }).subscribe();
   }
 
-  private validatedChangelogFilePath(relativePath: string) {
-    const fragments = relativePath.split('/');
-    if (fragments.length !== 2 && fragments.length !== 3) {
-      this.logger.error(
-        'invalid changelog file path: ' + relativePath + ' nested changelog is not supported',
-        'LoadChangelogService',
-      );
-      return false;
+  private getChangelogMap(application?: string): Map<Version, Map<Language, Changelog>> {
+    if (application) {
+      if (!this.applicationChangelog.has(application)) {
+        this.applicationChangelog.set(application, new Map<Version, Map<Language, Changelog>>());
+      }
+      return this.applicationChangelog.get(application)!;
     }
-    const version = fragments.shift();
-    if (!valid(version) && version !== 'latest') {
-      this.logger.error(
-        `invalid version: '${ version }' for loaded file path ${ relativePath }`,
-        'LoadChangelogService',
-      );
-      return false;
-    }
-    const name = fragments.pop();
-    if (name !== 'changelog.md') {
-      this.logger.error('invalid changelog file path: ' +
-        relativePath +
-        ' file name is not equal to "changelog.md"', 'LoadChangelogService');
-      return false;
-    }
-    return true;
+    return this.generalChangelog;
   }
 
   private extractChangelogLoadingProperties(relativePath: string) {
@@ -137,29 +149,31 @@ export class LoadChangelogService implements OnApplicationBootstrap, OnApplicati
     };
   }
 
-  public loadFile(filePath: string) {
-    const relativePath = relative(this.dataDir, filePath);
-    if (relativePath.includes('.gitkeep')) {
+  private validatedChangelogFilePath(relativePath: string) {
+    const fragments = relativePath.split('/');
+    if (fragments.length !== 2 && fragments.length !== 3) {
+      this.logger.error(
+        'invalid changelog file path: ' + relativePath + ' nested changelog is not supported',
+        'LoadChangelogService',
+      );
       return false;
     }
-    if (!relativePath.endsWith('changelog.md')) {
+    const version = fragments.shift();
+    if (!valid(version) && version !== 'latest') {
+      this.logger.error(
+        `invalid version: '${ version }' for loaded file path ${ relativePath }`,
+        'LoadChangelogService',
+      );
       return false;
     }
-    this.logger.debug('load changelog: ' + relativePath, 'LoadChangelogService');
-    if (!this.validatedChangelogFilePath(relativePath)) {
-      throw new InternalServerErrorException('Invalid changelog file path: ' + relativePath);
-      return;
+    const name = fragments.pop();
+    if (!name || (name !== 'changelog.md' && !name.match(/^changelog\.([a-zA-Z-_]+)\.md$/))) {
+      this.logger.error('invalid changelog file path: ' +
+        relativePath +
+        ' file name is not equal to "changelog.md"', 'LoadChangelogService');
+      return false;
     }
-    const {
-      version,
-      name,
-      application,
-    } = this.extractChangelogLoadingProperties(relativePath);
-    const changelogMap = this.getChangelogMap(application);
-    if (name !== 'changelog.md') {
-      throw new InternalServerErrorException('Currently only changelog.md is supported');
-    }
-    changelogMap.set(version, this.loadChangelogFromFileSystem(filePath));
+    return true;
   }
 
   private loadChangelogFromFileSystem(filePath: string) {

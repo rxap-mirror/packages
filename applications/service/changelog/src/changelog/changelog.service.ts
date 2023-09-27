@@ -12,7 +12,12 @@ import {
   valid,
 } from 'semver';
 import { ChangelogDto } from './changelog.dto';
-import { LoadChangelogService } from './load-changelog.service';
+import {
+  Changelog,
+  Language,
+  LoadChangelogService,
+  Version,
+} from './load-changelog.service';
 
 @Injectable()
 export class ChangelogService {
@@ -23,29 +28,29 @@ export class ChangelogService {
   @Inject(LoadChangelogService)
   private readonly config!: LoadChangelogService;
 
-  getLatest(application?: string): ChangelogDto {
+  getLatest(application?: string, acceptsLanguage?: string): ChangelogDto {
     this.logger.log(`Get latest changelog`, 'ChangelogService');
     const changelog: ChangelogDto = {
-      general: [ this.getLatestChangelog(this.config.generalChangelog) ],
+      general: [ this.getLatestChangelog(this.config.generalChangelog, acceptsLanguage) ],
       application: [],
     };
     if (application && this.config.applicationChangelog.has(application)) {
       this.logger.log(`Get latest changelog for application: ${ application }`, 'ChangelogService');
       const applicationChangelog = this.config.applicationChangelog.get(application);
       if (applicationChangelog) {
-        changelog.application = [ this.getLatestChangelog(applicationChangelog) ];
+        changelog.application = [ this.getLatestChangelog(applicationChangelog, acceptsLanguage) ];
       }
     }
     return plainToInstance(ChangelogDto, changelog, classTransformOptions);
   }
 
-  getVersion(version: string, application?: string): ChangelogDto {
+  getVersion(version: string, application?: string, acceptsLanguage?: string): ChangelogDto {
     if (!valid(version)) {
       throw new InternalServerErrorException(`Invalid version: ${ version }`);
     }
     this.logger.log(`Get changelog for version: ${ version }`, 'ChangelogService');
     const changelog: ChangelogDto = {
-      general: [ this.getLatestCompatibleChangelog(version, this.config.generalChangelog) ],
+      general: [ this.getLatestCompatibleChangelog(version, this.config.generalChangelog, acceptsLanguage) ],
       application: [],
     };
     if (application && this.config.applicationChangelog.has(application)) {
@@ -55,7 +60,7 @@ export class ChangelogService {
       );
       const applicationChangelog = this.config.applicationChangelog.get(application);
       if (applicationChangelog) {
-        changelog.application = [ this.getLatestCompatibleChangelog(version, applicationChangelog) ];
+        changelog.application = [ this.getLatestCompatibleChangelog(version, applicationChangelog, acceptsLanguage) ];
       }
     }
     return changelog;
@@ -65,13 +70,17 @@ export class ChangelogService {
     return Array.from(this.config.generalChangelog.keys());
   }
 
-  private hasLatestCompatibleVersion(version: string, map: Map<string, string>): boolean {
+  private hasLatestCompatibleVersion(version: string, map: Map<Version, Map<Language, Changelog>>): boolean {
     const versions = sort(Array.from(map.keys()));
     const latestCompatibleVersion = this.getLatestCompatibleVersion(versions, version);
     return !!latestCompatibleVersion;
   }
 
-  private getLatestCompatibleChangelog(version: string, map: Map<string, string>) {
+  private getLatestCompatibleChangelog(
+    version: string,
+    map: Map<Version, Map<Language, Changelog>>,
+    acceptsLanguage?: string,
+  ): string {
     const versions = sort(Array.from(map.keys()));
     const latestCompatibleVersion = this.getLatestCompatibleVersion(versions, version);
     if (!latestCompatibleVersion) {
@@ -81,20 +90,38 @@ export class ChangelogService {
       `Latest compatible version for ${ version } is ${ latestCompatibleVersion }`,
       'ChangelogService',
     );
-    return map.get(latestCompatibleVersion)!;
+    const changelogMap = map.get(latestCompatibleVersion)!;
+    let changelog = changelogMap.get(undefined);
+    if (acceptsLanguage && changelogMap.has(acceptsLanguage)) {
+      changelog = changelogMap.get(acceptsLanguage);
+    }
+    if (changelog === undefined) {
+      throw new InternalServerErrorException(`No changelog found for version ${ version } and language ${ acceptsLanguage }`);
+    }
+    return changelog;
   }
 
-  private getLatestChangelog(map: Map<string, string>) {
+  private getLatestChangelog(map: Map<Version, Map<Language, Changelog>>, acceptsLanguage?: string): string {
     const availableVersions = Array.from(map.keys());
+    let changelogMap;
     if (availableVersions.includes('latest')) {
-      return map.get('latest')!;
+      changelogMap = map.get('latest')!;
+    } else {
+      const versions = sort(availableVersions.filter(v => v !== 'latest'));
+      const latestVersion = versions.pop();
+      if (!latestVersion) {
+        throw new InternalServerErrorException('No changelog found');
+      }
+      changelogMap = map.get(latestVersion)!;
     }
-    const versions = sort(availableVersions.filter(v => v !== 'latest'));
-    const latestVersion = versions.pop();
-    if (!latestVersion) {
-      throw new InternalServerErrorException('No changelog found');
+    let changelog = changelogMap.get(undefined);
+    if (acceptsLanguage && changelogMap.has(acceptsLanguage)) {
+      changelog = changelogMap.get(acceptsLanguage);
     }
-    return map.get(latestVersion)!;
+    if (changelog === undefined) {
+      throw new InternalServerErrorException(`No changelog found for latest version and language ${ acceptsLanguage }`);
+    }
+    return changelog;
   }
 
   private getLatestCompatibleVersion(versions: string[], version: string): string | null {

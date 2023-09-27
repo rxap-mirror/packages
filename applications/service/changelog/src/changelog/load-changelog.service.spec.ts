@@ -44,6 +44,21 @@ describe('LoadChangelogService', () => {
 
   describe('Load file', () => {
 
+    it('should load localized files', () => {
+
+      (readFileSync as jest.Mock).mockReturnValue('# Change log');
+      (existsSync as jest.Mock).mockReturnValue(true);
+
+      loadChangelogService.loadFile('/data/15.0.0/changelog.de.md');
+      loadChangelogService.loadFile('/data/15.0.0/changelog.de-DE.md');
+      loadChangelogService.loadFile('/data/15.0.0/changelog.de_DE.md');
+
+      expect(loadChangelogService.generalChangelog.get('15.0.0').get('de')).toEqual('# Change log');
+      expect(loadChangelogService.generalChangelog.get('15.0.0').get('de-DE')).toEqual('# Change log');
+      expect(loadChangelogService.generalChangelog.get('15.0.0').get('de_DE')).toEqual('# Change log');
+
+    });
+
     it('should replace environment variables in file content', () => {
 
       (readFileSync as jest.Mock).mockReturnValue('# Change log ${ROOT_DOMAIN}');
@@ -52,7 +67,7 @@ describe('LoadChangelogService', () => {
 
       loadChangelogService.loadFile('/data/15.0.0/changelog.md');
 
-      expect(loadChangelogService.generalChangelog.get('15.0.0')).toEqual('# Change log rxap.dev');
+      expect(loadChangelogService.generalChangelog.get('15.0.0').get(undefined)).toEqual('# Change log rxap.dev');
 
     });
 
@@ -84,7 +99,7 @@ describe('LoadChangelogService', () => {
 
       loadChangelogService.loadFile('/data/15.0.0/changelog.md');
 
-      expect(loadChangelogService.generalChangelog.get('15.0.0')).toEqual('# Change log ');
+      expect(loadChangelogService.generalChangelog.get('15.0.0').get(undefined)).toEqual('# Change log ');
 
     });
 
@@ -103,7 +118,7 @@ describe('LoadChangelogService', () => {
 
       loadChangelogService.loadFile('/data/15.0.0/changelog.md');
 
-      expect(loadChangelogService.generalChangelog.get('15.0.0')).toEqual(`# Change log
+      expect(loadChangelogService.generalChangelog.get('15.0.0').get(undefined)).toEqual(`# Change log
       ![](https://rxap.dev/api/jest/data/15.0.0/image.png)
       ![](https://rxap.dev/api/jest/data/image.png)
       ![](https://rxap.dev/api/jest/data/15.0.0/image.png)
