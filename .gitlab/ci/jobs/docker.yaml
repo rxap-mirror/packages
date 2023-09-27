@@ -9,6 +9,8 @@
   script: /bin/sh tools/scripts/build-and-push-docker-image.sh
   environment:
     action: prepare
+  variables:
+    - GIT_LFS_SKIP_SMUDGE=1
   rules:
     - if: $DISABLE_DOCKER_BUILD
       when: never
@@ -18,8 +20,8 @@
 docker:angular:
   extends: .docker
   variables:
-    DOCKER_CONTEXT: dist/demos/angular
     IMAGE_NAME: rxap/packages
+    DOCKER_CONTEXT: dist/demos/angular
     IMAGE_SUFFIX: /user-interface/angular
     DOCKERFILE: shared/angular/Dockerfile
   environment:
@@ -27,8 +29,8 @@ docker:angular:
 docker:service-changelog:
   extends: .docker
   variables:
-    DOCKER_CONTEXT: dist/applications/service/changelog
     IMAGE_NAME: rxap/packages
+    DOCKER_CONTEXT: dist/applications/service/changelog
     IMAGE_SUFFIX: /service/changelog
     DOCKERFILE: shared/nestjs/Dockerfile
   environment:
@@ -36,8 +38,8 @@ docker:service-changelog:
 docker:service-configuration:
   extends: .docker
   variables:
-    DOCKER_CONTEXT: dist/applications/service/configuration
     IMAGE_NAME: rxap/packages
+    DOCKER_CONTEXT: dist/applications/service/configuration
     IMAGE_SUFFIX: /service/configuration
     DOCKERFILE: shared/nestjs/Dockerfile
   environment:
@@ -45,8 +47,8 @@ docker:service-configuration:
 docker:service-status:
   extends: .docker
   variables:
-    DOCKER_CONTEXT: dist/applications/service/status
     IMAGE_NAME: rxap/packages
+    DOCKER_CONTEXT: dist/applications/service/status
     IMAGE_SUFFIX: /service/status
     DOCKERFILE: shared/nestjs/Dockerfile
   environment:
@@ -54,8 +56,8 @@ docker:service-status:
 docker:service-user:
   extends: .docker
   variables:
-    DOCKER_CONTEXT: dist/applications/service/user
     IMAGE_NAME: rxap/packages
+    DOCKER_CONTEXT: dist/applications/service/user
     IMAGE_SUFFIX: /service/user
     DOCKERFILE: shared/nestjs/Dockerfile
   environment:
@@ -63,8 +65,8 @@ docker:service-user:
 docker:service-app-angular-table:
   extends: .docker
   variables:
-    DOCKER_CONTEXT: dist/demos/service/app/angular/table
     IMAGE_NAME: rxap/packages
+    DOCKER_CONTEXT: dist/demos/service/app/angular/table
     IMAGE_SUFFIX: /service/app-angular-table
     DOCKERFILE: shared/nestjs/Dockerfile
   environment:

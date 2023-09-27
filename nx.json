@@ -59,10 +59,7 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/cypress/**/*",
       "!{projectRoot}/**/*.cy.[jt]s?(x)",
-      "!{projectRoot}/cypress.config.[jt]s",
-      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-      "!{projectRoot}/.storybook/**/*",
-      "!{projectRoot}/tsconfig.storybook.json"
+      "!{projectRoot}/cypress.config.[jt]s"
     ],
     "build": [
       "production",
@@ -177,7 +174,8 @@
         "generate-package-json",
         "check-ng-package",
         "localazy-download",
-        "build-info"
+        "build-info",
+        "expose-as-schematic"
       ],
       "inputs": [
         "build",
