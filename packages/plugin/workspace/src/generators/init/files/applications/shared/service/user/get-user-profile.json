@@ -1,0 +1,11 @@
+{
+  "serverId": "auth",
+  "operationId": "getUserProfile",
+  "operation": {
+    "operationId": "getUserProfile",
+    "parameters": [],
+    "responses": {},
+    "method": "get",
+    "path": "/application/o/userinfo"
+  }
+}

@@ -39,7 +39,7 @@ services:
       - traefik.http.services.rxap-service-configuration.loadbalancer.healthCheck.interval=10s
       - traefik.http.services.rxap-service-configuration.loadbalancer.healthCheck.timeout=3s
     volumes:
-      - ./shared/angular/configuration:/app/assets
+      - ./shared/service/configuration:/app/assets
     environment:
       - STATUS_SERVICE_BASE_URL=http://rxap-service-status:3000
       - ROOT_DOMAIN
@@ -81,7 +81,7 @@ services:
       - LOG_LEVEL=verbose
       - ROOT_DOMAIN_PORT
     volumes:
-      - ./shared/angular/changelog:/app/assets
+      - ./shared/service/changelog:/app/assets
     depends_on:
       - traefik
       - catch-all-api
@@ -99,6 +99,8 @@ services:
       - SENTRY_ENABLED=false
       - LOG_LEVEL=verbose
       - ROOT_DOMAIN_PORT
+    volumes:
+      - ./shared/service/user:/app/assets
     depends_on:
       - traefik
       - catch-all-api
