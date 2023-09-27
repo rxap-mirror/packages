@@ -9,7 +9,11 @@ import {
   OpenApiOperationCommand,
   OperationCommand,
 } from '@rxap/nest-open-api';
-import { readFileSync } from 'fs';
+import {
+  ExistsFileWithScope,
+  ReadFileWithScope,
+} from '@rxap/node-utilities';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class ProfileService<T = unknown> {
@@ -24,9 +28,15 @@ export class ProfileService<T = unknown> {
     private readonly logger: Logger,
   ) {
 
-    const operationMetadata = JSON.parse(readFileSync(
-      this.config.getOrThrow('GET_USER_PROFILE_OPERATION_FILE_PATH'),
-      'utf-8',
+    const getUserProfileOperationFilePath = this.config.getOrThrow('GET_USER_PROFILE_OPERATION_FILE_PATH');
+
+    if (!ExistsFileWithScope(getUserProfileOperationFilePath, environment.name)) {
+      throw new Error(`The operation file "${ getUserProfileOperationFilePath }" does not exists!`);
+    }
+
+    const operationMetadata = JSON.parse(ReadFileWithScope(
+      getUserProfileOperationFilePath,
+      environment.name,
     ));
 
     @OperationCommand(operationMetadata)
