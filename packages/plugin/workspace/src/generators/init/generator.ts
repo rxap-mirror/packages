@@ -371,17 +371,6 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   CoerceIgnorePattern(tree, '.gitignore', gitIgnore);
   CoerceIgnorePattern(tree, '.prettierignore', prettierIgnore);
-  CoerceIgnorePattern(tree, 'docker/traefik/.gitignore', [
-    'traefik.yml',
-    'tls/*.crt',
-    'tls/*.key',
-    'tls/*.csr',
-    'tls/*.cnf',
-    'dynamic/local-services.yml',
-  ]);
-  if (!tree.exists('docker/traefik/tls/.gitkeep')) {
-    tree.write('docker/traefik/tls/.gitkeep', '');
-  }
 
   coerceWorkspaceProject(tree);
   coerceNxJson(tree);
@@ -393,12 +382,15 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       skipProjects: options.skipProjects,
     },
   );
-  await ApplicationInitGenerator(tree,
-    {
-      overwrite: options.overwrite,
-      skipProjects: options.skipProjects,
-    },
-  );
+  if (options.applications) {
+    await ApplicationInitGenerator(
+      tree,
+      {
+        overwrite: options.overwrite,
+        skipProjects: options.skipProjects,
+      },
+    );
+  }
 }
 
 export default initGenerator;
