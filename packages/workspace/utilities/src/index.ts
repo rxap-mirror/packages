@@ -59,6 +59,7 @@ export * from './lib/build-angular-base-path';
 export * from './lib/build-nest-base-path';
 export * from './lib/build-nest-controller-name';
 export * from './lib/coerce-file';
+export * from './lib/coerce-files-structure';
 export * from './lib/coerce-lerna-json';
 export * from './lib/delete-recursive';
 export * from './lib/get-project';
