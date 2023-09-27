@@ -19,6 +19,7 @@
           "error",
           {
             "enforceBuildableLibDependency": true,
+            "allowCircularSelfDependency": true,
             "allow": [],
             "depConstraints": [
               {
@@ -43,7 +44,8 @@
                 "sourceTag": "browser",
                 "notDependOnLibsWithTags": [
                   "node",
-                  "angular"
+                  "angular",
+                  "nest"
                 ]
               },
               {
@@ -78,6 +80,19 @@
                 ]
               },
               {
+                "allSourceTags": [
+                  "angular",
+                  "packages",
+                  "/^(?!.*\\bmaterial\\b).*$/s"
+                ],
+                "notDependOnLibsWithTags": [
+                  "material"
+                ],
+                "bannedExternalImports": [
+                  "@angular/material"
+                ]
+              },
+              {
                 "sourceTag": "standalone",
                 "notDependOnLibsWithTags": [
                   "schematic",
@@ -87,11 +102,69 @@
                   "node",
                   "nest",
                   "browser"
+                ],
+                "onlyDependOnLibsWithTags": [
+                  "scope:utilities"
+                ]
+              },
+              {
+                "sourceTag": "scope:core",
+                "onlyDependOnLibsWithTags": [
+                  "scope:utilities"
+                ]
+              },
+              {
+                "sourceTag": "scope:utilities",
+                "onlyDependOnLibsWithTags": [
+                  "scope:utilities"
+                ]
+              },
+              {
+                "sourceTag": "scope:compose",
+                "onlyDependOnLibsWithTags": [
+                  "scope:utilities",
+                  "scope:core",
+                  "scope:compose",
+                  "scope:integration"
+                ]
+              },
+              {
+                "sourceTag": "scope:integration",
+                "onlyDependOnLibsWithTags": [
+                  "scope:utilities",
+                  "scope:core"
                 ]
               }
             ]
           }
         ]
+      }
+    },
+    {
+      "files": [
+        "*.spec.ts",
+        "*.cy.ts",
+        "*.stories.ts"
+      ],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allowCircularSelfDependency": true,
+            "allow": [],
+            "depConstraints": []
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "cypress.config.ts",
+        "cypress/**"
+      ],
+      "rules": {
+        "@nx/enforce-module-boundaries": "off"
       }
     },
     {

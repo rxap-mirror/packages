@@ -56,6 +56,8 @@
   },
   "tags": [
     "packages",
-    "ts-morph"
+    "ts-morph",
+    "standalone",
+    "scope:utilities"
   ]
 }

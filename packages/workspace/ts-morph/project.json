@@ -55,6 +55,7 @@
   },
   "tags": [
     "packages",
-    "workspace"
+    "workspace",
+    "scope:utilities"
   ]
 }

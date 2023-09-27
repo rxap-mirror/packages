@@ -55,6 +55,7 @@
   },
   "tags": [
     "packages",
-    "data-structure"
+    "data-structure",
+    "scope:utilities"
   ]
 }

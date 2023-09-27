@@ -69,6 +69,7 @@
   },
   "tags": [
     "packages",
-    "plugin"
+    "plugin",
+    "scope:utilities"
   ]
 }

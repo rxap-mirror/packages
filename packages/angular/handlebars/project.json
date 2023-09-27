@@ -6,7 +6,9 @@
   "tags": [
     "angular",
     "ngx",
-    "packages"
+    "packages",
+    "standalone",
+    "scope:integration"
   ],
   "projectType": "library",
   "targets": {

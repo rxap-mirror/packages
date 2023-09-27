@@ -62,6 +62,7 @@
   },
   "tags": [
     "nest",
-    "packages"
+    "packages",
+    "scope:utilities"
   ]
 }

@@ -55,6 +55,7 @@
   },
   "tags": [
     "packages",
-    "generator"
+    "generator",
+    "scope:utilities"
   ]
 }

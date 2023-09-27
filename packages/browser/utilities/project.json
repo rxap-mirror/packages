@@ -55,6 +55,7 @@
   },
   "tags": [
     "packages",
-    "browser"
+    "browser",
+    "scope:utilities"
   ]
 }

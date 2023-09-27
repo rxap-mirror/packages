@@ -55,6 +55,7 @@
   },
   "tags": [
     "packages",
-    "schematic"
+    "schematic",
+    "scope:utilities"
   ]
 }

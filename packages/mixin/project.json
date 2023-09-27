@@ -54,6 +54,8 @@
     "update-package-group": {}
   },
   "tags": [
-    "packages"
+    "packages",
+    "standalone",
+    "scope:utilities"
   ]
 }

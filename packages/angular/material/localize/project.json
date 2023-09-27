@@ -7,7 +7,8 @@
     "angular",
     "ngx",
     "packages",
-    "material"
+    "material",
+    "scope:integration"
   ],
   "projectType": "library",
   "targets": {

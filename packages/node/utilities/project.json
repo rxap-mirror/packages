@@ -64,6 +64,7 @@
   },
   "tags": [
     "node",
-    "packages"
+    "packages",
+    "scope:utilities"
   ]
 }

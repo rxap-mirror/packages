@@ -11,32 +11,6 @@
         "*.ts"
       ],
       "rules": {
-        "@nx/enforce-module-boundaries": [
-          "error",
-          {
-            "allowCircularSelfDependency": true
-          }
-        ]
-      }
-    },
-    {
-      "files": [
-        "src/**/*.ts"
-      ],
-      "rules": {
-        "@nx/enforce-module-boundaries": [
-          "error",
-          {
-            "allowCircularSelfDependency": false
-          }
-        ]
-      }
-    },
-    {
-      "files": [
-        "*.ts"
-      ],
-      "rules": {
         "@angular-eslint/no-output-rename": "warn",
         "@angular-eslint/no-input-rename": "warn",
         "@angular-eslint/directive-selector": [

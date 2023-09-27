@@ -61,6 +61,7 @@
   },
   "tags": [
     "nest",
-    "packages"
+    "packages",
+    "scope:integration"
   ]
 }
