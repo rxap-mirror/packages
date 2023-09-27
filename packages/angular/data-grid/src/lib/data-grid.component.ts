@@ -1,4 +1,11 @@
 import {
+  AsyncPipe,
+  NgClass,
+  NgFor,
+  NgIf,
+  NgTemplateOutlet,
+} from '@angular/common';
+import {
   AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -12,23 +19,31 @@ import {
   Optional,
   Output,
   QueryList,
-  ViewEncapsulation,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {
   ActivationEnd,
   Router,
 } from '@angular/router';
-import type { BaseDataSource } from '@rxap/data-source';
-import { BaseDataSourceViewer } from '@rxap/data-source';
 import {
   FormDirective,
   RxapFormsModule,
 } from '@rxap/forms';
 import {
-  clone,
-  Required,
-} from '@rxap/utilities';
+  DataSource,
+  DataSourceViewer,
+} from '@rxap/pattern';
+import {
+  EscapeQuotationMarkPipe,
+  GetFromObjectPipe,
+  ReplacePipe,
+} from '@rxap/pipes';
 import { ToggleSubject } from '@rxap/rxjs';
+import { clone } from '@rxap/utilities';
 import {
   BehaviorSubject,
   combineLatest,
@@ -47,24 +62,7 @@ import {
   tap,
 } from 'rxjs/operators';
 import { DataGridRowDefDirective } from './data-grid-row-def.directive';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import {
-  EscapeQuotationMarkPipe,
-  GetFromObjectPipe,
-  ReplacePipe,
-} from '@rxap/pipes';
 import { DataGridValuePipe } from './data-grid-value.pipe';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatDividerModule } from '@angular/material/divider';
-import {
-  AsyncPipe,
-  NgClass,
-  NgFor,
-  NgIf,
-  NgTemplateOutlet,
-} from '@angular/common';
-import { MatFormFieldModule } from '@angular/material/form-field';
 
 export enum DataGridMode {
   /**
@@ -113,12 +111,12 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   public header = false;
 
   @Input()
-  public dataSource?: BaseDataSource<T>;
+  public dataSource?: DataSource<T>;
 
   public data$!: Observable<T>;
 
   @Input()
-  public viewer: BaseDataSourceViewer = this;
+  public viewer: DataSourceViewer = this;
 
   @Input()
   public data?: T;
@@ -131,8 +129,8 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   @Output()
   public editModeChange = new EventEmitter<{ mode: boolean, data?: T, done: () => void }>();
   public rows$: Observable<QueryList<DataGridRowDefDirective<T>>> = EMPTY;
-  public hasError$: Observable<boolean> = EMPTY;
-  public dataLoading$: Observable<boolean> = EMPTY;
+  public hasError$: Observable<boolean> = of(false);
+  public dataLoading$: Observable<boolean> = of(false);
   public loading$ = new ToggleSubject();
   public readonly isEditMode$: Observable<boolean>;
   public readonly mode$: Observable<DataGridMode>;
@@ -240,11 +238,8 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       shareReplay(1),
     );
     if (this.dataSource) {
-      this.hasError$ = this.dataSource.hasError$;
-      this.dataLoading$ = this.dataSource.loading$;
-    } else {
-      this.hasError$ = of(false);
-      this.dataLoading$ = of(false);
+      this.hasError$ = this.dataSource.hasError$ ?? this.hasError$;
+      this.dataLoading$ = this.dataSource.loading$ ?? this.dataLoading$;
     }
     if (this.formDirective && this.isFormMode) {
       this.formDirective.form.disabledWhile(combineLatest([
