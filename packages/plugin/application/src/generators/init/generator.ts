@@ -19,11 +19,13 @@ import {
 } from '@rxap/utilities';
 import {
   AddPackageJsonDependency,
+  CoerceFilesStructure,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   GetPackageJson,
   Strategy,
 } from '@rxap/workspace-utilities';
+import { join } from 'path';
 import * as process from 'process';
 import { InitGeneratorSchema } from './schema';
 
@@ -185,6 +187,28 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   console.log('application init generator:', options);
 
   await AddPackageJsonDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
+
+  CoerceFilesStructure(tree, {
+    srcFolder: join(__dirname, 'files', 'general'),
+    target: '',
+    overwrite: options.overwrite,
+  });
+
+  if (options.authentik) {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'authentik'),
+      target: '',
+      overwrite: options.overwrite,
+    });
+  }
+
+  if (options.minio) {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'minio'),
+      target: '',
+      overwrite: options.overwrite,
+    });
+  }
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 

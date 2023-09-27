@@ -20,6 +20,16 @@
       "type": "boolean",
       "default": false,
       "description": "Whether to skip executing project specific initialization"
+    },
+    "authentik": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to initialize authentik docker compose setup"
+    },
+    "minio": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to initialize minio docker compose setup"
     }
   },
   "required": []
