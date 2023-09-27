@@ -2,7 +2,9 @@ import { Observable } from 'rxjs';
 
 export interface DataSourceViewer {
   id?: string;
-  viewChange: Observable<any>;
+  viewChange?: Observable<any>;
+
+  [key: string]: any;
 }
 
 export interface DataSource<Data = unknown, Viewer extends DataSourceViewer = DataSourceViewer> {
