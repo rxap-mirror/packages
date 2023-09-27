@@ -16,6 +16,7 @@ import {
   MergeDeepLeft,
 } from '@rxap/utilities';
 import {
+  CoerceLernaJson,
   CoerceTarget,
   Strategy,
   UpdatePackageJson,
@@ -364,7 +365,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     generateFiles(tree, join(__dirname, 'files/applications'), '', { tmpl: '' });
   }
   if (options.packages) {
-    generateFiles(tree, join(__dirname, 'files/packages'), '', { tmpl: '' });
+    CoerceLernaJson(tree);
   }
 
   CoerceIgnorePattern(tree, '.gitignore', gitIgnore);
