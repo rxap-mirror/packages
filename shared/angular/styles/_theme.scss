@@ -1,8 +1,8 @@
 @use "variables";
-@use "fonts";
 @use '@angular/material' as mat;
 @use 'palette' as palette;
 
+@import "fonts";
 @import 'utilities';
 
 @tailwind base;
