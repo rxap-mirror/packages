@@ -1,0 +1,18 @@
+.startup:
+  image: curlimages/curl:8.3.0
+  stage: startup
+  tags:
+    - e2-standard-2
+  services:
+    - name: ${CI_REGISTRY_IMAGE}${IMAGE_SUFFIX}:${CI_PIPELINE_ID}
+      alias: service
+  environment:
+    action: prepare
+    name: $ENVIRONMENT_NAME
+  script:
+    - curl http://service:3000/info
+
+startup:service-changelog:
+  extends: .startup
+  variables:
+    IMAGE_SUFFIX: /service/changelog

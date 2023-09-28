@@ -20,6 +20,8 @@ make_temp_file() {
   fi
 }
 
+PIPELINE_ID=${CI_PIPELINE_ID:-local}
+
 if [ "$CI" = "true" ]; then
   # region install utilities
   mkdir -p /usr/local/bin
@@ -195,6 +197,7 @@ if [ "$PUSH_TO_GCP" = "true" ]; then
   GCP_DESTINATION="${GCP_REGISTRY_IMAGE}${IMAGE_SUFFIX}"
 
   DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${GCP_DESTINATION}:${IMAGE_TAG}"
+  DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${GCP_DESTINATION}:${PIPELINE_ID}"
   if [ "$LATEST" = "true" ]; then
     DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${GCP_DESTINATION}:latest"
   fi
@@ -224,6 +227,7 @@ if [ "$PUSH_TO_GITLAB" = "true" ]; then
   CI_DESTINATION="${CI_REGISTRY_IMAGE}${IMAGE_SUFFIX}"
 
   DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${CI_DESTINATION}:${IMAGE_TAG}"
+  DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${CI_DESTINATION}:${PIPELINE_ID}"
   if [ "$LATEST" = "true" ]; then
     DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${CI_DESTINATION}:latest"
   fi
@@ -244,16 +248,17 @@ if [ "$PUSH_TO_CUSTOM" = "true" ]; then
   # and then move (replace) the original file with this temporary one.
   tmp_file=$(make_temp_file)
   cat "${DOCKER_CONFIG_PATH}" | jq \
-  --arg username "$REGISTRY_USER" \
-  --arg password "$REGISTRY_PASSWORD" \
-  --arg registry "$REGISTRY" \
-  '.auths[$registry] = { "username": $username, "password": $password }' > "$tmp_file"
+    --arg username "$REGISTRY_USER" \
+    --arg password "$REGISTRY_PASSWORD" \
+    --arg registry "$REGISTRY" \
+    '.auths[$registry] = { "username": $username, "password": $password }' >"$tmp_file"
   mv "$tmp_file" "${DOCKER_CONFIG_PATH}"
 
   REGISTRY_IMAGE=${REGISTRY}/${IMAGE_NAME}
 
   DESTINATION="${REGISTRY_IMAGE}${IMAGE_SUFFIX}"
   DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${DESTINATION}:${IMAGE_TAG}"
+  DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${DESTINATION}:${PIPELINE_ID}"
   if [ "$LATEST" = "true" ]; then
     DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${DESTINATION}:latest"
   fi
