@@ -6,6 +6,8 @@
   services:
     - name: ${CI_REGISTRY_IMAGE}${IMAGE_SUFFIX}:${CI_PIPELINE_ID}
       alias: service
+  variables:
+    ROOT_DOMAIN: service
   environment:
     action: prepare
     name: $ENVIRONMENT_NAME
