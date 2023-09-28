@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/browser-tailwind@0.1.0-dev.1...@rxap/browser-tailwind@0.1.0-dev.2) (2023-09-28)
+
+### Bug Fixes
+
+- support dynamic font families ([47db43d](https://gitlab.com/rxap/packages/commit/47db43d466ac51bded60434dab9131eab56c82a2))
+
 # [0.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/browser-tailwind@0.1.0-dev.0...@rxap/browser-tailwind@0.1.0-dev.1) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/browser-tailwind

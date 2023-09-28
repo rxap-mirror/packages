@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.21...@rxap/schematics-ts-morph@16.0.0-dev.22) (2023-09-28)
+
+### Bug Fixes
+
+- import dtos from nest-dto ([153f857](https://gitlab.com/rxap/packages/commit/153f857eeb7838007b6fc666fea37d6394e5ca94))
+
 # [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.20...@rxap/schematics-ts-morph@16.0.0-dev.21) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/schematics-ts-morph

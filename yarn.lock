@@ -9095,6 +9095,11 @@ __metadata:
 "@rxap/nest-dto@workspace:packages/nest/dto":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-dto@workspace:packages/nest/dto"
+  dependencies:
+    tslib: 2.6.2
+  peerDependencies:
+    class-transformer: ^0.5.1
+    class-validator: ^0.14.0
   languageName: unknown
   linkType: soft
 
