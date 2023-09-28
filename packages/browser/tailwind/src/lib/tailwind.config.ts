@@ -6,7 +6,9 @@ export const RXAP_TAILWIND_CONFIG = {
   theme: {
     fontFamily: {
       ...fontFamily,
-      sans: [ 'Roboto', 'Helvetica Neue', 'sans-serif', ...fontFamily.sans ],
+      sans: 'var(--font-family-sans)',
+      serif: 'var(--font-family-serif)',
+      mono: 'var(--font-family-mono)',
     },
     extend: {
       colors: {
