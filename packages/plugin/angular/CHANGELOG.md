@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.43](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.42...@rxap/plugin-angular@16.1.0-dev.43) (2023-09-28)
+
+### Bug Fixes
+
+- resolve font import issues ([1800e50](https://gitlab.com/rxap/packages/commit/1800e50b1abed5403ffc3c0f75e3ba282b2730c7))
+
 # [16.1.0-dev.42](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.41...@rxap/plugin-angular@16.1.0-dev.42) (2023-09-28)
 
 ### Bug Fixes
