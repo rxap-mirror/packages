@@ -28,7 +28,7 @@
           "progress": true,
           "assets": [
             {
-              "input": "shared/angular/changelog",
+              "input": "shared/service/changelog",
               "glob": "**/*",
               "output": "./assets"
             }

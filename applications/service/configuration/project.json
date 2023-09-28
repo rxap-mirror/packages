@@ -33,7 +33,14 @@
           ]
         },
         "development": {
-          "progress": true
+          "progress": true,
+          "assets": [
+            {
+              "input": "shared/service/configuration",
+              "glob": "**/*",
+              "output": "./assets"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"
