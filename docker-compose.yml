@@ -10,7 +10,7 @@ services:
       - "$XDG_RUNTIME_DIR/docker.sock:/var/run/docker.sock:ro"
       - ./docker/traefik:/etc/traefik:ro
     ports:
-      - "8443:443"
+      - "${ROOT_DOMAIN_PORT}:443"
       - "8888:8080"
     labels:
       - "traefik.enable=true"
@@ -20,6 +20,7 @@ services:
     environment:
       - REMOTE_DOMAIN
       - ROOT_DOMAIN
+      - ROOT_DOMAIN_PORT
       - HOST_IP
   catch-all-api:
     image: nginx:alpine
