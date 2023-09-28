@@ -1,10 +1,3 @@
-// region dto
-export * from './lib/dto/icon.dto';
-export * from './lib/dto/page.dto';
-export * from './lib/dto/uuid-object.dto';
-export * from './lib/dto/uuid.dto';
-// endregion
-
 // region 
 export * from './lib/apply-filter';
 export * from './lib/apply-paging';
@@ -18,7 +11,6 @@ export * from './lib/determine-release';
 export * from './lib/determine-version';
 export * from './lib/environment.module';
 export * from './lib/environment';
-export * from './lib/filter-query.dto';
 export * from './lib/filter-query.pipe';
 export * from './lib/get-log-levels';
 export * from './lib/has-index-signature';
