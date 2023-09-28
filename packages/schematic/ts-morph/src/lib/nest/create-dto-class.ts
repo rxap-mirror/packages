@@ -250,7 +250,7 @@ export function CreatePageDtoClass(
   structures ??= [];
   structures.push({
     namedImports: [ 'PageDto' ],
-    moduleSpecifier: '@rxap/nest-utilities',
+    moduleSpecifier: '@rxap/nest-dto',
   });
 
   return CreateDtoClass(sourceFile, className, propertyList, classStructure, structures);

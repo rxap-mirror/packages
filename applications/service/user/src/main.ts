@@ -11,7 +11,6 @@ import {
   SetupSwagger,
   ValidationPipeSetup,
 } from '@rxap/nest-server';
-import 'reflect-metadata';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 

@@ -33,7 +33,7 @@ export function CoercePageDtoClass(options: CoercePageDtoClassOptions) {
   importStructureList.push(
     {
       namedImports: [ 'PageDto' ],
-      moduleSpecifier: '@rxap/nest-utilities',
+      moduleSpecifier: '@rxap/nest-dto',
     },
     {
       namedImports: [ rowClassName ],
