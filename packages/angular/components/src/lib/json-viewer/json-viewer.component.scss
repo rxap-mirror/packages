@@ -99,7 +99,7 @@ $type-colors: (
 
   // special cases need highlightted
   .segment-type-null > .segment-main > .segment-value {
-    background-color: var(--warn-color, darkred);
+    background-color: var(--warn-500, darkred);
   }
 
   .segment-type-undefined > .segment-main {
