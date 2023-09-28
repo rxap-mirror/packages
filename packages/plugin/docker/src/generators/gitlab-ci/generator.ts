@@ -66,7 +66,7 @@ const dotStartup = {
 };
 
 const startup = {
-  extends: '.setup',
+  extends: '.startup',
   variables: {},
 };
 

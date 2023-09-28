@@ -14,32 +14,32 @@
   script:
     - curl http://service:3000/info
 startup:angular:
-  extends: .setup
+  extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /user-interface/angular
 startup:service-changelog:
-  extends: .setup
+  extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /service/changelog
 startup:service-configuration:
-  extends: .setup
+  extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /service/configuration
 startup:service-status:
-  extends: .setup
+  extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /service/status
 startup:service-user:
-  extends: .setup
+  extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /service/user
 startup:service-app-angular-table:
-  extends: .setup
+  extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
     IMAGE_SUFFIX: /service/app-angular-table
