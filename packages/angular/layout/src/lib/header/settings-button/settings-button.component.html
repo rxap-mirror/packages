@@ -56,22 +56,19 @@
   </button>
 </mat-menu>
 <mat-menu #themeFontMenu="matMenu" xPosition="before">
-  <button (click)="selectTypography()" (mouseenter)="previewTypography()" (mouseleave)="saveTypography()" i18n
-          mat-menu-item>Default
-  </button>
-  <button (click)="selectTypography()" (mouseenter)="previewTypography('mono')" (mouseleave)="saveTypography()"
-          class="font-mono" i18n mat-menu-item>Mono
-  </button>
-  <button (click)="selectTypography()" (mouseenter)="previewTypography('serif')" (mouseleave)="saveTypography()"
-          class="font-serif" i18n mat-menu-item>Serif
-  </button>
-  <button (click)="selectTypography()" (mouseenter)="previewTypography('sans')" (mouseleave)="saveTypography()"
-          class="font-sans" i18n mat-menu-item>Sans
+  <button (click)="selectTypography()"
+          (mouseenter)="previewTypography(typographyName)"
+          (mouseleave)="saveTypography()"
+          *ngFor="let typographyName of availableTypographies"
+          mat-menu-item>
+    {{ typographyName }}
   </button>
 </mat-menu>
 
 <mat-menu #themePresetMenu="matMenu" xPosition="before">
-  <button (click)="selectTheme()" (mouseenter)="previewTheme(themeName)" (mouseleave)="saveTheme()"
+  <button (click)="selectTheme()"
+          (mouseenter)="previewTheme(themeName)"
+          (mouseleave)="saveTheme()"
           *ngFor="let themeName of availableThemes"
           mat-menu-item>
     {{ themeName }}

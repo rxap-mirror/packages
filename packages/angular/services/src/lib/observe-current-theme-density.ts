@@ -12,7 +12,6 @@ export function ObserveCurrentThemeDensity(): Observable<ThemeDensity> {
             /density-\d/.test(className),
           );
           if (matchingClasses.length > 0) {
-            console.log(`Matched classes: ${ matchingClasses }`);
             const match = matchingClasses[0].match(/density-(\d)/);
             if (match) {
               subscriber.next(Number(match[1]) * -1 as ThemeDensity);

@@ -35,6 +35,9 @@
       accent: mat.$cyan-palette,
       warn: mat.$red-palette
     ),
+    typography: mat.define-typography-config(
+      $font-family: var(--font-family)
+    ),
   ));
   @include mat.core-theme($theme);
   @include density($theme);
@@ -53,30 +56,6 @@
           density: $i,
         )));
         --density: #{$i};
-      }
-      &.typography-mono {
-        @include typography(mat.define-light-theme((
-          typography: mat.define-typography-config(
-            $font-family: theme("fontFamily.mono")
-          ),
-        )));
-        --typography: mono;
-      }
-      &.typography-serif {
-        @include typography(mat.define-light-theme((
-          typography: mat.define-typography-config(
-            $font-family: theme("fontFamily.serif")
-          ),
-        )));
-        --typography: serif;
-      }
-      &.typography-sans {
-        @include typography(mat.define-light-theme((
-          typography: mat.define-typography-config(
-            $font-family: theme("fontFamily.sans")
-          ),
-        )));
-        --typography: sans;
       }
     }
   }

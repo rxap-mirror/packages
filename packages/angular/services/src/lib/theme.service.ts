@@ -97,29 +97,17 @@ export class ThemeService {
     return density as ThemeDensity;
   }
 
-  public setTypography(typography?: string): void {
-    const classRemoveList: string[] = [];
-    document.body.classList.forEach((className) => {
-      const match = className.match(/typography-/);
-      if (match) {
-        classRemoveList.push(className);
-      }
-    });
-    document.body.classList.remove(...classRemoveList);
-    if (typography) {
-      document.body.classList.add(`typography-${ typography }`);
-    }
+  public setTypography(typography: string): void {
+    document.body.style.setProperty('--font-family', `var(--font-family-${ typography })`);
   }
 
-  public getTypography(): string | null {
-    let typography: string | null = null;
-    document.body.classList.forEach((className) => {
-      const match = className.match(/typography-(.*)/);
-      if (match) {
-        typography = match[1];
-      }
-    });
-    return typography;
+  public getTypography(): string {
+    const variable = document.body.style.getPropertyValue('--font-family');
+    const match = variable.match(/var\(--font-family-(.*)\)/);
+    if (match) {
+      return match[1];
+    }
+    return 'default';
   }
 
   public getAvailableColorPalettes(): string[] {
@@ -175,7 +163,7 @@ export class ThemeService {
   }
 
   getCurrentTheme() {
-    return document.body.style.getPropertyValue('--theme-name') ?? 'default';
+    return document.body.style.getPropertyValue('--theme-name') || 'default';
   }
 
   private coerceColorPalette(colorPaletteConfig: ColorPaletteConfig): Partial<ColorPalette> {
@@ -219,13 +207,17 @@ export class ThemeService {
     return themeConfig;
   }
 
-  private resetToDefaultTheme() {
-    this.clearCssColorVariables('primary');
-    this.clearCssColorVariables('accent');
-    this.clearCssColorVariables('warn');
-    this.setDensity(0);
-    this.setTypography();
-    document.body.style.removeProperty(`--theme-name`);
+  getAvailableTypographies() {
+    return Array
+      .from(document.styleSheets)
+      .filter(sheet => sheet.href === null || sheet.href.startsWith(window.location.origin))
+      .flatMap(sheet => Array.from(sheet.cssRules || []))
+      .filter((rule: any) => rule.selectorText === ':root')
+      .flatMap((rule: any) => Array.from(rule.style))
+      .filter((prop: any) => prop.startsWith('--'))
+      .filter((prop: any) => prop.startsWith('--font-family-'))
+      .map((prop: any) => prop.replace('--font-family-', ''))
+      .sort();
   }
 
   private setCssColorVariables(name: string, colorPalette: Partial<ColorPalette>): void {
@@ -244,5 +236,14 @@ export class ThemeService {
     document.body.style.removeProperty(`--${ name }-a200`);
     document.body.style.removeProperty(`--${ name }-a400`);
     document.body.style.removeProperty(`--${ name }-a700`);
+  }
+
+  private resetToDefaultTheme() {
+    this.clearCssColorVariables('primary');
+    this.clearCssColorVariables('accent');
+    this.clearCssColorVariables('warn');
+    this.setDensity(0);
+    this.setTypography('default');
+    document.body.style.removeProperty(`--theme-name`);
   }
 }

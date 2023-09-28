@@ -62,6 +62,16 @@
   --font-family-sans: 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', '"Noto Sans"', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"';
   --font-family-serif: 'ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif';
   --font-family-mono: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace';
+  --font-family-default: 'Roboto', 'sans-serif';
+  --font-family-mooli: 'Mooli', 'sans-serif';
+  --font-family-inclusive-sans: 'Inclusive Sans', 'sans-serif';
+  --font-family-fuggles: 'Fuggles', 'sans-serif';
+  --font-family-pixelify-sans: 'Pixelify Sans', 'sans-serif';
+  --font-family-roboto-mono: 'Roboto Mono', 'sans-serif';
+  --font-family-croissant-one: 'Croissant One', 'sans-serif';
+  --font-family-young-serif: 'Young Serif', 'sans-serif';
+  --font-family: var(--font-family-default);
+  --density: 0;
 
 }
 

@@ -47,8 +47,10 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
   private savePreviewTypographyValue = false;
   private currentTypographyValue: string | null = null;
 
-  public readonly availableThemes: string[];
+  public readonly availableTypographies: string[];
   private savePreviewThemeValue = false;
+
+  public readonly availableThemes: string[];
   private currentThemeValue: string | null = null;
 
   constructor(
@@ -58,6 +60,7 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
     private readonly changelogService: ChangelogService,
   ) {
     this.availableThemes = this.theme.getAvailableThemes();
+    this.availableTypographies = this.theme.getAvailableTypographies();
   }
 
   ngOnDestroy() {
@@ -101,7 +104,7 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
     this.savePreviewDensityValue = true;
   }
 
-  previewTypography(typography?: string) {
+  previewTypography(typography: string) {
     this.currentTypographyValue = this.theme.getTypography();
     this.theme.setTypography(typography);
   }
@@ -120,7 +123,7 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
   }
 
   previewTheme(theme: string) {
-    this.currentThemeValue = this.theme.getCurrentTheme();
+    this.currentThemeValue ??= this.theme.getCurrentTheme();
     this.theme.setTheme(theme);
   }
 
@@ -131,6 +134,7 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
       }
     }
     this.savePreviewThemeValue = false;
+    this.currentThemeValue = null;
   }
 
   selectTheme() {
