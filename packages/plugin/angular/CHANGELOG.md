@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.42](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.41...@rxap/plugin-angular@16.1.0-dev.42) (2023-09-28)
+
+### Bug Fixes
+
+- improve dynamic theme handling ([7ffd28b](https://gitlab.com/rxap/packages/commit/7ffd28b0a6d86cd6690cac1d750bda104108fb74))
+
 # [16.1.0-dev.41](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.40...@rxap/plugin-angular@16.1.0-dev.41) (2023-09-28)
 
 ### Features

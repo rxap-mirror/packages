@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/services@16.0.0-dev.17...@rxap/services@16.0.0-dev.18) (2023-09-28)
+
+### Bug Fixes
+
+- improve dynamic theme handling ([7ffd28b](https://gitlab.com/rxap/packages/commit/7ffd28b0a6d86cd6690cac1d750bda104108fb74))
+
 # [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/services@16.0.0-dev.16...@rxap/services@16.0.0-dev.17) (2023-09-28)
 
 ### Features

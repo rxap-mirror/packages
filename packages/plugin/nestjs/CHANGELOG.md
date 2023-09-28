@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.30...@rxap/plugin-nestjs@16.1.0-dev.31) (2023-09-28)
+
+### Bug Fixes
+
+- add ROOT_DOMAIN default env value ([9465f3d](https://gitlab.com/rxap/packages/commit/9465f3d44e4882e364c7c105420604b268bf271f))
+
 # [16.1.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.29...@rxap/plugin-nestjs@16.1.0-dev.30) (2023-09-21)
 
 ### Bug Fixes

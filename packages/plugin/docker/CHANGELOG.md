@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.30...@rxap/plugin-docker@16.0.0-dev.31) (2023-09-28)
+
+### Features
+
+- generate startup test jobs ([11ed4a7](https://gitlab.com/rxap/packages/commit/11ed4a7b67c30d665e1b8f903d762e8b15e4f853))
+
 # [16.0.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.29...@rxap/plugin-docker@16.0.0-dev.30) (2023-09-28)
 
 ### Bug Fixes
