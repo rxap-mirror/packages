@@ -2,6 +2,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+export type ThemeDensity = 0 | -1 | -2 | -3;
+
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
 
@@ -47,6 +49,49 @@ export class ThemeService {
     if (checked !== this.darkMode$.value) {
       this.darkMode$.next(checked);
     }
+  }
+
+  public setDensity(density: ThemeDensity): void {
+    document.body.classList.remove('density-0', 'density-1', 'density-2', 'density-3');
+    if (density < 0) {
+      document.body.classList.add(`density${ density }`);
+    }
+  }
+
+  public getDensity(): ThemeDensity {
+    let density = 0;
+    document.body.classList.forEach((className) => {
+      const match = className.match(/density-([123])/);
+      if (match) {
+        density = Number(match[1]) * -1;
+      }
+    });
+    return density as ThemeDensity;
+  }
+
+  public setTypography(typography?: string): void {
+    const classRemoveList: string[] = [];
+    document.body.classList.forEach((className) => {
+      const match = className.match(/typography-/);
+      if (match) {
+        classRemoveList.push(className);
+      }
+    });
+    document.body.classList.remove(...classRemoveList);
+    if (typography) {
+      document.body.classList.add(`typography-${ typography }`);
+    }
+  }
+
+  public getTypography(): string | null {
+    let typography: string | null = null;
+    document.body.classList.forEach((className) => {
+      const match = className.match(/typography-(.*)/);
+      if (match) {
+        typography = match[1];
+      }
+    });
+    return typography;
   }
 
 

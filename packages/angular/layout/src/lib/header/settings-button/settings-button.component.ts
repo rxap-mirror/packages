@@ -17,7 +17,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute } from '@angular/router';
 import { ChangelogService } from '@rxap/ngx-changelog';
-import { ThemeService } from '@rxap/services';
+import {
+  ThemeDensity,
+  ThemeService,
+} from '@rxap/services';
 import { Subscription } from 'rxjs';
 import {
   map,
@@ -37,6 +40,12 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
   public isDevMode = isDevMode();
   items = signal<Array<ComponentPortal<unknown>>>([]);
   private _subscription?: Subscription;
+
+  private savePreviewDensityValue = false;
+  private currentDensityValue: ThemeDensity | null = null;
+
+  private savePreviewTypographyValue = false;
+  private currentTypographyValue: string | null = null;
 
   constructor(
     public readonly theme: ThemeService,
@@ -68,6 +77,42 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
 
   openChangelogDialog() {
     this.changelogService.showChangelogDialog();
+  }
+
+  previewDensity(density: ThemeDensity) {
+    this.currentDensityValue = this.theme.getDensity();
+    this.theme.setDensity(density);
+  }
+
+  saveDensity() {
+    if (!this.savePreviewDensityValue) {
+      if (this.currentDensityValue) {
+        this.theme.setDensity(this.currentDensityValue);
+      }
+    }
+    this.savePreviewDensityValue = false;
+  }
+
+  selectDensity() {
+    this.savePreviewDensityValue = true;
+  }
+
+  previewTypography(typography?: string) {
+    this.currentTypographyValue = this.theme.getTypography();
+    this.theme.setTypography(typography);
+  }
+
+  saveTypography() {
+    if (!this.savePreviewTypographyValue) {
+      if (this.currentTypographyValue) {
+        this.theme.setTypography(this.currentTypographyValue);
+      }
+    }
+    this.savePreviewTypographyValue = false;
+  }
+
+  selectTypography() {
+    this.savePreviewTypographyValue = true;
   }
 
 }

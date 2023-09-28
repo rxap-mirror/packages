@@ -8,6 +8,10 @@
     <mat-icon *ngIf="!theme.darkMode" svgIcon="brightness-5"></mat-icon>
     <span i18n>Mode</span>
   </button>
+  <button [matMenuTriggerFor]="themeMenu" mat-menu-item>
+    <mat-icon svgIcon="compare"></mat-icon>
+    <span i18n>Theme</span>
+  </button>
   <rxap-language-selector *ngIf="!isDevMode"></rxap-language-selector>
   <button (click)="openChangelogDialog()" mat-menu-item>
     <mat-icon svgIcon="format-list-numbered"></mat-icon>
@@ -16,4 +20,48 @@
   <ng-container *ngFor="let item of items()">
     <ng-template [cdkPortalOutlet]="item"></ng-template>
   </ng-container>
+</mat-menu>
+
+<mat-menu #themeMenu="matMenu" xPosition="before">
+  <button [matMenuTriggerFor]="themeDensityMenu" mat-menu-item>
+    <mat-icon svgIcon="move-resize"></mat-icon>
+    <span i18n>Density</span>
+  </button>
+  <button [matMenuTriggerFor]="themeFontMenu" mat-menu-item>
+    <mat-icon svgIcon="format-font"></mat-icon>
+    <span i18n>Font</span>
+  </button>
+</mat-menu>
+
+<mat-menu #themeDensityMenu="matMenu" xPosition="before">
+  <button (click)="selectDensity()" (mouseenter)="previewDensity(0)" (mouseleave)="saveDensity()" mat-menu-item>
+    <mat-icon svgIcon="size-l"></mat-icon>
+    <span i18n>Normal</span>
+  </button>
+  <button (click)="selectDensity()" (mouseenter)="previewDensity(-1)" (mouseleave)="saveDensity()" mat-menu-item>
+    <mat-icon svgIcon="size-m"></mat-icon>
+    <span i18n>Dense</span>
+  </button>
+  <button (click)="selectDensity()" (mouseenter)="previewDensity(-2)" (mouseleave)="saveDensity()" mat-menu-item>
+    <mat-icon svgIcon="size-s"></mat-icon>
+    <span i18n>Very Dense</span>
+  </button>
+  <button (click)="selectDensity()" (mouseenter)="previewDensity(-3)" (mouseleave)="saveDensity()" mat-menu-item>
+    <mat-icon svgIcon="size-xs"></mat-icon>
+    <span i18n>Extreme Dense</span>
+  </button>
+</mat-menu>
+<mat-menu #themeFontMenu="matMenu" xPosition="before">
+  <button (click)="selectTypography()" (mouseenter)="previewTypography()" (mouseleave)="saveTypography()" i18n
+          mat-menu-item>Default
+  </button>
+  <button (click)="selectTypography()" (mouseenter)="previewTypography('mono')" (mouseleave)="saveTypography()"
+          class="font-mono" i18n mat-menu-item>Mono
+  </button>
+  <button (click)="selectTypography()" (mouseenter)="previewTypography('serif')" (mouseleave)="saveTypography()"
+          class="font-serif" i18n mat-menu-item>Serif
+  </button>
+  <button (click)="selectTypography()" (mouseenter)="previewTypography('sans')" (mouseleave)="saveTypography()"
+          class="font-sans" i18n mat-menu-item>Sans
+  </button>
 </mat-menu>

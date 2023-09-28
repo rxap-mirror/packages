@@ -1,0 +1,133 @@
+@use '@angular/material' as mat;
+@use 'palette' as palette;
+
+@import "table";
+@import 'loading-animation';
+
+@mixin colors($theme) {
+  $background: mat.get-color-from-palette(map-get($theme, background), background);
+  $foreground: mat.get-color-from-palette(map-get($theme, foreground), text);
+
+  --background-color: #{$background};
+  --foreground-color: #{$foreground};
+
+  --accept-color: rgb(115, 190, 105);
+  --decline-color: rgb(204, 73, 51);
+
+  @include mat.all-component-colors($theme);
+
+  @include table-theme($theme);
+  @include loadingAnimation($background);
+}
+
+@mixin density($theme) {
+  @include mat.all-component-densities($theme);
+}
+
+@mixin typography($theme) {
+  @include mat.all-component-typographies($theme);
+}
+
+@mixin base-theme() {
+  $theme: mat.define-light-theme((
+    color: (
+      primary: mat.$blue-palette,
+      accent: mat.$cyan-palette,
+      warn: mat.$red-palette
+    ),
+  ));
+  @include mat.core-theme($theme);
+  @include density($theme);
+  @include typography($theme);
+
+  body {
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+
+    @for $i from -3 through -1 {
+      &.density#{$i} {
+        @include density(mat.define-light-theme((
+          // https://m2.material.io/design/layout/applying-density.html#usage
+          // between -3 and 0
+          // density < -1 -> form field label not visible
+          density: $i,
+        )));
+        --density: #{$i};
+      }
+      &.typography-mono {
+        @include typography(mat.define-light-theme((
+          typography: mat.define-typography-config(
+            $font-family: theme("fontFamily.mono")
+          ),
+        )));
+        --typography: mono;
+      }
+      &.typography-serif {
+        @include typography(mat.define-light-theme((
+          typography: mat.define-typography-config(
+            $font-family: theme("fontFamily.serif")
+          ),
+        )));
+        --typography: serif;
+      }
+      &.typography-sans {
+        @include typography(mat.define-light-theme((
+          typography: mat.define-typography-config(
+            $font-family: theme("fontFamily.sans")
+          ),
+        )));
+        --typography: sans;
+      }
+    }
+  }
+
+}
+
+@mixin body-theme($theme) {
+  @include colors($theme);
+}
+
+@mixin init-theme(
+  $theme-primary: mat.define-palette(palette.$primary-pat),
+  $theme-accent: mat.define-palette(palette.$accent-pat),
+  $theme-warn: mat.define-palette(palette.$warn-pat),
+  $scope: null
+) {
+
+  $light-theme: mat.define-light-theme((
+    color: (
+      primary: $theme-primary,
+      accent: $theme-accent,
+      warn: $theme-warn
+    ),
+  ));
+
+  $dark-theme: mat.define-dark-theme((
+    color: (
+      primary: $theme-primary,
+      accent: $theme-accent,
+      warn: $theme-warn
+    ),
+  ));
+
+  // generate the base theme independent of the preferred color scheme
+  @include base-theme();
+
+  @if $scope {
+    body.#{$scope} {
+      @include body-theme($light-theme);
+
+      &.dark, &.dark-theme {
+        @include body-theme($dark-theme);
+      }
+    }
+  } @else {
+    body {
+      @include body-theme($light-theme);
+
+      &.dark, &.dark-theme {
+        @include body-theme($dark-theme);
+      }
+    }
+  }
+}
