@@ -3413,6 +3413,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ctrl/tinycolor@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@ctrl/tinycolor@npm:4.0.2"
+  checksum: e2e7f587c5cd64f3f6f6363924ef8e1ddf3d5050a7437f67710e011cf9881a31563070ebbf5477cfb935b313749d6e5a4bed40e0b0aec8a230a2e0f95e99daf0
+  languageName: node
+  linkType: hard
+
 "@cypress/request@npm:^2.88.11":
   version: 2.88.12
   resolution: "@cypress/request@npm:2.88.12"
@@ -28846,6 +28853,7 @@ __metadata:
     "@commitlint/cli": ^17.0.0
     "@commitlint/config-conventional": ^17.0.0
     "@compodoc/compodoc": ^1.1.19
+    "@ctrl/tinycolor": ^4.0.2
     "@cypress/webpack-dev-server": ^2.0.0
     "@enio.ai/typedoc": ^1.0.8
     "@faker-js/faker": ^8.0.2

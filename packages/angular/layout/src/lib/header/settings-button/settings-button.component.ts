@@ -47,13 +47,17 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
   private savePreviewTypographyValue = false;
   private currentTypographyValue: string | null = null;
 
+  public readonly availableThemes: string[];
+  private savePreviewThemeValue = false;
+  private currentThemeValue: string | null = null;
+
   constructor(
     public readonly theme: ThemeService,
     private readonly route: ActivatedRoute,
     private readonly injector: Injector,
     private readonly changelogService: ChangelogService,
   ) {
-
+    this.availableThemes = this.theme.getAvailableThemes();
   }
 
   ngOnDestroy() {
@@ -113,6 +117,24 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
 
   selectTypography() {
     this.savePreviewTypographyValue = true;
+  }
+
+  previewTheme(theme: string) {
+    this.currentThemeValue = this.theme.getCurrentTheme();
+    this.theme.setTheme(theme);
+  }
+
+  saveTheme() {
+    if (!this.savePreviewThemeValue) {
+      if (this.currentThemeValue) {
+        this.theme.setTheme(this.currentThemeValue);
+      }
+    }
+    this.savePreviewThemeValue = false;
+  }
+
+  selectTheme() {
+    this.savePreviewThemeValue = true;
   }
 
 }

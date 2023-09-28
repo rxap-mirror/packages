@@ -1,0 +1,15 @@
+{
+  "digitaix": {
+    "density": -3,
+    "typography": "mono",
+    "primaryColor": {
+      "base": "orange"
+    },
+    "accentColor": {
+      "base": "blue"
+    },
+    "warnColor": {
+      "base": "brown"
+    }
+  }
+}

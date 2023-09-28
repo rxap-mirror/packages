@@ -9,14 +9,17 @@ import { ConfigService } from '@rxap/config';
 import {
   FooterService,
   HeaderService,
+  ObserveCurrentThemeDensity,
 } from '@rxap/services';
 import {
   BehaviorSubject,
+  combineLatest,
   Observable,
   skip,
 } from 'rxjs';
 import {
   map,
+  startWith,
   tap,
 } from 'rxjs/operators';
 import { RXAP_LOGO_CONFIG } from '../tokens';
@@ -54,9 +57,16 @@ export class LayoutComponentService {
     this.pinned$ = new BehaviorSubject<boolean>(pinned);
     this.collapsable$ = new BehaviorSubject<boolean>(collapsable);
     this.fixedBottomGap$ = this.footerComponentService.portalCount$.pipe(map(count => count * 64));
-    this.fixedTopGap$.next(this.headerComponentService.countComponent * 64);
-    this.headerComponentService.update$.pipe(
-      tap(() => this.fixedTopGap$.next(this.headerComponentService.countComponent * 64)),
+    combineLatest([
+      this.headerComponentService.update$.pipe(
+        startWith(null),
+        map(() => this.headerComponentService.countComponent),
+      ),
+      ObserveCurrentThemeDensity(),
+    ]).pipe(
+      tap(([ count, density ]) => {
+        this.fixedTopGap$.next(count * (64 + density * 4));
+      }),
     ).subscribe();
     this.logo = logoConfig ?? {
       src: 'assets/logo.png',

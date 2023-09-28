@@ -1,10 +1,10 @@
 <rxap-status-indicator class="fixed bottom-0 right-0 z-10"></rxap-status-indicator>
 <div class="flex flex-col h-screen justify-between">
   <rxap-header class="z-10 w-full fixed top-0"></rxap-header>
-  <mat-sidenav-container [ngClass]="{
-    'mb-16': fixedBottomGap() === 64,
-    'mb-32': fixedBottomGap() === 128,
-  }" class="grow mt-16">
+  <mat-sidenav-container [ngStyle]="{
+    'margin-top.px': fixedTopGap(),
+    'margin-bottom.px': fixedBottomGap(),
+  }">
     <mat-sidenav
       #matSidenav="matSidenav"
       [fixedBottomGap]="fixedBottomGap()"
@@ -18,12 +18,14 @@
       <div class="h-full py-2 flex flex-col items-center gap-y-5 justify-items-stretch">
 
         <div (click)="layoutComponentService.togglePinned()" *ngIf="collapsable()"
-             class="pl-2 pr-2 self-stretch grow-0 flex flex-row justify-between items-center">
+             class="pl-2 self-stretch grow-0 flex flex-row justify-between items-center">
           <span class="text-lg" i18n>Navigation</span>
-          <button mat-icon-button>
-            <mat-icon *ngIf="!pinned()">radio_button_unchecked</mat-icon>
-            <mat-icon *ngIf="pinned()">radio_button_checked</mat-icon>
-          </button>
+          <div class="flex flex-row items-center justify-center" style="width: 64px">
+            <button mat-icon-button>
+              <mat-icon *ngIf="!pinned()">radio_button_unchecked</mat-icon>
+              <mat-icon *ngIf="pinned()">radio_button_checked</mat-icon>
+            </button>
+          </div>
         </div>
 
         <ul
