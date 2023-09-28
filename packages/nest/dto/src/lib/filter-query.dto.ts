@@ -1,8 +1,7 @@
 import { Expose } from 'class-transformer';
 import { IsString } from 'class-validator';
-import { FilterQuery } from './filter-query.pipe';
 
-export class FilterQueryDto implements FilterQuery {
+export class FilterQueryDto {
 
   @Expose()
   @IsString()

@@ -9092,6 +9092,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/nest-dto@workspace:packages/nest/dto":
+  version: 0.0.0-use.local
+  resolution: "@rxap/nest-dto@workspace:packages/nest/dto"
+  languageName: unknown
+  linkType: soft
+
 "@rxap/nest-firebase@workspace:packages/nest/firebase":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-firebase@workspace:packages/nest/firebase"

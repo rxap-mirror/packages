@@ -10,7 +10,7 @@ import {
   IsString,
   Min,
 } from 'class-validator';
-import { FilterQueryDto } from '../filter-query.dto';
+import { FilterQueryDto } from './filter-query.dto';
 
 export abstract class PageDto<RowType> {
 

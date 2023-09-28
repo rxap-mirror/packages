@@ -119,6 +119,7 @@
         "packages/angular/material/table-window-system/src/index.ts"
       ],
       "@rxap/mixin": ["packages/mixin/src/index.ts"],
+      "@rxap/nest-dto": ["packages/nest/dto/src/index.ts"],
       "@rxap/nest-firebase": ["packages/nest/firebase/src/index.ts"],
       "@rxap/nest-jwt": ["packages/nest/jwt/src/index.ts"],
       "@rxap/nest-logger": ["packages/nest/logger/src/index.ts"],
