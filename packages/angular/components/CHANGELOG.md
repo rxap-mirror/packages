@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.0-dev.17...@rxap/components@16.0.0-dev.18) (2023-09-28)
+
+### Bug Fixes
+
+- use specific css variable ([c09b751](https://gitlab.com/rxap/packages/commit/c09b7515d030a2307655011105dec5ece7d2b2cd))
+
 # [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.0-dev.16...@rxap/components@16.0.0-dev.17) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/components

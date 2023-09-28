@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.41](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.40...@rxap/plugin-angular@16.1.0-dev.41) (2023-09-28)
+
+### Features
+
+- support dynamic font families and theme density ([a212366](https://gitlab.com/rxap/packages/commit/a21236669cfe89f51b5946cd2d28e72411481dc9))
+
 # [16.1.0-dev.40](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.39...@rxap/plugin-angular@16.1.0-dev.40) (2023-09-27)
 
 ### Bug Fixes

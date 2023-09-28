@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/services@16.0.0-dev.16...@rxap/services@16.0.0-dev.17) (2023-09-28)
+
+### Features
+
+- support dynamic font families and theme density ([a212366](https://gitlab.com/rxap/packages/commit/a21236669cfe89f51b5946cd2d28e72411481dc9))
+- support dynamic theme configuration ([2c0cf1d](https://gitlab.com/rxap/packages/commit/2c0cf1d14803dc4f1e7db47cd269c3e8b57de2d4))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/services@16.0.0-dev.15...@rxap/services@16.0.0-dev.16) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/services
