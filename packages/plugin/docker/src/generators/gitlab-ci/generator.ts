@@ -25,6 +25,7 @@ const dotDocker = {
   script: '/bin/sh tools/scripts/build-and-push-docker-image.sh',
   environment: {
     action: 'prepare',
+    name: '$ENVIRONMENT_NAME',
   },
   variables: [
     'GIT_LFS_SKIP_SMUDGE=1',
@@ -44,9 +45,6 @@ const dotDocker = {
 const docker = {
   extends: '.docker',
   variables: {},
-  environment: {
-    name: '$ENVIRONMENT_NAME',
-  },
 };
 
 function skipProject(tree: Tree, options: GitlabCiGeneratorSchema, project: ProjectConfiguration, projectName: string) {
