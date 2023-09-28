@@ -5,7 +5,6 @@ import {
   Tree,
 } from '@nx/devkit';
 import {
-  GetTarget,
   GetTargetOptions,
   GuessOutputPath,
 } from '@rxap/plugin-utilities';
@@ -47,6 +46,30 @@ const docker = {
   variables: {},
 };
 
+const dotStartup = {
+  image: 'curlimages/curl:8.3.0',
+  stage: 'startup',
+  tags: [ 'e2-standard-2' ],
+  services: [
+    {
+      name: '${CI_REGISTRY_IMAGE}${IMAGE_SUFFIX}:${CI_PIPELINE_ID}',
+      alias: 'service',
+    },
+  ],
+  environment: {
+    action: 'prepare',
+    name: '$ENVIRONMENT_NAME',
+  },
+  script: [
+    'curl http://service:3000/info',
+  ],
+};
+
+const startup = {
+  extends: '.setup',
+  variables: {},
+};
+
 function skipProject(tree: Tree, options: GitlabCiGeneratorSchema, project: ProjectConfiguration, projectName: string) {
 
   if (project.projectType !== 'application') {
@@ -59,19 +82,6 @@ function skipProject(tree: Tree, options: GitlabCiGeneratorSchema, project: Proj
 
   return false;
 
-}
-
-export function getOutputPathFromTarget(
-  project: ProjectConfiguration,
-  targetName = 'build',
-  configurationName = 'production',
-) {
-  const target = GetTarget(project, targetName);
-  if (!target) {
-    return null;
-  }
-  const options = GetTargetOptions(target, configurationName);
-  return options.outputPath ?? null;
 }
 
 export async function gitlabCiGenerator(
@@ -87,6 +97,10 @@ export async function gitlabCiGenerator(
 
   const dockerYaml: any = {
     '.docker': dotDocker,
+  };
+
+  const startupYaml: any = {
+    '.startup': dotStartup,
   };
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
@@ -108,7 +122,11 @@ export async function gitlabCiGenerator(
       project.root;
 
     dockerYaml[`docker:${ projectName }`] = clone(docker);
+    startupYaml[`startup:${ projectName }`] = clone(startup);
     dockerYaml[`docker:${ projectName }`].variables = {
+      IMAGE_NAME: imageName,
+    };
+    startupYaml[`startup:${ projectName }`].variables = {
       IMAGE_NAME: imageName,
     };
 
@@ -118,6 +136,7 @@ export async function gitlabCiGenerator(
 
     if (imageSuffix) {
       dockerYaml[`docker:${ projectName }`].variables.IMAGE_SUFFIX = imageSuffix;
+      startupYaml[`startup:${ projectName }`].variables.IMAGE_SUFFIX = imageSuffix;
     }
 
     if (dockerfile) {
@@ -126,11 +145,17 @@ export async function gitlabCiGenerator(
 
   }
 
-  const gitlabCiYaml = stringify(dockerYaml);
+  const dockerGitlabCiYaml = stringify(dockerYaml);
 
   console.log('.gitlab/ci/jobs/docker.yaml');
-  console.log(gitlabCiYaml);
-  tree.write('.gitlab/ci/jobs/docker.yaml', gitlabCiYaml);
+  console.log(dockerGitlabCiYaml);
+  tree.write('.gitlab/ci/jobs/docker.yaml', dockerGitlabCiYaml);
+
+  const startupGitlabCiYaml = stringify(startupYaml);
+
+  console.log('.gitlab/ci/jobs/startup.yaml');
+  console.log(startupGitlabCiYaml);
+  tree.write('.gitlab/ci/jobs/startup.yaml', startupGitlabCiYaml);
 
 }
 

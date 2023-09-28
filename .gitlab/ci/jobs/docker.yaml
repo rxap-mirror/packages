@@ -9,6 +9,7 @@
   script: /bin/sh tools/scripts/build-and-push-docker-image.sh
   environment:
     action: prepare
+    name: $ENVIRONMENT_NAME
   variables:
     - GIT_LFS_SKIP_SMUDGE=1
   rules:
@@ -24,8 +25,6 @@ docker:angular:
     DOCKER_CONTEXT: dist/demos/angular
     IMAGE_SUFFIX: /user-interface/angular
     DOCKERFILE: shared/angular/Dockerfile
-  environment:
-    name: $ENVIRONMENT_NAME
 docker:service-changelog:
   extends: .docker
   variables:
@@ -33,8 +32,6 @@ docker:service-changelog:
     DOCKER_CONTEXT: dist/applications/service/changelog
     IMAGE_SUFFIX: /service/changelog
     DOCKERFILE: shared/nestjs/Dockerfile
-  environment:
-    name: $ENVIRONMENT_NAME
 docker:service-configuration:
   extends: .docker
   variables:
@@ -42,8 +39,6 @@ docker:service-configuration:
     DOCKER_CONTEXT: dist/applications/service/configuration
     IMAGE_SUFFIX: /service/configuration
     DOCKERFILE: shared/nestjs/Dockerfile
-  environment:
-    name: $ENVIRONMENT_NAME
 docker:service-status:
   extends: .docker
   variables:
@@ -51,8 +46,6 @@ docker:service-status:
     DOCKER_CONTEXT: dist/applications/service/status
     IMAGE_SUFFIX: /service/status
     DOCKERFILE: shared/nestjs/Dockerfile
-  environment:
-    name: $ENVIRONMENT_NAME
 docker:service-user:
   extends: .docker
   variables:
@@ -60,8 +53,6 @@ docker:service-user:
     DOCKER_CONTEXT: dist/applications/service/user
     IMAGE_SUFFIX: /service/user
     DOCKERFILE: shared/nestjs/Dockerfile
-  environment:
-    name: $ENVIRONMENT_NAME
 docker:service-app-angular-table:
   extends: .docker
   variables:
@@ -69,5 +60,3 @@ docker:service-app-angular-table:
     DOCKER_CONTEXT: dist/demos/service/app/angular/table
     IMAGE_SUFFIX: /service/app-angular-table
     DOCKERFILE: shared/nestjs/Dockerfile
-  environment:
-    name: $ENVIRONMENT_NAME
