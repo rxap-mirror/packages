@@ -6,10 +6,10 @@ import {
 } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { ConfigService } from '@rxap/config';
+import { ObserveCurrentThemeDensity } from '@rxap/ngx-theme';
 import {
   FooterService,
   HeaderService,
-  ObserveCurrentThemeDensity,
 } from '@rxap/services';
 import {
   BehaviorSubject,
