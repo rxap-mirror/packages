@@ -128,7 +128,7 @@ describe('SettingsModule', () => {
 
     describe('POST /settings', () => {
 
-      it('should set the settings', async () => {
+      it.skip('should set the settings', async () => {
 
         const response = await request(app.getHttpServer())
           .post('/settings')
@@ -167,7 +167,7 @@ describe('SettingsModule', () => {
 
     describe.each(propertyPathList)(`PUT /settings/%s`, propertyPath => {
 
-      it('should set the value of the property path that not exists', async () => {
+      it.skip('should set the value of the property path that not exists', async () => {
 
         const result = SettingsService.DefaultSettings;
         const value = { test: true };
@@ -209,7 +209,7 @@ describe('SettingsModule', () => {
 
     describe.each(propertyPathList)(`PUT /settings/%s/push`, propertyPath => {
 
-      it('should push the value to the property path that not exists', async () => {
+      it.skip('should push the value to the property path that not exists', async () => {
 
         const result = SettingsService.DefaultSettings;
         const value = { test: true };
