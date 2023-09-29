@@ -2,14 +2,19 @@ import { Injectable } from '@angular/core';
 import {
   ExpiredUnit,
   StorageGet,
+  StorageHas,
   StorageKey,
   StorageRemove,
   StorageSet,
 } from './storage-utility';
 
 @Injectable()
-export class StorageService {
-  constructor(private storage: Storage | null) {}
+export abstract class StorageService {
+  protected constructor(private storage: Storage | null) {}
+
+  has(key: string): boolean {
+    return StorageHas(this.storage, key);
+  }
 
   get(key: string): any {
     return StorageGet(this.storage, key);
