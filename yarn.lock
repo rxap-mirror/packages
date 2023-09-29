@@ -9240,6 +9240,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/nest-testing@workspace:packages/nest/testing":
+  version: 0.0.0-use.local
+  resolution: "@rxap/nest-testing@workspace:packages/nest/testing"
+  languageName: unknown
+  linkType: soft
+
 "@rxap/nest-utilities@workspace:packages/nest/utilities":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-utilities@workspace:packages/nest/utilities"

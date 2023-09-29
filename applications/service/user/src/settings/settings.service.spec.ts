@@ -2,34 +2,16 @@ import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
 import {
+  MockConfigServiceFactory,
+  MockLoggerFactory,
+} from '@rxap/nest-testing';
+import {
   readdirSync,
   readFileSync,
 } from 'fs';
 import mockFs from 'mock-fs';
 import { join } from 'path';
 import { SettingsService } from './settings.service';
-
-export function MockConfigServiceFactory(config: Record<string, unknown> = {}) {
-  return {
-    get: (key: string) => config[key],
-    getOrThrow: (key: string) => {
-      if (config[key] === undefined) {
-        throw new Error(`Config key ${ key } is not defined`);
-      }
-      return config[key];
-    },
-  };
-}
-
-export function MockLoggerFactory() {
-  return {
-    error: jest.fn(),
-    log: jest.fn(),
-    warn: jest.fn(),
-    debug: jest.fn(),
-    verbose: jest.fn(),
-  };
-}
 
 describe('SettingsService', () => {
 

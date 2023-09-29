@@ -130,6 +130,9 @@
       "@rxap/nest-socket-io-client": [
         "packages/nest/socket-io-client/src/index.ts"
       ],
+      "@rxap/nest-testing": [
+        "packages/nest/testing/src/index.ts"
+      ],
       "@rxap/nest-utilities": ["packages/nest/utilities/src/index.ts"],
       "@rxap/ngx-bootstrap": ["packages/angular/bootstrap/src/index.ts"],
       "@rxap/ngx-changelog": ["packages/angular/changelog/src/index.ts"],

@@ -110,6 +110,12 @@ To create a new nest library package, run the command:
 yarn nx g @nx/nest:library --importPath @rxap/nest-<project-name>
 ```
 
+To init the library run the command:
+
+```shell
+yarn nx g @rxap/plugin-library:init --project nest-<project-name>
+```
+
 ### Node Library
 
 ### Schematic Library
