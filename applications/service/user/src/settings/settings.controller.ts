@@ -13,6 +13,7 @@ import {
   Post,
   Put,
   Query,
+  Req,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -25,6 +26,7 @@ import {
   RemoveFromObject,
   SetToObject,
 } from '@rxap/utilities';
+import { Request } from 'express';
 import { UserSettings } from './settings';
 import { SettingsService } from './settings.service';
 
@@ -69,8 +71,9 @@ export class SettingsController {
   @Get()
   public get(
     @UserSub() userId: string,
+    @Req() request: Request,
   ): Promise<UserSettings> {
-    return this.userSettings.get(userId);
+    return this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
   }
 
   @ApiBody({
@@ -117,8 +120,9 @@ export class SettingsController {
   public async toggleProperty(
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
+    @Req() request: Request,
   ): Promise<void> {
-    const settings = await this.userSettings.get(userId);
+    const settings = await this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
     const value = GetFromObjectFactory(propertyPath, false)(settings);
     if (typeof value !== 'boolean') {
       throw new BadRequestException(`The user settings property '${ propertyPath }' is not a boolean value`);
@@ -134,8 +138,9 @@ export class SettingsController {
   public async getProperty(
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
+    @Req() request: Request,
   ): Promise<unknown> {
-    const settings = await this.userSettings.get(userId);
+    const settings = await this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
     return GetFromObjectFactory(propertyPath, propertyPath)(settings);
   }
 
@@ -144,8 +149,9 @@ export class SettingsController {
     @UserSub() userId: string,
     @Body() value: any,
     @Param('propertyPath') propertyPath: string,
+    @Req() request: Request,
   ): Promise<void> {
-    const settings = await this.userSettings.get(userId);
+    const settings = await this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
     SetToObject(settings, propertyPath, value);
     await this.userSettings.set(userId, settings);
   }
@@ -154,8 +160,9 @@ export class SettingsController {
   public async clearProperty(
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
+    @Req() request: Request,
   ): Promise<void> {
-    const settings = await this.userSettings.get(userId);
+    const settings = await this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
     RemoveFromObject(settings, propertyPath);
     await this.userSettings.set(userId, settings);
   }
@@ -165,8 +172,9 @@ export class SettingsController {
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
     @Body() value: any,
+    @Req() request: Request,
   ): Promise<void> {
-    const settings = await this.userSettings.get(userId);
+    const settings = await this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
     let array = GetFromObjectFactory(propertyPath)(settings);
     if (array === undefined) {
       array = [];
@@ -186,8 +194,9 @@ export class SettingsController {
   public async popProperty(
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
+    @Req() request: Request,
   ): Promise<unknown> {
-    const settings = await this.userSettings.get(userId);
+    const settings = await this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
     const array = GetFromObjectFactory(propertyPath, [])(settings);
     if (!Array.isArray(array)) {
       throw new BadRequestException(`The user settings property '${ propertyPath }' is not an array`);
@@ -202,8 +211,9 @@ export class SettingsController {
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
     @Body() value: any,
+    @Req() request: Request,
   ): Promise<number> {
-    const settings = await this.userSettings.get(userId);
+    const settings = await this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
     const array = GetFromObjectFactory(propertyPath, [])(settings);
     if (!Array.isArray(array)) {
       throw new BadRequestException(`The user settings property '${ propertyPath }' is not an array`);
@@ -220,8 +230,9 @@ export class SettingsController {
   public async shiftProperty(
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
+    @Req() request: Request,
   ): Promise<unknown> {
-    const settings = await this.userSettings.get(userId);
+    const settings = await this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
     const array = GetFromObjectFactory(propertyPath, [])(settings);
     if (!Array.isArray(array)) {
       throw new BadRequestException(`The user settings property '${ propertyPath }' is not an array`);
@@ -236,8 +247,9 @@ export class SettingsController {
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
     @Param('index', ParseIntPipe) index: number,
+    @Req() request: Request,
   ): Promise<void> {
-    const settings = await this.userSettings.get(userId);
+    const settings = await this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
     const array = GetFromObjectFactory(propertyPath, [])(settings);
     if (!Array.isArray(array)) {
       throw new BadRequestException(`The user settings property '${ propertyPath }' is not an array`);
@@ -255,8 +267,9 @@ export class SettingsController {
     @Param('propertyPath') propertyPath: string,
     @Body() value: any,
     @Query('optional', new DefaultValuePipe(false), ParseBoolPipe) optional = false,
+    @Req() request: Request,
   ): Promise<void> {
-    const settings = await this.userSettings.get(userId);
+    const settings = await this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
     const array = GetFromObjectFactory(propertyPath, [])(settings);
     if (!Array.isArray(array)) {
       throw new BadRequestException(`The user settings property '${ propertyPath }' is not an array`);
@@ -276,8 +289,9 @@ export class SettingsController {
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
     @Query('value', new DefaultValuePipe(1), ParseFloatPipe) value = 1,
+    @Req() request: Request,
   ): Promise<void> {
-    const settings = await this.userSettings.get(userId);
+    const settings = await this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
     const currentValue = GetFromObjectFactory(propertyPath, 0)(settings);
     if (typeof currentValue !== 'number') {
       throw new BadRequestException(`The user settings property '${ propertyPath }' is not a number`);
@@ -291,14 +305,25 @@ export class SettingsController {
     @UserSub() userId: string,
     @Param('propertyPath') propertyPath: string,
     @Query('value', new DefaultValuePipe(1), ParseFloatPipe) value = 1,
+    @Req() request: Request,
   ): Promise<void> {
-    const settings = await this.userSettings.get(userId);
+    const settings = await this.userSettings.get(userId, this.buildDefaultSettingsFromRequest(request));
     const currentValue = GetFromObjectFactory(propertyPath, 0)(settings);
     if (typeof currentValue !== 'number') {
       throw new BadRequestException(`The user settings property '${ propertyPath }' is not a number`);
     }
     SetToObject(settings, propertyPath, currentValue - value);
     await this.userSettings.set(userId, settings);
+  }
+
+  private buildDefaultSettingsFromRequest(request: Request): Partial<UserSettings> {
+    const settings: Partial<UserSettings> = {};
+
+    if (request.acceptsLanguages().length) {
+      settings.language = request.acceptsLanguages()[0].replace(/-.+/, '');
+    }
+
+    return settings;
   }
 
 }
