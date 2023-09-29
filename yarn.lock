@@ -8972,6 +8972,7 @@ __metadata:
     "@rxap/ngx-changelog": ^16.1.0-dev.2
     "@rxap/ngx-localize": ^16.1.0-dev.1
     "@rxap/ngx-status-check": ^16.1.0-dev.13
+    "@rxap/ngx-theme": "*"
     "@rxap/ngx-user": ^16.1.0-dev.2
     "@rxap/services": ^16.0.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.19
@@ -9411,6 +9412,12 @@ __metadata:
   resolution: "@rxap/ngx-theme@workspace:packages/angular/theme"
   dependencies:
     tslib: ^2.3.0
+  peerDependencies:
+    "@angular/cdk": ^16.1.4
+    "@angular/core": ^16.1.4
+    "@ctrl/tinycolor": ^4.0.2
+    "@rxap/config": "*"
+    rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
 
@@ -12129,6 +12136,15 @@ __metadata:
   version: 1.2.2
   resolution: "@types/minimist@npm:1.2.2"
   checksum: b8da83c66eb4aac0440e64674b19564d9d86c80ae273144db9681e5eeff66f238ade9515f5006ffbfa955ceff8b89ad2bd8ec577d7caee74ba101431fb07045d
+  languageName: node
+  linkType: hard
+
+"@types/mock-fs@npm:^4.13.2":
+  version: 4.13.2
+  resolution: "@types/mock-fs@npm:4.13.2"
+  dependencies:
+    "@types/node": "*"
+  checksum: 726975ae51f7b4068bb059c633ae28a1d85595d3036c235d3f9c9dc3a9c519dc6b811713af1b686807e80a484a6ec47a742a11b4ada32a6e74eee6538a9f4658
   languageName: node
   linkType: hard
 
@@ -24469,6 +24485,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mock-fs@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "mock-fs@npm:5.2.0"
+  checksum: c25835247bd26fa4e0189addd61f98973f61a72741e4d2a5694b143a2069b84978443a7ac0fdb1a71aead99273ec22ff4e9c968de11bbd076db020264c5b8312
+  languageName: node
+  linkType: hard
+
 "modify-values@npm:^1.0.0":
   version: 1.0.1
   resolution: "modify-values@npm:1.0.1"
@@ -28928,6 +28951,7 @@ __metadata:
     "@types/fs-extra": ^11.0.1
     "@types/jest": ^29.4.0
     "@types/marked": ^4.3.0
+    "@types/mock-fs": ^4.13.2
     "@types/node": 18.7.1
     "@types/supertest": 2.0.11
     "@types/xmldom": ^0.1.32
@@ -28966,6 +28990,7 @@ __metadata:
     lerna: ^6.6.2
     marked: ^4.3.0
     minio: ^7.0.32
+    mock-fs: ^5.2.0
     ng-mocks: ^14.11.0
     ng-packagr: 16.1.0
     ngx-logger: ^5.0.12
