@@ -1,9 +1,9 @@
-import { RemoveDirSync } from '@rxap/node-utilities';
 import {
   existsSync,
   mkdirSync,
   readdirSync,
   readFileSync,
+  rmdirSync,
   statSync,
   unlinkSync,
   writeFileSync,
@@ -32,7 +32,7 @@ export class LocalStorage implements Storage {
 
   clear(): void {
     this.cache.clear();
-    RemoveDirSync(this.storageFolder);
+    this.removeDirSync(this.storageFolder);
     mkdirSync(this.storageFolder, { recursive: true });
   }
 
@@ -69,4 +69,22 @@ export class LocalStorage implements Storage {
       }
     }
   }
+
+  private removeDirSync(dirPath: string) {
+    const files = readdirSync(dirPath);
+
+    for (const file of files) {
+      const filePath = join(dirPath, file);
+      const stat = statSync(filePath);
+
+      if (stat.isDirectory()) {
+        this.removeDirSync(filePath);
+      } else {
+        unlinkSync(filePath);
+      }
+    }
+
+    rmdirSync(dirPath);
+  }
+
 }
