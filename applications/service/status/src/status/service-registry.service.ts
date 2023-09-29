@@ -1,5 +1,7 @@
-import { kvsLocalStorage } from '@kvs/node-localstorage';
-import { KvsStorage } from '@kvs/storage';
+import {
+  kvsStorage,
+  KvsStorage,
+} from '@kvs/storage';
 import {
   Inject,
   Injectable,
@@ -7,6 +9,7 @@ import {
   OnApplicationBootstrap,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { LocalStorage } from '@rxap/node-local-storage';
 
 export interface RegisteredService extends Record<string, any> {
   url: string | undefined;
@@ -30,10 +33,10 @@ export class ServiceRegistryService implements OnApplicationBootstrap {
   private readonly config!: ConfigService;
 
   async onApplicationBootstrap(): Promise<void> {
-    this.storage = await kvsLocalStorage({
+    this.storage = await kvsStorage({
       name: 'registered-service',
-      storeFilePath: this.config.getOrThrow('STORE_FILE_PATH'),
       version: 1,
+      storage: new LocalStorage(this.config.getOrThrow('STORE_FILE_PATH')),
     });
   }
 

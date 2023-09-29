@@ -101,11 +101,9 @@ export class SettingsController {
             },
           },
           additionalProperties: true,
-          required: [ 'preset' ],
         },
       },
       additionalProperties: true,
-      required: [ 'darkMode', 'language', 'theme' ],
     },
   })
   @Post()
@@ -320,7 +318,13 @@ export class SettingsController {
     const settings: Partial<UserSettings> = {};
 
     if (request.acceptsLanguages().length) {
-      settings.language = request.acceptsLanguages()[0].replace(/-.+/, '');
+      for (const language of request.acceptsLanguages()) {
+        const match = language.match(/^(\w{2})([-_]\w{2})?$/);
+        if (match) {
+          settings.language = match[1];
+          break;
+        }
+      }
     }
 
     return settings;

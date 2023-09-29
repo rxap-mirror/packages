@@ -1,4 +1,11 @@
-import { INestApplication } from '@nestjs/common';
+import {
+  INestApplication,
+  Logger,
+} from '@nestjs/common';
+import {
+  ConfigModule,
+  ConfigService,
+} from '@nestjs/config';
 import {
   JwtModule,
   JwtService,
@@ -6,12 +13,23 @@ import {
 import { Test } from '@nestjs/testing';
 import { JwtGuardProvider } from '@rxap/nest-jwt';
 import {
+  MockConfigServiceFactory,
+  MockLoggerFactory,
+} from '@rxap/nest-testing';
+import {
   clone,
-  deepMerge,
   RemoveFromObject,
   SetToObject,
 } from '@rxap/utilities';
+import {
+  existsSync,
+  readFileSync,
+  writeFileSync,
+} from 'fs';
+import mockFs from 'mock-fs';
+import { join } from 'path';
 import request from 'supertest';
+import { UserSettings } from './settings';
 import { SettingsModule } from './settings.module';
 import { SettingsService } from './settings.service';
 
@@ -19,173 +37,240 @@ describe('SettingsModule', () => {
 
   let app: INestApplication;
   let token: string;
+  let settingsService: SettingsService;
+  let configService: ConfigService;
+  const userId = 'test';
 
-  const settingsService = {
-    map: new Map(),
-    get(userId: string) {
-      return deepMerge(SettingsService.DefaultSettings, this.map.get(userId) ?? {});
-    },
-    set(userId: string, settings: any) {
-      this.map.set(userId, clone(settings));
-    },
-  };
   const propertyPathList = [
     'dashboards',
     'feature.machine.company',
   ];
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     const moduleRef = await Test
       .createTestingModule({
         imports: [
+          ConfigModule.forRoot({
+            isGlobal: true,
+          }),
           SettingsModule,
           JwtModule.register({
             secretOrPrivateKey: 'secret',
           }),
         ],
-        providers: [ JwtGuardProvider ],
+        providers: [ JwtGuardProvider, Logger ],
       })
-      .overrideProvider(SettingsService)
-      .useValue(settingsService)
+      .overrideProvider(ConfigService)
+      .useValue(MockConfigServiceFactory({
+        SETTINGS_DEFAULT_FILE_PATH: '/tmp/settings.json',
+        STORE_FILE_PATH: '/tmp/settings',
+      }))
+      .setLogger(MockLoggerFactory())
       .compile();
-
     app = moduleRef.createNestApplication();
     await app.init();
     const jwtService = moduleRef.get(JwtService);
-    token = jwtService.sign({ sub: 'test' });
+    token = jwtService.sign({ sub: userId });
+    settingsService = moduleRef.get(SettingsService);
+    configService = moduleRef.get(ConfigService);
+    mockFs();
+    await settingsService.onApplicationBootstrap();
   });
 
-  beforeEach(() => {
-    settingsService.map.clear();
+  function getSettingsFromFileSystem(key: string = userId): UserSettings | null {
+    const filePath = join(configService.get('STORE_FILE_PATH'), `user-settings.__.${ key }`);
+    if (!existsSync(filePath)) {
+      return null;
+    }
+    return JSON.parse(readFileSync(filePath, 'utf-8'));
+  }
+
+  function setSettingsToFileSystem(settings: UserSettings, key: string = userId) {
+    writeFileSync(
+      join(configService.get('STORE_FILE_PATH'), `user-settings.__.${ key }`), JSON.stringify(settings), 'utf-8');
+  }
+
+  afterEach(() => {
+    mockFs.restore();
   });
 
-  it('GET /settings', async () => {
-    await request(app.getHttpServer())
-      .get('/settings')
-      .set('Authorization', `Bearer ${ token }`)
-      .expect(200)
-      .expect(SettingsService.DefaultSettings);
-  });
+  describe('SettingsController', () => {
 
-  it('POST /settings', async () => {
-    await request(app.getHttpServer())
-      .post('/settings')
-      .send({ hideRouter: true })
-      .set('Authorization', `Bearer ${ token }`)
-      .expect(201);
-    expect(settingsService.map.get('test')).toEqual({
-      hideRouter: true,
+    describe('GET /settings', () => {
+
+      it('should return the default settings', async () => {
+
+        const response = await request(app.getHttpServer())
+          .get('/settings')
+          .set('Authorization', `Bearer ${ token }`)
+          .expect(SettingsService.DefaultSettings);
+
+        expect(response.status).toEqual(200);
+
+      });
+
+      it('should use Accept-Language header to determine the default language', async () => {
+
+        const response = await request(app.getHttpServer())
+          .get('/settings')
+          .set('Authorization', `Bearer ${ token }`)
+          .set('Accept-Language', 'de')
+          .expect({
+            ...SettingsService.DefaultSettings,
+            language: 'de',
+          });
+
+        expect(response.status).toEqual(200);
+
+      });
+
     });
-  });
 
-  it('PUT /settings/darkMode/toggle', async () => {
-    await request(app.getHttpServer())
-      .put('/settings/darkMode/toggle')
-      .set('Authorization', `Bearer ${ token }`)
-      .expect(200);
-    expect(settingsService.map.get('test')).toEqual({
-      ...SettingsService.DefaultSettings,
-      darkMode: false,
+    describe('POST /settings', () => {
+
+      it('should set the settings', async () => {
+
+        const response = await request(app.getHttpServer())
+          .post('/settings')
+          .send({ hideRouter: true })
+          .set('Authorization', `Bearer ${ token }`)
+          .set('Content-Type', 'application/json');
+
+        expect(getSettingsFromFileSystem()).toEqual({
+          hideRouter: true,
+        });
+        expect(response.status).toEqual(201);
+
+      });
+
     });
-  });
 
-  for (const propertyPath of propertyPathList) {
+    describe.each(propertyPathList)(`GET /settings/%s`, propertyPath => {
 
-    describe(`GET /settings/${ propertyPath }`, () => {
+      it('should return the value of the property path that exists', async () => {
 
-      it('should return the value of the property path that exists', () => {
         const existingValue = { test: true };
         const existingSettings = SettingsService.DefaultSettings;
         SetToObject(existingSettings, propertyPath, existingValue);
-        settingsService.map.set(
-          'test',
-          existingSettings,
-        );
-        return request(app.getHttpServer())
+        setSettingsToFileSystem(existingSettings);
+
+        const response = await request(app.getHttpServer())
           .get(`/settings/${ propertyPath }`)
-          .send({ test: true })
           .set('Authorization', `Bearer ${ token }`)
-          .expect(200)
           .expect(existingValue);
+
+        expect(response.status).toEqual(200);
+
       });
 
     });
 
-    describe(`PUT /settings/${ propertyPath }`, () => {
+    describe.each(propertyPathList)(`PUT /settings/%s`, propertyPath => {
 
       it('should set the value of the property path that not exists', async () => {
+
         const result = SettingsService.DefaultSettings;
         const value = { test: true };
         SetToObject(result, propertyPath, value);
-        await request(app.getHttpServer())
+
+        const response = await request(app.getHttpServer())
           .put(`/settings/${ propertyPath }`)
           .send({ test: true })
-          .set('Authorization', `Bearer ${ token }`)
-          .expect(200);
-        expect(settingsService.map.get('test')).toEqual(result);
+          .set('Authorization', `Bearer ${ token }`);
+
+        expect(getSettingsFromFileSystem()).toEqual(result);
+        expect(response.status).toEqual(200);
+
       });
 
     });
 
-    describe(`DELETE /settings/${ propertyPath }`, () => {
+    describe.each(propertyPathList)(`DELETE /settings/%s`, propertyPath => {
 
       it('should delete the value of the property path that exists', async () => {
+
         const existingValue = { test: true };
         const existingSettings = SettingsService.DefaultSettings;
         SetToObject(existingSettings, propertyPath, existingValue);
         const result = clone(existingSettings);
         RemoveFromObject(result, propertyPath);
-        settingsService.map.set(
-          'test',
-          existingSettings,
-        );
-        await request(app.getHttpServer())
+        setSettingsToFileSystem(existingSettings);
+
+        const response = await request(app.getHttpServer())
           .delete(`/settings/${ propertyPath }`)
-          .set('Authorization', `Bearer ${ token }`)
-          .expect(200);
-        expect(settingsService.map.get('test')).toEqual(result);
+          .set('Authorization', `Bearer ${ token }`);
+
+        expect(response.status).toEqual(200);
+        expect(getSettingsFromFileSystem()).toEqual(result);
+
       });
 
     });
 
-    describe(`PUT /settings/${ propertyPath }/push`, () => {
+    describe.each(propertyPathList)(`PUT /settings/%s/push`, propertyPath => {
 
       it('should push the value to the property path that not exists', async () => {
+
         const result = SettingsService.DefaultSettings;
         const value = { test: true };
         SetToObject(result, propertyPath, [ value ]);
-        await request(app.getHttpServer())
+
+        const response = await request(app.getHttpServer())
           .put(`/settings/${ propertyPath }/push`)
           .send(value)
-          .set('Authorization', `Bearer ${ token }`)
-          .expect(200);
-        expect(settingsService.map.get('test')).toEqual(result);
+          .set('Authorization', `Bearer ${ token }`);
+
+        expect(getSettingsFromFileSystem()).toEqual(result);
+
+        expect(response.status).toEqual(200);
+
       });
 
     });
 
-    describe(`DELETE /settings/${ propertyPath }/pop`, () => {
+    describe.each(propertyPathList)(`DELETE /settings/%s/pop`, propertyPath => {
 
       it('should pop the value from the property path that exists', async () => {
+
         const existingValue = { test: true };
         const existingSettings = SettingsService.DefaultSettings;
         SetToObject(existingSettings, propertyPath, [ existingValue ]);
         const result = clone(existingSettings);
         SetToObject(result, propertyPath, []);
-        settingsService.map.set(
-          'test',
-          existingSettings,
-        );
-        await request(app.getHttpServer())
+        setSettingsToFileSystem(existingSettings);
+
+        const response = await request(app.getHttpServer())
           .delete(`/settings/${ propertyPath }/pop`)
           .set('Authorization', `Bearer ${ token }`)
-          .expect(200)
           .expect(existingValue);
-        expect(settingsService.map.get('test')).toEqual(result);
+
+        expect(response.status).toEqual(200);
+
+        expect(getSettingsFromFileSystem()).toEqual(result);
+
       });
 
     });
 
-  }
+  });
+
+  describe('DarkModeController', () => {
+
+    it('PUT /settings/darkMode/toggle', async () => {
+
+      const response = await request(app.getHttpServer())
+        .put('/settings/darkMode/toggle')
+        .set('Authorization', `Bearer ${ token }`);
+
+      expect(response.status).toEqual(200);
+
+      expect(getSettingsFromFileSystem()).toEqual({
+        ...SettingsService.DefaultSettings,
+        darkMode: false,
+      });
+
+    });
+
+  });
 
 });

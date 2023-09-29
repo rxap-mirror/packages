@@ -1,13 +1,17 @@
-import { kvsLocalStorage } from '@kvs/node-localstorage';
-import { KvsStorage } from '@kvs/storage';
+import {
+  kvsStorage,
+  KvsStorage,
+} from '@kvs/storage';
 import {
   BadRequestException,
   Inject,
   Injectable,
+  InternalServerErrorException,
   Logger,
   OnApplicationBootstrap,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { LocalStorage } from '@rxap/node-local-storage';
 import {
   clone,
   deepMerge,
@@ -15,8 +19,10 @@ import {
 import {
   existsSync,
   readFileSync,
+  writeFileSync,
 } from 'fs';
 import { mkdir } from 'fs-extra';
+import { join } from 'path';
 import {
   UserSettings,
   UserSettingsSchema,
@@ -55,7 +61,14 @@ export class SettingsService implements OnApplicationBootstrap {
   }
 
   async get(userId: string, defaultSettings: Partial<UserSettings> = {}): Promise<UserSettings> {
-    const fromStorage = await this.storage.get(userId) ?? defaultSettings;
+    let fromStorage: Partial<UserSettings> | undefined = undefined;
+    try {
+      fromStorage = await this.storage.get(userId);
+    } catch (e: any) {
+      throw new InternalServerErrorException(
+        `Failed to read user settings for user '${ userId }' from the file system: ${ e.message }`);
+    }
+    fromStorage ??= defaultSettings;
     this.logger.verbose(`Get user settings for user ${ userId }: %JSON`, 'SettingsService', fromStorage);
     const merged = deepMerge(SettingsService.DefaultSettings, fromStorage ?? {});
     this.logger.verbose(`Get merged user settings for user ${ userId }: %JSON`, 'SettingsService', merged);
@@ -67,16 +80,35 @@ export class SettingsService implements OnApplicationBootstrap {
     const merged = deepMerge(SettingsService.DefaultSettings, settings);
     this.logger.verbose(`Set merged user settings for user ${ userId }: %JSON`, 'SettingsService', merged);
     this.validate(merged);
-    await this.storage.set(userId, clone(merged));
+    const cloned = clone(merged);
+    try {
+      await this.storage.set(userId, cloned);
+    } catch (e: any) {
+      throw new InternalServerErrorException(
+        `Failed to write user settings for user '${ userId }' to the file system: ${ e.message }`);
+    }
   }
 
   private async createStorage() {
     mkdir(this.config.getOrThrow('STORE_FILE_PATH'), { recursive: true });
-    this.storage = await kvsLocalStorage({
-      name: 'user-settings',
-      storeFilePath: this.config.getOrThrow('STORE_FILE_PATH'),
-      version: 1,
-    });
+    const version = 1;
+    if (!existsSync(join(this.config.getOrThrow('STORE_FILE_PATH'), 'user-settings.__.__kvs_version__'))) {
+      writeFileSync(
+        join(this.config.getOrThrow('STORE_FILE_PATH'), 'user-settings.__.__kvs_version__'),
+        JSON.stringify(version),
+        'utf-8',
+      );
+    }
+    const storage = new LocalStorage(this.config.getOrThrow('STORE_FILE_PATH'));
+    try {
+      this.storage = await kvsStorage({
+        name: 'user-settings',
+        version,
+        storage,
+      });
+    } catch (e: any) {
+      throw new Error(`Failed to create the user settings storage: ${ e.message }`);
+    }
   }
 
   private loadExternalDefaultSettings() {
