@@ -5,6 +5,7 @@ export * from './lib/decorators/web-storage';
 // endregion
 
 // region 
+export * from './lib/ephemeral-storage.service';
 export * from './lib/local-storage.service';
 export * from './lib/session-storage.service';
 export * from './lib/storage-utility';

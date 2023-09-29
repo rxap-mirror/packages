@@ -107,7 +107,7 @@ function parse(text: string): any {
   }
 }
 
-export class MockStorage {
+export class MockStorage implements Storage {
 
   cache: Record<string, string> = {};
 
