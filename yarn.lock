@@ -5305,17 +5305,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@kvs/node-localstorage@npm:^2.1.5":
-  version: 2.1.5
-  resolution: "@kvs/node-localstorage@npm:2.1.5"
-  dependencies:
-    "@kvs/storage": ^2.1.4
-    app-root-path: ^3.1.0
-    node-localstorage: ^2.1.6
-  checksum: 8a1ae034eb0e28da37bb7df57564d7711bb19026cf18320452ef399cf50594396f71d61961493ce602ad5254533ea8054b3111c6d83398c1b9eb2a4ed94c7bfd
-  languageName: node
-  linkType: hard
-
 "@kvs/storage@npm:^2.1.4":
   version: 2.1.4
   resolution: "@kvs/storage@npm:2.1.4"
@@ -9452,6 +9441,12 @@ __metadata:
     "@rxap/open-api": ^16.0.0-dev.23
     rxjs: ^7.8.0
     tslib: ^2.3.0
+  languageName: unknown
+  linkType: soft
+
+"@rxap/node-local-storage@workspace:packages/node/local-storage":
+  version: 0.0.0-use.local
+  resolution: "@rxap/node-local-storage@workspace:packages/node/local-storage"
   languageName: unknown
   linkType: soft
 
@@ -13707,13 +13702,6 @@ __metadata:
   version: 1.0.2
   resolution: "app-root-dir@npm:1.0.2"
   checksum: d4b1653fc60b6465b982bf5a88b12051ed2d807d70609386a809306e1c636496f53522d61fa30f9f98c71aaae34f34e1651889cf17d81a44e3dafd2859d495ad
-  languageName: node
-  linkType: hard
-
-"app-root-path@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "app-root-path@npm:3.1.0"
-  checksum: e3db3957aee197143a0f6c75e39fe89b19e7244f28b4f2944f7276a9c526d2a7ab2d115b4b2d70a51a65a9a3ca17506690e5b36f75a068a7e5a13f8c092389ba
   languageName: node
   linkType: hard
 
@@ -24952,15 +24940,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-localstorage@npm:^2.1.6":
-  version: 2.2.1
-  resolution: "node-localstorage@npm:2.2.1"
-  dependencies:
-    write-file-atomic: ^1.1.4
-  checksum: c6b2637e1c0957dcd78581de104530be57600c8b9fd13af50a61203e6ffa1f75ddd931162b2afd85d45c599f4e153811e27f1039748da89226edcc951f250fb8
-  languageName: node
-  linkType: hard
-
 "node-machine-id@npm:^1.1.12":
   version: 1.1.12
   resolution: "node-machine-id@npm:1.1.12"
@@ -28904,7 +28883,7 @@ __metadata:
     "@cypress/webpack-dev-server": ^2.0.0
     "@enio.ai/typedoc": ^1.0.8
     "@faker-js/faker": ^8.0.2
-    "@kvs/node-localstorage": ^2.1.5
+    "@kvs/storage": ^2.1.4
     "@localazy/cli": 1.7.3
     "@mdi/angular-material": ^7.2.96
     "@nestjs/axios": ^3.0.0
@@ -29642,13 +29621,6 @@ __metadata:
     astral-regex: ^2.0.0
     is-fullwidth-code-point: ^3.0.0
   checksum: 4a82d7f085b0e1b070e004941ada3c40d3818563ac44766cca4ceadd2080427d337554f9f99a13aaeb3b4a94d9964d9466c807b3d7b7541d1ec37ee32d308756
-  languageName: node
-  linkType: hard
-
-"slide@npm:^1.1.5":
-  version: 1.1.6
-  resolution: "slide@npm:1.1.6"
-  checksum: 5768635d227172e215b7a1a91d32f8781f5783b4961feaaf3d536bbf83cc51878928c137508cde7659fea6d7c04074927cab982731302771ee0051518ff24896
   languageName: node
   linkType: hard
 
@@ -32837,17 +32809,6 @@ __metadata:
     imurmurhash: ^0.1.4
     signal-exit: ^3.0.7
   checksum: 8f780232533ca6223c63c9b9c01c4386ca8c625ebe5017a9ed17d037aec19462ae17109e0aa155bff5966ee4ae7a27b67a99f55caf3f32ffd84155e9da3929fc
-  languageName: node
-  linkType: hard
-
-"write-file-atomic@npm:^1.1.4":
-  version: 1.3.4
-  resolution: "write-file-atomic@npm:1.3.4"
-  dependencies:
-    graceful-fs: ^4.1.11
-    imurmurhash: ^0.1.4
-    slide: ^1.1.5
-  checksum: ed5a1fc812abe99dd03cd42be145a5e13af42609e19873244510c71b2e261a169db6d06cb9a92b6b0489dd05f045e53bf464d9ad7713e443934af9b81a9cc65d
   languageName: node
   linkType: hard
 

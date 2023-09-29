@@ -1,0 +1,30 @@
+{
+  "name": "@rxap/node-local-storage",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/node/local-storage"
+  },
+  "keywords": [
+    "rxap",
+    "packages",
+    "node",
+    "node-local-storage"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/node/local-storage",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/node/local-storage"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}

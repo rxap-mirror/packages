@@ -154,6 +154,9 @@
       ],
       "@rxap/ngx-timeago": ["packages/angular/timeago/src/index.ts"],
       "@rxap/ngx-user": ["packages/angular/user/src/index.ts"],
+      "@rxap/node-local-storage": [
+        "packages/node/local-storage/src/index.ts"
+      ],
       "@rxap/node-utilities": ["packages/node/utilities/src/index.ts"],
       "@rxap/oauth": ["packages/angular/oauth/src/index.ts"],
       "@rxap/oauth/single-sign-on": [
