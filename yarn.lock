@@ -8621,9 +8621,7 @@ __metadata:
     "@angular/flex-layout": ^15.0.0-beta.42
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/directives": ^16.0.0-dev.16
     "@rxap/rxjs": ^1.0.1-dev.11
-    "@rxap/services": ^16.0.0-dev.17
     "@rxap/utilities": ^16.0.0-dev.19
     rxjs: ^7.8.0
     tslib: 2.6.2
@@ -8957,13 +8955,13 @@ __metadata:
     "@rxap/directives": ^16.0.0-dev.16
     "@rxap/environment": ^16.0.0-dev.16
     "@rxap/icon": ^16.0.0-dev.16
-    "@rxap/material-directives": ^16.0.0-dev.18
+    "@rxap/material-directives": ^16.0.0-dev.19
     "@rxap/ngx-changelog": ^16.1.0-dev.2
     "@rxap/ngx-localize": ^16.1.0-dev.1
     "@rxap/ngx-status-check": ^16.1.0-dev.13
-    "@rxap/ngx-theme": "*"
+    "@rxap/ngx-theme": ^16.0.1-dev.0
     "@rxap/ngx-user": ^16.1.0-dev.2
-    "@rxap/services": ^16.0.0-dev.18
+    "@rxap/services": ^16.0.0-dev.19
     "@rxap/utilities": ^16.0.0-dev.19
     rxjs: ^7.8.0
     tslib: 2.6.2
@@ -8992,8 +8990,8 @@ __metadata:
   peerDependencies:
     "@angular/core": ^16.1.4
     "@angular/material": ^16.1.4
+    "@rxap/ngx-memory": ^16.1.0-dev.0
     "@rxap/rxjs": ^1.0.1-dev.11
-    "@rxap/services": ^16.0.0-dev.16
     "@rxap/utilities": ^16.0.0-dev.19
     rxjs: ^7.8.0
     tslib: 2.6.2
@@ -9121,7 +9119,7 @@ __metadata:
     "@nestjs/common": ^10.0.5
     "@nestjs/core": ^10.0.5
     "@nestjs/jwt": ^10.1.0
-    "@rxap/nest-utilities": ^10.1.0-dev.9
+    "@rxap/nest-utilities": ^10.1.0-dev.11
     "@rxap/pattern": ^1.1.0-dev.0
     rxjs: ^7.8.0
     tslib: 2.6.2
@@ -9232,6 +9230,8 @@ __metadata:
 "@rxap/nest-testing@workspace:packages/nest/testing":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-testing@workspace:packages/nest/testing"
+  dependencies:
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
@@ -9366,6 +9366,8 @@ __metadata:
   resolution: "@rxap/ngx-memory@workspace:packages/angular/memory"
   dependencies:
     tslib: ^2.3.0
+  peerDependencies:
+    "@angular/core": ^16.1.4
   languageName: unknown
   linkType: soft
 
@@ -9411,7 +9413,7 @@ __metadata:
     "@angular/cdk": ^16.1.4
     "@angular/core": ^16.1.4
     "@ctrl/tinycolor": ^4.0.2
-    "@rxap/config": "*"
+    "@rxap/config": ^16.0.0-dev.17
     rxjs: ^7.8.0
   languageName: unknown
   linkType: soft
@@ -9447,6 +9449,8 @@ __metadata:
 "@rxap/node-local-storage@workspace:packages/node/local-storage":
   version: 0.0.0-use.local
   resolution: "@rxap/node-local-storage@workspace:packages/node/local-storage"
+  dependencies:
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
@@ -9574,7 +9578,7 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.15
-    "@rxap/node-utilities": ^1.1.0-dev.11
+    "@rxap/node-utilities": ^1.1.0-dev.12
     "@rxap/plugin-utilities": ^16.1.0-dev.16
     "@rxap/utilities": ^16.0.0-dev.19
     "@rxap/workspace-utilities": ^0.1.0-dev.17
@@ -9884,8 +9888,6 @@ __metadata:
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
     "@angular/router": ^16.1.4
-    "@ctrl/tinycolor": ^4.0.2
-    "@rxap/config": ^16.0.0-dev.17
     "@rxap/rxjs": ^1.0.1-dev.11
     "@rxap/utilities": ^16.0.0-dev.19
     rxjs: ^7.8.0

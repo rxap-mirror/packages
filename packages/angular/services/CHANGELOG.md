@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/services@16.0.0-dev.18...@rxap/services@16.0.0-dev.19) (2023-09-29)
+
+### Bug Fixes
+
+- move theme related code to the project angular-theme ([dff497a](https://gitlab.com/rxap/packages/commit/dff497a36e7dab5de535050c5ddafa7082bfa399))
+- remove the old LocalStorageService ([3265db8](https://gitlab.com/rxap/packages/commit/3265db805961b33bc0ce38ebda5c9fe4641eef49))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/services@16.0.0-dev.17...@rxap/services@16.0.0-dev.18) (2023-09-28)
 
 ### Bug Fixes

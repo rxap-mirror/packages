@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.34...@rxap/layout@16.0.0-dev.35) (2023-09-29)
+
+### Bug Fixes
+
+- move theme related code to the project angular-theme ([dff497a](https://gitlab.com/rxap/packages/commit/dff497a36e7dab5de535050c5ddafa7082bfa399))
+- use new angular-theme project ([4d99def](https://gitlab.com/rxap/packages/commit/4d99def8e1b70a5c27e19bc5f5452ee1d5eadfa8))
+
 # [16.0.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.33...@rxap/layout@16.0.0-dev.34) (2023-09-28)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.1.0-dev.11...@rxap/node-utilities@1.1.0-dev.12) (2023-09-29)
+
+### Features
+
+- add function RemoveDirSync ([e0e1271](https://gitlab.com/rxap/packages/commit/e0e127195cbcfebee4d9bda0a77bda92fff8b4af))
+
 # [1.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.1.0-dev.10...@rxap/node-utilities@1.1.0-dev.11) (2023-09-27)
 
 ### Features

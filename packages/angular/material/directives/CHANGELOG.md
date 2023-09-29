@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@16.0.0-dev.18...@rxap/material-directives@16.0.0-dev.19) (2023-09-29)
+
+### Bug Fixes
+
+- use the detected memory package ([fcc25c2](https://gitlab.com/rxap/packages/commit/fcc25c2cc24d749e87b4a770e86c8704988d3ce4))
+- use the detected memory package ([ec321a6](https://gitlab.com/rxap/packages/commit/ec321a63ec1ee3b76f3724c52bcf3fec96987eff))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/material-directives@16.0.0-dev.17...@rxap/material-directives@16.0.0-dev.18) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/material-directives
