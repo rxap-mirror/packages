@@ -1,17 +1,19 @@
 import {
+  BadRequestException,
   CanActivate,
   ExecutionContext,
   Inject,
   Injectable,
+  UnauthorizedException,
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
 import {
   APP_GUARD,
   Reflector,
 } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
-import { RequestWithJwt } from './types';
 import { IS_PUBLIC_KEY } from '@rxap/nest-utilities';
+import { Observable } from 'rxjs';
+import { RequestWithJwt } from './types';
 
 @Injectable()
 export class JwtGuard implements CanActivate {
@@ -35,16 +37,20 @@ export class JwtGuard implements CanActivate {
     const request = context.switchToHttp().getRequest<RequestWithJwt>();
 
     if (!request.header('Authorization')?.match(/^Bearer /)) {
-      return false;
+      throw new BadRequestException('Ensure Authorization header is set');
     }
 
     const jwtRaw = request.header('Authorization')?.replace('Bearer ', '');
 
     if (!jwtRaw) {
-      return false;
+      throw new BadRequestException('Ensure Authorization header has a value after Bearer');
     }
 
-    request.jwt = this.jwtService.decode(jwtRaw, { json: true }) as any;
+    try {
+      request.jwt = this.jwtService.decode(jwtRaw, { json: true }) as any;
+    } catch (e: any) {
+      throw new UnauthorizedException(`Ensure Authorization header has a valid JWT`);
+    }
 
     return true;
   }
