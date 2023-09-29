@@ -83,6 +83,20 @@ describe('Utilities', () => {
 
     });
 
+    it('should overwrite boolean properties', () => {
+
+      expect(deepMerge({ a: true }, { a: false })).toEqual({ a: false });
+      expect(deepMerge({ a: false }, { a: true })).toEqual({ a: true });
+
+    });
+
+    it('should overwrite nullable properties', () => {
+
+      expect(deepMerge({ a: 0 }, { a: 1 })).toEqual({ a: 1 });
+      expect(deepMerge({ a: 1 }, { a: 0 })).toEqual({ a: 0 });
+
+    });
+
     it('should deep merge objects', () => {
 
       const a = {
