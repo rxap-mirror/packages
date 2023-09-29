@@ -20,7 +20,7 @@ import { ChangelogService } from '@rxap/ngx-changelog';
 import {
   ThemeDensity,
   ThemeService,
-} from '@rxap/services';
+} from '@rxap/ngx-theme';
 import { Subscription } from 'rxjs';
 import {
   map,

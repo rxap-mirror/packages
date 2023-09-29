@@ -146,6 +146,9 @@
       ],
       "@rxap/ngx-sentry": ["packages/angular/sentry/src/index.ts"],
       "@rxap/ngx-status-check": ["packages/angular/status-check/src/index.ts"],
+      "@rxap/ngx-theme": [
+        "packages/angular/theme/src/index.ts"
+      ],
       "@rxap/ngx-timeago": ["packages/angular/timeago/src/index.ts"],
       "@rxap/ngx-user": ["packages/angular/user/src/index.ts"],
       "@rxap/node-utilities": ["packages/node/utilities/src/index.ts"],

@@ -1,0 +1,41 @@
+{
+  "version": "16.0.0",
+  "name": "@rxap/ngx-theme",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@angular/cdk": "^16.1.4",
+    "@angular/core": "^16.1.4",
+    "@ctrl/tinycolor": "^4.0.2",
+    "@rxap/config": "*",
+    "rxjs": "^7.8.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/theme",
+  "keywords": [
+    "angular",
+    "angular-theme",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/theme"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/angular/theme"
+  },
+  "sideEffects": false
+}
