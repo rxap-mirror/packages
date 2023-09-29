@@ -1,8 +1,3 @@
-import { Subject } from 'rxjs';
-import {
-  LOCAL_STORAGE_SERVICE_FAKE_PROVIDER,
-  LocalStorageServiceFake,
-} from '@rxap/services/testing';
 import { Component } from '@angular/core';
 import {
   ComponentFixture,
@@ -10,12 +5,17 @@ import {
   TestBed,
   tick,
 } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { By } from '@angular/platform-browser';
 import {
   MatTabGroup,
   MatTabsModule,
 } from '@angular/material/tabs';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  EphemeralStorageService,
+  LocalStorageService,
+} from '@rxap/ngx-memory';
+import { Subject } from 'rxjs';
 import { PersistentTabGroupDirective } from './persistent-tab-group.directive';
 
 describe('@rxap/directives/material/expansion', () => {
@@ -26,15 +26,15 @@ describe('@rxap/directives/material/expansion', () => {
 
       let directive: PersistentTabGroupDirective;
       let group: MatTabGroup;
-      let localStorage: LocalStorageServiceFake;
+      let localStorage: EphemeralStorageService;
       let selectedIndexChange: Subject<number>;
 
       beforeAll(() => {
-        localStorage = new LocalStorageServiceFake();
+        localStorage = new EphemeralStorageService();
       });
 
       afterEach(() => {
-        localStorage.localStorage.clear();
+        localStorage.clear();
         jest.resetAllMocks();
       });
 
@@ -98,7 +98,7 @@ describe('@rxap/directives/material/expansion', () => {
     describe('Component', () => {
 
       let componentFixture: ComponentFixture<TestComponent>;
-      let localStorage: LocalStorageServiceFake;
+      let localStorage: LocalStorageService;
       let directive: PersistentTabGroupDirective;
 
       @Component({
@@ -123,11 +123,11 @@ describe('@rxap/directives/material/expansion', () => {
             TestComponent,
             NoopAnimationsModule,
           ],
-          providers: [ LOCAL_STORAGE_SERVICE_FAKE_PROVIDER ],
-        }).compileComponents();
+          providers: [ LocalStorageService ],
+        }).overrideProvider(LocalStorageService, { useValue: new EphemeralStorageService() }).compileComponents();
 
         componentFixture = TestBed.createComponent(TestComponent);
-        localStorage = TestBed.inject(LocalStorageServiceFake);
+        localStorage = TestBed.inject(LocalStorageService);
 
         const directiveEl = componentFixture.debugElement.query(By.directive(PersistentTabGroupDirective));
 
@@ -143,6 +143,7 @@ describe('@rxap/directives/material/expansion', () => {
       it('should set selecte index to local storage index', () => {
 
         localStorage.set(directive.key, '1');
+        expect(localStorage.get(directive.key)).toEqual('1');
 
         expect(directive.tabGroup.selectedIndex).toEqual(0);
         expect(directive.selectedIndex).toEqual(1);

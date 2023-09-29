@@ -1,20 +1,20 @@
-import { PersistentExpansionPanelDirective } from './persistent-expansion-panel.directive';
-import {
-  MatExpansionModule,
-  MatExpansionPanel,
-} from '@angular/material/expansion';
-import { Subject } from 'rxjs';
-import {
-  LOCAL_STORAGE_SERVICE_FAKE_PROVIDER,
-  LocalStorageServiceFake,
-} from '@rxap/services/testing';
 import { Component } from '@angular/core';
 import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatExpansionModule,
+  MatExpansionPanel,
+} from '@angular/material/expansion';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  EphemeralStorageService,
+  LocalStorageService,
+} from '@rxap/ngx-memory';
+import { Subject } from 'rxjs';
+import { PersistentExpansionPanelDirective } from './persistent-expansion-panel.directive';
 
 describe('@rxap/directives/material/expansion', () => {
 
@@ -25,14 +25,14 @@ describe('@rxap/directives/material/expansion', () => {
       let directive: PersistentExpansionPanelDirective;
       let panel: MatExpansionPanel;
       let expandedChange: Subject<boolean>;
-      let localStorage: LocalStorageServiceFake;
+      let localStorage: EphemeralStorageService;
 
       beforeAll(() => {
-        localStorage = new LocalStorageServiceFake();
+        localStorage = new EphemeralStorageService();
       });
 
       afterEach(() => {
-        localStorage.localStorage.clear();
+        localStorage.clear();
         jest.resetAllMocks();
       });
 
@@ -114,7 +114,7 @@ describe('@rxap/directives/material/expansion', () => {
     describe('Component', () => {
 
       let componentFixture: ComponentFixture<TestComponent>;
-      let localStorage: LocalStorageServiceFake;
+      let localStorage: EphemeralStorageService;
       let directive: PersistentExpansionPanelDirective;
 
       @Component({
@@ -135,11 +135,11 @@ describe('@rxap/directives/material/expansion', () => {
             PersistentExpansionPanelDirective,
           ],
           declarations: [ TestComponent ],
-          providers: [ LOCAL_STORAGE_SERVICE_FAKE_PROVIDER ],
-        }).compileComponents();
+          providers: [ LocalStorageService ],
+        }).overrideProvider(LocalStorageService, { useValue: new EphemeralStorageService() }).compileComponents();
 
         componentFixture = TestBed.createComponent(TestComponent);
-        localStorage = TestBed.inject(LocalStorageServiceFake);
+        localStorage = TestBed.inject(LocalStorageService);
 
         const directiveEl = componentFixture.debugElement.query(By.directive(PersistentExpansionPanelDirective));
 
