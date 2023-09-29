@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
+import { MockLoggerFactory } from '@rxap/nest-testing';
 import { ConfigurationService } from './configuration.service';
 import { LoadConfigurationService } from './load-configuration.service';
 
@@ -17,7 +18,7 @@ describe('ConfigurationService', () => {
         providers: [ ConfigurationService, Logger, LoadConfigurationService ],
       })
       .overrideProvider(Logger)
-      .useValue(console)
+      .useValue(MockLoggerFactory())
       .overrideProvider(LoadConfigurationService)
       .useValue(loadConfigurationService)
       .compile();

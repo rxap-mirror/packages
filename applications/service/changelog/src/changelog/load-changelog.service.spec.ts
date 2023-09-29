@@ -1,6 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
+import { MockLoggerFactory } from '@rxap/nest-testing';
 import {
   existsSync,
   readFileSync,
@@ -34,7 +35,7 @@ describe('LoadChangelogService', () => {
         providers: [ LoadChangelogService, ConfigService, Logger ],
       })
       .overrideProvider(Logger)
-      .useValue(console)
+      .useValue(MockLoggerFactory())
       .overrideProvider(ConfigService)
       .useValue(configService)
       .compile();

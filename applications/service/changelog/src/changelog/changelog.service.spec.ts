@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
+import { MockLoggerFactory } from '@rxap/nest-testing';
 import { ChangelogService } from './changelog.service';
 import {
   Application,
@@ -26,7 +27,7 @@ describe('ChangeLogService', () => {
         providers: [ ChangelogService, LoadChangelogService, Logger ],
       })
       .overrideProvider(Logger)
-      .useValue(console)
+      .useValue(MockLoggerFactory())
       .overrideProvider(LoadChangelogService)
       .useValue({
         applicationChangelog,
