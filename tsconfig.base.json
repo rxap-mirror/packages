@@ -141,6 +141,9 @@
       "@rxap/ngx-material-table-select": [
         "packages/angular/material/table-select/src/index.ts"
       ],
+      "@rxap/ngx-memory": [
+        "packages/angular/memory/src/index.ts"
+      ],
       "@rxap/ngx-sentry": ["packages/angular/sentry/src/index.ts"],
       "@rxap/ngx-status-check": ["packages/angular/status-check/src/index.ts"],
       "@rxap/ngx-timeago": ["packages/angular/timeago/src/index.ts"],
