@@ -54,8 +54,8 @@ export class SettingsService implements OnApplicationBootstrap {
     this.loadExternalDefaultSettings();
   }
 
-  async get(userId: string): Promise<UserSettings> {
-    const fromStorage = await this.storage.get(userId);
+  async get(userId: string, defaultSettings: Partial<UserSettings> = {}): Promise<UserSettings> {
+    const fromStorage = await this.storage.get(userId) ?? defaultSettings;
     this.logger.verbose(`Get user settings for user ${ userId }: %JSON`, 'SettingsService', fromStorage);
     const merged = deepMerge(SettingsService.DefaultSettings, fromStorage ?? {});
     this.logger.verbose(`Get merged user settings for user ${ userId }: %JSON`, 'SettingsService', merged);
