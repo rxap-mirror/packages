@@ -6,8 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
-import { LocalStorageService } from '@rxap/services';
-import { Required } from '@rxap/utilities';
+import { LocalStorageService } from '@rxap/ngx-memory';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
