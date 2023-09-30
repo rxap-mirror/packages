@@ -4,8 +4,8 @@
 
 <mat-menu #menu="matMenu">
   <button (click)="theme.toggleDarkTheme()" mat-menu-item>
-    <mat-icon *ngIf="theme.darkMode" svgIcon="brightness-2"></mat-icon>
-    <mat-icon *ngIf="!theme.darkMode" svgIcon="brightness-5"></mat-icon>
+    <mat-icon *ngIf="theme.darkMode()" svgIcon="brightness-2"></mat-icon>
+    <mat-icon *ngIf="!theme.darkMode()" svgIcon="brightness-5"></mat-icon>
     <span i18n>Mode</span>
   </button>
   <button [matMenuTriggerFor]="themeMenu" mat-menu-item>
