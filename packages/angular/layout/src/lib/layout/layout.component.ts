@@ -6,7 +6,10 @@ import {
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   Inject,
+  OnDestroy,
+  OnInit,
   Signal,
   ViewChild,
 } from '@angular/core';
@@ -31,6 +34,7 @@ import {
 } from '@rxap/environment';
 import { IconLoaderService } from '@rxap/icon';
 import { StatusIndicatorComponent } from '@rxap/ngx-status-check';
+import { UserSettingsThemeService } from '@rxap/ngx-user';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { NavigationComponent } from '../navigation/navigation.component';
@@ -60,7 +64,7 @@ import { LayoutComponentService } from './layout.component.service';
     StatusIndicatorComponent,
   ],
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit, OnDestroy {
 
   public readonly sidenavMode: Signal<MatDrawerMode>;
   public readonly fixedBottomGap: Signal<number>;
@@ -73,6 +77,8 @@ export class LayoutComponent {
   public readonly opened: Signal<boolean>;
 
   @ViewChild(MatSidenav, { static: true }) public sidenav!: MatSidenav;
+
+  private readonly userSettingsThemeService = inject(UserSettingsThemeService);
 
   constructor(
     public readonly layoutComponentService: LayoutComponentService,
@@ -92,6 +98,14 @@ export class LayoutComponent {
     this.logoSrc = this.layoutComponentService.logo.src ?? 'https://via.placeholder.com/256x128px';
     this.logoWidth = this.layoutComponentService.logo.width ?? 256;
     this.release = DetermineReleaseName(this.environment);
+  }
+
+  ngOnDestroy() {
+    this.userSettingsThemeService.stopSync();
+  }
+
+  ngOnInit() {
+    this.userSettingsThemeService.startSync();
   }
 
 }
