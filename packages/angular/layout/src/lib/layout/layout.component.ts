@@ -36,6 +36,7 @@ import { StatusIndicatorComponent } from '@rxap/ngx-status-check';
 import { ThemeService } from '@rxap/ngx-theme';
 import {
   IsThemeDensity,
+  ThemeDensity,
   UserSettingsThemeService,
 } from '@rxap/ngx-user';
 import { FooterComponent } from '../footer/footer.component';
@@ -109,13 +110,15 @@ export class LayoutComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userSettingsThemeService.startSync();
     this.userSettingsThemeService.get().then(theme => {
-      if (theme.density && IsThemeDensity(theme.density)) {
+      if (theme.preset && theme.preset !== 'default') {
+        this.themeService.setTheme(theme.preset, true);
+      }
+      if (theme.density && IsThemeDensity(theme.density) && theme.density !== ThemeDensity.Normal) {
         this.themeService.setDensity(theme.density, true);
       }
-      if (theme.typography) {
+      if (theme.typography && theme.typography !== 'default') {
         this.themeService.setTypography(theme.typography, true);
       }
-      this.themeService.setTheme(theme.preset, true);
     });
   }
 
