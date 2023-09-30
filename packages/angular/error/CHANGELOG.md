@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@16.1.0-dev.4...@rxap/ngx-error@16.1.0-dev.5) (2023-09-30)
+
+### Bug Fixes
+
+- use correct unit ([7ddbf4f](https://gitlab.com/rxap/packages/commit/7ddbf4fbbdfff6399528feef6ca20c0125bbbb93))
+
 # [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@16.1.0-dev.3...@rxap/ngx-error@16.1.0-dev.4) (2023-09-30)
 
 ### Bug Fixes
