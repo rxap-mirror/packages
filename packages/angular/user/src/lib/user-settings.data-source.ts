@@ -7,7 +7,10 @@ import { SettingsControllerGetRemoteMethod } from './openapi/remote-methods/sett
 import { SettingsControllerGetResponse } from './openapi/responses/settings-controller-get.response';
 
 @Injectable({ providedIn: 'root' })
-@RxapDataSource('user-settings')
+@RxapDataSource({
+  id: 'user-settings',
+  restore: true,
+})
 export class UserSettingsDataSource<T> extends MethodDataSource<SettingsControllerGetResponse<T>> {
 
   constructor(
