@@ -6,6 +6,7 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { ConfigService } from '@rxap/config';
+import { PubSubService } from '@rxap/ngx-pub-sub';
 import {
   ColorPalette,
   ComputeColorPalette,
@@ -40,6 +41,7 @@ export interface ColorPaletteConfig {
 export class ThemeService {
 
   public readonly config = inject(ConfigService);
+  public readonly pubSub = inject(PubSubService);
 
   public readonly darkMode: WritableSignal<boolean>;
   public readonly themeName: WritableSignal<string>;
@@ -48,6 +50,13 @@ export class ThemeService {
 
   constructor(mediaMatcher: MediaMatcher) {
     const darkModeMediaQuery = mediaMatcher.matchMedia('(prefers-color-scheme: dark)');
+
+    this.darkMode = signal(darkModeMediaQuery.matches);
+    this.themeName = signal(this.getCurrentTheme());
+    this.density = signal(this.getDensity());
+    this.typography = signal(this.getTypography());
+
+    // region restore dark mode
     let darkMode = this.restoreDarkMode();
     // if the dark/light mode is not restored from the local storage
     if (darkMode === null) {
@@ -58,11 +67,11 @@ export class ThemeService {
     darkModeMediaQuery.addEventListener('change', (event) => {
       this.setDarkTheme(event.matches, true);
     });
+    // endregion
 
-    this.darkMode = signal(darkMode);
-    this.themeName = signal(this.restoreThemeName() ?? this.getCurrentTheme());
-    this.density = signal(this.restoreDensity() ?? this.getDensity());
-    this.typography = signal(this.restoreTypography() ?? this.getTypography());
+    this.restoreThemeName();
+    this.restoreDensity();
+    this.restoreTypography();
   }
 
   private get darkModeLocalStorageKey() {
@@ -150,8 +159,12 @@ export class ThemeService {
       // endregion
       document.body.classList.remove('dark');
     }
-    if (!skipLocalStorage) {
-      localStorage.setItem(this.darkModeLocalStorageKey, String(darkMode));
+    if (this.darkMode() !== darkMode) {
+      this.darkMode.set(darkMode);
+      if (!skipLocalStorage) {
+        localStorage.setItem(this.darkModeLocalStorageKey, String(darkMode));
+      }
+      this.pubSub.publish('rxap.theme.darkMode.change', darkMode);
     }
   }
 
@@ -160,51 +173,20 @@ export class ThemeService {
     if (density < 0) {
       document.body.classList.add(`density${ density }`);
     }
-    localStorage.setItem(this.densityLocalStorageKey, String(density));
-  }
-
-  public getDensity(): ThemeDensity {
-    let density = 0;
-    document.body.classList.forEach((className) => {
-      const match = className.match(/density-([123])/);
-      if (match) {
-        density = Number(match[1]) * -1;
-      }
-    });
-    return density as ThemeDensity;
+    if (this.density() !== density) {
+      this.density.set(density);
+      localStorage.setItem(this.densityLocalStorageKey, String(density));
+      this.pubSub.publish('rxap.theme.density.change', density);
+    }
   }
 
   public setTypography(typography: string): void {
     document.body.style.setProperty('--font-family', `var(--font-family-${ typography })`);
-    localStorage.setItem(this.typographyLocalStorageKey, typography);
-  }
-
-  public getTypography(): string {
-    const variable = document.body.style.getPropertyValue('--font-family');
-    const match = variable.match(/var\(--font-family-(.*)\)/);
-    if (match) {
-      return match[1];
+    if (this.typography() !== typography) {
+      this.typography.set(typography);
+      localStorage.setItem(this.typographyLocalStorageKey, typography);
+      this.pubSub.publish('rxap.theme.typography.change', typography);
     }
-    return 'default';
-  }
-
-  public getAvailableColorPalettes(): string[] {
-    const colorPalettesConfigs: Record<string, unknown> = this.config.get('colorPalettes', {});
-    const availableColorPalettes: string[] = Object.keys(colorPalettesConfigs);
-    availableColorPalettes.unshift('default');
-    return availableColorPalettes;
-  }
-
-  public getColorPalette(colorPaletteName: string): Partial<ColorPalette> {
-    const colorPaletteConfig = this.config.getOrThrow<ColorPaletteConfig>(`colorPalettes.${ colorPaletteName }`);
-    return this.coerceColorPalette(colorPaletteConfig);
-  }
-
-  public getAvailableThemes(): string[] {
-    const themeConfigs: Record<string, unknown> = this.config.get('themes', {});
-    const availableThemes: string[] = Object.keys(themeConfigs);
-    availableThemes.unshift('default');
-    return availableThemes;
   }
 
   public setTheme(themeName: string) {
@@ -237,8 +219,50 @@ export class ThemeService {
     }
 
     document.body.style.setProperty(`--theme-name`, themeName);
-    localStorage.setItem(this.themeNameLocalStorageKey, themeName);
+    if (this.themeName() !== themeName) {
+      this.themeName.set(themeName);
+      localStorage.setItem(this.themeNameLocalStorageKey, themeName);
+      this.pubSub.publish('rxap.theme.name.change', themeName);
+    }
+  }
 
+  public getDensity(): ThemeDensity {
+    let density = 0;
+    document.body.classList.forEach((className) => {
+      const match = className.match(/density-([123])/);
+      if (match) {
+        density = Number(match[1]) * -1;
+      }
+    });
+    return density as ThemeDensity;
+  }
+
+  public getTypography(): string {
+    const variable = document.body.style.getPropertyValue('--font-family');
+    const match = variable.match(/var\(--font-family-(.*)\)/);
+    if (match) {
+      return match[1];
+    }
+    return 'default';
+  }
+
+  public getAvailableColorPalettes(): string[] {
+    const colorPalettesConfigs: Record<string, unknown> = this.config.get('colorPalettes', {});
+    const availableColorPalettes: string[] = Object.keys(colorPalettesConfigs);
+    availableColorPalettes.unshift('default');
+    return availableColorPalettes;
+  }
+
+  public getColorPalette(colorPaletteName: string): Partial<ColorPalette> {
+    const colorPaletteConfig = this.config.getOrThrow<ColorPaletteConfig>(`colorPalettes.${ colorPaletteName }`);
+    return this.coerceColorPalette(colorPaletteConfig);
+  }
+
+  public getAvailableThemes(): string[] {
+    const themeConfigs: Record<string, unknown> = this.config.get('themes', {});
+    const availableThemes: string[] = Object.keys(themeConfigs);
+    availableThemes.unshift('default');
+    return availableThemes;
   }
 
   getCurrentTheme() {
