@@ -31,7 +31,7 @@ import { ThemeControllerSetPresetRequestBody } from '../request-bodies/theme-con
   },
   "method": "put",
   "path": "/settings/theme/preset"
-}`,
+}`
 })
 export class ThemeControllerSetPresetRemoteMethod
   extends OpenApiRemoteMethod<void, void, ThemeControllerSetPresetRequestBody> {

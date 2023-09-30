@@ -20,6 +20,7 @@ import {
   ProvideErrorHandler,
 } from '@rxap/ngx-error';
 import { LanguageInterceptor } from '@rxap/ngx-localize';
+import { ProvidePubSub } from '@rxap/ngx-pub-sub';
 import {
   ProvideAuth,
   withAuthConfig,
@@ -63,5 +64,6 @@ export const appConfig: ApplicationConfig = {
       { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' },
     ),
     ProvideServiceWorkerUpdater(withLogUpdater(), withDialogUpdater()),
+    ProvidePubSub(),
   ],
 };

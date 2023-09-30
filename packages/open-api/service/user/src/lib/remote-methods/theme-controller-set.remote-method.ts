@@ -51,7 +51,7 @@ import { ThemeControllerSetRequestBody } from '../request-bodies/theme-controlle
   },
   "method": "put",
   "path": "/settings/theme"
-}`,
+}`
 })
 export class ThemeControllerSetRemoteMethod<TRequestBody = unknown>
   extends OpenApiRemoteMethod<void, void, ThemeControllerSetRequestBody<TRequestBody>> {

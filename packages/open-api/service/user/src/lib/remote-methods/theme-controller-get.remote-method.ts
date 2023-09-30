@@ -48,7 +48,7 @@ import { ThemeControllerGetResponse } from '../responses/theme-controller-get.re
   },
   "method": "get",
   "path": "/settings/theme"
-}`,
+}`
 })
 export class ThemeControllerGetRemoteMethod<TResponse = unknown>
   extends OpenApiRemoteMethod<ThemeControllerGetResponse<TResponse>, void, void> {

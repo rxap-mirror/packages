@@ -2,6 +2,11 @@ import {
   inject,
   Injectable,
 } from '@angular/core';
+import { PubSubService } from '@rxap/ngx-pub-sub';
+import {
+  Subscription,
+  tap,
+} from 'rxjs';
 import { ThemeControllerGetRemoteMethod } from './openapi/remote-methods/theme-controller-get.remote-method';
 import { ThemeControllerSetDensityRemoteMethod } from './openapi/remote-methods/theme-controller-set-density.remote-method';
 import { ThemeControllerSetPresetRemoteMethod } from './openapi/remote-methods/theme-controller-set-preset.remote-method';
@@ -17,8 +22,12 @@ export enum ThemeDensity {
   VeryDense = -3,
 }
 
+export function IsThemeDensity(value: any): value is ThemeDensity {
+  return Object.values(ThemeDensity).includes(value);
+}
+
 @Injectable({ providedIn: 'root' })
-export class UserSettingsLanguageService<T = unknown> {
+export class UserSettingsThemeService<T = unknown> {
 
   protected readonly getThemeMethod = inject(ThemeControllerGetRemoteMethod);
   protected readonly setThemeMethod = inject(ThemeControllerSetRemoteMethod);
@@ -26,6 +35,9 @@ export class UserSettingsLanguageService<T = unknown> {
   protected readonly setPresetMethod = inject(ThemeControllerSetPresetRemoteMethod);
   protected readonly setTypographyMethod = inject(ThemeControllerSetTypographyRemoteMethod);
   protected readonly userSettingsThemeDataSource = inject(UserSettingsThemeDataSource);
+  protected readonly pubSub = inject(PubSubService);
+
+  protected syncSubscription?: Subscription;
 
   async get() {
     return this.getThemeMethod.call();
@@ -49,6 +61,41 @@ export class UserSettingsLanguageService<T = unknown> {
   async setTypography(typography: string) {
     await this.setTypographyMethod.call({ requestBody: { value: typography } });
     this.userSettingsThemeDataSource.refresh();
+  }
+
+  startSync() {
+    if (this.syncSubscription) {
+      return;
+    }
+    this.syncSubscription = this.pubSub.subscribe('rxap.theme.*.change').pipe(
+      tap(async (event) => {
+        switch (event.key) {
+
+          case 'rxap.theme.density.change':
+            if (IsThemeDensity(event.data)) {
+              await this.setDensity(event.data);
+            }
+            break;
+
+          case 'rxap.theme.preset.change':
+            if (typeof event.data === 'string') {
+              await this.setPreset(event.data);
+            }
+            break;
+
+          case 'rxap.theme.typography.change':
+            if (typeof event.data === 'string') {
+              await this.setTypography(event.data);
+            }
+            break;
+
+        }
+      }),
+    ).subscribe();
+  }
+
+  stopSync() {
+    this.syncSubscription?.unsubscribe();
   }
 
 }

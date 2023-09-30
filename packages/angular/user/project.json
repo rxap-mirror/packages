@@ -12,7 +12,26 @@
   "projectType": "library",
   "targets": {
     "index-export": {},
+    "copy-open-api-sdk": {
+      "inputs": [
+        "{workspaceRoot}/packages/open-api/service/user/src/lib"
+      ],
+      "options": {
+        "commands": [
+          "rm -rf ./packages/angular/user/src/lib/openapi || true",
+          "mkdir -p ./packages/angular/user/src/lib/openapi",
+          "cp -r ./packages/open-api/service/user/src/lib/components ./packages/angular/user/src/lib/openapi",
+          "cp -r ./packages/open-api/service/user/src/lib/parameters ./packages/angular/user/src/lib/openapi",
+          "cp -r ./packages/open-api/service/user/src/lib/remote-methods ./packages/angular/user/src/lib/openapi",
+          "cp -r ./packages/open-api/service/user/src/lib/request-bodies ./packages/angular/user/src/lib/openapi",
+          "cp -r ./packages/open-api/service/user/src/lib/responses ./packages/angular/user/src/lib/openapi"
+        ]
+      }
+    },
     "build": {
+      "dependsOn": [
+        "copy-open-api-sdk"
+      ],
       "executor": "@nx/angular:package",
       "outputs": [
         "{workspaceRoot}/dist/{projectRoot}"

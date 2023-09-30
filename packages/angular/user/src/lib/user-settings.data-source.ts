@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
 import {
   MethodDataSource,
   RxapDataSource,
@@ -14,6 +17,7 @@ import { SettingsControllerGetResponse } from './openapi/responses/settings-cont
 export class UserSettingsDataSource<T> extends MethodDataSource<SettingsControllerGetResponse<T>> {
 
   constructor(
+    @Inject(SettingsControllerGetRemoteMethod)
     method: SettingsControllerGetRemoteMethod<T>,
   ) {
     super(method, true);

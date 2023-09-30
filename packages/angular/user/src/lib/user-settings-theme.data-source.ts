@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
 import {
   PipeDataSource,
   RxapPipeDataSource,
@@ -16,6 +19,7 @@ export class UserSettingsThemeDataSource<T = unknown>
   extends PipeDataSource<SettingsControllerGetResponse<T>, SettingsControllerGetResponse<T>['theme']> {
 
   constructor(
+    @Inject(UserSettingsDataSource)
     dataSource: UserSettingsDataSource<T>,
   ) {
     super(

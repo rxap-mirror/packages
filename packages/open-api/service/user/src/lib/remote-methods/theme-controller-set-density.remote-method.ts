@@ -40,7 +40,7 @@ import { ThemeControllerSetDensityRequestBody } from '../request-bodies/theme-co
   },
   "method": "put",
   "path": "/settings/theme/density"
-}`,
+}`
 })
 export class ThemeControllerSetDensityRemoteMethod
   extends OpenApiRemoteMethod<void, void, ThemeControllerSetDensityRequestBody> {

@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+} from '@angular/core';
 import {
   MethodDataSource,
   RxapDataSource,
@@ -11,6 +14,7 @@ import { ProfileControllerGetResponse } from './openapi/responses/profile-contro
 export class UserProfileDataSource<T = unknown> extends MethodDataSource<ProfileControllerGetResponse<T>> {
 
   constructor(
+    @Inject(ProfileControllerGetRemoteMethod)
     method: ProfileControllerGetRemoteMethod<T>,
   ) {
     super(method, true);

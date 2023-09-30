@@ -31,7 +31,7 @@ import { ThemeControllerSetTypographyRequestBody } from '../request-bodies/theme
   },
   "method": "put",
   "path": "/settings/theme/typography"
-}`,
+}`
 })
 export class ThemeControllerSetTypographyRemoteMethod
   extends OpenApiRemoteMethod<void, void, ThemeControllerSetTypographyRequestBody> {

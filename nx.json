@@ -29,7 +29,8 @@
           "expose-as-schematic",
           "localazy-download",
           "fix-dependencies",
-          "build-storybook"
+          "build-storybook",
+          "copy-open-api-sdk"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
@@ -144,7 +145,17 @@
     },
     "serve": {
       "dependsOn": [
-        "build-info"
+        "build-info",
+        "^copy-open-api-sdk"
+      ]
+    },
+    "copy-open-api-sdk": {
+      "dependsOn": [
+        "^generate-open-api"
+      ],
+      "executor": "nx:run-commands",
+      "outputs": [
+        "{projectRoot}/src/lib/openapi"
       ]
     },
     "swagger-build": {
@@ -175,7 +186,8 @@
         "check-ng-package",
         "localazy-download",
         "build-info",
-        "expose-as-schematic"
+        "expose-as-schematic",
+        "^copy-open-api-sdk"
       ],
       "inputs": [
         "build",
