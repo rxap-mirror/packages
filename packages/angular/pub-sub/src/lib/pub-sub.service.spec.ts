@@ -1,14 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  PubSubService,
-  RXAP_PUB_SUB_CACHE_SIZE,
-} from '@rxap/ngx-pub-sub';
 import { tap } from 'rxjs';
 import {
   ProvidePubSub,
   withDisableCache,
   withDisableGarbageCollector,
 } from './provide';
+import { PubSubService } from './pub-sub.service';
+import { RXAP_PUB_SUB_CACHE_SIZE } from './tokens';
 
 describe('PubSubService', () => {
 

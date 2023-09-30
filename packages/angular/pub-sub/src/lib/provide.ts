@@ -2,11 +2,11 @@ import {
   APP_INITIALIZER,
   Provider,
 } from '@angular/core';
+import { PubSubService } from './pub-sub.service';
 import {
-  PubSubService,
   RXAP_PUB_SUB_DISABLE_CACHE,
   RXAP_PUB_SUB_DISABLE_GARBAGE_COLLECTOR,
-} from '@rxap/ngx-pub-sub';
+} from './tokens';
 
 export function ProvidePubSub(...providers: Provider[]): Provider[] {
   return [
