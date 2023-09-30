@@ -13,7 +13,6 @@ import {
   Signal,
   ViewChild,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -92,14 +91,12 @@ export class LayoutComponent implements OnInit, OnDestroy {
     iconLoaderService: IconLoaderService,
   ) {
     iconLoaderService.load();
-    this.fixedBottomGap = toSignal(layoutComponentService.fixedBottomGap$, { initialValue: 0 });
-    this.fixedTopGap =
-      toSignal(layoutComponentService.fixedTopGap$, { initialValue: layoutComponentService.fixedTopGap$.value });
-    this.sidenavMode = toSignal(layoutComponentService.mode$, { initialValue: layoutComponentService.mode$.value });
-    this.pinned = toSignal(layoutComponentService.pinned$, { initialValue: layoutComponentService.pinned$.value });
-    this.collapsable =
-      toSignal(layoutComponentService.collapsable$, { initialValue: layoutComponentService.collapsable$.value });
-    this.opened = toSignal(layoutComponentService.opened$, { initialValue: layoutComponentService.opened$.value });
+    this.fixedBottomGap = layoutComponentService.fixedBottomGap;
+    this.fixedTopGap = layoutComponentService.fixedTopGap;
+    this.pinned = layoutComponentService.pinned;
+    this.collapsable = layoutComponentService.collapsable;
+    this.opened = layoutComponentService.opened;
+    this.sidenavMode = layoutComponentService.mode;
     this.logoSrc = this.layoutComponentService.logo.src ?? 'https://via.placeholder.com/256x128px';
     this.logoWidth = this.layoutComponentService.logo.width ?? 256;
     this.release = DetermineReleaseName(this.environment);

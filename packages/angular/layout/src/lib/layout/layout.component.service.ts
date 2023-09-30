@@ -1,9 +1,15 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import {
+  computed,
+  effect,
   Inject,
   Injectable,
   Optional,
+  signal,
+  Signal,
+  WritableSignal,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { ConfigService } from '@rxap/config';
 import { ObserveCurrentThemeDensity } from '@rxap/ngx-theme';
@@ -11,30 +17,22 @@ import {
   FooterService,
   HeaderService,
 } from '@rxap/services';
-import {
-  BehaviorSubject,
-  combineLatest,
-  Observable,
-  skip,
-} from 'rxjs';
-import {
-  map,
-  startWith,
-  tap,
-} from 'rxjs/operators';
 import { RXAP_LOGO_CONFIG } from '../tokens';
 import { LogoConfig } from '../types';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutComponentService {
 
-  public opened$: BehaviorSubject<boolean>;
-  public mode$: BehaviorSubject<MatDrawerMode>;
-  public pinned$: BehaviorSubject<boolean>;
-  public fixedBottomGap$: Observable<number>;
-  public fixedTopGap$ = new BehaviorSubject<number>(64);
   public logo: LogoConfig;
-  public collapsable$: BehaviorSubject<boolean>;
+
+  public readonly opened: WritableSignal<boolean>;
+  public readonly mode: WritableSignal<MatDrawerMode>;
+  public readonly pinned: WritableSignal<boolean>;
+  public readonly collapsable: WritableSignal<boolean>;
+  public readonly fixedBottomGap: Signal<number>;
+  public readonly fixedTopGap: Signal<number>;
+
+  private readonly currentThemeDensity = toSignal(ObserveCurrentThemeDensity());
 
 
   public constructor(
@@ -52,56 +50,54 @@ export class LayoutComponentService {
     const pinned = this.config.get('navigation.pinned', false);
     const mode = this.config.get('navigation.mode', pinned || !collapsable ? 'side' : 'over');
     const opened = this.config.get('navigation.opened', (!collapsable || pinned) && !mobile);
-    this.mode$ = new BehaviorSubject<MatDrawerMode>(mode);
-    this.opened$ = new BehaviorSubject<boolean>(opened);
-    this.pinned$ = new BehaviorSubject<boolean>(pinned);
-    this.collapsable$ = new BehaviorSubject<boolean>(collapsable);
-    this.fixedBottomGap$ = this.footerComponentService.portalCount$.pipe(map(count => count * 64));
-    combineLatest([
-      this.headerComponentService.update$.pipe(
-        startWith(null),
-        map(() => this.headerComponentService.countComponent),
-      ),
-      ObserveCurrentThemeDensity(),
-    ]).pipe(
-      tap(([ count, density ]) => {
-        this.fixedTopGap$.next(count * (64 + density * 4));
-      }),
-    ).subscribe();
+
+    this.opened = signal(opened);
+    this.mode = signal(mode);
+    this.pinned = signal(pinned);
+    this.collapsable = signal(collapsable);
+
+    this.fixedBottomGap = computed(() => this.footerComponentService.portalCount() * (
+      64 + (
+           this.currentThemeDensity() ?? 0
+         ) * 4
+    ));
+    this.fixedTopGap = computed(() => this.headerComponentService.componentCount() * (
+      64 + (
+           this.currentThemeDensity() ?? 0
+         ) * 4
+    ));
+
     this.logo = logoConfig ?? {
       src: 'assets/logo.png',
       width: 192,
     };
     mobileQuery.addEventListener('change', (event) => {
       if (initialCollapsable) {
-        this.collapsable$.next(!event.matches);
-        if (this.collapsable$.value) {
-          if (!this.pinned$.value) {
-            this.opened$.next(false);
+        this.collapsable.set(!event.matches);
+        if (this.collapsable()) {
+          if (!this.pinned()) {
+            this.opened.set(false);
           }
         }
       }
     });
-    this.pinned$.pipe(
-      skip(1),
-      tap(pinned => {
-        if (pinned) {
-          this.mode$.next('side');
-          this.opened$.next(true);
-        } else {
-          this.mode$.next('over');
-          this.opened$.next(false);
-        }
-      }),
-    ).subscribe();
+    effect(() => {
+      if (this.pinned()) {
+        this.mode.set('side');
+        this.opened.set(true);
+      } else {
+        this.mode.set('over');
+        this.opened.set(false);
+      }
+    }, { allowSignalWrites: true });
   }
 
-  public toggleOpend() {
-    this.opened$.next(!this.opened$.value);
+  public toggleOpened() {
+    this.opened.set(!this.opened());
   }
 
   public togglePinned() {
-    this.pinned$.next(!this.pinned$.value);
+    this.pinned.set(!this.pinned());
   }
 
 }

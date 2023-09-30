@@ -15,7 +15,8 @@
       class="sidenav"
       [opened]="opened()"
     >
-      <div class="h-full py-2 flex flex-col items-center gap-y-5 justify-items-stretch">
+      <div (mouseleave)="collapsable() && !pinned() && matSidenav.close()"
+           class="h-full py-2 flex flex-col items-center gap-y-5 justify-items-stretch">
 
         <div (click)="layoutComponentService.togglePinned()" *ngIf="collapsable()"
              class="pl-2 self-stretch grow-0 flex flex-row justify-between items-center">
@@ -30,7 +31,7 @@
 
         <ul
           (mouseenter)="collapsable() && !pinned() && matSidenav.open()"
-          (mouseleave)="collapsable() && !pinned() && matSidenav.close()" class="grow self-stretch"
+          class="grow self-stretch"
           root
           rxap-navigation
         >
