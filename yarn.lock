@@ -9371,6 +9371,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/ngx-pub-sub@workspace:packages/angular/pub-sub":
+  version: 0.0.0-use.local
+  resolution: "@rxap/ngx-pub-sub@workspace:packages/angular/pub-sub"
+  dependencies:
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/common": ^16.1.0
+    "@angular/core": ^16.1.0
+  languageName: unknown
+  linkType: soft
+
 "@rxap/ngx-sentry@workspace:packages/angular/sentry":
   version: 0.0.0-use.local
   resolution: "@rxap/ngx-sentry@workspace:packages/angular/sentry"

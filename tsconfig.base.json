@@ -147,6 +147,9 @@
       "@rxap/ngx-memory": [
         "packages/angular/memory/src/index.ts"
       ],
+      "@rxap/ngx-pub-sub": [
+        "packages/angular/pub-sub/src/index.ts"
+      ],
       "@rxap/ngx-sentry": ["packages/angular/sentry/src/index.ts"],
       "@rxap/ngx-status-check": ["packages/angular/status-check/src/index.ts"],
       "@rxap/ngx-theme": [
