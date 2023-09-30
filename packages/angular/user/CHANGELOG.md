@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.1.0-dev.3...@rxap/ngx-user@16.1.0-dev.4) (2023-09-30)
+
+### Bug Fixes
+
+- prevent event topic mix up ([8788259](https://gitlab.com/rxap/packages/commit/87882595d740dddaba8cb6f79e5a68c5bd6c4fea))
+
 # [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.1.0-dev.2...@rxap/ngx-user@16.1.0-dev.3) (2023-09-30)
 
 ### Bug Fixes

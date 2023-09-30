@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.36",
+  "version": "16.0.0-dev.37",
   "name": "@rxap/layout",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -27,7 +27,7 @@
     "@rxap/ngx-localize": "^16.1.0-dev.1",
     "@rxap/ngx-status-check": "^16.1.0-dev.13",
     "@rxap/ngx-theme": "^16.1.0-dev.0",
-    "@rxap/ngx-user": "^16.1.0-dev.3",
+    "@rxap/ngx-user": "^16.1.0-dev.4",
     "@rxap/services": "^16.0.0-dev.20",
     "@rxap/utilities": "^16.0.0-dev.19",
     "rxjs": "^7.8.0",
@@ -106,7 +106,7 @@
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "16.1.0-dev.3"
+        "version": "16.1.0-dev.4"
       },
       {
         "package": "@rxap/rxjs",

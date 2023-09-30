@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.37](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.36...@rxap/layout@16.0.0-dev.37) (2023-09-30)
+
+### Bug Fixes
+
+- apply restored theme config in the correct order ([95c5dc0](https://gitlab.com/rxap/packages/commit/95c5dc07dbadfd82dbfa0ab44e4bf5f7f3fec0f4))
+
 # [16.0.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.35...@rxap/layout@16.0.0-dev.36) (2023-09-30)
 
 ### Bug Fixes
