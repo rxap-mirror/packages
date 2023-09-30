@@ -325,6 +325,8 @@ export class ThemeService {
     return this.coerceColorPalette(colorPaletteConfig);
   }
 
+  // region utility
+
   private coerceColorPalette(colorPaletteConfig: ColorPaletteConfig): Partial<ColorPalette> {
     let colorPalette: Partial<ColorPalette> = {};
 
@@ -395,4 +397,7 @@ export class ThemeService {
     localStorage.removeItem(this.densityLocalStorageKey);
     localStorage.removeItem(this.typographyLocalStorageKey);
   }
+
+  // endregion
+
 }

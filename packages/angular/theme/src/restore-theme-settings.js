@@ -28,12 +28,13 @@ if (localStorage) {
   }
 
 
-  if (
-    localStorage.getItem(window.__rxap__.ngx.theme.darkMode.key) === 'true' ||
-    (
-      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    )
-  ) {
+  let darkMode = localStorage.getItem(window.__rxap__.ngx.theme.darkMode.key);
+  if (!darkMode) {
+    darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  } else {
+    darkMode = darkMode === 'true';
+  }
+  if (darkMode) {
     document.body.classList.add(
       'dark-theme',
       'dark',
