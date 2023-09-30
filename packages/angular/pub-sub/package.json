@@ -1,38 +1,38 @@
 {
-  "name": "@rxap/ngx-pub-sub",
   "version": "16.0.0",
-  "peerDependencies": {
-    "@angular/common": "^16.1.0",
-    "@angular/core": "^16.1.0"
-  },
+  "name": "@rxap/ngx-pub-sub",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/pub-sub"
+  "peerDependencies": {
+    "@angular/core": "^16.1.4",
+    "rxjs": "^7.8.0"
   },
-  "keywords": [
-    "rxap",
-    "angular",
-    "ngx",
-    "packages",
-    "angular-pub-sub"
-  ],
-  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/pub-sub",
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
   },
-  "license": "GPL-3.0-or-later",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/angular/pub-sub",
+  "keywords": [
+    "angular",
+    "angular-pub-sub",
+    "ngx",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/angular/pub-sub"
+  },
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/angular/pub-sub"
   },
-  "author": {
-    "name": "Merzough Münker",
-    "email": "mmuenker@digitaix.com"
-  }
+  "sideEffects": false
 }
