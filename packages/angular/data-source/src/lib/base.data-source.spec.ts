@@ -1,25 +1,21 @@
+import { fakeAsync } from '@angular/core/testing';
+import { Subject } from 'rxjs';
 import {
   BaseDataSource,
   BaseDataSourceViewer,
   RxapDataSource,
 } from './base.data-source';
-import { fakeAsync } from '@angular/core/testing';
 import { StaticDataSource } from './static.data-source';
 
 describe('@rxap/data-source', () => {
 
   describe('BaseDataSource', () => {
 
-    let dataSource: BaseDataSource<any>;
-
-    beforeEach(() => {
-      dataSource = new BaseDataSource<any>({
-        id: 'test',
-        deps: [],
-      });
-    });
-
     it('connect and disconnect', () => {
+
+      const dataSource = new BaseDataSource<any>({
+        id: 'test',
+      });
 
       const viewer: BaseDataSourceViewer = { id: 'test' };
 
@@ -30,6 +26,106 @@ describe('@rxap/data-source', () => {
       dataSource.disconnect(viewer);
 
       expect(dataSource.isConnected(viewer)).toBeFalsy();
+
+    });
+
+    describe('restore data from local storage', () => {
+
+      @RxapDataSource({
+        id: 'test',
+        restore: true,
+      })
+      class TestDataSource extends BaseDataSource {
+
+        protected override _data$ = new Subject();
+
+        push(data: any) {
+          this._data$.next(data);
+        }
+
+      }
+
+      let dataSource: TestDataSource;
+
+      beforeEach(() => {
+        dataSource = new TestDataSource();
+        localStorage.getItem('rxap_data-source_test');
+      });
+
+      afterEach(() => {
+        localStorage.clear();
+      });
+
+      it('should save data to local storage', () => {
+
+        dataSource.connect({ id: 'test' }).subscribe();
+        const data = 'test';
+        dataSource.push(data);
+        expect(localStorage.getItem('rxap_data-source_TestDataSource_test')).toBe(JSON.stringify(data));
+
+      });
+
+      it('should restore data from local storage', () => {
+
+        const data = 'test';
+        localStorage.setItem('rxap_data-source_TestDataSource_test', JSON.stringify(data));
+
+        const spy = jest.fn();
+        dataSource.connect({ id: 'test' }).subscribe(spy);
+        expect(spy).toBeCalledWith(data);
+
+        dataSource.push('new data');
+        expect(spy).toBeCalledTimes(2);
+
+      });
+
+      it('should not restore data from local storage if restore is false', () => {
+
+        const data = 'test';
+        localStorage.setItem('rxap_data-source_TestDataSource_test', JSON.stringify(data));
+
+        const spy = jest.fn();
+        dataSource.connect({ id: 'test', restore: false }).subscribe(spy);
+        expect(spy).not.toBeCalled();
+
+        dataSource.push('new data');
+        expect(spy).toBeCalledWith('new data');
+        expect(spy).toBeCalledTimes(1);
+
+      });
+
+      it('should store and restore complex data', () => {
+
+        const data = { test: 'test' };
+        const spyA = jest.fn();
+        dataSource.connect({ id: 'test' }).subscribe(spyA);
+        dataSource.push(data);
+        expect(spyA).toBeCalledWith(data);
+        expect(localStorage.getItem('rxap_data-source_TestDataSource_test')).toBe(JSON.stringify(data));
+
+        const dataSourceB = new TestDataSource();
+        const spyB = jest.fn();
+        dataSourceB.connect({ id: 'test' }).subscribe(spyB);
+        expect(spyB).toBeCalledWith(data);
+
+      });
+
+      it('should handle complex data with circular references', () => {
+
+        const data: any = { test: 'test' };
+        data.data = data;
+        const spyA = jest.fn();
+        dataSource.connect({ id: 'test' }).subscribe(spyA);
+        dataSource.push(data);
+        expect(spyA).toBeCalledWith(data);
+        expect(localStorage.getItem('rxap_data-source_TestDataSource_test')).toBeNull();
+
+        const dataSourceB = new TestDataSource();
+        const spyB = jest.fn();
+        dataSourceB.connect({ id: 'test' }).subscribe(spyB);
+        expect(spyB).not.toBeCalled();
+
+      });
 
     });
 

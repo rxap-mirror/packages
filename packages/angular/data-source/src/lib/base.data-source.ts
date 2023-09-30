@@ -27,6 +27,7 @@ import {
 } from 'rxjs';
 import {
   finalize,
+  startWith,
   take,
   takeUntil,
   tap,
@@ -37,11 +38,20 @@ export type DataSourceViewerId = string;
 export interface BaseDataSourceViewer<View = any> {
   id?: DataSourceViewerId;
   viewChange?: Observable<View>;
+  /**
+   * Indicates weather the data source should restore the last value from local storage
+   */
+  restore?: boolean;
 
   [key: string]: any;
 }
 
-export type BaseDataSourceMetadata = BaseDefinitionMetadata
+export interface BaseDataSourceMetadata extends BaseDefinitionMetadata {
+  /**
+   * Indicates weather the data source should restore the last value from local storage
+   */
+  restore?: boolean;
+}
 
 @Injectable()
 export class BaseDataSource<
@@ -125,12 +135,35 @@ export class BaseDataSource<
 
     const destroy$ = new Subject<void>();
 
+    const cacheKey = [ 'rxap', 'data-source', this.constructor.name, this.id ].join('_');
+    const restore = viewer.restore ?? this.metadata.restore ?? false;
+
     connection = connection.pipe(
-      tap((data) => (this._data = data)),
+      tap((data) => {
+        this._data = data;
+        if (restore) {
+          try {
+            const cache = JSON.stringify(data);
+            localStorage.setItem(cacheKey, cache);
+          } catch (e: any) {
+            console.warn(
+              `Failed to store data source '${ this.id }' data in local storage`,
+            );
+          }
+        }
+      }),
       tap((data) => this.change$.next(data)),
       finalize(() => this.disconnect(viewer)),
       takeUntil(destroy$),
     );
+
+    if (restore) {
+      const data = localStorage.getItem(cacheKey);
+      if (data) {
+        this._data = JSON.parse(data) as Data;
+        connection = connection.pipe(startWith(this._data));
+      }
+    }
 
     this._connectedViewer.set(viewer.id, connection);
 
