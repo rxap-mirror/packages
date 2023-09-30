@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@16.1.0-dev.0...@rxap/ngx-theme@16.1.0-dev.1) (2023-09-30)
+
+### Bug Fixes
+
+- only use media query to get prefers-color-scheme if dark mode is not defined in local storage ([f57380b](https://gitlab.com/rxap/packages/commit/f57380be1e0ff7783345d88d0671fc4bd7a469f2))
+
 # [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@16.0.1-dev.0...@rxap/ngx-theme@16.1.0-dev.0) (2023-09-30)
 
 ### Features
