@@ -38,27 +38,27 @@
 </mat-menu>
 
 <mat-menu #themeDensityMenu="matMenu" xPosition="before">
-  <button (click)="selectDensity()" (mouseenter)="previewDensity(0)" (mouseleave)="saveDensity()" mat-menu-item>
+  <button (click)="setDensity(0)" (mouseenter)="previewDensity(0)" (mouseleave)="restoreDensity()" mat-menu-item>
     <mat-icon svgIcon="size-l"></mat-icon>
     <span i18n>Normal</span>
   </button>
-  <button (click)="selectDensity()" (mouseenter)="previewDensity(-1)" (mouseleave)="saveDensity()" mat-menu-item>
+  <button (click)="setDensity(-1)" (mouseenter)="previewDensity(-1)" (mouseleave)="restoreDensity()" mat-menu-item>
     <mat-icon svgIcon="size-m"></mat-icon>
     <span i18n>Dense</span>
   </button>
-  <button (click)="selectDensity()" (mouseenter)="previewDensity(-2)" (mouseleave)="saveDensity()" mat-menu-item>
+  <button (click)="setDensity(-2)" (mouseenter)="previewDensity(-2)" (mouseleave)="restoreDensity()" mat-menu-item>
     <mat-icon svgIcon="size-s"></mat-icon>
     <span i18n>Very Dense</span>
   </button>
-  <button (click)="selectDensity()" (mouseenter)="previewDensity(-3)" (mouseleave)="saveDensity()" mat-menu-item>
+  <button (click)="setDensity(-3)" (mouseenter)="previewDensity(-3)" (mouseleave)="restoreDensity()" mat-menu-item>
     <mat-icon svgIcon="size-xs"></mat-icon>
     <span i18n>Extreme Dense</span>
   </button>
 </mat-menu>
 <mat-menu #themeFontMenu="matMenu" xPosition="before">
-  <button (click)="selectTypography()"
+  <button (click)="setTypography(typographyName)"
           (mouseenter)="previewTypography(typographyName)"
-          (mouseleave)="saveTypography()"
+          (mouseleave)="restoreTypography()"
           *ngFor="let typographyName of availableTypographies"
           mat-menu-item>
     {{ typographyName }}
@@ -66,9 +66,9 @@
 </mat-menu>
 
 <mat-menu #themePresetMenu="matMenu" xPosition="before">
-  <button (click)="selectTheme()"
+  <button (click)="setTheme(themeName)"
           (mouseenter)="previewTheme(themeName)"
-          (mouseleave)="saveTheme()"
+          (mouseleave)="restoreTheme()"
           *ngFor="let themeName of availableThemes"
           mat-menu-item>
     {{ themeName }}

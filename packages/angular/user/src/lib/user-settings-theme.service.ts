@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { PubSubService } from '@rxap/ngx-pub-sub';
 import {
+  debounceTime,
   Subscription,
   tap,
 } from 'rxjs';
@@ -13,6 +14,7 @@ import { ThemeControllerSetPresetRemoteMethod } from './openapi/remote-methods/t
 import { ThemeControllerSetTypographyRemoteMethod } from './openapi/remote-methods/theme-controller-set-typography.remote-method';
 import { ThemeControllerSetRemoteMethod } from './openapi/remote-methods/theme-controller-set.remote-method';
 import { ThemeControllerSetRequestBody } from './openapi/request-bodies/theme-controller-set.request-body';
+import { ThemeControllerGetResponse } from './openapi/responses/theme-controller-get.response';
 import { UserSettingsThemeDataSource } from './user-settings-theme.data-source';
 
 export enum ThemeDensity {
@@ -39,7 +41,7 @@ export class UserSettingsThemeService<T = unknown> {
 
   protected syncSubscription?: Subscription;
 
-  async get() {
+  async get(): Promise<ThemeControllerGetResponse<T>> {
     return this.getThemeMethod.call();
   }
 
@@ -68,8 +70,10 @@ export class UserSettingsThemeService<T = unknown> {
       return;
     }
     this.syncSubscription = this.pubSub.subscribe('rxap.theme.*.change').pipe(
+      debounceTime(1000),
       tap(async (event) => {
-        switch (event.key) {
+        console.log('sync', event);
+        switch (event.topic) {
 
           case 'rxap.theme.density.change':
             if (IsThemeDensity(event.data)) {

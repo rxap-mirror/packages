@@ -52,7 +52,7 @@ export class ThemeService {
     const darkModeMediaQuery = mediaMatcher.matchMedia('(prefers-color-scheme: dark)');
 
     this.darkMode = signal(darkModeMediaQuery.matches);
-    this.themeName = signal(this.getCurrentTheme());
+    this.themeName = signal(this.getTheme());
     this.density = signal(this.getDensity());
     this.typography = signal(this.getTypography());
 
@@ -98,6 +98,8 @@ export class ThemeService {
            )?.['__rxap__']?.['ngx']?.['theme']?.['typography']?.['key'] ?? `rxap-theme-typography`;
   }
 
+  // region restore
+
   public restoreDarkMode() {
     let darkMode: boolean | null = null;
     const darkModeCached = localStorage.getItem(this.darkModeLocalStorageKey);
@@ -108,7 +110,7 @@ export class ThemeService {
       darkMode = false;
     }
     if (darkMode !== null) {
-      this.setDarkTheme(darkMode);
+      this.setDarkTheme(darkMode, true);
     }
     return darkMode;
   }
@@ -116,7 +118,7 @@ export class ThemeService {
   public restoreThemeName() {
     const themeName = localStorage.getItem(this.themeNameLocalStorageKey);
     if (themeName) {
-      this.setTheme(themeName);
+      this.setTheme(themeName, true);
     }
     return themeName;
   }
@@ -124,7 +126,7 @@ export class ThemeService {
   public restoreTypography() {
     const typography = localStorage.getItem(this.typographyLocalStorageKey);
     if (typography) {
-      this.setTypography(typography);
+      this.setTypography(typography, true);
     }
     return typography;
   }
@@ -134,18 +136,72 @@ export class ThemeService {
     if (density) {
       const value = Number(density) as ThemeDensity;
       if (value <= 0 && value >= -3) {
-        this.setDensity(Number(density) as ThemeDensity);
+        this.setDensity(Number(density) as ThemeDensity, true);
         return value;
       }
     }
     return null;
   }
 
+  // endregion
+
   public toggleDarkTheme(): void {
     this.setDarkTheme(!this.darkMode());
   }
 
-  public setDarkTheme(darkMode: boolean, skipLocalStorage?: boolean): void {
+  // region set theme configuration state
+
+  public setDarkTheme(darkMode: boolean, silent?: boolean): void {
+    this.applyDarkMode(darkMode);
+    if (this.darkMode() !== darkMode) {
+      this.darkMode.set(darkMode);
+      if (!silent) {
+        localStorage.setItem(this.darkModeLocalStorageKey, String(darkMode));
+        this.pubSub.publish('rxap.theme.darkMode.change', darkMode);
+      }
+    }
+  }
+
+  public setDensity(density: ThemeDensity, silent = false): void {
+    this.applyDensity(density);
+    if (this.density() !== density) {
+      this.density.set(density);
+      if (!silent) {
+        localStorage.setItem(this.densityLocalStorageKey, String(density));
+        this.pubSub.publish('rxap.theme.density.change', density);
+      }
+    }
+  }
+
+  public setTypography(typography: string, silent = false): void {
+    this.applyTypography(typography);
+    if (this.typography() !== typography) {
+      this.typography.set(typography);
+      if (!silent) {
+        localStorage.setItem(this.typographyLocalStorageKey, typography);
+        this.pubSub.publish('rxap.theme.typography.change', typography);
+      }
+    }
+  }
+
+  public setTheme(themeName: string, silent = false) {
+    this.applyTheme(themeName);
+    this.density.set(this.getDensity());
+    this.typography.set(this.getTypography());
+    if (this.themeName() !== themeName) {
+      this.themeName.set(themeName);
+      if (!silent) {
+        localStorage.setItem(this.themeNameLocalStorageKey, themeName);
+        this.pubSub.publish('rxap.theme.preset.change', themeName);
+      }
+    }
+  }
+
+  // endregion
+
+  // region apply theme configuration state
+
+  public applyDarkMode(darkMode: boolean): void {
     if (darkMode) {
       // region deprecated
       document.body.classList.add('dark-theme');
@@ -159,44 +215,26 @@ export class ThemeService {
       // endregion
       document.body.classList.remove('dark');
     }
-    if (this.darkMode() !== darkMode) {
-      this.darkMode.set(darkMode);
-      if (!skipLocalStorage) {
-        localStorage.setItem(this.darkModeLocalStorageKey, String(darkMode));
-      }
-      this.pubSub.publish('rxap.theme.darkMode.change', darkMode);
-    }
   }
 
-  public setDensity(density: ThemeDensity): void {
+  public applyDensity(density: ThemeDensity): void {
     document.body.classList.remove('density-0', 'density-1', 'density-2', 'density-3');
     if (density < 0) {
       document.body.classList.add(`density${ density }`);
     }
-    if (this.density() !== density) {
-      this.density.set(density);
-      localStorage.setItem(this.densityLocalStorageKey, String(density));
-      this.pubSub.publish('rxap.theme.density.change', density);
-    }
   }
 
-  public setTypography(typography: string): void {
+  public applyTypography(typography: string): void {
     document.body.style.setProperty('--font-family', `var(--font-family-${ typography })`);
-    if (this.typography() !== typography) {
-      this.typography.set(typography);
-      localStorage.setItem(this.typographyLocalStorageKey, typography);
-      this.pubSub.publish('rxap.theme.typography.change', typography);
-    }
   }
 
-  public setTheme(themeName: string) {
-
+  public applyTheme(themeName: string): void {
     if (themeName === 'default') {
       this.resetToDefaultTheme();
       return;
     }
 
-    const theme = this.getTheme(themeName);
+    const theme = this.getThemeConfig(themeName);
 
     if (theme.primaryColor?.color) {
       this.setCssColorVariables('primary', theme.primaryColor.color);
@@ -211,20 +249,19 @@ export class ThemeService {
     }
 
     if (theme.density !== undefined) {
-      this.setDensity(theme.density);
+      this.applyDensity(theme.density);
     }
 
     if (theme.typography) {
-      this.setTypography(theme.typography);
+      this.applyTypography(theme.typography);
     }
 
     document.body.style.setProperty(`--theme-name`, themeName);
-    if (this.themeName() !== themeName) {
-      this.themeName.set(themeName);
-      localStorage.setItem(this.themeNameLocalStorageKey, themeName);
-      this.pubSub.publish('rxap.theme.name.change', themeName);
-    }
   }
+
+  // endregion
+
+  // region get theme configuration state
 
   public getDensity(): ThemeDensity {
     let density = 0;
@@ -246,16 +283,19 @@ export class ThemeService {
     return 'default';
   }
 
+  public getTheme() {
+    return document.body.style.getPropertyValue('--theme-name') || 'default';
+  }
+
+  // endregion
+
+  // region get available
+
   public getAvailableColorPalettes(): string[] {
     const colorPalettesConfigs: Record<string, unknown> = this.config.get('colorPalettes', {});
     const availableColorPalettes: string[] = Object.keys(colorPalettesConfigs);
     availableColorPalettes.unshift('default');
     return availableColorPalettes;
-  }
-
-  public getColorPalette(colorPaletteName: string): Partial<ColorPalette> {
-    const colorPaletteConfig = this.config.getOrThrow<ColorPaletteConfig>(`colorPalettes.${ colorPaletteName }`);
-    return this.coerceColorPalette(colorPaletteConfig);
   }
 
   public getAvailableThemes(): string[] {
@@ -265,8 +305,24 @@ export class ThemeService {
     return availableThemes;
   }
 
-  getCurrentTheme() {
-    return document.body.style.getPropertyValue('--theme-name') || 'default';
+  public getAvailableTypographies() {
+    return Array
+      .from(document.styleSheets)
+      .filter(sheet => sheet.href === null || sheet.href.startsWith(window.location.origin))
+      .flatMap(sheet => Array.from(sheet.cssRules || []))
+      .filter((rule: any) => rule.selectorText === ':root')
+      .flatMap((rule: any) => Array.from(rule.style))
+      .filter((prop: any) => prop.startsWith('--'))
+      .filter((prop: any) => prop.startsWith('--font-family-'))
+      .map((prop: any) => prop.replace('--font-family-', ''))
+      .sort();
+  }
+
+  // endregion
+
+  public getColorPalette(colorPaletteName: string): Partial<ColorPalette> {
+    const colorPaletteConfig = this.config.getOrThrow<ColorPaletteConfig>(`colorPalettes.${ colorPaletteName }`);
+    return this.coerceColorPalette(colorPaletteConfig);
   }
 
   private coerceColorPalette(colorPaletteConfig: ColorPaletteConfig): Partial<ColorPalette> {
@@ -292,7 +348,7 @@ export class ThemeService {
     return colorPalette;
   }
 
-  private getTheme(themeName: string): ThemeConfig {
+  private getThemeConfig(themeName: string): ThemeConfig {
     const themeConfig = this.config.getOrThrow<ThemeConfig>(`themes.${ themeName }`);
 
     if (themeConfig.accentColor) {
@@ -308,19 +364,6 @@ export class ThemeService {
     }
 
     return themeConfig;
-  }
-
-  getAvailableTypographies() {
-    return Array
-      .from(document.styleSheets)
-      .filter(sheet => sheet.href === null || sheet.href.startsWith(window.location.origin))
-      .flatMap(sheet => Array.from(sheet.cssRules || []))
-      .filter((rule: any) => rule.selectorText === ':root')
-      .flatMap((rule: any) => Array.from(rule.style))
-      .filter((prop: any) => prop.startsWith('--'))
-      .filter((prop: any) => prop.startsWith('--font-family-'))
-      .map((prop: any) => prop.replace('--font-family-', ''))
-      .sort();
   }
 
   private setCssColorVariables(name: string, colorPalette: Partial<ColorPalette>): void {

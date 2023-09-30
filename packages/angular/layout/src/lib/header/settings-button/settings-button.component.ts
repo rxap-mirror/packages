@@ -87,58 +87,39 @@ export class SettingsButtonComponent implements OnInit, OnDestroy {
   }
 
   previewDensity(density: ThemeDensity) {
-    this.currentDensityValue = this.theme.getDensity();
+    this.theme.applyDensity(density);
+  }
+
+  restoreDensity() {
+    this.theme.applyDensity(this.theme.density());
+  }
+
+  setDensity(density: ThemeDensity) {
     this.theme.setDensity(density);
   }
 
-  saveDensity() {
-    if (!this.savePreviewDensityValue) {
-      if (this.currentDensityValue) {
-        this.theme.setDensity(this.currentDensityValue);
-      }
-    }
-    this.savePreviewDensityValue = false;
-  }
-
-  selectDensity() {
-    this.savePreviewDensityValue = true;
-  }
-
   previewTypography(typography: string) {
-    this.currentTypographyValue = this.theme.getTypography();
+    this.theme.applyTypography(typography);
+  }
+
+  restoreTypography() {
+    this.theme.applyTypography(this.theme.typography());
+  }
+
+  setTypography(typography: string) {
     this.theme.setTypography(typography);
   }
 
-  saveTypography() {
-    if (!this.savePreviewTypographyValue) {
-      if (this.currentTypographyValue) {
-        this.theme.setTypography(this.currentTypographyValue);
-      }
-    }
-    this.savePreviewTypographyValue = false;
-  }
-
-  selectTypography() {
-    this.savePreviewTypographyValue = true;
-  }
-
   previewTheme(theme: string) {
-    this.currentThemeValue ??= this.theme.getCurrentTheme();
+    this.theme.applyTheme(theme);
+  }
+
+  restoreTheme() {
+    this.theme.applyTheme(this.theme.themeName());
+  }
+
+  setTheme(theme: string) {
     this.theme.setTheme(theme);
-  }
-
-  saveTheme() {
-    if (!this.savePreviewThemeValue) {
-      if (this.currentThemeValue) {
-        this.theme.setTheme(this.currentThemeValue);
-      }
-    }
-    this.savePreviewThemeValue = false;
-    this.currentThemeValue = null;
-  }
-
-  selectTheme() {
-    this.savePreviewThemeValue = true;
   }
 
 }

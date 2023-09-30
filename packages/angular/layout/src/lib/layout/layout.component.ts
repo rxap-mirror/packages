@@ -34,7 +34,11 @@ import {
 } from '@rxap/environment';
 import { IconLoaderService } from '@rxap/icon';
 import { StatusIndicatorComponent } from '@rxap/ngx-status-check';
-import { UserSettingsThemeService } from '@rxap/ngx-user';
+import { ThemeService } from '@rxap/ngx-theme';
+import {
+  IsThemeDensity,
+  UserSettingsThemeService,
+} from '@rxap/ngx-user';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { NavigationComponent } from '../navigation/navigation.component';
@@ -79,6 +83,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   @ViewChild(MatSidenav, { static: true }) public sidenav!: MatSidenav;
 
   private readonly userSettingsThemeService = inject(UserSettingsThemeService);
+  private readonly themeService = inject(ThemeService);
 
   constructor(
     public readonly layoutComponentService: LayoutComponentService,
@@ -106,6 +111,15 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userSettingsThemeService.startSync();
+    this.userSettingsThemeService.get().then(theme => {
+      if (theme.density && IsThemeDensity(theme.density)) {
+        this.themeService.setDensity(theme.density, true);
+      }
+      if (theme.typography) {
+        this.themeService.setTypography(theme.typography, true);
+      }
+      this.themeService.setTheme(theme.preset, true);
+    });
   }
 
 }
