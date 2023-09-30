@@ -2,15 +2,21 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import {
   inject,
   Injectable,
+  signal,
+  WritableSignal,
 } from '@angular/core';
 import { ConfigService } from '@rxap/config';
-import { BehaviorSubject } from 'rxjs';
 import {
   ColorPalette,
   ComputeColorPalette,
 } from './compute-color-palette';
 
-export type ThemeDensity = 0 | -1 | -2 | -3;
+export enum ThemeDensity {
+  Normal = 0,
+  Compact = -1,
+  Dense = -2,
+  VeryDense = -3,
+}
 
 export interface ColorPaletteConfigWithName extends ColorPaletteConfig {
   name?: string;
@@ -35,47 +41,117 @@ export class ThemeService {
 
   public readonly config = inject(ConfigService);
 
-  public readonly darkMode$: BehaviorSubject<boolean>;
+  public readonly darkMode: WritableSignal<boolean>;
+  public readonly themeName: WritableSignal<string>;
+  public readonly density: WritableSignal<ThemeDensity>;
+  public readonly typography: WritableSignal<string>;
 
   constructor(mediaMatcher: MediaMatcher) {
-    const darkModeCached = localStorage.getItem('rxap-dark-mode');
     const darkModeMediaQuery = mediaMatcher.matchMedia('(prefers-color-scheme: dark)');
+    let darkMode = this.restoreDarkMode();
+    // if the dark/light mode is not restored from the local storage
+    if (darkMode === null) {
+      // set the dark mode based on the media query
+      darkMode = darkModeMediaQuery.matches;
+      this.setDarkTheme(darkMode, true);
+    }
+    darkModeMediaQuery.addEventListener('change', (event) => {
+      this.setDarkTheme(event.matches, true);
+    });
+
+    this.darkMode = signal(darkMode);
+    this.themeName = signal(this.restoreThemeName() ?? this.getCurrentTheme());
+    this.density = signal(this.restoreDensity() ?? this.getDensity());
+    this.typography = signal(this.restoreTypography() ?? this.getTypography());
+  }
+
+  private get darkModeLocalStorageKey() {
+    return (
+             window as any
+           )?.['__rxap__']?.['ngx']?.['theme']?.['darkMode']?.['key'] ?? `rxap-dark-mode`;
+  }
+
+  private get themeNameLocalStorageKey() {
+    return (
+             window as any
+           )?.['__rxap__']?.['ngx']?.['theme']?.['name']?.['key'] ?? `rxap-theme-name`;
+  }
+
+  private get densityLocalStorageKey() {
+    return (
+             window as any
+           )?.['__rxap__']?.['ngx']?.['theme']?.['density']?.['key'] ?? `rxap-theme-density`;
+  }
+
+  private get typographyLocalStorageKey() {
+    return (
+             window as any
+           )?.['__rxap__']?.['ngx']?.['theme']?.['typography']?.['key'] ?? `rxap-theme-typography`;
+  }
+
+  public restoreDarkMode() {
     let darkMode: boolean | null = null;
+    const darkModeCached = localStorage.getItem(this.darkModeLocalStorageKey);
     if (darkModeCached === 'true') {
       darkMode = true;
     }
     if (darkModeCached === 'false') {
       darkMode = false;
     }
-    if (darkMode === null) {
-      darkMode = darkModeMediaQuery.matches;
+    if (darkMode !== null) {
+      this.setDarkTheme(darkMode);
     }
-    darkModeMediaQuery.addEventListener('change', (event) => {
-      this.toggleDarkTheme(event.matches);
-    });
-    // this.darkMode$ must be first bc the this.darkMode getter is used in this.toggleDarkTheme method
-    this.darkMode$ = new BehaviorSubject<boolean>(darkMode);
-    this.toggleDarkTheme(this.darkMode);
+    return darkMode;
   }
 
-  public get darkMode() {
-    return this.darkMode$.value;
+  public restoreThemeName() {
+    const themeName = localStorage.getItem(this.themeNameLocalStorageKey);
+    if (themeName) {
+      this.setTheme(themeName);
+    }
+    return themeName;
   }
 
-  public toggleDarkTheme(checked = !this.darkMode): void {
-    if (checked) {
+  public restoreTypography() {
+    const typography = localStorage.getItem(this.typographyLocalStorageKey);
+    if (typography) {
+      this.setTypography(typography);
+    }
+    return typography;
+  }
+
+  public restoreDensity() {
+    const density = localStorage.getItem('rxap-theme-density');
+    if (density) {
+      const value = Number(density) as ThemeDensity;
+      if (value <= 0 && value >= -3) {
+        this.setDensity(Number(density) as ThemeDensity);
+        return value;
+      }
+    }
+    return null;
+  }
+
+  public toggleDarkTheme(): void {
+    this.setDarkTheme(!this.darkMode());
+  }
+
+  public setDarkTheme(darkMode: boolean, skipLocalStorage?: boolean): void {
+    if (darkMode) {
+      // region deprecated
       document.body.classList.add('dark-theme');
-      document.body.classList.add('dark');
       localStorage.removeItem('rxap-light-theme');
-      localStorage.setItem('rxap-dark-mode', 'true');
+      // endregion
+      document.body.classList.add('dark');
     } else {
+      // region deprecated
       document.body.classList.remove('dark-theme');
-      document.body.classList.remove('dark');
       localStorage.setItem('rxap-light-theme', 'true');
-      localStorage.setItem('rxap-dark-mode', 'false');
+      // endregion
+      document.body.classList.remove('dark');
     }
-    if (checked !== this.darkMode$.value) {
-      this.darkMode$.next(checked);
+    if (!skipLocalStorage) {
+      localStorage.setItem(this.darkModeLocalStorageKey, String(darkMode));
     }
   }
 
@@ -84,6 +160,7 @@ export class ThemeService {
     if (density < 0) {
       document.body.classList.add(`density${ density }`);
     }
+    localStorage.setItem(this.densityLocalStorageKey, String(density));
   }
 
   public getDensity(): ThemeDensity {
@@ -99,6 +176,7 @@ export class ThemeService {
 
   public setTypography(typography: string): void {
     document.body.style.setProperty('--font-family', `var(--font-family-${ typography })`);
+    localStorage.setItem(this.typographyLocalStorageKey, typography);
   }
 
   public getTypography(): string {
@@ -159,6 +237,7 @@ export class ThemeService {
     }
 
     document.body.style.setProperty(`--theme-name`, themeName);
+    localStorage.setItem(this.themeNameLocalStorageKey, themeName);
 
   }
 
@@ -245,5 +324,8 @@ export class ThemeService {
     this.setDensity(0);
     this.setTypography('default');
     document.body.style.removeProperty(`--theme-name`);
+    localStorage.removeItem(this.themeNameLocalStorageKey);
+    localStorage.removeItem(this.densityLocalStorageKey);
+    localStorage.removeItem(this.typographyLocalStorageKey);
   }
 }

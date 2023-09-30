@@ -9,6 +9,7 @@
     "CHANGELOG.md",
     "LICENSE",
     "LICENSE.md",
-    "theme.css"
+    "theme.css",
+    "src/restore-theme-settings.js"
   ]
 }
