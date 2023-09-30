@@ -69,33 +69,31 @@ export class UserSettingsThemeService<T = unknown> {
     if (this.syncSubscription) {
       return;
     }
-    this.syncSubscription = this.pubSub.subscribe('rxap.theme.*.change').pipe(
+    this.syncSubscription = new Subscription();
+    this.syncSubscription.add(this.pubSub.subscribe('rxap.theme.density.change').pipe(
       debounceTime(1000),
       tap(async (event) => {
-        console.log('sync', event);
-        switch (event.topic) {
-
-          case 'rxap.theme.density.change':
-            if (IsThemeDensity(event.data)) {
-              await this.setDensity(event.data);
-            }
-            break;
-
-          case 'rxap.theme.preset.change':
-            if (typeof event.data === 'string') {
-              await this.setPreset(event.data);
-            }
-            break;
-
-          case 'rxap.theme.typography.change':
-            if (typeof event.data === 'string') {
-              await this.setTypography(event.data);
-            }
-            break;
-
+        if (IsThemeDensity(event.data)) {
+          await this.setDensity(event.data);
         }
       }),
-    ).subscribe();
+    ).subscribe());
+    this.syncSubscription.add(this.pubSub.subscribe('rxap.theme.preset.change').pipe(
+      debounceTime(1000),
+      tap(async (event) => {
+        if (typeof event.data === 'string') {
+          await this.setPreset(event.data);
+        }
+      }),
+    ).subscribe());
+    this.syncSubscription.add(this.pubSub.subscribe('rxap.theme.typography.change').pipe(
+      debounceTime(1000),
+      tap(async (event) => {
+        if (typeof event.data === 'string') {
+          await this.setTypography(event.data);
+        }
+      }),
+    ).subscribe());
   }
 
   stopSync() {
