@@ -25,7 +25,7 @@ import { ProfileControllerGetResponse } from '../responses/profile-controller-ge
   },
   "method": "get",
   "path": "/profile"
-}`,
+}`
 })
 export class ProfileControllerGetRemoteMethod<TResponse = unknown>
   extends OpenApiRemoteMethod<ProfileControllerGetResponse<TResponse>, void, void> {

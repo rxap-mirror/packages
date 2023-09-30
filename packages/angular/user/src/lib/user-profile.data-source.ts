@@ -3,8 +3,8 @@ import {
   MethodDataSource,
   RxapDataSource,
 } from '@rxap/data-source';
-import { ProfileControllerGetRemoteMethod } from './remote-methods/profile-controller-get.remote-method';
-import { ProfileControllerGetResponse } from './responses/profile-controller-get.response';
+import { ProfileControllerGetRemoteMethod } from './openapi/remote-methods/profile-controller-get.remote-method';
+import { ProfileControllerGetResponse } from './openapi/responses/profile-controller-get.response';
 
 @Injectable({ providedIn: 'root' })
 @RxapDataSource('user-profile')

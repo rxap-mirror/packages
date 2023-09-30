@@ -32,12 +32,10 @@ export class LanguageControllerGetRemoteMethodTemplateDirective
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
+    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
     @Inject(LanguageControllerGetRemoteMethod) remoteMethod: LanguageControllerGetRemoteMethod,
     @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<LanguageControllerGetResponse>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
+    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef, @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
     super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
     this.remoteMethodOrIdOrToken = remoteMethod;
@@ -53,8 +51,7 @@ export class LanguageControllerGetRemoteMethodTemplateDirective
 export class LanguageControllerGetRemoteMethodDirective
   extends RemoteMethodDirective<LanguageControllerGetResponse, OpenApiRemoteMethodParameter<void, void>> {
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
+    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
     @Inject(LanguageControllerGetRemoteMethod) remoteMethod: LanguageControllerGetRemoteMethod,
   ) {
     super(remoteMethodLoader, injector);

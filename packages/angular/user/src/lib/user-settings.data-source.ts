@@ -3,8 +3,8 @@ import {
   MethodDataSource,
   RxapDataSource,
 } from '@rxap/data-source';
-import { SettingsControllerGetRemoteMethod } from './remote-methods/settings-controller-get.remote-method';
-import { SettingsControllerGetResponse } from './responses/settings-controller-get.response';
+import { SettingsControllerGetRemoteMethod } from './openapi/remote-methods/settings-controller-get.remote-method';
+import { SettingsControllerGetResponse } from './openapi/responses/settings-controller-get.response';
 
 @Injectable({ providedIn: 'root' })
 @RxapDataSource('user-settings')

@@ -4,7 +4,7 @@ import {
   RxapPipeDataSource,
 } from '@rxap/data-source';
 import { map } from 'rxjs';
-import { SettingsControllerGetResponse } from './responses/settings-controller-get.response';
+import { SettingsControllerGetResponse } from './openapi/responses/settings-controller-get.response';
 import { UserSettingsDataSource } from './user-settings.data-source';
 
 @Injectable({ providedIn: 'root' })

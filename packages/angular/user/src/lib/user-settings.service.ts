@@ -2,16 +2,16 @@ import {
   inject,
   Injectable,
 } from '@angular/core';
-import { DarkModeControllerDisableRemoteMethod } from './remote-methods/dark-mode-controller-disable.remote-method';
-import { DarkModeControllerEnableRemoteMethod } from './remote-methods/dark-mode-controller-enable.remote-method';
-import { DarkModeControllerGetRemoteMethod } from './remote-methods/dark-mode-controller-get.remote-method';
-import { DarkModeControllerToggleRemoteMethod } from './remote-methods/dark-mode-controller-toggle.remote-method';
-import { LanguageControllerGetRemoteMethod } from './remote-methods/language-controller-get.remote-method';
-import { LanguageControllerSetRemoteMethod } from './remote-methods/language-controller-set.remote-method';
-import { SettingsControllerGetRemoteMethod } from './remote-methods/settings-controller-get.remote-method';
-import { SettingsControllerSetRemoteMethod } from './remote-methods/settings-controller-set.remote-method';
-import { SettingsControllerSetRequestBody } from './request-bodies/settings-controller-set.request-body';
-import { SettingsControllerGetResponse } from './responses/settings-controller-get.response';
+import { DarkModeControllerDisableRemoteMethod } from './openapi/remote-methods/dark-mode-controller-disable.remote-method';
+import { DarkModeControllerEnableRemoteMethod } from './openapi/remote-methods/dark-mode-controller-enable.remote-method';
+import { DarkModeControllerGetRemoteMethod } from './openapi/remote-methods/dark-mode-controller-get.remote-method';
+import { DarkModeControllerToggleRemoteMethod } from './openapi/remote-methods/dark-mode-controller-toggle.remote-method';
+import { LanguageControllerGetRemoteMethod } from './openapi/remote-methods/language-controller-get.remote-method';
+import { LanguageControllerSetRemoteMethod } from './openapi/remote-methods/language-controller-set.remote-method';
+import { SettingsControllerGetRemoteMethod } from './openapi/remote-methods/settings-controller-get.remote-method';
+import { SettingsControllerSetRemoteMethod } from './openapi/remote-methods/settings-controller-set.remote-method';
+import { SettingsControllerSetRequestBody } from './openapi/request-bodies/settings-controller-set.request-body';
+import { SettingsControllerGetResponse } from './openapi/responses/settings-controller-get.response';
 import { UserSettingsDataSource } from './user-settings.data-source';
 
 @Injectable({ providedIn: 'root' })

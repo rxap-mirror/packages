@@ -27,13 +27,30 @@ import { SettingsControllerSetRequestBody } from '../request-bodies/settings-con
             },
             "language": {
               "type": "string"
+            },
+            "theme": {
+              "type": "object",
+              "properties": {
+                "preset": {
+                  "type": "string"
+                },
+                "density": {
+                  "type": "number",
+                  "enum": [
+                    0,
+                    -1,
+                    -2,
+                    -3
+                  ]
+                },
+                "typography": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
             }
           },
-          "additionalProperties": true,
-          "required": [
-            "darkMode",
-            "language"
-          ]
+          "additionalProperties": true
         }
       }
     }

@@ -2,8 +2,8 @@ import {
   inject,
   Injectable,
 } from '@angular/core';
-import { LanguageControllerGetRemoteMethod } from './remote-methods/language-controller-get.remote-method';
-import { LanguageControllerSetRemoteMethod } from './remote-methods/language-controller-set.remote-method';
+import { LanguageControllerGetRemoteMethod } from './openapi/remote-methods/language-controller-get.remote-method';
+import { LanguageControllerSetRemoteMethod } from './openapi/remote-methods/language-controller-set.remote-method';
 import { UserSettingsLanguageDataSource } from './user-settings-language.data-source';
 
 @Injectable({ providedIn: 'root' })

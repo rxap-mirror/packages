@@ -32,12 +32,10 @@ export class ProfileControllerGetRemoteMethodTemplateDirective
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(ProfileControllerGetRemoteMethod) remoteMethod: ProfileControllerGetRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<ProfileControllerGetResponse<TResponse>>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
+    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
+    @Inject(ProfileControllerGetRemoteMethod) remoteMethod: ProfileControllerGetRemoteMethod, @Inject(
+      TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<ProfileControllerGetResponse<TResponse>>>,
+    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef, @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
     super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
     this.remoteMethodOrIdOrToken = remoteMethod;
@@ -53,8 +51,7 @@ export class ProfileControllerGetRemoteMethodTemplateDirective
 export class ProfileControllerGetRemoteMethodDirective
   extends RemoteMethodDirective<ProfileControllerGetResponse<TResponse>, OpenApiRemoteMethodParameter<void, void>> {
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
+    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
     @Inject(ProfileControllerGetRemoteMethod) remoteMethod: ProfileControllerGetRemoteMethod,
   ) {
     super(remoteMethodLoader, injector);

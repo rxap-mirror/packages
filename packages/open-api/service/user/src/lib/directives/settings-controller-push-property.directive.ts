@@ -32,12 +32,10 @@ export class SettingsControllerPushPropertyRemoteMethodTemplateDirective
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
+    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerPushPropertyRemoteMethod) remoteMethod: SettingsControllerPushPropertyRemoteMethod,
     @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
+    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef, @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
     super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
     this.remoteMethodOrIdOrToken = remoteMethod;
@@ -52,8 +50,7 @@ export class SettingsControllerPushPropertyRemoteMethodTemplateDirective
 export class SettingsControllerPushPropertyRemoteMethodDirective
   extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<SettingsControllerPushPropertyParameter, void>> {
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
+    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerPushPropertyRemoteMethod) remoteMethod: SettingsControllerPushPropertyRemoteMethod,
   ) {
     super(remoteMethodLoader, injector);

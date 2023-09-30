@@ -32,12 +32,10 @@ export class DarkModeControllerToggleRemoteMethodTemplateDirective
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
+    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
     @Inject(DarkModeControllerToggleRemoteMethod) remoteMethod: DarkModeControllerToggleRemoteMethod,
     @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<DarkModeControllerToggleResponse>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
+    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef, @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
     super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
     this.remoteMethodOrIdOrToken = remoteMethod;
@@ -53,8 +51,7 @@ export class DarkModeControllerToggleRemoteMethodTemplateDirective
 export class DarkModeControllerToggleRemoteMethodDirective
   extends RemoteMethodDirective<DarkModeControllerToggleResponse, OpenApiRemoteMethodParameter<void, void>> {
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
+    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
     @Inject(DarkModeControllerToggleRemoteMethod) remoteMethod: DarkModeControllerToggleRemoteMethod,
   ) {
     super(remoteMethodLoader, injector);

@@ -33,12 +33,11 @@ export class SettingsControllerUnshiftPropertyRemoteMethodTemplateDirective
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
+    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerUnshiftPropertyRemoteMethod) remoteMethod: SettingsControllerUnshiftPropertyRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerUnshiftPropertyResponse>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
+    @Inject(
+      TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerUnshiftPropertyResponse>>,
+    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef, @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
     super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
     this.remoteMethodOrIdOrToken = remoteMethod;
@@ -53,8 +52,7 @@ export class SettingsControllerUnshiftPropertyRemoteMethodTemplateDirective
 export class SettingsControllerUnshiftPropertyRemoteMethodDirective
   extends RemoteMethodDirective<SettingsControllerUnshiftPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerUnshiftPropertyParameter, void>> {
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
+    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
     @Inject(SettingsControllerUnshiftPropertyRemoteMethod) remoteMethod: SettingsControllerUnshiftPropertyRemoteMethod,
   ) {
     super(remoteMethodLoader, injector);

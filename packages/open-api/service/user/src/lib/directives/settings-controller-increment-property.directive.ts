@@ -32,12 +32,10 @@ export class SettingsControllerIncrementPropertyRemoteMethodTemplateDirective
   declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
 
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(SettingsControllerIncrementPropertyRemoteMethod) remoteMethod: SettingsControllerIncrementPropertyRemoteMethod,
+    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector, @Inject(
+      SettingsControllerIncrementPropertyRemoteMethod) remoteMethod: SettingsControllerIncrementPropertyRemoteMethod,
     @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
+    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef, @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
   ) {
     super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
     this.remoteMethodOrIdOrToken = remoteMethod;
@@ -52,10 +50,8 @@ export class SettingsControllerIncrementPropertyRemoteMethodTemplateDirective
 export class SettingsControllerIncrementPropertyRemoteMethodDirective
   extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<SettingsControllerIncrementPropertyParameter, void>> {
   constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(SettingsControllerIncrementPropertyRemoteMethod) remoteMethod: SettingsControllerIncrementPropertyRemoteMethod,
-  ) {
+    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector, @Inject(
+      SettingsControllerIncrementPropertyRemoteMethod) remoteMethod: SettingsControllerIncrementPropertyRemoteMethod) {
     super(remoteMethodLoader, injector);
     this.remoteMethodOrIdOrToken = remoteMethod;
   }

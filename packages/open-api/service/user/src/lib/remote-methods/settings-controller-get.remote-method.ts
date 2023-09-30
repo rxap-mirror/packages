@@ -26,12 +26,37 @@ import { SettingsControllerGetResponse } from '../responses/settings-controller-
               },
               "language": {
                 "type": "string"
+              },
+              "theme": {
+                "type": "object",
+                "properties": {
+                  "preset": {
+                    "type": "string"
+                  },
+                  "density": {
+                    "type": "number",
+                    "enum": [
+                      0,
+                      -1,
+                      -2,
+                      -3
+                    ]
+                  },
+                  "typography": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": true,
+                "required": [
+                  "preset"
+                ]
               }
             },
             "additionalProperties": true,
             "required": [
               "darkMode",
-              "language"
+              "language",
+              "theme"
             ]
           }
         }

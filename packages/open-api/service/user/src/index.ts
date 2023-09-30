@@ -10,10 +10,15 @@ export * from './lib/responses/settings-controller-get.response';
 export * from './lib/responses/settings-controller-pop-property.response';
 export * from './lib/responses/settings-controller-shift-property.response';
 export * from './lib/responses/settings-controller-unshift-property.response';
+export * from './lib/responses/theme-controller-get.response';
 // endregion
 
 // region request-bodies
 export * from './lib/request-bodies/settings-controller-set.request-body';
+export * from './lib/request-bodies/theme-controller-set-density.request-body';
+export * from './lib/request-bodies/theme-controller-set-preset.request-body';
+export * from './lib/request-bodies/theme-controller-set-typography.request-body';
+export * from './lib/request-bodies/theme-controller-set.request-body';
 // endregion
 
 // region remote-methods
@@ -38,6 +43,11 @@ export * from './lib/remote-methods/settings-controller-set.remote-method';
 export * from './lib/remote-methods/settings-controller-shift-property.remote-method';
 export * from './lib/remote-methods/settings-controller-toggle-property.remote-method';
 export * from './lib/remote-methods/settings-controller-unshift-property.remote-method';
+export * from './lib/remote-methods/theme-controller-get.remote-method';
+export * from './lib/remote-methods/theme-controller-set-density.remote-method';
+export * from './lib/remote-methods/theme-controller-set-preset.remote-method';
+export * from './lib/remote-methods/theme-controller-set-typography.remote-method';
+export * from './lib/remote-methods/theme-controller-set.remote-method';
 // endregion
 
 // region parameters
@@ -78,6 +88,11 @@ export * from './lib/directives/settings-controller-set.directive';
 export * from './lib/directives/settings-controller-shift-property.directive';
 export * from './lib/directives/settings-controller-toggle-property.directive';
 export * from './lib/directives/settings-controller-unshift-property.directive';
+export * from './lib/directives/theme-controller-get.directive';
+export * from './lib/directives/theme-controller-set-density.directive';
+export * from './lib/directives/theme-controller-set-preset.directive';
+export * from './lib/directives/theme-controller-set-typography.directive';
+export * from './lib/directives/theme-controller-set.directive';
 // endregion
 
 // region data-sources
@@ -86,6 +101,12 @@ export * from './lib/data-sources/language-controller-get.data-source';
 export * from './lib/data-sources/profile-controller-get.data-source';
 export * from './lib/data-sources/settings-controller-get-property.data-source';
 export * from './lib/data-sources/settings-controller-get.data-source';
+export * from './lib/data-sources/theme-controller-get.data-source';
+// endregion
+
+// region components
+export * from './lib/components/set-density-dto';
+export * from './lib/components/string-value-dto';
 // endregion
 
 // region commands
@@ -110,4 +131,9 @@ export * from './lib/commands/settings-controller-set.command';
 export * from './lib/commands/settings-controller-shift-property.command';
 export * from './lib/commands/settings-controller-toggle-property.command';
 export * from './lib/commands/settings-controller-unshift-property.command';
+export * from './lib/commands/theme-controller-get.command';
+export * from './lib/commands/theme-controller-set-density.command';
+export * from './lib/commands/theme-controller-set-preset.command';
+export * from './lib/commands/theme-controller-set-typography.command';
+export * from './lib/commands/theme-controller-set.command';
 // endregion
