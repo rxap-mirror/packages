@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.1.0-dev.2...@rxap/ngx-user@16.1.0-dev.3) (2023-09-30)
+
+### Bug Fixes
+
+- mark UserSettingsDataSource as restartable ([e754205](https://gitlab.com/rxap/packages/commit/e7542054a1ad6620887b10f108b153f6ceb2539a))
+- use linking between open api generator and library ([ecbf2fc](https://gitlab.com/rxap/packages/commit/ecbf2fc5a86a607f353cd80c42c12be70bd2ce79))
+
+### Features
+
+- add user settings theme services ([c2200ec](https://gitlab.com/rxap/packages/commit/c2200ecbbcbc48def1a5c9b5550eb3fb17396b30))
+- restore theme settings from user settings ([35d2fef](https://gitlab.com/rxap/packages/commit/35d2fefa3e5cd1c63962a6d9a1ba854679ee60c2))
+
 # [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.1.0-dev.1...@rxap/ngx-user@16.1.0-dev.2) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/ngx-user

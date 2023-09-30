@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.2",
+  "version": "16.1.0-dev.3",
   "name": "@rxap/ngx-user",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,7 +7,8 @@
   },
   "peerDependencies": {
     "@angular/core": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.21",
+    "@rxap/data-source": "^16.0.0-dev.22",
+    "@rxap/ngx-pub-sub": "^16.0.1-dev.0",
     "@rxap/open-api": "^16.0.0-dev.23",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0"
@@ -32,7 +33,11 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.21"
+        "version": "16.0.0-dev.22"
+      },
+      {
+        "package": "@rxap/ngx-pub-sub",
+        "version": "16.0.1-dev.0"
       },
       {
         "package": "@rxap/open-api",

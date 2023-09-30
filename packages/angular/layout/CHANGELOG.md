@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.35...@rxap/layout@16.0.0-dev.36) (2023-09-30)
+
+### Bug Fixes
+
+- darkMode property was changed to a single ([f497950](https://gitlab.com/rxap/packages/commit/f4979504c4bdbdc1d59e67756691380f835f0ee0))
+- start user settings theme sync ([14545bf](https://gitlab.com/rxap/packages/commit/14545bffba3de0afd2fd3a1a22c06507b15be3d6))
+
+### Features
+
+- restore theme settings from user settings ([35d2fef](https://gitlab.com/rxap/packages/commit/35d2fefa3e5cd1c63962a6d9a1ba854679ee60c2))
+
 # [16.0.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.34...@rxap/layout@16.0.0-dev.35) (2023-09-29)
 
 ### Bug Fixes

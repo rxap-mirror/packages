@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.21...@rxap/data-source@16.0.0-dev.22) (2023-09-30)
+
+### Features
+
+- add restore from local storage feature ([2543852](https://gitlab.com/rxap/packages/commit/254385207bc8fd98a5fb0d6d2ddf6f10d05cbb8e))
+
 # [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.20...@rxap/data-source@16.0.0-dev.21) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/data-source
