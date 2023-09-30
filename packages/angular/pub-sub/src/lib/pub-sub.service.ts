@@ -38,9 +38,9 @@ export class PubSubService implements OnDestroy {
   private readonly cache: CachedPubSubMessage[] = [];
   private maxCacheSize = inject(RXAP_PUB_SUB_CACHE_SIZE);
   /**
-   * Key message separator.
+   * Topic message separator.
    */
-  private readonly separator = ':';
+  private readonly separator = '.';
   private readonly garbageCollectorInterval: number = inject(RXAP_PUB_SUB_GARBAGE_COLLECTOR_INTERVAL);
   private readonly disableCache: boolean = inject(RXAP_PUB_SUB_DISABLE_CACHE);
   private readonly disableGarbageCollector: boolean = inject(RXAP_PUB_SUB_DISABLE_GARBAGE_COLLECTOR);
@@ -72,11 +72,9 @@ export class PubSubService implements OnDestroy {
 
   public runGarbageCollector() {
     const now = Date.now();
-    console.log('Run garbage collector', now);
     this.cache.forEach((message, index) => {
       if (message.retention) {
         const diff = now - message.metadata.timestamp;
-        console.log('Diff', diff);
         if (diff > message.retention) {
           this.cache.splice(index, 1);
         }
@@ -93,14 +91,14 @@ export class PubSubService implements OnDestroy {
   }
 
   /**
-   * Validates key matching.
+   * Validates topic matching.
    *
-   * @param key Key to identify the message/event.
+   * @param topic Topic to identify the message/event.
    * @param wildcard Wildcard received from on method.
    *
-   * @return true if key matches, false otherwise.
+   * @return true if topic matches, false otherwise.
    */
-  public keyMatch(key: string, wildcard: string): boolean {
+  public topicMatch(topic: string, wildcard: string): boolean {
     const w = '*';
     const ww = '**';
 
@@ -109,7 +107,7 @@ export class PubSubService implements OnDestroy {
     };
 
     const sep = this.separator;
-    const kArr = key.split(sep);
+    const kArr = topic.split(sep);
     const wArr = wildcard.split(sep);
 
     const kLen = kArr.length;
@@ -133,44 +131,44 @@ export class PubSubService implements OnDestroy {
   }
 
   /**
-   * @param  key Key to identify the message.
+   * @param  topic Topic to identify the message.
    * @param  [data] Optional: Additional data sent with the message.
    * @param  [retention] Optional: Retention time in milliseconds.
-   * @throws {Error} key parameter must be a string and must not be empty.
+   * @throws {Error} topic parameter must be a string and must not be empty.
    */
-  public publish<T = unknown>(key: string, data?: T, retention?: number): void {
+  public publish<T = unknown>(topic: string, data?: T, retention?: number): void {
 
     if (!this.garbageCollectorInitialized) {
       throw new Error(
         'Garbage collector is not initialized. Ensure the ProvidePubSub function is called in the app config object');
     }
 
-    if (!key.trim().length) {
-      throw new Error('key parameter must be a string and must not be empty');
+    if (!topic.trim().length) {
+      throw new Error('topic parameter must be a string and must not be empty');
     }
 
-    const metadata: MessageMetaData<T> = new MessageMetaData<T>(key, data);
+    const metadata: MessageMetaData<T> = new MessageMetaData<T>(topic, data);
 
-    this.messageBus.next({ key, metadata });
+    this.messageBus.next({ topic, metadata });
     if (!this.disableCache && (
       retention === undefined || retention > 0
     )) {
       if (this.cache.length >= this.maxCacheSize) {
         this.cache.shift();
       }
-      this.cache.push({ key, metadata, retention });
+      this.cache.push({ topic, metadata, retention });
     }
   }
 
   /**
-   * @param key Key to identify the message.
+   * @param topic Topic to identify the message.
    * @param replayCount Number of messages to replay.
    * @return Observable you can subscribe to listen messages.
    */
-  public subscribe<T = unknown>(key: string, replayCount?: number): Observable<MessageMetaData<T>> {
+  public subscribe<T = unknown>(topic: string, replayCount?: number): Observable<MessageMetaData<T>> {
 
-    if (!key.trim().length) {
-      throw new Error('key parameter must be a string and must not be empty');
+    if (!topic.trim().length) {
+      throw new Error('topic parameter must be a string and must not be empty');
     }
 
     if (!this.garbageCollectorInitialized) {
@@ -178,10 +176,10 @@ export class PubSubService implements OnDestroy {
         'Garbage collector is not initialized. Ensure the ProvidePubSub function is called in the app config object');
     }
 
-    const fromCache = replayCount && replayCount > 0 ? this.getFromCache<T>(key, replayCount ?? 0) : [];
+    const fromCache = replayCount && replayCount > 0 ? this.getFromCache<T>(topic, replayCount ?? 0) : [];
 
     const fromBus = this.messageBus.asObservable().pipe(
-      filter((event: PubSubMessage) => this.keyMatch(event.key, key)),
+      filter((event: PubSubMessage) => this.topicMatch(event.topic, topic)),
       map((event: PubSubMessage) => event.metadata as MessageMetaData<T>),
     );
 
@@ -189,10 +187,10 @@ export class PubSubService implements OnDestroy {
   }
 
   /**
-   * @param key Key to identify the message.
+   * @param topic Topic to identify the message.
    * @param limit Maximum number of messages to return.
    */
-  public getFromCache<T = unknown>(key: string, limit = 0): Array<MessageMetaData<T>> {
+  public getFromCache<T = unknown>(topic: string, limit = 0): Array<MessageMetaData<T>> {
 
     if (!this.garbageCollectorInitialized) {
       throw new Error(
@@ -202,7 +200,7 @@ export class PubSubService implements OnDestroy {
     const messages: Array<MessageMetaData<T>> = [];
     for (let i = this.cache.length - 1; i >= 0; i--) {
       const message = this.cache[i];
-      if (this.keyMatch(message.key, key)) {
+      if (this.topicMatch(message.topic, topic)) {
         messages.push(message.metadata as MessageMetaData<T>);
         if (limit && messages.length >= limit) {
           break;

@@ -6,18 +6,6 @@ export class MessageMetaData<T = unknown> {
   private readonly _id: string;
 
   /**
-   * Original key associated to the message.
-   * @private
-   */
-  private readonly _key: string;
-
-  /**
-   * Data associated to message. It's optional.
-   * @private
-   */
-  private readonly _data?: T;
-
-  /**
    * Time in milliseconds in which the message was generated.
    * @private
    */
@@ -26,13 +14,22 @@ export class MessageMetaData<T = unknown> {
   /**
    * Constructor for this class.
    *
-   * @param key Original key associated to the message sent through the events bus.
-   * @param [data] Optional: Additional data sent with the message.
+   * @param _topic Original topic associated to the message sent through the events bus.
+   * @param [_data] Optional: Additional data sent with the message.
    */
-  constructor(key: string, data?: T) {
+  constructor(
+    /**
+     * Original topic associated to the message.
+     * @private
+     */
+    private readonly _topic: string,
+    /**
+     * Data associated to message. It's optional.
+     * @private
+     */
+    private readonly _data?: T,
+  ) {
     this._id = this.uuid();
-    this._key = key;
-    this._data = data;
     this._timestamp = new Date().getTime();
   }
 
@@ -44,10 +41,10 @@ export class MessageMetaData<T = unknown> {
   }
 
   /**
-   * Original key associated to the message.
+   * Original topic associated to the message.
    */
-  public get key(): string {
-    return this._key;
+  public get topic(): string {
+    return this._topic;
   }
 
   /**

@@ -62,14 +62,14 @@ describe('PubSubService', () => {
       service = TestBed.inject(PubSubService);
     });
 
-    it('should throw if the key is empty', () => {
-      expect(() => service.publish('')).toThrowError('key parameter must be a string and must not be empty');
-      expect(() => service.publish(' ')).toThrowError('key parameter must be a string and must not be empty');
-      expect(() => service.subscribe('')).toThrowError('key parameter must be a string and must not be empty');
-      expect(() => service.subscribe(' ')).toThrowError('key parameter must be a string and must not be empty');
+    it('should throw if the topic is empty', () => {
+      expect(() => service.publish('')).toThrowError('topic parameter must be a string and must not be empty');
+      expect(() => service.publish(' ')).toThrowError('topic parameter must be a string and must not be empty');
+      expect(() => service.subscribe('')).toThrowError('topic parameter must be a string and must not be empty');
+      expect(() => service.subscribe(' ')).toThrowError('topic parameter must be a string and must not be empty');
     });
 
-    it('should emit if a message with matching key is published', () => {
+    it('should emit if a message with matching topic is published', () => {
       const spy = jest.fn();
       service.subscribe('test').subscribe(spy);
       service.publish('test');
@@ -189,6 +189,40 @@ describe('PubSubService', () => {
 
     it('should not start the garbage collector', () => {
       expect(Reflect.get(service, 'garbageCollectorSubscription')).toBeNull();
+    });
+
+  });
+
+  describe('topicMatch', () => {
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        providers: [
+          ProvidePubSub(withDisableCache()),
+        ],
+      });
+
+      service = TestBed.inject(PubSubService);
+    });
+
+    it('should match simple topics', () => {
+      expect(service.topicMatch('test', 'test')).toBeTruthy();
+      expect(service.topicMatch('test', 'foo')).toBeFalsy();
+    });
+
+    it('should match topics with wildcards', () => {
+      expect(service.topicMatch('test.foo', 'test.*')).toBeTruthy();
+      expect(service.topicMatch('test.foo', 'bar.*')).toBeFalsy();
+      expect(service.topicMatch('test.foo', 'test.**')).toBeTruthy();
+      expect(service.topicMatch('test.foo', 'bar.**')).toBeFalsy();
+      expect(service.topicMatch('test.foo', 'test.**.foo')).toBeTruthy();
+      expect(service.topicMatch('test.foo.bar', 'test.foo.*')).toBeTruthy();
+      expect(service.topicMatch('test.foo.bar', 'test.*.bar')).toBeTruthy();
+      expect(service.topicMatch('test.foo.sub.sub.bar', 'test.**.bar')).toBeTruthy();
+      expect(service.topicMatch('test.foo', 'test.**.bar')).toBeTruthy();
+      expect(service.topicMatch('test.foo', '**.bar')).toBeTruthy();
+      expect(service.topicMatch('test.foo', '*.foo')).toBeTruthy();
+      expect(service.topicMatch('test.foo', 'test.*.bar')).toBeFalsy();
     });
 
   });

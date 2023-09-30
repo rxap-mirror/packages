@@ -4,7 +4,7 @@ export interface PubSubMessage<T = unknown> {
   /**
    * Key to identify message.
    */
-  key: string;
+  topic: string;
 
   /**
    * Full message metadata.
