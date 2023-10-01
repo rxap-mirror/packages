@@ -85,6 +85,11 @@ export abstract class Server<O extends object, T extends INestApplicationContext
       throw new Error('Could not inject a ConfigService instance');
     }
 
+    const customEnvironmentName = this.config.get<string>('ENVIRONMENT_NAME');
+    if (customEnvironmentName) {
+      this.environment.name = customEnvironmentName;
+    }
+
     this.logger.log('Prepare options', 'Bootstrap');
 
     const options = this.prepareOptions(this.app, this.logger, this.config);
