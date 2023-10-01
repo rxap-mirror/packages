@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.17...@rxap/schematic-angular@16.1.0-dev.18) (2023-10-01)
+
+### Bug Fixes
+
+- move additional table header options into the options object ([3284d7c](https://gitlab.com/rxap/packages/commit/3284d7cd7aba7ae41255bd2bcd8b9dd6c37f92f6))
+
 # [16.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.16...@rxap/schematic-angular@16.1.0-dev.17) (2023-10-01)
 
 ### Bug Fixes
