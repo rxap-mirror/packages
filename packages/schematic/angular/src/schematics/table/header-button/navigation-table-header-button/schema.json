@@ -80,7 +80,7 @@
     }
   },
   "required": [
-    "route",
+    "options",
     "project",
     "feature"
   ]
