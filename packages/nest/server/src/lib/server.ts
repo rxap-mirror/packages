@@ -12,6 +12,7 @@ import {
   readFileSync,
 } from 'fs';
 import { join } from 'path';
+import * as process from 'process';
 
 /**
  * @template O The options object passed to the server create function
@@ -85,9 +86,11 @@ export abstract class Server<O extends object, T extends INestApplicationContext
       throw new Error('Could not inject a ConfigService instance');
     }
 
-    const customEnvironmentName = this.config.get<string>('ENVIRONMENT_NAME');
-    if (customEnvironmentName) {
-      this.environment.name = customEnvironmentName;
+    if (this.config.get('ENVIRONMENT_NAME') !== this.environment.name) {
+      this.logger.warn(
+        'The config value ENVIRONMENT_NAME is not equal to the environment name. Only the process.env.ENVIRONMENT_NAME is used to set a custom environment name. If the config value ENVIRONMENT_NAME is set, this value will not be used.',
+        'Bootstrap',
+      );
     }
 
     this.logger.log('Prepare options', 'Bootstrap');
@@ -131,6 +134,11 @@ export abstract class Server<O extends object, T extends INestApplicationContext
 
   protected prepareEnvironment(environment: Environment) {
     this.loadBuildJson(environment);
+
+    if (process.env['ENVIRONMENT_NAME']) {
+      console.log(`Set environment name from process.env.ENVIRONMENT_NAME to '${ process.env['ENVIRONMENT_NAME'] }'`);
+      environment.name = process.env['ENVIRONMENT_NAME'];
+    }
 
     RXAP_GLOBAL_STATE.environment = environment;
   }
