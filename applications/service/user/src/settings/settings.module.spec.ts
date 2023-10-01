@@ -98,7 +98,7 @@ describe('SettingsModule', () => {
 
     describe('GET /settings', () => {
 
-      it('should return the default settings', async () => {
+      it.only('should return the default settings', async () => {
 
         const response = await request(app.getHttpServer())
           .get('/settings')
