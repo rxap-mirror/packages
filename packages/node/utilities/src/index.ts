@@ -1,4 +1,5 @@
 // region 
+export * from './lib/copy-folder-sync';
 export * from './lib/each-dir-sync';
 export * from './lib/file-with-scope';
 export * from './lib/get-current-branch';
