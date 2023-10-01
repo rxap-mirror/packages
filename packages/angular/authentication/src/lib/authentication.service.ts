@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import {
+  inject,
+  Injectable,
+} from '@angular/core';
 import {
   BehaviorSubject,
   Observable,
   ReplaySubject,
 } from 'rxjs';
+import { RXAP_INITIAL_AUTHENTICATION_STATE } from './tokens';
 
 export interface IAuthenticationService {
   isAuthenticated$: Observable<boolean | null>;
@@ -30,7 +34,7 @@ export class RxapAuthenticationService implements IAuthenticationService {
 
   public readonly events$ = new ReplaySubject<AuthenticationEvent>();
 
-  private _authenticated = true;
+  private _authenticated = inject(RXAP_INITIAL_AUTHENTICATION_STATE);
 
   constructor() {
     this.isAuthenticated().then(isAuthenticated => this.isAuthenticated$.next(isAuthenticated));

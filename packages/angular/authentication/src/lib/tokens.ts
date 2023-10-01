@@ -15,3 +15,8 @@ export const RXAP_AUTHENTICATION_ACCESS_TOKEN = new InjectionToken<BehaviorSubje
     factory: () => new BehaviorSubject<AuthenticationAccessToken | null>(null),
   },
 );
+
+export const RXAP_INITIAL_AUTHENTICATION_STATE = new InjectionToken<boolean>('rxap/authentication/initial-state', {
+  providedIn: 'root',
+  factory: () => false,
+});
