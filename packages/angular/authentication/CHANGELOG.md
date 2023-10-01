@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/authentication@16.0.0-dev.16...@rxap/authentication@16.0.0-dev.17) (2023-10-01)
+
+### Bug Fixes
+
+- set initial authentication state to false ([7bb1fd9](https://gitlab.com/rxap/packages/commit/7bb1fd9b3e0d5260f9bae41a43cc863f27209946))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/authentication@16.0.0-dev.15...@rxap/authentication@16.0.0-dev.16) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/authentication
