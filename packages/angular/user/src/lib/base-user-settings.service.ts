@@ -17,7 +17,7 @@ export abstract class BaseUserSettingsService {
 
   protected waitForAuthenticationTimeout = 10000;
 
-  waitUntilAuthenticated(): Promise<boolean> {
+  protected waitUntilAuthenticated(): Promise<boolean> {
     return firstValueFrom(this.auth.isAuthenticated$.pipe(
       filter((isAuthenticated): isAuthenticated is boolean => isAuthenticated === true),
       timeout({ each: this.waitForAuthenticationTimeout, with: () => of(false) }),
