@@ -18,10 +18,10 @@ import {
 } from '@rxap/utilities';
 import {
   existsSync,
+  mkdirSync,
   readFileSync,
   writeFileSync,
 } from 'fs';
-import { mkdir } from 'fs-extra';
 import { join } from 'path';
 import {
   UserSettings,
@@ -90,7 +90,7 @@ export class SettingsService implements OnApplicationBootstrap {
   }
 
   private async createStorage() {
-    mkdir(this.config.getOrThrow('STORE_FILE_PATH'), { recursive: true });
+    mkdirSync(this.config.getOrThrow('STORE_FILE_PATH'), { recursive: true });
     const version = 1;
     if (!existsSync(join(this.config.getOrThrow('STORE_FILE_PATH'), 'user-settings.__.__kvs_version__'))) {
       writeFileSync(
