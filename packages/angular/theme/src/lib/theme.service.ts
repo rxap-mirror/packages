@@ -48,25 +48,29 @@ export class ThemeService {
   public readonly density: WritableSignal<ThemeDensity>;
   public readonly typography: WritableSignal<string>;
 
-  constructor(mediaMatcher: MediaMatcher) {
-    const darkModeMediaQuery = mediaMatcher.matchMedia('(prefers-color-scheme: dark)');
+  private readonly darkModeMediaQuery: MediaQueryList;
 
-    this.darkMode = signal(darkModeMediaQuery.matches);
+  constructor(private readonly mediaMatcher: MediaMatcher) {
+    this.darkModeMediaQuery = this.mediaMatcher.matchMedia('(prefers-color-scheme: dark)');
+    this.darkMode = signal(this.darkModeMediaQuery.matches);
     this.themeName = signal(this.getTheme());
     this.density = signal(this.getDensity());
     this.typography = signal(this.getTypography());
+    this.darkModeMediaQuery.addEventListener('change', (event) => {
+      this.setDarkTheme(event.matches, true);
+    });
+    this.restore();
+  }
 
+  public restore() {
     // region restore dark mode
     let darkMode = this.restoreDarkMode();
     // if the dark/light mode is not restored from the local storage
     if (darkMode === null) {
       // set the dark mode based on the media query
-      darkMode = darkModeMediaQuery.matches;
+      darkMode = this.darkModeMediaQuery.matches;
       this.setDarkTheme(darkMode, true);
     }
-    darkModeMediaQuery.addEventListener('change', (event) => {
-      this.setDarkTheme(event.matches, true);
-    });
     // endregion
 
     this.restoreThemeName();
