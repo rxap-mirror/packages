@@ -9,7 +9,10 @@ import {
   GuessOutputPath,
 } from '@rxap/plugin-utilities';
 import { clone } from '@rxap/utilities';
-import { GetRootDockerOptions } from '@rxap/workspace-utilities';
+import {
+  GetRootDockerOptions,
+  RootDockerOptions,
+} from '@rxap/workspace-utilities';
 import * as path from 'path';
 import { stringify } from 'yaml';
 import { GitlabCiGeneratorSchema } from './schema';
@@ -84,23 +87,13 @@ function skipProject(tree: Tree, options: GitlabCiGeneratorSchema, project: Proj
 
 }
 
-export async function gitlabCiGenerator(
+function generateDockerGitlabCiFileContent(
   tree: Tree,
   options: GitlabCiGeneratorSchema,
-) {
-
-  if (options.overwrite || !tree.exists('tools/scripts/build-and-push-docker-image.sh')) {
-    generateFiles(tree, path.join(__dirname, 'files'), 'tools/scripts', options);
-  }
-
-  const rootDocker = GetRootDockerOptions(tree);
-
+  rootDocker: RootDockerOptions,
+): string {
   const dockerYaml: any = {
     '.docker': dotDocker,
-  };
-
-  const startupYaml: any = {
-    '.startup': dotStartup,
   };
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
@@ -117,16 +110,15 @@ export async function gitlabCiGenerator(
     const imageSuffix = dockerTargetOptions.imageSuffix;
     const dockerfile = dockerTargetOptions.dockerfile;
     const context = dockerTargetOptions.context ??
-      (project.targets['build'] ? GuessOutputPath(project.root, project.targets['build'], 'production') : null) ??
-      project.sourceRoot ??
-      project.root;
+                    (
+                      project.targets['build'] ? GuessOutputPath(project.root, project.targets['build'], 'production') :
+                      null
+                    ) ??
+                    project.sourceRoot ??
+                    project.root;
 
     dockerYaml[`docker:${ projectName }`] = clone(docker);
-    startupYaml[`startup:${ projectName }`] = clone(startup);
     dockerYaml[`docker:${ projectName }`].variables = {
-      IMAGE_NAME: imageName,
-    };
-    startupYaml[`startup:${ projectName }`].variables = {
       IMAGE_NAME: imageName,
     };
 
@@ -136,7 +128,6 @@ export async function gitlabCiGenerator(
 
     if (imageSuffix) {
       dockerYaml[`docker:${ projectName }`].variables.IMAGE_SUFFIX = imageSuffix;
-      startupYaml[`startup:${ projectName }`].variables.IMAGE_SUFFIX = imageSuffix;
     }
 
     if (dockerfile) {
@@ -145,13 +136,63 @@ export async function gitlabCiGenerator(
 
   }
 
-  const dockerGitlabCiYaml = stringify(dockerYaml);
+  return stringify(dockerYaml);
+}
+
+function generateStartupGitlabCiFileContent(
+  tree: Tree,
+  options: GitlabCiGeneratorSchema,
+  rootDocker: RootDockerOptions,
+) {
+  const startupYaml: any = {
+    '.startup': dotStartup,
+  };
+
+  for (const [ projectName, project ] of getProjects(tree).entries()) {
+
+    if (skipProject(tree, options, project, projectName)) {
+      continue;
+    }
+
+    console.log(`add project: ${ projectName }`);
+
+    const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
+
+    const imageName = dockerTargetOptions.imageName ?? rootDocker.imageName;
+    const imageSuffix = dockerTargetOptions.imageSuffix;
+
+    startupYaml[`startup:${ projectName }`] = clone(startup);
+    startupYaml[`startup:${ projectName }`].variables = {
+      IMAGE_NAME: imageName,
+    };
+
+    if (imageSuffix) {
+      startupYaml[`startup:${ projectName }`].variables.IMAGE_SUFFIX = imageSuffix;
+    }
+
+  }
+
+  return stringify(startupYaml);
+}
+
+export async function gitlabCiGenerator(
+  tree: Tree,
+  options: GitlabCiGeneratorSchema,
+) {
+
+  if (options.overwrite || !tree.exists('tools/scripts/build-and-push-docker-image.sh')) {
+    generateFiles(tree, path.join(__dirname, 'files'), 'tools/scripts', options);
+  }
+
+  const rootDocker = GetRootDockerOptions(tree);
+
+  const dockerGitlabCiYaml = generateDockerGitlabCiFileContent(tree, options, rootDocker);
 
   console.log('.gitlab/ci/jobs/docker.yaml');
   console.log(dockerGitlabCiYaml);
   tree.write('.gitlab/ci/jobs/docker.yaml', dockerGitlabCiYaml);
 
-  const startupGitlabCiYaml = stringify(startupYaml);
+  const startupGitlabCiYaml = generateStartupGitlabCiFileContent(tree, options, rootDocker);
 
   console.log('.gitlab/ci/jobs/startup.yaml');
   console.log(startupGitlabCiYaml);
