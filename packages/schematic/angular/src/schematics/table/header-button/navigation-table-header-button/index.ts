@@ -80,14 +80,19 @@ export default function (options: NavigationTableHeaderButtonOptions) {
             scope: Scope.Private,
             type: 'ActivatedRoute',
           });
+          CoerceParameterDeclaration(constructorDeclaration, 'router', {
+            isReadonly: true,
+            scope: Scope.Private,
+            type: 'Router',
+          });
           CoerceImports(sourceFile, [
             {
               moduleSpecifier: '@angular/router',
-              namedImports: [ 'ActivatedRoute' ],
+              namedImports: [ 'ActivatedRoute', 'Router' ],
             },
           ]);
           return {
-            statements: [ `return this.router.navigate('${ route }', { route: this.route })` ],
+            statements: [ `return this.router.navigate(['${ route }'], { relativeTo: this.route })` ],
           };
         },
       }),
