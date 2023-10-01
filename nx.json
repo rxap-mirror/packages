@@ -187,6 +187,7 @@
         "localazy-download",
         "build-info",
         "expose-as-schematic",
+        "copy-open-api-sdk",
         "^copy-open-api-sdk"
       ],
       "inputs": [
