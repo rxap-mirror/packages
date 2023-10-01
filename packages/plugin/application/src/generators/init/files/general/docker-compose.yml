@@ -47,6 +47,7 @@ services:
       - SENTRY_ENABLED=false
       - LOG_LEVEL=verbose
       - ROOT_DOMAIN_PORT
+      - ENVIRONMENT_NAME=development
     depends_on:
       - traefik
       - catch-all-api
@@ -63,6 +64,7 @@ services:
       - SENTRY_ENABLED=false
       - LOG_LEVEL=verbose
       - ROOT_DOMAIN_PORT
+      - ENVIRONMENT_NAME=development
     depends_on:
       - traefik
       - catch-all-api
@@ -81,6 +83,7 @@ services:
       - SENTRY_ENABLED=false
       - LOG_LEVEL=verbose
       - ROOT_DOMAIN_PORT
+      - ENVIRONMENT_NAME=development
     volumes:
       - ./shared/service/changelog:/app/assets
     depends_on:
@@ -100,6 +103,7 @@ services:
       - SENTRY_ENABLED=false
       - LOG_LEVEL=verbose
       - ROOT_DOMAIN_PORT
+      - ENVIRONMENT_NAME=development
     volumes:
       - ./shared/service/user:/app/assets
     depends_on:
