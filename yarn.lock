@@ -9450,9 +9450,11 @@ __metadata:
     tslib: ^2.3.0
   peerDependencies:
     "@angular/core": ^16.1.4
-    "@rxap/data-source": ^16.0.0-dev.22
+    "@rxap/authentication": ^16.0.0-dev.16
+    "@rxap/data-source": ^16.0.0-dev.23
     "@rxap/ngx-pub-sub": ^16.0.1-dev.0
     "@rxap/open-api": ^16.0.0-dev.23
+    "@rxap/utilities": ^16.0.0-dev.19
     rxjs: ^7.8.0
     tslib: ^2.3.0
   languageName: unknown

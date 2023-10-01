@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.22...@rxap/data-source@16.0.0-dev.23) (2023-10-01)
+
+### Bug Fixes
+
+- improve error and loading handling ([ecfb863](https://gitlab.com/rxap/packages/commit/ecfb8639b68fede430f314b456aa74208bc2fe02))
+
 # [16.0.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.21...@rxap/data-source@16.0.0-dev.22) (2023-09-30)
 
 ### Features

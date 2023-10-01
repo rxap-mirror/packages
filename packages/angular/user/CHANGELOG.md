@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.1.0-dev.5...@rxap/ngx-user@16.1.0-dev.6) (2023-10-01)
+
+### Features
+
+- support offline mode for user data sources ([fb74790](https://gitlab.com/rxap/packages/commit/fb7479080c99b4dc607aea9f10047c99216f3727))
+- support offline mode for user settings ([47adaca](https://gitlab.com/rxap/packages/commit/47adaca3c83cf64c13aaebfe9322fb30aed8e07f))
+- support offline mode for user settings ([f417da8](https://gitlab.com/rxap/packages/commit/f417da8fe210bb18190fe2e8b95093eb90fbfd86))
+
 # [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.1.0-dev.4...@rxap/ngx-user@16.1.0-dev.5) (2023-10-01)
 
 ### Bug Fixes

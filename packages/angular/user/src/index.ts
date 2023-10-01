@@ -72,10 +72,13 @@ export * from './lib/openapi/components/string-value-dto';
 // endregion
 
 // region 
+export * from './lib/base-user-settings.service';
 export * from './lib/user-profile.data-source';
 export * from './lib/user-settings-dark-mode.data-source';
+export * from './lib/user-settings-dark-mode.service';
 export * from './lib/user-settings-language.data-source';
 export * from './lib/user-settings-language.service';
+export * from './lib/user-settings-offline.service';
 export * from './lib/user-settings-theme.data-source';
 export * from './lib/user-settings-theme.service';
 export * from './lib/user-settings.data-source';
