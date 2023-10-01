@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.14...@rxap/nest-server@10.1.0-dev.15) (2023-10-01)
+
+### Bug Fixes
+
+- set custom env name before application creation ([24b849b](https://gitlab.com/rxap/packages/commit/24b849bf3744742caaba2871a370f94f665c1057))
+
 # [10.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.13...@rxap/nest-server@10.1.0-dev.14) (2023-10-01)
 
 ### Bug Fixes
