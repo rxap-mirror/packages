@@ -19,6 +19,7 @@ import {
   TsMorphAngularProjectTransformRule,
 } from '@rxap/schematics-ts-morph';
 import {
+  AddPackageJsonDependencyRule,
   CoerceSuffix,
   ExecuteSchematic,
 } from '@rxap/schematics-utilities';
@@ -644,6 +645,10 @@ export default function (options: TableComponentOptions) {
       cellComponentRule(normalizedOptions),
       actionListRule(normalizedOptions),
       selectColumnRule(normalizedOptions),
+      AddPackageJsonDependencyRule('@rxap/material-table-system', 'latest', { soft: true }),
+      AddPackageJsonDependencyRule('@rxap/material-form-system', 'latest', { soft: true }),
+      AddPackageJsonDependencyRule('@rxap/form-system', 'latest', { soft: true }),
+      AddPackageJsonDependencyRule('@rxap/window-system', 'latest', { soft: true }),
       () => console.groupEnd(),
     ]);
   };
