@@ -7,6 +7,7 @@ import { GlobalPrefixOptions } from '@nestjs/common/interfaces';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DetermineVersion } from '@rxap/nest-utilities';
+import { hostname } from 'os';
 import { Server } from './server';
 
 export interface MonolithicBootstrapOptions {
@@ -58,9 +59,9 @@ export class Monolithic<O extends NestApplicationOptions, T extends INestApplica
 
     if (!publicUrl) {
       const publicProtocol = config.get('PUBLIC_PROTOCOL', this.environment.production ? 'https' : 'http');
-      const publicDomain = config.get(
+      const publicDomain = config.get<string>(
         'PUBLIC_DOMAIN',
-        this.environment.production ? config.getOrThrow('ROOT_DOMAIN') : 'localhost',
+        this.environment.production ? config.get<string>('ROOT_DOMAIN', hostname()) : 'localhost',
       );
       const publicPort = this.getPublicPort(config);
       publicUrl = `${ publicProtocol }://${ publicDomain }:${ publicPort }`;
