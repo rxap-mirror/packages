@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.1.0-dev.12...@rxap/node-utilities@1.1.0-dev.13) (2023-10-01)
+
+### Features
+
+- add function CopyFolderSync ([0f2bfbe](https://gitlab.com/rxap/packages/commit/0f2bfbeea982f49278d5142d094c62d84cddc6bf))
+
 # [1.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.1.0-dev.11...@rxap/node-utilities@1.1.0-dev.12) (2023-09-29)
 
 ### Features

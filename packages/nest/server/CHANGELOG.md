@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.13...@rxap/nest-server@10.1.0-dev.14) (2023-10-01)
+
+### Bug Fixes
+
+- use the hostname as ROOT_DOMAIN if not defined ([1fb09be](https://gitlab.com/rxap/packages/commit/1fb09be583e9b3c0632abeda74634807bc0e470d))
+
+### Features
+
+- support setting custom environment names ([5d74ee9](https://gitlab.com/rxap/packages/commit/5d74ee966b26cd0c73b6197911dfb36a9275f147))
+
 # [10.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.12...@rxap/nest-server@10.1.0-dev.13) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/nest-server

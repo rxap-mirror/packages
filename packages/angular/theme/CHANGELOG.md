@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@16.1.0-dev.1...@rxap/ngx-theme@16.1.0-dev.2) (2023-10-01)
+
+### Bug Fixes
+
+- move restore logic in separate function ([e20fae2](https://gitlab.com/rxap/packages/commit/e20fae29d149245c7e629a764c7bdd3a10db6364))
+
 # [16.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@16.1.0-dev.0...@rxap/ngx-theme@16.1.0-dev.1) (2023-09-30)
 
 ### Bug Fixes

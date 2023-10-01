@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.2",
+  "version": "16.1.0-dev.3",
   "name": "@rxap/ngx-changelog",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -12,7 +12,6 @@
     "@rxap/directives": "^16.0.0-dev.16",
     "@rxap/environment": "^16.0.0-dev.16",
     "@rxap/open-api": "^16.0.0-dev.23",
-    "ng-mocks": "^14.11.0",
     "ngx-markdown": "^16.0.0",
     "rxjs": "^7.8.0"
   },

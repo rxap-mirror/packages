@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-changelog@16.1.0-dev.2...@rxap/ngx-changelog@16.1.0-dev.3) (2023-10-01)
+
+### Bug Fixes
+
+- use generate client sdk code ([a4dd413](https://gitlab.com/rxap/packages/commit/a4dd4134cbc7261bf5ee279d3f1a4c78974c3f12))
+
 # [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-changelog@16.1.0-dev.1...@rxap/ngx-changelog@16.1.0-dev.2) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/ngx-changelog

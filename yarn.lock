@@ -9205,7 +9205,7 @@ __metadata:
     "@nestjs/core": ^10.0.5
     "@nestjs/microservices": ^10.0.5
     "@nestjs/swagger": ^7.1.2
-    "@rxap/nest-utilities": ^10.1.0-dev.9
+    "@rxap/nest-utilities": ^10.1.0-dev.11
     cookie-parser: ^1.4.6
     helmet: ^7.0.0
     tslib: 2.6.2
@@ -9279,7 +9279,6 @@ __metadata:
     "@rxap/directives": ^16.0.0-dev.16
     "@rxap/environment": ^16.0.0-dev.16
     "@rxap/open-api": ^16.0.0-dev.23
-    ng-mocks: ^14.11.0
     ngx-markdown: ^16.0.0
     rxjs: ^7.8.0
   languageName: unknown
@@ -9407,7 +9406,7 @@ __metadata:
     "@angular/core": ^16.1.4
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/config": ^16.0.0-dev.17
+    "@rxap/config": ^16.0.0-dev.18
     "@rxap/open-api": ^16.0.0-dev.23
     "@sentry/angular-ivy": ^7.60.1
     rxjs: ^7.8.0
@@ -9571,8 +9570,8 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.15
-    "@rxap/plugin-angular": ^16.1.0-dev.42
-    "@rxap/plugin-docker": ^16.0.0-dev.31
+    "@rxap/plugin-angular": ^16.1.0-dev.43
+    "@rxap/plugin-docker": ^16.0.0-dev.33
     "@rxap/plugin-nestjs": ^16.1.0-dev.31
     "@rxap/plugin-utilities": ^16.1.0-dev.16
     "@rxap/utilities": ^16.0.0-dev.19
@@ -9591,7 +9590,7 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.15
-    "@rxap/node-utilities": ^1.1.0-dev.12
+    "@rxap/node-utilities": ^1.1.0-dev.13
     "@rxap/plugin-utilities": ^16.1.0-dev.16
     "@rxap/utilities": ^16.0.0-dev.19
     "@rxap/workspace-utilities": ^0.1.0-dev.17
@@ -9680,12 +9679,14 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@nx/devkit": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.13
-    "@rxap/plugin-library": ^16.0.0-dev.25
-    "@rxap/utilities": ^16.0.0-dev.17
-    "@rxap/workspace-open-api": ^0.0.2-dev.5
-    "@rxap/workspace-ts-morph": ^0.1.0-dev.8
-    "@rxap/workspace-utilities": ^0.1.0-dev.13
+    "@rxap/generator-utilities": ^1.1.0-dev.15
+    "@rxap/node-utilities": ^1.1.0-dev.13
+    "@rxap/plugin-library": ^16.0.0-dev.28
+    "@rxap/plugin-utilities": ^16.1.0-dev.16
+    "@rxap/utilities": ^16.0.0-dev.19
+    "@rxap/workspace-open-api": ^0.0.2-dev.8
+    "@rxap/workspace-ts-morph": ^0.1.0-dev.9
+    "@rxap/workspace-utilities": ^0.1.0-dev.17
     tslib: 2.6.2
   languageName: unknown
   linkType: soft

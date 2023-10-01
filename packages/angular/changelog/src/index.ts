@@ -1,18 +1,22 @@
-// region responses
-export * from './lib/responses/changelog-controller-get-latest.response';
-export * from './lib/responses/changelog-controller-get-version.response';
-export * from './lib/responses/changelog-controller-list.response';
+// region openapi responses
+export * from './lib/openapi/responses/changelog-controller-get-latest.response';
+export * from './lib/openapi/responses/changelog-controller-get-version.response';
+export * from './lib/openapi/responses/changelog-controller-list.response';
 // endregion
 
-// region remote-methods
-export * from './lib/remote-methods/changelog-controller-get-latest.remote-method';
-export * from './lib/remote-methods/changelog-controller-get-version.remote-method';
-export * from './lib/remote-methods/changelog-controller-list.remote-method';
+// region openapi remote-methods
+export * from './lib/openapi/remote-methods/changelog-controller-get-latest.remote-method';
+export * from './lib/openapi/remote-methods/changelog-controller-get-version.remote-method';
+export * from './lib/openapi/remote-methods/changelog-controller-list.remote-method';
 // endregion
 
-// region parameters
-export * from './lib/parameters/changelog-controller-get-latest.parameter';
-export * from './lib/parameters/changelog-controller-get-version.parameter';
+// region openapi parameters
+export * from './lib/openapi/parameters/changelog-controller-get-latest.parameter';
+export * from './lib/openapi/parameters/changelog-controller-get-version.parameter';
+// endregion
+
+// region openapi components
+export * from './lib/openapi/components/changelog-dto';
 // endregion
 
 // region changelog-dialog

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@16.0.1-dev.6...@rxap/plugin-open-api@16.1.0-dev.0) (2023-10-01)
+
+### Features
+
+- add the copy-client-sdk executor ([6c5c46a](https://gitlab.com/rxap/packages/commit/6c5c46a6d1f8f12d3f0f77117aa6070d7c2507e2))
+
 ## [16.0.1-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@16.0.1-dev.5...@rxap/plugin-open-api@16.0.1-dev.6) (2023-09-12)
 
 ### Bug Fixes
