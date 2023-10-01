@@ -4,7 +4,9 @@ import {
   OnInit,
 } from '@angular/core';
 import { Method } from '@rxap/pattern';
+import { ToggleSubject } from '@rxap/rxjs';
 import {
+  from,
   Observable,
   ReplaySubject,
   Subject,
@@ -13,6 +15,7 @@ import {
 import {
   startWith,
   switchMap,
+  tap,
 } from 'rxjs/operators';
 import {
   BaseDataSource,
@@ -29,6 +32,9 @@ export class MethodDataSource<Data, Parameters = any>
   extends BaseDataSource<Data, BaseDataSourceMetadata, BaseDataSourceViewer & Parameters> implements OnInit {
 
   protected override readonly _data$ = new ReplaySubject<Data>(1);
+
+  public override readonly loading$ = new ToggleSubject(false);
+
   private readonly _refresh = new Subject<void>();
 
   constructor(
@@ -58,15 +64,41 @@ export class MethodDataSource<Data, Parameters = any>
       return super._connect(viewer);
     } else {
       return this._refresh.pipe(
+        tap(() => this.hasError$.disable()),
         startWith(undefined),
-        switchMap(async () => this.method.call(viewer)),
+        tap(() => this.loading$.enable()),
+        switchMap(() => from(this.execute(viewer)).pipe(
+          tap({
+            next: () => {
+              this.loading$.disable();
+            },
+            error: (error: any) => {
+              this.loading$.disable();
+              this.hasError$.enable();
+              this.error$.next(error);
+            },
+          }),
+        )),
       );
     }
   }
 
-  private async executeWithoutParameters(): Promise<void> {
-    const data = await this.method.call();
-    this._data$.next(data);
+  protected async execute(parameters?: Parameters): Promise<Data> {
+    return this.method.call(parameters);
+  }
+
+  protected async executeWithoutParameters(): Promise<void> {
+    this.hasError$.disable();
+    this.loading$.enable();
+    try {
+      const data = await this.method.call();
+      this._data$.next(data);
+    } catch (error: any) {
+      this.hasError$.enable();
+      this.error$.next(error);
+    } finally {
+      this.loading$.disable();
+    }
   }
 
 }
