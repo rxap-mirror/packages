@@ -97,6 +97,7 @@ export default function (options: NavigationTableHeaderButtonOptions) {
         },
       }),
       () => console.groupEnd(),
+      () => console.log('\x1b[32m[/@rxap/schematics-angular:navigation-table-header-button]\x1b[0m'),
     ]);
   };
 }
