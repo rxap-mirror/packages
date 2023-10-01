@@ -8947,20 +8947,20 @@ __metadata:
     "@angular/forms": ^16.1.4
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/authentication": ^16.0.0-dev.16
+    "@rxap/authentication": ^16.0.0-dev.17
     "@rxap/authorization": ^16.0.0-dev.21
     "@rxap/browser-utilities": ^0.0.2-dev.9
     "@rxap/config": ^16.0.0-dev.18
-    "@rxap/data-source": ^16.0.0-dev.22
+    "@rxap/data-source": ^16.0.0-dev.23
     "@rxap/directives": ^16.0.0-dev.16
     "@rxap/environment": ^16.0.0-dev.16
     "@rxap/icon": ^16.0.0-dev.16
     "@rxap/material-directives": ^16.0.0-dev.19
-    "@rxap/ngx-changelog": ^16.1.0-dev.2
+    "@rxap/ngx-changelog": ^16.1.0-dev.3
     "@rxap/ngx-localize": ^16.1.0-dev.1
-    "@rxap/ngx-status-check": ^16.1.0-dev.13
-    "@rxap/ngx-theme": ^16.1.0-dev.0
-    "@rxap/ngx-user": ^16.1.0-dev.4
+    "@rxap/ngx-status-check": ^16.1.0-dev.14
+    "@rxap/ngx-theme": ^16.1.0-dev.2
+    "@rxap/ngx-user": ^16.1.0-dev.6
     "@rxap/services": ^16.0.0-dev.20
     "@rxap/utilities": ^16.0.0-dev.19
     rxjs: ^7.8.0

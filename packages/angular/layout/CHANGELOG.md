@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.38](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.37...@rxap/layout@16.0.0-dev.38) (2023-10-01)
+
+### Bug Fixes
+
+- ensure sidenav container is always fulling the screen ([31c72a1](https://gitlab.com/rxap/packages/commit/31c72a17bea1e05b7f0b3b0bdcb1cc3697a55515))
+
 # [16.0.0-dev.37](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.36...@rxap/layout@16.0.0-dev.37) (2023-09-30)
 
 ### Bug Fixes
