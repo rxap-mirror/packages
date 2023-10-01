@@ -2,14 +2,12 @@ import {
   inject,
   Injectable,
 } from '@angular/core';
-import {
-  DarkModeControllerDisableRemoteMethod,
-  DarkModeControllerEnableRemoteMethod,
-  DarkModeControllerGetRemoteMethod,
-  DarkModeControllerToggleRemoteMethod,
-  UserSettingsDarkModeDataSource,
-} from '@rxap/ngx-user';
 import { BaseUserSettingsService } from './base-user-settings.service';
+import { DarkModeControllerDisableRemoteMethod } from './openapi/remote-methods/dark-mode-controller-disable.remote-method';
+import { DarkModeControllerEnableRemoteMethod } from './openapi/remote-methods/dark-mode-controller-enable.remote-method';
+import { DarkModeControllerGetRemoteMethod } from './openapi/remote-methods/dark-mode-controller-get.remote-method';
+import { DarkModeControllerToggleRemoteMethod } from './openapi/remote-methods/dark-mode-controller-toggle.remote-method';
+import { UserSettingsDarkModeDataSource } from './user-settings-dark-mode.data-source';
 import { UserSettingsOfflineService } from './user-settings-offline.service';
 
 @Injectable({ providedIn: 'root' })

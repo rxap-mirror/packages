@@ -3,12 +3,12 @@ import {
   Injectable,
   LOCALE_ID,
 } from '@angular/core';
-import { UserSettings } from '@rxap/ngx-user';
 import {
   clone,
   deepMerge,
 } from '@rxap/utilities';
 import { BehaviorSubject } from 'rxjs';
+import { UserSettings } from './user-settings';
 
 @Injectable({ providedIn: 'root' })
 export class UserSettingsOfflineService<T = unknown> {
