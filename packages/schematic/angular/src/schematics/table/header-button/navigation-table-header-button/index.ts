@@ -27,7 +27,6 @@ export function NormalizeNavigationTableHeaderButtonOptions(
   const normalizedTableHeaderButtonOptions = NormalizeTableHeaderButtonOptions(options);
   return Object.seal({
     ...normalizedTableHeaderButtonOptions,
-    route: options.route,
   });
 }
 
@@ -49,8 +48,9 @@ export default function (options: NavigationTableHeaderButtonOptions) {
     shared,
     directory,
     overwrite,
-    route,
   } = normalizedOptions;
+
+  const route = normalizedOptions.options!.route;
 
   printOptions(normalizedOptions);
 

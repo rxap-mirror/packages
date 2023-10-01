@@ -20,16 +20,13 @@ import {
 } from '../../../lib/table-header-button';
 import { TableHeaderButtonOptions } from './schema';
 
-export interface NormalizedTableHeaderButtonOptions
-  extends Readonly<Normalized<TableHeaderButtonOptions> & NormalizedAngularOptions & NormalizedTableHeaderButton> {
-  options: Record<string, any>;
-}
+export type NormalizedTableHeaderButtonOptions<Options extends Record<string, any> = Record<string, any>> = Readonly<Normalized<TableHeaderButtonOptions<Options>> & NormalizedAngularOptions & NormalizedTableHeaderButton>
 
-export function NormalizeTableHeaderButtonOptions(
-  options: Readonly<TableHeaderButtonOptions>,
-): NormalizedTableHeaderButtonOptions {
+export function NormalizeTableHeaderButtonOptions<Options extends Record<string, any> = Record<string, any>>(
+  options: Readonly<TableHeaderButtonOptions<Options>>,
+): NormalizedTableHeaderButtonOptions<Options> {
   const normalizedAngularOptions = NormalizeAngularOptions(options);
-  const normalizedTableHeaderButton = NormalizeTableHeaderButton(options, options.tableName);
+  const normalizedTableHeaderButton = NormalizeTableHeaderButton<Options>(options, options.tableName) as any;
   if (!normalizedTableHeaderButton) {
     throw new Error('FATAL: should never happen');
   }

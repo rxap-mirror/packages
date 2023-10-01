@@ -70,11 +70,13 @@
     },
     "options": {
       "type": "object",
+      "properties": {
+        "route": {
+          "type": "string",
+          "description": "The route path for the table action"
+        }
+      },
       "additionalProperties": true
-    },
-    "route": {
-      "type": "string",
-      "description": "The route path for the table action"
     }
   },
   "required": [

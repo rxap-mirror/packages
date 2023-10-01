@@ -1,13 +1,13 @@
 import { capitalize } from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
 
-export interface TableHeaderButton {
+export interface TableHeaderButton<Options extends Record<string, any> = Record<string, any>> {
   role?: string;
   permission?: string;
   icon?: string;
   svgIcon?: string;
   label?: string;
-  options?: Record<string, any>;
+  options: Options;
   refresh?: boolean;
   confirm?: boolean;
   tooltip?: string;
@@ -15,14 +15,12 @@ export interface TableHeaderButton {
   successMessage?: string;
 }
 
-export interface NormalizedTableHeaderButton extends Readonly<Normalized<TableHeaderButton>> {
-  options: Record<string, any>;
-}
+export type NormalizedTableHeaderButton<Options extends Record<string, any> = Record<string, any>> = Readonly<Normalized<TableHeaderButton<Options>>>
 
-export function NormalizeTableHeaderButton(
-  tableHeaderButton: Readonly<TableHeaderButton> | string | undefined,
+export function NormalizeTableHeaderButton<Options extends Record<string, any> = Record<string, any>>(
+  tableHeaderButton: Readonly<TableHeaderButton<Options>> | string | undefined,
   name: string,
-): NormalizedTableHeaderButton | null {
+): NormalizedTableHeaderButton<Options> | null {
   if (!tableHeaderButton) {
     return null;
   }
@@ -31,7 +29,7 @@ export function NormalizeTableHeaderButton(
   let svgIcon: string | null = null;
   let permission: string | null = null;
   let label: string | null = null;
-  let options: Record<string, any> | null = null;
+  let options: Options | null = null;
   let refresh = false;
   let confirm = false;
   let tooltip: string | null = null;
@@ -76,8 +74,8 @@ export function NormalizeTableHeaderButton(
     errorMessage = tableHeaderButton.errorMessage ?? errorMessage;
     successMessage = tableHeaderButton.successMessage ?? successMessage;
   }
-  options ??= {};
-  return {
+  options ??= {} as Options;
+  const normalized: Normalized<TableHeaderButton> = {
     role,
     icon,
     svgIcon,
@@ -90,4 +88,5 @@ export function NormalizeTableHeaderButton(
     successMessage,
     label: label || ((role === 'form' ? 'Create ' : '') + capitalize(name)),
   };
+  return normalized as any as NormalizedTableHeaderButton<Options>;
 }

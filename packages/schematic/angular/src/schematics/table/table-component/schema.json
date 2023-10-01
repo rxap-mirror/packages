@@ -96,7 +96,12 @@
           "type": "object",
           "properties": {
             "role": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "form",
+                "navigation",
+                "method"
+              ]
             },
             "permission": {
               "type": "string"
@@ -111,7 +116,8 @@
               "type": "object",
               "additionalProperties": true
             }
-          }
+          },
+          "additionalProperties": true
         }
       ],
       "description": "The header button configuration"
