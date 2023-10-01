@@ -1,5 +1,5 @@
-import { HasProject } from '@rxap/schematics-utilities';
 import { Tree } from '@angular-devkit/schematics';
+import { HasProject } from '@rxap/schematics-utilities';
 
 
 export interface BuildNestProjectNameOptions {
@@ -13,7 +13,7 @@ export function buildNestProjectName(options: BuildNestProjectNameOptions) {
     if (options.shared) {
       return `service-feature-${ options.feature }`;
     } else {
-      return `service-app-${ options.project }-${ options.feature }`;
+      return `service-app-${ options.project.replace(/user-interface-/, '') }-${ options.feature }`;
     }
   } else {
     return options.project;
