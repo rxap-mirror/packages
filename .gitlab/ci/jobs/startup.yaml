@@ -6,40 +6,51 @@
   services:
     - name: ${CI_REGISTRY_IMAGE}${IMAGE_SUFFIX}:${CI_PIPELINE_ID}
       alias: service
-  variables:
-    ROOT_DOMAIN: service
   environment:
     action: prepare
     name: $ENVIRONMENT_NAME
+  variables:
+    SERVICE_HOSTNAME: service
   script:
-    - curl http://service:3000/info
+    - curl http://$SERVICE_HOSTNAME:$SERVICE_PORT/$SERVICE_PATH
 startup:angular:
   extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
+    SERVICE_PORT: "80"
     IMAGE_SUFFIX: /user-interface/angular
 startup:service-changelog:
   extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
+    SERVICE_PORT: "3000"
+    SERVICE_PATH: info
     IMAGE_SUFFIX: /service/changelog
 startup:service-configuration:
   extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
+    SERVICE_PORT: "3000"
+    SERVICE_PATH: info
     IMAGE_SUFFIX: /service/configuration
 startup:service-status:
   extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
+    SERVICE_PORT: "3000"
+    SERVICE_PATH: info
     IMAGE_SUFFIX: /service/status
 startup:service-user:
   extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
+    SERVICE_PORT: "3000"
+    SERVICE_PATH: info
     IMAGE_SUFFIX: /service/user
 startup:service-app-angular-table:
   extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
+    SERVICE_PORT: "3000"
+    SERVICE_PATH: info
     IMAGE_SUFFIX: /service/app-angular-table

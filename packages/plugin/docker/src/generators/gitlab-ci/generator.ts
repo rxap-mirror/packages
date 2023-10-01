@@ -63,8 +63,11 @@ const dotStartup = {
     action: 'prepare',
     name: '$ENVIRONMENT_NAME',
   },
+  variables: {
+    SERVICE_HOSTNAME: 'service',
+  },
   script: [
-    'curl http://service:3000/info',
+    'curl http://$SERVICE_HOSTNAME:$SERVICE_PORT/$SERVICE_PATH',
   ],
 };
 
@@ -139,6 +142,18 @@ function generateDockerGitlabCiFileContent(
   return stringify(dockerYaml);
 }
 
+function isUserInterfaceProject(project: ProjectConfiguration) {
+  return project.projectType === 'application' && (
+    project.tags.includes('user-interface') || project.tags.includes('angular')
+  );
+}
+
+function isServiceProject(project: ProjectConfiguration) {
+  return project.projectType === 'application' && (
+    project.tags.includes('service') || project.tags.includes('nestjs') || project.tags.includes('nest')
+  );
+}
+
 function generateStartupGitlabCiFileContent(
   tree: Tree,
   options: GitlabCiGeneratorSchema,
@@ -154,6 +169,10 @@ function generateStartupGitlabCiFileContent(
       continue;
     }
 
+    if (!isUserInterfaceProject(project) && !isServiceProject(project)) {
+      continue;
+    }
+
     console.log(`add project: ${ projectName }`);
 
     const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
@@ -165,6 +184,15 @@ function generateStartupGitlabCiFileContent(
     startupYaml[`startup:${ projectName }`].variables = {
       IMAGE_NAME: imageName,
     };
+
+    if (isServiceProject(project)) {
+      startupYaml[`startup:${ projectName }`].variables.SERVICE_PORT = '3000';
+      startupYaml[`startup:${ projectName }`].variables.SERVICE_PATH = 'info';
+    }
+
+    if (isUserInterfaceProject(project)) {
+      startupYaml[`startup:${ projectName }`].variables.SERVICE_PORT = '80';
+    }
 
     if (imageSuffix) {
       startupYaml[`startup:${ projectName }`].variables.IMAGE_SUFFIX = imageSuffix;
