@@ -13,8 +13,8 @@ import {
 import { MethodTemplateDirective } from '@rxap/directives';
 import { RXAP_ENVIRONMENT } from '@rxap/environment';
 import { MarkdownModule } from 'ngx-markdown';
-import { ChangelogControllerGetVersionRemoteMethod } from '../remote-methods/changelog-controller-get-version.remote-method';
-import { ChangelogControllerListRemoteMethod } from '../remote-methods/changelog-controller-list.remote-method';
+import { ChangelogControllerGetVersionRemoteMethod } from '../openapi/remote-methods/changelog-controller-get-version.remote-method';
+import { ChangelogControllerListRemoteMethod } from '../openapi/remote-methods/changelog-controller-list.remote-method';
 
 @Component({
   selector: 'rxap-changelog',

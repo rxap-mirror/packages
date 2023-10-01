@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { RXAP_ENVIRONMENT } from '@rxap/environment';
 import { ToMethod } from '@rxap/pattern';
 import { MarkdownModule } from 'ngx-markdown';
-import { ChangelogControllerGetVersionRemoteMethod } from '../remote-methods/changelog-controller-get-version.remote-method';
-import { ChangelogControllerListRemoteMethod } from '../remote-methods/changelog-controller-list.remote-method';
+import { ChangelogControllerGetVersionRemoteMethod } from '../openapi/remote-methods/changelog-controller-get-version.remote-method';
+import { ChangelogControllerListRemoteMethod } from '../openapi/remote-methods/changelog-controller-list.remote-method';
 import { ChangelogComponent } from './changelog.component';
 
 describe(ChangelogComponent.name, () => {

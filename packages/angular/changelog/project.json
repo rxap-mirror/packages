@@ -11,6 +11,17 @@
   ],
   "projectType": "library",
   "targets": {
+    "copy-open-api-sdk": {
+      "inputs": [
+        "{workspaceRoot}/packages/open-api/service/changelog/src/lib"
+      ],
+      "options": {
+        "clientSdkProject": "open-api-service-changelog",
+        "angular": true,
+        "skipDirectives": true,
+        "skipDataSources": true
+      }
+    },
     "index-export": {},
     "build": {
       "executor": "@nx/angular:package",

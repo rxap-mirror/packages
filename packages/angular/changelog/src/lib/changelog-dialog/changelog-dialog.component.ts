@@ -8,7 +8,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MockInstance } from 'ng-mocks';
 import { ChangelogComponent } from '../changelog/changelog.component';
 
 @Component({

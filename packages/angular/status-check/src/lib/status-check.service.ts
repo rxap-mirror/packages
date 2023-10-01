@@ -10,7 +10,7 @@ import {
   Observable,
   startWith,
 } from 'rxjs';
-import { StatusControllerHealthCheckRemoteMethod } from './status-controller-health-check.remote-method';
+import { StatusControllerHealthCheckRemoteMethod } from './openapi/remote-methods/status-controller-health-check.remote-method';
 
 export interface ApiStatus {
   status: string;
