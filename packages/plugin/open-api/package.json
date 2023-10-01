@@ -70,5 +70,6 @@
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/plugin/open-api"
   },
-  "type": "commonjs"
+  "type": "commonjs",
+  "executors": "./executors.json"
 }

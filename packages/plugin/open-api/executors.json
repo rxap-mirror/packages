@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "copy-client-sdk": {
+      "implementation": "./src/executors/copy-client-sdk/executor",
+      "schema": "./src/executors/copy-client-sdk/schema.json",
+      "description": "copy-client-sdk executor"
+    }
+  }
+}

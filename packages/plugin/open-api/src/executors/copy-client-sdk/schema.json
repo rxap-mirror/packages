@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "CopyClientSdk executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "clientSdkProject": {
+      "type": "string",
+      "description": "The name of the client SDK project to copy"
+    },
+    "angular": {
+      "type": "boolean",
+      "description": "Whether to copy the files for an Angular project"
+    },
+    "nestjs": {
+      "type": "boolean",
+      "description": "Whether to copy the files for a NestJS project"
+    },
+    "outputDir": {
+      "default": "openapi",
+      "type": "string",
+      "description": "The directory to copy the files to"
+    },
+    "skipDirectives": {
+      "type": "boolean",
+      "description": "Whether to skip copying the directives"
+    },
+    "skipDataSources": {
+      "type": "boolean",
+      "description": "Whether to skip copying the data sources"
+    },
+    "skipRemoteMethods": {
+      "type": "boolean",
+      "description": "Whether to skip copying the remote methods"
+    }
+  },
+  "required": [
+    "clientSdkProject"
+  ]
+}

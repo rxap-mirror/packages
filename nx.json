@@ -153,7 +153,7 @@
       "dependsOn": [
         "^generate-open-api"
       ],
-      "executor": "nx:run-commands",
+      "executor": "@rxap/plugin-open-api:copy-client-sdk",
       "outputs": [
         "{projectRoot}/src/lib/openapi"
       ]
