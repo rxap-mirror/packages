@@ -8,6 +8,7 @@ import {
   Subscription,
   tap,
 } from 'rxjs';
+import { BaseUserSettingsService } from './base-user-settings.service';
 import { ThemeControllerGetRemoteMethod } from './openapi/remote-methods/theme-controller-get.remote-method';
 import { ThemeControllerSetDensityRemoteMethod } from './openapi/remote-methods/theme-controller-set-density.remote-method';
 import { ThemeControllerSetPresetRemoteMethod } from './openapi/remote-methods/theme-controller-set-preset.remote-method';
@@ -15,6 +16,7 @@ import { ThemeControllerSetTypographyRemoteMethod } from './openapi/remote-metho
 import { ThemeControllerSetRemoteMethod } from './openapi/remote-methods/theme-controller-set.remote-method';
 import { ThemeControllerSetRequestBody } from './openapi/request-bodies/theme-controller-set.request-body';
 import { ThemeControllerGetResponse } from './openapi/responses/theme-controller-get.response';
+import { UserSettingsOfflineService } from './user-settings-offline.service';
 import { UserSettingsThemeDataSource } from './user-settings-theme.data-source';
 
 export enum ThemeDensity {
@@ -29,7 +31,7 @@ export function IsThemeDensity(value: any): value is ThemeDensity {
 }
 
 @Injectable({ providedIn: 'root' })
-export class UserSettingsThemeService<T = unknown> {
+export class UserSettingsThemeService<T = unknown> extends BaseUserSettingsService {
 
   protected readonly getThemeMethod = inject(ThemeControllerGetRemoteMethod);
   protected readonly setThemeMethod = inject(ThemeControllerSetRemoteMethod);
@@ -39,33 +41,65 @@ export class UserSettingsThemeService<T = unknown> {
   protected readonly userSettingsThemeDataSource = inject(UserSettingsThemeDataSource);
   protected readonly pubSub = inject(PubSubService);
 
+  protected readonly offline = inject(UserSettingsOfflineService);
+
   protected syncSubscription?: Subscription;
 
   async get(): Promise<ThemeControllerGetResponse<T>> {
+    if (!await this.waitUntilAuthenticated()) {
+      return this.offline.get().theme;
+    }
     return this.getThemeMethod.call();
   }
 
   async set(themeSettings: ThemeControllerSetRequestBody<T>) {
+    if (!await this.waitUntilAuthenticated()) {
+      const settings = this.offline.get();
+      settings.theme = themeSettings;
+      this.offline.set(settings);
+      return;
+    }
     await this.setThemeMethod.call({ requestBody: themeSettings });
     this.userSettingsThemeDataSource.refresh();
   }
 
   async setDensity(density: ThemeDensity) {
-    await this.setDensityMethod.call({ requestBody: { value: density } });
+    if (!await this.waitUntilAuthenticated()) {
+      const settings = this.offline.get();
+      settings.theme.density = density;
+      this.offline.set(settings);
+    } else {
+      await this.setDensityMethod.call({ requestBody: { value: density } });
+    }
     this.userSettingsThemeDataSource.refresh();
   }
 
   async setPreset(preset: string) {
-    await this.setPresetMethod.call({ requestBody: { value: preset } });
+    if (!await this.waitUntilAuthenticated()) {
+      const settings = this.offline.get();
+      settings.theme.preset = preset;
+      this.offline.set(settings);
+    } else {
+      await this.setPresetMethod.call({ requestBody: { value: preset } });
+    }
     this.userSettingsThemeDataSource.refresh();
   }
 
   async setTypography(typography: string) {
-    await this.setTypographyMethod.call({ requestBody: { value: typography } });
+    if (!await this.waitUntilAuthenticated()) {
+      const settings = this.offline.get();
+      settings.theme.typography = typography;
+      this.offline.set(settings);
+    } else {
+      await this.setTypographyMethod.call({ requestBody: { value: typography } });
+    }
     this.userSettingsThemeDataSource.refresh();
   }
 
-  startSync() {
+  async startSync() {
+    if (!await this.waitUntilAuthenticated()) {
+      return;
+    }
     if (this.syncSubscription) {
       return;
     }

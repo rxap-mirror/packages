@@ -2,69 +2,36 @@ import {
   inject,
   Injectable,
 } from '@angular/core';
-import { DarkModeControllerDisableRemoteMethod } from './openapi/remote-methods/dark-mode-controller-disable.remote-method';
-import { DarkModeControllerEnableRemoteMethod } from './openapi/remote-methods/dark-mode-controller-enable.remote-method';
-import { DarkModeControllerGetRemoteMethod } from './openapi/remote-methods/dark-mode-controller-get.remote-method';
-import { DarkModeControllerToggleRemoteMethod } from './openapi/remote-methods/dark-mode-controller-toggle.remote-method';
-import { LanguageControllerGetRemoteMethod } from './openapi/remote-methods/language-controller-get.remote-method';
-import { LanguageControllerSetRemoteMethod } from './openapi/remote-methods/language-controller-set.remote-method';
+import { BaseUserSettingsService } from './base-user-settings.service';
 import { SettingsControllerGetRemoteMethod } from './openapi/remote-methods/settings-controller-get.remote-method';
 import { SettingsControllerSetRemoteMethod } from './openapi/remote-methods/settings-controller-set.remote-method';
-import { SettingsControllerSetRequestBody } from './openapi/request-bodies/settings-controller-set.request-body';
-import { SettingsControllerGetResponse } from './openapi/responses/settings-controller-get.response';
+import { UserSettings } from './user-settings';
+import { UserSettingsOfflineService } from './user-settings-offline.service';
 import { UserSettingsDataSource } from './user-settings.data-source';
 
 @Injectable({ providedIn: 'root' })
-export class UserSettingsService<US = unknown> {
+export class UserSettingsService<US = unknown> extends BaseUserSettingsService {
 
   protected readonly userSettingsDataSource = inject(UserSettingsDataSource);
   protected readonly setUserSettingsMethod = inject(SettingsControllerSetRemoteMethod);
   protected readonly getUserSettingsMethod = inject(SettingsControllerGetRemoteMethod);
-  protected readonly getUserSettingsLanguageMethod = inject(LanguageControllerGetRemoteMethod);
-  protected readonly setUserSettingsLanguageMethod = inject(LanguageControllerSetRemoteMethod);
-  protected readonly getUserSettingsDarkModeMethod = inject(DarkModeControllerGetRemoteMethod);
-  protected readonly toggleUserSettingsDarkModeMethod = inject(DarkModeControllerToggleRemoteMethod);
-  protected readonly disableUserSettingsDarkModeMethod = inject(DarkModeControllerDisableRemoteMethod);
-  protected readonly enableUserSettingsDarkModeMethod = inject(DarkModeControllerEnableRemoteMethod);
 
-  async set(settings: SettingsControllerSetRequestBody<US>): Promise<void> {
-    await this.setUserSettingsMethod.call({ requestBody: settings });
+  protected readonly offline = inject(UserSettingsOfflineService);
+
+  async set(settings: UserSettings<US>): Promise<void> {
+    if (!await this.waitUntilAuthenticated()) {
+      this.offline.set(settings);
+    } else {
+      await this.setUserSettingsMethod.call({ requestBody: settings });
+    }
     this.userSettingsDataSource.refresh();
   }
 
-  async get(): Promise<SettingsControllerGetResponse<US>> {
+  async get(): Promise<UserSettings<US>> {
+    if (!await this.waitUntilAuthenticated()) {
+      return this.offline.get();
+    }
     return this.getUserSettingsMethod.call();
-  }
-
-  async getLanguage(): Promise<string> {
-    return this.getUserSettingsLanguageMethod.call();
-  }
-
-  async setLanguage(language: string): Promise<void> {
-    await this.setUserSettingsLanguageMethod.call({ parameters: { language } });
-    this.userSettingsDataSource.refresh();
-  }
-
-  async getDarkMode(): Promise<boolean> {
-    return this.getUserSettingsDarkModeMethod.call();
-  }
-
-  async toggleDarkMode(): Promise<boolean> {
-    const result = await this.toggleUserSettingsDarkModeMethod.call();
-    this.userSettingsDataSource.refresh();
-    return result;
-  }
-
-  async disableDarkMode(): Promise<boolean> {
-    const result = await this.disableUserSettingsDarkModeMethod.call();
-    this.userSettingsDataSource.refresh();
-    return result;
-  }
-
-  async enableDarkMode(): Promise<boolean> {
-    const result = await this.enableUserSettingsDarkModeMethod.call();
-    this.userSettingsDataSource.refresh();
-    return result;
   }
 
 }
