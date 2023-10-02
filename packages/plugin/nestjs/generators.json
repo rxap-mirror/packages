@@ -49,6 +49,21 @@
       "factory": "./src/generators/health-indicator-init/generator",
       "schema": "./src/generators/health-indicator-init/schema.json",
       "description": "health-indicator-init generator"
+    },
+    "microservice": {
+      "factory": "./src/generators/microservice/generator",
+      "schema": "./src/generators/microservice/schema.json",
+      "description": "microservice generator"
+    },
+    "feature-microservice": {
+      "factory": "./src/generators/feature-microservice/generator",
+      "schema": "./src/generators/feature-microservice/schema.json",
+      "description": "feature-microservice generator"
+    },
+    "frontend-microservice": {
+      "factory": "./src/generators/frontend-microservice/generator",
+      "schema": "./src/generators/frontend-microservice/schema.json",
+      "description": "frontend-microservice generator"
     }
   },
   "schematics": {

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "FeatureMicroservice",
+  "title": "",
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "feature": {
+          "type": "string",
+          "description": "The feature of the frontend project",
+          "x-prompt": "For which feature of the frontend should the microservice be created?"
+        }
+      },
+      "required": [
+        "feature"
+      ]
+    },
+    {
+      "$ref": "../init-application/schema.json"
+    }
+  ]
+}
