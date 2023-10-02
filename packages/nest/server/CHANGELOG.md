@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.15...@rxap/nest-server@10.1.0-dev.16) (2023-10-02)
+
+### Bug Fixes
+
+- only check for ENVIRONMENT_NAME env inconsistency if the variable is set ([8214c0d](https://gitlab.com/rxap/packages/commit/8214c0d55aeacdda5ceab337ea3a9d188027a4e6))
+
 # [10.1.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.14...@rxap/nest-server@10.1.0-dev.15) (2023-10-01)
 
 ### Bug Fixes

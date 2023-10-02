@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.24...@rxap/schematics-ts-morph@16.0.0-dev.25) (2023-10-02)
+
+### Bug Fixes
+
+- ensure the filter method property has not an question token ([af7b35d](https://gitlab.com/rxap/packages/commit/af7b35da52de8c33681a230c149fbabfc7667694))
+
 # [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.23...@rxap/schematics-ts-morph@16.0.0-dev.24) (2023-10-02)
 
 ### Bug Fixes

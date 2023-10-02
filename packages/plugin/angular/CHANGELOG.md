@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.44](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.43...@rxap/plugin-angular@16.1.0-dev.44) (2023-10-02)
+
+### Bug Fixes
+
+- ensure the generate-open-api target is run before building or serving a angular application ([931b545](https://gitlab.com/rxap/packages/commit/931b545e035ef027ea8149672becb086b2c373e8))
+
 # [16.1.0-dev.43](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.42...@rxap/plugin-angular@16.1.0-dev.43) (2023-09-28)
 
 ### Bug Fixes

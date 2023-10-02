@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.23...@rxap/plugin-application@16.1.0-dev.24) (2023-10-02)
+
+### Bug Fixes
+
+- ensure the correct docker image tag is used ([a1c30b9](https://gitlab.com/rxap/packages/commit/a1c30b9db5a25610dbe5427f0d90970de4069027))
+- only add the image registry parameter if the $REGISTRY env is defined ([e9b6484](https://gitlab.com/rxap/packages/commit/e9b6484ddd5da5d3f232ec45f58ddf2869870ef0))
+
 # [16.1.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.22...@rxap/plugin-application@16.1.0-dev.23) (2023-10-01)
 
 ### Bug Fixes

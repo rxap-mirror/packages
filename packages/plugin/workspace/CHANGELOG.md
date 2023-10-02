@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.32...@rxap/plugin-workspace@16.1.0-dev.33) (2023-10-02)
+
+### Bug Fixes
+
+- ensure the environment name is set to development for each service ([716c311](https://gitlab.com/rxap/packages/commit/716c31102c2b7468c78e04178a56a97ba239335e))
+
 # [16.1.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.31...@rxap/plugin-workspace@16.1.0-dev.32) (2023-09-27)
 
 ### Bug Fixes

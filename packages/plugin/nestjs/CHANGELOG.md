@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.32...@rxap/plugin-nestjs@16.1.0-dev.33) (2023-10-02)
+
+### Bug Fixes
+
+- add implicit dependencies between openapi client sdk project and the service project ([0762167](https://gitlab.com/rxap/packages/commit/07621678af18ae73068270e506f4c14863d8a5a0))
+- set required defaults for nestjs microservice init ([c49215d](https://gitlab.com/rxap/packages/commit/c49215d6c854edbc49e03e126c90358326c16ea3))
+
 # [16.1.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.31...@rxap/plugin-nestjs@16.1.0-dev.32) (2023-10-02)
 
 ### Bug Fixes
