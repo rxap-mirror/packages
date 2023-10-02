@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.11...@rxap/plugin-localazy@16.1.0-dev.12) (2023-10-02)
+
+### Bug Fixes
+
+- introduce more Is\*Project functions ([8d37211](https://gitlab.com/rxap/packages/commit/8d37211fb1906f90d7176cfcfe43f755f04a0fa6))
+
 # [16.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.10...@rxap/plugin-localazy@16.1.0-dev.11) (2023-09-12)
 
 ### Bug Fixes

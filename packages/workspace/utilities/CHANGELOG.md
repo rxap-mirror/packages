@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.18...@rxap/workspace-utilities@0.1.0-dev.19) (2023-10-02)
+
+### Bug Fixes
+
+- introduce Is\*Project functions ([0f4a53a](https://gitlab.com/rxap/packages/commit/0f4a53a2a68c7f854d819c005a30957d8b1cb3c6))
+- introduce more Is\*Project functions ([8d37211](https://gitlab.com/rxap/packages/commit/8d37211fb1906f90d7176cfcfe43f755f04a0fa6))
+
 # [0.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.17...@rxap/workspace-utilities@0.1.0-dev.18) (2023-10-02)
 
 ### Bug Fixes

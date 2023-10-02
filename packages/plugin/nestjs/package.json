@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.35",
+  "version": "16.1.0-dev.36",
   "name": "@rxap/plugin-nestjs",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,12 +9,12 @@
     "@nx/devkit": "^16.5.0",
     "@nx/js": "^16.5.0",
     "@nx/nest": "^16.5.0",
-    "@rxap/generator-utilities": "^1.1.0-dev.15",
-    "@rxap/plugin-utilities": "^16.1.0-dev.17",
+    "@rxap/generator-utilities": "^1.1.0-dev.16",
+    "@rxap/plugin-utilities": "^16.1.0-dev.18",
     "@rxap/ts-morph": "^0.1.0-dev.13",
     "@rxap/utilities": "^16.0.0-dev.19",
     "@rxap/workspace-ts-morph": "^0.1.0-dev.9",
-    "@rxap/workspace-utilities": "^0.1.0-dev.18",
+    "@rxap/workspace-utilities": "^0.1.0-dev.19",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
@@ -42,11 +42,11 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.15"
+        "version": "1.1.0-dev.16"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.1.0-dev.17"
+        "version": "16.1.0-dev.18"
       },
       {
         "package": "@rxap/ts-morph",
@@ -62,7 +62,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.18"
+        "version": "0.1.0-dev.19"
       }
     ]
   },

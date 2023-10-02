@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.46](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.45...@rxap/plugin-angular@16.1.0-dev.46) (2023-10-02)
+
+### Bug Fixes
+
+- add cypress configuration after library and application init ([d7fc370](https://gitlab.com/rxap/packages/commit/d7fc370493c66e070ba4bf3bf8a0bf27d18e7094))
+- introduce Is\*Project functions ([0f4a53a](https://gitlab.com/rxap/packages/commit/0f4a53a2a68c7f854d819c005a30957d8b1cb3c6))
+- remove the default angular project files ([90ec712](https://gitlab.com/rxap/packages/commit/90ec712a656379696540db3d7b59a3257db76917))
+
 # [16.1.0-dev.45](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.44...@rxap/plugin-angular@16.1.0-dev.45) (2023-10-02)
 
 ### Bug Fixes

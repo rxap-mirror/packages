@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.29...@rxap/plugin-library@16.0.0-dev.30) (2023-10-02)
+
+### Bug Fixes
+
+- add the index-export target to all non plugin/schematic/generator project targets ([efaac2e](https://gitlab.com/rxap/packages/commit/efaac2e7aca03589c1b80559b51eb08297f6e933))
+- check if the LICENSE file exists before access the file ([de5bb8e](https://gitlab.com/rxap/packages/commit/de5bb8ec6ca66c4bfc663152f26b98b77273d30a))
+- introduce Is\*Project functions ([0f4a53a](https://gitlab.com/rxap/packages/commit/0f4a53a2a68c7f854d819c005a30957d8b1cb3c6))
+
 # [16.0.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.28...@rxap/plugin-library@16.0.0-dev.29) (2023-10-02)
 
 ### Bug Fixes

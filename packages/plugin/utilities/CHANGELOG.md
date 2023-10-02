@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.17...@rxap/plugin-utilities@16.1.0-dev.18) (2023-10-02)
+
+### Bug Fixes
+
+- introduce Is\*Project functions ([0f4a53a](https://gitlab.com/rxap/packages/commit/0f4a53a2a68c7f854d819c005a30957d8b1cb3c6))
+
 # [16.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.16...@rxap/plugin-utilities@16.1.0-dev.17) (2023-10-02)
 
 ### Bug Fixes

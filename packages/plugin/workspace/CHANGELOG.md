@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.33...@rxap/plugin-workspace@16.1.0-dev.34) (2023-10-02)
+
+### Bug Fixes
+
+- in application workspace the tailwind is disabled for libraries per default ([2bd87fc](https://gitlab.com/rxap/packages/commit/2bd87fc2d697cbf75cf6e7d7f35b50043f2a9737))
+- introduce more Is\*Project functions ([8d37211](https://gitlab.com/rxap/packages/commit/8d37211fb1906f90d7176cfcfe43f755f04a0fa6))
+
 # [16.1.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.32...@rxap/plugin-workspace@16.1.0-dev.33) (2023-10-02)
 
 ### Bug Fixes

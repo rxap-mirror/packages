@@ -8873,6 +8873,7 @@ __metadata:
   peerDependencies:
     "@nx/angular": ^16.5.0
     "@nx/devkit": ^16.5.0
+    "@rxap/workspace-utilities": ^0.1.0-dev.19
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9554,13 +9555,13 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@nx/devkit": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.15
-    "@rxap/plugin-localazy": ^16.1.0-dev.11
-    "@rxap/plugin-utilities": ^16.1.0-dev.17
+    "@rxap/generator-utilities": ^1.1.0-dev.16
+    "@rxap/plugin-localazy": ^16.1.0-dev.12
+    "@rxap/plugin-utilities": ^16.1.0-dev.18
     "@rxap/ts-morph": ^0.1.0-dev.13
     "@rxap/utilities": ^16.0.0-dev.19
     "@rxap/workspace-ts-morph": ^0.1.0-dev.9
-    "@rxap/workspace-utilities": ^0.1.0-dev.18
+    "@rxap/workspace-utilities": ^0.1.0-dev.19
     nx: ^16.5.0
     ts-morph: ^18.0.0
     tslib: 2.6.2
@@ -9574,13 +9575,13 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@nx/devkit": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.15
-    "@rxap/plugin-angular": ^16.1.0-dev.44
-    "@rxap/plugin-docker": ^16.0.0-dev.34
-    "@rxap/plugin-nestjs": ^16.1.0-dev.33
-    "@rxap/plugin-utilities": ^16.1.0-dev.17
+    "@rxap/generator-utilities": ^1.1.0-dev.16
+    "@rxap/plugin-angular": ^16.1.0-dev.46
+    "@rxap/plugin-docker": ^16.0.0-dev.35
+    "@rxap/plugin-nestjs": ^16.1.0-dev.36
+    "@rxap/plugin-utilities": ^16.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.19
-    "@rxap/workspace-utilities": ^0.1.0-dev.18
+    "@rxap/workspace-utilities": ^0.1.0-dev.19
     handlebars: ^4.7.7
     tslib: 2.6.2
   languageName: unknown
@@ -9594,11 +9595,11 @@ __metadata:
     yaml: 2.3.1
   peerDependencies:
     "@nx/devkit": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.15
+    "@rxap/generator-utilities": ^1.1.0-dev.16
     "@rxap/node-utilities": ^1.1.0-dev.13
-    "@rxap/plugin-utilities": ^16.1.0-dev.17
+    "@rxap/plugin-utilities": ^16.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.19
-    "@rxap/workspace-utilities": ^0.1.0-dev.18
+    "@rxap/workspace-utilities": ^0.1.0-dev.19
     tslib: 2.6.2
     yaml: 2.3.1
   languageName: unknown
@@ -9629,13 +9630,13 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-ts-morph": ^1.0.1-dev.12
-    "@rxap/generator-utilities": ^1.1.0-dev.15
+    "@rxap/generator-utilities": ^1.1.0-dev.16
     "@rxap/node-utilities": ^1.1.0-dev.13
-    "@rxap/plugin-angular": ^16.1.0-dev.43
-    "@rxap/plugin-nestjs": ^16.1.0-dev.32
-    "@rxap/plugin-utilities": ^16.1.0-dev.17
+    "@rxap/plugin-angular": ^16.1.0-dev.46
+    "@rxap/plugin-nestjs": ^16.1.0-dev.36
+    "@rxap/plugin-utilities": ^16.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.19
-    "@rxap/workspace-utilities": ^0.1.0-dev.17
+    "@rxap/workspace-utilities": ^0.1.0-dev.19
     handlebars: ^4.7.7
     nx: ^16.5.0
     semver: ^7.3.5
@@ -9652,9 +9653,10 @@ __metadata:
     yaml: 2.3.1
   peerDependencies:
     "@nx/devkit": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.13
-    "@rxap/plugin-utilities": ^16.1.0-dev.14
-    "@rxap/utilities": ^16.0.0-dev.17
+    "@rxap/generator-utilities": ^1.1.0-dev.16
+    "@rxap/plugin-utilities": ^16.1.0-dev.18
+    "@rxap/utilities": ^16.0.0-dev.19
+    "@rxap/workspace-utilities": ^0.1.0-dev.19
     tslib: 2.6.2
     yaml: 2.3.1
   languageName: unknown
@@ -9669,12 +9671,12 @@ __metadata:
     "@nx/devkit": ^16.5.0
     "@nx/js": ^16.5.0
     "@nx/nest": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.15
-    "@rxap/plugin-utilities": ^16.1.0-dev.17
+    "@rxap/generator-utilities": ^1.1.0-dev.16
+    "@rxap/plugin-utilities": ^16.1.0-dev.18
     "@rxap/ts-morph": ^0.1.0-dev.13
     "@rxap/utilities": ^16.0.0-dev.19
     "@rxap/workspace-ts-morph": ^0.1.0-dev.9
-    "@rxap/workspace-utilities": ^0.1.0-dev.18
+    "@rxap/workspace-utilities": ^0.1.0-dev.19
     ts-morph: ^18.0.0
     tslib: 2.6.2
   languageName: unknown
@@ -9706,9 +9708,9 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@nx/devkit": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.15
+    "@rxap/generator-utilities": ^1.1.0-dev.16
     "@rxap/node-utilities": ^1.1.0-dev.13
-    "@rxap/workspace-utilities": ^0.1.0-dev.17
+    "@rxap/workspace-utilities": ^0.1.0-dev.19
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9722,12 +9724,12 @@ __metadata:
     yaml: 2.3.1
   peerDependencies:
     "@nx/devkit": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.15
-    "@rxap/plugin-application": ^16.1.0-dev.24
-    "@rxap/plugin-library": ^16.0.0-dev.29
-    "@rxap/plugin-utilities": ^16.1.0-dev.17
+    "@rxap/generator-utilities": ^1.1.0-dev.16
+    "@rxap/plugin-application": ^16.1.0-dev.25
+    "@rxap/plugin-library": ^16.0.0-dev.30
+    "@rxap/plugin-utilities": ^16.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.19
-    "@rxap/workspace-utilities": ^0.1.0-dev.18
+    "@rxap/workspace-utilities": ^0.1.0-dev.19
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
