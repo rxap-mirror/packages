@@ -164,12 +164,12 @@ function updateProjectTargets(
   ]);
   // ensure the property polyfills are defined
   project.targets['build'].options.polyfills ??= [];
-  if (Array.isArray(project.targets['build'].options.polyfills)) {
+  if (!Array.isArray(project.targets['build'].options.polyfills)) {
     // ensure the property is an array
-    project.targets['build'].options.polyfills = [];
+    project.targets['build'].options.polyfills = [ 'zone.js' ];
   }
   if (options.i18n) {
-    CoerceAssets(project.targets['build'].options.polyfills, [ 'zone.js', '@angular/localize/init' ]);
+    CoerceAssets(project.targets['build'].options.polyfills, [ '@angular/localize/init' ]);
   }
   if (options.serviceWorker) {
     CoerceAssets(project.targets['build'].options.assets, [
