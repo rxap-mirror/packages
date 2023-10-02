@@ -18,6 +18,7 @@ import {
   RemoveAssets,
   SkipNonLibraryProject,
 } from '@rxap/generator-utilities';
+import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
@@ -31,6 +32,10 @@ import {
   join,
   relative,
 } from 'path';
+import {
+  gte,
+  parse,
+} from 'semver';
 import { SkipNonAngularProject } from '../../lib/skip-project';
 import { InitGeneratorSchema } from '../init/schema';
 import { InitLibraryGeneratorSchema } from './schema';
@@ -256,6 +261,36 @@ function cleanup(tree: Tree, project: ProjectConfiguration, projectName: string)
   }
 }
 
+function getAngularMajorVersion(rootPackageJson: ProjectPackageJson): string | null {
+  let targetVersion = rootPackageJson.dependencies['@angular/core'] ?? rootPackageJson.devDependencies['@angular/cli'];
+
+  if (!targetVersion) {
+    console.error(`The package @angular/core and @angular/cli are not installed in the root package.json`);
+    return null;
+  }
+
+  targetVersion = targetVersion.replace(/^[~^]/, '');
+
+  const version = parse(targetVersion);
+
+  return `${ version.major }.0.0`;
+}
+
+function updatePackageJson(
+  tree: Tree,
+  project: ProjectConfiguration,
+  rootPackageJson: ProjectPackageJson,
+) {
+  if (IsPublishable(tree, project) && tree.exists(join(project.root, 'package.json'))) {
+    const packageJson: ProjectPackageJson = readJson(tree, join(project.root, 'package.json'));
+    const version = getAngularMajorVersion(rootPackageJson) ?? packageJson.version;
+    if (!packageJson.version || gte(version, packageJson.version)) {
+      packageJson.version = version;
+    }
+    writeJson(tree, join(project.root, 'package.json'), packageJson);
+  }
+}
+
 export async function initLibraryGenerator(
   tree: Tree,
   options: InitLibraryGeneratorSchema,
@@ -263,6 +298,8 @@ export async function initLibraryGenerator(
   console.log('angular library init generator:', options);
 
   setGeneralTargetDefaults(tree);
+
+  const rootPackageJson: ProjectPackageJson = readJson(tree, 'package.json');
 
   if (!options.skipProjects) {
 
@@ -275,6 +312,7 @@ export async function initLibraryGenerator(
       console.log(`init project: ${ projectName }`);
 
       cleanup(tree, project, projectName);
+      updatePackageJson(tree, project, rootPackageJson);
 
       checkIfSecondaryEntrypointIncludeInTheTsConfig(tree, project);
 

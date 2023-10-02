@@ -1,19 +1,27 @@
 import {
   getProjects,
   ProjectConfiguration,
+  readJson,
   readNxJson,
   Tree,
   updateNxJson,
   updateProjectConfiguration,
+  writeJson,
 } from '@nx/devkit';
 import {
   IsPublishable,
   SkipNonLibraryProject,
 } from '@rxap/generator-utilities';
+import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
 } from '@rxap/workspace-utilities';
+import { join } from 'path';
+import {
+  gte,
+  parse,
+} from 'semver';
 import { SkipNonNestProject } from '../../lib/skip-non-nest-project';
 import { InitApplicationGeneratorSchema } from '../init-application/schema';
 
@@ -57,6 +65,36 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
 
 }
 
+function getNestMajorVersion(rootPackageJson: ProjectPackageJson): string | null {
+  let targetVersion = rootPackageJson.dependencies['@nestjs/core'] ?? rootPackageJson.devDependencies['@nestjs/cli'];
+
+  if (!targetVersion) {
+    console.error(`The package @nestjs/core and @nestjs/cli are not installed in the root package.json`);
+    return null;
+  }
+
+  targetVersion = targetVersion.replace(/^[~^]/, '');
+
+  const version = parse(targetVersion);
+
+  return `${ version.major }.0.0`;
+}
+
+function updatePackageJson(
+  tree: Tree,
+  project: ProjectConfiguration,
+  rootPackageJson: ProjectPackageJson,
+) {
+  if (IsPublishable(tree, project) && tree.exists(join(project.root, 'package.json'))) {
+    const packageJson: ProjectPackageJson = readJson(tree, join(project.root, 'package.json'));
+    const version = getNestMajorVersion(rootPackageJson) ?? packageJson.version;
+    if (!packageJson.version || gte(version, packageJson.version)) {
+      packageJson.version = version;
+    }
+    writeJson(tree, join(project.root, 'package.json'), packageJson);
+  }
+}
+
 export async function initLibraryGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
@@ -64,6 +102,8 @@ export async function initLibraryGenerator(
   console.log('nestjs library init generator:', options);
 
   setGeneralTargetDefaults(tree);
+
+  const rootPackageJson: ProjectPackageJson = readJson(tree, 'package.json');
 
   if (!options.skipProjects) {
 
@@ -76,6 +116,7 @@ export async function initLibraryGenerator(
       console.log(`init project: ${ projectName }`);
 
       updateProjectTargets(tree, project);
+      updatePackageJson(tree, project, rootPackageJson);
 
 
       // apply changes to the project configuration
