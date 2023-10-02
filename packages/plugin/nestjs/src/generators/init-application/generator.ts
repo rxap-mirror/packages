@@ -584,9 +584,11 @@ function updateTags(project: ProjectConfiguration, options: InitApplicationGener
 
 async function updateApiConfigurationFile(
   tree: Tree, projectName: string, { apiConfigurationFile, apiPrefix }: InitApplicationGeneratorSchema) {
-  await UpdateJsonFile(tree, json => {
-    json[projectName] = { baseUrl: `/${ apiPrefix }` };
-  }, apiConfigurationFile, { create: true });
+  if (apiConfigurationFile) {
+    await UpdateJsonFile(tree, json => {
+      json[projectName] = { baseUrl: `/${ apiPrefix }` };
+    }, apiConfigurationFile, { create: true });
+  }
 }
 
 export async function initApplicationGenerator(
@@ -606,6 +608,7 @@ export async function initApplicationGenerator(
   options.openApi ??= false;
   options.jwt ??= false;
   options.statusRegister ??= true;
+  options.apiConfigurationFile ??= 'shared/service/configuration/latest/config.api.json';
   console.log('nestjs application init generator:', options);
 
   await AddPackageJsonDependency(tree, '@rxap/nest-server', 'latest', { soft: true });

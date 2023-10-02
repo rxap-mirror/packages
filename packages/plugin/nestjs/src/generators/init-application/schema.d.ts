@@ -23,5 +23,5 @@ export interface InitApplicationGeneratorSchema {
   jwt?: boolean;
   statusRegister?: boolean;
   skipProjects?: boolean;
-  apiConfigurationFile: string;
+  apiConfigurationFile?: string;
 }
