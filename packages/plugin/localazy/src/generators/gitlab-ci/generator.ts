@@ -4,6 +4,7 @@ import {
   Tree,
 } from '@nx/devkit';
 import { clone } from '@rxap/utilities';
+import { IsApplicationProject } from '@rxap/workspace-utilities';
 import { stringify } from 'yaml';
 import { GitlabCiGeneratorSchema } from './schema';
 
@@ -40,7 +41,7 @@ const localazy = {
 
 function skipProject(tree: Tree, options: GitlabCiGeneratorSchema, project: ProjectConfiguration, projectName: string) {
 
-  if (project.projectType !== 'application') {
+  if (!IsApplicationProject(project)) {
     return true;
   }
 

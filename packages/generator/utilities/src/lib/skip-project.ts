@@ -2,7 +2,11 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import { IsInternalProject } from '@rxap/workspace-utilities';
+import {
+  IsApplicationProject,
+  IsInternalProject,
+  IsLibraryProject,
+} from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { IsBuildable } from './is-buildable';
 import { IsPublishable } from './is-publishable';
@@ -46,7 +50,7 @@ export function SkipNonLibraryProject(
     return true;
   }
 
-  if (project.projectType !== 'library') {
+  if (!IsLibraryProject(project)) {
     return true;
   }
 
@@ -103,7 +107,7 @@ export function SkipNonApplicationProject(
     return true;
   }
 
-  if (project.projectType !== 'application') {
+  if (!IsApplicationProject(project)) {
     return true;
   }
 

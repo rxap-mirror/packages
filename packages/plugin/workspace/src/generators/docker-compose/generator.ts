@@ -9,6 +9,7 @@ import {
 import { IsRecord } from '@rxap/utilities';
 import {
   GetRootDockerOptions,
+  IsApplicationProject,
   RootDockerOptions,
 } from '@rxap/workspace-utilities';
 import { execSync } from 'child_process';
@@ -215,7 +216,7 @@ interface Application {
 function getApplications(tree: Tree, options: DockerComposeGeneratorSchema): Array<Application> {
   const projects = getProjects(tree);
   return Array.from(projects.entries())
-              .filter(([ , project ]) => project.projectType === 'application')
+    .filter(([ , project ]) => IsApplicationProject(project))
               .filter(([ , project ]) => project.targets?.docker)
               .filter(([ projectName ]) => !options.ignoreProjects?.some((ignoreProject) => projectName ===
                 ignoreProject))

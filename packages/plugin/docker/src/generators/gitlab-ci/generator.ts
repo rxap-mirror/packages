@@ -11,6 +11,9 @@ import {
 import { clone } from '@rxap/utilities';
 import {
   GetRootDockerOptions,
+  IsApplicationProject,
+  IsServiceProject,
+  IsUserInterfaceProject,
   RootDockerOptions,
 } from '@rxap/workspace-utilities';
 import * as path from 'path';
@@ -78,7 +81,7 @@ const startup = {
 
 function skipProject(tree: Tree, options: GitlabCiGeneratorSchema, project: ProjectConfiguration, projectName: string) {
 
-  if (project.projectType !== 'application') {
+  if (!IsApplicationProject(project)) {
     return true;
   }
 
@@ -142,17 +145,7 @@ function generateDockerGitlabCiFileContent(
   return stringify(dockerYaml);
 }
 
-function isUserInterfaceProject(project: ProjectConfiguration) {
-  return project.projectType === 'application' && (
-    project.tags.includes('user-interface') || project.tags.includes('angular')
-  );
-}
 
-function isServiceProject(project: ProjectConfiguration) {
-  return project.projectType === 'application' && (
-    project.tags.includes('service') || project.tags.includes('nestjs') || project.tags.includes('nest')
-  );
-}
 
 function generateStartupGitlabCiFileContent(
   tree: Tree,
@@ -169,7 +162,7 @@ function generateStartupGitlabCiFileContent(
       continue;
     }
 
-    if (!isUserInterfaceProject(project) && !isServiceProject(project)) {
+    if (!IsUserInterfaceProject(project) && !IsServiceProject(project)) {
       continue;
     }
 
@@ -185,12 +178,12 @@ function generateStartupGitlabCiFileContent(
       IMAGE_NAME: imageName,
     };
 
-    if (isServiceProject(project)) {
+    if (IsServiceProject(project)) {
       startupYaml[`startup:${ projectName }`].variables.SERVICE_PORT = '3000';
       startupYaml[`startup:${ projectName }`].variables.SERVICE_PATH = 'info';
     }
 
-    if (isUserInterfaceProject(project)) {
+    if (IsUserInterfaceProject(project)) {
       startupYaml[`startup:${ projectName }`].variables.SERVICE_PORT = '80';
     }
 

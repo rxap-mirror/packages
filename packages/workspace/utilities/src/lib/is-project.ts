@@ -41,3 +41,23 @@ export function IsWorkspaceProject(project: { tags?: string[] }): boolean {
 export function IsDataStructureProject(project: { tags?: string[] }): boolean {
   return !!project.tags?.includes('data-structure');
 }
+
+export function IsApplicationProject(project: { projectType?: string }): boolean {
+  return project.projectType === 'application';
+}
+
+export function IsLibraryProject(project: { projectType?: string }): boolean {
+  return project.projectType === 'library';
+}
+
+export function IsUserInterfaceProject(project: { tags?: string[], projectType?: string }) {
+  return IsApplicationProject(project) && (
+    !!project.tags?.includes('user-interface') || IsApplicationProject(project)
+  );
+}
+
+export function IsServiceProject(project: { tags?: string[], projectType?: string }) {
+  return IsApplicationProject(project) && (
+    !!project.tags?.includes('service') || IsNestJsProject(project)
+  );
+}

@@ -3,6 +3,10 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
+import {
+  IsApplicationProject,
+  IsLibraryProject,
+} from '@rxap/workspace-utilities';
 import { SkipNonNestProject } from '../../lib/skip-non-nest-project';
 import initApplicationGenerator from '../init-application/generator';
 import initLibraryGenerator from '../init-library/generator';
@@ -33,7 +37,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
     }
 
-    if (project.projectType === 'library') {
+    if (IsLibraryProject(project)) {
       await initLibraryGenerator(tree,
         {
           ...options,
@@ -43,7 +47,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       );
     }
 
-    if (project.projectType === 'application') {
+    if (IsApplicationProject(project)) {
       await initApplicationGenerator(tree,
         {
           ...options,
