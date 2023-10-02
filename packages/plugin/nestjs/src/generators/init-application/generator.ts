@@ -35,6 +35,7 @@ import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   Strategy,
+  UpdateJsonFile,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
@@ -581,6 +582,13 @@ function updateTags(project: ProjectConfiguration, options: InitApplicationGener
   CoerceProjectTags(project, tags);
 }
 
+async function updateApiConfigurationFile(
+  tree: Tree, projectName: string, { apiConfigurationFile, apiPrefix }: InitApplicationGeneratorSchema) {
+  await UpdateJsonFile(tree, json => {
+    json[projectName] = { baseUrl: `/${ apiPrefix }` };
+  }, apiConfigurationFile, { create: true });
+}
+
 export async function initApplicationGenerator(
   tree: Tree,
   options: InitApplicationGeneratorSchema,
@@ -660,6 +668,7 @@ export async function initApplicationGenerator(
       updateProjectTargets(project);
       updateGitIgnore(tree, project);
       updateTags(project, options);
+      await updateApiConfigurationFile(tree, projectName, options);
       await createOpenApiClientSdkLibrary(tree, project, projects);
 
       // apply changes to the project configuration
