@@ -1,15 +1,26 @@
 import {
   CoerceTarget,
-  ProjectConfigurationWithTarget,
+  NxJsonOrProjectConfiguration,
   Strategy,
   TargetConfiguration,
 } from './coerce-target';
 
 describe('CoerceTarget', () => {
 
+  it('should guess if nxJson or project configuration', () => {
+
+    const projectConfiguration: NxJsonOrProjectConfiguration = {};
+    const nxJson: NxJsonOrProjectConfiguration = {};
+    CoerceTarget(projectConfiguration, 'test');
+    CoerceTarget(nxJson, 'test');
+    expect(projectConfiguration).toEqual({ targets: { test: {} } });
+    expect(nxJson).toEqual({ targetDefaults: { test: {} } });
+
+  });
+
   it('should add target if not exists for any strategy', () => {
 
-    const projectConfiguration: ProjectConfigurationWithTarget = {};
+    const projectConfiguration: NxJsonOrProjectConfiguration = {};
     const target: TargetConfiguration = { executor: 'test' };
 
     CoerceTarget(projectConfiguration, 'default', target, Strategy.DEFAULT);
@@ -30,7 +41,7 @@ describe('CoerceTarget', () => {
 
   it('should not change target for default strategy', () => {
 
-    const projectConfiguration: ProjectConfigurationWithTarget = {
+    const projectConfiguration: NxJsonOrProjectConfiguration = {
       targets: {
         current: { executor: 'test' },
       },
@@ -48,7 +59,7 @@ describe('CoerceTarget', () => {
 
   it('should overwrite target for overwrite strategy', () => {
 
-    const projectConfiguration: ProjectConfigurationWithTarget = {
+    const projectConfiguration: NxJsonOrProjectConfiguration = {
       targets: {
         current: {
           executor: 'test',
@@ -85,7 +96,7 @@ describe('CoerceTarget', () => {
 
   it('should merge target for merge strategy', () => {
 
-    const projectConfiguration: ProjectConfigurationWithTarget = {
+    const projectConfiguration: NxJsonOrProjectConfiguration = {
       targets: {
         current: {
           executor: 'test',
@@ -122,7 +133,7 @@ describe('CoerceTarget', () => {
 
   it('should replace target for replace strategy', () => {
 
-    const projectConfiguration: ProjectConfigurationWithTarget = {
+    const projectConfiguration: NxJsonOrProjectConfiguration = {
       targets: {
         current: {
           executor: 'test',

@@ -15,8 +15,9 @@ export interface TargetConfiguration {
   defaultConfiguration?: string;
 }
 
-export interface ProjectConfigurationWithTarget {
+export interface NxJsonOrProjectConfiguration {
   targets?: Record<string, TargetConfiguration>;
+  targetDefaults?: Record<string, TargetConfiguration>;
 }
 
 export enum Strategy {
@@ -27,30 +28,48 @@ export enum Strategy {
 }
 
 export function CoerceTarget(
-  projectConfiguration: ProjectConfigurationWithTarget,
+  projectConfiguration: NxJsonOrProjectConfiguration,
   name: string,
   target: TargetConfiguration = {},
   strategy = Strategy.DEFAULT,
 ) {
 
-  projectConfiguration.targets ??= {};
+  if (!projectConfiguration.targetDefaults && !projectConfiguration.targets) {
+    if ((
+          projectConfiguration as any
+        ).name || (
+          projectConfiguration as any
+        ).projectType) {
+      projectConfiguration.targets = {};
+    } else {
+      projectConfiguration.targetDefaults = {};
+    }
+  }
 
-  if (!projectConfiguration.targets[name]) {
-    projectConfiguration.targets[name] = target;
+  const targets = projectConfiguration.targets ?? projectConfiguration.targetDefaults!;
+
+  if (!targets[name]) {
+    targets[name] = target;
   } else {
     switch (strategy) {
       case Strategy.DEFAULT:
         break;
       case Strategy.OVERWRITE:
-        projectConfiguration.targets[name] = deepMerge(projectConfiguration.targets[name], target);
+        targets[name] = deepMerge(targets[name], target);
         break;
       case Strategy.MERGE:
-        projectConfiguration.targets[name] = deepMerge(projectConfiguration.targets[name], target, MergeDeepLeft);
+        targets[name] = deepMerge(targets[name], target, MergeDeepLeft);
         break;
       case Strategy.REPLACE:
-        projectConfiguration.targets[name] = target;
+        targets[name] = target;
         break;
     }
+  }
+
+  if (projectConfiguration.targetDefaults) {
+    projectConfiguration.targetDefaults = targets;
+  } else {
+    projectConfiguration.targets = targets;
   }
 
 }
