@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.37](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.36...@rxap/plugin-nestjs@16.1.0-dev.37) (2023-10-02)
+
+### Bug Fixes
+
+- set correct default publishable library package json version ([32c032d](https://gitlab.com/rxap/packages/commit/32c032dd47552dc53f5adbc39af0ef2a074beea6))
+- use function CoerceNxJsonCacheableOperation ([14f26b0](https://gitlab.com/rxap/packages/commit/14f26b0d679f5d1208a23ae20d6d9f6f4516a60d))
+
 # [16.1.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.35...@rxap/plugin-nestjs@16.1.0-dev.36) (2023-10-02)
 
 ### Bug Fixes

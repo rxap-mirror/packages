@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.16...@rxap/generator-utilities@1.1.0-dev.17) (2023-10-02)
+
+### Bug Fixes
+
+- only use custom cypress config in rxap repository ([ab06ea5](https://gitlab.com/rxap/packages/commit/ab06ea59cbe847d3703d6336ebcf90d4228e2726))
+
 # [1.1.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.15...@rxap/generator-utilities@1.1.0-dev.16) (2023-10-02)
 
 ### Bug Fixes

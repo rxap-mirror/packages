@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.47](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.46...@rxap/plugin-angular@16.1.0-dev.47) (2023-10-02)
+
+### Bug Fixes
+
+- only add specific eslint to project in the rxap repo ([8f59c18](https://gitlab.com/rxap/packages/commit/8f59c1882fdc5eb37a098fdd526acb3fec644444))
+- set correct default publishable library package json version ([32c032d](https://gitlab.com/rxap/packages/commit/32c032dd47552dc53f5adbc39af0ef2a074beea6))
+
 # [16.1.0-dev.46](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.45...@rxap/plugin-angular@16.1.0-dev.46) (2023-10-02)
 
 ### Bug Fixes

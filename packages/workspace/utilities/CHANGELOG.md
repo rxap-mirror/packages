@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.19...@rxap/workspace-utilities@0.1.0-dev.20) (2023-10-02)
+
+### Bug Fixes
+
+- support project configuration and nxjson ([c1e0836](https://gitlab.com/rxap/packages/commit/c1e0836cc86584cb2385409ff1d66baa9351e0eb))
+
+### Features
+
+- add function CoerceNxJsonCacheableOperation ([7db34b4](https://gitlab.com/rxap/packages/commit/7db34b4d282fbeb56bb0607b4a59ceb534741e8e))
+- support tree as input ([bb18922](https://gitlab.com/rxap/packages/commit/bb18922994e4c95c15e8ea9b35775c78f89158db))
+
 # [0.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.18...@rxap/workspace-utilities@0.1.0-dev.19) (2023-10-02)
 
 ### Bug Fixes
