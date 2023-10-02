@@ -1,4 +1,5 @@
 import {
+  ConfigurableModuleOptionsFactory,
   Inject,
   Injectable,
   Logger,
@@ -12,7 +13,7 @@ import {
 import { OpenApiModuleOptions } from './open-api.module';
 
 @Injectable()
-export class OpenApiModuleOptionsLoader {
+export class OpenApiModuleOptionsLoader implements ConfigurableModuleOptionsFactory<OpenApiModuleOptions, 'create'> {
 
   @Inject(ConfigService)
   private readonly config!: ConfigService;
