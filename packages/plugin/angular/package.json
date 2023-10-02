@@ -3,7 +3,8 @@
   "name": "@rxap/plugin-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "tslib": "2.6.2"
+    "tslib": "2.6.2",
+    "semver": "^7.3.5"
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
