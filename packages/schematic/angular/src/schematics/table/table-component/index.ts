@@ -649,6 +649,7 @@ export default function (options: TableComponentOptions) {
       AddPackageJsonDependencyRule('@rxap/material-form-system', 'latest', { soft: true }),
       AddPackageJsonDependencyRule('@rxap/form-system', 'latest', { soft: true }),
       AddPackageJsonDependencyRule('@rxap/window-system', 'latest', { soft: true }),
+      AddPackageJsonDependencyRule('@rxap/nest-dto', 'latest', { soft: true }),
       () => console.groupEnd(),
     ]);
   };
