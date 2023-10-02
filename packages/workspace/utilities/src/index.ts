@@ -42,6 +42,7 @@ export * from './lib/collection-json/interface';
 // endregion
 
 // region coerce
+export * from './lib/coerce/coerce-nx-json-cacheable-operation';
 export * from './lib/coerce/coerce-target-defaults-dependency';
 export * from './lib/coerce/coerce-target-defaults-input';
 export * from './lib/coerce/coerce-target-defaults-output';
