@@ -86,7 +86,7 @@ export abstract class Server<O extends object, T extends INestApplicationContext
       throw new Error('Could not inject a ConfigService instance');
     }
 
-    if (this.config.get('ENVIRONMENT_NAME') !== this.environment.name) {
+    if (this.config.get('ENVIRONMENT_NAME') && this.config.get('ENVIRONMENT_NAME') !== this.environment.name) {
       this.logger.warn(
         'The config value ENVIRONMENT_NAME is not equal to the environment name. Only the process.env.ENVIRONMENT_NAME is used to set a custom environment name. If the config value ENVIRONMENT_NAME is set, this value will not be used.',
         'Bootstrap',
