@@ -165,7 +165,9 @@ export default async function runExecutor(
 
   console.log('Input for README.md template ready');
 
-  const readme = template({
+  let readme: string;
+
+  const templateContext = {
     packageJson,
     getStartedContent,
     guidesContent,
@@ -177,7 +179,16 @@ export default async function runExecutor(
     hasExecutors: executorsList.length > 0,
     hasInitGenerator: generatorList.find((generator) => generator.name === 'init') !== undefined,
     hasConfigGenerator: generatorList.find((generator) => generator.name === 'config') !== undefined,
-  });
+  };
+
+  try {
+    readme = template(templateContext);
+  } catch (e: any) {
+    console.error(`Error while generating README.md: ${ e.message }`, templateContext);
+    return {
+      success: false,
+    };
+  }
 
   console.log('README.md generated');
 
