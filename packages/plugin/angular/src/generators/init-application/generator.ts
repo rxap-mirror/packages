@@ -203,6 +203,9 @@ function updateTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchem
     CoerceTargetDefaultsDependency(nxJson, 'localazy-upload', 'extract-i18n');
   }
 
+  CoerceTargetDefaultsDependency(nxJson, 'build', '^generate-open-api');
+  CoerceTargetDefaultsDependency(nxJson, 'serve', '^generate-open-api');
+
   updateNxJson(tree, nxJson);
 }
 
