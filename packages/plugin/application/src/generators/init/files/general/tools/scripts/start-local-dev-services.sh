@@ -82,11 +82,18 @@ if [[ $SKIP_PULL != "true" ]]; then
     read -p "Do you want to try to build the images locally (y/N)? "
 
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-  yarn nx run-many --target docker --configuration production --imageRegistry "$REGISTRY" --tag "$channel"
-else
-  echo "exiting"
-  exit 1
-fi
+      PARAMS="--target docker --configuration production --tag $channel"
+      if [[ $REGISTRY != "" ]]; then
+        PARAMS="$PARAMS --imageRegistry $REGISTRY"
+      fi
+      echo "yarn nx run-many $PARAMS"
+      # don't use double quotes around $PARAMS here. or else the $PARAMS will be expanded and passed as a single argument
+      yarn nx run-many $PARAMS
+    else
+      echo "exiting"
+      exit 1
+    fi
+
   fi
 
 fi
