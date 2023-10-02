@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.18...@rxap/schematic-angular@16.1.0-dev.19) (2023-10-02)
+
+### Bug Fixes
+
+- add generator termination indicator ([aa34baf](https://gitlab.com/rxap/packages/commit/aa34baf92397cf320859845fb7b5a4765b77d4d9))
+- ensure required packages are added to package.json ([ebe0858](https://gitlab.com/rxap/packages/commit/ebe085822edb94a276f7f79dd70d28c9872f7b32))
+- generate a valid implementation for navigation execution ([d9d13d1](https://gitlab.com/rxap/packages/commit/d9d13d11c56bc5b0c5c130c21281e2c2d91e575a))
+
 # [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.17...@rxap/schematic-angular@16.1.0-dev.18) (2023-10-01)
 
 ### Bug Fixes

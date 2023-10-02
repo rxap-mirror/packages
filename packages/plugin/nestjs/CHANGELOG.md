@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.31...@rxap/plugin-nestjs@16.1.0-dev.32) (2023-10-02)
+
+### Bug Fixes
+
+- convert directory into project name prefix ([97d743d](https://gitlab.com/rxap/packages/commit/97d743dfc500232aa3ee505fe0eaffc24af8ed30))
+- ensure the apiConfigurationFile is defined ([ec22d23](https://gitlab.com/rxap/packages/commit/ec22d234d9a207803ca093cf55488d89280d7aeb))
+- import SentryOptionsFactory from the correct package ([23243db](https://gitlab.com/rxap/packages/commit/23243db072efb24c543421c049a656f10c592d92))
+- move forRoot logic into detected loader classes ([01796e0](https://gitlab.com/rxap/packages/commit/01796e0898a3dee4e365278a73029dd023093136))
+- remove coerce default root domain ([8092172](https://gitlab.com/rxap/packages/commit/809217280ba95cf2132c6a5b0cb262687b5aee81))
+- update the application configuration file with the service api prefix ([b9bbc58](https://gitlab.com/rxap/packages/commit/b9bbc58573e0fc885da765da71abd6b0ae2c4613))
+
+### Features
+
+- add feature-microservice generator ([4aed057](https://gitlab.com/rxap/packages/commit/4aed057737303429cd543008d9a2947f3756bca2))
+- add frontend-microservice generator ([444e758](https://gitlab.com/rxap/packages/commit/444e7585d4a1c8c3fe2528671ef7948bad1323be))
+- add microservice generator ([a2d46fc](https://gitlab.com/rxap/packages/commit/a2d46fc4c718d365346e243d899eb35d458900ac))
+
 # [16.1.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.30...@rxap/plugin-nestjs@16.1.0-dev.31) (2023-09-28)
 
 ### Bug Fixes

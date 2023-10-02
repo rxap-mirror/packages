@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@0.1.0-dev.11...@rxap/schematic-nestjs@0.1.0-dev.12) (2023-10-02)
+
+### Bug Fixes
+
+- update default api configuration file path ([a87c08c](https://gitlab.com/rxap/packages/commit/a87c08c10d36ff3830db2526bc3759baa83e8efc))
+
 # [0.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@0.1.0-dev.10...@rxap/schematic-nestjs@0.1.0-dev.11) (2023-09-18)
 
 ### Bug Fixes

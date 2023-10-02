@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.1-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@10.0.1-dev.12...@rxap/nest-jwt@10.0.1-dev.13) (2023-10-02)
+
+### Bug Fixes
+
+- move forRoot logic into detected loader classes ([01796e0](https://gitlab.com/rxap/packages/commit/01796e0898a3dee4e365278a73029dd023093136))
+
 ## [10.0.1-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@10.0.1-dev.11...@rxap/nest-jwt@10.0.1-dev.12) (2023-09-29)
 
 ### Bug Fixes

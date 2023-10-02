@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.22...@rxap/schematics-ts-morph@16.0.0-dev.23) (2023-10-02)
+
+### Bug Fixes
+
+- remove user-interface- prefix from service name generation ([0388b2f](https://gitlab.com/rxap/packages/commit/0388b2f614bb666051260c4ade15f2c32dd03575))
+
 # [16.0.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.21...@rxap/schematics-ts-morph@16.0.0-dev.22) (2023-09-28)
 
 ### Bug Fixes

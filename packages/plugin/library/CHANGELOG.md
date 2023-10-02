@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.28...@rxap/plugin-library@16.0.0-dev.29) (2023-10-02)
+
+### Bug Fixes
+
+- handle readme generator execution errors ([a5c5204](https://gitlab.com/rxap/packages/commit/a5c5204b6e2bcd39db3d868e1bfa5955b0570dbf))
+- support schema with $ref and allOf properties ([c8a1640](https://gitlab.com/rxap/packages/commit/c8a164039443b37e2c0a6b2d1dceb1bfa6312b97))
+
 # [16.0.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.27...@rxap/plugin-library@16.0.0-dev.28) (2023-09-21)
 
 ### Bug Fixes
