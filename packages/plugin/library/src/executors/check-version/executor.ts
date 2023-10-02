@@ -15,7 +15,7 @@ export default async function runExecutor(
   const projectJson = readPackageJsonForProject(context);
   const rootPackageJson = readPackageJsonForProject(context, 'workspace');
 
-  const targetVersion = rootPackageJson.devDependencies[options.packageName] ??
+  let targetVersion = rootPackageJson.devDependencies[options.packageName] ??
     rootPackageJson.dependencies[options.packageName];
 
   if (!targetVersion) {
@@ -24,6 +24,8 @@ export default async function runExecutor(
       success: false,
     };
   }
+
+  targetVersion = targetVersion.replace(/^[~^]/, '');
 
   console.log(`Current '${ options.packageName }' version: ${ targetVersion }`);
   console.log(`Project version: ${ projectJson.version }`);
