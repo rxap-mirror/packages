@@ -23,6 +23,7 @@ import {
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
+  DeleteRecursive,
   SearchFile,
 } from '@rxap/workspace-utilities';
 import {
@@ -247,6 +248,14 @@ function checkIfSecondaryEntrypointIncludeInTheTsConfig(tree: Tree, project: Pro
   }
 }
 
+function cleanup(tree: Tree, project: ProjectConfiguration, projectName: string) {
+  const projectSourceRoot = project.sourceRoot;
+  if (tree.exists(join(projectSourceRoot, 'lib', projectName))) {
+    DeleteRecursive(tree, join(projectSourceRoot, 'lib', projectName));
+    tree.write(join(projectSourceRoot, 'index.ts'), 'export {};');
+  }
+}
+
 export async function initLibraryGenerator(
   tree: Tree,
   options: InitLibraryGeneratorSchema,
@@ -264,6 +273,8 @@ export async function initLibraryGenerator(
       }
 
       console.log(`init project: ${ projectName }`);
+
+      cleanup(tree, project, projectName);
 
       checkIfSecondaryEntrypointIncludeInTheTsConfig(tree, project);
 
