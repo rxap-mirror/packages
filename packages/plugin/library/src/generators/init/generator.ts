@@ -1,6 +1,7 @@
 import {
   getProjects,
   ProjectConfiguration,
+  readNxJson,
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
@@ -13,6 +14,7 @@ import {
 import { AngularInitGenerator } from '@rxap/plugin-angular';
 import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
 import {
+  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   IsAngularProject,
   IsGeneratorProject,
@@ -51,6 +53,26 @@ function updateProjectTargets(project: ProjectConfiguration) {
 
 }
 
+function updateDefaultProjectTargets(tree: Tree) {
+  const nxJson = readNxJson(tree);
+
+  CoerceTarget(nxJson, 'index-export', {
+    'executor': '@rxap/plugin-library:run-generator',
+    'outputs': [
+      '{workspaceRoot}/{projectRoot}/src/index.ts',
+    ],
+    'options': {
+      'generator': '@rxap/plugin-library:index-export',
+    },
+    'inputs': [
+      'production',
+    ],
+  });
+
+  CoerceNxJsonCacheableOperation(nxJson, 'index-export');
+
+}
+
 
 function skipProject(
   tree: Tree,
@@ -69,6 +91,8 @@ function skipProject(
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   console.log('library init generator:', options);
+
+  updateDefaultProjectTargets(tree);
 
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 
