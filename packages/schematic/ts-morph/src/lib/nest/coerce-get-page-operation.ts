@@ -347,6 +347,8 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
             name: 'filter',
             type: 'FilterQuery[]',
             pipeList: [ 'new FilterQueryPipe()' ],
+            // the FilterQueryPipe will set the default value to an empty array
+            hasQuestionToken: false,
           },
         ],
         returnType: pageClassName,

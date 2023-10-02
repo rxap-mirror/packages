@@ -27,6 +27,7 @@ export interface OperationParameter {
   type?: string | WriterFunction;
   pipeList?: Array<string | WriterFunction>;
   defaultValue?: string | WriterFunction;
+  hasQuestionToken?: boolean;
   required?: boolean;
   isArray?: boolean;
 
@@ -101,9 +102,9 @@ function buildMethodQueryParameters(
       name: query.alias ??
         query.name,
       type: query.type,
-      hasQuestionToken: !query.required &&
-        query.defaultValue ===
-        undefined,
+      hasQuestionToken: query.hasQuestionToken ?? (
+        !query.required && query.defaultValue === undefined
+      ),
       decorators: [
         {
           name: 'Query',
