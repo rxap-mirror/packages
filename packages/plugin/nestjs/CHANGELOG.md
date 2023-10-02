@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.34...@rxap/plugin-nestjs@16.1.0-dev.35) (2023-10-02)
+
+### Bug Fixes
+
+- ensure options are passed to the microservice generator ([0d048cf](https://gitlab.com/rxap/packages/commit/0d048cf25a258107c38a9f52b96415331125ba56))
+- ensure the project specific api prefix is used ([85327a4](https://gitlab.com/rxap/packages/commit/85327a40e26fe6e46bff0961bf91044e3cd4c59c))
+
 # [16.1.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.33...@rxap/plugin-nestjs@16.1.0-dev.34) (2023-10-02)
 
 ### Bug Fixes
