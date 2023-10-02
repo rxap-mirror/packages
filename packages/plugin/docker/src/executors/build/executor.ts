@@ -39,6 +39,8 @@ export default async function runExecutor(
     }
   }
 
+  console.log('Executor ran for Build', options);
+
   console.log('login to registry');
 
   await loginToRegistry(options);
