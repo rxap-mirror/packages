@@ -7,6 +7,10 @@ import {
   CoerceCypressComponentTesting,
   HasComponents,
 } from '@rxap/generator-utilities';
+import {
+  IsApplicationProject,
+  IsLibraryProject,
+} from '@rxap/workspace-utilities';
 import { SkipNonAngularProject } from '../../lib/skip-project';
 import initApplicationGenerator from '../init-application/generator';
 import initLibraryGenerator from '../init-library/generator';
@@ -31,17 +35,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       continue;
     }
 
-    if (!options.skipProjects) {
-
-      console.log(`init project: ${ projectName }`);
-
-      if (HasComponents(tree, project.root)) {
-        await CoerceCypressComponentTesting(tree, project, projectName);
-      }
-
-    }
-
-    if (project.projectType === 'library') {
+    if (IsLibraryProject(project)) {
       await initLibraryGenerator(tree,
         {
           ...options,
@@ -51,7 +45,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       );
     }
 
-    if (project.projectType === 'application') {
+    if (IsApplicationProject(project)) {
       await initApplicationGenerator(tree,
         {
           ...options,
@@ -59,6 +53,19 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
           skipProjects: options.skipProjects,
         },
       );
+    }
+
+    if (!options.skipProjects) {
+
+      console.log(`init project: ${ projectName }`);
+
+      // execute the add cypress if the project has components after the library/application init
+      // as the library init will remove the default components so that cypress is only added
+      // if the project has really any components
+      if (HasComponents(tree, project.root)) {
+        await CoerceCypressComponentTesting(tree, project, projectName);
+      }
+
     }
 
   }
