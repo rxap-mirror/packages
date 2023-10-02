@@ -25,6 +25,7 @@ import {
   CoerceTargetDefaultsInput,
   CoerceTargetDefaultsOutput,
   DeleteRecursive,
+  IsRxapRepository,
   SearchFile,
 } from '@rxap/workspace-utilities';
 import {
@@ -127,6 +128,11 @@ function skipProject(tree: Tree, options: InitGeneratorSchema, project: ProjectC
 }
 
 function extendAngularSpecificEslint(tree: Tree, project: ProjectConfiguration) {
+
+  if (!IsRxapRepository(tree)) {
+    return;
+  }
+
   const projectRoot = project.root;
 
   const relativeToAngularRoot = relative(projectRoot, 'packages/angular');
