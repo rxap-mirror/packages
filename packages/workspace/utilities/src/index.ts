@@ -65,6 +65,7 @@ export * from './lib/delete-recursive';
 export * from './lib/get-project';
 export * from './lib/get-root-docker-options';
 export * from './lib/get-workspace-scope';
+export * from './lib/is-project';
 export * from './lib/is-rxap-repository';
 export * from './lib/json-file';
 export * from './lib/nx-json-file';

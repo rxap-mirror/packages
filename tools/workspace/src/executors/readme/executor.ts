@@ -6,6 +6,19 @@ import {
 import { readFile } from '@nx/plugin/testing';
 import { readPackageJsonForProject } from '@rxap/plugin-utilities';
 import {
+  IsAngularMaterialProject,
+  IsAngularProject,
+  IsDataStructureProject,
+  IsGeneratorProject,
+  IsInternalProject,
+  IsNestJsProject,
+  IsNodeProject,
+  IsPluginProject,
+  IsSchematicProject,
+  IsUtilitiesProject,
+  IsWorkspaceProject,
+} from '@rxap/workspace-utilities';
+import {
   existsSync,
   writeFileSync,
 } from 'fs';
@@ -22,34 +35,34 @@ function getTemplate(context: ExecutorContext) {
 function getGroupKeyForProject(project: ProjectConfiguration): string {
   switch (true) {
 
-    case project.tags?.includes('node'):
+    case IsNodeProject(project):
       return 'Node';
 
-    case project.tags?.includes('plugin'):
+    case IsPluginProject(project):
       return 'NX Plugin';
 
-    case project.tags?.includes('generator'):
+    case IsGeneratorProject(project):
       return 'NX Generator';
 
-    case project.tags?.includes('schematic'):
+    case IsSchematicProject(project):
       return 'NX Schematic';
 
-    case project.tags?.includes('nest'):
+    case IsNestJsProject(project):
       return 'NestJS';
 
-    case project.tags?.includes('angular') && project.tags?.includes('material'):
+    case IsAngularMaterialProject(project):
       return 'Angular Material';
 
-    case project.tags?.includes('angular'):
+    case IsAngularProject(project):
       return 'Angular';
 
-    case project.tags?.includes('utilities'):
+    case IsUtilitiesProject(project):
       return 'Utilities';
 
-    case project.tags?.includes('workspace'):
+    case IsWorkspaceProject(project):
       return 'Workspace';
 
-    case project.tags?.includes('data-structure'):
+    case IsDataStructureProject(project):
       return 'Data Structure';
 
     default:
@@ -68,7 +81,7 @@ function getProjects(context: ExecutorContext) {
     if (config.projectType !== 'library') {
       continue;
     }
-    if (config.tags?.includes('internal')) {
+    if (IsInternalProject(config)) {
       continue;
     }
     if (!existsSync(join(config.root, 'package.json'))) {

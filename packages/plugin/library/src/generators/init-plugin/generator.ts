@@ -11,6 +11,7 @@ import { HasGenerators } from '@rxap/plugin-utilities';
 import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  IsPluginProject,
 } from '@rxap/workspace-utilities';
 import { InitPluginGeneratorSchema } from './schema';
 
@@ -25,7 +26,7 @@ function skipProject(
     return true;
   }
 
-  if (!project.tags?.includes('plugin')) {
+  if (!IsPluginProject(project)) {
     return true;
   }
 

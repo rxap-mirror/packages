@@ -6,6 +6,11 @@ import {
   SkipProject,
   SkipProjectOptions,
 } from '@rxap/generator-utilities';
+import {
+  IsNestJsProject,
+  IsPluginProject,
+  IsSchematicProject,
+} from '@rxap/workspace-utilities';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SkipNonNestProject extends SkipProjectOptions {
@@ -20,10 +25,10 @@ export function SkipNonNestProject(
   if (SkipProject(tree, options, project, projectName)) {
     return true;
   }
-  if (!project.tags?.includes('nest') && !project.tags?.includes('nestjs')) {
+  if (!IsNestJsProject(project)) {
     return true;
   }
-  if (project.tags?.includes('plugin') || project.tags?.includes('schematic')) {
+  if (IsPluginProject(project) || IsSchematicProject(project)) {
     return true;
   }
   return false;

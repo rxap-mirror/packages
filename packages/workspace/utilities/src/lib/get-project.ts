@@ -21,7 +21,7 @@ import {
   TreeLike,
 } from './tree';
 
-interface ProjectJson extends ProjectConfiguration, Record<string, any> {
+export interface ProjectJson extends ProjectConfiguration, Record<string, any> {
   prefix?: string;
 }
 

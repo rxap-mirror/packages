@@ -6,6 +6,7 @@ import {
   SkipProject,
   SkipProjectOptions,
 } from '@rxap/generator-utilities';
+import { IsPluginProject } from '@rxap/workspace-utilities';
 import { HasGenerators } from './generators';
 
 export function SkipNonGeneratorsProject(
@@ -17,7 +18,7 @@ export function SkipNonGeneratorsProject(
   if (SkipProject(tree, options, project, projectName)) {
     return true;
   }
-  if (!project.tags?.includes('plugin')) {
+  if (!IsPluginProject(project)) {
     return true;
   }
   if (!HasGenerators(tree, project)) {

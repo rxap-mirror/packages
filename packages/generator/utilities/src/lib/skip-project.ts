@@ -2,6 +2,7 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
+import { IsInternalProject } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { IsBuildable } from './is-buildable';
 import { IsPublishable } from './is-publishable';
@@ -21,7 +22,7 @@ export function SkipProject(
     return true;
   }
 
-  if (project.tags?.includes('internal')) {
+  if (IsInternalProject(project)) {
     return true;
   }
 

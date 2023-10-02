@@ -12,6 +12,11 @@ import {
 } from '@rxap/generator-utilities';
 import { AngularInitGenerator } from '@rxap/plugin-angular';
 import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
+import {
+  IsAngularProject,
+  IsNestJsProject,
+  IsPluginProject,
+} from '@rxap/workspace-utilities';
 import initBuildableGenerator from '../init-buildable/generator';
 import initPluginGenerator from '../init-plugin/generator';
 import initPublishableGenerator from '../init-publishable/generator';
@@ -75,7 +80,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       await initPublishableGenerator(tree, options);
     }
 
-    if (project.tags?.includes('angular')) {
+    if (IsAngularProject(project)) {
       await AngularInitGenerator(tree,
         {
           ...options,
@@ -85,7 +90,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       );
     }
 
-    if (project.tags?.includes('plugin')) {
+    if (IsPluginProject(project)) {
       await initPluginGenerator(
         tree,
         {
@@ -96,7 +101,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       );
     }
 
-    if (project.tags?.includes('nest')) {
+    if (IsNestJsProject(project)) {
       await nestJsInitGenerator(
         tree,
         {

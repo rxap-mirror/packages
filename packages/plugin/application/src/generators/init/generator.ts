@@ -23,6 +23,8 @@ import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   GetPackageJson,
+  IsAngularProject,
+  IsNestJsProject,
   Strategy,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
@@ -228,7 +230,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       updateProjectConfiguration(tree, projectName, project);
     }
 
-    if (project.tags?.includes('angular')) {
+    if (IsAngularProject(project)) {
       await AngularInitGenerator(tree,
         {
           ...options,
@@ -238,7 +240,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       );
     }
 
-    if (project.tags?.includes('nest')) {
+    if (IsNestJsProject(project)) {
       await nestJsInitGenerator(
         tree,
         {
