@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.23...@rxap/open-api@16.0.0-dev.24) (2023-10-02)
+
+### Bug Fixes
+
+- ensure the OpenApiHttpResponseError is instance of HttpErrorResponse ([1210f61](https://gitlab.com/rxap/packages/commit/1210f617efcdf7564045b86b3db9cc0c2688667e))
+
 # [16.0.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.22...@rxap/open-api@16.0.0-dev.23) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/open-api
