@@ -335,6 +335,8 @@ async function createOpenApiClientSdkLibrary(
   openApiProjectConfiguration.implicitDependencies ??= [];
   openApiProjectConfiguration.implicitDependencies.push(project.name);
 
+  updateProjectConfiguration(tree, openApiProjectName, openApiProjectConfiguration);
+
 }
 
 function getPort(tree: Tree, options: InitApplicationGeneratorSchema, projectSourceRoot: string) {
