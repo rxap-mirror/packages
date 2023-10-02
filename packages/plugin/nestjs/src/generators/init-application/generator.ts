@@ -589,7 +589,7 @@ function updateTags(project: ProjectConfiguration, options: InitApplicationGener
 }
 
 async function updateApiConfigurationFile(
-  tree: Tree, projectName: string, { apiConfigurationFile, apiPrefix }: InitApplicationGeneratorSchema) {
+  tree: Tree, projectName: string, apiPrefix: string, apiConfigurationFile?: string) {
   if (apiConfigurationFile) {
     await UpdateJsonFile(tree, json => {
       json[projectName] = { baseUrl: `/${ apiPrefix }` };
@@ -677,7 +677,7 @@ export async function initApplicationGenerator(
       updateProjectTargets(project);
       updateGitIgnore(tree, project);
       updateTags(project, options);
-      await updateApiConfigurationFile(tree, projectName, options);
+      await updateApiConfigurationFile(tree, projectName, globalApiPrefix, options.apiConfigurationFile);
       await createOpenApiClientSdkLibrary(tree, project, projects);
 
       // apply changes to the project configuration
