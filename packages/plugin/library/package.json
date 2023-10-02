@@ -3,7 +3,8 @@
   "name": "@rxap/plugin-library",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "tslib": "2.6.2"
+    "tslib": "2.6.2",
+    "@apidevtools/json-schema-ref-parser": "9.0.9"
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",

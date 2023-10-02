@@ -1,3 +1,4 @@
+import $RefParser from '@apidevtools/json-schema-ref-parser';
 import {
   ExecutorContext,
   readJsonFile,
@@ -8,8 +9,16 @@ import {
   readPackageJsonForProject,
   writeFileToProjectRoot,
 } from '@rxap/plugin-utilities';
+import {
+  deepMerge,
+  unique,
+} from '@rxap/utilities';
 import * as Handlebars from 'handlebars';
-import { join } from 'path';
+import {
+  dirname,
+  join,
+  relative,
+} from 'path';
 import { ReadmeExecutorSchema } from './schema';
 
 function readGetStartedFile(context: ExecutorContext): string {
@@ -39,7 +48,55 @@ interface Executor<Schema = unknown> {
   schema: Schema;
 }
 
-function getSchematics(context: ExecutorContext): Generator[] {
+async function normalizeSchema(
+  context: ExecutorContext,
+  schema: $RefParser.JSONSchema,
+  basePath: string,
+): Promise<$RefParser.JSONSchema> {
+
+  schema = await $RefParser.bundle(schema, {
+    resolve: {
+      external: true,
+      file: {
+        canRead: /schema\.json$/,
+        read(
+          file: $RefParser.FileInfo,
+        ): string {
+          // fix the file url. The url is already resolved relative the current cwd.
+          // this results in an incorrect path. Eg. $ref: ../init-application/schema.json
+          // will be resolved to file.url = /<project-root>/../init-application/schema.json
+          // A workaround is need to fix the url to be resolved relative to the schema.json
+          // file in the schematic/generator/executor/builder folder
+          const restoredRef = relative(context.root, file.url);
+          const schemaFilePath = join(basePath, restoredRef);
+          return readFileFromProjectRoot(context, schemaFilePath, true);
+        },
+      },
+    },
+  });
+
+  if (schema.allOf) {
+    schema.properties = {};
+    schema.required = [];
+    for (const item of schema.allOf) {
+      if (typeof item === 'object') {
+        schema.properties = deepMerge(schema.properties, item.properties ?? {});
+        schema.required = [
+          ...schema.required, ...(
+            typeof item.required !== 'boolean' ? item.required ?? [] : []
+          ),
+        ].filter(unique());
+      }
+    }
+  }
+
+  // ensure the property 'properties' is defined
+  schema.properties ??= {};
+
+  return schema;
+}
+
+async function getSchematics(context: ExecutorContext): Promise<Generator[]> {
   const { schematics } = readPackageJsonForProject(context);
   if (!schematics) {
     return [];
@@ -55,13 +112,14 @@ function getSchematics(context: ExecutorContext): Generator[] {
     schematicList.push({
       name: schematic,
       description: config.description,
-      schema: readJsonFile(join(context.root, projectRoot, config.schema)),
+      schema: await normalizeSchema(
+        context, readJsonFile(join(context.root, projectRoot, config.schema)), dirname(config.schema)),
     });
   }
   return schematicList;
 }
 
-function getGenerators(context: ExecutorContext) {
+async function getGenerators(context: ExecutorContext) {
   const { generators } = readPackageJsonForProject(context);
   if (!generators) {
     return [];
@@ -77,14 +135,15 @@ function getGenerators(context: ExecutorContext) {
     generatorList.push({
       name: generator,
       description: config.description,
-      schema: readJsonFile(join(context.root, projectRoot, config.schema)),
+      schema: await normalizeSchema(
+        context, readJsonFile(join(context.root, projectRoot, config.schema)), dirname(config.schema)),
     });
   }
-  const schematicList = getSchematics(context);
+  const schematicList = await getSchematics(context);
   return [ ...generatorList, ...schematicList ];
 }
 
-function getBuilders(context: ExecutorContext): Executor[] {
+async function getBuilders(context: ExecutorContext): Promise<Executor[]> {
   const { builders } = readPackageJsonForProject(context);
   if (!builders) {
     return [];
@@ -100,13 +159,14 @@ function getBuilders(context: ExecutorContext): Executor[] {
     builderList.push({
       name: builder,
       description: config.description,
-      schema: readJsonFile(join(context.root, projectRoot, config.schema)),
+      schema: await normalizeSchema(
+        context, readJsonFile(join(context.root, projectRoot, config.schema)), dirname(config.schema)),
     });
   }
   return builderList;
 }
 
-function getExecutors(context: ExecutorContext) {
+async function getExecutors(context: ExecutorContext) {
   const { executors } = readPackageJsonForProject(context);
   if (!executors) {
     return [];
@@ -122,10 +182,11 @@ function getExecutors(context: ExecutorContext) {
     executorList.push({
       name: executor,
       description: config.description,
-      schema: readJsonFile(join(context.root, projectRoot, config.schema)),
+      schema: await normalizeSchema(
+        context, readJsonFile(join(context.root, projectRoot, config.schema)), dirname(config.schema)),
     });
   }
-  const builderList = getBuilders(context);
+  const builderList = await getBuilders(context);
   return [ ...executorList, ...builderList ];
 }
 
@@ -159,8 +220,8 @@ export default async function runExecutor(
   const guidesContent = readGetGuidsFile(context);
   const packageJson = readPackageJsonForProject(context);
   const template = getTemplate(context);
-  const generatorList = getGenerators(context);
-  const executorsList = getExecutors(context);
+  const generatorList = await getGenerators(context);
+  const executorsList = await getExecutors(context);
   const peerDependencyList = getPeerDependencyList(context);
 
   console.log('Input for README.md template ready');
