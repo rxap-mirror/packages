@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Microservice",
+  "title": "",
+  "allOf": [
+    {
+      "$ref": "../init-application/schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of microservice",
+          "x-prompt": "Enter the name of the microservice?"
+        },
+        "directory": {
+          "type": "string",
+          "description": "The directory to create the microservice in"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  ]
+}
