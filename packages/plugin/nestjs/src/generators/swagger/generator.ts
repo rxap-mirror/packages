@@ -14,6 +14,7 @@ import {
 } from '@rxap/plugin-utilities';
 import {
   AddPackageJsonDependency,
+  CoerceNxJsonCacheableOperation,
   CoerceTarget,
 } from '@rxap/workspace-utilities';
 import * as path from 'path';
@@ -70,19 +71,7 @@ function updateProjectTargets(project: ProjectConfiguration) {
 function updateNxDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
-  nxJson.tasksRunnerOptions ??= {};
-  nxJson.tasksRunnerOptions['default'] ??= {
-    runner: 'nx-cloud',
-    options: {},
-  };
-  nxJson.tasksRunnerOptions['default'].options ??= {};
-  nxJson.tasksRunnerOptions['default'].options['cacheableOperations'] ??= [];
-  if (!nxJson.tasksRunnerOptions['default'].options['cacheableOperations'].includes('swagger-build')) {
-    nxJson.tasksRunnerOptions['default'].options['cacheableOperations'].push('swagger-build');
-  }
-  if (!nxJson.tasksRunnerOptions['default'].options['cacheableOperations'].includes('swagger-generate')) {
-    nxJson.tasksRunnerOptions['default'].options['cacheableOperations'].push('swagger-generate');
-  }
+  CoerceNxJsonCacheableOperation(nxJson, 'swagger-build', 'swagger-generate');
 
   updateNxJson(tree, nxJson);
 }

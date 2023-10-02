@@ -17,6 +17,7 @@ import {
 import {
   CoerceFilesStructure,
   CoerceLernaJson,
+  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   Strategy,
   UpdatePackageJson,
@@ -237,19 +238,6 @@ function CoerceNxJsonGenerators(
 
 }
 
-function CoerceNxJsonCacheableOperations(nxJson: NxJsonConfiguration, name: string) {
-  if (nxJson.tasksRunnerOptions?.default?.runner === 'nx-cloud') {
-    nxJson.tasksRunnerOptions.default.options ??= {};
-    nxJson.tasksRunnerOptions.default.options = {
-      ...nxJson.tasksRunnerOptions.default.options,
-      cacheableOperations: [
-        ...nxJson.tasksRunnerOptions.default.options.cacheableOperations ?? [],
-        name,
-      ].filter((value, index, array) => array.indexOf(value) === index),
-    };
-  }
-}
-
 function coerceNxJson(tree: Tree) {
   const nxJson = readNxJson(tree)!;
 
@@ -345,16 +333,16 @@ function coerceNxJson(tree: Tree) {
   CoerceNxJsonGenerators(nxJson, '@nx/angular:library-secondary-entry-point', {
     'skipModule': true,
   });
-  CoerceNxJsonCacheableOperations(nxJson, 'ci-info');
-  CoerceNxJsonCacheableOperations(nxJson, 'localazy-upload');
-  CoerceNxJsonCacheableOperations(nxJson, 'extract-i18n');
-  CoerceNxJsonCacheableOperations(nxJson, 'localazy-download');
-  CoerceNxJsonCacheableOperations(nxJson, 'index-export');
-  CoerceNxJsonCacheableOperations(nxJson, 'swagger-build');
-  CoerceNxJsonCacheableOperations(nxJson, 'swagger-generate');
-  CoerceNxJsonCacheableOperations(nxJson, 'generate-package-json');
-  CoerceNxJsonCacheableOperations(nxJson, 'component-test');
-  CoerceNxJsonCacheableOperations(nxJson, 'generate-open-api');
+  CoerceNxJsonCacheableOperation(nxJson, 'ci-info');
+  CoerceNxJsonCacheableOperation(nxJson, 'localazy-upload');
+  CoerceNxJsonCacheableOperation(nxJson, 'extract-i18n');
+  CoerceNxJsonCacheableOperation(nxJson, 'localazy-download');
+  CoerceNxJsonCacheableOperation(nxJson, 'index-export');
+  CoerceNxJsonCacheableOperation(nxJson, 'swagger-build');
+  CoerceNxJsonCacheableOperation(nxJson, 'swagger-generate');
+  CoerceNxJsonCacheableOperation(nxJson, 'generate-package-json');
+  CoerceNxJsonCacheableOperation(nxJson, 'component-test');
+  CoerceNxJsonCacheableOperation(nxJson, 'generate-open-api');
 
   updateNxJson(tree, nxJson);
 }
