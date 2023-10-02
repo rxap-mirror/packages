@@ -25,6 +25,7 @@ import {
 import {
   ENVIRONMENT,
   GetLogLevels,
+  ThrottlerModuleOptionsLoader,
 } from '@rxap/nest-utilities';
 import { environment } from '../environments/environment';
 import { MinimumTableModule } from '../minimum-table/minimum-table.module';
@@ -38,12 +39,7 @@ import { HealthModule } from './health/health.module';
     MinimumTableModule,
     ThrottlerModule.forRootAsync(
       {
-        imports: [ ConfigModule ],
-        inject: [ ConfigService ],
-        useFactory: (config: ConfigService) => ({
-          ttl: config.getOrThrow('THROTTLER_TTL'),
-          limit: config.getOrThrow('THROTTLER_LIMIT'),
-        }),
+        useClass: ThrottlerModuleOptionsLoader,
       }),
     ConfigModule.forRoot(
       {

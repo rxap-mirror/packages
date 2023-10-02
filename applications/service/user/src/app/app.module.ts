@@ -15,7 +15,10 @@ import {
   ThrottlerGuard,
   ThrottlerModule,
 } from '@nestjs/throttler';
-import { JwtGuardProvider } from '@rxap/nest-jwt';
+import {
+  JwtGuardProvider,
+  JwtModuleOptionsLoader,
+} from '@rxap/nest-jwt';
 import {
   OpenApiModule,
   OpenApiModuleOptionsLoader,
@@ -29,6 +32,7 @@ import {
 import {
   ENVIRONMENT,
   GetLogLevels,
+  ThrottlerModuleOptionsLoader,
 } from '@rxap/nest-utilities';
 import { environment } from '../environments/environment';
 import { ProfileModule } from '../profile/profile.module';
@@ -48,11 +52,7 @@ import { HealthModule } from './health/health.module';
       }),
     ThrottlerModule.forRootAsync(
       {
-        inject: [ ConfigService ],
-        useFactory: (config: ConfigService) => ({
-          ttl: config.getOrThrow('THROTTLER_TTL'),
-          limit: config.getOrThrow('THROTTLER_LIMIT'),
-        }),
+        useClass: ThrottlerModuleOptionsLoader,
       }),
     ConfigModule.forRoot(
       {
@@ -69,10 +69,7 @@ import { HealthModule } from './health/health.module';
     JwtModule.registerAsync(
       {
         global: true,
-        inject: [ ConfigService ],
-        useFactory: (config: ConfigService) => ({
-          secret: config.getOrThrow('JWT_SECRET'),
-        }),
+        useClass: JwtModuleOptionsLoader,
       }),
     SettingsModule,
     ProfileModule,

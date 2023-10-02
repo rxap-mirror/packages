@@ -41,18 +41,15 @@ function UpdateAppModule(tree: Tree, options: SentryGeneratorSchema) {
               moduleSpecifier: '@nestjs/jwt',
             },
             {
-              moduleSpecifier: '@nestjs/config',
-              namedImports: [ 'ConfigService' ],
+              moduleSpecifier: '@rxap/nest-jwt',
+              namedImports: [ 'JwtModuleOptionsLoader' ],
             },
           ],
           importWriter: w => {
             w.writeLine('JwtModule.registerAsync(');
             Writers.object({
               global: 'true',
-              inject: '[ ConfigService ]',
-              useFactory: `(config: ConfigService) => ({ 
-  secret: config.getOrThrow('JWT_SECRET') 
-})`,
+              useClass: 'JwtModuleOptionsLoader',
             })(w);
             w.write(')');
           },

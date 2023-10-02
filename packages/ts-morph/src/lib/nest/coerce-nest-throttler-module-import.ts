@@ -23,29 +23,14 @@ export function CoerceNestThrottlerModuleImport(
           namedImports: [ 'ThrottlerModule' ],
         },
         {
-          moduleSpecifier: '@nestjs/config',
-          namedImports: [ 'ConfigModule', 'ConfigService' ],
-        },
+          moduleSpecifier: '@rxap/nest-utilities',
+          namedImports: [ 'ThrottlerModuleOptionsLoader' ],
+        }
       ],
       importWriter: w => {
         w.writeLine('ThrottlerModule.forRootAsync(');
         Writers.object({
-          imports: '[ ConfigModule ]',
-          inject: '[ ConfigService ]',
-          useFactory: w => {
-            w.write('(config: ConfigService) => (');
-            Writers.object({
-              throttlers: w => {
-                w.write('[');
-                Writers.object({
-                  ttl: 'config.getOrThrow(\'THROTTLER_TTL\')',
-                  limit: 'config.getOrThrow(\'THROTTLER_LIMIT\')',
-                });
-                w.write(']');
-              },
-            })(w);
-            w.write(')');
-          },
+          useClass: 'ThrottlerModuleOptionsLoader',
         })(w);
         w.write(')');
       },

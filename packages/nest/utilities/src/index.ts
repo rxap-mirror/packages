@@ -20,6 +20,7 @@ export * from './lib/is-dev-mode';
 export * from './lib/is-internal';
 export * from './lib/is-public';
 export * from './lib/logging.interceptor';
+export * from './lib/throttler-module-options-loader';
 export * from './lib/tokens';
 export * from './lib/validation-exception';
 export * from './lib/validator.interceptor';
