@@ -32,6 +32,14 @@ export async function microserviceGenerator(
   const projectName = [ options.directory.replace(/\//g, '-'), options.name ].filter(Boolean).join('-');
 
   await initApplicationGenerator(tree, {
+    generateMain: true,
+    swagger: true,
+    healthIndicator: true,
+    sentry: true,
+    validator: true,
+    platform: 'express',
+    overwrite: true,
+    statusRegister: true,
     ...options,
     projects: [ projectName ],
   });
