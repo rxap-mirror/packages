@@ -13,9 +13,12 @@ import {
 import { AngularInitGenerator } from '@rxap/plugin-angular';
 import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
 import {
+  CoerceTarget,
   IsAngularProject,
+  IsGeneratorProject,
   IsNestJsProject,
   IsPluginProject,
+  IsSchematicProject,
 } from '@rxap/workspace-utilities';
 import initBuildableGenerator from '../init-buildable/generator';
 import initPluginGenerator from '../init-plugin/generator';
@@ -39,6 +42,15 @@ function updateProjectTags(project: ProjectConfiguration) {
     project.tags = project.tags.filter(tag => tag !== projectName);
   }
 }
+
+function updateProjectTargets(project: ProjectConfiguration) {
+
+  if (!IsPluginProject(project) && !IsGeneratorProject(project) && !IsSchematicProject(project)) {
+    CoerceTarget(project, 'index-export', {});
+  }
+
+}
+
 
 function skipProject(
   tree: Tree,
@@ -68,6 +80,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       console.log(`init project: ${ projectName }`);
 
       updateProjectTags(project);
+
+      updateProjectTargets(project);
 
       updateProjectConfiguration(tree, project.name, project);
     }
