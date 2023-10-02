@@ -29,7 +29,7 @@ export async function microserviceGenerator(
     directory: options.directory,
   });
 
-  const projectName = [ options.directory, options.name ].filter(Boolean).join('-');
+  const projectName = [ options.directory.replace(/\//g, '-'), options.name ].filter(Boolean).join('-');
 
   await initApplicationGenerator(tree, {
     ...options,
