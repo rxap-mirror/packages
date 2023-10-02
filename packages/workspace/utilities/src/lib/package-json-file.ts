@@ -2,6 +2,7 @@ import { GetLatestPackageVersion } from '@rxap/node-utilities';
 import { SortProperties } from '@rxap/utilities';
 import { join } from 'path';
 import gt from 'semver/functions/gt';
+import { IsRxapRepository } from './is-rxap-repository';
 import {
   GetJsonFile,
   UpdateJsonFile,
@@ -96,7 +97,7 @@ export async function AddPackageJsonDependency<Tree extends TreeLike>(
       } else {
         console.log(`Add the package \x1b[34m${ packageName }\x1b[0m to the \x1b[90m${ propertyPath }\x1b[0m with version \x1b[32m${ mewPackageVersion }\x1b[0m`);
       }
-      if (packageName.match(/^@rxap\//) && packageJson.name === 'rxap') {
+      if (packageName.match(/^@rxap\//) && IsRxapRepository(tree)) {
         console.log(`\x1b[33mWARNING: Detecting that the workspace is the \x1b[34mrxap\x1b[33m workspace. The package \x1b[34m${ packageName }\x1b[33m will \x1b[31mNOT\x1b[33m be added to the package.json file.\x1b[0m`);
       } else {
         packageJson[propertyPath][packageName] = mewPackageVersion;
