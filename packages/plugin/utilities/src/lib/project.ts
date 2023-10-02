@@ -1,4 +1,5 @@
 import { ExecutorContext } from '@nx/devkit';
+import { join } from 'path';
 
 export function GetProjectConfiguration(context: ExecutorContext, projectName = context.projectName) {
   const { projectsConfigurations } = context;
@@ -26,7 +27,7 @@ export function GetProjectRoot(context: ExecutorContext, projectName = context.p
   return projectConfiguration.root;
 }
 
-export function GetProjectSourceRoot(context: ExecutorContext, projectName = context.projectName): string | undefined {
+export function GetProjectSourceRoot(context: ExecutorContext, projectName = context.projectName): string {
   const projectConfiguration = GetProjectConfiguration(context, projectName);
-  return projectConfiguration.sourceRoot;
+  return projectConfiguration.sourceRoot ?? join(projectConfiguration.root, 'src');
 }
