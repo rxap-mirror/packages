@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.23...@rxap/schematics-ts-morph@16.0.0-dev.24) (2023-10-02)
+
+### Bug Fixes
+
+- align duplicated implementation ([801aee5](https://gitlab.com/rxap/packages/commit/801aee528f70db9f4736934b0186029d5650ed03))
+
 # [16.0.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.22...@rxap/schematics-ts-morph@16.0.0-dev.23) (2023-10-02)
 
 ### Bug Fixes
