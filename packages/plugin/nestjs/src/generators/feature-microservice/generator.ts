@@ -15,6 +15,8 @@ export async function featureMicroserviceGenerator(
 
   await microserviceGenerator(tree, {
     ...presetOptions,
+    apiPrefix: [ 'api', 'feature', options.feature ].join('/'),
+    ...options,
     name: options.feature,
     directory: [ 'service', 'feature' ].join('/'),
   });

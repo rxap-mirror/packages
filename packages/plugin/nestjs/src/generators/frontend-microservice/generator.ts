@@ -15,6 +15,8 @@ export async function frontendMicroserviceGenerator(
 
   await microserviceGenerator(tree, {
     ...presetOptions,
+    apiPrefix: [ 'api', 'app', options.frontend, options.feature ].join('/'),
+    ...options,
     name: options.feature,
     directory: [ 'service', 'app', options.frontend ].join('/'),
   });
