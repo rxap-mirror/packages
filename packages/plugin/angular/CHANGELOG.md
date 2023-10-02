@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.45](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.44...@rxap/plugin-angular@16.1.0-dev.45) (2023-10-02)
+
+### Bug Fixes
+
+- add missing polyfills default and prevent replacement ([6cda814](https://gitlab.com/rxap/packages/commit/6cda814b4b35b7efd2efce85685c2e25011b8c25))
+- run the update target defaults function independent of any project ([9948b6c](https://gitlab.com/rxap/packages/commit/9948b6c5f158d10021eafa93ec828da731444d3c))
+
 # [16.1.0-dev.44](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.43...@rxap/plugin-angular@16.1.0-dev.44) (2023-10-02)
 
 ### Bug Fixes

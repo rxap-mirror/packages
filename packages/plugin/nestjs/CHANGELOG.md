@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.33...@rxap/plugin-nestjs@16.1.0-dev.34) (2023-10-02)
+
+### Bug Fixes
+
+- ensure changes to the openapi client sdk project configuration are written to disk ([f68ee6c](https://gitlab.com/rxap/packages/commit/f68ee6cb01155dfb8195f13dc311a1877f40a385))
+
 # [16.1.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.32...@rxap/plugin-nestjs@16.1.0-dev.33) (2023-10-02)
 
 ### Bug Fixes
