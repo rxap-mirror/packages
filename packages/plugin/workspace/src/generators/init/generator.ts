@@ -303,7 +303,7 @@ function coerceNxJson(tree: Tree) {
     'linter': 'eslint',
     'unitTestRunner': 'jest',
     'publishable': false,
-    'addTailwind': true,
+    'addTailwind': false,
     'changeDetection': 'OnPush',
     'standalone': true,
     'style': 'scss',
