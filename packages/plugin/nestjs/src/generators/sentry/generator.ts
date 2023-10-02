@@ -34,8 +34,12 @@ function CoerceSentryModule(sourceFile: SourceFile, options: SentryGeneratorSche
           moduleSpecifier: '../environments/environment',
         },
         {
-          namedImports: [ 'GetLogLevels', 'SentryOptionsFactory' ],
+          namedImports: [ 'GetLogLevels' ],
           moduleSpecifier: '@rxap/nest-utilities',
+        },
+        {
+          namedImports: [ 'SentryOptionsFactory' ],
+          moduleSpecifier: '@rxap/nest-sentry',
         },
       ],
       importWriter: w => {
