@@ -50,7 +50,7 @@
     "apiConfigurationFile": {
       "type": "string",
       "description": "The api configuration file to use",
-      "default": "shared/angular/configuration/latest/config.api.json"
+      "default": "shared/service/configuration/latest/config.api.json"
     },
     "overwrite": {
       "type": "boolean",
