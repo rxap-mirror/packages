@@ -82,11 +82,11 @@ if [[ $SKIP_PULL != "true" ]]; then
     read -p "Do you want to try to build the images locally (y/N)? "
 
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-      yarn nx run-many --target docker --configuration production --imageRegistry "$REGISTRY"
-    else
-      echo "exiting"
-      exit 1
-    fi
+  yarn nx run-many --target docker --configuration production --imageRegistry "$REGISTRY" --tag "$channel"
+else
+  echo "exiting"
+  exit 1
+fi
   fi
 
 fi
