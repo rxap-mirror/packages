@@ -719,10 +719,6 @@ export async function initApplicationGenerator(
               name: 'COOKIE_SECRET',
               defaultValue: 'GenerateRandomString()',
             },
-            {
-              name: 'ROOT_DOMAIN',
-              defaultValue: 'service',
-            },
           ]) {
             if (!itemList.find(i => i.name === item.name)) {
               itemList.push(item);
