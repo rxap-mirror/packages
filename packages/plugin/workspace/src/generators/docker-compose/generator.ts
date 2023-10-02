@@ -101,6 +101,7 @@ function createServiceDockerCompose(
           'SENTRY_ENABLED=false',
           'LOG_LEVEL=verbose',
           'ROOT_DOMAIN_PORT',
+          'ENVIRONMENT_NAME=development',
         ],
         depends_on: [
           'traefik',
