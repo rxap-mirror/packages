@@ -9,6 +9,7 @@ import {
 import {
   IsAngularProject,
   IsApplicationProject,
+  IsRxapRepository,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 
@@ -71,18 +72,20 @@ export async function CoerceCypressComponentTesting(tree: Tree, project: Project
       projectName,
       _project,
     );
-    tree.write(
-      join(
-        project.root,
-        'cypress.config.ts',
-      ),
-      `import { componentTestingPreset } from 'workspace';
+    if (IsRxapRepository(tree)) {
+      tree.write(
+        join(
+          project.root,
+          'cypress.config.ts',
+        ),
+        `import { componentTestingPreset } from 'workspace';
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
   component: componentTestingPreset(__filename),
 });`,
-    );
+      );
+    }
   }
 
   const _project = readProjectConfiguration(
