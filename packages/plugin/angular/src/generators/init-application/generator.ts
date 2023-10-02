@@ -578,6 +578,8 @@ export async function initApplicationGenerator(
     }
   }
 
+  updateTargetDefaults(tree, options);
+
   if (!options.skipProjects) {
     for (const [ projectName, project ] of getProjects(tree).entries()) {
 
@@ -589,7 +591,6 @@ export async function initApplicationGenerator(
 
       updateProjectTargets(project, options);
       updateTags(project, options);
-      updateTargetDefaults(tree, options);
       updateGitIgnore(project, tree, options);
       coerceEnvironmentFiles(
         tree,
