@@ -9,31 +9,26 @@ describe('CoerceTarget', () => {
 
   it('should guess if nxJson or project configuration', () => {
 
-    const projectConfiguration: NxJsonOrProjectConfiguration = {};
+    const projectConfiguration: NxJsonOrProjectConfiguration = { name: 'project' };
     const nxJson: NxJsonOrProjectConfiguration = {};
     CoerceTarget(projectConfiguration, 'test');
     CoerceTarget(nxJson, 'test');
-    expect(projectConfiguration).toEqual({ targets: { test: {} } });
+    expect(projectConfiguration).toEqual({ name: 'project', targets: { test: {} } });
     expect(nxJson).toEqual({ targetDefaults: { test: {} } });
 
   });
 
-  it('should add target if not exists for any strategy', () => {
+  it.each(Object.values(Strategy))('should add target if not exists for strategy: %s', (strategy) => {
 
-    const projectConfiguration: NxJsonOrProjectConfiguration = {};
+    const projectConfiguration: NxJsonOrProjectConfiguration = { name: 'project' };
     const target: TargetConfiguration = { executor: 'test' };
 
-    CoerceTarget(projectConfiguration, 'default', target, Strategy.DEFAULT);
-    CoerceTarget(projectConfiguration, 'merge', target, Strategy.MERGE);
-    CoerceTarget(projectConfiguration, 'overwrite', target, Strategy.OVERWRITE);
-    CoerceTarget(projectConfiguration, 'replace', target, Strategy.REPLACE);
+    CoerceTarget(projectConfiguration, 'build', target, strategy);
 
     expect(projectConfiguration).toEqual({
+      name: 'project',
       targets: {
-        default: { executor: 'test' },
-        merge: { executor: 'test' },
-        overwrite: { executor: 'test' },
-        replace: { executor: 'test' },
+        build: { executor: 'test' },
       },
     });
 

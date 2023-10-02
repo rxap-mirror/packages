@@ -15,7 +15,7 @@ export interface TargetConfiguration {
   defaultConfiguration?: string;
 }
 
-export interface NxJsonOrProjectConfiguration {
+export interface NxJsonOrProjectConfiguration extends Record<string, any> {
   targets?: Record<string, TargetConfiguration>;
   targetDefaults?: Record<string, TargetConfiguration>;
 }
