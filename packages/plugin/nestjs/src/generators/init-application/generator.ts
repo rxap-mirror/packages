@@ -321,7 +321,8 @@ async function createOpenApiClientSdkLibrary(
     throw new Error(`Can't find project ${ openApiProjectName }`);
   }
 
-  const openApiProjectRoot = projects.get(openApiProjectName)!.root;
+  const openApiProjectConfiguration = projects.get(openApiProjectName)!;
+  const openApiProjectRoot = openApiProjectConfiguration.root;
 
   delete tsConfig.compilerOptions.paths[`${ directory }/${ name }`];
   tsConfig.compilerOptions.paths[`${ openApiProjectName }/*`] = [ `${ openApiProjectRoot }/src/lib/*` ];
@@ -330,6 +331,9 @@ async function createOpenApiClientSdkLibrary(
   tree.write(`${ openApiProjectRoot }/src/index.ts`, 'export {};');
   tree.delete(`${ openApiProjectRoot }/src/lib/${ openApiProjectName }.ts`);
   tree.delete(`${ openApiProjectRoot }/README.md`);
+
+  openApiProjectConfiguration.implicitDependencies ??= [];
+  openApiProjectConfiguration.implicitDependencies.push(project.name);
 
 }
 
