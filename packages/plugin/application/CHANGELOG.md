@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.25...@rxap/plugin-application@16.1.0-dev.26) (2023-10-03)
+
+### Bug Fixes
+
+- ensure all required cacheable operations are defined ([49a9199](https://gitlab.com/rxap/packages/commit/49a9199cd2592cf8550650dc17f9995e4f6727f8))
+
 # [16.1.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.24...@rxap/plugin-application@16.1.0-dev.25) (2023-10-02)
 
 ### Bug Fixes
