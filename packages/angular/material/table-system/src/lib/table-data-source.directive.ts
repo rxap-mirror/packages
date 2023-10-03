@@ -206,9 +206,15 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
     // on connect the data source can then use the correct paginator/matSort/tableFilter/parameters instance
     // to create the TableEvent objects
     Reflect.set(this.matTable, 'id', this.id);
-    this.matTable.dataSource = pipeDataSource(this.dataSource, tap(rowList => rowList.forEach((element: any) => {
-      element.__metadata__ = { loading$: new ToggleSubject() };
-    })));
+    this.matTable.dataSource = pipeDataSource(this.dataSource, tap(rowList => {
+      if (rowList.some((element: any) => !element.__metadata__)) {
+        console.debug('Ensure to use the NormalizeTableRow function to normalize the table row!');
+        rowList.forEach((element: any) => {
+          element.__metadata__ ??= { loading$: new ToggleSubject() };
+          element.__metadata__.loading$ ??= new ToggleSubject();
+        });
+      }
+    }));
     // TODO : remove hack to trigger change detection after data source refresh (machine-definition -> physical unit)
     this._subscription.add(
       this.loading$
