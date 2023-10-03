@@ -17,6 +17,7 @@ import {
 } from '@rxap/generator-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
+  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
@@ -48,6 +49,8 @@ function setGeneralTargetDefaults(tree: Tree) {
     '{projectRoot}/builders.json',
   );
   CoerceTargetDefaultsOutput(nxJson, 'readme', '{projectRoot}/README.md');
+
+  CoerceNxJsonCacheableOperation(nxJson, 'update-dependencies', 'update-package-group', 'readme', 'fix-dependencies');
 
   updateNxJson(tree, nxJson);
 

@@ -20,6 +20,7 @@ import {
 import {
   AddPackageJsonDependency,
   CoerceFilesStructure,
+  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   GetPackageJson,
@@ -173,6 +174,8 @@ function updateTargetDefaults(tree: Tree) {
       imageName: process.env.IMAGE_NAME ?? guessImageName(tree),
     },
   }, Strategy.MERGE);
+
+  CoerceNxJsonCacheableOperation(nxJson, 'docker');
 
   updateNxJson(tree, nxJson);
 }

@@ -14,6 +14,7 @@ import {
 } from '@rxap/generator-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
+  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
 } from '@rxap/workspace-utilities';
@@ -48,6 +49,8 @@ function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
   CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version');
+
+  CoerceNxJsonCacheableOperation(nxJson, 'check-version', 'copy-client-sdk');
 
   updateNxJson(tree, nxJson);
 }

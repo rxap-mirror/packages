@@ -9,6 +9,7 @@ import {
 import { SkipNonLibraryProject } from '@rxap/generator-utilities';
 import { HasGenerators } from '@rxap/plugin-utilities';
 import {
+  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   IsPluginProject,
@@ -57,8 +58,9 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
-  CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version');
-  CoerceTargetDefaultsDependency(nxJson, 'build', 'expose-as-schematic');
+  CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version', 'expose-as-schematic');
+
+  CoerceNxJsonCacheableOperation(nxJson, 'check-version', 'expose-as-schematic');
 
   updateNxJson(tree, nxJson);
 }

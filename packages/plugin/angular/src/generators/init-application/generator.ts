@@ -33,6 +33,7 @@ import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
   CoerceFilesStructure,
+  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   GetProjectPrefix,
@@ -205,6 +206,8 @@ function updateTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchem
 
   CoerceTargetDefaultsDependency(nxJson, 'build', '^generate-open-api');
   CoerceTargetDefaultsDependency(nxJson, 'serve', '^generate-open-api');
+
+  CoerceNxJsonCacheableOperation(nxJson, 'localazy-download', 'localazy-upload', 'extract-i18n');
 
   updateNxJson(tree, nxJson);
 }

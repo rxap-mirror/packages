@@ -32,6 +32,7 @@ import {
 import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
+  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   Strategy,
@@ -184,6 +185,9 @@ function setGeneralTargetDefaults(tree: Tree) {
 
   CoerceTargetDefaultsDependency(nxJson, 'build', 'generate-package-json');
   CoerceTargetDefaultsDependency(nxJson, 'generate-open-api', 'swagger-generate');
+
+  CoerceNxJsonCacheableOperation(
+    nxJson, 'generate-package-json', 'generate-open-api', 'swagger-generate', 'swagger-build');
 
   updateNxJson(tree, nxJson);
 }

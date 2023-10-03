@@ -20,6 +20,7 @@ import {
 } from '@rxap/generator-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
+  CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
@@ -193,9 +194,7 @@ function updateProjectTargets(tree: Tree, project: ProjectConfiguration) {
 function setGeneralTargetDefaults(tree: Tree) {
   const nxJson = readNxJson(tree);
 
-  CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version');
-  CoerceTargetDefaultsDependency(nxJson, 'build', 'build-tailwind');
-  CoerceTargetDefaultsDependency(nxJson, 'build', 'check-ng-package');
+  CoerceTargetDefaultsDependency(nxJson, 'build', 'check-version', 'build-tailwind', 'check-ng-package');
   CoerceTargetDefaultsDependency(nxJson, 'build-tailwind', {
     target: 'build',
     projects: [
@@ -216,6 +215,8 @@ function setGeneralTargetDefaults(tree: Tree) {
     '{projectRoot}/ng-package.json',
     '{projectRoot}/package.json',
   );
+
+  CoerceNxJsonCacheableOperation(nxJson, 'check-version', 'build-tailwind', 'check-ng-package', 'copy-client-sdk');
 
   updateNxJson(tree, nxJson);
 }
