@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.23...@rxap/data-source@16.0.0-dev.24) (2023-10-03)
+
+### Bug Fixes
+
+- table event property start and end are always defined ([2ce3d48](https://gitlab.com/rxap/packages/commit/2ce3d48c4b8669cd2c62c4d200f9569361a566fd))
+
 # [16.0.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.22...@rxap/data-source@16.0.0-dev.23) (2023-10-01)
 
 ### Bug Fixes

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.24...@rxap/material-table-system@16.0.0-dev.25) (2023-10-03)
+
+### Bug Fixes
+
+- introduce the NormalizeTableRow function ([c69b1cc](https://gitlab.com/rxap/packages/commit/c69b1ccc74f1c942d50ad06cd2df8c9812205328))
+- only set metadata if not already defined ([c0c0e03](https://gitlab.com/rxap/packages/commit/c0c0e030362f53bcb07cfd2c4e4bf97c409fcf71))
+
 # [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.23...@rxap/material-table-system@16.0.0-dev.24) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/material-table-system
