@@ -1,42 +1,40 @@
 import {
+  CdkConnectedOverlay,
+  CdkOverlayOrigin,
+  ConnectedPosition,
+} from '@angular/cdk/overlay';
+import {
+  AsyncPipe,
+  DOCUMENT,
+  NgIf,
+} from '@angular/common';
+import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   HostListener,
-  Inject,
+  inject,
   Input,
   isDevMode,
   OnDestroy,
-  Optional,
   Output,
-  Self,
 } from '@angular/core';
-import { FileUploadMethod } from '../file-upload.method';
+import { FlexModule } from '@angular/flex-layout/flex';
 import {
   ControlValueAccessor,
   NgControl,
 } from '@angular/forms';
-import {
-  CdkConnectedOverlay,
-  CdkOverlayOrigin,
-  ConnectedPosition,
-} from '@angular/cdk/overlay';
-import { MatFormFieldControl } from '@angular/material/form-field';
-import { Subject } from 'rxjs';
-import {
-  AsyncPipe,
-  DOCUMENT,
-  NgIf,
-} from '@angular/common';
-import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatIconModule } from '@angular/material/icon';
-import { MethodDirective } from '@rxap/directives';
 import { MatButtonModule } from '@angular/material/button';
-import { FlexModule } from '@angular/flex-layout/flex';
+import { MatFormFieldControl } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MethodDirective } from '@rxap/directives';
+import { Subject } from 'rxjs';
+import { FILE_UPLOAD_METHOD } from '../tokens';
+import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
 
 @Component({
   selector: 'rxap-upload-button',
@@ -101,14 +99,17 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   private onChange?: (file: File) => any;
   private onTouched?: () => any;
 
-  constructor(
-    public readonly fileUpload: FileUploadMethod,
-    private readonly cdr: ChangeDetectorRef,
-    private readonly _elementRef: ElementRef,
-    @Inject(DOCUMENT)
-    private readonly document: Document,
-    @Optional() @Self() public ngControl: NgControl,
-  ) {
+  public readonly fileUpload = inject(FILE_UPLOAD_METHOD);
+  public readonly ngControl = inject(NgControl, {
+    optional: true,
+    self: true,
+  });
+  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly _elementRef = inject(ElementRef);
+  private readonly document = inject(DOCUMENT);
+
+  constructor() {
+    this.fileUpload.setDocument(this.document);
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }

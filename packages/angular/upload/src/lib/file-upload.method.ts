@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+import { Method } from '@rxap/pattern';
 import {
   firstValueFrom,
   fromEvent,
@@ -10,27 +12,28 @@ import {
   switchMap,
   take,
 } from 'rxjs/operators';
-import {
-  Inject,
-  Injectable,
-} from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { Method } from '@rxap/pattern';
+
+export interface FileUploadMethodParameters {
+  accept?: string;
+}
 
 @Injectable()
-export class FileUploadMethod implements Method<File | null, { accept: string }> {
+export class FileUploadMethod implements Method<File | null, FileUploadMethodParameters> {
 
   public progress$: Subject<number> = new Subject<number>();
 
-  private _fileInput: HTMLInputElement | null = null;
+  protected _fileInput: HTMLInputElement | null = null;
 
-  constructor(
-    @Inject(DOCUMENT)
-    private readonly document: Document,
-  ) {
+  protected _document: Document | null = null;
+
+  protected get document(): Document {
+    if (!this._document) {
+      this._document = this.getDocument();
+    }
+    return this._document;
   }
 
-  public call(parameters?: { accept?: string }): Promise<File | null> {
+  public call(parameters?: FileUploadMethodParameters): Promise<File | null> {
     const fileInput = this.addInputToDom(parameters?.accept ?? '**/**');
 
     const change$ = fromEvent(fileInput, 'change').pipe(
@@ -49,7 +52,11 @@ export class FileUploadMethod implements Method<File | null, { accept: string }>
     ));
   }
 
-  private handleFileInputChange(event: any): File | null {
+  public setDocument(document: Document) {
+    this._document = document;
+  }
+
+  protected handleFileInputChange(event: any): File | null {
     this.removeInputFromDom();
     const files: { [key: string]: File } = event?.target?.files as any ?? {};
     if (Object.keys(files).length !== 1) {
@@ -64,14 +71,14 @@ export class FileUploadMethod implements Method<File | null, { accept: string }>
     return file;
   }
 
-  private removeInputFromDom(): void {
+  protected removeInputFromDom(): void {
     if (this._fileInput) {
       this.document.body.removeChild(this._fileInput);
     }
     this._fileInput = null;
   }
 
-  private readFile(file: File): Promise<File> {
+  protected readFile(file: File): Promise<File> {
     const reader = new FileReader();
 
     const loadFile$ = fromEvent<any>(reader, 'load').pipe(
@@ -100,13 +107,17 @@ export class FileUploadMethod implements Method<File | null, { accept: string }>
     return firstValueFrom(loadFile$);
   }
 
-  private addInputToDom(accept: string): HTMLInputElement {
+  protected addInputToDom(accept: string): HTMLInputElement {
     const fileInput = this.document.createElement('input');
     fileInput.setAttribute('type', 'file');
     fileInput.setAttribute('style', 'display: none');
     fileInput.setAttribute('accept', accept);
     this.document.body.appendChild(fileInput);
     return this._fileInput = fileInput;
+  }
+
+  protected getDocument(): Document {
+    return window.document;
   }
 
 }
