@@ -108,8 +108,6 @@ function generateDockerGitlabCiFileContent(
       continue;
     }
 
-    console.log(`add project: ${ projectName }`);
-
     const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
 
     const imageName = dockerTargetOptions.imageName ?? rootDocker.imageName;
@@ -166,8 +164,6 @@ function generateStartupGitlabCiFileContent(
       continue;
     }
 
-    console.log(`add project: ${ projectName }`);
-
     const dockerTargetOptions = GetTargetOptions(project.targets['docker'], 'production');
 
     const imageName = dockerTargetOptions.imageName ?? rootDocker.imageName;
@@ -201,6 +197,8 @@ export async function gitlabCiGenerator(
   options: GitlabCiGeneratorSchema,
 ) {
 
+  console.log('gitlab-ci generator:', options);
+
   if (options.overwrite || !tree.exists('tools/scripts/build-and-push-docker-image.sh')) {
     generateFiles(tree, path.join(__dirname, 'files'), 'tools/scripts', options);
   }
@@ -209,14 +207,10 @@ export async function gitlabCiGenerator(
 
   const dockerGitlabCiYaml = generateDockerGitlabCiFileContent(tree, options, rootDocker);
 
-  console.log('.gitlab/ci/jobs/docker.yaml');
-  console.log(dockerGitlabCiYaml);
   tree.write('.gitlab/ci/jobs/docker.yaml', dockerGitlabCiYaml);
 
   const startupGitlabCiYaml = generateStartupGitlabCiFileContent(tree, options, rootDocker);
 
-  console.log('.gitlab/ci/jobs/startup.yaml');
-  console.log(startupGitlabCiYaml);
   tree.write('.gitlab/ci/jobs/startup.yaml', startupGitlabCiYaml);
 
 }
