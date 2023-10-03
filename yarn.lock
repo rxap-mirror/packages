@@ -9578,7 +9578,7 @@ __metadata:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.17
     "@rxap/plugin-angular": ^16.1.0-dev.48
-    "@rxap/plugin-docker": ^16.0.0-dev.35
+    "@rxap/plugin-docker": ^16.0.0-dev.36
     "@rxap/plugin-nestjs": ^16.1.0-dev.38
     "@rxap/plugin-utilities": ^16.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.19
@@ -9596,11 +9596,11 @@ __metadata:
     yaml: 2.3.1
   peerDependencies:
     "@nx/devkit": ^16.5.0
-    "@rxap/generator-utilities": ^1.1.0-dev.16
+    "@rxap/generator-utilities": ^1.1.0-dev.17
     "@rxap/node-utilities": ^1.1.0-dev.13
     "@rxap/plugin-utilities": ^16.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.19
-    "@rxap/workspace-utilities": ^0.1.0-dev.19
+    "@rxap/workspace-utilities": ^0.1.0-dev.20
     tslib: 2.6.2
     yaml: 2.3.1
   languageName: unknown
