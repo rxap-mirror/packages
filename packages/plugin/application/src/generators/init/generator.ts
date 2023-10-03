@@ -63,15 +63,6 @@ function buildDockerImageSuffix(project: ProjectConfiguration, projectName: stri
 }
 
 function updateProjectTargets(project: ProjectConfiguration, projectName: string, options: InitGeneratorSchema) {
-  project.targets ??= {};
-
-  if (!project.targets['build']) {
-    throw new Error(`The project '${ project.name }' has no build target`);
-  }
-
-  if (!project.sourceRoot) {
-    throw new Error(`The project '${ project.name }' has no source root`);
-  }
 
   CoerceTarget(project, 'docker', {
     options: DeleteEmptyProperties({
@@ -82,20 +73,26 @@ function updateProjectTargets(project: ProjectConfiguration, projectName: string
   });
   CoerceTarget(project, 'docker-save');
 
-  // if the build target has a configuration for production
-  if (project.targets?.['build']?.configurations?.['production']) {
-    // set the default configuration to production
-    project.targets['build'].defaultConfiguration = 'production';
-    // ensure the build target has a configuration for development
-    project.targets['build'].configurations['development'] ??= {};
-    // if the project has a serve target with a buildTarget option
-    if (project.targets?.['serve'].options?.buildTarget) {
-      // ensure that the target configuration is explicitly set
-      if (project.targets['serve'].options.buildTarget.match(new RegExp(`^${projectName}:build$`))) {
-        // if not the set the build configuration to development
-        project.targets['serve'].options.buildTarget += ':development';
+  if (project.targets?.['build']) {
+
+    // if the build target has a configuration for production
+    if (project.targets['build']?.configurations?.['production']) {
+      // set the default configuration to production
+      project.targets['build'].defaultConfiguration = 'production';
+      // ensure the build target has a configuration for development
+      project.targets['build'].configurations['development'] ??= {};
+      // if the project has a serve target with a buildTarget option
+      if (project.targets['serve'].options?.buildTarget) {
+        // ensure that the target configuration is explicitly set
+        if (project.targets['serve'].options.buildTarget.match(new RegExp(`^${projectName}:build$`))) {
+          // if not the set the build configuration to development
+          project.targets['serve'].options.buildTarget += ':development';
+        }
       }
     }
+
+  } else {
+    console.warn(`The project '${ project.name }' has no build target`);
   }
 
 }
@@ -180,18 +177,12 @@ function updateTargetDefaults(tree: Tree) {
   updateNxJson(tree, nxJson);
 }
 
-function updateGitIgnore(project: ProjectConfiguration, tree: Tree) {
-
-  if (!project.sourceRoot) {
-    throw new Error(`The project '${ project.name }' has no source root`);
-  }
-
-}
-
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   console.log('application init generator:', options);
 
   await AddPackageJsonDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
+
+  updateTargetDefaults(tree);
 
   CoerceFilesStructure(tree, {
     srcFolder: join(__dirname, 'files', 'general'),
@@ -225,9 +216,6 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       console.log(`init project: ${ projectName }`);
 
       updateProjectTargets(project, projectName, options);
-
-      updateTargetDefaults(tree);
-      updateGitIgnore(project, tree);
 
       // apply changes to the project configuration
       updateProjectConfiguration(tree, projectName, project);
