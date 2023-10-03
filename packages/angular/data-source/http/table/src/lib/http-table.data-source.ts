@@ -1,4 +1,23 @@
 import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
+import {
+  BaseDataSourceViewer,
+  RXAP_DATA_SOURCE_METADATA,
+} from '@rxap/data-source';
+import type { HttpDataSource } from '@rxap/data-source/http';
+import {
+  HttpDataSourceOptions,
+  HttpDataSourceViewer,
+} from '@rxap/data-source/http';
+import {
+  PaginationData,
+  RxapHttpPaginationDataSourceError,
+} from '@rxap/data-source/http/pagination';
+import { PaginatorLike } from '@rxap/data-source/pagination';
+import {
   AbstractTableDataSource,
   AbstractTableDataSourceMetadata,
   FilterLike,
@@ -12,19 +31,9 @@ import {
   TableEvent,
 } from '@rxap/data-source/table';
 import {
-  Inject,
-  Injectable,
-  Optional,
-} from '@angular/core';
-import {
-  BaseDataSourceViewer,
-  RXAP_DATA_SOURCE_METADATA,
-} from '@rxap/data-source';
-import { PaginatorLike } from '@rxap/data-source/pagination';
-import {
-  PaginationData,
-  RxapHttpPaginationDataSourceError,
-} from '@rxap/data-source/http/pagination';
+  Constructor,
+  isPromise,
+} from '@rxap/utilities';
 import {
   combineLatest,
   EMPTY,
@@ -33,7 +42,6 @@ import {
   of,
   TeardownLogic,
 } from 'rxjs';
-import { RxapHttpTableDataSourceError } from './error';
 import {
   filter as rxjsFilter,
   map,
@@ -41,16 +49,8 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
-import type { HttpDataSource } from '@rxap/data-source/http';
-import {
-  HttpDataSourceOptions,
-  HttpDataSourceViewer,
-} from '@rxap/data-source/http';
+import { RxapHttpTableDataSourceError } from './error';
 import { RXAP_HTTP_TABLE_DATA_SOURCE_TO_OPTIONS_FUNCTION } from './tokens';
-import {
-  Constructor,
-  isPromise,
-} from '@rxap/utilities';
 
 export interface HttpTableDataSourceViewer extends BaseDataSourceViewer {
   readonly viewChange: Observable<TableEvent>;
@@ -149,6 +149,8 @@ export class HttpTableDataSource<
       this.filter?.change ?? of(null),
     ]).pipe(
       map(([ page, sort, filter ]) => ({
+        start: page ? page.pageSize * page.pageIndex : 0,
+        end: page ? page.pageSize * page.pageIndex + page.pageSize : Number.MAX_SAFE_INTEGER,
         page,
         sort,
         filter,

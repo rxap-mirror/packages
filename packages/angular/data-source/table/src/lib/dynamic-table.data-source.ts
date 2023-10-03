@@ -57,8 +57,8 @@ import {
 export const RXAP_TABLE_REMOTE_METHOD = new InjectionToken('rxap/data-source/table/remote-method');
 
 export interface TableEvent<Parameters = any> {
-  start?: number;
-  end?: number;
+  start: number;
+  end: number;
   page?: PageEvent | null;
   sort?: Sort | null;
   filter?: Record<string, any> | null | string;
