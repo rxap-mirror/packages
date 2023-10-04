@@ -67,6 +67,9 @@ export class XmlParserService {
         throw new Error(
           'Could not set the root Element. Element name is not defined. Ensure that the @ElementDef is used');
       }
+      if (!this.parsers.has(elementName)) {
+        this.register(nameOrElementParser);
+      }
       this._rootParser = nameOrElementParser;
       this._rootElement = elementName;
     }
