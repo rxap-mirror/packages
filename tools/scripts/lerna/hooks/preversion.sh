@@ -23,18 +23,21 @@ project_list=${changed_projects//,/ }
 echo "changed projects:"
 
 # Print each project on a new line with a dash in front
-for project in $project_list
-do
+for project in $project_list; do
   echo "- $project"
 done
 
-read -r -p "Are you sure to start versioning? [y/N] " response
+if [[ "$YES" != "true" ]]; then
 
-if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
-  exit 1
+  read -r -p "Are you sure to start versioning? [y/N] " response
+
+  if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+    exit 0
+  fi
+
 fi
 
-echo "${changed_projects}" > "${BASE_DIR}/dist/changed-projects.txt"
+echo "${changed_projects}" >"${BASE_DIR}/dist/changed-projects.txt"
 
 echo -e "${BLUE}Run the fix-dependencies target${NC}"
 yarn nx run-many \

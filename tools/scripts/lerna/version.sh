@@ -47,10 +47,14 @@ echo "GIT_BRANCH=${GIT_BRANCH}"
 echo "GIT_DEFAULT_BRANCH=${GIT_DEFAULT_BRANCH}"
 echo "LERNA_PRE_ID=${LERNA_PRE_ID}"
 
-read -r -p "Are you sure? [y/N] " response
+if [[ "$YES" != "true" ]]; then
 
-if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
-  exit 1
+  read -r -p "Are you sure? [y/N] " response
+
+  if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+    exit 0
+  fi
+
 fi
 
 if [[ -z "$GL_TOKEN" ]]; then
