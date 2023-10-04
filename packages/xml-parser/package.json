@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.18",
+  "version": "16.0.0-dev.19",
   "name": "@rxap/xml-parser",
   "description": "A utility packages to convert xml files into class instances.",
   "license": "GPL-3.0-or-later",

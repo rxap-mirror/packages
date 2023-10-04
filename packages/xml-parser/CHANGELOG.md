@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.18...@rxap/xml-parser@16.0.0-dev.19) (2023-10-04)
+
+### Bug Fixes
+
+- add element parser to parsers list if the root element is sed ([ba89849](https://gitlab.com/rxap/packages/commit/ba89849ac3bd568421b22fceb94d3af5ad8e1798))
+- support case sensitive and nodes with namespace ([eb51992](https://gitlab.com/rxap/packages/commit/eb519922d46d34779c005f408fc49955eeb69e54))
+
+### Features
+
+- support scoped elements ([5157d28](https://gitlab.com/rxap/packages/commit/5157d2860e0a48722cf22fe8331f2a4205339115))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.17...@rxap/xml-parser@16.0.0-dev.18) (2023-10-04)
 
 ### Features
