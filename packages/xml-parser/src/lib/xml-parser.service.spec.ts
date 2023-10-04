@@ -175,7 +175,6 @@ describe('XML Parser', () => {
           withNamespace: true,
         });
         xmlParser.setRootElement(RdfElement);
-        xmlParser.register(RdfLabelElement);
       });
 
       it('should handle scoped element names', () => {
