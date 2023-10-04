@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.17...@rxap/xml-parser@16.0.0-dev.18) (2023-10-04)
+
+### Features
+
+- support child path parsing to ignore sub elements ([d7d991c](https://gitlab.com/rxap/packages/commit/d7d991ce706ee515244435eb0fcc07dfdd5ed2ca))
+
 # [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.16...@rxap/xml-parser@16.0.0-dev.17) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/xml-parser

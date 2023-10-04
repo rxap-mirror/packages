@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/upload@16.0.0-dev.15...@rxap/upload@16.0.0-dev.16) (2023-10-04)
+
+### Features
+
+- support custom file upload method ([f358696](https://gitlab.com/rxap/packages/commit/f358696daa96349ab82de9f7796d8975dddb3e7a))
+
 # [16.0.0-dev.15](https://gitlab.com/rxap/packages/compare/@rxap/upload@16.0.0-dev.14...@rxap/upload@16.0.0-dev.15) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/upload
