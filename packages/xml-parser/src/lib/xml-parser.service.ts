@@ -7,6 +7,7 @@ import {
 import { DOMParser } from 'xmldom';
 import { AttributeOptions } from './decorators/attribute';
 import { ElementParserMetaData } from './decorators/metadata-keys';
+import { XmlElementMetadata } from './decorators/utilities';
 import { RxapElement } from './element';
 import { ElementName } from './element-name';
 import { ParsedElement } from './elements/parsed-element';
@@ -34,9 +35,9 @@ export class XmlParserService {
       if (!elementParser) {
         throw new Error('Element Parser is undefined or null');
       }
-      const elementName = getMetadata<string>(ElementParserMetaData.ELEMENT_NAME, elementParser);
+      const elementName = getMetadata<string>(XmlElementMetadata.NAME, elementParser);
       const parsers = getMetadata<XmlElementParserFunction<any>[]>(
-        ElementParserMetaData.ELEMENT_PARSERS,
+        XmlElementMetadata.PARSER,
         elementParser,
       );
 
@@ -62,7 +63,7 @@ export class XmlParserService {
     if (typeof nameOrElementParser === 'string') {
       this._rootElement = nameOrElementParser;
     } else {
-      const elementName = getMetadata<string>(ElementParserMetaData.ELEMENT_NAME, nameOrElementParser);
+      const elementName = getMetadata<string>(XmlElementMetadata.NAME, nameOrElementParser);
       if (!elementName) {
         throw new Error(
           'Could not set the root Element. Element name is not defined. Ensure that the @ElementDef is used');
@@ -104,26 +105,11 @@ export class XmlParserService {
     parent: ParsedElement | null,
     args: any[] = [],
   ): D {
-    let elementName: string;
-    let parser: ElementParserWithParsers;
 
-    if (typeof elementNameOrConstructor === 'string') {
-      elementName = elementNameOrConstructor;
-      if (!this.parsers.has(elementName)) {
-        throw new Error(`Parser for element '${ elementName }' is not registered`);
-      }
-
-      parser = this.parsers.get(elementName) as any;
-    } else {
-      elementName = getMetadata<string>(ElementParserMetaData.ELEMENT_NAME, elementNameOrConstructor)!;
-      parser = {
-        parsers: getMetadata<XmlElementParserFunction<any>[]>(
-          ElementParserMetaData.ELEMENT_PARSERS,
-          elementNameOrConstructor,
-        )!,
-        elementParser: elementNameOrConstructor,
-      };
-    }
+    const {
+      elementName,
+      parser,
+    } = this.determineElementNameAndParser(elementNameOrConstructor);
 
     // create the ParsedElement instance of the current element
     const instance = new parser.elementParser(...args);
@@ -170,6 +156,36 @@ export class XmlParserService {
     }
 
     return instance as any;
+  }
+
+  protected determineElementNameAndParser(elementNameOrConstructor: string | Constructor<ParsedElement>) {
+
+    let elementName: string;
+    let parser: ElementParserWithParsers;
+
+    if (typeof elementNameOrConstructor === 'string') {
+      elementName = elementNameOrConstructor;
+      if (!this.parsers.has(elementName)) {
+        throw new Error(`Parser for element '${ elementName }' is not registered`);
+      }
+
+      parser = this.parsers.get(elementName) as any;
+    } else {
+      elementName = getMetadata<string>(XmlElementMetadata.NAME, elementNameOrConstructor)!;
+      parser = {
+        parsers: getMetadata<XmlElementParserFunction<any>[]>(
+            XmlElementMetadata.PARSER,
+            elementNameOrConstructor,
+        )!,
+        elementParser: elementNameOrConstructor,
+      };
+    }
+
+    return {
+      elementName,
+      parser,
+    };
+
   }
 
   /**
