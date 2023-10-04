@@ -11,14 +11,7 @@ export class RxapElement {
   }
 
   public get name(): string {
-    let name = this.nodeName;
-    if (!this.options.caseSensitive) {
-      name = name.toLowerCase();
-    }
-    if (!this.options.withNamespace) {
-      name = name.replace(/[^:]+:/, '');
-    }
-    return name;
+    return this.normalizeNodeName(this.nodeName);
   }
 
   public get nodeName(): string {
@@ -67,7 +60,7 @@ export class RxapElement {
   }
 
   public hasChild(nodeName: string): boolean {
-    return this.getAllChildNodes().find(n => n.name === nodeName.toLowerCase()) !== undefined;
+    return this.getAllChildNodes().find(n => n.name === this.normalizeNodeName(nodeName)) !== undefined;
   }
 
   public getAllChildNodes(): RxapElement[] {
@@ -81,11 +74,12 @@ export class RxapElement {
   }
 
   public getChildren(...nodeNames: string[]): RxapElement[] {
-    return this.getAllChildNodes().filter(e => nodeNames.map(nodeName => nodeName.toLowerCase()).includes(e.name));
+    return this.getAllChildNodes().filter(
+      e => nodeNames.map(nodeName => this.normalizeNodeName(nodeName)).includes(e.name));
   }
 
   public getChild(nodeName: string): RxapElement | undefined {
-    return this.getAllChildNodes().find(e => e.name === nodeName.toLowerCase());
+    return this.getAllChildNodes().find(e => e.name === this.normalizeNodeName(nodeName));
   }
 
   public getTextContent<T = string>(defaultValue?: any, raw = false): T {
@@ -118,6 +112,17 @@ export class RxapElement {
       return this.getChildren(nodeName)!.map(child => child.getTextContent(defaultValue));
     }
     return [];
+  }
+
+  public normalizeNodeName(nodeName: string): string {
+    let name = nodeName;
+    if (!this.options.caseSensitive) {
+      name = name.toLowerCase();
+    }
+    if (!this.options.withNamespace) {
+      name = name.replace(/[^:]+:/, '');
+    }
+    return name;
   }
 
 }

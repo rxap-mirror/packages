@@ -1,101 +1,104 @@
-import { XmlParserService } from './xml-parser.service';
-import { ParsedElement } from './elements/parsed-element';
+import { ElementChild } from '@rxap/xml-parser';
 import { ElementAttribute } from './decorators/element-attribute';
+import { ElementChildren } from './decorators/element-children';
 import { ElementDef } from './decorators/element-def';
 import { ElementRequired } from './decorators/mixins/required-element.parser.mixin';
-import { ElementChildren } from './decorators/element-children';
+import { ParsedElement } from './elements/parsed-element';
+import { XmlParserService } from './xml-parser.service';
 
 describe('XML Parser', () => {
 
   describe('Xml Parser Service', () => {
 
-    let xmlParser: XmlParserService;
+    describe('Full Example A', () => {
 
-    beforeEach(() => {
+      let xmlParser: XmlParserService;
 
-      xmlParser = new XmlParserService();
+      beforeEach(() => {
 
-    });
+        xmlParser = new XmlParserService();
 
-    @ElementDef('project')
-    class ProjectElement implements ParsedElement {
+      });
 
-      @ElementAttribute()
-      @ElementRequired()
-      public name!: string;
+      @ElementDef('project')
+      class ProjectElement implements ParsedElement {
 
-      public validate(): boolean {
-        return true;
+        @ElementAttribute()
+        @ElementRequired()
+        public name!: string;
+
+        public validate(): boolean {
+          return true;
+        }
+
       }
 
-    }
+      @ElementDef('software-project')
+      class SoftwareProjectElement extends ProjectElement {
 
-    @ElementDef('software-project')
-    class SoftwareProjectElement extends ProjectElement {
+        @ElementAttribute()
+        @ElementRequired()
+        public git!: boolean;
 
-      @ElementAttribute()
-      @ElementRequired()
-      public git!: boolean;
-
-    }
-
-    @ElementDef('definition')
-    class UserElement {
-
-      @ElementAttribute()
-      @ElementRequired()
-      public username!: string;
-
-      @ElementChildren(SoftwareProjectElement)
-      @ElementChildren(ProjectElement)
-      public projects!: ProjectElement[];
-
-      public validate(): boolean {
-        return true;
       }
 
-    }
+      @ElementDef('definition')
+      class UserElement {
 
-    it('register parser', () => {
+        @ElementAttribute()
+        @ElementRequired()
+        public username!: string;
 
-      expect(xmlParser.parsers.size).toBe(0);
+        @ElementChildren(SoftwareProjectElement)
+        @ElementChildren(ProjectElement)
+        public projects!: ProjectElement[];
 
-      xmlParser.register(UserElement);
-      expect(xmlParser.parsers.size).toBe(1);
+        public validate(): boolean {
+          return true;
+        }
 
-      xmlParser.register(UserElement);
-      expect(xmlParser.parsers.size).toBe(1);
+      }
 
-      xmlParser.register(ProjectElement);
-      expect(xmlParser.parsers.size).toBe(2);
+      it('register parser', () => {
 
-      xmlParser.register(ProjectElement);
-      expect(xmlParser.parsers.size).toBe(2);
+        expect(xmlParser.parsers.size).toBe(0);
 
-      xmlParser.register(SoftwareProjectElement);
-      expect(xmlParser.parsers.size).toBe(3);
+        xmlParser.register(UserElement);
+        expect(xmlParser.parsers.size).toBe(1);
 
-      const userElementParser = xmlParser.parsers.get('definition')!;
-      expect(userElementParser).toBeDefined();
-      expect(userElementParser.parsers.length).toBe(3);
+        xmlParser.register(UserElement);
+        expect(xmlParser.parsers.size).toBe(1);
 
-      const projectElementParser = xmlParser.parsers.get('project')!;
-      expect(projectElementParser).toBeDefined();
-      expect(projectElementParser.parsers.length).toBe(1);
+        xmlParser.register(ProjectElement);
+        expect(xmlParser.parsers.size).toBe(2);
 
-      const softwareProjectElementParser = xmlParser.parsers.get('software-project')!;
-      expect(softwareProjectElementParser).toBeDefined();
-      expect(softwareProjectElementParser.parsers.length).toBe(2);
+        xmlParser.register(ProjectElement);
+        expect(xmlParser.parsers.size).toBe(2);
 
-    });
+        xmlParser.register(SoftwareProjectElement);
+        expect(xmlParser.parsers.size).toBe(3);
 
-    it('should parse xml file and use registered parsers and validate parsed elements', () => {
+        const userElementParser = xmlParser.parsers.get('definition')!;
+        expect(userElementParser).toBeDefined();
+        expect(userElementParser.parsers.length).toBe(3);
 
-      xmlParser.register(UserElement);
-      xmlParser.register(ProjectElement);
-      xmlParser.register(SoftwareProjectElement);
+        const projectElementParser = xmlParser.parsers.get('project')!;
+        expect(projectElementParser).toBeDefined();
+        expect(projectElementParser.parsers.length).toBe(1);
 
-      const template = `
+        const softwareProjectElementParser = xmlParser.parsers.get('software-project')!;
+        expect(softwareProjectElementParser).toBeDefined();
+        expect(softwareProjectElementParser.parsers.length).toBe(2);
+
+      });
+
+      it('should parse xml file and use registered parsers and validate parsed elements', () => {
+
+        xmlParser.register(UserElement);
+        xmlParser.register(ProjectElement);
+        xmlParser.register(SoftwareProjectElement);
+
+        const template = `
 <definition id="id1" username="my-username">
   <project name="my-project-1"/>
   <project name="my-project-2"/>
@@ -103,38 +106,88 @@ describe('XML Parser', () => {
 </definition>
       `;
 
-      const userElement = xmlParser.parseFromXml<UserElement>(template);
+        const userElement = xmlParser.parseFromXml<UserElement>(template);
 
-      expect(userElement).toBeInstanceOf(UserElement);
-      expect(userElement.validate()).toBeTruthy();
+        expect(userElement).toBeInstanceOf(UserElement);
+        expect(userElement.validate()).toBeTruthy();
 
-      expect(userElement.projects.length).toBe(3);
-      expect(userElement.projects[0]).toBeInstanceOf(ProjectElement);
-      expect(userElement.projects[1]).toBeInstanceOf(ProjectElement);
-      expect(userElement.projects[2]).toBeInstanceOf(SoftwareProjectElement);
+        expect(userElement.projects.length).toBe(3);
+        expect(userElement.projects[0]).toBeInstanceOf(ProjectElement);
+        expect(userElement.projects[1]).toBeInstanceOf(ProjectElement);
+        expect(userElement.projects[2]).toBeInstanceOf(SoftwareProjectElement);
 
-      expect(userElement).toEqual({
-        __tag: 'definition',
-        __parent: null,
-        username: 'my-username',
-        projects: [
-          {
-            __parent: userElement,
-            __tag: 'project',
-            name: 'my-project-1',
-          },
-          {
-            __parent: userElement,
-            __tag: 'project',
-            name: 'my-project-2',
-          },
-          {
-            __parent: userElement,
-            __tag: 'software-project',
-            name: 'my-project-3',
-            git: true,
-          },
-        ],
+        expect(userElement).toEqual({
+          __tag: 'definition',
+          __parent: null,
+          username: 'my-username',
+          projects: [
+            {
+              __parent: userElement,
+              __tag: 'project',
+              name: 'my-project-1',
+            },
+            {
+              __parent: userElement,
+              __tag: 'project',
+              name: 'my-project-2',
+            },
+            {
+              __parent: userElement,
+              __tag: 'software-project',
+              name: 'my-project-3',
+              git: true,
+            },
+          ],
+        });
+
+      });
+
+    });
+
+    describe('With scoped element names', () => {
+
+      @ElementDef('rdf:Label')
+      class RdfLabelElement implements ParsedElement {
+
+        validate(): boolean {
+          return true;
+        }
+
+      }
+
+      @ElementDef('rdf:RDF')
+      class RdfElement implements ParsedElement {
+
+        @ElementChild(RdfLabelElement, { required: true })
+        label!: RdfLabelElement;
+
+        validate(): boolean {
+          return true;
+        }
+
+      }
+
+      let xmlParser: XmlParserService;
+
+      beforeEach(() => {
+        xmlParser = new XmlParserService({
+          caseSensitive: true,
+          withNamespace: true,
+        });
+        xmlParser.setRootElement(RdfElement);
+        xmlParser.register(RdfLabelElement);
+      });
+
+      it('should handle scoped element names', () => {
+
+        const xml = '<rdf:RDF><rdf:Label/></rdf:RDF>';
+
+        const rdfElement = xmlParser.parseFromXml<RdfElement>(xml);
+
+        expect(rdfElement).toBeInstanceOf(RdfElement);
+        expect(rdfElement.label).toBeDefined();
+        expect(rdfElement.label).toBeInstanceOf(RdfLabelElement);
+
       });
 
     });
