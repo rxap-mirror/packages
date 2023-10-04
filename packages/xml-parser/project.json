@@ -4,6 +4,7 @@
   "sourceRoot": "packages/xml-parser/src",
   "projectType": "library",
   "targets": {
+    "index-export": {},
     "build": {
       "executor": "@nx/angular:package",
       "outputs": [

@@ -1,21 +1,25 @@
 import { Mixin } from '@rxap/mixin';
+import { ParsedElement } from '../../elements/parsed-element';
+import { ParsedElementType } from '../utilities';
+import {
+  PathElementOptions,
+  PathElementParserMixin,
+} from './path-element.parser.mixin';
 import {
   RequiredElementOptions,
   RequiredElementParserMixin,
 } from './required-element.parser.mixin';
-import { ParsedElementType } from '../utilities';
-import { ParsedElement } from '../../elements/parsed-element';
 
-export interface ChildElementOptions extends RequiredElementOptions {
+export interface ChildElementOptions extends RequiredElementOptions, PathElementOptions {
   tag?: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ChildElementParserMixin<Child extends ParsedElement>
-  extends RequiredElementParserMixin {
+  extends RequiredElementParserMixin, PathElementParserMixin {
 }
 
-@Mixin(RequiredElementParserMixin)
+@Mixin(RequiredElementParserMixin, PathElementParserMixin)
 export class ChildElementParserMixin<Child extends ParsedElement> {
 
   constructor(

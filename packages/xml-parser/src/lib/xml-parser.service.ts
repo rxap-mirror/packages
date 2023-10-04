@@ -1,17 +1,17 @@
-import { RxapElement } from './element';
+import { getMetadata } from '@rxap/reflect-metadata';
 import {
   Constructor,
   hasIndexSignature,
   Type,
 } from '@rxap/utilities';
-import { ParsedElement } from './elements/parsed-element';
-import { ElementParserMetaData } from './decorators/metadata-keys';
-import { ElementName } from './element-name';
-import { XmlElementParserFunction } from './xml-element-parser-function';
-import { AttributeOptions } from './decorators/attribute';
-import { RxapXmlParserError } from './error';
 import { DOMParser } from 'xmldom';
-import { getMetadata } from '@rxap/reflect-metadata';
+import { AttributeOptions } from './decorators/attribute';
+import { ElementParserMetaData } from './decorators/metadata-keys';
+import { RxapElement } from './element';
+import { ElementName } from './element-name';
+import { ParsedElement } from './elements/parsed-element';
+import { RxapXmlParserError } from './error';
+import { XmlElementParserFunction } from './xml-element-parser-function';
 
 export interface ElementParserWithParsers {
   elementParser: Type<ParsedElement>;
@@ -23,6 +23,7 @@ export class XmlParserService {
   public readonly parsers = new Map<ElementName, ElementParserWithParsers>();
 
   protected _rootElement = 'definition';
+  protected _rootParser: Constructor<ParsedElement> | null = null;
 
   constructor() {
     this.parse = this.parse.bind(this);
@@ -54,6 +55,20 @@ export class XmlParserService {
           parsers,
         },
       );
+    }
+  }
+
+  public setRootElement(nameOrElementParser: string | Constructor<ParsedElement>): void {
+    if (typeof nameOrElementParser === 'string') {
+      this._rootElement = nameOrElementParser;
+    } else {
+      const elementName = getMetadata<string>(ElementParserMetaData.ELEMENT_NAME, nameOrElementParser);
+      if (!elementName) {
+        throw new Error(
+          'Could not set the root Element. Element name is not defined. Ensure that the @ElementDef is used');
+      }
+      this._rootParser = nameOrElementParser;
+      this._rootElement = elementName;
     }
   }
 
@@ -172,6 +187,13 @@ export class XmlParserService {
       throw new Error('The parsed xml has not any element');
     }
 
+    const root = this.determineRootElement(xmlDoc);
+
+    return this.parse<D>(root, this._rootParser as Constructor<D> ?? root.name, null, args);
+  }
+
+  protected determineRootElement(xmlDoc: Document) {
+
     const rootNode = Array.from(xmlDoc.childNodes).find(node => node.nodeName === this._rootElement);
 
     if (!rootNode) {
@@ -181,10 +203,11 @@ export class XmlParserService {
     const root = new RxapElement(rootNode as Element);
 
     if (root.name !== this._rootElement) {
-      throw new Error(`The root node must be an <${ this._rootElement }> element, but the root node is a <${ root.name }> element!`);
+      throw new Error(
+        `The root node must be an <${ this._rootElement }> element, but the root node is a <${ root.name }> element!`);
     }
 
-    return this.parse<D>(root, root.name, null, args);
+    return root;
 
   }
 

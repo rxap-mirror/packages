@@ -1,16 +1,17 @@
+import { getMetadata } from '@rxap/reflect-metadata';
+import { RxapElement } from '../element';
+import { ParsedElement } from '../elements/parsed-element';
+import { RxapXmlParserValidateRequiredError } from '../error';
+import { XmlParserService } from '../xml-parser.service';
 import {
   ElementChild,
   ElementChildParser,
 } from './element-child';
+import { ElementDef } from './element-def';
 import {
   ParsedElementType,
   XmlElementMetadata,
 } from './utilities';
-import { getMetadata } from '@rxap/reflect-metadata';
-import { RxapElement } from '../element';
-import { ParsedElement } from '../elements/parsed-element';
-import { XmlParserService } from '../xml-parser.service';
-import { RxapXmlParserValidateRequiredError } from '../error';
 
 describe('@rxap/xml-parser', () => {
 
@@ -81,6 +82,34 @@ describe('@rxap/xml-parser', () => {
 
       });
 
+      it('should respect the path property and load the child element from the path', () => {
+
+        const parser = new ElementChildParser('property', {} as any, {
+          tag: 'tag',
+          path: [ 'sub', 'path' ],
+        });
+
+        const mockElement: any = {};
+
+        const hasChild = jest.fn().mockReturnValue(true);
+        const getChild = jest.fn().mockReturnValue(mockElement);
+        const parse = jest.fn();
+
+        mockElement.getChild = getChild;
+        mockElement.hasChild = hasChild;
+
+        expect(parser.parse({ parse } as any, mockElement, {} as any)).toHaveProperty('property');
+        expect(hasChild).toBeCalledTimes(3);
+        expect(hasChild).toHaveBeenNthCalledWith(1, 'sub');
+        expect(hasChild).toHaveBeenNthCalledWith(2, 'path');
+        expect(hasChild).toHaveBeenNthCalledWith(3, 'tag');
+        expect(getChild).toBeCalledTimes(3);
+        expect(getChild).toHaveBeenNthCalledWith(1, 'sub');
+        expect(getChild).toHaveBeenNthCalledWith(2, 'path');
+        expect(getChild).toHaveBeenNthCalledWith(3, 'tag');
+
+      });
+
     });
 
     describe('@ElementChild', () => {
@@ -111,6 +140,41 @@ describe('@rxap/xml-parser', () => {
         expect(parserInstances).toBeDefined();
         expect(parserInstances.length).toBe(1);
         expect(parserInstances[0]).toBeInstanceOf(ElementChildParser);
+
+      });
+
+      it('should parse the child element with the given path and tag', () => {
+
+        @ElementDef('my-child')
+        class MyChild implements ParsedElement {
+          public validate(): boolean {
+            return true;
+          }
+        }
+
+        @ElementDef('my-element')
+        class MyElement {
+
+          @ElementChild(MyChild, { path: [ 'sub', 'path' ] })
+          public child!: MyChild;
+
+          public validate(): boolean {
+            return true;
+          }
+
+        }
+
+        const parser = new XmlParserService();
+        parser.register(MyElement, MyChild);
+        parser.setRootElement(MyElement);
+
+        const result = parser.parseFromXml<MyElement>('<my-element><sub><path><my-child/></path></sub></my-element>');
+
+        expect(result).toBeDefined();
+        expect(result).toBeInstanceOf(MyElement);
+        expect(result.child).toBeDefined();
+        expect(result.child).toBeInstanceOf(MyChild);
+
 
       });
 
