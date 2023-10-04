@@ -1,12 +1,24 @@
 import { parseValue } from './parse-value';
 
+export interface RxapElementOptions {
+  withNamespace?: boolean;
+  caseSensitive?: boolean;
+}
+
 export class RxapElement {
 
-  constructor(public readonly element: Element) {
+  constructor(public readonly element: Element, public readonly options: RxapElementOptions = {}) {
   }
 
   public get name(): string {
-    return this.element.nodeName.toLowerCase().replace(/[^:]+:/, '');
+    let name = this.nodeName;
+    if (!this.options.caseSensitive) {
+      name = name.toLowerCase();
+    }
+    if (!this.options.withNamespace) {
+      name = name.replace(/[^:]+:/, '');
+    }
+    return name;
   }
 
   public get nodeName(): string {
@@ -61,7 +73,7 @@ export class RxapElement {
   public getAllChildNodes(): RxapElement[] {
     return Array.from(this.element.childNodes)
                 .filter(n => !!n.nodeName && n.nodeType === 1)
-                .map((child: ChildNode) => new RxapElement(child as any));
+      .map((child: ChildNode) => new RxapElement(child as any, this.options));
   }
 
   public getCountChildren(): number {

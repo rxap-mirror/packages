@@ -8,7 +8,10 @@ import { DOMParser } from 'xmldom';
 import { AttributeOptions } from './decorators/attribute';
 import { ElementParserMetaData } from './decorators/metadata-keys';
 import { XmlElementMetadata } from './decorators/utilities';
-import { RxapElement } from './element';
+import {
+  RxapElement,
+  RxapElementOptions,
+} from './element';
 import { ElementName } from './element-name';
 import { ParsedElement } from './elements/parsed-element';
 import { RxapXmlParserError } from './error';
@@ -26,7 +29,7 @@ export class XmlParserService {
   protected _rootElement = 'definition';
   protected _rootParser: Constructor<ParsedElement> | null = null;
 
-  constructor() {
+  constructor(public readonly elementOptions: RxapElementOptions = {}) {
     this.parse = this.parse.bind(this);
   }
 
@@ -213,7 +216,7 @@ export class XmlParserService {
       throw new Error(`Could not find <${ this._rootElement }> element!`);
     }
 
-    const root = new RxapElement(rootNode as Element);
+    const root = new RxapElement(rootNode as Element, this.elementOptions);
 
     if (root.name !== this._rootElement) {
       throw new Error(
