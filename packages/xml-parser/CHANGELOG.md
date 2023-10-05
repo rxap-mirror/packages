@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.20...@rxap/xml-parser@16.0.0-dev.21) (2023-10-05)
+
+### Bug Fixes
+
+- support case sensitive and nodes with namespace ([fcff8c2](https://gitlab.com/rxap/packages/commit/fcff8c2bc3dc43c01d94967667927205fe9b5ced))
+
 # [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.19...@rxap/xml-parser@16.0.0-dev.20) (2023-10-05)
 
 ### Bug Fixes
