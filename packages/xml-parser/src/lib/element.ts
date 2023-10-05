@@ -5,6 +5,17 @@ export interface RxapElementOptions {
   caseSensitive?: boolean;
 }
 
+export function normalizeNodeName(nodeName: string, options: RxapElementOptions): string {
+  let name = nodeName;
+  if (!options.caseSensitive) {
+    name = name.toLowerCase();
+  }
+  if (!options.withNamespace) {
+    name = name.replace(/[^:]+:/, '');
+  }
+  return name;
+}
+
 export class RxapElement {
 
   constructor(public readonly element: Element, public readonly options: RxapElementOptions = {}) {
@@ -115,14 +126,7 @@ export class RxapElement {
   }
 
   public normalizeNodeName(nodeName: string): string {
-    let name = nodeName;
-    if (!this.options.caseSensitive) {
-      name = name.toLowerCase();
-    }
-    if (!this.options.withNamespace) {
-      name = name.replace(/[^:]+:/, '');
-    }
-    return name;
+    return normalizeNodeName(nodeName, this.options);
   }
 
 }

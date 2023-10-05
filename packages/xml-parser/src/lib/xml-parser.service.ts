@@ -9,6 +9,7 @@ import { AttributeOptions } from './decorators/attribute';
 import { ElementParserMetaData } from './decorators/metadata-keys';
 import { XmlElementMetadata } from './decorators/utilities';
 import {
+  normalizeNodeName,
   RxapElement,
   RxapElementOptions,
 } from './element';
@@ -27,6 +28,11 @@ export class XmlParserService {
   public readonly parsers = new Map<ElementName, ElementParserWithParsers>();
 
   protected _rootElement = 'definition';
+
+  protected get rootElement(): string {
+    return normalizeNodeName(this._rootElement, this.elementOptions);
+  }
+
   protected _rootParser: Constructor<ParsedElement> | null = null;
 
   constructor(public readonly elementOptions: RxapElementOptions = {}) {
@@ -210,17 +216,18 @@ export class XmlParserService {
 
   protected determineRootElement(xmlDoc: Document) {
 
-    const rootNode = Array.from(xmlDoc.childNodes).find(node => node.nodeName === this._rootElement);
+    const rootNode = Array.from(xmlDoc.childNodes).find(
+      node => normalizeNodeName(node.nodeName, this.elementOptions) === this.rootElement);
 
     if (!rootNode) {
-      throw new Error(`Could not find <${ this._rootElement }> element!`);
+      throw new Error(`Could not find <${ this.rootElement }> element!`);
     }
 
     const root = new RxapElement(rootNode as Element, this.elementOptions);
 
-    if (root.name !== this._rootElement) {
+    if (root.name !== this.rootElement) {
       throw new Error(
-        `The root node must be an <${ this._rootElement }> element, but the root node is a <${ root.name }> element!`);
+        `The root node must be an <${ this.rootElement }> element, but the root node is a <${ root.name }> element!`);
     }
 
     return root;
