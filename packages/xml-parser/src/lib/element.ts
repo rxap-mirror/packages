@@ -44,6 +44,10 @@ export class RxapElement {
     return defaultValue as any;
   }
 
+  public hasName(name: string): boolean {
+    return this.name === this.normalizeNodeName(name);
+  }
+
   public getDate(qualifiedName: string): number | undefined {
     return undefined;
   }
@@ -71,7 +75,7 @@ export class RxapElement {
   }
 
   public hasChild(nodeName: string): boolean {
-    return this.getAllChildNodes().find(n => n.name === this.normalizeNodeName(nodeName)) !== undefined;
+    return !!this.getChild(nodeName);
   }
 
   public getAllChildNodes(): RxapElement[] {
@@ -90,7 +94,7 @@ export class RxapElement {
   }
 
   public getChild(nodeName: string): RxapElement | undefined {
-    return this.getAllChildNodes().find(e => e.name === this.normalizeNodeName(nodeName));
+    return this.getAllChildNodes().find(e => e.hasName(nodeName));
   }
 
   public getTextContent<T = string>(defaultValue?: any, raw = false): T {

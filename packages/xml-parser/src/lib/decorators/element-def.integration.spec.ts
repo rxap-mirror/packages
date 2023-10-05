@@ -32,7 +32,7 @@ export class TestingXmlParserService extends XmlParserService {
 
     const root = new RxapElement(xmlDoc.childNodes.item(0) as Element);
 
-    if (root.name !== elementName) {
+    if (!elementName || !root.hasName(elementName)) {
       throw new Error(`The root node must be an <${ elementName }> element but found <${ root.name }>`);
     }
 

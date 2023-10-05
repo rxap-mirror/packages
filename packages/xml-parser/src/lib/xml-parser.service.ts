@@ -225,7 +225,7 @@ export class XmlParserService {
 
     const root = new RxapElement(rootNode as Element, this.elementOptions);
 
-    if (root.name !== this.rootElement) {
+    if (!root.hasName(this.rootElement)) {
       throw new Error(
         `The root node must be an <${ this.rootElement }> element, but the root node is a <${ root.name }> element!`);
     }

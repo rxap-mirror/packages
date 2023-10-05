@@ -1,33 +1,33 @@
-import {
-  AddParserToMetadata,
-  ParsedElementType,
-  XmlElementMetadata,
-} from './utilities';
-import {
-  deepMerge,
-  hasIndexSignature,
-} from '@rxap/utilities';
 import { Mixin } from '@rxap/mixin';
-import {
-  ChildElementOptions,
-  ChildElementParserMixin,
-} from './mixins/child-element-parser.mixin';
 import {
   getMetadata,
   getOwnMetadata,
 } from '@rxap/reflect-metadata';
 import {
-  ChildrenElementOptions,
-  ChildrenElementParserMixin,
-} from './mixins/children-element-parser.mixin';
+  deepMerge,
+  hasIndexSignature,
+} from '@rxap/utilities';
 import { RxapElement } from '../element';
 import { ParsedElement } from '../elements/parsed-element';
-import { XmlParserService } from '../xml-parser.service';
 import {
   RxapXmlParserValidateError,
   RxapXmlParserValidateRequiredError,
 } from '../error';
+import { XmlParserService } from '../xml-parser.service';
+import {
+  ChildElementOptions,
+  ChildElementParserMixin,
+} from './mixins/child-element-parser.mixin';
+import {
+  ChildrenElementOptions,
+  ChildrenElementParserMixin,
+} from './mixins/children-element-parser.mixin';
 import { RequiredProperty } from './required-property';
+import {
+  AddParserToMetadata,
+  ParsedElementType,
+  XmlElementMetadata,
+} from './utilities';
 
 export interface ElementChildrenOptions extends ChildElementOptions, ChildrenElementOptions {
 
@@ -123,14 +123,14 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
 
   private attachType(element: RxapElement, elementTypes: ParsedElementType<Child>[]): ElementWithType<Child> {
     if (this.hasTag) {
-      if (element.name === this.tag) {
+      if (element.hasName(this.tag)) {
         return {
           element,
           type: this.elementType,
         };
       }
     } else {
-      if (element.name === this.elementType?.TAG) {
+      if (this.elementType?.TAG && element.hasName(this.elementType?.TAG)) {
         return {
           element,
           type: this.elementType,
@@ -138,7 +138,7 @@ export class ElementChildrenParser<T extends ParsedElement, Child extends Parsed
       }
     }
 
-    const extendedElementType = elementTypes.find(et => element.name === et.TAG);
+    const extendedElementType = elementTypes.find(et => et.TAG && element.hasName(et.TAG));
 
     if (extendedElementType) {
       return {

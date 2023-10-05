@@ -26,11 +26,11 @@ export class TestingXmlParserService extends XmlParserService {
 
     const root = new RxapElement(xmlDoc.childNodes.item(0) as Element, this.elementOptions);
 
-    if (root.name === 'parsererror') {
+    if (root.nodeName.toLowerCase() === 'parsererror') {
       throw new Error(root.getTextContent());
     }
 
-    if (root.name !== elementName) {
+    if (!elementName || !root.hasName(elementName)) {
       throw new Error(`The root node must be an <${ elementName }> element. Found a <${ root.name }>`);
     }
 
