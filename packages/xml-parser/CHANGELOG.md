@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.19...@rxap/xml-parser@16.0.0-dev.20) (2023-10-05)
+
+### Bug Fixes
+
+- ensure the node name normalization is also applied on the root element node name ([95552f6](https://gitlab.com/rxap/packages/commit/95552f688fccabbce5532e4692c122a2f1ea85b9))
+
 # [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.18...@rxap/xml-parser@16.0.0-dev.19) (2023-10-04)
 
 ### Bug Fixes
