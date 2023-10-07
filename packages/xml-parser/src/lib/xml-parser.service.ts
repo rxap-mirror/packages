@@ -216,8 +216,9 @@ export class XmlParserService {
 
   protected determineRootElement(xmlDoc: Document) {
 
-    const rootNode = Array.from(xmlDoc.childNodes).find(
-      node => normalizeNodeName(node.nodeName, this.elementOptions) === this.rootElement);
+    const rootNode = Array.from(xmlDoc.childNodes)
+      .filter(node => node.nodeType === 1)
+      .find(node => normalizeNodeName(node.nodeName, this.elementOptions) === this.rootElement);
 
     if (!rootNode) {
       throw new Error(`Could not find <${ this.rootElement }> element!`);
