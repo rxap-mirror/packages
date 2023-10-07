@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.21...@rxap/xml-parser@16.0.0-dev.22) (2023-10-07)
+
+### Bug Fixes
+
+- only check node of type 1 as root element ([6f9fe6c](https://gitlab.com/rxap/packages/commit/6f9fe6c20c51104cbfda8de6559a7dd92f828a30))
+
 # [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.20...@rxap/xml-parser@16.0.0-dev.21) (2023-10-05)
 
 ### Bug Fixes
