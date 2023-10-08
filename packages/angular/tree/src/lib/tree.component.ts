@@ -5,6 +5,8 @@ import {
 import { FlatTreeControl } from '@angular/cdk/tree';
 import {
   AsyncPipe,
+  NgClass,
+  NgForOf,
   NgIf,
   NgStyle,
 } from '@angular/common';
@@ -24,11 +26,10 @@ import {
   Optional,
   Output,
   Renderer2,
+  signal,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { ExtendedModule } from '@angular/flex-layout/extended';
-import { FlexModule } from '@angular/flex-layout/flex';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
@@ -48,7 +49,6 @@ import { IconDirective } from '@rxap/material-directives/icon';
 import { Method } from '@rxap/pattern';
 import {
   DebounceCall,
-  Required,
   WithChildren,
   WithIdentifier,
 } from '@rxap/utilities';
@@ -68,9 +68,7 @@ import { TreeDataSource } from './tree.data-source';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    FlexModule,
     NgStyle,
-    ExtendedModule,
     NgIf,
     MatProgressBarModule,
     MatTreeModule,
@@ -83,6 +81,8 @@ import { TreeDataSource } from './tree.data-source';
     MatDividerModule,
     PortalModule,
     AsyncPipe,
+    NgClass,
+    NgForOf,
   ],
 })
 export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
@@ -115,6 +115,9 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   public portal: TemplatePortal | null = null;
   @ViewChild('treeContainer', { static: true })
   public treeContainer!: ElementRef;
+
+  public readonly showTreeNavigation = signal(true);
+
   /**
    * Indicates that the divider is moved with mouse down
    * @private
@@ -137,6 +140,7 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
     @Inject(RXAP_TREE_CONTENT_EDITABLE_METHOD)
       contentEditableMethod: Method<any, string | null> | null,
     private readonly renderer: Renderer2,
+    private readonly elementRef: ElementRef<HTMLElement>,
   ) {
     this.treeControl = new FlatTreeControl(this.getLevel, this.isExpandable);
     this.contentEditableMethod = contentEditableMethod;
@@ -180,12 +184,12 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
 
   public ngAfterContentInit(): void {
     this.dataSource.selected.changed
-        .pipe(
-          map(($event) => $event.source.selected),
-          startWith(this.dataSource.selected.selected),
-          tap((selected) => selected.forEach((node) => this.openDetails(node))),
-        )
-        .subscribe();
+      .pipe(
+        map(($event) => $event.source.selected),
+        startWith(this.dataSource.selected.selected),
+        tap((selected) => selected.forEach((node) => this.openDetails(node))),
+      )
+      .subscribe();
   }
 
   @DebounceCall(100)
@@ -224,16 +228,16 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
       if (!this._treeContainerWidth) {
         this._treeContainerWidth = this.treeContainer.nativeElement.clientWidth as number;
       }
-      this._treeContainerWidth = $event.clientX - 75;
+      const rect = this.elementRef.nativeElement.getBoundingClientRect();
+      this._treeContainerWidth = Math.min(Math.max($event.clientX - (
+        rect.left + 12
+      ), 128), rect.right - rect.left - 128);
       const offset = this._treeContainerWidth + 'px';
       this.setDividerOffset(offset);
     }
   }
 
   private setDividerOffset(offset: string) {
-    if (isDevMode()) {
-      console.log('set divider offset to: ' + offset);
-    }
     this.dividerOffset = offset;
     this.renderer.setStyle(this.treeContainer.nativeElement, 'max-width', offset);
     this.renderer.setStyle(this.treeContainer.nativeElement, 'min-width', offset);
@@ -241,4 +245,7 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
     localStorage.setItem(this.cacheId, offset);
   }
 
+  toggleTreeNavigation() {
+    this.showTreeNavigation.update((value) => !value);
+  }
 }

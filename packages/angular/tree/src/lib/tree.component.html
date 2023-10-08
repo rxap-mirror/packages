@@ -1,98 +1,114 @@
-<div class="rxap-container" fxLayout="row">
-  <div #treeContainer [ngStyle]="{ maxWidth: dividerOffset, minWidth: dividerOffset, flexBasis: dividerOffset }"
-       class="tree-container" fxFlex="nogrow">
-    <mat-progress-bar *ngIf="!dataSource || (dataSource.loading$ | async)" mode="indeterminate"></mat-progress-bar>
-    <mat-tree *ngIf="dataSource; else loading" [dataSource]="dataSource" [treeControl]="treeControl"
-              class="tree-view">
+<div class="grow flex flex-col gap-2">
+  <button (click)="toggleTreeNavigation()" class="!justify-start" mat-button>
+    <span class="flex flex-row justify-start items-center gap-6">
+      <ng-template [ngIf]="showTreeNavigation()">
+        <mat-icon>arrow_back</mat-icon>
+        <span i18n>Hide tree navigation</span>
+      </ng-template>
+      <ng-template [ngIf]="!showTreeNavigation()">
+        <mat-icon>arrow_forward</mat-icon>
+        <span i18n>Show tree navigation</span>
+      </ng-template>
+    </span>
+  </button>
+  <div class="flex flex-row grow">
+    <div #treeContainer [ngClass]="{ 'hidden': !showTreeNavigation() }"
+         [ngStyle]="{ maxWidth: dividerOffset, minWidth: dividerOffset, flexBasis: dividerOffset }"
+         class="w-fit grow-0 overflow-y-auto">
+      <mat-progress-bar *ngIf="!dataSource || (dataSource.loading$ | async)" mode="indeterminate"></mat-progress-bar>
+      <ng-content select="[searchHeader]"></ng-content>
+      <mat-tree *ngIf="dataSource; else loading" [dataSource]="dataSource" [treeControl]="treeControl">
 
-      <!-- Node without children -->
-      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-        <div fxLayout="row" fxLayoutAlign="start center">
-          <mat-icon [fxHide]="hideLeafIcon" fxFlex="40px">subdirectory_arrow_right</mat-icon>
-          <mat-icon *ngIf="node.icon" [rxapIcon]="node.icon" fxFlex="40px"></mat-icon>
-          <ng-template [ngIf]="multiple">
-            <mat-checkbox
-              (change)="node.toggleSelect()"
-              [checked]="node.selected"
-              [disabled]="!node.hasDetails"
-              [ngStyle]="node.style"
-              fxFlex="nogrow">
-              {{ node.display }}
-            </mat-checkbox>
-          </ng-template>
-          <ng-template [ngIf]="!multiple">
-            <button
-              (click)="node.select()"
-              [color]="node.selected ? 'primary' : null"
-              [disabled]="!node.hasDetails"
-              [ngStyle]="node.style"
-              fxFlex="nogrow"
-              mat-button
-            >
-              {{ node.display }}
-            </button>
-          </ng-template>
-        </div>
-      </mat-tree-node>
+        <!-- Node without children -->
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+          <div class="flex flex-row justify-start items-center gap-2">
+            <mat-icon [ngClass]="{ 'hidden': hideLeafIcon }">subdirectory_arrow_right</mat-icon>
+            <ng-container *ngIf="node.icon?.length">
+              <mat-icon *ngFor="let icon of node.icon" [rxapIcon]="$any(icon)"></mat-icon>
+            </ng-container>
+            <ng-template [ngIf]="multiple">
+              <mat-checkbox
+                (change)="node.toggleSelect()"
+                [checked]="node.selected"
+                [disabled]="!node.hasDetails"
+                [ngStyle]="node.style"
+                class="grow-0">
+                {{ node.display }}
+              </mat-checkbox>
+            </ng-template>
+            <ng-template [ngIf]="!multiple">
+              <button
+                (click)="node.select()"
+                [color]="node.selected ? 'primary' : undefined"
+                [disabled]="!node.hasDetails"
+                [ngStyle]="node.style"
+                class="grow-0"
+                mat-button
+              >
+                {{ node.display }}
+              </button>
+            </ng-template>
+          </div>
+        </mat-tree-node>
 
-      <!-- Node with children -->
-      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-        <button [attr.aria-label]="'toggle ' + node.filename" mat-icon-button matTreeNodeToggle>
-          <mat-icon class="mat-icon-rtl-mirror">
-            {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
-          </mat-icon>
-        </button>
-        <div fxLayout="row" fxLayoutAlign="start center">
-          <mat-icon *ngIf="node.icon; else withoutIcon" [rxapIcon]="node.icon" fxFlex="40px"></mat-icon>
-          <ng-template #withoutIcon>
-            <div fxFlex="0"></div>
-          </ng-template>
-          <ng-template [ngIfElse]="withoutDetails" [ngIf]="node.hasDetails">
-            <button
-              (click)="node.select()"
-              [color]="node.selected ? 'primary' : null"
-              [ngStyle]="node.style"
-              fxFlex="nogrow"
-              mat-button
-            >
-              {{ node.display }}
-            </button>
-          </ng-template>
-          <ng-template #withoutDetails>
-            <span
-              (change)="onContentEditableChange($event, node)"
-              [disabled]="!nodeDisplayEditable"
-              [ngStyle]="node.style"
-              fxFlex="nogrow"
-              rxapContenteditable>
-              {{ node.display }}
-            </span>
-          </ng-template>
-          <mat-progress-spinner
-            *ngIf="node.isLoading$ | async"
-            [diameter]="16"
-            fxFlex="nogrow"
-            fxFlexOffset="16px"
-            mode="indeterminate"
-          ></mat-progress-spinner>
-        </div>
-      </mat-tree-node>
+        <!-- Node with children -->
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+          <button [attr.aria-label]="'toggle ' + node.filename" mat-icon-button matTreeNodeToggle>
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+            </mat-icon>
+          </button>
+          <div class="flex flex-row justify-start items-center gap-2">
+            <ng-container *ngIf="node.icon?.length else withoutIcon">
+              <mat-icon *ngFor="let icon of node.icon" [rxapIcon]="$any(icon)"></mat-icon>
+            </ng-container>
+            <ng-template #withoutIcon>
+              <div></div>
+            </ng-template>
+            <ng-template [ngIfElse]="withoutDetails" [ngIf]="node.hasDetails">
+              <button
+                (click)="node.select()"
+                [color]="node.selected ? 'primary' : undefined"
+                [ngStyle]="node.style"
+                class="grow-0"
+                mat-button
+              >
+                {{ node.display }}
+              </button>
+            </ng-template>
+            <ng-template #withoutDetails>
+              <span
+                (change)="onContentEditableChange($event, node)"
+                [disabled]="!nodeDisplayEditable"
+                [ngStyle]="node.style"
+                class="grow-0"
+                rxapContenteditable>
+                {{ node.display }}
+              </span>
+            </ng-template>
+            <mat-progress-spinner
+              *ngIf="node.isLoading$ | async"
+              [diameter]="16"
+              class="grow-0 pl-4"
+              mode="indeterminate"
+            ></mat-progress-spinner>
+          </div>
+        </mat-tree-node>
 
-    </mat-tree>
-  </div>
+      </mat-tree>
+    </div>
 
-  <div (mousedown)="onMousedown()"
-       class="divider"
-       fxFlex="nogrow">
-    <mat-divider
-      [vertical]="true"
-    >
-    </mat-divider>
-  </div>
+    <div (mousedown)="onMousedown()" *ngIf="showTreeNavigation()"
+         class="divider cursor-ew-resize px-3 grow-0">
+      <mat-divider [vertical]="true" class="h-full"></mat-divider>
+    </div>
 
-  <div class="details" fxFlex="grow">
-    <ng-template [cdkPortalOutlet]="portal"></ng-template>
-    <ng-content></ng-content>
+    <div class="grow">
+      <ng-container *ngIf="portal">
+        <ng-template [cdkPortalOutlet]="portal"></ng-template>
+      </ng-container>
+      <ng-content></ng-content>
+    </div>
   </div>
 </div>
 
