@@ -10,6 +10,7 @@ describe('@rxap/table-system', () => {
       const onCollapse = jest.fn();
 
       const node = Node.ToNode(
+        null,
         {
           id: 'node',
           children: [
@@ -40,6 +41,7 @@ describe('@rxap/table-system', () => {
       const onCollapse = jest.fn();
 
       const node = Node.ToNode(
+        null,
         {
           id: 'node',
           children: [
@@ -55,7 +57,7 @@ describe('@rxap/table-system', () => {
       const onExpand_Child = jest.fn();
       const onCollapse_Child = jest.fn();
 
-      const child = Node.ToNode({
+      const child = Node.ToNode(null, {
         id: 'new child',
         children: [] as any,
       }, 0, onExpand_Child, onCollapse_Child);
