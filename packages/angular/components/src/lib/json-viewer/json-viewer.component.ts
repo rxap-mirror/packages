@@ -1,29 +1,27 @@
 import {
+  NgClass,
+  NgFor,
+  NgIf,
+} from '@angular/common';
+import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   forwardRef,
   Inject,
   Input,
+  isDevMode,
   OnChanges,
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { isTeardownLogic } from '@rxap/rxjs';
+import { isPromiseLike } from '@rxap/utilities';
 import { Subscription } from 'rxjs';
-import {
-  clone,
-  isPromiseLike,
-} from '@rxap/utilities';
 import {
   JSON_VIEW_IGNORED_PROPERTIES,
   JSON_VIEW_IGNORED_TYPES,
 } from './json-viewer.tokens';
-import { isTeardownLogic } from '@rxap/rxjs';
-import {
-  NgClass,
-  NgFor,
-  NgIf,
-} from '@angular/common';
 
 export interface Segment {
   key: string;
@@ -83,6 +81,9 @@ export class JsonViewerComponent implements OnInit, OnChanges {
   public ngOnChanges(changes: SimpleChanges): void {
     const jsonChange = changes['json'];
     if (jsonChange) {
+      if (isDevMode()) {
+        console.debug('json change');
+      }
       this.setInspectValue(jsonChange.currentValue);
     }
   }
@@ -126,14 +127,10 @@ export class JsonViewerComponent implements OnInit, OnChanges {
     if (typeof json !== 'object' || json === null || json === undefined) {
       console.warn('The inspection value is not an object!');
     } else {
-      json = clone(json);
-      let inspectValue: any;
       if (typeof json['toJSON'] === 'function') {
-        inspectValue = json.toJSON();
-      } else {
-        inspectValue = this.cleanObject(json);
+        json = json.toJSON();
       }
-      this.inspectValue = inspectValue;
+      this.inspectValue = this.cleanObject(structuredClone(json));
       this.buildSegments(this.inspectValue);
       this.cdr.markForCheck();
     }
