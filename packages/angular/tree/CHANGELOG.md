@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/tree@16.0.0-dev.19...@rxap/tree@16.0.0-dev.20) (2023-10-08)
+
+### Features
+
+- support tree search ([b3266ac](https://gitlab.com/rxap/packages/commit/b3266ac7c9499b8360988e9bdfcab8ac205d5d95))
+
 # [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/tree@16.0.0-dev.18...@rxap/tree@16.0.0-dev.19) (2023-10-08)
 
 ### Bug Fixes

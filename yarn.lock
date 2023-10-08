@@ -8688,12 +8688,12 @@ __metadata:
     "@angular/flex-layout": ^15.0.0-beta.42
     "@angular/material": ^16.1.4
     "@angular/router": ^16.1.4
-    "@rxap/data-structure-tree": ^1.0.1-dev.12
+    "@rxap/data-structure-tree": ^1.1.0-dev.0
     "@rxap/definition": ^16.0.0-dev.16
     "@rxap/environment": ^16.0.0-dev.16
     "@rxap/pattern": ^1.1.0-dev.0
     "@rxap/rxjs": ^1.0.1-dev.11
-    "@rxap/utilities": ^16.0.0-dev.19
+    "@rxap/utilities": ^16.0.0-dev.20
     rxjs: ^7.8.0
     tslib: 2.6.2
   languageName: unknown
@@ -8706,7 +8706,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@rxap/rxjs": ^1.0.1-dev.11
-    "@rxap/utilities": ^16.0.0-dev.19
+    "@rxap/utilities": ^16.0.0-dev.20
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9974,8 +9974,9 @@ __metadata:
     "@angular/core": ^16.1.4
     "@angular/material": ^16.1.4
     "@rxap/contenteditable": ^16.0.0-dev.15
-    "@rxap/data-source": ^16.0.0-dev.24
-    "@rxap/data-structure-tree": ^1.0.1-dev.12
+    "@rxap/data-source": ^16.0.0-dev.25
+    "@rxap/data-structure-tree": ^1.1.0-dev.0
+    "@rxap/forms": ^16.0.0-dev.18
     "@rxap/material-directives": ^16.0.0-dev.19
     "@rxap/pattern": ^1.1.0-dev.0
     "@rxap/rxjs": ^1.0.1-dev.11

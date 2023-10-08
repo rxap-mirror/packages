@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.24...@rxap/data-source@16.0.0-dev.25) (2023-10-08)
+
+### Bug Fixes
+
+- adapt to node parent concept ([7182ae2](https://gitlab.com/rxap/packages/commit/7182ae21432168b43199baed7f39026457408ca4))
+
 # [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.23...@rxap/data-source@16.0.0-dev.24) (2023-10-03)
 
 ### Bug Fixes
