@@ -16,6 +16,7 @@ import { nestJsInitGenerator } from '@rxap/plugin-nestjs';
 import {
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
+  CoerceTargetDefaultsDependency,
   IsAngularProject,
   IsGeneratorProject,
   IsNestJsProject,
@@ -70,6 +71,8 @@ function updateDefaultProjectTargets(tree: Tree) {
   });
 
   CoerceNxJsonCacheableOperation(nxJson, 'index-export');
+  CoerceTargetDefaultsDependency(nxJson, 'build', '^index-export');
+  CoerceTargetDefaultsDependency(nxJson, 'build', 'index-export');
 
 }
 
