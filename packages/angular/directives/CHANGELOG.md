@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/directives@16.0.0-dev.16...@rxap/directives@16.0.0-dev.17) (2023-10-08)
+
+### Features
+
+- add isDevMode directive ([1856a2d](https://gitlab.com/rxap/packages/commit/1856a2ddbd8241ab0090e659c47015d2693b2c36))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/directives@16.0.0-dev.15...@rxap/directives@16.0.0-dev.16) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/directives

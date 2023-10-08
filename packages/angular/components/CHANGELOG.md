@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.0-dev.19...@rxap/components@16.0.0-dev.20) (2023-10-08)
+
+### Bug Fixes
+
+- clone json after the toJSON function is called ([24e1a69](https://gitlab.com/rxap/packages/commit/24e1a6916c14534002e323b3a2cfaab3a159a39a))
+
 # [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.0-dev.18...@rxap/components@16.0.0-dev.19) (2023-09-29)
 
 **Note:** Version bump only for package @rxap/components
