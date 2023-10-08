@@ -30,6 +30,7 @@ export function NormalizeFormDefinitionOptions(
   return Object.seal({
     ...normalizedAngularOptions,
     controlList: NormalizeFormDefinitionControlList(options.controlList),
+    standalone: options.standalone ?? true,
   });
 }
 
@@ -50,6 +51,7 @@ export default function (options: FormDefinitionOptions) {
     directory,
     feature,
     controlList,
+    standalone,
   } = normalizedOptions;
   printFormDefinitionOptions(normalizedOptions);
   return () => {
@@ -63,13 +65,19 @@ export default function (options: FormDefinitionOptions) {
         controlList,
         name,
       }),
-      () => console.log('Coerce form providers file ...'),
-      CoerceFormProvidersFile({
-        project,
-        feature,
-        directory,
-        name,
-      }),
+      standalone ?
+      chain([
+        () => console.log('Coerce form providers file ...'),
+        CoerceFormProvidersFile({
+          project,
+          feature,
+          directory,
+          name,
+        }),
+      ]) :
+      chain([
+        () => console.log('Skip form providers file ...'),
+      ]),
       () => console.groupEnd(),
     ]);
   };

@@ -38,6 +38,11 @@
       "description": "The feature name where the accordion module should be added.",
       "x-prompt": "To which feature should the accordion module be added?"
     },
+    "standalone": {
+      "type": "boolean",
+      "description": "Whether the form definition has a form.provider file",
+      "default": true
+    },
     "controlList": {
       "alias": "control",
       "anyOf": [
