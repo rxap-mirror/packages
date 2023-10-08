@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.19...@rxap/utilities@16.0.0-dev.20) (2023-10-08)
+
+### Bug Fixes
+
+- support get for object path access ([c150ee0](https://gitlab.com/rxap/packages/commit/c150ee0f91d13011e70eeb33dfb9e513ba88fb8e))
+
 # [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.18...@rxap/utilities@16.0.0-dev.19) (2023-09-27)
 
 ### Features
