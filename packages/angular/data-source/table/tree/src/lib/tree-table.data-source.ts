@@ -251,7 +251,7 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
     onExpand: ExpandNodeFunction<RowData> = this.expandNode.bind(this),
     onCollapse: ExpandNodeFunction<RowData> = this.collapseNode.bind(this),
   ): Node<RowData> | Promise<Node<RowData>> {
-    return Node.ToNode(row, depth, onExpand, onCollapse);
+    return Node.ToNode(null, row, depth, onExpand, onCollapse);
   }
 
   public override ngOnDestroy() {
