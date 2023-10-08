@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/tree@16.0.0-dev.18...@rxap/tree@16.0.0-dev.19) (2023-10-08)
+
+### Bug Fixes
+
+- remove dependency to angular flex layout ([3217827](https://gitlab.com/rxap/packages/commit/321782703725c319afafedb396a07f249a1ade13))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/tree@16.0.0-dev.17...@rxap/tree@16.0.0-dev.18) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/tree
