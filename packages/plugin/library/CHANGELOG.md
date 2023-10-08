@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.32...@rxap/plugin-library@16.0.0-dev.33) (2023-10-08)
+
+### Bug Fixes
+
+- ensure index-export is run before build target ([5008aeb](https://gitlab.com/rxap/packages/commit/5008aeb3847cb3ff2b248c83685153abc4a4ffcb))
+
 # [16.0.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.31...@rxap/plugin-library@16.0.0-dev.32) (2023-10-03)
 
 ### Bug Fixes

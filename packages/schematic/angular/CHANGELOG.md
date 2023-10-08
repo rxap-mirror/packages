@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.20...@rxap/schematic-angular@16.1.0-dev.21) (2023-10-08)
+
+### Features
+
+- support non standalone form definitions ([45f88c6](https://gitlab.com/rxap/packages/commit/45f88c6409439ea7b8dfb87e2c4a445570ae425e))
+
 # [16.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.19...@rxap/schematic-angular@16.1.0-dev.20) (2023-10-02)
 
 ### Bug Fixes
