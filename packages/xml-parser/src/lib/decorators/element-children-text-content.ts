@@ -1,12 +1,21 @@
-import {
-  AddParserToMetadata,
-  XmlElementMetadata,
-} from './utilities';
+import { Mixin } from '@rxap/mixin';
+import { getMetadata } from '@rxap/reflect-metadata';
 import {
   dasherize,
   deepMerge,
 } from '@rxap/utilities';
-import { Mixin } from '@rxap/mixin';
+import { RxapElement } from '../element';
+import { ParsedElement } from '../elements/parsed-element';
+import {
+  RxapXmlParserValidateError,
+  RxapXmlParserValidateRequiredError,
+} from '../error';
+import { XmlParserService } from '../xml-parser.service';
+import { ElementParser } from './element.parser';
+import {
+  ChildrenElementOptions,
+  ChildrenElementParserMixin,
+} from './mixins/children-element-parser.mixin';
 import {
   IsTagElementOptions,
   TagElementOptions,
@@ -16,20 +25,11 @@ import {
   TextContentElementOptions,
   TextContentElementParserMixin,
 } from './mixins/text-content-element.parser';
-import { ElementParser } from './element.parser';
-import { getMetadata } from '@rxap/reflect-metadata';
-import {
-  ChildrenElementOptions,
-  ChildrenElementParserMixin,
-} from './mixins/children-element-parser.mixin';
-import { ParsedElement } from '../elements/parsed-element';
-import { XmlParserService } from '../xml-parser.service';
-import { RxapElement } from '../element';
-import {
-  RxapXmlParserValidateError,
-  RxapXmlParserValidateRequiredError,
-} from '../error';
 import { RequiredProperty } from './required-property';
+import {
+  AddParserToMetadata,
+  XmlElementMetadata,
+} from './utilities';
 
 export interface ElementChildrenTextContentOptions<Value>
   extends TextContentElementOptions<Value, Value[]>,
@@ -76,8 +76,8 @@ export class ElementChildrenTextContentParser<T extends ParsedElement, Value>
       );
     }
 
-    let list = elementChildren.map(child => {
-      const rawValue = child.getChildTextContent(this.tag, undefined, true);
+    let list = elementChildren.filter(child => child.hasName(this.tag)).map(child => {
+      const rawValue = child.getTextContent(undefined, true);
       if (rawValue !== undefined) {
         return this.parseValue(rawValue);
       }

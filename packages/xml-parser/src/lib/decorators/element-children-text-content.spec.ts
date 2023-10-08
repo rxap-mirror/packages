@@ -1,51 +1,55 @@
 import { getMetadata } from '@rxap/reflect-metadata';
 import {
+  ElementChildrenTextContent,
+  ElementChildrenTextContentParser,
   ElementDef,
   ParsedElement,
   XmlParserService,
 } from '@rxap/xml-parser';
-import {
-  ElementChildTextContent,
-  ElementChildTextContentParser,
-} from './element-child-text-content';
 import { XmlElementMetadata } from './utilities';
 
 describe('@rxap/xml-parser', () => {
 
-  describe('ElementChildTextContent', () => {
+  describe('ElementChildrenTextContent', () => {
 
-    describe('ElementChildTextContentParser', () => {
+    describe('ElementChildrenTextContentParser', () => {
 
       it('should use parseValue function', () => {
 
 
-        const parser = new ElementChildTextContentParser('property',
+        const parser = new ElementChildrenTextContentParser(
+          'property',
           {
             tag: 'tag',
             parseValue: Boolean,
           },
         );
 
-        expect(parser.parse({} as any,
+        expect(parser.parse(
+          {} as any,
           {
-            hasChild: () => true,
-            getChildTextContent: () => 'true',
+            getAllChildNodes: () => [
+              {
+                hasName: () => true,
+                getTextContent: () => 'true',
+              },
+            ],
           } as any,
           {} as any,
         ))
-          .toHaveProperty('property', true);
+          .toHaveProperty('property', [ true ]);
 
       });
 
     });
 
-    describe('@ElementChildTextContent', () => {
+    describe('@ElementChildrenTextContent', () => {
 
       it('should add element parser to element metadata if options object is used', () => {
 
         class MyElement {
 
-          @ElementChildTextContent({ tag: 'my-child' })
+          @ElementChildrenTextContent({ tag: 'my-child' })
           public name!: string;
 
         }
@@ -60,7 +64,7 @@ describe('@rxap/xml-parser', () => {
 
         expect(parserInstances).toBeDefined();
         expect(parserInstances.length).toBe(1);
-        expect(parserInstances[0]).toBeInstanceOf(ElementChildTextContentParser);
+        expect(parserInstances[0]).toBeInstanceOf(ElementChildrenTextContentParser);
 
       });
 
@@ -68,7 +72,7 @@ describe('@rxap/xml-parser', () => {
 
         class MyElement {
 
-          @ElementChildTextContent('my-child')
+          @ElementChildrenTextContent('my-child')
           public name!: string;
 
         }
@@ -83,19 +87,19 @@ describe('@rxap/xml-parser', () => {
 
         expect(parserInstances).toBeDefined();
         expect(parserInstances.length).toBe(1);
-        expect(parserInstances[0]).toBeInstanceOf(ElementChildTextContentParser);
+        expect(parserInstances[0]).toBeInstanceOf(ElementChildrenTextContentParser);
 
       });
 
-      it('should parse the child text content', () => {
+      it('should parse the children text content', () => {
 
         @ElementDef('my-element')
         class MyElement implements ParsedElement {
 
           __tag?: string;
 
-          @ElementChildTextContent('my-child')
-          public name!: string;
+          @ElementChildrenTextContent('my-child')
+          public nameList!: string[];
 
         }
 
@@ -106,7 +110,35 @@ describe('@rxap/xml-parser', () => {
         const element = xmlParser.parseFromXml<MyElement>(xml);
 
         expect(element).toBeInstanceOf(MyElement);
-        expect(element.name).toBe('test');
+        expect(element.nameList).toHaveLength(1);
+        expect(element.nameList[0]).toBe('test');
+
+      });
+
+      it('should parse the children text content in group', () => {
+
+        @ElementDef('my-element')
+        class MyElement implements ParsedElement {
+
+          __tag?: string;
+
+          @ElementChildrenTextContent({
+            tag: 'my-child',
+            group: 'my-group',
+          })
+          public nameList!: string[];
+
+        }
+
+        const xml = '<my-element><my-group><my-child>test</my-child></my-group></my-element>';
+        const xmlParser = new XmlParserService();
+        xmlParser.setRootElement(MyElement);
+
+        const element = xmlParser.parseFromXml<MyElement>(xml);
+
+        expect(element).toBeInstanceOf(MyElement);
+        expect(element.nameList).toHaveLength(1);
+        expect(element.nameList[0]).toBe('test');
 
       });
 
