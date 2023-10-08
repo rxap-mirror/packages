@@ -43,8 +43,7 @@ export function getFromObject<T, D = undefined>(obj: object, path: string, defau
 
   const fragment: string = fragments.shift()!;
 
-  // eslint-disable-next-line no-prototype-builtins
-  if (obj.hasOwnProperty(fragment) && hasIndexSignature(obj)) {
+  if (hasIndexSignature(obj) && obj[fragment] !== undefined) {
     return getFromObject(obj[fragment], fragments.join('.'), defaultValue);
   }
 
