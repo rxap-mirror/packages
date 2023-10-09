@@ -15,6 +15,7 @@ import {
 
 export interface FileUploadMethodParameters {
   accept?: string;
+  fileInput?: HTMLInputElement;
 }
 
 @Injectable()
@@ -34,7 +35,9 @@ export class FileUploadMethod implements Method<File | null, FileUploadMethodPar
   }
 
   public call(parameters?: FileUploadMethodParameters): Promise<File | null> {
-    const fileInput = this.addInputToDom(parameters?.accept ?? '**/**');
+    const accept = parameters?.accept ?? '**/**';
+    const fileInput = parameters?.fileInput ?? this.addInputToDom(accept);
+    fileInput.setAttribute('accept', accept);
 
     const change$ = fromEvent(fileInput, 'change').pipe(
       map(event => this.handleFileInputChange(event)),

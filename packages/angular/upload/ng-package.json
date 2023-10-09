@@ -12,11 +12,6 @@
       "glob": "**/*.theme.scss",
       "output": "."
     },
-    {
-      "input": ".",
-      "glob": "_index.scss",
-      "output": "."
-    },
     "LICENSE",
     "theme.css",
     "LICENSE.md"

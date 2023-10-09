@@ -21,7 +21,6 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import { FlexModule } from '@angular/flex-layout/flex';
 import {
   ControlValueAccessor,
   NgControl,
@@ -51,7 +50,6 @@ import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
   ],
   standalone: true,
   imports: [
-    FlexModule,
     MatButtonModule,
     CdkOverlayOrigin,
     MethodDirective,
@@ -92,6 +90,8 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   focused = false;
   @Input()
   public required = false;
+  @Input()
+  public allowDownload = false;
   shouldLabelFloat = true;
   public stateChanges = new Subject<void>();
   userAriaDescribedBy?: string | undefined;
