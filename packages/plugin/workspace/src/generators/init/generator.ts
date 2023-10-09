@@ -359,6 +359,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   }
 
   await AddPackageJsonDevDependency(tree, 'husky', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@commitlint/cli', 'latest', { soft: true });
+  await AddPackageJsonDevDependency(tree, '@commitlint/config-conventional', 'latest', { soft: true });
 
   CoerceIgnorePattern(tree, '.gitignore', gitIgnore);
   CoerceIgnorePattern(tree, '.prettierignore', prettierIgnore);
