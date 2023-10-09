@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/upload@16.0.0-dev.16...@rxap/upload@16.0.0-dev.17) (2023-10-09)
+
+### Bug Fixes
+
+- expose input element and remove angular flex dependency ([1982081](https://gitlab.com/rxap/packages/commit/1982081fb325d57079c0a4f2acd025beafe24dda))
+
 # [16.0.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/upload@16.0.0-dev.15...@rxap/upload@16.0.0-dev.16) (2023-10-04)
 
 ### Features
