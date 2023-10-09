@@ -69,16 +69,16 @@ export class SettingsService implements OnApplicationBootstrap {
         `Failed to read user settings for user '${ userId }' from the file system: ${ e.message }`);
     }
     fromStorage ??= defaultSettings;
-    this.logger.verbose(`Get user settings for user ${ userId }: %JSON`, 'SettingsService', fromStorage);
+    this.logger.verbose(`Get user settings for user ${ userId }: %JSON`, fromStorage, 'SettingsService');
     const merged = deepMerge(SettingsService.DefaultSettings, fromStorage ?? {});
-    this.logger.verbose(`Get merged user settings for user ${ userId }: %JSON`, 'SettingsService', merged);
+    this.logger.verbose(`Get merged user settings for user ${ userId }: %JSON`, merged, 'SettingsService');
     return merged;
   }
 
   async set(userId: string, settings: Partial<UserSettings>) {
-    this.logger.verbose(`Set user settings for user ${ userId }: %JSON`, 'SettingsService', settings);
+    this.logger.verbose(`Set user settings for user ${ userId }: %JSON`, settings, 'SettingsService');
     const merged = deepMerge(SettingsService.DefaultSettings, settings);
-    this.logger.verbose(`Set merged user settings for user ${ userId }: %JSON`, 'SettingsService', merged);
+    this.logger.verbose(`Set merged user settings for user ${ userId }: %JSON`, merged, 'SettingsService');
     this.validate(merged);
     const cloned = clone(merged);
     try {
