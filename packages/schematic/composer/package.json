@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-dev.0",
+  "version": "0.1.0-dev.1",
   "name": "@rxap/schematic-composer",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -32,7 +32,7 @@
     "packageGroup": [
       {
         "package": "@rxap/schematic-angular",
-        "version": "16.1.0-dev.22"
+        "version": "16.1.0-dev.23"
       },
       {
         "package": "@rxap/schematics-ts-morph",

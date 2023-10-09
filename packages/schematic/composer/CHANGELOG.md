@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@0.1.0-dev.0...@rxap/schematic-composer@0.1.0-dev.1) (2023-10-09)
+
+### Bug Fixes
+
+- overwrite property schema ([0ae174c](https://gitlab.com/rxap/packages/commit/0ae174c4346bc233b863c13909449594a3701032))
+
 # [0.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@0.0.2-dev.9...@rxap/schematic-composer@0.1.0-dev.0) (2023-10-09)
 
 ### Features
