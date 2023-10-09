@@ -1,0 +1,81 @@
+{
+  "name": "workspace-cypress",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/workspace/cypress/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/workspace/cypress",
+        "main": "packages/workspace/cypress/src/index.ts",
+        "tsConfig": "packages/workspace/cypress/tsconfig.lib.json",
+        "assets": [
+          "packages/workspace/cypress/*.md"
+        ]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs workspace-cypress {args.ver} {args.tag}",
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/workspace/cypress/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "packages/workspace/cypress/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "index-export": {},
+    "update-dependencies": {
+      "executor": "@rxap/plugin-library:update-dependencies"
+    },
+    "update-package-group": {
+      "executor": "@rxap/plugin-library:update-package-group"
+    },
+    "readme": {
+      "executor": "@rxap/plugin-library:readme"
+    },
+    "fix-dependencies": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "outputs": [
+        "{workspaceRoot}/{projectRoot}/package.json"
+      ],
+      "options": {
+        "generator": "@rxap/plugin-library:fix-dependencies",
+        "options": {
+          "strict": true
+        }
+      }
+    }
+  },
+  "tags": [
+    "packages",
+    "workspace"
+  ]
+}

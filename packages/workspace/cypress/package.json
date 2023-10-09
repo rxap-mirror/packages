@@ -1,0 +1,30 @@
+{
+  "name": "@rxap/workspace-cypress",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/workspace/cypress"
+  },
+  "keywords": [
+    "rxap",
+    "packages",
+    "workspace",
+    "workspace-cypress"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/workspace/cypress",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/workspace/cypress"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  }
+}
