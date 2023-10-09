@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.20...@rxap/utilities@16.0.0-dev.21) (2023-10-09)
+
+### Features
+
+- add CamelizePropertyKeys function ([9dc7293](https://gitlab.com/rxap/packages/commit/9dc729342dc8037dfdb1934d1c7d9144d67b2e31))
+
 # [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.19...@rxap/utilities@16.0.0-dev.20) (2023-10-08)
 
 ### Bug Fixes
