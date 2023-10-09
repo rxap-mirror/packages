@@ -26,12 +26,9 @@ describe(UploadButtonComponent.name, () => {
     cy.mount(UploadButtonComponent, {
       autoSpyOutputs: true,
     });
-    cy.get('input[type=file]').attachFile({
-      fileContent: Cypress.Blob.base64StringToBlob('Y3lwcmVzcyB0ZXN0'),
-      fileName: 'testFile.txt',
-      mimeType: 'text/plain',
-    });
+    cy.get('input[type=file]').attachFile('example.json');
     cy.get('@uploadedSpy').should('have.been.called');
+    cy.contains('example.json');
   });
 
 });
