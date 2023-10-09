@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.23...@rxap/xml-parser@16.0.0-dev.24) (2023-10-09)
+
+### Bug Fixes
+
+- compile package in commonjs format ([3b4f38c](https://gitlab.com/rxap/packages/commit/3b4f38cd758b780fd2ec7c943d441bc42e2860f8))
+
 # [16.0.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.22...@rxap/xml-parser@16.0.0-dev.23) (2023-10-08)
 
 ### Bug Fixes
