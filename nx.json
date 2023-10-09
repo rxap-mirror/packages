@@ -30,7 +30,8 @@
           "localazy-download",
           "fix-dependencies",
           "build-storybook",
-          "copy-open-api-sdk"
+          "copy-open-api-sdk",
+          "copy-client-sdk"
         ],
         "accessToken": "YjMxMDI0NDUtYmZmMC00MzE4LWEyZjAtNWFlZDM1ODc1MTQ1fHJlYWQtd3JpdGU="
       }
