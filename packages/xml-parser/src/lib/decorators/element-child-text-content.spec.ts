@@ -4,6 +4,7 @@ import {
   ParsedElement,
   XmlParserService,
 } from '@rxap/xml-parser';
+import { DOMParser } from 'xmldom';
 import {
   ElementChildTextContent,
   ElementChildTextContentParser,
@@ -100,7 +101,7 @@ describe('@rxap/xml-parser', () => {
         }
 
         const xml = '<my-element><my-child>test</my-child></my-element>';
-        const xmlParser = new XmlParserService();
+        const xmlParser = new XmlParserService(DOMParser);
         xmlParser.setRootElement(MyElement);
 
         const element = xmlParser.parseFromXml<MyElement>(xml);

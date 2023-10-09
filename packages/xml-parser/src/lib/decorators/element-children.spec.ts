@@ -1,12 +1,13 @@
+import { getMetadata } from '@rxap/reflect-metadata';
+import { DOMParser } from 'xmldom';
 import { ParsedElement } from '../elements/parsed-element';
-import { XmlElementMetadata } from './utilities';
+import { TestingXmlParserService } from '../testing/testing-xml-parser-service';
 import {
   ElementChildren,
   ElementChildrenParser,
 } from './element-children';
 import { ElementDef } from './element-def';
-import { getMetadata } from '@rxap/reflect-metadata';
-import { TestingXmlParserService } from '../testing/testing-xml-parser-service';
+import { XmlElementMetadata } from './utilities';
 
 describe('@rxap/xml-parser', () => {
 
@@ -17,7 +18,7 @@ describe('@rxap/xml-parser', () => {
       let xmlParser: TestingXmlParserService;
 
       beforeEach(() => {
-        xmlParser = new TestingXmlParserService();
+        xmlParser = new TestingXmlParserService(DOMParser);
       });
 
       it('should add element parser to element metadata', () => {

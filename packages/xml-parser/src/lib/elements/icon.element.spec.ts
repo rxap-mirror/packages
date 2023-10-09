@@ -1,5 +1,6 @@
-import { IconElement } from './icon.element';
+import { DOMParser } from 'xmldom';
 import { TestingXmlParserService } from '../testing/testing-xml-parser-service';
+import { IconElement } from './icon.element';
 
 describe('@rxap/xml-parser/elements', () => {
 
@@ -8,7 +9,7 @@ describe('@rxap/xml-parser/elements', () => {
     let xmlParser: TestingXmlParserService;
 
     beforeAll(() => {
-      xmlParser = new TestingXmlParserService();
+      xmlParser = new TestingXmlParserService(DOMParser);
     });
 
     it('required properties', () => {

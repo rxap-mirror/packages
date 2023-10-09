@@ -6,22 +6,18 @@
   "targets": {
     "index-export": {},
     "build": {
-      "executor": "@nx/angular:package",
+      "executor": "@nx/js:tsc",
       "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
+        "{options.outputPath}"
       ],
       "options": {
-        "project": "packages/xml-parser/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "packages/xml-parser/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "packages/xml-parser/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
+        "outputPath": "dist/packages/xml-parser",
+        "main": "packages/xml-parser/src/index.ts",
+        "tsConfig": "packages/xml-parser/tsconfig.lib.json",
+        "assets": [
+          "packages/xml-parser/*.md"
+        ]
+      }
     },
     "fix-dependencies": {
       "options": {

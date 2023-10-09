@@ -1,6 +1,7 @@
 import { getMetadata } from '@rxap/reflect-metadata';
 import { Constructor } from '@rxap/utilities';
 import { XmlElementMetadata } from '@rxap/xml-parser';
+import { DOMParser } from 'xmldom';
 import { RxapElement } from '../element';
 import { ParsedElement } from '../elements/parsed-element';
 import { XmlParserService } from '../xml-parser.service';
@@ -49,7 +50,7 @@ describe('@rxap/xml-parser', () => {
     let xmlParser: TestingXmlParserService;
 
     beforeEach(() => {
-      xmlParser = new TestingXmlParserService();
+      xmlParser = new TestingXmlParserService(DOMParser);
     });
 
     it('should parse xml element with attributes', () => {

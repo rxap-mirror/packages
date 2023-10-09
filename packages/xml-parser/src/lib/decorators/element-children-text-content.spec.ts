@@ -6,6 +6,7 @@ import {
   ParsedElement,
   XmlParserService,
 } from '@rxap/xml-parser';
+import { DOMParser } from 'xmldom';
 import { XmlElementMetadata } from './utilities';
 
 describe('@rxap/xml-parser', () => {
@@ -104,7 +105,7 @@ describe('@rxap/xml-parser', () => {
         }
 
         const xml = '<my-element><my-child>test</my-child></my-element>';
-        const xmlParser = new XmlParserService();
+        const xmlParser = new XmlParserService(DOMParser);
         xmlParser.setRootElement(MyElement);
 
         const element = xmlParser.parseFromXml<MyElement>(xml);
@@ -131,7 +132,7 @@ describe('@rxap/xml-parser', () => {
         }
 
         const xml = '<my-element><my-group><my-child>test</my-child></my-group></my-element>';
-        const xmlParser = new XmlParserService();
+        const xmlParser = new XmlParserService(DOMParser);
         xmlParser.setRootElement(MyElement);
 
         const element = xmlParser.parseFromXml<MyElement>(xml);

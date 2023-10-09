@@ -1,4 +1,5 @@
 import { getMetadata } from '@rxap/reflect-metadata';
+import { DOMParser } from 'xmldom';
 import { RxapElement } from '../element';
 import { ParsedElement } from '../elements/parsed-element';
 import { RxapXmlParserValidateRequiredError } from '../error';
@@ -164,7 +165,7 @@ describe('@rxap/xml-parser', () => {
 
         }
 
-        const parser = new XmlParserService();
+        const parser = new XmlParserService(DOMParser);
         parser.register(MyElement, MyChild);
         parser.setRootElement(MyElement);
 

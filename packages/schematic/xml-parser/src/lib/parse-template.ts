@@ -1,15 +1,15 @@
 import {
-  ParsedElement,
-  XmlParserService,
-} from '@rxap/xml-parser';
+  DirEntry,
+  Tree,
+} from '@angular-devkit/schematics';
 import {
   coerceArray,
   Constructor,
 } from '@rxap/schematics-utilities';
 import {
-  DirEntry,
-  Tree,
-} from '@angular-devkit/schematics';
+  ParsedElement,
+  XmlParserService,
+} from '@rxap/xml-parser';
 import { join } from 'path';
 
 export function FindTemplate(
@@ -78,12 +78,14 @@ export function FindTemplate(
  * - templates/feature/product/views/tables/product.xml
  * - templates/shared/views/tables/product.xml
  *
+ * @param DOMParser
  * @param host a schematic Tree instance
  * @param template the path to the template xml document or a xml document
  * @param basePath the basePath for the search
  * @param elements a collection of ParsedElement class constructors that should be include in the xml parsing
  */
 export function ParseTemplate<T extends ParsedElement>(
+  DOMParser: typeof window.DOMParser,
   host: Tree,
   template: string,
   basePath: string | string[] | undefined,
@@ -130,7 +132,7 @@ export function ParseTemplate<T extends ParsedElement>(
     templateFile = template;
   }
 
-  const parser = new XmlParserService();
+  const parser = new XmlParserService(DOMParser);
 
   parser.register(...elements);
 

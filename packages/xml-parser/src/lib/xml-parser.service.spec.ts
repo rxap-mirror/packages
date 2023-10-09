@@ -1,4 +1,5 @@
 import { ElementChild } from '@rxap/xml-parser';
+import { DOMParser } from 'xmldom';
 import { ElementAttribute } from './decorators/element-attribute';
 import { ElementChildren } from './decorators/element-children';
 import { ElementDef } from './decorators/element-def';
@@ -16,7 +17,7 @@ describe('XML Parser', () => {
 
       beforeEach(() => {
 
-        xmlParser = new XmlParserService();
+        xmlParser = new XmlParserService(DOMParser);
 
       });
 
@@ -170,7 +171,7 @@ describe('XML Parser', () => {
       let xmlParser: XmlParserService;
 
       beforeEach(() => {
-        xmlParser = new XmlParserService({
+        xmlParser = new XmlParserService(DOMParser, {
           caseSensitive: true,
           withNamespace: true,
         });

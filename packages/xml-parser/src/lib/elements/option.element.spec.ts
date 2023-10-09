@@ -1,9 +1,10 @@
+import { DOMParser } from 'xmldom';
+import { TestingXmlParserService } from '../testing/testing-xml-parser-service';
+import { DataSourceElement } from './data-source.element';
 import {
   OptionElement,
   OptionsElement,
 } from './option.element';
-import { TestingXmlParserService } from '../testing/testing-xml-parser-service';
-import { DataSourceElement } from './data-source.element';
 
 describe('@rxap/form-system/xml-parser', () => {
 
@@ -14,7 +15,7 @@ describe('@rxap/form-system/xml-parser', () => {
       let xmlParser: TestingXmlParserService;
 
       beforeEach(() => {
-        xmlParser = new TestingXmlParserService();
+        xmlParser = new TestingXmlParserService(DOMParser);
       });
 
       it('should parse option without defined value', () => {
@@ -133,7 +134,7 @@ describe('@rxap/form-system/xml-parser', () => {
       let xmlParser: TestingXmlParserService;
 
       beforeEach(() => {
-        xmlParser = new TestingXmlParserService();
+        xmlParser = new TestingXmlParserService(DOMParser);
       });
 
       it('should parse options element with static options', () => {

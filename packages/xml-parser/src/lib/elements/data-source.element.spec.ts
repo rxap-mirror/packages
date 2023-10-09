@@ -1,5 +1,6 @@
-import { DataSourceElement } from './data-source.element';
+import { DOMParser } from 'xmldom';
 import { TestingXmlParserService } from '../testing/testing-xml-parser-service';
+import { DataSourceElement } from './data-source.element';
 
 describe('@rxap/xml-parser', () => {
 
@@ -10,7 +11,7 @@ describe('@rxap/xml-parser', () => {
       let xmlParser: TestingXmlParserService;
 
       beforeEach(() => {
-        xmlParser = new TestingXmlParserService();
+        xmlParser = new TestingXmlParserService(DOMParser);
       });
 
       it('data source element without children', () => {

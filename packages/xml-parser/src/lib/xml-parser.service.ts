@@ -4,7 +4,6 @@ import {
   hasIndexSignature,
   Type,
 } from '@rxap/utilities';
-import { DOMParser } from 'xmldom';
 import { AttributeOptions } from './decorators/attribute';
 import { ElementParserMetaData } from './decorators/metadata-keys';
 import { XmlElementMetadata } from './decorators/utilities';
@@ -35,7 +34,10 @@ export class XmlParserService {
 
   protected _rootParser: Constructor<ParsedElement> | null = null;
 
-  constructor(public readonly elementOptions: RxapElementOptions = {}) {
+  constructor(
+    private readonly DOMParser: typeof window.DOMParser,
+    public readonly elementOptions: RxapElementOptions = {},
+  ) {
     this.parse = this.parse.bind(this);
   }
 
@@ -200,7 +202,7 @@ export class XmlParserService {
 
     let xmlDoc: Document;
     try {
-      xmlDoc = new DOMParser().parseFromString(xml);
+      xmlDoc = this.createDOMParser().parseFromString(xml, 'application/xml');
     } catch (e: any) {
       throw new Error('Could not parse xml string');
     }
@@ -212,6 +214,10 @@ export class XmlParserService {
     const root = this.determineRootElement(xmlDoc);
 
     return this.parse<D>(root, this._rootParser as Constructor<D> ?? root.name, null, args);
+  }
+
+  private createDOMParser() {
+    return new this.DOMParser();
   }
 
   protected determineRootElement(xmlDoc: Document) {
