@@ -17,7 +17,6 @@ import {
   HostListener,
   inject,
   Input,
-  isDevMode,
   OnDestroy,
   Output,
 } from '@angular/core';
@@ -29,10 +28,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {
+  MatSnackBar,
+  MatSnackBarModule,
+} from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MethodDirective } from '@rxap/directives';
 import { Subject } from 'rxjs';
-import { FILE_UPLOAD_METHOD } from '../tokens';
 import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
 
 @Component({
@@ -60,6 +62,7 @@ import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
     CdkConnectedOverlay,
     AsyncPipe,
     ReadAsDataURLPipe,
+    MatSnackBarModule,
   ],
 })
 export class UploadButtonComponent implements ControlValueAccessor, MatFormFieldControl<File>, OnDestroy {
@@ -99,7 +102,8 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   private onChange?: (file: File) => any;
   private onTouched?: () => any;
 
-  public readonly fileUpload = inject(FILE_UPLOAD_METHOD);
+  public readonly snackBar = inject(MatSnackBar);
+
   public readonly ngControl = inject(NgControl, {
     optional: true,
     self: true,
@@ -109,7 +113,6 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   private readonly document = inject(DOCUMENT);
 
   constructor() {
-    this.fileUpload.setDocument(this.document);
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }
@@ -121,11 +124,11 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
 
   private _placeholder!: string;
 
-  @Input()
   get placeholder() {
     return this._placeholder;
   }
 
+  @Input()
   set placeholder(plh) {
     this._placeholder = plh;
     this.stateChanges.next();
@@ -155,17 +158,6 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     this.stateChanges.complete();
   }
 
-  public uploadComplete(file: File | null) {
-    if (file) {
-      this.uploaded.emit(file);
-      this.value = file;
-      if (this.onChange) {
-        this.onChange(file);
-      }
-      this.stateChanges.next();
-    }
-  }
-
   public registerOnChange(fn: any): void {
     this.onChange = fn;
   }
@@ -179,9 +171,6 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   }
 
   public writeValue(file: File): void {
-    if (isDevMode()) {
-      console.log({ file });
-    }
     this.value = file;
     this.cdr.detectChanges();
   }
@@ -223,6 +212,21 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
       elm.setAttribute('download', this.value.name);
       elm.click();
       this.document.body.removeChild(elm);
+    }
+  }
+
+  onFileInputChange($event: any) {
+    const files: { [key: string]: File } = $event?.target?.files as any ?? {};
+    const file = Object.values(files)[0];
+    if (!file) {
+      this.snackBar.open('No file selected', 'close', { duration: 3000 });
+    } else {
+      this.uploaded.emit(file);
+      this.value = file;
+      if (this.onChange) {
+        this.onChange(file);
+      }
+      this.stateChanges.next();
     }
   }
 }

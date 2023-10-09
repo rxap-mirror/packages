@@ -1,26 +1,19 @@
 <div class="flex flex-row gap-2 items-center">
   <button
-    #button
-    #method="rxapMethod"
     #trigger="cdkOverlayOrigin"
-    (successful)="uploadComplete($event)"
     [disabled]="disabled"
-    [parameters]="{ accept: accept, fileInput }"
-    [rxapMethod]="fileUpload"
+    (click)="fileInput.click()"
     cdkOverlayOrigin
     class="grow-0"
     mat-stroked-button
     type="button">
     <span class="flex flex-row justify-center items-center gap-3">
       <mat-icon class="grow-0" svgIcon="upload"></mat-icon>&nbsp;
-      <span *ngIf="value" class="truncate grow-0">{{value.name}}</span>
-      <ng-content></ng-content>
-      <mat-progress-spinner
-        *ngIf="method.executing$ | async"
-        diameter="15"
-        class="grow-0"
-        mode="indeterminate">
-      </mat-progress-spinner>
+      <span *ngIf="value; else infoText" class="truncate grow-0">{{value.name}}</span>
+      <ng-template #infoText>
+        <span *ngIf="placeholder">{{ placeholder }}</span>
+        <ng-content></ng-content>
+      </ng-template>
     </span>
   </button>
   <button (click)="openOverlay()"
@@ -51,4 +44,4 @@
   </div>
 </ng-template>
 
-<input #fileInput [accept]="accept" [id]="id" class="hidden" type="file">
+<input #fileInput (change)="onFileInputChange($event)" [accept]="accept" [id]="id" class="hidden" type="file">

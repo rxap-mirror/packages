@@ -41,6 +41,11 @@
     "component-test": {
       "options": {
         "cypressConfig": "packages/angular/upload/cypress.config.ts"
+      },
+      "configurations": {
+        "open": {
+          "watch": true
+        }
       }
     },
     "fix-dependencies": {

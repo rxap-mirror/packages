@@ -10057,6 +10057,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/workspace-cypress@workspace:packages/workspace/cypress":
+  version: 0.0.0-use.local
+  resolution: "@rxap/workspace-cypress@workspace:packages/workspace/cypress"
+  languageName: unknown
+  linkType: soft
+
 "@rxap/workspace-open-api@workspace:packages/workspace/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-open-api@workspace:packages/workspace/open-api"
@@ -16483,6 +16489,15 @@ __metadata:
   version: 0.2.2
   resolution: "cuint@npm:0.2.2"
   checksum: b8127a93a7f16ce120ffcb22108014327c9808b258ee20e7dbb4c6740d7cb0f0c12d18a054eb716b0f2470090666abaae8a082d3cd5ef0e94fa447dd155842c4
+  languageName: node
+  linkType: hard
+
+"cypress-file-upload@npm:^5.0.8":
+  version: 5.0.8
+  resolution: "cypress-file-upload@npm:5.0.8"
+  peerDependencies:
+    cypress: ">3.0.0"
+  checksum: 9c70ca7e0bb137d0ec0b8d38987219ce15b26ac3a40e3ed4e78e6ad4690392eab905586848eec6ad8edd42ee480e68ccc63007b2ebd0a02f4b3eca116ff017e3
   languageName: node
   linkType: hard
 
@@ -28978,6 +28993,7 @@ __metadata:
     colors: ^1.4.0
     cookie-parser: ^1.4.6
     cypress: ^12.16.0
+    cypress-file-upload: ^5.0.8
     env-cmd: ^10.1.0
     eslint: ~8.15.0
     eslint-config-prettier: 8.1.0
