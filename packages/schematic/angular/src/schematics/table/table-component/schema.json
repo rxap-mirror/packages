@@ -3,7 +3,7 @@
   "$id": "template-table-module",
   "allOf": [
     {
-      "$ref": "../../angular.schema.json"
+      "$ref": "https://unpkg.com/@rxap/schematic-angular@16.1.0-dev.23/src/schematics/angular.schema.json"
     },
     {
       "type": "object",
