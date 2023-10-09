@@ -6,7 +6,7 @@ import {
 export interface GlobalOptions {
   project: string;
   feature?: string;
-  overwrite?: boolean;
+  overwrite?: string[];
   replace?: boolean;
 }
 
@@ -16,7 +16,7 @@ export function NormalizeGlobalOptions(options: GlobalOptions): NormalizedGlobal
   return Object.seal({
     project: dasherize(options.project),
     feature: options.feature ? dasherize(options.feature) : null,
-    overwrite: options.overwrite ?? false,
+    overwrite: options.overwrite ?? false as any,
     replace: options.replace ?? false,
   });
 }

@@ -13,7 +13,7 @@ import { NestProviderObject } from './nest-provider-object';
 export function AddNestProviderToArray(
   providerObject: NestProviderObject | string,
   providerArray: ArrayLiteralExpression,
-  overwrite = false,
+  overwrite: boolean | string[] = false,
 ) {
 
   if (typeof providerObject === 'string') {
@@ -24,7 +24,7 @@ export function AddNestProviderToArray(
 
   } else {
 
-    const index = providerArray.getElements().findIndex(element => {
+    let index = providerArray.getElements().findIndex(element => {
       if (element instanceof ObjectLiteralExpression) {
         const provideProperty = element.getProperty('provide');
         if (provideProperty instanceof PropertyAssignment) {
@@ -34,11 +34,16 @@ export function AddNestProviderToArray(
       return false;
     });
 
-    if (overwrite && index !== -1) {
+    if ((
+          overwrite === true || (
+                      Array.isArray(overwrite) && overwrite.includes('provider')
+                    )
+        ) && index !== -1) {
       providerArray.removeElement(index);
+      index = -1;
     }
 
-    if (overwrite || index === -1) {
+    if (index === -1) {
       providerArray.addElement(Writers.object(DeleteUndefinedProperties({
         provide: providerObject.provide,
         useClass: providerObject.useClass,

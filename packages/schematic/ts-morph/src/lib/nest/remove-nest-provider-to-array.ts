@@ -11,7 +11,7 @@ import { NestProviderObject } from './nest-provider-object';
 export function RemoveNestProviderToArray(
   providerObject: NestProviderObject | string,
   providerArray: ArrayLiteralExpression,
-  overwrite = false,
+  overwrite: boolean | string[] = false,
 ) {
 
   if (typeof providerObject === 'string') {
@@ -33,7 +33,11 @@ export function RemoveNestProviderToArray(
       return false;
     });
 
-    if (overwrite && index !== -1) {
+    if ((
+          overwrite === true || (
+                      Array.isArray(overwrite) && overwrite.includes('provider')
+                    )
+        ) && index !== -1) {
       providerArray.removeElement(index);
     }
 

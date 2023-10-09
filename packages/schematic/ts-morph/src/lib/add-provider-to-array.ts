@@ -14,7 +14,7 @@ import { ProviderObject } from './provider-object';
 export function AddProviderToArray(
   providerObject: ProviderObject | string,
   providerArray: ArrayLiteralExpression,
-  overwrite = false,
+  overwrite: boolean | string[] = false,
   compare: (ole: ObjectLiteralExpression, po: ProviderObject) => boolean = (ole, po) => {
     const provideProperty = ole.getProperty('provide');
 
@@ -53,7 +53,7 @@ export function AddProviderToArray(
 
   } else {
 
-    const index = providerArray.getElements().findIndex(element => {
+    let index = providerArray.getElements().findIndex(element => {
 
       if (element instanceof ObjectLiteralExpression) {
         return compare(element, providerObject);
@@ -63,11 +63,16 @@ export function AddProviderToArray(
 
     });
 
-    if (overwrite && index !== -1) {
+    if ((
+          overwrite === true || (
+                      Array.isArray(overwrite) && overwrite.includes('provider')
+                    )
+        ) && index !== -1) {
       providerArray.removeElement(index);
+      index = -1;
     }
 
-    if (overwrite || index === -1) {
+    if (index === -1) {
       expression = providerArray.addElement(Writers.object(DeleteUndefinedProperties({
         provide: providerObject.provide,
         useClass: providerObject.useClass,

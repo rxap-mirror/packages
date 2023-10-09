@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "general",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Project name where the files should be generated"
+    },
+    "feature": {
+      "type": "string",
+      "description": "Feature name where the files should be generated"
+    },
+    "overwrite": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Overwrite existing files",
+      "default": false
+    },
+    "overwriteHtml": {
+      "type": "boolean",
+      "default": false
+    },
+    "replace": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "project"
+  ]
+}

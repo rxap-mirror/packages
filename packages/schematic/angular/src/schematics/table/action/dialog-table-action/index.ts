@@ -47,7 +47,7 @@ export function NormalizeDialogTableActionOptions(
     withoutBody: options.withoutBody ?? false,
     actionList: NormalizeDialogActionList(actionList),
     title: options.title ?? ToTitle(options.type),
-    overwrite: options.overwrite ?? false,
+    overwrite: options.overwrite ?? false as any,
   });
 }
 

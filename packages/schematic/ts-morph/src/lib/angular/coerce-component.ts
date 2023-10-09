@@ -38,7 +38,7 @@ export interface CoerceComponentOptions extends TsMorphAngularProjectTransformOp
   name: string;
   flat?: boolean;
   template?: TemplateOptions;
-  overwrite?: boolean;
+  overwrite?: boolean | string[];
   tsMorphTransform?: (
     project: Project,
     [ componentSourceFile ]: [ SourceFile ],
@@ -111,7 +111,11 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
       });
     }
 
-    if (template && (overwrite || !hasComponent)) {
+    if (template && (
+      overwrite === true || (
+                  Array.isArray(overwrite) && overwrite?.includes('template')
+                ) || !hasComponent
+    )) {
       template.url ??= './files/component';
       const templateOptions = {
         ...strings,

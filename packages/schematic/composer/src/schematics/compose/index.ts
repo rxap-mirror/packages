@@ -5,17 +5,20 @@ import {
   SchematicsException,
   Tree,
 } from '@angular-devkit/schematics';
-import { ComposeSchematicSchema } from './schema';
+import { HasProjectFeature } from '@rxap/schematics-ts-morph';
 import {
   GetProjectSourceRoot,
   GlobalOptions,
 } from '@rxap/schematics-utilities';
-import { dasherize } from '@rxap/utilities';
+import {
+  dasherize,
+  Normalized,
+} from '@rxap/utilities';
 import {
   dirname,
   join,
 } from 'path';
-import { HasProjectFeature } from '@rxap/schematics-ts-morph';
+import { ComposeSchematicSchema } from './schema';
 
 interface SchematicCommand {
   package: string;
@@ -110,7 +113,7 @@ function executeSchematicCommand(
   host: Tree,
   sourceRoot: string,
   globalOptions: Partial<GlobalOptions>,
-  filter?: string,
+  filter: string | null,
 ) {
   let schematicCommandList = getSchematicCommandList(host, sourceRoot);
 
@@ -126,7 +129,7 @@ function forFeature(
   projectName: string,
   featureName: string,
   globalOptions: Partial<GlobalOptions>,
-  filter?: string,
+  filter: string | null,
 ) {
 
   const projectSourceRoot = GetProjectSourceRoot(host, projectName);
@@ -148,7 +151,7 @@ function forFeature(
 
 }
 
-function forProject(host: Tree, projectName: string, globalOptions: Partial<GlobalOptions>, filter?: string) {
+function forProject(host: Tree, projectName: string, globalOptions: Partial<GlobalOptions>, filter: string | null) {
 
   const projectSourceRoot = GetProjectSourceRoot(host, projectName);
 
@@ -158,11 +161,20 @@ function forProject(host: Tree, projectName: string, globalOptions: Partial<Glob
 
 }
 
-function NormalizeComposeOptions(options: ComposeSchematicSchema): ComposeSchematicSchema {
+export interface NormalizedComposeSchematicSchema extends Readonly<Normalized<ComposeSchematicSchema>> {
+  feature: string | null;
+  project: string | null;
+  filter: string | null;
+  overwrite: boolean | string[];
+}
+
+function NormalizeComposeOptions(options: ComposeSchematicSchema): NormalizedComposeSchematicSchema {
   return Object.seal({
-    project: options.project ? dasherize(options.project) : undefined,
-    feature: options.feature ? dasherize(options.feature) : undefined,
-    filter: options.filter ?? undefined,
+    project: options.project ? dasherize(options.project) : null,
+    feature: options.feature ? dasherize(options.feature) : null,
+    filter: options.filter ?? null,
+    overwrite: options.overwrite ?? false as any,
+    replace: options.replace ?? false,
   });
 }
 
@@ -172,13 +184,16 @@ export default function (options: ComposeSchematicSchema) {
     project,
     feature,
     filter,
+    overwrite,
+    replace,
   } = normalizedOptions;
 
   const globalOptions: Partial<GlobalOptions> = {
-    overwrite: options.overwrite,
-    replace: options.replace,
-    project: project,
-    feature: feature,
+    // TODO : fix Normalized type support overwrite?: string[] | boolean;
+    overwrite: overwrite as any,
+    replace: replace,
+    project: project ?? undefined,
+    feature: feature ?? undefined,
   };
 
   return (host: Tree) => {

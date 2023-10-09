@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "angular",
+  "allOf": [
+    {
+      "$ref": "general.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "componentName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "context": {
+          "type": "string",
+          "description": "The context use to generate proper names for class, files, etc"
+        },
+        "nestModule": {
+          "type": "string",
+          "description": "The module name for the table nest operations"
+        },
+        "controllerName": {
+          "type": "string"
+        },
+        "backend": {
+          "type": "string",
+          "description": "The backend that should be used to handel data",
+          "enum": [
+            "none",
+            "nestjs",
+            "open-api",
+            "local"
+          ],
+          "default": "none"
+        },
+        "directory": {
+          "type": "string",
+          "description": "A directory name or absolute path where the files should be generated. Relative to the project and feature base path if a feature is defined"
+        },
+        "shared": {
+          "type": "boolean",
+          "description": "Whether the generated code is used across the project",
+          "default": false
+        },
+        "scope": {
+          "type": "string"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "openApi": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  ]
+}

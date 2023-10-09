@@ -12,7 +12,17 @@
     },
     "overwrite": {
       "description": "Overwrite the existing file if it exists",
-      "type": "boolean"
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
     },
     "replace": {
       "description": "Replace the existing file if it exists",

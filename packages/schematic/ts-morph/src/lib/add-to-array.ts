@@ -19,7 +19,7 @@ export function AddToArray(
   arrayName: string,
   value: string,
   type = 'any[]',
-  overwrite = false,
+  overwrite: boolean | string[] = false,
 ) {
 
   const providerArray = CoerceVariableDeclaration(
@@ -33,13 +33,18 @@ export function AddToArray(
 
   if (providerArray instanceof ArrayLiteralExpression) {
 
-    const index = providerArray.getElements().findIndex(element => element.getFullText().trim() === value);
+    let index = providerArray.getElements().findIndex(element => element.getFullText().trim() === value);
 
-    if (overwrite && index !== -1) {
+    if ((
+          overwrite === true || (
+                      Array.isArray(overwrite) && overwrite.includes('provider')
+                    )
+        ) && index !== -1) {
       providerArray.removeElement(index);
+      index = -1;
     }
 
-    if (overwrite || index === -1) {
+    if (index === -1) {
       providerArray.addElement(value);
     }
 

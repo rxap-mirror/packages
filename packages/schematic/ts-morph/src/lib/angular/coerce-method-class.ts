@@ -21,7 +21,7 @@ import { CoerceImports } from '../ts-morph/coerce-imports';
 
 export interface CoerceMethodClassOptions extends TsMorphAngularProjectTransformOptions {
   name: string;
-  overwrite?: boolean;
+  overwrite?: boolean | string[];
   providedIn?: string;
   tsMorphTransform?: (
     project: Project,
@@ -71,7 +71,9 @@ export function CoerceMethodClass(options: CoerceMethodClassOptions) {
     ];
     methodStructure.returnType ??= 'any';
     const methodDeclaration = CoerceClassMethod(classDeclaration, 'call', methodStructure);
-    if (overwrite) {
+    if (overwrite === true || (
+      Array.isArray(overwrite) && overwrite.includes('method-declaration')
+    )) {
       methodDeclaration.set(methodStructure);
     }
   });

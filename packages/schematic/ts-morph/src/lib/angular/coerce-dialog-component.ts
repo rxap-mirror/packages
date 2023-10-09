@@ -9,21 +9,18 @@ import {
 } from 'ts-morph';
 import { CoerceClassConstructor } from '../coerce-class-constructor';
 import { CoerceClassMethod } from '../coerce-class-method';
-import { TsMorphAngularProjectTransformOptions } from '../ts-morph-transform';
 import { CoerceClassProperty } from '../ts-morph/coerce-class-property';
 import { CoerceImports } from '../ts-morph/coerce-imports';
 import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import { AddComponentImport } from './add-component-import';
 import {
+  CoerceComponentOptions,
   CoerceComponentRule,
-  TemplateOptions,
 } from './coerce-component';
 
-export interface CoerceDialogComponentOptions extends TsMorphAngularProjectTransformOptions {
+export interface CoerceDialogComponentOptions extends Omit<CoerceComponentOptions, 'tsMorphTransform' | 'name'> {
   dialogName: string;
   title?: string;
-  overwrite?: boolean;
-  template?: TemplateOptions;
   tsMorphTransform?: (
     project: Project,
     [ componentSourceFile ]: [ SourceFile ],
@@ -54,6 +51,7 @@ export function CoerceDialogComponentRule(options: CoerceDialogComponentOptions)
     dialogName,
     project,
     feature,
+    flat,
   } = options;
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   tsMorphTransform ??= () => {
@@ -68,6 +66,7 @@ export function CoerceDialogComponentRule(options: CoerceDialogComponentOptions)
       directory,
       overwrite,
       template,
+      flat,
       tsMorphTransform: (_, [ componentSourceFile ], [ componentClass ]) => {
         AddComponentImport(componentSourceFile, 'FlexLayoutModule', '@angular/flex-layout');
         AddComponentImport(componentSourceFile, 'MatDialogModule', '@angular/material/dialog');
