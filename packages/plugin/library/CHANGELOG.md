@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.33...@rxap/plugin-library@16.0.0-dev.34) (2023-10-09)
+
+### Bug Fixes
+
+- only include file if has export statement ([acab338](https://gitlab.com/rxap/packages/commit/acab3385744d9bfbf4c6ce1e1423c8ef8f87c46a))
+
 # [16.0.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.32...@rxap/plugin-library@16.0.0-dev.33) (2023-10-08)
 
 ### Bug Fixes

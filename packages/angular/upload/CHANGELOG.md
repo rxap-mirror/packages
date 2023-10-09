@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/upload@16.0.0-dev.17...@rxap/upload@16.0.0-dev.18) (2023-10-09)
+
+### Bug Fixes
+
+- simplify file upload processing ([5ca11eb](https://gitlab.com/rxap/packages/commit/5ca11ebe08efa7d3c7ddafdf3ca4cd0039bc4019))
+
 # [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/upload@16.0.0-dev.16...@rxap/upload@16.0.0-dev.17) (2023-10-09)
 
 ### Bug Fixes

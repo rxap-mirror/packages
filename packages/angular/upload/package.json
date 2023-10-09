@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.17",
+  "version": "16.0.0-dev.18",
   "name": "@rxap/upload",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -38,6 +38,10 @@
       {
         "package": "@rxap/directives",
         "version": "16.0.0-dev.17"
+      },
+      {
+        "package": "@rxap/icon",
+        "version": "16.0.0-dev.16"
       },
       {
         "package": "@rxap/pattern",

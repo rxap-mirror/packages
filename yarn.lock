@@ -9636,7 +9636,7 @@ __metadata:
     "@rxap/plugin-angular": ^16.1.0-dev.48
     "@rxap/plugin-nestjs": ^16.1.0-dev.38
     "@rxap/plugin-utilities": ^16.1.0-dev.18
-    "@rxap/utilities": ^16.0.0-dev.19
+    "@rxap/utilities": ^16.0.0-dev.21
     "@rxap/workspace-utilities": ^0.1.0-dev.20
     handlebars: ^4.7.7
     nx: ^16.5.0
@@ -10060,6 +10060,8 @@ __metadata:
 "@rxap/workspace-cypress@workspace:packages/workspace/cypress":
   version: 0.0.0-use.local
   resolution: "@rxap/workspace-cypress@workspace:packages/workspace/cypress"
+  dependencies:
+    tslib: 2.6.2
   languageName: unknown
   linkType: soft
 
