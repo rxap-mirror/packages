@@ -32,7 +32,9 @@ export function NormalizeFormControlType(control: Nullable<Pick<FormDefinitionCo
         case 'uuid':
           type = 'string';
           break;
-        default:
+        case 'object':
+        case 'Object':
+        case '':
           type = 'unknown';
           break;
       }
