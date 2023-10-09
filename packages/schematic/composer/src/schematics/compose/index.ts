@@ -169,11 +169,15 @@ export interface NormalizedComposeSchematicSchema extends Readonly<Normalized<Co
 }
 
 function NormalizeComposeOptions(options: ComposeSchematicSchema): NormalizedComposeSchematicSchema {
+  let overwrite = options.overwrite ?? false;
+  if (typeof overwrite === 'string') {
+    overwrite = overwrite.split(',');
+  }
   return Object.seal({
     project: options.project ? dasherize(options.project) : null,
     feature: options.feature ? dasherize(options.feature) : null,
     filter: options.filter ?? null,
-    overwrite: options.overwrite ?? false as any,
+    overwrite: overwrite,
     replace: options.replace ?? false,
   });
 }
