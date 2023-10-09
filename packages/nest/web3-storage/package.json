@@ -1,31 +1,39 @@
 {
+  "version": "10.0.1-dev.0",
   "name": "@rxap/nest-web3-storage",
-  "version": "10.0.0",
-  "type": "commonjs",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/web3-storage"
-  },
-  "keywords": [
-    "nest",
-    "libs",
-    "nest-web3-storage",
-    "rxap",
-    "packages"
-  ],
   "license": "GPL-3.0-or-later",
-  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/web3-storage",
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^10.0.5",
+    "@nestjs/config": "^3.0.0",
+    "web3.storage": "^4.5.5"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/web3-storage",
+  "keywords": [
+    "libs",
+    "nest",
+    "nest-web3-storage",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/web3-storage"
   },
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/nest/web3-storage"
   },
-  "author": {
-    "name": "Merzough Münker",
-    "email": "mmuenker@digitaix.com"
-  }
+  "type": "commonjs"
 }

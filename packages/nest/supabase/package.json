@@ -1,31 +1,39 @@
 {
+  "version": "10.0.1-dev.0",
   "name": "@rxap/nest-supabase",
-  "version": "10.0.0",
-  "type": "commonjs",
-  "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/supabase"
-  },
-  "keywords": [
-    "nest",
-    "libs",
-    "nest-supabase",
-    "rxap",
-    "packages"
-  ],
   "license": "GPL-3.0-or-later",
-  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/supabase",
+  "dependencies": {
+    "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^10.0.5",
+    "@nestjs/config": "^3.0.0",
+    "@supabase/supabase-js": "^2.38.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
   "bugs": {
     "url": "https://gitlab.com/rxap/packages/-/issues",
     "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/supabase",
+  "keywords": [
+    "libs",
+    "nest",
+    "nest-supabase",
+    "packages",
+    "rxap"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/nest/supabase"
   },
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/rxap/packages.git",
     "directory": "packages/nest/supabase"
   },
-  "author": {
-    "name": "Merzough Münker",
-    "email": "mmuenker@digitaix.com"
-  }
+  "type": "commonjs"
 }

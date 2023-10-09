@@ -9303,6 +9303,12 @@ __metadata:
 "@rxap/nest-supabase@workspace:^, @rxap/nest-supabase@workspace:packages/nest/supabase":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-supabase@workspace:packages/nest/supabase"
+  dependencies:
+    tslib: 2.6.2
+  peerDependencies:
+    "@nestjs/common": ^10.0.5
+    "@nestjs/config": ^3.0.0
+    "@supabase/supabase-js": ^2.38.0
   languageName: unknown
   linkType: soft
 
@@ -9335,6 +9341,12 @@ __metadata:
 "@rxap/nest-web3-storage@workspace:packages/nest/web3-storage":
   version: 0.0.0-use.local
   resolution: "@rxap/nest-web3-storage@workspace:packages/nest/web3-storage"
+  dependencies:
+    tslib: 2.6.2
+  peerDependencies:
+    "@nestjs/common": ^10.0.5
+    "@nestjs/config": ^3.0.0
+    web3.storage: ^4.5.5
   languageName: unknown
   linkType: soft
 
