@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.34...@rxap/plugin-library@16.0.0-dev.35) (2023-10-09)
+
+### Bug Fixes
+
+- add missing regex flags ([da557ea](https://gitlab.com/rxap/packages/commit/da557eaf8edea23963fb5aa5e9f5b54baddef41c))
+
 # [16.0.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.33...@rxap/plugin-library@16.0.0-dev.34) (2023-10-09)
 
 ### Bug Fixes
