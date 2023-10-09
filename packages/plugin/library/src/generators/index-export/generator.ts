@@ -33,7 +33,7 @@ function generateIndexFile(tree: Tree, sourceRoot: string) {
       !path.endsWith('.stories.ts') &&
       !path.endsWith('.d.ts')) {
       const content = tree.read(path, 'utf-8');
-      if (content.match(/^export /)) {
+      if (content.match(/^export /gm)) {
         filePathList.push(path);
       }
     }
