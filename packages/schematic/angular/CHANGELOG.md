@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.21...@rxap/schematic-angular@16.1.0-dev.22) (2023-10-09)
+
+### Bug Fixes
+
+- only set to unknown type if type property is empty or object ([44cd819](https://gitlab.com/rxap/packages/commit/44cd81935248d5941e55e6fbb4a983ccdbbd590c))
+
+### Features
+
+- support overwrite array ([e528c87](https://gitlab.com/rxap/packages/commit/e528c87fd5fb49898583e0c08c191942e7e2f8e4))
+
 # [16.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.20...@rxap/schematic-angular@16.1.0-dev.21) (2023-10-08)
 
 ### Features

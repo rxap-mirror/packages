@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.21",
+  "version": "16.1.0-dev.22",
   "name": "@rxap/schematic-angular",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,9 +8,9 @@
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
     "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.25",
-    "@rxap/schematics-utilities": "^16.0.0-dev.18",
-    "@rxap/utilities": "^16.0.0-dev.19",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.26",
+    "@rxap/schematics-utilities": "^16.0.0-dev.19",
+    "@rxap/utilities": "^16.0.0-dev.20",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
   },
@@ -34,15 +34,15 @@
     "packageGroup": [
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "16.0.0-dev.25"
+        "version": "16.0.0-dev.26"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "16.0.0-dev.18"
+        "version": "16.0.0-dev.19"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.19"
+        "version": "16.0.0-dev.20"
       },
       {
         "package": "@rxap/workspace-utilities",

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.0-dev.18...@rxap/schematics-utilities@16.0.0-dev.19) (2023-10-09)
+
+### Features
+
+- support overwrite array ([e528c87](https://gitlab.com/rxap/packages/commit/e528c87fd5fb49898583e0c08c191942e7e2f8e4))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.0-dev.17...@rxap/schematics-utilities@16.0.0-dev.18) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/schematics-utilities

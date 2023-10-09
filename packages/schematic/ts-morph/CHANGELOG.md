@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.25...@rxap/schematics-ts-morph@16.0.0-dev.26) (2023-10-09)
+
+### Bug Fixes
+
+- only add validators import if used ([5b739e4](https://gitlab.com/rxap/packages/commit/5b739e4c4974e203d61f42f6d61017546e863f69))
+
+### Features
+
+- support overwrite array ([e528c87](https://gitlab.com/rxap/packages/commit/e528c87fd5fb49898583e0c08c191942e7e2f8e4))
+
 # [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.24...@rxap/schematics-ts-morph@16.0.0-dev.25) (2023-10-02)
 
 ### Bug Fixes
