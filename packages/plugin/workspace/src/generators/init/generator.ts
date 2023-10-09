@@ -15,6 +15,7 @@ import {
   MergeDeepLeft,
 } from '@rxap/utilities';
 import {
+  AddPackageJsonDevDependency,
   CoerceFilesStructure,
   CoerceLernaJson,
   CoerceNxJsonCacheableOperation,
@@ -356,6 +357,8 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   if (options.packages) {
     CoerceLernaJson(tree);
   }
+
+  await AddPackageJsonDevDependency(tree, 'husky', 'latest', { soft: true });
 
   CoerceIgnorePattern(tree, '.gitignore', gitIgnore);
   CoerceIgnorePattern(tree, '.prettierignore', prettierIgnore);
