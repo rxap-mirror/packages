@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.35...@rxap/plugin-workspace@16.1.0-dev.36) (2023-10-09)
+
+### Bug Fixes
+
+- ensure the commitlint packages is installed ([7bcdf87](https://gitlab.com/rxap/packages/commit/7bcdf871633e77fed3b7f092cc3538b958fa0f05))
+- ensure the husky package is installed ([9a057c4](https://gitlab.com/rxap/packages/commit/9a057c47ab58f03c1e69eec2cdd2aba50aef4cbc))
+
 # [16.1.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.34...@rxap/plugin-workspace@16.1.0-dev.35) (2023-10-02)
 
 ### Bug Fixes
