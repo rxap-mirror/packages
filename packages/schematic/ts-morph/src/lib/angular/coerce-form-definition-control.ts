@@ -100,8 +100,16 @@ export function CoerceFormControl(
             for (let i = 0; i < control.validatorList.length; i++) {
               const validator = control.validatorList[i];
               if (isAngularValidator(validator)) {
+                CoerceImports(sourceFile, {
+                  namedImports: [ 'Validators' ],
+                  moduleSpecifier: '@angular/forms',
+                });
                 w.write('Validators.');
               } else {
+                CoerceImports(sourceFile, {
+                  namedImports: [ 'RxapValidators' ],
+                  moduleSpecifier: '@rxap/forms',
+                });
                 w.write('RxapValidators.');
               }
               w.write(validator);
@@ -113,6 +121,10 @@ export function CoerceFormControl(
               if (control.validatorList.length) {
                 w.write(',');
               }
+              CoerceImports(sourceFile, {
+                namedImports: [ 'Validators' ],
+                moduleSpecifier: '@angular/forms',
+              });
               w.write('Validators.required');
             }
             if (control.validatorList.length > 1 || (control.validatorList.length && control.isRequired)) {
@@ -141,12 +153,8 @@ export function CoerceFormControl(
     ],
   });
   CoerceImports(sourceFile, {
-    namedImports: [ 'RxapFormControl', 'UseFormControl', 'RxapValidators' ],
+    namedImports: [ 'RxapFormControl', 'UseFormControl' ],
     moduleSpecifier: '@rxap/forms',
-  });
-  CoerceImports(sourceFile, {
-    namedImports: [ 'Validators' ],
-    moduleSpecifier: '@angular/forms',
   });
   return {
     propertyDeclaration,
