@@ -147,7 +147,8 @@
     "serve": {
       "dependsOn": [
         "build-info",
-        "^copy-open-api-sdk"
+        "^copy-open-api-sdk",
+        "^generate-open-api"
       ]
     },
     "copy-open-api-sdk": {
@@ -189,7 +190,8 @@
         "build-info",
         "expose-as-schematic",
         "copy-open-api-sdk",
-        "^copy-open-api-sdk"
+        "^copy-open-api-sdk",
+        "^generate-open-api"
       ],
       "inputs": [
         "build",
