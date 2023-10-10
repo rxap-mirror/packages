@@ -1,10 +1,12 @@
 include:
   - local: .gitlab/ci/jobs/run.yaml
   - local: .gitlab/ci/jobs/docker.yaml
+  - local: .gitlab/ci/jobs/startup.yaml
 
 stages:
   - run
   - docker
+  - startup
 
 variables:
   ENVIRONMENT_NAME: branch/$CI_COMMIT_REF_NAME

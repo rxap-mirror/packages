@@ -35,6 +35,7 @@ variables:
 include:
 
   - local: .gitlab/ci/utilities/nx.yaml
+  - local: .gitlab/ci/utilities/npm-cache.yaml
 
   # the review pipeline to check if tests and builds are successful and deploy a review environment
   - local: .gitlab/ci/review.yaml
