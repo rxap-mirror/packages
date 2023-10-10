@@ -36,6 +36,10 @@ export * from './lib/package-json/scripts-version-before';
 export * from './lib/nx-json/index';
 // endregion
 
+// region nest
+export * from './lib/nest/get-nest-api-prefix';
+// endregion
+
 // region collection-json
 export * from './lib/collection-json/index';
 export * from './lib/collection-json/interface';

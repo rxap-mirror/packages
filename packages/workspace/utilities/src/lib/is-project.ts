@@ -52,7 +52,7 @@ export function IsLibraryProject(project: { projectType?: string }): boolean {
 
 export function IsUserInterfaceProject(project: { tags?: string[], projectType?: string }) {
   return IsApplicationProject(project) && (
-    !!project.tags?.includes('user-interface') || IsApplicationProject(project)
+    !!project.tags?.includes('user-interface') || IsAngularProject(project)
   );
 }
 
