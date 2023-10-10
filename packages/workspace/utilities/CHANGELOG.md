@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.20...@rxap/workspace-utilities@0.1.0-dev.21) (2023-10-10)
+
+### Features
+
+- add GetNestApiPrefix function ([63489ea](https://gitlab.com/rxap/packages/commit/63489ea3a843d8f1810cd25c16dc93a5e769dc8f))
+
 # [0.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.19...@rxap/workspace-utilities@0.1.0-dev.20) (2023-10-02)
 
 ### Bug Fixes

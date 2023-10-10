@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.37](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.36...@rxap/plugin-docker@16.0.0-dev.37) (2023-10-10)
+
+### Bug Fixes
+
+- add missing docker build arguments ([a99cf1d](https://gitlab.com/rxap/packages/commit/a99cf1d661ec86d947f0e6980e895aafdce435e8))
+
 # [16.0.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.35...@rxap/plugin-docker@16.0.0-dev.36) (2023-10-03)
 
 ### Bug Fixes

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.39](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.38...@rxap/plugin-nestjs@16.1.0-dev.39) (2023-10-10)
+
+### Bug Fixes
+
+- support dynamic label definition ([58022a3](https://gitlab.com/rxap/packages/commit/58022a39496f1a75cf8599c54b119ec02c02ee62))
+- support overwrite of default docker file ([7ac132f](https://gitlab.com/rxap/packages/commit/7ac132faf705795b79d3c7ad5c88d115a3a62276))
+
+### Features
+
+- use GetNestApiPrefix utility function ([24c5c9f](https://gitlab.com/rxap/packages/commit/24c5c9f6f28a7bba17b17b0175afe40e399d518f))
+
 # [16.1.0-dev.38](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.37...@rxap/plugin-nestjs@16.1.0-dev.38) (2023-10-03)
 
 ### Bug Fixes
