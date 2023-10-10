@@ -35,6 +35,7 @@ import {
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  GetNestApiPrefix,
   Strategy,
   UpdateJsonFile,
 } from '@rxap/workspace-utilities';
@@ -366,33 +367,7 @@ function getPort(tree: Tree, options: InitApplicationGeneratorSchema, projectSou
   return Math.floor(Math.random() * 1000) + 3000;
 }
 
-function getApiPrefix(
-  tree: Tree,
-  options: InitApplicationGeneratorSchema,
-  projectSourceRoot: string,
-  projectName: string,
-) {
-  if (options.apiPrefix && options.projects.length === 1) {
-    return options.apiPrefix;
-  }
-  if (tree.exists(join(projectSourceRoot, 'app', 'app.config.ts'))) {
-    const match = tree.read(join(projectSourceRoot, 'app', 'app.config.ts'))
-      .toString()
-      .match(/validationSchema\['GLOBAL_API_PREFIX'\] = Joi.string\(\).default\('(.+)'\);/);
-    if (match) {
-      return match[1];
-    }
-  }
-  if (tree.exists(join(projectSourceRoot, 'app', 'app.module.ts'))) {
-    const match = tree.read(join(projectSourceRoot, 'app', 'app.module.ts'))
-      .toString()
-      .match(/GLOBAL_API_PREFIX: Joi.string\(\).default\('(.+)'\)/);
-    if (match) {
-      return match[1];
-    }
-  }
-  return join('api', projectName.replace(/^service-/, ''));
-}
+
 
 const MAIN_NEST_APP_OPTIONS_STATEMENT = 'const options: NestApplicationOptions = {};';
 const MAIN_BOOTSTRAP_OPTIONS_STATEMENT = 'const bootstrapOptions: Partial<MonolithicBootstrapOptions> = {};';
@@ -677,7 +652,7 @@ export async function initApplicationGenerator(
       }
 
       const port = getPort(tree, options, projectSourceRoot);
-      const globalApiPrefix = getApiPrefix(tree, options, projectSourceRoot, projectName);
+      const globalApiPrefix = GetNestApiPrefix(tree, options, projectSourceRoot, projectName);
 
       console.log(`init project: ${ projectName }`);
 
