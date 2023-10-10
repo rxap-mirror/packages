@@ -565,20 +565,24 @@ export async function initApplicationGenerator(
     await AddPackageJsonDependency(tree, '@rxap/plugin-localazy', 'latest', { soft: true });
   }
 
-  // only add the shared folder if it does not exist
-  if (!tree.exists('shared/angular/Dockerfile')) {
-    generateFiles(tree, join(__dirname, 'files', 'shared'), 'shared/angular', options);
-  }
+  CoerceFilesStructure(tree, {
+    srcFolder: join(__dirname, 'files', 'shared'),
+    target: 'shared/angular',
+    overwrite: options.overwrite,
+  });
 
-  // only add the styles folder if it does not exist
-  if (!tree.exists('shared/angular/styles')) {
-    generateFiles(tree, join(__dirname, 'files', 'styles'), 'shared/angular/styles', options);
-  }
+  CoerceFilesStructure(tree, {
+    srcFolder: join(__dirname, 'files', 'styles'),
+    target: 'shared/angular/styles',
+    overwrite: options.overwrite,
+  });
 
   if (options.oauth) {
-    if (!tree.exists('shared/angular/assets/silent-refresh.html')) {
-      generateFiles(tree, join(__dirname, 'files', 'oauth'), 'shared/angular/assets', options);
-    }
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'oauth'),
+      target: 'shared/angular/assets',
+      overwrite: options.overwrite,
+    });
   }
 
   updateTargetDefaults(tree, options);
