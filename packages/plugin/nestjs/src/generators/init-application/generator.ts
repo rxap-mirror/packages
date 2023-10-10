@@ -1,5 +1,4 @@
 import {
-  generateFiles,
   getProjects,
   ProjectConfiguration,
   readNxJson,
@@ -32,6 +31,7 @@ import {
 import {
   AddPackageJsonDependency,
   AddPackageJsonDevDependency,
+  CoerceFilesStructure,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
@@ -349,16 +349,16 @@ function getPort(tree: Tree, options: InitApplicationGeneratorSchema, projectSou
   }
   if (tree.exists(join(projectSourceRoot, 'app', 'app.config.ts'))) {
     const match = tree.read(join(projectSourceRoot, 'app', 'app.config.ts'))
-                      .toString()
-                      .match(/validationSchema\['PORT'\] = Joi.number\(\).default\((\d+)\);/);
+      .toString()
+      .match(/validationSchema\['PORT'\] = Joi.number\(\).default\((\d+)\);/);
     if (match) {
       return parseInt(match[1]);
     }
   }
   if (tree.exists(join(projectSourceRoot, 'app', 'app.module.ts'))) {
     const match = tree.read(join(projectSourceRoot, 'app', 'app.module.ts'))
-                      .toString()
-                      .match(/PORT: Joi.number\(\).default\((\d+)\)/);
+      .toString()
+      .match(/PORT: Joi.number\(\).default\((\d+)\)/);
     if (match) {
       return parseInt(match[1]);
     }
@@ -377,16 +377,16 @@ function getApiPrefix(
   }
   if (tree.exists(join(projectSourceRoot, 'app', 'app.config.ts'))) {
     const match = tree.read(join(projectSourceRoot, 'app', 'app.config.ts'))
-                      .toString()
-                      .match(/validationSchema\['GLOBAL_API_PREFIX'\] = Joi.string\(\).default\('(.+)'\);/);
+      .toString()
+      .match(/validationSchema\['GLOBAL_API_PREFIX'\] = Joi.string\(\).default\('(.+)'\);/);
     if (match) {
       return match[1];
     }
   }
   if (tree.exists(join(projectSourceRoot, 'app', 'app.module.ts'))) {
     const match = tree.read(join(projectSourceRoot, 'app', 'app.module.ts'))
-                      .toString()
-                      .match(/GLOBAL_API_PREFIX: Joi.string\(\).default\('(.+)'\)/);
+      .toString()
+      .match(/GLOBAL_API_PREFIX: Joi.string\(\).default\('(.+)'\)/);
     if (match) {
       return match[1];
     }
@@ -538,7 +538,8 @@ function updateMainFile(
 
     if (projectName === 'service-status') {
       const variableDeclaration = CoerceVariableDeclaration(sourceFile, 'bootstrapOptions', { initializer: '{}' });
-      const objectLiteralExpression = variableDeclaration.getInitializerIfKindOrThrow(SyntaxKind.ObjectLiteralExpression);
+      const objectLiteralExpression = variableDeclaration.getInitializerIfKindOrThrow(
+        SyntaxKind.ObjectLiteralExpression);
       let objectLiteralElementLike = objectLiteralExpression.getProperty('globalPrefixOptions');
       if (!objectLiteralElementLike) {
         objectLiteralElementLike = objectLiteralExpression.addPropertyAssignment({
@@ -547,7 +548,8 @@ function updateMainFile(
         });
       }
       const gpoPropertyAssigment = objectLiteralElementLike.asKindOrThrow(SyntaxKind.PropertyAssignment);
-      const gpoObjectLiteralExpression = gpoPropertyAssigment.getInitializerIfKindOrThrow(SyntaxKind.ObjectLiteralExpression);
+      const gpoObjectLiteralExpression = gpoPropertyAssigment.getInitializerIfKindOrThrow(
+        SyntaxKind.ObjectLiteralExpression);
       let gpoElementLike = gpoObjectLiteralExpression.getProperty('exclude');
       if (!gpoElementLike) {
         gpoElementLike = gpoObjectLiteralExpression.addPropertyAssignment({
@@ -648,10 +650,11 @@ export async function initApplicationGenerator(
     await AddPackageJsonDependency(tree, '@rxap/nest-open-api', 'latest', { soft: true });
   }
 
-  // only add the shared folder if it does not exist
-  if (!tree.exists('shared/nestjs/Dockerfile')) {
-    generateFiles(tree, join(__dirname, 'files', 'shared'), 'shared/nestjs', options);
-  }
+  CoerceFilesStructure(tree, {
+    srcFolder: join(__dirname, 'files', 'shared'),
+    target: 'shared/nestjs',
+    overwrite: options.overwrite,
+  });
 
   setGeneralTargetDefaults(tree);
 
