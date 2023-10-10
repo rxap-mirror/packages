@@ -9654,10 +9654,10 @@ __metadata:
     "@rxap/generator-utilities": ^1.1.0-dev.17
     "@rxap/plugin-localazy": ^16.1.0-dev.12
     "@rxap/plugin-utilities": ^16.1.0-dev.18
-    "@rxap/ts-morph": ^0.1.0-dev.13
-    "@rxap/utilities": ^16.0.0-dev.19
+    "@rxap/ts-morph": ^0.1.0-dev.14
+    "@rxap/utilities": ^16.0.0-dev.21
     "@rxap/workspace-ts-morph": ^0.1.0-dev.9
-    "@rxap/workspace-utilities": ^0.1.0-dev.20
+    "@rxap/workspace-utilities": ^0.1.0-dev.21
     nx: ^16.5.0
     ts-morph: ^18.0.0
     tslib: 2.6.2
@@ -9672,7 +9672,7 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.17
-    "@rxap/plugin-angular": ^16.1.0-dev.48
+    "@rxap/plugin-angular": ^16.1.0-dev.49
     "@rxap/plugin-docker": ^16.0.0-dev.37
     "@rxap/plugin-nestjs": ^16.1.0-dev.39
     "@rxap/plugin-utilities": ^16.1.0-dev.18

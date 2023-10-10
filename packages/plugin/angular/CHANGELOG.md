@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.49](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.48...@rxap/plugin-angular@16.1.0-dev.49) (2023-10-10)
+
+### Bug Fixes
+
+- remove unused folders ([fd6c10a](https://gitlab.com/rxap/packages/commit/fd6c10ad043399b3548f3f538e547f16aad6633c))
+- set default traefik docker labels ([f1bb5c6](https://gitlab.com/rxap/packages/commit/f1bb5c6e6d9a78c9ce78d8af97f14ff2abcc3cf4))
+- use CoerceFilesStructure utility function ([4a048af](https://gitlab.com/rxap/packages/commit/4a048af4cdbf74c010de20115d21affa37995637))
+
 # [16.1.0-dev.48](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.47...@rxap/plugin-angular@16.1.0-dev.48) (2023-10-03)
 
 ### Bug Fixes
