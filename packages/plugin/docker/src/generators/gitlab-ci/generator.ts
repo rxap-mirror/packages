@@ -10,8 +10,10 @@ import {
 } from '@rxap/plugin-utilities';
 import { clone } from '@rxap/utilities';
 import {
+  GetNestApiPrefix,
   GetRootDockerOptions,
   IsApplicationProject,
+  IsNestJsProject,
   IsServiceProject,
   IsUserInterfaceProject,
   RootDockerOptions,
@@ -124,7 +126,17 @@ function generateDockerGitlabCiFileContent(
     dockerYaml[`docker:${ projectName }`] = clone(docker);
     dockerYaml[`docker:${ projectName }`].variables = {
       IMAGE_NAME: imageName,
+      PROJECT_NAME: projectName,
     };
+
+    if (IsNestJsProject(project)) {
+      if (!project.sourceRoot) {
+        throw new Error(`The project '${ projectName }' has no source root`);
+      }
+      dockerYaml[`docker:${ projectName }`].variables.PATH_PREFIX = '/' + GetNestApiPrefix(tree, {}, project.sourceRoot,
+        projectName,
+      );
+    }
 
     if (context) {
       dockerYaml[`docker:${ projectName }`].variables.DOCKER_CONTEXT = context;

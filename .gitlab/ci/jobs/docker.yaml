@@ -22,6 +22,7 @@ docker:angular:
   extends: .docker
   variables:
     IMAGE_NAME: rxap/packages
+    PROJECT_NAME: angular
     DOCKER_CONTEXT: dist/demos/angular
     IMAGE_SUFFIX: /user-interface/angular
     DOCKERFILE: shared/angular/Dockerfile
@@ -29,6 +30,8 @@ docker:service-changelog:
   extends: .docker
   variables:
     IMAGE_NAME: rxap/packages
+    PROJECT_NAME: service-changelog
+    PATH_PREFIX: /api/changelog
     DOCKER_CONTEXT: dist/applications/service/changelog
     IMAGE_SUFFIX: /service/changelog
     DOCKERFILE: shared/nestjs/Dockerfile
@@ -36,6 +39,8 @@ docker:service-configuration:
   extends: .docker
   variables:
     IMAGE_NAME: rxap/packages
+    PROJECT_NAME: service-configuration
+    PATH_PREFIX: /api/configuration
     DOCKER_CONTEXT: dist/applications/service/configuration
     IMAGE_SUFFIX: /service/configuration
     DOCKERFILE: shared/nestjs/Dockerfile
@@ -43,6 +48,8 @@ docker:service-status:
   extends: .docker
   variables:
     IMAGE_NAME: rxap/packages
+    PROJECT_NAME: service-status
+    PATH_PREFIX: /api/status
     DOCKER_CONTEXT: dist/applications/service/status
     IMAGE_SUFFIX: /service/status
     DOCKERFILE: shared/nestjs/Dockerfile
@@ -50,6 +57,8 @@ docker:service-user:
   extends: .docker
   variables:
     IMAGE_NAME: rxap/packages
+    PROJECT_NAME: service-user
+    PATH_PREFIX: /api/user
     DOCKER_CONTEXT: dist/applications/service/user
     IMAGE_SUFFIX: /service/user
     DOCKERFILE: shared/nestjs/Dockerfile
@@ -57,6 +66,8 @@ docker:service-app-angular-table:
   extends: .docker
   variables:
     IMAGE_NAME: rxap/packages
+    PROJECT_NAME: service-app-angular-table
+    PATH_PREFIX: /api/app/angular/table
     DOCKER_CONTEXT: dist/demos/service/app/angular/table
     IMAGE_SUFFIX: /service/app-angular-table
     DOCKERFILE: shared/nestjs/Dockerfile
