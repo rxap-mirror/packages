@@ -6,11 +6,13 @@
   "properties": {
     "applications": {
       "type": "boolean",
-      "description": "If true, the workspace will be initialized for application development"
+      "description": "If true, the workspace will be initialized for application development",
+      "x-prompt": "Has this workspace applications?"
     },
     "packages": {
       "type": "boolean",
-      "description": "If true, the workspace will be initialized for package development"
+      "description": "If true, the workspace will be initialized for package development",
+      "x-prompt": "Has this workspace publishable packages?"
     },
     "overwrite": {
       "type": "boolean",
