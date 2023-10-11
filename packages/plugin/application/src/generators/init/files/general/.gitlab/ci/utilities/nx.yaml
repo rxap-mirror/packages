@@ -1,7 +1,5 @@
 .setup: &setup |
   apk add --no-cache git g++ make python3 curl git-lfs
-  git lfs install
-  git lfs pull
   corepack enable
   corepack prepare yarn@stable --activate
   yarn "$(if [[ $CI_COMMIT_REF_NAME =~ ^renovate//* ]]; then echo ''; else echo '--frozen-lockfile'; fi)"
