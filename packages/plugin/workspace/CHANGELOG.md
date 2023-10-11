@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.39](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.38...@rxap/plugin-workspace@16.1.0-dev.39) (2023-10-11)
+
+### Bug Fixes
+
+- ensure yarn cache is not included in git versions ([eab3e41](https://gitlab.com/rxap/packages/commit/eab3e411a405869fd0e139ee16e061d11b2b5933))
+
 # [16.1.0-dev.38](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.37...@rxap/plugin-workspace@16.1.0-dev.38) (2023-10-11)
 
 ### Bug Fixes
