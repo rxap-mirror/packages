@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.0.1-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@9.0.1-dev.2...@rxap/nest-minio@10.0.1-dev.12) (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- expose all types ([d8d3433](https://gitlab.com/rxap/packages/commit/d8d343386c9cfb6ba1e2cb813c68e99f8cc9d3d3))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 ## [10.0.1-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/nest-minio@10.0.1-dev.10...@rxap/nest-minio@10.0.1-dev.11) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/nest-minio

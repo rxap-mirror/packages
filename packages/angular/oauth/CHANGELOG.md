@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/oauth@16.0.0-dev.4...@rxap/oauth@16.0.0-dev.21) (2023-10-11)
+
+### Bug Fixes
+
+- add browser-tailwind as imp dep if project has tailwind configuration ([3d90660](https://gitlab.com/rxap/packages/commit/3d906604470f4f26d157f4683afe72b3dd8baae3))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add sign out implementation ([84f1516](https://gitlab.com/rxap/packages/commit/84f1516326b7d0bc48c322e6fcd07e2c5346580a))
+- add tailwind bundle build target and configurations ([de3825a](https://gitlab.com/rxap/packages/commit/de3825a0e2977389f81cc4ce63e510767ca25810))
+- auto config if token is provided ([ca0e9ab](https://gitlab.com/rxap/packages/commit/ca0e9abd60e79c91c713c5c3a0a0c160e9bb7633))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- extract auth status from events ([d8c46b5](https://gitlab.com/rxap/packages/commit/d8c46b55e7d43b48869d1c4605169b41ba13bb17))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- remove css class usage of container ([472cc12](https://gitlab.com/rxap/packages/commit/472cc12f824acc10bca596e4a34e8bc13e809eaa))
+- remove specific configurations ([a2ec0f8](https://gitlab.com/rxap/packages/commit/a2ec0f80b40463e2445f737aab03181296f88f17))
+
+### Features
+
+- add new oauth services ([adbc304](https://gitlab.com/rxap/packages/commit/adbc3047d9e60f26697d5f3a088b2b9a1c83d7aa))
+
 # [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/oauth@16.0.0-dev.19...@rxap/oauth@16.0.0-dev.20) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/oauth

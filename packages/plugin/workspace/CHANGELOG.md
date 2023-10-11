@@ -3,6 +3,77 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.1.0-dev.37 (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add missing initial workspace files ([dbb5494](https://gitlab.com/rxap/packages/commit/dbb54941ad5dbfde267fb27767ded9ca5c16a4cc))
+- add missing project config update ([5afe381](https://gitlab.com/rxap/packages/commit/5afe381ee15013b4646f0eb99d236c0a8d5f95de))
+- add skip-projects flag ([e1f31ed](https://gitlab.com/rxap/packages/commit/e1f31ed837646f605ced82a52749e62af07ba939))
+- add yarn rc file ([c40f569](https://gitlab.com/rxap/packages/commit/c40f569fe548fa4c58658f2f76be2bca24add650))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- coerce workspace project ([f8ceba0](https://gitlab.com/rxap/packages/commit/f8ceba021126b34c8e5b11ce22c0d7e04f9df734))
+- ensure overwrite option is passed to sub schematics ([0c8a19b](https://gitlab.com/rxap/packages/commit/0c8a19b5166f804aa335f739a00a5415bd97f61a))
+- ensure the commitlint packages is installed ([09e76c6](https://gitlab.com/rxap/packages/commit/09e76c68dd6648b429ad60c13540e49d3b38f98c))
+- ensure the environment name is set to development for each service ([1293921](https://gitlab.com/rxap/packages/commit/1293921584a1a6779b3c7990ad12aa878841e374))
+- ensure the husky package is installed ([ecc7c45](https://gitlab.com/rxap/packages/commit/ecc7c455c4c14269e70401ac34e50e8378981b68))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- expose generators as schematics ([8a58d07](https://gitlab.com/rxap/packages/commit/8a58d07c2f1dcfff75e724a418d7c3bddb2d0bbc))
+- generate traefik default certs ([eda4fd9](https://gitlab.com/rxap/packages/commit/eda4fd9a595b4a4de352c85330cf86e4d841d428))
+- in application workspace the tailwind is disabled for libraries per default ([fe56263](https://gitlab.com/rxap/packages/commit/fe562639560216a57df8af8b8e8c1968eb487a41))
+- include missing domains ([ea906e1](https://gitlab.com/rxap/packages/commit/ea906e196450f79fc095b374b6e5d1f1593d3b71))
+- init nx json configurations ([4c14f56](https://gitlab.com/rxap/packages/commit/4c14f56da8bae5971165cbff2269d86fa9951629))
+- install yarn 3 in the before script ([d547fda](https://gitlab.com/rxap/packages/commit/d547fdac24a8ffae5f88cd67cee340330c1b48c3))
+- introduce more Is\*Project functions ([41a3713](https://gitlab.com/rxap/packages/commit/41a3713e2965f46900e80902a455b62e08686989))
+- mount custom service settings from detected folder ([cfed00e](https://gitlab.com/rxap/packages/commit/cfed00ef930a6dfe9037a522df89a3bc4dc744fe))
+- move nx parallel parameter to run all utility ([52c178a](https://gitlab.com/rxap/packages/commit/52c178acf16259f4ad5a1c31ace6c1feb45106b8))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- refactor the build.json concept ([3526821](https://gitlab.com/rxap/packages/commit/3526821aecd59e92ba9d5f2c6d9001dc936d007f))
+- relative path issue and spelling ([beb55a7](https://gitlab.com/rxap/packages/commit/beb55a74704638dbd018ba6b6db7cb83a7e56333))
+- remove application specific generator steps ([858fc3a](https://gitlab.com/rxap/packages/commit/858fc3acdaa0c5afbb88212800e7e2f4debba58d))
+- remove error message ([b2f4974](https://gitlab.com/rxap/packages/commit/b2f49746e723a3fdce3cc956d595600c6f6d9e86))
+- remove explicit domain ([ba3037a](https://gitlab.com/rxap/packages/commit/ba3037afcfe1d07a23216e12e262b573056b1241))
+- remove m2v dependency ([6a57b28](https://gitlab.com/rxap/packages/commit/6a57b286c31aeb8d154f5e9b54c049a98dcecb23))
+- remove minio container name ([996fc36](https://gitlab.com/rxap/packages/commit/996fc3689ade5d112eac091a84c1aa49c879915e))
+- remove redundant command parameters ([b3e474b](https://gitlab.com/rxap/packages/commit/b3e474b668f477d0194c8ae9ee847a13bdb35776))
+- remove redundant traefik labels ([62c2625](https://gitlab.com/rxap/packages/commit/62c2625a5f6d77cb0f327e5fc46a8ea6e5c99a03))
+- remove unnecessary deployment tier ([be4c65a](https://gitlab.com/rxap/packages/commit/be4c65a7d1d5dc9c02e6bda8ac6fba6a0c21cd96))
+- set default nest and angular directory ([329299a](https://gitlab.com/rxap/packages/commit/329299a4f621a9ec08b4d882078d6013f302628a))
+- set explicit root domain ([5f68bd6](https://gitlab.com/rxap/packages/commit/5f68bd6e4e7c5f18cf48124fcf8a9afcf441c076))
+- split GuessOutputPath function ([470b93a](https://gitlab.com/rxap/packages/commit/470b93a97a44b11435ff045c79896d712c9721a9))
+- split local and remote pull ([8056e92](https://gitlab.com/rxap/packages/commit/8056e927d5e21ff3e7479cd4f310f4b8f31716cd))
+- stop all container from all docker compose files ([64f6fcb](https://gitlab.com/rxap/packages/commit/64f6fcb155ce1d87fd40bd0f99dc6351dcf18cdd))
+- support any docker compose file name ([b093d10](https://gitlab.com/rxap/packages/commit/b093d10fdaddb1d643231129f6ec0623ace01ea7))
+- support docker options from nx.json file ([931ffdc](https://gitlab.com/rxap/packages/commit/931ffdc960f4fb0c92fcbff1a5b1966df7fd074e))
+- support local service execution ([5c0dbee](https://gitlab.com/rxap/packages/commit/5c0dbee76504762fa889b892f7c6231dd6db9c73))
+- support new nest application structure ([090d742](https://gitlab.com/rxap/packages/commit/090d7422c29dc75d55c3fed6ef5faac8ff6d319b))
+- update authentik service init ([e1d61b6](https://gitlab.com/rxap/packages/commit/e1d61b6d0bb3f6d348c79498527b6b08710e90ed))
+- update initial workspace files ([fbc17d4](https://gitlab.com/rxap/packages/commit/fbc17d4b4d4ea1a74fe78fe90b93f0f81aa51729))
+- update initial workspace files ([5be3709](https://gitlab.com/rxap/packages/commit/5be3709d5b9644958cb44d203225eb720c00a158))
+- update service configuration name ([dda304f](https://gitlab.com/rxap/packages/commit/dda304f2de845539a9291c47c6ba3dcac617fdf6))
+- update service status name ([595cd07](https://gitlab.com/rxap/packages/commit/595cd07ab522dc1818c6f275e7a526e6b31d63ac))
+- use CoerceFilesStructure function ([51f13e0](https://gitlab.com/rxap/packages/commit/51f13e0e261e1a93a95f5a96fe8ec4a0597d4ad3))
+- use correct project name ([5b9e432](https://gitlab.com/rxap/packages/commit/5b9e432ed0bd7d73941bd1a82eac70fcdcc7b0a5))
+- use function CoerceNxJsonCacheableOperation ([485e598](https://gitlab.com/rxap/packages/commit/485e598e7a1192b5635f6c54dee5349b9d2889c3))
+- use registry.gitlab.com as default registry ([41ef6f0](https://gitlab.com/rxap/packages/commit/41ef6f0b1db418abcd8aef09263779ce1ba76724))
+- use updated path for health checks ([56dc4cb](https://gitlab.com/rxap/packages/commit/56dc4cbad4bd75e0a6f6cb614ea513af680a9c8f))
+
+### Features
+
+- add ci info executor ([8b63c13](https://gitlab.com/rxap/packages/commit/8b63c13392940b8b2475689a6a767efc9970b083))
+- add docker compose generator files ([cb16192](https://gitlab.com/rxap/packages/commit/cb161928f5e60d564814e67fb299b123a1e8339d))
+- add docker-compose executor ([54eaaa9](https://gitlab.com/rxap/packages/commit/54eaaa92f7360665bd5fa71e74a263e0d6307d2b))
+- add project-target generator ([4cb0462](https://gitlab.com/rxap/packages/commit/4cb0462fc3044cfdcf4fb993b74f7c6ff97aa3c2))
+- coerce the lerna.json file ([88e5f9f](https://gitlab.com/rxap/packages/commit/88e5f9fbd8a9309071baa8c9ab8984f1bebfdcc9))
+- generate project traefik file ([075dfc5](https://gitlab.com/rxap/packages/commit/075dfc58539ea6c32949de5d7048cf87812a616f))
+- **init:** add generator ([b9b7d4d](https://gitlab.com/rxap/packages/commit/b9b7d4ddda7ab62a8ea6b3278dc2736bbf6dd894))
+- **init:** create workspace specific files ([17f1056](https://gitlab.com/rxap/packages/commit/17f1056ef761d01a4d9f8733584e4e57a5b3586e))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [16.1.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.35...@rxap/plugin-workspace@16.1.0-dev.36) (2023-10-09)
 
 ### Bug Fixes

@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.3...@rxap/utilities@16.0.0-dev.22) (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to es2022 ([6223c97](https://gitlab.com/rxap/packages/commit/6223c978078cfa899ca69424b62d2a99cbb290a7))
+- ensure sort properties is in-place ([254424f](https://gitlab.com/rxap/packages/commit/254424fdedce069409e74ea4ef23f5cb42abcca5))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- remove @Required decorator ([bcd9988](https://gitlab.com/rxap/packages/commit/bcd9988f0667bf4563a0e5b91977becfd29b1597))
+- support array with string, null or undefined ([0ebf16d](https://gitlab.com/rxap/packages/commit/0ebf16dd8fb61c16cf5ce2313630afb03e311142))
+- support custom deep merge function ([258854c](https://gitlab.com/rxap/packages/commit/258854ce537da43f97f68a15f58ad31f35f9ed6e))
+- support get for object path access ([eb8742e](https://gitlab.com/rxap/packages/commit/eb8742e77f05812ac1f86619fbc6df298d5ef8b8))
+
+### Features
+
+- add CamelizePropertyKeys function ([b3ec3ee](https://gitlab.com/rxap/packages/commit/b3ec3ee61c9bad28f863313c08adc5eacc2c4cb3))
+- add CoerceArrayItems function ([68aeaac](https://gitlab.com/rxap/packages/commit/68aeaacc0e582cf5d73cd15ae308fd92aadb2146))
+- add joinWith and joinWithDash utilities ([b6440d8](https://gitlab.com/rxap/packages/commit/b6440d8a78f6e9e786f65f979c0b266b85f5c473))
+- add NonUndefined and NonEmpty type utilities ([9698bdc](https://gitlab.com/rxap/packages/commit/9698bdcddfb2fa7e070548823a6c9d65719d41b9))
+- add RemoveFromObject function ([89135a6](https://gitlab.com/rxap/packages/commit/89135a66a490044ca495d7338b7c9cdd568acb44))
+- add SortProperties function ([c92db46](https://gitlab.com/rxap/packages/commit/c92db4682ce1bd76b07ed5cba9a7e74a77ff1cd0))
+- support custom merge strategies ([40839b0](https://gitlab.com/rxap/packages/commit/40839b0fcb51c90c23c8f53693e087db4de77ba6))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/utilities@16.0.0-dev.20...@rxap/utilities@16.0.0-dev.21) (2023-10-09)
 
 ### Features

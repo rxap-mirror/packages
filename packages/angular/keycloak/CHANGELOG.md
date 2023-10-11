@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/keycloak@16.0.0-dev.3...@rxap/keycloak@16.0.0-dev.18) (2023-10-11)
+
+### Bug Fixes
+
+- add browser-tailwind as imp dep if project has tailwind configuration ([3d90660](https://gitlab.com/rxap/packages/commit/3d906604470f4f26d157f4683afe72b3dd8baae3))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add tailwind bundle build target and configurations ([de3825a](https://gitlab.com/rxap/packages/commit/de3825a0e2977389f81cc4ce63e510767ca25810))
+- drop the module based approach ([8cadeba](https://gitlab.com/rxap/packages/commit/8cadeba53c2ab427952a3a8d8fd70f98a56c2c29))
+- ensure keycloak is ready before checking authentication status ([619a4e5](https://gitlab.com/rxap/packages/commit/619a4e5090555f2f93000389f3ce25517fb48edd))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- mv keycloak-js deps to peer dependency ([60977ec](https://gitlab.com/rxap/packages/commit/60977ec348d644d775e30e06c211c2c433a5f3c6))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+
 # [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/keycloak@16.0.0-dev.16...@rxap/keycloak@16.0.0-dev.17) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/keycloak

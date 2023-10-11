@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.38](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.5...@rxap/plugin-docker@16.0.0-dev.38) (2023-10-11)
+
+### Bug Fixes
+
+- add default stage for docker build job ([80fb089](https://gitlab.com/rxap/packages/commit/80fb0890533e12af2f00f30e4cfb554d4f9a2361))
+- add GIT_LFS_SKIP_SMUDGE env to docker builds ([7f0feef](https://gitlab.com/rxap/packages/commit/7f0feefff5806b8e31658bc74d8ac64302dcfead))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add missing docker build arguments ([2cd4a40](https://gitlab.com/rxap/packages/commit/2cd4a4027c6a7772d541dd2abdc900f8af77226f))
+- add missing echo -e ([d75ea18](https://gitlab.com/rxap/packages/commit/d75ea182589f9bf154098ba2359c1732863d5ca8))
+- add missing job tags ([0ad32ca](https://gitlab.com/rxap/packages/commit/0ad32cab8439370bae80cfbd8a1abc173c8447fb))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- copy docker options to gitlab ci configuration ([b1995ba](https://gitlab.com/rxap/packages/commit/b1995ba3594acde53b802f67564731e3f1eaf7df))
+- create startup configuration tailed to the project type ([5b81b29](https://gitlab.com/rxap/packages/commit/5b81b29343e92d370811e090c1b7b4a0125d80ab))
+- ensure docker file has an absolute path ([550dec6](https://gitlab.com/rxap/packages/commit/550dec6f7e7e741ab2f1ee6f29d932f38e733384))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- expose generators as schematics ([8a58d07](https://gitlab.com/rxap/packages/commit/8a58d07c2f1dcfff75e724a418d7c3bddb2d0bbc))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- introduce more Is\*Project functions ([41a3713](https://gitlab.com/rxap/packages/commit/41a3713e2965f46900e80902a455b62e08686989))
+- only add the env name to the template job ([f596ca2](https://gitlab.com/rxap/packages/commit/f596ca2d9a447f87ac9d2985f58ceeb888c86f28))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- print executor options ([ca3b913](https://gitlab.com/rxap/packages/commit/ca3b913aab7a1d802b7cfd3d158ce1a8b48cb44b))
+- reduce logging ([20a7c6b](https://gitlab.com/rxap/packages/commit/20a7c6bafff55c9763a0aab0e4adfdadb42fef2a))
+- remove quotes around command parameters ([3408584](https://gitlab.com/rxap/packages/commit/34085848d626e7c3812064f3d41f7e420a2bcc9e))
+- remove slashes from docker tag ([7c982c6](https://gitlab.com/rxap/packages/commit/7c982c66d9ff7393140f6fa0dc1774beb84815af))
+- remove unnecessary deployment tier ([be4c65a](https://gitlab.com/rxap/packages/commit/be4c65a7d1d5dc9c02e6bda8ac6fba6a0c21cd96))
+- run gitlab ci generators on application init ([84f804f](https://gitlab.com/rxap/packages/commit/84f804fb533ac84f80a708cff8c1b8c78f23707c))
+- split GuessOutputPath function ([470b93a](https://gitlab.com/rxap/packages/commit/470b93a97a44b11435ff045c79896d712c9721a9))
+- support custom docker context ([1600544](https://gitlab.com/rxap/packages/commit/160054491429bd5116e2e112d1d2585b5e5f1386))
+- support docker options from nx.json file ([931ffdc](https://gitlab.com/rxap/packages/commit/931ffdc960f4fb0c92fcbff1a5b1966df7fd074e))
+- use current branch name as fallback docker tag ([fb227b1](https://gitlab.com/rxap/packages/commit/fb227b15c9cfacacae2061be9d5271fac4e77900))
+- use shared Dockerfile for angular projects ([15bc009](https://gitlab.com/rxap/packages/commit/15bc0098603d0815ca0b164d64147e8cca986cd7))
+- use startup instead of setup as base job ([90dd6c1](https://gitlab.com/rxap/packages/commit/90dd6c1cf8424d1badd1ba3d67aa7a8fb7b07e06))
+
+### Features
+
+- generate startup test jobs ([03f692c](https://gitlab.com/rxap/packages/commit/03f692c7d2c7c25f3dbbbd755548f9767bc3fe74))
+- **gitlab-ci:** add generator ([2b50891](https://gitlab.com/rxap/packages/commit/2b508918d82dc7e6979a5126590e94f2b753bc58))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [16.0.0-dev.37](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.36...@rxap/plugin-docker@16.0.0-dev.37) (2023-10-10)
 
 ### Bug Fixes

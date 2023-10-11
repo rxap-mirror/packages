@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/slugify@16.0.0-dev.2...@rxap/slugify@16.0.0-dev.13) (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to es2022 ([6223c97](https://gitlab.com/rxap/packages/commit/6223c978078cfa899ca69424b62d2a99cbb290a7))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [16.0.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/slugify@16.0.0-dev.11...@rxap/slugify@16.0.0-dev.12) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/slugify

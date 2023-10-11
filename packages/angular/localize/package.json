@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.1",
+  "version": "16.1.0-dev.2",
   "name": "@rxap/ngx-localize",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,8 +8,8 @@
   "peerDependencies": {
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
-    "@rxap/config": "^16.0.0-dev.18",
-    "@rxap/ngx-user": "^16.1.0-dev.6",
+    "@rxap/config": "^16.0.0-dev.19",
+    "@rxap/ngx-user": "^16.1.0-dev.7",
     "rxjs": "^7.8.0"
   },
   "author": {
@@ -32,11 +32,11 @@
     "packageGroup": [
       {
         "package": "@rxap/config",
-        "version": "16.0.0-dev.18"
+        "version": "16.0.0-dev.19"
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "16.1.0-dev.6"
+        "version": "16.1.0-dev.7"
       }
     ]
   },

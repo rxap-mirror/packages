@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 16.0.1-dev.4 (2023-10-11)
+
+### Bug Fixes
+
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+
 ## [16.0.1-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-localize@16.0.1-dev.2...@rxap/ngx-material-localize@16.0.1-dev.3) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/ngx-material-localize

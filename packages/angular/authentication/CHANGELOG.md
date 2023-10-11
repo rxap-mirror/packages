@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/authentication@16.0.0-dev.4...@rxap/authentication@16.0.0-dev.18) (2023-10-11)
+
+### Bug Fixes
+
+- add browser-tailwind as imp dep if project has tailwind configuration ([3d90660](https://gitlab.com/rxap/packages/commit/3d906604470f4f26d157f4683afe72b3dd8baae3))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add tailwind bundle build target and configurations ([de3825a](https://gitlab.com/rxap/packages/commit/de3825a0e2977389f81cc4ce63e510767ca25810))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- remove unused services ([7a53f93](https://gitlab.com/rxap/packages/commit/7a53f930f8c4110a82b9bc952038e0eb6390435a))
+- set initial authentication state to false ([6f6b991](https://gitlab.com/rxap/packages/commit/6f6b99154529d1175cf638ea8a85104e9423f5da))
+- support oauth ([4d355d3](https://gitlab.com/rxap/packages/commit/4d355d3114d38799fb4a9aa4fc78a50d568ecf85))
+
 # [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/authentication@16.0.0-dev.16...@rxap/authentication@16.0.0-dev.17) (2023-10-01)
 
 ### Bug Fixes

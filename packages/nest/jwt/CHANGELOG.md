@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 10.0.1-dev.14 (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add more checks ([5220c76](https://gitlab.com/rxap/packages/commit/5220c7652364756891bee6d3195e302d06a21317))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- check if the jwt property is set or throw internal server execution ([1690ce7](https://gitlab.com/rxap/packages/commit/1690ce7f3f4817fcfc2e93df850f0f97101075e4))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- move forRoot logic into detected loader classes ([45812d6](https://gitlab.com/rxap/packages/commit/45812d66901f37130ec4018b0bc9369829800155))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 ## [10.0.1-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/nest-jwt@10.0.1-dev.12...@rxap/nest-jwt@10.0.1-dev.13) (2023-10-02)
 
 ### Bug Fixes

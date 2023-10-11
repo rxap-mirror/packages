@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.9...@rxap/material-table-system@16.0.0-dev.26) (2023-10-11)
+
+### Bug Fixes
+
+- add browser-tailwind as imp dep if project has tailwind configuration ([3d90660](https://gitlab.com/rxap/packages/commit/3d906604470f4f26d157f4683afe72b3dd8baae3))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add tailwind bundle build target and configurations ([de3825a](https://gitlab.com/rxap/packages/commit/de3825a0e2977389f81cc4ce63e510767ca25810))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- expose inharated inputs ([a61650f](https://gitlab.com/rxap/packages/commit/a61650fafe0df108d89cd4124cd3535193d1d944))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- inject correct button type ([344b1eb](https://gitlab.com/rxap/packages/commit/344b1eb74de40c973cbc870c8f6ec1e505b774eb))
+- introduce the NormalizeTableRow function ([e447c7a](https://gitlab.com/rxap/packages/commit/e447c7a66a4a5c7302e88e4c91a6e60bbdc05ebd))
+- only set metadata if not already defined ([6bb4264](https://gitlab.com/rxap/packages/commit/6bb4264585c94e79a9b51a5be2d405c92032a8d0))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- remove @Required decorator ([bcd9988](https://gitlab.com/rxap/packages/commit/bcd9988f0667bf4563a0e5b91977becfd29b1597))
+- split table row action directives ([becf34a](https://gitlab.com/rxap/packages/commit/becf34aecda60b8cc43e8c15ac17d11d8feb111c))
+
+### Features
+
+- add TableHeaderButton directive ([4184eca](https://gitlab.com/rxap/packages/commit/4184ecad9e7a9d8d0169bea26d9faf7ba369011e))
+- support button color input ([f1b3716](https://gitlab.com/rxap/packages/commit/f1b3716aaf62cc6d0282b0515cee5c6213ee4911))
+
 # [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.24...@rxap/material-table-system@16.0.0-dev.25) (2023-10-03)
 
 ### Bug Fixes

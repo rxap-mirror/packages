@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-dev.15 (2023-10-11)
+
+### Bug Fixes
+
+- add ApiExcludeController decorator ([33aa2d0](https://gitlab.com/rxap/packages/commit/33aa2d00177ea9288ba67a8534ae6e25de249845))
+- add functions ([b43b946](https://gitlab.com/rxap/packages/commit/b43b9464d0146028d6e45431de0ac999983e0a36))
+- add missing semicolon ([7208bd8](https://gitlab.com/rxap/packages/commit/7208bd83da20c343d088f6e683b007ff9b6241d8))
+- add project ts-morph ([fda78f5](https://gitlab.com/rxap/packages/commit/fda78f5ed61caac6dc5c4d9a70afd3aced6a05fa))
+- create an info path for the default app controller ([7c54f5d](https://gitlab.com/rxap/packages/commit/7c54f5d569551c79042b2f8db437da6530d87d74))
+- ensure a basic health controller exists ([e3888a5](https://gitlab.com/rxap/packages/commit/e3888a5005763a3543c4cea3a7fe2d5c2ae49cb3))
+- ensure new class property is inserted at the top ([3629daa](https://gitlab.com/rxap/packages/commit/3629daaebdb3e0611f80b469c0f7ac1b71a3889c))
+- ensure the name and environment operations are created ([044c49e](https://gitlab.com/rxap/packages/commit/044c49eb0d1f677fc2f38a4cd2a0cfe34cdc3dba))
+- ensure the operation path is set ([104a2e5](https://gitlab.com/rxap/packages/commit/104a2e5df746cd3e5e27bbae01210ceaae87a4b1))
+- move forRoot logic into detected loader classes ([45812d6](https://gitlab.com/rxap/packages/commit/45812d66901f37130ec4018b0bc9369829800155))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- resolve issues ([602183d](https://gitlab.com/rxap/packages/commit/602183d93528a28773e05b7a983110bafb93a2f2))
+- support config validation overwrite ([bf9fc5d](https://gitlab.com/rxap/packages/commit/bf9fc5dcdb961d7583114e88abfe7ba0340df0f8))
+- support mixture of named and default/namespace imports ([8a99875](https://gitlab.com/rxap/packages/commit/8a9987565b5f170ac1d1e2a85a8d61990e4c769b))
+- support overwrite option ([3c2ede3](https://gitlab.com/rxap/packages/commit/3c2ede3e969277729eb7b6a4e561a043097cf731))
+- update to new throttler version ([f1abdd1](https://gitlab.com/rxap/packages/commit/f1abdd1b9328f2ed9043ad0553d8ced99a7ac60c))
+
+### Features
+
+- add CoerceArrayElement function ([cd728e4](https://gitlab.com/rxap/packages/commit/cd728e4f04dbc47776bd437504f43b4616047584))
+- add CoerceNestAppConfig function ([f50e80e](https://gitlab.com/rxap/packages/commit/f50e80e23107b74177af1077c17ce17386bb69a5))
+- add utility functions ([664ea97](https://gitlab.com/rxap/packages/commit/664ea97fff1bfc0c6a47914af4d1396da673098a))
+- support overwrite array ([2696160](https://gitlab.com/rxap/packages/commit/2696160aef2cf384edca3235aa0aaadc3afb97cc))
+
 # [0.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.13...@rxap/ts-morph@0.1.0-dev.14) (2023-10-09)
 
 ### Features

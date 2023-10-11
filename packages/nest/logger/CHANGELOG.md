@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.7](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@1.0.1-dev.1...@rxap/nest-logger@10.1.0-dev.7) (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+
+### Features
+
+- add a LoggerModule that expose the Logger service globally ([4792828](https://gitlab.com/rxap/packages/commit/479282849b58cdf49aeef2f45419c3735fb01606))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [10.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-logger@10.1.0-dev.5...@rxap/nest-logger@10.1.0-dev.6) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/nest-logger

@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-dev.22 (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- align duplicated implementation ([ba2b218](https://gitlab.com/rxap/packages/commit/ba2b218b143b662bd72ac4bc392e761dd1b1eaa3))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- enforce that the production configuration is the default configuration ([00ac30e](https://gitlab.com/rxap/packages/commit/00ac30e65dbe1008bff6d4f149631405fc81c200))
+- ensure new line ([f24d277](https://gitlab.com/rxap/packages/commit/f24d277ab2003620486c5f2541c59c4051512cf9))
+- ensure script are ordered to the top ([c9d5007](https://gitlab.com/rxap/packages/commit/c9d5007766bf1cb00e6442c6a3df452ecb13c211))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- ensure the project root is always defined ([f3cdb92](https://gitlab.com/rxap/packages/commit/f3cdb92f7be3fbd24f5976faa6e2fb66ea08e7f5))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- introduce Is\*Project functions ([3c9f251](https://gitlab.com/rxap/packages/commit/3c9f251f1d7be46ca366171e79e86ef2764fa3b0))
+- introduce more Is\*Project functions ([41a3713](https://gitlab.com/rxap/packages/commit/41a3713e2965f46900e80902a455b62e08686989))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- remove logs ([52c630a](https://gitlab.com/rxap/packages/commit/52c630a5caaa17141bab3996838758f9ccb8f43d))
+- set default target value ([98db684](https://gitlab.com/rxap/packages/commit/98db68485308a9efbf6f85bb04550f1601752983))
+- skip package version update if not changed ([a5a377e](https://gitlab.com/rxap/packages/commit/a5a377e56fa53f0aebff1a87f0482954e2944f08))
+- support project configuration and nxjson ([cf7c3a9](https://gitlab.com/rxap/packages/commit/cf7c3a959927e777f9491a1df5de73a61361ce6c))
+- support target configurations ([18eba90](https://gitlab.com/rxap/packages/commit/18eba90ec62981382217ddb5951be0c3da44ae2e))
+
+### Features
+
+- add CleanupPackageJson function ([08ad46c](https://gitlab.com/rxap/packages/commit/08ad46c1fe249aa3ab2ad349e856a5331d5b5d3f))
+- add CoerceFilesStructure function ([89fdcca](https://gitlab.com/rxap/packages/commit/89fdccaf003b064b962423d5c7c7449dfd359c28))
+- add CoerceLernaJson function ([2143ddc](https://gitlab.com/rxap/packages/commit/2143ddc52b11df0f7439029c02c78656159a5473))
+- add function CoerceNxJsonCacheableOperation ([26a36a0](https://gitlab.com/rxap/packages/commit/26a36a0de1ed9edb93af4f34ef01188b95d20a59))
+- add GetNestApiPrefix function ([e1f3de3](https://gitlab.com/rxap/packages/commit/e1f3de3c3dbceac65b3fc1d20f61b30715ea426b))
+- add GetRootDockerOptions function ([36cf5a4](https://gitlab.com/rxap/packages/commit/36cf5a4273b5edf0331f46b0f671906ca49f7720))
+- add IsRxapRepository function ([fccf69a](https://gitlab.com/rxap/packages/commit/fccf69ad2b42fea8e2aa640b185c29daaa7e5faa))
+- add project target utilities ([f0075b7](https://gitlab.com/rxap/packages/commit/f0075b70fdbad46877379bfe417f6bb5a4264b78))
+- add the DeleteRecursive function ([928e3e2](https://gitlab.com/rxap/packages/commit/928e3e2115d2eed67b77dc083d308fc4c89cb83b))
+- **coerce:** add function CoerceTargetDefaultsDependency ([1fba1c8](https://gitlab.com/rxap/packages/commit/1fba1c88909e7874d4d172067f6f61905f789e1c))
+- support angular library entrypoints ([29ceeb0](https://gitlab.com/rxap/packages/commit/29ceeb0e99fe374d1a51a74ca1ed72d8487e999c))
+- support tree as input ([e920f75](https://gitlab.com/rxap/packages/commit/e920f75706d676ee262a77dd4d12ac65cf03e2cb))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [0.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.20...@rxap/workspace-utilities@0.1.0-dev.21) (2023-10-10)
 
 ### Features

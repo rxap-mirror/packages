@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-dev.13 (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- controller naming and route ([38054d3](https://gitlab.com/rxap/packages/commit/38054d3ee106e1f50f806e1596da674f268cb4aa))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- init nx json configurations ([4c14f56](https://gitlab.com/rxap/packages/commit/4c14f56da8bae5971165cbff2269d86fa9951629))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- prevent undefined access error ([f39f37f](https://gitlab.com/rxap/packages/commit/f39f37fb4ba1be924c18cbe6a91ca0e0143e0ce9))
+- swagger output path ([77e00ef](https://gitlab.com/rxap/packages/commit/77e00efb4d435dce9d2beea5afd52e33db339005))
+- update default api configuration file path ([b4c2a61](https://gitlab.com/rxap/packages/commit/b4c2a61450a321a8ef2b6759d33d2968cb854d9a))
+- use async factory for ThrottlerModule ([4564625](https://gitlab.com/rxap/packages/commit/45646252262b3c7a4841a2fa959110e06f6d6246))
+- use SentryOptionsFactory and GetLogLevels utility function ([2197ae3](https://gitlab.com/rxap/packages/commit/2197ae3207c280a021a998265b2c14a5f0daab19))
+
+### Features
+
+- mv swagger generator to plugin-nestjs ([895cba5](https://gitlab.com/rxap/packages/commit/895cba5d040262ae64f05ff14b604871240a0a4b))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [0.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/schematic-nestjs@0.1.0-dev.11...@rxap/schematic-nestjs@0.1.0-dev.12) (2023-10-02)
 
 ### Bug Fixes

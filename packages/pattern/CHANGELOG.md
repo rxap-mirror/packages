@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.1](https://gitlab.com/rxap/packages/compare/@rxap/pattern@1.0.1-dev.0...@rxap/pattern@1.1.0-dev.1) (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add minimal signature ([39b8287](https://gitlab.com/rxap/packages/commit/39b8287efb549435d2a6573fbbf1429d776a3a5a))
+- change from commonjs to es2022 ([6223c97](https://gitlab.com/rxap/packages/commit/6223c978078cfa899ca69424b62d2a99cbb290a7))
+- DataSourceViewer viewChange property should be optional ([b8d0819](https://gitlab.com/rxap/packages/commit/b8d08197e890c7fefb142dc9fe2c1b268b97145f))
+- ensure the metadata object is set ([b17cc38](https://gitlab.com/rxap/packages/commit/b17cc380ecc8f405bf06550da209c1f449099ed7))
+- ensure the metadata object is set ([dd2568e](https://gitlab.com/rxap/packages/commit/dd2568edbfbee0c057024ae0c59128970e705101))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+
+### Features
+
+- add DataSource interface ([58b9725](https://gitlab.com/rxap/packages/commit/58b972544f2da8763ad9bb3388185037823220f9))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [1.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/pattern@1.0.1-dev.10...@rxap/pattern@1.1.0-dev.0) (2023-09-27)
 
 ### Bug Fixes

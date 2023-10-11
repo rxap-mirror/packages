@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.5...@rxap/data-source@16.0.0-dev.26) (2023-10-11)
+
+### Bug Fixes
+
+- adapt to node parent concept ([5211c5a](https://gitlab.com/rxap/packages/commit/5211c5a50f3a328b32225eb148ef986ce4900af0))
+- add browser-tailwind as imp dep if project has tailwind configuration ([3d90660](https://gitlab.com/rxap/packages/commit/3d906604470f4f26d157f4683afe72b3dd8baae3))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add tailwind bundle build target and configurations ([de3825a](https://gitlab.com/rxap/packages/commit/de3825a0e2977389f81cc4ce63e510767ca25810))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- improve error and loading handling ([83e807b](https://gitlab.com/rxap/packages/commit/83e807b6bbef38c5fa944b94dac591d815f79165))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- refactor the generic retry function and error handling ([b8068ac](https://gitlab.com/rxap/packages/commit/b8068acd190c3be0e17a9bfd438becd46fe5639d))
+- remove @Required decorator ([bcd9988](https://gitlab.com/rxap/packages/commit/bcd9988f0667bf4563a0e5b91977becfd29b1597))
+- remove css class usage of container ([472cc12](https://gitlab.com/rxap/packages/commit/472cc12f824acc10bca596e4a34e8bc13e809eaa))
+- remove error logs ([7eb5777](https://gitlab.com/rxap/packages/commit/7eb577787a04103415164e60b836a45c8d751f76))
+- table event property start and end are always defined ([6bc2704](https://gitlab.com/rxap/packages/commit/6bc270490c241d05c8afef462752340f37967e1e))
+
+### Features
+
+- add MethodDataSource class ([917ff44](https://gitlab.com/rxap/packages/commit/917ff4407a25d03242b3823312ba93be5906b41c))
+- add restore from local storage feature ([cff8b25](https://gitlab.com/rxap/packages/commit/cff8b255bb09593a0b11e4b7ac6174b60145c365))
+- add RxapPipeDataSource decorator ([7e5d664](https://gitlab.com/rxap/packages/commit/7e5d66416078438c4635a23fce44a4c0a33b0cd9))
+
 # [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.24...@rxap/data-source@16.0.0-dev.25) (2023-10-08)
 
 ### Bug Fixes

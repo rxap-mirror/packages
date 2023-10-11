@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.0.1-dev.0...@rxap/plugin-application@16.1.0-dev.30) (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add skip-projects flag ([e1f31ed](https://gitlab.com/rxap/packages/commit/e1f31ed837646f605ced82a52749e62af07ba939))
+- call the nest init generator for nest projects ([97c5238](https://gitlab.com/rxap/packages/commit/97c52386c7ea7d233f2cb74f9d113187f9baac18))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- cleanup code generation ([35866de](https://gitlab.com/rxap/packages/commit/35866deda8c2d03ba84f3a3a82bd96dc0b1d3318))
+- enforce that the production configuration is the default configuration ([00ac30e](https://gitlab.com/rxap/packages/commit/00ac30e65dbe1008bff6d4f149631405fc81c200))
+- ensure all required cacheable operations are defined ([d9ded9c](https://gitlab.com/rxap/packages/commit/d9ded9c5e150d9781ce490ad7ac292194d09bf2a))
+- ensure overwrite option is passed to sub schematics ([0c8a19b](https://gitlab.com/rxap/packages/commit/0c8a19b5166f804aa335f739a00a5415bd97f61a))
+- ensure the build target is set correctly ([3ab4e53](https://gitlab.com/rxap/packages/commit/3ab4e5386c2f711828950b2e00b7393c45b8ca6d))
+- ensure the correct docker image tag is used ([0f66394](https://gitlab.com/rxap/packages/commit/0f66394b5ae83e454554f942693aac7eb6512966))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- ensure yarn 3 is used for yarn install ([fba0ed7](https://gitlab.com/rxap/packages/commit/fba0ed77413985d5241e53e44d6d38d1dbd86c08))
+- expose generators as schematics ([8a58d07](https://gitlab.com/rxap/packages/commit/8a58d07c2f1dcfff75e724a418d7c3bddb2d0bbc))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- install required dependencies ([a416b24](https://gitlab.com/rxap/packages/commit/a416b24af4cedbb63218de1402e5cbb2ccaf68d9))
+- introduce Is\*Project functions ([3c9f251](https://gitlab.com/rxap/packages/commit/3c9f251f1d7be46ca366171e79e86ef2764fa3b0))
+- merge default configuration property with existing target ([7ff7b73](https://gitlab.com/rxap/packages/commit/7ff7b73067599b1fd6dfe7a382a1f8ed0b57d671))
+- only add the image registry parameter if the $REGISTRY env is defined ([1d4e68e](https://gitlab.com/rxap/packages/commit/1d4e68eb170ce2d7d9a0e5ff22e2ff2be89513ed))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- refactor the build.json concept ([3526821](https://gitlab.com/rxap/packages/commit/3526821aecd59e92ba9d5f2c6d9001dc936d007f))
+- remove build info output formatting ([8bfba65](https://gitlab.com/rxap/packages/commit/8bfba6556261e7d9d6f72557a1b137725094e747))
+- remove build info target ([bc11a45](https://gitlab.com/rxap/packages/commit/bc11a45229b0639478c0bcdbfae526aa540c4b84))
+- remove git lfs for yarn cache files ([8895465](https://gitlab.com/rxap/packages/commit/889546500f7d8519a6d085e8c6bae7a9fe669a19))
+- remove the replace strategy ([e9c2163](https://gitlab.com/rxap/packages/commit/e9c21633f11a88c84cb121584b2267498f89fc1a))
+- run gitlab ci generators on application init ([84f804f](https://gitlab.com/rxap/packages/commit/84f804fb533ac84f80a708cff8c1b8c78f23707c))
+- set default target options for docker and docker-save ([bbc024b](https://gitlab.com/rxap/packages/commit/bbc024bc0ea41b07bc6352da713430737b7a17d2))
+- set environment name to development for development configurations ([4cbb6f8](https://gitlab.com/rxap/packages/commit/4cbb6f84d092c175f068681e653f402f81ecd7a9))
+- split GuessOutputPath function ([470b93a](https://gitlab.com/rxap/packages/commit/470b93a97a44b11435ff045c79896d712c9721a9))
+- update utility scripts ([e7de358](https://gitlab.com/rxap/packages/commit/e7de358bffdf241361a69ca3e4ff1122afc18131))
+- use proper docker image names ([944a1bb](https://gitlab.com/rxap/packages/commit/944a1bb8b6dd7d894ec040968cb26b783453d428))
+- use the dep glob explicitly ([ce86a5f](https://gitlab.com/rxap/packages/commit/ce86a5f56497845c4a1f041bf468c08adc978940))
+- use utility function to coerce default target dependencies ([d8db29f](https://gitlab.com/rxap/packages/commit/d8db29f8bd66057455ee10e695df217f03dd6792))
+- use utility images ([fd68896](https://gitlab.com/rxap/packages/commit/fd68896a9581be369d0db4dcc827a405e5eadf5e))
+
+### Features
+
+- add docker compose generator files ([cb16192](https://gitlab.com/rxap/packages/commit/cb161928f5e60d564814e67fb299b123a1e8339d))
+- run build-info target before serve and ignore build.json files in source root folder ([9487edd](https://gitlab.com/rxap/packages/commit/9487eddc70b8a957b44908205eeb7bf867b51b7e))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [16.1.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.28...@rxap/plugin-application@16.1.0-dev.29) (2023-10-10)
 
 **Note:** Version bump only for package @rxap/plugin-application

@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.1.0-dev.24 (2023-10-11)
+
+### Bug Fixes
+
+- add generator termination indicator ([15ca23c](https://gitlab.com/rxap/packages/commit/15ca23cd732ca3372a5eba7fba941a6fa1e5278c))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add missing import ([2e1c1d0](https://gitlab.com/rxap/packages/commit/2e1c1d0bef2de65c0abc8fff2c411b90a0c03f02))
+- allow new role types ([1a2d6d0](https://gitlab.com/rxap/packages/commit/1a2d6d034d2b4ea66181a1e46fa30a927aad4e00))
+- allow null or undefined for scope parameter ([949d4d0](https://gitlab.com/rxap/packages/commit/949d4d04a25644a54cbfabc081e83719ace885f2))
+- build controller name for tables ([14d6d94](https://gitlab.com/rxap/packages/commit/14d6d94c30e18eb1ceb876815a99c414f82a172a))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- change overscroll-contain to overscroll-auto ([8834055](https://gitlab.com/rxap/packages/commit/88340559e9dcaa45f8d88c4468e77965ba92e2d3))
+- check with role ([99c9ca8](https://gitlab.com/rxap/packages/commit/99c9ca8cd4f71347ee9d66f9b0b59790924140bb))
+- controller name composition ([ad2c82d](https://gitlab.com/rxap/packages/commit/ad2c82df5db0036efedd3bdbb5143483a4a3deb4))
+- controller naming and route ([38054d3](https://gitlab.com/rxap/packages/commit/38054d3ee106e1f50f806e1596da674f268cb4aa))
+- ensure required packages are added to package.json ([a5d5996](https://gitlab.com/rxap/packages/commit/a5d5996709e58f8b9991f276513857e7ce2939cb))
+- ensure required packages are installed ([0c96f09](https://gitlab.com/rxap/packages/commit/0c96f096c85b9192531a353e5ec110b73a0af155))
+- ensure table action respect then backend type ([9f1e659](https://gitlab.com/rxap/packages/commit/9f1e659475926506ba4c083c5c75f6d5d11b9de1))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- extend debug output ([61d4369](https://gitlab.com/rxap/packages/commit/61d4369e3fcb32bd0993c0251be14b4ac8bec927))
+- generate a valid implementation for navigation execution ([9c605b4](https://gitlab.com/rxap/packages/commit/9c605b4dd25091ad50c88cb45239f413ab58d29b))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- generate window specific methods ([baa38c3](https://gitlab.com/rxap/packages/commit/baa38c38b6db6f98170b6d0afab28dacf601a275))
+- move additional table header options into the options object ([bb3aa5b](https://gitlab.com/rxap/packages/commit/bb3aa5b8c827dd10250a9d7c764f3226d8310557))
+- move additional table header options into the options object ([1810762](https://gitlab.com/rxap/packages/commit/18107623efb019cb55d3ee882fd757feae0b4a17))
+- only set to unknown type if type property is empty or object ([717cae1](https://gitlab.com/rxap/packages/commit/717cae14da2ccb091c3138910859060322f486f0))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- remove css class usage of container ([472cc12](https://gitlab.com/rxap/packages/commit/472cc12f824acc10bca596e4a34e8bc13e809eaa))
+- remove custom controller name generation ([753d702](https://gitlab.com/rxap/packages/commit/753d70223ddf3db5fa985d69d4d506d3639ae93b))
+- remove deprecated code ([ed61f38](https://gitlab.com/rxap/packages/commit/ed61f38ddd6b11f12b9c886ae94683c56b125457))
+- remove old mat tooltip i18n ([5292efe](https://gitlab.com/rxap/packages/commit/5292efe674feb8e863f40775a1cabd838173523c))
+- schema ref urls ([864229b](https://gitlab.com/rxap/packages/commit/864229bead46725c3d5a4acdee95342209c907fc))
+- table button component generation ([b76453d](https://gitlab.com/rxap/packages/commit/b76453d4077f61840cc83aff732b8fdeff479457))
+- update table action generator to new concept ([fadb1f6](https://gitlab.com/rxap/packages/commit/fadb1f68763a842cc3b363429c7f1dcfd1a5266c))
+- use role for sub schematic decision ([cb215f5](https://gitlab.com/rxap/packages/commit/cb215f510dbcc13be92c14d6f69dce0bd264d58f))
+- use table type as base for the form filter type ([ef00fe0](https://gitlab.com/rxap/packages/commit/ef00fe0628642a1d02b6452c6b6a1f5ea5236baa))
+
+### Features
+
+- add navigation header button schematic ([02ef47c](https://gitlab.com/rxap/packages/commit/02ef47c6f22d25e69c1b468f65cdcaa93e97a26b))
+- support custom table action options pass through ([2a502de](https://gitlab.com/rxap/packages/commit/2a502def23628bf54cdc73b18b55cd3886ec6a45))
+- support non standalone form definitions ([7fbb153](https://gitlab.com/rxap/packages/commit/7fbb153bf6f0c5544fb512f7710a87401b15f6c9))
+- support open api backend ([71dac49](https://gitlab.com/rxap/packages/commit/71dac49b866ebc9fbf4fbee683a29255efee7abb))
+- support overwrite array ([2696160](https://gitlab.com/rxap/packages/commit/2696160aef2cf384edca3235aa0aaadc3afb97cc))
+
+### Performance Improvements
+
+- improve ts-morph transform performance ([737d375](https://gitlab.com/rxap/packages/commit/737d37553f6ced9646e12deb1e7bad56b77efc9d))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [16.1.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.22...@rxap/schematic-angular@16.1.0-dev.23) (2023-10-09)
 
 ### Bug Fixes

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 10.1.0-dev.7 (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- ignore AppController for request/response interceptor ([0380442](https://gitlab.com/rxap/packages/commit/0380442737abb17a29a980db330e7010bc7515ab))
+- load files depending on the env name ([add02da](https://gitlab.com/rxap/packages/commit/add02da826e5aa1e22eea80b7efc473d20d6dc49))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- support dynamic OpenApiOperationCommand creation ([8e4e2b0](https://gitlab.com/rxap/packages/commit/8e4e2b0ba7deb1d3153944fb5cb6d1bfcf31be5e))
+- support dynamic server config loading ([17f73ab](https://gitlab.com/rxap/packages/commit/17f73aba524837a8e21f85b84d5cef8b2fe1e99b))
+
+### Features
+
+- add GetOpenapiJson function ([0acdc89](https://gitlab.com/rxap/packages/commit/0acdc8990820faf4658e22edca623dbbb41f6d76))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [10.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/nest-open-api@10.1.0-dev.5...@rxap/nest-open-api@10.1.0-dev.6) (2023-10-02)
 
 **Note:** Version bump only for package @rxap/nest-open-api

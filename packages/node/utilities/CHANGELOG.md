@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.0.1-dev.1...@rxap/node-utilities@1.1.0-dev.14) (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add package version cache ([d53c22b](https://gitlab.com/rxap/packages/commit/d53c22b2879d9ea39a3f05e92dfc3a66c92e22ae))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- improve error message output ([64f4ea2](https://gitlab.com/rxap/packages/commit/64f4ea2c74bc95facf5d51d524c0ddf6351eeb4d))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+
+### Features
+
+- add file with scope utility functions ([bf882cf](https://gitlab.com/rxap/packages/commit/bf882cf979c5095f3175c01f9bd68b903dd08d38))
+- add function CopyFolderSync ([b140757](https://gitlab.com/rxap/packages/commit/b14075764c3a25c5df6aab16d73a0305443a930a))
+- add function GetCurrentBranch ([ea5d168](https://gitlab.com/rxap/packages/commit/ea5d16831594404865bd77eb3b673cfcd687d577))
+- add function RemoveDirSync ([e36561d](https://gitlab.com/rxap/packages/commit/e36561d456717a2a3311a2fe9bd35f1d71842609))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [1.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/node-utilities@1.1.0-dev.12...@rxap/node-utilities@1.1.0-dev.13) (2023-10-01)
 
 ### Features

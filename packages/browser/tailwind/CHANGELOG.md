@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-dev.3 (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to es2022 ([6223c97](https://gitlab.com/rxap/packages/commit/6223c978078cfa899ca69424b62d2a99cbb290a7))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- support dynamic font families ([37e1140](https://gitlab.com/rxap/packages/commit/37e1140d8edb8d65c0ea9fa18b57aa052ba01ded))
+
+### Features
+
+- add tailwind plugin for markdown ([653dfb3](https://gitlab.com/rxap/packages/commit/653dfb31497634ece9e0eb89528f5f32407ce66b))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [0.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/browser-tailwind@0.1.0-dev.1...@rxap/browser-tailwind@0.1.0-dev.2) (2023-09-28)
 
 ### Bug Fixes

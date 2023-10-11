@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.1.0-dev.7 (2023-10-11)
+
+### Bug Fixes
+
+- mark UserSettingsDataSource as restartable ([0c3fd1d](https://gitlab.com/rxap/packages/commit/0c3fd1d788ba8eba0e79bd6f2cdf7eeb8478475c))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- prevent event topic mix up ([247f8f1](https://gitlab.com/rxap/packages/commit/247f8f156b8f2bdb1939d5fe39bc6bbf8957f7d9))
+- remove token base concept ([883a6a1](https://gitlab.com/rxap/packages/commit/883a6a194052f4390e2a5c623bdfab04004077aa))
+- set sensible default type ([d44bf9e](https://gitlab.com/rxap/packages/commit/d44bf9e12073b938b5d56ca863e4ceab6bb8ed9f))
+- use generate client sdk code ([18a64ba](https://gitlab.com/rxap/packages/commit/18a64baf9e8e2195fe6ab2fbac158a307a9175ca))
+- use linking between open api generator and library ([32c448c](https://gitlab.com/rxap/packages/commit/32c448cf374c8ff76f0f0a62fc077a2933c66e4a))
+
+### Features
+
+- add user profile controller support ([4789c57](https://gitlab.com/rxap/packages/commit/4789c57d861b09ba4dc2b7ee954a277fda7edf28))
+- add user settings theme services ([2cb9379](https://gitlab.com/rxap/packages/commit/2cb93798656203092b7c091b6a255d504e049419))
+- restore theme settings from user settings ([fd32708](https://gitlab.com/rxap/packages/commit/fd3270834279958e6650c099e55a812bde9c1c19))
+- support offline mode for user data sources ([1d7db19](https://gitlab.com/rxap/packages/commit/1d7db1905d10ff8d789d7407e03416ffc627c702))
+- support offline mode for user settings ([8c63ae4](https://gitlab.com/rxap/packages/commit/8c63ae4dcf3030a0c3e63cd1830e10e2b17487bd))
+- support offline mode for user settings ([c5e795e](https://gitlab.com/rxap/packages/commit/c5e795eb3425ae24f785ac8388b30f3f982cbd2f))
+
 # [16.1.0-dev.6](https://gitlab.com/rxap/packages/compare/@rxap/ngx-user@16.1.0-dev.5...@rxap/ngx-user@16.1.0-dev.6) (2023-10-01)
 
 ### Features

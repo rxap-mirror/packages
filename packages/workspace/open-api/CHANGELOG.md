@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.2-dev.9 (2023-10-11)
+
+### Bug Fixes
+
+- generate correct type for additionallyProperties set to true ([8c9641a](https://gitlab.com/rxap/packages/commit/8c9641a7a5343cd93ba95579f161563fc7328bab))
+- generate generic unknown type ([e9068ba](https://gitlab.com/rxap/packages/commit/e9068bab79d42e7f8b279dde6e539d563d21d0ab))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- use correct import path for remote methods ([86ccd54](https://gitlab.com/rxap/packages/commit/86ccd54838fcd8432ecd9d0d93c3ab9dab74d2ca))
+- write operation data with multi line ([f5d5a2c](https://gitlab.com/rxap/packages/commit/f5d5a2c6085181b4885f36156f7c6cd5b8170ea1))
+
 ## [0.0.2-dev.8](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@0.0.2-dev.7...@rxap/workspace-open-api@0.0.2-dev.8) (2023-09-27)
 
 **Note:** Version bump only for package @rxap/workspace-open-api

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/services@16.0.0-dev.4...@rxap/services@16.0.0-dev.21) (2023-10-11)
+
+### Bug Fixes
+
+- add browser-tailwind as imp dep if project has tailwind configuration ([3d90660](https://gitlab.com/rxap/packages/commit/3d906604470f4f26d157f4683afe72b3dd8baae3))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add tailwind bundle build target and configurations ([de3825a](https://gitlab.com/rxap/packages/commit/de3825a0e2977389f81cc4ce63e510767ca25810))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- improve dynamic theme handling ([77c62df](https://gitlab.com/rxap/packages/commit/77c62dfe77a38bdc00da6a176b09f99c38de2147))
+- move theme related code to the project angular-theme ([c0fd3bc](https://gitlab.com/rxap/packages/commit/c0fd3bc6de2b1b43ddafa0743bc9efe3e144ea72))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- remove the old LocalStorageService ([5d1d164](https://gitlab.com/rxap/packages/commit/5d1d164c1e78105e4ea9b182a0aae742430b48f2))
+
+### Features
+
+- auto detected dark and light mode ([ebbe08a](https://gitlab.com/rxap/packages/commit/ebbe08a5e653f04230cd1ce3596b26ea36a1136d))
+- support dynamic font families and theme density ([6a54998](https://gitlab.com/rxap/packages/commit/6a549982461755f4470123ce90f9fb70990ee206))
+- support dynamic theme configuration ([ce4f5c4](https://gitlab.com/rxap/packages/commit/ce4f5c454ce267a79cd004351a2165063da1da1c))
+
 # [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/services@16.0.0-dev.19...@rxap/services@16.0.0-dev.20) (2023-09-30)
 
 **Note:** Version bump only for package @rxap/services

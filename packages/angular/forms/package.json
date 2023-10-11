@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.18",
+  "version": "16.0.0-dev.19",
   "name": "@rxap/forms",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,12 +9,12 @@
     "@angular/core": "^16.1.4",
     "@angular/forms": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/definition": "^16.0.0-dev.16",
-    "@rxap/directives": "^16.0.0-dev.17",
+    "@rxap/definition": "^16.0.0-dev.17",
+    "@rxap/directives": "^16.0.0-dev.18",
     "@rxap/pattern": "^1.1.0-dev.0",
-    "@rxap/reflect-metadata": "^1.0.1-dev.11",
-    "@rxap/rxjs": "^1.0.1-dev.11",
-    "@rxap/services": "^16.0.0-dev.20",
+    "@rxap/reflect-metadata": "^1.0.1-dev.12",
+    "@rxap/rxjs": "^1.0.1-dev.12",
+    "@rxap/services": "^16.0.0-dev.21",
     "@rxap/utilities": "^16.0.0-dev.21",
     "@rxap/validator": "^3.0.0-dev.12",
     "rxjs": "^7.8.0",
@@ -41,11 +41,11 @@
     "packageGroup": [
       {
         "package": "@rxap/definition",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/directives",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/pattern",
@@ -53,15 +53,15 @@
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.1-dev.11"
+        "version": "1.0.1-dev.12"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.11"
+        "version": "1.0.1-dev.12"
       },
       {
         "package": "@rxap/services",
-        "version": "16.0.0-dev.20"
+        "version": "16.0.0-dev.21"
       },
       {
         "package": "@rxap/utilities",

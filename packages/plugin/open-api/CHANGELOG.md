@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.1.0-dev.1 (2023-10-11)
+
+### Bug Fixes
+
+- only clear source files ([7dddd96](https://gitlab.com/rxap/packages/commit/7dddd96dcaa8be256e5bc6c41a93881ca9ac19ee))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- remove support for open-api client sdk packages ([0015878](https://gitlab.com/rxap/packages/commit/0015878e53cba42943d37354ef5c7d5f17828fd7))
+- use prefix for directives if defined in project.json ([acaa916](https://gitlab.com/rxap/packages/commit/acaa91657e477221ed6f36c589fe8546bd17f277))
+
+### Features
+
+- add the copy-client-sdk executor ([6742469](https://gitlab.com/rxap/packages/commit/674246926cb882ba6a94c5081e19bca8b74f3a59))
+
 # [16.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/plugin-open-api@16.0.1-dev.6...@rxap/plugin-open-api@16.1.0-dev.0) (2023-10-01)
 
 ### Features

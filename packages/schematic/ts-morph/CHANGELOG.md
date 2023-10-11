@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.4...@rxap/schematics-ts-morph@16.0.0-dev.27) (2023-10-11)
+
+### Bug Fixes
+
+- add deprecation comment ([6b8b79b](https://gitlab.com/rxap/packages/commit/6b8b79b9f41df63101e96b7eea3854b4b0c05ffe))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add move deprecated hint ([5a8da6a](https://gitlab.com/rxap/packages/commit/5a8da6ae479ac295e4521892b3f2a45966befd53))
+- add project ts-morph ([fda78f5](https://gitlab.com/rxap/packages/commit/fda78f5ed61caac6dc5c4d9a70afd3aced6a05fa))
+- align duplicated implementation ([ba2b218](https://gitlab.com/rxap/packages/commit/ba2b218b143b662bd72ac4bc392e761dd1b1eaa3))
+- allow null or undefined for scope parameter ([949d4d0](https://gitlab.com/rxap/packages/commit/949d4d04a25644a54cbfabc081e83719ace885f2))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- coerce getPageData method ([c8ba90e](https://gitlab.com/rxap/packages/commit/c8ba90ebbb79cb0c01e4fe04e152a4062a93ce9d))
+- controller name composition ([ad2c82d](https://gitlab.com/rxap/packages/commit/ad2c82df5db0036efedd3bdbb5143483a4a3deb4))
+- controller naming and route ([38054d3](https://gitlab.com/rxap/packages/commit/38054d3ee106e1f50f806e1596da674f268cb4aa))
+- ensure new class property is inserted at the top ([3629daa](https://gitlab.com/rxap/packages/commit/3629daaebdb3e0611f80b469c0f7ac1b71a3889c))
+- ensure the filter method property has not an question token ([12eedf1](https://gitlab.com/rxap/packages/commit/12eedf10060d05edcc74b0570505bc1f1241a0b1))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- import dtos from nest-dto ([91e753f](https://gitlab.com/rxap/packages/commit/91e753f5d2ded60ef30ff3c2d03efd644ff58416))
+- only add validators import if used ([bf3661d](https://gitlab.com/rxap/packages/commit/bf3661d58a08d1515fb7d99999fb2004c8b93bdb))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- remove user-interface- prefix from service name generation ([0010046](https://gitlab.com/rxap/packages/commit/0010046d4be5f090a3228b1cbd0912944c677cf1))
+- use correct decorators ([6d2c9b7](https://gitlab.com/rxap/packages/commit/6d2c9b7fa9f49155e565a8b158e6ae48d124d5b0))
+
+### Features
+
+- add AddComponentImport function ([622ef11](https://gitlab.com/rxap/packages/commit/622ef11f197d4898c96695ba3787cf6f2a128df7))
+- add CoerceTableHeaderButtonMethod function ([de8f2eb](https://gitlab.com/rxap/packages/commit/de8f2ebcf14226cffc78ee28a74b3a594a2702b9))
+- merge external changes ([ce139e8](https://gitlab.com/rxap/packages/commit/ce139e82c7fb1c6a13690104cea06baaf33a70dd))
+- support open api backend ([71dac49](https://gitlab.com/rxap/packages/commit/71dac49b866ebc9fbf4fbee683a29255efee7abb))
+- support overwrite array ([2696160](https://gitlab.com/rxap/packages/commit/2696160aef2cf384edca3235aa0aaadc3afb97cc))
+- support replace option ([1bb05ff](https://gitlab.com/rxap/packages/commit/1bb05ffb5caf8904bb7833639844b0ae7795a80f))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [16.0.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.25...@rxap/schematics-ts-morph@16.0.0-dev.26) (2023-10-09)
 
 ### Bug Fixes

@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@1.0.1-dev.1...@rxap/nest-server@10.1.0-dev.17) (2023-10-11)
+
+### Bug Fixes
+
+- add /openapi path global prefix exclude pattern ([278e40e](https://gitlab.com/rxap/packages/commit/278e40e4a5b0399fd661e92123b0463abfc89ef1))
+- add application options ([e3680f7](https://gitlab.com/rxap/packages/commit/e3680f737eddae6ef8e5e3cc34997d50d317c489))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- improve startup logging ([4193ded](https://gitlab.com/rxap/packages/commit/4193dedc16d819b9930d253be2e139df2623dc0d))
+- include the /info path to default global api prefix ignore rules ([1ed9ab0](https://gitlab.com/rxap/packages/commit/1ed9ab0b0233fe959c9ebc09cd3fea02165a2f74))
+- only check for ENVIRONMENT_NAME env inconsistency if the variable is set ([0f42b44](https://gitlab.com/rxap/packages/commit/0f42b44d903f4ceda13fa6254e536e49bfb5a361))
+- parse public port ([b5f5477](https://gitlab.com/rxap/packages/commit/b5f5477a98ef43402e93518d01d57f71afb46e57))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- provide environment ([293f435](https://gitlab.com/rxap/packages/commit/293f435307d751c9fee2929dabe39b1328a37cdf))
+- retry service register if failed ([d61af7b](https://gitlab.com/rxap/packages/commit/d61af7b94e0bc045bc4d85574c6aeb5909c73fe3))
+- set custom env name before application creation ([c710ebb](https://gitlab.com/rxap/packages/commit/c710ebbb7de12ca8053acb502807ae7012fe5980))
+- support ROOT_DOMAIN_PORT env ([b91c5d1](https://gitlab.com/rxap/packages/commit/b91c5d1c84fb12502c4da90adf5bf6ad0a06c30d))
+- use factory function ([1fdae7f](https://gitlab.com/rxap/packages/commit/1fdae7f3af3d5defc4b810fa2411ed7c5c7e5c97))
+- use the hostname as ROOT_DOMAIN if not defined ([91d7641](https://gitlab.com/rxap/packages/commit/91d7641343b2221935b8e71bb6e3e4e013fecab8))
+- use the local ip address ([4de467d](https://gitlab.com/rxap/packages/commit/4de467d74857c2f3df01d57c27d7b972f577d0ab))
+
+### Features
+
+- add RegisterToStatusService utility function ([4565731](https://gitlab.com/rxap/packages/commit/4565731b5dc9d9161815035fab66314d3f5f5413))
+- add SetupCookieParser function ([6cf5a63](https://gitlab.com/rxap/packages/commit/6cf5a633661ba6fc0511e5966509636365879961))
+- add SetupCors function ([d9c660b](https://gitlab.com/rxap/packages/commit/d9c660b5c8249f750c465d8f2cddf6f746789b04))
+- add SetupHelmet function ([8bcd86d](https://gitlab.com/rxap/packages/commit/8bcd86d6617cff71eefb169ca54b61274ca797bc))
+- add SetupSwagger function ([9bda155](https://gitlab.com/rxap/packages/commit/9bda155a21e632fce4933f5223f78668ca7cbbab))
+- add support for hybrid server bootstrap ([c7ce6c5](https://gitlab.com/rxap/packages/commit/c7ce6c511a8a80d87a9e713959377e73212b2d59))
+- add support for on ready hooks ([49e5dda](https://gitlab.com/rxap/packages/commit/49e5dda6a1698d7c727ce38a00d1a05e74d046be))
+- add ValidationPipeSetup function ([8139f93](https://gitlab.com/rxap/packages/commit/8139f939e182dca2109f46e7bb018f362258bb8f))
+- exclude health path from global api prefix ([023456b](https://gitlab.com/rxap/packages/commit/023456b9dae37372f2b1f0a8e6efadf285973010))
+- extend public url parsing ([035bdae](https://gitlab.com/rxap/packages/commit/035bdaeae2749a1f107f3a46f483a4283633d838))
+- support setting custom environment names ([d82f2a7](https://gitlab.com/rxap/packages/commit/d82f2a7f76fb5783c3b6878ddfd3d0a51c1c9e97))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [10.1.0-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/nest-server@10.1.0-dev.15...@rxap/nest-server@10.1.0-dev.16) (2023-10-02)
 
 ### Bug Fixes

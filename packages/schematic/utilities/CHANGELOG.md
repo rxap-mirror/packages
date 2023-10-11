@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.0-dev.5...@rxap/schematics-utilities@16.0.0-dev.20) (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- ensure the project root is always defined ([b8615c0](https://gitlab.com/rxap/packages/commit/b8615c05b0303b00677c91e34707cb16c4671eb3))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- mark deepMerge as deprecated ([46a494e](https://gitlab.com/rxap/packages/commit/46a494ee55f9bd4077bc3da6bc9be1752b60588b))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+
+### Features
+
+- add DeleteDirectory function ([e458b1b](https://gitlab.com/rxap/packages/commit/e458b1be8dabb372d4d957575b313fb283c13faf))
+- support overwrite array ([2696160](https://gitlab.com/rxap/packages/commit/2696160aef2cf384edca3235aa0aaadc3afb97cc))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/schematics-utilities@16.0.0-dev.18...@rxap/schematics-utilities@16.0.0-dev.19) (2023-10-09)
 
 ### Features

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.1.0-dev.3 (2023-10-11)
+
+### Bug Fixes
+
+- move restore logic in separate function ([f08facb](https://gitlab.com/rxap/packages/commit/f08facbe8e4e3bcf6741e5e1968d3a7ee35d7e85))
+- move theme related code to the project angular-theme ([c0fd3bc](https://gitlab.com/rxap/packages/commit/c0fd3bc6de2b1b43ddafa0743bc9efe3e144ea72))
+- only use media query to get prefers-color-scheme if dark mode is not defined in local storage ([99968a1](https://gitlab.com/rxap/packages/commit/99968a12b7fd46ef81a6d4e53f2f138ff357f249))
+- use new angular-theme project ([67e9290](https://gitlab.com/rxap/packages/commit/67e9290c693b0f1c5ac087453897c0ee3d43521e))
+
+### Features
+
+- emit theme changes to pub-sub ([1b9e55b](https://gitlab.com/rxap/packages/commit/1b9e55ba0a4a2cc0c39483cbb195c4a13df796e3))
+- restore theme settings from local storage ([89383c2](https://gitlab.com/rxap/packages/commit/89383c24a4dde3e7b0a43795995fd4badba97801))
+- restore theme settings from user settings ([fd32708](https://gitlab.com/rxap/packages/commit/fd3270834279958e6650c099e55a812bde9c1c19))
+
 # [16.1.0-dev.2](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@16.1.0-dev.1...@rxap/ngx-theme@16.1.0-dev.2) (2023-10-01)
 
 ### Bug Fixes

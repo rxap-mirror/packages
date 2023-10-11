@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.1.0-dev.6 (2023-10-11)
+
+### Bug Fixes
+
+- add missing padding ([23553a3](https://gitlab.com/rxap/packages/commit/23553a39fbb3dd7e9f810c96fe8e242c75bdb09f))
+- ensure the error object is defined ([4b32def](https://gitlab.com/rxap/packages/commit/4b32defd3697a1f3c4ed421c3ff875f1c871cd5e))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- remove debug log ([3d23ce3](https://gitlab.com/rxap/packages/commit/3d23ce3b3e18067a1ed0e5c5182164c06754bda4))
+- support small displaces ([1c62ebe](https://gitlab.com/rxap/packages/commit/1c62ebe496aa526ab2b923764475b370715a26d7))
+- update token description ([284ccd6](https://gitlab.com/rxap/packages/commit/284ccd658576cdb4d8dbf2f2a7c10717de5c1e16))
+- use correct unit ([838d4cc](https://gitlab.com/rxap/packages/commit/838d4cc8c1e1399f4bd1945ad7e0f935fdbe1c3c))
+
+### Features
+
+- add angular error dialog ([7fb2307](https://gitlab.com/rxap/packages/commit/7fb230723cfe69fb5bf0d0be7a223c895ca0bbf2))
+
 # [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/ngx-error@16.1.0-dev.4...@rxap/ngx-error@16.1.0-dev.5) (2023-09-30)
 
 ### Bug Fixes

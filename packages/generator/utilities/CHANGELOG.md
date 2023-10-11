@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.0.1-dev.1...@rxap/generator-utilities@1.1.0-dev.18) (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- ensure the cypress build target project is an angular application project ([fb42a6f](https://gitlab.com/rxap/packages/commit/fb42a6f8f47ac3e5851217cf20d5386e71d80255))
+- ensure the new line is added at the end of file ([979fd58](https://gitlab.com/rxap/packages/commit/979fd58bc1aad2d7f7d56cc19011ad34c4ea57ae))
+- ensure the output path is a relative path ([ee66f84](https://gitlab.com/rxap/packages/commit/ee66f84c0b37635b089f2f2f30ebeabb6439f146))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- introduce Is\*Project functions ([3c9f251](https://gitlab.com/rxap/packages/commit/3c9f251f1d7be46ca366171e79e86ef2764fa3b0))
+- introduce more Is\*Project functions ([41a3713](https://gitlab.com/rxap/packages/commit/41a3713e2965f46900e80902a455b62e08686989))
+- only add new line if not already exists ([8d72142](https://gitlab.com/rxap/packages/commit/8d72142bf9aac79145ef2344293279cf18771897))
+- only add to implicitDependencies if not same project ([776b37b](https://gitlab.com/rxap/packages/commit/776b37bfe1c4ed9476284137e751573494c5b076))
+- only use custom cypress config in rxap repository ([e2928ee](https://gitlab.com/rxap/packages/commit/e2928ee4d0dfa0024e1b0f9fcc834fc95b19bd3f))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- projects without build outputPath are not applications ([2d8795a](https://gitlab.com/rxap/packages/commit/2d8795acc93f2a11ec53d8d221d6a6d41f9245e7))
+- projects without build target are not applications ([23f3f0a](https://gitlab.com/rxap/packages/commit/23f3f0ab9eb697f24843957bf6fe0bad80cde0c3))
+- replace with dynamic project name ([0635b88](https://gitlab.com/rxap/packages/commit/0635b881659cda7c603da4d6056e4d26a20fb277))
+- support buffer as default content ([14c3f34](https://gitlab.com/rxap/packages/commit/14c3f340054edd416f522f9512b27608a292b9fe))
+
+### Features
+
+- add project to package name mapping utilities ([a0760db](https://gitlab.com/rxap/packages/commit/a0760db47705928ca94803bb6868b9310a6a5b5f))
+- add SkipNonBuildableProject and SkipNonPublishableProject function ([b43d98b](https://gitlab.com/rxap/packages/commit/b43d98b8062605ed79255afcf2d0f7000e6ae253))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [1.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/generator-utilities@1.1.0-dev.16...@rxap/generator-utilities@1.1.0-dev.17) (2023-10-02)
 
 ### Bug Fixes

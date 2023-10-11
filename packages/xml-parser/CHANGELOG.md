@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.4...@rxap/xml-parser@16.0.0-dev.25) (2023-10-11)
+
+### Bug Fixes
+
+- add element parser to parsers list if the root element is sed ([38ca4d9](https://gitlab.com/rxap/packages/commit/38ca4d9a98201203514340552b9078ab5ab46b78))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to esnext ([890f548](https://gitlab.com/rxap/packages/commit/890f548ef4a9ee391c753ebe700c47280ef72d88))
+- compile package in commonjs format ([48a60d4](https://gitlab.com/rxap/packages/commit/48a60d4726a479f01b74746df570154237c90abb))
+- ensure esm file output ([784f126](https://gitlab.com/rxap/packages/commit/784f126d1bdef6d26e26301ff10173193bd8f9d9))
+- ensure the node name normalization is also applied on the root element node name ([9b5ea74](https://gitlab.com/rxap/packages/commit/9b5ea74016c7e32f67fdd0335498549337260228))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- expose esm files ([1fe482c](https://gitlab.com/rxap/packages/commit/1fe482c37614439bcf746ff01989a86867d468b9))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- get the children text content from the element it self ([4fcb572](https://gitlab.com/rxap/packages/commit/4fcb572fdca26a186dc7796077d6a41ee224e16f))
+- only check node of type 1 as root element ([e84e934](https://gitlab.com/rxap/packages/commit/e84e9347a6abc59b74c72fc8c65883da99e77b7e))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- support case sensitive and nodes with namespace ([d2e8e9e](https://gitlab.com/rxap/packages/commit/d2e8e9e30f9def220f77f02e08b019e2af59ff45))
+- support case sensitive and nodes with namespace ([d8065f4](https://gitlab.com/rxap/packages/commit/d8065f43d6f838c2f52d194c741c650ce586b2f1))
+
+### Features
+
+- support child path parsing to ignore sub elements ([f87b19d](https://gitlab.com/rxap/packages/commit/f87b19d415ef50cf1b838d7c4d9536e6afd60ab4))
+- support scoped elements ([8b073cb](https://gitlab.com/rxap/packages/commit/8b073cbb1edb14ca9378b1a635ab8ca045247cf6))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.23...@rxap/xml-parser@16.0.0-dev.24) (2023-10-09)
 
 ### Bug Fixes

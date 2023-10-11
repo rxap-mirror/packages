@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@1.1.0-dev.0...@rxap/plugin-utilities@16.1.0-dev.19) (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- ensure deterministic package json file ([ff6a814](https://gitlab.com/rxap/packages/commit/ff6a814637954ff34f8de1b81b07dd3bf382be83))
+- ensure new line ([68718c6](https://gitlab.com/rxap/packages/commit/68718c6aeefe25313434cdd9f3decebcc0674e00))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- expose generators as schematics ([8a58d07](https://gitlab.com/rxap/packages/commit/8a58d07c2f1dcfff75e724a418d7c3bddb2d0bbc))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- if project source root is not defined use the project joined with src ([dd09c0e](https://gitlab.com/rxap/packages/commit/dd09c0ec6d0f5bd5b9fc030108cdaf990b6ab5f2))
+- introduce Is\*Project functions ([3c9f251](https://gitlab.com/rxap/packages/commit/3c9f251f1d7be46ca366171e79e86ef2764fa3b0))
+- only include project with package.json file ([8dcf3a2](https://gitlab.com/rxap/packages/commit/8dcf3a2a576c782d64552e7d692bca2330f90894))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- remove nx dependency ([b2b98b0](https://gitlab.com/rxap/packages/commit/b2b98b01438e9439f9743fb27629c7e96072df45))
+- split GuessOutputPath function ([470b93a](https://gitlab.com/rxap/packages/commit/470b93a97a44b11435ff045c79896d712c9721a9))
+- support output path guess from project root ([77e184f](https://gitlab.com/rxap/packages/commit/77e184fe8779c6efbc3e06cb3e71a8cf7c4f3e5f))
+- throw error if project does not exists in project graph ([c33145e](https://gitlab.com/rxap/packages/commit/c33145e114f6ac3c64da1dd7baa7e7c517437a9c))
+- use absolute path to access files ([063676e](https://gitlab.com/rxap/packages/commit/063676e3a1f6061c9f3284f79e6ca8091242c0c7))
+
+### Features
+
+- add CleanupPackageJson function ([08ad46c](https://gitlab.com/rxap/packages/commit/08ad46c1fe249aa3ab2ad349e856a5331d5b5d3f))
+- add GetAllPackageDependenciesForProject function ([4059619](https://gitlab.com/rxap/packages/commit/405961962d45c0643037524956134bf7abd6bda5))
+- add project to package name mapping utilities ([09aa733](https://gitlab.com/rxap/packages/commit/09aa7335b0caf599b61a41cfa8cb899a41f3d34a))
+- add ProjectSourceRoot files utility functions ([66b9649](https://gitlab.com/rxap/packages/commit/66b9649fdbd90dcc59a4f8bd206a54c810246290))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.17...@rxap/plugin-utilities@16.1.0-dev.18) (2023-10-02)
 
 ### Bug Fixes

@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.7...@rxap/plugin-library@16.0.0-dev.36) (2023-10-11)
+
+### Bug Fixes
+
+- add expose-as-schematic to plugin projects with generators ([32b28ae](https://gitlab.com/rxap/packages/commit/32b28ae005e3e73d96f0ae77b457b35f1a5721f9))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add missing regex flags ([54fad73](https://gitlab.com/rxap/packages/commit/54fad735b55107c04ba45ae9511bf52c4a309cec))
+- add skip-projects flag ([e1f31ed](https://gitlab.com/rxap/packages/commit/e1f31ed837646f605ced82a52749e62af07ba939))
+- add the index-export target to all non plugin/schematic/generator project targets ([6d1c533](https://gitlab.com/rxap/packages/commit/6d1c533aee590907e23160d4d54ad04c4c13e4b2))
+- array parameters escape ([72925cd](https://gitlab.com/rxap/packages/commit/72925cd4b08344385cab3210221b7b3af43e187d))
+- call the schematic utility script if rxap repository ([da3dc46](https://gitlab.com/rxap/packages/commit/da3dc46f3193babb04a90e8c4a5a538f2e9ea6e3))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- check if homepage is set prevent ref by null ([1b2898e](https://gitlab.com/rxap/packages/commit/1b2898e54b403c9a250129f18e9084bc3f5e6b62))
+- check if the LICENSE file exists before access the file ([f14b7e3](https://gitlab.com/rxap/packages/commit/f14b7e3d55e153b5cc2b960a0ee3f5585a96ae9f))
+- **check-version:** exclude pre release suffix in comparison ([083f96f](https://gitlab.com/rxap/packages/commit/083f96fe71601da7fcededf378fbaf0fd667e1cc))
+- cleanup target version ([6627983](https://gitlab.com/rxap/packages/commit/6627983dbe314fd49484b925515bbb09aa1fd606))
+- coerce the index-export default target options ([fc9d188](https://gitlab.com/rxap/packages/commit/fc9d188dd16a910ce2d503b6501bbe3ec186cbf5))
+- create publish directory with relative output path ([08884cd](https://gitlab.com/rxap/packages/commit/08884cd41483fc466db7e6f934a233f0ea0c654d))
+- enforce that the production configuration is the default configuration ([00ac30e](https://gitlab.com/rxap/packages/commit/00ac30e65dbe1008bff6d4f149631405fc81c200))
+- ensure all required cacheable operations are defined ([d9ded9c](https://gitlab.com/rxap/packages/commit/d9ded9c5e150d9781ce490ad7ac292194d09bf2a))
+- ensure fix-dependencies for dependencies is run first ([6560021](https://gitlab.com/rxap/packages/commit/6560021bc93d8657e97b363fbee20a0ca64df7b3))
+- ensure index-export is run before build target ([5ea6ba8](https://gitlab.com/rxap/packages/commit/5ea6ba85add4ce96af04b3f5da1e8e6e25cdbbb6))
+- ensure new line ([5faca82](https://gitlab.com/rxap/packages/commit/5faca824bd3eb43e61ed06ff004bb6b2f15669e0))
+- ensure overwrite option is passed to sub schematics ([0c8a19b](https://gitlab.com/rxap/packages/commit/0c8a19b5166f804aa335f739a00a5415bd97f61a))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- exclude .cy.ts files ([b6a0989](https://gitlab.com/rxap/packages/commit/b6a09891e5178c306824bb9671125604625b29f9))
+- expose generators as schematics ([8a58d07](https://gitlab.com/rxap/packages/commit/8a58d07c2f1dcfff75e724a418d7c3bddb2d0bbc))
+- generate index file for non angular projects ([00ee701](https://gitlab.com/rxap/packages/commit/00ee701811805a38ea6a71284a94b39b02e8a3a4))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- handle readme generator execution errors ([7c2762d](https://gitlab.com/rxap/packages/commit/7c2762da753edd28210e3e35bef5048964f5beea))
+- ignore express and axios packages ([f159354](https://gitlab.com/rxap/packages/commit/f159354d89a2f28d6adefdeab59e2e592c612204))
+- ignore projects that have no package.json ([427f3f3](https://gitlab.com/rxap/packages/commit/427f3f3f6933dab1ca211702149f2746f0ac6fe3))
+- **init:** use init plugin generator for plugin projects ([e9417c2](https://gitlab.com/rxap/packages/commit/e9417c2b500a08e65f34860d42379c64a16545b9))
+- introduce Is\*Project functions ([3c9f251](https://gitlab.com/rxap/packages/commit/3c9f251f1d7be46ca366171e79e86ef2764fa3b0))
+- only include file if has export statement ([bf33058](https://gitlab.com/rxap/packages/commit/bf33058e3bcf9ff9479cd3db333d8703157b3bf9))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- remove nx dependency ([b2b98b0](https://gitlab.com/rxap/packages/commit/b2b98b01438e9439f9743fb27629c7e96072df45))
+- support schema with $ref and allOf properties ([486ed06](https://gitlab.com/rxap/packages/commit/486ed06fb3f9aa33b68a74e024e449e628afd585))
+- update default root project name ([71908f4](https://gitlab.com/rxap/packages/commit/71908f43258a3cb1aa0c7cbf1fbf17c5a544a57b))
+- use absolute path to access files ([063676e](https://gitlab.com/rxap/packages/commit/063676e3a1f6061c9f3284f79e6ca8091242c0c7))
+- use UpdatePackageJson utility function ([1b00ccf](https://gitlab.com/rxap/packages/commit/1b00ccf4608cf5b56b8075497e7a89bdb98fcb59))
+- use utility function to set targets and target defaults ([00b5e6a](https://gitlab.com/rxap/packages/commit/00b5e6acd086c72ea99272ed6bb3fd094d7bb654))
+
+### Features
+
+- add init-buildable and init-publishable generator ([90c6f9a](https://gitlab.com/rxap/packages/commit/90c6f9a4d238539ded4e3ed4007793ef835127ab))
+- add project to package name mapping utilities ([a0760db](https://gitlab.com/rxap/packages/commit/a0760db47705928ca94803bb6868b9310a6a5b5f))
+- **executor:** add check version ([22de28a](https://gitlab.com/rxap/packages/commit/22de28a9802b2d21469723cfdf18ae4e04df718e))
+- **generator:** add init-plugin ([c381500](https://gitlab.com/rxap/packages/commit/c38150066b5a63ba70371913d7f729637c19ce80))
+- **init:** execute nest init generator if project is for nestjs ([809d428](https://gitlab.com/rxap/packages/commit/809d4280f83bb3127eca044b0e064e5c66ea221b))
+- support angular library entrypoints ([f74241d](https://gitlab.com/rxap/packages/commit/f74241de483eaed44241a8e4e2a6268036317851))
+- support string interpolation ([3ebbdd9](https://gitlab.com/rxap/packages/commit/3ebbdd98ec87eee7e7fe6af68fd287ad083619cb))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [16.0.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.34...@rxap/plugin-library@16.0.0-dev.35) (2023-10-09)
 
 ### Bug Fixes

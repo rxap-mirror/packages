@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.7...@rxap/open-api@16.0.0-dev.25) (2023-10-11)
+
+### Bug Fixes
+
+- add browser-tailwind as imp dep if project has tailwind configuration ([3d90660](https://gitlab.com/rxap/packages/commit/3d906604470f4f26d157f4683afe72b3dd8baae3))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add proper debug output ([3c7979d](https://gitlab.com/rxap/packages/commit/3c7979d2ec9fe603c50dd0fe562e605f56da556f))
+- add tailwind bundle build target and configurations ([de3825a](https://gitlab.com/rxap/packages/commit/de3825a0e2977389f81cc4ce63e510767ca25810))
+- disable schema validation by default ([25a32a7](https://gitlab.com/rxap/packages/commit/25a32a7c20e7203412c0e5c720278884a5dd2a25))
+- ensure the OpenApiHttpResponseError is instance of HttpErrorResponse ([5f869ea](https://gitlab.com/rxap/packages/commit/5f869eae5ebfed76d81ec49956b364d0cbc22b53))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- simplify init options ([85971db](https://gitlab.com/rxap/packages/commit/85971db5db2cc0b7fedf4fabce973685cf873de0))
+- skip response validation if disabled ([4067ebf](https://gitlab.com/rxap/packages/commit/4067ebf2df3c13ede2850d940b1f81ad82fd21ea))
+- support legacy open api configuration loading ([25062cd](https://gitlab.com/rxap/packages/commit/25062cdcf4a2fdeb16021fdcf58a7a4362c35421))
+
+### Features
+
+- use the ajv package instead of ajv-oai ([990a1ac](https://gitlab.com/rxap/packages/commit/990a1ac0f3b29a8a6507da7c1593fa10e6e38c59))
+
 # [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.23...@rxap/open-api@16.0.0-dev.24) (2023-10-02)
 
 ### Bug Fixes

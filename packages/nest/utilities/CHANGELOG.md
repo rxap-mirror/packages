@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@1.0.1-dev.1...@rxap/nest-utilities@10.1.0-dev.13) (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- allow undefined SENTRY_DSN environment variable ([a965494](https://gitlab.com/rxap/packages/commit/a9654948dc69a36fc6ffac54c52eac8f40c6f81c))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- ignore AppController for request/response interceptor ([0380442](https://gitlab.com/rxap/packages/commit/0380442737abb17a29a980db330e7010bc7515ab))
+- move forRoot logic into detected loader classes ([45812d6](https://gitlab.com/rxap/packages/commit/45812d66901f37130ec4018b0bc9369829800155))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+
+### Features
+
+- add EnvironmentModule ([4b477ee](https://gitlab.com/rxap/packages/commit/4b477eeb47ee8cfbe576ce75f39ed34e49fde496))
+- add HealthCheckStatusSchema ([a8d80e0](https://gitlab.com/rxap/packages/commit/a8d80e0b1318666250a6f95b5d2df3fe7aeece34))
+- add the mandatory app property to the environment object ([cfcb308](https://gitlab.com/rxap/packages/commit/cfcb3082c1f49295fe582bfdc057e17e2fff4804))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [10.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.0-dev.11...@rxap/nest-utilities@10.1.0-dev.12) (2023-10-02)
 
 ### Bug Fixes

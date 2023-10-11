@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.39](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.5...@rxap/layout@16.0.0-dev.39) (2023-10-11)
+
+### Bug Fixes
+
+- add browser-tailwind as imp dep if project has tailwind configuration ([3d90660](https://gitlab.com/rxap/packages/commit/3d906604470f4f26d157f4683afe72b3dd8baae3))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- apply restored theme config in the correct order ([59f9b7e](https://gitlab.com/rxap/packages/commit/59f9b7e7b83e948e236f1afbc8ac9dbfff670d1b))
+- change overscroll-contain to overscroll-auto ([8834055](https://gitlab.com/rxap/packages/commit/88340559e9dcaa45f8d88c4468e77965ba92e2d3))
+- close sidenav if change to collapsed mode ([d42cf01](https://gitlab.com/rxap/packages/commit/d42cf017c7b5af95fd1f627667f15bb7413b8c94))
+- darkMode property was changed to a single ([ed6002e](https://gitlab.com/rxap/packages/commit/ed6002e2566d84d5d33226306e77e28a2aabc712))
+- disable i18n check in development mode ([3394767](https://gitlab.com/rxap/packages/commit/3394767dd304a9046a9c70004e73dac74a38643d))
+- ensure min padding for navigation items ([2a50b09](https://gitlab.com/rxap/packages/commit/2a50b096226e79a6956c71112205a1bc8dacbd72))
+- ensure sidenav container is always fulling the screen ([706dad3](https://gitlab.com/rxap/packages/commit/706dad36ccb7e4b1ca8b1cbc2167d5354f318675))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- ensure the username is always fully visible ([6c8560a](https://gitlab.com/rxap/packages/commit/6c8560a06bcdc80bd02d98b738bfa63965bd3ee2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- improve dynamic theme handling ([77c62df](https://gitlab.com/rxap/packages/commit/77c62dfe77a38bdc00da6a176b09f99c38de2147))
+- initial state issues ([80f4aae](https://gitlab.com/rxap/packages/commit/80f4aae6fbbc7c2479c506b37f267507e4f6d38b))
+- move status infiltrator to layout component ([7ee22ee](https://gitlab.com/rxap/packages/commit/7ee22eebcf0b544df6e718205bd3fc353032cac9))
+- move theme related code to the project angular-theme ([c0fd3bc](https://gitlab.com/rxap/packages/commit/c0fd3bc6de2b1b43ddafa0743bc9efe3e144ea72))
+- only add margin to sidenav content if in collapsed mode ([96e00c4](https://gitlab.com/rxap/packages/commit/96e00c459627077438f27299b29cc68419ac2b6a))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- refactor user service use ([3b30276](https://gitlab.com/rxap/packages/commit/3b30276a4847c009bab9e3322dde1efb54e80125))
+- remove @Required decorator ([bcd9988](https://gitlab.com/rxap/packages/commit/bcd9988f0667bf4563a0e5b91977becfd29b1597))
+- remove css class usage of container ([472cc12](https://gitlab.com/rxap/packages/commit/472cc12f824acc10bca596e4a34e8bc13e809eaa))
+- set default layout header color to undefined ([569488a](https://gitlab.com/rxap/packages/commit/569488a897a8df9f18e12eabe7a7da2ef1f1dc16))
+- start user settings theme sync ([6049e53](https://gitlab.com/rxap/packages/commit/6049e53bf4cfe54515430b48200e80f5ca993dae))
+- support advanced settings for layout sidenav ([0a4a33d](https://gitlab.com/rxap/packages/commit/0a4a33de6af3c853fb86f1311b2da7c32d41e63f))
+- use authorization service directly ([71024c3](https://gitlab.com/rxap/packages/commit/71024c3c64edc19ddd3b08c4b29dc28ed7ca598b))
+- use mdi icons ([55afb8b](https://gitlab.com/rxap/packages/commit/55afb8b4fbfecc588190d86bb61bb0635550d5fa))
+- use new angular-theme project ([67e9290](https://gitlab.com/rxap/packages/commit/67e9290c693b0f1c5ac087453897c0ee3d43521e))
+- use relative path as default ([66d39a4](https://gitlab.com/rxap/packages/commit/66d39a40be24c5d1db805ca493b9b4d1d523059e))
+- use tailwind to create a bundled theme.css ([da870f0](https://gitlab.com/rxap/packages/commit/da870f0ece624653a9ae1bc34b455e2f8f8ffc60))
+
+### Features
+
+- add changelog button ([582830b](https://gitlab.com/rxap/packages/commit/582830bbf6192414b0f65cb5e20c3c77987de05f))
+- add language utility services ([4c248be](https://gitlab.com/rxap/packages/commit/4c248be9cf00e8e96c859ffa86bff2bd19d4c9f6))
+- load icons on layout component creation ([29a5462](https://gitlab.com/rxap/packages/commit/29a5462000a690826b031d05575bbf1868474ef8))
+- restore theme settings from user settings ([fd32708](https://gitlab.com/rxap/packages/commit/fd3270834279958e6650c099e55a812bde9c1c19))
+- support custom menu items for the layout header component ([2e2c351](https://gitlab.com/rxap/packages/commit/2e2c3518d7bd2a5cc11608cdbacacb0ccb27383f))
+- support dynamic font families and theme density ([6a54998](https://gitlab.com/rxap/packages/commit/6a549982461755f4470123ce90f9fb70990ee206))
+- support dynamic theme configuration ([ce4f5c4](https://gitlab.com/rxap/packages/commit/ce4f5c454ce267a79cd004351a2165063da1da1c))
+- use status indicator component ([cfdce4e](https://gitlab.com/rxap/packages/commit/cfdce4e9730f44963280153ede64b8219fdd3600))
+
 # [16.0.0-dev.38](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.37...@rxap/layout@16.0.0-dev.38) (2023-10-01)
 
 ### Bug Fixes

@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 16.1.0-dev.15 (2023-10-11)
+
+### Bug Fixes
+
+- add debounceTime to prevent state flickering ([155955e](https://gitlab.com/rxap/packages/commit/155955e269dba3561e129cd80f23ac403ad0034e))
+- add proper debug output ([3c7979d](https://gitlab.com/rxap/packages/commit/3c7979d2ec9fe603c50dd0fe562e605f56da556f))
+- add support for more response status codes ([935b53a](https://gitlab.com/rxap/packages/commit/935b53aa66d94de1a6a6d42583ba7a7bc0ebe7b1))
+- fallback to static text if localize is not available ([9df3e6a](https://gitlab.com/rxap/packages/commit/9df3e6a98918de5419a57d79e769e8c0076b0211))
+- only included marked services ([53deb2e](https://gitlab.com/rxap/packages/commit/53deb2e356ab56727c5de1f3e3fc8a6a44700c25))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- remove CommonModule import ([f4b8465](https://gitlab.com/rxap/packages/commit/f4b84659c7ad875951a5c2d09d35da62de69669c))
+- remove localize direct import ([6694d30](https://gitlab.com/rxap/packages/commit/6694d301a26e73f236d9c5b86e19f6a05ca84484))
+- remove status text ([921b92d](https://gitlab.com/rxap/packages/commit/921b92dc8608ce662c71e41a779f02403285f9a7))
+- remove unnecessary null check ([3feea9f](https://gitlab.com/rxap/packages/commit/3feea9fdadc57982323e31311c1e63420a0fdd94))
+- return empty status on empty service name list ([a09be5d](https://gitlab.com/rxap/packages/commit/a09be5d868e3cdcf209055c97d6e02a039298cc9))
+- simplify and add tooltips ([ebe869b](https://gitlab.com/rxap/packages/commit/ebe869b941b7506353670da148d40ad1ce389c87))
+- support a OpenApiRemoteMethod like Method ([a1f32cc](https://gitlab.com/rxap/packages/commit/a1f32cc3f047c525d0b2238cf30b239db8f11ea0))
+- support dark mode ([adc4d87](https://gitlab.com/rxap/packages/commit/adc4d87f97bed0bee722717c93a3be3a57c5c467))
+- support request failure ([67a3ac5](https://gitlab.com/rxap/packages/commit/67a3ac5a04580c73f675f6e3c9d3001bf63eb555))
+- use generate client sdk code ([18a64ba](https://gitlab.com/rxap/packages/commit/18a64baf9e8e2195fe6ab2fbac158a307a9175ca))
+- use local open api method ([1e3e244](https://gitlab.com/rxap/packages/commit/1e3e244d1954518c981bc6a8b0410b393a74ab48))
+- use the urlAfterRedirects property ([d760d04](https://gitlab.com/rxap/packages/commit/d760d04f792c59da1ad9712acbe5394a325b0528))
+
+### Features
+
+- add status indicator component ([ff7508f](https://gitlab.com/rxap/packages/commit/ff7508f476e9b63ef2c2dffb0b06b28d47ec5ba5))
+- add support for custom status check intervals ([e5f80b0](https://gitlab.com/rxap/packages/commit/e5f80b0c09e1bc6bded338be45fe571e9afaf151))
+
 # [16.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/ngx-status-check@16.1.0-dev.13...@rxap/ngx-status-check@16.1.0-dev.14) (2023-10-01)
 
 ### Bug Fixes

@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@16.0.0-dev.5...@rxap/schematics-open-api@16.0.0-dev.22) (2023-10-11)
+
+### Bug Fixes
+
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- change from commonjs to es2022 ([cf675a7](https://gitlab.com/rxap/packages/commit/cf675a7254de9ce4b269264df59794dd42fcbd8b))
+- change inline option to default ([6596722](https://gitlab.com/rxap/packages/commit/65967226b5760744b8a6ecf7920120ad914cc197))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- set inline option to true if not defined ([cb3a248](https://gitlab.com/rxap/packages/commit/cb3a2486126e3b29b9d96388dcee5d2f8371d638))
+- support es2022 ([dbdef2d](https://gitlab.com/rxap/packages/commit/dbdef2dbfe47daec2c61094d82d589692a622268))
+- use correct import paths ([76759ac](https://gitlab.com/rxap/packages/commit/76759acea65794aeeb0a56ffd9dbca9679549172))
+
+### Features
+
+- add data source generator ([31a877d](https://gitlab.com/rxap/packages/commit/31a877defd350c5ded899fd35f2cfb3c85ef6a87))
+- change to sync execution and support nest command generators ([85a69bc](https://gitlab.com/rxap/packages/commit/85a69bc4d98c1da9f1987491bc25e2209c78c315))
+
+### Reverts
+
+- change from commonjs to es2022 ([50eca61](https://gitlab.com/rxap/packages/commit/50eca61e9a89388d1cfeefb8b1029b302b6f307e))
+
 # [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/schematics-open-api@16.0.0-dev.20...@rxap/schematics-open-api@16.0.0-dev.21) (2023-09-12)
 
 ### Bug Fixes

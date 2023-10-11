@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.0-dev.4...@rxap/data-grid@16.0.0-dev.19) (2023-10-11)
+
+### Bug Fixes
+
+- add browser-tailwind as imp dep if project has tailwind configuration ([3d90660](https://gitlab.com/rxap/packages/commit/3d906604470f4f26d157f4683afe72b3dd8baae3))
+- add licence file to publishable packages ([d7de1cb](https://gitlab.com/rxap/packages/commit/d7de1cb9db1bd1628f37084e3b0ffd1755aa75f6))
+- add styles for divider and sub headers ([8352e77](https://gitlab.com/rxap/packages/commit/8352e77801ec90d0946b0f7b0a878772bdfe469c))
+- add tailwind bundle build target and configurations ([de3825a](https://gitlab.com/rxap/packages/commit/de3825a0e2977389f81cc4ce63e510767ca25810))
+- ensure the project name is not included in the project tag list ([46d4479](https://gitlab.com/rxap/packages/commit/46d44798258ea1b20df9d4408b9c0809f55027b2))
+- generate readme with peer dependencies to install ([27c2cd7](https://gitlab.com/rxap/packages/commit/27c2cd7d98f0c8a499b8c30719f49d69e4970ae9))
+- peer dependency issue ([ee95415](https://gitlab.com/rxap/packages/commit/ee95415370d9ef2396916d6c25061a0df791034a))
+- prevent data grid label wrap ([f2fbc76](https://gitlab.com/rxap/packages/commit/f2fbc7650beba97adfdcc390af0b976c0738898f))
+- remove @Required decorator ([bcd9988](https://gitlab.com/rxap/packages/commit/bcd9988f0667bf4563a0e5b91977becfd29b1597))
+- use DataSource interface directly ([bc8cd8e](https://gitlab.com/rxap/packages/commit/bc8cd8e9a8fea4e0b7c5d1aec89452b7c3297891))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.0-dev.17...@rxap/data-grid@16.0.0-dev.18) (2023-09-27)
 
 ### Bug Fixes
