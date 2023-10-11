@@ -8,7 +8,7 @@
   },
   "peerDependencies": {
     "@rxap/rxjs": "^1.0.1-dev.12",
-    "@rxap/utilities": "^16.0.0-dev.21",
+    "@rxap/utilities": "^16.0.0-dev.22",
     "tslib": "2.6.2"
   },
   "author": {
@@ -35,7 +35,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.21"
+        "version": "16.0.0-dev.22"
       }
     ]
   },

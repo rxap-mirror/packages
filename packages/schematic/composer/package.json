@@ -9,7 +9,7 @@
     "@angular-devkit/schematics": "^16.1.4",
     "@rxap/schematics-ts-morph": "^16.0.0-dev.27",
     "@rxap/schematics-utilities": "^16.0.0-dev.20",
-    "@rxap/utilities": "^16.0.0-dev.21",
+    "@rxap/utilities": "^16.0.0-dev.22",
     "tslib": "2.6.2"
   },
   "author": {
@@ -44,7 +44,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.21"
+        "version": "16.0.0-dev.22"
       }
     ]
   },

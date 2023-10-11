@@ -7,7 +7,7 @@
   },
   "peerDependencies": {
     "@rxap/config": "^16.0.0-dev.19",
-    "@rxap/environment": "^16.0.0-dev.16",
+    "@rxap/environment": "^16.0.0-dev.17",
     "@sentry/angular-ivy": "^7.60.1",
     "@sentry/browser": "^7.60.1",
     "@sentry/integrations": "^7.60.1",
@@ -38,7 +38,7 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       }
     ]
   },

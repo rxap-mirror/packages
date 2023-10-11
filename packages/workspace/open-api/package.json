@@ -8,8 +8,8 @@
   },
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
-    "@rxap/json-schema-to-typescript": "^16.0.0-dev.16",
-    "@rxap/utilities": "^16.0.0-dev.21",
+    "@rxap/json-schema-to-typescript": "^16.0.0-dev.17",
+    "@rxap/utilities": "^16.0.0-dev.22",
     "@rxap/workspace-utilities": "^0.1.0-dev.22",
     "openapi-types": "10.0.0",
     "ts-morph": "^18.0.0",
@@ -34,11 +34,11 @@
     "packageGroup": [
       {
         "package": "@rxap/json-schema-to-typescript",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.21"
+        "version": "16.0.0-dev.22"
       },
       {
         "package": "@rxap/workspace-utilities",

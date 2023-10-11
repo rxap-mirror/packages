@@ -7,11 +7,11 @@
   },
   "peerDependencies": {
     "@angular/core": "^16.1.4",
-    "@rxap/authentication": "^16.0.0-dev.17",
+    "@rxap/authentication": "^16.0.0-dev.18",
     "@rxap/data-source": "^16.0.0-dev.26",
     "@rxap/ngx-pub-sub": "^16.0.1-dev.1",
     "@rxap/open-api": "^16.0.0-dev.25",
-    "@rxap/utilities": "^16.0.0-dev.21",
+    "@rxap/utilities": "^16.0.0-dev.22",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0"
   },
@@ -35,7 +35,7 @@
     "packageGroup": [
       {
         "package": "@rxap/authentication",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/data-source",
@@ -55,7 +55,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.21"
+        "version": "16.0.0-dev.22"
       }
     ]
   },

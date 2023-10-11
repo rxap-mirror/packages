@@ -8,7 +8,7 @@
   "peerDependencies": {
     "@nestjs/common": "^10.0.5",
     "@nestjs/config": "^3.0.0",
-    "@rxap/nest-logger": "^10.1.0-dev.6",
+    "@rxap/nest-logger": "^10.1.0-dev.7",
     "@rxap/nest-utilities": "^10.1.0-dev.13",
     "@sentry/core": "^7.28.1",
     "@sentry/node": "^7.28.1",
@@ -36,7 +36,7 @@
     "packageGroup": [
       {
         "package": "@rxap/nest-logger",
-        "version": "10.1.0-dev.6"
+        "version": "10.1.0-dev.7"
       },
       {
         "package": "@rxap/nest-utilities",
