@@ -263,6 +263,10 @@ async function addDependencies(tree: Tree, options: InitApplicationGeneratorSche
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-application', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/plugin-docker', 'latest', { soft: true });
 
+  if (options.swagger) {
+    await AddPackageJsonDevDependency(tree, '@rxap/json-schema-to-typescript', 'latest', { soft: true });
+  }
+
   switch (options.platform) {
 
     case 'express':

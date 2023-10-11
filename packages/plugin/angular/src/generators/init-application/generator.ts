@@ -510,6 +510,8 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@rxap/forms', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/validator', 'latest', { soft: true });
   await AddPackageJsonDependency(tree, '@rxap/pipes', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/mixin', 'latest', { soft: true });
+  await AddPackageJsonDependency(tree, '@rxap/reflect-metadata', 'latest', { soft: true });
 
   if (options.oauth) {
     await AddPackageJsonDependency(tree, 'angular-oauth2-oidc', 'latest', { soft: true });
@@ -528,6 +530,9 @@ export async function initApplicationGenerator(
 
   if (options.monolithic) {
     await AddPackageJsonDependency(tree, '@rxap/layout', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/ngx-theme', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@ctrl/tinycolor', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/ngx-pub-sub', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/services', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/data-source', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/pattern', 'latest', { soft: true });
