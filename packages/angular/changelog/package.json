@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.3",
+  "version": "16.1.0-dev.4",
   "name": "@rxap/ngx-changelog",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,9 +9,9 @@
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
     "@angular/forms": "^16.1.4",
-    "@rxap/directives": "^16.0.0-dev.17",
+    "@rxap/directives": "^16.0.0-dev.18",
     "@rxap/environment": "^16.0.0-dev.16",
-    "@rxap/open-api": "^16.0.0-dev.24",
+    "@rxap/open-api": "^16.0.0-dev.25",
     "ngx-markdown": "^16.0.0",
     "rxjs": "^7.8.0"
   },
@@ -35,7 +35,7 @@
     "packageGroup": [
       {
         "package": "@rxap/directives",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/environment",
@@ -43,7 +43,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "16.0.0-dev.24"
+        "version": "16.0.0-dev.25"
       },
       {
         "package": "@rxap/pattern",

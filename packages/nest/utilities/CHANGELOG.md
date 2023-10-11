@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.0-dev.13...@rxap/nest-utilities@10.1.0-dev.14) (2023-10-11)
+
+### Bug Fixes
+
+- decouple from utilities project ([a8e1a24](https://gitlab.com/rxap/packages/commit/a8e1a2441463b9b8603b912e2e911039ee6989a0))
+
 # [10.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@1.0.1-dev.1...@rxap/nest-utilities@10.1.0-dev.13) (2023-10-11)
 
 ### Bug Fixes

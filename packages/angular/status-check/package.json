@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.14",
+  "version": "16.1.0-dev.15",
   "name": "@rxap/ngx-status-check",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,7 +11,7 @@
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
     "@rxap/config": "^16.0.0-dev.19",
-    "@rxap/open-api": "^16.0.0-dev.24",
+    "@rxap/open-api": "^16.0.0-dev.25",
     "@sentry/angular-ivy": "^7.60.1",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
@@ -40,7 +40,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "16.0.0-dev.24"
+        "version": "16.0.0-dev.25"
       },
       {
         "package": "@rxap/pattern",

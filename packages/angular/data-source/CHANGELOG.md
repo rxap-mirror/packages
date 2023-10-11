@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.26...@rxap/data-source@16.0.0-dev.26) (2023-10-11)
+
+**Note:** Version bump only for package @rxap/data-source
+
 # [16.0.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.5...@rxap/data-source@16.0.0-dev.26) (2023-10-11)
 
 ### Bug Fixes
