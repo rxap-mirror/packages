@@ -1,12 +1,12 @@
 {
-  "version": "16.0.0-dev.16",
+  "version": "16.0.0-dev.15",
   "name": "@rxap/mixin",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@rxap/reflect-metadata": "^1.0.1-dev.12",
+    "@rxap/reflect-metadata": "^1.0.1-dev.11",
     "@rxap/utilities": "^16.0.0-dev.21",
     "reflect-metadata": "^0.1.13",
     "tslib": "2.6.2"
@@ -29,7 +29,7 @@
     "packageGroup": [
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.1-dev.12"
+        "version": "1.0.1-dev.11"
       },
       {
         "package": "@rxap/utilities",

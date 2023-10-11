@@ -7,8 +7,8 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/generator-utilities": "^1.1.0-dev.18",
-    "@rxap/node-utilities": "^1.1.0-dev.13",
+    "@rxap/generator-utilities": "^1.1.0-dev.19",
+    "@rxap/node-utilities": "^1.1.0-dev.14",
     "@rxap/workspace-utilities": "^0.1.0-dev.22",
     "tslib": "2.6.2"
   },
@@ -32,7 +32,7 @@
     "packageGroup": [
       {
         "package": "@rxap/generator-utilities",
-        "version": "1.1.0-dev.18"
+        "version": "1.1.0-dev.19"
       },
       {
         "package": "@rxap/node-utilities",
