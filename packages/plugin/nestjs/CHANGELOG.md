@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.43](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.42...@rxap/plugin-nestjs@16.1.0-dev.43) (2023-10-11)
+
+### Bug Fixes
+
+- ensure tailing slash is not added to the target directory ([e18cec3](https://gitlab.com/rxap/packages/commit/e18cec394240e291d8c7d3a187cd33d4e63d2133))
+
 # [16.1.0-dev.42](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.41...@rxap/plugin-nestjs@16.1.0-dev.42) (2023-10-11)
 
 ### Bug Fixes
