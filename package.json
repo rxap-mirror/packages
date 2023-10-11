@@ -51,7 +51,6 @@
     "@nestjs/swagger": "^7.1.2",
     "@nestjs/terminus": "^10.0.1",
     "@nestjs/throttler": "^5.0.0",
-    "@rxap/nest-supabase": "workspace:^",
     "@sentry/angular-ivy": "^7.60.1",
     "@sentry/browser": "^7.60.1",
     "@sentry/core": "^7.28.1",
