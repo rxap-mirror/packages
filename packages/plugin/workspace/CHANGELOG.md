@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.38](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.37...@rxap/plugin-workspace@16.1.0-dev.38) (2023-10-11)
+
+### Bug Fixes
+
+- ask what kind of workspace to init ([d16f70f](https://gitlab.com/rxap/packages/commit/d16f70f6440fabff712d9dc2832bfd9b2907fe12))
+- remove git lfs support ([08c8a0f](https://gitlab.com/rxap/packages/commit/08c8a0fe4c3fb1a230354eb63be62b285b1af6ca))
+
 # 16.1.0-dev.37 (2023-10-11)
 
 ### Bug Fixes

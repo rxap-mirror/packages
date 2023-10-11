@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.13...@rxap/plugin-localazy@16.1.0-dev.14) (2023-10-11)
+
+### Bug Fixes
+
+- ensure overwrite option is respected ([672c315](https://gitlab.com/rxap/packages/commit/672c3152403ae577fb8d4d34e060971d2e53d0af))
+
 # [16.1.0-dev.13](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@1.0.1-dev.1...@rxap/plugin-localazy@16.1.0-dev.13) (2023-10-11)
 
 ### Bug Fixes
