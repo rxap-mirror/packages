@@ -8,7 +8,7 @@
     "ngx",
     "packages",
     "scope:utilities",
-    "standalone"
+    "angular:standalone"
   ],
   "projectType": "library",
   "targets": {

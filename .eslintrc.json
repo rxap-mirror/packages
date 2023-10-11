@@ -59,6 +59,12 @@
                 "sourceTag": "plugin",
                 "notDependOnLibsWithTags": [
                   "schematic"
+                ],
+                "bannedExternalImports": [
+                  "@angular-devkit/architect",
+                  "@angular-devkit/core",
+                  "@angular-devkit/schematics",
+                  "@nrwl/workspace"
                 ]
               },
               {
@@ -93,6 +99,21 @@
                 ]
               },
               {
+                "sourceTag": "angular:standalone",
+                "notDependOnLibsWithTags": [
+                  "schematic",
+                  "generator",
+                  "workspace",
+                  "angular",
+                  "node",
+                  "nest",
+                  "browser"
+                ],
+                "onlyDependOnLibsWithTags": [
+                  "scope:utilities"
+                ]
+              },
+              {
                 "sourceTag": "standalone",
                 "notDependOnLibsWithTags": [
                   "schematic",
@@ -105,6 +126,11 @@
                 ],
                 "onlyDependOnLibsWithTags": [
                   "scope:utilities"
+                ],
+                "bannedExternalImports": [
+                  "@angular-devkit/schematics",
+                  "@angular/core",
+                  "@angular/platform-browser-dynamic"
                 ]
               },
               {
@@ -133,6 +159,19 @@
                 "onlyDependOnLibsWithTags": [
                   "scope:utilities",
                   "scope:core"
+                ]
+              },
+              {
+                "sourceTag": "angular",
+                "bannedExternalImports": [
+                  "xmldom",
+                  "@nestjs/common"
+                ]
+              },
+              {
+                "sourceTag": "nest",
+                "bannedExternalImports": [
+                  "@angular/core"
                 ]
               }
             ]
