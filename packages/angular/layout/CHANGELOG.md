@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.41](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.40...@rxap/layout@16.0.0-dev.41) (2023-10-11)
+
+**Note:** Version bump only for package @rxap/layout
+
 # [16.0.0-dev.40](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.39...@rxap/layout@16.0.0-dev.40) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/layout

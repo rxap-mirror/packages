@@ -1,5 +1,5 @@
 {
-  "version": "0.0.2-dev.9",
+  "version": "0.0.2-dev.10",
   "name": "@rxap/workspace-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,9 +8,9 @@
   },
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
-    "@rxap/json-schema-to-typescript": "^16.0.0-dev.17",
-    "@rxap/utilities": "^16.0.0-dev.22",
-    "@rxap/workspace-utilities": "^0.1.0-dev.22",
+    "@rxap/json-schema-to-typescript": "^16.0.0-dev.18",
+    "@rxap/utilities": "^16.0.0-dev.23",
+    "@rxap/workspace-utilities": "^0.1.0-dev.23",
     "openapi-types": "10.0.0",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2"
@@ -34,15 +34,15 @@
     "packageGroup": [
       {
         "package": "@rxap/json-schema-to-typescript",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.22"
+        "version": "16.0.0-dev.23"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.22"
+        "version": "0.1.0-dev.23"
       }
     ]
   },

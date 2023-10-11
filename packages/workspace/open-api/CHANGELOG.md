@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-dev.10](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@0.0.2-dev.9...@rxap/workspace-open-api@0.0.2-dev.10) (2023-10-11)
+
+**Note:** Version bump only for package @rxap/workspace-open-api
+
 ## [0.0.2-dev.9](https://gitlab.com/rxap/packages/compare/@rxap/workspace-open-api@0.0.2-dev.9...@rxap/workspace-open-api@0.0.2-dev.9) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/workspace-open-api

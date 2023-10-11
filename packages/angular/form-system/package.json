@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.19",
+  "version": "16.0.0-dev.20",
   "name": "@rxap/form-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -10,15 +10,15 @@
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.26",
-    "@rxap/definition": "^16.0.0-dev.17",
-    "@rxap/forms": "^16.0.0-dev.19",
-    "@rxap/mixin": "^16.0.0-dev.16",
-    "@rxap/open-api": "^16.0.0-dev.25",
-    "@rxap/pattern": "^1.1.0-dev.1",
-    "@rxap/reflect-metadata": "^1.0.1-dev.12",
-    "@rxap/remote-method": "^16.0.0-dev.17",
-    "@rxap/utilities": "^16.0.0-dev.22",
+    "@rxap/data-source": "^16.0.0-dev.27",
+    "@rxap/definition": "^16.0.0-dev.18",
+    "@rxap/forms": "^16.0.0-dev.20",
+    "@rxap/mixin": "^16.0.0-dev.17",
+    "@rxap/open-api": "^16.0.0-dev.26",
+    "@rxap/pattern": "^1.1.0-dev.2",
+    "@rxap/reflect-metadata": "^1.0.1-dev.13",
+    "@rxap/remote-method": "^16.0.0-dev.18",
+    "@rxap/utilities": "^16.0.0-dev.23",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
@@ -43,39 +43,39 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.26"
+        "version": "16.0.0-dev.27"
       },
       {
         "package": "@rxap/definition",
-        "version": "16.0.0-dev.17"
+        "version": "16.0.0-dev.18"
       },
       {
         "package": "@rxap/forms",
-        "version": "16.0.0-dev.19"
+        "version": "16.0.0-dev.20"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.0-dev.16"
-      },
-      {
-        "package": "@rxap/open-api",
-        "version": "16.0.0-dev.25"
-      },
-      {
-        "package": "@rxap/pattern",
-        "version": "1.1.0-dev.1"
-      },
-      {
-        "package": "@rxap/reflect-metadata",
-        "version": "1.0.1-dev.12"
-      },
-      {
-        "package": "@rxap/remote-method",
         "version": "16.0.0-dev.17"
       },
       {
+        "package": "@rxap/open-api",
+        "version": "16.0.0-dev.26"
+      },
+      {
+        "package": "@rxap/pattern",
+        "version": "1.1.0-dev.2"
+      },
+      {
+        "package": "@rxap/reflect-metadata",
+        "version": "1.0.1-dev.13"
+      },
+      {
+        "package": "@rxap/remote-method",
+        "version": "16.0.0-dev.18"
+      },
+      {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.22"
+        "version": "16.0.0-dev.23"
       }
     ]
   },

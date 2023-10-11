@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.31...@rxap/plugin-application@16.1.0-dev.32) (2023-10-11)
+
+**Note:** Version bump only for package @rxap/plugin-application
+
 # [16.1.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.30...@rxap/plugin-application@16.1.0-dev.31) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/plugin-application

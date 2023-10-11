@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.26",
+  "version": "16.0.0-dev.27",
   "name": "@rxap/material-table-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -14,16 +14,16 @@
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/components": "^16.0.0-dev.21",
-    "@rxap/data-source": "^16.0.0-dev.26",
-    "@rxap/directives": "^16.0.0-dev.18",
-    "@rxap/forms": "^16.0.0-dev.19",
-    "@rxap/material-directives": "^16.0.0-dev.20",
-    "@rxap/pattern": "^1.1.0-dev.1",
-    "@rxap/reflect-metadata": "^1.0.1-dev.12",
-    "@rxap/rxjs": "^1.0.1-dev.12",
-    "@rxap/utilities": "^16.0.0-dev.22",
-    "@rxap/window-system": "^16.0.0-dev.21",
+    "@rxap/components": "^16.0.0-dev.22",
+    "@rxap/data-source": "^16.0.0-dev.27",
+    "@rxap/directives": "^16.0.0-dev.19",
+    "@rxap/forms": "^16.0.0-dev.20",
+    "@rxap/material-directives": "^16.0.0-dev.21",
+    "@rxap/pattern": "^1.1.0-dev.2",
+    "@rxap/reflect-metadata": "^1.0.1-dev.13",
+    "@rxap/rxjs": "^1.0.1-dev.13",
+    "@rxap/utilities": "^16.0.0-dev.23",
+    "@rxap/window-system": "^16.0.0-dev.22",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
@@ -49,23 +49,23 @@
     "packageGroup": [
       {
         "package": "@rxap/components",
-        "version": "16.0.0-dev.21"
+        "version": "16.0.0-dev.22"
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.26"
+        "version": "16.0.0-dev.27"
       },
       {
         "package": "@rxap/directives",
-        "version": "16.0.0-dev.18"
-      },
-      {
-        "package": "@rxap/forms",
         "version": "16.0.0-dev.19"
       },
       {
-        "package": "@rxap/material-directives",
+        "package": "@rxap/forms",
         "version": "16.0.0-dev.20"
+      },
+      {
+        "package": "@rxap/material-directives",
+        "version": "16.0.0-dev.21"
       },
       {
         "package": "@rxap/open-api",
@@ -73,11 +73,11 @@
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.0-dev.1"
+        "version": "1.1.0-dev.2"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.1-dev.12"
+        "version": "1.0.1-dev.13"
       },
       {
         "package": "@rxap/remote-method",
@@ -85,15 +85,15 @@
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.12"
+        "version": "1.0.1-dev.13"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.22"
+        "version": "16.0.0-dev.23"
       },
       {
         "package": "@rxap/window-system",
-        "version": "16.0.0-dev.21"
+        "version": "16.0.0-dev.22"
       }
     ]
   },

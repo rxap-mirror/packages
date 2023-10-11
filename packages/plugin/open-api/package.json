@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.2",
+  "version": "16.1.0-dev.3",
   "name": "@rxap/plugin-open-api",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -8,13 +8,13 @@
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
     "@rxap/generator-utilities": "^1.1.0-dev.19",
-    "@rxap/node-utilities": "^1.1.0-dev.14",
-    "@rxap/plugin-library": "^16.0.0-dev.38",
-    "@rxap/plugin-utilities": "^16.1.0-dev.20",
-    "@rxap/utilities": "^16.0.0-dev.22",
-    "@rxap/workspace-open-api": "^0.0.2-dev.9",
-    "@rxap/workspace-ts-morph": "^0.1.0-dev.10",
-    "@rxap/workspace-utilities": "^0.1.0-dev.22",
+    "@rxap/node-utilities": "^1.1.0-dev.15",
+    "@rxap/plugin-library": "^16.0.0-dev.39",
+    "@rxap/plugin-utilities": "^16.1.0-dev.21",
+    "@rxap/utilities": "^16.0.0-dev.23",
+    "@rxap/workspace-open-api": "^0.0.2-dev.10",
+    "@rxap/workspace-ts-morph": "^0.1.0-dev.11",
+    "@rxap/workspace-utilities": "^0.1.0-dev.23",
     "tslib": "2.6.2"
   },
   "author": {
@@ -44,31 +44,31 @@
       },
       {
         "package": "@rxap/node-utilities",
-        "version": "1.1.0-dev.14"
+        "version": "1.1.0-dev.15"
       },
       {
         "package": "@rxap/plugin-library",
-        "version": "16.0.0-dev.38"
+        "version": "16.0.0-dev.39"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "16.1.0-dev.20"
+        "version": "16.1.0-dev.21"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.22"
+        "version": "16.0.0-dev.23"
       },
       {
         "package": "@rxap/workspace-open-api",
-        "version": "0.0.2-dev.9"
+        "version": "0.0.2-dev.10"
       },
       {
         "package": "@rxap/workspace-ts-morph",
-        "version": "0.1.0-dev.10"
+        "version": "0.1.0-dev.11"
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.22"
+        "version": "0.1.0-dev.23"
       }
     ]
   },

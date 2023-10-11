@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.0-dev.14...@rxap/nest-utilities@10.1.0-dev.14) (2023-10-11)
+
+### Bug Fixes
+
+- use symbol instead of a string ([85feed1](https://gitlab.com/rxap/packages/commit/85feed1db665b604667c371cbd7f6d72ae71f8a3))
+
 # [10.1.0-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/nest-utilities@10.1.0-dev.13...@rxap/nest-utilities@10.1.0-dev.14) (2023-10-11)
 
 ### Bug Fixes

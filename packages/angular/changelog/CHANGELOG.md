@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/ngx-changelog@16.1.0-dev.4...@rxap/ngx-changelog@16.1.0-dev.5) (2023-10-11)
+
+**Note:** Version bump only for package @rxap/ngx-changelog
+
 # [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-changelog@16.1.0-dev.4...@rxap/ngx-changelog@16.1.0-dev.4) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/ngx-changelog
