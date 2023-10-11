@@ -10,6 +10,7 @@ import {
   CoerceIgnorePattern,
   GetProjectSourceRoot,
 } from '@rxap/generator-utilities';
+import { CoerceFilesStructure } from '@rxap/workspace-utilities';
 import * as path from 'path';
 import { join } from 'path';
 import { UploadExecutorSchema } from '../../executors/upload/schema';
@@ -22,7 +23,11 @@ export async function configGenerator(tree: Tree, options: ConfigGeneratorSchema
     throw new Error(`Could not find project source root for project: ${ options.project }`);
   }
 
-  generateFiles(tree, path.join(__dirname, 'files'), projectSourceRoot, options);
+  CoerceFilesStructure(tree, {
+    srcFolder: join(__dirname, 'files'),
+    target: projectSourceRoot,
+    overwrite: options.overwrite,
+  });
 
   const projectConfiguration = readProjectConfiguration(tree, options.project);
 

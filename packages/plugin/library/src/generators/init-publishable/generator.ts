@@ -17,6 +17,7 @@ import {
 } from '@rxap/generator-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
+  CoerceFilesStructure,
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
@@ -151,7 +152,11 @@ export async function initPublishableGenerator(
 
       updateProjectTargets(project);
       updateProjectPackageJson(tree, project, projectName, rootPackageJson);
-      generateFiles(tree, join(__dirname, 'files'), project.root, options);
+      CoerceFilesStructure(tree, {
+        srcFolder: join(__dirname, 'files'),
+        target: project.root,
+        overwrite: options.overwrite,
+      });
       CoerceFile(tree, join(project.root, 'CHANGELOG.md'));
       CoerceFile(tree, join(project.root, 'GETSTARTED.md'));
       CoerceFile(tree, join(project.root, 'GUIDES.md'));

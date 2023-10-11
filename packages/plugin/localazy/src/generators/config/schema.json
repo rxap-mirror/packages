@@ -26,6 +26,10 @@
       "type": "string",
       "description": "The localazy read key.",
       "x-prompt": "(optional) Enter the localazy read key. This key will be added to the .env file."
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "Overwrite existing files.",
     }
   },
   "required": [

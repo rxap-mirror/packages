@@ -1,24 +1,29 @@
 import {
-  generateFiles,
   readNxJson,
   readProjectConfiguration,
   Tree,
   updateNxJson,
   updateProjectConfiguration,
 } from '@nx/devkit';
-import * as path from 'path';
-import { ConfigGeneratorSchema } from './schema';
 import { GetProjectSourceRoot } from '@rxap/generator-utilities';
 import { CreateConfigurationMapMatchingWithTarget } from '@rxap/plugin-utilities';
+import { CoerceFilesStructure } from '@rxap/workspace-utilities';
+import { join } from 'path';
+import { ConfigGeneratorSchema } from './schema';
 
 export async function configGenerator(
   tree: Tree,
   options: ConfigGeneratorSchema,
 ) {
   const projectSourceRoot = GetProjectSourceRoot(tree, options.project);
-  if (!tree.exists(path.join(projectSourceRoot, 'Dockerfile'))) {
-    generateFiles(tree, path.join(__dirname, 'files'), projectSourceRoot, options);
+  if (!projectSourceRoot) {
+    throw new Error(`Can't find project source root for project: ${ options.project }`);
   }
+  CoerceFilesStructure(tree, {
+    srcFolder: join(__dirname, 'files'),
+    target: projectSourceRoot,
+    overwrite: options.overwrite,
+  });
 
   const projectConfiguration = readProjectConfiguration(tree, options.project);
 

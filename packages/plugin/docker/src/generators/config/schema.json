@@ -44,6 +44,10 @@
     "save": {
       "type": "boolean",
       "description": "Whether to create a save target"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "Whether to overwrite existing files"
     }
   },
   "required": [

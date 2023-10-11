@@ -10,6 +10,7 @@ import {
 } from '@rxap/plugin-utilities';
 import { clone } from '@rxap/utilities';
 import {
+  CoerceFilesStructure,
   GetNestApiPrefix,
   GetRootDockerOptions,
   IsApplicationProject,
@@ -18,6 +19,7 @@ import {
   IsUserInterfaceProject,
   RootDockerOptions,
 } from '@rxap/workspace-utilities';
+import { join } from 'path';
 import * as path from 'path';
 import { stringify } from 'yaml';
 import { GitlabCiGeneratorSchema } from './schema';
@@ -211,9 +213,11 @@ export async function gitlabCiGenerator(
 
   console.log('gitlab-ci generator:', options);
 
-  if (options.overwrite || !tree.exists('tools/scripts/build-and-push-docker-image.sh')) {
-    generateFiles(tree, path.join(__dirname, 'files'), 'tools/scripts', options);
-  }
+  CoerceFilesStructure(tree, {
+    srcFolder: join(__dirname, 'files'),
+    target: 'tools/scripts',
+    overwrite: options.overwrite,
+  });
 
   const rootDocker = GetRootDockerOptions(tree);
 

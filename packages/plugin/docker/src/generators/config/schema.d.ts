@@ -8,4 +8,5 @@ export interface ConfigGeneratorSchema {
   imageName?: string;
   imageRegistry?: string;
   save?: boolean;
+  overwrite?: boolean;
 }

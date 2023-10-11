@@ -3,4 +3,5 @@ export interface ConfigGeneratorSchema {
   extractTarget?: string;
   writeKey?: string;
   readKey?: string;
+  overwrite?: boolean;
 }
