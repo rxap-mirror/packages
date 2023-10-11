@@ -68,12 +68,13 @@ const gitIgnore = [
   'Thumbs.db',
   // yarn
   '.yarn/*',
+  '!yarn.lock',
   '!.yarn/patches',
   '!.yarn/plugins',
   '!.yarn/releases',
   '!.yarn/sdks',
   '!.yarn/versions',
-  '!.yarn/cache',
+  // '!.yarn/cache',
 ];
 
 const prettierIgnore = [
