@@ -3,14 +3,12 @@ import {
   ProjectConfiguration,
   Tree,
 } from '@nx/devkit';
-import {
-  CoerceCypressComponentTesting,
-  HasComponents,
-} from '@rxap/generator-utilities';
+import { HasComponents } from '@rxap/generator-utilities';
 import {
   IsApplicationProject,
   IsLibraryProject,
 } from '@rxap/workspace-utilities';
+import { CoerceCypressComponentTesting } from '../../lib/coerce-cypress-component-testing';
 import { SkipNonAngularProject } from '../../lib/skip-project';
 import initApplicationGenerator from '../init-application/generator';
 import initLibraryGenerator from '../init-library/generator';

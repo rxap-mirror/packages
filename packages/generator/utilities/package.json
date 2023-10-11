@@ -6,7 +6,6 @@
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nx/angular": "^16.5.0",
     "@nx/devkit": "^16.5.0",
     "@rxap/workspace-utilities": "^0.1.0-dev.22",
     "tslib": "2.6.2"
