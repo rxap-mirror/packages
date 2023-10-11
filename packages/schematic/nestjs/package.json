@@ -9,9 +9,9 @@
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
     "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.23",
-    "@rxap/schematics-utilities": "^16.0.0-dev.18",
-    "@rxap/utilities": "^16.0.0-dev.19",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.26",
+    "@rxap/schematics-utilities": "^16.0.0-dev.19",
+    "@rxap/utilities": "^16.0.0-dev.21",
     "ts-morph": "^18.0.0",
     "tslib": "2.6.2",
     "yaml": "2.3.1"
@@ -36,23 +36,23 @@
     "packageGroup": [
       {
         "package": "@rxap/plugin-application",
-        "version": "16.1.0-dev.23"
+        "version": "16.1.0-dev.29"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "16.1.0-dev.32"
+        "version": "16.1.0-dev.39"
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "16.0.0-dev.23"
+        "version": "16.0.0-dev.26"
       },
       {
         "package": "@rxap/schematics-utilities",
-        "version": "16.0.0-dev.18"
+        "version": "16.0.0-dev.19"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.19"
+        "version": "16.0.0-dev.21"
       }
     ]
   },

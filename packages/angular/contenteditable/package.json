@@ -8,7 +8,7 @@
   "peerDependencies": {
     "@angular/core": "^16.1.4",
     "@rxap/pattern": "^1.1.0-dev.0",
-    "@rxap/utilities": "^16.0.0-dev.19",
+    "@rxap/utilities": "^16.0.0-dev.21",
     "tslib": "2.6.2"
   },
   "author": {
@@ -36,7 +36,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.19"
+        "version": "16.0.0-dev.21"
       }
     ]
   },

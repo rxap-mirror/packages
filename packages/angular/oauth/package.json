@@ -8,7 +8,7 @@
   "peerDependencies": {
     "@angular/core": "^16.1.4",
     "@angular/router": "^16.1.4",
-    "@rxap/authentication": "^16.0.0-dev.16",
+    "@rxap/authentication": "^16.0.0-dev.17",
     "@rxap/rxjs": "^1.0.1-dev.11",
     "angular-oauth2-oidc": "^15.0.1",
     "angular-oauth2-oidc-jwks": "^15.0.1",
@@ -36,7 +36,7 @@
     "packageGroup": [
       {
         "package": "@rxap/authentication",
-        "version": "16.0.0-dev.16"
+        "version": "16.0.0-dev.17"
       },
       {
         "package": "@rxap/directives",

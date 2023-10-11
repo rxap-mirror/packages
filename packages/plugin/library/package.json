@@ -11,11 +11,11 @@
     "@rxap/generator-ts-morph": "^1.0.1-dev.12",
     "@rxap/generator-utilities": "^1.1.0-dev.17",
     "@rxap/node-utilities": "^1.1.0-dev.13",
-    "@rxap/plugin-angular": "^16.1.0-dev.48",
-    "@rxap/plugin-nestjs": "^16.1.0-dev.38",
+    "@rxap/plugin-angular": "^16.1.0-dev.49",
+    "@rxap/plugin-nestjs": "^16.1.0-dev.39",
     "@rxap/plugin-utilities": "^16.1.0-dev.18",
     "@rxap/utilities": "^16.0.0-dev.21",
-    "@rxap/workspace-utilities": "^0.1.0-dev.20",
+    "@rxap/workspace-utilities": "^0.1.0-dev.21",
     "handlebars": "^4.7.7",
     "nx": "^16.5.0",
     "semver": "^7.3.5",
@@ -56,11 +56,11 @@
       },
       {
         "package": "@rxap/plugin-angular",
-        "version": "16.1.0-dev.48"
+        "version": "16.1.0-dev.49"
       },
       {
         "package": "@rxap/plugin-nestjs",
-        "version": "16.1.0-dev.38"
+        "version": "16.1.0-dev.39"
       },
       {
         "package": "@rxap/plugin-utilities",
@@ -76,7 +76,7 @@
       },
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.20"
+        "version": "0.1.0-dev.21"
       }
     ]
   },

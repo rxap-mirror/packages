@@ -8,7 +8,7 @@
   "peerDependencies": {
     "@nx/angular": "^16.5.0",
     "@nx/devkit": "^16.5.0",
-    "@rxap/workspace-utilities": "^0.1.0-dev.20",
+    "@rxap/workspace-utilities": "^0.1.0-dev.21",
     "tslib": "2.6.2"
   },
   "author": {
@@ -31,7 +31,7 @@
     "packageGroup": [
       {
         "package": "@rxap/workspace-utilities",
-        "version": "0.1.0-dev.20"
+        "version": "0.1.0-dev.21"
       }
     ]
   },

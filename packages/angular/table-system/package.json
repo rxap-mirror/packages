@@ -12,9 +12,9 @@
     "@angular/core": "^16.1.4",
     "@angular/forms": "^16.1.4",
     "@angular/material": "^16.1.4",
-    "@rxap/data-source": "^16.0.0-dev.21",
-    "@rxap/material-table-system": "^16.0.0-dev.24",
-    "@rxap/utilities": "^16.0.0-dev.19",
+    "@rxap/data-source": "^16.0.0-dev.25",
+    "@rxap/material-table-system": "^16.0.0-dev.25",
+    "@rxap/utilities": "^16.0.0-dev.21",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
@@ -39,11 +39,11 @@
     "packageGroup": [
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.21"
+        "version": "16.0.0-dev.25"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "16.0.0-dev.24"
+        "version": "16.0.0-dev.25"
       },
       {
         "package": "@rxap/open-api",
@@ -55,7 +55,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.19"
+        "version": "16.0.0-dev.21"
       }
     ]
   },

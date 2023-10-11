@@ -9,7 +9,7 @@
     "@angular/cdk": "^16.1.4",
     "@angular/common": "^16.1.4",
     "@angular/core": "^16.1.4",
-    "@rxap/components": "^16.0.0-dev.19",
+    "@rxap/components": "^16.0.0-dev.20",
     "@rxap/config": "^16.0.0-dev.18",
     "@rxap/data-grid": "^16.0.0-dev.18",
     "@rxap/environment": "^16.0.0-dev.16",
@@ -37,7 +37,7 @@
     "packageGroup": [
       {
         "package": "@rxap/components",
-        "version": "16.0.0-dev.19"
+        "version": "16.0.0-dev.20"
       },
       {
         "package": "@rxap/config",

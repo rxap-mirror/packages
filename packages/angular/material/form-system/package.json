@@ -18,7 +18,7 @@
     "@rxap/forms": "^16.0.0-dev.18",
     "@rxap/mixin": "^16.0.0-dev.15",
     "@rxap/reflect-metadata": "^1.0.1-dev.11",
-    "@rxap/utilities": "^16.0.0-dev.19",
+    "@rxap/utilities": "^16.0.0-dev.21",
     "rxjs": "^7.8.0",
     "tslib": "2.6.2"
   },
@@ -60,7 +60,7 @@
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.0.0-dev.19"
+        "version": "16.0.0-dev.21"
       }
     ]
   },
