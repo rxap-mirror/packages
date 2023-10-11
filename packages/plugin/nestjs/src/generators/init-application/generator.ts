@@ -298,6 +298,8 @@ async function createOpenApiClientSdkLibrary(
   fragments.shift(); // remove the root folder
   const directory = `open-api/${ fragments.join('/') }`;
 
+  const manuelCreateCommand = `nx g @nx/js:library --name ${name} --directory ${directory} --unitTestRunner none --tags open-api --buildable false --bundler none`;
+
   try {
     await jsLibraryGenerator(tree, {
       name,
@@ -308,8 +310,8 @@ async function createOpenApiClientSdkLibrary(
       bundler: 'none',
     });
   } catch (e: any) {
-    console.warn(`Can't create open api client sdk library: ${ e.message }`);
-    return;
+    console.log(`Manuel create open api client sdk library: ${manuelCreateCommand}`);
+    throw new Error(`Can't create open api client sdk library: ${ e.message }`);
   }
 
   let tsConfig: any;
@@ -323,22 +325,30 @@ async function createOpenApiClientSdkLibrary(
   projects = getProjects(tree);
 
   if (!projects.has(openApiProjectName)) {
+    console.log(`Manuel create open api client sdk library: ${manuelCreateCommand}`);
     throw new Error(`Can't find project ${ openApiProjectName }`);
   }
 
   const openApiProjectConfiguration = projects.get(openApiProjectName)!;
   const openApiProjectRoot = openApiProjectConfiguration.root;
 
-  delete tsConfig.compilerOptions.paths[`${ directory }/${ name }`];
-  tsConfig.compilerOptions.paths[`${ openApiProjectName }/*`] = [ `${ openApiProjectRoot }/src/lib/*` ];
-
-  tree.write('tsconfig.base.json', JSON.stringify(tsConfig, null, 2));
+  if (tsConfig.compilerOptions.paths[`${ directory }/${ name }`]) {
+    delete tsConfig.compilerOptions.paths[`${ directory }/${ name }`];
+    tsConfig.compilerOptions.paths[`${ openApiProjectName }/*`] = [ `${ openApiProjectRoot }/src/lib/*` ];
+    tree.write('tsconfig.base.json', JSON.stringify(tsConfig, null, 2));
+  }
   tree.write(`${ openApiProjectRoot }/src/index.ts`, 'export {};');
-  tree.delete(`${ openApiProjectRoot }/src/lib/${ openApiProjectName }.ts`);
-  tree.delete(`${ openApiProjectRoot }/README.md`);
+  if (tree.exists(`${ openApiProjectRoot }/src/lib/${ openApiProjectName }.ts`)) {
+    tree.delete(`${ openApiProjectRoot }/src/lib/${ openApiProjectName }.ts`);
+  }
+  if (tree.exists(`${ openApiProjectRoot }/README.md`)) {
+    tree.delete(`${ openApiProjectRoot }/README.md`);
+  }
 
   openApiProjectConfiguration.implicitDependencies ??= [];
-  openApiProjectConfiguration.implicitDependencies.push(project.name);
+  if (!openApiProjectConfiguration.implicitDependencies.includes(project.name)) {
+    openApiProjectConfiguration.implicitDependencies.push(project.name);
+  }
 
   updateProjectConfiguration(tree, openApiProjectName, openApiProjectConfiguration);
 
