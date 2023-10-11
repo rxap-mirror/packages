@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.51](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.50...@rxap/plugin-angular@16.1.0-dev.51) (2023-10-11)
+
+### Bug Fixes
+
+- move angular specific function to plugin project ([3b47f49](https://gitlab.com/rxap/packages/commit/3b47f4959e61f53f426fdf4f36664c399125c0c8))
+
 # 16.1.0-dev.50 (2023-10-11)
 
 ### Bug Fixes
