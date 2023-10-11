@@ -299,7 +299,7 @@ async function createOpenApiClientSdkLibrary(
   if (['libs', 'applications', 'apps', 'packages'].includes(fragments[0])) {
     fragments.shift(); // remove the root folder
   }
-  const directory = `open-api/${ fragments.join('/') }`;
+  const directory = ['open-api', ...fragments].filter(Boolean).join('/');
 
   const manuelCreateCommand = `nx g @nx/js:library --name ${name} --directory ${directory} --unitTestRunner none --tags open-api --buildable false --bundler none`;
 
