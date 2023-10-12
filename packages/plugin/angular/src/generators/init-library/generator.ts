@@ -298,6 +298,32 @@ function updatePackageJson(
   }
 }
 
+function updateTsConfig(tree: Tree, project: ProjectConfiguration, options: InitLibraryGeneratorSchema) {
+
+  const projectRoot = project.root;
+
+  function addAngularLocalizeType(tsConfig: any) {
+    tsConfig.compilerOptions ??= {};
+    tsConfig.compilerOptions.types ??= [];
+    if (!tsConfig.compilerOptions.types.includes('@angular/localize')) {
+      tsConfig.compilerOptions.types.push('@angular/localize');
+    }
+  }
+
+  if (options.i18n) {
+    if (tree.exists(join(projectRoot, 'tsconfig.lib.json'))) {
+      const tsConfigApp = JSON.parse(tree.read(join(projectRoot, 'tsconfig.lib.json'), 'utf-8'));
+      addAngularLocalizeType(tsConfigApp);
+    }
+
+    if (tree.exists(join(projectRoot, 'tsconfig.spec.json'))) {
+      const tsConfigApp = JSON.parse(tree.read(join(projectRoot, 'tsconfig.spec.json'), 'utf-8'));
+      addAngularLocalizeType(tsConfigApp);
+    }
+  }
+
+}
+
 export async function initLibraryGenerator(
   tree: Tree,
   options: InitLibraryGeneratorSchema,
@@ -329,6 +355,7 @@ export async function initLibraryGenerator(
       }
       extendAngularSpecificEslint(tree, project);
       updateProjectTargets(tree, project);
+      updateTsConfig(tree, project, options);
 
       updateProjectConfiguration(tree, project.name, project);
 

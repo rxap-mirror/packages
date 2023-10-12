@@ -471,7 +471,7 @@ function coerceLocalazyConfigFile(tree: Tree, project: ProjectConfiguration) {
   }
 }
 
-function updateTsConfig(tree: Tree, project: ProjectConfiguration) {
+function updateTsConfig(tree: Tree, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
 
   const projectRoot = project.root;
 
@@ -483,19 +483,21 @@ function updateTsConfig(tree: Tree, project: ProjectConfiguration) {
     }
   }
 
-  if (tree.exists(join(projectRoot, 'tsconfig.app.json'))) {
-    const tsConfigApp = JSON.parse(tree.read(join(projectRoot, 'tsconfig.app.json'), 'utf-8'));
-    addAngularLocalizeType(tsConfigApp);
-  }
+  if (options.i18n) {
+    if (tree.exists(join(projectRoot, 'tsconfig.app.json'))) {
+      const tsConfigApp = JSON.parse(tree.read(join(projectRoot, 'tsconfig.app.json'), 'utf-8'));
+      addAngularLocalizeType(tsConfigApp);
+    }
 
-  if (tree.exists(join(projectRoot, 'tsconfig.editor.json'))) {
-    const tsConfigApp = JSON.parse(tree.read(join(projectRoot, 'tsconfig.editor.json'), 'utf-8'));
-    addAngularLocalizeType(tsConfigApp);
-  }
+    if (tree.exists(join(projectRoot, 'tsconfig.editor.json'))) {
+      const tsConfigApp = JSON.parse(tree.read(join(projectRoot, 'tsconfig.editor.json'), 'utf-8'));
+      addAngularLocalizeType(tsConfigApp);
+    }
 
-  if (tree.exists(join(projectRoot, 'tsconfig.spec.json'))) {
-    const tsConfigApp = JSON.parse(tree.read(join(projectRoot, 'tsconfig.spec.json'), 'utf-8'));
-    addAngularLocalizeType(tsConfigApp);
+    if (tree.exists(join(projectRoot, 'tsconfig.spec.json'))) {
+      const tsConfigApp = JSON.parse(tree.read(join(projectRoot, 'tsconfig.spec.json'), 'utf-8'));
+      addAngularLocalizeType(tsConfigApp);
+    }
   }
 
 }
@@ -633,7 +635,7 @@ export async function initApplicationGenerator(
       updateProjectTargets(project, options);
       updateTags(project, options);
       updateGitIgnore(project, tree, options);
-      updateTsConfig(tree, project);
+      updateTsConfig(tree, project, options);
       coerceEnvironmentFiles(
         tree,
         {
