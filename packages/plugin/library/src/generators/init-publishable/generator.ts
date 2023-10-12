@@ -51,7 +51,7 @@ function setGeneralTargetDefaults(tree: Tree) {
   );
   CoerceTargetDefaultsOutput(nxJson, 'readme', '{projectRoot}/README.md');
 
-  CoerceNxJsonCacheableOperation(nxJson, 'update-dependencies', 'update-package-group', 'readme', 'fix-dependencies');
+  CoerceNxJsonCacheableOperation(nxJson, 'readme');
 
   updateNxJson(tree, nxJson);
 
