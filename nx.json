@@ -16,8 +16,6 @@
           "swagger-generate",
           "generate-package-json",
           "index-export",
-          "update-dependencies",
-          "update-package-group",
           "check-version",
           "check-ng-package",
           "generate-open-api",
@@ -28,7 +26,6 @@
           "extract-i18n",
           "expose-as-schematic",
           "localazy-download",
-          "fix-dependencies",
           "build-storybook",
           "copy-open-api-sdk",
           "copy-client-sdk"
