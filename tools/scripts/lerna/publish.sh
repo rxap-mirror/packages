@@ -4,6 +4,21 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
+if [[ -f "./dist/publish-mode.txt"  ]]; then
+  rm ./dist/publish-mode.txt || true
+fi
+
+for arg in "$@"; do
+  if [[ $arg == "from-package" ]]; then
+    echo "Script was called with from-package"
+    echo "from-package" > ./dist/publish-mode.txt
+  fi
+  if [[ $arg == "from-git" ]]; then
+    echo "Script was called with from-package"
+    echo "from-git" > ./dist/publish-mode.txt
+  fi
+done
+
 GIT_BRANCH=${GIT_BRANCH:-$(git branch --show-current)}
 GIT_DEFAULT_BRANCH=${GIT_DEFAULT_BRANCH:-$(git remote show origin | grep 'HEAD' | cut -d':' -f2 | sed -e 's/^ *//g' -e 's/ *$//g')}
 

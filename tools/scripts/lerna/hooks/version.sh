@@ -31,19 +31,33 @@ if [[ "$changed_projects" != "$cached_changed_projects" ]]; then
   exit 1
 fi
 
-echo -e "${BLUE}Run the update-dependencies and update-package-group targets${NC}"
-yarn nx run-many \
-  --projects="${changed_projects}" \
-  --parallel 8 \
-  --target="update-dependencies,update-package-group"
+PUBLISH_MODE="auto"
 
-echo -e "${BLUE}Run the workspace:readme${NC}"
-yarn nx run workspace:readme
+if [[ -f "./dist/publish-mode.txt"  ]]; then
+  PUBLISH_MODE=$(cat "./dist/publish-mode.txt")
+fi
 
-echo -e "${BLUE}ensure the yarn workspace is updated and the lock file is updated${NC}"
-yarn
+if [[ "$PUBLISH_MODE" == "auto" ]]; then
 
-echo -e "${BLUE}add changes to git${NC}"
-git add .
+  echo -e "${BLUE}Run the update-dependencies and update-package-group targets${NC}"
+  yarn nx run-many \
+    --projects="${changed_projects}" \
+    --parallel 8 \
+    --target="update-dependencies,update-package-group"
+
+  echo -e "${BLUE}Run the workspace:readme${NC}"
+  yarn nx run workspace:readme
+
+  echo -e "${BLUE}ensure the yarn workspace is updated and the lock file is updated${NC}"
+  yarn
+
+  echo -e "${BLUE}add changes to git${NC}"
+  git add .
+
+else
+
+  echo -e "${YELLOW}Publish mode is '${PUBLISH_MODE}'. Skip the update-{dependencies,package-group} target${NC}"
+
+fi
 
 echo -e "${GREEN}DONE! version.sh${NC}"

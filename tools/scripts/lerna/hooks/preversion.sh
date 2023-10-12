@@ -1,10 +1,5 @@
 #!/bin/bash
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
-
 echo -e "${BLUE}Running preversion.sh${NC}"
 
 # This script will exit on the first error
@@ -15,6 +10,7 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 cd "$BASE_DIR" || exit 1
 
 source "${BASE_DIR}/tools/scripts/lerna/get-changed-nx-projects.sh"
+source "${BASE_DIR}/tools/scripts/colors.sh"
 changed_projects=$(getChangedNxProjects)
 
 # Convert commas to space
@@ -37,17 +33,34 @@ if [[ "$YES" != "true" ]]; then
 
 fi
 
-echo "${changed_projects}" >"${BASE_DIR}/dist/changed-projects.txt"
+echo "${changed_projects}" > "${BASE_DIR}/dist/changed-projects.txt"
 
-echo -e "${BLUE}Run the fix-dependencies target${NC}"
-yarn nx run-many \
-  --projects="$(bash tools/scripts/lerna/get-changed-nx-projects.sh)" \
-  --parallel 8 \
-  --target="fix-dependencies"
+PUBLISH_MODE="auto"
+
+if [[ -f "./dist/publish-mode.txt"  ]]; then
+  PUBLISH_MODE=$(cat "./dist/publish-mode.txt")
+fi
+
+if [[ "$PUBLISH_MODE" == "auto" ]]; then
+
+  echo -e "${BLUE}Run the fix-dependencies target${NC}"
+  yarn nx run-many \
+    --projects="${changed_projects}" \
+    --parallel 8 \
+    --target="fix-dependencies"
+
+  echo -e "${BLUE}add changes to git${NC}"
+  git add .
+
+else
+
+  echo -e "${YELLOW}Publish mode is '${PUBLISH_MODE}'. Skip the fix-dependencies target${NC}"
+
+fi
 
 echo -e "${BLUE}Run build, test and lint targets${NC}"
 yarn nx run-many \
-  --projects="$(bash tools/scripts/lerna/get-changed-nx-projects.sh)" \
+  --projects="${changed_projects}" \
   --target="build,test,lint"
 
 echo -e "${GREEN}DONE! preversion.sh${NC}"

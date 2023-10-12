@@ -1,4 +1,6 @@
-function getChangedNxProjects() {
+#!/usr/bin/env bash
+
+getChangedNxProjects() {
 
   # Get the list of changed projects using lerna changed command
   changed_projects=$(yarn lerna changed --json | jq -r '.[] | .location')
