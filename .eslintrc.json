@@ -165,7 +165,8 @@
                 "sourceTag": "angular",
                 "bannedExternalImports": [
                   "xmldom",
-                  "@nestjs/common"
+                  "@nestjs/common",
+                  "@angular/localize/init"
                 ]
               },
               {

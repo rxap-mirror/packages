@@ -37,7 +37,7 @@ import {
 import { ExtendedModule } from '@angular/flex-layout/extended';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexModule } from '@angular/flex-layout/flex';
-import '@angular/localize/init';
+declare const $localize: any;
 
 @Component({
   selector: 'rxap-form-controls',

@@ -35,6 +35,7 @@ import {
 import { map } from 'rxjs/operators';
 import { CreateFilterFormProvider } from './create-filter-form-provider';
 import { TableSelectWindowComponent } from './table-select-window/table-select-window.component';
+declare const $localize: any;
 
 export interface SelectColumn {
   label: string;

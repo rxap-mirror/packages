@@ -1,4 +1,4 @@
-import { $localize } from '@angular/localize/init';
+declare const $localize: any;
 
 const MINUTE = 60;
 const HOUR = MINUTE * 60;

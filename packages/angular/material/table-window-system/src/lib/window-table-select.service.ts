@@ -29,7 +29,6 @@ import {
 import { BaseDataSource } from '@rxap/data-source';
 import { TableDataSource } from '@rxap/data-source/table';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { LocalizeFn } from '@angular/localize/init';
 
 export interface WindowTableSelectOptions<RowData> {
   title?: string;
@@ -40,7 +39,7 @@ export interface WindowTableSelectOptions<RowData> {
   injector: Injector;
 }
 
-declare const $localize: LocalizeFn;
+declare const $localize: any;
 
 @Injectable({ providedIn: 'root' })
 export class WindowTableSelectService {
