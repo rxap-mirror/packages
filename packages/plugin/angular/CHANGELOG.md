@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.55](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.54...@rxap/plugin-angular@16.1.0-dev.55) (2023-10-12)
+
+### Bug Fixes
+
+- ensure angular localize types are imported ([0d88bbf](https://gitlab.com/rxap/packages/commit/0d88bbf2bb3ae3f576277de47c9bb1cf08cad95f))
+
 # [16.1.0-dev.54](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.53...@rxap/plugin-angular@16.1.0-dev.54) (2023-10-12)
 
 ### Bug Fixes
