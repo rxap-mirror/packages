@@ -20,7 +20,7 @@ export function AddProviderToArray(
 
     if (provideProperty instanceof PropertyAssignment) {
 
-      return provideProperty.getInitializer()?.getFullText().trim() === po.provide;
+      return provideProperty.getInitializer()?.getText().trim() === po.provide;
 
     }
     return false;
@@ -32,12 +32,12 @@ export function AddProviderToArray(
   if (typeof providerObject === 'string') {
 
     const index = providerArray.getElements().findIndex(element => {
-      if (element.getFullText().trim() === providerObject) {
+      if (element.getText().trim() === providerObject) {
         return true;
       }
       const match = providerObject.match(/^[a-zA-Z0-9]+?\(/);
       if (match) {
-        return element.getFullText().trim().startsWith(match[0]);
+        return element.getText().trim().startsWith(match[0]);
       }
       return false;
     });

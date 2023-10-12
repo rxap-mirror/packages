@@ -58,7 +58,7 @@ export function AddToGlobalHealthEndpoint(
     },
   ]);
 
-  const statement = methodDeclaration.getStatements().find(e => e.getFullText().match(/return this\.health\.check/));
+  const statement = methodDeclaration.getStatements().find(e => e.getText().match(/return this\.health\.check/));
 
   const array = statement?.getChildAtIndex(1)?.getChildAtIndex(2)?.getFirstChild();
 

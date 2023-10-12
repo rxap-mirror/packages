@@ -16,7 +16,7 @@ export function AddComponentImport(sourceFile: SourceFile, namedImport: string, 
 
   const importsArray = GetCoerceArrayLiteralFromObjectLiteral(ngModuleOptions, 'imports');
 
-  if (!importsArray.getElements().some(element => element.getFullText().trim() === namedImport)) {
+  if (!importsArray.getElements().some(element => element.getText().trim() === namedImport)) {
     importsArray.addElement(namedImport);
   }
 

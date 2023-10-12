@@ -33,7 +33,7 @@ export function AddToArray(
 
   if (providerArray instanceof ArrayLiteralExpression) {
 
-    let index = providerArray.getElements().findIndex(element => element.getFullText().trim() === value);
+    let index = providerArray.getElements().findIndex(element => element.getText().trim() === value);
 
     if ((
           overwrite === true || (

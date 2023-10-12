@@ -13,7 +13,7 @@ export function RemoveNestProviderToArray(
 
   if (typeof providerObject === 'string') {
 
-    const element = providerArray.getElements().find(element => element.getFullText().trim() === providerObject);
+    const element = providerArray.getElements().find(element => element.getText().trim() === providerObject);
     if (element) {
       providerArray.removeElement(element.getChildIndex());
     }
@@ -24,7 +24,7 @@ export function RemoveNestProviderToArray(
       if (element instanceof ObjectLiteralExpression) {
         const provideProperty = element.getProperty('provide');
         if (provideProperty instanceof PropertyAssignment) {
-          return provideProperty.getInitializer()?.getFullText().trim() === providerObject.provide;
+          return provideProperty.getInitializer()?.getText().trim() === providerObject.provide;
         }
       }
       return false;

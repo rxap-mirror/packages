@@ -53,7 +53,7 @@ export function CoerceTableActionProviderRule(options: CoerceTableActionProvider
       if (provideProperty instanceof
         PropertyAssignment) {
 
-        return provideProperty.getInitializer()?.getFullText().trim() ===
+        return provideProperty.getInitializer()?.getText().trim() ===
           po.useClass;
 
       }

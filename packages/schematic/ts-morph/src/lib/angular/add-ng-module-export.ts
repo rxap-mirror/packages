@@ -17,7 +17,7 @@ export function AddNgModuleExport(sourceFile: SourceFile, namedImport: string, m
 
   const importsArray = GetCoerceArrayLiteralFromObjectLiteral(ngModuleOptions, 'exports');
 
-  if (!importsArray.getElements().some(element => element.getFullText().trim() === namedImport)) {
+  if (!importsArray.getElements().some(element => element.getText().trim() === namedImport)) {
     importsArray.addElement(namedImport);
   }
 

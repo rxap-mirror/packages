@@ -25,7 +25,7 @@ export function AddNestModuleImport(
 
   const importsArray = GetCoerceArrayLiteralFromObjectLiteral(metadata, 'imports');
 
-  const hasModule = importsArray.getElements().find(element => element.getFullText().trim().startsWith(moduleName));
+  const hasModule = importsArray.getElements().find(element => element.getText().trim().startsWith(moduleName));
 
   if (!hasModule || overwrite) {
 

@@ -39,7 +39,7 @@ describe('@rxap/schematics-ts-morph', () => {
         const metadata = GetNestModuleMetadata(sourceFile);
 
         expect(metadata.getProperties()).toHaveLength(1);
-        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getFullText().trim())
+        expect((metadata.getProperties()[0] as PropertyAssignment).getInitializer()?.getText().trim())
           .toEqual('[TestController]');
 
 

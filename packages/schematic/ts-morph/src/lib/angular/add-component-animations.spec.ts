@@ -37,7 +37,7 @@ describe('@rxap/schematics-utilities', () => {
       expect(animationsInitializer).toBeInstanceOf(ArrayLiteralExpression);
       expect(animationsInitializer.getElements()).toHaveLength(1);
       const rowAnimationsElement = animationsInitializer.getElements()[0];
-      expect(rowAnimationsElement.getFullText()).toBe('RowAnimations');
+      expect(rowAnimationsElement.getText()).toBe('RowAnimations');
       expect(sourceFile.getImportDeclarations()).toHaveLength(1);
       expect(sourceFile.getImportDeclarations()[0].getModuleSpecifierValue()).toBe('@rxap/material-table-system');
 
@@ -65,7 +65,7 @@ describe('@rxap/schematics-utilities', () => {
       expect(animationsInitializer).toBeInstanceOf(ArrayLiteralExpression);
       expect(animationsInitializer.getElements()).toHaveLength(2);
       const rowAnimationsElement = animationsInitializer.getElements()[1];
-      expect(rowAnimationsElement.getFullText().trim()).toBe('RowAnimations');
+      expect(rowAnimationsElement.getText().trim()).toBe('RowAnimations');
       expect(sourceFile.getImportDeclarations()).toHaveLength(1);
       expect(sourceFile.getImportDeclarations()[0].getModuleSpecifierValue()).toBe('@rxap/material-table-system');
 
@@ -93,7 +93,7 @@ describe('@rxap/schematics-utilities', () => {
       expect(animationsInitializer).toBeInstanceOf(ArrayLiteralExpression);
       expect(animationsInitializer.getElements()).toHaveLength(1);
       const rowAnimationsElement = animationsInitializer.getElements()[0];
-      expect(rowAnimationsElement.getFullText().trim()).toBe('RowAnimations');
+      expect(rowAnimationsElement.getText().trim()).toBe('RowAnimations');
       expect(sourceFile.getImportDeclarations()).toHaveLength(1);
       expect(sourceFile.getImportDeclarations()[0].getModuleSpecifierValue()).toBe('@rxap/material-table-system');
 

@@ -15,7 +15,7 @@ export function CoerceNestProviderToArray(
 
   if (typeof providerObject === 'string') {
 
-    if (!providerArray.getElements().some(element => element.getFullText().trim() === providerObject)) {
+    if (!providerArray.getElements().some(element => element.getText().trim() === providerObject)) {
       providerArray.addElement(providerObject);
     }
 
@@ -25,7 +25,7 @@ export function CoerceNestProviderToArray(
       if (element instanceof ObjectLiteralExpression) {
         const provideProperty = element.getProperty('provide');
         if (provideProperty instanceof PropertyAssignment) {
-          return provideProperty.getInitializer()?.getFullText().trim() === providerObject.provide;
+          return provideProperty.getInitializer()?.getText().trim() === providerObject.provide;
         }
       }
       return false;

@@ -14,7 +14,7 @@ export function AddComponentAnimations(sourceFile: SourceFile, namedImport: stri
 
   const importsArray = GetCoerceArrayLiteralFromObjectLiteral(componentOptions, 'animations');
 
-  if (!importsArray.getElements().some(element => element.getFullText().trim() === namedImport)) {
+  if (!importsArray.getElements().some(element => element.getText().trim() === namedImport)) {
     importsArray.addElement(namedImport);
   }
 

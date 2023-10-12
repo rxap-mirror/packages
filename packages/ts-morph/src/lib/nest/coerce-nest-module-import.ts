@@ -44,7 +44,7 @@ export function CoerceNestModuleImport(
 
   const importsArray = GetCoerceArrayLiteralFromObjectLiteral(metadata, 'imports');
 
-  const index = importsArray.getElements().findIndex(element => element.getFullText().trim().startsWith(moduleName));
+  const index = importsArray.getElements().findIndex(element => element.getText().trim().startsWith(moduleName));
 
   if (index === -1 || overwrite) {
 
