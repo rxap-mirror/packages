@@ -3,7 +3,7 @@
     "default": {
       "runner": "nx-cloud",
       "options": {
-        "parallel": 30,
+        "parallel": 32,
         "cacheableOperations": [
           "build",
           "lint",
