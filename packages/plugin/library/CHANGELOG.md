@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.40](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.39...@rxap/plugin-library@16.0.0-dev.40) (2023-10-12)
+
+### Bug Fixes
+
+- remove package json update targets from cacheable operations ([6dd372d](https://gitlab.com/rxap/packages/commit/6dd372d0ed9a182d5b99d413a35c1dc29513fc77))
+
 # [16.0.0-dev.39](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.38...@rxap/plugin-library@16.0.0-dev.39) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/plugin-library
