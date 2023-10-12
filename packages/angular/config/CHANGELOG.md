@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/config@16.0.0-dev.20...@rxap/config@16.0.0-dev.21) (2023-10-12)
+
+### Bug Fixes
+
+- auto refresh application on config loading error ([c2e8490](https://gitlab.com/rxap/packages/commit/c2e8490a7f95a56c554dd5a306ea69e98e790a62))
+
 # [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/config@16.0.0-dev.19...@rxap/config@16.0.0-dev.20) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/config

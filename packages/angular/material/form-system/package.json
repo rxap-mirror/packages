@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.19",
+  "version": "16.0.0-dev.20",
   "name": "@rxap/material-form-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -11,7 +11,6 @@
     "@angular/core": "^16.1.4",
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/forms": "^16.1.4",
-    "@angular/localize": "^16.1.4",
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
     "@rxap/form-system": "^16.0.0-dev.20",

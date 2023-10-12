@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/dialog@16.0.0-dev.17...@rxap/dialog@16.0.0-dev.18) (2023-10-12)
+
+### Bug Fixes
+
+- ensure $localize is not directly imported ([2c8880e](https://gitlab.com/rxap/packages/commit/2c8880e41bc17b8c72354d89e605756806069e8e))
+
 # [16.0.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/dialog@16.0.0-dev.4...@rxap/dialog@16.0.0-dev.17) (2023-10-11)
 
 ### Bug Fixes
