@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0-dev.15",
+  "version": "0.1.0-dev.16",
   "name": "@rxap/schematic-nestjs",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,7 +9,7 @@
   "peerDependencies": {
     "@angular-devkit/core": "^16.1.4",
     "@angular-devkit/schematics": "^16.1.4",
-    "@rxap/schematics-ts-morph": "^16.0.0-dev.28",
+    "@rxap/schematics-ts-morph": "^16.0.0-dev.29",
     "@rxap/schematics-utilities": "^16.0.0-dev.21",
     "@rxap/utilities": "^16.0.0-dev.23",
     "ts-morph": "^18.0.0",
@@ -44,7 +44,7 @@
       },
       {
         "package": "@rxap/schematics-ts-morph",
-        "version": "16.0.0-dev.28"
+        "version": "16.0.0-dev.29"
       },
       {
         "package": "@rxap/schematics-utilities",

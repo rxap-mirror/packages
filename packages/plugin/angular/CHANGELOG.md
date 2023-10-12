@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.57](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.56...@rxap/plugin-angular@16.1.0-dev.57) (2023-10-12)
+
+### Bug Fixes
+
+- update the tsconfig file if changed ([b64b7e5](https://gitlab.com/rxap/packages/commit/b64b7e5e9fd365cc3b6bd89000729be4cd1e8c2c))
+
 # [16.1.0-dev.56](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.55...@rxap/plugin-angular@16.1.0-dev.56) (2023-10-12)
 
 ### Bug Fixes
