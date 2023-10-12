@@ -39,6 +39,7 @@ import {
   CoerceTargetDefaultsDependency,
   GetProjectPrefix,
   Strategy,
+  UpdateJsonFile,
 } from '@rxap/workspace-utilities';
 import {
   join,
@@ -208,7 +209,7 @@ function updateProjectTargets(
       if (compareBudget(budget.maximumWarning, defaultWarning) === -1) {
         budget.maximumWarning = defaultWarning;
       }
-      if (compareBudget(budget.maximumError, defaultError) === 1) {
+      if (compareBudget(budget.maximumError, defaultError) === -1) {
         budget.maximumError = defaultError;
       }
     }
@@ -513,32 +514,19 @@ function coerceLocalazyConfigFile(tree: Tree, project: ProjectConfiguration) {
   }
 }
 
-function updateTsConfig(tree: Tree, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
+async function updateTsConfig(tree: Tree, project: ProjectConfiguration, options: InitApplicationGeneratorSchema) {
 
   const projectRoot = project.root;
 
-  function addAngularLocalizeType(tsConfig: any) {
-    tsConfig.compilerOptions ??= {};
-    tsConfig.compilerOptions.types ??= [];
-    if (!tsConfig.compilerOptions.types.includes('@angular/localize')) {
-      tsConfig.compilerOptions.types.push('@angular/localize');
-    }
-  }
-
   if (options.i18n) {
-    if (tree.exists(join(projectRoot, 'tsconfig.app.json'))) {
-      const tsConfigApp = JSON.parse(tree.read(join(projectRoot, 'tsconfig.app.json'), 'utf-8'));
-      addAngularLocalizeType(tsConfigApp);
-    }
-
-    if (tree.exists(join(projectRoot, 'tsconfig.editor.json'))) {
-      const tsConfigApp = JSON.parse(tree.read(join(projectRoot, 'tsconfig.editor.json'), 'utf-8'));
-      addAngularLocalizeType(tsConfigApp);
-    }
-
-    if (tree.exists(join(projectRoot, 'tsconfig.spec.json'))) {
-      const tsConfigApp = JSON.parse(tree.read(join(projectRoot, 'tsconfig.spec.json'), 'utf-8'));
-      addAngularLocalizeType(tsConfigApp);
+    for (const tsConfigName of ['app', 'editor', 'spec']) {
+      await UpdateJsonFile(tree, tsConfig => {
+        tsConfig.compilerOptions ??= {};
+        tsConfig.compilerOptions.types ??= [];
+        if (!tsConfig.compilerOptions.types.includes('@angular/localize')) {
+          tsConfig.compilerOptions.types.push('@angular/localize');
+        }
+      }, join(projectRoot, `tsconfig.${tsConfigName}.json`));
     }
   }
 
@@ -677,7 +665,7 @@ export async function initApplicationGenerator(
       updateProjectTargets(project, options);
       updateTags(project, options);
       updateGitIgnore(project, tree, options);
-      updateTsConfig(tree, project, options);
+      await updateTsConfig(tree, project, options);
       coerceEnvironmentFiles(
         tree,
         {
