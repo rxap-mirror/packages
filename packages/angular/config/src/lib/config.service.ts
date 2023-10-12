@@ -272,12 +272,19 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
     ul.style.padding = '32px';
     ul.style.zIndex = '99999999';
     ul.style.color = 'black';
-    const li = document.createElement('li');
-    li.innerText = message;
-    ul.appendChild(li);
+    const messageLi = document.createElement('li');
+    messageLi.innerText = message;
+    ul.appendChild(messageLi);
+    const refreshHintLi = document.createElement('li');
+    refreshHintLi.innerText = 'Please refresh the page to try again.';
+    ul.appendChild(refreshHintLi);
+    const autoRefreshHintLi = document.createElement('li');
+    autoRefreshHintLi.innerText = 'The page will refresh automatically in 30 seconds.';
+    ul.appendChild(autoRefreshHintLi);
     if (!hasUl) {
       document.body.appendChild(ul);
     }
+    setTimeout(() => location.reload(), 30000);
   }
 
   public setLocalConfig(config: Config): void {
