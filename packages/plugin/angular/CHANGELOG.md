@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.56](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.55...@rxap/plugin-angular@16.1.0-dev.56) (2023-10-12)
+
+### Bug Fixes
+
+- only overwrite budget and languages if overwrite flag is set ([3b0a4d5](https://gitlab.com/rxap/packages/commit/3b0a4d5e955f95a7aa8875b905153723a4ffa505))
+- use correct package name ([4c65339](https://gitlab.com/rxap/packages/commit/4c6533945cc90a9e20e0b31b14fe936b5dd60089))
+
 # [16.1.0-dev.55](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.55...@rxap/plugin-angular@16.1.0-dev.55) (2023-10-12)
 
 ### Bug Fixes
