@@ -592,7 +592,7 @@ export async function initApplicationGenerator(
 
   if (options.i18n) {
     await AddPackageJsonDependency(tree, '@angular/localize', 'latest', { soft: true });
-    await AddPackageJsonDependency(tree, '@rxap/localize', 'latest', { soft: true });
+    await AddPackageJsonDependency(tree, '@rxap/ngx-localize', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/ngx-user', 'latest', { soft: true });
   }
 
