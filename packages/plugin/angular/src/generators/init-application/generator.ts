@@ -24,6 +24,7 @@ import {
   classify,
   dasherize,
   DeleteEmptyProperties,
+  unique,
 } from '@rxap/utilities';
 import {
   TsMorphAngularProjectTransform,
@@ -99,7 +100,14 @@ function updateProjectTargets(
       if (options.languages.length === 0) {
         options.languages.push('en');
       }
-      project.targets['build'].configurations.production.localize = options.languages;
+      if (options.overwrite) {
+        project.targets['build'].configurations.production.localize = options.languages;
+      } else {
+        project.targets['build'].configurations.production.localize ??= [];
+        project.targets['build'].configurations.production.localize.push(...options.languages);
+        project.targets['build'].configurations.production.localize
+          = project.targets['build'].configurations.production.localize.filter(unique());
+      }
       project.i18n ??= {};
       project.i18n.sourceLocale ??= 'en-US';
       project.i18n.locales ??= {};
@@ -184,15 +192,49 @@ function updateProjectTargets(
   project.targets['build'].configurations.production ??= {};
   project.targets['build'].configurations.production.budgets ??= [];
   const budget = project.targets['build'].configurations.production.budgets.find(b => b.type === 'initial');
+  const defaultWarning = '2mb';
+  const defaultError = '5mb';
   if (!budget) {
     project.targets['build'].configurations.production.budgets.push({
       type: 'initial',
-      maximumWarning: '2mb',
-      maximumError: '5mb',
+      maximumWarning: defaultWarning,
+      maximumError: defaultError,
     });
   } else {
-    budget.maximumWarning = '2mb';
-    budget.maximumError = '5mb';
+    if (options.overwrite) {
+      budget.maximumWarning = defaultWarning;
+      budget.maximumError = defaultError;
+    } else {
+      if (compareBudget(budget.maximumWarning, defaultWarning) === -1) {
+        budget.maximumWarning = defaultWarning;
+      }
+      if (compareBudget(budget.maximumError, defaultError) === 1) {
+        budget.maximumError = defaultError;
+      }
+    }
+  }
+}
+
+/**
+ * Compare two budget strings
+ *
+ * @param a
+ * @param b
+ * @returns -1 if a < b, 0 if a === b, 1 if a > b
+ */
+function compareBudget(a: string, b: string): -1 | 0 | 1 {
+  const aUnit = a.slice(-2);
+  const bUnit = b.slice(-2);
+  const aNumber = Number(a.slice(0, -2));
+  const bNumber = Number(b.slice(0, -2));
+  if (aUnit === bUnit) {
+    return aNumber < bNumber ? -1 : aNumber > bNumber ? 1 : 0;
+  }
+  if (aUnit === 'kb') {
+    return bUnit === 'mb' ? -1 : 1;
+  }
+  if (aUnit === 'mb') {
+    return bUnit === 'kb' ? 1 : -1;
   }
 }
 
