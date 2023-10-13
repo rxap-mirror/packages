@@ -18,7 +18,7 @@ renovate/*)
       yarn --immutable --immutable-cache
     else
       echo "WARNING: No node_modules or .yarn/cache directory found."
-      echo "RUN: yarn"
+      echo "RUN: yarn --immutable"
       yarn --immutable
     fi
   fi
