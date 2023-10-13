@@ -1,21 +1,3 @@
-.setup: &setup |
-  apk add --no-cache git g++ make python3 curl git-lfs
-  corepack enable
-  corepack prepare yarn@stable --activate
-  if [[ $CI_COMMIT_REF_NAME =~ ^renovate//* ]]; then
-    yarn --refresh-lockfile
-  else
-    if [[ -d node_modules ]] && [[ -d .yarn/cache ]]; them
-      yarn --immutable --immutable-cache
-    else
-     echo "WARNING: No node_modules or .yarn/cache directory found."
-     yarn
-    fi
-  fi
-
-.dte-coordinator-setup: &dte-coordinator-setup |
-  yarn exec nx-cloud start-ci-run --stop-agents-after="${STOP_TARGET:-${TARGET}}"
-
 .nx-base:
   image: node:${NODE_VERSION}-alpine
   needs:
@@ -31,7 +13,7 @@
       - .yarn/cache
     policy: pull
   before_script:
-    - *setup
+    - ./tools/scripts/install-dependencies.sh
 
 # Creating template for DTE agents
 .dte-agent:
@@ -56,5 +38,5 @@
 .run-many-dte:
   extends: .run-many
   before_script:
-    - *setup
-    - *dte-coordinator-setup
+    - ./tools/scripts/install-dependencies.sh
+    - yarn exec nx-cloud start-ci-run --stop-agents-after="${STOP_TARGET:-${TARGET}}"
