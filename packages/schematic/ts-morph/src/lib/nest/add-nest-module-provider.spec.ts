@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   Project,
   PropertyAssignment,
@@ -14,7 +15,7 @@ describe('@rxap/schematics-ts-morph', () => {
 
       it('should add module provider', () => {
 
-        const project = new Project({ useInMemoryFileSystem: true });
+        const project = CreateProject();
 
         const sourceFile = project.createSourceFile('module.ts');
 

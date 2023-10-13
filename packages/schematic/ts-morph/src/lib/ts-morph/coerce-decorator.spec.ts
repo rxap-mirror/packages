@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   DecoratableNode,
   Project,
@@ -9,7 +10,7 @@ describe('CoerceDecorator', () => {
   let decoratableNode: DecoratableNode;
 
   beforeEach(() => {
-    const project = new Project({ useInMemoryFileSystem: true });
+    const project = CreateProject();
     const sourceFile = project.createSourceFile('test.ts', `export class MyClass {}`);
     decoratableNode = sourceFile.getClassOrThrow('MyClass');
   });

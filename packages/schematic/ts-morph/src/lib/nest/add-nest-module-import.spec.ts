@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   Project,
   PropertyAssignment,
@@ -14,7 +15,7 @@ describe('@rxap/schematics-ts-morph', () => {
 
       it('should add module import', () => {
 
-        const project = new Project({ useInMemoryFileSystem: true });
+        const project = CreateProject();
 
         const sourceFile = project.createSourceFile('module.ts');
 
@@ -47,7 +48,7 @@ describe('@rxap/schematics-ts-morph', () => {
 
       it('should add module import with writer function', () => {
 
-        const project = new Project({ useInMemoryFileSystem: true });
+        const project = CreateProject();
 
         const sourceFile = project.createSourceFile('module.ts');
 
@@ -83,7 +84,7 @@ describe('@rxap/schematics-ts-morph', () => {
 
       it('should not overwrite module import', () => {
 
-        const project = new Project({ useInMemoryFileSystem: true });
+        const project = CreateProject();
 
         const sourceFile = project.createSourceFile('module.ts');
 
@@ -115,7 +116,7 @@ describe('@rxap/schematics-ts-morph', () => {
 
       it('should overwrite module import', () => {
 
-        const project = new Project({ useInMemoryFileSystem: true });
+        const project = CreateProject();
 
         const sourceFile = project.createSourceFile('module.ts');
 
@@ -147,7 +148,7 @@ describe('@rxap/schematics-ts-morph', () => {
 
       it('should not overwrite module import with writer function', () => {
 
-        const project = new Project({ useInMemoryFileSystem: true });
+        const project = CreateProject();
 
         const sourceFile = project.createSourceFile('module.ts');
 
@@ -187,7 +188,7 @@ describe('@rxap/schematics-ts-morph', () => {
 
       it('should not overwrite module import with writer function', () => {
 
-        const project = new Project({ useInMemoryFileSystem: true });
+        const project = CreateProject();
 
         const sourceFile = project.createSourceFile('module.ts');
 

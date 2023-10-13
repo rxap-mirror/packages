@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   Project,
   SourceFile,
@@ -9,7 +10,7 @@ describe('CoerceImports', () => {
   let sourceFile: SourceFile;
 
   beforeEach(() => {
-    const project = new Project({ useInMemoryFileSystem: true });
+    const project = CreateProject();
     sourceFile = project.createSourceFile('test.ts', `import { Component } from '@angular/core';`);
   });
 

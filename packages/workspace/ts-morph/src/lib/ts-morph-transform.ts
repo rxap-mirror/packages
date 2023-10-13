@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import { deepMerge } from '@rxap/utilities';
 import {
   BuildAngularBasePath,
@@ -62,13 +63,7 @@ export function TsMorphTransform(
       [ filePathFilter.replace(/\?$/, '') ] :
     undefined;
 
-  const project = new Project(deepMerge({
-    manipulationSettings: {
-      indentationText: IndentationText.TwoSpaces,
-      quoteKind: QuoteKind.Single,
-    },
-    useInMemoryFileSystem: true,
-  }, projectOptions));
+  const project = CreateProject(projectOptions);
 
   if (!options.replace) {
     AddDir(tree, sourceRoot, project, filePath ?

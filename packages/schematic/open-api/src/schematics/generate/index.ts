@@ -8,6 +8,7 @@ import {
   dasherize,
   GetProjectSourceRoot,
 } from '@rxap/schematics-utilities';
+import { CreateProject } from '@rxap/ts-morph';
 import { OpenAPIV3 } from 'openapi-types';
 import { join } from 'path';
 import {
@@ -62,14 +63,7 @@ export default function (options: OpenApiSchema): Rule {
     console.log('resolve all schema refs');
     resolveRef(openapi, openapi.paths);
 
-    const project = new Project({
-      manipulationSettings: {
-        indentationText: IndentationText.TwoSpaces,
-        quoteKind: QuoteKind.Single,
-        useTrailingCommas: true,
-      },
-      useInMemoryFileSystem: true,
-    });
+    const project = CreateProject();
 
     if (options.inline !== false) {
       options.inline = true;

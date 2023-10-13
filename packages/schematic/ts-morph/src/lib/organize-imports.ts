@@ -2,6 +2,7 @@ import {
   Rule,
   Tree,
 } from '@angular-devkit/schematics';
+import { CreateProject } from '@rxap/ts-morph';
 import {
   IndentationText,
   Project,
@@ -10,14 +11,7 @@ import {
 
 export function OrganizeImports(): Rule {
   return (tree: Tree) => {
-    const project = new Project({
-      useInMemoryFileSystem: true,
-      manipulationSettings: {
-        indentationText: IndentationText.TwoSpaces,
-        quoteKind: QuoteKind.Single,
-        useTrailingCommas: true,
-      },
-    });
+    const project = CreateProject();
     console.debug('organize imports for ts files');
 
     for (const action of tree.actions.slice()) {

@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   ObjectLiteralExpression,
   Project,
@@ -11,7 +12,7 @@ describe('Helpers', () => {
     let project: Project;
 
     beforeEach(() => {
-      project = new Project();
+      project = CreateProject();
     });
 
     it('should add new validator property assignment if not exists', () => {

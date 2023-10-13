@@ -88,6 +88,7 @@ export class TypescriptInterfaceGenerator {
         manipulationSettings: {
           indentationText: IndentationText.TwoSpaces,
           quoteKind: QuoteKind.Single,
+          useTrailingCommas: true,
         },
       });
   }

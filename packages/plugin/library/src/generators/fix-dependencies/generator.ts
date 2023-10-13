@@ -17,6 +17,7 @@ import {
 } from '@rxap/generator-utilities';
 import { GetLatestPackageVersion } from '@rxap/node-utilities';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
+import { CreateProject } from '@rxap/ts-morph';
 import { UpdatePackageJson } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
@@ -208,13 +209,7 @@ function fixPeerDependenciesWithTsMorphProject(
   }: ProjectPackageJson,
 ) {
 
-  const project = new Project({
-    manipulationSettings: {
-      indentationText: IndentationText.TwoSpaces,
-      quoteKind: QuoteKind.Single,
-    },
-    useInMemoryFileSystem: true,
-  });
+  const project = CreateProject();
 
   AddDir(
     tree,
@@ -291,13 +286,7 @@ function fixDevDependenciesWithTsMorphProject(
   }: ProjectPackageJson,
 ) {
 
-  const project = new Project({
-    manipulationSettings: {
-      indentationText: IndentationText.TwoSpaces,
-      quoteKind: QuoteKind.Single,
-    },
-    useInMemoryFileSystem: true,
-  });
+  const project = CreateProject();
 
   AddDir(
     tree,

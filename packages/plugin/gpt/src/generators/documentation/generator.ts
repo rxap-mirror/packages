@@ -5,6 +5,7 @@ import {
 } from '@nx/devkit';
 import { AddDir } from '@rxap/generator-ts-morph';
 import { GetProjectSourceRoot } from '@rxap/generator-utilities';
+import { CreateProject } from '@rxap/ts-morph';
 import {
   existsSync,
   readFileSync,
@@ -241,13 +242,7 @@ async function processProject(options: DocumentationGeneratorSchema, projectName
 
   const projectSourceRoot = GetProjectSourceRoot(tree, projectName);
 
-  const project = new Project({
-    manipulationSettings: {
-      indentationText: IndentationText.TwoSpaces,
-      quoteKind: QuoteKind.Single,
-    },
-    useInMemoryFileSystem: true,
-  });
+  const project = CreateProject();
 
   AddDir(tree, projectSourceRoot, project);
 

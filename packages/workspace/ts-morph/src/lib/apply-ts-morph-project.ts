@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   TreeAdapter,
   TreeLike,
@@ -75,7 +76,7 @@ export function ApplyTsMorphProject(
 
       if (tree.exists(filePath)) {
         const currentContent = treeAdapter.read(filePath)!.toString('utf-8');
-        const tmpProject = new Project();
+        const tmpProject = CreateProject();
         const newContent = sourceFile.getFullText();
         if (!areSame(sourceFile, tmpProject.createSourceFile('/tmp.ts', currentContent))) {
           treeAdapter.overwrite(filePath, newContent);

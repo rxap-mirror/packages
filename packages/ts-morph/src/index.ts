@@ -46,6 +46,7 @@ export * from './lib/coerce-imports';
 export * from './lib/coerce-source-file';
 export * from './lib/coerce-statements';
 export * from './lib/coerce-variable-declaration';
+export * from './lib/create-project';
 export * from './lib/find-function';
 export * from './lib/get-class-decorator-arguments';
 export * from './lib/get-class';

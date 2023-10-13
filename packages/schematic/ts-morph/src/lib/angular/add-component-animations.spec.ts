@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   ArrayLiteralExpression,
   Project,
@@ -13,7 +14,7 @@ describe('@rxap/schematics-utilities', () => {
     let project: Project;
 
     beforeEach(() => {
-      project = new Project();
+      project = CreateProject();
     });
 
     it('should add a animation to a component decorator', () => {

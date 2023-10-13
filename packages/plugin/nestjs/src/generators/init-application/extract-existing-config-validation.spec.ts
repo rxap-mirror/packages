@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import { Project } from 'ts-morph';
 import { ExtractExistingConfigValidation } from './extract-existing-config-validation';
 
@@ -8,7 +9,7 @@ describe('ExtractExistingConfigValidation', () => {
   let project: Project;
 
   beforeEach(() => {
-    project = new Project({ useInMemoryFileSystem: true });
+    project = CreateProject();
   });
 
   it('should extract the existing config validation', () => {

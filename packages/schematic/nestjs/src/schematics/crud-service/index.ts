@@ -10,6 +10,7 @@ import {
   FixMissingImports,
 } from '@rxap/schematics-ts-morph';
 import { coerceArray } from '@rxap/schematics-utilities';
+import { CreateProject } from '@rxap/ts-morph';
 import { join } from 'path';
 import {
   IndentationText,
@@ -39,14 +40,7 @@ export default function (options: CrudServiceSchema): Rule {
 
     const basePath = join('libs', options.project, 'src');
 
-    const project = new Project({
-      manipulationSettings: {
-        indentationText: IndentationText.TwoSpaces,
-        quoteKind: QuoteKind.Single,
-        useTrailingCommas: true,
-      },
-      useInMemoryFileSystem: true,
-    });
+    const project = CreateProject();
 
     let generateOptions: Options;
     let camelized: string;

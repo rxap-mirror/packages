@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   IndentationText,
   Project,
@@ -11,14 +12,7 @@ describe('@rxap/schematics-open-api', () => {
 
     it('should create for each source file a library export', () => {
 
-      const project = new Project({
-        manipulationSettings: {
-          indentationText: IndentationText.TwoSpaces,
-          quoteKind: QuoteKind.Single,
-          useTrailingCommas: true,
-        },
-        useInMemoryFileSystem: true,
-      });
+      const project = CreateProject();
 
       project.createSourceFile('components/user.dto.ts');
       project.createSourceFile('components/car.dto.ts');

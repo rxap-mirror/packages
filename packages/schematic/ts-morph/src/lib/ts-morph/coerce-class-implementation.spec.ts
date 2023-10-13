@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   ClassDeclaration,
   Project,
@@ -9,7 +10,7 @@ describe('CoerceClassImplementation', () => {
   let classDeclaration: ClassDeclaration;
 
   beforeEach(() => {
-    const project = new Project({ useInMemoryFileSystem: true });
+    const project = CreateProject();
     const sourceFile = project.createSourceFile('test.ts', `export class MyClass {}`);
     classDeclaration = sourceFile.getClassOrThrow('MyClass');
   });

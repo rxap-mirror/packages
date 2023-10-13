@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   IndentationText,
   Project,
@@ -11,14 +12,7 @@ import { AddDir } from './add-dir';
  */
 export function AutoImport(basePath: string, autoImportBasePath: string = basePath): Rule {
   return tree => {
-    const project = new Project({
-      useInMemoryFileSystem: true,
-      manipulationSettings: {
-        indentationText: IndentationText.TwoSpaces,
-        quoteKind: QuoteKind.Single,
-        useTrailingCommas: true,
-      },
-    });
+    const project = CreateProject();
     AddDir(tree.getDir(basePath), project, basePath, pf => !!pf.match(/\.ts$/));
     console.debug('auto import for ts files');
     project.getSourceFiles()

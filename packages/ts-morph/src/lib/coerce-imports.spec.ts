@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   IndentationText,
   Project,
@@ -12,14 +13,7 @@ describe('CoerceImports', () => {
   let sourceFile: SourceFile;
 
   beforeEach(() => {
-    project = new Project({
-      useInMemoryFileSystem: true,
-      manipulationSettings: {
-        indentationText: IndentationText.TwoSpaces,
-        quoteKind: QuoteKind.Single,
-        useTrailingCommas: true,
-      },
-    });
+    project = CreateProject();
     sourceFile = project.createSourceFile('test.ts', '');
   });
 

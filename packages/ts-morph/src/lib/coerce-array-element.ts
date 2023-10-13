@@ -26,12 +26,17 @@ export function CoerceArrayElement(
   array: ArrayLiteralExpression,
   findExisting: (e: Expression) => boolean,
   element: string | WriterFunction,
+  insertAt?: (array: ArrayLiteralExpression) => number,
 ): Expression {
 
   for (const e of array.getElements()) {
     if (findExisting(e)) {
       return e;
     }
+  }
+
+  if (insertAt) {
+    return array.insertElement(insertAt(array), element);
   }
 
   return array.addElement(element);

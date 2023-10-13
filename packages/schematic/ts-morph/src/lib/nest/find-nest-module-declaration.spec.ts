@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   Project,
   Writers,
@@ -12,7 +13,7 @@ describe('@rxap/schematics-ts-morph', () => {
 
       it('should find declaration', () => {
 
-        const project = new Project({ useInMemoryFileSystem: true });
+        const project = CreateProject();
 
         const sourceFile = project.createSourceFile('module.ts');
 
@@ -38,7 +39,7 @@ describe('@rxap/schematics-ts-morph', () => {
 
       it('should find sourceFile in directory', () => {
 
-        const project = new Project({ useInMemoryFileSystem: true });
+        const project = CreateProject();
 
         const sourceFile0 = project.createSourceFile('my.module.ts');
 

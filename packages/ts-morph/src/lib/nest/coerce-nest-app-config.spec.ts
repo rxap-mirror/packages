@@ -1,3 +1,4 @@
+import { CreateProject } from '@rxap/ts-morph';
 import {
   IndentationText,
   Project,
@@ -10,14 +11,7 @@ describe('CoerceNestAppConfig', () => {
   let project: Project;
 
   beforeEach(() => {
-    project = new Project({
-      useInMemoryFileSystem: true,
-      manipulationSettings: {
-        indentationText: IndentationText.TwoSpaces,
-        quoteKind: QuoteKind.Single,
-        useTrailingCommas: true,
-      },
-    });
+    project = CreateProject();
   });
 
   it('should add new env validator', () => {

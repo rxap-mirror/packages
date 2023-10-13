@@ -3,6 +3,7 @@ import {
   Rule,
   Tree,
 } from '@angular-devkit/schematics';
+import { CreateProject } from '@rxap/ts-morph';
 import {
   IndentationText,
   Project,
@@ -17,14 +18,7 @@ import { join } from 'path';
  */
 export function FixMissingImports(basePath?: string): Rule {
   return (tree: Tree) => {
-    const project = new Project({
-      useInMemoryFileSystem: true,
-      manipulationSettings: {
-        indentationText: IndentationText.TwoSpaces,
-        quoteKind: QuoteKind.Single,
-        useTrailingCommas: true,
-      },
-    });
+    const project = CreateProject();
     console.debug('fix missing imports for ts files');
 
     function AddFiles(dir: DirEntry) {
