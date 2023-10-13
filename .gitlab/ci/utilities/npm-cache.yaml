@@ -7,14 +7,25 @@ setup:
     - apk add --no-cache git g++ make python3
     - corepack enable
     - corepack prepare yarn@stable --activate
-  script:
-    - yarn "$(if [[ $CI_COMMIT_REF_NAME =~ ^renovate//* ]]; then echo ''; else echo '--frozen-lockfile'; fi)"
+  script: |
+    if [[ $CI_COMMIT_REF_NAME =~ ^renovate//* ]]; then
+      yarn --refresh-lockfile
+    else
+      if [[ -d node_modules ]] && [[ -d .yarn/cache ]]; them
+        # without --immutable-cache, yarn will try to update the cache
+        yarn --immutable
+      else
+       echo "WARNING: No node_modules or .yarn/cache directory found."
+       yarn
+      fi
+    fi
   cache:
     key:
       files:
         - yarn.lock
     paths:
-      - node_modules/
+      - node_modules
+      - .yarn/cache
   rules:
     - if: '$CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+/'
       when: never

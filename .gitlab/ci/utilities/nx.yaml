@@ -2,7 +2,16 @@
   apk add --no-cache git g++ make python3 curl git-lfs
   corepack enable
   corepack prepare yarn@stable --activate
-  yarn "$(if [[ $CI_COMMIT_REF_NAME =~ ^renovate//* ]]; then echo ''; else echo '--frozen-lockfile'; fi)"
+  if [[ $CI_COMMIT_REF_NAME =~ ^renovate//* ]]; then
+    yarn --refresh-lockfile
+  else
+    if [[ -d node_modules ]] && [[ -d .yarn/cache ]]; them
+      yarn --immutable --immutable-cache
+    else
+     echo "WARNING: No node_modules or .yarn/cache directory found."
+     yarn
+    fi
+  fi
 
 .dte-coordinator-setup: &dte-coordinator-setup |
   yarn exec nx-cloud start-ci-run --stop-agents-after="${STOP_TARGET:-${TARGET}}"
@@ -18,7 +27,8 @@
       files:
         - yarn.lock
     paths:
-      - node_modules/
+      - node_modules
+      - .yarn/cache
     policy: pull
   before_script:
     - *setup
