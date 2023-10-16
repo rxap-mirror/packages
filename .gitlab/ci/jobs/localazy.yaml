@@ -10,7 +10,7 @@
   environment:
     action: prepare
   needs:
-    - job: build
+    - job: run
       artifacts: false
 angular:localazy-upload:
   extends: .localazy

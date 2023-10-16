@@ -6,7 +6,7 @@
       when: on_success
     - when: never
   needs:
-    - build
+    - run
   before_script:
     - apk add --no-cache bash
   script: /bin/bash ./tools/sentry-release.sh
