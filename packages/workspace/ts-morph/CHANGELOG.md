@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.12](https://gitlab.com/rxap/packages/compare/@rxap/workspace-ts-morph@0.1.0-dev.11...@rxap/workspace-ts-morph@0.1.0-dev.12) (2023-10-16)
+
+### Bug Fixes
+
+- use utility CreateProject function to create a ts-morph Project instance ([78b308f](https://gitlab.com/rxap/packages/commit/78b308fd10747616c7c7f27e81501a4ad5052a77))
+
 # [0.1.0-dev.11](https://gitlab.com/rxap/packages/compare/@rxap/workspace-ts-morph@0.1.0-dev.10...@rxap/workspace-ts-morph@0.1.0-dev.11) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/workspace-ts-morph

@@ -9650,10 +9650,10 @@ __metadata:
     "@rxap/generator-utilities": ^1.1.0-dev.19
     "@rxap/plugin-localazy": ^16.1.0-dev.16
     "@rxap/plugin-utilities": ^16.1.0-dev.21
-    "@rxap/ts-morph": ^0.1.0-dev.17
+    "@rxap/ts-morph": ^0.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.23
-    "@rxap/workspace-ts-morph": ^0.1.0-dev.11
-    "@rxap/workspace-utilities": ^0.1.0-dev.23
+    "@rxap/workspace-ts-morph": ^0.1.0-dev.12
+    "@rxap/workspace-utilities": ^0.1.0-dev.24
     nx: ^16.5.0
     ts-morph: ^18.0.0
     tslib: 2.6.2
@@ -9706,6 +9706,7 @@ __metadata:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-ts-morph": ^1.0.1-dev.13
     "@rxap/generator-utilities": ^1.1.0-dev.19
+    "@rxap/ts-morph": ^0.1.0-dev.18
     gpt-3-encoder: ^1.1.4
     openai: ^3.3.0
     ts-morph: ^18.0.0
@@ -9724,14 +9725,15 @@ __metadata:
     "@rxap/generator-ts-morph": ^1.0.1-dev.13
     "@rxap/generator-utilities": ^1.1.0-dev.19
     "@rxap/node-utilities": ^1.1.0-dev.15
-    "@rxap/plugin-angular": ^16.1.0-dev.55
+    "@rxap/plugin-angular": ^16.1.0-dev.58
     "@rxap/plugin-nestjs": ^16.1.0-dev.45
     "@rxap/plugin-utilities": ^16.1.0-dev.21
+    "@rxap/ts-morph": ^0.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.23
-    "@rxap/workspace-utilities": ^0.1.0-dev.23
+    "@rxap/workspace-utilities": ^0.1.0-dev.24
     handlebars: ^4.7.7
     nx: ^16.5.0
-    semver: ^7.3.5
+    semver: ^7.5.3
     ts-morph: ^18.0.0
     tslib: 2.6.2
   languageName: unknown
@@ -9906,8 +9908,9 @@ __metadata:
   peerDependencies:
     "@angular-devkit/core": ^16.1.4
     "@angular-devkit/schematics": ^16.1.4
-    "@rxap/schematics-ts-morph": ^16.0.0-dev.29
+    "@rxap/schematics-ts-morph": ^16.0.0-dev.30
     "@rxap/schematics-utilities": ^16.0.0-dev.21
+    "@rxap/ts-morph": ^0.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.23
     ts-morph: ^18.0.0
     tslib: 2.6.2
@@ -9924,9 +9927,10 @@ __metadata:
   peerDependencies:
     "@angular-devkit/core": ^16.1.4
     "@angular-devkit/schematics": ^16.1.4
-    "@rxap/json-schema-to-typescript": ^16.0.0-dev.18
-    "@rxap/schematics-ts-morph": ^16.0.0-dev.28
+    "@rxap/json-schema-to-typescript": ^16.0.0-dev.19
+    "@rxap/schematics-ts-morph": ^16.0.0-dev.30
     "@rxap/schematics-utilities": ^16.0.0-dev.21
+    "@rxap/ts-morph": ^0.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.23
     openapi-types: 10.0.0
     ts-morph: ^18.0.0
@@ -9943,8 +9947,9 @@ __metadata:
     "@angular-devkit/core": ^16.1.4
     "@angular-devkit/schematics": ^16.1.4
     "@rxap/schematics-utilities": ^16.0.0-dev.21
+    "@rxap/ts-morph": ^0.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.23
-    "@rxap/workspace-ts-morph": ^0.1.0-dev.11
+    "@rxap/workspace-ts-morph": ^0.1.0-dev.12
     ts-morph: ^18.0.0
     tslib: 2.6.2
   languageName: unknown
@@ -10179,8 +10184,9 @@ __metadata:
   dependencies:
     tslib: 2.6.2
   peerDependencies:
+    "@rxap/ts-morph": ^0.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.23
-    "@rxap/workspace-utilities": ^0.1.0-dev.23
+    "@rxap/workspace-utilities": ^0.1.0-dev.24
     ts-morph: ^18.0.0
     tslib: 2.6.2
   languageName: unknown

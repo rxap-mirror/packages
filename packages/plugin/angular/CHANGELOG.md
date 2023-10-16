@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.58](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.57...@rxap/plugin-angular@16.1.0-dev.58) (2023-10-16)
+
+### Bug Fixes
+
+- add new route at the start ([5b970e0](https://gitlab.com/rxap/packages/commit/5b970e012b3cdfbaa0597e6480a297c0caff4595))
+- use utility CreateProject function to create a ts-morph Project instance ([78b308f](https://gitlab.com/rxap/packages/commit/78b308fd10747616c7c7f27e81501a4ad5052a77))
+
 # [16.1.0-dev.57](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.56...@rxap/plugin-angular@16.1.0-dev.57) (2023-10-12)
 
 ### Bug Fixes

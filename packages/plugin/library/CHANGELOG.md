@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.41](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.40...@rxap/plugin-library@16.0.0-dev.41) (2023-10-16)
+
+### Bug Fixes
+
+- use utility CreateProject function to create a ts-morph Project instance ([78b308f](https://gitlab.com/rxap/packages/commit/78b308fd10747616c7c7f27e81501a4ad5052a77))
+
 # [16.0.0-dev.40](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.39...@rxap/plugin-library@16.0.0-dev.40) (2023-10-12)
 
 ### Bug Fixes

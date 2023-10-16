@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.23...@rxap/workspace-utilities@0.1.0-dev.24) (2023-10-16)
+
+### Bug Fixes
+
+- **deps:** update semver package version ([6f70c8a](https://gitlab.com/rxap/packages/commit/6f70c8a9810196350abdc8535db898e2cf175068))
+
 # [0.1.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.22...@rxap/workspace-utilities@0.1.0-dev.23) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/workspace-utilities
