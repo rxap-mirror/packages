@@ -8,6 +8,7 @@
     "version": "env-cmd bash tools/scripts/lerna/hooks/version.sh",
     "preversion": "env-cmd bash tools/scripts/lerna/hooks/preversion.sh",
     "prepublishOnly": "env-cmd bash tools/scripts/lerna/hooks/prepublishOnly.sh",
+    "postpublish": "env-cmd bash tools/scripts/lerna/hooks/postpublish.sh",
     "prepack": "env-cmd bash tools/scripts/lerna/hooks/prepack.sh",
     "lerna:publish": "env-cmd bash tools/scripts/lerna/publish.sh",
     "lerna:version": "env-cmd bash tools/scripts/lerna/version.sh",
