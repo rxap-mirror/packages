@@ -11,8 +11,8 @@
     name: $ENVIRONMENT_NAME
   variables:
     SERVICE_HOSTNAME: service
-  script:
-    - curl http://$SERVICE_HOSTNAME:$SERVICE_PORT/$SERVICE_PATH
+  script: curl --fail --location
+    "http://${SERVICE_HOSTNAME}:${SERVICE_PORT}${SERVICE_PATH}"
 startup:angular:
   extends: .startup
   variables:
@@ -24,33 +24,33 @@ startup:service-changelog:
   variables:
     IMAGE_NAME: rxap/packages
     SERVICE_PORT: "3000"
-    SERVICE_PATH: info
+    SERVICE_PATH: /info
     IMAGE_SUFFIX: /service/changelog
 startup:service-configuration:
   extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
     SERVICE_PORT: "3000"
-    SERVICE_PATH: info
+    SERVICE_PATH: /info
     IMAGE_SUFFIX: /service/configuration
 startup:service-status:
   extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
     SERVICE_PORT: "3000"
-    SERVICE_PATH: info
+    SERVICE_PATH: /info
     IMAGE_SUFFIX: /service/status
 startup:service-user:
   extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
     SERVICE_PORT: "3000"
-    SERVICE_PATH: info
+    SERVICE_PATH: /info
     IMAGE_SUFFIX: /service/user
 startup:service-app-angular-table:
   extends: .startup
   variables:
     IMAGE_NAME: rxap/packages
     SERVICE_PORT: "3000"
-    SERVICE_PATH: info
+    SERVICE_PATH: /info
     IMAGE_SUFFIX: /service/app-angular-table

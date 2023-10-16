@@ -73,9 +73,7 @@ const dotStartup = {
   variables: {
     SERVICE_HOSTNAME: 'service',
   },
-  script: [
-    'curl http://$SERVICE_HOSTNAME:$SERVICE_PORT/$SERVICE_PATH',
-  ],
+  script: 'curl --fail --location "http://${SERVICE_HOSTNAME}:${SERVICE_PORT}${SERVICE_PATH}"',
 };
 
 const startup = {
@@ -190,7 +188,7 @@ function generateStartupGitlabCiFileContent(
 
     if (IsServiceProject(project)) {
       startupYaml[`startup:${ projectName }`].variables.SERVICE_PORT = '3000';
-      startupYaml[`startup:${ projectName }`].variables.SERVICE_PATH = 'info';
+      startupYaml[`startup:${ projectName }`].variables.SERVICE_PATH = '/info';
     }
 
     if (IsUserInterfaceProject(project)) {
