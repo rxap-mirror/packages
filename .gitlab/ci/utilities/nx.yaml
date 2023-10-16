@@ -9,7 +9,7 @@
       files:
         - yarn.lock
     paths:
-      - node_modules
+      - '**/node_modules/**'
       - .yarn/cache
     policy: pull
   before_script:
