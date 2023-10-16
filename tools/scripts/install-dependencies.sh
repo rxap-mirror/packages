@@ -15,6 +15,11 @@ renovate/*)
   echo "RUN: yarn --refresh-lockfile"
   yarn --refresh-lockfile
   ;;
+snyk-*)
+  echo "Detected Snyk branch."
+  echo "RUN: yarn --refresh-lockfile"
+  yarn --refresh-lockfile
+  ;;
 *)
   if [ "$CI_JOB_STAGE" = ".pre" ]; then
     echo "Detected .pre stage."
