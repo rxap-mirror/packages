@@ -1,0 +1,18 @@
+.localazy:
+  extends: .run
+  tags:
+    - e2-standard-4
+  stage: localazy
+  rules:
+    - if: $LOCALAZY_WRITE_KEY == null
+      when: never
+    - when: on_success
+  environment:
+    action: prepare
+  needs:
+    - job: run
+      artifacts: false
+angular:localazy-upload:
+  extends: .localazy
+  environment:
+    name: $ENVIRONMENT_NAME/angular

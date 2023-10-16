@@ -53,10 +53,14 @@ include:
     rules:
       - if: '$CI_COMMIT_BRANCH =~ /^renovate\//'
 
+  - local: .gitlab/ci/snyk.yaml
+    rules:
+      - if: '$CI_COMMIT_BRANCH =~ /^snyk-/'
+
   # the branch pipeline to check if tests and builds are successful
   - local: .gitlab/ci/branch.yaml
     rules:
-      - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH && $CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH !~ /^release|release-candidate|preview|[0-9]+\.[0-9]+\.x|[0-9]+\.x$/ && $CI_PIPELINE_SOURCE =~ /push|web|api/ && $CI_COMMIT_BRANCH !~ /^renovate\//'
+      - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH && $CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH !~ /^release|release-candidate|preview|[0-9]+\.[0-9]+\.x|[0-9]+\.x$/ && $CI_PIPELINE_SOURCE =~ /push|web|api/ && $CI_COMMIT_BRANCH !~ /^renovate\// && $CI_COMMIT_BRANCH !~ /^snyk-/'
 
   - local: .gitlab/ci/default.yaml
     rules:

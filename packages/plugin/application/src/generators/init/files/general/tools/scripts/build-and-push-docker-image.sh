@@ -11,14 +11,16 @@ make_temp_file() {
   # ensure the temporary directory exists
   # in the kaniko container the folder /tmp does not exists
   mkdir -p /tmp
-  if command -v mktemp > /dev/null 2>&1; then
-      echo "$(mktemp)"
+  if command -v mktemp >/dev/null 2>&1; then
+    echo "$(mktemp)"
   else
-      local tmp_file="/tmp/tmpfile_$RANDOM"
-      touch "$tmp_file"
-      echo "$tmp_file"
+    local tmp_file="/tmp/tmpfile_$RANDOM"
+    touch "$tmp_file"
+    echo "$tmp_file"
   fi
 }
+
+PIPELINE_ID=${CI_PIPELINE_ID:-local}
 
 if [ "$CI" = "true" ]; then
   # region install utilities
@@ -36,7 +38,7 @@ fi
 
 mkdir -p "$(dirname "${DOCKER_CONFIG_PATH}")"
 
-echo '{ "auths": {} }' > "${DOCKER_CONFIG_PATH}"
+echo '{ "auths": {} }' >"${DOCKER_CONFIG_PATH}"
 
 # region general configuration
 DOCKER_CONTEXT=${DOCKER_CONTEXT:-"${CI_PROJECT_DIR:-.}"}${DOCKER_CONTEXT_SUFFIX}
@@ -54,9 +56,17 @@ PUSH_TO_CUSTOM=${PUSH_TO_CUSTOM:-false}
 
 # the the other push target are disabled, enable gitlab push by default not already defined
 if [ "$PUSH_TO_GCP" = "false" ] && [ "$PUSH_TO_CUSTOM" = "false" ]; then
-  if [ -z  $PUSH_TO_GITLAB ]; then
+  if [ -z $PUSH_TO_GITLAB ]; then
     PUSH_TO_GITLAB="true"
   fi
+fi
+
+if [ -n "$PROJECT_NAME" ]; then
+  COMMON_EXEC_PARAMS="$COMMON_EXEC_PARAMS --build-arg PROJECT_NAME=${PROJECT_NAME}"
+fi
+
+if [ -n "$PATH_PREFIX" ]; then
+  COMMON_EXEC_PARAMS="$COMMON_EXEC_PARAMS --build-arg PATH_PREFIX=${PATH_PREFIX}"
 fi
 
 PUSH_TO_GITLAB=${PUSH_TO_GITLAB:-false}
@@ -66,12 +76,12 @@ if [ "$PUSH_TO_GCP" = "true" ]; then
 
   echo -e "${BLUE}Test if all variables are set for pushing to GCP${NC}"
 
-  if [ -z  $GCP_PROJECT ]; then
+  if [ -z $GCP_PROJECT ]; then
     echo "GCP_PROJECT is not set"
     PUSH_TO_GCP="false"
   fi
 
-  if [ -z  $IMAGE_NAME ]; then
+  if [ -z $IMAGE_NAME ]; then
     echo "IMAGE_NAME is not set"
     PUSH_TO_GCP="false"
   fi
@@ -90,22 +100,22 @@ if [ "$PUSH_TO_GITLAB" = "true" ]; then
 
   echo -e "${BLUE}Test if all variables are set for pushing to gitlab${NC}"
 
-  if [ -z  $CI_REGISTRY_USER ]; then
+  if [ -z $CI_REGISTRY_USER ]; then
     echo "CI_REGISTRY_USER is not set"
     PUSH_TO_GITLAB="false"
   fi
 
-  if [ -z  $CI_REGISTRY_PASSWORD ]; then
+  if [ -z $CI_REGISTRY_PASSWORD ]; then
     echo "CI_REGISTRY_PASSWORD is not set"
     PUSH_TO_GITLAB="false"
   fi
 
-  if [ -z  $CI_REGISTRY ]; then
+  if [ -z $CI_REGISTRY ]; then
     echo "CI_REGISTRY is not set"
     PUSH_TO_GITLAB="false"
   fi
 
-  if [ -z  $CI_REGISTRY_IMAGE ]; then
+  if [ -z $CI_REGISTRY_IMAGE ]; then
     echo "CI_REGISTRY_IMAGE is not set"
     PUSH_TO_GITLAB="false"
   fi
@@ -124,22 +134,22 @@ if [ "$PUSH_TO_CUSTOM" = "true" ]; then
 
   echo -e "${BLUE}Test if all variables are set for pushing to custom registry${NC}"
 
-  if [ -z  $REGISTRY_USER ]; then
+  if [ -z $REGISTRY_USER ]; then
     echo "REGISTRY_USER is not set"
     PUSH_TO_CUSTOM="false"
   fi
 
-  if [ -z  $REGISTRY_PASSWORD ]; then
+  if [ -z $REGISTRY_PASSWORD ]; then
     echo "REGISTRY_PASSWORD is not set"
     PUSH_TO_CUSTOM="false"
   fi
 
-  if [ -z  $REGISTRY ]; then
+  if [ -z $REGISTRY ]; then
     echo "REGISTRY is not set"
     PUSH_TO_CUSTOM="false"
   fi
 
-  if [ -z  $IMAGE_NAME ]; then
+  if [ -z $IMAGE_NAME ]; then
     echo "IMAGE_NAME is not set"
     PUSH_TO_CUSTOM="false"
   fi
@@ -186,15 +196,16 @@ if [ "$PUSH_TO_GCP" = "true" ]; then
   # and then move (replace) the original file with this temporary one.
   tmp_file=$(make_temp_file)
   cat "${DOCKER_CONFIG_PATH}" | jq \
-  --arg auth "$AUTH" \
-  --arg registry "$GCP_REGISTRY" \
-  '.auths[$registry] = { "auth": $auth }' > "$tmp_file"
+    --arg auth "$AUTH" \
+    --arg registry "$GCP_REGISTRY" \
+    '.auths[$registry] = { "auth": $auth }' >"$tmp_file"
   mv "$tmp_file" "${DOCKER_CONFIG_PATH}"
 
   GCP_REGISTRY_IMAGE=${GCP_REGISTRY}/${GCP_PROJECT}/${IMAGE_NAME}
   GCP_DESTINATION="${GCP_REGISTRY_IMAGE}${IMAGE_SUFFIX}"
 
   DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${GCP_DESTINATION}:${IMAGE_TAG}"
+  DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${GCP_DESTINATION}:${PIPELINE_ID}"
   if [ "$LATEST" = "true" ]; then
     DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${GCP_DESTINATION}:latest"
   fi
@@ -215,15 +226,16 @@ if [ "$PUSH_TO_GITLAB" = "true" ]; then
   # and then move (replace) the original file with this temporary one.
   tmp_file=$(make_temp_file)
   cat "${DOCKER_CONFIG_PATH}" | jq \
-  --arg username "$CI_REGISTRY_USER" \
-  --arg password "$CI_REGISTRY_PASSWORD" \
-  --arg registry "$CI_REGISTRY" \
-  '.auths[$registry] = { "username": $username, "password": $password }' > "$tmp_file"
+    --arg username "$CI_REGISTRY_USER" \
+    --arg password "$CI_REGISTRY_PASSWORD" \
+    --arg registry "$CI_REGISTRY" \
+    '.auths[$registry] = { "username": $username, "password": $password }' >"$tmp_file"
   mv "$tmp_file" "${DOCKER_CONFIG_PATH}"
 
   CI_DESTINATION="${CI_REGISTRY_IMAGE}${IMAGE_SUFFIX}"
 
   DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${CI_DESTINATION}:${IMAGE_TAG}"
+  DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${CI_DESTINATION}:${PIPELINE_ID}"
   if [ "$LATEST" = "true" ]; then
     DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${CI_DESTINATION}:latest"
   fi
@@ -244,16 +256,17 @@ if [ "$PUSH_TO_CUSTOM" = "true" ]; then
   # and then move (replace) the original file with this temporary one.
   tmp_file=$(make_temp_file)
   cat "${DOCKER_CONFIG_PATH}" | jq \
-  --arg username "$REGISTRY_USER" \
-  --arg password "$REGISTRY_PASSWORD" \
-  --arg registry "$REGISTRY" \
-  '.auths[$registry] = { "username": $username, "password": $password }' > "$tmp_file"
+    --arg username "$REGISTRY_USER" \
+    --arg password "$REGISTRY_PASSWORD" \
+    --arg registry "$REGISTRY" \
+    '.auths[$registry] = { "username": $username, "password": $password }' >"$tmp_file"
   mv "$tmp_file" "${DOCKER_CONFIG_PATH}"
 
   REGISTRY_IMAGE=${REGISTRY}/${IMAGE_NAME}
 
   DESTINATION="${REGISTRY_IMAGE}${IMAGE_SUFFIX}"
   DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${DESTINATION}:${IMAGE_TAG}"
+  DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${DESTINATION}:${PIPELINE_ID}"
   if [ "$LATEST" = "true" ]; then
     DESTINATION_PARAMS="$DESTINATION_PARAMS --destination=${DESTINATION}:latest"
   fi
@@ -281,5 +294,3 @@ if [ ! "$DRY_RUN" = "true" ]; then
     exit 1
   fi
 fi
-
-
