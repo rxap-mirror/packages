@@ -4,17 +4,32 @@ BASE_DIR=$(git rev-parse --show-toplevel)
 
 cd "$BASE_DIR" || exit 1
 
+source ./tools/scripts/colors.sh
+
+# Fetch the latest data from the remote repository
+git fetch
+
+# Check if the local branch is behind the remote branch
+behind=$(git rev-list HEAD...origin/$(git symbolic-ref --short HEAD) --left-right | grep '^>' | wc -l)
+
+if [[ $behind -gt 0 ]]; then
+  echo -e "${RED}Local branch is behind remote branch by $behind commits.${NC}"
+  exit 1
+else
+  echo -e "${GREEN}Local branch is up-to-date with remote branch.${NC}"
+fi
+
 if [[ -f "./dist/publish-mode.txt"  ]]; then
   rm ./dist/publish-mode.txt || true
 fi
 
 for arg in "$@"; do
   if [[ $arg == "from-package" ]]; then
-    echo "Script was called with from-package"
+    echo -e "${BLUE}Script was called with from-package${NC}"
     echo "from-package" > ./dist/publish-mode.txt
   fi
   if [[ $arg == "from-git" ]]; then
-    echo "Script was called with from-package"
+    echo -e "${BLUE}Script was called with from-package${NC}"
     echo "from-git" > ./dist/publish-mode.txt
   fi
 done
