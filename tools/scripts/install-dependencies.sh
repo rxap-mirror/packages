@@ -12,13 +12,13 @@ yarn config get cacheFolder
 case "$CI_COMMIT_REF_NAME" in
 renovate/*)
   echo "Detected Renovate branch."
-  echo "RUN: yarn --refresh-lockfile"
-  yarn --refresh-lockfile
+  echo "RUN: yarn"
+  yarn
   ;;
 snyk-*)
   echo "Detected Snyk branch."
-  echo "RUN: yarn --refresh-lockfile"
-  yarn --refresh-lockfile
+  echo "RUN: yarn"
+  yarn
   ;;
 *)
   if [ "$CI_JOB_STAGE" = ".pre" ]; then
