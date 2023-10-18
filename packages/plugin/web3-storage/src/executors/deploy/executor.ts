@@ -66,7 +66,8 @@ export default async function runExecutor(
   console.log('====================================');
   console.log(`Upload successful.`);
   console.log(`CID: "${ cid }"`);
-  console.log(`URL: "https://${ cid }.ipfs.w3s.link"`);
+  console.log(`URL: https://${ cid }.ipfs.w3s.link`);
+  console.log(`Explore: https://explore.ipld.io/#/explore/${ cid }`);
   console.log('====================================');
 
   try {
