@@ -1,7 +1,8 @@
 import { ExecutorContext } from '@nx/devkit';
 import {
+  GetProjectSourceRoot,
   GetProjectTargetOptions,
-  GuessOutputPathFromContext,
+  GuessOutputPathFromTargetString,
 } from '@rxap/plugin-utilities';
 import {
   existsSync,
@@ -18,21 +19,35 @@ import {
 } from 'path';
 import { I18nExecutorSchema } from './schema';
 
+function getIndexHtmlTemplateFilePath(indexHtmlTemplate: string, context: ExecutorContext) {
+  if (existsSync(join(context.root, indexHtmlTemplate))) {
+    return join(context.root, indexHtmlTemplate);
+  }
+  if (existsSync(join(context.root, 'shared', indexHtmlTemplate))) {
+    return join(context.root, 'shared', indexHtmlTemplate);
+  }
+  if (existsSync(join(context.root, 'shared', 'angular', indexHtmlTemplate))) {
+    return join(context.root, 'shared', 'angular', indexHtmlTemplate);
+  }
+  const projectSourceRoot = GetProjectSourceRoot(context);
+  if (existsSync(join(projectSourceRoot, indexHtmlTemplate))) {
+    return join(projectSourceRoot, indexHtmlTemplate);
+  }
+  throw new Error(`Could not find the i18n index html template with path '${ indexHtmlTemplate }'`);
+}
+
 async function createIndexHtml(
   options: I18nExecutorSchema,
   context: ExecutorContext,
+  outputPath: string,
 ) {
-  const indexHtmlTemplateFilePath = options.indexHtmlTemplate;
+  const indexHtmlTemplateFilePath = options.indexHtmlTemplate ?? 'i18n.index.html.hbs';
 
   if (!indexHtmlTemplateFilePath) {
     throw new Error('The i18n index html template path is not defined');
   }
 
-  const indexHtmlTemplateAbsoluteFilePath = join(context.root, indexHtmlTemplateFilePath);
-
-  if (!existsSync(indexHtmlTemplateAbsoluteFilePath)) {
-    throw new Error(`Could not find the i18n index html template in '${ indexHtmlTemplateAbsoluteFilePath }'`);
-  }
+  const indexHtmlTemplateAbsoluteFilePath = getIndexHtmlTemplateFilePath(indexHtmlTemplateFilePath, context);
 
   const indexHtmlTemplateFile = readFileSync(indexHtmlTemplateAbsoluteFilePath).toString('utf-8');
 
@@ -40,11 +55,7 @@ async function createIndexHtml(
 
   const indexHtml = indexHtmlTemplate(options);
 
-  if (!options.outputPath) {
-    throw new Error('The i18n output path is not defined');
-  }
-
-  const indexHtmlFilePath = join(context.root, options.outputPath, 'index.html');
+  const indexHtmlFilePath = join(context.root, outputPath, 'index.html');
 
   if (existsSync(indexHtmlFilePath)) {
     console.warn(`The index.html file already exists in the location: '${ indexHtmlFilePath }'`);
@@ -54,7 +65,7 @@ async function createIndexHtml(
 }
 
 async function copyFiles(
-  { outputPath }: I18nExecutorSchema,
+  outputPath: string,
   pathList: Array<string | { glob: string, input: string, output: string }>,
 ) {
   await Promise.all(pathList.map(async assetPath => {
@@ -84,12 +95,13 @@ async function copyFiles(
 }
 
 async function copyAssets(
+  outputPath: string,
   options: I18nExecutorSchema,
   context: ExecutorContext,
 ) {
 
   if (Array.isArray(options.assets) && options.assets.length) {
-    await copyFiles(options, options.assets);
+    await copyFiles(outputPath, options.assets);
   } else if (typeof options.assets === 'boolean' && options.assets) {
 
     if (!context.target) {
@@ -103,7 +115,7 @@ async function copyAssets(
     const buildOptions = GetProjectTargetOptions(context, context.projectName, 'build');
 
     if (Array.isArray(buildOptions.assets) && buildOptions.assets.length) {
-      await copyFiles(options, buildOptions.assets);
+      await copyFiles(outputPath, buildOptions.assets);
     } else {
       console.info('Skip assets copy. The build target of this project has no assets specified.');
     }
@@ -120,10 +132,10 @@ export default async function runExecutor(
 ) {
   console.log('Executor ran for I18n', options);
 
-  options.outputPath ??= GuessOutputPathFromContext(context);
+  const outputPath = GuessOutputPathFromTargetString(context, options.buildTarget);
 
   try {
-    await createIndexHtml(options, context);
+    await createIndexHtml(options, context, outputPath);
   } catch (e: any) {
     console.error(`Create index html failed: ${e.message}`);
     return {
@@ -133,7 +145,7 @@ export default async function runExecutor(
   }
 
   try {
-    await copyAssets(options, context);
+    await copyAssets(outputPath, options, context);
   } catch (e: any) {
     console.error(`Copy assets failed: ${ e.message }`);
     return {

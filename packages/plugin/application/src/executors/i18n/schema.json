@@ -14,6 +14,13 @@
     "defaultLanguage": {
       "type": "string"
     },
+    "indexHtmlTemplate": {
+      "type": "string",
+      "default": "i18n.index.html.hbs"
+    },
+    "buildTarget": {
+      "type": "string"
+    },
     "assets": {
       "oneOf": [
         {
