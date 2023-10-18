@@ -11,7 +11,7 @@
     "@angular/core": "^16.1.4",
     "@rxap/environment": "^16.0.0-dev.18",
     "@rxap/utilities": "^16.0.0-dev.23",
-    "rxjs": "^7.8.0",
+    "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
   "author": {

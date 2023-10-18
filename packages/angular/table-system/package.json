@@ -15,7 +15,7 @@
     "@rxap/data-source": "^16.0.0-dev.27",
     "@rxap/material-table-system": "^16.0.0-dev.27",
     "@rxap/utilities": "^16.0.0-dev.23",
-    "rxjs": "^7.8.0",
+    "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
   "author": {
