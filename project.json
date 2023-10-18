@@ -83,6 +83,7 @@
           "ignoreProjects": [
             "service-configuration",
             "service-status",
+            "service-user",
             "service-changelog"
           ]
         }
