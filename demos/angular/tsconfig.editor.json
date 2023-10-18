@@ -6,7 +6,8 @@
   "compilerOptions": {
     "types": [
       "jest",
-      "node"
+      "node",
+      "@angular/localize"
     ]
   }
 }

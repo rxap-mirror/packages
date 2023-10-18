@@ -191,7 +191,8 @@
       "outputs": [
         "dist/{projectRoot}/ipfs-cid.txt"
       ]
-    }
+    },
+    "i18n-index-html": {}
   },
   "i18n": {
     "sourceLocale": "en-US",
