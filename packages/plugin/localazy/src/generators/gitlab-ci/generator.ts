@@ -26,7 +26,7 @@ const dotLocalazy = {
   },
   needs: [
     {
-      job: 'build',
+      job: 'run',
       artifacts: false,
     },
   ],
