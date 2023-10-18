@@ -55,7 +55,7 @@ export default async function runExecutor(
   console.log('Upload file list to web3 storage');
   let cid: string;
   try {
-    cid = await web3Storage.put(fileList);
+    cid = await web3Storage.put(fileList, { name: `${context.projectName}@${process.env.CI_COMMIT_REF_SLUG ?? new Date().toISOString()}` });
   } catch (e: any) {
     console.error(`Error uploading file list to web3 storage: ${ e.message }`);
     return {
