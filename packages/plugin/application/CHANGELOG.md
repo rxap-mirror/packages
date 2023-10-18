@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.33...@rxap/plugin-application@16.1.0-dev.34) (2023-10-18)
+
+### Features
+
+- add cacheable operation deploy ([146d52b](https://gitlab.com/rxap/packages/commit/146d52b920829dbebb7c5437391e13461edba93c))
+- extract default and available languages from target options ([5fe5617](https://gitlab.com/rxap/packages/commit/5fe5617b9a639f6e0cfdd8d619e3b043eafd8be7))
+
 # [16.1.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.32...@rxap/plugin-application@16.1.0-dev.33) (2023-10-18)
 
 ### Bug Fixes

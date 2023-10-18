@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.21...@rxap/plugin-utilities@16.1.0-dev.22) (2023-10-18)
+
+### Bug Fixes
+
+- use default values for project name ([31dc7f1](https://gitlab.com/rxap/packages/commit/31dc7f167c871053461cf24e507e3c88ffb96580))
+
+### Features
+
+- add function GuessOutputPathFromTargetString ([d63890d](https://gitlab.com/rxap/packages/commit/d63890d51a6befac589b90a887ca1d57676b3062))
+
 # [16.1.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/plugin-utilities@16.1.0-dev.20...@rxap/plugin-utilities@16.1.0-dev.21) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/plugin-utilities

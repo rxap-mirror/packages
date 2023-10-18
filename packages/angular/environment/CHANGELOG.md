@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/environment@16.0.0-dev.18...@rxap/environment@16.0.0-dev.19) (2023-10-18)
+
+### Bug Fixes
+
+- add config property ([51c14bf](https://gitlab.com/rxap/packages/commit/51c14bf1e41110e06427dbaf0b4713c1ee54a1b7))
+- add missing type attr to button elements ([7e1ec23](https://gitlab.com/rxap/packages/commit/7e1ec238905a8bbdfcefc742f4147dc90725d8c7))
+- overwrite config loading settings with environment object ([ab43c83](https://gitlab.com/rxap/packages/commit/ab43c8322cd755e48f607e1ff66d164f81566460))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/environment@16.0.0-dev.17...@rxap/environment@16.0.0-dev.18) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/environment

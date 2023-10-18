@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0",
+  "version": "16.0.1-dev.0",
   "name": "@rxap/plugin-web3-storage",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,7 +7,7 @@
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
-    "@rxap/plugin-utilities": "*",
+    "@rxap/plugin-utilities": "^16.1.0-dev.22",
     "files-from-path": "^1.0.0",
     "web3.storage": "^4.5.5"
   },
@@ -32,6 +32,14 @@
     "web3",
     "web3-storage"
   ],
+  "nx-migrations": {
+    "packageGroup": [
+      {
+        "package": "@rxap/plugin-utilities",
+        "version": "16.1.0-dev.22"
+      }
+    ]
+  },
   "publishConfig": {
     "access": "public",
     "directory": "../../../dist/packages/plugin/web3-storage"

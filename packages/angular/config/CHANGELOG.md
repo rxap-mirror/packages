@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/config@16.0.0-dev.21...@rxap/config@16.0.0-dev.22) (2023-10-18)
+
+### Bug Fixes
+
+- overwrite config loading settings with environment object ([ab43c83](https://gitlab.com/rxap/packages/commit/ab43c8322cd755e48f607e1ff66d164f81566460))
+
+### Features
+
+- support loading configuration from environment object ([2f8c89b](https://gitlab.com/rxap/packages/commit/2f8c89b24d795650019cdb50bb8e2914eddf16d5))
+
 # [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/config@16.0.0-dev.20...@rxap/config@16.0.0-dev.21) (2023-10-12)
 
 ### Bug Fixes

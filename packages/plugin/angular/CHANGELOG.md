@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.59](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.58...@rxap/plugin-angular@16.1.0-dev.59) (2023-10-18)
+
+### Bug Fixes
+
+- only try to add a implicit dependencies if a custom devServerTarget is defined ([d02bfe3](https://gitlab.com/rxap/packages/commit/d02bfe3ba7652304d66e4bbd081f9fc5c422314c))
+
+### Features
+
+- add i18n-index-html target if i18n and deploy to web3-storage is used ([490585e](https://gitlab.com/rxap/packages/commit/490585e6e5ab814d1d5130d2b1ee203babe30beb))
+- add option deploy to add the web3-storage target ([d0205a8](https://gitlab.com/rxap/packages/commit/d0205a8b7a947bca08bc6b4c2e54da79439007a0))
+
 # [16.1.0-dev.58](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.57...@rxap/plugin-angular@16.1.0-dev.58) (2023-10-16)
 
 ### Bug Fixes

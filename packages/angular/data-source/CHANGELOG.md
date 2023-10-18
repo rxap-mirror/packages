@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.27...@rxap/data-source@16.0.0-dev.28) (2023-10-18)
+
+### Bug Fixes
+
+- add missing type attr to button elements ([7e1ec23](https://gitlab.com/rxap/packages/commit/7e1ec238905a8bbdfcefc742f4147dc90725d8c7))
+
 # [16.0.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.26...@rxap/data-source@16.0.0-dev.27) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/data-source

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.0.1-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@16.0.1-dev.16...@rxap/ngx-material-table-select@16.0.1-dev.17) (2023-10-18)
+
+### Bug Fixes
+
+- add missing type attr to button elements ([7e1ec23](https://gitlab.com/rxap/packages/commit/7e1ec238905a8bbdfcefc742f4147dc90725d8c7))
+
 ## [16.0.1-dev.16](https://gitlab.com/rxap/packages/compare/@rxap/ngx-material-table-select@16.0.1-dev.15...@rxap/ngx-material-table-select@16.0.1-dev.16) (2023-10-12)
 
 ### Bug Fixes
