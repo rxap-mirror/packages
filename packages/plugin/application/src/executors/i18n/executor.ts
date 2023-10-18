@@ -126,11 +126,49 @@ async function copyAssets(
 
 }
 
+function coerceDefaultLanguage(options: I18nExecutorSchema) {
+  options.defaultLanguage ??= options.availableLanguages?.[0];
+}
+
+function coerceAvailableLanguages(options: I18nExecutorSchema, context: ExecutorContext) {
+
+  if (!options.availableLanguages) {
+    const buildTarget = options.buildTarget ?? context.projectName + ':build';
+    const targetName = buildTarget.split(':')[1];
+    const buildOptions = GetProjectTargetOptions(
+      context,
+      context.projectName,
+      targetName,
+      context.configurationName ?? 'production'
+    );
+    const localize = buildOptions.localize;
+    if (localize && Array.isArray(localize) && localize.length) {
+      options.availableLanguages = localize;
+    } else if (options.defaultLanguage) {
+      options.availableLanguages = [ options.defaultLanguage ];
+    }
+
+  }
+
+}
+
 export default async function runExecutor(
   options: I18nExecutorSchema,
   context: ExecutorContext,
 ) {
   console.log('Executor ran for I18n', options);
+
+  coerceAvailableLanguages(options, context);
+
+  if (!options.availableLanguages?.length) {
+    throw new Error('The available languages are not defined');
+  }
+
+  coerceDefaultLanguage(options);
+
+  if (!options.defaultLanguage) {
+    throw new Error('The default language is not defined');
+  }
 
   const outputPath = GuessOutputPathFromTargetString(context, options.buildTarget);
 
