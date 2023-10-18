@@ -1,5 +1,5 @@
 {
-  "name": "web3-storage",
+  "name": "@rxap/plugin-web3-storage",
   "version": "16.0.0",
   "type": "commonjs",
   "publishConfig": {
