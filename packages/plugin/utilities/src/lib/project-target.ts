@@ -2,7 +2,7 @@ import { ExecutorContext } from '@nx/devkit';
 import { GetTargetOptions } from './get-target-configuration-name-list';
 import { GetProjectConfiguration } from './project';
 
-export function GetProjectTarget(context: ExecutorContext, projectName: string, targetName: string) {
+export function GetProjectTarget(context: ExecutorContext, projectName = context.projectName, targetName: string) {
   const projectConfiguration = GetProjectConfiguration(context, projectName);
 
   const targetConfiguration = projectConfiguration.targets ? projectConfiguration.targets[targetName] : undefined;
@@ -16,7 +16,7 @@ export function GetProjectTarget(context: ExecutorContext, projectName: string, 
 
 export function GetProjectTargetOptions(
   context: ExecutorContext,
-  projectName: string,
+  projectName = context.projectName,
   targetName: string,
   configurationName = context.configurationName,
 ) {
