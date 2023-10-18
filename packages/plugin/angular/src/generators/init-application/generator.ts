@@ -654,6 +654,10 @@ export async function initApplicationGenerator(
     await AddPackageJsonDependency(tree, '@rxap/plugin-localazy', 'latest', { soft: true });
   }
 
+  if (options.deploy === 'web3-storage') {
+    await AddPackageJsonDependency(tree, '@rxap/plugin-web3-storage', 'latest', { soft: true });
+  }
+
   if (options.i18n && options.deploy === 'web3-storage') {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'i18n'),
