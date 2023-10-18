@@ -15,6 +15,15 @@ export default async function runExecutor(
 ) {
   console.log('Executor ran for Deploy', options);
 
+  const token = options.token ?? process.env.WEB3_STORAGE_TOKEN;
+
+  if (!token) {
+    console.error('No token provided. Use the command parameter --token or set the environment variable WEB3_STORAGE_TOKEN');
+    return {
+      success: false,
+    };
+  }
+
   const outputPath = GuessOutputPathFromTargetString(context, options.buildTarget);
 
   console.log(`Build file list from '${outputPath}'`);

@@ -22,5 +22,5 @@
       "description": "The build target from which the output should be deployed"
     }
   },
-  "required": ["token"]
+  "required": []
 }
