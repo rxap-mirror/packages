@@ -93,20 +93,22 @@ export default defineConfig({
     projectName,
   );
   _project.targets ??= {};
-  const cypressProjectName = _project.targets['component-test'].options.devServerTarget.split(':').shift();
-  if (cypressProjectName !== projectName) {
-    const cypressProject = readProjectConfiguration(
-      tree,
-      cypressProjectName,
-    );
-    cypressProject.implicitDependencies ??= [];
-    if (!cypressProject.implicitDependencies.includes(projectName)) {
-      cypressProject.implicitDependencies.push(projectName);
-      updateProjectConfiguration(
+  if (_project.targets['component-test'].options.devServerTarget) {
+    const cypressProjectName = _project.targets['component-test'].options.devServerTarget.split(':').shift();
+    if (cypressProjectName !== projectName) {
+      const cypressProject = readProjectConfiguration(
         tree,
         cypressProjectName,
-        cypressProject,
       );
+      cypressProject.implicitDependencies ??= [];
+      if (!cypressProject.implicitDependencies.includes(projectName)) {
+        cypressProject.implicitDependencies.push(projectName);
+        updateProjectConfiguration(
+          tree,
+          cypressProjectName,
+          cypressProject,
+        );
+      }
     }
   }
 }
