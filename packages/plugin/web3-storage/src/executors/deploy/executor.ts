@@ -24,7 +24,7 @@ export default async function runExecutor(
     };
   }
 
-  const outputPath = GuessOutputPathFromTargetString(context, options.buildTarget);
+  const outputPath = join(context.root, GuessOutputPathFromTargetString(context, options.buildTarget));
 
   console.log(`Build file list from '${outputPath}'`);
   let fileList: FileLike[];
@@ -66,6 +66,7 @@ export default async function runExecutor(
   console.log('====================================');
   console.log(`Upload successful.`);
   console.log(`CID: "${ cid }"`);
+  console.log(`URL: "https://${ cid }.ipfs.w3s.link"`);
   console.log('====================================');
 
   try {
