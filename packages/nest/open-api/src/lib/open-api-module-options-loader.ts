@@ -24,20 +24,37 @@ export class OpenApiModuleOptionsLoader implements ConfigurableModuleOptionsFact
   create(): OpenApiModuleOptions {
     const openApiServerConfigFilePath = this.config.getOrThrow('OPEN_API_SERVER_CONFIG_FILE_PATH');
     const config: OpenApiModuleOptions = {};
-    if (!ExistsFileWithScope(openApiServerConfigFilePath, RXAP_GLOBAL_STATE.environment?.name)) {
+    if (!this.existsFileWithScope(openApiServerConfigFilePath)) {
       this.logger.warn(
         `The open api server config file path "${ openApiServerConfigFilePath }" does not exists!`,
         'OpenApiModuleOptionsLoader',
       );
     } else {
-      const content = ReadFileWithScope(openApiServerConfigFilePath, RXAP_GLOBAL_STATE.environment?.name);
+      let content = this.readFileWithScope(openApiServerConfigFilePath);
+      try {
+        content = this.interpolateEnvVariables(content);
+      } catch (e: any) {
+        throw new Error(`Could not interpolate env variables in open api server config file "${ openApiServerConfigFilePath }": ${ e.message }`);
+      }
       try {
         config.serverConfig = JSON.parse(content);
       } catch (e: any) {
-        throw new Error(`Could not parse open api server config file "${ openApiServerConfigFilePath }"`);
+        throw new Error(`Could not parse open api server config file "${ openApiServerConfigFilePath }": ${ e.message }`);
       }
     }
     return config;
+  }
+
+  private existsFileWithScope(filePath: string): boolean {
+    return ExistsFileWithScope(filePath, RXAP_GLOBAL_STATE.environment?.name);
+  }
+
+  private readFileWithScope(filePath: string): string {
+    return ReadFileWithScope(filePath, RXAP_GLOBAL_STATE.environment?.name);
+  }
+
+  private interpolateEnvVariables(value: string): string {
+    return value.replace(/\${(.+?)}/g, (_, key) => this.config.getOrThrow(key));
   }
 
 }
