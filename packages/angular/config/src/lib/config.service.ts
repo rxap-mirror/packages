@@ -74,15 +74,21 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
   public static async Load(options?: ConfigLoadOptions, environment?: Environment): Promise<void> {
     options ??= {};
 
+    let config: any = deepMerge(this.Defaults, {});
+
     if (environment?.config) {
       if (typeof environment.config === 'string') {
         options.url = environment.config;
       } else {
-        options.static = environment.config;
+        options.static = environment.config.static;
+        options.url    = environment.config.url;
+        options.fromUrlParam = environment.config.fromUrlParam;
+        options.fromLocalStorage = environment.config.fromLocalStorage;
+        options.schema = environment.config.schema;
       }
     }
 
-    let config = deepMerge(this.Defaults, options?.static ?? {});
+    config = deepMerge(config, options?.static ?? {});
 
     const urls = (options?.url ? coerceArray(options.url) : ConfigService.Urls).map(url => {
       if (typeof url === 'function') {

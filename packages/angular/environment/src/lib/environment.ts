@@ -1,3 +1,5 @@
+export type AnySchema = { validateAsync: (...args: any[]) => any };
+
 export interface Environment {
   /**
    * The name of the app
@@ -56,7 +58,16 @@ export interface Environment {
     }
   },
 
-  config?: string | Record<string, any>;
+  config?: string | {
+    fromUrlParam?: string | boolean;
+    fromLocalStorage?: boolean;
+    schema?: AnySchema;
+    url?: string | string[] | ((environment: Environment) => string | string[]);
+    /**
+     * static config values
+     */
+    static?: Record<string, any>;
+  };
 
   [key: string]: any;
 }

@@ -420,7 +420,7 @@
         "i18n-index-html"
       ],
       "inputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
+        "{workspaceRoot}/{projectRoot}"
       ]
     },
     "i18n-index-html": {
