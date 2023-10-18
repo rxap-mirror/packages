@@ -1,6 +1,6 @@
 <div *ngIf="(hasError$ | async)" class="flex flex-col items-center justify-center gap-y-8">
   <span i18n>Something has gone wrong!</span>
-  <button (click)="retry()" i18n mat-stroked-button>Retry</button>
+  <button type="button" (click)="retry()" i18n mat-stroked-button>Retry</button>
 </div>
 <div *ngIf="(dataLoading$ | async)" class="flex flex-col items-center justify-center gap-y-8">
   <mat-spinner></mat-spinner>

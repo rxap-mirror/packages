@@ -1,5 +1,5 @@
 <div class="grow flex flex-col gap-2">
-  <button (click)="toggleTreeNavigation()" class="!justify-start" mat-button>
+  <button type="button" (click)="toggleTreeNavigation()" class="!justify-start" mat-button>
     <span class="flex flex-row justify-start items-center gap-6">
       <ng-template [ngIf]="showTreeNavigation()">
         <mat-icon>arrow_back</mat-icon>
@@ -38,6 +38,7 @@
             </ng-template>
             <ng-template [ngIf]="!multiple">
               <button
+                type="button"
                 (click)="node.select()"
                 [color]="node.selected ? 'primary' : undefined"
                 [disabled]="!node.hasDetails"
@@ -53,7 +54,7 @@
 
         <!-- Node with children -->
         <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-          <button [attr.aria-label]="'toggle ' + node.filename" mat-icon-button matTreeNodeToggle>
+          <button type="button" [attr.aria-label]="'toggle ' + node.filename" mat-icon-button matTreeNodeToggle>
             <mat-icon class="mat-icon-rtl-mirror">
               {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
             </mat-icon>
@@ -67,6 +68,7 @@
             </ng-template>
             <ng-template [ngIfElse]="withoutDetails" [ngIf]="node.hasDetails">
               <button
+                type="button"
                 (click)="node.select()"
                 [color]="node.selected ? 'primary' : undefined"
                 [ngStyle]="node.style"

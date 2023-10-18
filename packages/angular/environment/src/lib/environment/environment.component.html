@@ -1,4 +1,4 @@
-<button (click)="show = !show" class="collapse-button">
+<button type="button" (click)="show = !show" class="collapse-button">
   <span *ngIf="show; else hidden" i18n>Hide build info</span>
   <ng-template #hidden>
     <span i18n>Show build info</span>
