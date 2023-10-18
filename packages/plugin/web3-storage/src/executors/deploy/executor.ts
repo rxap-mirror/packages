@@ -5,7 +5,7 @@ import {
   filesFromPaths,
 } from 'files-from-path';
 import { join } from 'path';
-import { writeFileSync } from 'typedoc/dist/lib/utils';
+import { writeFileSync } from 'fs';
 import { Web3Storage } from 'web3.storage';
 import { DeployExecutorSchema } from './schema';
 
@@ -41,7 +41,7 @@ export default async function runExecutor(
   let web3Storage: Web3Storage;
   try {
     web3Storage = new Web3Storage({
-      token: options.token,
+      token: token,
       rateLimiter: options.rateLimit ? () => new Promise(resolve => setTimeout(resolve, options.rateLimit)) : undefined,
       endpoint: options.endpoint ? new URL(options.endpoint) : undefined,
     });
