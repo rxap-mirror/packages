@@ -1,0 +1,36 @@
+{
+  "name": "web3-storage",
+  "version": "16.0.0",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/web3-storage"
+  },
+  "keywords": [
+    "rxap",
+    "plugin",
+    "nx",
+    "nx-plugin",
+    "packages",
+    "web3-storage",
+    "ipfs",
+    "web3",
+    "plugin-web3-storage"
+  ],
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/web3-storage",
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/web3-storage"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "executors": "./executors.json"
+}

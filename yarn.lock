@@ -19541,6 +19541,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"files-from-path@npm:1.0.0":
+  version: 1.0.0
+  resolution: "files-from-path@npm:1.0.0"
+  dependencies:
+    graceful-fs: ^4.2.10
+  checksum: 434ee82d01c8615306628ea1181ec9b3fab971be0fc98b4d84fb5d510e447c42b104a920adedac796d6ef6da99dd467ed8516b042e4acbfb493fc2fffbd7d60f
+  languageName: node
+  linkType: hard
+
 "files-from-path@npm:^0.2.4":
   version: 0.2.6
   resolution: "files-from-path@npm:0.2.6"
@@ -20711,7 +20720,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.15, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.3, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6, graceful-fs@npm:^4.2.9":
+"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.15, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.3, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.10, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6, graceful-fs@npm:^4.2.9":
   version: 4.2.11
   resolution: "graceful-fs@npm:4.2.11"
   checksum: ac85f94da92d8eb6b7f5a8b20ce65e43d66761c55ce85ac96df6865308390da45a8d3f0296dd3a663de65d30ba497bd46c696cc1e248c72b13d6d567138a4fc7
@@ -30020,6 +30029,7 @@ __metadata:
     eslint: 8.15.0
     eslint-config-prettier: 8.1.0
     eslint-plugin-cypress: 2.15.1
+    files-from-path: 1.0.0
     firebase: 9.23.0
     firebase-admin: 10.3.0
     glob: 10.3.10
@@ -33396,6 +33406,12 @@ __metadata:
   checksum: 1bb28348ddcf9b2e7c62c5fd02e49a84098795856cd905456de957271bba288e9618941cf69d8960f0a7ae81f5dfb74b427c0634be47ec69e3e955c4ec5213be
   languageName: node
   linkType: hard
+
+"web3-storage@workspace:packages/plugin/web3-storage":
+  version: 0.0.0-use.local
+  resolution: "web3-storage@workspace:packages/plugin/web3-storage"
+  languageName: unknown
+  linkType: soft
 
 "web3.storage@npm:4.5.5":
   version: 4.5.5

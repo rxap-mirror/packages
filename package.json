@@ -69,6 +69,7 @@
     "class-validator": "0.14.0",
     "colors": "1.4.0",
     "cookie-parser": "1.4.6",
+    "files-from-path": "1.0.0",
     "firebase": "9.23.0",
     "firebase-admin": "10.3.0",
     "glob": "10.3.10",

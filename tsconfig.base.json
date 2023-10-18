@@ -130,9 +130,7 @@
       "@rxap/nest-socket-io-client": [
         "packages/nest/socket-io-client/src/index.ts"
       ],
-      "@rxap/nest-testing": [
-        "packages/nest/testing/src/index.ts"
-      ],
+      "@rxap/nest-testing": ["packages/nest/testing/src/index.ts"],
       "@rxap/nest-utilities": ["packages/nest/utilities/src/index.ts"],
       "@rxap/ngx-bootstrap": ["packages/angular/bootstrap/src/index.ts"],
       "@rxap/ngx-changelog": ["packages/angular/changelog/src/index.ts"],
@@ -144,22 +142,14 @@
       "@rxap/ngx-material-table-select": [
         "packages/angular/material/table-select/src/index.ts"
       ],
-      "@rxap/ngx-memory": [
-        "packages/angular/memory/src/index.ts"
-      ],
-      "@rxap/ngx-pub-sub": [
-        "packages/angular/pub-sub/src/index.ts"
-      ],
+      "@rxap/ngx-memory": ["packages/angular/memory/src/index.ts"],
+      "@rxap/ngx-pub-sub": ["packages/angular/pub-sub/src/index.ts"],
       "@rxap/ngx-sentry": ["packages/angular/sentry/src/index.ts"],
       "@rxap/ngx-status-check": ["packages/angular/status-check/src/index.ts"],
-      "@rxap/ngx-theme": [
-        "packages/angular/theme/src/index.ts"
-      ],
+      "@rxap/ngx-theme": ["packages/angular/theme/src/index.ts"],
       "@rxap/ngx-timeago": ["packages/angular/timeago/src/index.ts"],
       "@rxap/ngx-user": ["packages/angular/user/src/index.ts"],
-      "@rxap/node-local-storage": [
-        "packages/node/local-storage/src/index.ts"
-      ],
+      "@rxap/node-local-storage": ["packages/node/local-storage/src/index.ts"],
       "@rxap/node-utilities": ["packages/node/utilities/src/index.ts"],
       "@rxap/oauth": ["packages/angular/oauth/src/index.ts"],
       "@rxap/oauth/single-sign-on": [
@@ -233,9 +223,7 @@
       "@rxap/utilities": ["packages/utilities/src/index.ts"],
       "@rxap/validator": ["packages/validator/src/index.ts"],
       "@rxap/window-system": ["packages/angular/window-system/src/index.ts"],
-      "@rxap/workspace-cypress": [
-        "packages/workspace/cypress/src/index.ts"
-      ],
+      "@rxap/workspace-cypress": ["packages/workspace/cypress/src/index.ts"],
       "@rxap/workspace-open-api": ["packages/workspace/open-api/src/index.ts"],
       "@rxap/workspace-ts-morph": ["packages/workspace/ts-morph/src/index.ts"],
       "@rxap/workspace-utilities": [
@@ -255,6 +243,7 @@
         "packages/open-api/service/status/src/lib/*"
       ],
       "open-api-service-user/*": ["packages/open-api/service/user/src/lib/*"],
+      "web3-storage": ["packages/plugin/web3-storage/src/index.ts"],
       "workspace": ["tools/workspace/src/index.ts"],
       "workspace/commands": ["tools/workspace/src/cypress/commands.ts"]
     }
