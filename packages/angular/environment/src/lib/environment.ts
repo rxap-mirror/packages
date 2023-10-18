@@ -56,5 +56,7 @@ export interface Environment {
     }
   },
 
+  config?: string | Record<string, any>;
+
   [key: string]: any;
 }
