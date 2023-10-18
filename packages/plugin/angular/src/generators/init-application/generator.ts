@@ -218,10 +218,13 @@ function updateProjectTargets(
   if (options.deploy) {
     switch (options.deploy) {
       case 'web3-storage':
+        if (options.i18n) {
+          CoerceTarget(project, 'i18n-index-html', {});
+        }
         CoerceTarget(project, 'deploy', {
           executor: '@rxap/plugin-web3-storage:deploy',
           outputs: ['dist/{projectRoot}/ipfs-cid.txt']
-        });
+        }, Strategy.OVERWRITE);
         break;
     }
   }
@@ -261,9 +264,16 @@ function updateTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchem
   CoerceTargetDefaultsDependency(nxJson, 'build', '^generate-open-api');
   CoerceTargetDefaultsDependency(nxJson, 'serve', '^generate-open-api');
 
-  CoerceNxJsonCacheableOperation(nxJson, 'localazy-download', 'localazy-upload', 'extract-i18n');
+  CoerceNxJsonCacheableOperation(nxJson, 'localazy-download', 'localazy-upload', 'extract-i18n', 'i18n-index-html');
 
   CoerceTargetDefaultsInput(nxJson, 'deploy', '{workspaceRoot}/dist/{projectRoot}');
+  CoerceTargetDefaultsDependency(nxJson, 'deploy', 'i18n-index-html');
+  CoerceTarget(nxJson, 'i18n-index-html', {
+    dependsOn: ['build'],
+    executor: '@rxap/plugin-application:i18n',
+    outputs: [ 'dist/{projectRoot}/index.html' ],
+    inputs: [ '{workspaceRoot}/{projectRoot}/project.json' ],
+  });
 
   updateNxJson(tree, nxJson);
 }
@@ -642,6 +652,14 @@ export async function initApplicationGenerator(
   if (options.localazy) {
     await AddPackageJsonDevDependency(tree, '@localazy/cli', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/plugin-localazy', 'latest', { soft: true });
+  }
+
+  if (options.i18n && options.deploy === 'web3-storage') {
+    CoerceFilesStructure(tree, {
+      srcFolder: join(__dirname, 'files', 'i18n'),
+      target: 'shared/angular',
+      overwrite: options.overwrite,
+    });
   }
 
   CoerceFilesStructure(tree, {
