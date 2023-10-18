@@ -8791,7 +8791,7 @@ __metadata:
     "@angular/core": ^16.1.4
     "@rxap/reflect-metadata": ^1.0.1-dev.13
     "@rxap/utilities": ^16.0.0-dev.23
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -8823,7 +8823,7 @@ __metadata:
     "@rxap/rxjs": ^1.0.1-dev.13
     "@rxap/services": ^16.0.0-dev.22
     "@rxap/utilities": ^16.0.0-dev.23
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -8877,7 +8877,7 @@ __metadata:
     "@rxap/reflect-metadata": ^1.0.1-dev.13
     "@rxap/remote-method": ^16.0.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.23
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -8920,7 +8920,7 @@ __metadata:
     "@rxap/services": ^16.0.0-dev.22
     "@rxap/utilities": ^16.0.0-dev.23
     "@rxap/validator": ^3.0.0-dev.14
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9064,7 +9064,7 @@ __metadata:
     "@rxap/ngx-memory": ^16.1.0-dev.1
     "@rxap/rxjs": ^1.0.1-dev.13
     "@rxap/utilities": ^16.0.0-dev.23
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9087,7 +9087,7 @@ __metadata:
     "@rxap/mixin": ^16.0.0-dev.17
     "@rxap/reflect-metadata": ^1.0.1-dev.13
     "@rxap/utilities": ^16.0.0-dev.23
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9138,7 +9138,7 @@ __metadata:
     "@rxap/pattern": ^1.1.0-dev.2
     "@rxap/utilities": ^16.0.0-dev.23
     "@rxap/window-system": ^16.0.0-dev.22
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9608,7 +9608,7 @@ __metadata:
     "@rxap/utilities": ^16.0.0-dev.23
     ajv: 8.12.0
     openapi-types: 10.0.0
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9619,7 +9619,7 @@ __metadata:
   dependencies:
     tslib: 2.6.2
   peerDependencies:
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9858,7 +9858,7 @@ __metadata:
     "@rxap/definition": ^16.0.0-dev.18
     "@rxap/rxjs": ^1.0.1-dev.13
     "@rxap/utilities": ^16.0.0-dev.23
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -9870,7 +9870,7 @@ __metadata:
     tslib: 2.6.2
   peerDependencies:
     "@rxap/utilities": ^16.0.0-dev.23
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10017,7 +10017,7 @@ __metadata:
     "@angular/core": ^16.1.4
     "@rxap/rxjs": ^1.0.1-dev.13
     "@rxap/utilities": ^16.0.0-dev.23
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
@@ -10154,7 +10154,7 @@ __metadata:
     "@rxap/rxjs": ^1.0.1-dev.13
     "@rxap/services": ^16.0.0-dev.22
     "@rxap/utilities": ^16.0.0-dev.23
-    rxjs: ^7.8.0
+    rxjs: ^7.8.1
     tslib: 2.6.2
   languageName: unknown
   linkType: soft

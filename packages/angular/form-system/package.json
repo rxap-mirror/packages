@@ -19,7 +19,7 @@
     "@rxap/reflect-metadata": "^1.0.1-dev.13",
     "@rxap/remote-method": "^16.0.0-dev.18",
     "@rxap/utilities": "^16.0.0-dev.23",
-    "rxjs": "^7.8.0",
+    "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
   "author": {

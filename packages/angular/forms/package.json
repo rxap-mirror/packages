@@ -17,7 +17,7 @@
     "@rxap/services": "^16.0.0-dev.22",
     "@rxap/utilities": "^16.0.0-dev.23",
     "@rxap/validator": "^3.0.0-dev.14",
-    "rxjs": "^7.8.0",
+    "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
   "author": {
