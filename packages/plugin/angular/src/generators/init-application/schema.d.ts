@@ -17,4 +17,5 @@ export interface InitApplicationGeneratorSchema {
   authentik?: boolean;
   oauth?: boolean;
   skipProjects?: boolean;
+  deploy?: 'web3-storage';
 }

@@ -11,6 +11,11 @@
         "type": "string"
       }
     },
+    "deploy": {
+      "type": "string",
+      "description": "Add target to deploy to after build",
+      "enum": ["web3-storage"]
+    },
     "sentry": {
       "type": "boolean",
       "default": true

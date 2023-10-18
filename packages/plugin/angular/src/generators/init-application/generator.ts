@@ -37,6 +37,7 @@ import {
   CoerceNxJsonCacheableOperation,
   CoerceTarget,
   CoerceTargetDefaultsDependency,
+  CoerceTargetDefaultsInput,
   GetProjectPrefix,
   Strategy,
   UpdateJsonFile,
@@ -214,6 +215,16 @@ function updateProjectTargets(
       }
     }
   }
+  if (options.deploy) {
+    switch (options.deploy) {
+      case 'web3-storage':
+        CoerceTarget(project, 'deploy', {
+          executor: '@rxap/plugin-web3-storage:deploy',
+          outputs: ['dist/{projectRoot}/ipfs-cid.txt']
+        });
+        break;
+    }
+  }
 }
 
 /**
@@ -251,6 +262,8 @@ function updateTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchem
   CoerceTargetDefaultsDependency(nxJson, 'serve', '^generate-open-api');
 
   CoerceNxJsonCacheableOperation(nxJson, 'localazy-download', 'localazy-upload', 'extract-i18n');
+
+  CoerceTargetDefaultsInput(nxJson, 'deploy', '{workspaceRoot}/dist/{projectRoot}');
 
   updateNxJson(tree, nxJson);
 }
