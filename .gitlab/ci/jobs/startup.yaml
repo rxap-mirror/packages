@@ -11,10 +11,8 @@
     name: $ENVIRONMENT_NAME
   variables:
     SERVICE_HOSTNAME: service
-    REGISTRY_IMAGE: ${CI_REGISTRY_IMAGE:-$GCP_REGISTRY_IMAGE}
-    GCP_REGION: ${GCP_REGION:-europe-west1}
-    GCP_REGISTRY: ${GCP_REGISTRY:-"${GCP_REGION}-docker.pkg.dev"}
     GCP_REGISTRY_IMAGE: ${GCP_REGISTRY}/${GCP_PROJECT}/${IMAGE_NAME}
+    REGISTRY_IMAGE: ${CI_REGISTRY_IMAGE}
   script: curl --fail --location
     "http://${SERVICE_HOSTNAME}:${SERVICE_PORT}${SERVICE_PATH}"
 startup:angular:
