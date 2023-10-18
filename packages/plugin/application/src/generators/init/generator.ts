@@ -159,6 +159,7 @@ function updateTargetDefaults(tree: Tree) {
   }
 
   CoerceTargetDefaultsDependency(nxJson, 'docker', 'build');
+  CoerceTargetDefaultsDependency(nxJson, 'deploy', 'build');
   CoerceTargetDefaultsDependency(nxJson, 'docker-save', 'docker');
 
   CoerceTargetDefaults(nxJson, 'docker-save', {
@@ -173,6 +174,7 @@ function updateTargetDefaults(tree: Tree) {
   }, Strategy.MERGE);
 
   CoerceNxJsonCacheableOperation(nxJson, 'docker');
+  CoerceNxJsonCacheableOperation(nxJson, 'deploy');
 
   updateNxJson(tree, nxJson);
 }
