@@ -5,6 +5,8 @@ import {
   GetTargetOptions,
   YarnRun,
 } from '@rxap/plugin-utilities';
+import * as process from 'process';
+import { GetAutoTag } from '../../lib/get-auto-tag';
 import { DownloadExecutorSchema } from '../download/schema';
 import { UploadExecutorSchema } from './schema';
 
@@ -97,6 +99,27 @@ export default async function runExecutor(options: UploadExecutorSchema, context
       success: false,
       error: e.message,
     };
+  }
+
+  if (options.autoTag) {
+    const tag = GetAutoTag();
+    if (tag) {
+      options.tag = tag;
+    } else {
+      console.warn('Could not get auto tag');
+    }
+  }
+
+  if (options.tag) {
+    try {
+      await YarnRun([ 'localazy', 'tag', 'publish', options.tag ]);
+    } catch (e: any) {
+      console.error(`Could not run 'localazy tag publish ${ options.tag }'`, e.message);
+      return {
+        success: false,
+        error: e.message,
+      };
+    }
   }
 
   return {

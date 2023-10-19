@@ -15,4 +15,6 @@ export interface UploadExecutorSchema {
   force?: boolean;
   version?: number;
   extractTarget?: string;
+  autoTag?: boolean;
+  tag?: string;
 }

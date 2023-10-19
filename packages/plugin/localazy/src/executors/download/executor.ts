@@ -1,4 +1,5 @@
 import { YarnRun } from '@rxap/plugin-utilities';
+import { GetAutoTag } from '../../lib/get-auto-tag';
 import { DownloadExecutorSchema } from './schema';
 
 export default async function runExecutor(options: DownloadExecutorSchema) {
@@ -12,6 +13,15 @@ export default async function runExecutor(options: DownloadExecutorSchema) {
   }
 
   const args: string[] = [ 'localazy', 'download' ];
+
+  if (options.autoTag) {
+    const tag = GetAutoTag();
+    if (tag) {
+      options.tag = tag;
+    } else {
+      console.warn('Could not get auto tag');
+    }
+  }
 
   if (options.readKey) {
     args.push(`--read-key ${ options.readKey }`);

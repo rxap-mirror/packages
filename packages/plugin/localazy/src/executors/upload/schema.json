@@ -44,6 +44,11 @@
       "type": "string",
       "description": "Perform the operation for the given release tag."
     },
+    "autoTag": {
+      "type": "boolean",
+      "description": "Automatically determine a tag and perform the operation for it.",
+      "default": false
+    },
     "extractTarget": {
       "type": "string",
       "description": "The target that extracts or generate the translation source file."

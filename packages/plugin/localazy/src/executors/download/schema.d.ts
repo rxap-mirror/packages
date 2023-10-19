@@ -11,4 +11,5 @@ export interface DownloadExecutorSchema {
   quite?: boolean;
   force?: boolean;
   tag?: string;
+  autoTag?: boolean;
 }

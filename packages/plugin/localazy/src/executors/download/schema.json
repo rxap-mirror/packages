@@ -40,6 +40,11 @@
       "description": "Force the upload operation if the validation step fails.",
       "default": false
     },
+    "autoTag": {
+      "type": "boolean",
+      "description": "Automatically determine a tag and perform the operation for it.",
+      "default": false
+    },
     "tag": {
       "type": "string",
       "description": "Perform the operation for the given release tag."
