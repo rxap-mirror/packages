@@ -43,6 +43,18 @@
     "tag": {
       "type": "string",
       "description": "Perform the operation for the given release tag."
+    },
+    "branch": {
+      "type": "string",
+      "description": "Perform the operation for the given branch"
+    },
+    "param": {
+      "type": "string",
+      "description": "Add extra parameter for processing; format is key:value"
+    },
+    "failOnMissingGroups": {
+      "type": "boolean",
+      "description": "Fail when non-existent group is provided on the command line"
     }
   },
   "required": []

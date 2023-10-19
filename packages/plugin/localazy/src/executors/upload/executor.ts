@@ -30,44 +30,69 @@ export default async function runExecutor(options: UploadExecutorSchema, context
   const args: string[] = [ 'localazy', 'upload' ];
 
   if (options.readKey) {
-    args.push('-r ' + options.readKey);
+    args.push('--read-key ' + options.readKey);
   }
 
   if (options.writeKey) {
-    args.push('-w ' + options.writeKey);
+    args.push('--write-key ' + options.writeKey);
   }
 
   if (options.configJson) {
-    args.push('-c "' + options.configJson + '"');
+    args.push('--config "' + options.configJson + '"');
   }
 
   if (options.workingDirectory) {
-    args.push('-d "' + options.workingDirectory + '"');
+    args.push('--working-dir "' + options.workingDirectory + '"');
   }
 
   if (options.keysJson) {
-    args.push('-k "' + options.keysJson + '"');
+    args.push('--keys "' + options.keysJson + '"');
   }
 
   if (options.version) {
-    args.push('-v ' + options.version);
+    args.push('--app-version ' + options.version);
   }
 
   if (options.dryRun) {
-    args.push('-s');
+    args.push('--simulate');
   }
 
   if (options.quite) {
-    args.push('-q');
+    args.push('--quiet');
   }
 
   if (options.force) {
-    args.push('-f');
+    args.push('--force');
+  }
+
+  if (options.branch) {
+    args.push(`--branch ${ options.branch }`);
+  }
+
+  if (options.param) {
+    args.push(`--param ${ options.param }`);
+  }
+
+  if (options.failOnMissingGroups) {
+    args.push('--failOnMissingGroups');
+  }
+
+  if (options.project) {
+    args.push('--project ' + options.project);
+  }
+
+  if (options.async) {
+    args.push('--async');
+  }
+
+  if (options.disableContentLength) {
+    args.push('--disable-content-length');
   }
 
   try {
     await YarnRun(args);
   } catch (e: any) {
+    console.error(`Could not run 'localazy upload'`, e.message);
     return {
       success: false,
       error: e.message,

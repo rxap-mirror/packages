@@ -1,4 +1,10 @@
 export interface UploadExecutorSchema {
+  disableContentLength?: boolean;
+  async?: boolean;
+  project?: string;
+  branch?: string;
+  param?: string;
+  failOnMissingGroups?: boolean;
   readKey?: string;
   writeKey?: string;
   keysJson?: string;

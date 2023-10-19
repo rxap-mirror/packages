@@ -47,6 +47,30 @@
     "extractTarget": {
       "type": "string",
       "description": "The target that extracts or generate the translation source file."
+    },
+    "disableContentLength": {
+      "type": "boolean",
+      "description": "Disable Content-Length header when uploading data; use only when the upload  operation fails with 'bad request'"
+    },
+    "async": {
+      "type": "boolean",
+      "description": "Do not wait for the server to process the uploaded data and report errors."
+    },
+    "project": {
+      "type": "string",
+      "description": "Only perform upload if the project slug or ID match the specified one"
+    },
+    "branch": {
+      "type": "string",
+      "description": "Perform the operation for the given branch"
+    },
+    "param": {
+      "type": "string",
+      "description": "Add extra parameter for processing; format is key:value"
+    },
+    "failOnMissingGroups": {
+      "type": "boolean",
+      "description": "Fail when non-existent group is provided on the command line"
     }
   },
   "required": []

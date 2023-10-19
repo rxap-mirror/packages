@@ -1,4 +1,7 @@
 export interface DownloadExecutorSchema {
+  branch?: string;
+  param?: string;
+  failOnMissingGroups?: boolean;
   readKey?: string;
   writeKey?: string;
   keysJson?: string;
