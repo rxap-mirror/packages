@@ -50,7 +50,9 @@ export async function dockerPush(command: string, tags: string[]) {
 }
 
 export async function dockerBuild(
-  command: string, context: string, destinationList: string[], dockerfile?: string, buildArgList?: string[]) {
+  command: string, context: string, destinationList: string[], dockerfile: string | undefined,
+  buildArgList: string[] | undefined, projectName: string,
+) {
 
   const args: string[] = [];
 
@@ -77,6 +79,8 @@ export async function dockerBuild(
       }
     }
   }
+
+  args.push(`--build-arg="PROJECT_NAME=${ projectName }"`);
 
   args.push(context);
 
