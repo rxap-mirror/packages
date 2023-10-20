@@ -1,5 +1,4 @@
 import {
-  generateFiles,
   getProjects,
   ProjectConfiguration,
   Tree,
@@ -20,7 +19,6 @@ import {
   RootDockerOptions,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
-import * as path from 'path';
 import { stringify } from 'yaml';
 import { GitlabCiGeneratorSchema } from './schema';
 
@@ -136,6 +134,19 @@ function generateDockerGitlabCiFileContent(
       dockerYaml[`docker:${ projectName }`].variables.PATH_PREFIX = '/' + GetNestApiPrefix(tree, {}, project.sourceRoot,
         projectName,
       );
+    }
+
+    if (Array.isArray(dockerTargetOptions.buildArgList)) {
+      for (const buildArg of dockerTargetOptions.buildArgList) {
+        if (buildArg.includes('=')) {
+          const [ env, value ] = buildArg.split('=');
+          dockerYaml[`docker:${ projectName }`].variables[env] = value;
+        } else if (process.env[buildArg]) {
+          dockerYaml[`docker:${ projectName }`].variables[buildArg] = process.env[buildArg];
+        } else {
+          console.warn(`Build arg value for '${ buildArg }' is not defined`);
+        }
+      }
     }
 
     if (context) {
