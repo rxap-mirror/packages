@@ -9,4 +9,5 @@ export interface BuildExecutorSchema {
   imageName?: string;
   imageRegistry?: string;
   push?: boolean;
+  buildArgList?: string[];
 }

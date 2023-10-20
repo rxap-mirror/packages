@@ -49,7 +49,8 @@ export async function dockerPush(command: string, tags: string[]) {
 
 }
 
-export async function dockerBuild(command: string, context: string, destinationList: string[], dockerfile?: string) {
+export async function dockerBuild(
+  command: string, context: string, destinationList: string[], dockerfile?: string, buildArgList?: string[]) {
 
   const args: string[] = [];
 
@@ -63,6 +64,18 @@ export async function dockerBuild(command: string, context: string, destinationL
 
   for (const destination of destinationList) {
     args.push(`--tag=${ destination }`);
+  }
+
+  if (buildArgList?.length) {
+    for (const buildArg of buildArgList) {
+      if (buildArg.includes('=')) {
+        args.push(`--build-arg="${ buildArg }"`);
+      } else if (process.env[buildArg]) {
+        args.push(`--build-arg="${ buildArg }=${ process.env[buildArg] }"`);
+      } else {
+        console.warn(`Build arg value for '${ buildArg }' is not defined`);
+      }
+    }
   }
 
   args.push(context);

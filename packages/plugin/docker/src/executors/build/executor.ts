@@ -87,6 +87,7 @@ export default async function runExecutor(
     options.context,
     destinationList,
     options.dockerfile,
+    options.buildArgList,
   );
 
   if (Number(result)) {

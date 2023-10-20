@@ -50,6 +50,13 @@
       "type": "boolean",
       "description": "If true all created images are pushed",
       "default": false
+    },
+    "buildArgList": {
+      "alias": "buildArg",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "required": []
