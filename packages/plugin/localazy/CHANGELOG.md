@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.17...@rxap/plugin-localazy@16.1.0-dev.18) (2023-10-20)
+
+### Bug Fixes
+
+- support all possible command arguments ([49fd214](https://gitlab.com/rxap/packages/commit/49fd2143a6a0512d18aad546c09cc0a387585d94))
+
+### Features
+
+- support auto tagging ([e133066](https://gitlab.com/rxap/packages/commit/e133066606e3139c7dc2312b843181cd797543cc))
+
 # [16.1.0-dev.17](https://gitlab.com/rxap/packages/compare/@rxap/plugin-localazy@16.1.0-dev.16...@rxap/plugin-localazy@16.1.0-dev.17) (2023-10-18)
 
 ### Bug Fixes

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.60](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.59...@rxap/plugin-angular@16.1.0-dev.60) (2023-10-20)
+
+### Bug Fixes
+
+- ensure the web3-storage plugin is installed ([6c8614f](https://gitlab.com/rxap/packages/commit/6c8614f771dddf3894255688f03a1ae9c2be041e))
+- subdomain must include a tailing dot ([7c2b609](https://gitlab.com/rxap/packages/commit/7c2b60937cf99113f48f2787e1dcd189dc482213))
+
 # [16.1.0-dev.59](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.58...@rxap/plugin-angular@16.1.0-dev.59) (2023-10-18)
 
 ### Bug Fixes
