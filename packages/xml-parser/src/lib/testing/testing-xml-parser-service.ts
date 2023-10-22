@@ -1,6 +1,6 @@
 import { getMetadata } from '@rxap/reflect-metadata';
 import { Constructor } from '@rxap/utilities';
-import { XmlElementMetadata } from '../decorators/utilities';
+import { ElementParserMetaData } from '../decorators/metadata-keys';
 import { RxapElement } from '../element';
 import { ParsedElement } from '../elements/parsed-element';
 import { XmlParserService } from '../xml-parser.service';
@@ -11,7 +11,7 @@ export class TestingXmlParserService extends XmlParserService {
 
     this.register(elementParser);
 
-    const elementName = getMetadata<string>(XmlElementMetadata.NAME, elementParser);
+    const elementName = getMetadata<string>(ElementParserMetaData.NAME, elementParser);
 
     let xmlDoc: Document;
     try {

@@ -1,14 +1,17 @@
-import {
-  AddParserToMetadata,
-  XmlElementMetadata,
-} from './utilities';
+import { Mixin } from '@rxap/mixin';
+import { getMetadata } from '@rxap/reflect-metadata';
 import {
   camelize,
   dasherize,
   deepMerge,
   hasIndexSignature,
 } from '@rxap/utilities';
-import { Mixin } from '@rxap/mixin';
+import { RxapElement } from '../element';
+import { ParsedElement } from '../elements/parsed-element';
+import { RxapXmlParserValidateRequiredError } from '../error';
+import { XmlParserService } from '../xml-parser.service';
+import { ElementParser } from './element.parser';
+import { ElementParserMetaData } from './metadata-keys';
 import {
   IsTagElementOptions,
   TagElementOptions,
@@ -18,13 +21,8 @@ import {
   TextContentElementOptions,
   TextContentElementParserMixin,
 } from './mixins/text-content-element.parser';
-import { ElementParser } from './element.parser';
-import { getMetadata } from '@rxap/reflect-metadata';
-import { ParsedElement } from '../elements/parsed-element';
-import { XmlParserService } from '../xml-parser.service';
-import { RxapElement } from '../element';
-import { RxapXmlParserValidateRequiredError } from '../error';
 import { RequiredProperty } from './required-property';
+import { AddParserToMetadata } from './utilities';
 
 export interface ElementRecordOptions<Value>
   extends TextContentElementOptions<Value>,
@@ -100,7 +98,7 @@ export function ElementRecord<Value>(optionsOrString?: Partial<ElementRecordOpti
     let options = optionsOrString === undefined ?
       { tag: dasherize(propertyKey) } :
       typeof optionsOrString === 'string' ? { tag: optionsOrString } : optionsOrString;
-    options = deepMerge(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {});
+    options = deepMerge(options, getMetadata(ElementParserMetaData.OPTIONS, target, propertyKey) || {});
     if (!options.tag) {
       options.tag = dasherize(propertyKey);
     }

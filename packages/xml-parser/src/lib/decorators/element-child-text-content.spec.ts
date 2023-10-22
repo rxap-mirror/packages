@@ -1,6 +1,7 @@
 import { getMetadata } from '@rxap/reflect-metadata';
 import {
   ElementDef,
+  ElementParserMetaData,
   ParsedElement,
   XmlParserService,
 } from '@rxap/xml-parser';
@@ -9,7 +10,6 @@ import {
   ElementChildTextContent,
   ElementChildTextContentParser,
 } from './element-child-text-content';
-import { XmlElementMetadata } from './utilities';
 
 describe('@rxap/xml-parser', () => {
 
@@ -51,13 +51,13 @@ describe('@rxap/xml-parser', () => {
 
         }
 
-        const parser: any[] = getMetadata<any[]>(XmlElementMetadata.PARSER, MyElement)!;
+        const parser: any[] = getMetadata<any[]>(ElementParserMetaData.PARSER, MyElement)!;
 
         expect(parser).toBeDefined();
         expect(parser.length).toBe(1);
         expect(typeof parser[0]).toBe('function');
 
-        const parserInstances = getMetadata<any[]>(XmlElementMetadata.PARSER_INSTANCE, MyElement.prototype)!;
+        const parserInstances = getMetadata<any[]>(ElementParserMetaData.PARSER_INSTANCE, MyElement.prototype)!;
 
         expect(parserInstances).toBeDefined();
         expect(parserInstances.length).toBe(1);
@@ -74,13 +74,13 @@ describe('@rxap/xml-parser', () => {
 
         }
 
-        const parser: any[] = getMetadata<any[]>(XmlElementMetadata.PARSER, MyElement)!;
+        const parser: any[] = getMetadata<any[]>(ElementParserMetaData.PARSER, MyElement)!;
 
         expect(parser).toBeDefined();
         expect(parser.length).toBe(1);
         expect(typeof parser[0]).toBe('function');
 
-        const parserInstances = getMetadata<any[]>(XmlElementMetadata.PARSER_INSTANCE, MyElement.prototype)!;
+        const parserInstances = getMetadata<any[]>(ElementParserMetaData.PARSER_INSTANCE, MyElement.prototype)!;
 
         expect(parserInstances).toBeDefined();
         expect(parserInstances.length).toBe(1);

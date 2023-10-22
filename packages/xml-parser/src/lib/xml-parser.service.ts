@@ -6,7 +6,6 @@ import {
 } from '@rxap/utilities';
 import { AttributeOptions } from './decorators/attribute';
 import { ElementParserMetaData } from './decorators/metadata-keys';
-import { XmlElementMetadata } from './decorators/utilities';
 import {
   normalizeNodeName,
   RxapElement,
@@ -46,9 +45,9 @@ export class XmlParserService {
       if (!elementParser) {
         throw new Error('Element Parser is undefined or null');
       }
-      const elementName = getMetadata<string>(XmlElementMetadata.NAME, elementParser);
+      const elementName = getMetadata<string>(ElementParserMetaData.NAME, elementParser);
       const parsers = getMetadata<XmlElementParserFunction<any>[]>(
-        XmlElementMetadata.PARSER,
+        ElementParserMetaData.PARSER,
         elementParser,
       );
 
@@ -74,7 +73,7 @@ export class XmlParserService {
     if (typeof nameOrElementParser === 'string') {
       this._rootElement = nameOrElementParser;
     } else {
-      const elementName = getMetadata<string>(XmlElementMetadata.NAME, nameOrElementParser);
+      const elementName = getMetadata<string>(ElementParserMetaData.NAME, nameOrElementParser);
       if (!elementName) {
         throw new Error(
           'Could not set the root Element. Element name is not defined. Ensure that the @ElementDef is used');
@@ -176,10 +175,10 @@ export class XmlParserService {
 
       parser = this.parsers.get(elementName) as any;
     } else {
-      elementName = getMetadata<string>(XmlElementMetadata.NAME, elementNameOrConstructor)!;
+      elementName = getMetadata<string>(ElementParserMetaData.NAME, elementNameOrConstructor)!;
       parser = {
         parsers: getMetadata<XmlElementParserFunction<any>[]>(
-            XmlElementMetadata.PARSER,
+          ElementParserMetaData.PARSER,
             elementNameOrConstructor,
         )!,
         elementParser: elementNameOrConstructor,

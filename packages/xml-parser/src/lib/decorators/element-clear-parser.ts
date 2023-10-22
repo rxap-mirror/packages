@@ -1,9 +1,9 @@
+import { setMetadata } from '@rxap/reflect-metadata';
+import { ElementParserMetaData } from './metadata-keys';
 import {
   GetAllElementParser,
   GetAllElementParserInstances,
-  XmlElementMetadata,
 } from './utilities';
-import { setMetadata } from '@rxap/reflect-metadata';
 
 export function ElementClearParser() {
   return function (target: any, propertyKey: string) {
@@ -12,12 +12,12 @@ export function ElementClearParser() {
     const clearedParserInstances = GetAllElementParserInstances(target.constructor)
       .filter(parser => parser.propertyKey !== propertyKey);
     setMetadata(
-      XmlElementMetadata.PARSER,
+      ElementParserMetaData.PARSER,
       clearedParsers,
       target.constructor,
     );
     setMetadata(
-      XmlElementMetadata.PARSER_INSTANCE,
+      ElementParserMetaData.PARSER_INSTANCE,
       clearedParserInstances,
       target,
     );

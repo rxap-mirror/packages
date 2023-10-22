@@ -1,10 +1,10 @@
-import { ElementRequired } from './required-element.parser.mixin';
-import { XmlElementMetadata } from '../utilities';
 import {
   addToMetadata,
   getMetadata,
   getMetadataKeys,
 } from '@rxap/reflect-metadata';
+import { ElementParserMetaData } from '@rxap/xml-parser';
+import { ElementRequired } from './required-element.parser.mixin';
 
 describe('@rxap/xml-parser', () => {
 
@@ -18,7 +18,7 @@ describe('@rxap/xml-parser', () => {
 
           function ElementDummy() {
             return function (target: any, propertyKey: string) {
-              addToMetadata(XmlElementMetadata.PARSER_INSTANCE, { propertyKey }, target);
+              addToMetadata(ElementParserMetaData.PARSER_INSTANCE, { propertyKey }, target);
             };
           }
 
@@ -45,8 +45,8 @@ describe('@rxap/xml-parser', () => {
 
           }
 
-          expect(getMetadataKeys(MyElement.prototype, 'name')).toContain(XmlElementMetadata.OPTIONS);
-          expect(getMetadata(XmlElementMetadata.OPTIONS, MyElement.prototype, 'name')).toEqual({ required: true });
+          expect(getMetadataKeys(MyElement.prototype, 'name')).toContain(ElementParserMetaData.OPTIONS);
+          expect(getMetadata(ElementParserMetaData.OPTIONS, MyElement.prototype, 'name')).toEqual({ required: true });
 
         });
 

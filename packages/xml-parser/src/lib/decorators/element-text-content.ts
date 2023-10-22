@@ -1,22 +1,20 @@
-import {
-  AddParserToMetadata,
-  XmlElementMetadata,
-} from './utilities';
+import { Mixin } from '@rxap/mixin';
+import { getMetadata } from '@rxap/reflect-metadata';
 import {
   deepMerge,
   hasIndexSignature,
 } from '@rxap/utilities';
-import { Mixin } from '@rxap/mixin';
+import { RxapElement } from '../element';
+import { ParsedElement } from '../elements/parsed-element';
+import { RxapXmlParserValidateRequiredError } from '../error';
+import { XmlParserService } from '../xml-parser.service';
+import { ElementParserMetaData } from './metadata-keys';
 import {
   TextContentElementOptions,
   TextContentElementParserMixin,
 } from './mixins/text-content-element.parser';
-import { getMetadata } from '@rxap/reflect-metadata';
-import { ParsedElement } from '../elements/parsed-element';
-import { XmlParserService } from '../xml-parser.service';
-import { RxapElement } from '../element';
-import { RxapXmlParserValidateRequiredError } from '../error';
 import { RequiredProperty } from './required-property';
+import { AddParserToMetadata } from './utilities';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ElementTextContentOptions<Value>
@@ -82,7 +80,7 @@ export function ElementTextContent<Value>(options: ElementTextContentOptions<Val
   return function (target: any, propertyKey: string) {
     options = deepMerge<ElementTextContentOptions<Value>>(
       options,
-      getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {},
+      getMetadata(ElementParserMetaData.OPTIONS, target, propertyKey) || {},
     );
     const parser = new ElementTextContentParser(propertyKey, options);
     AddParserToMetadata(parser, target);

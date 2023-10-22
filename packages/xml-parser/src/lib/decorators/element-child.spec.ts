@@ -1,4 +1,5 @@
 import { getMetadata } from '@rxap/reflect-metadata';
+import { ElementParserMetaData } from '@rxap/xml-parser';
 import { DOMParser } from 'xmldom';
 import { RxapElement } from '../element';
 import { ParsedElement } from '../elements/parsed-element';
@@ -9,10 +10,7 @@ import {
   ElementChildParser,
 } from './element-child';
 import { ElementDef } from './element-def';
-import {
-  ParsedElementType,
-  XmlElementMetadata,
-} from './utilities';
+import { ParsedElementType } from './utilities';
 
 describe('@rxap/xml-parser', () => {
 
@@ -130,13 +128,13 @@ describe('@rxap/xml-parser', () => {
 
         }
 
-        const parser: any[] = getMetadata<any[]>(XmlElementMetadata.PARSER, MyElement)!;
+        const parser: any[] = getMetadata<any[]>(ElementParserMetaData.PARSER, MyElement)!;
 
         expect(parser).toBeDefined();
         expect(parser.length).toBe(1);
         expect(typeof parser[0]).toBe('function');
 
-        const parserInstances = getMetadata<any[]>(XmlElementMetadata.PARSER_INSTANCE, MyElement.prototype)!;
+        const parserInstances = getMetadata<any[]>(ElementParserMetaData.PARSER_INSTANCE, MyElement.prototype)!;
 
         expect(parserInstances).toBeDefined();
         expect(parserInstances.length).toBe(1);

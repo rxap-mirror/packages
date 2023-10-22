@@ -1,8 +1,6 @@
-import {
-  FindElementParserInstanceForPropertyKey,
-  XmlElementMetadata,
-} from '../utilities';
 import { mergeWithMetadata } from '@rxap/reflect-metadata';
+import { ElementParserMetaData } from '../metadata-keys';
+import { FindElementParserInstanceForPropertyKey } from '../utilities';
 
 export interface RequiredElementOptions {
   required?: boolean;
@@ -14,7 +12,7 @@ export function ElementRequired(options: RequiredElementOptions = { required: tr
       throw new Error(
         'The @ElementRequired decorator must be use after the @Element(Attribute|Child|ChildTextContent|TextContent) decorator');
     }
-    mergeWithMetadata(XmlElementMetadata.OPTIONS, options, target, propertyKey);
+    mergeWithMetadata(ElementParserMetaData.OPTIONS, options, target, propertyKey);
   };
 }
 

@@ -1,22 +1,12 @@
-import { Constructor } from '@rxap/utilities';
-import { ElementParser } from './element.parser';
 import {
   getMetadata,
   setMetadata,
 } from '@rxap/reflect-metadata';
-import { XmlElementParserFunction } from '../xml-element-parser-function';
+import { Constructor } from '@rxap/utilities';
 import { ParsedElement } from '../elements/parsed-element';
-
-export enum XmlElementMetadata {
-  OPTIONS = 'rxap/xml-parser/decorators/element-options',
-  PARSER = 'rxap-xml-parser-element-parsers',
-  PARSER_INSTANCE = 'rxap/xml-parser/decorators/element-parser/instance',
-  /**
-   * @deprecated
-   */
-  NAME = 'rxap-xml-parser-element-name',
-  EXTENDS = 'rxap-xml-parser-extends',
-}
+import { XmlElementParserFunction } from '../xml-element-parser-function';
+import { ElementParser } from './element.parser';
+import { ElementParserMetaData } from './metadata-keys';
 
 export type ParsedElementType<T extends ParsedElement = ParsedElement> = Constructor<T> & { TAG?: string };
 
@@ -25,11 +15,11 @@ export type XmlDecoratorElementParserFunction<T extends ParsedElement = ParsedEl
 };
 
 export function GetAllElementParser<T extends ParsedElement>(type: Constructor<T>): Array<XmlDecoratorElementParserFunction<T>> {
-  return getMetadata(XmlElementMetadata.PARSER, type) || [];
+  return getMetadata(ElementParserMetaData.PARSER, type) || [];
 }
 
 export function GetAllElementParserInstances<T extends ParsedElement>(type: Constructor<T>): Array<ElementParser<T>> {
-  return getMetadata(XmlElementMetadata.PARSER_INSTANCE, type.prototype) || [];
+  return getMetadata(ElementParserMetaData.PARSER_INSTANCE, type.prototype) || [];
 }
 
 export function FindElementParserInstanceForPropertyKey<T extends ParsedElement>(
@@ -52,7 +42,7 @@ export function AddParserToMetadata(parser: ElementParser, target: any) {
     });
 
   setMetadata(
-    XmlElementMetadata.PARSER,
+    ElementParserMetaData.PARSER,
     [ ...addedParser, parser.parse ],
     target.constructor,
   );
@@ -61,7 +51,7 @@ export function AddParserToMetadata(parser: ElementParser, target: any) {
     .filter(p => p.propertyKey !== parser.propertyKey);
 
   setMetadata(
-    XmlElementMetadata.PARSER_INSTANCE,
+    ElementParserMetaData.PARSER_INSTANCE,
     [ ...addedElementParser, parser ],
     target,
   );

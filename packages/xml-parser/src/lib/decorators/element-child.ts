@@ -8,6 +8,7 @@ import { RxapElement } from '../element';
 import { ParsedElement } from '../elements/parsed-element';
 import { RxapXmlParserValidateRequiredError } from '../error';
 import { XmlParserService } from '../xml-parser.service';
+import { ElementParserMetaData } from './metadata-keys';
 import {
   ChildElementOptions,
   ChildElementParserMixin,
@@ -16,7 +17,6 @@ import { RequiredProperty } from './required-property';
 import {
   AddParserToMetadata,
   ParsedElementType,
-  XmlElementMetadata,
 } from './utilities';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -86,7 +86,7 @@ export class ElementChildParser<T extends ParsedElement, Child extends ParsedEle
   }
 
   private getExtendedTypes(type: ParsedElementType<Child>): Array<ParsedElementType<Child>> {
-    const extendedTypes = getOwnMetadata<Array<ParsedElementType<Child>>>(XmlElementMetadata.EXTENDS, type) ?? [];
+    const extendedTypes = getOwnMetadata<Array<ParsedElementType<Child>>>(ElementParserMetaData.EXTENDS, type) ?? [];
 
     for (const extendedType of [ ...extendedTypes ]) {
       extendedTypes.push(...this.getExtendedTypes(extendedType));
@@ -102,7 +102,7 @@ export function ElementChild<Child extends ParsedElement>(
   options: ElementChildOptions = {},
 ) {
   return function (target: any, propertyKey: string) {
-    options = deepMerge(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {});
+    options = deepMerge(options, getMetadata(ElementParserMetaData.OPTIONS, target, propertyKey) || {});
     const parser = new ElementChildParser(propertyKey, elementType, options);
     AddParserToMetadata(parser, target);
     if (options.required) {

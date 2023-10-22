@@ -1,9 +1,9 @@
-import { ElementDef } from './element-def';
-import { XmlElementMetadata } from './utilities';
 import {
   getMetadata,
   getMetadataKeys,
 } from '@rxap/reflect-metadata';
+import { ElementParserMetaData } from '@rxap/xml-parser';
+import { ElementDef } from './element-def';
 
 describe('@rxap/xml-parser', () => {
 
@@ -21,10 +21,10 @@ describe('@rxap/xml-parser', () => {
       expect(MyElement.TAG).toEqual('my-element');
 
       expect(getMetadataKeys(MyElement)).toEqual([
-        XmlElementMetadata.NAME,
-        XmlElementMetadata.PARSER,
+        ElementParserMetaData.NAME,
+        ElementParserMetaData.PARSER,
       ]);
-      expect(getMetadata(XmlElementMetadata.NAME, MyElement)).toEqual('my-element');
+      expect(getMetadata(ElementParserMetaData.NAME, MyElement)).toEqual('my-element');
 
 
     });

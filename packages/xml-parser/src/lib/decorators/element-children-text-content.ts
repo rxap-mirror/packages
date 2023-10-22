@@ -12,6 +12,7 @@ import {
 } from '../error';
 import { XmlParserService } from '../xml-parser.service';
 import { ElementParser } from './element.parser';
+import { ElementParserMetaData } from './metadata-keys';
 import {
   ChildrenElementOptions,
   ChildrenElementParserMixin,
@@ -26,10 +27,7 @@ import {
   TextContentElementParserMixin,
 } from './mixins/text-content-element.parser';
 import { RequiredProperty } from './required-property';
-import {
-  AddParserToMetadata,
-  XmlElementMetadata,
-} from './utilities';
+import { AddParserToMetadata } from './utilities';
 
 export interface ElementChildrenTextContentOptions<Value>
   extends TextContentElementOptions<Value, Value[]>,
@@ -123,7 +121,7 @@ export function ElementChildrenTextContent<Value>(optionsOrString?: Partial<Elem
     let options = optionsOrString === undefined ?
       { tag: dasherize(propertyKey) } :
       typeof optionsOrString === 'string' ? { tag: optionsOrString } : optionsOrString;
-    options = deepMerge(options, getMetadata(XmlElementMetadata.OPTIONS, target, propertyKey) || {});
+    options = deepMerge(options, getMetadata(ElementParserMetaData.OPTIONS, target, propertyKey) || {});
     if (!options.tag) {
       options.tag = dasherize(propertyKey);
     }
