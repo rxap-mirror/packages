@@ -3,7 +3,6 @@ FROM registry.gitlab.com/rxap/docker/i18n-nginx:alpine
 ARG PROJECT_NAME
 ARG SUB_DOMAIN
 
-RUN if [ -z "$SUB_DOMAIN" ]; then exit 1; fi
 RUN if [ -z "$PROJECT_NAME" ]; then exit 1; fi
 
 ENV TRAEFIK_SERVICE_NAME=$PROJECT_NAME
