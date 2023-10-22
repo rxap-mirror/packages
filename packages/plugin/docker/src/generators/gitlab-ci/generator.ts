@@ -25,7 +25,7 @@ import { GitlabCiGeneratorSchema } from './schema';
 
 const dotDocker = {
   image: {
-    name: 'gcr.io/kaniko-project/executor:debug',
+    name: 'registry.gitlab.com/rxap/gitlab-ci/kaniko:latest',
     entrypoint: [ '' ],
   },
   stage: 'docker',
