@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.25...@rxap/xml-parser@16.0.0-dev.26) (2023-10-22)
+
+### Bug Fixes
+
+- replace XmlElementMetadata with ElementParserMetaData ([db171a4](https://gitlab.com/rxap/packages/commit/db171a40b50b31bfe72fcf7e7e0a085c2da79dd2))
+
 # [16.0.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/xml-parser@16.0.0-dev.25...@rxap/xml-parser@16.0.0-dev.25) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/xml-parser
