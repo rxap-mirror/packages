@@ -90,7 +90,10 @@
       "executor": "@rxap/plugin-docker:build",
       "options": {
         "imageSuffix": "/service/changelog",
-        "dockerfile": "shared/nestjs/Dockerfile"
+        "dockerfile": "shared/nestjs/Dockerfile",
+        "buildArgList": [
+          "PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\['GLOBAL_API_PREFIX'\\] = Joi.string\\(\\).default\\('(.+)'\\);"
+        ]
       },
       "configurations": {
         "production": {},
@@ -157,6 +160,12 @@
     }
   },
   "tags": [
-    "nest"
+    "nest",
+    "backend",
+    "service",
+    "sentry",
+    "swagger",
+    "health-indicator",
+    "express"
   ]
 }

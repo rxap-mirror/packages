@@ -40,7 +40,10 @@
     "docker": {
       "options": {
         "imageSuffix": "/service/user",
-        "dockerfile": "shared/nestjs/Dockerfile"
+        "dockerfile": "shared/nestjs/Dockerfile",
+        "buildArgList": [
+          "PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\['GLOBAL_API_PREFIX'\\] = Joi.string\\(\\).default\\('(.+)'\\);"
+        ]
       }
     },
     "docker-save": {},
@@ -106,6 +109,12 @@
     }
   },
   "tags": [
-    "nest"
+    "nest",
+    "backend",
+    "service",
+    "sentry",
+    "swagger",
+    "health-indicator",
+    "express"
   ]
 }

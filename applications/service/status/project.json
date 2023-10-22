@@ -44,7 +44,10 @@
     "docker": {
       "options": {
         "imageSuffix": "/service/status",
-        "dockerfile": "shared/nestjs/Dockerfile"
+        "dockerfile": "shared/nestjs/Dockerfile",
+        "buildArgList": [
+          "PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\['GLOBAL_API_PREFIX'\\] = Joi.string\\(\\).default\\('(.+)'\\);"
+        ]
       }
     },
     "docker-save": {},
@@ -94,6 +97,10 @@
     "service",
     "nest",
     "sentry",
-    "open-api"
+    "open-api",
+    "backend",
+    "swagger",
+    "health-indicator",
+    "express"
   ]
 }
