@@ -92,13 +92,9 @@
         "imageSuffix": "/service/changelog",
         "dockerfile": "shared/nestjs/Dockerfile",
         "buildArgList": [
-          "TRAEFIK_SERVICE_NAME_PREFIX=rxap-",
+          "NAME_PREFIX=rxap-",
           "PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\['GLOBAL_API_PREFIX'\\]\\s*=\\s*Joi.string\\(\\).default\\(\\s*'(.+)',?\\s*\\);"
         ]
-      },
-      "configurations": {
-        "production": {},
-        "development": {}
       }
     },
     "docker-save": {
