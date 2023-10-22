@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.47](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.46...@rxap/plugin-docker@16.0.0-dev.47) (2023-10-22)
+
+### Bug Fixes
+
+- use rxap kaniko image ([1d089c2](https://gitlab.com/rxap/packages/commit/1d089c2358628eaeb9df762b4d3da7af76a281eb))
+
 # [16.0.0-dev.46](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.45...@rxap/plugin-docker@16.0.0-dev.46) (2023-10-22)
 
 ### Bug Fixes
