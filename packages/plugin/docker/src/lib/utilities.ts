@@ -1,9 +1,16 @@
 import { ExecutorContext } from '@nx/devkit';
 import { GetCurrentBranch } from '@rxap/node-utilities';
 import { spawn } from 'child_process';
-import { mkdirSync } from 'fs';
-import { dirname } from 'path';
-import { BuildExecutorSchema } from './build/schema';
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+} from 'fs';
+import {
+  dirname,
+  join,
+} from 'path';
+import { BuildExecutorSchema } from '../executors/build/schema';
 
 export async function dockerLogin(command: string, registry: string, username: string, password: string) {
 
@@ -49,9 +56,51 @@ export async function dockerPush(command: string, tags: string[]) {
 
 }
 
+export function processBuildArgs(
+  buildArgList: string[] = [],
+  projectName: string,
+  projectSourceRoot: string,
+  processEnv: Record<string, string> = process.env,
+) {
+  const processedBuildArgList: string[] = [];
+  processedBuildArgList.push(`PROJECT_NAME=${ projectName }`);
+  for (const buildArg of buildArgList) {
+    if (buildArg.includes('=')) {
+      const [ key, ...values ] = buildArg.split('=');
+      let value = values.join('=');
+      if (value.startsWith('REGEX:')) {
+        const [ _, filePath, ...regexps ] = value.split(':');
+        const regex = regexps.join(':');
+        if (!filePath || !regex) {
+          throw new Error(`Invalid regex build arg value '${ value }'`);
+        }
+        if (!existsSync(join(projectSourceRoot, filePath))) {
+          throw new Error(`File '${ filePath }' does not exist in project source root '${ projectSourceRoot }'`);
+        }
+        const content = readFileSync(join(projectSourceRoot, filePath), 'utf-8');
+        const match = content.match(new RegExp(regex));
+        if (!match) {
+          throw new Error(
+            `Could not find match for regex '${ regex }' in file '${ filePath }' in project source root '${ projectSourceRoot }'`);
+        }
+        value = match[1] ?? match[0];
+      }
+      processedBuildArgList.push(`${ key }=${ value }`);
+    } else if (processEnv[buildArg]) {
+      processedBuildArgList.push(`${ buildArg }=${ processEnv[buildArg] }`);
+    } else {
+      console.warn(`Build arg value for '${ buildArg }' is not defined`);
+    }
+  }
+  return processedBuildArgList;
+}
+
 export async function dockerBuild(
-  command: string, context: string, destinationList: string[], dockerfile: string | undefined,
-  buildArgList: string[] | undefined, projectName: string,
+  command: string,
+  context: string,
+  destinationList: string[],
+  dockerfile?: string,
+  buildArgList?: string[],
 ) {
 
   const args: string[] = [];
@@ -70,17 +119,9 @@ export async function dockerBuild(
 
   if (buildArgList?.length) {
     for (const buildArg of buildArgList) {
-      if (buildArg.includes('=')) {
-        args.push(`--build-arg="${ buildArg }"`);
-      } else if (process.env[buildArg]) {
-        args.push(`--build-arg="${ buildArg }=${ process.env[buildArg] }"`);
-      } else {
-        console.warn(`Build arg value for '${ buildArg }' is not defined`);
-      }
+      args.push(`--build-arg="${ buildArg }"`);
     }
   }
-
-  args.push(`--build-arg="PROJECT_NAME=${ projectName }"`);
 
   args.push(context);
 

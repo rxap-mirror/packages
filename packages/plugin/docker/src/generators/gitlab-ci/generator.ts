@@ -20,6 +20,7 @@ import {
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import { stringify } from 'yaml';
+import { processBuildArgs } from '../../lib/utilities';
 import { GitlabCiGeneratorSchema } from './schema';
 
 const dotDocker = {
@@ -131,18 +132,21 @@ function generateDockerGitlabCiFileContent(
       if (!project.sourceRoot) {
         throw new Error(`The project '${ projectName }' has no source root`);
       }
-      dockerYaml[`docker:${ projectName }`].variables.PATH_PREFIX = '/' + GetNestApiPrefix(tree, {}, project.sourceRoot,
+      dockerYaml[`docker:${ projectName }`].variables.PATH_PREFIX = GetNestApiPrefix(
+        tree,
+        {},
+        project.sourceRoot,
         projectName,
       );
     }
 
     if (Array.isArray(dockerTargetOptions.buildArgList)) {
-      for (const buildArg of dockerTargetOptions.buildArgList) {
+      const buildArgList = processBuildArgs(
+        dockerTargetOptions.buildArgList, projectName, project.sourceRoot, { PROJECT_NAME: projectName });
+      for (const buildArg of buildArgList) {
         if (buildArg.includes('=')) {
           const [ env, value ] = buildArg.split('=');
           dockerYaml[`docker:${ projectName }`].variables[env] = value;
-        } else if (process.env[buildArg]) {
-          dockerYaml[`docker:${ projectName }`].variables[buildArg] = process.env[buildArg];
         } else {
           console.warn(`Build arg value for '${ buildArg }' is not defined`);
         }

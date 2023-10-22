@@ -1,5 +1,8 @@
 import { ExecutorContext } from '@nx/devkit';
-import { GuessOutputPathFromContext } from '@rxap/plugin-utilities';
+import {
+  GetProjectSourceRoot,
+  GuessOutputPathFromContext,
+} from '@rxap/plugin-utilities';
 import { join } from 'path';
 import {
   dockerBuild,
@@ -7,7 +10,8 @@ import {
   getFallBackImageTag,
   getGitlabRegistryDestination,
   loginToRegistry,
-} from '../utilities';
+  processBuildArgs,
+} from '../../lib/utilities';
 import { BuildExecutorSchema } from './schema';
 
 
@@ -87,8 +91,7 @@ export default async function runExecutor(
     options.context,
     destinationList,
     options.dockerfile,
-    options.buildArgList,
-    context.projectName,
+    processBuildArgs(options.buildArgList, context.projectName, GetProjectSourceRoot(context)),
   );
 
   if (Number(result)) {

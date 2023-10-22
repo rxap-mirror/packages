@@ -8,7 +8,7 @@ import {
   dockerSave,
   getFallBackImageTag,
   getGitlabRegistryDestination,
-} from '../utilities';
+} from '../../lib/utilities';
 import { SaveExecutorSchema } from './schema';
 
 function getOutputName(options: SaveExecutorSchema, context: ExecutorContext): string {
