@@ -53,7 +53,7 @@
         "imageSuffix": "/service/configuration",
         "dockerfile": "shared/nestjs/Dockerfile",
         "buildArgList": [
-          "PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\['GLOBAL_API_PREFIX'\\] = Joi.string\\(\\).default\\('(.+)'\\);"
+          "PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\['GLOBAL_API_PREFIX'\\]\\s*=\\s*Joi.string\\(\\).default\\(\\s*'(.+)',?\\s*\\);"
         ]
       }
     },
