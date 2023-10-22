@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.47](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.46...@rxap/plugin-nestjs@16.1.0-dev.47) (2023-10-22)
+
+### Bug Fixes
+
+- support formatted regex extraction ([d6f8b8c](https://gitlab.com/rxap/packages/commit/d6f8b8c0ae8b0856d2ec1db2997bb193e174f4e0))
+- update default Dockerfile ([ad14c1a](https://gitlab.com/rxap/packages/commit/ad14c1a0e2f80b87c80764bcd71b494474bbbb99))
+- update default Dockerfile ([8e534c7](https://gitlab.com/rxap/packages/commit/8e534c72ae5385055acf3edfcfce56136d540b5a))
+
 # [16.1.0-dev.46](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.45...@rxap/plugin-nestjs@16.1.0-dev.46) (2023-10-22)
 
 ### Bug Fixes
