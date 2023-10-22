@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.45](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.44...@rxap/plugin-docker@16.0.0-dev.45) (2023-10-22)
+
+### Features
+
+- support injection of build args with regex ([b2c3c42](https://gitlab.com/rxap/packages/commit/b2c3c427e63a109c93ee87de3b3115a88eddfdd5))
+
 # [16.0.0-dev.44](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.43...@rxap/plugin-docker@16.0.0-dev.44) (2023-10-20)
 
 ### Bug Fixes

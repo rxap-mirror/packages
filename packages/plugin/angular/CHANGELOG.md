@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.61](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.60...@rxap/plugin-angular@16.1.0-dev.61) (2023-10-22)
+
+### Bug Fixes
+
+- update default Dockerfile ([f5fa480](https://gitlab.com/rxap/packages/commit/f5fa4808b5dd6c2b11e1a7e074bdea314c90a3a6))
+
 # [16.1.0-dev.60](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.59...@rxap/plugin-angular@16.1.0-dev.60) (2023-10-20)
 
 ### Bug Fixes

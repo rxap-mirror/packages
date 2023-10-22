@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.46](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.45...@rxap/plugin-nestjs@16.1.0-dev.46) (2023-10-22)
+
+### Bug Fixes
+
+- set default PATH_PREFIX build arg value ([6742c35](https://gitlab.com/rxap/packages/commit/6742c35b7e1165e967ef831689a08d715c5967b5))
+- update default Dockerfile ([f5fa480](https://gitlab.com/rxap/packages/commit/f5fa4808b5dd6c2b11e1a7e074bdea314c90a3a6))
+- use utility CreateProject function to create a ts-morph Project instance ([78b308f](https://gitlab.com/rxap/packages/commit/78b308fd10747616c7c7f27e81501a4ad5052a77))
+
 # [16.1.0-dev.45](https://gitlab.com/rxap/packages/compare/@rxap/plugin-nestjs@16.1.0-dev.44...@rxap/plugin-nestjs@16.1.0-dev.45) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/plugin-nestjs
