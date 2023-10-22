@@ -242,6 +242,11 @@ function updateProjectTargets(project: ProjectConfiguration) {
   if (project.targets['docker']) {
     project.targets['docker'].options ??= {};
     project.targets['docker'].options.dockerfile ??= 'shared/nestjs/Dockerfile';
+    project.targets['docker'].options.buildArgList ??= [];
+    if (!project.targets['docker'].options.buildArgList.some((arg: string) => arg.startsWith('PATH_PREFIX='))) {
+      project.targets['docker'].options.buildArgList.push(
+        'PATH_PREFIX=REGEX:app/app.config.ts:validationSchema\\[\'GLOBAL_API_PREFIX\'\\] = Joi.string\\(\\).default\\(\'(.+)\'\\);');
+    }
   }
 
 }
