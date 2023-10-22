@@ -119,7 +119,8 @@ export async function dockerBuild(
 
   if (buildArgList?.length) {
     for (const buildArg of buildArgList) {
-      args.push(`--build-arg="${ buildArg }"`);
+      args.push(`--build-arg`);
+      args.push(buildArg);
     }
   }
 
