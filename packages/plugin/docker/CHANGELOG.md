@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.48](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.47...@rxap/plugin-docker@16.0.0-dev.48) (2023-10-25)
+
+### Features
+
+- introduce yaml and json merge strategy ([d246c8f](https://gitlab.com/rxap/packages/commit/d246c8fde4fe9f53c54b5b9bc06ce433846261ba))
+
 # [16.0.0-dev.47](https://gitlab.com/rxap/packages/compare/@rxap/plugin-docker@16.0.0-dev.46...@rxap/plugin-docker@16.0.0-dev.47) (2023-10-22)
 
 ### Bug Fixes

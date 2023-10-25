@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.34...@rxap/plugin-application@16.1.0-dev.35) (2023-10-25)
+
+### Features
+
+- introduce yaml and json merge strategy ([d246c8f](https://gitlab.com/rxap/packages/commit/d246c8fde4fe9f53c54b5b9bc06ce433846261ba))
+
 # [16.1.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.33...@rxap/plugin-application@16.1.0-dev.34) (2023-10-18)
 
 ### Features

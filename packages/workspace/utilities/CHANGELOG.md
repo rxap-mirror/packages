@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.24...@rxap/workspace-utilities@0.1.0-dev.25) (2023-10-25)
+
+### Features
+
+- introduce yaml and json merge strategy ([d246c8f](https://gitlab.com/rxap/packages/commit/d246c8fde4fe9f53c54b5b9bc06ce433846261ba))
+
 # [0.1.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.23...@rxap/workspace-utilities@0.1.0-dev.24) (2023-10-16)
 
 ### Bug Fixes
