@@ -26,7 +26,9 @@ import {
   GetPackageJson,
   IsAngularProject,
   IsNestJsProject,
+  JSON_MERGE_STRATEGY,
   Strategy,
+  YAML_MERGE_STRATEGY,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import * as process from 'process';
@@ -190,6 +192,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
     srcFolder: join(__dirname, 'files', 'general'),
     target: '',
     overwrite: options.overwrite,
+    mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
   });
 
   if (options.authentik) {
@@ -197,6 +200,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       srcFolder: join(__dirname, 'files', 'authentik'),
       target: '',
       overwrite: options.overwrite,
+      mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
     });
   }
 
@@ -205,6 +209,7 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
       srcFolder: join(__dirname, 'files', 'minio'),
       target: '',
       overwrite: options.overwrite,
+      mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
     });
   }
 

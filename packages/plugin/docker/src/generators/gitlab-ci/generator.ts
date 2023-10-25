@@ -17,8 +17,12 @@ import {
   IsServiceProject,
   IsUserInterfaceProject,
   RootDockerOptions,
+  YamlMergeFunction,
 } from '@rxap/workspace-utilities';
-import { join } from 'path';
+import {
+  basename,
+  join,
+} from 'path';
 import { stringify } from 'yaml';
 import { processBuildArgs } from '../../lib/utilities';
 import { GitlabCiGeneratorSchema } from './schema';
@@ -29,15 +33,14 @@ const dotDocker = {
     entrypoint: [ '' ],
   },
   stage: 'docker',
-  tags: [ 'e2-standard-2' ],
-  script: '/bin/sh tools/scripts/build-and-push-docker-image.sh',
+  script: './tools/scripts/build-and-push-docker-image.sh',
   environment: {
     action: 'prepare',
     name: '$ENVIRONMENT_NAME',
   },
-  variables: [
-    'GIT_LFS_SKIP_SMUDGE=1',
-  ],
+  variables: {
+    GIT_LFS_SKIP_SMUDGE: '1',
+  },
   rules: [
     {
       if: '$DISABLE_DOCKER_BUILD',
@@ -58,10 +61,9 @@ const docker = {
 const dotStartup = {
   image: 'curlimages/curl:8.3.0',
   stage: 'startup',
-  tags: [ 'e2-standard-2' ],
   services: [
     {
-      name: '${CI_REGISTRY_IMAGE}${IMAGE_SUFFIX}:${CI_PIPELINE_ID}',
+      name: '${REGISTRY_IMAGE}${IMAGE_SUFFIX}:${CI_PIPELINE_ID}',
       alias: 'service',
     },
   ],
@@ -181,6 +183,15 @@ function generateStartupGitlabCiFileContent(
     '.startup': dotStartup,
   };
 
+  startupYaml['.startup'].variables ??= {};
+  if (options.gitlab !== false) {
+    startupYaml['.startup'].variables.REGISTRY_IMAGE = '${CI_REGISTRY_IMAGE}';
+  }
+
+  if (options.gcp) {
+    startupYaml['.startup'].variables.REGISTRY_IMAGE = '${GCP_REGISTRY}/${GCP_PROJECT}/${IMAGE_NAME}';
+  }
+
   for (const [ projectName, project ] of getProjects(tree).entries()) {
 
     if (skipProject(tree, options, project, projectName)) {
@@ -219,6 +230,12 @@ function generateStartupGitlabCiFileContent(
   return stringify(startupYaml);
 }
 
+function mergeYaml(tree: Tree, filePath: string, newContent: string) {
+  const currentContent = tree.read(filePath, 'utf-8') ?? '';
+  const mergedContent = YamlMergeFunction(currentContent, newContent, basename(filePath), filePath);
+  tree.write(filePath, mergedContent);
+}
+
 export async function gitlabCiGenerator(
   tree: Tree,
   options: GitlabCiGeneratorSchema,
@@ -236,11 +253,11 @@ export async function gitlabCiGenerator(
 
   const dockerGitlabCiYaml = generateDockerGitlabCiFileContent(tree, options, rootDocker);
 
-  tree.write('.gitlab/ci/jobs/docker.yaml', dockerGitlabCiYaml);
+  mergeYaml(tree, '.gitlab/ci/jobs/docker.yaml', dockerGitlabCiYaml);
 
   const startupGitlabCiYaml = generateStartupGitlabCiFileContent(tree, options, rootDocker);
 
-  tree.write('.gitlab/ci/jobs/startup.yaml', startupGitlabCiYaml);
+  mergeYaml(tree, '.gitlab/ci/jobs/startup.yaml', startupGitlabCiYaml);
 
 }
 

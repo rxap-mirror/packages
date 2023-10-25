@@ -6,11 +6,11 @@
   "properties": {
     "gcp": {
       "type": "boolean",
-      "description": "Generate docker build with push target to GCP registry"
+      "description": "Generate docker startup test with pull target to GCP registry"
     },
     "gitlab": {
       "type": "boolean",
-      "description": "Generate docker build with push target to gitlab registry"
+      "description": "Generate docker startup test with pull target to gitlab registry"
     },
     "overwrite": {
       "type": "boolean",

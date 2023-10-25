@@ -3,7 +3,8 @@
   "name": "@rxap/workspace-utilities",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "tslib": "2.6.2"
+    "tslib": "2.6.2",
+    "yaml": "2.3.1"
   },
   "peerDependencies": {
     "@nx/devkit": "^16.5.0",
