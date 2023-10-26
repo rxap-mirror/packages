@@ -130,10 +130,14 @@ export class PipeDataSource<Source = any, Target = Source>
         )),
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        ...this.operations,
+        ...this.viewerToOperations(viewer),
       ),
       () => this.dataSource.disconnect(viewer),
     ];
+  }
+
+  protected viewerToOperations(viewer: BaseDataSourceViewer): Array<OperatorFunction<any, any>> {
+    return this.operations;
   }
 
 }
