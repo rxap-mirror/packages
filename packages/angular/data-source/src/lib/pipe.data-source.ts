@@ -59,6 +59,7 @@ export class PipeDataSource<Source = any, Target = Source>
     ...operations: Array<OperatorFunction<any, any> | PipeDataSourceMetadata>
   ) {
     super(dataSource.metadata);
+    this.loading$ = this.dataSource.loading$;
     if (operation) {
       this.setOperations(
         operation,
