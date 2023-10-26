@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.29...@rxap/data-source@16.0.0-dev.30) (2023-10-26)
+
+### Bug Fixes
+
+- **pipe-data-source:** copy loading observable from parent data source ([e429e91](https://gitlab.com/rxap/packages/commit/e429e91752594c9b9928b5c211b2de4f12b419f1))
+
 # [16.0.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.28...@rxap/data-source@16.0.0-dev.29) (2023-10-26)
 
 ### Bug Fixes
