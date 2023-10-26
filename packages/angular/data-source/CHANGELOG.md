@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.28...@rxap/data-source@16.0.0-dev.29) (2023-10-26)
+
+### Bug Fixes
+
+- support custom operations ([a92d9dc](https://gitlab.com/rxap/packages/commit/a92d9dcf109756431dec5817ce679f785504ae3a))
+
 # [16.0.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.27...@rxap/data-source@16.0.0-dev.28) (2023-10-18)
 
 ### Bug Fixes
