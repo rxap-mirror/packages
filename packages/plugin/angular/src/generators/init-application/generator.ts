@@ -38,6 +38,7 @@ import {
   CoerceTarget,
   CoerceTargetDefaultsDependency,
   CoerceTargetDefaultsInput,
+  CoerceTargetDefaultsOutput,
   GetProjectPrefix,
   Strategy,
   UpdateJsonFile,
@@ -223,7 +224,7 @@ function updateProjectTargets(
         }
         CoerceTarget(project, 'deploy', {
           executor: '@rxap/plugin-web3-storage:deploy',
-          outputs: ['dist/{projectRoot}/ipfs-cid.txt']
+          outputs: [ 'dist/{projectRoot}/ipfs-cid.txt' ],
         }, Strategy.OVERWRITE);
         break;
     }
@@ -259,6 +260,25 @@ function updateTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchem
   if (options.localazy) {
     CoerceTargetDefaultsDependency(nxJson, 'build', 'localazy-download');
     CoerceTargetDefaultsDependency(nxJson, 'localazy-upload', 'extract-i18n');
+    CoerceTargetDefaultsInput(
+      nxJson,
+      'localazy-upload',
+      '{projectRoot}/src/i18n/messages.xlf',
+    );
+    CoerceTargetDefaultsInput(
+      nxJson,
+      'localazy-download',
+      { runtime: 'date' },
+      { env: 'CI_COMMIT_TIMESTAMP' },
+      { env: 'CI_COMMIT_SHA' },
+      { env: 'CI_JOB_ID' },
+      { env: 'CI_PIPELINE_ID' },
+    );
+    CoerceTargetDefaultsOutput(
+      nxJson,
+      'localazy-download',
+      '{projectRoot}/src/i18n',
+    );
   }
 
   CoerceTargetDefaultsDependency(nxJson, 'build', '^generate-open-api');
@@ -269,7 +289,7 @@ function updateTargetDefaults(tree: Tree, options: InitApplicationGeneratorSchem
   CoerceTargetDefaultsInput(nxJson, 'deploy', '{workspaceRoot}/dist/{projectRoot}');
   CoerceTargetDefaultsDependency(nxJson, 'deploy', 'i18n-index-html');
   CoerceTarget(nxJson, 'i18n-index-html', {
-    dependsOn: ['build'],
+    dependsOn: [ 'build' ],
     executor: '@rxap/plugin-application:i18n',
     outputs: [ 'dist/{projectRoot}/index.html' ],
     inputs: [ '{workspaceRoot}/{projectRoot}/project.json' ],
@@ -381,13 +401,13 @@ function cleanup(tree: Tree, projectSourceRoot: string) {
   }
 
   let content = tree.read(join(projectSourceRoot, 'app/app.component.ts'), 'utf-8')
-                    .replace('title = \'domain-product\';', '')
-                    .replace('import { NxWelcomeComponent } from \'./nx-welcome.component\';', '')
-                    .replace('NxWelcomeComponent, ', '');
+    .replace('title = \'domain-product\';', '')
+    .replace('import { NxWelcomeComponent } from \'./nx-welcome.component\';', '')
+    .replace('NxWelcomeComponent, ', '');
   tree.write(join(projectSourceRoot, 'app/app.component.ts'), content);
 
   content = tree.read(join(projectSourceRoot, 'app/app.component.html'), 'utf-8')
-                .replace(/<.+-nx-welcome><\/.+-nx-welcome> /, '');
+    .replace(/<.+-nx-welcome><\/.+-nx-welcome> /, '');
   tree.write(join(projectSourceRoot, 'app/app.component.html'), content);
 
 }
@@ -404,12 +424,18 @@ function updateMainFile(tree: Tree, project: ProjectConfiguration, options: Init
     const statements: string[] = [];
 
     if (options.serviceWorker) {
-      importDeclarations.push({ moduleSpecifier: '@rxap/service-worker', namedImports: [ 'UnregisterServiceWorker' ] });
+      importDeclarations.push({
+        moduleSpecifier: '@rxap/service-worker',
+        namedImports: [ 'UnregisterServiceWorker' ],
+      });
       statements.push('application.before(() => UnregisterServiceWorker(environment));');
     }
 
     if (options.openApi) {
-      importDeclarations.push({ moduleSpecifier: '@rxap/open-api', namedImports: [ 'OpenApiInit' ] });
+      importDeclarations.push({
+        moduleSpecifier: '@rxap/open-api',
+        namedImports: [ 'OpenApiInit' ],
+      });
       if (options.openApiLegacy) {
         statements.push('application.before(() => OpenApiInit({ load: true }));');
       } else {
@@ -418,7 +444,10 @@ function updateMainFile(tree: Tree, project: ProjectConfiguration, options: Init
     }
 
     if (options.sentry) {
-      importDeclarations.push({ moduleSpecifier: '@rxap/ngx-sentry', namedImports: [ 'SentryInit' ] });
+      importDeclarations.push({
+        moduleSpecifier: '@rxap/ngx-sentry',
+        namedImports: [ 'SentryInit' ],
+      });
       statements.push('application.before(() => SentryInit(environment));');
     }
 
@@ -542,14 +571,14 @@ async function updateTsConfig(tree: Tree, project: ProjectConfiguration, options
   const projectRoot = project.root;
 
   if (options.i18n) {
-    for (const tsConfigName of ['app', 'editor', 'spec']) {
+    for (const tsConfigName of [ 'app', 'editor', 'spec' ]) {
       await UpdateJsonFile(tree, tsConfig => {
         tsConfig.compilerOptions ??= {};
         tsConfig.compilerOptions.types ??= [];
         if (!tsConfig.compilerOptions.types.includes('@angular/localize')) {
           tsConfig.compilerOptions.types.push('@angular/localize');
         }
-      }, join(projectRoot, `tsconfig.${tsConfigName}.json`));
+      }, join(projectRoot, `tsconfig.${ tsConfigName }.json`));
     }
   }
 
@@ -791,7 +820,8 @@ export async function initApplicationGenerator(
           ]);
         }
         if (options.serviceWorker) {
-          providers.push(`provideServiceWorker('ngsw-worker.js', { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' })`);
+          providers.push(
+            `provideServiceWorker('ngsw-worker.js', { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' })`);
           providers.push('ProvideServiceWorkerUpdateDialog()');
           CoerceImports(sourceFile, [
             {
