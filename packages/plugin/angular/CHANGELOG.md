@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.63](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.62...@rxap/plugin-angular@16.1.0-dev.63) (2023-10-27)
+
+### Bug Fixes
+
+- add localazy upload download inputs and outputs defaults ([e1164c2](https://gitlab.com/rxap/packages/commit/e1164c21c75fccd3fd74616fd6a41a799f15da97))
+
 # [16.1.0-dev.62](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.61...@rxap/plugin-angular@16.1.0-dev.62) (2023-10-22)
 
 ### Bug Fixes
