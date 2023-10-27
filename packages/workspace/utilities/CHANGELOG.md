@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.25...@rxap/workspace-utilities@0.1.0-dev.26) (2023-10-27)
+
+### Bug Fixes
+
+- support env and runtime inputs ([12a26c8](https://gitlab.com/rxap/packages/commit/12a26c8845910c440d8ba0a352da6cdbd05bfcd1))
+
 # [0.1.0-dev.25](https://gitlab.com/rxap/packages/compare/@rxap/workspace-utilities@0.1.0-dev.24...@rxap/workspace-utilities@0.1.0-dev.25) (2023-10-25)
 
 ### Features
