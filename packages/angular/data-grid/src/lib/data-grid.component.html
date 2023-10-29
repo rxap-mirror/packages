@@ -18,7 +18,8 @@ never shown. -->
   </thead>
   <tbody>
   <ng-template [ngForOf]="rows$ | async" let-first="first" let-row ngFor>
-    <ng-template [ngIf]="!displayProperties || row.isSubHeader || (row.name && displayProperties.includes(row.name))">
+    <ng-template
+      [ngIf]="(!displayProperties || row.isSubHeader || (row.name && displayProperties.includes(row.name))) && (!hideEmptyProperties || false === (data$ | isEmpty: row.name | async))">
       <!-- region horizontal view -->
       <ng-template [ngIfElse]="normal" [ngIf]="row.flip">
         <tr>

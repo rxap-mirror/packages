@@ -63,6 +63,7 @@ import {
 } from 'rxjs/operators';
 import { DataGridRowDefDirective } from './data-grid-row-def.directive';
 import { DataGridValuePipe } from './data-grid-value.pipe';
+import { IsEmptyPipe } from './is-empty.pipe';
 
 export enum DataGridMode {
   /**
@@ -101,6 +102,7 @@ function IsDataGridMode(value: string): value is DataGridMode {
     NgTemplateOutlet,
     MatFormFieldModule,
     NgClass,
+    IsEmptyPipe,
   ],
 })
 export class DataGridComponent<T extends Record<string, any>> implements OnInit, OnDestroy, AfterContentInit {
@@ -123,6 +125,9 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
 
   @Input()
   public displayProperties: string[] | null = null;
+
+  @Input()
+  public hideEmptyProperties = false;
 
   @ContentChildren(DataGridRowDefDirective)
   public rows!: QueryList<DataGridRowDefDirective<T>>;
