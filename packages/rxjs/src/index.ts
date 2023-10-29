@@ -14,3 +14,4 @@ export * from './lib/is-teardown-logic';
 export * from './lib/subscription-handler';
 export * from './lib/counter.subject';
 export * from './lib/button.definition';
+export * from './lib/clone-observable';
