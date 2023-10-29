@@ -121,7 +121,7 @@ export class PipeDataSource<Source = any, Target = Source>
     };
   }
 
-  protected override _connect(viewer: BaseDataSourceViewer): [ Observable<Target>, TeardownLogic ] {
+  protected override _connect(viewer: BaseDataSourceViewer): [ Observable<Target>, TeardownLogic ] | Observable<Target> {
     this.init();
     return [
       this.dataSource.connect(viewer).pipe(
