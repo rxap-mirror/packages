@@ -8763,7 +8763,7 @@ __metadata:
     "@rxap/definition": ^16.0.0-dev.19
     "@rxap/environment": ^16.0.0-dev.19
     "@rxap/pattern": ^1.1.0-dev.3
-    "@rxap/rxjs": ^1.0.1-dev.14
+    "@rxap/rxjs": ^1.1.0-dev.0
     "@rxap/utilities": ^16.0.0-dev.23
     rxjs: ^7.8.1
     tslib: 2.6.2

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.32...@rxap/data-source@16.0.0-dev.33) (2023-10-29)
+
+### Bug Fixes
+
+- clone attached observable ([386d3aa](https://gitlab.com/rxap/packages/commit/386d3aab8d545dc2f162bab971ed5884d35e086d))
+- use correct method return types ([3d7ab63](https://gitlab.com/rxap/packages/commit/3d7ab6381800c847023bd28140103bc186a9eda7))
+
 # [16.0.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.31...@rxap/data-source@16.0.0-dev.32) (2023-10-29)
 
 ### Features

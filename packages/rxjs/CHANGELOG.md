@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-dev.0](https://gitlab.com/rxap/packages/compare/@rxap/rxjs@1.0.1-dev.14...@rxap/rxjs@1.1.0-dev.0) (2023-10-29)
+
+### Features
+
+- add CloneObservable function ([865416f](https://gitlab.com/rxap/packages/commit/865416ff3a1a585010acbd9096f1474103d843ac))
+
 ## [1.0.1-dev.14](https://gitlab.com/rxap/packages/compare/@rxap/rxjs@1.0.1-dev.13...@rxap/rxjs@1.0.1-dev.14) (2023-10-18)
 
 **Note:** Version bump only for package @rxap/rxjs
