@@ -10,7 +10,10 @@ import {
   DefinitionMetadata,
   RXAP_DEFINITION_METADATA,
 } from '@rxap/definition';
-import { ToggleSubject } from '@rxap/rxjs';
+import {
+  CloneObservable,
+  ToggleSubject,
+} from '@rxap/rxjs';
 import {
   clone,
   Constructor,
@@ -189,7 +192,7 @@ export class BaseDataSource<
 
   public attach(viewerId: DataSourceViewerId): Observable<Data> {
     if (this.isConnected(viewerId)) {
-      return this._connectedViewer.get(viewerId)!;
+      return CloneObservable(this._connectedViewer.get(viewerId)!);
     }
     throw new Error(`No active connection with viewer id '${ viewerId }' found`);
   }
