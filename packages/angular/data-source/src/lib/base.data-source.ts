@@ -187,6 +187,13 @@ export class BaseDataSource<
     return connection;
   }
 
+  public attach(viewerId: DataSourceViewerId): Observable<Data> {
+    if (this.isConnected(viewerId)) {
+      return this._connectedViewer.get(viewerId)!;
+    }
+    throw new Error(`No active connection with viewer id '${ viewerId }' found`);
+  }
+
   public isConnected(viewerOrId: Viewer | DataSourceViewerId): boolean {
     const viewerId =
       typeof viewerOrId === 'string'
@@ -232,17 +239,12 @@ export class BaseDataSource<
 
   /**
    * Creates a connection to tha data source and converts the Observable into a
-   * promise.
-   *
-   * @param viewer
+   * promise and then disconnects the viewer
    */
-  public toPromise(viewer: Viewer): Promise<Data> {
-    return firstValueFrom(this.connect(viewer)
-                              .pipe(take(1)))
-      .then((result) => {
-        this.disconnect(viewer);
-        return result;
-      });
+  public async toPromise(viewer: Viewer): Promise<Data> {
+    const result = await firstValueFrom(this.connect(viewer).pipe(take(1)));
+    this.disconnect(viewer);
+    return result;
   }
 
   public derive(

@@ -31,7 +31,8 @@ import {
 
 @Injectable()
 export class MethodDataSource<Data, Parameters = any>
-  extends BaseDataSource<Data, BaseDataSourceMetadata, BaseDataSourceViewer & Parameters> implements OnInit {
+  extends BaseDataSource<Data, BaseDataSourceMetadata, (BaseDataSourceViewer & Parameters) | BaseDataSourceViewer<Parameters>>
+  implements OnInit {
 
   protected override readonly _data$ = new ReplaySubject<Data>(1);
 
