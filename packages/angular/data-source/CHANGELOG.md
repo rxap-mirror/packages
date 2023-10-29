@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.30...@rxap/data-source@16.0.0-dev.31) (2023-10-29)
+
+### Features
+
+- support viewChange in MethodDataSources ([2ad1350](https://gitlab.com/rxap/packages/commit/2ad13504bcaf0e021e36be5c73458e3a60aa8c48))
+
 # [16.0.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.29...@rxap/data-source@16.0.0-dev.30) (2023-10-26)
 
 ### Bug Fixes
