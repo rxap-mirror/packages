@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.31...@rxap/data-source@16.0.0-dev.32) (2023-10-29)
+
+### Features
+
+- add attach method to BaseDataSource ([334b1a8](https://gitlab.com/rxap/packages/commit/334b1a8610a04b06d0401969eaa51348f3d7567d))
+
 # [16.0.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/data-source@16.0.0-dev.30...@rxap/data-source@16.0.0-dev.31) (2023-10-29)
 
 ### Features
