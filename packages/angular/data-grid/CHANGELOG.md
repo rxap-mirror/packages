@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.22](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.0-dev.21...@rxap/data-grid@16.0.0-dev.22) (2023-10-29)
+
+### Features
+
+- add hide empty properties option ([dd0f5ee](https://gitlab.com/rxap/packages/commit/dd0f5ee7655a896c3f64ec894bd669f1323b9b6c))
+
 # [16.0.0-dev.21](https://gitlab.com/rxap/packages/compare/@rxap/data-grid@16.0.0-dev.20...@rxap/data-grid@16.0.0-dev.21) (2023-10-18)
 
 ### Bug Fixes
