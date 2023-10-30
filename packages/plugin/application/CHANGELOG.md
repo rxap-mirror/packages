@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.36](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.35...@rxap/plugin-application@16.1.0-dev.36) (2023-10-30)
+
+### Bug Fixes
+
+- load .env file for docker services ([94d9256](https://gitlab.com/rxap/packages/commit/94d92569fc259e4aff2b1ae4ec064a2eb6ff51d3))
+
 # [16.1.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/plugin-application@16.1.0-dev.34...@rxap/plugin-application@16.1.0-dev.35) (2023-10-25)
 
 ### Features

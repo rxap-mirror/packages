@@ -9668,12 +9668,12 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.19
-    "@rxap/plugin-angular": ^16.1.0-dev.62
+    "@rxap/plugin-angular": ^16.1.0-dev.63
     "@rxap/plugin-docker": ^16.0.0-dev.48
     "@rxap/plugin-nestjs": ^16.1.0-dev.47
     "@rxap/plugin-utilities": ^16.1.0-dev.22
     "@rxap/utilities": ^16.0.0-dev.23
-    "@rxap/workspace-utilities": ^0.1.0-dev.25
+    "@rxap/workspace-utilities": ^0.1.0-dev.26
     handlebars: ^4.7.7
     tslib: 2.6.2
   languageName: unknown
@@ -9833,11 +9833,11 @@ __metadata:
   peerDependencies:
     "@nx/devkit": ^16.5.0
     "@rxap/generator-utilities": ^1.1.0-dev.19
-    "@rxap/plugin-application": ^16.1.0-dev.32
-    "@rxap/plugin-library": ^16.0.0-dev.39
-    "@rxap/plugin-utilities": ^16.1.0-dev.21
+    "@rxap/plugin-application": ^16.1.0-dev.36
+    "@rxap/plugin-library": ^16.0.0-dev.41
+    "@rxap/plugin-utilities": ^16.1.0-dev.22
     "@rxap/utilities": ^16.0.0-dev.23
-    "@rxap/workspace-utilities": ^0.1.0-dev.23
+    "@rxap/workspace-utilities": ^0.1.0-dev.26
     tslib: 2.6.2
   languageName: unknown
   linkType: soft
