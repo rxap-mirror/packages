@@ -104,6 +104,7 @@ function createServiceDockerCompose(
           'ROOT_DOMAIN_PORT',
           'ENVIRONMENT_NAME=development',
         ],
+        env_file: [ '.env' ],
         depends_on: [
           'traefik',
           'catch-all-api',
@@ -137,6 +138,7 @@ function createFrontendDockerCompose(
           // `traefik.http.services.${ name }.loadbalancer.server.port=80`,
           `traefik.http.routers.${ name }.priority=10`,
         ],
+        env_file: [ '.env' ],
         depends_on: [
           'traefik',
           'rxap-service-configuration',

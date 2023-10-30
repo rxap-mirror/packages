@@ -7,16 +7,16 @@ services:
     image: traefik:latest
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - "$XDG_RUNTIME_DIR/docker.sock:/var/run/docker.sock:ro"
+      - $XDG_RUNTIME_DIR/docker.sock:/var/run/docker.sock:ro
       - ./docker/traefik:/etc/traefik:ro
     ports:
-      - "${ROOT_DOMAIN_PORT}:443"
+      - ${ROOT_DOMAIN_PORT}:443
       - "8888:8080"
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.traefik.entrypoints=https"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.${ROOT_DOMAIN}`)"
-      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      - traefik.enable=true
+      - traefik.http.routers.traefik.entrypoints=https
+      - traefik.http.routers.traefik.rule=Host(`traefik.${ROOT_DOMAIN}`)
+      - traefik.http.services.traefik.loadbalancer.server.port=8080
     environment:
       - REMOTE_DOMAIN
       - ROOT_DOMAIN
@@ -40,6 +40,8 @@ services:
       - LOG_LEVEL=verbose
       - ROOT_DOMAIN_PORT
       - ENVIRONMENT_NAME=development
+    env_file:
+      - .env
     depends_on:
       - traefik
       - rxap-service-status
@@ -56,10 +58,12 @@ services:
       - LOG_LEVEL=verbose
       - ROOT_DOMAIN_PORT
       - ENVIRONMENT_NAME=development
+    env_file:
+      - .env
     depends_on:
       - traefik
     ports:
-      - "5300:3000"
+      - 5300:3000
   rxap-service-changelog:
     image: registry.gitlab.com/rxap/packages/service/changelog:${RXAP_CHANNEL:-development}
     labels:
@@ -74,6 +78,8 @@ services:
       - LOG_LEVEL=verbose
       - ROOT_DOMAIN_PORT
       - ENVIRONMENT_NAME=development
+    env_file:
+      - .env
     volumes:
       - ./shared/service/changelog:/app/assets
     depends_on:
@@ -93,6 +99,8 @@ services:
       - LOG_LEVEL=verbose
       - ROOT_DOMAIN_PORT
       - ENVIRONMENT_NAME=development
+    env_file:
+      - .env
     volumes:
       - ./shared/service/user:/app/assets
     depends_on:
