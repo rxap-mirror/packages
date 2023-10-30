@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.44](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.43...@rxap/plugin-workspace@16.1.0-dev.44) (2023-10-30)
+
+### Bug Fixes
+
+- use subdomain build for service router rule construction ([bdc8eca](https://gitlab.com/rxap/packages/commit/bdc8ecaf2ffb648e36de6654873092637b2c4bff))
+- use subdomain from docker args config ([6053cc9](https://gitlab.com/rxap/packages/commit/6053cc9e837b040a4566abb2226a7eb64fff9a0e))
+
 # [16.1.0-dev.43](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.42...@rxap/plugin-workspace@16.1.0-dev.43) (2023-10-30)
 
 ### Bug Fixes
