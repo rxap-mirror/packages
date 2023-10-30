@@ -306,6 +306,19 @@ function createTraefikConfig(
   });
 }
 
+function buildDomainForService(rootDomain: string, name: string, docker: Record<string, string>) {
+  let subdomain = `${ name }.`;
+  if (docker.buildArgList && Array.isArray(docker.buildArgList)) {
+    const buildArg = docker.buildArgList.find((arg) => arg.startsWith('SUB_DOMAIN='));
+    subdomain = buildArg ? buildArg.split('=')[1] : subdomain;
+    subdomain = subdomain
+      .replace('$DOT', '.')
+      .replace(`\${DOT}`, '.')
+      .replace(/\$\{DOT:-.+}/, '.');
+  }
+  return subdomain + rootDomain;
+}
+
 function printEtcHostsConfig(
   rootDomain: string,
   services: Array<{ name: string; docker: Record<string, string> }>,
@@ -317,9 +330,11 @@ function printEtcHostsConfig(
     `traefik.${ rootDomain }`,
     `minio.${ rootDomain }`,
     `auth.${ rootDomain }`,
-    ...services.map(({ name }) => name + '.' + rootDomain),
-  ].join(
-    ' ');
+    ...services.map(({
+      name,
+      docker,
+    }) => buildDomainForService(rootDomain, name, docker)),
+  ].join(' ');
   console.log('Add the following line to your /etc/hosts file:'.blue);
   console.log(config);
   console.log('You can do this by running the following command:'.blue);
@@ -336,18 +351,7 @@ function createExtCnf(
     config += services.map(({
       name,
       docker,
-    }) => {
-      let subdomain = `${ name }.`;
-      if (docker.buildArgList && Array.isArray(docker.buildArgList)) {
-        const buildArg = docker.buildArgList.find((arg) => arg.startsWith('SUB_DOMAIN='));
-        subdomain = buildArg ? buildArg.split('=')[1] : subdomain;
-        subdomain = subdomain
-          .replace('$DOT', '.')
-          .replace(`\${DOT}`, '.')
-          .replace(/\$\{DOT:-.+}/, '.');
-      }
-      return 'DNS:' + subdomain + rootDomain;
-    }).join(',');
+    }) => 'DNS:' + buildDomainForService(rootDomain, name, docker)).join(',');
   }
   return config;
 }
