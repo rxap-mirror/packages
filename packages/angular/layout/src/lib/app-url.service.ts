@@ -50,6 +50,14 @@ export class AppUrlService {
 
   }
 
+  public getAppUrlOrThrow(appId: string, path: string): string {
+    const url = this.getAppUrl(appId, path);
+    if (url) {
+      return url;
+    }
+    throw new Error(`Could not find app with id "${ appId }"`);
+  }
+
   public navigate(appId: string, path: string): void {
 
     const url = this.getAppUrl(appId, path);
