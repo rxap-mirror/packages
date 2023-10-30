@@ -14,6 +14,7 @@ import {
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
 import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
+import { ProvideServiceWorkerUpdater } from '@rxap/service-worker';
 import {
   CoerceAppConfigProvider,
   CoerceImports,
@@ -822,7 +823,7 @@ export async function initApplicationGenerator(
         if (options.serviceWorker) {
           providers.push(
             `provideServiceWorker('ngsw-worker.js', { enabled: environment.serviceWorker, registrationStrategy: 'registerWhenStable:30000' })`);
-          providers.push('ProvideServiceWorkerUpdateDialog()');
+          providers.push('ProvideServiceWorkerUpdater(withDialogUpdater())');
           CoerceImports(sourceFile, [
             {
               moduleSpecifier: '@angular/service-worker',
@@ -830,7 +831,7 @@ export async function initApplicationGenerator(
             },
             {
               moduleSpecifier: '@rxap/service-worker',
-              namedImports: [ 'ProvideServiceWorkerUpdateDialog' ],
+              namedImports: [ 'ProvideServiceWorkerUpdater', 'withDialogUpdater' ],
             },
           ]);
         }
