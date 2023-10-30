@@ -39,4 +39,6 @@
   extends: .run-many
   before_script:
     - ./tools/scripts/install-dependencies.sh
-    - yarn exec nx-cloud start-ci-run --stop-agents-after="${STOP_TARGET:-${TARGET}}"
+    - yarn exec nx-cloud start-ci-run
+  after_script:
+    - yarn exec nx-cloud stop-all-agents
