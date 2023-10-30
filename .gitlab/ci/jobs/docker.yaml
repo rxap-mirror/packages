@@ -1,17 +1,17 @@
 .docker:
   image:
-    name: gcr.io/kaniko-project/executor:debug
+    name: registry.gitlab.com/rxap/gitlab-ci/kaniko:latest
     entrypoint:
       - ""
   stage: docker
   tags:
     - e2-standard-2
-  script: /bin/sh tools/scripts/build-and-push-docker-image.sh
+  script: ./tools/scripts/build-and-push-docker-image.sh
   environment:
     action: prepare
     name: $ENVIRONMENT_NAME
   variables:
-    - GIT_LFS_SKIP_SMUDGE=1
+    GIT_LFS_SKIP_SMUDGE: "1"
   rules:
     - if: $DISABLE_DOCKER_BUILD
       when: never
@@ -35,6 +35,7 @@ docker:service-changelog:
     DOCKER_CONTEXT: dist/applications/service/changelog
     IMAGE_SUFFIX: /service/changelog
     DOCKERFILE: shared/nestjs/Dockerfile
+    NAME_PREFIX: rxap-
 docker:service-configuration:
   extends: .docker
   variables:
@@ -44,6 +45,7 @@ docker:service-configuration:
     DOCKER_CONTEXT: dist/applications/service/configuration
     IMAGE_SUFFIX: /service/configuration
     DOCKERFILE: shared/nestjs/Dockerfile
+    NAME_PREFIX: rxap-
 docker:service-status:
   extends: .docker
   variables:
@@ -53,6 +55,7 @@ docker:service-status:
     DOCKER_CONTEXT: dist/applications/service/status
     IMAGE_SUFFIX: /service/status
     DOCKERFILE: shared/nestjs/Dockerfile
+    NAME_PREFIX: rxap-
 docker:service-user:
   extends: .docker
   variables:
@@ -62,6 +65,7 @@ docker:service-user:
     DOCKER_CONTEXT: dist/applications/service/user
     IMAGE_SUFFIX: /service/user
     DOCKERFILE: shared/nestjs/Dockerfile
+    NAME_PREFIX: rxap-
 docker:service-app-angular-table:
   extends: .docker
   variables:

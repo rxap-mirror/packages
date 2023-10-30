@@ -1,41 +1,37 @@
 #!/bin/sh
 
+BLACK='\033[0;30m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+LIGHT_GRAY='\033[0;37m'
+GRAY='\033[0;90m'
+LIGHT_RED='\033[0;91m'
+LIGHT_GREEN='\033[0;92m'
+LIGHT_YELLOW='\033[0;93m'
+LIGHT_BLUE='\033[0;94m'
+LIGHT_MAGENTA='\033[0;95m'
+LIGHT_CYAN='\033[0;96m'
+WHITE='\033[0;97m'
 NC='\033[0m' # No Color
+
+# This script will exit on the first error
+set -e
 
 DOCKER_CONFIG_PATH=${DOCKER_CONFIG_PATH:-/kaniko/.docker/config.json}
 
-make_temp_file() {
-  # ensure the temporary directory exists
-  # in the kaniko container the folder /tmp does not exists
-  mkdir -p /tmp
-  if command -v mktemp >/dev/null 2>&1; then
-    echo "$(mktemp)"
-  else
-    local tmp_file="/tmp/tmpfile_$RANDOM"
-    touch "$tmp_file"
-    echo "$tmp_file"
-  fi
-}
-
 PIPELINE_ID=${CI_PIPELINE_ID:-local}
 
-if [ "$CI" = "true" ]; then
-  # region install utilities
-  mkdir -p /usr/local/bin
-  busybox wget -O /usr/local/bin/curl https://github.com/moparisthebest/static-curl/releases/download/v7.78.0/curl-amd64
-  chmod +x /usr/local/bin/curl
-  busybox wget -O /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
-  chmod +x /usr/local/bin/jq
-  # endregion
-else
+if [ "$CI" != "true" ]; then
   echo -e "${RED}This script is only intended to be run in GitLab CI${NC}"
   DOCKER_CONFIG_PATH="/tmp/.docker/config.json"
   DRY_RUN="true"
 fi
 
+echo "prepare docker config: ${DOCKER_CONFIG_PATH}"
 mkdir -p "$(dirname "${DOCKER_CONFIG_PATH}")"
 
 echo '{ "auths": {} }' >"${DOCKER_CONFIG_PATH}"
@@ -68,6 +64,16 @@ fi
 if [ -n "$PATH_PREFIX" ]; then
   COMMON_EXEC_PARAMS="$COMMON_EXEC_PARAMS --build-arg PATH_PREFIX=${PATH_PREFIX}"
 fi
+
+if [ -n "$SUB_DOMAIN" ]; then
+  COMMON_EXEC_PARAMS="$COMMON_EXEC_PARAMS --build-arg SUB_DOMAIN=${SUB_DOMAIN}"
+fi
+
+if [ -n "$NAME_PREFIX" ]; then
+  COMMON_EXEC_PARAMS="$COMMON_EXEC_PARAMS --build-arg NAME_PREFIX=${NAME_PREFIX}"
+fi
+
+echo -e "${CYAN}COMMON_EXEC_PARAMS: ${COMMON_EXEC_PARAMS}${NC}"
 
 PUSH_TO_GITLAB=${PUSH_TO_GITLAB:-false}
 
@@ -194,7 +200,7 @@ if [ "$PUSH_TO_GCP" = "true" ]; then
   # when we read and write to the same file), we risk reading an already truncated
   # (empty) file. To prevent this, we first write the output to a temporary file
   # and then move (replace) the original file with this temporary one.
-  tmp_file=$(make_temp_file)
+  tmp_file=$(mktemp)
   cat "${DOCKER_CONFIG_PATH}" | jq \
     --arg auth "$AUTH" \
     --arg registry "$GCP_REGISTRY" \
@@ -224,7 +230,7 @@ if [ "$PUSH_TO_GITLAB" = "true" ]; then
   # when we read and write to the same file), we risk reading an already truncated
   # (empty) file. To prevent this, we first write the output to a temporary file
   # and then move (replace) the original file with this temporary one.
-  tmp_file=$(make_temp_file)
+  tmp_file=$(mktemp)
   cat "${DOCKER_CONFIG_PATH}" | jq \
     --arg username "$CI_REGISTRY_USER" \
     --arg password "$CI_REGISTRY_PASSWORD" \
@@ -254,7 +260,7 @@ if [ "$PUSH_TO_CUSTOM" = "true" ]; then
   # when we read and write to the same file), we risk reading an already truncated
   # (empty) file. To prevent this, we first write the output to a temporary file
   # and then move (replace) the original file with this temporary one.
-  tmp_file=$(make_temp_file)
+  tmp_file=$(mktemp)
   cat "${DOCKER_CONFIG_PATH}" | jq \
     --arg username "$REGISTRY_USER" \
     --arg password "$REGISTRY_PASSWORD" \
