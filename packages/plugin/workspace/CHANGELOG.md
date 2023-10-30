@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.43](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.42...@rxap/plugin-workspace@16.1.0-dev.43) (2023-10-30)
+
+### Bug Fixes
+
+- use subdomain from docker args config ([b1b8f11](https://gitlab.com/rxap/packages/commit/b1b8f11bfc4dfa648fdcdebf2653a0735bb2cb81))
+
 # [16.1.0-dev.42](https://gitlab.com/rxap/packages/compare/@rxap/plugin-workspace@16.1.0-dev.41...@rxap/plugin-workspace@16.1.0-dev.42) (2023-10-30)
 
 ### Bug Fixes
