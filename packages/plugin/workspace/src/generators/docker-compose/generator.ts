@@ -91,9 +91,6 @@ function createServiceDockerCompose(
         image: buildImageName(docker, rootDocker),
         labels: [
           'traefik.enable=true',
-          `traefik.http.services.${ name }.loadbalancer.healthCheck.path=/health`,
-          `traefik.http.services.${ name }.loadbalancer.healthCheck.interval=10s`,
-          `traefik.http.services.${ name }.loadbalancer.healthCheck.timeout=3s`,
         ],
         environment: [
           ...options.serviceEnvironments ?? [],
@@ -133,10 +130,8 @@ function createFrontendDockerCompose(
         image: buildImageName(docker, rootDocker),
         labels: [
           'traefik.enable=true',
-          // `traefik.http.routers.${ name }.entrypoints=https`,
-          `traefik.http.routers.${ name }.rule=Host(\`${ name }.\${ROOT_DOMAIN}\`)`,
-          // `traefik.http.services.${ name }.loadbalancer.server.port=80`,
-          `traefik.http.routers.${ name }.priority=10`,
+          `traefik.http.routers.${ name }.rule=Host(\`${ buildSubDomainForService(
+            name, docker) }\${DOT:-.}\${ROOT_DOMAIN}\`)`,
         ],
         env_file: [ '.env' ],
         depends_on: [
@@ -306,17 +301,21 @@ function createTraefikConfig(
   });
 }
 
-function buildDomainForService(rootDomain: string, name: string, docker: Record<string, string>) {
-  let subdomain = `${ name }.`;
+function buildSubDomainForService(name: string, docker: Record<string, string>) {
+  let subdomain = name;
   if (docker.buildArgList && Array.isArray(docker.buildArgList)) {
     const buildArg = docker.buildArgList.find((arg) => arg.startsWith('SUB_DOMAIN='));
     subdomain = buildArg ? buildArg.split('=')[1] : subdomain;
     subdomain = subdomain
-      .replace('$DOT', '.')
-      .replace(`\${DOT}`, '.')
-      .replace(/\$\{DOT:-.+}/, '.');
+      .replace('$DOT', '')
+      .replace(`\${DOT}`, '')
+      .replace(/\$\{DOT:-.+}/, '');
   }
-  return subdomain + rootDomain;
+  return subdomain.replace(/\.$/, '');
+}
+
+function buildDomainForService(rootDomain: string, name: string, docker: Record<string, string>) {
+  return buildSubDomainForService(name, docker) + '.' + rootDomain;
 }
 
 function printEtcHostsConfig(
