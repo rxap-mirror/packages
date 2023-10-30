@@ -1,5 +1,5 @@
 {
-  "version": "16.1.0-dev.8",
+  "version": "16.1.0-dev.9",
   "name": "@rxap/ngx-user",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -7,10 +7,10 @@
   },
   "peerDependencies": {
     "@angular/core": "^16.1.4",
-    "@rxap/authentication": "^16.0.0-dev.19",
-    "@rxap/data-source": "^16.0.0-dev.27",
-    "@rxap/ngx-pub-sub": "^16.0.1-dev.1",
-    "@rxap/open-api": "^16.0.0-dev.26",
+    "@rxap/authentication": "^16.0.0-dev.20",
+    "@rxap/data-source": "^16.0.0-dev.33",
+    "@rxap/ngx-pub-sub": "^16.0.1-dev.2",
+    "@rxap/open-api": "^16.0.0-dev.27",
     "@rxap/utilities": "^16.0.0-dev.23",
     "rxjs": "^7.8.1",
     "tslib": "^2.3.0"
@@ -35,19 +35,19 @@
     "packageGroup": [
       {
         "package": "@rxap/authentication",
-        "version": "16.0.0-dev.19"
+        "version": "16.0.0-dev.20"
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.27"
+        "version": "16.0.0-dev.33"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "16.0.1-dev.1"
+        "version": "16.0.1-dev.2"
       },
       {
         "package": "@rxap/open-api",
-        "version": "16.0.0-dev.26"
+        "version": "16.0.0-dev.27"
       },
       {
         "package": "@rxap/pattern",

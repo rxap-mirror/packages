@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/authentication@16.0.0-dev.19...@rxap/authentication@16.0.0-dev.20) (2023-10-30)
+
+**Note:** Version bump only for package @rxap/authentication
+
 # [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/authentication@16.0.0-dev.18...@rxap/authentication@16.0.0-dev.19) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/authentication

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.42](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.41...@rxap/layout@16.0.0-dev.42) (2023-10-30)
+
+### Bug Fixes
+
+- only add lang string if in production ([f4b555c](https://gitlab.com/rxap/packages/commit/f4b555cd17c054aef64efffedec6cf3aefcaf212))
+
+### Features
+
+- add getAppUrlOrThrow method ([7e0c816](https://gitlab.com/rxap/packages/commit/7e0c816b95c1ef0be7883e0d0ac450569ff36e37))
+
 # [16.0.0-dev.41](https://gitlab.com/rxap/packages/compare/@rxap/layout@16.0.0-dev.40...@rxap/layout@16.0.0-dev.41) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/layout

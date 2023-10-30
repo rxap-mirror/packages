@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@16.1.0-dev.3...@rxap/ngx-theme@16.1.0-dev.4) (2023-10-30)
+
+**Note:** Version bump only for package @rxap/ngx-theme
+
 # [16.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/ngx-theme@16.1.0-dev.3...@rxap/ngx-theme@16.1.0-dev.3) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/ngx-theme
