@@ -333,7 +333,22 @@ function createExtCnf(
   let config = `subjectAltName=DNS:${ rootDomain },DNS:traefik.${ rootDomain },DNS:minio.${ rootDomain },DNS:auth.${ rootDomain }`;
   if (services.length) {
     config += ',';
-    config += services.map(({ name }) => 'DNS:' + name + '.' + rootDomain).join(',');
+
+    config += services.map(({
+      name,
+      docker,
+    }) => {
+      let subdomain = `${ name }.`;
+      if (docker.buildArgList && Array.isArray(docker.buildArgList)) {
+        const buildArg = docker.buildArgList.find((arg) => arg.startsWith('SUB_DOMAIN='));
+        subdomain = buildArg ? buildArg.split('=')[1] : subdomain;
+        subdomain = subdomain
+          .replace('$DOT', '.')
+          .replace(`\${DOT}`, '.')
+          .replace(/\$\{DOT:-.+}/, '.');
+      }
+      return 'DNS:' + subdomain + rootDomain;
+    }).join(',');
   }
   return config;
 }
