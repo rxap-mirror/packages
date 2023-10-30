@@ -193,7 +193,7 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
     try {
       return JSON.parse(content);
     } catch (e: any) {
-      throw new InternalServerErrorException('invalid json file: ' + filePath + ' ' + e.message);
+      throw new InternalServerErrorException(`invalid json file '${ filePath }': ${ e.message } --- >>${ content }<<`);
     }
   }
 
@@ -223,20 +223,31 @@ export class LoadConfigurationService implements OnApplicationBootstrap, OnAppli
     return value.replace(/\$\{(.*?)}/g, (match: string, p1: string) => {
       let variableName = p1;
       let optional = false;
+      let defaultValue: string | undefined = undefined;
       if (p1.endsWith('?')) {
         variableName = p1.substring(0, p1.length - 1);
         optional = true;
       }
-      let value = process.env[variableName];
-      if (value === undefined || value === null) {
-        if (optional) {
-          this.logger.debug('optional environment variable not found: ' + p1, 'LoadConfigurationService');
-          value = '';
+      if (p1.includes(':-')) {
+        const fragments = p1.split(':-');
+        variableName = fragments[0];
+        defaultValue = fragments[1] ?? '';
+      }
+      let interpolateValue = process.env[variableName];
+      if (interpolateValue === undefined || interpolateValue === null) {
+        if (defaultValue !== undefined) {
+          this.logger.debug('use default value for environment variable: ' + p1, 'LoadConfigurationService');
+          interpolateValue = defaultValue;
         } else {
-          throw new InternalServerErrorException('environment variable not found: ' + p1);
+          if (optional) {
+            this.logger.debug('optional environment variable not found: ' + p1, 'LoadConfigurationService');
+            interpolateValue = '';
+          } else {
+            throw new InternalServerErrorException('environment variable not found: ' + p1);
+          }
         }
       }
-      return value;
+      return interpolateValue;
     });
   }
 
