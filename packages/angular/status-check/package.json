@@ -13,7 +13,7 @@
     "@rxap/config": "^16.0.0-dev.19",
     "@rxap/open-api": "^16.0.0-dev.25",
     "@sentry/angular-ivy": "^7.60.1",
-    "rxjs": "^7.8.0",
+    "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
   "author": {

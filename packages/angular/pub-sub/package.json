@@ -7,7 +7,7 @@
   },
   "peerDependencies": {
     "@angular/core": "^16.1.4",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.1"
   },
   "author": {
     "name": "Merzough Münker",
