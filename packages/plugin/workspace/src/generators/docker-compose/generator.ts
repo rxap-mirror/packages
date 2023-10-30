@@ -333,7 +333,6 @@ function createExtCnf(
   let config = `subjectAltName=DNS:${ rootDomain },DNS:traefik.${ rootDomain },DNS:minio.${ rootDomain },DNS:auth.${ rootDomain }`;
   if (services.length) {
     config += ',';
-
     config += services.map(({
       name,
       docker,
