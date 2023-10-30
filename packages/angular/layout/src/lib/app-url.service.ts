@@ -6,6 +6,10 @@ import {
 import { AuthorizationService } from '@rxap/authorization';
 import { ClickOnLink } from '@rxap/browser-utilities';
 import { ConfigService } from '@rxap/config';
+import {
+  Environment,
+  RXAP_ENVIRONMENT,
+} from '@rxap/environment';
 import { JoinPath } from '@rxap/utilities';
 import { firstValueFrom } from 'rxjs';
 
@@ -29,6 +33,8 @@ export class AppUrlService {
     @Inject(LOCALE_ID)
     private readonly localeId: string,
     private readonly authorizationService: AuthorizationService,
+    @Inject(RXAP_ENVIRONMENT)
+    private readonly environment: Environment,
   ) {
     this._apps = this.config.get('navigation.apps', []);
   }
@@ -37,13 +43,12 @@ export class AppUrlService {
     return this._apps.find(app => app.id === appId) ?? null;
   }
 
-  public getAppUrl(appId: string, path: string): string | null {
+  public getAppUrl(appId: string, path: string, infix: string | null = this.getPathPrefix()): string | null {
 
     const app = this.getApp(appId);
 
     if (app) {
-      const prefix = this.getPathPrefix();
-      return JoinPath(app.href, prefix, path);
+      return JoinPath(app.href, infix, path);
     }
 
     return null;
@@ -87,7 +92,7 @@ export class AppUrlService {
   }
 
   private getPathPrefix(): string {
-    if (this.localeId) {
+    if (this.environment.production && this.localeId) {
       return this.localeId.replace(/-.+$/, '');
     }
     return '';
