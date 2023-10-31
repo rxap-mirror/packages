@@ -1,4 +1,5 @@
 import { ExecutorContext } from '@nx/devkit';
+import { jsonFile } from '@rxap/node-utilities';
 import {
   GetAllPackageDependenciesForProject,
   GetProjectRoot,
@@ -17,6 +18,14 @@ export default async function runExecutor(
   LoadProjectToPackageMapping(context);
 
   const dependencies = GetAllPackageDependenciesForProject(context);
+
+  if (options.dependencies) {
+    const rootPackageJson = jsonFile(join(context.root, 'package.json'));
+    for (const dependency of options.dependencies) {
+      dependencies[dependency] = rootPackageJson.dependencies[dependency] ??
+                                 rootPackageJson.devDependencies[dependency] ?? 'latest';
+    }
+  }
 
   const packageJson = { dependencies, name: context.projectName, private: true };
 

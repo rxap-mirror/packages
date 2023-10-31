@@ -4,6 +4,16 @@
   "title": "PackageJson executor",
   "description": "",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "dependencies": {
+      "alias": [
+        "dependency"
+      ],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
   "required": []
 }

@@ -1,1 +1,3 @@
-export interface PackageJsonExecutorSchema {} // eslint-disable-line
+export interface PackageJsonExecutorSchema {
+  dependencies?: string[];
+} // eslint-disable-line

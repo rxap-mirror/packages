@@ -14,7 +14,6 @@ import {
   SkipNonApplicationProject,
 } from '@rxap/generator-utilities';
 import { LocalazyGitlabCiGenerator } from '@rxap/plugin-localazy';
-import { ProvideServiceWorkerUpdater } from '@rxap/service-worker';
 import {
   CoerceAppConfigProvider,
   CoerceImports,
