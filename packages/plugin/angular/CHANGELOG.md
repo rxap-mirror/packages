@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.64](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.63...@rxap/plugin-angular@16.1.0-dev.64) (2023-10-31)
+
+### Bug Fixes
+
+- support custom dependencies ([632b477](https://gitlab.com/rxap/packages/commit/632b477367a1430df98e1f1859fd2ca144b6b4b4))
+- use correct provide method ([ca91fba](https://gitlab.com/rxap/packages/commit/ca91fbaf6d6f00e3f29417f7cb155952283ccd5c))
+
 # [16.1.0-dev.63](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.62...@rxap/plugin-angular@16.1.0-dev.63) (2023-10-27)
 
 ### Bug Fixes
