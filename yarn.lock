@@ -9601,10 +9601,10 @@ __metadata:
     "@angular/common": ^16.1.4
     "@angular/core": ^16.1.4
     "@rxap/config": ^16.0.0-dev.22
-    "@rxap/data-source": ^16.0.0-dev.28
+    "@rxap/data-source": ^16.0.0-dev.33
     "@rxap/mixin": ^16.0.0-dev.17
     "@rxap/remote-method": ^16.0.0-dev.19
-    "@rxap/rxjs": ^1.0.1-dev.14
+    "@rxap/rxjs": ^1.1.0-dev.0
     "@rxap/utilities": ^16.0.0-dev.23
     ajv: 8.12.0
     openapi-types: 10.0.0

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.27...@rxap/open-api@16.0.0-dev.28) (2023-11-09)
+
+### Bug Fixes
+
+- support custom origin ([8fddd7a](https://gitlab.com/rxap/packages/commit/8fddd7ac97d6bb92aa7835a6933306d6de9eee24))
+
 # [16.0.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/open-api@16.0.0-dev.26...@rxap/open-api@16.0.0-dev.27) (2023-10-18)
 
 **Note:** Version bump only for package @rxap/open-api
