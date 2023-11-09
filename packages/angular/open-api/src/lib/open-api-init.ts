@@ -1,4 +1,5 @@
 import { ConfigService } from '@rxap/config';
+import { Environment } from '@rxap/environment';
 import { JoinPath } from '@rxap/utilities';
 import { OpenApiConfigService } from './open-api-config.service';
 
@@ -16,13 +17,14 @@ export interface OpenApiInitOptions {
   origin?: string;
 }
 
-export function OpenApiInit(options: OpenApiInitOptions = {}) {
+export function OpenApiInit(environment: Environment, options: OpenApiInitOptions = {}) {
   const api = ConfigService.Get<Record<string, { baseUrl?: string }> & { baseUrl: string }>(
     'api',
     {} as any,
     ConfigService.Config,
   );
-  options.origin ??= location.origin;
+  options.origin ??= environment.origin ?? location.origin;
+  options.load ??= environment.openApi?.load ?? false;
   if (api.baseUrl) {
     OpenApiConfigService.InsertServer({
       url: api.baseUrl.match(/^https?:\/\//) ? api.baseUrl : JoinPath(options.origin, api.baseUrl),

@@ -69,5 +69,13 @@ export interface Environment {
     static?: Record<string, any>;
   };
 
+  origin?: string;
+
+  openApi?: {
+    load?: {
+      openApiUrl?: string;
+    } | boolean;
+  }
+
   [key: string]: any;
 }

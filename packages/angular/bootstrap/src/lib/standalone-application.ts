@@ -17,7 +17,7 @@ export class StandaloneApplication<O extends ApplicationConfig> extends Applicat
     private readonly rootComponent: Type<unknown>,
     options?: O,
     configLoadOptions: ConfigLoadOptions = {
-      url: `/api/configuration/${ environment.tag ??
+      url: `${ environment.origin ?? location.origin }/api/configuration/${ environment.tag ??
       'latest' }/${ environment.app }`,
     },
   ) {

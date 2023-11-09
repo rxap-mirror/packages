@@ -437,9 +437,9 @@ function updateMainFile(tree: Tree, project: ProjectConfiguration, options: Init
         namedImports: [ 'OpenApiInit' ],
       });
       if (options.openApiLegacy) {
-        statements.push('application.before(() => OpenApiInit({ load: true }));');
+        statements.push('application.before(() => OpenApiInit(environment, { load: true }));');
       } else {
-        statements.push('application.before(() => OpenApiInit());');
+        statements.push('application.before(() => OpenApiInit(environment));');
       }
     }
 
