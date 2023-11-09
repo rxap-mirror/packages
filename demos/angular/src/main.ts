@@ -21,6 +21,6 @@ application.importProvidersFrom(LoggerModule.forRoot({
   serverLogLevel: NgxLoggerLevel.ERROR,
 }));
 application.before(() => UnregisterServiceWorker(environment));
-application.before(() => OpenApiInit());
+application.before(() => OpenApiInit(environment));
 application.before(() => SentryInit(environment));
 application.bootstrap().catch((err) => console.error(err));
