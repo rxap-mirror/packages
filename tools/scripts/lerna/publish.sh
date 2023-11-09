@@ -29,9 +29,9 @@ for arg in "$@"; do
     echo "from-package" > ./dist/publish-mode.txt
   fi
   if [[ $arg == "from-git" ]]; then
-    echo -e "${BLUE}Script was called with from-git${NC}"
-    echo "from-git" > ./dist/publish-mode.txt
-  fi
+  echo -e "${BLUE}Script was called with from-git${NC}"
+  echo "from-git" >./dist/publish-mode.txt
+fi
 done
 
 GIT_BRANCH=${GIT_BRANCH:-$(git branch --show-current)}
