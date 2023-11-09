@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.65](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.64...@rxap/plugin-angular@16.1.0-dev.65) (2023-11-09)
+
+### Bug Fixes
+
+- add origin property to the environment interface ([0172670](https://gitlab.com/rxap/packages/commit/0172670c252dfe1753ed72c99bf53b9da50eb908))
+
 # [16.1.0-dev.64](https://gitlab.com/rxap/packages/compare/@rxap/plugin-angular@16.1.0-dev.63...@rxap/plugin-angular@16.1.0-dev.64) (2023-10-31)
 
 ### Bug Fixes
