@@ -29,7 +29,7 @@ for arg in "$@"; do
     echo "from-package" > ./dist/publish-mode.txt
   fi
   if [[ $arg == "from-git" ]]; then
-    echo -e "${BLUE}Script was called with from-package${NC}"
+    echo -e "${BLUE}Script was called with from-git${NC}"
     echo "from-git" > ./dist/publish-mode.txt
   fi
 done
