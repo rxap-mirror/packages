@@ -10,6 +10,7 @@ import { tap } from 'rxjs/operators';
 import { ChangelogDialogComponent } from './changelog-dialog/changelog-dialog.component';
 
 export const RXAP_CHANGELOG_LAST_VERSION = 'RXAP_CHANGELOG_LAST_VERSION';
+export const RXAP_CHANGELOG_DISABLED = 'RXAP_CHANGELOG_DISABLED';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +44,10 @@ export class ChangelogService {
   }
 
   public showChangelogDialogIfNewVersion() {
+
+    if (localStorage.getItem(RXAP_CHANGELOG_DISABLED) === 'true') {
+      return;
+    }
 
     const lastVersion = localStorage.getItem(RXAP_CHANGELOG_LAST_VERSION);
 
