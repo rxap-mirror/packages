@@ -1,9 +1,9 @@
-import { Normalized } from '@rxap/utilities';
 import {
   camelize,
   capitalize,
   dasherize,
 } from '@rxap/schematics-utilities';
+import { Normalized } from '@rxap/utilities';
 
 export interface TableColumn {
   name: string;
@@ -20,6 +20,7 @@ export interface TableColumn {
 
 export interface NormalizedTableColumn extends Readonly<Normalized<TableColumn>> {
   type: string;
+  propertyPath: string;
 }
 
 export function NormalizeTableColumn(
@@ -58,10 +59,13 @@ export function NormalizeTableColumn(
     show = column.show ?? false;
   }
   propertyPath ??= name
+    .replace(/\?\./g, '.')
     .split('.')
     .map((part) => camelize(part))
-    .join('.');
+    .join('?.');
+  name = dasherize(name.replace(/\??\./g, '_'));
   title ??= dasherize(name)
+    .replace(/_/g, '-')
     .split('-')
     .map((part) => capitalize(part))
     .join(' ');

@@ -22,9 +22,15 @@ import {
 import {
   classify,
   dasherize,
+  IsRecord,
   Normalized,
 } from '@rxap/utilities';
 import { join } from 'path';
+import {
+  OptionalKind,
+  PropertySignatureStructure,
+  Writers,
+} from 'ts-morph';
 import {
   AngularOptions,
   AssertAngularOptionsNameProperty,
@@ -118,6 +124,39 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
   ]);
 }
 
+function processColumns(columnList: NormalizedTableColumn[]): OptionalKind<PropertySignatureStructure>[] {
+  const result: any = {};
+
+  columnList.forEach((column) => {
+    const parts = column.propertyPath.split('.');
+    if (parts.length === 1) {
+      result[column.propertyPath] = column.type;
+    } else {
+      let current = result;
+      for (let i = 0; i < parts.length; i++) {
+        const isLast = i === parts.length - 1;
+        const part = parts[i];
+        if (isLast) {
+          current[part] = column.type ?? 'unknown';
+        } else {
+          current[part] = current[part] ?? {};
+          current = current[part];
+        }
+      }
+    }
+  });
+
+  // Convert the result object into the desired output format
+  return Object.entries(result).map(([ name, type ]) => {
+    if (IsRecord(type)) {
+      return { name, type: Writers.object(type) };
+    } else {
+      return { name, type: type as string };
+    }
+  });
+}
+
+
 function tableInterfaceFromColumnListRule(normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
   const {
     columnList,
@@ -139,10 +178,7 @@ function tableInterfaceFromColumnListRule(normalizedOptions: NormalizedMinimumTa
       CoerceInterface(sourceFile, `I${ classify(componentName) }`).set({
         isExported: true,
         extends: [ 'Record<string, unknown>', 'TableRowMetadata' ],
-        properties: columnList.map((column) => ({
-          name: column.name,
-          type: column.type ?? 'unknown',
-        })),
+        properties: processColumns(columnList),
       });
       CoerceImports(sourceFile, {
         moduleSpecifier: '@rxap/material-table-system',
@@ -206,7 +242,9 @@ function operationActionRule(
       tableName: componentName,
       directory,
       nestModule:
-        (shared ? undefined : nestModule) ?? controllerName,
+        (
+          shared ? undefined : nestModule
+        ) ?? controllerName,
       context,
     }),
   ]);
@@ -251,7 +289,9 @@ function formActionRule(
       tableName: componentName,
       directory,
       nestModule:
-        (shared ? undefined : nestModule) ?? controllerName,
+        (
+          shared ? undefined : nestModule
+        ) ?? controllerName,
       context,
     }),
   ]);
@@ -337,7 +377,9 @@ function dialogActionRule(
       tableName: componentName,
       directory,
       nestModule:
-        (shared ? undefined : nestModule) ?? controllerName,
+        (
+          shared ? undefined : nestModule
+        ) ?? controllerName,
       context,
     }),
   ]);
