@@ -27,6 +27,26 @@
     "readme": {
       "executor": "workspace:readme"
     },
+    "compose": {
+      "executor": "@rxap/plugin-library:run-generator",
+      "options": {
+        "generator": "@rxap/schematic-composer:compose",
+        "withoutProjectArgument": true
+      },
+      "configurations": {
+        "angular": {
+          "options": {
+            "project": "angular"
+          }
+        },
+        "angular-table": {
+          "options": {
+            "project": "angular",
+            "feature": "table"
+          }
+        }
+      }
+    },
     "ci-info": {
       "executor": "@rxap/plugin-workspace:ci-info",
       "inputs": [

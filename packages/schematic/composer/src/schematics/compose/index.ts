@@ -18,6 +18,7 @@ import {
 import {
   dirname,
   join,
+  relative,
 } from 'path';
 import { parse } from 'yaml';
 import { ComposeSchematicSchema } from './schema';
@@ -69,6 +70,7 @@ function executeSchematicCommandFile(
   host: Tree,
   schematicCommandFilePath: string,
   globalOptions: Partial<GlobalOptions>,
+  projectSourceRoot: string,
 ) {
 
   const schematicCommandList: SchematicCommand[] = parseSchematicCommandFile(host, schematicCommandFilePath);
@@ -76,11 +78,26 @@ function executeSchematicCommandFile(
   const ruleList: Rule[] = [];
 
   for (const command of schematicCommandList) {
-    const options = {
+    const options: { feature?: string, directory?: string, project?: string } & Record<string, any> = {
       ...globalOptions,
       ...command.options,
     };
     options.feature ??= detectedFeature(schematicCommandFilePath);
+    const directoryParts = relative(projectSourceRoot, dirname(schematicCommandFilePath).replace(/^\//, '')).split('/');
+    if (options.feature) {
+      if (directoryParts[0] === 'feature') {
+        directoryParts.shift();
+      }
+      if (directoryParts[0] === options.feature) {
+        directoryParts.shift();
+      }
+    }
+    if (directoryParts.length) {
+      directoryParts.pop(); // remove schematics directory
+    }
+    if (directoryParts.length) {
+      options.directory = directoryParts.join('/');
+    }
     ruleList.push(chain([
       () => console.log(`Execute schematic '${ command.package }:${ command.name }'`),
       () => console.log('Options:', JSON.stringify(options)),
@@ -126,13 +143,14 @@ function getSchematicCommandRuleList(
   host: Tree,
   schematicCommandList: string[],
   globalOptions: Partial<GlobalOptions>,
+  projectSourceRoot: string,
 ) {
   const ruleList: Rule[] = [];
 
   for (const schematicCommandFilePath of schematicCommandList) {
     ruleList.push(chain([
       () => console.log(`Execute schematic command file '${ schematicCommandFilePath }'`),
-      executeSchematicCommandFile(host, schematicCommandFilePath, globalOptions),
+      executeSchematicCommandFile(host, schematicCommandFilePath, globalOptions, projectSourceRoot),
     ]));
   }
 
@@ -144,6 +162,7 @@ function executeSchematicCommand(
   sourceRoot: string,
   globalOptions: Partial<GlobalOptions>,
   filter: string | null,
+  projectSourceRoot: string,
 ) {
   let schematicCommandList = getSchematicCommandList(host, sourceRoot);
 
@@ -151,7 +170,7 @@ function executeSchematicCommand(
     schematicCommandList = schematicCommandList.filter(path => dirname(path).split('/').pop() === filter);
   }
 
-  return getSchematicCommandRuleList(host, schematicCommandList, globalOptions);
+  return getSchematicCommandRuleList(host, schematicCommandList, globalOptions, projectSourceRoot);
 }
 
 function forFeature(
@@ -177,7 +196,7 @@ function forFeature(
     throw new SchematicsException(`The feature '${ featureName }' does not exists in project '${ projectName }'`);
   }
 
-  return executeSchematicCommand(host, featureSourceRoot, globalOptions, filter);
+  return executeSchematicCommand(host, featureSourceRoot, globalOptions, filter, projectSourceRoot);
 
 }
 
@@ -187,7 +206,7 @@ function forProject(host: Tree, projectName: string, globalOptions: Partial<Glob
 
   console.log('Use project source root:', projectSourceRoot);
 
-  return executeSchematicCommand(host, projectSourceRoot, globalOptions, filter);
+  return executeSchematicCommand(host, projectSourceRoot, globalOptions, filter, projectSourceRoot);
 
 }
 
