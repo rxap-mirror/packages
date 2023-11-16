@@ -44,6 +44,29 @@ function stringInterpolation(options: Record<string, any>, params: Record<string
   }
 }
 
+function extractFlattenOptions(options: Record<string, any>): Record<string, any> {
+  const extracted: Record<string, any> = {};
+  for (const [ option, value ] of Object.entries(options)) {
+    let key: string | undefined = undefined;
+    if (option.startsWith('options-')) {
+      key = option.replace('options-', '');
+    }
+    if (option.startsWith('option-')) {
+      key = option.replace('option-', '');
+    }
+    if (option.match(/option[A-Z]/)) {
+      key = option.replace(/option([A-Z])/g, (match, letter) => letter.toLowerCase());
+    }
+    if (option.match(/options[A-Z]/)) {
+      key = option.replace(/options([A-Z])/g, (match, letter) => letter.toLowerCase());
+    }
+    if (key) {
+      extracted[key] = value;
+    }
+  }
+  return extracted;
+}
+
 export default async function runExecutor(options: RunGeneratorExecutorSchema, context: ExecutorContext) {
   console.log('Executor ran for RunGenerator', options);
 
@@ -71,7 +94,10 @@ export default async function runExecutor(options: RunGeneratorExecutorSchema, c
     targetName: context.targetName,
   });
 
-  command += ` ${ buildParameters(options.options) }`;
+  command += ` ${ buildParameters({
+    ...options.options,
+    ...extractFlattenOptions(options),
+  }) }`;
 
   if (options.dryRun) {
     command += ' --dry-run';
