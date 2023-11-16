@@ -129,6 +129,7 @@ function componentRule(normalizedOptions: NormalizedAccordionComponentOptions, h
     name,
     accordionName: name,
     itemList,
+    exportDefault: !!feature && !directory,
   };
 
   return chain([

@@ -97,4 +97,4 @@ export class <%= classify(componentName) %>Component {
 
 }
 
-export default <%= classify(componentName) %>Component;
+<% if (exportDefault) { %>export default <%= classify(componentName) %>Component;<% } %>

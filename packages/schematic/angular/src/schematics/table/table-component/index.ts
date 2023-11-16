@@ -137,6 +137,7 @@ function componentRule(normalizedOptions: NormalizedTableComponentOptions): Rule
     hasNavigationBackHeader: modifiers.includes('navigation-back-header'),
     hasWithoutTitle: modifiers.includes('without-title'),
     hasColumnWithFilter: columnList.some((c) => c.hasFilter),
+    exportDefault: !!feature && !directory,
   };
 
   return chain([
