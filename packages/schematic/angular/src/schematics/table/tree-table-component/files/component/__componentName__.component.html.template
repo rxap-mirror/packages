@@ -12,7 +12,7 @@
         rxapCardProgressBar
         [loading$]="tableDataSourceDirective.loading$"
       ></mat-progress-bar>
-      <mat-card-header class="min-h-full h-12">
+      <mat-card-header class="min-h-full h-12<% if (!headerButton && hasWithoutTitle) { %> justify-end<% } %>">
       <% if (!hasNavigationBackHeader && !hasWithoutTitle) { %>
       <mat-card-title i18n><%= name %></mat-card-title>
       <% } %>
@@ -31,7 +31,7 @@
         </button>
         <mat-card-subtitle i18n><%= headerButton.label %></mat-card-subtitle>
         <% } %>
-      <rxap-table-column-menu matCard #rxapTableColumns="rxapTableColumns" [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }">
+      <rxap-table-column-menu matCard #rxapTableColumns="rxapTableColumns" <% if (!headerButton && hasWithoutTitle) { %>inline<% } %> [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }">
         <rxap-table-column-option hidden name="tree"></rxap-table-column-option>
         <% for (const column of columnList) { %>
         <rxap-table-column-option name="<%= column.name %>">

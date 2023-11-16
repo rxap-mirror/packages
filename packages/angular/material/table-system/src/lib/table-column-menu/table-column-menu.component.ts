@@ -1,3 +1,4 @@
+import { NgFor } from '@angular/common';
 import type { QueryList } from '@angular/core';
 import {
   AfterContentInit,
@@ -7,15 +8,14 @@ import {
   HostBinding,
   Input,
 } from '@angular/core';
-import { TableColumnOptionComponent } from './table-column-option/table-column-option.component';
-import { coerceBoolean } from '@rxap/utilities';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ExtendedModule } from '@angular/flex-layout/extended';
-import { StopPropagationDirective } from '@rxap/directives';
-import { NgFor } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
+import { StopPropagationDirective } from '@rxap/directives';
+import { coerceBoolean } from '@rxap/utilities';
+import { TableColumnOptionComponent } from './table-column-option/table-column-option.component';
 
 @Component({
   selector: 'rxap-table-column-menu',
@@ -39,6 +39,22 @@ export class TableColumnMenuComponent implements AfterContentInit {
   public columns?: QueryList<TableColumnOptionComponent>;
 
   public displayColumns: string[] = [];
+
+  @HostBinding('class.inline')
+  private _inline = false;
+
+  public get inline(): boolean | '' {
+    return this._inline;
+  }
+
+  /**
+   * true - the menu is displayed inline and not absolute
+   * @param value
+   */
+  @Input()
+  public set inline(value: boolean | '') {
+    this._inline = coerceBoolean(value);
+  }
 
   @Input()
   public set matCard(value: boolean | '') {
