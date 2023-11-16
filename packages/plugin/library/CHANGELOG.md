@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.42](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.41...@rxap/plugin-library@16.0.0-dev.42) (2023-11-16)
+
+### Bug Fixes
+
+- support custom inline options ([468985a](https://gitlab.com/rxap/packages/commit/468985a004993bb4dcbf6dd6a55aae973c509935))
+
 # [16.0.0-dev.41](https://gitlab.com/rxap/packages/compare/@rxap/plugin-library@16.0.0-dev.40...@rxap/plugin-library@16.0.0-dev.41) (2023-10-16)
 
 ### Bug Fixes

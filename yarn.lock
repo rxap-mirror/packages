@@ -9726,12 +9726,12 @@ __metadata:
     "@rxap/generator-ts-morph": ^1.0.1-dev.13
     "@rxap/generator-utilities": ^1.1.0-dev.19
     "@rxap/node-utilities": ^1.1.0-dev.15
-    "@rxap/plugin-angular": ^16.1.0-dev.58
-    "@rxap/plugin-nestjs": ^16.1.0-dev.45
-    "@rxap/plugin-utilities": ^16.1.0-dev.21
+    "@rxap/plugin-angular": ^16.1.0-dev.65
+    "@rxap/plugin-nestjs": ^16.1.0-dev.48
+    "@rxap/plugin-utilities": ^16.1.0-dev.22
     "@rxap/ts-morph": ^0.1.0-dev.18
     "@rxap/utilities": ^16.0.0-dev.23
-    "@rxap/workspace-utilities": ^0.1.0-dev.24
+    "@rxap/workspace-utilities": ^0.1.0-dev.26
     handlebars: ^4.7.7
     nx: ^16.5.0
     semver: ^7.5.3
@@ -9892,7 +9892,7 @@ __metadata:
   peerDependencies:
     "@angular-devkit/core": ^16.1.4
     "@angular-devkit/schematics": ^16.1.4
-    "@rxap/schematics-ts-morph": ^16.0.0-dev.28
+    "@rxap/schematics-ts-morph": ^16.0.0-dev.30
     "@rxap/schematics-utilities": ^16.0.0-dev.21
     "@rxap/utilities": ^16.0.0-dev.23
     ts-morph: ^18.0.0
