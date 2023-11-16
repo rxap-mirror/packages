@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.27](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.26...@rxap/schematic-angular@16.1.0-dev.27) (2023-11-16)
+
+### Bug Fixes
+
+- only export component as default if root level feature ([fd1515b](https://gitlab.com/rxap/packages/commit/fd1515b3fab4298d9d00b7725922ec12140ad2f2))
+
 # [16.1.0-dev.26](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.25...@rxap/schematic-angular@16.1.0-dev.26) (2023-11-16)
 
 ### Bug Fixes
