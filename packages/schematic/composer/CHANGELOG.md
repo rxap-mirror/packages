@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@0.1.0-dev.3...@rxap/schematic-composer@0.1.0-dev.4) (2023-11-16)
+
+### Bug Fixes
+
+- support sub directories ([c38f925](https://gitlab.com/rxap/packages/commit/c38f925b2bab59843d5f62f49c69c1dfb68c24b1))
+- support yaml files ([353b63e](https://gitlab.com/rxap/packages/commit/353b63e58bab01e8080aea30255ddb77133e4a76))
+
 # [0.1.0-dev.3](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@0.1.0-dev.2...@rxap/schematic-composer@0.1.0-dev.3) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/schematic-composer
