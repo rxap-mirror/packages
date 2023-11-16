@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.28...@rxap/material-table-system@16.0.0-dev.29) (2023-11-16)
+
+### Bug Fixes
+
+- support mat card inline ([0e42a58](https://gitlab.com/rxap/packages/commit/0e42a58206b0c522dd5b5e597ce5657b8ce14c5b))
+
 # [16.0.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/material-table-system@16.0.0-dev.27...@rxap/material-table-system@16.0.0-dev.28) (2023-10-18)
 
 ### Bug Fixes

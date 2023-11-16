@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.28",
+  "version": "16.0.0-dev.29",
   "name": "@rxap/material-table-system",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -15,13 +15,13 @@
     "@angular/material": "^16.1.4",
     "@angular/router": "^16.1.4",
     "@rxap/components": "^16.0.0-dev.23",
-    "@rxap/data-source": "^16.0.0-dev.28",
+    "@rxap/data-source": "^16.0.0-dev.33",
     "@rxap/directives": "^16.0.0-dev.20",
     "@rxap/forms": "^16.0.0-dev.21",
     "@rxap/material-directives": "^16.0.0-dev.22",
     "@rxap/pattern": "^1.1.0-dev.3",
     "@rxap/reflect-metadata": "^1.0.1-dev.13",
-    "@rxap/rxjs": "^1.0.1-dev.14",
+    "@rxap/rxjs": "^1.1.0-dev.0",
     "@rxap/utilities": "^16.0.0-dev.23",
     "@rxap/window-system": "^16.0.0-dev.23",
     "rxjs": "^7.8.1",
@@ -53,7 +53,7 @@
       },
       {
         "package": "@rxap/data-source",
-        "version": "16.0.0-dev.28"
+        "version": "16.0.0-dev.33"
       },
       {
         "package": "@rxap/directives",
@@ -85,7 +85,7 @@
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.0.1-dev.14"
+        "version": "1.1.0-dev.0"
       },
       {
         "package": "@rxap/utilities",
