@@ -3,7 +3,8 @@
   "name": "@rxap/schematic-composer",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "tslib": "2.6.2"
+    "tslib": "2.6.2",
+    "yaml": "2.3.1"
   },
   "peerDependencies": {
     "@angular-devkit/schematics": "^16.1.4",

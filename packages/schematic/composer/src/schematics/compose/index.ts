@@ -11,6 +11,7 @@ import {
   GlobalOptions,
 } from '@rxap/schematics-utilities';
 import {
+  coerceArray,
   dasherize,
   Normalized,
 } from '@rxap/utilities';
@@ -18,6 +19,7 @@ import {
   dirname,
   join,
 } from 'path';
+import { parse } from 'yaml';
 import { ComposeSchematicSchema } from './schema';
 
 interface SchematicCommand {
@@ -38,19 +40,38 @@ function detectedFeature(path: string): string | undefined {
   return undefined;
 }
 
+function parseSchematicCommandFile(host: Tree, filePath: string): SchematicCommand[] {
+
+  const schematicCommandFile = host.read(filePath)?.toString('utf-8');
+
+  if (!schematicCommandFile) {
+    throw new SchematicsException(`The schematic command file '${ filePath }' does not exists!`);
+  }
+
+  let parsed: SchematicCommand | SchematicCommand[];
+
+  switch (filePath.split('.').pop()) {
+    case 'json':
+      parsed = JSON.parse(schematicCommandFile);
+      break;
+    case 'yaml':
+      parsed = parse(schematicCommandFile);
+      break;
+    default:
+      throw new SchematicsException(`The schematic command file '${ filePath }' has an unsupported file extension!`);
+  }
+
+  return coerceArray(parsed);
+
+}
+
 function executeSchematicCommandFile(
   host: Tree,
   schematicCommandFilePath: string,
   globalOptions: Partial<GlobalOptions>,
 ) {
 
-  const schematicCommandFile = host.read(schematicCommandFilePath)?.toString('utf-8');
-
-  if (!schematicCommandFile) {
-    throw new SchematicsException(`The schematic command file '${ schematicCommandFilePath }' does not exists!`);
-  }
-
-  const schematicCommandList: SchematicCommand[] = JSON.parse(schematicCommandFile);
+  const schematicCommandList: SchematicCommand[] = parseSchematicCommandFile(host, schematicCommandFilePath);
 
   const ruleList: Rule[] = [];
 
@@ -85,6 +106,15 @@ function getSchematicCommandList(host: Tree, sourceRoot: string) {
 
   host.getDir(sourceRoot).visit((path, entry) => {
     if (entry?.path.endsWith('schematic.json')) {
+      schematicCommandList.push(path);
+    }
+    if (entry?.path.endsWith('schematic.yaml')) {
+      schematicCommandList.push(path);
+    }
+    if (entry?.path.endsWith('schematics.json')) {
+      schematicCommandList.push(path);
+    }
+    if (entry?.path.endsWith('schematics.yaml')) {
       schematicCommandList.push(path);
     }
   });
