@@ -25,6 +25,7 @@ export * from './lib/nest/get-nest-module-metadata';
 export * from './lib/nest/has-nest-module-class';
 export * from './lib/nest/is-nest-module-class';
 export * from './lib/nest/nest-provider-object';
+export * from './lib/nest/operation-id-utilities';
 export * from './lib/nest/remove-nest-module-provider';
 export * from './lib/nest/remove-nest-provider-to-array';
 // endregion
@@ -43,6 +44,7 @@ export * from './lib/coerce-class';
 export * from './lib/coerce-decorator';
 export * from './lib/coerce-dependency-injection';
 export * from './lib/coerce-imports';
+export * from './lib/coerce-mapping-class-method';
 export * from './lib/coerce-source-file';
 export * from './lib/coerce-statements';
 export * from './lib/coerce-variable-declaration';

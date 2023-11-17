@@ -1,7 +1,6 @@
 import { classify } from '@rxap/schematics-utilities';
 import {
-  CoerceClassMethod,
-  ToMappingObject,
+  CoerceMappingClassMethod,
   ToMappingObjectOptions,
 } from '@rxap/ts-morph';
 import { Scope } from 'ts-morph';
@@ -29,10 +28,9 @@ export interface CoerceOpenApiTableActionRuleOptions extends CoerceTableActionOp
 }
 
 const toMappingObjectOptions: ToMappingObjectOptions = {
-  baseProperty: 'parameters',
   aliasFnc: (key: string, value: string) => {
     if ([ 'rowId', '_rowId', '__rowId' ].includes(value)) {
-      return 'rowId';
+      return '__rowId';
     }
     return value;
   },
@@ -74,21 +72,12 @@ export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRu
       const tableInterfaceName = `I${ classify(tableName) }`;
 
       if (body) {
-        CoerceClassMethod(classDeclaration, 'getBody', {
-          parameters: [
-            {
-              name: 'parameters',
-              type: tableInterfaceName,
-            },
-          ],
+        CoerceMappingClassMethod(sourceFile, classDeclaration, {
+          name: 'getBody',
+          parameterType: tableInterfaceName,
+          mapping: body,
           returnType: OperationIdToRequestBodyClassName(operationId),
-          statements: body === true ? [ 'return parameters;' ] : [
-            w => {
-              w.write('return ');
-              ToMappingObject(body as any, toMappingObjectOptions)(w);
-              w.write(';');
-            },
-          ],
+          mappingOptions: toMappingObjectOptions,
         });
         CoerceImports(sourceFile, {
           namedImports: [ OperationIdToRequestBodyClassName(operationId) ],
@@ -97,21 +86,12 @@ export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRu
         statements.push(`const requestBody = this.getBody(parameters);`);
       }
       if (parameters) {
-        CoerceClassMethod(classDeclaration, 'getParameters', {
-          parameters: [
-            {
-              name: 'parameters',
-              type: tableInterfaceName,
-            },
-          ],
+        CoerceMappingClassMethod(sourceFile, classDeclaration, {
+          name: 'getParameters',
+          parameterType: tableInterfaceName,
+          mapping: parameters,
           returnType: OperationIdToParameterClassName(operationId),
-          statements: parameters === true ? [ 'return parameters;' ] : [
-            w => {
-              w.write('return ');
-              ToMappingObject(parameters as any, toMappingObjectOptions)(w);
-              w.write(';');
-            },
-          ],
+          mappingOptions: toMappingObjectOptions,
         });
         CoerceImports(sourceFile, {
           namedImports: [ OperationIdToParameterClassName(operationId) ],

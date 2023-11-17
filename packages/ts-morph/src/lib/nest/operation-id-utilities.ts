@@ -1,47 +1,32 @@
 import {
   classify,
   dasherize,
-} from '@rxap/schematics-utilities';
-import { buildNestProjectName } from './project-utilities';
+} from '@rxap/utilities';
 
-/**
- * @deprecated import from @rxap/ts-morph instead
- */
+
 export function OperationIdToClassName(operationId: string) {
   const [ id ] = operationId.split('@');
   return classify(id) + 'RemoteMethod';
 }
 
-/**
- * @deprecated import from @rxap/ts-morph instead
- */
 export function ServiceOperationIdToClassName(operationId: string) {
   const [ id ] = operationId.split('@');
   return classify(id) + 'Command';
 }
 
-/**
- * @deprecated import from @rxap/ts-morph instead
- */
+
 export function OperationIdToResponseClassName(operationId: string) {
   const [ id ] = operationId.split('@');
   return classify(id) + 'Response';
 }
 
-/**
- * @deprecated import from @rxap/ts-morph instead
- */
 export function OperationIdToParameterClassName(operationId: string) {
   const [ id ] = operationId.split('@');
   return classify(id) + 'Parameter';
 }
 
-/**
- * @deprecated import from @rxap/ts-morph instead
- */
 export function OperationIdToClassImportPath(operationId: string, scope?: string | null) {
-  let [ id, serverId ] = operationId.split('@');
-  serverId ??= 'legacy';
+  const [ id, serverId = 'legacy' ] = operationId.split('@');
   if (scope) {
     return `${ scope }/open-api-${ dasherize(serverId) }/remote-methods/${ dasherize(id) }.remote-method`;
   } else {
@@ -49,20 +34,13 @@ export function OperationIdToClassImportPath(operationId: string, scope?: string
   }
 }
 
-/**
- * @deprecated import from @rxap/ts-morph instead
- */
 export function OperationIdToRequestBodyClassName(operationId: string) {
   const [ id ] = operationId.split('@');
   return classify(id) + 'RequestBody';
 }
 
-/**
- * @deprecated import from @rxap/ts-morph instead
- */
 export function ServiceOperationIdToClassImportPath(operationId: string, scope?: string | null) {
-  let [ id, serverId ] = operationId.split('@');
-  serverId ??= 'legacy';
+  const [ id, serverId = 'legacy' ] = operationId.split('@');
   if (scope) {
     return `${ scope }/service-open-api-${ dasherize(serverId) }/commands/${ dasherize(id) }.command`;
   } else {
@@ -70,9 +48,6 @@ export function ServiceOperationIdToClassImportPath(operationId: string, scope?:
   }
 }
 
-/**
- * @deprecated import from @rxap/ts-morph instead
- */
 export function OpenApiResponseClassImportPath(response: string, serverId: string, scope?: string | null) {
   if (scope) {
     return `${ scope }/open-api-${ dasherize(serverId) }/responses/${ dasherize(response)
@@ -83,12 +58,8 @@ export function OpenApiResponseClassImportPath(response: string, serverId: strin
   }
 }
 
-/**
- * @deprecated import from @rxap/ts-morph instead
- */
 export function OperationIdToResponseClassImportPath(operationId: string, scope?: string | null) {
-  let [ id, serverId ] = operationId.split('@');
-  serverId ??= 'legacy';
+  const [ id, serverId = 'legacy' ] = operationId.split('@');
   if (scope) {
     return `${ scope }/open-api-${ dasherize(serverId) }/responses/${ dasherize(id) }.response`;
   } else {
@@ -96,12 +67,8 @@ export function OperationIdToResponseClassImportPath(operationId: string, scope?
   }
 }
 
-/**
- * @deprecated import from @rxap/ts-morph instead
- */
 export function OperationIdToParameterClassImportPath(operationId: string, scope?: string | null) {
-  let [ id, serverId ] = operationId.split('@');
-  serverId ??= 'legacy';
+  const [ id, serverId = 'legacy' ] = operationId.split('@');
   if (scope) {
     return `${ scope }/open-api-${ dasherize(serverId) }/parameters/${ dasherize(id) }.parameter`;
   } else {
@@ -109,23 +76,11 @@ export function OperationIdToParameterClassImportPath(operationId: string, scope
   }
 }
 
-/**
- * @deprecated import from @rxap/ts-morph instead
- */
 export function OperationIdToRequestBodyClassImportPath(operationId: string, scope?: string | null) {
-  let [ id, serverId ] = operationId.split('@');
-  serverId ??= 'legacy';
+  const [ id, serverId = 'legacy' ] = operationId.split('@');
   if (scope) {
     return `${ scope }/open-api-${ dasherize(serverId) }/request-bodies/${ dasherize(id) }.request-body`;
   } else {
     return `open-api-${ dasherize(serverId) }/request-bodies/${ dasherize(id) }.request-body`;
   }
-}
-
-export function buildOperationId(options: {
-  project: string,
-  feature: string | null,
-  shared: boolean
-}, operation: string, controller: string): string {
-  return `${ dasherize(controller) }-controller-${ dasherize(operation) }@${ buildNestProjectName(options) }`;
 }
