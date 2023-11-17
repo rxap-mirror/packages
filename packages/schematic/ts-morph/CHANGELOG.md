@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.33...@rxap/schematics-ts-morph@16.0.0-dev.34) (2023-11-17)
+
+### Bug Fixes
+
+- add utility function ([19e3337](https://gitlab.com/rxap/packages/commit/19e3337837b0222cda49dafdc675eb0010fc9d6a))
+- support custom form component ([6c1a9b7](https://gitlab.com/rxap/packages/commit/6c1a9b7e996aa5bac073a5867b30819748230a84))
+- use ToMappingObject function ([8d39cb3](https://gitlab.com/rxap/packages/commit/8d39cb3a1998b36d95d6247f3077f2d1e7ac0ab3))
+
 # [16.0.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.32...@rxap/schematics-ts-morph@16.0.0-dev.33) (2023-11-17)
 
 ### Bug Fixes

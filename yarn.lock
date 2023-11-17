@@ -9892,7 +9892,7 @@ __metadata:
   peerDependencies:
     "@angular-devkit/core": ^16.1.4
     "@angular-devkit/schematics": ^16.1.4
-    "@rxap/schematics-ts-morph": ^16.0.0-dev.32
+    "@rxap/schematics-ts-morph": ^16.0.0-dev.34
     "@rxap/schematics-utilities": ^16.0.0-dev.21
     "@rxap/utilities": ^16.0.0-dev.23
     ts-morph: ^18.0.0
@@ -9963,7 +9963,7 @@ __metadata:
     "@angular-devkit/core": ^16.1.4
     "@angular-devkit/schematics": ^16.1.4
     "@rxap/schematics-utilities": ^16.0.0-dev.21
-    "@rxap/ts-morph": ^0.1.0-dev.18
+    "@rxap/ts-morph": ^0.1.0-dev.19
     "@rxap/utilities": ^16.0.0-dev.23
     "@rxap/workspace-ts-morph": ^0.1.0-dev.12
     ts-morph: ^18.0.0

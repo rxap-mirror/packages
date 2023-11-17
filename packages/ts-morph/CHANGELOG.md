@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.18...@rxap/ts-morph@0.1.0-dev.19) (2023-11-17)
+
+### Bug Fixes
+
+- add utility function ([19e3337](https://gitlab.com/rxap/packages/commit/19e3337837b0222cda49dafdc675eb0010fc9d6a))
+
+### Features
+
+- add ToMappingObject function ([38b1074](https://gitlab.com/rxap/packages/commit/38b10749499e478cb08eb6d66008201426ebbd4c))
+
 # [0.1.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.17...@rxap/ts-morph@0.1.0-dev.18) (2023-10-16)
 
 ### Bug Fixes
