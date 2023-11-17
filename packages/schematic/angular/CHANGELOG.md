@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.43](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.42...@rxap/schematic-angular@16.1.0-dev.43) (2023-11-17)
+
+### Features
+
+- support custom column template and pipes ([d45ccab](https://gitlab.com/rxap/packages/commit/d45ccab1ea86b0139e49c5c42ea0131d5fcb5028))
+
 # [16.1.0-dev.42](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.41...@rxap/schematic-angular@16.1.0-dev.42) (2023-11-17)
 
 ### Bug Fixes
