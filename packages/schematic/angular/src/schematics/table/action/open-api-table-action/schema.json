@@ -65,14 +65,6 @@
       "type": "string",
       "description": "The check function for the table action"
     },
-    "color": {
-      "type": "string",
-      "description": "Value for the color input of the mat-button / mat-icon component"
-    },
-    "cssClass": {
-      "type": "string",
-      "description": "Additional CSS classes added to the button element"
-    },
     "priority": {
       "type": "number",
       "description": "The priority of the table action"
@@ -80,6 +72,40 @@
     "directory": {
       "type": "string",
       "description": "A directory name or absolute path for the table action. relative to the feature base path"
+    },
+    "operationId": {
+      "type": "string",
+      "description": "The open api operationId for the table action"
+    },
+    "scope": {
+      "type": "string",
+      "description": "The scope of package for the openapi classes"
+    },
+    "body": {
+      "oneOf": [
+        {
+          "type": "boolean",
+          "description": "Pass the full row as body for the operation request"
+        },
+        {
+          "type": "object",
+          "description": "Mapping of table columns to body properties - [request property]: [table column]",
+          "additionalProperties": true
+        }
+      ]
+    },
+    "parameters": {
+      "oneOf": [
+        {
+          "type": "boolean",
+          "description": "Pass the full row as parameters for the operation request"
+        },
+        {
+          "type": "object",
+          "description": "Mapping of table columns to parameters properties - [request property]: [table column]",
+          "additionalProperties": true
+        }
+      ]
     },
     "options": {
       "type": "object",
@@ -89,6 +115,7 @@
   "required": [
     "type",
     "project",
-    "feature"
+    "feature",
+    "operationId"
   ]
 }

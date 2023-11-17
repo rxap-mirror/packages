@@ -105,6 +105,11 @@
       "factory": "./src/schematics/table/action/operation-table-action/index",
       "description": "The operation-table-action schematic"
     },
+    "open-api-table-action": {
+      "schema": "./src/schematics/table/action/open-api-table-action/schema.json",
+      "factory": "./src/schematics/table/action/open-api-table-action/index",
+      "description": "The open-api-table-action schematic"
+    },
     "tree-component": {
       "schema": "./src/schematics/tree-component/schema.json",
       "factory": "./src/schematics/tree-component/index",

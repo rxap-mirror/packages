@@ -128,6 +128,7 @@ export function CoerceComponentRule(options: Readonly<CoerceComponentOptions>): 
       templateOptions['prefix'] ??= GetProjectPrefix(tree, options.project);
       rules.push(
         () => console.log(`Template '${ template!.url }' will be used to modify the component.`),
+        () => console.log(`Template options: ${ JSON.stringify(templateOptions) }`),
         mergeWith(apply(url(template.url), [
           applyTemplates(templateOptions),
           move(flat ? basePath : join(basePath, name)),

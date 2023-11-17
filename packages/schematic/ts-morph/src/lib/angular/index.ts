@@ -24,3 +24,4 @@ export * from './has-accordion-component';
 export * from './has-component';
 export * from './has-project-feature';
 export * from './has-table-component';
+export * from './coerce-open-api-table-action';

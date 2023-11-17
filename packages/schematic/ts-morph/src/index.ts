@@ -90,6 +90,7 @@ export * from './lib/angular/coerce-form-providers-file';
 export * from './lib/angular/coerce-form-table-action';
 export * from './lib/angular/coerce-method-class';
 export * from './lib/angular/coerce-navigation-table-action';
+export * from './lib/angular/coerce-open-api-table-action';
 export * from './lib/angular/coerce-operation-table-action';
 export * from './lib/angular/coerce-options-data-source';
 export * from './lib/angular/coerce-project-feature';

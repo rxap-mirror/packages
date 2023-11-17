@@ -71,9 +71,6 @@ export function OperationIdToResponseClassImportPath(operationId: string, scope?
 }
 
 export function OperationIdToParameterClassImportPath(operationId: string, scope?: string | null) {
-  if (!scope) {
-    throw new Error('scope is required');
-  }
   let [ id, serverId ] = operationId.split('@');
   serverId ??= 'legacy';
   if (scope) {

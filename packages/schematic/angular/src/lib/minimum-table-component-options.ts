@@ -211,6 +211,7 @@ function operationActionRule(
   const {
     type,
     role,
+    options: additionalOptions,
   } = action;
   const {
     overwrite,
@@ -233,6 +234,7 @@ function operationActionRule(
     () =>
       console.log(`Coerce operation table action '${ action.type }'`),
     ExecuteSchematic('operation-table-action', {
+      ...additionalOptions,
       ...action,
       overwrite,
       project,
@@ -259,6 +261,7 @@ function formActionRule(
   const {
     type,
     role,
+    options: additionalOptions,
   } = action;
   const {
     overwrite,
@@ -280,6 +283,7 @@ function formActionRule(
   return chain([
     () => console.log(`Coerce form table action '${ action.type }'`),
     ExecuteSchematic('form-table-action', {
+      ...additionalOptions,
       ...action,
       overwrite,
       project,
@@ -306,6 +310,7 @@ function navigateActionRule(
   const {
     type,
     role,
+    options: additionalOptions,
   } = action;
   const {
     overwrite,
@@ -325,6 +330,7 @@ function navigateActionRule(
     () =>
       console.log(`Coerce navigate table action '${ action.type }'`),
     ExecuteSchematic('navigate-table-action', {
+      ...additionalOptions,
       ...action,
       overwrite,
       project,
@@ -344,6 +350,7 @@ function dialogActionRule(
 ): Rule {
 
   const {
+    options: additionalOptions,
     type,
     role,
   } = action;
@@ -368,6 +375,7 @@ function dialogActionRule(
     () =>
       console.log(`Coerce dialog table action '${ action.type }'`),
     ExecuteSchematic('dialog-table-action', {
+      ...additionalOptions,
       ...action,
       overwrite,
       project,
@@ -401,9 +409,53 @@ function defaultActionRule(
     directory,
   } = normalizedOptions;
 
+  const { options: additionalOptions } = action;
+
   return chain([
     () => console.log(`Coerce table action '${ action.type }'`),
     ExecuteSchematic('table-action', {
+      ...additionalOptions,
+      ...action,
+      overwrite,
+      project,
+      feature,
+      shared,
+      backend,
+      tableName: componentName,
+      directory,
+    }),
+  ]);
+
+}
+
+function openApiActionRule(
+  action: NormalizedTableAction,
+  normalizedOptions: NormalizedMinimumTableComponentOptions,
+): Rule {
+
+  const {
+    options: additionalOptions,
+    type,
+    role,
+  } = action;
+  const {
+    overwrite,
+    project,
+    feature,
+    shared,
+    backend,
+    componentName,
+    directory,
+  } = normalizedOptions;
+
+  if (role !== 'open-api') {
+    throw new SchematicsException(`Invalid action role: ${ role } - expected open-api`);
+  }
+
+  return chain([
+    () => console.log(`Coerce open api table action '${ action.type }'`),
+    ExecuteSchematic('open-api-table-action', {
+      ...additionalOptions,
       ...action,
       overwrite,
       project,
@@ -442,6 +494,10 @@ function actionRule(action: NormalizedTableAction, normalizedOptions: Normalized
 
     case 'dialog':
       rules.push(dialogActionRule(action, normalizedOptions));
+      break;
+
+    case 'open-api':
+      rules.push(openApiActionRule(action, normalizedOptions));
       break;
 
     default:
