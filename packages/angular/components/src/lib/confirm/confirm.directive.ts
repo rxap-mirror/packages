@@ -1,4 +1,10 @@
 import {
+  Overlay,
+  OverlayRef,
+  PositionStrategy,
+} from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import {
   Directive,
   ElementRef,
   EventEmitter,
@@ -8,18 +14,12 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import { ConfirmComponent } from './confirm.component';
-import {
-  Overlay,
-  OverlayRef,
-  PositionStrategy,
-} from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
+import { Subscription } from 'rxjs';
 import {
   take,
   tap,
 } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { ConfirmComponent } from './confirm.component';
 
 @Directive({
   selector: '[rxapConfirm]',
@@ -53,9 +53,9 @@ export class ConfirmDirective<T = any> implements OnDestroy {
 
   constructor(
     @Inject(Overlay)
-    private readonly overlay: Overlay,
+    protected readonly overlay: Overlay,
     @Inject(ElementRef)
-    private readonly elementRef: ElementRef,
+    protected readonly elementRef: ElementRef,
   ) {
     this.positionStrategy = this.overlay
                                 .position()

@@ -12,6 +12,7 @@ import {
   isDevMode,
   OnInit,
   Optional,
+  Renderer2,
   ViewContainerRef,
 } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
@@ -22,6 +23,7 @@ import { ConfirmDirective } from '@rxap/components';
 import {
   coerceArray,
   coerceBoolean,
+  dasherize,
 } from '@rxap/utilities';
 import { TableDataSourceDirective } from '../table-data-source.directive';
 import { TableActionMethodOptions } from './decorators';
@@ -56,6 +58,8 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
   @Input()
   public color?: ThemePalette;
 
+  public readonly isHeader: boolean = false;
+
   protected options: TableActionMethodOptions | null = null;
   @ContentChild(TableRowActionExecutingDirective)
   private readonly executingDirective?: TableRowActionExecutingDirective;
@@ -64,6 +68,8 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
   private _actionDisabled = false;
 
   constructor(
+    @Inject(Renderer2)
+    protected readonly renderer: Renderer2,
     @Inject(Overlay)
       overlay: Overlay,
     @Inject(ElementRef)
@@ -75,19 +81,19 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
     @Inject(ChangeDetectorRef)
     protected readonly cdr: ChangeDetectorRef,
     @Inject(ViewContainerRef)
-    private readonly vcr: ViewContainerRef,
+    protected readonly vcr: ViewContainerRef,
     @Inject(TableDataSourceDirective)
-    private readonly tableDataSourceDirective: TableDataSourceDirective,
+    protected readonly tableDataSourceDirective: TableDataSourceDirective,
     @Inject(MatSnackBar)
-    private readonly snackBar: MatSnackBar,
+    protected readonly snackBar: MatSnackBar,
     @Optional()
     @Inject(MatIconButton)
-    private matButton: MatIconButton | null,
+    protected matButton: MatIconButton | null,
     @Optional()
     @Inject(MatTooltip)
-    private matTooltip: MatTooltip | null,
+    protected matTooltip: MatTooltip | null,
     @Inject(INJECTOR)
-    private readonly injector: Injector,
+    protected readonly injector: Injector,
   ) {
     super(overlay, elementRef);
     this.actionMethodList = coerceArray(actionMethodList);
@@ -118,6 +124,12 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
         this.matButton.color = this.color;
       }
     }
+    if (this.isHeader) {
+      this.renderer.addClass(this.elementRef.nativeElement, 'rxap-table-row-header-action');
+    } else {
+      this.renderer.addClass(this.elementRef.nativeElement, 'rxap-table-row-action');
+    }
+    this.renderer.addClass(this.elementRef.nativeElement, `rxap-action-${ dasherize(this.type) }`);
   }
 
   @HostListener('confirmed')

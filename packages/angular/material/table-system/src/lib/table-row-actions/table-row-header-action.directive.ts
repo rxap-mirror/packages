@@ -10,6 +10,7 @@ import {
   OnDestroy,
   OnInit,
   Optional,
+  Renderer2,
   ViewContainerRef,
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
@@ -36,9 +37,14 @@ import { TableRowActionMethod } from './types';
 export class TableRowHeaderActionDirective<Data extends Record<string, any>>
   extends AbstractTableRowAction<Data>
   implements OnInit, OnDestroy {
+
+  public override readonly isHeader = true;
+
   private _subscription?: Subscription;
 
   constructor(
+    @Inject(Renderer2)
+      renderer: Renderer2,
     @Inject(Overlay)
       overlay: Overlay,
     @Inject(ElementRef)
@@ -66,6 +72,7 @@ export class TableRowHeaderActionDirective<Data extends Record<string, any>>
     private readonly selectRowService: SelectRowService<Data> | null,
   ) {
     super(
+      renderer,
       overlay,
       elementRef,
       actionMethod,
