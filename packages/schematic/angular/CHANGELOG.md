@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.29...@rxap/schematic-angular@16.1.0-dev.30) (2023-11-17)
+
+### Bug Fixes
+
+- support complex overwrite values ([c2fc6b9](https://gitlab.com/rxap/packages/commit/c2fc6b91c71d99496a2448e75287ea61f49e11c4))
+
 # [16.1.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.28...@rxap/schematic-angular@16.1.0-dev.29) (2023-11-17)
 
 ### Bug Fixes
