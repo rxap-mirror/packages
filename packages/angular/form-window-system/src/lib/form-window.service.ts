@@ -7,11 +7,7 @@ import {
   Optional,
   StaticProvider,
 } from '@angular/core';
-import {
-  WindowConfig,
-  WindowRef,
-  WindowService,
-} from '@rxap/window-system';
+import { FormSystemMetadataKeys } from '@rxap/form-system';
 import {
   FormDefinition,
   FormLoadMethod,
@@ -27,16 +23,20 @@ import {
   RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
   RxapFormBuilder,
 } from '@rxap/forms';
+import { getMetadata } from '@rxap/reflect-metadata';
 import {
   Constructor,
   DeleteUndefinedProperties,
 } from '@rxap/utilities';
-import { FormSystemMetadataKeys } from '@rxap/form-system';
-import { getMetadata } from '@rxap/reflect-metadata';
+import {
+  WindowConfig,
+  WindowRef,
+  WindowService,
+} from '@rxap/window-system';
 
 export interface FormWindowOptions<FormData, D = any, T = any>
   extends WindowConfig<D, T> {
-  initial?: FormData;
+  initial?: Partial<FormData>;
   submitMethod?: FormSubmitMethod<FormData>;
   submitSuccessfulMethod?: FormSubmitSuccessfulMethod;
   providers?: StaticProvider[];

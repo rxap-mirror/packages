@@ -1,4 +1,4 @@
-import { Constructor } from '@rxap/utilities';
+import { ComponentType } from '@angular/cdk/portal';
 import {
   Inject,
   Injectable,
@@ -11,13 +11,13 @@ import {
   FormDefinition,
   FormType,
 } from '@rxap/forms';
-import { ComponentType } from '@angular/cdk/portal';
+import { Method } from '@rxap/pattern';
+import { Constructor } from '@rxap/utilities';
+import { WindowRef } from '@rxap/window-system';
 import {
   FormWindowOptions,
   FormWindowService,
 } from './form-window.service';
-import { WindowRef } from '@rxap/window-system';
-import { Method } from '@rxap/pattern';
 
 export const RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFINITION_CONSTRUCTOR =
   new InjectionToken(
@@ -50,7 +50,7 @@ export class OpenFormWindowMethod<
   }
 
   public call(
-    initial?: FormData,
+    initial?: Partial<FormData>,
     options?: Partial<FormWindowOptions<FormData>>,
   ): WindowRef<FormDefinition, FormData> {
     return this.formWindowService.open<FormData>(
