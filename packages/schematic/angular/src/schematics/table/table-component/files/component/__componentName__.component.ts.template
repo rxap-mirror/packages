@@ -40,7 +40,7 @@ import { DataSourceErrorComponent } from '@rxap/data-source';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 <% for (const column of columnList) { %>
-<% if (column.type === 'component') { %>
+<% if (column.role === 'component') { %>
 import { <%= classify(column.name) %>Component } from './<%= dasherize(column.name) %>-component/<%= dasherize(column.name) %>.component';
 <% } %>
 <% } %>
@@ -54,7 +54,7 @@ import { <%= classify(column.name) %>Component } from './<%= dasherize(column.na
   standalone: true,
   imports: [
   <% for (const column of columnList) { %>
-  <% if (column.type === 'component') { %>
+  <% if (column.role === 'component') { %>
   <%= classify(column.name) %>Component,
   <% } %>
   <% } %>
