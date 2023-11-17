@@ -49,11 +49,13 @@ import {
 import { FormTableActionOptions } from './schema';
 
 export interface NormalizedFormTableActionOptions
-  extends Readonly<Normalized<FormTableActionOptions> & NormalizedOperationTableActionOptions> {
-  options: Record<string, any> & {
-    controlList: NormalizedFormComponentControl[];
-  };
+  extends Omit<Readonly<Normalized<FormTableActionOptions> & NormalizedOperationTableActionOptions>, 'formOptions'> {
   formComponent: string;
+  formOptions: {
+    controlList: NormalizedFormComponentControl[];
+    role: string | null;
+    window: boolean;
+  };
 }
 
 export function NormalizeFormTableActionOptions(
@@ -68,6 +70,7 @@ export function NormalizeFormTableActionOptions(
   } = normalizedOptions;
   const loadFrom = options.loadFrom ?? null;
   const formInitial = options.formInitial ?? null;
+  const formOptions = options.formOptions ?? {};
   return {
     ...normalizedOptions,
     controllerName: BuildNestControllerName({
@@ -79,9 +82,10 @@ export function NormalizeFormTableActionOptions(
     loadFrom: Object.keys(loadFrom ?? {}).length ? loadFrom : null,
     formInitial: Object.keys(formInitial ?? {}).length ? formInitial : null,
     customComponent: options.customComponent ?? false,
-    options: {
-      ...normalizedOptions.options ?? {},
-      controlList: NormalizeFormComponentControlList(normalizedOptions.options?.['controlList'] ?? []),
+    formOptions: {
+      window: formOptions.window ?? true,
+      role: formOptions.role ?? type,
+      controlList: NormalizeFormComponentControlList(formOptions.controlList),
     },
   };
 }
@@ -180,8 +184,8 @@ function nestjsBackendRule(normalizedOptions: NormalizedFormTableActionOptions):
         } = CoerceDtoClass({
           project,
           name: controllerName,
-          propertyList: normalizedOptions.options.controlList.map(control => FormComponentControlToDtoClassProperty(
-            control)),
+          propertyList: normalizedOptions.formOptions?.controlList.map(
+            control => FormComponentControlToDtoClassProperty(control)) ?? [],
         });
 
         CoerceImports(sourceFile, {
@@ -302,11 +306,11 @@ export default function (options: FormTableActionOptions) {
     controllerName,
     overwrite,
     scope,
-    options: formOptions,
     backend,
     formInitial,
     formComponent,
     customComponent,
+    formOptions,
   } = normalizedOptions;
 
   printOptions(normalizedOptions);
@@ -373,8 +377,6 @@ export default function (options: FormTableActionOptions) {
           feature,
           directory,
           shared,
-          window: true,
-          role: type,
           nestModule,
           controllerName,
           overwrite,
