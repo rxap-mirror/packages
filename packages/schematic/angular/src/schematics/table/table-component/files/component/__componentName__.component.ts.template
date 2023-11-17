@@ -39,6 +39,11 @@ import { CommonModule } from '@angular/common';
 import { DataSourceErrorComponent } from '@rxap/data-source';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+<% for (const column of columnList) { %>
+<% if (column.type === 'component') { %>
+import { <%= classify(column.name) %>Component } from './<%= dasherize(column.name) %>-component/<%= dasherize(column.name) %>.component';
+<% } %>
+<% } %>
 
 @Component({
   selector:        '<%= prefix %>-<%= name %>-table',
@@ -48,6 +53,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   animations: [ RowAnimation ],
   standalone: true,
   imports: [
+  <% for (const column of columnList) { %>
+  <% if (column.type === 'component') { %>
+  <%= classify(column.name) %>Component,
+  <% } %>
+  <% } %>
     CommonModule,
     MatCardModule,
     MatProgressBarModule,
