@@ -84,7 +84,7 @@ export function NormalizeTableColumn(
   show = modifiers.includes('show') || show;
   hidden = modifiers.includes('hidden') || hidden;
   nowrap = modifiers.includes('nowrap') || nowrap;
-  if (!type) {
+  if (!type || type === 'unknown') {
     switch (role) {
       case 'date':
         type = 'number | Date';
