@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.40](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.39...@rxap/schematic-angular@16.1.0-dev.40) (2023-11-17)
+
+### Bug Fixes
+
+- auto detect the best matching column type ([75f748b](https://gitlab.com/rxap/packages/commit/75f748b841d0495b0a2faa46836e2ad19455c735))
+
 # [16.1.0-dev.39](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.38...@rxap/schematic-angular@16.1.0-dev.39) (2023-11-17)
 
 ### Bug Fixes
