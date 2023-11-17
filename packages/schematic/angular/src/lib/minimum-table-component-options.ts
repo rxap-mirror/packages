@@ -492,6 +492,10 @@ function actionRule(action: NormalizedTableAction, normalizedOptions: Normalized
       rules.push(navigateActionRule(action, normalizedOptions));
       break;
 
+    case 'navigation':
+      rules.push(navigateActionRule(action, normalizedOptions));
+      break;
+
     case 'dialog':
       rules.push(dialogActionRule(action, normalizedOptions));
       break;
