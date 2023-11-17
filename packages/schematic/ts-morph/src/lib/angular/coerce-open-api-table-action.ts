@@ -27,6 +27,18 @@ export interface CoerceOpenApiTableActionRuleOptions extends CoerceTableActionOp
   parameters: boolean | Record<string, string>;
 }
 
+function toMappingObject(input: Record<string, string>) {
+  const mapping: Record<string, string> = {};
+  for (const [ key, value ] of Object.entries(input)) {
+    if ([ 'rowId', '_rowId', '__rowId' ].includes(value)) {
+      mapping[key] = `parameters.__rowId`;
+    } else {
+      mapping[key] = `parameters.${ value }`;
+    }
+  }
+  return mapping;
+}
+
 export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRuleOptions) {
   let {
     tsMorphTransform,
@@ -74,12 +86,7 @@ export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRu
           statements: parameters === true ? [ 'return parameters;' ] : [
             w => {
               w.write('return ');
-              Writers.object(Object.entries(parameters as any).reduce((acc, [ key, value ]) => (
-                {
-                  ...acc,
-                  [key]: `parameters.${ value }`,
-                }
-              ), {}))(w);
+              Writers.object(toMappingObject(parameters as any))(w);
               w.write(';');
             },
           ],
@@ -102,12 +109,7 @@ export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRu
           statements: parameters === true ? [ 'return parameters;' ] : [
             w => {
               w.write('return ');
-              Writers.object(Object.entries(parameters as any).reduce((acc, [ key, value ]) => (
-                {
-                  ...acc,
-                  [key]: `parameters.${ value }`,
-                }
-              ), {}))(w);
+              Writers.object(toMappingObject(parameters as any))(w);
               w.write(';');
             },
           ],
@@ -129,7 +131,7 @@ export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRu
 
       return {
         statements: statements,
-        returnType: `Promise<void>`,
+        returnType: `Promise<any>`,
         ...tsMorphTransform!(project, sourceFile, classDeclaration),
       };
     },
