@@ -198,7 +198,17 @@
       }
     },
     "overwrite": {
-      "type": "boolean",
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
       "description": "Overwrite existing files",
       "default": false
     },

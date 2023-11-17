@@ -60,9 +60,19 @@
       "description": "The modifiers to apply to the accordion item type"
     },
     "overwrite": {
-      "type": "boolean",
-      "default": false,
-      "description": "Whether to overwrite existing files"
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Overwrite existing files",
+      "default": false
     }
   },
   "additionalProperties": true,

@@ -24,9 +24,19 @@
       "x-prompt": "To which feature should the dialog module be added?"
     },
     "overwrite": {
-      "type": "boolean",
-      "default": false,
-      "description": "Whether to overwrite existing files"
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Overwrite existing files",
+      "default": false
     },
     "title": {
       "type": "string",

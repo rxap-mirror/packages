@@ -58,7 +58,17 @@
       "description": "The controller name for the tree nest operations"
     },
     "overwrite": {
-      "type": "boolean",
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
       "description": "Overwrite existing files",
       "default": false
     },

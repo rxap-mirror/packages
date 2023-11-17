@@ -78,8 +78,18 @@
       "description": "The module name for the table nest operations"
     },
     "overwrite": {
-      "type": "boolean",
-      "description": "Whether to override the table action if it already exists",
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Overwrite existing files",
       "default": false
     },
     "context": {

@@ -117,8 +117,18 @@
       "description": "The title for the dialog"
     },
     "overwrite": {
-      "type": "boolean",
-      "description": "Whether to overwrite existing table action",
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Overwrite existing files",
       "default": false
     },
     "context": {
