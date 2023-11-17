@@ -5,6 +5,12 @@ import {
 } from '@rxap/schematics-utilities';
 import { Normalized } from '@rxap/utilities';
 
+export interface TableColumnPipe {
+  name: string;
+  className: string;
+  importFrom: string;
+}
+
 export interface TableColumn {
   name: string;
   type?: string;
@@ -19,11 +25,48 @@ export interface TableColumn {
   nowrap?: boolean;
   cssClass?: string;
   role?: string;
+  template?: string;
+  pipeList?: Array<TableColumnPipe | string>;
 }
 
 export interface NormalizedTableColumn extends Readonly<Normalized<TableColumn>> {
   type: string;
   propertyPath: string;
+  pipeList: TableColumnPipe[];
+}
+
+export function NormalizeTableColumnPipe(pipe: string | TableColumnPipe): TableColumnPipe {
+  if (typeof pipe === 'string') {
+    switch (pipe) {
+      case 'async':
+        return {
+          name: 'async',
+          className: 'AsyncPipe',
+          importFrom: '@angular/common',
+        };
+      case 'date':
+        return {
+          name: 'date',
+          className: 'DatePipe',
+          importFrom: '@angular/common',
+        };
+      case 'json':
+        return {
+          name: 'json',
+          className: 'JsonPipe',
+          importFrom: '@angular/common',
+        };
+      case 'keyvalue':
+        return {
+          name: 'keyvalue',
+          className: 'KeyValuePipe',
+          importFrom: '@angular/common',
+        };
+      default:
+        throw new Error(`Unknown pipe ${ pipe }`);
+    }
+  }
+  return pipe;
 }
 
 export function NormalizeTableColumn(
@@ -42,6 +85,8 @@ export function NormalizeTableColumn(
   let nowrap = false;
   let cssClass: string | null = null;
   let role: string | null = null;
+  let template: string | null = null;
+  let pipeList: TableColumnPipe[] = [];
   if (typeof column === 'string') {
     // name:type:modifier1,modifier2
     // username:string:filter,active
@@ -66,6 +111,10 @@ export function NormalizeTableColumn(
     nowrap = column.nowrap ?? false;
     cssClass = column.cssClass ?? cssClass;
     role = column.role ?? role;
+    template = column.template ?? template;
+    pipeList = (
+      column.pipeList ?? pipeList
+    ).map(NormalizeTableColumnPipe);
   }
   propertyPath ??= name
     .replace(/\?\./g, '.')
@@ -123,6 +172,8 @@ export function NormalizeTableColumn(
     show,
     nowrap,
     cssClass,
+    pipeList,
+    template,
   });
 }
 

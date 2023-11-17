@@ -173,7 +173,15 @@
               <ng-container i18n><%= column.title %></ng-container>
             </th>
 
-            <td mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> *matCellDef="let element">{{ element?.<%= column.propertyPath %> }}</td>
+            <td mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> *matCellDef="let element">
+            <% if (column.template) { %>
+            <%= column.template %>
+            <% } else if (column.pipeList.length) { %>
+            {{ element?.<%= column.propertyPath %><% for (const pipe of column.pipeList) { %> | <%= pipe.name %><% } %> }}
+            <% } else { %>
+            {{ element?.<%= column.propertyPath %> }}
+            <% } %>
+            </td>
           </ng-container>
           <% } %>
           <% } %>

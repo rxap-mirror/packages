@@ -144,6 +144,38 @@
                       "type": "string"
                     }
                   },
+                  "template": {
+                    "type": "string"
+                  },
+                  "pipeList": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "className": {
+                              "type": "string"
+                            },
+                            "importFrom": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "className",
+                            "importFrom"
+                          ]
+                        }
+                      ]
+                    }
+                  },
                   "hasFilter": {
                     "type": "boolean"
                   },
