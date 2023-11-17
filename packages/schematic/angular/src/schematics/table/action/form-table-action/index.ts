@@ -78,6 +78,7 @@ export function NormalizeFormTableActionOptions(
       dasherize(options.formComponent ?? [ type, tableName.replace(/-table$/, '') ].join('-')), '-form'),
     loadFrom: Object.keys(loadFrom ?? {}).length ? loadFrom : null,
     formInitial: Object.keys(formInitial ?? {}).length ? formInitial : null,
+    customComponent: options.customComponent ?? false,
     options: {
       ...normalizedOptions.options ?? {},
       controlList: NormalizeFormComponentControlList(normalizedOptions.options?.['controlList'] ?? []),
@@ -305,6 +306,7 @@ export default function (options: FormTableActionOptions) {
     backend,
     formInitial,
     formComponent,
+    customComponent,
   } = normalizedOptions;
 
   printOptions(normalizedOptions);
@@ -313,7 +315,7 @@ export default function (options: FormTableActionOptions) {
 
     AssertTableComponentExists(host, normalizedOptions);
 
-    return chain([
+    const ruleList: Rule[] = [
       () => console.group('\x1b[32m[@rxap/schematics-angular:form-table-action]\x1b[0m'),
       () => console.info(`Generating form table action rule...`),
       CoerceFormTableActionRule({
@@ -359,25 +361,33 @@ export default function (options: FormTableActionOptions) {
           );
         },
       }),
-      () => console.info(`Generating form component...`),
-      ExecuteSchematic('form-component', {
-        ...formOptions ?? {},
-        project,
-        name: formComponent.replace(/-form$/, ''),
-        feature,
-        directory,
-        shared,
-        window: true,
-        role: type,
-        nestModule,
-        controllerName,
-        overwrite,
-        context,
-        backend,
-      }),
-      () => console.info(`Generating backend...`),
-      backendRule(normalizedOptions),
-      () => console.groupEnd(),
-    ]);
+    ];
+
+    if (!customComponent) {
+      ruleList.push(
+        () => console.info(`Generating form component...`),
+        ExecuteSchematic('form-component', {
+          ...formOptions ?? {},
+          project,
+          name: formComponent.replace(/-form$/, ''),
+          feature,
+          directory,
+          shared,
+          window: true,
+          role: type,
+          nestModule,
+          controllerName,
+          overwrite,
+          context,
+          backend,
+        }),
+        () => console.info(`Generating backend...`),
+        backendRule(normalizedOptions),
+      );
+    }
+
+    ruleList.push(() => console.groupEnd());
+
+    return chain(ruleList);
   };
 }

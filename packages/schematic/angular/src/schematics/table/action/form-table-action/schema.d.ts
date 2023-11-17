@@ -6,4 +6,5 @@ export interface FormTableActionOptions extends OperationTableActionOptions {
   loadFrom?: LoadFromTableActionOptions;
   formInitial?: Record<string, any>;
   formComponent?: string;
+  customComponent: boolean;
 }

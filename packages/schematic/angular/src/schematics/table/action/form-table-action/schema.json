@@ -103,6 +103,11 @@
     "formComponent": {
       "type": "string"
     },
+    "customComponent": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true the schematic will not coerce the form component"
+    },
     "loadFrom": {
       "type": "object",
       "properties": {
