@@ -9,6 +9,7 @@ import {
   OperationIdToResponseClassName,
   ToMappingObjectOptions,
 } from '@rxap/ts-morph';
+import { dasherize } from '@rxap/utilities';
 import {
   Scope,
   StatementStructures,
@@ -37,6 +38,7 @@ export interface CoerceFormTableActionOptions extends CoerceTableActionOptions {
   loadFrom?: LoadFromTableActionOptions | null;
   formInitial?: Record<string, any> | null;
   scope?: string | null;
+  formComponent: string;
 }
 
 const toMappingObjectOptions: ToMappingObjectOptions = {
@@ -56,6 +58,7 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
     tsMorphTransform,
     scope,
     formInitial,
+    formComponent,
   } = options;
   tsMorphTransform ??= () => ({});
 
@@ -69,9 +72,9 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
         moduleSpecifier: '@angular/core',
         namedImports: [ 'ChangeDetectorRef', 'Inject', 'INJECTOR', 'Injector' ],
       });
-      const openFormWindowMethod = `Open${ classify(type) }FormWindowMethod`;
+      const openFormWindowMethod = `Open${ classify(formComponent) }WindowMethod`;
       CoerceImports(sourceFile, {
-        moduleSpecifier: `../../${ type }-form/open-${ type }-form-window.method`,
+        moduleSpecifier: `../../${ dasherize(formComponent) }/open-${ dasherize(formComponent) }-window.method`,
         namedImports: [ openFormWindowMethod ],
       });
       CoerceImports(sourceFile, {

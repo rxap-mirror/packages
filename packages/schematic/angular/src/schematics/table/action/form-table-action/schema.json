@@ -96,6 +96,51 @@
       "type": "string",
       "description": "The context use to generate proper names for class, files, etc"
     },
+    "formInitial": {
+      "type": "object",
+      "description": "The mapping from the row object to the form initial object"
+    },
+    "formComponent": {
+      "type": "string"
+    },
+    "loadFrom": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string",
+          "description": "The scope of package for the openapi classes"
+        },
+        "body": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "description": "Pass the full row as body for the operation request"
+            },
+            {
+              "type": "object",
+              "description": "Mapping of table columns to body properties - [request property]: [table column]",
+              "additionalProperties": true
+            }
+          ]
+        },
+        "parameters": {
+          "oneOf": [
+            {
+              "type": "boolean",
+              "description": "Pass the full row as parameters for the operation request"
+            },
+            {
+              "type": "object",
+              "description": "Mapping of table columns to parameters properties - [request property]: [table column]",
+              "additionalProperties": true
+            }
+          ]
+        }
+      }
+    },
     "options": {
       "type": "object",
       "properties": {

@@ -14,6 +14,7 @@ import {
   CoerceFormTableActionRule,
   CoerceImports,
   CoerceOperation,
+  LoadFromTableActionOptions,
   OperationIdToResponseClassImportPath,
   OperationIdToResponseClassName,
   TsMorphAngularProjectTransformOptions,
@@ -52,6 +53,7 @@ export interface NormalizedFormTableActionOptions
   options: Record<string, any> & {
     controlList: NormalizedFormComponentControl[];
   };
+  formComponent: string;
 }
 
 export function NormalizeFormTableActionOptions(
@@ -62,13 +64,20 @@ export function NormalizeFormTableActionOptions(
     controllerName,
     type,
     nestModule,
+    tableName,
   } = normalizedOptions;
+  const loadFrom = options.loadFrom ?? null;
+  const formInitial = options.formInitial ?? null;
   return {
     ...normalizedOptions,
     controllerName: BuildNestControllerName({
       nestModule,
       controllerName: [ type, 'action' ].join('-'),
     }),
+    formComponent: CoerceSuffix(
+      dasherize(options.formComponent ?? [ type, tableName.replace(/-table$/, '') ].join('-')), '-form'),
+    loadFrom: Object.keys(loadFrom ?? {}).length ? loadFrom : null,
+    formInitial: Object.keys(formInitial ?? {}).length ? formInitial : null,
     options: {
       ...normalizedOptions.options ?? {},
       controlList: NormalizeFormComponentControlList(normalizedOptions.options?.['controlList'] ?? []),
@@ -250,6 +259,27 @@ function buildGetOperationId(normalizedOptions: NormalizedFormTableActionOptions
   );
 }
 
+function buildLoadFormOptions(normalizedOptions: NormalizedFormTableActionOptions): LoadFromTableActionOptions | undefined {
+
+  const { backend } = normalizedOptions;
+
+  let loadFrom: LoadFromTableActionOptions | undefined = undefined;
+  if (backend === BackendTypes.NESTJS) {
+    loadFrom = {
+      operationId: buildGetOperationId(normalizedOptions),
+      body: false,
+      parameters: {
+        rowId: 'rowId',
+      },
+    };
+  } else if (normalizedOptions.loadFrom) {
+    loadFrom = normalizedOptions.loadFrom as any;
+  }
+
+  return loadFrom;
+
+}
+
 export default function (options: FormTableActionOptions) {
   const normalizedOptions = NormalizeFormTableActionOptions(options);
   const {
@@ -273,6 +303,8 @@ export default function (options: FormTableActionOptions) {
     scope,
     options: formOptions,
     backend,
+    formInitial,
+    formComponent,
   } = normalizedOptions;
 
   printOptions(normalizedOptions);
@@ -287,7 +319,8 @@ export default function (options: FormTableActionOptions) {
       CoerceFormTableActionRule({
         scope,
         directory: join(directory ?? '', 'methods', 'action'),
-        loadOperationId: backend === BackendTypes.NESTJS ? buildGetOperationId(normalizedOptions) : undefined,
+        loadFrom: buildLoadFormOptions(normalizedOptions),
+        formInitial,
         type,
         tableName,
         refresh,
@@ -299,6 +332,7 @@ export default function (options: FormTableActionOptions) {
         checkFunction,
         project,
         feature,
+        formComponent,
       }),
       () => console.log('Coerce open form window method to table component ...'),
       CoerceComponentRule({
@@ -314,11 +348,11 @@ export default function (options: FormTableActionOptions) {
         ) => {
           AddComponentProvider(
             sourceFile,
-            `Open${ classify(type) }FormWindowMethod`,
+            `Open${ classify(formComponent) }WindowMethod`,
             [
               {
-                moduleSpecifier: `./${ type }-form/open-${ type }-form-window.method`,
-                namedImports: [ `Open${ classify(type) }FormWindowMethod` ],
+                moduleSpecifier: `./${ type }-form/open-${ dasherize(formComponent) }-window.method`,
+                namedImports: [ `Open${ classify(formComponent) }WindowMethod` ],
               },
             ],
           );
@@ -328,7 +362,7 @@ export default function (options: FormTableActionOptions) {
       ExecuteSchematic('form-component', {
         ...formOptions ?? {},
         project,
-        name: type,
+        name: formComponent.replace(/-form$/, ''),
         feature,
         directory,
         shared,
