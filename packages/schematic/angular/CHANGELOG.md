@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.30...@rxap/schematic-angular@16.1.0-dev.31) (2023-11-17)
+
+### Bug Fixes
+
+- support role alias ([284fa94](https://gitlab.com/rxap/packages/commit/284fa94d256e9bcc39a981dbc179d5f810aad330))
+
 # [16.1.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.29...@rxap/schematic-angular@16.1.0-dev.30) (2023-11-17)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.31...@rxap/schematics-ts-morph@16.0.0-dev.32) (2023-11-17)
+
+### Bug Fixes
+
+- unify transformation ([1cea9a0](https://gitlab.com/rxap/packages/commit/1cea9a05c086302a02aede70283d3ee421138363))
+
 # [16.0.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.30...@rxap/schematics-ts-morph@16.0.0-dev.31) (2023-11-17)
 
 ### Features
