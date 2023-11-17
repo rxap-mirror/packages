@@ -16,6 +16,8 @@ export interface TableColumn {
   active?: boolean;
   inactive?: boolean;
   show?: boolean;
+  nowrap?: boolean;
+  cssClass?: string;
 }
 
 export interface NormalizedTableColumn extends Readonly<Normalized<TableColumn>> {
@@ -36,6 +38,8 @@ export function NormalizeTableColumn(
   let active = false;
   let inactive = false;
   let show = false;
+  let nowrap = false;
+  let cssClass: string | null = null;
   if (typeof column === 'string') {
     // name:type:modifier1,modifier2
     // username:string:filter,active
@@ -57,6 +61,8 @@ export function NormalizeTableColumn(
     active = column.active ?? false;
     inactive = column.inactive ?? false;
     show = column.show ?? false;
+    nowrap = column.nowrap ?? false;
+    cssClass = column.cssClass ?? cssClass;
   }
   propertyPath ??= name
     .replace(/\?\./g, '.')
@@ -74,7 +80,15 @@ export function NormalizeTableColumn(
   inactive = modifiers.includes('inactive') || inactive;
   show = modifiers.includes('show') || show;
   hidden = modifiers.includes('hidden') || hidden;
+  nowrap = modifiers.includes('nowrap') || nowrap;
   type ??= 'unknown';
+  if (nowrap) {
+    if (!cssClass) {
+      cssClass = 'nowrap';
+    } else {
+      cssClass += ' nowrap';
+    }
+  }
   return Object.seal({
     name,
     type,
@@ -86,6 +100,8 @@ export function NormalizeTableColumn(
     active,
     inactive,
     show,
+    nowrap,
+    cssClass,
   });
 }
 

@@ -12,10 +12,14 @@ export interface TableRowAction {
   priority?: number;
   checkFunction?: string;
   inHeader?: boolean;
+  color?: string;
+  cssClass?: string;
   options?: Record<string, any>;
 }
 
-export type NormalizedTableRowAction = Readonly<Normalized<TableRowAction>>;
+export interface NormalizedTableRowAction extends Readonly<Normalized<TableRowAction>> {
+  options: Record<string, any>;
+}
 
 export function NormalizeTableRowAction(
   tableAction: Readonly<TableRowAction>,
@@ -26,10 +30,12 @@ export function NormalizeTableRowAction(
     errorMessage: tableAction.errorMessage ?? null,
     successMessage: tableAction.successMessage ?? null,
     checkFunction: tableAction.checkFunction ?? null,
+    color: tableAction.color ?? null,
+    cssClass: tableAction.cssClass ?? null,
     refresh: tableAction.refresh ?? false,
     confirm: tableAction.confirm ?? false,
     priority: tableAction.priority ?? 0,
     inHeader: tableAction.inHeader ?? false,
-    options: tableAction.options ?? null,
+    options: tableAction.options ?? {},
   });
 }

@@ -29,7 +29,9 @@ export function NormalizeTableAction(
   let svgIcon: string | null = null;
   let permission: string | null = null;
   let inHeader = false;
-  let options: Record<string, any> | null = null;
+  let options: Record<string, any> = {};
+  let color: string | undefined = undefined;
+  let cssClass: string | undefined = undefined;
   if (typeof tableAction === 'string') {
     // type:role:modifier1,modifier2
     // edit:form:refresh,confirm
@@ -81,6 +83,8 @@ export function NormalizeTableAction(
     svgIcon = tableAction.svgIcon ?? svgIcon;
     permission = tableAction.permission ?? permission;
     options = tableAction.options ?? options;
+    color = tableAction.color ?? color;
+    cssClass = tableAction.cssClass ?? cssClass;
   }
   return Object.seal({
     ...NormalizeTableRowAction({
@@ -93,7 +97,9 @@ export function NormalizeTableAction(
       confirm,
       priority,
       inHeader,
-      options: options ?? undefined,
+      options,
+      color,
+      cssClass,
     }),
     role,
     icon,

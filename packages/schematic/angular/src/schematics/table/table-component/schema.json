@@ -128,6 +128,12 @@
                   "hasFilter": {
                     "type": "boolean"
                   },
+                  "nowrap": {
+                    "type": "boolean"
+                  },
+                  "cssClass": {
+                    "type": "string"
+                  },
                   "title": {
                     "type": "string"
                   },
@@ -205,6 +211,14 @@
                   },
                   "permission": {
                     "type": "string"
+                  },
+                  "color": {
+                    "type": "string",
+                    "description": "Value for the color input of the mat-button / mat-icon component"
+                  },
+                  "cssClass": {
+                    "type": "string",
+                    "description": "Additional CSS classes added to the button element"
                   },
                   "options": {
                     "type": "object",
