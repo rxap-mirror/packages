@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.31](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.30...@rxap/schematics-ts-morph@16.0.0-dev.31) (2023-11-17)
+
+### Features
+
+- add open api table action ([ceee1d8](https://gitlab.com/rxap/packages/commit/ceee1d81d7633d1115010691e631f2974e335805))
+
 # [16.0.0-dev.30](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.29...@rxap/schematics-ts-morph@16.0.0-dev.30) (2023-10-16)
 
 ### Bug Fixes

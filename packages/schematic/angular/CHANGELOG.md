@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.29](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.28...@rxap/schematic-angular@16.1.0-dev.29) (2023-11-17)
+
+### Bug Fixes
+
+- improve table template ([ddc5469](https://gitlab.com/rxap/packages/commit/ddc546991ef5450893617fa34af590c10997bb92))
+- support custom css class for actions and columns ([f5363df](https://gitlab.com/rxap/packages/commit/f5363dffb13be7f668d41ce606e33aba7f404437))
+
+### Features
+
+- add open api table action ([ceee1d8](https://gitlab.com/rxap/packages/commit/ceee1d81d7633d1115010691e631f2974e335805))
+
 # [16.1.0-dev.28](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.27...@rxap/schematic-angular@16.1.0-dev.28) (2023-11-16)
 
 ### Bug Fixes
