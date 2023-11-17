@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.24](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.0-dev.23...@rxap/components@16.0.0-dev.24) (2023-11-17)
+
+### Bug Fixes
+
+- add utility classes to element on init ([6fc62a8](https://gitlab.com/rxap/packages/commit/6fc62a8ceebaf4de6b4b6cded04e641c9f4170e5))
+
 # [16.0.0-dev.23](https://gitlab.com/rxap/packages/compare/@rxap/components@16.0.0-dev.22...@rxap/components@16.0.0-dev.23) (2023-10-18)
 
 ### Bug Fixes
