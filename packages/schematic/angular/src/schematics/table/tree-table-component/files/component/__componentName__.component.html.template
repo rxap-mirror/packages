@@ -133,7 +133,7 @@
               <ng-container i18n><%= column.title %></ng-container>
             </th>
 
-            <td *matCellDef="let element" rxap-<%= column.name %>-cell [element]="element" [value]="element?.<%= column.propertyPath %>"></td>
+            <td *matCellDef="let element" <%= prefix %>-<%= column.name %>-cell [element]="element" [value]="element?.<%= column.propertyPath %>"></td>
           </ng-container>
           <% } else { %>
           <ng-container matColumnDef="<%= column.name %>">
