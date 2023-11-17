@@ -88,23 +88,6 @@
             ></td>
           </ng-container>
           <% } %>
-          <ng-container matColumnDef="removedAt">
-            <th mat-header-cell *matHeaderCellDef>
-              <ng-container i18n>Removed at</ng-container>
-            </th>
-            <td
-              mat-cell
-              [rxap-date-cell]="element.__removedAt"
-              *matCellDef="let element"
-            ></td>
-          </ng-container>
-          <ng-container matColumnDef="uuid">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              <ng-container i18n>UUID</ng-container>
-            </th>
-
-            <td mat-cell *matCellDef="let element">{{ element?.uuid }}</td>
-          </ng-container>
           <% if (actionList.length) { %>
           <ng-container matColumnDef="actions" stickyEnd>
             <th mat-header-cell *matHeaderCellDef>
@@ -158,21 +141,21 @@
           </ng-container>
           <% } %>
           <% for (const column of columnList) { %>
-          <% if (column.type === 'copy-to-clipboard') { %>
+          <% if (column.role === 'copy-to-clipboard') { %>
           <ng-container matColumnDef="<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n><%= column.title %></ng-container>
             </th>
             <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> [rxap-copy-to-clipboard-cell]="element?.<%= column.propertyPath %>"></td>
           </ng-container>
-          <% } else if (column.type === 'link') { %>
+          <% } else if (column.role === 'link') { %>
           <ng-container matColumnDef="<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n><%= column.title %></ng-container>
             </th>
             <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> [rxap-link-cell]="element?.<%= column.propertyPath %>"></td>
           </ng-container>
-          <% } else if (column.type === 'date') { %>
+          <% } else if (column.role === 'date') { %>
           <ng-container matColumnDef="<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n><%= column.title %></ng-container>
@@ -180,7 +163,7 @@
 
             <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> [rxap-date-cell]="element?.<%= column.propertyPath %>" format="dd.MM.yyyy HH:mm:ss"></td>
           </ng-container>
-          <% } else if (column.type === 'boolean') { %>
+          <% } else if (column.role === 'boolean') { %>
           <ng-container matColumnDef="<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n><%= column.title %></ng-container>
@@ -188,7 +171,7 @@
 
             <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> [rxap-boolean-cell]="element?.<%= column.propertyPath %>"></td>
           </ng-container>
-          <% } else if (column.type === 'icon') { %>
+          <% } else if (column.role === 'icon') { %>
           <ng-container matColumnDef="<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n><%= column.title %></ng-container>
@@ -196,7 +179,7 @@
 
             <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> [rxap-icon-cell]="element?.<%= column.propertyPath %>"></td>
           </ng-container>
-          <% } else if (column.type === 'component') { %>
+          <% } else if (column.role === 'component') { %>
           <ng-container matColumnDef="<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n><%= column.title %></ng-container>
@@ -223,12 +206,6 @@
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
           <% } %>
-          <ng-container matColumnDef="filter_removedAt">
-            <th mat-header-cell *matHeaderCellDef></th>
-          </ng-container>
-          <ng-container matColumnDef="filter_uuid">
-            <th mat-header-cell *matHeaderCellDef></th>
-          </ng-container>
           <% if (actionList.length) { %>
           <ng-container matColumnDef="filter_actions" stickyEnd>
             <th mat-header-cell *matHeaderCellDef></th>
