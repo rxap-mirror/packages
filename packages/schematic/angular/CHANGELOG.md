@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.42](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.41...@rxap/schematic-angular@16.1.0-dev.42) (2023-11-17)
+
+### Bug Fixes
+
+- ensure the custom component are imported ([9757656](https://gitlab.com/rxap/packages/commit/9757656618ea6723dfd0b348a1ea25c3700032c2))
+
 # [16.1.0-dev.41](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.40...@rxap/schematic-angular@16.1.0-dev.41) (2023-11-17)
 
 ### Bug Fixes
