@@ -18,6 +18,7 @@ export interface TableColumn {
   show?: boolean;
   nowrap?: boolean;
   cssClass?: string;
+  role?: string;
 }
 
 export interface NormalizedTableColumn extends Readonly<Normalized<TableColumn>> {
@@ -40,6 +41,7 @@ export function NormalizeTableColumn(
   let show = false;
   let nowrap = false;
   let cssClass: string | null = null;
+  let role: string | null = null;
   if (typeof column === 'string') {
     // name:type:modifier1,modifier2
     // username:string:filter,active
@@ -63,6 +65,7 @@ export function NormalizeTableColumn(
     show = column.show ?? false;
     nowrap = column.nowrap ?? false;
     cssClass = column.cssClass ?? cssClass;
+    role = column.role ?? role;
   }
   propertyPath ??= name
     .replace(/\?\./g, '.')
@@ -81,6 +84,23 @@ export function NormalizeTableColumn(
   show = modifiers.includes('show') || show;
   hidden = modifiers.includes('hidden') || hidden;
   nowrap = modifiers.includes('nowrap') || nowrap;
+  if (!type) {
+    switch (role) {
+      case 'date':
+        type = 'number | Date';
+        break;
+      case 'link':
+        type = 'string';
+        break;
+      case 'icon':
+        // TODO : use the IconConfig type
+        type = 'any';
+        break;
+      case 'boolean':
+        type = 'boolean';
+        break;
+    }
+  }
   type ??= 'unknown';
   if (nowrap) {
     if (!cssClass) {
@@ -90,6 +110,7 @@ export function NormalizeTableColumn(
     }
   }
   return Object.seal({
+    role,
     name,
     type,
     modifiers,

@@ -122,6 +122,9 @@
                   "type": {
                     "type": "string"
                   },
+                  "role": {
+                    "type": "string"
+                  },
                   "modifiers": {
                     "type": "array",
                     "items": {
