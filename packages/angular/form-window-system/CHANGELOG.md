@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@16.0.0-dev.18...@rxap/form-window-system@16.0.0-dev.19) (2023-11-17)
+
+### Bug Fixes
+
+- set initial to partial ([bf1470c](https://gitlab.com/rxap/packages/commit/bf1470cafe0a2b2ab9e2da909497b55af3dd52db))
+- set initial to partial ([e395432](https://gitlab.com/rxap/packages/commit/e3954324166959641219ae7d9815b0cf43902b20))
+
 # [16.0.0-dev.18](https://gitlab.com/rxap/packages/compare/@rxap/form-window-system@16.0.0-dev.17...@rxap/form-window-system@16.0.0-dev.18) (2023-10-11)
 
 **Note:** Version bump only for package @rxap/form-window-system

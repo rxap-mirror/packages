@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.35](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.34...@rxap/schematic-angular@16.1.0-dev.35) (2023-11-17)
+
+### Bug Fixes
+
+- use correct path ([30ad62c](https://gitlab.com/rxap/packages/commit/30ad62c1a944a8388e31c41c7d606d686df084b6))
+
 # [16.1.0-dev.34](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.33...@rxap/schematic-angular@16.1.0-dev.34) (2023-11-17)
 
 ### Bug Fixes
