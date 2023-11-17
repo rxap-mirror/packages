@@ -83,10 +83,10 @@ export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRu
             },
           ],
           returnType: OperationIdToRequestBodyClassName(operationId),
-          statements: parameters === true ? [ 'return parameters;' ] : [
+          statements: body === true ? [ 'return parameters;' ] : [
             w => {
               w.write('return ');
-              Writers.object(toMappingObject(parameters as any))(w);
+              Writers.object(toMappingObject(body as any))(w);
               w.write(';');
             },
           ],
