@@ -12,18 +12,17 @@ import {
   Optional,
   Output,
 } from '@angular/core';
-import {
-  Constructor,
-  IconConfig,
-  Required,
-} from '@rxap/utilities';
+import { ConfirmClick } from '@rxap/directives';
 import {
   FormType,
   ToFormMethod,
 } from '@rxap/forms';
-import { FormWindowService } from './form-window.service';
+import {
+  Constructor,
+  IconConfig,
+} from '@rxap/utilities';
 import { WindowRef } from '@rxap/window-system';
-import { ConfirmClick } from '@rxap/directives';
+import { FormWindowService } from './form-window.service';
 
 /**
  * @deprecated
@@ -54,7 +53,7 @@ export class OpenFormDirective<Data, Result = Data>
   @Output()
   public submitted = new EventEmitter<Result>();
   @Input()
-  public initial?: Data;
+  public initial?: Partial<Data>;
   @Input()
   public title?: string;
   @Input()
