@@ -322,7 +322,7 @@ function navigateActionRule(
     directory,
   } = normalizedOptions;
 
-  if (![ 'link', 'navigate' ].includes(role ?? '')) {
+  if (![ 'link', 'navigate', 'navigation' ].includes(role ?? '')) {
     throw new SchematicsException(`Invalid action role: ${ role } - expected navigate`);
   }
 
