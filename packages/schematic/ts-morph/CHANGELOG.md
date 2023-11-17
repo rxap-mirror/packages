@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0-dev.33](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.32...@rxap/schematics-ts-morph@16.0.0-dev.33) (2023-11-17)
+
+### Bug Fixes
+
+- use correct var check name ([2ea373e](https://gitlab.com/rxap/packages/commit/2ea373e4ecede80d06a727f6b71e5438aef1798c))
+
 # [16.0.0-dev.32](https://gitlab.com/rxap/packages/compare/@rxap/schematics-ts-morph@16.0.0-dev.31...@rxap/schematics-ts-morph@16.0.0-dev.32) (2023-11-17)
 
 ### Bug Fixes
