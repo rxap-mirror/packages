@@ -52,4 +52,5 @@ export * from './lib/get-class-decorator-arguments';
 export * from './lib/get-class';
 export * from './lib/get-coerce-array-literal-form-object-literal';
 export * from './lib/provider-object';
+export * from './lib/to-mapping-object';
 // endregion
