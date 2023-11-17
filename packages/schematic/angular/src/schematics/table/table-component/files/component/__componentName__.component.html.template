@@ -1,10 +1,10 @@
 <div class="flex flex-col gap-y-4 m-4">
-  <% if (hasNavigationBackHeader) { -%>
+  <% if (hasNavigationBackHeader) { %>
   <rxap-navigate-back-button>
     <h1 i18n><%= title %></h1>
   </rxap-navigate-back-button>
   <mat-divider></mat-divider>
-  <% } -%>
+  <% } %>
 
   <div class="table-card-container flex flex-col">
     <mat-card>
@@ -13,10 +13,10 @@
         [loading$]="tableDataSourceDirective.loading$"
       ></mat-progress-bar>
       <mat-card-header class="min-h-full h-12<% if (!headerButton && hasWithoutTitle) { %> justify-end<% } %>">
-      <% if (!hasWithoutTitle) { -%>
+      <% if (!hasWithoutTitle) { %>
       <mat-card-title i18n><%= title %></mat-card-title>
-      <% } -%>
-      <% if (headerButton) { -%>
+      <% } %>
+      <% if (headerButton) { %>
       <button
         mat-card-avatar
         mat-mini-fab
@@ -24,29 +24,29 @@
         matTooltip
         [disabled]="tableDataSourceDirective.hasError$ | async"
         [rxapTableHeaderButton]="tableDataSourceDirective"
-        <% if (headerButton.permission) { %>rxapHasEnablePermission="<%= headerButton.permission %>"<% } -%>
+        <% if (headerButton.permission) { %>rxapHasEnablePermission="<%= headerButton.permission %>"<% } %>
       >
-        <% if (headerButton.icon) { %><mat-icon><%= headerButton.icon %></mat-icon><% } else if (headerButton.svgIcon) { %><mat-icon svgIcon="<%= headerButton.svgIcon %>"></mat-icon><% } else { %><mat-icon>add</mat-icon><% } -%>
+        <% if (headerButton.icon) { %><mat-icon><%= headerButton.icon %></mat-icon><% } else if (headerButton.svgIcon) { %><mat-icon svgIcon="<%= headerButton.svgIcon %>"></mat-icon><% } else { %><mat-icon>add</mat-icon><% } %>
       </button>
       <mat-card-subtitle i18n><%= headerButton.label %></mat-card-subtitle>
-      <% } -%>
+      <% } %>
       <rxap-table-column-menu matCard #rxapTableColumns="rxapTableColumns" <% if (!headerButton && hasWithoutTitle) { %>inline<% } %> [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }">
-        <% if (selectColumn) { -%>
+        <% if (selectColumn) { %>
         <rxap-table-column-option hidden name="select">
           <ng-container i18n>Select</ng-container>
         </rxap-table-column-option>
-        <% } -%>
-        <% for (const column of columnList) { -%>
+        <% } %>
+        <% for (const column of columnList) { %>
         <rxap-table-column-option
           name="<%= column.name %>"<% if (column.active) { %><%= ' active' %><% } %><% if (column.hidden) { %><%= ' hidden' %><% } %><% if (column.inactive) { %><%= ' inactive' %><% } %><% if (column.show) { %><%= ' show' %><% } %>>
           <ng-container i18n><%= column.title %></ng-container>
         </rxap-table-column-option>
-        <% } -%>
-        <% if (actionList.length) { -%>
+        <% } %>
+        <% if (actionList.length) { %>
         <rxap-table-column-option hidden name="actions">
           <ng-container i18n>Actions</ng-container>
         </rxap-table-column-option>
-        <% } -%>
+        <% } %>
         <mat-divider></mat-divider>
         <span mat-menu-item>
           <rxap-table-show-archived-slide
@@ -73,11 +73,11 @@
           rxapTableDataSource
           [parameters]="parameters"
           id="<%= name %>"
-          <% if (hasColumnWithFilter) { %>rxap-filter-header-row<% } -%>
+          <% if (hasColumnWithFilter) { %>rxap-filter-header-row<% } %>
         >
           <!-- region columns -->
 
-          <% if (selectColumn) { -%>
+          <% if (selectColumn) { %>
           <ng-container matColumnDef="select" sticky>
             <th mat-header-cell rxap-checkbox-header-cell *matHeaderCellDef></th>
             <td
@@ -87,7 +87,7 @@
               *matCellDef="let element"
             ></td>
           </ng-container>
-          <% } -%>
+          <% } %>
           <ng-container matColumnDef="removedAt">
             <th mat-header-cell *matHeaderCellDef>
               <ng-container i18n>Removed at</ng-container>
@@ -105,139 +105,139 @@
 
             <td mat-cell *matCellDef="let element">{{ element?.uuid }}</td>
           </ng-container>
-          <% if (actionList.length) { -%>
+          <% if (actionList.length) { %>
           <ng-container matColumnDef="actions" stickyEnd>
             <th mat-header-cell *matHeaderCellDef>
-            <% if (selectColumn) { -%>
+            <% if (selectColumn) { %>
               <div class="flex flex-row" *rxapSelectedRows="let selected">
-              <% for (const action of actionList) { -%>
-              <% if (action.inHeader) { -%>
+              <% for (const action of actionList) { %>
+              <% if (action.inHeader) { %>
                 <button
                   rxapTableRowHeaderAction="<%= action.type %>"
                   mat-icon-button
                   *ngIf="selected | rxapRowActionCheck:'<%= action.type %>'"
-                  <% if (action.permission) { %>rxapHasEnablePermission="<%= action.permission %>"<% } -%>
+                  <% if (action.permission) { %>rxapHasEnablePermission="<%= action.permission %>"<% } %>
                   matTooltip
                 >
-                  <% if (action.icon) { %><mat-icon><%= action.icon %></mat-icon><% } else if (action.svgIcon) { %><mat-icon svgIcon="<%= action.svgIcon %>"></mat-icon><% } else { %><mat-icon><%= action.type %></mat-icon><% } -%>
+                  <% if (action.icon) { %><mat-icon><%= action.icon %></mat-icon><% } else if (action.svgIcon) { %><mat-icon svgIcon="<%= action.svgIcon %>"></mat-icon><% } else { %><mat-icon><%= action.type %></mat-icon><% } %>
                   <mat-progress-bar
                     *rxapTableRowActionExecuting
                     mode="indeterminate"
                   ></mat-progress-bar>
                 </button>
-              <% } -%>
-              <% } -%>
+              <% } %>
+              <% } %>
               </div>
-            <% } -%>
+            <% } %>
             </th>
 
             <td mat-cell *matCellDef="let element">
               <div class="flex flex-row">
-                <% for (const action of actionList) { -%>
+                <% for (const action of actionList) { %>
                 <button
                   rxapTableRowAction="<%= action.type %>"
                   [element]="element"
-                   <% if (action.color) { %>color="<%= action.color %>"<% } -%>
-                   <% if (action.cssClass) { %>class="<%= action.cssClass %>"<% } -%>
+                   <% if (action.color) { %>color="<%= action.color %>"<% } %>
+                   <% if (action.cssClass) { %>class="<%= action.cssClass %>"<% } %>
                   mat-icon-button
                   *ngIf="element | rxapRowActionCheck:'<%= action.type %>'"
-                  <% if (action.permission) { %>rxapHasEnablePermission="<%= action.permission %>"<% } -%>
+                  <% if (action.permission) { %>rxapHasEnablePermission="<%= action.permission %>"<% } %>
                   matTooltip
                 >
-                  <% if (action.icon) { %><mat-icon><%= action.icon %></mat-icon><% } else if (action.svgIcon) { %><mat-icon svgIcon="<%= action.svgIcon %>"></mat-icon><% } else { %><mat-icon><%= action.type %></mat-icon><% } -%>
+                  <% if (action.icon) { %><mat-icon><%= action.icon %></mat-icon><% } else if (action.svgIcon) { %><mat-icon svgIcon="<%= action.svgIcon %>"></mat-icon><% } else { %><mat-icon><%= action.type %></mat-icon><% } %>
                   <mat-progress-bar
                     *rxapTableRowActionExecuting
                     mode="indeterminate"
                   ></mat-progress-bar>
                 </button>
-                <% } -%>
+                <% } %>
               </div>
             </td>
           </ng-container>
-          <% } -%>
-          <% for (const column of columnList) { -%>
-          <% if (column.type === 'copy-to-clipboard') { -%>
+          <% } %>
+          <% for (const column of columnList) { %>
+          <% if (column.type === 'copy-to-clipboard') { %>
           <ng-container matColumnDef="<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n><%= column.title %></ng-container>
             </th>
-            <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= cssClass %>"<% } %> [rxap-copy-to-clipboard-cell]="element?.<%= column.propertyPath %>"></td>
+            <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> [rxap-copy-to-clipboard-cell]="element?.<%= column.propertyPath %>"></td>
           </ng-container>
-          <% } else if (column.type === 'link') { -%>
+          <% } else if (column.type === 'link') { %>
           <ng-container matColumnDef="<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n><%= column.title %></ng-container>
             </th>
-            <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= cssClass %>"<% } %> [rxap-link-cell]="element?.<%= column.propertyPath %>"></td>
+            <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> [rxap-link-cell]="element?.<%= column.propertyPath %>"></td>
           </ng-container>
-          <% } else if (column.type === 'date') { -%>
-          <ng-container matColumnDef="<%= column.name %>">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              <ng-container i18n><%= column.title %></ng-container>
-            </th>
-
-            <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= cssClass %>"<% } %> [rxap-date-cell]="element?.<%= column.propertyPath %>" format="dd.MM.yyyy HH:mm:ss"></td>
-          </ng-container>
-          <% } else if (column.type === 'boolean') { -%>
+          <% } else if (column.type === 'date') { %>
           <ng-container matColumnDef="<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n><%= column.title %></ng-container>
             </th>
 
-            <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= cssClass %>"<% } %> [rxap-boolean-cell]="element?.<%= column.propertyPath %>"></td>
+            <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> [rxap-date-cell]="element?.<%= column.propertyPath %>" format="dd.MM.yyyy HH:mm:ss"></td>
           </ng-container>
-          <% } else if (column.type === 'icon') { -%>
+          <% } else if (column.type === 'boolean') { %>
           <ng-container matColumnDef="<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n><%= column.title %></ng-container>
             </th>
 
-            <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= cssClass %>"<% } %> [rxap-icon-cell]="element?.<%= column.propertyPath %>"></td>
+            <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> [rxap-boolean-cell]="element?.<%= column.propertyPath %>"></td>
           </ng-container>
-          <% } else if (column.type === 'component') { -%>
+          <% } else if (column.type === 'icon') { %>
           <ng-container matColumnDef="<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n><%= column.title %></ng-container>
             </th>
 
-            <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= cssClass %>"<% } %> rxap-<%= column.name %>-cell [element]="element" [value]="element?.<%= column.propertyPath %>"></td>
+            <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> [rxap-icon-cell]="element?.<%= column.propertyPath %>"></td>
           </ng-container>
-          <% } else { -%>
+          <% } else if (column.type === 'component') { %>
           <ng-container matColumnDef="<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <ng-container i18n><%= column.title %></ng-container>
             </th>
 
-            <td mat-cell <% if (column.cssClass) { %>class="<%= cssClass %>"<% } %> *matCellDef="let element">{{ element?.<%= column.propertyPath %> }}</td>
+            <td *matCellDef="let element" mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> rxap-<%= column.name %>-cell [element]="element" [value]="element?.<%= column.propertyPath %>"></td>
           </ng-container>
-          <% } -%>
-          <% } -%>
+          <% } else { %>
+          <ng-container matColumnDef="<%= column.name %>">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <ng-container i18n><%= column.title %></ng-container>
+            </th>
+
+            <td mat-cell <% if (column.cssClass) { %>class="<%= column.cssClass %>"<% } %> *matCellDef="let element">{{ element?.<%= column.propertyPath %> }}</td>
+          </ng-container>
+          <% } %>
+          <% } %>
 
           <!-- endregion -->
-          <% if (hasColumnWithFilter) { -%>
+          <% if (hasColumnWithFilter) { %>
           <!-- region filter columns -->
-          <% if (selectColumn) { -%>
+          <% if (selectColumn) { %>
           <ng-container matColumnDef="filter_select" sticky>
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
-          <% } -%>
+          <% } %>
           <ng-container matColumnDef="filter_removedAt">
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
           <ng-container matColumnDef="filter_uuid">
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
-          <% if (actionList.length) { -%>
+          <% if (actionList.length) { %>
           <ng-container matColumnDef="filter_actions" stickyEnd>
             <th mat-header-cell *matHeaderCellDef></th>
           </ng-container>
-          <% } -%>
+          <% } %>
 
-          <% for (const column of columnList) { -%>
+          <% for (const column of columnList) { %>
           <ng-container matColumnDef="filter_<%= column.name %>">
             <th mat-header-cell *matHeaderCellDef>
-              <% if (column.hasFilter) { -%>
-              <% if (column.type === 'boolean') { -%>
+              <% if (column.hasFilter) { %>
+              <% if (column.type === 'boolean') { %>
               <mat-checkbox
                 indeterminate
                 parentControlContainer
@@ -245,7 +245,7 @@
               >
                 <ng-container i18n><%= column.title %></ng-container>
               </mat-checkbox>
-              <% } else { -%>
+              <% } else { %>
               <mat-form-field class="w-100 pt-3">
                 <mat-label i18n><%= column.title %></mat-label>
                 <input
@@ -259,11 +259,11 @@
                   <mat-icon>clear</mat-icon>
                 </button>
               </mat-form-field>
-              <% } -%>
-              <% } -%>
+              <% } %>
+              <% } %>
             </th>
           </ng-container>
-          <% } -%>
+          <% } %>
 
           <!-- endregion -->
           <tr
@@ -273,7 +273,7 @@
               rxapTableColumns.displayColumns | toFilterColumnNames
             "
           ></tr>
-          <% } -%>
+          <% } %>
 
           <tr
             mat-header-row
