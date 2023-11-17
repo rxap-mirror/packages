@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.39](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.38...@rxap/schematic-angular@16.1.0-dev.39) (2023-11-17)
+
+### Bug Fixes
+
+- update table templates ([9e463da](https://gitlab.com/rxap/packages/commit/9e463daa7af811b5f9da7dcf6d1f82ea37f4631f))
+- use prop role for the type of table column ([45759f4](https://gitlab.com/rxap/packages/commit/45759f4ce099aaeee7e31bfc1b85c67cc674db78))
+
 # [16.1.0-dev.38](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.37...@rxap/schematic-angular@16.1.0-dev.38) (2023-11-17)
 
 ### Bug Fixes
