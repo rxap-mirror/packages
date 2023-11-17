@@ -323,13 +323,13 @@ function navigateActionRule(
   } = normalizedOptions;
 
   if (![ 'link', 'navigate', 'navigation' ].includes(role ?? '')) {
-    throw new SchematicsException(`Invalid action role: ${ role } - expected navigate`);
+    throw new SchematicsException(`Invalid action role: ${ role } - expected navigation`);
   }
 
   return chain([
     () =>
       console.log(`Coerce navigate table action '${ action.type }'`),
-    ExecuteSchematic('navigate-table-action', {
+    ExecuteSchematic('navigation-table-action', {
       ...additionalOptions,
       ...action,
       overwrite,
