@@ -1,9 +1,10 @@
 import { classify } from '@rxap/schematics-utilities';
-import { CoerceClassMethod } from '@rxap/ts-morph';
 import {
-  Scope,
-  Writers,
-} from 'ts-morph';
+  CoerceClassMethod,
+  ToMappingObject,
+  ToMappingObjectOptions,
+} from '@rxap/ts-morph';
+import { Scope } from 'ts-morph';
 import { CoerceClassConstructor } from '../coerce-class-constructor';
 import {
   OperationIdToClassImportPath,
@@ -27,17 +28,15 @@ export interface CoerceOpenApiTableActionRuleOptions extends CoerceTableActionOp
   parameters: boolean | Record<string, string>;
 }
 
-function toMappingObject(input: Record<string, string>) {
-  const mapping: Record<string, string> = {};
-  for (const [ key, value ] of Object.entries(input)) {
+const toMappingObjectOptions: ToMappingObjectOptions = {
+  baseProperty: 'parameters',
+  aliasFnc: (key: string, value: string) => {
     if ([ 'rowId', '_rowId', '__rowId' ].includes(value)) {
-      mapping[key] = `parameters.__rowId`;
-    } else {
-      mapping[key] = `parameters.${ value }`;
+      return 'rowId';
     }
-  }
-  return mapping;
-}
+    return value;
+  },
+};
 
 export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRuleOptions) {
   let {
@@ -86,7 +85,7 @@ export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRu
           statements: body === true ? [ 'return parameters;' ] : [
             w => {
               w.write('return ');
-              Writers.object(toMappingObject(body as any))(w);
+              ToMappingObject(body as any, toMappingObjectOptions)(w);
               w.write(';');
             },
           ],
@@ -109,7 +108,7 @@ export function CoerceOpenApiTableActionRule(options: CoerceOpenApiTableActionRu
           statements: parameters === true ? [ 'return parameters;' ] : [
             w => {
               w.write('return ');
-              Writers.object(toMappingObject(parameters as any))(w);
+              ToMappingObject(parameters as any, toMappingObjectOptions)(w);
               w.write(';');
             },
           ],
