@@ -351,7 +351,8 @@ export default function (options: FormTableActionOptions) {
             `Open${ classify(formComponent) }WindowMethod`,
             [
               {
-                moduleSpecifier: `./${ type }-form/open-${ dasherize(formComponent) }-window.method`,
+                moduleSpecifier: `./${ dasherize(formComponent) }-form/open-${ dasherize(
+                  formComponent) }-window.method`,
                 namedImports: [ `Open${ classify(formComponent) }WindowMethod` ],
               },
             ],
