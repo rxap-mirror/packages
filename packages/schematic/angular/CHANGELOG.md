@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.46](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.45...@rxap/schematic-angular@16.1.0-dev.46) (2023-11-18)
+
+### Bug Fixes
+
+- support custom form components ([7df7f07](https://gitlab.com/rxap/packages/commit/7df7f07c2de91d77116d5c190ff8b538be1eeac2))
+
 # [16.1.0-dev.45](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.44...@rxap/schematic-angular@16.1.0-dev.45) (2023-11-18)
 
 ### Bug Fixes
