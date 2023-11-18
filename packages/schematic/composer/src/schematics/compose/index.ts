@@ -55,6 +55,7 @@ function parseSchematicCommandFile(host: Tree, filePath: string): SchematicComma
     case 'json':
       parsed = JSON.parse(schematicCommandFile);
       break;
+    case 'yml':
     case 'yaml':
       parsed = parse(schematicCommandFile);
       break;
@@ -128,10 +129,16 @@ function getSchematicCommandList(host: Tree, sourceRoot: string) {
     if (entry?.path.endsWith('schematic.yaml')) {
       schematicCommandList.push(path);
     }
+    if (entry?.path.endsWith('schematic.yml')) {
+      schematicCommandList.push(path);
+    }
     if (entry?.path.endsWith('schematics.json')) {
       schematicCommandList.push(path);
     }
     if (entry?.path.endsWith('schematics.yaml')) {
+      schematicCommandList.push(path);
+    }
+    if (entry?.path.endsWith('schematics.yml')) {
       schematicCommandList.push(path);
     }
   });
