@@ -1,8 +1,7 @@
 import { TableHeaderButtonOptions } from '../../table-header-button/schema';
 
 
-export interface NavigationOptions {
+export interface NavigationTableHeaderButtonOptions extends TableHeaderButtonOptions {
   route: string;
+  relativeTo: boolean;
 }
-
-export type NavigationTableHeaderButtonOptions = TableHeaderButtonOptions<NavigationOptions>;

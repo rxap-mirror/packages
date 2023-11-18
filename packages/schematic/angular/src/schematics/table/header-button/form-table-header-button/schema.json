@@ -68,9 +68,25 @@
     "svgIcon": {
       "type": "string"
     },
-    "options": {
+    "formComponent": {
+      "type": "string"
+    },
+    "customComponent": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true the schematic will not coerce the form component"
+    },
+    "formOptions": {
       "type": "object",
       "properties": {
+        "role": {
+          "type": "string",
+          "description": "Define the role of the form"
+        },
+        "window": {
+          "type": "boolean",
+          "description": "Whether the form can be opened in a window"
+        },
         "controlList": {
           "alias": "control",
           "type": "array",

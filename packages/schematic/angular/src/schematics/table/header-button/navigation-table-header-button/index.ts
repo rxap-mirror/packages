@@ -27,6 +27,8 @@ export function NormalizeNavigationTableHeaderButtonOptions(
   const normalizedTableHeaderButtonOptions = NormalizeTableHeaderButtonOptions(options);
   return Object.seal({
     ...normalizedTableHeaderButtonOptions,
+    route: options.route,
+    relativeTo: options.relativeTo ?? false,
   });
 }
 
@@ -48,9 +50,9 @@ export default function (options: NavigationTableHeaderButtonOptions) {
     shared,
     directory,
     overwrite,
+    route,
+    relativeTo,
   } = normalizedOptions;
-
-  const route = normalizedOptions.options!.route;
 
   printOptions(normalizedOptions);
 
@@ -75,11 +77,19 @@ export default function (options: NavigationTableHeaderButtonOptions) {
         successMessage,
         tsMorphTransform: (project, sourceFile, classDeclaration) => {
           const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
-          CoerceParameterDeclaration(constructorDeclaration, 'route', {
-            isReadonly: true,
-            scope: Scope.Private,
-            type: 'ActivatedRoute',
-          });
+          if (relativeTo) {
+            CoerceParameterDeclaration(constructorDeclaration, 'route', {
+              isReadonly: true,
+              scope: Scope.Private,
+              type: 'ActivatedRoute',
+            });
+            CoerceImports(sourceFile, [
+              {
+                moduleSpecifier: '@angular/router',
+                namedImports: [ 'ActivatedRoute' ],
+              },
+            ]);
+          }
           CoerceParameterDeclaration(constructorDeclaration, 'router', {
             isReadonly: true,
             scope: Scope.Private,
@@ -88,12 +98,18 @@ export default function (options: NavigationTableHeaderButtonOptions) {
           CoerceImports(sourceFile, [
             {
               moduleSpecifier: '@angular/router',
-              namedImports: [ 'ActivatedRoute', 'Router' ],
+              namedImports: [ 'Router' ],
             },
           ]);
-          return {
-            statements: [ `return this.router.navigate(['${ route }'], { relativeTo: this.route })` ],
-          };
+          if (relativeTo) {
+            return {
+              statements: [ `return this.router.navigate(['${ route }'], { relativeTo: this.route })` ],
+            };
+          } else {
+            return {
+              statements: [ `return this.router.navigate(['${ route }'])` ],
+            };
+          }
         },
       }),
       () => console.groupEnd(),

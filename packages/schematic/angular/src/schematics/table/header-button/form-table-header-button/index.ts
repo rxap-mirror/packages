@@ -1,5 +1,6 @@
 import {
   chain,
+  Rule,
   Tree,
 } from '@angular-devkit/schematics';
 import {
@@ -11,7 +12,12 @@ import {
   CoerceTableHeaderButtonMethodRule,
 } from '@rxap/schematics-ts-morph';
 import { ExecuteSchematic } from '@rxap/schematics-utilities';
-import { Normalized } from '@rxap/utilities';
+import {
+  classify,
+  CoerceSuffix,
+  dasherize,
+  Normalized,
+} from '@rxap/utilities';
 import {
   Project,
   Scope,
@@ -22,14 +28,25 @@ import {
   PrintAngularOptions,
 } from '../../../../lib/angular-options';
 import { AssertTableComponentExists } from '../../../../lib/assert-table-component-exists';
+import {
+  NormalizedFormComponentControl,
+  NormalizeFormComponentControlList,
+} from '../../../../lib/form-component-control';
 import { NormalizedTableHeaderButton } from '../../../../lib/table-header-button';
 import { NormalizeTableHeaderButtonOptions } from '../../table-header-button/index';
 import { FormTableHeaderButtonOptions } from './schema';
 
 export interface NormalizedFormTableHeaderButtonOptions
-  extends Readonly<Normalized<FormTableHeaderButtonOptions> & NormalizedAngularOptions & NormalizedTableHeaderButton> {
+  extends Omit<Readonly<Normalized<FormTableHeaderButtonOptions> & NormalizedAngularOptions & NormalizedTableHeaderButton>, 'formOptions'> {
   options: Record<string, any>;
   controllerName: string;
+  formComponent: string;
+  // TODO : create custom interface and normalization function for the formOptions property (also used in form-table-action)
+  formOptions: {
+    controlList: NormalizedFormComponentControl[];
+    role: string | null;
+    window: boolean;
+  };
 }
 
 export function NormalizeFormTableHeaderButtonOptions(
@@ -37,6 +54,8 @@ export function NormalizeFormTableHeaderButtonOptions(
 ): NormalizedFormTableHeaderButtonOptions {
   const normalizedTableHeaderButtonOptions = NormalizeTableHeaderButtonOptions(options);
   const nestModule = options.nestModule;
+  const formOptions = options.formOptions ?? {};
+  const { tableName } = normalizedTableHeaderButtonOptions;
   return Object.seal({
     ...normalizedTableHeaderButtonOptions,
     context: options.context,
@@ -45,6 +64,14 @@ export function NormalizeFormTableHeaderButtonOptions(
       nestModule,
       controllerName: 'header-button',
     }),
+    formComponent: CoerceSuffix(
+      dasherize(options.formComponent ?? tableName.replace(/-table$/, '')), '-form'),
+    customComponent: options.customComponent ?? false,
+    formOptions: {
+      window: formOptions.window ?? true,
+      role: formOptions.role ?? null,
+      controlList: NormalizeFormComponentControlList(formOptions.controlList),
+    },
   });
 }
 
@@ -66,11 +93,13 @@ export default function (options: FormTableHeaderButtonOptions) {
     shared,
     directory,
     overwrite,
-    options: formOptions,
+    formOptions,
     context,
     backend,
     nestModule,
     controllerName,
+    formComponent,
+    customComponent,
   } = normalizedOptions;
 
   printOptions(normalizedOptions);
@@ -79,23 +108,31 @@ export default function (options: FormTableHeaderButtonOptions) {
 
     AssertTableComponentExists(host, normalizedOptions);
 
-    return chain([
+    const ruleList: Rule[] = [
       () => console.group('\x1b[32m[@rxap/schematics-angular:form-table-header-button]\x1b[0m'),
-      () => console.log('Coerce table header button form ...'),
-      ExecuteSchematic('form-component', {
-        ...formOptions,
-        project,
-        name: `table-header-button`,
-        feature,
-        directory,
-        shared,
-        window: true,
-        nestModule,
-        controllerName,
-        context,
-        backend,
-        overwrite,
-      }),
+    ];
+
+    if (!customComponent) {
+      ruleList.push(
+        () => console.log('Coerce table header button form ...'),
+        ExecuteSchematic('form-component', {
+          ...formOptions,
+          project,
+          name: formComponent.replace(/-form$/, ''),
+          feature,
+          directory,
+          shared,
+          window: true,
+          nestModule,
+          controllerName,
+          context,
+          backend,
+          overwrite,
+        }),
+      );
+    }
+
+    ruleList.push(
       () => console.log('Coerce table header button method ...'),
       CoerceTableHeaderButtonMethodRule({
         project,
@@ -114,12 +151,12 @@ export default function (options: FormTableHeaderButtonOptions) {
           CoerceParameterDeclaration(constructorDeclaration, 'openWindowMethod', {
             isReadonly: true,
             scope: Scope.Private,
-            type: 'OpenTableHeaderButtonFormWindowMethod',
+            type: `Open${ classify(formComponent) }WindowMethod`,
           });
           CoerceImports(sourceFile, [
             {
-              moduleSpecifier: '../table-header-button-form/open-table-header-button-form-window.method',
-              namedImports: [ 'OpenTableHeaderButtonFormWindowMethod' ],
+              moduleSpecifier: `../${ dasherize(formComponent) }/open-${ dasherize(formComponent) }-window.method`,
+              namedImports: [ `Open${ classify(formComponent) }WindowMethod` ],
             },
           ]);
           return {
@@ -132,17 +169,19 @@ export default function (options: FormTableHeaderButtonOptions) {
         ) => {
           AddComponentProvider(
             sourceFile,
-            'OpenTableHeaderButtonFormWindowMethod',
+            `Open${ classify(formComponent) }WindowMethod`,
             [
               {
-                moduleSpecifier: './table-header-button-form/open-table-header-button-form-window.method',
-                namedImports: [ 'OpenTableHeaderButtonFormWindowMethod' ],
+                moduleSpecifier: `./${ dasherize(formComponent) }/open-${ dasherize(formComponent) }-window.method`,
+                namedImports: [ `Open${ classify(formComponent) }WindowMethod` ],
               },
             ],
           );
         },
       }),
       () => console.groupEnd(),
-    ]);
+    );
+
+    return chain(ruleList);
   };
 }

@@ -581,6 +581,7 @@ export function headerButtonRule(normalizedOptions: NormalizedMinimumTableCompon
   } = normalizedOptions;
   if (headerButton) {
     const options = {
+      ...headerButton.options ?? {},
       tableName: name,
       project,
       feature,

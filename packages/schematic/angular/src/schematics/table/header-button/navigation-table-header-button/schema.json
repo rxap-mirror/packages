@@ -68,20 +68,20 @@
     "svgIcon": {
       "type": "string"
     },
-    "options": {
-      "type": "object",
-      "properties": {
-        "route": {
-          "type": "string",
-          "description": "The route path for the table action"
-        }
-      },
-      "additionalProperties": true
+    "route": {
+      "type": "string",
+      "description": "The route path for the table action"
+    },
+    "relativeTo": {
+      "type": "boolean",
+      "description": "Indicates if the route path should be relative to the current activated route",
+      "default": false
     }
   },
   "required": [
     "options",
     "project",
-    "feature"
+    "feature",
+    "route"
   ]
 }
