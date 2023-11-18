@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.20](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.19...@rxap/ts-morph@0.1.0-dev.20) (2023-11-18)
+
+### Bug Fixes
+
+- ensure non standard keys are supported ([466069d](https://gitlab.com/rxap/packages/commit/466069d30681d7e9b1e0d47a649a9967ae8eda33))
+
 # [0.1.0-dev.19](https://gitlab.com/rxap/packages/compare/@rxap/ts-morph@0.1.0-dev.18...@rxap/ts-morph@0.1.0-dev.19) (2023-11-17)
 
 ### Bug Fixes
