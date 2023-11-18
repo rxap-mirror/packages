@@ -1,0 +1,15 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: pipe
+  tableMethod:
+    className: DummyTableMethod
+    importPath: "../dummy-table.method"
+  columnList:
+    - name: name
+      pipeList:
+        - name: toUppercase
+          className: ToUppercasePipe
+          importFrom: './to-uppercase.pipe'
+        - json
+        - async

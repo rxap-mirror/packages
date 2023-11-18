@@ -1,0 +1,105 @@
+<div class="flex flex-col gap-y-4 m-4">
+
+
+  <div class="table-card-container flex flex-col">
+    <mat-card>
+      <mat-progress-bar
+        [loading$]="tableDataSourceDirective.loading$"
+        rxapCardProgressBar
+      ></mat-progress-bar>
+      <mat-card-header class="min-h-full h-12">
+
+        <mat-card-title i18n>Pipe</mat-card-title>
+
+
+        <rxap-table-column-menu #rxapTableColumns="rxapTableColumns" matCard>
+
+
+          <rxap-table-column-option
+            name="name">
+            <ng-container i18n>Name</ng-container>
+          </rxap-table-column-option>
+
+
+          <mat-divider></mat-divider>
+          <span mat-menu-item>
+          <rxap-table-show-archived-slide
+            [paginator]="paginator"
+          ></rxap-table-show-archived-slide>
+        </span>
+        </rxap-table-column-menu>
+      </mat-card-header>
+
+      <mat-card-content>
+        <rxap-data-source-error
+          *ngIf="tableDataSourceDirective.hasError$ | async"
+          [error]="tableDataSourceDirective.dataSource?.error$"
+          [loading]="tableDataSourceDirective.loading$"
+          [refresh]="tableDataSourceDirective.retry">
+        </rxap-data-source-error>
+        <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
+          <table
+            #tableDataSourceDirective="rxapTableDataSource"
+            [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+            [paginator]="paginator"
+            [parameters]="parameters"
+            id="pipe"
+            mat-table
+            matSort
+            rxapTableDataSource
+
+          >
+            <!-- region columns -->
+
+
+            <ng-container matColumnDef="name">
+              <th *matHeaderCellDef mat-header-cell mat-sort-header>
+                <ng-container i18n>Name</ng-container>
+              </th>
+
+              <td *matCellDef="let element" mat-cell>
+
+                {{ element?.name | toUppercase | json | async }}
+
+              </td>
+            </ng-container>
+
+
+            <!-- endregion -->
+
+
+            <tr
+              *matHeaderRowDef="rxapTableColumns.displayColumns"
+              mat-header-row
+            ></tr>
+
+            <tr
+              *matRowDef="
+              let element;
+              columns: rxapTableColumns.displayColumns;
+              let odd = odd;
+              let even = even
+            "
+              [@rowsAnimation]=""
+              [ngClass]="{ 'rxap-row-odd !bg-neutral-200 dark:!bg-neutral-600': odd, 'rxap-row-even': even }"
+              class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
+              mat-row
+            ></tr>
+          </table>
+        </div>
+      </mat-card-content>
+
+      <mat-card-footer
+      >
+        <mat-paginator
+          #paginator="matPaginator"
+          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          [pageSizeOptions]="[5,10,25,50,100]"
+          [pageSize]="10"
+          rxapPersistent
+        ></mat-paginator
+        >
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

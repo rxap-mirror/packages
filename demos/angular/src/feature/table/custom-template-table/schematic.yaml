@@ -1,0 +1,10 @@
+package: "@rxap/schematic-angular"
+name: table-component
+options:
+  name: custom-template
+  tableMethod:
+    className: DummyTableMethod
+    importPath: "../dummy-table.method"
+  columnList:
+    - name: name
+      template: "custom _ {{element.name}}"
