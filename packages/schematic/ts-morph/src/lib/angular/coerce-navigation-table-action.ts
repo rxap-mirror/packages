@@ -1,18 +1,19 @@
 import {
-  CoerceTableActionOptions,
-  CoerceTableActionRule,
-} from './coerce-table-action';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
-import {
   Scope,
   StatementStructures,
   WriterFunction,
 } from 'ts-morph';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
+import { CoerceClassConstructor } from '../coerce-class-constructor';
 import { CoerceImports } from '../ts-morph/coerce-imports';
+import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
+import {
+  CoerceTableActionOptions,
+  CoerceTableActionRule,
+} from './coerce-table-action';
 
 export interface CoerceLinkTableActionRuleOptions extends CoerceTableActionOptions {
   route?: string | null;
+  relativeTo?: boolean;
 }
 
 function extractAllProperties(route: string): string[] {
@@ -40,6 +41,7 @@ export function CoerceNavigationTableActionRule(options: CoerceLinkTableActionRu
     tableName,
     type,
     route,
+    relativeTo,
   } = options;
   tsMorphTransform ??= () => ({});
   route ??= '{{uuid}}';
@@ -49,7 +51,7 @@ export function CoerceNavigationTableActionRule(options: CoerceLinkTableActionRu
     tsMorphTransform: (project, sourceFile, classDeclaration) => {
 
       CoerceImports(sourceFile, {
-        namedImports: [ 'Router', 'ActivatedRoute' ],
+        namedImports: [ 'Router' ],
         moduleSpecifier: '@angular/router',
       });
       const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
@@ -59,24 +61,34 @@ export function CoerceNavigationTableActionRule(options: CoerceLinkTableActionRu
         isReadonly: true,
         scope: Scope.Private,
       });
-      CoerceParameterDeclaration(constructorDeclaration, 'route').set({
-        type: 'ActivatedRoute',
-        isReadonly: true,
-        scope: Scope.Private,
-      });
+      if (relativeTo) {
+        CoerceParameterDeclaration(constructorDeclaration, 'route').set({
+          type: 'ActivatedRoute',
+          isReadonly: true,
+          scope: Scope.Private,
+        });
+        CoerceImports(sourceFile, {
+          namedImports: [ 'ActivatedRoute' ],
+          moduleSpecifier: '@angular/router',
+        });
+      }
 
       const properties = extractAllProperties(route!);
 
       const statements: (string | WriterFunction | StatementStructures)[] = [];
       statements.push(`console.log(\`action row type: ${ type }\`, parameters);`);
+      let routeValue = route;
       if (properties.length) {
         statements.push(`const { ${ properties.join(', ') } } = parameters;`);
         for (const property of properties) {
           statements.push(`if (!${ property }) { throw new Error('The table action ${ type } is called with a row object that does not have the property ${ property }.'); }`);
         }
-        statements.push(`return this.router.navigate([ \`${ buildDynamicRoute(route!) }\` ], { relativeTo: this.route } );`);
+        routeValue = buildDynamicRoute(route!);
+      }
+      if (relativeTo) {
+        statements.push(`return this.router.navigate([ '${ routeValue }' ], { relativeTo: this.route } );`);
       } else {
-        statements.push(`return this.router.navigate([ '${ route }' ], { relativeTo: this.route } );`);
+        statements.push(`return this.router.navigate([ '${ routeValue }' ]);`);
       }
 
       return {

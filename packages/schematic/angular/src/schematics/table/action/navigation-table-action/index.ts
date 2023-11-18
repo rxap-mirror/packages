@@ -22,6 +22,7 @@ export function NormalizeNavigationTableActionOptions(
   return {
     ...NormalizeOperationTableActionOptions(options),
     route: options.route ?? null,
+    relativeTo: options.relativeTo ?? false,
   };
 }
 
@@ -46,6 +47,7 @@ export default function (options: NavigationTableActionOptions) {
     directory,
     type,
     route,
+    relativeTo,
   } = normalizedOptions;
   printOptions(normalizedOptions);
   return (host: Tree) => {
@@ -68,6 +70,7 @@ export default function (options: NavigationTableActionOptions) {
         project,
         feature,
         route,
+        relativeTo,
       }),
       () => console.groupEnd(),
     ]);
