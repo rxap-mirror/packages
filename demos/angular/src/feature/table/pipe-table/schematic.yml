@@ -12,4 +12,3 @@ options:
           className: ToUppercasePipe
           importFrom: './to-uppercase.pipe'
         - json
-        - async
