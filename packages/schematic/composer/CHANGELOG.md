@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-dev.5](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@0.1.0-dev.4...@rxap/schematic-composer@0.1.0-dev.5) (2023-11-18)
+
+### Bug Fixes
+
+- support yml as file extensions ([60f3d32](https://gitlab.com/rxap/packages/commit/60f3d325be0b6ce9585e3826f892cfe51484c593))
+
 # [0.1.0-dev.4](https://gitlab.com/rxap/packages/compare/@rxap/schematic-composer@0.1.0-dev.3...@rxap/schematic-composer@0.1.0-dev.4) (2023-11-16)
 
 ### Bug Fixes
