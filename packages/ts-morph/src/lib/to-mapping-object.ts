@@ -16,7 +16,7 @@ export function ToMappingObject(input: Record<string, any>, options: ToMappingOb
   const mapping: Record<string, string | WriterFunction> = {};
   for (const [ key, value ] of Object.entries(input)) {
     if (typeof value === 'object') {
-      mapping[key] = ToMappingObject(value, options);
+      mapping[key.includes('-') ? `"${ key }"` : key] = ToMappingObject(value, options);
     } else if (typeof value === 'string') {
       let accessKey = value;
       if (aliasFnc) {
@@ -25,7 +25,7 @@ export function ToMappingObject(input: Record<string, any>, options: ToMappingOb
       if (baseProperty) {
         accessKey = `${ baseProperty }.${ accessKey }`;
       }
-      mapping[key] = accessKey;
+      mapping[key.includes('-') ? `"${ key }"` : key] = accessKey;
     } else {
       throw new Error(`Invalid value type ${ typeof value }`);
     }

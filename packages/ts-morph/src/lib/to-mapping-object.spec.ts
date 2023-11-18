@@ -89,4 +89,10 @@ describe('ToMappingObject', () => {
     expect(toPlain(sourceFile)).toEqual(`let test = { key: value, sub: { id: nice, name: user.name } };`);
   });
 
+  it('should return mapping object with non-standard keys', () => {
+    const writeFunction = ToMappingObject({ 'non-standard-key': 'value' });
+    writeTo(sourceFile, writeFunction);
+    expect(toPlain(sourceFile)).toEqual(`let test = { "non-standard-key": value };`);
+  });
+
 });
