@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.45](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.44...@rxap/schematic-angular@16.1.0-dev.45) (2023-11-18)
+
+### Bug Fixes
+
+- support custom table interface properties ([746bd42](https://gitlab.com/rxap/packages/commit/746bd42632ccb699b471ffea25543a76445501ff))
+
 # [16.1.0-dev.44](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.43...@rxap/schematic-angular@16.1.0-dev.44) (2023-11-18)
 
 ### Bug Fixes
