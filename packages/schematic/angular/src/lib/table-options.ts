@@ -14,6 +14,7 @@ import {
   NormalizeTableOpenApiOptions,
   TableOpenApiOptions,
 } from './table-open-api-options';
+import { NormalizedTableProperty } from './table-property';
 
 export interface TableOptions extends MinimumTableOptions {
   selectColumn?: boolean;
@@ -25,6 +26,7 @@ export interface NormalizedTableOptions extends Readonly<Normalized<TableOptions
   componentName: string;
   columnList: NormalizedTableColumn[];
   actionList: NormalizedTableAction[];
+  propertyList: NormalizedTableProperty[];
 }
 
 export function NormalizeTableOptions(options: Readonly<TableOptions>, name: string): NormalizedTableOptions {

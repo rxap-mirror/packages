@@ -45,6 +45,7 @@ import {
 } from './minimum-table-options';
 import { NormalizedTableAction } from './table-action';
 import { NormalizedTableColumn } from './table-column';
+import { NormalizedTableProperty } from './table-property';
 
 export type MinimumTableComponentOptions = MinimumTableOptions & AngularOptions;
 
@@ -52,6 +53,7 @@ export interface NormalizedMinimumTableComponentOptions
   extends Readonly<Normalized<MinimumTableComponentOptions> & NormalizedMinimumTableOptions & NormalizedAngularOptions> {
   columnList: NormalizedTableColumn[];
   actionList: NormalizedTableAction[];
+  propertyList: NormalizedTableProperty[];
   componentName: string;
   controllerName: string;
 }
@@ -110,6 +112,7 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
     }, (project, [ sourceFile ]) => {
       CoerceTypeAlias(sourceFile, `I${ classify(componentName) }`).set({
         isExported: true,
+        // TODO : support the option to specify how to get the row type from the operation response type
         type: `TableRowMetadata & ${ OperationIdToResponseClassName(operationId) }['rows'][number]`,
       });
       CoerceImports(sourceFile, {
@@ -124,13 +127,13 @@ function tableInterfaceFromOpenApiRule(normalizedOptions: NormalizedMinimumTable
   ]);
 }
 
-function processColumns(columnList: NormalizedTableColumn[]): OptionalKind<PropertySignatureStructure>[] {
+function processPropertyList(columnList: NormalizedTableProperty[]): OptionalKind<PropertySignatureStructure>[] {
   const result: any = {};
 
   columnList.forEach((column) => {
-    const parts = column.propertyPath.split('.');
+    const parts = column.name.split('.');
     if (parts.length === 1) {
-      result[column.propertyPath] = column.type;
+      result[column.name] = column.type;
     } else {
       let current = result;
       for (let i = 0; i < parts.length; i++) {
@@ -157,9 +160,9 @@ function processColumns(columnList: NormalizedTableColumn[]): OptionalKind<Prope
 }
 
 
-function tableInterfaceFromColumnListRule(normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
+function tableInterfaceFromPropertyListRule(normalizedOptions: NormalizedMinimumTableComponentOptions): Rule {
   const {
-    columnList,
+    propertyList,
     name,
     componentName,
     project,
@@ -178,7 +181,7 @@ function tableInterfaceFromColumnListRule(normalizedOptions: NormalizedMinimumTa
       CoerceInterface(sourceFile, `I${ classify(componentName) }`).set({
         isExported: true,
         extends: [ 'Record<string, unknown>', 'TableRowMetadata' ],
-        properties: processColumns(columnList),
+        properties: processPropertyList(propertyList),
       });
       CoerceImports(sourceFile, {
         moduleSpecifier: '@rxap/material-table-system',
@@ -194,9 +197,10 @@ export function tableInterfaceRule(normalizedOptions: NormalizedMinimumTableComp
   switch (backend) {
     case BackendTypes.NESTJS:
       return tableInterfaceFromOpenApiRule(normalizedOptions);
+    // TODO : add support for the open-api backend type - this will require some why to define how to get the row type from the operation response type
     default:
     case BackendTypes.NONE:
-      return tableInterfaceFromColumnListRule(normalizedOptions);
+      return tableInterfaceFromPropertyListRule(normalizedOptions);
   }
 }
 

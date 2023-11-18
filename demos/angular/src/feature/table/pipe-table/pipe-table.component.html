@@ -4,8 +4,8 @@
   <div class="table-card-container flex flex-col">
     <mat-card>
       <mat-progress-bar
-        [loading$]="tableDataSourceDirective.loading$"
         rxapCardProgressBar
+        [loading$]="tableDataSourceDirective.loading$"
       ></mat-progress-bar>
       <mat-card-header class="min-h-full h-12">
 
@@ -32,21 +32,21 @@
 
       <mat-card-content>
         <rxap-data-source-error
-          *ngIf="tableDataSourceDirective.hasError$ | async"
           [error]="tableDataSourceDirective.dataSource?.error$"
           [loading]="tableDataSourceDirective.loading$"
+          *ngIf="tableDataSourceDirective.hasError$ | async"
           [refresh]="tableDataSourceDirective.retry">
         </rxap-data-source-error>
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
           <table
-            #tableDataSourceDirective="rxapTableDataSource"
             [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
             [paginator]="paginator"
-            [parameters]="parameters"
-            id="pipe"
+            #tableDataSourceDirective="rxapTableDataSource"
             mat-table
             matSort
             rxapTableDataSource
+            [parameters]="parameters"
+            id="pipe"
 
           >
             <!-- region columns -->
@@ -69,21 +69,21 @@
 
 
             <tr
-              *matHeaderRowDef="rxapTableColumns.displayColumns"
               mat-header-row
+              *matHeaderRowDef="rxapTableColumns.displayColumns"
             ></tr>
 
             <tr
+              [@rowsAnimation]=""
+              [ngClass]="{ 'rxap-row-odd !bg-neutral-200 dark:!bg-neutral-600': odd, 'rxap-row-even': even }"
+              class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
+              mat-row
               *matRowDef="
               let element;
               columns: rxapTableColumns.displayColumns;
               let odd = odd;
               let even = even
             "
-              [@rowsAnimation]=""
-              [ngClass]="{ 'rxap-row-odd !bg-neutral-200 dark:!bg-neutral-600': odd, 'rxap-row-even': even }"
-              class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
-              mat-row
             ></tr>
           </table>
         </div>
@@ -92,8 +92,8 @@
       <mat-card-footer
       >
         <mat-paginator
-          #paginator="matPaginator"
           [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          #paginator="matPaginator"
           [pageSizeOptions]="[5,10,25,50,100]"
           [pageSize]="10"
           rxapPersistent

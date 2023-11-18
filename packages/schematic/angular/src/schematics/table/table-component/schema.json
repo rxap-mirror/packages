@@ -102,6 +102,31 @@
           ],
           "description": "The header button configuration"
         },
+        "propertyList": {
+          "alias": "property",
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            ]
+          }
+        },
         "columnList": {
           "alias": "column",
           "type": "array",

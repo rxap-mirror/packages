@@ -1,15 +1,16 @@
-import { NormalizedTableColumn } from './table-column';
-import { NormalizedTableAction } from './table-action';
 import { Normalized } from '@rxap/utilities';
+import {
+  ExistingMethod,
+  NormalizeExistingMethod,
+} from './existing-method';
 import {
   MinimumTableOptions,
   NormalizedMinimumTableOptions,
   NormalizeMinimumTableOptions,
 } from './minimum-table-options';
-import {
-  ExistingMethod,
-  NormalizeExistingMethod,
-} from './existing-method';
+import { NormalizedTableAction } from './table-action';
+import { NormalizedTableColumn } from './table-column';
+import { NormalizedTableProperty } from './table-property';
 
 export interface TreeTableOptions extends MinimumTableOptions {
   tableRootMethod?: ExistingMethod;
@@ -21,6 +22,7 @@ export interface NormalizedTreeTableOptions extends Readonly<Normalized<TreeTabl
   componentName: string;
   columnList: NormalizedTableColumn[];
   actionList: NormalizedTableAction[];
+  propertyList: NormalizedTableProperty[];
 }
 
 export function NormalizeTreeTableOptions(

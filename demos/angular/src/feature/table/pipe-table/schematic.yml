@@ -5,6 +5,10 @@ options:
   tableMethod:
     className: DummyTableMethod
     importPath: "../dummy-table.method"
+  propertyList:
+    - name: link
+      type: string
+    - age
   columnList:
     - name: name
       pipeList:

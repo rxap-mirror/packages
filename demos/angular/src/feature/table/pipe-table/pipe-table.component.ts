@@ -1,5 +1,4 @@
 import {
-  AsyncPipe,
   CommonModule,
   JsonPipe,
 } from '@angular/common';
@@ -66,8 +65,6 @@ import { ToUppercasePipe } from './to-uppercase.pipe';
 
     JsonPipe,
 
-    AsyncPipe,
-
 
     CommonModule,
     MatCardModule,
@@ -110,7 +107,7 @@ import { ToUppercasePipe } from './to-uppercase.pipe';
     {
       provide: RXAP_TABLE_METHOD,
       useClass: DummyTableMethod,
-    },
+    }
   ],
 })
 export class PipeTableComponent {
