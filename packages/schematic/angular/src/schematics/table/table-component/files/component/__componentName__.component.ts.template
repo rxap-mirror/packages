@@ -41,7 +41,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 <% for (const column of columnList) { %>
 <% if (column.role === 'component') { %>
-import { <%= classify(column.name) %>Component } from './<%= dasherize(column.name) %>-component/<%= dasherize(column.name) %>.component';
+import { <%= classify(column.name) %>CellComponent } from './<%= dasherize(column.name) %>-cell-component/<%= dasherize(column.name) %>-cell.component';
 <% } %>
 <% for (const pipe of column.pipeList) { %>
 import { <%= pipe.namedImport %> } from '<%= pipe.moduleSpecifier %>';
