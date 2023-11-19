@@ -86,10 +86,12 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
           moduleSpecifier: OperationIdToClassImportPath(loadFrom.operationId, loadFrom.scope ?? scope),
           namedImports: [ OperationIdToClassName(loadFrom.operationId) ],
         });
-        CoerceImports(sourceFile, {
-          moduleSpecifier: OperationIdToResponseClassImportPath(loadFrom.operationId, loadFrom.scope ?? scope),
-          namedImports: [ OperationIdToResponseClassName(loadFrom.operationId) ],
-        });
+        if (formInitial) {
+          CoerceImports(sourceFile, {
+            moduleSpecifier: OperationIdToResponseClassImportPath(loadFrom.operationId, loadFrom.scope ?? scope),
+            namedImports: [ OperationIdToResponseClassName(loadFrom.operationId) ],
+          });
+        }
       }
 
       const [ constructorDeclaration ] = CoerceClassConstructor(classDeclaration);
