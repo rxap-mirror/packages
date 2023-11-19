@@ -145,7 +145,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedAccordionItemTableCompon
           fromParent: !hasSharedModifier,
         },
       ],
-      columnList: [],
+      propertyList: [],
       skipCoerce: true,
     }),
   ]);

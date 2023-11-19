@@ -26,7 +26,7 @@ import { CoercePageDtoClass } from './coerce-page-dto-class';
 import { CoerceRowDtoClass } from './coerce-row-dto-class';
 import { DtoClassProperty } from './create-dto-class';
 
-export interface GetPageOperationColumn {
+export interface GetPageOperationProperty {
   name: string;
   type?: TypeImport;
   /**
@@ -37,7 +37,7 @@ export interface GetPageOperationColumn {
 
 export interface CoerceGetPageOperationOptions
   extends Omit<Omit<CoerceOperationOptions, 'operationName'>, 'tsMorphTransform'> {
-  columnList: GetPageOperationColumn[];
+  propertyList: GetPageOperationProperty[];
   tsMorphTransform?: (
     project: Project,
     sourceFile: SourceFile,
@@ -80,24 +80,24 @@ export interface CoerceGetPageOperationOptions
   ) => void;
 }
 
-function GetPageOperationColumnTypeToTypeImport(column: GetPageOperationColumn): TypeImport {
-  if (!column.type) {
+function GetPageOperationColumnTypeToTypeImport(property: GetPageOperationProperty): TypeImport {
+  if (!property.type) {
     return { name: 'unknown' };
   }
-  switch (column.type?.name) {
+  switch (property.type?.name) {
     case 'IconConfig':
       return {
         name: 'IconDto',
         moduleSpecifier: '@rxap/nest-dto',
       };
   }
-  return column.type ?? { name: 'unknown' };
+  return property.type ?? { name: 'unknown' };
 }
 
-export function GetPageOperationColumnToDtoClassProperty(column: GetPageOperationColumn): DtoClassProperty {
-  const type = GetPageOperationColumnTypeToTypeImport(column);
+export function GetPageOperationColumnToDtoClassProperty(property: GetPageOperationProperty): DtoClassProperty {
+  const type = GetPageOperationColumnTypeToTypeImport(property);
   return {
-    name: column.name,
+    name: property.name,
     type: type.name.replace(/\[]$/, '').replace(/^Array<(.+)>/, '$1') ?? 'unknown',
     isArray: type.name.endsWith('[]') || type.name.startsWith('Array<'),
     isOptional: false,
@@ -105,15 +105,15 @@ export function GetPageOperationColumnToDtoClassProperty(column: GetPageOperatio
   };
 }
 
-export function GetPageOperationColumnToCodeText(column: GetPageOperationColumn): string {
-  let propertyName = camelize(column.name);
-  const prefixMatch = column.name.match(/^(_+)/);
+export function GetPageOperationColumnToCodeText(property: GetPageOperationProperty): string {
+  let propertyName = camelize(property.name);
+  const prefixMatch = property.name.match(/^(_+)/);
 
   if (prefixMatch) {
-    propertyName = camelize(column.name.replace(/^_+/, ''));
+    propertyName = camelize(property.name.replace(/^_+/, ''));
     propertyName = prefixMatch[0] + propertyName;
   }
-  return `${ propertyName }: item.${ column.source ?? camelize(column.name) }`;
+  return `${ propertyName }: item.${ property.source ?? camelize(property.name) }`;
 }
 
 export function CoerceToRowDtoMethod(
@@ -153,7 +153,7 @@ export function CoerceToRowDtoMethod(
       (options.rowIdProperty === null ?
         '(pageIndex * pageSize + index).toFixed(0)' :
         `item.${ options.rowIdProperty ?? 'uuid' }`) + ',\n  ',
-      options.columnList.map(GetPageOperationColumnToCodeText).join(',\n  '),
+      options.propertyList.map(GetPageOperationColumnToCodeText).join(',\n  '),
       '};',
     ],
   });
@@ -263,7 +263,7 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
     operationName,
     rowIdProperty,
     tsMorphTransform,
-    columnList,
+    propertyList,
     controllerName,
     responseDtoName,
     context,
@@ -296,11 +296,11 @@ export function CoerceGetPageOperation(options: Readonly<CoerceGetPageOperationO
       } = CoerceRowDtoClass({
         project,
         name: responseDtoName!,
-        propertyList: columnList.map(GetPageOperationColumnToDtoClassProperty),
+        propertyList: propertyList.map(GetPageOperationColumnToDtoClassProperty),
         rowIdType: rowIdProperty === null ? null : undefined,
       });
 
-      CoerceImports(rowSourceFile, options.columnList
+      CoerceImports(rowSourceFile, propertyList
         .map(c => GetPageOperationColumnTypeToTypeImport(c))
         .filter(type => RequiresTypeImport(type))
         .map(type => TypeImportToImportStructure(type)));

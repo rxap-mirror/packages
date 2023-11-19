@@ -10,7 +10,7 @@ export interface CoerceTableSelectOperationOptions extends CoerceGetPageOperatio
 
 export function CoerceTableSelectOperationRule(options: CoerceTableSelectOperationOptions) {
   let {
-    columnList,
+    propertyList,
     rowIdProperty,
     rowDisplayProperty,
     rowValueProperty,
@@ -20,12 +20,12 @@ export function CoerceTableSelectOperationRule(options: CoerceTableSelectOperati
   rowDisplayProperty ??= 'name';
   rowValueProperty ??= rowIdProperty;
 
-  columnList.unshift({
+  propertyList.unshift({
     name: '__display',
     type: { name: 'string' },
     source: rowDisplayProperty,
   });
-  columnList.unshift({
+  propertyList.unshift({
     name: '__value',
     type: { name: 'string' },
     source: rowValueProperty,
@@ -33,7 +33,7 @@ export function CoerceTableSelectOperationRule(options: CoerceTableSelectOperati
 
   return CoerceGetPageOperation({
     ...options,
-    columnList,
+    propertyList: propertyList,
     rowIdProperty,
   });
 

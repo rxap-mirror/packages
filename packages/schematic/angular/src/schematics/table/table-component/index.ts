@@ -12,7 +12,7 @@ import {
   CoerceImports,
   CoerceMethodClass,
   FormDefinitionControl,
-  GetPageOperationColumn,
+  GetPageOperationProperty,
   OperationIdToClassImportPath,
   OperationIdToClassName,
   TsMorphAngularProjectTransformOptions,
@@ -52,6 +52,7 @@ import {
   NormalizedTableOptions,
   NormalizeTableOptions,
 } from '../../../lib/table-options';
+import { NormalizedTableProperty } from '../../../lib/table-property';
 import { CoerceTypeAlias } from '../action/form-table-action/index';
 import { TableComponentOptions } from './schema';
 
@@ -83,14 +84,28 @@ export function NormalizeTableComponentOptions(
   });
 }
 
-export function TableColumnToGetPageOperationColumn(
-  column: NormalizedTableColumn,
-): GetPageOperationColumn {
-  return {
-    name: column.name,
-    type: column.type ?? undefined,
-    source: column.propertyPath ?? undefined,
-  };
+export function TableColumnListAndPropertyListToGetPageOperationPropertyList(
+  columnList: ReadonlyArray<NormalizedTableColumn>,
+  propertyList: ReadonlyArray<NormalizedTableProperty>,
+): GetPageOperationProperty[] {
+  const list: GetPageOperationProperty[] = [];
+  for (const column of columnList) {
+    list.push({
+      name: column.name,
+      type: column.type ?? undefined,
+      source: column.propertyPath ?? undefined,
+    });
+  }
+  for (const property of propertyList) {
+    if (!list.find((p) => p.source === property.name)) {
+      list.push({
+        name: property.name,
+        type: property.type ?? undefined,
+        source: property.name ?? undefined,
+      });
+    }
+  }
+  return list;
 }
 
 export function TableColumnToFormControl(
@@ -390,6 +405,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
     feature,
     shared,
     columnList,
+    propertyList,
     context,
     nestModule,
     componentName,
@@ -413,7 +429,7 @@ function nestjsBackendRule(normalizedOptions: NormalizedTableComponentOptions): 
       project,
       feature,
       shared,
-      columnList: columnList.map(TableColumnToGetPageOperationColumn),
+      propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, propertyList),
       context,
     }),
     () => console.log('Add the open api methods to the table component providers'),

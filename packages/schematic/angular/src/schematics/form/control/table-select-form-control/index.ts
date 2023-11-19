@@ -36,7 +36,7 @@ import {
   NormalizedTableColumn,
   NormalizeTableColumnList,
 } from '../../../../lib/table-column';
-import { TableColumnToGetPageOperationColumn } from '../../../table/table-component';
+import { TableColumnListAndPropertyListToGetPageOperationPropertyList } from '../../../table/table-component';
 import {
   NormalizedFormControlOptions,
   NormalizeFormControlOptions,
@@ -173,7 +173,7 @@ export default function (options: TableSelectFormControlOptions) {
         feature,
         nestModule,
         controllerName,
-        columnList: columnList.map(TableColumnToGetPageOperationColumn),
+        propertyList: TableColumnListAndPropertyListToGetPageOperationPropertyList(columnList, []),
         operationName: optionsOperationName,
         path: optionsOperationPath,
         skipCoerceTableSuffix: true,
