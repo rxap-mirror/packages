@@ -1,5 +1,5 @@
 {
-  "version": "16.0.0-dev.40",
+  "version": "16.0.0-dev.41",
   "name": "@rxap/schematics-ts-morph",
   "license": "GPL-3.0-or-later",
   "dependencies": {
