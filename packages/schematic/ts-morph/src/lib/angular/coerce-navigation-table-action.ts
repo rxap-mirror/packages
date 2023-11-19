@@ -86,9 +86,9 @@ export function CoerceNavigationTableActionRule(options: CoerceLinkTableActionRu
         routeValue = buildDynamicRoute(route!);
       }
       if (relativeTo) {
-        statements.push(`return this.router.navigate([ '${ routeValue }' ], { relativeTo: this.route } );`);
+        statements.push(`return this.router.navigate([ \`${ routeValue }\` ], { relativeTo: this.route } );`);
       } else {
-        statements.push(`return this.router.navigate([ '${ routeValue }' ]);`);
+        statements.push(`return this.router.navigate([ \`${ routeValue }\` ]);`);
       }
 
       return {

@@ -168,6 +168,8 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
           statements.push(`const initial = await this.getInitial.call({ requestBody });`);
         } else if (loadFrom.parameters) {
           statements.push(`const initial = await this.getInitial.call({ parameters: requestParameters });`);
+        } else {
+          statements.push(`const initial = parameters;`);
         }
       } else {
         statements.push(`const initial = parameters;`);
