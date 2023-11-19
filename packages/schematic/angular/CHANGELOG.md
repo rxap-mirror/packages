@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.1.0-dev.51](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.50...@rxap/schematic-angular@16.1.0-dev.51) (2023-11-19)
+
+### Bug Fixes
+
+- simplify the table action form name ([af8012e](https://gitlab.com/rxap/packages/commit/af8012e60602d4a8bcb191e97af18b93dc1fe32b))
+
 # [16.1.0-dev.50](https://gitlab.com/rxap/packages/compare/@rxap/schematic-angular@16.1.0-dev.49...@rxap/schematic-angular@16.1.0-dev.50) (2023-11-19)
 
 ### Bug Fixes
